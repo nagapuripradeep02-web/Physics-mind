@@ -1,0 +1,327 @@
+{
+  "concept_id": "inclined_plane_components",
+  "concept_name": "Resolving Forces on an Inclined Plane — Along and Perpendicular to the Slope",
+  "chapter": 5,
+  "section": "5.3",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.3 — Resolution of Vectors, inclined-plane case; split from vector_components bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A loaded bullock cart parked on a sloping village road. Gravity always pulls the cart straight down — that is the raw fact. But what the driver cares about is whether the cart will slide DOWN the slope and how hard he must brake it. To answer that, we ignore the horizontal and vertical directions and instead ask: how much of gravity runs ALONG the slope, and how much pushes INTO the slope? Those two numbers settle the problem.",
+    "secondary": "A child sliding down a ramp at a playground in Mumbai. Gravity pulls the child straight down, but the ramp redirects that pull. The component along the ramp accelerates the child; the component perpendicular to the ramp is cancelled by the normal force from the ramp surface. Choosing ramp-aligned axes makes both effects visible in a single step.",
+    "tertiary": "A block of ice on a tilted table in a laboratory. Even though gravity is vertical, the physics becomes simpler when the coordinate axes are tilted to match the table. One axis runs along the surface, one perpendicular to it. Every real-world question — will the ice slide, how fast, how much friction — is answered along these tilted axes."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "m": { "name": "Mass of block", "unit": "kg", "min": 0.5, "max": 20, "default": 2 },
+      "g": { "name": "Gravity", "unit": "m/s^2", "min": 9.8, "max": 9.8, "default": 9.8 },
+      "theta_deg": { "name": "Incline angle from horizontal", "unit": "deg", "min": 0, "max": 75, "default": 30 }
+    },
+    "computed_outputs": {
+      "weight": { "formula": "m * g" },
+      "along_slope": { "formula": "m * g * sin(theta_deg * PI / 180)" },
+      "perp_slope": { "formula": "m * g * cos(theta_deg * PI / 180)" }
+    },
+    "formulas": {
+      "weight_along_slope": "m g sin theta   (pulls the block DOWN the slope)",
+      "weight_perp_slope": "m g cos theta   (presses the block INTO the slope; balanced by normal force)",
+      "axis_convention": "x-axis along the slope (down-slope positive), y-axis perpendicular (away from slope positive)"
+    },
+    "constraints": [
+      "On an incline, choose the x-axis ALONG the slope — NOT horizontal — so friction and the motion direction lie on a single axis",
+      "The perpendicular component m g cos theta is balanced by the normal force in the no-slip case",
+      "At theta = 0 (flat ground), along-slope component is zero; all weight acts perpendicular",
+      "At theta = 90 (wall), perpendicular component is zero; all weight acts along — object is in free fall along the wall"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "A Cart on a Slope — Which Way Does Gravity Actually Matter?",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ramp_shape",
+            "text": "                    ____\n               ____/    |\n          ____/  cart  |\n     ____/    _______  |\n____/ theta=30 deg      |\n___________________________|",
+            "position": { "x": 320, "y": 340 },
+            "style": "callout"
+          },
+          {
+            "type": "force_arrow",
+            "id": "gravity_raw",
+            "from": { "x": 320, "y": 280 },
+            "magnitude": 3,
+            "direction_deg": -90,
+            "label": "mg = 20 N (straight down)",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 40,
+            "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 0.8 }
+          },
+          {
+            "type": "annotation",
+            "id": "driver_concern",
+            "text": "Gravity pulls the cart\nstraight down with mg newtons.\n\nBut the driver cares about:\n\n(1) Will the cart slide\n    DOWN the slope?\n\n(2) How hard does the cart\n    press INTO the slope?\n\nNeither question is answered\nby 'gravity is vertical'.\n\nWe need to split mg along\nramp-aligned directions.",
+            "position": { "x": 580, "y": 280 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A bullock cart is parked on a sloping village road at thirty degrees. The cart's weight — mass times gravity, say twenty newtons — pulls it straight down." },
+            { "id": "s2", "text_en": "That raw fact does not answer what the driver wants to know. He wants to know whether the cart will slide down the slope and how hard it presses the road surface." },
+            { "id": "s3", "text_en": "Neither of those questions is answered by saying 'gravity is vertical'. He needs to know how gravity splits between two specific directions — along the slope, and perpendicular to the slope." },
+            { "id": "s4", "text_en": "This is the whole idea behind inclined-plane problems. Ignore the usual horizontal-and-vertical axes. Tilt your axes to match the slope. Then resolve gravity into the new directions." },
+            { "id": "s5", "text_en": "The next two states do that decomposition, and the last applies it to a clean numerical problem." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Rotate the Axes — Now the Components Are Clean",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ramp_with_block",
+            "text": "           [BLOCK]\n          /\n         /\n        /\n       /\n      /\n_____/ theta = 30 deg\n________________________",
+            "position": { "x": 260, "y": 380 },
+            "style": "callout"
+          },
+          {
+            "type": "force_arrow",
+            "id": "mg_total",
+            "from": { "x": 360, "y": 300 },
+            "magnitude": 3,
+            "direction_deg": -90,
+            "label": "mg (raw)",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 40,
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.7 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "along_slope",
+            "from": { "x": 360, "y": 300 },
+            "magnitude": 1.5,
+            "direction_deg": -60,
+            "label": "mg sin theta (along slope)",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 40,
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "perp_slope",
+            "from": { "x": 360, "y": 300 },
+            "magnitude": 2.6,
+            "direction_deg": -150,
+            "label": "mg cos theta (into slope)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40,
+            "animation": { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "derivation",
+            "text": "New axes chosen\n  x'  ALONG the slope (down is +)\n  y'  PERPENDICULAR (away is +)\n\nThe angle between mg and y'-axis\nis theta (the incline angle).\n\nProjecting mg\n  along x' (slope)  = mg sin theta\n  along y' (perp)   = mg cos theta\n\nAny motion or friction on the slope\nhappens along x'. Balance perpendicular\nto the slope happens along y'.\n\nThis is the ENTIRE trick of\ninclined-plane mechanics.",
+            "position": { "x": 600, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 6, "duration_sec": 1.5 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Rotate your axes so that one axis runs along the slope and the other sticks out perpendicular to it. Call these x-prime along the slope and y-prime perpendicular." },
+            { "id": "s2", "text_en": "The weight vector mg points straight down as always. But the angle between mg and the perpendicular y-prime axis is the same as the incline angle theta. This is a standard geometry fact — the angles of two perpendicular lines equal each other." },
+            { "id": "s3", "text_en": "Project mg onto x-prime. The component along the slope equals mg sine theta. This is the piece that tries to slide the block down." },
+            { "id": "s4", "text_en": "Project mg onto y-prime. The component perpendicular to the slope equals mg cosine theta. This is what the block presses into the slope with." },
+            { "id": "s5", "text_en": "That single decomposition is the entire trick behind inclined-plane mechanics. Once you have these two components, friction, acceleration, and normal-force problems become elementary." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Why These Axes, Not Horizontal-Vertical?",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "bad_axes",
+            "text": "Option A (bad)\n\nKeep horizontal-vertical axes.\n\nFriction runs along the slope\n  -> in both x and y components.\nNormal runs perpendicular to slope\n  -> in both x and y components.\nmg vertical -> only y.\n\nEvery equation has BOTH\ncomponents of EVERY force.\nAlgebra becomes a nightmare.",
+            "position": { "x": 240, "y": 280 },
+            "style": "formula_box",
+            "color": "#EF4444"
+          },
+          {
+            "type": "annotation",
+            "id": "good_axes",
+            "text": "Option B (good)\n\nRotate axes to match slope.\n\nFriction lies along x' only.\nNormal lies along y' only.\nmg splits ONCE, into x' and y'.\n\nEvery equation has at most\nTWO terms. Problem reduces to\nNewton's second law, once\nalong x' and once along y'.",
+            "position": { "x": 600, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Students often ask why we bother tilting the axes. Why not keep the usual horizontal and vertical directions?" },
+            { "id": "s2", "text_en": "Watch what happens if you keep horizontal-vertical axes. Friction runs along the slope — so it has both a horizontal and a vertical component. The normal force is perpendicular to the slope — also both components. Gravity is vertical — one component." },
+            { "id": "s3", "text_en": "Every equation now has both x and y pieces of three forces. The algebra becomes very ugly, and mistakes multiply." },
+            { "id": "s4", "text_en": "By rotating the axes to match the slope, friction lies along x-prime only, normal along y-prime only. Gravity splits once and for all into mg sine theta along x-prime and mg cosine theta along y-prime." },
+            { "id": "s5", "text_en": "Every equation now has two terms at most. That is the reason we choose these axes — not tradition, but ruthless efficiency." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "Numerical Example — 2 kg Block on a 30 deg Incline",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup",
+            "text": "Given\n  m = 2 kg\n  g = 9.8 m/s^2\n  theta = 30 deg\n  (frictionless slope, no motion yet)\n\nWeight\n  mg = 2 * 9.8 = 19.6 N\n\nComponent along slope\n  mg sin 30 = 19.6 * 0.5 = 9.8 N\n  (accelerates block DOWN slope)\n\nComponent into slope\n  mg cos 30 = 19.6 * 0.866 ~ 16.97 N\n  (balanced by normal force N)\n\nAcceleration along slope\n  a = g sin theta = 4.9 m/s^2",
+            "position": { "x": 340, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "reasoning",
+            "text": "Reading the answer\n\nThe block slides down the slope\nwith acceleration 4.9 m/s^2.\n\nIt presses the slope with\n16.97 N. The slope presses back\n(normal force) with the same\nto keep the block on the surface.\n\nNo horizontal or vertical\ndecomposition was ever needed.",
+            "position": { "x": 720, "y": 300 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A two-kilogram block sits on a frictionless thirty-degree incline. Find its acceleration down the slope and the force it exerts on the surface." },
+            { "id": "s2", "text_en": "Weight is mass times gravity — twenty point six newtons. Sine thirty is half, cosine thirty is about zero point eight six six." },
+            { "id": "s3", "text_en": "Component along the slope — mg sine thirty — is nine point eight newtons. This is the force that slides the block down." },
+            { "id": "s4", "text_en": "Component perpendicular to the slope — mg cosine thirty — is about seventeen newtons. The surface pushes back with this same value as the normal force, keeping the block on the slope." },
+            { "id": "s5", "text_en": "Acceleration down the slope is simply g sine theta, which is four point nine metres per second squared. No horizontal-vertical decomposition was ever required." },
+            { "id": "s6", "text_en": "Notice the pattern. For any frictionless incline, the acceleration down the slope is g sine theta. That is the formula you will use hundreds of times in dynamics problems." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "components_on_incline_wrong_axis",
+      "misconception": "On an incline, mg splits into a horizontal and a vertical piece",
+      "trigger_phrases": [
+        "resolve horizontally",
+        "horizontal and vertical components on incline",
+        "gravity is vertical so component is vertical",
+        "why not x and y components"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Decompose Into Horizontal and Vertical",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_decomp",
+              "text": "Your reasoning\n\nGravity is vertical.\nSo split it into horizontal (0)\nand vertical (mg) components.\n\nThat gives you\n  mg_horizontal = 0\n  mg_vertical = mg\n\nAnd then you try to compute\nfriction and normal force\nfrom these — and everything\ntakes much longer than it should.",
+              "position": { "x": 320, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The natural instinct is to keep horizontal and vertical axes because that is what you have always used." },
+              { "id": "s2", "text_en": "So you decompose gravity into zero horizontal plus mg vertical. Technically correct, but almost useless on a slope." },
+              { "id": "s3", "text_en": "Let us see why. Watch what happens when you then try to include friction and normal force in those same horizontal-vertical axes." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Trap Springs — Friction and Normal Get Tangled",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "friction_split",
+              "text": "Friction on the slope\n  runs along the slope\n\nIn horizontal-vertical axes\n  friction_x = f cos theta\n  friction_y = -f sin theta\n\nNormal force perpendicular to slope\n  normal_x = N sin theta\n  normal_y = N cos theta\n\nSix symbols per equation.\nSolve Newton's second law\nhorizontally: three terms.\nSolve vertically: three terms.\nBoth equations are coupled.",
+              "position": { "x": 340, "y": 280 },
+              "style": "formula_box",
+              "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "vs_clean",
+              "text": "In slope-aligned axes\n  friction = -f  (along slope)\n  normal   = +N  (perpendicular)\n  mg       = mg sin theta (along)\n             + mg cos theta (perp)\n\nEquation along slope: 2 terms.\nEquation perpendicular: 2 terms.\nDecoupled. Solve in 30 seconds.",
+              "position": { "x": 720, "y": 300 },
+              "style": "callout",
+              "color": "#10B981",
+              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Friction runs along the slope. In horizontal-vertical axes, that single force has a cosine component horizontally and a sine component vertically." },
+              { "id": "s2", "text_en": "Normal force is perpendicular to the slope. Also two components in horizontal-vertical axes." },
+              { "id": "s3", "text_en": "Your Newton's second law now has three forces each with two components. Six symbols per equation, and the two equations become coupled." },
+              { "id": "s4", "text_en": "In slope-aligned axes, friction is purely along the slope with no perpendicular piece. Normal is purely perpendicular with no along-slope piece. Only gravity needs decomposing, and it splits cleanly into mg sine theta and mg cosine theta." },
+              { "id": "s5", "text_en": "Two terms per equation. The equations decouple. You solve the problem in half the time with half the mistakes." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "The Rule to Keep",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "rule_box",
+              "text": "Inclined-plane axis rule\n\nChoose x-axis ALONG the slope.\nChoose y-axis PERPENDICULAR to it.\n\nThen\n  mg splits into mg sin theta (along)\n                + mg cos theta (perp)\n\n  friction stays purely along x.\n  normal stays purely along y.\n\nFor every inclined-plane problem\nin every JEE or board exam,\nstart here.",
+              "position": { "x": 360, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the rule to remember. For any inclined-plane problem, choose the x-axis along the slope and the y-axis perpendicular." },
+              { "id": "s2", "text_en": "Gravity then splits once — into mg sine theta along the slope and mg cosine theta into the slope." },
+              { "id": "s3", "text_en": "Friction automatically lies along x-axis. Normal force automatically lies along y-axis. Newton's second law reduces to two simple scalar equations, one per axis." },
+              { "id": "s4", "text_en": "This is the starting move for every inclined-plane question you will face. Open every such problem by tilting your axes, and the rest of the work becomes routine." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different angle",
+      "physical_world": "5 kg block on 45 deg incline. Along slope: 5g/sqrt(2) ~ 34.6 N. Into slope: same. Acceleration down: g/sqrt(2) ~ 6.93 m/s^2.",
+      "same_physics": "mg sin theta along, mg cos theta perpendicular"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Friction added",
+      "physical_world": "Same 2 kg, 30 deg, but friction coefficient mu = 0.2. Net force along slope = mg sin 30 - mu mg cos 30 = 9.8 - 3.4 = 6.4 N. Acceleration = 3.2 m/s^2.",
+      "same_physics": "Once axes are tilted, friction adds a single along-slope term; perpendicular balance unchanged"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Smoke fixture — minimal postMessage contract</title></head>
+<body>
+<div id="sim">Minimal sim fixture</div>
+<script>
+  // Mimics the renderer postMessage contract used by every real renderer.
+  // If this test fails, the smoke harness itself is broken (not any real sim).
+  window.parent.postMessage({ type: 'SIM_READY' }, '*');
+  window.addEventListener('message', (e) => {
+    if (e && e.data && e.data.type === 'SET_STATE' && typeof e.data.state === 'string') {
+      window.parent.postMessage({ type: 'STATE_REACHED', state: e.data.state }, '*');
+    }
+  });
+</script>
+</body>
+</html>

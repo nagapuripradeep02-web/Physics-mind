@@ -1,0 +1,104 @@
+{
+  "concept_id": "simple_pendulum",
+  "concept_name": "Simple Pendulum",
+  "class_level": 11,
+  "chapter": "Oscillations",
+  "renderer_hint": {
+    "technology": "p5js",
+    "renderer": "mechanics_2d",
+    "scenario_type": "pendulum",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "L": "Length of the pendulum string (m)",
+    "g": "Acceleration due to gravity = 9.8 m/s²",
+    "m": "Mass of the pendulum bob (kg)",
+    "θ₀": "Initial angular displacement (deg)"
+  },
+  "locked_facts": [
+    "Period T = 2π√(L/g) — depends on length and g ONLY",
+    "Period is INDEPENDENT of mass of bob",
+    "Period is INDEPENDENT of amplitude (for small angles < 15°)",
+    "Restoring force = mg·sin(θ) ≈ mgθ for small angles",
+    "Maximum KE at equilibrium, maximum PE at extreme positions",
+    "Total mechanical energy is conserved throughout the motion"
+  ],
+  "truth_statements": [
+    "The time period of a simple pendulum depends on the length of the string and acceleration due to gravity",
+    "The time period is independent of the mass of the bob and the amplitude of oscillation for small angles",
+    "The motion of a simple pendulum is simple harmonic for small amplitudes",
+    "At the mean position, kinetic energy is maximum and potential energy is minimum",
+    "The restoring force is proportional to sin θ, approximated as θ for small angles"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two pendulums side by side — different bob masses but same string length — swinging in perfect synchrony with identical period labels displayed above each",
+    "visual_emphasis": "Both pendulums perfectly in sync despite visually different bob sizes — period readouts are identical numbers",
+    "why_this_breaks_misconception": "Students see that a heavy bob and a light bob complete each swing at exactly the same time — mass does not matter"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Single pendulum at rest, displaced to initial angle θ₀. Length L labelled, bob mass m labelled, gravity g arrow shown.",
+      "emphasis": "Show the key variables: L, m, g, and θ₀ clearly labelled",
+      "labels_visible": ["L", "m", "g", "θ₀"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Pendulum swings. Energy bar chart shows KE and PE exchanging — KE max at bottom, PE max at extremes. Period T is measured and displayed.",
+      "emphasis": "Energy conservation — total energy bar stays constant while KE and PE bars oscillate",
+      "labels_visible": ["KE", "PE", "T", "v"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Two pendulums appear — same L, different mass bobs (one heavy, one light). Both swing in perfect synchrony. Period labels above each show identical values.",
+      "emphasis": "Both pendulums swing together — mass does NOT affect period. T = 2π√(L/g) has no mass term.",
+      "labels_visible": ["T₁ = T₂", "m₁", "m₂", "L (same)"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust string length and bob mass independently. Period updates in real time. Changing mass has zero effect on T. Changing L changes T visibly.",
+      "emphasis": "Drag the mass slider — period does not change. Drag the length slider — period changes. This proves T depends only on L and g.",
+      "labels_visible": ["T", "L", "m", "T = 2π√(L/g)"],
+      "interactive": true,
+      "sliders": [
+        { "id": "length", "label": "String Length", "min": 0.2, "max": 2, "default": 1, "unit": "m" },
+        { "id": "bob_mass", "label": "Bob Mass", "min": 0.1, "max": 2, "default": 0.5, "unit": "kg" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "A heavier bob swings faster because gravity pulls it more",
+      "trigger_phrases": ["heavier pendulum faster", "heavy bob kam time lagta hai", "mass badhao toh jaldi swing karega", "bhari bob jaldi jaldi hilta hai"],
+      "correction": "NCERT says the time period T = 2π√(L/g) depends only on length and g — mass does not appear in the formula at all",
+      "simulation_emphasis": "Two pendulums with different bob masses but same length swinging in perfect synchrony — period readouts identical"
+    }
+  ],
+  "legend": [
+    { "symbol": "L", "meaning": "Length of pendulum string" },
+    { "symbol": "T", "meaning": "Time period = 2π√(L/g)" },
+    { "symbol": "θ", "meaning": "Angular displacement from vertical" },
+    { "symbol": "KE/PE bars", "meaning": "Kinetic and potential energy (sum is constant)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["newtons_laws", "energy_conservation"],
+    "extensions": ["damped_oscillations", "forced_oscillations"],
+    "siblings": ["spring_mass_system"],
+    "common_exam_combinations": ["time_period_in_elevator", "effective_g_problems"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["period in accelerating elevator", "period on Moon", "effective length problems", "seconds pendulum"],
+    "common_traps": ["assuming period depends on mass", "assuming period depends on amplitude", "forgetting factor of 2π"],
+    "numerical_ranges": {
+      "L": "0.2–2 m",
+      "g": "10 m/s² in JEE",
+      "T": "0.5–3 s typical"
+    }
+  }
+}

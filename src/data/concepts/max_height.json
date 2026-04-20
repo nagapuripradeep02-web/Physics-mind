@@ -1,0 +1,273 @@
+{
+  "concept_id": "max_height",
+  "concept_name": "Maximum Height — How High the Projectile Rises",
+  "chapter": 7,
+  "section": "7.6",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 7.6 — projectile maximum height; split from projectile_motion",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "A cricket six at Wankhede stadium. Launched at 30 m/s, angle 45 degrees. Maximum height reached = (v * sin(theta))^2 / (2g) = (30 * 0.707)^2 / 20 ≈ 22.5 metres. That is higher than the stadium's floodlight towers — why commentators often say 'it's going into the stands' the moment the ball leaves the bat. Every six-hitting batsman has an internal model of this number.",
+    "secondary": "An Indian Army mortar on an artillery range in Pokhran. Shell launched at 100 m/s, angle 60 degrees. Max height = (100 * sin(60))^2 / 20 ≈ 375 metres — three times the height of the Qutub Minar. That altitude is why artillery rounds can clear buildings and land behind enemy lines.",
+    "tertiary": "A volleyball player spiking at the Indian national tournament. Jumped takeoff adds ~2 m/s vertical to a launch at 18 m/s at 70 degrees. Max height = (18 * sin(70))^2 / 20 ≈ 14.3 m above the ball's release point — useful for calculating court hang time."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v0": { "name": "Launch speed", "unit": "m/s", "min": 5, "max": 200, "default": 20 },
+      "theta": { "name": "Launch angle from horizontal", "unit": "deg", "min": 0, "max": 90, "default": 45 },
+      "g": { "name": "Gravitational acceleration", "unit": "m/s^2", "min": 9.8, "max": 10, "default": 10 }
+    },
+    "computed_outputs": {
+      "H_max": { "formula": "(v0 * sin(theta))^2 / (2 * g)" },
+      "time_to_peak": { "formula": "v0 * sin(theta) / g" }
+    },
+    "formulas": {
+      "max_height": "H = (v0 * sin(theta))^2 / (2 * g)",
+      "derivation_path": "At peak, vertical velocity = 0.  Apply v_y^2 = v_y0^2 - 2gH with v_y = 0 to solve.",
+      "time_to_peak": "t_peak = v0 * sin(theta) / g  (half of total flight time)",
+      "relation_to_launch_angle": "H depends on sin^2(theta); peak at theta = 90 deg (straight up).",
+      "unequal_heights": "Not applicable if launch and landing are at different heights; use energy conservation or kinematics with h0."
+    },
+    "constraints": [
+      "Only vertical component contributes to height (horizontal component does not).",
+      "H = 0 at theta = 0 (horizontal shot never rises).",
+      "H is maximum at theta = 90 deg = v0^2 / (2g).",
+      "Air resistance ignored.",
+      "Measured ABOVE the launch height."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Peak is Where Vertical Velocity Equals Zero",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "peak_sketch",
+            "text": "At the highest point of any projectile's flight:\n\n     vertical velocity  v_y  =  0\n\n  Not the TOTAL speed -- just the vertical component.\n  The ball is still moving HORIZONTALLY at v0 * cos(theta),\n  but its UP-ness has momentarily paused.\n\n                      ~peak~\n                     /      \\\n                    /        \\\n                   /          \\\n                  /            \\\n                 /              \\\n                /                \\\n              launch            landing\n\n  The peak is when gravity has fully used up\n  the initial upward velocity.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "wankhede_label",
+            "text": "Six at Wankhede stadium",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "ball_peak",
+            "vehicle_type": "ball",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_left",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
+              { "type": "translate", "delay_sec": 4.5, "duration_sec": 2.5, "dx_px": 180, "dy_px": -240, "easing": "ease_out" },
+              { "type": "translate", "delay_sec": 7.0, "duration_sec": 2.5, "dx_px": 180, "dy_px": 240, "easing": "ease_in" }
+            ]
+          }
+        ],
+        "focal_primitive": "peak_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "At the peak of any projectile's flight, the VERTICAL velocity is zero — but only the vertical component." },
+            { "text_en": "The ball is still moving horizontally at v-nought cosine theta; its up-ness has briefly paused." },
+            { "text_en": "Why does this happen? Gravity has been pulling downward the entire time, chipping away at the initial upward velocity." },
+            { "text_en": "When all the upward speed is used up, the ball stops rising — that is the peak of the trajectory." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Deriving H = v₀² sin²(θ) / 2g",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "derive_H_sketch",
+            "text": "Derivation using v_y^2 = v_y0^2 - 2 g H:\n\n  At the peak,  v_y = 0,  so:\n     0^2  =  (v0 * sin(theta))^2  -  2 * g * H\n\n  Solve for H:\n     H  =  (v0 * sin(theta))^2  /  (2 * g)\n\n  Expanded:\n     H  =  v0^2  *  sin^2(theta)  /  (2 * g)\n\n  Numbers for a Wankhede six:\n     v0 = 30,  theta = 45 deg,  g = 10\n     v0 * sin(theta)  =  30 * 0.707  =  21.2 m/s\n     H  =  21.2^2 / 20  =  450 / 20  =  22.5 m\n\n  Ball rises 22.5 m above bat height -- higher than floodlights.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "derive_H_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Use the kinematics equation v-y squared equals v-y-zero squared minus 2 g H." },
+            { "text_en": "At the peak v-y is zero. Plug in and solve for H." },
+            { "text_en": "H equals v-nought sine theta squared, all divided by 2 g." },
+            { "text_en": "For a Wankhede six at 30 metres per second, 45 degrees — H is 22.5 metres. Higher than the stadium's floodlights, which is exactly why the crowd roars before the ball even lands." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Sin² Dependence — Steeper Angles Dominate",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sin2_sketch",
+            "text": "H = v0^2 * sin^2(theta) / (2g)\n\n  Table for v0 = 20 m/s, g = 10:\n\n   theta = 15 deg  ->  H  =  400 * sin^2(15)/20  =   1.34 m\n   theta = 30 deg  ->  H  =  400 * 0.25      /20  =   5.00 m\n   theta = 45 deg  ->  H  =  400 * 0.5       /20  =  10.00 m\n   theta = 60 deg  ->  H  =  400 * 0.75      /20  =  15.00 m\n   theta = 75 deg  ->  H  =  400 * sin^2(75)/20  =  18.66 m\n   theta = 90 deg  ->  H  =  400 * 1.0       /20  =  20.00 m  <- max\n\n  Unlike range (which peaks at 45 deg),\n  height keeps INCREASING as angle approaches 90 deg.\n\n  Hence straight-up throw (theta=90) gives max height\n  but zero horizontal progress.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "sin2_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Max height depends on sine-SQUARED theta — not sine theta." },
+            { "text_en": "At 30 degrees you get 5 metres. At 45 — 10. At 60 — 15. At 75 — 18.66. At 90 — a full 20 metres." },
+            { "text_en": "Unlike range which peaks at 45 degrees, height keeps climbing all the way to 90 degrees." },
+            { "text_en": "A straight-up throw gives the maximum possible height but zero horizontal distance. An angle tradeoff every projectile problem rests on." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "total_speed_not_vertical",
+      "misconception_summary": "Student uses the full launch speed v0 instead of its vertical component in the max-height formula.",
+      "confusion_patterns": [
+        "max height use v0 not v0 sin theta",
+        "H = v0^2 / 2g",
+        "use total speed for height",
+        "why sin theta in max height"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong Formula: H = v₀² / 2g",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_full_sketch",
+              "text": "Student's wrong shortcut:\n  \"Projectile with speed v0 -- use energy:\n   (1/2) v0^2 = g * H  ->  H = v0^2 / (2g).\"\n\n  That only works for a PURELY VERTICAL throw.\n\n  For a projectile launched at angle theta:\n    Kinetic energy has both horizontal AND vertical parts.\n    Only the VERTICAL part is spent rising.\n    Horizontal part keeps moving sideways all along.\n\n  So H = v0^2 sin^2(theta) / (2g), not v0^2 / (2g).\n\n  Using v0 instead of v0 sin(theta) OVERSTATES H.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 12,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_full_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Wrong shortcut — student writes H equals v-nought squared over 2 g using the full speed." },
+              { "text_en": "That only works if the throw is PURELY vertical. Otherwise, you have just assumed the entire kinetic energy goes into rising." },
+              { "text_en": "At angle theta, only the vertical part, v-nought sine theta, rises. The horizontal part keeps moving sideways, and its energy stays kinetic — it never converts to height." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Energy Conservation Fixes It",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "energy_fix_sketch",
+              "text": "Energy conservation at the peak:\n\n  At launch:\n     KE_total = (1/2) * m * v0^2\n\n  At peak:\n     vertical velocity = 0\n     horizontal velocity = v0 * cos(theta)  (unchanged)\n     KE_remaining = (1/2) * m * (v0 * cos(theta))^2\n\n  Energy lost to raise ball to height H:\n     delta_KE = KE_total - KE_remaining\n             = (1/2) * m * [ v0^2 - v0^2 * cos^2(theta) ]\n             = (1/2) * m * v0^2 * [ 1 - cos^2(theta) ]\n             = (1/2) * m * v0^2 * sin^2(theta)\n\n  Set equal to m * g * H:\n     H = v0^2 * sin^2(theta) / (2g)\n\n  Same answer -- derived from energy.  Horizontal KE never disappears.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 11,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "energy_fix_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Let us cure this mistake with energy conservation." },
+              { "text_en": "At launch, the projectile has kinetic energy half m v-nought squared." },
+              { "text_en": "At the peak, only the horizontal velocity remains — the projectile still has kinetic energy half m v-nought cosine theta squared." },
+              { "text_en": "The difference is what went into raising the projectile by height H. That difference is half m v-nought squared sine squared theta." },
+              { "text_en": "Set equal to m g H, cancel m, rearrange — you get H equals v-nought squared sine squared theta over 2 g. Same as before." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Sanity-Check with Limits",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "sanity_limits_sketch",
+              "text": "Check the formula with limits:\n\n   theta = 0 deg  (horizontal shot):\n      sin(0) = 0  -> H = 0  (correct, never rises)\n\n   theta = 90 deg  (straight up):\n      sin(90) = 1  -> H = v0^2 / (2g)  (correct, max)\n\n   theta = 45 deg:\n      sin^2(45) = 0.5  -> H = v0^2 / (4g)\n      -- exactly half of the vertical-throw maximum\n\n  Formula passes every edge case.\n  If your answer differs, you used the wrong formula.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "sanity_limits_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Limit checks. At zero degrees — horizontal shot — sine is zero, so H is zero. Correct, ball never rises." },
+              { "text_en": "At 90 degrees — straight up — sine is one, so H is v-nought squared over 2g. Correct, this is the maximum." },
+              { "text_en": "At 45 degrees — sine-squared is half, so H is v-nought squared over 4g — exactly half the vertical maximum." },
+              { "text_en": "Formula passes every edge case. If your answer disagrees, you used the wrong formula." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Wankhede six", "params": { "v0": 30, "theta": 45 } },
+      { "label": "Army mortar test", "params": { "v0": 100, "theta": 60 } },
+      { "label": "Volleyball spike", "params": { "v0": 18, "theta": 70 } }
+    ],
+    "type_b": [
+      { "label": "Diwali rocket", "scenario": "diwali_rocket_peak" },
+      { "label": "Tennis serve toss", "scenario": "tennis_serve_toss" }
+    ]
+  }
+}

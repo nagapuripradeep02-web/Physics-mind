@@ -1,0 +1,42 @@
+{
+  "concept_id": "gas_laws_ideal",
+  "concept_name": "Ideal Gas Laws",
+  "class_level": 11,
+  "chapter": "Kinetic Theory",
+  "renderer_hint": { "technology": "plotly", "renderer": "graph_interactive", "scenario_type": "gas_laws", "panel_count": 1, "show_labels": true },
+  "variables": { "P": "Pressure (Pa)", "V": "Volume (m³)", "T": "Temperature (K)", "n": "Moles of gas" },
+  "locked_facts": [
+    "Ideal gas equation: PV = nRT (R = 8.314 J/mol·K)",
+    "Boyle's law: PV = constant at constant T (isothermal)",
+    "Charles's law: V/T = constant at constant P (isobaric)",
+    "Gay-Lussac's law: P/T = constant at constant V (isochoric)",
+    "Avogadro's law: V ∝ n at constant T and P",
+    "STP: T = 273.15 K, P = 1 atm; molar volume = 22.4 L",
+    "Real gases deviate from ideal behaviour at high P and low T"
+  ],
+  "truth_statements": [
+    "The ideal gas equation PV = nRT combines Boyle's, Charles's, and Avogadro's laws into a single relation",
+    "At constant temperature, doubling the pressure halves the volume (Boyle's law)",
+    "At constant pressure, the volume of a gas is directly proportional to its absolute temperature",
+    "An ideal gas has molecules with no intermolecular forces and negligible volume — real gases approximate this at low P and high T",
+    "The gas constant R = 8.314 J/mol·K connects the macroscopic quantities P, V, T with the amount of gas"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three graphs side by side: PV vs P (Boyle — horizontal line for ideal gas, curves for real), V vs T (Charles — straight line through origin at 0 K = absolute zero), P vs T (Gay-Lussac — straight line through 0 K). All three laws unified by PV = nRT.",
+    "visual_emphasis": "Three gas law graphs with PV = nRT shown as the single equation unifying all three",
+    "why_this_breaks_misconception": "Students memorise three separate laws — seeing them as projections of one equation PV = nRT unifies their understanding"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Boyle's law", "description": "Gas at constant T. Increase P → V decreases. PV product stays constant. Hyperbolic P-V curve.", "emphasis": "Squeeze the gas (more P) → it shrinks (less V). Product PV stays constant.", "labels_visible": ["PV = const", "T = const", "Boyle"] },
+    { "id": "STATE_2", "label": "Charles's law", "description": "Gas at constant P. Heat it (increase T) → V increases. V vs T is a straight line that extrapolates to V = 0 at T = 0 K.", "emphasis": "Heat the gas at constant pressure → it expands. The line points to absolute zero.", "labels_visible": ["V/T = const", "P = const", "Charles"] },
+    { "id": "STATE_3", "label": "Ideal gas equation", "description": "All three laws combined into PV = nRT. Given any three of P, V, n, T, calculate the fourth. Real gas deviations shown at high P.", "emphasis": "One equation to rule them all: PV = nRT", "labels_visible": ["PV = nRT", "R = 8.314"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts P, V, or T — the other variable updates via PV = nRT. Toggle between isothermal, isobaric, and isochoric processes on PV diagram.", "emphasis": "Change one variable — watch the others adjust to satisfy PV = nRT", "labels_visible": ["P", "V", "T", "n"], "interactive": true, "sliders": [{ "id": "temperature", "label": "Temperature T", "min": 100, "max": 600, "default": 300, "unit": "K" }, { "id": "pressure", "label": "Pressure P", "min": 0.5, "max": 10, "default": 1, "unit": "atm" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Temperature in gas laws can be in Celsius", "trigger_phrases": ["Celsius in gas law", "temperature in degrees"], "correction": "Gas laws require ABSOLUTE temperature (Kelvin). Using Celsius gives wrong results because Celsius zero is not absolute zero. Always convert: T(K) = T(°C) + 273.15.", "simulation_emphasis": "Show calculation failing with Celsius (negative V) and working with Kelvin" },
+    { "belief": "Ideal gas law works for all conditions", "trigger_phrases": ["always PV = nRT", "ideal gas always"], "correction": "Real gases deviate significantly at high pressure (molecules forced close together) and low temperature (intermolecular forces matter). The ideal gas law is an approximation that works best at low P and high T.", "simulation_emphasis": "Compare ideal gas prediction with real gas data — deviation visible at high P" }
+  ],
+  "legend": [ { "symbol": "R", "meaning": "Gas constant = 8.314 J/mol·K" }, { "symbol": "n", "meaning": "Number of moles" }, { "symbol": "STP", "meaning": "273.15 K, 1 atm" } ],
+  "concept_relationships": { "prerequisites": ["kinetic_theory_temperature"], "extensions": ["first_law_thermodynamics", "pv_diagrams_work"], "siblings": ["kinetic_theory_temperature"], "common_exam_combinations": ["first_law_thermodynamics", "pv_diagrams_work"] }
+}

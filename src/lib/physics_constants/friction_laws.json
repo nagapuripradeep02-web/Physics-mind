@@ -1,0 +1,42 @@
+{
+  "concept_id": "friction_laws",
+  "concept_name": "Laws of Friction",
+  "class_level": 11,
+  "chapter": "Laws of Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "friction", "panel_count": 2, "show_labels": true },
+  "variables": { "f_s": "Static friction (N)", "f_k": "Kinetic friction (N)", "μ_s": "Coefficient of static friction", "μ_k": "Coefficient of kinetic friction" },
+  "locked_facts": [
+    "Static friction: f_s ≤ μ_s N (self-adjusting, up to a maximum)",
+    "Kinetic friction: f_k = μ_k N (constant once sliding begins)",
+    "μ_s > μ_k always — it's harder to start motion than to maintain it",
+    "Friction is independent of contact area (for hard surfaces)",
+    "Friction depends on the nature of surfaces and normal force",
+    "Angle of repose: tanθ = μ_s (incline angle where block just starts sliding)",
+    "Friction force is parallel to the contact surface, opposing relative motion or tendency of motion"
+  ],
+  "truth_statements": [
+    "Static friction is self-adjusting — it matches the applied force up to a maximum value of μ_sN",
+    "Once an object starts sliding kinetic friction takes over which is less than maximum static friction",
+    "The coefficient of friction depends on the nature of the surfaces in contact not on the area",
+    "The angle of repose is the maximum angle of an incline at which a block remains stationary",
+    "Friction is essential for walking, driving, and most everyday motion — without it we could not exert force on the ground"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Graph of friction force vs applied force: static friction increases linearly (matching applied force) until it hits μ_sN, then drops suddenly to μ_kN (kinetic friction, constant). The DROP at the transition is the key — it's harder to start than to keep going.",
+    "visual_emphasis": "f vs F_applied graph showing linear rise, peak at μ_sN, sudden drop to μ_kN, then constant",
+    "why_this_breaks_misconception": "Students think friction is constant — seeing it self-adjust and then drop at the transition is the critical insight"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Static friction adjusts", "description": "A block on a surface. Small force applied — block doesn't move. Friction equals applied force exactly. Increase force — friction increases too. Self-adjusting.", "emphasis": "Static friction matches the applied force — it's NOT a fixed value", "labels_visible": ["f_s = F_applied", "self-adjusting"] },
+    { "id": "STATE_2", "label": "Maximum and kinetic transition", "description": "Force increased to μ_sN — block on verge of motion. Any more force → block slides. Friction drops to μ_kN (kinetic). Sudden transition visible.", "emphasis": "At maximum static friction, the block just starts to slide. Then friction DROPS.", "labels_visible": ["f_s(max) = μ_sN", "f_k = μ_kN", "μ_s > μ_k"] },
+    { "id": "STATE_3", "label": "Friction vs applied force graph", "description": "Complete graph: f rises linearly with F_applied (static region), peaks at μ_sN, drops to μ_kN, stays constant (kinetic region). The graph tells the whole story.", "emphasis": "The graph shows: self-adjusting → peak → drop → constant. This is the complete friction story.", "labels_visible": ["static region", "peak", "kinetic region", "drop"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student gradually increases applied force. Block initially stationary, then slides. Friction force and acceleration displayed. Adjust μ_s, μ_k, and mass. Angle of repose demo.", "emphasis": "Push harder — friction matches you. Push past the limit — it drops and the block accelerates!", "labels_visible": ["f", "F_applied", "a", "μ"], "interactive": true, "sliders": [{ "id": "applied_force", "label": "Applied force", "min": 0, "max": 100, "default": 20, "unit": "N" }, { "id": "mu_s", "label": "μ_s", "min": 0.1, "max": 1.0, "default": 0.5, "unit": "" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Friction always equals μN", "trigger_phrases": ["friction = μN always", "friction hamesha μN"], "correction": "This is only true for kinetic friction or maximum static friction. Below the maximum, static friction self-adjusts to match the applied force. f_s = F_applied (not μ_sN) as long as F_applied < μ_sN.", "simulation_emphasis": "Show block with small applied force — friction equals applied force, NOT μ_sN" },
+    { "belief": "Friction depends on contact area", "trigger_phrases": ["more area more friction", "larger surface more friction"], "correction": "For hard surfaces, friction is independent of contact area. A brick lying flat and standing on its side have the same friction force (same μ and N). This is because larger area distributes the force over more points but each point has less pressure.", "simulation_emphasis": "Show same block in two orientations — friction force identical in both" }
+  ],
+  "legend": [ { "symbol": "μ_s", "meaning": "Coefficient of static friction" }, { "symbol": "μ_k", "meaning": "Coefficient of kinetic friction" }, { "symbol": "N", "meaning": "Normal force (N)" } ],
+  "concept_relationships": { "prerequisites": ["newtons_laws_overview"], "extensions": ["motion_on_inclined_plane"], "siblings": ["newtons_laws_overview"], "common_exam_combinations": ["motion_on_inclined_plane", "work_energy_theorem"] }
+}

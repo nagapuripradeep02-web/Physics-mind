@@ -1,0 +1,106 @@
+{
+  "concept_id": "projectile_motion",
+  "concept_name": "Projectile Motion",
+  "class_level": 11,
+  "chapter": "Motion in a Plane",
+  "renderer_hint": {
+    "technology": "p5js",
+    "renderer": "mechanics_2d",
+    "scenario_type": "projectile",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "u": "Initial speed of projectile (m/s)",
+    "θ": "Launch angle measured from horizontal (deg)",
+    "g": "Acceleration due to gravity = 9.8 m/s²"
+  },
+  "locked_facts": [
+    "Horizontal velocity is constant throughout (zero horizontal acceleration)",
+    "Vertical acceleration = g = 9.8 m/s² downward always",
+    "Trajectory is a parabola: y = x·tan(θ) - gx²/(2u²cos²θ)",
+    "Range R = u²sin(2θ)/g, maximum at θ = 45°",
+    "vx = u·cos(θ) at all times, vy = u·sin(θ) - gt",
+    "Time of flight T = 2u·sin(θ)/g",
+    "Maximum height H = u²sin²(θ)/(2g)"
+  ],
+  "truth_statements": [
+    "The horizontal velocity of a projectile remains constant as there is no horizontal acceleration",
+    "The vertical motion is uniformly accelerated with acceleration g directed downward",
+    "The trajectory of a projectile is a parabola",
+    "Maximum range is achieved at 45° angle of projection",
+    "Two angles of projection θ and (90°-θ) give the same range"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Projectile at several points along the trajectory with velocity components resolved — horizontal arrow stays the same length at every point while vertical arrow shrinks to zero at the peak and reverses direction on the way down",
+    "visual_emphasis": "Constant-length horizontal velocity arrows versus changing vertical velocity arrows at multiple trajectory points",
+    "why_this_breaks_misconception": "Students see with their own eyes that the horizontal component never changes — gravity only acts vertically"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Projectile on the ground with initial velocity vector shown at the launch angle. The vector is decomposed into horizontal (vx) and vertical (vy) components with labels.",
+      "emphasis": "Show the full velocity vector and its two components clearly — horizontal and vertical",
+      "labels_visible": ["u", "vx", "vy", "θ"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Projectile launches and traces a parabolic path. At 3-4 points along the trajectory, velocity component arrows are drawn. Horizontal arrow remains constant, vertical arrow shrinks as it rises.",
+      "emphasis": "The horizontal arrow length does not change even as the projectile rises — only the vertical component changes",
+      "labels_visible": ["vx", "vy", "trajectory"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "At the peak, vy = 0 but vx is still full strength. Descending side shows vy growing downward while vx remains unchanged. All arrows displayed simultaneously for comparison.",
+      "emphasis": "Horizontal velocity arrow constant length at every single point — this is the core insight",
+      "labels_visible": ["vx", "vy = 0 at peak", "R", "H"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive mode: student adjusts launch angle and speed. Range, height, and time of flight update in real time. Complementary angles (e.g. 30° and 60°) produce the same range.",
+      "emphasis": "Try θ = 45° for maximum range. Try complementary angles to see equal range.",
+      "labels_visible": ["R", "H", "T", "vx", "vy"],
+      "interactive": true,
+      "sliders": [
+        { "id": "launch_angle", "label": "Launch Angle", "min": 15, "max": 75, "default": 45, "unit": "°" },
+        { "id": "initial_speed", "label": "Initial Speed", "min": 5, "max": 30, "default": 15, "unit": "m/s" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Horizontal velocity decreases like vertical velocity — the ball slows down in both directions",
+      "trigger_phrases": ["horizontal speed reduces", "ball slows down horizontally", "horizontal mein bhi gravity lagti hai", "dono direction mein slow hota hai"],
+      "correction": "NCERT says horizontal velocity remains constant because there is no horizontal acceleration — gravity only acts vertically downward",
+      "simulation_emphasis": "Show constant-length horizontal velocity arrows at every point of the trajectory while vertical arrows change"
+    }
+  ],
+  "legend": [
+    { "symbol": "→", "meaning": "Velocity component arrow" },
+    { "symbol": "u", "meaning": "Initial speed (m/s)" },
+    { "symbol": "vx", "meaning": "Horizontal velocity = u·cos(θ)" },
+    { "symbol": "vy", "meaning": "Vertical velocity = u·sin(θ) - gt" },
+    { "symbol": "R", "meaning": "Range = u²sin(2θ)/g" },
+    { "symbol": "H", "meaning": "Maximum height = u²sin²(θ)/(2g)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["vectors", "equations_of_motion"],
+    "extensions": ["projectile_on_inclined_plane", "relative_projectile_motion"],
+    "siblings": ["uniform_circular_motion", "circular_motion_banking"],
+    "common_exam_combinations": ["relative_motion", "work_energy_theorem"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["time of flight from cliff", "range on inclined plane", "projectile from moving platform", "collision at highest point"],
+    "common_traps": ["forgetting to resolve initial velocity into components", "using g for horizontal motion", "sign errors in vy when projectile descends"],
+    "numerical_ranges": {
+      "u": "10–50 m/s",
+      "θ": "30°, 45°, 60° most common",
+      "g": "10 m/s² in JEE numericals"
+    }
+  }
+}

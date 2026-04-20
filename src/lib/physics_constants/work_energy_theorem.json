@@ -1,0 +1,106 @@
+{
+  "concept_id": "work_energy_theorem",
+  "concept_name": "Work-Energy Theorem",
+  "class_level": 11,
+  "chapter": "Work, Energy and Power",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "work_energy",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "F": "Applied force on the object (N)",
+    "m": "Mass of the object (kg)",
+    "u": "Initial velocity (m/s)",
+    "v": "Final velocity (m/s)",
+    "d": "Displacement (m)",
+    "θ": "Angle between force and displacement (deg)"
+  },
+  "locked_facts": [
+    "W_net = ΔKE = ½mv² - ½mu² (net work equals change in kinetic energy)",
+    "Work done by a constant force: W = Fd cos(θ)",
+    "Work done by a variable force: W = ∫F·dx (area under F-x curve)",
+    "Work done by gravity on object moving height h downward: W = mgh, upward: W = -mgh",
+    "Work done by friction is always negative: W_friction = -f·d",
+    "At constant velocity: W_net = 0, therefore ΔKE = 0",
+    "Work-energy theorem is valid for both constant and variable forces"
+  ],
+  "truth_statements": [
+    "The net work done on a body equals the change in its kinetic energy, regardless of the nature of forces",
+    "Work done by a force is the dot product of force and displacement vectors: W = F·d = Fd cos(θ)",
+    "For a variable force, work equals the area under the force-displacement graph",
+    "When multiple forces act, the net work is the algebraic sum of work done by each force individually",
+    "The work-energy theorem is a scalar equation — it relates magnitudes, not directions"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A block sliding on a rough surface with F applied — the F-x graph shows area under curve equals ΔKE numerically. Work bars for applied force (positive) and friction (negative) sum to give net work matching ΔKE readout exactly.",
+    "visual_emphasis": "Graph area shaded = ΔKE displayed numerically. W_net bar and ΔKE bar are identical height, proving the theorem.",
+    "why_this_breaks_misconception": "Students see that only NET work matters — applied work alone does not equal ΔKE when friction is present"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Block of mass m on a surface. Applied force F and friction f shown as arrows. F-x graph axes visible but empty. KE readout shows ½mu². Block has initial velocity u.",
+      "emphasis": "Establish the initial KE and all forces — applied, friction, weight, normal",
+      "labels_visible": ["F", "f", "m", "u", "KE_initial = ½mu²"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Block moves under net force. F-x graph traces the applied force curve. Shaded area under F-x grows as displacement increases. KE readout updates. Work bars accumulate — W_applied (green), W_friction (red).",
+      "emphasis": "Area under F-x curve is growing — this IS the work being done",
+      "labels_visible": ["W_applied", "W_friction", "∫F·dx", "KE increasing"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Block reaches final position. Total shaded area under net force curve displayed alongside ΔKE = ½mv² - ½mu². Both values match exactly. The W_net bar and ΔKE bar are side-by-side at equal height.",
+      "emphasis": "W_net = ΔKE proven visually — area under net force curve = change in kinetic energy",
+      "labels_visible": ["W_net = ΔKE", "½mv² - ½mu²", "Area = W_net"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust applied force magnitude, friction coefficient, and initial velocity. F-x graph and KE readout update in real time. Try variable force (sinusoidal) to see ∫F·dx = ΔKE still holds.",
+      "emphasis": "Change any parameter — the theorem W_net = ΔKE always holds. Try zero friction, try F < f.",
+      "labels_visible": ["F", "f", "W_net", "ΔKE", "v", "KE"],
+      "interactive": true,
+      "sliders": [
+        { "id": "applied_force", "label": "Applied Force F", "min": 1, "max": 50, "default": 15, "unit": "N" },
+        { "id": "friction_coeff", "label": "Friction Coefficient μ", "min": 0, "max": 0.8, "default": 0.3, "unit": "" },
+        { "id": "initial_velocity", "label": "Initial Velocity u", "min": 0, "max": 10, "default": 2, "unit": "m/s" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Work done by applied force alone equals the change in kinetic energy",
+      "trigger_phrases": ["applied force ka work = ΔKE", "sirf applied force se KE badhti hai", "work by one force equals kinetic energy change", "only applied work matters"],
+      "correction": "NCERT clarifies: the NET work done by ALL forces equals ΔKE. If friction also does negative work, you must subtract it. W_net = W_applied + W_friction = ΔKE.",
+      "simulation_emphasis": "Show W_applied and W_friction bars summing to W_net, which matches ΔKE"
+    },
+    {
+      "belief": "Work-energy theorem only works for constant forces",
+      "trigger_phrases": ["variable force mein kaise", "only constant force ke liye", "theorem doesn't work for changing force", "integral wala case different hai"],
+      "correction": "The work-energy theorem is universally valid. For variable forces, work is calculated as W = ∫F·dx (area under F-x graph), and this area still equals ΔKE exactly.",
+      "simulation_emphasis": "Toggle to variable force mode — area under curved F-x graph still equals ΔKE numerically"
+    }
+  ],
+  "legend": [
+    { "symbol": "→ (green)", "meaning": "Applied force doing positive work" },
+    { "symbol": "→ (red)", "meaning": "Friction force doing negative work" },
+    { "symbol": "Shaded area", "meaning": "Work done = area under F-x curve" },
+    { "symbol": "KE bar", "meaning": "Kinetic energy ½mv² at current instant" },
+    { "symbol": "W_net bar", "meaning": "Net work done by all forces" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["newtons_laws", "laws_of_motion_friction", "kinematic_equations"],
+    "extensions": ["conservation_of_energy", "potential_energy_curves", "power_efficiency"],
+    "siblings": ["conservation_of_momentum", "impulse_momentum_theorem"],
+    "common_exam_combinations": ["friction_on_incline", "spring_compression", "variable_force_problems", "vertical_circular_motion"]
+  }
+}

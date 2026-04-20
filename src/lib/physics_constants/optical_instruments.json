@@ -1,0 +1,145 @@
+{
+  "concept_id": "optical_instruments",
+  "concept_name": "Optical Instruments (Microscope and Telescope)",
+  "class_level": 12,
+  "chapter": "Ray Optics and Optical Instruments",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "optics_ray",
+    "scenario_type": "optical_instruments",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "f_o": {
+      "symbol": "f_o",
+      "name": "Focal length of objective",
+      "unit": "cm",
+      "min": 0.5,
+      "max": 100,
+      "default": 1
+    },
+    "f_e": {
+      "symbol": "f_e",
+      "name": "Focal length of eyepiece",
+      "unit": "cm",
+      "min": 1,
+      "max": 25,
+      "default": 5
+    },
+    "D": {
+      "symbol": "D",
+      "name": "Least distance of distinct vision",
+      "unit": "cm",
+      "min": 25,
+      "max": 25,
+      "default": 25
+    },
+    "L": {
+      "symbol": "L",
+      "name": "Tube length (distance between lenses)",
+      "unit": "cm",
+      "min": 10,
+      "max": 30,
+      "default": 15
+    },
+    "M": {
+      "symbol": "M",
+      "name": "Magnifying power",
+      "unit": "",
+      "min": 1,
+      "max": 1000,
+      "default": 30
+    }
+  },
+  "locked_facts": [
+    "Simple microscope (magnifying glass): M = 1 + D/f (image at D); M = D/f (image at infinity)",
+    "Compound microscope: M = (L/f_o)(D/f_e) for image at D; M = (L/f_o)(D/f_e) approximately when L >> f_o, f_e",
+    "Astronomical telescope (refracting): M = f_o/f_e (normal adjustment, image at infinity)",
+    "Telescope tube length in normal adjustment: L = f_o + f_e",
+    "Resolving power of telescope ∝ diameter of objective (larger aperture resolves finer details)",
+    "Reflecting telescope (Cassegrain): uses concave primary + convex secondary mirror — avoids chromatic aberration"
+  ],
+  "truth_statements": [
+    "A simple microscope is a convex lens of short focal length used to see a magnified virtual image of a nearby object, with magnifying power M = 1 + D/f",
+    "A compound microscope uses two convex lenses — a short focal length objective that forms a real magnified image, and an eyepiece that acts as a simple microscope to magnify that image further",
+    "An astronomical telescope uses a long focal length objective to form a real image of a distant object at its focus, and a short focal length eyepiece to magnify that image — the magnifying power is f_o/f_e",
+    "In normal adjustment of a telescope, the final image is at infinity and the tube length equals f_o + f_e",
+    "The resolving power of a telescope depends on the diameter of the objective lens — larger objectives can distinguish finer angular details"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show a compound microscope: the tiny object is just beyond f_o of the objective. The objective creates a real, magnified, inverted intermediate image inside the tube. This intermediate image falls within f_e of the eyepiece, which acts as a magnifying glass to produce a final virtual, highly magnified image. Total magnification = (magnification by objective) × (magnification by eyepiece). Now contrast with a telescope: the objective has a LONG focal length (to collect light from distant objects) and the eyepiece has a SHORT focal length (to magnify the small intermediate image). The roles of f_o and f_e are reversed!",
+    "visual_emphasis": "Draw both instruments side by side. In the microscope: f_o is tiny, f_e is small. In the telescope: f_o is large, f_e is small. Highlight that the microscope multiplies both magnifications, while the telescope's magnifying power is simply f_o/f_e."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Simple microscope — magnifying glass",
+      "description": "A convex lens of short focal length (f = 5 cm). A small object is placed between f and the lens. The lens produces a virtual, erect, magnified image at the near point (D = 25 cm). M = 1 + D/f = 1 + 25/5 = 6.",
+      "emphasis": "The simplest optical instrument: a single convex lens acting as a magnifying glass. The object must be within the focal length for a virtual magnified image.",
+      "labels_visible": ["f", "D = 25 cm", "M = 1 + D/f", "Object", "Virtual image"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Compound microscope — two-stage magnification",
+      "description": "Objective lens (f_o = 1 cm) and eyepiece (f_e = 5 cm) separated by tube length L = 15 cm. Object placed just beyond f_o. Objective forms a real, magnified, inverted intermediate image. Eyepiece magnifies this image further. Total M = (L/f_o)(D/f_e) ≈ 75.",
+      "emphasis": "Two-stage magnification: the objective magnifies the object into an intermediate real image, then the eyepiece magnifies that image. Both must be convex lenses with short focal lengths.",
+      "labels_visible": ["f_o", "f_e", "L", "Intermediate image", "Final virtual image", "M ≈ (L/f_o)(D/f_e)"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Astronomical telescope — distant objects magnified",
+      "description": "Objective (f_o = 100 cm, large diameter) and eyepiece (f_e = 5 cm). Parallel rays from a distant star converge at the focal plane of the objective, forming a tiny real image. Eyepiece magnifies this image. M = f_o/f_e = 100/5 = 20. Tube length = f_o + f_e = 105 cm.",
+      "emphasis": "The telescope's objective has a LONG focal length and LARGE diameter — long f_o gives high magnification (M = f_o/f_e), large diameter gives high resolving power and light-gathering ability. The final image is inverted.",
+      "labels_visible": ["f_o", "f_e", "M = f_o/f_e = 20", "L = f_o + f_e", "Parallel rays from star"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive — compare instruments",
+      "description": "Sliders to change f_o, f_e, and tube length. Switch between microscope and telescope modes. Watch magnification update live. Compare how changing each focal length affects magnification differently in each instrument.",
+      "emphasis": "For the microscope: both smaller f_o and smaller f_e increase magnification. For the telescope: larger f_o and smaller f_e increase magnification. Try extreme values and see practical limits.",
+      "interactive": true,
+      "sliders": [
+        { "id": "focalObjective", "label": "Focal length of objective f_o", "min": 0.5, "max": 200, "default": 1, "unit": "cm" },
+        { "id": "focalEyepiece", "label": "Focal length of eyepiece f_e", "min": 1, "max": 25, "default": 5, "unit": "cm" },
+        { "id": "tubeLength", "label": "Tube length L", "min": 10, "max": 250, "default": 15, "unit": "cm" },
+        { "id": "instrumentType", "label": "Instrument", "min": 0, "max": 2, "default": 0, "unit": "0=simple, 1=compound, 2=telescope" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "A telescope magnifies objects by making them physically larger — like zooming in",
+      "trigger_phrases": ["telescope zoom karta hai", "telescope objects bada karta hai", "telescope makes things bigger", "telescope se cheezein badi hoti hain"],
+      "correction": "A telescope does not make objects physically larger. It increases the angle subtended by the object at the eye (angular magnification). A distant star that subtends 0.01° to the naked eye might subtend 0.2° through a telescope — it appears larger because it spans a bigger angle on your retina, but the star itself is unchanged.",
+      "simulation_emphasis": "Show the angular size concept: object far away subtends small angle → objective collects these rays and creates an intermediate image → eyepiece magnifies the angle. Label the angular magnification M = angle with telescope / angle without."
+    },
+    {
+      "belief": "The eyepiece of a telescope should have a large focal length for more magnification",
+      "trigger_phrases": ["eyepiece ka focal length bada hona chahiye", "bigger eyepiece more magnification", "larger f_e zyada magnification", "bada eyepiece better"],
+      "correction": "For a telescope, M = f_o/f_e — the eyepiece focal length is in the DENOMINATOR. A SMALLER f_e gives MORE magnification. The objective should have a LARGE focal length (and large diameter for light gathering), but the eyepiece should have a SHORT focal length to maximize magnification.",
+      "simulation_emphasis": "Show f_e slider: as f_e decreases, the magnification M = f_o/f_e increases. Contrast with the microscope where the eyepiece magnification is D/f_e — in both cases, smaller f_e gives more magnification."
+    },
+    {
+      "belief": "A microscope and telescope work on the same principle — they are basically the same instrument",
+      "trigger_phrases": ["microscope aur telescope same hai", "same principle dono ka", "microscope telescope ek jaisi cheez", "dono ek hi tarah kaam karte hain"],
+      "correction": "Although both use two convex lenses, they are designed for opposite purposes. A microscope has a very short f_o (to magnify tiny nearby objects) and M = (L/f_o)(D/f_e). A telescope has a very long f_o (to view distant objects with small angular size) and M = f_o/f_e. The objective of a microscope is small; the objective of a telescope is large (for light gathering).",
+      "simulation_emphasis": "Show both instruments side by side with their ray diagrams. Highlight the different f_o values: microscope f_o ≈ 1 cm vs telescope f_o ≈ 100 cm. Show that the magnification formulas are different."
+    }
+  ],
+  "legend": [
+    { "symbol": "f_o", "meaning": "Focal length of objective lens" },
+    { "symbol": "f_e", "meaning": "Focal length of eyepiece lens" },
+    { "symbol": "D", "meaning": "Least distance of distinct vision = 25 cm" },
+    { "symbol": "L", "meaning": "Tube length (distance between objective and eyepiece)" },
+    { "symbol": "M", "meaning": "Magnifying power (angular magnification)" },
+    { "symbol": "Resolving power", "meaning": "Ability to distinguish closely spaced objects — depends on aperture" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["thin_lens_formula", "refraction_snells_law_class12"],
+    "extensions": ["wave_optics_resolving_power"],
+    "siblings": ["reflection_spherical_mirrors"],
+    "common_exam_combinations": ["thin_lens_formula", "reflection_spherical_mirrors"]
+  }
+}

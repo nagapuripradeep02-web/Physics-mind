@@ -1,0 +1,41 @@
+{
+  "concept_id": "energy_density_electric_field",
+  "concept_name": "Energy Stored in Electric Field",
+  "class_level": 12,
+  "chapter": "Electrostatic Potential and Capacitance",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "graph_interactive", "scenario_type": "energy_density", "panel_count": 1, "show_labels": true },
+  "variables": { "u": "Energy density (J/m³)", "E": "Electric field (N/C)", "U": "Total energy stored (J)", "C": "Capacitance (F)" },
+  "locked_facts": [
+    "Energy stored in a capacitor: U = ½CV² = ½QV = Q²/2C",
+    "Energy density in electric field: u = ½ε₀E²",
+    "Energy is stored in the electric field itself, not on the plates",
+    "For parallel plate capacitor: U = ½ε₀E²(Ad) where Ad is the volume between plates",
+    "Energy density is proportional to the square of the electric field",
+    "With dielectric: u = ½Kε₀E² = ½ε₀E₀²/K (field reduced but K compensates)"
+  ],
+  "truth_statements": [
+    "The energy stored in a capacitor can be expressed as ½CV² or equivalently as Q²/2C or ½QV",
+    "The energy per unit volume in an electric field is ½ε₀E² — this shows that energy resides in the field itself",
+    "Doubling the electric field quadruples the energy density",
+    "The concept of energy density generalises beyond capacitors — any region of space with an electric field contains energy",
+    "For a parallel plate capacitor the total energy equals the energy density times the volume between the plates"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A capacitor with the space between plates colour-coded by energy density — brighter where E is stronger. Pulling the plates apart (constant Q) shows field staying same but volume increasing, so total energy increases while C decreases.",
+    "visual_emphasis": "Colour-mapped energy density between plates with total energy bar updating as geometry changes",
+    "why_this_breaks_misconception": "Students think energy is stored on the plates — seeing the colour fill the SPACE between plates makes the field-energy concept tangible"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Charged capacitor", "description": "Parallel plate capacitor with charge Q. Energy bar shows U = ½CV². The space between plates is empty — energy location is ambiguous.", "emphasis": "Where is the energy actually stored?", "labels_visible": ["U = ½CV²", "Q", "V"] },
+    { "id": "STATE_2", "label": "Energy in the field", "description": "Electric field lines appear between plates. The space between plates glows with colour intensity proportional to E². Label: u = ½ε₀E². Energy IS the field.", "emphasis": "Energy density u = ½ε₀E² — the energy lives in the field, not on the plates", "labels_visible": ["u = ½ε₀E²", "energy in field"] },
+    { "id": "STATE_3", "label": "Geometry changes", "description": "Plates pulled apart at constant Q. Field stays same (E = σ/ε₀ unchanged), but volume increases → total U increases. C decreases (C = ε₀A/d). Energy bar grows.", "emphasis": "Same field, more volume → more total energy. U = Q²/2C increases as C drops.", "labels_visible": ["U = Q²/2C", "E unchanged", "volume ↑"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts plate separation and charge. Energy density colour map updates. Graph shows u vs E (parabola). Toggle between constant-Q and constant-V modes.", "emphasis": "Watch how energy density scales as E² — double the field, quadruple the energy", "labels_visible": ["u", "E", "U"], "interactive": true, "sliders": [{ "id": "charge", "label": "Charge Q", "min": 1, "max": 10, "default": 5, "unit": "μC" }, { "id": "separation", "label": "Plate separation d", "min": 1, "max": 10, "default": 5, "unit": "mm" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Energy is stored on the capacitor plates", "trigger_phrases": ["energy on plates", "plates store energy", "plates mein energy"], "correction": "Energy is stored in the electric field between the plates. The energy density u = ½ε₀E² shows that wherever there is an electric field, there is stored energy.", "simulation_emphasis": "Colour the space between plates to show energy density — plates themselves are dark" },
+    { "belief": "Pulling plates apart at constant charge doesn't change energy", "trigger_phrases": ["same charge same energy", "charge constant energy constant"], "correction": "At constant Q, pulling plates apart increases energy (U = Q²/2C, and C decreases). The extra energy comes from the work done in pulling the plates apart against the attractive force.", "simulation_emphasis": "Animate plates separating with energy bar increasing and work arrow shown" }
+  ],
+  "legend": [ { "symbol": "u", "meaning": "Energy density = ½ε₀E² (J/m³)" }, { "symbol": "U", "meaning": "Total energy stored (J)" }, { "symbol": "E", "meaning": "Electric field (N/C)" } ],
+  "concept_relationships": { "prerequisites": ["capacitor_parallel_series", "dielectric_in_capacitor"], "extensions": ["electromagnetic_waves"], "siblings": ["energy_density_magnetic_field"], "common_exam_combinations": ["dielectric_in_capacitor"] }
+}

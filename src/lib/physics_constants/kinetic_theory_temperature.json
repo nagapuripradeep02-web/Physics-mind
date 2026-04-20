@@ -1,0 +1,42 @@
+{
+  "concept_id": "kinetic_theory_temperature",
+  "concept_name": "Kinetic Theory and Temperature",
+  "class_level": 11,
+  "chapter": "Kinetic Theory",
+  "renderer_hint": { "technology": "p5js", "renderer": "particle_field", "scenario_type": "kinetic_theory", "panel_count": 1, "show_labels": true },
+  "variables": { "KE": "Average KE per molecule (J)", "T": "Temperature (K)", "v_rms": "RMS speed (m/s)", "k_B": "Boltzmann constant (J/K)" },
+  "locked_facts": [
+    "Average KE per molecule: KE = (3/2)k_BT (k_B = 1.38 × 10⁻²³ J/K)",
+    "Temperature is a measure of average translational kinetic energy of molecules",
+    "Pressure from molecular collisions: P = (1/3)ρv²_rms = (1/3)(Nm/V)v²_rms",
+    "RMS speed: v_rms = √(3k_BT/m) = √(3RT/M)",
+    "At same T, lighter molecules move faster: v_rms ∝ 1/√m",
+    "Degrees of freedom: monatomic (3), diatomic (5), polyatomic (6-7)",
+    "Equipartition of energy: each degree of freedom gets ½k_BT per molecule"
+  ],
+  "truth_statements": [
+    "Temperature is fundamentally a measure of the average translational kinetic energy of the molecules of a substance",
+    "At the same temperature lighter gas molecules move faster than heavier ones",
+    "The pressure exerted by a gas is due to the momentum transfer during molecular collisions with the walls",
+    "The equipartition theorem assigns ½k_BT energy to each degree of freedom per molecule",
+    "Absolute zero (0 K) is the temperature at which molecular motion would theoretically cease — it can never be reached"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A mixture of heavy (blue, slow) and light (red, fast) molecules at the same temperature. Both have the SAME average KE = (3/2)k_BT, but the light molecules zoom around much faster. Temperature is about energy, not speed.",
+    "visual_emphasis": "Heavy slow molecules and light fast molecules side by side with equal KE bars but very different speed bars",
+    "why_this_breaks_misconception": "Students confuse temperature with speed — seeing equal KE with different speeds clarifies that temperature measures energy, not velocity"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Molecules in motion", "description": "Gas molecules bouncing around in a box. Random directions and speeds. Collisions with walls produce pressure. Temperature represented by colour intensity.", "emphasis": "Gas pressure comes from trillions of molecular collisions per second", "labels_visible": ["molecules", "collisions", "pressure"] },
+    { "id": "STATE_2", "label": "Temperature = average KE", "description": "KE measured for many molecules. Distribution shown (Maxwell-Boltzmann). Average KE = (3/2)k_BT. Higher T → higher average KE → faster molecules.", "emphasis": "Temperature IS average kinetic energy — nothing more, nothing less", "labels_visible": ["KE = (3/2)k_BT", "T", "distribution"] },
+    { "id": "STATE_3", "label": "Light vs heavy molecules", "description": "H₂ and O₂ at same temperature. Same average KE. But H₂ (light) moves 4× faster than O₂ (heavy). v_rms = √(3k_BT/m).", "emphasis": "Same temperature = same KE but NOT same speed. Lighter = faster.", "labels_visible": ["KE same", "v_H₂ > v_O₂", "v ∝ 1/√m"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts temperature and molecular mass. RMS speed, KE, and pressure update. Maxwell-Boltzmann distribution shifts. Mix two gases to see different speeds at same T.", "emphasis": "Raise temperature — molecules move faster. Change mass — speed changes but KE stays same at same T.", "labels_visible": ["v_rms", "KE", "T", "P"], "interactive": true, "sliders": [{ "id": "temp", "label": "Temperature", "min": 100, "max": 1000, "default": 300, "unit": "K" }, { "id": "mass", "label": "Molecular mass", "min": 2, "max": 44, "default": 28, "unit": "g/mol" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "All molecules at a given temperature have the same speed", "trigger_phrases": ["same speed at same T", "equal speed molecules"], "correction": "Molecules have a DISTRIBUTION of speeds (Maxwell-Boltzmann distribution). Temperature determines the average KE, but individual molecules have widely varying speeds — some fast, some slow.", "simulation_emphasis": "Show speed distribution histogram — wide spread around the average" },
+    { "belief": "Temperature measures how hot something feels", "trigger_phrases": ["temperature is hotness", "temperature feeling"], "correction": "Temperature is the average translational kinetic energy of molecules: KE = (3/2)k_BT. How 'hot' something feels depends on thermal conductivity and heat capacity, not just temperature. Metal and wood at the same T feel different.", "simulation_emphasis": "Show molecular KE directly proportional to T with numerical values" }
+  ],
+  "legend": [ { "symbol": "k_B", "meaning": "Boltzmann constant = 1.38×10⁻²³ J/K" }, { "symbol": "v_rms", "meaning": "Root mean square speed" }, { "symbol": "KE", "meaning": "Average KE = (3/2)k_BT" } ],
+  "concept_relationships": { "prerequisites": ["newtons_second_law"], "extensions": ["gas_laws_ideal", "specific_heat_cp_cv"], "siblings": ["gas_laws_ideal"], "common_exam_combinations": ["gas_laws_ideal", "specific_heat_cp_cv"] }
+}

@@ -1,0 +1,1109 @@
+{
+  "concept_id": "dot_product",
+  "concept_name": "Dot Product (Scalar Product) of Two Vectors",
+  "class_level": 11,
+  "chapter": "Vectors",
+  "section": "5.4",
+  "source_coverage": {
+    "dc_pandey": "Chapter 5 — Section 5.5 Product of Two Vectors (Dot Product)",
+    "ncert": "Class 11 Physics — Motion in a Plane (vector product and work relation)",
+    "hc_verma": "Vectors and Scalar Product"
+  },
+  "minimum_viable_understanding": "The dot product measures how much one vector lies along another, and it equals AB cosθ, so it becomes zero when the vectors are perpendicular.",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "dot_product",
+    "panel_count": 2,
+    "show_labels": true,
+    "show_components": true,
+    "canvas_scale": 60,
+    "technology_b": "plotly",
+    "sync_required": true,
+    "scene_mode": false,
+    "panel_a_role": "Animated vectors A and B with projection shadow of A onto B",
+    "panel_b_role": "Plotly curve — A·B = AB cos(θ) vs theta (0–180°)"
+  },
+  "variables": {
+    "A": {
+      "name": "Magnitude of first vector",
+      "symbol": "A",
+      "unit": "units",
+      "role": "independent"
+    },
+    "B": {
+      "name": "Magnitude of second vector",
+      "symbol": "B",
+      "unit": "units",
+      "role": "independent"
+    },
+    "theta": {
+      "name": "Angle between vectors",
+      "symbol": "θ",
+      "unit": "degrees",
+      "role": "independent",
+      "typical_range": [
+        0,
+        180
+      ],
+      "note": "θ = 0° gives maximum dot product, θ = 90° gives zero, θ = 180° gives minimum"
+    },
+    "A_dot_B": {
+      "name": "Dot product of A and B",
+      "symbol": "A·B",
+      "unit": "units^2 or derived unit",
+      "role": "dependent",
+      "formula": "AB cosθ"
+    },
+    "component_of_B_along_A": {
+      "name": "Component of B along A",
+      "symbol": "B cosθ",
+      "unit": "units",
+      "role": "dependent",
+      "formula": "(A·B)/A"
+    },
+    "component_of_A_along_B": {
+      "name": "Component of A along B",
+      "symbol": "A cosθ",
+      "unit": "units",
+      "role": "dependent",
+      "formula": "(A·B)/B"
+    }
+  },
+  "locked_facts": [
+    "Dot product is a scalar quantity: A·B = AB cosθ",
+    "A·B = B·A (commutative)",
+    "A·(B + C) = A·B + A·C (distributive)",
+    "A·A = A^2",
+    "If two non-zero vectors are perpendicular, then A·B = 0",
+    "If vectors are parallel and same direction, A·B = AB",
+    "If vectors are antiparallel, A·B = -AB",
+    "The dot product equals magnitude of one vector multiplied by the component of the other along it",
+    "Unit vectors: i·i = j·j = k·k = 1",
+    "Orthogonal unit vectors: i·j = j·k = k·i = 0"
+  ],
+  "truth_statements": [
+    "Dot product is used to measure alignment, not perpendicularity",
+    "Work done by a constant force is W = F·s",
+    "If the angle between two vectors is 90°, their dot product is zero even if both vectors are non-zero",
+    "In components, A·B = A_x B_x + A_y B_y + A_z B_z",
+    "The sign of the dot product depends on the angle between the vectors"
+  ],
+  "prerequisite_check": {
+    "required_concepts": [
+      "vector_basics",
+      "vector_addition",
+      "trigonometric_ratios"
+    ],
+    "gate_signals": [
+      "what is component",
+      "what is angle between vectors",
+      "what does scalar product mean",
+      "cos theta meaning",
+      "projection"
+    ],
+    "if_gap_detected": "Explain angle, projection, and scalar vs vector distinction before introducing A·B = AB cosθ"
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "don't understand dot product",
+      "explain scalar product",
+      "what is dot product",
+      "dot product from scratch",
+      "samajh nahi aaya scalar product",
+      "full explanation"
+    ],
+    "local_triggers": [
+      "why cosine in dot product",
+      "why dot product is zero at 90",
+      "what is projection",
+      "why A dot B equals work",
+      "why scalar product used here",
+      "component of vector along another"
+    ],
+    "micro_triggers": [
+      "why cos theta",
+      "why zero at 90 degrees",
+      "what is A dot A",
+      "what does i dot j mean",
+      "what is component of B along A",
+      "why sign changes"
+    ],
+    "simulation_not_needed_triggers": [
+      "calculate dot product of these vectors",
+      "check my dot product answer",
+      "derive work formula",
+      "prove A dot B is commutative",
+      "component formula only"
+    ]
+  },
+  "epic_l_path": {
+    "description": "Full 6-state explanation for global scope — student lacks the whole concept",
+    "state_count": 6,
+    "checkpoint_states": {
+      "understands_alignment": "enter at STATE_2",
+      "understands_projection": "enter at STATE_3",
+      "understands_unit_vector_rules": "enter at STATE_4",
+      "understands_work_relation": "enter at STATE_5"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Why direction matters in dot product",
+        "physics_layer": {
+          "vector_A": {
+            "magnitude": 5,
+            "direction_deg": 0,
+            "color": "#4FC3F7",
+            "label": "A"
+          },
+          "vector_B": {
+            "magnitude": 5,
+            "direction_deg": 60,
+            "color": "#FF8A65",
+            "label": "B"
+          },
+          "show_component_projection": true,
+          "show_dot_product_value": "A·B = 25 cos60° = 12.5",
+          "freeze": false,
+          "scenario": "dot_definition_geometric"
+        },
+        "pedagogy_layer": {
+          "cognitive_trigger": "Same magnitudes, different angle. Why is the answer not just 25?",
+          "real_world_anchor": "A cricket bat hit is most effective when force aligns with the ball's motion, not sideways.",
+          "attention_target": "The projection of one vector onto the other",
+          "contrast_from_previous": null
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Look at vectors A and B — same magnitudes, but pointing in different directions. If dot product were just A times B, the answer would always be 25 regardless of angle. But watch what happens to the formula A·B = AB cosθ as we rotate B. The dot product is not about size alone — it is about how much one vector lies along the other."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "Dot product is projection weighted by magnitude",
+        "physics_layer": {
+          "show_projection": true,
+          "vector_A": {
+            "magnitude": 5,
+            "direction_deg": 0,
+            "color": "#4FC3F7"
+          },
+          "vector_B": {
+            "magnitude": 5,
+            "direction_deg": 60,
+            "color": "#FF8A65"
+          },
+          "projection_of_B_on_A": 2.5,
+          "dot_product": 12.5,
+          "freeze": true,
+          "scenario": "projection_interpretation"
+        },
+        "pedagogy_layer": {
+          "cognitive_trigger": "Only the part of B along A contributes to A·B.",
+          "real_world_anchor": "A porter pushing a trolley: only the push along the trolley's motion helps.",
+          "attention_target": "The projected component B cosθ",
+          "contrast_from_previous": "Now the dot product is seen as magnitude times aligned part."
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "See the dashed line dropping from B's tip to the line of A. That dashed length is B cosθ — the shadow of B onto A. The dot product A·B equals A times this shadow length. When θ is small, the shadow is long and the dot product is large. When θ approaches 90°, the shadow shrinks to zero."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "label": "Three critical angles",
+        "physics_layer": {
+          "show_three_cases": true,
+          "case_1": {
+            "theta_deg": 0,
+            "value": "AB",
+            "label": "θ = 0°, maximum",
+            "color": "#66BB6A"
+          },
+          "case_2": {
+            "theta_deg": 90,
+            "value": 0,
+            "label": "θ = 90°, zero",
+            "color": "#FFD54F"
+          },
+          "case_3": {
+            "theta_deg": 180,
+            "value": "-AB",
+            "label": "θ = 180°, minimum",
+            "color": "#EF5350"
+          },
+          "show_formula": "A·B = AB cosθ",
+          "freeze": true,
+          "scenario": "component_formula"
+        },
+        "pedagogy_layer": {
+          "cognitive_trigger": "The sign and size change only because cosine changes with angle.",
+          "real_world_anchor": "A rope pull helps most when you pull along the direction of motion; sideways pull gives no direct help.",
+          "attention_target": "The 90° case becoming exactly zero",
+          "contrast_from_previous": "The same formula explains positive, zero, and negative results."
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Three angles tell the whole story. At θ = 0°, vectors fully align — dot product equals AB, the maximum. At θ = 90°, they are perpendicular — shadow vanishes, dot product is exactly zero. At θ = 180°, they oppose — shadow goes negative, dot product equals −AB. Every other angle falls between these three anchors."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "Unit vectors and components",
+        "physics_layer": {
+          "show_basis_vectors": true,
+          "rules": [
+            "i·i = 1",
+            "j·j = 1",
+            "k·k = 1",
+            "i·j = 0",
+            "j·k = 0",
+            "k·i = 0"
+          ],
+          "component_relation": "A·B = A_x B_x + A_y B_y + A_z B_z",
+          "freeze": true,
+          "scenario": "dot_product_sign"
+        },
+        "pedagogy_layer": {
+          "cognitive_trigger": "Dot product becomes easy in components because orthogonal parts vanish.",
+          "real_world_anchor": "North-south movement does not contribute to east-west alignment, like a train moving only on one track.",
+          "attention_target": "Cross-terms disappearing when basis vectors are orthogonal",
+          "contrast_from_previous": "Now the same idea is written in coordinate form."
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "When vectors are in component form, the dot product becomes A·B = AxBx + AyBy + AzBz. This works because unit vectors along different axes are perpendicular — i·j = 0, j·k = 0. Only matching components contribute. x-component of A only pairs with x-component of B, and so on."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "label": "Work done as dot product",
+        "physics_layer": {
+          "show_force_displacement": true,
+          "formula": "W = F·s = Fs cosθ",
+          "highlight_theta": true,
+          "freeze": true,
+          "scenario": "perpendicular_test"
+        },
+        "pedagogy_layer": {
+          "cognitive_trigger": "Work depends only on the part of force along displacement.",
+          "real_world_anchor": "Pulling a suitcase: forward pull does work, sideways pull mostly does not move it forward.",
+          "attention_target": "F cosθ as the useful part of force",
+          "contrast_from_previous": "Dot product is now tied to a familiar physics formula."
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Work done by a force is W = F·s = Fs cosθ. You have used this formula before — but this IS the dot product. Only the component of force along displacement contributes to work. A sideways push on a door — perpendicular to its motion — does zero work, because cosθ = 0 at 90°."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "label": "Student takes control",
+        "physics_layer": {
+          "interactive": true,
+          "vector_A": {
+            "magnitude": 4,
+            "color": "#4FC3F7",
+            "angle_adjustable": true
+          },
+          "vector_B": {
+            "magnitude": 3,
+            "color": "#FF8A65",
+            "angle_adjustable": true
+          },
+          "live_dot_product": true,
+          "show_projection_panel": true,
+          "freeze": false,
+          "scenario": "work_application_preview"
+        },
+        "pedagogy_layer": {
+          "cognitive_trigger": "Change the angle and watch the dot product move from positive to zero to negative.",
+          "attention_target": "Live value update as the angle slider moves",
+          "challenge": "Set θ = 120°. For A = 4 and B = 3, find A·B. Answer: 4×3×cos120° = -6.",
+          "sliders": [
+            {
+              "id": "angle_theta",
+              "label": "Angle θ",
+              "min": 0,
+              "max": 180,
+              "default": 60,
+              "unit": "°"
+            },
+            {
+              "id": "magnitude_B",
+              "label": "Magnitude of B",
+              "min": 1,
+              "max": 8,
+              "default": 3,
+              "unit": "units"
+            }
+          ]
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Now you control the angle. Drag the slider and watch A·B change live — positive when vectors lean toward each other, zero when perpendicular, negative when they oppose. Notice the graph dot moves in sync. Try setting θ = 120° with A = 5, B = 4. The answer should be 5 × 4 × cos120° = −10."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "misconception_id": "dot_product_is_vector",
+      "description": "Student thinks dot product is a vector because it involves two vectors",
+      "trigger_match": [
+        "dot product vector hai kya",
+        "cross product jaisa hoga",
+        "scalar product matlab vector",
+        "A dot B is a vector",
+        "dot product se direction aati hai"
+      ],
+      "state_count": 5,
+      "feedback_tag": "dot_product_scalar_not_vector",
+      "states": {
+        "STATE_1": {
+          "label": "Show the output type",
+          "physics_layer": {
+            "vector_A": {
+              "magnitude": 4,
+              "direction_deg": 0,
+              "color": "#4FC3F7"
+            },
+            "vector_B": {
+              "magnitude": 3,
+              "direction_deg": 60,
+              "color": "#FF8A65"
+            },
+            "output": {
+              "value": 6,
+              "type": "scalar"
+            },
+            "freeze": false,
+            "scenario": "dp_wrong_vector_result"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "The result is just a number, not an arrow.",
+            "real_world_anchor": "Work done gives joules, not a direction arrow.",
+            "attention_target": "The output box showing a scalar"
+          }
+        },
+        "STATE_2": {
+          "label": "Compare with cross product",
+          "physics_layer": {
+            "show_compare_panel": true,
+            "dot_output": "scalar",
+            "cross_output": "vector",
+            "freeze": true,
+            "scenario": "dp_scalar_result_shown"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "Dot product and cross product are different products with different outputs.",
+            "contrast_from_previous": "Dot product gives a scalar, cross product gives a vector."
+          }
+        },
+        "STATE_3": {
+          "label": "Formula confirms scalar result",
+          "physics_layer": {
+            "show_formula": "A·B = AB cosθ",
+            "freeze": true,
+            "scenario": "dp_aha_scalar_product"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "There is no direction symbol in the answer; only magnitude remains.",
+            "contrast_from_previous": "The formula itself returns a number."
+          }
+        },
+        "STATE_4": {
+          "label": "Unit vector rules",
+          "physics_layer": {
+            "show_unit_vector_table": true,
+            "rules": [
+              "i·i = 1",
+              "i·j = 0",
+              "j·k = 0"
+            ],
+            "freeze": true,
+            "scenario": "dot_product_is_vector_s4"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "Orthogonality makes the output vanish, but the output is still a scalar.",
+            "attention_target": "Zero means no aligned component, not a missing vector direction"
+          }
+        },
+        "STATE_5": {
+          "label": "Closure",
+          "physics_layer": {
+            "show_summary_box": true,
+            "summary": "Dot product = scalar alignment measure",
+            "freeze": true,
+            "scenario": "dot_product_is_vector_s5"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "Remember: dot product measures alignment, not a new direction."
+          }
+        }
+      }
+    },
+    {
+      "misconception_id": "theta_90_means_formula_fails",
+      "description": "Student thinks A·B = 0 is a special failure case rather than a valid result",
+      "trigger_match": [
+        "90 degree pe formula fail ho gaya",
+        "cos 90 = 0 isliye formula wrong",
+        "why answer zero",
+        "dot product at 90 degrees confused",
+        "90° pe kaise zero aaya"
+      ],
+      "state_count": 6,
+      "feedback_tag": "dot_product_zero_when_perpendicular",
+      "states": {
+        "STATE_1": {
+          "label": "Show perpendicular vectors",
+          "physics_layer": {
+            "vector_A": {
+              "magnitude": 5,
+              "direction_deg": 0,
+              "color": "#4FC3F7"
+            },
+            "vector_B": {
+              "magnitude": 4,
+              "direction_deg": 90,
+              "color": "#FF8A65"
+            },
+            "show_dot_product": 0,
+            "freeze": false,
+            "scenario": "dp_wrong_nonzero_perp"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "Zero is the correct answer because there is no aligned part.",
+            "real_world_anchor": "Northward motion does not help eastward work."
+          }
+        },
+        "STATE_2": {
+          "label": "Explain projection",
+          "physics_layer": {
+            "show_projection": true,
+            "projected_component": 0,
+            "freeze": true,
+            "scenario": "dp_cos90_is_zero"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "At 90°, the projection of one vector on the other is zero.",
+            "attention_target": "The vanished projection"
+          }
+        },
+        "STATE_3": {
+          "label": "Compare 0°, 90°, 180°",
+          "physics_layer": {
+            "cases": [
+              {
+                "theta_deg": 0,
+                "value": "AB"
+              },
+              {
+                "theta_deg": 90,
+                "value": 0
+              },
+              {
+                "theta_deg": 180,
+                "value": "-AB"
+              }
+            ],
+            "freeze": true,
+            "scenario": "dp_aha_orthogonality_test"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "The formula works across the full angle range.",
+            "contrast_from_previous": "Zero is one normal outcome in the cosine pattern."
+          }
+        },
+        "STATE_4": {
+          "label": "Unit vector example",
+          "physics_layer": {
+            "show_unit_vector_examples": true,
+            "rules": [
+              "i·j = 0",
+              "j·k = 0",
+              "k·i = 0"
+            ],
+            "freeze": true,
+            "scenario": "theta_90_means_formula_fails_s4"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "Orthogonal basis vectors are designed to have zero dot product."
+          }
+        },
+        "STATE_5": {
+          "label": "Work interpretation",
+          "physics_layer": {
+            "show_force_displacement": true,
+            "formula": "W = F s cosθ",
+            "theta_deg": 90,
+            "W": 0,
+            "freeze": true,
+            "scenario": "theta_90_means_formula_fails_s5"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "If force is perpendicular to displacement, it does no work."
+          }
+        },
+        "STATE_6": {
+          "label": "Closure",
+          "physics_layer": {
+            "show_summary_box": true,
+            "summary": "Zero dot product means perpendicular vectors",
+            "freeze": true,
+            "scenario": "theta_90_means_formula_fails_s6"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "Zero means orthogonal, not broken formula."
+          }
+        }
+      }
+    },
+    {
+      "misconception_id": "dot_product_only_magnitude",
+      "description": "Student ignores angle and thinks dot product is just A times B",
+      "trigger_match": [
+        "just multiply the magnitudes",
+        "A times B hi hoga",
+        "angle ignore kar do",
+        "dot product means multiplication only",
+        "cos theta unnecessary hai"
+      ],
+      "state_count": 6,
+      "feedback_tag": "dot_product_angle_required",
+      "states": {
+        "STATE_1": {
+          "label": "Show same magnitudes at different angles",
+          "physics_layer": {
+            "cases": [
+              {
+                "theta_deg": 0,
+                "value": 20
+              },
+              {
+                "theta_deg": 60,
+                "value": 10
+              },
+              {
+                "theta_deg": 90,
+                "value": 0
+              }
+            ],
+            "freeze": false,
+            "scenario": "dot_product_only_magnitude_s1"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "Same magnitudes give different answers because angle matters.",
+            "attention_target": "20, 10, 0 appearing for the same A and B"
+          }
+        },
+        "STATE_2": {
+          "label": "Bring in cosine",
+          "physics_layer": {
+            "show_formula": "A·B = AB cosθ",
+            "highlight_cos": true,
+            "freeze": true,
+            "scenario": "dot_product_only_magnitude_s2"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "Cosine is the angle filter — it keeps only the aligned part."
+          }
+        },
+        "STATE_3": {
+          "label": "Projection view",
+          "physics_layer": {
+            "show_projection": true,
+            "show_aligned_component": true,
+            "freeze": true,
+            "scenario": "dot_product_only_magnitude_s3"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "Dot product is not just multiplication; it is multiplication by alignment."
+          }
+        },
+        "STATE_4": {
+          "label": "Component formula",
+          "physics_layer": {
+            "show_component_formula": "A·B = A_x B_x + A_y B_y + A_z B_z",
+            "freeze": true,
+            "scenario": "dot_product_only_magnitude_s4"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "Only matching directions contribute."
+          }
+        },
+        "STATE_5": {
+          "label": "Physical example",
+          "physics_layer": {
+            "show_force_displacement": true,
+            "formula": "W = F·s",
+            "freeze": true,
+            "scenario": "dot_product_only_magnitude_s5"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "A sideways force may be large, but it may do no work."
+          }
+        },
+        "STATE_6": {
+          "label": "Closure",
+          "physics_layer": {
+            "show_summary_box": true,
+            "summary": "Angle is essential in dot product",
+            "freeze": true,
+            "scenario": "dot_product_only_magnitude_s6"
+          },
+          "pedagogy_layer": {
+            "cognitive_trigger": "A dot B is magnitude times aligned part, not plain multiplication."
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": [
+    {
+      "template_id": "symbol_meaning",
+      "applies_when": "student asks what a symbol means",
+      "example_queries": [
+        "what is A dot B",
+        "what does cos theta mean here",
+        "what is the unit of dot product"
+      ],
+      "state_count": 2,
+      "feedback_tag": "dot_product_micro_symbol",
+      "states": {
+        "STATE_1": {
+          "label": "Highlight the symbol",
+          "instruction": "Show the symbol A·B and label it as a scalar. Use one short sentence only."
+        },
+        "STATE_2": {
+          "label": "Connect symbol to meaning",
+          "instruction": "Show that A·B means magnitude of A times component of B along A."
+        }
+      }
+    },
+    {
+      "template_id": "constant_origin",
+      "applies_when": "student asks where a factor or term comes from",
+      "example_queries": [
+        "why cos theta",
+        "why AB",
+        "why this factor 2"
+      ],
+      "state_count": 3,
+      "feedback_tag": "dot_product_micro_constant",
+      "states": {
+        "STATE_1": {
+          "label": "Show the origin",
+          "instruction": "Point to the projection of one vector on the other."
+        },
+        "STATE_2": {
+          "label": "Convert projection to formula",
+          "instruction": "Show projection = B cosθ, then multiply by A to get A·B = AB cosθ."
+        },
+        "STATE_3": {
+          "label": "Boundary check",
+          "instruction": "Test θ = 0°, 90°, 180° to confirm the formula behaves correctly."
+        }
+      }
+    },
+    {
+      "template_id": "law_check",
+      "applies_when": "student asks about commutativity or distributivity",
+      "example_queries": [
+        "is A dot B same as B dot A",
+        "prove distributive property",
+        "why i dot j equals zero"
+      ],
+      "state_count": 2,
+      "feedback_tag": "dot_product_micro_law",
+      "states": {
+        "STATE_1": {
+          "label": "State the law",
+          "instruction": "Show the law directly in one line, with no derivation overload."
+        },
+        "STATE_2": {
+          "label": "Quick check with unit vectors",
+          "instruction": "Use i·i = 1 and i·j = 0 to validate the law visually."
+        }
+      }
+    },
+    {
+      "template_id": "spatial_question",
+      "applies_when": "student marks a diagram or asks about direction alignment",
+      "example_queries": [
+        "why this angle",
+        "which part contributes",
+        "why along this axis"
+      ],
+      "state_count": 3,
+      "feedback_tag": "dot_product_micro_spatial",
+      "states": {
+        "STATE_1": {
+          "label": "Show the geometry",
+          "instruction": "Draw both vectors from a common origin and mark the angle."
+        },
+        "STATE_2": {
+          "label": "Show the projection",
+          "instruction": "Drop a perpendicular to show the component along the chosen vector."
+        },
+        "STATE_3": {
+          "label": "Link to answer",
+          "instruction": "Show the aligned component times the magnitude gives the dot product."
+        }
+      }
+    },
+    {
+      "template_id": "boundary_condition",
+      "applies_when": "student asks when the formula becomes zero, maximum, or negative",
+      "example_queries": [
+        "when is dot product zero",
+        "when is it maximum",
+        "when does it become negative"
+      ],
+      "state_count": 2,
+      "feedback_tag": "dot_product_micro_boundary",
+      "states": {
+        "STATE_1": {
+          "label": "Boundary case",
+          "instruction": "Show θ = 0°, 90°, 180° as the three key boundaries."
+        },
+        "STATE_2": {
+          "label": "Interpretation",
+          "instruction": "Show positive, zero, and negative dot product meanings side by side."
+        }
+      }
+    }
+  ],
+  "static_responses": [
+    {
+      "response_id": "definition_recall",
+      "triggers": [
+        "what is dot product",
+        "define scalar product",
+        "dot product meaning"
+      ],
+      "response_type": "text",
+      "ai_cost": 0,
+      "content": "The dot product (scalar product) of two vectors A and B is A·B = AB cosθ, where θ is the angle between them. It is a scalar quantity. It equals magnitude of one vector times the component of the other along it."
+    },
+    {
+      "response_id": "unit_vector_rule",
+      "triggers": [
+        "i dot j",
+        "unit vectors dot product",
+        "orthogonal vectors"
+      ],
+      "response_type": "text",
+      "ai_cost": 0,
+      "content": "For orthogonal unit vectors, i·j = j·k = k·i = 0, and i·i = j·j = k·k = 1. This is because the angle is 90° for different axes and 0° for the same axis."
+    },
+    {
+      "response_id": "work_relation",
+      "triggers": [
+        "work done formula",
+        "why work is dot product",
+        "force displacement relation"
+      ],
+      "response_type": "text_with_steps",
+      "ai_cost": 0,
+      "content": "Work done by a constant force is W = F·s = Fs cosθ. Only the component of force along displacement contributes to work. If force is perpendicular to displacement, work is zero."
+    },
+    {
+      "response_id": "component_relation",
+      "triggers": [
+        "projection meaning",
+        "component along vector",
+        "why cosine used"
+      ],
+      "response_type": "text",
+      "ai_cost": 0,
+      "content": "A·B = AB cosθ. Here, B cosθ is the component of B along A, and A cosθ is the component of A along B. The dot product is therefore a measure of alignment."
+    }
+  ],
+  "problem_guidance_path": "1. Identify the two vectors and the angle between them. 2. Decide whether the question is asking for a scalar value, a projection, or a physical quantity like work. 3. If the vectors are given in component form, use A·B = A_x B_x + A_y B_y + A_z B_z. 4. If the angle is given, use A·B = AB cosθ. 5. Check whether the result should be positive, zero, or negative using the angle. 6. For work problems, use W = F·s and keep units in joules. 7. Verify boundary cases at 0°, 90°, and 180°.",
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Section 5.5 (Dot Product) — Examples 5.12–5.14",
+      "principle": "Dot product in component form: A·B = AxBx + AyBy + AzBz — no angle needed",
+      "aha": "Component form is often faster than A·B = AB cosθ when vectors are already in î ĵ k̂ notation",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Section 5.5",
+      "principle": "Work done by a force: W = F·s = Fs cosθ — scalar result from two vector inputs",
+      "aha": "Work is zero when force is perpendicular to displacement (θ=90°, cos90°=0) — normal force does no work",
+      "simulation_states": 2
+    },
+    "example_3": {
+      "source": "DC Pandey Section 5.5",
+      "principle": "Finding angle between two vectors using cosθ = A·B/(|A||B|)",
+      "aha": "This is the standard method when vectors are in component form — compute dot product then divide by magnitudes",
+      "simulation_states": 2
+    }
+  },
+  "assessment_path": [
+    {
+      "question_id": "assess_1",
+      "question": "Find the dot product of A = 3 i + 4 j and B = 4 i - 3 j.",
+      "on_wrong_answer": "Route to epic_c_micro_templates.template_id = law_check if the mistake is about component multiplication, otherwise route to epic_c_branches.dot_product_only_magnitude for angle ignorance."
+    },
+    {
+      "question_id": "assess_2",
+      "question": "A force of 10 N acts through a displacement of 2 m at 60°. Find the work done.",
+      "on_wrong_answer": "Route back to static_responses.work_relation if the student misses W = F·s, otherwise route to epic_c_micro_templates.template_id = constant_origin."
+    }
+  ],
+  "session_awareness": {
+    "remember_last_route": true,
+    "remember_last_misconception_id": true,
+    "reuse_previous_angle_example": true,
+    "max_memory_scope": "current_session_only"
+  },
+  "waypoints": [
+    {
+      "must_reach": "Student understands dot product is scalar",
+      "physics_floor": "A·B = AB cosθ always remains a scalar",
+      "position": "start"
+    },
+    {
+      "must_reach": "Student understands projection meaning",
+      "physics_floor": "Only aligned component contributes",
+      "position": "middle"
+    },
+    {
+      "must_reach": "Student can use component form and work relation",
+      "physics_floor": "A·B = A_x B_x + A_y B_y + A_z B_z and W = F·s",
+      "position": "end"
+    }
+  ],
+  "depth_escalation_trigger": [
+    "student still confuses scalar and vector after STATE_3",
+    "student cannot explain projection after micro template",
+    "student repeatedly gets sign wrong for 90° or 180°",
+    "student asks for full derivation rather than answer only"
+  ],
+  "legend": [
+    {
+      "symbol": "A·B",
+      "meaning": "Scalar product of vectors A and B"
+    },
+    {
+      "symbol": "θ",
+      "meaning": "Angle between the two vectors"
+    },
+    {
+      "symbol": "projection",
+      "meaning": "Part of one vector along the other"
+    },
+    {
+      "symbol": "i, j, k",
+      "meaning": "Unit vectors along x, y, z axes"
+    },
+    {
+      "symbol": "W",
+      "meaning": "Work done by force"
+    }
+  ],
+  "concept_extension_fields": {
+    "note": "These fields are specific to dot product and are not in the base schema. The renderer must handle them only for scenario_type = dot_product",
+    "show_projection": true,
+    "show_component_rules": true,
+    "show_work_overlay": true,
+    "component_formula": "A·B = A_x B_x + A_y B_y + A_z B_z",
+    "special_cases_to_highlight": [
+      {
+        "theta": 0,
+        "A_dot_B_formula": "AB",
+        "label": "Maximum positive"
+      },
+      {
+        "theta": 90,
+        "A_dot_B_formula": "0",
+        "label": "Perpendicular"
+      },
+      {
+        "theta": 180,
+        "A_dot_B_formula": "-AB",
+        "label": "Maximum negative"
+      }
+    ]
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "find dot product from magnitudes and angle",
+      "compute dot product from i, j, k components",
+      "find angle between vectors using dot product",
+      "calculate work done using force and displacement",
+      "check whether two vectors are perpendicular"
+    ],
+    "common_traps": [
+      "Forgetting the cosine factor",
+      "Treating dot product like a vector product",
+      "Using 90° case as if formula has failed",
+      "Confusing scalar product with component itself",
+      "Ignoring sign at 180°"
+    ],
+    "key_results_to_memorize": [
+      "A·B = AB cosθ",
+      "If θ = 0°, then A·B = AB",
+      "If θ = 90°, then A·B = 0",
+      "If θ = 180°, then A·B = -AB",
+      "W = F·s"
+    ]
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "scalar_and_vector_quantities",
+      "trigonometry_basics",
+      "vector_components"
+    ],
+    "extensions": [
+      "cross_product",
+      "work_energy_theorem",
+      "projection_and_resolution"
+    ],
+    "siblings": [
+      "vector_addition",
+      "vector_components",
+      "cross_product"
+    ],
+    "common_exam_combinations": [
+      "work done in mechanics",
+      "angle between vectors",
+      "projection of one vector on another"
+    ]
+  },
+  "parameter_slots": {
+    "A": {
+      "label": "magnitude of vector A",
+      "range": [
+        1,
+        20
+      ],
+      "unit": "units",
+      "default": 4,
+      "extraction_hint": "first vector magnitude"
+    },
+    "B": {
+      "label": "magnitude of vector B",
+      "range": [
+        1,
+        20
+      ],
+      "unit": "units",
+      "default": 3,
+      "extraction_hint": "second vector magnitude"
+    },
+    "theta": {
+      "label": "angle between A and B",
+      "range": [
+        0,
+        180
+      ],
+      "unit": "degrees",
+      "default": 60,
+      "extraction_hint": "angle between the vectors"
+    }
+  },
+  "panel_sync_spec": {
+    "canvas_to_graph": {
+      "trigger": "STATE_N_reached",
+      "action": "graph marks dot product value on A.B vs theta curve"
+    },
+    "graph_to_canvas": {
+      "trigger": "student_hover_on_graph_at_theta",
+      "action": "canvas animates vectors to that angle"
+    },
+    "slider_to_both": {
+      "parameter": "theta",
+      "canvas_action": "vectors rotate, projection shadow updates",
+      "graph_action": "dot moves along A.B = AB cos(theta) curve"
+    }
+  },
+  "checkpoint_states": {
+    "understands_definition": "enter at STATE_2",
+    "understands_formula": "enter at STATE_3",
+    "understands_physical_meaning": "enter at STATE_4",
+    "understands_component_form": "enter at STATE_5"
+  },
+  "three_js_flag": false,
+  "three_js_note": "Dot product projection is a 2D visual. canvas2d handles the projection shadow correctly. Three.js not needed.",
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "scenario_type": "dot_product",
+      "approach": "projection_geometry",
+      "entry_state": "STATE_3",
+      "teacher_angle": "Start with the geometric meaning before the formula. A dot B equals the length of A's shadow on B, multiplied by the magnitude of B. Draw A, draw B, drop a perpendicular from A's tip to the line of B. That shadow length times |B| is the dot product. This visual immediately explains why perpendicular vectors give zero — the shadow has zero length. And why parallel vectors give maximum dot product — the shadow equals the full length of A.",
+      "locked_facts_focus": [
+        "fact_2",
+        "fact_3",
+        "fact_4"
+      ],
+      "panel_b_focus": "Interactive: rotate vector A around fixed vector B. Shadow of A onto B animates — growing, shrinking, going to zero at 90 degrees, going negative after 90 degrees. Dot product value plots live alongside the angle."
+    },
+    {
+      "variant_id": 2,
+      "scenario_type": "dot_product",
+      "approach": "connects_to_work_already_known",
+      "entry_state": "STATE_1",
+      "teacher_angle": "The student already knows Work = F times d times cos theta from lower classes. That formula IS the dot product. W = F dot d. The dot product is not a new abstract invention — it is the mathematical structure that was hiding inside the work formula all along. Every time the student calculated work using F d cos theta, they were computing a dot product. Now they are just learning the name and the general rule.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_6",
+        "fact_7"
+      ],
+      "panel_b_focus": "Show force arrow F and displacement arrow d at angle theta. Work = F d cos theta labeled. Then reveal: this equals F dot d. The dot product formula appears as a generalisation of the familiar work formula."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Angle between A and B", "symbol": "θ", "unit": "°", "min": 0, "max": 180 },
+    "y_axis": { "label": "Dot Product Value", "symbol": "A·B", "unit": "", "min": -25, "max": 25 },
+    "lines": [
+      { "id": "dot_vs_theta", "formula": "20 * Math.cos(x * Math.PI / 180)", "color": "#60a5fa", "label": "A·B = |A||B|cosθ" },
+      { "id": "zero_line", "slope": 0, "intercept": 0, "color": "#ef4444", "label": "A·B = 0 (perpendicular)", "dash": "dash" }
+    ],
+    "sliders": [
+      { "id": "theta", "label": "Angle θ (degrees)", "min": 0, "max": 180, "default": 60 }
+    ],
+    "legend": [
+      { "id": "dot_vs_theta", "label": "A·B = |A||B|cosθ" },
+      { "id": "zero_line", "label": "A·B = 0 (perpendicular)" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": ["dot_vs_theta"], "show_sliders": false, "highlight_point": true, "point_x": 60, "point_y": 10, "label": "θ=60°" },
+      "STATE_4": { "active_lines": ["dot_vs_theta", "zero_line"], "show_sliders": false, "highlight_point": true, "point_x": 90, "point_y": 0, "label": "θ=90°: A·B=0" },
+      "STATE_5": { "active_lines": ["dot_vs_theta", "zero_line"], "show_sliders": false, "highlight_point": true, "point_x": 180, "point_y": -20, "label": "θ=180°: A·B negative" },
+      "STATE_6": { "active_lines": ["dot_vs_theta", "zero_line"], "show_sliders": true, "highlight_point": true, "point_x": 60, "point_y": 10 }
+    }
+  }
+}

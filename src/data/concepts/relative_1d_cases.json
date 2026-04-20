@@ -1,0 +1,316 @@
+{
+  "concept_id": "relative_1d_cases",
+  "concept_name": "1D Relative Motion — Same Direction vs Opposite Direction",
+  "chapter": 6,
+  "section": "6.10",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 6.10 — 1D relative velocity cases; split from relative_motion",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "Two Tata trucks on NH-44 near Jaipur. One is heading north to Delhi at 80 km/h; the other is rolling south toward Ahmedabad at 60 km/h. When they pass each other, the relative speed at which they separate is 80 + 60 = 140 km/h — a blur on both windscreens. If both were going the SAME direction at those speeds, the faster one would creep past the slower one at only 80 - 60 = 20 km/h. Same trucks, same roads — totally different relative speeds, because direction matters.",
+    "secondary": "Two cyclists on a single-lane road in Gurugram. Both going north at 15 km/h — they stay exactly side-by-side forever (V_AB = 0). One turns around — now they approach each other at 30 km/h. Direction is half the physics.",
+    "tertiary": "Two cargo ships in the Bay of Bengal. Same direction at 20 knots and 15 knots — relative speed 5 knots. Head-on at those same speeds — relative speed 35 knots. The ocean does not change. Only the sign of one velocity changes."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "V_A": { "name": "Speed of object A", "unit": "m/s", "min": 0, "max": 50, "default": 22 },
+      "V_B": { "name": "Speed of object B", "unit": "m/s", "min": 0, "max": 50, "default": 17 },
+      "direction_B": { "name": "Direction of B (+1 = same, -1 = opposite)", "unit": "", "min": -1, "max": 1, "default": 1 }
+    },
+    "computed_outputs": {
+      "V_AB_same": { "formula": "V_A - V_B" },
+      "V_AB_opposite": { "formula": "V_A + V_B" }
+    },
+    "formulas": {
+      "same_direction": "Same direction: V_AB = V_A - V_B  (relative speed = |V_A - V_B|, smaller of the two possibilities)",
+      "opposite_direction": "Opposite direction: V_AB = V_A - (-V_B) = V_A + V_B  (relative speed = sum of magnitudes)",
+      "both_stationary_in_same_frame": "If V_A = V_B same direction, V_AB = 0 — they appear frozen to each other."
+    },
+    "constraints": [
+      "Same direction -> subtract magnitudes -> SMALLER relative speed.",
+      "Opposite direction -> add magnitudes -> LARGER relative speed.",
+      "This follows directly from V_AB = V_A - V_B once signs are assigned."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Same Direction — Subtract the Speeds",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "same_dir_sketch",
+            "text": "Same direction on NH-44:\n\n  Truck A:  +80 km/h  (north)\n  Truck B:  +60 km/h  (north)\n\n  Pick north as positive.\n\n  V_AB = V_A - V_B\n       =  80  -  60\n       =  +20 km/h\n\n  From truck B's cabin, truck A creeps past at only 20 km/h.\n  Overtaking is slow, even though ground speeds are large.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 13,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "nh44_label",
+            "text": "NH-44 near Jaipur: two Tata trucks going the same way",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "truck_a",
+            "vehicle_type": "truck",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": 320, "dy_px": -20, "easing": "linear" }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "truck_b",
+            "vehicle_type": "truck",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": 240, "dy_px": 20, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "same_dir_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Case one — two objects moving in the SAME direction." },
+            { "text_en": "Two Tata trucks on NH-44. Truck A at 80 kilometres per hour north, truck B at 60 kilometres per hour north." },
+            { "text_en": "Both are positive. V AB equals 80 minus 60 — that is only 20 kilometres per hour." },
+            { "text_en": "From truck B's cab, truck A crawls past at just 20. The ground speeds are large, but the relative speed is small. That is why same-direction overtakes feel sluggish." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Opposite Direction — Add the Speeds",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "opp_dir_sketch",
+            "text": "Opposite direction on NH-44:\n\n  Truck A:  +80 km/h  (north, positive)\n  Truck B:  -60 km/h  (south, negative)\n\n  V_AB = V_A - V_B\n       =  80  -  (-60)\n       =  80  +  60\n       =  +140 km/h\n\n  Head-on approach speed is HUGE — you see both\n  windscreens blur past each other in a fraction of a second.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "head_on_label",
+            "text": "Same two trucks, now on opposite highway sides",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "truck_a2",
+            "vehicle_type": "truck",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 4.0, "dx_px": 340, "dy_px": -25, "easing": "linear" }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "truck_b2",
+            "vehicle_type": "truck",
+            "zone": "MAIN_ZONE",
+            "anchor": "right_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 4.0, "dx_px": -340, "dy_px": 25, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "opp_dir_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Case two — the two objects move in OPPOSITE directions." },
+            { "text_en": "Truck A still at plus 80 kilometres per hour northbound. Truck B now at minus 60 — heading south." },
+            { "text_en": "Plug in: V AB equals 80 minus minus 60, which is 80 plus 60 — 140 kilometres per hour." },
+            { "text_en": "Head-on approaches are devastatingly fast. The SAME trucks, at the SAME ground speeds, have seven times the relative speed just by reversing one direction." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Sign Convention is the Secret",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "summary_sketch",
+            "text": "One rule, two cases:\n\n  Always:  V_AB  =  V_A  -  V_B\n\n  Assign signs FIRST, subtract SECOND.\n\n  Same direction (both +):     V_AB = V_A - V_B     (smaller)\n  Opposite direction (one -):  V_AB = V_A + V_B     (larger)\n\n  Common mistakes to avoid:\n    X  Using |V_A| + |V_B| blindly\n    X  Forgetting the minus sign when B moves the other way\n    X  Treating 'direction' as an afterthought\n\n  Discipline: sign on the PAGE first, then subtract.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "summary_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "The beautiful thing is, there is only ONE formula." },
+            { "text_en": "V AB equals V A minus V B. Always. Forever." },
+            { "text_en": "The two cases are just different sign assignments. Same direction both positive — subtraction gives a small number. Opposite direction one negative — subtraction of a negative flips to addition and gives a large number." },
+            { "text_en": "The discipline is: put the sign on the page BEFORE you subtract. Never mental-math your way around this step." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "always_add_for_opposite",
+      "misconception_summary": "Student memorises 'same direction subtract, opposite direction add' without understanding WHY, and then applies it blindly even when signs are ambiguous.",
+      "confusion_patterns": [
+        "when do I add velocities for relative",
+        "same direction add or subtract",
+        "opposite direction add formula",
+        "which one do I subtract"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Memorised Rule Fails Weird Cases",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "fails_sketch",
+              "text": "The memorised rule:\n  \"Same direction -> subtract.\n   Opposite direction -> add.\"\n\n  Works fine in textbook problems.\n\n  But fails when:\n    * Both velocities are given as vectors with signs.\n    * The problem changes sign convention mid-solution.\n    * An observer's own velocity is negative.\n\n  The reason: the rule is a shortcut, not the physics.\n  The actual physics is ONE formula: V_AB = V_A - V_B,\n  applied with strict signs.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 12,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "fails_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Here is the trap — memorising 'same direction subtract, opposite direction add'." },
+              { "text_en": "The rule works for simple problems where directions are obvious." },
+              { "text_en": "But it breaks when velocities arrive already signed, or when the observer has a negative velocity, or when the problem swaps direction mid-way." },
+              { "text_en": "That is because the rule is only a shortcut for the real physics. The real physics is one formula applied with strict signs." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Only Formula: V_A minus V_B with Signs",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "only_formula_sketch",
+              "text": "Drop the rule. Use the formula.\n\n  Step 1: Pick a positive direction (east / north / right).\n  Step 2: Write each velocity with its SIGN, no magnitudes alone.\n  Step 3: Plug into V_AB = V_A - V_B.\n  Step 4: The arithmetic gives the right answer.\n\n  Example 1: V_A = +50, V_B = +30\n             V_AB = 50 - 30 = +20\n\n  Example 2: V_A = +50, V_B = -30\n             V_AB = 50 - (-30) = 50 + 30 = +80\n\n  Example 3: V_A = -50, V_B = -30\n             V_AB = -50 - (-30) = -50 + 30 = -20\n\n  Each answer is consistent with the mental picture.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "only_formula_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Drop the memorised rule. Use the formula." },
+              { "text_en": "Step one — pick a positive direction. Step two — write each velocity with a sign. Step three — plug into V A minus V B. Step four — let the arithmetic tell you the answer." },
+              { "text_en": "Three worked examples. Both positive gives plus 20. One negative gives plus 80. Both negative gives minus 20." },
+              { "text_en": "Notice — you never decided whether to add or subtract. The formula did the work." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Why This is Powerful — Works in 2D Too",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "to_2d_sketch",
+              "text": "The same formula scales to 2D:\n\n  Vector form:  V_AB  =  V_A  -  V_B\n\n  If V_A = (V_Ax, V_Ay) and V_B = (V_Bx, V_By), then:\n\n     V_AB  =  (V_Ax - V_Bx,  V_Ay - V_By)\n\n  Subtract components. No memorisation needed.\n  \n  This is why the formula is called 'the law',\n  not just 'the trick for 1D'.\n\n  The add-or-subtract mnemonic cannot scale.\n  V_A - V_B always does.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "to_2d_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The formula also scales to two dimensions — subtract the components." },
+              { "text_en": "V A minus V B works whether the motion is along a single line or all over a plane." },
+              { "text_en": "The shortcut rule cannot make that jump. V A minus V B always can — that is why it is the law, not just a trick for 1D." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Both northbound trucks, small speed gap", "params": { "V_A": 22, "V_B": 17, "direction_B": 1 } },
+      { "label": "Head-on trucks", "params": { "V_A": 22, "V_B": 17, "direction_B": -1 } },
+      { "label": "Fast car passing a bike", "params": { "V_A": 30, "V_B": 10, "direction_B": 1 } }
+    ],
+    "type_b": [
+      { "label": "Two Mumbai locals on parallel tracks", "scenario": "locals_on_parallel_tracks" },
+      { "label": "Two ferries on the Ganga", "scenario": "ferries_on_ganga" }
+    ]
+  }
+}

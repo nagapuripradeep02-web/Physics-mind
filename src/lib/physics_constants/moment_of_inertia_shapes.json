@@ -1,0 +1,43 @@
+{
+  "concept_id": "moment_of_inertia_shapes",
+  "concept_name": "Moment of Inertia for Different Shapes",
+  "class_level": 11,
+  "chapter": "System of Particles and Rotational Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "moment_of_inertia", "panel_count": 1, "show_labels": true },
+  "variables": { "I": "Moment of inertia (kg·m²)", "M": "Mass (kg)", "R": "Radius (m)", "L": "Length (m)" },
+  "locked_facts": [
+    "Moment of inertia I = Σmᵢrᵢ² (discrete) or ∫r²dm (continuous)",
+    "Thin ring about axis through centre: I = MR²",
+    "Solid disc/cylinder about axis through centre: I = ½MR²",
+    "Solid sphere about diameter: I = ⅖MR²",
+    "Thin rod about centre: I = ML²/12; about end: I = ML²/3",
+    "Hollow sphere about diameter: I = ⅔MR²",
+    "Parallel axis theorem: I = I_cm + Md²",
+    "Perpendicular axis theorem (planar bodies): I_z = I_x + I_y"
+  ],
+  "truth_statements": [
+    "The moment of inertia depends on the mass distribution relative to the axis of rotation, not just the total mass",
+    "A ring has larger moment of inertia than a disc of same mass and radius because all mass is at maximum distance from axis",
+    "The parallel axis theorem allows calculating I about any axis parallel to one through the centre of mass",
+    "The perpendicular axis theorem applies only to planar (2D) bodies",
+    "Moment of inertia is the rotational analogue of mass — it determines resistance to angular acceleration"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Ring, disc, and solid sphere of same M and R shown side by side with mass distribution highlighted. Ring: all mass at R (I = MR²). Disc: mass spread from 0 to R (I = ½MR²). Sphere: mass distributed in 3D (I = ⅖MR²). The further the mass from axis, the larger I.",
+    "visual_emphasis": "Colour-coded radial mass distribution with I values ranked: ring > disc > sphere",
+    "why_this_breaks_misconception": "Students memorise formulas without understanding — seeing mass distribution visually explains WHY the coefficients differ"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "What is moment of inertia?", "description": "A point mass m at distance r from axis. I = mr². Rotating it requires torque. Moving mass further from axis → I increases → harder to rotate.", "emphasis": "I depends on distance from axis, not just mass", "labels_visible": ["I = mr²", "r", "m"] },
+    { "id": "STATE_2", "label": "Ring vs disc", "description": "Ring and disc of same M, R side by side. Ring: all mass at distance R. Disc: mass distributed from 0 to R. Same torque applied — disc spins faster (lower I).", "emphasis": "Ring I = MR² > Disc I = ½MR² because ring has all mass at maximum r", "labels_visible": ["I_ring = MR²", "I_disc = ½MR²"] },
+    { "id": "STATE_3", "label": "All shapes compared", "description": "Ring, disc, solid sphere, hollow sphere shown with I values. Colour shows radial mass distribution. Ranked: ring > hollow sphere > disc > solid sphere.", "emphasis": "Mass closer to axis → smaller I → easier to spin", "labels_visible": ["MR²", "⅔MR²", "½MR²", "⅖MR²"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student selects shape, adjusts M and R. Apply same torque — watch angular acceleration α = τ/I. Parallel axis theorem demo: shift axis away from centre and see I increase.", "emphasis": "Same torque, different I → different α. Shift axis → I increases by Md².", "labels_visible": ["I", "α = τ/I", "τ"], "interactive": true, "sliders": [{ "id": "mass", "label": "Mass M", "min": 1, "max": 10, "default": 5, "unit": "kg" }, { "id": "radius", "label": "Radius R", "min": 5, "max": 30, "default": 15, "unit": "cm" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Heavier objects always have larger moment of inertia", "trigger_phrases": ["heavier means larger I", "more mass more inertia"], "correction": "Moment of inertia depends on mass AND its distribution relative to the axis. A light ring can have larger I than a heavy solid sphere if the ring's radius is large enough.", "simulation_emphasis": "Show a light ring with larger I than a heavy sphere by adjusting radii" },
+    { "belief": "The perpendicular axis theorem works for all shapes", "trigger_phrases": ["perpendicular axis for sphere", "perpendicular axis 3D"], "correction": "The perpendicular axis theorem (I_z = I_x + I_y) applies ONLY to planar (flat, 2D) bodies like discs and rings. For 3D bodies like spheres and cylinders, use the parallel axis theorem instead.", "simulation_emphasis": "Show theorem working for disc but NOT for sphere with clear explanation" }
+  ],
+  "legend": [ { "symbol": "I", "meaning": "Moment of inertia (kg·m²)" }, { "symbol": "α", "meaning": "Angular acceleration (rad/s²)" }, { "symbol": "τ", "meaning": "Torque (N·m)" } ],
+  "concept_relationships": { "prerequisites": ["newtons_second_law"], "extensions": ["rolling_without_slipping", "angular_momentum_conservation"], "siblings": ["torque_and_couple"], "common_exam_combinations": ["rolling_on_incline", "physical_pendulum"] }
+}

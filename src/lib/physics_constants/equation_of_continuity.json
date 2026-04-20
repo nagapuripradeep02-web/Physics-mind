@@ -1,0 +1,42 @@
+{
+  "concept_id": "equation_of_continuity",
+  "concept_name": "Equation of Continuity",
+  "class_level": 11,
+  "chapter": "Mechanical Properties of Fluids",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "continuity", "panel_count": 1, "show_labels": true },
+  "variables": { "A": "Cross-sectional area (m²)", "v": "Flow velocity (m/s)", "Q": "Volume flow rate (m³/s)", "ρ": "Fluid density (kg/m³)" },
+  "locked_facts": [
+    "Equation of continuity: A₁v₁ = A₂v₂ (for incompressible fluid)",
+    "Volume flow rate Q = Av = constant along a streamline tube",
+    "If pipe narrows, fluid speeds up (A decreases → v increases)",
+    "If pipe widens, fluid slows down (A increases → v decreases)",
+    "Based on conservation of mass — what flows in must flow out",
+    "For compressible fluids: ρ₁A₁v₁ = ρ₂A₂v₂",
+    "Streamlines closer together = faster flow (narrower effective area)"
+  ],
+  "truth_statements": [
+    "The equation of continuity states that for steady flow of an incompressible fluid the product of cross-sectional area and velocity remains constant",
+    "Volume flow rate is conserved at every cross-section of a pipe carrying an incompressible fluid",
+    "Where streamlines are closer together the fluid flows faster",
+    "The equation of continuity is a statement of conservation of mass applied to fluid flow",
+    "A garden hose nozzle works by narrowing the opening — the same volume of water must flow faster through the smaller area"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Water flowing through a pipe that narrows to half the diameter: area reduces to 1/4, so velocity increases 4×. Particle tracers show dramatically faster motion in the narrow section. The volume flow rate Q = Av stays constant — verified by measuring flow at both ends.",
+    "visual_emphasis": "Same amount of water per second at both sections — faster in narrow, slower in wide — with Q bars equal",
+    "why_this_breaks_misconception": "Students don't intuitively connect pipe narrowing to speed increase — seeing the same volume per second flowing faster through less area makes mass conservation tangible"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Steady flow in a pipe", "description": "Fluid flows through a uniform pipe. Flow rate Q = Av is constant. Particle tracers move at constant speed. All cross-sections carry same volume per second.", "emphasis": "In a uniform pipe, flow is uniform: same speed everywhere", "labels_visible": ["Q = Av", "v uniform"] },
+    { "id": "STATE_2", "label": "Pipe narrows", "description": "Pipe transitions from wide to narrow. Tracers speed up in the narrow section. A₁v₁ = A₂v₂ shown numerically. Volume per second is the same at both ends.", "emphasis": "Area halved → speed doubled. Mass is conserved — nothing is created or destroyed.", "labels_visible": ["A₁v₁ = A₂v₂", "v₂ = 2v₁"] },
+    { "id": "STATE_3", "label": "Quantitative example", "description": "Pipe diameter halves (area → 1/4). Velocity quadruples. Q stays constant. Practical example: thumb over garden hose — area reduced, water shoots out faster.", "emphasis": "Diameter halved → area quartered → velocity quadrupled. Q = Av = constant.", "labels_visible": ["A → A/4", "v → 4v", "Q = constant"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts pipe diameters at two sections. Velocity and flow rate displayed. Streamline spacing shown. Practical: adjust nozzle opening to control spray speed.", "emphasis": "Narrow the pipe — watch the speed increase. Q stays the same!", "labels_visible": ["A₁", "A₂", "v₁", "v₂", "Q"], "interactive": true, "sliders": [{ "id": "diameter1", "label": "Wide section diameter", "min": 2, "max": 10, "default": 6, "unit": "cm" }, { "id": "diameter2", "label": "Narrow section diameter", "min": 1, "max": 10, "default": 3, "unit": "cm" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Water slows down in a narrow pipe because it's harder to flow", "trigger_phrases": ["narrow means slow", "constriction slows flow", "resistance slows water"], "correction": "For an ideal incompressible fluid, the speed INCREASES in a narrower section. The same volume of water must pass through a smaller area each second, so it must move faster. (Real fluids do experience friction, but the continuity principle dominates.)", "simulation_emphasis": "Show particle tracers speeding up dramatically in the narrow section" },
+    { "belief": "More water comes out of a narrow pipe per second", "trigger_phrases": ["more water from narrow", "faster means more flow"], "correction": "The volume flow rate Q = Av is the SAME at every cross-section. Faster speed through a smaller area gives the same volume per second. No extra water is created — it's just moving faster.", "simulation_emphasis": "Measure Q at both sections — identical. Speed up, area down, product constant." }
+  ],
+  "legend": [ { "symbol": "Q", "meaning": "Volume flow rate = Av (m³/s)" }, { "symbol": "A", "meaning": "Cross-sectional area (m²)" }, { "symbol": "v", "meaning": "Flow velocity (m/s)" } ],
+  "concept_relationships": { "prerequisites": ["pressure_pascals_law"], "extensions": ["bernoulli_principle"], "siblings": ["conservation_of_mass"], "common_exam_combinations": ["bernoulli_principle"] }
+}

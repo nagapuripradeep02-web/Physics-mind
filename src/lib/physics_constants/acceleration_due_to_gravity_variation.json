@@ -1,0 +1,42 @@
+{
+  "concept_id": "acceleration_due_to_gravity_variation",
+  "concept_name": "Variation of g with Height and Depth",
+  "class_level": 11,
+  "chapter": "Gravitation",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "graph_interactive", "scenario_type": "g_variation", "panel_count": 2, "show_labels": true },
+  "variables": { "g": "Acceleration due to gravity (m/s²)", "h": "Height above surface (m)", "d": "Depth below surface (m)", "R": "Earth's radius (m)" },
+  "locked_facts": [
+    "At height h: g_h = g(1 - 2h/R) for h << R; exact: g_h = GM/(R+h)²",
+    "At depth d: g_d = g(1 - d/R) — g decreases linearly with depth",
+    "At Earth's centre (d = R): g = 0",
+    "g is maximum at the surface and decreases both above and below",
+    "Above surface: g ∝ 1/(R+h)² — inverse square decrease",
+    "Below surface: g ∝ (R-d) — linear decrease (only mass below contributes)",
+    "Shell theorem: a uniform shell exerts zero gravitational force on a mass inside it"
+  ],
+  "truth_statements": [
+    "The acceleration due to gravity decreases with height above the surface following an inverse-square law",
+    "Below the surface g decreases linearly with depth becoming zero at the centre of the Earth",
+    "The variation of g with depth is linear because only the mass below the point contributes — the shell above exerts zero net force",
+    "At the surface of Earth g ≈ 9.8 m/s² and this is the maximum value for a uniform Earth",
+    "The approximation g_h = g(1 - 2h/R) is valid only when h is much smaller than R"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A graph of g vs distance from Earth's centre: linear increase from centre to surface (g ∝ r), then 1/r² decrease outside. The surface is the peak. An animation shows a mass falling through a hypothetical tunnel — it accelerates until the surface, then decelerates, performing SHM.",
+    "visual_emphasis": "Combined g vs r graph with linear rise inside and 1/r² fall outside, peaking at R",
+    "why_this_breaks_misconception": "Students assume g is constant everywhere or increases toward the centre — the graph showing zero at the centre with linear rise is the key insight"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "g at height", "description": "Object moved to height h above surface. g_h = GM/(R+h)² shown. As h increases, g decreases rapidly. At h = R, g drops to g/4.", "emphasis": "g decreases as 1/(R+h)² above the surface — not linearly", "labels_visible": ["g_h", "h", "g ∝ 1/r²"] },
+    { "id": "STATE_2", "label": "g at depth", "description": "Object moved below the surface. At depth d, only mass in sphere of radius (R-d) contributes. g_d = g(1-d/R). At centre: g = 0. Shell above contributes nothing.", "emphasis": "Only mass BELOW you pulls you down — the shell above cancels out", "labels_visible": ["g_d = g(1-d/R)", "shell theorem", "g = 0 at centre"] },
+    { "id": "STATE_3", "label": "Complete g vs r graph", "description": "Full graph from r = 0 to r >> R. Inside Earth: linear rise (g ∝ r). At surface: maximum. Outside: 1/r² decrease. The surface is the peak.", "emphasis": "g is maximum at the surface — it decreases both above AND below", "labels_visible": ["g ∝ r (inside)", "g ∝ 1/r² (outside)", "g_max at R"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student moves a probe from centre through surface to space. g value and direction shown. Graph builds in real time. Tunnel-through-Earth demo shows SHM of falling object.", "emphasis": "Drag from centre to space — watch g rise then fall. Surface is the maximum.", "labels_visible": ["g", "r", "R"], "interactive": true, "sliders": [{ "id": "position", "label": "Distance from centre", "min": 0, "max": 30000, "default": 6371, "unit": "km" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "g increases as you go toward the centre of the Earth", "trigger_phrases": ["stronger gravity at centre", "centre mein zyada gravity", "more mass below"], "correction": "g decreases linearly as you go deeper, reaching zero at the centre. The shell of mass above you exerts zero net force (shell theorem). Only the mass below you contributes.", "simulation_emphasis": "Animate object sinking into Earth with g value decreasing to zero at centre" },
+    { "belief": "g decreases linearly with height above the surface", "trigger_phrases": ["linear decrease with height", "g proportional to height"], "correction": "Above the surface, g follows an inverse-square law: g = GM/(R+h)². The linear approximation g(1-2h/R) only works for h << R. At large heights, the actual decrease is much slower than linear.", "simulation_emphasis": "Plot linear approximation vs exact 1/r² — they diverge rapidly at large h" }
+  ],
+  "legend": [ { "symbol": "g", "meaning": "Acceleration due to gravity (m/s²)" }, { "symbol": "R", "meaning": "Earth's radius ≈ 6371 km" }, { "symbol": "d", "meaning": "Depth below surface" } ],
+  "concept_relationships": { "prerequisites": ["gravitational_field_shell_solid"], "extensions": ["gravitational_potential_energy"], "siblings": ["variation_of_g_rotation"], "common_exam_combinations": ["gravitational_potential_energy", "simple_harmonic_motion"] }
+}

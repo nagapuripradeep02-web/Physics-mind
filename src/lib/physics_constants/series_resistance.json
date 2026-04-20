@@ -1,0 +1,30 @@
+{
+  "concept": "series_resistance",
+  "locked_facts": {
+    "current_conservation": "Electric current is the same at every point in a series circuit — I_before = I_through = I_after resistor",
+    "resistor_role": "A resistor opposes the flow of charge but does not consume or reduce current",
+    "voltage_drop": "A resistor causes a voltage drop across itself: V_R = I × R",
+    "series_total_resistance": "Total resistance in series: R_total = R1 + R2 + R3",
+    "series_current_formula": "Current in series circuit: I = V_total / R_total",
+    "charge_conservation": "Charge is conserved — electrons are not created or destroyed in a resistor"
+  },
+  "animation_constraints": {
+    "current_px_per_frame_max": 2.0,
+    "thermal_px_per_frame_min": 3.0,
+    "thermal_must_be_faster_than_drift": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left"
+  },
+  "ncert_truth_statements": [
+    "Electric current is conserved in a series circuit — the same current flows through every element",
+    "A resistor causes a potential difference across it but does not reduce the current flowing through the circuit",
+    "For resistors in series, the total resistance equals the sum of individual resistances: R = R1 + R2 + ...",
+    "The current through each resistor in a series combination is the same",
+    "Ohm's law applies to the whole series circuit: I = V_total / R_total"
+  ],
+  "common_misconceptions": [
+    "Current gets used up by a resistor — FALSE",
+    "Less current flows after a resistor than before it — FALSE",
+    "A bigger resistor consumes more current — FALSE"
+  ]
+}

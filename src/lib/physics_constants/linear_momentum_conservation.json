@@ -1,0 +1,111 @@
+{
+  "concept_id": "linear_momentum_conservation",
+  "concept_name": "Conservation of Linear Momentum",
+  "class_level": 11,
+  "chapter": "Laws of Motion",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "momentum_conservation",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "m1": "Mass of body 1 (kg)",
+    "m2": "Mass of body 2 (kg)",
+    "v1": "Velocity of body 1 (m/s)",
+    "v2": "Velocity of body 2 (m/s)",
+    "F": "External force on system (N)",
+    "J": "Impulse = FΔt = Δp (N·s)",
+    "Δt": "Duration of force application (s)"
+  },
+  "locked_facts": [
+    "Σp = constant when net external force F_ext = 0 (conservation of linear momentum)",
+    "Newton's second law: F = dp/dt (force equals rate of change of momentum)",
+    "Impulse: J = FΔt = Δp (impulse-momentum theorem)",
+    "Rocket propulsion: thrust = v_exhaust × (dm/dt), momentum of rocket + exhaust is conserved",
+    "Recoil of gun: m_bullet × v_bullet = m_gun × v_recoil (total momentum = 0 before firing)",
+    "Momentum is a vector — conservation applies independently to each component (x, y, z)"
+  ],
+  "truth_statements": [
+    "The total momentum of an isolated system (no external forces) remains constant in magnitude and direction",
+    "Newton's third law guarantees momentum conservation: internal forces are equal and opposite, so net internal impulse is zero",
+    "Impulse equals the change in momentum of a body, and equals the area under the force-time graph",
+    "In rocket propulsion, the rocket gains forward momentum equal to the backward momentum of ejected exhaust gases",
+    "Momentum conservation is more fundamental than energy conservation — it holds even when KE is not conserved"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A gun firing a bullet — before firing, total momentum = 0. After: bullet moves right with large v, gun recoils left with small v. Momentum bars: m_bullet × v_bullet (right) + m_gun × v_recoil (left) = 0. Both bars equal in magnitude, opposite in direction.",
+    "visual_emphasis": "Total momentum bar stays at zero throughout. Individual momentum bars are equal and opposite. F × Δt on bullet = -F × Δt on gun.",
+    "why_this_breaks_misconception": "Students see that momentum is created in PAIRS — you cannot create momentum in one direction without creating equal momentum in the opposite direction"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A gun and bullet system at rest. Total momentum = 0 displayed prominently. Mass of bullet (small) and gun (large) labeled. Momentum bar for system at zero.",
+      "emphasis": "System is isolated (no external horizontal force). Total initial momentum = 0.",
+      "labels_visible": ["m_bullet", "m_gun", "p_total = 0", "System at rest"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Gun fires. Explosion force acts as internal force (equal and opposite on bullet and gun). Bullet flies right, gun recoils left. Individual momentum bars grow in opposite directions. Force-time impulse shown.",
+      "emphasis": "Internal forces: F on bullet = -F on gun. Impulse on bullet = -Impulse on gun. Net impulse = 0.",
+      "labels_visible": ["F_on_bullet = -F_on_gun", "J_bullet = -J_gun", "p_bullet", "p_gun"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Final state: p_bullet (right, large magnitude due to high v) + p_gun (left, same magnitude due to large m) = 0. Total momentum bar still at zero. Numerical proof: m_bullet × v_bullet = m_gun × v_recoil.",
+      "emphasis": "Total momentum is STILL zero. Momentum was redistributed, not created. m_b v_b = m_g v_g.",
+      "labels_visible": ["p_total = 0", "m_b × v_b = m_g × v_g", "Momentum conserved"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust bullet mass, gun mass, and bullet speed. See recoil velocity update via conservation. Switch to rocket mode: continuous exhaust ejection, rocket accelerates. Adjust exhaust velocity and mass flow rate.",
+      "emphasis": "Heavier gun = less recoil. Faster bullet = more recoil. Rocket: thrust = v_exhaust × dm/dt.",
+      "labels_visible": ["v_recoil", "p_total", "thrust", "v_exhaust"],
+      "interactive": true,
+      "sliders": [
+        { "id": "bullet_mass", "label": "Bullet Mass", "min": 0.005, "max": 0.1, "default": 0.01, "unit": "kg" },
+        { "id": "gun_mass", "label": "Gun Mass", "min": 1, "max": 10, "default": 4, "unit": "kg" },
+        { "id": "bullet_speed", "label": "Bullet Speed", "min": 100, "max": 1000, "default": 400, "unit": "m/s" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "A heavier object has more momentum so it always wins in a collision",
+      "trigger_phrases": ["heavy object wins", "bhari cheez jeetegi", "more mass = more momentum always", "lighter object toh ruk jayega"],
+      "correction": "Momentum depends on BOTH mass and velocity: p = mv. A light bullet with very high velocity can have more momentum than a heavy slow object. In collisions, momentum is redistributed, not won or lost.",
+      "simulation_emphasis": "Show light fast bullet vs heavy slow block — bullet has more momentum. After collision, momentum transfers."
+    },
+    {
+      "belief": "Momentum is not conserved in explosions because energy is added",
+      "trigger_phrases": ["explosion mein momentum conserve nahi", "energy add hone se momentum badh gaya", "bomb blast mein momentum create hota hai", "momentum of fragments is new"],
+      "correction": "Momentum IS conserved in explosions. The explosion forces are INTERNAL to the system. Chemical energy converts to KE, but total momentum of all fragments equals the initial momentum of the bomb (which is zero if stationary).",
+      "simulation_emphasis": "Show bomb at rest exploding: fragments fly in all directions, but vector sum of all momenta = 0"
+    },
+    {
+      "belief": "Impulse and force are the same thing",
+      "trigger_phrases": ["impulse matlab force", "impulse = force", "same baat hai", "dono ek hi cheez"],
+      "correction": "Impulse J = F × Δt is force multiplied by the time duration. A small force applied for long time can give the same impulse as a large force for short time. Catching a ball gently (small F, large Δt) gives the same Δp as catching it with stiff hands (large F, small Δt).",
+      "simulation_emphasis": "Show same ball caught two ways: soft catch (long Δt, small F) vs hard catch (short Δt, large F) — same impulse Δp"
+    }
+  ],
+  "legend": [
+    { "symbol": "Momentum bar (right)", "meaning": "Positive momentum (rightward)" },
+    { "symbol": "Momentum bar (left)", "meaning": "Negative momentum (leftward)" },
+    { "symbol": "Total bar", "meaning": "Net system momentum (should be constant)" },
+    { "symbol": "F-t area", "meaning": "Impulse = area under force-time curve" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["newtons_laws", "laws_of_motion_friction"],
+    "extensions": ["elastic_inelastic_collisions", "coefficient_of_restitution", "angular_momentum_conservation"],
+    "siblings": ["work_energy_theorem", "conservation_of_energy"],
+    "common_exam_combinations": ["gun_recoil", "rocket_propulsion", "collision_problems", "explosion_fragments", "ballistic_pendulum"]
+  }
+}

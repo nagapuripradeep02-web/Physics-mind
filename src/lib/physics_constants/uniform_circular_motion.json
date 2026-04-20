@@ -1,0 +1,103 @@
+{
+  "concept_id": "uniform_circular_motion",
+  "concept_name": "Uniform Circular Motion",
+  "class_level": 11,
+  "chapter": "Motion in a Plane",
+  "renderer_hint": {
+    "technology": "p5js",
+    "renderer": "mechanics_2d",
+    "scenario_type": "circular",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "v": "Speed of object moving in a circle (m/s)",
+    "r": "Radius of the circular path (m)",
+    "m": "Mass of the object (kg)"
+  },
+  "locked_facts": [
+    "Speed is constant, velocity direction changes continuously",
+    "Centripetal acceleration = v²/r, always directed toward center",
+    "Centripetal force is not a new force — it is the NET inward force",
+    "Centrifugal force does not exist in inertial frame",
+    "Period T = 2πr/v, frequency f = v/(2πr)",
+    "Angular velocity ω = v/r = 2π/T"
+  ],
+  "truth_statements": [
+    "In uniform circular motion, the speed is constant but velocity changes due to continuous change in direction",
+    "The acceleration is directed toward the centre and is called centripetal acceleration",
+    "Centripetal force is not a new type of force — it is the name given to the net force directed toward the centre",
+    "The magnitude of centripetal acceleration is v²/r",
+    "There is no outward force on the body in circular motion when viewed from an inertial frame"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Object moving on circle with velocity arrow tangential and acceleration arrow pointing inward to center — a 90° angle marker between them shown clearly at multiple positions",
+    "visual_emphasis": "The 90° angle between velocity (tangential) and acceleration (radial inward) — labelled at every position around the circle",
+    "why_this_breaks_misconception": "Students see acceleration always perpendicular to velocity and always pointing inward — never outward, never tangential"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Object moving along a circular path. Only the velocity arrow is shown, tangent to the circle. Speed readout is constant.",
+      "emphasis": "Velocity direction keeps changing even though speed stays the same",
+      "labels_visible": ["v", "r"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Acceleration arrow appears, pointing from the object toward the center. At 3-4 positions around the circle, both vectors are shown simultaneously.",
+      "emphasis": "Acceleration arrow always points inward toward the center — at every position on the circle",
+      "labels_visible": ["v", "a_c", "center"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "At every position, a 90° angle marker is drawn between the velocity and acceleration vectors. The angle is always exactly 90°. A label reads 'v ⊥ a always'.",
+      "emphasis": "Velocity is tangential, acceleration is radial — they are always perpendicular. Acceleration does not point outward.",
+      "labels_visible": ["v", "a_c", "90°", "v ⊥ a"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive mode: adjust speed and radius. Centripetal acceleration value updates in real time. Acceleration arrow length changes with v²/r.",
+      "emphasis": "Doubling speed quadruples centripetal acceleration (v² dependence). Increasing radius decreases acceleration.",
+      "labels_visible": ["v", "r", "a_c = v²/r", "F_c = mv²/r"],
+      "interactive": true,
+      "sliders": [
+        { "id": "speed", "label": "Speed", "min": 1, "max": 10, "default": 5, "unit": "m/s" },
+        { "id": "radius", "label": "Radius", "min": 0.5, "max": 3, "default": 1.5, "unit": "m" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Centripetal acceleration points outward or is tangential to the circular path",
+      "trigger_phrases": ["acceleration is outward", "centrifugal force pushes out", "acceleration tangent direction mein hai"],
+      "correction": "NCERT says the acceleration in uniform circular motion is directed toward the centre (centripetal). There is no outward force in an inertial frame.",
+      "simulation_emphasis": "Show acceleration arrow always pointing inward to center with 90° angle marker between velocity and acceleration at every position"
+    }
+  ],
+  "legend": [
+    { "symbol": "→ (blue)", "meaning": "Velocity vector (tangential)" },
+    { "symbol": "→ (red)", "meaning": "Centripetal acceleration vector (toward center)" },
+    { "symbol": "⊥", "meaning": "Perpendicular — v and a are always at 90°" },
+    { "symbol": "r", "meaning": "Radius of circular path" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["vectors", "newtons_laws"],
+    "extensions": ["non_uniform_circular_motion", "circular_motion_banking"],
+    "siblings": ["projectile_motion", "circular_motion_banking"],
+    "common_exam_combinations": ["friction_on_circular_road", "conical_pendulum"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["minimum speed at top of vertical circle", "car on curved road", "conical pendulum", "centripetal force identification"],
+    "common_traps": ["confusing centripetal and centrifugal", "forgetting velocity is tangential not radial", "using centrifugal force in inertial frame"],
+    "numerical_ranges": {
+      "v": "5–20 m/s",
+      "r": "0.5–10 m",
+      "g": "10 m/s² in JEE numericals"
+    }
+  }
+}

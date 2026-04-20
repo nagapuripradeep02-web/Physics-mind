@@ -1,0 +1,42 @@
+{
+  "concept_id": "equilibrium_rigid_body",
+  "concept_name": "Equilibrium of Rigid Body",
+  "class_level": 11,
+  "chapter": "System of Particles and Rotational Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "equilibrium", "panel_count": 1, "show_labels": true },
+  "variables": { "F_net": "Net force (N)", "τ_net": "Net torque (N·m)", "N": "Normal force (N)", "W": "Weight (N)" },
+  "locked_facts": [
+    "Translational equilibrium: ΣF = 0 (no net force)",
+    "Rotational equilibrium: Στ = 0 (no net torque about any point)",
+    "Both conditions must be satisfied simultaneously for complete equilibrium",
+    "A body can be in translational equilibrium but not rotational (couple acts on it)",
+    "For a ladder problem: balance forces (horizontal, vertical) and torques",
+    "The choice of pivot point for torque equation is arbitrary — result is the same",
+    "Centre of gravity is the point where total weight can be considered to act"
+  ],
+  "truth_statements": [
+    "A rigid body is in equilibrium when both the net force and net torque on it are zero",
+    "A body can be in translational equilibrium while undergoing rotation if a pure couple acts on it",
+    "The centre of gravity of a uniform body coincides with the centre of mass",
+    "For solving equilibrium problems choosing the pivot at the point where unknown forces act eliminates those forces from the torque equation",
+    "Three conditions are needed in 2D: ΣFx = 0, ΣFy = 0, and Στ = 0"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A ladder leaning against a smooth wall with a person climbing it. As the person moves up, the friction force at the base increases. At a critical height, the ladder slips — Στ about the base exceeds what friction can balance.",
+    "visual_emphasis": "Torque arrows about the base from weight (person + ladder) vs friction at wall, with a tipping point clearly shown",
+    "why_this_breaks_misconception": "Students solve equilibrium problems algebraically without intuition — seeing the torque balance tip in real time connects the math to physical reality"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Conditions for equilibrium", "description": "A beam on two supports. Weight acts at CM. Support reactions shown. ΣF = 0 and Στ = 0 equations displayed.", "emphasis": "Two conditions: net force = 0 AND net torque = 0", "labels_visible": ["ΣF = 0", "Στ = 0", "N₁", "N₂", "W"] },
+    { "id": "STATE_2", "label": "Couple = rotation only", "description": "Two equal opposite forces applied to a body (couple). Net force = 0 (no translation) but net torque ≠ 0 (body rotates). Not in equilibrium despite ΣF = 0.", "emphasis": "ΣF = 0 alone is NOT enough — you also need Στ = 0", "labels_visible": ["F", "-F", "couple", "rotates"] },
+    { "id": "STATE_3", "label": "Ladder problem", "description": "A ladder against a smooth wall with a person on it. Forces: weight (person + ladder), normal forces, friction at base. As person climbs higher, required friction increases. At critical point: slipping.", "emphasis": "Take torques about the base — person higher up creates more torque → more friction needed", "labels_visible": ["W_person", "W_ladder", "N_wall", "f_floor"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student moves person position on ladder and adjusts ladder angle. Force and torque diagrams update. Green/red indicator shows equilibrium/not. Critical angle for slipping calculated.", "emphasis": "Move the person up — watch friction requirement increase. Find the critical angle.", "labels_visible": ["τ_net", "F_net", "μ_required"], "interactive": true, "sliders": [{ "id": "person_height", "label": "Person position", "min": 0, "max": 100, "default": 50, "unit": "%" }, { "id": "ladder_angle", "label": "Ladder angle", "min": 30, "max": 80, "default": 60, "unit": "°" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "If net force is zero, the body must be in equilibrium", "trigger_phrases": ["no force means equilibrium", "force zero = equilibrium"], "correction": "Zero net force ensures only translational equilibrium. A couple (two equal opposite forces) has zero net force but nonzero torque — the body rotates. Both ΣF = 0 AND Στ = 0 are required.", "simulation_emphasis": "Show a body with zero net force but nonzero torque — it rotates" },
+    { "belief": "The pivot point affects the equilibrium calculation result", "trigger_phrases": ["different pivot different answer", "pivot matters"], "correction": "The choice of pivot point doesn't change whether the body is in equilibrium. Any pivot gives consistent equations. Choose the pivot wisely to simplify calculations (at the point of unknown forces).", "simulation_emphasis": "Calculate Στ about three different points — all give the same equilibrium condition" }
+  ],
+  "legend": [ { "symbol": "ΣF", "meaning": "Net force (must be zero)" }, { "symbol": "Στ", "meaning": "Net torque (must be zero)" }, { "symbol": "CG", "meaning": "Centre of gravity" } ],
+  "concept_relationships": { "prerequisites": ["torque_and_couple", "newtons_second_law"], "extensions": ["structural_mechanics"], "siblings": ["centre_of_mass"], "common_exam_combinations": ["torque_and_couple", "friction_laws"] }
+}

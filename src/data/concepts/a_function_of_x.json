@@ -1,0 +1,256 @@
+{
+  "concept_id": "a_function_of_x",
+  "concept_name": "Acceleration as a Function of Position — a = a(x) and the v dv/dx Trick",
+  "chapter": 7,
+  "section": "7.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 7.2 — Position-dependent acceleration; split from non_uniform_acceleration bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A child on a park swing in Mumbai. When the swing is at the lowest point, the restoring force is zero — no acceleration. As the swing arcs to either side, the rope pulls harder toward centre, accelerating the child back toward the bottom. The acceleration depends on WHERE the swing is, not when. a is a function of x, not t. To find the swing's speed at any point, we use a clever trick called the v d v d x substitution.",
+    "secondary": "A block attached to a spring on a frictionless Chennai-engineering-lab table. The spring force is minus k times the displacement — so acceleration is minus k over m times x. When the block is far from equilibrium, acceleration is large; at equilibrium, acceleration is zero. The equation of motion is x-dependent, not t-dependent.",
+    "tertiary": "A marble rolling in a curved bowl. The slope under the marble — and therefore the component of gravity pulling it back toward the bottom — depends on how far from the centre the marble sits. Deep on one side, acceleration is large. At the bottom, zero. The acceleration is a function of x, the marble's horizontal position."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "k": { "name": "Force constant", "unit": "N/m", "min": 1, "max": 100, "default": 10 },
+      "m": { "name": "Mass", "unit": "kg", "min": 0.1, "max": 10, "default": 1 },
+      "x": { "name": "Position (from equilibrium)", "unit": "m", "min": -5, "max": 5, "default": 2 },
+      "u": { "name": "Velocity at x = 0", "unit": "m/s", "min": -10, "max": 10, "default": 0 }
+    },
+    "computed_outputs": {
+      "a_at_x": { "formula": "-10 * x" },
+      "v_at_x_from_0": { "formula": "sqrt(0 - 10 * x * x)" }
+    },
+    "formulas": {
+      "vdvdx_trick": "a  =  dv/dt  =  (dv/dx)(dx/dt)  =  v dv/dx   (chain rule)",
+      "integration_in_x": "v dv  =  a(x) dx   -> integrate both sides in x",
+      "example_spring": "If a = -k x / m, then v dv = -(k/m) x dx -> v^2/2 = -(k/(2m)) x^2 + C"
+    },
+    "constraints": [
+      "You cannot integrate a(x) directly with respect to t — time is unknown in terms of x",
+      "The v dv/dx trick converts the time derivative dv/dt into a position derivative",
+      "The integration then becomes 'integrate a(x) dx'",
+      "Gives v as a function of x, not of t",
+      "Energy conservation recovers this result in a physics-flavoured shortcut"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "The Spring Block — a Depends on Where, Not When",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "spring_setup",
+            "text": "Spring-block system (frictionless)\n\n[wall]-/VVVV/-[BLOCK]-----\n     k                  x = 0\n                         equilibrium\n\nForce on block  F = -k x\nSo  a  =  F / m  =  -(k / m) x\n\nThis a depends on x (position),\nNOT on t (time).\n\nWhen block is at x = 0:  a = 0.\nWhen block is pulled to x = +2:\n  a = -(k/m) * 2 (points left, back to center).\nWhen block is at x = -3:\n  a = +(k/m) * 3 (points right, back to center).",
+            "position": { "x": 380, "y": 280 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "block_sim",
+            "from": { "x": 280, "y": 460 },
+            "magnitude": 2,
+            "direction_deg": 0,
+            "label": "block moves back and forth",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "translate", "dx_px": 200, "dy_px": 0, "duration_sec": 4 }
+          },
+          {
+            "type": "annotation",
+            "id": "problem",
+            "text": "Question\nIf block is released from rest at\n  x = 2 m, what speed does it have\n  when it passes through x = 0?\n\nWe cannot use v = u + a t because\nwe do not know t directly.\n\nWe cannot integrate a dt because\na is given as a function of x, not t.\n\nWe need a different trick — the\nv d v d x substitution.",
+            "position": { "x": 720, "y": 320 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Consider a block attached to a spring on a frictionless surface. The spring pulls the block back to the equilibrium position x equals zero." },
+            { "id": "s2", "text_en": "Hooke's law gives the force — minus k times x. Newton's second law gives the acceleration — minus k over m times x. That is a function of x, NOT a function of t." },
+            { "id": "s3", "text_en": "At equilibrium, x is zero, so a is zero. At x equals two, a points leftward pulling the block back. At x equals minus three, a points rightward. The block oscillates." },
+            { "id": "s4", "text_en": "Now the question. Release the block from rest at x equals two. What speed does it have when it passes through equilibrium?" },
+            { "id": "s5", "text_en": "We cannot use v equals u plus a t — we do not know the time. And we cannot integrate a d t because a is given as a function of x, not t. We need a different trick." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "The v dv/dx Trick — Chain Rule Magic",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "trick_derivation",
+            "text": "The v dv/dx identity\n\nStart with definition\n  a = dv/dt\n\nApply chain rule\n  dv/dt  =  (dv/dx) * (dx/dt)  =  v * (dv/dx)\n\nSo\n  a  =  v (dv/dx)\n\nNow multiply both sides by dx\n  a dx  =  v dv\n\nIntegrate both sides\n  integral v dv  =  integral a(x) dx\n\n  v^2 / 2  =  integral a(x) dx + C\n\nThis is the v d v d x trick.\nThe time variable t never entered.",
+            "position": { "x": 380, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "solve_spring",
+            "text": "Apply to spring  a = -(k/m) x\n\nv dv  =  -(k/m) x dx\n\nIntegrate from x = 2 (at rest, v = 0)\nto x = 0 (unknown v)\n\n  v^2/2  -  0\n    = integral from 2 to 0 of -(k/m)x dx\n    = -(k/m) * (0 - 4) / 2\n    = 2 (k/m)\n\nFor k = 10, m = 1\n  v^2 / 2 = 20\n  v = sqrt(40) ~ 6.32 m/s\n\nAnswer: block passes x = 0\nat about 6.32 m/s.",
+            "position": { "x": 720, "y": 300 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 3.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Start from the definition — a equals d v over d t. We want to replace the t in the derivative with x. The chain rule does that." },
+            { "id": "s2", "text_en": "Write d v over d t as d v over d x times d x over d t. But d x over d t is v, the velocity. So a equals v times d v over d x." },
+            { "id": "s3", "text_en": "Rearrange — a d x equals v d v. Now both sides can be integrated with respect to x, with the left side being known as a function of x." },
+            { "id": "s4", "text_en": "Integrate v d v on the left — that gives v squared over two. Integrate a of x on the right — for our spring, integral of minus k over m times x d x is minus k over m times x squared over two." },
+            { "id": "s5", "text_en": "Apply with limits. At x equals two, v is zero. At x equals zero, v is what we want. Plug in and solve." },
+            { "id": "s6", "text_en": "For k equals ten and m equals one, v squared over two equals twenty, so v is about six point three two metres per second. That is the speed when the block passes equilibrium." },
+            { "id": "s7", "text_en": "Notice — time never appeared in the calculation. The v d v d x trick skips the time integration entirely. This is the standard tool for any a-as-a-function-of-x problem." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Energy View — Same Answer, Physics Flavour",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "energy_link",
+            "text": "Physics interpretation\n\nFor a(x) derived from a force F(x) = m a(x)\n\n  Work done by force\n    W  =  integral F dx\n        =  integral m a(x) dx\n\nWork-energy theorem\n  W  =  change in kinetic energy\n     =  (1/2) m v^2 (final) - (1/2) m v^2 (initial)\n\nSubstituting\n  integral m a(x) dx  =  (m/2)(v_f^2 - v_i^2)\n\nDivide by m\n  integral a(x) dx  =  (1/2)(v_f^2 - v_i^2)\n\nSAME formula, physics language.\nThe v dv/dx trick is the\nwork-energy theorem in disguise.",
+            "position": { "x": 380, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "shortcut_note",
+            "text": "Shortcut for exam problems\n\nIf you recognise that a(x) comes from\na conservative force, you can use\nenergy conservation directly without\nthe explicit integration.\n\n  (1/2) m v^2 + U(x)  =  constant\n\nGives v at any x, given v at one x.\nOften the FASTEST path for JEE.",
+            "position": { "x": 720, "y": 320 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "There is a physics-flavoured way to read the same calculation — it is the work-energy theorem in disguise." },
+            { "id": "s2", "text_en": "Work done by the net force as the object moves from x-initial to x-final is integral F d x, which equals integral m a of x d x." },
+            { "id": "s3", "text_en": "By the work-energy theorem, this equals the change in kinetic energy — half m v-final squared minus half m v-initial squared." },
+            { "id": "s4", "text_en": "Divide both sides by m, and you recover exactly the v d v d x integration formula we derived mathematically." },
+            { "id": "s5", "text_en": "For JEE problems involving a conservative force like a spring or gravity near the surface, energy conservation is often the fastest path. You avoid the explicit integration by recognising the potential energy." },
+            { "id": "s6", "text_en": "So two roads, one destination — the v d v d x trick algebraically or energy conservation physically. Pick whichever the problem invites more naturally." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "integrate_a_over_t_when_a_is_in_x",
+      "misconception": "Integrate a(x) with respect to t as if it were a constant over time",
+      "trigger_phrases": [
+        "integrate a(x) dt",
+        "a times t when a depends on x",
+        "can I just multiply a by time",
+        "why not dt with a(x)"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Attempt — Integrate a(x) over Time Directly",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_attempt",
+              "text": "Wrong attempt\n\nFor a = -10 x, maybe I should do\n  v = integral a dt = -10 integral x dt ?\n\nBut x depends on t too. I cannot\nsimply treat x as a constant inside\nan integral with respect to t.\n\nAnd I do NOT know how x depends on t\nat this point — that is what the\nproblem is asking me to find!\n\nCircular reasoning.",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A natural but wrong attempt — try to integrate a of x over d t directly, as if it were a simple a of t problem." },
+              { "id": "s2", "text_en": "The trouble is that x itself is changing with time, and we do not yet know HOW it changes with time. That is what solving the problem is supposed to produce." },
+              { "id": "s3", "text_en": "Trying to do the t-integration first is circular — we need x of t, and we are trying to find x of t. The v d v d x trick side-steps this by avoiding time entirely." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Trick Resolves the Circularity — Switch to dx",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "switch",
+              "text": "v d v d x trick is\n\n  a  =  v (dv/dx)\n\nInterpretation\n\n  The time dependence of x and v\n  is hidden in the product v * dv/dx.\n  Since a is given as a function of x,\n  you can now integrate with respect\n  to x and avoid time entirely.\n\nResult\n\n  v^2 / 2  =  integral a(x) dx\n\nYou get v as a function of x,\nNOT x as a function of t.\nThat is usually enough to answer\nspeed-at-position questions.\n\nIf you later need x(t), integrate\ndx/dt = v(x) — a 2nd-level problem.",
+              "position": { "x": 400, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The v d v d x trick solves the circularity. Instead of integrating over t, we recast a as v times d v d x and integrate over x." },
+              { "id": "s2", "text_en": "The time dependence of x and v is still implicit in the chain rule, but we no longer need to solve for x of t explicitly." },
+              { "id": "s3", "text_en": "What you get directly is v squared over two equals integral of a of x d x. This gives v as a function of x, which answers 'what is the speed when the block is here' type questions." },
+              { "id": "s4", "text_en": "If later the problem asks for position as a function of time, you solve d x over d t equals v of x, which is a second-level differential equation. JEE typically stops at v of x." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Decision Flowchart — Which Technique?",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "flow",
+              "text": "Decision flow\n\n(1) Is a constant?\n    -> use v = u + a t, s = u t + 0.5 a t^2.\n\n(2) Is a given as f(t)?\n    -> integrate dt twice: v(t), then x(t).\n\n(3) Is a given as f(x)?\n    -> v dv/dx trick: v^2/2 = integral a(x) dx.\n\n(4) Is a given as f(v)?\n    -> separate variables: dv/dt = a(v) or dv/dx * v = a(v).\n\nFirst identify which variable a depends on.\nThen the technique is determined.",
+              "position": { "x": 400, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the decision flow for every non-uniform-acceleration problem." },
+              { "id": "s2", "text_en": "Constant a — kinematic equations. a as a function of t — integrate d t twice. a as a function of x — use the v d v d x trick. a as a function of v — separate variables differently." },
+              { "id": "s3", "text_en": "The first question is always — which variable is a depending on? Once you know that, the technique is determined." },
+              { "id": "s4", "text_en": "This classification is a big chunk of JEE Physics Part 1 solved. Recognise the type in the first twenty seconds of reading the problem, and you save yourself dead-end algebra." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Exponential-decay acceleration a(x) = -b/x^2",
+      "physical_world": "Satellite problem — acceleration toward Earth's centre scales as 1/r^2. Use v dv/dr = -b/r^2, integrate to find v(r). Same technique, richer integrand.",
+      "same_physics": "v dv/dx trick works for any a(x), however complicated"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Simple Harmonic Oscillator",
+      "physical_world": "Pendulum small-angle motion — a = -(g/L) theta. Integrate v dv = -(g/L) theta d theta. Get speed at any angle from any reference.",
+      "same_physics": "Trick applies to angular motion too (theta plays role of x)"
+    }
+  ]
+}

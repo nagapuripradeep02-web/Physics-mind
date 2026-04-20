@@ -1,0 +1,115 @@
+{
+  "concept_id": "magnetic_field_biot_savart",
+  "concept_name": "Biot-Savart Law",
+  "class_level": 12,
+  "chapter": "Moving Charges and Magnetism",
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "current_element_field",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "I": "Current through the conductor (A)",
+    "dl": "Infinitesimal current element vector (m)",
+    "r": "Distance from current element to field point (m)",
+    "r_hat": "Unit vector from current element to field point",
+    "mu_0": "Permeability of free space = 4π × 10⁻⁷ T·m/A",
+    "B": "Magnetic field (T)",
+    "R": "Radius of circular loop (m)",
+    "n": "Number of turns per unit length (for solenoid context)"
+  },
+  "locked_facts": [
+    "Biot-Savart law: dB = (μ₀/4π)(Idl × r̂)/r²",
+    "Magnetic field due to infinite straight wire: B = μ₀I/(2πr)",
+    "Magnetic field at the centre of a circular loop: B = μ₀I/(2R)",
+    "Magnetic field on the axis of a circular loop: B = μ₀IR²/[2(R² + x²)^(3/2)]",
+    "Direction of dB is given by the cross product dl × r̂ (right-hand screw rule)",
+    "μ₀ = 4π × 10⁻⁷ T·m/A (exact value by definition)",
+    "The Biot-Savart law is the magnetic analogue of Coulomb's law — both are inverse-square laws"
+  ],
+  "truth_statements": [
+    "The magnetic field dB due to a current element Idl is perpendicular to both dl and the position vector r, as given by the cross product",
+    "The magnitude of dB is proportional to I, dl, sin θ and inversely proportional to r², where θ is the angle between dl and r",
+    "For an infinite straight conductor, integrating Biot-Savart gives B = μ₀I/(2πr), with field lines as concentric circles",
+    "At the centre of a circular loop of radius R carrying current I, the field is B = μ₀I/(2R), directed along the axis of the loop",
+    "The Biot-Savart law holds for all steady (non-time-varying) currents and is experimentally verified"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A circular loop with current I — each small segment dl contributes a dB vector at the centre. All dB vectors from symmetric segments point in the SAME direction (along the axis), so they all add up constructively. Compare with a straight wire where dB contributions from different segments partially cancel.",
+    "visual_emphasis": "All dB arrows at the loop centre point upward along the axis — no cancellation, maximum constructive addition. The formula B = μ₀I/(2R) appears as the result of this perfect alignment.",
+    "why_this_breaks_misconception": "Students think the field at the centre should point radially or along the wire — they see that cross-product geometry forces every dB to align along the axis"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "A current element in space",
+      "description": "A single current element Idl shown as a glowing segment with current direction arrow. The position vector r from dl to a field point P is drawn. No field shown yet.",
+      "emphasis": "Establish the geometry — current element dl, position vector r, and the angle θ between them",
+      "labels_visible": ["Idl", "r", "P", "θ"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "dB from cross product",
+      "description": "The dB vector appears at point P, perpendicular to both dl and r (out of the plane formed by dl and r). The cross-product geometry is highlighted — dl × r̂ gives the direction. Formula overlay: dB = (μ₀/4π)(Idl sin θ)/r².",
+      "emphasis": "dB is perpendicular to the plane of dl and r — direction from right-hand screw rule. Magnitude depends on sin θ: maximum when θ = 90°, zero when θ = 0°",
+      "labels_visible": ["dB", "dl × r̂", "θ", "dB ∝ sin θ/r²"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Full circular loop — all dB vectors align",
+      "description": "A complete circular loop with current I. Multiple dl segments are highlighted around the loop. Each contributes a dB at the centre — ALL dB vectors point along the axis (upward). They add constructively to give B = μ₀I/(2R). A straight wire is shown for comparison where dB vectors partially cancel.",
+      "emphasis": "At the centre of a circular loop, every current element contributes dB along the axis — perfect constructive addition gives B = μ₀I/(2R)",
+      "labels_visible": ["B = μ₀I/(2R)", "dB (all axial)", "R", "I"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts current I and loop radius R. The field B at centre updates in real time. Student can also switch to straight-wire mode to see B = μ₀I/(2πr). A field point can be dragged to see how dB direction changes with position.",
+      "emphasis": "Vary I and R to see how B changes. Compare loop field (B ∝ I/R) with wire field (B ∝ I/r). Drag the field point to see cross-product direction change.",
+      "labels_visible": ["B", "I", "R", "r"],
+      "interactive": true,
+      "sliders": [
+        { "id": "current", "label": "Current I", "min": 0.5, "max": 10, "default": 2, "unit": "A" },
+        { "id": "radius", "label": "Loop Radius R", "min": 0.02, "max": 0.5, "default": 0.1, "unit": "m" },
+        { "id": "distance", "label": "Distance from wire r", "min": 0.01, "max": 0.5, "default": 0.05, "unit": "m" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The magnetic field due to a current element points radially outward like an electric field from a charge",
+      "trigger_phrases": ["field radially outward", "B points away from wire", "field like electric charge", "radial magnetic field hota hai"],
+      "correction": "The magnetic field dB is perpendicular to BOTH the current element dl and the position vector r. It is given by the cross product dl × r̂, so it never points radially from the element.",
+      "simulation_emphasis": "Show dl, r, and dB as three mutually oriented vectors — dB is always perpendicular to the plane containing dl and r"
+    },
+    {
+      "belief": "The field at the centre of a loop is in the plane of the loop, along the wire",
+      "trigger_phrases": ["field in plane of loop", "B along the wire", "field loop ke plane mein hota hai", "centre pe field wire ki direction mein"],
+      "correction": "At the centre of a circular loop, the field is along the AXIS of the loop (perpendicular to its plane). Each current element contributes a dB component along the axis, and all these components add up.",
+      "simulation_emphasis": "Show all dB vectors at the centre pointing along the axis — the in-plane components cancel by symmetry, only the axial component survives"
+    },
+    {
+      "belief": "Biot-Savart law gives an inverse-cube dependence on distance",
+      "trigger_phrases": ["1/r³ dependence", "inverse cube", "r cube se divide", "field r cube pe depend karta hai"],
+      "correction": "The Biot-Savart law has 1/r² dependence for the field due to a current element. The 1/r³ appearance sometimes seen is because r̂/r² = r/r³, but the fundamental dependence is inverse-square, analogous to Coulomb's law.",
+      "simulation_emphasis": "Drag the field point closer and farther — show the field scaling as 1/r², not 1/r³, with numerical readout"
+    }
+  ],
+  "legend": [
+    { "symbol": "dB", "meaning": "Magnetic field due to current element (T)" },
+    { "symbol": "dl", "meaning": "Infinitesimal current element (m)" },
+    { "symbol": "r̂", "meaning": "Unit vector from dl to field point" },
+    { "symbol": "μ₀", "meaning": "Permeability of free space = 4π × 10⁻⁷ T·m/A" },
+    { "symbol": "I", "meaning": "Current through conductor (A)" },
+    { "symbol": "R", "meaning": "Radius of circular loop (m)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["electric_current", "magnetic_field_wire"],
+    "extensions": ["ampere_circuital_law", "magnetic_field_solenoid", "magnetic_dipole_bar_magnet"],
+    "siblings": ["coulombs_law"],
+    "common_exam_combinations": ["magnetic_field_solenoid", "force_on_current_carrying_conductor"]
+  }
+}

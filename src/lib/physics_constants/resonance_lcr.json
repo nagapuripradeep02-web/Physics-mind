@@ -1,0 +1,88 @@
+{
+  "concept_id": "resonance_lcr",
+  "concept_name": "Resonance in LCR Series Circuit",
+  "chapter": "Alternating Current",
+  "class_level": 12,
+  "renderer_hint": {
+    "primary": "graph_interactive",
+    "topology": "resonance_curve",
+    "graph_type": "current_vs_frequency_with_slider"
+  },
+  "variables": {
+    "R": { "symbol": "R", "name": "Resistance", "unit": "Ω", "min": 10, "max": 1000, "default": 100 },
+    "L": { "symbol": "L", "name": "Inductance", "unit": "H", "min": 0.01, "max": 1, "default": 0.1 },
+    "C": { "symbol": "C", "name": "Capacitance", "unit": "μF", "min": 1, "max": 1000, "default": 100 },
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 10, "max": 2000, "default": 159 }
+  },
+  "locked_facts": [
+    "Resonance occurs when X_L = X_C, i.e., ωL = 1/ωC",
+    "Resonant frequency f₀ = 1/(2π√(LC))",
+    "At resonance: Z = R (minimum impedance)",
+    "At resonance: current I_max = V/R (maximum current)",
+    "At resonance: phase angle φ = 0 (V and I in phase)",
+    "At resonance: V_L = V_C but they are 180° apart and cancel completely",
+    "Quality factor Q = ω₀L/R = 1/(ω₀CR) = (1/R)√(L/C)",
+    "Higher Q → sharper resonance curve → more selective circuit",
+    "Bandwidth Δω = R/L"
+  ],
+  "truth_statements": [
+    "At resonance X_L exactly equals X_C — they cancel in the impedance formula",
+    "Minimum impedance at resonance equals R — not zero",
+    "At resonance current is maximum, not voltage",
+    "The resonance frequency depends only on L and C — not on R",
+    "Higher R gives lower Q and broader (less sharp) resonance peak"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show the resonance curve (I vs f) and demonstrate the effect of changing R. High R gives a wide, flat peak. Low R gives a sharp, tall spike. The sharpness IS the Q factor — a high-Q radio tuner can select one station from thousands because its resonance curve is so narrow.",
+    "visual_emphasis": "Three curves on the same axes: high R (broad), medium R (moderate), low R (sharp spike). The resonant frequency f₀ is the same for all three. Only the shape changes."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "I vs f curve — the resonance signature",
+      "what_student_sees": "Graph of current amplitude I_m vs driving frequency f. A bell-shaped curve with a clear peak at f₀ = 1/(2π√(LC)).",
+      "what_to_emphasize": "Below f₀: circuit is capacitive, X_C > X_L. Above f₀: circuit is inductive, X_L > X_C. At f₀: they cancel, Z is minimum, I is maximum."
+    },
+    {
+      "state": "STATE_2",
+      "label": "At resonance — X_L = X_C cancellation",
+      "what_student_sees": "Frequency slider at f₀. Phasor diagram shows V_L and V_C as equal length arrows pointing in exactly opposite directions — they completely cancel. Only V_R remains. Z = R.",
+      "what_to_emphasize": "The 'resonance' is the L and C voltages fighting each other to a draw — completely cancelling. The source only needs to drive the resistance."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Q factor — sharpness of resonance",
+      "what_student_sees": "R slider that changes the shape of the resonance curve while keeping f₀ fixed. High R → low Q → broad peak. Low R → high Q → sharp spike.",
+      "what_to_emphasize": "Q factor tells you how selective the circuit is. A radio tuner needs high Q to distinguish between stations 0.1 MHz apart."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Bandwidth — practical significance",
+      "what_student_sees": "The resonance curve with the half-power points marked at I_max/√2. The frequency range between these points is the bandwidth Δf = R/(2πL).",
+      "what_to_emphasize": "Bandwidth is the range of frequencies the circuit responds to significantly. Narrow bandwidth = high selectivity = high Q."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "resonance_means_infinite_current",
+      "trigger_keywords": ["infinite current resonance", "Z is zero resonance", "impedance zero at resonance", "short circuit at resonance"],
+      "student_belief": "At resonance, Z = 0 so current becomes infinite",
+      "actual_physics": "At resonance, X_L and X_C cancel, but Z = √(R² + 0²) = R — not zero. R is always present. Current maximum I_max = V/R, which is finite.",
+      "simulation_emphasis": "Show the impedance formula at resonance: Z = √(R² + (X_L - X_C)²) = √(R² + 0) = R. Numerically: if R = 100Ω, Z = 100Ω at resonance. Current = V/100, not infinite."
+    },
+    {
+      "id": "resonance_frequency_depends_on_R",
+      "trigger_keywords": ["change R changes resonance", "R affects f_0", "resistance changes resonant frequency", "R se f0 change hota"],
+      "student_belief": "Changing the resistance changes the resonant frequency",
+      "actual_physics": "f₀ = 1/(2π√(LC)) depends only on L and C — not on R. Changing R changes the Q factor and bandwidth but not the frequency at which resonance occurs.",
+      "simulation_emphasis": "Show R slider moving. Watch the resonance curve change shape (broader or sharper) but the peak frequency stays fixed at f₀. Label f₀ explicitly and show it does not move."
+    }
+  ],
+  "legend": [
+    { "symbol": "f₀", "meaning": "Resonant frequency = 1/(2π√(LC))" },
+    { "symbol": "Q", "meaning": "Quality factor = ω₀L/R (sharpness of resonance)" },
+    { "symbol": "Δf", "meaning": "Bandwidth = R/(2πL)" },
+    { "symbol": "I_max", "meaning": "Maximum current at resonance = V_m/R" }
+  ]
+}

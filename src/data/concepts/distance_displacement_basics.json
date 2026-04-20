@@ -1,0 +1,332 @@
+{
+  "concept_id": "distance_displacement_basics",
+  "concept_name": "Distance vs Displacement — Path Length vs Straight-Line Change",
+  "chapter": 6,
+  "section": "6.1",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 6.1 — Motion in a Straight Line; split from distance_vs_displacement bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "Taking an autorickshaw across a busy Indian city. The meter charges by distance — the actual winding path, every turn around a stalled truck, every detour to avoid a closed road. Your GPS app shows something different — the straight-line DISPLACEMENT from your start address to your destination. The meter number is almost always larger than the GPS-straight-line, and only equal if the route is perfectly straight with no reversals.",
+    "secondary": "A child running one full lap around the circular track at a school sports day. The running track is four hundred metres around — that is the distance. But the child ends where she started, so her displacement is zero. Same motion, two completely different answers depending on which quantity you measure.",
+    "tertiary": "A postman delivering letters on your lane. He walks to house number fifty, then doubles back to forty, then forward to seventy. His total distance walked is long; his displacement by end-of-round is just the gap between his starting point and the last house visited."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "radius": { "name": "Radius of circular path", "unit": "m", "min": 1, "max": 20, "default": 5 },
+      "arc_fraction": { "name": "Fraction of circle traced (0-1)", "unit": "", "min": 0, "max": 1, "default": 0.5 }
+    },
+    "computed_outputs": {
+      "distance_arc": { "formula": "2 * PI * radius * arc_fraction" },
+      "disp_chord": { "formula": "2 * radius * sin(PI * arc_fraction)" },
+      "ratio": { "formula": "(2 * PI * radius * arc_fraction) / (2 * radius * sin(PI * arc_fraction) + 1e-9)" }
+    },
+    "formulas": {
+      "distance": "distance = total path length covered (scalar, always >= 0)",
+      "displacement": "displacement = r_final - r_initial (vector; sign matters in 1D, direction matters in 2D)",
+      "semicircle_ratio": "semicircle: distance = pi*r, |displacement| = 2r, ratio = pi/2 ~ 1.57",
+      "full_circle": "full circle: distance = 2*pi*r, displacement = 0"
+    },
+    "constraints": [
+      "Distance can never decrease during motion; it only accumulates",
+      "Displacement can decrease, increase, OR return to zero",
+      "|displacement| <= distance ALWAYS",
+      "Equality holds ONLY when the motion is a straight line with no reversals"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "An Autorickshaw Ride — Two Different Numbers for the Same Trip",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "start_label",
+            "text": "START (home)",
+            "position": { "x": 160, "y": 440 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "winding_path",
+            "text": "      _____\n     /     \\________\n    /               \\\n    |    detour     |____\n    \\       around       \\___\n     \\    blocked  road       \\\n      \\_______                  ___END (office)\n              \\______      ___/\n                     \\____/",
+            "position": { "x": 380, "y": 320 },
+            "style": "callout",
+            "color": "#F59E0B"
+          },
+          {
+            "type": "force_arrow",
+            "id": "displacement_arrow",
+            "from": { "x": 160, "y": 440 },
+            "magnitude": 5,
+            "direction_deg": -15,
+            "label": "displacement (straight line) ~ 3 km",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 70,
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "contrast",
+            "text": "The auto meter reads\n~ 5 km\n(total path length = DISTANCE)\n\nYour GPS app shows\n~ 3 km\n(straight-line = DISPLACEMENT)\n\nSame trip. Two different numbers.\nThe physics distinction matters.",
+            "position": { "x": 620, "y": 280 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "You take an autorickshaw from home to office. The meter ticks up the whole ride — past a stalled truck, around a blocked road, two left turns and a U-turn." },
+            { "id": "s2", "text_en": "At the end, the meter shows five kilometres. But your maps app had said the destination is only three kilometres away." },
+            { "id": "s3", "text_en": "Both numbers are correct. They measure different things. The meter's five kilometres is the DISTANCE — the total winding path the auto actually traced." },
+            { "id": "s4", "text_en": "The three kilometres from your app is the DISPLACEMENT — the straight-line gap between start and end, ignoring the route." },
+            { "id": "s5", "text_en": "In physics these are two distinct quantities. One is a scalar, the other is a vector. The next three states make the difference precise." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Definitions — Scalar vs Vector, Path vs Endpoint",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "dist_box",
+            "text": "DISTANCE (scalar)\n\nTotal path length covered.\nAdd up every tiny step,\nregardless of direction.\n\n  d  >=  0  always\n  d  never decreases\n  units: metres, kilometres",
+            "position": { "x": 240, "y": 280 },
+            "style": "formula_box",
+            "color": "#F59E0B"
+          },
+          {
+            "type": "annotation",
+            "id": "disp_box",
+            "text": "DISPLACEMENT (vector)\n\nStraight arrow from start to end.\nOnly endpoints matter.\nMiddle of the path is irrelevant.\n\n  s = r_final - r_initial\n  can be +, -, or zero\n  units: metres, kilometres\n        PLUS a direction",
+            "position": { "x": 620, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here are the precise definitions, side by side." },
+            { "id": "s2", "text_en": "Distance is the total length of path traced — a scalar. Add up every tiny step, regardless of the direction you were moving. Distance is always greater than or equal to zero, and it never decreases once motion starts." },
+            { "id": "s3", "text_en": "Displacement is a vector — the straight-line arrow from your starting position to your final position. Only the two endpoints matter. The middle of the journey plays no role." },
+            { "id": "s4", "text_en": "Displacement carries a direction, so it can be positive, negative, or zero depending on the sign convention and the ending point." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "The Extreme Case — Complete Lap Has Displacement ZERO",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "track_circle",
+            "text": "              __________\n           __/          \\__\n         /                  \\\n        |       TRACK        |\n        |      (400 m         |\n         \\     circumference)/\n           \\_____________/\n\n              START = END\n              (same spot)",
+            "position": { "x": 320, "y": 340 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "numbers",
+            "text": "One full lap around the track\n\nDistance covered\n  = full circumference\n  = 400 m\n\nDisplacement\n  = straight arrow from\n    START to END\n  = START and END are\n    the SAME point\n  = ZERO\n\nDistance: 400 m\nDisplacement: 0\n\nSame motion. Totally different answers.",
+            "position": { "x": 640, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is the most extreme example. A child runs one full lap around a four-hundred-metre track at her school sports day." },
+            { "id": "s2", "text_en": "She ends exactly where she started — at the starting line." },
+            { "id": "s3", "text_en": "Her distance covered is the full circumference, four hundred metres. Her feet traced every metre of the track." },
+            { "id": "s4", "text_en": "But her displacement is zero. Start and end are the same spot, so the straight-line arrow has length zero." },
+            { "id": "s5", "text_en": "Same motion. Two completely different answers. This is the single most important reason physics distinguishes distance from displacement." },
+            { "id": "s6", "text_en": "The general rule — for any curved or reversing path, distance is always more than the magnitude of displacement. Equality holds only when motion is straight-line without reversals." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "The Inequality You Will Use Forever",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "inequality",
+            "text": "Universal rule\n\n   |displacement|  <=  distance\n\nEquality (|s| = d) holds ONLY when\n  (1) motion is in a straight line AND\n  (2) no reversal of direction\n\nStrict inequality (|s| < d) whenever\n  - path is curved, OR\n  - direction reverses",
+            "position": { "x": 280, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "quick_examples",
+            "text": "Quick examples\n\nA -> B in straight line, 10 m\n   dist = 10, |disp| = 10   (equal)\n\nA -> B -> A, each 10 m\n   dist = 20, |disp| = 0\n\nSemicircle of radius 5 m\n   dist = pi*5 ~ 15.7 m\n   |disp| = diameter = 10 m\n\nFull circle of radius r\n   dist = 2*pi*r,  |disp| = 0",
+            "position": { "x": 650, "y": 280 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The universal rule — the magnitude of displacement is always less than or equal to the distance. Never greater." },
+            { "id": "s2", "text_en": "Equality — distance equals displacement magnitude — holds only when two conditions are met. The path is straight, and the direction never reverses." },
+            { "id": "s3", "text_en": "Any curve, any U-turn, any back-and-forth motion — and the distance exceeds the displacement magnitude." },
+            { "id": "s4", "text_en": "Some quick examples to lock this in. A straight ten-metre walk — distance and displacement are both ten. A walk ten metres forward, then ten back — distance is twenty, displacement is zero." },
+            { "id": "s5", "text_en": "A half-circle of radius five — distance is pi times five, about fifteen point seven metres, while displacement is just the diameter, ten metres." },
+            { "id": "s6", "text_en": "Apply this rule every time a problem involves paths that are not straight. The two quantities do not interchange — they are genuinely different measurements." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "distance_equals_displacement",
+      "misconception": "Distance and displacement are always the same quantity",
+      "trigger_phrases": [
+        "aren't distance and displacement the same",
+        "why different names for same thing",
+        "distance equals displacement always",
+        "difference distance displacement same thing"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Distance = Displacement",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "belief",
+              "text": "Your reasoning\n\nI walked 5 km.\nI am 5 km from where I started.\n\nAren't those the same number?\nWhy do we need two different\nwords for one thing?\n\n(The assumption only works when\nthe walk was perfectly straight.\nLet us break the assumption and see.)",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A very common first-instinct. I walked five kilometres, so I am five kilometres from where I started. Distance and displacement feel like the same thing." },
+              { "id": "s2", "text_en": "That feels true because you are imagining a perfectly straight walk. The moment the path curves or reverses, the two quantities separate." },
+              { "id": "s3", "text_en": "Let us break the straight-line assumption and watch what happens." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Go Out and Come Back — Distance Keeps Growing, Displacement Returns",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "out_leg",
+              "from": { "x": 200, "y": 330 },
+              "magnitude": 3,
+              "direction_deg": 0,
+              "label": "10 km out",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 60
+            },
+            {
+              "type": "force_arrow",
+              "id": "back_leg",
+              "from": { "x": 380, "y": 390 },
+              "magnitude": 3,
+              "direction_deg": 180,
+              "label": "10 km back",
+              "color": "#F59E0B",
+              "scale_pixels_per_unit": 60,
+              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            },
+            {
+              "type": "annotation",
+              "id": "endpoints",
+              "text": "START = END\n(same place)",
+              "position": { "x": 200, "y": 440 },
+              "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "numbers",
+              "text": "After the walk\n\nDistance covered\n  10 km out + 10 km back\n  = 20 km  (keeps adding)\n\nDisplacement\n  start and end are the same\n  = 0\n\n20 km vs 0 km.\nSame motion. Two very\ndifferent answers.\nHence two different names.",
+              "position": { "x": 620, "y": 260 },
+              "style": "formula_box",
+              "color": "#10B981",
+              "animation": { "type": "fade_in", "delay_sec": 3.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Walk ten kilometres down a road, then turn and walk the same ten kilometres back home." },
+              { "id": "s2", "text_en": "Your feet covered twenty kilometres — that is the distance. You were tired after walking twenty." },
+              { "id": "s3", "text_en": "But the straight-line gap between your start and end is zero — you are back where you began. So the displacement is zero." },
+              { "id": "s4", "text_en": "Twenty and zero are plainly different numbers. That is why physics needs two different names — because the two measurements give genuinely different values for any non-straight motion." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "When the Two Do Match — The Strict Straight-Line Case",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "straight",
+              "from": { "x": 200, "y": 340 },
+              "magnitude": 5,
+              "direction_deg": 0,
+              "label": "5 km east (straight, no reversal)",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 50
+            },
+            {
+              "type": "annotation",
+              "id": "equal_case",
+              "text": "ONLY case where\ndistance = |displacement|\n\nMotion is straight-line AND\ndirection never reverses.\n\nExamples\n- rocket going up, no return\n- ball falling, before it bounces\n- train on straight track,\n  forward only\n\nIn every other situation,\ndistance > |displacement|.",
+              "position": { "x": 540, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981",
+              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The two quantities do agree in one specific situation — straight-line motion with no reversal." },
+              { "id": "s2", "text_en": "A rocket climbing straight up before it falls back. A ball falling before it bounces. A train on a straight track moving only forward." },
+              { "id": "s3", "text_en": "In all these cases, distance and displacement magnitude give the same number. But note the conditions — straight AND no reversal. Miss either and the equality breaks." },
+              { "id": "s4", "text_en": "In every other situation, distance is strictly greater than the magnitude of displacement. That gap is where the two names earn their keep." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Semicircle path",
+      "physical_world": "Particle moves from A to B along a semicircle of radius 5 m. distance = pi*5 = 15.71 m, |displacement| = 2*5 = 10 m, ratio = pi/2.",
+      "same_physics": "Same inequality |disp| <= dist, strict when path is curved"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Out-and-back with unequal legs",
+      "physical_world": "Go 10 m east, then 6 m west. Distance = 16 m. Displacement = 4 m east. Magnitude 4 m < distance 16 m.",
+      "same_physics": "Any reversal makes distance exceed displacement magnitude"
+    }
+  ]
+}

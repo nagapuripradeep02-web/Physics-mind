@@ -1,0 +1,145 @@
+{
+  "concept_id": "reflection_spherical_mirrors",
+  "concept_name": "Reflection at Spherical Mirrors",
+  "class_level": 12,
+  "chapter": "Ray Optics and Optical Instruments",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "optics_ray",
+    "scenario_type": "spherical_mirror",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "u": {
+      "symbol": "u",
+      "name": "Object distance",
+      "unit": "cm",
+      "min": -100,
+      "max": -5,
+      "default": -30
+    },
+    "f": {
+      "symbol": "f",
+      "name": "Focal length",
+      "unit": "cm",
+      "min": -50,
+      "max": 50,
+      "default": -15
+    },
+    "R": {
+      "symbol": "R",
+      "name": "Radius of curvature",
+      "unit": "cm",
+      "min": -100,
+      "max": 100,
+      "default": -30
+    },
+    "v": {
+      "symbol": "v",
+      "name": "Image distance",
+      "unit": "cm",
+      "min": -100,
+      "max": 100,
+      "default": -30
+    },
+    "m": {
+      "symbol": "m",
+      "name": "Magnification",
+      "unit": "",
+      "min": -5,
+      "max": 5,
+      "default": -1
+    }
+  },
+  "locked_facts": [
+    "Mirror formula: 1/v + 1/u = 1/f",
+    "Relation between focal length and radius of curvature: f = R/2",
+    "Magnification: m = -v/u (negative m means inverted image)",
+    "Sign convention: all distances measured from pole; direction of incident light is positive",
+    "Concave mirror: f is negative (converging); Convex mirror: f is positive (diverging)",
+    "For concave mirror, real images form when object is beyond F; virtual image when object is between P and F"
+  ],
+  "truth_statements": [
+    "The mirror formula 1/v + 1/u = 1/f applies to both concave and convex mirrors when the new Cartesian sign convention is used",
+    "The focal length of a spherical mirror is half of its radius of curvature",
+    "A concave mirror forms a real and inverted image when the object is placed beyond the focus",
+    "A convex mirror always forms a virtual, erect, and diminished image regardless of object position",
+    "The magnification produced by a spherical mirror is the ratio of image height to object height and equals -v/u"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Place an object at 2F of a concave mirror. The image forms at 2F on the same side — same size, real, and inverted (m = -1). Now move the object slightly closer to F. The image shoots far away and becomes hugely magnified. Move the object just past F to between F and P — the image flips to behind the mirror, becoming virtual and erect. This dramatic transition at F is the aha moment: F is the dividing line between real and virtual images.",
+    "visual_emphasis": "Show three rays (parallel, through centre, through focus) converging to form the image. As the object crosses F, the reflected rays diverge and the image jumps behind the mirror. Highlight m changing sign at F."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Object beyond 2F — real, inverted, diminished image",
+      "description": "Concave mirror with object placed beyond 2F (centre of curvature). Three standard rays drawn: parallel ray reflects through F, ray through C reflects back on itself, ray through F reflects parallel. Image forms between F and 2F — real, inverted, smaller than object.",
+      "emphasis": "When the object is far from the mirror, the image is closer and smaller. All three rays converge at the image point.",
+      "labels_visible": ["u", "v", "f", "C", "P", "F"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Object at 2F — image at 2F, same size",
+      "description": "Object placed at the centre of curvature (2F). Image forms at 2F on the same side. Image is real, inverted, and same size as the object. m = -1.",
+      "emphasis": "This is the special symmetric case: object and image are equidistant from the mirror. Magnification is exactly -1.",
+      "labels_visible": ["u = 2f", "v = 2f", "m = -1"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Object between F and P — virtual, erect, magnified image",
+      "description": "Object placed between F and P. Reflected rays diverge — they appear to come from behind the mirror. Image is virtual, erect, and magnified. This is how a concave mirror works as a magnifying mirror.",
+      "emphasis": "When the object crosses F toward the mirror, the image type changes from real to virtual. The focal point is the critical boundary.",
+      "labels_visible": ["u", "v (behind mirror)", "m > 1", "Virtual image"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive — move the object",
+      "description": "Slider to move the object from beyond 2F to between P and F. Watch the image position, size, and nature change in real time. The mirror formula values update live.",
+      "emphasis": "Observe: as the object approaches F, the image moves to infinity. Past F, the image jumps behind the mirror. Try the convex mirror too — the image is always virtual, erect, and diminished.",
+      "interactive": true,
+      "sliders": [
+        { "id": "objectDistance", "label": "Object distance |u|", "min": 5, "max": 100, "default": 30, "unit": "cm" },
+        { "id": "focalLength", "label": "Focal length |f|", "min": 5, "max": 50, "default": 15, "unit": "cm" },
+        { "id": "mirrorType", "label": "Mirror type", "min": 0, "max": 1, "default": 0, "unit": "0=concave, 1=convex" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Convex mirrors can form real images",
+      "trigger_phrases": ["convex mirror real image", "convex se real image banta hai", "convex mirror mein real image", "convex mirror inverted image"],
+      "correction": "A convex mirror ALWAYS forms a virtual, erect, and diminished image regardless of where the object is placed. Only concave mirrors can form real images (when the object is beyond F).",
+      "simulation_emphasis": "Show convex mirror with object at any distance — the image is always behind the mirror, virtual, erect, and smaller. Contrast with concave mirror forming a real image."
+    },
+    {
+      "belief": "The image disappears when the object is at the focus",
+      "trigger_phrases": ["focus pe image gayab", "object at focus no image", "focus pe kya hota hai", "image at focus disappears"],
+      "correction": "When the object is at the focus of a concave mirror, reflected rays become parallel and the image forms at infinity — it does not disappear. The image is real, inverted, and highly magnified (theoretically infinite size).",
+      "simulation_emphasis": "Show rays from object at F reflecting parallel to each other. Explain that the image is at infinity, not absent. Show that moving the object slightly from F creates a very large, distant image."
+    },
+    {
+      "belief": "Sign convention does not matter — just use magnitudes",
+      "trigger_phrases": ["sign convention zaruri nahi", "sign convention confusing hai", "magnitude use karo", "positive negative kyu"],
+      "correction": "The new Cartesian sign convention is essential. Without it, the mirror formula gives wrong results. Distances in the direction of incident light are positive, opposite are negative. Object distance u is always negative (object on left). The sign of v tells you whether the image is real (negative) or virtual (positive).",
+      "simulation_emphasis": "Show the same numerical problem solved with and without sign convention. Demonstrate that ignoring signs gives the wrong image position and nature."
+    }
+  ],
+  "legend": [
+    { "symbol": "P", "meaning": "Pole — centre of the mirror surface" },
+    { "symbol": "C", "meaning": "Centre of curvature — centre of the sphere of which the mirror is a part" },
+    { "symbol": "F", "meaning": "Principal focus — midpoint between P and C" },
+    { "symbol": "f", "meaning": "Focal length = R/2" },
+    { "symbol": "u", "meaning": "Object distance from pole (always negative)" },
+    { "symbol": "v", "meaning": "Image distance from pole (negative = real, positive = virtual)" },
+    { "symbol": "m", "meaning": "Magnification = -v/u (negative = inverted)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["reflection_laws"],
+    "extensions": ["refraction_at_spherical_surface", "thin_lens_formula"],
+    "siblings": ["refraction_snells_law"],
+    "common_exam_combinations": ["thin_lens_formula", "optical_instruments"]
+  }
+}

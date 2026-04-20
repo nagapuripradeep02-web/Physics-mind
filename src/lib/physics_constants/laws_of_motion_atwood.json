@@ -1,0 +1,103 @@
+{
+  "concept_id": "laws_of_motion_atwood",
+  "concept_name": "Atwood Machine",
+  "class_level": 11,
+  "chapter": "Laws of Motion",
+  "renderer_hint": {
+    "technology": "p5js",
+    "renderer": "mechanics_2d",
+    "scenario_type": "atwood",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "m₁": "Heavier mass (kg)",
+    "m₂": "Lighter mass (kg)",
+    "g": "Acceleration due to gravity = 9.8 m/s²"
+  },
+  "locked_facts": [
+    "Acceleration a = (m₁-m₂)g/(m₁+m₂)",
+    "Tension T = 2m₁m₂g/(m₁+m₂)",
+    "Both masses have SAME magnitude of acceleration",
+    "Heavier mass accelerates DOWN, lighter mass accelerates UP",
+    "If m₁ = m₂: system is in equilibrium, T = mg",
+    "Tension is always less than weight of heavier mass and more than weight of lighter mass"
+  ],
+  "truth_statements": [
+    "In an Atwood machine, acceleration depends on the difference and sum of masses",
+    "The tension in the string is the same throughout for a massless inextensible string",
+    "Both objects have the same magnitude of acceleration",
+    "Tension is less than the weight of the heavier mass",
+    "When both masses are equal, the system is in equilibrium with zero acceleration"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Both masses shown with weight arrows (m₁g and m₂g) and tension arrow T. Labels clearly show T < m₁g on the heavy side and T > m₂g on the light side — simultaneously visible",
+    "visual_emphasis": "Numerical comparison: T, m₁g, and m₂g all labelled with values showing the inequality m₂g < T < m₁g",
+    "why_this_breaks_misconception": "Students see the tension is NOT equal to either weight — it is strictly between the two weight values"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Two masses hanging from a frictionless pulley via a massless inextensible string. Both at rest. Weight arrows shown for each mass. m₁ > m₂ labelled.",
+      "emphasis": "System at rest with the heavier mass on one side — about to be released",
+      "labels_visible": ["m₁", "m₂", "m₁g", "m₂g", "pulley"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "System released. Heavier mass descends, lighter mass rises. Acceleration arrows appear on both masses — same magnitude, opposite directions. Tension T shown in string.",
+      "emphasis": "Both masses accelerate with the same magnitude — the string constraint forces equal acceleration",
+      "labels_visible": ["a", "T", "m₁g", "m₂g"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Freeze frame with numerical values. On heavy mass: T arrow up, m₁g arrow down, with T < m₁g clearly labelled. On light mass: T arrow up, m₂g arrow down, with T > m₂g clearly labelled.",
+      "emphasis": "Tension is NOT equal to the weight of either mass. m₂g < T < m₁g. The inequality is the key insight.",
+      "labels_visible": ["T < m₁g", "T > m₂g", "T = 2m₁m₂g/(m₁+m₂)"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust m₁ and m₂. See acceleration and tension update. When m₁ = m₂, acceleration = 0 and T = mg (equilibrium). When m₂ → 0, acceleration → g and T → 0.",
+      "emphasis": "Try equal masses: system is in equilibrium. Make one much heavier: acceleration approaches g. Tension is always between the two weights.",
+      "labels_visible": ["a", "T", "m₁g", "m₂g", "a = (m₁-m₂)g/(m₁+m₂)"],
+      "interactive": true,
+      "sliders": [
+        { "id": "mass_1", "label": "Heavier Mass m₁", "min": 1, "max": 10, "default": 5, "unit": "kg" },
+        { "id": "mass_2", "label": "Lighter Mass m₂", "min": 0.5, "max": 9, "default": 3, "unit": "kg" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Tension in the string equals the weight of the heavier mass",
+      "trigger_phrases": ["tension = Mg", "tension equals heavy mass ka weight", "string mein tension = bhari wala ka weight"],
+      "correction": "NCERT says for an Atwood machine T = 2m₁m₂g/(m₁+m₂), which is always LESS than m₁g. If T equalled m₁g, the heavier mass would not accelerate.",
+      "simulation_emphasis": "Show T < m₁g and T > m₂g simultaneously with numerical values on both sides of the pulley"
+    }
+  ],
+  "legend": [
+    { "symbol": "→ (down)", "meaning": "Weight force mg" },
+    { "symbol": "→ (up)", "meaning": "String tension T" },
+    { "symbol": "→ (accel)", "meaning": "Acceleration arrow (same magnitude for both)" },
+    { "symbol": "T", "meaning": "Tension = 2m₁m₂g/(m₁+m₂)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["newtons_laws", "free_body_diagrams"],
+    "extensions": ["pulley_on_incline", "multiple_pulley_systems"],
+    "siblings": ["laws_of_motion_friction"],
+    "common_exam_combinations": ["pulley_with_friction", "constraint_equations"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["find acceleration and tension", "pulley on incline", "three-mass pulley system", "constraint relation problems"],
+    "common_traps": ["assuming tension = weight of heavier mass", "forgetting both masses have same acceleration", "wrong sign in net force equation"],
+    "numerical_ranges": {
+      "m₁": "2–10 kg",
+      "m₂": "1–8 kg",
+      "g": "10 m/s² in JEE"
+    }
+  }
+}

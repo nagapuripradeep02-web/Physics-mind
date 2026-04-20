@@ -1,0 +1,42 @@
+{
+  "concept_id": "escape_velocity_orbital",
+  "concept_name": "Escape Velocity and Orbital Velocity",
+  "class_level": 11,
+  "chapter": "Gravitation",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "orbital_mechanics", "panel_count": 2, "show_labels": true },
+  "variables": { "v_e": "Escape velocity (m/s)", "v_o": "Orbital velocity (m/s)", "R": "Planet radius (m)", "h": "Orbital height (m)" },
+  "locked_facts": [
+    "Escape velocity: v_e = √(2GM/R) = √(2gR) — independent of mass of object",
+    "Orbital velocity (circular orbit at height h): v_o = √(GM/(R+h))",
+    "Near surface: v_o = √(gR) ≈ 7.9 km/s for Earth",
+    "v_e = √2 × v_o (at same radius) — escape velocity is √2 times orbital velocity",
+    "For Earth: v_e ≈ 11.2 km/s, v_o ≈ 7.9 km/s",
+    "Escape velocity is independent of the direction of projection",
+    "In orbit: gravitational force provides centripetal force — GMm/r² = mv²/r"
+  ],
+  "truth_statements": [
+    "Escape velocity depends only on the mass and radius of the planet, not on the mass of the escaping body",
+    "At any given radius the escape velocity is √2 times the orbital velocity",
+    "A satellite in circular orbit has negative total energy and its kinetic energy equals half the magnitude of its potential energy",
+    "Escape velocity is independent of the angle of projection — it depends only on the speed",
+    "For a satellite at height h above the surface orbital velocity decreases as v_o = √(GM/(R+h))"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A projectile launched at different speeds: v < v_o falls back to Earth, v = v_o enters circular orbit, v_o < v < v_e enters elliptical orbit, v = v_e escapes on parabolic path. The √2 ratio between v_e and v_o highlighted.",
+    "visual_emphasis": "Multiple trajectories from the same launch point — suborbital arc, circle, ellipse, parabola — with speed thresholds labelled",
+    "why_this_breaks_misconception": "Students treat escape and orbital velocity as unrelated formulas — seeing them as speed thresholds on the same trajectory spectrum connects them"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Orbital velocity", "description": "Satellite in circular orbit. Gravitational force = centripetal force gives v_o = √(GM/r). Higher orbit → slower speed. Energy bars: KE = ½|PE|.", "emphasis": "Gravity provides centripetal force — orbit is a balance between speed and gravity", "labels_visible": ["v_o = √(GM/r)", "F_grav = F_cent"] },
+    { "id": "STATE_2", "label": "Escape velocity", "description": "Object launched upward with v_e = √(2GM/R). KE bar exactly equals |PE| bar at surface. As object rises, both decrease. At infinity: KE = 0, PE = 0.", "emphasis": "At escape velocity, total energy = 0 — just barely reaches infinity", "labels_visible": ["v_e = √(2GM/R)", "E = 0", "KE = |PE|"] },
+    { "id": "STATE_3", "label": "Speed thresholds", "description": "Four launches at increasing speeds. v < v_o: falls back. v = v_o: circular orbit. v_o < v < v_e: elliptical orbit. v = v_e: escapes. v_e = √2 × v_o shown.", "emphasis": "Same launch point, different speeds → fundamentally different trajectories", "labels_visible": ["v_o", "v_e", "v_e = √2 × v_o"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts launch speed and angle. Trajectory computed and drawn. Energy bars track KE, PE, total. Planet mass and radius adjustable to see how v_e and v_o change.", "emphasis": "Find the exact speed for circular orbit. Increase by √2 to escape.", "labels_visible": ["v", "trajectory", "E"], "interactive": true, "sliders": [{ "id": "launch_speed", "label": "Launch speed", "min": 3, "max": 15, "default": 8, "unit": "km/s" }, { "id": "planet_mass", "label": "Planet mass", "min": 0.1, "max": 3, "default": 1, "unit": "M_Earth" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Escape velocity depends on the mass of the object", "trigger_phrases": ["heavier object needs more speed", "mass affects escape velocity"], "correction": "Escape velocity v_e = √(2GM/R) does not contain the object's mass m — it cancels out in the energy equation. A feather and a rocket need the same speed to escape (ignoring air resistance).", "simulation_emphasis": "Launch objects of different masses at the same v_e — all escape identically" },
+    { "belief": "A satellite stays in orbit because it is beyond Earth's gravity", "trigger_phrases": ["no gravity in space", "satellite outside gravity", "zero gravity orbit"], "correction": "Gravity acts fully on the satellite — it provides the centripetal force for the circular orbit. The satellite is in free fall, continuously falling toward Earth but moving sideways fast enough to keep missing it.", "simulation_emphasis": "Show gravity arrow always pointing toward Earth centre — satellite is perpetually falling" }
+  ],
+  "legend": [ { "symbol": "v_e", "meaning": "Escape velocity = √(2GM/R)" }, { "symbol": "v_o", "meaning": "Orbital velocity = √(GM/r)" }, { "symbol": "E", "meaning": "Total energy (KE + PE)" } ],
+  "concept_relationships": { "prerequisites": ["gravitational_potential_energy", "gravitational_field_shell_solid"], "extensions": ["kepler_laws", "geostationary_orbit"], "siblings": ["projectile_motion"], "common_exam_combinations": ["gravitational_potential_energy", "kepler_laws"] }
+}

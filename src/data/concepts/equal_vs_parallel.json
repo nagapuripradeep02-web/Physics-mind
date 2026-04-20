@@ -1,0 +1,389 @@
+{
+  "concept_id": "equal_vs_parallel",
+  "concept_name": "Equal Vectors vs. Parallel Vectors",
+  "chapter": 5,
+  "section": "5.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.2 (split from vector_basics bundle — STATE_4 content + epic_c branch 'equal_vs_parallel_confusion')",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "Two trains on parallel tracks. Both heading north. Equal direction. But if one is slower, their velocity vectors are parallel — not equal.",
+    "secondary": "Two students walking along the school corridor side by side. Same direction. Now imagine one walking faster — still parallel paths, but their velocity vectors are no longer equal.",
+    "tertiary": "Two identical arrows drawn at opposite corners of a sheet of paper — same length, same tilt. Position is irrelevant. Both represent the same vector — they are EQUAL."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "A_magnitude": { "name": "|A|", "unit": "(unitless)", "min": 1, "max": 10, "default": 3 },
+      "B_magnitude": { "name": "|B|", "unit": "(unitless)", "min": 1, "max": 10, "default": 5 },
+      "shared_direction_deg": { "name": "common direction of A and B", "unit": "degrees", "min": 0, "max": 360, "default": 30 }
+    },
+    "computed_outputs": {
+      "are_parallel":   { "formula": "true" },
+      "are_equal":      { "formula": "A_magnitude == B_magnitude" },
+      "mag_difference": { "formula": "abs(A_magnitude - B_magnitude)" }
+    },
+    "formulas": {
+      "equal_condition":    "A = B  iff  |A| = |B|  AND  direction(A) = direction(B)",
+      "parallel_condition": "A || B  iff  direction(A) = direction(B)  (magnitudes may differ)",
+      "hierarchy":          "Equal  ⊂  Parallel.   Every equal pair is parallel. Not every parallel pair is equal."
+    },
+    "constraints": [
+      "Equal vectors MUST match on both magnitude and direction",
+      "Parallel vectors need only match direction — magnitudes can differ",
+      "Position of a free vector is irrelevant for both equality and parallelism",
+      "Two vectors can be parallel with wildly different magnitudes (e.g., 1 m and 1000 m, both east)"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "Two Arrows Pointing the Same Way — Are They 'The Same'?",
+        "duration": 7,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "A_short",
+            "from": { "x": 180, "y": 320 },
+            "magnitude": 2,
+            "direction_deg": 30,
+            "label": "A  (|A| = 2)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 50
+          },
+          {
+            "type": "force_arrow",
+            "id": "B_long",
+            "from": { "x": 180, "y": 400 },
+            "magnitude": 5,
+            "direction_deg": 30,
+            "label": "B  (|B| = 5)",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 50
+          },
+          {
+            "type": "annotation",
+            "id": "question",
+            "text": "Both arrows tilt the same way.\nBut one is 2 long, the other 5 long.\n\nAre A and B the 'same' vector?\nOr are they something else?",
+            "position": { "x": 500, "y": 180 },
+            "style": "callout"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Two arrows on the board. Both tilt the same way — both point thirty degrees above the horizontal." },
+            { "id": "s2", "text_en": "One is short. One is long." },
+            { "id": "s3", "text_en": "A student glances at this picture and says — they both point the same way, so they are the same vector." },
+            { "id": "s4", "text_en": "That word 'same' is hiding two different ideas. Physics calls one pair parallel. The other equal. They are not interchangeable." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Parallel — Direction Only",
+        "duration": 8,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "par_A",
+            "from": { "x": 160, "y": 320 },
+            "magnitude": 2,
+            "direction_deg": 30,
+            "label": "A",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 50
+          },
+          {
+            "type": "force_arrow",
+            "id": "par_B",
+            "from": { "x": 160, "y": 380 },
+            "magnitude": 5,
+            "direction_deg": 30,
+            "label": "B",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 50
+          },
+          {
+            "type": "force_arrow",
+            "id": "par_C",
+            "from": { "x": 160, "y": 440 },
+            "magnitude": 7,
+            "direction_deg": 30,
+            "label": "C",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 50
+          },
+          {
+            "type": "annotation",
+            "id": "par_def",
+            "text": "Parallel vectors:\nsame direction.\nMagnitude can be anything.\n\nA, B, C all tilt 30° above x-axis.\nLengths: 2, 5, 7.\nAll three are parallel to each other.",
+            "position": { "x": 500, "y": 180 },
+            "style": "formula_box"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Parallel vectors share only one thing — the direction." },
+            { "id": "s2", "text_en": "Three arrows, all tilted thirty degrees. Lengths two, five, seven. All parallel to each other." },
+            { "id": "s3", "text_en": "Parallel doesn't care how long. It only cares which way." },
+            { "id": "s4", "text_en": "Two trains on parallel tracks — one goods train crawling at twenty kilometres an hour, one express at a hundred. Their velocity vectors are parallel. They are clearly not equal." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Equal — Direction AND Magnitude. Position Doesn't Matter.",
+        "duration": 9,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "eq_A",
+            "from": { "x": 140, "y": 200 },
+            "magnitude": 4,
+            "direction_deg": 30,
+            "label": "A  (|A| = 4, top-left)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 45
+          },
+          {
+            "type": "force_arrow",
+            "id": "eq_B",
+            "from": { "x": 320, "y": 320 },
+            "magnitude": 4,
+            "direction_deg": 30,
+            "label": "B  (|B| = 4, centre)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 45
+          },
+          {
+            "type": "force_arrow",
+            "id": "eq_C",
+            "from": { "x": 500, "y": 430 },
+            "magnitude": 4,
+            "direction_deg": 30,
+            "label": "C  (|C| = 4, bottom-right)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 45
+          },
+          {
+            "type": "annotation",
+            "id": "eq_def",
+            "text": "Equal vectors:\nsame magnitude AND same direction.\nPosition on the page doesn't matter.\n\nA = B = C.\nAll three represent the same vector,\njust drawn in different places.",
+            "position": { "x": 260, "y": 160 },
+            "style": "formula_box",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Equal vectors match on two counts — direction AND magnitude." },
+            { "id": "s2", "text_en": "Three arrows here. All tilt thirty degrees. All of length four. Different positions — top-left, centre, bottom-right." },
+            { "id": "s3", "text_en": "Physics treats them as the same vector. Position is irrelevant for a free vector." },
+            { "id": "s4", "text_en": "This property has a name — free vector. You can slide a vector anywhere on the page without changing it. Only magnitude and direction define the vector." },
+            { "id": "s5", "text_en": "Position vectors and radius vectors are the only exception — those are fixed at the origin." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "The Hierarchy — and the Classic JEE Trap",
+        "duration": 9,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "venn",
+            "text": "Large circle: PARALLEL vectors (same direction)\n  Smaller circle inside: EQUAL vectors (same direction AND same magnitude)\n\nEvery EQUAL pair is PARALLEL.\nNot every PARALLEL pair is EQUAL.\n\nJEE Assertion-Reason:\n  Assertion:  Two equal vectors are always parallel.\n  Reason:     Two parallel vectors are always equal.\n\n  Assertion  → TRUE\n  Reason     → FALSE\n  Correct answer: Assertion true, Reason false.",
+            "position": { "x": 220, "y": 150 },
+            "style": "formula_box",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The relationship is a hierarchy. Parallel is the bigger set. Equal is a smaller set inside it." },
+            { "id": "s2", "text_en": "Every equal pair is automatically parallel — because equal demands matching direction, and matching direction is exactly what parallel means." },
+            { "id": "s3", "text_en": "But parallel does not imply equal. Parallel only says the directions match. Magnitudes are free to differ." },
+            { "id": "s4", "text_en": "This is the classic assertion-reason trap in J-E-E. Assertion — equal vectors are parallel — TRUE. Reason — parallel vectors are equal — FALSE." },
+            { "id": "s5", "text_en": "Mark the right option. Assertion correct, reason incorrect." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "equal_vs_parallel_confusion",
+      "misconception": "If two vectors are parallel they must be equal, and if equal they must be parallel — the two words mean the same thing",
+      "trigger_phrases": [
+        "parallel vectors are equal",
+        "difference between equal and parallel vectors",
+        "equal vectors same as parallel",
+        "if parallel then equal"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Show the Belief — They Look the Same, So They Must Be the Same",
+          "duration": 7,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "belief_A",
+              "from": { "x": 200, "y": 330 },
+              "magnitude": 3,
+              "direction_deg": 30,
+              "label": "A  (|A| = 5)",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "force_arrow",
+              "id": "belief_B",
+              "from": { "x": 200, "y": 400 },
+              "magnitude": 6,
+              "direction_deg": 30,
+              "label": "B  (|B| = 10)",
+              "color": "#F59E0B",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "annotation",
+              "id": "belief",
+              "text": "Student thinks:\n   'Both point northeast.\n    So they are the same vector.\n    Equal = parallel.'\n\nBut |A| = 5 and |B| = 10.\nClearly not the same vector.",
+              "position": { "x": 500, "y": 200 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The student sees two arrows both pointing northeast." },
+              { "id": "s2", "text_en": "They reason — both point the same way, so they must be the same vector. Equal and parallel are just two words for the one idea." },
+              { "id": "s3", "text_en": "But look — one has length five, the other length ten. They tilt the same way but they are not the same size." },
+              { "id": "s4", "text_en": "In physics these two vectors are parallel, but they are definitely not equal." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Hierarchy — Equal Is a Strict Subset",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "hierarchy",
+              "text": "PARALLEL  = same direction.\nEQUAL     = same direction  AND  same magnitude.\n\nThink of it as a Venn diagram:\n\n   ┌─────── PARALLEL ──────────┐\n   │                           │\n   │    ┌── EQUAL ──┐           │\n   │    │          │           │\n   │    └──────────┘           │\n   │                           │\n   └───────────────────────────┘\n\nEqual vectors sit inside the parallel circle.\nBut parallel includes many vectors\nthat are not equal.",
+              "position": { "x": 200, "y": 130 },
+              "style": "formula_box"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the picture. Draw a large circle labelled parallel. Inside it draw a smaller circle labelled equal." },
+              { "id": "s2", "text_en": "Every vector in the equal circle is also in the parallel circle. Equal is a strict subset of parallel." },
+              { "id": "s3", "text_en": "But the parallel circle is larger — it contains vectors that are not equal to each other, just direction-matched." },
+              { "id": "s4", "text_en": "If you remember this picture, you will never confuse the two again." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Free Vector — Why Position Is Irrelevant for Equality",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "free_1",
+              "from": { "x": 140, "y": 200 },
+              "magnitude": 4,
+              "direction_deg": 30,
+              "label": "A (position 1)",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "force_arrow",
+              "id": "free_2",
+              "from": { "x": 340, "y": 320 },
+              "magnitude": 4,
+              "direction_deg": 30,
+              "label": "A (position 2)",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "force_arrow",
+              "id": "free_3",
+              "from": { "x": 520, "y": 420 },
+              "magnitude": 4,
+              "direction_deg": 30,
+              "label": "A (position 3)",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "annotation",
+              "id": "free_rule",
+              "text": "All three arrows\nhave magnitude 4\nand direction 30°.\n\nAll three are EQUAL.\nPosition does not enter the definition.\n\nA free vector can be translated anywhere —\nit remains the same vector.",
+              "position": { "x": 200, "y": 130 },
+              "style": "callout"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "One subtle point that trips students up. Position of the arrow is NOT part of vector equality." },
+              { "id": "s2", "text_en": "Three arrows drawn at three different positions. All of length four, all tilted thirty degrees." },
+              { "id": "s3", "text_en": "All three are EQUAL. They represent exactly the same vector A." },
+              { "id": "s4", "text_en": "This is the free vector property. You can slide a vector anywhere on the page and it remains the same vector. Only magnitude and direction define it." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_4": {
+          "title": "JEE Assertion-Reason — The Classic Trap",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "ar_question",
+              "text": "JEE-style question:\n\n   Assertion:  Two equal vectors are always parallel.\n   Reason:     Two parallel vectors are always equal.\n\n   Options:\n   (a)  Both correct, Reason explains Assertion\n   (b)  Both correct, Reason does NOT explain Assertion\n   (c)  Assertion correct, Reason incorrect\n   (d)  Assertion incorrect, Reason correct\n\nAnswer:  (c)  Assertion TRUE, Reason FALSE.",
+              "position": { "x": 220, "y": 130 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "This exact assertion-reason pattern shows up in J-E-E almost every year." },
+              { "id": "s2", "text_en": "Assertion — two equal vectors are always parallel. Is that true? Yes. Equality demands matching direction, which is the very definition of parallel." },
+              { "id": "s3", "text_en": "Reason — two parallel vectors are always equal. Is that true? No. Parallel only requires direction; magnitudes can differ." },
+              { "id": "s4", "text_en": "Assertion is true. Reason is false. Mark option c." },
+              { "id": "s5", "text_en": "If you remember the Venn diagram — equal is inside parallel, parallel is bigger — you will get this every single time." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Same concept, different magnitudes",
+      "physical_world": "Parallel: two forces both acting north — one 10 N, one 30 N. Equal: two displacements both 5 m north from different starting points.",
+      "same_physics": "Equal = direction + magnitude; Parallel = direction only"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Antiparallel sub-case",
+      "physical_world": "Are antiparallel vectors parallel? The formal convention in physics — yes, they lie along the same line. They point opposite ways, but the line of action is the same.",
+      "same_physics": "Parallel allows 0° or 180° in some conventions; narrow convention restricts to 0° only"
+    }
+  ]
+}

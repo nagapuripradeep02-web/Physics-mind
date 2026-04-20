@@ -1,0 +1,111 @@
+{
+  "concept_id": "carnot_engine",
+  "concept_name": "Carnot Engine",
+  "chapter": "Thermodynamics",
+  "class_level": 11,
+  "renderer_hint": {
+    "technology": "mixed",
+    "renderer": "thermodynamics",
+    "scenario_type": "carnot_engine",
+    "panel_count": 1,
+    "show_graph": true
+  },
+  "variables": {
+    "T_H": { "symbol": "T_H", "name": "Hot reservoir temperature", "unit": "K", "min": 400, "max": 1000, "default": 600 },
+    "T_C": { "symbol": "T_C", "name": "Cold reservoir temperature", "unit": "K", "min": 200, "max": 500, "default": 300 },
+    "Q_H": { "symbol": "Q_H", "name": "Heat absorbed from hot reservoir", "unit": "J", "min": 100, "max": 2000, "default": 1000 },
+    "Q_C": { "symbol": "Q_C", "name": "Heat rejected to cold reservoir", "unit": "J", "formula": "Q_H × (T_C/T_H)" },
+    "W": { "symbol": "W", "name": "Work output", "unit": "J", "formula": "Q_H - Q_C" },
+    "eta": { "symbol": "η", "name": "Carnot efficiency", "unit": "", "formula": "1 - T_C/T_H" }
+  },
+  "locked_facts": [
+    "Carnot efficiency: η = 1 - T_cold/T_hot (temperatures in Kelvin)",
+    "No real engine can exceed Carnot efficiency",
+    "η < 1 always (because T_cold can never be absolute zero)",
+    "Heat Q_C must always be rejected to cold reservoir",
+    "W = Q_H - Q_C (energy conservation)",
+    "Carnot cycle: two isothermal + two adiabatic processes"
+  ],
+  "truth_statements": [
+    "The Carnot engine is the most efficient engine operating between two given temperatures",
+    "No engine can have efficiency greater than the Carnot engine for the same temperature limits",
+    "The efficiency of a Carnot engine depends only on the temperatures of the hot and cold reservoirs",
+    "A heat engine must reject some heat to the cold reservoir — complete conversion to work is impossible",
+    "The Carnot cycle consists of two reversible isothermal and two reversible adiabatic processes"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Efficiency calculation: η = 1 - 300/600 = 50%. Even this PERFECT engine wastes 50% of heat! Arrow diagram: Q_H=1000J enters, W=500J exits as work, Q_C=500J MUST be rejected. PV diagram shows complete Carnot cycle (rectangle-ish with isotherms and adiabats).",
+    "visual_emphasis": "Large efficiency number (50%) glowing. Q_C arrow to cold reservoir is thick and unavoidable. No matter how perfect the engine, it CANNOT convert all heat to work.",
+    "why_this_breaks_misconception": "Students see that even the theoretical best engine (zero friction, perfectly reversible) MUST reject heat. 100% efficiency is thermodynamically impossible, not just an engineering limitation."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "The setup — hot and cold reservoirs",
+      "description": "Hot reservoir (red, T_H=600K) at top, cold reservoir (blue, T_C=300K) at bottom. Engine block in the middle. No arrows yet — just the structure.",
+      "emphasis": "Two temperature reservoirs define the maximum possible efficiency. Everything depends on T_H and T_C.",
+      "labels_visible": ["T_H", "T_C"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Heat flows and work output",
+      "description": "Q_H = 1000J flows from hot reservoir to engine (red arrow). W = 500J exits engine to the right (green arrow). Q_C = 500J flows from engine to cold reservoir (blue arrow).",
+      "emphasis": "Energy conservation: Q_H = W + Q_C. The engine converts PART of the heat to work. The rest MUST go to the cold reservoir.",
+      "labels_visible": ["Q_H", "W", "Q_C"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Efficiency limit — even perfection has limits",
+      "description": "Efficiency η = 1 - T_C/T_H = 1 - 300/600 = 50% displayed prominently. Even this ideal (frictionless, reversible) engine wastes half the heat. PV diagram shows complete Carnot cycle.",
+      "emphasis": "AHA: This is the MAXIMUM possible efficiency. No real engine can do better. And it is only 50%! You CANNOT make it 100% unless T_C = 0 K (impossible).",
+      "labels_visible": ["η", "Q_H", "Q_C", "W"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — what changes efficiency?",
+      "description": "All elements visible. PV diagram shows Carnot cycle. Efficiency formula. Arrow diagram. Caption: To increase η, raise T_H or lower T_C. But T_C > 0 always, so η < 100% always.",
+      "emphasis": "The second law of thermodynamics: complete conversion of heat to work is impossible. Every engine must reject some heat.",
+      "labels_visible": ["η", "T_H", "T_C", "PV cycle"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "perfect_engine_100_percent",
+      "trigger_keywords": ["friction hata do toh 100% efficient", "perfect engine = 100%", "ideal engine 100% kaam karega", "frictionless engine 100% efficient hoga"],
+      "student_belief": "A perfect frictionless engine can achieve 100% efficiency",
+      "actual_physics": "Even a perfectly frictionless, reversible (Carnot) engine cannot achieve 100% efficiency. The Carnot efficiency η = 1 - T_C/T_H is ALWAYS less than 1 because the cold reservoir temperature T_C is always greater than absolute zero (0 K). This is a fundamental thermodynamic limit, not an engineering limitation. The second law of thermodynamics forbids complete conversion of heat to work in a cyclic process.",
+      "simulation_emphasis": "Show the ideal Carnot engine with η = 50%. Thick blue arrow (Q_C) shows heat MUST be rejected. Even with zero friction, half the heat is wasted. This is physics, not engineering."
+    },
+    {
+      "id": "efficiency_depends_on_gas",
+      "trigger_keywords": ["gas change karo toh efficiency badhegi", "better gas = better efficiency", "efficiency gas type pe depend karti hai"],
+      "student_belief": "Carnot efficiency depends on the working substance (type of gas)",
+      "actual_physics": "Carnot efficiency depends ONLY on the temperatures of the hot and cold reservoirs: η = 1 - T_C/T_H. It does not depend on the type of gas, amount of gas, or any property of the working substance. This is one of the most remarkable results in thermodynamics.",
+      "simulation_emphasis": "Show the formula η = 1 - T_C/T_H with only temperature values. No gas properties appear in the formula. The efficiency is purely determined by reservoir temperatures."
+    }
+  ],
+  "legend": [
+    { "symbol": "T_H", "meaning": "Hot reservoir temperature (K) — red" },
+    { "symbol": "T_C", "meaning": "Cold reservoir temperature (K) — blue" },
+    { "symbol": "η", "meaning": "Efficiency = 1 - T_C/T_H" },
+    { "symbol": "Q_H→W+Q_C", "meaning": "Energy conservation in engine" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["first_law_thermodynamics", "isothermal_process", "adiabatic_process"],
+    "extensions": ["second_law_thermodynamics", "entropy"],
+    "siblings": ["first_law_thermodynamics"],
+    "common_exam_combinations": ["isothermal_process", "adiabatic_process", "first_law_thermodynamics"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["calculate Carnot efficiency for given T_H and T_C", "find Q_C given Q_H and efficiency", "compare efficiencies of engines with different temperature limits", "prove no engine can exceed Carnot efficiency"],
+    "common_traps": ["using Celsius instead of Kelvin in efficiency formula", "thinking efficiency can reach 100% with ideal conditions", "confusing COP of refrigerator with engine efficiency", "forgetting Q_C must always be positive"],
+    "numerical_ranges": {
+      "T_H": "400–1000 K",
+      "T_C": "250–400 K",
+      "Q_H": "500–5000 J",
+      "η": "20–60% typical"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "concept_id": "kepler_laws",
+  "concept_name": "Kepler's Laws of Planetary Motion",
+  "class_level": 11,
+  "chapter": "Gravitation",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "kepler_orbits", "panel_count": 2, "show_labels": true },
+  "variables": { "T": "Orbital period (s)", "a": "Semi-major axis (m)", "r_p": "Perihelion distance (m)", "r_a": "Aphelion distance (m)" },
+  "locked_facts": [
+    "First law (Law of Orbits): Planets move in elliptical orbits with the Sun at one focus",
+    "Second law (Law of Areas): Line joining planet to Sun sweeps equal areas in equal time intervals",
+    "Third law (Law of Periods): T² ∝ a³, or T² = (4π²/GM)a³",
+    "Second law is a consequence of conservation of angular momentum",
+    "Planet moves fastest at perihelion (closest to Sun) and slowest at aphelion (farthest)",
+    "For circular orbits, T² = (4π²/GM)r³",
+    "Third law applies to any two bodies orbiting the same central mass"
+  ],
+  "truth_statements": [
+    "Kepler's first law states that all planets orbit the Sun in ellipses with the Sun at one focus",
+    "Kepler's second law is equivalent to conservation of angular momentum — no external torque acts on the planet",
+    "Kepler's third law states that the square of the period is proportional to the cube of the semi-major axis",
+    "A planet moves faster when it is closer to the Sun and slower when it is farther — this follows from the equal area law",
+    "The third law allows comparison of orbits: T₁²/T₂² = a₁³/a₂³ for any two planets"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "An elliptical orbit with area sectors marked at equal time intervals. Near perihelion: the sector is a thin, long triangle (fast planet). Near aphelion: the sector is a wide, short triangle. Both have the SAME area. The angular momentum L = mvr is constant — at smaller r, v must increase.",
+    "visual_emphasis": "Colour-matched equal-area sectors at perihelion (thin) and aphelion (wide) with velocity arrows",
+    "why_this_breaks_misconception": "Students memorise 'equal areas in equal times' without connecting it to speed variation — seeing the sector shapes makes the speed change obvious"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Elliptical orbit", "description": "Planet orbiting Sun in an ellipse. Sun is at one focus (not the centre). Perihelion and aphelion marked. The orbit is clearly not a circle.", "emphasis": "The Sun is at a focus, not the centre — orbits are ellipses", "labels_visible": ["Sun at focus", "perihelion", "aphelion", "a"] },
+    { "id": "STATE_2", "label": "Equal areas in equal times", "description": "Time-lapse showing area swept in fixed time intervals. Near perihelion: fast motion, thin sector. Near aphelion: slow motion, wide sector. Areas computed and shown to be equal.", "emphasis": "Equal areas ↔ angular momentum conservation ↔ faster at perihelion", "labels_visible": ["ΔA₁ = ΔA₂", "v_perihelion > v_aphelion", "L = const"] },
+    { "id": "STATE_3", "label": "Third law: T² ∝ a³", "description": "Multiple orbits with different semi-major axes. For each: T and a measured. T²/a³ computed — same for all orbits around the same Sun. Graph: T² vs a³ is a straight line.", "emphasis": "T²/a³ = constant for all planets orbiting the same star", "labels_visible": ["T² ∝ a³", "T²/a³ = 4π²/GM"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts orbital eccentricity and semi-major axis. Planet traces orbit with speed variation visible. Area sectors highlighted. T computed and compared against T² ∝ a³ prediction.", "emphasis": "Change eccentricity — see speed variation increase. Change a — see T change.", "labels_visible": ["T", "a", "e", "v"], "interactive": true, "sliders": [{ "id": "semi_major", "label": "Semi-major axis a", "min": 0.5, "max": 5, "default": 1, "unit": "AU" }, { "id": "eccentricity", "label": "Eccentricity e", "min": 0, "max": 0.9, "default": 0.3, "unit": "" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "The Sun is at the centre of the elliptical orbit", "trigger_phrases": ["Sun at centre", "Sun in middle of orbit"], "correction": "The Sun is at one of the two foci of the ellipse, not at the centre. This is why the planet-Sun distance varies throughout the orbit.", "simulation_emphasis": "Clearly mark both foci — Sun at one, the other empty. Show varying distance throughout orbit." },
+    { "belief": "Planets move at constant speed in their orbits", "trigger_phrases": ["constant speed orbit", "same speed always"], "correction": "Planets move faster when closer to the Sun (perihelion) and slower when farther (aphelion). This follows from Kepler's second law and conservation of angular momentum.", "simulation_emphasis": "Velocity arrow length changes dramatically between perihelion and aphelion" }
+  ],
+  "legend": [ { "symbol": "T", "meaning": "Orbital period" }, { "symbol": "a", "meaning": "Semi-major axis" }, { "symbol": "e", "meaning": "Eccentricity (0 = circle, 1 = parabola)" } ],
+  "concept_relationships": { "prerequisites": ["gravitational_potential_energy", "angular_momentum_conservation"], "extensions": ["geostationary_orbit"], "siblings": ["escape_velocity_orbital"], "common_exam_combinations": ["escape_velocity_orbital", "gravitational_potential_energy"] }
+}

@@ -3,7 +3,33 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Mode-scoped accent palette. Raw RGB triples so callers can compose
+     alpha via rgb(var(--accent) / 0.15). The `--accent` alias is set per
+     section via inline style on LearnConceptTab's root. */
+  --accent-conceptual: 99 102 241;   /* indigo-500 */
+  --accent-board:      245 158 11;   /* amber-500 */
+  --accent-competitive: 16 185 129;  /* emerald-500 */
+  --accent: var(--accent-conceptual);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 10px -3px rgb(0 0 0 / 0.22), 0 2px 4px -2px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 14px 28px -8px rgb(0 0 0 / 0.28);
+
+  --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-decel:  cubic-bezier(0, 0, 0.2, 1);
+
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 380ms;
 }
+
+/* Accent scope classes. Applied by LearnConceptTab on its root. Class-based
+   inheritance is more reliable than inline React style for CSS custom
+   properties — some React builds serialize inline `var()` values inconsistently. */
+.accent-conceptual { --accent: var(--accent-conceptual); }
+.accent-board      { --accent: var(--accent-board); }
+.accent-competitive { --accent: var(--accent-competitive); }
 
 @theme inline {
   --color-background: var(--background);
@@ -22,5 +48,80 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.25s ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #52525b;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-color: #52525b transparent;
+  scrollbar-width: thin;
+}
+
+/* Dual-panel simulation layout */
+.dual-panel-container {
+  display: flex;
+  gap: 1px;
+  width: 100%;
+  background: #1e2030;
+}
+.panel-primary {
+  flex: 3; /* 60% */
+  min-height: 320px;
+  position: relative;
+}
+.panel-secondary {
+  flex: 2; /* 40% */
+  min-height: 320px;
+  position: relative;
+}
+.panel-primary iframe,
+.panel-secondary iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+}
+@media (max-width: 768px) {
+  .dual-panel-container { flex-direction: column; }
+  .panel-primary, .panel-secondary { flex: none; width: 100%; min-height: 200px; }
+  .panel-primary { order: 1; }
+  .panel-secondary { order: 2; }
 }

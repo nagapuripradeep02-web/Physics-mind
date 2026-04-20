@@ -1,0 +1,42 @@
+{
+  "concept_id": "angular_momentum_conservation",
+  "concept_name": "Conservation of Angular Momentum",
+  "class_level": 11,
+  "chapter": "System of Particles and Rotational Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "angular_momentum", "panel_count": 1, "show_labels": true },
+  "variables": { "L": "Angular momentum (kg·m²/s)", "I": "Moment of inertia (kg·m²)", "ω": "Angular velocity (rad/s)", "τ": "Torque (N·m)" },
+  "locked_facts": [
+    "Angular momentum L = Iω (for rotation about fixed axis)",
+    "τ = dL/dt — torque equals rate of change of angular momentum",
+    "If net external torque is zero, angular momentum is conserved: L = Iω = constant",
+    "When I decreases, ω must increase (and vice versa) to keep L constant",
+    "For a particle: L = r × p = mvr sinθ",
+    "Ice skater pulling arms in: I decreases → ω increases (spins faster)",
+    "Angular momentum is a vector quantity — direction along axis of rotation (right-hand rule)"
+  ],
+  "truth_statements": [
+    "Angular momentum is conserved when the net external torque on a system is zero",
+    "A spinning ice skater speeds up when they pull their arms in because moment of inertia decreases while angular momentum stays constant",
+    "The angular momentum of a particle about a point is L = mvr sinθ where θ is the angle between r and v",
+    "Conservation of angular momentum explains why planets move faster when closer to the Sun (Kepler's second law)",
+    "Angular momentum is the rotational analogue of linear momentum"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "An ice skater with arms extended (large I, slow ω) pulls arms in (small I, fast ω). L = Iω bar stays constant throughout. Angular velocity dial spins faster as I decreases. The product Iω is visually constant.",
+    "visual_emphasis": "I bar shrinking while ω dial speeds up — their product L stays fixed on a constant bar",
+    "why_this_breaks_misconception": "Students think something must provide energy/force to spin faster — seeing L = constant makes the speed change feel inevitable, not mysterious"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Angular momentum defined", "description": "A rotating disc with L = Iω shown. Torque arrow τ applied → L changes. When τ = 0, L stays constant.", "emphasis": "L = Iω, and τ = dL/dt — no torque means L is conserved", "labels_visible": ["L = Iω", "τ = dL/dt"] },
+    { "id": "STATE_2", "label": "Changing I at constant L", "description": "A figure skater with adjustable arm position. Arms out: I large, ω small. Arms in: I small, ω large. L bar stays constant.", "emphasis": "I × ω = constant when no external torque acts", "labels_visible": ["I₁ω₁ = I₂ω₂", "L = const"] },
+    { "id": "STATE_3", "label": "Quantitative demo", "description": "Numerical values shown: I₁ = 4 kg·m², ω₁ = 2 rad/s → L = 8. Arms pulled in: I₂ = 1 kg·m² → ω₂ = 8 rad/s. Four times faster! Energy increases (KE = ½Iω²) — work done by internal forces.", "emphasis": "I reduced by 4× → ω increases by 4×. Energy increases — the skater does internal work", "labels_visible": ["L = 8", "ω₁ = 2", "ω₂ = 8", "KE₁ vs KE₂"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts I (arm position slider) and watches ω change. L bar stays constant. KE bar shows energy change. A planet orbit demo shows faster speed at perihelion.", "emphasis": "Slide arm position — watch spin speed change while L stays fixed", "labels_visible": ["I", "ω", "L", "KE"], "interactive": true, "sliders": [{ "id": "arm_position", "label": "Arm extension", "min": 1, "max": 10, "default": 5, "unit": "units" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "The skater speeds up because of some force pushing them", "trigger_phrases": ["force makes skater spin", "koi force lagta hai", "centripetal force speeds up"], "correction": "No external torque acts. The skater does internal work by pulling arms in against centrifugal tendency. Angular momentum L stays constant, so reducing I forces ω to increase. The extra KE comes from the skater's muscular work.", "simulation_emphasis": "Show L constant bar while ω increases — no external torque arrow present" },
+    { "belief": "Angular momentum is always conserved", "trigger_phrases": ["always conserved", "hamesha conserve hota hai"], "correction": "Angular momentum is conserved only when net external torque is zero. If friction or any external torque acts, L changes: τ = dL/dt.", "simulation_emphasis": "Add friction torque and show L decreasing over time" }
+  ],
+  "legend": [ { "symbol": "L", "meaning": "Angular momentum = Iω (kg·m²/s)" }, { "symbol": "τ", "meaning": "Torque (N·m)" }, { "symbol": "I", "meaning": "Moment of inertia (kg·m²)" } ],
+  "concept_relationships": { "prerequisites": ["moment_of_inertia_shapes", "torque_and_couple"], "extensions": ["gyroscope"], "siblings": ["linear_momentum_conservation"], "common_exam_combinations": ["rolling_without_slipping", "kepler_laws"] }
+}

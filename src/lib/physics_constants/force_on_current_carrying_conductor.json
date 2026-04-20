@@ -1,0 +1,111 @@
+{
+  "concept_id": "force_on_current_carrying_conductor",
+  "concept_name": "Force on a Current-Carrying Conductor in Magnetic Field",
+  "class_level": 12,
+  "chapter": "Moving Charges and Magnetism",
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "parallel_wires_force",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "I": "Current through the conductor (A)",
+    "L": "Length of the conductor in the field (m)",
+    "B": "External magnetic field (T)",
+    "theta": "Angle between current direction (L) and B",
+    "F": "Force on the conductor (N)",
+    "I1": "Current in wire 1 (A) — for parallel wires",
+    "I2": "Current in wire 2 (A) — for parallel wires",
+    "d": "Distance between parallel wires (m)",
+    "mu_0": "Permeability of free space = 4π × 10⁻⁷ T·m/A"
+  },
+  "locked_facts": [
+    "Force on a current-carrying conductor: F = IL × B, magnitude F = BIL sin θ",
+    "Direction of force given by Fleming's left-hand rule (or cross product IL × B)",
+    "Force per unit length between two parallel wires: F/L = μ₀I₁I₂/(2πd)",
+    "Parallel currents (same direction) ATTRACT each other",
+    "Anti-parallel currents (opposite direction) REPEL each other",
+    "Definition of ampere: 1 ampere is that constant current which, flowing in two infinite parallel conductors 1 m apart in vacuum, produces a force of 2 × 10⁻⁷ N per metre of length",
+    "Force is zero when current direction is parallel to B (θ = 0°)"
+  ],
+  "truth_statements": [
+    "The force on a straight conductor of length L carrying current I in a uniform magnetic field B is F = IL × B, with the force perpendicular to both the current direction and the field",
+    "Two long parallel conductors carrying currents in the same direction attract each other, while conductors carrying currents in opposite directions repel each other",
+    "The force per unit length between two infinitely long parallel conductors separated by distance d is F/L = μ₀I₁I₂/(2πd)",
+    "The SI unit of current (ampere) is defined using the force between parallel current-carrying conductors — making it a fundamental definition linked to the force law",
+    "The net force on a current loop in a uniform magnetic field is zero, but there is a net torque that tends to align the loop's magnetic moment with the field"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two parallel wires with current in the same direction. Wire 1 creates a circular magnetic field — at the location of wire 2, this field points toward wire 1. The force IL × B on wire 2 is therefore directed TOWARD wire 1 (attraction). Then reverse wire 2's current — the cross product reverses, giving repulsion. Show the field lines between the wires bunching together (repulsion) or cancelling (attraction).",
+    "visual_emphasis": "Arrow decomposition: wire 1's field at wire 2's location → cross product with wire 2's current → force toward/away from wire 1. The field pattern between the wires (bunched = repulsion, sparse = attraction) provides the visual intuition.",
+    "why_this_breaks_misconception": "Students memorise 'same direction attracts' but cannot explain WHY — seeing the cross product decomposition with the field from the other wire makes the mechanism clear"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Conductor in external magnetic field",
+      "description": "A straight conductor carrying current I placed in a uniform magnetic field B. The current direction and field direction are clearly marked with an angle θ between them. No force shown yet.",
+      "emphasis": "A wire with current I sits in a uniform field B. The angle between IL and B determines the force magnitude.",
+      "labels_visible": ["I", "L", "B", "θ"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Force appears — F = IL × B",
+      "description": "The force vector F appears perpendicular to both IL and B. Fleming's left-hand rule is shown as an overlay (forefinger = B, middle finger = I, thumb = F). The magnitude F = BIL sin θ is displayed. When θ = 90°, F is maximum; when θ = 0°, F = 0.",
+      "emphasis": "The force is always perpendicular to both the current and the field. Use Fleming's left-hand rule or the cross product to find its direction.",
+      "labels_visible": ["F = BIL sin θ", "F ⊥ IL", "F ⊥ B"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Parallel wires — attract or repel",
+      "description": "Two long parallel wires with currents I₁ and I₂. Wire 1's circular field at wire 2's position is shown. The cross product IL₂ × B₁ gives force toward wire 1 (attraction for same-direction currents). Toggle to anti-parallel: force reverses to repulsion. Formula: F/L = μ₀I₁I₂/(2πd).",
+      "emphasis": "Same-direction currents ATTRACT (field lines cancel between wires). Opposite-direction currents REPEL (field lines bunch between wires). This defines the ampere!",
+      "labels_visible": ["F/L = μ₀I₁I₂/(2πd)", "Attract/Repel", "d"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts I₁, I₂, distance d, and can flip current directions. Force per unit length updates in real time. A toggle switches between single-wire-in-field mode (adjust θ) and parallel-wire mode. Force vectors and field patterns update live.",
+      "emphasis": "Flip one current direction to switch attract ↔ repel. Halve the distance to double the force. The definition of 1 ampere: I₁ = I₂ = 1 A, d = 1 m → F/L = 2 × 10⁻⁷ N/m.",
+      "labels_visible": ["F/L", "I₁", "I₂", "d"],
+      "interactive": true,
+      "sliders": [
+        { "id": "current1", "label": "Current I₁", "min": -10, "max": 10, "default": 5, "unit": "A" },
+        { "id": "current2", "label": "Current I₂", "min": -10, "max": 10, "default": 5, "unit": "A" },
+        { "id": "separation", "label": "Wire separation d", "min": 0.01, "max": 1, "default": 0.1, "unit": "m" },
+        { "id": "angle", "label": "Angle θ (single wire mode)", "min": 0, "max": 90, "default": 90, "unit": "°" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Parallel current-carrying wires repel each other because like things repel",
+      "trigger_phrases": ["same current repel", "like currents repel", "same direction repel karte hain", "parallel repel hota hai jaise like charges"],
+      "correction": "Unlike charges, parallel (same-direction) currents ATTRACT each other. This is because wire 1 creates a magnetic field at wire 2, and the cross product F = IL₂ × B₁ points TOWARD wire 1. The analogy with 'like charges repel' does not apply here — magnetic forces follow different rules from electrostatic forces.",
+      "simulation_emphasis": "Show the field from wire 1 at wire 2's position, compute the cross product direction explicitly, and demonstrate the attractive force with both wires moving toward each other"
+    },
+    {
+      "belief": "The force on the conductor is in the direction of the magnetic field",
+      "trigger_phrases": ["force along B", "force field ki direction mein", "wire moves in B direction", "conductor B ke direction mein jaata hai"],
+      "correction": "The force F = IL × B is PERPENDICULAR to both the current direction and the magnetic field. It is never along B. The direction is given by the cross product or Fleming's left-hand rule.",
+      "simulation_emphasis": "Show I, B, and F as three mutually perpendicular vectors — the force arrow is always perpendicular to the field, never along it"
+    }
+  ],
+  "legend": [
+    { "symbol": "F", "meaning": "Force on conductor = IL × B (N)" },
+    { "symbol": "I", "meaning": "Current through conductor (A)" },
+    { "symbol": "L", "meaning": "Length of conductor in field (m)" },
+    { "symbol": "B", "meaning": "External magnetic field (T)" },
+    { "symbol": "d", "meaning": "Distance between parallel wires (m)" },
+    { "symbol": "μ₀", "meaning": "Permeability of free space = 4π × 10⁻⁷ T·m/A" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["magnetic_force_moving_charge", "magnetic_field_wire"],
+    "extensions": ["galvanometer_to_ammeter_voltmeter", "electromagnetic_induction_3d"],
+    "siblings": ["magnetic_force_moving_charge"],
+    "common_exam_combinations": ["magnetic_field_wire", "galvanometer_to_ammeter_voltmeter"]
+  }
+}

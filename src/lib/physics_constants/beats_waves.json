@@ -1,0 +1,75 @@
+{
+  "concept_id": "beats_waves",
+  "concept_name": "Beats",
+  "chapter": "Waves",
+  "class_level": 11,
+  "renderer_hint": {
+    "primary": "wave_canvas",
+    "scenario_type": "beats",
+    "show_graph": false
+  },
+  "variables": {
+    "f1": { "symbol": "f\u2081", "name": "Frequency of wave 1", "unit": "Hz", "min": 1, "max": 20, "default": 10 },
+    "f2": { "symbol": "f\u2082", "name": "Frequency of wave 2", "unit": "Hz", "min": 1, "max": 20, "default": 12 },
+    "A": { "symbol": "A", "name": "Amplitude", "unit": "cm", "min": 0.5, "max": 5, "default": 2 }
+  },
+  "locked_facts": [
+    "Beat frequency = |f\u2081 - f\u2082| (absolute difference, NOT sum)",
+    "Beats arise from periodic constructive and destructive interference",
+    "Loudness varies periodically at beat frequency",
+    "Individual wave frequencies are unchanged",
+    "Beat period = 1/|f\u2081-f\u2082|"
+  ],
+  "truth_statements": [
+    "Beat frequency equals the absolute difference of the two frequencies",
+    "Beats are produced when two sound waves of nearly equal frequencies superpose",
+    "The intensity of the resultant wave varies periodically",
+    "The number of beats per second equals the difference in frequencies",
+    "Beats are used to tune musical instruments"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Resultant wave with clear amplitude envelope. Count the beats per second \u2014 matches |f\u2081 - f\u2082|, NOT f\u2081 + f\u2082. Beat envelope drawn in yellow over the green resultant.",
+    "visual_emphasis": "Yellow envelope clearly shows beat period. Label: 'Beat freq = |f\u2081-f\u2082| = 2 Hz'. The count of maxima per second equals the difference, not the sum."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Wave 1 alone \u2014 constant amplitude",
+      "what_student_sees": "Single sound wave at frequency f\u2081. Constant amplitude, no variation in loudness.",
+      "what_to_emphasize": "A single-frequency wave has constant amplitude. No beats with just one frequency."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Two waves \u2014 slightly different frequencies",
+      "what_student_sees": "Two waves shown: f\u2081 and f\u2082 (slightly different). Both individual waves have constant amplitude.",
+      "what_to_emphasize": "Two waves of nearly equal but not identical frequencies. What happens when they combine?"
+    },
+    {
+      "state": "STATE_3",
+      "label": "Beats pattern \u2014 the aha moment",
+      "what_student_sees": "Resultant wave with periodically varying amplitude (loud-soft-loud pattern). Beat envelope in yellow. Beat frequency = |f\u2081-f\u2082| labelled clearly.",
+      "what_to_emphasize": "The resultant amplitude varies periodically. Beat frequency = |f\u2081-f\u2082| (DIFFERENCE, not sum). Count the maxima to verify."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive \u2014 change f\u2082",
+      "what_student_sees": "Slider to adjust f\u2082. As f\u2082 approaches f\u2081, beats slow down (longer period). As f\u2082 moves away, beats speed up.",
+      "what_to_emphasize": "When f\u2081 = f\u2082: no beats (constant amplitude). Larger |f\u2081-f\u2082|: faster beats. The formula is always beat freq = |f\u2081-f\u2082|."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "beat_freq_is_sum",
+      "trigger_keywords": ["beat frequency = f1+f2", "beats sum hota hai", "beat = dono frequency ka sum"],
+      "student_belief": "Beat frequency equals the sum of two frequencies (f\u2081 + f\u2082)",
+      "actual_physics": "Beat frequency equals the absolute DIFFERENCE |f\u2081 - f\u2082|, not the sum. The sum (f\u2081+f\u2082)/2 is the carrier frequency of the resultant wave.",
+      "simulation_emphasis": "Show resultant with beat envelope. Count maxima per second = |f\u2081-f\u2082|. Display both |f\u2081-f\u2082| and f\u2081+f\u2082 values to show they are different."
+    }
+  ],
+  "legend": [
+    { "symbol": "f_beat", "meaning": "Beat frequency = |f\u2081 - f\u2082|" },
+    { "symbol": "T_beat", "meaning": "Beat period = 1/|f\u2081 - f\u2082|" },
+    { "symbol": "f_avg", "meaning": "Carrier frequency = (f\u2081 + f\u2082)/2" }
+  ]
+}

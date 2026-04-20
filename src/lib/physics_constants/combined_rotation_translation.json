@@ -1,0 +1,42 @@
+{
+  "concept_id": "combined_rotation_translation",
+  "concept_name": "Combined Rotation and Translation",
+  "class_level": 11,
+  "chapter": "System of Particles and Rotational Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "combined_motion", "panel_count": 1, "show_labels": true },
+  "variables": { "v_cm": "Velocity of centre of mass (m/s)", "ω": "Angular velocity (rad/s)", "v_P": "Velocity of any point P (m/s)", "KE_total": "Total kinetic energy (J)" },
+  "locked_facts": [
+    "Any general motion of a rigid body = translation of CM + rotation about CM",
+    "Velocity of any point P: v_P = v_cm + ω × r_P (vector sum)",
+    "Total KE = ½Mv²_cm + ½I_cm ω²",
+    "The CM moves as if all external forces act on it at the CM",
+    "Rotation about CM follows τ_cm = I_cm × α (torques about CM)",
+    "Translation and rotation can be analysed independently using Newton's laws",
+    "For pure rolling: v_cm = ωR, linking the two motions"
+  ],
+  "truth_statements": [
+    "The most general motion of a rigid body is a combination of translation and rotation",
+    "The velocity of any point on the body is the vector sum of the translational velocity of the CM and the rotational velocity about the CM",
+    "The kinetic energy of a rigid body in general motion is the sum of translational KE of the CM and rotational KE about the CM",
+    "Newton's second law for the CM: F_net = Ma_cm treats the body as a particle at the CM",
+    "The rotational equation τ_cm = I_cm α governs the rotation about the CM independently"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A thrown baton in the air: CM follows a parabolic path (like a point particle) while the baton rotates uniformly about the CM. The two motions are superimposed — every point on the baton follows a complex cycloid-like path, but the CM is a clean parabola.",
+    "visual_emphasis": "CM path (clean parabola) highlighted in one colour, a tip's complex path in another — decomposition made visual",
+    "why_this_breaks_misconception": "Students think all points of a rotating-translating body follow complicated paths — seeing the CM as a simple parabola makes decomposition intuitive"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Pure translation", "description": "A rod translating without rotation. Every point has velocity v_cm. CM path and endpoint paths are identical parallel lines.", "emphasis": "In pure translation, all points have the same velocity", "labels_visible": ["v_cm", "all points same v"] },
+    { "id": "STATE_2", "label": "Pure rotation about CM", "description": "Same rod rotating about its CM (no translation). CM is stationary. Endpoints trace circles. v_P = ω × r.", "emphasis": "In pure rotation about CM, the CM doesn't move", "labels_visible": ["ω", "v_P = ωr", "CM fixed"] },
+    { "id": "STATE_3", "label": "Combined motion", "description": "Rod thrown in the air: CM follows parabola, rod rotates about CM. Each endpoint traces a cycloid. v_P = v_cm + ω × r shown as vector sum at one point.", "emphasis": "General motion = translation of CM + rotation about CM — always decomposable", "labels_visible": ["v_cm", "ω×r", "v_P = v_cm + ω×r"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student throws a baton with adjustable v_cm and ω. Trace paths of CM and endpoints. KE bar splits into translational and rotational parts.", "emphasis": "Adjust spin and throw speed — CM always follows a parabola regardless of spin", "labels_visible": ["KE_trans", "KE_rot", "CM path"], "interactive": true, "sliders": [{ "id": "v_throw", "label": "Throw speed", "min": 1, "max": 15, "default": 8, "unit": "m/s" }, { "id": "spin", "label": "Spin ω", "min": 0, "max": 20, "default": 10, "unit": "rad/s" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "The centre of mass doesn't follow a simple path when the body rotates", "trigger_phrases": ["CM path complicated", "CM also rotates"], "correction": "The CM always follows the path dictated by F_net = Ma_cm, regardless of rotation. A spinning baton in projectile motion has its CM follow a perfect parabola — the spin doesn't affect the CM trajectory.", "simulation_emphasis": "Highlight the CM path as a clean parabola while endpoints trace complex curves" },
+    { "belief": "You can't separate translation and rotation — they affect each other", "trigger_phrases": ["rotation affects translation", "can't separate motions"], "correction": "For a rigid body, translation of CM (F = Ma) and rotation about CM (τ = Iα) are independent equations. They can be solved separately and then superimposed.", "simulation_emphasis": "Show translation equation and rotation equation side by side — solved independently" }
+  ],
+  "legend": [ { "symbol": "v_cm", "meaning": "CM velocity (m/s)" }, { "symbol": "ω", "meaning": "Angular velocity (rad/s)" }, { "symbol": "v_P", "meaning": "Velocity of point P = v_cm + ω×r" } ],
+  "concept_relationships": { "prerequisites": ["newtons_second_law", "moment_of_inertia_shapes"], "extensions": ["rolling_without_slipping"], "siblings": ["projectile_motion"], "common_exam_combinations": ["rolling_on_incline"] }
+}

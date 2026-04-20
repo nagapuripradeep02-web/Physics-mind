@@ -1,0 +1,79 @@
+{
+  "renderer": "particle_field",
+  "design": {
+    "background": "#0A0A1A",
+    "canvas_width": 800,
+    "canvas_height": 500
+  },
+  "particles": {
+    "count": 40,
+    "base_color": "#42A5F5",
+    "thermal_speed": 4.0,
+    "size": 6
+  },
+  "lattice": {
+    "rows": 4,
+    "cols": 8,
+    "ion_color": "#90A4AE",
+    "ion_size": 8
+  },
+  "electron_drift_direction": "left",
+  "field_arrow_direction": "right",
+  "states": {
+    "STATE_1": {
+      "drift_speed": 0,
+      "field_active": false,
+      "caption": "Electrons move in all directions randomly. No net movement."
+    },
+    "STATE_2": {
+      "drift_speed": 0.8,
+      "field_active": true,
+      "caption": "Electric field applied. Electrons now drift slowly left."
+    },
+    "STATE_3": {
+      "drift_speed": 0.8,
+      "field_active": true,
+      "highlight_particle": true,
+      "highlight_index": 0,
+      "caption": "Watch this electron zigzag. The slow leftward drift is vd — about 1mm per second."
+    },
+    "STATE_4": {
+      "drift_speed": 0.8,
+      "field_active": true,
+      "slider_active": true,
+      "caption": "Drag the slider. Double the field — double the drift speed."
+    }
+  },
+  "formula_anchor": {
+    "formula_string": "vd = e · E · τ / m",
+    "variables": {
+      "vd":  { "color": "#66BB6A", "label": "drift velocity" },
+      "E":   { "color": "#FF9800", "label": "electric field" },
+      "tau": { "color": "#FFFFFF", "label": "relaxation time" },
+      "e":   { "color": "#90A4AE", "label": "electron charge (constant)" },
+      "m":   { "color": "#90A4AE", "label": "electron mass (constant)" }
+    },
+    "state_highlights": {
+      "STATE_1": [],
+      "STATE_2": ["E", "vd"],
+      "STATE_3": ["tau", "vd"],
+      "STATE_4": ["E", "tau", "vd"]
+    },
+    "live_calculation": {
+      "formula": "vd = (1.6e-19 * E * tau) / 9.1e-31",
+      "display_unit": "mm/s",
+      "update_on_slider": true
+    }
+  },
+  "pvl_colors": {
+    "electron": "#42A5F5",
+    "positive_ion": "#90A4AE",
+    "field_arrow": "#FF9800",
+    "magnetic_field": "#00BCD4",
+    "spotlight": "#FFFFFF",
+    "drift_velocity": "#66BB6A",
+    "misconception": "#EF5350",
+    "background": "#0A0A1A",
+    "labels": "#D4D4D8"
+  }
+}

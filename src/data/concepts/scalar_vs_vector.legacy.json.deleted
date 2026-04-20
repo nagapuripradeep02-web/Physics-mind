@@ -1,0 +1,670 @@
+{
+  "concept_id": "scalar_vs_vector",
+  "concept_name": "Scalar and Vector Quantities",
+  "class_level": 11,
+  "chapter": "Vectors",
+  "section": "5.1",
+  "source_coverage": {
+    "dc_pandey": "Chapter 5, Section 5.1 — Vector and Scalar Quantities",
+    "ncert": "Chapter 4 — Motion in a Plane, Section 4.1",
+    "hc_verma": "Chapter 2 — Physics and Mathematics, Section 2.1"
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "scalar_vs_vector",
+    "panel_count": 1,
+    "show_labels": true,
+    "canvas_scale": 60,
+    "sync_required": false,
+    "scene_mode": false
+  },
+  "locked_facts": {
+    "definition_scalar": "A scalar quantity has only magnitude. It obeys ordinary algebraic addition rules.",
+    "definition_vector": "A vector quantity has both magnitude AND direction, AND must obey the parallelogram law of vector addition.",
+    "parallelogram_law_test": "The parallelogram law is the ONLY definitive test. Direction alone is NOT sufficient for a quantity to be a vector.",
+    "current_not_a_vector": "Electric current has direction (flows in a wire) but is NOT a vector because it does not obey the parallelogram law. i = i1 + i2 regardless of angle — a scalar addition. If current were a vector, i would depend on angle θ between i1 and i2.",
+    "scalar_examples": "Mass, volume, distance, speed, density, work, power, energy, charge, current, potential, temperature, pressure, surface tension, time, gravitational constant G",
+    "vector_examples": "Displacement, velocity, acceleration, force, weight, gravitational field strength (g), electric field, magnetic field, torque, linear momentum, angular momentum, dipole moment",
+    "tensor_note": "Stress and moment of inertia are neither scalar nor vector — they are tensors. Students do not need this for JEE but it appears in assertion-reason questions.",
+    "pressure_trap": "Pressure acts in all directions at a point but is still a scalar. Direction of action ≠ vector quantity.",
+    "area_note": "Area can behave as scalar or vector depending on context. Area vector points perpendicular to the surface.",
+    "finite_rotation_trap": "Finite rotation has magnitude (angle) and direction (axis) but is NOT a vector because two finite rotations do not add by parallelogram law. Infinitesimal rotations ARE vectors."
+  },
+  "minimum_viable_understanding": "A quantity is a vector ONLY IF it has direction AND obeys the parallelogram law. Direction alone is not enough. Current is the canonical trap example.",
+  "variables": {
+    "i1": "Current in branch 1 (scalar, A)",
+    "i2": "Current in branch 2 (scalar, A)",
+    "i": "Total current at junction (scalar, i = i1 + i2 always)",
+    "theta": "Angle between wires at junction (irrelevant for scalar addition)"
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "what is a vector quantity",
+      "difference between scalar and vector",
+      "explain scalar and vector with examples",
+      "scalar vs vector kya hota hai"
+    ],
+    "local_triggers": [
+      "is current a vector",
+      "why is current not a vector",
+      "what is the parallelogram law test",
+      "which quantities are vectors",
+      "pressure scalar or vector",
+      "why pressure is scalar"
+    ],
+    "micro_triggers": [
+      "what is parallelogram law",
+      "why direction is not enough",
+      "is area a vector",
+      "is stress a vector",
+      "what is tensor",
+      "is temperature scalar or vector"
+    ],
+    "simulation_not_needed_triggers": [
+      "list of scalar quantities",
+      "list of vector quantities",
+      "examples of scalars",
+      "examples of vectors"
+    ],
+    "subconcept_triggers": {
+      "current_not_vector": [
+        "is current a vector quantity",
+        "why is electric current not a vector",
+        "current direction but scalar",
+        "current parallelogram law"
+      ],
+      "parallelogram_law_test": [
+        "parallelogram law of addition",
+        "how to test if quantity is vector",
+        "vector addition rule",
+        "parallelogram law kya hai"
+      ],
+      "pressure_scalar": [
+        "is pressure a vector",
+        "pressure acts in all directions",
+        "why is pressure scalar"
+      ],
+      "area_vector": [
+        "is area a scalar or vector",
+        "area vector direction",
+        "area of surface vector"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "understands_definition": "enter at STATE_2",
+    "understands_parallelogram_test": "enter at STATE_3",
+    "understands_current_trap": "enter at STATE_4",
+    "understands_tricky_cases": "enter at STATE_5"
+  },
+  "prerequisite_check": {
+    "required_concepts": [],
+    "gate_question": null,
+    "note": "This is a foundational concept. No prerequisites required."
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "board_mode_states": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "jee_mode_states": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Hook — What Makes a Quantity a Vector?",
+        "physics_layer": {
+          "concept": "The naive definition fails — direction alone is not enough",
+          "simulation_focus": "Show two wires meeting at a junction. Current i1 in wire 1, i2 in wire 2, both flowing INTO junction. Change the angle between wires.",
+          "what_to_show": "As angle θ changes from 0° to 180°, the total current i at junction stays CONSTANT at i1 + i2. The angle does not matter.",
+          "key_observation": "If current were a vector, its resultant would change with angle. It doesn't. So current is scalar.",
+          "scenario": "scalar_examples"
+        },
+        "pedagogy_layer": {
+          "opening_question": "Current flows in a specific direction in a wire. By that logic — is current a vector?",
+          "surprise_moment": "Most students say YES. The simulation shows WHY they're wrong.",
+          "teacher_script": "Current has direction but fails the real test. Let's see what that test is."
+        }
+      },
+      "STATE_2": {
+        "label": "The Real Definition — Two Conditions, Not One",
+        "physics_layer": {
+          "concept": "Vector = magnitude + direction + parallelogram law obedience",
+          "simulation_focus": "Split screen: Left — displacement vectors A and B combining with parallelogram law (resultant changes with angle). Right — currents i1 and i2 combining (resultant always i1+i2).",
+          "what_to_show": "For displacement: change θ → resultant R changes. For current: change θ → total i stays i1+i2.",
+          "scenario": "vector_examples"
+        },
+        "pedagogy_layer": {
+          "key_message": "Parallelogram law is the DEFINITIVE test. Not just direction.",
+          "analogy": "A wolf in sheep's clothing — current wears the direction costume but fails the vector exam."
+        }
+      },
+      "STATE_3": {
+        "label": "Building the Taxonomy — Scalars vs Vectors",
+        "physics_layer": {
+          "concept": "Classification of physical quantities",
+          "simulation_focus": "Interactive two-column sorter. Student drags: mass, displacement, speed, velocity, temperature, force, current, pressure, torque into scalar/vector columns.",
+          "trap_quantities": [
+            "current",
+            "pressure",
+            "area",
+            "temperature"
+          ],
+          "correct_placements": {
+            "scalars": [
+              "mass",
+              "speed",
+              "temperature",
+              "current",
+              "pressure",
+              "work",
+              "energy",
+              "distance",
+              "charge"
+            ],
+            "vectors": [
+              "displacement",
+              "velocity",
+              "acceleration",
+              "force",
+              "torque",
+              "momentum",
+              "electric field",
+              "magnetic field"
+            ]
+          },
+          "scenario": "scalar_addition"
+        },
+        "pedagogy_layer": {
+          "emphasis": "Current and pressure are the classic traps. Both have directional associations but fail the parallelogram test."
+        }
+      },
+      "STATE_4": {
+        "label": "The Current Proof — DC Pandey's Definitive Example",
+        "physics_layer": {
+          "concept": "Formal proof that current is NOT a vector using Kirchhoff's junction rule",
+          "simulation_focus": "Three-wire junction. Wire OA carries i1, Wire OB carries i2, both entering point O. Wire OC carries i (outgoing). Show that i = i1 + i2 for ALL angles between OA and OB.",
+          "formula": "i = i1 + i2 (scalar) regardless of angle θ between i1 and i2",
+          "contrast": "If current WERE a vector: i_resultant = √(i1² + i2² + 2·i1·i2·cosθ) — but this never matches measurement.",
+          "scenario": "vector_addition_direction"
+        },
+        "pedagogy_layer": {
+          "aha_moment": "Kirchhoff's junction rule IS the proof. Current conserves like a scalar at every junction.",
+          "jee_connection": "JEE assertion-reason: 'Current has direction therefore it is a vector.' Assertion TRUE, Reason FALSE."
+        }
+      },
+      "STATE_5": {
+        "label": "Tricky Cases — JEE Trap Quantities",
+        "physics_layer": {
+          "concept": "Pressure, area, finite rotation, stress — the boundary cases",
+          "simulation_focus": "Show pressure at a point inside fluid — arrows pointing in ALL directions from the point simultaneously. Magnitude same in all directions. Cannot assign a single direction → scalar.",
+          "cases": {
+            "pressure": "Acts in all directions at a point — no single direction assignable — scalar",
+            "area": "Scalar in simple calculations, vector (pointing perpendicular to surface) in flux calculations",
+            "finite_rotation": "Has magnitude (angle) and direction (axis) but does NOT obey parallelogram law — NOT a vector",
+            "infinitesimal_rotation": "Obeys parallelogram law — IS a vector",
+            "stress": "Neither scalar nor vector — it is a tensor (rank 2)"
+          },
+          "scenario": "vector_properties"
+        },
+        "pedagogy_layer": {
+          "jee_traps": [
+            "Pressure: direction → vector? NO. Scalar.",
+            "Finite rotation: direction + magnitude → vector? NO. Not a vector.",
+            "Current: direction → vector? NO. Scalar."
+          ]
+        }
+      },
+      "STATE_6": {
+        "label": "Student Interaction — Classify and Justify",
+        "physics_layer": {
+          "concept": "Application and consolidation",
+          "simulation_focus": "Student is shown 8 quantities one at a time. For each: classify scalar/vector AND give the deciding reason.",
+          "quantities": [
+            {
+              "name": "Electric current",
+              "answer": "scalar",
+              "reason": "Does not obey parallelogram law at junctions"
+            },
+            {
+              "name": "Angular momentum",
+              "answer": "vector",
+              "reason": "Has direction (axis of rotation) and obeys vector addition"
+            },
+            {
+              "name": "Temperature",
+              "answer": "scalar",
+              "reason": "Magnitude only, no direction"
+            },
+            {
+              "name": "Dipole moment",
+              "answer": "vector",
+              "reason": "Direction from -q to +q, obeys parallelogram law"
+            },
+            {
+              "name": "Surface tension",
+              "answer": "scalar",
+              "reason": "No specific direction associated"
+            },
+            {
+              "name": "Torque",
+              "answer": "vector",
+              "reason": "Direction by right-hand rule, obeys parallelogram law"
+            },
+            {
+              "name": "Pressure",
+              "answer": "scalar",
+              "reason": "Acts in all directions at a point — no single direction"
+            },
+            {
+              "name": "Gravitational constant G",
+              "answer": "scalar",
+              "reason": "Pure magnitude, no direction"
+            }
+          ],
+          "scenario": "svv_comparison_table"
+        },
+        "pedagogy_layer": {
+          "success_criteria": "Student can justify classification, not just name it"
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "direction_means_vector",
+      "misconception": "Any quantity that has a direction is a vector",
+      "student_belief": "Current flows from A to B, it has direction, so it must be a vector",
+      "trigger_phrases": [
+        "current has direction so it is a vector",
+        "anything with direction is a vector",
+        "current bhi vector hai",
+        "current flows in one direction so vector"
+      ],
+      "state_count": 6,
+      "scope": "local",
+      "feedback_tag": "direction_is_necessary_not_sufficient",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Student's Belief as a Live Simulation",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Two wires meeting at 60°. i1 = 3A, i2 = 4A. IF current were a vector: show resultant = √(9+16+2·3·4·cos60°) = √37 ≈ 6.08A. Display this as 'Vector World' result.",
+            "then_show": "Now show actual measurement: i_actual = 3 + 4 = 7A regardless of angle. Label it 'Reality'.",
+            "gap": "Vector World predicts 6.08A. Reality gives 7A. The prediction fails.",
+            "scenario": "svv_wrong_addition"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "Your logic is correct that direction is NECESSARY for a vector. But it is not SUFFICIENT. Let me show you what happens when we test current with the parallelogram law."
+          }
+        },
+        "STATE_2": {
+          "label": "The Test — Vary the Angle",
+          "physics_layer": {
+            "simulation": "Same junction. Animate θ from 0° to 180° smoothly. Show: Vector prediction R = √(i1²+i2²+2i1i2cosθ) — this CHANGES with θ. Actual current i = i1+i2 — this NEVER CHANGES.",
+            "key_visual": "Two curves: one oscillating (vector prediction), one flat horizontal line (reality). They only meet at θ=0°.",
+            "scenario": "svv_direction_matters"
+          }
+        },
+        "STATE_3": {
+          "label": "Displacement Passes the Test",
+          "physics_layer": {
+            "simulation": "Now show displacement vectors. Two displacements at angle θ. Resultant DOES change with θ. Parallelogram law works.",
+            "contrast": "Displacement obeys the law → vector. Current does not → scalar.",
+            "scenario": "svv_correct_addition"
+          }
+        },
+        "STATE_4": {
+          "label": "The Formal Rule",
+          "physics_layer": {
+            "text_delivery": true,
+            "content": "Two conditions BOTH required: (1) Has magnitude and direction. (2) Obeys parallelogram law of addition. Current satisfies (1) but fails (2). Therefore: NOT a vector.",
+            "scenario": "svv_aha_direction"
+          }
+        },
+        "STATE_5": {
+          "label": "Other Direction-Having Scalars",
+          "physics_layer": {
+            "simulation": "Show pressure at a point — force arrows pointing in every direction from one point simultaneously. No single direction to assign.",
+            "message": "Pressure, surface tension, current — all have directional associations but fail the vector test.",
+            "scenario": "direction_means_vector_s5"
+          }
+        },
+        "STATE_6": {
+          "label": "Belief Check",
+          "physics_layer": {
+            "probe": "Is electric potential a scalar or vector? (It has no direction — purely magnitude.) Is torque a scalar or vector? (Has direction via right-hand rule AND obeys parallelogram law.)",
+            "scenario": "direction_means_vector_s6"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "pressure_is_vector",
+      "misconception": "Pressure is a vector because it acts in all directions",
+      "student_belief": "Pressure pushes equally in all directions, so it must be a vector",
+      "trigger_phrases": [
+        "pressure is a vector",
+        "pressure acts in all directions so it is a vector",
+        "pressure has direction",
+        "fluid pressure vector"
+      ],
+      "state_count": 5,
+      "scope": "local",
+      "feedback_tag": "pressure_scalar_all_directions",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief — Pressure as a Vector",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show a point inside a fluid. Student's belief: arrows pointing in many directions = vector. Display as student's model.",
+            "question": "If pressure acts in ALL directions equally, which ONE direction do we assign to call it a vector?",
+            "scenario": "pressure_is_vector_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "The Direction Problem",
+          "physics_layer": {
+            "simulation": "Show the point with equal arrows in ALL directions (spherically symmetric). No single direction is preferred. You cannot pick ONE direction to represent pressure.",
+            "contrast": "Force: one direction (down if gravity). Velocity: one direction (east if moving east). Pressure: ALL directions simultaneously — no single direction → cannot be a vector.",
+            "scenario": "pressure_is_vector_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "What Scalar Means",
+          "physics_layer": {
+            "content": "A scalar has magnitude at a point. Pressure at a given point inside a fluid has one value (say 10⁵ Pa) but no single direction. It's a scalar field — one number per point.",
+            "formula": "P = F/A where F is normal force on area A. The direction changes depending on which surface you measure — but P itself has no direction.",
+            "scenario": "pressure_is_vector_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "Pressure vs Force Distinction",
+          "physics_layer": {
+            "simulation": "Show a cube submerged in fluid. The FORCE on each face is a vector (pointing inward, perpendicular to face). But pressure P = F/A is the same scalar value for all faces at the same depth.",
+            "key_insight": "Force is a vector. Pressure is the scalar that generates force when multiplied by area and a direction.",
+            "scenario": "pressure_is_vector_s4"
+          }
+        },
+        "STATE_5": {
+          "label": "Belief Check",
+          "physics_layer": {
+            "probe": "Is temperature a scalar or vector? (Scalar — one value at a point.) Is gravitational field a scalar or vector? (Vector — has magnitude AND direction at every point.)",
+            "scenario": "pressure_is_vector_s5"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "all_physical_quantities_scalar_or_vector",
+      "misconception": "Every physical quantity is either a scalar or a vector",
+      "student_belief": "There are only two types: scalar and vector",
+      "trigger_phrases": [
+        "is stress a vector",
+        "what is a tensor",
+        "moment of inertia scalar or vector",
+        "third type of quantity"
+      ],
+      "state_count": 4,
+      "scope": "local",
+      "feedback_tag": "tensors_exist_jee_awareness",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief — Binary Classification",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "content": "Student's model: everything is scalar OR vector. Stress: it has a direction of force and a direction of surface normal. If force is in x, surface normal is in y — stress has TWO directions. Cannot be scalar (no direction) or vector (one direction).",
+            "scenario": "all_physical_quantities_scalar_or_vector_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "Tensors — The Third Category",
+          "physics_layer": {
+            "content": "Tensors have rank. Scalar = rank 0 (one number). Vector = rank 1 (one direction, 3 components in 3D). Tensor rank 2 = two directions (9 components in 3D). Stress and moment of inertia are rank-2 tensors.",
+            "jee_relevance": "JEE does NOT test tensor mathematics. But assertion-reason questions test: 'Stress is a vector' — FALSE. 'Stress is a scalar' — FALSE. 'Stress is a tensor' — TRUE.",
+            "scenario": "all_physical_quantities_scalar_or_vector_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "JEE Application",
+          "physics_layer": {
+            "jee_traps": [
+              "Assertion: Stress is a vector. Reason: It has both magnitude and direction. → Both TRUE but reason is WRONG.",
+              "Assertion: Moment of inertia is a scalar. → FALSE. It is a tensor.",
+              "Assertion: Current is a vector. → FALSE. Scalar."
+            ],
+            "scenario": "all_physical_quantities_scalar_or_vector_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "Quick Summary",
+          "physics_layer": {
+            "table": {
+              "Scalar (rank 0)": "mass, speed, temperature, current, pressure, energy",
+              "Vector (rank 1)": "displacement, velocity, force, torque, momentum, fields",
+              "Tensor (rank 2)": "stress, strain, moment of inertia"
+            },
+            "scenario": "all_physical_quantities_scalar_or_vector_s4"
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "symbol_role": {
+      "trigger": "what does the arrow on a vector mean",
+      "states": 2,
+      "content": "Arrow indicates direction. Length indicates magnitude. The arrowhead is not decorative — it IS the direction information."
+    },
+    "why_parallelogram": {
+      "trigger": "why parallelogram law specifically",
+      "states": 3,
+      "content": "The parallelogram law is not an arbitrary rule. It emerges from geometry — if you displace east by A then northeast by B, the net displacement is the diagonal of the parallelogram formed. Any quantity that describes physical displacement in space MUST obey this."
+    },
+    "jee_assertion_reason": {
+      "trigger": "assertion current is vector",
+      "states": 2,
+      "content": "Classic JEE format: Assertion 'Current has direction' = TRUE. Reason 'Therefore current is a vector' = FALSE. Direction is necessary but not sufficient. Correct answer: Assertion true, Reason false."
+    },
+    "area_vector_confusion": {
+      "trigger": "is area scalar or vector",
+      "states": 3,
+      "content": "Area is context-dependent. In simple calculations (area of rectangle = lb) — scalar. In flux calculations (ΦE = E·A) — area vector A points perpendicular to the surface. Same quantity, two different uses."
+    },
+    "finite_rotation_trap": {
+      "trigger": "is rotation a vector",
+      "states": 3,
+      "content": "Finite rotation: NOT a vector (does not obey parallelogram law — try rotating a book 90° about x then 90° about y vs 90° about y then 90° about x — different results). Infinitesimal rotation: IS a vector (order doesn't matter at infinitesimal scale)."
+    }
+  },
+  "static_responses": {
+    "list_of_scalars": {
+      "trigger": "list scalar quantities",
+      "simulation_needed": false,
+      "response": "Scalars: mass, volume, distance, speed, density, work, power, energy, length, gravitational constant G, specific heat, charge, current, potential, time, electric flux, magnetic flux, pressure, surface tension, temperature. Memory tip: anything you measure with a scale (no direction needed) is scalar."
+    },
+    "list_of_vectors": {
+      "trigger": "list vector quantities",
+      "simulation_needed": false,
+      "response": "Vectors: displacement, velocity, acceleration, force, weight, g (gravitational field strength), electric field E, magnetic field B, torque τ, linear momentum p, angular momentum L, dipole moment, current density J. Memory tip: anything that pushes/pulls you in a direction, or describes motion with direction."
+    },
+    "current_proof_text": {
+      "trigger": "prove current is not a vector",
+      "simulation_needed": false,
+      "response": "Proof: At a junction, wires OA (current i1) and OB (current i2) meet at O. Total current i = i1 + i2 regardless of angle between OA and OB (Kirchhoff's junction rule). If current were a vector, i_resultant = √(i1² + i2² + 2i1i2cosθ) — this would change with angle θ. Since it doesn't, current is scalar."
+    }
+  },
+  "problem_guidance_path": {
+    "description": "Help student classify quantities in assertion-reason or MCQ format",
+    "approach": "Check two conditions: (1) has direction? (2) obeys parallelogram law? Both → vector. Only (1) → could be scalar (like current). Neither → scalar.",
+    "common_question_types": [
+      "Classify these quantities as scalar or vector",
+      "Which of the following is NOT a vector?",
+      "Assertion: [quantity] is a vector. Reason: it has direction."
+    ]
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Section 5.1",
+      "principle": "Kirchhoff junction rule proves current is scalar — resultant is always i1+i2 regardless of angle between wires",
+      "aha": "If current were a vector, the junction total would change with angle θ — it never does",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Section 5.1 — JEE-style classification",
+      "principle": "Classifying 8 physical quantities as scalar or vector using the parallelogram law test",
+      "aha": "Current, pressure, and surface tension all have misleading direction-like properties but are scalars",
+      "simulation_states": 2
+    }
+  },
+  "assessment_path": {
+    "question_1": {
+      "text": "Electric current has a definite direction of flow. Is it a vector quantity?",
+      "options": [
+        "Yes, because it has direction",
+        "No, because it doesn't obey parallelogram law",
+        "Yes, because it obeys superposition",
+        "Cannot be determined"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to direction_means_vector branch",
+      "explanation": "Direction is necessary but not sufficient. Current fails the parallelogram law test at junctions."
+    },
+    "question_2": {
+      "text": "Pressure acts in all directions at a point inside a fluid. This makes pressure:",
+      "options": [
+        "A vector quantity",
+        "A scalar quantity",
+        "A tensor quantity",
+        "Neither scalar nor vector"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to pressure_is_vector branch",
+      "explanation": "Precisely because pressure acts in ALL directions equally, no single direction can be assigned. It is a scalar."
+    },
+    "question_3": {
+      "text": "Which of the following is a vector quantity? (JEE style)",
+      "options": [
+        "Electric current",
+        "Gravitational potential",
+        "Electric field intensity",
+        "Work done by a force"
+      ],
+      "correct": 2,
+      "explanation": "Electric field E has both magnitude and direction at every point and obeys superposition (parallelogram law). Current, potential, and work are scalars."
+    },
+    "question_4": {
+      "text": "Finite rotation of a rigid body about a fixed axis has both magnitude (angle) and direction (axis). Is it a vector?",
+      "options": [
+        "Yes — it has magnitude and direction",
+        "No — it does not obey parallelogram law",
+        "Yes — it obeys the right-hand rule",
+        "Depends on the angle of rotation"
+      ],
+      "correct": 1,
+      "explanation": "Finite rotation fails the parallelogram law. Rotate a book 90° about x then 90° about y — you get a different result than 90° about y then 90° about x. Order matters → NOT a vector."
+    }
+  },
+  "session_awareness": {
+    "if_already_shown_epic_l": "skip to micro or text if student asks follow-up",
+    "if_student_knows_basics": "enter at STATE_3 — taxonomy and trap quantities",
+    "if_coming_from_vector_addition": "student already knows vectors exist — focus on the classification criteria only"
+  },
+  "waypoints": {
+    "fallback_unknown_confusion": "If confusion doesn't match any branch, use the current-at-junction simulation. It's the most visceral proof that direction alone does not make a vector.",
+    "escalation_trigger": "If student still confused after EPIC-C branch, escalate to explicit parallelogram law demonstration with numerical comparison"
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks WHY the parallelogram law is the defining criterion",
+    "escalate_to": "Geometry of physical space — displacement in 2D naturally obeys parallelogram law because space is Euclidean. Quantities describing spatial displacement must inherit this property.",
+    "level": "JEE Advanced / conceptual depth"
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "Assertion-Reason: 'Current is a vector because it has direction' — Assertion TRUE, Reason FALSE",
+      "MCQ: Which of these is NOT a vector? (options include current, torque, pressure, electric field)",
+      "MCQ: Which of these is a vector? (options include work, energy, electric field, temperature)",
+      "Assertion: Pressure is a vector because it acts in a specific direction — FALSE",
+      "Match the following: scalar/vector/tensor with given quantities"
+    ],
+    "common_traps": [
+      "Electric current — has direction but is scalar",
+      "Pressure — acts in all directions but is scalar",
+      "Surface tension — scalar (no specific direction)",
+      "Work done — scalar (dot product of two vectors)",
+      "Gravitational constant G — scalar",
+      "Temperature — scalar",
+      "Finite rotation — NOT a vector despite having direction and magnitude",
+      "Stress — tensor, not vector (classic assertion-reason trap)"
+    ],
+    "key_facts_to_remember": [
+      "Two conditions for vector: (1) direction + (2) parallelogram law",
+      "Current is scalar — Kirchhoff junction rule proof",
+      "Pressure is scalar — no single direction at a point",
+      "Stress and moment of inertia are tensors (rank 2)",
+      "Infinitesimal rotations are vectors, finite rotations are not",
+      "A × B is perpendicular to both A and B — result is a vector (cross product)"
+    ]
+  },
+  "concept_relationships": {
+    "prerequisites": [],
+    "extensions": [
+      "vector_basics",
+      "vector_addition",
+      "vector_components",
+      "dot_product",
+      "cross_product"
+    ],
+    "siblings": [
+      "vector_basics"
+    ],
+    "common_exam_combinations": [
+      "dot_product (work = F·s, scalar result of vector operation)",
+      "cross_product (torque = r×F, vector result)",
+      "laws_of_motion (force is vector, work is scalar)"
+    ]
+  },
+  "three_js_flag": false,
+  "three_js_note": "This concept is 2D. Current junction diagram and pressure arrows work perfectly in canvas2d.",
+  "parameter_slots": {},
+  "panel_sync_spec": null,
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "scenario_type": "scalar_vs_vector",
+      "approach": "failure_of_arithmetic",
+      "entry_state": "STATE_3",
+      "teacher_angle": "Start with the moment scalar thinking breaks down. You walk 3m East then 4m North. Scalar arithmetic says total distance = 7m — correct. But where did you end up? Not 7m from start — only 5m away. The gap between 7 and 5 is the entire reason vectors exist. Build scalar vs vector from this arithmetic failure, not from definitions.",
+      "locked_facts_focus": [
+        "fact_3",
+        "fact_4",
+        "fact_5"
+      ],
+      "panel_b_focus": "Show 3-4-5 triangle. Scalar sum (7m) shown as wrong endpoint. Vector sum (5m at 53 degrees) shown as actual endpoint. Student sees the gap between arithmetic and reality."
+    },
+    {
+      "variant_id": 2,
+      "scenario_type": "scalar_vs_vector",
+      "approach": "connects_to_distance_displacement",
+      "entry_state": "STATE_2",
+      "teacher_angle": "Connect directly to what the student already knows from Chapter 6: distance and displacement. Distance is scalar — just a number, how far you walked. Displacement is vector — how far and in which direction. The student already uses scalars and vectors every day without knowing the names. Scalar vs vector is just formalising what distance vs displacement already taught them.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_2",
+        "fact_6"
+      ],
+      "panel_b_focus": "Split screen: left shows distance (odometer, scalar, just a number). Right shows displacement (GPS arrow, vector, magnitude plus direction). Labels: 'You already know this from Ch.6 — this is what those words mean mathematically.'"
+    }
+  ]
+}

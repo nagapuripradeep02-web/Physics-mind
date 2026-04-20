@@ -1,0 +1,170 @@
+{
+  "concept_id": "thin_lens_formula",
+  "concept_name": "Thin Lens Formula",
+  "class_level": 12,
+  "chapter": "Ray Optics and Optical Instruments",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "optics_ray",
+    "scenario_type": "thin_lens",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "u": {
+      "symbol": "u",
+      "name": "Object distance",
+      "unit": "cm",
+      "min": -100,
+      "max": -5,
+      "default": -30
+    },
+    "v": {
+      "symbol": "v",
+      "name": "Image distance",
+      "unit": "cm",
+      "min": -100,
+      "max": 100,
+      "default": 30
+    },
+    "f": {
+      "symbol": "f",
+      "name": "Focal length",
+      "unit": "cm",
+      "min": -50,
+      "max": 50,
+      "default": 15
+    },
+    "n": {
+      "symbol": "n",
+      "name": "Refractive index of lens material",
+      "unit": "",
+      "min": 1.3,
+      "max": 2.0,
+      "default": 1.5
+    },
+    "R1": {
+      "symbol": "R₁",
+      "name": "Radius of curvature of first surface",
+      "unit": "cm",
+      "min": -100,
+      "max": 100,
+      "default": 20
+    },
+    "R2": {
+      "symbol": "R₂",
+      "name": "Radius of curvature of second surface",
+      "unit": "cm",
+      "min": -100,
+      "max": 100,
+      "default": -20
+    },
+    "P": {
+      "symbol": "P",
+      "name": "Power of lens",
+      "unit": "D (dioptre)",
+      "min": -20,
+      "max": 20,
+      "default": 5
+    },
+    "m": {
+      "symbol": "m",
+      "name": "Magnification",
+      "unit": "",
+      "min": -10,
+      "max": 10,
+      "default": 1
+    }
+  },
+  "locked_facts": [
+    "Thin lens formula: 1/v - 1/u = 1/f",
+    "Lens maker's equation: 1/f = (n - 1)(1/R₁ - 1/R₂)",
+    "Power of a lens: P = 1/f (in dioptres when f is in metres)",
+    "Magnification: m = v/u = h'/h (note: for lenses m = v/u, NOT -v/u like mirrors)",
+    "Convex (converging) lens: f is positive; Concave (diverging) lens: f is negative",
+    "For combination of thin lenses in contact: P = P₁ + P₂ or 1/f = 1/f₁ + 1/f₂"
+  ],
+  "truth_statements": [
+    "The thin lens formula 1/v - 1/u = 1/f applies to both convex and concave lenses when the sign convention is followed consistently",
+    "The lens maker's equation relates the focal length of a lens to the refractive index of the material and the radii of curvature of its two surfaces",
+    "The power of a lens in dioptres equals the reciprocal of its focal length in metres — a converging lens has positive power and a diverging lens has negative power",
+    "A convex lens forms a real inverted image when the object is beyond the focus, and a virtual erect magnified image when the object is between the focus and the optical centre",
+    "For two thin lenses placed in contact, the combined power is the algebraic sum of individual powers"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Place an object at 2F of a convex lens. The image forms at 2F on the other side — same size, real, inverted (m = -1). Now slide the object toward F. The image races away to infinity and becomes hugely magnified. Push the object just past F (between F and the lens) — the image flips to the same side as the object, becoming virtual, erect, and magnified. This is exactly how a magnifying glass works! The focal point is the magic boundary: real images on one side, virtual on the other.",
+    "visual_emphasis": "Animate three standard rays (parallel ray refracts through F₂, ray through optical centre goes straight, ray through F₁ emerges parallel). As the object crosses F₁, the refracted rays diverge instead of converge — the image jumps from real to virtual. Show the lens formula values updating in real time."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Object beyond 2F — real, inverted, diminished image",
+      "description": "Convex lens with object placed beyond 2F₁. Three standard rays drawn through the lens. Image forms between F₂ and 2F₂ — real, inverted, and smaller than the object. Formula overlay: 1/v - 1/u = 1/f verified numerically.",
+      "emphasis": "When the object is far away, the image is closer to the lens and smaller. The three standard ray construction gives the exact image position.",
+      "labels_visible": ["u", "v", "f", "2F₁", "F₁", "O", "F₂", "2F₂"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Object between F and 2F — real, inverted, magnified image",
+      "description": "Object moved between F₁ and 2F₁. Image forms beyond 2F₂ on the other side — real, inverted, and larger than the object. |m| > 1.",
+      "emphasis": "The closer the object gets to F, the farther and larger the image becomes. This is how a projector works — object slightly beyond F creates a large real image on a distant screen.",
+      "labels_visible": ["u", "v", "m > 1", "Real, inverted, magnified"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Object between F and O — virtual, erect, magnified image",
+      "description": "Object placed between F₁ and the optical centre. Refracted rays diverge — they appear to come from the same side as the object. Image is virtual, erect, and magnified. This is the magnifying glass configuration.",
+      "emphasis": "When the object is inside the focal length, the lens cannot converge the rays to a real image. The diverging rays, when extended backward, meet to form a virtual image. This is how a simple magnifying glass works.",
+      "labels_visible": ["u", "v (same side)", "m > 1", "Virtual, erect, magnified"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive — explore convex and concave lenses",
+      "description": "Sliders to change object distance and focal length. Switch between convex and concave lens. Watch image position, size, and nature change in real time. The lens formula and magnification update live. Panel 2 shows 1/v vs 1/u graph.",
+      "emphasis": "Move the object across F and watch the image flip from real to virtual. Try a concave lens — the image is always virtual, erect, and diminished. Verify the lens maker's equation by changing n and R values.",
+      "interactive": true,
+      "sliders": [
+        { "id": "objectDistance", "label": "Object distance |u|", "min": 5, "max": 100, "default": 30, "unit": "cm" },
+        { "id": "focalLength", "label": "Focal length |f|", "min": 5, "max": 50, "default": 15, "unit": "cm" },
+        { "id": "lensType", "label": "Lens type", "min": 0, "max": 1, "default": 0, "unit": "0=convex, 1=concave" },
+        { "id": "refractiveIndex", "label": "Refractive index n", "min": 1.3, "max": 2.0, "default": 1.5, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "A concave lens can also form real images like a convex lens",
+      "trigger_phrases": ["concave lens real image", "concave lens se real image", "concave lens mein real image banta hai", "diverging lens real image"],
+      "correction": "A concave (diverging) lens ALWAYS forms a virtual, erect, and diminished image regardless of object position. It cannot form real images because it always diverges light rays. Only a convex (converging) lens can form real images.",
+      "simulation_emphasis": "Show a concave lens with the object at various distances — the image is always on the same side as the object, always virtual, erect, and smaller. Contrast with a convex lens forming real images."
+    },
+    {
+      "belief": "The magnification formula for lenses is m = -v/u, same as mirrors",
+      "trigger_phrases": ["lens ka magnification -v/u hai", "mirror jaisa formula hai lens ka", "lens magnification minus v by u", "same formula mirror lens"],
+      "correction": "For lenses, the magnification is m = v/u (WITHOUT the negative sign). For mirrors, it is m = -v/u. This difference arises because of the different sign conventions: in mirrors, both object and image are on the same side; in lenses, they are on opposite sides for real images.",
+      "simulation_emphasis": "Show a convex lens with object at u = -30 cm, f = 15 cm. Calculate v = 30 cm. Then m = v/u = 30/(-30) = -1 (inverted). Show that this correctly predicts an inverted image without needing an extra minus sign."
+    },
+    {
+      "belief": "Power of a lens depends on the object distance",
+      "trigger_phrases": ["power object distance pe depend karta hai", "power changes with object", "jab object move kare toh power change", "lens power varies"],
+      "correction": "The power of a lens P = 1/f depends ONLY on the focal length, which is determined by the refractive index and radii of curvature (lens maker's equation). It does not change with object distance. Moving the object changes the image distance, not the lens power.",
+      "simulation_emphasis": "Show the power readout staying constant as the object moves. Highlight that P = 1/f is a property of the lens itself, not of where you place the object."
+    }
+  ],
+  "legend": [
+    { "symbol": "O", "meaning": "Optical centre of the lens" },
+    { "symbol": "F₁, F₂", "meaning": "Principal foci on either side of the lens" },
+    { "symbol": "f", "meaning": "Focal length (positive for convex, negative for concave)" },
+    { "symbol": "u", "meaning": "Object distance (always negative by convention)" },
+    { "symbol": "v", "meaning": "Image distance (positive = real image on opposite side, negative = virtual)" },
+    { "symbol": "P", "meaning": "Power = 1/f in dioptres (D)" },
+    { "symbol": "m", "meaning": "Magnification = v/u" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["refraction_snells_law_class12", "refraction_at_spherical_surface"],
+    "extensions": ["optical_instruments"],
+    "siblings": ["reflection_spherical_mirrors"],
+    "common_exam_combinations": ["optical_instruments", "refraction_at_spherical_surface", "prism_dispersion"]
+  }
+}

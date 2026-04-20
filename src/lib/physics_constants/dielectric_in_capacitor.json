@@ -1,0 +1,42 @@
+{
+  "concept_id": "dielectric_in_capacitor",
+  "concept_name": "Dielectric in Capacitor",
+  "class_level": 12,
+  "chapter": "Electrostatic Potential and Capacitance",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "circuit_live", "scenario_type": "dielectric_capacitor", "panel_count": 1, "show_labels": true },
+  "variables": { "K": "Dielectric constant (dimensionless)", "C₀": "Capacitance without dielectric (F)", "C": "Capacitance with dielectric = KC₀ (F)", "E_net": "Net field inside dielectric (N/C)" },
+  "locked_facts": [
+    "Inserting a dielectric increases capacitance by factor K: C = KC₀",
+    "The dielectric reduces the electric field inside by factor K: E = E₀/K",
+    "Polarisation of dielectric creates opposing surface charges that reduce the field",
+    "With battery connected: V stays same, Q increases, U increases",
+    "With battery disconnected: Q stays same, V decreases, U decreases",
+    "The dielectric constant K is always ≥ 1 (K = 1 for vacuum)",
+    "Energy stored: U = Q²/2C — with dielectric, C increases so U changes depending on boundary conditions"
+  ],
+  "truth_statements": [
+    "A dielectric is a non-conducting material that when placed in an electric field gets polarised and reduces the net field",
+    "The capacitance of a parallel plate capacitor with a dielectric filling the gap is C = Kε₀A/d",
+    "When a dielectric slab is inserted with the battery connected the charge on the capacitor increases while the voltage remains unchanged",
+    "When a dielectric slab is inserted with the battery disconnected the voltage decreases while the charge remains unchanged",
+    "The bound surface charges on the dielectric create a field opposing the external field thereby reducing the net field inside"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Split view: LEFT = battery connected (V same, Q increases, plates glow brighter), RIGHT = battery disconnected (Q same, V drops, voltmeter reading falls). The dielectric slab slides in and both scenarios animate simultaneously.",
+    "visual_emphasis": "Simultaneous comparison of battery-connected vs battery-disconnected with animated charge and voltage changes",
+    "why_this_breaks_misconception": "Students apply the same rule to both cases — seeing both side-by-side with different quantities changing makes the boundary condition distinction unforgettable"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Empty capacitor", "description": "Parallel plate capacitor with vacuum between plates. Field lines shown uniformly between plates. C₀ = ε₀A/d displayed.", "emphasis": "Baseline: uniform field, no dielectric", "labels_visible": ["C₀", "E₀", "V₀"] },
+    { "id": "STATE_2", "label": "Dielectric slides in", "description": "A dielectric slab slides between the plates. Molecular dipoles align, showing polarisation. Bound surface charges appear. Net field reduces to E₀/K.", "emphasis": "Polarisation creates opposing charges → field reduced inside dielectric", "labels_visible": ["K", "E = E₀/K", "polarisation"] },
+    { "id": "STATE_3", "label": "Battery ON vs OFF", "description": "Split comparison: battery connected (V constant, Q increases to KQ₀) vs battery disconnected (Q constant, V drops to V₀/K). Energy bars show opposite trends.", "emphasis": "Same dielectric, different boundary conditions, different outcomes", "labels_visible": ["V = const (ON)", "Q = const (OFF)", "C = KC₀"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts K value and toggles battery connection. All quantities (C, Q, V, U, E) update in real time. Partial insertion slider shows gradual transition.", "emphasis": "Change K and battery state — see which quantities change and which stay fixed", "labels_visible": ["C", "Q", "V", "U", "E"], "interactive": true, "sliders": [{ "id": "dielectric_k", "label": "Dielectric constant K", "min": 1, "max": 10, "default": 3, "unit": "" }, { "id": "insertion", "label": "Insertion depth", "min": 0, "max": 100, "default": 100, "unit": "%" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Inserting a dielectric always increases the stored energy", "trigger_phrases": ["dielectric increases energy", "energy badhta hai", "more capacitance more energy"], "correction": "With battery disconnected, inserting dielectric DECREASES stored energy (U = Q²/2C, C increases so U decreases). With battery connected, energy increases because Q increases.", "simulation_emphasis": "Show energy bar decreasing when dielectric inserted with battery disconnected" },
+    { "belief": "The dielectric creates charge — that's why Q increases", "trigger_phrases": ["dielectric creates charge", "charge kahan se aata hai"], "correction": "The dielectric doesn't create free charge. When battery is connected, additional charge flows FROM the battery because V must stay constant and C increased. The dielectric only polarises.", "simulation_emphasis": "Animate charge flowing from battery terminals when dielectric is inserted with battery connected" }
+  ],
+  "legend": [ { "symbol": "K", "meaning": "Dielectric constant (≥ 1)" }, { "symbol": "C₀", "meaning": "Capacitance without dielectric" }, { "symbol": "E₀", "meaning": "Field without dielectric" } ],
+  "concept_relationships": { "prerequisites": ["capacitor_parallel_series", "electric_potential_uniform_field"], "extensions": ["energy_density_electric_field"], "siblings": ["charged_conductor_properties"], "common_exam_combinations": ["capacitor_parallel_series"] }
+}

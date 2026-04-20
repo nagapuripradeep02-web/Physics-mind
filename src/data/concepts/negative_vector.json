@@ -1,0 +1,304 @@
+{
+  "concept_id": "negative_vector",
+  "concept_name": "Negative of a Vector",
+  "chapter": 5,
+  "section": "5.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.2 (split from vector_basics bundle — locked_fact 'negative_vector' + epic_c branch 'negative_vector_magnitude_confusion')",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A bus drives 3 km north. The next day it drives 3 km south from the same starting point. The two displacements are negatives of each other — same length, opposite direction.",
+    "secondary": "Row a boat with the current for 5 m, then row against the current for the exact same effort — the second effort is the negative of the first.",
+    "tertiary": "Push a door open. Pull it closed with the same strength. Pull is the negative of push — |pull| = |push|, directions opposite."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "A_magnitude": { "name": "|A|", "unit": "(unitless)", "min": 1, "max": 10, "default": 5 },
+      "A_direction_deg": { "name": "direction of A", "unit": "degrees", "min": 0, "max": 360, "default": 0 }
+    },
+    "computed_outputs": {
+      "neg_A_magnitude":     { "formula": "A_magnitude" },
+      "neg_A_direction_deg": { "formula": "(A_direction_deg + 180) % 360" }
+    },
+    "formulas": {
+      "definition":   "−A is the vector with same |A| but direction reversed by 180°",
+      "magnitude":    "|−A| = |A|",
+      "sum_property": "A + (−A) = 0  (zero vector)",
+      "scalar_form":  "−A = (−1) × A"
+    },
+    "constraints": [
+      "|−A| = |A| — magnitude is never negative",
+      "−A is antiparallel to A (angle between them is 180°)",
+      "A + (−A) always equals the zero vector",
+      "(−A) + (−A) = −2A, not A"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Definition — Same Length, Opposite Direction",
+        "duration": 7,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "A_def",
+            "from": { "x": 320, "y": 340 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "neg_A_def",
+            "from": { "x": 320, "y": 340 },
+            "magnitude": 4,
+            "direction_deg": 180,
+            "label": "−A",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 40,
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "def",
+            "text": "−A is the mirror image of A\nacross its own tail.\n\nSame length.\nDirection flipped 180°.",
+            "position": { "x": 520, "y": 210 },
+            "style": "formula_box",
+            "color": "#EF4444"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The negative of a vector A, written minus A, is a simple rule." },
+            { "id": "s2", "text_en": "Keep the length exactly the same. Rotate the arrow one hundred and eighty degrees." },
+            { "id": "s3", "text_en": "If A points east with length four, then minus A points west with length four." },
+            { "id": "s4", "text_en": "Two arrows. Same size. Opposite direction. That is all." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Why 'Negative' — Because A + (−A) = 0",
+        "duration": 8,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "A_add",
+            "from": { "x": 200, "y": 340 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "neg_A_add",
+            "from": { "x": 360, "y": 340 },
+            "magnitude": 4,
+            "direction_deg": 180,
+            "label": "−A  (from A's tip, heading back)",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "annotation",
+            "id": "zero_sum",
+            "text": "Start at the tail of A.\nWalk along A — you reach its tip.\nWalk along −A — you return to start.\n\nNet displacement = 0  (zero vector)\n\nThat is why −A is called 'negative'.",
+            "position": { "x": 520, "y": 180 },
+            "style": "formula_box"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Why is it called negative A and not something else?" },
+            { "id": "s2", "text_en": "Because when you add A and minus A, you get the zero vector." },
+            { "id": "s3", "text_en": "Imagine walking along A — you move east by four units. Now walk along minus A — you move west by four units. You end up back where you started." },
+            { "id": "s4", "text_en": "Net displacement is zero. The minus A exactly cancels A, just as minus five cancels five in ordinary arithmetic." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "The Magnitude Fact You Must Not Miss — |−A| = |A|",
+        "duration": 8,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "mag_fact",
+            "text": "|−A| = |A|\n\nNOT  |−A| = −|A|\nNOT  |−A| = 0\nNOT  |−A| = undefined\n\nThe minus sign flips DIRECTION.\nMagnitude is unchanged.\n\nIf A is a unit vector, so is −A.\nIf |A| = 5, then |−A| = 5.",
+            "position": { "x": 260, "y": 180 },
+            "style": "formula_box",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The single most important fact on this page — the magnitude of minus A equals the magnitude of A." },
+            { "id": "s2", "text_en": "Not the negative of the magnitude. Not zero. Not undefined. Exactly equal to the original magnitude." },
+            { "id": "s3", "text_en": "A mental check — if A is a unit vector, is minus A also a unit vector? Yes. Magnitude one, direction opposite." },
+            { "id": "s4", "text_en": "If the magnitude of A is five, the magnitude of minus A is also five. The negative sign is a direction operator, nothing more." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "negative_vector_magnitude_confusion",
+      "misconception": "The negative of a vector has negative magnitude",
+      "trigger_phrases": [
+        "negative vector has negative magnitude",
+        "minus A magnitude is minus 5",
+        "|−A| = −|A|",
+        "what is magnitude of negative vector"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Show the Belief — A Negative-Length Arrow",
+          "duration": 6,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "A_shown",
+              "from": { "x": 200, "y": 320 },
+              "magnitude": 5,
+              "direction_deg": 0,
+              "label": "A  (|A| = 5)",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_claim",
+              "text": "Student says:\n|−A| = −5\n\n'It has magnitude negative five.'\n\nBut physically — what is\nan arrow of length −5?",
+              "position": { "x": 480, "y": 200 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A student sees minus A and writes its magnitude as negative five." },
+              { "id": "s2", "text_en": "The reasoning — minus in front means negative, so magnitude must be negative too." },
+              { "id": "s3", "text_en": "But stop and ask — what does a length of minus five mean in real life? No road can be five kilometres below the ground of the number line." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Minus Is an Operator, Not a Number",
+          "duration": 7,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "A_op",
+              "from": { "x": 280, "y": 340 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A  (east, 5 units)",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "force_arrow",
+              "id": "neg_A_op",
+              "from": { "x": 280, "y": 340 },
+              "magnitude": 4,
+              "direction_deg": 180,
+              "label": "−A  (WEST, still 5 units)",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "annotation",
+              "id": "operator",
+              "text": "Minus in front of a VECTOR\nis an OPERATOR that flips direction.\n\nIt is NOT a negative number\nmultiplied into the magnitude.\n\n|−A| = |A| = 5\n\nDirection changes.\nLength does not.",
+              "position": { "x": 500, "y": 180 },
+              "style": "formula_box"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The trick is what the minus sign is doing here." },
+              { "id": "s2", "text_en": "On a vector, minus is an operator. It takes the arrow and flips it one hundred and eighty degrees." },
+              { "id": "s3", "text_en": "It does not change the length. The length stays five." },
+              { "id": "s4", "text_en": "So the magnitude of minus A is five. Same as A." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Magnitude Is Always Non-Negative — No Exceptions",
+          "duration": 7,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "rule",
+              "text": "For every vector V:\n   |V| ≥ 0\n\nThe only vector with |V| = 0 is the zero vector.\nEvery non-zero vector has POSITIVE magnitude.\n\nThis rule holds even when the vector is expressed\nas a negative, a scalar multiple, or a sum.\n\n|−A| = |A|\n|mA| = |m| |A|\n|A − B| can be anything from 0 to |A| + |B|, but never negative.",
+              "position": { "x": 240, "y": 170 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "One rule to carry into every problem — magnitude is always greater than or equal to zero." },
+              { "id": "s2", "text_en": "The only vector with zero magnitude is the zero vector. Every other vector has a strictly positive magnitude." },
+              { "id": "s3", "text_en": "This rule holds when the vector is written as a negative, when it is multiplied by a scalar, or when it is a sum or difference of other vectors." },
+              { "id": "s4", "text_en": "If a calculation ever gives you a negative magnitude, go back — you made an algebra mistake somewhere." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_4": {
+          "title": "Three Quick Checks",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "practice",
+              "text": "Check 1  |−3A| = ?\n         = |−3| × |A| = 3|A|\n\nCheck 2  If A = 4î − 3ĵ, find |−A|.\n         |A| = √(16 + 9) = 5\n         |−A| = 5\n\nCheck 3  Is −A a unit vector if A is?\n         Yes.  |−A| = |A| = 1.\n\nPattern — negative never touches magnitude.",
+              "position": { "x": 220, "y": 170 },
+              "style": "formula_box"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Three quick checks to lock this in." },
+              { "id": "s2", "text_en": "One — magnitude of minus three A. Absolute value of minus three is three. Answer is three times magnitude of A." },
+              { "id": "s3", "text_en": "Two — if A equals four i-hat minus three j-hat, find magnitude of minus A. Magnitude of A is five. Magnitude of minus A is also five." },
+              { "id": "s4", "text_en": "Three — is minus A a unit vector if A is? Yes. The minus sign flips direction but keeps magnitude one." },
+              { "id": "s5", "text_en": "Pattern across all three — the negative sign never affects magnitude. Only direction." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different magnitudes and directions",
+      "physical_world": "A = 10 m south, find −A. Or A = 8î + 6ĵ, find −A and |−A|.",
+      "same_physics": "|−A| = |A|; direction flips 180°"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Force instead of displacement",
+      "physical_world": "Push a box east with 20 N. Pull it west with 20 N. The two forces are negatives of each other; their sum is zero.",
+      "same_physics": "A + (−A) = 0; magnitudes equal, directions opposite"
+    }
+  ]
+}

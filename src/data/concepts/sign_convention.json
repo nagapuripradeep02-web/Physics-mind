@@ -1,0 +1,284 @@
+{
+  "concept_id": "sign_convention",
+  "concept_name": "Sign Convention in 1D Kinematics — Choosing and Sticking to +x",
+  "chapter": 6,
+  "section": "6.4",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 6.4 — Signs of Kinematic Quantities; split from distance_vs_displacement bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A Delhi Metro Yellow Line train. The operator chooses ONE direction — say, Samaypur Badli to HUDA City Centre — as 'positive'. A train moving that way has positive velocity. A train moving the opposite way (the return trip) has negative velocity. The speed is the same thirty-five km/h in both cases; the SIGN picks which way. Change the choice of positive direction, and the sign flips — but the physics is unchanged.",
+    "secondary": "A ball thrown straight up from your terrace. Choose up as positive. On the way up the velocity is positive, decreasing. At the peak it is exactly zero. On the way down the velocity is negative, growing more negative in magnitude. The acceleration, g, is negative throughout because gravity points down, opposite to our chosen +y.",
+    "tertiary": "A rowing boat on the Hooghly. If downstream is positive, rowing downstream gives positive velocity, and rowing upstream gives negative velocity. Same oar effort, same river — only the sign differs. The number tells you speed; the sign tells you direction."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v0": { "name": "Initial velocity (signed)", "unit": "m/s", "min": -20, "max": 20, "default": 10 },
+      "a": { "name": "Acceleration (signed)", "unit": "m/s^2", "min": -10, "max": 10, "default": -2 },
+      "t": { "name": "Time", "unit": "s", "min": 0, "max": 20, "default": 3 }
+    },
+    "computed_outputs": {
+      "v_t": { "formula": "v0 + a * t" },
+      "s_t": { "formula": "v0 * t + 0.5 * a * t * t" },
+      "moving_direction": { "formula": "v0 + a * t" }
+    },
+    "formulas": {
+      "velocity_sign": "sign(v)  =  + if object moves in +x direction\n                  -  if object moves in -x direction\n                  0  if momentarily at rest",
+      "acceleration_sign": "sign(a)  =  + if dv points in +x direction\n                  -  if dv points in -x direction\nNote: NOT determined by whether object is speeding up or slowing down"
+    },
+    "constraints": [
+      "Sign convention must be chosen ONCE per problem and held throughout",
+      "Velocity and acceleration can have the SAME sign (speeding up) or OPPOSITE signs (slowing down)",
+      "Distance and speed are scalars — they stay positive regardless of sign convention",
+      "Displacement and velocity are vectors — their signs depend on the chosen +x direction"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Choose a Direction as Positive — Then Commit to It",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "metro_line",
+            "text": "Delhi Metro Yellow Line\n\n Samaypur Badli  <----->  HUDA City Centre\n (our +x)                         (other end)\n\n Train going toward HUDA (east)  -> +velocity\n Train going toward Samaypur    -> -velocity\n\n Same train. Same tracks. Same speeds.\n The sign picks direction.",
+            "position": { "x": 380, "y": 280 },
+            "style": "formula_box"
+          },
+          {
+            "type": "annotation",
+            "id": "commitment",
+            "text": "The rule is simple\n\n(1) Pick a direction. Call it +x.\n(2) Everything pointing that way\n    gets a + sign.\n(3) Everything pointing the opposite\n    way gets a - sign.\n(4) DO NOT change the choice halfway.\n\nWhich direction to pick?\nEither is fine. Pick whichever\nmakes the starting motion positive.",
+            "position": { "x": 640, "y": 400 },
+            "style": "callout",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "For one-dimensional motion, physics works with ONE axis — let us call it the x-axis. Every vector quantity along this axis collapses into a signed number." },
+            { "id": "s2", "text_en": "To use signed numbers, you first choose a direction as positive. This is the sign convention." },
+            { "id": "s3", "text_en": "Think of a Delhi Metro Yellow Line train. Pick one end as positive — say, HUDA City Centre. A train heading that way has positive velocity. A train heading the other way has negative velocity." },
+            { "id": "s4", "text_en": "The rule: pick a direction, commit to it, and never switch. Swapping the convention halfway through a problem changes every sign and guarantees errors." },
+            { "id": "s5", "text_en": "Which direction to pick? Either works. A common choice is to make the initial motion positive, so the starting velocity is positive. But upward-positive or rightward-positive also work." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "A Ball Thrown Upward — Signs of v and a Over the Flight",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "up_convention",
+            "text": "Sign convention: UP is +",
+            "position": { "x": 300, "y": 180 },
+            "style": "callout"
+          },
+          {
+            "type": "force_arrow",
+            "id": "v_up",
+            "from": { "x": 220, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": 90,
+            "label": "at throw: v = +20 m/s",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.8 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "v_peak",
+            "from": { "x": 320, "y": 240 },
+            "magnitude": 0.1,
+            "direction_deg": 90,
+            "label": "at peak: v = 0",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 0.8 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "v_down",
+            "from": { "x": 420, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": -90,
+            "label": "coming down: v = -15 m/s",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 3.5, "duration_sec": 0.8 }
+          },
+          {
+            "type": "annotation",
+            "id": "analysis",
+            "text": "Throughout the flight\n  a = -g = -9.8 m/s^2\n\n(negative because gravity is\nalways downward, opposite to our\nchosen +y.)\n\nPhase 1 (going up)\n  v positive, decreasing\n  a negative\n  Same sign analysis\n    -> v and a have opposite signs\n    -> object is SLOWING DOWN\n\nPhase 2 (coming down)\n  v negative, more negative\n  a negative\n  -> v and a have the SAME sign\n    -> object is SPEEDING UP\n\nAt the peak\n  v = 0, but a is still -g, not zero.",
+            "position": { "x": 620, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Throw a ball straight up. Choose UP as positive and watch the signs." },
+            { "id": "s2", "text_en": "At the moment of release, v is plus twenty metres per second. Positive, because the ball moves upward." },
+            { "id": "s3", "text_en": "Acceleration is minus nine point eight — gravity pulls downward, opposite to our chosen plus-y. The negative sign is baked in and does NOT change throughout the flight." },
+            { "id": "s4", "text_en": "On the way up, v is positive and decreasing. Since v and a have OPPOSITE signs, the object is slowing down — which matches reality: the ball decelerates as it climbs." },
+            { "id": "s5", "text_en": "At the peak, v is exactly zero for one instant. But acceleration is NOT zero — it is still minus g. Many students get this wrong. Gravity is always acting, even at the turning point." },
+            { "id": "s6", "text_en": "On the way down, v is negative — the ball moves downward. Acceleration is still negative. Now v and a have the SAME sign, so the object is speeding up — again matches reality: the ball accelerates as it falls." },
+            { "id": "s7", "text_en": "Same sign on v and a means speeding up. Opposite signs mean slowing down. That is the single rule you need to check whether an object is accelerating or decelerating from signs alone." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "The Decision Matrix — Same Sign vs Opposite Sign",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "matrix",
+            "text": "SIGN DECISION MATRIX\n\n  v positive, a positive  ->  moving in +x, speeding up\n  v positive, a negative  ->  moving in +x, slowing down\n  v negative, a positive  ->  moving in -x, slowing down\n  v negative, a negative  ->  moving in -x, speeding up\n\nRule of thumb\n  v * a > 0  ->  speeding up\n  v * a < 0  ->  slowing down\n  v * a = 0  ->  momentarily at rest, or no acceleration",
+            "position": { "x": 360, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "exam_trap",
+            "text": "Classic JEE trap\n\n'Negative acceleration means\n slowing down.'\n\nFALSE.\nNegative acceleration means\nvelocity is changing in the -x direction.\nIf v is already negative, that means\nSPEEDING up (in -x direction).\n\nAlways compare sign of v with sign of a.",
+            "position": { "x": 720, "y": 300 },
+            "style": "callout",
+            "color": "#EF4444",
+            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is the single decision matrix that governs signs in one-dimensional kinematics." },
+            { "id": "s2", "text_en": "v and a have the same sign — the object is speeding up. v and a have opposite signs — the object is slowing down. v times a is positive means accelerating; v times a is negative means decelerating." },
+            { "id": "s3", "text_en": "Classic JEE trap. 'Negative acceleration means the object is slowing down.' False." },
+            { "id": "s4", "text_en": "Negative acceleration just means the change in velocity points in the minus-x direction. If the object is already moving in minus-x with a negative velocity, a negative acceleration is speeding it up, not slowing it down." },
+            { "id": "s5", "text_en": "Whenever you see a sign question, always compare the sign of v with the sign of a. That comparison — not the sign of a alone — tells you whether the object is accelerating or decelerating." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "negative_accel_always_slowing",
+      "misconception": "Negative acceleration always means the object is slowing down",
+      "trigger_phrases": [
+        "negative acceleration slow down",
+        "minus a deceleration",
+        "a < 0 means slowing",
+        "does negative accel always decelerate"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Minus a = Slowing Down",
+          "duration": 7,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "belief",
+              "text": "Your reasoning\n\n'Negative' usually means 'decrease'.\nSo negative acceleration should\nalways mean velocity is decreasing.\n\nIf v = 5 m/s and a = -2 m/s^2,\nv drops to 3 then 1 — yes, slowing.\n\nBut what if v starts as -5 m/s,\nand a is also -2 m/s^2?\nWe will see.",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "It is natural to assume negative acceleration always means slowing down — the word 'negative' carries that meaning in everyday speech." },
+              { "id": "s2", "text_en": "And for positive velocity, negative acceleration does slow the object down. If v is plus five and a is minus two, v drops to three, then one, then zero." },
+              { "id": "s3", "text_en": "But if v is already negative, the same negative a does the opposite. Let me show." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Negative v, Negative a — Speeding Up in the Negative Direction",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "example",
+              "text": "Let v = -5 m/s, a = -2 m/s^2\nBoth negative.\n\nApply v(t) = v0 + a*t\n  t=0   v = -5   (5 m/s in -x)\n  t=1   v = -7   (7 m/s in -x)\n  t=2   v = -9   (9 m/s in -x)\n  t=3   v = -11  (11 m/s in -x)\n\nSPEED is 5, 7, 9, 11 m/s\n-> INCREASING.\n\nThe object is SPEEDING UP\nin the negative direction.\nNegative acceleration is REINFORCING\nthe negative motion, not slowing it.",
+              "position": { "x": 380, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Start with v equals minus five metres per second and a equals minus two. Both negative." },
+              { "id": "s2", "text_en": "After one second, v equals minus five plus the change, minus two, giving minus seven. After two seconds, minus nine. After three, minus eleven." },
+              { "id": "s3", "text_en": "Look at the speeds — five, seven, nine, eleven metres per second. The speed is INCREASING. The object is speeding up — just in the negative direction." },
+              { "id": "s4", "text_en": "Negative acceleration pushed the velocity further in the negative direction. It reinforced the motion, instead of opposing it." },
+              { "id": "s5", "text_en": "So the rule is — negative acceleration slows things down only when velocity is positive. When velocity is already negative, negative acceleration speeds it up." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "The Sign-Of-v-Times-a Rule — Safe to Use Always",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "safe_rule",
+              "text": "Replace the wrong rule\n  'a < 0  ->  slowing down'\n\nwith the correct rule\n  sign(v) == sign(a)  ->  speeding up\n  sign(v) != sign(a)  ->  slowing down\n  (or equivalently, v*a > 0 or < 0)\n\nThe product v*a tells you\nwhether speed is growing\nor shrinking — regardless\nof which direction the\nmotion is in.",
+              "position": { "x": 360, "y": 260 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "quick_check",
+              "text": "Quick check\n\nv = +4, a = +3 -> product 12 > 0 -> speeding up\nv = +4, a = -3 -> product -12 < 0 -> slowing\nv = -4, a = +3 -> product -12 < 0 -> slowing\nv = -4, a = -3 -> product 12 > 0 -> speeding up",
+              "position": { "x": 720, "y": 310 },
+              "style": "callout",
+              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Replace the wrong rule with the right one. Look at the product v times a — the product, not the individual sign of a." },
+              { "id": "s2", "text_en": "If v times a is positive, the signs match, and the object is speeding up. If v times a is negative, the signs differ, and the object is slowing down." },
+              { "id": "s3", "text_en": "Four quick examples. Plus four and plus three — product twelve, speeding up. Plus four and minus three — product minus twelve, slowing. Minus four and plus three — product minus twelve, slowing. Minus four and minus three — product twelve, speeding up." },
+              { "id": "s4", "text_en": "Memorise this rule. It works in every one-dimensional kinematics problem and eliminates the 'negative acceleration' confusion completely." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different direction convention",
+      "physical_world": "Flip the sign convention — choose DOWN as positive. Now a ball thrown up has initial v = -20 (negative), a = +9.8 (positive). All answers flip sign but the physics is unchanged.",
+      "same_physics": "Sign convention is a choice; physics is invariant under the choice"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Train example on Delhi Metro",
+      "physical_world": "Train moving at -30 km/h (going from HUDA to Samaypur Badli, opposite to our +x). Brakes applied, a = +2 m/s^2. Since v < 0 and a > 0, v*a < 0 -> slowing down. Correct reading.",
+      "same_physics": "Product-of-signs rule decides speed change, regardless of direction of motion"
+    }
+  ]
+}

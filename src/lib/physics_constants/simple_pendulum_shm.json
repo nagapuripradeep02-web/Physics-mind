@@ -1,0 +1,105 @@
+{
+  "concept_id": "simple_pendulum_shm",
+  "concept_name": "Simple Pendulum",
+  "class_level": 11,
+  "chapter": "Oscillations",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "pendulum",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "L": "Length of the pendulum string from pivot to centre of bob (m)",
+    "g": "Acceleration due to gravity (9.8 m/s²)",
+    "m": "Mass of the pendulum bob (kg)",
+    "θ": "Angular displacement from the vertical (rad or deg)",
+    "θ₀": "Maximum angular displacement — amplitude (rad or deg)",
+    "T": "Time period of oscillation (s)"
+  },
+  "locked_facts": [
+    "Time period T = 2π√(L/g) — depends ONLY on length and gravitational acceleration",
+    "For small angles (θ < 15°), sin θ ≈ θ (in radians), making the motion simple harmonic",
+    "Restoring torque τ = −mgL sin θ ≈ −mgLθ for small angles, giving angular SHM with ω² = g/L",
+    "Period is INDEPENDENT of mass of the bob — mass cancels in the equation of motion",
+    "Period is INDEPENDENT of amplitude for small oscillations (isochronous property)",
+    "A seconds pendulum has T = 2 s and length L = g/π² ≈ 1 m on Earth's surface"
+  ],
+  "truth_statements": [
+    "The simple pendulum executes simple harmonic motion only for small angular displacements where sin θ can be approximated as θ",
+    "The time period depends on the length of the string and the value of g at that location, not on the mass or amplitude",
+    "At the lowest point of the swing, the bob has maximum kinetic energy and minimum potential energy",
+    "The effective length of a pendulum is measured from the point of suspension to the centre of mass of the bob",
+    "Measuring the time period of a simple pendulum provides an accurate method to determine the local value of g"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three pendulums side by side — same length but very different bob masses (50g, 200g, 500g). All three released simultaneously from the same angle, swinging in perfect synchrony. Period counters all show the same value.",
+    "visual_emphasis": "Three visually distinct bobs (small, medium, large) swinging together in lock-step — the period readout above each is identical",
+    "why_this_breaks_misconception": "Students directly see that mass has zero effect on the time period — the heavy bob does not swing faster or slower than the light one"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A single pendulum at rest, displaced to angle θ₀ from the vertical. The string length L is labelled, the bob mass m is shown, the vertical equilibrium line is drawn, and the angle θ₀ is marked with an arc.",
+      "emphasis": "Clearly identify the length L, mass m, gravitational acceleration g, and the initial displacement angle θ₀",
+      "labels_visible": ["L", "m", "g↓", "θ₀"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "The pendulum swings back and forth. The restoring component mg sin θ is shown as a tangential arrow. A θ-t sinusoidal graph traces on the side. The period T is measured after one complete oscillation.",
+      "emphasis": "The restoring force component is always directed toward the equilibrium (lowest point). The θ-t graph is sinusoidal for small angles.",
+      "labels_visible": ["mg sin θ", "θ(t) graph", "T", "v"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Three pendulums appear — all same length L but with bob masses 50g, 200g, and 500g. All released from the same angle simultaneously. They swing in perfect synchrony. Period labels above each show identical T values.",
+      "emphasis": "All three periods are identical regardless of mass. T = 2π√(L/g) contains no mass term. Mass cancels out in Newton's second law for the pendulum.",
+      "labels_visible": ["T₁ = T₂ = T₃", "m₁ = 50g", "m₂ = 200g", "m₃ = 500g", "L (same)"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust string length L, bob mass m, and initial angle θ₀. Period T updates in real time. Changing mass has zero effect on T. Changing L changes T. For large angles (>30°), the motion visibly deviates from SHM and period increases.",
+      "emphasis": "Mass slider does not change T. Length slider changes T proportionally to √L. At large angles, the small-angle approximation breaks and motion is no longer perfectly sinusoidal.",
+      "labels_visible": ["T", "L", "m", "θ₀", "T = 2π√(L/g)"],
+      "interactive": true,
+      "sliders": [
+        { "id": "length", "label": "String Length L", "min": 0.2, "max": 2.5, "default": 1, "unit": "m" },
+        { "id": "bob_mass", "label": "Bob Mass m", "min": 0.05, "max": 1, "default": 0.2, "unit": "kg" },
+        { "id": "initial_angle", "label": "Initial Angle θ₀", "min": 2, "max": 60, "default": 10, "unit": "deg" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "A heavier bob swings faster because gravity pulls it more strongly",
+      "trigger_phrases": ["heavy bob jaldi swing karega", "heavier pendulum faster", "bhari bob ka time period kam hoga", "zyada mass zyada force toh zyada speed", "mass badhao toh jaldi aayega"],
+      "correction": "NCERT Ch. 13 derives T = 2π√(L/g) from the equation of motion. The mass m appears in both the restoring force (mg sin θ) and the inertia (ma), so it cancels. Heavier bobs have more force but also more inertia — the effects exactly cancel.",
+      "simulation_emphasis": "Three pendulums of different masses but same length swinging in perfect synchrony with identical period readouts"
+    },
+    {
+      "belief": "The pendulum formula T = 2π√(L/g) works for any angle of swing",
+      "trigger_phrases": ["har angle pe formula kaam karega", "90 degree pe bhi same formula", "any angle pe T = 2pi root L by g"],
+      "correction": "NCERT explicitly states the formula is valid only for small oscillations where sin θ ≈ θ (typically θ < 15°). For large angles, the actual period is longer than what the formula predicts, and the motion is not strictly simple harmonic.",
+      "simulation_emphasis": "Compare a small-angle pendulum (10°) with a large-angle one (50°) — the large-angle pendulum takes noticeably longer per swing, deviating from the T = 2π√(L/g) prediction"
+    }
+  ],
+  "legend": [
+    { "symbol": "L", "meaning": "Length of pendulum string (pivot to centre of bob)" },
+    { "symbol": "T", "meaning": "Time period = 2π√(L/g) for small angles" },
+    { "symbol": "θ", "meaning": "Angular displacement from the vertical" },
+    { "symbol": "→ (tangential)", "meaning": "Restoring force component mg sin θ" },
+    { "symbol": "g↓", "meaning": "Acceleration due to gravity (downward)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["simple_harmonic_motion", "newtons_laws", "energy_conservation"],
+    "extensions": ["physical_pendulum", "damped_oscillations", "forced_oscillations_resonance"],
+    "siblings": ["spring_mass_system"],
+    "common_exam_combinations": ["pendulum_in_elevator", "pendulum_on_moon", "seconds_pendulum", "effective_g_problems"]
+  }
+}

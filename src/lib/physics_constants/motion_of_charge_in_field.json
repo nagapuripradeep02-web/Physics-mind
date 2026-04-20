@@ -1,0 +1,43 @@
+{
+  "concept_id": "motion_of_charge_in_field",
+  "concept_name": "Motion of Charge in Electric Field",
+  "class_level": 12,
+  "chapter": "Electric Charges and Fields",
+  "renderer_hint": { "technology": "p5js", "renderer": "mechanics_2d", "scenario_type": "charge_in_field", "panel_count": 2, "show_labels": true },
+  "variables": { "q": "Charge (C)", "m": "Mass (kg)", "E": "Electric field (N/C)", "a": "Acceleration = qE/m (m/s²)" },
+  "locked_facts": [
+    "Force on charge in electric field: F = qE",
+    "Acceleration: a = qE/m (constant in uniform field)",
+    "Positive charge accelerates in direction of E, negative charge opposite to E",
+    "Charge entering perpendicular to uniform field follows a parabolic path (like projectile motion)",
+    "Horizontal velocity remains constant (no force component along it)",
+    "Vertical displacement: y = ½at² = qEL²/(2mv²) where L is length of field region",
+    "After leaving the field, the charge moves in a straight line (no force)",
+    "Analogous to projectile motion with g replaced by qE/m"
+  ],
+  "truth_statements": [
+    "A charged particle in a uniform electric field experiences a constant force and hence a constant acceleration",
+    "The path of a charge entering perpendicular to a uniform electric field is parabolic, exactly like projectile motion under gravity",
+    "The deflection of a charged particle is proportional to the field strength and inversely proportional to the kinetic energy",
+    "An electron and a proton in the same field experience the same force magnitude but very different accelerations due to their mass difference",
+    "This principle is used in CRT displays and ink-jet printers to deflect charged particles"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "An electron and a proton entering the same uniform field side by side — both experience the same force F = eE but the electron curves sharply (small mass, huge acceleration) while the proton barely deflects (large mass, small acceleration). The parabolic paths are clearly different.",
+    "visual_emphasis": "Two parabolic trajectories overlaid — electron's tight curve vs proton's gentle curve — with acceleration values displayed",
+    "why_this_breaks_misconception": "Students assume same charge means same deflection — the mass ratio makes the trajectories dramatically different"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Charge in uniform field", "description": "A uniform electric field E between parallel plates. A positive charge is placed at rest. Force arrow F = qE shown. The charge accelerates along E.", "emphasis": "F = qE gives constant acceleration in uniform field", "labels_visible": ["F = qE", "a = qE/m", "E"] },
+    { "id": "STATE_2", "label": "Parabolic path", "description": "Charge enters perpendicular to the field with horizontal velocity v. It traces a parabolic path — horizontal motion uniform, vertical motion accelerated. Compared to projectile motion.", "emphasis": "Horizontal: constant velocity. Vertical: constant acceleration. Result: parabola.", "labels_visible": ["v_x = const", "a_y = qE/m", "parabola"] },
+    { "id": "STATE_3", "label": "Electron vs proton", "description": "Both an electron and proton enter the field. Same |F| but electron has 1836× more acceleration. Electron curves sharply, proton barely deflects. Acceleration values displayed.", "emphasis": "Same force, vastly different masses → vastly different trajectories", "labels_visible": ["a_e = eE/m_e", "a_p = eE/m_p", "m_p/m_e ≈ 1836"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts field strength, entry velocity, and particle type. Trajectory updates in real time. Deflection angle and exit velocity calculated. Graph shows y vs x (parabola).", "emphasis": "Increase E → more deflection. Increase v → less deflection. Try different particles.", "labels_visible": ["y", "v", "E", "θ_exit"], "interactive": true, "sliders": [{ "id": "field_strength", "label": "Electric field E", "min": 100, "max": 10000, "default": 5000, "unit": "N/C" }, { "id": "entry_velocity", "label": "Entry velocity v", "min": 1, "max": 20, "default": 10, "unit": "×10⁶ m/s" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "The charge follows the electric field lines", "trigger_phrases": ["charge follows field lines", "path along field lines"], "correction": "The charge follows field lines only if it starts from rest. If it enters with a velocity perpendicular to E, the path is parabolic — not along field lines. The field gives the direction of acceleration, not velocity.", "simulation_emphasis": "Show charge entering perpendicular to E — path clearly different from field line direction" },
+    { "belief": "Heavier particles deflect more because they have more charge", "trigger_phrases": ["proton deflects more", "heavier more deflection"], "correction": "For particles with the same charge (like electron and proton), the lighter particle deflects MORE because a = F/m. The electron, being ~1836 times lighter, has ~1836 times more acceleration.", "simulation_emphasis": "Side-by-side electron and proton trajectories showing dramatically different curvature" }
+  ],
+  "legend": [ { "symbol": "F", "meaning": "Force = qE (N)" }, { "symbol": "a", "meaning": "Acceleration = qE/m (m/s²)" }, { "symbol": "y", "meaning": "Vertical deflection (m)" } ],
+  "concept_relationships": { "prerequisites": ["coulombs_law", "electric_field_lines", "projectile_motion"], "extensions": ["cyclotron", "velocity_selector"], "siblings": ["motion_of_charge_in_magnetic_field"], "common_exam_combinations": ["electric_potential_uniform_field"] }
+}

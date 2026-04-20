@@ -1,0 +1,77 @@
+{
+  "concept_id": "refraction_snells_law",
+  "concept_name": "Refraction and Snell's Law",
+  "chapter": "Light Reflection Refraction",
+  "class_level": 10,
+  "renderer_hint": {
+    "primary": "optics_ray",
+    "scenario_type": "refraction_flat",
+    "show_graph": false
+  },
+  "variables": {
+    "theta_i": { "symbol": "\u03B8\u1D62", "name": "Angle of Incidence", "unit": "deg", "min": 0, "max": 85, "default": 30 },
+    "n1": { "symbol": "n\u2081", "name": "Refractive Index (Medium 1)", "unit": "", "min": 1.0, "max": 2.5, "default": 1.0 },
+    "n2": { "symbol": "n\u2082", "name": "Refractive Index (Medium 2)", "unit": "", "min": 1.0, "max": 2.5, "default": 1.5 }
+  },
+  "locked_facts": [
+    "Snell's Law: n\u2081\u00B7sin(\u03B8\u2081) = n\u2082\u00B7sin(\u03B8\u2082)",
+    "All angles measured from NORMAL, never from surface",
+    "Ray bends TOWARD normal entering denser medium",
+    "Ray bends AWAY from normal entering rarer medium",
+    "Speed of light in medium: v = c/n",
+    "Refractive index n = c/v = sin(\u03B8\u1D62)/sin(\u03B8\u1D63)"
+  ],
+  "truth_statements": [
+    "When a ray of light passes from one medium to another, it changes direction at the interface",
+    "The ratio of sine of angle of incidence to sine of angle of refraction is constant for a given pair of media",
+    "A ray going from rarer to denser medium bends toward the normal",
+    "The refractive index of a medium equals the ratio of speed of light in vacuum to speed in the medium",
+    "Angles of incidence and refraction are always measured from the normal"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show incident ray going from air (n=1) to glass (n=1.5). The ray bends TOWARD the normal. Now reverse: glass to air — the ray bends AWAY from the normal. The direction of bending is entirely determined by which medium is denser. n\u2081 sin\u03B8\u2081 = n\u2082 sin\u03B8\u2082 predicts the exact angle every time.",
+    "visual_emphasis": "Draw the normal prominently. Show angle arcs with degree values. Highlight that angles are from the normal, NOT from the surface."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Incident ray hits the interface",
+      "what_student_sees": "Two media with different shading. Incident ray approaching the flat interface. Normal drawn as dotted line.",
+      "what_to_emphasize": "The normal is perpendicular to the surface at the point of incidence. All angles are measured from this normal."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Rarer to denser — bends toward normal",
+      "what_student_sees": "Refracted ray shown bending toward the normal. Angle arcs displayed. \u03B8\u2082 < \u03B8\u2081.",
+      "what_to_emphasize": "Going from rarer (air) to denser (glass): the ray slows down and bends toward the normal. sin\u03B8\u2082 < sin\u03B8\u2081."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Snell's Law verified — n\u2081 sin\u03B8\u2081 = n\u2082 sin\u03B8\u2082",
+      "what_student_sees": "Both angles displayed with their sine values. n\u2081 sin\u03B8\u2081 and n\u2082 sin\u03B8\u2082 shown to be equal.",
+      "what_to_emphasize": "The product n\u00B7sin\u03B8 stays constant across the interface. This is Snell's Law."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive — change the angle",
+      "what_student_sees": "Slider to change angle of incidence. Refracted ray angle updates in real time via Snell's law.",
+      "what_to_emphasize": "As you increase the angle of incidence, the refracted angle increases too — but always less (for denser medium)."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "bends_wrong_direction",
+      "trigger_keywords": ["denser mein away from normal", "glass mein jaane pe normal se door", "bends away entering water", "denser medium away"],
+      "student_belief": "A ray bends away from the normal when entering a denser medium",
+      "actual_physics": "A ray bends TOWARD the normal when entering a denser medium (higher n). It bends AWAY from the normal when entering a rarer medium (lower n). The ray slows down in a denser medium and the component along the interface is preserved by Snell's law.",
+      "simulation_emphasis": "Show a clear animation: ray going from air to glass bends TOWARD normal, ray going from glass to air bends AWAY from normal. Mark the normal prominently so the direction is unambiguous."
+    }
+  ],
+  "legend": [
+    { "symbol": "\u03B8\u2081", "meaning": "Angle of incidence (from normal)" },
+    { "symbol": "\u03B8\u2082", "meaning": "Angle of refraction (from normal)" },
+    { "symbol": "n", "meaning": "Refractive index = c/v" },
+    { "symbol": "N", "meaning": "Normal — perpendicular to surface" }
+  ]
+}

@@ -1,0 +1,1270 @@
+{
+  "concept_id": "vector_resolution",
+  "concept_name": "Resolving Vectors into Components",
+  "chapter": 7,
+  "section": "7.3",
+  "source_book": "NCERT Class 11",
+  "class_level": 11,
+  "schema_version": "2.0.0",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "physics_engine_config": {
+    "variables": {
+      "F": {
+        "name": "vector magnitude",
+        "unit": "N",
+        "min": 1,
+        "max": 20,
+        "default": 10
+      },
+      "alpha": {
+        "name": "angle from x-axis",
+        "unit": "degrees",
+        "min": 0,
+        "max": 90,
+        "default": 50,
+        "role": "slider"
+      }
+    },
+    "computed_outputs": {
+      "Fx": {
+        "formula": "F * cos(alpha)"
+      },
+      "Fy": {
+        "formula": "F * sin(alpha)"
+      }
+    }
+  },
+  "real_world_anchor": {
+    "primary": "Dragging a heavy suitcase up a ramp at Mumbai Central station — rope pulls at an angle, but only the horizontal part actually moves it forward.",
+    "secondary": "A kite string in the wind — the tension in the string has a horizontal pull and a vertical lift, and both matter.",
+    "tertiary": "A farmer's bullock ploughing a field — the yoke applies force at an angle; only the horizontal component does useful work."
+  },
+  "locked_facts": [
+    "A vector at angle alpha from the x-axis has component F*cos(alpha) along x and F*sin(alpha) along y.",
+    "Components are always perpendicular to each other.",
+    "The magnitude of the vector equals the square root of (Fx^2 + Fy^2) — Pythagoras.",
+    "Cosine pairs with the axis you measured the angle FROM.",
+    "Choosing axes aligned with motion simplifies the equations — never a wrong choice, just a smart one."
+  ],
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "Why Split a Vector? The Trolley Question",
+        "duration": 10,
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "F_arrow",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "ground",
+            "orientation": "horizontal",
+            "position": {
+              "x": 120,
+              "y": 380
+            },
+            "length": 420,
+            "texture": "rough"
+          },
+          {
+            "type": "body",
+            "id": "origin_point",
+            "shape": "circle",
+            "size": 10,
+            "position": {
+              "x": 250,
+              "y": 372
+            },
+            "fill_color": "#1F2937",
+            "border_color": "#F59E0B",
+            "border_width": 2
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_arrow",
+            "force_id": "main_vector",
+            "origin_body_id": "origin_point",
+            "origin_anchor": "body_center",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "annotation",
+            "id": "question_hook",
+            "text": "You pull with 10 N at 50°.\nThe trolley only moves along the ground.\nHow much of your pull actually moves it forward?",
+            "position": {
+              "x": 475,
+              "y": 150
+            },
+            "style": "callout",
+            "color": "#3B82F6"
+          },
+          {
+            "type": "label",
+            "id": "origin_label",
+            "text": "O",
+            "position": {
+              "x": 235,
+              "y": 390
+            },
+            "color": "#F59E0B",
+            "font_size": 14
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Here is a question that trips up almost every physics student."
+            },
+            {
+              "id": "s2",
+              "text_en": "You pull a trolley with a rope at an angle — say fifty degrees above the ground."
+            },
+            {
+              "id": "s3",
+              "text_en": "You are applying ten Newtons of force. But the trolley only moves forward, along the ground."
+            },
+            {
+              "id": "s4",
+              "text_en": "So how much of your ten Newton pull actually moves it? Ten? Half? Something else?"
+            },
+            {
+              "id": "s5",
+              "text_en": "The answer lies in a powerful idea called resolving a vector. Let us see it."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The Shadow Trick — Perpendicular Projection",
+        "duration": 12,
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "F_components",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "ground",
+            "orientation": "horizontal",
+            "position": {
+              "x": 120,
+              "y": 380
+            },
+            "length": 420,
+            "texture": "rough"
+          },
+          {
+            "type": "body",
+            "id": "origin_point",
+            "shape": "circle",
+            "size": 10,
+            "position": {
+              "x": 250,
+              "y": 372
+            },
+            "fill_color": "#1F2937",
+            "border_color": "#F59E0B",
+            "border_width": 2
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_arrow",
+            "force_id": "main_vector",
+            "origin_body_id": "origin_point",
+            "origin_anchor": "body_center",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "force_components",
+            "id": "F_components",
+            "force_id": "main_vector",
+            "decompose_axis": "world_xy",
+            "origin_body_id": "origin_point",
+            "origin_anchor": "body_center",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 8,
+            "animate_in_ms": 1200,
+            "label_x": "Fx = {horiz} N",
+            "label_y": "Fy = {vert} N"
+          },
+          {
+            "type": "annotation",
+            "id": "projection_rule",
+            "text": "From the arrow's tip,\ndrop a perpendicular to each axis.\nWhere the shadow lands\n— that is the component.",
+            "position": {
+              "x": 475,
+              "y": 110
+            },
+            "style": "callout",
+            "color": "#F59E0B"
+          },
+          {
+            "type": "annotation",
+            "id": "diagonal_hint",
+            "text": "The original arrow is just\nthe diagonal of the rectangle\nmade by its two components.",
+            "position": {
+              "x": 475,
+              "y": 280
+            },
+            "style": "callout",
+            "color": "#3B82F6"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Watch what happens when we draw two perpendicular lines through the point — one along the ground, one straight up."
+            },
+            {
+              "id": "s2",
+              "text_en": "From the tip of the arrow, drop a perpendicular onto each line. Two dashed shadows appear."
+            },
+            {
+              "id": "s3",
+              "text_en": "Each shadow is called a component. The horizontal shadow tells you how much of the pull moves the trolley forward."
+            },
+            {
+              "id": "s4",
+              "text_en": "The vertical shadow tells you how much of the pull is trying to lift it off the ground."
+            },
+            {
+              "id": "s5",
+              "text_en": "And the original arrow? It is just the diagonal of the rectangle formed by its components. This is the geometry of resolution."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "The Right Triangle — Where sin and cos Live",
+        "duration": 8,
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "triangle_hypotenuse_label",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "ground",
+            "orientation": "horizontal",
+            "position": {
+              "x": 120,
+              "y": 380
+            },
+            "length": 420,
+            "texture": "rough"
+          },
+          {
+            "type": "body",
+            "id": "origin_point",
+            "shape": "circle",
+            "size": 10,
+            "position": {
+              "x": 250,
+              "y": 372
+            },
+            "fill_color": "#1F2937",
+            "border_color": "#F59E0B",
+            "border_width": 2
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_arrow",
+            "force_id": "main_vector",
+            "origin_body_id": "origin_point",
+            "origin_anchor": "body_center",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "force_components",
+            "id": "F_components",
+            "force_id": "main_vector",
+            "decompose_axis": "world_xy",
+            "origin_body_id": "origin_point",
+            "origin_anchor": "body_center",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 8,
+            "animate_in_ms": 200,
+            "label_x": "adjacent",
+            "label_y": "opposite"
+          },
+          {
+            "type": "angle_arc",
+            "id": "alpha_arc_triangle",
+            "center": {
+              "x": 250,
+              "y": 372
+            },
+            "radius": 50,
+            "from_deg": 0,
+            "to_deg": 50,
+            "color": "#F59E0B",
+            "label": "α"
+          },
+          {
+            "type": "label",
+            "id": "triangle_hypotenuse_label",
+            "text": "hypotenuse = F",
+            "position": {
+              "x": 268,
+              "y": 320
+            },
+            "color": "#3B82F6",
+            "font_size": 12
+          },
+          {
+            "type": "annotation",
+            "id": "triangle_intro",
+            "text": "Focus on the right triangle.\nThe arrow is the HYPOTENUSE.\nThe components are the two SIDES.",
+            "position": {
+              "x": 490,
+              "y": 130
+            },
+            "style": "callout",
+            "color": "#3B82F6"
+          },
+          {
+            "type": "annotation",
+            "id": "triangle_sides",
+            "text": "ADJACENT to α → horizontal side.\nOPPOSITE to α → vertical side.\nTrigonometry is built\nexactly for this shape.",
+            "position": {
+              "x": 490,
+              "y": 290
+            },
+            "style": "callout",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Look closely at the geometry here. The arrow, its two shadows, and the axes form a rectangle. The arrow is the diagonal."
+            },
+            {
+              "id": "s2",
+              "text_en": "Now focus on just half of this rectangle — the right triangle sitting on the x-axis."
+            },
+            {
+              "id": "s3",
+              "text_en": "The arrow itself is the hypotenuse. The horizontal component is the side ADJACENT to angle alpha. The vertical component is the side OPPOSITE to alpha."
+            },
+            {
+              "id": "s4",
+              "text_en": "Why does this matter so much? Because trigonometry is built for exactly this shape. Sine and cosine are about to pop out."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "The Formula — F cosα and F sinα",
+        "duration": 12,
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "formula_box_main",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "ground",
+            "orientation": "horizontal",
+            "position": {
+              "x": 120,
+              "y": 380
+            },
+            "length": 420,
+            "texture": "rough"
+          },
+          {
+            "type": "body",
+            "id": "origin_point",
+            "shape": "circle",
+            "size": 10,
+            "position": {
+              "x": 250,
+              "y": 372
+            },
+            "fill_color": "#1F2937",
+            "border_color": "#F59E0B",
+            "border_width": 2
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_arrow",
+            "force_id": "main_vector",
+            "origin_body_id": "origin_point",
+            "origin_anchor": "body_center",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "force_components",
+            "id": "F_components",
+            "force_id": "main_vector",
+            "decompose_axis": "world_xy",
+            "origin_body_id": "origin_point",
+            "origin_anchor": "body_center",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 8,
+            "animate_in_ms": 200,
+            "label_x": "F cosα = {horiz} N",
+            "label_y": "F sinα = {vert} N"
+          },
+          {
+            "type": "angle_arc",
+            "id": "alpha_arc",
+            "center": {
+              "x": 250,
+              "y": 372
+            },
+            "radius": 45,
+            "from_deg": 0,
+            "to_deg": 50,
+            "color": "#F59E0B",
+            "label": "α = {alpha}°"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_box_main",
+            "formula": "Fx = F·cosα\nFy = F·sinα",
+            "position": {
+              "x": 490,
+              "y": 110
+            },
+            "border_color": "#3B82F6"
+          },
+          {
+            "type": "annotation",
+            "id": "memory_rule",
+            "text": "MEMORY RULE:\ncos stays WITH the axis\nyou measured α FROM.\nsin goes with the perpendicular.",
+            "position": {
+              "x": 490,
+              "y": 230
+            },
+            "style": "callout",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "numeric_check",
+            "text": "CHECK: F=10 N, α=50°\n10 × cos(50°) = 6.43 N\n10 × sin(50°) = 7.66 N\n√(6.43² + 7.66²) = 10 ✓",
+            "position": {
+              "x": 490,
+              "y": 370
+            },
+            "style": "callout",
+            "color": "#F59E0B"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Now the formulas. In any right triangle, cosine of the angle equals ADJACENT over hypotenuse."
+            },
+            {
+              "id": "s2",
+              "text_en": "So the adjacent side equals hypotenuse times cosine. That gives us Fx equals F times cosine alpha."
+            },
+            {
+              "id": "s3",
+              "text_en": "Similarly, sine equals opposite over hypotenuse. So Fy equals F times sine alpha."
+            },
+            {
+              "id": "s4",
+              "text_en": "Memorize this rule and you will never mix them up: cosine goes with the axis you measured the angle FROM."
+            },
+            {
+              "id": "s5",
+              "text_en": "Let us verify. Ten Newtons at fifty degrees: cosine fifty is zero point six four, so Fx is six point four three Newtons. Sine fifty is zero point seven seven, so Fy is seven point six six Newtons."
+            },
+            {
+              "id": "s6",
+              "text_en": "And by Pythagoras, the square root of six point four three squared plus seven point six six squared equals ten. The vector is preserved — nothing is lost."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "A Real Problem — The Block on an Incline",
+        "duration": 8,
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "mg_arrow",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "incline",
+            "orientation": "inclined",
+            "angle": 30,
+            "position": {
+              "x": 160,
+              "y": 420
+            },
+            "length": 350,
+            "texture": "smooth",
+            "label": "θ = 30°"
+          },
+          {
+            "type": "body",
+            "id": "block",
+            "shape": "rect",
+            "label": "m = 2 kg",
+            "position": {
+              "x": 260,
+              "y": 320
+            },
+            "size": {
+              "w": 80,
+              "h": 65
+            },
+            "fill_color": "#6B7280",
+            "attach_to_surface": {
+              "surface_id": "incline",
+              "position_fraction": 0.45
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "mg_arrow",
+            "force_id": "weight",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "annotation",
+            "id": "problem_setup",
+            "text": "Block on a 30° incline.\nGravity pulls straight down:\nmg = 2 × 9.8 = 19.6 N",
+            "position": {
+              "x": 480,
+              "y": 110
+            },
+            "style": "callout",
+            "color": "#EF4444"
+          },
+          {
+            "type": "annotation",
+            "id": "the_question",
+            "text": "The block will SLIDE.\nBut how much of this 19.6 N\nis actually sliding it down?\n\nWhich axes should we resolve mg along?",
+            "position": {
+              "x": 480,
+              "y": 270
+            },
+            "style": "callout",
+            "color": "#F59E0B"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Let us apply this skill to a classic physics problem. A block of mass two kilograms sits on a thirty-degree incline."
+            },
+            {
+              "id": "s2",
+              "text_en": "Gravity pulls it straight down. The red arrow shows m g equals nineteen point six Newtons, pointing to the center of the earth."
+            },
+            {
+              "id": "s3",
+              "text_en": "The block will slide down the ramp. But here is the question: how much of that nineteen point six Newtons is actually doing the sliding?"
+            },
+            {
+              "id": "s4",
+              "text_en": "The answer depends entirely on how we resolve m g. Which pair of axes should we pick? Let us try two different choices and see."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Meet the Axes — What 'World x and y' Actually Mean",
+        "duration": 10,
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "world_axes",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "incline",
+            "orientation": "inclined",
+            "angle": 30,
+            "position": {
+              "x": 160,
+              "y": 420
+            },
+            "length": 350,
+            "texture": "smooth",
+            "label": "θ = 30°"
+          },
+          {
+            "type": "body",
+            "id": "block",
+            "shape": "rect",
+            "label": "m = 2 kg",
+            "position": {
+              "x": 260,
+              "y": 320
+            },
+            "size": {
+              "w": 80,
+              "h": 65
+            },
+            "fill_color": "#6B7280",
+            "attach_to_surface": {
+              "surface_id": "incline",
+              "position_fraction": 0.45
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "mg_arrow",
+            "force_id": "weight",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "axes",
+            "id": "world_axes",
+            "position": {
+              "x": 90,
+              "y": 370
+            },
+            "length": 110,
+            "angle_deg": 0,
+            "color": "#9CA3AF",
+            "x_label": "x (world)",
+            "y_label": "y (world)"
+          },
+          {
+            "type": "annotation",
+            "id": "axes_intro",
+            "text": "Before resolving anything:\nWHAT axes are we resolving along?\n\n'World x and y' = the fixed\nhorizontal and vertical of the room.",
+            "position": {
+              "x": 480,
+              "y": 100
+            },
+            "style": "callout",
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "annotation",
+            "id": "axes_fixed",
+            "text": "KEY POINT:\nThese axes do NOT rotate\nwhen you tilt the incline.\nThey stay fixed to the LAB,\nnot to the block or the ramp.",
+            "position": {
+              "x": 480,
+              "y": 250
+            },
+            "style": "callout",
+            "color": "#F59E0B"
+          },
+          {
+            "type": "annotation",
+            "id": "axes_choice",
+            "text": "We CAN resolve mg along these\nworld axes — or along ANY other pair\nof perpendicular axes.\n\nChoosing well is the whole game.",
+            "position": {
+              "x": 480,
+              "y": 400
+            },
+            "style": "callout",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Before we can resolve m g along anything, we need to be very clear about what 'the axes' actually are."
+            },
+            {
+              "id": "s2",
+              "text_en": "Look at the bottom-left of the screen. Those two gray arrows are the world x and y axes. World x is horizontal — parallel to the floor of your room. World y is vertical — pointing straight up, against gravity."
+            },
+            {
+              "id": "s3",
+              "text_en": "Here is the key point that confuses many students. These world axes do NOT rotate when you place a block on an incline. They stay fixed to the laboratory — to the room itself — not to the block, not to the ramp."
+            },
+            {
+              "id": "s4",
+              "text_en": "So we have a choice. We can resolve m g along these fixed world axes. Or we can pick a different pair of perpendicular axes — any pair we like."
+            },
+            {
+              "id": "s5",
+              "text_en": "Choosing the right pair is the whole game. Let us try the obvious choice first: the world axes you already know."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "First Try — World x and y. It Fails.",
+        "duration": 9,
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "mg_components_world_xy",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "incline",
+            "orientation": "inclined",
+            "angle": 30,
+            "position": {
+              "x": 160,
+              "y": 420
+            },
+            "length": 350,
+            "texture": "smooth",
+            "label": "θ = 30°"
+          },
+          {
+            "type": "body",
+            "id": "block",
+            "shape": "rect",
+            "label": "m = 2 kg",
+            "position": {
+              "x": 260,
+              "y": 320
+            },
+            "size": {
+              "w": 80,
+              "h": 65
+            },
+            "fill_color": "#6B7280",
+            "attach_to_surface": {
+              "surface_id": "incline",
+              "position_fraction": 0.45
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "mg_arrow",
+            "force_id": "weight",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "axes",
+            "id": "world_axes_naive",
+            "position": {
+              "x": 90,
+              "y": 370
+            },
+            "length": 110,
+            "angle_deg": 0,
+            "color": "#9CA3AF",
+            "x_label": "x (world)",
+            "y_label": "y (world)"
+          },
+          {
+            "type": "force_components",
+            "id": "mg_components_world_xy",
+            "force_id": "weight",
+            "decompose_axis": "world_xy",
+            "origin_body_id": "block",
+            "origin_anchor": "body_bottom",
+            "color": "#9CA3AF",
+            "scale_pixels_per_unit": 8,
+            "animate_in_ms": 900,
+            "label_x": "Fx = 0 (useless)",
+            "label_y": "Fy = mg (same as mg)"
+          },
+          {
+            "type": "annotation",
+            "id": "first_try",
+            "text": "FIRST TRY: resolve mg along\nthose gray world axes\n(the ones you just met).",
+            "position": {
+              "x": 480,
+              "y": 110
+            },
+            "style": "callout",
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "annotation",
+            "id": "first_fails",
+            "text": "Watch the gray arrows:\n• Horizontal component = 0\n• Vertical component = mg itself\n\nWe learned NOTHING new.",
+            "position": {
+              "x": 480,
+              "y": 240
+            },
+            "style": "callout",
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "annotation",
+            "id": "why_it_fails",
+            "text": "Why? The BLOCK moves\nalong the incline — not vertically.\nOur axes don't match the motion.",
+            "position": {
+              "x": 480,
+              "y": 400
+            },
+            "style": "callout",
+            "color": "#EF4444"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "First, try the obvious choice. Resolve m g along the world x axis and the y axis — the axes you already know from the previous states."
+            },
+            {
+              "id": "s2",
+              "text_en": "Watch the gray arrows appear. The horizontal component is zero, because m g has no horizontal part — it points straight down."
+            },
+            {
+              "id": "s3",
+              "text_en": "And the vertical component just equals m g itself. We have not learned anything new at all."
+            },
+            {
+              "id": "s4",
+              "text_en": "So why did this fail? Look at the motion. The block slides ALONG the incline, not vertically. Our axes do not match the motion. That is the whole problem."
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Second Try — Rotate the Axes. Physics Becomes Simple.",
+        "duration": 14,
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "mg_components_rotated",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "incline",
+            "orientation": "inclined",
+            "angle": 30,
+            "position": {
+              "x": 160,
+              "y": 420
+            },
+            "length": 350,
+            "texture": "smooth",
+            "label": "θ = 30°"
+          },
+          {
+            "type": "body",
+            "id": "block",
+            "shape": "rect",
+            "label": "m = 2 kg",
+            "position": {
+              "x": 260,
+              "y": 320
+            },
+            "size": {
+              "w": 80,
+              "h": 65
+            },
+            "fill_color": "#6B7280",
+            "attach_to_surface": {
+              "surface_id": "incline",
+              "position_fraction": 0.45
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "mg_arrow",
+            "force_id": "weight",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "axes",
+            "id": "incline_axes",
+            "position": {
+              "x": 90,
+              "y": 370
+            },
+            "length": 110,
+            "angle_deg": 30,
+            "color": "#10B981",
+            "x_label": "along incline",
+            "y_label": "perpendicular"
+          },
+          {
+            "type": "force_components",
+            "id": "mg_components_rotated",
+            "force_id": "weight",
+            "decompose_axis": "along_surface:incline",
+            "origin_body_id": "block",
+            "origin_anchor": "body_bottom",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 8,
+            "animate_in_ms": 1000,
+            "label_x": "mg sinθ = {parallel} N",
+            "label_y": "mg cosθ = {perpendicular} N"
+          },
+          {
+            "type": "annotation",
+            "id": "rotate_intro",
+            "text": "SECOND TRY:\nRotate the axes to match the incline.\nOne axis along the slope,\none perpendicular to it.",
+            "position": {
+              "x": 480,
+              "y": 100
+            },
+            "style": "callout",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "along_slope",
+            "text": "ALONG the slope:\nmg sinθ = 9.80 N\n→ pulls the block down the ramp.\nTHIS is the sliding force.",
+            "position": {
+              "x": 480,
+              "y": 230
+            },
+            "style": "callout",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "perpendicular",
+            "text": "PERPENDICULAR:\nmg cosθ = 16.97 N\n→ pushes block into surface.\nSurface pushes back → that IS N.",
+            "position": {
+              "x": 480,
+              "y": 360
+            },
+            "style": "callout",
+            "color": "#3B82F6"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Now the clever move. Rotate our axes so one matches the incline and the other is perpendicular to it."
+            },
+            {
+              "id": "s2",
+              "text_en": "Watch the green dashed arrows appear. Suddenly m g splits into two brand new pieces."
+            },
+            {
+              "id": "s3",
+              "text_en": "The first piece is along the slope. Its magnitude is m g times sine theta — which equals nine point eight zero Newtons. That is the force pulling the block down the ramp. That is exactly what makes it slide."
+            },
+            {
+              "id": "s4",
+              "text_en": "The second piece is perpendicular to the incline. Its magnitude is m g times cosine theta — sixteen point nine seven Newtons. That is the force pushing the block into the surface."
+            },
+            {
+              "id": "s5",
+              "text_en": "The surface pushes back with the same magnitude. That pushback is called the normal reaction, N. And now you know where the famous formula N equals m g cosine theta comes from — it is just the perpendicular component of gravity."
+            },
+            {
+              "id": "s6",
+              "text_en": "The lesson is permanent. Pick axes that match the motion. Resolve the forces along them. Physics becomes simple."
+            }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Your Turn — Try Any Vector",
+        "duration": 20,
+        "advance_mode": "interaction_complete",
+        "focal_primitive_id": "F_components_live",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "ground",
+            "orientation": "horizontal",
+            "position": {
+              "x": 120,
+              "y": 380
+            },
+            "length": 420,
+            "texture": "smooth"
+          },
+          {
+            "type": "body",
+            "id": "origin_point",
+            "shape": "circle",
+            "size": 10,
+            "position": {
+              "x": 250,
+              "y": 372
+            },
+            "fill_color": "#1F2937",
+            "border_color": "#F59E0B",
+            "border_width": 2
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_arrow",
+            "force_id": "main_vector",
+            "origin_body_id": "origin_point",
+            "origin_anchor": "body_center",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "force_components",
+            "id": "F_components_live",
+            "force_id": "main_vector",
+            "decompose_axis": "world_xy",
+            "origin_body_id": "origin_point",
+            "origin_anchor": "body_center",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 8,
+            "animate_in_ms": 300,
+            "label_x": "F cosα = {horiz} N",
+            "label_y": "F sinα = {vert} N"
+          },
+          {
+            "type": "angle_arc",
+            "id": "alpha_arc_live",
+            "center": {
+              "x": 250,
+              "y": 372
+            },
+            "radius": 45,
+            "from_deg": 0,
+            "to_deg_expr": "alpha",
+            "color": "#F59E0B",
+            "label": "α = {alpha}°"
+          },
+          {
+            "type": "slider",
+            "variable": "alpha",
+            "min": 0,
+            "max": 90,
+            "step": 5,
+            "default": 50,
+            "label": "Angle α (degrees)",
+            "position": "bottom_left"
+          },
+          {
+            "type": "slider",
+            "variable": "F",
+            "min": 1,
+            "max": 20,
+            "step": 1,
+            "default": 10,
+            "label": "Magnitude F (N)",
+            "position": "bottom_right"
+          },
+          {
+            "type": "annotation",
+            "id": "try_hints",
+            "text": "TRY THESE:\n• α = 0°  → all force horizontal\n• α = 90° → all force vertical\n• α = 45° → Fx = Fy, both smaller than F\n• Double F → components double",
+            "position": {
+              "x": 490,
+              "y": 140
+            },
+            "style": "callout",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "skill_close",
+            "text": "You will resolve vectors\nthousands of times in physics.\nForces, velocities, accelerations —\nthe skill never changes.\nNow you own it.",
+            "position": {
+              "x": 490,
+              "y": 330
+            },
+            "style": "callout",
+            "color": "#3B82F6"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Now it is your turn. Drag the sliders and watch the components respond."
+            },
+            {
+              "id": "s2",
+              "text_en": "Set alpha to zero. The whole vector becomes horizontal. F cos alpha equals F. F sine alpha is zero."
+            },
+            {
+              "id": "s3",
+              "text_en": "Set alpha to ninety. The whole vector becomes vertical. Now F sine alpha equals F."
+            },
+            {
+              "id": "s4",
+              "text_en": "At forty-five degrees, both components are exactly equal — and each one is smaller than F itself. Seven point zero seven, to be exact."
+            },
+            {
+              "id": "s5",
+              "text_en": "Change the magnitude F. Notice both components scale together. The angle sets the RATIO. The magnitude sets the SIZE."
+            },
+            {
+              "id": "s6",
+              "text_en": "This is the core skill of mechanics. Every force, every velocity, every acceleration you meet — you will resolve it just like this. Now you know how."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "swapped_sin_cos",
+      "misconception": "Student swaps sine and cosine — thinks Fx = F sinα.",
+      "trigger_phrases": [
+        "isn't Fx equal to F sin",
+        "why not F sin alpha for horizontal",
+        "sin for horizontal",
+        "i thought sine was the x component",
+        "cos gives the vertical"
+      ],
+      "state_sequence": [
+        "EPIC_C_1",
+        "EPIC_C_2"
+      ],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Check: which side of the triangle is which?",
+          "scene_composition": [],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Pause — this is a very common confusion. Let us settle it forever."
+              },
+              {
+                "id": "s2",
+                "text_en": "In a right triangle, cosine equals ADJACENT over hypotenuse. Sine equals OPPOSITE over hypotenuse."
+              },
+              {
+                "id": "s3",
+                "text_en": "The angle alpha is measured from the x-axis. So the x-axis is the side NEXT to the angle. That is the adjacent side."
+              },
+              {
+                "id": "s4",
+                "text_en": "Adjacent pairs with cosine. That means x pairs with cosine. Always."
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "The Safe Rule — cos with the axis you measured FROM",
+          "scene_composition": [],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "If you ever forget, use this one rule: cosine goes with the axis you measured the angle FROM."
+              },
+              {
+                "id": "s2",
+                "text_en": "Measured from x? Then Fx is F cos alpha, Fy is F sin alpha."
+              },
+              {
+                "id": "s3",
+                "text_en": "Measured from y? Then Fy is F cos alpha, Fx is F sin alpha."
+              },
+              {
+                "id": "s4",
+                "text_en": "It is always cosine with the axis you measured from. Never the other way around."
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "kite_string_tension",
+      "type": "B",
+      "label": "Kite in the Wind",
+      "physical_world": "A child flies a kite. The string pulls down at an angle — part lifts the child's hand, part pulls it forward.",
+      "same_physics": "Vector tension resolved into horizontal and vertical components.",
+      "scene_hint": "Boy holding kite string; string at 60°; T cosα horizontal pull, T sinα vertical pull."
+    },
+    {
+      "variant_id": "cricket_bat_swing",
+      "type": "B",
+      "label": "Cricket Bat Swing Velocity",
+      "physical_world": "A batsman's bat velocity at impact has horizontal and vertical parts; only the angle of the bat determines where the ball goes.",
+      "same_physics": "Velocity vector resolved into horizontal and vertical components.",
+      "scene_hint": "Bat making contact; velocity vector decomposed on swing path."
+    },
+    {
+      "variant_id": "ship_engine_thrust",
+      "type": "B",
+      "label": "Ship Against Current",
+      "physical_world": "A ferry crosses a river with current. The engine thrust at an angle to the bank gives forward speed and sideways drift.",
+      "same_physics": "Velocity vector resolved into along-river and across-river components.",
+      "scene_hint": "River banks; ferry; engine arrow at angle; two velocity components."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "graph_type": "line",
+    "title": "Components vs Angle",
+    "subtitle": "F cosα (x) and F sinα (y)",
+    "x_axis": {
+      "variable": "alpha",
+      "label": "Angle α (degrees)",
+      "min": 0,
+      "max": 90,
+      "tick_interval": 10
+    },
+    "y_axis": {
+      "variable": "component",
+      "label": "Component (N)",
+      "min": 0,
+      "max": 20,
+      "tick_interval": 2
+    },
+    "traces": [
+      {
+        "id": "Fcos_curve",
+        "equation_expr": "Fcos = F * cos(alpha * PI / 180)",
+        "color": "#F59E0B",
+        "label": "F cosα",
+        "style": "solid",
+        "line_width": 2
+      },
+      {
+        "id": "Fsin_curve",
+        "equation_expr": "Fsin = F * sin(alpha * PI / 180)",
+        "color": "#06B6D4",
+        "label": "F sinα",
+        "style": "solid",
+        "line_width": 2
+      }
+    ],
+    "live_dot": {
+      "x_variable": "alpha",
+      "y_expr": "F * Math.cos(alpha * Math.PI / 180)",
+      "color": "#F59E0B",
+      "size": 10,
+      "sync_with_panel_a_sliders": [
+        "alpha",
+        "F"
+      ]
+    }
+  },
+  "routing_signals": {
+    "trigger_phrases": [
+      "how to resolve a vector",
+      "how do we resolve components",
+      "resolving forces",
+      "vector components",
+      "how to split a vector",
+      "mg sin theta mg cos theta",
+      "why do we resolve along the incline",
+      "component of a vector",
+      "resolve along x and y",
+      "how do i know when to use sin or cos"
+    ],
+    "force_scope": "global",
+    "force_simulation_needed": true
+  },
+  "concept_relationships": {
+    "prerequisite_of": [
+      "normal_reaction",
+      "projectile_motion",
+      "tension_in_string",
+      "projectile_inclined"
+    ],
+    "builds_on": [
+      "vector_basics",
+      "vector_components",
+      "scalar_vs_vector"
+    ],
+    "related": [
+      "vector_addition",
+      "dot_product"
+    ]
+  }
+}

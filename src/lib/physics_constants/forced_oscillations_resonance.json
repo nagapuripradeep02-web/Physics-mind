@@ -1,0 +1,105 @@
+{
+  "concept_id": "forced_oscillations_resonance",
+  "concept_name": "Forced Oscillations and Resonance",
+  "class_level": 11,
+  "chapter": "Oscillations",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "resonance_curve",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "ω_d": "Angular frequency of the external driving force (rad/s)",
+    "ω₀": "Natural angular frequency of the oscillating system = √(k/m) (rad/s)",
+    "F₀": "Amplitude of the external periodic driving force (N)",
+    "b": "Damping constant of the medium (kg/s)",
+    "A_steady": "Steady-state amplitude of the driven oscillation (m)",
+    "Q": "Quality factor = ω₀/(2γ) = mω₀/b — measure of sharpness of resonance"
+  },
+  "locked_facts": [
+    "Steady-state amplitude A = F₀ / √{m²(ω₀² − ω_d²)² + b²ω_d²} — maximum near ω_d = ω₀",
+    "Resonance occurs when the driving frequency ω_d equals (or is very close to) the natural frequency ω₀ — amplitude reaches maximum",
+    "At resonance, the system absorbs maximum energy from the driving force per cycle",
+    "The sharpness of resonance is characterised by the quality factor Q = mω₀/b — higher Q means sharper resonance peak and lower damping",
+    "With zero damping (b = 0), amplitude at resonance would theoretically become infinite — in reality, damping always limits it",
+    "The driven oscillation eventually settles to the driving frequency ω_d, regardless of the system's natural frequency ω₀"
+  ],
+  "truth_statements": [
+    "In forced oscillations, an external periodic force drives the system and the steady-state oscillation occurs at the driving frequency, not the natural frequency",
+    "Resonance is the condition where the amplitude of forced oscillation becomes maximum, occurring when the driving frequency matches the natural frequency",
+    "The amplitude at resonance is inversely proportional to the damping — smaller damping means larger resonance amplitude",
+    "The quality factor Q determines how sharp the resonance peak is — high Q systems resonate strongly at a narrow frequency range",
+    "Resonance is responsible for many physical phenomena: tuning a radio, shattering a glass with sound, soldiers breaking step on bridges"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "An amplitude vs. driving frequency graph with multiple curves for different damping values. As damping decreases, the resonance peak grows taller and sharper. At very low damping, the peak is extremely tall and narrow at ω_d = ω₀. A vertical dashed line marks ω₀. The driven system's amplitude visibly explodes as ω_d approaches ω₀.",
+    "visual_emphasis": "The resonance peak towers above the rest of the curve at ω_d = ω₀. Lower damping makes the peak dramatically taller — the system is 'tuned' to its natural frequency. Away from ω₀, the amplitude drops sharply.",
+    "why_this_breaks_misconception": "Students think any frequency should produce the same response — this shows the system is exquisitely selective, responding overwhelmingly at its natural frequency and weakly at all others"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Left panel: a spring-mass system with a damper, attached to an external oscillating driver (e.g., a motor-driven arm). The driving frequency ω_d and the system's natural frequency ω₀ are labelled. Right panel: empty amplitude vs. frequency axes ready for the resonance curve.",
+      "emphasis": "Two frequencies at play — the natural frequency ω₀ of the free system and the driving frequency ω_d of the external force. They can be different.",
+      "labels_visible": ["ω₀", "ω_d", "F = F₀ cos(ω_d t)", "k", "m", "b"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Left panel: the system oscillates at a fixed ω_d far from ω₀ — steady-state amplitude is small. Right panel: a dot appears on the resonance curve at the current (ω_d, A) point. The driver frequency slowly sweeps from low to high, and amplitude changes — small far from ω₀, rising sharply near ω₀.",
+      "emphasis": "As the driving frequency approaches ω₀, the amplitude grows dramatically. This frequency-selective response is the essence of resonance.",
+      "labels_visible": ["ω_d (sweeping)", "A(ω_d)", "ω₀ marked"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Right panel: three resonance curves (A vs. ω_d) superimposed for low, medium, and high damping. The low-damping curve has a towering sharp peak at ω₀. High-damping curve has a broad, low hump. Left panel: the system at resonance (ω_d = ω₀) with low damping shows dramatically large oscillations.",
+      "emphasis": "Resonance is a frequency match — the system responds maximally when driven at its natural frequency. Less damping → taller, sharper peak. This selectivity is why a specific note can shatter a specific glass.",
+      "labels_visible": ["low damping (sharp peak)", "high damping (broad peak)", "ω_d = ω₀", "Q factor"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust driving frequency ω_d with one slider and damping b with another. Left panel shows the spring-mass system oscillating in real time at the chosen ω_d. Right panel shows the full resonance curve with a moving dot at the current operating point. Amplitude and Q factor update live.",
+      "emphasis": "Sweep ω_d through ω₀ and watch the amplitude peak. Then increase damping — the peak broadens and flattens. Decrease damping — the peak sharpens. Q factor = ω₀m/b displayed.",
+      "labels_visible": ["ω_d", "ω₀", "A(ω_d)", "Q", "resonance curve"],
+      "interactive": true,
+      "sliders": [
+        { "id": "driving_frequency", "label": "Driving Frequency ω_d", "min": 0.5, "max": 20, "default": 5, "unit": "rad/s" },
+        { "id": "damping_constant", "label": "Damping Constant b", "min": 0.1, "max": 10, "default": 1, "unit": "kg/s" },
+        { "id": "driving_amplitude", "label": "Driving Force F₀", "min": 0.5, "max": 10, "default": 3, "unit": "N" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Resonance means the system oscillates at infinite amplitude",
+      "trigger_phrases": ["resonance pe infinite amplitude", "resonance mein system toot jaata hai", "amplitude infinity ho jaata hai resonance pe", "resonance means infinite"],
+      "correction": "NCERT Ch. 13 explains that in any real system, damping is always present. The amplitude at resonance is A = F₀/(bω₀) — finite and inversely proportional to damping. Only in the idealised case of zero damping (b = 0) does the formula give infinite amplitude, which is physically unrealisable.",
+      "simulation_emphasis": "Show resonance curves with different damping — even at the smallest damping, the peak is tall but finite. A label shows A_max = F₀/(bω₀)."
+    },
+    {
+      "belief": "The system always oscillates at its natural frequency, regardless of the driving frequency",
+      "trigger_phrases": ["system apni natural frequency pe hi chalega", "driving frequency se koi fark nahi padta", "natural frequency pe hi oscillate karega hamesha", "system ignores external frequency"],
+      "correction": "NCERT states that in the steady state, the system oscillates at the DRIVING frequency ω_d, not its natural frequency ω₀. The natural frequency determines at which driving frequency the amplitude is maximum (resonance), but the system follows the driver's frequency. Only in free oscillations does the system oscillate at ω₀.",
+      "simulation_emphasis": "Set ω_d far from ω₀ — the system visibly oscillates at ω_d (count cycles against a clock). The system follows the driver, not its own preference."
+    }
+  ],
+  "legend": [
+    { "symbol": "blue curve", "meaning": "Resonance curve: amplitude A vs. driving frequency ω_d" },
+    { "symbol": "vertical dashed line", "meaning": "Natural frequency ω₀ — resonance occurs here" },
+    { "symbol": "●", "meaning": "Current operating point (ω_d, A)" },
+    { "symbol": "sharp peak", "meaning": "Low damping — high Q, strong frequency selectivity" },
+    { "symbol": "broad hump", "meaning": "High damping — low Q, weak selectivity" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["simple_harmonic_motion", "damped_oscillations", "energy_in_shm"],
+    "extensions": ["resonance_lcr", "ac_basics"],
+    "siblings": ["damped_oscillations"],
+    "common_exam_combinations": ["resonance_in_lcr_circuits", "tuning_fork_resonance", "bridge_resonance", "quality_factor_calculations"]
+  }
+}

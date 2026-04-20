@@ -1,0 +1,116 @@
+{
+  "concept_id": "spring_mass_system",
+  "concept_name": "Spring-Mass System",
+  "class_level": 11,
+  "chapter": "Oscillations",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "spring_mass",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "k": "Spring constant (N/m)",
+    "m": "Mass attached to spring (kg)",
+    "A": "Amplitude of oscillation (m)",
+    "x": "Instantaneous displacement from equilibrium (m)",
+    "k₁": "Spring constant of first spring in combination (N/m)",
+    "k₂": "Spring constant of second spring in combination (N/m)",
+    "k_eff": "Effective spring constant of combined system (N/m)"
+  },
+  "locked_facts": [
+    "Restoring force F = −kx (Hooke's Law) — proportional to displacement, opposite in direction",
+    "Period T = 2π√(m/k) — depends on mass and spring constant, independent of amplitude",
+    "Series combination: 1/k_eff = 1/k₁ + 1/k₂ — effective spring constant is LESS than the smaller individual k",
+    "Parallel combination: k_eff = k₁ + k₂ — effective spring constant is the SUM of individual constants",
+    "Total energy E = ½kA² = ½mv² + ½kx² — constant throughout the motion",
+    "At equilibrium (x = 0): velocity is maximum (v_max = Aω), acceleration is zero, KE is maximum",
+    "At extremes (x = ±A): velocity is zero, acceleration is maximum (a_max = ω²A), PE is maximum",
+    "Angular frequency ω = √(k/m) = 2π/T"
+  ],
+  "truth_statements": [
+    "The restoring force in a spring-mass system is proportional to displacement from equilibrium and directed toward the mean position",
+    "The time period depends on mass and spring constant but NOT on amplitude — this is the hallmark of SHM",
+    "In series combination, the effective spring constant is less than either individual spring constant",
+    "In parallel combination, the effective spring constant equals the sum of the individual constants",
+    "Total mechanical energy remains constant at ½kA² throughout the oscillation"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Left panel: a mass on a single spring oscillating. Right panel: the same mass on two springs in series — the system bounces visibly SLOWER (longer T) because k_eff is smaller. Formula shows 1/k_eff = 1/k₁ + 1/k₂ < k₁ or k₂. Then switch to parallel — the system bounces FASTER (shorter T) because k_eff = k₁ + k₂.",
+    "visual_emphasis": "Series springs are softer (longer period) — the mass moves lazily. Parallel springs are stiffer (shorter period) — the mass bounces rapidly. The period counter confirms T_series > T_single > T_parallel.",
+    "why_this_breaks_misconception": "Students confuse series/parallel spring formulas with resistor formulas or think more springs always means stiffer. Series springs are actually softer than either individual spring."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Left panel: a single spring attached to a wall with a mass at equilibrium (x = 0). Spring constant k labelled, mass m labelled, equilibrium marked. Right panel: energy bar chart (KE and PE bars, both at zero since mass is at rest at equilibrium).",
+      "emphasis": "Equilibrium position clearly marked — this is where the spring exerts no net force. Identify k, m, and x = 0.",
+      "labels_visible": ["x = 0", "k", "m", "equilibrium"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Left panel: mass is pulled to amplitude A and released — it oscillates. Force arrow (red) always points toward equilibrium. Velocity arrow (blue) shown. Right panel: real-time KE (blue) and PE (red) bars animate — KE max at x = 0, PE max at x = ±A. Total energy line is constant.",
+      "emphasis": "Force and displacement are always opposite in direction (F = −kx). At equilibrium, force is zero but velocity is maximum. Energy bars show continuous KE ↔ PE exchange.",
+      "labels_visible": ["F = −kx", "v", "x", "A", "KE", "PE", "E_total"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Left panel shows three configurations: (1) single spring k, (2) two springs k₁ and k₂ in series, (3) same springs in parallel. Each has the same mass m. All three oscillate simultaneously. Period labels show T_series > T_single > T_parallel. Formulas displayed: series 1/k_eff = 1/k₁ + 1/k₂, parallel k_eff = k₁ + k₂.",
+      "emphasis": "Series is SOFTER (lower k_eff, longer T). Parallel is STIFFER (higher k_eff, shorter T). This is OPPOSITE to how resistors combine — a common source of confusion.",
+      "labels_visible": ["T_series > T_single > T_parallel", "1/k_eff = 1/k₁ + 1/k₂", "k_eff = k₁ + k₂"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust spring constants k₁ and k₂, select combination mode (single/series/parallel), and adjust mass. Period T and effective k_eff update in real time. Energy bars animate. Toggle between series and parallel to see immediate effect on oscillation speed.",
+      "emphasis": "In series, increasing one spring constant still gives k_eff less than either. In parallel, k_eff always exceeds each individual k. Watch how T = 2π√(m/k_eff) changes with each mode.",
+      "labels_visible": ["T", "k_eff", "k₁", "k₂", "m", "mode", "KE", "PE"],
+      "interactive": true,
+      "sliders": [
+        { "id": "spring_constant_1", "label": "Spring Constant k₁", "min": 5, "max": 100, "default": 20, "unit": "N/m" },
+        { "id": "spring_constant_2", "label": "Spring Constant k₂", "min": 5, "max": 100, "default": 30, "unit": "N/m" },
+        { "id": "mass", "label": "Mass m", "min": 0.1, "max": 3, "default": 0.5, "unit": "kg" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The mass stops at equilibrium because the restoring force is zero there",
+      "trigger_phrases": ["force zero toh ruk jaata hai", "equilibrium pe force nahi hai toh stop", "no force means no motion", "mean position pe force zero hai toh mass ruk jaayega"],
+      "correction": "NCERT states that at the mean position velocity is maximum even though force is zero. The mass overshoots equilibrium because it has kinetic energy — Newton's first law (inertia) keeps it moving. Zero force means zero acceleration, not zero velocity.",
+      "simulation_emphasis": "Show mass at equilibrium with maximum velocity arrow, KE bar at maximum, PE bar at zero — the mass keeps moving through equilibrium"
+    },
+    {
+      "belief": "Springs in series are stiffer than individual springs, just like resistors in series add up",
+      "trigger_phrases": ["series mein spring zyada stiff hogi", "series springs ka k add hota hai", "series combination mein k badh jaata hai", "series mein dono ka k jod do"],
+      "correction": "Springs in series combine as 1/k_eff = 1/k₁ + 1/k₂ — the effective spring constant is LESS than either individual spring. This is the opposite of resistors in series (which add). Each spring stretches independently, making the combination more flexible, not stiffer.",
+      "simulation_emphasis": "Show series springs oscillating slower (longer T) than a single spring — k_eff is smaller, so the system is softer"
+    },
+    {
+      "belief": "Amplitude affects the time period — a larger pull means a longer swing time",
+      "trigger_phrases": ["amplitude badhao toh time period badhega", "zyada kheencho toh zyada time lagega", "larger amplitude longer period", "bada amplitude bada T"],
+      "correction": "NCERT Ch. 13 states T = 2π√(m/k) — amplitude does not appear in the formula. A larger amplitude means larger maximum velocity (v_max = Aω), and this increased speed exactly compensates for the greater distance, keeping the period unchanged.",
+      "simulation_emphasis": "Two systems with same k and m but different amplitudes oscillating with identical periods — period counters show same T"
+    }
+  ],
+  "legend": [
+    { "symbol": "→ (red)", "meaning": "Restoring force F = −kx" },
+    { "symbol": "→ (blue)", "meaning": "Velocity of mass" },
+    { "symbol": "KE bar (blue)", "meaning": "Kinetic energy = ½mv²" },
+    { "symbol": "PE bar (red)", "meaning": "Potential energy = ½kx²" },
+    { "symbol": "x = 0", "meaning": "Equilibrium (natural length) position" },
+    { "symbol": "coils (thin)", "meaning": "Series springs — softer, lower k_eff" },
+    { "symbol": "coils (side by side)", "meaning": "Parallel springs — stiffer, higher k_eff" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["newtons_laws", "hookes_law", "energy_conservation"],
+    "extensions": ["damped_oscillations", "forced_oscillations_resonance", "energy_in_shm"],
+    "siblings": ["simple_pendulum_shm"],
+    "common_exam_combinations": ["spring_cut_problems", "springs_in_series_parallel", "vertical_spring_mass", "block_on_spring_with_friction"]
+  }
+}

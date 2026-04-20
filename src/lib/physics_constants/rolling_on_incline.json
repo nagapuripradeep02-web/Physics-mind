@@ -1,0 +1,43 @@
+{
+  "concept_id": "rolling_on_incline",
+  "concept_name": "Rolling on an Incline",
+  "class_level": 11,
+  "chapter": "System of Particles and Rotational Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "rolling_incline", "panel_count": 2, "show_labels": true },
+  "variables": { "a": "Acceleration down incline (m/s²)", "θ": "Incline angle (°)", "k": "Radius of gyration (m)", "f": "Friction force (N)" },
+  "locked_facts": [
+    "Acceleration of rolling body on incline: a = g sinθ / (1 + k²/R²)",
+    "Solid sphere (k²/R² = 2/5): a = 5g sinθ/7 — fastest roller",
+    "Solid cylinder (k²/R² = 1/2): a = 2g sinθ/3",
+    "Hollow sphere (k²/R² = 2/3): a = 3g sinθ/5",
+    "Ring/hollow cylinder (k²/R² = 1): a = g sinθ/2 — slowest roller",
+    "Acceleration is independent of mass and radius — depends only on shape (k²/R²)",
+    "Minimum friction for rolling without slipping: f = mg sinθ × (k²/R²)/(1 + k²/R²)",
+    "The body with smallest k²/R² reaches the bottom first"
+  ],
+  "truth_statements": [
+    "A solid sphere rolls down an incline faster than a hollow sphere, disc, or ring regardless of their masses or radii",
+    "The acceleration of a rolling body down an incline depends only on the ratio k²/R² and the incline angle, not on mass or size",
+    "Static friction is required for rolling on an incline and does no work",
+    "The velocity at the bottom of an incline (starting from rest) is v = √(2gh/(1 + k²/R²))",
+    "A sliding block (no rolling) reaches the bottom faster than any rolling body because none of the PE goes into rotational KE"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A race down an incline: solid sphere, disc, hollow sphere, and ring released simultaneously. Solid sphere wins every time. A sliding block (no friction) beats them all. The k²/R² ratio determines the ranking — NOT mass or size.",
+    "visual_emphasis": "Four objects racing with position markers and k²/R² values displayed — solid sphere always leads",
+    "why_this_breaks_misconception": "Students expect heavier or larger objects to roll faster — seeing mass and radius cancel out while shape determines speed is a powerful insight"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Single body rolling", "description": "A solid sphere rolling down an incline. Forces shown: mg sinθ (along incline), friction f (up the incline), normal N. The body accelerates at a = g sinθ/(1 + k²/R²).", "emphasis": "Friction enables rolling but reduces net acceleration compared to sliding", "labels_visible": ["mg sinθ", "f", "a = g sinθ/(1+k²/R²)"] },
+    { "id": "STATE_2", "label": "Energy split", "description": "PE bar converts to translational KE + rotational KE. For a sphere: 5/7 goes to translation, 2/7 to rotation. For ring: 1/2 each. More rotation = less translation = slower.", "emphasis": "More KE going to rotation means less speed — that's why rings are slowest", "labels_visible": ["KE_trans", "KE_rot", "PE"] },
+    { "id": "STATE_3", "label": "The rolling race", "description": "Four shapes released simultaneously: solid sphere (fastest), disc, hollow sphere, ring (slowest). A sliding block beats all. Rankings shown with k²/R² values.", "emphasis": "Shape determines speed — mass and radius don't matter! Sliding beats rolling.", "labels_visible": ["sphere 2/5", "disc 1/2", "hollow 2/3", "ring 1"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student selects which shapes to race, adjusts incline angle. Timer shows which reaches bottom first. Toggle friction off for one body to see it slide (faster but no rolling).", "emphasis": "Change the angle, pick different shapes — the ranking never changes!", "labels_visible": ["a", "t", "v_bottom"], "interactive": true, "sliders": [{ "id": "angle", "label": "Incline angle θ", "min": 10, "max": 60, "default": 30, "unit": "°" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Heavier objects roll down faster", "trigger_phrases": ["heavy rolls faster", "bhaari tez girega", "mass affects rolling speed"], "correction": "Mass cancels out in the rolling acceleration formula: a = g sinθ/(1 + k²/R²). Only the shape factor k²/R² matters. A tiny solid sphere and a huge solid sphere reach the bottom at the same time.", "simulation_emphasis": "Race two spheres of different masses — they arrive together" },
+    { "belief": "A rolling body and a sliding body reach the bottom at the same time", "trigger_phrases": ["rolling and sliding same time", "same speed rolling sliding"], "correction": "A sliding body (no friction, no rolling) reaches the bottom FASTER because all PE converts to translational KE. In rolling, some PE goes to rotational KE, leaving less for translation.", "simulation_emphasis": "Race a rolling sphere against a sliding block — block always wins" }
+  ],
+  "legend": [ { "symbol": "k²/R²", "meaning": "Shape factor determining rolling speed" }, { "symbol": "a", "meaning": "Acceleration = g sinθ/(1+k²/R²)" }, { "symbol": "θ", "meaning": "Incline angle" } ],
+  "concept_relationships": { "prerequisites": ["moment_of_inertia_shapes", "rolling_without_slipping"], "extensions": ["angular_momentum_conservation"], "siblings": ["motion_on_inclined_plane"], "common_exam_combinations": ["moment_of_inertia_shapes", "work_energy_theorem"] }
+}

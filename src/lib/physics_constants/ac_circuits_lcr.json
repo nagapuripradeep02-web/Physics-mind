@@ -1,0 +1,107 @@
+{
+  "concept_id": "ac_circuits_lcr",
+  "concept_name": "AC Circuits and LCR Series",
+  "class_level": 12,
+  "chapter": "Alternating Current",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "circuit_live",
+    "scenario_type": "lcr_series",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "V": "AC source voltage amplitude (V)",
+    "R": "Resistance (Ω)",
+    "L": "Inductance (H)",
+    "C": "Capacitance (F)",
+    "ω": "Angular frequency of AC source (rad/s)",
+    "Z": "Impedance of the circuit (Ω)",
+    "φ": "Phase angle between voltage and current (rad)"
+  },
+  "locked_facts": [
+    "Impedance: Z = √(R² + (X_L - X_C)²), where X_L = ωL and X_C = 1/(ωC)",
+    "Resonance when X_L = X_C, i.e., ω₀ = 1/√(LC) — impedance is minimum (Z = R), current is maximum",
+    "Phase angle: tan(φ) = (X_L - X_C)/R; current leads voltage when X_C > X_L (capacitive), lags when X_L > X_C (inductive)",
+    "Power factor: cos(φ) = R/Z — fraction of apparent power that does useful work",
+    "Quality factor: Q = ω₀L/R = 1/(ω₀CR) = (1/R)√(L/C) — sharpness of resonance peak",
+    "At resonance: V_L = V_C (equal and opposite), V_R = V_source, current is maximum I₀ = V₀/R"
+  ],
+  "truth_statements": [
+    "In a series LCR circuit, the impedance depends on R, L, C, and the frequency of the AC source",
+    "At resonance frequency, the inductive and capacitive reactances cancel, leaving only resistance to oppose current",
+    "The power factor cos(φ) determines how much of the supplied power is actually consumed as useful work",
+    "Higher Q factor means sharper resonance — the circuit is more selective about which frequencies pass through",
+    "The phasor diagram shows V_R in phase with I, V_L leading I by 90°, and V_C lagging I by 90°"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Frequency sweep from below resonance to above resonance. Below resonance: X_C > X_L, circuit is capacitive, current leads voltage. At resonance: X_L = X_C cancel, Z = R (minimum), current jumps to maximum, phasor V_L and V_C are equal and opposite. Above resonance: X_L > X_C, inductive, current lags.",
+    "visual_emphasis": "Current vs frequency graph peaks sharply at ω₀. Phasor diagram rotates from capacitive to resistive to inductive. Impedance dips to R at resonance.",
+    "why_this_breaks_misconception": "Students see that V_L and V_C can each be LARGER than V_source (Q amplification) yet they cancel at resonance — voltage across L or C individually can exceed source voltage"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Series LCR circuit with AC source. R, L, C values labeled. Phasor diagram empty. Current and voltage waveforms ready to plot. X_L, X_C, Z formulas displayed.",
+      "emphasis": "Three elements in series: R (dissipates), L (stores magnetic energy), C (stores electric energy)",
+      "labels_visible": ["R", "L", "C", "V₀", "ω", "X_L = ωL", "X_C = 1/ωC"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "AC source turned on at a frequency below resonance. Current and voltage waveforms plotted — current leads voltage (capacitive regime). Phasor diagram: V_C > V_L. Impedance Z calculated and shown larger than R.",
+      "emphasis": "Below resonance: X_C > X_L, so the net reactance is capacitive, current leads voltage",
+      "labels_visible": ["X_C > X_L", "Z > R", "φ < 0 (capacitive)", "I leads V"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Frequency tuned to resonance: ω = 1/√(LC). X_L = X_C — they cancel perfectly. Z drops to R. Current peaks at V₀/R. Phasor: V_L and V_C are equal, opposite, and cancel. Only V_R remains = V_source. Power factor = 1.",
+      "emphasis": "At resonance: L and C reactances CANCEL. Maximum current. Maximum power transfer. cos(φ) = 1.",
+      "labels_visible": ["ω₀ = 1/√(LC)", "X_L = X_C", "Z = R", "I_max = V₀/R", "cos(φ) = 1"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust frequency, R, L, C values. Watch impedance, current, phase angle, and phasor diagram update. Sweep frequency to trace the resonance curve. Adjust R to change Q factor (sharpness).",
+      "emphasis": "Lower R → higher Q → sharper resonance peak. Change L or C to shift resonance frequency.",
+      "labels_visible": ["Z", "I", "φ", "Q", "f₀", "cos(φ)"],
+      "interactive": true,
+      "sliders": [
+        { "id": "frequency", "label": "Frequency f", "min": 10, "max": 1000, "default": 200, "unit": "Hz" },
+        { "id": "resistance", "label": "Resistance R", "min": 5, "max": 200, "default": 50, "unit": "Ω" },
+        { "id": "inductance", "label": "Inductance L", "min": 0.01, "max": 1, "default": 0.1, "unit": "H" },
+        { "id": "capacitance", "label": "Capacitance C", "min": 1, "max": 100, "default": 10, "unit": "μF" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "At resonance, no current flows because L and C cancel each other out",
+      "trigger_phrases": ["resonance pe current zero", "L aur C cancel toh current kaise", "cancel hone se kuch nahi bachega", "resonance mein circuit dead"],
+      "correction": "At resonance, the REACTANCES (X_L and X_C) cancel — not the components themselves. This leaves only R opposing the current, so current is MAXIMUM (I = V/R), not zero. L and C still store and exchange energy, but their voltage drops cancel in the series loop.",
+      "simulation_emphasis": "Show current peaking at resonance on the I-f graph. Z drops to R. Current is V₀/R — the maximum possible."
+    },
+    {
+      "belief": "The voltage across L or C cannot exceed the source voltage",
+      "trigger_phrases": ["V_L > V_source impossible", "inductor pe source se zyada voltage kaise", "capacitor voltage can't exceed source", "more voltage than supply not possible"],
+      "correction": "At resonance, V_L = QV_source and V_C = QV_source. Since Q can be much larger than 1 (Q = 10, 50, or even 100), the voltage across L or C can be many times the source voltage. They cancel each other, but individually they are amplified.",
+      "simulation_emphasis": "Show V_L and V_C individually much larger than V_source at resonance, but their phasors are opposite and cancel"
+    }
+  ],
+  "legend": [
+    { "symbol": "R element", "meaning": "Resistance — dissipates energy as heat" },
+    { "symbol": "L coil", "meaning": "Inductor — stores energy in magnetic field" },
+    { "symbol": "C plates", "meaning": "Capacitor — stores energy in electric field" },
+    { "symbol": "Phasor arrows", "meaning": "V_R (along I), V_L (90° ahead), V_C (90° behind)" },
+    { "symbol": "Resonance peak", "meaning": "Maximum current at ω₀ = 1/√(LC)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["ac_voltage_current", "resistor_in_ac", "inductor_in_ac", "capacitor_in_ac"],
+    "extensions": ["resonance_lcr", "power_in_ac", "lc_oscillations"],
+    "siblings": ["rc_circuit_charging", "phasors"],
+    "common_exam_combinations": ["resonance_frequency_calculation", "power_factor_correction", "Q_factor_problems", "phasor_diagram_construction"]
+  }
+}

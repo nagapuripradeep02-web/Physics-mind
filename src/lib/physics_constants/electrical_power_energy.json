@@ -1,0 +1,28 @@
+{
+  "concept": "electrical_power_energy",
+  "locked_facts": {
+    "power_formula": "P = V * I",
+    "power_in_terms_of_resistance": "P = I^2 * R = V^2 / R",
+    "energy_formula": "W = P * t = V * I * t",
+    "unit_of_power": "watt",
+    "unit_of_energy": "joule",
+    "commercial_unit_of_energy": "kilowatt-hour (kWh) = 3.6 * 10^6 J",
+    "joule_heating": "heat_produced_H = I^2 * R * t (Joule's law of heating)",
+    "joule_heating_basis": "work_done_by_electric_field_on_electrons_converted_to_heat"
+  },
+  "animation_constraints": {
+    "higher_resistance_more_heat_for_same_current": true,
+    "electrons_drift": "right_to_left",
+    "field_arrows_point": "left_to_right",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "Electric power is the rate at which electrical energy is consumed or delivered: P = VI = I²R = V²/R",
+    "The electrical energy consumed by a device in time t is W = Pt = VIt, measured in joules in the SI system",
+    "The commercial unit of electrical energy is the kilowatt-hour (kWh); 1 kWh = 3.6 × 10⁶ J",
+    "Joule's law of heating states that the heat produced in a conductor is H = I²Rt, proportional to the square of the current, the resistance, and the time",
+    "In a purely resistive circuit, all electrical energy supplied by the source is converted into heat energy in the resistors"
+  ]
+}

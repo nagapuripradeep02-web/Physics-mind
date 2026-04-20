@@ -1,0 +1,87 @@
+{
+  "concept_id": "power_in_ac",
+  "concept_name": "Power in AC Circuits",
+  "chapter": "Alternating Current",
+  "class_level": 12,
+  "renderer_hint": {
+    "primary": "graph_interactive",
+    "topology": "power_waveform",
+    "graph_type": "v_i_p_overlaid"
+  },
+  "variables": {
+    "V_m": { "symbol": "V_m", "name": "Peak Voltage", "unit": "V", "min": 1, "max": 100, "default": 20 },
+    "phi": { "symbol": "φ", "name": "Phase Angle", "unit": "degrees", "min": 0, "max": 90, "default": 60 },
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 10, "max": 200, "default": 50 }
+  },
+  "locked_facts": [
+    "Instantaneous power p(t) = v(t) × i(t)",
+    "Average power P = V_rms × I_rms × cos φ",
+    "cos φ is the power factor",
+    "For pure resistor: φ = 0, cos φ = 1, P = V_rms × I_rms (maximum power)",
+    "For pure inductor: φ = 90°, cos φ = 0, P = 0 (no power consumption)",
+    "For pure capacitor: φ = -90°, cos φ = 0, P = 0 (no power consumption)",
+    "Wattless current: component of current that draws zero average power (reactive component)",
+    "Apparent power S = V_rms × I_rms (unit: VA)",
+    "Real power P = S × cos φ (unit: W)",
+    "Reactive power Q = S × sin φ (unit: VAR)"
+  ],
+  "truth_statements": [
+    "Pure inductor and pure capacitor consume zero average power",
+    "Power factor cos φ ranges from 0 to 1",
+    "Wattless current causes reactive power but no real energy consumption",
+    "Only the resistive component of a circuit consumes real power"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show P(t) for a pure inductor: P(t) oscillates between positive and negative values symmetrically. The positive area (energy absorbed by L) exactly equals the negative area (energy returned by L). Average = 0. This is wattless — current flows, apparent power exists, but zero real energy is consumed. This is why power companies care about power factor: reactive loads draw current (and heat transmission lines) but do no useful work.",
+    "visual_emphasis": "P(t) waveform with positive half shaded blue and negative half shaded orange. Show them as identical areas. Label average = 0 with a flat green line at P = 0."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Power in resistive circuit — φ = 0",
+      "what_student_sees": "V(t) and I(t) in phase. P(t) = V × I always positive. Average power P_avg = V_rms × I_rms shown as horizontal line.",
+      "what_to_emphasize": "When V and I have same sign (both + or both -), power is positive. In-phase means this is always the case. Power always flows from source to resistor."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Power with phase difference — partial power",
+      "what_student_sees": "Phase slider at φ = 60°. P(t) still sometimes positive, sometimes negative, but positive periods are larger. Average power P = V_rms × I_rms × cos 60° = 0.5 × V_rms × I_rms.",
+      "what_to_emphasize": "Phase difference reduces useful power. cos φ = power factor — how efficiently the circuit converts apparent power to real power."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Pure reactive circuit — zero real power",
+      "what_student_sees": "Phase angle set to 90° (pure L or C). P(t) oscillates symmetrically — equal positive and negative areas. Average = exactly 0.",
+      "what_to_emphasize": "Reactive elements draw current and create apparent power but return all energy to the source each cycle. Zero net energy consumption."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Power factor — practical significance",
+      "what_student_sees": "Two industrial loads: one with cos φ = 1 (resistive heater), one with cos φ = 0.5 (inductive motor). Both draw same current. Heater delivers 1000W useful power. Motor delivers only 500W despite drawing same current.",
+      "what_to_emphasize": "Low power factor means the transmission lines carry more current than necessary to do the actual work. This wastes energy in line resistance. Power companies penalise low power factor in industrial consumers."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "inductor_consumes_power",
+      "trigger_keywords": ["inductor uses power", "L consumes energy", "inductor heats up", "reactive power is real", "current flowing means power"],
+      "student_belief": "Since the inductor draws current from the source, it must be consuming power",
+      "actual_physics": "Power = V × I is the instantaneous power, which can be positive or negative. For a pure inductor, positive and negative periods are equal — net energy consumed over a complete cycle is zero.",
+      "simulation_emphasis": "Show P(t) for pure inductor. Shade positive half-cycles blue, negative half-cycles orange. Make the areas visually equal. Show P_avg = 0 as a flat line."
+    },
+    {
+      "id": "power_factor_is_efficiency",
+      "trigger_keywords": ["power factor 50% efficient", "power factor means 50% wasted", "power factor efficiency same", "pf matlab efficiency"],
+      "student_belief": "Power factor of 0.5 means 50% of power is wasted as heat",
+      "actual_physics": "Power factor of 0.5 means only 50% of apparent power (V_rms × I_rms) is real power. The rest is reactive — it is NOT wasted as heat in the load. However, it does cause extra current in transmission lines, which wastes energy in line resistance.",
+      "simulation_emphasis": "Show power factor triangle: apparent power (hypotenuse), real power (horizontal), reactive power (vertical). Explain that reactive power sloshes back and forth — it is not wasted IN the load, but it forces extra current through transmission lines."
+    }
+  ],
+  "legend": [
+    { "symbol": "cos φ", "meaning": "Power factor — ratio of real to apparent power" },
+    { "symbol": "P", "meaning": "Real (average) power in watts (W)" },
+    { "symbol": "S", "meaning": "Apparent power = V_rms × I_rms in volt-amperes (VA)" },
+    { "symbol": "Q", "meaning": "Reactive power in volt-ampere-reactive (VAR)" }
+  ]
+}

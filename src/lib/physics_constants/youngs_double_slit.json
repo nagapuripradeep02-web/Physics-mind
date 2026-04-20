@@ -1,0 +1,113 @@
+{
+  "concept_id": "youngs_double_slit",
+  "concept_name": "Young's Double Slit Experiment",
+  "class_level": 12,
+  "chapter": "Wave Optics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "wave_canvas",
+    "scenario_type": "double_slit_interference",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "lambda": "Wavelength of light (m)",
+    "d": "Slit separation (m)",
+    "D": "Distance from slits to screen (m)",
+    "beta": "Fringe width (m)",
+    "n": "Order of fringe (integer)",
+    "theta": "Angular position of fringe (rad)"
+  },
+  "locked_facts": [
+    "Fringe width: β = λD/d — fringe spacing is uniform across the screen",
+    "Bright fringe condition: d sinθ = nλ, where n = 0, ±1, ±2, …",
+    "Dark fringe condition: d sinθ = (n + ½)λ, where n = 0, ±1, ±2, …",
+    "Central bright fringe (n = 0) is always at the centre and is the brightest",
+    "Path difference between waves from two slits at point P: Δ = d sinθ ≈ dy/D (for small angles)",
+    "Intensity distribution: I = 4I₀ cos²(πd sinθ / λ), where I₀ is intensity from a single slit",
+    "If white light is used, central fringe is white but higher-order fringes show coloured edges"
+  ],
+  "truth_statements": [
+    "Young's experiment provided the first definitive evidence that light behaves as a wave by demonstrating interference",
+    "The fringe width β = λD/d is directly proportional to wavelength and screen distance, and inversely proportional to slit separation",
+    "All bright fringes have the same intensity in the idealised two-slit model (ignoring single-slit diffraction envelope)",
+    "The central maximum is equidistant from both slits, so the path difference is zero and constructive interference always occurs there",
+    "Coherent sources (same frequency and constant phase difference) are essential for producing a stable interference pattern"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two wavefronts emerging from the slits overlap on the screen — where crests meet crests, bright bands form; where crests meet troughs, dark bands form. A path difference counter shows exactly nλ at bright fringes and (n+½)λ at dark fringes.",
+    "visual_emphasis": "Animated wavefronts from both slits reaching the screen with constructive/destructive markers and live path-difference readout",
+    "why_this_breaks_misconception": "Students see that darkness is not absence of light but cancellation of two waves — two sources can produce less light than one at certain points"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Monochromatic light hits double slit",
+      "description": "A plane wavefront of monochromatic light approaches two narrow slits separated by distance d. The slits are labelled S₁ and S₂. No pattern is visible on the screen yet.",
+      "emphasis": "Establish the geometry — light source, two slits, and a distant screen",
+      "labels_visible": ["S₁", "S₂", "d", "D", "Screen"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Circular wavefronts from each slit",
+      "description": "Each slit acts as a coherent secondary source (Huygens' principle). Circular wavefronts radiate outward from S₁ and S₂. Where wavefronts overlap, interference begins. No screen pattern shown yet.",
+      "emphasis": "Both slits produce waves of the same frequency and constant phase — these are coherent sources",
+      "labels_visible": ["S₁", "S₂", "wavefronts", "d"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Interference pattern forms on screen",
+      "description": "The screen lights up with alternating bright and dark bands. The central bright fringe is marked n = 0. Path difference readout shows Δ = 0 at centre, Δ = λ at first bright fringe, Δ = λ/2 at first dark fringe. Formula β = λD/d displayed.",
+      "emphasis": "Bright bands where path difference = nλ (constructive), dark bands where path difference = (n+½)λ (destructive)",
+      "labels_visible": ["n = 0", "n = 1", "n = -1", "β = λD/d", "Δ = nλ"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts wavelength λ, slit separation d, and screen distance D. Fringe pattern updates in real time — wider fringes for longer λ or larger D, narrower fringes for larger d. Numerical fringe width β displayed.",
+      "emphasis": "Explore how each parameter affects fringe width — verify β = λD/d experimentally",
+      "labels_visible": ["β", "λ", "d", "D"],
+      "interactive": true,
+      "sliders": [
+        { "id": "wavelength", "label": "Wavelength λ", "min": 400, "max": 700, "default": 550, "unit": "nm" },
+        { "id": "slit_separation", "label": "Slit separation d", "min": 0.1, "max": 2.0, "default": 0.5, "unit": "mm" },
+        { "id": "screen_distance", "label": "Screen distance D", "min": 0.5, "max": 3.0, "default": 1.5, "unit": "m" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The central fringe is dark because the two waves cancel each other",
+      "trigger_phrases": ["central dark", "centre pe dark hoga", "middle mein destructive", "centre cancel"],
+      "correction": "The central fringe is always bright because the path difference from both slits to the centre is zero, so the waves always arrive in phase and interfere constructively",
+      "simulation_emphasis": "Highlight path difference = 0 at centre with both wavefronts arriving crest-to-crest"
+    },
+    {
+      "belief": "Increasing slit separation makes the fringes wider",
+      "trigger_phrases": ["slits zyada door toh fringe bada", "wider slits wider fringes", "d increase fringe increase", "more separation more width"],
+      "correction": "Fringe width β = λD/d — increasing slit separation d actually makes fringes narrower, not wider. The relationship is inversely proportional.",
+      "simulation_emphasis": "Animate d increasing while showing fringes compressing together with numerical β decreasing"
+    },
+    {
+      "belief": "Fringes disappear if the light source is not a laser",
+      "trigger_phrases": ["only laser works", "normal light se nahi hoga", "bulb se interference nahi", "sirf laser"],
+      "correction": "Any coherent light source works. Young originally used sunlight through a single slit to create spatial coherence. The key requirement is coherence (constant phase relationship), not specifically a laser.",
+      "simulation_emphasis": "Show that a single slit before the double slit creates coherent illumination even from an extended source"
+    }
+  ],
+  "legend": [
+    { "symbol": "β", "meaning": "Fringe width = λD/d (m)" },
+    { "symbol": "λ", "meaning": "Wavelength of light (m)" },
+    { "symbol": "d", "meaning": "Distance between the two slits (m)" },
+    { "symbol": "D", "meaning": "Distance from slits to screen (m)" },
+    { "symbol": "n", "meaning": "Order of fringe (0 = central, ±1, ±2, …)" },
+    { "symbol": "Δ", "meaning": "Path difference = d sinθ" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["wave_superposition", "interference_coherence"],
+    "extensions": ["single_slit_diffraction", "diffraction_grating", "thin_film_interference"],
+    "siblings": ["single_slit_diffraction"],
+    "common_exam_combinations": ["single_slit_diffraction", "interference_coherence", "diffraction_grating"]
+  }
+}

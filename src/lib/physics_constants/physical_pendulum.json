@@ -1,0 +1,42 @@
+{
+  "concept_id": "physical_pendulum",
+  "concept_name": "Physical (Compound) Pendulum",
+  "class_level": 11,
+  "chapter": "System of Particles and Rotational Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "physical_pendulum", "panel_count": 1, "show_labels": true },
+  "variables": { "T": "Time period (s)", "I": "Moment of inertia about pivot (kg·m²)", "d": "Distance from pivot to CM (m)", "L_eq": "Equivalent simple pendulum length (m)" },
+  "locked_facts": [
+    "Time period: T = 2π√(I/(mgd)) where I is about the pivot and d is pivot-to-CM distance",
+    "Equivalent simple pendulum length: L_eq = I/(md)",
+    "Using parallel axis theorem: I = I_cm + md², so T = 2π√((I_cm + md²)/(mgd))",
+    "For a uniform rod pivoted at end: T = 2π√(2L/(3g))",
+    "T has a minimum at d = √(I_cm/m) — neither too close nor too far from CM",
+    "For small oscillations only (sinθ ≈ θ)",
+    "A simple pendulum is a special case where all mass is at one point: I = md², T = 2π√(d/g)"
+  ],
+  "truth_statements": [
+    "A physical pendulum is any rigid body oscillating about a horizontal axis that does not pass through its centre of mass",
+    "The time period depends on the moment of inertia about the pivot and the distance from the pivot to the centre of mass",
+    "The equivalent length of a physical pendulum is always greater than the distance from pivot to CM",
+    "There exists an optimal pivot distance that minimises the time period",
+    "The simple pendulum formula T = 2π√(L/g) is a special case of the physical pendulum formula"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A ruler pivoted at different points along its length. Near the end: long T (large I). Near the centre: long T (small d, small restoring torque). At an intermediate point: minimum T. The T vs d curve shows a clear minimum.",
+    "visual_emphasis": "Graph of T vs pivot position with the minimum clearly marked, alongside the ruler swinging at each position",
+    "why_this_breaks_misconception": "Students assume pivot closer to CM always gives faster oscillation — seeing T increase again near the CM (due to vanishing restoring torque) is counterintuitive and memorable"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Physical vs simple pendulum", "description": "A rod swinging alongside a simple pendulum. Different periods — the rod has distributed mass so it oscillates differently. Formula comparison shown.", "emphasis": "A rod is NOT a simple pendulum — mass distribution matters", "labels_visible": ["T_rod", "T_simple", "I = I_cm + md²"] },
+    { "id": "STATE_2", "label": "Varying pivot position", "description": "The pivot point moves along a uniform rod. At each position, the rod swings and T is recorded. Far from CM: large I dominates → long T. Close to CM: small d → weak restoring torque → long T.", "emphasis": "T is long at both extremes — there's a sweet spot in between", "labels_visible": ["d", "T", "pivot position"] },
+    { "id": "STATE_3", "label": "Minimum period", "description": "Graph of T vs d shows a clear minimum at d = √(I_cm/m). The rod swings at this optimal position. Equivalent simple pendulum length L_eq = I/(md) is shown.", "emphasis": "The minimum T occurs at d = √(I_cm/m), not at the end or centre", "labels_visible": ["d_opt", "T_min", "L_eq = I/(md)"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student drags the pivot point along a uniform rod. The rod swings and T is measured. A graph builds up showing T vs pivot position. Compare with simple pendulum of same total length.", "emphasis": "Drag the pivot — find the position with shortest period", "labels_visible": ["T", "d", "L_eq"], "interactive": true, "sliders": [{ "id": "pivot_pos", "label": "Pivot position", "min": 5, "max": 95, "default": 20, "unit": "% from end" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "A physical pendulum is just a simple pendulum with a heavy bob", "trigger_phrases": ["same as simple pendulum", "simple pendulum with mass"], "correction": "A physical pendulum has distributed mass with moment of inertia I about the pivot, not concentrated at a point. Its period T = 2π√(I/(mgd)) involves I, not just the distance d.", "simulation_emphasis": "Swing a rod and a simple pendulum side by side — different periods for same pivot-to-CM distance" },
+    { "belief": "Moving the pivot closer to the CM always makes it oscillate faster", "trigger_phrases": ["closer to CM faster", "CM ke paas jaldi"], "correction": "Moving closer to CM reduces the restoring torque (τ = mgd sinθ, d decreases). Eventually T increases again. There's an optimal d = √(I_cm/m) that minimises T.", "simulation_emphasis": "Show T increasing as pivot approaches CM — the minimum is NOT at the CM" }
+  ],
+  "legend": [ { "symbol": "T", "meaning": "Time period = 2π√(I/(mgd))" }, { "symbol": "d", "meaning": "Pivot to CM distance (m)" }, { "symbol": "L_eq", "meaning": "Equivalent length = I/(md)" } ],
+  "concept_relationships": { "prerequisites": ["moment_of_inertia_shapes", "simple_harmonic_motion"], "extensions": ["torsional_pendulum"], "siblings": ["simple_pendulum_shm"], "common_exam_combinations": ["moment_of_inertia_shapes"] }
+}

@@ -1,0 +1,85 @@
+{
+  "concept_id": "inductor_in_ac",
+  "concept_name": "Inductor in AC Circuit",
+  "chapter": "Alternating Current",
+  "class_level": 12,
+  "renderer_hint": {
+    "primary": "circuit_live",
+    "topology": "single_ac_element",
+    "element": "inductor",
+    "show_graph": true
+  },
+  "variables": {
+    "V_m": { "symbol": "V_m", "name": "Peak Voltage", "unit": "V", "min": 1, "max": 100, "default": 20 },
+    "L": { "symbol": "L", "name": "Inductance", "unit": "H", "min": 0.01, "max": 10, "default": 0.1 },
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 10, "max": 1000, "default": 50 }
+  },
+  "locked_facts": [
+    "v = V_m sin(ωt)",
+    "i = I_m sin(ωt - π/2) = -I_m cos(ωt)",
+    "Voltage LEADS current by π/2 (90°) — equivalently, current LAGS voltage by 90°",
+    "Inductive reactance X_L = ωL = 2πfL",
+    "I_m = V_m / X_L",
+    "X_L increases with frequency — inductor blocks high-frequency AC more",
+    "Average power dissipated in pure inductor = 0 (energy stored and returned)",
+    "Inductor opposes CHANGE in current — not current itself"
+  ],
+  "truth_statements": [
+    "Voltage leads current by exactly 90° for a pure inductor",
+    "Inductive reactance X_L is proportional to frequency — doubles when frequency doubles",
+    "A pure inductor dissipates zero average power",
+    "The back-EMF of the inductor opposes changes in current, causing the phase lag"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show V peaking at time t₁ and I not peaking until time t₂ = t₁ + T/4. The current peak is delayed by exactly a quarter cycle. This is not arbitrary — it is because the inductor always generates back-EMF that opposes the rate of change of current, and the current through an inductor cannot change instantaneously.",
+    "visual_emphasis": "Draw a vertical dashed line at V_peak. Then show I_peak occurring T/4 later — another vertical dashed line. Label the gap as T/4 = π/2 phase delay."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "AC source connected to inductor",
+      "what_student_sees": "Circuit with AC source and inductor. Equation v = V_m sin(ωt) on the source.",
+      "what_to_emphasize": "An inductor stores energy in its magnetic field — it does not dissipate it. This fundamental difference from resistor will cause a phase shift."
+    },
+    {
+      "state": "STATE_2",
+      "label": "V and I waveforms — I lags by 90°",
+      "what_student_sees": "v(t) in orange, i(t) in blue. The current waveform is clearly shifted 90° to the right (delayed). When V peaks, I = 0. When V = 0 (and falling), I peaks.",
+      "what_to_emphasize": "I lags V by 90° means: when voltage reaches maximum, current is only just crossing zero. The current is a quarter cycle behind the voltage."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Why the lag — the physical mechanism",
+      "what_student_sees": "Animation showing: as V rises, the inductor generates back-EMF resisting the current increase. Current builds up slowly. When V starts falling, current is still rising. The opposition to CHANGE causes the delay.",
+      "what_to_emphasize": "The inductor does not oppose current — it opposes CHANGE in current. This is the physical origin of the phase lag."
+    },
+    {
+      "state": "STATE_4",
+      "label": "X_L increases with frequency",
+      "what_student_sees": "Slider for frequency. As frequency increases, X_L = ωL increases, I_m = V_m/X_L decreases. High frequency AC is blocked more by inductor.",
+      "what_to_emphasize": "Inductor is a high-frequency blocker. At DC (f=0), X_L = 0 — inductor is a short circuit. At very high frequency, X_L → ∞ — inductor is an open circuit."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "v_lags_i_confusion",
+      "trigger_keywords": ["V lags I inductor", "current leads voltage inductor", "I aage hota hai L mein", "inductor current leads"],
+      "student_belief": "In an inductor, current leads voltage (confusing direction of lead/lag)",
+      "actual_physics": "In an inductor, VOLTAGE leads CURRENT by 90°. Equivalently, CURRENT lags VOLTAGE by 90°. The mnemonic: ELI (E = voltage, L = inductor, I = current → V leads I in L).",
+      "simulation_emphasis": "Show the two waveforms with a clear arrow indicating: V peaks FIRST (earlier in time), I peaks LATER. Label: V leads I, or equivalently, I lags V."
+    },
+    {
+      "id": "inductor_dissipates_power",
+      "trigger_keywords": ["inductor heats up", "inductor uses power", "inductor resistance", "L mein power loss", "inductor power consumption"],
+      "student_belief": "An inductor dissipates power because it draws current from the source",
+      "actual_physics": "A pure inductor dissipates zero average power. It draws energy from the source in one quarter cycle and returns it completely in the next quarter cycle. Net energy transfer is zero.",
+      "simulation_emphasis": "Show P(t) = v(t) × i(t) for the inductor. It oscillates between positive and negative symmetrically — positive when inductor absorbs energy, negative when it returns energy. Average = exactly zero."
+    }
+  ],
+  "legend": [
+    { "symbol": "X_L", "meaning": "Inductive reactance = ωL (unit: ohm)" },
+    { "symbol": "φ = +90°", "meaning": "Voltage leads current by 90° in inductor" },
+    { "symbol": "ELI", "meaning": "Mnemonic: E(voltage) leads I(current) in L(inductor)" }
+  ]
+}

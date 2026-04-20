@@ -39,3 +39,37 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local claude settings (user-specific)
+.claude/settings.local.json
+
+# logs & ad-hoc debug output
+*.log
+ts.log
+tsc_output*.txt
+cache_output.txt
+cache-result.txt
+route_backup.txt
+
+# playwright artifacts
+/test-results/
+/playwright-report/
+
+# large regeneratable data (extracted from PDFs / generated JSONL)
+/ncert/
+ncert_chunks.jsonl
+ncert_class10_chunks.json
+dc_pandey_chunks.jsonl
+dcp_em_chunks.jsonl
+dcp_optics_chunks.jsonl
+
+# copyrighted source textbooks — never commit
+/pdfs/
+
+# python virtualenvs
+venv/
+venv*/
+*/venv/
+*/venv*/
+__pycache__/
+*.pyc

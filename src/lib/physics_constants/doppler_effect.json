@@ -1,0 +1,76 @@
+{
+  "concept_id": "doppler_effect",
+  "concept_name": "Doppler Effect",
+  "chapter": "Waves",
+  "class_level": 11,
+  "renderer_hint": {
+    "primary": "wave_canvas",
+    "scenario_type": "doppler_moving",
+    "show_graph": false
+  },
+  "variables": {
+    "f0": { "symbol": "f\u2080", "name": "Source frequency", "unit": "Hz", "min": 100, "max": 1000, "default": 500 },
+    "v_source": { "symbol": "v\u209b", "name": "Source velocity", "unit": "m/s", "min": 0, "max": 300, "default": 50 },
+    "v_sound": { "symbol": "v", "name": "Speed of sound", "unit": "m/s", "min": 300, "max": 400, "default": 343 }
+  },
+  "locked_facts": [
+    "Observed frequency f' = f\u2080(v \u00b1 v_observer)/(v \u2213 v_source)",
+    "Wave SPEED does not change with source or observer motion",
+    "Only wavelength and observed frequency change",
+    "Source approaching: wavelength decreases, frequency increases",
+    "Source receding: wavelength increases, frequency decreases"
+  ],
+  "truth_statements": [
+    "The apparent change in frequency due to relative motion is called the Doppler effect",
+    "The speed of sound in the medium does not change due to source or observer motion",
+    "When the source approaches, the observed frequency is higher than the actual frequency",
+    "When the source recedes, the observed frequency is lower than the actual frequency",
+    "The Doppler effect applies to all types of waves"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Wavefronts compressed ahead of moving source, stretched behind. Wave speed arrows ALL IDENTICAL length in both directions. Only the spacing (\u03bb) differs, not the speed.",
+    "visual_emphasis": "Two wave speed arrows (forward and backward) drawn with identical length. Label: 'wave speed = same!'. Compressed wavefronts ahead, stretched behind. The speed does NOT change \u2014 only the wavelength does."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Stationary source \u2014 uniform wavefronts",
+      "what_student_sees": "Sound source at rest emitting concentric circular wavefronts. All wavefronts equally spaced in all directions.",
+      "what_to_emphasize": "When the source is stationary, wavefronts are concentric circles. Wavelength is the same in every direction."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Source starts moving",
+      "what_student_sees": "Source moves rightward. Wavefronts become compressed ahead and stretched behind. Two observers: A (ahead) and B (behind).",
+      "what_to_emphasize": "As the source moves, it 'catches up' to the wavefronts ahead, compressing them. Behind, wavefronts are stretched apart."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Key insight \u2014 speed unchanged",
+      "what_student_sees": "Wave speed arrows drawn in both directions \u2014 SAME length. Wavelength arrows: shorter ahead, longer behind. Observer A hears higher frequency. Observer B hears lower frequency.",
+      "what_to_emphasize": "The wave speed in the medium is UNCHANGED. Only the wavelength changes. Compressed \u03bb ahead \u2192 higher f'. Stretched \u03bb behind \u2192 lower f'."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive \u2014 adjust source speed",
+      "what_student_sees": "Slider to change source speed v\u209b. Faster source = more compression ahead. At v\u209b \u2248 v (speed of sound), wavefronts pile up (shock front).",
+      "what_to_emphasize": "Try increasing v\u209b. At v\u209b = v, all wavefronts arrive together \u2192 sonic boom. The formula f' = f\u2080(v)/(v-v\u209b) diverges when v\u209b \u2192 v."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "sound_travels_faster",
+      "trigger_keywords": ["sound faster when source comes", "speed badh jaati hai source aaye toh", "sound ka speed badhta hai"],
+      "student_belief": "Sound travels faster when the source moves toward you",
+      "actual_physics": "The speed of sound in a medium depends ONLY on the medium properties (temperature, density), not on source or observer motion. What changes is the observed wavelength and frequency, not the wave speed.",
+      "simulation_emphasis": "Show wave speed arrows of identical length in all directions. The wavefronts ahead are closer together (shorter \u03bb, higher f) but they travel at the same speed."
+    }
+  ],
+  "legend": [
+    { "symbol": "f'", "meaning": "Observed (apparent) frequency" },
+    { "symbol": "f\u2080", "meaning": "Source (actual) frequency" },
+    { "symbol": "v", "meaning": "Speed of sound in medium (constant)" },
+    { "symbol": "v\u209b", "meaning": "Speed of source" }
+  ]
+}

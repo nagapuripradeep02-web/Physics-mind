@@ -1,0 +1,324 @@
+{
+  "concept_id": "parallelogram_law_test",
+  "concept_name": "The Parallelogram Law — The Definitive Test for a Vector",
+  "chapter": 5,
+  "section": "5.1",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.1 — 'two conditions for a vector'; split from scalar_vs_vector bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "Walking three metres east and then four metres north lands you five metres from the start, not seven. The gap between seven and five is the entire reason we need vectors — scalar addition cannot describe motion in space.",
+    "secondary": "Two people pulling a loaded cart through a narrow lane with ropes at different angles. The effective pull depends on the angle between the ropes — this is the parallelogram law in daily life.",
+    "tertiary": "Opening a heavy door. Push it straight in at ninety degrees and it swings easily. Push at a glancing angle and you have to apply much more force for the same rotation — the useful component of your push falls with the cosine of the angle."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "A_mag": { "name": "Magnitude of A", "unit": "m", "min": 1, "max": 10, "default": 3 },
+      "B_mag": { "name": "Magnitude of B", "unit": "m", "min": 1, "max": 10, "default": 4 },
+      "theta_deg": { "name": "Angle between A and B", "unit": "deg", "min": 0, "max": 180, "default": 90 }
+    },
+    "computed_outputs": {
+      "R_mag": { "formula": "sqrt(A_mag*A_mag + B_mag*B_mag + 2*A_mag*B_mag*cos(theta_deg * PI / 180))" },
+      "scalar_sum": { "formula": "A_mag + B_mag" },
+      "gap": { "formula": "(A_mag + B_mag) - sqrt(A_mag*A_mag + B_mag*B_mag + 2*A_mag*B_mag*cos(theta_deg * PI / 180))" }
+    },
+    "formulas": {
+      "parallelogram_law": "|R| = sqrt(|A|^2 + |B|^2 + 2 |A| |B| cos theta)",
+      "direction_of_R": "tan alpha = B sin theta / (A + B cos theta)"
+    },
+    "constraints": [
+      "Only quantities that obey this law qualify as vectors",
+      "|R| collapses to |A| + |B| when theta = 0 (parallel) and to ||A| - |B|| when theta = 180 (antiparallel)",
+      "Two conditions BOTH required: (a) magnitude + direction, (b) parallelogram-law obedience. Missing either disqualifies the quantity from being a vector.",
+      "Scalars add by plain arithmetic — the angle never enters"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Two Vectors Meet at an Angle — What Is the Total?",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "vec_A",
+            "from": { "x": 180, "y": 360 },
+            "magnitude": 3,
+            "direction_deg": 0,
+            "label": "A = 3 m east",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 60
+          },
+          {
+            "type": "force_arrow",
+            "id": "vec_B",
+            "from": { "x": 180, "y": 360 },
+            "magnitude": 4,
+            "direction_deg": 90,
+            "label": "B = 4 m north",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 60
+          },
+          {
+            "type": "force_arrow",
+            "id": "vec_R",
+            "from": { "x": 180, "y": 360 },
+            "magnitude": 5,
+            "direction_deg": 53,
+            "label": "R = 5 m at 53 deg",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 60,
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "arithmetic",
+            "text": "Scalar arithmetic\n3 + 4 = 7 m\n\nReality\nEnd point is 5 m away,\nnot 7.\n\nThe gap is why\nwe need vectors.",
+            "position": { "x": 500, "y": 200 },
+            "style": "formula_box"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Start with a real situation. Walk three metres east, then turn ninety degrees and walk four metres north." },
+            { "id": "s2", "text_en": "Naive arithmetic says your total displacement is three plus four, which is seven metres." },
+            { "id": "s3", "text_en": "But measure the straight line from your starting point to your ending point. It is five metres, not seven." },
+            { "id": "s4", "text_en": "The end point depends on the angle between the two legs of the journey." },
+            { "id": "s5", "text_en": "Plain scalar addition cannot describe this. We need a rule that accounts for the angle. That rule is the parallelogram law." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "The Parallelogram Rule — Where the Formula Comes From",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "para_A",
+            "from": { "x": 200, "y": 360 },
+            "magnitude": 3,
+            "direction_deg": 0,
+            "label": "A",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 60
+          },
+          {
+            "type": "force_arrow",
+            "id": "para_B",
+            "from": { "x": 200, "y": 360 },
+            "magnitude": 4,
+            "direction_deg": 60,
+            "label": "B",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 60
+          },
+          {
+            "type": "force_arrow",
+            "id": "para_R",
+            "from": { "x": 200, "y": 360 },
+            "magnitude": 6.08,
+            "direction_deg": 34,
+            "label": "R = 6.08",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 60,
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "formula",
+            "text": "Draw a parallelogram on\nA and B. The diagonal is R.\n\n|R|^2 = |A|^2 + |B|^2\n      + 2|A||B| cos theta\n\nAt theta = 60 deg\n|R|^2 = 9 + 16 + 24 * 0.5 = 37\n|R|   = 6.08",
+            "position": { "x": 500, "y": 220 },
+            "style": "formula_box"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Take the two arrows A and B. Draw a parallelogram using them as adjacent sides." },
+            { "id": "s2", "text_en": "The diagonal of this parallelogram — starting from the shared tail — is the resultant, R." },
+            { "id": "s3", "text_en": "The magnitude is given by the law of cosines. R squared equals A squared plus B squared plus twice A times B times the cosine of the angle between them." },
+            { "id": "s4", "text_en": "Plug in A equals three, B equals four, angle equals sixty degrees. R squared comes out to thirty-seven, so R is about six point zero eight metres." },
+            { "id": "s5", "text_en": "The key observation — the angle enters through that cosine term. The resultant CHANGES with the angle. That is what makes this a vector rule and not a scalar rule." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "The Two Conditions — The Clean Rule",
+        "duration": 9,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rule_block",
+            "text": "A quantity is a vector\nif AND ONLY IF\n\n(1) It has magnitude AND direction\n(2) It obeys the parallelogram law\n    of addition\n\nBoth required.\nMissing either => scalar (or tensor).",
+            "position": { "x": 260, "y": 240 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "examples_good",
+            "text": "PASS both\ndisplacement\nvelocity, force\nelectric field E\ntorque tau",
+            "position": { "x": 620, "y": 200 },
+            "style": "callout",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "examples_bad",
+            "text": "FAIL condition (2)\ncurrent\npressure\nsurface tension\nfinite rotation",
+            "position": { "x": 620, "y": 340 },
+            "style": "callout",
+            "color": "#EF4444"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is the full rule, stated cleanly. A quantity is a vector if and only if two conditions hold." },
+            { "id": "s2", "text_en": "One — it has magnitude and direction. Two — it obeys the parallelogram law of addition." },
+            { "id": "s3", "text_en": "Displacement, velocity, force, electric field, torque — all pass both. They are vectors." },
+            { "id": "s4", "text_en": "Current, pressure, surface tension, finite rotation — all have some directional feature but fail the parallelogram test. They are not vectors." },
+            { "id": "s5", "text_en": "Memorise this rule. It is the single most reliable test you can apply in any assertion-reason question." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "finite_rotation_trap",
+      "misconception": "Finite rotation is a vector because it has magnitude (angle) and direction (axis)",
+      "trigger_phrases": [
+        "is finite rotation a vector",
+        "rotation has magnitude and direction so vector",
+        "ninety degree rotation is a vector",
+        "can rotations be added like vectors"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Rotations Must Be Vectors",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "belief_statement",
+              "text": "Your reasoning\n\nA ninety-degree rotation about x\nhas magnitude: 90 deg\nand direction: x-axis.\n\nSame for rotation about y.\n\n=> rotation is a vector.",
+              "position": { "x": 280, "y": 240 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "test_setup",
+              "text": "Test we will run\n\nRotate a book 90 deg about x,\nthen 90 deg about y.\n\nThen redo it in reverse order:\n90 deg about y, then 90 deg about x.\n\nIf rotation is a vector,\nboth orders give the same result.",
+              "position": { "x": 620, "y": 240 },
+              "style": "formula_box"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Let us examine finite rotations. A ninety-degree rotation carries two pieces of information: the angle, which is the magnitude, and the axis, which is the direction." },
+              { "id": "s2", "text_en": "That looks exactly like a vector. So rotations should be vectors, and they should add like vectors." },
+              { "id": "s3", "text_en": "Vector addition is commutative — A plus B equals B plus A. If rotations are vectors, the order in which we apply them should not matter." },
+              { "id": "s4", "text_en": "Here is the test. Take a book. Rotate it ninety degrees about the x-axis, then ninety degrees about the y-axis. Then repeat in the opposite order." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Book Experiment — Order Changes the Outcome",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "path_A",
+              "text": "Path A\nStart: book lies flat,\ncover facing up, spine on left.\n\n(1) Rotate 90 deg about x-axis\n    -> cover now faces you\n(2) Rotate 90 deg about y-axis\n    -> spine now points up",
+              "position": { "x": 220, "y": 220 },
+              "style": "formula_box",
+              "color": "#3B82F6"
+            },
+            {
+              "type": "annotation",
+              "id": "path_B",
+              "text": "Path B (reversed order)\nSame starting position.\n\n(1) Rotate 90 deg about y-axis\n    -> spine now faces you\n(2) Rotate 90 deg about x-axis\n    -> spine points toward you,\n       cover faces the ceiling",
+              "position": { "x": 220, "y": 420 },
+              "style": "formula_box",
+              "color": "#F59E0B"
+            },
+            {
+              "type": "annotation",
+              "id": "verdict",
+              "text": "Different final orientations.\n\nOrder MATTERS.\n\nTherefore finite rotation\nfails the parallelogram law\n=> NOT a vector.",
+              "position": { "x": 640, "y": 320 },
+              "style": "formula_box",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Try this with an actual book right now. Keep it flat on the table, cover up, spine on your left." },
+              { "id": "s2", "text_en": "Path A: rotate it ninety degrees about the horizontal x-axis. Now the cover faces you. Next, rotate ninety degrees about the vertical y-axis. The spine now points upward." },
+              { "id": "s3", "text_en": "Reset the book. Path B: rotate ninety degrees about the vertical axis first, then ninety about the horizontal. You end up with the spine pointing toward you and the cover facing the ceiling." },
+              { "id": "s4", "text_en": "Same two rotations, applied in different order, give different final orientations." },
+              { "id": "s5", "text_en": "That breaks commutativity. Vector addition is always commutative. Finite rotations are not. Therefore they are not vectors, despite having magnitude and direction." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Infinitesimal Rotations — Where the Rule Restores",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "infinitesimal",
+              "text": "Shrink each rotation to a\ntiny angle d_theta.\n\nOrder no longer matters\nat leading order in d_theta.\n\nInfinitesimal rotations\nDO commute.\n=> they add as vectors.\n\nAngular velocity is built from\ninfinitesimal rotations per second\n-> angular velocity IS a vector.",
+              "position": { "x": 320, "y": 260 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "summary",
+              "text": "Summary\n\nFinite rotation  ->  NOT vector\nInfinitesimal rotation -> vector\nAngular velocity  ->  vector\nAngular momentum ->  vector",
+              "position": { "x": 640, "y": 280 },
+              "style": "callout"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "If you shrink each rotation to a very small angle, d theta, the order effect becomes vanishingly small." },
+              { "id": "s2", "text_en": "At leading order, infinitesimal rotations do commute. So they pass the parallelogram test and they are vectors." },
+              { "id": "s3", "text_en": "Angular velocity is an infinitesimal rotation per unit time, so it inherits the vector property." },
+              { "id": "s4", "text_en": "Angular momentum, which is moment of inertia times angular velocity, is therefore also a vector." },
+              { "id": "s5", "text_en": "So the rule is: finite rotation is not a vector, but everything built from infinitesimal rotations is." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different magnitudes, same law",
+      "physical_world": "A = 5 m, B = 12 m, theta variable. Resultant ranges from 17 m (theta = 0) to 7 m (theta = 180).",
+      "same_physics": "Parallelogram law |R| = sqrt(|A|^2 + |B|^2 + 2|A||B| cos theta)"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Forces instead of displacements",
+      "physical_world": "Two ropes pulling a crate — rope 1 at 100 N, rope 2 at 150 N, angle between ropes variable. Net force follows the same parallelogram law.",
+      "same_physics": "Law holds for any vector quantity — displacement, force, velocity, field. Units differ; the formula does not."
+    }
+  ]
+}

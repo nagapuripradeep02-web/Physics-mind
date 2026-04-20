@@ -1,0 +1,118 @@
+{
+  "concept_id": "magnetic_dipole_bar_magnet",
+  "concept_name": "Magnetic Dipole and Bar Magnet",
+  "class_level": 12,
+  "chapter": "Magnetism and Matter",
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "magnetic_dipole_field",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "M": "Magnetic dipole moment (A·m²)",
+    "N": "Number of turns in the coil",
+    "I": "Current through the coil (A)",
+    "A": "Area of the coil (m²)",
+    "r": "Distance from the dipole centre (m)",
+    "B_axial": "Magnetic field on the axial line (T)",
+    "B_equatorial": "Magnetic field on the equatorial line (T)",
+    "tau": "Torque on dipole in external field (N·m)",
+    "B_ext": "External uniform magnetic field (T)",
+    "theta": "Angle between M and B_ext"
+  },
+  "locked_facts": [
+    "Magnetic dipole moment: M = NIA (for a coil of N turns, current I, area A)",
+    "Axial field of a magnetic dipole: B_axial = (μ₀/4π) × 2M/r³ (along the dipole axis)",
+    "Equatorial field of a magnetic dipole: B_equatorial = (μ₀/4π) × M/r³ (opposite to M direction)",
+    "B_axial = 2 × B_equatorial at the same distance r",
+    "Torque on a dipole in uniform field: τ = M × B = MB sin θ",
+    "Potential energy of dipole in uniform field: U = -M·B = -MB cos θ",
+    "A bar magnet is equivalent to a magnetic dipole — its field at large distances matches the dipole field pattern"
+  ],
+  "truth_statements": [
+    "A current loop acts as a magnetic dipole with moment M = NIA, directed along the axis of the loop (right-hand rule: curl fingers along current, thumb gives M direction)",
+    "The magnetic field of a dipole falls off as 1/r³ — much faster than the 1/r² of a monopole, because the dipole field arises from two equal and opposite poles",
+    "On the axial line, the field points in the same direction as M and is twice as strong as the equatorial field at the same distance",
+    "On the equatorial line, the field points opposite to M and has magnitude (μ₀/4π)(M/r³)",
+    "A bar magnet placed in a uniform magnetic field experiences a torque τ = MB sin θ that tends to align it along the field (like a compass needle)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A current loop and a bar magnet placed side by side. At large distances (r >> size), their field patterns are IDENTICAL — both show the 1/r³ dipole field. Field vectors on the axial line point along M, and on the equatorial line point opposite to M. A numerical readout confirms B_axial = 2 × B_equatorial at every distance r.",
+    "visual_emphasis": "Split screen: current loop field lines on left, bar magnet field lines on right — they merge seamlessly at large r. The 2:1 ratio (axial:equatorial) is highlighted with colour-coded field vectors.",
+    "why_this_breaks_misconception": "Students think bar magnets and current loops are fundamentally different — they see that at distances large compared to the size, both produce the exact same dipole field"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Current loop as magnetic dipole",
+      "description": "A circular current loop with current I and area A. The magnetic moment vector M = IA is shown along the axis (using right-hand rule). Field lines emerge from one face (north) and enter the other (south).",
+      "emphasis": "A current loop IS a magnetic dipole. The moment M = NIA points along the axis — right-hand rule: curl fingers along current, thumb gives M direction.",
+      "labels_visible": ["I", "A", "M = NIA", "N", "S"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Axial and equatorial fields",
+      "description": "Field vectors shown at several points on the axial line (along M direction) and the equatorial line (perpendicular to M). Axial field vectors point along M, equatorial vectors point opposite to M. Numerical labels show B_axial = 2 × B_equatorial at each distance r.",
+      "emphasis": "Axial: B = (μ₀/4π)(2M/r³), along M. Equatorial: B = (μ₀/4π)(M/r³), opposite to M. The factor of 2 is a key exam point.",
+      "labels_visible": ["B_axial = μ₀2M/(4πr³)", "B_eq = μ₀M/(4πr³)", "B_axial = 2B_eq"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Bar magnet ≡ magnetic dipole",
+      "description": "A bar magnet appears next to the current loop. At large distances, their field lines overlap perfectly — both are dipole fields. The equivalence M = m × 2l (pole strength × magnetic length) is shown. Field vectors match at all far-field points.",
+      "emphasis": "At large r, a bar magnet and a current loop are indistinguishable — both produce a dipole field with 1/r³ decay. B_axial = 2B_equatorial for both.",
+      "labels_visible": ["M = m × 2l", "Dipole equivalence", "1/r³ decay"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts dipole moment M, distance r, and angle of observation (axial vs equatorial). Field magnitude updates in real time. A toggle places the dipole in an external field B to show torque τ = MB sin θ and potential energy U = -MB cos θ. Student can rotate the dipole to see torque variation.",
+      "emphasis": "Move along axial vs equatorial line — see the 2:1 ratio. Increase r — watch field drop as 1/r³ (much faster than 1/r²). Place in external B — rotate to feel the torque aligning the dipole.",
+      "labels_visible": ["M", "B", "r", "τ", "U"],
+      "interactive": true,
+      "sliders": [
+        { "id": "dipoleMoment", "label": "Dipole moment M", "min": 0.1, "max": 10, "default": 1, "unit": "A·m²" },
+        { "id": "distance", "label": "Distance r", "min": 0.05, "max": 1, "default": 0.2, "unit": "m" },
+        { "id": "extField", "label": "External field B", "min": 0, "max": 0.5, "default": 0.1, "unit": "T" },
+        { "id": "dipoleAngle", "label": "Angle θ (M to B)", "min": 0, "max": 180, "default": 30, "unit": "°" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The magnetic field of a bar magnet or dipole falls off as 1/r², just like a point charge",
+      "trigger_phrases": ["1/r² se decrease hota hai", "inverse square law for dipole", "dipole field 1/r²", "bar magnet ka field 1/r² se girega"],
+      "correction": "A magnetic dipole field falls off as 1/r³, NOT 1/r². This is because a dipole consists of two equal and opposite poles — the leading 1/r² terms from each pole partially cancel, leaving the weaker 1/r³ dependence. This is the same as for electric dipoles.",
+      "simulation_emphasis": "Show field magnitude vs distance plot — the 1/r³ curve drops off much faster than 1/r². At double the distance, the field drops to 1/8 (not 1/4)."
+    },
+    {
+      "belief": "The axial and equatorial fields of a dipole are equal in magnitude",
+      "trigger_phrases": ["same field both sides", "axial equatorial same hai", "dono direction mein equal field", "dipole ka field har jagah same"],
+      "correction": "The axial field B_axial = (μ₀/4π)(2M/r³) is exactly TWICE the equatorial field B_equatorial = (μ₀/4π)(M/r³) at the same distance r. Moreover, they point in DIFFERENT directions — axial along M, equatorial opposite to M.",
+      "simulation_emphasis": "Show field vectors at the same distance r on axial and equatorial lines — the axial arrow is twice as long as the equatorial arrow, and they point in opposite directions relative to M"
+    },
+    {
+      "belief": "A bar magnet has isolated north and south monopoles that can be separated",
+      "trigger_phrases": ["separate north south", "monopole", "ek pole alag kar sakte hain", "cut magnet get one pole"],
+      "correction": "Magnetic monopoles have never been observed. If you cut a bar magnet in half, each piece becomes a complete dipole with its own north and south pole. This is fundamentally different from electric charges, where positive and negative charges can exist independently.",
+      "simulation_emphasis": "Animate cutting a bar magnet — each piece immediately develops both poles with field lines forming complete loops through each piece"
+    }
+  ],
+  "legend": [
+    { "symbol": "M", "meaning": "Magnetic dipole moment = NIA (A·m²)" },
+    { "symbol": "B_axial", "meaning": "Field on axial line = μ₀2M/(4πr³)" },
+    { "symbol": "B_eq", "meaning": "Field on equatorial line = μ₀M/(4πr³)" },
+    { "symbol": "τ", "meaning": "Torque = M × B = MB sin θ (N·m)" },
+    { "symbol": "U", "meaning": "Potential energy = -M·B = -MB cos θ (J)" },
+    { "symbol": "m", "meaning": "Pole strength of bar magnet (A·m)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["magnetic_field_biot_savart", "force_on_current_carrying_conductor"],
+    "extensions": ["bar_magnet_field", "electromagnetic_induction_3d"],
+    "siblings": ["electric_dipole"],
+    "common_exam_combinations": ["bar_magnet_field", "force_on_current_carrying_conductor", "galvanometer_to_ammeter_voltmeter"]
+  }
+}

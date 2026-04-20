@@ -1,0 +1,77 @@
+{
+  "concept_id": "wave_on_string",
+  "concept_name": "Wave on a String",
+  "chapter": "Waves",
+  "class_level": 11,
+  "renderer_hint": {
+    "primary": "wave_canvas",
+    "scenario_type": "transverse_wave",
+    "show_graph": false
+  },
+  "variables": {
+    "A": { "symbol": "A", "name": "Amplitude", "unit": "cm", "min": 0.5, "max": 5, "default": 2 },
+    "T": { "symbol": "T", "name": "Tension", "unit": "N", "min": 1, "max": 100, "default": 10 },
+    "mu": { "symbol": "\u03bc", "name": "Linear mass density", "unit": "kg/m", "min": 0.001, "max": 0.1, "default": 0.01 },
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 0.5, "max": 5, "default": 1 }
+  },
+  "locked_facts": [
+    "Transverse wave: particle displacement perpendicular to propagation",
+    "Wave speed v = \u221a(T/\u03bc) where T = tension, \u03bc = linear mass density",
+    "Frequency and wavelength related: v = f\u03bb",
+    "Power transmitted: P = (\u00bd)\u03bc\u03c9\u00b2A\u00b2v",
+    "Particles undergo SHM in transverse direction"
+  ],
+  "truth_statements": [
+    "In a transverse wave, particles vibrate perpendicular to the direction of wave propagation",
+    "The speed of a transverse wave on a string depends on tension and linear mass density",
+    "The relation v = f\u03bb holds for all types of waves",
+    "Each particle of the medium executes simple harmonic motion",
+    "Transverse waves can be produced on strings and surfaces but not in gases"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "One particle tracked (orange) \u2014 moves ONLY up/down while wave moves horizontally. Two arrows: particle motion \u2195 (vertical, orange), wave propagation \u2192 (horizontal, blue). Perpendicular directions made explicit.",
+    "visual_emphasis": "Tracked particle moves only vertically. Wave moves only horizontally. The two directions are perpendicular \u2014 this is what 'transverse' means. Particle does NOT travel horizontally with the wave."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Wave on a string \u2014 observe the pattern",
+      "what_student_sees": "A transverse wave travelling rightward on a string. Smooth sine shape. Wavelength \u03bb marked.",
+      "what_to_emphasize": "This is a transverse wave on a taut string. The wave pattern moves horizontally."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Focus on one particle",
+      "what_student_sees": "One particle on the string highlighted in orange. Watch it carefully as the wave passes through.",
+      "what_to_emphasize": "Track this one particle. How does it move? Does it travel with the wave, or does it do something else?"
+    },
+    {
+      "state": "STATE_3",
+      "label": "Key insight \u2014 perpendicular motion",
+      "what_student_sees": "Tracked particle moves only up and down (vertical arrow). Wave moves rightward (horizontal arrow). The two motions are perpendicular.",
+      "what_to_emphasize": "The particle moves ONLY perpendicular to the wave direction. It does NOT travel horizontally. This is the defining property of a transverse wave: particle displacement \u22a5 wave propagation."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive \u2014 adjust tension",
+      "what_student_sees": "Slider to change string tension T. Higher tension = faster wave (v = \u221a(T/\u03bc)). Particle still moves only vertically.",
+      "what_to_emphasize": "Increasing tension increases wave speed but does NOT change the perpendicular nature of particle motion. v = \u221a(T/\u03bc) \u2014 tension and linear mass density determine speed."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "particles_travel_with_wave",
+      "trigger_keywords": ["particle wave ke saath jaata hai", "particles travel with the wave", "particle moves horizontally in transverse wave"],
+      "student_belief": "Particles in a transverse wave travel along the wave direction (horizontally)",
+      "actual_physics": "In a transverse wave, each particle executes SHM perpendicular to the direction of wave propagation. The particle oscillates about its mean position and does not travel with the wave. Only the wave energy propagates, not the particles.",
+      "simulation_emphasis": "Track one particle showing it moves only up and down. Draw perpendicular arrows: orange vertical (particle motion) and blue horizontal (wave propagation)."
+    }
+  ],
+  "legend": [
+    { "symbol": "v = \u221a(T/\u03bc)", "meaning": "Wave speed on string" },
+    { "symbol": "\u2195", "meaning": "Particle motion (perpendicular)" },
+    { "symbol": "\u2192", "meaning": "Wave propagation direction" },
+    { "symbol": "v = f\u03bb", "meaning": "Wave equation" }
+  ]
+}

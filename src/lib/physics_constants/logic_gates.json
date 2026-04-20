@@ -1,0 +1,112 @@
+{
+  "concept_id": "logic_gates",
+  "concept_name": "Logic Gates",
+  "class_level": 12,
+  "chapter": "Semiconductor Electronics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "circuit_live",
+    "scenario_type": "logic_circuit",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "A": "Input A (0 or 1)",
+    "B": "Input B (0 or 1)",
+    "Y": "Output Y (0 or 1)",
+    "V_high": "Logic HIGH voltage level (~5 V in TTL)",
+    "V_low": "Logic LOW voltage level (~0 V in TTL)"
+  },
+  "locked_facts": [
+    "AND gate: Y = A·B — output is 1 only when ALL inputs are 1",
+    "OR gate: Y = A + B — output is 1 when ANY input is 1",
+    "NOT gate (inverter): Y = A̅ — output is the complement of input",
+    "NAND gate: Y = (A·B)̅ — output is 0 only when all inputs are 1; it is a universal gate",
+    "NOR gate: Y = (A+B)̅ — output is 1 only when all inputs are 0; it is also a universal gate",
+    "NAND and NOR are called universal gates because any Boolean function (AND, OR, NOT) can be constructed using only NAND gates or only NOR gates",
+    "De Morgan's theorems: (A·B)̅ = A̅ + B̅ and (A+B)̅ = A̅ · B̅ — these relate NAND/NOR to OR/AND with inverted inputs"
+  ],
+  "truth_statements": [
+    "A logic gate is a digital circuit that performs a basic Boolean operation on one or more binary inputs to produce a single binary output",
+    "NAND gate is the universal gate: NOT(A) = A NAND A; AND(A,B) = NOT(A NAND B); OR(A,B) = (A NAND A) NAND (B NAND B)",
+    "The truth table of a gate completely defines its behavior for all possible input combinations — 2 inputs give 4 rows, 3 inputs give 8 rows",
+    "De Morgan's first theorem states that the complement of a product equals the sum of complements: (A·B)̅ = A̅ + B̅",
+    "In practice, NAND gates are preferred for circuit design because they are easier and cheaper to fabricate and can implement any logic function"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three separate circuits built entirely from NAND gates: one implementing NOT, one implementing AND, one implementing OR. Input switches toggle and all three circuits produce correct outputs, proving NAND is universal. The equivalent standard gate symbol is shown next to each NAND construction.",
+    "visual_emphasis": "Side-by-side: standard gate symbol vs its NAND-only equivalent, with matching truth table rows highlighting as inputs change",
+    "why_this_breaks_misconception": "Students see concretely that a single gate type (NAND) can replace all other gates — 'universal' is not just a label but a demonstrable fact"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Basic gates and truth tables",
+      "description": "Five gate symbols displayed: AND, OR, NOT, NAND, NOR. Each gate has its standard symbol, Boolean expression, and truth table shown beside it. Inputs A and B are at default values (0, 0). All outputs calculated and displayed. Color coding: HIGH = green, LOW = red.",
+      "emphasis": "Learn the five basic gates, their symbols, and their truth tables",
+      "labels_visible": ["AND: Y=A·B", "OR: Y=A+B", "NOT: Y=A̅", "NAND: Y=(A·B)̅", "NOR: Y=(A+B)̅"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Gate operation with animated signals",
+      "description": "A selected gate (AND by default) is enlarged with animated signal flow. Input signals travel as colored pulses along wires into the gate. The gate processes them and the output pulse emerges. The truth table on the right highlights the current row. All four input combinations cycle automatically with a pause between each.",
+      "emphasis": "Watch signals flow through the gate and verify each truth table row visually",
+      "labels_visible": ["Input A", "Input B", "Output Y", "Current row highlighted"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "NAND as universal gate",
+      "description": "Three circuits built entirely from NAND gates implementing NOT, AND, and OR. Beside each NAND construction, the equivalent standard gate symbol is shown. Input switches toggle and both the NAND construction and standard gate produce identical outputs. Truth tables for each match row by row. De Morgan's theorem is displayed: (A·B)̅ = A̅ + B̅.",
+      "emphasis": "NAND can build any gate — this is why it is called the universal gate",
+      "labels_visible": ["NOT from NAND", "AND from NAND", "OR from NAND", "De Morgan's Theorem"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive logic lab",
+      "description": "Student selects any gate type from a dropdown, toggles inputs A and B with switches, and sees the output in real time. The right panel shows the truth table with the current input combination highlighted. A circuit builder mode lets students chain gates: e.g., connect output of AND to input of NOT to verify it equals NAND. Boolean expression updates as gates are connected.",
+      "emphasis": "Build and test logic circuits — verify truth tables and explore gate combinations",
+      "labels_visible": ["Gate type", "A", "B", "Y", "Boolean Expression"],
+      "interactive": true,
+      "sliders": [
+        { "id": "input_a", "label": "Input A", "min": 0, "max": 1, "default": 0, "unit": "" },
+        { "id": "input_b", "label": "Input B", "min": 0, "max": 1, "default": 0, "unit": "" },
+        { "id": "gate_select", "label": "Gate Type (0=AND,1=OR,2=NOT,3=NAND,4=NOR)", "min": 0, "max": 4, "default": 0, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "NAND gate output is the same as AND gate output",
+      "trigger_phrases": ["NAND same as AND", "NAND aur AND same hai", "NAND is just AND", "NAND gate AND jaisa", "no difference between NAND and AND"],
+      "correction": "NAND is the complement (NOT) of AND. When AND gives 1, NAND gives 0, and vice versa. NAND output is 0 only when all inputs are 1 — the exact opposite of AND which outputs 1 only when all inputs are 1.",
+      "simulation_emphasis": "Show AND and NAND gates side by side with same inputs, highlighting that outputs are always opposite"
+    },
+    {
+      "belief": "OR gate gives output 1 only when both inputs are 1, just like AND",
+      "trigger_phrases": ["OR gate dono 1 chahiye", "OR needs both inputs 1", "OR same as AND", "OR mein bhi dono 1 hone chahiye"],
+      "correction": "OR gate gives output 1 when ANY input is 1 (or both). It gives 0 only when ALL inputs are 0. AND requires ALL inputs to be 1 for output 1. The key difference: OR = 'at least one', AND = 'all'.",
+      "simulation_emphasis": "Highlight the three rows where OR gives 1 (01, 10, 11) vs the single row where AND gives 1 (11) — use color contrast"
+    },
+    {
+      "belief": "Universal gate means the gate that is used most commonly, not that it can replace other gates",
+      "trigger_phrases": ["universal matlab common", "universal gate most used", "universal ka matlab", "sabse zyada use hone wala gate"],
+      "correction": "Universal gate means a gate that can be used to implement ANY other logic gate (AND, OR, NOT). NAND and NOR are universal because any Boolean function can be built using only NAND gates (or only NOR gates). The term refers to logical completeness, not popularity.",
+      "simulation_emphasis": "Demonstrate building NOT, AND, and OR using only NAND gates — proving the 'universal' property constructively"
+    }
+  ],
+  "legend": [
+    { "symbol": "A, B", "meaning": "Binary input variables (0 or 1)" },
+    { "symbol": "Y", "meaning": "Output of the gate (0 or 1)" },
+    { "symbol": "·", "meaning": "AND operation (Boolean multiplication)" },
+    { "symbol": "+", "meaning": "OR operation (Boolean addition)" },
+    { "symbol": "A̅", "meaning": "NOT A (complement of A)" },
+    { "symbol": "(A·B)̅", "meaning": "NAND operation" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["transistor_action"],
+    "extensions": [],
+    "siblings": ["transistor_action"],
+    "common_exam_combinations": ["transistor_action", "pn_junction_diode"]
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "concept_id": "total_internal_reflection",
+  "concept_name": "Total Internal Reflection",
+  "class_level": 12,
+  "chapter": "Ray Optics and Optical Instruments",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "optics_ray",
+    "scenario_type": "total_internal_reflection",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "theta_i": {
+      "symbol": "θᵢ",
+      "name": "Angle of incidence",
+      "unit": "deg",
+      "min": 0,
+      "max": 89,
+      "default": 30
+    },
+    "n1": {
+      "symbol": "n₁",
+      "name": "Refractive index of denser medium",
+      "unit": "",
+      "min": 1.3,
+      "max": 2.5,
+      "default": 1.5
+    },
+    "n2": {
+      "symbol": "n₂",
+      "name": "Refractive index of rarer medium",
+      "unit": "",
+      "min": 1.0,
+      "max": 1.5,
+      "default": 1.0
+    },
+    "theta_c": {
+      "symbol": "θ_c",
+      "name": "Critical angle",
+      "unit": "deg",
+      "min": 24,
+      "max": 90,
+      "default": 41.8
+    }
+  },
+  "locked_facts": [
+    "Critical angle: sin θ_c = n₂/n₁, valid only when n₁ > n₂ (denser to rarer)",
+    "TIR occurs ONLY when light travels from denser to rarer medium AND θᵢ > θ_c",
+    "At θᵢ = θ_c, the refracted ray grazes along the interface (θ_r = 90°)",
+    "At θᵢ > θ_c, Snell's law gives sin θ_r > 1 which is impossible — so no refraction occurs",
+    "TIR CANNOT occur when light goes from rarer to denser medium — there is no critical angle",
+    "Applications: optical fibre (light trapped by repeated TIR), diamond sparkle (θ_c ≈ 24.4° due to high n = 2.42), mirages"
+  ],
+  "truth_statements": [
+    "Total internal reflection occurs when light travelling in a denser medium strikes the interface with a rarer medium at an angle greater than the critical angle",
+    "The critical angle is the angle of incidence in the denser medium for which the angle of refraction in the rarer medium is exactly 90 degrees",
+    "Total internal reflection cannot occur when light travels from a rarer medium to a denser medium",
+    "Optical fibres work on the principle of repeated total internal reflection — light is trapped inside the core because the core has a higher refractive index than the cladding",
+    "The critical angle for diamond-air interface is about 24.4 degrees, which is why diamonds sparkle — light undergoes TIR at most internal surfaces"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Increase the angle of incidence gradually from below the critical angle. At θ_c, the refracted ray runs exactly along the surface (θ_r = 90°). Go just 1° beyond θ_c — the refracted ray VANISHES completely and ALL light bounces back into the denser medium. This is not a gradual process. It is a sharp phase transition: below θ_c there is always a refracted ray, at θ_c it grazes the surface, above θ_c it disappears entirely. The math explains why: sin θ_r = (n₁/n₂) sin θᵢ would exceed 1, which is physically impossible.",
+    "visual_emphasis": "Three simultaneous rays: one below θ_c (partial refraction + weak reflection), one at exactly θ_c (refracted ray along surface), one above θ_c (100% reflection, zero refraction). The dramatic disappearance of the refracted ray at θ_c is the aha moment."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Below critical angle — partial refraction and reflection",
+      "description": "Ray in denser medium (glass, n = 1.5) hits the glass-air interface. Both a refracted ray (in air) and a reflected ray (back in glass) are shown. The refracted ray bends away from the normal because it enters the rarer medium.",
+      "emphasis": "Below the critical angle, light partially refracts into the rarer medium and partially reflects. Both rays coexist. The reflected ray is weaker than the refracted ray.",
+      "labels_visible": ["θᵢ", "θ_r", "Refracted ray", "Reflected ray", "n₁ = 1.5", "n₂ = 1.0"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "At critical angle — refracted ray grazes the surface",
+      "description": "Angle of incidence equals the critical angle (θ_c ≈ 41.8° for glass-air). The refracted ray runs exactly along the interface surface, making θ_r = 90° with the normal. The reflected ray is now as strong as the incident ray.",
+      "emphasis": "At the critical angle, the refracted ray just barely escapes, running parallel to the interface. sin θ_c = n₂/n₁ = 1.0/1.5 = 0.667, so θ_c = 41.8°.",
+      "labels_visible": ["θᵢ = θ_c = 41.8°", "θ_r = 90°", "sin θ_c = n₂/n₁"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Above critical angle — TOTAL internal reflection",
+      "description": "Angle of incidence exceeds θ_c. No refracted ray exists — ALL light reflects back into the denser medium. The reflection follows the law of reflection (angle of incidence = angle of reflection). A TIR label is prominently displayed.",
+      "emphasis": "Beyond θ_c, Snell's law requires sin θ_r > 1, which is impossible. So refraction cannot occur — 100% of the light reflects. This is total internal reflection.",
+      "labels_visible": ["θᵢ > θ_c", "TIR", "No refracted ray", "100% reflection"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive — find the critical angle",
+      "description": "Sliders to change the angle of incidence and the refractive indices. Watch the transition from partial refraction to TIR. Try diamond (n = 2.42) to see θ_c ≈ 24.4°. Try water (n = 1.33) to see θ_c ≈ 48.8°.",
+      "emphasis": "Find the exact critical angle for different materials. Notice: higher n₁ means smaller θ_c, which means TIR happens more easily. This is why diamonds sparkle so much — their very small critical angle means most internal rays undergo TIR.",
+      "interactive": true,
+      "sliders": [
+        { "id": "angleOfIncidence", "label": "Angle of incidence θᵢ", "min": 0, "max": 89, "default": 30, "unit": "deg" },
+        { "id": "denserIndex", "label": "Denser medium n₁", "min": 1.3, "max": 2.5, "default": 1.5, "unit": "" },
+        { "id": "rarerIndex", "label": "Rarer medium n₂", "min": 1.0, "max": 1.5, "default": 1.0, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Total internal reflection can happen in any direction — from rarer to denser also",
+      "trigger_phrases": ["TIR dono taraf hota hai", "TIR can happen air to glass also", "total reflection any medium", "TIR both ways", "kisi bhi medium mein TIR"],
+      "correction": "TIR can ONLY happen when light travels from a denser medium (higher n) to a rarer medium (lower n). When going from rarer to denser, the ray bends toward the normal and there is no critical angle — refraction always occurs at every angle of incidence.",
+      "simulation_emphasis": "Show two scenarios side by side: glass-to-air (TIR possible above θ_c) and air-to-glass (refraction always occurs, no TIR at any angle). The asymmetry makes the rule clear."
+    },
+    {
+      "belief": "TIR is just very strong reflection — some light still passes through",
+      "trigger_phrases": ["thoda light pass hota hai TIR mein", "TIR mein bhi refraction hota hai", "partial reflection hai TIR", "some light escapes in TIR"],
+      "correction": "Total internal reflection means 100% of the light is reflected — ZERO light is transmitted into the second medium. This is not strong partial reflection; it is a complete, sharp transition. Below θ_c, some light refracts. At and above θ_c, absolutely none refracts. There is no gradual transition — it is a phase boundary.",
+      "simulation_emphasis": "Show a reflection percentage meter: below θ_c it reads 10-50% reflection. At θ_c it jumps to 100%. Above θ_c it stays at 100%. The sharp jump from partial to total is the key visual."
+    }
+  ],
+  "legend": [
+    { "symbol": "θ_c", "meaning": "Critical angle = sin⁻¹(n₂/n₁)" },
+    { "symbol": "TIR", "meaning": "Total Internal Reflection — 100% reflection, zero refraction" },
+    { "symbol": "n₁", "meaning": "Refractive index of denser medium (where the ray starts)" },
+    { "symbol": "n₂", "meaning": "Refractive index of rarer medium (where the ray would refract into)" },
+    { "symbol": "θᵢ", "meaning": "Angle of incidence (from normal)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["refraction_snells_law_class12"],
+    "extensions": ["optical_instruments", "prism_dispersion"],
+    "siblings": ["refraction_at_spherical_surface"],
+    "common_exam_combinations": ["refraction_snells_law_class12", "optical_instruments"]
+  }
+}

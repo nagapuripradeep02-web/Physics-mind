@@ -1,0 +1,395 @@
+{
+  "concept_id": "dot_product",
+  "concept_name": "The Dot Product — A.B = |A| |B| cos theta",
+  "chapter": 5,
+  "section": "5.4",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.4 — Dot Product / Scalar Product; upgraded from legacy bundle format",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "Pushing a shopping trolley at Big Bazaar. If you push straight forward with fifty newtons and the trolley moves two metres forward, you have done one hundred joules of work. If you push DOWN on the handle at an angle, only the forward part of your push does work — the vertical part just presses the wheels into the floor. The dot product of force and displacement measures exactly how much of your push actually helps the trolley move.",
+    "secondary": "A cyclist on Marine Drive pedalling with a gentle tailwind coming in at thirty degrees behind and to the side. The tailwind's contribution to forward motion is not its full strength — only its component along the direction of travel. The dot product of wind-velocity and cyclist-velocity captures this 'effective helpful strength' in one number.",
+    "tertiary": "A solar panel tilted on a roof in Chennai. The sunlight strikes with full power, but only the part aligned with the panel's face is converted to electricity. Power output equals light-intensity-vector dotted with panel-normal — same geometry as the dot product, the panel measures the overlap between sunlight and its own orientation."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "A_mag": { "name": "Magnitude of A", "unit": "units of A", "min": 1, "max": 10, "default": 4 },
+      "B_mag": { "name": "Magnitude of B", "unit": "units of B", "min": 1, "max": 10, "default": 3 },
+      "theta_deg": { "name": "Angle between A and B", "unit": "deg", "min": 0, "max": 180, "default": 60 }
+    },
+    "computed_outputs": {
+      "dot_product": { "formula": "A_mag * B_mag * cos(theta_deg * PI / 180)" },
+      "projection_of_B_on_A": { "formula": "B_mag * cos(theta_deg * PI / 180)" },
+      "projection_of_A_on_B": { "formula": "A_mag * cos(theta_deg * PI / 180)" }
+    },
+    "formulas": {
+      "geometric": "A . B = |A| |B| cos theta",
+      "component_form": "A . B = Ax Bx + Ay By + Az Bz",
+      "work_done": "W = F . d = F d cos theta",
+      "self_dot": "A . A = |A|^2"
+    },
+    "constraints": [
+      "Dot product is a SCALAR — the output is one number, not a vector",
+      "A.B = 0 iff A and B are perpendicular (for non-zero vectors)",
+      "A.B > 0 when angle is acute (under 90 deg)",
+      "A.B < 0 when angle is obtuse (over 90 deg, less than 180)",
+      "Commutative: A.B = B.A",
+      "Distributive: A.(B + C) = A.B + A.C"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "Pushing a Trolley at an Angle — Why the Full Push Is Wasted",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "push_F",
+            "from": { "x": 200, "y": 380 },
+            "magnitude": 5,
+            "direction_deg": -30,
+            "label": "F = 50 N (angled push)",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.8 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "trolley_d",
+            "from": { "x": 200, "y": 430 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "d = 2 m (trolley moves forward)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 0.8 }
+          },
+          {
+            "type": "annotation",
+            "id": "work_question",
+            "text": "Work done by F over displacement d\n\nNaive answer\n  W = F * d = 50 * 2 = 100 J\n\nReality\nOnly the FORWARD component of F\nhelps the trolley move.\nThe DOWNWARD component presses\nwheels into floor — no useful work.\n\n  W = F cos(30) * d\n    = 50 * 0.866 * 2\n    = 86.6 J\n\nWe need a tool that multiplies two\nvectors, returns ONE number, and\nautomatically includes the cos term.\n\nThat tool is the DOT PRODUCT.",
+            "position": { "x": 560, "y": 280 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 3.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "You are pushing a shopping trolley with fifty newtons of force. But you are not pushing straight forward — your push tilts down at thirty degrees below horizontal." },
+            { "id": "s2", "text_en": "The trolley moves two metres forward. How much work did you actually do?" },
+            { "id": "s3", "text_en": "The naive answer multiplies force times distance — fifty times two is one hundred joules. But the trolley moved forward, not down. The vertical part of your push only squeezed the wheels into the floor. That vertical push did no useful work." },
+            { "id": "s4", "text_en": "Only the horizontal component of your push actually moved the trolley. That component is F cosine theta — fifty times cosine thirty, which is about forty-three newtons. Work is forty-three times two, about eighty-seven joules." },
+            { "id": "s5", "text_en": "So when two vectors multiply to give an answer that depends on the angle, we need a special operation. One that gives back a single number and automatically includes the cosine." },
+            { "id": "s6", "text_en": "That operation is called the dot product. The next three states build it and use it." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Define It — A dot B = |A| |B| cos theta",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "vec_A_def",
+            "from": { "x": 220, "y": 380 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "vec_B_def",
+            "from": { "x": 220, "y": 380 },
+            "magnitude": 3,
+            "direction_deg": 60,
+            "label": "B  (theta = 60 deg)",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "annotation",
+            "id": "formula_block",
+            "text": "DEFINITION\n\n  A . B = |A| |B| cos theta\n\nHere\n  |A| = 4\n  |B| = 3\n  theta = 60 deg\n  cos 60 = 0.5\n\n  A . B = 4 * 3 * 0.5 = 6\n\nOutput is a SCALAR (one number).\nNot a vector. That is why it is\nalso called the scalar product.",
+            "position": { "x": 560, "y": 220 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "three_cases",
+            "text": "How cos theta shapes the answer\n\ntheta =   0 deg -> cos = +1 -> A.B = |A||B|  (MAX, parallel)\ntheta =  60 deg -> cos = 0.5 -> A.B = 6  (this example)\ntheta =  90 deg -> cos = 0 -> A.B = 0  (PERPENDICULAR)\ntheta = 120 deg -> cos = -0.5 -> A.B = -6\ntheta = 180 deg -> cos = -1 -> A.B = -|A||B|  (MIN, antiparallel)\n\nAcute -> positive.  Right -> zero.  Obtuse -> negative.",
+            "position": { "x": 560, "y": 420 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The dot product of two vectors A and B is defined as the magnitude of A, times the magnitude of B, times the cosine of the angle between them." },
+            { "id": "s2", "text_en": "For A equals four, B equals three, angle sixty — the dot product is four times three times one half, which is six." },
+            { "id": "s3", "text_en": "Notice the answer is just a number — no direction. That is why the dot product is also called the scalar product. Two vectors go in, one scalar comes out." },
+            { "id": "s4", "text_en": "The cosine term is the whole story. If the vectors are parallel, cosine is one, and the product is simply the product of magnitudes — its maximum value." },
+            { "id": "s5", "text_en": "If the vectors are perpendicular, cosine is zero, and the whole product vanishes. This is the single most useful fact about the dot product — perpendicular vectors dot to zero." },
+            { "id": "s6", "text_en": "If the angle is obtuse, cosine is negative, and the dot product goes negative. The sign tells you whether the two vectors are 'working together' or 'working against each other'." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "The Geometric Picture — How Much of B Lies Along A",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "geo_A",
+            "from": { "x": 200, "y": 380 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A (reference)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "geo_B",
+            "from": { "x": 200, "y": 380 },
+            "magnitude": 3,
+            "direction_deg": 60,
+            "label": "B",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "B_projection",
+            "from": { "x": 200, "y": 380 },
+            "magnitude": 1.5,
+            "direction_deg": 0,
+            "label": "B cos theta (shadow of B on A)",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "geom_rule",
+            "text": "Two ways to read A . B\n\nMethod 1\n  |A| times 'shadow of B on A'\n  = 4 times (3 cos 60)\n  = 4 times 1.5\n  = 6\n\nMethod 2\n  |B| times 'shadow of A on B'\n  = 3 times (4 cos 60)\n  = 3 times 2\n  = 6\n\nSame answer both ways.\nA . B = B . A  (commutative)\n\nGeometric meaning\n  A . B measures the OVERLAP\n  between the two vectors.",
+            "position": { "x": 600, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is a second way to read the formula geometrically. Drop a perpendicular from the tip of B onto the line of A. The length of the shadow cast by B on A is B cosine theta." },
+            { "id": "s2", "text_en": "Now multiply that shadow by A's own length. Four times one point five equals six. That is the same answer you got from the formula." },
+            { "id": "s3", "text_en": "So the dot product can be read as 'A's length, times the part of B that lines up with A'. It measures the overlap between the two vectors." },
+            { "id": "s4", "text_en": "You can flip the roles. Project A onto B — that shadow has length four times cosine sixty equals two. Multiply by B's magnitude three, and you get six again." },
+            { "id": "s5", "text_en": "Same answer both ways. This confirms that A dot B equals B dot A. The dot product is commutative — order does not matter." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "Component Form — A.B = Ax Bx + Ay By + Az Bz",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "component_formula",
+            "text": "Component form\n\nIf  A = Ax i-hat + Ay j-hat + Az k-hat\nand B = Bx i-hat + By j-hat + Bz k-hat\n\nthen  A . B = Ax Bx + Ay By + Az Bz\n\nSimple multiply-and-add\n(like rows of a matrix).\nNo cosine, no angle calculation.\n\nComes from\n  i.i = 1, j.j = 1, k.k = 1\n  i.j = i.k = j.k = 0",
+            "position": { "x": 300, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "worked",
+            "text": "Example\nA = 4 i-hat + 0 j-hat\nB = 1.5 i-hat + 2.6 j-hat\n  (that is B of magnitude 3 at 60 deg)\n\nA . B = 4 * 1.5 + 0 * 2.6\n      = 6 + 0\n      = 6\n\nSame 6 we got from |A||B| cos theta.\nThe two formulas always agree.\n\nWork example\nF = 10 i-hat - 5 j-hat  (newtons)\nd = 3 i-hat + 2 j-hat   (metres)\nW = F . d\n  = 30 - 10\n  = 20 J",
+            "position": { "x": 680, "y": 280 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "When vectors are given in component form, the dot product simplifies to plain multiplication and addition — no angle needed." },
+            { "id": "s2", "text_en": "If A is Ax i-hat plus Ay j-hat plus Az k-hat, and B is Bx i-hat plus By j-hat plus Bz k-hat, then the dot product is Ax times Bx plus Ay times By plus Az times Bz." },
+            { "id": "s3", "text_en": "Check the previous example. A is four i-hat. B is one point five i-hat plus two point six j-hat. Dot product is four times one point five plus zero times two point six, equals six. Same answer as the cosine formula." },
+            { "id": "s4", "text_en": "For work problems, this is often the faster route. Given F as ten i-hat minus five j-hat and d as three i-hat plus two j-hat, the work is thirty minus ten, equals twenty joules. No angle computation, no cosine." },
+            { "id": "s5", "text_en": "So you have two formulas — the geometric one with the cosine, and the component one with plain multiplication. Use whichever form the problem gives you. They always agree." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "perpendicular_dot_product_nonzero",
+      "misconception": "Perpendicular vectors have the largest dot product, not zero",
+      "trigger_phrases": [
+        "perpendicular gives maximum",
+        "right angle dot product",
+        "A perpendicular B dot product",
+        "why is perpendicular zero"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Perpendicular Means 'Strongest Interaction'",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "bel_A",
+              "from": { "x": 300, "y": 380 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A = 4",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "bel_B",
+              "from": { "x": 300, "y": 380 },
+              "magnitude": 3,
+              "direction_deg": 90,
+              "label": "B = 3 (perpendicular)",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_guess",
+              "text": "Your reasoning\n\nBoth vectors are 'fully' there,\nno cancellation.\nA . B should be 4 * 3 = 12?\n\nOr maybe sqrt(16 + 9) = 5?\n\nActually, it is zero.",
+              "position": { "x": 540, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A common wrong instinct — when two vectors are perpendicular, they are both 'fully' present with nothing cancelling, so their dot product should be big." },
+              { "id": "s2", "text_en": "Either the product of magnitudes, twelve. Or maybe the Pythagoras result, five. Both feel natural." },
+              { "id": "s3", "text_en": "Both are wrong. At ninety degrees, the dot product is exactly zero. The geometry tells us why." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Shadow Argument — Perpendicular B Casts No Shadow on A",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "shadow_A",
+              "from": { "x": 220, "y": 400 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "shadow_B",
+              "from": { "x": 220, "y": 400 },
+              "magnitude": 3,
+              "direction_deg": 90,
+              "label": "B",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "annotation",
+              "id": "shadow_note",
+              "text": "B is straight up.\nA is straight right.\n\nShadow of B on A = B cos 90 = 0\n\nB casts NO shadow on A because\nB has no horizontal component.\n\nSo\n  A . B = |A| * (shadow of B on A)\n        = 4 * 0\n        = 0",
+              "position": { "x": 500, "y": 260 },
+              "style": "formula_box",
+              "color": "#10B981",
+              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            },
+            {
+              "type": "annotation",
+              "id": "formula_confirm",
+              "text": "Formula check\n\n  A . B = |A| |B| cos 90\n        = 4 * 3 * 0\n        = 0\n\nCosine of 90 is zero.\nThat is what makes\nperpendicular -> zero.",
+              "position": { "x": 700, "y": 420 },
+              "style": "callout",
+              "animation": { "type": "fade_in", "delay_sec": 3.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Picture the shadow. A points straight right. B points straight up. What shadow does B cast on the line of A?" },
+              { "id": "s2", "text_en": "None. An up-pointing arrow does not lean any part of itself along the horizontal direction. Its horizontal shadow is zero." },
+              { "id": "s3", "text_en": "Dot product equals A's length times that shadow. Four times zero is zero." },
+              { "id": "s4", "text_en": "The formula confirms it. Cosine of ninety degrees is exactly zero. So A dot B is four times three times zero, which is zero." },
+              { "id": "s5", "text_en": "The geometric reason is deeper than the formula — the dot product measures overlap, and perpendicular vectors share zero overlap." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Use the Zero Rule — Fast Orthogonality Test",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "test_cases",
+              "text": "Test three pairs\n\n(a) A = 3 i-hat,  B = 4 j-hat\n    A.B = 3*0 + 0*4 = 0\n    -> perpendicular.  YES (obvious)\n\n(b) A = 2 i-hat + j-hat,\n    B = i-hat - 2 j-hat\n    A.B = 2*1 + 1*(-2) = 0\n    -> perpendicular.  YES (not obvious!)\n\n(c) A = i-hat + j-hat,\n    B = i-hat + 3 j-hat\n    A.B = 1 + 3 = 4\n    -> NOT perpendicular.",
+              "position": { "x": 340, "y": 280 },
+              "style": "formula_box"
+            },
+            {
+              "type": "annotation",
+              "id": "exam_note",
+              "text": "JEE shortcut\n\nTo test whether two vectors\nare perpendicular, compute the\ndot product.\n\n  A . B = 0   -> perpendicular\n  A . B != 0  -> not perpendicular\n\nNo drawing, no angle calculation.",
+              "position": { "x": 720, "y": 300 },
+              "style": "callout",
+              "color": "#10B981",
+              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The zero-dot-product rule is the fastest way to test perpendicularity. No drawing, no angle-finding — just multiply and add." },
+              { "id": "s2", "text_en": "Three i-hat dotted with four j-hat is zero. Obviously perpendicular." },
+              { "id": "s3", "text_en": "Two i-hat plus j-hat, dotted with i-hat minus two j-hat. Dot product is two minus two, equals zero. So these two vectors are also perpendicular — which you would never guess from the components." },
+              { "id": "s4", "text_en": "One i-hat plus one j-hat dotted with one i-hat plus three j-hat is one plus three equals four. Non-zero, so these two are not perpendicular." },
+              { "id": "s5", "text_en": "Memorise this rule. In JEE and board exams, the question 'are these two vectors perpendicular' is solved in seconds using the dot product test." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different magnitudes",
+      "physical_world": "A = 5, B = 12, theta varies. At 0 deg -> A.B = 60 (max). At 90 deg -> 0. At 180 deg -> -60 (min).",
+      "same_physics": "A.B = AB cos theta spans [-AB, +AB] as theta sweeps 0 to 180"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Work formula application",
+      "physical_world": "A hockey stick applies 30 N at 60 deg below horizontal; puck slides 4 m along the ice. Work = F.d = 30 * 4 * cos 60 = 60 J.",
+      "same_physics": "Work is a direct dot product; only the parallel part of force contributes"
+    }
+  ]
+}

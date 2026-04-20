@@ -1,0 +1,205 @@
+{
+  "concept_id": "bohr_model_hydrogen",
+  "concept_name": "Bohr Model of Hydrogen Atom",
+  "class_level": "12",
+  "chapter": "Atoms",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "orbital_energy_levels",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "n": {
+      "name": "principal quantum number",
+      "symbol": "n",
+      "unit": "dimensionless",
+      "typical_range": [1, 7],
+      "role": "independent",
+      "note": "Positive integer (1, 2, 3, ...); defines the orbit/shell"
+    },
+    "r_n": {
+      "name": "radius of nth orbit",
+      "symbol": "rₙ",
+      "unit": "m",
+      "role": "dependent",
+      "note": "r_n = n²a₀ where a₀ = 0.529 Å (Bohr radius)"
+    },
+    "E_n": {
+      "name": "energy of nth orbit",
+      "symbol": "Eₙ",
+      "unit": "eV",
+      "role": "dependent",
+      "note": "E_n = -13.6/n² eV; negative indicates bound state"
+    },
+    "a0": {
+      "name": "Bohr radius",
+      "symbol": "a₀",
+      "unit": "Å",
+      "value": 0.529,
+      "role": "constant"
+    },
+    "L": {
+      "name": "orbital angular momentum",
+      "symbol": "L",
+      "unit": "J·s",
+      "role": "dependent",
+      "note": "L = nℏ = nh/(2π); quantized in integer multiples of ℏ"
+    },
+    "v_n": {
+      "name": "velocity of electron in nth orbit",
+      "symbol": "vₙ",
+      "unit": "m/s",
+      "role": "dependent",
+      "note": "v_n = (e²)/(2ε₀nh) = v₁/n; speed decreases with higher orbits"
+    },
+    "Z": {
+      "name": "atomic number",
+      "symbol": "Z",
+      "unit": "dimensionless",
+      "value": 1,
+      "role": "constant",
+      "note": "Z=1 for hydrogen; for hydrogen-like ions, E_n = -13.6Z²/n² eV"
+    }
+  },
+  "locked_facts": [
+    "rₙ = n²a₀ = n² × 0.529 Å — orbital radius grows as the square of quantum number",
+    "Eₙ = -13.6/n² eV — energy of nth orbit; ground state (n=1) has E₁ = -13.6 eV",
+    "L = nℏ = nh/(2π) — angular momentum is quantized in integer multiples of ℏ = 1.055×10⁻³⁴ J·s",
+    "1/λ = R(1/n₁² - 1/n₂²) — Rydberg formula for emission wavelength; R = 1.097×10⁷ m⁻¹",
+    "ΔE = E_final - E_initial = 13.6(1/n₁² - 1/n₂²) eV — energy of emitted photon during transition",
+    "Lyman series: transitions to n=1 (UV); Balmer series: transitions to n=2 (visible); Paschen: to n=3 (IR)",
+    "Ionization energy of hydrogen = 13.6 eV (energy needed to remove electron from ground state to n=∞)"
+  ],
+  "truth_statements": [
+    "Electrons in Bohr model orbit the nucleus ONLY in specific allowed orbits where angular momentum L = nℏ — orbits between these are forbidden",
+    "An electron in a stable orbit does NOT radiate energy, despite undergoing centripetal acceleration — this was Bohr's radical departure from classical electrodynamics",
+    "Energy is emitted or absorbed ONLY during transitions between orbits: photon energy equals the energy difference ΔE = |E_final - E_initial|",
+    "The Bohr model correctly predicts hydrogen's spectral lines (Lyman, Balmer, Paschen, Brackett, Pfund series) and ionization energy of 13.6 eV",
+    "The Bohr model fails for multi-electron atoms because it does not account for electron-electron repulsion or wave-mechanical effects"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "description": "Student sees an electron dropping from n=3 to n=2 and a red photon (656.3 nm — Hα line) being emitted. The calculated energy difference ΔE = 13.6(1/4 - 1/9) = 1.89 eV matches E = hc/λ exactly. The entire visible hydrogen spectrum (red, blue-green, blue, violet) emerges from just 4 transitions to n=2.",
+    "visual_cue": "Energy level diagram with animated electron jumps producing colored photon arrows; emitted spectrum matches laboratory hydrogen discharge tube spectrum"
+  },
+  "simulation_states": {
+    "STATE_1": {
+      "title": "Allowed Orbits and Energy Levels",
+      "description": "Show concentric circular orbits for n=1 through n=5 around a proton nucleus. Label each orbit with its radius (rₙ = n²×0.529 Å) and energy (Eₙ = -13.6/n² eV). Display the energy level diagram alongside. Electron sits in ground state n=1.",
+      "visual_elements": ["concentric_orbits", "proton_nucleus", "electron_dot", "energy_level_diagram", "radius_labels"],
+      "labels": ["n=1: r=0.529Å, E=-13.6eV", "n=2: r=2.12Å, E=-3.4eV", "n=3: r=4.76Å, E=-1.51eV"]
+    },
+    "STATE_2": {
+      "title": "Photon Absorption — Excitation",
+      "description": "An incoming photon with exactly ΔE = 10.2 eV (Lyman-α) hits the atom. Electron absorbs it and jumps from n=1 to n=2. Show that a photon with slightly wrong energy is NOT absorbed (resonance condition). Display ΔE = 13.6(1/1² - 1/2²) = 10.2 eV.",
+      "visual_elements": ["incoming_photon", "electron_jump_animation", "energy_conservation_equation", "wrong_energy_photon_passing_through"],
+      "labels": ["ΔE = 10.2 eV", "λ = 121.6 nm (UV)", "Only exact energy match absorbed"]
+    },
+    "STATE_3": {
+      "title": "Emission Transitions — Spectral Series",
+      "description": "Electron in n=3 drops to n=2 emitting Hα (red, 656.3 nm), then show n=4→2 (Hβ, blue-green, 486.1 nm), n=5→2 (Hγ, blue, 434.0 nm), n=6→2 (Hδ, violet, 410.2 nm). Build up the Balmer series visually. Show Lyman (UV) and Paschen (IR) series too.",
+      "visual_elements": ["electron_transitions", "colored_photon_emission", "spectrum_bar", "series_labels"],
+      "labels": ["Balmer: n→2 (visible)", "Lyman: n→1 (UV)", "Paschen: n→3 (IR)"]
+    },
+    "STATE_4": {
+      "title": "Interactive Exploration",
+      "description": "Student selects initial and final orbits. Simulation calculates ΔE, wavelength, and identifies the spectral series. Electron animates the transition and emitted photon color is shown. Challenge: which transition gives the shortest wavelength in Balmer series?",
+      "interactive": true,
+      "sliders": [
+        {
+          "id": "n_initial",
+          "label": "Initial orbit (nᵢ)",
+          "min": 2,
+          "max": 7,
+          "step": 1,
+          "default": 3,
+          "unit": ""
+        },
+        {
+          "id": "n_final",
+          "label": "Final orbit (n_f)",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "default": 2,
+          "unit": ""
+        },
+        {
+          "id": "atom_selector",
+          "label": "Atom/Ion",
+          "options": ["Hydrogen (Z=1)", "He⁺ (Z=2)", "Li²⁺ (Z=3)"],
+          "default": "Hydrogen (Z=1)"
+        }
+      ]
+    }
+  },
+  "common_misconceptions": [
+    {
+      "id": "electrons_spiral_into_nucleus",
+      "misconception": "Orbiting electrons should continuously radiate energy and spiral into the nucleus according to classical physics",
+      "correct": "Bohr POSTULATED that electrons in allowed orbits do NOT radiate. This was a deliberate break from classical electrodynamics, justified by the stability of atoms and later explained by quantum mechanics (standing wave condition).",
+      "trigger_phrases": [
+        "electron spiral into nucleus",
+        "continuous radiation karna chahiye",
+        "classical mein fall hoga",
+        "why electron not fall",
+        "orbit mein gir jayega",
+        "why doesnt electron crash"
+      ],
+      "ncert_reference": "Chapter 12, Section 12.4"
+    },
+    {
+      "id": "higher_orbit_higher_energy_means_faster",
+      "misconception": "Electrons in higher orbits move faster because they have more energy",
+      "correct": "Electrons in HIGHER orbits move SLOWER (vₙ = v₁/n). The higher total energy (less negative) is because potential energy increases more than kinetic energy decreases. E_n is less negative but KE is actually smaller.",
+      "trigger_phrases": [
+        "higher orbit faster electron",
+        "zyada energy zyada speed",
+        "upar ka orbit mein fast",
+        "more energy means faster",
+        "higher orbit higher velocity"
+      ],
+      "ncert_reference": "Chapter 12, Section 12.4"
+    },
+    {
+      "id": "any_photon_can_excite",
+      "misconception": "Any photon with energy greater than the transition energy can be absorbed by the atom",
+      "correct": "For bound-bound transitions, the photon energy must EXACTLY match the energy difference between two levels. A 11 eV photon cannot cause the n=1→n=2 transition (which requires exactly 10.2 eV). Only ionization (n→∞) has a continuous absorption threshold.",
+      "trigger_phrases": [
+        "koi bhi photon absorb hoga",
+        "any energy photon works",
+        "greater energy photon absorbed",
+        "10.5 eV bhi kaam karega",
+        "approximate energy enough"
+      ],
+      "ncert_reference": "Chapter 12, Section 12.5"
+    }
+  ],
+  "legend": {
+    "orbit_circle": "Circular orbit at radius rₙ = n²a₀; thicker line = higher probability of electron presence",
+    "electron": "Blue dot orbiting the nucleus at velocity vₙ",
+    "proton_nucleus": "Red dot at center representing the hydrogen nucleus (single proton)",
+    "photon_arrow": "Colored wavy arrow representing emitted/absorbed photon; color matches wavelength",
+    "energy_level_line": "Horizontal line in energy diagram at Eₙ = -13.6/n² eV; spacing decreases for higher n"
+  },
+  "concept_relationships": [
+    {
+      "concept_id": "de_broglie_hypothesis",
+      "relationship": "Bohr's quantization L = nℏ is equivalent to fitting n complete de Broglie wavelengths in the orbit: 2πrₙ = nλ"
+    },
+    {
+      "concept_id": "photoelectric_effect_detail",
+      "relationship": "Both involve photon energy E = hf; photoelectric effect frees electron from metal, Bohr transitions involve photon absorption/emission within atom"
+    },
+    {
+      "concept_id": "nuclear_binding_energy",
+      "relationship": "Hydrogen ionization energy (13.6 eV) is tiny compared to nuclear binding energies (~MeV), showing atomic vs nuclear energy scales"
+    },
+    {
+      "concept_id": "electromagnetic_spectrum",
+      "relationship": "Different spectral series (Lyman=UV, Balmer=visible, Paschen=IR) map to different regions of the electromagnetic spectrum"
+    }
+  ]
+}

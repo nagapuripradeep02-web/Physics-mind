@@ -1,0 +1,539 @@
+{
+  "concept_id": "resultant_formula",
+  "concept_name": "The Resultant Formula — |R| = sqrt(A^2 + B^2 + 2AB cos theta)",
+  "chapter": 5,
+  "section": "5.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.2 — Addition of Vectors; split from vector_addition bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "Two farmers in a village in Punjab pulling a heavy plough with separate ropes, each at a different angle. The plough moves along a single direction — the resultant — whose strength depends on BOTH the individual pulls AND the angle between the ropes. Close the angle to zero and the plough flies forward; spread the ropes wide and the effective pull drops sharply.",
+    "secondary": "A boy flies a kite on Makar Sankranti. The kite experiences horizontal wind pressure AND a vertical pull from his string. The kite's net force — what actually holds it aloft at a specific tilt — is the vector resultant of these two.",
+    "tertiary": "You row a small boat across the Ganga. Your paddle pushes the boat forward at four metres per second; the river current pushes it sideways at three metres per second. Your boat does not travel at seven metres per second diagonally — it travels at five, because these velocities combine by the resultant formula, not by plain addition."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "A": { "name": "Magnitude of vector A", "unit": "N", "min": 1, "max": 10, "default": 4 },
+      "B": { "name": "Magnitude of vector B", "unit": "N", "min": 1, "max": 10, "default": 3 },
+      "theta_deg": { "name": "Angle between A and B", "unit": "deg", "min": 0, "max": 180, "default": 60 }
+    },
+    "computed_outputs": {
+      "R": { "formula": "sqrt(A*A + B*B + 2*A*B*cos(theta_deg * PI / 180))" },
+      "R_squared": { "formula": "A*A + B*B + 2*A*B*cos(theta_deg * PI / 180)" },
+      "cos_theta": { "formula": "cos(theta_deg * PI / 180)" },
+      "scalar_sum_wrong": { "formula": "A + B" },
+      "mismatch": { "formula": "(A + B) - sqrt(A*A + B*B + 2*A*B*cos(theta_deg * PI / 180))" }
+    },
+    "formulas": {
+      "resultant_magnitude": "|R| = sqrt(A^2 + B^2 + 2 A B cos theta)",
+      "law_of_cosines_link": "Derived from the law of cosines on the triangle formed by A, B, and R"
+    },
+    "constraints": [
+      "Formula applies to ANY two coplanar vectors A and B meeting at angle theta",
+      "At theta = 0, reduces to R = A + B (parallel)",
+      "At theta = 180, reduces to R = |A - B| (antiparallel)",
+      "The 2AB cos theta term is the 'correction' that pure scalar addition misses",
+      "Symmetric in A and B — confirms A + B = B + A (commutative)"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "Two Pulls, One Plough — Where Does It Go?",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "pull_A",
+            "from": { "x": 220, "y": 320 },
+            "magnitude": 4,
+            "direction_deg": -20,
+            "label": "Farmer 1  A = 4 N",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.8 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "pull_B",
+            "from": { "x": 220, "y": 320 },
+            "magnitude": 3,
+            "direction_deg": 40,
+            "label": "Farmer 2  B = 3 N",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 0.8 }
+          },
+          {
+            "type": "annotation",
+            "id": "plough_dot",
+            "text": "plough O",
+            "position": { "x": 220, "y": 370 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "question",
+            "text": "The plough moves in ONE\ndirection, with ONE net pull.\n\nHow strong is that pull?\n\nNaive guess: 4 + 3 = 7 N.\nReality: it depends on the\nangle between the two ropes.",
+            "position": { "x": 520, "y": 260 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 4, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Picture two farmers pulling a heavy plough in a village field, each with a separate rope tied to the same plough." },
+            { "id": "s2", "text_en": "Farmer one pulls with four newtons, slightly upward from straight ahead. Farmer two pulls with three newtons, at a wider angle." },
+            { "id": "s3", "text_en": "The plough cannot obey two masters. It moves in one direction, with one effective force. That single force is called the resultant." },
+            { "id": "s4", "text_en": "A student's first guess is four plus three equals seven newtons. Let us see why that guess is wrong the moment the two ropes are not parallel." },
+            { "id": "s5", "text_en": "The correct answer needs a single formula — and the next three states will build it from scratch." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Build the Parallelogram — The Diagonal Is the Answer",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "base_A",
+            "from": { "x": 200, "y": 400 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "base_B",
+            "from": { "x": 200, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": 60,
+            "label": "B",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "parallel_B",
+            "from": { "x": 420, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": 60,
+            "label": "B (copy)",
+            "color": "#93C5FD",
+            "style": "dashed",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "parallel_A",
+            "from": { "x": 283, "y": 257 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A (copy)",
+            "color": "#93C5FD",
+            "style": "dashed",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 4.2, "duration_sec": 1 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "resultant_R",
+            "from": { "x": 200, "y": 400 },
+            "magnitude": 6.08,
+            "direction_deg": 25,
+            "label": "R (diagonal)",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 6, "duration_sec": 1.5 }
+          },
+          {
+            "type": "annotation",
+            "id": "rule_text",
+            "text": "Parallelogram law\n\nDraw A and B from a common tail.\nComplete the parallelogram\n(two dashed copies).\n\nDraw the DIAGONAL\nfrom the shared tail to the\nopposite corner.\n\nThat diagonal IS R.",
+            "position": { "x": 580, "y": 260 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is the rule for combining two vectors into one, and it is purely geometric." },
+            { "id": "s2", "text_en": "Draw A and B starting from the same point, each at its own angle." },
+            { "id": "s3", "text_en": "Now make parallel copies — one copy of A starting at the tip of B, one copy of B starting at the tip of A. The dashed arrows show this." },
+            { "id": "s4", "text_en": "You have just closed a parallelogram. Four sides. Two tails meeting at the start, two tips meeting at the opposite corner." },
+            { "id": "s5", "text_en": "Draw the diagonal from the shared tail all the way to that opposite corner. This diagonal is the resultant R." },
+            { "id": "s6", "text_en": "Its length gives the magnitude of R. Its tilt gives the direction. Our job in the next state is to find a formula for its length." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Drop a Perpendicular — The Law of Cosines Emerges",
+        "duration": 14,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "ext_A",
+            "from": { "x": 180, "y": 380 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "parallel_B_up",
+            "from": { "x": 400, "y": 380 },
+            "magnitude": 3,
+            "direction_deg": 60,
+            "label": "B",
+            "color": "#93C5FD",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "diagonal_R",
+            "from": { "x": 180, "y": 380 },
+            "magnitude": 6.08,
+            "direction_deg": 25,
+            "label": "R",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "annotation",
+            "id": "perp_line",
+            "text": "|  perpendicular drop\n|  (length = B sin theta)",
+            "position": { "x": 520, "y": 340 },
+            "style": "callout",
+            "color": "#F59E0B",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "horizontal_extension",
+            "text": "A + B cos theta\n(horizontal span)",
+            "position": { "x": 330, "y": 420 },
+            "style": "callout",
+            "color": "#F59E0B",
+            "animation": { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "pythagoras_box",
+            "text": "Right triangle (Pythagoras):\n\nR^2 = (A + B cos theta)^2 + (B sin theta)^2\n    = A^2 + 2 A B cos theta\n      + B^2 cos^2 theta + B^2 sin^2 theta\n    = A^2 + B^2 + 2 A B cos theta\n      (cos^2 + sin^2 = 1)\n\n=> R = sqrt(A^2 + B^2 + 2 A B cos theta)",
+            "position": { "x": 600, "y": 200 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 6.5, "duration_sec": 1.5 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now we need the length of the diagonal R. Geometry gives it to us in one step." },
+            { "id": "s2", "text_en": "From the tip of B — the far corner of the parallelogram — drop a perpendicular onto the line of A extended." },
+            { "id": "s3", "text_en": "The vertical drop has length B sine theta. The horizontal span from the origin out to the foot of the perpendicular has length A plus B cosine theta." },
+            { "id": "s4", "text_en": "These two segments meet the diagonal R in a right triangle. Now apply Pythagoras." },
+            { "id": "s5", "text_en": "R squared equals A plus B cosine theta squared plus B sine theta squared." },
+            { "id": "s6", "text_en": "Expand the first square. Collect terms. Cosine squared plus sine squared is one, so the B squared pieces add up neatly." },
+            { "id": "s7", "text_en": "What drops out is the formula you will use for the rest of your life — R squared equals A squared plus B squared plus twice A B cosine theta." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "Plug In Numbers — A = 4, B = 3, theta = 60 deg",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "final_A",
+            "from": { "x": 200, "y": 400 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A = 4 N",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "final_B",
+            "from": { "x": 200, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": 60,
+            "label": "B = 3 N",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "final_R",
+            "from": { "x": 200, "y": 400 },
+            "magnitude": 6.08,
+            "direction_deg": 25,
+            "label": "R = 6.08 N",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1.5 }
+          },
+          {
+            "type": "annotation",
+            "id": "solution",
+            "text": "Given  A = 4 N, B = 3 N, theta = 60 deg\n\nStep 1  cos 60 = 0.5\nStep 2  R^2 = 16 + 9 + 2 * 4 * 3 * 0.5\n            = 16 + 9 + 12\n            = 37\nStep 3  R = sqrt(37) ~ 6.08 N\n\nNaive scalar sum would give 7 N.\nGap of nearly a full newton\n=> real world is not scalar addition.",
+            "position": { "x": 540, "y": 260 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Let us use the formula on the two-farmer scene that started this lesson." },
+            { "id": "s2", "text_en": "A is four newtons. B is three newtons. The angle between the ropes is sixty degrees." },
+            { "id": "s3", "text_en": "Cosine of sixty is half, which is the cleanest number in all of trigonometry." },
+            { "id": "s4", "text_en": "R squared is sixteen plus nine plus twelve, which is thirty-seven. Take the square root." },
+            { "id": "s5", "text_en": "The real resultant is about six point zero eight newtons. The naive seven was wrong by nearly one whole newton." },
+            { "id": "s6", "text_en": "This is the formula in action. Carry it forward — it will solve every vector-addition problem you meet for the rest of the chapter." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "scalar_addition_wrong",
+      "misconception": "Two vector magnitudes can be added like ordinary numbers",
+      "trigger_phrases": [
+        "four plus three is seven",
+        "just add the magnitudes",
+        "why not simple addition",
+        "A and B together is A plus B"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Just Add the Numbers",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "wrong_A",
+              "from": { "x": 200, "y": 320 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A = 4 N",
+              "color": "#F59E0B",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "wrong_B",
+              "from": { "x": 200, "y": 320 },
+              "magnitude": 3,
+              "direction_deg": 60,
+              "label": "B = 3 N",
+              "color": "#F59E0B",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_claim",
+              "text": "Your reasoning\n\nA + B = 4 + 3 = 7 N\n\nSimple. Familiar. Clean.\nAnd — completely wrong\nwhenever the angle is not zero.",
+              "position": { "x": 540, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444",
+              "animation": { "type": "fade_in", "delay_sec": 1.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The student's first attempt is always scalar addition. Four plus three is seven." },
+              { "id": "s2", "text_en": "That answer is correct for mass, for time, for money. Scalars add by plain arithmetic." },
+              { "id": "s3", "text_en": "Vectors do not, except in one special case — when the two vectors are exactly parallel. Any other angle, and the naive sum overshoots reality." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "See the Gap — Reality at theta = 60 deg",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "gap_A",
+              "from": { "x": 200, "y": 400 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A = 4 N",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "gap_B",
+              "from": { "x": 200, "y": 400 },
+              "magnitude": 3,
+              "direction_deg": 60,
+              "label": "B = 3 N",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "gap_R_real",
+              "from": { "x": 200, "y": 400 },
+              "magnitude": 6.08,
+              "direction_deg": 25,
+              "label": "R_real = 6.08 N",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 55,
+              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            },
+            {
+              "type": "force_arrow",
+              "id": "gap_R_wrong",
+              "from": { "x": 200, "y": 470 },
+              "magnitude": 7,
+              "direction_deg": 0,
+              "label": "R_naive = 7 N (wrong)",
+              "color": "#EF4444",
+              "style": "dashed",
+              "scale_pixels_per_unit": 55,
+              "animation": { "type": "fade_in", "delay_sec": 4, "duration_sec": 1 }
+            },
+            {
+              "type": "annotation",
+              "id": "gap_explain",
+              "text": "Correct formula\nR^2 = 16 + 9 + 12 = 37\nR = 6.08 N\n\nNaive sum\nR_naive = 7 N\n\nThe red arrow overshoots reality\nby nearly a full newton.\n\nThe gap comes entirely from the\nmiddle term 2 A B cos theta\nthat scalar addition forgets.",
+              "position": { "x": 550, "y": 260 },
+              "style": "formula_box",
+              "animation": { "type": "fade_in", "delay_sec": 5.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Watch both predictions side by side at sixty degrees." },
+              { "id": "s2", "text_en": "The green arrow is what the formula gives — six point zero eight newtons, tilted upward from A." },
+              { "id": "s3", "text_en": "The red dashed arrow is what naive addition claims — seven newtons pointing straight along A. Longer, and pointing the wrong way." },
+              { "id": "s4", "text_en": "The two differ because scalar addition forgets the middle term, two A B cosine theta. That term carries all the geometry." },
+              { "id": "s5", "text_en": "When the angle is non-zero, that missed term is non-zero, and the two predictions diverge." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "When Scalar Addition Does Work — The Limit Case",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "limit_A",
+              "from": { "x": 200, "y": 340 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A = 4 N",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "limit_B",
+              "from": { "x": 200, "y": 400 },
+              "magnitude": 3,
+              "direction_deg": 0,
+              "label": "B = 3 N",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55,
+              "animation": { "type": "fade_in", "delay_sec": 1.5, "duration_sec": 0.8 }
+            },
+            {
+              "type": "force_arrow",
+              "id": "limit_R",
+              "from": { "x": 200, "y": 470 },
+              "magnitude": 7,
+              "direction_deg": 0,
+              "label": "R = 7 N",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 55,
+              "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            },
+            {
+              "type": "annotation",
+              "id": "limit_math",
+              "text": "When theta = 0\ncos theta = 1\n\nR^2 = A^2 + B^2 + 2 A B\n    = (A + B)^2\n\n=> R = A + B\n\nScalar addition IS correct,\nbut only in this special case.",
+              "position": { "x": 540, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981",
+              "animation": { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Your scalar instinct is not useless. It becomes exactly correct in one special case — when the two vectors point in the same direction, theta equals zero." },
+              { "id": "s2", "text_en": "Plug zero into the formula. Cosine zero is one. The middle term becomes two A B. The whole expression collapses to A plus B whole squared." },
+              { "id": "s3", "text_en": "Take the square root and R is simply A plus B. Four plus three is seven, and this time it is right." },
+              { "id": "s4", "text_en": "So your original rule was not wrong — it was just incomplete. It only applies in one corner of the possible angle range." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_4": {
+          "title": "The Correct Rule You Now Own",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "summary_rule",
+              "text": "Two vectors at angle theta\n\nNever just add magnitudes\n(except at theta = 0).\n\nUse the formula:\nR = sqrt(A^2 + B^2 + 2 A B cos theta)\n\nAt theta = 90 deg  -> R = sqrt(A^2 + B^2)\nAt theta = 180 deg -> R = |A - B|\nEverywhere in between -> use the full formula",
+              "position": { "x": 300, "y": 260 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "takeaway",
+              "text": "Rule of thumb\n\nIf the angle is NOT explicitly zero,\nDO NOT add magnitudes.\n\nIf unsure about the angle,\nuse the formula — it is always safe.",
+              "position": { "x": 640, "y": 260 },
+              "style": "callout",
+              "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the complete picture in one frame." },
+              { "id": "s2", "text_en": "For any angle, the resultant magnitude follows the full formula — A squared plus B squared plus twice A B cosine theta, all under a square root." },
+              { "id": "s3", "text_en": "At zero degrees, it collapses to plain addition. At ninety degrees, to Pythagoras. At one hundred eighty, to the absolute difference." },
+              { "id": "s4", "text_en": "Rule of thumb — if the problem mentions an angle that is not zero, stop writing plus and start writing the formula." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different magnitudes and angles",
+      "physical_world": "A = 5 N, B = 12 N, theta varying. Resultant ranges from 17 N (theta = 0) down to 7 N (theta = 180).",
+      "same_physics": "Law of cosines R = sqrt(A^2 + B^2 + 2 A B cos theta) applies unchanged"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Velocities instead of forces",
+      "physical_world": "A = 3 m/s (boat paddle), B = 4 m/s (river current), angle 90 deg. Resultant velocity is 5 m/s at 53 deg.",
+      "same_physics": "Formula is unit-agnostic — any two coplanar vectors combine by the same rule"
+    }
+  ]
+}

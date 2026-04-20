@@ -1,0 +1,106 @@
+{
+  "concept_id": "interference_coherence",
+  "concept_name": "Interference and Coherence",
+  "class_level": 12,
+  "chapter": "Wave Optics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "wave_canvas",
+    "scenario_type": "interference_coherence",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "I1": "Intensity of wave 1 (W/m²)",
+    "I2": "Intensity of wave 2 (W/m²)",
+    "delta": "Path difference between two waves (m)",
+    "phi": "Phase difference between two waves (rad)",
+    "lambda": "Wavelength of light (m)"
+  },
+  "locked_facts": [
+    "Constructive interference: path difference Δ = nλ (phase difference = 2nπ), where n = 0, 1, 2, …",
+    "Destructive interference: path difference Δ = (n + ½)λ (phase difference = (2n+1)π)",
+    "Maximum intensity: I_max = (√I₁ + √I₂)²",
+    "Minimum intensity: I_min = (√I₁ − √I₂)²",
+    "For equal intensities I₁ = I₂ = I₀: I_max = 4I₀, I_min = 0 (complete cancellation)",
+    "Coherent sources: same frequency AND constant phase difference over time",
+    "Two independent light sources are NEVER coherent — they emit photons in random bursts"
+  ],
+  "truth_statements": [
+    "Interference is the superposition of two waves from coherent sources, producing a stable pattern of maxima and minima",
+    "Coherence requires both temporal coherence (monochromaticity) and spatial coherence (wavefronts in phase across the source)",
+    "Two independent light bulbs cannot produce a visible interference pattern because their relative phase changes randomly at ~10⁸ Hz",
+    "The resultant intensity at any point depends on the phase difference: I = I₁ + I₂ + 2√(I₁I₂)cosφ",
+    "Energy is not created or destroyed in interference — it is redistributed from dark fringes to bright fringes"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two coherent waves arrive at a point. When they are in phase (crest meets crest), the combined amplitude doubles and intensity quadruples to 4I₀. When they are out of phase by π (crest meets trough), they cancel completely to give zero intensity. Show the total energy across the pattern is conserved — bright fringes gain what dark fringes lose.",
+    "visual_emphasis": "Animated wave superposition: two sinusoidal waves sliding into alignment (constructive) and then shifting by half wavelength (destructive), with intensity meter going from 4I₀ to 0",
+    "why_this_breaks_misconception": "Students see that two light beams CAN produce darkness — this violates the intuition that 'more light = always brighter'"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Two separate wave sources",
+      "description": "Two point sources emitting circular wavefronts of the same wavelength. The sources are incoherent — their phases jump randomly. The combined pattern on a detection screen fluctuates randomly with no stable fringes.",
+      "emphasis": "Without coherence, no stable interference pattern forms — just uniform illumination on average",
+      "labels_visible": ["Source 1", "Source 2", "Incoherent", "No stable pattern"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Coherent sources — fixed phase relationship",
+      "description": "The two sources now have a fixed phase relationship (derived from the same parent source). Their wavefronts overlap predictably. Some regions show reinforcement, others show cancellation.",
+      "emphasis": "Coherence means constant phase difference — this is what makes a stable pattern possible",
+      "labels_visible": ["Coherent", "Same λ", "Constant Δφ"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Constructive and destructive interference",
+      "description": "At points where path difference = nλ, crests meet crests: intensity = I_max = (√I₁+√I₂)². At points where path difference = (n+½)λ, crests meet troughs: intensity = I_min = (√I₁−√I₂)². For equal intensities: I_max = 4I₀, I_min = 0.",
+      "emphasis": "Constructive: Δ = nλ → bright. Destructive: Δ = (n+½)λ → dark. Total energy is conserved across the pattern.",
+      "labels_visible": ["I_max = (√I₁+√I₂)²", "I_min = (√I₁−√I₂)²", "Δ = nλ", "Δ = (n+½)λ"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts the intensity ratio I₁/I₂ and the phase difference φ. When I₁ = I₂, I_min = 0 (perfect dark fringes). When I₁ ≠ I₂, I_min > 0 (no complete darkness). Phase slider moves between constructive and destructive interference in real time.",
+      "emphasis": "See how unequal intensities prevent complete cancellation — and why equal-intensity sources give the clearest fringes",
+      "labels_visible": ["I₁", "I₂", "φ", "I_result"],
+      "interactive": true,
+      "sliders": [
+        { "id": "intensity1", "label": "Intensity I₁", "min": 0.1, "max": 5.0, "default": 1.0, "unit": "I₀" },
+        { "id": "intensity2", "label": "Intensity I₂", "min": 0.1, "max": 5.0, "default": 1.0, "unit": "I₀" },
+        { "id": "phase_diff", "label": "Phase difference φ", "min": 0, "max": 360, "default": 0, "unit": "°" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Two light bulbs can produce an interference pattern if placed close together",
+      "trigger_phrases": ["two bulbs interference", "do bulb se pattern", "two lights combine fringes", "lamp se interference hoga"],
+      "correction": "Two independent light sources are never coherent — each atom emits light in random bursts lasting ~10⁻⁸ s, so the phase difference changes randomly ~10⁸ times per second. No detector can track this, so the pattern averages out to uniform illumination. Coherent sources must be derived from the SAME parent source (e.g., via a double slit).",
+      "simulation_emphasis": "Animate rapidly flickering random-phase sources with the detection screen showing no stable fringes, then switch to coherent sources showing a clear stable pattern"
+    },
+    {
+      "belief": "In destructive interference, energy is destroyed — light + light = darkness means energy is lost",
+      "trigger_phrases": ["energy kahan gayi", "energy destroyed", "where does energy go", "light cancel toh energy lost"],
+      "correction": "Energy is NEVER destroyed in interference. It is redistributed — the energy missing from dark fringes reappears in bright fringes. The average intensity across the entire pattern equals I₁ + I₂, exactly as if there were no interference.",
+      "simulation_emphasis": "Show energy bar graph: total energy across all fringes = constant. Bright fringes have extra energy; dark fringes have none. Sum is always conserved."
+    }
+  ],
+  "legend": [
+    { "symbol": "I₁, I₂", "meaning": "Intensities of the two individual waves (W/m²)" },
+    { "symbol": "I_max", "meaning": "Maximum resultant intensity = (√I₁ + √I₂)²" },
+    { "symbol": "I_min", "meaning": "Minimum resultant intensity = (√I₁ − √I₂)²" },
+    { "symbol": "Δ", "meaning": "Path difference between the two waves (m)" },
+    { "symbol": "φ", "meaning": "Phase difference = 2πΔ/λ (rad)" },
+    { "symbol": "λ", "meaning": "Wavelength of light (m)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["wave_superposition", "wave_on_string"],
+    "extensions": ["youngs_double_slit", "thin_film_interference"],
+    "siblings": ["standing_waves", "beats_waves"],
+    "common_exam_combinations": ["youngs_double_slit", "thin_film_interference", "single_slit_diffraction"]
+  }
+}

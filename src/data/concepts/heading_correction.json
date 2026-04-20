@@ -1,0 +1,271 @@
+{
+  "concept_id": "heading_correction",
+  "concept_name": "Heading Correction — Tilting the Nose to Cancel Wind Drift",
+  "chapter": 6,
+  "section": "6.13",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 6.13 — wind-correction angle; split from aircraft_wind_problems",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "Air India flight Delhi to Srinagar. The destination airport lies true north, but a steady 60 km/h westerly crosswind blows across the Punjab plains. If the pilot flew with nose straight north at 240 km/h airspeed, she would land well east of Srinagar. Instead she points the nose a few degrees upwind — toward the WEST — so the eastward-blown component of her airspeed exactly cancels the crosswind. sin(theta) = 60/240 = 0.25, so theta ≈ 14.5 degrees west of true north. The ground track is now exactly due north, arriving at Srinagar.",
+    "secondary": "A DGCA test drone being flown to a specific GPS waypoint. Crosswind 3 m/s to the south; drone airspeed 12 m/s. Operator crabs the drone sin⁻¹(3/12) = 14.5° upwind. Resulting ground track hits the waypoint exactly on target.",
+    "tertiary": "A peregrine falcon diving on a pigeon during a windy day in Corbett National Park. Instinct tells the falcon to aim not AT the pigeon but slightly upwind of it, so that its body ends up exactly on target. Same physics — wind correction — built into biology."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v_air": { "name": "Aircraft airspeed", "unit": "m/s", "min": 10, "max": 300, "default": 67 },
+      "v_wind": { "name": "Crosswind speed", "unit": "m/s", "min": 0, "max": 50, "default": 17 },
+      "theta": { "name": "Heading correction angle upwind", "unit": "deg", "min": 0, "max": 90, "default": 14.5 }
+    },
+    "computed_outputs": {
+      "theta_required": { "formula": "asin(v_wind / v_air) in degrees" },
+      "v_ground": { "formula": "sqrt(v_air^2 - v_wind^2)" }
+    },
+    "formulas": {
+      "correction_angle": "sin(theta) = v_wind / v_air   (aircraft heading tilted theta INTO the wind)",
+      "effective_ground_speed": "|V_ground| = v_air * cos(theta) = sqrt(v_air^2 - v_wind^2)",
+      "feasibility": "Only possible if v_air > v_wind.",
+      "limit_case": "If v_air = v_wind, theta = 90 deg and plane cannot make any progress in the desired direction (all airspeed used fighting the wind)."
+    },
+    "constraints": [
+      "Ground track runs in the desired direction (e.g. due north).",
+      "Nose is pointed theta INTO the wind, not downwind.",
+      "Resulting ground speed is ALWAYS less than airspeed — you pay in speed for on-track accuracy."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "The Strategy — Crab Into the Wind",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "strategy_sketch",
+            "text": "Air India Delhi -> Srinagar, due north leg:\n\n  Airspeed  v_air  = 240 km/h\n  Crosswind v_wind =  60 km/h  blowing EAST\n\n  If pilot aims NOSE due north:\n     she drifts 60 km/h EAST -> lands off-course near Jammu.\n\n  Solution: tilt the nose slightly WEST so that\n  the westward component of airspeed cancels the wind.\n\n      v_air * sin(theta)  =  v_wind\n      sin(theta)  =  v_wind / v_air\n                  =  60 / 240\n                  =  0.25\n      theta       =  arcsin(0.25)  ~=  14.5 deg WEST of N\n\n  Ground track is now straight north.  Srinagar ahead.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "srinagar_label",
+            "text": "Delhi -> Srinagar with westerly crosswind",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "plane",
+            "vehicle_type": "airplane",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "rotate_about", "delay_sec": 4.5, "duration_sec": 1.0, "pivot": "self", "from_deg": 0, "to_deg": -14 },
+              { "type": "translate", "delay_sec": 5.5, "duration_sec": 5.5, "dx_px": 0, "dy_px": -240, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "strategy_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Air India flight from Delhi due north to Srinagar. A 60-kilometres-per-hour wind blows east, across the flight path." },
+            { "text_en": "If the pilot keeps the nose pointing north, she drifts east with the wind and misses Srinagar entirely." },
+            { "text_en": "The fix is elegant — tilt the nose WEST into the wind, so the westward part of the airspeed cancels the eastward wind." },
+            { "text_en": "The required angle is arcsine of v wind over v air — 60 divided by 240 — 14.5 degrees west of north." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Vector Triangle — The Math Behind It",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "triangle_sketch",
+            "text": "Vector triangle for a straight-north ground track:\n\n         V_plane/air (nose heading, tilted upwind)\n           |\n           |   theta\n           |      /|  v_air * cos(theta)  (north-component)\n           |     / |  <-- this is the useful part\n           |    /  |\n           |   /   |\n           |__/____|  v_air * sin(theta) (west-component)\n                    west-component MUST CANCEL the crosswind\n\n   So:   v_air * sin(theta)  =  v_wind\n          => sin(theta) = v_wind / v_air\n\n   Ground speed (north-component):\n        |V_ground|  =  v_air * cos(theta)\n                    =  sqrt( v_air^2 - v_wind^2 )\n\n   Numbers for Delhi -> Srinagar:\n        ground speed  =  sqrt( 240^2 - 60^2 )  =  sqrt( 53 100 )  ~=  232 km/h\n\n   So the correction COSTS about 8 km/h of ground speed,\n   in exchange for flying straight to Srinagar.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "triangle_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Let us see the vector triangle explicitly." },
+            { "text_en": "The airspeed vector has two components — a north-component v air times cosine theta, and a west-component v air times sine theta." },
+            { "text_en": "The west-component must exactly cancel the eastern wind. So v air sine theta equals v wind — giving sine theta equals v wind over v air." },
+            { "text_en": "The effective north-component, which is the ground speed, is v air cosine theta — the square root of v air squared minus v wind squared." },
+            { "text_en": "For the Srinagar example, that is 232 kilometres per hour — only 8 slower than the airspeed. A small cost for on-track accuracy." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Limits — When Correction is Impossible",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "limits_sketch",
+            "text": "When can wind-correction work?\n\n   sin(theta) = v_wind / v_air\n\n   Sine is at most 1, so:\n      v_wind / v_air  <=  1\n      v_wind          <=  v_air\n\n   Three regimes:\n\n      v_air >  v_wind:\n         correction possible; theta exists between 0 and 90 deg\n         ground speed = sqrt(v_air^2 - v_wind^2)\n\n      v_air =  v_wind:\n         theta = 90 deg (plane points straight into the wind)\n         ground speed = 0 -- plane makes no progress\n\n      v_air <  v_wind:\n         impossible -- wind overpowers aircraft\n         flight cancellation territory.\n\n   Real aviation: airliners keep v_air FAR above v_wind\n   so there is safety margin for sudden gusts.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "limits_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "When does wind correction fail?" },
+            { "text_en": "Sine cannot exceed one, so v wind over v air must not exceed one either. In plain words — the aircraft must be faster than the wind." },
+            { "text_en": "Equal speeds — theta is 90 degrees, the plane flies straight into the wind, and ground speed is zero." },
+            { "text_en": "Wind faster than plane — impossible. Flight cancellation territory." },
+            { "text_en": "Airliners always keep v air far above typical wind speeds, so gusts do not tip the balance mid-flight." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "crab_downwind",
+      "misconception_summary": "Student points the aircraft nose DOWNWIND instead of upwind, thinking that would cancel drift.",
+      "confusion_patterns": [
+        "tilt plane downwind for correction",
+        "face plane with wind for correction",
+        "correction angle downwind",
+        "plane nose same direction as wind"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong Instinct: Nose with the Wind",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "downwind_sketch",
+              "text": "Student's wrong thought:\n  \"Wind pushes me east, so I should aim the nose EAST\n   with the wind, to 'go along' with it.\"\n\n  Tilting downwind:\n     * Makes the east drift WORSE, not better.\n     * Puts ground track even further off course.\n\n  Correct move is UPWIND:\n     * Tilt nose WEST, so an airspeed component\n       cancels the east wind.\n     * Ground track ends up exactly north.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 13,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "downwind_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The common wrong instinct — 'wind pushes me east, I should aim east with it'." },
+              { "text_en": "That makes the east drift WORSE, not better. Both the wind AND the airspeed component would push east — disaster." },
+              { "text_en": "The correct move is UPWIND. Tilt the nose AGAINST the wind, so some airspeed cancels the wind, leaving a clean north track." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Vector Addition Shows Direction",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "direction_proof_sketch",
+              "text": "Vector math makes direction unambiguous:\n\n   For straight-north ground track, we need:\n\n     east-component of V_ground  =  0\n\n   V_ground = V_plane/air + V_air/ground\n            = (v_air * sin(alpha), v_air * cos(alpha))  +  (+60, 0)\n\n   where alpha is HEADING angle measured EAST of NORTH.\n   Positive alpha = nose turned east.\n\n   East-component of ground velocity:\n      v_air * sin(alpha)  +  60  =  0\n      v_air * sin(alpha)         =  -60\n      sin(alpha)                 =  -0.25\n      alpha                      =  -14.5 deg\n\n   NEGATIVE alpha = nose turned WEST.  Correct answer.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 11,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "direction_proof_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The vector math settles the direction." },
+              { "text_en": "For a straight-north ground track, the east-component of ground velocity must be zero." },
+              { "text_en": "Set v air times sine of heading plus wind east-component to zero. That gives sine alpha equals minus 0.25 — negative." },
+              { "text_en": "Negative heading means the nose turns WEST. That is the upwind direction. Vector math beats intuition every time." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Everyday Mnemonic — 'Crab Into the Wind'",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "crab_sketch",
+              "text": "Pilots call it 'crabbing':\n\n   You point the NOSE into the wind,\n   but the aircraft MOVES straight ahead.\n   Like a crab walking sideways.\n\n   Three-word rule for JEE:\n      crab INTO wind\n\n   Direction of heading correction = UPWIND.\n   Always.  Never downwind.\n   \n   If your answer has the nose pointed downwind,\n   you have written the sign backwards.  Flip it.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "crab_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Pilots have a three-word rule — 'crab into wind'." },
+              { "text_en": "You point the nose into the wind, but the aircraft moves straight ahead, like a crab walking sideways." },
+              { "text_en": "For every JEE aircraft problem, remember — correction is always UPWIND. Never downwind." },
+              { "text_en": "If your calculated answer has the nose pointed downwind, you have written a sign backwards. Flip it and try again." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Delhi -> Srinagar, easterly crosswind", "params": { "v_air": 67, "v_wind": 17 } },
+      { "label": "Drone on light wind", "params": { "v_air": 12, "v_wind": 3 } },
+      { "label": "Strong wind, high airspeed", "params": { "v_air": 150, "v_wind": 40 } }
+    ],
+    "type_b": [
+      { "label": "Paraglider at Bir Billing", "scenario": "paraglider_bir_billing" },
+      { "label": "Sea-plane taxing in wind", "scenario": "seaplane_wind_taxi" }
+    ]
+  }
+}

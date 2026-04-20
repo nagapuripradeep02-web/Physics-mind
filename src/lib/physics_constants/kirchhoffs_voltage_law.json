@@ -1,0 +1,26 @@
+{
+  "concept": "kirchhoffs_voltage_law",
+  "locked_facts": {
+    "KVL_statement": "algebraic_sum_of_EMFs_equals_sum_of_IR_drops_in_a_closed_loop",
+    "potential_sum": "algebraic_sum_of_potential_differences_in_any_closed_loop_is_zero",
+    "KVL_basis": "conservation_of_energy",
+    "sign_convention": "EMF_positive_if_traversed_from_negative_to_positive_terminal",
+    "IR_drop_sign": "IR_drop_positive_if_traversed_in_direction_of_current"
+  },
+  "animation_constraints": {
+    "current_conservation_at_node": true,
+    "voltage_drops_across_resistors": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "Kirchhoff's Voltage Law (KVL): the algebraic sum of changes in potential around any closed loop in a circuit is zero, based on conservation of energy",
+    "In applying KVL, the sum of all EMFs in a closed loop equals the sum of all IR (resistive) drops in that loop",
+    "A potential drop of IR occurs across a resistor when traversed in the direction of the current",
+    "A potential rise equal to EMF occurs when traversing a battery from its negative terminal to its positive terminal",
+    "KVL reflects the fact that electric potential energy is conserved — no net gain or loss of energy in a complete loop"
+  ]
+}

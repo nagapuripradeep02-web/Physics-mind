@@ -1,0 +1,206 @@
+{
+  "concept_id": "nuclear_fission_fusion",
+  "concept_name": "Nuclear Fission and Fusion",
+  "class_level": "12",
+  "chapter": "Nuclei",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "thermodynamics",
+    "scenario_type": "fission_fusion_comparison",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "E_fission": {
+      "name": "energy released per fission event",
+      "symbol": "E_fission",
+      "unit": "MeV",
+      "typical_value": 200,
+      "role": "dependent",
+      "note": "U-235 fission releases ~200 MeV per event; mostly as KE of fission fragments"
+    },
+    "E_fusion": {
+      "name": "energy released per fusion reaction",
+      "symbol": "E_fusion",
+      "unit": "MeV",
+      "role": "dependent",
+      "note": "4H → He + 2e⁺ + 2ν releases ~26.7 MeV (pp chain in Sun)"
+    },
+    "m_critical": {
+      "name": "critical mass",
+      "symbol": "m_c",
+      "unit": "kg",
+      "role": "threshold",
+      "note": "Minimum mass of fissile material needed to sustain chain reaction; ~52 kg for U-235 (bare sphere)"
+    },
+    "k": {
+      "name": "neutron multiplication factor",
+      "symbol": "k",
+      "unit": "dimensionless",
+      "role": "control_parameter",
+      "note": "k<1: subcritical (chain dies), k=1: critical (steady), k>1: supercritical (exponential growth)"
+    },
+    "T_fusion": {
+      "name": "temperature required for fusion",
+      "symbol": "T",
+      "unit": "K",
+      "typical_value": 1.5e7,
+      "role": "threshold",
+      "note": "~10⁷ K needed to overcome Coulomb repulsion between nuclei (thermonuclear conditions)"
+    },
+    "delta_m": {
+      "name": "mass defect of reaction",
+      "symbol": "Δm",
+      "unit": "u",
+      "role": "derived"
+    },
+    "Q": {
+      "name": "Q-value of reaction",
+      "symbol": "Q",
+      "unit": "MeV",
+      "role": "dependent",
+      "note": "Q = (mass of reactants - mass of products) × 931.5 MeV/u; Q > 0 means exothermic"
+    }
+  },
+  "locked_facts": [
+    "U-235 + n → Ba-141 + Kr-92 + 3n (typical fission reaction; releases ~200 MeV and 2-3 neutrons)",
+    "E = Δmc² — energy released equals mass defect times c²; applies to both fission and fusion",
+    "Chain reaction requires k ≥ 1: each fission produces 2-3 neutrons that can trigger further fissions",
+    "Critical mass: minimum fissile mass for self-sustaining chain reaction; below this, too many neutrons escape",
+    "4¹H → ⁴He + 2e⁺ + 2ν + 26.7 MeV — proton-proton chain powering the Sun",
+    "Fusion requires T > 10⁷ K to overcome Coulomb barrier between positively charged nuclei",
+    "Energy per nucleon: fusion of H releases ~6.7 MeV/nucleon vs fission of U releasing ~0.85 MeV/nucleon — fusion is more energy-dense per unit mass",
+    "Controlled fission: nuclear reactor uses moderator (heavy water, graphite) and control rods (cadmium, boron) to maintain k = 1"
+  ],
+  "truth_statements": [
+    "Fission splits a heavy nucleus (A > 200) into two medium-mass fragments plus neutrons; fusion combines light nuclei (A < 20) into a heavier one — both release energy because products have higher binding energy per nucleon",
+    "The Sun's energy comes from fusion: converting 600 million tonnes of hydrogen to helium every second, with 4 million tonnes converted to energy via E = mc²",
+    "A nuclear reactor maintains k = 1 (critical) for steady power; a nuclear bomb requires k >> 1 (supercritical) for explosive energy release",
+    "Controlled fusion has not yet been achieved commercially on Earth because sustaining plasma at 10⁸ K while confining it (magnetic or inertial confinement) is extremely difficult",
+    "Fission products are radioactive (e.g., Sr-90, Cs-137 with half-lives of ~30 years), creating long-term nuclear waste — a major challenge of fission energy"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "description": "Student sees a side-by-side energy comparison: one U-235 fission gives ~200 MeV, but one H-fusion gives only ~6.7 MeV per nucleon. Yet fusion releases MORE energy per kilogram because hydrogen is 235× lighter than uranium. Per kg: fusion gives ~4× more energy than fission, and ~10⁷× more than coal combustion.",
+    "visual_cue": "Bar chart comparing energy per kg: coal (3.3×10⁷ J), fission U-235 (8.2×10¹³ J), fusion H (6.3×10¹⁴ J) — each bar dwarfs the previous by orders of magnitude"
+  },
+  "simulation_states": {
+    "STATE_1": {
+      "title": "Nuclear Fission — Splitting the Heavy Nucleus",
+      "description": "Show a U-235 nucleus absorbing a slow neutron and becoming U-236 (excited state). The nucleus deforms, elongates, and splits into two fragments (Ba-141 + Kr-92) plus 3 fast neutrons. Display energy accounting: mass before vs mass after, Δm → 200 MeV released.",
+      "visual_elements": ["uranium_nucleus", "incoming_neutron", "deformation_animation", "split_fragments", "ejected_neutrons", "energy_counter"],
+      "labels": ["²³⁵U + n → ²³⁶U* → ¹⁴¹Ba + ⁹²Kr + 3n", "Q ≈ 200 MeV"]
+    },
+    "STATE_2": {
+      "title": "Chain Reaction and Critical Mass",
+      "description": "Each fission releases 2-3 neutrons. Show branching tree: generation 1 (1 fission), generation 2 (2-3 fissions), generation 3 (4-9 fissions). For k>1: exponential growth. Show two scenarios: small mass (neutrons escape, chain dies k<1) vs critical mass (chain sustains k=1). Control rods absorbing excess neutrons for k=1.",
+      "visual_elements": ["branching_tree_diagram", "neutron_paths", "small_vs_critical_mass_comparison", "control_rod_animation"],
+      "labels": ["k < 1: subcritical", "k = 1: critical (reactor)", "k > 1: supercritical (bomb)"]
+    },
+    "STATE_3": {
+      "title": "Nuclear Fusion — Powering the Stars",
+      "description": "Show the proton-proton chain: 4 hydrogen nuclei → 1 helium-4 + 2 positrons + 2 neutrinos + 26.7 MeV. Illustrate why extreme temperature is needed: protons must overcome Coulomb repulsion (positive charges repel). Compare energy density: 1 kg fusion fuel vs 1 kg fission fuel vs 1 kg coal.",
+      "visual_elements": ["proton_proton_chain_steps", "coulomb_barrier_diagram", "temperature_requirement", "energy_density_comparison_bars"],
+      "labels": ["4¹H → ⁴He + 2e⁺ + 2ν + 26.7 MeV", "T > 10⁷ K needed", "Fusion: most energy-dense"]
+    },
+    "STATE_4": {
+      "title": "Interactive Exploration",
+      "description": "Student controls neutron multiplication factor k to see subcritical/critical/supercritical behavior. Toggle between fission and fusion modes. Adjust number of generations in chain reaction. Challenge: how many generations for 1 mole of U-235 atoms to fission? Calculate total energy output.",
+      "interactive": true,
+      "sliders": [
+        {
+          "id": "k_factor_slider",
+          "label": "Multiplication Factor (k)",
+          "min": 0.5,
+          "max": 2.0,
+          "step": 0.05,
+          "default": 1.0,
+          "unit": ""
+        },
+        {
+          "id": "generations_slider",
+          "label": "Number of Generations",
+          "min": 1,
+          "max": 50,
+          "step": 1,
+          "default": 10,
+          "unit": ""
+        },
+        {
+          "id": "reaction_selector",
+          "label": "Reaction Type",
+          "options": ["U-235 Fission", "Pu-239 Fission", "D-T Fusion", "p-p Chain (Sun)"],
+          "default": "U-235 Fission"
+        }
+      ]
+    }
+  },
+  "common_misconceptions": [
+    {
+      "id": "fission_and_fusion_are_opposite",
+      "misconception": "Fission and fusion are opposite processes so one releases energy and the other absorbs it",
+      "correct": "BOTH release energy — fission of heavy nuclei and fusion of light nuclei both produce products with higher BE/A. They are not simply 'reverse' of each other. Energy is released whenever products move toward the iron peak on the BE/A curve.",
+      "trigger_phrases": [
+        "fission aur fusion opposite hain",
+        "one releases one absorbs",
+        "fusion is reverse of fission",
+        "if fission releases then fusion absorbs",
+        "ek mein energy nikalti ek mein lagti"
+      ],
+      "ncert_reference": "Chapter 13, Section 13.7"
+    },
+    {
+      "id": "fusion_is_easy_on_earth",
+      "misconception": "If fusion powers the Sun, we should easily be able to do it on Earth for clean energy",
+      "correct": "The Sun achieves fusion because of its enormous gravitational pressure and 15 million K core temperature sustained over billions of years. On Earth, we need even HIGHER temperatures (~10⁸ K) because we cannot replicate gravitational confinement, and containing plasma at such temperatures without it touching any material wall is an unsolved engineering challenge.",
+      "trigger_phrases": [
+        "sun mein hota hai toh earth pe bhi hoga",
+        "fusion is easy",
+        "why cant we do fusion",
+        "fusion easy hai",
+        "sun does it so can we"
+      ],
+      "ncert_reference": "Chapter 13, Section 13.7.2"
+    },
+    {
+      "id": "all_atoms_can_be_fissioned",
+      "misconception": "Any heavy atom can undergo fission if hit by a neutron",
+      "correct": "Only certain heavy isotopes are fissile (can sustain chain reactions with thermal neutrons): U-235, Pu-239, U-233. The common U-238 is NOT fissile with slow neutrons — it captures them without fissioning. This is why uranium enrichment (increasing U-235 percentage) is necessary for reactors.",
+      "trigger_phrases": [
+        "koi bhi heavy atom split hoga",
+        "any atom can fission",
+        "uranium 238 bhi fission hoga",
+        "all heavy elements fissile",
+        "sabhi bhari atoms toot sakte"
+      ],
+      "ncert_reference": "Chapter 13, Section 13.7.1"
+    }
+  ],
+  "legend": {
+    "uranium_nucleus": "Large yellow-red cluster of ~235 nucleons representing U-235",
+    "fission_fragments": "Two medium clusters (Ba and Kr) flying apart after fission",
+    "neutron": "Small grey dot — free neutron that initiates or is produced by fission",
+    "proton": "Small red dot — hydrogen nucleus participating in fusion",
+    "helium_nucleus": "Compact 4-nucleon cluster (2 red + 2 blue) produced by fusion",
+    "control_rod": "Black bar absorbing neutrons to control chain reaction rate",
+    "energy_flash": "Yellow starburst indicating energy release at reaction point"
+  },
+  "concept_relationships": [
+    {
+      "concept_id": "nuclear_binding_energy",
+      "relationship": "The BE/A curve is the foundation — both fission and fusion release energy because products have higher BE/A than reactants"
+    },
+    {
+      "concept_id": "radioactive_decay",
+      "relationship": "Fission products are often radioactive (beta emitters); alpha decay is a natural form of nuclear disintegration"
+    },
+    {
+      "concept_id": "photoelectric_effect_detail",
+      "relationship": "E = mc² connects nuclear energy to photon energy; nuclear reactions release ~10⁶ times more energy per event than atomic transitions"
+    },
+    {
+      "concept_id": "conservation_laws",
+      "relationship": "Conservation of mass-energy, charge, baryon number, and lepton number all hold in nuclear reactions"
+    }
+  ]
+}

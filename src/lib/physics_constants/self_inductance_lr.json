@@ -1,0 +1,43 @@
+{
+  "concept_id": "self_inductance_lr",
+  "concept_name": "Self-Inductance and LR Circuits",
+  "class_level": 12,
+  "chapter": "Electromagnetic Induction",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "circuit_live", "scenario_type": "lr_circuit", "panel_count": 2, "show_labels": true },
+  "variables": { "L": "Self-inductance (H)", "ε_L": "Back EMF = -LdI/dt (V)", "τ": "Time constant = L/R (s)", "I": "Current (A)" },
+  "locked_facts": [
+    "Self-inductance: Φ = LI, so ε = -LdI/dt",
+    "Inductance of solenoid: L = μ₀n²Al (n = turns/length, A = area, l = length)",
+    "Back EMF opposes change in current (electromagnetic inertia)",
+    "LR circuit growth: I(t) = (V/R)(1 - e^(-t/τ)) where τ = L/R",
+    "LR circuit decay: I(t) = I₀ e^(-t/τ)",
+    "Energy stored in inductor: U = ½LI²",
+    "Time constant τ = L/R: after 5τ, current reaches ~99% of final value",
+    "Inductance is the electrical analogue of inertia — resists changes in current"
+  ],
+  "truth_statements": [
+    "Self-inductance causes a coil to oppose any change in the current flowing through it by generating a back EMF",
+    "The back EMF is proportional to the rate of change of current: ε = -LdI/dt",
+    "In an LR circuit the current grows exponentially toward V/R with time constant τ = L/R",
+    "The energy stored in the magnetic field of an inductor is ½LI²",
+    "A larger inductance means the current takes longer to reach its steady-state value"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "An LR circuit switched on: current doesn't jump to V/R instantly — it grows exponentially. A graph shows I vs t rising with time constant τ = L/R. Simultaneously, the back EMF starts at V and decays to 0. The inductor acts like electromagnetic inertia.",
+    "visual_emphasis": "Current growth curve and back EMF decay curve shown simultaneously — the inductor 'resists' change then gradually allows current through",
+    "why_this_breaks_misconception": "Students expect instant current flow — seeing the exponential growth with time constant makes inductor behaviour tangible"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Self-inductance concept", "description": "Current through a coil creates magnetic flux. Changing I changes Φ. Back EMF = -LdI/dt opposes the change. Analogy: mass resists acceleration, inductor resists current change.", "emphasis": "An inductor resists CHANGES in current — it's electromagnetic inertia", "labels_visible": ["L", "ε = -LdI/dt", "Φ = LI"] },
+    { "id": "STATE_2", "label": "LR circuit switch-on", "description": "Battery, resistor R, inductor L in series. Switch closed at t = 0. Current starts at 0, grows exponentially to V/R. Back EMF starts at V, decays to 0. Time constant τ = L/R.", "emphasis": "Current can't jump instantly — the inductor fights the change", "labels_visible": ["I(t) = V/R(1-e^(-t/τ))", "τ = L/R"] },
+    { "id": "STATE_3", "label": "Growth and decay curves", "description": "Switch-on: I rises as (1-e^(-t/τ)). Switch-off: I decays as e^(-t/τ). Both curves shown. At t = τ, I reaches 63% (growth) or drops to 37% (decay). At 5τ, essentially complete.", "emphasis": "τ = L/R controls the speed. Large L or small R = slow response.", "labels_visible": ["63% at τ", "37% at τ", "99% at 5τ"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts L and R. Time constant changes. Switch on/off and watch current grow/decay. Energy bar shows U = ½LI² building up. Compare different L/R ratios.", "emphasis": "Increase L — current grows slower. Increase R — current grows faster (smaller τ).", "labels_visible": ["τ", "I", "U = ½LI²"], "interactive": true, "sliders": [{ "id": "inductance", "label": "Inductance L", "min": 0.1, "max": 10, "default": 2, "unit": "H" }, { "id": "resistance", "label": "Resistance R", "min": 1, "max": 20, "default": 5, "unit": "Ω" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "An inductor blocks all current", "trigger_phrases": ["inductor blocks current", "no current through inductor"], "correction": "An inductor opposes CHANGES in current, not current itself. Once steady state is reached (dI/dt = 0), the inductor acts like a plain wire with zero resistance (ideal inductor). It only generates back EMF during transients.", "simulation_emphasis": "Show current eventually reaching V/R — the inductor allows full current in steady state" },
+    { "belief": "Time constant τ should be large for fast response", "trigger_phrases": ["large τ fast", "big time constant quick"], "correction": "Larger τ = L/R means SLOWER response. The current takes longer to reach its final value. For fast switching, you want small L or large R (small τ).", "simulation_emphasis": "Compare circuits with different τ — larger τ curve rises much more slowly" }
+  ],
+  "legend": [ { "symbol": "L", "meaning": "Self-inductance (henries)" }, { "symbol": "τ", "meaning": "Time constant = L/R (seconds)" }, { "symbol": "U", "meaning": "Energy stored = ½LI²" } ],
+  "concept_relationships": { "prerequisites": ["faraday_law_emf", "lenz_law_eddy"], "extensions": ["mutual_inductance_transformer", "ac_circuits_lcr"], "siblings": ["rc_circuit_charging"], "common_exam_combinations": ["mutual_inductance_transformer", "ac_circuits_lcr"] }
+}

@@ -1,0 +1,1371 @@
+{
+  "concept_id": "vector_components",
+  "concept_name": "Components of a Vector",
+  "class_level": 11,
+  "chapter": "Chapter 5: Vectors",
+  "section": "Section 5.4 — Components of a Vector",
+  "source_coverage": {
+    "dc_pandey": {
+      "volume": "Mechanics Vol 1",
+      "chapter": 5,
+      "section": "5.4",
+      "pages": "105-107",
+      "examples_used": [
+        "Example 5.4",
+        "Example 5.5",
+        "Example 5.6",
+        "Example 5.7"
+      ]
+    },
+    "ncert": {
+      "class": 11,
+      "chapter": 4,
+      "section": "4.2",
+      "title": "Scalars and Vectors — Resolution of Vectors"
+    },
+    "hc_verma": {
+      "volume": 1,
+      "chapter": 2,
+      "section": "2.5",
+      "title": "Resolution of Vectors"
+    }
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "three_js_flag": false,
+  "three_js_note": "Vector components are a 2D concept — right triangle on x-y plane. canvas2d is fully sufficient. Three.js needed only for cross product or 3D field concepts.",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "technology_b": "plotly",
+    "renderer": "mechanics_2d",
+    "renderer_b": "graph_interactive",
+    "scenario_type": "vector_components",
+    "panel_count": 2,
+    "sync_required": true,
+    "panel_a_role": "Animated vector A on x-y axes with dashed drop lines to both axes, Ax and Ay arrows, angle arc θ, formula box at bottom-left. STATE_6 has A magnitude and θ sliders live.",
+    "panel_b_role": "Plotly: two sinusoidal curves — orange Ax=Acosθ and green Ay=Asinθ — vs θ (0° to 90°). Live dot tracks Ay curve in STATE_6. Curves appear from STATE_4 onwards. Crossover at θ=45° annotated."
+  },
+  "locked_facts": {
+    "x_component": "Ax = A cosθ (when θ measured from x-axis)",
+    "y_component": "Ay = A sinθ (when θ measured from x-axis)",
+    "magnitude_from_components": "|A| = √(Ax² + Ay²)",
+    "direction_from_components": "θ = tan⁻¹(Ay/Ax)",
+    "vector_notation": "A = Ax î + Ay ĵ",
+    "pythagorean_truth": "Ax=3, Ay=4 → |A|=5 NOT 7. Components combine by Pythagoras not addition.",
+    "unit_vectors": "î is unit vector along +x, ĵ along +y, k̂ along +z",
+    "magnitude_invariant": "Changing θ changes Ax and Ay but NOT |A|. The original vector magnitude is preserved.",
+    "angle_convention_warning": "If θ from y-axis: Ax=Asinθ, Ay=Acosθ. Formula SWAPS. Always identify reference axis.",
+    "dc_pandey_ex5_4": "F=15N at 37° from −x toward +y: Fx=−12N, Fy=+9N. Negative component valid.",
+    "dc_pandey_ex5_6": "W=10N on 30° incline: perpendicular=10cos30°=5√3≈8.66N, parallel=10sin30°=5N",
+    "dc_pandey_ex5_7": "F=8N at 45°: Fx=Fy=8cos45°=4√2≈5.66N. Equal components at 45°.",
+    "non_perpendicular_axes": "Sine rule used when resolving along non-perpendicular axes. Rare in JEE Main."
+  },
+  "minimum_viable_understanding": "A vector A at angle θ from x-axis has x-component Ax=Acosθ and y-component Ay=Asinθ, and these reconstruct A exactly via |A|=√(Ax²+Ay²) — never by Ax+Ay.",
+  "variables": {
+    "A": {
+      "description": "Magnitude of vector A",
+      "unit": "depends on context (N, m, m/s)",
+      "symbol": "A or |A|"
+    },
+    "theta": {
+      "description": "Angle of vector A from positive x-axis",
+      "unit": "degrees or radians",
+      "symbol": "θ",
+      "range": "0° to 360°"
+    },
+    "Ax": {
+      "description": "x-component of vector A",
+      "unit": "same as A",
+      "symbol": "Ax",
+      "formula": "A cosθ"
+    },
+    "Ay": {
+      "description": "y-component of vector A",
+      "unit": "same as A",
+      "symbol": "Ay",
+      "formula": "A sinθ"
+    },
+    "i_hat": {
+      "description": "Unit vector along positive x-axis",
+      "unit": "dimensionless",
+      "symbol": "î"
+    },
+    "j_hat": {
+      "description": "Unit vector along positive y-axis",
+      "unit": "dimensionless",
+      "symbol": "ĵ"
+    },
+    "k_hat": {
+      "description": "Unit vector along positive z-axis",
+      "unit": "dimensionless",
+      "symbol": "k̂"
+    },
+    "alpha": {
+      "description": "Direction angle of A from +x axis",
+      "unit": "degrees",
+      "symbol": "α",
+      "formula": "tan⁻¹(Ay/Ax)"
+    }
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "what are components of a vector",
+      "how to resolve a vector",
+      "what is Ax and Ay",
+      "component of force",
+      "resolve force along",
+      "what is i hat j hat",
+      "unit vector notation",
+      "vector in terms of i and j",
+      "break vector into components",
+      "projection of vector"
+    ],
+    "local_triggers": [
+      "why not add components directly",
+      "why Pythagoras for magnitude",
+      "Ax plus Ay is not A",
+      "component smaller than vector",
+      "which is cos which is sin",
+      "cos for x sin for y",
+      "angle from y axis components"
+    ],
+    "micro_triggers": [
+      "quick components formula",
+      "just the formula for Ax",
+      "what is cos sin for components"
+    ],
+    "subconcept_triggers": {
+      "unit_vector_form": [
+        "what is i hat",
+        "write vector in i j k form",
+        "what is unit vector notation"
+      ],
+      "inclined_plane_components": [
+        "resolve on incline",
+        "component along slope",
+        "perpendicular to incline"
+      ],
+      "negative_components": [
+        "negative component",
+        "component in second quadrant",
+        "vector in second quadrant"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "unit_vector_form": "STATE_3",
+    "pythagorean_magnitude": "STATE_4",
+    "full_interactive": "STATE_6"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "vector_addition",
+      "trigonometry_basics"
+    ],
+    "gate_question": "If a vector A has magnitude 5 units and points along the x-axis, what is its y-component?",
+    "correct_answer": "Zero — a vector along x-axis has Ay=0",
+    "if_gap_detected": "Route to vector_addition first — student needs parallelogram law before decomposition"
+  },
+  "pvl_colors": {
+    "background": "#0A0A1A",
+    "vector_a": "#60a5fa",
+    "component_x": "#fbbf24",
+    "component_y": "#34d399",
+    "axis": "#374151",
+    "drop_line": "#6b7280",
+    "formula": "#e5e7eb",
+    "highlight": "#f97316",
+    "text": "#D4D4D8"
+  },
+  "epic_l_path": {
+    "entry_state": "STATE_1",
+    "exit_state": "STATE_6",
+    "total_states": 6,
+    "states": {
+      "STATE_1": {
+        "label": "Hook — A vector in 2D",
+        "phase": 1,
+        "script_intent": "Show a single vector A in 2D space. No decomposition yet. The question hangs: how do we describe where this arrow points using just numbers along known directions?",
+        "physics_layer": {
+          "scenario": "component_decomposition",
+          "params": {
+            "vec_a": {
+              "magnitude": 5,
+              "angle_deg": 37,
+              "label": "A",
+              "color": "#60a5fa"
+            }
+          },
+          "freeze_at_t": 0,
+          "show_drop_lines": false,
+          "show_components": false
+        },
+        "panel_b_layer": {
+          "scenario": "graph_empty_axes",
+          "show_curve": false
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_01",
+              "text_en": "Here is a vector A — five units long, pointing at 37 degrees from the x-axis.",
+              "sync_point": "vector_appears",
+              "tts_style": "calm_clear",
+              "pause_after_ms": 800
+            },
+            {
+              "id": "s1_02",
+              "text_en": "It has a magnitude and a direction. But how do you describe it precisely to someone using only numbers?",
+              "sync_point": "question_appears",
+              "tts_style": "curious",
+              "pause_after_ms": 1200
+            },
+            {
+              "id": "s1_03",
+              "text_en": "You break it into two parts — one along the x-axis and one along the y-axis. These are its components.",
+              "sync_point": "hint_appears",
+              "tts_style": "calm_clear",
+              "pause_after_ms": 1000
+            }
+          ],
+          "exam_tip_en": "Components are the x and y projections of a vector. Always identify the angle reference axis first.",
+          "advance_mode": "manual_click"
+        },
+        "checkpoint_states": []
+      },
+      "STATE_2": {
+        "label": "Drop the perpendicular lines",
+        "phase": 1,
+        "script_intent": "Drop dashed perpendicular lines from the tip of A to both axes. The x-intercept is Ax, the y-intercept is Ay. Students see the decomposition geometrically — it is a right triangle.",
+        "physics_layer": {
+          "scenario": "component_decomposition",
+          "params": {
+            "vec_a": {
+              "magnitude": 5,
+              "angle_deg": 37,
+              "label": "A",
+              "color": "#60a5fa"
+            }
+          },
+          "freeze_at_t": 0,
+          "show_drop_lines": true,
+          "show_components": true
+        },
+        "panel_b_layer": {
+          "scenario": "graph_empty_axes",
+          "show_curve": false
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_01",
+              "text_en": "Drop a perpendicular from the tip of A to the x-axis. That length is Ax — the x-component.",
+              "sync_point": "drop_line_x",
+              "tts_style": "calm_clear",
+              "pause_after_ms": 1000
+            },
+            {
+              "id": "s2_02",
+              "text_en": "Drop another perpendicular to the y-axis. That length is Ay — the y-component.",
+              "sync_point": "drop_line_y",
+              "tts_style": "calm_clear",
+              "pause_after_ms": 1000
+            },
+            {
+              "id": "s2_03",
+              "text_en": "You have made a right triangle. A is the hypotenuse. Ax and Ay are the two legs.",
+              "sync_point": "triangle_complete",
+              "tts_style": "confident",
+              "pause_after_ms": 1200
+            }
+          ],
+          "exam_tip_en": "The vector, x-component, and y-component always form a right triangle. This is Pythagoras applied to direction.",
+          "advance_mode": "manual_click"
+        },
+        "checkpoint_states": []
+      },
+      "STATE_3": {
+        "label": "Ax = Acosθ, Ay = Asinθ",
+        "phase": 1,
+        "script_intent": "Show that Ax=Acosθ and Ay=Asinθ from the right triangle. Use slider to vary θ and watch components change live.",
+        "physics_layer": {
+          "scenario": "trig_component_formulas",
+          "params": {
+            "vec_a": {
+              "magnitude": 5,
+              "angle_deg": 37,
+              "label": "A"
+            },
+            "default_theta": 37,
+            "show_formula": true
+          }
+        },
+        "panel_b_layer": {
+          "scenario": "graph_empty_axes",
+          "show_curve": false
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_01",
+              "text_en": "From the right triangle: Ax equals A cosine theta. Ay equals A sine theta. These come directly from trigonometry.",
+              "sync_point": "formula_appears",
+              "tts_style": "teaching",
+              "pause_after_ms": 1200
+            },
+            {
+              "id": "s3_02",
+              "text_en": "Drag the slider. As theta increases from zero to ninety degrees, Ax shrinks and Ay grows.",
+              "sync_point": "slider_prompt",
+              "tts_style": "interactive",
+              "pause_after_ms": 1000
+            },
+            {
+              "id": "s3_03",
+              "text_en": "At theta equals 45 degrees — something special happens. Ax equals Ay. Equal components. The vector splits evenly between both axes.",
+              "sync_point": "theta_45_highlight",
+              "tts_style": "excited",
+              "pause_after_ms": 1500,
+              "no_translate_tokens": [
+                "theta",
+                "Ax",
+                "Ay"
+              ]
+            }
+          ],
+          "exam_tip_en": "Always check: which axis is theta measured from? If from y-axis, Ax=Asinθ and Ay=Acosθ. The formula swaps when the reference axis changes.",
+          "advance_mode": "interaction_complete"
+        },
+        "checkpoint_states": []
+      },
+      "STATE_4": {
+        "label": "The 3-4-5 trap",
+        "phase": 2,
+        "script_intent": "Show Ax=4, Ay=3. Ask: what is |A|? Students say 7. Canvas reveals the right triangle — |A|=5, not 7. Core misconception: scalar addition trap.",
+        "physics_layer": {
+          "scenario": "component_decomposition",
+          "params": {
+            "vec_a": {
+              "magnitude": 5,
+              "angle_deg": 37,
+              "label": "A=5",
+              "color": "#60a5fa"
+            }
+          },
+          "freeze_at_t": 0,
+          "show_drop_lines": true,
+          "show_components": true
+        },
+        "panel_b_layer": {
+          "scenario": "graph_two_curves",
+          "show_curve": true,
+          "highlight_point": true,
+          "point_x": 36.87,
+          "point_y": 3.0
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_01",
+              "text_en": "Ax equals 4. Ay equals 3. What is the magnitude of A? Most students say 4 plus 3 equals 7.",
+              "sync_point": "question_posed",
+              "tts_style": "calm_clear",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s4_02",
+              "text_en": "Wrong. Components do not add like scalars. A equals root of Ax squared plus Ay squared. Root of 16 plus 9. Root of 25. Five.",
+              "sync_point": "formula_revealed",
+              "tts_style": "emphatic",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s4_03",
+              "text_en": "This is the classic 3-4-5 right triangle. The components are the legs. The vector is the hypotenuse. Legs do not add — they combine by Pythagoras.",
+              "sync_point": "triangle_shown",
+              "tts_style": "teaching",
+              "pause_after_ms": 1200,
+              "no_translate_tokens": [
+                "3-4-5"
+              ]
+            }
+          ],
+          "exam_tip_en": "NEVER add components directly. |A| = √(Ax² + Ay²). If Ax=3, Ay=4 → |A|=5. This appears in JEE every year.",
+          "advance_mode": "manual_click"
+        },
+        "checkpoint_states": [
+          {
+            "question": "If Ax = 6 and Ay = 8, what is |A|?",
+            "correct_answer": "10",
+            "distractor_answers": [
+              "14",
+              "√28",
+              "7"
+            ],
+            "explanation": "|A| = √(36+64) = √100 = 10. Another Pythagorean triple: 6-8-10."
+          }
+        ]
+      },
+      "STATE_5": {
+        "label": "Reconstruct A from components",
+        "phase": 2,
+        "script_intent": "Show reconstruction backwards: given Ax and Ay, build A. Reinforces that components are not separate things — they reconstruct the original exactly via A = Axî + Ayĵ.",
+        "physics_layer": {
+          "scenario": "reconstruction_from_components",
+          "params": {
+            "show_reconstruction": true
+          },
+          "freeze_at_t": 0
+        },
+        "panel_b_layer": {
+          "scenario": "graph_two_curves",
+          "show_curve": true,
+          "highlight_point": true,
+          "point_x": 36.87,
+          "point_y": 3.0
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_01",
+              "text_en": "Now backwards. You know Ax and Ay. Can you recover A? Yes — by vector addition of the components.",
+              "sync_point": "reconstruction_starts",
+              "tts_style": "calm_clear",
+              "pause_after_ms": 1000
+            },
+            {
+              "id": "s5_02",
+              "text_en": "A equals Ax i-hat plus Ay j-hat. The components are not separate from A — they reconstruct it exactly.",
+              "sync_point": "formula_shown",
+              "tts_style": "teaching",
+              "pause_after_ms": 1200,
+              "no_translate_tokens": [
+                "i-hat",
+                "j-hat"
+              ]
+            },
+            {
+              "id": "s5_03",
+              "text_en": "This is why components are so powerful. Break any complex vector problem into x and y. Solve each axis separately. Recombine at the end.",
+              "sync_point": "insight_shown",
+              "tts_style": "confident",
+              "pause_after_ms": 1500
+            }
+          ],
+          "exam_tip_en": "A = Ax î + Ay ĵ is the vector form. Always write this in board exams — it shows the examiner you understand both magnitude and direction.",
+          "advance_mode": "manual_click"
+        },
+        "checkpoint_states": []
+      },
+      "STATE_6": {
+        "label": "Full interactive — drag θ and A",
+        "phase": 3,
+        "script_intent": "Full slider control: magnitude A (1-10) and angle θ (0-90). Panel B shows both sinusoidal curves with live dot on Ay curve. At θ=45° both components equal. At θ=0° all x, θ=90° all y.",
+        "physics_layer": {
+          "scenario": "trig_component_formulas",
+          "params": {
+            "default_theta": 37,
+            "default_a": 5,
+            "show_formula": true,
+            "interactive": true
+          }
+        },
+        "panel_b_layer": {
+          "scenario": "graph_two_curves_live",
+          "show_curve": true,
+          "highlight_point": true,
+          "point_x": 37,
+          "point_y": 3.01
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_01",
+              "text_en": "Your turn. Drag theta from zero to ninety. Watch Ax decrease as Ay increases. They trade off — the total length stays constant.",
+              "sync_point": "slider_active",
+              "tts_style": "interactive",
+              "pause_after_ms": 1000
+            },
+            {
+              "id": "s6_02",
+              "text_en": "At 45 degrees: Ax equals Ay. The vector splits equally. The graph shows both curves crossing.",
+              "sync_point": "theta_45",
+              "tts_style": "excited",
+              "pause_after_ms": 1200
+            },
+            {
+              "id": "s6_03",
+              "text_en": "Change the magnitude too. Larger A — both components scale up proportionally. The angle pattern stays the same.",
+              "sync_point": "magnitude_change",
+              "tts_style": "calm_clear",
+              "pause_after_ms": 1000
+            }
+          ],
+          "exam_tip_en": "The component-angle relationship is cosine for x, sine for y — always, when θ is measured from the x-axis.",
+          "advance_mode": "interaction_complete"
+        },
+        "checkpoint_states": [
+          {
+            "question": "A force of 10N acts at 30° to the horizontal. What is the horizontal component?",
+            "correct_answer": "10cos30° = 5√3 ≈ 8.66N",
+            "distractor_answers": [
+              "10sin30° = 5N",
+              "10N",
+              "10cos60° = 5N"
+            ],
+            "explanation": "Horizontal → x-axis → cosθ. F_x = Fcosθ = 10cos30° = 5√3 N."
+          }
+        ]
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "scalar_addition_trap",
+      "misconception": "Student adds Ax and Ay directly to get |A|: if Ax=3 and Ay=4, they conclude |A|=7",
+      "student_belief": "Ax + Ay = |A|, so if components are 3 and 4, the vector is 7",
+      "trigger_phrases": [
+        "components add up to vector",
+        "3 plus 4 equals 7",
+        "Ax plus Ay is the magnitude",
+        "components ka sum",
+        "teen aur chaar to saat hoga",
+        "why not just add",
+        "can I add the components",
+        "adding components gives magnitude",
+        "teen aur chaar saat hoga"
+      ],
+      "state_count": 5,
+      "states": {
+        "STATE_1": {
+          "label": "Your belief — the wrong addition",
+          "show_students_wrong_belief": true,
+          "physics_layer": {
+            "scenario": "vc_wrong_one_component",
+            "student_belief_display": "Ax=3, Ay=4 → |A|=7?"
+          }
+        },
+        "STATE_2": {
+          "label": "What actually happens",
+          "physics_layer": {
+            "scenario": "vc_both_needed"
+          }
+        },
+        "STATE_3": {
+          "label": "The right triangle proof",
+          "physics_layer": {
+            "scenario": "vc_aha_need_both"
+          }
+        },
+        "STATE_4": {
+          "label": "Pythagoras confirms it",
+          "physics_layer": {
+            "scenario": "unit_vector_form"
+          }
+        },
+        "STATE_5": {
+          "label": "Verify with slider",
+          "physics_layer": {
+            "scenario": "trig_component_formulas"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "cos_sin_confusion",
+      "misconception": "Student writes Ax=Asinθ and Ay=Acosθ — cos and sin are swapped",
+      "student_belief": "The x-component uses sine and the y-component uses cosine",
+      "trigger_phrases": [
+        "Ax is A sin theta",
+        "x component sin",
+        "y component cos",
+        "sin for x cos for y",
+        "x mein sin lagta hai",
+        "horizontal mein sin",
+        "which is sine which is cos",
+        "confused between sin and cos"
+      ],
+      "state_count": 5,
+      "states": {
+        "STATE_1": {
+          "label": "Your belief shown wrong",
+          "show_students_wrong_belief": true,
+          "physics_layer": {
+            "scenario": "cos_sin_confusion_s4",
+            "student_belief_display": "Ax = Asinθ (wrong)"
+          }
+        },
+        "STATE_2": {
+          "label": "The geometry says otherwise",
+          "physics_layer": {
+            "scenario": "cos_sin_confusion_s5"
+          }
+        },
+        "STATE_3": {
+          "label": "Why x gets cosine",
+          "physics_layer": {
+            "scenario": "component_decomposition"
+          }
+        },
+        "STATE_4": {
+          "label": "Memory trick",
+          "physics_layer": {
+            "scenario": "trig_component_formulas"
+          }
+        },
+        "STATE_5": {
+          "label": "Verify with numbers",
+          "physics_layer": {
+            "scenario": "trig_component_formulas"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "wrong_angle_reference",
+      "misconception": "Student always uses Ax=Acosθ even when θ is measured from y-axis, not x-axis",
+      "student_belief": "Ax is always Acosθ regardless of which axis theta is measured from",
+      "trigger_phrases": [
+        "angle from y axis",
+        "theta from vertical",
+        "angle with vertical",
+        "vertical se angle",
+        "incline angle component",
+        "slope angle formula",
+        "angle not from x axis",
+        "which formula for this angle",
+        "angle kahan se measure karo"
+      ],
+      "state_count": 5,
+      "states": {
+        "STATE_1": {
+          "label": "Your belief — angle ignored",
+          "show_students_wrong_belief": true,
+          "physics_layer": {
+            "scenario": "vc_wrong_angle_always_x",
+            "student_belief_display": "Ax=Acosθ always"
+          }
+        },
+        "STATE_2": {
+          "label": "The reference axis changes everything",
+          "physics_layer": {
+            "scenario": "vc_angle_convention_varies"
+          }
+        },
+        "STATE_3": {
+          "label": "Geometry shows why it swaps",
+          "physics_layer": {
+            "scenario": "vc_aha_use_geometry"
+          }
+        },
+        "STATE_4": {
+          "label": "Inclined plane example",
+          "physics_layer": {
+            "scenario": "component_decomposition"
+          }
+        },
+        "STATE_5": {
+          "label": "Practice with both conventions",
+          "physics_layer": {
+            "scenario": "trig_component_formulas"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "component_equals_original",
+      "misconception": "Student thinks a component CAN equal the full vector magnitude — that Ax could equal A",
+      "student_belief": "The component of a vector along an axis is always equal to the vector itself",
+      "trigger_phrases": [
+        "component equals vector",
+        "Ax is same as A",
+        "full vector in x direction",
+        "component nahi, full hai",
+        "why is component less",
+        "component always smaller",
+        "component less than vector"
+      ],
+      "state_count": 5,
+      "states": {
+        "STATE_1": {
+          "label": "Your belief shown",
+          "show_students_wrong_belief": true,
+          "physics_layer": {
+            "scenario": "components_are_less_than_original_s4",
+            "student_belief_display": "Ax = A always?"
+          }
+        },
+        "STATE_2": {
+          "label": "When θ=0°: Ax=A (the only case)",
+          "physics_layer": {
+            "scenario": "components_are_less_than_original_s5"
+          }
+        },
+        "STATE_3": {
+          "label": "For any other angle Ax < A",
+          "physics_layer": {
+            "scenario": "component_decomposition"
+          }
+        },
+        "STATE_4": {
+          "label": "Cosine is always ≤ 1",
+          "physics_layer": {
+            "scenario": "trig_component_formulas"
+          }
+        },
+        "STATE_5": {
+          "label": "Verify with slider",
+          "physics_layer": {
+            "scenario": "trig_component_formulas"
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "quick_formula": {
+      "states": 2,
+      "trigger": "just the formula",
+      "state_sequence": [
+        "STATE_3",
+        "STATE_6"
+      ],
+      "description": "2-state micro: show formula then interactive"
+    },
+    "quick_trap_check": {
+      "states": 2,
+      "trigger": "why not add components",
+      "state_sequence": [
+        "STATE_4",
+        "STATE_6"
+      ],
+      "description": "2-state micro: show the 3-4-5 trap then let student verify"
+    },
+    "angle_clarification": {
+      "states": 3,
+      "trigger": "which axis is theta from",
+      "state_sequence": [
+        "STATE_2",
+        "STATE_3",
+        "STATE_6"
+      ],
+      "description": "3-state micro: geometry, formula, interactive"
+    }
+  },
+  "static_responses": {
+    "unit_vector_definition": "A unit vector has magnitude exactly 1. î, ĵ, k̂ are unit vectors along x, y, z axes respectively. Any vector A = Ax î + Ay ĵ + Az k̂.",
+    "why_components_matter": "Components let you handle 2D and 3D problems by solving one axis at a time. Projectile motion: horizontal (x) has constant velocity, vertical (y) has gravity. Without components, you cannot separate them.",
+    "negative_components": "A negative component is valid physics. F = −12î + 9ĵ means 12N in the −x direction and 9N in the +y direction. Negative just means opposite to the positive axis direction.",
+    "3d_extension": "In 3D: A = Ax î + Ay ĵ + Az k̂ and |A| = √(Ax²+Ay²+Az²). Direction cosines: cosα = Ax/A, cosβ = Ay/A, cosγ = Az/A."
+  },
+  "problem_guidance_path": {
+    "entry_question": "A force of 15N acts at 37° from the negative x-axis towards the positive y-axis. Find its components.",
+    "steps": [
+      {
+        "step": 1,
+        "instruction": "Draw the vector. Identify the reference axis and the angle clearly.",
+        "hint": "θ=37° from negative x-axis toward +y. Sketch this — the vector is in the second quadrant."
+      },
+      {
+        "step": 2,
+        "instruction": "Apply Ax = A cosθ, Ay = A sinθ. But check the quadrant for signs.",
+        "hint": "Ax = −15cos37° = −12N (negative because −x direction). Ay = +15sin37° = +9N."
+      },
+      {
+        "step": 3,
+        "instruction": "Write in unit vector form: F = Fx î + Fy ĵ",
+        "hint": "F = −12î + 9ĵ N"
+      },
+      {
+        "step": 4,
+        "instruction": "Verify magnitude: |F| = √(Fx²+Fy²) = √(144+81) = √225 = 15N ✓",
+        "hint": "Always verify — if magnitude doesn't match the given value, you made a sign error."
+      }
+    ]
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Example 5.4",
+      "problem": "A force F has magnitude 15N. Direction is at 37° from negative x-axis towards positive y-axis. Represent F in terms of î and ĵ.",
+      "solution": "Fx = −Fcos37° = −15×0.8 = −12N. Fy = Fsin37° = 15×0.6 = 9N. F = (−12î + 9ĵ) N",
+      "key_insight": "When angle is from negative axis, the component along that axis is negative. Always check quadrant.",
+      "common_error": "Students write Fx = +12N ignoring the negative direction."
+    },
+    "example_2": {
+      "source": "DC Pandey Example 5.6",
+      "problem": "Resolve a weight of 10N in two directions parallel and perpendicular to a slope inclined at 30° to the horizontal.",
+      "solution": "Perpendicular to slope: W⊥ = Wcos30° = 10×(√3/2) = 5√3 ≈ 8.66N. Parallel to slope: W∥ = Wsin30° = 10×0.5 = 5N",
+      "key_insight": "On an inclined plane, θ is measured from the slope (not the horizontal). Cos gives perpendicular, sin gives parallel.",
+      "common_error": "Students use the wrong angle or swap perpendicular and parallel."
+    },
+    "example_3": {
+      "source": "DC Pandey Example 5.7",
+      "problem": "Resolve horizontally and vertically a force F=8N which makes an angle of 45° with the horizontal.",
+      "solution": "FH = Fcos45° = 8×(1/√2) = 4√2 ≈ 5.66N. FV = Fsin45° = 8×(1/√2) = 4√2 ≈ 5.66N",
+      "key_insight": "At 45° both components are equal. The vector splits evenly. This is the crossover point on the Ax vs Ay graph.",
+      "common_error": "Students expect one component to be larger than the other at 45°."
+    },
+    "example_4": {
+      "source": "DC Pandey Example 5.5",
+      "problem": "Find magnitude and direction of vector A = (−6î + 8ĵ).",
+      "solution": "|A| = √(36+64) = √100 = 10 units. tan θ = 8/6 → θ = 53.13° above −x axis (second quadrant).",
+      "key_insight": "When components are given directly, use Pythagoras for magnitude. Check quadrant from signs of components.",
+      "common_error": "Students compute 6+8=14 instead of √(36+64)=10."
+    }
+  },
+  "assessment_path": {
+    "questions": [
+      {
+        "id": "q1",
+        "question": "A vector A has magnitude 10 units at θ=37° from x-axis. What is Ax?",
+        "correct_answer": "10cos37° = 8 units",
+        "distractors": [
+          {
+            "answer": "10sin37° = 6 units",
+            "maps_to_branch": "cos_sin_confusion",
+            "error": "Used sin instead of cos for x-component"
+          },
+          {
+            "answer": "10 units",
+            "maps_to_branch": "component_equals_original",
+            "error": "Thinks component equals full vector"
+          },
+          {
+            "answer": "10×37/90 = 4.1 units",
+            "maps_to_branch": "wrong_angle_reference",
+            "error": "Proportional reasoning, not trigonometry"
+          }
+        ]
+      },
+      {
+        "id": "q2",
+        "question": "If Ax=3 and Ay=4, what is |A|?",
+        "correct_answer": "√(9+16) = 5",
+        "distractors": [
+          {
+            "answer": "7",
+            "maps_to_branch": "scalar_addition_trap",
+            "error": "Added components directly"
+          },
+          {
+            "answer": "4 (just Ay)",
+            "maps_to_branch": "component_equals_original",
+            "error": "Took larger component as magnitude"
+          },
+          {
+            "answer": "3.5",
+            "maps_to_branch": "wrong_angle_reference",
+            "error": "Averaged the components"
+          }
+        ]
+      },
+      {
+        "id": "q3",
+        "question": "A force of 20N acts at 30° from the positive y-axis (toward +x). What is its x-component?",
+        "correct_answer": "20sin30° = 10N (θ from y-axis → sin for x-component)",
+        "distractors": [
+          {
+            "answer": "20cos30° = 17.3N",
+            "maps_to_branch": "wrong_angle_reference",
+            "error": "Used cosine even though angle is from y-axis"
+          },
+          {
+            "answer": "20N",
+            "maps_to_branch": "component_equals_original",
+            "error": "Thinks component equals full vector"
+          },
+          {
+            "answer": "10N but by wrong method",
+            "maps_to_branch": "cos_sin_confusion",
+            "error": "Got right answer by accident with wrong formula"
+          }
+        ]
+      },
+      {
+        "id": "q4",
+        "question": "What is the y-component of a 5N force directed along the positive x-axis?",
+        "correct_answer": "0N — a horizontal vector has no vertical component",
+        "distractors": [
+          {
+            "answer": "5N",
+            "maps_to_branch": "component_equals_original",
+            "error": "Thinks component equals vector"
+          },
+          {
+            "answer": "5sin0° = 0N (correct method)",
+            "maps_to_branch": null,
+            "error": null
+          },
+          {
+            "answer": "Cannot determine",
+            "maps_to_branch": "wrong_angle_reference",
+            "error": "Does not know θ=0° for horizontal"
+          }
+        ]
+      },
+      {
+        "id": "q5",
+        "question": "Vector A = 3î + 4ĵ. What is the angle it makes with the x-axis?",
+        "correct_answer": "tan⁻¹(4/3) = tan⁻¹(Ay/Ax) ≈ 53°",
+        "distractors": [
+          {
+            "answer": "tan⁻¹(3/4) = 37°",
+            "maps_to_branch": "cos_sin_confusion",
+            "error": "Inverted the ratio — used Ax/Ay instead of Ay/Ax"
+          },
+          {
+            "answer": "90°",
+            "maps_to_branch": "component_equals_original",
+            "error": "Confused component direction with vector direction"
+          },
+          {
+            "answer": "53.13°",
+            "maps_to_branch": null,
+            "error": null
+          }
+        ]
+      }
+    ]
+  },
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "x_axis": {
+      "label": "θ — Angle from x-axis (degrees)",
+      "min": 0,
+      "max": 90,
+      "tick_interval": 15,
+      "unit": "°"
+    },
+    "y_axis": {
+      "label": "Component Magnitude",
+      "min": 0,
+      "max": 5.5,
+      "tick_interval": 1,
+      "unit": ""
+    },
+    "lines": [
+      {
+        "id": "ax_curve",
+        "label": "Ax = A cosθ, A=5",
+        "formula": "5 * Math.cos(x * Math.PI / 180)",
+        "color": "#fbbf24",
+        "width": 2.5,
+        "dash": "solid"
+      },
+      {
+        "id": "ay_curve",
+        "label": "Ay = A sinθ, A=5",
+        "formula": "5 * Math.sin(x * Math.PI / 180)",
+        "color": "#34d399",
+        "width": 2.5,
+        "dash": "solid"
+      },
+      {
+        "id": "magnitude_ref",
+        "label": "|A| = 5",
+        "formula": "5",
+        "color": "#60a5fa",
+        "width": 1.5,
+        "dash": "dash"
+      }
+    ],
+    "legend": [
+      { "id": "ax_curve", "label": "Ax = A cosθ" },
+      { "id": "ay_curve", "label": "Ay = A sinθ" },
+      { "id": "magnitude_ref", "label": "|A| (constant)" }
+    ],
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "grid": "#1e2030",
+      "text": "#D4D4D8"
+    },
+    "special_points": [
+      {
+        "x": 45,
+        "label": "Ax = Ay",
+        "annotation": "Equal components at 45°"
+      },
+      {
+        "x": 37,
+        "label": "37°",
+        "annotation": "DC Pandey standard example"
+      },
+      {
+        "x": 90,
+        "label": "90°",
+        "annotation": "All y, no x"
+      }
+    ],
+    "states": {
+      "STATE_1": {
+        "title": "Components — before the curve",
+        "active_lines": [],
+        "highlight_point": false
+      },
+      "STATE_2": {
+        "title": "Components — before the curve",
+        "active_lines": [],
+        "highlight_point": false
+      },
+      "STATE_3": {
+        "title": "Components — before the curve",
+        "active_lines": [],
+        "highlight_point": false
+      },
+      "STATE_4": {
+        "title": "Ax and Ay as θ varies",
+        "active_lines": ["ax_curve", "ay_curve", "magnitude_ref"],
+        "highlight_point": true,
+        "point_x": 36.87,
+        "point_y": 3.0
+      },
+      "STATE_5": {
+        "title": "Ax and Ay as θ varies",
+        "active_lines": ["ax_curve", "ay_curve", "magnitude_ref"],
+        "highlight_point": true,
+        "point_x": 36.87,
+        "point_y": 3.0
+      },
+      "STATE_6": {
+        "title": "Drag θ — live dot tracks Ay",
+        "active_lines": ["ax_curve", "ay_curve", "magnitude_ref"],
+        "highlight_point": true,
+        "point_x": 37,
+        "point_y": 3.01
+      }
+    }
+  },
+  "panel_sync_spec": {
+    "active_in_states": [
+      "STATE_6"
+    ],
+    "panel_a_drives": [
+      "cTh",
+      "cA"
+    ],
+    "panel_b_updates_on": [
+      "cTh",
+      "cA"
+    ],
+    "panel_b_dot_tracks": "ay_curve",
+    "sync_formula": "Ay = cA * sin(cTh * PI / 180)"
+  },
+  "parameter_slots": {
+    "F_magnitude": {
+      "description": "Force or vector magnitude from student's problem image",
+      "unit": "N or units",
+      "default": 5,
+      "mineRu_field": "force_magnitude",
+      "affects": [
+        "STATE_3",
+        "STATE_6"
+      ]
+    },
+    "theta_degrees": {
+      "description": "Angle from axis as extracted from student problem",
+      "unit": "degrees",
+      "default": 37,
+      "mineRu_field": "angle_value",
+      "affects": [
+        "STATE_3",
+        "STATE_4",
+        "STATE_6"
+      ]
+    },
+    "Ax_given": {
+      "description": "x-component given in problem (for reconstruction problems)",
+      "unit": "same as vector",
+      "default": null,
+      "mineRu_field": "x_component",
+      "affects": [
+        "STATE_5"
+      ]
+    },
+    "Ay_given": {
+      "description": "y-component given in problem (for reconstruction problems)",
+      "unit": "same as vector",
+      "default": null,
+      "mineRu_field": "y_component",
+      "affects": [
+        "STATE_5"
+      ]
+    }
+  },
+  "jee_specific": {
+    "question_types": [
+      "Given magnitude and angle → find components (direct application)",
+      "Given components → find magnitude and direction (reverse)",
+      "Given components → write in unit vector form",
+      "Resolve on inclined plane (angle convention change)",
+      "Find angle between resultant and one component",
+      "Two forces given as components → find resultant"
+    ],
+    "common_traps": [
+      "Using Ax+Ay as magnitude instead of √(Ax²+Ay²)",
+      "Forgetting to swap cos/sin when θ is from y-axis instead of x-axis",
+      "Sign errors on components in second/third/fourth quadrants",
+      "On inclined plane: using horizontal angle instead of incline angle"
+    ],
+    "standard_values": {
+      "sin37": "3/5 = 0.6",
+      "cos37": "4/5 = 0.8",
+      "sin53": "4/5 = 0.8",
+      "cos53": "3/5 = 0.6",
+      "sin30": "1/2 = 0.5",
+      "cos30": "√3/2 ≈ 0.866",
+      "sin45": "1/√2 ≈ 0.707",
+      "cos45": "1/√2 ≈ 0.707"
+    },
+    "key_results": [
+      "At θ=45°: Ax=Ay=A/√2",
+      "At θ=0°: Ax=A, Ay=0",
+      "At θ=90°: Ax=0, Ay=A",
+      "Ax²+Ay²=A² always (Pythagoras identity)",
+      "3-4-5, 5-12-13, 6-8-10 are common Pythagorean triples in JEE"
+    ],
+    "jee_advanced_extensions": [
+      "Resolving along non-perpendicular axes using sine rule",
+      "3D vectors with direction cosines",
+      "cos²α+cos²β+cos²γ=1 (sum of squares of direction cosines = 1)"
+    ]
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks about 3D components or direction cosines or non-perpendicular axes",
+    "entry_state": "STATE_5",
+    "deeper_content": {
+      "topic": "Direction cosines and 3D vector components",
+      "scenario": "three_d_extension",
+      "key_facts": [
+        "R = Rx î + Ry ĵ + Rz k̂",
+        "|R| = √(Rx²+Ry²+Rz²)",
+        "cosα = Rx/R, cosβ = Ry/R, cosγ = Rz/R",
+        "cos²α + cos²β + cos²γ = 1"
+      ]
+    }
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "vector_addition",
+      "trigonometry_sin_cos"
+    ],
+    "extensions": [
+      "dot_product",
+      "cross_product",
+      "projectile_motion",
+      "inclined_plane"
+    ],
+    "siblings": [
+      "unit_vectors",
+      "position_vector",
+      "displacement_vector"
+    ],
+    "exam_combinations": [
+      "vector_components + vector_addition → resultant by component method (most common JEE approach)",
+      "vector_components + projectile_motion → Vx=Vcosθ, Vy=Vsinθ decomposition",
+      "vector_components + inclined_plane → normal force and weight components along slope"
+    ]
+  },
+  "session_awareness": {
+    "what_if_entry_state": "STATE_4",
+    "summary_state": "STATE_5",
+    "skip_tts_for_states": [],
+    "checkpoint_after_states": [
+      "STATE_4",
+      "STATE_6"
+    ],
+    "concepts_covered": [
+      "vector_components",
+      "pythagorean_theorem_applied",
+      "trig_ratios_applied",
+      "unit_vectors"
+    ]
+  },
+  "waypoints": [
+    {
+      "state_id": "STATE_4",
+      "label": "The 3-4-5 moment",
+      "is_key_insight": true,
+      "bloom_level": "understand"
+    },
+    {
+      "state_id": "STATE_6",
+      "label": "Interactive mastery",
+      "is_key_insight": false,
+      "bloom_level": "apply"
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "geometry_first",
+      "approach_pill_label": "Geometry view",
+      "summary": "Start with the right triangle — formula comes from the shape",
+      "entry_state": "STATE_2",
+      "state_sequence": [
+        "STATE_2",
+        "STATE_3",
+        "STATE_4",
+        "STATE_5",
+        "STATE_6"
+      ],
+      "teaching_emphasis": "The right triangle IS the definition of components. Ax and Ay are just the two legs."
+    },
+    {
+      "variant_id": "formula_first",
+      "approach_pill_label": "Formula view",
+      "summary": "Start with Ax=Acosθ — geometry confirms it",
+      "entry_state": "STATE_3",
+      "state_sequence": [
+        "STATE_3",
+        "STATE_2",
+        "STATE_4",
+        "STATE_5",
+        "STATE_6"
+      ],
+      "teaching_emphasis": "Memorise the formula first, then verify it geometrically using the right triangle."
+    },
+    {
+      "variant_id": "explore_first",
+      "approach_pill_label": "Explore yourself",
+      "summary": "Drag the slider — discover the pattern before the formula",
+      "entry_state": "STATE_6",
+      "state_sequence": [
+        "STATE_6",
+        "STATE_3",
+        "STATE_4",
+        "STATE_2",
+        "STATE_5"
+      ],
+      "teaching_emphasis": "Student discovers Ax decreases as Ay increases — then the formula explains what they already see."
+    }
+  ],
+  "board_mode": {
+    "epic_l_path_board": {
+      "marks": 5,
+      "states": {
+        "STATE_1": {
+          "label": "What 5 marks look like",
+          "phase": 1,
+          "physics_layer": {
+            "scenario": "component_decomposition",
+            "show_drop_lines": false,
+            "show_components": false
+          },
+          "exam_overlay": {
+            "marks_breakdown": [
+              "Diagram with vector and axes: 1 mark",
+              "Ax = Acosθ stated correctly: 1 mark",
+              "Ay = Asinθ stated correctly: 1 mark",
+              "|A| = √(Ax²+Ay²) derived: 1 mark",
+              "Numerical answer correct: 1 mark"
+            ]
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "b1_01",
+                "text_en": "Board exam. Five marks. Five components. Diagram, two formulas, one derivation, one numerical.",
+                "sync_point": "intro",
+                "tts_style": "board_direct"
+              }
+            ],
+            "exam_tip_en": "Five marks means five distinct steps. Skip any one and lose a mark."
+          }
+        },
+        "STATE_2": {
+          "label": "Draw and label the diagram",
+          "phase": 1,
+          "physics_layer": {
+            "scenario": "component_decomposition",
+            "show_drop_lines": true,
+            "show_components": true
+          },
+          "exam_overlay": {
+            "marks_breakdown": [
+              "Correct labelled diagram with axes, vector A, Ax, Ay, θ, right-angle marker: 1 mark"
+            ]
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "b2_01",
+                "text_en": "Draw a vector A from the origin at angle theta. Drop perpendicular to x-axis. Label: A, Ax, Ay, theta, right-angle marker. That is one mark.",
+                "sync_point": "diagram",
+                "tts_style": "board_direct"
+              }
+            ],
+            "exam_tip_en": "Label all five elements. Examiners check for the right-angle marker at the foot of perpendicular."
+          }
+        },
+        "STATE_3": {
+          "label": "State the formulas",
+          "phase": 2,
+          "physics_layer": {
+            "scenario": "trig_component_formulas"
+          },
+          "exam_overlay": {
+            "marks_breakdown": [
+              "Ax = Acosθ: 1 mark",
+              "Ay = Asinθ: 1 mark"
+            ]
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "b3_01",
+                "text_en": "Write: Ax equals A cosine theta. Ay equals A sine theta. Two statements, two marks. Do not skip either.",
+                "sync_point": "formulas",
+                "tts_style": "board_direct"
+              }
+            ],
+            "exam_tip_en": "Write both formulas even if the question only asks for one component. Examiners award both marks when both are written."
+          }
+        },
+        "STATE_4": {
+          "label": "Derive magnitude",
+          "phase": 2,
+          "physics_layer": {
+            "scenario": "unit_vector_form"
+          },
+          "exam_overlay": {
+            "marks_breakdown": [
+              "|A| = √(Ax²+Ay²) = √(A²cos²θ+A²sin²θ) = A: 1 mark"
+            ]
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "b4_01",
+                "text_en": "Derive magnitude: square both components, add, take square root. Simplify using sin squared plus cos squared equals one.",
+                "sync_point": "derivation",
+                "tts_style": "board_direct"
+              }
+            ],
+            "exam_tip_en": "Show the sin²θ + cos²θ = 1 step explicitly. Examiners check for this simplification."
+          }
+        },
+        "STATE_5": {
+          "label": "Numerical application",
+          "phase": 3,
+          "physics_layer": {
+            "scenario": "trig_component_formulas"
+          },
+          "exam_overlay": {
+            "marks_breakdown": [
+              "Correct substitution and numerical answer with units: 1 mark"
+            ]
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "b5_01",
+                "text_en": "Apply to the given values. Substitute, simplify, write the answer with units. One mark for correct numerical answer.",
+                "sync_point": "numerical",
+                "tts_style": "board_direct"
+              }
+            ],
+            "exam_tip_en": "Always write units — N, m, m/s. A correct number without units loses the mark in board exams."
+          }
+        }
+      }
+    }
+  }
+}

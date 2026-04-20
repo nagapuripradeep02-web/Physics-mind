@@ -1,0 +1,106 @@
+{
+  "concept_id": "equations_of_motion",
+  "concept_name": "Equations of Motion",
+  "class_level": 11,
+  "chapter": "Motion in a Straight Line",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "linear_kinematics",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "u": "Initial velocity (m/s)",
+    "v": "Final velocity (m/s)",
+    "a": "Constant acceleration (m/s²)",
+    "t": "Time elapsed (s)",
+    "s": "Displacement (m)",
+    "s_n": "Displacement in nth second (m)"
+  },
+  "locked_facts": [
+    "First equation: v = u + at (velocity-time relation)",
+    "Second equation: s = ut + ½at² (displacement-time relation)",
+    "Third equation: v² = u² + 2as (velocity-displacement relation, eliminates time)",
+    "Displacement in nth second: s_n = u + a(n − ½) = u + a(2n−1)/2",
+    "All three equations are valid ONLY for constant (uniform) acceleration",
+    "For retardation (deceleration), acceleration a is negative in the direction of motion",
+    "Average velocity for uniform acceleration = (u + v)/2"
+  ],
+  "truth_statements": [
+    "The three equations of motion are derived from the definition of constant acceleration and are not independent — any one can be derived from the other two",
+    "These equations are valid only when acceleration is constant throughout the motion",
+    "The displacement in the nth second s_n = u + a(n − ½) is itself not constant — it changes each second by amount a",
+    "When a body decelerates to rest, v = 0 and the equations give stopping distance s = u²/(2|a|) and stopping time t = u/|a|",
+    "For free fall from rest, u = 0, a = g, giving v = gt, s = ½gt², v² = 2gs"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A car braking to a stop. Three panels: (1) v-t graph showing linear decrease from u to 0, (2) s-t graph showing the parabola flattening, (3) a readout showing v² = u² + 2as predicting exact stopping distance. The predicted and actual stopping points match precisely.",
+    "visual_emphasis": "The third equation eliminates time — it directly connects velocity to displacement. The stopping distance predicted by v² = u² + 2as matches the simulation exactly.",
+    "why_this_breaks_misconception": "Students memorize formulas without seeing their predictive power. Watching the car stop at the exact predicted distance makes the equation feel real."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A ball on a frictionless track with initial velocity u and constant acceleration a. Velocity vector arrow shown. The three equations are displayed as formulas on the side panel.",
+      "emphasis": "Initial conditions: u, a are given. The three equations will predict v, s, and t.",
+      "labels_visible": ["u", "a", "v = u + at", "s = ut + ½at²", "v² = u² + 2as"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Equations in Action",
+      "description": "Ball moves with constant acceleration. At each second, measured values of v, s are compared with predicted values from equations. A table fills up: t | v_measured | v_predicted | s_measured | s_predicted — all match.",
+      "emphasis": "Every measured value matches the equation prediction — these equations are exact for constant acceleration.",
+      "labels_visible": ["v", "s", "t", "predicted vs measured"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha — Stopping Distance",
+      "description": "A car with initial velocity u brakes with constant deceleration. Using v² = u² + 2as with v = 0: stopping distance s = u²/(2a) is calculated and a marker placed on the track. The car stops exactly at the marker.",
+      "emphasis": "Third equation predicts stopping distance without needing time. Double the speed → four times the stopping distance (s ∝ u²).",
+      "labels_visible": ["u", "a (braking)", "s = u²/(2a)", "predicted stop marker"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust initial velocity and acceleration. The ball moves and all three equation outputs update live. A toggle switches between acceleration and deceleration modes. s_n (displacement in nth second) is highlighted for each second.",
+      "emphasis": "Double the initial speed and see stopping distance quadruple. Change acceleration and verify all three equations simultaneously.",
+      "labels_visible": ["u", "v", "a", "s", "t", "s_n"],
+      "interactive": true,
+      "sliders": [
+        { "id": "initial_velocity", "label": "Initial Velocity (u)", "min": 0, "max": 20, "default": 10, "unit": "m/s" },
+        { "id": "acceleration", "label": "Acceleration (a)", "min": -5, "max": 5, "default": 2, "unit": "m/s²" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Equations of motion work for any kind of motion including non-uniform acceleration",
+      "trigger_phrases": ["har motion mein use kar sakte hain", "variable acceleration mein bhi chalega", "always use v = u + at", "kisi bhi case mein"],
+      "correction": "NCERT clearly states these equations are derived assuming CONSTANT acceleration. For variable acceleration, you must use calculus (v = ds/dt, a = dv/dt) and integrate.",
+      "simulation_emphasis": "Show a case with changing acceleration where equation predictions fail vs simulation — mismatch demonstrates the constant-acceleration requirement"
+    },
+    {
+      "belief": "Displacement in nth second is the total displacement after n seconds",
+      "trigger_phrases": ["s_n total displacement hai", "nth second mein kul displacement", "s_n = ut + half at square with t = n"],
+      "correction": "s_n = u + a(n − ½) gives displacement during the nth second ONLY (from t = n−1 to t = n), not the total displacement. Total displacement after n seconds is s = un + ½an².",
+      "simulation_emphasis": "Show distance markers at each second: total displacement vs displacement-in-that-second highlighted separately with different colors"
+    }
+  ],
+  "legend": [
+    { "symbol": "u", "meaning": "Initial velocity" },
+    { "symbol": "v", "meaning": "Final velocity" },
+    { "symbol": "a", "meaning": "Constant acceleration" },
+    { "symbol": "s", "meaning": "Displacement" },
+    { "symbol": "s_n", "meaning": "Displacement in nth second = u + a(n−½)" },
+    { "symbol": "t", "meaning": "Time elapsed" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["speed_velocity", "acceleration"],
+    "extensions": ["projectile_motion", "vertical_motion_gravity", "motion_graphs"],
+    "siblings": ["motion_graphs", "vertical_motion_gravity"],
+    "common_exam_combinations": ["projectile_motion", "motion_on_inclined_plane", "friction_laws"]
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "concept_id": "up_incline_projectile",
+  "concept_name": "Projectile Up an Incline — Range and Time Along Sloped Ground",
+  "chapter": 7,
+  "section": "7.7",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 7.7 — projectile on an inclined plane (up); split from projectile_inclined",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "A volleyball served on a sloped Goa beach tilted 15 degrees up toward the dunes. The ball launches at 20 m/s from the sand at angle 60 degrees to the horizontal. Instead of landing on level ground, it lands on the up-slope. Range along the incline is NOT v² sin(2θ)/g — that is only for flat ground. We must rotate axes, decompose gravity, and redo the time-of-flight calculation. Every Indian beach volleyball player intuitively adjusts their serve for the slope direction.",
+    "secondary": "A golfer on a Shimla hill course aiming up a 10-degree fairway to an elevated green. Ball leaves at 35 m/s, 30 degrees above horizontal. The ball's flight ends when its path crosses the rising fairway — a shorter range than on flat ground. Caddies keep a mental table of 'how much to add' for any uphill shot.",
+    "tertiary": "An army mortar in the Himalayas firing onto a ridge 20 degrees above the gun position. Shell speed 200 m/s, launch angle 55 degrees above horizontal. Range along the ridge is significantly shorter than on flat ground. Military academies teach this formula as the 'up-slope range correction'."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v0": { "name": "Launch speed", "unit": "m/s", "min": 5, "max": 200, "default": 20 },
+      "alpha": { "name": "Launch angle above horizontal", "unit": "deg", "min": 0, "max": 90, "default": 60 },
+      "beta": { "name": "Incline angle above horizontal", "unit": "deg", "min": 0, "max": 60, "default": 15 },
+      "g": { "name": "Gravitational acceleration", "unit": "m/s^2", "min": 9.8, "max": 10, "default": 10 }
+    },
+    "computed_outputs": {
+      "time_of_flight_incline": { "formula": "2 * v0 * sin(alpha - beta) / (g * cos(beta))" },
+      "range_along_incline": { "formula": "2 * v0^2 * sin(alpha - beta) * cos(alpha) / (g * cos^2(beta))" },
+      "max_range_angle": { "formula": "alpha_opt = 45 deg + beta/2" }
+    },
+    "formulas": {
+      "range_up": "R_up = 2 * v0^2 * sin(alpha - beta) * cos(alpha) / (g * cos^2(beta))",
+      "time_up": "T_up = 2 * v0 * sin(alpha - beta) / (g * cos(beta))",
+      "optimal_angle_up": "For max range up an incline: alpha_opt = 45 deg + beta / 2  (bisector of incline and vertical)",
+      "rotated_axes_approach": "Rotate axes so x-axis lies ALONG the incline; the perpendicular direction becomes the 'vertical' for range-on-slope calculation. Gravity then has two components: g*sin(beta) along the slope (decelerating upslope motion) and g*cos(beta) perpendicular (pulling ball back to slope)."
+    },
+    "constraints": [
+      "Launch and landing both ON the incline (same slope).",
+      "Applies for alpha > beta (projectile must rise above incline).",
+      "Air resistance ignored.",
+      "Formula simplifies to flat-ground case when beta = 0."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Flat-Ground Formula Fails on a Slope",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "failure_sketch",
+            "text": "Goa beach tilted 15 deg up toward the dunes:\n\n    ball launched at 20 m/s, alpha = 60 deg above horizontal\n\n                         .\n                      .\n                   .                   DUNES (up-incline)\n                .\n             .\n          .             / beta = 15 deg\n       .              /\n    .__________BEACH_________\n                LAUNCH POINT\n\n   Flat-ground range formula:\n      R_flat  =  v0^2 * sin(2*alpha) / g\n             =  400 * sin(120) / 10\n             =  34.6 m    (wrong -- this ignores the slope!)\n\n   The ball never lands at that point, because the SLOPE has risen there.\n   Ball will land much earlier, on the up-going ground.\n\n   Need a new approach: rotate axes along the slope.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "goa_label",
+            "text": "Goa beach volleyball serve up a sloped sand bank",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "volley_ball",
+            "vehicle_type": "ball",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_left",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
+              { "type": "translate", "delay_sec": 4.5, "duration_sec": 2.5, "dx_px": 150, "dy_px": -200, "easing": "ease_out" },
+              { "type": "translate", "delay_sec": 7.0, "duration_sec": 2.5, "dx_px": 150, "dy_px": 140, "easing": "ease_in" }
+            ]
+          }
+        ],
+        "focal_primitive": "failure_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "On a Goa beach sloping up toward the dunes, a volleyball serve launches at 20 metres per second, 60 degrees above horizontal." },
+            { "text_en": "Using the flat-ground formula gives 34.6 metres — but that ignores the slope, which is rising the whole time." },
+            { "text_en": "The ball actually hits the slope earlier than 34.6 metres — because the slope itself is climbing up to meet it." },
+            { "text_en": "We need a new approach: rotate axes ALONG the slope, so the ground line becomes our 'x-axis'." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Rotate Axes Along the Incline",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rotate_sketch",
+            "text": "Rotate axes by beta -- new x along the slope, new y perp:\n\n       y' (perpendicular to slope)         launch velocity v0\n        |                                   /\n        |                                  /\n        |                                 /  alpha - beta\n        |                                /    (above the slope axis)\n        |                              /\n        ~--------- x' (along slope) -----------\n\n   Launch velocity in rotated frame:\n      v_x'  =  v0 * cos(alpha - beta)   (along slope)\n      v_y'  =  v0 * sin(alpha - beta)   (perpendicular)\n\n   Gravity in rotated frame:\n      g_x'  =  g * sin(beta)   (along slope, DECELERATING upslope motion)\n      g_y'  =  g * cos(beta)   (perpendicular, pulling ball BACK to slope)\n\n   Now apply 'flat-ground' projectile kinematics in the rotated frame.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "rotate_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "The trick is to rotate axes by the incline angle beta." },
+            { "text_en": "In the rotated frame, the slope is the new x-axis, and the perpendicular is the new y-axis." },
+            { "text_en": "The launch velocity splits into v-zero cosine of alpha minus beta along the slope, and v-zero sine of alpha minus beta perpendicular to the slope." },
+            { "text_en": "Gravity also splits into two parts in this frame — g sine beta decelerating upslope motion, and g cosine beta pulling the ball BACK to the slope." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Range and Time of Flight Up the Incline",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "results_sketch",
+            "text": "Time of flight (perpendicular-direction comes back to zero):\n\n   T  =  2 * v_y' / g_y'\n      =  2 * v0 * sin(alpha - beta) / (g * cos(beta))\n\n  Range along the incline:\n\n   R  =  (along-slope motion during T)\n      =  v_x' * T  -  (1/2) * g_x' * T^2   (decelerated by g*sin(beta))\n\n   Simplifies to:\n      R  =  2 * v0^2 * sin(alpha - beta) * cos(alpha) / (g * cos^2(beta))\n\n  Goa beach numbers (v0 = 20, alpha = 60, beta = 15):\n      sin(45)  =  0.707\n      cos(60)  =  0.5\n      cos^2(15) ~= 0.933\n\n      R  =  2 * 400 * 0.707 * 0.5 / (10 * 0.933)\n         ~=  30.3 m  along the slope\n\n   Less than the flat-ground 34.6 m, as expected.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "results_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Time of flight on the incline is 2 v-nought sine of alpha minus beta over g cosine beta." },
+            { "text_en": "Range along the incline involves the x-prime motion — v-x-prime times time minus half g-x-prime times time squared." },
+            { "text_en": "Simplifying — R equals 2 v-nought squared sine of alpha minus beta times cosine alpha, all over g cosine squared beta." },
+            { "text_en": "For our Goa beach numbers, that works out to about 30.3 metres along the slope — shorter than the 34.6 metres the flat-ground formula would have predicted. Slope correction matters." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "optimal_angle_still_45",
+      "misconception_summary": "Student assumes the optimal launch angle for maximum range is still 45 degrees, even on an incline.",
+      "confusion_patterns": [
+        "optimal angle on incline 45",
+        "max range angle up incline",
+        "which angle gives max range on slope",
+        "still use 45 degrees on slope"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong: 45 Degrees Everywhere",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_45_sketch",
+              "text": "Student's reflex:\n  \"Max range angle = 45 degrees. Always.\"\n\n  That is only true on FLAT ground.\n\n  On an up-slope, the optimal launch angle is STEEPER:\n     alpha_opt  =  45 deg  +  beta / 2\n\n  Example: beta = 20 deg -> alpha_opt = 55 deg (not 45).\n\n  The slope eats into the effective 'flat' angle by beta/2,\n  so the optimum rises by the same amount.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 13,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_45_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Common reflex — max range angle is 45 degrees. Always." },
+              { "text_en": "That is only true on flat ground." },
+              { "text_en": "On an up-slope, the optimal launch angle is STEEPER. The formula is alpha optimal equals 45 plus beta over 2." },
+              { "text_en": "For a 20-degree slope, optimal launch is 55 degrees — not 45. The slope eats beta over 2 into the flat optimum." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Intuition — The Bisector Rule",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "bisector_sketch",
+              "text": "Intuitive argument (bisector rule):\n\n   For max range at any angle of launch,\n   the launch direction should BISECT the angle between\n   the incline and the direction perpendicular to gravity.\n\n   On FLAT ground:\n      incline direction = horizontal\n      vertical direction = perpendicular to gravity\n      bisector = 45 deg\n\n   On UP-SLOPE of beta:\n      slope goes up at +beta\n      gravity-perpendicular is still vertical\n      bisector = (beta + 90) / 2 = 45 + beta/2\n\n   That is why alpha_opt  =  45 deg + beta/2.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "bisector_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Here is the clean intuition. The optimal launch direction bisects the angle between the incline and the vertical." },
+              { "text_en": "On flat ground, that bisector is 45 degrees. On an up-slope of beta, the incline is tilted by plus beta — so the bisector shifts to 45 plus beta over 2." },
+              { "text_en": "Same geometry, same bisector rule — just applied to a tilted surface." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Quick Numbers for Memory",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "quick_numbers_sketch",
+              "text": "Optimal launch angle for maximum up-slope range:\n\n   beta  |  alpha_opt\n   --------------------\n    0    |   45 deg   (flat, classic)\n    5    |   47.5 deg\n   10    |   50 deg\n   15    |   52.5 deg  <- Goa beach case\n   20    |   55 deg\n   30    |   60 deg\n   45    |   67.5 deg\n\n  The STEEPER the slope, the STEEPER you must throw.\n\n  Burn this into memory:  alpha_opt  =  45 + beta/2.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "quick_numbers_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Quick table for memory." },
+              { "text_en": "Flat — 45 degrees. 10-degree slope — 50. 15-degree Goa beach — 52.5. 30-degree mountain ridge — 60. 45-degree steep slope — 67.5." },
+              { "text_en": "Steeper slope, steeper launch. And the one formula you must remember — alpha optimal equals 45 plus beta over 2." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Goa beach volleyball, 15 deg slope", "params": { "v0": 20, "alpha": 60, "beta": 15 } },
+      { "label": "Golfer at Shimla, 10 deg fairway", "params": { "v0": 35, "alpha": 30, "beta": 10 } },
+      { "label": "Army mortar to ridge, 20 deg", "params": { "v0": 200, "alpha": 55, "beta": 20 } }
+    ],
+    "type_b": [
+      { "label": "Skier launching off an up-ramp", "scenario": "ski_ramp_up_launch" },
+      { "label": "Stone thrown up a hill at Gulmarg", "scenario": "stone_up_gulmarg_hill" }
+    ]
+  }
+}

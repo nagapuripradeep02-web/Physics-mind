@@ -1,0 +1,358 @@
+{
+  "concept_id": "three_cases",
+  "concept_name": "The Three Canonical Kinematic Cases — Which Equation for Which Unknown",
+  "chapter": 6,
+  "section": "6.6",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 6.6 — Equations of Motion; split from uniform_acceleration bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A driver on NH-44 presses the accelerator. His car leaves a toll plaza at rest and accelerates at a steady two metres per second squared. Three different traffic cameras ask three different questions. The first camera clocks the car ten seconds later — what speed? The second camera measures the distance covered in the same ten seconds. The third camera is one hundred metres down the road and wants to know the car's speed when it crosses that line — WITHOUT caring about the time. Each camera's question uses a different kinematic equation, and the answer depends on picking the right one.",
+    "secondary": "A motorbike leaving a red light at Bengaluru's Silk Board junction. The rider twists the throttle to a steady acceleration of three m/s^2. Depending on whether the traffic light asks 'how fast are you in five seconds' or 'how far are you in five seconds' or 'how fast are you after crossing the zebra fifty metres away', the rider reaches for one of three kinematic equations.",
+    "tertiary": "A Chennai Metro train pulling out of a station with constant acceleration. A passenger on the platform times it with a stopwatch (time question). A display board announces distance covered (distance question). A sensor embedded in the track fifty metres away triggers when the train crosses (no-time-needed question). Each uses its own flavor of the same three kinematic equations."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "u": { "name": "Initial velocity", "unit": "m/s", "min": 0, "max": 30, "default": 0 },
+      "a": { "name": "Acceleration", "unit": "m/s^2", "min": -20, "max": 20, "default": 2 },
+      "t": { "name": "Time", "unit": "s", "min": 0, "max": 60, "default": 10 },
+      "s": { "name": "Displacement", "unit": "m", "min": 0, "max": 500, "default": 100 }
+    },
+    "computed_outputs": {
+      "v_from_case1": { "formula": "u + a * t" },
+      "s_from_case2": { "formula": "u * t + 0.5 * a * t * t" },
+      "v_from_case3": { "formula": "sqrt(u*u + 2*a*s)" }
+    },
+    "formulas": {
+      "case_1_no_s": "v = u + a t   (given u, a, t - find v)",
+      "case_2_no_v": "s = u t + (1/2) a t^2   (given u, a, t - find s)",
+      "case_3_no_t": "v^2 = u^2 + 2 a s   (given u, a, s - find v; time is NOT involved)"
+    },
+    "constraints": [
+      "All three formulas REQUIRE constant acceleration",
+      "Decision rule: list the FOUR kinematic variables (u, v, a, t, s — pick four, the unknown is the fifth)",
+      "If t is unknown and not asked, use Case 3 (v^2 = u^2 + 2 a s)",
+      "If s is unknown, use Case 1 or Case 2 depending on whether you need v or the distance",
+      "Sign conventions must be consistent — a and u take signs based on chosen +x direction"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "One Car, Three Cameras, Three Questions",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "highway",
+            "text": "NH-44 (toll plaza to outer ring)\n\n[TOLL] ___________________________________________\n       ^                                              \n       Start (car at rest, u = 0)                    \n       a = 2 m/s^2 (steady acceleration)             \n\n  Camera 1 at t = 10 s     asks: what is the car's SPEED?\n  Camera 2 at t = 10 s     asks: what DISTANCE has it covered?\n  Camera 3 at s = 100 m   asks: what SPEED is it going WHEN it reaches here?",
+            "position": { "x": 360, "y": 260 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 0.3, "duration_sec": 0.8 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "car_icon",
+            "from": { "x": 200, "y": 440 },
+            "magnitude": 2,
+            "direction_deg": 0,
+            "label": "CAR (accelerating right)",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 60,
+            "animation": { "type": "translate", "dx_px": 350, "dy_px": 0, "duration_sec": 6 }
+          },
+          {
+            "type": "annotation",
+            "id": "road_line",
+            "text": "========>  road line (positive x direction)",
+            "position": { "x": 420, "y": 480 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "question",
+            "text": "Same car. Same motion.\nThree different unknowns.\n\nKinematics gives us three\nequations — one for each case.\nThe trick is picking the right one.",
+            "position": { "x": 620, "y": 420 },
+            "style": "callout",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A car leaves the NH-44 toll plaza from rest. It accelerates steadily at two metres per second squared." },
+            { "id": "s2", "text_en": "Three different traffic cameras ask three different questions." },
+            { "id": "s3", "text_en": "Camera one: at ten seconds after the car leaves, how fast is it moving?" },
+            { "id": "s4", "text_en": "Camera two: during those same ten seconds, how far has the car travelled?" },
+            { "id": "s5", "text_en": "Camera three sits one hundred metres down the road. When the car reaches this camera, how fast is it going — regardless of when?" },
+            { "id": "s6", "text_en": "Same motion. Three unknowns: first v, then s, then v again but without time. Kinematics gives you a different equation for each case. The next three states work each one through." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Case 1 — v = u + a t (Given Time, Find Speed)",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "car_case1_start",
+            "from": { "x": 180, "y": 380 },
+            "magnitude": 0.3,
+            "direction_deg": 0,
+            "label": "t = 0, u = 0 (car at rest)",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 60,
+            "animation": { "type": "fade_in", "delay_sec": 0.3, "duration_sec": 0.7 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "car_case1_mid",
+            "from": { "x": 330, "y": 380 },
+            "magnitude": 2,
+            "direction_deg": 0,
+            "label": "after accelerating",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 60,
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 0.7 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "car_case1_end",
+            "from": { "x": 500, "y": 380 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "t = 10 s, v = ?",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 60,
+            "animation": { "type": "fade_in", "delay_sec": 3.5, "duration_sec": 0.7 }
+          },
+          {
+            "type": "annotation",
+            "id": "solution_case1",
+            "text": "Case 1 equation\n  v = u + a t\n\nWhat we have\n  u = 0  (starts at rest)\n  a = 2 m/s^2\n  t = 10 s\n\nPlug in\n  v = 0 + 2 * 10\n     = 20 m/s\n\nCamera 1 reading: 20 m/s\n(~72 km/h - highway speed)\n\nNo s anywhere in the equation.\nIf you are given u, a, t, reach for v = u + at first.",
+            "position": { "x": 680, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Case one — camera one asks for the car's speed at t equals ten seconds." },
+            { "id": "s2", "text_en": "The unknown is final velocity v. We have initial velocity u equals zero, acceleration a equals two, and time t equals ten." },
+            { "id": "s3", "text_en": "The equation that links exactly these four variables — u, a, t, and v — is v equals u plus a t." },
+            { "id": "s4", "text_en": "Plug in. Zero plus two times ten gives twenty metres per second." },
+            { "id": "s5", "text_en": "Camera one reads twenty metres per second — about seventy-two kilometres per hour. Highway cruising speed." },
+            { "id": "s6", "text_en": "Notice displacement s never appeared. If your problem gives you time and you want the speed, always reach for v equals u plus a t first." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Case 2 — s = u t + (1/2) a t^2 (Given Time, Find Distance)",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "road_stretch",
+            "text": "[TOLL] ________________________________________________________________\n       |  5 m    |  20 m   |  45 m   |  80 m    |   100 m   |\n       t=1 s     t=2 s     t=3 s     t=4 s      t=10 s  (but wait...)\n(Parabola-like growth of position)",
+            "position": { "x": 360, "y": 260 },
+            "style": "formula_box"
+          },
+          {
+            "type": "force_arrow",
+            "id": "car_case2",
+            "from": { "x": 180, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": 0,
+            "label": "CAR (position grows as t^2)",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "translate", "dx_px": 400, "dy_px": 0, "duration_sec": 5 }
+          },
+          {
+            "type": "annotation",
+            "id": "solution_case2",
+            "text": "Case 2 equation\n  s = u t + (1/2) a t^2\n\nWhat we have\n  u = 0,  a = 2 m/s^2,  t = 10 s\n\nPlug in\n  s = 0 * 10 + (1/2) * 2 * 100\n    = 0 + 100\n    = 100 m\n\nCamera 2 reading: 100 m\n\nThe t-squared term means the\ncar covers much more ground\nin its later seconds than its\nearly ones. It is accelerating.",
+            "position": { "x": 660, "y": 380 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Case two — camera two asks how far the car has travelled during those same ten seconds." },
+            { "id": "s2", "text_en": "The unknown is displacement s. We know u, a, and t. The formula connecting these four is s equals u t plus half a t squared." },
+            { "id": "s3", "text_en": "Plug in. Zero times ten plus half times two times one hundred gives one hundred metres." },
+            { "id": "s4", "text_en": "Camera two reading: one hundred metres. The car covered a cricket pitch-length almost, starting from a dead stop." },
+            { "id": "s5", "text_en": "Notice the t-squared term. The car covers far more ground per second in its later seconds than its early ones — five metres in the first second, eighty metres between the ninth and tenth seconds. That is what acceleration does." },
+            { "id": "s6", "text_en": "If you are given time and need distance, always reach for s equals u t plus half a t squared first." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "Case 3 — v^2 = u^2 + 2 a s (Given Distance, No Time Needed)",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "car_case3",
+            "from": { "x": 180, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": 0,
+            "label": "CAR",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "translate", "dx_px": 320, "dy_px": 0, "duration_sec": 4 }
+          },
+          {
+            "type": "annotation",
+            "id": "position_marker",
+            "text": "[TOLL]________________________________|----> Camera 3\n  s = 0                                  s = 100 m",
+            "position": { "x": 360, "y": 450 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "solution_case3",
+            "text": "Case 3 equation\n  v^2 = u^2 + 2 a s\n\nWhat we have\n  u = 0\n  a = 2 m/s^2\n  s = 100 m\n  t = NOT GIVEN, NOT ASKED\n\nPlug in\n  v^2 = 0 + 2 * 2 * 100\n      = 400\n  v  = sqrt(400) = 20 m/s\n\nCamera 3 reading: 20 m/s\n\nTime never entered. That's the point.\nIf you do not know t and do not need it,\nreach for v^2 = u^2 + 2 a s and save\nyourself an entire algebra step.",
+            "position": { "x": 660, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Case three is the most elegant. Camera three sits one hundred metres down the road and asks — what speed does the car have when it arrives here?" },
+            { "id": "s2", "text_en": "We are NOT told the time, and we are NOT asked for it. Time t does not appear in the question or the answer." },
+            { "id": "s3", "text_en": "If you try the first two equations, you will have to find t first and then plug it in — an extra step. The third case equation skips that." },
+            { "id": "s4", "text_en": "v squared equals u squared plus two a s. All four variables in this equation — u, a, s, v — are the ones in our question. No t anywhere." },
+            { "id": "s5", "text_en": "Plug in. Zero plus two times two times one hundred equals four hundred. Square root is twenty metres per second." },
+            { "id": "s6", "text_en": "Camera three reads the same twenty metres per second camera one did. They were recording the same moment — the car has been accelerating for exactly ten seconds when it reaches one hundred metres." },
+            { "id": "s7", "text_en": "So the decision rule is clean. If the question mentions time, use case one or case two. If the question skips time — 'how fast when it reaches here', 'how much does it slow when it crosses fifty metres' — use case three." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "wrong_equation_chosen",
+      "misconception": "All three kinematic equations are interchangeable — any one will work for any problem",
+      "trigger_phrases": [
+        "which equation to use",
+        "can I use any kinematic equation",
+        "they all give the same answer",
+        "why three equations"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Any Equation Works, Just Try One",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "belief",
+              "text": "Your reasoning\n\nAll three equations describe the\nsame motion, right?\nSo surely any one should work\nfor any question.\n\nIf I need distance, I can still\nuse v = u + a t -- just find v\nfirst and then... figure something out.\n\n(The formula you choose first\ndetermines the number of steps.\nWrong choice = extra algebra.\nMost JEE timing errors come\nfrom this.)",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444",
+              "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A common student approach — just pick any kinematic equation and start calculating. It is all the same motion, after all." },
+              { "id": "s2", "text_en": "The physics is the same, but the algebra can differ by a factor of three or four. Wrong equation choice means extra unknowns, chaining multiple formulas, and more chances for arithmetic mistakes." },
+              { "id": "s3", "text_en": "JEE is timed. Picking the right equation saves you the thirty seconds that separate top-rank students from the rest. Let me show the difference." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Long Road vs Short Road — Same Answer, Different Work",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "long_path",
+              "text": "Student A: uses v^2 = u^2 + 2 a s\n\nGiven u = 0, a = 2, s = 100\nWrite the equation.\nPlug in.\nSolve for v.\n  v^2 = 400 -> v = 20\n\nThree lines. Done in 20 seconds.",
+              "position": { "x": 280, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "short_path",
+              "text": "Student B: uses v = u + a t\n(ignores that t is not given)\n\nStep 1  Need t. But t is unknown.\nStep 2  Use s = u t + 0.5 a t^2 to find t.\n         100 = 0 + 0.5 * 2 * t^2\n         t^2 = 100 -> t = 10 s\nStep 3  Now plug t into v = u + a t.\n         v = 0 + 2 * 10 = 20 m/s\n\nSame answer, three separate equations,\n45 seconds. AND more arithmetic.",
+              "position": { "x": 680, "y": 280 },
+              "style": "formula_box",
+              "color": "#F59E0B",
+              "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Two students solving the same problem — car accelerates from rest at two m/s^2 over one hundred metres, what is the final speed." },
+              { "id": "s2", "text_en": "Student A notices that the question gives u, a, and s but does NOT mention t. She picks v squared equals u squared plus two a s directly. Plug in, solve — twenty metres per second. Twenty seconds of work." },
+              { "id": "s3", "text_en": "Student B grabs v equals u plus a t first. Finds he needs t, which he does not have. So he uses the distance equation to find t — that is ten seconds. Then he plugs ten into v equals u plus a t. Twenty metres per second." },
+              { "id": "s4", "text_en": "Same answer. But Student B did three formulas and over a minute of arithmetic. Student A did one formula in three lines." },
+              { "id": "s5", "text_en": "In JEE under a time pressure, that extra minute is the difference between solving four more problems. The equation choice matters." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "The Decision Rule — Which Equation When?",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "decision_matrix",
+              "text": "Decision rule\n\nStep 1  List the variables you HAVE and the one you NEED.\n         The five kinematic variables are u, v, a, t, s.\n\nStep 2  Identify which ONE is missing (neither given nor asked).\n\nStep 3  Pick the equation that does NOT contain that missing variable.\n\nMissing s -> use v = u + a t\nMissing v -> use s = u t + (1/2) a t^2\nMissing t -> use v^2 = u^2 + 2 a s\n\nOne equation. One plug-in. One answer.",
+              "position": { "x": 380, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the decision rule that collapses this entire chapter into one check." },
+              { "id": "s2", "text_en": "Step one — list the five kinematic variables: u, v, a, t, s. Step two — identify which one is missing. 'Missing' means neither given in the problem nor asked for." },
+              { "id": "s3", "text_en": "Step three — pick the equation that does NOT contain that missing variable." },
+              { "id": "s4", "text_en": "If s is missing, use v equals u plus a t. If v is missing, use s equals u t plus half a t squared. If t is missing, use v squared equals u squared plus two a s." },
+              { "id": "s5", "text_en": "One equation, one plug-in, one answer. Apply this check in the first ten seconds of every kinematics problem. You will save yourself every chained-equation mistake." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different numbers, same three cases",
+      "physical_world": "Motorbike at 5 m/s accelerates at 3 m/s^2. After 4 s: v = 17 m/s (Case 1). s = 44 m (Case 2). At s = 44, v = 17 directly (Case 3).",
+      "same_physics": "Three cases map to three equations — missing variable decides"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Deceleration instead of acceleration",
+      "physical_world": "Mumbai local decelerating from 20 m/s at a = -2 m/s^2 until stop. Case 3: 0 = 400 + 2(-2)s -> s = 100 m. Train stops after 100 m.",
+      "same_physics": "Same three equations handle deceleration with negative a"
+    }
+  ]
+}

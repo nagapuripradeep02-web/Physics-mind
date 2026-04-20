@@ -1,0 +1,42 @@
+{
+  "concept_id": "faraday_law_emf",
+  "concept_name": "Faraday's Law of Electromagnetic Induction",
+  "class_level": 12,
+  "chapter": "Electromagnetic Induction",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "circuit_live", "scenario_type": "faraday_law", "panel_count": 2, "show_labels": true },
+  "variables": { "ε": "Induced EMF (V)", "Φ": "Magnetic flux (Wb)", "N": "Number of turns", "t": "Time (s)" },
+  "locked_facts": [
+    "Faraday's law: ε = -NdΦ/dt (induced EMF = negative rate of change of flux)",
+    "Magnetic flux: Φ = BAcosθ (B = field, A = area, θ = angle between B and area normal)",
+    "EMF can be induced by changing B, A, or θ",
+    "The negative sign represents Lenz's law — induced EMF opposes the change",
+    "No change in flux = no induced EMF (static field through stationary coil gives zero EMF)",
+    "Faster change in flux = larger induced EMF",
+    "Motional EMF: ε = BLv for a conductor of length L moving at velocity v perpendicular to B"
+  ],
+  "truth_statements": [
+    "An EMF is induced whenever the magnetic flux through a circuit changes with time",
+    "The magnitude of induced EMF equals the rate of change of magnetic flux linkage",
+    "The induced EMF can be increased by increasing the rate of change of flux — faster motion or faster field change",
+    "A static magnetic field through a stationary coil produces zero EMF — flux must CHANGE",
+    "Faraday's law is the fundamental principle behind generators, transformers, and inductors"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three ways to change flux shown simultaneously: (1) move magnet toward coil (changing B at coil), (2) expand coil area (changing A), (3) rotate coil in field (changing θ). All produce EMF. The common thread: dΦ/dt ≠ 0.",
+    "visual_emphasis": "Three animations with flux vs time graphs — different methods but same principle: changing flux = EMF",
+    "why_this_breaks_misconception": "Students think only moving a magnet induces EMF — seeing three distinct mechanisms unified by dΦ/dt deepens understanding"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Flux defined", "description": "A coil in a magnetic field. Flux Φ = BAcosθ shown. Rotating the coil changes θ, changing flux. When Φ is constant, no EMF.", "emphasis": "Flux is B × A × cosθ — it depends on field, area, AND orientation", "labels_visible": ["Φ = BAcosθ", "B", "A", "θ"] },
+    { "id": "STATE_2", "label": "Magnet moving into coil", "description": "A bar magnet moves toward a coil. Flux increases. Galvanometer deflects. Moving magnet away: flux decreases, deflection reverses. Stationary magnet: zero EMF.", "emphasis": "Changing flux induces EMF. No change = no EMF.", "labels_visible": ["ε = -dΦ/dt", "flux increasing", "galvanometer"] },
+    { "id": "STATE_3", "label": "Three ways to change flux", "description": "Side by side: (1) change B (magnet motion), (2) change A (coil expanding), (3) change θ (coil rotating). All produce EMF. Flux-time graphs shown for each.", "emphasis": "It's always dΦ/dt — doesn't matter HOW the flux changes", "labels_visible": ["ΔB", "ΔA", "Δθ", "ε = -dΦ/dt"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student controls magnet speed, coil turns, and coil area. EMF and flux graphs update in real time. Faster magnet = larger EMF. More turns = larger EMF.", "emphasis": "Speed up the magnet — EMF increases. Add more turns — EMF increases.", "labels_visible": ["ε", "Φ", "N", "v"], "interactive": true, "sliders": [{ "id": "magnet_speed", "label": "Magnet speed", "min": 0, "max": 10, "default": 5, "unit": "m/s" }, { "id": "turns", "label": "Number of turns N", "min": 1, "max": 100, "default": 10, "unit": "" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "A magnetic field through a coil always produces EMF", "trigger_phrases": ["field means EMF", "magnetic field induces EMF", "field hai toh EMF hoga"], "correction": "A static (unchanging) magnetic flux produces ZERO EMF. The flux must be CHANGING (dΦ/dt ≠ 0) for EMF to be induced. A coil sitting in a constant field has zero EMF.", "simulation_emphasis": "Show coil in constant B field with galvanometer reading zero — then move the magnet to show EMF appears" },
+    { "belief": "Induced EMF depends on the total flux, not its rate of change", "trigger_phrases": ["more flux more EMF", "total flux determines EMF"], "correction": "EMF depends on how FAST the flux changes (dΦ/dt), not on the total flux value. A large constant flux gives zero EMF. A small but rapidly changing flux gives large EMF.", "simulation_emphasis": "Show large constant flux (zero EMF) vs small rapidly changing flux (large EMF)" }
+  ],
+  "legend": [ { "symbol": "ε", "meaning": "Induced EMF (V)" }, { "symbol": "Φ", "meaning": "Magnetic flux = BAcosθ (Wb)" }, { "symbol": "N", "meaning": "Number of turns" } ],
+  "concept_relationships": { "prerequisites": ["magnetic_field_biot_savart", "magnetic_flux"], "extensions": ["lenz_law_eddy", "self_inductance_lr", "ac_generator"], "siblings": ["motional_emf"], "common_exam_combinations": ["lenz_law_eddy", "ac_generator"] }
+}

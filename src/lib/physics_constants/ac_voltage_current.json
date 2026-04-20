@@ -1,0 +1,107 @@
+{
+  "concept_id": "ac_voltage_current",
+  "concept_name": "AC Voltage and Current",
+  "class_level": 12,
+  "chapter": "Alternating Current",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "ac_waveforms",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "V₀": "Peak (maximum) voltage (V)",
+    "I₀": "Peak (maximum) current (A)",
+    "V_rms": "Root mean square voltage (V)",
+    "I_rms": "Root mean square current (A)",
+    "ω": "Angular frequency = 2πf (rad/s)",
+    "f": "Frequency of AC (Hz)",
+    "φ": "Phase difference between voltage and current (rad)"
+  },
+  "locked_facts": [
+    "AC voltage: V = V₀ sin(ωt), alternates polarity with period T = 1/f = 2π/ω",
+    "AC current: I = I₀ sin(ωt + φ), where φ is the phase difference relative to voltage",
+    "RMS voltage: V_rms = V₀/√2 ≈ 0.707 V₀ (the DC equivalent for heating effect)",
+    "RMS current: I_rms = I₀/√2 ≈ 0.707 I₀",
+    "Average power: P_avg = V_rms × I_rms × cos(φ) — only resistive component dissipates power",
+    "Indian mains: V_rms = 220 V, so V₀ = 220√2 ≈ 311 V, f = 50 Hz",
+    "Average value of AC over full cycle = 0; average of |V| over half cycle = 2V₀/π"
+  ],
+  "truth_statements": [
+    "The RMS value of AC is the equivalent DC value that produces the same heating effect in a resistor",
+    "When we say household supply is 220 V, it refers to V_rms — the peak voltage is actually 311 V",
+    "The average value of a sinusoidal AC over a complete cycle is zero because positive and negative halves cancel",
+    "Phase difference φ depends on the circuit: φ = 0 for pure R, +π/2 for pure L, -π/2 for pure C",
+    "Average power dissipated depends on cos(φ) — in pure L or pure C circuits, average power is zero (wattless current)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A sinusoidal V(t) waveform with V₀ = 311 V. The V_rms = 220 V line drawn horizontally. Shaded area showing that the squared waveform (V²) has average equal to V₀²/2 — so V_rms = V₀/√2. A DC source at 220 V heats a resistor identically to this AC source.",
+    "visual_emphasis": "V² waveform plotted. Its average (V₀²/2) shown as horizontal line. √(average of V²) = V₀/√2 = V_rms. Side by side: AC bulb and DC bulb at same brightness.",
+    "why_this_breaks_misconception": "Students see WHY V_rms = V₀/√2 — it comes from averaging V², not V. The √2 is not arbitrary."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Sinusoidal V(t) = V₀ sin(ωt) waveform plotted. Peak value V₀, time period T, frequency f labeled. V₀ = 311 V marked. Zero crossings and peaks identified.",
+      "emphasis": "AC voltage alternates between +V₀ and -V₀ with period T = 1/f",
+      "labels_visible": ["V₀", "T", "f", "V = V₀ sin(ωt)", "+V₀", "-V₀"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "V_rms line drawn at V₀/√2 = 220 V. The V² waveform plotted below — always positive, oscillates between 0 and V₀². Average of V² shown as V₀²/2. Connection: V_rms = √(V₀²/2) = V₀/√2.",
+      "emphasis": "RMS means root of MEAN of SQUARE — first square V, then average, then take square root",
+      "labels_visible": ["V_rms = V₀/√2", "V² waveform", "⟨V²⟩ = V₀²/2", "220 V"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Side by side: AC source (V_rms = 220 V) and DC source (V = 220 V) connected to identical resistors. Both produce same heating (same brightness bulb). Power comparison: P_AC_avg = V²_rms/R = V₀²/(2R) = P_DC. The peak voltage 311 V is higher than 220 V — the meter reads 220 V rms.",
+      "emphasis": "220 V on your wall socket is V_rms. The actual peak is 311 V. RMS is the effective DC equivalent.",
+      "labels_visible": ["V_rms = 220 V = V₀/√2", "V₀ = 311 V", "P_AC = P_DC at same V_rms"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust V₀, frequency, and phase angle φ. Plot V(t) and I(t) together. See V_rms and I_rms update. Calculate average power P = V_rms I_rms cos(φ). Change φ to see power drop to zero at φ = 90°.",
+      "emphasis": "At φ = 0: maximum power. At φ = 90°: zero average power (wattless current). Indian mains: 220 V, 50 Hz.",
+      "labels_visible": ["V₀", "V_rms", "I_rms", "P_avg", "φ", "cos(φ)"],
+      "interactive": true,
+      "sliders": [
+        { "id": "peak_voltage", "label": "Peak Voltage V₀", "min": 10, "max": 500, "default": 311, "unit": "V" },
+        { "id": "frequency", "label": "Frequency f", "min": 10, "max": 200, "default": 50, "unit": "Hz" },
+        { "id": "phase_angle", "label": "Phase Angle φ", "min": -90, "max": 90, "default": 0, "unit": "°" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "220 V AC means the voltage is always 220 V",
+      "trigger_phrases": ["220 V matlab hamesha 220", "AC voltage constant hai", "wall socket pe 220 V fixed", "peak 220 hai"],
+      "correction": "220 V is the RMS value. The actual voltage oscillates between +311 V and -311 V (since V₀ = 220√2 ≈ 311 V). At any instant, V can be anywhere from -311 to +311 V. The value 220 V is the effective DC equivalent for heating.",
+      "simulation_emphasis": "Show sinusoid oscillating between ±311 V with the 220 V rms line — voltage is NOT constant"
+    },
+    {
+      "belief": "Average AC voltage is V₀/√2",
+      "trigger_phrases": ["average voltage V₀/√2 hai", "rms aur average same hai", "average = rms", "mean voltage = V_rms"],
+      "correction": "The AVERAGE value of AC voltage over a full cycle is ZERO (positive and negative halves cancel). V₀/√2 is the RMS value, not the average. The average of the absolute value over half a cycle is 2V₀/π ≈ 0.637V₀, which is different from V_rms = 0.707V₀.",
+      "simulation_emphasis": "Show full cycle: positive area + negative area = 0 average. Then show V² always positive → its average is V₀²/2 → RMS = V₀/√2"
+    }
+  ],
+  "legend": [
+    { "symbol": "V(t) sine wave", "meaning": "Instantaneous voltage as function of time" },
+    { "symbol": "V₀ peak line", "meaning": "Maximum (peak) voltage amplitude" },
+    { "symbol": "V_rms dashed line", "meaning": "Root mean square voltage = V₀/√2" },
+    { "symbol": "V² curve", "meaning": "Square of voltage (always positive)" },
+    { "symbol": "φ arrow", "meaning": "Phase difference between V and I" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["simple_harmonic_motion", "electric_current"],
+    "extensions": ["ac_circuits_lcr", "power_in_ac", "phasors"],
+    "siblings": ["resistor_in_ac", "inductor_in_ac", "capacitor_in_ac"],
+    "common_exam_combinations": ["rms_calculation", "peak_to_rms_conversion", "household_ac_problems", "power_in_ac_circuits"]
+  }
+}

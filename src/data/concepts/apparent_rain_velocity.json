@@ -1,0 +1,271 @@
+{
+  "concept_id": "apparent_rain_velocity",
+  "concept_name": "Apparent Rain Velocity — What a Moving Person Actually Sees",
+  "chapter": 6,
+  "section": "6.12",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 6.12 — rain-person relative velocity; split from rain_umbrella",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "A cyclist on Marine Drive in Mumbai during a heavy July downpour. To the pavement, rain falls straight down at 5 m/s. But she is riding east at 4 m/s. From her helmet's perspective, the rain SLANTS from in front — she sees an apparent velocity with a horizontal component of -4 m/s (forward rain relative to her) and a vertical component of -5 m/s (downward). Total apparent speed = sqrt(16 + 25) = 6.4 m/s, tilted forward at arctan(4/5) = 38.7 degrees. Every cyclist instinctively leans into it.",
+    "secondary": "A schoolboy running 3 m/s to catch the school bus in Pune while rain falls at 4 m/s. From his frame, the rain appears tilted forward at arctan(3/4) = 36.9 degrees — exactly why he instinctively tilts his backpack shield or his umbrella FORWARD, not straight up.",
+    "tertiary": "A train passenger looking through a window on the Howrah-Puri Express during monsoon. Ground sees rain vertical; from the train, rain streaks on the glass angle back sharply — the faster the train, the steeper the angle. Same rain, three observers, three different apparent velocities."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v_rain": { "name": "Rain speed (vertical, ground frame)", "unit": "m/s", "min": 1, "max": 20, "default": 5 },
+      "v_person": { "name": "Person speed (horizontal, ground frame)", "unit": "m/s", "min": 0, "max": 20, "default": 4 },
+      "tilt_angle": { "name": "Apparent tilt angle from vertical", "unit": "deg", "min": 0, "max": 90, "default": 38.7 }
+    },
+    "computed_outputs": {
+      "v_rain_relative": { "formula": "sqrt(v_rain^2 + v_person^2)" },
+      "tilt_angle": { "formula": "atan(v_person / v_rain) in degrees" }
+    },
+    "formulas": {
+      "relative_velocity_rule": "V_rain/person = V_rain/ground - V_person/ground",
+      "horizontal_component": "Horizontal component seen by person = -v_person  (rain appears to come from in front)",
+      "vertical_component": "Vertical component seen by person = -v_rain  (rain still falls downward)",
+      "apparent_speed": "|V_rain/person| = sqrt(v_rain^2 + v_person^2)",
+      "tilt_angle": "tan(alpha) = v_person / v_rain   (alpha = angle from vertical, in the forward direction)"
+    },
+    "constraints": [
+      "Person moves horizontally; rain falls vertically — always a right-angle case.",
+      "Faster person -> steeper rain tilt. Slower person -> rain looks more vertical.",
+      "Rain's GROUND velocity does not change — only the PERSON's frame changes it.",
+      "Angle measured from VERTICAL (because that is the axis of falling)."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Hook — Why Cyclists Tilt Their Head Forward in the Rain",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "hook_sketch",
+            "text": "Rain drenches Marine Drive, Mumbai.\n\n  To the pavement (stationary observer):\n     rain falls STRAIGHT DOWN at 5 m/s.\n\n  To the cyclist pedalling east at 4 m/s:\n     rain streaks in from THE FRONT at an angle.\n\n      Stationary observer          Cyclist\n         | | | | |                /  /  /  /\n         | | | | |              /  /  /  /\n         | | | | |            /  /  /  /\n         V V V V V          V  V  V  V\n         vertical            tilted forward\n\n  Same rain, two frames, two velocities.\n  This is the whole concept in one picture.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "marine_label",
+            "text": "Marine Drive monsoon — cyclist in a downpour",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "cyclist",
+            "vehicle_type": "bike",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 280, "dy_px": 0, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "hook_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Why do cyclists tilt their heads forward in the rain?" },
+            { "text_en": "To someone standing still on Marine Drive, rain falls straight down at 5 metres per second." },
+            { "text_en": "But the cyclist riding east at 4 metres per second does not see vertical rain. She sees it SLANTING in from the front." },
+            { "text_en": "Same rain, two different apparent velocities. Let us figure out exactly what she sees." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "The Vector Math — Subtract the Person's Velocity",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "math_sketch",
+            "text": "Relative velocity of rain with respect to person:\n\n  V_rain/person  =  V_rain/ground  -  V_person/ground\n\n                 =  (0, -5)  -  (+4, 0)\n                 =  (-4, -5)\n\n  Interpretation of components:\n     x-component  = -4 m/s  -> rain approaches FROM IN FRONT\n     y-component  = -5 m/s  -> rain still falls downward\n\n  Apparent speed:\n     |V| = sqrt(4^2 + 5^2) = sqrt(41) ~= 6.4 m/s\n\n  Apparent tilt from vertical:\n     tan(alpha) = 4 / 5 = 0.8\n     alpha = arctan(0.8) ~= 38.7 deg forward\n\n  That is the angle her raincoat should shed water toward.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "math_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "The rule is the same relative-velocity formula — subtract the observer's velocity." },
+            { "text_en": "Rain's ground velocity is 0 comma minus 5 — pure vertical. Person's is plus 4 comma 0 — pure horizontal." },
+            { "text_en": "Subtract component by component. Rain relative to person is minus 4 comma minus 5." },
+            { "text_en": "Apparent speed is the square root of 41, about 6.4 metres per second — faster than either of the original speeds." },
+            { "text_en": "Apparent tilt from vertical is arctan of 4 over 5 — about 38.7 degrees forward. That is exactly where the raincoat needs to shed water." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Faster Person, Steeper Rain",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "speed_scan_sketch",
+            "text": "Effect of person's speed on apparent tilt:\n\n   v_person = 0    -> alpha = 0    (rain straight down)\n   v_person = 2    -> alpha = 21.8  (mild slant)\n   v_person = 4    -> alpha = 38.7  (Marine Drive case)\n   v_person = 8    -> alpha = 58.0  (strong forward tilt)\n   v_person = 20   -> alpha = 76.0  (almost horizontal rain!)\n\n   Formula:  alpha = arctan(v_person / v_rain)\n\n   The faster you run, the steeper the apparent tilt.\n   A 600 km/h fighter jet would see rain fly HORIZONTALLY\n   into its windshield -- exactly like a strong wind.\n\n   Bottom line: tilt the umbrella forward by alpha.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "speed_scan_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "The faster you move, the steeper the apparent rain tilt." },
+            { "text_en": "Stationary — zero tilt. Walking at 2 metres per second — 21 degrees." },
+            { "text_en": "Running at 8 metres per second — 58 degrees of forward slant. A 600-kilometre-per-hour fighter jet would see rain almost horizontal." },
+            { "text_en": "The formula is one line — alpha equals arctan of v person over v rain. That is how much to tilt the umbrella forward." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "tilt_backward_instinct",
+      "misconception_summary": "Student thinks the umbrella should tilt BACKWARD (away from the direction of motion), thinking rain will 'catch up' from behind.",
+      "confusion_patterns": [
+        "umbrella tilt backward",
+        "tilt umbrella away from motion",
+        "rain comes from behind when running",
+        "tilt umbrella behind me"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Instinct: Tilt the Umbrella Behind You",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_tilt_sketch",
+              "text": "Student's wrong guess:\n  \"If I am running east, rain will fall\n   BEHIND me as I move forward.\n   So I should tilt the umbrella BACKWARD\n   to cover my back.\"\n\n  This thinks of rain as 'left behind' by the runner.\n\n  Reality is the opposite: the rain appears to come\n  FROM IN FRONT because YOU are running into it.\n\n  Ground sees rain vertical; you see rain slanted forward.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 13,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_tilt_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The intuitive mistake — students think the umbrella should tilt BEHIND them when running." },
+              { "text_en": "The thought: rain falls straight down, I move forward, so rain 'lands behind me'." },
+              { "text_en": "But the physics is the opposite. Because I am running INTO the rain, the rain appears to come from in FRONT of me." },
+              { "text_en": "The umbrella needs to be tilted FORWARD, not backward." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Vector Subtraction Fixes This",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "vector_fix_sketch",
+              "text": "Vector subtraction makes the direction obvious:\n\n   V_rain/ground = (0, -5)            (straight down)\n   V_person/ground = (+4, 0)          (east)\n\n   V_rain/person = V_rain/ground - V_person/ground\n                 = (0 - 4, -5 - 0)\n                 = (-4, -5)\n\n   The NEGATIVE x-component (-4) means:\n      rain moves in the -x direction relative to the person\n      the person is running in +x\n      so rain appears to come FROM the +x side -> i.e., from in FRONT.\n\n   Equivalently: you are running INTO the rain.\n   Umbrella tilts FORWARD to block that front approach.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "vector_fix_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The vector math makes direction obvious." },
+              { "text_en": "Rain at 0 comma minus 5, person at plus 4 comma 0. Subtract to get minus 4 comma minus 5." },
+              { "text_en": "The negative x-component means rain moves in the minus x direction relative to the person. Since the person moves in plus x, the rain appears to come FROM plus x — that is, from IN FRONT." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Everyday Check: Riding into Wind",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "everyday_check_sketch",
+              "text": "Sanity check with wind:\n\n   On a still day, ride a bike at 30 km/h.\n   Does the wind push your HAIR BACKWARD or FORWARD?\n\n   Backward -- because you are RIDING INTO still air,\n   and still air feels like a wind from in FRONT.\n\n   Same logic for rain.  Still rain falls vertically.\n   Moving INTO it makes it slant forward.\n\n   Your umbrella and your cap brim both tilt FORWARD\n   to block that front-approach.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "everyday_check_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "One sanity check you can do without math." },
+              { "text_en": "Ride a bike at 30 kilometres per hour on a still day. Which way does the wind push your hair?" },
+              { "text_en": "Backward — because you are riding INTO still air, and still air feels like a wind from in front." },
+              { "text_en": "Rain behaves the same way. Tilt the umbrella FORWARD, never backward." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Cyclist on Marine Drive", "params": { "v_rain": 5, "v_person": 4 } },
+      { "label": "Schoolboy running for a bus", "params": { "v_rain": 4, "v_person": 3 } },
+      { "label": "Train at high speed", "params": { "v_rain": 5, "v_person": 20 } }
+    ],
+    "type_b": [
+      { "label": "Car windshield rain streaks", "scenario": "car_windshield_rain" },
+      { "label": "Sprinter on a wet track", "scenario": "sprinter_wet_track" }
+    ]
+  }
+}

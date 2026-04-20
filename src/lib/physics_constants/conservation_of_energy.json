@@ -1,0 +1,105 @@
+{
+  "concept_id": "conservation_of_energy",
+  "concept_name": "Conservation of Mechanical Energy",
+  "class_level": 11,
+  "chapter": "Work, Energy and Power",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "energy_conservation",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "m": "Mass of the object (kg)",
+    "v": "Velocity at any point (m/s)",
+    "h": "Height above reference level (m)",
+    "k": "Spring constant (N/m)",
+    "x": "Spring compression/extension (m)",
+    "g": "Acceleration due to gravity = 9.8 m/s²"
+  },
+  "locked_facts": [
+    "KE + PE = constant, when only conservative forces do work",
+    "Gravitational PE: U_gravity = mgh (relative to chosen reference)",
+    "Elastic PE of spring: U_spring = ½kx²",
+    "At highest point of projectile: KE is minimum, PE is maximum",
+    "Non-conservative forces (friction, air resistance) dissipate mechanical energy as heat",
+    "W_non-conservative = ΔKE + ΔPE = Δ(KE + PE)",
+    "Total energy (including heat) is always conserved — first law of thermodynamics"
+  ],
+  "truth_statements": [
+    "The total mechanical energy of a system is conserved if only conservative forces act on it",
+    "Conservative forces are path-independent — work depends only on initial and final positions",
+    "Gravitational force, spring force, and electrostatic force are conservative; friction and air drag are not",
+    "Energy can transform between kinetic and potential forms, but the sum remains constant in conservative systems",
+    "When non-conservative forces act, mechanical energy decreases by the amount of work done against them"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A ball rolling down a frictionless curved track — KE bar and PE bar change continuously but their SUM bar stays perfectly flat. At the bottom: KE is maximum, PE is zero. At the top: PE is maximum, KE is zero.",
+    "visual_emphasis": "KE + PE = E_total line stays horizontal while KE and PE bars seesaw. Numerical values update in real time.",
+    "why_this_breaks_misconception": "Students see energy is NOT lost — it transforms. The total energy bar never changes height."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A ball at the top of a curved frictionless track. Height h marked. PE bar is full, KE bar is zero. Total energy E = mgh shown.",
+      "emphasis": "All energy is potential — ball is at rest at height h",
+      "labels_visible": ["h", "PE = mgh", "KE = 0", "E_total = mgh"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Ball released and rolls down the track. PE bar shrinks, KE bar grows. At midpoint: PE = KE = E_total/2. Speed increases as height decreases.",
+      "emphasis": "PE converts to KE as ball descends — energy is transforming, not being created",
+      "labels_visible": ["PE decreasing", "KE increasing", "KE + PE = constant"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Ball at the bottom: KE = mgh, PE = 0. Ball rises on other side back to same height. KE + PE bar stays flat throughout. Numerical proof: E_total at top = E_total at bottom.",
+      "emphasis": "Total energy bar is CONSTANT — energy transforms but is never lost in the absence of friction",
+      "labels_visible": ["KE + PE = E_total", "v_bottom = √(2gh)", "h_final = h_initial"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: add friction (non-conservative force) and see total energy decrease. Toggle spring at bottom to see elastic PE. Adjust initial height and mass.",
+      "emphasis": "With friction ON, the total energy bar shrinks each cycle. Without friction, ball returns to exact same height.",
+      "labels_visible": ["KE", "PE", "E_total", "E_lost (friction)"],
+      "interactive": true,
+      "sliders": [
+        { "id": "initial_height", "label": "Initial Height", "min": 1, "max": 10, "default": 5, "unit": "m" },
+        { "id": "mass", "label": "Mass", "min": 0.5, "max": 5, "default": 1, "unit": "kg" },
+        { "id": "friction", "label": "Friction Coefficient", "min": 0, "max": 0.5, "default": 0, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Energy is used up or consumed when an object moves",
+      "trigger_phrases": ["energy khatam ho gayi", "energy consumed", "energy used up", "energy lost ho gayi permanently"],
+      "correction": "Energy is NEVER destroyed (first law of thermodynamics). In a conservative system, KE + PE stays constant. Even with friction, energy converts to heat — total energy of the universe is conserved.",
+      "simulation_emphasis": "Show KE + PE bar staying flat on frictionless track. With friction, show heat bar growing while mechanical energy bar shrinks — total stays constant."
+    },
+    {
+      "belief": "A ball thrown up loses energy as it rises",
+      "trigger_phrases": ["upar jaake energy kam", "ball loses energy going up", "gravity takes away energy", "KE khatam toh energy khatam"],
+      "correction": "The ball's KE decreases but PE increases by exactly the same amount. Total mechanical energy is unchanged. At the top, all KE has converted to PE, not disappeared.",
+      "simulation_emphasis": "Show ball going up with KE bar shrinking and PE bar growing by equal amount — total flat"
+    }
+  ],
+  "legend": [
+    { "symbol": "Blue bar", "meaning": "Kinetic energy KE = ½mv²" },
+    { "symbol": "Orange bar", "meaning": "Potential energy PE = mgh" },
+    { "symbol": "Green line", "meaning": "Total mechanical energy E = KE + PE" },
+    { "symbol": "Red bar", "meaning": "Energy dissipated by friction (when friction is on)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["work_energy_theorem", "gravitational_potential_energy"],
+    "extensions": ["potential_energy_curves", "elastic_inelastic_collisions", "power_efficiency"],
+    "siblings": ["linear_momentum_conservation"],
+    "common_exam_combinations": ["roller_coaster_problems", "spring_launched_projectile", "vertical_circular_motion", "incline_with_friction"]
+  }
+}

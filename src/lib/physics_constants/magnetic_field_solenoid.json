@@ -1,0 +1,107 @@
+{
+  "concept_id": "magnetic_field_solenoid",
+  "concept_name": "Magnetic Field of a Solenoid",
+  "chapter": "Moving Charges and Magnetism",
+  "class_level": 12,
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "solenoid_field",
+    "panel_count": 1,
+    "show_graph": false
+  },
+  "variables": {
+    "n": { "symbol": "n", "name": "Turns per unit length", "unit": "turns/m", "min": 100, "max": 10000, "default": 1000 },
+    "I": { "symbol": "I", "name": "Current", "unit": "A", "min": 0.1, "max": 10, "default": 2 },
+    "B": { "symbol": "B", "name": "Magnetic field inside", "unit": "T", "formula": "μ₀nI" }
+  },
+  "locked_facts": [
+    "Magnetic field inside solenoid: B = μ₀nI (uniform, parallel to axis)",
+    "Field outside solenoid is approximately zero",
+    "n = number of turns per unit length",
+    "Field direction given by right-hand rule",
+    "Solenoid acts like a bar magnet externally"
+  ],
+  "truth_statements": [
+    "Inside a long solenoid, the magnetic field is uniform and directed along the axis",
+    "The field outside a solenoid is approximately zero for an ideal (infinitely long) solenoid",
+    "The magnitude of the field inside depends only on the current and the number of turns per unit length, not on the position inside",
+    "The direction of the field is determined by the right-hand rule: curl fingers in the direction of current, thumb points to the N-pole direction",
+    "A solenoid produces a field pattern identical to a bar magnet when viewed from outside"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Rotate the 3D view to show both the dense, parallel field lines inside the solenoid and the very sparse, looping field lines outside. The contrast is dramatic: inside is uniform, outside looks like a bar magnet.",
+    "visual_emphasis": "Split attention between inside (uniform, dense, parallel) and outside (sparse, looping from N to S pole). The solenoid IS a bar magnet.",
+    "why_this_breaks_misconception": "Students see why the solenoid is called an electromagnet — the external field pattern matches a bar magnet exactly"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Solenoid coil with current",
+      "description": "Helical coil visible with current direction shown. No field lines yet. Labels show current direction and coil parameters.",
+      "emphasis": "This is a solenoid: a tightly wound helical coil carrying current I",
+      "labels_visible": ["I", "n turns/m"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Internal field lines — dense and uniform",
+      "description": "Field lines appear inside the solenoid: parallel to axis, equally spaced, all pointing the same direction. B = μ₀nI.",
+      "emphasis": "Inside: the field is UNIFORM and parallel to the axis. Every field line is straight and equally spaced.",
+      "labels_visible": ["B = μ₀nI", "uniform"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "External field lines — like a bar magnet",
+      "description": "Camera pulls back. External field lines visible: they loop from the N-end back to the S-end, just like a bar magnet. Inside is dense, outside is sparse.",
+      "emphasis": "Outside, the field lines loop from N to S — exactly like a bar magnet! The field is nearly zero far from the solenoid.",
+      "labels_visible": ["N", "S", "B_inside", "B_outside ≈ 0"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — full 3D rotation",
+      "description": "Interactive mode. All elements visible. Student rotates to see the full field pattern from any angle.",
+      "emphasis": "Rotate: uniform inside, bar-magnet pattern outside. Right-hand rule: curl fingers with current → thumb = N pole.",
+      "labels_visible": ["B", "N", "S", "I"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "solenoid_field_not_uniform",
+      "trigger_keywords": ["solenoid mein field vary karta hai", "field stronger at center", "solenoid field not same everywhere", "field changes inside"],
+      "student_belief": "The magnetic field inside a solenoid varies from point to point",
+      "actual_physics": "For an ideal (long) solenoid, the magnetic field inside is perfectly uniform: B = μ₀nI at every point inside. It does not depend on position. Only near the ends does the field start to decrease.",
+      "simulation_emphasis": "Show parallel, equally spaced field lines inside — the field is the same everywhere along the axis."
+    },
+    {
+      "id": "solenoid_not_magnet",
+      "trigger_keywords": ["solenoid magnet nahi hai", "solenoid is different from magnet", "electromagnet alag hai"],
+      "student_belief": "A solenoid with current is fundamentally different from a permanent magnet",
+      "actual_physics": "A current-carrying solenoid produces an external magnetic field identical to a bar magnet. It has a north and south pole, and the field lines loop from N to S externally. This is why it is called an electromagnet.",
+      "simulation_emphasis": "Show the external field lines — they form the same pattern as a bar magnet."
+    }
+  ],
+  "legend": [
+    { "symbol": "I", "meaning": "Current through solenoid" },
+    { "symbol": "B", "meaning": "Magnetic field = μ₀nI (inside)" },
+    { "symbol": "N", "meaning": "North pole (field emerges)" },
+    { "symbol": "S", "meaning": "South pole (field enters)" },
+    { "symbol": "n", "meaning": "Number of turns per unit length" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["magnetic_field_wire", "amperes_circuital_law"],
+    "extensions": ["electromagnetic_induction_3d", "transformer"],
+    "siblings": ["bar_magnet_field", "magnetic_field_wire"],
+    "common_exam_combinations": ["electromagnetic_induction_3d", "amperes_law"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["B inside solenoid with given n and I", "force on charge inside solenoid", "solenoid as electromagnet — polarity determination", "field at ends of finite solenoid"],
+    "common_traps": ["using total turns N instead of n = N/L", "wrong right-hand rule application", "assuming field at end = field at center (it is half)"],
+    "numerical_ranges": {
+      "n": "500–5000 turns/m",
+      "I": "0.5–10 A",
+      "μ₀": "4π × 10⁻⁷ T·m/A"
+    }
+  }
+}

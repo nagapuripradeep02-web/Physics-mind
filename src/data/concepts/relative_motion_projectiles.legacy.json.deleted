@@ -1,0 +1,453 @@
+{
+  "concept_id": "relative_motion_projectiles",
+  "concept_name": "Relative Motion Between Two Projectiles",
+  "chapter": "Ch.7",
+  "section": "7.6",
+  "source_book": "DC Pandey Mechanics Vol 1",
+  "class_level": "11",
+  "locked_facts": {
+    "fact_1": "Relative acceleration between two projectiles: a₁₂ = a₁ - a₂ = g - g = 0. Relative acceleration is ZERO.",
+    "fact_2": "Since relative acceleration is zero, relative motion between two projectiles is UNIFORM — constant relative velocity.",
+    "fact_3": "One projectile sees the other moving in a STRAIGHT LINE — not a parabola.",
+    "fact_4": "Relative velocity: u₁₂ = u₁ - u₂. Its x-component: u₁cosθ₁ - u₂cosθ₂. y-component: u₁sinθ₁ - u₂sinθ₂.",
+    "fact_5": "Condition for collision in mid-air: relative velocity u₁₂ must be directed exactly along the line joining the two particles at the moment of launch.",
+    "fact_6": "If u₁cosθ₁ = u₂cosθ₂ (equal horizontal components), relative motion is purely vertical — one sees other moving straight up or down.",
+    "fact_7": "If u₁sinθ₁ = u₂sinθ₂ (equal vertical components), relative motion is purely horizontal — one sees other moving straight left or right.",
+    "fact_8": "Time of collision: t = (initial separation along u₁₂ direction) / |u₁₂|",
+    "fact_9": "This concept directly uses the relative motion framework from Ch.6 — same principles applied to 2D projectile situation."
+  },
+  "epic_l_path": {
+    "description": "Full explanation of relative motion between projectiles — from zero relative acceleration to straight-line observation",
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "Two Projectiles — Both Under Gravity",
+        "physics_layer": {
+          "scenario": "two_projectiles_launched",
+          "show": "two balls launched simultaneously from two points, different angles θ₁=60° and θ₂=30°, different speeds u₁ and u₂. Both follow parabolic arcs. Gravity arrow on each.",
+          "values": {
+            "u1": 60,
+            "theta1_deg": 30,
+            "u2": 50,
+            "theta2_deg": 53,
+            "separation": 100
+          },
+          "freeze_at_t": 0
+        },
+        "pedagogy_layer": {
+          "focus": "Both are projectiles — both pulled by the same g downward, same value, same direction",
+          "real_world": "Two cricket balls bowled from different ends — both curve under the same gravity",
+          "attention_target": "Both gravity arrows are identical — g is the same for both"
+        },
+        "freeze": false
+      },
+      "STATE_2": {
+        "label": "Relative Acceleration = Zero",
+        "physics_layer": {
+          "scenario": "relative_acceleration_zero",
+          "show": "a₁ = g downward, a₂ = g downward. a₁₂ = a₁ - a₂ = g - g = 0. Big zero displayed. Relative acceleration = zero highlighted.",
+          "values": {},
+          "freeze_at_t": 0
+        },
+        "pedagogy_layer": {
+          "focus": "When you subtract equal vectors, you get zero. The relative world has no acceleration.",
+          "contrast_from_previous": "Lab frame: parabolas everywhere. Relative frame: straight lines because a=0",
+          "attention_target": "This is the key insight: same g cancels out completely"
+        },
+        "freeze": true
+      },
+      "STATE_3": {
+        "label": "What Projectile 2 Sees: A Straight Line",
+        "physics_layer": {
+          "scenario": "relative_frame_straight_line",
+          "show": "split view. LEFT: lab frame — both balls trace parabolas. RIGHT: frame of particle 2 — particle 1 appears to move in a straight line at constant velocity u₁₂.",
+          "values": {
+            "u1": 60,
+            "theta1_deg": 30,
+            "u2": 50,
+            "theta2_deg": 53
+          },
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "No acceleration → uniform motion → straight line. As simple as Ch.6 relative velocity.",
+          "aha_moment": "Sitting in projectile 2 and watching projectile 1: it goes in a perfectly straight line. No curve. No parabola.",
+          "contrast_from_previous": "Lab sees parabolas. Relative frame sees only a straight line."
+        },
+        "freeze": false
+      },
+      "STATE_4": {
+        "label": "Collision Condition",
+        "physics_layer": {
+          "scenario": "collision_condition",
+          "show": "two particles at initial positions A and B. Relative velocity vector u₁₂ drawn. Collision only if u₁₂ points exactly toward the other particle (along line AB). Two cases: YES (u₁₂ along AB → collision) and NO (u₁₂ not along AB → miss)",
+          "values": {
+            "separation": 100
+          },
+          "freeze_at_t": 0
+        },
+        "pedagogy_layer": {
+          "focus": "Relative motion is uniform + straight. They collide only if that straight line passes through the other particle.",
+          "attention_target": "Condition: angle of u₁₂ must equal angle of line AB. One equation, cleanly solvable."
+        },
+        "freeze": true
+      },
+      "STATE_5": {
+        "label": "Special Cases — Horizontal or Vertical Relative Motion",
+        "physics_layer": {
+          "scenario": "relative_motion_special_cases",
+          "show": "CASE A: u₁cosθ₁ = u₂cosθ₂. Relative velocity is vertical — one sees other going straight up/down. CASE B: u₁sinθ₁ = u₂sinθ₂. Relative velocity is horizontal.",
+          "values": {},
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "Equal horizontal components → pure vertical relative motion. Equal vertical → pure horizontal.",
+          "contrast_from_previous": "These are elegantly simple special cases of the general straight-line result"
+        },
+        "freeze": false
+      },
+      "STATE_6": {
+        "label": "Aha — This Is Just Ch.6 Relative Motion in 2D",
+        "physics_layer": {
+          "scenario": "concept_connection",
+          "show": "side by side: Ch.6 rain-umbrella relative motion (1D) vs this (2D). Same principle: subtract velocities, find direction of relative motion. The parabolas in lab frame are irrelevant to the relative calculation.",
+          "values": {},
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "The architecture is identical to river-boat and rain-umbrella — just in 2D",
+          "aha_moment": "You never needed to track the parabolas. Just subtract initial velocities and find the straight-line relative path. Everything else follows.",
+          "contrast_from_previous": "Students think projectile motion makes relative velocity harder — it actually makes it simpler because a₁₂ = 0."
+        },
+        "freeze": true
+      }
+    }
+  },
+  "epic_c_branches": {
+    "relative_path_is_parabola": {
+      "branch_id": "relative_path_is_parabola",
+      "trigger_beliefs": [
+        "one projectile sees parabola",
+        "relative path is curved",
+        "dono ka relative motion parabolic",
+        "relative trajectory curved",
+        "one sees other as parabola"
+      ],
+      "student_belief": "From the frame of one projectile, the other appears to move in a parabolic path because projectiles follow parabolas",
+      "actual_physics": "Relative acceleration a₁₂ = g - g = 0. Zero acceleration means uniform motion means STRAIGHT LINE. The parabola is a lab-frame observation — it vanishes in the relative frame.",
+      "aha_moment": "The relative frame has no gravity — both have it, so it cancels. In a gravity-free world, everything goes straight.",
+      "states": {
+        "STATE_1": {
+          "label": "Your Belief — Relative Path is Curved",
+          "physics_layer": {
+            "scenario": "relative_wrong_parabola",
+            "show": "frame of particle 2: particle 1 drawn as following a parabolic arc — student's wrong mental model animated",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Show student's intuition: if both follow parabolas, surely the relative path is also curved"
+          }
+        },
+        "STATE_2": {
+          "label": "Cancel the Accelerations",
+          "physics_layer": {
+            "scenario": "acceleration_cancellation",
+            "show": "a₁ = 10 m/s² downward, a₂ = 10 m/s² downward. Subtraction shown: a₁₂ = 0. Large ZERO on screen. Relative world: no acceleration.",
+            "freeze": true
+          },
+          "pedagogy_layer": {
+            "focus": "When you subtract two equal vectors, you get zero. Gravity cancels out of the relative problem entirely."
+          }
+        },
+        "STATE_3": {
+          "label": "Zero Acceleration → Straight Line",
+          "physics_layer": {
+            "scenario": "relative_straight_line_animation",
+            "show": "same two projectiles. Lab frame (left): both curve. Relative frame (right): particle 1 moves in a perfect straight line from particle 2's perspective.",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "No acceleration = Newton's first law = straight line motion. This is not special to projectiles — it's always true when a₁₂=0.",
+            "aha_moment": "From particle 2's seat, particle 1 has zero net acceleration. So it must go straight — always."
+          }
+        }
+      }
+    },
+    "collision_impossible_different_launch": {
+      "branch_id": "collision_impossible_different_launch",
+      "trigger_beliefs": [
+        "cannot collide different angles",
+        "dono ka angle alag hai toh collision nahi",
+        "must be launched at each other to collide",
+        "parallel projectiles never meet"
+      ],
+      "student_belief": "Two projectiles launched at different angles from different points cannot collide in mid-air",
+      "actual_physics": "Collision is possible if relative velocity u₁₂ is directed exactly along the initial line joining the particles. Angles and speeds can vary — what matters is the direction of u₁₂.",
+      "aha_moment": "Collision condition has nothing to do with individual trajectories — only the relative velocity vector must point from one particle toward the other.",
+      "states": {
+        "STATE_1": {
+          "label": "Your Belief — Different Angles Can't Meet",
+          "physics_layer": {
+            "scenario": "projectile_wrong_no_collision",
+            "show": "two projectiles at clearly different angles, student assumes they miss. Both labeled with different θ values.",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Student intuition: different trajectories → different destinations → no collision"
+          }
+        },
+        "STATE_2": {
+          "label": "The Relative Velocity Direction Test",
+          "physics_layer": {
+            "scenario": "collision_relative_velocity_test",
+            "show": "two launch points A and B. u₁ and u₂ drawn. u₁₂ = u₁ - u₂ computed and drawn as vector. Check: does u₁₂ point along AB? YES → collision shown. NO → miss shown.",
+            "freeze": true
+          },
+          "pedagogy_layer": {
+            "focus": "Forget the trajectories. Just check: does the relative velocity aim one at the other?"
+          }
+        },
+        "STATE_3": {
+          "label": "Example — They Do Collide",
+          "physics_layer": {
+            "scenario": "collision_example",
+            "show": "DC Pandey Example 7.10 setup. u₁=60m/s at 30°, u₂=50m/s opposite. Separation=100m. u₁₂ computed, shown pointing along AB. Both arcs traced — they meet at t=1s at the collision point P.",
+            "values": {
+              "u1": 60,
+              "theta1_deg": 30,
+              "u2": 50,
+              "separation": 100,
+              "t_collision": 1
+            },
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Completely different arcs. Completely different directions. But u₁₂ was along AB — they collide anyway.",
+            "aha_moment": "The individual trajectories are irrelevant to the collision condition. Only u₁₂ matters."
+          }
+        }
+      }
+    }
+  },
+  "epic_c_micro_templates": {
+    "micro_1": {
+      "trigger": [
+        "relative velocity two projectiles",
+        "u12 formula",
+        "relative speed projectiles"
+      ],
+      "response_type": "static_with_formula",
+      "formula": "u₁₂ₓ = u₁cosθ₁ - u₂cosθ₂,  u₁₂ᵧ = u₁sinθ₁ - u₂sinθ₂",
+      "key_point": "Constant throughout flight. Magnitude |u₁₂| = √(u₁₂ₓ² + u₁₂ᵧ²). Direction: tan⁻¹(u₁₂ᵧ/u₁₂ₓ).",
+      "simulation_states": 1
+    },
+    "micro_2": {
+      "trigger": [
+        "collision condition projectiles",
+        "when do projectiles collide",
+        "collision mid air"
+      ],
+      "response_type": "static",
+      "key_point": "Collision if relative velocity u₁₂ is directed along the initial line AB joining the two particles. Check: angle of u₁₂ = angle of line AB.",
+      "simulation_states": 2
+    },
+    "micro_3": {
+      "trigger": [
+        "relative acceleration projectiles",
+        "a12 zero",
+        "zero relative acceleration"
+      ],
+      "response_type": "static_with_formula",
+      "formula": "a₁₂ = a₁ - a₂ = g - g = 0",
+      "key_point": "Zero relative acceleration → uniform relative motion → straight-line path as seen by either particle.",
+      "simulation_states": 1
+    }
+  },
+  "static_responses": {
+    "why_straight_line": "Both particles have exactly the same acceleration (g downward). In the relative frame, net acceleration = 0. Newton's first law: zero acceleration means straight line at constant velocity.",
+    "collision_time": "Once collision is confirmed possible, time = (distance between particles along u₁₂ direction) / |u₁₂|.",
+    "comparison_to_ch6": "This is Ch.6 relative motion in 2D. River-boat: relative velocity of boat w.r.t. river. Here: relative velocity of projectile 1 w.r.t. projectile 2. Same framework."
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Example 7.10, Section 7.6",
+      "principle": "A at 60m/s at 30°, B at 50m/s opposite direction, separation 100m. Find collision angle, time, and position.",
+      "aha": "Relative velocity direction must equal slope of AB line. Solving gives θ_B=53°, t=1s, collision 30m from A.",
+      "simulation_states": 4
+    }
+  },
+  "parameter_slots": {
+    "slot_1": {
+      "name": "speed_particle_1",
+      "symbol": "u₁",
+      "unit": "m/s",
+      "default": 60,
+      "range": [
+        10,
+        100
+      ]
+    },
+    "slot_2": {
+      "name": "angle_particle_1",
+      "symbol": "θ₁",
+      "unit": "degrees",
+      "default": 30,
+      "range": [
+        0,
+        90
+      ]
+    },
+    "slot_3": {
+      "name": "speed_particle_2",
+      "symbol": "u₂",
+      "unit": "m/s",
+      "default": 50,
+      "range": [
+        10,
+        100
+      ]
+    },
+    "slot_4": {
+      "name": "angle_particle_2",
+      "symbol": "θ₂",
+      "unit": "degrees",
+      "default": 53,
+      "range": [
+        0,
+        90
+      ]
+    },
+    "slot_5": {
+      "name": "initial_separation",
+      "symbol": "d",
+      "unit": "m",
+      "default": 100,
+      "range": [
+        20,
+        500
+      ]
+    }
+  },
+  "panel_sync_spec": {
+    "panel_a": "canvas2d — mechanics_2d renderer showing both projectile arcs in lab frame",
+    "panel_b": "plotly — relative motion frame: shows straight-line path of particle 1 as seen by particle 2. X-axis: relative horizontal displacement. Y-axis: relative vertical displacement.",
+    "sync_event": "As animation progresses in Panel A (lab frame parabolas), Panel B plots the straight relative path in real time",
+    "bidirectional": false,
+    "sync_trigger": "time_step"
+  },
+  "renderer_hint": {
+    "primary_renderer": "mechanics_2d",
+    "panel_count": 2,
+    "technology_a": "canvas2d",
+    "technology_b": "plotly",
+    "sync_required": true,
+    "scene_mode": false,
+    "scenario_type": "two_projectiles",
+    "panel_a_role": "Lab frame: both projectile arcs animated simultaneously with velocity vectors",
+    "panel_b_role": "Plotly: relative frame view — straight-line path of particle 1 as seen by particle 2 drawn in real time",
+    "scene_elements": []
+  },
+  "routing_signals": {
+    "primary_keywords": [
+      "relative motion projectiles",
+      "two projectiles collide",
+      "relative path projectile",
+      "do projectiles meet"
+    ],
+    "hinglish_triggers": [
+      "do projectile kab milenge",
+      "ek doosre ko kya dikhega",
+      "relative velocity projectile",
+      "collision hoga ya nahi"
+    ],
+    "formula_triggers": [
+      "u12 = u1 - u2",
+      "a12 = 0",
+      "relative acceleration zero"
+    ],
+    "belief_check_triggers": [
+      "is relative path parabolic",
+      "can they collide at different angles",
+      "does relative acceleration equal g"
+    ]
+  },
+  "jee_specific": {
+    "trap_1": "Relative acceleration = 0, NOT g. Students write a₁₂ = g (forgetting the subtraction). Biggest mistake in this section.",
+    "trap_2": "For collision: direction of relative velocity must equal direction of initial separation vector. Many students check speed ratio instead.",
+    "trap_3": "Even if launched in opposite directions, collision is possible — direction of u₁₂ is the only thing that matters.",
+    "trap_4": "Time of collision: t = d/|u₁₂|, where d is separation along u₁₂ direction — NOT total separation. Students use total separation d directly.",
+    "trap_5": "In JEE questions, 'find angle of projection of B for collision' → set up u₁₂ direction = AB direction. One equation in one unknown (θ₂)."
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "projectile_motion",
+      "relative_motion",
+      "river_boat_problems"
+    ],
+    "leads_to": [
+      "circular_motion",
+      "laws_of_motion"
+    ],
+    "common_confusion_with": [
+      "relative_motion — same framework, different context (2D with g)"
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "scenario_type": "two_projectiles",
+      "approach": "collision_first",
+      "entry_state": "STATE_4",
+      "teacher_angle": "Start with DC Pandey Example 7.10 directly — two specific projectiles, find if they collide. Work backward: why does relative velocity direction determine collision? Concrete before abstract.",
+      "locked_facts_focus": [
+        "fact_5",
+        "fact_8",
+        "fact_1"
+      ],
+      "panel_b_focus": "Show the specific collision example immediately. Relative straight-line path plotted live."
+    },
+    {
+      "variant_id": 2,
+      "scenario_type": "two_projectiles",
+      "approach": "ch6_connection",
+      "entry_state": "STATE_6",
+      "teacher_angle": "Start from Ch.6 rain-umbrella — relative velocity in 1D. Extend to 2D. Both have gravity: a₁₂=0 is the same as river-boat having zero acceleration. The visual is the same — just 2D now.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "panel_b_focus": "Split: rain-umbrella straight line (Ch.6) vs projectile relative straight line (Ch.7). Same geometry, different context."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Time", "symbol": "t", "unit": "s", "min": 0, "max": 5 },
+    "y_axis": { "label": "Relative vertical position", "symbol": "Δy", "unit": "m", "min": -30, "max": 30 },
+    "lines": [
+      { "id": "delta_y", "formula": "(15 - 10) * x - 0.5 * 9.8 * x * x + 0.5 * 9.8 * x * x", "color": "#60a5fa", "label": "Δy = (uy1 - uy2)·t — gravity cancels" },
+      { "id": "delta_y_linear", "slope": 5, "intercept": 0, "color": "#60a5fa", "label": "Δy = (uy1 - uy2)·t — straight line" },
+      { "id": "zero_ref", "slope": 0, "intercept": 0, "color": "#ef4444", "dash": "dash", "label": "Δy = 0 — collision line" }
+    ],
+    "sliders": [],
+    "legend": [
+      { "id": "delta_y", "label": "Δy relative" },
+      { "id": "delta_y_linear", "label": "Δy linear" },
+      { "id": "zero_ref", "label": "Δy = 0 — collision line" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": ["zero_ref"], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["zero_ref", "delta_y_linear"], "show_sliders": false, "highlight_point": false },
+      "STATE_5": { "active_lines": ["zero_ref", "delta_y_linear"], "show_sliders": false, "highlight_point": true, "point_x": 0, "point_y": 0, "label": "Key insight: gravity cancels in relative frame — motion is LINEAR" },
+      "STATE_6": { "active_lines": ["zero_ref", "delta_y_linear"], "show_sliders": false, "highlight_point": false }
+    }
+  }
+}

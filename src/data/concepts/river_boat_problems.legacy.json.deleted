@@ -1,0 +1,695 @@
+{
+  "concept_id": "river_boat_problems",
+  "concept_name": "River-Boat Problems — Crossing with Drift, Minimum Time, Zero Drift",
+  "class_level": 11,
+  "chapter": "Kinematics",
+  "section": "6.10",
+  "source_coverage": {
+    "dc_pandey": "Chapter 6, Section 6.10 — River-Boat Problems (Examples 6.31, 6.32; Exercise Problems 5, 6)",
+    "ncert": "Chapter 4 — Motion in a Plane, Section 4.6",
+    "hc_verma": "Chapter 3 — Rest and Motion: Kinematics, Section 3.7"
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "technology_b": "plotly",
+    "renderer": "mechanics_2d",
+    "scenario_type": "river_boat",
+    "panel_count": 2,
+    "sync_required": true,
+    "scene_mode": true,
+    "show_labels": true,
+    "scene_elements": [
+      "river",
+      "boat",
+      "current_arrows",
+      "drift_path",
+      "target_point",
+      "velocity_vectors"
+    ],
+    "panel_a_role": "Realistic river scene — boat crosses from bank A to bank B, current pushes it downstream, drift shown as horizontal offset on arrival",
+    "panel_b_role": "Plotly vector diagram — v_br, v_r, and resultant v_b drawn from origin; angle θ interactive slider updates both panels"
+  },
+  "locked_facts": {
+    "three_velocities": "Three velocities always present: v_r = river velocity (ground frame), v_br = boat velocity relative to river (boatman steers this), v_b = actual boat velocity relative to ground. Relation: v_b = v_br + v_r (vector addition).",
+    "boatman_controls_v_br": "Boatman controls ONLY v_br — the direction and magnitude he rows. He cannot control v_r. The actual path (v_b) is the vector sum of what he rows plus what the river does.",
+    "crossing_time_formula": "Time to cross river of width d: t = d / v_by = d / (v_br × sinα), where α is the angle v_br makes with the river bank (not with perpendicular).",
+    "drift_formula": "Drift = displacement along river = v_bx × t = (v_r − v_br cosα) × t. Downstream positive.",
+    "result_1_min_time": "MINIMUM TIME: Steer perpendicular to river (α = 90°, θ = 0° from perpendicular). t_min = d / v_br. Drift = v_r × d / v_br. This is always achievable regardless of v_r vs v_br.",
+    "result_2_zero_drift": "ZERO DRIFT (reach exactly opposite): Only possible if v_br > v_r. Angle upstream from perpendicular: sinθ = v_r / v_br. Time = d / √(v_br² − v_r²). If v_br ≤ v_r: IMPOSSIBLE.",
+    "result_3_impossible": "If v_r ≥ v_br, boatman cannot reach exactly opposite bank. Best he can do is minimise drift. Minimum drift angle: sinθ = v_br / v_r (different from zero-drift condition).",
+    "angle_convention": "DC Pandey convention: α = angle between v_br and river bank. θ = angle between v_br and perpendicular to bank. α + θ = 90°. Be careful which angle a problem specifies.",
+    "velocity_triangle": "v_b = v_br + v_r. Draw v_br first (direction boatman rows), then add v_r (river current). The resultant is the actual path v_b.",
+    "dc_pandey_ex631": "Example 6.31: d=30m, v_r=2m/s, v_br=5m/s at 37° from river bank. v_by=5sin37°=3m/s. t=30/3=10s. v_bx=v_r+v_br cos37°=2+4=6m/s (downstream if cos37° in current direction). Drift=6×10=60m.",
+    "dc_pandey_ex632": "Example 6.32: d=30m, v_r=4m/s, v_br=5m/s. (a) Min time: θ=90°, t=30/5=6s, drift=4×6=24m. (b) Zero drift: sinθ=4/5, θ=53° upstream from perp, t=30/√(25−16)=30/3=10s. (c) v_r<v_br so zero drift IS possible."
+  },
+  "minimum_viable_understanding": "v_b = v_br + v_r. Boatman steers v_br, river adds v_r, actual path is v_b. For minimum time: row perpendicular (t = d/v_br). For zero drift: row upstream at sinθ = v_r/v_br (only if v_br > v_r).",
+  "variables": {
+    "v_r": "River velocity — always horizontal, downstream (m/s)",
+    "v_br": "Boat velocity relative to river — magnitude boatman rows at (m/s)",
+    "v_b": "Actual boat velocity relative to ground = v_br + v_r (m/s)",
+    "d": "Width of river — perpendicular distance between banks (m)",
+    "alpha": "Angle between v_br and river bank (DC Pandey convention)",
+    "theta": "Angle between v_br and perpendicular to bank (upstream angle)",
+    "drift": "Displacement along river when boat reaches other bank (m)",
+    "t": "Time to cross river (s)"
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "river boat problem",
+      "boat crossing river",
+      "swimmer crossing river",
+      "river boat minimum time",
+      "drift in river boat",
+      "nadi paar karna"
+    ],
+    "local_triggers": [
+      "minimum time to cross river",
+      "zero drift river boat",
+      "boat reach opposite bank",
+      "drift formula river",
+      "angle upstream boat",
+      "v_br greater than v_r condition",
+      "river velocity more than boat speed"
+    ],
+    "micro_triggers": [
+      "what is drift",
+      "v_b equals v_br plus v_r",
+      "time formula river crossing",
+      "minimum drift angle"
+    ],
+    "simulation_not_needed_triggers": [
+      "state the three standard results river boat",
+      "write formula for drift"
+    ],
+    "subconcept_triggers": {
+      "minimum_time": [
+        "shortest time to cross",
+        "minimum time crossing river",
+        "row perpendicular to river",
+        "t equals d by v_br"
+      ],
+      "zero_drift": [
+        "reach exactly opposite bank",
+        "zero drift condition",
+        "no drift river boat",
+        "straight across river"
+      ],
+      "impossible_case": [
+        "v_r greater than v_br",
+        "cannot reach opposite bank",
+        "river faster than boat",
+        "minimum drift when current strong"
+      ],
+      "drift_calculation": [
+        "how much drift",
+        "how far downstream does boat land",
+        "calculate drift"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "understands_three_velocities": "enter at STATE_2",
+    "understands_min_time": "enter at STATE_3",
+    "understands_zero_drift": "enter at STATE_4",
+    "understands_impossible_case": "enter at STATE_5"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "relative_motion",
+      "vector_addition"
+    ],
+    "gate_question": "A boat rows at 5 m/s relative to water. River flows at 3 m/s. What is the magnitude of boat's actual velocity if it rows perpendicular to current? (Answer: √(25+9) = √34 m/s. If student cannot do this, cover relative_motion and vector_addition first.)",
+    "if_gap_detected": "redirect to relative_motion.json — river-boat is a direct application of v_b = v_br + v_r"
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "board_mode_states": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "jee_mode_states": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Hook — Why Doesn't the Boat Go Straight Across?",
+        "physics_layer": {
+          "concept": "A boat aimed directly at the opposite bank does NOT travel in a straight line across — the river pushes it downstream",
+          "simulation_focus": "Scene: boat aimed perpendicular at opposite bank. River current flowing right. Boat travels diagonally — lands downstream of target. Student's intuition says it should go straight. Reality: drift = v_r × crossing_time.",
+          "what_to_show": "Velocity vectors on Panel B: v_br pointing straight across (up), v_r pointing right, v_b = diagonal resultant. Drift clearly visible on Panel A as horizontal offset.",
+          "key_observation": "The boat steers perpendicular but the river adds a sideways push. These are independent — the boatman can't cancel v_r, only manage it.",
+          "scenario": "river_setup_scene"
+        },
+        "pedagogy_layer": {
+          "opening_question": "You aim a boat directly at the opposite bank. Does it land exactly opposite? Why or why not?",
+          "teacher_script": "The river doesn't care where you aim. It pushes everything downstream at v_r. Your rowing adds v_br. The actual path is their vector sum.",
+          "real_world": "Same principle: aeroplane flying in crosswind, swimmer crossing current, bullet fired in wind."
+        }
+      },
+      "STATE_2": {
+        "label": "The Velocity Triangle — v_b = v_br + v_r",
+        "physics_layer": {
+          "concept": "Three velocities, one vector equation. Boatman controls v_br only.",
+          "simulation_focus": "Panel B interactive vector diagram: drag v_br arrow to any angle. v_r stays fixed (river). Resultant v_b updates live. Panel A shows boat path updating in real time as angle changes.",
+          "component_form": "v_bx = v_r + v_br cosα (along river). v_by = v_br sinα (across river). α = angle from bank.",
+          "key_insight": "Crossing time depends ONLY on v_by = v_br sinα. Drift depends on v_bx × t. These two are separable — changing α trades off one against the other.",
+          "scenario": "velocity_triangle_river"
+        },
+        "pedagogy_layer": {
+          "analogy": "Think of the river as a conveyor belt. You walk across it (v_br), but the belt moves you sideways (v_r). Your actual path is both combined.",
+          "common_mistake": "Students add |v_br| + |v_r| as scalars for actual speed. Wrong — it's vector addition, not arithmetic."
+        }
+      },
+      "STATE_3": {
+        "label": "Result 1 — Minimum Time: Row Perpendicular",
+        "physics_layer": {
+          "concept": "To cross in minimum time: maximise v_by (component across river). Maximum v_by = v_br when α = 90° (boat aimed perpendicular to bank).",
+          "derivation": "t = d / (v_br sinα). Minimum when sinα = 1, i.e. α = 90°. t_min = d / v_br.",
+          "drift_in_this_case": "Drift = v_r × t_min = v_r × d / v_br. Cannot be zero unless v_r = 0.",
+          "simulation_focus": "Panel A: boat rows straight up (perpendicular). Current pushes it right. Lands downstream by drift = v_r × d/v_br. Panel B: v_br vertical, v_r horizontal, v_b diagonal.",
+          "dc_pandey_link": "Example 6.32(a): d=30m, v_r=4m/s, v_br=5m/s. t_min=30/5=6s. Drift=4×6=24m downstream.",
+          "scenario": "minimum_time_case"
+        },
+        "pedagogy_layer": {
+          "key_message": "Minimum time ALWAYS means row perpendicular. No exceptions. You will drift — that's the price of minimum time.",
+          "jee_trap": "Students try to row slightly upstream to reduce drift. This actually INCREASES crossing time. The trade-off is unavoidable."
+        }
+      },
+      "STATE_4": {
+        "label": "Result 2 — Zero Drift: Row Upstream at sinθ = v_r/v_br",
+        "physics_layer": {
+          "concept": "To reach exactly opposite bank: make v_bx = 0, i.e. net horizontal velocity = 0.",
+          "condition": "v_r = v_br sinθ (upstream component of rowing cancels river current). Therefore sinθ = v_r/v_br. Only possible if v_r < v_br (sinθ ≤ 1).",
+          "time_formula": "v_by = v_br cosθ = √(v_br² − v_r²). t = d / √(v_br² − v_r²).",
+          "simulation_focus": "Panel A: boat angled upstream. River current pushes right. Upstream component of v_br cancels v_r exactly. Boat tracks straight across — zero drift, lands exactly opposite. Panel B: v_br angled upstream, v_r rightward, v_b = straight up.",
+          "dc_pandey_link": "Example 6.32(b): v_r=4, v_br=5. sinθ=4/5=0.8, θ=53° upstream from perpendicular. v_by=√(25−16)=3m/s. t=30/3=10s. Zero drift — lands exactly at B.",
+          "scenario": "minimum_drift_case"
+        },
+        "pedagogy_layer": {
+          "key_message": "Zero drift requires v_br > v_r. If river is too strong, you cannot fight it — you will always drift downstream no matter how you steer.",
+          "contrast": "Compare: min time = 6s with 24m drift. Zero drift = 10s with 0m drift. Shorter time costs more drift. Longer time can eliminate drift. Trade-off is explicit."
+        }
+      },
+      "STATE_5": {
+        "label": "Result 3 — When v_r > v_br: Minimum Drift (Not Zero)",
+        "physics_layer": {
+          "concept": "If v_r ≥ v_br, zero drift is impossible. Boatman can only minimise drift.",
+          "why_impossible": "sinθ = v_r/v_br > 1 — no real angle satisfies this. River is too strong to cancel.",
+          "minimum_drift_condition": "Minimise drift x = v_bx × t. Using calculus or geometry: minimum drift when sinα = v_br/v_r (boat aimed partly downstream). This is a JEE Advanced result.",
+          "simulation_focus": "Panel A: river flows faster than boat rows. Even with maximum upstream angle, boat still drifts. Show minimum drift angle vs perpendicular — minimum drift angle actually involves rowing SLIGHTLY DOWNSTREAM, not fully upstream.",
+          "key_observation": "Minimum drift ≠ zero drift. Zero drift is a special case that requires boat to overpower the river.",
+          "scenario": "drift_calculation"
+        },
+        "pedagogy_layer": {
+          "jee_tip": "JEE often gives v_r > v_br and asks for minimum drift. Use sinα = v_br/v_r. Then drift_min = d × √(v_r² − v_br²) / v_br.",
+          "real_world": "This is like swimming across a very strong current — you aim slightly downstream (not upstream) to minimise total lateral drift."
+        }
+      },
+      "STATE_6": {
+        "label": "Student Interaction — DC Pandey Example 6.32 Live",
+        "physics_layer": {
+          "problem": "Width=30m, v_r=4m/s, v_br=5m/s. Solve all parts: (a) minimum time and drift, (b) angle for zero drift and time, (c) is zero drift possible?",
+          "solution_path": "(a) t=30/5=6s, drift=24m. (b) sinθ=4/5=0.8, θ=53°, t=30/3=10s, drift=0. (c) v_br=5>v_r=4 → YES, zero drift is possible.",
+          "interactive": "Student uses Panel B slider to set angle. Panel A shows live crossing. Student identifies minimum time angle (90°) and zero drift angle (53° upstream) by observing drift = 0 on Panel A.",
+          "scenario": "general_angle_case"
+        },
+        "pedagogy_layer": {
+          "teacher_script": "The slider IS the exam. When drift = 0, you found the zero-drift angle. When crossing time is minimum (shortest bar), you found minimum time. The physics is in the trade-off between them."
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "rows_perpendicular_for_zero_drift",
+      "misconception": "Student thinks rowing perpendicular to bank gives zero drift",
+      "student_belief": "If I aim the boat straight at the opposite bank, I will land exactly opposite — no drift",
+      "trigger_phrases": [
+        "I aimed perpendicular but still got drift",
+        "if boat goes straight across why is there drift",
+        "rowing perpendicular should give no drift",
+        "direct cross no drift",
+        "seedha cross karo drift nahi hoga"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Boat aimed perfectly perpendicular (v_br straight up). River flowing right at 4 m/s. Student expects: land directly opposite. Simulation: boat lands 24m downstream. Arrow shows the river adding v_r = 4m/s rightward the entire crossing — v_by doesn't cancel v_bx.",
+            "label": "Perpendicular aim, 24m drift. The river doesn't care where you point the boat — it pushes everything sideways.",
+            "scenario": "rows_perpendicular_for_zero_drift_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "Rowing perpendicular maximises your SPEED across (v_by = v_br, its maximum). But it does nothing to cancel the river's sideways push. v_r adds to your path — always."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show what DOES give zero drift: boat angled upstream at θ=53°. Upstream component of v_br (= v_br sinθ = 4 m/s) exactly cancels v_r = 4m/s. Net horizontal velocity = 0. Boat tracks straight across. Time = 10s (longer than perpendicular's 6s).",
+            "label": "Zero drift: angle upstream so v_br sinθ = v_r. This takes longer — the upstream angle reduces your crossing speed.",
+            "scenario": "rows_perpendicular_for_zero_drift_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "Perpendicular = minimum time (with drift). Upstream angle sinθ=v_r/v_br = zero drift (with longer time). These are TWO DIFFERENT things. Never confuse them."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "wrong_time_formula",
+      "misconception": "Student uses t = d / |v_b| (divides by actual speed, not crossing component)",
+      "student_belief": "Time to cross = river width divided by actual boat speed |v_b|",
+      "trigger_phrases": [
+        "divided width by total speed",
+        "t equals d by v_b",
+        "used resultant speed for time",
+        "why not divide by actual velocity",
+        "time formula v_b or v_br"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "v_br=5m/s at 90° (perpendicular), v_r=4m/s. |v_b|=√(25+16)=√41≈6.4m/s. Student: t=30/6.4≈4.7s. Correct: t=30/5=6s. Show: boat using student's time doesn't reach other bank — it still has 4m to go at t=4.7s. The diagonal travel covers more than just the width.",
+            "label": "t=d/|v_b| is wrong. The actual speed covers a diagonal path, not just the width. Only v_by covers the width.",
+            "scenario": "wrong_time_formula_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "The river width is PERPENDICULAR to current. Only the perpendicular component of boat velocity (v_by) covers that width. The horizontal component just adds drift — it doesn't help you cross."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show river as a vertical corridor. Width d is horizontal distance. v_by = vertical component of v_b covers it. v_bx = horizontal component just moves you along the corridor (drift). Time = d / v_by = d / (v_br sinα). Animate both components separately.",
+            "label": "t = d / v_by always. Where v_by = component of actual boat velocity PERPENDICULAR to the river banks = v_br sinα.",
+            "scenario": "wrong_time_formula_s2"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "zero_drift_always_possible",
+      "misconception": "Student thinks zero drift is always achievable regardless of v_r vs v_br",
+      "student_belief": "Boatman can always row to reach exactly opposite if he angles far enough upstream",
+      "trigger_phrases": [
+        "always can reach opposite bank",
+        "just row more upstream",
+        "zero drift always possible",
+        "angle upstream enough to cancel",
+        "koi bhi drift zero kar sakta hai"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "v_r = 6 m/s (river), v_br = 4 m/s (boat — slower than river). Student tries various upstream angles. At θ=90° (fully upstream), v_by=0 — boat makes no progress across and is swept downstream indefinitely. At any angle, v_r component always overwhelms v_br sinθ ≤ 4 < 6. Drift cannot be zero.",
+            "label": "Maximum upstream v_br component = 4m/s. River pushes at 6m/s. Net: still 2m/s downstream no matter what angle. Zero drift impossible.",
+            "scenario": "zero_drift_always_possible_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "sinθ = v_r/v_br = 6/4 = 1.5 > 1. No angle has sin > 1. The formula literally has no solution. The river is simply too strong."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show threshold: when v_r = v_br exactly — sinθ = 1, θ = 90°, boat rows straight upstream, v_by = 0, never crosses. One step beyond: v_r > v_br — impossible. Only v_r < v_br allows zero drift.",
+            "label": "Zero drift requires v_br > v_r. This is the condition. Check it FIRST before attempting zero-drift calculation.",
+            "scenario": "zero_drift_always_possible_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "Three-second check at the start of every river-boat problem: Is v_br > v_r? YES → zero drift possible. NO → only minimum time and minimum drift."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "adding_speeds_not_vectors",
+      "misconception": "Student calculates actual boat speed as v_br + v_r (arithmetic) instead of vector addition",
+      "student_belief": "Actual speed = rowing speed + river speed = v_br + v_r always",
+      "trigger_phrases": [
+        "added the two speeds",
+        "v_b equals v_br plus v_r as numbers",
+        "total speed is sum",
+        "actual speed 5 plus 4 is 9",
+        "speeds add up"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "v_br=5m/s perpendicular to bank, v_r=4m/s along bank. Student: |v_b|=5+4=9m/s. Correct: |v_b|=√(5²+4²)=√41≈6.4m/s. Show: at student's 9m/s, boat would cross in d/9s — but actual crossing time is d/5s (only v_by=5 covers width). Speeds only add when vectors point in SAME direction.",
+            "label": "9m/s if same direction. 6.4m/s if perpendicular. The angle between v_br and v_r determines the resultant — not just their magnitudes.",
+            "scenario": "rb_wrong_boat_speed_direct"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "v_br + v_r as numbers gives maximum possible resultant (θ=0°, same direction). v_br and v_r perpendicular gives |v_b|=√(v_br²+v_r²). Always check the direction before adding."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show three cases: same direction → |v_b|=v_br+v_r. Perpendicular → |v_b|=√(v_br²+v_r²). Opposite → |v_b|=|v_br−v_r|. River-boat is the PERPENDICULAR case — always. Slider from 0° to 180° shows |v_b| varying between these extremes.",
+            "label": "River-boat: v_r is always horizontal, v_br is whatever angle boatman chooses. Use components every time — never add magnitudes.",
+            "scenario": "rb_aha_two_velocities"
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "micro_1": {
+      "trigger": "three standard results river boat",
+      "scope": "micro",
+      "states": 2,
+      "content": "Three standard results: (1) Minimum time: row perpendicular (α=90°). t_min = d/v_br. Drift = v_r×d/v_br. (2) Zero drift: row upstream at sinθ = v_r/v_br. Time = d/√(v_br²−v_r²). Requires v_br > v_r. (3) If v_r ≥ v_br: zero drift impossible. Minimum drift: sinα = v_br/v_r (JEE Advanced)."
+    },
+    "micro_2": {
+      "trigger": "drift formula river",
+      "scope": "micro",
+      "states": 2,
+      "content": "Drift = v_bx × t = (v_r − v_br cosα) × t, where α is angle from river bank. Also drift = (v_r − v_br cosα) × d / (v_br sinα). For minimum time case (α=90°): drift = v_r × d/v_br. For zero drift case: drift = 0 (by construction)."
+    },
+    "micro_3": {
+      "trigger": "which velocity to use for crossing time",
+      "scope": "micro",
+      "states": 2,
+      "content": "Time to cross = d / v_by = d / (v_br sinα). Use ONLY the component of boat velocity perpendicular to the bank. Never use |v_b| (actual speed) or v_br directly unless boat is perpendicular (α=90°). The horizontal component v_bx causes drift but does NOT help cross the river."
+    },
+    "micro_4": {
+      "trigger": "condition for zero drift",
+      "scope": "micro",
+      "states": 2,
+      "content": "Zero drift condition: v_br > v_r (boat faster than river in still water). Angle: sinθ = v_r/v_br, where θ is measured upstream from the perpendicular to the bank. If v_br ≤ v_r: check sinθ = v_r/v_br ≥ 1 — impossible, zero drift cannot be achieved."
+    },
+    "micro_5": {
+      "trigger": "DC Pandey example 6.32",
+      "scope": "micro",
+      "states": 3,
+      "content": "DC Pandey Ex 6.32: d=30m, v_r=4m/s, v_br=5m/s. (a) Min time: t=30/5=6s, drift=4×6=24m. (b) Zero drift: sinθ=4/5, θ=53° upstream from perpendicular, v_by=√(25−16)=3m/s, t=30/3=10s. (c) v_br=5>v_r=4 → zero drift IS possible."
+    }
+  },
+  "static_responses": {
+    "formula_sheet": {
+      "trigger": "river boat all formulas",
+      "simulation_needed": false,
+      "response": "River-boat formulas: (1) v_b = v_br + v_r (vector). (2) v_bx = v_r + v_br cosα, v_by = v_br sinα. (3) t = d/v_by = d/(v_br sinα). (4) Drift = v_bx × t. (5) Min time: α=90°, t_min=d/v_br, drift=v_r×d/v_br. (6) Zero drift: sinθ=v_r/v_br (θ upstream from perp), t=d/√(v_br²−v_r²), requires v_br>v_r. (7) Impossible if v_r≥v_br."
+    },
+    "angle_convention_clarification": {
+      "trigger": "angle confusion river boat alpha or theta",
+      "simulation_needed": false,
+      "response": "Two conventions exist: α = angle between v_br and the river BANK (0°=along river, 90°=perpendicular to river). θ = angle between v_br and the PERPENDICULAR to bank (0°=perpendicular, 90°=along river). They are complementary: α + θ = 90°. DC Pandey Example 6.31 uses α (37° from bank = 53° from perpendicular). Zero-drift formula sinθ = v_r/v_br uses θ (from perpendicular). Always check which angle the problem specifies."
+    }
+  },
+  "problem_guidance_path": {
+    "description": "Step-by-step for river-boat problems from DC Pandey",
+    "step_1": "Identify: d (river width), v_r (river speed), v_br (rowing speed), what angle α or θ if given.",
+    "step_2": "Check condition: v_br vs v_r. v_br > v_r → zero drift possible. v_br ≤ v_r → only minimum time or minimum drift.",
+    "step_3": "Set up components: v_bx = v_r − v_br sinθ (taking upstream as negative x). v_by = v_br cosθ.",
+    "step_4": "Crossing time: t = d / v_by.",
+    "step_5": "Drift: x = v_bx × t.",
+    "step_6": "For specific results: use the standard formulas. Check with units.",
+    "common_errors": [
+      "Dividing river width by |v_b| (actual speed) instead of v_by (crossing component)",
+      "Thinking zero drift is always achievable",
+      "Adding v_br + v_r as scalars instead of vector addition",
+      "Confusing α (from bank) and θ (from perpendicular)",
+      "Using zero-drift formula when v_r > v_br (sinθ > 1 — no solution)"
+    ]
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Example 6.31, Section 6.10",
+      "principle": "Boat at 37° from bank (v_r=2, v_br=5, d=30m) — resolving v_br into crossing and drift components, then calculating t and drift",
+      "aha": "Drift direction depends on whether v_bx = v_r + v_br cosα is positive or negative — positive means downstream, solving requires careful sign of cosα",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Example 6.32, Section 6.10",
+      "principle": "Same river (v_r=4, v_br=5, d=30m) solved for all three scenarios: minimum time, zero drift, and confirming v_br > v_r condition",
+      "aha": "Same river, same boat — three completely different crossings depending on angle chosen. The angle is the only decision the boatman makes.",
+      "simulation_states": 3
+    },
+    "example_3": {
+      "source": "DC Pandey Exercise Problem 5, Section 6.10",
+      "principle": "Given minimum crossing time=10min with drift=120m AND shortest path time=12.5min — find river width, v_br, v_r",
+      "aha": "Two conditions (min time and zero drift) give two equations in two unknowns — elegant system that tests understanding of both results simultaneously",
+      "simulation_states": 2
+    },
+    "example_4": {
+      "source": "DC Pandey Exercise Problem 6, Section 6.10",
+      "principle": "River 20m wide, v_r=3m/s, boat starts at 45° with velocity 2√2 m/s — finding landing point and time",
+      "aha": "Non-standard angle problem: must resolve carefully and track both components — cannot use the three standard results directly",
+      "simulation_states": 2
+    }
+  },
+  "assessment_path": {
+    "question_1": {
+      "text": "A boatman rows at 5 m/s in still water. River flows at 5 m/s. Can he reach the exactly opposite bank?",
+      "options": [
+        "Yes, by rowing upstream at 45°",
+        "Yes, by rowing perpendicular",
+        "No, v_r = v_br makes it impossible",
+        "Yes, by rowing at sin⁻¹(1) = 90°"
+      ],
+      "correct": 2,
+      "if_wrong_0": "route to zero_drift_always_possible — student thinks any upstream angle works",
+      "if_wrong_3": "route to zero_drift_always_possible — rowing at 90° (upstream) means v_by=0, never crosses",
+      "explanation": "sinθ = v_r/v_br = 5/5 = 1 → θ = 90° (straight upstream). Then v_by = v_br cosθ = 0 — boat makes no crossing progress. Impossible."
+    },
+    "question_2": {
+      "text": "River width 60m, v_br = 6 m/s, v_r = 4 m/s. What is the minimum time to cross?",
+      "options": [
+        "10 s",
+        "12 s",
+        "15 s",
+        "7.5 s"
+      ],
+      "correct": 0,
+      "if_wrong_1": "route to wrong_time_formula — student may have used |v_b|=√52≈7.2 giving t≈8.3s",
+      "explanation": "Minimum time: row perpendicular, t_min = d/v_br = 60/6 = 10s."
+    },
+    "question_3": {
+      "text": "Same river (60m, v_br=6, v_r=4). Boatman wants zero drift. What angle must he row upstream from perpendicular?",
+      "options": [
+        "sin⁻¹(4/6) ≈ 41.8°",
+        "cos⁻¹(4/6) ≈ 48.2°",
+        "tan⁻¹(4/6) ≈ 33.7°",
+        "45°"
+      ],
+      "correct": 0,
+      "if_wrong_1": "route to wrong_time_formula confusion — cos and sin convention mixed up",
+      "explanation": "sinθ = v_r/v_br = 4/6 = 2/3. θ = sin⁻¹(2/3) ≈ 41.8° upstream from perpendicular."
+    },
+    "question_4": {
+      "text": "River width 40m, v_br=3 m/s (perpendicular to bank), v_r=4 m/s. What is the drift?",
+      "options": [
+        "53.3 m",
+        "40 m",
+        "30 m",
+        "160/3 m"
+      ],
+      "correct": 0,
+      "if_wrong_2": "route to rows_perpendicular_for_zero_drift — student thinks perpendicular gives zero drift",
+      "explanation": "Perpendicular rowing: t = 40/3 s. Drift = v_r × t = 4 × 40/3 = 160/3 ≈ 53.3 m."
+    },
+    "question_5": {
+      "text": "Boat crosses with minimum time = 10 min and drift = 120 m. What is the river velocity?",
+      "options": [
+        "12 m/min",
+        "10 m/min",
+        "2 m/min",
+        "Cannot determine"
+      ],
+      "correct": 0,
+      "explanation": "Min time → rowing perpendicular → drift = v_r × t_min. v_r = drift/t_min = 120/10 = 12 m/min. (DC Pandey Exercise 5)"
+    }
+  },
+  "session_awareness": {
+    "if_already_shown_epic_l": "Go directly to the three-result summary and problem solving — student knows the setup, needs to apply standard results",
+    "if_coming_from_relative_motion": "Perfect entry point — river-boat IS relative motion applied. v_br = v_boat relative to river. v_b = v_boat relative to ground. v_r = velocity of river relative to ground.",
+    "if_coming_from_vector_addition": "Connect: v_b = v_br + v_r is exactly the parallelogram law applied to two specific vectors"
+  },
+  "waypoints": {
+    "fallback_unknown_confusion": "Default to DC Pandey Example 6.32 — it covers all three standard results in one problem, with concrete numbers (d=30m, v_r=4, v_br=5). Most confusion resolves when students see all three cases side by side.",
+    "escalation_trigger": "If student asks about minimum drift when v_r > v_br — escalate to sinα = v_br/v_r derivation (JEE Advanced calculus or geometric argument)."
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks for minimum drift when v_r > v_br (boatman cannot achieve zero drift)",
+    "escalate_to": "Drift x = (v_r − v_br cosα) × d/(v_br sinα). Differentiate with respect to α and set dx/dα = 0. Result: sinα = v_br/v_r. This gives minimum drift = d × √(v_r²−v_br²)/v_br.",
+    "level": "JEE Advanced"
+  },
+  "parameter_slots": {
+    "d": {
+      "label": "river width",
+      "range": [
+        10,
+        500
+      ],
+      "unit": "m",
+      "default": 30,
+      "extraction_hint": "width of river or distance between banks"
+    },
+    "v_br": {
+      "label": "boat speed in still water",
+      "range": [
+        1,
+        20
+      ],
+      "unit": "m/s",
+      "default": 5,
+      "extraction_hint": "rowing speed, boat speed in still water, or v_br ="
+    },
+    "v_r": {
+      "label": "river current speed",
+      "range": [
+        1,
+        20
+      ],
+      "unit": "m/s",
+      "default": 4,
+      "extraction_hint": "river velocity, current speed, or v_r ="
+    },
+    "theta": {
+      "label": "angle upstream from perpendicular",
+      "range": [
+        0,
+        90
+      ],
+      "unit": "degrees",
+      "default": 0,
+      "extraction_hint": "angle with perpendicular to bank, or upstream angle"
+    }
+  },
+  "panel_sync_spec": {
+    "canvas_to_graph": {
+      "trigger": "STATE_N_reached",
+      "action": "Panel B vector diagram updates to show v_br, v_r, v_b for current state's angle; drift value labeled"
+    },
+    "graph_to_canvas": {
+      "trigger": "student_moves_theta_slider_on_panel_b",
+      "action": "Panel A river scene redraws boat path for new angle — drift changes live, landing point moves"
+    },
+    "slider_to_both": {
+      "parameter": "theta",
+      "canvas_action": "boat path on river scene updates — shows new landing point and drift distance",
+      "graph_action": "v_br arrow rotates to new angle, v_b resultant redraws, drift value updates numerically"
+    }
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "Find minimum time and drift for given d, v_r, v_br",
+      "Find angle for zero drift; state condition when impossible",
+      "Given minimum time and drift, find v_r and v_br (two-equation system)",
+      "Is it possible to reach exactly opposite bank? (condition check: v_br > v_r)",
+      "Find actual velocity of boat (vector addition v_br + v_r)",
+      "Boat crosses in time t — find drift as function of angle"
+    ],
+    "common_traps": [
+      "Perpendicular rowing = zero drift (FALSE — perpendicular = minimum time, with drift)",
+      "t = d/|v_b| instead of t = d/v_by",
+      "Zero drift always possible (FALSE — requires v_br > v_r)",
+      "Confusing α (from bank) and θ (from perpendicular)",
+      "Adding v_br + v_r as scalars (vector addition needed)",
+      "Using zero-drift formula when v_r > v_br (sinθ > 1 — no real solution)"
+    ],
+    "key_results": [
+      "v_b = v_br + v_r (vector, always)",
+      "t = d / (v_br sinα) where α = angle from bank",
+      "Min time: α=90°, t_min=d/v_br, drift=v_r×d/v_br",
+      "Zero drift: sinθ=v_r/v_br (θ from perpendicular, upstream), only if v_br>v_r",
+      "Zero drift time = d/√(v_br²−v_r²)",
+      "If v_r≥v_br: zero drift impossible"
+    ],
+    "dc_pandey_standard_numbers": {
+      "example_631": "d=30m, v_r=2m/s, v_br=5m/s, α=37°: t=10s, drift=60m",
+      "example_632": "d=30m, v_r=4m/s, v_br=5m/s: min t=6s drift=24m; zero drift θ=53° t=10s"
+    }
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "relative_motion",
+      "vector_addition",
+      "vector_components"
+    ],
+    "extensions": [
+      "rain_umbrella",
+      "projectile_motion",
+      "pseudo_forces"
+    ],
+    "siblings": [
+      "rain_umbrella",
+      "relative_motion"
+    ],
+    "common_exam_combinations": [
+      "rain_umbrella — exact same vector subtraction setup, different physical scenario",
+      "relative_motion — river-boat is v_b = v_br + v_r, the core relative velocity equation",
+      "vector_components — resolving v_br into crossing and drift components is the foundation"
+    ]
+  },
+  "three_js_flag": false,
+  "three_js_note": "River-boat is 2D planar motion. scene_mode=True in renderer_hint enables realistic river rendering in canvas2d. Three.js not needed.",
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "approach": "minimum_drift_jee_focus",
+      "entry_state": "STATE_4",
+      "teacher_angle": "Start from the JEE target result directly: the condition for minimum drift is when the boat is aimed at angle arcsin(v_river / v_boat) upstream. Derive why by writing drift = (v_river - v_boat sin theta) times time, differentiating with respect to theta, setting to zero. The student sees the calculus minimisation produce the exact answer. Then verify geometrically. This approach starts from the exam question and works backward to the concept — the format JEE students find most useful.",
+      "locked_facts_focus": [
+        "fact_5",
+        "fact_6",
+        "fact_7"
+      ],
+      "panel_b_focus": "Drift vs theta curve. Minimum point highlighted at theta = arcsin(v_r / v_b). Boat animation shows heading at that angle — barely upstream. Drift labeled as minimum possible value."
+    },
+    {
+      "variant_id": 2,
+      "approach": "connects_to_vector_components",
+      "entry_state": "STATE_1",
+      "teacher_angle": "Connect directly to vector components from Ch.5. The river current velocity and the boat velocity are two vectors. Their resultant — the actual ground velocity — is found by vector addition, exactly as the student learned in Ch.5. The boat heading angle gives the components of boat velocity along and perpendicular to the river. The river current adds directly to the along-river component. This is just vector addition with one vector (river current) horizontal and one vector (boat) at an angle. The student already knows all the mathematics.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "panel_b_focus": "River scene with vector triangle: boat velocity arrow, river current arrow, resultant ground velocity arrow. Label: 'From Ch.5: resultant = vector sum of the two velocities.' Component decomposition of boat velocity shown alongside."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Boat angle θ", "symbol": "θ", "unit": "°", "min": 0, "max": 90 },
+    "y_axis": { "label": "Resultant speed", "symbol": "|v|", "unit": "m/s", "min": 0, "max": 10 },
+    "lines": [
+      { "id": "resultant_speed", "formula": "Math.sqrt(25 + 16 * Math.cos(x * Math.PI / 180) * Math.cos(x * Math.PI / 180))", "color": "#60a5fa", "label": "Resultant speed vs angle" },
+      { "id": "min_drift_angle", "formula": "null", "color": "#fbbf24", "dash": "dash", "label": "Min drift angle", "vertical_x": 53 }
+    ],
+    "sliders": [
+      { "id": "theta", "label": "Boat angle θ (degrees)", "min": 0, "max": 90, "default": 45 }
+    ],
+    "legend": [
+      { "id": "resultant_speed", "label": "Resultant speed" },
+      { "id": "min_drift_angle", "label": "Min drift angle" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": ["resultant_speed"], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["resultant_speed"], "show_sliders": false, "highlight_point": true, "point_x": 0, "point_y": 6.4, "label": "θ=0°: straight across, slowest" },
+      "STATE_5": { "active_lines": ["resultant_speed", "min_drift_angle"], "show_sliders": false, "highlight_point": true, "point_x": 53, "point_y": 5, "label": "Min drift angle" },
+      "STATE_6": { "active_lines": ["resultant_speed", "min_drift_angle"], "show_sliders": true, "highlight_point": true, "point_x": 45, "point_y": 5.7 }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "concept_id": "electromagnetic_induction_3d",
+  "concept_name": "Electromagnetic Induction (3D Visualization)",
+  "chapter": "Electromagnetic Induction",
+  "class_level": 12,
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "changing_flux",
+    "panel_count": 2,
+    "show_graph": true,
+    "graph_type": "emf_vs_time"
+  },
+  "variables": {
+    "B": { "symbol": "B", "name": "Magnetic field strength", "unit": "T", "min": 0.01, "max": 1, "default": 0.1 },
+    "A": { "symbol": "A", "name": "Coil area", "unit": "m²", "min": 0.001, "max": 0.1, "default": 0.01 },
+    "N": { "symbol": "N", "name": "Number of turns", "unit": "", "min": 1, "max": 100, "default": 10 },
+    "Phi": { "symbol": "Φ", "name": "Magnetic flux", "unit": "Wb", "formula": "B·A·cos(θ)" },
+    "EMF": { "symbol": "ε", "name": "Induced EMF", "unit": "V", "formula": "-NdΦ/dt" }
+  },
+  "locked_facts": [
+    "Faraday's law: EMF = -dΦ/dt (rate of change of flux)",
+    "EMF depends on RATE OF CHANGE — not magnitude of flux",
+    "Static magnetic field (no change) → zero EMF always",
+    "Lenz's law: induced current opposes the change causing it",
+    "Φ = B·A·cos(θ)"
+  ],
+  "truth_statements": [
+    "An EMF is induced in a coil only when the magnetic flux through it changes with time",
+    "The magnitude of the induced EMF equals the rate of change of magnetic flux through the coil",
+    "Lenz's law states that the induced current flows in a direction that opposes the change in flux that caused it",
+    "A constant magnetic field through a stationary coil produces zero EMF — there must be change",
+    "The flux can change by changing B, A, or the angle θ between B and the area vector"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show the magnet stationary near the coil — EMF indicator is dark (zero EMF). Then animate the magnet moving: EMF indicator glows brightly. Stop the magnet again — EMF drops to zero. It is the CHANGE that matters, not the presence of the field.",
+    "visual_emphasis": "Magnet stationary: zero glow. Magnet moving: bright glow. Magnet stopped again: zero glow. EMF ∝ speed of motion, not field strength.",
+    "why_this_breaks_misconception": "Students see that a strong static field produces zero EMF — only change produces EMF"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Coil and bar magnet — setup",
+      "description": "A coil (turns visible) and a bar magnet positioned nearby. No motion yet. Field lines from magnet visible passing through the coil.",
+      "emphasis": "A coil of N turns and a bar magnet. Currently stationary — no EMF yet.",
+      "labels_visible": ["N turns", "B", "magnet"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Magnet moves toward coil — flux increases",
+      "description": "Magnet begins moving toward the coil. More field lines pass through the coil. EMF indicator starts glowing. Caption: Φ increasing → EMF induced.",
+      "emphasis": "As the magnet approaches, more flux passes through the coil. dΦ/dt > 0 → EMF is induced!",
+      "labels_visible": ["Φ increasing", "ε = -dΦ/dt", "EMF"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Static field → zero EMF (the key insight)",
+      "description": "Magnet stops moving. Even though field lines still pass through the coil, the EMF indicator goes dark. Caption: dΦ/dt = 0 → ε = 0. No change, no EMF!",
+      "emphasis": "The magnet stopped. Field is still there — but EMF is ZERO. No change in flux = no induced EMF. This is the core of Faraday's law.",
+      "labels_visible": ["Φ constant", "dΦ/dt = 0", "ε = 0"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — watch EMF follow motion",
+      "description": "Animated mode: magnet oscillates back and forth. EMF indicator pulses with each motion. Faster motion = brighter glow. When magnet pauses = dark.",
+      "emphasis": "Watch: EMF follows the SPEED of the magnet, not its position. Faster = more EMF. Stopped = zero EMF.",
+      "labels_visible": ["ε", "Φ", "v_magnet"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "static_field_gives_emf",
+      "trigger_keywords": ["magnetic field hai toh EMF hoga", "field present means EMF", "magnet near coil gives current always", "flux hai toh EMF"],
+      "student_belief": "If a magnetic field passes through a coil, an EMF is always induced",
+      "actual_physics": "EMF is induced ONLY when the flux CHANGES with time. A strong, constant magnetic field through a coil produces absolutely zero EMF. It is dΦ/dt that matters, not Φ itself.",
+      "simulation_emphasis": "Show magnet stationary near coil with zero EMF, then moving with nonzero EMF. The field is present in both cases — only the change matters."
+    },
+    {
+      "id": "emf_proportional_to_flux",
+      "trigger_keywords": ["zyada flux zyada EMF", "stronger field more EMF", "big flux big EMF", "flux magnitude determines EMF"],
+      "student_belief": "The induced EMF is proportional to the amount of magnetic flux",
+      "actual_physics": "The induced EMF is proportional to the RATE OF CHANGE of flux (dΦ/dt), not the flux itself. A small flux changing rapidly produces more EMF than a large flux that is constant.",
+      "simulation_emphasis": "Show fast magnet motion (large dΦ/dt) giving bright EMF vs slow motion (small dΦ/dt) giving dim EMF. Speed of change matters, not amount of field."
+    }
+  ],
+  "legend": [
+    { "symbol": "N", "meaning": "Number of coil turns" },
+    { "symbol": "Φ", "meaning": "Magnetic flux = B·A·cos(θ)" },
+    { "symbol": "ε", "meaning": "Induced EMF = -NdΦ/dt" },
+    { "symbol": "●", "meaning": "EMF indicator (glow = nonzero EMF)" },
+    { "symbol": "→", "meaning": "Magnet motion direction" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["magnetic_field_solenoid", "bar_magnet_field", "magnetic_flux"],
+    "extensions": ["lenz_law_applications", "self_inductance", "ac_generator"],
+    "siblings": ["bar_magnet_field", "magnetic_field_solenoid"],
+    "common_exam_combinations": ["lenz_law", "self_inductance", "ac_generator"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["EMF induced in coil with changing B", "EMF from rotating coil in uniform field", "Lenz's law direction determination", "mutual inductance problems"],
+    "common_traps": ["confusing flux with rate of change of flux", "wrong sign from Lenz's law", "forgetting N (number of turns) in EMF formula", "assuming constant field means constant EMF"],
+    "numerical_ranges": {
+      "B": "0.01–1 T",
+      "A": "10–100 cm²",
+      "N": "10–1000 turns",
+      "dΦ/dt": "0.01–10 Wb/s"
+    }
+  }
+}

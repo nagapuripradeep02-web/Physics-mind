@@ -1,0 +1,29 @@
+{
+  "concept": "resistance_temperature_dependence",
+  "locked_facts": {
+    "formula_resistivity_temperature": "rho = rho_0 * [1 + alpha * (T - T_0)]",
+    "formula_drift_velocity": "v_d = (e * E * tau) / m",
+    "formula_resistivity_microscopic": "rho = m / (n * e^2 * tau)",
+    "temperature_coefficient_metals": "positive — resistance increases with temperature",
+    "mechanism": "increased_lattice_vibration_increases_electron_collision_frequency_reduces_tau",
+    "electron_charge": 1.6e-19,
+    "electron_mass": 9.1e-31
+  },
+  "animation_constraints": {
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true,
+    "higher_temperature_means_slower_drift": true,
+    "higher_temperature_means_more_collisions": true,
+    "lattice_vibration_amplitude_increases_with_temperature": true
+  },
+  "ncert_truth_statements": [
+    "Resistance of metallic conductors increases with temperature",
+    "Increased temperature causes more vigorous vibration of lattice ions",
+    "More vigorous lattice vibrations increase the frequency of electron-ion collisions",
+    "Increased collision frequency reduces the relaxation time tau",
+    "Reduced relaxation time tau reduces drift velocity and thus current for the same applied field, meaning higher resistance"
+  ]
+}

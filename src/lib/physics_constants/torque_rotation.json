@@ -1,0 +1,105 @@
+{
+  "concept_id": "torque_rotation",
+  "concept_name": "Torque and Rotational Motion",
+  "class_level": 11,
+  "chapter": "Rotational Motion",
+  "renderer_hint": {
+    "technology": "p5js",
+    "renderer": "mechanics_2d",
+    "scenario_type": "torque",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "F": "Applied force (N)",
+    "r": "Distance from pivot to point of force application (m)",
+    "θ": "Angle between position vector r and force F (deg)",
+    "I": "Moment of inertia about axis of rotation (kg·m²)"
+  },
+  "locked_facts": [
+    "Torque τ = r × F = rF·sin(θ)",
+    "Only the perpendicular component of force creates torque",
+    "Torque depends on both force magnitude AND perpendicular distance",
+    "τ_net = Iα (rotational Newton's second law)",
+    "Angular momentum L = Iω, conserved when τ_net = 0",
+    "Moment of inertia I depends on mass distribution about axis"
+  ],
+  "truth_statements": [
+    "Torque is the turning effect of a force and equals the cross product of position vector and force",
+    "Only the component of force perpendicular to the position vector contributes to torque",
+    "The net torque equals the product of moment of inertia and angular acceleration",
+    "Angular momentum is conserved when the net external torque is zero",
+    "The moment of inertia depends on the mass and its distribution relative to the axis of rotation"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Same force F applied at two different distances from the pivot — one close, one far. The torque bar for the far application point is much larger. A door analogy: pushing near the hinge vs near the handle.",
+    "visual_emphasis": "Two torque bars side by side — same F but different r — the longer r produces visibly larger torque",
+    "why_this_breaks_misconception": "Students see that force alone does not determine torque — the distance from the pivot matters equally"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A rigid rod free to rotate about a pivot. Force F applied at distance r from pivot. The perpendicular component F·sin(θ) and the parallel component F·cos(θ) are shown.",
+      "emphasis": "Only the perpendicular component F⊥ = F·sin(θ) contributes to torque",
+      "labels_visible": ["F", "r", "θ", "F⊥ = F·sin(θ)", "pivot"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Force applied, rod begins to rotate. Torque value τ = rF·sin(θ) displayed. Angular acceleration α = τ/I shown. The rod speeds up.",
+      "emphasis": "Torque causes angular acceleration — the rotational equivalent of F = ma",
+      "labels_visible": ["τ = rF·sin(θ)", "α = τ/I", "ω"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Same force F applied at r₁ (near pivot) and r₂ (far from pivot). Two torque bars compared side by side. τ₂ >> τ₁. Door analogy: pushing near hinge vs near handle.",
+      "emphasis": "Same force, different distance — the torque is DIFFERENT. Distance from pivot matters as much as force.",
+      "labels_visible": ["τ₁ = r₁F", "τ₂ = r₂F", "r₂ > r₁", "τ₂ > τ₁"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust force magnitude and distance from pivot. See torque update in real time. Try F at the pivot (r = 0): torque = 0 regardless of force.",
+      "emphasis": "Move the force application point: at the pivot, torque is zero no matter how large the force. At maximum distance, torque is greatest.",
+      "labels_visible": ["F", "r", "τ = rF·sin(θ)", "α"],
+      "interactive": true,
+      "sliders": [
+        { "id": "force", "label": "Force", "min": 1, "max": 20, "default": 10, "unit": "N" },
+        { "id": "distance", "label": "Distance from Pivot", "min": 0.1, "max": 2, "default": 1, "unit": "m" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Torque depends only on force magnitude — a larger force always produces more torque",
+      "trigger_phrases": ["force zyada toh torque zyada", "strong force means more torque", "bada force = bada torque"],
+      "correction": "NCERT says torque τ = rF·sin(θ) depends on force, distance from pivot, AND the angle. A large force applied at the pivot produces zero torque.",
+      "simulation_emphasis": "Same force at two different distances from pivot — torque bars show dramatically different values"
+    }
+  ],
+  "legend": [
+    { "symbol": "→ (green)", "meaning": "Applied force F" },
+    { "symbol": "→ (blue)", "meaning": "Perpendicular component F⊥" },
+    { "symbol": "⊗", "meaning": "Pivot / axis of rotation" },
+    { "symbol": "τ bar", "meaning": "Torque magnitude = rF·sin(θ)" },
+    { "symbol": "r", "meaning": "Distance from pivot to force application" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["newtons_laws", "vectors_cross_product"],
+    "extensions": ["angular_momentum_conservation", "rolling_motion"],
+    "siblings": ["conservation_of_momentum"],
+    "common_exam_combinations": ["moment_of_inertia", "angular_momentum"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["torque about a point", "equilibrium of rigid body", "angular momentum conservation", "rolling without slipping"],
+    "common_traps": ["forgetting the sin(θ) factor", "applying force at pivot and expecting rotation", "confusing torque with force"],
+    "numerical_ranges": {
+      "F": "1–50 N",
+      "r": "0.1–2 m",
+      "I": "0.01–10 kg·m²"
+    }
+  }
+}

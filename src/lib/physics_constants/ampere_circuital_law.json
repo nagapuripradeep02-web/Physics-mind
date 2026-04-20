@@ -1,0 +1,108 @@
+{
+  "concept_id": "ampere_circuital_law",
+  "concept_name": "Ampere's Circuital Law",
+  "class_level": 12,
+  "chapter": "Moving Charges and Magnetism",
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "amperian_loop",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "B": "Magnetic field (T)",
+    "dl": "Infinitesimal length element along Amperian loop (m)",
+    "I_enc": "Total current enclosed by the Amperian loop (A)",
+    "mu_0": "Permeability of free space = 4π × 10⁻⁷ T·m/A",
+    "n": "Number of turns per unit length of solenoid (turns/m)",
+    "N": "Total number of turns (for toroid)",
+    "r": "Radius of toroid or distance from axis (m)"
+  },
+  "locked_facts": [
+    "Ampere's circuital law: ∮B·dl = μ₀I_enclosed",
+    "The line integral is taken over a closed Amperian loop",
+    "Only the current passing THROUGH the enclosed area contributes to the integral",
+    "Magnetic field inside an ideal solenoid: B = μ₀nI (uniform, along axis)",
+    "Magnetic field outside an ideal solenoid: B = 0",
+    "Magnetic field inside a toroid: B = μ₀NI/(2πr)",
+    "Ampere's law is most useful when there is high symmetry (cylindrical, planar, toroidal)"
+  ],
+  "truth_statements": [
+    "Ampere's circuital law states that the line integral of the magnetic field around any closed loop equals μ₀ times the net current enclosed by that loop",
+    "For an ideal solenoid of n turns per unit length, the interior field is uniform at B = μ₀nI and the exterior field is zero",
+    "For a toroid with N total turns, the field inside the toroid at radius r is B = μ₀NI/(2πr) and zero outside",
+    "The choice of Amperian loop is guided by symmetry — the loop must be chosen so that B·dl simplifies to B × (length) on symmetric segments",
+    "Ampere's law is the magnetic analogue of Gauss's law — both exploit symmetry to calculate fields without full integration"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A solenoid cross-section with an Amperian rectangle. The top side inside the solenoid has B·dl = B×L (field parallel to dl). The bottom side outside has B = 0. The two vertical sides contribute zero because B is perpendicular to dl. So ∮B·dl = BL = μ₀nIL, giving B = μ₀nI.",
+    "visual_emphasis": "Highlight each side of the rectangular Amperian loop separately — show which contribute to the integral and which give zero. The non-obvious zero contributions (sides and outside) are the key insight.",
+    "why_this_breaks_misconception": "Students assume the field leaks outside the solenoid or that all sides of the Amperian loop contribute equally — they see that clever loop choice makes the calculation tractable"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Current-carrying solenoid",
+      "description": "A solenoid shown with current direction marked on each turn. Field lines drawn inside (parallel, uniform) and outside (zero). No Amperian loop yet.",
+      "emphasis": "Inside the solenoid: uniform field along the axis. Outside: field is negligibly small.",
+      "labels_visible": ["I", "B (inside)", "n turns/m"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Amperian rectangle appears",
+      "description": "A rectangular Amperian loop is drawn with one long side inside and one outside the solenoid. The four sides are colour-coded. Current threads through the rectangle are counted — nL turns enclosed.",
+      "emphasis": "The Amperian loop encloses nL turns of current. We evaluate ∮B·dl along each side separately.",
+      "labels_visible": ["Amperian loop", "nL turns", "I_enc = nLI"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Evaluating the line integral",
+      "description": "Each side lights up in sequence: (1) Inside top: B·dl = BL (parallel). (2) Outside bottom: B = 0, contribution = 0. (3) Left vertical: B ⊥ dl, contribution = 0. (4) Right vertical: B ⊥ dl, contribution = 0. Result: BL = μ₀nIL → B = μ₀nI.",
+      "emphasis": "Only one side contributes! The clever rectangular loop makes three sides vanish. This is the power of Ampere's law with symmetry.",
+      "labels_visible": ["BL = μ₀nLI", "B = μ₀nI", "∮B·dl"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts current I, turns density n, and can switch between solenoid and toroid geometries. Field magnitude updates in real time. For toroid, the radius r can be varied to see B = μ₀NI/(2πr).",
+      "emphasis": "Compare solenoid (B = μ₀nI, uniform) with toroid (B = μ₀NI/(2πr), varies with r). Increase n or I to see B grow linearly.",
+      "labels_visible": ["B", "I", "n", "r"],
+      "interactive": true,
+      "sliders": [
+        { "id": "current", "label": "Current I", "min": 0.5, "max": 10, "default": 2, "unit": "A" },
+        { "id": "turnsDensity", "label": "Turns per metre n", "min": 100, "max": 5000, "default": 1000, "unit": "turns/m" },
+        { "id": "toroidRadius", "label": "Toroid radius r", "min": 0.05, "max": 0.5, "default": 0.15, "unit": "m" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "All currents near the Amperian loop contribute to ∮B·dl, not just the enclosed current",
+      "trigger_phrases": ["all currents contribute", "nearby current bhi count hota hai", "saare current include karo", "external current affects integral"],
+      "correction": "Only the current that actually passes THROUGH the surface bounded by the Amperian loop contributes to ∮B·dl. Currents outside the loop affect the local B field at each point but their contributions cancel when integrated around the full closed loop.",
+      "simulation_emphasis": "Show an external wire near the loop — its field contributions on opposite sides of the loop cancel out in the line integral"
+    },
+    {
+      "belief": "The magnetic field outside a solenoid is exactly zero everywhere",
+      "trigger_phrases": ["field outside solenoid zero hai", "no field outside solenoid", "solenoid ke bahar koi field nahi"],
+      "correction": "For an IDEAL infinite solenoid, the field outside is zero. Real solenoids are finite, so there is a weak field outside, especially near the ends. The ideal result is an approximation that works well for long solenoids far from the ends.",
+      "simulation_emphasis": "Show a finite solenoid with weak field lines curving outside near the ends, contrasted with the ideal infinite case"
+    }
+  ],
+  "legend": [
+    { "symbol": "∮B·dl", "meaning": "Line integral of B around closed Amperian loop" },
+    { "symbol": "I_enc", "meaning": "Net current enclosed by the Amperian loop (A)" },
+    { "symbol": "μ₀", "meaning": "Permeability of free space = 4π × 10⁻⁷ T·m/A" },
+    { "symbol": "n", "meaning": "Number of turns per unit length (solenoid)" },
+    { "symbol": "N", "meaning": "Total number of turns (toroid)" },
+    { "symbol": "B", "meaning": "Magnetic field (T)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["magnetic_field_biot_savart", "magnetic_field_wire"],
+    "extensions": ["magnetic_field_solenoid", "electromagnetic_induction_3d"],
+    "siblings": ["gauss_law_3d"],
+    "common_exam_combinations": ["magnetic_field_solenoid", "force_on_current_carrying_conductor"]
+  }
+}

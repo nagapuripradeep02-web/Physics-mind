@@ -1,0 +1,42 @@
+{
+  "concept_id": "blackbody_radiation",
+  "concept_name": "Blackbody Radiation",
+  "class_level": 11,
+  "chapter": "Thermal Properties of Matter",
+  "renderer_hint": { "technology": "plotly", "renderer": "graph_interactive", "scenario_type": "blackbody", "panel_count": 2, "show_labels": true },
+  "variables": { "T": "Temperature (K)", "λ_max": "Peak wavelength (m)", "P": "Radiated power (W)", "σ": "Stefan-Boltzmann constant (W/m²K⁴)" },
+  "locked_facts": [
+    "Stefan-Boltzmann law: total power P = eσAT⁴ (σ = 5.67 × 10⁻⁸ W/m²K⁴)",
+    "Wien's displacement law: λ_max T = 2898 μm·K (hotter → shorter peak wavelength)",
+    "Kirchhoff's law: good absorber = good emitter at thermal equilibrium",
+    "A perfect blackbody has emissivity e = 1 and absorbs all incident radiation",
+    "The Sun (~5800 K) peaks in visible light; humans (~310 K) peak in infrared",
+    "Total energy radiated ∝ T⁴ — doubling temperature increases radiation 16-fold",
+    "Planck's law resolved the UV catastrophe by quantising energy: E = nhf"
+  ],
+  "truth_statements": [
+    "A blackbody is an idealised body that absorbs all incident electromagnetic radiation regardless of wavelength",
+    "The spectrum of a blackbody depends only on its temperature, not on its material or shape",
+    "Wien's law shows that as temperature increases the peak of the emission spectrum shifts to shorter wavelengths",
+    "Stefan's law gives the total power radiated which is proportional to the fourth power of absolute temperature",
+    "Planck explained the blackbody spectrum by proposing that energy is emitted and absorbed in discrete quanta E = hf"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Blackbody spectra at three temperatures (3000K, 5000K, 8000K) overlaid. As T increases: (1) peak shifts left (shorter λ, bluer), (2) total area under curve grows as T⁴ (enormously), (3) at every wavelength the hotter body emits more. The Sun's peak at visible light is not a coincidence — our eyes evolved to match it.",
+    "visual_emphasis": "Three emission curves with peaks shifting and areas growing dramatically — area ∝ T⁴",
+    "why_this_breaks_misconception": "Students see radiation as a single-temperature phenomenon — seeing the spectrum shift and the T⁴ scaling together reveals why temperature is so powerful"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "What is a blackbody?", "description": "Perfect absorber: all radiation absorbed regardless of wavelength. At thermal equilibrium, it re-emits with a spectrum determined only by temperature. Cavity radiation is a practical blackbody.", "emphasis": "A blackbody absorbs everything and emits a spectrum that depends ONLY on temperature", "labels_visible": ["e = 1", "absorbs all", "temperature-dependent spectrum"] },
+    { "id": "STATE_2", "label": "Wien's and Stefan's laws", "description": "Wien's law: λ_max T = 2898 μm·K — hotter objects peak at shorter wavelengths. Stefan's law: P = σAT⁴ — total power scales as T⁴. Both visible on the spectrum.", "emphasis": "Higher T → peak moves to shorter λ AND total power explodes (T⁴)", "labels_visible": ["λ_max T = 2898", "P ∝ T⁴"] },
+    { "id": "STATE_3", "label": "Spectra at different temperatures", "description": "Overlay spectra at 3000K (red glow), 5000K (yellowish), 8000K (bluish-white). Each higher T: bluer peak and vastly more total emission. Colour of hot objects explained.", "emphasis": "Hot objects glow red → orange → white → blue as temperature increases", "labels_visible": ["3000K red", "5000K yellow", "8000K blue", "area ∝ T⁴"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts temperature. Spectrum updates in real time. Peak wavelength and total power calculated. Colour of the object shown. Compare Sun (5800K) with room temperature (300K).", "emphasis": "Slide temperature up — watch the peak shift blue and the power explode", "labels_visible": ["T", "λ_max", "P", "colour"], "interactive": true, "sliders": [{ "id": "temperature", "label": "Temperature", "min": 1000, "max": 10000, "default": 5800, "unit": "K" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "All hot objects emit visible light", "trigger_phrases": ["hot means glowing", "garam matlab light"], "correction": "Objects at room temperature (~300 K) emit radiation too — but in the infrared, invisible to our eyes. Only above ~800 K does an object glow visibly red. Wien's law: λ_max = 2898/T μm — at 300K, peak is at ~10 μm (far infrared).", "simulation_emphasis": "Show spectrum at 300K — peak is deep in infrared, zero visible emission" },
+    { "belief": "A blackbody absorbs but doesn't emit", "trigger_phrases": ["black means no emission", "absorb only"], "correction": "A blackbody is simultaneously the best absorber AND the best emitter. At thermal equilibrium it radiates as much as it absorbs. Its emission spectrum is the most intense possible for any object at that temperature.", "simulation_emphasis": "Show blackbody emitting more than a non-black body at the same temperature" }
+  ],
+  "legend": [ { "symbol": "σ", "meaning": "Stefan-Boltzmann constant = 5.67×10⁻⁸ W/m²K⁴" }, { "symbol": "λ_max", "meaning": "Peak wavelength from Wien's law" }, { "symbol": "e", "meaning": "Emissivity (0 to 1)" } ],
+  "concept_relationships": { "prerequisites": ["heat_conduction_convection_radiation"], "extensions": ["photoelectric_effect_detail", "planck_quantum"], "siblings": ["newtons_law_of_cooling"], "common_exam_combinations": ["heat_conduction_convection_radiation", "photoelectric_effect_detail"] }
+}

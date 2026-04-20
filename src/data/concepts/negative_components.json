@@ -1,0 +1,308 @@
+{
+  "concept_id": "negative_components",
+  "concept_name": "Negative Components — Signs Track Direction, Not Size",
+  "chapter": 5,
+  "section": "5.3",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.3 — Components in Quadrants II/III/IV; split from vector_components bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "Google Maps showing directions in a city like Jaipur. If the app says 'go three blocks east and two blocks north', those are positive numbers. If it says 'minus three east and minus two north', it means three blocks WEST and two blocks SOUTH. The negative sign is not saying 'walk a negative distance' — it is saying 'walk the opposite way'.",
+    "secondary": "A cricket scorekeeper tracking a bowler's movement on the pitch. Plus one metre towards the batsman is +1. Minus one metre is one metre BACK toward the stumps. The magnitude of motion is the same one metre — the sign just picks the direction.",
+    "tertiary": "An elevator display. +3 means three floors above ground; -2 means two floors in the basement. Height above ground and depth below ground are both real distances — the sign picks which side of zero they sit on."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "F_mag": { "name": "Magnitude of force", "unit": "N", "min": 1, "max": 20, "default": 15 },
+      "theta_deg": { "name": "Angle from +x axis (0-360)", "unit": "deg", "min": 0, "max": 360, "default": 143 }
+    },
+    "computed_outputs": {
+      "Fx": { "formula": "F_mag * cos(theta_deg * PI / 180)" },
+      "Fy": { "formula": "F_mag * sin(theta_deg * PI / 180)" },
+      "mag_from_components": { "formula": "sqrt((F_mag * cos(theta_deg * PI / 180))*(F_mag * cos(theta_deg * PI / 180)) + (F_mag * sin(theta_deg * PI / 180))*(F_mag * sin(theta_deg * PI / 180)))" }
+    },
+    "formulas": {
+      "component_sign_rule": "sign of Ax = sign of cos theta;  sign of Ay = sign of sin theta",
+      "quadrant_signs": "Q1 (+,+),  Q2 (-,+),  Q3 (-,-),  Q4 (+,-)",
+      "magnitude_is_nonneg": "|A| = sqrt(Ax^2 + Ay^2)  — the squares erase the signs, so magnitude is always non-negative"
+    },
+    "constraints": [
+      "A component can be negative — that simply means it points in the negative axis direction",
+      "Magnitude of a vector is NEVER negative (it is a length)",
+      "Do not confuse 'negative component' with 'vector has negative size'. The size is always positive",
+      "When computing magnitude from components, sqrt(Ax^2 + Ay^2) automatically handles any signs — nothing special to do"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "A Force in the Second Quadrant — What Are Its Components?",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "q2_force",
+            "from": { "x": 385, "y": 320 },
+            "magnitude": 3.75,
+            "direction_deg": 143,
+            "label": "F = 15 N at 143 deg",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.8 }
+          },
+          {
+            "type": "annotation",
+            "id": "axes_label_x",
+            "text": "+x axis",
+            "position": { "x": 550, "y": 320 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "axes_label_y",
+            "text": "+y axis",
+            "position": { "x": 370, "y": 180 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "quad_label",
+            "text": "Q2\n(second quadrant)",
+            "position": { "x": 240, "y": 240 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "question",
+            "text": "The arrow points up and to the LEFT.\n\nCan a 15 N force really have\na NEGATIVE component?\n\nYes — and the sign simply means\n'points in the minus direction'.\n\nLet us compute Fx and Fy and see.",
+            "position": { "x": 580, "y": 300 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is a force of fifteen newtons pointing at an angle of one hundred forty-three degrees from the positive x-axis. That places the arrow in the second quadrant — up and to the left of the origin." },
+            { "id": "s2", "text_en": "The first instinct of many students is that components are always positive. If the force is fifteen newtons, the components should sum to something near fifteen." },
+            { "id": "s3", "text_en": "But this arrow clearly points LEFT, against the positive x direction. Can a component really be negative?" },
+            { "id": "s4", "text_en": "Yes — and the sign has a very specific meaning. The next state computes the components and pins down what the minus sign means." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Sign = Direction, Not Magnitude",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "F_mid",
+            "from": { "x": 385, "y": 360 },
+            "magnitude": 3.75,
+            "direction_deg": 143,
+            "label": "F = 15 N",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "Fx_neg",
+            "from": { "x": 385, "y": 360 },
+            "magnitude": 3,
+            "direction_deg": 180,
+            "label": "Fx = -12 N (points -x)",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "Fy_pos",
+            "from": { "x": 385, "y": 360 },
+            "magnitude": 2.25,
+            "direction_deg": 90,
+            "label": "Fy = +9 N (points +y)",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 3.5, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "calc_steps",
+            "text": "Component formulas\n\nFx = F cos theta\n   = 15 * cos 143 deg\n   = 15 * (-0.8)\n   = -12 N\n\nFy = F sin theta\n   = 15 * sin 143 deg\n   = 15 * (+0.6)\n   = +9 N\n\nF = -12 i-hat + 9 j-hat  (N)\n\nReading the signs\n  'minus 12' means 12 newtons\n  pointing in the -x direction.\n\n  '+9' means 9 newtons\n  pointing in the +y direction.\n\nThe sign TRACKS the direction.",
+            "position": { "x": 620, "y": 260 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Apply the same formulas you already know. Fx equals F cosine theta. Fy equals F sine theta. The magnitude fifteen stays positive — it is just a number." },
+            { "id": "s2", "text_en": "Cosine of one hundred forty-three degrees is about minus zero point eight. Sine is about plus zero point six." },
+            { "id": "s3", "text_en": "Fx is fifteen times minus zero point eight, which equals minus twelve newtons. The sign came from the cosine, not from the magnitude." },
+            { "id": "s4", "text_en": "Fy is fifteen times plus zero point six, which equals plus nine newtons." },
+            { "id": "s5", "text_en": "Write the vector as minus twelve i-hat plus nine j-hat. The minus twelve is NOT a negative magnitude — it is twelve newtons pointing in the minus-x direction. The sign is just a compact way to say 'the opposite way'." },
+            { "id": "s6", "text_en": "Read the sign like a compass. Plus x means east, minus x means west. Plus y means north, minus y means south. Every component carries both size and direction in one number." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Magnitude Never Cares About Signs",
+        "duration": 9,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "mag_proof",
+            "text": "|F|^2 = Fx^2 + Fy^2\n      = (-12)^2 + (9)^2\n      = 144 + 81\n      = 225\n|F|    = 15 N\n\nThe squares erase the signs\n(negative times negative is positive).\n\nSo you always get back the\noriginal magnitude, regardless\nof which quadrant the arrow\nsits in.",
+            "position": { "x": 320, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "quadrant_table",
+            "text": "Sign pattern by quadrant\n\nQ1  (up-right)   Fx > 0, Fy > 0\nQ2  (up-left)    Fx < 0, Fy > 0\nQ3  (down-left)  Fx < 0, Fy < 0\nQ4  (down-right) Fx > 0, Fy < 0\n\nMagnitude always positive.\nCheck your signs by LOOKING\nat which quadrant the arrow\npoints into.",
+            "position": { "x": 660, "y": 280 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now verify the magnitude from the signed components. Minus twelve squared is plus one hundred forty-four. Plus nine squared is eighty-one. Sum is two hundred twenty-five. Square root is fifteen." },
+            { "id": "s2", "text_en": "The original magnitude comes back exactly. Squaring erases the signs, so it does not matter which quadrant the arrow sits in." },
+            { "id": "s3", "text_en": "Memorise the quadrant table. Quadrant one, both positive. Quadrant two, Fx negative, Fy positive. Quadrant three, both negative. Quadrant four, Fx positive, Fy negative." },
+            { "id": "s4", "text_en": "Before finalising an answer, glance at the quadrant the arrow lies in. If your sign pattern does not match the quadrant, you made an error in your trigonometry. This one check catches most exam mistakes on sign-related questions." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "magnitude_can_be_negative",
+      "misconception": "A negative component means the magnitude is negative",
+      "trigger_phrases": [
+        "negative magnitude",
+        "force is minus 12",
+        "can force be negative",
+        "magnitude came out negative"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Minus Sign Means Negative Size",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "belief_frame",
+              "text": "Your reasoning\n\nI calculated Fx = -12 N.\nIf the component is negative,\ndoes that mean I have\nMINUS 12 newtons of force?\n\nOr did I make a sign error?\n\nOr is 12 newtons really\nbeing applied somewhere?",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "When a component comes out negative, many students freeze. Does the vector have negative size? Is the answer wrong? Should the minus sign be dropped?" },
+              { "id": "s2", "text_en": "Negative sizes do not exist in physics — you cannot have a force of minus twelve newtons in the ordinary sense of 'amount'." },
+              { "id": "s3", "text_en": "But components CAN be negative. The next state shows exactly what the negative sign is telling you." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Minus Sign Is a Direction Label",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "plus_arrow",
+              "from": { "x": 200, "y": 300 },
+              "magnitude": 3,
+              "direction_deg": 0,
+              "label": "Fx = +12 N  means  12 N to the RIGHT",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "minus_arrow",
+              "from": { "x": 200, "y": 400 },
+              "magnitude": 3,
+              "direction_deg": 180,
+              "label": "Fx = -12 N  means  12 N to the LEFT",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 55,
+              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            },
+            {
+              "type": "annotation",
+              "id": "parse",
+              "text": "Parse the number in two parts\n\n  |Fx| = 12         -> size of force\n  sign(Fx) = minus  -> points -x direction\n\nA force of -12 newtons is\nnot a 'negative force'. It is\nTWELVE newtons pointing in\nthe negative x direction.\n\nSize is always non-negative.\nSign always tracks direction.",
+              "position": { "x": 600, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981",
+              "animation": { "type": "fade_in", "delay_sec": 4, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Think of the component as carrying two pieces of information in a single number — size and direction." },
+              { "id": "s2", "text_en": "Plus twelve means twelve newtons pointing right. Minus twelve means twelve newtons pointing left. The number twelve tells you the size. The sign tells you which way." },
+              { "id": "s3", "text_en": "Both arrows have exactly the same length, twelve newtons. The difference is the direction only." },
+              { "id": "s4", "text_en": "So when a component comes out negative, do not worry about 'negative size'. Read it as 'this much force, in the opposite direction'." },
+              { "id": "s5", "text_en": "If you ever compute a magnitude and get a negative number, that IS an error — take the square root of positives, which is always non-negative." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Put It to Work — Quick Sign Check",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "practice",
+              "text": "Vector examples\n\n(a) v = 5 i-hat - 3 j-hat\n    Size sqrt(25 + 9) = sqrt(34)\n    Direction: +x, -y  -> Q4\n\n(b) F = -8 i-hat - 6 j-hat\n    Size sqrt(64 + 36) = 10\n    Direction: -x, -y  -> Q3\n\n(c) a = 0 i-hat + 7 j-hat\n    Size 7\n    Direction: purely +y\n\nEvery vector: read size by squaring,\nread direction by signs.",
+              "position": { "x": 360, "y": 280 },
+              "style": "formula_box"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Run three quick examples with your new rule. For each vector, read size from the square-root-of-squares and read direction from the signs." },
+              { "id": "s2", "text_en": "Five i-hat minus three j-hat. Size is root thirty-four. Direction is plus x and minus y, which sits in quadrant four." },
+              { "id": "s3", "text_en": "Minus eight i-hat minus six j-hat. Size is root sixty-four plus thirty-six, equals ten. Direction is minus x and minus y, which sits in quadrant three." },
+              { "id": "s4", "text_en": "Zero i-hat plus seven j-hat. Size is simply seven. Direction is purely along plus y. A vector can have a zero component — that only means the vector has no piece in that axis direction." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different quadrant",
+      "physical_world": "F = 10 N at 220 deg (Q3). Fx = -7.66, Fy = -6.43. Magnitude recovers as 10.",
+      "same_physics": "Signs track quadrant; magnitude from squares is always non-negative"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Fully negative case Q3",
+      "physical_world": "v = -3 i-hat - 4 j-hat (a velocity heading SW). Both components negative, magnitude 5, direction is 180 + 53 = 233 deg.",
+      "same_physics": "Same rule — signs pick direction, squaring gives magnitude"
+    }
+  ]
+}

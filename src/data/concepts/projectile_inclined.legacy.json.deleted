@@ -1,0 +1,471 @@
+{
+  "concept_id": "projectile_inclined",
+  "concept_name": "Projectile Motion on an Inclined Plane",
+  "chapter": "Ch.7",
+  "section": "7.5",
+  "source_book": "DC Pandey Mechanics Vol 1",
+  "class_level": "11",
+  "locked_facts": {
+    "fact_1": "On an inclined plane of angle α, choose x-axis along the plane and y-axis perpendicular to the plane.",
+    "fact_2": "Up the plane: ux = u cos(θ-α), uy = u sin(θ-α), ax = -g sinα, ay = -g cosα. Here θ is measured from horizontal.",
+    "fact_3": "Time of flight up the plane: T = 2u sin(θ-α) / (g cosα).",
+    "fact_4": "Range up the plane: R = 2u² sin(θ-α) cosθ / (g cos²α).",
+    "fact_5": "Range is maximum when θ = 45° + α/2 (angle from horizontal), i.e., the projectile bisects the angle between the vertical and the incline normal.",
+    "fact_6": "Maximum range up the plane: Rmax = u² / [g(1 + sinα)].",
+    "fact_7": "For horizontal launch from incline top (θ=0 measured from horizontal, projectile goes down the slope): coordinates at landing x = -2v₀²tanα/g, y = -2v₀²tan²α/g.",
+    "fact_8": "Down the plane: replace α with -α in formulas. T and R change accordingly.",
+    "fact_9": "Standard horizontal/vertical formulas (T=2u sinθ/g, R=u²sin2θ/g) CANNOT be applied directly on an inclined plane.",
+    "fact_10": "At maximum range on the incline, velocity at landing is perpendicular to the initial velocity."
+  },
+  "epic_l_path": {
+    "description": "Full explanation of projectile motion on inclined plane — axis choice, formulas, max range condition",
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Setup — Inclined Plane with a Projectile",
+        "physics_layer": {
+          "scenario": "inclined_projectile_setup",
+          "show": "incline at angle α=30°, ball launched at angle θ=60° from horizontal, x-axis drawn along slope (up), y-axis perpendicular to slope, gravity vector decomposed into -g sinα along slope and -g cosα perpendicular to slope",
+          "values": {
+            "alpha_deg": 30,
+            "theta_deg": 60
+          },
+          "freeze_at_t": 0
+        },
+        "pedagogy_layer": {
+          "focus": "Choosing the right axis system is the entire trick — tilt your world",
+          "real_world": "Ski jump — the ramp is your reference plane, not the ground",
+          "attention_target": "Gravity now has TWO components: one pulling along slope, one pulling into slope"
+        },
+        "freeze": false
+      },
+      "STATE_2": {
+        "label": "Velocity Components in Tilted Frame",
+        "physics_layer": {
+          "scenario": "inclined_velocity_decomposition",
+          "show": "initial velocity u decomposed: ux = u cos(θ-α) along slope, uy = u sin(θ-α) perpendicular to slope. Both labeled.",
+          "values": {
+            "alpha_deg": 30,
+            "theta_deg": 60,
+            "u": 20
+          },
+          "freeze_at_t": 0
+        },
+        "pedagogy_layer": {
+          "focus": "In the tilted frame, ux and uy use (θ-α), not θ — because axes are rotated",
+          "contrast_from_previous": "We've tilted everything. Horizontal launch (θ=α) means uy=0 in tilted frame.",
+          "attention_target": "θ-α is the angle from the slope surface — the effective launch angle in the new frame"
+        },
+        "freeze": true
+      },
+      "STATE_3": {
+        "label": "Trajectory Arc on the Slope",
+        "physics_layer": {
+          "scenario": "inclined_projectile_arc",
+          "show": "full arc of projectile from O to B on incline. Range R labeled along slope. ax=-g sinα, ay=-g cosα shown as constant acceleration components.",
+          "values": {
+            "alpha_deg": 30,
+            "theta_deg": 60,
+            "u": 20,
+            "g": 10
+          },
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "In the tilted frame this is the same as normal projectile — just with g replaced by (g sinα, g cosα)",
+          "contrast_from_previous": "The motion looks like a standard projectile but in a tilted world",
+          "attention_target": "The projectile lands ON the slope — range R is measured along the slope, not horizontal"
+        },
+        "freeze": false
+      },
+      "STATE_4": {
+        "label": "Range Formula and Maximum Range Angle",
+        "physics_layer": {
+          "scenario": "inclined_range_vs_angle",
+          "show": "R vs θ curve for given α, maximum marked at θ = 45° + α/2. Compare: flat ground max at 45°, incline max at 45°+α/2.",
+          "values": {
+            "alpha_deg": 30,
+            "u": 20,
+            "g": 10,
+            "theta_max_deg": 60
+          },
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "Incline shifts the optimum angle upward by α/2 — the steeper the slope, the higher you must aim",
+          "aha_moment": "θ_max = 45° + α/2. On flat ground α=0, so θ_max=45°. The incline formula generalizes the flat-ground result.",
+          "attention_target": "Maximum range on slope is always less than on flat ground — slope fights you"
+        },
+        "freeze": false
+      },
+      "STATE_5": {
+        "label": "Up vs Down the Plane Comparison",
+        "physics_layer": {
+          "scenario": "inclined_up_vs_down",
+          "show": "same launch speed and angle. Arc going up the slope vs arc going down the slope. Down-slope arc is always longer. Both T and R labeled.",
+          "values": {
+            "alpha_deg": 30,
+            "theta_deg": 60,
+            "u": 20
+          },
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "Going down the slope: gravity component along slope HELPS. Going up: it hinders. Same launch → very different range.",
+          "contrast_from_previous": "Replace α with -α for down the plane — formulas swap their signs"
+        },
+        "freeze": false
+      },
+      "STATE_6": {
+        "label": "Aha — Standard Formulas Don't Work Here",
+        "physics_layer": {
+          "scenario": "inclined_formula_comparison",
+          "show": "side by side: wrong answer using R=u²sin2θ/g (flat formula) vs correct R using inclined formula. Numbers visibly different, wrong prediction marked with X.",
+          "values": {
+            "alpha_deg": 30,
+            "theta_deg": 60,
+            "u": 20
+          },
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "Plugging flat-ground formulas gives completely wrong landing point on the incline",
+          "aha_moment": "The slope changes both the effective gravity and the axis directions — you MUST use the tilted frame approach.",
+          "contrast_from_previous": "This is why we set up the new axis system in STATE_1 — it was not optional"
+        },
+        "freeze": true
+      }
+    }
+  },
+  "epic_c_branches": {
+    "applies_flat_formula": {
+      "branch_id": "applies_flat_formula",
+      "trigger_beliefs": [
+        "use R = u²sin2θ/g on incline",
+        "same formula for incline",
+        "flat formula apply karunga",
+        "range formula same hai",
+        "incline pe bhi R = u²sin2θ/g"
+      ],
+      "student_belief": "The standard range formula R = u²sin2θ/g works directly for projectile on an inclined plane",
+      "actual_physics": "Flat-ground formula uses ax=0 (horizontal) and ay=-g (vertical). On incline, both axes have acceleration components. New formulas required using tilted axes.",
+      "aha_moment": "The flat formula gives landing point ON THE GROUND, not on the slope. The slope is not the ground.",
+      "states": {
+        "STATE_1": {
+          "label": "Your Belief — Apply Flat Formula",
+          "physics_layer": {
+            "scenario": "inclined_wrong_formula",
+            "show": "incline with projectile. Flat-ground formula used, predicted landing point is BELOW the incline surface (in mid-air or underground) — visually absurd.",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Show the absurd result of applying flat formula on an incline"
+          }
+        },
+        "STATE_2": {
+          "label": "Why the Formula Breaks",
+          "physics_layer": {
+            "scenario": "inclined_axis_mismatch",
+            "show": "split view: left = flat ground (ax=0 valid, ay=-g valid). Right = incline (ax=-g sinα≠0, ay=-g cosα≠g). The assumption ax=0 is violated.",
+            "freeze": true
+          },
+          "pedagogy_layer": {
+            "focus": "Flat formula assumes ax=0. On incline, ax=-g sinα ≠ 0. One broken assumption breaks the whole formula."
+          }
+        },
+        "STATE_3": {
+          "label": "Correct Tilted Frame Setup",
+          "physics_layer": {
+            "scenario": "inclined_correct_setup",
+            "show": "incline with tilted axes, correct velocity components ux=u cos(θ-α), uy=u sin(θ-α), correct accelerations labeled.",
+            "freeze": true
+          },
+          "pedagogy_layer": {
+            "focus": "Tilt your axes to match the slope. Then the problem becomes standard kinematics."
+          }
+        },
+        "STATE_4": {
+          "label": "Correct Prediction vs Wrong Prediction",
+          "physics_layer": {
+            "scenario": "inclined_correct_vs_wrong",
+            "show": "both predictions shown on same incline. Flat formula landing point: wrong (off-slope). Tilted formula: lands exactly on slope. Numerical R values compared.",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "The tilted formula lands exactly where the ball actually lands on the slope.",
+            "aha_moment": "The flat formula doesn't even know the slope exists. The tilted formula respects it."
+          }
+        }
+      }
+    },
+    "wrong_max_angle": {
+      "branch_id": "wrong_max_angle",
+      "trigger_beliefs": [
+        "max range at 45 on incline",
+        "incline pe bhi 45 degree",
+        "45 degree maximum range incline",
+        "same angle as flat ground"
+      ],
+      "student_belief": "Maximum range on an inclined plane is also achieved at θ = 45° (from horizontal), same as flat ground",
+      "actual_physics": "Maximum range up an incline of angle α occurs at θ = 45° + α/2 from horizontal. The incline shifts the optimum angle upward by half the slope angle.",
+      "aha_moment": "Flat ground is just α=0: θ_max = 45° + 0/2 = 45°. The incline formula generalizes flat ground.",
+      "states": {
+        "STATE_1": {
+          "label": "Your Belief — 45° is Always Best",
+          "physics_layer": {
+            "scenario": "inclined_wrong_angle",
+            "show": "incline α=30°. Trajectory at θ=45°. Arrow pointing out that this is NOT the maximum range arc on this slope.",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Student believes 45° is optimal everywhere"
+          }
+        },
+        "STATE_2": {
+          "label": "Sweep Angles — Find the True Maximum",
+          "physics_layer": {
+            "scenario": "inclined_angle_sweep",
+            "show": "arcs at 45°, 55°, 60° (=45°+30°/2), 70°. Range along slope measured for each. 60° arc is clearly longest.",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "On α=30° incline, the 60° arc travels farthest up the slope. Not 45°."
+          }
+        },
+        "STATE_3": {
+          "label": "Aha — θ_max = 45° + α/2",
+          "physics_layer": {
+            "scenario": "inclined_max_angle_display",
+            "show": "formula θ_max = 45° + α/2. For α=30°: θ_max = 60°. Highlighted on R-vs-θ curve. Flat ground case α=0 shown as special case giving 45°.",
+            "freeze": true
+          },
+          "pedagogy_layer": {
+            "focus": "The slope makes you aim higher than 45° — the gravity component along slope requires extra upward push.",
+            "aha_moment": "Flat ground (α=0) gives the familiar 45°. Every slope adds α/2 to that."
+          }
+        }
+      }
+    }
+  },
+  "epic_c_micro_templates": {
+    "micro_1": {
+      "trigger": [
+        "time of flight on incline",
+        "T formula incline",
+        "incline pe T"
+      ],
+      "response_type": "static_with_formula",
+      "formula": "T = 2u sin(θ-α) / (g cosα) [up the plane]",
+      "key_point": "θ measured from horizontal. α = incline angle. Use (θ-α) not θ.",
+      "simulation_states": 1
+    },
+    "micro_2": {
+      "trigger": [
+        "range on incline",
+        "R formula incline",
+        "incline range"
+      ],
+      "response_type": "static_with_formula",
+      "formula": "R = 2u² sin(θ-α) cosθ / (g cos²α) [up the plane]",
+      "key_point": "This reduces to R=u²sin2θ/g when α=0. Never use flat formula on slope.",
+      "simulation_states": 1
+    },
+    "micro_3": {
+      "trigger": [
+        "maximum range incline",
+        "best angle incline",
+        "optimal angle slope"
+      ],
+      "response_type": "static_with_formula",
+      "formula": "θ_max = 45° + α/2. Rmax = u² / [g(1+sinα)]",
+      "key_point": "Rmax on incline is always less than Rmax on flat ground (u²/g). Slope always reduces maximum range.",
+      "simulation_states": 2
+    },
+    "micro_4": {
+      "trigger": [
+        "down the plane projectile",
+        "niche slope pe",
+        "down incline"
+      ],
+      "response_type": "static",
+      "key_point": "Replace α with -α in all up-the-plane formulas. Down the plane: T = 2u sin(θ+α)/(g cosα), and range is always greater than up the plane for same θ.",
+      "simulation_states": 1
+    }
+  },
+  "static_responses": {
+    "axis_choice": "Choose x along the plane (up positive), y perpendicular to plane (away positive). Then decompose both u and g in these directions. Treat as standard kinematics problem.",
+    "why_tilted_frame": "The landing condition is sy=0 (back on slope), not sy=-vertical height. Tilted frame makes this condition automatic — sy=0 means landed on slope.",
+    "special_case_horizontal": "If ball launched horizontally from incline top: θ_from_horizontal = 0, so θ-α = -α. Use u cos(-α)=u cosα as ux along slope, u sin(-α)=-u sinα as uy (into slope initially)."
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Example 7.9, Section 7.5",
+      "principle": "Man on hilltop projects stone horizontally. Find coordinates of landing on hill surface.",
+      "aha": "Down the plane formula with θ=0 (horizontal launch). x = -2v₀²tanα/g. Demonstrates how to handle down-slope case.",
+      "simulation_states": 3
+    }
+  },
+  "parameter_slots": {
+    "slot_1": {
+      "name": "initial_speed_u",
+      "symbol": "u",
+      "unit": "m/s",
+      "default": 20,
+      "range": [
+        10,
+        60
+      ]
+    },
+    "slot_2": {
+      "name": "launch_angle_theta",
+      "symbol": "θ",
+      "unit": "degrees (from horizontal)",
+      "default": 60,
+      "range": [
+        0,
+        90
+      ]
+    },
+    "slot_3": {
+      "name": "incline_angle_alpha",
+      "symbol": "α",
+      "unit": "degrees",
+      "default": 30,
+      "range": [
+        10,
+        60
+      ]
+    },
+    "slot_4": {
+      "name": "gravity_g",
+      "symbol": "g",
+      "unit": "m/s²",
+      "default": 10,
+      "range": [
+        9.8,
+        10
+      ]
+    }
+  },
+  "panel_sync_spec": {
+    "panel_a": "canvas2d — mechanics_2d renderer showing incline with projectile arc in tilted frame",
+    "panel_b": "plotly — R vs θ curve for the given α, showing maximum at 45°+α/2. Updates as α changes.",
+    "sync_event": "Moving α slider in Panel A shifts the entire R-vs-θ curve and maximum marker in Panel B",
+    "bidirectional": true,
+    "sync_trigger": "alpha_change"
+  },
+  "renderer_hint": {
+    "primary_renderer": "mechanics_2d",
+    "panel_count": 2,
+    "technology_a": "canvas2d",
+    "technology_b": "plotly",
+    "sync_required": true,
+    "scene_mode": false,
+    "scenario_type": "projectile_inclined",
+    "panel_a_role": "Inclined plane with tilted axes, projectile arc from O to B on slope, ax and ay components labeled",
+    "panel_b_role": "Plotly: R vs theta curve for current alpha. Maximum marked at 45+alpha/2. Updates as alpha slider changes.",
+    "scene_elements": []
+  },
+  "routing_signals": {
+    "primary_keywords": [
+      "inclined plane projectile",
+      "projectile on slope",
+      "up the plane",
+      "down the plane",
+      "incline projectile"
+    ],
+    "hinglish_triggers": [
+      "dhalanwan samath pe projectile",
+      "slope pe phekna",
+      "incline pe kitni dur",
+      "dhalan pe time of flight"
+    ],
+    "formula_triggers": [
+      "T = 2u sin(θ-α)/(g cosα)",
+      "θ_max = 45 + α/2",
+      "Rmax = u²/g(1+sinα)"
+    ],
+    "belief_check_triggers": [
+      "does 45 degree give max range on slope",
+      "can I use standard formulas on incline"
+    ]
+  },
+  "jee_specific": {
+    "trap_1": "Standard formulas (R=u²sin2θ/g) don't work on inclined plane. Most common JEE mistake in this topic.",
+    "trap_2": "θ is always measured from HORIZONTAL in DC Pandey's convention — not from the slope. Angle from slope = (θ-α).",
+    "trap_3": "Maximum range angle is 45°+α/2 from horizontal, which equals (90°-α)/2 from the slope surface.",
+    "trap_4": "For down-the-slope launch, gravity component along slope ADDS to motion — T and R both increase. Students often apply up-slope formula.",
+    "trap_5": "The condition 'ball lands on slope' means sy=0 in tilted frame, NOT sy=0 in lab frame."
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "projectile_motion",
+      "vector_components",
+      "uniform_acceleration"
+    ],
+    "leads_to": [
+      "relative_motion_projectiles"
+    ],
+    "common_confusion_with": [
+      "projectile_motion — students apply flat-ground formulas here"
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "scenario_type": "projectile_inclined",
+      "approach": "lab_frame_direct",
+      "entry_state": "STATE_1",
+      "teacher_angle": "Stay in the lab frame (horizontal x, vertical y). Set up when ball lands ON slope: condition is y = x·tanα. Substitute into trajectory equation and solve. No axis tilting needed — but more algebra.",
+      "locked_facts_focus": [
+        "fact_9",
+        "fact_1",
+        "fact_4"
+      ],
+      "panel_b_focus": "Show both frames side by side — lab frame algebra vs tilted frame method reaching same answer."
+    },
+    {
+      "variant_id": 2,
+      "scenario_type": "projectile_inclined",
+      "approach": "max_range_first",
+      "entry_state": "STATE_4",
+      "teacher_angle": "Start with the maximum range result θ_max = 45°+α/2. Show WHY: the angle that bisects the angle between vertical and slope normal. Derive T and R formulas from there.",
+      "locked_facts_focus": [
+        "fact_5",
+        "fact_6",
+        "fact_3"
+      ],
+      "panel_b_focus": "R vs θ curve with maximum highlighted as primary focus from STATE_1."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Launch angle", "symbol": "α", "unit": "°", "min": 0, "max": 90 },
+    "y_axis": { "label": "Range on incline", "symbol": "R", "unit": "m", "min": 0, "max": 60 },
+    "lines": [
+      { "id": "range_vs_angle", "formula": "(2 * 20 * 20 * Math.sin(x * Math.PI / 180) * Math.cos((x + 30) * Math.PI / 180)) / (9.8 * Math.cos(30 * Math.PI / 180) * Math.cos(30 * Math.PI / 180))", "color": "#f97316", "label": "Range vs launch angle (incline 30°)" },
+      { "id": "flat_ref", "formula": "(20 * 20 * Math.sin(2 * x * Math.PI / 180)) / 9.8", "color": "#94a3b8", "dash": "dash", "label": "Flat ground range (reference)" }
+    ],
+    "sliders": [
+      { "id": "alpha", "label": "Launch angle α (degrees)", "min": 0, "max": 90, "default": 30 }
+    ],
+    "legend": [
+      { "id": "range_vs_angle", "label": "Incline range" },
+      { "id": "flat_ref", "label": "Flat ref" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": ["flat_ref"], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": ["flat_ref", "range_vs_angle"], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["range_vs_angle"], "show_sliders": false, "highlight_point": true, "point_x": 30, "point_y": 35, "label": "Optimal angle shifts on incline" },
+      "STATE_5": { "active_lines": ["flat_ref", "range_vs_angle"], "show_sliders": false, "highlight_point": true, "point_x": 30, "point_y": 35, "label": "Incline reduces range vs flat" },
+      "STATE_6": { "active_lines": ["flat_ref", "range_vs_angle"], "show_sliders": true, "highlight_point": true, "point_x": 30, "point_y": 35 }
+    }
+  }
+}

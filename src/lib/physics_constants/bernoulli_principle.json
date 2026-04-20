@@ -1,0 +1,42 @@
+{
+  "concept_id": "bernoulli_principle",
+  "concept_name": "Bernoulli's Principle",
+  "class_level": 11,
+  "chapter": "Mechanical Properties of Fluids",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "bernoulli", "panel_count": 2, "show_labels": true },
+  "variables": { "P": "Pressure (Pa)", "v": "Flow velocity (m/s)", "h": "Height (m)", "ρ": "Fluid density (kg/m³)" },
+  "locked_facts": [
+    "Bernoulli's equation: P + ½ρv² + ρgh = constant (along a streamline)",
+    "Where speed is high, pressure is low (and vice versa)",
+    "Equation of continuity: A₁v₁ = A₂v₂ (mass conservation for incompressible flow)",
+    "Narrower pipe → faster flow → lower pressure",
+    "Venturi effect: pressure drops in a constriction",
+    "Applies to ideal (inviscid, incompressible, steady, irrotational) flow",
+    "Bernoulli's equation is energy conservation per unit volume for flowing fluid"
+  ],
+  "truth_statements": [
+    "Bernoulli's principle states that for steady flow of an ideal fluid the sum of pressure energy, kinetic energy, and potential energy per unit volume remains constant",
+    "In a horizontal pipe where the cross-section narrows, the fluid speeds up and the pressure drops",
+    "The equation of continuity requires that fluid speed increases where the pipe cross-section decreases",
+    "Bernoulli's principle explains the lift on airplane wings: faster flow over the top creates lower pressure",
+    "The Venturi meter uses the pressure drop in a constriction to measure flow rate"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A horizontal pipe with a constriction. By continuity: fluid speeds up in the narrow section. By Bernoulli: faster speed → lower pressure. Manometer tubes at wide and narrow sections show different heights. The 'high speed = low pressure' connection made visible.",
+    "visual_emphasis": "Side-by-side manometers — wide section: high pressure (tall column), narrow section: low pressure (short column), with velocity arrows",
+    "why_this_breaks_misconception": "Students expect high-speed fluid to exert MORE pressure — seeing the manometer drop at the constriction overturns this intuition"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Continuity equation", "description": "Water flows through a pipe that narrows. Fluid speeds up in the narrow section. A₁v₁ = A₂v₂ shown. Particle tracers move faster in the constriction.", "emphasis": "What goes in must come out — narrower pipe means faster flow", "labels_visible": ["A₁v₁ = A₂v₂", "v₂ > v₁"] },
+    { "id": "STATE_2", "label": "Bernoulli's equation", "description": "Pressure gauges added. Wide section: high P, low v. Narrow section: low P, high v. P + ½ρv² = constant (horizontal). Energy bars shown.", "emphasis": "Faster flow = lower pressure — energy is redistributed, not created", "labels_visible": ["P + ½ρv² = const", "P₁ > P₂", "v₁ < v₂"] },
+    { "id": "STATE_3", "label": "Venturi effect", "description": "Manometer tubes show pressure at different sections. In the constriction, the liquid column is shorter (lower pressure). Atomiser and Venturi meter principles demonstrated.", "emphasis": "The pressure drop in a constriction is the Venturi effect — used in carburettors and flow meters", "labels_visible": ["Venturi effect", "P drops at constriction"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts pipe diameters and flow rate. Pressure and velocity at each section update. Height variation shows gravitational term ρgh. Applications: airplane wing, ball curve.", "emphasis": "Make the constriction narrower — pressure drops more. Add height difference — see ρgh term.", "labels_visible": ["P", "v", "h", "energy bars"], "interactive": true, "sliders": [{ "id": "flow_rate", "label": "Flow rate", "min": 1, "max": 20, "default": 10, "unit": "L/s" }, { "id": "constriction", "label": "Constriction ratio", "min": 0.2, "max": 1, "default": 0.5, "unit": "" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Faster moving fluid exerts more pressure", "trigger_phrases": ["fast fluid high pressure", "speed means pressure", "tez bahega toh pressure zyada"], "correction": "It's the opposite: faster moving fluid has LOWER pressure (for horizontal flow). P + ½ρv² = constant means if v increases, P must decrease. This is the core of Bernoulli's principle.", "simulation_emphasis": "Show pressure gauges dropping as velocity increases in a constriction" },
+    { "belief": "Bernoulli's equation works for all fluids in all conditions", "trigger_phrases": ["always works", "any fluid"], "correction": "Bernoulli's equation applies only to ideal flow: steady, incompressible, inviscid (no viscosity), and along a streamline. For viscous fluids, turbulent flow, or compressible gases at high speed, modifications are needed.", "simulation_emphasis": "Show viscous flow where Bernoulli prediction fails — pressure doesn't recover after constriction" }
+  ],
+  "legend": [ { "symbol": "P", "meaning": "Static pressure (Pa)" }, { "symbol": "½ρv²", "meaning": "Dynamic pressure (Pa)" }, { "symbol": "ρgh", "meaning": "Hydrostatic pressure (Pa)" } ],
+  "concept_relationships": { "prerequisites": ["pressure_pascals_law", "work_energy_theorem"], "extensions": ["venturi_meter", "magnus_effect"], "siblings": ["equation_of_continuity"], "common_exam_combinations": ["pressure_pascals_law", "viscosity_stokes"] }
+}

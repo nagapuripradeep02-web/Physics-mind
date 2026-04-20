@@ -1,0 +1,84 @@
+{
+  "concept_id": "convex_lens",
+  "concept_name": "Convex Lens",
+  "chapter": "Light Reflection Refraction",
+  "class_level": 10,
+  "renderer_hint": {
+    "primary": "optics_ray",
+    "scenario_type": "convex_lens",
+    "show_graph": false
+  },
+  "variables": {
+    "u": { "symbol": "u", "name": "Object Distance", "unit": "cm", "min": -100, "max": -5, "default": -30 },
+    "f": { "symbol": "f", "name": "Focal Length", "unit": "cm", "min": 5, "max": 50, "default": 15 }
+  },
+  "locked_facts": [
+    "Lens formula: 1/v - 1/u = 1/f (new Cartesian sign convention)",
+    "Convex lens has positive focal length",
+    "Object beyond 2F: real, inverted, diminished image between F and 2F",
+    "Object between F and 2F: real, inverted, magnified image beyond 2F",
+    "Object within F: virtual, erect, magnified image on same side as object",
+    "Object at infinity: image at F (focal point)",
+    "Power P = 1/f (dioptre), positive for convex lens"
+  ],
+  "truth_statements": [
+    "A convex lens is thicker at the centre and converges light rays",
+    "When an object is placed beyond 2F, the image is real, inverted and diminished",
+    "When an object is placed between F and the optical centre, the image is virtual, erect and magnified",
+    "The focal length of a convex lens is positive according to the new Cartesian sign convention",
+    "The lens formula relates object distance, image distance and focal length"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show object at F — all three rays diverge after the lens, never meeting. The image is at infinity. Then move object slightly inside F — rays diverge on the right but their backward extensions converge on the LEFT, forming a virtual image. The convex lens that was forming real inverted images now forms a virtual erect magnified image. Same lens, different position, completely different image.",
+    "visual_emphasis": "Smooth transition of object from beyond 2F through 2F, between F and 2F, to within F. Watch the image flip from real-inverted to virtual-erect as the object crosses F."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Object beyond 2F — real, inverted, diminished",
+      "what_student_sees": "Object arrow on the far left. Three standard rays drawn. Real inverted diminished image between F and 2F on the right.",
+      "what_to_emphasize": "When the object is far from the lens, the image is smaller than the object and inverted."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Object between F and 2F — real, inverted, magnified",
+      "what_student_sees": "Object moved closer, between F and 2F. Image is now beyond 2F on the other side — bigger and inverted.",
+      "what_to_emphasize": "As the object moves closer to F, the image moves farther away and becomes larger."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Object within F — virtual, erect, magnified",
+      "what_student_sees": "Object placed between F and the lens. Rays diverge after the lens. Virtual image (dotted) on the same side as the object — erect and magnified.",
+      "what_to_emphasize": "This is the magnifying glass effect. The image is virtual because the refracted rays never actually converge — your brain traces them back to form a virtual image."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive — move the object",
+      "what_student_sees": "Slider to adjust object distance. Image position, size, and nature update in real-time.",
+      "what_to_emphasize": "Experiment: move the object across F and watch the image flip from real to virtual."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "convex_always_magnifies",
+      "trigger_keywords": ["convex lens always magnifies", "convex lens hamesha magnify", "magnifying glass always big", "convex = big image"],
+      "student_belief": "A convex lens always magnifies objects — it always makes things look bigger",
+      "actual_physics": "A convex lens magnifies only when the object is within the focal length (magnifying glass mode). When the object is beyond 2F, the image is actually diminished (smaller). Between F and 2F, it is magnified but inverted.",
+      "simulation_emphasis": "Show object beyond 2F with diminished image. Then move within F to show magnification. The lens behaviour depends entirely on where the object is placed relative to F."
+    },
+    {
+      "id": "convex_always_real",
+      "trigger_keywords": ["convex lens always real image", "convex se hamesha real", "converging lens = real image"],
+      "student_belief": "A convex lens always forms a real image because it converges light",
+      "actual_physics": "A convex lens forms a virtual image when the object is placed within the focal length. The refracted rays diverge and never actually meet — the virtual image is formed by backward extension of rays.",
+      "simulation_emphasis": "Demonstrate the transition: object beyond F gives real image (rays converge), object within F gives virtual image (rays diverge, dotted extensions show virtual image)."
+    }
+  ],
+  "legend": [
+    { "symbol": "f", "meaning": "Focal length (positive for convex)" },
+    { "symbol": "u", "meaning": "Object distance (negative, left of lens)" },
+    { "symbol": "v", "meaning": "Image distance (+ve right, -ve left)" },
+    { "symbol": "m", "meaning": "Magnification = v/u" }
+  ]
+}

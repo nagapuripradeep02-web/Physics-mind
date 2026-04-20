@@ -1,0 +1,42 @@
+{
+  "concept_id": "gravitational_potential_energy",
+  "concept_name": "Gravitational Potential Energy",
+  "class_level": 11,
+  "chapter": "Gravitation",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "gravitational_pe", "panel_count": 1, "show_labels": true },
+  "variables": { "U": "Gravitational PE (J)", "M": "Mass of planet (kg)", "m": "Mass of object (kg)", "r": "Distance from centre (m)" },
+  "locked_facts": [
+    "Gravitational PE: U = -GMm/r (always negative, zero at infinity)",
+    "Near Earth's surface: ΔU = mgh (approximation for small h << R)",
+    "PE is negative because work must be done against gravity to take mass to infinity",
+    "Total energy E = KE + PE; for bound orbit E < 0",
+    "Escape: total energy E = 0 (KE = |PE| at surface)",
+    "The reference point for U = -GMm/r is at infinity where U = 0",
+    "PE depends only on the separation r, not on the path — gravity is conservative"
+  ],
+  "truth_statements": [
+    "Gravitational potential energy is negative because the reference point is at infinity where U is defined as zero",
+    "The negative sign indicates that the system is bound — energy must be added to separate the masses to infinity",
+    "Near the surface of Earth the expression U = mgh is a linear approximation of the exact formula -GMm/r",
+    "The total mechanical energy of a body in orbit is negative — it is a bound system",
+    "For escape velocity the total energy is exactly zero: ½mv² - GMm/R = 0"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A PE vs r graph showing U = -GMm/r as a hyperbolic curve. At r = R (surface), U is most negative. As r → ∞, U → 0. An object thrown upward climbs this potential well. If KE at surface exactly equals |U|, it just barely escapes (E = 0).",
+    "visual_emphasis": "PE well curve with total energy lines: E < 0 (bound), E = 0 (escape), E > 0 (unbound)",
+    "why_this_breaks_misconception": "Students are confused by negative PE — seeing it as a potential well where 'escape' means climbing to zero makes the sign meaningful"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "PE near surface", "description": "Object at height h above ground. U = mgh (taking ground as reference). Simple and familiar. But this only works for h << R.", "emphasis": "mgh is an approximation — works only near the surface", "labels_visible": ["U = mgh", "h", "reference at ground"] },
+    { "id": "STATE_2", "label": "PE from infinity", "description": "Now reference is at infinity (U = 0 there). At Earth's surface, U = -GMm/R (large negative number). PE gets less negative as r increases.", "emphasis": "PE is always negative — it represents a bound state", "labels_visible": ["U = -GMm/r", "U = 0 at ∞", "bound state"] },
+    { "id": "STATE_3", "label": "Escape from PE well", "description": "PE vs r graph shown as a potential well. A ball at the bottom needs KE = GMm/R to climb out. E = 0 line represents escape. E < 0 lines represent orbits.", "emphasis": "Escape = climbing out of the gravity well. Total energy = 0 at escape.", "labels_visible": ["E = KE + PE", "E = 0 → escape", "E < 0 → bound"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student launches object from surface with adjustable speed. Energy bar shows KE + PE. If total E < 0: object falls back. E = 0: just escapes. E > 0: escapes with speed remaining. PE graph shows position.", "emphasis": "Increase launch speed — watch total energy cross zero for escape", "labels_visible": ["KE", "PE", "E_total", "v"], "interactive": true, "sliders": [{ "id": "launch_speed", "label": "Launch speed", "min": 0, "max": 15, "default": 5, "unit": "km/s" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Negative PE means the object has no energy", "trigger_phrases": ["negative energy means no energy", "negative PE confusing"], "correction": "Negative PE means the system is bound — you must add energy to separate the masses. The 'zero' is at infinity. Think of it as a debt: negative PE = energy owed to escape.", "simulation_emphasis": "Show PE well with object at the bottom — it needs energy INPUT to reach zero (escape)" },
+    { "belief": "U = mgh works at all heights", "trigger_phrases": ["mgh at any height", "mgh for satellite"], "correction": "U = mgh is a linear approximation valid only when h << R (Earth's radius). For large heights (satellites, rockets), you must use U = -GMm/r which accounts for the 1/r variation of gravity.", "simulation_emphasis": "Plot both mgh (straight line) and -GMm/r (curve) — they diverge at large h" }
+  ],
+  "legend": [ { "symbol": "U", "meaning": "Gravitational PE = -GMm/r (J)" }, { "symbol": "G", "meaning": "6.674 × 10⁻¹¹ N·m²/kg²" }, { "symbol": "r", "meaning": "Distance from centre of planet" } ],
+  "concept_relationships": { "prerequisites": ["gravitational_field_shell_solid", "work_energy_theorem"], "extensions": ["escape_velocity_orbital", "kepler_laws"], "siblings": ["electric_potential_3d"], "common_exam_combinations": ["escape_velocity_orbital"] }
+}

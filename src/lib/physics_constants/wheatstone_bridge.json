@@ -1,0 +1,27 @@
+{
+  "concept": "wheatstone_bridge",
+  "locked_facts": {
+    "balance_condition": "P/Q = R/S",
+    "null_deflection_means_balanced": true,
+    "galvanometer_reads_zero_when_balanced": true,
+    "balance_interpretation": "no_current_flows_through_galvanometer_at_balance",
+    "practical_use": "measures_unknown_resistance_by_adjusting_known_arm",
+    "inventor_note": "devised_by_samuel_hunter_christie_popularised_by_wheatstone"
+  },
+  "animation_constraints": {
+    "current_through_galvanometer_zero_at_balance": true,
+    "bridge_arms_must_show_ratios": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "A Wheatstone bridge consists of four resistors P, Q, R, and S arranged in a diamond (bridge) configuration with a galvanometer across the middle",
+    "The bridge is balanced when P/Q = R/S; at balance, no current flows through the galvanometer",
+    "A null or zero deflection of the galvanometer indicates the bridge is balanced and the ratio of resistances is satisfied",
+    "The Wheatstone bridge is used to measure an unknown resistance accurately by adjusting a known variable resistance until the galvanometer reads zero",
+    "When the bridge is unbalanced, a current flows through the galvanometer whose direction and magnitude indicate the degree of imbalance"
+  ]
+}

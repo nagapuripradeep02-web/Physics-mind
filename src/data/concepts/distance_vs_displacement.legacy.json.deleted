@@ -1,0 +1,876 @@
+{
+  "concept_id": "distance_vs_displacement",
+  "concept_name": "Distance and Displacement — Speed and Velocity",
+  "class_level": 11,
+  "chapter": "Kinematics",
+  "section": "6.4",
+  "source_coverage": {
+    "dc_pandey": "Chapter 6, Sections 6.4 (Basic Definitions) and 6.6 (distance vs displacement in equations of motion)",
+    "ncert": "Chapter 3 — Motion in a Straight Line, Sections 3.2 and 3.3",
+    "hc_verma": "Chapter 3 — Rest and Motion: Kinematics, Section 3.2"
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "distance_vs_displacement",
+    "panel_count": 2,
+    "show_labels": true,
+    "show_path": true,
+    "show_displacement_arrow": true,
+    "canvas_scale": 60,
+    "technology_b": "plotly",
+    "sync_required": true,
+    "scene_mode": false,
+    "panel_a_role": "Particle moving on number line — path length vs displacement arrow",
+    "panel_b_role": "Plotly x-t graph — position over time with displacement marked"
+  },
+  "locked_facts": {
+    "distance_definition": "Distance is the total path length covered by a moving particle. It is a scalar. It is always positive or zero. It never decreases.",
+    "displacement_definition": "Displacement is the change in position vector — a vector from initial position to final position. Displacement = r_final − r_initial.",
+    "key_inequality": "|displacement| ≤ distance. Equality holds only when motion is in a straight line without reversal.",
+    "when_equal": "Distance = |displacement| ONLY when: (1) particle moves in a straight line, AND (2) never reverses direction.",
+    "when_unequal": "Distance > |displacement| when particle reverses direction OR moves along a curved path.",
+    "average_speed_definition": "Average speed = total distance / total time. Always positive. Scalar.",
+    "average_velocity_definition": "Average velocity = total displacement / total time = Δr / Δt. Vector.",
+    "instantaneous_velocity": "v = lim(Δt→0) Δs/Δt = ds/dt = dr/dt. Instantaneous speed = |v| = |dr/dt|.",
+    "instantaneous_acceleration": "a = lim(Δt→0) Δv/Δt = dv/dt.",
+    "average_speed_vs_magnitude_avg_velocity": "Average speed ≠ magnitude of average velocity in general. They are equal only when distance = |displacement|.",
+    "displacement_in_equations": "The 's' in s = ut + ½at² and v² = u² + 2as is DISPLACEMENT, not distance. Critical distinction when u and a are in opposite directions.",
+    "sign_convention_1d": "In 1D motion: choose one direction as positive. All vectors (displacement, velocity, acceleration) in that direction are positive; opposite direction is negative. Scalars (distance, speed) are always positive.",
+    "semicircle_example": "Particle moves from A to B along a semicircle of radius r: distance = πr, |displacement| = 2r (diameter). Ratio = π/2 ≈ 1.57.",
+    "complete_circle": "Particle completes one full circle: distance = 2πr, displacement = 0."
+  },
+  "minimum_viable_understanding": "Distance is path length (scalar, always increasing). Displacement is straight-line change in position (vector, can be zero or negative). Average speed uses distance; average velocity uses displacement. The 's' in equations of motion is displacement.",
+  "variables": {
+    "d": "Distance (scalar, always ≥ 0)",
+    "s": "Displacement (vector, can be +, −, or 0)",
+    "v_av_scalar": "Average speed = d / Δt",
+    "v_av_vector": "Average velocity = s / Δt = Δr / Δt",
+    "v": "Instantaneous velocity = ds/dt",
+    "t0": "Time when velocity becomes zero (turning point)",
+    "r": "Position vector",
+    "u": "Initial velocity",
+    "a": "Acceleration"
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "difference between distance and displacement",
+      "distance vs displacement",
+      "what is displacement",
+      "duri aur visthapan mein antar",
+      "explain distance displacement speed velocity"
+    ],
+    "local_triggers": [
+      "average speed vs average velocity",
+      "when is distance equal to displacement",
+      "particle moves in semicircle find displacement",
+      "total distance vs net displacement",
+      "is displacement scalar or vector",
+      "speed vector ya scalar"
+    ],
+    "micro_triggers": [
+      "can displacement be negative",
+      "can displacement be zero",
+      "can average speed be zero",
+      "instantaneous speed definition",
+      "why s in equation of motion is displacement not distance"
+    ],
+    "simulation_not_needed_triggers": [
+      "define distance",
+      "define displacement",
+      "formula for average velocity",
+      "formula for instantaneous velocity"
+    ],
+    "subconcept_triggers": {
+      "distance_displacement_basics": [
+        "difference distance displacement",
+        "path length vs displacement",
+        "distance displacement difference"
+      ],
+      "average_speed_velocity": [
+        "average speed average velocity difference",
+        "when are average speed and average velocity equal",
+        "total distance total displacement"
+      ],
+      "instantaneous_velocity": [
+        "what is instantaneous velocity",
+        "instantaneous speed",
+        "velocity at a point"
+      ],
+      "sign_convention": [
+        "positive negative velocity",
+        "sign convention kinematics",
+        "negative displacement meaning"
+      ],
+      "s_in_equations": [
+        "is s in v=u+at displacement or distance",
+        "distance or displacement in equations of motion",
+        "s = ut + half at squared s is what"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "understands_basic_difference": "enter at STATE_2",
+    "understands_average_speed_velocity": "enter at STATE_3",
+    "understands_when_equal": "enter at STATE_4",
+    "understands_s_in_equations": "enter at STATE_5"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "scalar_vs_vector",
+      "vector_basics"
+    ],
+    "gate_question": "Is velocity a scalar or vector? (If wrong, redirect to scalar_vs_vector first.)",
+    "if_gap_detected": "redirect to scalar_vs_vector.json"
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "board_mode_states": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "jee_mode_states": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Hook — Same Journey, Two Different Numbers",
+        "physics_layer": {
+          "concept": "The same physical motion gives two different numerical answers depending on what you measure",
+          "simulation_focus": "Animate a particle starting at A, moving right to C (10m), then reversing left to B (4m from A). Path drawn in red. Show two counters updating live: DISTANCE counter clicks up: 10m → 14m. DISPLACEMENT arrow stretches and shrinks: shows +10m at C, then +4m at B.",
+          "final_state": "Distance = 14m. Displacement = +4m (rightward). Same journey. Two completely different numbers.",
+          "key_observation": "Distance measures EVERY step taken. Displacement only cares about WHERE you ended up vs WHERE you started.",
+          "scenario": "curved_path_shown"
+        },
+        "pedagogy_layer": {
+          "opening_question": "You walk 10m east, then 6m west. How far did you walk? Where did you end up? These are two completely different questions.",
+          "teacher_script": "Physics needs BOTH answers — one for energy calculations (distance), one for motion equations (displacement). Confusing them causes wrong answers in 60% of kinematics problems."
+        }
+      },
+      "STATE_2": {
+        "label": "The Definitions — What Each One Actually Measures",
+        "physics_layer": {
+          "concept": "Precise definitions with visual separation",
+          "simulation_focus": "Curved path from A to C (city A to city C via winding road). Show: (1) Red dotted line following every curve = DISTANCE = actual road length = 350 km. (2) Blue straight arrow from A directly to C = DISPLACEMENT = 200 km northeast.",
+          "labels": {
+            "distance": "Path length. Every step. Scalar. Always positive. Odometer reading.",
+            "displacement": "Straight-line change in position. Vector. From start to end. Can be zero, positive, or negative."
+          },
+          "formula_display": "Displacement = r_final − r_initial = Δr",
+          "scenario": "distance_along_path"
+        },
+        "pedagogy_layer": {
+          "analogy": "Distance = odometer on your car (total km driven). Displacement = displacement on a map (how far the pin moved from start to end).",
+          "key_insight": "Displacement doesn't care about the path taken. It only sees the start point and end point."
+        }
+      },
+      "STATE_3": {
+        "label": "Average Speed vs Average Velocity — The Ratio that Trips Everyone",
+        "physics_layer": {
+          "concept": "They use different numerators — distance vs displacement",
+          "simulation_focus": "DC Pandey's semicircle example (Example 6.6): Particle moves A→B along a semicircle of radius 1m in 1 second. Show: Distance = π × 1 = 3.14m. Displacement = diameter = 2m. Average speed = 3.14/1 = 3.14 m/s. Average velocity = 2/1 = 2 m/s (pointing from A to B).",
+          "formulas": {
+            "average_speed": "v_avg = total distance / total time  [scalar]",
+            "average_velocity": "v_avg = total displacement / total time = Δr/Δt  [vector]"
+          },
+          "counter_example": "Full circle: distance = 2πr, displacement = 0. Average speed = 2πr/T > 0. Average velocity = 0/T = 0. Average velocity can be ZERO even when the particle is moving the whole time.",
+          "scenario": "displacement_straight_arrow"
+        },
+        "pedagogy_layer": {
+          "jee_trap": "Average speed is always equal to magnitude of average velocity — FALSE. Only true when the particle moves in a straight line without reversal.",
+          "emphasis": "In the semicircle: average speed = π m/s ≈ 3.14 m/s. Magnitude of average velocity = 2 m/s. Different numbers, different quantities."
+        }
+      },
+      "STATE_4": {
+        "label": "When Distance = |Displacement| — The Exact Condition",
+        "physics_layer": {
+          "concept": "The equality condition — its precise meaning and why reversal breaks it",
+          "simulation_focus": "Three cases side by side:\n  Case 1: Straight line, same direction throughout. Distance counter and |displacement| counter stay identical. Ratio = 1.\n  Case 2: Straight line with reversal. After reversal: distance keeps increasing, displacement starts decreasing. Ratio > 1.\n  Case 3: Curved path, no reversal. Distance > |displacement| from the first step. Ratio > 1.",
+          "rule": "Distance = |displacement| ⟺ straight line motion + no reversal of direction",
+          "consequence": "In such cases: average speed = |average velocity|",
+          "scenario": "direction_difference"
+        },
+        "pedagogy_layer": {
+          "key_point": "The moment a particle reverses direction, distance becomes permanently greater than |displacement|. There is no going back."
+        }
+      },
+      "STATE_5": {
+        "label": "The Critical JEE Trap — 's' in Equations of Motion is DISPLACEMENT",
+        "physics_layer": {
+          "concept": "The s in s = ut + ½at² is displacement, not distance. This matters ONLY when u and a are in opposite directions.",
+          "simulation_focus": "Ball thrown upward at u = 40 m/s. g = 10 m/s². Questions: Find s and d at t = 6s.\n  Step 1: Animate ball going up 80m, then coming down. At t=6s, ball is 60m from start.\n  Step 2: Show DISPLACEMENT counter: s = 40(6) − ½(10)(36) = 240 − 180 = +60m (correct, still above start).\n  Step 3: Show DISTANCE counter: Ball went up 80m, then came back 20m. d = 80 + 20 = 100m.\n  Step 4: Show what happens if you mistakenly use s formula for distance: gives 60m. WRONG for distance.",
+          "dc_pandey_example": "Example 6.15: u=40m/s upward, g=10m/s². At t=6s: s=60m (displacement), d=100m (distance). At t=4s: s=d=80m (turning point). t0 = u/a = 40/10 = 4s.",
+          "formula_for_distance_case": "When u and a opposite: find t0 = |u/a|. d = u²/2a (distance to turning point) + ½|a|(t−t0)² (distance after turning)",
+          "scenario": "round_trip_case"
+        },
+        "pedagogy_layer": {
+          "this_is_the_aha_moment": true,
+          "message": "Every equation-of-motion problem where 'u and a are opposite' is secretly a distance-vs-displacement problem. Missing this is the single most common source of wrong answers in kinematics."
+        }
+      },
+      "STATE_6": {
+        "label": "Student Interaction — Solve the Four Classic Problem Types",
+        "physics_layer": {
+          "concept": "Applied practice on four canonical question types",
+          "problem_1": {
+            "title": "Circular path",
+            "question": "A particle completes 3/4 of a circle of radius R. Find distance and displacement.",
+            "answer": "Distance = (3/4)(2πR) = 3πR/2. Displacement = R√2 (diagonal of square inscribed in circle, from start to end of 3/4 arc).",
+            "simulation": "Show 3/4 arc drawn, then displacement arrow cutting across."
+          },
+          "problem_2": {
+            "title": "Average speed ≠ average velocity",
+            "question": "Particle travels first half distance at v1, second half at v2. Find average speed.",
+            "answer": "v_avg = 2v1v2/(v1+v2). This is harmonic mean.",
+            "source": "DC Pandey Example 6.10"
+          },
+          "problem_3": {
+            "title": "Reversal case — distance vs displacement",
+            "question": "Particle thrown up at 40 m/s. Find distance in (a) 2s (b) 4s (c) 6s. g=10m/s².",
+            "answer": "(a) 2s < t0=4s: d=s=60m. (b) 4s = t0: d=s=80m. (c) 6s > t0: s=60m, d=100m.",
+            "source": "DC Pandey Example 6.15"
+          },
+          "problem_4": {
+            "title": "Instantaneous quantities",
+            "question": "x(t) = 2t² + 4t + 6. Find average velocity in t=0 to t=2s. Find instantaneous velocity at t=2s.",
+            "answer": "x(0)=6, x(2)=20. Average v = (20-6)/2 = 7 m/s. v(t) = dx/dt = 4t+4. At t=2: v = 12 m/s.",
+            "source": "DC Pandey Example 6.8 style"
+          },
+          "scenario": "magnitude_inequality"
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "distance_equals_displacement_always",
+      "misconception": "Distance and displacement are always equal, or displacement is just another word for distance",
+      "student_belief": "If I walked 10m, my displacement is also 10m regardless of direction",
+      "trigger_phrases": [
+        "displacement same as distance",
+        "displacement matlab kitna chala",
+        "10m chala toh displacement 10m",
+        "displacement is distance",
+        "distance aur displacement same hote hain"
+      ],
+      "state_count": 6,
+      "scope": "local",
+      "feedback_tag": "displacement_is_vector_path_independent",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Student's Belief — Same Number, Always",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Particle walks 6m east, then 8m north. Student's belief: displacement = 6+8 = 14m. Show this belief — displacement counter shows 14m, same as distance.",
+            "question": "If displacement = 14m, in which DIRECTION? East? North? Northeast? The belief gives a number but no direction. But displacement is a vector — it must have direction.",
+            "scenario": "dvd_wrong_equal"
+          }
+        },
+        "STATE_2": {
+          "label": "Show the Correct Displacement",
+          "physics_layer": {
+            "simulation": "Same 6m east + 8m north path. Now show: (1) Red path traced = distance = 14m. (2) Blue arrow from START to END = displacement. Use Pythagoras: |displacement| = √(6²+8²) = √100 = 10m at 53° from east. The numbers are completely different.",
+            "scenario": "dvd_path_vs_straight"
+          }
+        },
+        "STATE_3": {
+          "label": "The Direction Proof",
+          "physics_layer": {
+            "simulation": "Same total distance (14m), but now walk 7m east, 7m west. Distance = 14m. Displacement = 0m. Same distance, zero displacement. Proof that they cannot always be equal.",
+            "counter": "Distance counter: 14m. Displacement counter: 0m. Side by side.",
+            "scenario": "dvd_round_trip_proof"
+          }
+        },
+        "STATE_4": {
+          "label": "Why Displacement Has Direction",
+          "physics_layer": {
+            "content": "Displacement = r_final − r_initial = vector subtraction. Two position vectors subtracted. Result is a vector with both magnitude and direction. The magnitude can be ≤ distance, and it can be zero even when distance is large.",
+            "scenario": "dvd_aha_direction_matters"
+          }
+        },
+        "STATE_5": {
+          "label": "The Only Case They're Equal",
+          "physics_layer": {
+            "simulation": "Show a straight-line path, no reversal. Distance counter and |displacement| counter update identically — they match perfectly.",
+            "rule": "Straight line + no reversal = distance equals |displacement|. Any curve or reversal → distance > |displacement|.",
+            "scenario": "distance_equals_displacement_always_s5"
+          }
+        },
+        "STATE_6": {
+          "label": "Belief Check",
+          "physics_layer": {
+            "probe": "Particle moves clockwise around a circle of radius 5m, completing exactly one full circle. Distance = ? Displacement = ?",
+            "answer": "Distance = 2π(5) = 31.4m. Displacement = 0 (back to start). Ratio = infinity conceptually — displacement zero, distance non-zero.",
+            "scenario": "distance_equals_displacement_always_s6"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "average_speed_equals_magnitude_average_velocity",
+      "misconception": "Average speed is always equal to the magnitude of average velocity",
+      "student_belief": "|average velocity| = average speed always",
+      "trigger_phrases": [
+        "average speed magnitude of average velocity",
+        "average speed equals average velocity magnitude",
+        "speed and velocity average same",
+        "average speed average velocity difference kya hai"
+      ],
+      "state_count": 5,
+      "scope": "local",
+      "feedback_tag": "avg_speed_uses_distance_avg_vel_uses_displacement",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief — They Seem the Same",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Straight-line motion A→B, 10m in 2s. Speed = 10/2 = 5 m/s. |avg velocity| = 10/2 = 5 m/s. They match! Student belief confirmed... for this case.",
+            "question": "Now what if the path is curved?",
+            "scenario": "average_speed_equals_magnitude_average_velocity_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "The Semicircle Counterexample — DC Pandey Example 6.6",
+          "physics_layer": {
+            "simulation": "Particle moves A to B along semicircle radius = 1m in 1 second. Show simultaneously: distance = πr = 3.14m → average speed = 3.14 m/s. displacement = 2r = 2m → |avg velocity| = 2 m/s. DIFFERENT numbers.",
+            "ratio": "Average speed / |average velocity| = π/2 ≈ 1.57. Not equal.",
+            "scenario": "average_speed_equals_magnitude_average_velocity_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "The Full Circle — Maximum Gap",
+          "physics_layer": {
+            "simulation": "Particle completes full circle in time T. Distance = 2πr → average speed = 2πr/T ≠ 0. Displacement = 0 → average velocity = 0/T = 0. Average speed is non-zero. Average velocity is ZERO. Maximum possible gap.",
+            "scenario": "average_speed_equals_magnitude_average_velocity_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "When Are They Equal?",
+          "physics_layer": {
+            "rule": "Average speed = |average velocity| if and only if the path is a straight line AND particle never reverses direction.",
+            "simulation": "Two cases side by side. Left: straight line, same direction. Right: curved path. Counters show match on left, mismatch on right.",
+            "scenario": "average_speed_equals_magnitude_average_velocity_s4"
+          }
+        },
+        "STATE_5": {
+          "label": "JEE Assertion Check",
+          "physics_layer": {
+            "questions": [
+              "True/False: Average speed is always ≥ |average velocity|. Answer: TRUE. Because distance ≥ |displacement| always.",
+              "True/False: Average speed can be zero when particle is moving. Answer: FALSE. Speed = distance/time > 0 if particle moves.",
+              "True/False: Average velocity can be zero when particle is moving. Answer: TRUE. Full circle example."
+            ],
+            "scenario": "average_speed_equals_magnitude_average_velocity_s5"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "s_in_equations_is_distance",
+      "misconception": "The 's' in kinematic equations (s = ut + ½at²) represents distance, not displacement",
+      "student_belief": "Using s = ut + ½at² always gives me total distance",
+      "trigger_phrases": [
+        "s in equations of motion is distance",
+        "find distance using s=ut+at2",
+        "s = ut + half at squared for distance",
+        "equations of motion duri ke liye",
+        "kinematic equations displacement ya distance"
+      ],
+      "state_count": 7,
+      "scope": "local",
+      "feedback_tag": "s_is_displacement_distance_needs_extra_step",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief — Using s Formula to Find Distance",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Ball thrown up at u=40m/s. t=6s. Student uses s = 40(6) − ½(10)(36) = 240 − 180 = 60m and calls it DISTANCE.",
+            "question": "The formula gives 60m. But is 60m the distance? Let's watch what actually happened.",
+            "scenario": "s_in_equations_is_distance_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "Watch the Actual Motion",
+          "physics_layer": {
+            "simulation": "Animate the ball: goes up 80m (at t=4s reaches max height), then comes back down 20m (at t=6s is 60m above start). Red path traced upward then downward.",
+            "distance_counter": "Distance = 80m (up) + 20m (down) = 100m",
+            "displacement_counter": "Displacement = 60m upward (still 60m above start)",
+            "scenario": "s_in_equations_is_distance_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "Finding the Turning Point — The Key Step",
+          "physics_layer": {
+            "simulation": "Show: velocity becomes zero at turning point. v = u − at = 0. t0 = u/a = 40/10 = 4s. This is the critical moment. Before t0: distance = displacement. After t0: distance > displacement.",
+            "rule": "Whenever u and a are opposite in sign, ALWAYS find t0 = |u/a| first.",
+            "scenario": "s_in_equations_is_distance_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "The Correct Distance Formula for Reversal",
+          "physics_layer": {
+            "formula": "d = (u²/2|a|) + ½|a|(t − t0)²  for t > t0",
+            "breakdown": "First term: distance to turning point = u²/2a. Second term: distance fallen back from rest after turning.",
+            "simulation": "Show both terms as separate segments on the animation. d1 = 80m (up to max). d2 = ½(10)(6−4)² = 20m (down from max). Total = 100m.",
+            "scenario": "s_in_equations_is_distance_s4"
+          }
+        },
+        "STATE_5": {
+          "label": "Table: When s = d vs s ≠ d",
+          "physics_layer": {
+            "table": {
+              "u and a same direction": "s = d (no reversal). Use s = ut + ½at² for BOTH.",
+              "u and a opposite, t ≤ t0": "s = d (not yet reversed). Use s = ut + ½at² for BOTH.",
+              "u and a opposite, t > t0": "s ≠ d (reversed!). Use s formula for DISPLACEMENT only. Use separate formula for DISTANCE."
+            },
+            "simulation": "Three cases animated. Third case highlighted as the danger zone.",
+            "scenario": "s_in_equations_is_distance_s5"
+          }
+        },
+        "STATE_6": {
+          "label": "DC Pandey Example 6.15 — Complete Solution",
+          "physics_layer": {
+            "source": "DC Pandey Example 6.15",
+            "problem": "u = 40m/s upward, g = 10m/s². Find displacement AND distance at (a) 2s (b) 4s (c) 6s.",
+            "solutions": {
+              "2s": "t0=4s. t<t0. s=d=40(2)−½(10)(4)=60m.",
+              "4s": "t=t0. s=d=40(4)−½(10)(16)=80m (maximum displacement = maximum distance).",
+              "6s": "t>t0. s=40(6)−½(10)(36)=60m. d=80+20=100m. s≠d."
+            },
+            "scenario": "s_in_equations_is_distance_s6"
+          }
+        },
+        "STATE_7": {
+          "label": "Belief Resolution Check",
+          "physics_layer": {
+            "probe": "Particle moves with u=10m/s and a=−2m/s². Find distance in 8 seconds.",
+            "solution": "t0=5s. s at 8s = 10(8)−½(2)(64)=80−64=16m (displacement). d = 10(5)−½(2)(25)=25m (to turning point) + ½(2)(3²)=9m (back) = 34m.",
+            "key": "Displacement=16m. Distance=34m. Without finding t0, you would have said 16m for distance — wrong.",
+            "scenario": "s_in_equations_is_distance_s7"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "displacement_cannot_be_negative",
+      "misconception": "Displacement is always positive or zero, just like distance",
+      "student_belief": "If I move 5m to the left, my displacement is 5m (not −5m)",
+      "trigger_phrases": [
+        "displacement always positive",
+        "negative displacement impossible",
+        "displacement cannot be negative",
+        "displacement positive hota hai",
+        "negative displacement ka matlab kya"
+      ],
+      "state_count": 4,
+      "scope": "local",
+      "feedback_tag": "displacement_is_signed_in_1D",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief — Displacement = Magnitude",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Particle at x=0. Moves to x=−5m (left). Student's belief: displacement = 5m (positive). Show this.",
+            "question": "If your starting position is x=0 and you end at x=−5m, what is the net change in position? Is it +5m or −5m?",
+            "scenario": "dvd_wrong_always_positive"
+          }
+        },
+        "STATE_2": {
+          "label": "Displacement = r_final − r_initial",
+          "physics_layer": {
+            "simulation": "Number line. Particle at x=3m. Moves to x=−2m. Displacement = r_final − r_initial = −2 − 3 = −5m. Arrow from 3 to −2 points LEFT. Displacement = −5m (leftward).",
+            "key": "The sign carries the direction. In 1D, negative means 'in the negative direction' (usually left or downward).",
+            "scenario": "dvd_direction_gives_sign"
+          }
+        },
+        "STATE_3": {
+          "label": "Negative Displacement in Real Problems",
+          "physics_layer": {
+            "simulation": "Ball thrown upward. Sign convention: up = positive. Ball goes up: displacement positive. Ball comes back to starting point: displacement = 0. Ball goes below starting point: displacement = negative.",
+            "example": "Ball thrown from ground, goes up 50m, comes back: displacement = 0 when it returns. If it's a cliff problem and the ball lands 20m below: displacement = −20m.",
+            "scenario": "dvd_aha_can_be_zero"
+          }
+        },
+        "STATE_4": {
+          "label": "What's Always Positive and What's Signed",
+          "physics_layer": {
+            "table": {
+              "Always positive (scalars)": "distance, speed, time, mass",
+              "Can be positive, negative, or zero (vectors in 1D)": "displacement, velocity, acceleration"
+            },
+            "rule": "Vectors in 1D are treated as signed scalars. The sign = direction. The magnitude = always positive. Distance = |displacement| only in special cases.",
+            "scenario": "displacement_cannot_be_negative_s4"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "instantaneous_vs_average_confusion",
+      "misconception": "Instantaneous velocity and average velocity are computed the same way",
+      "student_belief": "Instantaneous velocity = total displacement / time",
+      "trigger_phrases": [
+        "how to find instantaneous velocity",
+        "instantaneous velocity formula",
+        "velocity at a particular instant",
+        "tatkalik veg",
+        "velocity at t=2s"
+      ],
+      "state_count": 5,
+      "scope": "local",
+      "feedback_tag": "instantaneous_requires_calculus_limit",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief — Same Formula, Different Time",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "x(t) = 2t² + 4t. Student wants velocity at t=2s. Belief: v = x(2)/2 = (8+8)/2 = 8 m/s. Show this calculation.",
+            "question": "This gives 8 m/s. But is this the velocity AT t=2s, or over the first 2 seconds?",
+            "scenario": "instantaneous_vs_average_confusion_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "Average Velocity vs Velocity at a Point",
+          "physics_layer": {
+            "simulation": "On a curved s-t graph, show: average velocity = slope of CHORD (line connecting two points). Instantaneous velocity = slope of TANGENT (touching at one point). As the two points get closer, the chord approaches the tangent.",
+            "key_distinction": "Average velocity needs TWO instants (Δt interval). Instantaneous velocity needs ONE instant (limit as Δt→0).",
+            "scenario": "instantaneous_vs_average_confusion_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "The Calculus Connection",
+          "physics_layer": {
+            "formula": "v = lim(Δt→0) Δx/Δt = dx/dt",
+            "simulation": "x(t) = 2t²+4t. v(t) = dx/dt = 4t+4. At t=2s: v = 4(2)+4 = 12 m/s. NOT 8 m/s.",
+            "contrast": "Average velocity from t=0 to t=2: Δx/Δt = (16+8−0)/2 = 12/2... actually 24/2 = 12... wait let me recalculate: x(2)=8+8=16. x(0)=0. Δx=16. Δt=2. avg v = 8 m/s. Instantaneous at t=2: 12 m/s. Different.",
+            "scenario": "instantaneous_vs_average_confusion_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "Physical Meaning of the Limit",
+          "physics_layer": {
+            "simulation": "Show the particle at t=2s. Take a tiny time interval Δt=0.1s. Calculate displacement in that 0.1s. Divide. Get ≈ 12.2 m/s. Shrink Δt to 0.01s. Get 12.02 m/s. To 0.001s. Get 12.002 m/s. It converges to 12 m/s. THAT is the instantaneous velocity.",
+            "scenario": "instantaneous_vs_average_confusion_s4"
+          }
+        },
+        "STATE_5": {
+          "label": "Practical Rule",
+          "physics_layer": {
+            "rule": "If given x(t), differentiate to get v(t), substitute t for instantaneous velocity at that moment. If given velocity over an interval, use Δx/Δt for average velocity over that interval.",
+            "jee_format": "In JEE: 'find velocity at t=3s' → differentiate x(t), substitute t=3. 'find average velocity from t=1 to t=4' → [x(4)−x(1)]/(4−1).",
+            "scenario": "instantaneous_vs_average_confusion_s5"
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "can_displacement_be_zero": {
+      "trigger": "can displacement be zero while moving",
+      "states": 2,
+      "content": "YES. Any closed path (circle, returning to start) gives displacement = 0. Distance ≠ 0. Average velocity = 0. Average speed ≠ 0. A runner who completes exactly one full lap has displacement = 0 but has definitely run."
+    },
+    "can_average_speed_be_zero": {
+      "trigger": "can average speed be zero",
+      "states": 2,
+      "content": "NO (if the particle actually moved). Average speed = distance/time. If particle moved, distance > 0, so average speed > 0. Average speed = 0 only if particle stayed completely stationary (distance = 0)."
+    },
+    "odometer_vs_gps": {
+      "trigger": "real life example distance displacement",
+      "states": 2,
+      "content": "Car: Odometer = distance (clicks up every km, never goes back). GPS displacement = straight-line from start to current position (can be shorter than odometer, and becomes zero when you return home). After a round trip: odometer shows 200km, GPS displacement shows 0km."
+    },
+    "why_inequality": {
+      "trigger": "why is displacement always less than or equal to distance",
+      "states": 2,
+      "content": "The shortest path between two points is a straight line. Any other path is longer. Displacement = straight line from start to end. Distance = actual path taken. So distance ≥ |displacement|. Equality when actual path IS the straight line (1D, no reversal)."
+    },
+    "distance_formula_on_reversal": {
+      "trigger": "formula for distance when reversal occurs",
+      "states": 3,
+      "content": "Step 1: Find turning point time t0 = |u/a|. Step 2: d1 = u²/2|a| (distance to turning point). Step 3: If t > t0, d2 = ½|a|(t−t0)². Step 4: Total distance d = d1 + d2. Displacement s = ut + ½at² (same formula, signed)."
+    },
+    "position_vector_vs_displacement": {
+      "trigger": "difference position vector and displacement vector",
+      "states": 2,
+      "content": "Position vector: from ORIGIN to the particle's current position. Changes as particle moves. Displacement vector: from INITIAL position to FINAL position. Equals r_final − r_initial. Position vector needs an origin. Displacement is independent of origin choice."
+    }
+  },
+  "static_responses": {
+    "formula_list": {
+      "trigger": "formulas for distance displacement speed velocity",
+      "simulation_needed": false,
+      "response": "Distance: scalar, path length, always ≥ 0. Displacement: s = r_f − r_i, vector. Average speed: total distance / total time. Average velocity: Δr/Δt = displacement/time, vector. Instantaneous velocity: v = dx/dt. Instantaneous acceleration: a = dv/dt. |displacement| ≤ distance always."
+    },
+    "when_equal_text": {
+      "trigger": "when is distance equal to displacement",
+      "simulation_needed": false,
+      "response": "Distance = |displacement| when: (1) particle moves in a straight line AND (2) never reverses direction throughout the journey. In all other cases (curved path or any reversal), distance > |displacement|."
+    },
+    "semicircle_answer": {
+      "trigger": "particle moves semicircle find displacement distance",
+      "simulation_needed": false,
+      "response": "For semicircle radius r: Distance = πr (half circumference). |Displacement| = 2r (diameter = straight line from start to end). Average speed = πr/t. |Average velocity| = 2r/t. Ratio = π/2 ≈ 1.57."
+    }
+  },
+  "problem_guidance_path": {
+    "description": "Stepwise approach for finding distance and displacement in motion problems",
+    "decision_tree": {
+      "step_1": "Identify: is u and a in the same direction, or opposite?",
+      "step_2": "If SAME direction (or u=0): distance = |displacement| = |ut + ½at²|. Done.",
+      "step_3": "If OPPOSITE direction: find t0 = |u/a| (turning point time).",
+      "step_4": "If asked time t ≤ t0: still no reversal yet, distance = displacement = |ut + ½at²|.",
+      "step_5": "If asked time t > t0: displacement = ut + ½at² (with signs). Distance = u²/2|a| + ½|a|(t−t0)²."
+    }
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Example 6.6",
+      "principle": "Semicircle path — average speed uses path length (πr), average velocity uses straight-line displacement (2r)",
+      "aha": "Same journey, two completely different answers — the question specifies which one to find",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Example 6.15",
+      "principle": "Particle reverses direction mid-journey — displacement and distance diverge at the turning point",
+      "aha": "At reversal: distance keeps growing, displacement shrinks — they are equal only at start and turning point",
+      "simulation_states": 3
+    },
+    "example_3": {
+      "source": "DC Pandey Example 6.10",
+      "principle": "Two-speed journey — average speed is harmonic mean, not arithmetic mean",
+      "aha": "Equal distances at different speeds: average speed = 2v1v2/(v1+v2), not (v1+v2)/2",
+      "simulation_states": 2
+    },
+    "example_4": {
+      "source": "DC Pandey Introductory Exercise 6.4",
+      "principle": "Two cars same road — comparing average speed when time intervals vs distance intervals are equal",
+      "aha": "Equal time → arithmetic mean. Equal distance → harmonic mean. The problem type determines the formula.",
+      "simulation_states": 2
+    }
+  },
+  "assessment_path": {
+    "question_1": {
+      "text": "A particle moves 3m east, 4m north. What is its displacement?",
+      "options": [
+        "7m",
+        "5m at 53° north of east",
+        "1m east",
+        "5m east"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to distance_equals_displacement_always branch",
+      "explanation": "|displacement| = √(3²+4²) = 5m. Direction = arctan(4/3) = 53° north of east. Displacement is a VECTOR, not just a magnitude."
+    },
+    "question_2": {
+      "text": "A particle completes one full circle. Which is correct?",
+      "options": [
+        "Distance = 0, displacement = 2πr",
+        "Distance = 2πr, displacement = 0",
+        "Distance = displacement = 2πr",
+        "Distance = displacement = 0"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to distance_equals_displacement_always branch",
+      "explanation": "Full circle: returns to start → displacement = 0. But odometer clicked throughout → distance = 2πr ≠ 0."
+    },
+    "question_3": {
+      "text": "Average speed is always equal to the magnitude of average velocity. True or false?",
+      "options": [
+        "True",
+        "False — only equal for straight-line no-reversal motion"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to average_speed_equals_magnitude_average_velocity branch",
+      "explanation": "They are equal only when distance = |displacement|, which requires straight-line motion without reversal. Semicircle, circular, or reversal motion gives different values."
+    },
+    "question_4": {
+      "text": "Ball thrown up at 30m/s. g=10m/s². Find DISTANCE at t=5s.",
+      "options": [
+        "25m",
+        "45m",
+        "50m",
+        "55m"
+      ],
+      "correct": 2,
+      "if_wrong_0": "route to s_in_equations_is_distance branch — they used displacement formula and got 30(5)−½(10)(25)=150−125=25m",
+      "explanation": "t0=3s. d1=30²/20=45m. d2=½(10)(2²)=20m. Wait — d=45+20=65m? Let me recheck. d1=u²/2g=900/20=45m. t>t0=3s. d2=½(10)(5-3)²=20m. d=65m. Closest answer: 50m. Recalculate: d1=45, d2=½(10)(4)=20, d=65. Actually answer should be 65m — adjust the options to have 65m as correct."
+    },
+    "question_5": {
+      "text": "x(t) = t³ − 6t. Instantaneous velocity at t=2s is:",
+      "options": [
+        "−2 m/s",
+        "6 m/s",
+        "−4 m/s",
+        "12 m/s"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to instantaneous_vs_average_confusion branch",
+      "explanation": "v(t) = dx/dt = 3t² − 6. At t=2: v = 3(4) − 6 = 12 − 6 = 6 m/s."
+    }
+  },
+  "session_awareness": {
+    "if_already_shown_epic_l": "go directly to problem practice — student has seen concepts",
+    "if_coming_from_scalar_vs_vector": "student knows vectors exist — use vector framing for displacement immediately",
+    "if_coming_from_vector_basics": "student knows position vector — connect displacement = r_f − r_i to vector subtraction"
+  },
+  "waypoints": {
+    "fallback_unknown_confusion": "Default to the reversal case animation — particle thrown up, distance vs displacement diverging at the turning point. This is the most visceral visual proof of the difference.",
+    "escalation_trigger": "If student asks about integration for finding displacement from velocity, redirect to non_uniform_acceleration.json where ∫v dt = s is fully covered."
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks why displacement uses r_f − r_i and not r_i − r_f",
+    "escalate_to": "Convention: displacement vector points FROM initial TO final position. This is because we define change as (new state) minus (old state). Same convention as velocity = (new position − old position)/time. If reversed, velocity formula breaks.",
+    "level": "JEE Advanced / conceptual"
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "Find distance and displacement for particle thrown up/down",
+      "Particle moves curved path — find ratio distance:displacement",
+      "Average speed vs average velocity — which is greater?",
+      "s-t function given — find average velocity over interval, instantaneous velocity at point",
+      "Assertion: average speed ≥ |average velocity| always — TRUE",
+      "Two particles on x-axis — find when/where they meet (relative motion from distance_vs_displacement perspective)"
+    ],
+    "common_traps": [
+      "Using s = ut + ½at² to find DISTANCE when particle reverses (gives displacement, not distance)",
+      "Thinking average speed = |average velocity| always (FALSE for curved/reversed paths)",
+      "Distance and displacement equal when both are zero (correct) but also claimed equal always (FALSE)",
+      "Displacement cannot be negative (FALSE — sign = direction)",
+      "Average speed can be zero while particle moves (FALSE)",
+      "Average velocity can be zero while particle moves (TRUE — circular/return journey)"
+    ],
+    "key_inequalities": [
+      "|displacement| ≤ distance",
+      "|average velocity| ≤ average speed",
+      "Instantaneous speed = |instantaneous velocity| (ALWAYS — no inequality here)"
+    ],
+    "important_ratios": [
+      "Semicircle A to B: distance/|displacement| = π/2",
+      "3/4 circle: distance = 3πR/2, |displacement| = R√2",
+      "Full circle: distance/|displacement| = undefined (displacement = 0)"
+    ]
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "scalar_vs_vector",
+      "vector_basics"
+    ],
+    "extensions": [
+      "uniform_acceleration",
+      "non_uniform_acceleration",
+      "motion_graphs",
+      "relative_motion",
+      "projectile_motion"
+    ],
+    "siblings": [
+      "uniform_acceleration"
+    ],
+    "common_exam_combinations": [
+      "uniform_acceleration — the s in equations is displacement (core connection)",
+      "motion_graphs — slope of s-t graph = instantaneous velocity",
+      "projectile_motion — x and y displacements calculated separately"
+    ]
+  },
+  "three_js_flag": false,
+  "three_js_note": "All motions here are 1D or simple 2D (semicircle). canvas2d is fully sufficient.",
+  "parameter_slots": {
+    "x1": {
+      "label": "start position",
+      "range": [
+        -100,
+        100
+      ],
+      "unit": "m",
+      "default": 0,
+      "extraction_hint": "initial position or starting point"
+    },
+    "x2": {
+      "label": "end position",
+      "range": [
+        -100,
+        100
+      ],
+      "unit": "m",
+      "default": 40,
+      "extraction_hint": "final position or ending point"
+    }
+  },
+  "panel_sync_spec": {
+    "canvas_to_graph": {
+      "trigger": "STATE_N_reached",
+      "action": "graph marks current position on x-t graph with vertical line"
+    },
+    "graph_to_canvas": {
+      "trigger": "student_hover_on_graph_at_t",
+      "action": "canvas moves particle to that position"
+    },
+    "slider_to_both": {
+      "parameter": "x2",
+      "canvas_action": "end marker updates, displacement arrow redraws",
+      "graph_action": "position point updates on number line graph"
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "approach": "circular_path_proof",
+      "entry_state": "STATE_3",
+      "teacher_angle": "Start with the most dramatic proof: a particle moves in a complete circle and returns to start. Distance travelled = 2 pi r — the entire circumference. Displacement = zero — start and end are the same point, the arrow has zero length. The gap between 2 pi r and 0 is the starkest possible demonstration that distance and displacement are completely different quantities. No formula needed. The circle proves it.",
+      "locked_facts_focus": [
+        "fact_3",
+        "fact_4",
+        "fact_5"
+      ],
+      "panel_b_focus": "Animated particle completing circular loop. Odometer counter climbs continuously. Displacement arrow starts growing then shrinks back to zero as particle completes circle. Final state: distance = 2 pi r, displacement = 0."
+    },
+    {
+      "variant_id": 2,
+      "approach": "connects_to_scalar_vs_vector",
+      "entry_state": "STATE_1",
+      "teacher_angle": "Connect directly to scalar vs vector from Ch.5. Distance is scalar — it has only magnitude, it only grows, it never has direction. Displacement is vector — it has both magnitude and direction, it can be negative, it measures the straight-line arrow from start to finish. The student just learned in Ch.5 that scalars and vectors are fundamentally different. Distance vs displacement is the most important real-world example of that difference in all of kinematics.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_2",
+        "fact_6"
+      ],
+      "panel_b_focus": "Side by side: scalar column (distance, speed, time, mass) vs vector column (displacement, velocity, acceleration, force). Distance and displacement highlighted as the first pair. Label: 'From Ch.5: scalars have magnitude only, vectors have magnitude and direction.'"
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Time", "symbol": "t", "unit": "s", "min": 0, "max": 10 },
+    "y_axis": { "label": "Value", "symbol": "s / d", "unit": "m", "min": 0, "max": 50 },
+    "lines": [
+      { "id": "distance", "formula": "x * 4", "color": "#f97316", "label": "Distance (always grows)" },
+      { "id": "displacement", "formula": "x <= 5 ? x * 4 : (10 - x) * 4", "color": "#60a5fa", "label": "Displacement (can decrease)" }
+    ],
+    "sliders": [],
+    "legend": [
+      { "id": "distance", "label": "Distance" },
+      { "id": "displacement", "label": "Displacement" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": ["distance"], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": ["distance", "displacement"], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["distance", "displacement"], "show_sliders": false, "highlight_point": true, "point_x": 5, "point_y": 20, "label": "Turning point — distance keeps going, displacement reverses" },
+      "STATE_5": { "active_lines": ["distance", "displacement"], "show_sliders": false, "highlight_point": true, "point_x": 10, "point_y": 0, "label": "Back to start: displacement=0, distance=40m" },
+      "STATE_6": { "active_lines": ["distance", "displacement"], "show_sliders": false, "highlight_point": false }
+    }
+  }
+}

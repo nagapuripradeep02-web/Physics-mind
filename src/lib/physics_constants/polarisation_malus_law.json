@@ -1,0 +1,105 @@
+{
+  "concept_id": "polarisation_malus_law",
+  "concept_name": "Polarisation and Malus's Law",
+  "class_level": 12,
+  "chapter": "Wave Optics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "wave_canvas",
+    "scenario_type": "polarisation",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "I0": "Intensity of polarised light incident on analyser (W/m²)",
+    "I": "Intensity of light transmitted through analyser (W/m²)",
+    "theta": "Angle between polariser and analyser pass axes (rad or °)",
+    "theta_B": "Brewster's angle (rad or °)",
+    "n1": "Refractive index of medium 1",
+    "n2": "Refractive index of medium 2"
+  },
+  "locked_facts": [
+    "Malus's law: I = I₀ cos²θ, where θ is the angle between polariser and analyser pass axes",
+    "When unpolarised light passes through a polariser, the transmitted intensity = I₀/2 (half the incident intensity)",
+    "Brewster's angle: tan θ_B = n₂/n₁ — at this angle, the reflected ray is completely polarised",
+    "At Brewster's angle, the reflected and refracted rays are perpendicular to each other (θ_B + θ_r = 90°)",
+    "Only transverse waves can be polarised — longitudinal waves (like sound) cannot be polarised",
+    "Crossed polarisers (θ = 90°) transmit zero intensity: I = I₀ cos²90° = 0"
+  ],
+  "truth_statements": [
+    "Polarisation is the phenomenon of restricting the vibration of a wave to a single plane, and it conclusively proves that light is a transverse wave",
+    "Malus's law I = I₀cos²θ describes how the intensity of polarised light varies as it passes through a second polariser (analyser) at angle θ",
+    "An unpolarised light beam consists of electric field oscillations in all directions perpendicular to propagation — a polariser selects only one direction",
+    "At Brewster's angle, the reflected light is completely polarised with its electric field parallel to the reflecting surface",
+    "Polaroid sunglasses work by blocking horizontally polarised glare reflected from roads and water surfaces"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Rotate the analyser from 0° to 90°. At 0°, full intensity passes. At 45°, exactly half passes (cos²45° = 0.5). At 90°, zero light passes — complete extinction. Then insert a third polariser at 45° between two crossed polarisers — light reappears! This defies the intuition that adding a filter should only reduce light.",
+    "visual_emphasis": "Intensity meter reading I₀ → I₀/2 → 0 as analyser rotates, then the dramatic reappearance of light when a third polariser is inserted at 45° between crossed polarisers",
+    "why_this_breaks_misconception": "Students see that polarisation is NOT about blocking light like a curtain — it rotates the vibration plane, so a 45° filter can 'unlock' light that two crossed filters blocked"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Unpolarised light",
+      "description": "A beam of unpolarised light is shown with electric field arrows vibrating in all directions perpendicular to the propagation direction. The arrows change orientation randomly. Intensity = I₀.",
+      "emphasis": "Unpolarised light has E-field oscillations in all transverse directions — no preferred plane of vibration",
+      "labels_visible": ["Unpolarised", "I₀", "E-field arrows"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "After passing through polariser",
+      "description": "The light passes through a polariser. Only the component of E-field along the pass axis survives. The transmitted light vibrates in one plane only. Intensity reduces to I₀/2.",
+      "emphasis": "The polariser selects ONE vibration direction — transmitted intensity is exactly half the incident unpolarised intensity",
+      "labels_visible": ["Polariser", "Pass axis", "I = I₀/2", "Plane polarised"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Malus's law with analyser",
+      "description": "A second polariser (analyser) is placed after the first. As the angle θ between their pass axes varies, the transmitted intensity follows I = I₀cos²θ. At θ = 0° full transmission; at θ = 90° complete extinction. Intensity vs θ curve displayed.",
+      "emphasis": "I = I₀cos²θ — this is Malus's law. At 90° (crossed polarisers), NO light passes through.",
+      "labels_visible": ["Analyser", "θ", "I = I₀cos²θ", "cos²θ curve"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student rotates the analyser angle and observes intensity change in real time. A Brewster's angle mode lets the student adjust incidence angle on a glass surface and observe when reflected light becomes completely polarised. Optional third polariser insertion between crossed polarisers.",
+      "emphasis": "Rotate the analyser to verify cos² law. Find Brewster's angle for glass (n=1.5 → θ_B ≈ 56.3°).",
+      "labels_visible": ["θ", "I", "θ_B", "cos²θ"],
+      "interactive": true,
+      "sliders": [
+        { "id": "analyser_angle", "label": "Analyser angle θ", "min": 0, "max": 90, "default": 0, "unit": "°" },
+        { "id": "refractive_index", "label": "Refractive index n₂", "min": 1.0, "max": 2.5, "default": 1.5, "unit": "" },
+        { "id": "incidence_angle", "label": "Incidence angle", "min": 0, "max": 89, "default": 56, "unit": "°" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Polarisation proves light is a longitudinal wave because it blocks some vibrations",
+      "trigger_phrases": ["polarisation longitudinal", "sound bhi polarise hota hai", "longitudinal wave polarise", "polarisation proves longitudinal"],
+      "correction": "Polarisation is possible ONLY for transverse waves — it is in fact the strongest proof that light is transverse. Longitudinal waves (like sound) vibrate along the propagation direction and cannot be restricted to a single plane.",
+      "simulation_emphasis": "Show transverse wave passing through a slit (polariser) vs longitudinal wave going through — the longitudinal wave is unaffected by the slit orientation"
+    },
+    {
+      "belief": "A polariser blocks exactly half the light because it absorbs 50% of the photons randomly",
+      "trigger_phrases": ["polariser absorbs half", "50% absorb hota hai", "half photons block", "random absorption"],
+      "correction": "A polariser transmits the component of the E-field along its pass axis. For unpolarised light, the average value of cos²θ over all angles is 1/2, giving I = I₀/2. It is not random absorption — it is selective transmission of one vibration component. Each photon has a cos²θ probability of being transmitted depending on its polarisation angle.",
+      "simulation_emphasis": "Show E-field vectors at various angles hitting the polariser — only the component along the pass axis survives, and averaging gives exactly half"
+    }
+  ],
+  "legend": [
+    { "symbol": "I₀", "meaning": "Intensity of incident polarised light (W/m²)" },
+    { "symbol": "I", "meaning": "Transmitted intensity = I₀cos²θ (W/m²)" },
+    { "symbol": "θ", "meaning": "Angle between polariser and analyser pass axes" },
+    { "symbol": "θ_B", "meaning": "Brewster's angle = tan⁻¹(n₂/n₁)" },
+    { "symbol": "n₁, n₂", "meaning": "Refractive indices of the two media" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["wave_superposition", "refraction_snells_law"],
+    "extensions": ["optical_activity", "liquid_crystal_display"],
+    "siblings": ["interference_coherence"],
+    "common_exam_combinations": ["interference_coherence", "youngs_double_slit", "brewster_angle"]
+  }
+}

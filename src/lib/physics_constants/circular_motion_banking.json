@@ -1,0 +1,106 @@
+{
+  "concept_id": "circular_motion_banking",
+  "concept_name": "Banking of Roads",
+  "class_level": 11,
+  "chapter": "Motion in a Plane",
+  "renderer_hint": {
+    "technology": "p5js",
+    "renderer": "mechanics_2d",
+    "scenario_type": "banking",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "v": "Speed of vehicle (m/s)",
+    "r": "Radius of curved road (m)",
+    "θ": "Banking angle of the road (deg)",
+    "μ": "Coefficient of friction between tyre and road (dimensionless)"
+  },
+  "locked_facts": [
+    "For banked road: tan(θ) = v²/(rg) at ideal speed",
+    "At ideal speed: no friction needed",
+    "Below ideal speed: friction acts up the bank",
+    "Above ideal speed: friction acts down the bank",
+    "Banking angle θ = arctan(v²/rg)",
+    "Maximum safe speed on banked road with friction: v² = rg(μ+tanθ)/(1-μtanθ)"
+  ],
+  "truth_statements": [
+    "On a banked road, the component of normal force provides the centripetal force at the ideal speed",
+    "At the ideal speed for banking, no frictional force is needed",
+    "If the speed is less than ideal, friction acts up the incline to prevent sliding inward",
+    "If the speed exceeds the ideal speed, friction acts down the incline",
+    "The banking angle depends on the speed of the vehicle and the radius of the curve"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Car on banked road at ideal speed. Force diagram shows N decomposed into N·cos(θ) = mg (vertical balance) and N·sin(θ) providing centripetal force (horizontal). No friction arrow present at all.",
+    "visual_emphasis": "N·sin(θ) arrow pointing horizontally toward center labelled 'centripetal force' — and conspicuous ABSENCE of any friction arrow",
+    "why_this_breaks_misconception": "Students see that banking itself provides the centripetal force via the normal force component — friction is not needed at the ideal speed"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Car on a flat curved road. Friction provides all centripetal force. Friction arrow shown pointing inward. Speed, radius, and friction coefficient labelled.",
+      "emphasis": "On a flat road, friction alone must provide centripetal force — this limits maximum safe speed",
+      "labels_visible": ["v", "r", "f = mv²/r", "μN"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Road tilts to banking angle θ. Normal force N is no longer vertical — it tilts. N is decomposed into N·cos(θ) (vertical) and N·sin(θ) (horizontal toward center).",
+      "emphasis": "Banking tilts the normal force so it has a horizontal component — this component points toward the center of the curve",
+      "labels_visible": ["N", "N·cos(θ)", "N·sin(θ)", "θ", "mg"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "At ideal speed v = √(rg·tanθ): N·sin(θ) provides exactly the centripetal force needed. N·cos(θ) = mg. No friction arrow at all. Labels: 'No friction needed!'.",
+      "emphasis": "At the ideal speed, the normal force component alone provides centripetal force — zero friction required. This is why roads are banked.",
+      "labels_visible": ["N·sin(θ) = mv²/r", "N·cos(θ) = mg", "friction = 0", "v_ideal"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust speed and banking angle. Below ideal speed: friction arrow appears pointing UP the bank. Above ideal speed: friction arrow appears pointing DOWN the bank. At ideal speed: friction vanishes.",
+      "emphasis": "Watch the friction arrow flip direction as you cross the ideal speed. At the ideal speed, it disappears entirely.",
+      "labels_visible": ["v", "θ", "v_ideal", "friction direction", "N·sin(θ)"],
+      "interactive": true,
+      "sliders": [
+        { "id": "speed", "label": "Vehicle Speed", "min": 5, "max": 30, "default": 15, "unit": "m/s" },
+        { "id": "banking_angle", "label": "Banking Angle", "min": 5, "max": 45, "default": 20, "unit": "°" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Banking is only needed when there is no friction — if the road has friction, banking is unnecessary",
+      "trigger_phrases": ["banking sirf friction nahi toh chahiye", "if road has friction no need banking", "friction hai toh banking kyu"],
+      "correction": "NCERT says banking reduces dependence on friction for centripetal force. At the ideal speed, no friction is needed at all. Banking allows safe turning at higher speeds than friction alone could support.",
+      "simulation_emphasis": "Show force components at ideal speed — N·sin(θ) provides centripetal force, no friction arrow present"
+    }
+  ],
+  "legend": [
+    { "symbol": "→ (green)", "meaning": "Normal force N (perpendicular to banked surface)" },
+    { "symbol": "→ (blue)", "meaning": "N·sin(θ) — centripetal force component" },
+    { "symbol": "→ (purple)", "meaning": "N·cos(θ) — vertical balance component" },
+    { "symbol": "→ (orange)", "meaning": "Friction (if present — direction depends on speed)" },
+    { "symbol": "θ", "meaning": "Banking angle" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["uniform_circular_motion", "laws_of_motion_friction"],
+    "extensions": ["vertical_circular_motion", "conical_pendulum"],
+    "siblings": ["uniform_circular_motion", "projectile_motion"],
+    "common_exam_combinations": ["maximum_speed_on_banked_road", "friction_on_curved_road"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["ideal speed for banking angle", "maximum safe speed with friction", "minimum speed to not slide inward", "railway track banking"],
+    "common_traps": ["forgetting friction can act up or down the bank", "assuming banking replaces friction entirely", "wrong component resolution of normal force"],
+    "numerical_ranges": {
+      "v": "10–40 m/s",
+      "r": "50–500 m",
+      "θ": "5°–30°",
+      "μ": "0.1–0.5"
+    }
+  }
+}

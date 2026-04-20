@@ -1,0 +1,679 @@
+{
+  "concept_id": "relative_motion",
+  "concept_name": "Relative Motion — Relative Velocity in 1D and 2D",
+  "class_level": 11,
+  "chapter": "Kinematics",
+  "section": "6.10",
+  "source_coverage": {
+    "dc_pandey": "Chapter 6, Section 6.10 — Relative Motion",
+    "ncert": "Chapter 3 — Motion in a Straight Line, Section 3.6 (1D); Chapter 4 Section 4.6 (2D)",
+    "hc_verma": "Chapter 3 — Rest and Motion: Kinematics, Section 3.7"
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "technology_b": "plotly",
+    "renderer": "mechanics_2d",
+    "scenario_type": "relative_motion",
+    "panel_count": 2,
+    "sync_required": true,
+    "scene_mode": false,
+    "show_labels": true,
+    "panel_a_role": "Animated dual-particle canvas — ground frame shows both particles moving; toggle to relative frame shows one particle at rest, other moving with relative velocity",
+    "panel_b_role": "Plotly vector diagram — velocity vectors of A and B drawn from origin; relative velocity vector V_AB shown as B minus A construction"
+  },
+  "locked_facts": {
+    "relative_velocity_definition": "Velocity of A relative to B = V_AB = V_A − V_B. Read as: 'velocity of A as seen by an observer sitting on B'.",
+    "relative_velocity_1d_same_direction": "If A and B move in same direction: V_AB = V_A − V_B. If V_A > V_B, A moves forward relative to B. If V_A < V_B, A moves backward relative to B.",
+    "relative_velocity_1d_opposite": "If A and B move in opposite directions: relative speed = |V_A| + |V_B|. They appear to approach each other faster.",
+    "symmetry_rule": "V_AB = −V_BA. The velocity of A relative to B is exactly opposite to velocity of B relative to A.",
+    "relative_velocity_2d": "In 2D: V_AB = V_A − V_B (vector subtraction). Draw V_A and −V_B from the same point — their resultant is V_AB.",
+    "relative_acceleration": "a_AB = a_A − a_B. If both have same acceleration (e.g., both in free fall), relative acceleration = 0 and relative motion is uniform.",
+    "ground_frame_vs_relative_frame": "Ground frame: both particles move. Relative frame (observer on B): B appears stationary, A moves with V_AB. Same physics, different perspective.",
+    "time_to_meet": "Two particles approaching each other: time to meet = initial separation / relative speed of approach = d / |V_AB|.",
+    "pseudo_relative": "For two particles with different accelerations in same direction: relative acceleration = a_A − a_B. Use kinematics equations with this relative acceleration.",
+    "rain_wind_connection": "Rain-umbrella and river-boat problems are applications of 2D relative velocity. The swimmer/person velocity is relative to water/ground; water/rain has its own velocity relative to ground."
+  },
+  "minimum_viable_understanding": "V_AB = V_A − V_B. Subtract the observer's velocity from the object's velocity. In 1D: algebraic subtraction. In 2D: vector subtraction (tip-to-tail or component method).",
+  "variables": {
+    "V_A": "Velocity of particle A in ground frame (m/s)",
+    "V_B": "Velocity of particle B in ground frame (m/s)",
+    "V_AB": "Velocity of A relative to B = V_A − V_B (m/s)",
+    "V_BA": "Velocity of B relative to A = V_B − V_A = −V_AB (m/s)",
+    "a_AB": "Acceleration of A relative to B = a_A − a_B (m/s²)",
+    "d": "Initial separation between A and B (m)"
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "relative motion",
+      "relative velocity",
+      "velocity of A relative to B",
+      "relative motion kya hota hai",
+      "explain relative velocity"
+    ],
+    "local_triggers": [
+      "how to find relative velocity",
+      "V_A minus V_B",
+      "two trains relative velocity",
+      "two cars approaching each other speed",
+      "relative velocity same direction opposite direction",
+      "time to meet two particles"
+    ],
+    "micro_triggers": [
+      "V_AB formula",
+      "relative velocity 2D how to solve",
+      "what is ground frame",
+      "relative acceleration free fall"
+    ],
+    "simulation_not_needed_triggers": [
+      "state the formula for relative velocity",
+      "write V_AB equals"
+    ],
+    "subconcept_triggers": {
+      "relative_velocity_1d": [
+        "two objects same direction relative velocity",
+        "trains on parallel tracks",
+        "cars moving same direction",
+        "relative speed same direction opposite direction"
+      ],
+      "relative_velocity_2d": [
+        "relative velocity at an angle",
+        "2D relative velocity",
+        "vector subtraction relative velocity",
+        "V_AB in 2D"
+      ],
+      "time_to_meet": [
+        "when will they meet",
+        "time to collide",
+        "two particles approaching time",
+        "separation decreasing rate"
+      ],
+      "relative_acceleration": [
+        "relative acceleration free fall",
+        "both thrown up relative motion",
+        "two projectiles relative velocity"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "understands_formula": "enter at STATE_2",
+    "understands_1d_cases": "enter at STATE_3",
+    "understands_2d_vector_subtraction": "enter at STATE_4",
+    "understands_time_to_meet": "enter at STATE_5"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "vector_addition",
+      "uniform_acceleration"
+    ],
+    "gate_question": "Train A moves at 60 km/h east, Train B at 40 km/h east on parallel tracks. What is A's velocity relative to B? (Answer: 20 km/h east. If student cannot do this, cover 1D relative motion basics first.)",
+    "if_gap_detected": "If 1D is unclear, start from STATE_2. If 2D vector subtraction is unclear, redirect to vector_addition.json first."
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "board_mode_states": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "jee_mode_states": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Hook — Motion Depends on Who is Watching",
+        "physics_layer": {
+          "concept": "The same motion looks completely different depending on the observer's frame of reference",
+          "simulation_focus": "Two cars, A at 80 km/h and B at 50 km/h, both moving right in ground frame. Panel A: ground view — both moving right. Toggle: observer sits in B — now B appears stationary, A appears to creep forward at only 30 km/h.",
+          "what_to_show": "Speedometer for A: ground frame shows 80, relative frame shows 30. Same car, same motion — but a completely different number depending on the observer.",
+          "key_observation": "Neither answer is wrong. They're answers to different questions: 'How fast relative to ground?' vs 'How fast relative to B?'",
+          "scenario": "two_observers_setup"
+        },
+        "pedagogy_layer": {
+          "opening_question": "You're on a train at 100 km/h. Another train at 90 km/h passes you in the same direction. It seems to crawl past at 10 km/h — why?",
+          "teacher_script": "Your eyes subtract your own velocity automatically. The formula V_AB = V_A − V_B just makes that subtraction explicit.",
+          "real_world": "This is why two cars at highway speed seem to barely move relative to each other, but a stationary tree flies past."
+        }
+      },
+      "STATE_2": {
+        "label": "The Formula — V_AB = V_A − V_B",
+        "physics_layer": {
+          "concept": "Velocity of A relative to B = V_A − V_B. B's velocity is subtracted because observer is moving with B.",
+          "simulation_focus": "Vector diagram on Panel B: draw V_A arrow, draw −V_B arrow (reverse of V_B), add them tip-to-tail → result is V_AB. Show numerical example: V_A = 8 m/s right, V_B = 3 m/s right → V_AB = 5 m/s right.",
+          "symmetry_show": "V_BA = V_B − V_A = −5 m/s (leftward from A's perspective). Show both arrows — they are equal and opposite.",
+          "key_insight": "The formula is just vector subtraction. In 1D with sign convention, it's arithmetic. In 2D, it requires the full vector subtraction construction.",
+          "scenario": "velocity_subtraction_formula"
+        },
+        "pedagogy_layer": {
+          "memory_trick": "V_AB: the first letter (A) is what you're watching. The second letter (B) is who's watching. Subtract the watcher.",
+          "common_mistake": "Students write V_AB = V_B − V_A (reversed). The A in V_AB comes first because A is the object being observed."
+        }
+      },
+      "STATE_3": {
+        "label": "1D Cases — Same Direction and Opposite Direction",
+        "physics_layer": {
+          "concept": "In 1D, relative velocity has two important special cases",
+          "case_1": "Same direction: V_AB = V_A − V_B. If V_A > V_B, A moves forward relative to B (separation increases). If V_A < V_B, A moves backward (separation decreases).",
+          "case_2": "Opposite directions: V_A positive, V_B negative (using sign convention). V_AB = V_A − (−V_B) = V_A + V_B. Relative speed = sum of speeds.",
+          "simulation_focus": "Panel A: two particles. Case 1: same direction, A faster — gap widens. Case 2: head-on — relative speed = sum, they close in fast. Show closing rate numerically.",
+          "time_to_meet": "If initial separation = d, relative speed of approach = V_rel, then time to meet = d / V_rel.",
+          "scenario": "same_direction_case"
+        },
+        "pedagogy_layer": {
+          "intuition_check": "Highway: two cars going 100 and 90 km/h same direction → relative speed 10 km/h. Two cars head-on at 60 and 60 km/h → relative speed 120 km/h. This matches experience.",
+          "jee_tip": "For time-to-meet problems: never chase the problem in ground frame. Convert to relative frame — one particle stationary, other approaches at V_rel. Instantly simpler."
+        }
+      },
+      "STATE_4": {
+        "label": "2D Relative Velocity — Vector Subtraction",
+        "physics_layer": {
+          "concept": "In 2D, V_AB = V_A − V_B requires full vector subtraction",
+          "method_1": "Graphical: Draw V_A from origin. Draw −V_B (reverse of V_B) from tip of V_A. The vector from origin to final tip = V_AB.",
+          "method_2": "Component form: V_AB_x = V_Ax − V_Bx. V_AB_y = V_Ay − V_By. Then |V_AB| = √(V_AB_x² + V_AB_y²).",
+          "simulation_focus": "Panel B vector diagram: V_A at 30° = (V_A cos30°, V_A sin30°). V_B horizontal. Show component subtraction, then resultant vector. Animate the construction.",
+          "example": "Rain falls vertically at 5 m/s. Man walks right at 3 m/s. Rain's velocity relative to man = (0,−5) − (3,0) = (−3,−5). Direction: tan⁻¹(3/5) = 31° forward from vertical. Umbrella tilts 31° forward.",
+          "scenario": "opposite_direction_case"
+        },
+        "pedagogy_layer": {
+          "key_message": "2D relative velocity always reduces to: write both velocities in component form, subtract component by component, find resultant magnitude and direction.",
+          "jee_tip": "Rain-umbrella and river-boat are both 2D relative velocity problems. The method is identical — only the physical setup changes."
+        }
+      },
+      "STATE_5": {
+        "label": "Relative Acceleration and Free Fall",
+        "physics_layer": {
+          "concept": "When both particles have the same acceleration, relative acceleration = 0 → relative motion is uniform",
+          "key_result": "Two balls thrown from same point at different angles — both under gravity (a = −g). Relative acceleration = −g − (−g) = 0. They see each other moving in a straight line at constant velocity.",
+          "simulation_focus": "Two projectiles thrown simultaneously from same point, different angles. Ground frame: both follow parabolic paths. Relative frame (observer on ball 1): ball 2 appears to move in a STRAIGHT LINE at constant speed.",
+          "jee_application": "This appears as: 'Two particles thrown simultaneously — what does each see?' Answer: straight line uniform motion relative to each other, because relative acceleration = 0.",
+          "scenario": "relative_acceleration"
+        },
+        "pedagogy_layer": {
+          "surprise_moment": "Two projectiles see each other moving in straight lines — despite both following curved parabolas in ground frame. This is a standard JEE question.",
+          "key_message": "Whenever two particles have the SAME acceleration, their relative motion is always uniform (constant relative velocity, straight line path)."
+        }
+      },
+      "STATE_6": {
+        "label": "Student Interaction — Solve a JEE-Style Problem",
+        "physics_layer": {
+          "problem": "Car A moves east at 20 m/s. Car B moves north at 15 m/s. Find: (i) velocity of A relative to B, (ii) magnitude and direction of V_AB.",
+          "solution": "V_AB = V_A − V_B = (20,0) − (0,15) = (20,−15). |V_AB| = √(400+225) = √625 = 25 m/s. Direction: tan⁻¹(15/20) = 37° south of east.",
+          "interactive": "Student draws V_A and V_B on Panel B vector diagram, then constructs −V_B and adds to V_A. System checks the construction step by step.",
+          "scenario": "frame_of_reference_concept"
+        },
+        "pedagogy_layer": {
+          "teacher_script": "Two steps only: write both velocities as components, subtract. The geometry falls out automatically. 3-4-5 triangle hidden in 20-15-25."
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "reversed_subtraction",
+      "misconception": "Student writes V_AB = V_B − V_A instead of V_A − V_B",
+      "student_belief": "The formula is V_AB = V_B − V_A (subtracts in wrong order)",
+      "trigger_phrases": [
+        "I did V_B minus V_A",
+        "relative velocity formula mein kya minus kya hota hai",
+        "confused about which to subtract",
+        "V_AB equals V_B minus V_A",
+        "order of subtraction relative velocity"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "V_A = 8 m/s right, V_B = 3 m/s right. Student's formula: V_AB = V_B − V_A = 3 − 8 = −5 m/s (leftward). Simulation: A is clearly ahead of B and moving further ahead — yet student's answer says A moves LEFT relative to B. Contradiction visible.",
+            "label": "Your formula gives −5 m/s (A moving left relative to B). Reality: A is moving ahead of B to the right. Sign is flipped.",
+            "scenario": "rm_wrong_sum"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "V_AB: A is the object, B is the observer. Observer's velocity gets subtracted. You are B — you subtract YOUR OWN velocity. V_AB = V_A − V_B."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Memory anchor: Stand on platform (B). Train A passes at 20 m/s. You stand still (V_B = 0). V_AB = 20 − 0 = 20 m/s. Train moves forward relative to you. Now you're on a train at 15 m/s (V_B = 15). Same train A at 20 m/s. V_AB = 20 − 15 = 5 m/s. Train barely creeps past. Your speed is subtracted.",
+            "label": "Your speed is always what gets subtracted. You are B. V_AB = V_A − V_B.",
+            "scenario": "rm_aha_reference_frame"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "opposite_direction_subtraction_error",
+      "misconception": "Student subtracts speeds (not velocities) when particles move in opposite directions, getting V_A − V_B instead of V_A + V_B",
+      "student_belief": "Always subtract the two speeds regardless of direction",
+      "trigger_phrases": [
+        "opposite direction relative velocity",
+        "trains coming towards each other speed",
+        "head on collision relative speed",
+        "why do we add speeds when opposite direction",
+        "relative speed same formula both cases"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "A moves right at 10 m/s. B moves left at 6 m/s. Student: V_AB = 10 − 6 = 4 m/s. Correct: assign rightward positive. V_A = +10. V_B = −6. V_AB = 10 − (−6) = 16 m/s. Show: they close at 16 m/s — not 4 m/s. Simulation confirms: they meet much faster than student's answer predicts.",
+            "label": "Student subtracted magnitudes. Correct: subtract velocities (with signs). Opposite directions → relative speed = sum of speeds.",
+            "scenario": "opposite_direction_subtraction_error_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "The formula V_AB = V_A − V_B never changes. But signs matter. Opposite direction means one velocity is negative. Subtracting a negative = adding. Always assign directions with + and − first."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Sign convention drill: (1) Both right: V_A=+10, V_B=+6 → V_AB = 4 m/s (slow approach). (2) Opposite: V_A=+10, V_B=−6 → V_AB = 16 m/s (fast approach). (3) A right, B stationary: V_A=+10, V_B=0 → V_AB = 10 m/s. All three from same formula — signs do all the work.",
+            "label": "One formula: V_AB = V_A − V_B. Signs handle all cases. Never memorize separate formulas for same/opposite directions.",
+            "scenario": "opposite_direction_subtraction_error_s2"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "relative_velocity_2d_magnitude_only",
+      "misconception": "In 2D problems, student calculates |V_A| − |V_B| instead of performing vector subtraction",
+      "student_belief": "Relative velocity magnitude = magnitude of A minus magnitude of B",
+      "trigger_phrases": [
+        "subtracted the magnitudes",
+        "|V_A| minus |V_B|",
+        "relative speed 2D subtracted speeds",
+        "rain problem speed subtracted",
+        "2D relative velocity just subtract numbers"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "V_A = 20 m/s east. V_B = 15 m/s north. Student: |V_AB| = 20 − 15 = 5 m/s. Correct: V_AB = (20,0) − (0,15) = (20,−15). |V_AB| = √(400+225) = 25 m/s. Show: student gets 5 m/s, correct is 25 m/s. Five times wrong.",
+            "label": "Subtracting magnitudes of perpendicular vectors gives completely wrong answer. Vector subtraction uses components, not magnitudes.",
+            "scenario": "relative_velocity_2d_magnitude_only_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "Magnitudes don't subtract like numbers when vectors point in different directions. You must subtract component by component: x-components together, y-components together. Only then find the magnitude."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Step-by-step component method animated: Step 1: Write V_A = (20, 0). Step 2: Write V_B = (0, 15). Step 3: V_AB = (20−0, 0−15) = (20, −15). Step 4: |V_AB| = √(20²+15²) = √625 = 25 m/s. Step 5: Direction = tan⁻¹(15/20) = 37° south of east.",
+            "label": "Component method: always works for any angle. Never subtract magnitudes in 2D.",
+            "scenario": "relative_velocity_2d_magnitude_only_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "2D relative velocity checklist: (1) Write both in component form. (2) Subtract components. (3) Find magnitude via Pythagoras. (4) Find direction via arctan."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "relative_acceleration_in_freefall",
+      "misconception": "Student thinks two projectiles have non-zero relative acceleration because they follow different parabolic paths",
+      "student_belief": "Since both are accelerating due to gravity, they should have some relative acceleration",
+      "trigger_phrases": [
+        "two balls thrown up relative motion",
+        "projectiles relative to each other",
+        "both falling why no relative acceleration",
+        "parabola relative to each other",
+        "two particles same acceleration relative"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Two balls thrown at different angles. Ground frame: both follow different parabolas. Student marks: 'different paths → different accelerations → relative acceleration ≠ 0'. Now show relative frame: ball 2 as seen by ball 1 moves in a STRAIGHT LINE at constant speed. No curve at all.",
+            "label": "Different paths in ground frame. But relative to each other — straight line. Same acceleration means zero relative acceleration.",
+            "scenario": "relative_acceleration_in_freefall_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "a_AB = a_A − a_B = (−g) − (−g) = 0. When relative acceleration is zero, relative motion is always straight-line and uniform — regardless of how curved the individual paths look."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show: astronaut throws two balls on the Moon (g=1.6), different directions. Relative motion: straight line. Now same on Earth (g=10). Same result: straight line. The value of g doesn't matter — what matters is that BOTH have the same g.",
+            "label": "Key: both under same g → relative acceleration = 0 → relative motion is straight line uniform velocity. This is a standard JEE assertion-reason type question.",
+            "scenario": "relative_acceleration_in_freefall_s2"
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "micro_1": {
+      "trigger": "V_AB formula quick",
+      "scope": "micro",
+      "states": 2,
+      "content": "V_AB = V_A − V_B. Velocity of A relative to B = A's velocity minus B's velocity. In words: subtract the observer's velocity. Symmetry: V_BA = −V_AB (equal magnitude, opposite direction). In 1D: algebraic subtraction with signs. In 2D: component-wise subtraction."
+    },
+    "micro_2": {
+      "trigger": "relative speed when moving towards each other",
+      "scope": "micro",
+      "states": 2,
+      "content": "If A moves right at v₁ and B moves left at v₂ (towards each other): assign rightward positive. V_A = +v₁, V_B = −v₂. V_AB = v₁ − (−v₂) = v₁ + v₂. Relative speed = sum of speeds. Time to meet = initial separation / (v₁ + v₂). Never memorize as a separate formula — it falls out of V_AB = V_A − V_B with correct signs."
+    },
+    "micro_3": {
+      "trigger": "both in free fall relative motion",
+      "scope": "micro",
+      "states": 2,
+      "content": "If both particles are under gravity only (no air resistance), a_A = a_B = −g. Relative acceleration = a_A − a_B = 0. Therefore relative motion is uniform — constant relative velocity, straight line path. This is true regardless of initial velocities, angles, or positions. Standard JEE question: 'Two balls thrown simultaneously — motion of one relative to other is?' Answer: uniform straight line."
+    },
+    "micro_4": {
+      "trigger": "how to find time to meet",
+      "scope": "micro",
+      "states": 2,
+      "content": "Time to meet = initial separation / relative speed of approach. Step 1: Find V_AB (= V_A − V_B). Step 2: If V_AB is directed from A toward B (closing), relative speed = |V_AB|. Step 3: time = d / |V_AB|. In 1D with opposite directions: time = d / (v_A + v_B). In 1D same direction (A chasing B, A faster): time = d / (v_A − v_B)."
+    },
+    "micro_5": {
+      "trigger": "what is ground frame",
+      "scope": "micro",
+      "states": 2,
+      "content": "Ground frame = frame of reference fixed to Earth. All velocities in ground frame are measured relative to Earth. Relative frame = frame fixed to one of the moving objects. In relative frame, that object appears stationary and everything else moves relative to it. Physics laws are the same in both frames (for non-accelerating frames) — only the numbers change."
+    }
+  },
+  "static_responses": {
+    "formula_reference": {
+      "trigger": "list relative velocity formulas",
+      "simulation_needed": false,
+      "response": "Relative velocity formulas: (1) V_AB = V_A − V_B (always). (2) V_BA = −V_AB. (3) Same direction: |V_AB| = |V_A − V_B|. (4) Opposite directions: relative speed = v_A + v_B (from sign convention, not separate formula). (5) 2D: V_AB = (V_Ax−V_Bx)î + (V_Ay−V_By)ĵ. (6) a_AB = a_A − a_B. (7) Time to meet = separation / relative approach speed."
+    },
+    "rain_umbrella_preview": {
+      "trigger": "umbrella angle rain problem",
+      "simulation_needed": false,
+      "response": "Rain-umbrella is a 2D relative velocity problem. Rain velocity relative to man = V_rain − V_man. If rain falls vertically (V_rain = −v_r ĵ) and man walks horizontally (V_man = v_m î), then V_rain_wrt_man = (−v_m î − v_r ĵ). Tilt umbrella in the direction of this resultant. Angle from vertical = tan⁻¹(v_m/v_r). See rain_umbrella.json for full simulation."
+    }
+  },
+  "problem_guidance_path": {
+    "description": "Step-by-step for relative velocity problems",
+    "step_1": "Identify the two objects (A and B). Identify what is asked — V_AB or V_BA?",
+    "step_2": "Write both velocities in the same coordinate system with signs (or components for 2D).",
+    "step_3": "Apply V_AB = V_A − V_B. In 1D: arithmetic. In 2D: component-wise subtraction.",
+    "step_4": "For magnitude: |V_AB| = √(V_ABx² + V_ABy²). For direction: θ = tan⁻¹(V_ABy / V_ABx).",
+    "step_5": "For time-to-meet: t = separation / |V_AB| (only if they are approaching).",
+    "common_errors": [
+      "Reversing the subtraction order (V_B − V_A instead of V_A − V_B)",
+      "Subtracting magnitudes in 2D instead of components",
+      "Not assigning signs in 1D opposite-direction problems",
+      "Forgetting relative acceleration when a_A ≠ a_B"
+    ]
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Section 6.10 — 1D relative velocity, trains on parallel tracks",
+      "principle": "Two trains same direction — relative speed is difference of speeds; used to find time for one to overtake the other",
+      "aha": "Convert to relative frame: one train stationary, other approaches at (v_A − v_B). Overtaking time = train length / relative speed — geometry disappears",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Section 6.10 — 2D relative velocity at 90°",
+      "principle": "Two objects moving perpendicular to each other — V_AB is the vector diagonal of V_A and (−V_B) components",
+      "aha": "Perpendicular velocities always give |V_AB| = √(v_A² + v_B²) — Pythagoras, not arithmetic subtraction",
+      "simulation_states": 2
+    },
+    "example_3": {
+      "source": "DC Pandey Section 6.10 — relative motion of two projectiles",
+      "principle": "Two balls thrown simultaneously under gravity — relative acceleration = 0, so relative motion is uniform in a straight line",
+      "aha": "Path of each ball is a parabola, yet each sees the other as moving in a straight line — same acceleration cancels out in relative frame",
+      "simulation_states": 3
+    },
+    "example_4": {
+      "source": "DC Pandey Section 6.10 — time to collision",
+      "principle": "Finding minimum time for two particles moving at an angle to each other to be closest / to meet",
+      "aha": "Minimum separation occurs when relative velocity is perpendicular to the line joining them — reduces a 2D problem to a 1D geometry problem",
+      "simulation_states": 2
+    }
+  },
+  "assessment_path": {
+    "question_1": {
+      "text": "Car A moves east at 30 m/s. Car B moves east at 20 m/s. What is the velocity of A relative to B?",
+      "options": [
+        "50 m/s east",
+        "10 m/s east",
+        "10 m/s west",
+        "50 m/s west"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to opposite_direction_subtraction_error — student added instead of subtracted",
+      "if_wrong_2": "route to reversed_subtraction — student computed V_B − V_A",
+      "explanation": "V_AB = V_A − V_B = 30 − 20 = +10 m/s east. A moves forward relative to B at 10 m/s."
+    },
+    "question_2": {
+      "text": "Object A moves right at 15 m/s. Object B moves left at 10 m/s. What is the relative speed of approach?",
+      "options": [
+        "5 m/s",
+        "25 m/s",
+        "15 m/s",
+        "10 m/s"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to opposite_direction_subtraction_error — student subtracted instead of adding",
+      "explanation": "V_A = +15, V_B = −10. V_AB = 15 − (−10) = 25 m/s. They approach at 25 m/s."
+    },
+    "question_3": {
+      "text": "V_A = 20 m/s east, V_B = 15 m/s north. What is |V_AB|?",
+      "options": [
+        "5 m/s",
+        "35 m/s",
+        "25 m/s",
+        "√(20² + 15²) = 25 m/s"
+      ],
+      "correct": 3,
+      "if_wrong_0": "route to relative_velocity_2d_magnitude_only — student subtracted magnitudes",
+      "explanation": "V_AB = (20−0, 0−15) = (20, −15). |V_AB| = √(400+225) = √625 = 25 m/s."
+    },
+    "question_4": {
+      "text": "Two balls are thrown simultaneously from the same point at different angles. What is the nature of relative motion of one ball with respect to the other?",
+      "options": [
+        "Parabolic",
+        "Circular",
+        "Straight line with uniform velocity",
+        "Straight line with uniform acceleration"
+      ],
+      "correct": 2,
+      "if_wrong_3": "route to relative_acceleration_in_freefall — student thinks there is relative acceleration",
+      "explanation": "a_AB = a_A − a_B = (−g) − (−g) = 0. Zero relative acceleration → uniform relative motion → straight line path."
+    },
+    "question_5": {
+      "text": "Two trains 200m apart approach each other. Train A at 40 m/s, Train B at 60 m/s. When do they meet?",
+      "options": [
+        "5 s",
+        "2 s",
+        "3.3 s",
+        "10 s"
+      ],
+      "correct": 1,
+      "explanation": "Relative speed = 40 + 60 = 100 m/s (opposite directions). Time = 200/100 = 2 s."
+    }
+  },
+  "session_awareness": {
+    "if_already_shown_epic_l": "Jump to 2D problems — student knows 1D, needs 2D vector subtraction practice",
+    "if_coming_from_vector_addition": "Student knows vector subtraction — connect immediately: 'V_AB = V_A − V_B is vector_addition with one vector reversed'",
+    "if_coming_from_motion_graphs": "Connect: 'In relative frame, v-t graph shifts — the same slope but y-intercept changes by V_B'"
+  },
+  "waypoints": {
+    "fallback_unknown_confusion": "Default to the train overtaking problem (1D, same direction). It's concrete, the formula is clear, and the time-to-meet calculation is satisfying. Covers the core formula without 2D complexity.",
+    "escalation_trigger": "If student asks about minimum separation between two 2D particles — escalate to vector calculus (differentiate separation with respect to time, set to zero). JEE Advanced level."
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks how to find the time/position of minimum separation between two particles in 2D",
+    "escalate_to": "Set up position vectors r_A(t) and r_B(t). Separation vector = r_A − r_B. Minimize |r_A − r_B|² by differentiating with respect to t and setting to zero. Alternatively: minimum separation when relative velocity is perpendicular to relative position.",
+    "level": "JEE Advanced"
+  },
+  "parameter_slots": {
+    "v_A": {
+      "label": "velocity of object A",
+      "range": [
+        1,
+        100
+      ],
+      "unit": "m/s or km/h",
+      "default": 20,
+      "extraction_hint": "velocity or speed of first object, A ="
+    },
+    "v_B": {
+      "label": "velocity of object B",
+      "range": [
+        1,
+        100
+      ],
+      "unit": "m/s or km/h",
+      "default": 15,
+      "extraction_hint": "velocity or speed of second object, B ="
+    },
+    "separation": {
+      "label": "initial separation between A and B",
+      "range": [
+        10,
+        1000
+      ],
+      "unit": "m",
+      "default": 200,
+      "extraction_hint": "distance between the two objects initially"
+    },
+    "angle_AB": {
+      "label": "angle between velocity vectors of A and B",
+      "range": [
+        0,
+        180
+      ],
+      "unit": "degrees",
+      "default": 90,
+      "extraction_hint": "angle between the directions of motion of A and B"
+    }
+  },
+  "panel_sync_spec": {
+    "canvas_to_graph": {
+      "trigger": "STATE_N_reached",
+      "action": "vector diagram on Panel B updates to show V_A, V_B, and V_AB vectors for current state's example values"
+    },
+    "graph_to_canvas": {
+      "trigger": "student_drags_vector_on_panel_b",
+      "action": "particle velocities on Panel A update to match new vector magnitudes/directions"
+    },
+    "frame_toggle": {
+      "parameter": "observer_frame",
+      "canvas_action": "Panel A switches between ground frame (both moving) and relative frame (B stationary, A moves at V_AB)",
+      "graph_action": "Panel B highlights V_AB vector as the 'active' velocity in relative frame"
+    }
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "Find velocity of A relative to B (1D same/opposite direction)",
+      "Find |V_AB| and direction when A and B move at 90° to each other",
+      "Time for A to overtake B (1D, same direction, initial separation given)",
+      "Two particles meet — find time (relative speed approach)",
+      "Two projectiles — nature of relative motion (straight line, uniform)",
+      "Assertion: V_AB = −V_BA. Reason: relative velocities are equal and opposite."
+    ],
+    "common_traps": [
+      "V_AB = V_B − V_A (reversed subtraction) — most common error",
+      "Subtracting speeds instead of velocity components in 2D",
+      "Head-on: using relative speed = difference instead of sum",
+      "Two projectiles: saying relative motion is parabolic (it's uniform straight line)",
+      "Time to meet: using individual speeds instead of relative speed"
+    ],
+    "key_results": [
+      "V_AB = V_A − V_B always (never reversed)",
+      "V_BA = −V_AB (equal magnitude, opposite direction)",
+      "Perpendicular velocities: |V_AB| = √(v_A² + v_B²)",
+      "Both under gravity: relative motion is uniform straight line (a_AB = 0)",
+      "Head-on relative speed = v_A + v_B",
+      "Same direction relative speed = |v_A − v_B|"
+    ],
+    "standard_tricks": {
+      "frame_shift": "Convert to relative frame to simplify — make one object stationary, other moves at V_AB",
+      "time_to_meet": "Always = separation / relative approach speed",
+      "minimum_separation": "Occurs when relative velocity is perpendicular to line joining particles"
+    }
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "vector_addition",
+      "uniform_acceleration",
+      "distance_vs_displacement"
+    ],
+    "extensions": [
+      "river_boat_problems",
+      "rain_umbrella",
+      "projectile_motion",
+      "pseudo_forces"
+    ],
+    "siblings": [
+      "river_boat_problems",
+      "rain_umbrella"
+    ],
+    "common_exam_combinations": [
+      "river_boat — swimmer velocity relative to river + river velocity relative to ground = swimmer velocity relative to ground",
+      "rain_umbrella — rain velocity relative to man = V_rain − V_man; tilt umbrella in that direction",
+      "projectile — two projectiles thrown simultaneously: relative motion is uniform (a_rel = 0)"
+    ]
+  },
+  "three_js_flag": false,
+  "three_js_note": "Relative motion is 1D and 2D. Vector subtraction diagram and dual-particle animation are fully handled by canvas2d + Plotly. Three.js not needed.",
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "approach": "train_platform_intuition",
+      "entry_state": "STATE_2",
+      "teacher_angle": "Start with the train platform scenario every student has experienced. You sit in a stationary train. A train on the adjacent track moves at 60 km/h. From your seat it looks like your train is moving backward at 60 km/h. Your velocity relative to the moving train is -60 km/h even though you are stationary. Now formalise this: v_AB = v_A - v_B. The subtraction captures exactly what the student felt in the train. Relative velocity is the mathematical name for that everyday experience.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "panel_b_focus": "Two train animations. Observer sits in stationary train. Moving train passes. From observer frame: show how moving train appears to move, and how stationary objects outside appear to move backward. v_AB animation shows the subtraction geometrically."
+    },
+    {
+      "variant_id": 2,
+      "approach": "connects_to_vector_subtraction",
+      "entry_state": "STATE_1",
+      "teacher_angle": "Connect directly to vector addition and subtraction from Ch.5. Relative velocity v_AB = v_A - v_B is vector subtraction. The student already knows how to subtract vectors: reverse the direction of B and add it to A. That triangle law from Ch.5 gives the relative velocity directly. Relative motion in 2D is just applying vector subtraction — which the student already knows — to velocity vectors. No new operation is needed.",
+      "locked_facts_focus": [
+        "fact_4",
+        "fact_5",
+        "fact_6"
+      ],
+      "panel_b_focus": "Vector subtraction diagram from Ch.5 pattern: v_A arrow, negative v_B arrow (reversed), resultant v_AB. Label: 'This is the same triangle law from Ch.5 — just applied to velocity vectors.' 1D case shown as the simplest example, then 2D case."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Time", "symbol": "t", "unit": "s", "min": 0, "max": 10 },
+    "y_axis": { "label": "Velocity", "symbol": "v", "unit": "m/s", "min": -20, "max": 40 },
+    "lines": [
+      { "id": "v_a", "slope": 0, "intercept": 30, "color": "#60a5fa", "label": "v_A = 30 m/s" },
+      { "id": "v_b", "slope": 0, "intercept": 20, "color": "#34d399", "label": "v_B = 20 m/s" },
+      { "id": "v_rel", "slope": 0, "intercept": 10, "color": "#fbbf24", "label": "v_A relative to B = 10 m/s" },
+      { "id": "zero_ref", "slope": 0, "intercept": 0, "color": "#ef4444", "dash": "dash", "label": "Zero reference" }
+    ],
+    "sliders": [],
+    "legend": [
+      { "id": "v_a", "label": "v_A" },
+      { "id": "v_b", "label": "v_B" },
+      { "id": "v_rel", "label": "v_rel" },
+      { "id": "zero_ref", "label": "Zero reference" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": ["v_a", "v_b"], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": ["v_a", "v_b"], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": ["v_a", "v_b", "zero_ref"], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["v_a", "v_b", "v_rel", "zero_ref"], "show_sliders": false, "highlight_point": true, "point_x": 5, "point_y": 10, "label": "v_AB = v_A - v_B = 10" },
+      "STATE_5": { "active_lines": ["v_rel", "zero_ref"], "show_sliders": false, "highlight_point": false },
+      "STATE_6": { "active_lines": ["v_a", "v_b", "v_rel", "zero_ref"], "show_sliders": false, "highlight_point": false }
+    }
+  }
+}

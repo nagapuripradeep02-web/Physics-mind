@@ -1,0 +1,275 @@
+{
+  "concept_id": "shortest_path_crossing",
+  "concept_name": "Shortest-Path River Crossing — Aim Upstream at the Right Angle",
+  "chapter": 6,
+  "section": "6.11",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 6.11 — minimum-drift crossing strategy; split from river_boat_problems",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "A Goa Navy dinghy crossing the Mandovi river to a specific dock at Chorão Island. The river is 200 m wide and flows at 2 m/s; the dinghy does 5 m/s still-water. There is NO downstream pickup — the dinghy must land EXACTLY at the dock, not somewhere south of it. So the pilot tilts the bow upstream at angle theta such that the current's drift is cancelled. Sin(theta) = v_river / v_boat = 0.4, so theta is about 24 degrees upstream. The boat takes longer than the shortest-time crossing, but it arrives on the dock. Navy drills prize this skill.",
+    "secondary": "A Ganga river guide at Rishikesh taking rafters to a specific landing rock before a rapid. The river flows at 3 m/s; raft paddles at 5 m/s in still water. The guide orients sin(theta) = 3/5 = 0.6 upstream — about 37 degrees. Straight-line ground path to the target rock despite the strong flow.",
+    "tertiary": "A swimming competitor in an open-water championship on Chilika Lake. Lake current is mild (0.3 m/s sideways); her still-water speed is 1.2 m/s. She aims slightly upstream at sin⁻¹(0.3/1.2) ≈ 14.5° to reach a buoy directly opposite. She loses a little time but scores because the route is straight."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "width": { "name": "River width", "unit": "m", "min": 10, "max": 1000, "default": 200 },
+      "v_boat": { "name": "Boat speed in still water", "unit": "m/s", "min": 1, "max": 20, "default": 5 },
+      "v_river": { "name": "River current speed", "unit": "m/s", "min": 0, "max": 10, "default": 2 },
+      "theta": { "name": "Upstream aiming angle from perpendicular", "unit": "deg", "min": 0, "max": 90, "default": 24 }
+    },
+    "computed_outputs": {
+      "theta_required": { "formula": "asin(v_river / v_boat) in degrees" },
+      "v_effective_across": { "formula": "sqrt(v_boat^2 - v_river^2)" },
+      "t_cross": { "formula": "width / sqrt(v_boat^2 - v_river^2)" }
+    },
+    "formulas": {
+      "aim_angle": "sin(theta) = v_river / v_boat  (bow tilted theta upstream from perpendicular)",
+      "effective_across_speed": "v_eff = v_boat * cos(theta) = sqrt(v_boat^2 - v_river^2)",
+      "crossing_time": "t_cross = width / v_eff  (longer than shortest-time crossing)",
+      "feasibility": "Only possible if v_boat > v_river.  If v_boat <= v_river, drift cannot be cancelled."
+    },
+    "constraints": [
+      "Requires v_boat strictly greater than v_river — otherwise drift cannot be neutralised.",
+      "Upstream-component of boat velocity = v_boat * sin(theta) must equal v_river.",
+      "Ground path is a straight line perpendicular to the banks.",
+      "Crossing takes longer than perpendicular-aim case by factor v_boat / v_eff."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "The Goal — Zero Drift, Straight Across",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "goal_sketch",
+            "text": "Goa Navy dinghy, Mandovi river:\n\n   Start:           Finish:\n     |                 |\n     |                 |\n     |     <<--        |\n     |     river current\n     |                 |\n     O-----------------X  (landing dock, Chorão Island)\n     200 m across\n\n   v_boat = 5 m/s,  v_river = 2 m/s\n\n   Goal: arrive EXACTLY at X.  No drift allowed.\n\n   Strategy: tilt bow UPSTREAM so boat's upstream push\n              cancels the river's downstream push.\n\n   Find theta such that v_boat * sin(theta) = v_river.\n      sin(theta) = 2 / 5 = 0.4\n      theta = arcsin(0.4) ~= 23.6 deg upstream",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "navy_label",
+            "text": "Goa Navy dinghy crossing to Chorão Island dock",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "dinghy",
+            "vehicle_type": "boat",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "rotate_about", "delay_sec": 4.5, "duration_sec": 1.0, "pivot": "self", "from_deg": 0, "to_deg": -24 },
+              { "type": "translate", "delay_sec": 5.5, "duration_sec": 5.0, "dx_px": 0, "dy_px": -240, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "goal_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Now a tougher challenge — you must land at a SPECIFIC dock on the far bank, not just any point." },
+            { "text_en": "A Goa Navy dinghy crossing the Mandovi river. The dock is directly opposite the start. The river pushes south; the dinghy must not drift." },
+            { "text_en": "Strategy: tilt the bow UPSTREAM just enough that the boat's upstream component exactly cancels the river's pull." },
+            { "text_en": "That angle is given by sine theta equals v river over v boat. Here, 2 divided by 5 — so theta is about 24 degrees upstream of the perpendicular." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "The Math — sin(theta) = v_river / v_boat",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "math_sketch",
+            "text": "Vector triangle for zero-drift crossing:\n\n        v_boat (along bow, tilted upstream)\n          |\n          |      /|\n          |     / |  v_boat_across = v_boat * cos(theta)\n          |    /  |\n          |   /   |\n          |  /    |\n       ___|_/_____|___________\n                        v_boat_upstream = v_boat * sin(theta)\n       river current = v_river (downstream)\n\n   For a straight-across path:\n       v_boat_upstream   =   v_river\n       v_boat * sin(theta) = v_river\n       => sin(theta) = v_river / v_boat\n\n   Numbers for Mandovi crossing:\n       sin(theta)    =  2 / 5 = 0.4\n       theta         =  arcsin(0.4)  ~=  23.6 deg\n       v_eff_across  =  sqrt(5^2 - 2^2)  =  sqrt(21)  ~=  4.58 m/s\n       t_cross       =  200 / 4.58  ~=  43.7 s",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "math_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Here is the beautiful vector triangle." },
+            { "text_en": "The boat's velocity splits into an across-component and an upstream-component." },
+            { "text_en": "For zero drift, the upstream-component must exactly equal v river. That gives the famous condition — sine theta equals v river over v boat." },
+            { "text_en": "Mandovi numbers — sine theta equals 2 over 5, so theta is 23.6 degrees upstream." },
+            { "text_en": "The effective across-speed is the square root of 25 minus 4, that is square root 21, about 4.58 metres per second. 200 metres at that speed takes 43.7 seconds — nearly a minute of precise steering." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Feasibility — When the Boat Just Cannot Make It Straight",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "feasibility_sketch",
+            "text": "When can zero-drift crossing work?\n\n   sin(theta) = v_river / v_boat\n\n   sine of any real angle is at most 1, so:\n       v_river / v_boat  <=  1\n       v_river  <=  v_boat\n\n   Three regimes:\n       v_boat >  v_river   -> zero-drift crossing possible\n       v_boat =  v_river   -> boat aims directly upstream (theta = 90 deg)\n                             and JUST STAYS AT LEFT BANK.  Drift zero,\n                             but no crossing either.\n       v_boat <  v_river   -> no theta satisfies the equation.\n                             Boat is ALWAYS carried downstream.\n\n   Moral: you need a stronger boat than the current to\n          even attempt a zero-drift crossing.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "feasibility_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "One crucial check — when is this strategy even FEASIBLE?" },
+            { "text_en": "Sine of any angle is at most one. So v river over v boat must also be at most one. Which means v boat must be strictly greater than v river." },
+            { "text_en": "Three regimes. Stronger boat than current — zero-drift crossing possible." },
+            { "text_en": "Equal speeds — the boat can only aim straight upstream, going nowhere but staying at the bank." },
+            { "text_en": "Weaker boat — drift is unavoidable. You WILL land downstream; the only question is how far." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "think_same_angle_regardless_of_river_speed",
+      "misconception_summary": "Student picks a convenient angle like 45 degrees without computing the correct angle for the particular river speed.",
+      "confusion_patterns": [
+        "45 degrees upstream for shortest path",
+        "any angle upstream works",
+        "what angle for river crossing",
+        "always tilt 30 degrees upstream"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong: Pick a Round Angle Like 45 Degrees",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_angle_sketch",
+              "text": "Student's guess:\n  \"Tilt the bow 45 degrees upstream\n   -- round number, must be safe.\"\n\n  What actually happens at 45 deg on the Mandovi\n  (v_boat = 5, v_river = 2):\n\n    upstream-component = 5 * sin(45) = 5 * 0.707 = 3.54 m/s\n    river current       =                    2    m/s\n    net upstream drift = 3.54 - 2 = 1.54 m/s UPSTREAM\n\n  The boat OVER-corrects and lands NORTH of the dock.\n\n  At 24 degrees the correction is exactly right.\n  At 45 degrees the correction is too much.\n  Any fixed number is wrong for some rivers.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 12,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_angle_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "A student picks 45 degrees because it sounds safe. What happens?" },
+              { "text_en": "At 45 degrees, the upstream-component of 5 metres per second is 5 times root two over two — about 3.54." },
+              { "text_en": "That exceeds the river's 2 metres per second by 1.54. So the boat OVER-corrects and lands NORTH of the dock." },
+              { "text_en": "At 24 degrees the correction is just right. At 45 it is too much. Fixed angles cannot work for every river." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Correct: Use sin(theta) = v_river / v_boat Every Time",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "correct_formula_sketch",
+              "text": "Correct recipe:\n\n  Step 1: Compute the ratio v_river / v_boat.\n  Step 2: theta = arcsin of that ratio.\n  Step 3: Tilt the bow theta degrees UPSTREAM of perpendicular.\n\n  Examples:\n    Mandovi (2 / 5) -> sin(theta) = 0.40 -> theta = 23.6 deg\n    Ganga  (3 / 5)  -> sin(theta) = 0.60 -> theta = 36.9 deg\n    Chilika (0.3 / 1.2) -> sin(theta) = 0.25 -> theta = 14.5 deg\n\n  The formula is just sin(theta) = v_river / v_boat.\n  Every river gives a different theta, because every ratio is different.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "correct_formula_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Correct recipe — always compute theta from the ratio." },
+              { "text_en": "Sine theta equals v river divided by v boat. Every river needs a different theta." },
+              { "text_en": "Mandovi — 23.6 degrees. Ganga — 37 degrees. Chilika Lake — only 14.5 degrees because the current is gentle." },
+              { "text_en": "Never guess. Always compute. The formula is one line and takes 20 seconds on a calculator." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Remember Time vs Path Distinction",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "distinction_sketch",
+              "text": "Two strategies, two formulas:\n\n   Shortest TIME  ->  bow perpendicular, drift allowed\n                     t = width / v_boat\n\n   Shortest PATH  ->  bow tilted upstream by arcsin(v_river/v_boat),\n                     straight-across path\n                     t = width / sqrt(v_boat^2 - v_river^2)\n\n   Read the question.  The word 'time' picks strategy A.\n   The word 'directly opposite', 'no drift', or 'landing at\n   the same point' picks strategy B.\n\n   Mix them up and you will lose easy marks.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "distinction_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "One last reminder — do not mix up the two strategies." },
+              { "text_en": "Shortest time — bow perpendicular, drift allowed, simple formula." },
+              { "text_en": "Shortest path — bow tilted at arcsin v river over v boat, straight-across path, longer time." },
+              { "text_en": "Read the question carefully. Words like 'directly opposite', 'no drift', or 'specific dock' signal shortest-path. Otherwise, it is shortest-time." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Mandovi 200 m, Navy dinghy", "params": { "width": 200, "v_boat": 5, "v_river": 2 } },
+      { "label": "Ganga 150 m, rafting guide", "params": { "width": 150, "v_boat": 5, "v_river": 3 } },
+      { "label": "Calm Chilika lake, swimmer", "params": { "width": 100, "v_boat": 1.2, "v_river": 0.3 } }
+    ],
+    "type_b": [
+      { "label": "Olympic canoeist training course", "scenario": "olympic_canoeist" },
+      { "label": "Navy beach landing exercise", "scenario": "navy_beach_landing" }
+    ]
+  }
+}

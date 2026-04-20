@@ -1,0 +1,111 @@
+{
+  "concept_id": "first_law_thermodynamics",
+  "concept_name": "First Law of Thermodynamics",
+  "chapter": "Thermodynamics",
+  "class_level": 11,
+  "renderer_hint": {
+    "technology": "mixed",
+    "renderer": "thermodynamics",
+    "scenario_type": "piston_cylinder",
+    "panel_count": 1,
+    "show_graph": true
+  },
+  "variables": {
+    "Q": { "symbol": "Q", "name": "Heat supplied to system", "unit": "J", "min": 0, "max": 1000, "default": 500 },
+    "deltaU": { "symbol": "ΔU", "name": "Change in internal energy", "unit": "J", "formula": "Q - W" },
+    "W": { "symbol": "W", "name": "Work done by gas", "unit": "J", "formula": "∫P dV" },
+    "T": { "symbol": "T", "name": "Temperature", "unit": "K", "min": 200, "max": 800, "default": 300 },
+    "P": { "symbol": "P", "name": "Pressure", "unit": "kPa", "min": 50, "max": 300, "default": 100 },
+    "V": { "symbol": "V", "name": "Volume", "unit": "L", "min": 1, "max": 15, "default": 5 }
+  },
+  "locked_facts": [
+    "First law: ΔU = Q - W (or Q = ΔU + W)",
+    "ΔU = change in internal energy, Q = heat added to system, W = work done BY system",
+    "Heat added can increase internal energy OR do work OR both",
+    "Internal energy of ideal gas depends ONLY on temperature",
+    "Work done by gas: W = ∫P dV (area under PV curve)",
+    "For cyclic process: ΔU = 0, so Q = W"
+  ],
+  "truth_statements": [
+    "The first law of thermodynamics states that the change in internal energy equals heat supplied minus work done by the system",
+    "Internal energy is a state function and depends only on the state of the system",
+    "Work done by the gas during expansion equals the area under the PV curve",
+    "Heat is not a state function — it depends on the path taken",
+    "For an ideal gas, internal energy depends only on temperature"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Energy bar chart showing Q splitting into ΔU + W. Piston has moved outward (work done), but temperature rose less than expected because energy went into pushing piston.",
+    "visual_emphasis": "Three colored bars: red Q = orange ΔU + green W. The piston position shows visible expansion. Particle speed increased but not by as much as if all Q went to temperature.",
+    "why_this_breaks_misconception": "Students see that heat does NOT all go to temperature — some becomes work. The energy bar chart makes the split visually undeniable."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Gas at rest — initial conditions",
+      "description": "A cylinder with a movable piston. Gas particles bouncing at room temperature (300 K). No heat added yet. PV diagram shows single starting point.",
+      "emphasis": "Starting point: T=300K, P=100kPa, V=5L. No energy transfer yet.",
+      "labels_visible": ["T", "P", "V"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Heat added at constant pressure",
+      "description": "500 J of heat (Q) added to the gas. Red heat arrow appears below. Piston moves outward as gas expands. Particles speed up. PV diagram traces horizontal line (isobaric process).",
+      "emphasis": "Heat is entering the system — watch BOTH temperature rise AND piston move outward",
+      "labels_visible": ["Q", "T", "V"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Energy split: Q = ΔU + W",
+      "description": "Energy bar chart highlights: Q (500J) = ΔU (250J) + W (250J). The piston moved — that took energy (work). Temperature rose — that took energy (ΔU). Not all heat went to temperature!",
+      "emphasis": "AHA: Only HALF the heat raised temperature. The other half pushed the piston (did work on surroundings).",
+      "labels_visible": ["Q", "ΔU", "W"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — observe the energy balance",
+      "description": "All elements visible. Energy bars, PV diagram with shaded work area, heat and work arrows. Caption: Q = ΔU + W is energy conservation applied to heat engines.",
+      "emphasis": "The first law is just energy conservation. Heat in = internal energy gain + work out.",
+      "labels_visible": ["Q", "ΔU", "W", "PV"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "all_heat_to_temperature",
+      "trigger_keywords": ["saara heat temperature badhata hai", "heat = temperature increase", "all heat goes to temp", "Q = temperature change", "heat dene se temperature badhta hai bas"],
+      "student_belief": "All heat supplied to a gas goes into raising its temperature",
+      "actual_physics": "Heat supplied (Q) splits into two parts: ΔU (which raises temperature for ideal gas) and W (work done by gas during expansion). In an isobaric process, a significant fraction of heat goes into doing work. Only in a constant-volume process does all heat go to internal energy.",
+      "simulation_emphasis": "Show energy bar chart where Q clearly splits into ΔU + W. Piston moves visibly — that energy came from the heat supplied, not from nowhere."
+    },
+    {
+      "id": "heat_is_state_function",
+      "trigger_keywords": ["heat state function hai", "heat depends on state only", "heat path independent"],
+      "student_belief": "Heat is a state function like internal energy",
+      "actual_physics": "Heat (Q) is a path function — its value depends on HOW the process occurs (isobaric, isothermal, etc.). Internal energy (U) is a state function — it depends only on the current state (T for ideal gas). Same initial and final states can have different Q values depending on the path.",
+      "simulation_emphasis": "Show two different paths on PV diagram reaching the same final state — different areas under curve = different W = different Q, but same ΔU."
+    }
+  ],
+  "legend": [
+    { "symbol": "Q", "meaning": "Heat added to system (J) — red arrow" },
+    { "symbol": "ΔU", "meaning": "Change in internal energy (J) — orange bar" },
+    { "symbol": "W", "meaning": "Work done BY gas (J) — green arrow/bar" },
+    { "symbol": "PV", "meaning": "Pressure-Volume diagram — area = work" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["ideal_gas_kinetic_theory", "heat_and_temperature"],
+    "extensions": ["isothermal_process", "adiabatic_process", "carnot_engine"],
+    "siblings": ["isothermal_process", "adiabatic_process"],
+    "common_exam_combinations": ["carnot_engine", "isothermal_process", "adiabatic_process"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["calculate work done from PV diagram", "find ΔU for given Q and W", "compare Q for same ΔT via different paths", "cyclic process problems"],
+    "common_traps": ["confusing work done BY gas vs ON gas (sign convention)", "assuming Q = nCΔT always (only for specific processes)", "forgetting ΔU = 0 for cyclic process"],
+    "numerical_ranges": {
+      "Q": "100–2000 J typical",
+      "T": "200–800 K",
+      "P": "1–10 atm",
+      "n": "1–5 moles"
+    }
+  }
+}

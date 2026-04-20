@@ -1,0 +1,42 @@
+{
+  "concept_id": "radiation_exchange",
+  "concept_name": "Radiation Exchange and Greenhouse Effect",
+  "class_level": 11,
+  "chapter": "Thermal Properties of Matter",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "thermodynamics", "scenario_type": "radiation_exchange", "panel_count": 1, "show_labels": true },
+  "variables": { "P_net": "Net power radiated (W)", "T": "Body temperature (K)", "T₀": "Surrounding temperature (K)", "e": "Emissivity (0-1)" },
+  "locked_facts": [
+    "Net power radiated: P_net = eσA(T⁴ - T₀⁴)",
+    "When T > T₀: body loses heat by radiation (P_net > 0)",
+    "When T = T₀: thermal equilibrium — body radiates and absorbs equally (P_net = 0)",
+    "Greenhouse effect: Earth absorbs visible light from Sun, re-emits infrared, greenhouse gases trap IR",
+    "A body both emits and absorbs radiation simultaneously — net exchange determines heating/cooling",
+    "Prevost theory of heat exchange: all bodies at all temperatures radiate thermal energy",
+    "Greenhouse gases (CO₂, CH₄, H₂O) are transparent to visible but absorb infrared radiation"
+  ],
+  "truth_statements": [
+    "A body at any temperature above absolute zero continuously emits thermal radiation",
+    "The net rate of heat transfer by radiation depends on the difference between T⁴ of the body and T⁴ of the surroundings",
+    "At thermal equilibrium a body still radiates but absorbs exactly as much as it emits so the temperature stays constant",
+    "The greenhouse effect keeps Earth about 33°C warmer than it would be without an atmosphere",
+    "Enhanced greenhouse effect due to increased CO₂ and other gases is causing global warming"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A hot body in cooler surroundings: it emits at rate eσAT⁴ AND absorbs at rate eσAT₀⁴ simultaneously. The NET exchange P_net = eσA(T⁴ - T₀⁴) determines cooling. At equilibrium (T = T₀): emission = absorption, net = 0. The body doesn't stop radiating — it just balances.",
+    "visual_emphasis": "Two radiation arrows (emitted and absorbed) with net arrow showing the difference — at equilibrium both are equal",
+    "why_this_breaks_misconception": "Students think cold bodies don't radiate and hot bodies only emit — seeing simultaneous emission and absorption with the net balance is the insight"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Every body radiates", "description": "A body at temperature T radiates P = eσAT⁴. Even a cold body radiates — just less. A body at room temperature (300K) radiates ~460 W/m² (infrared).", "emphasis": "ALL bodies radiate at ALL temperatures — not just 'hot' objects", "labels_visible": ["P = eσAT⁴", "cold bodies radiate too"] },
+    { "id": "STATE_2", "label": "Net radiation exchange", "description": "Hot body (T) in cooler surroundings (T₀). Body emits eσAT⁴ and absorbs eσAT₀⁴. Net loss: P_net = eσA(T⁴-T₀⁴). If T < T₀: body gains heat.", "emphasis": "The NET exchange determines whether the body heats up or cools down", "labels_visible": ["emit: eσAT⁴", "absorb: eσAT₀⁴", "P_net = eσA(T⁴-T₀⁴)"] },
+    { "id": "STATE_3", "label": "Greenhouse effect", "description": "Sun's visible light passes through atmosphere → absorbed by Earth → Earth re-emits infrared → greenhouse gases absorb IR → re-radiate back to Earth → warming. Without this: Earth would be ~-18°C.", "emphasis": "Atmosphere is transparent to visible but traps infrared — that's the greenhouse effect", "labels_visible": ["visible in", "IR trapped", "greenhouse warming", "+33°C"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts body temperature and surroundings temperature. Net radiation power calculated. Cooling curve shown. Greenhouse gas concentration slider shows enhanced warming.", "emphasis": "Change temperatures — see net radiation reverse direction when body is cooler than surroundings", "labels_visible": ["P_net", "T", "T₀"], "interactive": true, "sliders": [{ "id": "body_temp", "label": "Body temperature T", "min": 200, "max": 1000, "default": 400, "unit": "K" }, { "id": "surr_temp", "label": "Surroundings T₀", "min": 200, "max": 500, "default": 300, "unit": "K" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Cold objects don't radiate heat", "trigger_phrases": ["cold doesn't radiate", "thandi cheez radiate nahi karti"], "correction": "Every object above 0 K radiates thermal energy continuously. An ice cube at 273 K radiates about 315 W/m². The radiation is in the far infrared and invisible, but it's there. At thermal equilibrium, it absorbs exactly as much as it emits.", "simulation_emphasis": "Show radiation arrows coming from a cold object — the rate is less but not zero" },
+    { "belief": "The greenhouse effect is entirely bad/unnatural", "trigger_phrases": ["greenhouse bad", "greenhouse effect harmful"], "correction": "The natural greenhouse effect is essential for life — it keeps Earth at ~15°C instead of -18°C. The problem is the ENHANCED greenhouse effect from excess CO₂ emissions, which is causing additional warming beyond the natural balance.", "simulation_emphasis": "Show Earth temperature with no atmosphere (-18°C) vs natural greenhouse (+15°C) vs enhanced (rising)" }
+  ],
+  "legend": [ { "symbol": "P_net", "meaning": "Net power = eσA(T⁴-T₀⁴)" }, { "symbol": "e", "meaning": "Emissivity (0 to 1)" }, { "symbol": "T₀", "meaning": "Surroundings temperature (K)" } ],
+  "concept_relationships": { "prerequisites": ["heat_conduction_convection_radiation", "blackbody_radiation"], "extensions": ["climate_science"], "siblings": ["newtons_law_of_cooling"], "common_exam_combinations": ["blackbody_radiation", "heat_conduction_convection_radiation"] }
+}

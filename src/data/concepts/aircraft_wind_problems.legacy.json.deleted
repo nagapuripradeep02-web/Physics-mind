@@ -1,0 +1,689 @@
+{
+  "concept_id": "aircraft_wind_problems",
+  "concept_name": "Aircraft-Wind Problems — Steering Direction and Journey Time",
+  "class_level": 11,
+  "chapter": "Kinematics",
+  "section": "6.10",
+  "source_coverage": {
+    "dc_pandey": "Chapter 6, Section 6.10 — Aircraft-Wind Problems (Example 6.33; Exercise Problem 4)",
+    "ncert": "Chapter 4 — Motion in a Plane, Section 4.6",
+    "hc_verma": "Chapter 3 — Rest and Motion: Kinematics, Section 3.7"
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "technology_b": "plotly",
+    "renderer": "mechanics_2d",
+    "scenario_type": "aircraft_wind",
+    "panel_count": 2,
+    "sync_required": true,
+    "scene_mode": true,
+    "show_labels": true,
+    "scene_elements": [
+      "sky_background",
+      "aircraft",
+      "wind_arrows",
+      "destination_marker",
+      "velocity_vectors",
+      "flight_path"
+    ],
+    "panel_a_role": "Realistic top-view scene — aircraft steers in v_aw direction, wind pushes it sideways, actual path v_a tracks straight toward destination B",
+    "panel_b_role": "Plotly vector triangle — v_w from A, v_a along AB, v_aw as third side; angle α labeled; sine law construction visible"
+  },
+  "locked_facts": {
+    "analogy_to_river_boat": "Aircraft-wind is identical to river-boat with different labels: v_br → v_aw (aircraft speed in still air / steering speed), v_r → v_w (wind velocity), v_b → v_a (actual aircraft velocity). Relation: v_a = v_aw + v_w.",
+    "key_difference_from_river_boat": "In river-boat, the DIRECTION of v_br is the unknown (drift vs no-drift). In aircraft-wind, the DESTINATION B is fixed — v_a MUST point from A to B. So v_a direction is known (along AB), and v_aw direction is the unknown.",
+    "three_velocities": "v_w = wind velocity (completely given — magnitude and direction). |v_aw| = steering speed (magnitude given, direction unknown). v_a = actual aircraft velocity (direction = along AB, magnitude unknown).",
+    "vector_triangle_method": "Draw v_w from A. Draw v_a from A along AB. The third side v_aw closes the triangle (polygon law: v_w + v_aw = v_a). Use sine rule on this triangle to find angle and magnitude.",
+    "sine_rule_application": "In the velocity triangle: sides are |v_w|, |v_aw|, |v_a|. Use sine rule: |v_w|/sin(angle opposite v_w) = |v_aw|/sin(angle opposite v_aw) = |v_a|/sin(angle opposite v_a).",
+    "time_formula": "Time = AB / |v_a|. Use actual aircraft speed |v_a| over the straight-line distance AB.",
+    "dc_pandey_ex633": "Example 6.33: v_aw=400km/h (still air speed), v_w=200√2 km/h northward, destination B is northeast of A (45° from east), AB=1000km. Triangle: v_a along NE (45°), v_w northward. Sine rule gives α=30° (angle v_aw makes with AB). Pilot steers 45°+30°=75° from north toward east. |v_a|=546.47km/h. Time=1000/546.47≈1.83h.",
+    "perpendicular_component_condition": "Alternative method: component of v_aw and v_w perpendicular to AB must cancel (net velocity must be along AB). |v_aw|sinα = |v_w|sinβ where α,β are angles each makes with AB.",
+    "crosswind_vs_headwind": "Wind along AB direction: only affects speed (no steering correction needed). Wind perpendicular to AB: requires maximum steering correction. Wind at angle: resolve into components along and perpendicular to AB."
+  },
+  "minimum_viable_understanding": "v_a = v_aw + v_w. v_a MUST point along AB (actual path to destination). Construct the vector triangle: v_w known completely, |v_aw| known, v_a direction known. Solve by sine rule. Time = AB / |v_a|.",
+  "variables": {
+    "v_aw": "Aircraft velocity relative to wind (steering velocity) — magnitude given, direction is the unknown (km/h)",
+    "v_w": "Wind velocity — completely given (magnitude and direction) (km/h)",
+    "v_a": "Actual aircraft velocity relative to ground — direction along AB (known), magnitude unknown (km/h)",
+    "alpha": "Angle v_aw makes with AB direction — found by sine rule",
+    "AB": "Distance from start A to destination B (km)",
+    "t": "Journey time = AB / |v_a| (h)"
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "aircraft wind problem",
+      "aeroplane wind velocity",
+      "pilot steer direction wind",
+      "aircraft wind kinematics",
+      "plane flying in wind direction"
+    ],
+    "local_triggers": [
+      "find direction pilot should steer",
+      "aircraft velocity triangle",
+      "sine rule aircraft wind",
+      "wind blowing plane off course",
+      "steering speed still air",
+      "time taken aircraft wind"
+    ],
+    "micro_triggers": [
+      "v_a equals v_aw plus v_w",
+      "why use sine rule aircraft",
+      "aircraft wind same as river boat",
+      "Example 6.33 DC Pandey"
+    ],
+    "simulation_not_needed_triggers": [
+      "list aircraft wind formulas",
+      "state the analogy aircraft river boat"
+    ],
+    "subconcept_triggers": {
+      "vector_triangle_setup": [
+        "how to draw velocity triangle aircraft",
+        "three velocities aircraft wind",
+        "polygon law aircraft"
+      ],
+      "sine_rule_solution": [
+        "apply sine rule aircraft",
+        "angle pilot must steer",
+        "sine law velocity triangle"
+      ],
+      "time_calculation": [
+        "journey time aircraft wind",
+        "time = AB by v_a",
+        "how long to reach destination"
+      ],
+      "perpendicular_component_method": [
+        "component method aircraft wind",
+        "perpendicular to AB condition",
+        "alternative method aircraft"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "understands_analogy_to_river_boat": "enter at STATE_2",
+    "understands_vector_triangle": "enter at STATE_3",
+    "understands_sine_rule_application": "enter at STATE_4",
+    "understands_time_calculation": "enter at STATE_5"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "river_boat_problems",
+      "relative_motion",
+      "vector_addition"
+    ],
+    "gate_question": "In river-boat: v_b = v_br + v_r. What is the equivalent equation for aircraft-wind? (Answer: v_a = v_aw + v_w. If student cannot make this substitution, cover river_boat_problems first.)",
+    "if_gap_detected": "redirect to river_boat_problems.json — aircraft-wind is identical physics with different variable names"
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "board_mode_states": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "jee_mode_states": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Hook — Why Can't the Pilot Just Point at the Destination?",
+        "physics_layer": {
+          "concept": "If wind blows sideways, a pilot pointing directly at destination B will be pushed off course and miss it",
+          "simulation_focus": "Panel A top-view scene: aircraft points northeast toward B. Strong northward wind. Aircraft drifts east — arrives far to the right of B. B missed entirely. Now: pilot steers at a corrected angle (northwest of NE). Wind pushes it right. Actual path goes straight to B.",
+          "what_to_show": "Same destination B, same wind, two steering choices: wrong (point at B → miss) and right (steer corrected angle → hit B exactly).",
+          "key_observation": "The pilot must intentionally aim away from the destination so the wind brings the actual path back to it.",
+          "scenario": "aircraft_wind_setup"
+        },
+        "pedagogy_layer": {
+          "opening_question": "You want to fly northeast. Wind blows strongly from the south (pushing you north). Do you point the plane northeast? What happens?",
+          "teacher_script": "The plane's nose points northwest of the destination. Wind pushes it eastward. Combined: actual path is exactly northeast. This is the key insight — steer INTO the crosswind.",
+          "real_world": "Every commercial flight uses this — pilots call it 'crab angle'. On approach to a runway in crosswind, aircraft crab sideways until touchdown."
+        }
+      },
+      "STATE_2": {
+        "label": "The Analogy — River-Boat in the Sky",
+        "physics_layer": {
+          "concept": "Aircraft-wind is identical to river-boat with three label substitutions",
+          "substitution_table": {
+            "river_boat": "v_b = v_br + v_r",
+            "aircraft_wind": "v_a = v_aw + v_w",
+            "v_br_becomes": "v_aw (steering speed — what pilot controls)",
+            "v_r_becomes": "v_w (wind — what pilot cannot control)",
+            "v_b_becomes": "v_a (actual path over ground)"
+          },
+          "key_difference": "River-boat: v_a direction is unknown (drift), |v_a| can be anything. Aircraft-wind: v_a direction IS known (must be along AB), |v_a| is unknown. Different unknown, same equation.",
+          "simulation_focus": "Panel B: side-by-side vector triangles — river boat on left, aircraft on right. Same triangle shape, different labels. Student sees the mapping visually.",
+          "scenario": "velocity_triangle_aircraft"
+        },
+        "pedagogy_layer": {
+          "key_message": "If you understood river-boat, you already understand aircraft-wind. The math is identical. Only the question asked is different: river-boat asks WHERE you land, aircraft-wind asks WHICH WAY to steer.",
+          "jee_tip": "DC Pandey explicitly lists both as subtypes of the same relative motion section. Examiners sometimes disguise one as the other."
+        }
+      },
+      "STATE_3": {
+        "label": "The Vector Triangle — Draw It, Then Apply Sine Rule",
+        "physics_layer": {
+          "concept": "Construct the velocity triangle from the three known pieces of information",
+          "construction_steps": [
+            "Step 1: Take A as origin.",
+            "Step 2: Draw v_w from A (completely given — magnitude and direction).",
+            "Step 3: Draw v_a from A along AB direction (direction known, magnitude unknown — draw as unknown length).",
+            "Step 4: The closing side of the triangle = v_aw. This is what the pilot must steer.",
+            "Step 5: Polygon law confirms: v_w + v_aw = v_a."
+          ],
+          "dc_pandey_ex633": "Example 6.33: A→B northeast (45°). v_w = 200√2 km/h northward. v_aw = 400 km/h (unknown direction). Draw v_w pointing north. Draw v_a pointing NE. The gap between them closes with v_aw. The triangle has sides 200√2 (v_w), 400 (v_aw), and |v_a| (unknown).",
+          "simulation_focus": "Panel B: animated triangle construction. v_w drawn first (northward arrow). v_a drawn from A along NE. v_aw drawn as closing side. Angle α between v_aw and AB labeled.",
+          "scenario": "heading_vs_track"
+        },
+        "pedagogy_layer": {
+          "common_mistake": "Students draw v_a in wrong direction or draw v_aw from wrong point. The polygon law requires tail-to-head: v_w tip → v_aw → v_a tip. All start from A.",
+          "key_message": "The triangle draws itself once you know: where wind blows (v_w), where destination is (v_a direction), and how fast the plane flies (|v_aw|)."
+        }
+      },
+      "STATE_4": {
+        "label": "Applying the Sine Rule — Finding Steering Angle",
+        "physics_layer": {
+          "concept": "With the triangle constructed, use sine rule to find the unknown angle α and then |v_a|",
+          "sine_rule": "|v_w| / sin(α) = |v_aw| / sin(β) = |v_a| / sin(γ), where α, β, γ are angles opposite to those sides.",
+          "dc_pandey_ex633_solution": "Triangle: v_a along NE (45° from east), v_w northward (90° from east). Angle between v_a and v_w = 90°−45° = 45°. Sine rule: |v_w|/sinα = |v_aw|/sin45°. 200√2/sinα = 400/sin45°. sinα = 200√2 × sin45° / 400 = 200√2 × (1/√2) / 400 = 200/400 = 0.5. α = 30°. Pilot steers 30° from AB toward north, i.e. 45°+30° = 75° from north toward east.",
+          "v_a_magnitude": "|v_a|/sin(180°−45°−30°) = 400/sin45°. |v_a| = 400 × sin105°/sin45° = 400 × sin75°/(1/√2) = 400×0.966×√2 ≈ 546.4 km/h.",
+          "simulation_focus": "Panel B: triangle with all angles labeled. Sine rule equation shown. α=30° highlighted. Steering direction arrow on Panel A rotates to 75° from north.",
+          "scenario": "crosswind_correction_angle"
+        },
+        "pedagogy_layer": {
+          "jee_tip": "The angle between v_w and v_a (the two known directions) is the angle you can read from geometry. Label it carefully — it determines which angles go into the sine rule.",
+          "alternative_method": "Component method: components of (v_aw + v_w) perpendicular to AB must cancel. |v_aw|sinα = |v_w|sinβ where β = angle v_w makes with AB. Same answer, different route."
+        }
+      },
+      "STATE_5": {
+        "label": "Journey Time — t = AB / |v_a|",
+        "physics_layer": {
+          "concept": "Once |v_a| is found from the sine rule, time = distance / actual speed",
+          "formula": "t = AB / |v_a|",
+          "dc_pandey_ex633_time": "|v_a| ≈ 546.47 km/h. AB = 1000 km. t = 1000/546.47 ≈ 1.83 hours.",
+          "why_not_v_aw": "Time uses |v_a| (actual ground speed), NOT |v_aw| (steering speed in still air). The plane covers the ground at |v_a| — wind has added or subtracted from its effective speed.",
+          "simulation_focus": "Panel A: aircraft follows actual path at |v_a|. Timer shows 1.83h for 1000km. If student mistakenly uses |v_aw|=400, timer shows 2.5h — different answer, aircraft overshoots in time.",
+          "headwind_tailwind": "If wind is along AB: headwind reduces |v_a| (longer time), tailwind increases |v_a| (shorter time). Crosswind always reduces |v_a| compared to still air.",
+          "scenario": "ground_speed_calculation"
+        },
+        "pedagogy_layer": {
+          "key_message": "Two-step finish: (1) sine rule → find α and |v_a|. (2) t = AB/|v_a|. The sine rule step is the hard part. The time step is trivial once |v_a| is known."
+        }
+      },
+      "STATE_6": {
+        "label": "Student Interaction — DC Pandey Example 6.33 Live",
+        "physics_layer": {
+          "problem": "Aircraft still-air speed 400 km/h. Wind 200√2 km/h from south (northward). Destination B is northeast of A. AB = 1000 km. Find: (i) steering direction, (ii) journey time.",
+          "solution_walkthrough": "(i) Triangle: v_a NE, v_w north, v_aw unknown. Angle between v_a and v_w = 45°. Sine rule: sinα = |v_w|sin45°/|v_aw| = 200√2×(1/√2)/400 = 0.5 → α=30°. Steer at 30° from NE toward north = 75° from north. (ii) |v_a| = |v_aw|sin(105°)/sin(45°) ≈ 546.5 km/h. t = 1000/546.5 ≈ 1.83 h.",
+          "interactive": "Student drags steering angle slider on Panel B. Panel A shows aircraft path curving toward or away from B. At α=30°: path aligns exactly with AB, aircraft hits B.",
+          "scenario": "time_from_ground_speed"
+        },
+        "pedagogy_layer": {
+          "teacher_script": "The sine rule gives 30° — pilot steers 75° from north. Wind does the rest. The aircraft never points at B, yet arrives exactly at B. That's the elegance of vector composition."
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "point_plane_at_destination",
+      "misconception": "Pilot should point the plane directly at destination B — wind will slow you down but not push you off course",
+      "student_belief": "If you aim at B, you will reach B — wind only affects speed, not direction of arrival",
+      "trigger_phrases": [
+        "point plane at destination",
+        "aim directly at B",
+        "wind only slows plane not changes direction",
+        "why not steer toward B",
+        "seedha B ki taraf point karo"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Aircraft pointed exactly at B (northeast). Wind blows northward at 200√2 km/h. v_a = v_aw + v_w: v_aw pointing NE + v_w pointing north = v_a pointing north-of-northeast. Aircraft drifts north of B. Lands at a point well north of destination.",
+            "label": "Pointed at B, landed north of B. Wind doesn't just slow you — it shifts your entire path sideways.",
+            "scenario": "aw_wrong_heading_is_track"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "Wind is a velocity — it adds vectorially to every component of your motion. If you point northeast and wind pushes north, your actual path is north-of-northeast. B is due northeast — you miss it to the north."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show corrected steering: pilot aims south-of-northeast (75° from north). Wind pushes north. v_aw + v_w = v_a exactly northeast. Aircraft hits B precisely. Contrast the two paths side by side on Panel A.",
+            "label": "Correct: steer south-of-northeast so wind corrects you back to northeast. Counterintuitive but physically necessary.",
+            "scenario": "aw_aha_aim_to_compensate"
+          },
+          "pedagogy_layer": {
+            "rule": "Aircraft-wind rule: v_a must point along AB. Work backward — what v_aw, when combined with v_w, gives v_a along AB? That's the steering direction."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "uses_v_aw_for_time",
+      "misconception": "Student uses steering speed |v_aw| to calculate journey time instead of actual ground speed |v_a|",
+      "student_belief": "Time = AB / |v_aw| because |v_aw| is the aircraft's speed",
+      "trigger_phrases": [
+        "used steering speed for time",
+        "time equals AB by v_aw",
+        "divided by 400 not actual speed",
+        "why use v_a for time not v_aw",
+        "still air speed for time calculation"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "AB=1000km. |v_aw|=400km/h. Student: t=1000/400=2.5h. Actual |v_a|=546.5km/h. Correct: t=1000/546.5=1.83h. Show two aircraft on Panel A: student's aircraft still has 267km to go when correct aircraft lands at B at t=1.83h.",
+            "label": "2.5h vs 1.83h — 40% error. Wind is tailwind component here — it boosts actual ground speed above still-air speed.",
+            "scenario": "uses_v_aw_for_time_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "|v_aw| is speed through AIR. Actual ground speed is |v_a| — which includes wind contribution. The ground doesn't care how fast air moves past the wings. Distance covered over ground = |v_a| × time."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Three cases: headwind (|v_a| < |v_aw|, time longer), tailwind (|v_a| > |v_aw|, time shorter), crosswind (|v_a| depends on angle). In Ex 6.33, wind has a component along NE (tailwind component) → |v_a| > |v_aw| → time shorter than still air.",
+            "label": "Always use |v_a| for time. |v_aw| is only relevant for steering angle calculation via sine rule.",
+            "scenario": "uses_v_aw_for_time_s2"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "wrong_triangle_construction",
+      "misconception": "Student draws velocity triangle incorrectly — places v_aw from wrong point or draws v_a in wrong direction",
+      "student_belief": "v_aw should be drawn from A toward B (along AB direction)",
+      "trigger_phrases": [
+        "triangle construction wrong",
+        "which direction to draw v_aw",
+        "triangle does not close",
+        "polygon law confused aircraft",
+        "which side is v_aw in triangle"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Student draws v_aw from A toward B (NE). v_w from A northward. The 'resultant' they compute is not along AB — it points somewhere else. Their v_a is not along AB at all. Show: destination B unreachable with this configuration.",
+            "label": "v_aw is NOT along AB — that's exactly what we're trying to find. Drawing it along AB assumes the answer.",
+            "scenario": "wrong_triangle_construction_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "The triangle has three sides: v_w (known, from A), v_a (known direction = AB, unknown magnitude), v_aw (unknown direction, known magnitude). The polygon law says v_w + v_aw = v_a. Draw v_w first. Draw v_a along AB. v_aw is whatever closes the triangle."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Step-by-step triangle construction animated: (1) Draw v_w from A northward. (2) Draw v_a from A along NE (AB direction). (3) Connect tip of v_w to tip of v_a — this is v_aw. (4) Verify: v_w + v_aw = v_a (tail-to-head addition). Angle α = angle v_aw makes with AB.",
+            "label": "v_aw is the closing side — from tip of v_w to tip of v_a. Its direction is what the pilot must steer.",
+            "scenario": "wrong_triangle_construction_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "Memory: v_w + v_aw = v_a. Draw v_w first (given). Draw v_a along AB (given direction). v_aw = tip of v_w → tip of v_a. Always."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "confuses_alpha_with_steering_direction",
+      "misconception": "Student finds angle α from sine rule but reports it as the final steering direction instead of computing the actual compass bearing",
+      "student_belief": "α from sine rule is the answer — the pilot steers at α degrees",
+      "trigger_phrases": [
+        "sine rule gives 30 so steer at 30 degrees",
+        "alpha is the steering angle directly",
+        "got 30 but answer says 75",
+        "why add angles for steering direction",
+        "alpha from sine rule meaning"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Student reports α=30° as steering direction. But α=30° is the angle v_aw makes WITH AB (the NE direction). Actual compass bearing = 45° (NE from east) + 30° toward north = 75° from north = N75°E. Show aircraft steered at '30°' (from east) vs correct 75° from north — different directions entirely.",
+            "label": "α = 30° is angle from AB direction. AB is 45° from east (northeast). Steering bearing = 90° − (45° + 30°) = 15° from east = 75° from north.",
+            "scenario": "confuses_alpha_with_steering_direction_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "α from sine rule = angle between v_aw and v_a (AB direction). To get compass bearing: start from the AB direction, add α toward the wind source. Then convert to standard compass format (degrees from north)."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "DC Pandey Ex 6.33 worked: AB is NE = 45° from east. v_aw is 30° from AB toward north. So v_aw is 45°+30° = 75° from east = 90°−75° = 15° from north = N75°E. Verify on Panel B: draw v_aw at this angle from A. Add v_w (north). Resultant is exactly NE. ✓",
+            "label": "Always: (1) find α from sine rule. (2) Add α to the AB direction (toward wind source). (3) Convert to compass bearing. Three distinct steps.",
+            "scenario": "confuses_alpha_with_steering_direction_s2"
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "micro_1": {
+      "trigger": "aircraft wind formula quick",
+      "scope": "micro",
+      "states": 2,
+      "content": "v_a = v_aw + v_w. Three velocities: v_aw = steering velocity (pilot controls direction, magnitude = still-air speed given). v_w = wind (completely given). v_a = actual ground velocity (direction = along AB, magnitude unknown). Use sine rule on the velocity triangle to find steering angle α and |v_a|. Time = AB / |v_a|."
+    },
+    "micro_2": {
+      "trigger": "how is aircraft wind different from river boat",
+      "scope": "micro",
+      "states": 2,
+      "content": "Same equation (v_a = v_aw + v_w vs v_b = v_br + v_r). Different unknown: River-boat — destination direction is fixed (across river), steering direction is chosen, drift is unknown. Aircraft-wind — destination B is fixed (v_a direction known = along AB), steering direction |v_aw| magnitude known, direction of v_aw is unknown. Aircraft-wind uses sine rule. River-boat uses sin formula directly."
+    },
+    "micro_3": {
+      "trigger": "DC Pandey example 6.33 solution",
+      "scope": "micro",
+      "states": 3,
+      "content": "Ex 6.33: |v_aw|=400km/h, v_w=200√2km/h northward, B northeast (45° from east), AB=1000km. Triangle: angle between v_a(NE) and v_w(N) = 45°. Sine rule: sinα/|v_w| = sin45°/|v_aw| → sinα = 200√2 × sin45°/400 = 0.5 → α=30°. Steer at 75° from north (N75°E). |v_a|=400×sin105°/sin45°≈546.5km/h. Time=1000/546.5≈1.83h."
+    },
+    "micro_4": {
+      "trigger": "sine rule setup aircraft wind",
+      "scope": "micro",
+      "states": 2,
+      "content": "In aircraft-wind velocity triangle: angle opposite to v_w = α (angle between v_aw and v_a). Angle opposite to v_aw = β (angle between v_w and v_a = computable from geometry). Angle opposite to v_a = 180°−α−β. Sine rule: |v_w|/sinα = |v_aw|/sinβ = |v_a|/sin(180°−α−β). Solve for α first (only one unknown), then find |v_a|."
+    },
+    "micro_5": {
+      "trigger": "which velocity for journey time aircraft",
+      "scope": "micro",
+      "states": 2,
+      "content": "Time = AB / |v_a|. Always use |v_a| — the actual ground speed. Never use |v_aw| (still-air speed) — that is the speed relative to air, not ground. Wind adds or subtracts from ground speed: tailwind component → |v_a| > |v_aw|. Headwind component → |v_a| < |v_aw|. Pure crosswind → |v_a| < |v_aw| always."
+    }
+  },
+  "static_responses": {
+    "formula_reference": {
+      "trigger": "aircraft wind all formulas",
+      "simulation_needed": false,
+      "response": "Aircraft-wind formulas: (1) v_a = v_aw + v_w (vector, always). (2) v_a direction = along AB (given by problem). (3) |v_aw| = still-air speed (given). (4) v_w = wind (completely given). (5) Construct triangle, apply sine rule to find steering angle α and |v_a|. (6) t = AB / |v_a|. Key: α from sine rule is angle from AB direction — add to AB bearing to get compass heading."
+    },
+    "comparison_table": {
+      "trigger": "compare river boat and aircraft wind",
+      "simulation_needed": false,
+      "response": "Comparison: River-boat: v_b = v_br + v_r. Known: |v_br|, complete v_r, river width d. Unknown: drift, time. Method: resolve components, use trig directly. Aircraft-wind: v_a = v_aw + v_w. Known: |v_aw|, complete v_w, direction of v_a (along AB), distance AB. Unknown: direction of v_aw, |v_a|. Method: construct triangle, apply sine rule."
+    }
+  },
+  "problem_guidance_path": {
+    "description": "Step-by-step for aircraft-wind problems (DC Pandey pattern)",
+    "step_1": "Identify: |v_aw| (still-air speed), v_w (wind — full vector), A and B locations (gives v_a direction = along AB), AB distance.",
+    "step_2": "Construct velocity triangle: draw v_w from A, draw v_a from A along AB direction, v_aw closes the triangle.",
+    "step_3": "Find angle between v_w and v_a from geometry (both directions are known).",
+    "step_4": "Apply sine rule: |v_w|/sinα = |v_aw|/sinβ. Find α (angle v_aw makes with AB).",
+    "step_5": "Find |v_a| using sine rule: |v_a|/sin(180°−α−β) = |v_aw|/sinβ.",
+    "step_6": "Compute steering direction: AB direction ± α (toward wind source).",
+    "step_7": "Time t = AB / |v_a|.",
+    "common_errors": [
+      "Pointing v_aw along AB (assuming the answer)",
+      "Using |v_aw| for time instead of |v_a|",
+      "Reporting α as compass bearing instead of adding it to AB direction",
+      "Wrong angle in sine rule — labeling the triangle incorrectly"
+    ]
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Example 6.33, Section 6.10",
+      "principle": "Aircraft at 400km/h, northward wind 200√2 km/h, destination northeast — finding steering angle via sine rule and journey time",
+      "aha": "sinα = 0.5 → α=30° falls out cleanly because 200√2 × sin45° = 200√2 × (1/√2) = 200, and 200/400 = 0.5. The √2 factors cancel — deliberately chosen by DC Pandey for clean arithmetic.",
+      "simulation_states": 3
+    },
+    "example_2": {
+      "source": "DC Pandey Exercise Problem 4, Section 6.10",
+      "principle": "Aircraft A to B, 500km at 30° east of north, wind due north at 20m/s, steering speed 150m/s — find heading and time",
+      "aha": "Component method works here: component of (v_aw + v_w) perpendicular to AB must be zero. One equation, one unknown (steering angle). Simpler than full sine rule when one component condition is enough.",
+      "simulation_states": 2
+    },
+    "example_3": {
+      "source": "DC Pandey Section 6.10 — headwind special case",
+      "principle": "Wind directly against flight direction (headwind) — steering is straight toward B, but actual speed is |v_aw| − |v_w|",
+      "aha": "Pure headwind: no steering correction needed (α=0), but time = AB/(|v_aw|−|v_w|) — much longer than still air. Pure tailwind: time = AB/(|v_aw|+|v_w|) — shorter. Crosswind: always slower than still air even with perfect steering.",
+      "simulation_states": 2
+    }
+  },
+  "assessment_path": {
+    "question_1": {
+      "text": "In aircraft-wind problems, the direction of which velocity is unknown and must be found?",
+      "options": [
+        "v_w (wind velocity)",
+        "v_a (actual aircraft velocity)",
+        "v_aw (steering velocity)",
+        "All three are unknown"
+      ],
+      "correct": 2,
+      "if_wrong_1": "route to point_plane_at_destination — student thinks v_a direction is unknown",
+      "explanation": "v_w is completely given. v_a direction is known (must be along AB). |v_aw| is given. Only the DIRECTION of v_aw (how to steer) is unknown."
+    },
+    "question_2": {
+      "text": "Aircraft still-air speed 300km/h. Tailwind (along AB) 100km/h. Journey time for AB=800km?",
+      "options": [
+        "2.67h",
+        "2h",
+        "8h",
+        "Cannot determine"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to uses_v_aw_for_time — student used 300km/h instead of 400km/h",
+      "explanation": "Pure tailwind: v_a = 300+100 = 400km/h (no steering correction, just faster). t = 800/400 = 2h."
+    },
+    "question_3": {
+      "text": "In DC Pandey Example 6.33, the angle α found from the sine rule is 30°. The pilot's actual steering direction from north is:",
+      "options": [
+        "30°",
+        "45°",
+        "75°",
+        "15°"
+      ],
+      "correct": 2,
+      "if_wrong_0": "route to confuses_alpha_with_steering_direction — student reports α directly",
+      "explanation": "α=30° is angle of v_aw from AB direction. AB direction is NE = 45° from east = 45° from north toward east. Steering = 45° (NE) + 30° (toward north, into the wind) = 75° from north."
+    },
+    "question_4": {
+      "text": "What is the correct vector equation for aircraft-wind problems?",
+      "options": [
+        "v_aw = v_a + v_w",
+        "v_a = v_aw + v_w",
+        "v_w = v_a + v_aw",
+        "v_aw = v_a − v_w"
+      ],
+      "correct": 1,
+      "explanation": "v_a = v_aw + v_w. Actual velocity = steering velocity + wind velocity. This is the fundamental relation, identical to v_b = v_br + v_r in river-boat."
+    },
+    "question_5": {
+      "text": "Aircraft still-air speed 400km/h, wind 200√2 km/h northward, B northeast, AB=1000km. Journey time is approximately:",
+      "options": [
+        "2.5h",
+        "1.83h",
+        "3.5h",
+        "1.41h"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to uses_v_aw_for_time — used 400km/h instead of ~546km/h",
+      "explanation": "|v_a| ≈ 546.5km/h (from sine rule, Ex 6.33). t = 1000/546.5 ≈ 1.83h. Wind has a northward component along NE, acting as partial tailwind — actual speed exceeds still-air speed."
+    }
+  },
+  "session_awareness": {
+    "if_already_shown_epic_l": "Go directly to sine rule practice — student knows the setup, needs to practise triangle construction and angle finding",
+    "if_coming_from_river_boat": "Perfect — show the substitution table immediately (v_br→v_aw, v_r→v_w, v_b→v_a). Student already knows the physics, just needs the label swap and the key difference (sine rule instead of direct formula).",
+    "if_coming_from_rain_umbrella": "Connect: all three — river-boat, rain, aircraft — are the same relative velocity equation v_A = v_AB + v_B with different physical interpretations."
+  },
+  "waypoints": {
+    "fallback_unknown_confusion": "Default to DC Pandey Example 6.33 — it's the canonical aircraft-wind problem, has clean numbers (√2 cancels nicely), and covers all steps: triangle construction, sine rule, steering angle, time calculation.",
+    "escalation_trigger": "If student asks about aircraft with both crosswind AND headwind component — no escalation needed, the triangle method handles it automatically. The sine rule gives the correct angle for any wind direction."
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks what if |v_w| > |v_aw| — can aircraft still reach destination B?",
+    "escalate_to": "In sine rule: sinα = |v_w|sinβ/|v_aw|. If |v_w|sinβ > |v_aw|, sinα > 1 — impossible. Aircraft cannot reach B if the wind's perpendicular component exceeds the aircraft's still-air speed. Analogous to river-boat case v_r > v_br.",
+    "level": "JEE Advanced / conceptual"
+  },
+  "parameter_slots": {
+    "v_aw": {
+      "label": "aircraft still-air speed",
+      "range": [
+        100,
+        800
+      ],
+      "unit": "km/h",
+      "default": 400,
+      "extraction_hint": "aircraft speed in still air, steering speed, or |v_aw| ="
+    },
+    "v_w": {
+      "label": "wind speed",
+      "range": [
+        10,
+        400
+      ],
+      "unit": "km/h",
+      "default": 283,
+      "extraction_hint": "wind speed or v_w ="
+    },
+    "AB": {
+      "label": "distance to destination",
+      "range": [
+        100,
+        5000
+      ],
+      "unit": "km",
+      "default": 1000,
+      "extraction_hint": "distance AB or journey distance ="
+    },
+    "bearing_AB": {
+      "label": "direction of destination from start (compass bearing)",
+      "range": [
+        0,
+        360
+      ],
+      "unit": "degrees from north",
+      "default": 45,
+      "extraction_hint": "direction to destination — northeast=45, east=90, etc."
+    }
+  },
+  "panel_sync_spec": {
+    "canvas_to_graph": {
+      "trigger": "STATE_N_reached",
+      "action": "Panel B vector triangle redraws for current state values — v_w, v_a, v_aw with sine rule angles labeled"
+    },
+    "graph_to_canvas": {
+      "trigger": "student_drags_alpha_slider",
+      "action": "Panel A aircraft path updates — at correct α, path aligns exactly with AB; at wrong α, aircraft misses B"
+    },
+    "slider_to_both": {
+      "parameter": "bearing_AB",
+      "canvas_action": "destination B repositions, flight path direction updates",
+      "graph_action": "v_a direction rotates in triangle, α recalculates, new steering angle shown"
+    }
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "Find steering direction (angle to steer) given wind, still-air speed, and destination direction",
+      "Find journey time given all velocities (use |v_a| not |v_aw|)",
+      "Find still-air speed needed to reach B in given time with given wind",
+      "Special case: headwind/tailwind — find actual speed and time",
+      "Assertion: pilot should steer directly at B. Reason: aircraft has higher speed than wind."
+    ],
+    "common_traps": [
+      "Pointing aircraft at B (v_aw along AB) — misses destination",
+      "Using |v_aw| for time instead of |v_a|",
+      "Reporting sine rule angle α as compass bearing (must add to AB bearing)",
+      "Wrong triangle — drawing v_aw first and v_w as closing side",
+      "Not checking if destination is reachable (|v_w|sinβ must be ≤ |v_aw|)"
+    ],
+    "key_results": [
+      "v_a = v_aw + v_w (fundamental relation)",
+      "v_a direction = along AB (fixed by destination)",
+      "Sine rule: |v_w|/sinα = |v_aw|/sinβ where β = angle between v_w and v_a",
+      "Steering bearing = AB bearing ± α (toward wind source, to compensate)",
+      "t = AB / |v_a| (ground speed, not still-air speed)",
+      "Ex 6.33: α=30°, steer N75°E, |v_a|≈546.5km/h, t≈1.83h"
+    ],
+    "comparison_with_river_boat": {
+      "same": "Vector equation, triangle construction, same relative velocity principle",
+      "different": "River-boat: v_a direction unknown (drift); aircraft: v_a direction fixed (along AB), v_aw direction unknown. River-boat: direct formula. Aircraft: sine rule needed."
+    }
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "relative_motion",
+      "river_boat_problems",
+      "vector_addition"
+    ],
+    "extensions": [
+      "projectile_motion",
+      "pseudo_forces"
+    ],
+    "siblings": [
+      "river_boat_problems",
+      "rain_umbrella",
+      "relative_motion"
+    ],
+    "common_exam_combinations": [
+      "river_boat — same equation v_a = v_aw + v_w vs v_b = v_br + v_r, DC Pandey explicitly pairs them",
+      "vector_addition — sine rule in velocity triangle requires vector addition geometry",
+      "rain_umbrella — all four types (min distance, river-boat, aircraft, rain) are in DC Pandey Section 6.10"
+    ]
+  },
+  "three_js_flag": false,
+  "three_js_note": "Aircraft-wind is 2D top-view planar motion. scene_mode=True in canvas2d with top-view sky scene is sufficient. Three.js not needed.",
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "approach": "heading_vs_track_distinction",
+      "entry_state": "STATE_2",
+      "teacher_angle": "Focus on the critical distinction that causes most mistakes: heading (where the aircraft nose points) versus track (where the aircraft actually goes). The pilot controls the heading. The wind moves the aircraft sideways. The actual path over ground is the vector sum of aircraft velocity through air and wind velocity. The pilot must aim upstream of the destination so that the wind drift corrects the heading to produce the desired track. Show the consequence of ignoring wind: aircraft aimed at destination but arrives at wrong point.",
+      "locked_facts_focus": [
+        "fact_3",
+        "fact_4",
+        "fact_5"
+      ],
+      "panel_b_focus": "Top-down map view. Aircraft heading arrow and wind arrow shown separately. Ground track arrow is their vector sum. Animation: aircraft aimed directly at destination with crosswind — actual path curves away. Then corrected heading shown producing straight ground track."
+    },
+    {
+      "variant_id": 2,
+      "approach": "connects_to_river_boat",
+      "entry_state": "STATE_1",
+      "teacher_angle": "Aircraft-wind is river-boat in the sky. Wind = river current. Aircraft velocity through air = boat velocity through water. Ground velocity = velocity across the river bottom. The student who solved minimum drift for river-boat already knows how to solve minimum time and exact-track problems for aircraft. The only difference is that aircraft can fly in any direction including against the wind — there is no bank to constrain them as there is with a river. Every river-boat technique transfers directly. Show the identical vector triangles side by side.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_2",
+        "fact_6"
+      ],
+      "panel_b_focus": "River-boat diagram and aircraft-wind diagram shown side by side with matching labels. Wind arrow = river current arrow. Aircraft heading = boat heading. Ground track = actual river crossing path. All three vector triangles are identical — just different physical settings."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Wind angle", "symbol": "φ", "unit": "°", "min": 0, "max": 180 },
+    "y_axis": { "label": "Resultant speed", "symbol": "|v|", "unit": "m/s", "min": 0, "max": 300 },
+    "lines": [
+      { "id": "resultant", "formula": "Math.sqrt(200*200 + 50*50 + 2*200*50*Math.cos(x * Math.PI / 180))", "color": "#60a5fa", "label": "Resultant speed vs wind angle" },
+      { "id": "aircraft_only", "slope": 0, "intercept": 200, "color": "#94a3b8", "dash": "dash", "label": "Aircraft speed alone = 200" }
+    ],
+    "sliders": [
+      { "id": "phi", "label": "Wind angle φ (degrees)", "min": 0, "max": 180, "default": 90 }
+    ],
+    "legend": [
+      { "id": "resultant", "label": "Resultant" },
+      { "id": "aircraft_only", "label": "Aircraft alone" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": ["aircraft_only"], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": ["aircraft_only", "resultant"], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["aircraft_only", "resultant"], "show_sliders": false, "highlight_point": true, "point_x": 0, "point_y": 250, "label": "Tailwind: max speed" },
+      "STATE_5": { "active_lines": ["aircraft_only", "resultant"], "show_sliders": false, "highlight_point": true, "point_x": 180, "point_y": 150, "label": "Headwind: min speed" },
+      "STATE_6": { "active_lines": ["aircraft_only", "resultant"], "show_sliders": true, "highlight_point": true, "point_x": 90, "point_y": 206 }
+    }
+  }
+}

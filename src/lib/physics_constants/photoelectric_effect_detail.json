@@ -1,0 +1,205 @@
+{
+  "concept_id": "photoelectric_effect_detail",
+  "concept_name": "Photoelectric Effect",
+  "class_level": "12",
+  "chapter": "Dual Nature of Radiation and Matter",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "frequency_vs_kinetic_energy",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "f": {
+      "name": "frequency of incident radiation",
+      "symbol": "f",
+      "unit": "Hz",
+      "typical_range": [1e14, 3e15],
+      "role": "independent"
+    },
+    "h": {
+      "name": "Planck's constant",
+      "symbol": "h",
+      "unit": "J·s",
+      "value": 6.626e-34,
+      "role": "constant"
+    },
+    "phi": {
+      "name": "work function",
+      "symbol": "φ",
+      "unit": "eV",
+      "typical_range": [1.5, 5.0],
+      "role": "material_property",
+      "note": "Minimum energy needed to eject electron from metal surface; varies by material (Na ≈ 2.3 eV, Cu ≈ 4.7 eV)"
+    },
+    "KE_max": {
+      "name": "maximum kinetic energy of photoelectron",
+      "symbol": "KE_max",
+      "unit": "eV",
+      "role": "dependent"
+    },
+    "f0": {
+      "name": "threshold frequency",
+      "symbol": "f₀",
+      "unit": "Hz",
+      "role": "derived",
+      "note": "Minimum frequency below which no photoelectrons are emitted regardless of intensity"
+    },
+    "V0": {
+      "name": "stopping potential",
+      "symbol": "V₀",
+      "unit": "V",
+      "role": "dependent",
+      "note": "Minimum negative potential needed to stop the most energetic photoelectron"
+    },
+    "I": {
+      "name": "intensity of incident light",
+      "symbol": "I",
+      "unit": "W/m²",
+      "role": "independent",
+      "note": "Affects number of photoelectrons (photocurrent) but NOT their maximum kinetic energy"
+    }
+  },
+  "locked_facts": [
+    "E = hf — energy of a photon is Planck's constant times frequency",
+    "KE_max = hf - φ — Einstein's photoelectric equation; maximum KE equals photon energy minus work function",
+    "f₀ = φ/h — threshold frequency; below this frequency no emission occurs regardless of intensity",
+    "eV₀ = hf - φ — stopping potential times electron charge equals photon energy minus work function",
+    "Photoelectron emission is instantaneous (< 10⁻⁹ s) once f ≥ f₀, regardless of how weak the light is",
+    "Photocurrent is proportional to intensity of incident light (number of photons per second)",
+    "KE_max depends only on frequency, not on intensity — each photon interacts with one electron",
+    "Graph of V₀ vs f is a straight line with slope h/e and x-intercept at f₀"
+  ],
+  "truth_statements": [
+    "Below threshold frequency f₀, no electrons are emitted no matter how intense the light — this disproved the wave theory of light for this phenomenon",
+    "Increasing intensity increases the number of emitted photoelectrons (photocurrent) but does not change their maximum kinetic energy",
+    "The photoelectric effect is instantaneous — there is no observable time lag between illumination and electron emission when f ≥ f₀",
+    "The slope of the stopping potential vs frequency graph is h/e, which is the same for all metals; only the intercept (determined by φ) changes",
+    "Einstein received the 1921 Nobel Prize in Physics for explaining the photoelectric effect using the quantum theory of light"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "description": "Student sees that doubling intensity doubles the photocurrent but KE_max stays fixed, while even a tiny increase in frequency above f₀ immediately increases KE_max — proving energy is quantized in photons, not spread continuously as a wave",
+    "visual_cue": "Two side-by-side graphs: intensity slider moves photocurrent curve up/down but KE_max line stays flat; frequency slider shifts KE_max linearly upward"
+  },
+  "simulation_states": {
+    "STATE_1": {
+      "title": "Photon Hits Metal Surface",
+      "description": "Show monochromatic light (photons as discrete packets) hitting a metal surface. Display the photon energy E = hf and the work function φ of the metal. When f < f₀, photons bounce off — no electrons emitted despite high intensity.",
+      "visual_elements": ["photon_arrows", "metal_surface", "energy_bar_comparison", "work_function_level"],
+      "labels": ["E = hf", "φ (work function)", "f < f₀: no emission"]
+    },
+    "STATE_2": {
+      "title": "Threshold Frequency Crossed",
+      "description": "Increase frequency past f₀. Electrons start ejecting immediately. Show the energy accounting: photon energy hf splits into work function φ (used to escape) and kinetic energy KE_max (leftover). Instantaneous emission emphasized.",
+      "visual_elements": ["ejected_electrons", "energy_split_diagram", "timer_showing_zero_delay"],
+      "labels": ["hf = φ + KE_max", "f ≥ f₀: instant emission"]
+    },
+    "STATE_3": {
+      "title": "Intensity vs Frequency — The Key Distinction",
+      "description": "Split view: LEFT panel shows intensity slider (more photons → more electrons, but same KE_max). RIGHT panel shows frequency slider (higher f → higher KE_max, same number of electrons per photon). V₀ vs f graph plotted in real-time.",
+      "visual_elements": ["intensity_slider", "frequency_slider", "photocurrent_meter", "KE_max_display", "V0_vs_f_graph"],
+      "labels": ["Intensity → photocurrent", "Frequency → KE_max", "V₀ = (h/e)f - φ/e"]
+    },
+    "STATE_4": {
+      "title": "Interactive Exploration",
+      "description": "Student controls frequency, intensity, and metal type (φ). Real-time updates to photocurrent, KE_max, and stopping potential. Graphs update live. Challenge: find the threshold frequency for each metal.",
+      "interactive": true,
+      "sliders": [
+        {
+          "id": "frequency_slider",
+          "label": "Frequency (×10¹⁴ Hz)",
+          "min": 1,
+          "max": 30,
+          "step": 0.5,
+          "default": 10,
+          "unit": "×10¹⁴ Hz"
+        },
+        {
+          "id": "intensity_slider",
+          "label": "Intensity (arbitrary units)",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 5,
+          "unit": "a.u."
+        },
+        {
+          "id": "metal_selector",
+          "label": "Metal",
+          "options": ["Sodium (φ=2.3 eV)", "Potassium (φ=2.25 eV)", "Copper (φ=4.7 eV)", "Caesium (φ=1.9 eV)"],
+          "default": "Sodium (φ=2.3 eV)"
+        }
+      ]
+    }
+  },
+  "common_misconceptions": [
+    {
+      "id": "intensity_increases_ke",
+      "misconception": "Increasing the intensity of light increases the maximum kinetic energy of photoelectrons",
+      "correct": "Intensity increases the NUMBER of photoelectrons (photocurrent) but NOT their KE_max. KE_max depends only on frequency.",
+      "trigger_phrases": [
+        "brighter light faster electrons",
+        "more intensity more energy",
+        "zyada bright zyada speed",
+        "intensity badhao toh KE badhega",
+        "strong light more kinetic energy",
+        "bright light more KE"
+      ],
+      "ncert_reference": "Chapter 11, Section 11.7"
+    },
+    {
+      "id": "wave_theory_time_delay",
+      "misconception": "There should be a time delay for dim light to accumulate enough energy to eject an electron",
+      "correct": "Emission is instantaneous because energy is delivered in discrete photon packets, not spread as a continuous wave. One photon with f ≥ f₀ is enough.",
+      "trigger_phrases": [
+        "dim light takes time",
+        "energy accumulate slowly",
+        "weak light delay",
+        "kam light mein time lagta hai",
+        "time lag",
+        "why no delay"
+      ],
+      "ncert_reference": "Chapter 11, Section 11.7.2"
+    },
+    {
+      "id": "threshold_depends_on_intensity",
+      "misconception": "If I use very high intensity light below threshold frequency, electrons will eventually be emitted",
+      "correct": "No emission occurs below f₀ regardless of intensity. Each photon individually lacks sufficient energy (hf < φ), and one electron absorbs only one photon in the standard photoelectric effect.",
+      "trigger_phrases": [
+        "very bright but low frequency",
+        "bahut zyada intensity below threshold",
+        "intense red light emit karega",
+        "enough intensity will work",
+        "high power low freq"
+      ],
+      "ncert_reference": "Chapter 11, Section 11.7.1"
+    }
+  ],
+  "legend": {
+    "photon": "Yellow arrow/packet representing a quantum of light energy E = hf",
+    "electron": "Blue dot ejected from metal surface with kinetic energy KE_max",
+    "work_function_bar": "Red horizontal line showing minimum energy φ required to free an electron",
+    "KE_max_bar": "Green bar showing leftover energy after overcoming work function",
+    "V0_graph": "Straight line graph of stopping potential vs frequency with slope h/e"
+  },
+  "concept_relationships": [
+    {
+      "concept_id": "de_broglie_hypothesis",
+      "relationship": "Photoelectrons have de Broglie wavelength λ = h/p = h/√(2mKE_max)"
+    },
+    {
+      "concept_id": "bohr_model_hydrogen",
+      "relationship": "Photon energy levels in Bohr model produce discrete emission spectra; same photon concept applies to photoelectric effect"
+    },
+    {
+      "concept_id": "electromagnetic_waves",
+      "relationship": "Light as electromagnetic wave has frequency and wavelength related by c = fλ; photoelectric effect reveals its particle nature"
+    },
+    {
+      "concept_id": "work_energy_theorem",
+      "relationship": "KE_max = hf - φ is an energy conservation equation analogous to work-energy theorem"
+    }
+  ]
+}

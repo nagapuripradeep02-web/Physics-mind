@@ -1,0 +1,43 @@
+{
+  "concept_id": "torque_and_couple",
+  "concept_name": "Torque and Couple",
+  "class_level": 11,
+  "chapter": "System of Particles and Rotational Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "torque", "panel_count": 1, "show_labels": true },
+  "variables": { "τ": "Torque (N·m)", "r": "Position vector (m)", "F": "Force (N)", "θ": "Angle between r and F" },
+  "locked_facts": [
+    "Torque τ = r × F = rF sinθ (cross product)",
+    "Torque is maximum when force is perpendicular to position vector (θ = 90°)",
+    "Torque is zero when force passes through the axis of rotation",
+    "A couple consists of two equal and opposite forces with different lines of action",
+    "Moment of a couple = F × d (force × perpendicular distance between forces)",
+    "A couple produces pure rotation with no translation",
+    "The moment of a couple is the same about any point — it is a free vector",
+    "τ = Iα (Newton's second law for rotation)"
+  ],
+  "truth_statements": [
+    "Torque is the rotational analogue of force — it causes angular acceleration",
+    "The magnitude of torque depends on the force, the distance from the axis, and the angle between them",
+    "A couple produces rotation without any net translational force on the body",
+    "The torque of a couple is independent of the point about which it is calculated",
+    "For equilibrium of a rigid body both the net force and net torque must be zero"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A wrench with force applied at different angles. At θ = 90° (perpendicular), torque is maximum and the nut turns easily. At θ = 0° (along the handle), torque is zero — no rotation at all. The sinθ factor makes the connection visceral.",
+    "visual_emphasis": "Force arrow rotating from 0° to 90° with torque bar growing from zero to maximum",
+    "why_this_breaks_misconception": "Students think any force causes rotation — seeing zero torque when force passes through the axis makes the r × F formula click"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Torque defined", "description": "A door with force applied at the handle. τ = rF sinθ shown. The perpendicular distance (moment arm) is highlighted.", "emphasis": "Torque = force × moment arm. Longer arm = easier rotation.", "labels_visible": ["τ = rF sinθ", "r", "F", "moment arm"] },
+    { "id": "STATE_2", "label": "Angle matters", "description": "Same force applied at different angles to a wrench. At 90°: maximum torque. At 0°: zero torque. At 45°: intermediate. Torque bar updates.", "emphasis": "Only the perpendicular component of force contributes to torque", "labels_visible": ["θ = 90° → max τ", "θ = 0° → τ = 0"] },
+    { "id": "STATE_3", "label": "Couple", "description": "Two equal opposite forces on a steering wheel. No net force (no translation) but net torque (pure rotation). Moment of couple = F × d, shown to be same about any point.", "emphasis": "A couple produces pure rotation — the moment is the same about ANY point", "labels_visible": ["F", "-F", "d", "couple = Fd"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts force magnitude, angle, and point of application on a rigid body. Torque value and rotation animation update in real time. Toggle couple mode with two forces.", "emphasis": "Change angle and distance — find the combination that maximises torque", "labels_visible": ["τ", "F", "r", "θ"], "interactive": true, "sliders": [{ "id": "force", "label": "Force F", "min": 1, "max": 20, "default": 10, "unit": "N" }, { "id": "angle", "label": "Angle θ", "min": 0, "max": 90, "default": 90, "unit": "°" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Any force applied to a body causes rotation", "trigger_phrases": ["force causes rotation", "force lagao toh ghoomega"], "correction": "A force causes rotation only if it has a non-zero torque about the axis — i.e., it doesn't pass through the axis. A force through the pivot produces zero torque and zero rotation.", "simulation_emphasis": "Apply force through the pivot point — body doesn't rotate despite the force" },
+    { "belief": "A couple can cause translation", "trigger_phrases": ["couple moves the body", "couple causes displacement"], "correction": "A couple consists of two equal and opposite forces, so net force is zero — no translation is possible. A couple causes ONLY rotation.", "simulation_emphasis": "Show net force vector = 0 while body rotates under a couple" }
+  ],
+  "legend": [ { "symbol": "τ", "meaning": "Torque = r × F (N·m)" }, { "symbol": "r", "meaning": "Distance from axis (m)" }, { "symbol": "θ", "meaning": "Angle between r and F" } ],
+  "concept_relationships": { "prerequisites": ["newtons_second_law"], "extensions": ["moment_of_inertia_shapes", "equilibrium_rigid_body"], "siblings": ["angular_momentum_conservation"], "common_exam_combinations": ["equilibrium_rigid_body"] }
+}

@@ -1,0 +1,42 @@
+{
+  "concept_id": "van_de_graaff_generator",
+  "concept_name": "Van de Graaff Generator",
+  "class_level": 12,
+  "chapter": "Electrostatic Potential and Capacitance",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "circuit_live", "scenario_type": "van_de_graaff", "panel_count": 1, "show_labels": true },
+  "variables": { "V": "Potential of sphere (V)", "R": "Radius of dome (m)", "Q": "Accumulated charge (C)", "E_breakdown": "Breakdown field of air ~3×10⁶ V/m" },
+  "locked_facts": [
+    "Van de Graaff generator accumulates charge on a hollow metal dome to produce very high voltages",
+    "Charge is sprayed onto a moving belt at the bottom and transferred to the dome at the top",
+    "Charge moves to the outer surface of the dome (conductor property) — allowing more charge to be added inside",
+    "Maximum voltage limited by breakdown of surrounding air (~3×10⁶ V/m for air)",
+    "V = kQ/R — larger dome radius allows higher voltage before breakdown",
+    "Used to accelerate charged particles for nuclear physics experiments",
+    "The principle relies on the fact that charge resides on the outer surface of a conductor"
+  ],
+  "truth_statements": [
+    "The Van de Graaff generator works on the principle that charge placed inside a hollow conductor moves to its outer surface",
+    "The belt continuously carries charge from the spray comb at the bottom to the collecting comb at the top",
+    "The maximum achievable voltage depends on the dome radius and the breakdown field of the surrounding medium",
+    "Larger domes achieve higher voltages because V = kQ/R and breakdown occurs at E = kQ/R² = V/R",
+    "The generator can produce potentials of several million volts"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Cross-section of the dome showing charge being deposited inside by the belt, then immediately migrating to the outer surface — this makes room for MORE charge to be added. The self-repulsion of charges drives them outward, creating an unlimited accumulation cycle.",
+    "visual_emphasis": "Animated charge migration from inner belt contact to outer surface, with charge density building up frame by frame",
+    "why_this_breaks_misconception": "Students don't understand why charge keeps accumulating — seeing the inner-to-outer migration shows why the dome never 'fills up'"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Generator structure", "description": "Cross-section showing hollow metal dome, insulating belt, motor, spray comb (bottom), collecting comb (top). Labels on each part.", "emphasis": "Identify the key components", "labels_visible": ["dome", "belt", "spray comb", "collecting comb", "motor"] },
+    { "id": "STATE_2", "label": "Charging process", "description": "Belt moves upward carrying positive charges. Spray comb ionises air at bottom. Collecting comb transfers charge to dome interior. Charge immediately moves to outer surface.", "emphasis": "Charge sprayed onto belt → carried up → transferred to dome → migrates to outer surface", "labels_visible": ["charge on belt", "transfer to dome", "charge moves to surface"] },
+    { "id": "STATE_3", "label": "Accumulation cycle", "description": "Multiple cycles shown. Dome charge builds up. Voltage meter rises. Interior always has zero net charge (all on surface). Eventually sparking occurs when E exceeds air breakdown.", "emphasis": "Interior stays empty → more charge can always be added → voltage keeps rising", "labels_visible": ["V = kQ/R", "Q accumulating", "E_surface"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student controls belt speed and dome radius. Voltage and surface charge density update. At breakdown field, sparks appear. Larger dome → higher max voltage before breakdown.", "emphasis": "Increase dome radius — reach higher voltage before spark. Faster belt — charge accumulates faster.", "labels_visible": ["V", "E_surface", "breakdown"], "interactive": true, "sliders": [{ "id": "dome_radius", "label": "Dome radius R", "min": 10, "max": 50, "default": 25, "unit": "cm" }, { "id": "belt_speed", "label": "Belt speed", "min": 1, "max": 10, "default": 5, "unit": "m/s" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "The dome gets 'full' and can't accept more charge", "trigger_phrases": ["dome full", "charge limit", "can't add more charge"], "correction": "Charge on the interior immediately moves to the outer surface, leaving the interior neutral. This means new charge can always be deposited inside — there is no 'full' state. The limit is air breakdown, not dome capacity.", "simulation_emphasis": "Show interior emptying after each charge deposit — dome never 'fills up'" },
+    { "belief": "The belt creates the charge", "trigger_phrases": ["belt creates charge", "belt generates charge"], "correction": "The belt only transports charge. The spray comb at the bottom ionises air using a high voltage source, depositing charge onto the belt. The belt is just a mechanical conveyor.", "simulation_emphasis": "Highlight the spray comb as the charge source, belt as transporter" }
+  ],
+  "legend": [ { "symbol": "V", "meaning": "Dome potential = kQ/R" }, { "symbol": "E_breakdown", "meaning": "~3×10⁶ V/m for air" }, { "symbol": "R", "meaning": "Dome radius" } ],
+  "concept_relationships": { "prerequisites": ["charged_conductor_properties", "electric_potential_uniform_field"], "extensions": ["particle_accelerators"], "siblings": ["lightning_rod"], "common_exam_combinations": ["charged_conductor_properties"] }
+}

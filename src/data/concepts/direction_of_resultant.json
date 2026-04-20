@@ -1,0 +1,423 @@
+{
+  "concept_id": "direction_of_resultant",
+  "concept_name": "The Direction of the Resultant — tan alpha = B sin theta / (A + B cos theta)",
+  "chapter": 5,
+  "section": "5.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.2 — direction formula for the resultant; split from vector_addition bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "Two small tugboats guiding a large ship into Mumbai Port. One tug pulls with four tonnes almost straight ahead. The second pulls with three tonnes at an angle. The ship's actual path tilts off the first tug's line — the tilt is not midway between the two, it is pulled closer to the stronger tug. The precise tilt angle comes from one formula.",
+    "secondary": "A football player hit by two opposing players at the same instant, one from the front and one from the side. The player falls in a direction that leans toward the stronger hit — the exact lean angle depends on both magnitudes and the angle between the pushes.",
+    "tertiary": "A cricket ball in a spinning toss at Eden Gardens. Gravity pulls it straight down, Magnus force from the spin pushes it sideways. The ball travels along the resultant — and its tilt from the vertical is set by the same tan-alpha formula."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "A": { "name": "Magnitude of A", "unit": "N", "min": 1, "max": 10, "default": 4 },
+      "B": { "name": "Magnitude of B", "unit": "N", "min": 1, "max": 10, "default": 3 },
+      "theta_deg": { "name": "Angle between A and B", "unit": "deg", "min": 0, "max": 180, "default": 60 }
+    },
+    "computed_outputs": {
+      "alpha_deg": { "formula": "atan2(B * sin(theta_deg * PI / 180), A + B * cos(theta_deg * PI / 180)) * 180 / PI" },
+      "tan_alpha": { "formula": "(B * sin(theta_deg * PI / 180)) / (A + B * cos(theta_deg * PI / 180))" },
+      "numerator": { "formula": "B * sin(theta_deg * PI / 180)" },
+      "denominator": { "formula": "A + B * cos(theta_deg * PI / 180)" }
+    },
+    "formulas": {
+      "direction_formula": "tan alpha = B sin theta / (A + B cos theta)",
+      "geometric_meaning": "alpha is the angle between R and A, measured at the common tail"
+    },
+    "constraints": [
+      "alpha is measured from vector A, rotating toward vector B",
+      "Numerator B sin theta = perpendicular leg of the right triangle",
+      "Denominator A + B cos theta = horizontal leg (A plus the projection of B on A)",
+      "At theta = 0, alpha = 0 (R aligned with A and B). At theta = 180, alpha = 0 or 180 depending on whether A > B or A < B",
+      "R does NOT bisect the angle between A and B in general — it bisects only when |A| = |B|"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "Where Does the Ship Actually Go?",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "tug_1",
+            "from": { "x": 220, "y": 360 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "Tug 1  A = 4 t (ahead)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.7 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "tug_2",
+            "from": { "x": 220, "y": 360 },
+            "magnitude": 3,
+            "direction_deg": 60,
+            "label": "Tug 2  B = 3 t (at 60 deg)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 1.5, "duration_sec": 0.7 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "ship_path",
+            "from": { "x": 220, "y": 360 },
+            "magnitude": 6.08,
+            "direction_deg": 25,
+            "label": "Ship path  R, alpha = ?",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "question",
+            "text": "Two tugs, two angles of pull.\n\nThe ship moves along R\n(resultant) in the green direction.\n\nQuestion: at exactly what\nangle alpha does R tilt off\nthe direction of A?\n\nHalf of 60 = 30?\nEqual tilt toward each?\nNo — B is weaker,\nso R stays closer to A.",
+            "position": { "x": 560, "y": 240 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Two small tugboats guide a large cargo ship into harbour. Tug one pulls along the ship's axis with four tonnes. Tug two pulls from the side with three tonnes at sixty degrees." },
+            { "id": "s2", "text_en": "The ship moves along the resultant direction — that is already built into the parallelogram law." },
+            { "id": "s3", "text_en": "But at what exact angle does it tilt away from tug one? The first instinct is to split the sixty degrees in half and say thirty. That would be wrong." },
+            { "id": "s4", "text_en": "The resultant does not sit midway. It sits closer to the stronger tug, because the stronger one has more say in where the ship goes." },
+            { "id": "s5", "text_en": "The precise angle depends on BOTH magnitudes and the angle between them. The next two states derive the exact formula." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Drop a Perpendicular — Build the Right Triangle",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "dir_A",
+            "from": { "x": 200, "y": 400 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "dir_B_copy",
+            "from": { "x": 420, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": 60,
+            "label": "B (shifted)",
+            "color": "#93C5FD",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "dir_R",
+            "from": { "x": 200, "y": 400 },
+            "magnitude": 6.08,
+            "direction_deg": 25,
+            "label": "R",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "annotation",
+            "id": "perp_vertical",
+            "text": "|  B sin theta\n|  = 3 * sin 60\n|  = 2.60",
+            "position": { "x": 540, "y": 360 },
+            "style": "callout",
+            "color": "#F59E0B",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "horiz_projection",
+            "text": "A + B cos theta\n= 4 + 3 * cos 60\n= 4 + 1.5\n= 5.50",
+            "position": { "x": 320, "y": 430 },
+            "style": "callout",
+            "color": "#F59E0B",
+            "animation": { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "alpha_arc",
+            "text": "alpha",
+            "position": { "x": 250, "y": 390 },
+            "style": "callout",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 6, "duration_sec": 0.8 }
+          },
+          {
+            "type": "annotation",
+            "id": "triangle_explain",
+            "text": "Right triangle formed by\n- R (hypotenuse)\n- A + B cos theta (adjacent to alpha)\n- B sin theta (opposite to alpha)\n\nalpha = angle of R from A.\n\nBasic trig ->\ntan alpha = opposite / adjacent\n          = B sin theta / (A + B cos theta)",
+            "position": { "x": 720, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 7, "duration_sec": 1.5 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Use the same parallelogram picture. The key insight is to find a right triangle involving alpha, the angle we want." },
+            { "id": "s2", "text_en": "From the tip of the shifted B — the far corner of the parallelogram — drop a perpendicular onto the line of A extended." },
+            { "id": "s3", "text_en": "The perpendicular leg has length B sine theta. For our numbers, three times sine sixty is about two point six." },
+            { "id": "s4", "text_en": "The horizontal leg starts at the origin and runs to the foot of that perpendicular. Its length is A plus B cosine theta — four plus three times one-half, which is five point five." },
+            { "id": "s5", "text_en": "The resultant R is the hypotenuse. The angle between R and A is alpha. That is the angle we want." },
+            { "id": "s6", "text_en": "Basic trigonometry finishes the job. Tangent of alpha equals opposite over adjacent — which is B sine theta divided by A plus B cosine theta." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "The Formula — Remember This Exactly",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "formula_block",
+            "text": "tan alpha  =  B sin theta\n              ------------\n              A + B cos theta\n\nReading the formula\n\n  alpha  =  angle of R from A\n  A      =  the REFERENCE vector\n  B      =  the OTHER vector\n  theta  =  angle from A to B\n\nNumerator has B — the 'other'\nvector's perpendicular contribution.\n\nDenominator has A plus B cos theta —\nA itself, plus B's projection on A.",
+            "position": { "x": 340, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "watch_out",
+            "text": "Watch out\n\nReversing which vector is A\nand which is B changes alpha.\n\nAlways note which vector you\nmeasure alpha FROM.\n\nJEE questions usually specify\n- 'angle with A'\n- 'angle with horizontal'\n- 'angle with the direction of motion'",
+            "position": { "x": 720, "y": 300 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is the formula in its final form. Tangent of alpha equals B sine theta divided by A plus B cosine theta." },
+            { "id": "s2", "text_en": "Read it carefully. Alpha is measured from A, the reference vector. The numerator carries B — the other vector's perpendicular influence. The denominator carries A itself plus B's projection along A." },
+            { "id": "s3", "text_en": "Notice the asymmetry. If you swap which vector you call A and which you call B, the formula gives a DIFFERENT alpha. Alpha is always measured from one specific vector." },
+            { "id": "s4", "text_en": "In JEE problems, the question will specify the reference — 'angle with A', 'angle with horizontal', 'angle with the direction of motion'. Set the matching vector as A in the formula." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "Solve for the Ship — alpha = ? at theta = 60",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "solve_A",
+            "from": { "x": 220, "y": 400 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A = 4 t",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "solve_B",
+            "from": { "x": 220, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": 60,
+            "label": "B = 3 t",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 55
+          },
+          {
+            "type": "force_arrow",
+            "id": "solve_R",
+            "from": { "x": 220, "y": 400 },
+            "magnitude": 6.08,
+            "direction_deg": 25,
+            "label": "R = 6.08 t at alpha = 25 deg",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 55,
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "work",
+            "text": "tan alpha = B sin theta / (A + B cos theta)\n          = 3 * sin 60 / (4 + 3 * cos 60)\n          = 2.60 / 5.50\n          = 0.472\n\nalpha = tan^(-1) (0.472)\n      ~ 25.3 deg\n\nR tilts 25.3 deg off A,\nNOT 30 deg.\n\nTug 1 (stronger) wins more\ninfluence over the ship's path.",
+            "position": { "x": 540, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Apply the formula to the two-tug scene." },
+            { "id": "s2", "text_en": "Numerator — B times sine theta — is three times sine sixty, about two point six." },
+            { "id": "s3", "text_en": "Denominator — A plus B cosine theta — is four plus one point five, which is five point five." },
+            { "id": "s4", "text_en": "Tangent alpha is two point six divided by five point five, about zero point four seven." },
+            { "id": "s5", "text_en": "Taking the inverse tangent, alpha is about twenty-five degrees." },
+            { "id": "s6", "text_en": "Not thirty, not forty-five. Twenty-five. The ship's path tilts closer to tug one because tug one is stronger. The weaker tug gets only five degrees of its own sixty-degree angle represented in the final direction." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "direction_by_angle_bisector",
+      "misconception": "R bisects the angle between A and B — alpha is half of theta",
+      "trigger_phrases": [
+        "alpha is half of theta",
+        "R is in the middle",
+        "resultant bisects",
+        "angle split in two"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — R Sits in the Middle",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "bel_A",
+              "from": { "x": 220, "y": 400 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A = 4",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "bel_B",
+              "from": { "x": 220, "y": 400 },
+              "magnitude": 3,
+              "direction_deg": 60,
+              "label": "B = 3",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "bel_R_wrong",
+              "from": { "x": 220, "y": 400 },
+              "magnitude": 6.08,
+              "direction_deg": 30,
+              "label": "R_belief at 30 deg (bisector)",
+              "color": "#EF4444",
+              "style": "dashed",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "annotation",
+              "id": "claim",
+              "text": "Your reasoning\n\nTheta between A and B is 60 deg.\nBy symmetry, R should sit\nexactly halfway between them.\n\n=> alpha = 30 deg.\n\nAppealing — and wrong whenever\nA and B have different magnitudes.",
+              "position": { "x": 560, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444",
+              "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A very common student intuition — the resultant splits the angle between A and B in half." },
+              { "id": "s2", "text_en": "For two forces at sixty degrees apart, that would put R at thirty degrees from each." },
+              { "id": "s3", "text_en": "The intuition is based on symmetry. But the symmetry only exists when the two magnitudes are equal. When A differs from B, the symmetry breaks." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Formula Rejects the Bisector",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "formula_truth",
+              "text": "Formula\ntan alpha = B sin theta / (A + B cos theta)\n\nWith A = 4, B = 3, theta = 60 deg\n\n  numerator   = 3 * 0.866 = 2.60\n  denominator = 4 + 3 * 0.5 = 5.50\n  tan alpha   = 2.60 / 5.50 = 0.472\n\nalpha = 25.3 deg  (NOT 30 deg)\n\nAlpha depends on BOTH\nmagnitudes, not just theta.",
+              "position": { "x": 340, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "symmetry_case",
+              "text": "Bisector DOES work when A = B\n\nA = B = 5, theta = 60\n  tan alpha = 5 * sin 60 / (5 + 5 * cos 60)\n            = 4.33 / 7.5\n            = 0.577\n  alpha = 30 deg = theta / 2\n\nEqual magnitudes restore\nsymmetry — that is the only case.",
+              "position": { "x": 700, "y": 300 },
+              "style": "callout",
+              "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Let the formula settle the dispute. Plug in A equals four, B equals three, theta equals sixty." },
+              { "id": "s2", "text_en": "Tan alpha comes out to about zero point four seven, and alpha is about twenty-five degrees." },
+              { "id": "s3", "text_en": "Not thirty. The bisector was five degrees off for these numbers, and the gap grows as A and B become more unequal." },
+              { "id": "s4", "text_en": "Now test the symmetric case — A equals B equals five. Plug in and tan alpha equals zero point five seven, alpha equals thirty, which is exactly theta over two." },
+              { "id": "s5", "text_en": "So the bisector rule is true only when the magnitudes are equal. Any other time, use the full formula and expect R to lean toward the stronger vector." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Mental Model — The Stronger Vector Wins",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "lean_rule",
+              "text": "Intuition you can keep\n\nR ALWAYS leans toward the\nstronger of the two vectors.\n\nA > B   =>  alpha < theta / 2\n              (R closer to A)\n\nA < B   =>  alpha > theta / 2\n              (R closer to B)\n\nA = B   =>  alpha = theta / 2\n              (R bisects)\n\nFor precise value, use the formula.",
+              "position": { "x": 360, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "quick_check",
+              "text": "Quick sanity check\n\nIf your calculated alpha puts R\non the wrong side of theta/2,\nyou likely swapped A and B.\nRecompute.",
+              "position": { "x": 720, "y": 300 },
+              "style": "callout",
+              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Keep the physical intuition — R always leans toward the stronger vector." },
+              { "id": "s2", "text_en": "If A is stronger than B, alpha comes out less than half of theta — R sits closer to A." },
+              { "id": "s3", "text_en": "If B is stronger, alpha exceeds half of theta — R tilts toward B." },
+              { "id": "s4", "text_en": "Equal magnitudes restore the bisector, and you get alpha equals theta over two." },
+              { "id": "s5", "text_en": "Use this mental check against your calculated alpha. If the answer is on the wrong side of the bisector, you probably swapped A and B. Recompute with the correct assignment." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different magnitudes and angles",
+      "physical_world": "A = 6, B = 8, theta = 45 deg. alpha about 34 deg — R tilts toward stronger B.",
+      "same_physics": "Formula tan alpha = B sin theta / (A + B cos theta) applies unchanged"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Perpendicular case — clean numerical sanity check",
+      "physical_world": "A = 4, B = 3, theta = 90 deg. Numerator 3. Denominator 4. tan alpha = 3/4 = 0.75. alpha = 37 deg. Matches classic 3-4-5 right triangle.",
+      "same_physics": "At right angles, the direction formula reduces to tan alpha = B / A"
+    }
+  ]
+}

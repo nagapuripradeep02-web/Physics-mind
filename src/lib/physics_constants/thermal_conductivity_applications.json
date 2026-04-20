@@ -1,0 +1,42 @@
+{
+  "concept_id": "thermal_conductivity_applications",
+  "concept_name": "Thermal Conductivity Applications",
+  "class_level": 11,
+  "chapter": "Thermal Properties of Matter",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "thermodynamics", "scenario_type": "thermal_conductivity", "panel_count": 1, "show_labels": true },
+  "variables": { "K": "Thermal conductivity (W/m·K)", "Q/t": "Heat flow rate (W)", "R_th": "Thermal resistance (K/W)", "L": "Thickness (m)" },
+  "locked_facts": [
+    "Heat conduction rate: Q/t = KA(T₁ - T₂)/L",
+    "Thermal resistance: R_th = L/(KA) — analogous to electrical resistance",
+    "Series combination: R_total = R₁ + R₂ (slabs in series, same heat flow)",
+    "Parallel combination: 1/R_total = 1/R₁ + 1/R₂ (slabs side by side)",
+    "Temperature distribution in a uniform rod is linear in steady state",
+    "Metals have high K (good conductors); wood, air have low K (good insulators)",
+    "Effective K for composite wall: K_eff = L_total/(Σ Lᵢ/Kᵢ) for series"
+  ],
+  "truth_statements": [
+    "Thermal resistance is analogous to electrical resistance and obeys the same series and parallel combination rules",
+    "In steady state the rate of heat flow through each layer of a composite wall is the same",
+    "The temperature drops across each layer are proportional to the thermal resistance of that layer",
+    "A thin layer of air is an excellent insulator because air has very low thermal conductivity",
+    "Double-walled flasks use the low conductivity of vacuum and air to minimise heat transfer"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A composite wall of two materials (brick + insulation) in series. The temperature drop across each layer is proportional to its thermal resistance R = L/(KA). The insulation layer (low K, high R) has a MUCH larger temperature drop despite being thinner. The electric circuit analogy with resistors in series makes the calculation intuitive.",
+    "visual_emphasis": "Temperature profile through composite wall showing large drop across insulator, small drop across conductor — with circuit analogy alongside",
+    "why_this_breaks_misconception": "Students expect equal temperature drop across equal thicknesses — seeing the resistance-weighted distribution connected to the electrical analogy makes composite walls simple"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Single slab conduction", "description": "A uniform slab with hot side T₁ and cold side T₂. Q/t = KA(T₁-T₂)/L. Temperature varies linearly through the slab. Higher K = more heat flow.", "emphasis": "Heat flows from hot to cold at a rate proportional to K, A, and ΔT, inversely to L", "labels_visible": ["Q/t = KAΔT/L", "linear T profile"] },
+    { "id": "STATE_2", "label": "Thermal resistance concept", "description": "R_th = L/(KA) — thicker or less conductive means higher resistance. Compare: metal rod (low R) vs wood rod (high R) of same size. Circuit analogy: Q/t = ΔT/R_th (like I = V/R).", "emphasis": "Thermal resistance is the direct analogue of electrical resistance", "labels_visible": ["R_th = L/(KA)", "Q/t = ΔT/R_th", "Ohm's law analogy"] },
+    { "id": "STATE_3", "label": "Composite wall (series)", "description": "Two slabs in series (brick + insulation). Same heat flows through both. R_total = R₁ + R₂. Temperature at junction found from ΔT₁/ΔT₂ = R₁/R₂. Insulation layer has larger temperature drop.", "emphasis": "Series: same heat flow, temperatures drop in proportion to resistance", "labels_visible": ["R_total = R₁ + R₂", "ΔT₁/ΔT₂ = R₁/R₂", "junction temperature"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student builds composite walls from different materials. Temperature profile shown. Add/remove insulation layers. Compare series vs parallel arrangements. Heat flow rate calculated.", "emphasis": "Add insulation — watch heat flow drop dramatically. Compare different material combinations.", "labels_visible": ["Q/t", "R_th", "T profile"], "interactive": true, "sliders": [{ "id": "k1", "label": "K of layer 1", "min": 0.01, "max": 400, "default": 0.8, "unit": "W/m·K" }, { "id": "k2", "label": "K of layer 2", "min": 0.01, "max": 400, "default": 0.04, "unit": "W/m·K" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Thicker walls always insulate better regardless of material", "trigger_phrases": ["thick wall insulates", "moti deewar better"], "correction": "Insulation depends on thermal resistance R = L/(KA). A thin layer of good insulator (low K) can have higher R than a thick layer of conductor (high K). Material matters as much as thickness.", "simulation_emphasis": "Show thin insulation layer outperforming thick brick wall in reducing heat flow" },
+    { "belief": "Temperature drops equally across equal thicknesses", "trigger_phrases": ["equal thickness equal drop", "same width same temperature drop"], "correction": "Temperature drop across a layer is proportional to its thermal resistance: ΔT = (Q/t) × R. A layer with higher R (lower K or greater L) has a larger temperature drop, even if thinner than its neighbour.", "simulation_emphasis": "Composite wall with unequal temperature drops across layers of different K" }
+  ],
+  "legend": [ { "symbol": "K", "meaning": "Thermal conductivity (W/m·K)" }, { "symbol": "R_th", "meaning": "Thermal resistance = L/(KA)" }, { "symbol": "Q/t", "meaning": "Heat flow rate (W)" } ],
+  "concept_relationships": { "prerequisites": ["heat_conduction_convection_radiation"], "extensions": ["building_insulation"], "siblings": ["resistors_series_parallel"], "common_exam_combinations": ["heat_conduction_convection_radiation", "newtons_law_of_cooling"] }
+}

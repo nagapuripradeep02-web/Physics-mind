@@ -1,0 +1,104 @@
+{
+  "concept_id": "energy_in_shm",
+  "concept_name": "Energy in SHM",
+  "class_level": 11,
+  "chapter": "Oscillations",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "energy_graphs",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "m": "Mass of the oscillating particle (kg)",
+    "ω": "Angular frequency of oscillation (rad/s)",
+    "A": "Amplitude of oscillation (m)",
+    "x": "Instantaneous displacement from mean position (m)",
+    "k": "Force constant (N/m), where k = mω²",
+    "E": "Total mechanical energy (J)"
+  },
+  "locked_facts": [
+    "Kinetic energy KE = ½mω²(A² − x²) = ½k(A² − x²) — maximum at mean position (x = 0), zero at extremes (x = ±A)",
+    "Potential energy PE = ½mω²x² = ½kx² — zero at mean position, maximum at extremes",
+    "Total mechanical energy E = ½mω²A² = ½kA² — constant throughout the motion, independent of x",
+    "KE and PE are each periodic with frequency 2ω (twice the oscillation frequency) — they exchange twice per cycle",
+    "At x = ±A/√2, kinetic energy equals potential energy (KE = PE = E/2)",
+    "Average KE over one full cycle = Average PE over one full cycle = E/2"
+  ],
+  "truth_statements": [
+    "The total mechanical energy in SHM is conserved and proportional to the square of the amplitude",
+    "Kinetic and potential energies continuously interchange but their sum remains constant",
+    "Both KE and PE vary with a frequency that is twice the frequency of the oscillation itself",
+    "At the mean position, all energy is kinetic; at the extreme positions, all energy is potential",
+    "The energy of SHM does not depend on mass and spring constant independently — it depends on kA² or equivalently mω²A²"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A stacked energy bar (KE in blue, PE in red) alongside the oscillating particle. As the particle moves, KE and PE bars exchange height, but the total bar height NEVER changes. A horizontal line marks E_total = constant across the entire motion.",
+    "visual_emphasis": "The total energy line is absolutely flat — KE rises as PE falls and vice versa. At x = 0, the bar is entirely blue (all KE). At x = ±A, entirely red (all PE). The total never wavers.",
+    "why_this_breaks_misconception": "Students who think energy is lost during oscillation see that total energy is exactly conserved — it merely transforms between kinetic and potential forms"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Left panel: a spring-mass system at rest at x = A (fully displaced). Right panel: empty KE-PE-Total energy graph with x-axis from −A to +A. The particle is at the extreme — all energy is potential. PE bar = max, KE bar = 0.",
+      "emphasis": "At the extreme position, the particle is momentarily at rest — all energy is stored as potential energy in the spring",
+      "labels_visible": ["x = A", "PE = ½kA²", "KE = 0", "E_total = ½kA²"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Left panel: mass oscillates. Right panel: KE (blue parabola opening downward) and PE (red parabola opening upward) are plotted as functions of x. The current position is shown as a moving dot on both curves. Total energy horizontal line drawn.",
+      "emphasis": "KE is a downward parabola peaking at x = 0. PE is an upward parabola peaking at x = ±A. Their sum is the flat total energy line.",
+      "labels_visible": ["KE(x)", "PE(x)", "E_total", "x"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "The particle oscillates while stacked energy bars (KE blue, PE red) animate in real time. The total bar height is constant. A bold horizontal line at E_total stays perfectly flat. Text: 'Energy transforms, never disappears'.",
+      "emphasis": "The total energy line is absolutely constant. KE + PE = ½kA² at every instant. Energy is conserved — it just changes form between kinetic and potential.",
+      "labels_visible": ["KE + PE = constant", "E = ½kA²", "Energy transforms, never lost"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust amplitude A and spring constant k. Both KE and PE curves rescale. Total energy value updates (E = ½kA²). Doubling amplitude quadruples total energy. A marker at x = A/√2 shows the crossover point where KE = PE.",
+      "emphasis": "Doubling amplitude quadruples energy (E ∝ A²). At x = A/√2, the KE and PE curves cross — this is the equipartition point.",
+      "labels_visible": ["E = ½kA²", "KE = PE at x = A/√2", "A", "k"],
+      "interactive": true,
+      "sliders": [
+        { "id": "amplitude", "label": "Amplitude A", "min": 0.02, "max": 0.3, "default": 0.1, "unit": "m" },
+        { "id": "spring_constant", "label": "Spring Constant k", "min": 5, "max": 100, "default": 20, "unit": "N/m" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Energy is lost during each oscillation because the particle slows down at the extremes",
+      "trigger_phrases": ["oscillation mein energy kam hoti hai", "extremes pe slow hota hai toh energy loss", "har baar thoda energy khatam", "particle ruk jaata hai toh energy kahan gayi"],
+      "correction": "NCERT Ch. 13 states total mechanical energy E = ½kA² remains constant throughout SHM. When the particle slows at the extremes, its kinetic energy converts entirely to potential energy — no energy is lost. The particle speeds up again as PE converts back to KE.",
+      "simulation_emphasis": "Stacked KE-PE bars with constant total height — when KE drops to zero at extremes, PE rises to fill the full bar exactly"
+    },
+    {
+      "belief": "Doubling the amplitude doubles the total energy of the oscillation",
+      "trigger_phrases": ["double amplitude double energy", "amplitude double toh energy double", "A do guna toh E bhi do guna"],
+      "correction": "Total energy E = ½kA² is proportional to the SQUARE of amplitude. Doubling the amplitude quadruples the energy (2A → 4 × ½kA²). This is because both the maximum displacement and the maximum velocity increase.",
+      "simulation_emphasis": "Show energy value updating as amplitude slider changes — doubling A causes E to jump by 4×, not 2×"
+    }
+  ],
+  "legend": [
+    { "symbol": "blue curve/bar", "meaning": "Kinetic energy KE = ½k(A² − x²)" },
+    { "symbol": "red curve/bar", "meaning": "Potential energy PE = ½kx²" },
+    { "symbol": "horizontal line", "meaning": "Total energy E = ½kA² (constant)" },
+    { "symbol": "●", "meaning": "Current position of particle on energy curves" },
+    { "symbol": "A/√2", "meaning": "Position where KE = PE = E/2" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["simple_harmonic_motion", "work_energy_theorem", "spring_mass_system"],
+    "extensions": ["damped_oscillations", "forced_oscillations_resonance"],
+    "siblings": ["spring_mass_system", "simple_pendulum_shm"],
+    "common_exam_combinations": ["energy_at_specific_displacement", "average_ke_pe_over_cycle", "energy_ratio_problems"]
+  }
+}

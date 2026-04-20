@@ -1,0 +1,106 @@
+{
+  "concept_id": "diffraction_grating",
+  "concept_name": "Diffraction Grating",
+  "class_level": 12,
+  "chapter": "Wave Optics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "wave_canvas",
+    "scenario_type": "diffraction_grating",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "d": "Grating element / slit spacing (m)",
+    "N": "Total number of slits in the grating",
+    "n": "Order of diffraction maximum (integer)",
+    "lambda": "Wavelength of light (m)",
+    "theta": "Angle of diffraction (rad)",
+    "R": "Resolving power of the grating"
+  },
+  "locked_facts": [
+    "Principal maxima condition: d sinθ = nλ, where n = 0, ±1, ±2, …",
+    "Resolving power: R = nN, where n is the order and N is the total number of slits",
+    "Grating element d = 1/N_per_unit_length (e.g., 5000 lines/cm → d = 2 × 10⁻⁴ cm)",
+    "Angular dispersion: dθ/dλ = n/(d cosθ) — higher orders are more dispersed",
+    "Maximum order observable: n_max = d/λ (since sinθ ≤ 1)",
+    "Principal maxima are extremely sharp and narrow compared to double slit fringes — sharpness increases with N"
+  ],
+  "truth_statements": [
+    "A diffraction grating produces very sharp, widely separated principal maxima because N slits contribute constructively only at precise angles satisfying d sinθ = nλ",
+    "The resolving power R = nN determines the ability to distinguish two closely spaced wavelengths — more slits and higher order both improve resolution",
+    "Between adjacent principal maxima there are (N − 1) minima and (N − 2) secondary maxima, which are negligibly faint for large N",
+    "The angular dispersion dθ/dλ = n/(d cosθ) increases with order n and is independent of the number of slits N",
+    "A grating can separate white light into its component wavelengths — each order produces a complete spectrum (violet closest to centre, red furthest)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Compare double slit (N=2) with N=5, N=50, N=500. As N increases, the principal maxima become razor-sharp while the same condition d sinθ = nλ holds. The secondary maxima between principal maxima become negligible. A grating is just many slits cooperating to make the pattern ultra-precise.",
+    "visual_emphasis": "Animated intensity plot morphing from broad double-slit fringes to needle-sharp grating peaks as N increases from 2 to 500",
+    "why_this_breaks_misconception": "Students see that a grating is not a fundamentally different device — it is the logical extension of the double slit, where more slits = sharper peaks"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Light hits the grating",
+      "description": "Monochromatic light approaches a grating with many equally spaced slits. The grating element d and number of slits N are labelled. The screen is placed at a large distance.",
+      "emphasis": "A diffraction grating is essentially a large number of equally spaced parallel slits",
+      "labels_visible": ["d", "N slits", "Grating", "Screen"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Waves from all slits superpose",
+      "description": "Each slit sends a wavelet toward the screen. At certain angles, all N wavelets arrive in phase (path difference between adjacent slits = nλ). At other angles, they cancel out almost completely.",
+      "emphasis": "Constructive interference from N slits simultaneously requires d sinθ = nλ exactly — even a tiny deviation causes massive cancellation",
+      "labels_visible": ["d sinθ = nλ", "N wavelets", "Phase alignment"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Sharp principal maxima",
+      "description": "The screen shows extremely sharp bright lines at angles satisfying d sinθ = nλ (n = 0, ±1, ±2). Between them, the intensity is essentially zero. Compared to a double slit pattern (shown faintly), the grating peaks are much narrower and brighter.",
+      "emphasis": "Sharpness comes from N slits — more slits = sharper peaks. Resolving power R = nN.",
+      "labels_visible": ["n = 0", "n = 1", "n = 2", "R = nN", "d sinθ = nλ"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts the number of slits N, grating spacing d, and wavelength λ. Increasing N sharpens the peaks dramatically. Using white light separates colours in each order. Two close wavelengths can be resolved when R = nN is large enough.",
+      "emphasis": "More slits = sharper lines. Try white light to see spectral separation. Can you resolve sodium doublet?",
+      "labels_visible": ["N", "d", "λ", "Order n", "R"],
+      "interactive": true,
+      "sliders": [
+        { "id": "num_slits", "label": "Number of slits N", "min": 2, "max": 500, "default": 50, "unit": "" },
+        { "id": "wavelength", "label": "Wavelength λ", "min": 400, "max": 700, "default": 550, "unit": "nm" },
+        { "id": "grating_spacing", "label": "Grating element d", "min": 1, "max": 10, "default": 2, "unit": "μm" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "A diffraction grating works on a completely different principle from Young's double slit",
+      "trigger_phrases": ["grating different from double slit", "grating alag principle", "grating is not interference", "grating aur slit mein koi connection nahi"],
+      "correction": "A diffraction grating works on exactly the same principle as a double slit — multi-slit interference. The condition d sinθ = nλ is the same. The only difference is the number of slits N: more slits make the peaks sharper and brighter, but the physics is identical.",
+      "simulation_emphasis": "Animate N increasing from 2 (double slit) to 500 (grating) showing the same peak positions but dramatically sharpening peaks"
+    },
+    {
+      "belief": "Higher order means brighter maxima in a grating",
+      "trigger_phrases": ["higher order brighter", "zyada order zyada bright", "second order more intense", "order badhega toh intensity badhegi"],
+      "correction": "Higher order maxima are generally LESS intense, not more. The single-slit diffraction envelope of each individual slit modulates the multi-slit pattern, causing intensity to fall off at larger angles. The zeroth order (n=0) is typically the brightest.",
+      "simulation_emphasis": "Overlay the single-slit diffraction envelope on the grating pattern, showing how it suppresses higher-order peaks"
+    }
+  ],
+  "legend": [
+    { "symbol": "d", "meaning": "Grating element — distance between adjacent slits (m)" },
+    { "symbol": "N", "meaning": "Total number of slits in the grating" },
+    { "symbol": "n", "meaning": "Order of diffraction maximum (0, ±1, ±2, …)" },
+    { "symbol": "R", "meaning": "Resolving power = nN" },
+    { "symbol": "λ", "meaning": "Wavelength of light (m)" },
+    { "symbol": "dθ/dλ", "meaning": "Angular dispersion = n/(d cosθ)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["youngs_double_slit", "single_slit_diffraction", "interference_coherence"],
+    "extensions": ["spectroscopy", "x_ray_diffraction"],
+    "siblings": ["youngs_double_slit"],
+    "common_exam_combinations": ["youngs_double_slit", "single_slit_diffraction", "resolving_power"]
+  }
+}

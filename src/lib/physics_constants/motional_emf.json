@@ -1,0 +1,42 @@
+{
+  "concept_id": "motional_emf",
+  "concept_name": "Motional EMF",
+  "class_level": 12,
+  "chapter": "Electromagnetic Induction",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "circuit_live", "scenario_type": "motional_emf", "panel_count": 2, "show_labels": true },
+  "variables": { "ε": "Motional EMF (V)", "B": "Magnetic field (T)", "L": "Length of conductor (m)", "v": "Velocity (m/s)" },
+  "locked_facts": [
+    "Motional EMF: ε = BLv (conductor of length L moving at velocity v perpendicular to B)",
+    "Cause: Lorentz force on free electrons in the moving conductor: F = qv × B",
+    "Electrons accumulate at one end → potential difference (EMF) builds up",
+    "Equilibrium: electric force = magnetic force → qE = qvB → E = vB → ε = EL = BLv",
+    "For a rotating rod: ε = ½BωL² (each element at different distance from pivot)",
+    "Motional EMF is consistent with Faraday's law: ε = -dΦ/dt = BLv (area sweeping rate)",
+    "Power dissipated: P = ε²/R = B²L²v²/R"
+  ],
+  "truth_statements": [
+    "When a conductor moves through a magnetic field the free charges experience a Lorentz force that creates an EMF",
+    "The motional EMF equals BLv when the conductor moves perpendicular to both its length and the field",
+    "The motional EMF can be derived either from the Lorentz force on charges or from Faraday's law — both give the same result",
+    "A rod rotating in a magnetic field generates EMF ε = ½BωL² between its centre and tip",
+    "The mechanical work done in moving the conductor against the magnetic braking force equals the electrical energy generated"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A rod sliding on rails in a magnetic field. Free electrons inside the rod experience Lorentz force F = qv×B pushing them to one end. Charge accumulates until electric repulsion balances magnetic force. The resulting EMF drives current through the circuit — mechanical energy converts to electrical.",
+    "visual_emphasis": "Electrons moving to one end under Lorentz force, charge buildup, and current flowing in the external circuit",
+    "why_this_breaks_misconception": "Students see EMF as an abstract formula — seeing the Lorentz force physically separate charges makes motional EMF concrete"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Rod in magnetic field", "description": "A conducting rod on parallel rails in uniform B field (into page). Rod is stationary — no force on electrons, no EMF.", "emphasis": "Stationary conductor in B = no EMF. Motion is needed.", "labels_visible": ["B (into page)", "L", "rod stationary", "ε = 0"] },
+    { "id": "STATE_2", "label": "Rod moves → electrons feel force", "description": "Rod moves right at velocity v. Free electrons experience F = qv×B (upward in rod). Electrons accumulate at top. EMF = BLv builds up. Current flows in circuit.", "emphasis": "Lorentz force separates charges → EMF develops → current flows", "labels_visible": ["F = qv×B", "ε = BLv", "I = BLv/R"] },
+    { "id": "STATE_3", "label": "Faraday's law connection", "description": "The rod sweeps area ΔA = Lvdt in time dt. Flux change: ΔΦ = BΔA = BLvdt. ε = dΦ/dt = BLv. Same result from both approaches!", "emphasis": "Lorentz force approach and Faraday's law give IDENTICAL results — two views of the same physics", "labels_visible": ["ΔA = Lvdt", "ΔΦ = BLvdt", "ε = BLv"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts v, B, and L. EMF and current update. Power balance shown: mechanical power in = electrical power out. Rotating rod demo: ε = ½BωL².", "emphasis": "Increase speed → more EMF. The generator principle in its simplest form.", "labels_visible": ["ε", "I", "P_mech = P_elec"], "interactive": true, "sliders": [{ "id": "velocity", "label": "Rod velocity v", "min": 0, "max": 10, "default": 5, "unit": "m/s" }, { "id": "field", "label": "Magnetic field B", "min": 0.1, "max": 2, "default": 0.5, "unit": "T" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Motional EMF requires a complete circuit", "trigger_phrases": ["need circuit for EMF", "open rod no EMF"], "correction": "EMF develops across the rod even without a circuit — the Lorentz force separates charges. A circuit is needed for CURRENT to flow, but the EMF (potential difference) exists regardless.", "simulation_emphasis": "Show charge separation in an isolated rod — voltmeter reads BLv even without a circuit" },
+    { "belief": "The conductor must move perpendicular to B for any EMF", "trigger_phrases": ["only perpendicular gives EMF", "must be 90 degrees"], "correction": "EMF = BLv sinθ where θ is the angle between v and B. Only the perpendicular component of velocity contributes. At θ = 0 (parallel to B), EMF is zero.", "simulation_emphasis": "Show rod moving at different angles — EMF varies as sinθ" }
+  ],
+  "legend": [ { "symbol": "ε", "meaning": "Motional EMF = BLv (V)" }, { "symbol": "F", "meaning": "Lorentz force = qv×B" }, { "symbol": "P", "meaning": "Power = B²L²v²/R" } ],
+  "concept_relationships": { "prerequisites": ["magnetic_force_moving_charge", "faraday_law_emf"], "extensions": ["ac_generator", "eddy_current_braking"], "siblings": ["faraday_law_emf"], "common_exam_combinations": ["faraday_law_emf", "lenz_law_eddy"] }
+}

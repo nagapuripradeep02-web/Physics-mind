@@ -1,0 +1,106 @@
+{
+  "concept_id": "power_transmission",
+  "concept_name": "Power Transmission",
+  "class_level": 12,
+  "chapter": "Alternating Current",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "circuit_live",
+    "scenario_type": "power_grid",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "P": "Power to be transmitted (W)",
+    "V": "Transmission voltage (V)",
+    "I": "Transmission current (A)",
+    "R": "Resistance of transmission line (Ω)",
+    "P_loss": "Power lost as heat in lines (W)",
+    "n": "Turns ratio of transformer (n₂/n₁)"
+  },
+  "locked_facts": [
+    "Power loss in transmission lines: P_loss = I²R",
+    "Since P = VI, current I = P/V — higher voltage means lower current for same power",
+    "Power loss in terms of voltage: P_loss = P²R/V² — loss is inversely proportional to V²",
+    "Step-up transformer increases voltage (reduces current) for long-distance transmission",
+    "Step-down transformer decreases voltage (increases current) for safe domestic use",
+    "Transformer relation: V₂/V₁ = N₂/N₁ = I₁/I₂ (ideal transformer, no losses)",
+    "India: generated at ~11 kV, stepped up to 132–400 kV for transmission, stepped down to 220 V for homes"
+  ],
+  "truth_statements": [
+    "Transmitting power at high voltage drastically reduces I²R losses because current is inversely proportional to voltage",
+    "Doubling the transmission voltage reduces power loss by a factor of 4 (since P_loss ∝ 1/V²)",
+    "Step-up transformers are essential at the generating station to raise voltage before long-distance transmission",
+    "An ideal transformer conserves power: V₁I₁ = V₂I₂ (input power = output power)",
+    "The resistance R of long transmission lines is fixed by the wire material and length — the only controllable factor is V"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Same 100 kW power transmitted at 1000 V vs 100,000 V. At 1000 V: I = 100 A, P_loss = 100² × R = huge (glowing red wires, heat dissipation). At 100,000 V: I = 1 A, P_loss = 1² × R = tiny (cool wires). The 100× voltage increase gives 10,000× reduction in losses.",
+    "visual_emphasis": "Two transmission lines side by side: low voltage line glowing red hot with massive power loss bar, high voltage line cool with tiny loss bar. Same power delivered at destination.",
+    "why_this_breaks_misconception": "Students see that high voltage is NOT dangerous for transmission — it is ESSENTIAL. The danger is only at the consumer end, which is why step-down transformers exist."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Power station generating P watts. Transmission line with resistance R. Destination load. No transformer — voltage is generation voltage (~11 kV). Current I = P/V calculated.",
+      "emphasis": "Without step-up transformer: current is high for the required power. P_loss = I²R will be significant.",
+      "labels_visible": ["P", "V_gen", "I = P/V", "R_line", "P_loss = I²R"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Power transmitted at low voltage. Wires heat up (I²R loss). Large fraction of generated power wasted. Power delivered to load = P - I²R. Efficiency is poor. Wire temperature rises visually.",
+      "emphasis": "At low voltage, current is large → I²R loss is enormous. Most power wasted as heat in wires.",
+      "labels_visible": ["I = P/V (large)", "P_loss = I²R (large)", "η = P_delivered/P_generated (poor)"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Step-up transformer added: V increased 100×, I decreased 100×. Same power P = VI. Now P_loss = I²R is 10,000× smaller. Wires are cool. Almost all power reaches the load. Step-down at destination for 220 V.",
+      "emphasis": "100× voltage up → 100× current down → 10,000× less loss. Same power, same wires, vastly different efficiency.",
+      "labels_visible": ["V × 100", "I ÷ 100", "P_loss ÷ 10,000", "Step-up → Transmit → Step-down"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust transmission voltage, line resistance, and power to transmit. See P_loss, efficiency, and wire temperature update. Compare different voltages side by side. Calculate optimal transmission voltage.",
+      "emphasis": "Raise voltage to see losses plummet. Try V = P/I at different levels. Why not infinitely high? (insulation breakdown, cost).",
+      "labels_visible": ["V_transmission", "I", "P_loss", "η", "P_delivered"],
+      "interactive": true,
+      "sliders": [
+        { "id": "transmission_voltage", "label": "Transmission Voltage", "min": 1000, "max": 400000, "default": 11000, "unit": "V" },
+        { "id": "line_resistance", "label": "Line Resistance R", "min": 1, "max": 50, "default": 10, "unit": "Ω" },
+        { "id": "power", "label": "Power to Transmit", "min": 10000, "max": 1000000, "default": 100000, "unit": "W" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "High voltage transmission is dangerous so we should transmit at low voltage",
+      "trigger_phrases": ["high voltage dangerous hai", "low voltage pe bhejo safe hai", "high voltage kyu use karte hain", "220V pe hi bhej do"],
+      "correction": "High voltage at the transmission stage is essential to minimize I²R losses. The danger is managed by using insulated towers and keeping lines far from ground. At the consumer end, voltage is stepped down to safe 220 V. Without high-voltage transmission, most generated power would be wasted as heat.",
+      "simulation_emphasis": "Show same power at 220 V vs 220 kV: at 220 V, 99% power lost in wires. At 220 kV, < 1% lost."
+    },
+    {
+      "belief": "Thicker wires solve the power loss problem, so transformers are unnecessary",
+      "trigger_phrases": ["moti wire use karo", "thicker wire se loss kam", "wire badi karo transformer ki zaroorat nahi", "just reduce R"],
+      "correction": "Thicker wires reduce R, but the cost and weight of copper/aluminum for hundreds of kilometers would be astronomical. Stepping up voltage is far more efficient and economical. Reducing I by 100× (via transformer) cuts loss by 10,000× — no practical wire thickness can match that.",
+      "simulation_emphasis": "Compare: 10× thicker wire (R/10) vs 10× higher voltage (P_loss/100). Voltage wins by 10×, and costs less."
+    }
+  ],
+  "legend": [
+    { "symbol": "Power station", "meaning": "Generator producing P watts at V_gen" },
+    { "symbol": "Step-up transformer", "meaning": "Increases voltage, decreases current for transmission" },
+    { "symbol": "Transmission line", "meaning": "Long wire with resistance R (source of I²R loss)" },
+    { "symbol": "Step-down transformer", "meaning": "Reduces voltage to safe level for consumers" },
+    { "symbol": "Wire color (red/cool)", "meaning": "Indicates heat dissipation from I²R losses" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["transformer", "ohms_law", "electrical_power_energy"],
+    "extensions": ["power_in_ac", "ac_circuits_lcr"],
+    "siblings": ["mutual_inductance_transformer"],
+    "common_exam_combinations": ["efficiency_of_transmission", "transformer_turns_ratio", "power_loss_at_different_voltages", "why_ac_not_dc_transmission"]
+  }
+}

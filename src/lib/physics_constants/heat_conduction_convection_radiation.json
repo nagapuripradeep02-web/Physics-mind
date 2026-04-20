@@ -1,0 +1,42 @@
+{
+  "concept_id": "heat_conduction_convection_radiation",
+  "concept_name": "Modes of Heat Transfer",
+  "class_level": 11,
+  "chapter": "Thermal Properties of Matter",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "thermodynamics", "scenario_type": "heat_transfer", "panel_count": 1, "show_labels": true },
+  "variables": { "Q/t": "Rate of heat flow (W)", "K": "Thermal conductivity (W/m·K)", "A": "Cross-sectional area (m²)", "e": "Emissivity (0-1)" },
+  "locked_facts": [
+    "Conduction: heat transfer through a medium without bulk motion — Q/t = KA(T₁-T₂)/L",
+    "Convection: heat transfer by bulk movement of fluid — natural (density-driven) or forced (fan/pump)",
+    "Radiation: heat transfer through electromagnetic waves — requires no medium",
+    "Stefan-Boltzmann law: power radiated P = eσAT⁴ (σ = 5.67 × 10⁻⁸ W/m²K⁴)",
+    "Wien's displacement law: λ_max T = 2898 μm·K",
+    "Newton's law of cooling: dT/dt = -k(T - T_surroundings) for small temperature differences",
+    "A perfect blackbody has emissivity e = 1 and absorbs all incident radiation"
+  ],
+  "truth_statements": [
+    "Conduction transfers heat through molecular collisions without any bulk movement of the material",
+    "Convection requires a fluid medium and involves actual movement of the heated material",
+    "Radiation can transfer heat through a vacuum — it is the only mode that does not require a material medium",
+    "A body at temperature T radiates energy proportional to T⁴ — doubling temperature increases radiation 16-fold",
+    "Good absorbers of radiation are also good emitters — this is Kirchhoff's law of radiation"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three demonstrations side by side: (1) Metal rod heated at one end — temperature wave propagates along it (conduction), (2) Water heated from below — convection currents visible with dye tracers, (3) Heat felt from a fire across vacuum (no medium) — radiation. Only radiation needs no medium.",
+    "visual_emphasis": "Three panels: molecular vibrations propagating (conduction), fluid circulation loops (convection), electromagnetic waves crossing vacuum (radiation)",
+    "why_this_breaks_misconception": "Students conflate the three modes — seeing them simultaneously with their distinct mechanisms clarifies when each applies"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Conduction", "description": "Metal rod heated at one end. Colour gradient shows temperature propagating. Q/t = KA(T₁-T₂)/L. Metals conduct well (high K), wood poorly (low K).", "emphasis": "Heat flows through solid by molecular vibrations — no bulk motion", "labels_visible": ["Q/t = KAΔt/L", "K", "temperature gradient"] },
+    { "id": "STATE_2", "label": "Convection", "description": "Water heated from below. Warm water rises (less dense), cool water sinks. Convection cells form. Dye tracers show circulation pattern. Natural vs forced convection.", "emphasis": "Hot fluid rises, cold fluid sinks — bulk movement transfers heat", "labels_visible": ["convection current", "warm rises", "cool sinks"] },
+    { "id": "STATE_3", "label": "Radiation", "description": "Hot body emits EM waves. P = eσAT⁴. Doubling T → 16× radiation. Works through vacuum. All bodies above 0 K radiate. Wien's law: hotter → shorter wavelength.", "emphasis": "No medium needed. Power ∝ T⁴ — extremely sensitive to temperature.", "labels_visible": ["P = eσAT⁴", "no medium needed", "λ_max T = 2898 μm·K"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts temperature and material properties. Conduction: change K and L. Convection: adjust heating rate. Radiation: T⁴ graph. Newton's cooling law demo.", "emphasis": "Double the temperature — radiation increases 16×. Change material — conduction rate changes.", "labels_visible": ["Q/t", "T", "K"], "interactive": true, "sliders": [{ "id": "temperature", "label": "Temperature", "min": 300, "max": 1500, "default": 600, "unit": "K" }, { "id": "conductivity", "label": "Thermal conductivity K", "min": 0.1, "max": 400, "default": 50, "unit": "W/m·K" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Heat always rises", "trigger_phrases": ["heat rises", "garam upar jaata hai"], "correction": "Heat itself doesn't rise — hot FLUID rises because it becomes less dense. This is convection. Conduction transfers heat in any direction (along the temperature gradient). Radiation travels in all directions.", "simulation_emphasis": "Show conduction transferring heat downward through a rod, disproving 'heat always rises'" },
+    { "belief": "Radiation requires a medium like air", "trigger_phrases": ["radiation needs air", "radiation medium chahiye"], "correction": "Radiation is the only heat transfer mode that works through a vacuum. The Sun heats the Earth through the vacuum of space entirely by radiation. No particles are needed — electromagnetic waves carry the energy.", "simulation_emphasis": "Show radiation crossing a vacuum gap between two bodies — heat transfers without any medium" }
+  ],
+  "legend": [ { "symbol": "K", "meaning": "Thermal conductivity (W/m·K)" }, { "symbol": "σ", "meaning": "Stefan-Boltzmann constant = 5.67×10⁻⁸ W/m²K⁴" }, { "symbol": "e", "meaning": "Emissivity (0 to 1)" } ],
+  "concept_relationships": { "prerequisites": ["kinetic_theory_temperature", "calorimetry_heat_transfer"], "extensions": ["blackbody_radiation", "greenhouse_effect"], "siblings": ["thermal_expansion"], "common_exam_combinations": ["calorimetry_heat_transfer", "newtons_law_of_cooling"] }
+}

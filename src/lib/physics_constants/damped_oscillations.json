@@ -1,0 +1,105 @@
+{
+  "concept_id": "damped_oscillations",
+  "concept_name": "Damped Oscillations",
+  "class_level": 11,
+  "chapter": "Oscillations",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "damped_envelope",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "A₀": "Initial amplitude of oscillation (m)",
+    "b": "Damping constant — characterises the resistive medium (kg/s)",
+    "m": "Mass of the oscillating body (kg)",
+    "ω₀": "Natural angular frequency of undamped system = √(k/m) (rad/s)",
+    "ω'": "Angular frequency of damped oscillation = √(ω₀² − (b/2m)²) (rad/s)",
+    "γ": "Damping coefficient γ = b/(2m) (s⁻¹)",
+    "τ": "Time constant = 2m/b — time for amplitude to drop to 1/e of initial value (s)"
+  },
+  "locked_facts": [
+    "Displacement x(t) = A₀ e^(−bt/2m) cos(ω't + φ) — oscillation with exponentially decaying amplitude",
+    "Damped angular frequency ω' = √(ω₀² − (b/2m)²) — always less than the natural frequency ω₀",
+    "The amplitude decays as A(t) = A₀ e^(−bt/2m) — exponential envelope, not linear decay",
+    "Energy decreases exponentially: E(t) = ½kA₀² e^(−bt/m) — energy lost to dissipative forces",
+    "Three damping regimes: underdamped (b < 2mω₀) — oscillations with decay; critically damped (b = 2mω₀) — fastest return without oscillation; overdamped (b > 2mω₀) — slow exponential return",
+    "The damping force F_damp = −bv opposes velocity, not displacement"
+  ],
+  "truth_statements": [
+    "In damped oscillations the amplitude decreases exponentially with time due to energy dissipation by the damping force",
+    "The frequency of damped oscillations is slightly less than the natural frequency of the undamped system",
+    "The damping force is proportional to velocity and always opposes the motion, extracting energy from the system",
+    "In critical damping the system returns to equilibrium in the shortest possible time without oscillating",
+    "The mechanical energy of a damped oscillator decreases exponentially as E(t) = E₀ e^(−bt/m)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three systems side by side: underdamped (oscillating with shrinking peaks inside an exponential envelope), critically damped (smooth fastest return to zero, no oscillation), overdamped (sluggish crawl back to zero, even slower than critical). Time markers show critical damping reaches equilibrium first.",
+    "visual_emphasis": "The critically damped curve reaches x = 0 before the overdamped curve — more damping does NOT mean faster return. The exponential envelope on the underdamped curve is clearly visible.",
+    "why_this_breaks_misconception": "Students think more damping always means the system settles faster, but overdamped systems are actually SLOWER than critically damped ones"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A spring-mass system displaced to amplitude A₀. The damping medium (e.g., fluid) is shown around the mass. Damping force arrow F = −bv drawn opposite to velocity. Key parameters labelled: A₀, m, k, b.",
+      "emphasis": "The damping force depends on velocity, not position — it opposes the direction of motion",
+      "labels_visible": ["A₀", "m", "k", "b", "F_damp = −bv"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "The system oscillates with visibly decreasing amplitude. An x-t graph traces the damped sinusoid. The exponential envelope A₀ e^(−bt/2m) is drawn as dashed curves above and below the axis. Energy bar decreases over time.",
+      "emphasis": "Each successive peak is lower than the previous one. The envelope is exponential, not linear. The frequency is slightly lower than the undamped case.",
+      "labels_visible": ["x(t)", "envelope: ±A₀e^(−γt)", "ω' < ω₀", "E(t)↓"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Three x-t curves appear simultaneously: underdamped (b small — many oscillations, slow decay), critically damped (b = 2mω₀ — smooth single return to zero), overdamped (b large — slow exponential crawl). Time markers show critical reaches zero first.",
+      "emphasis": "Critical damping is the FASTEST return to equilibrium without overshooting. Overdamping is slower, not faster. More damping beyond critical actually delays the return.",
+      "labels_visible": ["underdamped", "critically damped", "overdamped", "critical reaches zero first"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust damping constant b while keeping m and k fixed. The x-t plot updates in real time showing the transition from underdamped → critically damped → overdamped. The damped frequency ω' is displayed and decreases as b increases. At b = 2mω₀, a label marks 'Critical Damping'.",
+      "emphasis": "Watch the oscillations disappear as b increases. At critical damping, the system returns fastest. Beyond critical, further increasing b makes the return slower.",
+      "labels_visible": ["b", "ω'", "regime label", "time to equilibrium"],
+      "interactive": true,
+      "sliders": [
+        { "id": "damping_constant", "label": "Damping Constant b", "min": 0.1, "max": 20, "default": 1, "unit": "kg/s" },
+        { "id": "initial_amplitude", "label": "Initial Amplitude A₀", "min": 0.02, "max": 0.3, "default": 0.15, "unit": "m" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "More damping always makes the system settle to equilibrium faster",
+      "trigger_phrases": ["zyada damping zyada fast settle", "more damping faster stop", "damping badhao toh jaldi ruk jaayega", "overdamped means fastest settling"],
+      "correction": "NCERT Ch. 13 describes three regimes. Critical damping (b = 2mω₀) gives the fastest return to equilibrium. Overdamped systems (b > 2mω₀) actually return MORE SLOWLY because the excessive damping force resists the restoring motion. The optimal settling is at the critical point, not beyond it.",
+      "simulation_emphasis": "Three curves side by side — critically damped reaches zero before overdamped despite having less damping"
+    },
+    {
+      "belief": "The amplitude of a damped oscillator decreases linearly (equal amount each cycle)",
+      "trigger_phrases": ["har cycle mein same amount amplitude kam hota hai", "amplitude linearly decrease hota hai", "equal reduction each swing", "amplitude straight line mein girti hai"],
+      "correction": "NCERT gives A(t) = A₀ e^(−bt/2m) — the decay is exponential, not linear. The amplitude drops by a constant fraction (not constant amount) in each cycle. Early cycles show large drops; later cycles show smaller absolute drops as the amplitude is already small.",
+      "simulation_emphasis": "Plot the amplitude envelope clearly showing the exponential curve — compare with a straight-line overlay to show the difference. Early peaks drop rapidly, later peaks drop slowly."
+    }
+  ],
+  "legend": [
+    { "symbol": "solid curve", "meaning": "Displacement x(t) = A₀e^(−γt) cos(ω't + φ)" },
+    { "symbol": "dashed curves", "meaning": "Exponential amplitude envelope ±A₀e^(−γt)" },
+    { "symbol": "blue", "meaning": "Underdamped oscillation (b < 2mω₀)" },
+    { "symbol": "green", "meaning": "Critically damped (b = 2mω₀)" },
+    { "symbol": "red", "meaning": "Overdamped (b > 2mω₀)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["simple_harmonic_motion", "energy_in_shm", "spring_mass_system"],
+    "extensions": ["forced_oscillations_resonance"],
+    "siblings": ["energy_in_shm"],
+    "common_exam_combinations": ["quality_factor", "logarithmic_decrement", "energy_decay_rate"]
+  }
+}

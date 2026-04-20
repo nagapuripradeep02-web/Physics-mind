@@ -1,0 +1,111 @@
+{
+  "concept_id": "ideal_gas_kinetic_theory",
+  "concept_name": "Kinetic Theory of Ideal Gas",
+  "chapter": "Kinetic Theory",
+  "class_level": 11,
+  "renderer_hint": {
+    "technology": "mixed",
+    "renderer": "thermodynamics",
+    "scenario_type": "gas_container",
+    "panel_count": 1,
+    "show_graph": true
+  },
+  "variables": {
+    "T": { "symbol": "T", "name": "Temperature", "unit": "K", "min": 100, "max": 800, "default": 300 },
+    "P": { "symbol": "P", "name": "Pressure", "unit": "kPa", "min": 10, "max": 500, "default": 100 },
+    "V": { "symbol": "V", "name": "Volume", "unit": "L", "min": 1, "max": 20, "default": 10 },
+    "n": { "symbol": "n", "name": "Number of moles", "unit": "mol", "min": 0.5, "max": 5, "default": 1 },
+    "v_rms": { "symbol": "v_rms", "name": "RMS speed", "unit": "m/s", "formula": "√(3RT/M)" },
+    "KE_avg": { "symbol": "KE_avg", "name": "Average KE per molecule", "unit": "J", "formula": "(3/2)kT" }
+  },
+  "locked_facts": [
+    "PV = nRT (ideal gas equation)",
+    "Pressure caused by molecular collisions with walls",
+    "Average KE per molecule = (3/2)kT where k = Boltzmann constant",
+    "Temperature is a measure of average KE — not total energy",
+    "rms speed: v_rms = √(3RT/M) — depends on M and T only",
+    "P = (1/3)ρ<v²> = (1/3)(nm)<v²>"
+  ],
+  "truth_statements": [
+    "The pressure exerted by a gas is due to the collisions of gas molecules with the walls of the container",
+    "The average kinetic energy of a gas molecule is directly proportional to the absolute temperature",
+    "The root mean square speed of molecules is proportional to the square root of temperature",
+    "At the same temperature, lighter molecules move faster than heavier ones",
+    "The ideal gas equation PV equals nRT relates pressure, volume and temperature"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Temperature doubled (300K→600K). Particles move visibly faster (v_rms increases by √2). Pressure gauge needle jumps up (more frequent, harder collisions). KE_avg display doubles. But individual particles still have a RANGE of speeds — temperature is the AVERAGE.",
+    "visual_emphasis": "Side-by-side comparison: particles at 300K (slower) vs 600K (faster). Pressure gauge clearly higher. v_rms and KE_avg readouts both increase. Collision counter shows more hits per second.",
+    "why_this_breaks_misconception": "Students see that BOTH speed increase AND more frequent collisions contribute to pressure. Temperature is about average KE, and pressure is the macroscopic result of countless molecular collisions."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Gas at room temperature — 300K",
+      "description": "Rigid box with bouncing gas particles at 300K. Pressure gauge shows 100kPa. Particles bounce off walls. v_rms and KE_avg displayed. PV diagram shows single point.",
+      "emphasis": "Each particle bounces off walls — each collision exerts a tiny force. Billions of collisions per second = measurable pressure.",
+      "labels_visible": ["T", "P", "v_rms"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Heating — particles speed up",
+      "description": "Temperature rises to 450K. Particles visibly faster. Pressure gauge needle moves up to 150kPa (constant volume, so P ∝ T). v_rms increases. More collisions with walls.",
+      "emphasis": "Higher temperature = faster molecules = harder and more frequent wall collisions = higher pressure. PV = nRT in action.",
+      "labels_visible": ["T↑", "P↑", "v_rms↑"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Double temperature — KE doubles, v_rms × √2",
+      "description": "Temperature doubled to 600K. KE_avg exactly doubles (KE ∝ T). v_rms increases by factor √2 (v ∝ √T). Pressure doubled to 200kPa. PV diagram traces vertical line (constant V).",
+      "emphasis": "AHA: KE_avg doubled exactly because KE = (3/2)kT. But speed only increased by √2 because KE ∝ v². Pressure doubled because P ∝ T at constant V.",
+      "labels_visible": ["KE_avg", "v_rms", "P", "T"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — molecular view of gas laws",
+      "description": "All readouts visible: T, P, v_rms, KE_avg. Particles bouncing. Pressure gauge active. PV diagram with data points. Caption: Pressure is the macroscopic manifestation of molecular collisions.",
+      "emphasis": "Everything you see — pressure, temperature, gas laws — emerges from molecules bouncing off walls. PV = nRT is the statistical result of countless collisions.",
+      "labels_visible": ["T", "P", "V", "v_rms", "KE_avg"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "cooling_only_slows_molecules",
+      "trigger_keywords": ["slow molecules = less pressure only", "pressure kam hota hai kyunki slow hota hai", "cooling se sirf speed kam hoti hai", "pressure reduces because speed decreases"],
+      "student_belief": "Cooling a gas reduces pressure only because molecules slow down, not because there are fewer collisions",
+      "actual_physics": "When temperature decreases, BOTH things happen: (1) molecules move slower (lower v_rms), so each collision is weaker, AND (2) molecules hit the walls LESS frequently (fewer collisions per second), because they take longer to traverse the container. Both effects combine to reduce pressure. The pressure formula P = (1/3)ρ<v²> captures both effects through v².",
+      "simulation_emphasis": "Show particles slowing down when cooled. Pressure gauge drops. Highlight that both collision strength AND collision frequency decrease."
+    },
+    {
+      "id": "temperature_is_total_energy",
+      "trigger_keywords": ["temperature total energy hai", "zyada molecules = zyada temperature", "more gas means higher temperature"],
+      "student_belief": "Temperature measures total energy of all molecules, not average energy per molecule",
+      "actual_physics": "Temperature is proportional to the AVERAGE kinetic energy per molecule: KE_avg = (3/2)kT. Adding more molecules (increasing n) increases total energy but does NOT change temperature. A cup of warm water and a bathtub of warm water at the same temperature have the same average molecular KE, but vastly different total energies.",
+      "simulation_emphasis": "Show KE_avg readout staying constant even if conceptually more molecules are added. Temperature is about how fast EACH molecule moves on average, not how many there are."
+    }
+  ],
+  "legend": [
+    { "symbol": "v_rms", "meaning": "Root mean square speed = √(3RT/M)" },
+    { "symbol": "KE_avg", "meaning": "Average KE per molecule = (3/2)kT" },
+    { "symbol": "P gauge", "meaning": "Pressure from wall collisions" },
+    { "symbol": "PV=nRT", "meaning": "Ideal gas equation" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["heat_and_temperature", "newtons_laws"],
+    "extensions": ["first_law_thermodynamics", "isothermal_process", "adiabatic_process"],
+    "siblings": ["first_law_thermodynamics"],
+    "common_exam_combinations": ["first_law_thermodynamics", "isothermal_process", "adiabatic_process"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["find v_rms at given temperature", "compare speeds of different gases at same T", "calculate pressure from kinetic theory formula", "find KE_avg at given temperature"],
+    "common_traps": ["confusing v_rms with v_avg or v_mp (most probable)", "using Celsius instead of Kelvin", "forgetting M is molar mass in kg/mol for v_rms formula", "thinking more moles = higher temperature"],
+    "numerical_ranges": {
+      "T": "200–800 K",
+      "M": "0.002–0.044 kg/mol",
+      "v_rms": "300–2000 m/s",
+      "k": "1.38 × 10⁻²³ J/K"
+    }
+  }
+}

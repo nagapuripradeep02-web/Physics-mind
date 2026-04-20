@@ -1,0 +1,42 @@
+{
+  "concept_id": "electric_flux_gauss",
+  "concept_name": "Electric Flux and Gauss's Law",
+  "class_level": 12,
+  "chapter": "Electric Charges and Fields",
+  "renderer_hint": { "technology": "threejs", "renderer": "field_3d", "scenario_type": "gaussian_surface", "panel_count": 1, "show_labels": true },
+  "variables": { "Φ": "Electric flux (N·m²/C)", "E": "Electric field (N/C)", "A": "Area of surface (m²)", "q_enc": "Enclosed charge (C)" },
+  "locked_facts": [
+    "Electric flux Φ = E·A cosθ where θ is angle between E and area normal",
+    "Gauss's law: total flux through closed surface Φ = q_enclosed/ε₀",
+    "Flux depends only on enclosed charge, not on shape or size of Gaussian surface",
+    "ε₀ = 8.854 × 10⁻¹² C²/N·m²",
+    "For a point charge, flux through any closed surface enclosing it = q/ε₀",
+    "If no charge is enclosed, net flux through any closed surface is zero",
+    "Gauss's law is most useful when the charge distribution has symmetry (spherical, cylindrical, planar)"
+  ],
+  "truth_statements": [
+    "The total electric flux through a closed surface equals the net charge enclosed divided by ε₀",
+    "Electric flux through a closed surface is independent of the shape of the surface",
+    "If the net charge enclosed by a Gaussian surface is zero, the net flux is zero even if there are external charges",
+    "Gauss's law is equivalent to Coulomb's law but is more useful for symmetric charge distributions",
+    "The flux through an open surface depends on the field and the orientation of the surface"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two differently shaped Gaussian surfaces (sphere and irregular blob) around the same point charge — both show identical flux values Φ = q/ε₀ on their readouts despite vastly different shapes",
+    "visual_emphasis": "Two surfaces, same enclosed charge, same flux number displayed on both",
+    "why_this_breaks_misconception": "Students believe larger or differently shaped surfaces capture more flux — seeing identical values makes the independence from shape undeniable"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Point charge with field lines", "description": "A point charge at the centre with radial field lines. No Gaussian surface yet. The number of field lines represents the charge magnitude.", "emphasis": "Field lines radiate uniformly from charge", "labels_visible": ["q", "E field lines"] },
+    { "id": "STATE_2", "label": "Spherical Gaussian surface", "description": "A spherical surface appears around the charge. Flux calculation shown: Φ = q/ε₀. Each field line passing through the surface is counted.", "emphasis": "Count the field lines piercing the sphere — this number IS the flux", "labels_visible": ["Φ = q/ε₀", "Gaussian surface"] },
+    { "id": "STATE_3", "label": "Two surfaces compared", "description": "A second irregular-shaped surface appears around the same charge. Both surfaces show identical Φ = q/ε₀. The key: same number of field lines pierce both surfaces.", "emphasis": "Different shapes, same enclosed charge, identical flux — shape doesn't matter", "labels_visible": ["Φ₁ = q/ε₀", "Φ₂ = q/ε₀", "Shape ≠ Flux"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student can move the Gaussian surface, change its shape, or move the charge outside. When charge is outside, net flux = 0 (lines enter and exit). Adjust charge magnitude to see flux scale.", "emphasis": "Move charge outside the surface — flux drops to zero even though field exists inside", "labels_visible": ["Φ", "q_enc"], "interactive": true, "sliders": [{ "id": "charge", "label": "Charge q", "min": -5, "max": 5, "default": 2, "unit": "μC" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "A larger Gaussian surface captures more flux", "trigger_phrases": ["bigger surface more flux", "large area more flux", "bada surface zyada flux"], "correction": "Flux depends only on enclosed charge, not on the size or shape of the Gaussian surface", "simulation_emphasis": "Show two surfaces of different sizes around same charge with identical flux readouts" },
+    { "belief": "Electric flux means the electric field passes through a surface", "trigger_phrases": ["flux is field passing through", "flux equals field"], "correction": "Flux is E·A cosθ — it depends on field strength, area, AND the angle between E and the surface normal", "simulation_emphasis": "Tilt a flat surface in a uniform field and show flux changing with angle θ" }
+  ],
+  "legend": [ { "symbol": "Φ", "meaning": "Electric flux (N·m²/C)" }, { "symbol": "ε₀", "meaning": "8.854 × 10⁻¹² C²/N·m²" }, { "symbol": "q_enc", "meaning": "Charge enclosed by surface" } ],
+  "concept_relationships": { "prerequisites": ["coulombs_law", "electric_field_lines"], "extensions": ["gauss_law_3d"], "siblings": ["electric_potential_3d"], "common_exam_combinations": ["charged_conductor_properties"] }
+}

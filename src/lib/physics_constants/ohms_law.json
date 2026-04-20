@@ -1,0 +1,27 @@
+{
+  "concept": "ohms_law",
+  "locked_facts": {
+    "voltage_direction": "high_potential_to_low_potential",
+    "current_direction": "same_as_E_field",
+    "resistance_effect": "higher_resistance_lower_current_for_same_voltage",
+    "ohms_law_formula": "V = IR",
+    "proportionality": "current_proportional_to_voltage_at_constant_resistance",
+    "electron_charge": 1.6e-19,
+    "electron_mass": 9.1e-31
+  },
+  "animation_constraints": {
+    "current_px_per_frame_max": 2.0,
+    "thermal_px_per_frame_min": 3.0,
+    "thermal_must_be_faster_than_drift": true,
+    "must_show_proportionality": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left"
+  },
+  "ncert_truth_statements": [
+    "The graph of current (I) against voltage (V) for an ohmic conductor is a straight line through the origin, confirming I is directly proportional to V",
+    "The resistance R equals V divided by I; on a V-I graph the slope of the line equals 1/R — a steeper slope means lower resistance",
+    "Doubling the applied voltage doubles the current through the resistor — the I-V relationship is linear and passes through the origin",
+    "A higher resistance produces a shallower slope on the I-V graph, meaning less current flows for the same voltage",
+    "The current through a conductor is proportional to the potential difference applied across its ends, provided temperature and physical conditions remain constant"
+  ]
+}

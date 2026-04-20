@@ -1,0 +1,112 @@
+{
+  "concept_id": "adiabatic_process",
+  "concept_name": "Adiabatic Process",
+  "chapter": "Thermodynamics",
+  "class_level": 11,
+  "renderer_hint": {
+    "technology": "mixed",
+    "renderer": "thermodynamics",
+    "scenario_type": "piston_cylinder",
+    "panel_count": 1,
+    "show_graph": true
+  },
+  "variables": {
+    "T1": { "symbol": "T₁", "name": "Initial temperature", "unit": "K", "min": 200, "max": 800, "default": 400 },
+    "T2": { "symbol": "T₂", "name": "Final temperature", "unit": "K", "formula": "T₁(V₁/V₂)^(γ-1)" },
+    "P1": { "symbol": "P₁", "name": "Initial pressure", "unit": "kPa", "min": 50, "max": 500, "default": 200 },
+    "V1": { "symbol": "V₁", "name": "Initial volume", "unit": "L", "min": 1, "max": 10, "default": 3 },
+    "V2": { "symbol": "V₂", "name": "Final volume", "unit": "L", "min": 1, "max": 15, "default": 8 },
+    "gamma": { "symbol": "γ", "name": "Heat capacity ratio (Cp/Cv)", "unit": "", "default": 1.4 },
+    "W": { "symbol": "W", "name": "Work done by gas", "unit": "J", "formula": "(P₁V₁ - P₂V₂)/(γ-1)" }
+  },
+  "locked_facts": [
+    "Adiabatic: Q = 0 (no heat exchange with surroundings)",
+    "ΔU = -W: work done by gas comes from internal energy",
+    "Adiabatic expansion → temperature DECREASES",
+    "PVᵞ = constant (γ = Cp/Cv > 1)",
+    "Adiabatic curve is STEEPER than isothermal on PV diagram",
+    "Work done: W = (P₁V₁ - P₂V₂)/(γ-1)"
+  ],
+  "truth_statements": [
+    "In an adiabatic process, no heat is exchanged between system and surroundings",
+    "The work done during adiabatic expansion comes at the expense of internal energy",
+    "An adiabatic expansion causes the temperature to decrease",
+    "The adiabatic curve on a PV diagram is steeper than the isothermal curve",
+    "PV to the power gamma is constant in a reversible adiabatic process"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "PV diagram overlaying both isothermal (dashed) and adiabatic (solid) curves from same starting point. Adiabatic is steeper. Temperature readout drops visibly. Energy bars: Q=0, ΔU negative (energy lost), W positive (work done). The gas cooled itself by doing work!",
+    "visual_emphasis": "Particles slow down visibly as piston expands. Temperature number decreasing in real-time. No heat arrow (Q=0). Yet piston moved — work came from the gas's own thermal energy.",
+    "why_this_breaks_misconception": "Students see temperature DROP despite no heat leaving. The internal energy went directly to work. No heat exchange needed for temperature change."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Hot compressed gas — insulated walls",
+      "description": "Gas at 400K, 200kPa, 3L. Cylinder walls are insulated (shown with hatching). Particles moving fast. No heat arrows anywhere — the system is thermally isolated.",
+      "emphasis": "The walls are insulated: Q = 0 throughout. No heat can enter or leave. Watch what happens when gas expands.",
+      "labels_visible": ["T", "P", "V", "Q=0"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Adiabatic expansion — gas cools!",
+      "description": "Piston moves outward. Particles visibly slow down. Temperature drops from 400K toward 280K. No heat arrow — the energy for work came from the gas itself! PV curve traces steep path.",
+      "emphasis": "The gas is COOLING as it expands — no heat is leaving, but temperature drops. Where did the energy go? Into pushing the piston!",
+      "labels_visible": ["T↓", "W", "ΔU<0"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Steeper than isothermal — the comparison",
+      "description": "PV diagram shows adiabatic curve (solid, steeper) alongside isothermal curve (dashed, less steep) from same starting point. Energy bars: Q=0, ΔU<0, W>0. Temperature readout shows final lower value.",
+      "emphasis": "AHA: Adiabatic curve is STEEPER than isothermal. Gas ends up at lower temperature AND lower pressure for same final volume. No heat needed for temperature to change!",
+      "labels_visible": ["PVγ", "Q=0", "T₂<T₁"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — adiabatic vs isothermal",
+      "description": "Both curves visible on PV diagram. Energy bars: Q=0, ΔU = -W. All labels visible. Caption: PVγ = constant, W = (P₁V₁ - P₂V₂)/(γ-1).",
+      "emphasis": "In adiabatic expansion: Q=0, temperature drops, work comes from internal energy. The steeper PV curve means less work than isothermal for same volume change.",
+      "labels_visible": ["T", "P", "V", "W", "ΔU"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "no_heat_no_temp_change",
+      "trigger_keywords": ["Q=0 toh temperature change nahi hoga", "no heat = no temperature change", "adiabatic mein temp same rehta hai", "bina heat ke temperature kaise change hoga"],
+      "student_belief": "If no heat is exchanged (Q=0), temperature cannot change",
+      "actual_physics": "Temperature CAN change without heat exchange! In an adiabatic expansion, the gas does work on the surroundings. Since Q=0, by the first law: ΔU = -W. The work energy comes from the gas's internal energy, which decreases, causing temperature to drop. Similarly, adiabatic compression increases temperature (like a bicycle pump getting hot).",
+      "simulation_emphasis": "Show insulated walls (Q=0 prominently displayed), piston expanding, and temperature readout decreasing in real-time. Particles visibly slow down. Energy bars: Q=0, W>0, ΔU<0."
+    },
+    {
+      "id": "adiabatic_same_as_isothermal",
+      "trigger_keywords": ["adiabatic aur isothermal same hai", "both curves same hoti hain", "no difference between curves"],
+      "student_belief": "Adiabatic and isothermal curves look the same on a PV diagram",
+      "actual_physics": "Adiabatic curves are STEEPER than isothermal curves on a PV diagram. This is because γ > 1 (always), so PVγ = constant drops pressure faster than PV = constant for the same volume increase. For the same expansion, adiabatic process does LESS work (smaller area under curve) than isothermal.",
+      "simulation_emphasis": "Overlay both curves from the same starting point. The adiabatic curve clearly bends down more steeply. Shade the areas to show isothermal work > adiabatic work."
+    }
+  ],
+  "legend": [
+    { "symbol": "Q=0", "meaning": "No heat exchange (insulated)" },
+    { "symbol": "PVγ", "meaning": "PVγ = constant (γ = Cp/Cv = 1.4 for air)" },
+    { "symbol": "ΔU=-W", "meaning": "Work comes from internal energy" },
+    { "symbol": "T↓", "meaning": "Temperature decreases during expansion" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["first_law_thermodynamics", "ideal_gas_kinetic_theory"],
+    "extensions": ["carnot_engine"],
+    "siblings": ["isothermal_process", "first_law_thermodynamics"],
+    "common_exam_combinations": ["isothermal_process", "carnot_engine", "first_law_thermodynamics"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["find final temperature after adiabatic expansion", "compare work done: isothermal vs adiabatic", "PVγ problems with given γ", "slope comparison on PV diagram"],
+    "common_traps": ["confusing adiabatic (Q=0) with isothermal (ΔT=0)", "forgetting that adiabatic expansion COOLS the gas", "using wrong γ value for monoatomic vs diatomic", "comparing slopes incorrectly"],
+    "numerical_ranges": {
+      "T": "200–800 K",
+      "P": "1–10 atm",
+      "V": "1–20 L",
+      "γ": "1.4 (diatomic), 1.67 (monoatomic)"
+    }
+  }
+}

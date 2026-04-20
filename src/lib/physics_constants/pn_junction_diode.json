@@ -1,0 +1,112 @@
+{
+  "concept_id": "pn_junction_diode",
+  "concept_name": "PN Junction Diode",
+  "class_level": 12,
+  "chapter": "Semiconductor Electronics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "circuit_live",
+    "scenario_type": "pn_junction",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "V_barrier": "Barrier potential (V) — ~0.7 V for Si, ~0.3 V for Ge",
+    "V_applied": "Applied external voltage (V)",
+    "I_forward": "Forward current (mA)",
+    "I_reverse": "Reverse saturation current (μA)",
+    "W_depletion": "Depletion region width (μm)",
+    "V_breakdown": "Reverse breakdown voltage (V)"
+  },
+  "locked_facts": [
+    "A PN junction is formed by joining p-type and n-type semiconductors; diffusion of majority carriers creates a depletion region with immobile ions",
+    "The barrier potential across the depletion region is ~0.7 V for silicon and ~0.3 V for germanium at room temperature",
+    "Forward bias (p connected to +ve terminal) reduces the barrier potential and narrows the depletion region, allowing significant current flow",
+    "Reverse bias (p connected to −ve terminal) increases the barrier potential and widens the depletion region, allowing only a negligible reverse saturation current (~μA)",
+    "The diode I-V characteristic is exponential in forward bias: I = I₀(e^(eV/kT) − 1), where I₀ is the reverse saturation current",
+    "In reverse bias beyond the breakdown voltage, current increases sharply due to avalanche or Zener breakdown",
+    "The depletion region has no free charge carriers — only fixed donor (+) ions on the n-side and acceptor (−) ions on the p-side"
+  ],
+  "truth_statements": [
+    "The depletion region forms due to diffusion of electrons from n-side to p-side and holes from p-side to n-side, leaving behind immobile ions that create a built-in electric field opposing further diffusion",
+    "Forward biasing a PN junction reduces the width of the depletion region and the potential barrier, enabling majority carrier current to flow",
+    "Reverse biasing increases the depletion width and potential barrier, so only thermally generated minority carriers contribute a tiny reverse saturation current",
+    "The knee voltage in the forward I-V curve corresponds approximately to the barrier potential (~0.7 V for Si), beyond which current rises steeply",
+    "A PN junction diode acts as a one-way valve for current: low resistance in forward bias, very high resistance in reverse bias"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Side-by-side comparison: forward bias shrinks depletion region and electrons flood across the junction with large current readout; reverse bias expands depletion region wide with only a trickle of minority carriers and near-zero current readout",
+    "visual_emphasis": "Depletion region width animating between narrow (forward) and wide (reverse) with ammeter reading jumping from mA to μA",
+    "why_this_breaks_misconception": "Students see that the depletion region is not fixed — it physically shrinks or grows with bias, and this is what controls current flow, not some magical on/off switch"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Unbiased PN junction",
+      "description": "A PN junction at equilibrium with no external voltage. The p-side shows holes (open circles) and acceptor ions (−), the n-side shows electrons (filled circles) and donor ions (+). The depletion region is visible in the center with no free carriers, only immobile ions. Built-in electric field arrows point from n to p across the depletion region.",
+      "emphasis": "Establish the depletion region, built-in field, and equilibrium — no external bias applied",
+      "labels_visible": ["p-type", "n-type", "Depletion Region", "Built-in E field", "V_barrier = 0.7 V"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Forward bias applied",
+      "description": "A battery is connected with +ve to p-side and −ve to n-side. The depletion region visibly narrows. Majority carriers (holes from p, electrons from n) move toward the junction and cross it. Ammeter shows increasing forward current in mA. The barrier potential decreases from 0.7 V toward the applied voltage.",
+      "emphasis": "Forward bias reduces barrier potential and narrows depletion region — current flows easily",
+      "labels_visible": ["V_applied", "Narrowed Depletion", "I_forward (mA)", "Barrier reduced"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Reverse bias applied",
+      "description": "Battery polarity reversed: +ve to n-side, −ve to p-side. The depletion region visibly widens. Majority carriers are pulled away from the junction. Only a tiny number of minority carriers (thermally generated) drift across. Ammeter shows negligible reverse current in μA. I-V curve on right panel highlights the reverse saturation region.",
+      "emphasis": "Reverse bias widens depletion region and increases barrier — only μA leakage current flows",
+      "labels_visible": ["Widened Depletion", "I_reverse (μA)", "Barrier increased", "Minority carriers only"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive I-V exploration",
+      "description": "Student adjusts applied voltage from −V_breakdown to +1.5 V using a slider. The depletion region width, carrier animation, and ammeter reading update in real time. The right panel traces the I-V characteristic curve as the voltage sweeps. Knee voltage (~0.7 V), reverse saturation, and breakdown regions are all visible on the curve.",
+      "emphasis": "Explore the full I-V curve — see how depletion width, carrier flow, and current change with voltage",
+      "labels_visible": ["V_applied", "I", "Depletion Width", "I-V Curve"],
+      "interactive": true,
+      "sliders": [
+        { "id": "voltage", "label": "Applied Voltage", "min": -20, "max": 1.5, "default": 0, "unit": "V" },
+        { "id": "material", "label": "Material (Si/Ge)", "min": 0, "max": 1, "default": 0, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The depletion region is a fixed-width insulating layer that never changes",
+      "trigger_phrases": ["depletion fixed", "depletion doesn't change", "always same width", "depletion region constant hai", "depletion change nahi hota"],
+      "correction": "The depletion region width changes with applied bias: it narrows under forward bias and widens under reverse bias. It is not a fixed insulator but a dynamic region controlled by external voltage.",
+      "simulation_emphasis": "Animate depletion region smoothly shrinking and expanding as voltage slider moves from forward to reverse"
+    },
+    {
+      "belief": "No current at all flows in reverse bias — the diode is completely off",
+      "trigger_phrases": ["zero current reverse", "no current reverse bias", "reverse mein current nahi", "completely off", "diode band ho jata hai"],
+      "correction": "A small reverse saturation current (~μA for Si) flows due to thermally generated minority carriers drifting across the junction. It is not zero, just very small compared to forward current.",
+      "simulation_emphasis": "Show a zoomed ammeter reading in μA with a few minority carrier dots slowly drifting across the widened depletion region"
+    },
+    {
+      "belief": "Forward bias means connecting positive terminal to n-side",
+      "trigger_phrases": ["positive to n-side forward", "forward bias n-side positive", "n-side ko positive lagao", "forward bias polarity confused"],
+      "correction": "Forward bias means connecting the positive terminal of the battery to the p-side and the negative terminal to the n-side. This opposes the built-in field and reduces the barrier.",
+      "simulation_emphasis": "Highlight battery polarity with color coding: green wire to p-side (+), red wire to n-side (−) for forward bias"
+    }
+  ],
+  "legend": [
+    { "symbol": "V_barrier", "meaning": "Built-in barrier potential across depletion region (V)" },
+    { "symbol": "I₀", "meaning": "Reverse saturation current (A)" },
+    { "symbol": "e", "meaning": "Electron charge = 1.6 × 10⁻¹⁹ C" },
+    { "symbol": "k", "meaning": "Boltzmann constant = 1.38 × 10⁻²³ J/K" },
+    { "symbol": "T", "meaning": "Absolute temperature (K)" },
+    { "symbol": "W", "meaning": "Depletion region width (m)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["semiconductor_basics"],
+    "extensions": ["rectifier_circuits", "transistor_action"],
+    "siblings": ["semiconductor_basics"],
+    "common_exam_combinations": ["rectifier_circuits", "semiconductor_basics"]
+  }
+}

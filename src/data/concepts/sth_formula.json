@@ -1,0 +1,263 @@
+{
+  "concept_id": "sth_formula",
+  "concept_name": "The s_nth Formula — Displacement During the nth Second Only",
+  "chapter": 6,
+  "section": "6.8",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 6.8 — Displacement in nth second; split from uniform_acceleration bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A motorbike pulling out of a toll plaza on the Yamuna Expressway. It accelerates from rest. After one second it has moved one metre. After two seconds, four metres. After three seconds, nine metres. Now ask this sharp question — 'how much did the bike move DURING the third second, i.e. between t = 2 and t = 3?' Not the total by the end of the third second, but just the stretch between the second and third clock ticks. That is five metres — and it is what the s_nth formula calculates.",
+    "secondary": "A cricket ball dropped off the terrace of a two-storey house. In the first second of fall it covers about five metres. In the SECOND second of fall (between t = 1 s and t = 2 s) it covers fifteen metres. In the third second, twenty-five metres. Each second's slice grows. The pattern — five, fifteen, twenty-five — follows a simple arithmetic rule given by the s_nth formula.",
+    "tertiary": "A Delhi Metro train leaving Rajiv Chowk station with steady acceleration. During the first full second of motion it covers a short distance. During the fifth second, much more — the train is now moving faster, so it covers more ground in the same one-second window. The s_nth formula quantifies exactly how much."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "u": { "name": "Initial velocity", "unit": "m/s", "min": 0, "max": 30, "default": 0 },
+      "a": { "name": "Acceleration", "unit": "m/s^2", "min": 0, "max": 20, "default": 2 },
+      "n": { "name": "Which second", "unit": "", "min": 1, "max": 15, "default": 3 }
+    },
+    "computed_outputs": {
+      "s_n": { "formula": "u + 0.5 * a * (2 * n - 1)" },
+      "s_total_at_n": { "formula": "u * n + 0.5 * a * n * n" },
+      "s_total_at_n_minus_1": { "formula": "u * (n - 1) + 0.5 * a * (n - 1) * (n - 1)" }
+    },
+    "formulas": {
+      "nth_second_formula": "s_n  =  u  +  (a / 2) * (2 n - 1)",
+      "derivation": "s_n  =  s(n) - s(n - 1)  =  [ u n + (1/2) a n^2 ]  -  [ u (n-1) + (1/2) a (n-1)^2 ]  =  u + (a/2)(2n - 1)",
+      "arithmetic_progression": "For fixed u and a, s_1, s_2, s_3, ... form an arithmetic progression with common difference a"
+    },
+    "constraints": [
+      "The n-th second means the INTERVAL from t = (n - 1) s to t = n s — NOT the whole time up to t = n s",
+      "s_n has units of length (metres) — not metres-per-second — because it is a displacement over a 1-second interval",
+      "The formula is exact ONLY for constant acceleration",
+      "s_n grows linearly with n for accelerating motion — the object covers more each successive second"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "'Displacement in the nth Second' — Slicing the Motion Into Seconds",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ruler_graphic",
+            "text": "Motorbike accelerating from rest at 2 m/s^2\n\n  t =  0    1    2    3    4    5       (in seconds)\n  s =  0    1    4    9   16   25       (in metres)\n\nSecond-by-second slices (s_n)\n\n  s_1 = 1 - 0  = 1 m  (during 1st second)\n  s_2 = 4 - 1  = 3 m  (during 2nd second)\n  s_3 = 9 - 4  = 5 m  (during 3rd second)\n  s_4 = 16 - 9 = 7 m  (during 4th second)\n  s_5 = 25 -16 = 9 m  (during 5th second)\n\nNot 1, 4, 9, 16, 25 (those are totals).\nThe slices are 1, 3, 5, 7, 9 -- odd numbers!\nAn arithmetic progression.",
+            "position": { "x": 380, "y": 280 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "bike_motion",
+            "from": { "x": 160, "y": 460 },
+            "magnitude": 2,
+            "direction_deg": 0,
+            "label": "bike (accelerating rightward)",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "translate", "dx_px": 500, "dy_px": 0, "duration_sec": 5 }
+          },
+          {
+            "type": "annotation",
+            "id": "important",
+            "text": "Key distinction\n\n's(n)'    = position at time n\n          = 1, 4, 9, 16, 25...\n\n's_n'     = displacement DURING\n             the n-th second\n          = 1, 3, 5, 7, 9...\n\nTotally different sequences.\nMany students confuse them.",
+            "position": { "x": 720, "y": 320 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A motorbike on the Yamuna Expressway leaves a toll plaza from rest and accelerates at two metres per second squared." },
+            { "id": "s2", "text_en": "At one second, it has covered one metre. At two seconds, four metres total. At three seconds, nine metres. These are the cumulative positions." },
+            { "id": "s3", "text_en": "But now ask a different question — how much did the bike move just during the third second, i.e. between the second and third clock ticks?" },
+            { "id": "s4", "text_en": "That is nine minus four equals five metres. During the third second, the bike covered five metres. Not nine — nine is the cumulative position." },
+            { "id": "s5", "text_en": "The per-second slices are one, three, five, seven, nine — consecutive odd numbers! An arithmetic progression with common difference equal to a, which is two in this case." },
+            { "id": "s6", "text_en": "This 'displacement in the nth second' is written s-n. It is different from s-of-n, the total position at time n. The next state derives a clean formula for s-n." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Derivation — s_n = u + (a/2)(2n - 1)",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "deriv_block",
+            "text": "Derive s_n from kinematics\n\ns_n  =  position at t = n  -  position at t = (n-1)\n     =  s(n) - s(n-1)\n\nBoth terms from  s = u t + (1/2) a t^2\n\n  s(n)     =  u n + (1/2) a n^2\n  s(n-1)   =  u (n-1) + (1/2) a (n-1)^2\n\nSubtract\n  s_n  =  u [n - (n-1)]  +  (1/2) a [n^2 - (n-1)^2]\n       =  u (1)  +  (1/2) a [n^2 - (n^2 - 2n + 1)]\n       =  u  +  (1/2) a (2n - 1)\n\nClean formula\n  s_n  =  u  +  (a / 2) * (2n - 1)",
+            "position": { "x": 340, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "check_numbers",
+            "text": "Verify with the bike (u = 0, a = 2)\n\n  s_1  =  0 + (2/2) * 1  =  1 m (check)\n  s_2  =  0 + 1 * 3      =  3 m (check)\n  s_3  =  0 + 1 * 5      =  5 m (check)\n  s_4  =  0 + 1 * 7      =  7 m (check)\n  s_5  =  0 + 1 * 9      =  9 m (check)\n\nAll match the second-by-second\ndifferences we computed by hand.",
+            "position": { "x": 720, "y": 300 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 3.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is the derivation. Displacement during the n-th second equals the position at t equals n minus the position at t equals n minus one." },
+            { "id": "s2", "text_en": "Use s equals u t plus half a t squared at both t equals n and t equals n minus one." },
+            { "id": "s3", "text_en": "Subtracting the two, the u t terms contribute u times one, and the half a t squared terms simplify to a over two times two n minus one." },
+            { "id": "s4", "text_en": "So s-n equals u plus a over two times the quantity two n minus one. This is the s-n-th formula." },
+            { "id": "s5", "text_en": "Verify it with the bike. For u equals zero and a equals two, s-one is one, s-two is three, s-three is five, s-four is seven, s-five is nine. All match the by-hand differences. The formula works." },
+            { "id": "s6", "text_en": "Remember the two n minus one. For n equals one you get plus one. For n equals two you get plus three. For n equals three, plus five. Consecutive odd integers. That is the structure behind the neat one-three-five-seven-nine pattern." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "When to Use s_n — And the Arithmetic Progression Property",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "when_to_use",
+            "text": "When to use s_n\n\nThe question says\n  'in the n-th second'\n  'during the nth second'\n  'between t = (n-1) s and t = n s'\n\nThen reach for\n  s_n  =  u  +  (a/2) * (2n - 1)\n\nWhen the question says\n  'at t = n s' or 'in n seconds'\n\nIt means CUMULATIVE position\n-- use s = u t + 0.5 a t^2 instead.\n\nReading the English is half the battle.",
+            "position": { "x": 320, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "ap_property",
+            "text": "Arithmetic-progression shortcut\n\nFor fixed u and a,\n  s_1, s_2, s_3, s_4, ...\nform an arithmetic progression\nwith common difference = a.\n\nExample (u = 5, a = 3)\n  s_1 = 5 + 1.5 = 6.5\n  s_2 = 5 + 4.5 = 9.5   (jump 3)\n  s_3 = 5 + 7.5 = 12.5  (jump 3)\n  s_4 = 5 + 10.5= 15.5  (jump 3)\n\nKnowing one term + a -> all terms.\nHandy for 'find the 10th second' type\nJEE questions without full formula work.",
+            "position": { "x": 700, "y": 300 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The trick to using s-n correctly is reading the English. If a problem says 'in the n-th second' or 'during the third second', use the s-n formula." },
+              { "id": "s2", "text_en": "If it says 'at t equals n' or 'in n seconds total', use the standard s equals u t plus half a t squared." },
+              { "id": "s3", "text_en": "Many students confuse these two and apply the wrong formula. Slow down to read the phrase." },
+              { "id": "s4", "text_en": "A useful shortcut — for fixed u and a, the sequence s-one, s-two, s-three, and so on forms an arithmetic progression with common difference equal to a." },
+              { "id": "s5", "text_en": "For u equals five and a equals three, s-one is six point five, s-two is nine point five, s-three is twelve point five. Each term is three bigger than the last. Same as the acceleration." },
+              { "id": "s6", "text_en": "If you know any one term of the sequence and a, you can compute any other term without re-running the formula. This shortcut is worth ten seconds on JEE problems that ask for the tenth second or twentieth second." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "nth_second_confused_with_total",
+      "misconception": "Displacement in the nth second means total displacement in n seconds",
+      "trigger_phrases": [
+        "nth second total displacement",
+        "s_n is total",
+        "displacement IN n seconds",
+        "third second position"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — 'In the Nth Second' Means Cumulative",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "belief",
+              "text": "Your reasoning\n\nQuestion: 'Find the displacement\nin the third second.'\n\n'In three seconds' -> just plug\nt = 3 into s = u t + 0.5 a t^2.\n\nFor u = 0, a = 2\n  s(3) = 0 + 0.5 * 2 * 9 = 9 m\n\nAnswer: 9 metres.\n\nBut the book says the answer is 5 m.\nSomeone is wrong. Let's see who.",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A very common trap. A problem asks for 'the displacement in the third second'. Students plug t equals three into s equals u t plus half a t squared and get nine metres." },
+              { "id": "s2", "text_en": "The book says the answer is five metres. The student is confident they plugged correctly. Someone is misreading the English." },
+              { "id": "s3", "text_en": "The book is right. 'In the third second' means during the one-second window from t = 2 to t = 3, not the cumulative amount up to t = 3. Let me separate the two." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Two Different Questions, Two Different Answers",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "two_q",
+              "text": "Question A\n'Displacement AT t = 3 s' (cumulative)\n  Use s = u t + 0.5 a t^2\n  s = 0 + 0.5 * 2 * 9 = 9 m\n  ANSWER: 9 metres.\n\nQuestion B\n'Displacement IN the 3rd second' (slice)\n  Use s_n = u + (a/2)(2n - 1)\n  s_3 = 0 + 1 * 5 = 5 m\n  ANSWER: 5 metres.\n\nSame data, two different questions,\ntwo different formulas, two different\nanswers. The English matters.",
+              "position": { "x": 380, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "check_add",
+              "text": "Sanity check\n\ns(3) = s_1 + s_2 + s_3\n     = 1 + 3 + 5\n     = 9 m   (matches Question A)\n\nTotal = sum of slices.\nThe slices themselves are what s_n gives.",
+              "position": { "x": 720, "y": 330 },
+              "style": "callout",
+              "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here are the two different questions that use the same phrase in student minds." },
+              { "id": "s2", "text_en": "Question A — displacement AT t equals three seconds. Cumulative total. Use s equals u t plus half a t squared. Answer is nine metres." },
+              { "id": "s3", "text_en": "Question B — displacement IN the third second. Just the slice between t = 2 and t = 3. Use s-n equals u plus half a times two n minus one. Answer is five metres." },
+              { "id": "s4", "text_en": "Sanity check — s of three equals s-one plus s-two plus s-three, which is one plus three plus five equals nine. Total equals the sum of the slices. Both answers are internally consistent." },
+              { "id": "s5", "text_en": "So the rule is — if the question mentions 'AT t equals n' or 'IN n seconds', it wants cumulative. If it says 'IN the n-th second' or 'during the n-th second', it wants the slice. Pause and re-read the question once before picking a formula." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "English Checklist — Parse the Question First",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "parse_guide",
+              "text": "Parse these typical phrases\n\n'Position at t = 5 s'          -> s(t)\n'Position in 5 seconds'        -> s(t) (total)\n'Covered in the 5th second'    -> s_n (slice)\n'During the 5th second'        -> s_n (slice)\n'Between 4th and 5th seconds'  -> s_n (slice)\n'Total distance in 10 seconds' -> s(t) (total)\n'Displacement in the nth second' -> s_n\n\n'In' + 'nth' -> slice formula.\n'In' + number_alone + 's' -> total formula.",
+              "position": { "x": 380, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is a quick English checklist. Print this in your head." },
+              { "id": "s2", "text_en": "Position at t equals five seconds — total. Position in five seconds — total. Covered in the fifth second — slice. During the fifth second — slice. Between the fourth and fifth seconds — slice." },
+              { "id": "s3", "text_en": "The pattern — 'in' plus 'nth' means slice formula. 'In' plus just a number plus s means the cumulative total formula." },
+              { "id": "s4", "text_en": "When in doubt, rephrase the question in your own words before you solve. This one habit prevents the most common mix-up with the s-n formula on JEE problems." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Non-zero initial velocity",
+      "physical_world": "Car already moving at 5 m/s, accelerating at 2 m/s^2. Displacement in 4th second: s_4 = 5 + 1*7 = 12 m.",
+      "same_physics": "s_n = u + (a/2)(2n-1) with u != 0"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Free-fall slices",
+      "physical_world": "Coin dropped from rest (u = 0, a = g = 10). s_1 = 5, s_2 = 15, s_3 = 25, s_4 = 35. Pattern: 5, 15, 25, 35 — common difference 10.",
+      "same_physics": "s_n slices for free fall form an AP with common difference g"
+    }
+  ]
+}

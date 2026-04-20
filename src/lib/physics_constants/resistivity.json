@@ -1,0 +1,29 @@
+{
+  "concept": "resistivity",
+  "locked_facts": {
+    "resistivity_formula": "R = rho * L / A",
+    "resistivity_symbol": "rho",
+    "unit_of_resistivity": "ohm-metre",
+    "resistivity_increases_with_temperature": true,
+    "temperature_note": "for_metals_resistivity_increases_with_temperature_due_to_more_collisions",
+    "resistivity_independent_of": "length_and_cross_sectional_area",
+    "electron_charge": 1.6e-19,
+    "electron_mass": 9.1e-31
+  },
+  "animation_constraints": {
+    "longer_wire_more_resistance": true,
+    "thicker_wire_less_resistance": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "The resistance of a conductor depends on its length, cross-sectional area, and the material it is made of: R = ρL/A",
+    "Resistivity (ρ) is a property of the material alone and does not depend on the shape or size of the conductor",
+    "For metallic conductors, resistivity increases with temperature because more frequent collisions impede electron drift",
+    "The SI unit of resistivity is ohm-metre (Ω·m); metals have very low resistivity while insulators have very high resistivity",
+    "A longer wire has greater resistance for the same material and cross-section; a thicker wire has lower resistance"
+  ]
+}

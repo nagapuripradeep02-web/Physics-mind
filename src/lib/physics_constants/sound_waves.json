@@ -1,0 +1,76 @@
+{
+  "concept_id": "sound_waves",
+  "concept_name": "Sound Waves",
+  "chapter": "Waves",
+  "class_level": 11,
+  "renderer_hint": {
+    "primary": "wave_canvas",
+    "scenario_type": "longitudinal_wave",
+    "show_graph": false
+  },
+  "variables": {
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 0.5, "max": 5, "default": 1 },
+    "A": { "symbol": "A", "name": "Amplitude", "unit": "cm", "min": 0.5, "max": 5, "default": 2 },
+    "v": { "symbol": "v", "name": "Speed of sound", "unit": "m/s", "min": 300, "max": 400, "default": 343 }
+  },
+  "locked_facts": [
+    "Sound is a longitudinal wave \u2014 particle displacement parallel to propagation",
+    "Particles oscillate about mean position \u2014 they do NOT travel with wave",
+    "Compressions: regions of high pressure, particles close together",
+    "Rarefactions: regions of low pressure, particles spread apart",
+    "Speed of sound in air \u2248 343 m/s at 20\u00b0C, increases with temperature"
+  ],
+  "truth_statements": [
+    "Sound waves are longitudinal mechanical waves",
+    "In a longitudinal wave, particles vibrate along the direction of wave propagation",
+    "Sound requires a material medium for propagation",
+    "The speed of sound in air increases with temperature",
+    "Regions of high density are compressions and regions of low density are rarefactions"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Particles vibrating in place while the compression pattern moves rightward. One tracked particle (orange) returns to its starting position after one cycle while the wave has advanced by one wavelength.",
+    "visual_emphasis": "Tracked particle oscillates about its mean position (marked with a vertical line). The compression/rarefaction pattern moves rightward, but the particle stays in place. Particle does NOT travel with the wave."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Sound wave in air \u2014 particles at rest",
+      "what_student_sees": "Row of air particles (blue dots) evenly spaced. No wave yet. Particles represent air molecules near a speaker.",
+      "what_to_emphasize": "Before the sound wave arrives, air particles are uniformly distributed."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Wave propagates \u2014 compressions and rarefactions",
+      "what_student_sees": "Sound wave moving rightward. Regions where particles bunch together (C = compression) and spread apart (R = rarefaction). Pattern moves rightward.",
+      "what_to_emphasize": "Compressions = high pressure (particles close). Rarefactions = low pressure (particles far apart). The PATTERN of compressions moves along the medium."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Key insight \u2014 particles vibrate in place",
+      "what_student_sees": "One particle tracked in orange. It vibrates back and forth about its mean position (marked). The wave pattern moves rightward, but the tracked particle stays near its original position.",
+      "what_to_emphasize": "The tracked particle does NOT travel from speaker to ear. It only vibrates about its mean position. The wave (energy) propagates, not the particles."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive \u2014 adjust frequency",
+      "what_student_sees": "Slider to change frequency. Higher frequency = more compressions per unit length (shorter \u03bb). Particles still vibrate in place at all frequencies.",
+      "what_to_emphasize": "Changing frequency changes how closely spaced the compressions are (\u03bb = v/f). The particles never travel with the wave regardless of frequency."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "air_travels_with_sound",
+      "trigger_keywords": ["air travels from speaker", "hawa speaker se kaan tak jaati hai", "particles travel with sound"],
+      "student_belief": "Air particles travel from the speaker to the ear along with the sound wave",
+      "actual_physics": "In a sound wave, air particles oscillate about their mean positions. They do NOT travel from speaker to ear. Only the wave energy propagates. If air particles actually moved, there would be a constant wind from every speaker.",
+      "simulation_emphasis": "Track one particle and show it vibrates in place while the compression pattern moves rightward. After one full cycle, the particle returns to its starting position."
+    }
+  ],
+  "legend": [
+    { "symbol": "C", "meaning": "Compression (high pressure)" },
+    { "symbol": "R", "meaning": "Rarefaction (low pressure)" },
+    { "symbol": "\u2194", "meaning": "Particle vibration direction (parallel to wave)" },
+    { "symbol": "\u2192", "meaning": "Wave propagation direction" }
+  ]
+}

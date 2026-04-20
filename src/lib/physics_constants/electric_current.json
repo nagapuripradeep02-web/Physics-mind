@@ -1,0 +1,27 @@
+{
+  "concept": "electric_current",
+  "locked_facts": {
+    "current_direction": "conventional_current_flows_opposite_to_electron_flow",
+    "electron_flow_direction": "from_negative_terminal_to_positive_terminal",
+    "current_formula": "I = Q/t",
+    "unit": "ampere",
+    "one_ampere_definition": "one_coulomb_of_charge_per_second",
+    "electron_charge": 1.6e-19,
+    "electron_mass": 9.1e-31
+  },
+  "animation_constraints": {
+    "electrons_drift": "right_to_left",
+    "conventional_current": "left_to_right",
+    "field_arrows_point": "left_to_right",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "Electric current is the rate of flow of electric charge through a cross-section of a conductor: I = Q/t",
+    "Conventional current flows from the positive terminal to the negative terminal of a cell through the external circuit",
+    "Electrons flow from the negative terminal to the positive terminal, opposite to the direction of conventional current",
+    "The SI unit of electric current is the ampere; one ampere equals one coulomb of charge flowing per second",
+    "In a metallic conductor, current is due to the drift of free electrons under the influence of an electric field"
+  ]
+}

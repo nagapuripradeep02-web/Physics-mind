@@ -1,0 +1,77 @@
+{
+  "concept_id": "concave_mirror",
+  "concept_name": "Concave Mirror",
+  "chapter": "Light Reflection Refraction",
+  "class_level": 10,
+  "renderer_hint": {
+    "primary": "optics_ray",
+    "scenario_type": "concave_mirror",
+    "show_graph": false
+  },
+  "variables": {
+    "u": { "symbol": "u", "name": "Object Distance", "unit": "cm", "min": -100, "max": -5, "default": -30 },
+    "f": { "symbol": "f", "name": "Focal Length", "unit": "cm", "min": -50, "max": -5, "default": -15 }
+  },
+  "locked_facts": [
+    "Mirror formula: 1/v + 1/u = 1/f",
+    "Focal length = R/2 where R = radius of curvature",
+    "Object beyond C: real, inverted, diminished image",
+    "Object at C: real, inverted, same size image at C",
+    "Object between C and F: real, inverted, magnified image",
+    "Object at F: image at infinity",
+    "Object within F: virtual, erect, magnified image behind mirror"
+  ],
+  "truth_statements": [
+    "A concave mirror converges light rays that are parallel to the principal axis to the focus",
+    "The mirror formula is 1/v + 1/u = 1/f where all distances are measured from the pole",
+    "When an object is placed within the focal length, the image is virtual, erect and magnified",
+    "Concave mirrors are used as shaving mirrors and in solar furnaces",
+    "The focal length of a concave mirror equals half the radius of curvature"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Place object just inside F. Reflected rays diverge — they never meet in front of the mirror. But their backward extensions meet BEHIND the mirror, forming a virtual, erect, magnified image. This is exactly how a shaving/makeup mirror works — you hold your face within F to see a magnified virtual image.",
+    "visual_emphasis": "Transition from real inverted image (object beyond F) to virtual erect magnified image (object within F). The crossover at F is the critical position."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Object beyond C — real, inverted, diminished",
+      "what_student_sees": "Object far from mirror. Three reflected rays converge between F and C. Small inverted image.",
+      "what_to_emphasize": "When the object is beyond C, the image is real, inverted, and smaller than the object."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Object between C and F — real, inverted, magnified",
+      "what_student_sees": "Object between C and F. Reflected rays converge beyond C. Image is larger and inverted.",
+      "what_to_emphasize": "Moving the object closer to F pushes the image farther away and makes it larger."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Object within F — virtual, erect, magnified",
+      "what_student_sees": "Object between F and P. Reflected rays diverge. Virtual image (dotted) behind mirror — erect and magnified.",
+      "what_to_emphasize": "This is the shaving mirror mode. Inside F, the concave mirror acts as a magnifying mirror."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive — move the object",
+      "what_student_sees": "Slider to adjust object distance. Watch image nature change as object crosses F.",
+      "what_to_emphasize": "F is the critical boundary: beyond F = real inverted, within F = virtual erect magnified."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "concave_always_real",
+      "trigger_keywords": ["concave mirror hamesha real image", "concave mirror = real image always", "concave se virtual nahi banta"],
+      "student_belief": "A concave mirror always forms a real image because it converges light",
+      "actual_physics": "A concave mirror forms a virtual image when the object is placed within the focal length. The reflected rays diverge and their backward extensions form a virtual, erect, magnified image behind the mirror.",
+      "simulation_emphasis": "Show the object crossing F — the image flips from real (inverted, in front) to virtual (erect, behind mirror). This is why F is the most important position to remember."
+    }
+  ],
+  "legend": [
+    { "symbol": "f", "meaning": "Focal length = R/2 (negative for concave)" },
+    { "symbol": "R", "meaning": "Radius of curvature" },
+    { "symbol": "C", "meaning": "Centre of curvature (at 2F)" },
+    { "symbol": "P", "meaning": "Pole of mirror" }
+  ]
+}

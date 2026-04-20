@@ -1,0 +1,154 @@
+{
+  "concept_id": "prism_dispersion",
+  "concept_name": "Prism and Dispersion",
+  "class_level": 12,
+  "chapter": "Ray Optics and Optical Instruments",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "optics_ray",
+    "scenario_type": "prism_dispersion",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "A": {
+      "symbol": "A",
+      "name": "Angle of prism",
+      "unit": "deg",
+      "min": 30,
+      "max": 90,
+      "default": 60
+    },
+    "i1": {
+      "symbol": "i₁",
+      "name": "Angle of incidence at first surface",
+      "unit": "deg",
+      "min": 20,
+      "max": 80,
+      "default": 50
+    },
+    "i2": {
+      "symbol": "i₂",
+      "name": "Angle of emergence at second surface",
+      "unit": "deg",
+      "min": 20,
+      "max": 80,
+      "default": 50
+    },
+    "delta": {
+      "symbol": "δ",
+      "name": "Angle of deviation",
+      "unit": "deg",
+      "min": 0,
+      "max": 90,
+      "default": 40
+    },
+    "delta_min": {
+      "symbol": "δ_min",
+      "name": "Minimum deviation",
+      "unit": "deg",
+      "min": 0,
+      "max": 60,
+      "default": 37.2
+    },
+    "n": {
+      "symbol": "n",
+      "name": "Refractive index of prism material",
+      "unit": "",
+      "min": 1.3,
+      "max": 2.0,
+      "default": 1.52
+    }
+  },
+  "locked_facts": [
+    "Angle of deviation: δ = (i₁ + i₂) - A, where A is the prism angle",
+    "At minimum deviation: i₁ = i₂ (ray passes symmetrically through the prism)",
+    "Prism formula: n = sin((A + δ_min)/2) / sin(A/2)",
+    "Dispersion: n_violet > n_red, so violet bends most and red bends least (VIBGYOR order)",
+    "Thin prism approximation: δ = (n - 1)A, valid for small prism angles",
+    "Angular dispersion = δ_violet - δ_red; dispersive power ω = (n_v - n_r)/(n_y - 1)"
+  ],
+  "truth_statements": [
+    "The deviation produced by a prism depends on the angle of incidence, the angle of the prism, and the refractive index of the prism material",
+    "At minimum deviation, the ray passes symmetrically through the prism with the angle of incidence equal to the angle of emergence",
+    "The splitting of white light into its component colours by a prism is called dispersion, caused by the wavelength dependence of the refractive index",
+    "Violet light has the highest refractive index in glass and deviates the most, while red light has the lowest refractive index and deviates the least",
+    "The refractive index of the prism material can be accurately determined from the minimum deviation angle using n = sin((A + δ_min)/2) / sin(A/2)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "White light enters the prism and emerges as a VIBGYOR spectrum. Show the refractive index values: n_violet = 1.532, n_red = 1.514. The difference is only 0.018 — yet it produces a clearly visible spread of colours! Each colour was always present in white light. The prism does not create colours; it merely separates them because glass slows violet light slightly more than red light. A second inverted prism recombines the colours back into white light — proving the colours were separated, not created.",
+    "visual_emphasis": "VIBGYOR fan emerging from the prism with refractive index labels next to each colour. Show the n difference is tiny (0.018) but the visual effect is dramatic. Optionally show Newton's experiment: second inverted prism recombines the spectrum."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "White light enters the prism",
+      "description": "Triangular prism drawn with angle A = 60°. A white light beam approaches from the left. The first refraction at the entry surface is shown with the angle of incidence i₁ marked.",
+      "emphasis": "White light is a mixture of all visible wavelengths. The prism will separate them because the refractive index depends on wavelength.",
+      "labels_visible": ["A", "i₁", "White light", "n = 1.52 (mean)"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Deviation and the i₁-δ curve",
+      "description": "A single colour (monochromatic) ray passes through the prism. The deviation δ = (i₁ + i₂) - A is shown. As i₁ changes, δ traces a U-shaped curve with a minimum at i₁ = i₂. The minimum deviation angle δ_min is highlighted.",
+      "emphasis": "The deviation is minimum when the ray passes symmetrically: i₁ = i₂. At this point, the prism formula gives n = sin((A + δ_min)/2) / sin(A/2). This is how we measure the refractive index of glass.",
+      "labels_visible": ["δ = (i₁ + i₂) - A", "δ_min at i₁ = i₂", "n = sin((A+δ_min)/2)/sin(A/2)"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Dispersion — VIBGYOR spectrum emerges",
+      "description": "White light enters; the full VIBGYOR spectrum exits as a fan of colours. Violet at the bottom (most deviated), red at the top (least deviated). Refractive indices shown for each colour. The angular dispersion between violet and red is marked.",
+      "emphasis": "n_violet > n_red, so violet bends more. The tiny difference in refractive index (about 0.018 for glass) creates a visible spread of colours. Dispersive power ω = (n_v - n_r)/(n_y - 1).",
+      "labels_visible": ["VIBGYOR", "n_v = 1.532", "n_r = 1.514", "Angular dispersion"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive — explore deviation and dispersion",
+      "description": "Sliders to change the angle of incidence, prism angle, and refractive index. Watch the deviation change and find the minimum deviation experimentally. Toggle between monochromatic and white light to see dispersion.",
+      "emphasis": "Find δ_min by adjusting i₁. Calculate n from the prism formula. Switch to white light to see the spectrum. Try different prism angles to see how dispersion changes.",
+      "interactive": true,
+      "sliders": [
+        { "id": "angleIncidence", "label": "Angle of incidence i₁", "min": 20, "max": 80, "default": 50, "unit": "deg" },
+        { "id": "prismAngle", "label": "Prism angle A", "min": 30, "max": 90, "default": 60, "unit": "deg" },
+        { "id": "refractiveIndex", "label": "Refractive index n", "min": 1.3, "max": 2.0, "default": 1.52, "unit": "" },
+        { "id": "lightType", "label": "Light type", "min": 0, "max": 1, "default": 0, "unit": "0=mono, 1=white" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The prism creates colours — white light is pure and colourless",
+      "trigger_phrases": ["prism colour create karta hai", "prism makes colours", "white light mein colour nahi hota", "prism adds colour", "prism se colour banta hai"],
+      "correction": "The prism does NOT create colours. White light already contains all colours (wavelengths) mixed together. The prism merely separates them because different wavelengths travel at different speeds in glass (different n values). Newton proved this by passing the spectrum through a second inverted prism — the colours recombined into white light.",
+      "simulation_emphasis": "Show Newton's two-prism experiment: first prism disperses white light into VIBGYOR, second inverted prism recombines the spectrum back into white light. This proves colours were always present in white light."
+    },
+    {
+      "belief": "All colours exit the prism at the same angle — they just look different",
+      "trigger_phrases": ["sab colours same angle se nikalte hain", "colors exit at same angle", "prism se sabka same deviation", "all colours same angle", "same deviation sab ka"],
+      "correction": "Different colours exit at DIFFERENT angles because each colour has a different refractive index in glass. Violet (n ≈ 1.532) deviates the most, red (n ≈ 1.514) deviates the least. The difference is small in n but produces a visible angular spread — this is dispersion.",
+      "simulation_emphasis": "Show the exit fan clearly with angle labels for violet and red. Display the n values next to each colour. The difference in n is small (~0.018) but produces a visible spread of colours."
+    },
+    {
+      "belief": "Red light bends the most because it has the most energy",
+      "trigger_phrases": ["red zyada bend hota hai", "red bends more", "red has more energy so bends more", "laal sabse zyada mudta hai"],
+      "correction": "Red light actually bends the LEAST because it has the lowest refractive index in glass. Violet bends the most despite having higher energy. The bending is determined by n (which depends on wavelength), not by energy. Higher frequency (violet) means higher n in glass, which means more bending.",
+      "simulation_emphasis": "Show VIBGYOR fan with violet at the bottom (most deviated) and red at the top (least deviated). Label the refractive indices clearly to show n_violet > n_red."
+    }
+  ],
+  "legend": [
+    { "symbol": "A", "meaning": "Angle of prism (between the two refracting surfaces)" },
+    { "symbol": "δ", "meaning": "Angle of deviation = (i₁ + i₂) - A" },
+    { "symbol": "δ_min", "meaning": "Minimum angle of deviation (when i₁ = i₂)" },
+    { "symbol": "i₁, i₂", "meaning": "Angles of incidence and emergence at the two surfaces" },
+    { "symbol": "n", "meaning": "Refractive index of prism material" },
+    { "symbol": "ω", "meaning": "Dispersive power = (n_v - n_r)/(n_y - 1)" },
+    { "symbol": "VIBGYOR", "meaning": "Violet, Indigo, Blue, Green, Yellow, Orange, Red" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["refraction_snells_law_class12"],
+    "extensions": ["optical_instruments"],
+    "siblings": ["total_internal_reflection", "thin_lens_formula"],
+    "common_exam_combinations": ["refraction_snells_law_class12", "total_internal_reflection"]
+  }
+}

@@ -1,0 +1,671 @@
+{
+  "concept_id": "rain_umbrella",
+  "concept_name": "Rain Problems — Velocity of Rain Relative to Man, Umbrella Direction",
+  "class_level": 11,
+  "chapter": "Kinematics",
+  "section": "6.10",
+  "source_coverage": {
+    "dc_pandey": "Chapter 6, Section 6.10 — Rain Problems (Examples 6.34, 6.35; Exercise Problems 7, 8)",
+    "ncert": "Chapter 4 — Motion in a Plane, Section 4.6",
+    "hc_verma": "Chapter 3 — Rest and Motion: Kinematics, Section 3.7"
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "technology_b": "plotly",
+    "renderer": "mechanics_2d",
+    "scenario_type": "rain_umbrella",
+    "panel_count": 2,
+    "sync_required": true,
+    "scene_mode": true,
+    "show_labels": true,
+    "scene_elements": [
+      "rain_streaks",
+      "walking_person",
+      "umbrella",
+      "velocity_vectors",
+      "wind_arrows"
+    ],
+    "panel_a_role": "Realistic scene — person walking in rain, rain streaks showing apparent direction, umbrella tilts to match v_rm direction as slider changes man's speed",
+    "panel_b_role": "Plotly vector diagram — v_r (rain in ground frame), v_m (man's velocity), −v_m drawn, v_rm = v_r − v_m resultant shown with angle labeled"
+  },
+  "locked_facts": {
+    "three_velocities": "Three velocities: v_r = rain velocity in ground frame (usually vertically downward). v_m = man's velocity (horizontal, direction of walking). v_rm = velocity of rain relative to man = v_r − v_m.",
+    "umbrella_direction": "Man must hold umbrella in the direction of v_rm (rain as it appears to him) to avoid getting wet. NOT in the direction of v_r (actual rain).",
+    "formula": "v_rm = v_r − v_m (vector subtraction). In component form: v_rm_x = v_rx − v_mx, v_rm_y = v_ry − v_my.",
+    "rain_vertical_man_horizontal": "Standard case: v_r = (0, −v_r) downward, v_m = (v_m, 0) horizontal (eastward). Then v_rm = (−v_m, −v_r). Umbrella tilts FORWARD (in direction of walking) at angle θ = tan⁻¹(v_m / v_r) from vertical.",
+    "angle_formula": "Angle of umbrella from vertical = tan⁻¹(v_m / v_r). Forward tilt in direction of motion.",
+    "dc_pandey_ex634": "Example 6.34: v_m = 3 m/s east, v_r = 4 m/s vertically down. v_rm = (−3, −4). Angle from vertical = tan⁻¹(3/4) = 37° east of vertical (forward tilt). |v_rm| = √(9+16) = 5 m/s.",
+    "dc_pandey_ex635": "Example 6.35: At v_m = 3 km/h rain appears vertical → v_rm has no horizontal component → v_rx = v_m = 3 km/h (rain has horizontal component 3 km/h eastward). At v_m = 6 km/h, rain appears at 45° → tan45° = 1 → |v_rm_x| = |v_rm_y| → 6−3 = 3 = v_ry. So v_ry = 3 km/h. Speed of rain = √(3²+3²) = 3√2 km/h.",
+    "faster_walking_more_tilt": "As man walks faster (v_m increases), v_rm tilts more forward. Umbrella must tilt more in direction of walking.",
+    "stopped_man": "If man is stationary (v_m = 0): v_rm = v_r = vertically down. Umbrella held vertically. As soon as he walks, it tilts forward.",
+    "running_vs_walking": "Faster running → more forward tilt. This matches experience: in heavy rain, running requires more forward lean of umbrella than walking."
+  },
+  "minimum_viable_understanding": "v_rm = v_r − v_m. Rain appears to come from the direction of v_rm to the man. Tilt umbrella in that direction. For vertical rain + horizontal walking: umbrella tilts forward at tan⁻¹(v_m / v_r) from vertical.",
+  "variables": {
+    "v_r": "Rain velocity in ground frame — usually (0, −v_r) vertically downward (m/s or km/h)",
+    "v_m": "Man's velocity in ground frame — horizontal (m/s or km/h)",
+    "v_rm": "Rain velocity relative to man = v_r − v_m (m/s or km/h)",
+    "theta": "Angle of umbrella (= angle of v_rm) from vertical = tan⁻¹(v_m / v_r)",
+    "v_rx": "Horizontal component of actual rain velocity (zero unless wind is blowing)",
+    "v_ry": "Vertical component of actual rain velocity (downward)"
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "rain umbrella problem",
+      "umbrella direction rain",
+      "velocity of rain relative to man",
+      "rain problem kinematics",
+      "baarish mein umbrella kahan hold karein"
+    ],
+    "local_triggers": [
+      "umbrella angle from vertical",
+      "rain appears to fall at angle",
+      "find direction to hold umbrella",
+      "v_rm direction",
+      "man walking in rain angle",
+      "rain speed calculation from two observations"
+    ],
+    "micro_triggers": [
+      "v_rm formula",
+      "umbrella tilt forward backward",
+      "rain appears vertical why",
+      "faster walking more umbrella tilt"
+    ],
+    "simulation_not_needed_triggers": [
+      "state the formula for rain relative to man",
+      "write v_rm equals"
+    ],
+    "subconcept_triggers": {
+      "basic_rain_setup": [
+        "man walking east rain falling down",
+        "umbrella direction vertical rain",
+        "basic rain umbrella problem"
+      ],
+      "rain_with_wind": [
+        "rain falling at angle",
+        "rain not vertical",
+        "wind blowing rain",
+        "rain has horizontal component"
+      ],
+      "find_rain_speed": [
+        "find speed of rain from two observations",
+        "rain appears vertical then 45 degrees",
+        "two different speeds rain problem",
+        "DC Pandey example 6.35"
+      ],
+      "umbrella_tilt_direction": [
+        "umbrella forward or backward",
+        "tilt direction umbrella walking",
+        "which way to tilt umbrella"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "understands_v_rm_formula": "enter at STATE_2",
+    "understands_umbrella_direction": "enter at STATE_3",
+    "understands_angle_calculation": "enter at STATE_4",
+    "understands_find_rain_speed": "enter at STATE_5"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "relative_motion",
+      "vector_components"
+    ],
+    "gate_question": "Rain falls at 5 m/s vertically. Man walks east at 5 m/s. What is the direction of rain relative to the man? (Answer: 45° forward from vertical. If student cannot do this, cover relative_motion first.)",
+    "if_gap_detected": "redirect to relative_motion.json — rain-umbrella is v_rm = v_r − v_m, a direct application of relative velocity"
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "board_mode_states": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "jee_mode_states": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Hook — Why Does Rain Hit You From the Front When You Run?",
+        "physics_layer": {
+          "concept": "Rain falls vertically in the ground frame, but a moving person experiences it as coming from a forward angle",
+          "simulation_focus": "Panel A: rain falling straight down (vertical streaks). Person standing still — rain hits top of umbrella, held vertical. Now person walks right — rain streaks on Panel A appear to tilt forward. Umbrella must tilt forward to keep dry. Speed slider: faster walking → more tilt.",
+          "what_to_show": "Rain hasn't changed direction in reality. But from the person's perspective (moving frame), it appears to come from ahead. This is why runners get wetter on their front than their back.",
+          "key_observation": "The rain's apparent direction changes when the observer moves. v_rm = v_r − v_m captures exactly this change.",
+          "scenario": "rain_vertical_stationary"
+        },
+        "pedagogy_layer": {
+          "opening_question": "You're standing in rain — umbrella held straight up. You start running. Which way must you tilt the umbrella? Why?",
+          "teacher_script": "The rain didn't change. You changed. But from your moving perspective, the rain now appears to come from ahead. Your umbrella must face that apparent direction.",
+          "real_world": "This is why motorcyclists feel rain hitting their visor from the front, not from above. Same rain, faster observer, more forward tilt."
+        }
+      },
+      "STATE_2": {
+        "label": "The Formula — v_rm = v_r − v_m",
+        "physics_layer": {
+          "concept": "Rain relative to man = subtract man's velocity from rain's velocity",
+          "component_setup": "Standard case: v_r = (0, −v_r) [vertically down, negative y]. v_m = (v_m, 0) [eastward, positive x]. v_rm = v_r − v_m = (0 − v_m, −v_r − 0) = (−v_m, −v_r).",
+          "simulation_focus": "Panel B vector diagram: draw v_r downward. Draw −v_m leftward (reverse of man's velocity). Add them: resultant v_rm points diagonally down-and-left (forward from man's perspective). Umbrella points in this direction.",
+          "key_insight": "The −v_m term is the key. Man moves right (+x) → rain appears to come from right (−x component of v_rm). So umbrella tilts right (forward in direction of walking).",
+          "scenario": "person_moving_rain_appears_angled"
+        },
+        "pedagogy_layer": {
+          "memory_trick": "v_rm = v_r − v_m. Subtract the MAN'S velocity. It's the same formula as all relative velocity — observer's velocity subtracted.",
+          "common_mistake": "Students write v_rm = v_m − v_r (reversed). The rain (r) comes first because rain is the OBJECT being observed."
+        }
+      },
+      "STATE_3": {
+        "label": "The Umbrella Direction — Forward Tilt at tan⁻¹(v_m / v_r)",
+        "physics_layer": {
+          "concept": "Angle of umbrella = angle of v_rm from vertical = tan⁻¹(v_m / v_r)",
+          "derivation": "v_rm = (−v_m, −v_r). Angle from vertical (y-axis) = tan⁻¹(|horizontal| / |vertical|) = tan⁻¹(v_m / v_r). Direction: forward (in direction of walking).",
+          "dc_pandey_ex634": "Example 6.34: v_m = 3 m/s east, v_r = 4 m/s down. v_rm = (−3, −4). Angle = tan⁻¹(3/4) = 37°. Hold umbrella 37° east of vertical (forward). |v_rm| = 5 m/s.",
+          "simulation_focus": "Panel A: umbrella shown at 37° forward. Panel B: v_rm vector at 37° from vertical. Slider: change v_m → angle changes live → umbrella on Panel A tilts correspondingly.",
+          "special_cases": "v_m = 0 (standing): angle = 0°, umbrella vertical. v_m = v_r: angle = 45°. v_m >> v_r: angle → 90°, umbrella horizontal (held in front like a shield).",
+          "scenario": "relative_rain_velocity"
+        },
+        "pedagogy_layer": {
+          "key_message": "Two numbers determine the umbrella angle: how fast you walk (v_m) and how fast rain falls (v_r). Faster walking or slower rain → more tilt.",
+          "jee_tip": "Always resolve into components. Never try to add magnitudes at an angle. Component method is foolproof."
+        }
+      },
+      "STATE_4": {
+        "label": "Rain With Wind — When v_r Has a Horizontal Component",
+        "physics_layer": {
+          "concept": "If wind blows rain at an angle, v_r has both horizontal and vertical components",
+          "setup": "v_r = (v_rx, −v_ry) where v_rx = horizontal rain component (due to wind), v_ry = vertical rain speed. v_m = (v_m, 0). v_rm = (v_rx − v_m, −v_ry).",
+          "dc_pandey_ex635_setup": "Example 6.35: Rain appears vertical when v_m = 3 km/h. Vertical appearance means v_rm has no horizontal component: v_rx − v_m = 0 → v_rx = 3 km/h. So rain has a horizontal component of 3 km/h (eastward wind). When v_m = 6 km/h: v_rm_x = 3−6 = −3 km/h, v_rm_y = −v_ry. Appears at 45°: tan45°=1 → 3 = v_ry → v_ry = 3 km/h. Speed of rain = √(3²+3²) = 3√2 km/h.",
+          "simulation_focus": "Panel A: rain falls at angle (wind present). Panel B: v_r has diagonal component. At v_m=3: v_rm points straight down. At v_m=6: v_rm at 45°. Student sees both cases on slider.",
+          "scenario": "umbrella_tilt_angle"
+        },
+        "pedagogy_layer": {
+          "key_message": "When rain appears vertical to a moving man, it means rain actually has a horizontal wind component equal to the man's speed. This is the hidden information in Example 6.35.",
+          "jee_tip": "Two-observation problems (rain appears vertical at speed v₁, then at angle θ at speed v₂) always give two equations: one from each observation. Solve for v_rx and v_ry."
+        }
+      },
+      "STATE_5": {
+        "label": "The Aha Moment — Reconstructing Rain Velocity From Observations",
+        "physics_layer": {
+          "concept": "If a man makes two observations of rain direction at two different walking speeds, he can calculate actual rain velocity",
+          "method": "Observation 1 gives one equation. Observation 2 gives second equation. Two unknowns (v_rx, v_ry) → solvable.",
+          "simulation_focus": "Panel A: person walks at two speeds, observer marks umbrella angle each time. Panel B: two v_rm vectors drawn. Their intersection (tracing back) gives actual v_r.",
+          "dc_pandey_ex635_solution": "From Ex 6.35: Observation 1 (v_m=3, vertical) → v_rx=3. Observation 2 (v_m=6, 45°) → v_ry=3. Speed = √(3²+3²) = 3√2 km/h ≈ 4.24 km/h.",
+          "general_method": "Let v_r = (a, −b). Condition 1: v_rm_x = a − v_m1 = 0 (vertical) → a = v_m1. Condition 2: |v_rm_x / v_rm_y| = tan(θ) → solve for b.",
+          "scenario": "tilt_forward_rule"
+        },
+        "pedagogy_layer": {
+          "key_message": "Every rain problem reduces to: write v_r = (a, −b) as unknowns, apply conditions from observations, solve algebraically. The physics never changes — only the given information varies."
+        }
+      },
+      "STATE_6": {
+        "label": "Student Interaction — DC Pandey Examples Live",
+        "physics_layer": {
+          "problem_1": "DC Pandey Ex 6.34: v_m=3m/s east, v_r=4m/s down. Find umbrella direction.",
+          "solution_1": "v_rm = (−3, −4). |v_rm|=5. Angle=tan⁻¹(3/4)=37° east of vertical.",
+          "problem_2": "DC Pandey Ex 6.35: Rain vertical at v_m=3, appears 45° at v_m=6. Find rain speed.",
+          "solution_2": "v_rx=3 (from observation 1). v_ry=3 (from tan45°=1, |v_rm_x|=|v_rm_y|=3). Speed=3√2 km/h.",
+          "interactive": "Student sets man's speed slider and sees umbrella angle update on Panel A. Then solves Ex 6.35 by identifying what angle = vertical means (v_rm_x = 0).",
+          "scenario": "speed_affects_tilt"
+        },
+        "pedagogy_layer": {
+          "teacher_script": "Two problems, same formula, different what's-unknown. Ex 6.34: find angle (v_r and v_m both known). Ex 6.35: find v_r (angle given at two speeds). One formula, infinite variations."
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "umbrella_direction_backward",
+      "misconception": "Student thinks umbrella should tilt backward (away from direction of walking) because rain 'hits from behind' when running",
+      "student_belief": "When running forward, rain hits my back, so umbrella should tilt backward",
+      "trigger_phrases": [
+        "umbrella tilt backward",
+        "rain hits from back when running",
+        "forward running tilt umbrella back",
+        "opposite direction tilt",
+        "aage bhagna to peeche tilt karo"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Person runs right. Rain falls vertically. Student tilts umbrella backward (left). Simulation: rain hits face from the front — person gets wet on front. Correct tilt: forward (right). With forward tilt: rain hits the umbrella, person stays dry.",
+            "label": "Backward tilt = rain hits your face. Forward tilt = umbrella catches the rain. Your front faces the apparent rain direction.",
+            "scenario": "umbrella_direction_backward_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "v_rm = (−v_m, −v_r). Horizontal component is −v_m — NEGATIVE x direction, meaning rain appears to come FROM THE FRONT (positive x = your direction of motion, rain comes from that side). Umbrella must face toward the rain — FORWARD."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Physical intuition: imagine running through stationary raindrops in zero gravity. You run INTO them — they hit your front. Add gravity: drops also fall downward. The combined effect is they come from diagonally ahead. Umbrella faces diagonally ahead (forward tilt).",
+            "label": "Running into rain = rain appears to come from ahead. Always tilt umbrella FORWARD — in the direction you are moving.",
+            "scenario": "umbrella_direction_backward_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "Umbrella tilt is ALWAYS forward (in direction of motion) for vertically falling rain. No exceptions. Faster motion = more forward tilt."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "uses_actual_rain_direction",
+      "misconception": "Student holds umbrella in direction of actual rain (v_r) instead of apparent rain (v_rm)",
+      "student_belief": "Umbrella should point in the direction rain actually falls — vertically for vertical rain",
+      "trigger_phrases": [
+        "rain falls vertically so hold umbrella vertically",
+        "actual rain direction for umbrella",
+        "rain is vertical umbrella must be vertical",
+        "why not use v_r for umbrella direction"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Rain falls vertically. Man walks east at 5 m/s. Student holds umbrella vertical (v_r direction). Simulation: rain hits man's front — he gets wet from forward-angled apparent rain. Switch umbrella to v_rm direction (forward tilt at 45°) — dry.",
+            "label": "Vertical umbrella for vertical rain — works only if man is stationary. Moving man: vertical umbrella leaves front exposed.",
+            "scenario": "ru_wrong_rain_speed_only"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "In the man's moving frame, rain does NOT come from vertically above. It comes from diagonally ahead. His frame is tilted relative to ground frame by his own motion. The umbrella must face the apparent direction — v_rm, not v_r."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show two frames side by side: Ground frame — rain vertical, man moving right. Man's frame — man stationary, rain approaches from diagonal ahead. Umbrella in man's frame must face the diagonal (v_rm). This is exactly what he sees in practice.",
+            "label": "Ground frame: rain vertical. Man's frame: rain diagonal. The umbrella lives in the MAN'S frame — it faces v_rm.",
+            "scenario": "ru_aha_person_creates_wind"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "reversed_formula_v_m_minus_v_r",
+      "misconception": "Student writes v_rm = v_m − v_r instead of v_r − v_m",
+      "student_belief": "v_rm = v_m − v_r (man's velocity minus rain's velocity)",
+      "trigger_phrases": [
+        "v_m minus v_r",
+        "man velocity minus rain velocity",
+        "wrong sign rain problem",
+        "got opposite direction",
+        "answer direction seems flipped"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "v_m = 3 m/s east, v_r = 4 m/s down. Student: v_rm = v_m − v_r = (3,0) − (0,−4) = (3, 4) — points up and right. Umbrella tilts backward and upward. Simulation shows person getting soaked on front. Correct: v_rm = (0,−4) − (3,0) = (−3,−4) — points forward and down, umbrella tilts forward.",
+            "label": "v_m − v_r gives upward-backward result. v_r − v_m gives forward-downward result. Only the second makes physical sense.",
+            "scenario": "reversed_formula_v_m_minus_v_r_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "v_rm = v_r − v_m. Rain is the object being observed. Man is the observer. Observer's velocity is subtracted. Rain comes first — it's the rain's velocity that matters, minus the man's."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Memory anchor: you are the man (observer B). Rain is object A. V_AB = V_A − V_B. Rain relative to man = V_rain − V_man = v_r − v_m. The formula is always OBJECT minus OBSERVER. Rain is object. Man is observer.",
+            "label": "Rain relative to man = rain (object) minus man (observer). Consistent with all relative velocity: V_AB = V_A − V_B.",
+            "scenario": "reversed_formula_v_m_minus_v_r_s2"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "find_rain_speed_confusion",
+      "misconception": "In two-observation problems, student cannot extract actual rain velocity from apparent directions",
+      "student_belief": "If rain appears vertical at one speed, then actual rain must be vertical",
+      "trigger_phrases": [
+        "rain appears vertical so rain is vertical",
+        "how to find actual rain speed from observations",
+        "two speed rain problem solve karna nahi aata",
+        "example 6.35 confused",
+        "rain vertical appearance matlab"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Man at 3 km/h — rain appears vertical. Student says: actual rain must be vertical (v_rx = 0). But simulation shows: if actual rain were vertical, man at 6 km/h should see it at angle tan⁻¹(6/v_ry). Problem says he sees it at 45° — that's consistent ONLY if v_ry = 3, not matching a purely vertical rain unless v_ry=6.",
+            "label": "Rain appears vertical to a MOVING man ≠ rain is actually vertical. Apparent vertical means v_rm_x = 0 → v_rx = v_m. Rain has a horizontal component equal to man's speed.",
+            "scenario": "find_rain_speed_confusion_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "Apparent vertical means the relative velocity has no horizontal component — not that actual rain has no horizontal component. The man's motion has already cancelled the horizontal component of rain. So v_rx = v_m."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Step-by-step Ex 6.35 solution: Let v_r = (a, −b). Condition 1: v_rm_x = a − 3 = 0 → a = 3. Condition 2: v_rm at 45° when v_m=6 → tan45° = |a−6|/b = 3/b = 1 → b = 3. Speed = √(9+9) = 3√2 km/h. Show on Panel B: two v_rm vectors, one vertical (at v_m=3), one at 45° (at v_m=6), both consistent with same underlying v_r.",
+            "label": "Two observations = two equations. Solve simultaneously. The actual rain vector is constant — only the apparent direction changes with man's speed.",
+            "scenario": "find_rain_speed_confusion_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "Two-observation rain problem template: (1) Write v_r = (a, −b). (2) Apply v_rm = v_r − v_m for each observation. (3) Use given apparent direction to write equation. (4) Solve for a and b. (5) Speed = √(a²+b²)."
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "micro_1": {
+      "trigger": "umbrella direction formula quick",
+      "scope": "micro",
+      "states": 2,
+      "content": "Umbrella direction = direction of v_rm = v_r − v_m. For vertical rain + horizontal walking: v_rm = (−v_m, −v_r). Angle from vertical = tan⁻¹(v_m / v_r). Tilt FORWARD (in direction of walking). Faster walking OR slower rain = more tilt."
+    },
+    "micro_2": {
+      "trigger": "why rain appears to come from front",
+      "scope": "micro",
+      "states": 2,
+      "content": "Rain falls vertically in ground frame. Moving man subtracts his own velocity: v_rm = v_r − v_m = (0,−v_r) − (v_m,0) = (−v_m, −v_r). The horizontal component −v_m means rain appears to come FROM the direction the man is moving toward (from his front). This is not an illusion — in his reference frame, rain genuinely arrives from ahead."
+    },
+    "micro_3": {
+      "trigger": "DC Pandey example 6.34 solution",
+      "scope": "micro",
+      "states": 2,
+      "content": "Ex 6.34: v_m=3m/s east, v_r=4m/s down. v_rm = (0,−4) − (3,0) = (−3,−4). |v_rm|=√(9+16)=5m/s. Angle from vertical = tan⁻¹(3/4) = 37° east of vertical (forward tilt). Hold umbrella 37° toward east from vertical."
+    },
+    "micro_4": {
+      "trigger": "rain appears vertical to moving man",
+      "scope": "micro",
+      "states": 2,
+      "content": "If rain appears vertical to man moving at speed v_m: v_rm_x = 0 → v_rx − v_m = 0 → v_rx = v_m. The actual rain has a horizontal component equal to the man's speed. Rain is NOT actually vertical — it has a wind component. This is the key hidden information in two-observation problems."
+    },
+    "micro_5": {
+      "trigger": "DC Pandey example 6.35",
+      "scope": "micro",
+      "states": 3,
+      "content": "Ex 6.35: Rain vertical at v_m=3 km/h → v_rx=3. Rain at 45° at v_m=6 km/h → |v_rm_x/v_rm_y|=1 → |(3−6)/v_ry|=1 → v_ry=3 km/h. Speed of rain = √(3²+3²) = 3√2 ≈ 4.24 km/h. Rain has equal horizontal and vertical components."
+    }
+  },
+  "static_responses": {
+    "formula_reference": {
+      "trigger": "rain umbrella formulas",
+      "simulation_needed": false,
+      "response": "Rain umbrella formulas: (1) v_rm = v_r − v_m (vector). (2) Standard case (vertical rain, horizontal walking): v_rm = (−v_m, −v_r). (3) Umbrella angle from vertical = tan⁻¹(v_m / v_r), tilted FORWARD. (4) |v_rm| = √(v_m² + v_r²). (5) If rain appears vertical to man at speed v₁: actual v_rx = v₁. (6) Two observations → two equations → solve for actual v_r components."
+    },
+    "tilt_direction_quick": {
+      "trigger": "which way to tilt umbrella rain",
+      "simulation_needed": false,
+      "response": "Always tilt umbrella FORWARD — in the direction you are walking/running. For vertical rain: tilt at angle tan⁻¹(v_m/v_r) from vertical toward front. If rain has a wind component blowing at you: tilt even more toward front. If wind blows rain from behind: you may need to tilt slightly backward — compute v_rm to determine exact direction."
+    }
+  },
+  "problem_guidance_path": {
+    "description": "Step-by-step for rain-umbrella problems (DC Pandey pattern)",
+    "step_1": "Identify what is known: v_r components (vertical, and horizontal if wind), v_m (man's speed and direction).",
+    "step_2": "Write v_rm = v_r − v_m in component form.",
+    "step_3": "Find angle from vertical: θ = tan⁻¹(|v_rm_x| / |v_rm_y|). Direction of tilt = sign of v_rm_x.",
+    "step_4": "For two-observation problems: write v_r = (a, −b). Apply v_rm = v_r − v_m for each observation. Use given apparent direction (vertical, or angle) to form equations. Solve for a and b.",
+    "step_5": "Speed of rain = √(a² + b²). Angle of actual rain from vertical = tan⁻¹(a/b).",
+    "common_errors": [
+      "Tilting umbrella backward instead of forward",
+      "Using v_r as umbrella direction (ignoring man's motion)",
+      "Writing v_rm = v_m − v_r (reversed formula)",
+      "In two-observation problems: assuming actual rain is vertical when apparent rain is vertical",
+      "Adding speeds as scalars in 2D"
+    ]
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Example 6.34, Section 6.10",
+      "principle": "Man walks 3m/s east, rain falls 4m/s down — finding umbrella direction using v_rm = v_r − v_m",
+      "aha": "Result: 3-4-5 right triangle; umbrella at 37° forward. The Pythagorean triple makes this a standard JEE number set.",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Example 6.35, Section 6.10",
+      "principle": "Two observations of apparent rain direction at different walking speeds — back-calculating actual rain velocity vector",
+      "aha": "Rain appears vertical to moving man does NOT mean rain is vertical — it means rain has horizontal component exactly equal to man's speed. Classic hidden-information trap.",
+      "simulation_states": 3
+    },
+    "example_3": {
+      "source": "DC Pandey Exercise Problem 7, Section 6.10",
+      "principle": "Cyclist case — rain appears to fall from front at 45° when cycling at 18 km/h; find actual rain speed when rain falls vertically",
+      "aha": "Cyclist at 18 km/h sees rain at 45° forward → v_m = v_r (equal horizontal and vertical) → v_r = 18 km/h. Speed and direction of actual rain from one observation when actual direction is known.",
+      "simulation_states": 2
+    },
+    "example_4": {
+      "source": "DC Pandey Exercise Problem 8, Section 6.10",
+      "principle": "Man changes direction — rain appears from different angle; find actual wind+rain velocity",
+      "aha": "Two different walking DIRECTIONS (not just speeds) also give two equations. The method is identical — v_rm = v_r − v_m applied twice with different v_m vectors.",
+      "simulation_states": 2
+    }
+  },
+  "assessment_path": {
+    "question_1": {
+      "text": "A man walks east at 3 m/s. Rain falls vertically at 4 m/s. In which direction should he hold his umbrella?",
+      "options": [
+        "Vertically upward",
+        "37° west of vertical (backward tilt)",
+        "37° east of vertical (forward tilt)",
+        "45° east of vertical"
+      ],
+      "correct": 2,
+      "if_wrong_0": "route to uses_actual_rain_direction — student ignores man's motion",
+      "if_wrong_1": "route to umbrella_direction_backward — student tilts backward",
+      "explanation": "v_rm = (0,−4) − (3,0) = (−3,−4). Angle = tan⁻¹(3/4) = 37° from vertical, toward east (forward). DC Pandey Example 6.34."
+    },
+    "question_2": {
+      "text": "Same man doubles his speed to 6 m/s east. The umbrella angle from vertical now becomes:",
+      "options": [
+        "37°",
+        "53°",
+        "45°",
+        "60°"
+      ],
+      "correct": 1,
+      "explanation": "v_rm = (−6, −4). Angle = tan⁻¹(6/4) = tan⁻¹(1.5) = 56.3° ≈ 53°. More forward tilt as speed increases."
+    },
+    "question_3": {
+      "text": "Rain appears to fall vertically to a man cycling at 4 m/s east. The actual rain:",
+      "options": [
+        "Falls vertically",
+        "Has a horizontal eastward component of 4 m/s",
+        "Has a horizontal westward component of 4 m/s",
+        "Cannot be determined"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to find_rain_speed_confusion — student thinks apparent vertical = actual vertical",
+      "explanation": "Apparent vertical means v_rm_x = 0 → v_rx − 4 = 0 → v_rx = 4 m/s eastward. Rain has a horizontal wind component of 4 m/s east."
+    },
+    "question_4": {
+      "text": "Rain appears vertical when man walks at 3 km/h, appears at 45° to vertical when he walks at 6 km/h. Speed of rain?",
+      "options": [
+        "3 km/h",
+        "3√2 km/h",
+        "6 km/h",
+        "√3 km/h"
+      ],
+      "correct": 1,
+      "if_wrong_2": "route to find_rain_speed_confusion",
+      "explanation": "v_rx=3 (from observation 1). At v_m=6: |v_rm_x/v_rm_y|=tan45°=1 → |(3−6)/v_ry|=1 → v_ry=3. Speed=√(9+9)=3√2 km/h. DC Pandey Example 6.35."
+    },
+    "question_5": {
+      "text": "Man walks at 4 m/s. Rain falls at 4 m/s vertically. Umbrella angle from vertical is:",
+      "options": [
+        "30°",
+        "45°",
+        "60°",
+        "37°"
+      ],
+      "correct": 1,
+      "explanation": "tan θ = v_m/v_r = 4/4 = 1 → θ = 45°. Equal speeds → 45° forward tilt."
+    }
+  },
+  "session_awareness": {
+    "if_already_shown_epic_l": "Go directly to two-observation problems — student knows basic umbrella direction, needs to practice back-calculating rain speed",
+    "if_coming_from_river_boat": "Perfect transition — same v_AB = v_A − v_B formula, different physical setup. River boat: v_b = v_br + v_r. Rain: v_rm = v_r − v_m. Same algebra, different labels.",
+    "if_coming_from_relative_motion": "Rain-umbrella is the most everyday application of relative velocity. Student already knows the formula — just apply it to rain."
+  },
+  "waypoints": {
+    "fallback_unknown_confusion": "Default to DC Pandey Example 6.34 (v_m=3, v_r=4, 3-4-5 triangle, 37° answer). It's clean, memorable, and covers the complete method. Most confusion resolves with this concrete example.",
+    "escalation_trigger": "If student asks about rain when man accelerates (not constant speed) — escalate: the apparent rain direction changes continuously, requires instantaneous v_rm calculation at each moment."
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks what happens to umbrella angle if man is accelerating (not constant velocity)",
+    "escalate_to": "v_rm = v_r − v_m(t). As v_m changes with time, the apparent rain direction changes continuously. Umbrella must continuously adjust — this is why running in rain with a tilted umbrella requires constant adjustment.",
+    "level": "Conceptual / JEE Advanced application"
+  },
+  "parameter_slots": {
+    "v_r": {
+      "label": "rain speed (vertically downward)",
+      "range": [
+        1,
+        20
+      ],
+      "unit": "m/s or km/h",
+      "default": 4,
+      "extraction_hint": "rain speed, falling speed, or v_r ="
+    },
+    "v_m": {
+      "label": "man's walking/running speed",
+      "range": [
+        1,
+        20
+      ],
+      "unit": "m/s or km/h",
+      "default": 3,
+      "extraction_hint": "man's speed, walking speed, cycling speed, or v_m ="
+    },
+    "v_rx": {
+      "label": "horizontal rain component (wind)",
+      "range": [
+        0,
+        10
+      ],
+      "unit": "m/s or km/h",
+      "default": 0,
+      "extraction_hint": "horizontal rain component, wind speed affecting rain direction"
+    }
+  },
+  "panel_sync_spec": {
+    "canvas_to_graph": {
+      "trigger": "STATE_N_reached",
+      "action": "Panel B vector diagram shows v_r, v_m, and v_rm for current state values; angle labeled"
+    },
+    "graph_to_canvas": {
+      "trigger": "student_moves_vm_slider",
+      "action": "Panel A rain scene updates — streaks tilt, umbrella rotates to new angle"
+    },
+    "slider_to_both": {
+      "parameter": "v_m",
+      "canvas_action": "person walks faster, rain streaks tilt more forward, umbrella angle increases",
+      "graph_action": "v_m arrow grows, v_rm vector rotates toward horizontal, angle label updates"
+    }
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "Find umbrella angle: given v_m and v_r (vertical rain + horizontal walking)",
+      "Find actual rain speed from two observations of apparent direction",
+      "Rain appears vertical at speed v₁ — find horizontal rain component",
+      "Rain appears at angle θ when man walks at v — find rain speed",
+      "Assertion: man should hold umbrella in direction of v_r. Reason: rain falls in direction v_r."
+    ],
+    "common_traps": [
+      "Tilting umbrella backward (rain hits front — physically wrong)",
+      "Holding umbrella vertical for vertical rain when man is moving",
+      "v_rm = v_m − v_r instead of v_r − v_m",
+      "Apparent vertical rain = actual vertical rain (FALSE — has horizontal component = v_m)",
+      "Adding speeds as scalars: |v_rm| = v_r + v_m (wrong — it's √(v_r² + v_m²) for perpendicular)"
+    ],
+    "key_results": [
+      "v_rm = v_r − v_m (always — rain is object, man is observer)",
+      "Standard case: angle from vertical = tan⁻¹(v_m / v_r), forward tilt",
+      "Apparent vertical → v_rx = v_m (rain has horizontal component equal to man's speed)",
+      "Two observations → two equations, solve for v_rx and v_ry",
+      "|v_rm| = √(v_m² + v_r²) for vertical rain and horizontal walking",
+      "DC Pandey Ex 6.34: 3-4-5 triangle, 37° forward (memorize this set)"
+    ],
+    "assertion_reason_traps": {
+      "assertion": "A man walking east should hold his umbrella tilted east of vertical",
+      "reason": "The rain appears to come from the east due to his relative motion",
+      "answer": "Both A and R true, R is correct explanation"
+    }
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "relative_motion",
+      "vector_components",
+      "river_boat_problems"
+    ],
+    "extensions": [
+      "projectile_motion",
+      "pseudo_forces"
+    ],
+    "siblings": [
+      "river_boat_problems",
+      "relative_motion"
+    ],
+    "common_exam_combinations": [
+      "river_boat — both use v_AB = v_A − v_B; river boat has v_b = v_br + v_r (equivalent form)",
+      "relative_motion — rain umbrella is the most testable application of relative velocity in JEE",
+      "vector_components — resolving v_rm into components is the core computational step"
+    ]
+  },
+  "three_js_flag": false,
+  "three_js_note": "Rain-umbrella is 2D planar motion. scene_mode=True in canvas2d handles realistic rain streaks, person, and umbrella. Three.js not needed.",
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "approach": "tilt_angle_derivation",
+      "entry_state": "STATE_3",
+      "teacher_angle": "Start from the umbrella tilt formula and derive it cleanly. The umbrella must be held in the direction of relative velocity of rain with respect to the person — v_rain_person = v_rain - v_person. For vertical rain and horizontal person velocity: the relative rain velocity makes angle arctan(v_person / v_rain) from vertical. That is exactly the tilt angle. Derive this result then show three cases: person stationary (tilt = 0, umbrella vertical), person walking slowly (small tilt), person running fast (large tilt). The formula connects all three.",
+      "locked_facts_focus": [
+        "fact_3",
+        "fact_4",
+        "fact_5"
+      ],
+      "panel_b_focus": "Person walking at three speeds. Umbrella tilt animates: 0 degrees when stationary, increasing as speed increases. Relative velocity triangle shown at each speed. Tilt angle = arctan(v_person / v_rain) labeled."
+    },
+    {
+      "variant_id": 2,
+      "approach": "connects_to_river_boat",
+      "entry_state": "STATE_1",
+      "teacher_angle": "Show that rain-umbrella is mathematically identical to river-boat. In river-boat: river current is horizontal, boat moves across. In rain-umbrella: rain falls vertically, person moves horizontally. The vector triangle is the same triangle rotated 90 degrees. River current = rain velocity. Boat heading = umbrella tilt direction. Ground track of boat = relative velocity of rain seen by moving person. Every river-boat formula has a direct rain-umbrella equivalent. The student who solved river-boat already solved rain-umbrella — they just have not seen it rotated yet.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_2",
+        "fact_6"
+      ],
+      "panel_b_focus": "Side by side: river-boat vector triangle and rain-umbrella vector triangle. Rotation animation shows one morphing into the other. Corresponding quantities labeled with matching colors. Formula equivalence shown explicitly."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Walking speed", "symbol": "v_person", "unit": "m/s", "min": 0, "max": 10 },
+    "y_axis": { "label": "Umbrella tilt angle", "symbol": "α", "unit": "°", "min": 0, "max": 90 },
+    "lines": [
+      { "id": "tilt_angle", "formula": "Math.atan(x / 5) * 180 / Math.PI", "color": "#60a5fa", "label": "α = arctan(v_person / v_rain)" }
+    ],
+    "sliders": [
+      { "id": "v_person", "label": "Walking speed (m/s)", "min": 0, "max": 10, "default": 3 }
+    ],
+    "legend": [
+      { "id": "tilt_angle", "label": "α = arctan(v_person / v_rain)" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": ["tilt_angle"], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["tilt_angle"], "show_sliders": false, "highlight_point": true, "point_x": 0, "point_y": 0, "label": "Standing still: tilt = 0°" },
+      "STATE_5": { "active_lines": ["tilt_angle"], "show_sliders": false, "highlight_point": true, "point_x": 5, "point_y": 45, "label": "v_person = v_rain: tilt = 45°" },
+      "STATE_6": { "active_lines": ["tilt_angle"], "show_sliders": true, "highlight_point": true, "point_x": 3, "point_y": 31 }
+    }
+  }
+}

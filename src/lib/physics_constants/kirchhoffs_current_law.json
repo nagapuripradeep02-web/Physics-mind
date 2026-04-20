@@ -1,0 +1,25 @@
+{
+  "concept": "kirchhoffs_current_law",
+  "locked_facts": {
+    "KCL_statement": "algebraic_sum_of_currents_at_any_junction_is_zero",
+    "current_balance": "sum_of_currents_entering_junction_equals_sum_of_currents_leaving",
+    "KCL_basis": "conservation_of_charge",
+    "no_charge_accumulation": "charge_cannot_accumulate_at_any_junction_in_steady_state"
+  },
+  "animation_constraints": {
+    "current_conservation_at_node": true,
+    "voltage_drops_across_resistors": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "Kirchhoff's Current Law (KCL): the algebraic sum of currents meeting at any junction in a circuit is zero, based on conservation of charge",
+    "The sum of currents flowing into a junction must equal the sum of currents flowing out of that junction at every instant",
+    "KCL reflects conservation of charge — electric charge can neither be created nor destroyed at a junction",
+    "In steady state, no charge accumulates at any junction in a circuit",
+    "KCL applies to any node in a circuit regardless of the types of components connected to it"
+  ]
+}

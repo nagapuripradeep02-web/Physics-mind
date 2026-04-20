@@ -1,0 +1,42 @@
+{
+  "concept_id": "surface_tension_capillarity",
+  "concept_name": "Surface Tension and Capillarity",
+  "class_level": 11,
+  "chapter": "Mechanical Properties of Fluids",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "surface_tension", "panel_count": 1, "show_labels": true },
+  "variables": { "T": "Surface tension (N/m)", "θ": "Contact angle (°)", "h": "Capillary rise (m)", "R": "Radius of meniscus (m)" },
+  "locked_facts": [
+    "Surface tension T = force per unit length along the surface (N/m)",
+    "Surface energy = T × area (surface tension = surface energy per unit area)",
+    "Excess pressure inside a soap bubble: ΔP = 4T/R (two surfaces)",
+    "Excess pressure inside a liquid drop: ΔP = 2T/R (one surface)",
+    "Capillary rise: h = 2T cosθ/(ρgr) where r is tube radius, θ is contact angle",
+    "Contact angle θ < 90°: liquid wets the surface (concave meniscus) — water-glass",
+    "Contact angle θ > 90°: liquid doesn't wet (convex meniscus) — mercury-glass"
+  ],
+  "truth_statements": [
+    "Surface tension arises because molecules at the surface have fewer neighbours and hence higher energy than molecules in the bulk",
+    "A soap bubble has two liquid surfaces so the excess pressure inside is 4T/R, twice that of a liquid drop",
+    "Capillary rise is inversely proportional to tube radius — narrower tubes show greater rise",
+    "The contact angle determines whether the meniscus is concave (wetting) or convex (non-wetting)",
+    "Surface tension decreases with increasing temperature as molecular cohesion weakens"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three capillary tubes of different radii in water: narrow tube shows high rise, medium tube moderate rise, wide tube barely any rise. h = 2Tcosθ/(ρgr) — the 1/r dependence is visually obvious. Trees use this to transport water!",
+    "visual_emphasis": "Three tubes of decreasing radius with increasing water heights, h ∝ 1/r clearly demonstrated",
+    "why_this_breaks_misconception": "Students think water rises the same height in all tubes — the dramatic difference with radius makes the 1/r relationship memorable"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Surface tension concept", "description": "Molecules at the surface vs bulk. Surface molecules have net inward pull → surface behaves like a stretched membrane. Needle floating on water due to surface tension.", "emphasis": "Surface molecules have unbalanced forces → the surface acts like an elastic sheet", "labels_visible": ["T", "surface molecules", "net inward pull"] },
+    { "id": "STATE_2", "label": "Excess pressure", "description": "A liquid drop and a soap bubble shown in cross-section. Drop: ΔP = 2T/R (one surface). Bubble: ΔP = 4T/R (two surfaces). Smaller radius → higher excess pressure.", "emphasis": "Bubble has TWO surfaces → twice the excess pressure of a drop", "labels_visible": ["ΔP = 2T/R (drop)", "ΔP = 4T/R (bubble)"] },
+    { "id": "STATE_3", "label": "Capillary rise", "description": "Water in glass tubes of different radii. Narrower tube → higher rise. h = 2Tcosθ/(ρgr). Mercury in glass: depression (θ > 90°, convex meniscus).", "emphasis": "Rise ∝ 1/r — halve the radius, double the rise. Mercury dips instead of rising.", "labels_visible": ["h = 2Tcosθ/(ρgr)", "h ∝ 1/r"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts tube radius and selects liquid (water or mercury). Capillary rise/depression shown. Contact angle and meniscus shape change. Excess pressure in drops/bubbles adjustable.", "emphasis": "Change radius — see rise change as 1/r. Switch to mercury — the meniscus flips!", "labels_visible": ["h", "θ", "T", "ΔP"], "interactive": true, "sliders": [{ "id": "tube_radius", "label": "Tube radius", "min": 0.1, "max": 5, "default": 1, "unit": "mm" }, { "id": "surface_tension", "label": "Surface tension", "min": 0.01, "max": 0.1, "default": 0.073, "unit": "N/m" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "A soap bubble has the same excess pressure as a liquid drop of the same radius", "trigger_phrases": ["bubble same as drop", "same pressure formula"], "correction": "A soap bubble has TWO liquid-air surfaces (inner and outer), so ΔP = 4T/R. A liquid drop has only ONE surface, so ΔP = 2T/R. The bubble has twice the excess pressure.", "simulation_emphasis": "Show cross-section of bubble with two surfaces labelled vs drop with one surface" },
+    { "belief": "Capillary rise is caused by atmospheric pressure pushing water up", "trigger_phrases": ["atmosphere pushes water", "vacuum in tube"], "correction": "Capillary rise is caused by adhesive forces between water and glass creating a concave meniscus. Surface tension along the meniscus pulls the water up. Atmospheric pressure plays a secondary role in preventing vacuum formation.", "simulation_emphasis": "Show adhesive forces at contact → meniscus formation → surface tension pulling upward" }
+  ],
+  "legend": [ { "symbol": "T", "meaning": "Surface tension (N/m)" }, { "symbol": "θ", "meaning": "Contact angle" }, { "symbol": "h", "meaning": "Capillary rise = 2Tcosθ/(ρgr)" } ],
+  "concept_relationships": { "prerequisites": ["pressure_pascals_law"], "extensions": ["detergent_surfactant_action"], "siblings": ["buoyancy_archimedes"], "common_exam_combinations": ["pressure_pascals_law"] }
+}

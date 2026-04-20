@@ -1,0 +1,42 @@
+{
+  "concept_id": "calorimetry_heat_transfer",
+  "concept_name": "Calorimetry and Specific Heat",
+  "class_level": 11,
+  "chapter": "Thermal Properties of Matter",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "thermodynamics", "scenario_type": "calorimetry", "panel_count": 1, "show_labels": true },
+  "variables": { "Q": "Heat energy (J)", "m": "Mass (kg)", "c": "Specific heat capacity (J/kg·K)", "L": "Latent heat (J/kg)" },
+  "locked_facts": [
+    "Heat absorbed: Q = mcΔT (no phase change)",
+    "Heat for phase change: Q = mL (temperature stays constant during phase change)",
+    "Specific heat of water: c = 4186 J/kg·K (highest among common substances)",
+    "Latent heat of fusion of ice: L_f = 3.34 × 10⁵ J/kg",
+    "Latent heat of vaporisation of water: L_v = 2.26 × 10⁶ J/kg",
+    "Principle of calorimetry: heat lost = heat gained (in an isolated system)",
+    "During phase change, temperature remains constant even though heat is being added"
+  ],
+  "truth_statements": [
+    "The heat required to raise the temperature of a substance depends on its mass, specific heat capacity, and the temperature change",
+    "During a phase change the temperature remains constant because the heat energy is used to break intermolecular bonds rather than increase kinetic energy",
+    "Water has an unusually high specific heat capacity which moderates Earth's climate",
+    "The latent heat of vaporisation of water is about 7 times the latent heat of fusion because vaporisation requires completely breaking intermolecular bonds",
+    "In calorimetry experiments heat lost by the hot body equals heat gained by the cold body when the system is isolated"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Temperature vs time graph for ice being heated to steam: flat plateau at 0°C (ice melting) and flat plateau at 100°C (water boiling). Between plateaus: temperature rises linearly. The plateaus show that heat goes into breaking bonds, NOT raising temperature.",
+    "visual_emphasis": "Heating curve with clearly labelled plateaus at 0°C and 100°C — temperature-time graph with phases marked",
+    "why_this_breaks_misconception": "Students think temperature always rises when you add heat — the plateaus during phase change are counterintuitive and crucial"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Heating without phase change", "description": "Water heated from 20°C to 80°C. Q = mcΔT calculated. Temperature rises linearly with time (constant heating rate). Energy bar fills.", "emphasis": "Q = mcΔT — heat raises temperature when no phase change occurs", "labels_visible": ["Q = mcΔT", "c = 4186 J/kg·K"] },
+    { "id": "STATE_2", "label": "Phase change", "description": "Ice at -10°C heated continuously. Temperature rises to 0°C, then stays at 0°C while ice melts (Q = mL_f). After melting, temperature rises again.", "emphasis": "Temperature stays constant during melting — heat breaks bonds, doesn't increase KE", "labels_visible": ["T = 0°C during melting", "Q = mL_f", "bonds breaking"] },
+    { "id": "STATE_3", "label": "Complete heating curve", "description": "Ice (-20°C) → water → steam. Full heating curve with 5 segments: ice warming, ice melting, water warming, water boiling, steam warming. Two plateaus clearly visible.", "emphasis": "Two plateaus: melting and boiling. Heat goes in but temperature doesn't change.", "labels_visible": ["ice → water → steam", "L_f", "L_v", "plateaus"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student heats ice from -20°C with adjustable heating rate. Temperature-time graph builds. Calorimetry mixing: hot water + cold water → equilibrium temperature calculated.", "emphasis": "Watch the heating curve build. Mix hot and cold water — predict the final temperature.", "labels_visible": ["Q", "T", "heating curve"], "interactive": true, "sliders": [{ "id": "mass", "label": "Mass of ice", "min": 10, "max": 500, "default": 100, "unit": "g" }, { "id": "heating_rate", "label": "Heating rate", "min": 10, "max": 500, "default": 100, "unit": "W" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Temperature always increases when heat is added", "trigger_phrases": ["heat means temperature rise", "garam karo toh temperature badhega"], "correction": "During a phase change (melting or boiling), temperature remains CONSTANT despite continuous heat input. The energy goes into breaking intermolecular bonds, not increasing molecular kinetic energy.", "simulation_emphasis": "Show heating curve with flat plateaus where heat is added but temperature doesn't change" },
+    { "belief": "Steam at 100°C and water at 100°C have the same heat content", "trigger_phrases": ["same temperature same heat", "100 degree steam = 100 degree water"], "correction": "Steam at 100°C has MUCH more energy than water at 100°C — the difference is L_v = 2.26 × 10⁶ J/kg. A steam burn is far worse than a hot water burn because the steam releases this latent heat on condensing.", "simulation_emphasis": "Show energy bars: water at 100°C vs steam at 100°C — steam has enormously more energy" }
+  ],
+  "legend": [ { "symbol": "c", "meaning": "Specific heat capacity (J/kg·K)" }, { "symbol": "L_f", "meaning": "Latent heat of fusion (J/kg)" }, { "symbol": "L_v", "meaning": "Latent heat of vaporisation (J/kg)" } ],
+  "concept_relationships": { "prerequisites": ["kinetic_theory_temperature"], "extensions": ["first_law_thermodynamics"], "siblings": ["thermal_expansion"], "common_exam_combinations": ["first_law_thermodynamics"] }
+}

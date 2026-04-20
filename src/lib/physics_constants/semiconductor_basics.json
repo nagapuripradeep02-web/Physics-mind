@@ -1,0 +1,114 @@
+{
+  "concept_id": "semiconductor_basics",
+  "concept_name": "Intrinsic and Extrinsic Semiconductors",
+  "class_level": 12,
+  "chapter": "Semiconductor Electronics",
+  "renderer_hint": {
+    "technology": "p5js",
+    "renderer": "particle_field",
+    "scenario_type": "crystal_lattice",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "E_g": "Band gap energy (eV) — ~1.1 eV for Si, ~0.67 eV for Ge",
+    "n_e": "Electron concentration in conduction band (m⁻³)",
+    "n_h": "Hole concentration in valence band (m⁻³)",
+    "n_i": "Intrinsic carrier concentration (m⁻³) — ~1.5 × 10¹⁰ cm⁻³ for Si at 300 K",
+    "N_D": "Donor impurity concentration (m⁻³) for n-type",
+    "N_A": "Acceptor impurity concentration (m⁻³) for p-type",
+    "sigma": "Electrical conductivity (S/m)"
+  },
+  "locked_facts": [
+    "In an intrinsic (pure) semiconductor, the number of free electrons equals the number of holes: n_e = n_h = n_i",
+    "The band gap of silicon is ~1.1 eV and germanium is ~0.67 eV; for conductors it is zero, for insulators it is >3 eV",
+    "n-type semiconductor: pentavalent impurity (P, As, Sb) donates an extra electron; electrons are majority carriers, holes are minority carriers",
+    "p-type semiconductor: trivalent impurity (B, Al, In) creates a hole (electron deficiency); holes are majority carriers, electrons are minority carriers",
+    "At any temperature in a doped semiconductor, n_e × n_h = n_i² (mass action law) — increasing one carrier type decreases the other",
+    "Conductivity of a semiconductor increases with temperature because more electron-hole pairs are thermally generated across the band gap",
+    "Doping concentration is typically 1 atom per 10⁶ to 10⁸ host atoms — even this tiny amount increases conductivity by orders of magnitude"
+  ],
+  "truth_statements": [
+    "Semiconductors have electrical conductivity between that of conductors and insulators, characterized by a band gap of approximately 1 eV that electrons can cross with thermal or optical energy",
+    "In an intrinsic semiconductor at absolute zero, the valence band is completely filled and the conduction band is completely empty — no current can flow",
+    "Adding a pentavalent impurity to silicon creates an n-type semiconductor with donor energy levels just below the conduction band, providing electrons with minimal thermal energy",
+    "Adding a trivalent impurity creates a p-type semiconductor with acceptor energy levels just above the valence band, where electrons from the valence band can easily be captured, leaving holes",
+    "The Fermi level in n-type semiconductors shifts toward the conduction band, while in p-type it shifts toward the valence band"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A silicon crystal lattice with a phosphorus atom replacing one silicon atom. The four covalent bonds are satisfied by four of phosphorus's five valence electrons. The fifth electron is shown loosely bound (orbiting near the donor atom) and then breaking free into the conduction band with just ~0.05 eV. A counter shows free electron count jumping while hole count stays at n_i — demonstrating that doping adds carriers of one type.",
+    "visual_emphasis": "The fifth electron highlighted in a different color, breaking free with a small energy kick, while the crystal lattice remains intact",
+    "why_this_breaks_misconception": "Students see that doping does not 'inject' free electrons externally — the extra electron comes from the impurity atom's own valence shell and needs very little energy to become free"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Intrinsic semiconductor crystal",
+      "description": "A 2D silicon crystal lattice with atoms arranged in a diamond-like structure. Each silicon atom forms 4 covalent bonds with neighbors (shared electron pairs shown as dot pairs). All bonds are intact at low temperature. The band diagram on the side shows a filled valence band, empty conduction band, and the band gap E_g = 1.1 eV labeled.",
+      "emphasis": "Pure silicon: all electrons are locked in covalent bonds — no free carriers at 0 K",
+      "labels_visible": ["Si", "Covalent bonds", "E_g = 1.1 eV", "Valence Band (full)", "Conduction Band (empty)"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Thermal generation of electron-hole pairs",
+      "description": "Temperature increases (shown by a thermometer rising). Some covalent bonds break randomly, releasing electrons (blue dots moving to conduction band) and leaving holes (red open circles in valence band). The band diagram shows some electrons jumping across the gap. Counter displays: n_e = n_h = n_i. Electrons and holes move randomly through the lattice.",
+      "emphasis": "At room temperature, thermal energy breaks some bonds: each broken bond creates one free electron AND one hole — always in pairs",
+      "labels_visible": ["n_e = n_h", "Temperature", "Electron-hole pair", "E_g"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Doping — n-type and p-type",
+      "description": "The lattice splits into two views. Left: a phosphorus atom (pentavalent, highlighted) replaces one Si. Four of its five electrons bond with neighbors; the fifth is loosely bound and breaks free with ~0.05 eV, adding a free electron without creating a hole. Right: a boron atom (trivalent, highlighted) replaces one Si. Only three bonds form; the fourth position is an empty hole that can accept an electron from a neighboring bond. Majority/minority carrier labels appear.",
+      "emphasis": "n-type: extra electron from donor (no matching hole); p-type: missing bond creates hole (no matching free electron)",
+      "labels_visible": ["P (donor)", "B (acceptor)", "n-type: electrons majority", "p-type: holes majority", "Donor level", "Acceptor level"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive doping explorer",
+      "description": "Student adjusts temperature and doping type/concentration. The lattice updates in real time: more impurity atoms appear as doping increases, carrier counts update (n_e, n_h displayed with n_e × n_h = n_i² verified). The band diagram shifts Fermi level position. Conductivity bar changes. Toggle between intrinsic, n-type, and p-type views.",
+      "emphasis": "See how doping concentration and temperature affect carrier counts, Fermi level, and conductivity",
+      "labels_visible": ["n_e", "n_h", "n_i²", "E_F (Fermi level)", "σ (conductivity)"],
+      "interactive": true,
+      "sliders": [
+        { "id": "temperature", "label": "Temperature", "min": 100, "max": 600, "default": 300, "unit": "K" },
+        { "id": "doping_type", "label": "Doping (0=intrinsic, 1=n-type, 2=p-type)", "min": 0, "max": 2, "default": 0, "unit": "" },
+        { "id": "doping_conc", "label": "Doping Concentration", "min": 0, "max": 100, "default": 10, "unit": "×10¹⁵ cm⁻³" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Holes are physical particles that move through the semiconductor",
+      "trigger_phrases": ["hole is a particle", "hole move karta hai", "hole ek particle hai", "holes are real particles", "hole kya hai actually"],
+      "correction": "A hole is not a physical particle — it is the absence of an electron in a covalent bond. When a neighboring electron fills this vacancy, the vacancy (hole) appears to move in the opposite direction. It behaves like a positive charge carrier but is actually the sequential movement of electrons.",
+      "simulation_emphasis": "Animate electron hopping from one bond to the next, showing the 'hole' moving in the opposite direction — clearly labeling it as 'absence of electron, not a particle'"
+    },
+    {
+      "belief": "Doping makes the semiconductor electrically charged (n-type is negative, p-type is positive)",
+      "trigger_phrases": ["n-type negative hai", "n-type is negatively charged", "p-type positive charged", "doping se charge aa jata hai", "n-type mein negative charge"],
+      "correction": "A doped semiconductor remains electrically neutral. In n-type, each donor atom contributes one extra electron BUT the donor atom itself becomes a fixed positive ion — the material has equal positive and negative charges overall. Similarly, p-type is neutral because each acceptor creates a hole but the acceptor becomes a fixed negative ion.",
+      "simulation_emphasis": "Show donor atom becoming a fixed positive ion (+) when its fifth electron leaves, with a charge balance counter showing total positive = total negative = neutral"
+    },
+    {
+      "belief": "Semiconductors conduct only at high temperatures and are insulators at room temperature",
+      "trigger_phrases": ["semiconductor room temperature pe insulator", "semiconductor sirf high temp pe chalta hai", "room temperature no conduction", "semiconductor is insulator normally"],
+      "correction": "Semiconductors do conduct at room temperature — silicon has ~1.5 × 10¹⁰ free carriers per cm³ at 300 K. When doped, conductivity increases enormously. What increases with temperature is intrinsic carrier concentration, but conduction exists even at room temperature, especially in doped semiconductors.",
+      "simulation_emphasis": "Show carrier count at 300 K (room temp) for intrinsic and doped Si — doped Si has orders of magnitude more carriers and significant conductivity"
+    }
+  ],
+  "legend": [
+    { "symbol": "E_g", "meaning": "Band gap energy (eV)" },
+    { "symbol": "n_e", "meaning": "Free electron concentration (cm⁻³)" },
+    { "symbol": "n_h", "meaning": "Hole concentration (cm⁻³)" },
+    { "symbol": "n_i", "meaning": "Intrinsic carrier concentration (cm⁻³)" },
+    { "symbol": "E_F", "meaning": "Fermi energy level (eV)" },
+    { "symbol": "σ", "meaning": "Electrical conductivity (S/m)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": [],
+    "extensions": ["pn_junction_diode", "transistor_action"],
+    "siblings": [],
+    "common_exam_combinations": ["pn_junction_diode", "resistance_temperature_dependence"]
+  }
+}

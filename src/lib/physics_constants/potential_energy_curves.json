@@ -1,0 +1,104 @@
+{
+  "concept_id": "potential_energy_curves",
+  "concept_name": "Potential Energy Curves",
+  "class_level": 11,
+  "chapter": "Work, Energy and Power",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "energy_landscape",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "U": "Potential energy as a function of position (J)",
+    "x": "Position coordinate (m)",
+    "F": "Force = -dU/dx (N)",
+    "E": "Total mechanical energy (J)",
+    "KE": "Kinetic energy = E - U(x) (J)"
+  },
+  "locked_facts": [
+    "Force from potential energy: F = -dU/dx (negative gradient of U)",
+    "Equilibrium where F = 0, i.e., dU/dx = 0 (slope of U-x curve is zero)",
+    "Stable equilibrium at U minimum (d²U/dx² > 0): restoring force",
+    "Unstable equilibrium at U maximum (d²U/dx² < 0): displacing force",
+    "Turning points where KE = 0, i.e., E = U(x): particle reverses direction",
+    "Particle is confined to regions where E ≥ U(x) — cannot enter classically forbidden region where U > E"
+  ],
+  "truth_statements": [
+    "The force on a particle can be derived from the potential energy curve as the negative of its slope",
+    "At a minimum of the U-x curve, the equilibrium is stable — small displacement produces restoring force",
+    "At a maximum of the U-x curve, the equilibrium is unstable — small displacement drives particle away",
+    "The kinetic energy at any position equals total energy minus potential energy: KE = E - U(x)",
+    "Turning points are positions where the total energy line intersects the U(x) curve — particle momentarily stops and reverses"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A ball rolling on a U(x) landscape. At a U minimum, the ball oscillates — push it slightly left or right and it rolls back (stable). At a U maximum, the ball perches precariously — the slightest push sends it rolling away (unstable). The force arrow always points downhill on the U curve.",
+    "visual_emphasis": "Force arrows derived from -dU/dx slope. At minimum: arrows point inward (restoring). At maximum: arrows point outward (displacing). Ball motion matches force direction.",
+    "why_this_breaks_misconception": "Students see that force direction comes from the SLOPE of U, not the value of U — high U does not mean strong force"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A U(x) curve displayed with wells and hills. Total energy E shown as a horizontal dashed line. Particle placed at a position where E > U(x). KE = E - U(x) shown as vertical gap.",
+      "emphasis": "The gap between E line and U curve IS the kinetic energy at each point",
+      "labels_visible": ["U(x)", "E (total energy)", "KE = E - U(x)"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Particle moves along the U curve. At steep slopes: large force, fast acceleration. At flat regions: near-zero force, constant velocity. Force arrow F = -dU/dx drawn at particle position, always pointing downhill.",
+      "emphasis": "Force equals negative slope — steeper U curve = larger force on particle",
+      "labels_visible": ["F = -dU/dx", "steep = large F", "flat = F ≈ 0"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Particle reaches a turning point where E = U(x): KE = 0, particle stops and reverses. Then oscillates in a potential well (stable equilibrium). Placed at a U maximum: slightest perturbation sends it rolling down (unstable).",
+      "emphasis": "Turning point: E line meets U curve. Stable minimum: restoring force. Unstable maximum: displacing force.",
+      "labels_visible": ["Turning point: KE = 0", "Stable: U minimum", "Unstable: U maximum", "F = -dU/dx"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: drag the total energy line E up or down to change accessible region. More energy = wider oscillation, can escape wells. Adjust U curve shape. Click any point to see force and KE values.",
+      "emphasis": "Raise E to escape the potential well. Lower E to confine particle. Force always from slope.",
+      "labels_visible": ["E", "U(x)", "KE", "F", "turning points"],
+      "interactive": true,
+      "sliders": [
+        { "id": "total_energy", "label": "Total Energy E", "min": 0, "max": 20, "default": 8, "unit": "J" },
+        { "id": "well_depth", "label": "Well Depth", "min": 2, "max": 15, "default": 6, "unit": "J" },
+        { "id": "barrier_height", "label": "Barrier Height", "min": 5, "max": 20, "default": 12, "unit": "J" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Higher potential energy means stronger force on the particle",
+      "trigger_phrases": ["zyada PE matlab zyada force", "high U = high force", "potential energy zyada toh force bhi zyada", "U bada toh F bada"],
+      "correction": "Force depends on the SLOPE of U(x), not its value. F = -dU/dx. A flat region at high U has zero force. A steep region at low U has large force. It's the gradient that matters.",
+      "simulation_emphasis": "Show flat plateau at high U with F = 0, and steep slope at low U with large F arrow"
+    },
+    {
+      "belief": "A particle can exist in regions where potential energy exceeds total energy",
+      "trigger_phrases": ["particle can go anywhere", "classically forbidden kya hai", "U > E mein ja sakta hai", "why can't particle go there"],
+      "correction": "Classically, KE = E - U(x) must be ≥ 0. If U(x) > E, then KE would be negative (impossible). The particle is confined to regions where E ≥ U(x). It reverses at turning points where E = U(x).",
+      "simulation_emphasis": "Shade forbidden region where U > E in red. Particle bounces back at turning points."
+    }
+  ],
+  "legend": [
+    { "symbol": "U(x) curve", "meaning": "Potential energy as function of position" },
+    { "symbol": "E dashed line", "meaning": "Total mechanical energy (constant)" },
+    { "symbol": "Vertical gap", "meaning": "Kinetic energy KE = E - U(x)" },
+    { "symbol": "Arrow at particle", "meaning": "Force F = -dU/dx (points downhill on U)" },
+    { "symbol": "Red shaded region", "meaning": "Classically forbidden: U(x) > E" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["conservation_of_energy", "work_energy_theorem"],
+    "extensions": ["simple_harmonic_motion", "molecular_bonding_potential"],
+    "siblings": ["gravitational_potential_energy", "spring_mass_system"],
+    "common_exam_combinations": ["interatomic_potential", "escape_from_potential_well", "equilibrium_stability_analysis"]
+  }
+}

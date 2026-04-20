@@ -1,0 +1,108 @@
+{
+  "concept_id": "elastic_inelastic_collisions",
+  "concept_name": "Elastic and Inelastic Collisions",
+  "class_level": 11,
+  "chapter": "Work, Energy and Power",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "collision_1d",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "m1": "Mass of body 1 (kg)",
+    "m2": "Mass of body 2 (kg)",
+    "u1": "Initial velocity of body 1 (m/s)",
+    "u2": "Initial velocity of body 2 (m/s)",
+    "v1": "Final velocity of body 1 (m/s)",
+    "v2": "Final velocity of body 2 (m/s)",
+    "e": "Coefficient of restitution (dimensionless)"
+  },
+  "locked_facts": [
+    "Elastic collision: both momentum AND kinetic energy are conserved",
+    "Inelastic collision: only momentum is conserved, KE is NOT conserved",
+    "Perfectly inelastic: objects stick together, maximum KE loss, v_common = (m1u1 + m2u2)/(m1 + m2)",
+    "Elastic 1D: v1 = [(m1-m2)u1 + 2m2u2]/(m1+m2), v2 = [(m2-m1)u2 + 2m1u1]/(m1+m2)",
+    "Equal mass elastic: velocities exchange (v1 = u2, v2 = u1)",
+    "KE lost in perfectly inelastic collision: ΔKE = ½(m1m2/(m1+m2))(u1-u2)²",
+    "In all collisions: Σp_initial = Σp_final (momentum always conserved when F_ext = 0)"
+  ],
+  "truth_statements": [
+    "In an elastic collision, both the total momentum and total kinetic energy of the system are conserved",
+    "In an inelastic collision, momentum is conserved but some kinetic energy is converted to heat, sound, or deformation",
+    "A perfectly inelastic collision results in maximum kinetic energy loss while still conserving momentum",
+    "When equal masses collide elastically head-on, they exchange velocities completely",
+    "No real macroscopic collision is perfectly elastic — some energy is always lost to deformation or heat"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two equal-mass balls collide elastically: ball 1 stops dead, ball 2 moves with ball 1's original velocity. Momentum bars: ball 1 drops to zero, ball 2 picks up same momentum. KE bars: same total before and after. Then perfectly inelastic: both move together at half speed — momentum same, but KE bar drops by half.",
+    "visual_emphasis": "Side-by-side comparison: elastic (KE conserved) vs perfectly inelastic (KE halved). Momentum bars identical in both cases.",
+    "why_this_breaks_misconception": "Students see that momentum conservation alone does NOT guarantee KE conservation — the type of collision determines KE loss"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Two balls on a frictionless track. Mass and velocity labels shown. Momentum bars and KE bars displayed for each ball and the system total. Ball 2 initially at rest.",
+      "emphasis": "Establish initial momenta and kinetic energies of both bodies",
+      "labels_visible": ["m1", "m2", "u1", "u2 = 0", "p_total", "KE_total"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Elastic collision: balls collide and separate. Velocity arrows update. Momentum bars rearrange but total stays constant. KE bars also rearrange but total stays constant. Newton's cradle effect visible for equal masses.",
+      "emphasis": "Elastic: both momentum AND KE are conserved — bars redistribute but totals unchanged",
+      "labels_visible": ["v1", "v2", "p1 + p2 = constant", "KE1 + KE2 = constant"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Switch to perfectly inelastic collision with same initial conditions. Balls stick together. Momentum bar: same total as before. KE bar: total drops significantly. The lost KE is shown as a heat/deformation bar.",
+      "emphasis": "Momentum conserved in BOTH types. KE conserved ONLY in elastic. Lost KE becomes heat/deformation.",
+      "labels_visible": ["p_total same", "KE_total reduced", "ΔKE = heat + sound", "v_common = m1u1/(m1+m2)"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust masses, initial velocities, and collision type (elastic/inelastic/perfectly inelastic). See final velocities, momentum, and KE update. Try m1 = m2, m1 >> m2, m1 << m2.",
+      "emphasis": "Equal masses elastic: velocity exchange. Heavy hits light: barely slows. Light hits heavy: bounces back.",
+      "labels_visible": ["v1", "v2", "p_total", "KE_total", "ΔKE"],
+      "interactive": true,
+      "sliders": [
+        { "id": "mass1", "label": "Mass m₁", "min": 0.5, "max": 10, "default": 2, "unit": "kg" },
+        { "id": "mass2", "label": "Mass m₂", "min": 0.5, "max": 10, "default": 2, "unit": "kg" },
+        { "id": "velocity1", "label": "Velocity u₁", "min": 1, "max": 20, "default": 5, "unit": "m/s" },
+        { "id": "collision_type", "label": "Restitution e", "min": 0, "max": 1, "default": 1, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Kinetic energy is always conserved in all collisions",
+      "trigger_phrases": ["KE always conserved hoti hai", "collision mein energy conserve", "kinetic energy kabhi lost nahi", "energy to conserve honi chahiye"],
+      "correction": "Only MOMENTUM is always conserved in collisions (when external forces are zero). Kinetic energy is conserved ONLY in perfectly elastic collisions. In inelastic collisions, KE is lost to heat, sound, and deformation.",
+      "simulation_emphasis": "Show elastic vs inelastic side by side: momentum bars identical, but KE bars differ — inelastic loses KE"
+    },
+    {
+      "belief": "In a collision, the heavier object always continues in the same direction",
+      "trigger_phrases": ["heavy object toh continue karega", "bhari cheez nahi rukegi", "heavier always moves forward", "lighter always bounces back"],
+      "correction": "This depends on mass ratio AND initial velocities. If m1 > m2 and both move in the same direction with u1 > u2, then yes. But if m1 > m2 and ball 2 approaches fast enough, m1 CAN reverse direction.",
+      "simulation_emphasis": "Set m1 = 3 kg, m2 = 1 kg, and give m2 a large initial velocity approaching m1 — show m1 can reverse"
+    }
+  ],
+  "legend": [
+    { "symbol": "Blue ball", "meaning": "Body 1 with mass m1" },
+    { "symbol": "Red ball", "meaning": "Body 2 with mass m2" },
+    { "symbol": "Momentum bar", "meaning": "Linear momentum p = mv for each body" },
+    { "symbol": "KE bar", "meaning": "Kinetic energy ½mv² for each body" },
+    { "symbol": "Yellow bar", "meaning": "Energy lost to deformation/heat" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["linear_momentum_conservation", "work_energy_theorem"],
+    "extensions": ["coefficient_of_restitution", "two_dimensional_collisions"],
+    "siblings": ["conservation_of_energy"],
+    "common_exam_combinations": ["newton_cradle", "ballistic_pendulum", "equal_mass_collision", "oblique_collision"]
+  }
+}

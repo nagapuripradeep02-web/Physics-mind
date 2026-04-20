@@ -1,0 +1,82 @@
+{
+  "concept_id": "phasors",
+  "concept_name": "Phasor Representation of AC",
+  "chapter": "Alternating Current",
+  "class_level": 12,
+  "renderer_hint": {
+    "primary": "graph_interactive",
+    "topology": "phasor_circle",
+    "graph_type": "rotating_vector_with_waveform_projection"
+  },
+  "variables": {
+    "V_m": { "symbol": "V_m", "name": "Peak Voltage", "unit": "V", "min": 1, "max": 100, "default": 10 },
+    "omega": { "symbol": "ω", "name": "Angular Frequency", "unit": "rad/s", "min": 1, "max": 100, "default": 50 },
+    "phi": { "symbol": "φ", "name": "Phase Angle", "unit": "degrees", "min": -90, "max": 90, "default": 0 }
+  },
+  "locked_facts": [
+    "A phasor is a rotating vector whose length equals the amplitude of the AC quantity",
+    "The phasor rotates anticlockwise with angular velocity ω = 2πf",
+    "Instantaneous value = projection of phasor onto the vertical axis",
+    "Phase difference between two phasors = the angle between them",
+    "A phasor is a mathematical tool — it is NOT a physical vector in space",
+    "If V leads I by φ, the V phasor is φ degrees ahead (anticlockwise) of the I phasor"
+  ],
+  "truth_statements": [
+    "Phasor is a representation tool, not a physical quantity",
+    "The projection of a rotating phasor onto the vertical axis gives the instantaneous sinusoidal value",
+    "Phase difference is constant between two quantities of the same frequency",
+    "Leading phasor is further anticlockwise in the rotating diagram"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show the phasor rotating on the left panel, and simultaneously show its vertical projection tracing out the sine wave on the right panel in real time. The sine wave IS the phasor shadow. The rotation is the AC.",
+    "visual_emphasis": "A dotted line connecting the phasor tip to the waveform point — animating in sync — so student sees they are the same thing expressed differently"
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Static phasor at t=0",
+      "what_student_sees": "A circle on the left. A vector of length V_m pointing straight up (at 90° = peak). On the right, a time axis with a point at the peak of the sine wave.",
+      "what_to_emphasize": "When the phasor points straight up, the AC value is at its maximum — the vertical projection is at its tallest."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Phasor rotates — waveform traces",
+      "what_student_sees": "The phasor rotates anticlockwise. As it rotates, its vertical projection is plotted against time on the right, drawing out the sine wave.",
+      "what_to_emphasize": "The sine wave is literally the shadow of the rotating phasor cast on the vertical axis. One full rotation = one complete cycle."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Two phasors — phase difference visible",
+      "what_student_sees": "Two phasors rotating at the same speed ω but with a fixed angle φ between them. Their projections trace two sine waves with the same phase difference φ.",
+      "what_to_emphasize": "The phase difference is constant — the two phasors maintain the same angle as they rotate. This is why phase difference does not change with time for same-frequency signals."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Phasor addition",
+      "what_student_sees": "V_R and V_L phasors shown. V_R pointing right (0°). V_L pointing up (90° ahead). The resultant phasor found by vector addition — shown geometrically.",
+      "what_to_emphasize": "AC quantities at different phases cannot be added arithmetically. They must be added as vectors — phasor addition. The resultant amplitude is NOT V_R + V_L."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "phasor_is_physical_vector",
+      "trigger_keywords": ["phasor direction", "phasor in space", "phasor force", "phasor actually rotates", "real rotation"],
+      "student_belief": "The phasor is a physical arrow in space that actually rotates",
+      "actual_physics": "A phasor is a mathematical representation tool. It is a vector in a mathematical diagram whose rotation represents time evolution of AC. Nothing physical is rotating.",
+      "simulation_emphasis": "Label the phasor diagram clearly as a mathematical tool. Show the real-world circuit alongside — no rotating arrows exist in the actual circuit."
+    },
+    {
+      "id": "add_phases_arithmetically",
+      "trigger_keywords": ["add voltages", "V_L plus V_R", "total voltage sum", "voltages add up directly", "seedha add karo"],
+      "student_belief": "Total voltage in an AC circuit = V_R + V_L + V_C added numerically",
+      "actual_physics": "Voltages in AC circuits are out of phase with each other. They must be added as phasors (vector addition), not arithmetically.",
+      "simulation_emphasis": "Show V_R = 60V and V_L = 80V being added. Arithmetic gives 140V. Phasor addition gives √(60² + 80²) = 100V. Show both methods and their results — the 40V difference is the lesson."
+    }
+  ],
+  "legend": [
+    { "symbol": "φ", "meaning": "Phase angle between two AC quantities" },
+    { "symbol": "ω", "meaning": "Angular frequency — rate of phasor rotation" },
+    { "symbol": "|V|", "meaning": "Length of phasor = peak amplitude" }
+  ]
+}

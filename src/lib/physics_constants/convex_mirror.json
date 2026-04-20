@@ -1,0 +1,75 @@
+{
+  "concept_id": "convex_mirror",
+  "concept_name": "Convex Mirror",
+  "chapter": "Light Reflection Refraction",
+  "class_level": 10,
+  "renderer_hint": {
+    "primary": "optics_ray",
+    "scenario_type": "convex_mirror",
+    "show_graph": false
+  },
+  "variables": {
+    "u": { "symbol": "u", "name": "Object Distance", "unit": "cm", "min": -100, "max": -5, "default": -30 },
+    "f": { "symbol": "f", "name": "Focal Length", "unit": "cm", "min": 5, "max": 50, "default": 15 }
+  },
+  "locked_facts": [
+    "Always produces virtual, erect, diminished image behind mirror",
+    "Image is ALWAYS between P and F behind mirror",
+    "Wider field of view than plane mirror",
+    "Used in rear-view mirrors and security mirrors",
+    "Focal length is positive in new Cartesian convention (focus behind mirror)"
+  ],
+  "truth_statements": [
+    "A convex mirror always forms a virtual, erect and diminished image",
+    "Convex mirrors are used as rear-view mirrors because they provide a wider field of view",
+    "The image formed by a convex mirror is always behind the mirror between the pole and focus",
+    "A convex mirror diverges light rays falling on it",
+    "Convex mirrors can form images of objects spread over a large area"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Move the object from infinity to very close to the mirror. The image is ALWAYS virtual, erect, diminished, and stuck between P and F behind the mirror. Even at extreme positions, the nature never changes. This predictability is why convex mirrors are used in rear-view mirrors — the image is always upright and covers a wide field.",
+    "visual_emphasis": "Show multiple object positions — the virtual image barely moves from the P-to-F region. Contrast this with a concave mirror where the image type changes dramatically with position."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Object far away — small virtual image near F",
+      "what_student_sees": "Object far from mirror. Diverging reflected rays. Virtual image (dotted) near F behind mirror, very small.",
+      "what_to_emphasize": "The convex mirror always diverges rays. The image is found by extending reflected rays backward."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Object closer — image moves toward P",
+      "what_student_sees": "Object moved closer. Virtual image grows slightly, moves from F toward P.",
+      "what_to_emphasize": "As the object approaches, the image slowly moves from F toward P but remains diminished."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Key insight — always virtual, erect, diminished",
+      "what_student_sees": "All three standard rays shown with dotted virtual extensions behind mirror.",
+      "what_to_emphasize": "No matter where you place the object, the image is always virtual, erect, diminished. This is the unique property of convex mirrors."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive — move the object",
+      "what_student_sees": "Slider to adjust object distance. Virtual image updates in real time.",
+      "what_to_emphasize": "Verify: the image can never become real, inverted, or magnified with a convex mirror."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "convex_mirror_real_image",
+      "trigger_keywords": ["convex mirror real image", "special case mein convex se real image", "convex mirror real bana sakta hai kya"],
+      "student_belief": "A convex mirror can form a real image in some special case",
+      "actual_physics": "A convex mirror ALWAYS forms a virtual, erect, diminished image. Since it diverges all incident rays, the reflected rays never converge in front of the mirror. There is no special case — the image nature is fixed.",
+      "simulation_emphasis": "Show ray diagrams at extreme object positions — the reflected rays always diverge. Only backward extensions (behind mirror) converge, proving the image is always virtual."
+    }
+  ],
+  "legend": [
+    { "symbol": "f", "meaning": "Focal length (positive, behind mirror)" },
+    { "symbol": "P", "meaning": "Pole of mirror" },
+    { "symbol": "F", "meaning": "Focus (behind mirror)" },
+    { "symbol": "C", "meaning": "Centre of curvature (behind mirror)" }
+  ]
+}

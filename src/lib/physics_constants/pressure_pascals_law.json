@@ -1,0 +1,42 @@
+{
+  "concept_id": "pressure_pascals_law",
+  "concept_name": "Pressure and Pascal's Law",
+  "class_level": 11,
+  "chapter": "Mechanical Properties of Fluids",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "pascals_law", "panel_count": 1, "show_labels": true },
+  "variables": { "P": "Pressure (Pa)", "F": "Force (N)", "A": "Area (m²)", "ρ": "Density (kg/m³)" },
+  "locked_facts": [
+    "Pressure = Force/Area: P = F/A (scalar quantity, acts in all directions)",
+    "Pascal's law: pressure applied to an enclosed fluid is transmitted undiminished in all directions",
+    "Hydraulic lift: F₁/A₁ = F₂/A₂ → F₂ = F₁(A₂/A₁) — force amplification",
+    "Pressure at depth h in a fluid: P = P₀ + ρgh",
+    "Atmospheric pressure at sea level: P₀ ≈ 1.013 × 10⁵ Pa",
+    "Pressure at a point in a fluid at rest is the same in all directions",
+    "Hydraulic systems conserve energy: work in = work out (F₁d₁ = F₂d₂)"
+  ],
+  "truth_statements": [
+    "Pascal's law states that a change in pressure at any point in an enclosed incompressible fluid is transmitted equally to all points in the fluid",
+    "A hydraulic lift multiplies force but not work — the small piston moves a larger distance to compensate",
+    "Pressure in a fluid at rest depends only on depth, not on the shape of the container",
+    "The pressure at the bottom of interconnected vessels of any shape is the same at the same horizontal level",
+    "Gauge pressure is the pressure above atmospheric: P_gauge = ρgh"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A hydraulic lift: small force F₁ on small piston → transmitted through fluid → large force F₂ on large piston. But the small piston moves far while the large piston moves little. Work = Fd is the same on both sides — force is amplified, not energy.",
+    "visual_emphasis": "Small piston moving far, large piston moving little, with Fd products equal on both sides",
+    "why_this_breaks_misconception": "Students think hydraulic lifts create free force — seeing the distance trade-off makes energy conservation obvious"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Pressure basics", "description": "Force applied on fluid through a piston. P = F/A. Same force on smaller area → higher pressure. Pressure acts equally in all directions.", "emphasis": "Pressure = F/A, and it acts in all directions inside the fluid", "labels_visible": ["P = F/A", "all directions"] },
+    { "id": "STATE_2", "label": "Pascal's law", "description": "Enclosed fluid with two connected cylinders. Pressure applied to small piston transmitted to large piston. F₂ = F₁(A₂/A₁). Force amplification demonstrated.", "emphasis": "Same pressure everywhere → larger area gets larger force", "labels_visible": ["F₁/A₁ = F₂/A₂", "force amplified"] },
+    { "id": "STATE_3", "label": "Energy conservation", "description": "Small piston pushed down distance d₁. Large piston rises distance d₂ = d₁(A₁/A₂). Work: F₁d₁ = F₂d₂. Force gained, distance lost. No free energy.", "emphasis": "Force multiplied but distance divided — work is CONSERVED", "labels_visible": ["F₁d₁ = F₂d₂", "d₂ < d₁", "work conserved"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts piston areas and input force. Output force, displacement, and work calculated. Pressure gauges at multiple points show equal pressure. Depth-pressure demo.", "emphasis": "Change area ratio — force amplification changes but work stays constant", "labels_visible": ["F₁", "F₂", "P", "W"], "interactive": true, "sliders": [{ "id": "area_ratio", "label": "Area ratio A₂/A₁", "min": 1, "max": 20, "default": 10, "unit": "" }, { "id": "input_force", "label": "Input force F₁", "min": 1, "max": 100, "default": 50, "unit": "N" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Hydraulic systems create energy by amplifying force", "trigger_phrases": ["hydraulic creates energy", "free force", "force badh jaata hai"], "correction": "Hydraulic systems amplify force but reduce displacement proportionally. Work = Force × Distance is conserved. If force is multiplied by 10, the large piston moves 1/10 the distance.", "simulation_emphasis": "Show F₁d₁ = F₂d₂ with animated distance comparison" },
+    { "belief": "Pressure at the bottom of a container depends on the container's shape", "trigger_phrases": ["wide container more pressure", "shape affects pressure"], "correction": "Pressure at depth h depends only on ρgh + P₀, not on the container shape. A thin tube and a wide tank at the same depth have the same pressure at the bottom (hydrostatic paradox).", "simulation_emphasis": "Show different shaped containers with same depth — pressure gauges at bottom all read the same" }
+  ],
+  "legend": [ { "symbol": "P", "meaning": "Pressure (Pa = N/m²)" }, { "symbol": "ρ", "meaning": "Fluid density (kg/m³)" }, { "symbol": "h", "meaning": "Depth below surface (m)" } ],
+  "concept_relationships": { "prerequisites": ["newtons_second_law"], "extensions": ["buoyancy_archimedes", "bernoulli_principle"], "siblings": ["atmospheric_pressure"], "common_exam_combinations": ["buoyancy_archimedes"] }
+}

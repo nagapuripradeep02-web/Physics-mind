@@ -1,0 +1,42 @@
+{
+  "concept_id": "pseudo_forces",
+  "concept_name": "Pseudo Forces in Non-Inertial Frames",
+  "class_level": 11,
+  "chapter": "Laws of Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "pseudo_forces", "panel_count": 1, "show_labels": true },
+  "variables": { "F_pseudo": "Pseudo force (N)", "a_frame": "Acceleration of frame (m/s²)", "g_eff": "Effective gravity (m/s²)", "W'": "Apparent weight (N)" },
+  "locked_facts": [
+    "Pseudo force = -ma_frame (opposite to frame's acceleration, acts on all objects in that frame)",
+    "Pseudo forces are needed only in non-inertial (accelerating) frames",
+    "Lift going up: apparent weight W' = m(g + a) — you feel heavier",
+    "Lift going down: apparent weight W' = m(g - a) — you feel lighter",
+    "Free fall (a = g): W' = 0 — weightlessness",
+    "Centrifugal force = mω²r (outward in rotating frame) — pseudo force",
+    "Coriolis force = -2m(ω × v) — deflects moving objects in rotating frame"
+  ],
+  "truth_statements": [
+    "Pseudo forces do not arise from any physical interaction — they are a mathematical consequence of using a non-inertial reference frame",
+    "Newton's laws in their standard form apply only in inertial frames — in non-inertial frames pseudo forces must be added",
+    "In a freely falling lift the effective gravity is zero and objects appear weightless",
+    "The centrifugal force felt in a turning car is a pseudo force that appears only in the car's rotating reference frame",
+    "An observer in an inertial frame sees no pseudo forces — only real forces like gravity, tension, and friction"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Person on a weighing scale in a lift. Ground frame: only real forces (gravity + normal). Lift frame: must add pseudo force -ma to make Newton's laws work. When lift accelerates up: pseudo force is downward → scale reads m(g+a). When in free fall: pseudo force = mg upward → scale reads zero (weightlessness).",
+    "visual_emphasis": "Split screen: ground frame (real forces only) vs lift frame (real + pseudo) — both give the same physical result",
+    "why_this_breaks_misconception": "Students think pseudo forces are real physical forces — seeing the same situation from two frames (one with, one without pseudo force) shows they're a frame-dependent mathematical tool"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Inertial vs non-inertial frame", "description": "A ball in a car. Car brakes suddenly. Ground observer: ball continues forward (inertia). Car observer: ball 'pushed' forward by a pseudo force. No real force pushes the ball forward.", "emphasis": "The pseudo force exists only in the accelerating frame — it's not a real physical interaction", "labels_visible": ["inertial frame", "non-inertial frame", "pseudo force"] },
+    { "id": "STATE_2", "label": "Lift problems", "description": "Person on scale in a lift. Lift at rest: W = mg. Accelerating up: W' = m(g+a). Accelerating down: W' = m(g-a). Free fall: W' = 0.", "emphasis": "Your apparent weight changes with the lift's acceleration — but your mass doesn't", "labels_visible": ["W' = m(g+a) ↑", "W' = m(g-a) ↓", "W' = 0 (free fall)"] },
+    { "id": "STATE_3", "label": "Two-frame comparison", "description": "Same scenario shown from ground frame and lift frame simultaneously. Ground: normal + gravity → ma. Lift: normal + gravity + pseudo → 0 (equilibrium in lift frame). Both give same physical outcome.", "emphasis": "Two valid descriptions — pseudo forces are the price of using a non-inertial frame", "labels_visible": ["ground: F_net = ma", "lift: F_net + F_pseudo = 0"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student controls lift acceleration (up/down/free fall). Scale reading updates. Centrifugal force demo in rotating frame. Pendulum in accelerating train.", "emphasis": "Accelerate the lift — watch the scale change. Try free fall — weightlessness!", "labels_visible": ["W'", "a", "g_eff"], "interactive": true, "sliders": [{ "id": "acceleration", "label": "Lift acceleration", "min": -10, "max": 10, "default": 0, "unit": "m/s²" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Pseudo forces are real forces exerted by something", "trigger_phrases": ["pseudo force is real", "koi cheez force lagata hai", "centrifugal force real hai"], "correction": "Pseudo forces have no physical source — no object exerts them. They arise mathematically when you use Newton's laws in a non-inertial (accelerating) frame. In an inertial frame, the same motion is explained without any pseudo force.", "simulation_emphasis": "Show same scenario from inertial frame (no pseudo force) and non-inertial frame (with pseudo force) — same physical result" },
+    { "belief": "Astronauts in ISS are beyond Earth's gravity", "trigger_phrases": ["no gravity in space station", "gravity nahi hai ISS mein"], "correction": "At ISS altitude (~400 km), g ≈ 8.7 m/s² (only ~11% less than surface). Astronauts feel weightless because the ISS is in free fall (orbiting = continuously falling). The apparent weight is zero: W' = m(g - g) = 0.", "simulation_emphasis": "Show ISS orbiting with gravity arrow still pointing to Earth — free fall creates the sensation of weightlessness" }
+  ],
+  "legend": [ { "symbol": "F_pseudo", "meaning": "Pseudo force = -ma_frame" }, { "symbol": "g_eff", "meaning": "Effective gravity in non-inertial frame" }, { "symbol": "W'", "meaning": "Apparent weight" } ],
+  "concept_relationships": { "prerequisites": ["newtons_laws_overview"], "extensions": ["coriolis_effect"], "siblings": ["uniform_circular_motion"], "common_exam_combinations": ["uniform_circular_motion", "simple_pendulum_shm"] }
+}

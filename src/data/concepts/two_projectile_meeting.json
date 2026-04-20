@@ -1,0 +1,287 @@
+{
+  "concept_id": "two_projectile_meeting",
+  "concept_name": "Two Projectiles in Flight — Relative Motion Makes Them Simple",
+  "chapter": 7,
+  "section": "7.8",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 7.8 — two projectiles; split from relative_motion_projectiles",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "Two tennis players at a Bengaluru open-air academy playing a lobbing volley back and forth. Ball A is served from ground at 15 m/s, 60 degrees. Ball B is returned from 20 m away at 12 m/s, 75 degrees, half a second later. Will they collide in mid-air? To an observer moving with either ball, the other ball moves in a STRAIGHT LINE at constant velocity — because gravity cancels out of the relative velocity. This trick converts two-projectile problems into simple straight-line geometry.",
+    "secondary": "Two Diwali fireworks rockets launched from opposite ends of a Chennai beach at the same moment. Each launches at 40 m/s but at different angles. Whether they 'burst together' depends on whether their relative position closes to zero. Since both feel the same gravity, relative acceleration is zero — so relative position evolves linearly with time. One line of algebra solves it.",
+    "tertiary": "An ISRO trajectory correction engineer analyses two descending probes. Both are in free-fall from different launch points. In the relative frame of one, the other moves in a straight line. Engineers exploit this to plan simultaneous landings on Mars."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v1": { "name": "Speed of projectile 1", "unit": "m/s", "min": 5, "max": 100, "default": 15 },
+      "theta1": { "name": "Angle of projectile 1", "unit": "deg", "min": 0, "max": 90, "default": 60 },
+      "v2": { "name": "Speed of projectile 2", "unit": "m/s", "min": 5, "max": 100, "default": 12 },
+      "theta2": { "name": "Angle of projectile 2", "unit": "deg", "min": 0, "max": 180, "default": 120 },
+      "d_sep": { "name": "Initial horizontal separation", "unit": "m", "min": 0, "max": 200, "default": 20 }
+    },
+    "computed_outputs": {
+      "a_relative": { "formula": "0 (both experience same g)" },
+      "V_rel_x": { "formula": "v1*cos(theta1) - v2*cos(theta2)" },
+      "V_rel_y": { "formula": "v1*sin(theta1) - v2*sin(theta2)" }
+    },
+    "formulas": {
+      "relative_acceleration": "a_rel = a_1 - a_2 = (-g) - (-g) = 0.  Both fall under same gravity.",
+      "relative_velocity": "V_rel = V_1 - V_2  is a constant vector in time.",
+      "relative_path": "Since V_rel is constant and a_rel = 0, the relative position evolves LINEARLY: r_rel(t) = r_rel(0) + V_rel * t.",
+      "collision_condition": "Relative path passes through origin (r_rel(0) + V_rel*t = 0)  at some t > 0.",
+      "time_to_collision": "If aiming directly at each other: t_collide = |r_rel(0)| / |V_rel|."
+    },
+    "constraints": [
+      "Both projectiles in free-fall under the same gravity (no thrust).",
+      "Air resistance ignored.",
+      "Relative motion holds only while BOTH are airborne.",
+      "Works in 2D; extends naturally to 3D."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "The Magic — Relative Acceleration is Zero",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "magic_sketch",
+            "text": "Two projectiles, same gravity g (downward).\n\n   Acceleration of projectile 1:   a_1  =  (0, -g)\n   Acceleration of projectile 2:   a_2  =  (0, -g)\n\n   Relative acceleration:\n     a_rel  =  a_1  -  a_2\n            =  (0, -g)  -  (0, -g)\n            =  (0, 0)  <-- ZERO!\n\n   So in the frame of projectile 2, projectile 1\n   moves with ZERO acceleration -- a straight line.\n\n   Relative velocity stays CONSTANT throughout the flight.\n   No curvature, no gravity, no tricks.\n\n   Two-projectile problems collapse to straight-line kinematics.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "tennis_label",
+            "text": "Two tennis lobs at Bengaluru academy",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "ball_one",
+            "vehicle_type": "ball",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_left",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
+              { "type": "translate", "delay_sec": 4.5, "duration_sec": 3.0, "dx_px": 160, "dy_px": -160, "easing": "ease_out" },
+              { "type": "translate", "delay_sec": 7.5, "duration_sec": 3.0, "dx_px": 160, "dy_px": 160, "easing": "ease_in" }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "ball_two",
+            "vehicle_type": "ball",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_right",
+            "appear_at": 4.5,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 0.3 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 2.5, "dx_px": -140, "dy_px": -160, "easing": "ease_out" },
+              { "type": "translate", "delay_sec": 7.5, "duration_sec": 2.5, "dx_px": -140, "dy_px": 160, "easing": "ease_in" }
+            ]
+          }
+        ],
+        "focal_primitive": "magic_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Here is the most elegant trick in projectile physics." },
+            { "text_en": "Both projectiles feel the same gravity — minus g straight down. When you subtract one acceleration from the other, g cancels perfectly." },
+            { "text_en": "Relative acceleration is ZERO. In the frame of one projectile, the other moves in a straight line at constant velocity." },
+            { "text_en": "That turns two curved parabolas into one straight line. Two-projectile problems become one-line geometry problems." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "The Straight-Line View — Relative Trajectory",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "straight_line_sketch",
+            "text": "In the frame of projectile 2:\n\n        Projectile 2 sits at origin, motionless.\n        Projectile 1 moves in a STRAIGHT LINE from its\n        initial relative position, at velocity V_rel = V_1 - V_2.\n\n   Relative position at time t:\n      r_rel(t)  =  r_rel(0)  +  V_rel * t\n\n   Collision condition:\n      r_rel(t_collide)  =  0\n      =>  r_rel(0)  +  V_rel * t_collide  =  0\n      =>  t_collide  =  -r_rel(0) / V_rel   (vector equation)\n\n   In plain words:\n      'Do the two projectiles, from the other's point of view,\n       pass straight through each other's starting location?\n       If yes, they collide.  If no, they miss.'",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "straight_line_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "From projectile 2's viewpoint, projectile 1 moves in a straight line — a simple line starting from the initial separation vector." },
+            { "text_en": "That line has slope V-rel, which equals V-one minus V-two. Its position at time t is r-rel zero plus V-rel times t." },
+            { "text_en": "Collision means the relative position returns to zero — projectile 1 reaches projectile 2's location, which is the origin in this frame." },
+            { "text_en": "In plain words: do the two projectiles fly on paths that, from the other's point of view, pass straight through each other's starting position? If yes, they meet. If no, they miss." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Aiming Rule — Point Ball One AT Ball Two",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "aiming_rule_sketch",
+            "text": "Classic JEE setup:\n\n   Ball 1 launched from ground at point A.\n   Ball 2 launched simultaneously from point B.\n\n   For them to COLLIDE in mid-air:\n      Ball 1 must be LAUNCHED pointing directly AT Ball 2's\n      starting position (at the moment of launch).\n\n   Why?\n      Relative velocity V_rel = V_1 - V_2 must lie along the\n      line connecting the two starting positions.\n\n   Once aimed correctly, gravity pulls BOTH balls down by\n   the same amount at every instant -- so they stay on\n   a collision course throughout the flight.\n\n   Monkey-hunter problem:\n      Aim the dart AT the monkey even though it will fall.\n      Monkey drops at the same instant. Both fall by g*t^2/2.\n      The dart lands exactly where the monkey is.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "aiming_rule_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Famous JEE result — for two projectiles to collide in mid-air, ball 1 must be aimed directly at ball 2's starting position." },
+            { "text_en": "Why? Because relative velocity must lie along the line joining their starting positions — straight-line geometry." },
+            { "text_en": "Once you aim correctly, gravity does the rest. It pulls both balls down by exactly the same amount every instant, preserving the collision course." },
+            { "text_en": "This is the famous monkey-hunter problem. Aim at the monkey. The monkey drops when you fire. Both fall by half g t-squared. The dart still hits." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "aim_above_the_monkey",
+      "misconception_summary": "Student argues you must aim ABOVE the monkey to compensate for gravity pulling the dart down.",
+      "confusion_patterns": [
+        "aim above monkey to hit",
+        "compensate for gravity aim higher",
+        "dart falls so aim above",
+        "where to aim moving target"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong: 'Gravity Pulls the Dart, So Aim Higher'",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_aim_sketch",
+              "text": "Student's guess:\n  \"Dart goes up and falls back. So I must aim ABOVE\n   the monkey to account for the dart's fall.\"\n\n  This would be correct if the monkey STAYED still.\n\n  But the monkey DROPS at the same instant the dart is fired.\n\n  Because both feel the same gravity, both fall by g*t^2/2.\n\n  If the dart were aimed above the monkey,\n  they would BOTH fall by the same amount, and the dart\n  would pass ABOVE the monkey.\n\n  Counter-intuitive -- but gravity cancels in their\n  relative motion.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 12,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_aim_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Common wrong instinct — aim higher to compensate for gravity pulling the dart down." },
+              { "text_en": "That would be correct if the monkey stayed still." },
+              { "text_en": "But the monkey drops the moment the dart is fired. Both fall by half g t-squared." },
+              { "text_en": "Aim higher and the dart would pass ABOVE the falling monkey — because both fall by the same amount." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Relative Motion Proves It",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "relative_proof_sketch",
+              "text": "Proof from relative motion:\n\n  Dart position at t:  x_dart  =  v_dart * cos(theta) * t\n                       y_dart  =  v_dart * sin(theta) * t  -  (1/2) g t^2\n\n  Monkey position at t: x_mon   =  x_0_mon\n                        y_mon   =  y_0_mon  -  (1/2) g t^2\n\n  Relative position:\n     x_dart - x_mon  =  v_dart cos(theta) * t  -  x_0_mon\n     y_dart - y_mon  =  v_dart sin(theta) * t  -  y_0_mon\n\n  Note: the (1/2) g t^2 term CANCELS in y_rel!\n\n  So the relative position evolves LINEARLY.\n  Collision requires that the line from dart-start to monkey-start\n  match the direction of the dart.\n\n  Translation: aim AT the monkey, not above.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 11,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "relative_proof_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Formal proof — write positions and subtract." },
+              { "text_en": "Both the dart and the monkey have a half g t-squared drop term." },
+              { "text_en": "When you compute the relative position, that drop term cancels exactly. What is left is a linear function of time." },
+              { "text_en": "So the relative position lies on a straight line. For the line to pass through origin, the dart must have been aimed directly AT the monkey. Not above, not below." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Lab Demo — Electromagnets and Falling Target",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "lab_demo_sketch",
+              "text": "Classic physics lab demonstration:\n\n  A cork is hung by an electromagnet across the room.\n  A toy projectile is aimed DIRECTLY AT the cork.\n  Pulling the trigger instantly:\n     - fires the projectile\n     - cuts the electromagnet current -> cork starts falling\n\n  Result: projectile and cork meet in mid-air, EVERY time,\n  regardless of projectile speed.\n\n  Because:\n      both fall the same distance due to gravity\n      relative motion is a straight line\n      direct aim preserves collision.\n\n  Google 'monkey and hunter demonstration' -- works\n  reliably across hundreds of physics classrooms.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "lab_demo_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Classic lab demo — cork hung by electromagnet across the room, projectile aimed directly at it." },
+              { "text_en": "Pulling the trigger fires the projectile and cuts the magnet. Cork drops, projectile flies, and they meet in mid-air — every single time." },
+              { "text_en": "Regardless of the projectile's speed, the meeting always works. Because both fall equally, direct aim preserves the collision course. One of physics' most beautiful demonstrations." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Tennis lobs on Bengaluru court", "params": { "v1": 15, "theta1": 60, "v2": 12, "theta2": 120, "d_sep": 20 } },
+      { "label": "Chennai Diwali rockets", "params": { "v1": 40, "theta1": 70, "v2": 40, "theta2": 110, "d_sep": 50 } },
+      { "label": "Two cricket balls thrown", "params": { "v1": 20, "theta1": 45, "v2": 20, "theta2": 135, "d_sep": 30 } }
+    ],
+    "type_b": [
+      { "label": "Monkey-hunter demonstration", "scenario": "monkey_hunter_demo" },
+      { "label": "Two ISRO probes synchronised", "scenario": "isro_two_probes" }
+    ]
+  }
+}

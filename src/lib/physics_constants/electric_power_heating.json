@@ -1,0 +1,85 @@
+{
+  "concept_id": "electric_power_heating",
+  "display_name": "Electric Power and Heating Effect (Joule's Law)",
+  "locked_facts": {
+    "power_formula": "P = VI = I²R = V²/R",
+    "heat_formula": "H = I²Rt = VIt = V²t/R",
+    "joule_heating": "Heat produced is proportional to I², R, and time t",
+    "i_squared_law": "Doubling current quadruples power — P scales as I², not I",
+    "series_rule": "Same current through all — higher R dissipates MORE power",
+    "parallel_rule": "Same voltage across all — lower R dissipates MORE power",
+    "energy_unit": "1 kWh = 3.6 × 10⁶ J",
+    "microscopic_cause": "Electrons collide with lattice ions — kinetic energy converts to thermal energy"
+  },
+  "animation_constraints": {
+    "higher_resistance_more_heat_for_same_current": true,
+    "glow_scales_as_i_squared": true,
+    "electrons_drift": "right_to_left",
+    "field_arrows_point": "left_to_right",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true,
+    "show_power_meter": true,
+    "show_heat_counter": true,
+    "collision_glow": true
+  },
+  "ncert_truth_statements": [
+    "P = I²R means doubling current quadruples power, not doubles it",
+    "Electrons drift slowly under the electric field while colliding with lattice ions — collisions release heat",
+    "Power dissipated in a resistor increases as the square of current (P = I²R)",
+    "Heat produced H = I²Rt increases with current, resistance, and time",
+    "The electric field drives electron drift and the resulting collisions convert electrical energy to thermal energy"
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Doubling current doubles the heat produced",
+      "correction": "Doubling current quadruples heat — H = I²Rt, the I² relationship is non-linear",
+      "simulation_emphasis": "Show power meter quadrupling when current doubles — make the jump dramatic"
+    },
+    {
+      "belief": "In series, same resistance means same brightness",
+      "correction": "Different resistances in series carry same current — P = I²R so higher R glows brighter",
+      "simulation_emphasis": "Two resistors side by side, same current, visibly different glow intensity"
+    },
+    {
+      "belief": "The resistor uses up current",
+      "correction": "Current is the same before and after the resistor — only energy is lost as heat",
+      "simulation_emphasis": "Show current counter unchanged on both sides of resistor while glow increases"
+    }
+  ],
+  "simulation_states": {
+    "STATE_1": "No current — wire at room temperature, lattice ions stationary, no glow",
+    "STATE_2": "Current ON — electrons drifting, collisions begin, resistor starts warming, faint orange glow",
+    "STATE_3": "Current doubled — glow is 4x brighter NOT 2x, power meter shows I² relationship dramatically",
+    "STATE_4": "Student controls current slider — watches glow quadruple in real time, H = I²Rt counter rising"
+  },
+  "aha_moment": "STATE_3 is the climax — the glow jumps to 4x when current only doubles. Students expect linear. The quadratic jump is the surprise that makes P = I²R unforgettable.",
+  "renderer_hint": {
+    "type": "particle_field",
+    "show_realistic_wire": true,
+    "show_zoom_in": true,
+    "zoom_shows": "electron-lattice collisions causing vibration and heat glow",
+    "macroscopic_shows": "resistor connected to circuit, glowing orange-red with heat"
+  },
+  "visual_drama": {
+    "primary_colour": "resistor glows deep orange at low current, white-hot at high current",
+    "secondary_colour": "electrons are blue, lattice ions pulse yellow-white on each collision",
+    "scale_change": "at STATE_3, glow radius doubles and pulses — visually undeniable quadrupling",
+    "surprise_moment": "when student drags current from 1A to 2A — power meter jumps from 4W to 16W instantly, not to 8W as expected",
+    "zoom_in": "realistic resistor on left, microscopic collision animation zoomed in on right panel"
+  },
+  "variables": {
+    "I": "current through resistor in amperes",
+    "R": "resistance of resistor in ohms",
+    "V": "voltage across resistor in volts",
+    "P": "power dissipated in watts",
+    "H": "heat produced in joules",
+    "t": "time in seconds"
+  },
+  "legend": [
+    {"symbol": "P", "meaning": "Electric power — rate of energy dissipation (W)"},
+    {"symbol": "H", "meaning": "Heat produced in time t (J)"},
+    {"symbol": "I²R", "meaning": "Power scales with square of current"},
+    {"symbol": "kWh", "meaning": "Kilowatt-hour — commercial unit of energy"}
+  ]
+}

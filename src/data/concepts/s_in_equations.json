@@ -1,0 +1,238 @@
+{
+  "concept_id": "s_in_equations",
+  "concept_name": "The 's' in Kinematic Equations Is DISPLACEMENT, Not Distance",
+  "chapter": 6,
+  "section": "6.5",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 6.5 — Equations of Motion; split from distance_vs_displacement bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A cricketer throws a ball straight up at forty metres per second on an empty ground in Delhi. After six seconds, where is the ball? The kinematic equation s = u t + half a t squared gives a number — but that number is the DISPLACEMENT, meaning 'sixty metres above the start', not the total distance the ball travelled (which would count both the rise and the descent). Using the equation wrongly can lead to completely different answers.",
+    "secondary": "A car on the Mumbai-Pune Expressway brakes sharply. Using v squared equals u squared plus two a s, you solve for s — but the s you get is the displacement from the moment of braking to the stop, not the total distance the car's brakes scraped, which may include a skid that you did not account for.",
+    "tertiary": "An elevator dropping at five metres per second decelerates at two metres per second squared over three seconds. The s in v = u + a t plugged into s = u t + half a t squared tells you how far BELOW its starting floor the elevator is — a signed displacement. If you wanted the total distance it moved (say for cable-wear calculations), you would need to track motion in each sub-interval separately."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "u": { "name": "Initial velocity (signed)", "unit": "m/s", "min": -40, "max": 40, "default": 40 },
+      "a": { "name": "Acceleration (signed)", "unit": "m/s^2", "min": -20, "max": 20, "default": -9.8 },
+      "t": { "name": "Elapsed time", "unit": "s", "min": 0, "max": 20, "default": 6 }
+    },
+    "computed_outputs": {
+      "s_displacement": { "formula": "u * t + 0.5 * a * t * t" },
+      "v_at_t": { "formula": "u + a * t" },
+      "peak_time": { "formula": "(-u) / (a + 1e-9)" },
+      "peak_height": { "formula": "u * ((-u) / (a + 1e-9)) + 0.5 * a * (((-u) / (a + 1e-9)) * ((-u) / (a + 1e-9))) " }
+    },
+    "formulas": {
+      "eq1": "v = u + a t     (change of velocity)",
+      "eq2": "s = u t + (1/2) a t^2   (s is DISPLACEMENT)",
+      "eq3": "v^2 = u^2 + 2 a s   (s is DISPLACEMENT here too)",
+      "note": "Distance requires summing |ds/dt| over time; it equals s only when direction never reverses"
+    },
+    "constraints": [
+      "All three kinematic equations take s as signed DISPLACEMENT, NOT distance",
+      "If u and a have opposite signs, the motion reverses and distance > |displacement|",
+      "To compute distance when motion reverses: split the motion into 'before reversal' and 'after reversal' pieces and sum |s| in each",
+      "Equations are valid only for constant acceleration"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Ball Thrown Up — Plug-And-Chug Gives the Wrong Answer",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup",
+            "text": "Setup\n\n  u = +40 m/s  (thrown straight up)\n  a = -9.8 m/s^2  (gravity, down)\n  t = 6 s\n\nStudent asks: total DISTANCE after 6 s?\n\nPlug into s = u t + 0.5 a t^2\n  s = 40 * 6 + 0.5 * (-9.8) * 36\n    = 240 - 176.4\n    = +63.6 m\n\nSo distance = 63.6 m?\nNo — 63.6 is a displacement,\nnot the distance covered.",
+            "position": { "x": 320, "y": 260 },
+            "style": "formula_box",
+            "color": "#EF4444"
+          },
+          {
+            "type": "annotation",
+            "id": "reality",
+            "text": "What actually happens\n\nAt t = 4.08 s the ball reaches\npeak height:\n  t_peak = u / |a| = 40 / 9.8 ~ 4.08 s\n  h_peak = u^2 / (2|a|) ~ 81.6 m\n\nThen it starts coming down.\nAt t = 6 s it is at +63.6 m\n(still 63.6 m above the throw point).\n\nDistance traveled in 6 s\n  up (81.6 m) + back down (81.6 - 63.6 = 18 m)\n  = 99.6 m\n\nSo distance (99.6) > displacement (63.6).",
+            "position": { "x": 720, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A cricketer throws a ball straight up at forty metres per second. Six seconds later, a student asks: how much distance has the ball covered?" },
+            { "id": "s2", "text_en": "First instinct — plug into s equals u t plus half a t squared. Forty times six is two hundred forty. Half times minus nine point eight times thirty-six is minus one seventy-six point four. Sum is sixty-three point six metres." },
+            { "id": "s3", "text_en": "Claim: distance is sixty-three point six metres. That answer is WRONG." },
+            { "id": "s4", "text_en": "The ball rises to about eighty-one point six metres at peak, then starts coming down. At six seconds, it is sixty-three point six metres above the throw point — that is the DISPLACEMENT, not the distance." },
+            { "id": "s5", "text_en": "The distance is eighty-one point six up plus eighteen back down, equals ninety-nine point six metres. Nowhere near sixty-three point six." },
+            { "id": "s6", "text_en": "The kinematic equation gave the right displacement. It did NOT give the distance. This is the most common student mistake in kinematics problems." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Why the Equation Gives Displacement — The Reversal Gets Cancelled",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "why_block",
+            "text": "s = u t + (1/2) a t^2\n\nDerivation of this formula\nintegrates VELOCITY over time:\n\n  s = integral of v(t) dt\n\nWhen v is positive, ds is positive.\nWhen v is negative, ds is negative.\n\nUp motion contributes +81.6.\nDown motion contributes -18.\nSum = +63.6 = displacement.\n\nThe negative contribution CANCELS\npart of the positive one, leaving\nonly the signed shift — displacement.",
+            "position": { "x": 320, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "distance_formula",
+            "text": "Distance needs |v|, not v\n\n  distance = integral of |v(t)| dt\n\nThe absolute value converts\ndownward motion back to positive\ncontribution.\n\nFor the ball example\n  up leg   +81.6\n  down leg +18\n  sum      99.6 m\n\nThere is no single kinematic\nequation for distance when direction\nreverses. You MUST split the motion\ninto sub-intervals.",
+            "position": { "x": 680, "y": 280 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Understand why the equation behaves this way. The formula s equals u t plus half a t squared comes from integrating velocity over time." },
+            { "id": "s2", "text_en": "When velocity is positive, small bits of motion add positively. When velocity is negative, they add negatively. The sum is the NET shift — the displacement." },
+            { "id": "s3", "text_en": "For the ball, upward motion contributes plus eighty-one point six metres. Downward motion contributes minus eighteen metres. Sum is plus sixty-three point six. The negative piece cancelled part of the positive piece." },
+            { "id": "s4", "text_en": "Distance needs the absolute value of velocity. Every piece, whether up or down, adds positively. That gives ninety-nine point six metres." },
+            { "id": "s5", "text_en": "There is no single closed-form kinematic equation for distance when the motion reverses. You have to split the motion into sub-intervals — one per monotonic piece — and sum the absolute displacements." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "The Workflow — Always Interpret s as Displacement",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "workflow",
+            "text": "Workflow for kinematics problems\n\n(1) Pick a sign convention\n    (e.g. up = +).\n\n(2) Write out u, a, t with signs.\n\n(3) Apply s = u t + 0.5 a t^2 directly.\n    The s you compute IS the\n    SIGNED displacement. That is what\n    the formula guarantees.\n\n(4) If the question asks for DISTANCE:\n    (4a) Find t when v = 0 (reversal).\n    (4b) Compute |displacement| over\n         each no-reversal interval.\n    (4c) Sum those absolute values.\n    (4d) That sum is the distance.",
+            "position": { "x": 400, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is the safe workflow. Always interpret s as displacement, then convert to distance only when the question asks." },
+            { "id": "s2", "text_en": "Step one — pick a sign convention. Step two — write u, a, and t with signs. Step three — apply the kinematic equation. What it gives you is the signed displacement." },
+            { "id": "s3", "text_en": "If the question asks for displacement, you are done. If it asks for distance, step four — find any time when velocity is zero, because that is a turning point." },
+            { "id": "s4", "text_en": "Step four-b — compute the displacement magnitude over each no-reversal interval. Step four-c — sum those magnitudes." },
+            { "id": "s5", "text_en": "That sum is the distance. Never short-cut this by plugging into the kinematic equation directly — the direct plug gives displacement, not distance. Remembering this single rule prevents the most common sign-related mistakes on JEE problems." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "s_in_equation_is_distance",
+      "misconception": "The s in s = ut + 0.5 a t^2 gives total distance covered",
+      "trigger_phrases": [
+        "s is distance in kinematics",
+        "ut plus half at squared distance",
+        "s=ut+0.5at^2 is distance",
+        "why does my distance formula give wrong answer"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Kinematic 's' Is Total Distance",
+          "duration": 7,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "claim",
+              "text": "Your reasoning\n\nIn class we saw s = ut + 0.5 a t^2.\nStudents generally read 's' as 'distance'.\n\nBall thrown at 40 m/s, t = 6 s\n  s = 40(6) + 0.5(-9.8)(36)\n    = 63.6\n\nSo distance = 63.6 m?\n\nActually, the ball actually went up 81.6 m,\ncame down to 63.6 m -> distance is 99.6 m.\n\nThe formula gave displacement, not distance.",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A very common reading of the kinematic equation — 's' is distance, the total amount the object moved." },
+              { "id": "s2", "text_en": "For the ball thrown at forty metres per second, the equation gives sixty-three point six. So the student says distance is sixty-three point six." },
+              { "id": "s3", "text_en": "The real distance is ninety-nine point six, because the ball went up eighty-one point six and then came back down eighteen metres. The equation gave displacement — the net shift — not the accumulated path." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Split Method — Distance After Reversal",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "split",
+              "text": "Finding the actual distance\n\nStep 1  When does v reach zero?\n  0 = u + a t_peak\n  t_peak = -u / a = 40 / 9.8 ~ 4.08 s\n\nStep 2  Displacement from 0 to t_peak\n  s1 = 40(4.08) + 0.5(-9.8)(4.08)^2\n     = 163.2 - 81.6\n     = 81.6 m   (ascent)\n\nStep 3  Displacement from t_peak to 6 s\n  delta_t = 6 - 4.08 = 1.92 s\n  starts at rest, falls under a = -9.8\n  s2 = 0 + 0.5(-9.8)(1.92)^2 ~ -18 m\n\nStep 4  Distance\n  = |s1| + |s2|\n  = 81.6 + 18\n  = 99.6 m\n\nDisplacement = s1 + s2 = 81.6 - 18 = 63.6 m",
+              "position": { "x": 400, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the split method. Step one — find the reversal time by setting v equal to zero." },
+              { "id": "s2", "text_en": "t-peak equals minus u over a, which is four point zero eight seconds. The ball reverses direction here." },
+              { "id": "s3", "text_en": "Step two — displacement from zero to t-peak. Plug into the formula. Two hundred forty-three point two less eighty-one point six equals plus eighty-one point six metres. That is the ascent." },
+              { "id": "s4", "text_en": "Step three — displacement from t-peak to six seconds. The ball starts at rest at the peak and falls for one point nine two seconds under minus nine point eight. Displacement is minus eighteen metres." },
+              { "id": "s5", "text_en": "Step four — add absolute values. Eighty-one point six plus eighteen equals ninety-nine point six metres. That is the distance." },
+              { "id": "s6", "text_en": "Notice the displacement from start to finish is simply the sum of the signed pieces — eighty-one point six minus eighteen equals sixty-three point six, which matches the direct formula. The split is only needed when you want the distance." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "The Rule to Keep",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "rule",
+              "text": "Rule for every kinematic problem\n\nThe s in the formulas means\nDISPLACEMENT, always.\n\nTo compute distance when direction\nreverses, split into sub-intervals\nwhere v has a single sign, and\nsum the |displacements|.\n\nWhen does v reverse?\n  set u + a*t = 0\n  -> t_reversal = -u / a\n\nIf u and a are same-sign, no reversal\nwithin t > 0, so distance = |s|.\n\nIf u and a are opposite-sign, a\nreversal DOES happen at t_reversal > 0.\nAlways check.",
+              "position": { "x": 360, "y": 260 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the rule to memorise. The s in all three kinematic equations means displacement. Always." },
+              { "id": "s2", "text_en": "To compute distance when direction reverses, split the motion into sub-intervals where velocity has a single sign, and sum the absolute displacements." },
+              { "id": "s3", "text_en": "To detect a reversal, check whether u and a have opposite signs. If they do, a reversal happens at t equals minus u over a. Compute that time and compare with the t in the problem." },
+              { "id": "s4", "text_en": "If u and a have the same sign, there is no reversal, and distance equals absolute displacement. The plug-and-chug is safe. But always check first, because one wrong assumption invalidates the whole answer." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Braking car — no reversal",
+      "physical_world": "Car at 20 m/s brakes at -4 m/s^2 for 4 s. t_reversal = 5 s (beyond 4 s window), so NO reversal within time. s = 20*4 - 0.5*4*16 = 80 - 32 = 48 m. Distance = displacement = 48 m.",
+      "same_physics": "Same-sign u and a in the relevant window -> distance equals |displacement|"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Object bouncing twice",
+      "physical_world": "Beyond a single reversal, multi-bounce motion requires splitting into as many sub-intervals as reversals.",
+      "same_physics": "One sub-interval per monotonic velocity segment"
+    }
+  ]
+}

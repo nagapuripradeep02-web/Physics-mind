@@ -1,0 +1,221 @@
+{
+  "concept_id": "area_vector",
+  "concept_name": "Area as Scalar and as Vector — Two Faces of One Quantity",
+  "chapter": 5,
+  "section": "5.1",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.1 — context-dependent classification; split from scalar_vs_vector bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A solar panel on a rooftop. The panel's area in square metres is a plain scalar. But how much sunlight it actually captures depends on the angle the panel makes with the sun — that is where the area VECTOR shows up, pointing perpendicular to the panel.",
+    "secondary": "A window in your home. The glass area is a number, say two square metres. How much sunlight heats the room depends on which way the window faces — north, south, east, west. Orientation turns the scalar area into a directed quantity.",
+    "tertiary": "Holding a sheet of paper outside in the rain. If you hold it flat (perpendicular to the falling rain), it catches maximum water. Tilt it, and it catches less. The scalar area of the paper has not changed — only its orientation has."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "length": { "name": "Length of rectangle", "unit": "m", "min": 0.5, "max": 5, "default": 2 },
+      "breadth": { "name": "Breadth of rectangle", "unit": "m", "min": 0.5, "max": 5, "default": 1.5 },
+      "tilt_deg": { "name": "Tilt of surface from horizontal", "unit": "deg", "min": 0, "max": 90, "default": 30 },
+      "field_strength": { "name": "Uniform field magnitude E", "unit": "N/C or W/m^2", "min": 1, "max": 1000, "default": 100 }
+    },
+    "computed_outputs": {
+      "area_scalar": { "formula": "length * breadth" },
+      "flux": { "formula": "field_strength * length * breadth * cos(tilt_deg * PI / 180)" },
+      "flux_normal": { "formula": "field_strength * length * breadth" }
+    },
+    "formulas": {
+      "scalar_area": "A = l * b",
+      "area_vector": "A = A * n_hat  (magnitude A, direction = outward surface normal n_hat)",
+      "flux": "Phi = E . A = E * A * cos theta"
+    },
+    "constraints": [
+      "Area is a scalar when only magnitude matters (how big is the surface)",
+      "Area is a vector when orientation matters (how the surface interacts with a field)",
+      "The area vector points perpendicular to the surface, outward by convention",
+      "For a closed surface, the area vector on each face points outward; this is what makes Gauss's law possible"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Simple Case — Area Is Just a Number",
+        "duration": 9,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rect_label",
+            "text": "Rectangular field\nlength 2 m, breadth 1.5 m",
+            "position": { "x": 240, "y": 180 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "rect_shape",
+            "text": "________________________\n|                        |\n|                        |\n|       2 m x 1.5 m       |\n|                        |\n|________________________|",
+            "position": { "x": 300, "y": 320 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "scalar_calc",
+            "text": "Area\n= length x breadth\n= 2 x 1.5\n= 3 m^2\n\nOne number.\nNo direction.\nScalar.",
+            "position": { "x": 580, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Start with the everyday meaning of area. A rectangular field, two metres by one and a half metres." },
+            { "id": "s2", "text_en": "Area equals length times breadth. Three square metres." },
+            { "id": "s3", "text_en": "One number. No direction attached. This is area as a pure scalar — the meaning you have used since primary school." },
+            { "id": "s4", "text_en": "For painting a wall or buying carpet, this is the only kind of area you need. Direction does not enter the picture." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Tilt the Surface — Orientation Begins to Matter",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "scenario",
+            "text": "Same rectangular surface (3 m^2)\nUniform electric field E pointing up.",
+            "position": { "x": 300, "y": 160 },
+            "style": "callout"
+          },
+          {
+            "type": "force_arrow",
+            "id": "field_1",
+            "from": { "x": 200, "y": 260 },
+            "magnitude": 3,
+            "direction_deg": 90,
+            "label": "E",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "field_2",
+            "from": { "x": 280, "y": 260 },
+            "magnitude": 3,
+            "direction_deg": 90,
+            "label": "",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "field_3",
+            "from": { "x": 360, "y": 260 },
+            "magnitude": 3,
+            "direction_deg": 90,
+            "label": "",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "annotation",
+            "id": "flat_case",
+            "text": "Surface HORIZONTAL\n(perpendicular to field)\n\nField lines pierce the surface:\n3 (imagine all passing through)\n\nMAX flux",
+            "position": { "x": 500, "y": 240 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "tilted_case",
+            "text": "Surface VERTICAL\n(parallel to field)\n\nField lines skim past without\npiercing the surface.\n\nZERO flux.\n\nArea is the SAME 3 m^2\nin both cases.\nWhat changed? Orientation.",
+            "position": { "x": 500, "y": 400 },
+            "style": "formula_box",
+            "color": "#EF4444"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now introduce a uniform field — an electric field or a sunlight beam — pointing straight up." },
+            { "id": "s2", "text_en": "Hold the rectangular surface horizontally, like a tray. Field lines pierce straight through it. Maximum effect — maximum flux." },
+            { "id": "s3", "text_en": "Now rotate the surface to vertical. Field lines skim past it without piercing. Zero flux." },
+            { "id": "s4", "text_en": "The scalar area of the surface is still three square metres in both cases. What changed is its orientation relative to the field." },
+            { "id": "s5", "text_en": "That tells us: when a field is involved, area alone is not enough. We must also know which way the surface is facing. That need for a direction is what turns area into a vector." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Defining the Area Vector — The Flux Formula",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "normal_arrow",
+            "from": { "x": 280, "y": 340 },
+            "magnitude": 2,
+            "direction_deg": 60,
+            "label": "n_hat (area normal)",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 60
+          },
+          {
+            "type": "annotation",
+            "id": "surface_line",
+            "text": "<-- surface, area A = 3 m^2 -->",
+            "position": { "x": 280, "y": 400 },
+            "style": "callout"
+          },
+          {
+            "type": "force_arrow",
+            "id": "field_up",
+            "from": { "x": 440, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": 90,
+            "label": "E (field, up)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "annotation",
+            "id": "definitions",
+            "text": "Area vector\nA = A * n_hat\n\nmagnitude  A = 3 m^2\ndirection  n_hat = surface normal\n\nFlux\nPhi = E . A = E A cos theta\n\ntheta = angle between field and normal\n\ntheta =  0   -> cos = 1   -> max flux\ntheta = 90   -> cos = 0   -> zero flux\ntheta = 180  -> cos = -1  -> min flux",
+            "position": { "x": 620, "y": 280 },
+            "style": "formula_box"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is the formal definition. The area vector, capital A, has magnitude equal to the scalar area, A, and direction perpendicular to the surface — the surface normal n-hat." },
+            { "id": "s2", "text_en": "By convention, for an open surface we pick a consistent side; for a closed surface we always point outward." },
+            { "id": "s3", "text_en": "Flux is the dot product of the field with the area vector. E times A times the cosine of the angle between the field and the normal." },
+            { "id": "s4", "text_en": "When the normal points along the field, cosine equals one, flux is maximum. When the normal is perpendicular to the field, cosine is zero, flux is zero." },
+            { "id": "s5", "text_en": "So area is a scalar when only the amount of surface matters. Area is a vector — the area vector — when we need to know how the surface is oriented with respect to a flow or a field." },
+            { "id": "s6", "text_en": "Same quantity, two roles. Context tells you which face of area you are working with." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different surface shapes, same flux rule",
+      "physical_world": "Circular hoop of radius 0.5 m (A = pi/4), square plate of side 1 m (A = 1), triangular panel — each has its own scalar area but the same Phi = E*A*cos(theta) rule for flux.",
+      "same_physics": "Area vector points along the normal; flux is always the dot product with the field"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Closed surface (Gauss)",
+      "physical_world": "Charge at the centre of a cubical box. Each of the six faces has its own area vector pointing outward. Total flux out of the box equals q over epsilon-naught, which is Gauss's law.",
+      "same_physics": "Area vector convention (outward on closed surfaces) is what makes Gauss's law work cleanly"
+    }
+  ]
+}

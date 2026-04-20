@@ -1,0 +1,28 @@
+{
+  "concept": "cells_in_series_parallel",
+  "locked_facts": {
+    "series_emf": "E_total = E1 + E2 + ... + En",
+    "series_internal_resistance": "r_total = r1 + r2 + ... + rn",
+    "series_use_case": "use_series_when_high_voltage_needed",
+    "parallel_emf": "E_total = E (same as individual cell EMF if all cells identical)",
+    "parallel_internal_resistance": "r_total = r / n for n identical cells in parallel",
+    "parallel_use_case": "use_parallel_when_high_current_needed",
+    "parallel_current_formula": "I = n*E / (R + r/n) for n identical cells"
+  },
+  "animation_constraints": {
+    "series_increases_voltage": true,
+    "parallel_increases_current_capacity": true,
+    "electrons_drift": "right_to_left",
+    "field_arrows_point": "left_to_right",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "When cells are connected in series, the total EMF is the sum of individual EMFs and the total internal resistance is the sum of individual internal resistances",
+    "Cells are connected in series when a higher terminal voltage is required; the current capacity does not increase beyond that of a single cell",
+    "When identical cells are connected in parallel, the total EMF remains equal to the EMF of one cell, but the effective internal resistance decreases to r/n",
+    "Cells are connected in parallel when a larger current is required from the combination; the voltage across the combination equals that of one cell",
+    "For maximum current from n identical cells of EMF E and internal resistance r connected to external resistance R, series combination is better if R > r and parallel is better if R < r"
+  ]
+}

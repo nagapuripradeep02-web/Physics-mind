@@ -1,0 +1,88 @@
+{
+  "concept_id": "lc_oscillations",
+  "concept_name": "LC Oscillations",
+  "chapter": "Alternating Current",
+  "class_level": 12,
+  "renderer_hint": {
+    "primary": "circuit_live",
+    "topology": "lc_loop",
+    "show_graph": true,
+    "graph_type": "energy_vs_time"
+  },
+  "variables": {
+    "L": { "symbol": "L", "name": "Inductance", "unit": "H", "min": 0.001, "max": 1, "default": 0.1 },
+    "C": { "symbol": "C", "name": "Capacitance", "unit": "μF", "min": 1, "max": 1000, "default": 100 },
+    "Q_0": { "symbol": "Q₀", "name": "Initial Charge", "unit": "μC", "min": 1, "max": 100, "default": 10 }
+  },
+  "locked_facts": [
+    "Angular frequency ω₀ = 1/√(LC)",
+    "Time period T = 2π√(LC)",
+    "Energy oscillates between electric field in C and magnetic field in L",
+    "At t=0: all energy in capacitor (E_C = Q₀²/2C), zero in inductor",
+    "At t=T/4: all energy in inductor (E_L = LI_max²/2), zero in capacitor",
+    "Total energy E = Q₀²/2C = LI_max²/2 — conserved throughout",
+    "Charge: q(t) = Q₀ cos(ω₀t)",
+    "Current: i(t) = -Q₀ω₀ sin(ω₀t) = I_max sin(ω₀t) where I_max = Q₀ω₀",
+    "Analogy: mass-spring system with E_electric ↔ potential energy, E_magnetic ↔ kinetic energy"
+  ],
+  "truth_statements": [
+    "Total energy in ideal LC circuit is conserved — no dissipation",
+    "Angular resonant frequency is 1/√(LC)",
+    "When capacitor is fully charged, inductor current is zero",
+    "When inductor current is maximum, capacitor charge is zero",
+    "LC oscillation frequency does not depend on initial charge or energy"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show E_C(t) and E_L(t) on the same graph. E_C = (Q₀²/2C)cos²(ω₀t) decreases from maximum. E_L = (LI²/2) increases from zero. Their sum is always constant = Q₀²/2C. The energy sloshes perfectly between them like a pendulum — except here it is between electric and magnetic fields.",
+    "visual_emphasis": "E_C in orange, E_L in blue, E_total in green (flat horizontal line). The total never changes while the individual energies oscillate. This is conservation of energy made visible."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Initial state — capacitor fully charged",
+      "what_student_sees": "Capacitor charged to Q₀. No current. E_C = maximum shown on right panel. E_L = 0. Electric field lines shown between capacitor plates.",
+      "what_to_emphasize": "All energy is stored as electric field energy in the capacitor. The inductor has no current, no magnetic field."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Capacitor discharging — current building",
+      "what_student_sees": "Current begins to flow. Capacitor charge decreasing. Inductor has growing magnetic field (shown as field lines around inductor coil). E_C falling, E_L rising on graph.",
+      "what_to_emphasize": "As capacitor discharges, the energy does not disappear — it transfers to the inductor's magnetic field. Energy is conserved."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Maximum current — the aha moment",
+      "what_student_sees": "Capacitor fully discharged (Q = 0). Current at maximum I_max. E_C = 0, E_L = maximum. Energy is now entirely in the inductor's magnetic field.",
+      "what_to_emphasize": "All electric energy has converted to magnetic energy. Now the inductor's field will drive current to recharge the capacitor in the opposite polarity — the oscillation continues."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Full cycle — analogy to pendulum",
+      "what_student_sees": "Complete animation of one full oscillation. Alongside, a pendulum oscillating: KE at bottom (analogous to E_L at max current), PE at top (analogous to E_C at full charge).",
+      "what_to_emphasize": "LC oscillation IS the electrical pendulum. Same mathematics, same energy exchange, same frequency formula structure: ω = 1/√(LC) vs ω = √(g/L) for pendulum."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "energy_lost_in_lc",
+      "trigger_keywords": ["energy dissipated", "current decreases over time", "oscillation stops", "LC ka energy loss", "resistance in LC"],
+      "student_belief": "LC oscillations will die out over time because current flowing through the inductor must lose energy",
+      "actual_physics": "In an ideal LC circuit with zero resistance, oscillations continue indefinitely — no energy loss. Real circuits have small resistance and do damp over time, but ideal LC is lossless.",
+      "simulation_emphasis": "Show the total energy E_total = E_C + E_L as a flat horizontal line even as individual energies oscillate. The flatness IS the conservation of energy."
+    },
+    {
+      "id": "current_and_charge_same_phase",
+      "trigger_keywords": ["charge and current in phase", "Q aur I saath saath", "when charge max current max", "charge current both zero same time"],
+      "student_belief": "Charge on capacitor and current in the circuit are in phase — both maximum at the same time",
+      "actual_physics": "q = Q₀cos(ω₀t) and i = -Q₀ω₀sin(ω₀t). They are 90° out of phase. When charge is maximum (capacitor fully charged), current is zero. When current is maximum, charge is zero.",
+      "simulation_emphasis": "Show q(t) and i(t) on the same graph. Their peaks are displaced by exactly T/4. Circle the moments where q = Q₀ (I = 0) and where I = I_max (q = 0) — make the 90° phase difference explicit."
+    }
+  ],
+  "legend": [
+    { "symbol": "ω₀", "meaning": "Resonant angular frequency = 1/√(LC)" },
+    { "symbol": "E_C", "meaning": "Energy in capacitor = q²/2C" },
+    { "symbol": "E_L", "meaning": "Energy in inductor = Li²/2" },
+    { "symbol": "T", "meaning": "Time period = 2π/ω₀ = 2π√(LC)" }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "concept_id": "rolling_without_slipping",
+  "concept_name": "Rolling Without Slipping",
+  "class_level": 11,
+  "chapter": "System of Particles and Rotational Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "rolling_motion", "panel_count": 2, "show_labels": true },
+  "variables": { "v_cm": "Velocity of centre of mass (m/s)", "ω": "Angular velocity (rad/s)", "R": "Radius (m)", "v_contact": "Velocity at contact point (m/s)" },
+  "locked_facts": [
+    "Rolling without slipping condition: v_cm = ωR",
+    "Velocity at contact point is zero (instantaneous axis of rotation at contact)",
+    "Velocity at top point is 2v_cm (translation + rotation add)",
+    "KE of rolling = ½mv²_cm + ½Iω² = ½mv²_cm(1 + k²/R²)",
+    "The contact point is the instantaneous axis of rotation",
+    "Friction is necessary for rolling but does no work in pure rolling",
+    "For pure rolling, the contact point has zero velocity — no relative sliding"
+  ],
+  "truth_statements": [
+    "In pure rolling the velocity of the contact point relative to the surface is zero",
+    "The total kinetic energy of a rolling body is the sum of translational and rotational kinetic energies",
+    "The top of a rolling wheel moves at twice the speed of the centre",
+    "Static friction enables rolling without slipping but does not dissipate energy",
+    "The condition v = ωR connects translational and rotational motion in pure rolling"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A rolling wheel with velocity vectors drawn at contact, centre, and top. Contact: v = v_cm - ωR = 0. Centre: v = v_cm. Top: v = v_cm + ωR = 2v_cm. The instantaneous axis at the contact point is highlighted.",
+    "visual_emphasis": "Three velocity arrows at three points — zero at bottom, v at centre, 2v at top — with the contact point marked as instantaneous pivot",
+    "why_this_breaks_misconception": "Students think every point on the wheel moves at the same speed — seeing zero velocity at the contact point is the breakthrough moment"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Pure translation", "description": "A wheel sliding without rotating. Every point has the same velocity v_cm. Contact point slides — kinetic friction acts.", "emphasis": "Without rotation, the contact point slides — this is NOT rolling", "labels_visible": ["v_cm", "sliding", "kinetic friction"] },
+    { "id": "STATE_2", "label": "Pure rotation", "description": "Wheel spinning in place (not translating). Contact point moves backward at ωR. Top moves forward at ωR. Centre is stationary.", "emphasis": "Without translation, the wheel spins but doesn't go anywhere", "labels_visible": ["ω", "v_top = ωR", "v_contact = -ωR"] },
+    { "id": "STATE_3", "label": "Rolling = translation + rotation", "description": "Translation and rotation combined: v_cm = ωR. Contact velocity: v_cm - ωR = 0. Top: v_cm + ωR = 2v_cm. The contact is the instantaneous axis.", "emphasis": "v_contact = 0 is THE condition for rolling without slipping", "labels_visible": ["v = 0 at contact", "v = 2v_cm at top", "v_cm = ωR"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts v_cm and ω independently. When v_cm = ωR, 'pure rolling' indicator turns green. Deviating shows slip. Track a point on the rim — it traces a cycloid.", "emphasis": "Adjust ω until contact velocity = 0. Track a rim point to see the cycloid path.", "labels_visible": ["v_cm", "ω", "v_contact"], "interactive": true, "sliders": [{ "id": "v_cm", "label": "v_cm", "min": 0, "max": 10, "default": 5, "unit": "m/s" }, { "id": "omega", "label": "ω", "min": 0, "max": 20, "default": 10, "unit": "rad/s" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Friction always opposes motion, so it must slow rolling", "trigger_phrases": ["friction slows rolling", "friction opposes rolling", "friction energy loss rolling"], "correction": "In pure rolling, static friction acts at the contact point which has zero velocity — so friction does zero work and dissipates no energy. It only provides the torque needed to maintain rolling.", "simulation_emphasis": "Show friction arrow at contact but zero displacement → zero work done" },
+    { "belief": "All points on a rolling wheel have the same speed", "trigger_phrases": ["same speed everywhere", "sabhi points same velocity"], "correction": "In rolling, the contact point has zero velocity, the centre has v_cm, and the top has 2v_cm. The speed varies from 0 to 2v_cm depending on position.", "simulation_emphasis": "Show velocity arrows at contact (0), centre (v), and top (2v)" }
+  ],
+  "legend": [ { "symbol": "v_cm", "meaning": "Centre of mass velocity (m/s)" }, { "symbol": "ω", "meaning": "Angular velocity (rad/s)" }, { "symbol": "R", "meaning": "Radius (m)" } ],
+  "concept_relationships": { "prerequisites": ["moment_of_inertia_shapes", "newtons_second_law"], "extensions": ["rolling_on_incline"], "siblings": ["combined_rotation_translation"], "common_exam_combinations": ["rolling_on_incline", "angular_momentum_conservation"] }
+}

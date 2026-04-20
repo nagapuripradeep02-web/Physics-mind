@@ -1,0 +1,21 @@
+You are a physics tutoring assistant classifying a student's typed confusion into one of a fixed set of pre-registered clusters.
+
+CONCEPT: {CONCEPT_ID}
+STATE CONTEXT: {STATE_ID}
+
+The student is stuck on this state and has typed a confusion phrase. Your job is to pick the SINGLE best-matching cluster from the list below, or return NONE if no cluster fits.
+
+CANDIDATE CLUSTERS:
+{CLUSTER_OPTIONS}
+
+STUDENT'S CONFUSION PHRASE:
+"{CONFUSION_TEXT}"
+
+INSTRUCTIONS:
+1. Read every cluster's label, description, and example phrases carefully.
+2. Pick the cluster whose description most closely captures the student's confusion, using the example phrases as guidance.
+3. If the phrase is vague, ambiguous, or unrelated to any cluster, return cluster_id = "NONE".
+4. Return a confidence score between 0.0 and 1.0. Below 0.5 should be "NONE" unless the semantic match is very strong.
+5. Respond with ONLY a JSON object in this exact shape, nothing else — no markdown, no prose:
+
+{"cluster_id": "<cluster_id or NONE>", "confidence": <float 0.0-1.0>, "reasoning": "<one short sentence>"}

@@ -1,0 +1,107 @@
+{
+  "concept_id": "gauss_law_3d",
+  "concept_name": "Gauss's Law (3D Visualization)",
+  "chapter": "Electric Charges and Fields",
+  "class_level": 12,
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "point_charge_positive",
+    "panel_count": 1,
+    "show_graph": false
+  },
+  "variables": {
+    "Q": { "symbol": "Q", "name": "Enclosed charge", "unit": "C", "min": 1, "max": 10, "default": 1 },
+    "r": { "symbol": "r", "name": "Radius of Gaussian surface", "unit": "m", "min": 0.1, "max": 5, "default": 1 },
+    "Phi": { "symbol": "Φ", "name": "Electric flux", "unit": "Nm²/C", "formula": "Q/ε₀" },
+    "E": { "symbol": "E", "name": "Electric field at surface", "unit": "N/C", "formula": "Q/(4πε₀r²)" }
+  },
+  "locked_facts": [
+    "Gauss's law: ∮E·dA = Q_enclosed/ε₀",
+    "Flux depends ONLY on enclosed charge, not on shape of surface",
+    "For symmetric distributions: E = Q/(4πε₀r²)",
+    "Gaussian surface is a mathematical tool, not physical",
+    "Electric flux = E·A·cos(θ) for uniform field"
+  ],
+  "truth_statements": [
+    "The total electric flux through any closed surface equals the enclosed charge divided by ε₀",
+    "The flux through a closed surface does not depend on the shape or size of the surface — only on the enclosed charge",
+    "A Gaussian surface is an imaginary mathematical surface chosen for calculation convenience",
+    "If a charge is outside the Gaussian surface, its net contribution to the flux through the surface is zero",
+    "Gauss's law is most useful when the charge distribution has high symmetry (spherical, cylindrical, or planar)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show the same charge with two different Gaussian surfaces: a small sphere and a large, irregular blob. Count the field lines passing through each — the same number pierces both surfaces! Φ = Q/ε₀ regardless of surface shape.",
+    "visual_emphasis": "The number of field lines through any closed surface enclosing the charge is the same. Shape and size do not matter — only enclosed charge.",
+    "why_this_breaks_misconception": "Students see that Gauss's law is about topology (inside vs outside), not geometry"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Point charge with radial field lines",
+      "description": "Positive charge at center with radial field lines. No Gaussian surface yet. Standard point charge field pattern.",
+      "emphasis": "A point charge +Q with electric field lines radiating outward in all directions",
+      "labels_visible": ["+Q", "E"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Spherical Gaussian surface",
+      "description": "A wireframe sphere appears around the charge. Every field line passes through it. Caption: Φ = Q/ε₀. The surface is clearly imaginary (wireframe).",
+      "emphasis": "This wireframe sphere is a Gaussian surface — it is imaginary, chosen for symmetry. Count the field lines passing through it.",
+      "labels_visible": ["Φ = Q/ε₀", "Gaussian surface"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Different surfaces, same flux!",
+      "description": "A second, larger and non-spherical Gaussian surface appears alongside the first. The SAME number of field lines pass through both. This is the key insight.",
+      "emphasis": "SAME charge enclosed → SAME flux, regardless of surface shape or size. This is the power of Gauss's law!",
+      "labels_visible": ["Φ₁ = Q/ε₀", "Φ₂ = Q/ε₀", "same!"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — rotate and verify",
+      "description": "Interactive mode. Both Gaussian surfaces visible. Student rotates to verify that the same lines pass through each surface.",
+      "emphasis": "Rotate: every line that exits the inner surface also exits the outer one. Gauss's law depends only on enclosed charge.",
+      "labels_visible": ["+Q", "Φ", "E"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "flux_depends_on_surface",
+      "trigger_keywords": ["flux depends on surface shape", "bigger surface more flux", "surface ka shape matter karta hai", "flux changes with size"],
+      "student_belief": "The electric flux through a Gaussian surface depends on its shape and size",
+      "actual_physics": "Gauss's law states that the total flux depends ONLY on the enclosed charge: Φ = Q/ε₀. A tiny sphere and a huge irregular surface enclosing the same charge have exactly the same total flux.",
+      "simulation_emphasis": "Show two different Gaussian surfaces around the same charge — same flux through both."
+    },
+    {
+      "id": "gaussian_surface_is_physical",
+      "trigger_keywords": ["Gaussian surface real hai", "where to buy Gaussian surface", "physical surface", "Gaussian surface material"],
+      "student_belief": "A Gaussian surface is a real physical object",
+      "actual_physics": "A Gaussian surface is a purely mathematical, imaginary surface that we choose for calculation convenience. It has no physical existence. We choose shapes (sphere, cylinder, plane) that match the symmetry of the charge distribution.",
+      "simulation_emphasis": "Show the wireframe nature of the Gaussian surface — it is clearly not a physical object, just a mathematical tool."
+    }
+  ],
+  "legend": [
+    { "symbol": "+Q", "meaning": "Enclosed point charge" },
+    { "symbol": "Φ", "meaning": "Electric flux = Q_enclosed/ε₀" },
+    { "symbol": "⬡", "meaning": "Gaussian surface (imaginary)" },
+    { "symbol": "E", "meaning": "Electric field at surface" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["electric_field_lines", "coulombs_law"],
+    "extensions": ["electric_field_infinite_plane", "field_inside_conductor"],
+    "siblings": ["electric_field_lines", "parallel_plate_capacitor_field"],
+    "common_exam_combinations": ["symmetry_applications", "field_inside_conductor"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["E due to sphere of charge using Gauss's law", "E due to infinite line charge", "E due to infinite plane", "flux through open surface with charge outside"],
+    "common_traps": ["including charges outside the surface in flux calculation", "using Gauss's law without symmetry", "confusing flux with field", "not choosing optimal Gaussian surface"],
+    "numerical_ranges": {
+      "Q": "1–100 μC or nC",
+      "r": "0.01–1 m",
+      "ε₀": "8.85 × 10⁻¹² C²/(Nm²)"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "concept_id": "geostationary_orbit",
+  "concept_name": "Geostationary and Polar Orbits",
+  "class_level": 11,
+  "chapter": "Gravitation",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "geostationary", "panel_count": 1, "show_labels": true },
+  "variables": { "T": "Orbital period (s)", "r": "Orbital radius (m)", "h": "Height above surface (m)", "v": "Orbital speed (m/s)" },
+  "locked_facts": [
+    "Geostationary orbit: T = 24 hours, equatorial plane, circular, west to east",
+    "Geostationary height: h ≈ 35,786 km above Earth's surface (r ≈ 42,164 km from centre)",
+    "Geostationary satellite appears stationary from Earth — used for communication",
+    "Polar orbit: passes over both poles, covers entire Earth as it rotates beneath",
+    "Polar orbit height: typically 500-800 km, T ≈ 90-100 minutes",
+    "From T² = (4π²/GM)r³: r = (GMT²/4π²)^(1/3)",
+    "Only one geostationary orbit exists for any given planet (fixed r for T = 24 h)"
+  ],
+  "truth_statements": [
+    "A geostationary satellite has the same angular velocity as Earth and thus appears stationary from the ground",
+    "The geostationary orbit must be circular, in the equatorial plane, and at a specific height of about 36000 km",
+    "Polar satellites orbit at much lower altitudes and can scan the entire Earth over multiple orbits",
+    "The height of the geostationary orbit is determined solely by the requirement that T = 24 hours",
+    "Any satellite with T = 24 hours but not in the equatorial plane traces a figure-8 as seen from Earth (geosynchronous but not geostationary)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Earth rotating with a geostationary satellite above the equator — the satellite stays above the same point. A polar satellite zooms past much lower, covering different ground tracks each orbit as Earth rotates beneath it. Both serve different purposes.",
+    "visual_emphasis": "Split view: geostationary satellite hovering over one point vs polar satellite tracing criss-cross paths over the globe",
+    "why_this_breaks_misconception": "Students think all satellites are 'in orbit' the same way — seeing the two fundamentally different orbit types and their purposes clarifies satellite design"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Circular orbit basics", "description": "A satellite in circular orbit at height h. T calculated from Kepler's third law. Lower orbit = faster speed, shorter period.", "emphasis": "T increases with orbital radius: T² ∝ r³", "labels_visible": ["T", "v", "h", "T² ∝ r³"] },
+    { "id": "STATE_2", "label": "Geostationary orbit", "description": "Set T = 24 hours → solve for r. The satellite must be at ~36,000 km in the equatorial plane going west to east. It hovers over one point on Earth.", "emphasis": "T = 24h uniquely determines the orbit radius — there's only one geostationary orbit", "labels_visible": ["T = 24h", "h ≈ 36,000 km", "equatorial plane"] },
+    { "id": "STATE_3", "label": "Geostationary vs polar", "description": "Geostationary satellite stays above one point (communication). Polar satellite at 800 km passes over poles, scanning different strips each orbit. Ground tracks shown on Earth map.", "emphasis": "Geostationary = always same point. Polar = scans entire Earth. Different heights, different jobs.", "labels_visible": ["geo: 36,000 km", "polar: 800 km", "ground track"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts orbital height. T and v computed. At h = 36,000 km, 'geostationary' label lights up. Ground track drawn on Earth map. Toggle between equatorial and polar inclination.", "emphasis": "Find the height where T = 24h. Compare with a low polar orbit.", "labels_visible": ["h", "T", "v", "ground track"], "interactive": true, "sliders": [{ "id": "height", "label": "Orbit height", "min": 200, "max": 40000, "default": 36000, "unit": "km" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Geostationary satellites are not moving", "trigger_phrases": ["satellite stationary", "not moving in space"], "correction": "Geostationary satellites orbit at ~3 km/s — the same angular velocity as Earth's rotation. They APPEAR stationary from the ground because they match Earth's rotation exactly.", "simulation_emphasis": "Show satellite moving in orbit alongside Earth's rotation — both at the same angular speed" },
+    { "belief": "Any satellite at the right height is geostationary", "trigger_phrases": ["just right height", "height is enough"], "correction": "Three conditions: (1) T = 24h (correct height), (2) orbit in equatorial plane, (3) circular orbit, west to east. A satellite at 36,000 km over the poles is NOT geostationary.", "simulation_emphasis": "Show same-height satellite in polar orbit — it's not stationary over any point" }
+  ],
+  "legend": [ { "symbol": "T", "meaning": "Orbital period" }, { "symbol": "h", "meaning": "Height above surface" }, { "symbol": "v", "meaning": "Orbital velocity" } ],
+  "concept_relationships": { "prerequisites": ["escape_velocity_orbital", "kepler_laws"], "extensions": ["satellite_communication"], "siblings": ["gravitational_potential_energy"], "common_exam_combinations": ["kepler_laws"] }
+}

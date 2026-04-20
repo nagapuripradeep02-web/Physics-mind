@@ -1,0 +1,117 @@
+{
+  "concept_id": "magnetic_force_moving_charge",
+  "concept_name": "Force on a Moving Charge in Magnetic Field",
+  "class_level": 12,
+  "chapter": "Moving Charges and Magnetism",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "charged_particle_in_field",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "q": "Charge of the particle (C)",
+    "v": "Velocity of the charged particle (m/s)",
+    "B": "Magnetic field strength (T)",
+    "theta": "Angle between v and B",
+    "F": "Lorentz force on the charge (N)",
+    "r": "Radius of circular path (m)",
+    "m": "Mass of the charged particle (kg)",
+    "T": "Time period of circular motion (s)"
+  },
+  "locked_facts": [
+    "Magnetic force on a moving charge: F = qv × B, magnitude F = qvB sin θ",
+    "Force is zero when v is parallel to B (θ = 0° or 180°)",
+    "Force is maximum when v is perpendicular to B (θ = 90°)",
+    "The magnetic force does NO work on the charged particle — it only changes direction, not speed",
+    "When v ⊥ B, the particle moves in a circle of radius r = mv/(qB)",
+    "Time period of circular motion: T = 2πm/(qB), independent of velocity",
+    "When v has components both parallel and perpendicular to B, the path is a HELIX"
+  ],
+  "truth_statements": [
+    "The magnetic force on a moving charge is always perpendicular to both the velocity and the magnetic field, as given by the cross product F = qv × B",
+    "Since the force is always perpendicular to the velocity, the magnetic force does zero work — kinetic energy and speed remain constant",
+    "A charged particle moving perpendicular to a uniform magnetic field traces a circular path with radius r = mv/(qB)",
+    "The time period T = 2πm/(qB) is independent of the particle's speed — faster particles trace larger circles but take the same time",
+    "If the velocity has a component along B, the particle follows a helical path with the pitch determined by the parallel velocity component"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two particles with different speeds enter the same magnetic field perpendicular to B. The faster particle traces a LARGER circle, but both complete one revolution in the SAME time T = 2πm/(qB). Speedometers on both particles show constant speed throughout.",
+    "visual_emphasis": "Side-by-side circles of different radii — both particles reaching the 12 o'clock position simultaneously. The speed readout never changes, proving zero work by the magnetic force.",
+    "why_this_breaks_misconception": "Students expect the force to speed up or slow down the particle (like gravitational force on a projectile) — they see speed stays constant and only direction changes"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Charge enters magnetic field",
+      "description": "A positive charge q moving with velocity v enters a region of uniform magnetic field B (shown as × symbols for field into the page). The velocity vector and B field are clearly labelled.",
+      "emphasis": "A charged particle with velocity v enters a region where B is perpendicular to v (into the page)",
+      "labels_visible": ["q", "v", "B (into page)"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Force deflects — circular path begins",
+      "description": "The force F = qv × B appears perpendicular to v (upward for positive charge moving right in B into page). The particle curves upward. The force vector rotates as v rotates, always pointing toward the centre of the emerging circle.",
+      "emphasis": "The force is always perpendicular to v — it acts as a centripetal force, constantly changing direction but never changing speed",
+      "labels_visible": ["F = qvB", "F ⊥ v", "centripetal"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Complete circle — speed unchanged",
+      "description": "The particle completes a full circle of radius r = mv/(qB). A speed readout shows constant |v| throughout. A second particle with double the speed enters and traces a circle of double the radius — but both have the same period T = 2πm/(qB).",
+      "emphasis": "Speed never changes — magnetic force does ZERO work. Period is the same regardless of speed. Faster particle → bigger circle, same time.",
+      "labels_visible": ["r = mv/(qB)", "T = 2πm/(qB)", "|v| = constant"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts charge q, velocity v, magnetic field B, and mass m. The circular path radius and period update in real time. A toggle allows switching to helical motion by adding a velocity component along B. Negative charge option shows reversed circular direction.",
+      "emphasis": "Vary v: radius changes but period stays the same. Increase B: tighter circle, shorter period. Switch to negative charge: circle direction reverses.",
+      "labels_visible": ["r", "T", "v", "B", "q"],
+      "interactive": true,
+      "sliders": [
+        { "id": "velocity", "label": "Speed v", "min": 1e5, "max": 1e7, "default": 1e6, "unit": "m/s" },
+        { "id": "magneticField", "label": "Magnetic field B", "min": 0.01, "max": 1, "default": 0.1, "unit": "T" },
+        { "id": "charge", "label": "Charge q", "min": 1, "max": 10, "default": 1, "unit": "e (×1.6×10⁻¹⁹ C)" },
+        { "id": "angle", "label": "Angle θ (v to B)", "min": 0, "max": 90, "default": 90, "unit": "°" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The magnetic force accelerates (speeds up) the charged particle",
+      "trigger_phrases": ["magnetic force accelerates", "particle speeds up", "speed badhta hai", "magnetic field se fast hota hai", "kinetic energy increases"],
+      "correction": "The magnetic force is always perpendicular to the velocity, so it does zero work (W = F·d = 0 when F ⊥ d). The speed and kinetic energy remain constant — only the direction changes. The force provides centripetal acceleration, not tangential acceleration.",
+      "simulation_emphasis": "Show speed readout staying constant throughout the circular path — the velocity vector rotates but its magnitude never changes"
+    },
+    {
+      "belief": "A stronger magnetic field makes the particle move faster in its circular path",
+      "trigger_phrases": ["strong field fast particle", "zyada B zyada speed", "increase B increase speed", "magnetic field se speed badhegi"],
+      "correction": "A stronger magnetic field decreases the radius (r = mv/qB) and the time period (T = 2πm/qB), making the circle tighter and the revolution faster. But the SPEED of the particle stays the same — it was determined by the initial velocity, not by B.",
+      "simulation_emphasis": "Increase B while keeping v constant — show the circle shrinking but the speed readout remaining unchanged"
+    },
+    {
+      "belief": "The time period depends on the velocity of the particle",
+      "trigger_phrases": ["fast particle takes less time", "speed se time period change hota hai", "velocity affects period", "tez particle jaldi ghoomega"],
+      "correction": "The time period T = 2πm/(qB) depends only on mass, charge, and field strength — NOT on velocity. A faster particle traces a proportionally larger circle, so it takes the same time for one revolution. This is the principle behind the cyclotron.",
+      "simulation_emphasis": "Show two particles with different speeds completing circles of different radii in the exact same time"
+    }
+  ],
+  "legend": [
+    { "symbol": "F", "meaning": "Magnetic Lorentz force = qv × B (N)" },
+    { "symbol": "v", "meaning": "Velocity of charged particle (m/s)" },
+    { "symbol": "B", "meaning": "Magnetic field (T)" },
+    { "symbol": "r", "meaning": "Radius of circular path = mv/(qB)" },
+    { "symbol": "T", "meaning": "Time period = 2πm/(qB)" },
+    { "symbol": "×", "meaning": "Field directed into the page" },
+    { "symbol": "•", "meaning": "Field directed out of the page" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["magnetic_field_wire", "uniform_circular_motion"],
+    "extensions": ["cyclotron", "force_on_current_carrying_conductor", "motion_of_charge_in_field"],
+    "siblings": ["electric_field_force"],
+    "common_exam_combinations": ["cyclotron", "motion_of_charge_in_field"]
+  }
+}

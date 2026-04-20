@@ -1,0 +1,42 @@
+{
+  "concept_id": "capacitor_parallel_series",
+  "concept_name": "Capacitors in Series and Parallel",
+  "class_level": 12,
+  "chapter": "Electrostatic Potential and Capacitance",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "circuit_live", "scenario_type": "capacitor_network", "panel_count": 1, "show_labels": true },
+  "variables": { "C": "Capacitance (F)", "V": "Voltage across capacitor (V)", "Q": "Charge stored (C)", "U": "Energy stored (J)" },
+  "locked_facts": [
+    "Parallel: C_total = C₁ + C₂ + C₃ + ... (capacitances add directly)",
+    "Series: 1/C_total = 1/C₁ + 1/C₂ + 1/C₃ + ... (reciprocals add)",
+    "In parallel, voltage across each capacitor is the same",
+    "In series, charge on each capacitor is the same",
+    "Energy stored in a capacitor: U = ½CV² = ½QV = Q²/2C",
+    "Series combination always gives a total capacitance less than the smallest individual capacitor",
+    "Parallel combination always gives a total capacitance greater than the largest individual capacitor"
+  ],
+  "truth_statements": [
+    "When capacitors are connected in parallel the potential difference across each is the same and the total capacitance is the sum of individual capacitances",
+    "When capacitors are connected in series the charge on each capacitor is the same and the reciprocal of total capacitance equals the sum of reciprocals",
+    "The energy stored in a capacitor is ½CV²",
+    "Adding a capacitor in parallel always increases total capacitance while adding one in series always decreases it",
+    "For two capacitors in series the total capacitance is C₁C₂/(C₁+C₂)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Same two capacitors shown first in parallel (C_total = C₁+C₂ = large) then in series (C_total = C₁C₂/(C₁+C₂) = small). Charge bars and voltage bars animate to show WHY: parallel shares voltage, series shares charge.",
+    "visual_emphasis": "Side-by-side parallel vs series with animated charge flow and voltage labels",
+    "why_this_breaks_misconception": "Students confuse series/parallel rules for capacitors with resistors — seeing charge conservation in series vs voltage equality in parallel makes the logic clear"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Single capacitor", "description": "One capacitor connected to a battery. Charge Q accumulates on plates, voltage V equals battery voltage. Energy bar shows U = ½CV².", "emphasis": "Q = CV is the fundamental relationship", "labels_visible": ["C", "V", "Q = CV"] },
+    { "id": "STATE_2", "label": "Parallel combination", "description": "Two capacitors in parallel across the same battery. Both have same voltage V. Total charge = Q₁ + Q₂. C_total = C₁ + C₂ shown numerically.", "emphasis": "Same V across both — charges ADD — so capacitances ADD", "labels_visible": ["V same", "Q₁ + Q₂", "C_total = C₁ + C₂"] },
+    { "id": "STATE_3", "label": "Series combination", "description": "Same two capacitors now in series. Charge Q is identical on both. Voltages V₁ and V₂ add to battery voltage. 1/C_total = 1/C₁ + 1/C₂ shown.", "emphasis": "Same Q on both — voltages ADD — so reciprocals of C add", "labels_visible": ["Q same", "V₁ + V₂ = V", "1/C_total"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student toggles between series and parallel, adjusts C₁ and C₂. Charge and voltage distributions update in real time. Energy comparison bar shows which stores more energy.", "emphasis": "Switch between series and parallel — watch C_total, Q, and V change", "labels_visible": ["C_total", "Q", "V", "U"], "interactive": true, "sliders": [{ "id": "c1", "label": "C₁", "min": 1, "max": 10, "default": 4, "unit": "μF" }, { "id": "c2", "label": "C₂", "min": 1, "max": 10, "default": 6, "unit": "μF" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Capacitors in series add directly like resistors in series", "trigger_phrases": ["series mein add hota hai", "series capacitance sum", "C total = C1 + C2 series"], "correction": "Capacitors in series follow the reciprocal rule: 1/C_total = 1/C₁ + 1/C₂. This is OPPOSITE to resistors. In series, charge is the same on each capacitor, and voltages add up.", "simulation_emphasis": "Show same charge Q on both series capacitors with voltages adding" },
+    { "belief": "Capacitors in parallel have the same charge", "trigger_phrases": ["parallel same charge", "parallel mein charge same"], "correction": "In parallel, voltage is the same across each capacitor but charge distributes: Q₁ = C₁V and Q₂ = C₂V — larger capacitor stores more charge", "simulation_emphasis": "Show different charge amounts on parallel capacitors with same voltage" }
+  ],
+  "legend": [ { "symbol": "C", "meaning": "Capacitance (farads)" }, { "symbol": "Q", "meaning": "Charge stored (coulombs)" }, { "symbol": "V", "meaning": "Voltage (volts)" }, { "symbol": "U", "meaning": "Energy = ½CV² (joules)" } ],
+  "concept_relationships": { "prerequisites": ["coulombs_law", "electric_potential_uniform_field"], "extensions": ["dielectric_in_capacitor", "energy_density_electric_field"], "siblings": ["resistors_series_parallel"], "common_exam_combinations": ["dielectric_in_capacitor", "charged_conductor_properties"] }
+}

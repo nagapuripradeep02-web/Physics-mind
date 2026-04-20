@@ -1,0 +1,109 @@
+{
+  "concept_id": "motion_graphs",
+  "concept_name": "Motion Graphs (s-t, v-t, a-t)",
+  "class_level": 11,
+  "chapter": "Motion in a Straight Line",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "motion_graph_analysis",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "s": "Displacement (m)",
+    "v": "Velocity (m/s)",
+    "a": "Acceleration (m/s²)",
+    "t": "Time (s)"
+  },
+  "locked_facts": [
+    "Slope of displacement-time (s-t) graph = instantaneous velocity",
+    "Slope of velocity-time (v-t) graph = instantaneous acceleration",
+    "Area under velocity-time (v-t) graph = displacement",
+    "Area under acceleration-time (a-t) graph = change in velocity",
+    "A straight line on s-t graph means constant velocity (zero acceleration)",
+    "A parabola on s-t graph means constant (uniform) acceleration",
+    "A horizontal line on v-t graph means constant velocity; a sloped line means constant acceleration"
+  ],
+  "truth_statements": [
+    "The slope of the position-time graph at any instant gives the instantaneous velocity at that instant",
+    "The slope of the velocity-time graph at any instant gives the instantaneous acceleration",
+    "The area under the v-t graph between two times gives the displacement in that interval — area below the time axis is negative displacement",
+    "A parabolic s-t graph corresponds to a linear v-t graph which corresponds to a constant a-t graph",
+    "The area under the a-t graph gives the change in velocity, not the velocity itself"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three graphs stacked vertically (s-t, v-t, a-t) for the same motion. A vertical cursor line moves across all three simultaneously. As the cursor passes a point: the tangent line on s-t matches the v-t value, and the tangent on v-t matches the a-t value. Shaded area under v-t matches the s value.",
+    "visual_emphasis": "Synchronized cursor showing slope-value correspondence across all three graphs simultaneously — tangent slope on one graph equals the reading on the graph below",
+    "why_this_breaks_misconception": "Students treat the three graphs as unrelated. Seeing them synchronized with cursor-linked slopes and areas reveals they are derivatives/integrals of each other."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A ball moves along a straight track with constant velocity. The s-t graph is drawn in real time — it is a straight line. Labels show slope = velocity.",
+      "emphasis": "Constant velocity produces a straight line on s-t graph. Slope = rise/run = Δs/Δt = v.",
+      "labels_visible": ["s", "t", "slope = v"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Acceleration Case",
+      "description": "Ball accelerates uniformly. s-t graph becomes a parabola, v-t graph is a straight line, a-t graph is a horizontal line. All three shown side by side.",
+      "emphasis": "Uniform acceleration: s-t is parabolic (s = ut + ½at²), v-t is linear (v = u + at), a-t is constant.",
+      "labels_visible": ["s-t parabola", "v-t line", "a-t constant", "a"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha — Linked Graphs",
+      "description": "All three graphs displayed with a synchronized vertical cursor. Moving the cursor shows: tangent slope on s-t = v-t value, tangent slope on v-t = a-t value, shaded area under v-t = s value. Numerical readouts confirm each relationship.",
+      "emphasis": "Slope of s-t = v, slope of v-t = a, area under v-t = displacement. All linked and verified numerically at every cursor position.",
+      "labels_visible": ["ds/dt = v", "dv/dt = a", "∫v dt = s", "∫a dt = Δv"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: student draws a v-t graph by placing control points. The s-t and a-t graphs are auto-generated in real time. Student can also toggle between different preset motions (constant v, constant a, deceleration, back-and-forth).",
+      "emphasis": "Draw any v-t graph and see the corresponding s-t and a-t graphs generated automatically. Negative area under v-t means displacement decreasing.",
+      "labels_visible": ["s-t", "v-t", "a-t", "area", "slope"],
+      "interactive": true,
+      "sliders": [
+        { "id": "initial_velocity", "label": "Initial Velocity", "min": -10, "max": 10, "default": 0, "unit": "m/s" },
+        { "id": "acceleration", "label": "Acceleration", "min": -5, "max": 5, "default": 2, "unit": "m/s²" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The shape of the s-t graph shows the actual path of the object",
+      "trigger_phrases": ["graph trajectory dikhata hai", "s-t graph is the path", "parabola matlab projectile", "object curved path follow karta hai"],
+      "correction": "The s-t graph plots displacement vs time, NOT the physical trajectory. A parabolic s-t graph for a ball rolling on a flat surface means uniform acceleration in a straight line, not a curved path.",
+      "simulation_emphasis": "Show a ball moving in a straight line while its s-t graph is a parabola — the graph shape is not the path shape"
+    },
+    {
+      "belief": "Area under s-t graph gives velocity",
+      "trigger_phrases": ["area under s-t graph", "s-t ka area velocity hai", "integrate position to get velocity"],
+      "correction": "Area under the s-t graph has no standard physical meaning in kinematics. It is the SLOPE of s-t that gives velocity. Area under v-t gives displacement, and area under a-t gives change in velocity.",
+      "simulation_emphasis": "Highlight slope on s-t giving v, area under v-t giving s — never area under s-t"
+    },
+    {
+      "belief": "Negative area under v-t graph means the object has negative displacement overall",
+      "trigger_phrases": ["negative area means backward", "negative matlab negative displacement", "negative area total displacement"],
+      "correction": "Negative area under v-t means displacement in the negative direction during that interval. Total displacement is the net (algebraic sum) of positive and negative areas. The object may still have positive total displacement if positive area exceeds negative.",
+      "simulation_emphasis": "Show v-t graph with positive then negative regions; compute net displacement as algebraic sum of areas"
+    }
+  ],
+  "legend": [
+    { "symbol": "s-t", "meaning": "Displacement vs time graph" },
+    { "symbol": "v-t", "meaning": "Velocity vs time graph" },
+    { "symbol": "a-t", "meaning": "Acceleration vs time graph" },
+    { "symbol": "slope", "meaning": "Tangent line gradient = derivative" },
+    { "symbol": "area", "meaning": "Region between curve and time axis = integral" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["displacement_distance", "speed_velocity"],
+    "extensions": ["calculus_in_kinematics", "non_uniform_acceleration"],
+    "siblings": ["equations_of_motion", "vertical_motion_gravity"],
+    "common_exam_combinations": ["equations_of_motion", "relative_motion"]
+  }
+}

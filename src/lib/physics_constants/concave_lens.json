@@ -1,0 +1,75 @@
+{
+  "concept_id": "concave_lens",
+  "concept_name": "Concave Lens",
+  "chapter": "Light Reflection Refraction",
+  "class_level": 10,
+  "renderer_hint": {
+    "primary": "optics_ray",
+    "scenario_type": "concave_lens",
+    "show_graph": false
+  },
+  "variables": {
+    "u": { "symbol": "u", "name": "Object Distance", "unit": "cm", "min": -100, "max": -5, "default": -30 },
+    "f": { "symbol": "f", "name": "Focal Length", "unit": "cm", "min": -50, "max": -5, "default": -15 }
+  },
+  "locked_facts": [
+    "Concave lens has negative focal length",
+    "Always produces virtual, erect, diminished image",
+    "Image is ALWAYS between F and optical centre on same side as object",
+    "Used in spectacles for myopia (short-sightedness) correction",
+    "Power P = 1/f, negative for concave lens"
+  ],
+  "truth_statements": [
+    "A concave lens is thinner at the centre and diverges light rays",
+    "A concave lens always forms a virtual, erect and diminished image",
+    "The image formed by a concave lens is always between the focus and the optical centre",
+    "Concave lenses are used to correct myopia",
+    "The focal length of a concave lens is negative"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Move the object from far away to very close to the lens. Despite the huge range of object distances, the image is ALWAYS virtual, erect, and diminished — it stays trapped between F and the optical centre. No matter what you do, a concave lens NEVER forms a real image. This is the key difference from a convex lens.",
+    "visual_emphasis": "Show the virtual image staying within the F-to-O region regardless of object position. Highlight that the image size changes but never exceeds the object size."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Object far from lens — virtual image near F",
+      "what_student_sees": "Object far left. Rays diverge after lens. Virtual image (dotted arrow) close to F, very small.",
+      "what_to_emphasize": "Even though the object is far away, the concave lens forms a tiny virtual image near F."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Object closer — image moves toward O",
+      "what_student_sees": "Object moved closer. Virtual image is now between F and O, slightly larger but still diminished.",
+      "what_to_emphasize": "As object approaches, image moves from F toward O, growing slightly but always smaller than object."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Key insight — image always virtual, erect, diminished",
+      "what_student_sees": "Multiple object positions shown. All images are on the same side, erect, and smaller.",
+      "what_to_emphasize": "Unlike a convex lens, a concave lens ALWAYS forms the same type of image. No position change can make it form a real or magnified image."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive — move the object",
+      "what_student_sees": "Slider to change object distance. Virtual image updates in real time.",
+      "what_to_emphasize": "Verify: no matter where you place the object, the image is always virtual, erect, and diminished."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "concave_lens_real_image",
+      "trigger_keywords": ["concave lens real image", "concave lens se real banta hai", "negative lens real image de sakta hai", "diverging lens real image"],
+      "student_belief": "A concave lens can form a real image in some special cases",
+      "actual_physics": "A concave lens ALWAYS forms a virtual, erect, and diminished image regardless of object position. It diverges light rays — they never converge to form a real image.",
+      "simulation_emphasis": "Show ray diagrams at multiple object positions — the refracted rays always diverge. Only their backward extensions (dotted) meet, forming a virtual image."
+    }
+  ],
+  "legend": [
+    { "symbol": "f", "meaning": "Focal length (negative for concave)" },
+    { "symbol": "u", "meaning": "Object distance (negative, left of lens)" },
+    { "symbol": "v", "meaning": "Image distance (always negative = same side as object)" },
+    { "symbol": "P", "meaning": "Power = 1/f (negative, in dioptres)" }
+  ]
+}

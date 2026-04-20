@@ -1,0 +1,42 @@
+{
+  "concept_id": "viscosity_stokes",
+  "concept_name": "Viscosity and Stokes' Law",
+  "class_level": 11,
+  "chapter": "Mechanical Properties of Fluids",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "viscosity", "panel_count": 1, "show_labels": true },
+  "variables": { "η": "Coefficient of viscosity (Pa·s)", "v_t": "Terminal velocity (m/s)", "r": "Radius of sphere (m)", "F_drag": "Viscous drag force (N)" },
+  "locked_facts": [
+    "Viscosity is internal friction in fluids — resistance to flow between adjacent layers",
+    "Newton's law of viscosity: F/A = η(dv/dy) — shear stress = viscosity × velocity gradient",
+    "Stokes' law: drag force on sphere F = 6πηrv",
+    "Terminal velocity: v_t = 2r²(ρ_s - ρ_f)g/(9η) — when drag + buoyancy = weight",
+    "Terminal velocity ∝ r² — larger spheres fall faster in viscous fluid",
+    "Reynolds number Re = ρvd/η determines laminar (Re < 2000) vs turbulent flow",
+    "Viscosity of liquids decreases with temperature; viscosity of gases increases with temperature"
+  ],
+  "truth_statements": [
+    "Viscosity is the property of a fluid that opposes relative motion between adjacent fluid layers",
+    "Stokes' law gives the viscous drag force on a small sphere moving slowly through a viscous fluid as F = 6πηrv",
+    "Terminal velocity is reached when the net force on the falling body becomes zero — weight equals drag plus buoyancy",
+    "Terminal velocity is proportional to the square of the radius — a sphere twice as large falls four times faster",
+    "The Reynolds number determines whether flow is laminar (smooth) or turbulent (chaotic)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A steel ball falling through glycerine: initially accelerates (weight > drag), drag increases with speed, until drag + buoyancy = weight → constant terminal velocity. A velocity vs time graph shows the curve plateauing. Larger ball reaches higher terminal velocity.",
+    "visual_emphasis": "Velocity-time graph rising and plateauing, with force arrows showing equilibrium at terminal velocity",
+    "why_this_breaks_misconception": "Students think objects accelerate indefinitely in fluids — seeing the velocity plateau and force balance at terminal velocity is the key insight"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Viscosity concept", "description": "Two fluid layers sliding past each other. Viscous force resists relative motion. Higher η = more resistance. Water vs honey comparison.", "emphasis": "Viscosity is internal friction — thicker fluids have higher viscosity", "labels_visible": ["η", "F/A = η(dv/dy)", "water vs honey"] },
+    { "id": "STATE_2", "label": "Stokes' law", "description": "A small sphere falling through viscous fluid. Drag F = 6πηrv increases with speed. Three forces: weight (down), buoyancy (up), drag (up).", "emphasis": "Drag increases linearly with velocity — the faster it moves, the more the fluid pushes back", "labels_visible": ["F = 6πηrv", "W", "F_b", "F_drag"] },
+    { "id": "STATE_3", "label": "Terminal velocity", "description": "As sphere falls, drag increases until W = F_b + F_drag. Net force = 0 → constant velocity. v_t = 2r²(ρ_s-ρ_f)g/(9η). Larger sphere → higher v_t (∝ r²).", "emphasis": "At terminal velocity: no net force, constant speed. v_t ∝ r².", "labels_visible": ["v_t", "W = F_b + F_drag", "v_t ∝ r²"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts sphere radius, density, and fluid viscosity. Terminal velocity and settling time update. v-t graph shown. Reynolds number indicator: laminar or turbulent.", "emphasis": "Double the radius → 4× terminal velocity. Increase viscosity → slower fall.", "labels_visible": ["v_t", "η", "r", "Re"], "interactive": true, "sliders": [{ "id": "radius", "label": "Sphere radius", "min": 0.1, "max": 5, "default": 1, "unit": "mm" }, { "id": "viscosity", "label": "Viscosity η", "min": 0.001, "max": 10, "default": 1, "unit": "Pa·s" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Terminal velocity means maximum possible velocity", "trigger_phrases": ["maximum speed", "fastest possible", "terminal matlab sabse tez"], "correction": "Terminal velocity is the CONSTANT velocity reached when drag equals weight (net force = 0). It's not the maximum the object COULD reach — it's the speed at which acceleration becomes zero in a viscous medium.", "simulation_emphasis": "Show acceleration dropping to zero at terminal velocity — object continues at constant speed, not accelerating" },
+    { "belief": "Heavier objects always have higher terminal velocity", "trigger_phrases": ["heavy falls faster terminal", "mass determines terminal"], "correction": "Terminal velocity depends on density difference, radius, AND viscosity. A large light ball can have higher terminal velocity than a small heavy ball because v_t ∝ r².", "simulation_emphasis": "Show a large light sphere reaching higher v_t than a small dense sphere" }
+  ],
+  "legend": [ { "symbol": "η", "meaning": "Viscosity (Pa·s)" }, { "symbol": "v_t", "meaning": "Terminal velocity (m/s)" }, { "symbol": "Re", "meaning": "Reynolds number" } ],
+  "concept_relationships": { "prerequisites": ["pressure_pascals_law", "newtons_second_law"], "extensions": ["reynolds_number"], "siblings": ["buoyancy_archimedes"], "common_exam_combinations": ["buoyancy_archimedes"] }
+}

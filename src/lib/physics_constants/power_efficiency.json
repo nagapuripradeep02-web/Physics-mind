@@ -1,0 +1,105 @@
+{
+  "concept_id": "power_efficiency",
+  "concept_name": "Power and Efficiency",
+  "class_level": 11,
+  "chapter": "Work, Energy and Power",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "power_work_rate",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "P": "Power (W)",
+    "W": "Work done (J)",
+    "t": "Time taken (s)",
+    "F": "Force applied (N)",
+    "v": "Velocity of object (m/s)",
+    "η": "Efficiency (dimensionless, expressed as %)"
+  },
+  "locked_facts": [
+    "Average power: P_avg = W/t (total work divided by total time)",
+    "Instantaneous power: P = F·v = Fv cos(θ)",
+    "Efficiency: η = P_output / P_input × 100%",
+    "1 horsepower (HP) = 746 W",
+    "1 kWh = 3.6 × 10⁶ J (commercial unit of energy)",
+    "Power is the rate of doing work — a scalar quantity with SI unit watt (W)",
+    "For a car on level road at constant velocity: P = fv, where f is friction/drag"
+  ],
+  "truth_statements": [
+    "Power is defined as the rate at which work is done or energy is transferred",
+    "Instantaneous power equals the dot product of force and velocity vectors at that instant",
+    "Efficiency of a machine is always less than 100% due to energy losses (friction, heat, sound)",
+    "A more powerful engine does the same work in less time, or more work in the same time",
+    "The area under a power-time graph gives the total work done (energy transferred)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two identical cars climbing the same hill — one in 10 seconds, the other in 20 seconds. Both do the same work (mgh), but the faster car has DOUBLE the power. P-t graphs side by side: same area (same work), different heights (different power).",
+    "visual_emphasis": "Work bars equal. Power bars 2:1 ratio. P-t graph areas identical. Time bars 1:2 ratio.",
+    "why_this_breaks_misconception": "Students see that power is NOT the same as work — same work at different rates means different power"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A block being pulled by force F at velocity v along a surface. P = Fv readout visible. Work accumulator W and time counter t shown. P_avg = W/t displayed.",
+      "emphasis": "Introduce power as rate of work — not the same as total work done",
+      "labels_visible": ["F", "v", "P = Fv", "W = 0", "t = 0"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Block moves. Work accumulates over time. P-t graph plots instantaneous power. Area under P-t curve grows — this area IS the total work done. Two scenarios compared: same force, different velocities.",
+      "emphasis": "P = Fv means higher speed at same force = more power consumed",
+      "labels_visible": ["P = Fv", "W = ∫P dt", "Area under P-t = Work"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Two cars climbing same hill. Car A: fast, high power, short time. Car B: slow, low power, long time. Both do work = mgh. P-t graphs show same area but different shapes. Efficiency comparison: η = useful work / total input.",
+      "emphasis": "Same work done but different power — power is about RATE, not amount",
+      "labels_visible": ["W_A = W_B = mgh", "P_A = 2P_B", "t_A = t_B/2", "η = P_out/P_in"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust force, velocity, and efficiency. See instantaneous power P = Fv update. Add friction to see input power vs output power. Calculate efficiency. Convert between W, HP, kWh.",
+      "emphasis": "Vary velocity to see power change. Add losses to see efficiency drop. 1 HP = 746 W.",
+      "labels_visible": ["P_input", "P_output", "η", "P_loss"],
+      "interactive": true,
+      "sliders": [
+        { "id": "force", "label": "Applied Force F", "min": 5, "max": 100, "default": 20, "unit": "N" },
+        { "id": "velocity", "label": "Velocity v", "min": 1, "max": 20, "default": 5, "unit": "m/s" },
+        { "id": "efficiency", "label": "Efficiency η", "min": 10, "max": 100, "default": 80, "unit": "%" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "More power means more work is done",
+      "trigger_phrases": ["zyada power matlab zyada kaam", "more power = more work", "powerful engine does more work", "power aur work same hai"],
+      "correction": "Power is the RATE of doing work, not the amount. A 100W motor and a 50W motor can do the same work — the 100W motor just does it in half the time. P = W/t, so for same W, higher P means less t.",
+      "simulation_emphasis": "Two cars doing same work mgh — one with double power finishes in half time. Work bars equal, power bars different."
+    },
+    {
+      "belief": "Efficiency can be 100% in real machines",
+      "trigger_phrases": ["100% efficient possible hai", "ideal machine real mein", "no energy loss possible", "perfect machine ban sakti hai"],
+      "correction": "No real machine achieves 100% efficiency. Friction, air resistance, heat, and sound always dissipate some energy. η = P_output/P_input is always < 100% for real machines.",
+      "simulation_emphasis": "Show energy flow diagram: input → useful output + losses. Losses are always nonzero."
+    }
+  ],
+  "legend": [
+    { "symbol": "P bar", "meaning": "Instantaneous power P = Fv" },
+    { "symbol": "W counter", "meaning": "Cumulative work done = ∫P dt" },
+    { "symbol": "η gauge", "meaning": "Efficiency = P_output / P_input × 100%" },
+    { "symbol": "Area under P-t", "meaning": "Total work done over time interval" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["work_energy_theorem", "newtons_laws"],
+    "extensions": ["power_transmission", "carnot_engine"],
+    "siblings": ["conservation_of_energy"],
+    "common_exam_combinations": ["car_climbing_hill", "pump_lifting_water", "conveyor_belt_problems", "motor_efficiency"]
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "concept_id": "coulombs_law",
+  "concept_name": "Coulomb's Law",
+  "class_level": 12,
+  "chapter": "Electric Charges and Fields",
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "point_charges",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "q1": "Charge 1 (C)",
+    "q2": "Charge 2 (C)",
+    "r": "Separation between charges (m)",
+    "k": "Coulomb constant = 9 × 10⁹ N·m²/C²"
+  },
+  "locked_facts": [
+    "Coulomb's law: F = kq₁q₂/r², where k = 9 × 10⁹ N·m²/C²",
+    "Force is along the line joining the two charges (central force)",
+    "Like charges repel, unlike charges attract",
+    "Force obeys inverse square law: doubling distance reduces force to one-quarter",
+    "Superposition principle: net force = vector sum of individual Coulomb forces",
+    "k = 1/(4πε₀), where ε₀ = 8.854 × 10⁻¹² C²/N·m²",
+    "In a medium with dielectric constant K, force reduces by factor K: F_medium = F_vacuum/K"
+  ],
+  "truth_statements": [
+    "The electrostatic force between two point charges is directly proportional to the product of magnitudes of the charges and inversely proportional to the square of the distance between them",
+    "Coulomb's law holds exactly for point charges and is analogous to Newton's law of gravitation in form",
+    "The principle of superposition states that the force on any charge due to multiple charges is the vector sum of forces due to each charge individually",
+    "The force between two charges in a medium is reduced by the dielectric constant of the medium",
+    "The electrostatic force is a conservative force — work done is path-independent"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two positive charges with force vectors drawn exactly along the line joining them — as student drags one charge closer, the force arrows grow by the inverse-square factor, quadrupling when distance halves",
+    "visual_emphasis": "Force arrows scaling as 1/r² with numerical readout updating in real time",
+    "why_this_breaks_misconception": "Students see the force is always along r̂ (not along the field direction at that point) and changes dramatically with distance"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Two charges at rest",
+      "description": "Two point charges (+q and +q) placed at fixed positions with no force vectors shown. Charge labels visible. The field lines are faintly drawn radiating outward from each charge.",
+      "emphasis": "Establish the setup — two positive charges separated by distance r",
+      "labels_visible": ["q₁", "q₂", "r"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Force vectors appear",
+      "description": "Force arrows appear on each charge pointing away from the other (repulsion). The arrows are exactly along the line joining the charges. A formula overlay shows F = kq₁q₂/r².",
+      "emphasis": "Force direction is along the line joining charges — not along field lines at the surface",
+      "labels_visible": ["F₁₂", "F₂₁", "r", "F = kq₁q₂/r²"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Inverse-square demonstration",
+      "description": "Distance r halves — force arrows quadruple in length. Numerical readout shows F going from F₀ to 4F₀. The force vectors remain exactly along the charge-joining line even as field lines curve.",
+      "emphasis": "Force quadruples when distance halves — inverse square law made viscerally visible",
+      "labels_visible": ["F = 4F₀", "r = r₀/2", "F ∝ 1/r²"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student drags charges and adjusts q₁, q₂ values. Force arrows and numerical readout update in real time. Switching one charge to negative shows attraction (arrows reverse). A third charge can be added to demonstrate superposition.",
+      "emphasis": "Try like vs unlike charges, vary distance, add a third charge to see superposition",
+      "labels_visible": ["F", "r", "q₁", "q₂"],
+      "interactive": true,
+      "sliders": [
+        { "id": "charge1", "label": "Charge q₁", "min": -5, "max": 5, "default": 2, "unit": "μC" },
+        { "id": "charge2", "label": "Charge q₂", "min": -5, "max": 5, "default": 2, "unit": "μC" },
+        { "id": "separation", "label": "Distance r", "min": 1, "max": 10, "default": 5, "unit": "cm" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The electric force acts in the direction of the electric field at that point, not along the line joining the charges",
+      "trigger_phrases": ["force along field", "force in field direction", "field direction mein force"],
+      "correction": "Coulomb's force between two point charges always acts along the straight line joining them — this is a central force, independent of the field pattern around them",
+      "simulation_emphasis": "Show force arrows rigidly along r̂ while field lines curve around the charges"
+    },
+    {
+      "belief": "Doubling the distance halves the force",
+      "trigger_phrases": ["double distance half force", "force proportional to distance", "linearly decreases"],
+      "correction": "Force follows an inverse-square law: doubling distance reduces force to one-quarter, not one-half",
+      "simulation_emphasis": "Animate distance doubling and show force arrow shrinking to 1/4 its original size with numerical readout"
+    }
+  ],
+  "legend": [
+    { "symbol": "F", "meaning": "Electrostatic force (N)" },
+    { "symbol": "k", "meaning": "Coulomb constant = 9 × 10⁹ N·m²/C²" },
+    { "symbol": "r", "meaning": "Distance between charges (m)" },
+    { "symbol": "q", "meaning": "Electric charge (C)" },
+    { "symbol": "ε₀", "meaning": "Permittivity of free space = 8.854 × 10⁻¹² C²/N·m²" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["electric_charge_basics"],
+    "extensions": ["electric_field_lines", "electric_potential_3d"],
+    "siblings": ["gravitational_field_shell_solid"],
+    "common_exam_combinations": ["electric_field_lines", "superposition_principle"]
+  }
+}

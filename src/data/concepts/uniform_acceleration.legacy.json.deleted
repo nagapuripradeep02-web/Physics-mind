@@ -1,0 +1,900 @@
+{
+  "concept_id": "uniform_acceleration",
+  "concept_name": "One Dimensional Motion with Uniform Acceleration",
+  "class_level": 11,
+  "chapter": "Kinematics",
+  "section": "6.5 and 6.6",
+  "source_coverage": {
+    "dc_pandey": "Chapter 6, Sections 6.5 (Uniform Motion) and 6.6 (One Dimensional Motion with Uniform Acceleration), Examples 6.13, 6.14, 6.15",
+    "ncert": "Chapter 3 — Motion in a Straight Line, Sections 3.4 and 3.5",
+    "hc_verma": "Chapter 3 — Rest and Motion: Kinematics, Sections 3.4–3.6"
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "uniform_acceleration",
+    "panel_count": 2,
+    "show_labels": true,
+    "show_velocity_arrow": true,
+    "show_acceleration_arrow": true,
+    "canvas_scale": 60,
+    "technology_b": "plotly",
+    "sync_required": true,
+    "scene_mode": false,
+    "panel_a_role": "Particle on track with velocity arrow growing — uniform acceleration animation",
+    "panel_b_role": "Plotly v-t graph — straight line, area under curve = displacement"
+  },
+  "locked_facts": {
+    "equation_1": "v = u + at  [velocity-time relation]",
+    "equation_2": "v² = u² + 2as  [velocity-displacement relation, no time]",
+    "equation_3": "s = ut + ½at²  [displacement from starting point, time-based]",
+    "equation_4": "s₁ = s₀ + ut + ½at²  [displacement from arbitrary reference point P]",
+    "equation_5": "sₜ = u + a(t − ½) = u + ½a(2t−1)  [displacement in the tth second — NOT distance]",
+    "s_is_displacement": "s in all five equations is DISPLACEMENT from the starting point (where particle was at t=0), NOT distance. Starting point ≠ point where u=0.",
+    "sign_convention_horizontal": "Horizontal: rightward = positive, leftward = negative",
+    "sign_convention_vertical": "Vertical: upward = positive, downward = negative. Therefore a = g = −9.8 ≈ −10 m/s² for free-fall/projectile under gravity.",
+    "three_cases": {
+      "case_1": "u = 0: particle starts from rest. Motion is purely accelerated in direction of a. Distance = displacement.",
+      "case_2": "u parallel to a (same sign): particle accelerates throughout. No reversal. Distance = displacement.",
+      "case_3": "u antiparallel to a (opposite signs): particle first decelerates to rest (t = t0 = |u/a|), then accelerates in opposite direction. Distance ≠ displacement after t0."
+    },
+    "turning_point": "In Case 3, turning point time t0 = |u/a|. At t0: velocity = 0, displacement is maximum. After t0: particle moves in opposite direction.",
+    "free_fall_results": {
+      "max_height": "h = u²/2g (upward projection with speed u)",
+      "time_of_ascent": "t_asc = u/g",
+      "time_of_flight": "T = 2u/g (time_ascent = time_descent)",
+      "velocity_on_return": "Speed of return = speed of projection (if air resistance neglected)",
+      "free_fall_velocity": "v = √(2gh) (released from rest at height h)",
+      "free_fall_time": "t = √(2h/g)"
+    },
+    "negative_time_meaning": "When solving a quadratic for t, a negative root means the event occurred BEFORE t=0 (before the problem's reference time). Always discard negative time for forward problems.",
+    "sth_equation_note": "sₜ = u + a(t − ½) gives displacement in the tth second. Dimensionally appears wrong because 't' here is a pure number (ordinal), not seconds. Physically correct.",
+    "relative_sign_rule": "In Case 3: substitute signs correctly. u = +10, a = −10 for upward throw. s = −40 for point 40m BELOW starting level. Single equation handles entire journey.",
+    "uniform_motion": "Special case: a = 0. v = constant. s = vt. Distance = |displacement|."
+  },
+  "minimum_viable_understanding": "Three equations (v=u+at, v²=u²+2as, s=ut+½at²) with correct signs handle ALL uniform acceleration problems in one pass — no need for separate equations for up and down journeys.",
+  "variables": {
+    "u": "Initial velocity (signed — positive if in positive direction)",
+    "v": "Final velocity at time t (signed)",
+    "a": "Constant acceleration (signed — negative if opposing motion or downward)",
+    "s": "Displacement from starting point (signed — can be negative)",
+    "t": "Time elapsed (always positive)",
+    "t0": "Turning point time = |u/a| (only in Case 3)",
+    "g": "Acceleration due to gravity = 9.8 ≈ 10 m/s² (magnitude). Use a = −g = −10 m/s² in equations."
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "equations of motion",
+      "uniform acceleration",
+      "v = u + at explain",
+      "kinematic equations",
+      "samaan tywarit gati ke samikaran"
+    ],
+    "local_triggers": [
+      "how to use equations of motion",
+      "ball thrown upward find time",
+      "free fall problems",
+      "sign convention in kinematics",
+      "which equation to use",
+      "three cases of uniform acceleration"
+    ],
+    "micro_triggers": [
+      "what is starting point in kinematics",
+      "why negative time is rejected",
+      "what is sth formula",
+      "derive v = u + at",
+      "when to use v2 = u2 + 2as"
+    ],
+    "simulation_not_needed_triggers": [
+      "write equations of motion",
+      "list kinematic equations",
+      "formula v u at"
+    ],
+    "subconcept_triggers": {
+      "sign_convention": [
+        "sign convention kinematics",
+        "positive negative direction",
+        "upward positive or negative",
+        "how to assign signs in motion"
+      ],
+      "three_cases": [
+        "three cases of uniform acceleration",
+        "case 1 case 2 case 3 kinematics",
+        "when does particle reverse direction"
+      ],
+      "free_fall": [
+        "free fall",
+        "object dropped from height",
+        "ball thrown up time of flight",
+        "maximum height formula"
+      ],
+      "sth_formula": [
+        "displacement in nth second",
+        "sth formula",
+        "displacement in tth second"
+      ],
+      "negative_time": [
+        "negative time in quadratic",
+        "reject negative time",
+        "two values of t"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "understands_equations": "enter at STATE_2",
+    "understands_sign_convention": "enter at STATE_3",
+    "understands_three_cases": "enter at STATE_4",
+    "understands_free_fall": "enter at STATE_5"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "distance_vs_displacement"
+    ],
+    "gate_question": "What does 's' represent in kinematic equations — distance or displacement? (If wrong, redirect to distance_vs_displacement.json first.)",
+    "if_gap_detected": "redirect to distance_vs_displacement.json"
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "board_mode_states": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "jee_mode_states": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Hook — One Equation That Handles Everything",
+        "physics_layer": {
+          "concept": "The power of sign convention — a single equation handles upward and downward motion without switching",
+          "simulation_focus": "Ball thrown upward from top of 40m tower at u=10m/s. g=10m/s². Show the problem setup. Student is about to solve 'time to hit ground'. Most students split this into two parts: 'upward journey equation' + 'downward journey equation'. Show this painful approach: 4 steps, 2 equations, intermediate calculation.",
+          "then_show": "Now solve with ONE equation: u=+10, a=−10, s=−40. Plug into s=ut+½at². Get quadratic. Two roots: t=4s and t=−2s. Reject t=−2s. Answer: 4s. ONE step.",
+          "key_message": "Sign convention collapses a complex problem into one clean equation.",
+          "scenario": "constant_a_animation"
+        },
+        "pedagogy_layer": {
+          "opening_question": "Why do textbooks say 'split the motion' for a ball thrown up? I'll show you why that's unnecessary.",
+          "source": "DC Pandey Example 6.13"
+        }
+      },
+      "STATE_2": {
+        "label": "The Five Equations — What Each One Is For",
+        "physics_layer": {
+          "concept": "Choosing the right equation based on what's known and unknown",
+          "simulation_focus": "Interactive equation selector. Student sees five equations. For each, highlight: which variables it contains, what scenario it's best for.",
+          "equations_with_use_cases": {
+            "v = u + at": "Knowns: u, a, t. Unknown: v. Use when TIME is given/found.",
+            "v² = u² + 2as": "Knowns: u, a, s. Unknown: v. Use when TIME is NOT involved — 'find velocity at height h'.",
+            "s = ut + ½at²": "Knowns: u, a, t. Unknown: s. Most used. Time-based displacement.",
+            "s₁ = s₀ + ut + ½at²": "Use when starting point ≠ reference origin.",
+            "sₜ = u + a(t − ½)": "Displacement in the tth second specifically. Rarely needed but JEE asks it."
+          },
+          "missing_variable_rule": "Each equation has 4 of the 5 variables (u, v, a, s, t). Identify 3 knowns + 1 unknown → pick equation containing those 4.",
+          "scenario": "v_u_at_equation"
+        },
+        "pedagogy_layer": {
+          "key_skill": "Equation selection is 50% of the problem. Students who can identify 'I don't need time' instantly pick v²=u²+2as and save 2 steps."
+        }
+      },
+      "STATE_3": {
+        "label": "Sign Convention — The One Rule That Prevents All Errors",
+        "physics_layer": {
+          "concept": "How to assign positive and negative to solve any 1D problem without confusion",
+          "simulation_focus": "Show DC Pandey's sign convention diagram (Fig 6.10): horizontal motion — right=+ve, left=−ve. Vertical motion — up=+ve, down=−ve (gravity = −10 m/s²).",
+          "interactive": "Three scenarios. For each, student must assign signs to u, a, and s before solving:\n  (1) Car moving right, braking: u=+20, a=−5 (deceleration), s=+ (rightward).\n  (2) Ball thrown up: u=+30, a=−10 (g downward), s=+ if above start, s=− if below start.\n  (3) Ball dropped from cliff: u=0, a=−10, s=− (downward below cliff top).",
+          "critical_rule": "Once you pick a positive direction, NEVER CHANGE IT during the problem. Inconsistency = wrong answer.",
+          "scenario": "s_ut_half_at2_area"
+        },
+        "pedagogy_layer": {
+          "most_common_error": "Students pick up=+ve at start, then switch to down=+ve when ball falls. This double-counts the sign and gives wrong answers.",
+          "dc_pandey_insight": "In Case 3 (antiparallel u and a), no need for separate equations. One substitution with correct signs gives the full answer — DC Pandey 'Extra Points to Remember' Section 6.6."
+        }
+      },
+      "STATE_4": {
+        "label": "Three Cases — The Complete Classification",
+        "physics_layer": {
+          "concept": "Every uniform acceleration problem fits one of exactly three cases",
+          "simulation_focus": "Three-panel animation showing all three cases simultaneously:\n  Case 1 (u=0): Particle at rest, accelerates from zero. Velocity arrow grows from zero. Distance=displacement.\n  Case 2 (u∥a): Particle already moving in same direction as acceleration. Speed increases throughout. Distance=displacement.\n  Case 3 (u antiparallel to a): Particle moving one way, force opposing. Decelerates to rest at t0, then reverses. Distance > displacement after t0.",
+          "case_3_detail": "Show t0 = |u/a| as the critical moment. Velocity arrow shrinks to zero, then grows in opposite direction. Displacement counter shows maximum at t0 then decreases. Distance counter never decreases.",
+          "dc_pandey_reference": "DC Pandey Fig 6.11 exactly — Case 1, Case 2, Case 3 shown with u=0, u≠0 parallel, u antiparallel to g.",
+          "scenario": "v2_u2_2as_equation"
+        },
+        "pedagogy_layer": {
+          "decision_tree": "First question before any kinematics problem: 'Are u and a in same direction or opposite?' This determines whether distance=displacement (no) or requires t0 calculation (yes)."
+        }
+      },
+      "STATE_5": {
+        "label": "Free Fall — The Most Tested Application",
+        "physics_layer": {
+          "concept": "Gravity as uniform acceleration with standard results",
+          "simulation_focus": "Two sub-simulations:\n  (a) Ball thrown up at u m/s: animate full trajectory. Show: max height = u²/2g, time up = u/g, total time = 2u/g, return speed = u.\n  (b) Free fall from rest at height h: animate fall. Show: v on impact = √(2gh), time = √(2h/g).",
+          "interactive": "Slider for u (or h). All quantities update in real time.",
+          "standard_results_to_memorize": [
+            "h_max = u²/2g",
+            "t_ascent = u/g = t_descent",
+            "T_flight = 2u/g",
+            "v_return = u (same speed as launch)",
+            "v_impact = √(2gh) (dropped from h)",
+            "t_fall = √(2h/g)"
+          ],
+          "source": "DC Pandey Section 6.6 Extra Points — these results are explicitly listed for direct use in objective problems",
+          "scenario": "sign_convention_setup"
+        },
+        "pedagogy_layer": {
+          "key_symmetry": "Time up = time down (when no air resistance). Speed at launch = speed at same height on way back. Students often forget this symmetry and recalculate unnecessarily."
+        }
+      },
+      "STATE_6": {
+        "label": "Student Interaction — The Tower Problem and the Two-Time Problem",
+        "physics_layer": {
+          "concept": "Two canonical JEE-level problems applying full understanding",
+          "problem_1": {
+            "title": "Ball from tower top — DC Pandey Example 6.13",
+            "problem": "Ball thrown up at 10 m/s from top of 40m tower. Find time to hit ground. g=10.",
+            "solution": "u=+10, a=−10, s=−40. s=ut+½at²: −40=10t−5t². 5t²−10t−40=0. t²−2t−8=0. (t−4)(t+2)=0. t=4s (reject t=−2s).",
+            "simulation": "Animate ball going up 5m, then falling 45m total. Verify: at t=4s, s=10(4)−5(16)=40−80=−40m ✓"
+          },
+          "problem_2": {
+            "title": "Ball at same height twice — DC Pandey Example 6.14",
+            "problem": "Ball at height 80m at TWO different times, interval=6s. Find u. g=10.",
+            "solution": "s=80: 80=ut−5t². 5t²−ut+80=0. Two roots t1, t2. t2−t1=6. By Vieta's: t1+t2=u/5, t1t2=16. (t1−t2)²=(t1+t2)²−4t1t2 = u²/25−64. Given (t1−t2)=6: 36=u²/25−64. u²=2500. u=50 m/s.",
+            "simulation": "Animate ball going up and coming down. Mark the two moments it passes 80m height."
+          },
+          "scenario": "three_equations_guide"
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "split_journey_into_two_parts",
+      "misconception": "Upward and downward motion must be solved with separate equations — the equations 'change' when direction reverses",
+      "student_belief": "For a ball thrown up: use one equation going up (deceleration), a different equation coming down (acceleration). Cannot use one single equation.",
+      "trigger_phrases": [
+        "separate equation for up and down",
+        "upward journey alag equation",
+        "downward journey alag solve karo",
+        "two separate calculations",
+        "split the problem into two halves"
+      ],
+      "state_count": 6,
+      "scope": "local",
+      "feedback_tag": "single_equation_with_signs_handles_full_journey",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief — Two Equations, More Steps",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Ball thrown up at 30m/s. Find time to return to start. Student's approach: Phase 1 (going up): v=u−gt, at top v=0. t_up=30/10=3s. Phase 2 (coming down): s=½gt², find t_down. s=45m: 45=5t²: t_down=3s. Total = 3+3=6s. This is correct but took 6 steps.",
+            "show_inefficiency": "Mark every step. Count: 6 steps, 2 equations, intermediate variable (max height), two separate calculations.",
+            "scenario": "split_journey_into_two_parts_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "One Equation, Same Answer",
+          "physics_layer": {
+            "simulation": "Same problem. Sign convention: up=+ve. u=+30, a=−10, s=0 (returns to start). s=ut+½at²: 0=30t−5t². 0=t(30−5t). t=0 (start) or t=6s (return). Answer: 6s. Two steps total.",
+            "comparison": "Old method: 6 steps. New method: 2 steps. Same answer. The equations do NOT change — only the signs handle direction automatically.",
+            "scenario": "split_journey_into_two_parts_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "Why the Signs Handle Everything",
+          "physics_layer": {
+            "content": "When ball goes up: displacement is positive, velocity is positive but decreasing (a=−10 opposes). When ball comes down: displacement starts decreasing (still positive if above start), velocity becomes negative. The equation s=ut+½at² handles BOTH phases because s, u, v, a all carry their correct signs at every instant.",
+            "simulation": "Animate the ball. Show s, v as signed values updating every second. s goes: 0→25→40→45→40→25→0. v goes: 30→20→10→0→−10→−20→−30. The equation is correct throughout — no switching needed.",
+            "scenario": "split_journey_into_two_parts_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "DC Pandey's Tower Problem — One Equation for Full Journey",
+          "physics_layer": {
+            "simulation": "Ball thrown up from 40m tower at 10m/s. Most students: Phase 1 up to max height, Phase 2 from max height to ground. That's a 3-variable intermediate calculation. DC Pandey's method: u=+10, a=−10, s=−40 (ground is 40m BELOW start). Plug in once: −40=10t−5t². Solve: t=4s. One equation. One substitution.",
+            "source": "DC Pandey Example 6.13 — this is exactly the method shown",
+            "scenario": "split_journey_into_two_parts_s4"
+          }
+        },
+        "STATE_5": {
+          "label": "When Does Splitting Help?",
+          "physics_layer": {
+            "content": "Splitting is NEVER required. But it can occasionally be faster for a specific sub-question — like 'find maximum height only' (Phase 1 alone gives this). One equation handles it too: at max height v=0, use v²=u²+2as. Both work. Splitting isn't wrong, just slower.",
+            "rule": "Default: use one equation with signs. Split only if the problem specifically asks for Phase 1 results only.",
+            "scenario": "split_journey_into_two_parts_s5"
+          }
+        },
+        "STATE_6": {
+          "label": "Practice: Solve Tower Problem Your Way vs One-Equation Way",
+          "physics_layer": {
+            "probe": "Ball dropped (u=0) from height 80m. Find velocity just before hitting ground. (a) Use splitting: free fall, v=√2gh. (b) Use one equation: v²=u²+2as, u=0, a=−10, s=−80. v²=0+2(−10)(−80)=1600. v=−40 m/s (downward). Both give 40 m/s magnitude. One-equation method: 1 step.",
+            "scenario": "split_journey_into_two_parts_s6"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "sign_convention_inconsistency",
+      "misconception": "The positive direction can be changed mid-problem, or gravity is always negative regardless of context",
+      "student_belief": "Going up is always positive. Going down is always negative. So when ball falls, 'a' is positive because it's going in positive direction.",
+      "trigger_phrases": [
+        "gravity positive when falling down",
+        "acceleration positive downward",
+        "a = +10 when going down",
+        "sign convention confusing",
+        "direction of g positive negative"
+      ],
+      "state_count": 5,
+      "scope": "local",
+      "feedback_tag": "sign_of_a_fixed_by_convention_not_motion_direction",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief — Changing Sign of g",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Ball thrown up. Student sets up=+ve. Going up: a=−10 (opposing). Ball reaches top, starts falling. Student thinks: 'Now ball is going DOWN. Down is negative. So a must be... wait, is a now +10 or −10?' Shows the confusion.",
+            "common_error": "Student writes a=−10 going up, then a=+10 going down — because they think 'a must align with velocity direction'. Wrong.",
+            "scenario": "ua_wrong_s_is_distance"
+          }
+        },
+        "STATE_2": {
+          "label": "The Rule: Acceleration Direction is Fixed by Physics, Not by Motion",
+          "physics_layer": {
+            "simulation": "Gravity always pulls downward. If up=+ve, then g acts downward = NEGATIVE. This doesn't change when the ball reverses. Gravity is still pulling down. a=−10 throughout the entire flight — up, down, at peak, everywhere.",
+            "analogy": "A person walking north against a south wind. The wind is always southward (negative). Whether the person moves north or south doesn't change the wind direction.",
+            "visualization": "Show gravity arrow always pointing downward throughout flight. Arrow never flips. g=−10 m/s² always if up=+ve.",
+            "scenario": "ua_s_is_displacement"
+          }
+        },
+        "STATE_3": {
+          "label": "The One Time a Can Be Positive (Downward Positive Convention)",
+          "physics_layer": {
+            "simulation": "If you choose DOWN=+ve (sometimes useful for falling/dropped objects), then g=+10. Now 'up' is negative. This is a valid choice. But STICK TO IT for the whole problem.",
+            "example": "Ball dropped from height h. Choose down=+ve. u=0, a=+10, s=+h. v²=u²+2as: v²=0+2(10)(h)=20h. v=√(20h)=√(2gh). Correct.",
+            "warning": "Mixing conventions within one problem is the error. Not which convention you choose.",
+            "scenario": "ua_direction_reversal_case"
+          }
+        },
+        "STATE_4": {
+          "label": "Practice: Assign Signs Before Touching Equations",
+          "physics_layer": {
+            "drill": "Three scenarios. For each: choose convention, write u=?, a=?, then identify s for the question asked.\n  (1) Ball thrown up from ground, find max height. [up=+ve: u=+30, a=−10, v=0 at top]\n  (2) Ball dropped from cliff, find impact velocity. [down=+ve: u=0, a=+10, s=+60]\n  (3) Car braking rightward. [right=+ve: u=+25, a=−5, v=0]",
+            "simulation": "Interactive: student selects convention and fills in signs before numbers are shown.",
+            "scenario": "ua_aha_split_intervals"
+          }
+        },
+        "STATE_5": {
+          "label": "JEE Format: Always State Convention",
+          "physics_layer": {
+            "tip": "In JEE solutions, write 'Taking upward as positive:' before substituting. This forces you to commit to a convention and prevents mid-problem switches. DC Pandey does this in every example — compare with his worked solutions.",
+            "example_from_book": "DC Pandey Example 6.13: 'In the problem, u=+10m/s, a=−10m/s² and s=−40m' — explicit sign assignment before equations.",
+            "scenario": "sign_convention_inconsistency_s5"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "which_equation_confusion",
+      "misconception": "Always start with v=u+at and work from there regardless of what's given",
+      "student_belief": "There's one 'main' equation (v=u+at) and all others are derived from it. Just always start with it.",
+      "trigger_phrases": [
+        "which equation to use",
+        "always use v=u+at first",
+        "confused which formula to apply",
+        "equation selection kinematics",
+        "kaunsa formula lagaaye"
+      ],
+      "state_count": 5,
+      "scope": "local",
+      "feedback_tag": "match_unknowns_to_equation_containing_them",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief — Always Starting with v=u+at",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Problem: 'Ball thrown up at 20m/s. Find max height.' Student starts with v=u+at. v=0 at top: 0=20−10t → t=2s. Now needs another equation: s=ut+½at²: s=20(2)−5(4)=20m. Two equations, extra step.",
+            "direct_approach": "Use v²=u²+2as directly: 0=400+2(−10)s → s=20m. ONE equation, answer in one step.",
+            "scenario": "which_equation_confusion_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "The Missing Variable Method",
+          "physics_layer": {
+            "content": "Each equation is missing exactly ONE of the 5 variables. Identify what variable you DON'T need (and isn't given) — that's the one missing from your equation.",
+            "table": {
+              "v=u+at": "Missing: s. Use when displacement is not needed.",
+              "v²=u²+2as": "Missing: t. Use when time is not needed.",
+              "s=ut+½at²": "Missing: v. Use when final velocity is not needed.",
+              "sₜ=u+a(t-½)": "Missing: everything except nth second displacement."
+            },
+            "simulation": "Equation selector interactive. Student marks known/unknown variables. System highlights which equation to use.",
+            "scenario": "which_equation_confusion_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "Three Classic Problem Types — Best Equation for Each",
+          "physics_layer": {
+            "cases": {
+              "find_max_height": "v=0 at top, need s. Given: u, a. Missing variable: t. Use v²=u²+2as.",
+              "find_time_to_hit_ground": "Given: u, a, s (displacement to ground). Unknown: t. Missing variable: v. Use s=ut+½at².",
+              "find_velocity_at_height": "Given: u, a, s. Unknown: v. Missing variable: t. Use v²=u²+2as."
+            },
+            "simulation": "Three problems shown. For each, student identifies missing variable → system confirms equation choice.",
+            "scenario": "which_equation_confusion_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "When Two Equations ARE Needed",
+          "physics_layer": {
+            "content": "Sometimes you genuinely need two equations — when you have 2 unknowns. Example: 'Find max height AND time of flight.' Two unknowns → two equations. Or when the problem gives non-standard information requiring substitution.",
+            "example": "DC Pandey Example 6.14: Ball at 80m at two times 6s apart. Unknown = u. Needs: s=ut+½at² (quadratic), then use difference of roots formula from Vieta's. Two equations combined.",
+            "scenario": "which_equation_confusion_s4"
+          }
+        },
+        "STATE_5": {
+          "label": "Speed Drill — Choose the Equation in 5 Seconds",
+          "physics_layer": {
+            "problems": [
+              {
+                "given": "u=0, a=10, t=4",
+                "find": "s",
+                "answer_equation": "s=ut+½at²",
+                "answer": "s=80m"
+              },
+              {
+                "given": "u=20, a=−5, v=0",
+                "find": "s",
+                "answer_equation": "v²=u²+2as",
+                "answer": "s=40m"
+              },
+              {
+                "given": "u=15, a=−3, s=30",
+                "find": "t",
+                "answer_equation": "s=ut+½at²",
+                "answer": "quadratic → t=2s or t=8s"
+              },
+              {
+                "given": "u=0, a=g, h=45",
+                "find": "v",
+                "answer_equation": "v²=u²+2as",
+                "answer": "v=√(2×10×45)=30 m/s"
+              }
+            ],
+            "scenario": "which_equation_confusion_s5"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "sth_formula_wrong_use",
+      "misconception": "sₜ = u + a(t − ½) gives the position at time t, or gives distance in t seconds",
+      "student_belief": "sth formula is just another way to find displacement — same as s=ut+½at²",
+      "trigger_phrases": [
+        "sth formula",
+        "displacement in nth second",
+        "s = u + a(2n-1)/2",
+        "formula for tth second",
+        "displacement in 3rd second"
+      ],
+      "state_count": 4,
+      "scope": "local",
+      "feedback_tag": "sth_is_displacement_in_that_second_not_total",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Confusion",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "u=10, a=2. Student uses sth=u+a(t−½) with t=3 to get 'displacement at 3 seconds': sth=10+2(2.5)=15m. Then checks: s=ut+½at²=10(3)+½(2)(9)=30+9=39m. '15 ≠ 39. The formula is wrong!'",
+            "clarify": "The student used sth correctly BUT misinterpreted the result. 15m is NOT displacement at t=3s. It's displacement DURING the 3rd second only (from t=2 to t=3).",
+            "scenario": "sth_formula_wrong_use_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "What sₜ Actually Means",
+          "physics_layer": {
+            "derivation": "sₜ = displacement in tth second = s(at time t) − s(at time t−1) = [ut+½at²] − [u(t−1)+½a(t−1)²] = u + a(t−½).",
+            "simulation": "Timeline animation. Mark positions at t=0, 1, 2, 3 seconds. sth at t=3 = position at t=3 minus position at t=2. Show this gap = 15m. Compare with total displacement at t=3 = 39m. Completely different.",
+            "example": "u=10, a=2. s(3)=39m, s(2)=24m. Displacement in 3rd second = 39−24=15m = s3h. Confirmed.",
+            "scenario": "sth_formula_wrong_use_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "When to Use sₜ",
+          "physics_layer": {
+            "when_needed": "Only when question explicitly asks: 'displacement in the nth second' or 'displacement during the 3rd second'. NOT for 'displacement after 3 seconds' (use s=ut+½at²).",
+            "jee_trap": "JEE asks: 'Find the ratio of displacement in 1st, 2nd, and 3rd second for particle starting from rest.' Answer: s₁:s₂:s₃ = 1:3:5 (using sₜ = 0+10(t−½) = 10t−5 for u=0, a=10). This is a classic.",
+            "scenario": "sth_formula_wrong_use_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "The Classic Ratio: 1:3:5:7...",
+          "physics_layer": {
+            "derivation": "For u=0: sₜ = 0 + a(t − ½) = a(2t−1)/2. Ratio s₁:s₂:s₃:sₙ = 1:3:5:...(2n−1). These are consecutive odd numbers.",
+            "simulation": "Animate particle from rest. Mark distance covered in each 1-second interval. Bars grow as 1, 3, 5, 7 in ratio.",
+            "source": "This is DC Pandey's standard JEE preparation result — explicitly in Extra Points.",
+            "scenario": "sth_formula_wrong_use_s4"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "retardation_means_negative_acceleration",
+      "misconception": "Retardation always means a = negative number",
+      "student_belief": "If something is decelerating, I always write a = −5 (or whatever the magnitude is with a minus sign)",
+      "trigger_phrases": [
+        "retardation negative acceleration",
+        "deceleration always negative",
+        "a = -5 for retardation",
+        "braking a is negative",
+        "manda charitra acceleration"
+      ],
+      "state_count": 4,
+      "scope": "local",
+      "feedback_tag": "retardation_is_opposition_to_velocity_not_always_negative",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Car moving LEFT at 20m/s, brakes applied. Student writes: u=20m/s, a=−5 m/s² (retardation = negative). But wait — if left=negative direction, then u should be −20m/s. Now a=−5 means: accelerating to the LEFT (same direction as motion). That's NOT braking, that's speeding up leftward!",
+            "question": "If u=−20 and a=−5, the car speeds up leftward. But you wanted it to brake. What went wrong?",
+            "scenario": "ua_wrong_deceleration_different"
+          }
+        },
+        "STATE_2": {
+          "label": "Retardation = Opposition to Velocity, Not Always Negative",
+          "physics_layer": {
+            "rule": "Retardation means acceleration OPPOSES the direction of motion. If motion is in −ve direction (leftward), retardation is in +ve direction (rightward). a=+5 for a car moving left and braking.",
+            "simulation": "Car moving LEFT. Sign convention: right=+ve, left=−ve. u=−20 (leftward). Braking force is rightward = +ve. a=+5. v=u+at=−20+5t. At t=4s: v=0. Car stopped. Correct.",
+            "scenario": "ua_sign_is_direction"
+          }
+        },
+        "STATE_3": {
+          "label": "The Pattern",
+          "physics_layer": {
+            "table": {
+              "Moving rightward (+ve), braking": "u=+v, a=−x (opposing)",
+              "Moving leftward (−ve), braking": "u=−v, a=+x (opposing)",
+              "Moving upward (+ve), gravity": "u=+v, a=−10 (opposing = downward)",
+              "Moving downward (−ve), gravity": "u=−v, a=−10... wait: gravity is always −ve (downward). Here u and a are same sign — this is Case 2, NOT retardation."
+            },
+            "key": "Retardation in vertical free-fall doesn't exist (gravity always accelerates downward). Retardation only happens in Case 3 — when something opposes the motion externally (braking, air resistance, etc.).",
+            "scenario": "ua_aha_sign_convention"
+          }
+        },
+        "STATE_4": {
+          "label": "Quick Rule",
+          "physics_layer": {
+            "rule": "Step 1: Assign signs based on DIRECTION, not magnitude. u gets the sign of its direction. a gets the sign of ITS direction (which may oppose u). Step 2: Do NOT apply extra minus signs for 'retardation' as a concept — the sign comes from the direction automatically.",
+            "probe": "Particle moves east at 15m/s, decelerates at 3m/s². East=+ve. u=+15, a=−3. v=15−3t. Stops at t=5s. No minus sign chosen 'because retardation' — it came from direction of deceleration (westward=negative).",
+            "scenario": "retardation_means_negative_acceleration_s4"
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "why_reject_negative_t": {
+      "trigger": "why reject negative time",
+      "states": 2,
+      "content": "The quadratic s=ut+½at² may give two roots, one negative. The negative root means: IF the particle had been at the starting point with velocity u at some earlier time (before t=0), it would have reached that position at t=negative. Since our problem starts at t=0, the negative root is physically irrelevant — it represents a mathematically valid but physically non-existent past event. DC Pandey Fig 6.13 shows this explicitly."
+    },
+    "derive_equations": {
+      "trigger": "derive equations of motion",
+      "states": 3,
+      "content": "v=u+at: integrate a=dv/dt from 0 to t → v−u=at. s=ut+½at²: integrate v=ds/dt=u+at from 0 to t → s=ut+½at². v²=u²+2as: multiply v=u+at by itself and substitute s → v²=u²+2as. All three from calculus in one flow."
+    },
+    "max_height_formula": {
+      "trigger": "maximum height formula ball thrown up",
+      "states": 2,
+      "content": "At max height: v=0. Use v²=u²+2as: 0=u²−2gh → h=u²/2g. This is the direct formula. No need to find time first. Memorize: h_max = u²/2g."
+    },
+    "time_of_flight_formula": {
+      "trigger": "time of flight formula",
+      "states": 2,
+      "content": "Projectile returns to same height: s=0. s=ut+½at²: 0=ut−½gt². t(u−½gt)=0. t=0 (start) or t=2u/g. Time of flight T=2u/g. Ascent time = T/2 = u/g = descent time (symmetric)."
+    },
+    "odd_number_pattern": {
+      "trigger": "ratio of distances in successive seconds",
+      "states": 2,
+      "content": "For particle from rest: distances in 1st, 2nd, 3rd... seconds are in ratio 1:3:5:7... (consecutive odd numbers). Formula: sₜ = a(2t−1)/2 for u=0. This is a direct JEE objective question pattern."
+    },
+    "why_st_dimensional_issue": {
+      "trigger": "sth formula dimensionally incorrect",
+      "states": 2,
+      "content": "sₜ = u + a(t − ½) looks like u + at − a/2. The term a/2 has units m/s²×s⁻¹... wait, that's wrong. Actually: sₜ = u·(1s) + a·(t − ½)·(1s) — the '1s' unit is implicit because t here is an ordinal (2nd second, 3rd second) not a continuous variable. The formula is dimensionally consistent when you include the implicit '1 second' unit. DC Pandey acknowledges this explicitly."
+    }
+  },
+  "static_responses": {
+    "equations_list": {
+      "trigger": "write all equations of motion",
+      "simulation_needed": false,
+      "response": "Five equations of uniform acceleration: (1) v = u + at (2) v² = u² + 2as (3) s = ut + ½at² (4) s₁ = s₀ + ut + ½at² (5) sₜ = u + a(t − ½). In all: s = displacement from starting point, not distance. Use sign convention: pick one direction as +ve and stick to it."
+    },
+    "free_fall_formulas": {
+      "trigger": "free fall formulas direct results",
+      "simulation_needed": false,
+      "response": "For upward projection speed u: max height = u²/2g. Time of ascent = u/g. Time of flight = 2u/g. Return speed = u. For free fall from height h: impact velocity = √(2gh). Time of fall = √(2h/g)."
+    },
+    "missing_variable_guide": {
+      "trigger": "how to choose which equation",
+      "simulation_needed": false,
+      "response": "Identify the variable you don't need: no s needed → use v=u+at. No t needed → use v²=u²+2as. No v needed → use s=ut+½at². Need nth second displacement → use sₜ=u+a(t−½). This is the complete selection rule."
+    }
+  },
+  "problem_guidance_path": {
+    "description": "Step-by-step approach for any uniform acceleration problem",
+    "steps": {
+      "step_1": "Read problem. Identify which of the 5 variables are given (u, v, a, s, t).",
+      "step_2": "State sign convention explicitly. Write it down: 'up = +ve' or 'right = +ve'.",
+      "step_3": "Assign signs to all given values.",
+      "step_4": "Identify which variable is unknown.",
+      "step_5": "Pick the equation that contains exactly those 4 variables (3 known + 1 unknown).",
+      "step_6": "Substitute and solve. If quadratic: get two roots, reject negative time.",
+      "step_7": "Check: is distance required (not displacement)? If u and a opposite and t > t0, need separate distance calculation."
+    }
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Example 6.13",
+      "principle": "Ball thrown up from tower — single equation handles full journey using sign convention (up positive)",
+      "aha": "No need to split into upward and downward phases — one equation with correct signs solves it; reject negative time root",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Example 6.14",
+      "principle": "Ball reaches same height twice — finding initial speed from two time values at same position",
+      "aha": "Two solutions for t from quadratic → two real moments when ball passes that height; their sum = 2u/g",
+      "simulation_states": 2
+    },
+    "example_3": {
+      "source": "DC Pandey Example 6.10",
+      "principle": "Uniform vs non-uniform acceleration — identifying from v-t graph linearity",
+      "aha": "Straight line on v-t graph = uniform acceleration. Curved = non-uniform. Slope = acceleration.",
+      "simulation_states": 2
+    },
+    "example_4": {
+      "source": "DC Pandey standard result — distances from rest",
+      "principle": "From rest with uniform acceleration: distances in 1st, 2nd, 3rd second are in ratio 1:3:5 (odd numbers)",
+      "aha": "nth second distance = u + a(2n-1)/2. From rest: just a(2n-1)/2. This ratio appears directly in JEE MCQs.",
+      "simulation_states": 2
+    }
+  },
+  "assessment_path": {
+    "question_1": {
+      "text": "A ball is thrown up at 20m/s. Taking up as +ve, which set of signs is correct?",
+      "options": [
+        "u=+20, a=+10 going up; u=−20, a=+10 coming down",
+        "u=+20, a=−10 throughout entire flight",
+        "u=+20, a=+10 throughout",
+        "u=+20 going up, a=−10; u=−20, a=+10 coming down"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to sign_convention_inconsistency branch — belief that acceleration follows velocity direction",
+      "if_wrong_3": "route to split_journey_into_two_parts branch",
+      "explanation": "Sign convention is fixed at start. Up=+ve means gravity (downward) = −10 throughout. Velocity changes sign at peak. Acceleration NEVER changes sign — it's always −10."
+    },
+    "question_2": {
+      "text": "You know u, a, and s. You want to find v. Which equation?",
+      "options": [
+        "v = u + at",
+        "v² = u² + 2as",
+        "s = ut + ½at²",
+        "sₜ = u + a(t − ½)"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to which_equation_confusion branch",
+      "explanation": "v²=u²+2as contains exactly u, v, a, s — no time needed. This is the 'no time' equation."
+    },
+    "question_3": {
+      "text": "For a particle starting from rest, ratio of displacements in 1st, 2nd, 3rd second is:",
+      "options": [
+        "1:2:3",
+        "1:4:9",
+        "1:3:5",
+        "2:4:6"
+      ],
+      "correct": 2,
+      "if_wrong": "route to sth_formula_wrong_use branch",
+      "explanation": "Using sₜ=u+a(t−½) with u=0: s₁=a/2, s₂=3a/2, s₃=5a/2. Ratio = 1:3:5. Odd numbers."
+    },
+    "question_4": {
+      "text": "A car moving at 30m/s brakes at −5m/s². How long to stop AND how far does it travel?",
+      "options": [
+        "t=6s, s=90m",
+        "t=6s, s=150m",
+        "t=6s, s=300m",
+        "t=3s, s=90m"
+      ],
+      "correct": 0,
+      "explanation": "v=u+at: 0=30−5t → t=6s. v²=u²+2as: 0=900−10s → s=90m. Or s=30(6)−½(5)(36)=180−90=90m."
+    },
+    "question_5": {
+      "text": "Ball thrown up from top of a 60m building at 20m/s. Time to hit ground (g=10):",
+      "options": [
+        "t=2s",
+        "t=4s",
+        "t=6s",
+        "t=8s"
+      ],
+      "correct": 2,
+      "if_wrong": "route to split_journey_into_two_parts branch — they split the journey",
+      "explanation": "u=+20, a=−10, s=−60 (ground is 60m below). s=ut+½at²: −60=20t−5t². 5t²−20t−60=0. t²−4t−12=0. (t−6)(t+2)=0. t=6s."
+    }
+  },
+  "session_awareness": {
+    "if_already_shown_epic_l": "go to problem practice — student has seen all three cases",
+    "if_coming_from_distance_vs_displacement": "student knows s=displacement — reinforce immediately in equation context",
+    "if_confused_after_practice": "return to STATE_3 sign convention — 90% of wrong answers trace back to sign errors"
+  },
+  "waypoints": {
+    "fallback_unknown_confusion": "Default to the tower problem (DC Pandey 6.13). It's the canonical demonstration of single-equation power and sign convention in action.",
+    "escalation_trigger": "If student asks about non-constant acceleration, redirect to non_uniform_acceleration.json."
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks why the sₜ formula has a dimensional inconsistency",
+    "escalate_to": "The 't' in sₜ is an ordinal integer (1st, 2nd, 3rd second) — not a continuous variable in seconds. The implicit '1 second' unit multiplied through makes it dimensionally consistent. DC Pandey Section 6.6 Exercise 1 asks students to prove this.",
+    "level": "JEE Advanced / dimensional analysis depth"
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "Ball thrown up/down from tower — find time/velocity/height",
+      "Two bodies meet — find time/position",
+      "Average speed for half-distance vs half-time segments",
+      "Ratio of distances in successive seconds from rest (1:3:5...)",
+      "Find u given two times for same height (quadratic roots method)",
+      "Assertion: Retardation means negative acceleration — FALSE (only if opposing is negative)",
+      "Free fall: dropped from height h — find velocity/time"
+    ],
+    "common_traps": [
+      "Splitting upward/downward into separate equations — unnecessary and error-prone",
+      "Changing sign of g when ball reverses — NEVER. g sign is fixed by convention.",
+      "Using sₜ formula to find total displacement (it gives displacement in ONE second only)",
+      "Taking distance = |s| when reversal occurs (need separate calculation for distance)",
+      "Rejecting the valid positive root and accepting negative root (reversed)",
+      "Thinking maximum height uses time (use v²=u²+2as directly)",
+      "Retardation always means negative a (only if motion is in positive direction)"
+    ],
+    "standard_results_to_memorize": [
+      "h_max = u²/2g",
+      "T_flight = 2u/g",
+      "v_return = u (speed, same magnitude)",
+      "v_impact = √(2gh) for free fall",
+      "t_fall = √(2h/g)",
+      "Ratio 1:3:5 for distances from rest in successive seconds"
+    ]
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "distance_vs_displacement",
+      "scalar_vs_vector"
+    ],
+    "extensions": [
+      "non_uniform_acceleration",
+      "motion_graphs",
+      "projectile_motion",
+      "relative_motion"
+    ],
+    "siblings": [
+      "non_uniform_acceleration",
+      "motion_graphs"
+    ],
+    "common_exam_combinations": [
+      "motion_graphs — v-t graph slope = a, area = s (direct connection)",
+      "projectile_motion — applies uniform acceleration in both x (a=0) and y (a=−g) independently",
+      "relative_motion — combines uniform acceleration equations for two bodies"
+    ]
+  },
+  "three_js_flag": false,
+  "three_js_note": "All scenarios are 1D vertical or horizontal. canvas2d with animated particle and arrows is fully sufficient.",
+  "parameter_slots": {
+    "u": {
+      "label": "initial velocity",
+      "range": [
+        0,
+        100
+      ],
+      "unit": "m/s",
+      "default": 10,
+      "extraction_hint": "initial velocity or u ="
+    },
+    "a": {
+      "label": "acceleration",
+      "range": [
+        -20,
+        20
+      ],
+      "unit": "m/s²",
+      "default": 5,
+      "extraction_hint": "acceleration or a ="
+    },
+    "t": {
+      "label": "time",
+      "range": [
+        0,
+        20
+      ],
+      "unit": "s",
+      "default": 4,
+      "extraction_hint": "time or t ="
+    }
+  },
+  "panel_sync_spec": {
+    "canvas_to_graph": {
+      "trigger": "STATE_N_reached",
+      "action": "v-t graph marks current time with vertical line, shows area under curve = displacement"
+    },
+    "graph_to_canvas": {
+      "trigger": "student_hover_on_graph_at_t",
+      "action": "canvas animation seeks to that time position"
+    },
+    "slider_to_both": {
+      "parameter": "a",
+      "canvas_action": "particle acceleration updates live",
+      "graph_action": "v-t line slope changes to match new acceleration"
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "approach": "vt_graph_as_foundation",
+      "entry_state": "STATE_2",
+      "teacher_angle": "Start with the v-t graph as the primary object — not the equations. A straight line on a v-t graph IS uniform acceleration. The slope of that line equals acceleration. The area under the line equals displacement. The three SUVAT equations are not three separate things to memorise — they are three ways of reading the same straight line. v = u + at is the slope. s = ut + half at squared is the area using geometry. v squared = u squared + 2as eliminates time by combining slope and area. One graph, three equations.",
+      "locked_facts_focus": [
+        "fact_3",
+        "fact_4",
+        "fact_5"
+      ],
+      "panel_b_focus": "v-t straight line graph. Three annotations appear one by one: slope highlighted as a, shaded area below line as s, and the algebraic relationship between slope and area eliminating t to give v squared equation."
+    },
+    {
+      "variant_id": 2,
+      "approach": "connects_to_distance_displacement",
+      "entry_state": "STATE_4",
+      "teacher_angle": "Connect to the sign convention from distance vs displacement. The s in SUVAT equations is displacement — signed, not distance. This is why a ball thrown upward has s negative on the way back down even though it is still moving. Students who confuse distance and displacement here get wrong answers for every return-journey problem. Anchor the sign convention to what was learned in Ch.6: displacement is the signed arrow, distance is the always-positive path length.",
+      "locked_facts_focus": [
+        "fact_6",
+        "fact_7",
+        "fact_8"
+      ],
+      "panel_b_focus": "Ball thrown upward animation. Number line shows displacement going positive then becoming negative on the way down. Distance counter only increases. SUVAT calculation shown using s (signed) vs distance. Two different answers for two different questions."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Time", "symbol": "t", "unit": "s", "min": 0, "max": 10 },
+    "y_axis": { "label": "Velocity", "symbol": "v", "unit": "m/s", "min": 0, "max": 50 },
+    "lines": [
+      { "id": "v_vs_t", "formula": "2 + 4 * x", "color": "#34d399", "label": "v = u + at (straight line)" },
+      { "id": "u_line", "slope": 0, "intercept": 2, "color": "#94a3b8", "label": "u = 2 m/s (initial)", "dash": "dash" }
+    ],
+    "sliders": [
+      { "id": "a", "label": "Acceleration a (m/s²)", "min": 1, "max": 8, "default": 4 }
+    ],
+    "legend": [
+      { "id": "v_vs_t", "label": "v = u + at" },
+      { "id": "u_line", "label": "u (initial)" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": ["u_line"], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": ["u_line", "v_vs_t"], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["u_line", "v_vs_t"], "show_sliders": false, "highlight_point": true, "point_x": 5, "point_y": 22, "label": "At t=5s, v=22 m/s" },
+      "STATE_5": { "active_lines": ["u_line", "v_vs_t"], "show_sliders": false, "highlight_point": false },
+      "STATE_6": { "active_lines": ["u_line", "v_vs_t"], "show_sliders": true, "highlight_point": true, "point_x": 5, "point_y": 22 }
+    }
+  }
+}

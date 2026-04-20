@@ -1,0 +1,427 @@
+{
+  "concept_id": "special_cases",
+  "concept_name": "Three Special Cases of Vector Addition — 0 deg, 90 deg, 180 deg",
+  "chapter": 5,
+  "section": "5.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.2 — shortcuts for common angle cases; split from vector_addition bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "Three everyday moments the three special angles appear. Two kids pushing a swing from behind together — parallel forces, angle zero, effective push is the sum. A kite on Makar Sankranti — wind pushing horizontally, string pulling vertically, angle ninety, answer needs Pythagoras. A tug-of-war match on Republic Day at school — two teams pulling a rope from opposite ends, angle one hundred eighty, the winning force is the DIFFERENCE of the two teams' strengths.",
+    "secondary": "A cyclist on a straight road. Pedal-force and tailwind both push forward — angle zero, they simply add. The same cyclist crossing a bridge with a crosswind — angle ninety, net force tilts and uses Pythagoras. Finally, cycling against a head wind — angle one hundred eighty, the net push is pedal-force minus wind-force.",
+    "tertiary": "Two lifts in a building shaft. Both moving up together — parallel, speeds add. One going up, one going down — antiparallel, the passenger sees the sum of the speeds but in opposite directions. A cable car climbing a hill with wind coming from the side — the two velocities combine by Pythagoras."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "A": { "name": "Magnitude of A", "unit": "N", "min": 1, "max": 10, "default": 4 },
+      "B": { "name": "Magnitude of B", "unit": "N", "min": 1, "max": 10, "default": 3 },
+      "theta_deg": { "name": "Angle between vectors", "unit": "deg", "min": 0, "max": 180, "default": 0 }
+    },
+    "computed_outputs": {
+      "R_general": { "formula": "sqrt(A*A + B*B + 2*A*B*cos(theta_deg * PI / 180))" },
+      "R_parallel": { "formula": "A + B" },
+      "R_perpendicular": { "formula": "sqrt(A*A + B*B)" },
+      "R_antiparallel": { "formula": "abs(A - B)" }
+    },
+    "formulas": {
+      "theta_0": "theta = 0 deg  =>  R = A + B  (maximum possible)",
+      "theta_90": "theta = 90 deg =>  R = sqrt(A^2 + B^2)  (Pythagoras)",
+      "theta_180": "theta = 180 deg =>  R = |A - B|  (minimum possible)"
+    },
+    "constraints": [
+      "All three cases are derived from R = sqrt(A^2 + B^2 + 2 A B cos theta) by substituting cos 0 = 1, cos 90 = 0, cos 180 = -1",
+      "At 90 deg, the middle term vanishes — only then Pythagoras applies",
+      "Maximum resultant occurs at theta = 0, minimum at theta = 180",
+      "The three cases form the boundary markers of the full range |A - B| <= R <= A + B"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "Parallel — theta = 0, Two Kids Pushing a Swing",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "kid1_push",
+            "from": { "x": 180, "y": 320 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A = 4 N",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 50
+          },
+          {
+            "type": "force_arrow",
+            "id": "kid2_push",
+            "from": { "x": 180, "y": 380 },
+            "magnitude": 3,
+            "direction_deg": 0,
+            "label": "B = 3 N",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 0.8 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "combined_push",
+            "from": { "x": 180, "y": 450 },
+            "magnitude": 7,
+            "direction_deg": 0,
+            "label": "R = A + B = 7 N",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 3.5, "duration_sec": 1.2 }
+          },
+          {
+            "type": "annotation",
+            "id": "parallel_derivation",
+            "text": "Two vectors in the SAME direction\n(theta = 0 deg, cos 0 = 1)\n\nR^2 = A^2 + B^2 + 2 A B (1)\n    = (A + B)^2\n\n=> R = A + B   (maximum)\n\nScalar addition works — and ONLY\nin this special case.",
+            "position": { "x": 550, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Two kids pushing a swing from behind, both pushing in the same direction. The angle between their pushes is zero." },
+            { "id": "s2", "text_en": "One pushes with four newtons, the other with three. The swing feels the full seven newtons — they simply add." },
+            { "id": "s3", "text_en": "This is the one and only case where scalar addition gives the correct vector sum. Plug zero into the master formula, cosine zero is one, and the expression collapses to A plus B whole squared." },
+            { "id": "s4", "text_en": "So when you read that two forces act in the same direction, go ahead and add their magnitudes. You are safe." },
+            { "id": "s5", "text_en": "For every other angle, you need the full formula. The next two states cover the most exam-relevant ones — ninety degrees and one hundred eighty." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Perpendicular — theta = 90, Kite on Makar Sankranti",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "wind",
+            "from": { "x": 220, "y": 340 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "Wind on kite  A = 4 N",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 50
+          },
+          {
+            "type": "force_arrow",
+            "id": "string",
+            "from": { "x": 220, "y": 340 },
+            "magnitude": 3,
+            "direction_deg": 90,
+            "label": "String tension  B = 3 N",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 0.8 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "kite_resultant",
+            "from": { "x": 220, "y": 340 },
+            "magnitude": 5,
+            "direction_deg": 37,
+            "label": "R = 5 N",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 4, "duration_sec": 1.2 }
+          },
+          {
+            "type": "annotation",
+            "id": "right_angle_marker",
+            "text": "|_  90 deg",
+            "position": { "x": 245, "y": 320 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 0.5 }
+          },
+          {
+            "type": "annotation",
+            "id": "pyth_derivation",
+            "text": "Perpendicular vectors\n(theta = 90 deg, cos 90 = 0)\n\nR^2 = A^2 + B^2 + 2 A B (0)\n    = A^2 + B^2\n\n=> R = sqrt(A^2 + B^2)\n     = sqrt(16 + 9)\n     = 5 N\n\nThis is the ONLY case where\npure Pythagoras is correct.",
+            "position": { "x": 540, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 5.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now imagine flying a kite on Makar Sankranti. The wind pushes the kite horizontally with four newtons. The string tugs it upward with three newtons. The two forces are perpendicular — ninety degrees apart." },
+            { "id": "s2", "text_en": "Plug ninety degrees into the master formula. Cosine ninety is zero, so the entire middle term vanishes." },
+            { "id": "s3", "text_en": "What remains is pure Pythagoras. R squared equals A squared plus B squared." },
+            { "id": "s4", "text_en": "Four squared is sixteen, three squared is nine, sum is twenty-five, square root is five." },
+            { "id": "s5", "text_en": "The kite feels a net pull of five newtons, tilted at thirty-seven degrees above horizontal. That is why the kite sits at that particular tilt in the sky." },
+            { "id": "s6", "text_en": "Important — Pythagoras only works at ninety degrees. Students apply it to every angle, and it is wrong everywhere else." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Antiparallel — theta = 180, Republic Day Tug-of-War",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "team_red",
+            "from": { "x": 385, "y": 320 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "Team Red  A = 4 N",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 50
+          },
+          {
+            "type": "force_arrow",
+            "id": "team_blue",
+            "from": { "x": 385, "y": 380 },
+            "magnitude": 3,
+            "direction_deg": 180,
+            "label": "Team Blue  B = 3 N",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 0.8 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "rope_net",
+            "from": { "x": 385, "y": 450 },
+            "magnitude": 1,
+            "direction_deg": 0,
+            "label": "R = |A - B| = 1 N toward Red",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 3.5, "duration_sec": 1.2 }
+          },
+          {
+            "type": "annotation",
+            "id": "anti_derivation",
+            "text": "Opposite directions\n(theta = 180 deg, cos 180 = -1)\n\nR^2 = A^2 + B^2 + 2 A B (-1)\n    = A^2 - 2 A B + B^2\n    = (A - B)^2\n\n=> R = |A - B|   (minimum)\n\nThe larger team wins by the\ndifference, not by the sum.",
+            "position": { "x": 560, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "On a school sports day, two tug-of-war teams grip opposite ends of the same rope." },
+            { "id": "s2", "text_en": "Team Red pulls with four newtons to the right. Team Blue pulls with three newtons to the left. The forces are exactly opposite — angle one hundred eighty degrees." },
+            { "id": "s3", "text_en": "Plug one hundred eighty into the formula. Cosine is minus one, so the middle term becomes minus two A B." },
+            { "id": "s4", "text_en": "The whole expression collapses to A minus B whole squared. Take the square root and use absolute value to stay positive." },
+            { "id": "s5", "text_en": "Red wins by one newton — that is the difference, not the sum. The rope moves in the direction of the stronger team." },
+            { "id": "s6", "text_en": "This is also the minimum possible resultant. Whatever the angle, R can never drop below the absolute difference of A and B." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "All Three on One Page — Memorise This Summary",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "summary_title",
+            "text": "Three angles you must recognise instantly",
+            "position": { "x": 400, "y": 180 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "case_0",
+            "text": "theta = 0 deg\n\nR = A + B\n(maximum)\n\nExamples\n- two kids pushing swing\n- tailwind on a cyclist\n- two lifts moving up together",
+            "position": { "x": 230, "y": 340 },
+            "style": "formula_box",
+            "color": "#3B82F6",
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.8 }
+          },
+          {
+            "type": "annotation",
+            "id": "case_90",
+            "text": "theta = 90 deg\n\nR = sqrt(A^2 + B^2)\n(Pythagoras)\n\nExamples\n- kite: wind and string\n- boat: paddle and current\n- crosswind on a bridge",
+            "position": { "x": 480, "y": 340 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 0.8 }
+          },
+          {
+            "type": "annotation",
+            "id": "case_180",
+            "text": "theta = 180 deg\n\nR = |A - B|\n(minimum)\n\nExamples\n- tug-of-war\n- headwind on a cyclist\n- up-lift meeting down-lift",
+            "position": { "x": 730, "y": 340 },
+            "style": "formula_box",
+            "color": "#EF4444",
+            "animation": { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 0.8 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "These three frames are your mental toolkit for vector-addition problems." },
+            { "id": "s2", "text_en": "Angle zero — simple addition. Angle ninety — Pythagoras. Angle one hundred eighty — subtraction." },
+            { "id": "s3", "text_en": "Every other angle needs the full formula with its cosine term. But if a question specifies one of these three angles, you can skip the master formula and use the shortcut directly." },
+            { "id": "s4", "text_en": "A warning — Pythagoras only applies at exactly ninety degrees. Using it at sixty or at one hundred twenty is a classic exam trap. Stick to the master formula if the angle is anything other than zero, ninety, or one hundred eighty." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "pythagoras_for_every_angle",
+      "misconception": "R = sqrt(A^2 + B^2) works for any angle, not just 90 degrees",
+      "trigger_phrases": [
+        "pythagoras every angle",
+        "R squared is A squared plus B squared",
+        "use root of sum of squares",
+        "why formula has cos term"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Pythagoras Always Applies",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "belief_A",
+              "from": { "x": 200, "y": 360 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A = 4",
+              "color": "#F59E0B",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "belief_B",
+              "from": { "x": 200, "y": 360 },
+              "magnitude": 3,
+              "direction_deg": 60,
+              "label": "B = 3 at theta = 60",
+              "color": "#F59E0B",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "annotation",
+              "id": "claim",
+              "text": "Your formula\n\nR = sqrt(A^2 + B^2)\n  = sqrt(16 + 9)\n  = 5\n\nYou got 5 N.\nLet us see if that is right\nwhen the angle is 60, not 90.",
+              "position": { "x": 540, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444",
+              "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Students often use Pythagoras for every vector-addition problem. Square both, add, take the root." },
+              { "id": "s2", "text_en": "At ninety degrees, this is correct. At any other angle, it leaves out a crucial term." },
+              { "id": "s3", "text_en": "At sixty degrees, you would calculate the square root of twenty-five equals five. Let us check that against the master formula." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Missing Term — Why Pythagoras Breaks",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "master_expand",
+              "text": "Master formula\nR^2 = A^2 + B^2 + 2 A B cos theta\n\nPythagoras assumes the last term is zero.\nThat is true ONLY at theta = 90.\n\nAt theta = 60, cos 60 = 0.5\n2 A B cos theta = 2 * 4 * 3 * 0.5 = 12\n\nCorrect\nR^2 = 16 + 9 + 12 = 37\nR = sqrt(37) ~ 6.08\n\nPythagoras alone said R = 5.\nGap of over 1 newton.",
+              "position": { "x": 320, "y": 260 },
+              "style": "formula_box"
+            },
+            {
+              "type": "force_arrow",
+              "id": "correct_R",
+              "from": { "x": 220, "y": 440 },
+              "magnitude": 6.08,
+              "direction_deg": 25,
+              "label": "R = 6.08 (correct)",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 45,
+              "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+            },
+            {
+              "type": "force_arrow",
+              "id": "pyth_R",
+              "from": { "x": 220, "y": 500 },
+              "magnitude": 5,
+              "direction_deg": 25,
+              "label": "R = 5 (Pythagoras, wrong)",
+              "color": "#EF4444",
+              "style": "dashed",
+              "scale_pixels_per_unit": 45,
+              "animation": { "type": "fade_in", "delay_sec": 6.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Expand the master formula. R squared equals A squared plus B squared PLUS twice A B times cosine of the angle." },
+              { "id": "s2", "text_en": "Pythagoras silently assumes the middle term is zero. That is true at ninety degrees, because cosine ninety equals zero." },
+              { "id": "s3", "text_en": "At sixty degrees, cosine is half. The middle term is twelve. That contribution cannot be ignored." },
+              { "id": "s4", "text_en": "The correct R squared is thirty-seven, so R is about six point zero eight. Pythagoras alone gave five. You were off by over a newton." },
+              { "id": "s5", "text_en": "The cosine term is the memory of the angle. Throw it away, and you throw away the angle dependence itself." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "When You Are Allowed to Use Pythagoras",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "allowed_box",
+              "text": "Pythagoras shortcut\n\nPermitted ONLY when\ntheta = 90 degrees exactly.\n\nSigns the problem gives you\n- 'perpendicular'\n- 'at right angles'\n- 'horizontal and vertical'\n- one vector along x, other along y\n\nIf you see any of these -> Pythagoras.\nIf you see an angle that is NOT 90 ->\nuse the full formula.",
+              "position": { "x": 340, "y": 260 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "exam_tip",
+              "text": "Exam tip\n\nEven when the problem seems simple,\ncheck the angle before using Pythagoras.\nMany JEE errors are this exact mistake.",
+              "position": { "x": 680, "y": 300 },
+              "style": "callout",
+              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Pythagoras is a genuine shortcut — but only at ninety degrees. Recognise the words that tell you the angle is ninety." },
+              { "id": "s2", "text_en": "Perpendicular. At right angles. One vector horizontal, the other vertical. Any of these phrases means you can use R squared equals A squared plus B squared." },
+              { "id": "s3", "text_en": "Any other angle — sixty, one twenty, seventy-five — demands the full formula. No exceptions." },
+              { "id": "s4", "text_en": "Before you write Pythagoras, check the angle. That one check prevents the most common mistake in this chapter." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different magnitudes, same three cases",
+      "physical_world": "A = 5 N, B = 12 N. theta = 0 -> R = 17. theta = 90 -> R = 13. theta = 180 -> R = 7.",
+      "same_physics": "Maximum at 0, Pythagoras at 90, minimum at 180 — pattern identical"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Equal magnitudes for symmetry",
+      "physical_world": "A = B = 5 N. theta = 0 -> R = 10. theta = 90 -> R = 5 sqrt(2). theta = 120 -> R = 5. theta = 180 -> R = 0.",
+      "same_physics": "Equal magnitudes reduce the formula to R = 2A cos(theta/2)"
+    }
+  ]
+}

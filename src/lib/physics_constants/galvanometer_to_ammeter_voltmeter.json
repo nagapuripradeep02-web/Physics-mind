@@ -1,0 +1,112 @@
+{
+  "concept_id": "galvanometer_to_ammeter_voltmeter",
+  "concept_name": "Moving Coil Galvanometer — Conversion to Ammeter and Voltmeter",
+  "class_level": 12,
+  "chapter": "Moving Charges and Magnetism",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "circuit_live",
+    "scenario_type": "galvanometer_conversion",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "N": "Number of turns in the coil",
+    "I": "Current through the coil (A)",
+    "A": "Area of the coil (m²)",
+    "B": "Radial magnetic field strength (T)",
+    "k": "Torsional spring constant (N·m/rad)",
+    "theta": "Deflection angle (rad)",
+    "I_g": "Full-scale deflection current of galvanometer (A)",
+    "G": "Galvanometer resistance (Ω)",
+    "S": "Shunt resistance for ammeter (Ω)",
+    "R_high": "Multiplier resistance for voltmeter (Ω)"
+  },
+  "locked_facts": [
+    "Torque on coil: τ = NIAB (for radial field, sin θ = 1 for all positions)",
+    "At equilibrium: NIAB = kθ, so deflection θ ∝ I (linear scale)",
+    "Full-scale deflection current: I_g = kθ_max/(NAB)",
+    "Ammeter conversion: connect low resistance S in PARALLEL (shunt), S = I_g × G/(I - I_g)",
+    "Voltmeter conversion: connect high resistance R in SERIES (multiplier), R = V/I_g - G",
+    "An ideal ammeter has ZERO resistance; an ideal voltmeter has INFINITE resistance",
+    "Radial magnetic field (using cylindrical pole pieces) ensures torque ∝ I for all deflections"
+  ],
+  "truth_statements": [
+    "A moving coil galvanometer uses the torque τ = NIAB on a current-carrying coil in a radial magnetic field, balanced by a spring restoring torque kθ, giving deflection proportional to current",
+    "To convert a galvanometer into an ammeter, a low-resistance shunt S is connected in parallel to bypass most of the current around the sensitive coil",
+    "To convert a galvanometer into a voltmeter, a high-resistance multiplier R is connected in series to limit the current through the coil to I_g at the desired voltage range",
+    "An ammeter must have very low resistance so it does not significantly alter the circuit current when inserted in series",
+    "A voltmeter must have very high resistance so it does not draw significant current when connected in parallel across a component"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Side-by-side comparison: (LEFT) Galvanometer with shunt S in parallel — most current I bypasses through S, only I_g flows through G. Total current I = I_g + I_S. The combined resistance is very low: G×S/(G+S) ≈ S. (RIGHT) Galvanometer with multiplier R in series — the same I_g flows through both G and R. The voltage across the combination is I_g(G + R). The combined resistance is very high: G + R ≈ R.",
+    "visual_emphasis": "Current flow animation showing 99% of current taking the shunt path (ammeter) vs a tiny I_g flowing through a huge R (voltmeter). Resistance bar chart comparing ammeter (≈ 0) vs voltmeter (≈ ∞).",
+    "why_this_breaks_misconception": "Students confuse which goes in parallel and which in series — seeing the current division (ammeter) vs voltage division (voltmeter) makes the logic of low-R-parallel and high-R-series obvious"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Moving coil galvanometer",
+      "description": "A rectangular coil of N turns in a radial magnetic field. Current I flows through the coil, producing torque τ = NIAB. A spring provides restoring torque kθ. The needle deflects proportionally to current. Labels show NIAB = kθ.",
+      "emphasis": "The radial field ensures sin θ = 1 at all deflections, making the scale LINEAR. Deflection θ = NIAB/k is directly proportional to I.",
+      "labels_visible": ["N", "I", "A", "B", "τ = NIAB", "θ ∝ I"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Ammeter — shunt in parallel",
+      "description": "A shunt resistance S is connected in PARALLEL with the galvanometer (resistance G). A large current I enters the junction — most flows through S (low resistance), only I_g flows through G. The galvanometer needle reads I_g but the scale is calibrated to show total current I. Formula: S = I_g × G/(I - I_g).",
+      "emphasis": "Shunt PARALLEL — low resistance path for most current. The galvanometer only handles I_g. Combined resistance ≈ S << G. This is why an ammeter has very low resistance.",
+      "labels_visible": ["S (shunt)", "I_g through G", "I - I_g through S", "S = I_gG/(I - I_g)"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Voltmeter — multiplier in series",
+      "description": "A high resistance R is connected in SERIES with the galvanometer. When voltage V is applied across the combination, only I_g = V/(G + R) flows. The galvanometer reads I_g but the scale is calibrated to show voltage V. Side-by-side with ammeter circuit for comparison. Formula: R = V/I_g - G.",
+      "emphasis": "Multiplier SERIES — high resistance limits current to I_g. Combined resistance ≈ R >> G. This is why a voltmeter has very high resistance. Contrast: ammeter (parallel, low R) vs voltmeter (series, high R).",
+      "labels_visible": ["R (multiplier)", "I_g through both", "V = I_g(G + R)", "R = V/I_g - G"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive — design your meter",
+      "description": "Student sets the galvanometer parameters (G, I_g) and then chooses a target range (ammeter: 0-I amperes, or voltmeter: 0-V volts). The required shunt S or multiplier R is calculated and shown. A circuit animation shows current flow. Student can see what happens if S is too large (galvanometer overloads) or R is too small (draws too much current).",
+      "emphasis": "Design an ammeter for 0-5 A range or a voltmeter for 0-100 V range. See the shunt/multiplier value change. Try wrong values to see overload or inaccurate readings.",
+      "labels_visible": ["G", "I_g", "S or R", "Range"],
+      "interactive": true,
+      "sliders": [
+        { "id": "galvResistance", "label": "Galvanometer resistance G", "min": 10, "max": 200, "default": 50, "unit": "Ω" },
+        { "id": "fullScaleCurrent", "label": "Full-scale I_g", "min": 0.0001, "max": 0.01, "default": 0.001, "unit": "A" },
+        { "id": "targetRange", "label": "Target range (A for ammeter, V for voltmeter)", "min": 0.1, "max": 200, "default": 5, "unit": "A or V" },
+        { "id": "modeToggle", "label": "Mode (1 = Ammeter, 2 = Voltmeter)", "min": 1, "max": 2, "default": 1, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "To make an ammeter, you connect a high resistance in series with the galvanometer",
+      "trigger_phrases": ["ammeter mein series resistance", "high resistance for ammeter", "ammeter series mein connect karo", "ammeter high resistance lagao"],
+      "correction": "An ammeter needs a LOW resistance SHUNT connected in PARALLEL. The shunt bypasses most of the current around the delicate galvanometer coil. If you put a high resistance in series, you would make a VOLTMETER, not an ammeter. Memory aid: Ammeter = pArallel shunt (low R), Voltmeter = seRies multiplier (high R).",
+      "simulation_emphasis": "Show what happens if you accidentally put a high resistance in series when trying to measure current — the resistance changes the circuit current drastically, giving wrong readings"
+    },
+    {
+      "belief": "An ammeter has high resistance and a voltmeter has low resistance",
+      "trigger_phrases": ["ammeter high resistance", "voltmeter low resistance", "ammeter ka resistance zyada hota hai", "voltmeter mein kam resistance"],
+      "correction": "It is the opposite. An ideal ammeter has ZERO resistance (so it doesn't change the current it is measuring). An ideal voltmeter has INFINITE resistance (so it doesn't draw current from the circuit). Ammeter in series must not add resistance; voltmeter in parallel must not drain current.",
+      "simulation_emphasis": "Show resistance bar chart: ammeter combined resistance (G×S)/(G+S) ≈ very small vs voltmeter combined resistance G + R ≈ very large"
+    }
+  ],
+  "legend": [
+    { "symbol": "G", "meaning": "Galvanometer coil resistance (Ω)" },
+    { "symbol": "I_g", "meaning": "Full-scale deflection current (A)" },
+    { "symbol": "S", "meaning": "Shunt resistance (parallel, for ammeter) (Ω)" },
+    { "symbol": "R", "meaning": "Multiplier resistance (series, for voltmeter) (Ω)" },
+    { "symbol": "τ", "meaning": "Torque on coil = NIAB (N·m)" },
+    { "symbol": "θ", "meaning": "Deflection angle proportional to current" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["force_on_current_carrying_conductor", "ohms_law", "parallel_resistance", "series_resistance"],
+    "extensions": ["meter_bridge", "potentiometer"],
+    "siblings": ["wheatstone_bridge"],
+    "common_exam_combinations": ["force_on_current_carrying_conductor", "ohms_law"]
+  }
+}

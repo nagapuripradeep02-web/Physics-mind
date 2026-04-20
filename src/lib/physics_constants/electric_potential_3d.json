@@ -1,0 +1,109 @@
+{
+  "concept_id": "electric_potential_3d",
+  "concept_name": "Electric Potential (3D Visualization)",
+  "chapter": "Electrostatic Potential",
+  "class_level": 12,
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "dipole",
+    "panel_count": 2,
+    "show_graph": true,
+    "graph_type": "potential_vs_distance"
+  },
+  "variables": {
+    "q": { "symbol": "q", "name": "Charge magnitude", "unit": "C", "min": 1, "max": 10, "default": 1 },
+    "r": { "symbol": "r", "name": "Distance from charge", "unit": "m", "min": 0.1, "max": 5, "default": 1 },
+    "V": { "symbol": "V", "name": "Electric potential", "unit": "V", "formula": "kq/r" },
+    "E": { "symbol": "E", "name": "Electric field", "unit": "V/m", "formula": "-dV/dr" }
+  },
+  "locked_facts": [
+    "Electric potential is a SCALAR — it has no direction",
+    "Electric field is negative gradient of potential: E = -dV/dr",
+    "Zero potential ≠ zero field — they are independent quantities",
+    "Equipotential surfaces are always perpendicular to field lines",
+    "Potential due to point charge: V = kq/r"
+  ],
+  "truth_statements": [
+    "The electric potential at a point is the work done per unit positive charge in bringing it from infinity to that point",
+    "Equipotential surfaces for a point charge are concentric spheres",
+    "No work is done in moving a charge along an equipotential surface",
+    "The electric field always points from higher potential to lower potential",
+    "For a dipole, the potential is zero at every point on the perpendicular bisector (equatorial plane)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show the equatorial plane of the dipole where V = 0 everywhere, but E is clearly non-zero (field lines pass through it at full strength). This directly contradicts the 'zero V means zero E' misconception.",
+    "visual_emphasis": "Highlight the equatorial plane as a surface, color it differently. Show field lines passing right through it — strong field, zero potential.",
+    "why_this_breaks_misconception": "Students see a region where potential is exactly zero but field lines are dense and strong — V and E are truly independent"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Dipole field lines — from + to −",
+      "description": "Electric dipole: +q and -q separated. Field lines curve from positive to negative charge. 3D view shows the full spatial pattern.",
+      "emphasis": "Field lines emerge from +q and terminate at -q — they are NOT random curves",
+      "labels_visible": ["+q", "-q", "E"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Equipotential surfaces appear",
+      "description": "Wireframe equipotential surfaces surround each charge — not perfect spheres because the other charge distorts them. The equatorial plane (V=0) is highlighted.",
+      "emphasis": "Notice: the equipotential surface shapes are distorted by the second charge. They are no longer perfect spheres.",
+      "labels_visible": ["V₊", "V₋", "V=0 plane"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Zero potential ≠ zero field",
+      "description": "Camera rotates to show the equatorial plane (V=0) edge-on. Field lines clearly pass through it at full strength. Caption: V=0 here, but E is NOT zero!",
+      "emphasis": "THIS is the key insight: V=0 everywhere on this plane, but E is clearly non-zero — look at the dense field lines passing through!",
+      "labels_visible": ["V=0", "E ≠ 0"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — rotate the dipole",
+      "description": "Full interactive mode. All field lines, equipotential surfaces, and the V=0 plane visible. Student rotates freely.",
+      "emphasis": "Rotate to see: field lines always cross equipotential surfaces at right angles. V is scalar, E is vector — they are different quantities.",
+      "labels_visible": ["+q", "-q", "V", "E"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "zero_potential_zero_field",
+      "trigger_keywords": ["zero potential = zero field", "V=0 toh E bhi zero", "potential zero hai toh field nahi hoga", "no potential no field"],
+      "student_belief": "Zero electric potential means zero electric field there",
+      "actual_physics": "Potential and field are related but distinct quantities. E = -dV/dr means the field depends on the RATE OF CHANGE of potential, not its absolute value. The equatorial plane of a dipole has V=0 everywhere but E is clearly non-zero.",
+      "simulation_emphasis": "Show the V=0 equatorial plane of a dipole with field lines passing through it at full strength."
+    },
+    {
+      "id": "potential_is_vector",
+      "trigger_keywords": ["potential ki direction", "V ka direction kya hai", "potential has direction", "potential vector hai"],
+      "student_belief": "Electric potential has a direction like electric field",
+      "actual_physics": "Electric potential is a SCALAR quantity — it has magnitude but no direction. It is the work done per unit charge. Only the electric field E is a vector.",
+      "simulation_emphasis": "Show equipotential surfaces as uniform-value shells. There is no arrow on them — potential is just a number at each point."
+    }
+  ],
+  "legend": [
+    { "symbol": "+q", "meaning": "Positive charge (red)" },
+    { "symbol": "-q", "meaning": "Negative charge (blue)" },
+    { "symbol": "V", "meaning": "Electric potential = kq/r (scalar)" },
+    { "symbol": "E", "meaning": "Electric field = -dV/dr (vector)" },
+    { "symbol": "V=0", "meaning": "Equatorial plane (zero potential)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["electric_field_lines", "coulombs_law", "work_energy"],
+    "extensions": ["parallel_plate_capacitor_field", "gauss_law_3d"],
+    "siblings": ["electric_field_lines", "parallel_plate_capacitor_field"],
+    "common_exam_combinations": ["capacitance", "electric_field_lines"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["find V at a point due to dipole", "relationship between E and V for given geometry", "work done moving charge on equipotential", "zero-potential locus problems"],
+    "common_traps": ["assuming V=0 implies E=0", "treating potential as a vector", "confusing potential with potential energy", "wrong sign in E = -dV/dr"],
+    "numerical_ranges": {
+      "q": "1–10 μC",
+      "d": "0.01–0.1 m (dipole separation)",
+      "k": "9 × 10⁹ Nm²/C²"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "concept_id": "resistor_in_ac",
+  "concept_name": "Resistor in AC Circuit",
+  "chapter": "Alternating Current",
+  "class_level": 12,
+  "renderer_hint": {
+    "primary": "circuit_live",
+    "topology": "single_ac_element",
+    "element": "resistor",
+    "show_graph": true
+  },
+  "variables": {
+    "V_m": { "symbol": "V_m", "name": "Peak Voltage", "unit": "V", "min": 1, "max": 100, "default": 20 },
+    "R": { "symbol": "R", "name": "Resistance", "unit": "Ω", "min": 1, "max": 1000, "default": 100 },
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 10, "max": 200, "default": 50 }
+  },
+  "locked_facts": [
+    "v = V_m sin(ωt)",
+    "i = I_m sin(ωt) where I_m = V_m / R",
+    "V and I are in phase — zero phase difference",
+    "Resistor dissipates energy as heat — power is always non-negative",
+    "Average power P = V_rms × I_rms = V_m² / (2R)",
+    "Impedance of resistor = R, independent of frequency",
+    "Resistor does not store energy — all electrical energy converted to heat"
+  ],
+  "truth_statements": [
+    "Current and voltage are exactly in phase for a resistor in AC",
+    "Resistance value does not depend on frequency",
+    "Power dissipated in resistor is always positive — never negative",
+    "Ohm's law holds instantaneously for resistor: v = iR at every instant"
+  ],
+  "aha_moment": {
+    "state": "STATE_2",
+    "what_to_show": "Overlay v(t) and i(t) on the same graph. Both reach their peaks at exactly the same instant, cross zero at the same instant, reach their troughs at the same instant. Zero phase difference — they move perfectly together.",
+    "visual_emphasis": "Both waveforms in identical colour phase — or overlay them with a deliberate slight offset to make the zero phase difference visually undeniable. Label with φ = 0."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "AC source connected to resistor",
+      "what_student_sees": "Simple circuit: AC source and resistor in series. Source voltage labelled v = V_m sin(ωt).",
+      "what_to_emphasize": "This is the simplest AC circuit — one element, no storage, pure dissipation."
+    },
+    {
+      "state": "STATE_2",
+      "label": "V and I waveforms — in phase",
+      "what_student_sees": "v(t) and i(t) plotted together. Peaks, zeros, and troughs align perfectly. Phase difference φ = 0 labelled explicitly.",
+      "what_to_emphasize": "In phase means they peak together, cross zero together, reach minimum together. The resistor has no memory — it responds instantly."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Power waveform — always positive",
+      "what_student_sees": "P(t) = v(t) × i(t) plotted. Since both have same sign at all times, P is always ≥ 0. Never negative. Average power P_avg = V_m × I_m / 2 marked.",
+      "what_to_emphasize": "Power is always positive — energy always flows FROM source TO resistor and is dissipated as heat. It never flows back."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Phasor diagram",
+      "what_student_sees": "I phasor and V phasor pointing in the same direction. No angle between them. R = V/I valid at every instant.",
+      "what_to_emphasize": "Phasors aligned = in phase. Compare this to inductor (90° ahead) and capacitor (90° behind) to be studied next."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "resistor_phase_shift",
+      "trigger_keywords": ["resistor phase shift", "R causes delay", "resistor lag", "R mein bhi phase change", "resistance changes phase"],
+      "student_belief": "Every circuit element causes some phase shift between V and I",
+      "actual_physics": "Only reactive elements (inductors and capacitors) cause phase shifts. A pure resistor has zero phase difference between V and I.",
+      "simulation_emphasis": "Show the two waveforms perfectly overlapping. Then contrast immediately with the inductor case where they are clearly 90° apart."
+    },
+    {
+      "id": "ac_resistance_different",
+      "trigger_keywords": ["ac resistance different", "resistance changes with frequency", "DC resistance vs AC", "higher frequency more resistance"],
+      "student_belief": "A resistor has different resistance for AC than for DC, or resistance changes with frequency",
+      "actual_physics": "Resistance is frequency-independent. R = V/I holds the same regardless of whether source is DC or AC, regardless of frequency. Impedance of resistor = R always.",
+      "simulation_emphasis": "Show slider varying frequency from 10Hz to 10000Hz. Show resistance R displayed — it never changes. Contrast with inductor where X_L = ωL increases with frequency."
+    }
+  ],
+  "legend": [
+    { "symbol": "φ = 0", "meaning": "Zero phase difference — V and I in phase" },
+    { "symbol": "P_avg", "meaning": "Average power = V_rms × I_rms" }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "concept_id": "refraction_at_spherical_surface",
+  "concept_name": "Refraction at Spherical Surfaces",
+  "class_level": 12,
+  "chapter": "Ray Optics and Optical Instruments",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "optics_ray", "scenario_type": "spherical_refraction", "panel_count": 1, "show_labels": true },
+  "variables": { "n₁": "Refractive index of medium 1", "n₂": "Refractive index of medium 2", "R": "Radius of curvature (m)", "u": "Object distance (m)" },
+  "locked_facts": [
+    "Refraction formula: n₁/u + n₂/v = (n₂ - n₁)/R",
+    "Sign convention: distances measured from pole, along principal axis",
+    "For flat surface (R → ∞): n₁/u + n₂/v = 0, giving apparent depth formula",
+    "This formula leads to the lens maker's equation when applied to both surfaces of a lens",
+    "Real image formed when refracted rays actually converge; virtual when they appear to diverge",
+    "Applicable to convex and concave refracting surfaces"
+  ],
+  "truth_statements": [
+    "The refraction formula n₁/u + n₂/v = (n₂-n₁)/R relates object and image distances for a single refracting surface",
+    "Applying this formula to both surfaces of a thin lens and combining gives the lens maker's equation",
+    "For a flat refracting surface R is infinite and the formula reduces to the apparent depth relation",
+    "The formula uses the same sign convention as for mirrors with all distances measured from the pole",
+    "Both real and virtual images can be formed depending on the object position and the curvature"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Light crossing a single curved glass-air interface. Applying n₁/u + n₂/v = (n₂-n₁)/R to both surfaces of a lens one after another — the image of surface 1 becomes the object for surface 2. Combining gives the lens maker's equation 1/f = (n-1)(1/R₁ - 1/R₂).",
+    "visual_emphasis": "Two successive applications of the single-surface formula collapsing into the lens maker's equation",
+    "why_this_breaks_misconception": "Students memorise the lens formula without understanding its origin — seeing it derived from two single-surface refractions makes it feel logical, not arbitrary"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Single refracting surface", "description": "Light from object in medium 1 (n₁) hits a curved surface separating medium 2 (n₂). Refraction bends rays. Image formed in medium 2.", "emphasis": "n₁/u + n₂/v = (n₂-n₁)/R governs the image location", "labels_visible": ["n₁", "n₂", "R", "u", "v"] },
+    { "id": "STATE_2", "label": "Flat surface case", "description": "R → ∞ (flat surface). Formula gives n₁/u = -n₂/v → apparent depth = real depth × (n₁/n₂). A coin in water appears closer to the surface.", "emphasis": "Flat surface is a special case — gives the apparent depth formula", "labels_visible": ["apparent depth", "n₁/n₂", "R = ∞"] },
+    { "id": "STATE_3", "label": "Building the lens formula", "description": "Apply single-surface formula to surface 1 of a lens (air→glass), then surface 2 (glass→air). Image of surface 1 = object for surface 2. Combine: 1/f = (n-1)(1/R₁ - 1/R₂).", "emphasis": "The lens maker's equation comes from TWO applications of the single-surface formula", "labels_visible": ["surface 1", "surface 2", "1/f = (n-1)(1/R₁ - 1/R₂)"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts n₁, n₂, R, and object position. Image position and nature (real/virtual) shown. Toggle between convex and concave surfaces. Build a lens from two surfaces.", "emphasis": "Change curvature and refractive indices — see how image position changes", "labels_visible": ["u", "v", "n₁", "n₂", "R"], "interactive": true, "sliders": [{ "id": "radius", "label": "Radius R", "min": -20, "max": 20, "default": 10, "unit": "cm" }, { "id": "n2", "label": "n₂", "min": 1.0, "max": 2.0, "default": 1.5, "unit": "" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "The lens formula and single-surface formula are independent formulas", "trigger_phrases": ["different formulas", "alag formula hai"], "correction": "The lens maker's equation is derived by applying n₁/u + n₂/v = (n₂-n₁)/R to both surfaces of a lens sequentially. They are the same physics — the lens formula is a consequence of single-surface refraction.", "simulation_emphasis": "Show step-by-step derivation from two single-surface applications to lens formula" },
+    { "belief": "Refraction at a curved surface always forms a real image", "trigger_phrases": ["curved surface real image", "always real"], "correction": "Both real and virtual images can form depending on object position, curvature, and refractive indices. When refracted rays diverge, the image is virtual.", "simulation_emphasis": "Show cases producing real and virtual images at the same curved surface" }
+  ],
+  "legend": [ { "symbol": "n", "meaning": "Refractive index" }, { "symbol": "R", "meaning": "Radius of curvature (m)" }, { "symbol": "u, v", "meaning": "Object and image distances" } ],
+  "concept_relationships": { "prerequisites": ["refraction_snells_law"], "extensions": ["thin_lens_formula"], "siblings": ["reflection_spherical_mirrors"], "common_exam_combinations": ["thin_lens_formula"] }
+}

@@ -1,0 +1,27 @@
+{
+  "concept": "kirchhoffs_laws",
+  "locked_facts": {
+    "KCL": "algebraic_sum_of_currents_at_any_junction_is_zero",
+    "KVL": "algebraic_sum_of_EMFs_equals_sum_of_IR_drops_in_a_closed_loop",
+    "current_into_junction": "equals_current_out_of_junction",
+    "KCL_basis": "conservation_of_charge",
+    "KVL_basis": "conservation_of_energy",
+    "sign_convention_KVL": "EMF_positive_if_traversed_from_negative_to_positive_terminal"
+  },
+  "animation_constraints": {
+    "current_conservation_at_node": true,
+    "voltage_drops_across_resistors": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "Kirchhoff's Current Law (KCL): the algebraic sum of currents meeting at any junction in a circuit is zero, based on conservation of charge",
+    "Kirchhoff's Voltage Law (KVL): the algebraic sum of changes in potential around any closed loop in a circuit is zero, based on conservation of energy",
+    "Current flowing into a junction must equal the current flowing out of that junction at every instant",
+    "In applying KVL, a potential drop of IR occurs across a resistor when traversed in the direction of the current",
+    "Kirchhoff's laws apply to any network of resistors and EMF sources, enabling calculation of currents in complex circuits"
+  ]
+}

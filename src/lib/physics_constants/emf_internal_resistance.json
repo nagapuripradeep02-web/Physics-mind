@@ -1,0 +1,27 @@
+{
+  "concept": "emf_internal_resistance",
+  "locked_facts": {
+    "emf_definition": "work_done_per_unit_charge_to_move_charge_through_cell_from_negative_to_positive_terminal",
+    "terminal_voltage_formula": "V = E - I*r",
+    "terminal_voltage_on_discharge": "less_than_EMF_due_to_internal_resistance_drop",
+    "terminal_voltage_on_charge": "greater_than_EMF",
+    "open_circuit_terminal_voltage": "equals_EMF_when_no_current_flows",
+    "internal_resistance_formula": "r = (E - V) / I",
+    "unit_of_emf": "volt"
+  },
+  "animation_constraints": {
+    "terminal_voltage_less_than_emf_during_discharge": true,
+    "electrons_drift": "right_to_left",
+    "field_arrows_point": "left_to_right",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "The EMF of a cell is the work done per unit charge by the cell to move charge from its negative terminal to its positive terminal through the cell",
+    "The terminal voltage of a cell during discharge is V = E − Ir, which is less than the EMF because of the potential drop across the internal resistance",
+    "When no current is drawn from the cell (open circuit), the terminal voltage equals the EMF of the cell",
+    "The internal resistance of a cell arises from the resistance of the electrolyte and electrodes inside the cell",
+    "During charging, the terminal voltage across the cell is greater than its EMF: V = E + Ir"
+  ]
+}

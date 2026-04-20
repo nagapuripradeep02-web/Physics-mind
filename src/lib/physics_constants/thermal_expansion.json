@@ -1,0 +1,42 @@
+{
+  "concept_id": "thermal_expansion",
+  "concept_name": "Thermal Expansion",
+  "class_level": 11,
+  "chapter": "Thermal Properties of Matter",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "thermodynamics", "scenario_type": "thermal_expansion", "panel_count": 1, "show_labels": true },
+  "variables": { "α": "Linear expansion coefficient (/°C)", "β": "Area expansion coefficient (/°C)", "γ": "Volume expansion coefficient (/°C)", "ΔT": "Temperature change (°C)" },
+  "locked_facts": [
+    "Linear expansion: ΔL = αLΔT",
+    "Area expansion: ΔA = βAΔT where β ≈ 2α",
+    "Volume expansion: ΔV = γVΔT where γ ≈ 3α",
+    "Water anomalous expansion: maximum density at 4°C",
+    "Below 4°C water expands as it cools (anomalous behaviour)",
+    "Thermal expansion is caused by increased amplitude of molecular vibrations",
+    "Bimetallic strip bends because two metals expand at different rates"
+  ],
+  "truth_statements": [
+    "When a solid is heated every dimension increases — length, area, and volume all expand",
+    "The coefficients of linear, area, and volume expansion are related as β = 2α and γ = 3α",
+    "Water has anomalous expansion — it is densest at 4°C and expands both above and below this temperature",
+    "This anomalous expansion is crucial for aquatic life: lakes freeze from the top while water at 4°C sinks to the bottom",
+    "A hole in a metal plate expands when heated — it does not shrink"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A metal plate with a circular hole heated uniformly. The hole gets LARGER, not smaller. Every dimension expands uniformly — the hole expands as if it were filled with the same metal. Students expect holes to shrink — seeing expansion is the breakthrough.",
+    "visual_emphasis": "Plate with hole expanding — hole visibly grows, not shrinks — with before/after overlay",
+    "why_this_breaks_misconception": "Students intuitively expect holes to get smaller when heated — seeing uniform expansion of ALL dimensions including holes corrects this"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Linear expansion", "description": "A metal rod heated. Length increases: ΔL = αLΔT. Expansion is small but measurable. Different metals compared (α values).", "emphasis": "Every linear dimension increases by the same fractional amount αΔT", "labels_visible": ["ΔL = αLΔT", "α"] },
+    { "id": "STATE_2", "label": "Area and volume expansion", "description": "A metal plate heated: area expands (β ≈ 2α). A metal cube heated: volume expands (γ ≈ 3α). The relationships 2α and 3α derived visually.", "emphasis": "Area has two dimensions → 2α. Volume has three → 3α.", "labels_visible": ["β ≈ 2α", "γ ≈ 3α"] },
+    { "id": "STATE_3", "label": "Hole expansion paradox", "description": "Metal plate with a hole heated. The hole GROWS larger. Think of it as: the plate expands uniformly as if the hole were filled with the same metal.", "emphasis": "Holes expand too! Every dimension scales up by the same factor.", "labels_visible": ["hole expands", "uniform scaling"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student heats different materials and shapes. Bimetallic strip demo: different α causes bending. Water anomalous expansion: density vs T graph peaks at 4°C.", "emphasis": "Try different materials — see different expansion. Water is special at 4°C.", "labels_visible": ["ΔL", "ΔT", "α", "density vs T"], "interactive": true, "sliders": [{ "id": "temperature", "label": "Temperature change", "min": 0, "max": 200, "default": 50, "unit": "°C" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "A hole in a heated plate gets smaller", "trigger_phrases": ["hole shrinks", "hole chota hoga", "material expands into hole"], "correction": "The hole expands just like every other dimension. Imagine the hole filled with the same material — it would expand outward. Since the surrounding material must expand by the same amount, the hole grows.", "simulation_emphasis": "Animate hole expansion with imaginary filling expanding at the same rate" },
+    { "belief": "Water always expands when heated", "trigger_phrases": ["water expands heating", "water hamesha failta hai"], "correction": "Water has anomalous expansion between 0°C and 4°C — it contracts when heated from 0 to 4°C (density increases). Above 4°C, it expands normally. Maximum density at 4°C.", "simulation_emphasis": "Show density vs temperature graph with peak at 4°C — expansion below 4°C is reversed" }
+  ],
+  "legend": [ { "symbol": "α", "meaning": "Linear expansion coefficient (/°C)" }, { "symbol": "β", "meaning": "Area expansion = 2α" }, { "symbol": "γ", "meaning": "Volume expansion = 3α" } ],
+  "concept_relationships": { "prerequisites": ["kinetic_theory_temperature"], "extensions": ["calorimetry_heat_transfer"], "siblings": ["gas_laws_ideal"], "common_exam_combinations": ["calorimetry_heat_transfer", "stress_strain_elasticity"] }
+}

@@ -1,0 +1,42 @@
+{
+  "concept_id": "ac_generator",
+  "concept_name": "AC Generator",
+  "class_level": 12,
+  "chapter": "Electromagnetic Induction",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "circuit_live", "scenario_type": "ac_generator", "panel_count": 2, "show_labels": true },
+  "variables": { "ε": "Instantaneous EMF (V)", "ε₀": "Peak EMF = NBAω (V)", "ω": "Angular frequency (rad/s)", "f": "Frequency (Hz)" },
+  "locked_facts": [
+    "AC generator converts mechanical energy to electrical energy using electromagnetic induction",
+    "EMF: ε = NBAω sin(ωt) = ε₀ sin(ωt)",
+    "Peak EMF: ε₀ = NBAω (N = turns, B = field, A = area, ω = angular speed)",
+    "When coil plane is parallel to B (θ = 90°): maximum rate of flux change → maximum EMF",
+    "When coil plane is perpendicular to B (θ = 0°): maximum flux but zero rate of change → zero EMF",
+    "Slip rings maintain continuous electrical contact as coil rotates",
+    "Frequency of AC = rotational frequency of coil: f = ω/(2π)"
+  ],
+  "truth_statements": [
+    "An AC generator produces alternating EMF that varies sinusoidally with time",
+    "The EMF is maximum when the coil plane is parallel to the magnetic field — this is when flux is changing most rapidly",
+    "The EMF is zero when the coil plane is perpendicular to B — at this instant the flux is maximum but not changing",
+    "Increasing the angular speed increases both the peak EMF and the frequency of the output",
+    "The key components are a coil, permanent magnets, slip rings, and brushes"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Split screen: LEFT shows coil rotating in magnetic field with flux arrows. RIGHT shows ε vs t sinusoidal graph building in real time. When coil is parallel to B (flux changing fastest) → EMF peaks. When coil is perpendicular to B (max flux but not changing) → EMF = 0.",
+    "visual_emphasis": "Coil orientation synced with the sine wave — EMF peaks when flux changes fastest, not when flux is maximum",
+    "why_this_breaks_misconception": "Students confuse maximum flux with maximum EMF — seeing EMF peak when coil is parallel to B (not perpendicular) is the breakthrough"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Generator structure", "description": "A rectangular coil between magnetic poles. Slip rings and brushes shown. The coil is ready to rotate. Components labelled.", "emphasis": "Key parts: coil in magnetic field + slip rings for continuous contact", "labels_visible": ["coil", "N pole", "S pole", "slip rings", "brushes"] },
+    { "id": "STATE_2", "label": "Coil rotates", "description": "Coil starts rotating. Flux through coil changes sinusoidally. EMF = -dΦ/dt follows. Graph of ε vs t builds as coil turns.", "emphasis": "As the coil rotates, the flux changes → EMF is induced", "labels_visible": ["Φ(t)", "ε(t)", "ε = -dΦ/dt"] },
+    { "id": "STATE_3", "label": "Phase relationship", "description": "When coil ⊥ B: Φ = max but dΦ/dt = 0 → ε = 0. When coil ∥ B: Φ = 0 but dΦ/dt = max → ε = max. EMF leads flux by 90°.", "emphasis": "Maximum EMF when flux is CHANGING fastest — NOT when flux is maximum", "labels_visible": ["ε max when Φ changing fastest", "ε = 0 when Φ = max"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student controls rotation speed. EMF amplitude and frequency both change. Adjust N, B, A to see ε₀ = NBAω change. Sine wave updates in real time.", "emphasis": "Faster rotation = higher voltage AND higher frequency. More turns = more voltage.", "labels_visible": ["ε₀ = NBAω", "f = ω/2π"], "interactive": true, "sliders": [{ "id": "omega", "label": "Angular speed ω", "min": 1, "max": 50, "default": 10, "unit": "rad/s" }, { "id": "turns", "label": "Turns N", "min": 1, "max": 100, "default": 20, "unit": "" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "EMF is maximum when flux through the coil is maximum", "trigger_phrases": ["max flux max EMF", "perpendicular position max EMF"], "correction": "EMF depends on RATE OF CHANGE of flux (dΦ/dt), not flux itself. When Φ is at its maximum, dΦ/dt = 0 → ε = 0. EMF is maximum when Φ is changing fastest (coil parallel to B).", "simulation_emphasis": "Sync coil position with EMF graph — EMF peaks at 90° when coil is parallel to B, not at 0° when coil is perpendicular" },
+    { "belief": "DC and AC generators work on different principles", "trigger_phrases": ["different principle", "DC generator different"], "correction": "Both work on the same Faraday's law principle. The difference is in the output connections: AC uses slip rings (continuous output), DC uses a split-ring commutator (rectifies the output to pulsating DC).", "simulation_emphasis": "Show same coil with slip rings (AC output) vs commutator (rectified DC output)" }
+  ],
+  "legend": [ { "symbol": "ε₀", "meaning": "Peak EMF = NBAω" }, { "symbol": "ω", "meaning": "Angular frequency (rad/s)" }, { "symbol": "f", "meaning": "Frequency = ω/(2π) Hz" } ],
+  "concept_relationships": { "prerequisites": ["faraday_law_emf", "lenz_law_eddy"], "extensions": ["ac_circuits_lcr", "power_transmission"], "siblings": ["dc_motor"], "common_exam_combinations": ["faraday_law_emf", "ac_circuits_lcr"] }
+}

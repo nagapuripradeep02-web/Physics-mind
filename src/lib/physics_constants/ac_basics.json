@@ -1,0 +1,83 @@
+{
+  "concept_id": "ac_basics",
+  "concept_name": "AC Voltage and Current — Basics",
+  "chapter": "Alternating Current",
+  "class_level": 12,
+  "renderer_hint": {
+    "primary": "graph_interactive",
+    "topology": "waveform",
+    "graph_type": "sinusoidal"
+  },
+  "variables": {
+    "V_m": { "symbol": "V_m", "name": "Peak Voltage", "unit": "V", "min": 10, "max": 400, "default": 311 },
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 10, "max": 100, "default": 50 }
+  },
+  "locked_facts": [
+    "v(t) = V_m sin(ωt) where ω = 2πf",
+    "V_rms = V_m / √2 ≈ 0.707 × V_m",
+    "I_rms = I_m / √2",
+    "Indian mains: V_rms = 220V, f = 50Hz, therefore V_m ≈ 311V",
+    "Average of AC over a complete cycle = 0",
+    "Average over a half cycle = 2V_m / π ≈ 0.637 × V_m",
+    "RMS is defined to produce same heating effect as equivalent DC"
+  ],
+  "truth_statements": [
+    "V_rms = V_m divided by root 2, NOT V_m divided by 2",
+    "Indian 220V supply has peak voltage of approximately 311V",
+    "Complete cycle average of AC is exactly zero",
+    "RMS voltage is always less than peak voltage for sinusoidal AC"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show horizontal dashed lines at both V_m = 311V and V_rms = 220V on the same waveform. Student sees the plug in their wall carries 311V peaks — not 220V constantly. The 220V label on their charger is the RMS equivalent, not the instantaneous value.",
+    "visual_emphasis": "Two horizontal reference lines — orange at V_m, blue at V_rms — with the sine wave passing through both, clearly above V_rms half the time and below it half the time"
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Sinusoidal waveform — v(t) = V_m sin(ωt)",
+      "what_student_sees": "Clean sine wave labelled with equation. x-axis = time, y-axis = voltage. Wave oscillates symmetrically above and below zero.",
+      "what_to_emphasize": "The wave is perfectly symmetric — equally positive and negative. This is why the simple average is zero."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Peak values marked",
+      "what_student_sees": "Dashed horizontal lines at +V_m and -V_m with numerical values. Time period T marked along x-axis. One full cycle highlighted.",
+      "what_to_emphasize": "V_m is the maximum instantaneous value — the wave only reaches this at one instant per half cycle"
+    },
+    {
+      "state": "STATE_3",
+      "label": "RMS line appears — the aha moment",
+      "what_student_sees": "A blue dashed line appears at V_rms = V_m/√2. For the default V_m = 311V, this sits at 220V. The sine wave crosses this line twice per cycle.",
+      "what_to_emphasize": "V_rms is NOT halfway between 0 and V_m. It is V_m/√2 ≈ 0.707 × V_m. This is the effective value — what a DC source of this voltage would produce in terms of heating."
+    },
+    {
+      "state": "STATE_4",
+      "label": "DC equivalence demonstrated",
+      "what_student_sees": "Split screen: AC at 311V peak on the left, DC at 220V on the right, both connected to identical resistors. Heat produced (represented by glow intensity) is identical.",
+      "what_to_emphasize": "This is the fundamental meaning of RMS — same power delivered as DC of that value. That is why we rate appliances at 220V even though the actual peak is 311V."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "rms_is_half_peak",
+      "trigger_keywords": ["rms is half", "220 divided by 2", "average voltage", "V_m/2", "rms matlab average hai", "half of maximum"],
+      "student_belief": "V_rms is the average of V_m and 0, which is V_m/2",
+      "actual_physics": "V_rms = V_m/√2 ≈ 0.707 × V_m. The RMS is computed by squaring the function, averaging it, then taking the square root — a fundamentally different operation from arithmetic average.",
+      "simulation_emphasis": "Show both values numerically on the graph: for V_m = 100V, draw a line at V_m/2 = 50V labeled WRONG and another at V_rms = 70.7V labeled CORRECT. Student must see they are different and understand why."
+    },
+    {
+      "id": "220v_is_always_220v",
+      "trigger_keywords": ["220v constant", "mains always 220", "plug mein 220 hi hota", "supply voltage constant", "220 at all times"],
+      "student_belief": "The 220V from the mains is always 220V — a constant voltage like a battery",
+      "actual_physics": "Mains 220V is an RMS value. The instantaneous voltage oscillates sinusoidally between +311V and -311V fifty times per second.",
+      "simulation_emphasis": "Show the full sine wave of Indian mains supply with V_m = 311V marked. Show the 220V RMS line. Animate the wave completing one cycle in 1/50 second = 20ms."
+    }
+  ],
+  "legend": [
+    { "symbol": "V_m", "meaning": "Peak (maximum) voltage" },
+    { "symbol": "V_rms", "meaning": "RMS voltage = V_m / √2" },
+    { "symbol": "T", "meaning": "Time period = 1/f" },
+    { "symbol": "ω", "meaning": "Angular frequency = 2πf rad/s" }
+  ]
+}

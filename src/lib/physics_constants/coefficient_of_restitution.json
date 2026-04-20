@@ -1,0 +1,104 @@
+{
+  "concept_id": "coefficient_of_restitution",
+  "concept_name": "Coefficient of Restitution",
+  "class_level": 11,
+  "chapter": "Work, Energy and Power",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "restitution_bounce",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "e": "Coefficient of restitution (dimensionless, 0 ≤ e ≤ 1)",
+    "v_sep": "Relative speed of separation after collision (m/s)",
+    "v_app": "Relative speed of approach before collision (m/s)",
+    "h_drop": "Height from which ball is dropped (m)",
+    "h_bounce": "Height to which ball bounces (m)"
+  },
+  "locked_facts": [
+    "e = (relative speed of separation) / (relative speed of approach) = |v2' - v1'| / |u1 - u2|",
+    "e = 1: perfectly elastic collision (no KE loss)",
+    "e = 0: perfectly inelastic collision (objects stick, no separation)",
+    "0 < e < 1: real-world collisions (partial KE loss)",
+    "For ball dropped from height h: e = √(h_bounce / h_drop)",
+    "KE retained after collision: KE_final/KE_initial = e² (for ball bouncing off fixed surface)",
+    "After n bounces: h_n = e^(2n) × h_0"
+  ],
+  "truth_statements": [
+    "The coefficient of restitution is a measure of the elasticity of a collision, ranging from 0 to 1",
+    "For a perfectly elastic collision, the relative speed of separation equals the relative speed of approach (e = 1)",
+    "In a perfectly inelastic collision, the bodies do not separate after impact, so e = 0",
+    "The value of e depends on the materials of the colliding bodies and their shapes, not on their masses",
+    "A ball dropped from height h bounces to height e²h, demonstrating progressive energy loss each bounce"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three balls dropped from same height: steel ball (e ≈ 0.95) bounces almost to original height. Rubber ball (e ≈ 0.8) bounces to ~64% height. Clay ball (e ≈ 0) sticks to ground. Height bars show h_bounce = e²h_drop for each.",
+    "visual_emphasis": "Side-by-side bounces. Steel: nearly returns. Rubber: noticeable loss. Clay: dead stop. e² values and bounce heights displayed.",
+    "why_this_breaks_misconception": "Students see that e is a material property that quantifies elasticity — rubber is NOT the most elastic for collisions"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A ball held at height h above a hard surface. Drop height h marked. e value displayed. Formula e = √(h_bounce/h_drop) shown. KE bar at zero (ball at rest).",
+      "emphasis": "Introduce the setup — ball about to be dropped. What height will it bounce to?",
+      "labels_visible": ["h_drop", "e", "KE = 0", "PE = mgh"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Ball falls, hits surface, bounces. Impact flash at contact. Bounce height h_bounce measured and compared to h_drop. Ratio displayed: h_bounce/h_drop = e². KE before and after impact shown — KE_after = e² × KE_before.",
+      "emphasis": "Energy lost during impact: fraction e² retained, fraction (1 - e²) lost to deformation and heat",
+      "labels_visible": ["h_bounce = e²h_drop", "KE_after = e²KE_before", "Energy lost = (1-e²)mgh"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Three materials compared: steel (e = 0.95), rubber (e = 0.8), clay (e = 0.05). All dropped from same height. Steel bounces highest, clay barely bounces. After 5 bounces: steel still bouncing, rubber much lower, clay stopped at bounce 1.",
+      "emphasis": "e is a material property — higher e means more elastic collision. Each bounce loses (1 - e²) fraction of energy.",
+      "labels_visible": ["e_steel = 0.95", "e_rubber = 0.8", "e_clay ≈ 0", "h_n = e^(2n) × h_0"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust e value (0 to 1) and drop height. Watch multiple bounces. Counter shows bounce number, height, and KE retained. Try e = 1 (ball returns to exact height forever) and e = 0 (ball sticks on first impact).",
+      "emphasis": "Slide e from 0 to 1 and see bounce behavior change dramatically. Count how many bounces until height < 1 cm.",
+      "labels_visible": ["e", "h_bounce", "bounce #", "KE retained %"],
+      "interactive": true,
+      "sliders": [
+        { "id": "restitution", "label": "Coefficient e", "min": 0, "max": 1, "default": 0.8, "unit": "" },
+        { "id": "drop_height", "label": "Drop Height", "min": 0.5, "max": 5, "default": 2, "unit": "m" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Rubber balls are the most elastic because rubber is 'elastic'",
+      "trigger_phrases": ["rubber sabse elastic", "rubber ball perfectly elastic", "rubber ka e = 1 hoga", "rubber best bounces"],
+      "correction": "In physics, 'elastic collision' means KE is conserved, not that the material stretches. Steel-on-steel collisions (e ≈ 0.95) are MORE elastic than rubber-on-rubber (e ≈ 0.8) because steel deforms less and loses less energy to internal friction.",
+      "simulation_emphasis": "Show steel ball bouncing higher than rubber ball from same height — steel has higher e"
+    },
+    {
+      "belief": "After a collision with e < 1, momentum is also lost",
+      "trigger_phrases": ["momentum bhi kam hota hai", "e < 1 means momentum lost", "inelastic mein momentum conserve nahi", "KE loss means momentum loss"],
+      "correction": "Momentum is ALWAYS conserved in collisions (when no external force acts), regardless of e. Only kinetic energy is lost when e < 1. The lost KE converts to heat, sound, and deformation — not to momentum.",
+      "simulation_emphasis": "Show momentum bars unchanged before and after collision for all values of e, while KE bars change"
+    }
+  ],
+  "legend": [
+    { "symbol": "Ball", "meaning": "Colliding body dropped from height h" },
+    { "symbol": "h_drop line", "meaning": "Initial drop height" },
+    { "symbol": "h_bounce line", "meaning": "Bounce height after collision" },
+    { "symbol": "e readout", "meaning": "Coefficient of restitution" },
+    { "symbol": "KE bar", "meaning": "Kinetic energy before and after impact" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["elastic_inelastic_collisions", "conservation_of_energy"],
+    "extensions": ["two_dimensional_collisions", "impact_mechanics"],
+    "siblings": ["linear_momentum_conservation"],
+    "common_exam_combinations": ["ball_bounce_height", "successive_bounces", "oblique_impact", "ballistic_pendulum"]
+  }
+}

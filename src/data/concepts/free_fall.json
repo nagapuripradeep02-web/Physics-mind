@@ -1,0 +1,355 @@
+{
+  "concept_id": "free_fall",
+  "concept_name": "Free Fall — Constant Downward Acceleration g",
+  "chapter": 6,
+  "section": "6.7",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 6.7 — Motion Under Gravity; split from uniform_acceleration bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A coin slipping out of a passenger's pocket on the Howrah Bridge in Kolkata. Once it leaves the hand, no one is pushing it, no engine drives it. Gravity alone pulls it straight down with the same acceleration of nine point eight metres per second squared — no matter how heavy or light it is. The coin picks up speed every single second at the same rate as a thrown cricket ball, a fallen flower petal in a vacuum, or a skydiver just after jumping (before the air pushes back noticeably).",
+    "secondary": "A cricket ball dropped from the fourth-floor balcony of an apartment building in Bengaluru. It hits the ground in about two seconds, having built up a speed of nearly twenty metres per second. The same physics works on a ten-rupee coin, a water bottle, a paper plane — differing only when air resistance kicks in. In the idealised free-fall case, the mass of the object does NOT enter the equation.",
+    "tertiary": "A high-board diver at a swimming pool. From the moment her feet leave the board until she hits the water, she is in free fall — no horizontal motion, just gravity accelerating her straight down. Every second, her downward speed increases by nine point eight metres per second. The dive time is short, but the physics is identical to any falling object on Earth."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "h": { "name": "Initial height", "unit": "m", "min": 1, "max": 200, "default": 20 },
+      "u": { "name": "Initial velocity (up = +)", "unit": "m/s", "min": -50, "max": 50, "default": 0 },
+      "g": { "name": "Gravity magnitude", "unit": "m/s^2", "min": 9.8, "max": 9.8, "default": 9.8 }
+    },
+    "computed_outputs": {
+      "time_to_fall": { "formula": "sqrt(2 * h / 9.8)" },
+      "impact_speed": { "formula": "sqrt(2 * 9.8 * h)" },
+      "position_at_t": { "formula": "h + u * 1 - 0.5 * 9.8 * 1 * 1" },
+      "peak_height": { "formula": "u * u / (2 * 9.8)" }
+    },
+    "formulas": {
+      "equation_of_motion": "Take UP as +. Then a = -g = -9.8 m/s^2 throughout.",
+      "velocity_vs_time": "v(t) = u - g t",
+      "position_vs_time": "y(t) = y0 + u t - (1/2) g t^2",
+      "mass_independence": "Acceleration = g, independent of mass of the falling object (in the ideal case)"
+    },
+    "constraints": [
+      "All objects in free fall experience the same acceleration g, regardless of mass",
+      "Air resistance is neglected — this is the ideal 'free-fall' case",
+      "Sign convention: choose up as +, so a = -g throughout the motion",
+      "For a ball thrown upward, v decreases through zero at the peak, then becomes negative on the way down",
+      "Near Earth, g ~ 9.8 m/s^2. For JEE, often approximated as 10 m/s^2 unless stated otherwise"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "A Coin Drops — The Same 9.8 Every Second",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "balcony",
+            "text": "[BALCONY (4th floor, about 20 m)]\n|                                     \n|                                     \n|  * coin at rest, then released      \n|                                     \n|                                     \n|                                     \n|                                     \n[GROUND LEVEL]",
+            "position": { "x": 340, "y": 340 },
+            "style": "callout"
+          },
+          {
+            "type": "force_arrow",
+            "id": "coin_drop_arrow",
+            "from": { "x": 320, "y": 200 },
+            "magnitude": 3,
+            "direction_deg": -90,
+            "label": "coin (falling)",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 30,
+            "animation": { "type": "translate", "dx_px": 0, "dy_px": 260, "duration_sec": 4 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "gravity_arrow",
+            "from": { "x": 600, "y": 320 },
+            "magnitude": 3,
+            "direction_deg": -90,
+            "label": "g = 9.8 m/s^2 (down, always)",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 40,
+            "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 0.8 }
+          },
+          {
+            "type": "annotation",
+            "id": "facts",
+            "text": "Between the moment of release\nand hitting the ground\n\n- the ONLY force on the coin\n  is gravity.\n- no engine, no push, nothing.\n- this is 'free fall'.\n\nEvery single second, the coin\ngains 9.8 m/s of downward speed.\n\nThis is true for a coin, a\ncricket ball, a water bottle,\neven a feather in a vacuum.",
+            "position": { "x": 660, "y": 280 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A coin slips out of a passenger's pocket from a fourth-floor balcony in Bengaluru, about twenty metres above the ground." },
+            { "id": "s2", "text_en": "Once it leaves the hand, nobody is pushing it. No engine drives it. The only force acting is gravity." },
+            { "id": "s3", "text_en": "This situation is called FREE FALL. And the key fact is — every single second, the coin's downward speed grows by exactly nine point eight metres per second." },
+            { "id": "s4", "text_en": "That number is g, the acceleration due to gravity near Earth's surface. It is not specific to coins. A cricket ball, a water bottle, a ten-rupee note crumpled tight, even a feather in a vacuum — all fall with exactly the same g." },
+            { "id": "s5", "text_en": "So the physics of free fall is simple. Constant acceleration, g, pointing straight down. Nothing else. The next three states use this one fact to solve every standard free-fall problem." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "The Equations of Free Fall — Just Kinematics With a = -g",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sign_rule",
+            "text": "Sign convention for free fall\n\n  Choose UP as +\n  Choose the release point or ground\n    as y = 0\n\nThen\n  a = -g = -9.8 m/s^2 throughout\n  (gravity always points DOWN)\n\nAll three kinematic equations apply\nwith u positive if initial motion is up,\nu negative if initial motion is down,\nu = 0 if object starts at rest.",
+            "position": { "x": 320, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "three_eqs",
+            "text": "Three equations\n\n  v = u - g t\n  y = y0 + u t - (1/2) g t^2\n  v^2 = u^2 - 2 g (y - y0)\n\nIdentical to uniform-acceleration kinematics,\nwith a replaced by -g.\n\nWorked example (dropped coin)\n  u = 0, a = -g = -9.8\n  Height h = 20 m,  released from rest.\n  Using v^2 = u^2 - 2 g * (-20)\n  v^2 = 0 + 2*9.8*20 = 392\n  v = sqrt(392) ~ 19.8 m/s downward.\n\n  Time to hit ground\n  y = 0 = 20 - (1/2)(9.8) t^2\n  t^2 = 40 / 9.8 ~ 4.08\n  t ~ 2.02 s.",
+            "position": { "x": 700, "y": 280 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Choose up as positive and the release point as y equals zero. Then acceleration is minus g, since gravity points down, opposite to our positive y." },
+            { "id": "s2", "text_en": "All three kinematic equations work, with acceleration replaced by minus g." },
+            { "id": "s3", "text_en": "v equals u minus g t. y equals initial y plus u t minus half g t squared. v squared equals u squared minus two g times the change in height." },
+            { "id": "s4", "text_en": "Apply to the coin dropped from twenty metres. Initial velocity u is zero. Using v squared equals u squared minus two g times the height change." },
+            { "id": "s5", "text_en": "The change is minus twenty metres (coin drops down). So v squared is two times nine point eight times twenty equals three hundred ninety-two. Square root is about nineteen point eight metres per second downward." },
+            { "id": "s6", "text_en": "The time to hit the ground comes from the y-equation. Solve for t — about two seconds. Twenty metres in two seconds, gaining speed all the way to nearly twenty metres per second at impact. That is free fall." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "A Ball Thrown UP — Same g, But Now u Is Positive",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "thrown_ball_up",
+            "from": { "x": 280, "y": 420 },
+            "magnitude": 3,
+            "direction_deg": 90,
+            "label": "throw: u = +20 m/s",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "translate", "dx_px": 0, "dy_px": -160, "duration_sec": 2 }
+          },
+          {
+            "type": "annotation",
+            "id": "peak_mark",
+            "text": "peak: v = 0\nt ~ 2.04 s\nh ~ 20.4 m",
+            "position": { "x": 280, "y": 220 },
+            "style": "callout",
+            "color": "#F59E0B",
+            "animation": { "type": "fade_in", "delay_sec": 2.2, "duration_sec": 0.8 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "falling_back",
+            "from": { "x": 340, "y": 260 },
+            "magnitude": 3,
+            "direction_deg": -90,
+            "label": "coming down",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "translate", "dx_px": 0, "dy_px": 160, "duration_sec": 2, "delay_sec": 2.5 }
+          },
+          {
+            "type": "annotation",
+            "id": "math",
+            "text": "Throw upward: u = +20 m/s\na = -g = -9.8 (g still points down,\n             opposite our chosen +y)\n\nPeak time (v = 0)\n  0 = 20 - 9.8 t_peak\n  t_peak = 20 / 9.8 ~ 2.04 s\n\nPeak height\n  h_peak = 20 * 2.04 - 0.5 * 9.8 * 2.04^2\n        ~ 20.4 m\n\nLand back at y = 0\n  0 = 20 t - 0.5 * 9.8 * t^2\n  t = 40/9.8 ~ 4.08 s\n  (total flight time = 2 * t_peak)\n\nVelocity on landing\n  v = 20 - 9.8 * 4.08 ~ -20 m/s\n  (same speed down, opposite direction)",
+            "position": { "x": 680, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now imagine throwing a cricket ball straight up from the ground with twenty metres per second. Same free fall, but initial velocity u is positive twenty because the ball moves up." },
+            { "id": "s2", "text_en": "Acceleration is still minus g — nine point eight downward — even while the ball rises. Gravity does not care which way the ball is moving." },
+            { "id": "s3", "text_en": "To find the peak, set v equal to zero. Zero equals twenty minus nine point eight t, so t-peak is about two point zero four seconds." },
+            { "id": "s4", "text_en": "Peak height is twenty times two point zero four minus half times nine point eight times two point zero four squared, about twenty point four metres — roughly a two-storey building." },
+            { "id": "s5", "text_en": "On the way back down, the ball obeys exactly the same equation. It lands at the same speed it was thrown up — twenty metres per second, now pointing down. Negative sign because it is moving opposite to our positive y." },
+            { "id": "s6", "text_en": "Total flight time is exactly twice the peak time — about four seconds. This up-and-down symmetry is a beautiful feature of free fall. The time to rise equals the time to fall from the same height." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "Mass Doesn't Matter — The Famous Galileo Insight",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "heavy_ball",
+            "from": { "x": 200, "y": 240 },
+            "magnitude": 3,
+            "direction_deg": -90,
+            "label": "10 kg cricket ball",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 30,
+            "animation": { "type": "translate", "dx_px": 0, "dy_px": 220, "duration_sec": 2.5 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "light_coin",
+            "from": { "x": 380, "y": 240 },
+            "magnitude": 3,
+            "direction_deg": -90,
+            "label": "10 gram coin",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 30,
+            "animation": { "type": "translate", "dx_px": 0, "dy_px": 220, "duration_sec": 2.5 }
+          },
+          {
+            "type": "annotation",
+            "id": "ground_line",
+            "text": "________________________________________\n         GROUND (both land TOGETHER)",
+            "position": { "x": 300, "y": 490 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "proof",
+            "text": "Why does mass drop out?\n\nNewton's second law\n  F = m a\n  gravitational force F = m g\n  (weight grows with mass)\n\nSo\n  m g = m a\n  => a = g\n\nThe m cancels on both sides.\nHeavy object feels MORE force\nbut also has MORE inertia.\nThe two effects exactly balance.\n\nIn IDEAL free fall (no air),\na coin, a bowling ball, a feather\nall fall at 9.8 m/s^2.\n\nGalileo's experiment at the\nLeaning Tower of Pisa, formalised.",
+            "position": { "x": 660, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The most famous fact about free fall — mass does not matter. Drop a ten-kilogram cricket ball and a ten-gram coin from the same height. They hit the ground at the same instant." },
+            { "id": "s2", "text_en": "Heavier objects feel a larger gravitational force, but they also resist acceleration more, because of their larger mass. The two effects exactly cancel." },
+            { "id": "s3", "text_en": "Newton's second law shows this algebraically. F equals m a. Gravitational force equals m g, the weight. Setting the two equal gives m g equals m a, so a equals g. The m cancels on both sides." },
+            { "id": "s4", "text_en": "So in the ideal case, with no air resistance, a feather and a bowling ball fall together. You can see this in a vacuum chamber — famous footage of NASA astronauts dropping a hammer and a feather on the moon." },
+            { "id": "s5", "text_en": "In real air on Earth, a feather falls slower because of air resistance, not because gravity treats it differently. If you remove the air, the physics is perfectly mass-independent." },
+            { "id": "s6", "text_en": "Galileo figured this out in the sixteenth century — supposedly by dropping balls from the Leaning Tower of Pisa. Four hundred years later, the same formula describes every falling object on Earth." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "heavy_falls_faster",
+      "misconception": "Heavier objects fall faster than lighter ones",
+      "trigger_phrases": [
+        "heavy falls faster",
+        "mass makes fall faster",
+        "cricket ball falls quicker than coin",
+        "bigger object falls first"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Heavier Means Faster Fall",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "belief",
+              "text": "Your reasoning\n\n'A cricket ball drops faster than a\npaper, because the ball is heavier.'\n\nObservation from real life\n  confirms this — you have seen it.\n\nBUT\n  that observation is CORRECT for\n  what you see, and WRONG for why.\n\nThe reason a paper falls slower\nis AIR RESISTANCE, not gravity.\n\nGravity treats both the same.",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444",
+              "animation": { "type": "fade_in", "delay_sec": 0.3, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A common belief rooted in real life. You have seen a piece of paper fall slowly, a cricket ball drop fast. The observation is correct, but the reason is NOT that gravity is stronger on the ball." },
+              { "id": "s2", "text_en": "The reason the paper falls slowly is air resistance. A flat sheet of paper pushes against a lot of air. The cricket ball, compact and dense, cuts through the air easily." },
+              { "id": "s3", "text_en": "Remove the air, and the ball and the paper fall at the exact same rate. Let us see the cleanest proof." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Math Kills the Idea — m Cancels",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "deriv",
+              "text": "Newton's second law for free fall\n\n  F = m a\n\nGravity's force on a mass m is\n  F = m g  (weight)\n\nSubstitute\n  m g = m a\n\nDivide both sides by m (m > 0)\n  a = g\n\nThe mass cancels on both sides.\nThe resulting acceleration is\nIDENTICAL for every mass.\n\nNo cricket ball privilege. No\ncoin penalty. Every object:\na = 9.8 m/s^2 downward.",
+              "position": { "x": 340, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "vacuum_evidence",
+              "text": "Physical evidence\n\nApollo 15, 1971.\nCommander David Scott dropped\na hammer and a feather on the Moon\n(no air).\nBoth hit the ground at the same instant.\n\nVideo footage is public.",
+              "position": { "x": 720, "y": 320 },
+              "style": "callout",
+              "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Newton's second law says force equals mass times acceleration. The gravitational force on a mass m is m times g, and that is the weight." },
+              { "id": "s2", "text_en": "Set them equal. m g equals m a. Divide both sides by m. What you get is a equals g. The mass cancels." },
+              { "id": "s3", "text_en": "That single cancellation is the entire reason a feather and a hammer fall at the same rate in a vacuum. There is no cricket-ball privilege." },
+              { "id": "s4", "text_en": "Physical proof — in nineteen seventy-one, Apollo 15 commander David Scott dropped a hammer and a feather on the Moon's surface, where there is no air. They hit the ground at the same instant. Video footage is public." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Where Air Resistance Enters — Real World Beyond Textbook",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "air_resistance",
+              "text": "Real world (with air)\n\nNet downward force on falling object\n  F_net  =  m g  -  F_drag\n\nF_drag depends on\n  - object's cross-section area\n  - shape (streamlined vs flat)\n  - speed\n\nFor a paper\n  F_drag is a big fraction of m g\n  -> net acceleration is much less than g.\n\nFor a cricket ball\n  F_drag is tiny compared to m g\n  -> net acceleration is close to g.\n\nIn JEE / board questions\n  'neglect air resistance'\n  -> both fall at g.\n  'air resistance proportional to v'\n  -> advanced problem: terminal\n     velocity appears.",
+              "position": { "x": 400, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "In the real world with air, the net force on a falling object is m g minus the drag force from air." },
+              { "id": "s2", "text_en": "Drag depends on the cross-section, the shape, and the speed. For a flat sheet of paper, drag is a big fraction of the weight — so the net acceleration is small." },
+              { "id": "s3", "text_en": "For a cricket ball, drag is tiny compared to its weight — so the net acceleration is close to g." },
+              { "id": "s4", "text_en": "In board and JEE problems, you will see the phrase 'neglect air resistance'. That phrase officially turns off drag — and both objects fall at exactly g, regardless of mass." },
+              { "id": "s5", "text_en": "So remember — 'heavier falls faster' is a statement about air, not gravity. Under pure gravity alone, every object accelerates at g." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Dropped from different heights",
+      "physical_world": "Dropped from 5 m -> t ~ 1 s, v ~ 9.9 m/s. From 45 m -> t = 3 s, v = 29.4 m/s. From 125 m -> t = 5 s, v = 49 m/s. Time grows as sqrt(h), speed grows as sqrt(h).",
+      "same_physics": "t = sqrt(2h/g), v = sqrt(2gh) — no mass anywhere"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Thrown downward",
+      "physical_world": "Ball thrown DOWN from 20 m with initial speed 5 m/s. Now u = -5 (down), a = -g. Time to hit ground: t = (-5 + sqrt(25 + 392)) / 9.8 ~ 1.56 s. Faster than free drop.",
+      "same_physics": "Initial velocity just shifts the outcome; g is still the only acceleration"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "concept_id": "vector_addition",
+  "concept_name": "Vector Addition",
+  "class_level": 11,
+  "chapter": "Motion in a Plane",
+  "renderer_hint": {
+    "technology": "p5js",
+    "renderer": "mechanics_2d",
+    "scenario_type": "vectors",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "A": "First vector (magnitude + direction)",
+    "B": "Second vector (magnitude + direction)",
+    "R": "Resultant vector R = A + B",
+    "theta": "Angle between the two vectors (deg)"
+  },
+  "locked_facts": [
+    "Vector addition is commutative: A + B = B + A",
+    "Triangle law: place vectors head to tail — resultant goes from tail of first to head of second",
+    "Parallelogram law: |R| = sqrt(A² + B² + 2AB·cosθ) where θ is angle between A and B",
+    "Resultant angle: tan(alpha) = B·sinθ / (A + B·cosθ) measured from vector A",
+    "For perpendicular vectors (θ=90°): |R| = sqrt(A² + B²)",
+    "Components: Rx = Ax + Bx, Ry = Ay + By (add components separately)"
+  ],
+  "truth_statements": [
+    "Vectors are added geometrically, not algebraically — direction matters",
+    "The resultant of two vectors is found using the triangle law or parallelogram law",
+    "A vector can be resolved into two perpendicular components along x and y axes",
+    "The magnitude of resultant is maximum (A+B) when vectors are parallel and minimum (|A-B|) when antiparallel",
+    "Component method: resolve all vectors into x and y components, add components separately, then find magnitude and direction of net vector"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two vectors A and B from origin, resultant R = A+B shown as diagonal of parallelogram with numerical magnitudes — A=3, B=4, θ=90°, R=5 (not 7)",
+    "visual_emphasis": "The resultant is 5 units, not 7 — adding magnitudes without considering direction gives the WRONG answer",
+    "why_this_breaks_misconception": "Students believe vector magnitudes add like numbers; seeing |R|=5 instead of 7 for perpendicular 3-4 vectors shatters this belief"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Daily Life",
+      "description": "A person walks 3 km East then 4 km North. Show two displacement arrows step by step. Final position marker is 5 km from start, not 7 km. Label both arrows and show the direct path home.",
+      "emphasis": "Walking 3 km + 4 km does NOT put you 7 km from home — direction changes everything",
+      "labels_visible": ["3 km East", "4 km North", "5 km from start (NOT 7 km)"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Triangle Law",
+      "description": "Triangle law: place vector B at the head of vector A. Draw both arrows head to tail. The resultant R goes from the tail of A to the head of B, closing the triangle. Label all three sides.",
+      "emphasis": "Triangle law: place vectors tip to tail — resultant closes the triangle",
+      "labels_visible": ["A", "B", "R = A+B", "head-to-tail"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Formula",
+      "description": "Parallelogram law: both vectors from the same origin. Resultant = diagonal of parallelogram. Show formula |R| = sqrt(A²+B²+2ABcosθ) with numbers: A=3, B=4, θ=90° → R = sqrt(9+16) = 5. Highlight that 3+4=7 is WRONG.",
+      "emphasis": "Parallelogram diagonal is the resultant. R = sqrt(A²+B²) for perpendicular vectors",
+      "labels_visible": ["A=3", "B=4", "theta=90°", "R=5", "|R|=sqrt(A²+B²)=5 (not 7)"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: student changes magnitudes of A and B and angle θ. Resultant arrow and formula value update in real time. Show that at θ=0° resultant is maximum (A+B), at θ=180° resultant is minimum (|A-B|).",
+      "emphasis": "Try θ=0° (maximum) and θ=180° (minimum) to see the range of possible resultants",
+      "labels_visible": ["A", "B", "theta", "R", "formula"],
+      "interactive": true,
+      "sliders": [
+        { "id": "magnitude_a", "label": "Vector A", "min": 1, "max": 8, "default": 3, "unit": "units" },
+        { "id": "magnitude_b", "label": "Vector B", "min": 1, "max": 8, "default": 4, "unit": "units" },
+        { "id": "angle_between", "label": "Angle θ", "min": 0, "max": 180, "default": 90, "unit": "°" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Vector magnitudes add like numbers — two 3N forces give 6N resultant regardless of direction",
+      "trigger_phrases": ["forces add normally", "3 plus 3 is 6", "sirf magnitude add", "add karne se", "simply add kar do", "magnitude add ho jaate hain"],
+      "correction": "NCERT says vectors add geometrically — resultant depends on angle. Two 3N forces at 90° give only 4.24N resultant (sqrt(18)), not 6N",
+      "simulation_emphasis": "Show two 3-unit vectors at 90° producing a 4.24-unit resultant, not 6 units"
+    }
+  ],
+  "legend": [
+    { "symbol": "→", "meaning": "Vector arrow (direction matters)" },
+    { "symbol": "R", "meaning": "Resultant vector = vector sum" },
+    { "symbol": "theta", "meaning": "Angle between the two vectors" },
+    { "symbol": "|R|", "meaning": "Magnitude of resultant = sqrt(A²+B²+2ABcosθ)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["scalars_and_vectors"],
+    "extensions": ["projectile_motion", "relative_motion", "resolution_of_forces"],
+    "siblings": ["projectile_motion", "circular_motion_banking"],
+    "common_exam_combinations": ["laws_of_motion_friction", "equilibrium_rigid_body"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["resultant of two forces at angle θ", "equilibrium of three concurrent forces", "resolution into components", "minimum resultant magnitude"],
+    "common_traps": ["adding magnitudes without considering direction", "confusing angle between vectors with angle resultant makes with one vector", "forgetting resultant of equal vectors at 120° is zero"],
+    "numerical_ranges": {
+      "magnitudes": "3-4-5 Pythagorean triples most common",
+      "angles": "0°, 60°, 90°, 120°, 180°"
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "concept_id": "transistor_action",
+  "concept_name": "Transistor (NPN/PNP)",
+  "class_level": 12,
+  "chapter": "Semiconductor Electronics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "circuit_live",
+    "scenario_type": "transistor_biasing",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "I_E": "Emitter current (mA)",
+    "I_B": "Base current (μA)",
+    "I_C": "Collector current (mA)",
+    "beta": "Current gain β = I_C / I_B (typically 20–200)",
+    "alpha": "Current gain α = I_C / I_E (typically 0.95–0.99)",
+    "V_BE": "Base-emitter voltage (V)",
+    "V_CE": "Collector-emitter voltage (V)",
+    "V_BB": "Base supply voltage (V)",
+    "V_CC": "Collector supply voltage (V)"
+  },
+  "locked_facts": [
+    "A transistor has three doped regions: emitter (heavily doped, moderate size), base (lightly doped, very thin ~μm), and collector (moderately doped, largest area)",
+    "For active mode operation: emitter-base junction is forward biased, collector-base junction is reverse biased",
+    "Kirchhoff's current rule at the transistor: I_E = I_B + I_C, where I_E is the largest current",
+    "Current gain β (common emitter) = I_C / I_B, typically 20–200; α (common base) = I_C / I_E, typically 0.95–0.99",
+    "The base is made very thin and lightly doped so that most emitter-injected carriers (>95%) reach the collector instead of recombining in the base",
+    "In NPN transistor: electrons are majority carriers flowing from emitter to collector through the thin base; in PNP: holes flow from emitter to collector",
+    "Transistor as amplifier: small change in base current (ΔI_B) produces large change in collector current (ΔI_C = β × ΔI_B)"
+  ],
+  "truth_statements": [
+    "The emitter-base junction must be forward biased and the collector-base junction must be reverse biased for the transistor to operate in the active (amplifying) region",
+    "The thin and lightly doped base ensures that most majority carriers injected from the emitter diffuse across to the collector without recombining, giving high current gain",
+    "I_E = I_B + I_C holds at all times by Kirchhoff's current law, with I_B being only a small fraction (1–5%) of I_E",
+    "The output characteristics (I_C vs V_CE at constant I_B) show three regions: saturation, active, and cutoff, with the active region used for amplification",
+    "Voltage gain in common emitter configuration = β × (R_load / R_input), allowing a small input signal to produce a large output signal"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A tiny change in base current (slider moves I_B from 20 μA to 40 μA) causes I_C to jump from 2 mA to 4 mA — the collector ammeter reading changes 100× more than the base ammeter. Electrons are shown flooding from emitter through thin base into collector with only a few recombining in the base.",
+    "visual_emphasis": "Split ammeter display: base ammeter in μA barely moves while collector ammeter in mA shows dramatic change, with β value updating in real time",
+    "why_this_breaks_misconception": "Students see that the base does not supply the collector current — it merely controls how much emitter current reaches the collector, like a valve controlling a large water flow"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Transistor structure",
+      "description": "An NPN transistor shown with three labeled regions: emitter (E, heavily doped), base (B, thin and lightly doped), and collector (C, moderately doped, largest). Two junctions are marked: emitter-base (EB) and collector-base (CB). No external voltage applied yet. Carrier concentrations shown with dot density: many electrons in E and C, few in B.",
+      "emphasis": "Understand the three regions and why the base is thin and lightly doped",
+      "labels_visible": ["Emitter (n+)", "Base (p, thin)", "Collector (n)", "EB junction", "CB junction"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Biasing applied — active mode",
+      "description": "V_BB forward biases the EB junction; V_CC reverse biases the CB junction. Electrons are injected from emitter into base. Due to thin base, ~95% of electrons diffuse across to collector (shown as electron stream crossing base). ~5% recombine in base (shown as a few electrons disappearing). Three ammeter readings appear: I_E, I_B (small), I_C (large). Arrow shows I_E = I_B + I_C.",
+      "emphasis": "Most emitter electrons reach collector — base current is tiny because base is thin and lightly doped",
+      "labels_visible": ["V_BB", "V_CC", "I_E", "I_B (μA)", "I_C (mA)", "I_E = I_B + I_C"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Current amplification demo",
+      "description": "I_B is increased slightly (e.g., 20 μA → 40 μA). I_C responds with a proportionally larger increase (2 mA → 4 mA). β = I_C/I_B is displayed and stays constant. The right panel shows the output characteristic curve (I_C vs V_CE) with the operating point moving upward as I_B increases. The amplification factor is highlighted.",
+      "emphasis": "Small ΔI_B causes large ΔI_C — this is transistor amplification with gain β",
+      "labels_visible": ["ΔI_B = 20 μA", "ΔI_C = 2 mA", "β = 100", "Amplification"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive transistor lab",
+      "description": "Student adjusts V_BB (controls I_B) and V_CC using sliders. All three currents update in real time. The right panel plots I_C vs V_CE characteristic curves for different I_B values. Saturation, active, and cutoff regions are color-coded on the graph. A toggle switches between NPN and PNP (carrier directions reverse). β value displayed continuously.",
+      "emphasis": "Explore how base current controls collector current — find saturation, active, and cutoff regions on the I-V curve",
+      "labels_visible": ["I_E", "I_B", "I_C", "β", "V_CE", "Region"],
+      "interactive": true,
+      "sliders": [
+        { "id": "v_bb", "label": "Base Voltage V_BB", "min": 0, "max": 3, "default": 0.7, "unit": "V" },
+        { "id": "v_cc", "label": "Collector Supply V_CC", "min": 0, "max": 12, "default": 6, "unit": "V" },
+        { "id": "r_base", "label": "Base Resistance R_B", "min": 10, "max": 500, "default": 100, "unit": "kΩ" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The base current provides or creates the collector current",
+      "trigger_phrases": ["base current makes collector current", "base se collector current aata hai", "base supplies collector", "I_B creates I_C", "base current generates"],
+      "correction": "The base current does not supply the collector current. The emitter injects carriers, and the base merely controls how many of them reach the collector. I_B is just the small fraction that recombines in the base. Think of I_B as a control valve, not a source.",
+      "simulation_emphasis": "Show electron stream from emitter splitting: 95% going to collector, 5% recombining in base — the base does not generate electrons"
+    },
+    {
+      "belief": "Both junctions of the transistor must be forward biased for it to work",
+      "trigger_phrases": ["both forward biased", "dono junction forward", "both junctions same bias", "forward bias dono ko", "CB bhi forward"],
+      "correction": "For amplification (active mode), the emitter-base junction must be forward biased and the collector-base junction must be reverse biased. If both are forward biased, the transistor enters saturation (acts as a closed switch, no amplification).",
+      "simulation_emphasis": "Toggle between active mode (EB forward, CB reverse → amplification) and saturation (both forward → flat I_C, no gain)"
+    },
+    {
+      "belief": "Emitter and collector are interchangeable since both are the same semiconductor type (n in NPN)",
+      "trigger_phrases": ["emitter collector same", "swap emitter collector", "interchange E and C", "dono n-type toh same", "emitter collector interchangeable"],
+      "correction": "The emitter is heavily doped and smaller in area while the collector is moderately doped and has a larger area. Swapping them drastically reduces current gain because the base-collector junction cannot inject carriers efficiently.",
+      "simulation_emphasis": "Show doping density labels: emitter n+ (dark dense dots), collector n (lighter dots), and explain why asymmetric doping matters for gain"
+    }
+  ],
+  "legend": [
+    { "symbol": "I_E", "meaning": "Emitter current (mA)" },
+    { "symbol": "I_B", "meaning": "Base current (μA)" },
+    { "symbol": "I_C", "meaning": "Collector current (mA)" },
+    { "symbol": "β", "meaning": "Common-emitter current gain = I_C / I_B" },
+    { "symbol": "α", "meaning": "Common-base current gain = I_C / I_E" },
+    { "symbol": "V_CE", "meaning": "Collector-emitter voltage (V)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["pn_junction_diode", "semiconductor_basics"],
+    "extensions": ["logic_gates"],
+    "siblings": ["pn_junction_diode"],
+    "common_exam_combinations": ["logic_gates", "pn_junction_diode"]
+  }
+}

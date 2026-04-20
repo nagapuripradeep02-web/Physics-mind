@@ -1,0 +1,107 @@
+{
+  "concept_id": "electric_field_lines",
+  "concept_name": "Electric Field Lines",
+  "chapter": "Electric Charges and Fields",
+  "class_level": 12,
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "point_charge_positive",
+    "panel_count": 1,
+    "show_graph": false
+  },
+  "variables": {
+    "q": { "symbol": "q", "name": "Charge magnitude", "unit": "C", "min": 1, "max": 10, "default": 1 },
+    "r": { "symbol": "r", "name": "Distance from charge", "unit": "m", "min": 0.1, "max": 5, "default": 1 },
+    "E": { "symbol": "E", "name": "Electric field strength", "unit": "N/C", "formula": "kq/r²" }
+  },
+  "locked_facts": [
+    "Electric field lines emerge from positive charge, terminate at negative",
+    "Field lines NEVER cross each other",
+    "Density of field lines is proportional to field strength",
+    "Field lines are perpendicular to equipotential surfaces",
+    "E = kq/r² for point charge, direction radially outward for +q",
+    "Field lines do not represent actual paths of charges"
+  ],
+  "truth_statements": [
+    "Electric field lines start from positive charges and end at negative charges or extend to infinity",
+    "The tangent to a field line at any point gives the direction of electric field at that point",
+    "Two field lines can never intersect because the field has a unique direction at every point",
+    "The closer the field lines are to each other, the stronger the electric field in that region",
+    "For a single positive point charge, the field lines are radially outward and uniformly spaced in 3D"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show equipotential surfaces (wireframe spheres) cutting perpendicular to every field line. Highlight that if lines crossed, the field would have two directions at one point — physically impossible.",
+    "visual_emphasis": "Rotate the 3D view so students see field lines passing through equipotential surfaces at 90°. Then try to draw a crossing — it leads to two arrows at one point.",
+    "why_this_breaks_misconception": "Students see that field lines are a mathematical representation of direction, not paths that charges travel along"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Single positive charge — radial field lines",
+      "description": "A positive point charge at the center with field lines radiating outward in all directions. Arrows on lines show direction away from +q.",
+      "emphasis": "Field lines point AWAY from positive charge — this is the convention",
+      "labels_visible": ["+q", "E"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Field line density = field strength",
+      "description": "Camera zooms in closer to the charge. Near the charge, lines are densely packed; far away, they spread out. Caption: denser lines = stronger field.",
+      "emphasis": "Notice how lines crowd together near the charge — the field is strongest here (E ∝ 1/r²)",
+      "labels_visible": ["E_near", "E_far"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Equipotential surfaces — perpendicular to lines",
+      "description": "Wireframe spherical equipotential surfaces appear. Every field line crosses them at exactly 90°. This is the aha moment.",
+      "emphasis": "Every field line is perpendicular to the equipotential surface — this is always true",
+      "labels_visible": ["V₁", "V₂", "V₃"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — rotate and observe",
+      "description": "Interactive mode: student rotates the 3D view freely. All elements visible. Caption reminds: lines show direction, NOT paths of charges.",
+      "emphasis": "Rotate to see the full 3D picture. Field lines show direction of force — charges do NOT travel along these lines.",
+      "labels_visible": ["+q", "E", "V"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "field_lines_are_paths",
+      "trigger_keywords": ["field line pe charge chalta hai", "charges travel along field lines", "field line = path of charge", "electrons follow field lines"],
+      "student_belief": "Field lines are actual paths that charges travel along",
+      "actual_physics": "Field lines show the DIRECTION of force at each point. The actual path of a charge depends on its initial velocity and other forces. A charge released from rest moves along a field line only for a uniform field — in general, its path curves differently.",
+      "simulation_emphasis": "Show field lines as direction indicators with arrows. Emphasize: these are a map of the force direction, not a road that charges follow."
+    },
+    {
+      "id": "field_lines_can_cross",
+      "trigger_keywords": ["field lines cross", "field line ek dusre ko cross", "two field lines intersect"],
+      "student_belief": "Field lines can cross each other in certain situations",
+      "actual_physics": "If two field lines crossed, the field would have two directions at the crossing point, which is physically impossible. The electric field has a unique direction at every point in space.",
+      "simulation_emphasis": "Show the 3D field and rotate — no matter the angle, lines never touch each other."
+    }
+  ],
+  "legend": [
+    { "symbol": "+q", "meaning": "Positive point charge (red sphere)" },
+    { "symbol": "→", "meaning": "Field line direction (away from +q)" },
+    { "symbol": "E", "meaning": "Electric field = kq/r² (N/C)" },
+    { "symbol": "V", "meaning": "Equipotential surface (wireframe)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["coulombs_law", "electric_charge"],
+    "extensions": ["electric_potential_3d", "gauss_law_3d"],
+    "siblings": ["electric_potential_3d", "parallel_plate_capacitor_field"],
+    "common_exam_combinations": ["gauss_law_3d", "coulombs_law"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["sketch field lines for given charge configuration", "find E at a point from field line diagram", "identify configuration from field line pattern", "equipotential surface relation"],
+    "common_traps": ["confusing field lines with charge paths", "assuming field line density is constant everywhere", "forgetting that lines never cross"],
+    "numerical_ranges": {
+      "q": "1–10 μC typical",
+      "r": "0.01–1 m",
+      "k": "9 × 10⁹ Nm²/C²"
+    }
+  }
+}

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>circuit_live_renderer — Test Harness</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #07071A;
+      color: #D4D4D8;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 13px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 12px 32px;
+      gap: 12px;
+    }
+
+    h1 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #42A5F5;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Control bar ─────────────────────────────────────────────────── */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    button {
+      background: rgba(20, 20, 48, 0.9);
+      border: 1px solid rgba(66,165,245,0.35);
+      border-radius: 7px;
+      color: #D4D4D8;
+      cursor: pointer;
+      font-size: 12px;
+      padding: 6px 14px;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    button:hover   { background: rgba(66,165,245,0.18); border-color: #42A5F5; color: #fff; }
+    button.active  { background: rgba(66,165,245,0.28); border-color: #42A5F5; color: #fff; }
+
+    .sep {
+      width: 1px;
+      background: rgba(255,255,255,0.12);
+      align-self: stretch;
+      margin: 0 2px;
+    }
+
+    /* ── Iframe wrapper ──────────────────────────────────────────────── */
+    .frame-wrap {
+      position: relative;
+      width: 800px;
+      max-width: 100%;
+      border: 1px solid rgba(66,165,245,0.20);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0A0A1A;
+    }
+
+    iframe {
+      display: block;
+      width: 800px;
+      height: 500px;
+      border: none;
+    }
+
+    /* ── Status bar ──────────────────────────────────────────────────── */
+    .status-bar {
+      font-size: 11px;
+      color: rgba(212,212,216,0.5);
+      display: flex;
+      gap: 18px;
+    }
+    .status-bar span { color: #42A5F5; }
+
+    /* ── Config display ──────────────────────────────────────────────── */
+    details {
+      width: 800px;
+      max-width: 100%;
+    }
+    summary {
+      cursor: pointer;
+      font-size: 11px;
+      color: rgba(212,212,216,0.45);
+      user-select: none;
+      padding: 4px 0;
+    }
+    pre {
+      margin-top: 6px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 10px;
+      color: rgba(212,212,216,0.6);
+      overflow-x: auto;
+      max-height: 240px;
+    }
+  </style>
+</head>
+<body>
+  <h1>circuit_live_renderer.js — Test Harness</h1>
+
+  <div class="controls" id="config-btns">
+    <button data-cfg="1" onclick="loadConfig(1)">Config 1: Series (Ohm's Law)</button>
+    <button data-cfg="2" onclick="loadConfig(2)">Config 2: Parallel</button>
+    <button data-cfg="3" onclick="loadConfig(3)">Config 3: Wheatstone Bridge</button>
+    <div class="sep"></div>
+    <button onclick="sendState('STATE_1')">STATE_1</button>
+    <button onclick="sendState('STATE_2')">STATE_2</button>
+    <button onclick="sendState('STATE_3')">STATE_3</button>
+    <button onclick="sendState('STATE_4')">STATE_4</button>
+  </div>
+
+  <div class="frame-wrap">
+    <iframe id="sim-frame" title="Circuit Simulator"></iframe>
+  </div>
+
+  <div class="status-bar">
+    <div>Config: <span id="s-cfg">—</span></div>
+    <div>State: <span id="s-state">—</span></div>
+    <div>Last msg: <span id="s-msg">—</span></div>
+  </div>
+
+  <details>
+    <summary>▸ Show active config JSON</summary>
+    <pre id="cfg-display"></pre>
+  </details>
+
+  <script>
+    // ── Test Configs ──────────────────────────────────────────────────────────
+
+    var CONFIGS = {
+      1: {
+        renderer: "circuit_live",
+        circuit: {
+          topology: "series",
+          nodes: ["A","B","C","D"],
+          components: [
+            { id:"BAT", type:"battery",  from:"D", to:"A", value:12, label:"12V" },
+            { id:"R1",  type:"resistor", from:"A", to:"B", value:10, label:"R\u2081=10\u03A9" },
+            { id:"R2",  type:"resistor", from:"B", to:"C", value:6,  label:"R\u2082=6\u03A9"  },
+            { id:"W1",  type:"wire",     from:"C", to:"D" }
+          ]
+        },
+        states: {
+          STATE_1: {
+            current_flowing: false,
+            caption: "Series Circuit \u2014 Circuit ready, switch is open"
+          },
+          STATE_2: {
+            current_flowing: true,
+            caption: "Current flows! I = V/(R\u2081+R\u2082) = 12/16 = 0.75 A",
+            show_values: true,
+            current_values: { "R1": 0.75, "R2": 0.75 }
+          },
+          STATE_3: {
+            current_flowing: true,
+            caption: "Voltage divides: V\u2081=7.5V, V\u2082=4.5V",
+            spotlight: "R1",
+            show_voltage_drops: true,
+            voltage_drops: { "R1": 7.5, "R2": 4.5 }
+          },
+          STATE_4: {
+            current_flowing: true,
+            caption: "Adjust voltage \u2014 watch current change!",
+            slider_active: true,
+            slider_variable: "V",
+            slider_min: 1,
+            slider_max: 24,
+            slider_default: 12,
+            current_values: { "R1": 0.75, "R2": 0.75 }
+          }
+        },
+        formula_anchor: {
+          formula_string: "V = I \u00B7 R",
+          variables: {
+            "V": { color: "#FF9800", label: "voltage"    },
+            "I": { color: "#66BB6A", label: "current"    },
+            "R": { color: "#42A5F5", label: "resistance" }
+          },
+          state_highlights: {
+            STATE_1: [],
+            STATE_2: ["I","V"],
+            STATE_3: ["V","I","R"],
+            STATE_4: ["V","I","R"]
+          }
+        }
+      },
+
+      2: {
+        renderer: "circuit_live",
+        circuit: {
+          topology: "parallel",
+          nodes: ["A","B"],
+          components: [
+            { id:"BAT", type:"battery",  from:"A", to:"B", value:12, label:"12V"       },
+            { id:"R1",  type:"resistor", from:"A", to:"B", value:6,  label:"R\u2081=6\u03A9"  },
+            { id:"R2",  type:"resistor", from:"A", to:"B", value:12, label:"R\u2082=12\u03A9" }
+          ]
+        },
+        states: {
+          STATE_1: {
+            current_flowing: false,
+            caption: "Parallel Circuit \u2014 same voltage across each branch"
+          },
+          STATE_2: {
+            current_flowing: true,
+            caption: "I\u2081=2A through R\u2081, I\u2082=1A through R\u2082",
+            show_values: true,
+            current_values: { "R1": 2.0, "R2": 1.0 }
+          },
+          STATE_3: {
+            current_flowing: true,
+            caption: "Both branches get FULL 12V \u2014 spotlight R\u2081",
+            spotlight: "R1",
+            show_voltage_drops: true,
+            voltage_drops: { "R1": 12, "R2": 12 }
+          },
+          STATE_4: {
+            current_flowing: true,
+            caption: "Adjust voltage \u2014 both branch currents scale",
+            slider_active: true,
+            slider_variable: "V",
+            slider_min: 1,
+            slider_max: 24,
+            slider_default: 12,
+            current_values: { "R1": 2.0, "R2": 1.0 }
+          }
+        },
+        formula_anchor: {
+          formula_string: "I = V / R",
+          variables: {
+            "I": { color: "#66BB6A", label: "current"    },
+            "V": { color: "#FF9800", label: "voltage"    },
+            "R": { color: "#42A5F5", label: "resistance" }
+          },
+          state_highlights: {
+            STATE_1: [],
+            STATE_2: ["I","V"],
+            STATE_3: ["V","I","R"],
+            STATE_4: ["V","I","R"]
+          }
+        }
+      },
+
+      3: {
+        renderer: "circuit_live",
+        circuit: {
+          topology: "bridge",
+          nodes: ["A","B","C","D"],
+          components: [
+            { id:"BAT", type:"battery",      from:"A", to:"C", value:10, label:"10V"    },
+            { id:"P",   type:"resistor",     from:"A", to:"B", value:10, label:"P=10\u03A9" },
+            { id:"Q",   type:"resistor",     from:"B", to:"C", value:10, label:"Q=10\u03A9" },
+            { id:"R",   type:"resistor",     from:"A", to:"D", value:10, label:"R=10\u03A9" },
+            { id:"S",   type:"resistor",     from:"D", to:"C", value:10, label:"S=10\u03A9" },
+            { id:"G",   type:"galvanometer", from:"B", to:"D", value:0,  label:"G"      }
+          ]
+        },
+        states: {
+          STATE_1: {
+            current_flowing: false,
+            caption: "Wheatstone Bridge \u2014 balanced condition: P/Q = R/S"
+          },
+          STATE_2: {
+            current_flowing: true,
+            caption: "Balanced bridge: no current through galvanometer G",
+            show_values: true,
+            current_values: { "P": 0.5, "Q": 0.5, "R": 0.5, "S": 0.5, "G": 0 }
+          },
+          STATE_3: {
+            current_flowing: true,
+            caption: "Spotlight: galvanometer reads zero \u2014 bridge is balanced!",
+            spotlight: "G",
+            show_voltage_drops: true,
+            voltage_drops: { "P": 5, "Q": 5, "R": 5, "S": 5, "G": 0 }
+          },
+          STATE_4: {
+            current_flowing: true,
+            caption: "Change S \u2014 bridge unbalances, G deflects!",
+            slider_active: true,
+            slider_variable: "R",
+            slider_min: 5,
+            slider_max: 20,
+            slider_default: 10,
+            slider_target_component: "S",
+            current_values: { "P": 0.5, "Q": 0.5, "R": 0.5, "S": 0.5, "G": 0 }
+          }
+        },
+        formula_anchor: {
+          formula_string: "P/Q = R/S",
+          variables: {
+            "P": { color: "#FF9800", label: "arm P" },
+            "Q": { color: "#66BB6A", label: "arm Q" },
+            "R": { color: "#42A5F5", label: "arm R" },
+            "S": { color: "#CE93D8", label: "arm S" }
+          },
+          state_highlights: {
+            STATE_1: ["P","Q","R","S"],
+            STATE_2: ["P","Q"],
+            STATE_3: ["P","Q","R","S"],
+            STATE_4: ["R","S"]
+          }
+        }
+      }
+    };
+
+    // ── Harness state ─────────────────────────────────────────────────────────
+    var activeConfig = 0;
+    var activeState  = '';
+    var frame        = document.getElementById('sim-frame');
+
+    // ── Load a config into the iframe ─────────────────────────────────────────
+    function loadConfig(n) {
+      activeConfig = n;
+      activeState  = '';
+
+      // Update button styles
+      document.querySelectorAll('#config-btns [data-cfg]').forEach(function (b) {
+        b.classList.toggle('active', parseInt(b.dataset.cfg) === n);
+      });
+      document.getElementById('s-cfg').textContent = 'Config ' + n;
+      document.getElementById('s-state').textContent = '\u2014';
+      document.getElementById('s-msg').textContent = 'loading\u2026';
+
+      // Build a self-contained HTML page that embeds the config and loads the renderer
+      var cfgJson = JSON.stringify(CONFIGS[n], null, 2);
+      var doc = [
+        '<!DOCTYPE html>',
+        '<html><head>',
+        '<meta charset="UTF-8" />',
+        '<style>',
+        'html,body{margin:0;padding:0;background:#0A0A1A;overflow:hidden;}',
+        '#sketch-container{position:relative;}',
+        '</style>',
+        '</head><body>',
+        '<div id="sketch-container"></div>',
+        '<script>',
+        'window.SIM_CONFIG = ' + cfgJson + ';',
+        '<\/script>',
+        '<script src="' + location.origin + '/renderers/circuit_live_renderer.js"><\/script>',
+        '</body></html>'
+      ].join('\n');
+
+      var blob = new Blob([doc], { type: 'text/html' });
+      var url  = URL.createObjectURL(blob);
+
+      // Revoke previous blob URL after load
+      frame.onload = function () {
+        URL.revokeObjectURL(url);
+      };
+      frame.src = url;
+
+      // Show config JSON
+      document.getElementById('cfg-display').textContent = cfgJson;
+    }
+
+    // ── Send a SET_STATE postMessage to the iframe ────────────────────────────
+    function sendState(stateName) {
+      if (!frame.contentWindow) {
+        log('iframe not ready');
+        return;
+      }
+      activeState = stateName;
+      document.getElementById('s-state').textContent = stateName;
+
+      // Highlight active state button
+      document.querySelectorAll('#config-btns button:not([data-cfg])').forEach(function (b) {
+        b.classList.toggle('active', b.textContent === stateName);
+      });
+
+      frame.contentWindow.postMessage({ type: 'SET_STATE', state: stateName }, '*');
+    }
+
+    // ── Listen for messages back from iframe ──────────────────────────────────
+    window.addEventListener('message', function (e) {
+      if (!e.data || !e.data.type) return;
+      var t = e.data.type;
+      document.getElementById('s-msg').textContent = t + (e.data.state ? ' ' + e.data.state : '');
+      if (t === 'SIM_READY') {
+        document.getElementById('s-state').textContent = '\u2014 (ready)';
+      }
+    });
+
+    // ── Auto-load Config 1 on page open ──────────────────────────────────────
+    loadConfig(1);
+  </script>
+</body>
+</html>

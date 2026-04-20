@@ -1,0 +1,282 @@
+{
+  "concept_id": "shortest_time_crossing",
+  "concept_name": "Shortest-Time River Crossing — Aim Straight Across",
+  "chapter": 6,
+  "section": "6.11",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 6.11 — minimum-time crossing strategy; split from river_boat_problems",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "A Kolkata ferry pilot crossing the Hooghly from Howrah Station ghat to Fairlie Place. The river is 500 m wide and flows south at 2 m/s. His boat can do 3 m/s in still water. If he wants to reach the other bank in the LEAST time, he points the bow PERPENDICULAR to the current, straight across. He will drift downstream while crossing — landing south of Fairlie Place — but the crossing time is 500 / 3 = 167 seconds, the minimum possible. Every Kolkata ferry does this at rush hour.",
+    "secondary": "A monsoon rescue boat on the flooded Yamuna. The medical team needs to cross 80 m to an island stranded with patients; the river is rushing at 3 m/s, their boat does 4 m/s still-water. They aim straight across — minimum time is 80 / 4 = 20 seconds. Drift is acceptable because another team waits downstream to catch them.",
+    "tertiary": "A swimmer on a Goa tourist beach during a rip current. She has 40 m of open water to reach the shore. The rip pulls her parallel to the beach at 1.5 m/s; she swims at 1 m/s in still water. Standard advice: swim PERPENDICULAR to the rip — shortest time to clear the rip zone — and worry about landing position afterward."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "width": { "name": "River width", "unit": "m", "min": 10, "max": 1000, "default": 500 },
+      "v_boat": { "name": "Boat speed in still water", "unit": "m/s", "min": 1, "max": 20, "default": 3 },
+      "v_river": { "name": "River current speed", "unit": "m/s", "min": 0, "max": 10, "default": 2 }
+    },
+    "computed_outputs": {
+      "t_min": { "formula": "width / v_boat" },
+      "drift": { "formula": "v_river * (width / v_boat)" },
+      "landing_shift": { "formula": "v_river * width / v_boat" }
+    },
+    "formulas": {
+      "t_min": "t_min  =  width / v_boat   (boat pointed straight across, full boat-velocity serves the crossing)",
+      "drift_downstream": "drift_during_crossing  =  v_river * t_min  =  v_river * width / v_boat",
+      "landing_angle_from_perpendicular": "tan(theta)  =  v_river / v_boat   (drift angle of resulting ground path)"
+    },
+    "constraints": [
+      "The boat's heading (where the bow points) is perpendicular to the banks.",
+      "The ground path is DIAGONAL because of the river drift — NOT straight across.",
+      "Minimum time always occurs when the full v_boat contributes to the across-direction.",
+      "Minimum time is independent of v_river — the current only changes WHERE you land, not WHEN."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "The Strategy — Point the Bow Straight Across",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "strategy_sketch",
+            "text": "Hooghly river at Kolkata:\n\n    Howrah ghat       ||-----------||       far bank\n                                                     \n                                                     \n                                                     \n    width = 500 m            river flows south at 2 m/s  ->\n\n   Boat still-water speed  v_boat  =  3 m/s\n   River current           v_river =  2 m/s\n\n   Goal: cross in LEAST time.\n   Trick: point the bow STRAIGHT at the far bank (perpendicular).\n\n    t_min = width / v_boat = 500 / 3 = 167 s  (~ 2 minutes 47 s)\n\n   The full 3 m/s now works for the crossing.  Nothing is wasted.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "ferry_label",
+            "text": "Kolkata ferry: Howrah -> Fairlie Place ghat",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "ferry",
+            "vehicle_type": "boat",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": 100, "dy_px": -240, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "strategy_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Here is the counter-intuitive strategy every Kolkata ferry pilot knows." },
+            { "text_en": "If you want to cross the river in the shortest TIME, you point the bow STRAIGHT ACROSS, not upstream." },
+            { "text_en": "Why? Because all three metres per second of boat speed now go into the crossing direction. Nothing is wasted fighting the current." },
+            { "text_en": "Crossing time is width divided by boat speed — 500 divided by 3 — 167 seconds. Just under three minutes." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "The Cost — You Drift Downstream",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "drift_sketch",
+            "text": "The downside: you do not land opposite.\n\n   During 167 s, the river carries you downstream at 2 m/s.\n\n      drift  =  v_river * t_min\n             =  2  *  167\n             =  334 m downstream\n\n   You LAND 334 m south of Fairlie Place,\n   somewhere near Babughat ferry point.\n\n   The actual ground path is DIAGONAL:\n\n        Howrah   .\n                 .\n                   .\n                      .\n                         . <- drifted landing\n        far bank ----------||\n\n   The bow always points across (perpendicular).\n   The ground track is angled.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "drift_boat",
+            "vehicle_type": "boat",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_left",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 260, "dy_px": -220, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "drift_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "There is a price for this strategy. You drift downstream while crossing." },
+            { "text_en": "At 2 metres per second of current, in 167 seconds of crossing, the boat moves 334 metres south of the intended landing." },
+            { "text_en": "So you land well south of Fairlie Place — near Babughat, in fact." },
+            { "text_en": "The bow is pointing perpendicular, but the actual track over the ground is a sloping diagonal. Two different directions at the same time." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "When is Drift Acceptable? When It Isn't?",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "when_sketch",
+            "text": "When shortest-TIME crossing is the right choice:\n\n    * Medical emergency\n    * Clearing a rip-current zone (swimmer safety)\n    * Surveying, as long as a pickup vehicle follows downstream\n    * Navy exercises or rescue ops\n\n   When shortest-TIME is a BAD choice:\n\n    * You must reach a specific dock (banking for boarding)\n    * There is a dangerous obstacle downstream\n    * A long drift kills the mission (fuel, tides)\n\n   For those cases you need shortest-PATH crossing,\n   which is a separate problem.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "when_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "When is this shortest-time strategy the right one?" },
+            { "text_en": "Medical emergencies, rip-current escapes, navy rescue ops — anywhere speed matters more than landing position." },
+            { "text_en": "It is the WRONG strategy when you must dock at a specific ghat, or when something dangerous lies downstream." },
+            { "text_en": "For those cases, you instead aim the bow UPSTREAM at an angle and take a slower but straight-across path — that is the shortest-PATH problem." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "aim_upstream_for_min_time",
+      "misconception_summary": "Student assumes you should aim upstream to 'fight the current', thinking that is the fastest way to cross.",
+      "confusion_patterns": [
+        "aim upstream for shortest time",
+        "fastest crossing aim against current",
+        "point bow upstream for minimum time",
+        "fight current for shortest time"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong Instinct: Fight the Current",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_upstream_sketch",
+              "text": "Student's logic:\n  \"The current pushes me downstream.\n   If I aim my boat UPSTREAM,\n   I neutralise the current and cross faster.\"\n\n  Appealing, but wrong.\n\n  When you aim upstream, only part of the boat's 3 m/s\n  goes across the river; the rest fights the current.\n  The result: across-component becomes SMALLER,\n  so crossing time goes UP.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 13,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_upstream_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Student's reasoning sounds clever: if the current pushes me downstream, let me aim upstream to cancel it out and cross faster." },
+              { "text_en": "The instinct is wrong." },
+              { "text_en": "When you tilt the bow upstream, some of your 3 metres per second fights the current instead of driving the crossing." },
+              { "text_en": "The across-component of velocity becomes smaller — so the crossing takes LONGER, not shorter." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Component Math Settles It",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "comp_math_sketch",
+              "text": "Split the boat velocity into components:\n\n  Bow angle upstream of perpendicular = theta\n\n  Across-component = v_boat * cos(theta)\n  Upstream-component = v_boat * sin(theta)\n\n  Crossing time  =  width / (v_boat * cos(theta))\n\n  To MINIMISE that time:\n     make cos(theta) as LARGE as possible\n     -> theta = 0  (bow perpendicular)\n     -> crossing time = width / v_boat\n\n  Any tilt upstream (theta > 0) shrinks cos(theta)\n  and INCREASES crossing time. Math agrees with nature.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "comp_math_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Let the math decide. Split v boat into an across-component and an upstream-component." },
+              { "text_en": "Across-component is v boat times cosine theta. Crossing time is width divided by that component." },
+              { "text_en": "To minimise, make cosine as large as possible. Cosine hits its maximum of 1 when theta equals zero — bow perpendicular." },
+              { "text_en": "Any upstream tilt shrinks cosine and makes the crossing slower. The math agrees with what every ferry pilot already knows." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Memorise the Intuition",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "intuition_sketch",
+              "text": "Remember these two lines forever:\n\n  Shortest TIME:\n     Bow perpendicular. Drift downstream, land elsewhere.\n\n  Shortest PATH (straight across):\n     Bow tilted upstream at an angle. Slower crossing.\n\n  They are different optimisations. Same boat, different goal.\n\n  The word in the question matters:\n     'shortest time'  -> perpendicular bow\n     'shortest path'  -> tilted bow",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 13,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "intuition_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Burn these two into memory — they are tested in every JEE river question." },
+              { "text_en": "Shortest TIME crossing, bow perpendicular, drift allowed." },
+              { "text_en": "Shortest PATH crossing, bow tilted upstream, slower but straight across." },
+              { "text_en": "Read the question carefully. The ONE word that matters — time or path — decides which formula to use." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Narrow river, slow current", "params": { "width": 80, "v_boat": 4, "v_river": 1 } },
+      { "label": "Hooghly ferry crossing", "params": { "width": 500, "v_boat": 3, "v_river": 2 } },
+      { "label": "Wide Brahmaputra, fast flood", "params": { "width": 800, "v_boat": 5, "v_river": 4 } }
+    ],
+    "type_b": [
+      { "label": "Kayaker on a canal", "scenario": "kayaker_canal_crossing" },
+      { "label": "Monsoon rescue boat", "scenario": "rescue_boat_flooded_yamuna" }
+    ]
+  }
+}

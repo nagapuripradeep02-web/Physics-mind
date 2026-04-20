@@ -1,0 +1,42 @@
+{
+  "concept_id": "stress_strain_elasticity",
+  "concept_name": "Stress, Strain and Elastic Moduli",
+  "class_level": 11,
+  "chapter": "Mechanical Properties of Solids",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "graph_interactive", "scenario_type": "stress_strain", "panel_count": 2, "show_labels": true },
+  "variables": { "σ": "Stress (Pa = N/m²)", "ε": "Strain (dimensionless)", "Y": "Young's modulus (Pa)", "F": "Applied force (N)" },
+  "locked_facts": [
+    "Stress = Force/Area: σ = F/A (internal restoring force per unit area)",
+    "Strain = ΔL/L (fractional change in dimension, dimensionless)",
+    "Hooke's law: stress ∝ strain in elastic limit → σ = Yε",
+    "Young's modulus Y = stress/strain = (F/A)/(ΔL/L) (tensile/compressive)",
+    "Bulk modulus B = -VΔP/ΔV (resistance to volume change)",
+    "Shear modulus G = shear stress/shear strain",
+    "Stress-strain curve regions: proportional limit → elastic limit → yield point → ultimate strength → fracture"
+  ],
+  "truth_statements": [
+    "Stress is not the applied force but the internal restoring force per unit area within the material",
+    "Young's modulus is a material property that measures stiffness — higher Y means the material is harder to stretch",
+    "Beyond the elastic limit the material undergoes permanent deformation and does not return to original shape",
+    "The area under the stress-strain curve up to any point represents the energy stored per unit volume",
+    "Steel has a higher Young's modulus than rubber, meaning steel is stiffer though rubber is more elastic (returns to shape over larger deformation)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Full stress-strain curve for a ductile material: linear region (Hooke's law), elastic limit (beyond this = permanent damage), yield point, necking, and fracture. Loading and unloading in the elastic region: returns to origin. Loading beyond elastic limit: permanent set visible.",
+    "visual_emphasis": "Stress-strain curve with regions colour-coded: green (elastic), yellow (plastic), red (necking/fracture), with load-unload cycle shown",
+    "why_this_breaks_misconception": "Students think materials either stretch or break — seeing the rich behaviour between elastic and fracture (yielding, strain hardening, necking) reveals the full story"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Stress and strain defined", "description": "A wire stretched by a force. Stress σ = F/A (force per unit area). Strain ε = ΔL/L (fractional extension). Both shown with numerical values.", "emphasis": "Stress is force per area. Strain is fractional change in length.", "labels_visible": ["σ = F/A", "ε = ΔL/L"] },
+    { "id": "STATE_2", "label": "Hooke's law region", "description": "Force gradually increased. Stress-strain graph is linear. Y = slope. Material returns to original length when force removed. Spring analogy.", "emphasis": "In the elastic region: σ = Yε. Material bounces back like a spring.", "labels_visible": ["Y = σ/ε", "linear region", "elastic"] },
+    { "id": "STATE_3", "label": "Full stress-strain curve", "description": "Continue loading past elastic limit. Yield point: permanent deformation begins. Strain hardening. Ultimate tensile strength. Necking. Fracture. Each region labelled.", "emphasis": "Beyond elastic limit: permanent deformation. Material doesn't fully recover.", "labels_visible": ["elastic limit", "yield", "UTS", "fracture", "permanent set"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student pulls a virtual wire. Stress-strain curve builds in real time. Release force: see elastic recovery vs permanent set. Compare materials: steel, rubber, glass.", "emphasis": "Pull the wire — watch the stress-strain curve build. Release — does it return to origin?", "labels_visible": ["σ", "ε", "Y", "material"], "interactive": true, "sliders": [{ "id": "force", "label": "Applied force", "min": 0, "max": 1000, "default": 100, "unit": "N" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Rubber is more elastic than steel", "trigger_phrases": ["rubber more elastic", "rubber zyada elastic"], "correction": "In physics, 'elastic' means returning to original shape after deformation. Steel has a HIGHER Young's modulus and returns to its original shape for small deformations more reliably. Rubber is more flexible (lower Y) but not more elastic in the physics sense.", "simulation_emphasis": "Show steel and rubber stress-strain curves — steel has higher Y (stiffer) but both return to origin within elastic limits" },
+    { "belief": "Stress is the same as force", "trigger_phrases": ["stress equals force", "stress = F"], "correction": "Stress = Force/Area (σ = F/A). The same force produces different stress depending on the cross-sectional area. A thin wire has much higher stress than a thick rod under the same force.", "simulation_emphasis": "Same force on thin vs thick wire — thin wire shows much higher stress and more elongation" }
+  ],
+  "legend": [ { "symbol": "σ", "meaning": "Stress = F/A (Pa)" }, { "symbol": "ε", "meaning": "Strain = ΔL/L" }, { "symbol": "Y", "meaning": "Young's modulus (Pa)" } ],
+  "concept_relationships": { "prerequisites": ["newtons_second_law"], "extensions": ["poissons_ratio"], "siblings": ["simple_harmonic_motion"], "common_exam_combinations": ["thermal_expansion"] }
+}

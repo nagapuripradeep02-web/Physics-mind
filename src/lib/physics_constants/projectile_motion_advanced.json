@@ -1,0 +1,112 @@
+{
+  "concept_id": "projectile_motion_advanced",
+  "concept_name": "Projectile Motion (Advanced)",
+  "class_level": 11,
+  "chapter": "Motion in a Plane",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "projectile_advanced",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "u": "Initial speed of projection (m/s)",
+    "θ": "Angle of projection from horizontal (deg)",
+    "g": "Acceleration due to gravity = 9.8 m/s²",
+    "R": "Horizontal range (m)",
+    "H": "Maximum height (m)",
+    "T": "Time of flight (s)"
+  },
+  "locked_facts": [
+    "Range R = u²sin(2θ)/g — depends on sin of double the angle",
+    "Maximum height H = u²sin²(θ)/(2g)",
+    "Time of flight T = 2u·sin(θ)/g",
+    "Maximum range occurs at θ = 45° for a given speed on level ground",
+    "Complementary angles θ and (90°−θ) give the same range: sin(2θ) = sin(2(90°−θ))",
+    "At maximum height, vertical velocity = 0 but horizontal velocity = u·cos(θ)",
+    "Trajectory equation: y = x·tan(θ) − gx²/(2u²cos²(θ))"
+  ],
+  "truth_statements": [
+    "The range is maximum at 45° because sin(2θ) is maximum (=1) when 2θ = 90°",
+    "Two complementary angles of projection give the same range but different maximum heights and times of flight",
+    "The maximum height for θ = 90°−α is always greater than for θ = α when α < 45°",
+    "Horizontal and vertical motions are independent — horizontal velocity remains u·cos(θ) throughout",
+    "Time of flight depends only on the vertical component u·sin(θ), not on horizontal velocity"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two projectiles launched simultaneously at complementary angles (e.g. 30° and 60°) — both land at exactly the same horizontal distance but follow very different paths. The 60° path is taller and slower, the 30° path is flatter and faster.",
+    "visual_emphasis": "Both trajectories overlaid on the same axes with the landing points coinciding perfectly — range equality proven visually",
+    "why_this_breaks_misconception": "Students assume a higher angle always gives a longer range. Seeing two different angles produce the same range reveals the sin(2θ) symmetry."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A projectile launcher on the ground with adjustable angle indicator. The initial velocity vector is shown decomposed into u·cos(θ) horizontal and u·sin(θ) vertical components. Formulas for R, H, T displayed on a panel.",
+      "emphasis": "Clear decomposition of initial velocity into horizontal and vertical components",
+      "labels_visible": ["u", "u·cosθ", "u·sinθ", "θ"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Single Launch",
+      "description": "Projectile launched at 45° traces a parabolic path. Range R, maximum height H, and time of flight T are measured and displayed. The values match the formulas exactly.",
+      "emphasis": "At 45°, sin(2θ) = 1, giving maximum range for this speed. Show computed vs measured values matching.",
+      "labels_visible": ["R_max", "H", "T", "θ = 45°"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Complementary Angles",
+      "description": "Two projectiles launched simultaneously at complementary angles (30° and 60°) with the same speed. Both trajectories drawn — they land at the same point. Height and time of flight differ but range is identical.",
+      "emphasis": "Same range, different heights — complementary angle symmetry. sin(60°) = sin(120°) = sin(2×30°) = sin(2×60°).",
+      "labels_visible": ["R₃₀ = R₆₀", "H₃₀", "H₆₀", "T₃₀", "T₆₀"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive mode: student adjusts launch angle and initial speed. Range, height, and time update live. A second ghost trajectory at the complementary angle is always shown for comparison. A bar chart shows R vs θ (peaks at 45°).",
+      "emphasis": "Experiment with angles on both sides of 45° to verify complementary angle theorem. See the R vs θ curve peak at 45°.",
+      "labels_visible": ["R", "H", "T", "θ", "90°−θ"],
+      "interactive": true,
+      "sliders": [
+        { "id": "launch_angle", "label": "Launch Angle", "min": 10, "max": 80, "default": 45, "unit": "°" },
+        { "id": "initial_speed", "label": "Initial Speed", "min": 5, "max": 40, "default": 20, "unit": "m/s" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "A higher angle always gives a longer range",
+      "trigger_phrases": ["zyada angle zyada range", "higher angle more range", "90 degree pe max range hoga", "angle badhao toh range badhega"],
+      "correction": "NCERT shows range R = u²sin(2θ)/g. Range increases with θ only up to 45°, then decreases. At 90° range is zero (ball goes straight up and comes back).",
+      "simulation_emphasis": "Show R vs θ graph peaking at 45° and dropping to zero at 90°"
+    },
+    {
+      "belief": "45° always gives the maximum range regardless of conditions",
+      "trigger_phrases": ["45 degree is always best", "har jagah 45 pe max hoga", "maximum range always 45"],
+      "correction": "45° gives max range only on level ground with no air resistance. On an inclined plane or with air drag, the optimal angle differs. NCERT derivation assumes level ground.",
+      "simulation_emphasis": "Demonstrate 45° optimality on level ground, then note the assumption"
+    },
+    {
+      "belief": "Complementary angles give the same maximum height",
+      "trigger_phrases": ["same angle same height", "complementary angles same H", "30 aur 60 same height"],
+      "correction": "Complementary angles give the same range but NOT the same height. H = u²sin²(θ)/(2g), so the steeper angle always reaches a greater height.",
+      "simulation_emphasis": "Show two trajectories at 30° and 60° — same range but very different peak heights"
+    }
+  ],
+  "legend": [
+    { "symbol": "R", "meaning": "Horizontal range = u²sin(2θ)/g" },
+    { "symbol": "H", "meaning": "Maximum height = u²sin²(θ)/(2g)" },
+    { "symbol": "T", "meaning": "Time of flight = 2u·sin(θ)/g" },
+    { "symbol": "θ", "meaning": "Angle of projection from horizontal" },
+    { "symbol": "u", "meaning": "Initial speed of projection" },
+    { "symbol": "Complementary", "meaning": "θ and 90°−θ give same range" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["projectile_motion", "vectors", "equations_of_motion"],
+    "extensions": ["projectile_on_inclined_plane", "relative_projectile_motion"],
+    "siblings": ["relative_motion", "uniform_circular_motion"],
+    "common_exam_combinations": ["relative_motion", "work_energy_theorem", "motion_on_inclined_plane"]
+  }
+}

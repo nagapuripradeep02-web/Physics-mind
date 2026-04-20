@@ -1,0 +1,455 @@
+{
+  "concept_id": "pressure_scalar",
+  "concept_name": "Why Pressure Is a Scalar Even Though It 'Points Everywhere'",
+  "chapter": 5,
+  "section": "5.1",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.1 — trap quantity; split from scalar_vs_vector bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A pressure cooker. Steam inside pushes outward on every wall — top, bottom, sides, lid — with the same pressure. The cooker has ONE pressure value written on the gauge, not six different vector arrows.",
+    "secondary": "Diving into a swimming pool. At a given depth your ears feel the same squeeze from above, below, left and right. Pressure at a point has one number — the depth determines it, not a direction.",
+    "tertiary": "A bicycle tyre inflated to 40 psi. That single number acts outward on every square inch of the inner tube, no matter which way that square inch faces. Pressure is a property of the point, not a pointer in one direction."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "rho": { "name": "Fluid density", "unit": "kg/m^3", "min": 500, "max": 13600, "default": 1000 },
+      "g": { "name": "Gravity", "unit": "m/s^2", "min": 9.8, "max": 9.8, "default": 9.8 },
+      "depth": { "name": "Depth below surface", "unit": "m", "min": 0, "max": 20, "default": 5 },
+      "face_area": { "name": "Face area", "unit": "m^2", "min": 0.01, "max": 1, "default": 0.1 }
+    },
+    "computed_outputs": {
+      "pressure": { "formula": "rho * g * depth" },
+      "force_on_face": { "formula": "rho * g * depth * face_area" }
+    },
+    "formulas": {
+      "hydrostatic_pressure": "P = rho * g * h  (scalar, one number per depth)",
+      "force_from_pressure": "F_on_face = P * A * n_hat  (vector — direction set by the face normal n_hat)"
+    },
+    "constraints": [
+      "At a point inside a fluid, the pressure is the same in all directions — Pascal's principle",
+      "Force is a vector; pressure is the scalar that GENERATES force when combined with area and a surface normal",
+      "Pressure is a scalar FIELD — one value at each point in space, like temperature or density"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "At One Point Inside a Fluid — Arrows in Every Direction",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "press_up",
+            "from": { "x": 385, "y": 320 },
+            "magnitude": 2,
+            "direction_deg": 90,
+            "label": "",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "press_down",
+            "from": { "x": 385, "y": 320 },
+            "magnitude": 2,
+            "direction_deg": -90,
+            "label": "",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "press_left",
+            "from": { "x": 385, "y": 320 },
+            "magnitude": 2,
+            "direction_deg": 180,
+            "label": "",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "press_right",
+            "from": { "x": 385, "y": 320 },
+            "magnitude": 2,
+            "direction_deg": 0,
+            "label": "",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "press_ne",
+            "from": { "x": 385, "y": 320 },
+            "magnitude": 2,
+            "direction_deg": 45,
+            "label": "",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "press_nw",
+            "from": { "x": 385, "y": 320 },
+            "magnitude": 2,
+            "direction_deg": 135,
+            "label": "",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "press_se",
+            "from": { "x": 385, "y": 320 },
+            "magnitude": 2,
+            "direction_deg": -45,
+            "label": "",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "force_arrow",
+            "id": "press_sw",
+            "from": { "x": 385, "y": 320 },
+            "magnitude": 2,
+            "direction_deg": -135,
+            "label": "",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 40
+          },
+          {
+            "type": "annotation",
+            "id": "point_label",
+            "text": "point P inside fluid",
+            "position": { "x": 385, "y": 390 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "question",
+            "text": "Pressure pushes outward\nin every direction from point P,\nall with the same magnitude.\n\nSo which ONE direction\ndo we assign to the vector?\n\n(none — that's the point.)",
+            "position": { "x": 580, "y": 260 },
+            "style": "callout",
+            "color": "#EF4444"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Zoom in on one tiny point inside a fluid. Say a point five metres below the surface of a swimming pool." },
+            { "id": "s2", "text_en": "The fluid pushes outward from that point in every direction — up, down, left, right, and every direction in between. All with the same magnitude." },
+            { "id": "s3", "text_en": "To call something a vector, we must be able to assign it a single direction. But here every direction has the same push. There is no preferred direction to pick." },
+            { "id": "s4", "text_en": "If you cannot name one direction for the quantity, it cannot be a vector. That is the first clue pressure is a scalar." },
+            { "id": "s5", "text_en": "Pressure behaves like temperature. Temperature at a point is one number. Pressure at a point is one number too." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Pressure Is a Scalar. Force on a Face Is a Vector.",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "cube_label",
+            "text": "Cube of water submerged at depth h\neach face has area A",
+            "position": { "x": 240, "y": 180 },
+            "style": "callout"
+          },
+          {
+            "type": "force_arrow",
+            "id": "face_force_up",
+            "from": { "x": 280, "y": 260 },
+            "magnitude": 3,
+            "direction_deg": -90,
+            "label": "F_top = P*A (down)",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 30
+          },
+          {
+            "type": "force_arrow",
+            "id": "face_force_bot",
+            "from": { "x": 280, "y": 400 },
+            "magnitude": 3,
+            "direction_deg": 90,
+            "label": "F_bottom = P*A (up)",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 30
+          },
+          {
+            "type": "force_arrow",
+            "id": "face_force_left",
+            "from": { "x": 240, "y": 330 },
+            "magnitude": 3,
+            "direction_deg": 0,
+            "label": "F_left = P*A",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 30
+          },
+          {
+            "type": "force_arrow",
+            "id": "face_force_right",
+            "from": { "x": 340, "y": 330 },
+            "magnitude": 3,
+            "direction_deg": 180,
+            "label": "F_right = P*A",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 30
+          },
+          {
+            "type": "annotation",
+            "id": "derivation",
+            "text": "P at depth h\n= rho * g * h\n= ONE NUMBER  (scalar)\n\nForce on each face\n= P * A * n_hat\n  scalar | area | face normal\n\nPressure supplies magnitude.\nThe face normal supplies direction.\n=> F is a vector, P is a scalar.",
+            "position": { "x": 540, "y": 260 },
+            "style": "formula_box"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Drop a small cube of water at depth h, each face with area A. The fluid around it presses on every face." },
+            { "id": "s2", "text_en": "All four faces feel different force directions — the top face is pushed downward, the bottom face upward, the left face rightward, the right face leftward." },
+            { "id": "s3", "text_en": "But look at the magnitudes. Every face feels the same magnitude of force — P times A." },
+            { "id": "s4", "text_en": "Pressure P is the single scalar behind all of them. It equals rho g h at depth h — one number, no direction." },
+            { "id": "s5", "text_en": "Force is pressure times area times the face normal. Pressure supplies the magnitude. The face normal supplies the direction." },
+            { "id": "s6", "text_en": "That is the cleanest way to remember it. Force is a vector. Pressure is the scalar that generates forces when combined with a surface orientation." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Pressure and Temperature — Same Kind of Thing",
+        "duration": 9,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "temperature_panel",
+            "text": "Temperature field T(x, y, z)\n\nAt any point, one number.\nE.g. T = 305 K.\n\nNo direction.\nClearly scalar.",
+            "position": { "x": 240, "y": 260 },
+            "style": "formula_box",
+            "color": "#F59E0B"
+          },
+          {
+            "type": "annotation",
+            "id": "pressure_panel",
+            "text": "Pressure field P(x, y, z)\n\nAt any point, one number.\nE.g. P = 2 x 10^5 Pa at depth 10 m.\n\nNo direction.\nAlso scalar.",
+            "position": { "x": 560, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "vector_field_note",
+            "text": "Contrast: gravitational field g(x, y, z)\nAt each point a magnitude AND a direction\n(down). That is a vector field.",
+            "position": { "x": 400, "y": 430 },
+            "style": "callout"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A clean way to remember this — compare pressure with temperature." },
+            { "id": "s2", "text_en": "Temperature at a point in the room is one number, say three hundred and five kelvin. No direction. Clearly a scalar." },
+            { "id": "s3", "text_en": "Pressure at a point in a fluid is one number, say two atmospheres at ten metres deep. No direction. Also a scalar." },
+            { "id": "s4", "text_en": "Both are scalar fields. One number at every point in space, changing smoothly from point to point." },
+            { "id": "s5", "text_en": "Compare that with the gravitational field. At every point it has both a magnitude and a direction — pointing downward. That is a vector field." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "pressure_is_vector",
+      "misconception": "Pressure is a vector because it 'acts in all directions'",
+      "trigger_phrases": [
+        "pressure is a vector",
+        "pressure acts in all directions so it is a vector",
+        "pressure has direction",
+        "fluid pressure vector quantity"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Pressure Acts Everywhere, So Vector",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "b_up",
+              "from": { "x": 385, "y": 320 },
+              "magnitude": 2,
+              "direction_deg": 90,
+              "label": "",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "force_arrow",
+              "id": "b_down",
+              "from": { "x": 385, "y": 320 },
+              "magnitude": 2,
+              "direction_deg": -90,
+              "label": "",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "force_arrow",
+              "id": "b_left",
+              "from": { "x": 385, "y": 320 },
+              "magnitude": 2,
+              "direction_deg": 180,
+              "label": "",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "force_arrow",
+              "id": "b_right",
+              "from": { "x": 385, "y": 320 },
+              "magnitude": 2,
+              "direction_deg": 0,
+              "label": "",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 40
+            },
+            {
+              "type": "annotation",
+              "id": "belief_text",
+              "text": "Your reasoning\n\nPressure pushes in all directions.\nThat looks like many arrows.\nVectors are arrows.\n=> pressure is a vector (maybe even many).",
+              "position": { "x": 560, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is your intuition. Pressure pushes outward from a point in every direction." },
+              { "id": "s2", "text_en": "Every direction has an arrow. Arrows mean vectors. So pressure must be a vector." },
+              { "id": "s3", "text_en": "The problem is precisely that there are too many arrows, not too few. Vectors have ONE direction — not many. Let us see why that matters." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Direction Problem — There Is No 'One' Direction",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "force_example",
+              "from": { "x": 240, "y": 320 },
+              "magnitude": 3,
+              "direction_deg": -90,
+              "label": "Force on ball\n(one direction: down)",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 30
+            },
+            {
+              "type": "force_arrow",
+              "id": "velocity_example",
+              "from": { "x": 400, "y": 320 },
+              "magnitude": 3,
+              "direction_deg": 0,
+              "label": "Velocity of car\n(one direction: east)",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 30
+            },
+            {
+              "type": "annotation",
+              "id": "pressure_case",
+              "text": "Pressure at the same point\n\nArrow up    ? yes\nArrow down  ? yes\nArrow east  ? yes\nArrow west  ? yes\n\nIf I ask you 'which ONE direction?'\nyou cannot answer.\n=> not a vector.",
+              "position": { "x": 560, "y": 260 },
+              "style": "formula_box",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Force on a ball has one direction — downward, say. Velocity of a car has one direction — eastward." },
+              { "id": "s2", "text_en": "To assign a vector, we must pick exactly one direction at each point. That is what 'has a direction' really means." },
+              { "id": "s3", "text_en": "At a point inside a fluid, pressure goes in every direction with equal magnitude. If you ask 'which one direction?' there is no answer." },
+              { "id": "s4", "text_en": "Equal strength everywhere is the same as no preferred direction. And no preferred direction means no vector." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Force Is the Vector. Pressure Is the Scalar Behind It.",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "formula_block",
+              "text": "F = P * A * n_hat\n\nF   vector (force on the surface)\nP   scalar (pressure, one number)\nA   scalar (area, one number)\nn_hat  unit vector (surface normal)\n\nThe direction of F comes from n_hat,\nnot from P.",
+              "position": { "x": 260, "y": 240 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "example",
+              "text": "Same point. Three faces.\n\nTop face: F = PA down\nSide face: F = PA horizontal\nBottom face: F = PA up\n\nP is the same number in all three.\nThe direction changes because the\nface orientation changes — not because\npressure has a direction.",
+              "position": { "x": 620, "y": 260 },
+              "style": "callout"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the relationship cleanly. Force equals pressure times area times the face normal." },
+              { "id": "s2", "text_en": "Force is a vector. Pressure is a scalar. Area is a scalar. The face normal, n-hat, is a unit vector." },
+              { "id": "s3", "text_en": "The direction of the force comes entirely from n-hat — the way the surface faces. Not from the pressure itself." },
+              { "id": "s4", "text_en": "Pressure at a point has one number. Different surfaces passing through that point pick out different directions, but the pressure is unchanged." },
+              { "id": "s5", "text_en": "So when someone says pressure has a direction, what they mean is that pressure generates forces, and forces have direction. Pressure itself does not." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_4": {
+          "title": "Quick Check — You Can Now Classify These",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "check_prompts",
+              "text": "Apply the new rule\n\nTemperature in a room:\n  one number per point, no direction\n  => SCALAR\n\nGravitational field:\n  at each point, a magnitude AND\n  a direction (downward)\n  => VECTOR\n\nPressure in a pressure cooker:\n  one number per point, no direction\n  => SCALAR\n\nElectric field of a charge:\n  at each point, magnitude AND\n  radial direction\n  => VECTOR",
+              "position": { "x": 360, "y": 260 },
+              "style": "formula_box"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Apply the rule. For each quantity, ask: at one point in space, does it have a magnitude and exactly one direction?" },
+              { "id": "s2", "text_en": "Temperature — one number, no direction — scalar." },
+              { "id": "s3", "text_en": "Gravitational field — magnitude g, direction straight down — vector." },
+              { "id": "s4", "text_en": "Pressure in a cooker — one number at each point, no single direction — scalar." },
+              { "id": "s5", "text_en": "Electric field of a charge — magnitude decreases with distance, direction radially outward — vector." },
+              { "id": "s6", "text_en": "That rule will carry you through every assertion-reason trap in this section." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different fluids, same rule",
+      "physical_world": "Water (rho = 1000), mercury (rho = 13600), seawater (rho = 1025) at various depths — pressure is rho g h every time, still scalar.",
+      "same_physics": "P is a scalar field whose value scales linearly with depth"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Gas pressure inside a closed vessel",
+      "physical_world": "A sealed pressure cooker at 2 atm has uniform pressure throughout. Walls feel force = P * A perpendicular to each wall — different directions, same scalar P.",
+      "same_physics": "Pressure is location-dependent only; force direction comes from surface orientation"
+    }
+  ]
+}

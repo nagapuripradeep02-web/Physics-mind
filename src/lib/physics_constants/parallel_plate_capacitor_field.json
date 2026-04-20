@@ -1,0 +1,109 @@
+{
+  "concept_id": "parallel_plate_capacitor_field",
+  "concept_name": "Parallel Plate Capacitor — Field Visualization",
+  "chapter": "Electrostatic Potential",
+  "class_level": 12,
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "parallel_plates",
+    "panel_count": 1,
+    "show_graph": false
+  },
+  "variables": {
+    "V": { "symbol": "V", "name": "Voltage across plates", "unit": "V", "min": 1, "max": 100, "default": 12 },
+    "d": { "symbol": "d", "name": "Plate separation", "unit": "m", "min": 0.001, "max": 0.1, "default": 0.01 },
+    "A": { "symbol": "A", "name": "Plate area", "unit": "m²", "min": 0.001, "max": 1, "default": 0.01 },
+    "E": { "symbol": "E", "name": "Electric field between plates", "unit": "V/m", "formula": "V/d" },
+    "C": { "symbol": "C", "name": "Capacitance", "unit": "F", "formula": "ε₀A/d" }
+  },
+  "locked_facts": [
+    "Electric field between parallel plates is UNIFORM: E = σ/ε₀ = V/d",
+    "Field outside plates is approximately zero",
+    "Capacitance C = ε₀A/d",
+    "Energy stored: U = Q²/2C = CV²/2 = QV/2",
+    "Inserting dielectric increases capacitance by factor κ"
+  ],
+  "truth_statements": [
+    "The electric field between two parallel plates with equal and opposite charges is uniform and directed from the positive plate to the negative plate",
+    "Outside the plates, the electric fields of the two plates cancel, giving approximately zero net field",
+    "The capacitance depends only on the geometry (area and separation) and the medium between the plates",
+    "Equipotential surfaces between parallel plates are flat planes parallel to the plates",
+    "The energy stored in a capacitor is stored in the electric field between the plates"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Rotate the 3D view to look along the plate edge. Inside: perfectly parallel, equally spaced field lines (uniform E). Just outside the edge: lines bulge outward (fringe effect). Far away: essentially zero field. The field is confined.",
+    "visual_emphasis": "Compare the dense uniform lines inside with the near-absence outside. The energy is stored in this confined field.",
+    "why_this_breaks_misconception": "Students see that the field does NOT extend throughout the room — it is concentrated between the plates"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Two charged plates — positive and negative",
+      "description": "Two parallel plates: red (+) on the left, blue (−) on the right. No field lines shown yet. Labels show charge distribution.",
+      "emphasis": "A parallel plate capacitor: two conducting plates with equal and opposite charge",
+      "labels_visible": ["+", "−", "d"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Uniform field lines between plates",
+      "description": "Straight, parallel, equally-spaced field lines appear between the plates, directed from + to −. Caption: E = V/d everywhere between the plates.",
+      "emphasis": "The field is UNIFORM — every field line is parallel and equally spaced. E is the same at every point between the plates.",
+      "labels_visible": ["E = V/d"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Field is confined — zero outside",
+      "description": "Camera rotates to show the side view. Outside the plates: no field lines. Inside: dense uniform lines. Fringe effects at edges shown subtly.",
+      "emphasis": "The field is essentially zero outside the plates. All the electric field energy is confined between them.",
+      "labels_visible": ["E_inside", "E_outside ≈ 0"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — rotate the capacitor",
+      "description": "Full 3D rotation enabled. All elements visible: plates, field lines, labels. Caption reminds: C = ε₀A/d.",
+      "emphasis": "Rotate to see the 3D field pattern. Between plates: uniform. Outside: zero. The capacitor confines the electric field.",
+      "labels_visible": ["E", "C", "V", "d"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "field_extends_everywhere",
+      "trigger_keywords": ["capacitor field extends throughout", "capacitor ka field bahar bhi hai", "field goes everywhere", "capacitor field room mein"],
+      "student_belief": "The capacitor's electric field extends throughout the room, like a charge's field",
+      "actual_physics": "For an ideal parallel plate capacitor, the electric field exists ONLY between the plates and is approximately zero outside. The fields of the two plates cancel outside. Real capacitors have small fringe fields at the edges.",
+      "simulation_emphasis": "Show the 3D view: dense uniform lines between plates, nothing outside. Rotate to confirm from all angles."
+    },
+    {
+      "id": "field_not_uniform",
+      "trigger_keywords": ["capacitor field varies", "field strong near plate", "capacitor mein field different", "field decreases between plates"],
+      "student_belief": "The electric field is stronger near the plates and weaker in the middle",
+      "actual_physics": "The electric field between ideal parallel plates is perfectly uniform — it has the same magnitude and direction (E = V/d) at every point between the plates. This is what makes the parallel plate geometry so useful.",
+      "simulation_emphasis": "Show equally spaced, parallel field lines between plates. The spacing never changes — uniform field everywhere between the plates."
+    }
+  ],
+  "legend": [
+    { "symbol": "+", "meaning": "Positive plate (red)" },
+    { "symbol": "−", "meaning": "Negative plate (blue)" },
+    { "symbol": "E", "meaning": "Electric field = V/d (uniform between plates)" },
+    { "symbol": "C", "meaning": "Capacitance = ε₀A/d" },
+    { "symbol": "d", "meaning": "Plate separation" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["electric_field_lines", "coulombs_law"],
+    "extensions": ["dielectric", "energy_stored_in_capacitor"],
+    "siblings": ["electric_potential_3d", "gauss_law_3d"],
+    "common_exam_combinations": ["gauss_law_3d", "dielectric_constant"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["capacitance with dielectric slab partially inserted", "force between plates", "energy change when dielectric inserted", "capacitors in series/parallel"],
+    "common_traps": ["forgetting that E is uniform between plates", "not realizing field is zero outside", "wrong formula for energy: using U=QV instead of U=QV/2"],
+    "numerical_ranges": {
+      "d": "1–10 mm typical",
+      "A": "100–10000 cm²",
+      "ε₀": "8.85 × 10⁻¹² F/m"
+    }
+  }
+}

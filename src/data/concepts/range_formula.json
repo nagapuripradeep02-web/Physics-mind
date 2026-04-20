@@ -1,0 +1,271 @@
+{
+  "concept_id": "range_formula",
+  "concept_name": "Projectile Range — R = v₀² sin(2θ) / g",
+  "chapter": 7,
+  "section": "7.6",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 7.6 — projectile range and optimal angle; split from projectile_motion",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "Neeraj Chopra at the 2024 Paris Olympics, gold-medal-winning javelin throw. Release speed ~29 m/s, release angle roughly 34 degrees (javelin athletes release slightly below 45 degrees because of aerodynamics). Predicted range from the idealised formula: R = 29² * sin(68°) / 10 ≈ 77.9 metres — matching his actual throw almost exactly. Every javelin coach in India uses this formula to tune their athlete's release technique.",
+    "secondary": "A cannon at the 1999 Kargil war, Bofors howitzer shelling at 100 m/s and 45 degrees. R = 100² / 10 = 1000 metres — one full kilometre. The 45-degree rule is burned into every artillery manual ever written.",
+    "tertiary": "A schoolkid kicking a football across the playground at 18 m/s and 40 degrees. R = 18² * sin(80°) / 10 ≈ 32 metres. Every striker instinctively aims slightly flatter than 45 degrees because lower trajectories are harder to defend."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v0": { "name": "Launch speed", "unit": "m/s", "min": 5, "max": 200, "default": 20 },
+      "theta": { "name": "Launch angle from horizontal", "unit": "deg", "min": 0, "max": 90, "default": 45 },
+      "g": { "name": "Gravitational acceleration", "unit": "m/s^2", "min": 9.8, "max": 10, "default": 10 }
+    },
+    "computed_outputs": {
+      "R": { "formula": "v0^2 * sin(2*theta) / g" },
+      "R_max": { "formula": "v0^2 / g" }
+    },
+    "formulas": {
+      "range_formula": "R  =  v0^2 * sin(2*theta) / g  (for launch and landing at same height)",
+      "derivation_path": "R = v0 * cos(theta) * T.  T = 2 v0 sin(theta) / g.  Product simplifies to v0^2 * sin(2 theta) / g.",
+      "max_range": "Maximum R at theta = 45 deg, giving R = v0^2 / g.",
+      "symmetry": "Angles theta and (90 - theta) give the SAME range, because sin(2 theta) = sin(180 - 2 theta).",
+      "unequal_heights": "Formula breaks if launch and landing are at different heights; use full trajectory equations instead."
+    },
+    "constraints": [
+      "Launch and landing at SAME height.",
+      "Air resistance ignored.",
+      "Gravity constant (near Earth's surface).",
+      "Applies for 0 < theta < 90 degrees.",
+      "At theta = 0 or 90 deg, R = 0."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Range = Horizontal Speed × Time of Flight",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "range_sketch",
+            "text": "Range is just how far the projectile moves horizontally\nbefore returning to the same height.\n\n   horizontal velocity  =  v0 * cos(theta)  (constant)\n   time in the air      =  T                 (decided by vertical)\n\n   Range  =  horizontal velocity  *  time\n         =  v0 * cos(theta)  *  T\n         =  v0 * cos(theta)  *  (2 * v0 * sin(theta) / g)\n         =  2 * v0^2 * sin(theta) * cos(theta) / g\n         =  v0^2 * sin(2*theta) / g\n\n   Using the identity 2 sin A cos A = sin 2A.\n\n   That is the famous range formula.\n   Two sin-cos terms fused into one.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "javelin_label",
+            "text": "Neeraj Chopra's gold-medal javelin throw",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "javelin",
+            "vehicle_type": "javelin",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_left",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
+              { "type": "translate", "delay_sec": 4.5, "duration_sec": 3.0, "dx_px": 200, "dy_px": -220, "easing": "ease_out" },
+              { "type": "translate", "delay_sec": 7.5, "duration_sec": 3.0, "dx_px": 200, "dy_px": 220, "easing": "ease_in" }
+            ]
+          }
+        ],
+        "focal_primitive": "range_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Range is simply horizontal distance — how far the projectile travels along the ground before returning to launch height." },
+            { "text_en": "Horizontal velocity is constant, v-nought cosine theta. Time of flight is 2 v-nought sine theta over g." },
+            { "text_en": "Multiply them: range equals 2 v-nought squared sine theta cosine theta over g." },
+            { "text_en": "Using the trig identity 2 sine A cosine A equals sine 2 A, this fuses into the famous formula — R equals v-nought squared sine 2 theta over g." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Why 45° Gives Maximum Range",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "max_range_sketch",
+            "text": "Range formula:  R = v0^2 * sin(2*theta) / g\n\n  sin(2*theta) is maximized when 2*theta = 90 deg\n                                    => theta = 45 deg.\n\n  At theta = 45:\n      R_max  =  v0^2 / g  (numerator is just v0^2; g in denominator)\n\n  Table of sin(2*theta) for v0 = 20 m/s, g = 10:\n     theta = 15 deg  ->  R = 400 * sin(30) /10 = 20 m\n     theta = 30 deg  ->  R = 400 * sin(60) /10 = 34.6 m\n     theta = 45 deg  ->  R = 400 * sin(90) /10 = 40 m  <- MAX\n     theta = 60 deg  ->  R = 400 * sin(120)/10 = 34.6 m\n     theta = 75 deg  ->  R = 400 * sin(150)/10 = 20 m\n\n  Notice: 30 and 60 give SAME range.  15 and 75 match too.\n  Complementary angles always yield equal range.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "max_range_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "When is range maximum?" },
+            { "text_en": "Sine 2 theta hits its maximum of 1 when 2 theta equals 90 degrees. So theta equals 45 degrees." },
+            { "text_en": "That gives R max equals v-nought squared over g. This is burned into every artillery manual, every cricket coach's notes, every physics textbook." },
+            { "text_en": "Beautiful symmetry — 30 and 60 degrees give identical range. 15 and 75 match too. Complementary angles always yield equal range. One lofted, one flat." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Complementary Angles — A Cricketer's Trick",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "complementary_sketch",
+            "text": "Two angles that land the ball at the same range:\n\n       lofted path (60 deg)\n            _.-~^~-._\n           /           \\\n          /             \\\n         /               \\\n        /                 \\\n       /                   \\\n      /                     \\\n     /                       \\\n    |_________________________|\n   low trajectory (30 deg)\n\n\n   Same range. Very different flight paths.\n\n   The LOFTED path (60 deg):\n       * longer hang time\n       * higher peak\n       * caught easily on the outfield\n\n   The LOW path (30 deg):\n       * shorter flight time\n       * lower peak\n       * harder to defend, easier to score boundaries\n\n   Every T20 batter chooses between 'flat' and 'lofted'\n   based on this complementary-angle physics.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "complementary_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "One more gem from this formula — two different angles give the same range." },
+            { "text_en": "A ball thrown at 30 degrees lands as far as one at 60 degrees. But the PATHS are completely different." },
+            { "text_en": "The 60-degree lofted ball has long hang time, high peak — easier to catch on the outfield." },
+            { "text_en": "The 30-degree flat ball arrives fast, low, hard to defend. T20 batters pick between 'flat' and 'lofted' exactly because of this complementary-angle physics." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "angle_affects_time_only",
+      "misconception_summary": "Student thinks range depends only on time of flight, so a steeper launch always travels further.",
+      "confusion_patterns": [
+        "steeper angle more range",
+        "higher angle larger range",
+        "longer time means further distance",
+        "bigger theta means bigger range"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong: 'Steeper = Further'",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_steeper_sketch",
+              "text": "Student's hunch:\n  \"Higher launch angle -> more time in air\n   -> more horizontal distance covered -> further range.\"\n\n  This forgets that horizontal velocity also CHANGES with angle.\n     v_x  =  v0 * cos(theta)\n     At steeper angle, cos(theta) gets smaller -> v_x smaller.\n\n  At theta = 90 deg: v_x = 0, so range = 0 despite max time.\n\n  Range = horizontal velocity * time.\n  Both factors change with theta -- product maximises at 45 deg.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 12,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_steeper_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Student's hunch — steeper launch, longer time in air, longer range." },
+              { "text_en": "This ignores that horizontal velocity ALSO depends on theta. At steeper angles, cosine theta is smaller, so horizontal velocity shrinks." },
+              { "text_en": "At 90 degrees, horizontal velocity is ZERO. Time is maximum, but range is zero." },
+              { "text_en": "Range is a product — horizontal velocity times time. BOTH change with theta. The product peaks at 45, not at the extremes." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Product of Two Trig Factors Peaks at 45°",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "product_peak_sketch",
+              "text": "Range ~ sin(theta) * cos(theta)\n\n   theta  sin(theta)  cos(theta)  product\n    0        0          1           0     (all horizontal, no rise)\n    15      0.26       0.97        0.25\n    30      0.50       0.87        0.43\n    45      0.71       0.71        0.50  <- MAXIMUM product\n    60      0.87       0.50        0.43\n    75      0.97       0.26        0.25\n    90      1          0           0     (all vertical, no forward)\n\n  Notice how sin and cos trade off.  Each one wins half the race.\n  The product is symmetric around 45 deg and peaks there.\n\n  This IS why 45 degrees gives max range.\n  Not because it is 'the middle angle' by intuition,\n  but because the MATH of sin * cos peaks there.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 11,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "product_peak_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Here is a table of sine times cosine for various angles." },
+              { "text_en": "At zero — product is zero because cosine wins but sine is zero. At 90 — product is also zero, other way around." },
+              { "text_en": "In between, the two factors trade off. Each wins half the race. The product reaches its maximum exactly when sine equals cosine — which is at 45 degrees." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Calculus Proof — dR/dtheta = 0",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "calculus_sketch",
+              "text": "Calculus-style proof (for curious minds):\n\n   R(theta)  =  v0^2 * sin(2*theta) / g\n\n   dR/dtheta  =  2 * v0^2 * cos(2*theta) / g\n\n   Set equal to 0:\n       2 * cos(2*theta)  =  0\n       cos(2*theta)      =  0\n       2*theta           =  90 deg\n       theta             =  45 deg\n\n   Sanity-check with second derivative:\n     d^2R/dtheta^2 < 0 at theta = 45 deg -> it is a MAXIMUM.\n\n   Math agrees with intuition and with field experience.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "calculus_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "For the curious, a calculus proof. Differentiate R with respect to theta — get 2 v-nought squared cosine 2 theta over g." },
+              { "text_en": "Set that to zero: cosine 2 theta equals zero, so 2 theta equals 90, theta equals 45." },
+              { "text_en": "Second derivative check confirms it is a maximum. Math agrees with field intuition and artillery manuals." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Neeraj Chopra javelin", "params": { "v0": 29, "theta": 34 } },
+      { "label": "Bofors howitzer at Kargil", "params": { "v0": 100, "theta": 45 } },
+      { "label": "Football kick", "params": { "v0": 18, "theta": 40 } }
+    ],
+    "type_b": [
+      { "label": "Water fountain jet", "scenario": "water_fountain_jet" },
+      { "label": "Drone shot-put", "scenario": "drone_shotput" }
+    ]
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "concept_id": "time_to_meet",
+  "concept_name": "Time to Meet — Distance Divided by Relative Approach Speed",
+  "chapter": 6,
+  "section": "6.10",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 6.10 — classic approach problems; split from relative_motion",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "Two Rajdhani trains on the Delhi-Mumbai route — one starts from Delhi southbound at 100 km/h, the other from Mumbai northbound at 120 km/h. They are 1400 km apart at the start. Classic JEE problem: when and where do they meet? The answer is driven by one formula: time = distance divided by relative approach speed, i.e. 1400 / (100+120) = 6.36 hours. A problem every Indian student has seen.",
+    "secondary": "A ranger and a stray elephant near Bandipur forest. The elephant walks toward a village at 6 km/h; the ranger sets out from the village on a bike at 30 km/h to intercept it. If they start 12 km apart, time to meet = 12 / (6+30) = 20 minutes.",
+    "tertiary": "A Chandrayaan orbit-correction burn. The spacecraft is 2 km from a planned meeting point and closing at 0.5 m/s. Time to arrive = 2000 / 0.5 = 4000 seconds — about 67 minutes. Same formula; different scale."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "d": { "name": "Initial separation", "unit": "m", "min": 0, "max": 1000, "default": 200 },
+      "V_A": { "name": "Speed of A", "unit": "m/s", "min": 0, "max": 50, "default": 15 },
+      "V_B": { "name": "Speed of B", "unit": "m/s", "min": 0, "max": 50, "default": 10 },
+      "t_meet": { "name": "Time to meet", "unit": "s", "min": 0, "max": 120, "default": 8 }
+    },
+    "computed_outputs": {
+      "time_approaching": { "formula": "d / (V_A + V_B)" },
+      "time_chasing": { "formula": "d / (V_A - V_B)" }
+    },
+    "formulas": {
+      "approaching": "If A and B move toward each other: time_to_meet = d / (V_A + V_B)",
+      "chasing": "If A chases B (same direction, V_A > V_B): time_to_meet = d / (V_A - V_B)",
+      "same_speed_same_direction": "If V_A = V_B same direction: they never meet, time = infinity.",
+      "general_form": "time_to_meet = d / |relative speed of approach|. The formula is ALWAYS the same; only the relative speed changes with geometry."
+    },
+    "constraints": [
+      "Requires both objects to be moving toward the same point at some moment.",
+      "Relative speed must be the RATE at which the gap closes, not the raw sum of speeds.",
+      "Answer is in the same time units as d/V."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Closing the Gap — The Core Intuition",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "core_sketch",
+            "text": "The physical question:\n\n  Gap between A and B  =  d\n  Gap closes every second by  =  relative approach speed  =  v_rel\n\n  So total time to close the gap fully:\n\n                    d\n       t_meet  =  -----\n                   v_rel\n\n  A kilometre-wide moat, drained at 10 m/s,\n  empties in 100 seconds.\n\n  That's it. Entire formula.\n  The ONLY trick is getting v_rel right for each geometry.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 13,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "car_a",
+            "vehicle_type": "car",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 4.0, "duration_sec": 6.0, "dx_px": 160, "dy_px": 0, "easing": "linear" }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "car_b",
+            "vehicle_type": "car",
+            "zone": "MAIN_ZONE",
+            "anchor": "right_center",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 4.0, "duration_sec": 6.0, "dx_px": -160, "dy_px": 0, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "core_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Two objects are separated by a gap. That gap closes every second at the relative approach speed." },
+            { "text_en": "So time to meet equals initial separation divided by relative approach speed — that is the entire formula." },
+            { "text_en": "A kilometre-wide moat that drains at 10 metres per second empties in 100 seconds. The ratio IS the answer." },
+            { "text_en": "The only subtlety is identifying the correct relative speed for each geometry — same direction, opposite direction, or at an angle." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Approaching Case — Relative Speed = V_A + V_B",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "approach_sketch",
+            "text": "Two Rajdhani trains, opposite directions:\n\n  Distance Delhi to Mumbai:   d  =  1400 km\n  Delhi Rajdhani:              V_A  =  +100 km/h  (south)\n  Mumbai Rajdhani:             V_B  =  +120 km/h  (north)\n\n  Gap closes at:\n     v_rel  =  100  +  120  =  220 km/h\n\n  Time to meet:\n     t  =  1400 / 220  =  6.36 hours  ~  6 hours 22 minutes\n\n  Where do they meet?\n     Delhi Rajdhani covers  100 * 6.36  ~  636 km south.\n     That is near Ratlam -- exactly as signalling logs show!",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "rajdhani_label",
+            "text": "Delhi Rajdhani vs Mumbai Rajdhani — meeting en route",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "rj_delhi",
+            "vehicle_type": "train",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": 180, "dy_px": 0, "easing": "linear" }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "rj_mumbai",
+            "vehicle_type": "train",
+            "zone": "MAIN_ZONE",
+            "anchor": "right_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": -180, "dy_px": 0, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "approach_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Now the classic approach problem — two trains coming toward each other." },
+            { "text_en": "Delhi Rajdhani at 100, Mumbai Rajdhani at 120, separated by 1400 kilometres." },
+            { "text_en": "Because they are approaching, the gap closes at 100 plus 120 — 220 kilometres per hour." },
+            { "text_en": "Time to meet is 1400 divided by 220 — just over 6.36 hours, or 6 hours 22 minutes." },
+            { "text_en": "Multiply back: Delhi Rajdhani travels 636 kilometres south in that time — placing the meeting point near Ratlam in Madhya Pradesh. Matches real railway signalling logs." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Chase Case — Relative Speed = V_A − V_B",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "chase_sketch",
+            "text": "Chase problem (same direction):\n\n  A police jeep chases a thief's bike on NH-48.\n\n  Thief:   V_B  =  60 km/h  (ahead)\n  Jeep:    V_A  =  80 km/h  (behind)\n  Head start:  d  =  1 km\n\n  The gap closes at:\n     v_rel  =  80  -  60  =  20 km/h\n\n  Time to catch:\n     t  =  1 / 20  =  0.05 hr  =  3 minutes\n\n  Distance jeep travels in 3 min  =  80 * 0.05  =  4 km.\n  Thief travels                   =  60 * 0.05  =  3 km.\n  Difference  =  1 km  <-  equals the head start.  Check!",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "bike",
+            "vehicle_type": "bike",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 4.0, "duration_sec": 6.0, "dx_px": 260, "dy_px": 0, "easing": "linear" }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "jeep",
+            "vehicle_type": "car",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 4.0, "duration_sec": 6.0, "dx_px": 310, "dy_px": 30, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "chase_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Second case — same direction, the chase problem." },
+            { "text_en": "A thief's bike runs ahead at 60 kilometres per hour. A police jeep gives chase at 80 from behind, starting 1 kilometre back." },
+            { "text_en": "Because both move the same way, the gap closes at only 80 minus 60 — that is 20 kilometres per hour." },
+            { "text_en": "Time to catch up is 1 divided by 20 hours — three minutes. Same formula, just a different relative speed." },
+            { "text_en": "Quick sanity check — the jeep covers 4 kilometres in those 3 minutes, the thief covers 3. Difference is 1 kilometre, which is exactly the head start. The numbers close, the method works." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "use_ground_speeds_alone",
+      "misconception_summary": "Student uses d divided by ONE of the speeds (the larger one) and ignores the relative concept entirely.",
+      "confusion_patterns": [
+        "time to meet d/V_A",
+        "divide distance by my speed",
+        "time to meet just use my velocity",
+        "only use one train speed for time to meet"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong Instinct: d / V_A",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_dv_sketch",
+              "text": "Student's guess:\n\n  Two Rajdhanis, 1400 km apart.\n  Delhi Rajdhani at 100 km/h.\n\n  \"Time = distance / speed\n   = 1400 / 100\n   = 14 hours\"\n\n  But wait — the OTHER train is also moving toward it.\n  The total gap is being eaten from BOTH sides.\n\n  14 hours overshoots reality by more than a factor of 2.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 13,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_dv_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The common mistake — use only ONE train's speed and divide." },
+              { "text_en": "Delhi Rajdhani at 100, distance 1400. Student writes 14 hours." },
+              { "text_en": "But the other train is eating into the gap too! You have ignored half the picture." },
+              { "text_en": "The true answer is less than half — around 6.36 hours, not 14." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Correction: Gap-Closing Speed is the SUM",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "correction_sketch",
+              "text": "Why addition for approaching:\n\n  Every second the Delhi Rajdhani advances 100 / 3600 km south.\n  Every second the Mumbai Rajdhani advances 120 / 3600 km north.\n  Both bites reduce the gap.\n\n  Total gap-reduction per second:\n     (100 + 120) / 3600 km\n\n  So relative approach speed  =  100 + 120  =  220 km/h.\n\n  t_meet  =  d / v_rel  =  1400 / 220  =  6.36 hrs\n\n  The FORMULA is untouched.  What changed was the speed you plug in.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "correction_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Fix: use the relative approach speed, not either ground speed alone." },
+              { "text_en": "Both trains eat into the gap simultaneously — the gap shrinks by 100 plus 120 kilometres every hour." },
+              { "text_en": "Plug 1400 divided by 220 and you get 6.36 hours — the right answer." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Rule: Identify the Geometry First",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "geometry_rule_sketch",
+              "text": "Rule before you compute:\n\n  Step 1: Sketch positions and direction arrows.\n  Step 2: Decide whether they APPROACH (v_rel = V_A + V_B)\n          or CHASE    (v_rel = V_A - V_B).\n  Step 3: Only THEN plug into t = d / v_rel.\n\n  The formula is one line.\n  The thinking is all in the geometry.\n\n  A 30-second sketch saves a 30-minute mistake.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 13,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "geometry_rule_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The rule to absorb is this — identify the geometry BEFORE you plug in numbers." },
+              { "text_en": "Sketch the positions and direction arrows, decide approach or chase, and only then write t equals d over relative speed." },
+              { "text_en": "The formula is just one line. The real thinking is all in the geometry." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Two trains approaching, medium gap", "params": { "d": 200, "V_A": 15, "V_B": 10 } },
+      { "label": "Chase: jeep catches bike", "params": { "d": 100, "V_A": 22, "V_B": 16 } },
+      { "label": "Long-distance Rajdhani meeting", "params": { "d": 1400, "V_A": 28, "V_B": 33 } }
+    ],
+    "type_b": [
+      { "label": "Ranger intercepting an elephant", "scenario": "ranger_elephant_interception" },
+      { "label": "Spacecraft orbit correction", "scenario": "chandrayaan_docking" }
+    ]
+  }
+}

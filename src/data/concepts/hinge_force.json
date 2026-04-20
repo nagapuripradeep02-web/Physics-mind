@@ -1,0 +1,917 @@
+{
+  "concept_id": "hinge_force",
+  "concept_name": "Hinge Force",
+  "chapter": 8,
+  "section": "8.1",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A heavy door hangs from two small hinges. Those hinges must be pushing on the door — but in which direction?",
+    "secondary": "A gate swings on its pin joint. The gate experiences a horizontal pull when you push it and a vertical pull from gravity. The hinge absorbs both.",
+    "tertiary": "A rod pinned to a wall with a load hanging at the free end. The pin has to react somehow — where does its force point?"
+  },
+  "physics_engine_config": {
+    "formulas": {
+      "hinge_horizontal": "H = ΣFx (equilibrium in x direction)",
+      "hinge_vertical": "V = ΣFy (equilibrium in y direction)",
+      "hinge_magnitude": "F_hinge = sqrt(H^2 + V^2)",
+      "hinge_angle": "theta = atan2(V, H)"
+    },
+    "variables": {
+      "W": {
+        "name": "Weight of rod",
+        "unit": "N",
+        "min": 10,
+        "max": 100,
+        "default": 40
+      },
+      "F_ext": {
+        "name": "External load",
+        "unit": "N",
+        "min": 0,
+        "max": 80,
+        "default": 30
+      },
+      "H": {
+        "name": "Horizontal component of hinge force",
+        "unit": "N",
+        "derived": "F_ext"
+      },
+      "V": {
+        "name": "Vertical component of hinge force",
+        "unit": "N",
+        "derived": "W"
+      },
+      "F_hinge": {
+        "name": "Total hinge force",
+        "unit": "N",
+        "derived": "sqrt(H*H + V*V)"
+      }
+    },
+    "constraints": [
+      "Hinge constrains position — cannot constrain rotation",
+      "Hinge force can be in ANY direction in the plane (unlike N which is perpendicular, unlike T which is a pull)",
+      "Find H and V from equilibrium: ΣFx = 0, ΣFy = 0",
+      "Magnitude: F_hinge = √(H² + V²)",
+      "Hinge can both push and pull — it is a pin joint"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "The Door Hinge — Heavy Door, Just Two Pins. How?",
+        "duration": 5,
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "wall",
+            "orientation": "vertical",
+            "position": {
+              "x": 150,
+              "y": 80
+            },
+            "length": 380,
+            "texture": "wall"
+          },
+          {
+            "type": "body",
+            "id": "door",
+            "shape": "door",
+            "hinge_side": "left",
+            "label": "Door\n(20 kg)",
+            "position": {
+              "x": 210,
+              "y": 150
+            },
+            "size": {
+              "w": 140,
+              "h": 300
+            },
+            "fill_color": "#92400E",
+            "animation": {
+              "type": "door_swing",
+              "period_sec": 4.5,
+              "peak_deg": 32
+            }
+          },
+          {
+            "type": "body",
+            "id": "hinge_top",
+            "shape": "circle",
+            "label": "Pin",
+            "position": {
+              "x": 185,
+              "y": 170
+            },
+            "size": 14,
+            "fill_color": "#374151"
+          },
+          {
+            "type": "body",
+            "id": "hinge_bottom",
+            "shape": "circle",
+            "label": "Pin",
+            "position": {
+              "x": 185,
+              "y": 430
+            },
+            "size": 14,
+            "fill_color": "#374151"
+          },
+          {
+            "type": "force_arrow",
+            "from": "door_center",
+            "magnitude": 196,
+            "direction_deg": 270,
+            "label": "mg = 196 N",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 0.4
+          },
+          {
+            "type": "label",
+            "text": "?",
+            "position": {
+              "x": 130,
+              "y": 310
+            },
+            "font_size": 56,
+            "color": "#F59E0B",
+            "bold": true
+          },
+          {
+            "type": "annotation",
+            "text": "The door weighs 196 N downward.\nThe hinge clearly supports it —\nbut in which direction?",
+            "position": {
+              "x": 560,
+              "y": 240
+            },
+            "style": "callout"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "A heavy door hangs from just two small pins in the wall."
+            },
+            {
+              "id": "s2",
+              "text_en": "The door weighs one hundred ninety six newtons. Gravity pulls it straight down."
+            },
+            {
+              "id": "s3",
+              "text_en": "The hinge must be pushing back on the door, otherwise it would fall."
+            },
+            {
+              "id": "s4",
+              "text_en": "But in which direction does the hinge force point? That is the question we answer today."
+            }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Hinge Is Different — It Can Push or Pull in ANY Direction",
+        "duration": 7,
+        "scene_composition": [
+          {
+            "type": "comparison_panel",
+            "id": "string_vs_hinge",
+            "left_label": "String or Normal — one direction only",
+            "right_label": "Hinge — any direction, push OR pull",
+            "left_scene": [
+              {
+                "type": "body",
+                "shape": "rect",
+                "label": "String can only pull along its length",
+                "fill_color": "#6B7280",
+                "position": {
+                  "x": 110,
+                  "y": 130
+                },
+                "size": {
+                  "w": 90,
+                  "h": 40
+                }
+              },
+              {
+                "type": "force_arrow",
+                "magnitude": 20,
+                "direction_deg": 90,
+                "label": "T (pull only)",
+                "color": "#10B981",
+                "scale_pixels_per_unit": 3,
+                "position": {
+                  "x": 155,
+                  "y": 130
+                }
+              },
+              {
+                "type": "annotation",
+                "text": "Normal reaction and string\neach act along ONE fixed direction.",
+                "position": {
+                  "x": 30,
+                  "y": 220
+                }
+              }
+            ],
+            "right_scene": [
+              {
+                "type": "body",
+                "id": "hinge_symbol",
+                "shape": "circle",
+                "label": "Hinge",
+                "fill_color": "#374151",
+                "position": {
+                  "x": 140,
+                  "y": 140
+                },
+                "size": 24
+              },
+              {
+                "type": "force_arrow",
+                "magnitude": 15,
+                "direction_deg": 53,
+                "label": "F_hinge (any angle)",
+                "color": "#8B5CF6",
+                "scale_pixels_per_unit": 3,
+                "position": {
+                  "x": 140,
+                  "y": 140
+                }
+              },
+              {
+                "type": "annotation",
+                "text": "A hinge can push or pull\nin whatever direction\nequilibrium demands.",
+                "color": "#8B5CF6",
+                "position": {
+                  "x": 30,
+                  "y": 220
+                }
+              }
+            ]
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "There are three common types of constraints — strings, normal reactions, and hinges."
+            },
+            {
+              "id": "s2",
+              "text_en": "A string can only pull, and only along its own length."
+            },
+            {
+              "id": "s3",
+              "text_en": "A normal reaction can only push, and only perpendicular to the contact surface."
+            },
+            {
+              "id": "s4",
+              "text_en": "A hinge is different. It can exert a force in any direction — push or pull, as long as equilibrium needs it."
+            }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "How to Find Hinge Force — Equilibrium Equations",
+        "duration": 7,
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "wall",
+            "orientation": "vertical",
+            "position": {
+              "x": 130,
+              "y": 120
+            },
+            "length": 300,
+            "texture": "wall"
+          },
+          {
+            "type": "body",
+            "id": "hinge_point",
+            "shape": "circle",
+            "label": "Hinge",
+            "label_below": true,
+            "position": {
+              "x": 175,
+              "y": 270
+            },
+            "size": 16,
+            "fill_color": "#374151"
+          },
+          {
+            "type": "body",
+            "id": "rod",
+            "shape": "rect",
+            "label": "Rod (W = 40 N)",
+            "position": {
+              "x": 200,
+              "y": 260
+            },
+            "size": {
+              "w": 280,
+              "h": 18
+            },
+            "fill_color": "#92400E"
+          },
+          {
+            "type": "force_arrow",
+            "from": {
+              "x": 470,
+              "y": 269
+            },
+            "magnitude_expr": "F_ext",
+            "direction_deg": 270,
+            "label_expr": "F_ext = {F_ext} N (external load)",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 2
+          },
+          {
+            "type": "force_arrow",
+            "from": {
+              "x": 330,
+              "y": 269
+            },
+            "magnitude_expr": "W",
+            "direction_deg": 270,
+            "label_expr": "W = {W} N (weight at center)",
+            "color": "#B91C1C",
+            "scale_pixels_per_unit": 2
+          },
+          {
+            "type": "force_arrow",
+            "id": "H_dashed",
+            "from": {
+              "x": 175,
+              "y": 269
+            },
+            "magnitude_expr": "F_ext",
+            "direction_deg": 0,
+            "label_expr": "H = {F_ext} N",
+            "color": "#3B82F6",
+            "style": "dashed",
+            "scale_pixels_per_unit": 2
+          },
+          {
+            "type": "force_arrow",
+            "id": "V_dashed",
+            "from": {
+              "x": 175,
+              "y": 269
+            },
+            "magnitude_expr": "W",
+            "direction_deg": 90,
+            "label_expr": "V = {W} N",
+            "color": "#10B981",
+            "style": "dashed",
+            "scale_pixels_per_unit": 2
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_hinge_resultant",
+            "from": {
+              "x": 175,
+              "y": 269
+            },
+            "magnitude_expr": "Math.sqrt(F_ext*F_ext + W*W)",
+            "direction_deg_expr": "Math.atan2(W, F_ext) * 180 / Math.PI",
+            "label_expr": "F_hinge = {Math.sqrt(F_ext*F_ext + W*W).toFixed(1)} N",
+            "color": "#8B5CF6",
+            "style": "solid",
+            "line_width": 3,
+            "scale_pixels_per_unit": 2
+          },
+          {
+            "type": "formula_box",
+            "equation_expr": "ΣFx = 0 → H = {F_ext} N    ΣFy = 0 → V = {W} N    F_hinge = √(H² + V²) = {Math.sqrt(F_ext*F_ext + W*W).toFixed(1)} N",
+            "position": {
+              "x": 60,
+              "y": 440
+            },
+            "border_color": "#8B5CF6"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "The method has two steps. First, split the hinge force into a horizontal component H and a vertical component V."
+            },
+            {
+              "id": "s2",
+              "text_en": "Use horizontal equilibrium. Sum of forces in x equals zero. That gives you H."
+            },
+            {
+              "id": "s3",
+              "text_en": "Use vertical equilibrium. Sum of forces in y equals zero. That gives you V."
+            },
+            {
+              "id": "s4",
+              "text_en": "Combine with Pythagoras. F equals the square root of H squared plus V squared. The angle is arctan of V over H."
+            }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "Special Case — No External Load, Just Weight",
+        "duration": 5,
+        "variable_overrides": {
+          "F_ext": 0
+        },
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "wall",
+            "orientation": "vertical",
+            "position": {
+              "x": 150,
+              "y": 120
+            },
+            "length": 280,
+            "texture": "wall"
+          },
+          {
+            "type": "body",
+            "id": "hinge_point",
+            "shape": "circle",
+            "label": "Hinge",
+            "label_below": true,
+            "position": {
+              "x": 195,
+              "y": 260
+            },
+            "size": 16,
+            "fill_color": "#374151"
+          },
+          {
+            "type": "body",
+            "id": "rod",
+            "shape": "rect",
+            "label_expr": "Rod (W = {W} N)",
+            "position": {
+              "x": 220,
+              "y": 250
+            },
+            "size": {
+              "w": 260,
+              "h": 18
+            },
+            "fill_color": "#92400E"
+          },
+          {
+            "type": "force_arrow",
+            "from": {
+              "x": 340,
+              "y": 259
+            },
+            "magnitude_expr": "W",
+            "direction_deg": 270,
+            "label_expr": "W = {W} N",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 2
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_hinge_only_V",
+            "from": {
+              "x": 195,
+              "y": 259
+            },
+            "magnitude_expr": "W",
+            "direction_deg": 90,
+            "label_expr": "F_hinge = {W} N (pure vertical)",
+            "color": "#8B5CF6",
+            "style": "solid",
+            "line_width": 3,
+            "scale_pixels_per_unit": 2
+          },
+          {
+            "type": "annotation",
+            "text": "With no external horizontal load,\nH = 0 and V = W.\nHinge force collapses to a\nsimple vertical support.",
+            "position": {
+              "x": 520,
+              "y": 320
+            },
+            "style": "callout",
+            "color": "#8B5CF6"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Now remove the external horizontal load. Only the rod's weight remains."
+            },
+            {
+              "id": "s2",
+              "text_en": "Horizontal equilibrium gives H equals zero. There is nothing horizontal to balance."
+            },
+            {
+              "id": "s3",
+              "text_en": "Vertical equilibrium gives V equals W, just forty newtons upward."
+            },
+            {
+              "id": "s4",
+              "text_en": "The hinge force becomes purely vertical in this case. That is the limit everyone starts with, but it is only a special case."
+            }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_5": {
+        "title": "You Control It — Change Load, Watch Hinge Force Rotate",
+        "duration": 7,
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "wall",
+            "orientation": "vertical",
+            "position": {
+              "x": 130,
+              "y": 120
+            },
+            "length": 300,
+            "texture": "wall"
+          },
+          {
+            "type": "body",
+            "id": "hinge_point",
+            "shape": "circle",
+            "label": "Hinge",
+            "label_below": true,
+            "position": {
+              "x": 175,
+              "y": 270
+            },
+            "size": 16,
+            "fill_color": "#374151"
+          },
+          {
+            "type": "body",
+            "id": "rod",
+            "shape": "rect",
+            "label_expr": "Rod (W = {W} N)",
+            "position": {
+              "x": 200,
+              "y": 260
+            },
+            "size": {
+              "w": 280,
+              "h": 18
+            },
+            "fill_color": "#92400E"
+          },
+          {
+            "type": "force_arrow",
+            "from": {
+              "x": 340,
+              "y": 269
+            },
+            "magnitude_expr": "W",
+            "direction_deg": 270,
+            "label_expr": "W = {W} N",
+            "color": "#B91C1C",
+            "scale_pixels_per_unit": 1.5
+          },
+          {
+            "type": "force_arrow",
+            "from": {
+              "x": 470,
+              "y": 269
+            },
+            "magnitude_expr": "F_ext",
+            "direction_deg": 270,
+            "label_expr": "F_ext = {F_ext} N",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 1.5
+          },
+          {
+            "type": "force_arrow",
+            "id": "H_dashed_live",
+            "from": {
+              "x": 175,
+              "y": 269
+            },
+            "magnitude_expr": "F_ext",
+            "direction_deg": 0,
+            "label_expr": "H = {F_ext} N",
+            "color": "#3B82F6",
+            "style": "dashed",
+            "scale_pixels_per_unit": 1.5
+          },
+          {
+            "type": "force_arrow",
+            "id": "V_dashed_live",
+            "from": {
+              "x": 175,
+              "y": 269
+            },
+            "magnitude_expr": "W",
+            "direction_deg": 90,
+            "label_expr": "V = {W} N",
+            "color": "#10B981",
+            "style": "dashed",
+            "scale_pixels_per_unit": 1.5
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_hinge_live",
+            "from": {
+              "x": 175,
+              "y": 269
+            },
+            "magnitude_expr": "Math.sqrt(F_ext*F_ext + W*W)",
+            "direction_deg_expr": "Math.atan2(W, F_ext) * 180 / Math.PI",
+            "label_expr": "F_hinge = {Math.sqrt(F_ext*F_ext + W*W).toFixed(1)} N",
+            "color": "#8B5CF6",
+            "style": "solid",
+            "line_width": 3,
+            "scale_pixels_per_unit": 1.5
+          },
+          {
+            "type": "slider",
+            "variable": "W",
+            "min": 10,
+            "max": 100,
+            "step": 5,
+            "default": 40,
+            "label": "Rod Weight W (N)"
+          },
+          {
+            "type": "slider",
+            "variable": "F_ext",
+            "min": 0,
+            "max": 80,
+            "step": 5,
+            "default": 30,
+            "label": "External Load F_ext (N)"
+          },
+          {
+            "type": "formula_box",
+            "equation_expr": "H = {F_ext} N    V = {W} N    F_hinge = {Math.sqrt(F_ext*F_ext + W*W).toFixed(1)} N    θ = {(Math.atan2(W, F_ext) * 180 / Math.PI).toFixed(1)}°",
+            "position": {
+              "x": 60,
+              "y": 430
+            }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Drag the sliders. Change the weight and the external load, and watch the hinge force rotate."
+            },
+            {
+              "id": "s2",
+              "text_en": "Set the external load to zero. The hinge force becomes pure vertical, just balancing the weight."
+            },
+            {
+              "id": "s3",
+              "text_en": "Set the rod weight to zero. The hinge force becomes pure horizontal, just balancing the external load."
+            },
+            {
+              "id": "s4",
+              "text_en": "This is the real power of a hinge — it provides exactly whatever direction of force equilibrium demands."
+            }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "graph_type": "parametric_vector",
+    "title": "Hinge Force Components",
+    "subtitle": "F_hinge = √(H² + V²)",
+    "x_axis": {
+      "variable": "H",
+      "label": "Horizontal Component H (N)",
+      "min": 0,
+      "max": 100,
+      "tick_interval": 10
+    },
+    "y_axis": {
+      "variable": "V",
+      "label": "Vertical Component V (N)",
+      "min": 0,
+      "max": 120,
+      "tick_interval": 10
+    },
+    "traces": [
+      {
+        "id": "hinge_vector",
+        "type": "vector_from_origin",
+        "x_expr": "F_ext",
+        "y_expr": "W",
+        "color": "#8B5CF6",
+        "label_expr": "|F| = {sqrt(F_ext*F_ext + W*W).toFixed(1)} N",
+        "line_width": 3
+      }
+    ],
+    "live_dot": {
+      "x_variable": "F_ext",
+      "y_expr": "W",
+      "color": "#8B5CF6",
+      "size": 10,
+      "sync_with_panel_a_sliders": [
+        "W",
+        "F_ext"
+      ]
+    },
+    "annotations": [
+      {
+        "text": "The vector tip marks (H, V). Its angle changes with the load.",
+        "position": {
+          "x": 50,
+          "y": 100
+        },
+        "color": "#6B7280"
+      }
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "ladder_hinge",
+      "type": "B",
+      "label": "Ladder Hinged at the Base",
+      "physical_world": "A ladder hinged to the wall at the bottom, its top resting against a smooth ceiling. Find the hinge force at the base.",
+      "same_physics": "Hinge force found from ΣFx = 0 and ΣFy = 0. Magnitude is √(H² + V²).",
+      "scene_hint": "Ladder body. Hinge at bottom-left against the wall. Smooth ceiling contact at the top, giving a horizontal N. Weight at the center."
+    },
+    {
+      "variant_id": "crane_arm",
+      "type": "B",
+      "label": "Crane Arm (Derrick)",
+      "physical_world": "A horizontal beam hinged to a wall at its left end. A rope runs from the wall to the beam to hold it up. A heavy load hangs at the right end. Find the hinge force.",
+      "same_physics": "Many forces act on the beam. The hinge absorbs whatever H and V equilibrium requires.",
+      "scene_hint": "Horizontal rod. Hinge at the left end. Tension rope from the wall to the middle of the beam. Load W pulling down at the right end."
+    }
+  ],
+  "epic_c_branches": [
+    {
+      "branch_id": "hinge_force_always_vertical",
+      "misconception": "The hinge force is always vertical — it only supports the weight.",
+      "trigger_phrases": [
+        "hinge only pushes up",
+        "hinge force equals weight",
+        "hinge force is vertical"
+      ],
+      "state_sequence": [
+        "EPIC_C_1"
+      ],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: Hinge Provides Vertical Support Only",
+          "scene_composition": [
+            {
+              "type": "comparison_panel",
+              "left_label": "Your belief: F_hinge = V only",
+              "right_label": "Reality: F_hinge has H and V",
+              "left_scene": [
+                {
+                  "type": "force_arrow",
+                  "magnitude": 40,
+                  "direction_deg": 90,
+                  "label": "F_hinge = 40 N up (your belief)",
+                  "color": "#EF4444",
+                  "scale_pixels_per_unit": 2,
+                  "position": {
+                    "x": 150,
+                    "y": 220
+                  }
+                },
+                {
+                  "type": "annotation",
+                  "text": "Missing the horizontal piece.\nThe system would slide sideways.",
+                  "color": "#EF4444",
+                  "position": {
+                    "x": 30,
+                    "y": 80
+                  }
+                }
+              ],
+              "right_scene": [
+                {
+                  "type": "force_arrow",
+                  "magnitude": 50,
+                  "direction_deg": 53,
+                  "label": "F_hinge = 50 N at 53° from horizontal",
+                  "color": "#8B5CF6",
+                  "scale_pixels_per_unit": 2,
+                  "position": {
+                    "x": 100,
+                    "y": 220
+                  }
+                },
+                {
+                  "type": "annotation",
+                  "text": "H = 30 N, V = 40 N.\nBoth components are needed for equilibrium.",
+                  "color": "#10B981",
+                  "position": {
+                    "x": 30,
+                    "y": 80
+                  }
+                }
+              ]
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "If the hinge could only push vertically, nothing would balance the horizontal load. The whole system would slide sideways."
+              },
+              {
+                "id": "s2",
+                "text_en": "The horizontal component of the hinge force balances any horizontal load in the problem."
+              },
+              {
+                "id": "s3",
+                "text_en": "The vertical component balances the weight plus any vertical load."
+              },
+              {
+                "id": "s4",
+                "text_en": "Both components act simultaneously. Thinking of the hinge as only vertical is wrong."
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+    {
+      "branch_id": "hinge_same_as_normal",
+      "misconception": "A hinge force is the same as a normal reaction.",
+      "trigger_phrases": [
+        "hinge is just the normal force",
+        "hinge acts like N",
+        "hinge and normal are the same"
+      ],
+      "state_sequence": [
+        "EPIC_C_1"
+      ],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Hinge vs Normal — Very Different",
+          "scene_composition": [
+            {
+              "type": "comparison_panel",
+              "left_label": "Normal Reaction",
+              "right_label": "Hinge Force",
+              "left_scene": [
+                {
+                  "type": "annotation",
+                  "text": "Always perpendicular to contact surface.\nOnly pushes — never pulls.\nDirection fixed by surface geometry.\nVanishes if the body lifts off.",
+                  "position": {
+                    "x": 20,
+                    "y": 100
+                  }
+                }
+              ],
+              "right_scene": [
+                {
+                  "type": "annotation",
+                  "text": "Any direction — no constraint.\nCan push or pull.\nDirection determined by equilibrium.\nAlways present as long as the pin is engaged.",
+                  "position": {
+                    "x": 20,
+                    "y": 100
+                  }
+                }
+              ]
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "The normal reaction can only act perpendicular to the contact surface, and it can only push."
+              },
+              {
+                "id": "s2",
+                "text_en": "The hinge force can act in any direction, and it can push or pull."
+              },
+              {
+                "id": "s3",
+                "text_en": "A normal reaction disappears the instant contact is lost. A hinge force remains as long as the pin joint is intact."
+              },
+              {
+                "id": "s4",
+                "text_en": "Both are contact forces, but their geometry and freedom are completely different."
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "schema_version": "2.0.0"
+}

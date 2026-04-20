@@ -1,0 +1,42 @@
+{
+  "concept_id": "pv_diagrams_work",
+  "concept_name": "PV Diagrams and Thermodynamic Work",
+  "class_level": 11,
+  "chapter": "Thermodynamics",
+  "renderer_hint": { "technology": "plotly", "renderer": "graph_interactive", "scenario_type": "pv_diagram", "panel_count": 1, "show_labels": true },
+  "variables": { "P": "Pressure (Pa)", "V": "Volume (m³)", "W": "Work done (J)", "Q": "Heat exchanged (J)" },
+  "locked_facts": [
+    "Work done by gas: W = ∫PdV = area under PV curve",
+    "Isothermal: W = nRT ln(V₂/V₁) — curved path on PV diagram",
+    "Isobaric: W = PΔV — horizontal line",
+    "Isochoric: W = 0 — vertical line (no volume change)",
+    "Adiabatic: W = (P₁V₁ - P₂V₂)/(γ-1) — steeper than isothermal",
+    "Work depends on the path — it is NOT a state function",
+    "Cyclic process: net work = area enclosed by the cycle on PV diagram"
+  ],
+  "truth_statements": [
+    "The work done by a gas in a thermodynamic process equals the area under the PV curve",
+    "Work is path-dependent — the same initial and final states can give different work for different processes",
+    "In a cyclic process the net work done equals the area enclosed by the cycle on the PV diagram",
+    "An adiabatic curve is steeper than an isothermal curve on a PV diagram because γ > 1",
+    "In an isochoric process no work is done because the volume does not change"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two different paths between the same initial and final states on a PV diagram — one gives larger area under the curve (more work), the other gives less. The start and end points are identical, but the work is different. Work depends on the PATH, not just endpoints.",
+    "visual_emphasis": "Two shaded areas under different paths — same endpoints, visibly different areas = different work",
+    "why_this_breaks_misconception": "Students treat work like a state function — seeing different work for the same endpoints proves it depends on the path taken"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "PV diagram basics", "description": "A gas in a piston-cylinder. PV axes shown. As gas expands (V increases) at constant P, work W = PΔV = area of rectangle under the curve.", "emphasis": "Work = area under the curve on a PV diagram", "labels_visible": ["W = PΔV", "area under curve", "P", "V"] },
+    { "id": "STATE_2", "label": "Four processes", "description": "Four thermodynamic processes shown: isobaric (horizontal), isochoric (vertical, W=0), isothermal (hyperbola), adiabatic (steeper curve). Work for each calculated.", "emphasis": "Different processes = different PV curves = different work amounts", "labels_visible": ["isobaric", "isochoric", "isothermal", "adiabatic"] },
+    { "id": "STATE_3", "label": "Path dependence", "description": "Two paths between same states: path 1 (isobaric then isochoric), path 2 (isochoric then isobaric). Different shaded areas = different work. Work is path-dependent.", "emphasis": "Same start and end, different paths → different work. Work is NOT a state function.", "labels_visible": ["W₁ ≠ W₂", "same states", "different paths"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student draws PV paths by choosing process type. Area (work) calculated automatically. Build a cycle — net work = enclosed area. Compare isothermal vs adiabatic expansion.", "emphasis": "Draw your own PV path — the area IS the work. Build a cycle and find net work.", "labels_visible": ["W", "P", "V", "cycle area"], "interactive": true, "sliders": [{ "id": "initial_pressure", "label": "Initial pressure", "min": 1, "max": 10, "default": 5, "unit": "atm" }, { "id": "initial_volume", "label": "Initial volume", "min": 1, "max": 10, "default": 2, "unit": "L" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Work done depends only on initial and final states", "trigger_phrases": ["work is state function", "same states same work"], "correction": "Work is a path function — it depends on the specific process (path on PV diagram), not just the initial and final states. Two different paths between the same states give different work.", "simulation_emphasis": "Show two paths between same states with different shaded areas" },
+    { "belief": "The adiabatic and isothermal curves look the same", "trigger_phrases": ["adiabatic same as isothermal", "same curve"], "correction": "Adiabatic curves are steeper than isothermal curves because PVᵞ = constant (γ > 1) vs PV = constant. The adiabatic process changes temperature, making pressure drop faster during expansion.", "simulation_emphasis": "Overlay adiabatic and isothermal curves from the same starting point — adiabatic is visibly steeper" }
+  ],
+  "legend": [ { "symbol": "W", "meaning": "Work = ∫PdV = area under curve" }, { "symbol": "P", "meaning": "Pressure (Pa)" }, { "symbol": "V", "meaning": "Volume (m³)" } ],
+  "concept_relationships": { "prerequisites": ["first_law_thermodynamics", "gas_laws_ideal"], "extensions": ["carnot_engine", "entropy_second_law"], "siblings": ["first_law_thermodynamics"], "common_exam_combinations": ["first_law_thermodynamics", "carnot_engine"] }
+}

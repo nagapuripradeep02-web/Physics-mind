@@ -1,0 +1,76 @@
+{
+  "concept_id": "wave_superposition",
+  "concept_name": "Wave Superposition",
+  "chapter": "Waves",
+  "class_level": 11,
+  "renderer_hint": {
+    "primary": "wave_canvas",
+    "scenario_type": "superposition",
+    "show_graph": false
+  },
+  "variables": {
+    "A1": { "symbol": "A\u2081", "name": "Amplitude of wave 1", "unit": "cm", "min": 0.5, "max": 5, "default": 2 },
+    "A2": { "symbol": "A\u2082", "name": "Amplitude of wave 2", "unit": "cm", "min": 0.5, "max": 5, "default": 2 },
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 0.5, "max": 5, "default": 1 },
+    "phase_diff": { "symbol": "\u0394\u03c6", "name": "Phase difference", "unit": "rad", "min": 0, "max": 6.28, "default": 0 }
+  },
+  "locked_facts": [
+    "Superposition principle: y = y\u2081 + y\u2082 (algebraic sum at each point)",
+    "Constructive interference: waves in phase, amplitudes add",
+    "Destructive interference: waves out of phase (\u03c0 radians), amplitudes subtract",
+    "Principle is linear \u2014 works only when medium response is linear",
+    "Each wave maintains its individual identity after superposition"
+  ],
+  "truth_statements": [
+    "When two waves overlap, the resultant displacement is the algebraic sum of individual displacements",
+    "Constructive interference occurs when waves meet in phase",
+    "Destructive interference occurs when waves meet in opposite phase",
+    "After passing through each other, waves continue with their original properties unchanged",
+    "The superposition principle applies to all types of waves"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two waves passing through each other \u2014 during overlap the resultant is the algebraic sum \u2014 after crossing both continue unchanged with original amplitude and shape.",
+    "visual_emphasis": "Show waves approaching, overlapping with resultant displayed, then separating. Each wave emerges on the other side unchanged. The 'collision' does NOT destroy or alter either wave."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Single wave \u2014 observe shape",
+      "what_student_sees": "One travelling sine wave moving rightward. Amplitude A, wavelength \u03bb, frequency f clearly labelled.",
+      "what_to_emphasize": "This is a single transverse wave. Notice the shape and motion."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Two waves \u2014 about to overlap",
+      "what_student_sees": "Second wave appears, travelling in opposite direction. Both waves shown individually before they meet.",
+      "what_to_emphasize": "Two waves of same frequency approach each other. What will happen when they overlap?"
+    },
+    {
+      "state": "STATE_3",
+      "label": "Superposition \u2014 algebraic sum",
+      "what_student_sees": "Both waves overlap. Resultant wave shown as green curve = sum of blue + orange at every point. During constructive regions amplitude doubles; during destructive regions amplitude cancels.",
+      "what_to_emphasize": "The resultant is simply y\u2081 + y\u2082 at every point. No collision, no energy loss. After passing through each other, both waves continue unchanged."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive \u2014 adjust phase difference",
+      "what_student_sees": "Slider to change phase difference \u0394\u03c6 between the two waves. Resultant updates in real-time showing constructive (\u0394\u03c6=0) through destructive (\u0394\u03c6=\u03c0).",
+      "what_to_emphasize": "Experiment: when \u0394\u03c6 = 0 \u2192 constructive (max resultant). When \u0394\u03c6 = \u03c0 \u2192 destructive (zero resultant). The principle is always y = y\u2081 + y\u2082."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "waves_cancel_permanently",
+      "trigger_keywords": ["waves cancel each other", "ek wave jeetti hai", "cancel hoke khatam ho jaati", "waves destroy each other"],
+      "student_belief": "Waves collide and one wins, or they cancel permanently and both disappear",
+      "actual_physics": "During superposition, the resultant is the algebraic sum. After crossing, each wave continues with its original properties unchanged. Energy is conserved \u2014 waves do not destroy each other.",
+      "simulation_emphasis": "Show two waves crossing: during overlap the resultant is the sum, but after crossing each wave emerges unchanged on the other side."
+    }
+  ],
+  "legend": [
+    { "symbol": "y = y\u2081 + y\u2082", "meaning": "Superposition principle" },
+    { "symbol": "\u0394\u03c6 = 0", "meaning": "Constructive interference" },
+    { "symbol": "\u0394\u03c6 = \u03c0", "meaning": "Destructive interference" }
+  ]
+}

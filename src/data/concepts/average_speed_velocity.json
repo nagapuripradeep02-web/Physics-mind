@@ -1,0 +1,280 @@
+{
+  "concept_id": "average_speed_velocity",
+  "concept_name": "Average Speed vs Average Velocity — Distance/Time vs Displacement/Time",
+  "chapter": 6,
+  "section": "6.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 6.2 — Speed and Velocity; split from distance_vs_displacement bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A Mumbai local train runs from Churchgate to Virar, stops at Dadar for twenty minutes because of a jam, and finally reaches Virar. The average SPEED you read on the announcement board is the total track length divided by total time — including the twenty-minute wait. The average VELOCITY is the straight-line from Churchgate to Virar, divided by that same total time. Same journey, two answers that disagree the moment the track is not perfectly straight.",
+    "secondary": "A school bus picking up children around a city in the morning. It drives forty kilometres through winding streets but drops the children at a school only ten kilometres from where it started, after one hour. Average speed is forty km/h. Average velocity is ten km/h. Both are useful — one tells you fuel consumption, the other tells you how far you progressed.",
+    "tertiary": "A runner completing a four-hundred-metre track lap in eighty seconds. Average speed is five metres per second. Average velocity is zero, because the runner finished at the starting line. Two very different measurements of the same performance."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "distance": { "name": "Total distance", "unit": "m", "min": 10, "max": 10000, "default": 400 },
+      "displacement": { "name": "|displacement|", "unit": "m", "min": 0, "max": 10000, "default": 0 },
+      "time": { "name": "Total time", "unit": "s", "min": 1, "max": 7200, "default": 80 }
+    },
+    "computed_outputs": {
+      "avg_speed": { "formula": "distance / time" },
+      "avg_velocity_mag": { "formula": "displacement / time" },
+      "speed_to_velocity_ratio": { "formula": "distance / (displacement + 1e-9)" }
+    },
+    "formulas": {
+      "average_speed": "<v_speed> = total distance / total time    (scalar, >= 0)",
+      "average_velocity": "<v_vel> = total displacement / total time  (vector; can be +, -, or 0)",
+      "equality_condition": "<v_speed> = |<v_vel>|  iff  motion is straight-line with no reversal"
+    },
+    "constraints": [
+      "Average speed uses DISTANCE; average velocity uses DISPLACEMENT",
+      "Average speed is always >= 0",
+      "Average velocity inherits direction/sign from displacement",
+      "Average speed >= |average velocity| always; equality only for straight-line, no-reversal motion",
+      "For a complete round trip (end = start), average velocity is zero but average speed is non-zero"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "A Runner's Lap — Same Motion, Two Averages",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "track_sketch",
+            "text": "          __________\n       __/          \\__\n     /                  \\\n    |    (400 m track)   |\n    |                     |\n     \\                   /\n       \\_____________/\n\n      START = END (one lap)\n      total time = 80 s",
+            "position": { "x": 320, "y": 340 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "two_averages",
+            "text": "Average SPEED\n  distance / time\n  = 400 / 80\n  = 5 m/s\n\nAverage VELOCITY\n  displacement / time\n  = 0 / 80\n  = 0 m/s\n\nThe runner DID move\nfast during the lap.\nYet her average velocity\nis zero.\n\nWhy the gap?\nBecause displacement\ngoes back to zero when\nshe returns to start.",
+            "position": { "x": 640, "y": 260 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A school athlete runs one full lap around a four-hundred-metre track in eighty seconds. Let us compute her two averages." },
+            { "id": "s2", "text_en": "Average speed is total distance divided by total time. Four hundred over eighty is five metres per second. That is a solid pace." },
+            { "id": "s3", "text_en": "Average velocity is total displacement divided by total time. But her displacement is zero — she ended at the starting line. So average velocity is zero." },
+            { "id": "s4", "text_en": "Two numbers, five and zero, describing the same ten-second lap. Not one wrong, one right — they measure different things." },
+            { "id": "s5", "text_en": "Speed measures how hard she was moving. Velocity measures how far she progressed from her starting point. Both are useful, but in different contexts. The next three states nail down the formulas and when each applies." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "The Formulas, Side by Side",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "speed_box",
+            "text": "AVERAGE SPEED\n\n  <v_speed>  =  total distance\n                ----------------\n                total time\n\n- scalar (one number)\n- always >= 0\n- includes every reversal\n- units: m/s, km/h",
+            "position": { "x": 240, "y": 280 },
+            "style": "formula_box",
+            "color": "#F59E0B"
+          },
+          {
+            "type": "annotation",
+            "id": "velocity_box",
+            "text": "AVERAGE VELOCITY\n\n  <v_vel>  =  total displacement\n              ---------------------\n              total time\n\n- vector (magnitude + direction)\n- can be +, -, or zero\n- only endpoints matter\n- units: m/s, km/h PLUS direction",
+            "position": { "x": 620, "y": 280 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here are the two definitions side by side so you can see the difference clearly." },
+            { "id": "s2", "text_en": "Average speed is total distance divided by total time. It is a scalar, always greater than or equal to zero, and it counts every bit of path including reversals." },
+            { "id": "s3", "text_en": "Average velocity is total displacement divided by total time. It is a vector, so it has direction. It can be positive, negative, or zero, depending on which way the object has shifted overall." },
+            { "id": "s4", "text_en": "The formulas differ in only one place — the numerator. Distance versus displacement. Everything else is the same. But that one difference changes everything about the answer." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "A Mumbai Local Example — When Each Number Matters",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "journey",
+            "text": "Mumbai local: Churchgate -> Dadar (45 km)\n                then Dadar -> Virar (60 km)\n                (all forward, but twists)\n\nTotal track length  = 105 km\nStraight-line Churchgate -> Virar = 60 km\nTotal time (with stops)           = 3 hours",
+            "position": { "x": 340, "y": 220 },
+            "style": "formula_box"
+          },
+          {
+            "type": "annotation",
+            "id": "calc",
+            "text": "Average SPEED\n  distance / time\n  = 105 / 3\n  = 35 km/h\n  (this is what the timetable uses)\n\nAverage VELOCITY\n  displacement / time\n  = 60 / 3\n  = 20 km/h (toward Virar)\n  (this tells you how far your\n   actual progress from home is,\n   per hour)\n\nBoth true. Both different.",
+            "position": { "x": 340, "y": 400 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A Mumbai local runs from Churchgate to Virar. The track winds through stations, covering a total path length of one hundred and five kilometres." },
+            { "id": "s2", "text_en": "The straight-line distance — if you could draw a line on a map from Churchgate to Virar — is sixty kilometres. The total time including all stops is three hours." },
+            { "id": "s3", "text_en": "Average speed is one hundred and five divided by three, equals thirty-five kilometres per hour. That is the number the timetable uses to describe the train's pace." },
+            { "id": "s4", "text_en": "Average velocity is sixty divided by three, equals twenty kilometres per hour toward Virar. That tells you how far from home you have actually progressed each hour." },
+            { "id": "s5", "text_en": "Speed for performance. Velocity for progress. Both are correct. Both measure something real. The question decides which one you need." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "The Inequality — Average Speed >= |Average Velocity|",
+        "duration": 9,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ineq_rule",
+            "text": "Universal rule\n\n  <v_speed>  >=  |<v_vel>|\n\nComes directly from\n  distance  >=  |displacement|\n\nEquality (speed = |velocity|)\nONLY when\n  (1) motion is straight-line AND\n  (2) no reversal",
+            "position": { "x": 300, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "round_trip_case",
+            "text": "Round-trip special case\n\nIf the object returns to start,\n  displacement = 0\n  -> average velocity = 0\n\nBut distance > 0\n  -> average speed > 0\n\nSo for ANY closed loop,\n  <v_speed> > 0 but <v_vel> = 0.",
+            "position": { "x": 680, "y": 300 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The universal rule follows from the distance-versus-displacement inequality. Average speed is always greater than or equal to the magnitude of average velocity." },
+            { "id": "s2", "text_en": "Equality holds only in the straight-line, no-reversal case. Any curve or U-turn and average speed exceeds average velocity." },
+            { "id": "s3", "text_en": "There is one special case you will see often. For any closed-loop motion that ends where it began — a full lap, a round trip — displacement is zero, so average velocity is zero." },
+            { "id": "s4", "text_en": "But the object plainly moved. Its average speed is non-zero — the path length divided by the time. So for every closed-loop problem, average velocity is zero while average speed is positive." },
+            { "id": "s5", "text_en": "If an exam problem mentions 'returns to starting point' or 'round trip', the average velocity is zero. Full stop. Only the average speed is computed normally." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "avg_speed_equals_avg_velocity",
+      "misconception": "Average speed and average velocity always give the same number",
+      "trigger_phrases": [
+        "avg speed same as avg velocity",
+        "speed velocity same meaning",
+        "why compute both",
+        "interchangeable"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — They Should Match",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_claim",
+              "text": "Your reasoning\n\nSpeed and velocity both have\nunits of m/s.\n\nDivide by time in both formulas.\n\nSo average speed should just be\nthe 'speed version' of average\nvelocity, right?\n\nThey only differ by a factor of\nmagnitude vs signed number.\n\n(Works when motion is straight.\nBreaks as soon as the path bends.)",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Students often treat average speed and average velocity as the same thing because they share units and both divide something by time." },
+              { "id": "s2", "text_en": "The trap is that they use different numerators. Speed uses distance. Velocity uses displacement. That single difference can change the answer by a factor of two, by a factor of ten, or all the way to zero." },
+              { "id": "s3", "text_en": "Let me show one concrete scenario where the mistake costs marks." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Round-Trip Contradiction — Velocity Goes to Zero",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "scenario",
+              "text": "Cyclist on Marine Drive\nRides 6 km forward to a cafe.\nSits at the cafe for 0 min.\nCycles 6 km back home.\nTotal time: 1 hour.",
+              "position": { "x": 300, "y": 230 },
+              "style": "formula_box"
+            },
+            {
+              "type": "annotation",
+              "id": "contrast",
+              "text": "Average SPEED\n  distance = 6 + 6 = 12 km\n  time = 1 hr\n  <v_speed> = 12 km/h\n\nAverage VELOCITY\n  displacement = 0 (returned home)\n  time = 1 hr\n  <v_vel> = 0 km/h\n\nA claim that 'speed equals velocity'\nwould give 12 = 0, which is absurd.\nSo the two ARE different quantities.",
+              "position": { "x": 480, "y": 380 },
+              "style": "formula_box",
+              "color": "#10B981",
+              "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A cyclist rides six kilometres down Marine Drive to a cafe, then cycles six kilometres back home. Total time: one hour." },
+              { "id": "s2", "text_en": "Average speed — twelve kilometres of total path divided by one hour — is twelve kilometres per hour. She was clearly moving." },
+              { "id": "s3", "text_en": "Average velocity — displacement is zero because she ended where she started. Zero divided by one hour is zero." },
+              { "id": "s4", "text_en": "Twelve versus zero. Same trip. The two quantities cannot possibly be the same number here. They measure different things, and the round-trip case shows it cleanly." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "When They DO Agree — The Strict Conditions",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "when_equal",
+              "text": "Average speed = |Average velocity|\n\nOnly when\n  (1) motion is straight-line AND\n  (2) direction never reverses\n\nExamples\n- a rocket climbing, no return yet\n- a train on a straight track,\n  forward only\n- a ball falling freely\n  before it bounces\n\nThe moment the path bends OR\nthe direction reverses,\n  <v_speed>  >  |<v_vel>|.",
+              "position": { "x": 380, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "There is a narrow case where average speed and average velocity magnitudes ARE equal — strictly straight-line motion with no reversal." },
+              { "id": "s2", "text_en": "A rocket climbing straight up before it falls back. A train moving forward on a straight track. A ball falling freely before hitting the ground." },
+              { "id": "s3", "text_en": "In all these cases, distance equals the magnitude of displacement, so the two averages match. For every other situation — curves, reversals, detours — average speed is strictly greater." },
+              { "id": "s4", "text_en": "When you see a problem, check for curves or reversals first. If either is present, compute speed and velocity separately. They are different numbers." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Semicircle path",
+      "physical_world": "Runner jogs along half the track (semicircle) of 5 m radius in 30 s. Distance = 15.71 m, |disp| = 10 m. <v_speed> = 0.52 m/s, |<v_vel>| = 0.33 m/s.",
+      "same_physics": "Average speed > |average velocity| whenever path is curved"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Round trip with different legs",
+      "physical_world": "Car goes 30 km east in 30 min, then 20 km west in 20 min. Distance = 50 km, displacement = 10 km east, total time = 50 min. <v_speed> = 60 km/h, <v_vel> = 12 km/h east.",
+      "same_physics": "Distance-over-time versus displacement-over-time; reversal makes them disagree"
+    }
+  ]
+}

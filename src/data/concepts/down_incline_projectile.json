@@ -1,0 +1,273 @@
+{
+  "concept_id": "down_incline_projectile",
+  "concept_name": "Projectile Down an Incline — Slope Helps the Projectile Go Further",
+  "chapter": 7,
+  "section": "7.7",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 7.7 — projectile on an inclined plane (down); split from projectile_inclined",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "A mountain cyclist at Manali launching off a 12-degree downhill switchback ramp at 15 m/s at 20 degrees above horizontal. Unlike up-slope shots, here the ground FALLS AWAY — so the projectile stays airborne longer and lands much further than it would on flat ground. This is why ski jumpers and BMX riders score well on downhill ramps; the slope multiplies their range.",
+    "secondary": "A water-jet fountain at Ramoji Film City angled downhill to spray over a cascading garden slope of 25 degrees. Water leaves the nozzle at 8 m/s, 15 degrees above horizontal. Down the slope, the jets reach much further than the same jets fired over flat ground — dramatic for visitors to watch.",
+    "tertiary": "A basketball bounce pass from the top of a Dalhousie hill school's sports terrace, landing on a lower playground 8 metres below and 30 m away. The ball arcs downhill. Teachers unconsciously use projectile-down-incline physics when coaching young players to 'aim low across the slope'."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v0": { "name": "Launch speed", "unit": "m/s", "min": 5, "max": 200, "default": 15 },
+      "alpha": { "name": "Launch angle above horizontal", "unit": "deg", "min": 0, "max": 90, "default": 20 },
+      "beta": { "name": "Down-incline angle below horizontal", "unit": "deg", "min": 0, "max": 60, "default": 12 },
+      "g": { "name": "Gravitational acceleration", "unit": "m/s^2", "min": 9.8, "max": 10, "default": 10 }
+    },
+    "computed_outputs": {
+      "time_of_flight_down": { "formula": "2 * v0 * sin(alpha + beta) / (g * cos(beta))" },
+      "range_down_incline": { "formula": "2 * v0^2 * sin(alpha + beta) * cos(alpha) / (g * cos^2(beta))" },
+      "max_range_angle": { "formula": "alpha_opt = 45 deg - beta/2" }
+    },
+    "formulas": {
+      "range_down": "R_down = 2 * v0^2 * sin(alpha + beta) * cos(alpha) / (g * cos^2(beta))",
+      "time_down": "T_down = 2 * v0 * sin(alpha + beta) / (g * cos(beta))",
+      "optimal_angle_down": "For max range down an incline: alpha_opt = 45 deg - beta / 2  (bisector of incline and vertical)",
+      "rotated_axes_approach": "Rotate axes so x-axis lies ALONG the incline (pointing downslope). The perpendicular becomes 'vertical'. Gravity splits: g*sin(beta) along the slope (ACCELERATING downslope motion), g*cos(beta) perpendicular."
+    },
+    "constraints": [
+      "Launch and landing both ON the incline (same slope).",
+      "Down-slope always gives LARGER range than flat ground for the same alpha.",
+      "Slope adds downward assist to the flight.",
+      "At beta = 0, formula reduces to flat-ground case.",
+      "Beta must be positive (slope going down)."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Down-Slope Gives the Projectile More Air Time",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "down_sketch",
+            "text": "Manali downhill switchback, 12 deg slope down:\n\n   cyclist launches at 15 m/s, alpha = 20 deg above horizontal\n\n      .__________________\n       .                  LAUNCH POINT\n        .\n         .\n           .  beta = 12 deg\n             .\n               .        (ground drops away)\n                 .\n                   .\n                     .__________ LANDING SPOT\n\n   Unlike flat ground, the ground falls AWAY beneath the ball.\n   Ball stays in the air LONGER -> travels FURTHER.\n\n   Compared to the same launch on flat ground,\n   down-slope shots can go 1.5x to 3x the flat-ground range.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "manali_label",
+            "text": "Manali mountain cyclist over a downhill ramp",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "mtb_bike",
+            "vehicle_type": "bike",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_left",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 3.0, "dx_px": 180, "dy_px": -80, "easing": "ease_out" },
+              { "type": "translate", "delay_sec": 8.0, "duration_sec": 3.0, "dx_px": 180, "dy_px": 220, "easing": "ease_in" }
+            ]
+          }
+        ],
+        "focal_primitive": "down_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "On a Manali downhill switchback, a mountain cyclist launches off a 12-degree ramp at 15 metres per second, 20 degrees above horizontal." },
+            { "text_en": "Unlike flat ground, the ground FALLS AWAY beneath the cyclist. The bike stays airborne longer — and lands much further down the slope." },
+            { "text_en": "Down-slope shots routinely go 1.5 to 3 times the flat-ground range, for the same launch speed and angle. The slope gifts you distance." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Rotated Axes — Gravity ACCELERATES Motion Along the Slope",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "gravity_split_sketch",
+            "text": "Rotate axes downhill (x' points downslope):\n\n   gravity g (straight down) splits into:\n      g_x'  =  g * sin(beta)      (along-slope, ACCELERATING downslope motion!)\n      g_y'  =  g * cos(beta)      (perpendicular, pulling ball to slope)\n\n   Key difference from UP-slope:\n      up-slope: g_x' ACTS AGAINST motion -> DECELERATES\n      down-slope: g_x' IS IN DIRECTION OF motion -> ACCELERATES\n\n   In rotated launch velocity:\n      v_x'  =  v0 * cos(alpha + beta)   (along downslope direction)\n      v_y'  =  v0 * sin(alpha + beta)   (perpendicular above slope)\n\n   Notice the '+ beta' instead of '- beta'.\n   The effective launch angle above the slope is LARGER\n   because the slope is below the horizontal.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "gravity_split_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Rotate the axes downhill, so x-prime points along the slope." },
+            { "text_en": "Gravity splits into g sine beta along the slope, PLUS g cosine beta perpendicular." },
+            { "text_en": "Crucial difference from up-slope — here g sine beta accelerates motion DOWN the slope, rather than decelerating it." },
+            { "text_en": "The rotated launch angle above the slope is alpha plus beta, not alpha minus beta. The effective launch angle is LARGER because the slope tilts the reference." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Range Formula and Optimal Angle Down-Slope",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "range_down_sketch",
+            "text": "Range formula down an incline:\n\n   R  =  2 * v0^2 * sin(alpha + beta) * cos(alpha)  /  (g * cos^2(beta))\n\n  Note the '+ beta' vs the up-slope '- beta'.\n  That sign flip is what makes down-slope longer.\n\n  Time of flight:\n    T  =  2 * v0 * sin(alpha + beta) / (g * cos(beta))\n\n  Optimal angle for maximum down-slope range:\n    alpha_opt  =  45 deg  -  beta / 2   (shallower than flat ground!)\n\n  Intuition: because the slope already helps, you should aim\n             SHALLOWER, letting the downslope do the work.\n\n  Manali numbers (v0 = 15, alpha = 20, beta = 12):\n    sin(32)    =  0.530\n    cos(20)    =  0.940\n    cos^2(12)  ~=  0.958\n\n    R  =  2 * 225 * 0.530 * 0.940 / (10 * 0.958)\n       ~=  23.4 m along the slope",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "range_down_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Range down an incline is 2 v-nought squared sine of alpha plus beta, times cosine alpha, all divided by g cosine-squared beta." },
+            { "text_en": "The sign flip from minus to plus beta is what makes down-slope go further." },
+            { "text_en": "Optimal angle for maximum down-slope range is 45 degrees MINUS beta over 2 — shallower than flat ground." },
+            { "text_en": "The intuition — because the slope already helps, you should aim shallower and let the downslope do the work." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "same_formula_as_uphill",
+      "misconception_summary": "Student uses the up-slope formula with the same '-' sign for down-slope, getting a nonsense answer.",
+      "confusion_patterns": [
+        "same formula up and down slope",
+        "confuse up and down incline formula",
+        "sign of beta for down slope",
+        "how is down slope different from up slope"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Mixing Up + and - Beta",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "mixup_sketch",
+              "text": "Student's mistake:\n\n  Up-slope formula (alpha - beta):\n    R_up = 2 * v0^2 * sin(alpha - beta) * cos(alpha) / (g * cos^2(beta))\n\n  Down-slope formula (alpha + beta):\n    R_down = 2 * v0^2 * sin(alpha + beta) * cos(alpha) / (g * cos^2(beta))\n\n  Student applies the up-slope formula to a down-slope problem\n  -> gets a SMALLER range than flat ground\n  -> obviously wrong (down-slope should be larger)\n\n  The sign of beta in the sine term DEPENDS ON whether\n  the slope rises or falls in front of the launch point.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 12,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "mixup_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The common mistake — using the wrong sign for beta." },
+              { "text_en": "Up-slope uses alpha minus beta. Down-slope uses alpha plus beta." },
+              { "text_en": "Apply up-slope to a down-slope problem, and you will get a smaller range than flat ground — obviously wrong since down-slope should be LARGER." } ,
+              { "text_en": "The sign of beta depends on whether the slope rises or falls AWAY from the launch point." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Which Sign? Look at the Slope Direction",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "sign_rule_sketch",
+              "text": "Sign rule:\n\n   UP-SLOPE (slope RISES away from launch):\n       Effective angle above slope is SMALLER\n       -> use  sin(alpha - beta)\n       -> shorter range\n\n   DOWN-SLOPE (slope FALLS away from launch):\n       Effective angle above slope is LARGER\n       -> use  sin(alpha + beta)\n       -> longer range\n\n  Memory trick:\n    'Up takes away (minus), down gives (plus).'\n\n  Picture the slope. If it goes UP, subtract. If DOWN, add.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "sign_rule_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Sign rule to burn into memory." },
+              { "text_en": "Up-slope — slope rises away from the launch — use sine of alpha minus beta. Effective launch angle above slope is smaller. Range is shorter." },
+              { "text_en": "Down-slope — slope falls away from the launch — use sine of alpha plus beta. Effective angle is larger, range is longer." },
+              { "text_en": "Memory trick — 'Up takes away. Down gives.' Minus for up, plus for down." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Sanity Check with Flat Ground (beta = 0)",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "sanity_flat_sketch",
+              "text": "Both formulas must reduce to flat-ground at beta = 0:\n\n  Up-slope formula:\n    R  =  2 * v0^2 * sin(alpha - 0) * cos(alpha) / (g * cos^2(0))\n       =  2 * v0^2 * sin(alpha) * cos(alpha) / g\n       =  v0^2 * sin(2*alpha) / g  <- classic flat-ground range. OK.\n\n  Down-slope formula:\n    R  =  2 * v0^2 * sin(alpha + 0) * cos(alpha) / (g * cos^2(0))\n       =  2 * v0^2 * sin(alpha) * cos(alpha) / g\n       =  v0^2 * sin(2*alpha) / g  <- also flat-ground range. OK.\n\n  Both formulas behave correctly in the flat-ground limit.\n  The ONLY difference is the sign of beta in the sin term.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 11,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "sanity_flat_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Sanity check — both formulas must reduce to the flat-ground formula when beta equals zero." },
+              { "text_en": "Up-slope formula at beta equals zero — v-nought squared sine 2 alpha over g. Correct." },
+              { "text_en": "Down-slope formula at beta equals zero — same result, v-nought squared sine 2 alpha over g. Also correct." },
+              { "text_en": "So the only real difference between the two formulas is the sign of beta inside the sine term. Plus for down, minus for up." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Manali downhill ramp, 12 deg", "params": { "v0": 15, "alpha": 20, "beta": 12 } },
+      { "label": "Ramoji fountain cascade, 25 deg", "params": { "v0": 8, "alpha": 15, "beta": 25 } },
+      { "label": "Bounce pass down hill playground", "params": { "v0": 10, "alpha": 10, "beta": 30 } }
+    ],
+    "type_b": [
+      { "label": "Ski jumper on Auli slope", "scenario": "ski_jumper_auli" },
+      { "label": "Mountain water-slide jet", "scenario": "mountain_waterslide_jet" }
+    ]
+  }
+}

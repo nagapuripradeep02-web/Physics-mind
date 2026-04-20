@@ -1,0 +1,43 @@
+{
+  "concept_id": "mutual_inductance_transformer",
+  "concept_name": "Mutual Inductance and Transformers",
+  "class_level": 12,
+  "chapter": "Electromagnetic Induction",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "circuit_live", "scenario_type": "transformer", "panel_count": 2, "show_labels": true },
+  "variables": { "M": "Mutual inductance (H)", "N_p": "Primary turns", "N_s": "Secondary turns", "k": "Turns ratio = N_s/N_p" },
+  "locked_facts": [
+    "Mutual inductance: ε₂ = -MdI₁/dt (EMF in coil 2 due to changing current in coil 1)",
+    "M = μ₀N₁N₂A/l for two solenoids wound on same core",
+    "Transformer: V_s/V_p = N_s/N_p (voltage ratio = turns ratio)",
+    "Ideal transformer: V_pI_p = V_sI_s (power conserved)",
+    "Step-up: N_s > N_p → voltage increases, current decreases",
+    "Step-down: N_s < N_p → voltage decreases, current increases",
+    "Transformers work only with AC — DC produces no changing flux in steady state",
+    "Energy losses: copper losses (I²R), eddy current losses, hysteresis losses, flux leakage"
+  ],
+  "truth_statements": [
+    "Mutual inductance quantifies the flux linkage in one coil due to current in another coil",
+    "A transformer transfers electrical energy from one circuit to another through mutual induction without any electrical connection",
+    "An ideal transformer conserves power: the product of voltage and current is the same in primary and secondary",
+    "Step-up transformers increase voltage at the expense of current and step-down transformers do the opposite",
+    "Transformers require alternating current — a steady DC current produces no changing flux and hence no induced EMF"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A step-up transformer with N_s = 10N_p. Voltage increases 10×. But current decreases 10×. Power bars for primary and secondary are EQUAL (V×I same). The transformer doesn't create energy — it trades voltage for current.",
+    "visual_emphasis": "Voltage bar grows 10× while current bar shrinks 10× — power bars remain identical",
+    "why_this_breaks_misconception": "Students think transformers create free energy by increasing voltage — seeing power conservation with the current trade-off eliminates this confusion"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Mutual inductance", "description": "Two coils on a shared iron core. AC in coil 1 creates changing flux. Flux links coil 2. EMF induced in coil 2: ε₂ = -MdI₁/dt.", "emphasis": "Changing current in one coil induces EMF in the other — no electrical connection needed", "labels_visible": ["ε₂ = -MdI₁/dt", "shared flux", "M"] },
+    { "id": "STATE_2", "label": "Transformer operation", "description": "Primary coil (N_p turns) connected to AC. Secondary coil (N_s turns) shows induced voltage. V_s/V_p = N_s/N_p. Voltage ratio equals turns ratio.", "emphasis": "Turns ratio determines voltage ratio: more turns = more voltage", "labels_visible": ["V_s/V_p = N_s/N_p", "AC input", "induced output"] },
+    { "id": "STATE_3", "label": "Power conservation", "description": "Step-up: V increases by k, I decreases by k. Power V×I is same on both sides. Step-down shown for comparison. No free energy — just voltage-current trade.", "emphasis": "Power in = Power out. Voltage up means current down. No free energy!", "labels_visible": ["P_p = P_s", "V_p I_p = V_s I_s"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts turns ratio and input voltage. Output voltage, current, and power displayed. Try DC input — zero output (no changing flux). Energy loss sliders show real transformer efficiency.", "emphasis": "Change turns ratio — see voltage and current trade. Try DC — nothing happens!", "labels_visible": ["V_p", "V_s", "I_p", "I_s", "P"], "interactive": true, "sliders": [{ "id": "turns_ratio", "label": "N_s/N_p", "min": 0.1, "max": 10, "default": 2, "unit": "" }, { "id": "input_voltage", "label": "V_p", "min": 10, "max": 240, "default": 120, "unit": "V" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "A transformer creates energy by increasing voltage", "trigger_phrases": ["transformer creates energy", "free energy from transformer", "voltage badhata hai toh energy badhti hai"], "correction": "A transformer conserves power: if voltage increases by factor k, current decreases by the same factor k. P = VI remains constant. The transformer only converts voltage-current ratios, not energy.", "simulation_emphasis": "Show equal power bars on primary and secondary — voltage up, current down, power same" },
+    { "belief": "Transformers work with DC", "trigger_phrases": ["DC transformer", "battery se transformer"], "correction": "Transformers require AC because they work by electromagnetic induction (changing flux). A steady DC current produces constant flux → dΦ/dt = 0 → no induced EMF. Only the transient (switch-on/off) produces momentary output.", "simulation_emphasis": "Apply DC — galvanometer shows brief spike at switch-on then nothing. Apply AC — continuous output." }
+  ],
+  "legend": [ { "symbol": "M", "meaning": "Mutual inductance (H)" }, { "symbol": "k", "meaning": "Turns ratio N_s/N_p" }, { "symbol": "P", "meaning": "Power = VI (W)" } ],
+  "concept_relationships": { "prerequisites": ["faraday_law_emf", "self_inductance_lr"], "extensions": ["ac_circuits_lcr", "power_transmission"], "siblings": ["self_inductance_lr"], "common_exam_combinations": ["ac_circuits_lcr"] }
+}

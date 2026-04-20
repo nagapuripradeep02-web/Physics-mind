@@ -1,0 +1,320 @@
+{
+  "concept_id": "vab_formula",
+  "concept_name": "Relative Velocity Formula — V_AB = V_A − V_B",
+  "chapter": 6,
+  "section": "6.10",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 6.10; NCERT 3.6 and 4.6 — split from relative_motion bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "Two Rajdhani trains crossing on parallel tracks near Kanpur. You are sitting in train A moving at 120 km/h northward; train B comes past you at 100 km/h southward. Even though your speedometer says 120, the windows of train B whip past you at 220 km/h — that is the RELATIVE velocity you actually feel. Every passenger on the Indian Railway network has experienced V_AB in their bones.",
+    "secondary": "A Mumbai local train moving at 40 km/h. A second local on the parallel track passes going the same direction at 50 km/h. From your seat the faster train creeps past at only 10 km/h — feels like it is barely moving, because its velocity RELATIVE to you is just the 10 km/h difference.",
+    "tertiary": "A NASA space shuttle docking with the ISS. Both are racing around Earth at 27,000 km/h, but their relative velocity near docking is just a few centimetres per second. Same physics, same formula — V_AB = V_A minus V_B — just with different frames."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "V_A": { "name": "Velocity of A in ground frame", "unit": "m/s", "min": -50, "max": 50, "default": 20 },
+      "V_B": { "name": "Velocity of B in ground frame", "unit": "m/s", "min": -50, "max": 50, "default": 10 },
+      "V_AB": { "name": "Velocity of A as seen from B", "unit": "m/s", "min": -100, "max": 100, "default": 10 }
+    },
+    "computed_outputs": {
+      "V_AB": { "formula": "V_A - V_B" },
+      "V_BA": { "formula": "V_B - V_A" }
+    },
+    "formulas": {
+      "relative_definition": "V_AB = V_A - V_B  (velocity of A as seen from an observer riding on B)",
+      "symmetry": "V_AB = -V_BA  (swap the observer and object, the sign flips)",
+      "observer_rule": "To compute the velocity seen by any observer, subtract the observer's velocity from the object's velocity."
+    },
+    "constraints": [
+      "Always subtract the OBSERVER's velocity, never add it.",
+      "Direction matters: sign is preserved through the subtraction.",
+      "If both observer and object have the same velocity, V_AB = 0 — the object appears stationary."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "The Core Idea — Seeing A From B",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "hook_sketch",
+            "text": "Velocity is ALWAYS 'relative to something'.\n\n  When we say a car moves at 60 km/h,\n  we silently mean 60 km/h relative to the ROAD.\n\n  If we want to know how the car looks to\n  another moving car (observer B),\n  we need a new number: V_AB.\n\n  Definition:\n     V_AB  =  velocity of A as seen from B\n           =  V_A  -  V_B\n\n  Subtract the observer.\n",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 13,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "trains_label",
+            "text": "Two Rajdhani trains near Kanpur, opposite directions",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "train_a",
+            "vehicle_type": "train",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 320, "dy_px": 0, "easing": "linear" }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "train_b",
+            "vehicle_type": "train",
+            "zone": "MAIN_ZONE",
+            "anchor": "right_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": -320, "dy_px": 0, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "hook_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Every velocity you quote silently carries a reference frame — usually the ground." },
+            { "text_en": "When two observers disagree, we need a new number: the velocity of A as seen from B, written V AB." },
+            { "text_en": "The rule is beautifully compact. V AB equals V A minus V B — subtract the observer." },
+            { "text_en": "Picture two Rajdhani trains approaching near Kanpur. Train A moves north at 120; train B moves south at 100." },
+            { "text_en": "From your seat inside train A, the windows of train B fly past at 220 kilometres per hour — that is 120 minus minus 100, the relative velocity." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Worked Example — Two Mumbai Locals on Parallel Tracks",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "example_sketch",
+            "text": "Two Mumbai locals, SAME direction\n\n  V_A  =  50 km/h  (faster train)\n  V_B  =  40 km/h  (slower train)\n\n  Sitting in train B, how fast does train A creep past?\n\n     V_AB  =  V_A  -  V_B\n            =  50  -  40\n            =  10 km/h\n\n  Train A appears to move at ONLY 10 km/h from B's window.\n  Although ground sees it at 50.\n\n  This is why overtaking on a highway feels 'slow'\n  when both cars are going the same way.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "local_a",
+            "vehicle_type": "train",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 280, "dy_px": -20, "easing": "linear" }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "local_b",
+            "vehicle_type": "train",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 220, "dy_px": 20, "easing": "linear" }
+            ]
+          }
+        ],
+        "focal_primitive": "example_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Here is a friendlier case — two locals running the same direction on parallel tracks." },
+            { "text_en": "Train A at 50 kilometres per hour, train B at 40, both northbound." },
+            { "text_en": "Relative velocity of A as seen from B is 50 minus 40, which is only 10 kilometres per hour." },
+            { "text_en": "This is why overtaking on the highway feels slow — the relative speed is only the DIFFERENCE, not the sum of the two speeds." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Symmetry — V_AB and V_BA are Opposite",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "symmetry_sketch",
+            "text": "Swap observer and object:\n\n  V_AB  =  V_A  -  V_B   =  +10 km/h\n  V_BA  =  V_B  -  V_A   =  -10 km/h\n\n  So  V_BA  =  -V_AB.\n\n  Intuition:\n    From train B's seat, train A creeps FORWARD at +10 km/h.\n    From train A's seat, train B drifts BACKWARD at -10 km/h.\n  The magnitudes match; the signs flip.\n\n  This symmetry is free — never compute both directions\n  from scratch, just flip the sign.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "symmetry_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "One last free gift from the formula — the symmetry rule." },
+            { "text_en": "V AB equals V A minus V B. Swap the letters — V BA equals V B minus V A. That is minus V AB." },
+            { "text_en": "So if train A crawls forward at plus 10 as seen from B, train B drifts backward at minus 10 as seen from A. Magnitudes match, signs flip." },
+            { "text_en": "Never compute both directions from scratch — one subtraction, then flip the sign for the return view." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "add_instead_of_subtract",
+      "misconception_summary": "Student tries to ADD the two velocities instead of subtracting — thinks relative = total.",
+      "confusion_patterns": [
+        "add velocities for relative velocity",
+        "relative velocity same direction add",
+        "V_AB is V_A plus V_B",
+        "relative speed is sum of speeds"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Instinct: Add Them",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_sketch",
+              "text": "Student's instinct:\n\n  Train A at 50 km/h, train B at 40 km/h.\n  \"Both are moving — let me ADD them:\n   50 + 40 = 90 km/h relative velocity.\"\n\n  But common sense immediately rejects this:\n  If two trains moving the SAME way really had 90 km/h\n  of separation speed, even slow overtakes would feel like\n  rocket flybys. They don't. They feel slow.\n\n  The instinct is wrong. Let us fix it.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 13,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Now the common error. A student reads the problem, sees two moving trains, and adds them." },
+              { "text_en": "50 plus 40 equals 90. Done — relative velocity is 90." },
+              { "text_en": "But your own lived experience rejects this. Same-direction overtakes feel SLOW, not like rocket flybys." },
+              { "text_en": "If relative motion really added like this, trains would explode past each other. They don't. Something is wrong with the instinct." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Why Subtraction — Think About the Observer's Frame",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "correction_sketch",
+              "text": "Why subtraction, not addition:\n\n  Step 1: Imagine you are the observer, riding on train B.\n          From YOUR seat, train B is at REST — you do not see it move.\n  Step 2: Your own velocity, as you experience it, is zero.\n  Step 3: For that to be true mathematically, subtract V_B\n          from EVERYTHING — including V_A.\n\n    V_AB  =  V_A  -  V_B\n\n  The subtraction is the mathematical act of 'entering train B's frame'.\n\n  Same direction:    V_AB = 50 - 40 = 10 km/h      (slow overtake, matches reality)\n  Opposite direction: V_AB = 50 - (-40) = 90 km/h  (fast approach, matches reality)",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            },
+            {
+              "type": "label",
+              "id": "frame_label",
+              "text": "Subtraction = shifting into the observer's frame.",
+              "zone": "MAIN_ZONE",
+              "anchor": "bottom_center",
+              "font_size": 14,
+              "color": "#00796b",
+              "appear_at": 4.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "correction_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Here is why subtraction is the right move." },
+              { "text_en": "Imagine you are sitting on train B. From your own seat, train B is at rest — you do not feel it moving." },
+              { "text_en": "To make that true mathematically, you must subtract V B from every velocity in the universe — including V A." },
+              { "text_en": "That is what V AB equals V A minus V B means. You are mathematically shifting into train B's point of view." },
+              { "text_en": "Same direction: 50 minus 40 equals 10 — slow overtake. Opposite direction: 50 minus minus 40 equals 90 — fast approach. Both match real life." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Sign Convention Fixes Everything",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "sign_sketch",
+              "text": "The sign convention handles it all:\n\n  Step 1: Pick a positive direction (e.g. north = +).\n  Step 2: Assign each velocity its own sign.\n  Step 3: Plug into V_AB = V_A - V_B.\n  Step 4: Interpret the SIGN of the answer.\n          Positive -> A moves in + direction relative to B\n          Negative -> A moves in - direction relative to B\n\n  Same direction, both positive:  V_AB = 50 - 40 = +10 (small)\n  Opposite direction, one negative: V_AB = 50 - (-40) = +90 (large)\n  Same speed, same direction:     V_AB = 50 - 50 = 0   (stationary)\n\n  No more addition. No more guessing.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "sign_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The sign convention fixes this mistake permanently." },
+              { "text_en": "Pick a positive direction. Assign every velocity its own sign. Subtract. Interpret the sign of the answer." },
+              { "text_en": "Same direction, both positive: 50 minus 40 equals 10 — small and slow." },
+              { "text_en": "Opposite direction: 50 minus minus 40 equals 90 — large and fast." },
+              { "text_en": "Same velocity: 50 minus 50 equals zero — the object appears stationary from your frame. One formula, three different answers, all correct." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Two trains, same direction", "params": { "V_A": 50, "V_B": 40 } },
+      { "label": "Two trains, opposite direction", "params": { "V_A": 50, "V_B": -40 } },
+      { "label": "Car overtaking bike", "params": { "V_A": 60, "V_B": 45 } }
+    ],
+    "type_b": [
+      { "label": "Airport walkalator and pedestrian", "scenario": "airport_walkalator" },
+      { "label": "Escalator with walker", "scenario": "escalator_walker" }
+    ]
+  }
+}

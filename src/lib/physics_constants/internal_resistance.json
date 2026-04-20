@@ -1,0 +1,26 @@
+{
+  "concept": "internal_resistance",
+  "locked_facts": {
+    "terminal_voltage_formula": "V = EMF - I*r (terminal voltage equals EMF minus internal voltage drop)",
+    "terminal_less_than_emf": "terminal_voltage_is_less_than_EMF_when_current_flows",
+    "internal_resistance_definition": "r_is_the_internal_resistance_of_the_cell",
+    "short_circuit_current": "I_short = EMF / r (maximum current when terminals are short-circuited)",
+    "open_circuit": "terminal_voltage_equals_EMF_when_no_current_flows"
+  },
+  "animation_constraints": {
+    "current_conservation_at_node": true,
+    "voltage_drops_across_resistors": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "The terminal voltage of a cell is given by V = EMF - Ir, where r is the internal resistance of the cell",
+    "When current flows through a cell, the terminal voltage is less than the EMF due to the internal resistance drop Ir",
+    "The internal resistance r arises from the resistance to current flow within the electrolyte of the cell",
+    "The short-circuit current (maximum current) equals EMF divided by the internal resistance: I = EMF/r",
+    "When no current is drawn (open circuit), the terminal voltage equals the EMF of the cell"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "concept_id": "conservation_of_momentum",
+  "concept_name": "Conservation of Momentum",
+  "class_level": 11,
+  "chapter": "Work Energy Power",
+  "renderer_hint": {
+    "technology": "p5js",
+    "renderer": "mechanics_2d",
+    "scenario_type": "momentum",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "m₁": "Mass of object 1 (kg)",
+    "m₂": "Mass of object 2 (kg)",
+    "v₁": "Initial velocity of object 1 (m/s)",
+    "v₂": "Initial velocity of object 2 (m/s)"
+  },
+  "locked_facts": [
+    "Total momentum conserved when no external force: p_before = p_after",
+    "KE conserved in ELASTIC collision only",
+    "In perfectly inelastic collision: objects stick together, v = (m₁v₁+m₂v₂)/(m₁+m₂)",
+    "Momentum is a vector: direction matters",
+    "Center of mass velocity unchanged during collision",
+    "Coefficient of restitution e = 1 (elastic), e = 0 (perfectly inelastic)"
+  ],
+  "truth_statements": [
+    "The total momentum of an isolated system is conserved",
+    "In an elastic collision, both momentum and kinetic energy are conserved",
+    "In a perfectly inelastic collision, the objects stick together and momentum is conserved but KE is not",
+    "Momentum conservation applies to the system, not individual objects",
+    "The velocity of the centre of mass remains unchanged in a collision with no external forces"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two collisions side by side — elastic (top) and perfectly inelastic (bottom). Momentum arrows before and after are IDENTICAL in both cases. But KE bars differ: KE is conserved in elastic, KE drops in inelastic.",
+    "visual_emphasis": "Momentum arrows exactly equal before and after in BOTH collision types — but KE bar drops only in the inelastic case",
+    "why_this_breaks_misconception": "Students see that momentum conservation does NOT mean speeds stay the same — momentum is conserved but KE may not be"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Two objects approaching each other with velocity arrows and momentum arrows (p = mv) labelled. Total momentum bar shown at top.",
+      "emphasis": "Total momentum = m₁v₁ + m₂v₂ calculated and displayed before collision",
+      "labels_visible": ["m₁", "m₂", "v₁", "v₂", "p₁", "p₂", "p_total"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Elastic collision occurs. Objects bounce apart with new velocities. Post-collision momentum arrows shown. Total momentum bar unchanged.",
+      "emphasis": "After elastic collision: individual momenta change but total momentum is exactly the same as before",
+      "labels_visible": ["v₁'", "v₂'", "p₁'", "p₂'", "p_total (same)"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Split view: elastic collision (top) and perfectly inelastic collision (bottom) with the same initial conditions. Momentum arrows identical in both. KE bars: conserved (top), reduced (bottom).",
+      "emphasis": "Momentum is conserved in BOTH cases — but KE is only conserved in elastic. Same momentum, different speeds.",
+      "labels_visible": ["p_before = p_after (both)", "KE conserved (elastic)", "KE lost (inelastic)"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust masses of both objects. See elastic vs inelastic outcomes. Toggle between collision types. Momentum bars always match before and after.",
+      "emphasis": "Try equal masses: in elastic collision, objects exchange velocities. Try very different masses: heavy object barely changes speed.",
+      "labels_visible": ["p_total", "KE_total", "v₁'", "v₂'", "e"],
+      "interactive": true,
+      "sliders": [
+        { "id": "mass_1", "label": "Mass 1", "min": 0.5, "max": 5, "default": 2, "unit": "kg" },
+        { "id": "mass_2", "label": "Mass 2", "min": 0.5, "max": 5, "default": 1, "unit": "kg" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Momentum conservation means objects bounce back with the same speed",
+      "trigger_phrases": ["same speed se bounce hota hai", "collision mein speed same rehti hai", "momentum conservation means same speed"],
+      "correction": "NCERT says total momentum of the system is conserved, not individual speeds. In inelastic collisions objects stick together and move with a common velocity different from both initial speeds.",
+      "simulation_emphasis": "Show elastic vs inelastic collision side by side — momentum arrows identical but speeds clearly different in inelastic case"
+    }
+  ],
+  "legend": [
+    { "symbol": "→ (blue)", "meaning": "Velocity arrow" },
+    { "symbol": "→ (purple)", "meaning": "Momentum arrow p = mv" },
+    { "symbol": "KE bar", "meaning": "Total kinetic energy of system" },
+    { "symbol": "p_total bar", "meaning": "Total momentum of system (conserved)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["newtons_laws", "work_energy_theorem"],
+    "extensions": ["center_of_mass", "rocket_propulsion"],
+    "siblings": ["work_energy_theorem"],
+    "common_exam_combinations": ["ballistic_pendulum", "explosion_problems"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["oblique collision", "ballistic pendulum", "explosion and recoil", "head-on elastic collision"],
+    "common_traps": ["confusing momentum conservation with KE conservation", "forgetting momentum is a vector", "using wrong sign for velocities in opposite directions"],
+    "numerical_ranges": {
+      "m": "0.5–10 kg",
+      "v": "1–20 m/s",
+      "e": "0 to 1"
+    }
+  }
+}

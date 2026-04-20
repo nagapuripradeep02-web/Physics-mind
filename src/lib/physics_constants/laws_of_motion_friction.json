@@ -1,0 +1,105 @@
+{
+  "concept_id": "laws_of_motion_friction",
+  "concept_name": "Friction — Static and Kinetic",
+  "class_level": 11,
+  "chapter": "Laws of Motion",
+  "renderer_hint": {
+    "technology": "p5js",
+    "renderer": "mechanics_2d",
+    "scenario_type": "friction",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "μ_s": "Coefficient of static friction (dimensionless)",
+    "μ_k": "Coefficient of kinetic friction (dimensionless)",
+    "m": "Mass of the block (kg)",
+    "F": "Applied horizontal force (N)"
+  },
+  "locked_facts": [
+    "Static friction is self-adjusting: 0 ≤ f_s ≤ μ_s·N",
+    "Maximum static friction = μ_s·N (not always equal to μ_s·N)",
+    "Kinetic friction = μ_k·N (constant once sliding begins)",
+    "μ_k < μ_s always — kinetic friction is less than maximum static",
+    "Friction acts parallel to surface, opposing relative motion or tendency",
+    "Normal force N = mg on horizontal surface"
+  ],
+  "truth_statements": [
+    "Static friction is a self-adjusting force that varies from zero to a maximum value of μ_s times the normal force",
+    "The maximum value of static friction is μ_s N, which occurs just before the body begins to slide",
+    "Kinetic friction is less than the maximum static friction",
+    "Friction opposes the relative motion or the tendency of relative motion between surfaces",
+    "The coefficient of kinetic friction is always less than the coefficient of static friction"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Applied force bar grows slowly and friction bar matches it exactly — then at the critical point (F = μ_s·N), the block suddenly starts sliding and friction bar DROPS to the lower μ_k·N level",
+    "visual_emphasis": "The sudden snap DOWN of the friction bar from μ_s·N to μ_k·N the instant sliding begins — this discontinuous drop is the aha",
+    "why_this_breaks_misconception": "Students see that friction is NOT always μN — it matches the applied force until the maximum, then drops to a lower constant value"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Block on rough surface. Applied force F = 0. No motion. Friction force = 0. Weight and normal force arrows shown in balance.",
+      "emphasis": "When no force is applied, friction is zero — not μN",
+      "labels_visible": ["mg", "N", "F = 0", "f = 0"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Applied force F increases gradually. Friction bar grows to match F exactly. Block remains stationary. A dashed line at μ_s·N shows the limit.",
+      "emphasis": "Friction = applied force (self-adjusting). Block does not move. Friction has not yet reached its maximum.",
+      "labels_visible": ["F", "f_s = F", "μ_s·N (limit)"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "F reaches μ_s·N — block starts sliding. Friction bar instantly drops to μ_k·N (lower value). Block accelerates. The drop is visually dramatic.",
+      "emphasis": "The sudden DROP in friction from μ_s·N to μ_k·N is the key insight. Kinetic friction < maximum static friction.",
+      "labels_visible": ["F > μ_s·N", "f_k = μ_k·N", "a ≠ 0", "SNAP!"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust applied force and mass. See friction bar respond. Below μ_s·N: friction matches F. Above: friction locks at μ_k·N and block slides.",
+      "emphasis": "Slowly increase F and watch friction match it. Cross the threshold and see the discontinuous drop to kinetic friction.",
+      "labels_visible": ["F", "f", "μ_s·N", "μ_k·N", "a"],
+      "interactive": true,
+      "sliders": [
+        { "id": "applied_force", "label": "Applied Force", "min": 0, "max": 50, "default": 10, "unit": "N" },
+        { "id": "mass", "label": "Block Mass", "min": 1, "max": 10, "default": 5, "unit": "kg" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Friction always equals μN — it is a fixed value",
+      "trigger_phrases": ["friction always muN", "friction = μN hota hai", "friction hamesha μN", "mu N is the friction"],
+      "correction": "NCERT says static friction is self-adjusting from zero up to a maximum of μ_s·N. Only kinetic friction is a fixed value μ_k·N.",
+      "simulation_emphasis": "Show friction bar growing with applied force (self-adjusting) then snapping down to μ_k·N when sliding starts"
+    }
+  ],
+  "legend": [
+    { "symbol": "→ (green)", "meaning": "Applied force F" },
+    { "symbol": "→ (orange)", "meaning": "Friction force f" },
+    { "symbol": "---", "meaning": "Maximum static friction limit μ_s·N" },
+    { "symbol": "μ_s", "meaning": "Coefficient of static friction" },
+    { "symbol": "μ_k", "meaning": "Coefficient of kinetic friction (< μ_s)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["newtons_laws", "free_body_diagrams"],
+    "extensions": ["friction_on_incline", "rolling_friction"],
+    "siblings": ["laws_of_motion_atwood"],
+    "common_exam_combinations": ["inclined_plane", "circular_motion_on_road"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["minimum force to move block", "block on incline with friction", "stacked blocks friction", "friction in circular motion"],
+    "common_traps": ["assuming friction = μN always", "forgetting μ_k < μ_s", "using wrong normal force on incline"],
+    "numerical_ranges": {
+      "μ_s": "0.2–0.8",
+      "μ_k": "0.1–0.6",
+      "m": "1–20 kg"
+    }
+  }
+}

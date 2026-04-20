@@ -1,0 +1,26 @@
+{
+  "concept": "drift_velocity",
+  "locked_facts": {
+    "electron_drift_direction": "opposite_to_E_field",
+    "conventional_current_direction": "same_as_E_field",
+    "thermal_speed_order": "1e6",
+    "drift_speed_order": "1e-3",
+    "thermal_to_drift_ratio": "1e9",
+    "formula": "vd = (e * E * tau) / m",
+    "drift_proportional_to": "E_field_strength"
+  },
+  "animation_constraints": {
+    "drift_px_per_frame_max": 1.5,
+    "thermal_px_per_frame_min": 3.0,
+    "thermal_must_be_faster_than_drift": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left"
+  },
+  "ncert_truth_statements": [
+    "Electrons drift opposite to the electric field direction",
+    "Drift speed is of the order of 1 mm per second",
+    "Thermal speed is of the order of 10 to the power 6 m per s",
+    "Drift speed increases linearly with electric field strength",
+    "Current direction is opposite to electron drift direction"
+  ]
+}

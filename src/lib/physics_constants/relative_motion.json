@@ -1,0 +1,104 @@
+{
+  "concept_id": "relative_motion",
+  "concept_name": "Relative Motion",
+  "class_level": 11,
+  "chapter": "Motion in a Plane",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "relative_velocity",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "v_A": "Velocity of object A (m/s)",
+    "v_B": "Velocity of object B (m/s)",
+    "v_AB": "Velocity of A relative to B = v_A − v_B (m/s)",
+    "v_r": "Velocity of river current (m/s)",
+    "v_m": "Velocity of man in still water (m/s)",
+    "v_rain": "Velocity of rain (m/s)"
+  },
+  "locked_facts": [
+    "Velocity of A relative to B: v_AB = v_A − v_B (vector subtraction)",
+    "Velocity of B relative to A: v_BA = v_B − v_A = −v_AB",
+    "River crossing — minimum time: swim perpendicular to bank, t_min = d/v_m, drift = v_r × d/v_m",
+    "River crossing — minimum drift (zero drift): swim at angle θ upstream where sin(θ) = v_r/v_m (only if v_m > v_r)",
+    "Rain-man problem: v_rain,man = v_rain − v_man; tilt umbrella at angle tan⁻¹(v_man/v_rain) from vertical",
+    "Relative acceleration: a_AB = a_A − a_B; if both have same acceleration, relative motion is uniform"
+  ],
+  "truth_statements": [
+    "Relative velocity is obtained by vector subtraction: v_AB = v_A − v_B",
+    "For minimum time of river crossing, the swimmer must swim perpendicular to the river bank regardless of current",
+    "For zero drift in river crossing, the swimmer must have speed greater than the river current (v_m > v_r)",
+    "In the rain-man problem, the rain appears to come from a direction determined by relative velocity",
+    "When two objects have the same acceleration, their relative velocity remains constant (relative acceleration is zero)"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two river-crossing strategies side by side: (1) swimmer going straight across reaches the other bank first but drifts downstream, (2) swimmer angling upstream takes longer but lands directly opposite. Time bars and drift bars compared.",
+    "visual_emphasis": "Time bar shorter for perpendicular crossing, drift bar zero for angled crossing — you cannot minimize both simultaneously",
+    "why_this_breaks_misconception": "Students think swimming at an angle against the current is always better. The simulation shows it minimizes drift but increases crossing time."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "Two objects A and B moving with velocity vectors shown. The relative velocity v_AB = v_A − v_B is constructed graphically using the triangle law of vector subtraction.",
+      "emphasis": "Relative velocity is a vector subtraction — show the geometric construction clearly",
+      "labels_visible": ["v_A", "v_B", "v_AB"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "River Problem",
+      "description": "A river with visible current flowing left to right. Swimmer starts from one bank. First attempt: swims straight across (perpendicular). Path curves downstream due to current. Reaches other bank quickly but with drift.",
+      "emphasis": "Perpendicular swimming gives minimum time but causes drift. Resultant velocity is the vector sum of swimmer velocity and river current.",
+      "labels_visible": ["v_m", "v_r", "v_resultant", "drift", "t_min"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha — Two Strategies",
+      "description": "Both strategies shown simultaneously: (1) perpendicular path with drift marked, (2) angled-upstream path landing directly opposite. Time comparison and drift comparison shown as bar charts beside the river.",
+      "emphasis": "Minimum time path has drift; zero drift path takes longer. You cannot have both. sin(θ) = v_r/v_m for zero drift.",
+      "labels_visible": ["t_min", "t_zero_drift", "drift = 0", "θ", "sin(θ) = v_r/v_m"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive mode: adjust swimmer speed and river current speed. See how drift and crossing time change. A rain-man mode toggle shows rain falling with man walking — umbrella angle updates in real time.",
+      "emphasis": "When v_m < v_r, zero drift is impossible — experiment with the slider to discover this limit. In rain mode, walk faster to see umbrella tilt increase.",
+      "labels_visible": ["v_m", "v_r", "drift", "time", "θ"],
+      "interactive": true,
+      "sliders": [
+        { "id": "swimmer_speed", "label": "Swimmer Speed", "min": 1, "max": 10, "default": 5, "unit": "m/s" },
+        { "id": "river_speed", "label": "River Current", "min": 0.5, "max": 8, "default": 3, "unit": "m/s" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "To cross the river in minimum time, you should swim at an angle against the current",
+      "trigger_phrases": ["angle se swim karo toh jaldi pahunchoge", "upstream angle gives shortest time", "current ke against toh time kam hoga"],
+      "correction": "NCERT shows that minimum crossing time is achieved by swimming perpendicular to the bank. Swimming upstream increases time. The perpendicular strategy minimizes time; the upstream-angled strategy minimizes drift.",
+      "simulation_emphasis": "Show two swimmers starting together — perpendicular one reaches the other bank first despite drifting"
+    },
+    {
+      "belief": "Relative velocity is just the difference of speeds (scalar subtraction)",
+      "trigger_phrases": ["subtract kar do speed", "relative velocity = v1 - v2 simple", "bas minus karo", "direction matter nahi karta"],
+      "correction": "Relative velocity is a VECTOR subtraction: v_AB = v_A − v_B. Direction matters. Two cars at 60 km/h going in opposite directions have relative speed 120 km/h, but same direction gives 0.",
+      "simulation_emphasis": "Show same-speed objects with different relative velocities depending on angle between their velocity vectors"
+    }
+  ],
+  "legend": [
+    { "symbol": "v_AB", "meaning": "Velocity of A relative to B = v_A − v_B" },
+    { "symbol": "v_m", "meaning": "Speed of swimmer in still water" },
+    { "symbol": "v_r", "meaning": "Speed of river current" },
+    { "symbol": "θ", "meaning": "Angle of swimming direction from bank normal" },
+    { "symbol": "drift", "meaning": "Downstream displacement when reaching opposite bank" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["vectors", "equations_of_motion"],
+    "extensions": ["relative_projectile_motion", "relative_motion_in_2d"],
+    "siblings": ["projectile_motion", "uniform_circular_motion"],
+    "common_exam_combinations": ["projectile_motion_advanced", "river_crossing_problems"]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "concept": "parallel_resistance",
+  "locked_facts": {
+    "equivalent_resistance_formula": "1/R_eq = 1/R1 + 1/R2 + ... + 1/Rn",
+    "voltage_across_branches": "same_voltage_across_all_parallel_branches",
+    "current_splits": "current_splits_inversely_proportional_to_resistance",
+    "equivalent_less_than_smallest": "equivalent_resistance_is_always_less_than_smallest_branch_resistance",
+    "current_sum": "total_current_equals_sum_of_branch_currents"
+  },
+  "animation_constraints": {
+    "current_conservation_at_node": true,
+    "voltage_drops_across_resistors": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "In a parallel combination, the potential difference across each resistor is the same and equal to the applied voltage",
+    "The reciprocal of the equivalent resistance equals the sum of reciprocals of individual resistances: 1/R = 1/R1 + 1/R2",
+    "The total current drawn from the source equals the sum of the currents through each parallel branch",
+    "In a parallel combination, the equivalent resistance is always less than the resistance of the smallest individual resistor",
+    "Current through each branch is inversely proportional to its resistance when the same voltage is applied across all branches"
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "concept_id": "single_slit_diffraction",
+  "concept_name": "Single Slit Diffraction",
+  "class_level": 12,
+  "chapter": "Wave Optics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "wave_canvas",
+    "scenario_type": "single_slit_diffraction",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "a": "Width of the slit (m)",
+    "lambda": "Wavelength of light (m)",
+    "D": "Distance from slit to screen (m)",
+    "theta": "Angular position (rad)",
+    "y": "Position on screen from central maximum (m)"
+  },
+  "locked_facts": [
+    "First minimum condition: a sinθ = λ (single slit, NOT double slit)",
+    "General minima: a sinθ = nλ, where n = ±1, ±2, ±3, … (never n = 0)",
+    "Central maximum angular width = 2λ/a — it is twice the width of any other secondary maximum",
+    "Central maximum linear width on screen = 2λD/a",
+    "Secondary maxima occur approximately at a sinθ = (n + ½)λ, n = 1, 2, 3, …",
+    "Intensity of secondary maxima decreases rapidly: I₁ ≈ 4.5% of I₀, I₂ ≈ 1.6% of I₀",
+    "As slit width a decreases, the diffraction pattern spreads wider (more bending)"
+  ],
+  "truth_statements": [
+    "Single slit diffraction is caused by interference between secondary wavelets from different parts of the same slit (Huygens' principle)",
+    "The central maximum is the brightest and widest — its width is exactly twice that of any secondary maximum",
+    "Minima occur when the path difference between wavelets from the top and bottom edges of the slit equals a whole number of wavelengths",
+    "Diffraction becomes significant when the slit width is comparable to the wavelength of light",
+    "A narrower slit produces a wider diffraction pattern — this is the opposite of what geometric optics would predict"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "The slit is divided into pairs of zones. For the first minimum, the slit is divided into two halves — each point in the top half has a partner in the bottom half that is exactly λ/2 away, so every wavelet cancels with its partner. Total destructive interference = dark fringe.",
+    "visual_emphasis": "Animated pairing of wavelets from top half and bottom half of the slit, each pair cancelling, leaving zero net amplitude at the first minimum",
+    "why_this_breaks_misconception": "Students see that the dark fringe is not due to 'no light reaching there' but due to systematic cancellation of wavelets from within the same slit"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Plane wave hits single slit",
+      "description": "A plane wavefront of monochromatic light approaches a single narrow slit of width a. The slit is labelled. The screen is placed at distance D. No pattern visible yet.",
+      "emphasis": "Establish the geometry — single slit, not double slit. The entire slit width acts as a source.",
+      "labels_visible": ["a", "D", "Screen", "Slit"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Secondary wavelets from slit",
+      "description": "According to Huygens' principle, every point across the slit width acts as a secondary source. Multiple circular wavelets emanate from different points within the slit. They overlap and interfere.",
+      "emphasis": "Diffraction is interference of wavelets from within the SAME slit — not from two separate slits",
+      "labels_visible": ["a", "secondary wavelets", "Huygens sources"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Diffraction pattern on screen",
+      "description": "The screen shows a broad central bright band flanked by much dimmer secondary maxima and dark minima. The central maximum width is labelled 2λD/a. First minima at ±λD/a. Intensity graph alongside shows rapid falloff of secondary maxima.",
+      "emphasis": "Central maximum is TWICE as wide as secondary maxima. First minimum at a sinθ = λ.",
+      "labels_visible": ["Central max", "2λD/a", "1st min: a sinθ = λ", "I₁ ≈ 4.5% I₀"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts slit width a, wavelength λ, and screen distance D. The diffraction pattern updates in real time. Narrowing the slit spreads the pattern wider. The intensity graph updates to show how secondary maxima fade.",
+      "emphasis": "Narrow slit → wider pattern (counterintuitive). Verify central max width = 2λD/a.",
+      "labels_visible": ["a", "λ", "D", "Central max width"],
+      "interactive": true,
+      "sliders": [
+        { "id": "slit_width", "label": "Slit width a", "min": 0.05, "max": 1.0, "default": 0.2, "unit": "mm" },
+        { "id": "wavelength", "label": "Wavelength λ", "min": 400, "max": 700, "default": 550, "unit": "nm" },
+        { "id": "screen_distance", "label": "Screen distance D", "min": 0.5, "max": 3.0, "default": 1.5, "unit": "m" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Single slit diffraction and double slit interference are the same thing",
+      "trigger_phrases": ["same as double slit", "dono ek hi hai", "diffraction aur interference same", "single double same pattern"],
+      "correction": "Single slit diffraction involves interference of wavelets from within ONE slit (minima at a sinθ = nλ). Double slit interference involves waves from TWO separate slits (maxima at d sinθ = nλ). The formulas and patterns are fundamentally different.",
+      "simulation_emphasis": "Side-by-side comparison: single slit pattern (broad central max + fading sides) vs double slit pattern (equally spaced fringes)"
+    },
+    {
+      "belief": "A narrower slit should produce a narrower bright spot on the screen",
+      "trigger_phrases": ["narrow slit narrow pattern", "choti slit chota spot", "smaller opening smaller image", "slit chhota toh pattern bhi chhota"],
+      "correction": "The opposite is true. A narrower slit produces a WIDER diffraction pattern because central max width = 2λD/a — as 'a' decreases, the pattern spreads. This is a wave phenomenon that contradicts geometric ray optics intuition.",
+      "simulation_emphasis": "Animate slit width decreasing while the central bright band visibly expands on the screen"
+    }
+  ],
+  "legend": [
+    { "symbol": "a", "meaning": "Width of the single slit (m)" },
+    { "symbol": "λ", "meaning": "Wavelength of light (m)" },
+    { "symbol": "D", "meaning": "Distance from slit to screen (m)" },
+    { "symbol": "θ", "meaning": "Angular position from central axis (rad)" },
+    { "symbol": "I₀", "meaning": "Intensity at central maximum" },
+    { "symbol": "n", "meaning": "Order of minimum (n = 1, 2, 3, …)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["wave_superposition", "huygens_principle"],
+    "extensions": ["diffraction_grating", "resolving_power"],
+    "siblings": ["youngs_double_slit"],
+    "common_exam_combinations": ["youngs_double_slit", "diffraction_grating", "interference_coherence"]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "concept_id": "buoyancy_archimedes",
+  "concept_name": "Buoyancy and Archimedes' Principle",
+  "class_level": 11,
+  "chapter": "Mechanical Properties of Fluids",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "buoyancy", "panel_count": 1, "show_labels": true },
+  "variables": { "F_b": "Buoyant force (N)", "ρ_f": "Fluid density (kg/m³)", "V_disp": "Volume displaced (m³)", "W": "Weight of object (N)" },
+  "locked_facts": [
+    "Archimedes' principle: buoyant force = weight of fluid displaced: F_b = ρ_f V_disp g",
+    "Object floats when ρ_object < ρ_fluid (buoyant force can equal weight)",
+    "Object sinks when ρ_object > ρ_fluid (buoyant force < weight even when fully submerged)",
+    "For floating object: fraction submerged = ρ_object/ρ_fluid",
+    "Buoyant force acts at the centre of buoyancy (centroid of displaced fluid)",
+    "Apparent weight in fluid = actual weight - buoyant force",
+    "Buoyant force depends on fluid density, not object density"
+  ],
+  "truth_statements": [
+    "The buoyant force on a submerged or floating body equals the weight of the fluid displaced by the body",
+    "An object floats when its average density is less than the fluid density — it displaces just enough fluid so that buoyant force equals its weight",
+    "The fraction of a floating object below the surface equals the ratio of the object's density to the fluid's density",
+    "Buoyant force is caused by the pressure difference between the bottom and top of the submerged object",
+    "Archimedes' principle applies to all fluids including gases — a helium balloon floats in air for the same reason a boat floats on water"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three objects of same size but different densities placed in water: ρ < ρ_water (floats partially submerged), ρ = ρ_water (neutrally buoyant — floats at any depth), ρ > ρ_water (sinks). The fraction submerged is exactly ρ_object/ρ_fluid for the floating one.",
+    "visual_emphasis": "Three objects at different levels in water with density ratios displayed — the floating fraction matches the density ratio exactly",
+    "why_this_breaks_misconception": "Students think heavier objects always sink — seeing that density (not mass) determines floating makes the principle concrete"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Pressure causes buoyancy", "description": "A submerged block. Pressure at bottom > pressure at top. Net upward force = buoyant force F_b = ρ_f V g. Pressure arrows shown at top and bottom.", "emphasis": "Buoyancy comes from the pressure difference — higher pressure at the bottom pushes up", "labels_visible": ["P_bottom > P_top", "F_b = ρ_f V g"] },
+    { "id": "STATE_2", "label": "Sink, float, or neutral", "description": "Three objects dropped in water. Steel (ρ > ρ_w): sinks — W > F_b. Wood (ρ < ρ_w): floats — W = F_b at partial submersion. Neutral (ρ = ρ_w): floats at any depth.", "emphasis": "Density relative to fluid determines whether it sinks or floats", "labels_visible": ["ρ_obj vs ρ_fluid", "W vs F_b", "float/sink/neutral"] },
+    { "id": "STATE_3", "label": "Fraction submerged", "description": "Floating wooden block: fraction below surface = ρ_wood/ρ_water. If ρ_wood = 600 kg/m³, then 60% submerged. Ice in water: 90% submerged (ρ_ice/ρ_water = 0.9).", "emphasis": "Fraction submerged = ρ_object/ρ_fluid — a precise, measurable prediction", "labels_visible": ["60% submerged", "ρ_wood/ρ_water = 0.6"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts object density and fluid density. Object sinks, floats, or is neutral. Fraction submerged calculated. Apparent weight shown on a spring scale.", "emphasis": "Change densities — see the float/sink transition. Read apparent weight on the scale.", "labels_visible": ["F_b", "W", "apparent weight"], "interactive": true, "sliders": [{ "id": "obj_density", "label": "Object density", "min": 200, "max": 2000, "default": 800, "unit": "kg/m³" }, { "id": "fluid_density", "label": "Fluid density", "min": 500, "max": 1500, "default": 1000, "unit": "kg/m³" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Heavy objects always sink", "trigger_phrases": ["heavy sinks", "bhaari cheez doobti hai", "mass determines floating"], "correction": "It's the DENSITY (mass/volume), not mass alone, that determines floating. A massive ship floats because its average density (including air inside) is less than water. A small steel ball sinks because steel's density exceeds water's.", "simulation_emphasis": "Show a large light object floating and a small dense object sinking" },
+    { "belief": "Buoyant force depends on the depth of submersion", "trigger_phrases": ["deeper more buoyancy", "depth affects buoyancy"], "correction": "For a fully submerged object, buoyant force depends only on the volume displaced and the fluid density — NOT on depth. F_b = ρ_f V g is constant at any depth (for incompressible fluids). Depth only matters for partially submerged objects.", "simulation_emphasis": "Push a fully submerged object deeper — F_b stays constant on the force gauge" }
+  ],
+  "legend": [ { "symbol": "F_b", "meaning": "Buoyant force = ρ_f V g" }, { "symbol": "ρ_f", "meaning": "Fluid density (kg/m³)" }, { "symbol": "V_disp", "meaning": "Volume of fluid displaced" } ],
+  "concept_relationships": { "prerequisites": ["pressure_pascals_law"], "extensions": ["bernoulli_principle"], "siblings": ["surface_tension_capillarity"], "common_exam_combinations": ["pressure_pascals_law", "bernoulli_principle"] }
+}

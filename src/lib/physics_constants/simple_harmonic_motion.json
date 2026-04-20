@@ -1,0 +1,107 @@
+{
+  "concept_id": "simple_harmonic_motion",
+  "concept_name": "Simple Harmonic Motion",
+  "class_level": 11,
+  "chapter": "Oscillations",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "shm_particle",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "A": "Amplitude — maximum displacement from mean position (m)",
+    "ω": "Angular frequency = 2π/T (rad/s)",
+    "T": "Time period of one complete oscillation (s)",
+    "φ": "Initial phase angle (rad)",
+    "k": "Force constant of the restoring force (N/m)",
+    "m": "Mass of the oscillating particle (kg)",
+    "x": "Instantaneous displacement from mean position (m)"
+  },
+  "locked_facts": [
+    "Displacement x = A sin(ωt + φ) where A is amplitude, ω is angular frequency, φ is initial phase",
+    "Velocity v = Aω cos(ωt + φ) — maximum at mean position (v_max = Aω), zero at extremes",
+    "Acceleration a = −ω²x — always directed toward mean position, maximum at extremes (a_max = ω²A)",
+    "Restoring force F = −kx where k = mω² — force is proportional to displacement and opposite in direction",
+    "Time period T = 2π/ω = 2π√(m/k) — independent of amplitude",
+    "Frequency f = 1/T = ω/(2π)",
+    "At mean position: v = max, a = 0, KE = max, PE = min. At extremes: v = 0, a = max, KE = 0, PE = max"
+  ],
+  "truth_statements": [
+    "SHM occurs when the restoring force on a body is directly proportional to displacement from equilibrium and directed toward the mean position",
+    "The acceleration in SHM is always directed toward the mean position and its magnitude is proportional to the displacement",
+    "The time period and frequency of SHM are independent of amplitude — a defining property of SHM",
+    "Velocity and acceleration are 90° out of phase: when velocity is maximum, acceleration is zero, and vice versa",
+    "Any periodic motion that satisfies a = −ω²x is simple harmonic motion by definition"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A particle oscillating with two different amplitudes side by side — both complete one cycle in exactly the same time. Period counters above each show identical T values even though one swings much wider.",
+    "visual_emphasis": "Both particles reach their extremes and return to the mean position simultaneously despite very different amplitudes — the period readouts are identical",
+    "why_this_breaks_misconception": "Students expect that a larger amplitude means the particle takes longer to return, but the increased speed at larger amplitudes exactly compensates for the larger distance"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A particle on a horizontal line displaced to position x = A from the mean position (x = 0). Mean position marked clearly. Displacement x, amplitude A, and restoring force arrow F = −kx shown.",
+      "emphasis": "Identify the mean position, the displacement, and the direction of the restoring force",
+      "labels_visible": ["x = 0 (mean)", "A", "F = −kx", "x"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Particle oscillates back and forth. Vectors for displacement (green), velocity (blue), and acceleration (red) update in real time. A sinusoidal x-t graph traces simultaneously on the right side.",
+      "emphasis": "Velocity is maximum at mean position where acceleration is zero. Acceleration is maximum at extremes where velocity is zero. The x-t graph is a perfect sine curve.",
+      "labels_visible": ["x(t)", "v(t)", "a(t)", "T"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "Two particles appear — same spring constant, same mass — but one has amplitude A and the other has 2A. Both oscillate and complete each cycle at exactly the same time. Period counters show identical values.",
+      "emphasis": "Despite one particle travelling twice the distance, both finish each cycle together. T = 2π√(m/k) has no amplitude term.",
+      "labels_visible": ["T₁ = T₂", "A₁ = A", "A₂ = 2A", "T = 2π√(m/k)"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust amplitude, mass, and spring constant. Observe how T changes with m and k but NOT with A. Real-time x-t, v-t, and a-t graphs update. Formula T = 2π√(m/k) displayed with live values.",
+      "emphasis": "Drag the amplitude slider — period does not change. Change mass or spring constant — period changes. This proves amplitude independence.",
+      "labels_visible": ["T", "A", "m", "k", "x(t) graph", "v(t) graph"],
+      "interactive": true,
+      "sliders": [
+        { "id": "amplitude", "label": "Amplitude A", "min": 0.02, "max": 0.2, "default": 0.1, "unit": "m" },
+        { "id": "mass", "label": "Mass m", "min": 0.1, "max": 3, "default": 0.5, "unit": "kg" },
+        { "id": "spring_constant", "label": "Spring Constant k", "min": 1, "max": 50, "default": 10, "unit": "N/m" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Larger amplitude means longer time period — the particle has to travel more distance so it takes more time",
+      "trigger_phrases": ["bada amplitude toh zyada time lagega", "larger amplitude takes longer", "amplitude badhao toh period badh jaayega", "more distance more time"],
+      "correction": "NCERT Ch. 13 states that the time period T = 2π√(m/k) is independent of amplitude. A particle with larger amplitude also has proportionally larger maximum velocity (v_max = Aω), so the extra distance is exactly compensated.",
+      "simulation_emphasis": "Two particles with different amplitudes oscillating in perfect synchrony — identical period readouts"
+    },
+    {
+      "belief": "Acceleration is maximum at the mean position because the particle moves fastest there",
+      "trigger_phrases": ["acceleration sabse zyada mean pe hogi", "fastest point pe acceleration max", "speed zyada toh acceleration zyada", "mean position pe acceleration maximum"],
+      "correction": "NCERT states a = −ω²x. At the mean position x = 0, so acceleration is zero. Maximum acceleration occurs at the extremes where x = ±A. High speed does not mean high acceleration — acceleration depends on how quickly velocity changes direction.",
+      "simulation_emphasis": "Freeze at mean position showing velocity arrow at maximum but acceleration arrow vanishing to zero, then freeze at extreme showing velocity zero but acceleration arrow at maximum"
+    }
+  ],
+  "legend": [
+    { "symbol": "→ (green)", "meaning": "Displacement x from mean position" },
+    { "symbol": "→ (blue)", "meaning": "Velocity v = dx/dt" },
+    { "symbol": "→ (red)", "meaning": "Acceleration a = −ω²x (always toward mean)" },
+    { "symbol": "sine curve", "meaning": "x-t graph showing periodic motion" },
+    { "symbol": "x = 0", "meaning": "Mean position (equilibrium)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["newtons_laws", "hookes_law", "circular_motion"],
+    "extensions": ["simple_pendulum_shm", "spring_mass_system", "energy_in_shm", "damped_oscillations"],
+    "siblings": ["uniform_circular_motion"],
+    "common_exam_combinations": ["shm_phase_difference", "superposition_of_shm", "shm_from_circular_motion"]
+  }
+}

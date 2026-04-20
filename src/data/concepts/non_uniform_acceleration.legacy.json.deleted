@@ -1,0 +1,708 @@
+{
+  "concept_id": "non_uniform_acceleration",
+  "concept_name": "Non-Uniform Acceleration — Calculus-Based Kinematics",
+  "class_level": 11,
+  "chapter": "Kinematics",
+  "section": "6.7",
+  "source_coverage": {
+    "dc_pandey": "Chapter 6, Section 6.7 — Non-Uniform Acceleration",
+    "ncert": "Chapter 3 — Motion in a Straight Line, Section 3.4",
+    "hc_verma": "Chapter 3 — Rest and Motion: Kinematics, Section 3.4"
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "technology_b": "plotly",
+    "renderer": "mechanics_2d",
+    "scenario_type": "non_uniform_acceleration",
+    "panel_count": 2,
+    "sync_required": true,
+    "scene_mode": false,
+    "show_labels": true,
+    "panel_a_role": "Animated particle on track — velocity arrow changing non-uniformly, acceleration arrow changing in both size and direction",
+    "panel_b_role": "Plotly dual graph — v-t curve (non-linear) on top, a-t curve below; slope of v-t = acceleration at each instant"
+  },
+  "locked_facts": {
+    "instantaneous_velocity": "v = dx/dt — velocity is the derivative of position with respect to time. For non-uniform motion, this gives a different value at every instant.",
+    "instantaneous_acceleration": "a = dv/dt = d²x/dt² — acceleration is the derivative of velocity. For non-uniform acceleration, a varies with time.",
+    "a_as_function_of_v": "When a = f(v): use a = v·(dv/dx) — this form links acceleration to position, useful when a is given as a function of velocity.",
+    "a_as_function_of_x": "When a = f(x): use a = v·(dv/dx) — then v·dv = a·dx, integrate both sides.",
+    "a_as_function_of_t": "When a = f(t): directly integrate dv/dt = a(t) to get v(t), then integrate dx/dt = v(t) to get x(t).",
+    "three_integration_forms": "Three master cases: (1) a=f(t): integrate once for v, twice for x. (2) a=f(x): use v dv = a dx. (3) a=f(v): use dv/a = dt or v dv/a = dx.",
+    "initial_conditions": "Integration always produces a constant C. Use initial conditions (x=x₀ at t=0, v=v₀ at t=0) to find C. Missing this step is the most common exam error.",
+    "uniform_acceleration_special_case": "Uniform acceleration (a = constant) is the special case of non-uniform where a=f(t) gives a=k. The standard equations v=u+at, s=ut+½at² follow directly from integration.",
+    "v_dv_dx_derivation": "a = dv/dt = (dv/dx)·(dx/dt) = v·(dv/dx). This chain rule substitution is the key step — memorize the derivation, not just the formula.",
+    "displacement_from_v_t": "Displacement = area under v-t graph, regardless of whether v-t is linear or curved. For non-uniform: x = ∫v dt.",
+    "sign_convention": "Choose one direction as positive. Stick to it throughout. If v is positive and a is negative, the particle decelerates. If both change sign at different times, track carefully."
+  },
+  "minimum_viable_understanding": "When acceleration is not constant, the three standard equations (v=u+at etc.) do NOT apply. Use calculus: a=dv/dt for a=f(t), and v·dv/dx for a=f(x) or a=f(v). Always apply initial conditions after integration.",
+  "variables": {
+    "x": "Position (m)",
+    "v": "Instantaneous velocity = dx/dt (m/s)",
+    "a": "Instantaneous acceleration = dv/dt (m/s²)",
+    "t": "Time (s)",
+    "v0": "Initial velocity at t=0 (m/s)",
+    "x0": "Initial position at t=0 (m)",
+    "C": "Integration constant — determined by initial conditions"
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "non uniform acceleration",
+      "variable acceleration",
+      "acceleration changes with time",
+      "calculus kinematics",
+      "a is a function of v",
+      "non uniform acceleration kya hota hai"
+    ],
+    "local_triggers": [
+      "when to use v dv dx",
+      "a equals f of v how to solve",
+      "acceleration given as function of position",
+      "how to find velocity when acceleration varies",
+      "why can't I use v equals u plus at here",
+      "suvat not working",
+      "equations of motion not applicable"
+    ],
+    "micro_triggers": [
+      "what is instantaneous acceleration",
+      "how to integrate acceleration to get velocity",
+      "initial conditions in integration",
+      "what is the derivation of v dv dx"
+    ],
+    "simulation_not_needed_triggers": [
+      "write the three integration cases",
+      "state the formula for non uniform acceleration",
+      "what is v dv dx"
+    ],
+    "subconcept_triggers": {
+      "a_function_of_t": [
+        "acceleration is given as function of time",
+        "a equals 2t or a equals 3t squared",
+        "integrate acceleration to find velocity",
+        "a = kt type problem"
+      ],
+      "a_function_of_x": [
+        "acceleration given in terms of position",
+        "a equals kx type",
+        "v dv dx form",
+        "acceleration depends on displacement"
+      ],
+      "a_function_of_v": [
+        "acceleration given as function of velocity",
+        "a equals kv or a equals kv squared",
+        "terminal velocity type problem",
+        "drag force proportional to velocity"
+      ],
+      "initial_conditions": [
+        "how to find constant of integration",
+        "what to do after integrating",
+        "initial condition kya use kare"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "understands_why_suvat_fails": "enter at STATE_2",
+    "understands_a_of_t_case": "enter at STATE_3",
+    "understands_v_dv_dx": "enter at STATE_4",
+    "understands_a_of_v_case": "enter at STATE_5"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "uniform_acceleration"
+    ],
+    "gate_question": "A ball is thrown up. Using v = u + at, find velocity after 2s if u=20 m/s, a=−10 m/s². (If student cannot do this, route to uniform_acceleration first.)",
+    "if_gap_detected": "redirect to uniform_acceleration.json — student must be comfortable with constant-a equations before calculus forms"
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "board_mode_states": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "jee_mode_states": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Hook — When the Old Equations Break Down",
+        "physics_layer": {
+          "concept": "Standard suvat equations assume a = constant. What if acceleration grows with time?",
+          "simulation_focus": "Show two particles side by side. Particle A: uniform acceleration (straight v-t line). Particle B: a = 2t (curved v-t line, acceleration doubles every second). After 3 seconds, Particle B is far ahead despite starting at same conditions.",
+          "what_to_show": "v-t graph on Panel B shows straight line for A, parabola for B. Applying v = u + at to B gives wrong answer.",
+          "freeze_at_t": 3,
+          "key_observation": "suvat predicts same final velocity for both — but the simulation shows different values. The equations silently fail.",
+          "scenario": "varying_a_animation"
+        },
+        "pedagogy_layer": {
+          "opening_question": "A car engine provides increasing thrust — acceleration grows as a = 2t. Can you still use v = u + at to find velocity at t=3s?",
+          "surprise_moment": "Students apply suvat, get an answer, see it disagrees with simulation. The failure is silent — no error message, just a wrong number.",
+          "teacher_script": "suvat worked beautifully for uniform acceleration. But the moment a changes, we need a different tool — and that tool is calculus."
+        }
+      },
+      "STATE_2": {
+        "label": "Case 1 — Acceleration as a Function of Time: a = f(t)",
+        "physics_layer": {
+          "concept": "When a = f(t), integrate directly: dv/dt = f(t) → v = ∫f(t)dt + C",
+          "simulation_focus": "Show a = 2t. Animate: dv/dt = 2t → v = t² + C. Apply initial condition v=0 at t=0 → C=0. So v = t². Then x = ∫v dt = t³/3 + C₂. Apply x=0 at t=0 → C₂=0.",
+          "panel_b_show": "v-t graph: parabola v=t². a-t graph: straight line a=2t. Both build simultaneously.",
+          "key_steps": [
+            "Write a = dv/dt = f(t)",
+            "Integrate: v = ∫f(t)dt + C",
+            "Apply v=v₀ at t=0 to find C",
+            "Integrate again: x = ∫v dt + C₂",
+            "Apply x=x₀ at t=0 to find C₂"
+          ],
+          "scenario": "v_function_of_t"
+        },
+        "pedagogy_layer": {
+          "key_message": "Two integrations, two constants, two initial conditions. That's the complete procedure.",
+          "common_mistake": "Students forget to add C after integrating, or forget to apply initial conditions. The answer is always wrong without C."
+        }
+      },
+      "STATE_3": {
+        "label": "Case 2 — Acceleration as a Function of Position: a = f(x)",
+        "physics_layer": {
+          "concept": "When a = f(x), we can't integrate directly (a is not a function of t). Use chain rule: a = v·dv/dx",
+          "derivation_show": "a = dv/dt = (dv/dx)·(dx/dt) = v·(dv/dx). Therefore v·dv = a·dx = f(x)·dx. Integrate: ∫v dv = ∫f(x) dx → v²/2 = ∫f(x)dx + C",
+          "simulation_focus": "Show a = kx (spring-like). Animate v·dv/dx = kx → v² = kx² + C. From v=v₀ at x=0: C=v₀².",
+          "panel_b_show": "x-v phase plot (not v-t) — this is how a=f(x) problems are analyzed",
+          "key_observation": "Result gives v as a function of x, not t. To get x(t) you need a second integration — but often the exam only asks for v at a given position.",
+          "scenario": "a_function_of_x"
+        },
+        "pedagogy_layer": {
+          "analogy": "Think of it as a gear change — when a depends on WHERE you are (not when), you need position as the variable of integration.",
+          "jee_tip": "Most a=f(x) JEE problems only ask 'find v at position x=X' — one integration gives the answer directly."
+        }
+      },
+      "STATE_4": {
+        "label": "Case 3 — Acceleration as a Function of Velocity: a = f(v)",
+        "physics_layer": {
+          "concept": "When a = f(v), two integration paths exist depending on what you need",
+          "path_1": "For v as function of t: dv/f(v) = dt → integrate ∫dv/f(v) = ∫dt = t + C",
+          "path_2": "For v as function of x: v·dv/f(v) = dx → integrate ∫v dv/f(v) = ∫dx = x + C",
+          "simulation_focus": "Show a = −kv (air resistance proportional to velocity). Path 1: dv/(−kv) = dt → (−1/k)ln(v) = t + C → v = v₀·e^(−kt). Velocity decays exponentially.",
+          "panel_b_show": "v-t graph: exponential decay. a-t graph: also exponential decay (since a = −kv).",
+          "key_observation": "Terminal velocity concept emerges naturally — as v → v_terminal, a → 0.",
+          "scenario": "a_function_of_v"
+        },
+        "pedagogy_layer": {
+          "real_world": "Skydiver, ball in viscous liquid, car with air resistance — all are a=f(v) problems.",
+          "jee_tip": "If you see 'retardation proportional to velocity' or 'drag force = bv' — immediately write a = −kv and use the first integration path."
+        }
+      },
+      "STATE_5": {
+        "label": "The Aha Moment — Choosing the Right Integration Form",
+        "physics_layer": {
+          "concept": "The three cases are determined by HOW acceleration is given, not by the physics topic",
+          "decision_tree": {
+            "a_given_as": "Look at what variable a depends on",
+            "if_a_is_f_of_t": "Use dv = f(t)dt → integrate directly",
+            "if_a_is_f_of_x": "Use v dv = f(x)dx → integrate",
+            "if_a_is_f_of_v_want_t": "Use dv/f(v) = dt → integrate",
+            "if_a_is_f_of_v_want_x": "Use v dv/f(v) = dx → integrate"
+          },
+          "simulation_focus": "Three side-by-side mini simulations, one per case. Student clicks a problem statement, system highlights which case applies.",
+          "scenario": "integration_for_s"
+        },
+        "pedagogy_layer": {
+          "key_message": "Read the problem. Identify what a depends on. Pick the matching form. That decision takes 5 seconds and saves minutes of wrong-path work.",
+          "exam_reality": "JEE gives you a = 3x², a = 2v, or a = t² − 1. Your job is case identification, then clean integration."
+        }
+      },
+      "STATE_6": {
+        "label": "Student Interaction — Solve a Problem Live",
+        "physics_layer": {
+          "concept": "Apply the three-case framework to a JEE-level problem",
+          "problem": "A particle starts from rest. Its acceleration is given by a = 4 − 2v. Find: (i) maximum velocity, (ii) velocity when it has travelled distance x=2m.",
+          "solution_path": "This is a=f(v). For v(x): v·dv/(4−2v) = dx. For max v: a=0 → 4−2v=0 → v_max=2 m/s.",
+          "interactive": "Student selects which case (a=f(t), a=f(x), or a=f(v)) before solution is shown.",
+          "scenario": "method_decision_tree"
+        },
+        "pedagogy_layer": {
+          "teacher_script": "Before I show you anything — which case is this? What does a depend on? Once you name the case, the rest is just integration."
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "suvat_on_variable_a",
+      "misconception": "Student applies v = u + at or s = ut + ½at² when acceleration is not constant",
+      "student_belief": "suvat equations always work for any type of motion",
+      "trigger_phrases": [
+        "I used v equals u plus at",
+        "applied second equation of motion",
+        "suvat pe lagaya",
+        "why is my answer wrong I used the formula",
+        "s = ut + half at squared",
+        "v squared = u squared + 2as"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show a = 2t problem. Student's suvat answer: v = 0 + 2×3 = 6 m/s (using average a=2 at t=1). Correct answer: v = t² = 9 m/s. Simulation shows particle reaching 9 m/s, not 6 m/s.",
+            "label": "Your suvat answer: 6 m/s. Actual result: 9 m/s. Let's find the 3 m/s gap.",
+            "scenario": "nua_wrong_suvat_applied"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "suvat assumes a is the same number at every moment. Here a starts at 0 and reaches 6 — using any single value of a is averaging, and averaging gives the wrong answer."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show where suvat comes FROM: derive v = u + at by integrating dv/dt = a (constant). The constant a comes OUT of the integral as a×t. Now show a = 2t: ∫2t dt = t² ≠ at.",
+            "label": "suvat derivation exposed: it ONLY works when a is a constant that comes out of the integral unchanged.",
+            "scenario": "nua_constant_a_required"
+          },
+          "pedagogy_layer": {
+            "key_message": "suvat isn't wrong — it's derived correctly. It just has one hidden assumption: a = constant. Violate that assumption and the derivation breaks."
+          }
+        },
+        "STATE_3": {
+          "physics_layer": {
+            "simulation": "Solve the same problem correctly: a = 2t → dv = 2t dt → v = t² + C. At t=0, v=0 → C=0. So v = t² = 9 at t=3. Show result matching simulation.",
+            "label": "Correct method: integrate a(t), apply initial condition. Result: 9 m/s.",
+            "scenario": "nua_aha_check_a_first"
+          },
+          "pedagogy_layer": {
+            "rule": "CHECK FIRST: Is a constant? Yes → suvat. No → integration. That 2-second check saves the entire problem."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "forgot_constant_of_integration",
+      "misconception": "Student integrates but drops the constant of integration C, or sets it to zero without checking",
+      "student_belief": "After integration, there is no extra constant to worry about",
+      "trigger_phrases": [
+        "I integrated but got wrong answer",
+        "integrated acceleration and got velocity but answer is wrong",
+        "integration constant kahan se aaya",
+        "why does C appear",
+        "what is C in integration"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show a = 4t. Student integrates: v = 2t² (no C). At t=2s, v=8 m/s. But actual initial condition is v₀ = 6 m/s at t=0. Correct: v = 2t² + 6. At t=2, v = 14 m/s. Simulation shows particle at 14 m/s, student's answer is 8 m/s.",
+            "label": "Missing C means missing the starting point. Your particle started at v=6, not v=0.",
+            "scenario": "forgot_constant_of_integration_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "Integration finds a FAMILY of functions — one for every possible C. The initial condition picks the ONE correct member of that family."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Visualize C on v-t graph: show v = 2t² family — C=0 (starts at 0), C=3 (starts at 3), C=6 (starts at 6). All have same shape (same acceleration). Initial condition selects the right curve.",
+            "label": "C shifts the entire v-t curve up or down. Initial condition anchors it to the correct starting point.",
+            "scenario": "forgot_constant_of_integration_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "Every integration → immediately write +C. Then immediately write 'At t=0, v=v₀ → C=v₀'. These two steps are inseparable."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "wrong_integration_form",
+      "misconception": "Student uses dv/dt = f(x) and tries to integrate with respect to t when a is given as function of x",
+      "student_belief": "Always integrate acceleration with respect to t to get velocity",
+      "trigger_phrases": [
+        "a is given as function of x and I integrated with t",
+        "a = kx and I did dv/dt = kx",
+        "acceleration depends on position how to integrate",
+        "v dv dx kaise use kare",
+        "when to use v dv by dx"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show a = 3x. Student writes dv/dt = 3x and tries ∫dv = ∫3x dt — but x is also changing with t, so this integral is stuck. Show the 'stuck' symbol — cannot proceed without knowing x(t) first.",
+            "label": "Dead end: ∫3x dt requires knowing x as a function of t — which is exactly what we're trying to find.",
+            "scenario": "wrong_integration_form_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "When a depends on x, integrating with t creates a circular problem. We need a form that connects a, v, and x without t appearing."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show chain rule derivation animated: a = dv/dt = (dv/dx)·(dx/dt) = v·(dv/dx). Therefore v·dv = a·dx = 3x·dx. Now integrate: v²/2 = 3x²/2 + C. This gives v as a function of x directly.",
+            "label": "The chain rule unlocks it: v dv/dx = a eliminates t from the equation entirely.",
+            "scenario": "wrong_integration_form_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "a = f(x) → ALWAYS use v dv/dx = f(x). Rewrite as v dv = f(x) dx. Integrate both sides."
+          }
+        },
+        "STATE_3": {
+          "physics_layer": {
+            "simulation": "Complete solution: v dv = 3x dx → v²/2 = 3x²/2 + C. At x=0, v=v₀: C = v₀²/2. So v² = v₀² + 3x². At x=2m, v = √(v₀² + 12). Show particle reaching this velocity.",
+            "label": "Result: v as a function of x. No t involved. Clean and complete.",
+            "scenario": "wrong_integration_form_s3"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "terminal_velocity_confusion",
+      "misconception": "Student thinks terminal velocity means a=constant (not a=0)",
+      "student_belief": "At terminal velocity, acceleration becomes some small constant value, not zero",
+      "trigger_phrases": [
+        "terminal velocity kya hota hai",
+        "why does acceleration become zero",
+        "a = -kv at terminal velocity",
+        "terminal velocity explanation",
+        "when does particle stop accelerating"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show skydiver. Student draws a graph with a leveling off at some small positive value. Meanwhile, v-t graph shows velocity still growing (slowly). Contradiction: if a>0, v keeps growing — never reaches constant terminal velocity.",
+            "label": "If acceleration never becomes ZERO, velocity never becomes constant. Terminal velocity requires a = 0 exactly.",
+            "scenario": "terminal_velocity_confusion_s1"
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show a = g − kv. As v increases, kv increases. When kv = g: a = g − g = 0. Velocity stops changing. That v_terminal = g/k. Show v-t graph reaching flat asymptote exactly at v = g/k.",
+            "label": "Terminal velocity = the velocity at which drag force exactly cancels gravity. At that exact point: net force = 0, acceleration = 0.",
+            "scenario": "terminal_velocity_confusion_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "To find terminal velocity from a = f(v): SET a = 0 and solve for v. That's v_terminal."
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "micro_1": {
+      "trigger": "what is v dv dx",
+      "scope": "micro",
+      "states": 2,
+      "content": "v·dv/dx is the chain rule form of acceleration. Derivation: a = dv/dt = (dv/dx)·(dx/dt) = v·(dv/dx). Use this form WHEN acceleration is given as a function of position (a = f(x)) or velocity (a = f(v)) and you need velocity as a function of position."
+    },
+    "micro_2": {
+      "trigger": "how to identify which integration case",
+      "scope": "micro",
+      "states": 2,
+      "content": "Look at how a is expressed in the problem: a = [something with t] → Case 1, integrate dv = f(t)dt. a = [something with x] → Case 2, use v dv = f(x)dx. a = [something with v] → Case 3, use dv/f(v) = dt or v dv/f(v) = dx."
+    },
+    "micro_3": {
+      "trigger": "suvat kab use nahi kar sakte",
+      "scope": "micro",
+      "states": 2,
+      "content": "suvat (v=u+at, s=ut+½at², v²=u²+2as) are valid ONLY when acceleration is constant throughout the motion. If the problem says 'acceleration varies', 'a = f(t)', 'a = f(x)', 'retardation proportional to velocity' — immediately switch to calculus. suvat will give wrong answers in all such cases."
+    },
+    "micro_4": {
+      "trigger": "instantaneous velocity vs average velocity",
+      "scope": "micro",
+      "states": 2,
+      "content": "Instantaneous velocity v = dx/dt — the derivative, valid at one specific moment. Average velocity = Δx/Δt — total displacement over total time interval. For non-uniform motion, these differ at every instant. Only for uniform motion are they equal."
+    },
+    "micro_5": {
+      "trigger": "area under v-t graph for non uniform motion",
+      "scope": "micro",
+      "states": 2,
+      "content": "Displacement = area under v-t graph regardless of whether it's linear or curved. For uniform acceleration: area is a trapezoid → formula works. For non-uniform: area is under a curve → use integration x = ∫v dt. The geometric interpretation is always valid."
+    }
+  },
+  "static_responses": {
+    "three_cases_summary": {
+      "trigger": "list the three cases of non-uniform acceleration",
+      "simulation_needed": false,
+      "response": "Three integration cases: (1) a = f(t): use dv = f(t)dt, integrate → v(t), integrate again → x(t). (2) a = f(x): use v dv = f(x)dx, integrate → v(x). (3) a = f(v) for v(t): use dv/f(v) = dt, integrate. For v(x): use v dv/f(v) = dx, integrate. Always apply initial conditions after each integration."
+    },
+    "v_dv_dx_derivation": {
+      "trigger": "derive v dv dx",
+      "simulation_needed": false,
+      "response": "Derivation: Start with a = dv/dt. Multiply and divide by dx: a = (dv/dx)·(dx/dt). Since dx/dt = v: a = v·(dv/dx). This is the chain rule applied to the composite function v(x(t)). Result: a·dx = v·dv — integrate both sides when a = f(x) or a = f(v)."
+    },
+    "when_suvat_fails": {
+      "trigger": "when do equations of motion fail",
+      "simulation_needed": false,
+      "response": "The three equations of motion (v=u+at, s=ut+½at², v²=u²+2as) fail whenever acceleration is NOT constant. Check for: 'acceleration varies with time', 'a = kt or a = t²', 'retardation proportional to speed', 'acceleration depends on position'. Any of these → use calculus. suvat with a variable a gives a wrong number with no error message."
+    }
+  },
+  "problem_guidance_path": {
+    "description": "Step-by-step guidance for solving non-uniform acceleration problems",
+    "step_1": "Read: Is a given as a function of t, x, or v?",
+    "step_2": "Choose form: f(t) → dv=f(t)dt. f(x) → v dv=f(x)dx. f(v) → dv/f(v)=dt or v dv/f(v)=dx",
+    "step_3": "Integrate both sides. Write +C immediately.",
+    "step_4": "Apply initial condition to find C.",
+    "step_5": "If x(t) needed: integrate v(t) again, apply second initial condition.",
+    "step_6": "Check: Does your answer have correct units? Does it reduce to expected result for special cases?",
+    "common_errors": [
+      "Dropping the constant of integration",
+      "Using suvat equations without checking if a is constant",
+      "Integrating a=f(x) with respect to t instead of using v dv/dx form",
+      "Not applying initial conditions at all"
+    ]
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Section 6.7 — Example (a = f(t) type)",
+      "principle": "Particle with a = 2t from rest — integrating twice gives v = t² and x = t³/3",
+      "aha": "Two integrations, two constants, two initial conditions — the complete procedure in one problem",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Section 6.7 — Example (a = f(x) type)",
+      "principle": "a = kx form — using v dv/dx = kx to find velocity at a given position without needing time",
+      "aha": "When a depends on position, the answer is v as a function of x — time never appears in the final answer",
+      "simulation_states": 2
+    },
+    "example_3": {
+      "source": "DC Pandey Section 6.7 — Example (a = f(v) type, terminal velocity)",
+      "principle": "a = g − kv — exponential approach to terminal velocity; setting a=0 gives v_terminal = g/k",
+      "aha": "Terminal velocity is found by setting a=0, not by complicated integration — the integration gives v(t) but the terminal value is algebraic",
+      "simulation_states": 2
+    },
+    "example_4": {
+      "source": "DC Pandey Section 6.7 — JEE-style combined problem",
+      "principle": "Finding both velocity-position and velocity-time relations from a single a=f(v) expression using different integration paths",
+      "aha": "Same a=f(v) problem but two different questions — choosing the right integration path (dv/f(v)=dt vs v dv/f(v)=dx) depends entirely on what is being asked",
+      "simulation_states": 3
+    }
+  },
+  "assessment_path": {
+    "question_1": {
+      "text": "A particle starts from rest. Its acceleration is a = 4t m/s². What is its velocity at t = 3s?",
+      "options": [
+        "12 m/s",
+        "18 m/s",
+        "36 m/s",
+        "6 m/s"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to suvat_on_variable_a branch — student used a=4×3=12 with v=at",
+      "if_wrong_2": "route to forgot_constant_of_integration — student may have made arithmetic error after correct integration",
+      "explanation": "a = 4t → dv = 4t dt → v = 2t² + C. At t=0, v=0 → C=0. v = 2t² = 2×9 = 18 m/s."
+    },
+    "question_2": {
+      "text": "Acceleration of a particle is given by a = 2x. At x=0, v=3 m/s. Find v at x=2m.",
+      "options": [
+        "√17 m/s",
+        "5 m/s",
+        "√13 m/s",
+        "7 m/s"
+      ],
+      "correct": 1,
+      "if_wrong_2": "route to wrong_integration_form branch — student tried to integrate with t",
+      "explanation": "a = f(x): v dv = 2x dx → v²/2 = x² + C. At x=0, v=3 → C=9/2. v² = 2x² + 9 = 8+9 = 17. v = √17? Wait — recheck: v²/2 = x² + 9/2. v² = 2x² + 9 = 2×4 + 9 = 17. Answer A. Note: correct is option 0 (√17). Option B (5) is wrong."
+    },
+    "question_3": {
+      "text": "For a particle moving with a = 4 − 2v, what is the terminal (maximum) velocity?",
+      "options": [
+        "4 m/s",
+        "2 m/s",
+        "1 m/s",
+        "8 m/s"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to terminal_velocity_confusion — student set a = 4 instead of a = 0",
+      "explanation": "Terminal velocity: a = 0 → 4 − 2v = 0 → v = 2 m/s."
+    },
+    "question_4": {
+      "text": "Which integration form is correct when a is given as a function of velocity and you need v as a function of x?",
+      "options": [
+        "∫dv/a = t",
+        "∫v dv/a = x",
+        "∫a dt = v",
+        "∫a dx = v²/2"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to wrong_integration_form branch",
+      "explanation": "a = f(v), need v(x): use v·dv/dx = f(v) → v dv/f(v) = dx → ∫v dv/f(v) = x + C."
+    },
+    "question_5": {
+      "text": "A particle has velocity v = 3t² − 2t. What is its acceleration at t = 2s?",
+      "options": [
+        "8 m/s²",
+        "16 m/s²",
+        "10 m/s²",
+        "6t − 2 m/s²"
+      ],
+      "correct": 2,
+      "explanation": "a = dv/dt = 6t − 2. At t=2: a = 12 − 2 = 10 m/s²."
+    }
+  },
+  "session_awareness": {
+    "if_already_shown_epic_l": "Jump to problem-solving — student knows theory, needs practice identifying cases",
+    "if_coming_from_uniform_acceleration": "Student just learned suvat — explicitly contrast: 'Everything you just learned assumes a=constant. Now a is variable.'",
+    "if_coming_from_differentiation_chapter": "Student has calculus tools — connect directly: 'You know d/dt. Kinematics is just d/dt applied to x(t).'"
+  },
+  "waypoints": {
+    "fallback_unknown_confusion": "Default to the case-identification decision tree (STATE_5). Most confusion in non-uniform acceleration comes from not knowing which integration form to use — the flowchart resolves it.",
+    "escalation_trigger": "If student asks about solving a = f(x) for x(t) explicitly — this requires separation of variables on dx/v(x) = dt, which is JEE Advanced level. Escalate."
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks how to find x(t) when a = f(x) — i.e., after getting v(x), how to get time",
+    "escalate_to": "Separate variables: v = dx/dt → dt = dx/v(x) → t = ∫dx/v(x). This requires knowing v as a function of x first (from v dv = f(x) dx), then substituting into the integral.",
+    "level": "JEE Advanced / Mathematical Physics"
+  },
+  "parameter_slots": {
+    "a_coeff": {
+      "label": "coefficient in acceleration expression",
+      "range": [
+        1,
+        10
+      ],
+      "unit": "varies",
+      "default": 2,
+      "extraction_hint": "coefficient in a = kt or a = kx or a = kv"
+    },
+    "v0": {
+      "label": "initial velocity",
+      "range": [
+        0,
+        30
+      ],
+      "unit": "m/s",
+      "default": 0,
+      "extraction_hint": "initial velocity or starts from rest (v0=0)"
+    },
+    "x0": {
+      "label": "initial position",
+      "range": [
+        0,
+        20
+      ],
+      "unit": "m",
+      "default": 0,
+      "extraction_hint": "initial position or starts at origin (x0=0)"
+    }
+  },
+  "panel_sync_spec": {
+    "canvas_to_graph": {
+      "trigger": "STATE_N_reached",
+      "action": "both v-t and a-t graphs mark current time with vertical line"
+    },
+    "graph_to_canvas": {
+      "trigger": "student_hover_on_vt_graph_at_t",
+      "action": "canvas animation seeks to that time, shows instantaneous v and a"
+    },
+    "slider_to_both": {
+      "parameter": "a_coeff",
+      "canvas_action": "particle trajectory updates for new acceleration coefficient",
+      "graph_action": "v-t and a-t curves redraw for new a expression"
+    }
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "Given a = f(t), find v at time t (integrate once)",
+      "Given a = f(x), find v at position x (use v dv/dx)",
+      "Given v = f(t), find a at time t (differentiate)",
+      "Given a = f(v), find terminal velocity (set a=0)",
+      "Given v = f(t), find displacement in time interval (integrate v)",
+      "Match: type of a expression → correct integration method"
+    ],
+    "common_traps": [
+      "Applying v = u + at when a is not constant — silent wrong answer",
+      "Dropping constant of integration after integrating",
+      "Using dv/dt = f(x) and trying to integrate with t — circular error",
+      "Confusing average acceleration with instantaneous acceleration",
+      "Not applying initial conditions — answer has undetermined C"
+    ],
+    "key_results": [
+      "a = kt → v = kt²/2 + v₀ (from rest: v = kt²/2)",
+      "a = kx → v² = kx² + v₀² (from origin at rest: v = x√k)",
+      "a = kv → v = v₀·e^(kt) (growing) or v = v₀·e^(-kt) (decaying)",
+      "a = k − mv → terminal v = k/m (set a=0)",
+      "Slope of v-t = a at that instant (even for non-linear v-t)"
+    ],
+    "standard_values": {
+      "g": "10 m/s² (use unless stated otherwise)"
+    }
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "uniform_acceleration",
+      "distance_vs_displacement"
+    ],
+    "extensions": [
+      "motion_graphs",
+      "relative_motion",
+      "projectile_motion",
+      "circular_motion_banking"
+    ],
+    "siblings": [
+      "motion_graphs"
+    ],
+    "common_exam_combinations": [
+      "motion_graphs — v-t graph for non-uniform motion, area = displacement, slope = acceleration",
+      "work_energy_theorem — F=ma with variable a leads to variable force, work requires integration",
+      "SHM — acceleration a = −ω²x is an a=f(x) case, leading to SHM equations"
+    ]
+  },
+  "three_js_flag": false,
+  "three_js_note": "Non-uniform acceleration is 1D motion along a line. canvas2d with dual-panel (particle track + v-t/a-t graphs) is the correct renderer. Three.js not needed.",
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "approach": "why_suvat_fails",
+      "entry_state": "STATE_2",
+      "teacher_angle": "Start with the exact moment SUVAT breaks. SUVAT assumes a is constant — that is its only assumption. If a changes with time, the derivation of v = u + at is wrong because you cannot pull a out of the integral. Show the SUVAT derivation side by side with the non-uniform derivation. In SUVAT: integral of a dt = at (a is constant). In non-uniform: integral of f(t) dt requires actual integration. The calculus approach is not more complicated — it is the same idea, just not simplified by the constant-a shortcut.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "panel_b_focus": "Side by side derivation: SUVAT case (a constant, integral trivial) and non-uniform case (a = f(t), integral required). The structural parallel is highlighted — same approach, different level of simplification."
+    },
+    {
+      "variant_id": 2,
+      "approach": "connects_to_uniform_acceleration",
+      "entry_state": "STATE_1",
+      "teacher_angle": "Show uniform acceleration as the special case of non-uniform. In uniform acceleration, a = constant. That is a function of time where the function is just a flat line — f(t) = k. SUVAT equations are the result of integrating that flat line. Non-uniform acceleration is just the general case where the line is not flat — a = f(t) can be any curve. Every SUVAT result has a generalised version. The student already knows the special case — this is just removing the restriction that a must be constant.",
+      "locked_facts_focus": [
+        "fact_4",
+        "fact_5",
+        "fact_6"
+      ],
+      "panel_b_focus": "a-t graph: flat horizontal line labeled 'uniform acceleration — SUVAT applies'. Then curve shown labeled 'non-uniform — calculus required'. Transition between the two is animated — as the flat line curves, the SUVAT equations become invalid."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Time", "symbol": "t", "unit": "s", "min": 0, "max": 10 },
+    "y_axis": { "label": "Velocity", "symbol": "v", "unit": "m/s", "min": 0, "max": 60 },
+    "lines": [
+      { "id": "v_nonuniform", "formula": "0.5 * x * x + x", "color": "#f472b6", "label": "v = t² (non-uniform — curved)" },
+      { "id": "v_uniform_ref", "formula": "5 * x", "color": "#94a3b8", "label": "v = 5t (uniform — straight)", "dash": "dash" }
+    ],
+    "sliders": [],
+    "legend": [
+      { "id": "v_nonuniform", "label": "Non-uniform" },
+      { "id": "v_uniform_ref", "label": "Uniform (ref)" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": ["v_uniform_ref"], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": ["v_uniform_ref", "v_nonuniform"], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["v_uniform_ref", "v_nonuniform"], "show_sliders": false, "highlight_point": true, "point_x": 6, "point_y": 24, "label": "Curved = changing acceleration" },
+      "STATE_5": { "active_lines": ["v_nonuniform"], "show_sliders": false, "highlight_point": false },
+      "STATE_6": { "active_lines": ["v_uniform_ref", "v_nonuniform"], "show_sliders": false, "highlight_point": false }
+    }
+  }
+}

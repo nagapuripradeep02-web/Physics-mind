@@ -1,0 +1,90 @@
+{
+  "concept_id": "lcr_series_circuit",
+  "concept_name": "LCR Series Circuit",
+  "chapter": "Alternating Current",
+  "class_level": 12,
+  "renderer_hint": {
+    "primary": "circuit_live",
+    "topology": "lcr_series",
+    "show_graph": true,
+    "graph_type": "phasor_diagram"
+  },
+  "variables": {
+    "V_m": { "symbol": "V_m", "name": "Source Peak Voltage", "unit": "V", "min": 1, "max": 200, "default": 100 },
+    "R": { "symbol": "R", "name": "Resistance", "unit": "Ω", "min": 1, "max": 500, "default": 100 },
+    "L": { "symbol": "L", "name": "Inductance", "unit": "H", "min": 0.01, "max": 5, "default": 0.1 },
+    "C": { "symbol": "C", "name": "Capacitance", "unit": "μF", "min": 1, "max": 1000, "default": 100 },
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 10, "max": 1000, "default": 50 }
+  },
+  "locked_facts": [
+    "Impedance Z = √(R² + (X_L - X_C)²)",
+    "X_L = ωL, X_C = 1/(ωC)",
+    "Peak current I_m = V_m / Z",
+    "Phase angle φ = arctan((X_L - X_C) / R)",
+    "If X_L > X_C: circuit is inductive, V leads I",
+    "If X_C > X_L: circuit is capacitive, I leads V",
+    "If X_L = X_C: circuit is at resonance, Z = R (minimum), φ = 0",
+    "V_R, V_L, V_C cannot be added arithmetically — they are out of phase",
+    "V_L and V_C are exactly 180° out of phase with each other",
+    "Source voltage V = √(V_R² + (V_L - V_C)²)"
+  ],
+  "truth_statements": [
+    "Total voltage across LCR is NOT the arithmetic sum of V_R + V_L + V_C",
+    "Impedance Z is always greater than or equal to R",
+    "V_L and V_C subtract from each other in the phasor diagram because they are 180° apart",
+    "At resonance, V_L and V_C cancel and Z = R"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show that V_L = 150V and V_C = 100V in a circuit where V_source = 50V and V_R = 50V. Student sees that V_L > V_source. This seems impossible until the phasor diagram reveals that V_L and V_C nearly cancel (150-100=50), leaving only the R component. The source only needs to supply 50V because the L and C voltages are internally fighting each other.",
+    "visual_emphasis": "Number the voltages explicitly: V_R = 50V, V_L = 150V, V_C = 100V, V_source = 50V. First show arithmetic sum = 300V (wrong). Then show phasor addition giving 50V (correct). The cognitive dissonance and its resolution is the aha moment."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "LCR circuit — three elements in series",
+      "what_student_sees": "Circuit with AC source, R, L, C in series. Same current I flows through all three since they are in series.",
+      "what_to_emphasize": "Series means same current everywhere. But each element develops a voltage that may be in different phase from the current."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Individual voltages — phasors",
+      "what_student_sees": "Phasor diagram: V_R (along current direction, 0°), V_L (90° ahead of I), V_C (90° behind I). All three phasors shown rotating together.",
+      "what_to_emphasize": "V_R is in phase with I. V_L is 90° ahead. V_C is 90° behind. Crucially: V_L and V_C point in OPPOSITE directions in the phasor diagram."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Resultant voltage — phasor addition",
+      "what_student_sees": "V_L and V_C combined first: net reactive voltage = V_L - V_C (since they oppose). This net reactive voltage added at 90° to V_R gives V_source. Source voltage phasor is the hypotenuse of the right triangle.",
+      "what_to_emphasize": "The formula V = √(V_R² + (V_L - V_C)²) comes directly from this right triangle. It is Pythagoras applied to phasors."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Effect of frequency on circuit character",
+      "what_student_sees": "Frequency slider. At low f: X_C >> X_L, circuit is capacitive. At high f: X_L >> X_C, circuit is inductive. At resonant f₀: X_L = X_C, circuit is purely resistive, Z is minimum.",
+      "what_to_emphasize": "The character of the circuit (inductive vs capacitive) depends on frequency. The crossover point where X_L = X_C is resonance."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "arithmetic_voltage_sum",
+      "trigger_keywords": ["V_R plus V_L plus V_C", "voltages add up", "total voltage sum", "seedha add", "300V total"],
+      "student_belief": "The source voltage = V_R + V_L + V_C added arithmetically",
+      "actual_physics": "V_R, V_L, V_C are out of phase. They must be added as phasors. V_source = √(V_R² + (V_L - V_C)²). Arithmetic sum will always give a wrong (too large) answer.",
+      "simulation_emphasis": "Show a numerical example where arithmetic sum = 300V but phasor sum = 50V. Make the student compute both. The discrepancy forces recognition that phase matters."
+    },
+    {
+      "id": "individual_voltage_exceeds_source",
+      "trigger_keywords": ["voltage across inductor greater than source", "how can V_L be more than V", "capacitor voltage exceeds supply", "zyada kaise ho sakta"],
+      "student_belief": "It is impossible for the voltage across L or C to exceed the source voltage",
+      "actual_physics": "In an LCR circuit, V_L and V_C can both individually exceed the source voltage. This is because they are 180° apart and mostly cancel each other in the phasor diagram — only their difference appears in the source.",
+      "simulation_emphasis": "Show specific numbers: V_source = 100V, V_L = 300V, V_C = 250V. Phasor diagram shows V_L - V_C = 50V reactive, V_R = 86.6V, giving √(86.6² + 50²) = 100V = V_source. Make the cancellation visible."
+    }
+  ],
+  "legend": [
+    { "symbol": "Z", "meaning": "Impedance = √(R² + (X_L - X_C)²)" },
+    { "symbol": "φ", "meaning": "Phase angle = arctan((X_L - X_C)/R)" },
+    { "symbol": "X_L", "meaning": "Inductive reactance = ωL" },
+    { "symbol": "X_C", "meaning": "Capacitive reactance = 1/ωC" }
+  ]
+}

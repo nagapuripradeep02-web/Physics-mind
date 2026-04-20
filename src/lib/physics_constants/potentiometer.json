@@ -1,0 +1,34 @@
+{
+  "concept": "potentiometer",
+  "locked_facts": {
+    "working_principle": "potential_difference_proportional_to_length_of_wire",
+    "potential_gradient_formula": "k = V / L where V is driver cell voltage and L is wire length",
+    "balance_condition": "EMF of cell equals potential difference across balancing length: E = k * l",
+    "advantage_over_voltmeter": "draws_no_current_at_balance_so_measures_true_EMF",
+    "comparison_of_EMFs": "E1/E2 = l1/l2 where l1 and l2 are balancing lengths",
+    "internal_resistance_formula": "r = R * (l1 - l2) / l2 where R is external resistance"
+  },
+  "animation_constraints": {
+    "galvanometer_zero_at_balance": true,
+    "potential_drops_uniformly_along_wire": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "renderer_hint": {
+    "topology": "wire",
+    "show_jockey": true,
+    "show_galvanometer": true,
+    "wire_label_start": "A",
+    "wire_label_end": "C"
+  },
+  "ncert_truth_statements": [
+    "A potentiometer works on the principle that the potential difference across any portion of a uniform wire is proportional to its length when a steady current flows through it",
+    "At the balance point, the galvanometer reads zero because the EMF of the cell being tested exactly equals the potential difference across the balancing length: E = kl",
+    "The potentiometer measures the true EMF of a cell because it draws no current from the cell at balance, unlike a voltmeter which draws a small current",
+    "The ratio of two EMFs can be compared using a potentiometer: E₁/E₂ = l₁/l₂, where l₁ and l₂ are the respective balancing lengths",
+    "The internal resistance of a cell can be measured with a potentiometer using the formula r = R(l₁ − l₂)/l₂, where R is the external resistance and l₁, l₂ are balancing lengths with and without R"
+  ]
+}

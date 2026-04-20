@@ -1,0 +1,274 @@
+{
+  "concept_id": "instantaneous_velocity",
+  "concept_name": "Instantaneous Velocity — The Velocity at a Single Moment in Time",
+  "chapter": 6,
+  "section": "6.3",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 6.3 — Derivatives in Kinematics; split from distance_vs_displacement bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A car's speedometer in a traffic jam on the Mumbai-Pune Expressway. The needle does not show the trip's average speed — it shows the car's speed at THIS instant. When you brake, the needle drops immediately; when you floor the accelerator, it climbs. The speedometer is a physical instantaneous-speed meter, ticking out a new number every fraction of a second.",
+    "secondary": "A bowling speed-gun in cricket recording a fast bowler's delivery. It shows one hundred and forty kilometres per hour — not the average speed of the ball over the whole delivery, but the speed at the instant the ball passed the gun's sensor. That single snapshot is what broadcasters display.",
+    "tertiary": "A digital photo of a speeding bike taken with a fast shutter. The shutter opens for a thousandth of a second, so the photo captures where the bike WAS in that thousandth. The bike's velocity at the moment of the click is the instantaneous velocity — the limit of displacement divided by time as the time interval shrinks to zero."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "t": { "name": "Time", "unit": "s", "min": 0, "max": 10, "default": 2 },
+      "delta_t": { "name": "Sampling interval", "unit": "s", "min": 0.01, "max": 2, "default": 0.5 }
+    },
+    "computed_outputs": {
+      "position": { "formula": "5 * t * t" },
+      "avg_vel_over_interval": { "formula": "(5*(t+delta_t)*(t+delta_t) - 5*t*t) / delta_t" },
+      "inst_vel_at_t": { "formula": "10 * t" },
+      "error_from_finite_dt": { "formula": "(5*(t+delta_t)*(t+delta_t) - 5*t*t) / delta_t - 10*t" }
+    },
+    "formulas": {
+      "instantaneous_velocity": "v(t) = lim (delta_t -> 0) [ delta_s / delta_t ]   =   ds / dt",
+      "graph_interpretation": "Instantaneous velocity = slope of the tangent to the position-time graph at that instant",
+      "example_from_s_eq_5t2": "If s = 5 t^2, then v = ds/dt = 10 t. At t = 2, v = 20 m/s."
+    },
+    "constraints": [
+      "Instantaneous velocity is a VECTOR — has magnitude (speed) and direction",
+      "Speedometer displays instantaneous SPEED (magnitude only, no direction)",
+      "Derivative ds/dt is the limit of delta_s/delta_t as delta_t approaches zero",
+      "Finite delta_t gives an APPROXIMATION; error shrinks as delta_t shrinks"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "The Speedometer Problem — Speed Right NOW, Not on Average",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "dashboard",
+            "text": "   _____________________\n   |                       |\n   |      SPEEDOMETER      |\n   |                       |\n   |        /---\\         |\n   |       |  65  |        |\n   |        \\---/         |\n   |       km/h            |\n   |_______________________|\n\nThe needle jumps as the driver\naccelerates or brakes.\nIt shows speed AT THIS INSTANT.",
+            "position": { "x": 300, "y": 340 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.8 }
+          },
+          {
+            "type": "annotation",
+            "id": "contrast_question",
+            "text": "Two different questions\n\n(1) How fast did I go on average\n    over the whole trip?\n    -> average speed\n    -> total distance / total time\n\n(2) How fast am I going RIGHT NOW?\n    -> instantaneous speed\n    -> what the speedometer reads\n\nFor the second question, we need\na new definition that shrinks the\ntime interval to ZERO.\n\nThat idea IS the derivative.",
+            "position": { "x": 640, "y": 280 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Look at your car's speedometer. It does not display the trip's average — it shows how fast you are going at THIS instant." },
+            { "id": "s2", "text_en": "Brake, and the needle falls in a heartbeat. Accelerate, and it climbs. It is tracking an instantaneous value, not a long-run average." },
+            { "id": "s3", "text_en": "So there are two distinct questions about motion. How fast on average? — that is distance over time, and we have already covered it." },
+            { "id": "s4", "text_en": "How fast right now? — that needs a different definition. Not averaged over any stretch of time, but sampled at a single moment." },
+            { "id": "s5", "text_en": "The next three states build that idea. We shrink the averaging interval all the way to zero — that is what the derivative means." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Shrink the Interval — Average Velocity Becomes Instantaneous",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "table",
+            "text": "Car with position s(t) = 5 t^2 metres\n\nCompute average velocity from t = 2 s\nover shrinking intervals delta_t.\n\ndelta_t    avg vel\n   1.0   25 m/s   (from s(2)=20 to s(3)=45)\n   0.5   22.5\n   0.1   20.5\n   0.01  20.05\n   0.001 20.005\n   0     20.000  (limit)\n\nAs delta_t shrinks, the average closes\nin on ONE number: 20 m/s.\nThat is the instantaneous velocity at t = 2 s.",
+            "position": { "x": 400, "y": 280 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 0.8, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is the construction in numbers. A car's position follows the rule s equals five t squared. At time two seconds, the car is twenty metres from its start." },
+            { "id": "s2", "text_en": "Now compute the average velocity over different small intervals after t equals two. Over the next full second, the average is twenty-five metres per second." },
+            { "id": "s3", "text_en": "Over the next half second, the average drops to twenty-two point five. Over a tenth of a second, it is twenty point five. Over a hundredth of a second, twenty point zero five. Over a thousandth, twenty point zero zero five." },
+            { "id": "s4", "text_en": "A clear pattern — as the time interval shrinks, the average converges to one specific number, twenty metres per second." },
+            { "id": "s5", "text_en": "That limit value is the instantaneous velocity at t equals two seconds. It is what the speedometer would have read at exactly that moment." },
+            { "id": "s6", "text_en": "Mathematically, we write it as ds over dt — the derivative of position with respect to time. The derivative is exactly this 'shrink the interval to zero' idea, made precise." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "The Graph Picture — Slope of the Tangent",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "graph_axes",
+            "text": "Position-time graph (s vs t)\n\n  s |           __\n    |         /\n    |       / <- tangent at t = 2\n    |     /\n    |   .  (point at t=2, s=20)\n    | /\n    |_________________\n    0                   t\n\nSlope of the tangent line at any\npoint EQUALS the instantaneous\nvelocity at that point.\n\nSteep tangent -> high v\nFlat tangent  -> low v\nTangent slope negative -> v negative",
+            "position": { "x": 320, "y": 320 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "why_tangent",
+            "text": "Why the tangent?\n\nAverage velocity over delta_t is\nthe SLOPE of the CHORD joining\ntwo points on the graph.\n\nShrink delta_t to zero.\nThe two points approach each other.\nThe chord rotates into the tangent.\n\nSo the derivative at a point IS\nthe tangent's slope at that point.",
+            "position": { "x": 680, "y": 300 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "There is a beautiful graph interpretation. Plot position s on the y-axis and time t on the x-axis. Any motion gives you a curve on this graph." },
+            { "id": "s2", "text_en": "Pick any point on the curve. Draw a chord to a nearby point. The slope of that chord is the average velocity between the two moments." },
+            { "id": "s3", "text_en": "Now slide the second point closer and closer to the first. The chord rotates. In the limit, when the second point hits the first, the chord becomes the tangent line at that point." },
+            { "id": "s4", "text_en": "The slope of the tangent is the instantaneous velocity at that point. Steep tangent — fast. Nearly flat tangent — slow. Tangent going downward — negative velocity, moving the opposite way." },
+            { "id": "s5", "text_en": "This graph-reading skill is your fastest weapon for velocity problems. Given any position-time graph, you can read the velocity at every point just by looking at the tangent's tilt." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_4": {
+        "title": "The Derivative Formula — v = ds/dt",
+        "duration": 10,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "master_formula",
+            "text": "INSTANTANEOUS VELOCITY\n\n  v(t)  =  ds\n           ----\n           dt\n\n'v equals the derivative of s\n with respect to t.'\n\nRead as rate of change of\nposition per unit time.",
+            "position": { "x": 300, "y": 260 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "worked_examples",
+            "text": "Worked examples\n\ns = 5 t^2\n  ds/dt = 10 t\n  At t = 2 -> v = 20 m/s  (matches the table)\n\ns = 3 t + 4\n  ds/dt = 3 m/s  (constant velocity)\n\ns = 2 t^3\n  ds/dt = 6 t^2\n  At t = 1 -> v = 6 m/s\n  At t = 2 -> v = 24 m/s\n\nSpeedometer equivalent\n  The derivative IS the reading\n  you would see on a perfect\n  instantaneous-speed meter.",
+            "position": { "x": 680, "y": 300 },
+            "style": "callout",
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "In one clean line — instantaneous velocity equals ds over dt, the derivative of position with respect to time." },
+            { "id": "s2", "text_en": "Three quick examples. If s equals five t squared, ds over dt is ten t. At t equals two, v is twenty, matching the table we built by shrinking the interval." },
+            { "id": "s3", "text_en": "If s equals three t plus four, ds over dt is a constant three. The velocity is three metres per second at every instant — uniform motion." },
+            { "id": "s4", "text_en": "If s equals two t cubed, ds over dt is six t squared. At t equals one, v is six; at t equals two, v is twenty-four. The velocity itself keeps changing — the object is accelerating." },
+            { "id": "s5", "text_en": "So the derivative is the speedometer made mathematical. For any position-versus-time rule, differentiate once to get the instantaneous velocity at every moment." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "inst_velocity_equals_avg",
+      "misconception": "Instantaneous velocity equals average velocity",
+      "trigger_phrases": [
+        "why two different velocities",
+        "instantaneous same as average",
+        "can't I just use avg velocity",
+        "difference doesn't matter"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Average Is Enough",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "belief",
+              "text": "Your reasoning\n\nI travelled 100 km in 2 hr.\nSo my velocity is 50 km/h.\n\nSimple. Why do I need anything\nmore complicated than this?\n\n(It works when motion is steady.\nBut if you paused at a stoplight,\nsped up on the highway, and\ncrawled through a jam, the\nvelocity at each instant is\ncompletely different from 50.)",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Many students stop at average velocity. 'I went one hundred kilometres in two hours; my velocity is fifty.' Done." },
+              { "id": "s2", "text_en": "Average velocity is a useful summary, but it hides the details. If you sat at a stoplight for ten minutes and then drove a hundred and ten kilometres in the remaining hour fifty, your velocity at the stoplight was zero, and on the highway it was over fifty-five." },
+              { "id": "s3", "text_en": "Neither instant matched the average. That is why physics needs a separate idea for velocity at a moment — instantaneous velocity." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Graph Picture — Tangent Slope Varies Across the Curve",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "graph_idea",
+              "text": "Same trip, position vs time\n\n  s |         ___\n    |        /   <- steep here\n    |       /       (highway)\n    |      /\n    |    _/ <- flattens (jam)\n    |   /\n    | _/     <- long flat stretch\n    |/          (stoplight)\n    |_________________  t\n\nAverage velocity = slope of the\nstraight line joining start and end.\n\nInstantaneous velocity = slope of\nthe tangent at each point.\n\nThe tangent slope VARIES across\nthe curve. The average is just\none summary number.",
+              "position": { "x": 380, "y": 280 },
+              "style": "formula_box"
+            },
+            {
+              "type": "annotation",
+              "id": "comparison",
+              "text": "Average captures whole trip\nInstantaneous captures any moment\n\nPhysics questions can ask\nfor either. Know which.",
+              "position": { "x": 720, "y": 320 },
+              "style": "callout",
+              "color": "#10B981",
+              "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Draw the position-time graph of that trip. Flat during the stoplight, steep on the highway, gentle in the jam." },
+              { "id": "s2", "text_en": "The average velocity is the slope of the single straight line that joins your start and end points on the graph. One slope, one number." },
+              { "id": "s3", "text_en": "Instantaneous velocity is the slope of the tangent at every point along the curve. The tangent is nearly flat at the stoplight, very steep on the highway, gentle in the jam." },
+              { "id": "s4", "text_en": "Most points on the curve have tangent slopes that disagree with the average. The average hides the variation." },
+              { "id": "s5", "text_en": "So if a question asks 'at what time was the car moving fastest' or 'when did it stop briefly', you need instantaneous velocity, not the average." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "When Do They Coincide? Constant Velocity Only",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "straight_line_case",
+              "text": "Instantaneous = Average\n\nif AND ONLY if\nvelocity is CONSTANT throughout.\n\nGraph is a straight line\n(same slope everywhere).\nNo speed-up. No slow-down.\nNo stoplight.\nNo reversal.\n\nIn every real journey,\nthe two differ at almost every instant.",
+              "position": { "x": 360, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The two velocities coincide only if the velocity is CONSTANT throughout the motion — no speed-up, no slow-down, no stoplight." },
+              { "id": "s2", "text_en": "On the graph, that means the position-time curve is a perfectly straight line with the same slope everywhere. Tangent slope and chord slope agree because both are the same number." },
+              { "id": "s3", "text_en": "In any real journey with traffic, wind, or a slope, the instantaneous velocity varies from moment to moment. The average is just one summary and does not tell you the story at each point." },
+              { "id": "s4", "text_en": "So — always check which the question asks for. Average, for summary. Instantaneous, for any specific moment." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Cubic position example",
+      "physical_world": "s = 2 t^3. v(t) = 6 t^2. At t = 3, v = 54 m/s. Velocity keeps growing — accelerating motion.",
+      "same_physics": "v = ds/dt, applied to any position function"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Sinusoidal motion",
+      "physical_world": "s = 10 sin(t). v = 10 cos(t). Velocity oscillates between +10 and -10; at t = pi/2, v = 0 (turning point).",
+      "same_physics": "Derivative of position gives velocity, even for oscillating motion"
+    }
+  ]
+}

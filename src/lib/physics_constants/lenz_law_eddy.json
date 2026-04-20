@@ -1,0 +1,42 @@
+{
+  "concept_id": "lenz_law_eddy",
+  "concept_name": "Lenz's Law and Eddy Currents",
+  "class_level": 12,
+  "chapter": "Electromagnetic Induction",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "circuit_live", "scenario_type": "lenz_law", "panel_count": 1, "show_labels": true },
+  "variables": { "ε": "Induced EMF (V)", "I_ind": "Induced current (A)", "B_ind": "Induced magnetic field", "Φ": "Magnetic flux (Wb)" },
+  "locked_facts": [
+    "Lenz's law: the induced current flows in a direction that opposes the change in flux that caused it",
+    "Lenz's law is a consequence of conservation of energy",
+    "If flux increases → induced current creates opposing field. If flux decreases → induced current supports the field.",
+    "The negative sign in ε = -dΦ/dt represents Lenz's law",
+    "Eddy currents are induced currents in bulk conductors (not wires) exposed to changing flux",
+    "Eddy currents cause heating (energy loss) — used in induction heating, electromagnetic braking",
+    "Eddy currents can be reduced by using laminated cores (thin insulated sheets)"
+  ],
+  "truth_statements": [
+    "Lenz's law states that the direction of induced current is such that it opposes the change in magnetic flux that produces it",
+    "Lenz's law is a direct consequence of conservation of energy — if it aided the change, perpetual motion would result",
+    "Eddy currents flow in closed loops within conducting material when the magnetic flux through it changes",
+    "Electromagnetic braking uses eddy currents to slow a conductor moving in a magnetic field",
+    "Laminated cores reduce eddy current losses by breaking up the current paths"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A magnet pushed INTO a coil: flux increases, induced current creates a field that REPELS the magnet (opposing the increase). Magnet pulled AWAY: flux decreases, induced current creates a field that ATTRACTS the magnet (opposing the decrease). The coil always fights the change.",
+    "visual_emphasis": "Two animations: push→repel, pull→attract, with induced field arrows showing opposition",
+    "why_this_breaks_misconception": "Students memorise 'opposes the change' without feeling it — seeing the coil physically resist the magnet in both directions makes Lenz's law intuitive"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Magnet approaching coil", "description": "North pole moves toward coil. Flux increases. By Lenz's law, induced current creates a north pole facing the magnet (repulsion). Induced B opposes the increase in flux.", "emphasis": "Flux increasing → induced field opposes it → coil repels the magnet", "labels_visible": ["N approaching", "induced N faces magnet", "repulsion"] },
+    { "id": "STATE_2", "label": "Magnet receding from coil", "description": "North pole moves away. Flux decreases. Induced current creates a south pole facing the magnet (attraction). Induced B tries to maintain the flux.", "emphasis": "Flux decreasing → induced field supports it → coil attracts the magnet", "labels_visible": ["N receding", "induced S faces magnet", "attraction"] },
+    { "id": "STATE_3", "label": "Energy conservation proof", "description": "If Lenz's law were reversed (coil attracted approaching magnet), the magnet would accelerate, inducing more current, attracting harder → infinite energy from nothing. This violates energy conservation.", "emphasis": "Lenz's law MUST oppose the change — otherwise energy is created from nothing", "labels_visible": ["conservation of energy", "opposes change always"] },
+    { "id": "STATE_4", "label": "Interactive + eddy currents", "description": "Student moves magnet. Coil current direction shown. Toggle to eddy current demo: magnet dropped through copper tube falls slowly due to opposing eddy currents. Lamination demo reduces eddy losses.", "emphasis": "Move the magnet — feel the opposition. Watch eddy currents slow the falling magnet.", "labels_visible": ["I_ind", "B_ind", "eddy currents"], "interactive": true, "sliders": [{ "id": "magnet_speed", "label": "Magnet speed", "min": 0, "max": 10, "default": 5, "unit": "m/s" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Lenz's law says induced current opposes the magnetic field", "trigger_phrases": ["opposes the field", "opposite to B", "field ke opposite"], "correction": "Lenz's law says induced current opposes the CHANGE in flux, not the flux itself. If flux is decreasing, the induced current creates a field in the SAME direction as the original field (to maintain the flux).", "simulation_emphasis": "Show magnet receding — induced field is in the SAME direction as original, supporting the decreasing flux" },
+    { "belief": "Eddy currents only cause energy loss and are always undesirable", "trigger_phrases": ["eddy currents waste", "always bad", "only heating"], "correction": "Eddy currents have useful applications: electromagnetic braking (trains), induction cooktops, metal detectors, and electromagnetic damping in galvanometers.", "simulation_emphasis": "Show electromagnetic braking — eddy currents usefully slow down a moving conductor" }
+  ],
+  "legend": [ { "symbol": "ε", "meaning": "Induced EMF = -dΦ/dt" }, { "symbol": "B_ind", "meaning": "Induced magnetic field" }, { "symbol": "I_ind", "meaning": "Induced current" } ],
+  "concept_relationships": { "prerequisites": ["faraday_law_emf"], "extensions": ["self_inductance_lr", "ac_generator"], "siblings": ["motional_emf"], "common_exam_combinations": ["faraday_law_emf", "self_inductance_lr"] }
+}

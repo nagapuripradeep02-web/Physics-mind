@@ -1,0 +1,107 @@
+{
+  "concept_id": "rc_circuit_charging",
+  "concept_name": "RC Circuit Charging/Discharging",
+  "class_level": 12,
+  "chapter": "Alternating Current",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "circuit_live",
+    "scenario_type": "rc_transient",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "V₀": "EMF of the battery / initial voltage (V)",
+    "R": "Resistance in the circuit (Ω)",
+    "C": "Capacitance (F)",
+    "τ": "Time constant = RC (s)",
+    "V_C": "Voltage across capacitor at time t (V)",
+    "I": "Current in the circuit at time t (A)",
+    "q": "Charge on capacitor at time t (C)"
+  },
+  "locked_facts": [
+    "Charging: V_C(t) = V₀(1 - e^(-t/RC)), current I(t) = (V₀/R)e^(-t/RC)",
+    "Discharging: V_C(t) = V₀ e^(-t/RC), current I(t) = -(V₀/R)e^(-t/RC)",
+    "Time constant τ = RC: at t = τ, capacitor charges to 63.2% of V₀ (1 - 1/e)",
+    "At t = 5τ, capacitor is ~99.3% charged — considered fully charged",
+    "Charge on capacitor: q(t) = CV₀(1 - e^(-t/RC)) during charging",
+    "Energy stored in capacitor: U = ½CV² = q²/(2C)",
+    "During charging, half the energy from battery is dissipated in R as heat, half stored in C"
+  ],
+  "truth_statements": [
+    "The time constant τ = RC determines how fast the capacitor charges or discharges — larger τ means slower response",
+    "At t = 0 during charging, capacitor acts like a short circuit (V_C = 0, I = V₀/R maximum)",
+    "At t = ∞ during charging, capacitor acts like an open circuit (V_C = V₀, I = 0)",
+    "The charging current decreases exponentially because as V_C rises, the net voltage driving current (V₀ - V_C) decreases",
+    "Exactly half the energy supplied by the battery during charging is lost as heat in the resistor, regardless of R value"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two side-by-side plots: V_C(t) rising exponentially toward V₀ and I(t) decaying exponentially toward zero. At t = τ = RC, vertical line marks the 63% charge point. The V_C curve reaches ~63% of V₀ and the current drops to ~37% of initial. Five τ markers shown — by 5τ the capacitor is essentially fully charged.",
+    "visual_emphasis": "τ = RC marked prominently. 63% and 37% levels highlighted. Exponential nature visible — the rate of change itself decreases over time.",
+    "why_this_breaks_misconception": "Students see that charging is NOT linear — it slows down as V_C approaches V₀, because the driving voltage (V₀ - V_C) shrinks"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "RC circuit with battery V₀, resistor R, and uncharged capacitor C. Switch open. V_C = 0, I = 0. τ = RC calculated and displayed. V(t) and I(t) graph axes ready.",
+      "emphasis": "Before switch closes: no charge, no current. τ = RC will govern how fast charging occurs.",
+      "labels_visible": ["V₀", "R", "C", "τ = RC", "V_C = 0", "I = 0"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Buildup",
+      "description": "Switch closes. Current surges to I₀ = V₀/R. V_C starts rising from zero. Current starts decaying. V_C(t) and I(t) curves being traced. Charge flows onto capacitor plates — plate charge animation visible.",
+      "emphasis": "Initially: all voltage across R, none across C. As C charges, voltage shifts from R to C.",
+      "labels_visible": ["I₀ = V₀/R", "V_C rising", "I decaying", "V_R + V_C = V₀"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha",
+      "description": "At t = τ: V_C = 0.632 V₀ (63.2%), I = 0.368 I₀ (36.8%). At t = 5τ: V_C ≈ V₀, I ≈ 0. The exponential curves show the characteristic shape. Switch to discharge: V_C decays from V₀ to zero with same τ.",
+      "emphasis": "63% at one τ. Charging slows as V_C → V₀. Discharge is mirror image: V_C decays exponentially.",
+      "labels_visible": ["t = τ: 63% charged", "t = 5τ: ~100% charged", "V_C = V₀(1 - e^(-t/τ))", "Discharge: V_C = V₀ e^(-t/τ)"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust R and C to change τ. Toggle between charging and discharging. See how larger R or larger C slows the response. Energy bar shows energy stored in C vs energy dissipated in R.",
+      "emphasis": "Double R or double C → τ doubles → charging takes twice as long. Energy: half to C, half to R (always).",
+      "labels_visible": ["τ = RC", "V_C(t)", "I(t)", "U_C = ½CV²", "Energy in R"],
+      "interactive": true,
+      "sliders": [
+        { "id": "resistance", "label": "Resistance R", "min": 100, "max": 10000, "default": 1000, "unit": "Ω" },
+        { "id": "capacitance", "label": "Capacitance C", "min": 1, "max": 1000, "default": 100, "unit": "μF" },
+        { "id": "battery_voltage", "label": "Battery Voltage V₀", "min": 1, "max": 24, "default": 12, "unit": "V" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "A capacitor charges linearly to V₀ in time τ",
+      "trigger_phrases": ["capacitor linearly charge hota hai", "τ mein fully charge", "linear charging", "straight line charging curve"],
+      "correction": "Charging is exponential, not linear. At t = τ, the capacitor is only 63.2% charged (not 100%). It takes about 5τ to reach ~99%. The rate of charging decreases as V_C approaches V₀ because the driving voltage (V₀ - V_C) shrinks.",
+      "simulation_emphasis": "Show the exponential V_C curve vs a linear line — they diverge significantly. Mark τ at 63%, not 100%."
+    },
+    {
+      "belief": "All the battery energy goes into the capacitor during charging",
+      "trigger_phrases": ["saari energy capacitor mein", "no energy loss in charging", "battery energy = capacitor energy", "R mein energy waste nahi hoti"],
+      "correction": "Exactly HALF the battery energy is stored in the capacitor (½CV₀²), and the other half is dissipated as heat in the resistor. This 50-50 split is independent of the value of R — surprising but true.",
+      "simulation_emphasis": "Show energy bars: battery supplies CV₀². Capacitor stores ½CV₀². Resistor dissipates ½CV₀². Always 50-50."
+    }
+  ],
+  "legend": [
+    { "symbol": "V_C curve (rising)", "meaning": "Capacitor voltage during charging: V₀(1 - e^(-t/τ))" },
+    { "symbol": "I curve (falling)", "meaning": "Circuit current during charging: (V₀/R)e^(-t/τ)" },
+    { "symbol": "τ vertical line", "meaning": "Time constant RC — 63% charge point" },
+    { "symbol": "Charge on plates", "meaning": "q accumulating on capacitor plates" },
+    { "symbol": "Energy bars", "meaning": "Energy split between C (stored) and R (dissipated)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["capacitor_parallel_series", "ohms_law", "electric_current"],
+    "extensions": ["lc_oscillations", "ac_circuits_lcr"],
+    "siblings": ["self_inductance_lr"],
+    "common_exam_combinations": ["time_constant_calculation", "charge_at_given_time", "energy_stored_vs_dissipated", "discharge_curve"]
+  }
+}

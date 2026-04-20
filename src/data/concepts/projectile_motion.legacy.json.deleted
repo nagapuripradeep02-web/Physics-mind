@@ -1,0 +1,614 @@
+{
+  "concept_id": "projectile_motion",
+  "concept_name": "Projectile Motion",
+  "chapter": "Ch.7",
+  "section": "7.2 \u2013 7.4",
+  "source_book": "DC Pandey Mechanics Vol 1",
+  "class_level": "11",
+  "locked_facts": {
+    "fact_1": "Projectile motion is 2D motion with constant downward acceleration g \u2014 horizontal and vertical motions are independent.",
+    "fact_2": "Horizontal component ux = u cos\u03b8 remains constant throughout \u2014 ax = 0.",
+    "fact_3": "Vertical component uy = u sin\u03b8 decreases, reaches zero at highest point, then increases downward \u2014 ay = -g.",
+    "fact_4": "At the highest point, velocity is NOT zero \u2014 only the vertical component vy = 0; horizontal velocity ux persists.",
+    "fact_5": "Time of flight: T = 2u sin\u03b8 / g",
+    "fact_6": "Maximum height: H = u\u00b2sin\u00b2\u03b8 / (2g)",
+    "fact_7": "Horizontal range: R = u\u00b2sin2\u03b8 / g = u\u00b2 \u00b7 2sin\u03b8cos\u03b8 / g",
+    "fact_8": "Range is maximum at \u03b8 = 45\u00b0: Rmax = u\u00b2/g. Maximum height is at \u03b8 = 90\u00b0.",
+    "fact_9": "Complementary angles give equal range: R(\u03b8) = R(90\u00b0-\u03b8). R(30\u00b0) = R(60\u00b0), R(20\u00b0) = R(70\u00b0).",
+    "fact_10": "At maximum range (\u03b8=45\u00b0): Rmax = 4\u00b7Hmax.",
+    "fact_11": "Trajectory equation: y = x\u00b7tan\u03b8 - gx\u00b2/(2u\u00b2cos\u00b2\u03b8) \u2014 a downward parabola.",
+    "fact_12": "Mass of projectile does NOT affect its trajectory \u2014 T, H, R are all mass-independent.",
+    "fact_13": "Horizontal motion is uniform; vertical motion is uniformly accelerated. These are solved independently then combined.",
+    "fact_14": "A ball thrown horizontally (\u03b8=0): uy=0, only ux persists, it follows a parabola that curves downward.",
+    "fact_15": "Sum of two times when projectile is at same height: t1 + t2 = T (time of flight)."
+  },
+  "epic_l_path": {
+    "description": "Full explanation of projectile motion \u2014 from component decomposition to T, H, R derivation",
+    "scope": "global",
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "label": "Launch \u2014 Decompose into Components",
+        "physics_layer": {
+          "scenario": "projectile_launch",
+          "show": "ball at origin, initial velocity vector u at angle \u03b8=45\u00b0, decomposed into ux (horizontal arrow) and uy (vertical arrow)",
+          "values": {
+            "u": 20,
+            "theta_deg": 45,
+            "ux": 14.14,
+            "uy": 14.14
+          },
+          "freeze_at_t": 0
+        },
+        "pedagogy_layer": {
+          "focus": "The single velocity u splits into two independent motions",
+          "real_world": "Cricket ball lofted \u2014 the batsman gives it both forward push and upward lift simultaneously",
+          "attention_target": "The two arrows are independent \u2014 one horizontal, one vertical",
+          "contrast_from_previous": null
+        },
+        "freeze": false
+      },
+      "STATE_2": {
+        "label": "Horizontal \u2014 Constant Velocity",
+        "physics_layer": {
+          "scenario": "projectile_horizontal_only",
+          "show": "ball moving purely horizontally at constant speed ux, no vertical motion, ax=0 label",
+          "values": {
+            "ux": 14.14,
+            "ax": 0
+          },
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "Horizontal motion is uniform \u2014 no force, no change in speed",
+          "contrast_from_previous": "We isolated the horizontal part \u2014 it never slows down",
+          "attention_target": "ux arrow stays same length throughout \u2014 gravity has zero horizontal effect"
+        },
+        "freeze": false
+      },
+      "STATE_3": {
+        "label": "Vertical \u2014 Retarded then Accelerated",
+        "physics_layer": {
+          "scenario": "projectile_vertical_only",
+          "show": "ball thrown upward, vertical velocity arrow shrinking to zero then growing downward, ay=-g label",
+          "values": {
+            "uy": 14.14,
+            "ay": -10
+          },
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "Vertical is just the Ch.6 kinematics problem \u2014 go up, stop, come back down",
+          "contrast_from_previous": "Vertical IS affected by gravity; horizontal was not",
+          "attention_target": "vy arrow shrinks to zero at top, then reverses \u2014 same as stone thrown upward"
+        },
+        "freeze": false
+      },
+      "STATE_4": {
+        "label": "Combined \u2014 Parabolic Trajectory",
+        "physics_layer": {
+          "scenario": "projectile_full_parabola",
+          "show": "full parabolic arc with both ux (constant) and vy (varying) arrows shown at each point, trajectory traced",
+          "values": {
+            "u": 20,
+            "theta_deg": 45,
+            "g": 10
+          },
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "Combining constant horizontal + accelerated vertical produces the parabola",
+          "contrast_from_previous": "The two motions run simultaneously \u2014 the parabola is their superposition",
+          "attention_target": "ux arrow stays same length everywhere; vy arrow changes \u2014 this asymmetry creates the curve"
+        },
+        "freeze": false
+      },
+      "STATE_5": {
+        "label": "At the Highest Point",
+        "physics_layer": {
+          "scenario": "projectile_apex",
+          "show": "ball frozen at apex, vy=0 label visible, ux arrow still present, H = u\u00b2sin\u00b2\u03b8/2g displayed",
+          "values": {
+            "u": 20,
+            "theta_deg": 45,
+            "H": 10,
+            "vx_at_top": 14.14,
+            "vy_at_top": 0
+          },
+          "freeze_at_t": "apex_time"
+        },
+        "pedagogy_layer": {
+          "focus": "Velocity is NOT zero at top \u2014 only vertical component is zero",
+          "aha_moment": "The ball is still moving horizontally at the top \u2014 it never stops",
+          "contrast_from_previous": "Students expect everything to pause at top \u2014 only vy pauses",
+          "attention_target": "ux arrow same length as at launch; vy arrow is gone \u2014 speed at top = ux"
+        },
+        "freeze": true
+      },
+      "STATE_6": {
+        "label": "T, H, R Formulas \u2014 Effect of \u03b8",
+        "physics_layer": {
+          "scenario": "projectile_angle_sweep",
+          "show": "side-by-side comparison of trajectories at \u03b8=30\u00b0, 45\u00b0, 60\u00b0, 75\u00b0. R values shown. 45\u00b0 arc highlighted as longest range. 90\u00b0 shown as max height",
+          "values": {
+            "u": 20,
+            "angles_deg": [
+              30,
+              45,
+              60,
+              75
+            ],
+            "g": 10
+          },
+          "freeze_at_t": null
+        },
+        "pedagogy_layer": {
+          "focus": "45\u00b0 is the sweet spot \u2014 equal horizontal and vertical push \u2192 maximum range",
+          "aha_moment": "R(30\u00b0) = R(60\u00b0) \u2014 complementary angles give same range. Rmax(45\u00b0) = 4 \u00d7 H(45\u00b0).",
+          "contrast_from_previous": "\u03b8 affects the shape of the arc \u2014 45\u00b0 maximizes how far, 90\u00b0 maximizes how high",
+          "attention_target": "30\u00b0 and 60\u00b0 arcs land at exactly the same point \u2014 symmetric about 45\u00b0"
+        },
+        "freeze": false
+      }
+    }
+  },
+  "epic_c_branches": {
+    "horizontal_velocity_changes": {
+      "branch_id": "horizontal_velocity_changes",
+      "trigger_beliefs": [
+        "horizontal velocity decreases",
+        "ux decreases",
+        "ball slows down horizontally",
+        "gravity affects horizontal speed",
+        "horizontal component changes",
+        "kshitij mein bhi kam hoti hai"
+      ],
+      "student_belief": "Horizontal velocity decreases during flight because gravity acts on the projectile",
+      "actual_physics": "Gravity acts only downward \u2014 it has zero horizontal component. ax = 0 always. ux is constant from launch to landing.",
+      "aha_moment": "The horizontal arrow stays exactly the same length for the entire flight \u2014 gravity cannot touch it",
+      "states": {
+        "STATE_1": {
+          "label": "Your Belief \u2014 Horizontal Velocity Shrinks",
+          "physics_layer": {
+            "scenario": "projectile_wrong_horizontal",
+            "show": "projectile arcing with ux arrows getting progressively shorter along trajectory \u2014 student's wrong belief animated",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Show what student believes \u2014 ux shrinking"
+          }
+        },
+        "STATE_2": {
+          "label": "Isolate the Forces",
+          "physics_layer": {
+            "scenario": "force_decomposition",
+            "show": "gravity vector pointing straight down, decomposed: zero horizontal component, full vertical component",
+            "freeze": true
+          },
+          "pedagogy_layer": {
+            "focus": "Gravity is purely vertical \u2014 its horizontal component is exactly zero"
+          }
+        },
+        "STATE_3": {
+          "label": "Real Horizontal Motion",
+          "physics_layer": {
+            "scenario": "projectile_horizontal_constant",
+            "show": "projectile with ux arrows all identical length along trajectory, ax=0 label, equal time intervals cover equal horizontal distances",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Equal spacing horizontally = constant speed. Like a ball rolling on frictionless floor."
+          }
+        },
+        "STATE_4": {
+          "label": "Side by Side Comparison",
+          "physics_layer": {
+            "scenario": "projectile_dual_comparison",
+            "show": "upper trajectory: your belief (shrinking ux). Lower: reality (constant ux). Landing points differ significantly.",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "If ux shrank, projectile would land much shorter \u2014 doesn't match experiment"
+          }
+        },
+        "STATE_5": {
+          "label": "Aha \u2014 Horizontal is Untouchable by Gravity",
+          "physics_layer": {
+            "scenario": "projectile_full_parabola",
+            "show": "full parabola with constant ux arrows throughout, vy arrows changing. Formula: ax = 0 displayed prominently.",
+            "freeze": true
+          },
+          "pedagogy_layer": {
+            "focus": "ax = 0. Horizontal velocity = u cos\u03b8 from start to finish. Gravity only owns the vertical.",
+            "aha_moment": "Think of it as two separate worlds: horizontal world has no gravity; vertical world has full gravity."
+          }
+        }
+      }
+    },
+    "velocity_zero_at_top": {
+      "branch_id": "velocity_zero_at_top",
+      "trigger_beliefs": [
+        "velocity zero at top",
+        "ball stops at highest point",
+        "speed is zero at max height",
+        "momentarily at rest at top",
+        "upar velocity zero ho jaati hai",
+        "highest point pe ruk jaata hai"
+      ],
+      "student_belief": "The ball's velocity is zero at the highest point because it stops momentarily before coming down",
+      "actual_physics": "Only the vertical component vy = 0 at the highest point. Horizontal component vx = u cos\u03b8 persists unchanged. Speed at top = u cos\u03b8 \u2260 0.",
+      "aha_moment": "The ball is still flying horizontally at the top \u2014 speed at apex = ux = u cos\u03b8",
+      "states": {
+        "STATE_1": {
+          "label": "Your Belief \u2014 Full Stop at Top",
+          "physics_layer": {
+            "scenario": "projectile_wrong_apex",
+            "show": "projectile at apex with velocity = 0 shown, all arrows gone, ball appears frozen mid-air",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Student's mental model \u2014 the ball completely stops at the top"
+          }
+        },
+        "STATE_2": {
+          "label": "Track the Two Components Separately",
+          "physics_layer": {
+            "scenario": "projectile_component_tracking",
+            "show": "split view: top half shows ux (constant, never zero), bottom half shows vy (decreasing to zero at apex then reversing)",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Vertical stops \u2014 horizontal never stops. They are independent."
+          }
+        },
+        "STATE_3": {
+          "label": "What Actually Happens at the Top",
+          "physics_layer": {
+            "scenario": "projectile_apex_correct",
+            "show": "ball at highest point, vy=0 (arrow gone), ux arrow still full length pointing right, speed label = ux = 14.14 m/s",
+            "freeze": true
+          },
+          "pedagogy_layer": {
+            "focus": "At the top: vy = 0, vx = u cos\u03b8. Speed is NOT zero \u2014 it equals u cos\u03b8."
+          }
+        },
+        "STATE_4": {
+          "label": "Aha \u2014 Only Vertical Pauses",
+          "physics_layer": {
+            "scenario": "projectile_full_with_apex_highlight",
+            "show": "full parabola, apex highlighted, vy arrow animation pausing to zero then reversing, ux arrow constant throughout",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "vy = 0 at top is a momentary event for the vertical world. Horizontal world never pauses.",
+            "aha_moment": "If the ball truly stopped at the top, it would just drop vertically \u2014 no range. The horizontal push keeps it flying forward."
+          }
+        }
+      }
+    },
+    "complementary_angles_different_range": {
+      "branch_id": "complementary_angles_different_range",
+      "trigger_beliefs": [
+        "30 and 60 different range",
+        "complementary angles different",
+        "angle badalte hi range alag",
+        "60 degree mein zyada range",
+        "higher angle more range"
+      ],
+      "student_belief": "A projectile launched at 60\u00b0 travels farther than one at 30\u00b0 with the same speed because 60\u00b0 is a larger angle",
+      "actual_physics": "R = u\u00b2sin2\u03b8/g. sin(2\u00d730\u00b0) = sin60\u00b0, sin(2\u00d760\u00b0) = sin120\u00b0 = sin60\u00b0. Complementary angles (\u03b8 and 90\u00b0-\u03b8) give exactly equal range.",
+      "aha_moment": "sin(2\u03b8) = sin(180\u00b0-2\u03b8). So 30\u00b0 and 60\u00b0 give sin60\u00b0 and sin120\u00b0 \u2014 same value. Same range, different arcs.",
+      "states": {
+        "STATE_1": {
+          "label": "Your Belief \u2014 60\u00b0 Beats 30\u00b0",
+          "physics_layer": {
+            "scenario": "projectile_wrong_range",
+            "show": "30\u00b0 and 60\u00b0 trajectories with 60\u00b0 marked as longer range \u2014 student's incorrect expectation",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Student expects the higher angle to give more range"
+          }
+        },
+        "STATE_2": {
+          "label": "Unpack the Range Formula",
+          "physics_layer": {
+            "scenario": "range_formula_display",
+            "show": "R = u\u00b2sin2\u03b8/g on screen. Calculate sin(2\u00d730\u00b0)=sin60\u00b0=0.866, sin(2\u00d760\u00b0)=sin120\u00b0=0.866 shown numerically side by side",
+            "freeze": true
+          },
+          "pedagogy_layer": {
+            "focus": "2\u03b8 for 30\u00b0 is 60\u00b0. 2\u03b8 for 60\u00b0 is 120\u00b0. sin60\u00b0 = sin120\u00b0. Same."
+          }
+        },
+        "STATE_3": {
+          "label": "Reality \u2014 Both Land at Same Point",
+          "physics_layer": {
+            "scenario": "projectile_complementary_arcs",
+            "show": "30\u00b0 and 60\u00b0 arcs launched from same point, different shapes but landing at identical x-position, R labels equal",
+            "freeze": false
+          },
+          "pedagogy_layer": {
+            "focus": "Same range, completely different arc shapes. 60\u00b0 goes higher, 30\u00b0 goes flatter.",
+            "aha_moment": "Nature is symmetric about 45\u00b0. Every angle has a complementary twin that lands in the same spot."
+          }
+        }
+      }
+    }
+  },
+  "epic_c_micro_templates": {
+    "micro_1": {
+      "trigger": [
+        "what is range formula",
+        "range formula kya hai",
+        "R formula"
+      ],
+      "response_type": "static_with_formula",
+      "formula": "R = u\u00b2sin2\u03b8 / g",
+      "key_point": "Maximum at \u03b8=45\u00b0 where sin90\u00b0=1. R(\u03b8)=R(90\u00b0-\u03b8) for complementary angles.",
+      "simulation_states": 1
+    },
+    "micro_2": {
+      "trigger": [
+        "velocity at highest point",
+        "apex velocity",
+        "upar ka velocity"
+      ],
+      "response_type": "static_with_diagram",
+      "key_point": "At highest point: vy=0, vx=u cos\u03b8. Speed = u cos\u03b8 (NOT zero).",
+      "simulation_states": 1
+    },
+    "micro_3": {
+      "trigger": [
+        "time of flight formula",
+        "T formula",
+        "flight time"
+      ],
+      "response_type": "static_with_formula",
+      "formula": "T = 2u sin\u03b8 / g",
+      "key_point": "T depends only on uy = u sin\u03b8 (vertical component). Horizontal speed irrelevant.",
+      "simulation_states": 1
+    },
+    "micro_4": {
+      "trigger": [
+        "max height formula",
+        "H formula",
+        "maximum height"
+      ],
+      "response_type": "static_with_formula",
+      "formula": "H = u\u00b2sin\u00b2\u03b8 / (2g)",
+      "key_point": "Maximum height at \u03b8=90\u00b0 (vertical throw). At \u03b8=45\u00b0: Rmax = 4\u00d7H.",
+      "simulation_states": 1
+    },
+    "micro_5": {
+      "trigger": [
+        "trajectory equation",
+        "path equation",
+        "parabola equation"
+      ],
+      "response_type": "static_with_formula",
+      "formula": "y = x\u00b7tan\u03b8 - gx\u00b2/(2u\u00b2cos\u00b2\u03b8)",
+      "key_point": "Quadratic in x \u2192 parabola. Can also write as y = x\u00b7tan\u03b8(1 - x/R).",
+      "simulation_states": 1
+    },
+    "micro_6": {
+      "trigger": [
+        "horizontal projectile",
+        "thrown horizontally",
+        "horizontal se pheka"
+      ],
+      "response_type": "static_with_diagram",
+      "key_point": "\u03b8=0: uy=0, ux=u. Falls under gravity while moving forward. T=\u221a(2H/g), R=u\u00b7T.",
+      "simulation_states": 2
+    }
+  },
+  "static_responses": {
+    "definition": "Projectile motion is 2D motion under gravity alone \u2014 no air resistance. Horizontal: uniform motion. Vertical: free fall. Together: parabolic path.",
+    "derivation_T": "At landing sy=0. Using sy = uy\u00b7t - \u00bdgt\u00b2: t(u sin\u03b8 - \u00bdgt)=0. t=0 (launch) or t=2u sin\u03b8/g (landing). So T=2u sin\u03b8/g.",
+    "derivation_H": "At apex vy=0. Using vy\u00b2=uy\u00b2-2gH: 0=(u sin\u03b8)\u00b2-2gH. So H=u\u00b2sin\u00b2\u03b8/2g.",
+    "derivation_R": "R = ux \u00d7 T = u cos\u03b8 \u00d7 2u sin\u03b8/g = u\u00b2\u00b72sin\u03b8cos\u03b8/g = u\u00b2sin2\u03b8/g.",
+    "jee_tip_complementary": "Complementary angle pairs (30\u00b0&60\u00b0, 20\u00b0&70\u00b0, etc.) always give same range. Common JEE trick \u2014 they ask you to find the other angle."
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Example 7.1, Section 7.3",
+      "principle": "Method 1 \u2014 vector approach. u=50m/s at 37\u00b0, find v and s at t=2s.",
+      "aha": "Decompose u once, apply v=u+at and s=ut+\u00bdat\u00b2 as vectors \u2014 horizontal and vertical simultaneously.",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Example 7.3, Section 7.3",
+      "principle": "Horizontal projectile from 490m height. Find T, range, and final velocity.",
+      "aha": "uy=0 for horizontal launch. T comes from vertical free fall alone. Range = ux \u00d7 T.",
+      "simulation_states": 3
+    },
+    "example_3": {
+      "source": "DC Pandey Example 7.5, Section 7.4",
+      "principle": "When R=H, find \u03b8. Result: tan\u03b8=4.",
+      "aha": "Set R=H expressions equal. Clean algebra gives tan\u03b8=4, not 45\u00b0. Counter-intuitive.",
+      "simulation_states": 1
+    },
+    "example_4": {
+      "source": "DC Pandey Example 7.6, Section 7.4",
+      "principle": "Prove Rmax = 4\u00d7Hmax when \u03b8=45\u00b0.",
+      "aha": "At \u03b8=45\u00b0: R=u\u00b2/g, H=u\u00b2/4g. Clearly R=4H. Geometric beauty of maximum range condition.",
+      "simulation_states": 1
+    },
+    "example_5": {
+      "source": "DC Pandey Example 7.8, Section 7.4",
+      "principle": "Show that sum of two times at same height equals T.",
+      "aha": "Quadratic in t has two roots t1 and t2. By Vieta's: t1+t2 = 2u sin\u03b8/g = T.",
+      "simulation_states": 2
+    }
+  },
+  "parameter_slots": {
+    "slot_1": {
+      "name": "initial_speed_u",
+      "symbol": "u",
+      "unit": "m/s",
+      "default": 20,
+      "range": [
+        10,
+        100
+      ]
+    },
+    "slot_2": {
+      "name": "launch_angle_theta",
+      "symbol": "\u03b8",
+      "unit": "degrees",
+      "default": 45,
+      "range": [
+        0,
+        90
+      ]
+    },
+    "slot_3": {
+      "name": "gravity_g",
+      "symbol": "g",
+      "unit": "m/s\u00b2",
+      "default": 10,
+      "range": [
+        9.8,
+        10
+      ]
+    },
+    "slot_4": {
+      "name": "launch_height_h",
+      "symbol": "H\u2080",
+      "unit": "m",
+      "default": 0,
+      "range": [
+        0,
+        200
+      ]
+    }
+  },
+  "panel_sync_spec": {
+    "panel_a": "canvas2d \u2014 mechanics_2d renderer showing animated parabolic trajectory with velocity vectors",
+    "panel_b": "plotly \u2014 interactive graph. Default: R vs \u03b8 curve (0\u00b0 to 90\u00b0). Switches to y vs t (height-time) on request.",
+    "sync_event": "As angle slider moves in Panel A, dot moves along R-vs-\u03b8 curve in Panel B in real time",
+    "bidirectional": true,
+    "sync_trigger": "angle_change"
+  },
+  "renderer_hint": {
+    "primary_renderer": "mechanics_2d",
+    "panel_count": 2,
+    "technology_a": "canvas2d",
+    "technology_b": "plotly",
+    "sync_required": true,
+    "scene_mode": false,
+    "scenario_type": "projectile_motion",
+    "panel_a_role": "Animated parabolic trajectory with velocity vector decomposition \u2014 ux constant, vy changing",
+    "panel_b_role": "Plotly: R vs theta curve (0-90 deg). Dot tracks along curve as angle slider moves in Panel A.",
+    "scene_elements": []
+  },
+  "routing_signals": {
+    "primary_keywords": [
+      "projectile",
+      "projectile motion",
+      "parabola",
+      "range",
+      "time of flight",
+      "maximum height"
+    ],
+    "hinglish_triggers": [
+      "projectile motion kya hai",
+      "range formula",
+      "kitni dur jayega",
+      "uchhai kitni",
+      "upar velocity zero"
+    ],
+    "formula_triggers": [
+      "T = 2u sin\u03b8 / g",
+      "R = u\u00b2sin2\u03b8/g",
+      "H = u\u00b2sin\u00b2\u03b8/2g",
+      "y = x tan\u03b8"
+    ],
+    "belief_check_triggers": [
+      "is velocity zero at top",
+      "does horizontal speed change",
+      "same range at 30 and 60"
+    ]
+  },
+  "jee_specific": {
+    "trap_1": "R(30\u00b0) = R(60\u00b0). Students pick 60\u00b0 as longer range \u2014 correct answer is same range.",
+    "trap_2": "At highest point speed = u cos\u03b8 (NOT zero). JEE often asks speed at apex.",
+    "trap_3": "When R = H, tan\u03b8 = 4 (\u03b8 \u2248 76\u00b0), NOT \u03b8 = 45\u00b0. Setting formulas equal is needed.",
+    "trap_4": "Rmax = 4\u00d7Hmax is only true at \u03b8 = 45\u00b0. At other angles R \u2260 4H.",
+    "trap_5": "For horizontal projectile: T = \u221a(2H\u2080/g) from height, NOT 2u sin\u03b8/g (uy=0).",
+    "trap_6": "Trajectory equation has x\u00b2 in denominator \u2014 it's a function of x, not symmetric about midpoint in x."
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "uniform_acceleration",
+      "relative_motion",
+      "vector_components"
+    ],
+    "leads_to": [
+      "projectile_inclined",
+      "relative_motion_projectiles",
+      "circular_motion"
+    ],
+    "common_confusion_with": [
+      "uniform_circular_motion \u2014 both 2D but different acceleration"
+    ]
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "scenario_type": "projectile_motion",
+      "approach": "trajectory_equation",
+      "entry_state": "STATE_4",
+      "teacher_angle": "Start from the parabola equation y = x\u00b7tan\u03b8 - gx\u00b2/(2u\u00b2cos\u00b2\u03b8). Show why x\u00b2 makes it a parabola. Derive range by setting y=0. Numbers-first approach.",
+      "locked_facts_focus": [
+        "fact_11",
+        "fact_7",
+        "fact_8"
+      ],
+      "panel_b_focus": "Show parabola y vs x curve. Overlay trajectory trace on top of equation curve."
+    },
+    {
+      "variant_id": 2,
+      "scenario_type": "projectile_motion",
+      "approach": "symmetry_and_complementary",
+      "entry_state": "STATE_6",
+      "teacher_angle": "Start with the surprising result: 30\u00b0 and 60\u00b0 give SAME range. Why? Work backward to sin(2\u03b8). Build intuition about 45\u00b0 as the sweet spot from the symmetry.",
+      "locked_facts_focus": [
+        "fact_9",
+        "fact_8",
+        "fact_10"
+      ],
+      "panel_b_focus": "R vs \u03b8 curve as primary visual. Ball trajectories secondary \u2014 student sees the curve shape first."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Horizontal distance", "symbol": "x", "unit": "m", "min": 0, "max": 100 },
+    "y_axis": { "label": "Height", "symbol": "y", "unit": "m", "min": 0, "max": 30 },
+    "lines": [
+      { "id": "trajectory", "formula": "x * Math.tan(45 * Math.PI / 180) - (9.8 * x * x) / (2 * 20 * 20 * Math.cos(45 * Math.PI / 180) * Math.cos(45 * Math.PI / 180))", "color": "#fbbf24", "label": "Parabolic trajectory" },
+      { "id": "horizontal_ref", "slope": 0, "intercept": 0, "color": "#94a3b8", "dash": "dash", "label": "Ground" }
+    ],
+    "sliders": [
+      { "id": "angle", "label": "Launch angle (degrees)", "min": 10, "max": 80, "default": 45 }
+    ],
+    "legend": [
+      { "id": "trajectory", "label": "Trajectory" },
+      { "id": "horizontal_ref", "label": "Ground" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_3": { "active_lines": [], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["horizontal_ref", "trajectory"], "show_sliders": false, "highlight_point": false },
+      "STATE_5": { "active_lines": ["horizontal_ref", "trajectory"], "show_sliders": false, "highlight_point": true, "point_x": 40.8, "point_y": 20.4, "label": "Apex \u2014 vy = 0" },
+      "STATE_6": { "active_lines": ["horizontal_ref", "trajectory"], "show_sliders": true, "highlight_point": false }
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "concept_id": "two_projectile_never_meet",
+  "concept_name": "When Two Projectiles Never Meet — The Miss Condition",
+  "chapter": 7,
+  "section": "7.8",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 7.8 — two projectiles that miss; split from relative_motion_projectiles",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "Two kids on a Jaipur rooftop during Uttarayan kite-festival. Each tosses a paper airplane toward the other — but neither aims precisely. One throws northward; the other throws at a 30-degree offset toward the east. In the other kid's frame, the incoming plane flies in a straight line that does NOT pass through him — it passes a few metres to his left. Result: they miss, the planes crash on the roof. Miss by any margin, and no amount of gravity will fix it.",
+    "secondary": "Two Ultrabahubali fireworks shells on Republic Day at Rajpath, Delhi. Both lift at identical speeds but slightly different launch angles. From shell A's frame, shell B flies past at a constant offset. They miss by metres, bursting separately — as firework designers intended. To make them burst together, the launch geometry must be tuned so their relative straight-line trajectory passes through origin.",
+    "tertiary": "An anti-ballistic missile test near Wheeler Island. Interceptor is aimed with a small angular error. In the target's frame, the interceptor moves in a straight line that narrowly misses — passing 50 metres to the side. A CEP (Circular Error Probable) measures exactly this 'how far off the straight-line relative trajectory passes' distance."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v1": { "name": "Speed of projectile 1", "unit": "m/s", "min": 5, "max": 100, "default": 20 },
+      "theta1": { "name": "Angle of projectile 1", "unit": "deg", "min": 0, "max": 90, "default": 50 },
+      "v2": { "name": "Speed of projectile 2", "unit": "m/s", "min": 5, "max": 100, "default": 20 },
+      "theta2": { "name": "Angle of projectile 2", "unit": "deg", "min": 0, "max": 180, "default": 140 },
+      "d_sep": { "name": "Horizontal separation", "unit": "m", "min": 0, "max": 200, "default": 30 },
+      "miss_distance": { "name": "Closest approach distance", "unit": "m", "min": 0, "max": 100, "default": 5 }
+    },
+    "computed_outputs": {
+      "V_rel": { "formula": "V_1 - V_2 (vector)" },
+      "closest_approach_dist": { "formula": "distance from origin to line through r_rel(0) along V_rel" },
+      "miss_or_hit": { "formula": "hit if closest_approach < epsilon, else miss" }
+    },
+    "formulas": {
+      "miss_condition": "The relative trajectory is a straight line from r_rel(0) along V_rel.  They MISS unless this line passes through the origin.",
+      "closest_approach": "d_miss = |r_rel(0) cross V_rel| / |V_rel|  (perpendicular distance from origin to the line)",
+      "time_of_closest_approach": "t_min = -(r_rel(0) . V_rel) / |V_rel|^2",
+      "contrast_with_collision": "Collision is the special case d_miss = 0."
+    },
+    "constraints": [
+      "Both projectiles in free-fall under same gravity.",
+      "Miss distance is measured perpendicular to the relative velocity vector.",
+      "Real projectiles have finite size, so 'miss' usually means closest distance exceeds the projectile radius."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Same Magic, but Now They Miss",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "miss_setup_sketch",
+            "text": "Two projectiles, both in free-fall under gravity.\n\n   Relative acceleration a_rel = 0  (as before).\n   Relative motion is a STRAIGHT LINE.\n\n   BUT the straight line does NOT pass through origin.\n\n           r_rel(0) ___________\n                   /          ~\n                  /             ~\n                 /               ~  <- straight-line relative path\n                /                 ~\n               /                   ~\n              /                    ~\n             O (origin = projectile 2)   ~~~~~~\n\n   The CLOSEST APPROACH is the perpendicular distance\n   from the origin to that straight line.\n\n   If d_miss > 0, the two balls never collide.\n   Gravity does not save them -- it cancels.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "kite_label",
+            "text": "Jaipur rooftop Uttarayan paper airplane toss",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "plane1",
+            "vehicle_type": "paper_plane",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_left",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
+              { "type": "translate", "delay_sec": 4.5, "duration_sec": 4.0, "dx_px": 180, "dy_px": -120, "easing": "ease_out" }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "plane2",
+            "vehicle_type": "paper_plane",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_right",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
+              { "type": "translate", "delay_sec": 4.5, "duration_sec": 4.0, "dx_px": -200, "dy_px": -80, "easing": "ease_out" }
+            ]
+          }
+        ],
+        "focal_primitive": "miss_setup_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Same two-projectile setup — gravity still cancels in the relative frame, relative motion still a straight line." },
+            { "text_en": "But now the straight line does NOT pass through the origin." },
+            { "text_en": "The two projectiles pass each other by a perpendicular distance called closest approach — the miss distance." },
+            { "text_en": "If the miss distance is greater than zero, the balls never collide. Gravity cannot save them; it cancels out." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Computing the Miss Distance",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "miss_distance_sketch",
+            "text": "Miss distance (perpendicular distance from origin to relative line):\n\n   d_miss  =  |r_rel(0) x V_rel|  /  |V_rel|\n\n  where x is the 2D vector cross-product (a scalar in 2D).\n\n  Example: initial separation 30 m east, V_rel = (-5, 2) m/s.\n\n     r_rel(0)  =  (-30, 0)    (points WEST from origin)\n     V_rel     =  (-5, 2)\n\n     cross   =  (-30) * (2)  -  (0) * (-5)\n             =  -60\n\n     |cross|  =  60\n     |V_rel|  =  sqrt(25 + 4) = sqrt(29) ~= 5.39\n\n     d_miss  =  60 / 5.39  ~= 11.13 m\n\n  11 m apart at closest approach. They miss.\n\n  Time of closest approach:\n     t_min  =  -(r_rel(0) . V_rel) / |V_rel|^2\n            =  -(-30*-5 + 0*2) / 29\n            =  -150 / 29\n            =  -5.17 s\n\n  t_min is NEGATIVE, meaning closest approach is in the PAST.\n  The projectiles are already moving APART. They will only\n  get further away from now on.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "miss_distance_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Miss distance is the perpendicular distance from the origin to the relative-motion line." },
+            { "text_en": "Formula: magnitude of r-rel-zero cross V-rel, divided by magnitude of V-rel." },
+            { "text_en": "For a 30-metre westward separation with relative velocity minus 5 comma plus 2, the miss distance works out to 11.13 metres." },
+            { "text_en": "You can also compute the TIME of closest approach. A negative time means the projectiles were closest in the past — they are currently moving apart, and the miss has already happened." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Aim Correction — How to Turn a Miss into a Hit",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "aim_correction_sketch",
+            "text": "To turn a miss into a hit:\n\n   Current V_rel direction = some unit vector n_hat.\n   Required V_rel direction = along (r_rel(0)) toward origin.\n\n   Tilt your launch angle so that V_rel aligns with the\n   line of sight between the two starting positions.\n\n   One-line fix: aim the NEW projectile's velocity such that\n      (V_1 - V_2) points exactly from r_rel(0) to origin.\n\n   Common case: projectile 2 is stationary (V_2 = 0).\n      Then V_rel = V_1, and projectile 1 must be aimed directly\n      at projectile 2.  Classic monkey-hunter.\n\n   This miss analysis is what anti-ballistic missile guidance\n   exactly does in real-time: compute d_miss, correct V_rel,\n   keep aiming, converge to zero.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 11,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "aim_correction_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "How do you turn a miss into a hit?" },
+            { "text_en": "Tilt the launch angle until the relative velocity points exactly from r-rel-zero toward the origin." },
+            { "text_en": "In the common case where one projectile is stationary, that reduces to 'aim directly at the target' — the classic monkey-hunter rule." },
+            { "text_en": "This is literally what anti-ballistic missile guidance computes in real-time — measure the miss distance, correct the interceptor's velocity, iterate, converge to zero." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "they_always_collide",
+      "misconception_summary": "Student believes that since gravity cancels in the relative frame, two projectiles launched in each other's direction will always eventually collide.",
+      "confusion_patterns": [
+        "projectiles always meet",
+        "two projectiles guaranteed to collide",
+        "if gravity cancels projectiles must meet",
+        "relative frame zero acceleration means hit"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Misreading 'Gravity Cancels' as 'Always Hits'",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_always_sketch",
+              "text": "Student's error:\n  \"Since both feel the same gravity,\n   the relative trajectory is a straight line.\n   Any straight line between two points eventually\n   hits something, right? So they must collide.\"\n\n  Zero relative acceleration DOES NOT guarantee a hit.\n\n  It only guarantees a STRAIGHT relative trajectory.\n\n  A straight line can MISS the origin by any amount.\n\n  Just like a bullet fired in the general direction of a target\n  does not hit the target unless aimed precisely.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 12,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_always_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Common error — student reads 'zero relative acceleration' and assumes automatic collision." },
+              { "text_en": "Zero relative acceleration only guarantees that the relative trajectory is a STRAIGHT LINE. It says nothing about whether that line passes through the origin." },
+              { "text_en": "Like a bullet fired in the general direction of a target, any straight line can still MISS by any amount if not aimed precisely." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Visualise the Miss Distance",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "viz_miss_sketch",
+              "text": "Picture this in projectile 2's frame:\n\n    projectile 2  ->   O (at origin, stationary)\n    projectile 1  ->   moves along a straight line\n                       with velocity V_rel\n                       starting from r_rel(0)\n\n   If the line passes THROUGH origin:\n     r_rel(t*) = 0 for some t*   ->  COLLIDE\n\n   If the line passes NEAR origin but not through:\n     r_rel never zero  ->  MISS with d_miss > 0\n\n   If the line leads AWAY from origin:\n     r_rel grows monotonically  ->  MISS and never come back\n\n   Only the first case counts as a hit.  The other two are misses,\n   no matter how long you wait.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "viz_miss_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Three possible outcomes in the relative frame." },
+              { "text_en": "Line passes through origin — collision. Line passes near but not through — miss with positive distance. Line leads away from origin — miss that gets worse over time." },
+              { "text_en": "Only the first case is a hit. The other two are misses, no matter how long you wait." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Rule: Hit Requires PRECISE Aim",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "precise_aim_sketch",
+              "text": "To guarantee a hit between two projectiles:\n\n   Relative velocity V_rel MUST point exactly along\n   the line connecting their starting positions.\n\n   Geometrically: V_rel and r_rel(0) must be ANTI-parallel\n   (pointing toward the origin from r_rel(0)).\n\n   Any angular error produces a miss by\n      d_miss = |r_rel(0)| * sin(angular_error).\n\n   In JEE problems, aim correction is often just:\n     'set the launch angle such that\n      tan(theta_1) = dy / dx,\n      where (dx, dy) = r_2(0) - r_1(0).'\n\n   That means: launch projectile 1 aiming directly at\n   projectile 2's starting point.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 11,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "precise_aim_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Rule for a guaranteed hit — V-rel must point exactly from r-rel-zero toward the origin." },
+              { "text_en": "Any angular error of epsilon produces a miss distance of |r-rel-zero| times sine epsilon." },
+              { "text_en": "In JEE problems, the required aim is usually 'set launch angle such that tangent of theta equals delta-y over delta-x, where delta is the position difference'. In plain words — aim directly AT the target's starting position." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Jaipur paper airplanes", "params": { "v1": 20, "theta1": 50, "v2": 20, "theta2": 140, "d_sep": 30, "miss_distance": 5 } },
+      { "label": "Rajpath fireworks, near miss", "params": { "v1": 60, "theta1": 75, "v2": 60, "theta2": 105, "d_sep": 40, "miss_distance": 3 } },
+      { "label": "ABM test, wide miss", "params": { "v1": 300, "theta1": 45, "v2": 200, "theta2": 135, "d_sep": 1000, "miss_distance": 50 } }
+    ],
+    "type_b": [
+      { "label": "Two drones in test flight", "scenario": "two_drones_test" },
+      { "label": "Two water balloons tossed at Holi", "scenario": "water_balloons_holi" }
+    ]
+  }
+}

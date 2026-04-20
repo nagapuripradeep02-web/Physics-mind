@@ -1,0 +1,106 @@
+{
+  "concept_id": "magnetic_field_wire",
+  "concept_name": "Magnetic Field Due to a Straight Current-Carrying Wire",
+  "chapter": "Moving Charges and Magnetism",
+  "class_level": 12,
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "straight_wire_current",
+    "panel_count": 1,
+    "show_graph": false
+  },
+  "variables": {
+    "I": { "symbol": "I", "name": "Current in wire", "unit": "A", "min": 0.1, "max": 20, "default": 5 },
+    "r": { "symbol": "r", "name": "Perpendicular distance from wire", "unit": "m", "min": 0.01, "max": 1, "default": 0.1 },
+    "B": { "symbol": "B", "name": "Magnetic field strength", "unit": "T", "formula": "μ₀I/(2πr)" }
+  },
+  "locked_facts": [
+    "Magnetic field due to straight wire: B = μ₀I/(2πr)",
+    "Field forms CONCENTRIC CIRCLES around wire",
+    "Direction given by right-hand thumb rule",
+    "Field strength decreases as 1/r from wire",
+    "Field lines are closed loops — no beginning or end"
+  ],
+  "truth_statements": [
+    "The magnetic field lines due to a straight current-carrying wire are concentric circles centered on the wire",
+    "The direction is given by the right-hand thumb rule: thumb along current, fingers curl in the direction of field",
+    "The field magnitude decreases inversely with distance from the wire: B = μ₀I/(2πr)",
+    "Unlike electric field lines, magnetic field lines are always closed loops — they have no beginning or end",
+    "The field is tangent to the circular loop at every point — it never points radially"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show concentric circles at different distances from the wire. Inner circles are closely spaced (strong B), outer circles are widely spaced (weak B). Add arrows showing the curling direction matches the right-hand rule.",
+    "visual_emphasis": "The 3D view shows circles getting more spread out as distance increases — B falls as 1/r. The direction is always tangential, never radial.",
+    "why_this_breaks_misconception": "Students see that the magnetic field is NOT radial like electric field — it curls around the wire in circles"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Straight wire carrying current I",
+      "description": "Vertical wire with current direction arrow. No field lines yet. The wire glows to indicate current flow.",
+      "emphasis": "A long straight wire carrying current I upward",
+      "labels_visible": ["I", "wire"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Concentric circular field lines",
+      "description": "Concentric circles appear around the wire at multiple heights. Arrows on circles show the field direction (counterclockwise when viewed from above for I upward).",
+      "emphasis": "The field lines are perfect circles centered on the wire. They are NOT radial like electric field lines!",
+      "labels_visible": ["B", "circles"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "B decreases as 1/r — spacing increases",
+      "description": "Camera adjusts to show multiple radii clearly. Inner circles are closely packed, outer circles are widely spaced. Caption: B = μ₀I/(2πr).",
+      "emphasis": "Closer to wire: field lines are packed tight (strong B). Farther away: widely spaced (weak B). B ∝ 1/r.",
+      "labels_visible": ["B_near", "B_far", "1/r"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — rotate and observe 3D pattern",
+      "description": "Interactive rotation. All field circles visible at multiple heights and radii. Right-hand rule demonstration.",
+      "emphasis": "Rotate: circles at every height, every radius. Thumb along I → fingers curl in B direction. Field lines are CLOSED loops.",
+      "labels_visible": ["I", "B", "r"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "magnetic_field_radial",
+      "trigger_keywords": ["magnetic field radial hai", "B points away from wire", "field goes outward from wire", "magnetic field like electric"],
+      "student_belief": "The magnetic field points radially outward from the wire, like an electric field from a charge",
+      "actual_physics": "The magnetic field around a straight wire is TANGENTIAL, not radial. It forms concentric circles around the wire. At every point, B is perpendicular to the line joining the point to the wire.",
+      "simulation_emphasis": "Show the circular field lines with clear arrows — the field curls around the wire, never pointing outward."
+    },
+    {
+      "id": "field_lines_not_closed",
+      "trigger_keywords": ["magnetic field lines start", "field lines begin at wire", "B lines have origin"],
+      "student_belief": "Magnetic field lines start from the wire and end somewhere",
+      "actual_physics": "Magnetic field lines are always closed loops — they have no beginning and no end. This is fundamentally different from electric field lines which start at positive charges and end at negative charges. This is expressed as div B = 0.",
+      "simulation_emphasis": "Show complete circular loops at multiple heights — each line forms a perfect closed circle."
+    }
+  ],
+  "legend": [
+    { "symbol": "I", "meaning": "Current (arrow shows direction)" },
+    { "symbol": "B", "meaning": "Magnetic field = μ₀I/(2πr)" },
+    { "symbol": "○", "meaning": "Concentric circular field lines" },
+    { "symbol": "→", "meaning": "Field direction (tangential)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["electric_current", "magnetic_field_basics"],
+    "extensions": ["magnetic_field_solenoid", "amperes_circuital_law"],
+    "siblings": ["magnetic_field_solenoid", "bar_magnet_field"],
+    "common_exam_combinations": ["force_between_parallel_wires", "amperes_law"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["B at distance r from wire", "force between two parallel wires", "direction of B using right-hand rule", "B at centre of circular loop"],
+    "common_traps": ["using right-hand rule incorrectly (thumb vs fingers)", "confusing 1/r with 1/r²", "forgetting μ₀ includes 4π factor in some formulas"],
+    "numerical_ranges": {
+      "I": "1–20 A",
+      "r": "1 cm – 1 m",
+      "μ₀": "4π × 10⁻⁷ T·m/A"
+    }
+  }
+}

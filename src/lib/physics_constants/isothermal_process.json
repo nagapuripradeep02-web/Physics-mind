@@ -1,0 +1,110 @@
+{
+  "concept_id": "isothermal_process",
+  "concept_name": "Isothermal Process",
+  "chapter": "Thermodynamics",
+  "class_level": 11,
+  "renderer_hint": {
+    "technology": "mixed",
+    "renderer": "thermodynamics",
+    "scenario_type": "piston_cylinder",
+    "panel_count": 1,
+    "show_graph": true
+  },
+  "variables": {
+    "T": { "symbol": "T", "name": "Temperature (constant)", "unit": "K", "min": 200, "max": 800, "default": 300 },
+    "P1": { "symbol": "P₁", "name": "Initial pressure", "unit": "kPa", "min": 50, "max": 500, "default": 200 },
+    "V1": { "symbol": "V₁", "name": "Initial volume", "unit": "L", "min": 1, "max": 10, "default": 3 },
+    "P2": { "symbol": "P₂", "name": "Final pressure", "unit": "kPa", "formula": "P₁V₁/V₂" },
+    "V2": { "symbol": "V₂", "name": "Final volume", "unit": "L", "min": 1, "max": 15, "default": 9 },
+    "W": { "symbol": "W", "name": "Work done by gas", "unit": "J", "formula": "nRT ln(V₂/V₁)" }
+  },
+  "locked_facts": [
+    "Isothermal: temperature constant, ΔT = 0, so ΔU = 0 for ideal gas",
+    "Since ΔU = 0: Q = W (all heat absorbed becomes work done)",
+    "PV = constant (Boyle's Law), curve is hyperbola",
+    "Work done: W = nRT ln(V₂/V₁)",
+    "Requires very slow quasi-static process with heat reservoir"
+  ],
+  "truth_statements": [
+    "In an isothermal process, the temperature of the system remains constant",
+    "For an ideal gas in an isothermal process, the internal energy does not change",
+    "The PV curve for an isothermal process is a rectangular hyperbola",
+    "All the heat supplied in an isothermal expansion is converted to work",
+    "An isothermal process requires the system to be in thermal equilibrium with a reservoir"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "PV diagram shows hyperbolic curve with shaded area underneath = work done. Energy bars show Q = W with ΔU = 0. The piston moved outward (work done) yet temperature stayed the same.",
+    "visual_emphasis": "Temperature readout stays fixed at 300K even as piston expands. Energy bar: Q bar and W bar are equal height, ΔU bar is zero. Shaded area under PV curve = work.",
+    "why_this_breaks_misconception": "Students see that gas CAN do work at constant temperature — the heat reservoir continuously supplies energy that immediately becomes work, not temperature increase."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Initial compressed state",
+      "description": "Gas in cylinder at T=300K, high pressure (200kPa), small volume (3L). Particles bouncing at moderate speed. PV diagram shows starting point on the left.",
+      "emphasis": "Starting state: gas is compressed. Temperature is 300K. This will stay constant throughout.",
+      "labels_visible": ["T", "P", "V"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Isothermal expansion begins",
+      "description": "Heat enters from reservoir (red arrow below). Piston moves outward. But particle speed stays the SAME — temperature hasn't changed! PV curve traces hyperbola leftward.",
+      "emphasis": "Watch carefully: heat is entering, piston is expanding, but particle speed is UNCHANGED. T = constant.",
+      "labels_visible": ["Q", "W", "T"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Q = W revealed — no internal energy change",
+      "description": "Energy bars appear: Q and W bars are equal. ΔU = 0 (zero-height bar). All the heat that entered was converted entirely to work. PV diagram shows complete hyperbola with shaded work area.",
+      "emphasis": "AHA: Every joule of heat that entered became a joule of work. Zero went to internal energy because temperature didn't change!",
+      "labels_visible": ["Q", "W", "ΔU"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — the hyperbola PV = constant",
+      "description": "Full view: PV hyperbola with work shading, energy bars (Q=W, ΔU=0), temperature readout frozen at 300K. Caption: W = nRT ln(V₂/V₁).",
+      "emphasis": "PV = constant gives a hyperbola. The area under it = work = heat absorbed. Temperature is constant throughout.",
+      "labels_visible": ["T", "PV", "W"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "constant_temp_no_work",
+      "trigger_keywords": ["constant temperature toh work nahi hoga", "temperature same = no work", "iso matlab kaam nahi karega", "if T constant then W = 0"],
+      "student_belief": "If temperature is constant, the gas cannot do any work",
+      "actual_physics": "In an isothermal expansion, the gas absolutely does work — it pushes the piston outward. The key insight is that a heat reservoir continuously supplies heat to maintain constant temperature. Since ΔU = 0 (constant T for ideal gas), ALL the heat Q becomes work W. The work done is W = nRT ln(V₂/V₁), which is definitely not zero.",
+      "simulation_emphasis": "Show piston moving outward while temperature readout stays fixed at 300K. Work arrow clearly visible. Energy bars: Q = W, ΔU = 0."
+    },
+    {
+      "id": "isothermal_means_no_heat",
+      "trigger_keywords": ["isothermal mein heat nahi hota", "constant T = no heat exchange", "no heat in isothermal"],
+      "student_belief": "Isothermal means no heat exchange with surroundings",
+      "actual_physics": "Isothermal means constant temperature, NOT no heat exchange. In fact, heat MUST flow into (or out of) the system to keep temperature constant during expansion (or compression). It is the ADIABATIC process where Q = 0. In isothermal: Q = W (all heat becomes work).",
+      "simulation_emphasis": "Show red heat arrow entering the system continuously. Temperature stays constant BECAUSE heat is flowing in to replace the energy leaving as work."
+    }
+  ],
+  "legend": [
+    { "symbol": "T", "meaning": "Temperature (constant at 300K)" },
+    { "symbol": "PV", "meaning": "PV = constant — rectangular hyperbola" },
+    { "symbol": "Q=W", "meaning": "All heat becomes work (ΔU = 0)" },
+    { "symbol": "W", "meaning": "Work = nRT ln(V₂/V₁) = area under PV curve" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["first_law_thermodynamics", "ideal_gas_kinetic_theory"],
+    "extensions": ["carnot_engine"],
+    "siblings": ["adiabatic_process", "first_law_thermodynamics"],
+    "common_exam_combinations": ["adiabatic_process", "carnot_engine", "first_law_thermodynamics"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["calculate work done in isothermal expansion", "compare isothermal and adiabatic work", "PV diagram identification", "find heat absorbed from given V₁ and V₂"],
+    "common_traps": ["using W = PΔV instead of W = nRT ln(V₂/V₁)", "confusing isothermal (ΔT=0) with adiabatic (Q=0)", "forgetting the ln in the work formula"],
+    "numerical_ranges": {
+      "T": "300–600 K",
+      "P": "1–10 atm",
+      "V": "1–20 L",
+      "n": "1–3 moles"
+    }
+  }
+}

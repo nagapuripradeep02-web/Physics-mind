@@ -1,0 +1,42 @@
+{
+  "concept_id": "entropy_second_law",
+  "concept_name": "Entropy and Second Law of Thermodynamics",
+  "class_level": 11,
+  "chapter": "Thermodynamics",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "thermodynamics", "scenario_type": "entropy", "panel_count": 1, "show_labels": true },
+  "variables": { "S": "Entropy (J/K)", "Q": "Heat exchanged (J)", "T": "Temperature (K)", "η": "Efficiency" },
+  "locked_facts": [
+    "Second law (Kelvin-Planck): no engine can convert heat completely into work in a cyclic process",
+    "Second law (Clausius): heat cannot spontaneously flow from cold to hot body",
+    "Entropy change: ΔS = Q_rev/T for a reversible process",
+    "For irreversible processes: ΔS_universe > 0 (entropy always increases)",
+    "For reversible processes: ΔS_universe = 0",
+    "Carnot efficiency: η = 1 - T_cold/T_hot (maximum possible efficiency)",
+    "Entropy is a state function — its change depends only on initial and final states"
+  ],
+  "truth_statements": [
+    "The second law of thermodynamics prohibits the complete conversion of heat into work in a cyclic process",
+    "Entropy is a measure of the disorder or number of microstates available to a system",
+    "The entropy of the universe always increases for spontaneous (irreversible) processes",
+    "No heat engine can be more efficient than a Carnot engine operating between the same two temperatures",
+    "A refrigerator does not violate the second law — it requires work input to transfer heat from cold to hot"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two scenarios: (1) A hot block and cold block in contact — heat flows hot→cold, total entropy increases. (2) Reverse process cold→hot shown as 'forbidden' — it would decrease total entropy. The spontaneous direction is always toward higher total entropy.",
+    "visual_emphasis": "Entropy bars for hot body, cold body, and universe — universe entropy increases in allowed direction, would decrease in forbidden direction",
+    "why_this_breaks_misconception": "Students think the second law is just about engines — seeing it as a universal entropy principle that determines what can and can't happen spontaneously is more powerful"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Heat flow direction", "description": "Hot body (T_H) and cold body (T_C) in contact. Heat flows from hot to cold spontaneously. The reverse never happens without external work.", "emphasis": "Heat flows from hot to cold — NEVER the reverse — this IS the second law", "labels_visible": ["T_H → T_C", "spontaneous", "second law"] },
+    { "id": "STATE_2", "label": "Entropy defined", "description": "ΔS = Q/T for reversible process. Hot body loses entropy: -Q/T_H. Cold body gains: +Q/T_C. Since T_H > T_C: gain > loss → ΔS_universe > 0.", "emphasis": "Cold body gains MORE entropy than hot body loses → total entropy increases", "labels_visible": ["ΔS_hot = -Q/T_H", "ΔS_cold = +Q/T_C", "ΔS_total > 0"] },
+    { "id": "STATE_3", "label": "Carnot limit", "description": "A heat engine between T_H and T_C. Maximum efficiency η = 1 - T_C/T_H. No real engine can exceed this. Example: T_H = 600K, T_C = 300K → η_max = 50%.", "emphasis": "Carnot sets the ceiling — no engine can be more efficient, ever", "labels_visible": ["η = 1 - T_C/T_H", "Carnot limit", "η_max"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts T_H and T_C. Carnot efficiency calculated. Compare real engine efficiency. Entropy change for heat transfer calculated. Refrigerator COP shown.", "emphasis": "Raise T_H or lower T_C — efficiency improves. But η = 100% is impossible.", "labels_visible": ["η", "ΔS", "T_H", "T_C"], "interactive": true, "sliders": [{ "id": "t_hot", "label": "Hot reservoir T_H", "min": 300, "max": 1000, "default": 600, "unit": "K" }, { "id": "t_cold", "label": "Cold reservoir T_C", "min": 200, "max": 500, "default": 300, "unit": "K" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "The second law means entropy always increases in any system", "trigger_phrases": ["entropy always increases", "system entropy up"], "correction": "Entropy of a SYSTEM can decrease (e.g., a refrigerator cools food, reducing its entropy). But the entropy of the UNIVERSE (system + surroundings) always increases for any spontaneous process.", "simulation_emphasis": "Show system entropy decreasing while surroundings entropy increases more — net increase" },
+    { "belief": "A 100% efficient heat engine is possible with better technology", "trigger_phrases": ["perfect engine possible", "technology will allow 100%"], "correction": "The Carnot limit η = 1 - T_C/T_H is a fundamental law of physics, not a technological limitation. Even a perfect (reversible) engine cannot reach 100% unless T_C = 0 K, which is itself impossible (third law).", "simulation_emphasis": "Show that even at T_C = 1 K, η is still not 100%" }
+  ],
+  "legend": [ { "symbol": "S", "meaning": "Entropy (J/K)" }, { "symbol": "η", "meaning": "Efficiency = W/Q_H" }, { "symbol": "ΔS", "meaning": "Entropy change = Q_rev/T" } ],
+  "concept_relationships": { "prerequisites": ["first_law_thermodynamics", "carnot_engine"], "extensions": ["statistical_mechanics"], "siblings": ["carnot_engine"], "common_exam_combinations": ["carnot_engine", "first_law_thermodynamics"] }
+}

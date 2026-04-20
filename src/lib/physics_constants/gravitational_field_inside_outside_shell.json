@@ -1,0 +1,42 @@
+{
+  "concept_id": "gravitational_field_inside_outside_shell",
+  "concept_name": "Gravitational Field of Spherical Shell and Solid Sphere",
+  "class_level": 11,
+  "chapter": "Gravitation",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "field_3d", "scenario_type": "shell_theorem", "panel_count": 2, "show_labels": true },
+  "variables": { "g": "Gravitational field (m/s²)", "M": "Total mass (kg)", "R": "Radius (m)", "r": "Distance from centre (m)" },
+  "locked_facts": [
+    "Uniform spherical shell: g = 0 inside, g = GM/r² outside (as if all mass at centre)",
+    "Uniform solid sphere outside: g = GM/r² (same as point mass)",
+    "Uniform solid sphere inside (r < R): g = GM r/R³ (field ∝ r, linear increase)",
+    "At the surface: g = GM/R² (same for shell and solid sphere)",
+    "Shell theorem: a uniform shell attracts an external point as if all mass is at its centre",
+    "Shell theorem: a uniform shell exerts ZERO net force on any mass inside it",
+    "These results follow directly from Gauss's law for gravity"
+  ],
+  "truth_statements": [
+    "Inside a uniform spherical shell the gravitational field is exactly zero — every element of the shell pulls equally in all directions",
+    "Outside a uniform sphere or shell the field is identical to that of a point mass at the centre",
+    "Inside a uniform solid sphere the gravitational field increases linearly with distance from the centre",
+    "The shell theorem is the gravitational analogue of the result for a charged conducting shell",
+    "Newton proved the shell theorem to justify treating planets as point masses for orbital calculations"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Cross-section of a shell with a mass inside. Opposite shell elements are drawn: the closer element subtends a smaller solid angle but is nearer (stronger pull), the farther element subtends a larger solid angle but is weaker. The two effects EXACTLY cancel. Net force = 0.",
+    "visual_emphasis": "Two opposing cone-shaped elements of the shell with force arrows that exactly cancel",
+    "why_this_breaks_misconception": "Students think the closer wall should pull harder — seeing the angle subtended compensate for distance makes the zero-field result intuitive"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Shell: outside", "description": "A spherical shell with mass M. A test mass outside at distance r. Field g = GM/r² pointing toward centre — identical to a point mass at centre.", "emphasis": "From outside, a shell looks exactly like a point mass", "labels_visible": ["g = GM/r²", "outside shell"] },
+    { "id": "STATE_2", "label": "Shell: inside", "description": "Test mass placed inside the shell. Forces from opposing shell elements drawn. They cancel exactly. Net field = 0. Mass floats freely inside.", "emphasis": "Inside the shell: g = 0. No net gravitational force from the shell.", "labels_visible": ["g = 0 inside", "forces cancel"] },
+    { "id": "STATE_3", "label": "Solid sphere: inside", "description": "Solid uniform sphere. At distance r from centre, only mass within radius r contributes (M' = M(r/R)³). g = GM'r/R³ = GMr/R³. Field increases linearly from centre to surface.", "emphasis": "Inside solid sphere: g ∝ r (linear increase). Only enclosed mass matters.", "labels_visible": ["g = GMr/R³", "g ∝ r", "enclosed mass only"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student moves test mass from centre through surface to outside. g vs r graph builds. Toggle between shell (zero inside) and solid sphere (linear inside). Both are GM/r² outside.", "emphasis": "Compare shell (zero inside) vs solid sphere (linear inside). Same outside!", "labels_visible": ["g", "r", "R", "shell vs solid"], "interactive": true, "sliders": [{ "id": "position", "label": "Test mass position r", "min": 0, "max": 20, "default": 10, "unit": "units" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "The closer wall of a shell pulls harder, so the mass inside is pulled toward it", "trigger_phrases": ["closer wall stronger", "attracted to nearest wall"], "correction": "The closer wall is nearer but subtends a smaller solid angle. The far wall is farther but subtends a larger solid angle. These effects exactly cancel — the net force is zero everywhere inside.", "simulation_emphasis": "Draw opposing cone elements and show exact force cancellation" },
+    { "belief": "Inside a solid sphere, g keeps increasing toward the centre", "trigger_phrases": ["stronger at centre", "maximum at centre solid"], "correction": "Inside a uniform solid sphere, g increases linearly from 0 at the centre to GM/R² at the surface. At the centre, symmetry gives g = 0. The mass above any point acts like a shell (zero contribution).", "simulation_emphasis": "Show g increasing linearly from zero at centre to maximum at surface" }
+  ],
+  "legend": [ { "symbol": "g", "meaning": "Gravitational field strength (m/s²)" }, { "symbol": "R", "meaning": "Radius of shell/sphere" }, { "symbol": "r", "meaning": "Distance from centre" } ],
+  "concept_relationships": { "prerequisites": ["newtons_law_of_gravitation"], "extensions": ["acceleration_due_to_gravity_variation", "gravitational_potential_energy"], "siblings": ["electric_flux_gauss"], "common_exam_combinations": ["acceleration_due_to_gravity_variation"] }
+}

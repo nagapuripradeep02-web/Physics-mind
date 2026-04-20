@@ -1,0 +1,28 @@
+{
+  "concept": "meter_bridge",
+  "locked_facts": {
+    "balance_condition": "P/Q = R/S where P and Q are wire resistances proportional to lengths",
+    "working_principle": "Wheatstone_bridge_principle",
+    "wire_length": "one_metre_uniform_resistance_wire",
+    "balance_formula": "X/R = (100 - l) / l where l is balancing length in cm",
+    "unknown_resistance_formula": "X = R * (100 - l) / l",
+    "sensitivity": "bridge_most_sensitive_when_all_four_arms_are_equal",
+    "end_resistance_error": "must_correct_for_resistance_of_end_connections"
+  },
+  "animation_constraints": {
+    "current_through_galvanometer_zero_at_balance": true,
+    "balancing_length_determines_ratio": true,
+    "field_arrows_point": "left_to_right",
+    "electrons_drift": "right_to_left",
+    "thermal_px_per_frame_min": 3.0,
+    "current_px_per_frame_max": 2.0,
+    "thermal_must_be_faster_than_drift": true
+  },
+  "ncert_truth_statements": [
+    "A metre bridge works on the principle of the Wheatstone bridge and uses a one-metre long uniform resistance wire stretched on a wooden board",
+    "The balance condition for a metre bridge is X/R = (100 − l)/l, where l is the balancing length in centimetres and R is the known resistance",
+    "At balance, the galvanometer shows no deflection and no current flows through it, giving an accurate measurement of the unknown resistance X",
+    "The metre bridge is most sensitive when all four arms of the equivalent Wheatstone bridge have nearly equal resistance, placing the balance point near the middle of the wire",
+    "End resistance errors arise from the resistance of connecting wires at the two ends of the metre bridge wire and must be accounted for in precise measurements"
+  ]
+}

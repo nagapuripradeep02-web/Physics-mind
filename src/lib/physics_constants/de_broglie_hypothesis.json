@@ -1,0 +1,199 @@
+{
+  "concept_id": "de_broglie_hypothesis",
+  "concept_name": "de Broglie Wavelength",
+  "class_level": "12",
+  "chapter": "Dual Nature of Radiation and Matter",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "wave_canvas",
+    "scenario_type": "wave_particle_duality",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "lambda": {
+      "name": "de Broglie wavelength",
+      "symbol": "λ",
+      "unit": "m",
+      "role": "dependent",
+      "note": "Wavelength associated with a moving particle; decreases as momentum increases"
+    },
+    "h": {
+      "name": "Planck's constant",
+      "symbol": "h",
+      "unit": "J·s",
+      "value": 6.626e-34,
+      "role": "constant"
+    },
+    "p": {
+      "name": "momentum",
+      "symbol": "p",
+      "unit": "kg·m/s",
+      "role": "independent",
+      "note": "p = mv for non-relativistic particles"
+    },
+    "m": {
+      "name": "mass of particle",
+      "symbol": "m",
+      "unit": "kg",
+      "role": "independent"
+    },
+    "v": {
+      "name": "velocity of particle",
+      "symbol": "v",
+      "unit": "m/s",
+      "role": "independent"
+    },
+    "V": {
+      "name": "accelerating potential",
+      "symbol": "V",
+      "unit": "V",
+      "role": "independent",
+      "note": "For an electron accelerated through potential V, KE = eV"
+    },
+    "KE": {
+      "name": "kinetic energy",
+      "symbol": "KE",
+      "unit": "J",
+      "role": "dependent"
+    }
+  },
+  "locked_facts": [
+    "λ = h/p = h/(mv) — de Broglie wavelength equals Planck's constant divided by momentum",
+    "For an electron accelerated through potential V: λ = 1.226/√V nm (V in volts)",
+    "λ = h/√(2mKE) — wavelength in terms of kinetic energy",
+    "For electron accelerated through V volts: p = √(2meV) where m = 9.11×10⁻³¹ kg, e = 1.6×10⁻¹⁹ C",
+    "Davisson-Germer experiment (1927) confirmed electron diffraction, validating de Broglie's hypothesis",
+    "Heavier particles have shorter wavelengths at the same speed: λ ∝ 1/m",
+    "A cricket ball (0.15 kg at 30 m/s) has λ ≈ 1.5×10⁻³⁴ m — undetectably small, so no observable wave nature"
+  ],
+  "truth_statements": [
+    "Every moving particle has an associated matter wave — this is universal, not limited to electrons",
+    "de Broglie wavelength is significant only for microscopic particles because λ = h/p and h is extremely small (6.626×10⁻³⁴ J·s)",
+    "The Davisson-Germer experiment showed electron diffraction from nickel crystal at specific angles, exactly matching the predicted de Broglie wavelength",
+    "Wave-particle duality means particles exhibit wave behavior (diffraction, interference) and waves exhibit particle behavior (photoelectric effect) — both aspects are real",
+    "The de Broglie relation connects mechanics (p = mv) with wave optics (λ) through Planck's constant h"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "description": "Student sees an electron beam passing through a crystal lattice and producing a diffraction pattern identical to X-ray diffraction — proving the electron IS a wave. Then the wavelength calculated from λ = h/p matches the diffraction pattern spacing exactly.",
+    "visual_cue": "Side-by-side: X-ray diffraction pattern vs electron diffraction pattern from same crystal — they match when λ values are equal"
+  },
+  "simulation_states": {
+    "STATE_1": {
+      "title": "Particle with a Wave",
+      "description": "Show a moving electron as both a particle (dot) and an associated wave (sinusoidal envelope). Display λ = h/(mv). As speed increases, wavelength shrinks visibly. Compare electron wavelength to atomic spacing (~10⁻¹⁰ m).",
+      "visual_elements": ["electron_dot", "matter_wave_envelope", "wavelength_ruler", "speed_indicator"],
+      "labels": ["λ = h/p", "p = mv"]
+    },
+    "STATE_2": {
+      "title": "Why Only Small Particles Show Wave Nature",
+      "description": "Compare de Broglie wavelengths: electron at 10⁶ m/s (λ ≈ 0.7 nm), proton at same speed (λ ≈ 0.4 pm), cricket ball at 30 m/s (λ ≈ 10⁻³⁴ m). Show that macroscopic objects have wavelengths far smaller than any detector can resolve.",
+      "visual_elements": ["three_particle_comparison", "wavelength_scale_bar", "detector_resolution_line"],
+      "labels": ["λ_electron ≈ 0.7 nm", "λ_proton ≈ 0.4 pm", "λ_ball ≈ 10⁻³⁴ m"]
+    },
+    "STATE_3": {
+      "title": "Davisson-Germer Proof",
+      "description": "Animate the Davisson-Germer setup: electron gun → nickel crystal → detector at angle θ. Show diffraction peaks appearing at angles predicted by nλ = d sinθ. Compare calculated λ from de Broglie formula with λ from diffraction formula — they match.",
+      "visual_elements": ["electron_gun", "nickel_crystal_lattice", "diffraction_pattern", "angle_detector", "formula_comparison"],
+      "labels": ["λ_deBroglie = h/p", "λ_diffraction = d sinθ", "They match!"]
+    },
+    "STATE_4": {
+      "title": "Interactive Exploration",
+      "description": "Student adjusts particle type, velocity, and accelerating potential. Real-time calculation of de Broglie wavelength. Visual wave envelope scales with λ. Challenge: find V that gives electron wavelength equal to atomic spacing (≈ 1 Å).",
+      "interactive": true,
+      "sliders": [
+        {
+          "id": "velocity_slider",
+          "label": "Velocity (×10⁶ m/s)",
+          "min": 0.1,
+          "max": 10,
+          "step": 0.1,
+          "default": 1.0,
+          "unit": "×10⁶ m/s"
+        },
+        {
+          "id": "potential_slider",
+          "label": "Accelerating Potential (V)",
+          "min": 10,
+          "max": 1000,
+          "step": 10,
+          "default": 100,
+          "unit": "V"
+        },
+        {
+          "id": "particle_selector",
+          "label": "Particle",
+          "options": ["Electron (9.11×10⁻³¹ kg)", "Proton (1.67×10⁻²⁷ kg)", "Alpha (6.64×10⁻²⁷ kg)"],
+          "default": "Electron (9.11×10⁻³¹ kg)"
+        }
+      ]
+    }
+  },
+  "common_misconceptions": [
+    {
+      "id": "only_electrons_have_waves",
+      "misconception": "Only electrons have de Broglie wavelength; macroscopic objects don't have wave nature",
+      "correct": "ALL moving objects have a de Broglie wavelength λ = h/(mv). Macroscopic objects have wavelengths so tiny (10⁻³⁴ m) that wave effects are undetectable, but the wavelength still exists.",
+      "trigger_phrases": [
+        "sirf electron ka wave hota hai",
+        "only electrons have wavelength",
+        "ball ka wave nahi hota",
+        "macroscopic no wave",
+        "badi cheez ka wavelength nahi"
+      ],
+      "ncert_reference": "Chapter 11, Section 11.8"
+    },
+    {
+      "id": "wavelength_increases_with_speed",
+      "misconception": "Faster particles have longer de Broglie wavelength",
+      "correct": "λ = h/(mv) — wavelength is INVERSELY proportional to velocity. Faster particles have SHORTER wavelengths. This is why high-energy electrons are used in electron microscopes for better resolution.",
+      "trigger_phrases": [
+        "fast means long wavelength",
+        "speed badhega toh wavelength badhega",
+        "tez electron ka wavelength zyada",
+        "higher velocity longer wave",
+        "more speed more wavelength"
+      ],
+      "ncert_reference": "Chapter 11, Section 11.8"
+    },
+    {
+      "id": "matter_wave_is_electromagnetic",
+      "misconception": "de Broglie waves are electromagnetic waves like light",
+      "correct": "Matter waves (de Broglie waves) are probability waves — they describe the probability of finding the particle at a given location. They are NOT electromagnetic waves and do not have electric or magnetic field components.",
+      "trigger_phrases": [
+        "matter wave is like light wave",
+        "electromagnetic wave hai ye",
+        "electron se light nikalti hai",
+        "de Broglie wave is EM wave",
+        "same as light wave"
+      ],
+      "ncert_reference": "Chapter 11, Section 11.8"
+    }
+  ],
+  "legend": {
+    "electron_dot": "Blue glowing dot representing the particle aspect of the electron",
+    "matter_wave": "Sinusoidal envelope around particle showing associated de Broglie wave with wavelength λ",
+    "crystal_lattice": "Regular array of nickel atoms with spacing d used in diffraction",
+    "diffraction_ring": "Circular rings showing constructive interference pattern from electron diffraction",
+    "wavelength_scale": "Ruler comparing λ to atomic spacing (Angstroms) or nuclear size (femtometers)"
+  },
+  "concept_relationships": [
+    {
+      "concept_id": "photoelectric_effect_detail",
+      "relationship": "Photoelectric effect proves particle nature of light; de Broglie hypothesis proves wave nature of matter — together they establish wave-particle duality"
+    },
+    {
+      "concept_id": "bohr_model_hydrogen",
+      "relationship": "Bohr's quantization condition L = nℏ is equivalent to requiring an integer number of de Broglie wavelengths to fit in each orbit: 2πr = nλ"
+    },
+    {
+      "concept_id": "electron_diffraction",
+      "relationship": "Electron diffraction experiments directly measure de Broglie wavelength via Bragg's law"
+    },
+    {
+      "concept_id": "heisenberg_uncertainty",
+      "relationship": "de Broglie wave packets connect to Heisenberg uncertainty: Δx·Δp ≥ ℏ/2"
+    }
+  ]
+}

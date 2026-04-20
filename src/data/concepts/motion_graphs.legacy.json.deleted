@@ -1,0 +1,730 @@
+{
+  "concept_id": "motion_graphs",
+  "concept_name": "Motion Graphs — Position-Time, Velocity-Time, Acceleration-Time",
+  "class_level": 11,
+  "chapter": "Kinematics",
+  "section": "6.9",
+  "source_coverage": {
+    "dc_pandey": "Chapter 6, Section 6.9 — Graphs",
+    "ncert": "Chapter 3 — Motion in a Straight Line, Section 3.5",
+    "hc_verma": "Chapter 3 — Rest and Motion: Kinematics, Section 3.5"
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "technology_b": "plotly",
+    "technology_c": "plotly",
+    "renderer": "mechanics_2d",
+    "scenario_type": "motion_graphs",
+    "panel_count": 3,
+    "sync_required": true,
+    "scene_mode": false,
+    "show_labels": true,
+    "panel_a_role": "Animated particle moving on a track — position updating in real time, shows actual physical motion",
+    "panel_b_role": "Plotly x-t graph (position vs time) — slope at any point = instantaneous velocity",
+    "panel_c_role": "Plotly v-t graph (velocity vs time) — slope = acceleration, area under curve = displacement"
+  },
+  "locked_facts": {
+    "xt_slope_is_velocity": "Slope of x-t graph at any point = instantaneous velocity at that moment. Steep slope → high speed. Zero slope (horizontal) → particle at rest. Negative slope → moving in negative direction.",
+    "vt_slope_is_acceleration": "Slope of v-t graph at any point = instantaneous acceleration. Positive slope → acceleration. Negative slope → deceleration. Zero slope (horizontal) → uniform velocity, zero acceleration.",
+    "vt_area_is_displacement": "Area under v-t graph between t₁ and t₂ = displacement in that interval. Area above x-axis = positive displacement. Area below x-axis = negative displacement. Total area = net displacement.",
+    "vt_area_distance": "Distance (not displacement) = total area counting all regions as positive, regardless of sign.",
+    "at_area_is_velocity_change": "Area under a-t graph = change in velocity (Δv). NOT velocity itself — change in velocity.",
+    "xt_graph_shapes": "Uniform motion (a=0): straight line on x-t. Uniform acceleration: parabola on x-t. Deceleration to rest: parabola flattening to horizontal.",
+    "vt_graph_shapes": "Uniform motion: horizontal line on v-t. Uniform acceleration: straight sloped line. Non-uniform acceleration: curved line.",
+    "slope_formula": "Slope at a point on a curve = slope of tangent drawn at that point = lim(Δx/Δt) as Δt→0 = dx/dt.",
+    "particle_at_rest_on_xt": "On x-t graph: horizontal line segment means particle is at rest (not moving, x = constant).",
+    "direction_reversal_on_vt": "On v-t graph: when line crosses x-axis (v=0), the particle reverses direction. Displacement for each phase is the area of that triangle/trapezoid on each side.",
+    "acceleration_from_xt": "From x-t graph: acceleration = d²x/dt². If x-t is concave up → positive acceleration. Concave down → negative acceleration. Straight line → zero acceleration.",
+    "tangent_vs_secant": "Instantaneous velocity = slope of tangent at a point on x-t. Average velocity = slope of secant (chord) connecting two points on x-t."
+  },
+  "minimum_viable_understanding": "x-t slope = velocity. v-t slope = acceleration. v-t area = displacement. These three rules decode every motion graph question in JEE.",
+  "variables": {
+    "x": "Position (m)",
+    "v": "Velocity = dx/dt = slope of x-t (m/s)",
+    "a": "Acceleration = dv/dt = slope of v-t (m/s²)",
+    "t": "Time (s)",
+    "A_vt": "Area under v-t graph = displacement (m)",
+    "theta": "Angle of tangent on x-t or v-t with time axis"
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "explain motion graphs",
+      "x-t graph v-t graph a-t graph",
+      "position time velocity time graph",
+      "motion graphs kya hote hain",
+      "how to read motion graphs"
+    ],
+    "local_triggers": [
+      "slope of x-t graph",
+      "area under v-t graph",
+      "what does slope of velocity time graph give",
+      "how to find displacement from v-t graph",
+      "x-t graph mein velocity kaise nikale",
+      "particle reverses direction on graph"
+    ],
+    "micro_triggers": [
+      "what is slope of v-t graph",
+      "area under a-t graph",
+      "concave up concave down x-t",
+      "tangent on x-t graph"
+    ],
+    "simulation_not_needed_triggers": [
+      "list what slope of each graph gives",
+      "state the three graph rules"
+    ],
+    "subconcept_triggers": {
+      "xt_graph": [
+        "x-t graph slope meaning",
+        "position time graph",
+        "how to find velocity from x-t"
+      ],
+      "vt_graph": [
+        "v-t graph area",
+        "velocity time graph slope",
+        "displacement from v-t graph",
+        "area under velocity graph"
+      ],
+      "at_graph": [
+        "a-t graph",
+        "acceleration time graph",
+        "area under a-t graph meaning"
+      ],
+      "direction_reversal": [
+        "particle changes direction on graph",
+        "v-t graph crosses x axis",
+        "when does particle turn back"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "understands_xt_slope": "enter at STATE_2",
+    "understands_vt_area": "enter at STATE_3",
+    "understands_vt_slope": "enter at STATE_4",
+    "understands_all_three": "enter at STATE_5"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "distance_vs_displacement",
+      "uniform_acceleration"
+    ],
+    "gate_question": "A particle moves at 5 m/s for 4s then at 3 m/s for 2s. What is the total displacement? (If student cannot answer 26m, route to distance_vs_displacement first.)",
+    "if_gap_detected": "redirect to uniform_acceleration.json — student needs to understand what velocity and acceleration mean before reading their graphs"
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "board_mode_states": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "jee_mode_states": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Hook — Three Graphs, One Motion",
+        "physics_layer": {
+          "concept": "The same physical motion can be represented as three different graphs simultaneously",
+          "simulation_focus": "Show a ball thrown upward and caught. All three panels update live: Panel A shows ball moving up then down. Panel B (x-t) shows parabola peaking at max height. Panel C (v-t) shows straight line from positive v, crossing zero at peak, going negative.",
+          "sync": "Vertical line cursor moves across both graphs in sync with ball position in Panel A.",
+          "key_observation": "Three completely different graph shapes — all describing the SAME motion. Reading any one of them gives full information about the others.",
+          "scenario": "particle_constant_velocity"
+        },
+        "pedagogy_layer": {
+          "opening_question": "A ball is thrown up. Can you draw what happens to its position, velocity, and acceleration — all at the same time?",
+          "teacher_script": "Physics stores all information about motion in these three graphs. Once you can read them, any kinematics problem becomes a geometry problem.",
+          "surprise_moment": "The x-t is a smooth curve, the v-t is a straight line, the a-t is a flat horizontal line — same motion, three completely different shapes."
+        }
+      },
+      "STATE_2": {
+        "label": "Rule 1 — Slope of x-t = Velocity",
+        "physics_layer": {
+          "concept": "Velocity is the rate of change of position = slope of x-t graph",
+          "simulation_focus": "Panel A: particle moving at varying speeds. Panel B (x-t): cursor at different points. At each point, tangent line drawn — its slope shown numerically. Panel C (v-t): point highlighted at same t showing same value.",
+          "interactive": "Student drags cursor along x-t curve, sees tangent slope = velocity value update on v-t graph in sync.",
+          "four_cases": {
+            "steep_positive": "Fast motion in +x direction",
+            "gentle_positive": "Slow motion in +x direction",
+            "horizontal": "Particle at rest (v=0)",
+            "negative_slope": "Motion in −x direction"
+          },
+          "scenario": "st_graph_linear"
+        },
+        "pedagogy_layer": {
+          "analogy": "x-t graph is like a topographic map — steep sections are fast travel, flat sections are standing still.",
+          "jee_tip": "When x-t graph is given: immediately identify horizontal segments (at rest), steep segments (fast), and sign of slope (direction)."
+        }
+      },
+      "STATE_3": {
+        "label": "Rule 2 — Area under v-t = Displacement",
+        "physics_layer": {
+          "concept": "Displacement = ∫v dt = area under v-t curve. Sign of area = sign of displacement.",
+          "simulation_focus": "Show v-t graph with two phases: positive velocity triangle (0 to t₁) and negative velocity triangle (t₁ to t₂). Shade each region. Show: Area 1 (positive) = displacement to the right. Area 2 (negative) = displacement to the left. Net displacement = Area 1 − Area 2.",
+          "panel_a_sync": "Particle moves right during phase 1, reverses and moves left during phase 2. Final position = initial + net displacement.",
+          "key_distinction": "Distance = |Area 1| + |Area 2| (both positive). Displacement = Area 1 − Area 2 (signed).",
+          "scenario": "vt_graph_constant"
+        },
+        "pedagogy_layer": {
+          "key_message": "Area is the bridge from v-t graph back to position. Every region of the v-t graph is a piece of displacement.",
+          "common_mistake": "Students add all areas as positive for displacement — gives distance, not displacement."
+        }
+      },
+      "STATE_4": {
+        "label": "Rule 3 — Slope of v-t = Acceleration",
+        "physics_layer": {
+          "concept": "Acceleration = dv/dt = slope of v-t graph",
+          "simulation_focus": "Show v-t graph: Phase 1 steep positive slope (large +a), Phase 2 gentle positive slope (small +a), Phase 3 horizontal (a=0), Phase 4 negative slope (deceleration). Panel A shows particle behavior matching each phase.",
+          "concavity_rule": "Connect to x-t: if v-t has positive slope → a > 0 → x-t is concave upward. If v-t has negative slope → a < 0 → x-t is concave downward.",
+          "panel_c": "a-t graph shows horizontal segments matching each v-t slope value.",
+          "scenario": "particle_accelerating"
+        },
+        "pedagogy_layer": {
+          "key_message": "The v-t graph is the 'master graph' — its slope tells you a, its area tells you x. Once you have v-t, you can reconstruct everything.",
+          "jee_tip": "If v-t is a straight line → uniform acceleration → suvat applies. If v-t is curved → non-uniform acceleration → calculus needed."
+        }
+      },
+      "STATE_5": {
+        "label": "The Aha Moment — Reading All Three Together",
+        "physics_layer": {
+          "concept": "A single complex motion — identify every phase from all three graphs simultaneously",
+          "simulation_focus": "Show a complex v-t graph: particle starts from rest, accelerates, moves at constant velocity, decelerates, stops, reverses. Student must identify each phase on all three panels.",
+          "phases": [
+            "0 to t1: v increases linearly → uniform acceleration → x-t parabola (concave up)",
+            "t1 to t2: v constant → a=0 → x-t straight line",
+            "t2 to t3: v decreases to 0 → deceleration → x-t parabola (concave down) flattening",
+            "t3 to t4: v goes negative → particle reverses → x-t starts decreasing"
+          ],
+          "panel_sync": "All three panels animate together. Vertical cursor links the moment across all three graphs.",
+          "scenario": "st_curve_vt_slope_at_flat"
+        },
+        "pedagogy_layer": {
+          "key_message": "Every 'kink' in the v-t graph is a change in acceleration. Every zero-crossing is a direction reversal. Read it left to right like a story."
+        }
+      },
+      "STATE_6": {
+        "label": "Student Interaction — Decode This Graph",
+        "physics_layer": {
+          "concept": "Apply all three rules to a JEE-style graph question",
+          "problem": "Given v-t graph: starts at v=10 m/s, decreases linearly to 0 at t=5s, then stays 0 until t=8s, then increases to −6 at t=11s. Find: (i) acceleration in each phase, (ii) displacement 0 to 5s, (iii) position at t=11s if x₀=0.",
+          "interactive": "Student identifies phases by clicking regions. System confirms identification before showing solution.",
+          "scenario": "graph_reading_skill"
+        },
+        "pedagogy_layer": {
+          "teacher_script": "Before solving anything — name each phase. Phase 1: deceleration. Phase 2: rest. Phase 3: acceleration in −x direction. Now it's just geometry."
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "slope_is_speed_not_velocity",
+      "misconception": "Student reads slope of x-t as speed (magnitude only), ignoring the sign of slope",
+      "student_belief": "Negative slope on x-t means the particle is slowing down, not moving in the opposite direction",
+      "trigger_phrases": [
+        "negative slope means decelerating",
+        "x-t graph going down means slowing",
+        "slope negative means speed decreasing",
+        "downward slope on x-t graph",
+        "x-t slope negative matlab kya"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show x-t graph with negative slope. Student interpretation: 'particle is slowing down'. Simulation shows particle moving at constant speed in the NEGATIVE x-direction — not slowing, just moving backwards. Speedometer shows constant speed, direction arrow points left.",
+            "label": "Student says: slowing down. Reality: moving left at constant speed. Same slope, completely different physics.",
+            "scenario": "mg_wrong_slope_is_displacement"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "Slope sign = direction of motion, NOT rate of change of speed. Negative slope = moving in −x direction at constant velocity. To slow down, you need the slope to be CHANGING (decreasing in magnitude)."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show four x-t graphs side by side: (1) positive slope → moving right. (2) negative slope → moving left. (3) slope decreasing to zero → slowing down and stopping. (4) slope increasing → speeding up. Student drags each case to its particle behavior.",
+            "label": "Sign of slope = direction. Magnitude of slope = speed. Change in slope = acceleration.",
+            "scenario": "mg_slope_is_velocity"
+          },
+          "pedagogy_layer": {
+            "rule": "Three separate questions from x-t graph: WHAT DIRECTION (sign of slope), HOW FAST (magnitude of slope), ACCELERATING? (is slope changing)."
+          }
+        },
+        "STATE_3": {
+          "physics_layer": {
+            "simulation": "JEE-style: Show x-t graph with particle going from x=5 down to x=−3 linearly. Ask: velocity? Answer: negative (−ve). Ask: speed? Answer: |slope| = positive number. Ask: accelerating? Answer: No — straight line, constant slope.",
+            "label": "x=5 to x=−3 in 4s: velocity = (−3−5)/4 = −2 m/s. Speed = 2 m/s. Acceleration = 0. Three different answers from one graph.",
+            "scenario": "mg_aha_slope_gives_rate"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "area_gives_velocity_not_displacement",
+      "misconception": "Student thinks area under v-t graph gives velocity, not displacement",
+      "student_belief": "Bigger area on v-t graph means higher velocity",
+      "trigger_phrases": [
+        "area under v-t graph gives velocity",
+        "what does area under velocity graph mean",
+        "v-t area matlab velocity",
+        "bigger area more velocity",
+        "area under graph displacement ya velocity"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show v-t graph: horizontal line at v=10 m/s from t=0 to t=5s. Student says area = velocity = 50. But the VELOCITY is clearly 10 m/s (readable directly from y-axis). The area = 50 m — which is the DISPLACEMENT.",
+            "label": "Velocity is already on the y-axis — you don't need area for that. Area = displacement.",
+            "scenario": "mg_wrong_area_is_velocity"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "Think about units. v-t graph: y-axis is m/s, x-axis is s. Area = (m/s) × s = m. That unit is displacement, not velocity."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Unit analysis animated: Rectangle on v-t graph. Height = 10 m/s. Width = 5 s. Area = 10 × 5 = 50 m/s × s = 50 m. Label: metres = displacement unit. Show particle traveling 50m on Panel A to confirm.",
+            "label": "Unit check never lies: (m/s) × s = m. Area under v-t is always displacement.",
+            "scenario": "mg_aha_area_accumulates"
+          },
+          "pedagogy_layer": {
+            "rule": "Similarly: area under a-t = (m/s²) × s = m/s = change in velocity. Units always tell you what the area means."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "ignoring_sign_in_area",
+      "misconception": "Student adds all v-t areas as positive, giving distance instead of displacement",
+      "student_belief": "Area is always positive, so just add up all shaded regions",
+      "trigger_phrases": [
+        "I added all the areas",
+        "total area positive and negative both",
+        "net displacement kaise nikale v-t se",
+        "area below axis bhi add kiya",
+        "displacement calculation v-t graph wrong"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "v-t graph: positive triangle (area=20m) from 0 to t₁, negative triangle (area=−12m) from t₁ to t₂. Student adds: 20+12=32m. But particle moved 20m right then 12m left — net displacement = 8m, not 32m. Show particle ending up at x=8, not x=32.",
+            "label": "32m is the distance traveled. 8m is the displacement. Adding areas without sign gave distance.",
+            "scenario": "ignoring_sign_in_area_s1"
+          },
+          "pedagogy_layer": {
+            "teacher_script": "Above the t-axis: positive velocity = rightward motion = positive displacement. Below the t-axis: negative velocity = leftward motion = negative displacement. Net displacement = positive areas MINUS negative areas."
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show same graph: shade positive region green (+20m), shade negative region red (−12m). Net = green − red = +8m. Distance = green + |red| = 32m. Both answers from same graph, different methods.",
+            "label": "Displacement: green − red (signed sum). Distance: green + red (unsigned sum). Two different questions, two different operations on the same graph.",
+            "scenario": "ignoring_sign_in_area_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "Exam question says 'displacement' → signed area sum. Says 'distance' → unsigned area sum. Read the question word carefully."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "concavity_confusion",
+      "misconception": "Student cannot connect x-t concavity to sign of acceleration",
+      "student_belief": "Concave up on x-t means particle is going up physically, or means position is increasing",
+      "trigger_phrases": [
+        "concave up means moving upward",
+        "x-t parabola opening up means what",
+        "concavity of x-t graph",
+        "what does x-t curve shape tell us",
+        "x-t concave down matlab"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show x-t graph concave up (parabola opening upward). Student marks: 'particle moving upward physically'. But x-axis is TIME, not vertical position. Show actual particle moving along a HORIZONTAL track — the curve shape says nothing about physical direction.",
+            "label": "Concavity is NOT physical direction. x-t is a GRAPH — x-axis is time, y-axis is position. Concave up = acceleration is positive.",
+            "scenario": "concavity_confusion_s1"
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Show side by side: x-t concave up → v-t has positive slope → a > 0. x-t concave down → v-t has negative slope → a < 0. x-t straight line → v-t horizontal → a = 0.",
+            "label": "Concave up → speeding up in +x. Concave down → slowing down (or speeding in −x). These are always true regardless of whether particle moves left or right.",
+            "scenario": "concavity_confusion_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "Concavity rule: d²x/dt² > 0 → concave up. d²x/dt² < 0 → concave down. This IS the definition of acceleration — second derivative of x."
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "at_area_gives_position",
+      "misconception": "Student thinks area under a-t graph gives position or displacement",
+      "student_belief": "Area under a-t graph tells us how far the particle moved",
+      "trigger_phrases": [
+        "area under a-t graph displacement deta hai",
+        "a-t graph area meaning",
+        "what does area under acceleration graph give",
+        "a-t area displacement ya velocity"
+      ],
+      "states": {
+        "STATE_1": {
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show a-t graph (constant a = 5 m/s², from t=0 to t=3s). Student says area = displacement = 15m. But a-t area = 5 × 3 = 15 m/s² × s = 15 m/s = CHANGE IN VELOCITY. Show: if v starts at 0, it ends at 15 m/s — not 15 meters.",
+            "label": "Units again: (m/s²) × s = m/s. Area under a-t is change in velocity, not displacement.",
+            "scenario": "at_area_gives_position_s1"
+          }
+        },
+        "STATE_2": {
+          "physics_layer": {
+            "simulation": "Three graph areas and their meanings: v-t area = (m/s)×s = m = displacement. a-t area = (m/s²)×s = m/s = Δvelocity. Neither x-t nor a-t gives displacement directly — only v-t area does.",
+            "label": "Graph area cheatsheet: only v-t area = displacement. a-t area = velocity change. x-t area = meaningless in physics.",
+            "scenario": "at_area_gives_position_s2"
+          },
+          "pedagogy_layer": {
+            "rule": "For a-t area: if particle starts at v₀, then v_final = v₀ + (area under a-t). Area shifts the velocity curve, doesn't give position."
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "micro_1": {
+      "trigger": "slope of x-t graph gives what",
+      "scope": "micro",
+      "states": 2,
+      "content": "Slope of x-t graph = instantaneous velocity. At any point on the x-t curve, draw the tangent — its slope (rise/run = Δx/Δt) = velocity at that instant. Positive slope = moving in +x direction. Negative slope = moving in −x direction. Zero slope (horizontal tangent) = momentarily at rest."
+    },
+    "micro_2": {
+      "trigger": "area under v-t graph",
+      "scope": "micro",
+      "states": 2,
+      "content": "Area under v-t graph = displacement. Units confirm: (m/s) × s = m. For displacement: sum areas with sign (above axis positive, below axis negative). For distance: sum all areas as positive values. This is the most commonly tested graph rule in JEE."
+    },
+    "micro_3": {
+      "trigger": "how to find when particle reverses direction",
+      "scope": "micro",
+      "states": 2,
+      "content": "On v-t graph: particle reverses direction exactly when v = 0 (graph crosses the time axis). On x-t graph: the turning point is where the slope = 0 (tangent is horizontal) — this is the maximum or minimum of the x-t curve. On a-t graph: cannot directly identify reversal — need to integrate first."
+    },
+    "micro_4": {
+      "trigger": "x-t straight line meaning",
+      "scope": "micro",
+      "states": 2,
+      "content": "Straight line on x-t graph means constant slope = constant velocity = zero acceleration. This is uniform motion. The steeper the line, the higher the (constant) speed. A horizontal straight line (zero slope) means particle is at rest — not moving."
+    },
+    "micro_5": {
+      "trigger": "what does a-t graph area give",
+      "scope": "micro",
+      "states": 2,
+      "content": "Area under a-t graph = change in velocity (Δv). Units: (m/s²) × s = m/s. If particle starts with velocity v₀, then v at time t = v₀ + (area under a-t from 0 to t). This is NOT displacement — that requires the v-t graph area."
+    },
+    "micro_6": {
+      "trigger": "two particles same x-t graph intersect",
+      "scope": "micro",
+      "states": 2,
+      "content": "If two particles' x-t graphs intersect at a point, they are at the SAME POSITION at that time — not necessarily same velocity. Same velocity would mean their tangent slopes are equal at that point. Same position AND same velocity means their x-t curves are tangent to each other at that point."
+    }
+  },
+  "static_responses": {
+    "three_rules_summary": {
+      "trigger": "what are the three graph rules",
+      "simulation_needed": false,
+      "response": "Three master rules: (1) Slope of x-t = velocity. (2) Slope of v-t = acceleration. (3) Area under v-t = displacement. Bonus: Area under a-t = change in velocity (not displacement). These three rules solve every JEE motion graph problem."
+    },
+    "graph_shapes_table": {
+      "trigger": "what shape is x-t for uniform acceleration",
+      "simulation_needed": false,
+      "response": "Graph shapes: Uniform motion (a=0): x-t is straight line, v-t is horizontal line, a-t is zero line. Uniform acceleration from rest: x-t is parabola (concave up), v-t is straight line through origin, a-t is horizontal line. Deceleration to rest: x-t is parabola (concave down) flattening to horizontal, v-t is straight line decreasing to zero."
+    },
+    "distance_vs_displacement_from_graph": {
+      "trigger": "how to find distance from v-t graph",
+      "simulation_needed": false,
+      "response": "Distance from v-t: add ALL areas as positive (ignore sign). Displacement from v-t: add areas WITH sign (positive above axis, negative below axis). Example: if v-t has area +30m above axis and area −10m below axis: displacement = +30 + (−10) = +20m, distance = 30 + 10 = 40m."
+    }
+  },
+  "problem_guidance_path": {
+    "description": "Step-by-step for solving motion graph problems",
+    "for_given_xt": "Step 1: Identify regions (straight vs curved). Step 2: Find slope (= velocity) at required points by drawing tangent. Step 3: Identify rest points (horizontal segments). Step 4: Identify acceleration from concavity (up = +a, down = −a, straight = 0).",
+    "for_given_vt": "Step 1: Read velocity directly from y-axis at any t. Step 2: Find slope (= acceleration) in each region. Step 3: Find area (= displacement) — calculate area of each triangle/trapezoid with correct sign. Step 4: Find when v=0 for direction reversal points.",
+    "for_given_at": "Step 1: Area under a-t = Δv. Add to initial velocity to get v(t). Step 2: From v(t), reconstruct the v-t graph. Step 3: From v-t, find displacement.",
+    "common_errors": [
+      "Reading slope of x-t as speed (ignoring sign)",
+      "Adding v-t areas as all positive (gives distance, not displacement)",
+      "Confusing a-t area (= Δv) with displacement",
+      "Not identifying all phases of motion before solving"
+    ]
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Section 6.9 — x-t graph reading",
+      "principle": "Reading instantaneous velocity from a curved x-t graph by drawing tangent at a specific point",
+      "aha": "Tangent slope at t=2s gives velocity at that exact instant — secant slope would give only average velocity over an interval",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Section 6.9 — v-t graph with direction reversal",
+      "principle": "v-t graph crossing x-axis — calculating displacement and distance separately for each phase",
+      "aha": "Displacement = signed area sum (can be less than distance or even zero if particle returns to start); distance = unsigned area sum",
+      "simulation_states": 3
+    },
+    "example_3": {
+      "source": "DC Pandey Section 6.9 — two-particle x-t graph",
+      "principle": "Two particles on same x-t graph — identifying when they meet (same position), when they have same velocity (equal slopes), and when they are farthest apart",
+      "aha": "Same position = graphs intersect. Same velocity = parallel tangents. Maximum separation = slopes equal at that moment.",
+      "simulation_states": 3
+    },
+    "example_4": {
+      "source": "DC Pandey Section 6.9 — reconstructing motion from a-t graph",
+      "principle": "Given a-t graph with two phases, reconstructing v-t and x-t graphs by integration (area of each a-t region = velocity change)",
+      "aha": "The three graphs are linked — each is the integral of the next. a-t → integrate → v-t → integrate → x-t",
+      "simulation_states": 2
+    }
+  },
+  "assessment_path": {
+    "question_1": {
+      "text": "In an x-t graph, a straight line with negative slope represents:",
+      "options": [
+        "Particle decelerating",
+        "Particle moving in negative direction at constant velocity",
+        "Particle at rest",
+        "Particle accelerating in −x direction"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to slope_is_speed_not_velocity branch",
+      "explanation": "Straight line → zero acceleration (constant velocity). Negative slope → velocity is negative = motion in −x direction. Deceleration would require slope decreasing in magnitude."
+    },
+    "question_2": {
+      "text": "A v-t graph shows a triangle with base from t=0 to t=6s and peak at v=12 m/s. What is the displacement?",
+      "options": [
+        "72 m",
+        "36 m",
+        "12 m",
+        "18 m"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to area_gives_velocity_not_displacement — student may have multiplied 12×6",
+      "explanation": "Area of triangle = ½ × base × height = ½ × 6 × 12 = 36 m. This is displacement (all positive velocity, so distance = displacement here)."
+    },
+    "question_3": {
+      "text": "A v-t graph shows: v goes from +8 m/s to 0 in first 4s, then from 0 to −4 m/s in next 2s. What is the net displacement?",
+      "options": [
+        "24 m",
+        "20 m",
+        "16 m",
+        "12 m"
+      ],
+      "correct": 2,
+      "if_wrong_0": "route to ignoring_sign_in_area — student added both areas as positive",
+      "explanation": "Phase 1: area = ½×4×8 = +16m. Phase 2: area = ½×2×(−4) = −4m. Net displacement = 16 + (−4) = 12m. Distance = 16 + 4 = 20m."
+    },
+    "question_4": {
+      "text": "The area under an a-t graph from t=0 to t=5s is 20 m/s². The particle started with v=5 m/s. What is its velocity at t=5s?",
+      "options": [
+        "20 m/s",
+        "25 m/s",
+        "100 m/s",
+        "15 m/s"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to at_area_gives_position — student forgot initial velocity",
+      "explanation": "Area under a-t = Δv = 20 m/s. v_final = v_initial + Δv = 5 + 20 = 25 m/s."
+    },
+    "question_5": {
+      "text": "An x-t graph is concave downward in a region. This means the particle is:",
+      "options": [
+        "Moving downward",
+        "Decelerating (acceleration is negative)",
+        "At rest",
+        "Moving at constant velocity"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to concavity_confusion branch",
+      "explanation": "Concave down → d²x/dt² < 0 → acceleration is negative. This means deceleration if particle moves in +x, or acceleration in −x direction."
+    }
+  },
+  "session_awareness": {
+    "if_already_shown_epic_l": "Go directly to graph-reading problems — student knows theory, needs interpretation practice",
+    "if_coming_from_uniform_acceleration": "Student knows what uniform acceleration means physically — now connect it to the shapes it produces on graphs",
+    "if_coming_from_non_uniform_acceleration": "Student knows calculus forms — connect: 'v-t slope = dv/dt is what you've been integrating. Area under v-t = ∫v dt is what you computed.'"
+  },
+  "waypoints": {
+    "fallback_unknown_confusion": "Default to the v-t area demonstration with a simple triangle. It's the most commonly tested rule and the most satisfying to see — area of a triangle × unit analysis = displacement.",
+    "escalation_trigger": "If student asks about reading acceleration from a curved x-t graph (requires drawing tangent then finding how tangent slope changes) — escalate to differentiation discussion."
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks how to find acceleration from x-t graph when x-t is a complex curve (not simple parabola)",
+    "escalate_to": "Draw tangent at multiple points, get v at each point, plot those on a new v-t graph, then find slope of that v-t graph = acceleration. This is numerical differentiation.",
+    "level": "JEE Advanced / experimental data analysis"
+  },
+  "parameter_slots": {
+    "v_max": {
+      "label": "maximum velocity in motion",
+      "range": [
+        1,
+        40
+      ],
+      "unit": "m/s",
+      "default": 10,
+      "extraction_hint": "peak velocity or maximum speed in the problem"
+    },
+    "t_total": {
+      "label": "total time of motion",
+      "range": [
+        1,
+        20
+      ],
+      "unit": "s",
+      "default": 6,
+      "extraction_hint": "total time or final time given in problem"
+    },
+    "a_value": {
+      "label": "acceleration magnitude",
+      "range": [
+        0,
+        20
+      ],
+      "unit": "m/s²",
+      "default": 2,
+      "extraction_hint": "acceleration or deceleration value given"
+    }
+  },
+  "panel_sync_spec": {
+    "canvas_to_graph": {
+      "trigger": "particle_position_updates",
+      "action": "vertical cursor moves simultaneously on both x-t and v-t graphs to match current time"
+    },
+    "graph_to_canvas": {
+      "trigger": "student_clicks_on_any_graph_at_time_t",
+      "action": "particle on Panel A jumps to position corresponding to that time; both graphs update cursor"
+    },
+    "cross_panel_sync": {
+      "description": "All three panels are locked to the same time axis",
+      "xt_to_vt": "Tangent slope on x-t at time t equals y-value on v-t at same t",
+      "vt_to_at": "Tangent slope on v-t at time t equals y-value on a-t at same t"
+    }
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "Given v-t graph, find displacement (area calculation)",
+      "Given v-t graph with reversal, find distance AND displacement separately",
+      "Given x-t graph, find velocity at t=Xs (slope of tangent)",
+      "Given a-t graph, find velocity at t=Xs (v₀ + area)",
+      "Two particles on same x-t graph — when do they meet, when same velocity",
+      "Identify which x-t graph corresponds to given v-t graph",
+      "Identify which v-t graph corresponds to given a-t graph"
+    ],
+    "common_traps": [
+      "Area under v-t gives displacement, not distance — must handle sign for direction reversals",
+      "Area under a-t gives Δv, not v or displacement",
+      "Negative slope on x-t = moving in −x direction (NOT decelerating)",
+      "Two x-t curves intersecting = same POSITION, not same velocity",
+      "Horizontal segment on x-t = at rest. Horizontal segment on v-t = constant velocity (not at rest unless v=0)"
+    ],
+    "key_results": [
+      "Slope of x-t = v. Slope of v-t = a. Area under v-t = displacement.",
+      "Area under a-t = Δv (change in velocity, not velocity itself)",
+      "x-t concave up → a > 0. Concave down → a < 0. Straight line → a = 0.",
+      "v-t crosses x-axis → particle reverses direction at that moment",
+      "For uniform acceleration from rest: x-t is parabola, v-t is straight line through origin"
+    ],
+    "matching_questions": {
+      "xt_straight_positive": "Uniform motion in +x direction",
+      "xt_parabola_concave_up": "Uniform acceleration in +x direction",
+      "xt_parabola_concave_down": "Deceleration (or uniform acceleration in −x)",
+      "vt_horizontal": "Zero acceleration (uniform motion)",
+      "vt_straight_positive_slope": "Uniform positive acceleration",
+      "vt_crosses_axis": "Direction reversal at that time"
+    }
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "distance_vs_displacement",
+      "uniform_acceleration",
+      "non_uniform_acceleration"
+    ],
+    "extensions": [
+      "relative_motion",
+      "projectile_motion",
+      "circular_motion_banking"
+    ],
+    "siblings": [
+      "non_uniform_acceleration"
+    ],
+    "common_exam_combinations": [
+      "non_uniform_acceleration — v-t area IS the integral ∫v dt from calculus chapter",
+      "distance_vs_displacement — graphical method of separating distance and displacement",
+      "work_energy_theorem — area under F-x graph = work done (same area concept, different axes)"
+    ]
+  },
+  "three_js_flag": false,
+  "three_js_note": "All motion graph content is 2D (time on x-axis, quantity on y-axis). Triple panel with canvas2d + two Plotly panels is correct. Three.js not needed.",
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "approach": "two_rules_for_everything",
+      "entry_state": "STATE_2",
+      "teacher_angle": "Start with the two master rules that unlock every motion graph question. Rule 1: slope of any graph = the quantity on the y-axis divided by the quantity on the x-axis. Slope of s-t graph = ds/dt = velocity. Slope of v-t graph = dv/dt = acceleration. Rule 2: area under any graph = integral of y with respect to x. Area under v-t graph = integral of v dt = displacement. Area under a-t graph = integral of a dt = change in velocity. Every motion graph question in JEE reduces to one of these two rules.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "panel_b_focus": "Three graphs side by side: s-t, v-t, a-t. For each: slope formula and area formula labeled. Student clicks any graph and sees which rule applies and what it gives."
+    },
+    {
+      "variant_id": 2,
+      "approach": "connects_to_uniform_acceleration",
+      "entry_state": "STATE_1",
+      "teacher_angle": "Connect every graph directly to what the student already knows from uniform acceleration. Uniform acceleration gives a straight v-t line — the student has already seen this. The slope of that line = a (which they know). The area under it = s (which they know from the SUVAT derivation). Motion graphs is just making those relationships visual. A curved v-t graph means non-uniform acceleration — also already known. The student already understands every graph — they just have not seen it drawn explicitly.",
+      "locked_facts_focus": [
+        "fact_4",
+        "fact_5",
+        "fact_6"
+      ],
+      "panel_b_focus": "v-t straight line (uniform acceleration). Slope labeled as a — same as SUVAT. Shaded area labeled as s — same as SUVAT. Then curved v-t line introduced: slope changes at every point (non-uniform a). The familiar becomes the foundation for the unfamiliar."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0f172a",
+      "grid": "#1e293b",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": { "label": "Time", "symbol": "t", "unit": "s", "min": 0, "max": 10 },
+    "y_axis": { "label": "Position", "symbol": "x", "unit": "m", "min": -10, "max": 40 },
+    "lines": [
+      { "id": "x_constant_v", "formula": "4 * x", "color": "#60a5fa", "label": "Constant velocity (straight)" },
+      { "id": "x_accelerating", "formula": "0.5 * x * x", "color": "#34d399", "label": "Accelerating (curved up)" },
+      { "id": "x_decelerating", "formula": "10 * x - 0.8 * x * x", "color": "#f97316", "label": "Decelerating (curves over)" }
+    ],
+    "sliders": [],
+    "legend": [
+      { "id": "x_constant_v", "label": "Const. v" },
+      { "id": "x_accelerating", "label": "Accelerating" },
+      { "id": "x_decelerating", "label": "Decelerating" }
+    ],
+    "states": {
+      "STATE_1": { "active_lines": ["x_constant_v"], "show_sliders": false, "highlight_point": false },
+      "STATE_2": { "active_lines": ["x_constant_v"], "show_sliders": false, "highlight_point": true, "point_x": 5, "point_y": 20, "label": "Slope = velocity" },
+      "STATE_3": { "active_lines": ["x_constant_v", "x_accelerating"], "show_sliders": false, "highlight_point": false },
+      "STATE_4": { "active_lines": ["x_constant_v", "x_accelerating", "x_decelerating"], "show_sliders": false, "highlight_point": false },
+      "STATE_5": { "active_lines": ["x_decelerating"], "show_sliders": false, "highlight_point": true, "point_x": 6.25, "point_y": 31.25, "label": "Peak — velocity = 0 here" },
+      "STATE_6": { "active_lines": ["x_constant_v", "x_accelerating", "x_decelerating"], "show_sliders": false, "highlight_point": false }
+    }
+  }
+}

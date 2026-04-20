@@ -1,0 +1,112 @@
+{
+  "concept_id": "cyclotron",
+  "concept_name": "Cyclotron",
+  "class_level": 12,
+  "chapter": "Moving Charges and Magnetism",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "particle_accelerator",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "q": "Charge of the ion (C)",
+    "m": "Mass of the ion (kg)",
+    "B": "Magnetic field strength (T)",
+    "V": "Accelerating voltage across dees (V)",
+    "R": "Maximum radius of the cyclotron (m)",
+    "r": "Instantaneous radius of circular path (m)",
+    "f": "Cyclotron frequency (Hz)",
+    "T": "Time period of revolution (s)",
+    "KE": "Kinetic energy of the particle (J)"
+  },
+  "locked_facts": [
+    "Cyclotron frequency: f = qB/(2πm), independent of speed and radius",
+    "Time period of revolution: T = 2πm/(qB), independent of speed",
+    "Radius of circular path at speed v: r = mv/(qB)",
+    "Maximum kinetic energy: KE_max = q²B²R²/(2m), where R is the dee radius",
+    "The particle gains energy 2qV per revolution (accelerated twice per cycle across the gap)",
+    "Cyclotron cannot accelerate electrons — they are too light and reach relativistic speeds quickly",
+    "At relativistic speeds, mass increases and the cyclotron frequency condition breaks down"
+  ],
+  "truth_statements": [
+    "The cyclotron uses a combination of a uniform magnetic field (for circular deflection) and an oscillating electric field (for acceleration) to accelerate charged particles to high energies",
+    "The key principle is that the time period T = 2πm/(qB) is independent of the particle's speed and radius, allowing a fixed-frequency oscillator to stay in sync with the spiralling particle",
+    "Each time the particle crosses the gap between the dees, it gains kinetic energy qV from the electric field, so after N crossings its energy is NqV",
+    "The maximum energy is limited by the dee radius R: KE_max = q²B²R²/(2m)",
+    "Cyclotrons cannot effectively accelerate electrons because their small mass causes them to reach relativistic speeds quickly, where the classical T = 2πm/(qB) formula breaks down"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "The particle spirals outward through 5-6 semicircles. Despite gaining speed at every gap crossing, it arrives at each gap at EXACTLY the same time interval — because larger radius at higher speed means the same period. The oscillator frequency (fixed) always matches. Show a clock ticking the same interval for each semicircle.",
+    "visual_emphasis": "A fixed metronome tick perfectly aligned with each gap crossing. The radius grows, the speed grows, but the time per semicircle stays constant. This is why a simple fixed-frequency oscillator works.",
+    "why_this_breaks_misconception": "Students think faster particles should reach the gap sooner (shorter period) — they see that the proportionally larger radius exactly compensates for the increased speed"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Cyclotron structure",
+      "description": "Top-down view of two D-shaped electrodes (dees) with a small gap between them. A uniform magnetic field B is directed into the page (shown as × symbols). An ion source at the centre emits a positive ion. The oscillating voltage V across the gap is labelled.",
+      "emphasis": "Two dees in a magnetic field with a gap where the electric field accelerates the particle. Ion starts from the centre.",
+      "labels_visible": ["Dee 1", "Dee 2", "B (into page)", "Ion source", "V"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "First acceleration and semicircle",
+      "description": "The ion accelerates across the gap (electric field) gaining speed qV/m. Inside the dee, the magnetic field bends it into a semicircle of radius r₁ = mv₁/(qB). It arrives at the gap again, and the voltage has reversed polarity — it accelerates again. Now it enters dee 2 with a larger semicircle r₂ > r₁.",
+      "emphasis": "Inside the dee: only magnetic force (circular path, no energy gain). At the gap: only electric force (acceleration, energy gain). The voltage reverses just in time because T is independent of speed!",
+      "labels_visible": ["r₁", "r₂ > r₁", "Energy gain = qV per crossing"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Spiral outward — frequency stays constant",
+      "description": "The ion has completed several semicircles, spiralling outward. A timer shows each semicircle takes the same time T/2 = πm/(qB). The oscillator frequency indicator blinks at the same rate as the particle crossings. Speed readout increases at each gap, radius grows, but period stays constant.",
+      "emphasis": "The magic: T = 2πm/(qB) does NOT depend on v or r. Bigger circle at higher speed → same time. This is why one fixed frequency works for all spirals.",
+      "labels_visible": ["T = 2πm/(qB)", "f = qB/(2πm)", "KE increasing"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts B, V (accelerating voltage), and particle type (proton, deuteron, alpha). The spiral pattern, final energy, final radius, and number of revolutions update. A readout shows KE_max = q²B²R²/(2m). An 'electron' toggle shows why electrons fail (relativistic speed reached quickly).",
+      "emphasis": "Compare proton vs deuteron (double mass → half frequency, lower max energy for same R). Increase B → higher max energy. Try electron to see relativistic breakdown.",
+      "labels_visible": ["KE_max", "f", "R", "B"],
+      "interactive": true,
+      "sliders": [
+        { "id": "magneticField", "label": "Magnetic field B", "min": 0.5, "max": 3, "default": 1.5, "unit": "T" },
+        { "id": "voltage", "label": "Accelerating voltage V", "min": 1000, "max": 100000, "default": 50000, "unit": "V" },
+        { "id": "deeRadius", "label": "Dee radius R", "min": 0.1, "max": 1, "default": 0.5, "unit": "m" },
+        { "id": "particleType", "label": "Particle (1=proton, 2=deuteron, 4=alpha)", "min": 1, "max": 4, "default": 1, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The magnetic field accelerates the particle in a cyclotron",
+      "trigger_phrases": ["magnetic field accelerates", "B se particle fast hota hai", "magnetic field gives energy", "B se energy milta hai"],
+      "correction": "The magnetic field only bends the particle into semicircles — it does zero work because the force is always perpendicular to velocity. ALL the energy comes from the electric field in the gap between the dees. The particle gains energy 2qV per full revolution (two gap crossings).",
+      "simulation_emphasis": "Colour-code the path: inside dees (no speed change, just curving) vs at the gap (speed increases, shown by colour change or speedometer jump)"
+    },
+    {
+      "belief": "Faster particles take less time per revolution, so the oscillator frequency must increase as the particle spirals outward",
+      "trigger_phrases": ["frequency increase karna padta hai", "faster particle shorter time", "oscillator frequency changes", "tez hone pe time kam lagta hai"],
+      "correction": "The time period T = 2πm/(qB) is independent of speed and radius. When the particle speeds up, it moves to a proportionally larger radius, so the longer path at higher speed takes exactly the same time. The oscillator frequency stays FIXED at f = qB/(2πm). This is the fundamental principle of the cyclotron.",
+      "simulation_emphasis": "Show simultaneous timer and speedometer — speed increases but timer interval per semicircle stays constant"
+    }
+  ],
+  "legend": [
+    { "symbol": "f", "meaning": "Cyclotron frequency = qB/(2πm) (Hz)" },
+    { "symbol": "T", "meaning": "Time period = 2πm/(qB) (s)" },
+    { "symbol": "r", "meaning": "Instantaneous radius = mv/(qB) (m)" },
+    { "symbol": "R", "meaning": "Maximum dee radius (m)" },
+    { "symbol": "KE_max", "meaning": "Maximum kinetic energy = q²B²R²/(2m) (J)" },
+    { "symbol": "V", "meaning": "Accelerating voltage across the gap (V)" },
+    { "symbol": "B", "meaning": "Uniform magnetic field perpendicular to dees (T)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["magnetic_force_moving_charge", "uniform_circular_motion"],
+    "extensions": ["motion_of_charge_in_field"],
+    "siblings": ["van_de_graaff_generator"],
+    "common_exam_combinations": ["magnetic_force_moving_charge", "motion_of_charge_in_field"]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "concept_id": "motion_on_inclined_plane",
+  "concept_name": "Motion on Inclined Plane",
+  "class_level": 11,
+  "chapter": "Laws of Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "inclined_plane", "panel_count": 1, "show_labels": true },
+  "variables": { "θ": "Incline angle (°)", "a": "Acceleration (m/s²)", "N": "Normal force (N)", "f": "Friction force (N)" },
+  "locked_facts": [
+    "Component along plane: mg sinθ (drives motion down the incline)",
+    "Component perpendicular to plane: mg cosθ (balanced by normal force N)",
+    "Normal force N = mg cosθ (NOT mg on an incline)",
+    "Without friction: a = g sinθ",
+    "With friction (sliding down): a = g(sinθ - μ cosθ)",
+    "Angle of repose: θ_r = tan⁻¹(μ_s) — block just begins to slide",
+    "For θ < θ_r: block stays at rest. For θ > θ_r: block accelerates down"
+  ],
+  "truth_statements": [
+    "On an inclined plane the weight must be resolved into components parallel and perpendicular to the surface",
+    "The normal force on an incline is mg cosθ which is less than mg — this is why friction is reduced on steeper inclines",
+    "Without friction the acceleration down an incline is g sinθ independent of the mass of the object",
+    "The angle of repose is the angle at which the component of gravity along the plane just equals maximum static friction",
+    "Friction on an incline acts up the plane when the object tends to slide down and can act down the plane if the object is pushed up"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Free body diagram on an incline with weight mg resolved into mg sinθ (along plane) and mg cosθ (perpendicular). As θ increases: mg sinθ grows, mg cosθ shrinks, N decreases, friction capacity (μN = μmg cosθ) decreases. At angle of repose: mg sinθ = μmg cosθ → tanθ = μ.",
+    "visual_emphasis": "Animated FBD with changing θ — the parallel component grows while friction capacity shrinks until they cross at angle of repose",
+    "why_this_breaks_misconception": "Students struggle with force resolution — seeing the components change continuously with angle makes the physics intuitive"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Force resolution", "description": "Block on incline. Weight mg resolved into mg sinθ (along plane) and mg cosθ (perpendicular). Normal force N = mg cosθ. No friction yet.", "emphasis": "Weight has TWO components on an incline — resolve before applying Newton's laws", "labels_visible": ["mg sinθ", "mg cosθ", "N = mg cosθ"] },
+    { "id": "STATE_2", "label": "Frictionless incline", "description": "No friction: block accelerates at a = g sinθ. Independent of mass! Heavy and light blocks slide together. Steeper angle → faster acceleration.", "emphasis": "Without friction, acceleration depends only on angle — mass cancels out", "labels_visible": ["a = g sinθ", "mass independent"] },
+    { "id": "STATE_3", "label": "With friction", "description": "Friction f = μN = μmg cosθ acts up the plane. Net force along plane: mg sinθ - μmg cosθ. At angle of repose (tanθ = μ): net force = 0, block just starts to slide.", "emphasis": "As θ increases, driving force grows AND friction capacity shrinks → double effect", "labels_visible": ["a = g(sinθ - μcosθ)", "angle of repose: tanθ = μ"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts incline angle and friction coefficient. Block slides or stays put. FBD updates. Green/red indicator for motion/rest. Angle of repose calculated.", "emphasis": "Increase angle until block starts sliding — that's the angle of repose!", "labels_visible": ["θ", "a", "f", "N"], "interactive": true, "sliders": [{ "id": "angle", "label": "Incline angle θ", "min": 0, "max": 60, "default": 30, "unit": "°" }, { "id": "mu", "label": "Friction coefficient μ", "min": 0, "max": 1.0, "default": 0.3, "unit": "" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Normal force on an incline equals mg", "trigger_phrases": ["normal = mg on incline", "N = mg slope pe bhi"], "correction": "On an incline, N = mg cosθ, which is LESS than mg. The steeper the incline, the smaller the normal force. N = mg only on a horizontal surface (θ = 0).", "simulation_emphasis": "Show N bar shrinking as angle increases — N = mg cosθ clearly less than mg" },
+    { "belief": "Heavier objects slide down faster on a frictionless incline", "trigger_phrases": ["heavy slides faster", "bhaari tez fiselega"], "correction": "On a frictionless incline, acceleration a = g sinθ is independent of mass — all objects accelerate at the same rate regardless of their weight. Mass cancels in F = ma: mg sinθ = ma → a = g sinθ.", "simulation_emphasis": "Drop two different masses on frictionless incline — they slide together" }
+  ],
+  "legend": [ { "symbol": "θ", "meaning": "Incline angle" }, { "symbol": "N", "meaning": "Normal force = mg cosθ" }, { "symbol": "μ", "meaning": "Coefficient of friction" } ],
+  "concept_relationships": { "prerequisites": ["newtons_laws_overview", "friction_laws"], "extensions": ["rolling_on_incline"], "siblings": ["friction_laws"], "common_exam_combinations": ["friction_laws", "work_energy_theorem"] }
+}

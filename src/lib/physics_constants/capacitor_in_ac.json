@@ -1,0 +1,86 @@
+{
+  "concept_id": "capacitor_in_ac",
+  "concept_name": "Capacitor in AC Circuit",
+  "chapter": "Alternating Current",
+  "class_level": 12,
+  "renderer_hint": {
+    "primary": "circuit_live",
+    "topology": "single_ac_element",
+    "element": "capacitor",
+    "show_graph": true
+  },
+  "variables": {
+    "V_m": { "symbol": "V_m", "name": "Peak Voltage", "unit": "V", "min": 1, "max": 100, "default": 20 },
+    "C": { "symbol": "C", "name": "Capacitance", "unit": "μF", "min": 1, "max": 1000, "default": 100 },
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 10, "max": 1000, "default": 50 }
+  },
+  "locked_facts": [
+    "v = V_m sin(ωt)",
+    "i = I_m sin(ωt + π/2) = I_m cos(ωt)",
+    "Current LEADS voltage by π/2 (90°) — equivalently, voltage LAGS current by 90°",
+    "Capacitive reactance X_C = 1/(ωC) = 1/(2πfC)",
+    "I_m = V_m / X_C",
+    "X_C decreases with frequency — capacitor passes high-frequency AC more easily",
+    "X_C → ∞ as f → 0 (DC) — capacitor blocks DC completely",
+    "Average power dissipated in pure capacitor = 0",
+    "Current is maximum when voltage is zero — capacitor charges/discharges fastest at V = 0"
+  ],
+  "truth_statements": [
+    "Current leads voltage by exactly 90° for a pure capacitor",
+    "Capacitive reactance X_C is inversely proportional to frequency",
+    "A pure capacitor dissipates zero average power",
+    "Capacitor blocks DC but allows AC to pass — lower frequency AC is blocked more"
+  ],
+  "aha_moment": {
+    "state": "STATE_2",
+    "what_to_show": "Show that current peaks when voltage is ZERO and is zero when voltage peaks. The physical reason: current is proportional to rate of change of voltage (i = C dv/dt). When voltage is at its peak, its rate of change is zero, so current is zero. When voltage is crossing zero, it is changing fastest, so current is maximum.",
+    "visual_emphasis": "Mark the exact moments: when V = V_m (peak), draw a vertical line — I = 0 there. When V = 0 (crossing zero), draw another vertical line — I = I_m there. This cross-reference makes the 90° lead physically intuitive."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Capacitor connected to AC source",
+      "what_student_sees": "Simple circuit: AC source and capacitor. Student knows capacitor blocks DC — but what happens with AC?",
+      "what_to_emphasize": "AC continuously alternates direction. The capacitor charges and discharges each half cycle — current flows even though charge does not physically pass through the gap."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Current leads voltage by 90°",
+      "what_student_sees": "v(t) in orange, i(t) in blue. I is a quarter cycle AHEAD of V — when V = 0 and rising, I is already at its peak. When V reaches peak, I is back at zero.",
+      "what_to_emphasize": "ICE mnemonic: I(current) leads E(voltage) in C(capacitor). The current peak comes BEFORE the voltage peak in time."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Physical reason — i = C dv/dt",
+      "what_student_sees": "Graph of dv/dt overlaid with i(t). They are identical — proving that current equals C × rate of change of voltage. When voltage changes fastest (at zero crossing), current is maximum.",
+      "what_to_emphasize": "Current flows INTO the capacitor when it is charging (voltage increasing). Current flows OUT when discharging (voltage decreasing). The current IS the charging/discharging current."
+    },
+    {
+      "state": "STATE_4",
+      "label": "X_C decreases with frequency",
+      "what_student_sees": "Frequency slider. As frequency increases, X_C = 1/ωC decreases, more current flows. At high frequency, capacitor barely impedes the AC. At DC (f=0), X_C → ∞, no current.",
+      "what_to_emphasize": "Capacitor is a low-frequency blocker. It passes high-frequency AC freely. This is the exact opposite behaviour to the inductor."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "capacitor_blocks_ac",
+      "trigger_keywords": ["capacitor blocks ac", "no current through capacitor", "capacitor open circuit ac", "AC nahi jaata capacitor se"],
+      "student_belief": "If capacitor blocks DC, it must also block AC since current cannot flow through the gap",
+      "actual_physics": "Although charge does not flow through the capacitor gap, displacement current flows in the gap and real current flows in the wires. The capacitor charges and discharges each half cycle, allowing continuous AC current in the circuit.",
+      "simulation_emphasis": "Animate charge accumulating on one plate as the other plate loses charge simultaneously. Show current flowing in the wires even as no charge crosses the gap. Make the continuous current visible."
+    },
+    {
+      "id": "ice_eli_confusion",
+      "trigger_keywords": ["current lags capacitor", "voltage leads capacitor", "I lags in C", "capacitor V leads I"],
+      "student_belief": "In a capacitor, voltage leads current (confusing with inductor)",
+      "actual_physics": "In a capacitor, CURRENT leads VOLTAGE by 90°. ICE mnemonic: I leads E in C. This is opposite to inductor (ELI where E leads I in L).",
+      "simulation_emphasis": "Show both inductor and capacitor waveforms side by side. In inductor: V peaks first. In capacitor: I peaks first. The contrast makes the difference memorable."
+    }
+  ],
+  "legend": [
+    { "symbol": "X_C", "meaning": "Capacitive reactance = 1/ωC (unit: ohm)" },
+    { "symbol": "φ = -90°", "meaning": "Voltage lags current by 90° in capacitor" },
+    { "symbol": "ICE", "meaning": "Mnemonic: I(current) leads E(voltage) in C(capacitor)" }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "concept_id": "transformer",
+  "concept_name": "Transformer",
+  "chapter": "Alternating Current",
+  "class_level": 12,
+  "renderer_hint": {
+    "primary": "circuit_live",
+    "topology": "transformer",
+    "show_graph": true,
+    "graph_type": "voltage_ratio_bar"
+  },
+  "variables": {
+    "N_p": { "symbol": "N_p", "name": "Primary turns", "unit": "", "min": 10, "max": 10000, "default": 100 },
+    "N_s": { "symbol": "N_s", "name": "Secondary turns", "unit": "", "min": 10, "max": 10000, "default": 1000 },
+    "V_p": { "symbol": "V_p", "name": "Primary voltage", "unit": "V", "min": 10, "max": 1000, "default": 220 }
+  },
+  "locked_facts": [
+    "V_s / V_p = N_s / N_p (turns ratio)",
+    "I_s / I_p = N_p / N_s (current ratio — inverse of voltage ratio)",
+    "For ideal transformer: P_input = P_output, i.e., V_p × I_p = V_s × I_s",
+    "Step-up transformer: N_s > N_p, V_s > V_p, I_s < I_p",
+    "Step-down transformer: N_s < N_p, V_s < V_p, I_s > I_p",
+    "Transformer works ONLY on AC — not DC",
+    "Core losses (eddy current, hysteresis) cause real transformer efficiency < 100%",
+    "Laminated cores reduce eddy current losses",
+    "Energy is transferred via changing magnetic flux in the core — mutual inductance"
+  ],
+  "truth_statements": [
+    "Transformer does not create energy — power in equals power out for ideal transformer",
+    "Stepping up voltage steps down current proportionally",
+    "Transformer operates only on AC — DC produces no changing flux and no secondary EMF",
+    "High voltage transmission reduces current and therefore reduces I²R line losses"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Show why power lines use high voltage (400kV) for long-distance transmission. Same power at 400kV means very small current. P = I²R losses in the transmission line depend on I², not V. By stepping voltage up 1000x, current drops 1000x, and line losses drop by 1,000,000x. This is why transformers enable the modern electrical grid.",
+    "visual_emphasis": "Two transmission scenarios side by side: 220V at high current (thick wire, glowing red from heat losses) vs 400kV at tiny current (thin wire, cool, minimal loss). Same power delivered, radically different efficiency."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Transformer structure — primary and secondary",
+      "what_student_sees": "Two coils wound on the same iron core. AC source on primary (left). Load on secondary (right). Magnetic flux shown circulating through the core.",
+      "what_to_emphasize": "The two coils share the same magnetic core but are NOT electrically connected. Energy is transferred entirely through the changing magnetic flux — mutual inductance in action."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Turns ratio determines voltage ratio",
+      "what_student_sees": "N_p and N_s sliders. V_s = V_p × (N_s/N_p) updates in real time. For default N_p=100, N_s=1000: V_p = 220V → V_s = 2200V (step-up).",
+      "what_to_emphasize": "More turns on secondary = higher voltage. The magnetic flux change per turn is the same in both coils — more turns means more total EMF."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Conservation of power — the aha moment",
+      "what_student_sees": "As V_s increases 10×, I_s decreases 10×. Power meter on both sides shows identical values. When voltage is stepped up, current is stepped down proportionally. Power is conserved.",
+      "what_to_emphasize": "A transformer cannot create power. Stepping up voltage is trading current for voltage — the product V×I stays constant. This is the principle behind long-distance power transmission."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Why transformers only work on AC",
+      "what_student_sees": "Switch between AC and DC source. With AC: secondary voltage shown oscillating — transformer works. Switch to DC: secondary voltage = 0 immediately.",
+      "what_to_emphasize": "A transformer needs changing magnetic flux to induce EMF in the secondary. DC creates a constant field — no change, no induction, no output. This is why AC was chosen for the global electrical grid over Edison's DC."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "transformer_creates_power",
+      "trigger_keywords": ["free energy transformer", "step up creates power", "transformer increases power", "voltage badhane se power badhti", "more voltage more energy"],
+      "student_belief": "A step-up transformer increases both voltage and power — it creates extra energy",
+      "actual_physics": "Power is conserved in an ideal transformer: V_p × I_p = V_s × I_s. Doubling voltage halves current. Total power unchanged. Energy is never created.",
+      "simulation_emphasis": "Show power meters on both primary and secondary showing identical readings as turns ratio slider is moved. Voltage changes, current changes inversely, power stays constant."
+    },
+    {
+      "id": "transformer_works_on_dc",
+      "trigger_keywords": ["transformer for DC", "DC step up", "battery transformer", "DC ko transform karo", "12V battery to 220V"],
+      "student_belief": "A transformer can also step up DC voltage (like a battery) to higher values",
+      "actual_physics": "Transformers work only with AC. DC creates a constant magnetic field — no changing flux means no induced EMF in the secondary. A DC-DC converter (which uses electronic switching to create AC internally) is needed for DC voltage conversion.",
+      "simulation_emphasis": "Connect DC source to primary. Show secondary voltage = 0. Then switch to AC of same amplitude — secondary immediately shows transformed voltage. The on/off of AC is what drives the secondary."
+    }
+  ],
+  "legend": [
+    { "symbol": "N_p / N_s", "meaning": "Turns ratio — determines voltage and current ratios" },
+    { "symbol": "V_s/V_p", "meaning": "Voltage ratio = N_s/N_p" },
+    { "symbol": "I_s/I_p", "meaning": "Current ratio = N_p/N_s (inverse of voltage ratio)" }
+  ]
+}

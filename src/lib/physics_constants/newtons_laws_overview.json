@@ -1,0 +1,112 @@
+{
+  "concept_id": "newtons_laws_overview",
+  "concept_name": "Newton's Laws of Motion",
+  "class_level": 11,
+  "chapter": "Laws of Motion",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "force_dynamics",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "F": "Net external force on a body (N)",
+    "m": "Mass of the body (kg)",
+    "a": "Acceleration produced (m/s²)",
+    "p": "Linear momentum = mv (kg·m/s)",
+    "F_12": "Force on body 1 by body 2 (N)",
+    "F_21": "Force on body 2 by body 1 (N)"
+  },
+  "locked_facts": [
+    "First Law (Inertia): A body remains at rest or in uniform motion unless acted upon by a net external force",
+    "Second Law: F = ma, or more generally F = dp/dt where p = mv",
+    "Third Law: F_12 = −F_21 — action and reaction are equal in magnitude, opposite in direction, and act on DIFFERENT bodies",
+    "Inertia is the resistance to change in state of motion — it is measured by mass",
+    "1 Newton = force required to give a 1 kg mass an acceleration of 1 m/s²",
+    "Action-reaction pairs act on different bodies — they never cancel each other"
+  ],
+  "truth_statements": [
+    "Newton's first law defines the concept of inertia and the idea of an inertial reference frame",
+    "Newton's second law F = ma is valid only in inertial frames and for constant mass systems",
+    "Action and reaction forces are always equal and opposite but they act on DIFFERENT bodies so they do not cancel",
+    "The first law is not a special case of the second law — it defines the frame in which the second law holds",
+    "Mass is the quantitative measure of inertia — greater mass means greater resistance to change in motion"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A horse pulling a cart. Free body diagrams shown separately for horse and cart. The horse pushes the ground backward (reaction: ground pushes horse forward). The horse pulls the cart (reaction: cart pulls horse backward). The horse accelerates because ground-push > cart-pull. Action-reaction pairs are color-coded and shown on SEPARATE bodies.",
+    "visual_emphasis": "Action-reaction pairs highlighted with matching colors but clearly on different bodies — they never appear on the same FBD",
+    "why_this_breaks_misconception": "Students ask: if action = reaction, how does anything move? Seeing the forces on separate FBDs with net force on each body resolves the paradox."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "First Law — Inertia",
+      "description": "A block on a frictionless surface at rest. No force applied — block stays at rest. Then a block moving with constant velocity on a frictionless surface — it continues forever. A coin on a card is flicked — card moves but coin falls into glass (inertia demo).",
+      "emphasis": "Without net force: rest stays at rest, motion continues unchanged. Inertia resists change.",
+      "labels_visible": ["F_net = 0", "v = constant", "inertia"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Second Law — F = ma",
+      "description": "Same force applied to blocks of different mass. Lighter block accelerates more. Then same block with different forces — more force gives more acceleration. F = ma relationship shown with live readouts.",
+      "emphasis": "a = F/m: acceleration is proportional to force and inversely proportional to mass.",
+      "labels_visible": ["F", "m", "a = F/m", "units: N, kg, m/s²"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha — Third Law Paradox",
+      "description": "Horse-cart system with separate FBDs. Horse pushes ground backward → ground pushes horse forward (F_ground→horse). Horse pulls cart forward → cart pulls horse backward (F_cart→horse). Net force on horse = F_ground→horse − F_cart→horse > 0 → horse accelerates. Net force on cart = F_horse→cart − friction > 0 → cart accelerates.",
+      "emphasis": "Action-reaction pairs are on DIFFERENT bodies. Each body has its own FBD with its own net force. The system accelerates because external force (ground friction on horse) exists.",
+      "labels_visible": ["F_action", "F_reaction", "FBD_horse", "FBD_cart", "F_net"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: apply force to a block on a surface with adjustable friction. See FBD with all forces. Adjust mass to see acceleration change. Toggle to two-body system (block on block) to explore internal vs external forces and action-reaction pairs.",
+      "emphasis": "Draw your own FBD: weight down, normal up, applied force, friction opposing motion. Verify F_net = ma for each body.",
+      "labels_visible": ["F_applied", "f_friction", "N", "mg", "a", "FBD"],
+      "interactive": true,
+      "sliders": [
+        { "id": "applied_force", "label": "Applied Force", "min": 0, "max": 50, "default": 20, "unit": "N" },
+        { "id": "mass", "label": "Mass", "min": 1, "max": 20, "default": 5, "unit": "kg" },
+        { "id": "friction_coeff", "label": "Friction Coefficient μ", "min": 0, "max": 0.8, "default": 0.3, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "If action and reaction are equal and opposite, they should cancel and nothing should move",
+      "trigger_phrases": ["action reaction cancel ho jaate hain", "equal and opposite toh kaise move karega", "cancel out", "net force zero hoga na"],
+      "correction": "Action and reaction act on DIFFERENT bodies and therefore cannot cancel. Forces cancel only when they act on the SAME body. Each body has its own net force from its own FBD. NCERT explicitly states: action-reaction forces act on two different bodies.",
+      "simulation_emphasis": "Show separate FBDs for horse and cart — action-reaction pairs color-coded but on different bodies, each body has a non-zero net force"
+    },
+    {
+      "belief": "A body at rest has no forces acting on it",
+      "trigger_phrases": ["ruka hua hai toh force nahi hai", "no force on stationary object", "rest mein koi force nahi"],
+      "correction": "A body at rest has zero NET force, not zero forces. A book on a table has weight (mg) downward and normal force (N) upward — they balance. Many forces act, but they cancel on the same body.",
+      "simulation_emphasis": "Show a book on a table with weight and normal force arrows equal and opposite — both forces exist, net is zero"
+    },
+    {
+      "belief": "Force is needed to maintain constant velocity",
+      "trigger_phrases": ["constant velocity ke liye force chahiye", "force hatao toh ruk jayega", "push karte raho toh chalega", "no force means stop"],
+      "correction": "Newton's first law states that no net force is needed for constant velocity motion. An object on a frictionless surface continues at constant velocity forever. In practice, we apply force only to overcome friction, not to maintain velocity.",
+      "simulation_emphasis": "Block on frictionless surface continues forever without any force — then toggle friction on to show why we think force is needed"
+    }
+  ],
+  "legend": [
+    { "symbol": "F_net", "meaning": "Net (resultant) force on a body" },
+    { "symbol": "FBD", "meaning": "Free Body Diagram — shows all forces on ONE body" },
+    { "symbol": "N", "meaning": "Normal reaction force (perpendicular to contact surface)" },
+    { "symbol": "mg", "meaning": "Weight = mass × g (always downward)" },
+    { "symbol": "f", "meaning": "Friction force (opposes relative motion)" },
+    { "symbol": "→ (matched colors)", "meaning": "Action-reaction pair (on different bodies)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["equations_of_motion", "vectors"],
+    "extensions": ["friction_laws", "motion_on_inclined_plane", "circular_motion_vertical", "pseudo_forces"],
+    "siblings": ["friction_laws", "motion_on_inclined_plane"],
+    "common_exam_combinations": ["friction_laws", "motion_on_inclined_plane", "work_energy_theorem"]
+  }
+}

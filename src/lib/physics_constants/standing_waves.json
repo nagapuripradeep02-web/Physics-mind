@@ -1,0 +1,78 @@
+{
+  "concept_id": "standing_waves",
+  "concept_name": "Standing Waves",
+  "chapter": "Waves",
+  "class_level": 11,
+  "renderer_hint": {
+    "primary": "wave_canvas",
+    "scenario_type": "standing_wave",
+    "show_graph": false
+  },
+  "variables": {
+    "A": { "symbol": "A", "name": "Amplitude", "unit": "cm", "min": 0.5, "max": 5, "default": 2 },
+    "lambda": { "symbol": "\u03bb", "name": "Wavelength", "unit": "m", "min": 0.5, "max": 4, "default": 2 },
+    "f": { "symbol": "f", "name": "Frequency", "unit": "Hz", "min": 0.5, "max": 5, "default": 1 },
+    "n": { "symbol": "n", "name": "Harmonic number", "unit": "", "min": 1, "max": 5, "default": 1 }
+  },
+  "locked_facts": [
+    "Standing wave formed by two identical waves travelling in opposite directions",
+    "Nodes: points of ZERO displacement always \u2014 fixed forever",
+    "Antinodes: points of MAXIMUM displacement \u2014 oscillate between +A and -A",
+    "Distance between consecutive nodes = \u03bb/2",
+    "Frequency of nth harmonic = n \u00d7 fundamental frequency",
+    "Energy does not propagate in a standing wave"
+  ],
+  "truth_statements": [
+    "A standing wave is formed by the superposition of two identical waves travelling in opposite directions",
+    "At nodes, the displacement is always zero",
+    "At antinodes, the displacement varies between maximum positive and maximum negative values",
+    "The distance between two consecutive nodes equals half the wavelength",
+    "Standing waves do not transport energy"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Node points stationary in red with ZERO label, antinode points oscillating maximally in green. Clear visual: nodes NEVER move, antinodes swing between +A and -A.",
+    "visual_emphasis": "Red dots at nodes remain perfectly still. Green dots at antinodes oscillate maximally. The difference in amplitude across the wave is the key insight \u2014 NOT all points have the same amplitude."
+  },
+  "simulation_states": [
+    {
+      "state": "STATE_1",
+      "label": "Two travelling waves approaching",
+      "what_student_sees": "Two identical waves (blue and orange) travelling in opposite directions on the same string, shown separately.",
+      "what_to_emphasize": "These are two waves of the same amplitude, wavelength, and frequency, moving in opposite directions."
+    },
+    {
+      "state": "STATE_2",
+      "label": "Waves superpose \u2014 standing wave forms",
+      "what_student_sees": "Both waves overlap. The resultant standing wave pattern appears. Individual waves shown faintly behind.",
+      "what_to_emphasize": "The superposition of two counter-propagating waves creates a standing wave. Notice: some points vibrate a lot, others don\u2019t vibrate at all."
+    },
+    {
+      "state": "STATE_3",
+      "label": "Nodes and antinodes revealed",
+      "what_student_sees": "Standing wave with red dots at nodes (zero displacement always) and green dots at antinodes (maximum displacement). Envelope shown. \u03bb/2 distance marked.",
+      "what_to_emphasize": "Nodes have ZERO displacement at all times. Antinodes swing between +A and -A. NOT all points vibrate with the same amplitude \u2014 this is the key difference from a travelling wave."
+    },
+    {
+      "state": "STATE_4",
+      "label": "Interactive \u2014 change harmonic",
+      "what_student_sees": "Slider to change harmonic number n. More nodes and antinodes appear as n increases. Distance between nodes = \u03bb/2 is always maintained.",
+      "what_to_emphasize": "Higher harmonics have more nodes and antinodes. The fundamental (n=1) has nodes only at the ends. Each harmonic\u2019s frequency = n \u00d7 f\u2081."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "all_points_same_amplitude",
+      "trigger_keywords": ["sab points same amplitude", "all points same height", "standing wave mein sabka amplitude equal hai"],
+      "student_belief": "All points on a standing wave vibrate with the same amplitude",
+      "actual_physics": "In a standing wave, different points have different amplitudes. Nodes always have zero amplitude, antinodes have maximum amplitude, and points in between have intermediate amplitudes.",
+      "simulation_emphasis": "Show nodes marked in red (zero displacement) next to antinodes in green (maximum displacement). The amplitude varies with position \u2014 this is what makes it a STANDING wave."
+    }
+  ],
+  "legend": [
+    { "symbol": "N", "meaning": "Node \u2014 zero displacement always" },
+    { "symbol": "A", "meaning": "Antinode \u2014 maximum displacement" },
+    { "symbol": "\u03bb/2", "meaning": "Distance between consecutive nodes" },
+    { "symbol": "f\u2099 = nf\u2081", "meaning": "nth harmonic frequency" }
+  ]
+}

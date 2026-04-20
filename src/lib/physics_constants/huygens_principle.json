@@ -1,0 +1,106 @@
+{
+  "concept_id": "huygens_principle",
+  "concept_name": "Huygens' Principle",
+  "class_level": 12,
+  "chapter": "Wave Optics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "wave_canvas",
+    "scenario_type": "huygens_wavefronts",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "v": "Speed of light in the medium (m/s)",
+    "t": "Time interval (s)",
+    "n": "Refractive index of the medium",
+    "lambda": "Wavelength of light (m)",
+    "theta_i": "Angle of incidence (rad)",
+    "theta_r": "Angle of refraction (rad)"
+  },
+  "locked_facts": [
+    "Huygens' principle: every point on a wavefront acts as a source of secondary spherical wavelets",
+    "The new wavefront at a later time is the forward envelope (tangent surface) of all secondary wavelets",
+    "Backward wavelets are ignored — Huygens postulated this; later justified by Kirchhoff's diffraction theory",
+    "Derivation of Snell's law from Huygens' principle: sinθ_i/sinθ_r = v₁/v₂ = n₂/n₁",
+    "Huygens' principle predicts that light travels SLOWER in a denser medium (v₂ < v₁ when n₂ > n₁) — confirmed experimentally by Foucault",
+    "Huygens' principle explains diffraction: wavelets from edges of an aperture spread into the shadow region"
+  ],
+  "truth_statements": [
+    "Huygens' principle is a geometrical construction that explains how wavefronts propagate — each point on a wavefront is treated as a new point source of secondary wavelets",
+    "The new wavefront after time Δt is the forward tangent surface to all secondary wavelets of radius vΔt",
+    "Using Huygens' principle, Snell's law of refraction can be derived by considering wavefronts entering a medium where the wave speed changes",
+    "Huygens' construction correctly predicts that light slows down in a denser medium, unlike Newton's corpuscular theory which predicted the opposite",
+    "Huygens' principle naturally explains diffraction — wavelets from the unobstructed part of the wavefront spread around obstacles and into the geometric shadow"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A plane wavefront approaches the boundary between two media (n₁ < n₂). In the denser medium, secondary wavelets travel slower, so their radii are smaller. The new wavefront (tangent to smaller circles) tilts toward the normal — this IS refraction. No ray theory needed, just wavelet geometry. Simultaneously show Newton's prediction (faster in denser → bends away from normal) which is WRONG.",
+    "visual_emphasis": "Side-by-side: Huygens' construction giving correct refraction vs Newton's corpuscular prediction giving wrong bending direction. Wavelets in the denser medium are visibly smaller (slower speed).",
+    "why_this_breaks_misconception": "Students see that refraction is not caused by particles speeding up in glass (Newton's wrong model) but by waves slowing down — Huygens' geometrical proof is visually compelling"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Wavefront and secondary sources",
+      "description": "A plane wavefront is shown at time t. Several equally spaced points on the wavefront are marked as secondary sources. Each source is labelled as a 'Huygens source'. The wavefront is moving to the right.",
+      "emphasis": "Every point on the wavefront is a secondary source — this is the core of Huygens' principle",
+      "labels_visible": ["Wavefront at t", "Huygens sources", "Direction of propagation"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Secondary wavelets expand",
+      "description": "After a short time Δt, each secondary source has produced a spherical wavelet of radius vΔt. The wavelets are drawn as small circles expanding from each source point. The forward envelope of these circles forms the new wavefront.",
+      "emphasis": "Each wavelet has radius vΔt — the new wavefront is the common tangent to all forward wavelets",
+      "labels_visible": ["Wavelets radius vΔt", "New wavefront", "Forward envelope"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Refraction derived from Huygens' principle",
+      "description": "The wavefront hits a boundary between two media (v₁ > v₂). In medium 2, wavelets travel slower so their radii are smaller. The tangent to the smaller wavelets makes a different angle — the wavefront bends toward the normal. sinθ_i/sinθ_r = v₁/v₂ = n₂/n₁ is displayed.",
+      "emphasis": "Slower speed in denser medium → smaller wavelets → wavefront bends toward normal. This is the wave explanation of Snell's law.",
+      "labels_visible": ["v₁", "v₂ < v₁", "sinθ_i/sinθ_r = v₁/v₂", "Bends toward normal"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts the refractive indices of both media and observes how the wavefront bending changes. A 'diffraction mode' shows wavelets spreading past an obstacle edge into the shadow region. A 'reflection mode' shows Huygens' construction for the law of reflection.",
+      "emphasis": "Try different n₂/n₁ ratios. Switch to diffraction mode to see wavelets spreading around obstacles. Verify the law of reflection geometrically.",
+      "labels_visible": ["n₁", "n₂", "θ_i", "θ_r", "v₁", "v₂"],
+      "interactive": true,
+      "sliders": [
+        { "id": "n1", "label": "Refractive index n₁", "min": 1.0, "max": 2.5, "default": 1.0, "unit": "" },
+        { "id": "n2", "label": "Refractive index n₂", "min": 1.0, "max": 2.5, "default": 1.5, "unit": "" },
+        { "id": "incidence_angle", "label": "Angle of incidence", "min": 5, "max": 85, "default": 45, "unit": "°" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Light speeds up when it enters a denser medium like glass, which is why it bends",
+      "trigger_phrases": ["light faster in glass", "glass mein fast", "speed increases denser", "denser medium mein speed badhti hai", "newton wala sahi hai"],
+      "correction": "Light SLOWS DOWN in a denser medium (v = c/n, so higher n means lower speed). Huygens' principle correctly predicts this: smaller wavelets in the denser medium cause the wavefront to bend toward the normal. Newton's corpuscular theory wrongly predicted light speeds up in glass — this was disproved by Foucault's experiment in 1850.",
+      "simulation_emphasis": "Show wavelets in glass being smaller (slower speed) than in air, with the wavefront clearly bending toward the normal due to the speed reduction"
+    },
+    {
+      "belief": "Huygens' principle only works for refraction, not for other wave phenomena",
+      "trigger_phrases": ["Huygens sirf refraction ke liye", "only for refraction", "diffraction alag hai", "Huygens cannot explain diffraction"],
+      "correction": "Huygens' principle is a general wave construction that explains reflection, refraction, AND diffraction. For diffraction, wavelets from the unobstructed part of the wavefront spread around obstacles into the geometric shadow — no additional principle is needed.",
+      "simulation_emphasis": "Show three scenarios using the same Huygens construction: reflection from a mirror, refraction at a boundary, and diffraction around an obstacle edge"
+    }
+  ],
+  "legend": [
+    { "symbol": "v", "meaning": "Speed of light in the medium = c/n (m/s)" },
+    { "symbol": "Δt", "meaning": "Time interval for wavelet expansion (s)" },
+    { "symbol": "n", "meaning": "Refractive index of the medium" },
+    { "symbol": "θ_i", "meaning": "Angle of incidence (with normal)" },
+    { "symbol": "θ_r", "meaning": "Angle of refraction (with normal)" },
+    { "symbol": "vΔt", "meaning": "Radius of secondary wavelet after time Δt" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["wave_superposition", "refraction_snells_law"],
+    "extensions": ["single_slit_diffraction", "youngs_double_slit", "interference_coherence"],
+    "siblings": ["refraction_snells_law"],
+    "common_exam_combinations": ["refraction_snells_law", "single_slit_diffraction", "youngs_double_slit"]
+  }
+}

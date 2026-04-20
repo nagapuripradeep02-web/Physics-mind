@@ -1,0 +1,327 @@
+{
+  "concept_id": "range_inequality",
+  "concept_name": "The Range of Resultant — |A - B| <= R <= A + B",
+  "chapter": 5,
+  "section": "5.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 5.2 — bounds on the resultant magnitude; split from vector_addition bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A cargo container being lifted at Jawaharlal Nehru Port by two cranes. Each crane can pull with a known force — say one crane pulls with four tonnes, the other with three tonnes. No matter what angle the operators set the cables at, the resulting lift is never more than seven tonnes, and never less than one tonne. The angle simply shifts the answer somewhere along this range.",
+    "secondary": "A river boat on the Hooghly with two oarsmen. Each oar delivers a known push. Whatever angle the two oars are at, the boat's effective thrust is bounded between the sum and the absolute difference of the two individual pushes.",
+    "tertiary": "Two friends carrying a heavy suitcase up a staircase at New Delhi railway station. Each person contributes a pull. The total effective lift on the suitcase has a strict upper limit (both pulling straight up together) and a strict lower limit (one pulling up, one pulling down — though nobody would do this deliberately)."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "A": { "name": "Magnitude of A", "unit": "N", "min": 1, "max": 10, "default": 4 },
+      "B": { "name": "Magnitude of B", "unit": "N", "min": 1, "max": 10, "default": 3 },
+      "theta_deg": { "name": "Angle between vectors", "unit": "deg", "min": 0, "max": 180, "default": 90 }
+    },
+    "computed_outputs": {
+      "R": { "formula": "sqrt(A*A + B*B + 2*A*B*cos(theta_deg * PI / 180))" },
+      "R_max": { "formula": "A + B" },
+      "R_min": { "formula": "abs(A - B)" },
+      "range_width": { "formula": "(A + B) - abs(A - B)" }
+    },
+    "formulas": {
+      "upper_bound": "R_max = A + B   (achieved at theta = 0)",
+      "lower_bound": "R_min = |A - B|   (achieved at theta = 180)",
+      "range": "|A - B| <= R <= A + B   (holds for EVERY theta)"
+    },
+    "constraints": [
+      "The inequality |A - B| <= R <= A + B is exact and tight — both endpoints are achieved",
+      "As theta sweeps 0 to 180, R decreases smoothly from A + B down to |A - B|",
+      "If R is given outside this range, the problem has no solution — this is a fast sanity check",
+      "The range equals (A + B) - |A - B| = 2 * min(A, B) — equal to twice the smaller magnitude"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Two Cranes, One Container — What Lifts Are Possible?",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "crane_A",
+            "from": { "x": 300, "y": 380 },
+            "magnitude": 4,
+            "direction_deg": 60,
+            "label": "Crane 1  A = 4 t",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.7 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "crane_B",
+            "from": { "x": 300, "y": 380 },
+            "magnitude": 3,
+            "direction_deg": 120,
+            "label": "Crane 2  B = 3 t",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 50,
+            "animation": { "type": "fade_in", "delay_sec": 1.5, "duration_sec": 0.7 }
+          },
+          {
+            "type": "annotation",
+            "id": "container_box",
+            "text": "[ CONTAINER ]",
+            "position": { "x": 300, "y": 430 },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "puzzle",
+            "text": "Question\n\nOperators can set the cable\nangle anywhere from 0 to 180.\n\nFor A = 4, B = 3, which lifts R\nare physically possible?\n\n  R = 1 t   ?\n  R = 5 t   ?\n  R = 7 t   ?\n  R = 10 t  ?\n  R = 0.5 t ?\n\nOnly SOME of these are possible.\nFind the rule.",
+            "position": { "x": 560, "y": 260 },
+            "style": "formula_box",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "At a major port, a container is being lifted by two cranes. Crane one pulls with four tonnes, crane two pulls with three tonnes." },
+            { "id": "s2", "text_en": "The operators can change the angle between the two cables at will. Straight up together, wide apart, or anywhere in between." },
+            { "id": "s3", "text_en": "Here is the puzzle. For the same two individual forces, which total lifts are actually possible? One tonne? Five? Seven? Ten?" },
+            { "id": "s4", "text_en": "Intuition says some numbers are allowed and others are not. This state asks the question. The next two will pin down the exact rule — a clean inequality that tells you instantly what is reachable and what is not." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "The Bounds — Maximum at theta = 0, Minimum at theta = 180",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "force_arrow",
+            "id": "max_A",
+            "from": { "x": 160, "y": 220 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 45
+          },
+          {
+            "type": "force_arrow",
+            "id": "max_B",
+            "from": { "x": 160, "y": 250 },
+            "magnitude": 3,
+            "direction_deg": 0,
+            "label": "B (same direction)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 45
+          },
+          {
+            "type": "force_arrow",
+            "id": "max_R",
+            "from": { "x": 160, "y": 290 },
+            "magnitude": 7,
+            "direction_deg": 0,
+            "label": "R_max = A + B = 7",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 45,
+            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+          },
+          {
+            "type": "force_arrow",
+            "id": "min_A",
+            "from": { "x": 160, "y": 420 },
+            "magnitude": 4,
+            "direction_deg": 0,
+            "label": "A",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 45
+          },
+          {
+            "type": "force_arrow",
+            "id": "min_B",
+            "from": { "x": 160, "y": 455 },
+            "magnitude": 3,
+            "direction_deg": 180,
+            "label": "B (opposite direction)",
+            "color": "#3B82F6",
+            "scale_pixels_per_unit": 45
+          },
+          {
+            "type": "force_arrow",
+            "id": "min_R",
+            "from": { "x": 160, "y": 495 },
+            "magnitude": 1,
+            "direction_deg": 0,
+            "label": "R_min = |A - B| = 1",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 45,
+            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+          },
+          {
+            "type": "annotation",
+            "id": "derivation",
+            "text": "Upper bound  (theta = 0)\nR_max = A + B = 4 + 3 = 7\n\nLower bound  (theta = 180)\nR_min = |A - B| = 1\n\nFor any angle in between,\nR lives somewhere between\nthese two extremes.\n\n=> |A - B|  <=  R  <=  A + B",
+            "position": { "x": 540, "y": 340 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 6.5, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "To find the range of possible resultants, test the two extremes of the angle." },
+            { "id": "s2", "text_en": "Angle zero — both cables pulling in the same direction. The total is simply four plus three, which is seven. That is the maximum possible resultant." },
+            { "id": "s3", "text_en": "Angle one hundred eighty — the cables pull in exactly opposite directions. The net is the bigger force minus the smaller. Four minus three is one tonne. That is the minimum." },
+            { "id": "s4", "text_en": "Every other angle gives a resultant somewhere between these two endpoints, smoothly decreasing from seven down to one as the angle opens up." },
+            { "id": "s5", "text_en": "So the rule is clean. The resultant lies between the absolute difference and the sum. |A - B| less than or equal to R, which is less than or equal to A + B." },
+            { "id": "s6", "text_en": "Any value outside this range — zero point five, zero, ten — is physically impossible for these two vectors." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Fast Sanity Check — Reject the Impossible Before Solving",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "check_box",
+            "text": "Fast range check\n\nA = 4, B = 3\n\nR_min = 1\nR_max = 7\nAllowed range  [1, 7]\n\nClaim: R = 1 t    IN range  ?  YES (theta = 180)\nClaim: R = 5 t    IN range  ?  YES\nClaim: R = 7 t    IN range  ?  YES (theta = 0)\nClaim: R = 0.5 t  IN range  ?  NO  (below R_min)\nClaim: R = 10 t   IN range  ?  NO  (above R_max)",
+            "position": { "x": 340, "y": 260 },
+            "style": "formula_box"
+          },
+          {
+            "type": "annotation",
+            "id": "exam_use",
+            "text": "JEE exam use\n\nIf the question gives R and asks\nfor theta, FIRST check that R is\nin the allowed range.\n\nIf R is outside the range,\nthe problem has no solution.\nThis rejection is worth marks\nand saves minutes of calculation.",
+            "position": { "x": 720, "y": 300 },
+            "style": "callout",
+            "color": "#10B981",
+            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Use the inequality as an instant filter." },
+            { "id": "s2", "text_en": "Given A equals four and B equals three, the resultant must fall between one and seven. Any claimed resultant outside this window is impossible by the rules of geometry." },
+            { "id": "s3", "text_en": "Five tonnes is in range — theta exists that gives it. Zero point five tonnes is below the minimum. Ten tonnes is above the maximum. Both are impossible." },
+            { "id": "s4", "text_en": "In a JEE problem that gives you R and asks for the angle, always check this inequality before doing any algebra." },
+            { "id": "s5", "text_en": "If R is outside the allowed range, mark the question as inconsistent or impossible. That single check saves you from building a solution on a broken premise." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "resultant_can_exceed_sum",
+      "misconception": "With clever choice of angle, the resultant can exceed A + B",
+      "trigger_phrases": [
+        "can R be more than A plus B",
+        "what if angle is beyond 180",
+        "resultant bigger than sum",
+        "exceed the sum"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Your Belief — Maybe a Clever Angle Exceeds the Sum",
+          "duration": 8,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "belief_frame",
+              "text": "Your reasoning\n\nAt theta = 0, R = A + B = 7.\nBut maybe at some other theta,\nwith vectors 'reinforcing' each other,\nwe can get R > 7?\n\nLet us check the formula and see\nwhether any such theta exists.",
+              "position": { "x": 360, "y": 280 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Students sometimes guess that at some magic angle, the two vectors could reinforce each other even more than they do when parallel." },
+              { "id": "s2", "text_en": "Maybe R equals eight, maybe R equals ten — if we find the right angle." },
+              { "id": "s3", "text_en": "Let us test that guess directly against the master formula." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Formula Closes the Door",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "math_block",
+              "text": "R^2 = A^2 + B^2 + 2 A B cos theta\n\nFor R^2 to exceed (A + B)^2\nwe need\n\n  2 A B cos theta  >  2 A B\n\nDividing (A, B > 0)\n  cos theta  >  1\n\nBut cos theta maxes out at 1\n(at theta = 0).\n\nSo no angle gives R > A + B.\nThe upper bound is absolute.",
+              "position": { "x": 320, "y": 260 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "sym_lower",
+              "text": "Symmetric argument\n\nFor R^2 to drop below (A - B)^2 we need\n  2 A B cos theta  <  -2 A B\n  cos theta  <  -1\n\nBut cos theta bottoms out at -1\n(at theta = 180).\n\n=> |A - B|  is the absolute floor.",
+              "position": { "x": 680, "y": 280 },
+              "style": "callout",
+              "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The formula answers the question with no room for hope." },
+              { "id": "s2", "text_en": "For the resultant squared to exceed A plus B whole squared, we would need cosine theta to exceed one." },
+              { "id": "s3", "text_en": "Cosine never exceeds one — that is baked into trigonometry. The upper bound A plus B is absolute. No trick can exceed it." },
+              { "id": "s4", "text_en": "The same argument runs in reverse. For R squared to drop below A minus B whole squared, cosine would need to drop below minus one. Also impossible." },
+              { "id": "s5", "text_en": "So the inequality |A - B| to A + B is not a rule of thumb. It is a mathematical impossibility to escape it." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Quick Test — Use the Inequality Now",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "practice",
+              "text": "Three questions, one rule\n\nTwo forces A = 8 N, B = 5 N.\n\n(a) Can R = 14 N?\n    Range is [3, 13].  14 outside.  NO.\n\n(b) Can R = 3 N?\n    Exactly at the lower bound. YES — at theta = 180.\n\n(c) What is the range of R?\n    [|8 - 5|, 8 + 5] = [3, 13].\n\nEvery JEE problem on this theme\nreduces to this one inequality.",
+              "position": { "x": 400, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Run the test on a fresh problem. Two forces, eight and five newtons." },
+              { "id": "s2", "text_en": "Can R be fourteen? The range is three to thirteen. Fourteen is outside, so no." },
+              { "id": "s3", "text_en": "Can R be three? Three equals the lower bound, which is reachable at theta equals one hundred eighty. Yes." },
+              { "id": "s4", "text_en": "The full range of R is three to thirteen, always. That single pair of numbers answers every range question about these two vectors." },
+              { "id": "s5", "text_en": "Memorise the inequality. Apply it as a sanity check before solving. It saves time in every exam." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Different magnitudes",
+      "physical_world": "A = 6, B = 8 -> range [2, 14]. A = 10, B = 10 -> range [0, 20].",
+      "same_physics": "|A - B| <= R <= A + B always"
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Three or more vectors",
+      "physical_world": "Three forces 3 N, 4 N, 5 N. Range depends on angles but bounded by 0 and 12. Generalises to N vectors: R_max = sum of magnitudes, R_min >= 0.",
+      "same_physics": "Inequality generalises to any number of vectors with a slightly richer lower-bound rule"
+    }
+  ]
+}

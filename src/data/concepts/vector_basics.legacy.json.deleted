@@ -1,0 +1,679 @@
+{
+  "concept_id": "vector_basics",
+  "concept_name": "General Points Regarding Vectors",
+  "class_level": 11,
+  "chapter": "Vectors",
+  "section": "5.2",
+  "source_coverage": {
+    "dc_pandey": "Chapter 5, Section 5.2 — General Points Regarding Vectors",
+    "ncert": "Chapter 4 — Motion in a Plane, Section 4.1",
+    "hc_verma": "Chapter 2 — Physics and Mathematics, Section 2.2"
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "vector_basics",
+    "panel_count": 1,
+    "show_labels": true,
+    "canvas_scale": 60,
+    "sync_required": false,
+    "scene_mode": false
+  },
+  "locked_facts": {
+    "unit_vector_definition": "A unit vector has magnitude exactly 1. It indicates direction only. Notation: Â (A-hat). Formula: Â = A / |A|.",
+    "unit_vectors_axes": "î, ĵ, k̂ are unit vectors along x, y, z axes respectively. Each has magnitude 1.",
+    "zero_vector_definition": "A zero (null) vector has magnitude 0 and no specific direction. The position vector of the origin is a zero vector.",
+    "equal_vectors": "Two vectors are equal if and only if they have the same magnitude AND same direction. Position in space is irrelevant — a vector can be freely translated.",
+    "parallel_vectors": "Two vectors are parallel if they have the same direction. Equal vectors are always parallel, but parallel vectors need not be equal (magnitudes may differ).",
+    "antiparallel_vectors": "Two vectors are antiparallel if they act in exactly opposite directions. Angle between antiparallel vectors = 180°.",
+    "negative_vector": "The negative of vector A is a vector with the same magnitude as A but opposite direction. Denoted −A.",
+    "angle_between_vectors_rule": "To find angle between two vectors, draw BOTH from a single common point with arrows pointing OUTWARD. The SMALLER angle between them (0° ≤ θ ≤ 180°) is the angle between the vectors.",
+    "angle_range": "The angle between any two vectors is always between 0° and 180° inclusive.",
+    "scalar_multiplication": "Product of vector A and scalar m: magnitude = m|A|, direction same as A if m > 0, opposite if m < 0.",
+    "concurrent_vectors": "Vectors with the same initial point are concurrent (co-initial) vectors.",
+    "coplanar_vectors": "Vectors lying in the same plane are coplanar vectors.",
+    "orthogonal_vectors": "Two vectors are orthogonal if the angle between them is exactly 90°.",
+    "free_vector_property": "A vector can be translated (displaced) anywhere in space without changing it, as long as magnitude and direction are preserved."
+  },
+  "minimum_viable_understanding": "A unit vector is direction-only (magnitude = 1). The angle between two vectors is always found by drawing both from ONE point, arrows outward, taking the SMALLER angle (never greater than 180°).",
+  "variables": {
+    "A": "Vector A (magnitude |A| or A)",
+    "A_hat": "Unit vector in direction of A = A / |A|",
+    "m": "Scalar multiplier",
+    "theta": "Angle between two vectors (0° ≤ θ ≤ 180°)"
+  },
+  "routing_signals": {
+    "global_triggers": [
+      "what is a unit vector",
+      "explain kinds of vectors",
+      "types of vectors in physics",
+      "general properties of vectors"
+    ],
+    "local_triggers": [
+      "what is unit vector",
+      "null vector kya hota hai",
+      "equal vectors vs parallel vectors",
+      "how to find angle between two vectors",
+      "what is negative of a vector",
+      "antiparallel vectors",
+      "coplanar vectors meaning",
+      "scalar multiplication of vector"
+    ],
+    "micro_triggers": [
+      "what is i hat j hat k hat",
+      "why unit vector magnitude is 1",
+      "can two vectors be equal if at different positions",
+      "what is free vector",
+      "zero vector direction"
+    ],
+    "simulation_not_needed_triggers": [
+      "list types of vectors",
+      "define coplanar vectors",
+      "define concurrent vectors"
+    ],
+    "subconcept_triggers": {
+      "unit_vector": [
+        "what is unit vector",
+        "how to find unit vector",
+        "unit vector formula",
+        "A hat meaning"
+      ],
+      "angle_between_vectors": [
+        "how to find angle between two vectors",
+        "angle between vectors rule",
+        "why smaller angle",
+        "angle between A and minus A"
+      ],
+      "scalar_multiplication": [
+        "multiply vector by scalar",
+        "what happens when vector multiplied by negative number",
+        "scalar times vector"
+      ],
+      "negative_vector": [
+        "what is negative vector",
+        "minus A vector",
+        "negative of vector"
+      ],
+      "equal_vs_parallel": [
+        "difference between equal and parallel vectors",
+        "equal vectors same as parallel",
+        "parallel vectors equal"
+      ]
+    }
+  },
+  "checkpoint_states": {
+    "understands_unit_vector": "enter at STATE_2",
+    "understands_angle_rule": "enter at STATE_3",
+    "understands_kinds": "enter at STATE_4",
+    "understands_scalar_multiplication": "enter at STATE_5"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "scalar_vs_vector"
+    ],
+    "gate_question": "Is electric current a scalar or vector? (If student cannot answer, route to scalar_vs_vector first)",
+    "if_gap_detected": "redirect to scalar_vs_vector.json before proceeding"
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "board_mode_states": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "jee_mode_states": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "scope": "global",
+    "states": {
+      "STATE_1": {
+        "label": "The Hook — What Does It Mean to 'Scale' a Vector?",
+        "physics_layer": {
+          "concept": "Vectors have magnitude AND direction — what happens to each when multiplied by a scalar?",
+          "simulation_focus": "Show velocity vector v pointing northeast at 4 m/s. Show 2v — same direction, doubled length. Show −v — flipped direction, same length. Show 0.5v — same direction, halved length. Show −2v — flipped direction, doubled length.",
+          "interactive": "Slider for scalar m from −3 to 3. Arrow updates in real time. When m crosses 0, arrow flips direction instantaneously.",
+          "key_observation": "Positive scalar → scales magnitude, preserves direction. Negative scalar → scales magnitude, reverses direction. Zero → null vector.",
+          "scenario": "vector_representation"
+        },
+        "pedagogy_layer": {
+          "opening_question": "If a car is moving northeast at 20 m/s and you double its speed — what changes? What if you reverse its direction and halve the speed?",
+          "teacher_script": "When physics multiplies a vector by a number, both magnitude and direction react. Let me show you exactly how."
+        }
+      },
+      "STATE_2": {
+        "label": "Unit Vectors — Pure Direction, No Magnitude Bias",
+        "physics_layer": {
+          "concept": "Unit vector = direction extractor. Magnitude = 1 always.",
+          "simulation_focus": "Show vector A of arbitrary length pointing in some direction. Animate the process: draw A, show |A| as a number, divide A by |A| — the resulting arrow shrinks to length 1 but points in exactly the same direction. Label it Â.",
+          "formula_display": "Â = A / |A|",
+          "then_show": "Show î, ĵ, k̂ as unit arrows along x, y, z axes. Each exactly 1 unit long. These are the building blocks every vector is assembled from.",
+          "key_insight": "Any vector A = |A| × Â. Magnitude and direction are completely separated.",
+          "scenario": "unit_vector_definition"
+        },
+        "pedagogy_layer": {
+          "analogy": "Unit vector is like a compass needle — it only tells you which way, not how far. The magnitude tells you how far.",
+          "common_mistake": "Students try to add unit vectors as if they're numbers. î + ĵ ≠ 2. It equals √2 at 45°."
+        }
+      },
+      "STATE_3": {
+        "label": "The Angle Rule — Always From One Point, Always the Smaller",
+        "physics_layer": {
+          "concept": "The angle between two vectors has a specific measurement protocol",
+          "simulation_focus": "Show DC Pandey's Fig 5.4 scenario: Two vectors A and B drawn tail-to-head (WRONG method). Then animate redrawing both from the SAME point with arrows outward (CORRECT). The angle jumps from apparent 120° to correct 60°.",
+          "interactive": "Two vectors the student can drag. System always shows: (a) the WRONG angle (if measured incorrectly) and (b) the CORRECT angle (both from same point, smaller value).",
+          "rule": "Step 1: Move both vectors so their TAILS are at the same point. Step 2: Arrows point OUTWARD from that point. Step 3: Take the SMALLER of the two possible angles.",
+          "constraint": "0° ≤ θ ≤ 180°. Never more than 180°.",
+          "scenario": "vector_magnitude_formula"
+        },
+        "pedagogy_layer": {
+          "example_from_book": "DC Pandey Example 5.1: Three figures where apparent angles are 45°, 150°, and 35° — correctly identified by redrawing from one point.",
+          "key_trap": "If vectors are drawn tail-to-head (like in addition), the visual angle is NOT the angle between them."
+        }
+      },
+      "STATE_4": {
+        "label": "Kinds of Vectors — The Full Taxonomy",
+        "physics_layer": {
+          "concept": "All the types: equal, parallel, antiparallel, negative, unit, zero, concurrent, coplanar, orthogonal",
+          "simulation_focus": "Interactive gallery — click on each type to see it drawn. Each shows the defining property visually.",
+          "types": {
+            "equal": "Same magnitude, same direction — position irrelevant. A = B means |A| = |B| AND same direction.",
+            "parallel": "Same direction, ANY magnitude. A || B means they point the same way.",
+            "antiparallel": "Exactly opposite directions. θ = 180°.",
+            "negative": "−A has same |A| but opposite direction. A + (−A) = zero vector.",
+            "unit": "|Â| = 1. Direction only.",
+            "zero": "|0| = 0. No direction. Mathematical placeholder.",
+            "concurrent": "All starting from same point.",
+            "coplanar": "All lying in same plane.",
+            "orthogonal": "θ = 90° between them."
+          },
+          "critical_distinction": "Equal vectors are always parallel. Parallel vectors are NOT always equal (can have different magnitudes).",
+          "scenario": "vector_direction_angle"
+        },
+        "pedagogy_layer": {
+          "jee_trap": "Two equal vectors are always parallel — TRUE. Two parallel vectors are always equal — FALSE (classic assertion-reason)."
+        }
+      },
+      "STATE_5": {
+        "label": "Scalar Multiplication — The Full Rules",
+        "physics_layer": {
+          "concept": "All algebraic rules for mixing scalars and vectors",
+          "formula_display": [
+            "|mA| = |m| × |A|",
+            "(m + n)A = mA + nA  (distributive over scalar addition)",
+            "m(nA) = (mn)A = n(mA)  (associative)",
+            "A/m = A × (1/m)  (division = multiplication by reciprocal)"
+          ],
+          "simulation_focus": "Show (m+n)A = mA + nA visually. Set m=2, n=3, A=5 units northeast. Show 5A = 25 units northeast. Show 2A + 3A = 10 + 15 = 25 units northeast. They match.",
+          "special_case": "m = −1 gives −A (the negative vector). m = 0 gives zero vector.",
+          "scenario": "negative_vector"
+        },
+        "pedagogy_layer": {
+          "key_message": "Scalar multiplication distributes and associates exactly like ordinary multiplication — because scalars obey ordinary algebra. The only vector rule is direction flipping when m < 0."
+        }
+      },
+      "STATE_6": {
+        "label": "Student Interaction — Angle Finding and Unit Vector Extraction",
+        "physics_layer": {
+          "concept": "Applied practice on the two hardest skills from this section",
+          "simulation_focus": "Problem set simulation. Student given three scenarios:",
+          "scenario_1": "Vectors A (pointing east) and −(3/2)A (pointing west) — find angle between them. Answer: 180° (antiparallel). Source: DC Pandey Example 5.2.",
+          "scenario_2": "Vector A = 6î − 8ĵ. Find unit vector Â. Answer: |A| = √(36+64) = 10. Â = (6î − 8ĵ)/10 = 0.6î − 0.8ĵ. Source: DC Pandey Example 5.5.",
+          "scenario_3": "Two vectors shown at wrong angle visually — student must redraw and find correct θ.",
+          "scenario": "equal_vectors"
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "unit_vector_magnitude_confusion",
+      "misconception": "Unit vector of A has same magnitude as A, just divided into components",
+      "student_belief": "If A = 10 units, then Â = 10 units in a unit direction, not 1 unit",
+      "trigger_phrases": [
+        "unit vector magnitude is not 1",
+        "unit vector of 10N force is 10N",
+        "hat A same magnitude as A",
+        "unit vector bada hoga"
+      ],
+      "state_count": 5,
+      "scope": "local",
+      "feedback_tag": "unit_vector_is_dimensionless_direction",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show vector A = 10î + 0ĵ (magnitude 10, pointing east). Student's belief: Â also has magnitude 10. Display this belief — Â shown as 10 units long.",
+            "question": "If Â had magnitude 10, what would 10 × Â equal? That would be 100 units in the same direction — not A itself. The formula A = |A| × Â would break.",
+            "scenario": "unit_vector_magnitude_confusion_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "The Division Process — Animated",
+          "physics_layer": {
+            "simulation": "Animate: Start with A = 10 units east. Show |A| = 10. Now divide: animate the arrow shrinking from length 10 to length 1, same direction. Label result Â. Show numerically: Â = (10î)/10 = 1î. Magnitude = 1.",
+            "scenario": "unit_vector_magnitude_confusion_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "Why Magnitude Must Be 1",
+          "physics_layer": {
+            "content": "Unit vector is a NORMALISATION. It strips away the magnitude and keeps only direction. Proof: |Â| = |A/|A|| = |A|/|A| = 1. Always.",
+            "formula_check": "A = |A| × Â. If |Â| ≠ 1, then |A| ≠ the original magnitude. Contradiction.",
+            "scenario": "unit_vector_magnitude_confusion_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "Unit Vectors Are Dimensionless",
+          "physics_layer": {
+            "content": "If A is a force (Newtons), Â has no units — it is a pure direction. If A is a velocity (m/s), Â has no units. The division cancels the units. This is why î, ĵ, k̂ have no physical dimension.",
+            "simulation": "Show Â = A/|A| with unit tracking: [N]/[N] = dimensionless.",
+            "scenario": "unit_vector_magnitude_confusion_s4"
+          }
+        },
+        "STATE_5": {
+          "label": "Practice: Find Â for a Given Vector",
+          "physics_layer": {
+            "problem": "A = 3î + 4ĵ. Find Â.",
+            "solution_steps": "|A| = √(9+16) = 5. Â = (3î + 4ĵ)/5 = 0.6î + 0.8ĵ. Check: |Â| = √(0.36 + 0.64) = √1 = 1. ✓",
+            "simulation": "Show the 3-4-5 triangle. Original vector has length 5. Unit vector has length 1, same direction.",
+            "scenario": "unit_vector_magnitude_confusion_s5"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "angle_measurement_wrong_method",
+      "misconception": "The angle between two vectors is measured from the diagram as-drawn, not by redrawing from one point",
+      "student_belief": "If B starts where A ends (like in vector addition), the angle between them is the angle visible in that diagram",
+      "trigger_phrases": [
+        "angle between vectors in triangle",
+        "angle between vectors when tail to head",
+        "wrong angle between vectors",
+        "dono vectors ek hi jagah se draw karo"
+      ],
+      "state_count": 5,
+      "scope": "local",
+      "feedback_tag": "both_tails_same_point_smaller_angle",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Wrong Method Producing a Wrong Answer",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show A pointing east, B starting at A's tip pointing northeast. The visible angle between them tail-to-head looks like 45°. If student measures here: angle = 45°.",
+            "then_show": "Now redraw correctly: both tails at origin, A pointing east, B pointing northeast. Correct angle = 45°. In THIS case they match — coincidence.",
+            "then_harder_case": "Show a case where they don't match: A pointing east, B pointing west-northwest (tail-to-head looks like 150°). Correctly drawn from same point: θ = 30°. WRONG method gives 150°, CORRECT gives 30°.",
+            "scenario": "angle_measurement_wrong_method_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "The Rule and Why",
+          "physics_layer": {
+            "content": "Angle between vectors is a property of the vectors themselves — not of how they happen to be drawn on the page. Two equal vectors at 60° are always at 60° regardless of where you draw them.",
+            "rule": "Step 1: Move both to same tail point. Step 2: Arrows outward. Step 3: Take the SMALLER angle.",
+            "scenario": "angle_measurement_wrong_method_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "DC Pandey's Three Examples — Interactive",
+          "physics_layer": {
+            "simulation": "Show the three scenarios from DC Pandey Fig 5.12. Student must identify the correct angle for each by mentally redrawing from one point. Answers: 45°, 150°, 35°.",
+            "scenario": "angle_measurement_wrong_method_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "The 0° to 180° Constraint",
+          "physics_layer": {
+            "content": "Why is the angle never more than 180°? Because the SMALLER of the two possible angles is always ≤ 180°. If you get 210°, the actual angle is 360° − 210° = 150°.",
+            "simulation": "Show two vectors. Show both the 'going around clockwise' angle and the 'going around anticlockwise' angle. The SMALLER one is always θ.",
+            "scenario": "angle_measurement_wrong_method_s4"
+          }
+        },
+        "STATE_5": {
+          "label": "Special Case: Angle Between a and −(3/2)a",
+          "physics_layer": {
+            "source": "DC Pandey Example 5.2",
+            "simulation": "Show vector a pointing east. Show −(3/2)a: magnitude = (3/2)|a|, direction = WEST (opposite). When drawn from same point: one arrow east, one arrow west. Angle = 180°.",
+            "key": "Negative scalar → opposite direction → antiparallel → 180°. The (3/2) factor doesn't affect the angle, only the magnitude.",
+            "scenario": "angle_measurement_wrong_method_s5"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "equal_vs_parallel_confusion",
+      "misconception": "Equal vectors and parallel vectors are the same thing",
+      "student_belief": "If two vectors are parallel they must be equal, and if equal they must be parallel",
+      "trigger_phrases": [
+        "parallel vectors are equal",
+        "equal vectors not parallel",
+        "difference parallel and equal vectors",
+        "kya parallel vectors equal hote hain"
+      ],
+      "state_count": 4,
+      "scope": "local",
+      "feedback_tag": "equal_implies_parallel_not_converse",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief — They Look the Same",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show two arrows pointing northeast. Student's belief: both parallel = both equal. Now label one A (magnitude 5) and one B (magnitude 10). Both pointing northeast. Are they equal? NO — different magnitudes.",
+            "scenario": "vb_wrong_position_dependent"
+          }
+        },
+        "STATE_2": {
+          "label": "The Hierarchy",
+          "physics_layer": {
+            "simulation": "Venn diagram animation. Large circle: PARALLEL vectors (same direction). Smaller circle inside: EQUAL vectors (same direction AND same magnitude). Equal is a subset of parallel.",
+            "rule": "Equal → always parallel. Parallel → NOT necessarily equal.",
+            "scenario": "vb_position_independent"
+          }
+        },
+        "STATE_3": {
+          "label": "Free Vector Property",
+          "physics_layer": {
+            "content": "A vector can be freely moved (translated) in space without changing it — as long as magnitude and direction are preserved. This is why position doesn't matter for equality.",
+            "simulation": "Show vector A at three different positions on the canvas. All same length, same direction. All represent the SAME vector. Contrast with position vector (which is fixed to origin — covered in vector_components.json).",
+            "scenario": "vb_aha_only_mag_dir"
+          }
+        },
+        "STATE_4": {
+          "label": "JEE Assertion-Reason",
+          "physics_layer": {
+            "question": "Assertion: Two equal vectors are always parallel. Reason: Two parallel vectors are always equal.",
+            "answer": "Assertion TRUE. Reason FALSE. Answer: Assertion correct, Reason incorrect.",
+            "explanation": "Equal requires same direction (→ parallel) AND same magnitude. Parallel only requires same direction — magnitudes can differ.",
+            "scenario": "equal_vs_parallel_confusion_s4"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "negative_vector_magnitude_confusion",
+      "misconception": "The negative of a vector has negative magnitude",
+      "student_belief": "If |A| = 5, then |−A| = −5",
+      "trigger_phrases": [
+        "negative vector negative magnitude",
+        "minus A magnitude negative",
+        "negative of vector magnitude",
+        "|−A| kya hoga"
+      ],
+      "state_count": 4,
+      "scope": "local",
+      "feedback_tag": "magnitude_always_positive",
+      "states": {
+        "STATE_1": {
+          "label": "Show the Belief",
+          "physics_layer": {
+            "show_students_wrong_belief": true,
+            "simulation": "Show A with magnitude 5 pointing east. Student's belief: −A has magnitude −5. Display this — but also show that a negative-length arrow is physically meaningless. What would −5 meters mean?",
+            "scenario": "negative_vector_magnitude_confusion_s1"
+          }
+        },
+        "STATE_2": {
+          "label": "What Negative Means for a Vector",
+          "physics_layer": {
+            "content": "The minus sign in −A is an OPERATOR that flips direction. It does NOT create a negative magnitude.",
+            "simulation": "Show A = 5 units east. Show −A = 5 units WEST. Same magnitude, opposite direction. |−A| = |A| = 5.",
+            "formula": "|−A| = |−1 × A| = |−1| × |A| = 1 × |A| = |A|",
+            "scenario": "negative_vector_magnitude_confusion_s2"
+          }
+        },
+        "STATE_3": {
+          "label": "Magnitude Is Always Non-Negative",
+          "physics_layer": {
+            "content": "Magnitude = length of arrow. Length cannot be negative. |A| ≥ 0 always. |A| = 0 only for zero vector.",
+            "analogy": "A road of −5 km doesn't exist. But a road of 5 km going in the opposite direction does.",
+            "scenario": "negative_vector_magnitude_confusion_s3"
+          }
+        },
+        "STATE_4": {
+          "label": "Practice",
+          "physics_layer": {
+            "problems": [
+              "|−3A| = ? Answer: 3|A|",
+              "If A = 4î − 3ĵ, find |−A|. Answer: |A| = 5, |−A| = 5",
+              "Is −A a unit vector if A is a unit vector? YES — |−A| = |A| = 1"
+            ],
+            "scenario": "negative_vector_magnitude_confusion_s4"
+          }
+        }
+      }
+    }
+  ],
+  "epic_c_micro_templates": {
+    "i_hat_j_hat_meaning": {
+      "trigger": "what is i hat j hat k hat",
+      "states": 2,
+      "content": "î, ĵ, k̂ are unit vectors along x, y, z axes. |î| = |ĵ| = |k̂| = 1. They are orthogonal: î⊥ĵ⊥k̂. They are the basis — any vector in 3D = Axî + Ayĵ + Azk̂. Think of them as the three directions of a 3D coordinate frame."
+    },
+    "zero_vector_direction": {
+      "trigger": "what direction does zero vector point",
+      "states": 2,
+      "content": "The zero vector has NO direction — this is its defining property. It's a mathematical object needed for completeness (just like zero in arithmetic). A − A = zero vector. Position vector of origin = zero vector. Do not confuse with a vector of very small magnitude."
+    },
+    "free_vector_meaning": {
+      "trigger": "can a vector be moved",
+      "states": 2,
+      "content": "Yes. Vectors are 'free' — position doesn't matter, only magnitude and direction. Exception: position vector and radius vector are 'bound' (fixed to the origin). All other vectors (displacement, velocity, force) can be freely translated."
+    },
+    "angle_between_antiparallel": {
+      "trigger": "angle between A and minus A",
+      "states": 2,
+      "content": "A and −A are antiparallel. When drawn from same point: one points east, one points west. The angle between them = 180°. This is the maximum possible angle between any two vectors."
+    },
+    "null_vector_operations": {
+      "trigger": "what is zero vector used for",
+      "states": 2,
+      "content": "Zero vector maintains mathematical closure. A + (−A) = 0 (zero vector). 0 × A = zero vector. A + 0 = A. Without it, vector algebra would break. In physics: when net force = zero vector, the object is in equilibrium."
+    },
+    "scalar_times_vector_direction": {
+      "trigger": "what happens to direction when vector multiplied by negative scalar",
+      "states": 2,
+      "content": "Negative scalar flips direction 180°. Positive scalar preserves direction. Zero scalar gives zero vector. Example: −2A has magnitude 2|A| and points OPPOSITE to A. This is exactly subtraction: A − B = A + (−B) = A + (−1)B."
+    }
+  },
+  "static_responses": {
+    "types_of_vectors_list": {
+      "trigger": "types of vectors list",
+      "simulation_needed": false,
+      "response": "Types: (1) Unit vector — magnitude 1, direction only. (2) Zero/null vector — magnitude 0. (3) Equal vectors — same magnitude AND direction. (4) Parallel vectors — same direction, any magnitude. (5) Antiparallel vectors — opposite directions. (6) Negative vector — same magnitude, opposite direction. (7) Concurrent vectors — same starting point. (8) Coplanar vectors — in same plane. (9) Orthogonal vectors — 90° between them."
+    },
+    "unit_vector_formula": {
+      "trigger": "unit vector formula",
+      "simulation_needed": false,
+      "response": "Â = A / |A|. Steps: (1) Find magnitude |A| = √(Ax² + Ay² + Az²). (2) Divide each component by |A|. Result has magnitude 1 and same direction as A. Verification: |Â| = √((Ax/|A|)² + (Ay/|A|)²) = |A|/|A| = 1."
+    },
+    "angle_rule_text": {
+      "trigger": "rule for angle between vectors",
+      "simulation_needed": false,
+      "response": "Rule: Draw BOTH vectors from the SAME POINT with arrows pointing OUTWARD. Take the SMALLER angle between them. This angle is always between 0° and 180°. Never measure angle when vectors are drawn tail-to-head (like in addition) — that gives wrong result."
+    }
+  },
+  "problem_guidance_path": {
+    "description": "Help student solve unit vector problems and angle-finding problems",
+    "unit_vector_steps": "Step 1: Write vector in component form A = Axî + Ayĵ + Azk̂. Step 2: Find |A| = √(Ax² + Ay² + Az²). Step 3: Â = A/|A| = (Ax/|A|)î + (Ay/|A|)ĵ + (Az/|A|)k̂. Step 4: Verify |Â| = 1.",
+    "angle_finding_steps": "Step 1: Redraw both vectors from same point. Step 2: Identify smaller angle. Step 3: If vectors given in component form, use dot product: cosθ = A·B/(|A||B|) — covered in dot_product.json."
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Example 5.2",
+      "principle": "Angle between vector a and −(3/2)a — scalar multiplier affects magnitude, not the direction relationship",
+      "aha": "Any negative scalar multiple of a vector is antiparallel to it — angle is always 180° regardless of scalar magnitude",
+      "simulation_states": 2
+    },
+    "example_2": {
+      "source": "DC Pandey Example 5.1 (Fig 5.12)",
+      "principle": "Three figures demonstrating angle measurement — both vectors must be redrawn from the same point before measuring",
+      "aha": "Tail-to-head drawing (used in addition) gives wrong angle — always redraw from one point for angle measurement",
+      "simulation_states": 2
+    },
+    "example_3": {
+      "source": "DC Pandey Example 5.5",
+      "principle": "Finding unit vector of A = 6î − 8ĵ using Â = A/|A|",
+      "aha": "Magnitude check |Â| = 1 is the verification step students skip — always verify",
+      "simulation_states": 2
+    }
+  },
+  "assessment_path": {
+    "question_1": {
+      "text": "If A = 3î + 4ĵ, what is the unit vector Â?",
+      "options": [
+        "(3î + 4ĵ)/5",
+        "(3î + 4ĵ)/7",
+        "3î + 4ĵ",
+        "(î + ĵ)/√2"
+      ],
+      "correct": 0,
+      "if_wrong_1": "route to unit_vector_magnitude_confusion branch",
+      "explanation": "|A| = √(9+16) = 5. Â = (3î + 4ĵ)/5. Check: |(3/5)î + (4/5)ĵ| = √(9/25 + 16/25) = √1 = 1. ✓"
+    },
+    "question_2": {
+      "text": "Two equal vectors are always parallel. Two parallel vectors are always equal. Which is/are correct?",
+      "options": [
+        "Both correct",
+        "Only first correct",
+        "Only second correct",
+        "Both wrong"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to equal_vs_parallel_confusion branch",
+      "explanation": "Equal → same direction → parallel. But parallel only requires same direction — magnitudes can differ, so parallel does NOT imply equal."
+    },
+    "question_3": {
+      "text": "What is the angle between vectors A and −(5/3)A?",
+      "options": [
+        "0°",
+        "60°",
+        "120°",
+        "180°"
+      ],
+      "correct": 3,
+      "if_wrong": "route to angle_measurement_wrong_method branch",
+      "explanation": "−(5/3)A has opposite direction to A regardless of the scalar magnitude (5/3). Opposite direction → antiparallel → 180°."
+    },
+    "question_4": {
+      "text": "If A is a unit vector, what is |−3A|?",
+      "options": [
+        "-3",
+        "3",
+        "1",
+        "-1"
+      ],
+      "correct": 1,
+      "if_wrong_0": "route to negative_vector_magnitude_confusion branch",
+      "explanation": "|−3A| = |−3| × |A| = 3 × 1 = 3. Magnitude is always positive. The negative sign flips direction, not magnitude."
+    },
+    "question_5": {
+      "text": "Vector A points east. Vector B starts at A's tip and points north. The angle between A and B is:",
+      "options": [
+        "90°",
+        "270°",
+        "Depends on position",
+        "Cannot determine without components"
+      ],
+      "correct": 0,
+      "if_wrong": "route to angle_measurement_wrong_method branch",
+      "explanation": "Redraw both from same point: A east, B north. Angle between east and north = 90°. The tail-to-head drawing was a red herring."
+    }
+  },
+  "session_awareness": {
+    "if_already_shown_epic_l": "skip to micro or targeted practice — don't re-show full taxonomy",
+    "if_coming_from_scalar_vs_vector": "student knows what a vector is — jump to STATE_2 (unit vectors) directly",
+    "if_coming_from_vector_addition": "student has seen parallelogram law — use that to motivate unit vector decomposition"
+  },
+  "waypoints": {
+    "fallback_unknown_confusion": "Default to unit vector calculation — it's the most mechanically useful skill from this section and the most commonly tested.",
+    "escalation_trigger": "If student asks about angle calculation from components, redirect to dot_product.json — that's where cosθ = A·B/(|A||B|) lives."
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks why the angle convention is 0° to 180° and not 0° to 360°",
+    "escalate_to": "Dot product gives cosθ which is ambiguous for θ > 180° (same value as 360°−θ). Restricting to [0°, 180°] makes the angle unique. Cross product resolves orientation separately.",
+    "level": "JEE Advanced conceptual"
+  },
+  "jee_specific": {
+    "typical_question_types": [
+      "Find unit vector in direction of A = aî + bĵ + ck̂",
+      "Find angle between A and −nA (always 180°)",
+      "Assertion: Equal vectors are parallel. Reason: Parallel vectors are equal.",
+      "If Â is a unit vector, find |Â|² — answer is 1",
+      "Which of following is a null vector? A−A, A+A, 2A, A/|A|",
+      "A vector of magnitude 5 units makes 30° with x-axis — find components (uses 5.2 + 5.4)"
+    ],
+    "common_traps": [
+      "Measuring angle from tail-to-head diagram instead of redrawn from one point",
+      "Unit vector of A having same magnitude as A",
+      "Parallel vectors → must be equal (FALSE)",
+      "|−A| = −|A| (FALSE — magnitude is always positive)",
+      "Zero vector has a direction (FALSE — no specific direction)",
+      "î + ĵ = 2 (FALSE — it equals √2 at 45°, not 2)"
+    ],
+    "key_results": [
+      "Â = A/|A|, |Â| = 1 always",
+      "Angle between A and −A = 180°",
+      "Equal → parallel (TRUE). Parallel → equal (FALSE).",
+      "|mA| = |m||A|",
+      "î·î = ĵ·ĵ = k̂·k̂ = 1 (from dot_product.json)",
+      "î×ĵ = k̂ (from cross_product.json)"
+    ]
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "scalar_vs_vector"
+    ],
+    "extensions": [
+      "vector_addition",
+      "vector_components",
+      "dot_product",
+      "cross_product"
+    ],
+    "siblings": [
+      "scalar_vs_vector"
+    ],
+    "common_exam_combinations": [
+      "vector_components — unit vectors î ĵ k̂ are the foundation of component notation",
+      "dot_product — angle between vectors is formally computed via cosθ = A·B/(|A||B|)",
+      "cross_product — unit normal vector n̂ = (A×B)/|A×B|"
+    ]
+  },
+  "three_js_flag": false,
+  "three_js_note": "All concepts in 5.2 are 2D or at most simple 3D axis diagrams. canvas2d is sufficient. Three.js not needed.",
+  "parameter_slots": {},
+  "panel_sync_spec": null,
+  "regeneration_variants": [
+    {
+      "variant_id": 1,
+      "scenario_type": "vector_basics",
+      "approach": "equal_vectors_paradox",
+      "entry_state": "STATE_4",
+      "teacher_angle": "Start with the most counterintuitive result in this section: two arrows drawn at completely different positions on the page are mathematically identical if they have the same length and direction. Position does not matter. This is the free vector concept. Show three arrows — one in top-left, one in centre, one in bottom-right — all representing the same vector A. Then ask: what does it mean for two vectors to be equal? Only magnitude and direction. Nothing else.",
+      "locked_facts_focus": [
+        "fact_4",
+        "fact_5",
+        "fact_6"
+      ],
+      "panel_b_focus": "Three identical arrows at different canvas positions. All labeled as vector A. Student can drag any arrow to any position — the equality is preserved. Contrast with position vector which is fixed at origin."
+    },
+    {
+      "variant_id": 2,
+      "scenario_type": "vector_basics",
+      "approach": "connects_to_scalar_vs_vector",
+      "entry_state": "STATE_2",
+      "teacher_angle": "Connect to what was just learned: scalars have magnitude only, vectors have magnitude and direction. Vector basics is just making that arrow representation precise. The arrow length is the magnitude. The arrowhead is the direction. Everything else in this section — parallel vectors, antiparallel vectors, unit vectors, null vector — is just naming special cases of that one arrow. Use the scalar vs vector contrast as the foundation for every definition here.",
+      "locked_facts_focus": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "panel_b_focus": "Each vector type shown as a labelled arrow variant. Parallel: same direction arrows. Antiparallel: opposite direction. Unit vector: length exactly 1. Null vector: length 0. All derived from the basic arrow concept."
+    }
+  ]
+}

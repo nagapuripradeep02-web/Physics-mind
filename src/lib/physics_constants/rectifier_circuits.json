@@ -1,0 +1,115 @@
+{
+  "concept_id": "rectifier_circuits",
+  "concept_name": "Rectifier Circuits",
+  "class_level": 12,
+  "chapter": "Semiconductor Electronics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "circuit_live",
+    "scenario_type": "rectifier",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "V_in": "Input AC voltage (V_peak)",
+    "V_out": "Output DC voltage (V)",
+    "f_in": "Input AC frequency (Hz) — 50 Hz mains in India",
+    "f_ripple": "Ripple frequency (Hz) — f for half-wave, 2f for full-wave",
+    "V_ripple": "Peak-to-peak ripple voltage (V)",
+    "V_DC_avg_half": "Average DC output (half-wave) = V_peak/π",
+    "V_DC_avg_full": "Average DC output (full-wave) = 2V_peak/π",
+    "C_filter": "Filter capacitor value (μF)"
+  },
+  "locked_facts": [
+    "A half-wave rectifier uses one diode to pass only the positive half-cycles of AC input; the output has a pulsating DC with frequency equal to input frequency f",
+    "A full-wave rectifier uses two diodes with a centre-tapped transformer (or four diodes in a bridge configuration) and rectifies both half-cycles; output ripple frequency is 2f",
+    "Average DC output: half-wave = V_peak/π ≈ 0.318 V_peak; full-wave = 2V_peak/π ≈ 0.636 V_peak",
+    "The ripple factor (ratio of AC component to DC component) is ~1.21 for half-wave and ~0.48 for full-wave — full-wave is much smoother",
+    "A capacitor filter connected across the load smooths the pulsating DC by charging during the peak and discharging slowly through the load between peaks",
+    "In a bridge rectifier, two diodes conduct during each half-cycle, but the current through the load always flows in the same direction",
+    "The diode voltage drop (~0.7 V for Si) reduces the output: V_out_peak = V_in_peak − 0.7 V (half-wave/centre-tap) or V_in_peak − 1.4 V (bridge, two diode drops)"
+  ],
+  "truth_statements": [
+    "A rectifier converts alternating current (AC) into pulsating direct current (DC) by allowing current to flow in only one direction using the unidirectional property of diodes",
+    "The full-wave rectifier is more efficient than the half-wave rectifier because it utilises both halves of the AC cycle, giving higher average output and lower ripple",
+    "A bridge rectifier achieves full-wave rectification without a centre-tapped transformer, using four diodes arranged in a bridge configuration",
+    "Adding a capacitor filter reduces ripple significantly: larger capacitance and smaller load current both lead to smoother DC output",
+    "The ripple frequency of a full-wave rectifier is twice the input frequency (100 Hz for 50 Hz input) because each half-cycle is rectified"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Three waveforms stacked vertically: (1) input AC sine wave, (2) pulsating DC without filter showing gaps (half-wave) or continuous humps (full-wave), (3) smoothed DC with capacitor filter showing nearly flat line. A 'ripple' label with arrow shows how small the variation becomes with the filter. The capacitor charges during peaks and discharges slowly between peaks (animated charge/discharge).",
+    "visual_emphasis": "The dramatic difference between pulsating DC (humpy waveform) and filtered DC (nearly flat line) with capacitor charge/discharge animation",
+    "why_this_breaks_misconception": "Students see that a rectifier alone does NOT produce smooth DC — the capacitor filter is essential, and its charge-discharge cycle is what creates the smoothing"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "AC input and half-wave rectifier",
+      "description": "Left panel: a simple circuit with AC source, one diode, and a load resistor. During the positive half-cycle, the diode is forward biased and current flows (shown with animated current dots). During the negative half-cycle, the diode is reverse biased and no current flows. Right panel: input sine wave (blue) and output waveform (green) plotted — output shows only positive half-cycles with gaps during negative half-cycles.",
+      "emphasis": "Half-wave: only positive half-cycles pass through — the negative half is completely blocked by the diode",
+      "labels_visible": ["AC Input", "Diode", "Load R", "V_out = V_peak/π (avg)", "f_ripple = f"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Full-wave rectifier (centre-tap and bridge)",
+      "description": "Two circuit variants shown. Top: centre-tapped transformer with two diodes — D1 conducts during positive half, D2 during negative half. Bottom: bridge rectifier with four diodes. In both, current through load always flows in the same direction. Right panel: input (blue) and output (green) — output shows continuous positive humps with no gaps. Average output = 2V_peak/π. Ripple frequency = 2f labeled.",
+      "emphasis": "Full-wave rectifies BOTH halves — no gaps in output, double the average DC, ripple frequency doubles to 2f",
+      "labels_visible": ["Centre-tap", "Bridge", "D1, D2", "V_out = 2V_peak/π", "f_ripple = 2f"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Capacitor filter smoothing",
+      "description": "A capacitor is added across the load in the full-wave rectifier circuit. The right panel shows three waveforms: (1) AC input, (2) unfiltered pulsating DC, (3) filtered nearly-smooth DC. The capacitor charges to the peak during diode conduction and discharges slowly through the load between peaks (animated). Ripple voltage magnitude shown decreasing as capacitance slider increases.",
+      "emphasis": "The capacitor charges at peaks and slowly discharges — larger C means less ripple and smoother DC output",
+      "labels_visible": ["C_filter", "V_ripple", "Charge phase", "Discharge phase", "Smooth DC"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive rectifier lab",
+      "description": "Student selects rectifier type (half-wave, full-wave centre-tap, bridge) and adjusts input voltage amplitude, frequency, and filter capacitance. Left panel shows the live circuit with animated current flow. Right panel shows real-time input and output waveforms. Ripple factor, average DC voltage, and efficiency values update continuously. Increasing capacitance visibly flattens the output waveform.",
+      "emphasis": "Compare half-wave vs full-wave, explore how capacitor value affects ripple — build intuition for practical power supplies",
+      "labels_visible": ["Rectifier type", "V_in", "V_out_avg", "Ripple factor", "C"],
+      "interactive": true,
+      "sliders": [
+        { "id": "v_peak", "label": "Input Peak Voltage", "min": 5, "max": 30, "default": 15, "unit": "V" },
+        { "id": "capacitance", "label": "Filter Capacitor", "min": 0, "max": 1000, "default": 100, "unit": "μF" },
+        { "id": "rectifier_type", "label": "Type (0=half, 1=full-CT, 2=bridge)", "min": 0, "max": 2, "default": 0, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "A rectifier directly produces smooth DC like a battery",
+      "trigger_phrases": ["rectifier gives DC like battery", "rectifier se seedha DC aata hai", "smooth DC from rectifier", "rectifier output is flat", "battery jaisa DC"],
+      "correction": "A rectifier alone produces pulsating DC, not smooth DC. The output has significant ripple (voltage fluctuations). A filter circuit (typically a capacitor) is needed to smooth the output. Even with a filter, some ripple remains — it is never as perfectly flat as a battery.",
+      "simulation_emphasis": "Show raw rectifier output (humpy waveform) alongside a battery's flat line — then add capacitor filter to show gradual smoothing"
+    },
+    {
+      "belief": "In a full-wave rectifier, the negative half-cycle is removed just like in half-wave",
+      "trigger_phrases": ["full wave negative remove", "full wave mein bhi negative hatata hai", "negative cycle kaat deta hai", "full wave also blocks negative"],
+      "correction": "A full-wave rectifier does NOT remove the negative half-cycle. Instead, it flips (inverts) the negative half-cycle to make it positive. This is why the output has no gaps — both halves of the input contribute to the output, just with the same polarity.",
+      "simulation_emphasis": "Animate the negative half-cycle being flipped upward (not deleted) — show input negative half in red becoming positive output in green"
+    },
+    {
+      "belief": "More diodes in a bridge rectifier means more voltage loss and lower efficiency than centre-tap",
+      "trigger_phrases": ["bridge less efficient", "bridge mein zyada loss", "4 diode more loss", "centre tap better than bridge", "bridge rectifier kharab"],
+      "correction": "While a bridge rectifier does have two diode drops (1.4 V total) compared to one (0.7 V) in a centre-tap rectifier, the bridge does not require an expensive centre-tapped transformer and can use the full secondary voltage. For most practical applications, bridge rectifiers are preferred despite the extra diode drop.",
+      "simulation_emphasis": "Compare: centre-tap needs V_secondary/2 per half but only 0.7 V drop vs bridge uses full V_secondary but 1.4 V drop — show net output is similar"
+    }
+  ],
+  "legend": [
+    { "symbol": "V_peak", "meaning": "Peak (maximum) value of AC input voltage (V)" },
+    { "symbol": "V_DC", "meaning": "Average DC output voltage (V)" },
+    { "symbol": "f", "meaning": "Input AC frequency (Hz)" },
+    { "symbol": "f_ripple", "meaning": "Ripple frequency in output (Hz)" },
+    { "symbol": "C", "meaning": "Filter capacitance (F)" },
+    { "symbol": "γ", "meaning": "Ripple factor = V_ac_rms / V_dc" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["pn_junction_diode"],
+    "extensions": [],
+    "siblings": ["pn_junction_diode"],
+    "common_exam_combinations": ["pn_junction_diode", "semiconductor_basics"]
+  }
+}

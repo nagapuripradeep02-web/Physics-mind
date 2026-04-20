@@ -1,0 +1,211 @@
+{
+  "concept_id": "nuclear_binding_energy",
+  "concept_name": "Nuclear Binding Energy",
+  "class_level": "12",
+  "chapter": "Nuclei",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "binding_energy_per_nucleon_curve",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "delta_m": {
+      "name": "mass defect",
+      "symbol": "Δm",
+      "unit": "u (atomic mass unit)",
+      "role": "derived",
+      "note": "Δm = [Zm_p + (A-Z)m_n] - M_nucleus; always positive for stable nuclei"
+    },
+    "BE": {
+      "name": "binding energy",
+      "symbol": "BE",
+      "unit": "MeV",
+      "role": "dependent",
+      "note": "BE = Δm × 931.5 MeV/u; total energy needed to disassemble nucleus into free nucleons"
+    },
+    "BE_per_A": {
+      "name": "binding energy per nucleon",
+      "symbol": "BE/A",
+      "unit": "MeV/nucleon",
+      "role": "dependent",
+      "note": "Measure of nuclear stability; peaks around A ≈ 56 (Iron-56) at ~8.75 MeV/nucleon"
+    },
+    "A": {
+      "name": "mass number",
+      "symbol": "A",
+      "unit": "dimensionless",
+      "role": "independent",
+      "note": "Total number of nucleons (protons + neutrons)"
+    },
+    "Z": {
+      "name": "atomic number",
+      "symbol": "Z",
+      "unit": "dimensionless",
+      "role": "independent",
+      "note": "Number of protons in the nucleus"
+    },
+    "m_p": {
+      "name": "proton mass",
+      "symbol": "mₚ",
+      "unit": "u",
+      "value": 1.007276,
+      "role": "constant"
+    },
+    "m_n": {
+      "name": "neutron mass",
+      "symbol": "mₙ",
+      "unit": "u",
+      "value": 1.008665,
+      "role": "constant"
+    },
+    "c": {
+      "name": "speed of light",
+      "symbol": "c",
+      "unit": "m/s",
+      "value": 3e8,
+      "role": "constant"
+    }
+  },
+  "locked_facts": [
+    "Δm = [Zm_p + (A-Z)m_n] - M_nucleus — mass defect is the difference between sum of individual nucleon masses and actual nuclear mass",
+    "BE = Δmc² = Δm × 931.5 MeV/u — binding energy from Einstein's mass-energy equivalence",
+    "BE/A curve peaks at Fe-56 (~8.75 MeV/nucleon) — iron is the most stable nucleus per nucleon",
+    "Fission of heavy nuclei (A > 200): heavy nucleus splits into medium nuclei, moving UP the BE/A curve → energy released",
+    "Fusion of light nuclei (A < 20): light nuclei combine into heavier ones, moving UP the BE/A curve → energy released",
+    "1 u = 1.66054×10⁻²⁷ kg = 931.5 MeV/c² — atomic mass unit to energy conversion",
+    "Helium-4 (α particle) has unusually high BE/A ≈ 7.07 MeV — this is why alpha particles are so stable and commonly emitted"
+  ],
+  "truth_statements": [
+    "The mass of a nucleus is ALWAYS less than the sum of masses of its constituent protons and neutrons — the 'missing' mass has been converted to binding energy via E = mc²",
+    "Higher binding energy per nucleon means GREATER stability — the nucleus is harder to break apart",
+    "Both fission (heavy → medium) and fusion (light → medium) release energy because products move toward the peak of the BE/A curve near iron",
+    "The BE/A curve explains why elements near iron (Fe, Ni, Co) are the most abundant in stellar cores — they represent the energy minimum of nuclear transformations",
+    "Nuclear binding energies are on the order of MeV, roughly a million times larger than atomic binding energies (eV) — this explains why nuclear energy is so much more potent than chemical energy"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "description": "Student sees the BE/A curve and realizes that BOTH fission and fusion release energy — not because they are opposite processes, but because both move nuclei TOWARD the peak at iron. Heavy nuclei slide down from the right, light nuclei climb up from the left, both releasing energy as products become more tightly bound.",
+    "visual_cue": "Animated arrows on the BE/A curve: U-235 splits and arrows move RIGHT-to-CENTER releasing energy; H nuclei fuse and arrows move LEFT-to-CENTER releasing energy; both converge toward Fe-56 peak"
+  },
+  "simulation_states": {
+    "STATE_1": {
+      "title": "Mass Defect — Where Does the Mass Go?",
+      "description": "Show individual protons and neutrons with their masses being assembled into a nucleus (e.g., He-4). The nuclear mass is measurably less than the sum. Display the mass accounting: 2(1.007276) + 2(1.008665) = 4.031882 u, but He-4 mass = 4.002602 u. Δm = 0.03028 u → BE = 28.3 MeV.",
+      "visual_elements": ["individual_nucleons", "assembly_animation", "mass_balance_sheet", "energy_equivalence"],
+      "labels": ["Δm = 0.03028 u", "BE = Δm × 931.5 = 28.3 MeV", "Mass → Energy"]
+    },
+    "STATE_2": {
+      "title": "The BE/A Curve",
+      "description": "Plot binding energy per nucleon vs mass number A for key nuclei: H-2 (1.11), He-4 (7.07), C-12 (7.68), O-16 (7.98), Fe-56 (8.75), Kr-84 (8.72), Ba-141 (8.37), U-235 (7.59). Highlight the peak at Fe-56. Mark regions where fission and fusion are energetically favorable.",
+      "visual_elements": ["BE_per_A_scatter_plot", "peak_highlight_Fe56", "fission_region_arrow", "fusion_region_arrow"],
+      "labels": ["Peak: Fe-56 at 8.75 MeV/nucleon", "Fusion favorable (A<20)", "Fission favorable (A>200)"]
+    },
+    "STATE_3": {
+      "title": "Why Both Fission and Fusion Release Energy",
+      "description": "Animate two processes on the same BE/A curve: (1) U-235 → Ba-141 + Kr-92 (fission moves right-to-center, releasing ~200 MeV); (2) 4H → He-4 (fusion moves left-to-center, releasing ~26.7 MeV). Both increase BE/A of products. Show energy released = ΔBE.",
+      "visual_elements": ["fission_path_animation", "fusion_path_animation", "energy_release_bars", "product_comparison"],
+      "labels": ["Fission: ~200 MeV/event", "Fusion: ~26.7 MeV/4H→He", "Both → higher BE/A"]
+    },
+    "STATE_4": {
+      "title": "Interactive Exploration",
+      "description": "Student selects any nucleus by Z and A. Simulation calculates mass defect, total BE, and BE/A. Plots the point on the BE/A curve. Compare any two nuclei. Challenge: which nucleus has the highest BE/A? Why can't you get energy by fusing iron nuclei?",
+      "interactive": true,
+      "sliders": [
+        {
+          "id": "mass_number_slider",
+          "label": "Mass Number (A)",
+          "min": 2,
+          "max": 240,
+          "step": 1,
+          "default": 56,
+          "unit": ""
+        },
+        {
+          "id": "atomic_number_slider",
+          "label": "Atomic Number (Z)",
+          "min": 1,
+          "max": 92,
+          "step": 1,
+          "default": 26,
+          "unit": ""
+        },
+        {
+          "id": "process_selector",
+          "label": "Process",
+          "options": ["View Single Nucleus", "Compare Fission Products", "Compare Fusion Products"],
+          "default": "View Single Nucleus"
+        }
+      ]
+    }
+  },
+  "common_misconceptions": [
+    {
+      "id": "higher_be_means_easier_to_break",
+      "misconception": "Higher binding energy means the nucleus is easier to break apart",
+      "correct": "Higher binding energy means the nucleus is MORE STABLE and HARDER to break. Binding energy is the energy REQUIRED to disassemble the nucleus — more BE means more tightly bound.",
+      "trigger_phrases": [
+        "zyada binding energy means weak",
+        "high BE easy to break",
+        "binding energy zyada toh tootega",
+        "more binding energy less stable",
+        "strong binding means fragile",
+        "easily breakable"
+      ],
+      "ncert_reference": "Chapter 13, Section 13.3"
+    },
+    {
+      "id": "fission_releases_fusion_absorbs",
+      "misconception": "Fission always releases energy and fusion always absorbs energy (or vice versa)",
+      "correct": "BOTH fission of heavy nuclei AND fusion of light nuclei release energy — because both processes produce nuclei with higher BE/A (closer to iron peak). Whether a reaction releases or absorbs energy depends on where the reactants and products sit on the BE/A curve.",
+      "trigger_phrases": [
+        "fusion mein energy lagti hai",
+        "fission release fusion absorb",
+        "only fission gives energy",
+        "fusion needs energy always",
+        "sirf fission se energy milti hai"
+      ],
+      "ncert_reference": "Chapter 13, Section 13.7"
+    },
+    {
+      "id": "mass_defect_is_lost_mass",
+      "misconception": "The mass defect means some mass simply disappears or is destroyed",
+      "correct": "Mass is not destroyed — it is converted to energy via E = mc². The 'missing' mass exists as the binding energy that holds the nucleus together. If you supplied exactly BE of energy, you would recover all the original mass as free nucleons.",
+      "trigger_phrases": [
+        "mass gayab ho gayi",
+        "mass is destroyed",
+        "where does mass go",
+        "mass disappears",
+        "mass kahan gayi",
+        "mass lost forever"
+      ],
+      "ncert_reference": "Chapter 13, Section 13.3"
+    }
+  ],
+  "legend": {
+    "proton": "Red sphere representing a proton (mass 1.007276 u, charge +e)",
+    "neutron": "Blue sphere representing a neutron (mass 1.008665 u, no charge)",
+    "nucleus": "Compact cluster of protons and neutrons bound together",
+    "BE_curve": "Plot of BE/A vs A; peak at Fe-56 indicates maximum stability",
+    "energy_arrow": "Green arrow showing energy released when products have higher BE/A than reactants"
+  },
+  "concept_relationships": [
+    {
+      "concept_id": "nuclear_fission_fusion",
+      "relationship": "BE/A curve directly explains why fission of U-235 and fusion of hydrogen both release energy"
+    },
+    {
+      "concept_id": "radioactive_decay",
+      "relationship": "Unstable nuclei (low BE/A relative to neighbors) undergo radioactive decay to reach more stable configurations"
+    },
+    {
+      "concept_id": "bohr_model_hydrogen",
+      "relationship": "Atomic binding energy (~eV) vs nuclear binding energy (~MeV) — a factor of ~10⁶ difference in energy scales"
+    },
+    {
+      "concept_id": "mass_energy_equivalence",
+      "relationship": "E = mc² is the foundation: mass defect directly converts to binding energy"
+    }
+  ]
+}

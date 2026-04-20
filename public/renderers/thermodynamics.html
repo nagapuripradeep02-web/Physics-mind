@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Thermodynamics Renderer</title>
+<style>
+html, body { margin: 0; padding: 0; overflow: hidden; background: #0a0a1a; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div id="main" style="display:flex;width:100%;height:100vh;">
+  <div id="p5-panel" style="width:50%;height:100%;position:relative;">
+    <div id="p5-legend" style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.7);color:white;padding:6px;border-radius:4px;font-size:11px;font-family:monospace;z-index:10;"></div>
+  </div>
+  <div id="plotly-panel" style="width:50%;height:100%;"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+<script>
+// Default test config — overridden by INIT_CONFIG postMessage
+window.SIM_CONFIG = {
+    scenario_type: 'piston_cylinder',
+    gas: { type: 'ideal', particle_count: 30, particle_color: '#FF6B35', initial_temperature: 300, initial_pressure: 100, initial_volume: 5, gamma: 1.4 },
+    container: { type: 'cylinder_piston', wall_color: '#4a4a5a', piston_color: '#8888aa', show_heat_arrows: true, show_work_arrows: true },
+    pv_diagram: { show: true, x_label: 'Volume (L)', y_label: 'Pressure (kPa)', x_range: [0, 15], y_range: [0, 250], process_color: '#FF9800', show_work_area: true },
+    energy_bars: { show: true, bar_labels: ['Q', '\u0394U', 'W'], bar_colors: ['#EF5350', '#FF9800', '#66BB6A'] },
+    states: {
+        STATE_1: { label: 'Initial state', temperature: 300, pressure: 100, volume: 5, Q: 0, W: 0, deltaU: 0, caption: 'Gas at room temperature in a cylinder', pv_points: [[5, 100]] },
+        STATE_2: { label: 'Heat added', temperature: 450, pressure: 100, volume: 7.5, Q: 500, W: 250, deltaU: 250, caption: 'Heat added at constant pressure — gas expands', pv_points: [[5, 100], [7.5, 100]], show_work_area: true },
+        STATE_3: { label: 'Energy split visible', temperature: 450, pressure: 100, volume: 7.5, Q: 500, W: 250, deltaU: 250, caption: 'Q = \u0394U + W — heat splits into internal energy and work', pv_points: [[5, 100], [7.5, 100]], show_work_area: true },
+        STATE_4: { label: 'Explore', temperature: 450, pressure: 100, volume: 7.5, Q: 500, W: 250, deltaU: 250, caption: 'Observe: not all heat goes to temperature rise!', pv_points: [[5, 100], [7.5, 100]], show_work_area: true, slider_active: true }
+    },
+    pvl_colors: { background: '#0a0a1a', text: '#ffffff', hot: '#EF5350', cold: '#42A5F5', work: '#66BB6A' }
+};
+</script>
+<script src="thermodynamics_renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "concept_id": "newtons_law_of_cooling",
+  "concept_name": "Newton's Law of Cooling",
+  "class_level": 11,
+  "chapter": "Thermal Properties of Matter",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "graph_interactive", "scenario_type": "cooling_curve", "panel_count": 1, "show_labels": true },
+  "variables": { "T": "Body temperature (K)", "T_s": "Surrounding temperature (K)", "k": "Cooling constant (/s)", "t": "Time (s)" },
+  "locked_facts": [
+    "Newton's law: dT/dt = -k(T - T_s) where T_s is surroundings temperature",
+    "Solution: T(t) = T_s + (T₀ - T_s)e^(-kt)",
+    "Valid only when temperature difference is small (not too far from surroundings)",
+    "Cooling rate is proportional to temperature difference with surroundings",
+    "The cooling curve is exponential — body never reaches T_s exactly",
+    "Larger k = faster cooling (depends on surface area, material, convection)",
+    "For large temperature differences, Stefan's law (T⁴) is more accurate"
+  ],
+  "truth_statements": [
+    "Newton's law of cooling states that the rate of heat loss is proportional to the temperature difference between the body and its surroundings",
+    "The temperature approaches the surrounding temperature exponentially but theoretically never reaches it exactly",
+    "The cooling constant k depends on the nature of the body's surface, its area, and the convection conditions",
+    "Newton's law is an approximation valid for small temperature differences — for large differences radiation follows T⁴",
+    "A hot cup of coffee cools faster initially and slows down as it approaches room temperature"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Two cooling curves: a hot object at 90°C and another at 60°C, both in a 25°C room. The hotter object cools faster initially (steeper slope) because the temperature difference is larger. Both curves are exponential and approach 25°C asymptotically.",
+    "visual_emphasis": "Two exponential decay curves with tangent lines showing steeper slope at higher temperature difference",
+    "why_this_breaks_misconception": "Students think cooling rate is constant — seeing the exponentially decaying curve and the connection between temperature difference and cooling rate is the key insight"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Cooling observation", "description": "A hot body placed in a room. Temperature drops rapidly at first, then slows down. dT/dt = -k(T-T_s): cooling rate ∝ temperature difference.", "emphasis": "The bigger the temperature gap, the faster it cools", "labels_visible": ["dT/dt", "T-T_s", "cooling rate"] },
+    { "id": "STATE_2", "label": "Exponential curve", "description": "Temperature vs time plotted. Exponential decay: T(t) = T_s + (T₀-T_s)e^(-kt). The curve approaches T_s asymptotically. Never quite reaches surroundings temperature.", "emphasis": "Exponential decay — approaches but never reaches surrounding temperature", "labels_visible": ["T(t) = T_s + (T₀-T_s)e^(-kt)", "asymptote at T_s"] },
+    { "id": "STATE_3", "label": "Effect of initial temperature", "description": "Two objects at different initial temperatures cooling in the same room. Hotter one has steeper initial slope. Both approach T_s. The one closer to T_s cools slower.", "emphasis": "Hotter object cools faster because ΔT is larger — cooling rate is proportional to ΔT", "labels_visible": ["steeper for hot", "shallow for warm", "same T_s"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student sets initial temperature and surroundings temperature. Cooling curve builds in real time. Adjust k (material/surface properties). Predict temperature after given time.", "emphasis": "Set conditions and watch the cooling curve. Higher ΔT = faster cooling.", "labels_visible": ["T", "T_s", "k", "t"], "interactive": true, "sliders": [{ "id": "initial_temp", "label": "Initial temperature T₀", "min": 30, "max": 100, "default": 80, "unit": "°C" }, { "id": "surr_temp", "label": "Surrounding temperature T_s", "min": 10, "max": 35, "default": 25, "unit": "°C" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Objects cool at a constant rate", "trigger_phrases": ["constant cooling rate", "linear cooling", "same rate throughout"], "correction": "Cooling rate decreases over time because dT/dt ∝ (T-T_s). As the object cools and approaches T_s, the temperature difference shrinks, so cooling slows down. The curve is exponential, not linear.", "simulation_emphasis": "Show tangent lines at different points on the cooling curve — slope decreases over time" },
+    { "belief": "The body eventually reaches the temperature of the surroundings in finite time", "trigger_phrases": ["reaches room temperature", "becomes equal in X minutes"], "correction": "Mathematically, the exponential decay means the body asymptotically approaches T_s but never exactly reaches it. In practice, the difference becomes negligibly small after ~5 time constants.", "simulation_emphasis": "Zoom into the tail of the curve — it approaches T_s but never quite touches it" }
+  ],
+  "legend": [ { "symbol": "k", "meaning": "Cooling constant (/s)" }, { "symbol": "T_s", "meaning": "Surrounding temperature (K)" }, { "symbol": "T₀", "meaning": "Initial temperature (K)" } ],
+  "concept_relationships": { "prerequisites": ["heat_conduction_convection_radiation"], "extensions": ["stefan_boltzmann_law"], "siblings": ["rc_circuit_charging"], "common_exam_combinations": ["calorimetry_heat_transfer"] }
+}

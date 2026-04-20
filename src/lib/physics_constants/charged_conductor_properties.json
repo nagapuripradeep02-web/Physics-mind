@@ -1,0 +1,42 @@
+{
+  "concept_id": "charged_conductor_properties",
+  "concept_name": "Properties of Charged Conductors",
+  "class_level": 12,
+  "chapter": "Electric Charges and Fields",
+  "renderer_hint": { "technology": "threejs", "renderer": "field_3d", "scenario_type": "conductor_surface", "panel_count": 1, "show_labels": true },
+  "variables": { "σ": "Surface charge density (C/m²)", "E": "Electric field at surface (N/C)", "R": "Radius of curvature (m)" },
+  "locked_facts": [
+    "Electric field inside a conductor in electrostatic equilibrium is zero",
+    "All excess charge resides on the outer surface of a conductor",
+    "Electric field at the surface is perpendicular to the surface and equals σ/ε₀",
+    "Surface charge density is highest at points of greatest curvature (sharp tips)",
+    "The entire conductor is an equipotential in electrostatic equilibrium",
+    "A cavity inside a conductor is shielded from external electric fields (Faraday cage)",
+    "For a spherical conductor, σ is uniform; for irregular shapes, σ is highest at sharp points"
+  ],
+  "truth_statements": [
+    "In the static situation the electric field is zero everywhere inside the material of the conductor",
+    "The charge on a conductor resides entirely on its outer surface",
+    "At the surface of a charged conductor the electric field is normal to the surface with magnitude σ/ε₀",
+    "Charge density is highest at the sharpest point of an irregularly shaped conductor",
+    "The interior of a conductor is shielded from external electrostatic fields — this is the basis of the Faraday cage"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "An irregularly shaped conductor with charge density visualised as colour intensity — the sharp tip glows brightest (highest σ) while flat regions are dimmer (lower σ). E field arrows at the tip are much longer than at flat regions.",
+    "visual_emphasis": "Colour-coded charge density on the surface with the sharp tip visibly brighter and stronger E arrows there",
+    "why_this_breaks_misconception": "Students assume charge distributes uniformly — seeing the dramatic concentration at the tip makes non-uniformity obvious"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Neutral conductor", "description": "An irregularly shaped conductor with no charge. Field probes inside show E = 0. The conductor is a single equipotential.", "emphasis": "Inside any conductor, E = 0 in electrostatic equilibrium", "labels_visible": ["E = 0 inside"] },
+    { "id": "STATE_2", "label": "Charge added", "description": "Charge is placed on the conductor. It immediately moves to the outer surface. Interior field probes still read zero. Surface charge density shown as colour map.", "emphasis": "All charge migrates to the outer surface — none stays inside", "labels_visible": ["σ on surface", "E = 0 inside", "charge on outer surface only"] },
+    { "id": "STATE_3", "label": "Charge concentration at tip", "description": "Colour intensity map shows σ is highest at the sharp tip. E field arrows at the tip are 3-4× longer than at flat regions. Lightning rod effect explained.", "emphasis": "Sharp tip = high σ = strong E — this is why lightning rods work", "labels_visible": ["σ_tip >> σ_flat", "E_tip >> E_flat", "σ ∝ 1/R"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts conductor shape (more/less pointed). A Faraday cage demo shows external field cannot penetrate. Field and charge distribution update in real time.", "emphasis": "Make the tip sharper — watch σ increase. Place inside a Faraday cage — external E vanishes.", "labels_visible": ["σ", "E", "Faraday cage"], "interactive": true, "sliders": [{ "id": "total_charge", "label": "Total charge Q", "min": 1, "max": 10, "default": 5, "unit": "μC" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "Charge distributes uniformly on any shaped conductor", "trigger_phrases": ["equal charge everywhere", "uniform distribution", "sabhi jagah equal charge"], "correction": "Charge density σ is highest at points of smallest radius of curvature (sharp tips) and lowest at flat regions", "simulation_emphasis": "Colour-coded σ map showing bright tip and dim flat region" },
+    { "belief": "Electric field exists inside a charged conductor", "trigger_phrases": ["field inside conductor", "andar bhi field hota hai"], "correction": "In electrostatic equilibrium, the field inside the material of a conductor is exactly zero — free electrons redistribute to cancel any internal field", "simulation_emphasis": "Place field probes inside — all read zero regardless of external charges" }
+  ],
+  "legend": [ { "symbol": "σ", "meaning": "Surface charge density (C/m²)" }, { "symbol": "E", "meaning": "Field at surface = σ/ε₀" }, { "symbol": "R", "meaning": "Radius of curvature" } ],
+  "concept_relationships": { "prerequisites": ["coulombs_law", "electric_field_lines"], "extensions": ["van_de_graaff_generator"], "siblings": ["electric_flux_gauss"], "common_exam_combinations": ["capacitor_parallel_series"] }
+}

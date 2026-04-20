@@ -1,0 +1,434 @@
+[
+  {
+    "concept_id": "drift_velocity",
+    "display_name": "Drift Velocity",
+    "class_level": "12",
+    "chapter": "Current Electricity",
+    "formula": "vd = I / (n * e * A)",
+    "formula_latex": "v_d = \\frac{I}{neA}",
+    "variables": {
+      "vd": {
+        "name": "drift velocity",
+        "unit": "m/s",
+        "typical_value": "10^-3 to 10^-4 m/s",
+        "increases_when": ["I increases", "A decreases"],
+        "decreases_when": ["n increases", "A increases"]
+      },
+      "I": { "name": "current", "unit": "A" },
+      "n": {
+        "name": "number density of free electrons",
+        "unit": "m^-3",
+        "note": "fixed for material at given temperature"
+      },
+      "e": { "name": "charge of electron", "unit": "C", "value": "1.6e-19" },
+      "A": { "name": "cross-sectional area of wire", "unit": "m^2" }
+    },
+    "what_if_rules": [
+      "thinner wire => A decreases => vd increases for same current",
+      "stronger battery => I increases => vd increases",
+      "temperature increases => relaxation time decreases => vd decreases",
+      "wire doubled in length => resistance doubles => I halves => vd halves",
+      "thicker wire (same material) => A increases => vd decreases for same current"
+    ],
+    "why_rules": [
+      "vd is slow because electrons collide billions of times per second with lattice ions",
+      "thermal velocity ~10^6 m/s >> drift velocity ~10^-3 m/s; these are independent motions",
+      "current appears instant because E-field propagates at speed of light, not because electrons are fast",
+      "drift is the tiny net bias superimposed on random thermal zigzag motion"
+    ],
+    "misconceptions": [
+      "electrons travel at the speed of electricity (speed of light) — FALSE, they drift at ~mm/s",
+      "drift velocity equals thermal velocity — FALSE, thermal is ~10^9 times faster",
+      "thinner wire always means less current — PARTIALLY FALSE; it means higher resistance, but current depends on EMF too",
+      "current is the speed of electrons — FALSE; current is charge per second, not electron speed"
+    ],
+    "connected_concepts": ["ohms_law", "resistivity", "electric_current", "relaxation_time"],
+    "confusion_patterns": [
+      {
+        "id": "speed_misconception",
+        "student_signals": ["speed of light", "fast", "instant", "why so slow", "slow"],
+        "confusion": "Student thinks electrons travel at near light speed",
+        "simulation_must_show": "two speedometers: thermal 10^6 m/s vs drift 10^-3 m/s",
+        "response_must_address": "thermal velocity and drift velocity are completely different things",
+        "aha_visual": "two speedometers side by side — one reading million, one reading 0.001"
+      },
+      {
+        "id": "visualization_confusion",
+        "student_signals": ["how do they move", "what does it look like", "picture", "visualize", "show me"],
+        "confusion": "Student cannot picture two simultaneous motions on one electron",
+        "simulation_must_show": "single white glowing electron with long trail: zigzag + net leftward bias",
+        "response_must_address": "superposition of thermal chaos and slow drift average",
+        "aha_visual": "one white electron you can follow across the canvas"
+      },
+      {
+        "id": "current_speed_paradox",
+        "student_signals": ["current fast", "electricity fast", "instant", "light switch", "why bulb on immediately"],
+        "confusion": "Student cannot reconcile slow electrons with instant current",
+        "simulation_must_show": "pipe full of water — push one end, other end moves instantly; or domino chain",
+        "response_must_address": "electric field propagates fast, not the electrons themselves",
+        "aha_visual": "domino chain or water pipe push visualization"
+      },
+      {
+        "id": "what_if_thinner",
+        "student_signals": ["thinner wire", "smaller area", "what if A decreases", "wire width"],
+        "confusion": "Student cannot apply the formula to predict vd change",
+        "simulation_must_show": "two wires side by side with different A, same current, showing different vd values",
+        "response_must_address": "vd = I/neA so smaller A means larger vd for the same current",
+        "aha_visual": "narrow pipe vs wide pipe with same flow rate — narrow pipe has faster flow"
+      }
+    ],
+    "visualization_type": "particle_flow",
+    "simulation_emphasis": "contrast_thermal_vs_drift",
+    "exam_relevance": ["JEE_Mains", "JEE_Advanced", "NEET", "CBSE"],
+    "difficulty": "intermediate"
+  },
+  {
+    "concept_id": "ohms_law",
+    "display_name": "Ohm's Law",
+    "class_level": "12",
+    "chapter": "Current Electricity",
+    "formula": "V = I * R",
+    "formula_latex": "V = IR",
+    "variables": {
+      "V": { "name": "potential difference", "unit": "V" },
+      "I": { "name": "current", "unit": "A" },
+      "R": { "name": "resistance", "unit": "Ohm" }
+    },
+    "what_if_rules": [
+      "voltage doubles => current doubles (R fixed) — linear relationship",
+      "resistance doubles => current halves (V fixed)",
+      "temperature increases (metal) => resistance increases => current decreases",
+      "temperature increases (semiconductor) => resistance decreases => current increases"
+    ],
+    "why_rules": [
+      "V = IR because higher voltage drives more electrons per second through same resistance",
+      "R is the opposition due to lattice ion collisions with drifting electrons",
+      "Ohm's law is empirical — only valid for ohmic conductors at constant temperature",
+      "Slope of V-I graph = R; steeper slope = higher resistance"
+    ],
+    "misconceptions": [
+      "Ohm's law applies to all devices — FALSE; diodes and filament bulbs are non-ohmic",
+      "resistance increases when current increases — FALSE; R is a property of the material, not the current",
+      "V and I are independent — FALSE; they are related by R"
+    ],
+    "connected_concepts": ["drift_velocity", "resistivity", "series_parallel_resistance"],
+    "confusion_patterns": [
+      {
+        "id": "graph_interpretation",
+        "student_signals": ["graph", "slope", "vi curve", "V-I", "plot"],
+        "confusion": "Student confuses slope of V-I vs I-V graph",
+        "simulation_must_show": "live V-I graph where slope = R, with adjustable R slider",
+        "response_must_address": "slope of V-I graph is R; slope of I-V graph is 1/R",
+        "aha_visual": "two graphs side by side with R slider changing both slopes"
+      },
+      {
+        "id": "temperature_effect",
+        "student_signals": ["temperature", "hot", "heated", "filament", "semiconductor"],
+        "confusion": "Student confused about metal vs semiconductor behavior with temperature",
+        "simulation_must_show": "two materials on same graph: metal R increases, semiconductor R decreases",
+        "response_must_address": "metals and semiconductors respond oppositely to temperature",
+        "aha_visual": "two colored curves diverging as temperature increases"
+      }
+    ],
+    "visualization_type": "graph",
+    "simulation_emphasis": "linear_vi_graph_with_slope_equals_R",
+    "exam_relevance": ["JEE_Mains", "NEET", "CBSE"],
+    "difficulty": "basic"
+  },
+  {
+    "concept_id": "resistivity",
+    "display_name": "Resistivity and Resistance",
+    "class_level": "12",
+    "chapter": "Current Electricity",
+    "formula": "R = rho * L / A",
+    "formula_latex": "R = \\frac{\\rho L}{A}",
+    "variables": {
+      "R": { "name": "resistance", "unit": "Ohm" },
+      "rho": { "name": "resistivity", "unit": "Ohm.m", "note": "material property, temperature dependent" },
+      "L": { "name": "length of wire", "unit": "m" },
+      "A": { "name": "cross-sectional area", "unit": "m^2" }
+    },
+    "what_if_rules": [
+      "wire doubled in length => R doubles",
+      "wire cross-section halved => R doubles",
+      "wire stretched to double length => A halves AND L doubles => R quadruples",
+      "temperature increases (metals) => rho increases => R increases",
+      "different material (same L, A) => different rho => different R"
+    ],
+    "why_rules": [
+      "longer wire has more collision sites along path => more resistance",
+      "wider wire has more parallel paths for electrons => less resistance per path",
+      "resistivity is intrinsic to the material; resistance depends on geometry too",
+      "stretching wire: same volume but L doubles, A halves => R = rho*(2L)/(A/2) = 4*original R"
+    ],
+    "misconceptions": [
+      "resistivity = resistance — FALSE; resistivity is per unit length/area, resistance depends on shape",
+      "thicker wire always has less resistance — TRUE only if material and length are same",
+      "resistance doesn't change when wire is stretched — FALSE; R quadruples when length doubles"
+    ],
+    "connected_concepts": ["ohms_law", "drift_velocity", "temperature_coefficient"],
+    "confusion_patterns": [
+      {
+        "id": "stretching_wire",
+        "student_signals": ["stretch", "pull", "elongate", "doubled length", "thin", "R quadruples"],
+        "confusion": "Student doesn't realize stretching changes both L and A simultaneously",
+        "simulation_must_show": "wire being stretched: L increases, A decreases, R meter shows quadratic increase",
+        "response_must_address": "volume is conserved when stretching: L doubles => A halves => R = 4R",
+        "aha_visual": "clay wire being stretched with live resistance meter"
+      }
+    ],
+    "visualization_type": "graph",
+    "simulation_emphasis": "show_R_changes_with_L_and_A_independently",
+    "exam_relevance": ["JEE_Mains", "JEE_Advanced", "NEET", "CBSE"],
+    "difficulty": "intermediate"
+  },
+  {
+    "concept_id": "emf_internal_resistance",
+    "display_name": "EMF and Internal Resistance",
+    "class_level": "12",
+    "chapter": "Current Electricity",
+    "formula": "V = EMF - I*r",
+    "formula_latex": "V = \\varepsilon - Ir",
+    "variables": {
+      "V": { "name": "terminal voltage", "unit": "V" },
+      "EMF": { "name": "electromotive force", "unit": "V" },
+      "I": { "name": "current", "unit": "A" },
+      "r": { "name": "internal resistance", "unit": "Ohm" }
+    },
+    "what_if_rules": [
+      "higher current drawn => larger voltage drop Ir => lower terminal voltage",
+      "external resistance decreases => current increases => terminal voltage drops",
+      "battery on open circuit (I=0) => terminal voltage = EMF",
+      "old battery has higher r => lower terminal voltage under same load",
+      "two batteries in series => EMFs add, internal resistances add"
+    ],
+    "why_rules": [
+      "EMF is the energy per unit charge the battery can supply; terminal voltage is what the circuit actually gets",
+      "Ir is the voltage lost internally to heat inside the battery",
+      "terminal voltage drops under load because internal resistance acts like a series resistor"
+    ],
+    "misconceptions": [
+      "EMF = terminal voltage always — FALSE; only when no current flows",
+      "internal resistance can be ignored — FALSE; for high-current circuits it causes significant voltage drop",
+      "EMF is voltage — PARTIALLY TRUE; EMF is energy/charge, not a potential difference per se"
+    ],
+    "connected_concepts": ["ohms_law", "series_parallel_resistance", "kirchhoffs_laws"],
+    "confusion_patterns": [
+      {
+        "id": "emf_vs_terminal",
+        "student_signals": ["terminal voltage", "emf", "difference", "what is measured", "voltmeter"],
+        "confusion": "Student cannot distinguish EMF from terminal voltage",
+        "simulation_must_show": "battery circuit with voltmeter showing terminal V < EMF under load, equal at open circuit",
+        "response_must_address": "voltmeter reads terminal voltage; EMF is maximum possible voltage when I=0",
+        "aha_visual": "dual meters: one reads EMF (fixed), one reads terminal V (drops with load)"
+      }
+    ],
+    "visualization_type": "circuit",
+    "simulation_emphasis": "show_terminal_voltage_drop_with_current",
+    "exam_relevance": ["JEE_Mains", "NEET", "CBSE"],
+    "difficulty": "intermediate"
+  },
+  {
+    "concept_id": "kirchhoffs_laws",
+    "display_name": "Kirchhoff's Current and Voltage Laws",
+    "class_level": "12",
+    "chapter": "Current Electricity",
+    "formula": "KCL: sum(I_in) = sum(I_out); KVL: sum(V) = 0 around loop",
+    "formula_latex": "\\sum I_{in} = \\sum I_{out};\\quad \\sum V = 0",
+    "variables": {
+      "I_in": { "name": "currents entering junction", "unit": "A" },
+      "I_out": { "name": "currents leaving junction", "unit": "A" }
+    },
+    "what_if_rules": [
+      "KCL: if two branches carry 3A and 2A into junction, third branch carries 5A out",
+      "KVL: in a loop with 12V battery, 4 Ohm and 8 Ohm resistors: I = 1A",
+      "multiple loops: write KVL for each independent loop separately",
+      "direction of current assumed wrong => answer comes out negative => actual direction is opposite"
+    ],
+    "why_rules": [
+      "KCL is charge conservation: charge cannot accumulate at a node in steady state",
+      "KVL is energy conservation: net work done around a closed loop is zero",
+      "sign convention: voltage rises across EMF source (+ to - inside); drops across resistor in current direction"
+    ],
+    "misconceptions": [
+      "current splits equally at junction — FALSE; splits inversely proportional to resistance",
+      "KVL requires knowing current direction first — FALSE; assume a direction, negative result means opposite"
+    ],
+    "connected_concepts": ["ohms_law", "series_parallel_resistance", "emf_internal_resistance"],
+    "visualization_type": "circuit",
+    "simulation_emphasis": "show_current_conservation_at_node",
+    "exam_relevance": ["JEE_Mains", "JEE_Advanced", "NEET", "CBSE"],
+    "difficulty": "intermediate"
+  },
+  {
+    "concept_id": "series_parallel_resistance",
+    "display_name": "Series and Parallel Combination of Resistors",
+    "class_level": "12",
+    "chapter": "Current Electricity",
+    "formula": "Series: R_eq = R1+R2+...; Parallel: 1/R_eq = 1/R1+1/R2+...",
+    "formula_latex": "R_{series} = \\sum R_i;\\quad \\frac{1}{R_{parallel}} = \\sum \\frac{1}{R_i}",
+    "variables": {
+      "R_eq": { "name": "equivalent resistance", "unit": "Ohm" }
+    },
+    "what_if_rules": [
+      "adding resistor in series => R_eq increases => current decreases",
+      "adding resistor in parallel => R_eq decreases => total current increases",
+      "two equal R in parallel => R_eq = R/2",
+      "n equal R in parallel => R_eq = R/n",
+      "parallel R_eq is always less than smallest individual R"
+    ],
+    "why_rules": [
+      "series: same current through all — more resistance in path",
+      "parallel: same voltage across all — more paths for current to flow => lower total resistance",
+      "parallel R_eq < smallest R because current has more routes, reducing overall opposition"
+    ],
+    "misconceptions": [
+      "parallel R_eq is average of resistances — FALSE; 1/R_eq = sum of 1/R",
+      "adding parallel branch doesn't affect other branches — TRUE for voltage; FALSE for total current drawn from source"
+    ],
+    "connected_concepts": ["ohms_law", "kirchhoffs_laws", "emf_internal_resistance"],
+    "visualization_type": "circuit",
+    "simulation_emphasis": "show_current_paths_in_parallel_vs_series",
+    "exam_relevance": ["JEE_Mains", "NEET", "CBSE"],
+    "difficulty": "basic"
+  },
+  {
+    "concept_id": "wheatstone_bridge",
+    "display_name": "Wheatstone Bridge",
+    "class_level": "12",
+    "chapter": "Current Electricity",
+    "formula": "Balanced: P/Q = R/S (no current through galvanometer)",
+    "formula_latex": "\\frac{P}{Q} = \\frac{R}{S}",
+    "variables": {
+      "P": { "name": "resistance arm P", "unit": "Ohm" },
+      "Q": { "name": "resistance arm Q", "unit": "Ohm" },
+      "R": { "name": "resistance arm R", "unit": "Ohm" },
+      "S": { "name": "unknown resistance", "unit": "Ohm" }
+    },
+    "what_if_rules": [
+      "P/Q = R/S => bridge balanced => galvanometer shows zero",
+      "if P/Q != R/S => current flows through galvanometer",
+      "S unknown: S = (Q/P) * R when bridge is balanced"
+    ],
+    "why_rules": [
+      "balance condition means potential at both galvanometer ends is equal => no current",
+      "bridge is sensitive: smallest imbalance in R/S ratio causes galvanometer deflection"
+    ],
+    "misconceptions": [
+      "bridge is balanced means no current anywhere — FALSE; current flows in main branches, only galvanometer branch has zero",
+      "interchanging battery and galvanometer breaks the bridge — FALSE; balance condition still holds"
+    ],
+    "connected_concepts": ["kirchhoffs_laws", "series_parallel_resistance"],
+    "visualization_type": "circuit",
+    "simulation_emphasis": "show_galvanometer_deflection_with_imbalance",
+    "exam_relevance": ["JEE_Mains", "JEE_Advanced", "CBSE"],
+    "difficulty": "advanced"
+  },
+  {
+    "concept_id": "meter_bridge",
+    "display_name": "Meter Bridge (Slide Wire Bridge)",
+    "class_level": "12",
+    "chapter": "Current Electricity",
+    "formula": "R/S = l / (100 - l)",
+    "formula_latex": "\\frac{R}{S} = \\frac{l}{100 - l}",
+    "variables": {
+      "R": { "name": "known resistance", "unit": "Ohm" },
+      "S": { "name": "unknown resistance", "unit": "Ohm" },
+      "l": { "name": "balance point length from left", "unit": "cm" }
+    },
+    "what_if_rules": [
+      "S > R => balance point shifts right (l > 50)",
+      "S < R => balance point shifts left (l < 50)",
+      "S = R => balance at exactly 50 cm",
+      "resistance of wire per unit length is uniform throughout"
+    ],
+    "why_rules": [
+      "meter bridge is a practical Wheatstone bridge where P and Q are replaced by wire lengths",
+      "resistance of wire is proportional to length (uniform wire)",
+      "at balance: R/S = P/Q = resistance of left wire / resistance of right wire = l/(100-l)"
+    ],
+    "misconceptions": [
+      "balance point must be near centre — FALSE; depends on R/S ratio",
+      "ends of wire (0 and 100) can be used — FALSE; end resistances cause error near ends"
+    ],
+    "connected_concepts": ["wheatstone_bridge", "resistivity"],
+    "visualization_type": "circuit",
+    "simulation_emphasis": "sliding_jockey_to_find_null_deflection",
+    "exam_relevance": ["JEE_Mains", "NEET", "CBSE"],
+    "difficulty": "intermediate"
+  },
+  {
+    "concept_id": "potentiometer",
+    "display_name": "Potentiometer",
+    "class_level": "12",
+    "chapter": "Current Electricity",
+    "formula": "EMF1/EMF2 = l1/l2 (comparison); r = R*(l1-l2)/l2 (internal resistance)",
+    "formula_latex": "\\frac{\\varepsilon_1}{\\varepsilon_2} = \\frac{l_1}{l_2}",
+    "variables": {
+      "l1": { "name": "balance length for EMF1", "unit": "cm" },
+      "l2": { "name": "balance length for EMF2", "unit": "cm" }
+    },
+    "what_if_rules": [
+      "longer wire => better sensitivity (more cm per volt)",
+      "driver cell EMF must be > cell under test EMF (otherwise no balance point)",
+      "balance length proportional to EMF — higher EMF cell has longer balance length"
+    ],
+    "why_rules": [
+      "potentiometer measures EMF without drawing current from cell (at balance point I_galv = 0)",
+      "at null deflection: potential of potentiometer wire exactly equals cell EMF",
+      "advantage over voltmeter: voltmeter draws current and gives terminal voltage, not true EMF"
+    ],
+    "misconceptions": [
+      "potentiometer and rheostat are same — FALSE; rheostat varies resistance, potentiometer measures EMF",
+      "voltmeter measures EMF — FALSE; voltmeter measures terminal voltage (slightly less than EMF)"
+    ],
+    "connected_concepts": ["emf_internal_resistance", "wheatstone_bridge"],
+    "visualization_type": "circuit",
+    "simulation_emphasis": "sliding_wire_null_deflection_for_emf_comparison",
+    "exam_relevance": ["JEE_Mains", "JEE_Advanced", "NEET", "CBSE"],
+    "difficulty": "advanced"
+  },
+  {
+    "concept_id": "electric_power_heating",
+    "display_name": "Electric Power and Heating Effect (Joule's Law)",
+    "class_level": "12",
+    "chapter": "Current Electricity",
+    "formula": "P = V*I = I^2*R = V^2/R; H = I^2*R*t",
+    "formula_latex": "P = VI = I^2R = \\frac{V^2}{R};\\quad H = I^2Rt",
+    "variables": {
+      "P": { "name": "power", "unit": "W" },
+      "H": { "name": "heat produced", "unit": "J" },
+      "t": { "name": "time", "unit": "s" }
+    },
+    "what_if_rules": [
+      "series circuit: same I => P proportional to R => higher R dissipates more power",
+      "parallel circuit: same V => P proportional to 1/R => lower R dissipates more power",
+      "fuse: designed to melt when I exceeds limit (P = I^2*R heats fuse wire)",
+      "doubling voltage => P quadruples (P = V^2/R)"
+    ],
+    "why_rules": [
+      "heat is produced because drifting electrons collide with lattice ions, transferring kinetic energy",
+      "P = I^2*R: more current means more collisions per second means more heat",
+      "1 kWh = 3.6 MJ (unit used in electricity billing)"
+    ],
+    "misconceptions": [
+      "in series: brighter bulb has less resistance — FALSE; same current, brighter means more P = I^2*R => higher R",
+      "in parallel: brighter bulb has more resistance — FALSE; same voltage, brighter means more P = V^2/R => lower R"
+    ],
+    "connected_concepts": ["ohms_law", "series_parallel_resistance", "drift_velocity"],
+    "confusion_patterns": [
+      {
+        "id": "series_vs_parallel_brightness",
+        "student_signals": ["bright", "dim", "bulb", "series", "parallel", "which glows more"],
+        "confusion": "Student applies wrong formula depending on circuit type",
+        "simulation_must_show": "two bulbs in series and two in parallel, with R sliders showing different brightness",
+        "response_must_address": "series: use P=I^2*R (high R = bright); parallel: use P=V^2/R (low R = bright)",
+        "aha_visual": "four bulbs: two circuits side by side, brightness visually showing the reversal"
+      }
+    ],
+    "visualization_type": "circuit",
+    "simulation_emphasis": "show_power_dissipation_changes_with_R_in_series_vs_parallel",
+    "exam_relevance": ["JEE_Mains", "NEET", "CBSE"],
+    "difficulty": "intermediate"
+  }
+]

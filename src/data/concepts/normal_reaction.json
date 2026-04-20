@@ -1,0 +1,1728 @@
+{
+  "concept_id": "normal_reaction",
+  "concept_name": "Normal Reaction",
+  "chapter": 8,
+  "section": "8.1",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "NCERT Class 11 Physics Part I + HC Verma Ch.5",
+
+  "prerequisites": ["weight_force", "newton_third_law"],
+
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+
+  "real_world_anchor": {
+    "primary": "You stand on the classroom floor — the floor pushes straight up on your feet. Press your palm against a wall — the wall pushes horizontally on your hand. When the surface changes direction, the normal force changes direction with it.",
+    "secondary": "A ladder leans against a wall in your building. The ground pushes the ladder up. The wall pushes the ladder sideways. Two contact surfaces give two different normal directions.",
+    "tertiary": "A book rests on a tilted desk. The normal force from the desk is perpendicular to the desk surface — not straight up. N = mg cos(theta), always perpendicular to that specific surface."
+  },
+
+  "physics_engine_config": {
+    "formulas": {
+      "flat_surface": "N = mg",
+      "inclined_surface": "N = mg * cos(theta)",
+      "vertical_wall": "N = F_horizontal",
+      "elevator_accelerating_up": "N = m * (g + a)",
+      "elevator_accelerating_down": "N = m * (g - a)",
+      "free_fall": "N = 0"
+    },
+    "variables": {
+      "m": {
+        "name": "mass",
+        "unit": "kg",
+        "min": 0.5,
+        "max": 10,
+        "default": 2,
+        "role": "object_mass"
+      },
+      "g": {
+        "name": "gravitational acceleration",
+        "unit": "m/s^2",
+        "constant": 9.8
+      },
+      "theta": {
+        "name": "incline angle from horizontal",
+        "unit": "degrees",
+        "min": 0,
+        "max": 80,
+        "default": 30,
+        "role": "surface_tilt"
+      },
+      "a": {
+        "name": "elevator acceleration (positive = up)",
+        "unit": "m/s^2",
+        "min": -9.8,
+        "max": 5,
+        "default": 0,
+        "role": "frame_acceleration"
+      },
+      "N": {
+        "name": "Normal Reaction",
+        "unit": "N",
+        "derived": "m * g * cos(theta * PI / 180)",
+        "role": "target_quantity"
+      }
+    },
+    "computed_outputs": {
+      "N_value": { "formula": "m * 9.8 * cos(theta * PI / 180)" },
+      "mg_parallel": { "formula": "m * 9.8 * sin(theta * PI / 180)" },
+      "mg_perpendicular": { "formula": "m * 9.8 * cos(theta * PI / 180)" },
+      "apparent_weight": { "formula": "m * (9.8 + a)" }
+    },
+    "constraints": [
+      "N is ALWAYS perpendicular to the contact surface",
+      "N is ALWAYS directed away from the surface (outward)",
+      "N can never be negative — surfaces push, they do not pull",
+      "On an incline of angle theta from horizontal, N = mg cos(theta)",
+      "On a flat horizontal surface (theta = 0), N reduces to mg",
+      "In an accelerating frame, use N - mg = ma → N = m(g + a)",
+      "When the contact is lost (free fall, apex of projectile from a surface), N = 0"
+    ]
+  },
+
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "flat_floor_standing_person",
+      "flat_floor_block",
+      "tilted_incline_block_with_decomposition",
+      "leaning_ladder_two_surfaces",
+      "interactive_incline_with_sliders"
+    ],
+    "epic_c": [
+      "flat_vs_incline_side_by_side",
+      "newton_third_law_action_reaction_pairs",
+      "horizontal_motion_N_unchanged",
+      "accelerating_elevator_apparent_weight"
+    ],
+    "panel_b": [
+      "N_vs_theta_cosine_curve",
+      "N_vs_a_elevator_line"
+    ],
+    "board": [
+      "answer_sheet_derivation",
+      "mark_badge_accumulator"
+    ]
+  },
+
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "You Stand on the Floor — The Floor Pushes Back. In Which Direction?",
+        "duration": 5,
+        "focal_primitive_id": "weight",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "floor",
+            "orientation": "horizontal",
+            "position": { "x": 150, "y": 420 },
+            "length": 460,
+            "texture": "smooth",
+            "label": "Classroom floor"
+          },
+          {
+            "type": "body",
+            "id": "person",
+            "shape": "stickman",
+            "label": "You (60 kg)",
+            "position": { "x": 380, "y": 393 },
+            "size": 70,
+            "fill_color": "#3B82F6",
+            "attach_to_surface": {
+              "surface_id": "floor",
+              "position_fraction": 0.5
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "weight",
+            "force_id": "weight",
+            "color": "#EF4444",
+            "label": "mg = 588 N",
+            "origin_body_id": "person",
+            "origin_anchor": "body_center"
+          },
+          {
+            "type": "annotation",
+            "id": "gravity_label",
+            "text": "Gravity pulls you\ndown at 588 N",
+            "position": { "x": 240, "y": 340 },
+            "style": "callout",
+            "color": "#EF4444"
+          },
+          {
+            "type": "annotation",
+            "id": "question",
+            "text": "Floor pushes back —\nbut in which direction?",
+            "position": { "x": 490, "y": 340 },
+            "style": "callout",
+            "color": "#1F2937"
+          }
+        ],
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "floor", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "person", "enter": "drop_in", "duration": 400 },
+            { "at_t": 1.1, "show": "weight", "enter": "grow_from_body", "duration": 600 },
+            { "at_t": 1.8, "show": "gravity_label", "enter": "fade_in", "duration": 300 },
+            { "at_t": 2.6, "show": "question", "enter": "fade_in", "duration": 400 }
+          ]
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "You are standing on the classroom floor. Gravity pulls you down with 588 Newtons." },
+            { "id": "s2", "text_en": "You are not falling, which means the floor must be pushing back on you with an equal force." },
+            { "id": "s3", "text_en": "This push from the floor has a direction. What direction is it in?" },
+            { "id": "s4", "text_en": "This force is called Normal Reaction. And the word Normal has a very specific mathematical meaning." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": false
+      },
+
+      "STATE_2": {
+        "title": "'Normal' Means Perpendicular — The Mathematical Definition",
+        "duration": 7,
+        "focal_primitive_id": "N_arrow",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "floor",
+            "orientation": "horizontal",
+            "position": { "x": 150, "y": 420 },
+            "length": 460,
+            "texture": "smooth",
+            "label": "Desk surface"
+          },
+          {
+            "type": "body",
+            "id": "block",
+            "shape": "rect",
+            "label": "Book (2 kg)",
+            "position": { "x": 330, "y": 340 },
+            "size": { "w": 100, "h": 80 },
+            "fill_color": "#92400E",
+            "attach_to_surface": {
+              "surface_id": "floor",
+              "position_fraction": 0.4
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "N_arrow",
+            "force_id": "N_flat",
+            "color": "#10B981",
+            "label": "N = 19.6 N",
+            "origin_body_id": "block",
+            "origin_anchor": "body_bottom",
+            "direction_deg": 90
+          },
+          {
+            "type": "force_arrow",
+            "id": "weight",
+            "force_id": "weight",
+            "color": "#EF4444",
+            "label": "mg = 19.6 N",
+            "origin_body_id": "block",
+            "origin_anchor": "body_center"
+          },
+          {
+            "type": "annotation",
+            "id": "normal_meaning",
+            "text": "'Normal' in mathematics\nmeans PERPENDICULAR.\nN points at 90 degrees\nto the contact surface.",
+            "position": { "x": 490, "y": 250 },
+            "style": "callout",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "why_outward",
+            "text": "A surface can only PUSH,\nnever pull. So N always\npoints AWAY from the surface.",
+            "position": { "x": 490, "y": 390 },
+            "style": "callout",
+            "color": "#3B82F6"
+          }
+        ],
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "floor,block", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.6, "show": "weight", "enter": "grow_from_body", "duration": 500 },
+            { "at_t": 1.6, "show": "N_arrow", "enter": "grow_perpendicular", "duration": 600 },
+            { "at_t": 2.4, "show": "normal_meaning", "enter": "fade_in", "duration": 400 },
+            { "at_t": 3.4, "show": "why_outward", "enter": "fade_in", "duration": 400 }
+          ]
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Here is the key insight. Normal does not mean ordinary or usual." },
+            { "id": "s2", "text_en": "In mathematics, Normal means perpendicular. Normal Reaction is the force perpendicular to the contact surface." },
+            { "id": "s3", "text_en": "It always points away from the surface, because a surface can push, but it cannot pull." },
+            { "id": "s4", "text_en": "Perpendicular to the surface, directed outward. That is the complete definition of N. Tap continue when you are ready." }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "allow_deep_dive": false
+      },
+
+      "STATE_3": {
+        "title": "Tilt the Surface — Which Way Does N Point Now?",
+        "duration": 9,
+        "focal_primitive_id": "N_on_incline",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "incline",
+            "orientation": "inclined",
+            "angle": 30,
+            "position": { "x": 160, "y": 420 },
+            "length": 350,
+            "texture": "smooth",
+            "label": "theta = 30 degrees"
+          },
+          {
+            "type": "body",
+            "id": "block",
+            "shape": "rect",
+            "label": "Block (2 kg)",
+            "position": { "x": 260, "y": 315 },
+            "size": { "w": 80, "h": 65 },
+            "fill_color": "#6B7280",
+            "attach_to_surface": {
+              "surface_id": "incline",
+              "position_fraction": 0.45
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "N_on_incline",
+            "force_id": "N_on_incline",
+            "color": "#10B981",
+            "label": "N = mg cos30 = 17.0 N",
+            "origin_body_id": "block",
+            "origin_anchor": "body_bottom",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "force_components",
+            "id": "mg_components_STATE_3",
+            "force_id": "weight",
+            "decompose_axis": "along_surface:incline",
+            "origin_body_id": "block",
+            "origin_anchor": "body_bottom",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 8,
+            "animate_in_ms": 700,
+            "label_x": "mg sin(theta) = 9.8 N",
+            "label_y": "mg cos(theta) = 17.0 N"
+          },
+          {
+            "type": "force_arrow",
+            "id": "weight",
+            "force_id": "weight",
+            "color": "#EF4444",
+            "label": "mg = 19.6 N",
+            "origin_body_id": "block",
+            "origin_anchor": "body_center",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "annotation",
+            "id": "N_tilts",
+            "text": "N tilts WITH the surface —\nstill perpendicular to it.\nN = mg cos30 = 17.0 N",
+            "position": { "x": 490, "y": 200 },
+            "style": "callout",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "mg_vertical",
+            "text": "mg stays vertical.\nGravity never tilts with\nthe surface.",
+            "position": { "x": 490, "y": 360 },
+            "style": "callout",
+            "color": "#EF4444"
+          }
+        ],
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "incline,block", "enter": "fade_in", "duration": 400 },
+            { "at_t": 0.6, "show": "weight", "enter": "grow_from_body", "duration": 500 },
+            { "at_t": 1.4, "show": "N_on_incline", "enter": "grow_perpendicular", "duration": 700 },
+            { "at_t": 2.3, "show": "mg_components_STATE_3", "enter": "decompose_from_weight", "duration": 900 },
+            { "at_t": 3.5, "show": "N_tilts", "enter": "fade_in", "duration": 400 },
+            { "at_t": 4.1, "show": "mg_vertical", "enter": "fade_in", "duration": 400 }
+          ]
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now tilt the surface to 30 degrees. Before I reveal the answer — think carefully." },
+            { "id": "s2", "text_en": "The block is sitting on a tilted surface. In which direction does the normal reaction N point now?" },
+            { "id": "s3", "text_en": "Pick one of the four options and I will tell you why." }
+          ]
+        },
+        "retrieval_question": {
+          "prompt": "The surface is tilted to 30 degrees from horizontal. In which direction does N point?",
+          "options": [
+            {
+              "id": "A",
+              "label": "Straight up (vertical)",
+              "correct": false,
+              "feedback": "That is mg's direction, not N's. N is perpendicular to the surface, not to gravity. Once the surface tilts, N tilts with it."
+            },
+            {
+              "id": "B",
+              "label": "Perpendicular to the incline (tilted 30 degrees from vertical)",
+              "correct": true,
+              "feedback": "Correct. N is always perpendicular to its contact surface. When the surface tilts by 30 degrees, N tilts by 30 degrees too."
+            },
+            {
+              "id": "C",
+              "label": "Along the incline (parallel to the slope)",
+              "correct": false,
+              "feedback": "That is mg sin(theta) — the component of gravity along the slope. N is the perpendicular component direction, not the parallel one."
+            },
+            {
+              "id": "D",
+              "label": "It depends on whether the block is sliding",
+              "correct": false,
+              "feedback": "N's direction depends only on the surface orientation, not on the block's motion. Motion changes friction, not N."
+            }
+          ]
+        },
+        "advance_mode": "wait_for_answer",
+        "allow_deep_dive": true,
+        "drill_downs": ["why_mg_doesnt_tilt", "what_is_cos_doing_here", "how_to_decompose_mg"]
+      },
+
+      "STATE_4": {
+        "title": "Ladder Against a Wall — Two Surfaces, Two Normals",
+        "duration": 7,
+        "focal_primitive_id": "N1",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "floor",
+            "orientation": "horizontal",
+            "position": { "x": 180, "y": 400 },
+            "length": 300,
+            "texture": "rough",
+            "label": "Ground"
+          },
+          {
+            "type": "surface",
+            "id": "wall",
+            "orientation": "vertical",
+            "position": { "x": 480, "y": 210 },
+            "length": 190,
+            "texture": "smooth",
+            "label": "Wall"
+          },
+          {
+            "type": "body",
+            "id": "ladder",
+            "shape": "rect",
+            "label": "Ladder",
+            "position": { "x": 300, "y": 248 },
+            "size": { "w": 14, "h": 200 },
+            "fill_color": "#92400E",
+            "rotation_deg": 25,
+            "attach_to_surface": {
+              "surface_id": "floor",
+              "position_fraction": 0.35
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "N1",
+            "force_id": "N1",
+            "color": "#10B981",
+            "label": "N1 (from ground)",
+            "origin_body_id": "ladder",
+            "origin_anchor": "body_bottom",
+            "direction_deg": 90
+          },
+          {
+            "type": "force_arrow",
+            "id": "N2",
+            "force_id": "N2",
+            "color": "#3B82F6",
+            "label": "N2 (from wall)",
+            "origin_body_id": "ladder",
+            "origin_anchor": "body_top",
+            "direction_deg": 180
+          },
+          {
+            "type": "annotation",
+            "id": "N1_label",
+            "text": "N1 from ground —\nvertical (perpendicular\nto the floor)",
+            "position": { "x": 100, "y": 320 },
+            "style": "callout",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "N2_label",
+            "text": "N2 from wall —\nhorizontal (perpendicular\nto the vertical wall)",
+            "position": { "x": 520, "y": 230 },
+            "style": "callout",
+            "color": "#3B82F6"
+          }
+        ],
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "floor,wall", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.5, "show": "ladder", "enter": "swing_into_place", "duration": 600 },
+            { "at_t": 1.4, "show": "N1", "enter": "grow_perpendicular", "duration": 500 },
+            { "at_t": 2.1, "show": "N1_label", "enter": "fade_in", "duration": 300 },
+            { "at_t": 2.9, "show": "N2", "enter": "grow_perpendicular", "duration": 500 },
+            { "at_t": 3.6, "show": "N2_label", "enter": "fade_in", "duration": 300 }
+          ]
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A ladder leans against the wall of your building. There are two contact surfaces." },
+            { "id": "s2", "text_en": "From the ground, N one is vertical upward — perpendicular to the horizontal floor." },
+            { "id": "s3", "text_en": "From the wall, N two is horizontal, pointing away from the wall — perpendicular to the vertical wall." },
+            { "id": "s4", "text_en": "Two surfaces, two different normal directions. The rule never changes — N is always perpendicular to its own surface." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": false
+      },
+
+      "STATE_5": {
+        "title": "Your Turn — Drag the Sliders to See N = mg cos(theta)",
+        "duration": 10,
+        "focal_primitive_id": "formula_box",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "incline",
+            "orientation": "inclined",
+            "angle_expr": "theta",
+            "position": { "x": 160, "y": 420 },
+            "length": 350,
+            "texture": "smooth",
+            "label": "theta = {theta} degrees",
+            "friction": { "mu_s": 0.7, "mu_k": 0.5 }
+          },
+          {
+            "type": "body",
+            "id": "block",
+            "shape": "rect",
+            "label": "Block ({m} kg)",
+            "position": { "x": 260, "y": 315 },
+            "size": { "w": 80, "h": 65 },
+            "fill_color": "#6B7280",
+            "attach_to_surface": {
+              "surface_id": "incline",
+              "position_fraction": 0.7
+            },
+            "physics_behavior": "slides_on_surface"
+          },
+          {
+            "type": "force_arrow",
+            "id": "N_arrow",
+            "force_id": "N_on_incline",
+            "color": "#10B981",
+            "label": "N = {N_value} N",
+            "origin_body_id": "block",
+            "origin_anchor": "body_bottom",
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "force_components",
+            "id": "mg_components_STATE_5",
+            "force_id": "weight",
+            "decompose_axis": "along_surface:incline",
+            "origin_body_id": "block",
+            "origin_anchor": "body_bottom",
+            "color": "#EF4444",
+            "scale_pixels_per_unit": 8,
+            "animate_in_ms": 700,
+            "label_x": "mg sin(theta) = {mg_parallel} N",
+            "label_y": "mg cos(theta) = {mg_perpendicular} N"
+          },
+          {
+            "type": "slider",
+            "id": "slider_theta",
+            "variable": "theta",
+            "min": 0,
+            "max": 80,
+            "step": 5,
+            "default": 30,
+            "label": "Incline Angle theta (degrees)",
+            "position": "bottom_left"
+          },
+          {
+            "type": "slider",
+            "id": "slider_m",
+            "variable": "m",
+            "min": 0.5,
+            "max": 10,
+            "step": 0.5,
+            "default": 2,
+            "label": "Mass m (kg)",
+            "position": "bottom_right"
+          },
+          {
+            "type": "formula_box",
+            "id": "formula_box",
+            "formula": "N = mg cos(theta)",
+            "live_value": "{N_value} N",
+            "position": { "x": 490, "y": 180 },
+            "border_color": "#10B981"
+          }
+        ],
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "incline,block,weight,N_arrow", "enter": "fade_in", "duration": 400 },
+            { "at_t": 0.8, "show": "mg_components_STATE_5", "enter": "decompose_from_weight", "duration": 700 },
+            { "at_t": 1.7, "show": "slider_theta,slider_m", "enter": "slide_up_from_bottom", "duration": 400 },
+            { "at_t": 2.3, "show": "formula_box", "enter": "fade_in", "duration": 400 }
+          ]
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now it is your turn. Drag the two sliders — change mass and angle together." },
+            { "id": "s2", "text_en": "Set theta to zero. Watch what happens. N equals mg. Flat surface, both forces equal and opposite." },
+            { "id": "s3", "text_en": "Now increase theta. Watch N shrink. More weight goes along the slope, less perpendicular to it." },
+            { "id": "s4", "text_en": "Take theta to 90 degrees. N becomes zero. The surface is vertical — it gives no perpendicular support. The formula always works." }
+          ]
+        },
+        "advance_mode": "interaction_complete",
+        "allow_deep_dive": true,
+        "drill_downs": ["what_if_theta_90", "how_do_i_remember_cos_vs_sin", "why_mg_is_not_in_formula"]
+      }
+    }
+  },
+
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "graph_type": "line",
+    "title": "Normal Reaction vs Incline Angle",
+    "subtitle": "N = mg cos(theta)",
+    "x_axis": {
+      "variable": "theta",
+      "label": "Incline Angle theta (degrees)",
+      "min": 0,
+      "max": 90,
+      "tick_interval": 10
+    },
+    "y_axis": {
+      "variable": "N",
+      "label": "Normal Reaction N (Newtons)",
+      "min": 0,
+      "max": 100,
+      "tick_interval": 10
+    },
+    "traces": [
+      {
+        "id": "N_vs_theta",
+        "equation_expr": "m * 9.8 * cos(theta * PI / 180)",
+        "color": "#10B981",
+        "label": "N = mg cos(theta)",
+        "style": "solid",
+        "line_width": 2
+      }
+    ],
+    "live_dot": {
+      "x_variable": "theta",
+      "y_expr": "m * 9.8 * Math.cos(theta * Math.PI / 180)",
+      "color": "#F59E0B",
+      "size": 10,
+      "sync_with_panel_a_sliders": ["theta", "m"]
+    },
+    "annotations": [
+      { "text": "theta=0 deg: N=mg (flat surface)", "position": { "x": 2, "y": 92 }, "color": "#6B7280" },
+      { "text": "theta=90 deg: N=0 (no support)", "position": { "x": 80, "y": 8 }, "color": "#6B7280" }
+    ]
+  },
+
+  "epic_c_branches": [
+    {
+      "branch_id": "N_equals_mg_always",
+      "misconception": "N is always equal to mg regardless of the surface",
+      "trigger_phrases": [
+        "N equals mg always",
+        "normal force is always equal to weight",
+        "N and mg are the same thing",
+        "why is N less than mg on an incline"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2", "EPIC_C_3"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: N = mg Everywhere",
+          "focal_primitive_id": "wrong_N_incline",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "incline_wrong",
+              "orientation": "inclined",
+              "angle": 30,
+              "position": { "x": 160, "y": 420 },
+              "length": 320,
+              "texture": "smooth",
+              "label": "theta = 30 deg"
+            },
+            {
+              "type": "body",
+              "id": "block_wrong",
+              "shape": "rect",
+              "label": "Block (2 kg)",
+              "position": { "x": 260, "y": 315 },
+              "size": { "w": 80, "h": 65 },
+              "fill_color": "#6B7280",
+              "attach_to_surface": {
+                "surface_id": "incline_wrong",
+                "position_fraction": 0.45
+              }
+            },
+            {
+              "type": "force_arrow",
+              "id": "wrong_N_incline",
+              "force_id": "N_wrong_full",
+              "color": "#EF4444",
+              "label": "N = 19.6 N? (wrong)",
+              "origin_body_id": "block_wrong",
+              "origin_anchor": "body_bottom",
+              "scale_pixels_per_unit": 8
+            },
+            {
+              "type": "force_arrow",
+              "id": "weight_wrong",
+              "force_id": "weight",
+              "color": "#EF4444",
+              "label": "mg = 19.6 N",
+              "origin_body_id": "block_wrong",
+              "origin_anchor": "body_center",
+              "scale_pixels_per_unit": 8
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_claim",
+              "text": "If N = mg always,\nthen N must be 19.6 N\neven on the incline.\nBut is that really true?",
+              "position": { "x": 490, "y": 240 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Let us first see your belief clearly. You think N equals mg always — flat surface, incline, any surface." },
+              { "id": "s2", "text_en": "So on a 30 degree incline, you say N should still equal 19.6 Newtons — the full weight." },
+              { "id": "s3", "text_en": "That feels intuitive. But there is a problem with this — let me show you what goes wrong." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "Why It Fails — Decompose mg into Components",
+          "focal_primitive_id": "mg_perp_component",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "incline_decomp",
+              "orientation": "inclined",
+              "angle": 30,
+              "position": { "x": 160, "y": 420 },
+              "length": 320,
+              "texture": "smooth"
+            },
+            {
+              "type": "body",
+              "id": "block_decomp",
+              "shape": "rect",
+              "label": "Block (2 kg)",
+              "position": { "x": 260, "y": 315 },
+              "size": { "w": 80, "h": 65 },
+              "fill_color": "#6B7280",
+              "attach_to_surface": {
+                "surface_id": "incline_decomp",
+                "position_fraction": 0.45
+              }
+            },
+            {
+              "type": "force_arrow",
+              "id": "mg_full",
+              "force_id": "weight",
+              "color": "#EF4444",
+              "label": "mg = 19.6 N",
+              "origin_body_id": "block_decomp",
+              "origin_anchor": "body_center",
+              "scale_pixels_per_unit": 8
+            },
+            {
+              "type": "force_components",
+              "id": "mg_perp_component",
+              "force_id": "weight",
+              "decompose_axis": "along_surface:incline_decomp",
+              "origin_body_id": "block_decomp",
+              "origin_anchor": "body_bottom",
+              "color": "#F59E0B",
+              "scale_pixels_per_unit": 8,
+              "animate_in_ms": 900,
+              "label_x": "mg sin30 = 9.8 N (along slope)",
+              "label_y": "mg cos30 = 17.0 N (perpendicular)"
+            },
+            {
+              "type": "annotation",
+              "id": "only_perp_matters",
+              "text": "Only the PERPENDICULAR\ncomponent of mg pushes\ninto the surface.\nN balances only that part.",
+              "position": { "x": 490, "y": 220 },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "parallel_slides",
+              "text": "The PARALLEL part\n(mg sin30 = 9.8 N)\nslides the block down —\nit is not balanced by N.",
+              "position": { "x": 490, "y": 400 },
+              "style": "callout",
+              "color": "#F59E0B"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Split mg into two parts. One perpendicular to the incline, one parallel to it." },
+              { "id": "s2", "text_en": "Perpendicular component is mg cos30, which equals 17 Newtons. Parallel component is mg sin30, which equals 9.8 Newtons." },
+              { "id": "s3", "text_en": "Only the perpendicular component pushes into the surface. The parallel part tries to slide the block down." },
+              { "id": "s4", "text_en": "N balances only the perpendicular part. So N equals mg cos30, not mg. That is 17 Newtons, not 19.6." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        },
+        "EPIC_C_3": {
+          "title": "The Rule That Always Works",
+          "focal_primitive_id": "correct_rule",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "correct_rule",
+              "text": "RULE:\nN = mg cos(theta)\n(theta = angle of incline)",
+              "position": { "x": 380, "y": 180 },
+              "style": "callout_bold",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "check_flat",
+              "text": "Flat surface: theta = 0\ncos(0) = 1\nN = mg ✓ (special case)",
+              "position": { "x": 180, "y": 320 },
+              "style": "callout",
+              "color": "#3B82F6"
+            },
+            {
+              "type": "annotation",
+              "id": "check_incline",
+              "text": "30 deg incline:\ncos(30) = 0.866\nN = 0.866 * mg\nN = 17.0 N (not 19.6)",
+              "position": { "x": 420, "y": 320 },
+              "style": "callout",
+              "color": "#3B82F6"
+            },
+            {
+              "type": "annotation",
+              "id": "check_vertical",
+              "text": "Vertical wall: theta = 90\ncos(90) = 0\nN = 0 (no support)",
+              "position": { "x": 620, "y": 320 },
+              "style": "callout",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The rule is N equals mg cos theta. This rule always works." },
+              { "id": "s2", "text_en": "On a flat surface, theta is zero, cosine of zero is one, so N equals mg. Your old belief was this special case." },
+              { "id": "s3", "text_en": "On a 30 degree incline, N is 17 Newtons — less than the weight." },
+              { "id": "s4", "text_en": "On a vertical wall, N is zero — the surface gives no support. One rule, every case." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+
+    {
+      "branch_id": "N_is_reaction_pair_of_mg",
+      "misconception": "N and mg are a Newton's third law action-reaction pair",
+      "trigger_phrases": [
+        "N is reaction to mg",
+        "N and mg are action reaction pair",
+        "newton third law gives N equals mg",
+        "are N and mg the pair"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2", "EPIC_C_3"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: N and mg Are Newton's Third Law Partners",
+          "focal_primitive_id": "wrong_pair_label",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "floor_pair",
+              "orientation": "horizontal",
+              "position": { "x": 200, "y": 400 },
+              "length": 400,
+              "texture": "smooth",
+              "label": "Floor"
+            },
+            {
+              "type": "body",
+              "id": "block_pair",
+              "shape": "rect",
+              "label": "Block",
+              "position": { "x": 380, "y": 320 },
+              "size": { "w": 100, "h": 80 },
+              "fill_color": "#6B7280",
+              "attach_to_surface": {
+                "surface_id": "floor_pair",
+                "position_fraction": 0.45
+              }
+            },
+            {
+              "type": "force_arrow",
+              "id": "mg_pair",
+              "force_id": "weight",
+              "color": "#EF4444",
+              "label": "mg (down)",
+              "origin_body_id": "block_pair",
+              "origin_anchor": "body_center"
+            },
+            {
+              "type": "force_arrow",
+              "id": "N_pair",
+              "force_id": "N_flat",
+              "color": "#10B981",
+              "label": "N (up)",
+              "origin_body_id": "block_pair",
+              "origin_anchor": "body_bottom"
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_pair_label",
+              "text": "Your belief:\nN and mg are equal,\nopposite, and both act on\nthe block. So they must be\nNewton's third law pair.\nRIGHT?",
+              "position": { "x": 520, "y": 240 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "You see two forces on the block — mg pulls it down, N pushes it up." },
+              { "id": "s2", "text_en": "They are equal in magnitude. They are opposite in direction." },
+              { "id": "s3", "text_en": "So it feels natural to call them Newton's third law pair — action and reaction." },
+              { "id": "s4", "text_en": "But this is the most common mistake in physics. Let me show you why they are not a third law pair." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "The Test: Third Law Pairs Act on DIFFERENT Bodies",
+          "focal_primitive_id": "true_pair_of_N",
+          "scene_composition": [
+            {
+              "type": "body",
+              "id": "block_zoom",
+              "shape": "rect",
+              "label": "Block",
+              "position": { "x": 200, "y": 240 },
+              "size": { "w": 140, "h": 100 },
+              "fill_color": "#6B7280"
+            },
+            {
+              "type": "body",
+              "id": "earth_symbol",
+              "shape": "circle",
+              "label": "Earth",
+              "position": { "x": 680, "y": 420 },
+              "size": 70,
+              "fill_color": "#3B82F6"
+            },
+            {
+              "type": "force_arrow",
+              "id": "true_pair_of_N",
+              "force_id": "N_on_floor_from_block",
+              "color": "#10B981",
+              "label": "N' = block pushes floor DOWN",
+              "origin_body_id": "block_zoom",
+              "origin_anchor": "body_bottom",
+              "direction_deg": 270
+            },
+            {
+              "type": "force_arrow",
+              "id": "true_pair_of_mg",
+              "force_id": "pull_on_earth",
+              "color": "#EF4444",
+              "label": "mg' = block pulls Earth UP",
+              "origin_body_id": "earth_symbol",
+              "origin_anchor": "body_top",
+              "direction_deg": 90
+            },
+            {
+              "type": "annotation",
+              "id": "rule_label",
+              "text": "Third law rule:\nPairs act on DIFFERENT\nbodies.\n\nN acts on block ←→\nN' acts on floor.\n\nmg acts on block ←→\nmg' acts on Earth.",
+              "position": { "x": 420, "y": 180 },
+              "style": "callout_bold",
+              "color": "#1F2937"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Newton's third law pairs always act on two different bodies." },
+              { "id": "s2", "text_en": "N acts on the block, pushing up. Its real partner is the block pushing down on the floor. That is a pair." },
+              { "id": "s3", "text_en": "mg acts on the block, pulling down. Its real partner is the block pulling Earth up. That is a different pair." },
+              { "id": "s4", "text_en": "N and mg both act on the same body — the block. They cannot be a third law pair. They are just two separate forces that happen to balance." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        },
+        "EPIC_C_3": {
+          "title": "Two Separate Forces on Same Body — Second Law Balance",
+          "focal_primitive_id": "balance_summary",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "fact_1",
+              "text": "FACT 1:\nN and mg act on\nthe SAME body (block).\nThey balance by\nNewton's SECOND law:\nSum of forces = 0",
+              "position": { "x": 180, "y": 180 },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "fact_2",
+              "text": "FACT 2:\nN's real third law pair\nis the block pushing\nthe floor downward.\nThat force acts on\nthe FLOOR.",
+              "position": { "x": 420, "y": 180 },
+              "style": "callout",
+              "color": "#3B82F6"
+            },
+            {
+              "type": "annotation",
+              "id": "balance_summary",
+              "text": "SHORTCUT:\nIf two forces act on\nthe SAME body, they are\nNEVER a third law pair.\nThey can only balance\nby the second law.",
+              "position": { "x": 300, "y": 360 },
+              "style": "callout_bold",
+              "color": "#F59E0B"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Two facts to remember. N and mg act on the same body — the block." },
+              { "id": "s2", "text_en": "Same body means they are not a third law pair. They balance each other by Newton's second law." },
+              { "id": "s3", "text_en": "N's real third law partner is the block pushing down on the floor — that force acts on the floor, not on the block." },
+              { "id": "s4", "text_en": "Shortcut rule: if two forces act on the same body, they are never a third law pair." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+
+    {
+      "branch_id": "N_depends_on_motion",
+      "misconception": "N changes when the block slides horizontally on the floor",
+      "trigger_phrases": [
+        "does N change when block moves",
+        "N depends on velocity",
+        "is N different when sliding",
+        "N during horizontal motion"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2", "EPIC_C_3"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: N Decreases When the Block Slides",
+          "focal_primitive_id": "wrong_N_sliding",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "floor_slide",
+              "orientation": "horizontal",
+              "position": { "x": 150, "y": 400 },
+              "length": 500,
+              "texture": "smooth",
+              "label": "Smooth floor"
+            },
+            {
+              "type": "body",
+              "id": "block_slide",
+              "shape": "rect",
+              "label": "Block (sliding →)",
+              "position": { "x": 300, "y": 320 },
+              "size": { "w": 80, "h": 70 },
+              "fill_color": "#6B7280"
+            },
+            {
+              "type": "force_arrow",
+              "id": "velocity_arrow",
+              "force_id": "v_horizontal",
+              "color": "#3B82F6",
+              "label": "v = 3 m/s →",
+              "origin_body_id": "block_slide",
+              "origin_anchor": "body_right",
+              "direction_deg": 0
+            },
+            {
+              "type": "force_arrow",
+              "id": "wrong_N_sliding",
+              "force_id": "N_wrong_smaller",
+              "color": "#EF4444",
+              "label": "N < mg? (wrong)",
+              "origin_body_id": "block_slide",
+              "origin_anchor": "body_bottom",
+              "scale_pixels_per_unit": 6
+            },
+            {
+              "type": "force_arrow",
+              "id": "weight_slide",
+              "force_id": "weight",
+              "color": "#EF4444",
+              "label": "mg",
+              "origin_body_id": "block_slide",
+              "origin_anchor": "body_center"
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_claim_slide",
+              "text": "Your belief:\nBlock is moving fast,\nso N must shrink or change\nbecause the block is\n'pushing less' into the floor.",
+              "position": { "x": 500, "y": 240 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "You think — the block is sliding at 3 meters per second. Maybe N is smaller because of the motion." },
+              { "id": "s2", "text_en": "Or maybe N changes in some way because of the velocity." },
+              { "id": "s3", "text_en": "Let me show you why N has nothing to do with horizontal motion." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "The Truth: N Balances Only the Vertical Direction",
+          "focal_primitive_id": "correct_N_vertical",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "floor_axis",
+              "orientation": "horizontal",
+              "position": { "x": 150, "y": 400 },
+              "length": 500,
+              "texture": "smooth"
+            },
+            {
+              "type": "body",
+              "id": "block_axis",
+              "shape": "rect",
+              "label": "Block",
+              "position": { "x": 300, "y": 320 },
+              "size": { "w": 80, "h": 70 },
+              "fill_color": "#6B7280"
+            },
+            {
+              "type": "force_arrow",
+              "id": "correct_N_vertical",
+              "force_id": "N_flat",
+              "color": "#10B981",
+              "label": "N = mg (always)",
+              "origin_body_id": "block_axis",
+              "origin_anchor": "body_bottom",
+              "direction_deg": 90
+            },
+            {
+              "type": "force_arrow",
+              "id": "weight_axis",
+              "force_id": "weight",
+              "color": "#EF4444",
+              "label": "mg",
+              "origin_body_id": "block_axis",
+              "origin_anchor": "body_center"
+            },
+            {
+              "type": "annotation",
+              "id": "vertical_axis_label",
+              "text": "VERTICAL axis:\nForces here: N (up) and mg (down).\nBlock does not move vertically.\nSo N = mg.",
+              "position": { "x": 490, "y": 220 },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "horizontal_axis_label",
+              "text": "HORIZONTAL axis:\nMotion happens here.\nForces here: only friction\n(or none, if smooth).\nN has NO role.",
+              "position": { "x": 490, "y": 400 },
+              "style": "callout",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Split the problem into two directions. Vertical and horizontal." },
+              { "id": "s2", "text_en": "Vertical direction — forces are N up and mg down. The block is not moving vertically. So N equals mg." },
+              { "id": "s3", "text_en": "Horizontal direction — motion happens here. Forces are friction, or nothing if smooth. N does not act here at all." },
+              { "id": "s4", "text_en": "Motion is horizontal. N is vertical. They are in different directions. Horizontal motion cannot change a vertical force." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        },
+        "EPIC_C_3": {
+          "title": "When Does N Actually Change? Only Vertical Acceleration",
+          "focal_primitive_id": "when_N_changes",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "when_N_changes",
+              "text": "N changes only when\nthe block ACCELERATES\nVERTICALLY.",
+              "position": { "x": 380, "y": 150 },
+              "style": "callout_bold",
+              "color": "#F59E0B"
+            },
+            {
+              "type": "annotation",
+              "id": "case_horizontal",
+              "text": "Block slides horizontally\n(smooth or rough):\nvertical a = 0\nN = mg (unchanged)",
+              "position": { "x": 160, "y": 300 },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "case_elevator",
+              "text": "Elevator up at 2 m/s^2:\nvertical a = 2 m/s^2\nN = m(g + a)\nN is LARGER",
+              "position": { "x": 400, "y": 300 },
+              "style": "callout",
+              "color": "#3B82F6"
+            },
+            {
+              "type": "annotation",
+              "id": "case_freefall",
+              "text": "Free fall:\nvertical a = g downward\nN = 0 (no contact\nforce at all)",
+              "position": { "x": 620, "y": 300 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the rule. N changes only when the block accelerates vertically." },
+              { "id": "s2", "text_en": "Horizontal motion, even at very high speed, does not change N. No vertical acceleration means no change." },
+              { "id": "s3", "text_en": "In an elevator accelerating upward, N increases. In free fall, N becomes zero." },
+              { "id": "s4", "text_en": "Simple test — ask yourself: is there vertical acceleration? If no, N equals mg no matter what happens horizontally." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+
+    {
+      "branch_id": "N_in_accelerating_elevator",
+      "misconception": "In an elevator, N is always equal to mg regardless of elevator motion",
+      "trigger_phrases": [
+        "N in elevator",
+        "apparent weight in lift",
+        "N when lift accelerates",
+        "why do I feel heavier in elevator",
+        "free fall normal reaction zero"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2", "EPIC_C_3"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: N = mg Even in a Moving Elevator",
+          "focal_primitive_id": "wrong_elevator_N",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "lift_floor",
+              "orientation": "horizontal",
+              "position": { "x": 280, "y": 430 },
+              "length": 200,
+              "texture": "smooth",
+              "label": "Elevator floor"
+            },
+            {
+              "type": "body",
+              "id": "person_lift",
+              "shape": "stickman",
+              "label": "You (60 kg)",
+              "position": { "x": 380, "y": 400 },
+              "size": 80,
+              "fill_color": "#3B82F6",
+              "attach_to_surface": {
+                "surface_id": "lift_floor",
+                "position_fraction": 0.5
+              }
+            },
+            {
+              "type": "force_arrow",
+              "id": "lift_accel_arrow",
+              "force_id": "a_up",
+              "color": "#F59E0B",
+              "label": "elevator a = 2 m/s^2 ↑",
+              "origin_body_id": "lift_floor",
+              "origin_anchor": "body_left",
+              "direction_deg": 90
+            },
+            {
+              "type": "force_arrow",
+              "id": "wrong_elevator_N",
+              "force_id": "N_elevator_wrong",
+              "color": "#EF4444",
+              "label": "N = mg = 588 N? (wrong)",
+              "origin_body_id": "person_lift",
+              "origin_anchor": "body_bottom"
+            },
+            {
+              "type": "force_arrow",
+              "id": "weight_lift",
+              "force_id": "weight",
+              "color": "#EF4444",
+              "label": "mg = 588 N",
+              "origin_body_id": "person_lift",
+              "origin_anchor": "body_center"
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_elevator_claim",
+              "text": "Your belief:\nElevator goes up at\n2 m/s^2, but you still\nweigh 60 kg, so\nN must equal mg = 588 N.",
+              "position": { "x": 520, "y": 240 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "An elevator accelerates upward at 2 meters per second squared. You are standing inside." },
+              { "id": "s2", "text_en": "You think — my mass is still 60 kilograms, gravity is still 9.8. So N must still be 588 Newtons." },
+              { "id": "s3", "text_en": "But you know from experience that you feel heavier when a lift starts going up. Why?" },
+              { "id": "s4", "text_en": "Let me show you what N actually is in an accelerating frame." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "Newton's Second Law in the Elevator: N - mg = ma",
+          "focal_primitive_id": "elevator_equation",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "lift_floor_eq",
+              "orientation": "horizontal",
+              "position": { "x": 220, "y": 430 },
+              "length": 200,
+              "texture": "smooth"
+            },
+            {
+              "type": "body",
+              "id": "person_eq",
+              "shape": "stickman",
+              "label": "You (60 kg)",
+              "position": { "x": 320, "y": 400 },
+              "size": 80,
+              "fill_color": "#3B82F6"
+            },
+            {
+              "type": "force_arrow",
+              "id": "N_up_eq",
+              "force_id": "N_up_correct",
+              "color": "#10B981",
+              "label": "N = 708 N ↑",
+              "origin_body_id": "person_eq",
+              "origin_anchor": "body_bottom",
+              "direction_deg": 90
+            },
+            {
+              "type": "force_arrow",
+              "id": "mg_down_eq",
+              "force_id": "weight",
+              "color": "#EF4444",
+              "label": "mg = 588 N ↓",
+              "origin_body_id": "person_eq",
+              "origin_anchor": "body_center"
+            },
+            {
+              "type": "annotation",
+              "id": "elevator_equation",
+              "text": "Newton's second law:\nN - mg = ma\n\nSolve for N:\nN = m(g + a)\nN = 60 × (9.8 + 2)\nN = 60 × 11.8\nN = 708 N",
+              "position": { "x": 520, "y": 240 },
+              "style": "callout_bold",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Apply Newton's second law. Net force equals mass times acceleration." },
+              { "id": "s2", "text_en": "Upward forces minus downward forces equals m times a. So N minus mg equals m a." },
+              { "id": "s3", "text_en": "Solve for N. You get N equals m times g plus a. That is 60 times 11.8, which is 708 Newtons." },
+              { "id": "s4", "text_en": "N is larger than mg by exactly m times a. This is why you feel heavier when the lift starts moving up." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        },
+        "EPIC_C_3": {
+          "title": "Every Elevator Case — Free Fall Included",
+          "focal_primitive_id": "three_cases_summary",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "three_cases_summary",
+              "text": "RULE: N = m(g + a)\n(a = + up, a = − down)",
+              "position": { "x": 380, "y": 130 },
+              "style": "callout_bold",
+              "color": "#F59E0B"
+            },
+            {
+              "type": "annotation",
+              "id": "case_up",
+              "text": "Elevator UP\nat 2 m/s^2:\na = +2\nN = m(9.8 + 2)\nN = 708 N\n(heavier)",
+              "position": { "x": 140, "y": 300 },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "case_down",
+              "text": "Elevator DOWN\nat 2 m/s^2:\na = −2\nN = m(9.8 − 2)\nN = 468 N\n(lighter)",
+              "position": { "x": 320, "y": 300 },
+              "style": "callout",
+              "color": "#3B82F6"
+            },
+            {
+              "type": "annotation",
+              "id": "case_rest",
+              "text": "Rest / constant v:\na = 0\nN = mg\nN = 588 N\n(normal weight)",
+              "position": { "x": 500, "y": 300 },
+              "style": "callout",
+              "color": "#6B7280"
+            },
+            {
+              "type": "annotation",
+              "id": "case_freefall",
+              "text": "Cable snaps\n(free fall):\na = −9.8\nN = m(9.8 − 9.8)\nN = 0\n(weightless)",
+              "position": { "x": 680, "y": 300 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Remember one formula — N equals m times g plus a. Sign of a depends on the direction." },
+              { "id": "s2", "text_en": "Elevator accelerating upward: a is positive. N is larger than mg. You feel heavier." },
+              { "id": "s3", "text_en": "Elevator accelerating downward: a is negative. N is smaller than mg. You feel lighter." },
+              { "id": "s4", "text_en": "If the cable snaps — free fall — a equals minus g. N becomes zero. You feel weightless. This is also why astronauts float in orbit." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+
+  "regeneration_variants": [
+    {
+      "variant_id": "cylinder_in_v_groove",
+      "type": "B",
+      "label": "Cylinder in V-groove",
+      "physical_world": "Heavy cylinder resting inside a V-shaped groove — two inclined surfaces, N1 and N2 both perpendicular to their respective surfaces",
+      "same_physics": "N is always perpendicular to its contact surface, directed outward. Multiple contacts mean multiple N forces.",
+      "scene_hint": "Two inclined walls forming a V-shape, a cylinder inside, N1 from the left wall, N2 from the right wall — each perpendicular to its own surface"
+    },
+    {
+      "variant_id": "blocks_stacked",
+      "type": "B",
+      "label": "Three Stacked Blocks",
+      "physical_world": "Three blocks stacked vertically on the floor — N1 between block A and block B, N2 between block B and block C, N3 between block C and the floor",
+      "same_physics": "Each interface has its own N perpendicular to that specific contact surface. The bottom N supports the full combined weight.",
+      "scene_hint": "Three cuboids stacked, N arrows drawn at each interface, each labeled with the weight it supports from above"
+    },
+    {
+      "variant_id": "book_on_tilted_desk",
+      "type": "A",
+      "label": "Book on Tilted Desk",
+      "physical_world": "Textbook resting on a 15 degree tilted desk in your classroom",
+      "same_physics": "Same N = mg cos(theta) formula as the main concept, with different numerical values",
+      "scene_hint": "Desk tilted at 15 deg, textbook on top, N perpendicular to desk surface"
+    }
+  ],
+
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 5,
+        "per_state": {
+          "STATE_1": {
+            "mark": 1,
+            "description": "Identify the contact surface and draw the free body diagram with mg and N."
+          },
+          "STATE_2": {
+            "mark": 1,
+            "description": "State the definition of N — perpendicular to the contact surface, directed outward."
+          },
+          "STATE_3": {
+            "mark": 1,
+            "description": "Decompose mg into parallel and perpendicular components on an incline."
+          },
+          "STATE_4": {
+            "mark": 1,
+            "description": "Identify multiple contact surfaces and draw all N forces — one per surface."
+          },
+          "STATE_5": {
+            "mark": 1,
+            "description": "State and verify the formula N = mg cos(theta) with correct numerical substitution."
+          }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d1_s1",
+              "text": "Step 1: Identify the body — a 60 kg person on the classroom floor.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 100 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d1_s2",
+              "text": "Step 2: Contact surface — horizontal floor.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 140 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d1_s3",
+              "text": "Step 3: Free body diagram — mg downward, N upward.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 180 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s1",
+              "mark_value": 1,
+              "text": "+1 for FBD",
+              "tied_to_state": "STATE_1",
+              "position": { "x": 680, "y": 140 }
+            }
+          ]
+        },
+        "STATE_2": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d2_s1",
+              "text": "Definition: N is the force perpendicular to the contact surface,",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 220 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d2_s2",
+              "text": "directed away from the surface (since surfaces push, not pull).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 260 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d2_s3",
+              "text": "On a flat horizontal surface: N is vertical, N = mg.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 300 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s2",
+              "mark_value": 1,
+              "text": "+1 for definition",
+              "tied_to_state": "STATE_2",
+              "position": { "x": 680, "y": 260 }
+            }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d3_s1",
+              "text": "On an incline of angle theta, resolve mg into two components:",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 340 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d3_s2",
+              "text": "Perpendicular to incline: mg cos(theta)",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 380 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d3_s3",
+              "text": "Parallel to incline: mg sin(theta)",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 420 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s3",
+              "mark_value": 1,
+              "text": "+1 for decomposition",
+              "tied_to_state": "STATE_3",
+              "position": { "x": 680, "y": 380 }
+            }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d4_s1",
+              "text": "Multiple contacts → one N per surface.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 460 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d4_s2",
+              "text": "Ladder example: N1 from ground (vertical), N2 from wall (horizontal).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 500 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d4_s3",
+              "text": "Each N is perpendicular to its own surface.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 540 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s4",
+              "mark_value": 1,
+              "text": "+1 for multi-surface",
+              "tied_to_state": "STATE_4",
+              "position": { "x": 680, "y": 500 }
+            }
+          ]
+        },
+        "STATE_5": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d5_s1",
+              "text": "Formula: N = mg cos(theta)",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 580 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d5_s2",
+              "text": "Substitute: m = 2 kg, theta = 30 deg, g = 9.8 m/s^2",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 620 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d5_s3",
+              "text": "N = 2 × 9.8 × cos(30) = 2 × 9.8 × 0.866 = 17.0 N",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 660 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s5",
+              "mark_value": 1,
+              "text": "+1 for formula use",
+              "tied_to_state": "STATE_5",
+              "position": { "x": 680, "y": 620 }
+            }
+          ]
+        }
+      }
+    },
+
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "id": "shortcut_flat",
+          "rule": "Flat horizontal surface",
+          "formula": "N = mg",
+          "use_when": "No incline, no elevator acceleration, no applied vertical force"
+        },
+        {
+          "id": "shortcut_incline",
+          "rule": "Incline of angle theta from horizontal",
+          "formula": "N = mg cos(theta)",
+          "use_when": "Block rests on or slides along an inclined surface without vertical acceleration"
+        },
+        {
+          "id": "shortcut_elevator",
+          "rule": "Elevator with vertical acceleration a",
+          "formula": "N = m(g + a)",
+          "use_when": "a is positive if accelerating upward, negative if accelerating downward; a = 0 at rest or constant velocity"
+        },
+        {
+          "id": "shortcut_freefall",
+          "rule": "Free fall / orbit",
+          "formula": "N = 0",
+          "use_when": "Object and supporting surface both in free fall — no contact force"
+        },
+        {
+          "id": "shortcut_external_vertical_force",
+          "rule": "Applied external vertical force F",
+          "formula": "N = mg + F (F pressing down) or N = mg - F (F pulling up, F < mg)",
+          "use_when": "An extra vertical force is applied to the object besides its weight"
+        }
+      ],
+      "edge_cases": [
+        {
+          "id": "edge_wedge_on_table",
+          "title": "Block on wedge, wedge on frictionless table",
+          "trap": "Students forget the wedge can slide, which changes the block's acceleration relative to ground.",
+          "resolution": "Write N equations in the ground frame, not the wedge frame. The block's acceleration has both horizontal and vertical components."
+        },
+        {
+          "id": "edge_circular_motion",
+          "title": "Ball inside a vertical circular loop",
+          "trap": "Students apply N = mg at the top of the loop.",
+          "resolution": "At the top, N and mg both point toward center (downward). N + mg = mv^2/r. Minimum speed occurs when N = 0, giving v_min = sqrt(gr)."
+        },
+        {
+          "id": "edge_banked_turn",
+          "title": "Banked road turn (no friction)",
+          "trap": "Students still write N = mg.",
+          "resolution": "N has both vertical and horizontal components. Vertical: N cos(theta) = mg. Horizontal: N sin(theta) = mv^2/r. Combine: tan(theta) = v^2/(rg)."
+        },
+        {
+          "id": "edge_free_fall_with_object",
+          "title": "Person in a freely falling elevator holding a ball",
+          "trap": "Students think the person still pushes the ball upward with their hand.",
+          "resolution": "Everything accelerates at g — the person, the ball, the elevator. N between person's hand and ball is zero. Ball appears to float."
+        },
+        {
+          "id": "edge_rotating_earth",
+          "title": "Your apparent weight at the equator",
+          "trap": "Ignoring Earth's rotation when asked for N on a weighing scale.",
+          "resolution": "N_measured = mg - m*omega^2*R at equator. Small correction (~0.3%), but classic JEE trap."
+        }
+      ],
+      "formulas_shortform": {
+        "N_flat": "N = mg",
+        "N_incline": "N = mg cos(theta)",
+        "N_elevator_up": "N = m(g + a)",
+        "N_elevator_down": "N = m(g - a)",
+        "N_banked": "tan(theta) = v^2 / (rg)",
+        "N_circular_top": "N + mg = mv^2 / r",
+        "N_circular_bottom": "N - mg = mv^2 / r",
+        "N_freefall": "N = 0"
+      }
+    }
+  }
+}

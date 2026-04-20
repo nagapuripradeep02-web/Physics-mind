@@ -1,0 +1,271 @@
+{
+  "concept_id": "time_of_flight",
+  "concept_name": "Time of Flight — How Long a Projectile Stays in the Air",
+  "chapter": 7,
+  "section": "7.6",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey 7.6 — projectile time of flight; split from projectile_motion",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": null
+  },
+  "real_world_anchor": {
+    "primary": "A cricketer at Eden Gardens hits a six. The ball launches at roughly 30 m/s from the bat, at 45 degrees above the horizon. It rises, slows vertically, stops vertically at the peak, and falls back. Total time in the air = 2 * v * sin(theta) / g = 2 * 30 * 0.707 / 10 ≈ 4.24 seconds. In that single number lives the timing of every catch, every run-up, and every commentary beat. Every bowler in the IPL tracks this mentally, ball after ball.",
+    "secondary": "A javelin thrower at the Asian Games in Hangzhou. Release speed around 25 m/s, angle roughly 35 degrees. Time of flight = 2 * 25 * sin(35) / 10 ≈ 2.87 seconds. Coaches literally time the flight with stopwatches to spot inefficiencies.",
+    "tertiary": "A firecracker rocket launched on Diwali night in Old Delhi. Launch speed 40 m/s at 80 degrees (nearly vertical). Time = 2 * 40 * sin(80) / 10 ≈ 7.88 seconds — plenty of time for the rocket to rise, burst, and for the sparkles to rain down. Kids unconsciously count seconds to match the fuse."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v0": { "name": "Launch speed", "unit": "m/s", "min": 5, "max": 100, "default": 20 },
+      "theta": { "name": "Launch angle from horizontal", "unit": "deg", "min": 0, "max": 90, "default": 45 },
+      "g": { "name": "Gravitational acceleration", "unit": "m/s^2", "min": 9.8, "max": 10, "default": 10 }
+    },
+    "computed_outputs": {
+      "T_flight": { "formula": "2 * v0 * sin(theta) / g" },
+      "time_to_peak": { "formula": "v0 * sin(theta) / g" }
+    },
+    "formulas": {
+      "time_of_flight": "T = 2 * v0 * sin(theta) / g  (for launch and landing at same height)",
+      "symmetry": "Time to rise = Time to fall = T/2 = v0 * sin(theta) / g",
+      "vertical_motion": "Only the VERTICAL component v0 * sin(theta) matters for time of flight; horizontal component is irrelevant.",
+      "unequal_heights": "If launched from height h and landing at ground: T = [v0*sin(theta) + sqrt((v0*sin(theta))^2 + 2gh)] / g"
+    },
+    "constraints": [
+      "Applies to same-height launch and landing unless otherwise specified.",
+      "Gravity assumed constant (near Earth's surface).",
+      "Air resistance ignored.",
+      "Theta = 0 gives T = 0 (horizontal shot, never rises).",
+      "Theta = 90 gives maximum T = 2*v0/g (straight up)."
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "Only Vertical Motion Decides Flight Time",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "vertical_only_sketch",
+            "text": "Key insight: the HORIZONTAL motion does not\n            matter for time of flight.\n\n   Only the VERTICAL component decides how long\n   the projectile stays up.\n\n       v0                     v0 * sin(theta) = vertical component\n       /|                       |\n      / |                       |  <- this one matters for time\n     /  |                       |\n    /   |                       |\n   / theta                      ~~~~ ground\n  /_____|\n  v0 * cos(theta) = horizontal (irrelevant to T)\n\n   Because gravity only acts vertically.\n   And horizontal velocity has no effect on how long it takes\n   the vertical component to come back to zero height.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "eden_label",
+            "text": "Cricket six at Eden Gardens",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "ball_six",
+            "vehicle_type": "ball",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_left",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
+              { "type": "translate", "delay_sec": 4.5, "duration_sec": 3.0, "dx_px": 160, "dy_px": -200, "easing": "ease_out" },
+              { "type": "translate", "delay_sec": 7.5, "duration_sec": 3.0, "dx_px": 160, "dy_px": 200, "easing": "ease_in" }
+            ]
+          }
+        ],
+        "focal_primitive": "vertical_only_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Time of flight is decided by the VERTICAL motion alone." },
+            { "text_en": "Here is why. Gravity pulls straight down — it only affects the vertical component of velocity." },
+            { "text_en": "The horizontal component of v-nought cosine theta travels along while the vertical component plays out its up-and-down story." },
+            { "text_en": "How long does that vertical story take? That is the time of flight. Horizontal motion is just a passenger." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "Deriving T = 2 v₀ sin(θ) / g",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "derive_sketch",
+            "text": "Derivation:\n\n  Vertical velocity at time t:\n      v_y(t)  =  v0 * sin(theta)  -  g * t\n\n  At the peak, v_y = 0:\n      t_peak  =  v0 * sin(theta)  /  g\n\n  By symmetry, time to fall back down = t_peak.\n\n  Total time of flight:\n      T  =  2 * t_peak\n         =  2 * v0 * sin(theta) / g\n\n  Numbers for a cricket six:\n      v0 = 30 m/s,  theta = 45 deg,  g = 10\n      T  =  2 * 30 * 0.707 / 10\n         =  4.24 s\n\n  That matches the typical ~4 second hang time commentators note.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "derive_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Now the derivation. Vertical velocity at any time t is v-nought sine theta minus g times t." },
+            { "text_en": "At the peak, vertical velocity is zero — so t-peak equals v-nought sine theta over g." },
+            { "text_en": "By the symmetry of projectile motion, the time falling back is also t-peak." },
+            { "text_en": "Total time of flight is twice that — T equals 2 v-nought sine theta over g." },
+            { "text_en": "For a 30-metres-per-second six at 45 degrees, T is 4.24 seconds. Commentators notice exactly this hang time." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "Angle Effect — Steeper Launch Stays Up Longer",
+        "duration": 11,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "angle_effect_sketch",
+            "text": "Effect of launch angle on time of flight\n(same v0 = 20 m/s, g = 10):\n\n   theta = 15 deg  ->  T  =  2*20*sin(15)/10  =  1.04 s\n   theta = 30 deg  ->  T  =  2*20*sin(30)/10  =  2.00 s\n   theta = 45 deg  ->  T  =  2*20*sin(45)/10  =  2.83 s\n   theta = 60 deg  ->  T  =  2*20*sin(60)/10  =  3.46 s\n   theta = 75 deg  ->  T  =  2*20*sin(75)/10  =  3.86 s\n   theta = 90 deg  ->  T  =  2*20*sin(90)/10  =  4.00 s  (straight up)\n\n   Higher angle -> higher vertical component -> longer flight.\n   Maximum at 90 deg (vertical) -- but that has ZERO range.\n\n   Design tradeoff:\n     Range-hungry -> angle near 45 deg.\n     Hang-time-hungry -> angle near 90 deg.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          }
+        ],
+        "focal_primitive": "angle_effect_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Launch angle matters — higher angle, more hang time." },
+            { "text_en": "At 15 degrees, a 20-metres-per-second projectile stays up just 1 second. At 75 degrees, almost 4 seconds. At 90 degrees — straight up — a full 4 seconds." },
+            { "text_en": "There is a design tradeoff. Maximum hang time happens at 90 degrees — but that gives ZERO range, because the ball comes straight down." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "horizontal_affects_time",
+      "misconception_summary": "Student believes horizontal speed affects how long the projectile stays up.",
+      "confusion_patterns": [
+        "horizontal speed changes flight time",
+        "faster throw stays up longer",
+        "horizontal velocity and hang time",
+        "how does v0 cos theta affect time"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Instinct: 'Fast Ball Stays Up Longer'",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_horizontal_sketch",
+              "text": "Student's wrong guess:\n  \"If I throw the ball HARDER horizontally,\n   it will stay up longer because it's moving faster.\"\n\n  That confuses RANGE (how far it goes) with TIME (how long\n  it is airborne).\n\n  A ball tossed upward at 10 m/s takes 2 seconds to fall back.\n  A ball tossed upward at 10 m/s AND PUSHED sideways at 30 m/s\n  ALSO takes 2 seconds to fall back.\n\n  Gravity does not care about horizontal velocity.",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 13,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_horizontal_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Student's instinct — faster throw keeps the ball up longer." },
+              { "text_en": "This confuses range with time." },
+              { "text_en": "A ball tossed straight up at 10 metres per second takes 2 seconds to come back. The SAME ball pushed sideways at 30 still takes 2 seconds." },
+              { "text_en": "Gravity does not care about horizontal motion." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "The Galileo Experiment — Drop vs Slide",
+          "duration": 12,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "galileo_sketch",
+              "text": "Galileo's classic demo:\n\n  Drop a ball from a table:\n     only vertical motion\n     hits the floor in time  t_drop\n\n  Roll a ball OFF the same table horizontally:\n     has horizontal motion AND vertical drop\n     hits the floor in time  t_roll\n\n  Observation:  t_drop = t_roll\n\n  Both balls fall in EXACTLY the same time,\n  because both have the same initial vertical velocity\n  (zero) and the same gravity pulling them down.\n\n  The horizontal motion of the rolling ball\n  changes WHERE it lands, not WHEN.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "galileo_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The definitive test — drop one ball from a table, roll another off horizontally at the same height." },
+              { "text_en": "Both balls reach the floor at exactly the same moment." },
+              { "text_en": "The rolling ball lands far away; the dropped ball lands directly below. But the time is identical." },
+              { "text_en": "Galileo noticed this centuries ago. Horizontal motion has zero effect on time in the air." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Always Decompose — Vertical First",
+          "duration": 9,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "decompose_sketch",
+              "text": "When computing time of flight:\n\n  Step 1: Decompose the launch velocity:\n             v_x  =  v0 * cos(theta)   (ignore for time)\n             v_y  =  v0 * sin(theta)   (this is what matters)\n\n  Step 2: Apply T = 2 * v_y / g\n\n  Step 3: If you need range or horizontal position,\n          NOW bring in v_x.\n\n  Never mix the two components in the time formula.\n  Time is a vertical story.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 12,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "decompose_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "The procedure to internalise — decompose first, then plug into the right formula." },
+              { "text_en": "For time of flight, use only v-y — the vertical component v-nought sine theta. T equals 2 v-y over g." },
+              { "text_en": "For range or horizontal position, bring in v-x separately. Never mix them in the time formula. Time is a vertical story." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Cricket six at 30 m/s, 45 deg", "params": { "v0": 30, "theta": 45 } },
+      { "label": "Javelin at 25 m/s, 35 deg", "params": { "v0": 25, "theta": 35 } },
+      { "label": "Diwali rocket, nearly vertical", "params": { "v0": 40, "theta": 80 } }
+    ],
+    "type_b": [
+      { "label": "Football long pass", "scenario": "football_long_pass" },
+      { "label": "Basketball free throw", "scenario": "basketball_free_throw" }
+    ]
+  }
+}

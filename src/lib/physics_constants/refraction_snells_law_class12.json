@@ -1,0 +1,144 @@
+{
+  "concept_id": "refraction_snells_law_class12",
+  "concept_name": "Refraction and Snell's Law",
+  "class_level": 12,
+  "chapter": "Ray Optics and Optical Instruments",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "optics_ray",
+    "scenario_type": "refraction_flat",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "theta_i": {
+      "symbol": "θ₁",
+      "name": "Angle of incidence",
+      "unit": "deg",
+      "min": 0,
+      "max": 89,
+      "default": 30
+    },
+    "theta_r": {
+      "symbol": "θ₂",
+      "name": "Angle of refraction",
+      "unit": "deg",
+      "min": 0,
+      "max": 89,
+      "default": 19.5
+    },
+    "n1": {
+      "symbol": "n₁",
+      "name": "Refractive index of medium 1",
+      "unit": "",
+      "min": 1.0,
+      "max": 2.5,
+      "default": 1.0
+    },
+    "n2": {
+      "symbol": "n₂",
+      "name": "Refractive index of medium 2",
+      "unit": "",
+      "min": 1.0,
+      "max": 2.5,
+      "default": 1.5
+    },
+    "v": {
+      "symbol": "v",
+      "name": "Speed of light in medium",
+      "unit": "m/s",
+      "min": 1.2e8,
+      "max": 3e8,
+      "default": 2e8
+    }
+  },
+  "locked_facts": [
+    "Snell's Law: n₁ sin θ₁ = n₂ sin θ₂",
+    "Refractive index: n = c/v, where c = 3 × 10⁸ m/s and v is speed in the medium",
+    "Apparent depth = real depth / n (for normal viewing)",
+    "Lateral shift: d = t sin(θ₁ - θ₂) / cos θ₂, where t is slab thickness",
+    "Ray bends TOWARD normal when entering denser medium (n₂ > n₁)",
+    "Ray bends AWAY from normal when entering rarer medium (n₂ < n₁)",
+    "For a parallel-sided glass slab, the emergent ray is parallel to the incident ray but laterally displaced"
+  ],
+  "truth_statements": [
+    "The ratio of the sine of the angle of incidence to the sine of the angle of refraction is constant for a given pair of media — this constant is the relative refractive index",
+    "The refractive index of a medium is the ratio of the speed of light in vacuum to the speed of light in the medium",
+    "When viewing an object in a denser medium from a rarer medium, the object appears closer than it actually is — apparent depth is less than real depth",
+    "A ray passing through a parallel-sided glass slab undergoes lateral displacement but emerges parallel to the incident ray",
+    "All angles in Snell's law are measured from the normal to the surface at the point of incidence, never from the surface itself"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Send a ray from air into glass at 45 degrees. It bends toward the normal: θ₂ = sin⁻¹(sin45°/1.5) ≈ 28.1°. Now compute n₁ sin θ₁ = 1.0 × 0.707 = 0.707 and n₂ sin θ₂ = 1.5 × 0.471 = 0.707 — they are exactly equal. Change the angle: the product n sin θ always stays the same on both sides. This is Snell's law — a conservation rule for the component of the wave vector along the interface.",
+    "visual_emphasis": "Show n₁ sin θ₁ and n₂ sin θ₂ as numerical readouts that stay locked together as the angle changes. Highlight the normal prominently. Show the speed of light changing at the interface with a wavefront animation."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Ray approaches interface — two media shown",
+      "description": "Two media shown with different shading (lighter for air, denser shading for glass). An incident ray approaches the flat interface. Normal drawn as a dashed line perpendicular to the surface. Angle of incidence arc shown.",
+      "emphasis": "Establish the setup: two media with different refractive indices. The normal is the reference line for all angle measurements.",
+      "labels_visible": ["n₁ = 1.0 (air)", "n₂ = 1.5 (glass)", "θ₁", "Normal"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Refraction occurs — ray bends toward normal",
+      "description": "The refracted ray appears in the denser medium, bending toward the normal. Both angle arcs displayed. θ₂ < θ₁ because n₂ > n₁. A faint reflected ray also shown.",
+      "emphasis": "Going from rarer to denser: the ray slows down (v = c/n decreases) and bends toward the normal. sin θ₂ = (n₁/n₂) sin θ₁.",
+      "labels_visible": ["θ₁", "θ₂", "θ₂ < θ₁", "n₁ sin θ₁ = n₂ sin θ₂"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Snell's law verified — n sin θ is conserved",
+      "description": "Both products n₁ sin θ₁ and n₂ sin θ₂ shown numerically and confirmed equal. Wavefronts drawn showing wavelength compression in the denser medium. Speed readouts: c in air, c/1.5 in glass.",
+      "emphasis": "The product n sin θ is the same on both sides of the interface — this is the fundamental law of refraction. The frequency stays constant; wavelength and speed change.",
+      "labels_visible": ["n₁ sin θ₁ = n₂ sin θ₂", "v₁ = c", "v₂ = c/n₂", "λ₂ = λ₁/n₂"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive — explore refraction",
+      "description": "Sliders to change angle of incidence and refractive indices. Refracted ray updates in real time. Lateral shift shown for a glass slab. Apparent depth demonstrated.",
+      "emphasis": "Change n₂ and watch how the bending angle changes. Try n₁ > n₂ to see the ray bend away from the normal. Increase the angle until you approach the critical angle for total internal reflection.",
+      "interactive": true,
+      "sliders": [
+        { "id": "angleOfIncidence", "label": "Angle of incidence θ₁", "min": 0, "max": 89, "default": 30, "unit": "deg" },
+        { "id": "refractiveIndex1", "label": "Refractive index n₁", "min": 1.0, "max": 2.5, "default": 1.0, "unit": "" },
+        { "id": "refractiveIndex2", "label": "Refractive index n₂", "min": 1.0, "max": 2.5, "default": 1.5, "unit": "" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Light bends because it hits the surface at an angle — like a ball bouncing",
+      "trigger_phrases": ["ball jaisi bounce hoti hai", "light bounces off surface", "angle of hitting causes bending", "surface pe takraati hai"],
+      "correction": "Refraction is NOT reflection or bouncing. Light bends because its speed changes when entering a different medium. The wavefronts tilt because one side of the wavefront slows down before the other. This is why the bending direction depends on which medium is denser.",
+      "simulation_emphasis": "Show wavefronts (not just rays) approaching the interface. One edge of the wavefront enters the denser medium first and slows down, causing the wavefront to pivot — this is why the ray bends."
+    },
+    {
+      "belief": "Angles are measured from the surface, not from the normal",
+      "trigger_phrases": ["surface se angle measure karo", "angle from surface", "surface se measure hota hai", "normal kya hota hai"],
+      "correction": "In Snell's law, ALL angles are measured from the normal (the line perpendicular to the surface at the point of incidence). If you measure from the surface, you get the complement of the correct angle, and Snell's law will give wrong results.",
+      "simulation_emphasis": "Draw the normal prominently as a dashed line. Show the angle arc from the normal, not from the surface. Demonstrate that using surface angles gives incorrect refraction predictions."
+    },
+    {
+      "belief": "The refractive index depends on the angle of incidence",
+      "trigger_phrases": ["angle change karne se n change hota hai", "refractive index changes with angle", "n depends on theta", "different angle different n"],
+      "correction": "The refractive index is a property of the medium (and the wavelength of light), NOT the angle. n = c/v is fixed for a given medium and colour. Snell's law works precisely because n is constant — only the angles adjust to maintain n₁ sin θ₁ = n₂ sin θ₂.",
+      "simulation_emphasis": "Change the angle of incidence with a slider and show that n₁ and n₂ remain constant while only θ₁ and θ₂ change. The ratio sin θ₁/sin θ₂ stays equal to n₂/n₁ for all angles."
+    }
+  ],
+  "legend": [
+    { "symbol": "θ₁", "meaning": "Angle of incidence (from normal)" },
+    { "symbol": "θ₂", "meaning": "Angle of refraction (from normal)" },
+    { "symbol": "n", "meaning": "Refractive index = c/v" },
+    { "symbol": "c", "meaning": "Speed of light in vacuum = 3 × 10⁸ m/s" },
+    { "symbol": "d", "meaning": "Lateral shift through a slab" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["reflection_laws"],
+    "extensions": ["total_internal_reflection", "refraction_at_spherical_surface", "prism_dispersion"],
+    "siblings": ["reflection_spherical_mirrors"],
+    "common_exam_combinations": ["total_internal_reflection", "prism_dispersion", "thin_lens_formula"]
+  }
+}

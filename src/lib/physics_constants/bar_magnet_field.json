@@ -1,0 +1,108 @@
+{
+  "concept_id": "bar_magnet_field",
+  "concept_name": "Magnetic Field of a Bar Magnet",
+  "chapter": "Magnetism and Matter",
+  "class_level": 12,
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "bar_magnet",
+    "panel_count": 1,
+    "show_graph": false
+  },
+  "variables": {
+    "M": { "symbol": "M", "name": "Magnetic moment", "unit": "Am²", "min": 0.1, "max": 10, "default": 1 },
+    "d": { "symbol": "d", "name": "Distance from center", "unit": "m", "min": 0.05, "max": 1, "default": 0.2 },
+    "B_axial": { "symbol": "B_axial", "name": "Field at axial point", "unit": "T", "formula": "μ₀·2M/(4πd³)" },
+    "B_equatorial": { "symbol": "B_eq", "name": "Field at equatorial point", "unit": "T", "formula": "μ₀·M/(4πd³)" }
+  },
+  "locked_facts": [
+    "Field lines emerge from N pole, enter S pole OUTSIDE magnet",
+    "Inside magnet: field lines go from S to N (continuous closed loops)",
+    "Magnetic monopoles do not exist",
+    "B at axial point: μ₀·2M/(4πd³)",
+    "B at equatorial point: μ₀·M/(4πd³)"
+  ],
+  "truth_statements": [
+    "Magnetic field lines of a bar magnet form continuous closed loops — they go from N to S outside and from S to N inside the magnet",
+    "The field is strongest near the poles where the lines are most concentrated",
+    "The axial field is twice the equatorial field at the same distance from the center",
+    "A bar magnet is equivalent to a magnetic dipole with moment M = m × 2l",
+    "Magnetic monopoles have never been observed — every magnet has both a north and a south pole"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Rotate the 3D view to look inside the magnet. Field lines that went N→S outside now continue S→N inside, forming complete closed loops. There are no sources or sinks — unlike electric field lines. This is why monopoles do not exist.",
+    "visual_emphasis": "Trace a single field line: outside from N to S, then inside from S to N, forming one complete loop. No beginning, no end.",
+    "why_this_breaks_misconception": "Students see that field lines do not start at N and end at S — they are continuous closed loops"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Bar magnet — N and S poles",
+      "description": "A bar magnet with red N-pole and blue S-pole. No field lines yet. Labels identify the poles.",
+      "emphasis": "A bar magnet with two poles: North (red) and South (blue)",
+      "labels_visible": ["N", "S"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "External field lines — N to S",
+      "description": "Field lines appear outside the magnet, curving from N pole to S pole. Arrows show direction. Lines are denser near poles (stronger field).",
+      "emphasis": "Outside: lines emerge from N and curve back into S. The field is strongest near the poles where lines are densest.",
+      "labels_visible": ["N", "S", "B"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Inside the magnet — S to N (closed loops!)",
+      "description": "Camera rotates to show the interior. Inside the magnet, field lines continue from S to N. Each line forms a complete closed loop. Caption: No monopoles — lines never end!",
+      "emphasis": "INSIDE the magnet, lines go from S to N — completing the loop! Every field line is a closed curve. There are NO magnetic charges (monopoles).",
+      "labels_visible": ["S→N inside", "closed loop", "no monopole"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore — trace complete loops",
+      "description": "Interactive mode. Full 3D rotation. Student can trace any field line and verify it forms a closed loop: N→S outside, S→N inside.",
+      "emphasis": "Trace any single field line: N → S outside → S → N inside → back to start. Closed loop. B_axial = 2 × B_equatorial.",
+      "labels_visible": ["N", "S", "B", "M"],
+      "interactive": true
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "id": "field_lines_start_at_north",
+      "trigger_keywords": ["field lines start from N", "N pole se shuru hota hai", "lines begin at north pole", "field lines originate at N"],
+      "student_belief": "Magnetic field lines start at the north pole and end at the south pole",
+      "actual_physics": "Magnetic field lines are CLOSED LOOPS. Outside the magnet they go from N to S, but inside they continue from S to N. They have no beginning or end. This is because magnetic monopoles do not exist — div B = 0.",
+      "simulation_emphasis": "Show the complete closed loop by rotating to see inside the magnet — lines continue from S to N inside."
+    },
+    {
+      "id": "magnetic_monopoles_exist",
+      "trigger_keywords": ["magnetic monopole", "single pole magnet", "only north pole", "sirf N pole", "cut magnet one pole"],
+      "student_belief": "You can isolate a magnetic monopole by cutting a magnet in half",
+      "actual_physics": "If you cut a bar magnet in half, you get two complete bar magnets, each with its own N and S pole. You can never isolate a single pole. This is a fundamental property of magnetism — magnetic monopoles have never been observed.",
+      "simulation_emphasis": "Show the continuous closed-loop nature of field lines — there is no point where lines start or end, so there is no monopole."
+    }
+  ],
+  "legend": [
+    { "symbol": "N", "meaning": "North pole (field emerges)" },
+    { "symbol": "S", "meaning": "South pole (field enters)" },
+    { "symbol": "B", "meaning": "Magnetic field direction" },
+    { "symbol": "M", "meaning": "Magnetic moment = m × 2l" },
+    { "symbol": "↻", "meaning": "Closed loop (no monopole)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["magnetic_field_basics", "magnetic_field_wire"],
+    "extensions": ["magnetic_field_solenoid", "earth_magnetism"],
+    "siblings": ["magnetic_field_solenoid", "magnetic_field_wire"],
+    "common_exam_combinations": ["magnetic_field_solenoid", "earth_magnetism", "torque_on_dipole"]
+  },
+  "jee_specific": {
+    "typical_question_types": ["B at axial/equatorial point of bar magnet", "torque on bar magnet in external field", "comparison of axial and equatorial fields", "equivalent solenoid current"],
+    "common_traps": ["confusing axial and equatorial formulas (factor of 2)", "forgetting d is from center not from pole", "wrong direction of field at equatorial point"],
+    "numerical_ranges": {
+      "M": "1–100 Am²",
+      "d": "5–50 cm",
+      "μ₀": "4π × 10⁻⁷ T·m/A"
+    }
+  }
+}

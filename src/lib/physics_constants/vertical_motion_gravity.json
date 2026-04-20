@@ -1,0 +1,111 @@
+{
+  "concept_id": "vertical_motion_gravity",
+  "concept_name": "Vertical Motion Under Gravity",
+  "class_level": 11,
+  "chapter": "Motion in a Straight Line",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "mechanics_2d",
+    "scenario_type": "free_fall",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "u": "Initial velocity of projection (m/s, positive upward)",
+    "g": "Acceleration due to gravity = 9.8 m/s² (≈ 10 m/s² in numericals)",
+    "H": "Maximum height reached (m)",
+    "T": "Total time of flight (s)",
+    "v": "Velocity at any instant (m/s)"
+  },
+  "locked_facts": [
+    "Free fall acceleration a = g = 9.8 m/s² downward, independent of mass",
+    "For upward projection: v = u − gt, s = ut − ½gt², v² = u² − 2gs (taking up as positive)",
+    "Maximum height H = u²/(2g), reached when v = 0",
+    "Time to reach maximum height t_up = u/g",
+    "Time of ascent = time of descent (t_up = t_down = u/g), total time T = 2u/g",
+    "Speed at return to launch point equals initial speed (|v| = u), direction reversed",
+    "All objects fall with the same acceleration in vacuum regardless of mass (Galileo's result)"
+  ],
+  "truth_statements": [
+    "In the absence of air resistance, all bodies fall with the same acceleration regardless of their mass — this was demonstrated by Galileo",
+    "The time of ascent equals the time of descent for a body thrown vertically upward (in the absence of air resistance)",
+    "At the highest point, the velocity is zero but the acceleration is still g downward — acceleration never becomes zero during free fall",
+    "The speed with which a body returns to its point of projection equals the speed of projection (conservation of energy)",
+    "Free fall is simply a special case of uniformly accelerated motion with a = g and u = 0"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A ball thrown upward reaches the top and momentarily stops (v = 0). An acceleration arrow pointing downward remains visible and unchanged at the peak — the same length as during ascent and descent. A speedometer reads 0 but an accelerometer reads g = 9.8 m/s².",
+    "visual_emphasis": "At the peak: velocity = 0 BUT acceleration = g (still pointing down). The acceleration arrow does not shrink or vanish at the top.",
+    "why_this_breaks_misconception": "Students believe that at the highest point, both velocity and acceleration are zero. Seeing the constant g-arrow at the peak breaks this misconception."
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Setup",
+      "description": "A ball at ground level with an upward velocity arrow. Velocity readout shows u m/s upward. Acceleration arrow pointing downward shows g = 9.8 m/s². Both vectors clearly labeled.",
+      "emphasis": "Velocity is upward, acceleration is downward (opposing) — the ball will decelerate on the way up.",
+      "labels_visible": ["u", "g = 9.8 m/s²", "up = positive"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Ascent and Descent",
+      "description": "Ball rises: velocity arrow shrinks, acceleration arrow stays constant. Ball reaches peak: velocity arrow vanishes. Ball descends: velocity arrow grows downward, acceleration arrow still the same downward g. Trail shows positions at equal time intervals (increasing spacing during descent).",
+      "emphasis": "Velocity changes continuously but acceleration is CONSTANT at g throughout — during ascent, peak, and descent.",
+      "labels_visible": ["v (changing)", "a = g (constant)", "H", "t_up"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Aha — At the Peak",
+      "description": "Freeze at maximum height. Speedometer reads 0. Accelerometer reads 9.8 m/s². Acceleration arrow still pointing down at full length. A text callout: 'v = 0 does NOT mean a = 0'. Below: speed values on the way up and down shown symmetrically (same speeds at same heights).",
+      "emphasis": "Acceleration is g at the peak — it never becomes zero. Speed at each height is the same going up and coming down.",
+      "labels_visible": ["v = 0", "a = g ≠ 0", "speed symmetry"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Explore",
+      "description": "Interactive: adjust initial upward speed. Maximum height H = u²/(2g) and time of flight T = 2u/g update live. A mass slider shows that changing mass does NOT change the motion (same trajectory for 1 kg and 10 kg). Optional air resistance toggle shows how real-world differs.",
+      "emphasis": "Change mass — motion is identical. Increase u — H quadruples when u doubles (H ∝ u²). Toggle air resistance to see asymmetry in ascent/descent times.",
+      "labels_visible": ["u", "H", "T", "mass (no effect)", "g"],
+      "interactive": true,
+      "sliders": [
+        { "id": "initial_speed", "label": "Initial Speed (u)", "min": 5, "max": 50, "default": 20, "unit": "m/s" },
+        { "id": "mass", "label": "Mass (no effect on motion)", "min": 0.5, "max": 10, "default": 1, "unit": "kg" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "At the highest point, both velocity and acceleration are zero",
+      "trigger_phrases": ["top pe acceleration zero hai", "sabse upar pe a = 0", "ruka hai toh acceleration nahi hai", "velocity zero toh acceleration bhi zero"],
+      "correction": "NCERT states that acceleration due to gravity acts at all points during free fall, including at the highest point. At the peak, v = 0 but a = g = 9.8 m/s² downward. If acceleration were zero at the top, the ball would remain there forever.",
+      "simulation_emphasis": "Show constant acceleration arrow at the peak even as velocity arrow vanishes — accelerometer reading stays at 9.8"
+    },
+    {
+      "belief": "Heavier objects fall faster than lighter objects",
+      "trigger_phrases": ["bhari cheez jaldi girti hai", "heavy falls faster", "mass zyada toh speed zyada", "heavy object reaches ground first"],
+      "correction": "In the absence of air resistance, all objects fall with the same acceleration g regardless of mass. Galileo demonstrated this. In air, differences appear due to air resistance (not gravity). NCERT Chapter 3 confirms a = g for all objects.",
+      "simulation_emphasis": "Drop two different masses simultaneously — they hit the ground at exactly the same time in vacuum mode"
+    },
+    {
+      "belief": "The ball decelerates on the way up and accelerates on the way down — so acceleration changes",
+      "trigger_phrases": ["upar jaate waqt deceleration", "neeche aate waqt acceleration", "acceleration changes direction", "upar aur neeche alag acceleration"],
+      "correction": "The acceleration is g downward at ALL times — during ascent, at the peak, and during descent. It does not change. On the way up, this constant downward acceleration reduces upward velocity. On the way down, it increases downward velocity. The acceleration is always the same.",
+      "simulation_emphasis": "Show the acceleration arrow constant in magnitude and direction (downward) at every point of the trajectory"
+    }
+  ],
+  "legend": [
+    { "symbol": "u", "meaning": "Initial upward velocity" },
+    { "symbol": "g", "meaning": "Acceleration due to gravity = 9.8 m/s² downward" },
+    { "symbol": "H", "meaning": "Maximum height = u²/(2g)" },
+    { "symbol": "T", "meaning": "Total time of flight = 2u/g" },
+    { "symbol": "↓ (red arrow)", "meaning": "Constant acceleration g (always downward)" },
+    { "symbol": "↑↓ (blue arrow)", "meaning": "Velocity (changes direction at peak)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["equations_of_motion", "acceleration"],
+    "extensions": ["projectile_motion", "projectile_motion_advanced"],
+    "siblings": ["equations_of_motion", "motion_graphs"],
+    "common_exam_combinations": ["equations_of_motion", "work_energy_theorem", "conservation_of_momentum"]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "concept_id": "electric_dipole",
+  "concept_name": "Electric Dipole",
+  "class_level": 12,
+  "chapter": "Electric Charges and Fields",
+  "renderer_hint": {
+    "technology": "threejs",
+    "renderer": "field_3d",
+    "scenario_type": "dipole",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "q": "Magnitude of each charge (C)",
+    "2a": "Separation between charges (m)",
+    "p": "Dipole moment p = q × 2a (C·m)",
+    "r": "Distance from centre of dipole (m)"
+  },
+  "locked_facts": [
+    "Dipole moment p = q × 2a, directed from negative to positive charge",
+    "Axial field (on the line of dipole): E_axial = 2kp/r³ for r >> a",
+    "Equatorial field (perpendicular bisector): E_equatorial = kp/r³ for r >> a",
+    "Axial field is twice the equatorial field at the same distance",
+    "Equatorial field points opposite to dipole moment direction",
+    "Torque on dipole in uniform field: τ = p × E = pE sinθ",
+    "Potential energy of dipole in field: U = -p·E = -pE cosθ",
+    "Net force on dipole in uniform field is zero — only torque acts"
+  ],
+  "truth_statements": [
+    "The electric field of a dipole falls off as 1/r³ at large distances, faster than a point charge field which falls as 1/r²",
+    "The dipole moment is defined as the product of charge magnitude and separation, directed from negative to positive",
+    "In a uniform electric field a dipole experiences a torque that tends to align it with the field but no net translational force",
+    "The axial field is exactly twice the equatorial field at the same large distance from the dipole",
+    "At the equatorial point the field direction is antiparallel to the dipole moment"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Split screen showing field vectors at an axial point and an equatorial point at equal distance r — the axial arrow is exactly twice as long as the equatorial arrow, and the equatorial arrow points opposite to p",
+    "visual_emphasis": "Side-by-side comparison of axial (2kp/r³) and equatorial (kp/r³) field magnitudes with arrows",
+    "why_this_breaks_misconception": "Students assume the dipole field is symmetric in all directions — seeing the 2:1 ratio and direction reversal makes the anisotropy undeniable"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Dipole at rest",
+      "description": "Two charges +q and -q separated by 2a. The dipole moment vector p is shown from -q to +q. No field lines yet.",
+      "emphasis": "Establish p direction — negative to positive",
+      "labels_visible": ["+q", "-q", "p", "2a"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Field lines appear",
+      "description": "Electric field lines emerge from +q and terminate on -q. The characteristic dipole pattern is visible. Field vectors are drawn at one axial and one equatorial point.",
+      "emphasis": "Field lines curve from + to - and the pattern is NOT symmetric around the midpoint",
+      "labels_visible": ["E_axial", "E_equatorial", "field lines"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Axial vs equatorial comparison",
+      "description": "At equal distance r from the centre: axial field arrow is drawn twice as long as equatorial field arrow. Equatorial arrow points opposite to p. Numerical values confirm E_axial = 2 × E_equatorial.",
+      "emphasis": "The 2:1 ratio and the direction reversal at the equatorial point are the core insight",
+      "labels_visible": ["E_axial = 2kp/r³", "E_equatorial = kp/r³", "ratio = 2:1"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Dipole in uniform field",
+      "description": "Uniform external E field applied. Dipole experiences torque τ = pE sinθ. Student rotates dipole with slider — torque arrow changes. At θ=0 stable equilibrium, at θ=180° unstable.",
+      "emphasis": "Torque tries to align p with E — zero net force in uniform field",
+      "labels_visible": ["τ = pE sinθ", "θ", "U = -pE cosθ"],
+      "interactive": true,
+      "sliders": [
+        { "id": "angle", "label": "Dipole angle θ", "min": 0, "max": 360, "default": 45, "unit": "°" },
+        { "id": "distance", "label": "Observation distance r", "min": 3, "max": 15, "default": 8, "unit": "cm" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "The dipole field is the same magnitude in all directions at a given distance",
+      "trigger_phrases": ["same field everywhere", "symmetric field", "dipole field equal all sides"],
+      "correction": "The axial field is exactly twice the equatorial field at the same distance (E_axial = 2kp/r³ vs E_equatorial = kp/r³)",
+      "simulation_emphasis": "Show two field arrows at same distance r — axial one twice as long"
+    },
+    {
+      "belief": "The dipole moment points from positive to negative charge",
+      "trigger_phrases": ["p from plus to minus", "positive to negative direction"],
+      "correction": "By convention the dipole moment p points from the negative charge to the positive charge",
+      "simulation_emphasis": "Clearly label p arrow from -q to +q with arrow direction"
+    }
+  ],
+  "legend": [
+    { "symbol": "p", "meaning": "Dipole moment = q × 2a (C·m)" },
+    { "symbol": "E_ax", "meaning": "Axial field = 2kp/r³" },
+    { "symbol": "E_eq", "meaning": "Equatorial field = kp/r³" },
+    { "symbol": "τ", "meaning": "Torque on dipole (N·m)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["coulombs_law", "electric_field_lines"],
+    "extensions": ["polarisation_malus_law"],
+    "siblings": ["magnetic_dipole_bar_magnet"],
+    "common_exam_combinations": ["electric_field_lines", "electric_potential_3d"]
+  }
+}

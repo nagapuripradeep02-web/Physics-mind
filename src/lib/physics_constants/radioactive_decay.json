@@ -1,0 +1,200 @@
+{
+  "concept_id": "radioactive_decay",
+  "concept_name": "Radioactive Decay",
+  "class_level": "12",
+  "chapter": "Nuclei",
+  "renderer_hint": {
+    "technology": "plotly",
+    "renderer": "graph_interactive",
+    "scenario_type": "exponential_decay_curve",
+    "panel_count": 2,
+    "show_labels": true
+  },
+  "variables": {
+    "N": {
+      "name": "number of undecayed nuclei at time t",
+      "symbol": "N",
+      "unit": "dimensionless",
+      "role": "dependent"
+    },
+    "N0": {
+      "name": "initial number of nuclei",
+      "symbol": "N₀",
+      "unit": "dimensionless",
+      "role": "initial_condition"
+    },
+    "lambda": {
+      "name": "decay constant",
+      "symbol": "λ",
+      "unit": "s⁻¹",
+      "role": "material_property",
+      "note": "Probability of decay per nucleus per unit time; higher λ means faster decay"
+    },
+    "t": {
+      "name": "time",
+      "symbol": "t",
+      "unit": "s",
+      "role": "independent"
+    },
+    "t_half": {
+      "name": "half-life",
+      "symbol": "t½",
+      "unit": "s",
+      "role": "derived",
+      "note": "Time for half the nuclei to decay; t½ = 0.693/λ = ln2/λ"
+    },
+    "A": {
+      "name": "activity (rate of decay)",
+      "symbol": "A",
+      "unit": "Bq (disintegrations/s)",
+      "role": "dependent",
+      "note": "A = λN = A₀e^(-λt); measured in Becquerel (1 Bq = 1 decay/s) or Curie (1 Ci = 3.7×10¹⁰ Bq)"
+    },
+    "tau": {
+      "name": "mean lifetime",
+      "symbol": "τ",
+      "unit": "s",
+      "role": "derived",
+      "note": "τ = 1/λ = t½/0.693; average time a nucleus survives before decaying"
+    }
+  },
+  "locked_facts": [
+    "N = N₀e^(-λt) — exponential decay law; number of undecayed nuclei decreases exponentially with time",
+    "t½ = 0.693/λ = ln2/λ — half-life is inversely proportional to decay constant",
+    "A = λN = A₀e^(-λt) — activity (decay rate) also decays exponentially; A₀ = λN₀",
+    "After n half-lives: N = N₀/2ⁿ — simple halving rule for quick calculations",
+    "τ = 1/λ = t½/ln2 ≈ 1.44 × t½ — mean lifetime is 44% longer than half-life",
+    "Alpha decay: ²²⁶Ra → ²²²Rn + ⁴He (A decreases by 4, Z decreases by 2)",
+    "Beta-minus decay: ¹⁴C → ¹⁴N + e⁻ + ν̄ (neutron → proton + electron + antineutrino; Z increases by 1, A unchanged)",
+    "Gamma decay: excited nucleus → same nucleus + γ photon (no change in A or Z, only energy state changes)"
+  ],
+  "truth_statements": [
+    "Radioactive decay is a purely statistical process — it is impossible to predict WHEN a specific nucleus will decay; only the probability per unit time (λ) is known",
+    "Half-life is independent of the amount of substance, temperature, pressure, or chemical state — it is an intrinsic nuclear property",
+    "The exponential decay law N = N₀e^(-λt) is valid only for large numbers of nuclei; for individual nuclei, decay is random",
+    "Alpha particles are helium-4 nuclei (²He⁴), beta particles are high-energy electrons (β⁻) or positrons (β⁺), and gamma rays are high-energy photons",
+    "Carbon-14 dating uses t½ = 5730 years: measuring the ratio of ¹⁴C to ¹²C in organic remains determines age up to ~50,000 years"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "description": "Student watches 1000 nuclei decaying in real-time. After exactly one half-life, approximately 500 remain — but NOT exactly 500 each time (statistical fluctuation). After 2 half-lives: ~250. After 3: ~125. The exponential curve emerges from pure randomness at the individual level. Each nucleus has no 'memory' of how long it has existed.",
+    "visual_cue": "Grid of 1000 dots blinking out randomly; counter shows N vs t matching N₀e^(-λt) curve; vertical lines at t½, 2t½, 3t½ showing halving"
+  },
+  "simulation_states": {
+    "STATE_1": {
+      "title": "Random Decay of Individual Nuclei",
+      "description": "Display a grid of 200 nuclei (colored dots). Each has a probability λΔt of decaying in each time step. Watch nuclei randomly 'pop' (change color to grey). No pattern in which nucleus decays next — it is purely probabilistic. Count surviving nuclei in real-time.",
+      "visual_elements": ["nucleus_grid", "decay_flash_animation", "survival_counter", "probability_display"],
+      "labels": ["Each nucleus: P(decay) = λΔt per step", "No way to predict which one next", "N surviving"]
+    },
+    "STATE_2": {
+      "title": "Exponential Decay Curve Emerges",
+      "description": "Plot N vs t as the grid decays. Despite individual randomness, the aggregate curve follows N = N₀e^(-λt) smoothly. Mark the half-life point where N = N₀/2. Show that after each half-life, exactly half of the REMAINING nuclei decay.",
+      "visual_elements": ["N_vs_t_plot", "exponential_fit_curve", "half_life_markers", "grid_shrinking"],
+      "labels": ["N = N₀e^(-λt)", "t½ = 0.693/λ", "After n half-lives: N = N₀/2ⁿ"]
+    },
+    "STATE_3": {
+      "title": "Three Types of Decay",
+      "description": "Show three decay processes side by side: (1) Alpha: parent nucleus ejects He-4, becomes element Z-2; (2) Beta-minus: neutron converts to proton, ejects electron + antineutrino; (3) Gamma: excited nucleus emits photon, no transmutation. Show conservation of mass number and charge in each.",
+      "visual_elements": ["alpha_decay_diagram", "beta_decay_diagram", "gamma_decay_diagram", "conservation_equations"],
+      "labels": ["α: A→A-4, Z→Z-2", "β⁻: A→A, Z→Z+1", "γ: A→A, Z→Z"]
+    },
+    "STATE_4": {
+      "title": "Interactive Exploration",
+      "description": "Student adjusts decay constant λ (or equivalently half-life) and initial number N₀. Watch the decay curve change shape. Toggle between N vs t and Activity vs t plots. Carbon-14 dating mode: input remaining fraction → calculate age. Challenge: how many half-lives to reach 1% of original?",
+      "interactive": true,
+      "sliders": [
+        {
+          "id": "half_life_slider",
+          "label": "Half-life",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "default": 10,
+          "unit": "time units"
+        },
+        {
+          "id": "initial_nuclei_slider",
+          "label": "Initial Nuclei (N₀)",
+          "min": 50,
+          "max": 1000,
+          "step": 50,
+          "default": 500,
+          "unit": ""
+        },
+        {
+          "id": "plot_selector",
+          "label": "Plot Type",
+          "options": ["N vs t", "Activity vs t", "ln(N) vs t (linear)", "Carbon-14 Dating"],
+          "default": "N vs t"
+        }
+      ]
+    }
+  },
+  "common_misconceptions": [
+    {
+      "id": "half_life_means_all_decay_in_2t",
+      "misconception": "After two half-lives, all the radioactive nuclei will have decayed",
+      "correct": "After two half-lives, N = N₀/4 (one-quarter remains), NOT zero. After n half-lives, N = N₀/2ⁿ. The substance NEVER fully decays to zero in finite time — it asymptotically approaches zero.",
+      "trigger_phrases": [
+        "2 half life mein sab khatam",
+        "two half lives all gone",
+        "double half life means zero",
+        "do half life ke baad kuch nahi bachega",
+        "everything decays after 2t half"
+      ],
+      "ncert_reference": "Chapter 13, Section 13.4"
+    },
+    {
+      "id": "older_nuclei_more_likely_to_decay",
+      "misconception": "A nucleus that has survived a long time is 'due' to decay and more likely to decay soon",
+      "correct": "Radioactive decay is memoryless — the probability of decay per unit time (λ) is constant regardless of how long the nucleus has existed. A nucleus that has survived 10 half-lives has the exact same probability of decaying in the next second as a freshly created nucleus.",
+      "trigger_phrases": [
+        "purana nucleus jaldi decay hoga",
+        "old nucleus must decay soon",
+        "its been long it should decay",
+        "overdue for decay",
+        "time ho gaya decay ka"
+      ],
+      "ncert_reference": "Chapter 13, Section 13.4"
+    },
+    {
+      "id": "temperature_affects_decay",
+      "misconception": "Heating a radioactive substance makes it decay faster",
+      "correct": "Radioactive decay rate is completely independent of temperature, pressure, chemical state, or physical conditions. The decay constant λ is a nuclear property determined by the strong and weak nuclear forces inside the nucleus, which are unaffected by external conditions.",
+      "trigger_phrases": [
+        "garam karo toh jaldi decay hoga",
+        "heat increases decay",
+        "temperature affects half life",
+        "pressure changes decay rate",
+        "can we speed up decay"
+      ],
+      "ncert_reference": "Chapter 13, Section 13.4"
+    }
+  ],
+  "legend": {
+    "active_nucleus": "Bright colored dot — undecayed radioactive nucleus",
+    "decayed_nucleus": "Grey dot — nucleus that has already decayed",
+    "decay_curve": "Exponential curve N = N₀e^(-λt); steeper for larger λ",
+    "half_life_line": "Vertical dashed line at t = t½ where N drops to N₀/2",
+    "activity_curve": "A = λN curve; same exponential shape, scaled by λ"
+  },
+  "concept_relationships": [
+    {
+      "concept_id": "nuclear_binding_energy",
+      "relationship": "Nuclei with low binding energy per nucleon relative to their neighbors are unstable and undergo radioactive decay to reach more stable configurations"
+    },
+    {
+      "concept_id": "nuclear_fission_fusion",
+      "relationship": "Alpha decay is a type of nuclear disintegration; fission can be induced in heavy radioactive nuclei; many fission products are themselves radioactive"
+    },
+    {
+      "concept_id": "bohr_model_hydrogen",
+      "relationship": "Gamma ray emission from excited nuclei is analogous to photon emission in Bohr model — both involve discrete energy level transitions"
+    },
+    {
+      "concept_id": "statistical_mechanics",
+      "relationship": "Radioactive decay is fundamentally probabilistic — the exponential law emerges from applying probability theory to large ensembles"
+    }
+  ]
+}

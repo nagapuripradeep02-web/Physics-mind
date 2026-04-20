@@ -1,0 +1,2222 @@
+{
+  "concept_id": "vector_addition",
+  "concept_name": "Vector Addition",
+  "class_level": 11,
+  "chapter": "Chapter 5: Vectors",
+  "section": "5.1 – Addition of Vectors",
+  "source_coverage": {
+    "dc_pandey": {
+      "volume": "Mechanics Vol 1",
+      "chapter": 5,
+      "sections": [
+        "5.1",
+        "5.2",
+        "5.3"
+      ]
+    },
+    "ncert": {
+      "class": 11,
+      "chapter": 4,
+      "sections": [
+        "4.2",
+        "4.3"
+      ]
+    },
+    "hc_verma": {
+      "volume": 1,
+      "chapter": 2,
+      "sections": [
+        "2.5",
+        "2.6"
+      ]
+    }
+  },
+  "source_type": "ncert_and_dc_pandey",
+  "three_js_flag": false,
+  "three_js_note": "2D concept. Parallelogram and triangle construction fully handled by mechanics_2d (p5.js/canvas2d). No 3D rendering needed.",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "technology_b": "plotly",
+    "renderer": "mechanics_2d",
+    "panel_count": 2,
+    "sync_required": true,
+    "scenario_type": "vector_addition",
+    "scene_mode": false,
+    "show_labels": true,
+    "panel_a_role": "Animated parallelogram — vectors A and B from common origin, resultant R updating live as angle θ changes",
+    "panel_b_role": "Plotly: R vs θ curve (0–180°) — live dot tracks current angle in STATE_6 only"
+  },
+  "locked_facts": {
+    "resultant_formula": "R = √(A² + B² + 2AB cosθ)",
+    "direction_formula": "tan α = (B sinθ) / (A + B cosθ)",
+    "range_inequality": "|A − B| ≤ R ≤ A + B",
+    "r_max": "R_max = A + B at θ = 0°",
+    "r_min": "R_min = |A − B| at θ = 180°",
+    "pythagoras_case": "R = √(A² + B²) at θ = 90° ONLY",
+    "equal_vectors": "R = 2A cos(θ/2) when both magnitudes are A",
+    "commutativity": "A + B = B + A — vector addition is commutative",
+    "costheta_role": "The 2AB cosθ term is zero at 90°, positive below, negative above"
+  },
+  "minimum_viable_understanding": "The resultant of two vectors depends on BOTH their magnitudes AND the angle between them — changing the angle changes R completely, and R obeys |A−B| ≤ R ≤ A+B.",
+  "variables": {
+    "A": {
+      "description": "Magnitude of first vector",
+      "symbol": "A",
+      "unit": "N or m",
+      "default_value": 4
+    },
+    "B": {
+      "description": "Magnitude of second vector",
+      "symbol": "B",
+      "unit": "N or m",
+      "default_value": 3
+    },
+    "theta": {
+      "description": "Angle between vectors A and B",
+      "symbol": "θ",
+      "unit": "degrees",
+      "range": [
+        0,
+        180
+      ],
+      "default_value": 60
+    },
+    "R": {
+      "description": "Magnitude of resultant vector",
+      "symbol": "R",
+      "unit": "same as A and B",
+      "computed": true
+    },
+    "alpha": {
+      "description": "Angle of resultant R measured from vector A",
+      "symbol": "α",
+      "unit": "degrees",
+      "computed": true
+    }
+  },
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "two_vectors_given",
+      "parallelogram_law",
+      "triangle_law",
+      "resultant_formula",
+      "special_cases_0_90_180",
+      "r_vs_theta_curve"
+    ],
+    "epic_c": [
+      "va_wrong_always_larger",
+      "va_angle_determines",
+      "va_minimum_resultant",
+      "va_aha_direction_controls",
+      "va_ba_order",
+      "va_aha_commutative",
+      "scalar_addition_s4",
+      "scalar_addition_s5",
+      "scalar_addition_s6",
+      "scalar_addition_s7"
+    ],
+    "panel_b": [
+      "graph_empty_axes",
+      "graph_single_dot",
+      "graph_two_points",
+      "graph_full_curve",
+      "graph_partial_curve",
+      "graph_reference_points",
+      "graph_interactive_dot",
+      "graph_wrong_region",
+      "graph_horizontal_line",
+      "graph_curve_vs_constant"
+    ]
+  },
+  "routing_signals": {
+    "global": [
+      "explain",
+      "teach me",
+      "samjhao",
+      "kya hota hai",
+      "from the beginning",
+      "I don't understand"
+    ],
+    "local": [
+      "I thought",
+      "mujhe laga",
+      "but shouldn't",
+      "isn't it",
+      "I got",
+      "my answer was"
+    ],
+    "micro": [
+      "what is the formula",
+      "quick reminder",
+      "R kaise",
+      "just the formula"
+    ],
+    "subconcept_triggers": {
+      "resultant_formula": [
+        "formula",
+        "R kaise nikalte",
+        "calculate R"
+      ],
+      "special_cases": [
+        "0 degree",
+        "90 degree",
+        "180 degree",
+        "perpendicular",
+        "opposite"
+      ],
+      "range_inequality": [
+        "maximum",
+        "minimum",
+        "range",
+        "kitna ho sakta"
+      ],
+      "direction_of_resultant": [
+        "direction of R",
+        "angle of R",
+        "alpha",
+        "kis taraf"
+      ]
+    },
+    "misconception_branch_map": {
+      "always larger|bigger than both|hamesha bada|resultant zyada hoga": "resultant_always_larger",
+      "just add|scalar|3+4=7|seedha add|only magnitude|sirf number": "scalar_addition",
+      "direction doesn't|direction se kya farak|only magnitude matters|arrow ignore": "direction_irrelevant"
+    }
+  },
+  "checkpoint_states": {
+    "resultant_formula": "STATE_4",
+    "special_cases": "STATE_5",
+    "r_vs_theta_graph": "STATE_6",
+    "parallelogram_law": "STATE_2",
+    "triangle_law": "STATE_3"
+  },
+  "prerequisite_check": {
+    "required_concepts": [
+      "scalars_vs_vectors",
+      "basic_trigonometry"
+    ],
+    "gate_question": "If a force has magnitude 5N pointing East — is that a scalar or a vector?",
+    "if_gap_detected": "Route to scalars_vs_vectors first. Return here after completion.",
+    "soft_check_trigger": "If student cannot distinguish magnitude from direction in first response, soft-route to scalar_vector_basics before STATE_2."
+  },
+  "epic_l_path": {
+    "scope": "global",
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "state_id": "STATE_1",
+        "label": "Hook — Two vectors",
+        "physics_layer": {
+          "scenario": "two_vectors_given",
+          "params": {
+            "vec_a": {
+              "magnitude": 4,
+              "angle_deg": 0,
+              "label": "A",
+              "color": "#4FC3F7"
+            },
+            "vec_b": {
+              "magnitude": 3,
+              "angle_deg": 90,
+              "label": "B",
+              "color": "#81C784"
+            }
+          },
+          "freeze_at_t": 0,
+          "show_parallelogram": false,
+          "show_resultant": false
+        },
+        "panel_b_layer": {
+          "scenario": "graph_empty_axes",
+          "active_lines": [],
+          "highlight_point": false
+        },
+        "advance_mode": "auto_after_tts",
+        "locked_facts": [
+          "Vector A = 4 units East, Vector B = 3 units North",
+          "Direction is a mathematical input — not a label"
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "You walk 4 metres East, then 3 metres North. Where do you end up?",
+              "sync_point": "vectors_appear",
+              "pause_after_ms": 600,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": []
+            },
+            {
+              "id": "s2",
+              "text_en": "Most students say 7 metres — because 4 plus 3 is 7. But that is a scalar answer to a vector question.",
+              "sync_point": "animation_start",
+              "pause_after_ms": 800,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "scalar",
+                "vector"
+              ]
+            },
+            {
+              "id": "s3",
+              "text_en": "These two arrows are our vectors A and B. Both direction and magnitude matter here.",
+              "sync_point": "state_complete",
+              "pause_after_ms": 400,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "vector"
+              ]
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "Parallelogram law — both from same origin",
+        "physics_layer": {
+          "scenario": "vector_addition",
+          "animate_construction": true,
+          "freeze": false,
+          "construction_sequence": [
+            "draw_vector_A",
+            "draw_vector_B_from_origin",
+            "draw_dashed_A_from_B_head",
+            "draw_dashed_B_from_A_head",
+            "flash_diagonal_resultant"
+          ],
+          "vector_A": {
+            "magnitude": 4,
+            "direction_deg": 30,
+            "color": "#4FC3F7",
+            "start": "origin"
+          },
+          "vector_B": {
+            "magnitude": 3,
+            "direction_deg": 90,
+            "color": "#FF8A65",
+            "start": "origin"
+          },
+          "resultant": {
+            "color": "#66BB6A",
+            "label": "R = diagonal",
+            "from": "origin",
+            "to": "parallelogram_opposite_corner"
+          },
+          "shade_parallelogram": true,
+          "show_labels": true
+        },
+        "pedagogy_layer": {
+          "cognitive_trigger": "Both vectors from the same origin — the parallelogram forms itself. That diagonal IS the resultant.",
+          "real_world_anchor": "Two forces on an object — one East, one North. The object moves along the diagonal.",
+          "attention_target": "The diagonal appearing from origin to opposite corner — that arrow IS R",
+          "contrast_from_previous": "Triangle law showed tip-to-tail. Parallelogram law shows both from origin. Same R."
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Draw both vectors from the same origin — point O.",
+              "sync_point": "vectors_appear",
+              "pause_after_ms": 400,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": []
+            },
+            {
+              "id": "s2",
+              "text_en": "Complete the parallelogram — dashed lines from the tips of A and B.",
+              "sync_point": "parallelogram_complete",
+              "pause_after_ms": 600,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "parallelogram"
+              ]
+            },
+            {
+              "id": "s3",
+              "text_en": "The diagonal from O is the resultant R. Not 7. This is the parallelogram law.",
+              "sync_point": "diagonal_appears",
+              "pause_after_ms": 800,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "parallelogram law",
+                "resultant"
+              ]
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "state_id": "STATE_3",
+        "label": "Triangle Law",
+        "physics_layer": {
+          "scenario": "triangle_law",
+          "params": {
+            "vec_a": {
+              "magnitude": 4,
+              "angle_deg": 0,
+              "label": "A"
+            },
+            "vec_b": {
+              "magnitude": 3,
+              "angle_deg": 90,
+              "label": "B"
+            },
+            "show_triangle": true,
+            "show_resultant": true
+          }
+        },
+        "panel_b_layer": {
+          "scenario": "graph_empty_axes",
+          "active_lines": [],
+          "highlight_point": false
+        },
+        "advance_mode": "auto_after_animation",
+        "locked_facts": [
+          "Triangle law: head-to-tail; resultant connects tail of first to head of last",
+          "Triangle law and parallelogram law give identical R"
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Second method — triangle law. Shift B so its tail sits at the tip of A.",
+              "sync_point": "vectors_appear",
+              "pause_after_ms": 600,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "triangle law"
+              ]
+            },
+            {
+              "id": "s2",
+              "text_en": "The line from tail of A to tip of B is R. Same answer. Two methods — one result.",
+              "sync_point": "diagonal_appears",
+              "pause_after_ms": 600,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": []
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "state_id": "STATE_4",
+        "label": "Resultant Formula",
+        "physics_layer": {
+          "scenario": "resultant_formula",
+          "params": {
+            "vec_a": {
+              "magnitude": 4,
+              "angle_deg": 0,
+              "label": "A"
+            },
+            "vec_b": {
+              "magnitude": 3,
+              "angle_deg": 60,
+              "label": "B"
+            },
+            "show_formula": true,
+            "interactive_theta": true
+          },
+          "freeze_at_t": 0
+        },
+        "panel_b_layer": {
+          "scenario": "graph_single_dot",
+          "active_lines": [],
+          "highlight_point": true,
+          "point_x": 60,
+          "point_y": 7.0,
+          "reference_points": []
+        },
+        "advance_mode": "interaction_complete",
+        "locked_facts": [
+          "R = √(A² + B² + 2AB cosθ)",
+          "tan α = (B sinθ)/(A + B cosθ)",
+          "cosθ term is zero at 90°, positive below, negative above"
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Apply the cosine rule to the triangle. R squared equals A squared plus B squared plus 2AB cosine theta.",
+              "sync_point": "formula_overlaid",
+              "pause_after_ms": 800,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "cosine theta"
+              ]
+            },
+            {
+              "id": "s2",
+              "text_en": "The 2AB cosine theta term links the angle to the magnitude. Use the slider — watch R change live.",
+              "sync_point": "slider_enabled",
+              "pause_after_ms": 600,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "cosine theta",
+                "slider"
+              ]
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "state_id": "STATE_5",
+        "label": "Special Cases: 0°, 90°, 180°",
+        "physics_layer": {
+          "scenario": "special_cases_0_90_180",
+          "params": {
+            "vec_a_magnitude": 4,
+            "vec_b_magnitude": 3,
+            "cases": [
+              0,
+              90,
+              180
+            ],
+            "highlight_max_min": true
+          },
+          "freeze_at_t": 0
+        },
+        "panel_b_layer": {
+          "scenario": "graph_reference_points",
+          "active_lines": [],
+          "highlight_point": false,
+          "reference_points": [
+            {
+              "x": 0,
+              "y": 7,
+              "label": "R_max"
+            },
+            {
+              "x": 90,
+              "y": 5,
+              "label": "R_perp"
+            },
+            {
+              "x": 180,
+              "y": 1,
+              "label": "R_min"
+            }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "locked_facts": [
+          "θ=0°: R_max=A+B=7",
+          "θ=90°: R=√(A²+B²)=5 — Pythagoras, ONLY here",
+          "θ=180°: R_min=|A−B|=1",
+          "|A−B| ≤ R ≤ A+B"
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Three cases JEE loves. Same A=4, B=3 — three different resultants.",
+              "sync_point": "special_cases_shown",
+              "pause_after_ms": 600,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "JEE"
+              ]
+            },
+            {
+              "id": "s2",
+              "text_en": "Zero degrees: R equals seven. Maximum.",
+              "sync_point": "step_1_complete",
+              "pause_after_ms": 400,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": []
+            },
+            {
+              "id": "s3",
+              "text_en": "Ninety degrees: R equals five. Pythagoras. This shortcut works ONLY at ninety.",
+              "sync_point": "step_2_complete",
+              "pause_after_ms": 400,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "Pythagoras"
+              ]
+            },
+            {
+              "id": "s4",
+              "text_en": "One-eighty degrees: R equals one. Minimum. The law: R always between modulus A minus B and A plus B.",
+              "sync_point": "state_complete",
+              "pause_after_ms": 600,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": []
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "state_id": "STATE_6",
+        "label": "R vs θ Full Curve",
+        "physics_layer": {
+          "scenario": "r_vs_theta_curve",
+          "params": {
+            "vec_a_magnitude": 4,
+            "vec_b_magnitude": 3,
+            "animate_theta": true
+          }
+        },
+        "panel_b_layer": {
+          "scenario": "graph_full_curve",
+          "lines": [
+            {
+              "id": "r_vs_theta",
+              "label": "R(θ)",
+              "color": "#FF7043",
+              "width": 2
+            }
+          ],
+          "active_lines": [
+            "r_vs_theta"
+          ],
+          "highlight_point": true,
+          "x_axis": {
+            "label": "Angle θ (degrees)",
+            "min": 0,
+            "max": 180,
+            "tick_step": 30
+          },
+          "y_axis": {
+            "label": "Resultant R",
+            "min": 0,
+            "max": 8
+          },
+          "pvl_colors": {
+            "r_vs_theta": "#FF7043"
+          }
+        },
+        "advance_mode": "auto_after_animation",
+        "locked_facts": [
+          "R(θ) is a smooth decreasing curve from A+B to |A−B|",
+          "Curve follows R = √(A²+B²+2AB cosθ) — not linear"
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Now the full picture. Watch R trace its curve as theta sweeps zero to one-eighty.",
+              "sync_point": "animation_start",
+              "pause_after_ms": 400,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "theta"
+              ]
+            },
+            {
+              "id": "s2",
+              "text_en": "Not linear. Bends — because cosine theta bends.",
+              "sync_point": "curve_draws",
+              "pause_after_ms": 600,
+              "tts_style": "calm_explain",
+              "no_translate_tokens": [
+                "cosine theta"
+              ]
+            },
+            {
+              "id": "s3",
+              "text_en": "Seven at zero. Five at ninety. One at one-eighty. Everything in between follows this one curve.",
+              "sync_point": "state_complete",
+              "pause_after_ms": 400,
+              "tts_style": "energetic_aha",
+              "no_translate_tokens": []
+            }
+          ]
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "resultant_always_larger",
+      "misconception": "The resultant of two vectors is always larger than both individual vectors",
+      "student_belief": "Resultant toh hamesha dono se bada hoga — 4 aur 3 hai toh R 5 se zyada hoga zaroor",
+      "trigger_phrases": [
+        "always larger",
+        "always bigger",
+        "hamesha bada",
+        "dono se zyada",
+        "can't be less than either",
+        "minimum toh A ya B se zyada hoga"
+      ],
+      "misconception_depth_signals": {
+        "shallow": [
+          "I thought it would be bigger",
+          "mujhe laga zyada hoga",
+          "7 nahi aaya"
+        ],
+        "deep": [
+          "resultant can never be less than either vector",
+          "vectors always increase when combined",
+          "sirf bada ho sakta hai"
+        ]
+      },
+      "sonnet_emphasis_per_state": {
+        "S2": "Force student to watch R shrink below A=4 as theta increases — observe, not just describe",
+        "S3": "R=1 is less than both A=4 and B=3 — this is the belief-breaking moment, make it land",
+        "S4": "Same magnitudes, R ranges 1 to 7 — direction is the control knob, encode as new mental model",
+        "S5": "Lock |A−B| ≤ R ≤ A+B as a formula the student writes down"
+      },
+      "states": [
+        {
+          "state_id": "S1",
+          "label": "Wrong belief — shown live",
+          "physics_layer": {
+            "scenario": "va_wrong_always_larger",
+            "show_students_wrong_belief": true,
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_wrong_region",
+            "highlight_point": false
+          },
+          "advance_mode": "auto_after_tts",
+          "locked_facts": [
+            "At θ=0°, R=A+B=7 — student is locally correct for this special case"
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "You said the resultant is always larger. At zero degrees — parallel vectors — R equals seven. A plus B. You are right. Here.",
+                "sync_point": "wrong_belief_shown",
+                "pause_after_ms": 800,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S2",
+          "label": "Angle changes — R shrinks",
+          "physics_layer": {
+            "scenario": "va_angle_determines",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_partial_curve",
+            "highlight_point": true
+          },
+          "advance_mode": "auto_after_animation",
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Now watch as I rotate vector B. R is getting shorter. Same two vectors — but the resultant is shrinking.",
+                "sync_point": "conflict_revealed",
+                "pause_after_ms": 800,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S3",
+          "label": "Minimum — R below both",
+          "physics_layer": {
+            "scenario": "va_minimum_resultant",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_single_dot",
+            "highlight_point": true,
+            "point_x": 180,
+            "point_y": 1
+          },
+          "advance_mode": "auto_after_tts",
+          "locked_facts": [
+            "At θ=180°, R=|A−B|=1 — less than both A=4 and B=3"
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "One-eighty degrees. R equals one. Less than A which is four. Less than B which is three. The resultant is smaller than either vector alone.",
+                "sync_point": "correct_shown",
+                "pause_after_ms": 1000,
+                "tts_style": "energetic_aha",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S4",
+          "label": "Aha — direction is the control knob",
+          "physics_layer": {
+            "scenario": "va_aha_direction_controls",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_full_curve",
+            "highlight_point": false
+          },
+          "advance_mode": "auto_after_tts",
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Same A=4, same B=3. R ranges from one to seven — purely based on direction. Direction is the control knob. This is what makes vectors different from scalars.",
+                "sync_point": "state_complete",
+                "pause_after_ms": 600,
+                "tts_style": "energetic_aha",
+                "no_translate_tokens": [
+                  "vectors",
+                  "scalars"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S5",
+          "label": "Confirm — range inequality",
+          "physics_layer": {
+            "scenario": "resultant_always_larger_s5",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_full_curve",
+            "highlight_point": false
+          },
+          "advance_mode": "auto_after_tts",
+          "locked_facts": [
+            "|A−B| ≤ R ≤ A+B — complete law, both bounds matter"
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "The complete law: R always between modulus A minus B and A plus B. Scalar sum R=A+B is only the upper boundary. JEE tests both.",
+                "sync_point": "state_complete",
+                "pause_after_ms": 600,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": [
+                  "JEE"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "branch_id": "scalar_addition",
+      "misconception": "Vectors add like scalars — just add the magnitudes, direction does not affect the arithmetic",
+      "student_belief": "3 aur 4 ka resultant toh 7 hi hoga — direction se sirf visual farak padta hai, number nahi badalta",
+      "trigger_phrases": [
+        "just add",
+        "simply add",
+        "3+4=7",
+        "seedha add karo",
+        "sirf numbers",
+        "direction se kya farak",
+        "7 hona chahiye",
+        "only magnitude"
+      ],
+      "misconception_depth_signals": {
+        "shallow": [
+          "7 nahi aaya",
+          "I got 7",
+          "mera answer 7 tha"
+        ],
+        "deep": [
+          "vectors bhi scalars jaisa add hote hain",
+          "direction matter nahi karta addition mein",
+          "only magnitude counts for addition"
+        ]
+      },
+      "sonnet_emphasis_per_state": {
+        "S2": "Head-to-tail at 60° — resultant visibly shorter than 7; make student measure it",
+        "S3": "A+B = B+A confirmed, but R≈6.08 in BOTH orders — commutativity ≠ scalar sum",
+        "S4": "Plug numbers: √37≈6.08. Formula matches diagram. 7 was wrong because cos60°≠1",
+        "S6": "JEE loves 60° and 120° precisely because students default to scalar sum at these angles"
+      },
+      "states": [
+        {
+          "state_id": "S1",
+          "label": "Wrong belief — shown live",
+          "physics_layer": {
+            "scenario": "va_ab_order",
+            "show_students_wrong_belief": true,
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_horizontal_line",
+            "highlight_point": false
+          },
+          "advance_mode": "auto_after_tts",
+          "locked_facts": [
+            "Student's model: R=A+B=7 always, angle is irrelevant"
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "You said seven. Four plus three. I have shown your model on screen. These vectors are at sixty degrees. Let us see what actually happens.",
+                "sync_point": "wrong_belief_shown",
+                "pause_after_ms": 800,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S2",
+          "label": "A then B — actual result",
+          "physics_layer": {
+            "scenario": "va_ba_order",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_single_dot",
+            "highlight_point": true,
+            "point_x": 60,
+            "point_y": 7.0
+          },
+          "advance_mode": "auto_after_animation",
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Head-to-tail at sixty degrees. The resultant closes the triangle. Measure R — approximately six point zero eight. Not seven.",
+                "sync_point": "diagonal_appears",
+                "pause_after_ms": 800,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S3",
+          "label": "Aha — commutative but not scalar sum",
+          "physics_layer": {
+            "scenario": "va_aha_commutative",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_single_dot",
+            "highlight_point": true,
+            "point_x": 60,
+            "point_y": 7.0
+          },
+          "advance_mode": "auto_after_tts",
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Now B then A. Same resultant. Vector addition IS commutative — order does not matter. But R is still six point zero eight, not seven. Commutativity is not the same as scalar addition.",
+                "sync_point": "correct_shown",
+                "pause_after_ms": 1000,
+                "tts_style": "energetic_aha",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S4",
+          "label": "Formula confirms",
+          "physics_layer": {
+            "scenario": "scalar_addition_s4",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_single_dot",
+            "highlight_point": true,
+            "point_x": 60,
+            "point_y": 7.0
+          },
+          "advance_mode": "auto_after_tts",
+          "locked_facts": [
+            "R=√(A²+B²+2AB cosθ); at θ=60°, cos60°=0.5, R=√37≈6.08"
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Plug in: A=4, B=3, theta=sixty, cosine sixty equals half. R equals root of sixteen plus nine plus twelve — root thirty-seven — six point zero eight. Formula matches diagram. Seven was wrong because cosine theta was not one.",
+                "sync_point": "state_complete",
+                "pause_after_ms": 800,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": [
+                  "theta",
+                  "cosine theta"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S5",
+          "label": "Scalar sum is only θ=0°",
+          "physics_layer": {
+            "scenario": "scalar_addition_s5",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_full_curve",
+            "highlight_point": true,
+            "point_x": 0,
+            "point_y": 7
+          },
+          "advance_mode": "auto_after_tts",
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "R equals A plus B is correct only at exactly zero degrees. Any other angle — use the full cosine formula.",
+                "sync_point": "state_complete",
+                "pause_after_ms": 600,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": [
+                  "cosine formula"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S6",
+          "label": "JEE trap — 60° and 120°",
+          "physics_layer": {
+            "scenario": "scalar_addition_s6",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_two_points",
+            "reference_points": [
+              {
+                "x": 60,
+                "y": 6.08,
+                "label": "θ=60°"
+              },
+              {
+                "x": 120,
+                "y": 3.61,
+                "label": "θ=120°"
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts",
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "JEE loves sixty and one-twenty degrees. At sixty: R is six point zero eight. At one-twenty: R is three point six one. Neither is seven. Two-step rule: find theta first, then apply formula.",
+                "sync_point": "state_complete",
+                "pause_after_ms": 800,
+                "tts_style": "exam_serious",
+                "no_translate_tokens": [
+                  "JEE",
+                  "theta",
+                  "formula"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S7",
+          "label": "Vector vs scalar world",
+          "physics_layer": {
+            "scenario": "scalar_addition_s7",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_empty_axes",
+            "highlight_point": false
+          },
+          "advance_mode": "auto_after_tts",
+          "locked_facts": [
+            "Scalar: s=a+b always. Vector: R=√(A²+B²+2ABcosθ). Not interchangeable."
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Scalar world: s equals a plus b. Always. Vector world: R equals root of A squared plus B squared plus 2AB cosine theta. Angle always matters. Different mathematical worlds. Cannot mix.",
+                "sync_point": "state_complete",
+                "pause_after_ms": 600,
+                "tts_style": "energetic_aha",
+                "no_translate_tokens": [
+                  "scalar",
+                  "vector",
+                  "cosine theta"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "branch_id": "direction_irrelevant",
+      "misconception": "Direction does not affect how vectors add — only magnitudes determine the result",
+      "student_belief": "Arrow direction se sirf visual farak hota hai — number toh same rehta hai, 4 aur 3 hai toh answer same hoga",
+      "trigger_phrases": [
+        "direction doesn't matter",
+        "direction se kya farak",
+        "only magnitude matters",
+        "ignore the arrow",
+        "sirf number dekho",
+        "arrow se answer nahi badalta"
+      ],
+      "misconception_depth_signals": {
+        "shallow": [
+          "I ignored the direction",
+          "direction nahi dekha",
+          "mujhe laga arrow se farak nahi padta"
+        ],
+        "deep": [
+          "direction is just a label",
+          "vectors add like numbers",
+          "arrow sirf dikhane ke liye hai"
+        ]
+      },
+      "sonnet_emphasis_per_state": {
+        "S2": "Same magnitudes, θ changes from 0° to 90°, R drops from 7 to 5 — one variable changed, one result changed",
+        "S3": "Three cases simultaneously — same magnitudes producing 7, 5, 1 — direction alone caused a 6-unit swing",
+        "S5": "5m East then 5m West = R=0 — if direction were a label you'd be 10m from start, you are back at start"
+      },
+      "states": [
+        {
+          "state_id": "S1",
+          "label": "Wrong belief — shown live",
+          "physics_layer": {
+            "scenario": "direction_irrelevant_s1",
+            "show_students_wrong_belief": true,
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_horizontal_line",
+            "highlight_point": false
+          },
+          "advance_mode": "auto_after_tts",
+          "locked_facts": [
+            "Student extracts only magnitudes 4 and 3, discards arrow direction entirely"
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "You said only magnitude matters. The arrows are on screen — but you are treating them as just the numbers four and three.",
+                "sync_point": "wrong_belief_shown",
+                "pause_after_ms": 800,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S2",
+          "label": "Same magnitudes, different angle",
+          "physics_layer": {
+            "scenario": "direction_irrelevant_s2",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_two_points",
+            "reference_points": [
+              {
+                "x": 0,
+                "y": 7,
+                "label": "θ=0°"
+              },
+              {
+                "x": 90,
+                "y": 5,
+                "label": "θ=90°"
+              }
+            ]
+          },
+          "advance_mode": "auto_after_animation",
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "A=4, B=3. I change only the angle — zero to ninety. R drops from seven to five. Same magnitudes. Only direction changed. Two units of difference from one angle change.",
+                "sync_point": "conflict_revealed",
+                "pause_after_ms": 800,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S3",
+          "label": "Three cases — same magnitudes",
+          "physics_layer": {
+            "scenario": "direction_irrelevant_s3",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_reference_points",
+            "reference_points": [
+              {
+                "x": 0,
+                "y": 7,
+                "label": "7"
+              },
+              {
+                "x": 90,
+                "y": 5,
+                "label": "5"
+              },
+              {
+                "x": 180,
+                "y": 1,
+                "label": "1"
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts",
+          "locked_facts": [
+            "A=4, B=3 fixed: R=7 at 0°, R=5 at 90°, R=1 at 180° — direction caused a 6-unit swing"
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Three cases. Same A=4, same B=3. R equals seven, five, or one — entirely depending on direction. Six-unit swing from direction alone. It is not a label. It is a quantitative input.",
+                "sync_point": "state_complete",
+                "pause_after_ms": 800,
+                "tts_style": "energetic_aha",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S4",
+          "label": "Direction is a numerical input",
+          "physics_layer": {
+            "scenario": "direction_irrelevant_s4",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_full_curve",
+            "highlight_point": false
+          },
+          "advance_mode": "auto_after_tts",
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "In the formula, theta enters as cosine theta — a number. Changing theta changes a number in the calculation. Direction IS quantitative, not decorative.",
+                "sync_point": "formula_overlaid",
+                "pause_after_ms": 600,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": [
+                  "theta",
+                  "cosine theta"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "state_id": "S5",
+          "label": "Confirm — cancellation example",
+          "physics_layer": {
+            "scenario": "direction_irrelevant_s5",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_single_dot",
+            "highlight_point": true,
+            "point_x": 180,
+            "point_y": 0
+          },
+          "advance_mode": "auto_after_tts",
+          "locked_facts": [
+            "Equal opposite vectors: R=0 when A=B and θ=180°"
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Walk 5 metres East, then 5 metres West. Net displacement: zero. Back at start. Same magnitudes, opposite direction, R=0. If direction were a label, you would be 10 metres from start. You are not. Direction was everything.",
+                "sync_point": "state_complete",
+                "pause_after_ms": 800,
+                "tts_style": "energetic_aha",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "epic_c_micro_templates": {
+    "resultant_formula_confusion": {
+      "scope": "micro",
+      "trigger_pattern": "formula|R kaise nikalte|which formula",
+      "states": [
+        {
+          "physics_layer": {
+            "scenario": "resultant_formula"
+          },
+          "panel_b_layer": {
+            "scenario": "graph_single_dot",
+            "point_x": 60,
+            "point_y": 7.0
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "R = root of A squared plus B squared plus 2AB cosine theta. At sixty degrees with A=4, B=3: R approximately six point zero eight.",
+                "sync_point": "formula_overlaid",
+                "pause_after_ms": 400,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": [
+                  "cosine theta"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "physics_layer": {
+            "scenario": "special_cases_0_90_180"
+          },
+          "panel_b_layer": {
+            "scenario": "graph_reference_points"
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "At ninety degrees cosine theta is zero — that gives Pythagoras. At zero degrees cosine is one — that gives scalar sum.",
+                "sync_point": "special_cases_shown",
+                "pause_after_ms": 400,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": [
+                  "cosine theta",
+                  "Pythagoras"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "direction_of_resultant_confusion": {
+      "scope": "micro",
+      "trigger_pattern": "direction of R|angle of resultant|alpha|kis taraf R",
+      "states": [
+        {
+          "physics_layer": {
+            "scenario": "resultant_formula"
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "tan alpha equals B sine theta divided by A plus B cosine theta. Alpha is measured from vector A.",
+                "sync_point": "formula_overlaid",
+                "pause_after_ms": 400,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": [
+                  "alpha",
+                  "theta",
+                  "cosine theta"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "physics_layer": {
+            "scenario": "two_vectors_given"
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Move the slider — watch alpha change as theta changes. Direction of R is not fixed.",
+                "sync_point": "slider_enabled",
+                "pause_after_ms": 400,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": [
+                  "alpha",
+                  "theta",
+                  "slider"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "max_min_confusion": {
+      "scope": "micro",
+      "trigger_pattern": "maximum|minimum|range|kitna ho sakta|can R be",
+      "states": [
+        {
+          "physics_layer": {
+            "scenario": "special_cases_0_90_180"
+          },
+          "panel_b_layer": {
+            "scenario": "graph_reference_points"
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "R_max equals A plus B at zero degrees. R_min equals modulus A minus B at one-eighty. Everything else is between.",
+                "sync_point": "special_cases_shown",
+                "pause_after_ms": 400,
+                "tts_style": "calm_explain",
+                "no_translate_tokens": []
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "static_responses": {
+    "define_vector_addition": "Vector addition produces resultant R from vectors A and B. R = √(A²+B²+2AB cosθ) where θ is angle between them. Both parallelogram law and triangle law give identical results.",
+    "state_range_inequality": "|A−B| ≤ R ≤ A+B. Resultant lies between difference and sum of individual magnitudes. Exact value depends on θ.",
+    "special_case_perpendicular": "When θ=90°, R = √(A²+B²). This is Pythagoras — valid ONLY at exactly 90°.",
+    "commutativity_statement": "Vector addition is commutative: A+B = B+A. Same resultant regardless of order.",
+    "equal_vectors_shortcut": "Two equal vectors each magnitude A at angle θ: R = 2A cos(θ/2)."
+  },
+  "problem_guidance_path": {
+    "general_approach": [
+      "Step 1: Identify vectors and angle θ between them",
+      "Step 2: Check θ = 0°, 90°, or 180° — use shortcut if so",
+      "Step 3: Otherwise apply R = √(A²+B²+2AB cosθ)",
+      "Step 4: If direction asked, use tan α = (B sinθ)/(A+B cosθ)",
+      "Step 5: Verify R lies within |A−B| ≤ R ≤ A+B"
+    ],
+    "shortcut_check": "θ=90°→Pythagoras. θ=0°→R=A+B. θ=180°→R=|A−B|. Otherwise full formula."
+  },
+  "example_library": {
+    "example_1": {
+      "source": "DC Pandey Mechanics Vol 1, Ch.5",
+      "type": "numerical",
+      "description": "Two forces 3N and 4N at 90°",
+      "approach": "R=√(9+16)=5N; tan α=3/4→α=37° from 4N force",
+      "use_for": "perpendicular case, 3-4-5 triangle shortcut"
+    },
+    "example_2": {
+      "source": "DC Pandey Mechanics Vol 1, Ch.5",
+      "type": "numerical",
+      "description": "Two equal forces A=5N at θ=60°",
+      "approach": "R=2A cos(θ/2)=2×5×cos30°=5√3 N",
+      "use_for": "equal vector symmetric formula"
+    },
+    "example_3": {
+      "source": "JEE Previous Year",
+      "type": "algebraic",
+      "description": "Resultant of P and Q is R. When Q doubled, R doubles. Find angle.",
+      "approach": "Set up two equations, eliminate → θ=90°",
+      "use_for": "algebraic elimination, JEE-style manipulation"
+    },
+    "example_4": {
+      "source": "DC Pandey Mechanics Vol 1, Ch.5",
+      "type": "conceptual",
+      "description": "Can resultant of 3 and 4 be (a)8? (b)1? (c)5?",
+      "approach": "Range [1,7]: (a) NO. (b) YES at θ=180°. (c) YES at θ=90°",
+      "use_for": "range inequality comprehension"
+    }
+  },
+  "assessment_path": {
+    "trigger": "opt_in_only",
+    "trigger_phrase": "Test me",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "text": "Two forces 5N and 12N at right angles. Find resultant.",
+        "type": "numerical",
+        "answer": "13N",
+        "wrong_answer_routes_to": "resultant_formula",
+        "difficulty": "easy"
+      },
+      {
+        "q_id": "Q2",
+        "text": "Resultant of two equal forces P is also P. Find angle between them.",
+        "type": "numerical",
+        "answer": "120°",
+        "wrong_answer_routes_to": "resultant_formula",
+        "difficulty": "medium"
+      },
+      {
+        "q_id": "Q3",
+        "text": "Can resultant of 7N and 3N ever be 3N?",
+        "type": "conceptual",
+        "answer": "No. R_min=|7−3|=4N",
+        "wrong_answer_routes_to": "resultant_always_larger",
+        "difficulty": "medium"
+      },
+      {
+        "q_id": "Q4",
+        "text": "Forces A and B have resultant R. If A reversed, new resultant is also R. Find angle between A and B.",
+        "type": "algebraic",
+        "answer": "90°",
+        "wrong_answer_routes_to": "resultant_formula",
+        "difficulty": "hard"
+      }
+    ]
+  },
+  "session_awareness": {
+    "re_entry_state": "STATE_4",
+    "second_turn_trigger": "Student asks follow-up after EPIC-L or EPIC-C completion",
+    "second_turn_behaviour": "Show 'Show: [aspect]' button. If clicked, re-enter at checkpoint_state. Skip TTS for previously seen states.",
+    "mode_switch_entry": {
+      "from_board_to_conceptual": "Enter at STATE_2 — skip hook",
+      "from_conceptual_to_board": "Enter board_mode STATE_1 directly",
+      "from_competitive_to_conceptual": "Enter at checkpoint_state for concept tested in the problem"
+    }
+  },
+  "waypoints": {
+    "unknown_confusion_fallback": "If no EPIC-C branch matches confidence > 0.70, run EPIC-C Novel pipeline. Store confusion text in student_confusion_log.",
+    "escalation_trigger": "If student asks about 3D vectors, cross product, or unit vectors — escalate to depth_escalation_trigger.",
+    "cannot_understand_fallback": "If student says 'still don't understand' after EPIC-C, re-enter STATE_1 with different regeneration_variant."
+  },
+  "fallback_config": {
+    "if_renderer_fails": "Show formula text overlay on blank canvas. Do not halt session.",
+    "if_sonnet_timeout": "Fall back to static_responses for detected intent. Log timeout in ai_usage_log.",
+    "if_concept_not_found": "Should never occur — vector_addition is core Ch.5. If it does, check concept_panel_config for missing row."
+  },
+  "depth_escalation_trigger": {
+    "condition": "Student asks about 3D addition, dot product, cross product, or unit vector decomposition",
+    "action": "Acknowledge depth. Say: this goes beyond basic vector addition — let me show you component method first, then we can go to 3D.",
+    "deeper_content_hint": "vector_components concept handles Rx=Acosθ, Ry=Asinθ decomposition"
+  },
+  "what_if_entry_state": "STATE_6",
+  "derivation_note": "Derivation requests route to board_mode only. Conceptual mode redirects: 'For the full derivation with steps for marks, switch to Board Mode.'",
+  "parameter_slots": {
+    "vec_a_magnitude": {
+      "type": "float",
+      "unit": "N or m",
+      "default": 4,
+      "competitive_mode_inject": true
+    },
+    "vec_b_magnitude": {
+      "type": "float",
+      "unit": "N or m",
+      "default": 3,
+      "competitive_mode_inject": true
+    },
+    "angle_between_deg": {
+      "type": "float",
+      "unit": "degrees",
+      "default": 60,
+      "range": [
+        0,
+        180
+      ],
+      "competitive_mode_inject": true
+    }
+  },
+  "panel_sync_spec": {
+    "sync_trigger": "state_change",
+    "active_in_states": [
+      "STATE_6"
+    ],
+    "panel_a_drives": [
+      "current_theta_deg"
+    ],
+    "panel_b_updates_on": [
+      "current_theta_deg"
+    ],
+    "sync_behaviour": "Panel B live dot tracks current θ as Panel A animates vectors. Active in STATE_6 only."
+  },
+  "jee_specific": {
+    "common_traps": [
+      {
+        "trap": "Using R=A+B without checking θ=0°",
+        "frequency": "very_common",
+        "catch_phrase": "Whenever θ given, use full formula"
+      },
+      {
+        "trap": "Assuming R_min=0 for any two vectors",
+        "frequency": "common",
+        "catch_phrase": "R=0 only when A=B and θ=180°; otherwise R_min=|A−B|"
+      },
+      {
+        "trap": "Applying Pythagoras at non-90° angles",
+        "frequency": "common",
+        "catch_phrase": "R=√(A²+B²) ONLY at θ=90°"
+      },
+      {
+        "trap": "Confusing α (direction of R) with θ (angle between A and B)",
+        "frequency": "common",
+        "catch_phrase": "α and θ are different angles in different formulas"
+      },
+      {
+        "trap": "Treating R=A+B and R=|A−B| as typical values not boundaries",
+        "frequency": "moderate",
+        "catch_phrase": "These are boundaries only — typical R lies strictly between them"
+      }
+    ],
+    "high_yield_formulas": [
+      "R = √(A² + B² + 2AB cosθ)",
+      "tan α = (B sinθ) / (A + B cosθ)",
+      "R_max = A+B at θ=0°",
+      "R_min = |A−B| at θ=180°",
+      "R (equal vectors) = 2A cos(θ/2)"
+    ],
+    "neet_relevance": "Force equilibrium problems. Range inequality and perpendicular Pythagoras case are most tested.",
+    "standard_values_to_memorise": [
+      "θ=0°: R=A+B",
+      "θ=60°: R=√(A²+B²+AB)",
+      "θ=90°: R=√(A²+B²)",
+      "θ=120°: R=√(A²+B²−AB)",
+      "θ=180°: R=|A−B|"
+    ]
+  },
+  "concept_relationships": {
+    "prerequisites": [
+      "scalars_vs_vectors",
+      "basic_trigonometry"
+    ],
+    "leads_to": [
+      "resolution_of_vectors",
+      "vector_subtraction",
+      "relative_motion",
+      "projectile_motion"
+    ],
+    "commonly_confused_with": [
+      "scalar_addition",
+      "vector_subtraction"
+    ],
+    "cross_concept_link": "R=√(A²+B²) at θ=90° IS the Pythagorean theorem — vector addition and right-triangle geometry are the same relationship.",
+    "exam_combos": [
+      "vector_addition + relative_motion (river-boat)",
+      "vector_addition + Newton's laws (force equilibrium)"
+    ]
+  },
+  "pyq_frequency_hint": {
+    "CBSE": {
+      "5_mark_derivation": {
+        "frequency": "every_2_years",
+        "last_asked": 2023
+      },
+      "2_mark_law_statement": {
+        "frequency": "yearly",
+        "last_asked": 2024
+      },
+      "1_mark_mcq": {
+        "frequency": "yearly",
+        "last_asked": 2024
+      }
+    },
+    "UP_board": {
+      "5_mark_derivation": {
+        "frequency": "every_3_years",
+        "last_asked": 2022
+      }
+    },
+    "JEE_Main": {
+      "numerical_resultant": {
+        "frequency": "every_2_years",
+        "last_asked": 2023
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "geometry_first",
+      "approach_pill_label": "Geometry view",
+      "variant_index": 1,
+      "summary": "Start with the shape before the formula",
+      "entry_state": "STATE_2",
+      "state_sequence": [
+        "STATE_2",
+        "STATE_3",
+        "STATE_5",
+        "STATE_6"
+      ],
+      "teaching_emphasis": "Parallelogram diagonal IS the resultant. Formula is just naming it.",
+      "variant_scripts": {
+        "STATE_2": {
+          "step_label": "Build the parallelogram",
+          "teacher_script": "Let's skip the formula entirely — start with the shape. Place both vectors tail-to-tail from the same origin. Watch the parallelogram construct itself. That bold diagonal from O to the opposite corner — that IS your resultant R. No formula needed to see it. The length of that diagonal is your answer.",
+          "attention_cue": "The diagonal appearing — that's R"
+        },
+        "STATE_3": {
+          "step_label": "Triangle law confirms it",
+          "teacher_script": "Now watch the triangle law give the same R. B slides so its tail meets A's head. The resultant arrow closes the triangle — identical length, identical direction. Triangle law and parallelogram law are not different physics. Two views, one truth. Same R every time.",
+          "attention_cue": "Same arrow length — different shape, same answer"
+        },
+        "STATE_5": {
+          "step_label": "Geometry explains the arithmetic",
+          "teacher_script": "Your eye already told you why 4+3 equals 5, not 7. The diagonal is always shorter than the sum of two sides of a parallelogram. The angle between vectors costs you resultant magnitude. The geometry explains the arithmetic — no calculation needed to understand why.",
+          "attention_cue": "The gap between path length 7 and diagonal length 5"
+        },
+        "STATE_6": {
+          "step_label": "Feel it yourself",
+          "teacher_script": "Drag the angle between the vectors. Watch the diagonal change. At θ=0° the parallelogram collapses to a line and R hits maximum — 7. At θ=180° they pull against each other and R drops to 1. The shape tells the story. Try it.",
+          "attention_cue": "Diagonal growing and shrinking as you drag"
+        }
+      }
+    },
+    {
+      "variant_id": "formula_first",
+      "approach_pill_label": "Formula view",
+      "variant_index": 2,
+      "summary": "Start with the equation, then prove it geometrically",
+      "entry_state": "STATE_4",
+      "state_sequence": [
+        "STATE_4",
+        "STATE_5",
+        "STATE_6"
+      ],
+      "teaching_emphasis": "The cosθ interaction term controls everything. Geometry is visual proof of the algebra.",
+      "variant_scripts": {
+        "STATE_4": {
+          "step_label": "The formula — three terms",
+          "teacher_script": "Start here: R equals the square root of A-squared plus B-squared plus 2-A-B-cos-theta. Three terms. A-squared is A's self-contribution. B-squared is B's. And 2ABcosθ is the interaction term — entirely controlled by angle. At θ=0° it adds 2AB. At θ=90° it vanishes. At θ=180° it subtracts 2AB. Three cases — watch all three now.",
+          "attention_cue": "The interaction term 2ABcosθ — this is what angle controls"
+        },
+        "STATE_5": {
+          "step_label": "Formula meets geometry",
+          "teacher_script": "Now the geometry makes the algebra real. R equals 5, not 7. Plug in θ=90°: cosθ=0, the interaction term vanishes, R equals root of 16 plus 9 equals 5. The formula predicts exactly what the diagonal shows. The formula is naming the geometry — they're the same truth in two languages.",
+          "attention_cue": "R = 5 confirmed two ways — formula and diagonal agree"
+        },
+        "STATE_6": {
+          "step_label": "Drive the formula yourself",
+          "teacher_script": "Drag the angle. Every position is the formula computing in real time. Find where R is maximum — that's θ=0°, the +2AB case. Find where R equals exactly root of A-squared plus B-squared — that's θ=90°. Find where R is minimum — θ=180°, the -2AB case. The slider is your formula evaluator.",
+          "attention_cue": "R changing in real time — feel the formula"
+        }
+      }
+    },
+    {
+      "variant_id": "explore_yourself",
+      "approach_pill_label": "Explore yourself",
+      "variant_index": 3,
+      "summary": "Discover the relationship through the slider before any explanation",
+      "entry_state": "STATE_6",
+      "state_sequence": [
+        "STATE_6",
+        "STATE_4",
+        "STATE_2",
+        "STATE_5"
+      ],
+      "teaching_emphasis": "Student discovers the angle-dependence pattern before being told. Formula and geometry confirm what they felt.",
+      "variant_scripts": {
+        "STATE_6": {
+          "step_label": "Discover — no explanation yet",
+          "teacher_script": "Here are two vectors A and B. The angle between them is yours to control. Drag the slider. No formulas yet — just watch what happens to the resultant arrow as you move it. What pattern do you notice? When does R get largest? When does it get smallest? Take thirty seconds and find out.",
+          "attention_cue": "Watch the resultant arrow — what changes as you drag?"
+        },
+        "STATE_4": {
+          "step_label": "Name what you felt",
+          "teacher_script": "You felt it before I named it. Maximum R when vectors point the same way. Minimum R when they oppose each other. The formula captures exactly this: R equals root of A-squared plus B-squared plus 2ABcosθ. The 2ABcosθ interaction term is what you just felt on the slider. Large and positive when θ is small. Zero at 90°. Large and negative at 180°.",
+          "attention_cue": "The interaction term — this is the pattern you discovered"
+        },
+        "STATE_2": {
+          "step_label": "Now see why geometrically",
+          "teacher_script": "Now see the geometry that explains it. Both vectors from origin form a parallelogram. The diagonal is R. When θ=0° the parallelogram collapses to a line — R is maximum at 7. When θ=90° you get a rectangle — R is 5. When θ=180° both vectors pull opposite — R nearly cancels. Your slider was controlling the shape of this parallelogram.",
+          "attention_cue": "Parallelogram shape changes — your slider was controlling this"
+        },
+        "STATE_5": {
+          "step_label": "The aha is yours",
+          "teacher_script": "The key insight is already yours — you discovered it first. R is never simply A plus B unless the vectors are perfectly aligned at θ=0°. Every JEE problem with two forces, two velocities, any two vectors — the angle between them controls the outcome. You now know this in your bones, not just your notes.",
+          "attention_cue": "R = 5, not 7 — you already knew this from the slider"
+        }
+      }
+    }
+  ],
+  "board_mode": {
+    "source_authority": "ncert_only",
+    "target_exams": [
+      "CBSE_12",
+      "UP_board",
+      "Maharashtra_board"
+    ],
+    "pyq_concept_tag": "vector_addition",
+    "phase_boundary_state": "STATE_3",
+    "epic_l_path_board": {
+      "state_count": 5,
+      "phase_1_states": [
+        "STATE_1",
+        "STATE_2"
+      ],
+      "phase_2_states": [
+        "STATE_3",
+        "STATE_4",
+        "STATE_5"
+      ],
+      "states": {
+        "STATE_1": {
+          "label": "What 5 marks look like",
+          "phase": 1,
+          "physics_layer": {
+            "scenario": "parallelogram_law",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_empty_axes"
+          },
+          "advance_mode": "auto_after_tts",
+          "exam_overlay": {
+            "marks_breakdown": [
+              "State the law (NCERT verbatim): 1 mark",
+              "Correct labelled diagram: 1 mark",
+              "Magnitude derivation via cosine rule: 2 marks",
+              "Direction formula tan α: 1 mark"
+            ],
+            "common_mistakes": "Most students skip the direction formula — one mark lost every time."
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Board exam. Five marks. Five components. Miss any one — lose a mark.",
+                "sync_point": "animation_start",
+                "pause_after_ms": 600,
+                "tts_style": "exam_serious",
+                "no_translate_tokens": []
+              },
+              {
+                "id": "s2",
+                "text_en": "Law statement one mark. Diagram one mark. Magnitude derivation two marks. Direction formula one mark.",
+                "sync_point": "state_complete",
+                "pause_after_ms": 400,
+                "tts_style": "exam_serious",
+                "no_translate_tokens": []
+              }
+            ],
+            "exam_tip_en": "Five marks, five components. Miss the direction formula and you lose one mark. Every year."
+          }
+        },
+        "STATE_2": {
+          "label": "Law in NCERT words",
+          "phase": 1,
+          "physics_layer": {
+            "scenario": "parallelogram_law",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_empty_axes"
+          },
+          "advance_mode": "auto_after_tts",
+          "exam_overlay": {
+            "marks_breakdown": [
+              "Law statement: 1 mark — NCERT verbatim required"
+            ],
+            "common_mistakes": "Paraphrasing the law loses the mark. Write NCERT exact wording."
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "NCERT exact wording: If two vectors acting at a point are represented in magnitude and direction by the two adjacent sides of a parallelogram, their resultant is represented by the diagonal of the parallelogram passing through that point.",
+                "sync_point": "state_complete",
+                "pause_after_ms": 800,
+                "tts_style": "exam_serious",
+                "no_translate_tokens": [
+                  "parallelogram",
+                  "resultant",
+                  "diagonal"
+                ]
+              }
+            ],
+            "exam_tip_en": "Write this word for word. Examiner checks for 'adjacent sides' and 'diagonal passing through that point'."
+          }
+        },
+        "STATE_3": {
+          "label": "Magnitude derivation",
+          "phase": 2,
+          "physics_layer": {
+            "scenario": "resultant_formula",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_empty_axes"
+          },
+          "advance_mode": "auto_after_tts",
+          "exam_overlay": {
+            "marks_breakdown": [
+              "Apply cosine rule: 1 mark",
+              "Arrive at R = √(A²+B²+2ABcosθ): 1 mark"
+            ],
+            "common_mistakes": "Show every algebraic step. Explicitly show angle OAC = 180°−θ."
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Apply cosine rule to triangle. OC squared equals OA squared plus AC squared minus 2 times OA times AC times cosine of angle OAC.",
+                "sync_point": "formula_overlaid",
+                "pause_after_ms": 800,
+                "tts_style": "exam_serious",
+                "no_translate_tokens": [
+                  "cosine"
+                ]
+              },
+              {
+                "id": "s2",
+                "text_en": "Angle OAC equals one-eighty minus theta. Cosine of one-eighty minus theta equals minus cosine theta. Simplify to get R squared equals A squared plus B squared plus 2AB cosine theta.",
+                "sync_point": "step_2_complete",
+                "pause_after_ms": 1000,
+                "tts_style": "exam_serious",
+                "no_translate_tokens": [
+                  "cosine theta"
+                ]
+              }
+            ],
+            "exam_tip_en": "Show angle OAC = 180°−θ explicitly. Examiners check this step."
+          }
+        },
+        "STATE_4": {
+          "label": "Draw the diagram",
+          "phase": 2,
+          "renderer": "diagram_tutor_renderer",
+          "advance_mode": "interaction_complete",
+          "exam_overlay": {
+            "marks_breakdown": [
+              "Correct labelled diagram: 1 mark — all 7 elements required"
+            ],
+            "common_mistakes": "Arrow on R is mandatory. Missing θ label loses the diagram mark."
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Draw the diagram step by step. Seven elements — all required for the mark.",
+                "sync_point": "animation_start",
+                "pause_after_ms": 400,
+                "tts_style": "exam_serious",
+                "no_translate_tokens": []
+              }
+            ],
+            "exam_tip_en": "Seven elements: O, A, B, R all labelled, θ labelled, arrow on R, dashed completion lines."
+          }
+        },
+        "STATE_5": {
+          "label": "Direction formula",
+          "phase": 2,
+          "physics_layer": {
+            "scenario": "resultant_formula",
+            "freeze_at_t": 0
+          },
+          "panel_b_layer": {
+            "scenario": "graph_empty_axes"
+          },
+          "advance_mode": "auto_after_tts",
+          "exam_overlay": {
+            "marks_breakdown": [
+              "Direction formula: 1 mark — tan α = (B sinθ)/(A+B cosθ)"
+            ],
+            "common_mistakes": "Students write only magnitude formula and forget direction. One mark lost every year."
+          },
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Final step. Direction: tan alpha equals B sine theta divided by A plus B cosine theta. Write this. Every year students forget it.",
+                "sync_point": "formula_overlaid",
+                "pause_after_ms": 600,
+                "tts_style": "exam_serious",
+                "no_translate_tokens": [
+                  "alpha",
+                  "theta",
+                  "cosine theta"
+                ]
+              }
+            ],
+            "exam_tip_en": "Write tan α = (B sinθ)/(A+B cosθ) immediately after magnitude formula. Do not skip it."
+          }
+        }
+      }
+    },
+    "diagram_steps": [
+      {
+        "step_id": 1,
+        "action": "draw_point",
+        "coordinates": [
+          200,
+          300
+        ],
+        "label": "O",
+        "annotation_en": "Mark origin O. Both vectors start here.",
+        "tts_sync_point": "step_1_complete",
+        "duration_ms": 800,
+        "style": "solid",
+        "color": "#FFFFFF"
+      },
+      {
+        "step_id": 2,
+        "action": "draw_arrow",
+        "from": [
+          200,
+          300
+        ],
+        "to": [
+          380,
+          260
+        ],
+        "label": "A",
+        "annotation_en": "Draw vector A from O. Length proportional to magnitude. Arrow at tip.",
+        "tts_sync_point": "step_2_complete",
+        "duration_ms": 1200,
+        "style": "solid",
+        "color": "#4FC3F7"
+      },
+      {
+        "step_id": 3,
+        "action": "draw_arrow",
+        "from": [
+          200,
+          300
+        ],
+        "to": [
+          260,
+          420
+        ],
+        "label": "B",
+        "annotation_en": "Draw vector B from same origin O. Angle θ between A and B.",
+        "tts_sync_point": "step_3_complete",
+        "duration_ms": 1200,
+        "style": "solid",
+        "color": "#FF8A65"
+      },
+      {
+        "step_id": 4,
+        "action": "complete_parallelogram",
+        "reference_vectors": [
+          "A",
+          "B"
+        ],
+        "annotation_en": "Complete parallelogram with dashed lines from tips of A and B.",
+        "tts_sync_point": "step_4_complete",
+        "duration_ms": 1500,
+        "style": "dashed",
+        "color": "#888888"
+      },
+      {
+        "step_id": 5,
+        "action": "draw_arrow",
+        "from": [
+          200,
+          300
+        ],
+        "to": [
+          440,
+          380
+        ],
+        "label": "R",
+        "annotation_en": "Diagonal from O is resultant R. Bold arrow. Arrow direction on R is mandatory.",
+        "tts_sync_point": "step_5_complete",
+        "duration_ms": 1200,
+        "style": "solid",
+        "bold": true,
+        "color": "#FFD700"
+      },
+      {
+        "step_id": 6,
+        "action": "add_angle_label",
+        "vertex": [
+          200,
+          300
+        ],
+        "from_vector": "A",
+        "to_vector": "B",
+        "label": "θ",
+        "annotation_en": "Label θ between A and B. Missing θ loses diagram mark.",
+        "tts_sync_point": "step_6_complete",
+        "duration_ms": 800
+      },
+      {
+        "step_id": 7,
+        "action": "exam_checklist",
+        "items": [
+          "O labelled",
+          "A labelled with arrow",
+          "B labelled with arrow",
+          "R labelled with arrow",
+          "θ labelled",
+          "Dashed completion lines",
+          "R arrow direction correct"
+        ],
+        "annotation_en": "All 7 elements required for full diagram mark.",
+        "tts_sync_point": "checklist_shown",
+        "duration_ms": 2000
+      }
+    ],
+    "mark_weightage": {
+      "CBSE": {
+        "5_mark_derivation": {
+          "frequency": "every_2_years",
+          "last_asked": 2023,
+          "typical_question": "State and prove parallelogram law of vector addition"
+        },
+        "2_mark_law": {
+          "frequency": "yearly",
+          "last_asked": 2024,
+          "typical_question": "State parallelogram law. Draw diagram."
+        },
+        "1_mark_mcq": {
+          "frequency": "yearly",
+          "last_asked": 2024
+        }
+      },
+      "UP_board": {
+        "5_mark_derivation": {
+          "frequency": "every_3_years",
+          "last_asked": 2022
+        }
+      },
+      "Maharashtra_board": {
+        "4_mark": {
+          "frequency": "every_2_years",
+          "last_asked": 2023
+        }
+      }
+    },
+    "ncert_exact_statements": {
+      "parallelogram_law": "If two vectors acting at a point are represented in magnitude and direction by the two adjacent sides of a parallelogram drawn from a point, then their resultant is represented in magnitude and direction by the diagonal of the parallelogram passing through that point.",
+      "triangle_law": "If two vectors are represented in magnitude and direction by the two sides of a triangle taken in order, then their resultant is represented by the third side of the triangle taken in opposite order."
+    },
+    "exam_writing_format": {
+      "5_mark_structure": [
+        "State the law (NCERT verbatim)",
+        "Draw diagram with all labels (O, A, B, R, θ, dashed lines, arrow on R)",
+        "Apply cosine rule — show angle OAC = 180°−θ explicitly",
+        "Write R = √(A²+B²+2AB cosθ)",
+        "Write tan α = (B sinθ)/(A+B cosθ)"
+      ],
+      "2_mark_structure": [
+        "NCERT verbatim law statement",
+        "Diagram with O, A, B, R, θ all labelled"
+      ]
+    },
+    "board_exam_questions": [
+      {
+        "type": "5_mark",
+        "question": "State and prove the parallelogram law of vector addition. Derive expressions for magnitude and direction of the resultant.",
+        "model_answer_outline": "Law (NCERT) → Labelled diagram → Cosine rule → R formula → Direction formula",
+        "mark_scheme": "Law(1) + Diagram(1) + Magnitude derivation(2) + Direction formula(1)"
+      },
+      {
+        "type": "2_mark",
+        "question": "State parallelogram law of vector addition. Draw a neat labelled diagram.",
+        "model_answer_outline": "NCERT statement + diagram with O, A, B, R, θ",
+        "mark_scheme": "Statement(1) + Diagram(1)"
+      }
+    ]
+  },
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "pvl_colors": {
+      "background": "#0a0a1a",
+      "grid": "#1e2030",
+      "axis": "#94a3b8",
+      "highlight": "#fbbf24"
+    },
+    "x_axis": {
+      "label": "Angle between A and B",
+      "symbol": "θ",
+      "unit": "°",
+      "min": 0,
+      "max": 180
+    },
+    "y_axis": {
+      "label": "Resultant Magnitude",
+      "symbol": "|R|",
+      "unit": "",
+      "min": 0,
+      "max": 8
+    },
+    "lines": [
+      {
+        "id": "r_vs_theta",
+        "label": "|R| = √(A²+B²+2AB cosθ), A=5, B=3",
+        "formula": "Math.sqrt(34 + 30 * Math.cos(x * Math.PI / 180))",
+        "color": "#FF7043"
+      },
+      {
+        "id": "r_max",
+        "label": "R_max = A+B = 7",
+        "slope": 0,
+        "intercept": 7,
+        "color": "#4FC3F7"
+      },
+      {
+        "id": "r_min",
+        "label": "R_min = |A-B| = 1",
+        "slope": 0,
+        "intercept": 1,
+        "color": "#EF5350"
+      }
+    ],
+    "sliders": [
+      {
+        "id": "theta",
+        "label": "Angle θ (degrees)",
+        "min": 0,
+        "max": 180,
+        "default": 60
+      }
+    ],
+    "legend": [
+      { "id": "r_vs_theta", "label": "|R| vs θ" },
+      { "id": "r_max", "label": "R_max = A+B" },
+      { "id": "r_min", "label": "R_min = |A−B|" }
+    ],
+    "states": {
+      "STATE_1": {
+        "label": "Two vectors — before the curve",
+        "active_lines": [],
+        "show_sliders": false,
+        "highlight_point": false
+      },
+      "STATE_2": {
+        "label": "Parallelogram — R depends on θ",
+        "active_lines": [],
+        "show_sliders": false,
+        "highlight_point": false
+      },
+      "STATE_3": {
+        "label": "Triangle law traces the same curve",
+        "active_lines": [],
+        "show_sliders": false,
+        "highlight_point": false
+      },
+      "STATE_4": {
+        "label": "Formula: R = √(A²+B²+2AB cosθ)",
+        "active_lines": [
+          "r_vs_theta"
+        ],
+        "show_sliders": false,
+        "highlight_point": true,
+        "point_x": 60,
+        "point_y": 7
+      },
+      "STATE_5": {
+        "label": "Special cases: 0°=7, 90°=5, 180°=1",
+        "active_lines": [
+          "r_vs_theta",
+          "r_max",
+          "r_min"
+        ],
+        "show_sliders": false,
+        "highlight_point": false
+      },
+      "STATE_6": {
+        "label": "Drag θ — live dot tracks you on the curve",
+        "active_lines": [
+          "r_vs_theta",
+          "r_max",
+          "r_min"
+        ],
+        "show_sliders": true,
+        "highlight_point": true,
+        "point_x": 60,
+        "point_y": 7
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "concept_id": "circular_motion_vertical",
+  "concept_name": "Vertical Circular Motion",
+  "class_level": 11,
+  "chapter": "Laws of Motion",
+  "renderer_hint": { "technology": "canvas2d", "renderer": "mechanics_2d", "scenario_type": "vertical_circular", "panel_count": 1, "show_labels": true },
+  "variables": { "v_top": "Speed at top (m/s)", "v_bottom": "Speed at bottom (m/s)", "T": "Tension/Normal force (N)", "R": "Radius of circle (m)" },
+  "locked_facts": [
+    "Minimum speed at top for complete circle: v_top = √(gR)",
+    "Minimum speed at bottom: v_bottom = √(5gR) (using energy conservation)",
+    "At top: T + mg = mv²/R (both gravity and tension point toward centre)",
+    "At bottom: T - mg = mv²/R (tension toward centre, gravity away)",
+    "Tension at bottom is maximum, at top is minimum",
+    "If v_top < √(gR), the string goes slack and the object falls inward",
+    "Tension difference: T_bottom - T_top = 6mg (for a string/rod system)"
+  ],
+  "truth_statements": [
+    "In vertical circular motion the speed varies — the object is fastest at the bottom and slowest at the top",
+    "At the topmost point gravity alone can provide centripetal force if the speed is exactly √(gR)",
+    "The minimum speed at the bottom for a complete vertical circle is √(5gR) derived from energy conservation",
+    "The tension in the string is maximum at the bottom and minimum at the top of the circle",
+    "If the object is on a rigid rod instead of a string it can complete the circle even with zero speed at the top"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A ball on a string at three speeds: (1) too slow — string goes slack before reaching the top and ball falls, (2) exactly v = √(5gR) at bottom — ball barely makes it over (T = 0 at top, gravity alone provides centripetal force), (3) fast — comfortable complete circle with tension always positive.",
+    "visual_emphasis": "Three trajectories: fall-off, critical, and comfortable — with tension arrows at the top",
+    "why_this_breaks_misconception": "Students think any speed works for a complete circle — seeing the critical threshold and the slack string makes the minimum speed condition visceral"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Forces at different positions", "description": "Ball moving in vertical circle. At bottom: T points up, mg points down → T - mg = mv²/R. At top: both T and mg point down → T + mg = mv²/R. Tension varies around the loop.", "emphasis": "At the bottom, tension fights gravity. At the top, tension and gravity both pull inward.", "labels_visible": ["T - mg = mv²/R (bottom)", "T + mg = mv²/R (top)"] },
+    { "id": "STATE_2", "label": "Energy conservation", "description": "Speed is highest at bottom, lowest at top. Energy conservation: ½mv²_bottom = ½mv²_top + mg(2R). Speed at top and bottom related.", "emphasis": "Energy conservation links top and bottom speeds — the ball slows down as it climbs", "labels_visible": ["½mv²_b = ½mv²_t + 2mgR", "v_bottom > v_top"] },
+    { "id": "STATE_3", "label": "Critical speed", "description": "At critical condition: T = 0 at the top → mg = mv²_top/R → v_top = √(gR). Using energy conservation: v_bottom = √(5gR). Below this: string goes slack.", "emphasis": "v_bottom = √(5gR) is the minimum for a complete circle on a string", "labels_visible": ["v_top(min) = √(gR)", "v_bottom(min) = √(5gR)", "T_top = 0"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts initial speed at the bottom. Ball traces vertical circle or falls off. Tension displayed at every point. Critical speed highlighted. String vs rod comparison.", "emphasis": "Set speed below √(5gR) — watch the string go slack! Try a rigid rod — it works even slower.", "labels_visible": ["v", "T", "critical speed"], "interactive": true, "sliders": [{ "id": "speed", "label": "Speed at bottom", "min": 1, "max": 15, "default": 7, "unit": "m/s" }, { "id": "radius", "label": "Radius R", "min": 0.5, "max": 5, "default": 2, "unit": "m" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "The object needs constant speed for vertical circular motion", "trigger_phrases": ["constant speed vertical circle", "speed same everywhere"], "correction": "Speed is NOT constant in vertical circular motion (unless driven by a motor). Gravity decelerates the object going up and accelerates it coming down. Speed is minimum at the top and maximum at the bottom.", "simulation_emphasis": "Show speed bar changing — minimum at top, maximum at bottom" },
+    { "belief": "If the object has any speed it will complete the circle", "trigger_phrases": ["any speed complete circle", "koi bhi speed chalegi"], "correction": "There is a minimum speed at the bottom: v = √(5gR). Below this, the string goes slack before the top and the object falls inward. The centripetal force requirement at the top sets this critical threshold.", "simulation_emphasis": "Launch ball too slowly — watch it fail to complete the loop" }
+  ],
+  "legend": [ { "symbol": "v_top", "meaning": "Minimum speed at top = √(gR)" }, { "symbol": "v_bottom", "meaning": "Minimum speed at bottom = √(5gR)" }, { "symbol": "T", "meaning": "String tension (N)" } ],
+  "concept_relationships": { "prerequisites": ["uniform_circular_motion", "conservation_of_energy"], "extensions": ["loop_the_loop"], "siblings": ["uniform_circular_motion"], "common_exam_combinations": ["conservation_of_energy", "work_energy_theorem"] }
+}

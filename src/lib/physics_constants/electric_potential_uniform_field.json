@@ -1,0 +1,42 @@
+{
+  "concept_id": "electric_potential_uniform_field",
+  "concept_name": "Electric Potential in Uniform Field",
+  "class_level": 12,
+  "chapter": "Electrostatic Potential and Capacitance",
+  "renderer_hint": { "technology": "threejs", "renderer": "field_3d", "scenario_type": "uniform_field_potential", "panel_count": 1, "show_labels": true },
+  "variables": { "V": "Electric potential (V)", "E": "Electric field (N/C or V/m)", "d": "Distance along field (m)", "W": "Work done (J)" },
+  "locked_facts": [
+    "In a uniform field, V = -E·d (potential decreases in the direction of E)",
+    "Equipotential surfaces are perpendicular to electric field lines",
+    "Work done by field: W = q(V_A - V_B) = qE·d",
+    "E = -dV/dr (field is negative gradient of potential)",
+    "No work is done in moving a charge along an equipotential surface",
+    "Electric field points from high potential to low potential",
+    "Potential due to point charge: V = kq/r (scalar, not vector)"
+  ],
+  "truth_statements": [
+    "The electric field always points in the direction of decreasing potential",
+    "Equipotential surfaces are always perpendicular to the electric field at every point",
+    "The work done in moving a charge between two points depends only on the potential difference and the charge, not on the path",
+    "In a uniform field the equipotential surfaces are equally spaced parallel planes",
+    "A stronger electric field is represented by more closely spaced equipotential surfaces"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "Parallel equipotential lines with E arrows pointing from high V to low V — a positive charge placed between them accelerates downhill from high to low potential, like a ball rolling downhill on a potential slope",
+    "visual_emphasis": "E arrows pointing from the high-V surface to the low-V surface, with a charge rolling 'downhill'",
+    "why_this_breaks_misconception": "Students confuse high field with high potential — seeing E as the slope of the potential landscape clarifies that strong E means steep potential change"
+  },
+  "simulation_states": [
+    { "id": "STATE_1", "label": "Uniform field setup", "description": "Parallel plate capacitor with uniform E field between plates. Field arrows shown. Potential labels: V_high on left plate, V_low on right plate.", "emphasis": "E field is uniform between parallel plates", "labels_visible": ["E", "V_high", "V_low"] },
+    { "id": "STATE_2", "label": "Equipotential lines", "description": "Vertical equipotential lines appear between plates, equally spaced. Labels show voltage values decreasing from left to right. E arrows perpendicular to each equipotential.", "emphasis": "Equipotentials are perpendicular to E and equally spaced in uniform field", "labels_visible": ["V₁", "V₂", "V₃", "E ⊥ equipotential"] },
+    { "id": "STATE_3", "label": "Charge moves downhill", "description": "A positive test charge placed at high-V side accelerates toward low-V side along E. Energy bar shows PE converting to KE. The 'potential hill' metaphor is visualised as a slope.", "emphasis": "E points from HIGH to LOW potential — the charge rolls downhill", "labels_visible": ["W = qΔV", "KE gained", "PE lost"] },
+    { "id": "STATE_4", "label": "Interactive", "description": "Student adjusts voltage difference and plate separation. Equipotential spacing changes (closer = stronger E). Moving charge along equipotential shows zero work.", "emphasis": "Closer equipotentials = stronger field. Moving along an equipotential = zero work.", "labels_visible": ["E = V/d", "W"], "interactive": true, "sliders": [{ "id": "voltage", "label": "Voltage V", "min": 10, "max": 200, "default": 100, "unit": "V" }, { "id": "separation", "label": "Plate separation d", "min": 1, "max": 10, "default": 5, "unit": "cm" }] }
+  ],
+  "common_misconceptions": [
+    { "belief": "High electric field means high potential at that point", "trigger_phrases": ["strong field high potential", "zyada field matlab zyada potential"], "correction": "Electric field is the rate of change of potential — a region can have strong E but any value of V. E = -dV/dr means strong field = rapid change in potential", "simulation_emphasis": "Show a region with strong E where V is actually low and decreasing" },
+    { "belief": "Work done depends on the path taken between two points", "trigger_phrases": ["path matters for work", "longer path more work"], "correction": "Electrostatic force is conservative — work depends only on the potential difference between start and end points, not the path", "simulation_emphasis": "Show two different paths between same points — same W = qΔV for both" }
+  ],
+  "legend": [ { "symbol": "V", "meaning": "Electric potential (volts)" }, { "symbol": "E", "meaning": "Electric field (V/m)" }, { "symbol": "W", "meaning": "Work done = q(V_A - V_B)" } ],
+  "concept_relationships": { "prerequisites": ["coulombs_law", "electric_field_lines"], "extensions": ["capacitor_parallel_series"], "siblings": ["electric_potential_3d"], "common_exam_combinations": ["dielectric_in_capacitor"] }
+}

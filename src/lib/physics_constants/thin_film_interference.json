@@ -1,0 +1,107 @@
+{
+  "concept_id": "thin_film_interference",
+  "concept_name": "Thin Film Interference",
+  "class_level": 12,
+  "chapter": "Wave Optics",
+  "renderer_hint": {
+    "technology": "canvas2d",
+    "renderer": "wave_canvas",
+    "scenario_type": "thin_film",
+    "panel_count": 1,
+    "show_labels": true
+  },
+  "variables": {
+    "mu": "Refractive index of the thin film",
+    "t": "Thickness of the thin film (m)",
+    "lambda": "Wavelength of light in vacuum (m)",
+    "theta": "Angle of refraction inside the film (rad)",
+    "R": "Radius of curvature of the lens (for Newton's rings) (m)",
+    "r_n": "Radius of nth ring (m)",
+    "n": "Order of interference (integer)"
+  },
+  "locked_facts": [
+    "Reflected light constructive interference (with phase change at denser surface): 2μt cosθ = (n + ½)λ",
+    "Reflected light destructive interference: 2μt cosθ = nλ",
+    "A phase change of π (equivalent to λ/2 path difference) occurs when light reflects from a denser medium",
+    "No phase change when light reflects from a rarer medium",
+    "Newton's rings: radius of nth dark ring r_n = √(nλR), where R is radius of curvature of the lens",
+    "Newton's rings centre is dark in reflected light (t = 0 at contact, but π phase change at glass surface gives destructive interference)"
+  ],
+  "truth_statements": [
+    "Thin film colours (soap bubbles, oil films) arise because the film thickness selectively reinforces certain wavelengths by constructive interference and suppresses others by destructive interference",
+    "The extra path of 2μt cosθ is the optical path difference between the ray reflected from the top surface and the ray reflected from the bottom surface of the film",
+    "The phase change of π at a denser surface is crucial — without accounting for it, the constructive and destructive conditions are reversed",
+    "Newton's rings are formed by the air film between a plano-convex lens and a flat glass plate — the varying air gap thickness produces concentric circular fringes",
+    "The central spot in Newton's rings is dark in reflected light because the air film thickness is zero at the contact point, but the π phase change at the glass plate causes destructive interference"
+  ],
+  "aha_moment": {
+    "state": "STATE_3",
+    "what_to_show": "A soap film of varying thickness illuminated by white light. At each thickness, different wavelengths satisfy the constructive condition 2μt cosθ = (n+½)λ. The film shows vivid colour bands — each band corresponds to a thickness where that particular colour is constructively reinforced. As the film thins (gravity draining soap), the colour bands shift and the top turns black (destructive for all visible wavelengths).",
+    "visual_emphasis": "Animated soap film draining thin from top: colour bands sweep downward, the top becomes black (too thin for any constructive interference), demonstrating that colour depends entirely on thickness",
+    "why_this_breaks_misconception": "Students see that soap bubble colours are not due to dyes or pigments but purely due to thickness-dependent interference — the same film shows different colours at different thicknesses"
+  },
+  "simulation_states": [
+    {
+      "id": "STATE_1",
+      "label": "Light hitting a thin film",
+      "description": "A ray of monochromatic light hits a thin transparent film (refractive index μ, thickness t). Two reflected rays are shown: one from the top surface and one from the bottom surface. The optical path difference between them is labelled.",
+      "emphasis": "Two reflected rays from the same incident ray — they travel different optical paths and can interfere",
+      "labels_visible": ["μ", "t", "Ray 1 (top reflection)", "Ray 2 (bottom reflection)"]
+    },
+    {
+      "id": "STATE_2",
+      "label": "Phase change at reflection",
+      "description": "Ray 1 reflects from a denser medium (air→film boundary) and undergoes a π phase change (equivalent to λ/2 extra path). Ray 2 reflects from the bottom (film→air boundary, rarer medium) with no phase change. The effective path difference is 2μt cosθ + λ/2.",
+      "emphasis": "The π phase change at the denser surface is critical — it shifts the constructive/destructive conditions by half a wavelength",
+      "labels_visible": ["π phase change", "No phase change", "2μt cosθ", "Effective Δ = 2μt cosθ ± λ/2"]
+    },
+    {
+      "id": "STATE_3",
+      "label": "Colour pattern formation",
+      "description": "For a film of varying thickness (like a soap bubble), different thicknesses satisfy the constructive condition for different wavelengths. The resulting display shows vivid spectral colours arranged by thickness. Constructive: 2μt cosθ = (n+½)λ in reflected light.",
+      "emphasis": "Each colour band marks a thickness where that wavelength is constructively reinforced — the colours are not pigments but interference effects",
+      "labels_visible": ["2μt cosθ = (n+½)λ", "Constructive", "Colour bands", "Thickness t"]
+    },
+    {
+      "id": "STATE_4",
+      "label": "Interactive exploration",
+      "description": "Student adjusts film thickness t, refractive index μ, and wavelength. For monochromatic light, the film alternates between bright and dark as t changes. For white light, the film shows different colours. Newton's rings mode: adjust lens curvature R to see ring spacing change.",
+      "emphasis": "Vary thickness to see bright/dark alternation. Switch to white light for colour display. In Newton's rings mode, verify r_n = √(nλR).",
+      "labels_visible": ["t", "μ", "λ", "r_n"],
+      "interactive": true,
+      "sliders": [
+        { "id": "film_thickness", "label": "Film thickness t", "min": 100, "max": 2000, "default": 500, "unit": "nm" },
+        { "id": "refractive_index", "label": "Refractive index μ", "min": 1.2, "max": 2.0, "default": 1.33, "unit": "" },
+        { "id": "wavelength", "label": "Wavelength λ", "min": 400, "max": 700, "default": 550, "unit": "nm" }
+      ]
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "belief": "Soap bubble colours come from the soap material itself, not from light interference",
+      "trigger_phrases": ["soap colour material", "sabun ka rang", "bubble mein dye hai", "soap has pigment", "material ka colour"],
+      "correction": "Soap bubbles are transparent — their colours come entirely from thin film interference. The film thickness varies across the bubble surface, and different thicknesses reinforce different wavelengths. That is why the colours change as the bubble thins or when viewed from different angles.",
+      "simulation_emphasis": "Show a colourless thin film gradually developing vivid colour bands as thickness is increased from zero, proving colour is a thickness effect, not a material property"
+    },
+    {
+      "belief": "The centre of Newton's rings should be bright because the surfaces are in contact (zero path difference)",
+      "trigger_phrases": ["centre bright hona chahiye", "zero thickness toh bright", "contact point bright", "path diff zero toh constructive"],
+      "correction": "Although the air film thickness is zero at the contact point, the reflection from the glass plate (denser medium) introduces a phase change of π. This converts what would be constructive interference into destructive interference. Hence the centre is DARK in reflected light.",
+      "simulation_emphasis": "Animate the two reflected rays at the contact point: zero path difference but π phase flip makes them cancel — show the phase arrows pointing opposite"
+    }
+  ],
+  "legend": [
+    { "symbol": "μ", "meaning": "Refractive index of the thin film" },
+    { "symbol": "t", "meaning": "Thickness of the thin film (m)" },
+    { "symbol": "λ", "meaning": "Wavelength of light in vacuum (m)" },
+    { "symbol": "r_n", "meaning": "Radius of nth Newton's ring = √(nλR)" },
+    { "symbol": "R", "meaning": "Radius of curvature of the plano-convex lens (m)" },
+    { "symbol": "n", "meaning": "Order of interference (integer)" }
+  ],
+  "concept_relationships": {
+    "prerequisites": ["interference_coherence", "refraction_snells_law"],
+    "extensions": ["anti_reflection_coating", "fabry_perot_interferometer"],
+    "siblings": ["youngs_double_slit", "interference_coherence"],
+    "common_exam_combinations": ["youngs_double_slit", "interference_coherence", "newtons_rings"]
+  }
+}

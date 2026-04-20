@@ -1,0 +1,351 @@
+{
+  "concept_id": "vt_graph",
+  "concept_name": "Velocity-Time Graphs — Slope Gives Acceleration, Area Gives Displacement",
+  "chapter": 7,
+  "section": "7.5",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Chapter 7.5 — v-t graphs; split from motion_graphs bundle",
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "A Mumbai-Pune Expressway toll booth. A lorry starts at rest (v = 0), then presses the accelerator — the v-t graph is a rising straight line, slope = acceleration. Cruise at 80 km/h for five minutes — a flat horizontal line at 80. Then braking into the next booth — v-t line drops with a steep negative slope. The AREA under this v-t curve from booth to booth is exactly the distance travelled, roughly 50 km. Every driver intuitively reads a v-t graph through their speedometer; we just draw the same story on paper.",
+    "secondary": "A Bangalore Metro train departing Cubbon Park. For the first 15 seconds the velocity rises linearly from 0 to 60 km/h — that linear rise is the acceleration. The NEXT 90 seconds the velocity is perfectly flat at 60 km/h — zero acceleration, pure cruising. Last 15 seconds it drops from 60 to 0 — deceleration. The triangular + rectangular + triangular area under this trapezoidal v-t plot IS the station-to-station distance.",
+    "tertiary": "A cricketer hitting a six. Immediately after contact the ball has maximum upward velocity. As it rises, gravity pulls it down — v decreases linearly with slope = -g. At the peak v = 0, and on the way down v becomes negative (moving down), and it keeps growing in magnitude. The v-t plot is a single straight line crossing the t-axis at the peak. The area above t-axis = distance up; area below = distance down; both equal if air resistance is ignored."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "slope_vt": { "name": "Slope of v-t graph = acceleration", "unit": "m/s^2", "min": -20, "max": 20, "default": 2 },
+      "area_vt": { "name": "Area under v-t graph = displacement", "unit": "m", "min": 0, "max": 500, "default": 50 }
+    },
+    "computed_outputs": {
+      "acceleration_from_slope": { "formula": "2" },
+      "displacement_from_area": { "formula": "0.5 * base * height" }
+    },
+    "formulas": {
+      "slope_is_accel": "slope of v-t graph at any point = dv/dt = acceleration at that instant",
+      "area_is_displacement": "Area between v-t curve and t-axis from t1 to t2 = integral v dt = displacement",
+      "area_sign": "Area above t-axis is positive displacement; area below t-axis is negative displacement",
+      "triangle_area": "For constant acceleration from rest, v = at, so distance = (1/2) t * v = (1/2) a t^2"
+    },
+    "constraints": [
+      "Horizontal line on v-t = constant velocity = zero acceleration",
+      "Straight sloping line on v-t = uniform (constant) acceleration",
+      "Parabolic curve on v-t = non-uniform acceleration",
+      "Velocity going below t-axis means object has reversed direction",
+      "Rectangular area = v * t = distance for uniform motion"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 3,
+    "states": {
+      "STATE_1": {
+        "title": "v-t Graph — Reading the Slope as Acceleration",
+        "duration": 12,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "vt_graph_sketch",
+            "text": "Velocity-Time graph (v vs t)\n\nv |              ______\n  |            /\n  |          /\n  |        /\n  |      /        slope = a\n  |    /\n  |  /\n  |/____________________  t\n  0\n\n  Slope of v-t  =  dv/dt  =  acceleration\n\n    Flat line on v-t -> constant velocity -> a = 0\n    Uphill line on v-t -> speeding up -> a > 0\n    Downhill line on v-t -> slowing down -> a < 0",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 13,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "lorry_label",
+            "text": "Mumbai-Pune Expressway: lorry accelerating from a toll booth",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 2.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 2.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "lorry",
+            "vehicle_type": "lorry",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.5 },
+              { "type": "translate", "delay_sec": 4.0, "duration_sec": 6.0, "dx_px": 260, "dy_px": 0, "easing": "ease_in" }
+            ]
+          }
+        ],
+        "focal_primitive": "vt_graph_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "A velocity-time graph plots how fast you are moving against the clock." },
+            { "text_en": "The single most important rule on a v-t graph: the slope of the line, at any point, equals the acceleration at that instant." },
+            { "text_en": "Picture a lorry leaving a toll booth on the Mumbai-Pune Expressway. It starts at zero and steadily picks up speed." },
+            { "text_en": "On the v-t graph, that steady pick-up is a straight line rising from the origin. The steeper the line, the harder the lorry is accelerating." },
+            { "text_en": "Once the lorry cruises at 80 km/h, the velocity is constant, so the v-t line becomes perfectly flat. Zero slope means zero acceleration, not zero speed." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_2": {
+        "title": "v-t Graph — Area Under the Curve is Displacement",
+        "duration": 14,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "area_sketch",
+            "text": "Area under v-t = Displacement\n\nv |\n  |           _______________________\n  |          |                       |\n  |          |       AREA = distance |\n  |          |                       |\n  |          |___v = 60 km/h_________|\n  |         /|                       |\\\n  |        / |                       | \\\n  |       /  |                       |  \\\n  |      /   |                       |   \\\n  |_____/____|_______________________|____\\___  t\n  0   start  t1                      t2   stop\n     accel   cruise                      decel\n\n  For uniform motion (rectangle): distance = v * t\n  For accel from rest (triangle): distance = (1/2) * t * v_final\n  Total displacement = sum of these regions.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "metro_label",
+            "text": "Bengaluru Metro Cubbon Park -> MG Road: 120 s trip",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "metro_train",
+            "vehicle_type": "train",
+            "zone": "MAIN_ZONE",
+            "anchor": "left_center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
+              { "type": "translate", "delay_sec": 5.0, "duration_sec": 2.0, "dx_px": 60, "dy_px": 0, "easing": "ease_in" },
+              { "type": "translate", "delay_sec": 7.0, "duration_sec": 4.0, "dx_px": 200, "dy_px": 0, "easing": "linear" },
+              { "type": "translate", "delay_sec": 11.0, "duration_sec": 2.0, "dx_px": 60, "dy_px": 0, "easing": "ease_out" }
+            ]
+          }
+        ],
+        "focal_primitive": "area_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "The second power of a v-t graph: the area under the curve, between any two moments, equals the displacement in that interval." },
+            { "text_en": "Take a Bengaluru Metro train leaving Cubbon Park station. It accelerates for 15 seconds, cruises at 60 km/h for 90 seconds, and decelerates for 15 seconds into M G Road." },
+            { "text_en": "On the v-t graph, that trip is a flat-topped trapezium — a triangle going up, a rectangle on top, and a triangle coming down." },
+            { "text_en": "Sum the three areas — half times 15 times 60, plus 90 times 60, plus half times 15 times 60 — and you get the full station-to-station distance, in the same time units." },
+            { "text_en": "Shape tells you acceleration from slope. Region tells you distance from area. Two powers, one diagram." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      },
+      "STATE_3": {
+        "title": "When Velocity Crosses the Axis — Reversing Direction",
+        "duration": 13,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "cross_axis_sketch",
+            "text": "v-t graph crossing the t-axis\n\nv |\n  |    up_phase               \n  |   /|                       \n  |  / |          top of throw\n  | /  |         /\n  |/___|________/________________  t\n  |     \\      /\n  |      \\    /\n  |       \\  /\n  |        \\/ down_phase (velocity negative)\n  |\n\n  Area above the t-axis = upward distance\n  Area below the t-axis = downward distance\n  Their sum (with sign) = net displacement\n\n  Where the line crosses the t-axis is the moment the ball\n  momentarily stops at the top of its throw.",
+            "zone": "MAIN_ZONE",
+            "anchor": "top_center",
+            "font_size": 12,
+            "color": "#111",
+            "appear_at": 0.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "label",
+            "id": "six_label",
+            "text": "Cricket six: ball thrown straight up, then falls",
+            "zone": "MAIN_ZONE",
+            "anchor": "bottom_center",
+            "font_size": 14,
+            "color": "#333",
+            "appear_at": 3.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+            ]
+          },
+          {
+            "type": "vehicle_sprite",
+            "id": "ball",
+            "vehicle_type": "ball",
+            "zone": "MAIN_ZONE",
+            "anchor": "center",
+            "appear_at": 4.0,
+            "animations": [
+              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
+              { "type": "translate", "delay_sec": 4.5, "duration_sec": 2.5, "dx_px": 0, "dy_px": -200, "easing": "ease_out" },
+              { "type": "translate", "delay_sec": 7.0, "duration_sec": 2.5, "dx_px": 0, "dy_px": 200, "easing": "ease_in" }
+            ]
+          }
+        ],
+        "focal_primitive": "cross_axis_sketch",
+        "teacher_script": {
+          "tts_sentences": [
+            { "text_en": "Here is the edge case students often miss. The v-t line can cross the time axis." },
+            { "text_en": "Think of a cricketer hitting the ball straight up. The moment after contact, velocity is strongly positive — upward." },
+            { "text_en": "Gravity slows the ball at a constant rate, so the v-t line is a perfectly straight line with slope minus g." },
+            { "text_en": "At the top of the flight the line crosses zero — the ball is stationary for a split second, then the velocity turns negative as the ball falls back." },
+            { "text_en": "Triangle above the axis is the distance up. Triangle below is the distance down. If they are equal, the ball lands where it started — net displacement zero." }
+          ]
+        },
+        "advance_mode": "auto_after_tts"
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "area_is_velocity",
+      "misconception_summary": "Student thinks the area under a v-t graph gives velocity, not displacement.",
+      "confusion_patterns": [
+        "area under v-t graph is velocity",
+        "area under curve is speed",
+        "what does area under vt graph mean",
+        "area gives velocity"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Trap: Area Looks Like It Might Be Velocity",
+          "duration": 10,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_sketch",
+              "text": "Student's (wrong) idea:\n\n  \"The curve shows velocity,\n   so the area under it must also be velocity!\"\n\nv |____________\n  |           |\n  |  area = ? |\n  |           |\n  |___________|_____  t\n\n  Student points at the area and says:\n    'That's just a bigger patch of velocity.'\n\n  Dimension check coming next...",
+              "zone": "MAIN_ZONE",
+              "anchor": "center",
+              "font_size": 13,
+              "color": "#b00020",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "wrong_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Before we correct this, let us state the belief plainly." },
+              { "text_en": "The student sees velocity plotted on the vertical axis, so anything measured on that graph feels like velocity." },
+              { "text_en": "If the line itself is velocity, the area underneath must be… more velocity? That is the trap." },
+              { "text_en": "We will break the trap with two moves: a units check, and a concrete Metro journey." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_2": {
+          "title": "Units Force the Answer: m/s Multiplied by s Equals m",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "units_sketch",
+              "text": "Check the units of the area:\n\n   height of strip = velocity  (m/s)\n   width  of strip = time      (s)\n   strip area      = (m/s) * s = m\n\n   So the area MUST have units of metres,\n   which is displacement — not velocity.\n\n   Every horizontal slice you add under the curve\n   contributes another little bit of distance,\n   summed across the whole interval.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 13,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            },
+            {
+              "type": "label",
+              "id": "cancel_label",
+              "text": "The s in the denominator of m/s cancels with the s of time.",
+              "zone": "MAIN_ZONE",
+              "anchor": "bottom_center",
+              "font_size": 13,
+              "color": "#00796b",
+              "appear_at": 4.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.6 }
+              ]
+            }
+          ],
+          "focal_primitive": "units_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Units are the fastest way to settle this." },
+              { "text_en": "Every thin vertical strip under the v-t curve has height velocity, in metres per second." },
+              { "text_en": "Its width is a tiny duration, in seconds. Their product is metres — displacement, not velocity." },
+              { "text_en": "So the area under a v-t curve is ALWAYS in metres, no matter what shape the curve is. It is distance, not speed." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "STATE_3": {
+          "title": "Concrete Check: Metro Train Area = Distance in Metres",
+          "duration": 11,
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "concrete_sketch",
+              "text": "Bengaluru Metro: 60 km/h cruise for 90 s\n\n   area of cruising rectangle\n      = 60 km/h * 90 s\n      = (60 * 1000 / 3600) m/s * 90 s\n      =  16.67 m/s * 90 s\n      =  1500 m  =  1.5 km\n\n   That is the distance covered while cruising.\n   It is NOT 1500 km/h or 1500 (km/h)^2.\n   It is simply 1.5 kilometres.",
+              "zone": "MAIN_ZONE",
+              "anchor": "top_center",
+              "font_size": 13,
+              "color": "#111",
+              "appear_at": 0.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              ]
+            },
+            {
+              "type": "vehicle_sprite",
+              "id": "train_demo",
+              "vehicle_type": "train",
+              "zone": "MAIN_ZONE",
+              "anchor": "bottom_center",
+              "appear_at": 3.0,
+              "animations": [
+                { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.4 },
+                { "type": "translate", "delay_sec": 4.0, "duration_sec": 5.0, "dx_px": 320, "dy_px": 0, "easing": "linear" }
+              ]
+            }
+          ],
+          "focal_primitive": "concrete_sketch",
+          "teacher_script": {
+            "tts_sentences": [
+              { "text_en": "Let us burn the correct reading into memory with one concrete number." },
+              { "text_en": "Take the Metro cruising at 60 km per hour for 90 seconds — that is 16 point six seven metres per second times 90 seconds." },
+              { "text_en": "That product is 1500 metres — one and a half kilometres of track covered. A distance, plain and simple." },
+              { "text_en": "So whenever you look at a v-t graph, say aloud: slope is acceleration, area is displacement. Never swap those two." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": {
+    "type_a": [
+      { "label": "Heavier acceleration from rest", "params": { "slope_vt": 5, "area_vt": 80 } },
+      { "label": "Cruising at a steady speed", "params": { "slope_vt": 0, "area_vt": 120 } },
+      { "label": "Strong deceleration", "params": { "slope_vt": -6, "area_vt": 40 } }
+    ],
+    "type_b": [
+      { "label": "Bus at a bus stop", "scenario": "city_bus_accelerating_from_stop" },
+      { "label": "Rollercoaster dropping", "scenario": "rollercoaster_drop_and_brake" }
+    ]
+  }
+}
