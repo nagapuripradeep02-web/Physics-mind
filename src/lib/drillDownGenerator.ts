@@ -17,6 +17,10 @@ import {
     validateSubSimLayout,
     type LayoutViolation,
 } from "@/lib/constraintSchema";
+import {
+    validatePCPLSubSimStates,
+    type PCPLViolation,
+} from "@/lib/pcplPhysicsValidator";
 
 const SONNET_MODEL = "claude-sonnet-4-6";
 const PROMPT_PATH_V1 = path.join(process.cwd(), "src", "prompts", "drill_down_generator.txt");
@@ -78,6 +82,9 @@ export interface DrillDownGenerateResult {
     rawText: string;
     /** Populated only when DEEP_DIVE_USES_RELATIONSHIPS is on. */
     layoutViolations?: LayoutViolation[];
+    /** E42 Physics Validator output — always runs. */
+    physicsViolations?: PCPLViolation[];
+    physicsValid?: boolean;
 }
 
 function extractJsonObject(text: string): unknown | null {
@@ -185,11 +192,26 @@ export async function generateDrillDown(input: DrillDownGenerateInput): Promise<
         }
     }
 
+    // E42 Physics Validator — always runs.
+    const physicsResult = validatePCPLSubSimStates(
+        states as Record<string, { scene_composition?: unknown[] }>,
+    );
+    if (physicsResult.violations.length > 0) {
+        console.warn(
+            "[drillDownGenerator][E42] physics violations:",
+            physicsResult.violations.length,
+            "critical=", physicsResult.violations.filter(v => v.severity === 'CRITICAL').length,
+            physicsResult.violations.slice(0, 5).map(v => `${v.code}@${v.state_id}/${v.primitive_id}`),
+        );
+    }
+
     return {
         protocol,
         subSim: { states },
         teacherScriptFlat: parsedObj.teacher_script_flat as Array<{ id: string; text: string }>,
         rawText,
         layoutViolations,
+        physicsViolations: physicsResult.violations,
+        physicsValid: physicsResult.valid,
     };
 }

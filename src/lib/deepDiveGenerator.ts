@@ -17,6 +17,10 @@ import {
     validateSubSimLayout,
     type LayoutViolation,
 } from "@/lib/constraintSchema";
+import {
+    validatePCPLSubSimStates,
+    type PCPLViolation,
+} from "@/lib/pcplPhysicsValidator";
 
 const SONNET_MODEL = "claude-sonnet-4-6";
 const PROMPT_PATH_V1 = path.join(process.cwd(), "src", "prompts", "deep_dive_generator.txt");
@@ -78,6 +82,14 @@ export interface DeepDiveGenerateResult {
      *  means Sonnet emitted primitives that violated the solver contract;
      *  caller should stash into review_notes for admin triage. */
     layoutViolations?: LayoutViolation[];
+    /** E42 Physics Validator output. Populated on every generation.
+     *  CRITICAL entries (wrong direction_deg, N/mg_perp not 180° opposite,
+     *  angle_arc value ≠ surface angle) should block cache-promotion until
+     *  fixed. WARNING entries (unclassifiable forces, body-surface unresolved)
+     *  ship with review notes. */
+    physicsViolations?: PCPLViolation[];
+    /** Convenience flag — false when at least one CRITICAL physics violation. */
+    physicsValid?: boolean;
 }
 
 function extractJsonObject(text: string): unknown | null {
@@ -200,10 +212,50 @@ export async function generateDeepDive(input: DeepDiveGenerateInput): Promise<De
         }
     }
 
+    // E42 Physics Validator — always runs. Catches Sonnet direction-degree
+    // errors (N / mg / mg_perp / mg_parallel angle relative to surface) and
+    // angle_arc value mismatches. CRITICAL violations should downgrade the
+    // cache row's status to 'pending_review' with review_notes populated, or
+    // trigger a regeneration. The generator itself is non-fatal here —
+    // the API route layer decides the promotion policy.
+    // Parent scene + default variables (from physicsEngineConfig) help the
+    // validator resolve angle_expr surfaces like `angle_expr: "theta"` that
+    // Sonnet leaves as placeholders in sub-states.
+    const parentSceneArr: unknown[] = Array.isArray(input.parentSceneComposition)
+        ? input.parentSceneComposition
+        : Array.isArray((input.parentSceneComposition as { primitives?: unknown[] } | null | undefined)?.primitives)
+            ? ((input.parentSceneComposition as { primitives: unknown[] }).primitives)
+            : [];
+    const varsFromConfig = (input.physicsEngineConfig && typeof input.physicsEngineConfig === 'object')
+        ? Object.fromEntries(
+            Object.entries((input.physicsEngineConfig as { variables?: Record<string, { default?: number; constant?: number }> }).variables ?? {})
+                .map(([k, v]) => [k, typeof v?.default === 'number' ? v.default
+                    : typeof v?.constant === 'number' ? v.constant
+                    : NaN])
+                .filter(([, n]) => Number.isFinite(n as number))
+          )
+        : {};
+    const physicsResult = validatePCPLSubSimStates(
+        subStates as Record<string, { scene_composition?: unknown[] }>,
+        2,
+        parentSceneArr,
+        varsFromConfig as Record<string, number>,
+    );
+    if (physicsResult.violations.length > 0) {
+        console.warn(
+            "[deepDiveGenerator][E42] physics violations:",
+            physicsResult.violations.length,
+            "critical=", physicsResult.violations.filter(v => v.severity === 'CRITICAL').length,
+            physicsResult.violations.slice(0, 5).map(v => `${v.code}@${v.state_id}/${v.primitive_id}`),
+        );
+    }
+
     return {
         subStates,
         teacherScriptFlat: parsedObj.teacher_script_flat as Array<{ id: string; text: string }>,
         rawText,
         layoutViolations,
+        physicsViolations: physicsResult.violations,
+        physicsValid: physicsResult.valid,
     };
 }

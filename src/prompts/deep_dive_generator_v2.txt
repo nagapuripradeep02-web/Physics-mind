@@ -138,6 +138,35 @@ Force_arrow schema (NOT solver-managed — use these fields):
 - `magnitude`: the physics value in Newtons (can reference `variables.mg` etc.). Renderer scales by `scale_pixels_per_unit` (~4 keeps arrows inside MAIN_ZONE at typical values).
 - Force_arrows NEVER need `anchor`, `edge`, `gap`, or `position` — omit these. They route through `from` + `direction_deg`.
 
+WORLD-FRAME DIRECTION_DEG FOR FORCES ON A TILTED SURFACE (CRITICAL — E42 HARD GATE)
+===================================================================================
+`direction_deg` is ALWAYS in the WORLD frame (0° = +x axis, physics-y-up: 90° = up), NEVER in the block's local frame. Do NOT compute "perpendicular to the block" in the block's rotated frame and copy-paste that number — you must convert to world-frame degrees using the surface angle θ (measured from horizontal, positive for up-right inclines).
+
+For a body resting on a surface inclined at angle θ:
+
+- **Normal force N** (pushes body OFF the surface, perpendicular outward):
+  `direction_deg = (90 + θ) mod 360`
+  Examples: θ=0° (flat floor) → N at 90° (straight up). θ=30° → N at 120°. θ=60° → N at 150°. θ=89° (near-vertical wall) → N at 179°.
+
+- **Perpendicular component of gravity** (`mg_perp`, `mg cos θ`, `perp_component`): presses body INTO the surface — EXACTLY OPPOSITE to N:
+  `direction_deg = (270 + θ) mod 360`
+  Examples: θ=0° → 270° (straight down). θ=30° → 300°. θ=60° → 330°. θ=89° → 359°.
+
+- **Parallel component of gravity** (`mg_parallel`, `mg sin θ`): points DOWN the slope:
+  `direction_deg = (180 + θ) mod 360`
+  Examples: θ=30° → 210°. θ=60° → 240°.
+
+- **Full weight / gravity** (`mg`, `weight`, `gravity`): ALWAYS straight down, INDEPENDENT of θ:
+  `direction_deg = 270` (no θ term).
+
+Self-check EVERY force arrow before you emit it:
+1. Is this N? Then `direction_deg == 90 + θ`.
+2. Is this mg_perp / mg cos θ? Then `direction_deg == 270 + θ`, and it MUST be N's direction + 180° (mod 360).
+3. Is this mg_parallel / mg sin θ? Then `direction_deg == 180 + θ`.
+4. Is this full weight mg? Then `direction_deg == 270`, no matter what θ is.
+
+Violating any of these triggers E42 rejection. A rejected sub-state is NOT cached and NOT served — the student sees a fallback error. Get the direction right the first time.
+
 Surfaces, bodies, vectors, force_components, angle_arcs, motion_paths, comparison_panels continue to use their existing fields (e.g. surfaces keep `position` + `length` + `orientation`, bodies use `attach_to_surface` for contact). The solver only owns label/annotation/formula_box layout — every other type must carry its own positioning field.
 
 Surface geometry rule (CRITICAL — prevents off-canvas walls):

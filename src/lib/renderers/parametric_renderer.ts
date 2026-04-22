@@ -1224,11 +1224,33 @@ function drawVector(spec, ox, oy) {
   var rgb = PM_hexToRgb(spec.color || '#8B5CF6');
   // Endpoints: either a literal {x,y} OR a string anchor like "mass_1.top" /
   // "pulley.bottom" that resolves against the (animated) body registry so
-  // ropes track bodies in motion.
+  // ropes track bodies in motion. When spec.to is absent but spec.magnitude and
+  // spec.direction_deg are provided, synthesize to = from + (cos, -sin) * mag
+  // using the same physics-y-up convention as drawForceArrow
+  // (0 deg = +x, 90 deg = visually up on canvas).
   var from = spec.from || { x: 0, y: 0 };
-  var to = spec.to || { x: 0, y: 0 };
   if (typeof from === 'string') from = PM_resolveAnchor(from, PM_bodyRegistry, PM_surfaceRegistry);
-  if (typeof to === 'string') to = PM_resolveAnchor(to, PM_bodyRegistry, PM_surfaceRegistry);
+  var to;
+  if (spec.to != null) {
+    to = spec.to;
+    if (typeof to === 'string') to = PM_resolveAnchor(to, PM_bodyRegistry, PM_surfaceRegistry);
+  } else if (typeof spec.magnitude === 'number' || typeof spec.magnitude_expr === 'string') {
+    var liveVarsV = (PM_physics && PM_physics.variables)
+      || (PM_config && PM_config.default_variables) || {};
+    var magV = (typeof spec.magnitude_expr === 'string')
+      ? PM_safeEval(spec.magnitude_expr, liveVarsV)
+      : spec.magnitude;
+    if (!isFinite(magV)) magV = 0;
+    var dirDegV = (typeof spec.direction_deg_expr === 'string')
+      ? PM_safeEval(spec.direction_deg_expr, liveVarsV)
+      : (typeof spec.direction_deg === 'number' ? spec.direction_deg : 0);
+    if (!isFinite(dirDegV)) dirDegV = 0;
+    var radV = dirDegV * Math.PI / 180;
+    // Physics y-up → canvas y-down: flip y (matches drawForceArrow line 1007).
+    to = { x: from.x + magV * Math.cos(radV), y: from.y - magV * Math.sin(radV) };
+  } else {
+    to = { x: 0, y: 0 };
+  }
   var fx = from.x + ox, fy = from.y + oy;
   var tx = to.x + ox, ty = to.y + oy;
 
@@ -1456,7 +1478,23 @@ function PM_drawSubScene(prims, ox, oy) {
 // to_deg_expr for dynamic angles that track a slider variable. Used by
 // vector_resolution to visualize α and by normal_reaction for θ indicators.
 function drawAngleArc(spec) {
-  var center = spec.center || { x: 250, y: 300 };
+  // Vertex resolution priority:
+  //   1. spec.center (explicit {x, y} literal) — author-placed.
+  //   2. spec.surface_id  → resolve to the surface's (x0, y0) from PM_surfaceRegistry.
+  //   3. spec.vertex_anchor (string like "floor.start" or "block.bottom") →
+  //      PM_resolveAnchor.
+  //   4. Legacy fallback (250, 300) — only hits when none of the above resolved.
+  var center = null;
+  if (spec.center && typeof spec.center === 'object'
+      && typeof spec.center.x === 'number' && typeof spec.center.y === 'number') {
+    center = spec.center;
+  } else if (spec.surface_id && PM_surfaceRegistry && PM_surfaceRegistry[spec.surface_id]) {
+    var surfA = PM_surfaceRegistry[spec.surface_id];
+    center = { x: surfA.x0, y: surfA.y0 };
+  } else if (typeof spec.vertex_anchor === 'string') {
+    center = PM_resolveAnchor(spec.vertex_anchor, PM_bodyRegistry, PM_surfaceRegistry);
+  }
+  if (!center) center = { x: 250, y: 300 };
   var radius = (typeof spec.radius === 'number') ? spec.radius : 40;
   var fromDeg = (typeof spec.from_deg === 'number') ? spec.from_deg : 0;
   var toDeg;
@@ -1464,9 +1502,24 @@ function drawAngleArc(spec) {
     var vars = (PM_physics && PM_physics.variables)
       || (PM_config && PM_config.default_variables) || {};
     toDeg = (typeof vars[spec.to_deg_expr] === 'number') ? vars[spec.to_deg_expr] : 45;
+  } else if (typeof spec.to_deg === 'number') {
+    toDeg = spec.to_deg;
+  } else if (typeof spec.angle_value === 'number') {
+    // v2 prompt convention: spec.angle_value is the target angle in degrees.
+    // Drives to_deg so an inclined surface with angle=30 shows a 0 to 30 arc.
+    toDeg = spec.angle_value;
+  } else if (typeof spec.angle_value_expr === 'string') {
+    var varsA = (PM_physics && PM_physics.variables)
+      || (PM_config && PM_config.default_variables) || {};
+    var av = PM_safeEval(spec.angle_value_expr, varsA);
+    toDeg = isFinite(av) ? av : 45;
   } else {
-    toDeg = (typeof spec.to_deg === 'number') ? spec.to_deg : 45;
+    toDeg = 45;
   }
+  // Degenerate arc (e.g. a horizontal surface labelled angle=0°): skip drawing
+  // the arc itself but still render the label so the student sees "θ = 0°"
+  // without a zero-width arc artifact.
+  if (Math.abs(toDeg - fromDeg) < 0.5 && !spec.label) return;
   var rgb = PM_hexToRgb(spec.color || '#F59E0B');
 
   // Math CCW → canvas CW: p5 arc takes angles in canvas (CW positive).
@@ -1962,14 +2015,31 @@ function PM_resolveAnchor(anchor, bodyRegistry, surfaceRegistry) {
       if (subAnchor === 'slot_2') return { x: zone.x + 10, y: zone.y + 77 };
       if (subAnchor === 'slot_3') return { x: zone.x + 10, y: zone.y + 144 };
     }
-    // Body anchor: "block.bottom"
+    // Body anchor: "block.bottom" — apply body.rotation_deg (stored at line 786)
+    // when resolving edge anchors so arrows / labels attached to a tilted block
+    // on an inclined surface land on the rotated edge, not the axis-aligned one.
     var body = bodyRegistry && bodyRegistry[zoneName];
     if (body) {
+      if (subAnchor === 'center' || subAnchor === 'top_center' || subAnchor === 'bottom_center') {
+        // Centers of top/bottom edges: handled below with dy = ±h/2.
+      }
       if (subAnchor === 'center') return { x: body.cx, y: body.cy };
-      if (subAnchor === 'bottom') return { x: body.cx, y: body.cy + body.h/2 };
-      if (subAnchor === 'top')    return { x: body.cx, y: body.cy - body.h/2 };
-      if (subAnchor === 'left')   return { x: body.cx - body.w/2, y: body.cy };
-      if (subAnchor === 'right')  return { x: body.cx + body.w/2, y: body.cy };
+      var dx = 0, dy = 0;
+      if (subAnchor === 'bottom' || subAnchor === 'bottom_center') { dx = 0; dy = body.h/2; }
+      else if (subAnchor === 'top' || subAnchor === 'top_center') { dx = 0; dy = -body.h/2; }
+      else if (subAnchor === 'left')   { dx = -body.w/2; dy = 0; }
+      else if (subAnchor === 'right')  { dx =  body.w/2; dy = 0; }
+      else { dx = NaN; dy = NaN; }
+      if (!isNaN(dx)) {
+        var rotDegBody = (typeof body.rotation_deg === 'number') ? body.rotation_deg : 0;
+        if (!rotDegBody) return { x: body.cx + dx, y: body.cy + dy };
+        var radBody = rotDegBody * Math.PI / 180;
+        var cosBody = Math.cos(radBody), sinBody = Math.sin(radBody);
+        return {
+          x: body.cx + dx * cosBody - dy * sinBody,
+          y: body.cy + dx * sinBody + dy * cosBody
+        };
+      }
     }
     // Surface anchor: "floor.mid"
     var surf = surfaceRegistry && surfaceRegistry[zoneName];

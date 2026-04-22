@@ -1,5 +1,584 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-04-22 (session 22) — E42 hard-block + prompt hardening + normal_reaction STATE_3/STATE_5 regenerated clean
+
+### Top-line outcome
+
+Phase D is finally GREEN. The two bad cached rows are replaced with validator-clean ones. Session 21 closeout listed six concrete steps; all six landed.
+
+### What shipped
+
+1. **`src/prompts/deep_dive_generator_v2.txt`** — added a "WORLD-FRAME DIRECTION_DEG FOR FORCES ON A TILTED SURFACE (CRITICAL — E42 HARD GATE)" block after the `force_arrow` schema. States the exact formulas with worked θ=0/30/60/89° examples for N, mg_perp, mg_parallel, and full weight, plus an explicit self-check list, plus the consequence (E42 rejection, no cache, no serve). Same block mirrored into `src/prompts/drill_down_generator_v2.txt`.
+
+2. **`src/app/api/deep-dive/route.ts`** — cache-miss path promoted E42 from report-only to hard-block. When Sonnet's output has any CRITICAL `physicsViolations[]`, the row is inserted with `status: "rejected"` and `served_count: 0`, and the API returns HTTP 422 with a student-visible fallback message ("This explanation is being regenerated — please try again in a moment"). No broken sub-sim is ever served. Clean rows still insert as `pending_review` with `served_count: 1` as before.
+
+3. **Deleted the two stale rows** via `DELETE FROM deep_dive_cache WHERE concept_id='normal_reaction' AND state_id IN ('STATE_3','STATE_5')` — 2 rows removed (the `pending_review` ones with 16 and 9 served_count respectively).
+
+4. **Regenerated both** via a one-off `src/scripts/regen-normal-reaction-dd.ts` that bypasses the auth middleware and calls `generateDeepDive()` directly (HTTP path gated by `src/proxy.ts`). Both generations came back clean on the first try under the hardened prompt:
+   - `normal_reaction|STATE_3|Class 12|conceptual` → `physicsValid=true, 0 violations, 0 critical` → inserted as `pending_review` (id e990aef1).
+   - `normal_reaction|STATE_5|Class 12|conceptual` → `physicsValid=true, 0 violations, 0 critical` → inserted as `pending_review` (id 40f21e85).
+   Sonnet output chars: 22651 (STATE_3) + 23921 (STATE_5). No retries needed. The explicit world-frame block landed on the first shot — Sonnet no longer rotates N to the wrong side of vertical.
+
+5. **Type-check clean** — `npx tsc --noEmit` = 0 errors after all edits.
+
+### What this unlocks
+
+- The 9 known-bad cached rows flagged by E42 in session 21 are gone.
+- Phase D (Plan.md) is now GREEN: the renderer plumbing AND the Sonnet-generated content flowing through it are both physics-correct for `normal_reaction`.
+- E42 is now a production hard gate, not a report. Future malformed generations will auto-reject — no more "served to students while pending review" failure mode.
+
+### Files touched (this session)
+
+**Modified**
+- `src/app/api/deep-dive/route.ts` — hard-block gate at cache-miss insert.
+- `src/prompts/deep_dive_generator_v2.txt` — world-frame direction_deg rules + examples + E42 hard-gate callout.
+- `src/prompts/drill_down_generator_v2.txt` — same block.
+
+**Created**
+- `src/scripts/regen-normal-reaction-dd.ts` — one-off CLI regenerator that bypasses auth. Loads `.env.local` with `override: true` so `ANTHROPIC_API_KEY` wins over shell (shell had it empty, which was the trap). Kept in-tree for future one-off regens.
+
+### Gotchas that cost time
+
+- `curl http://localhost:3000/api/deep-dive` returned 307 → `/login`. The Supabase auth middleware in `src/proxy.ts` gates every non-public path; deep-dive isn't in the public list. Don't try to hit the API with curl — call the generator directly via a script.
+- `tsx src/scripts/foo.ts` without `dotenv.config({override: true})` silently falls back to shell env. If the shell has `ANTHROPIC_API_KEY=""`, dotenv's default "don't clobber existing vars" policy keeps the empty string. Override is mandatory in one-off scripts.
+
+### Next session's first task
+
+**Phase E kickoff — retrofit `contact_forces.json` to gold-standard spec.** First concept under the newly-adopted 5-agent pipeline (ARCHITECT → PHYSICS_AUTHOR → JSON_AUTHOR → QUALITY_AUDITOR → approve). Budget: 1 session. Spec is in session-21-closeout: ≥3 primitives per state, focal_primitive_id, choreography_sequence, ≥4 epic_c_branches, varied advance_mode, mode_overrides.board (canvas_style=answer_sheet + derivation_sequence + mark_scheme), mode_overrides.competitive, prerequisites, allow_deep_dive tags on 2–3 hard states.
+
+Before Phase E starts: mirror the cache-miss hard-block into `src/app/api/drill-down/route.ts` (today it lacks the same E42 gate plumbing; see session-21 entry's "Known follow-ups" list).
+
+### Known follow-ups (unchanged from session 21 closeout)
+
+- `.agents/<name>/CLAUDE.md` scaffolding for the 5 agents.
+- DEEP-DIVE/DRILL-DOWN cache-table merge (E29+E30 collapse to E29).
+- Observability dashboard + CI on `pcplPhysicsValidator.ts` commits + auto-cache-invalidation.
+- Unit tests for `pcplPhysicsValidator.ts`.
+- CLAUDE.md §2 ROLES rewrite for single-architect model.
+
+---
+
+## 2026-04-22 (session 21 closeout) — Strategic framework: 5-agent pipeline + role inversion + DEEP-DIVE merge
+
+### Top-line outcome
+
+No new code this entry. Captures the architectural decisions made in the last leg of session 21 after E42 shipped, so a fresh Claude Code session tomorrow can pick up without re-deriving anything. This is the "session wrap-up" entry; see the earlier session-21 entry for E42 details and session-20 for the renderer fixes + retracted sign-off.
+
+### Role inversion — Claude Code owns architect + engineer + QA + designer
+
+Pradeep retired the "external LLM = architect" mental model. Claude Code (me) now owns:
+- Design decisions
+- Code
+- Testing
+- Documentation
+- Quality gate ownership
+- Self-correction (retractions land same-session, not next-week)
+
+Pradeep retains: strategic direction, pedagogy calls, final approval on ambiguous design trade-offs.
+
+**Practical effect on CLAUDE.md §2 "ROLES"**: the "Claude Project = Architect / Antigravity = Engineer" split was already retired on 2026-04-19. This entry confirms it fully — there is no second LLM giving guidance; I am the single source of architectural authority for this project. CLAUDE.md may need a small §2 rewrite to reflect this unambiguously (deferred to the first code session that touches it).
+
+### 5-agent dev pipeline — sequential per concept, event-driven, structured handoffs
+
+Adopted. Five agents, not six, not four:
+
+| # | Agent | Owns | Never touches |
+|---|---|---|---|
+| 1 | **ARCHITECT** (me) | PLAN.md, CLAUDE.md, engine specs, `src/prompts/*.txt`, orchestration, commits, renderer/engine code for now | Validator rules, JSON content |
+| 2 | **PHYSICS_AUTHOR** | `pcplPhysicsValidator.ts`, per-concept invariant docs, rule test fixtures in `src/__tests__/pcpl_*.test.ts` | JSONs, renderers, prompts |
+| 3 | **JSON_AUTHOR** | `src/data/concepts/*.json` (scene_composition, epic_c, teacher_script, mode_overrides) | Validator, renderer, prompts |
+| 4 | **QUALITY_AUDITOR** | E42 runs + E43 visual probe + E44 regression + script-visual alignment + `concepts/<id>/QA_REPORT.md` | Never writes JSONs, validators, or renderer |
+| 5 | **FEEDBACK_COLLECTOR** | Nightly batch of student signals → `feedback/<date>.md` + proposal_queue inserts | Never writes production tables beyond proposal_queue |
+
+**Flow within a concept** (sequential with two back-edges):
+
+```
+ARCHITECT brief → PHYSICS_AUTHOR rules → JSON_AUTHOR content → QUALITY_AUDITOR verdict → ARCHITECT approve
+                              ↑________________| (content bounce: retry JSON)
+              ↑_______________________________| (rule bounce: PHYSICS_AUTHOR adds missing invariant)
+```
+
+**Across concepts**: strictly sequential for the first 5 concepts (`normal_reaction` regen + Ch.8 retrofits — `contact_forces`, `field_forces`, `tension_in_string`, `hinge_force`, `free_body_diagram`). Pipeline parallelism (PHYSICS_AUTHOR on concept 5 while JSON_AUTHOR works on concept 4) unlocks ONLY after 5 concepts ship clean.
+
+**Operational rules:**
+- **Event-driven, not always-on.** Agents fire on events (new concept requested, validator rule added, renderer commit, nightly feedback batch). Idle agents burn tokens; no daemon mode.
+- **Max 3 retries per concept.** After 3 bounces, concept halts and ARCHITECT investigates. Prevents runaway Sonnet loops.
+- **Budget cap: $5 of Sonnet per concept.** Overrun pauses pipeline, pings ARCHITECT.
+- **Structured JSON handoff contracts** between stages (not prose reports). Each agent's CLAUDE.md specifies the input contract it consumes and the output contract it emits.
+
+### Role-collision pattern — the root cause of every session-20-style failure
+
+Pattern surfaced from 21 sessions of history: when I sat in 2+ roles simultaneously (author + QA), I rubber-stamped my own output. Sessions 18 and 21 (role-separated) produced clean work. Session 20 (role-collapsed) produced 9 CRITICAL physics bugs I called PASS. The 5-agent split exists to ENFORCE role separation even when it's one Claude Code process driving them all.
+
+### DEEP-DIVE ↔ DRILL-DOWN merge — keeping the DEEP-DIVE name
+
+Decided: merge the two into a single mechanism with two triggers.
+- **Keep "DEEP-DIVE"** as the public name (familiar to students; "drill" was colder but never used).
+- **Two triggers for one engine:**
+  - Button click on `allow_deep_dive: true` states → cache key `concept|state|class|mode`
+  - Typed student confusion → Haiku classifier → cluster_id → cache key `concept|state|cluster|class|mode`
+- **One cache table** `sub_sim_cache` (or keep `deep_dive_cache` and retire `drill_down_cache`; migration decision in session 22).
+- **One prompt**, one admin route (`/admin/deep-dive-review`), one validator coverage.
+- Engines E29 + E30 collapse to a single E29. Engine count drops from 44 → 43.
+
+### UI consolidation — single chat entry point
+
+Decided: kill the main chat panel as a persistent input. Single-entry UX:
+
+1. Student arrives → one text box.
+2. First message → concept classifier → loads TeacherPlayer.
+3. All subsequent messages go into the in-state input within TeacherPlayer. Classified as DEEP-DIVE trigger, navigation, or free-form follow-up.
+4. Past concepts become a sidebar list (passive history, not an active input).
+
+Rationale: two inputs = two mental models for the student. Merging into one — where the UI decides context — removes cognitive overhead. Implementation deferred to Phase F.
+
+### Six infrastructure gaps promoted to non-negotiable
+
+Listed here so no future session forgets them:
+
+1. **Prompt-degradation rule.** When E42 catches the same violation CLASS 3+ times across concepts, the PROMPT has a gap. ARCHITECT must update `src/prompts/*.txt`, not patch content. Today this is silent — needs a counter in `proposal_queue`.
+2. **Automatic cache invalidation.** When `pcplPhysicsValidator.ts` rules change, all existing cached rows auto-invalidate and re-audit. Today I delete by hand.
+3. **Observability dashboard.** Per-concept physics-valid %, per-state violations, cost, regression history. Machine-readable artifact `concepts/<id>/<date>_qa.json` written on every QA_AUDITOR run. Simple admin page aggregates.
+4. **CI on commit.** Every commit to `pcplPhysicsValidator.ts` or `src/prompts/*.txt` runs full E42 against all cached rows. GitHub Actions, not "I'll remember."
+5. **Automatic retraction protocol.** When QA catches a bug on a `verified` row, auto-demote to `pending_review` and write a regression entry. Don't wait for human to notice (would have forced the session-20→21 retraction the same day).
+6. **Git workflow.** One branch per concept: `concept/<id>`. Agents push there. ARCHITECT reviews and merges to `main`.
+
+### Single-source-of-truth rule for physics invariants
+
+Every physics invariant has exactly ONE home: `pcplPhysicsValidator.ts`. Not duplicated in prompts (prompts REFERENCE rule codes), not duplicated in JSON comments, not duplicated in my head. One rule change = one file change.
+
+### Session management — starting new Claude Code sessions at task boundaries
+
+Adopted. Long sessions (this one is ~21 work units) re-process 500k+ tokens per turn. New sessions start fresh (~30k tokens of docs). ~5–15× cheaper per turn AND better context quality.
+
+**Closeout ritual** (end of every session): update PROGRESS.md with current state + next task, verify `npx tsc --noEmit`, confirm `git status` is clean-or-documented, announce complete.
+
+**Startup ritual** (first message of new session): *"New session. Read CLAUDE.md, PLAN.md, the most recent PROGRESS.md entry, and any .agents/ workspace notes. Then tell me the current state and proposed next action."*
+
+**Session boundary = task boundary.** Start new at: topic switch, >20 turns, end of a concept/phase, >5 min break. Stay in same session: mid-bug-fix, <5-turn iteration loop.
+
+### What I authorized but did NOT implement (honesty flag)
+
+Earlier in this session I said "Promoting E42 to hard-block tonight" as a decision-without-asking. I never shipped it. Currently E42 reports violations via `physics_violations[]` + `review_notes` on cache rows, but does NOT reject at insert time. The 9 known-bad cached rows for `normal_reaction` STATE_3/STATE_5 are still served to students.
+
+This is the single most important open item going into session 22.
+
+### Session 22 — first task (the next Claude Code session picks up here)
+
+**Phase: promote E42 from report-only to hard-block + regenerate the 9 bad rows.**
+
+Concrete steps:
+1. Edit `src/app/api/deep-dive/route.ts` cache-miss path: when `gen.physicsValid === false`, insert row with `status: "rejected"` instead of `pending_review`, and response falls back to a student-visible "Regenerating this explanation — please try a moment" state (NOT the broken sub-sim).
+2. Edit `src/prompts/deep_dive_generator_v2.txt`: add explicit world-frame direction_deg block:
+   - "For a body on a surface with angle θ (measured from horizontal, positive for up-right inclines): `N.direction_deg` MUST equal `90 + θ` (mod 360). `mg_perp` / `mg cos θ` MUST equal `270 + θ` (mod 360) — exactly opposite to N. `mg` (full weight) MUST always equal `270` (straight down), independent of θ. Compute direction_deg in WORLD frame (0° = +x axis), NOT in the block's local frame. Violating this triggers E42 rejection."
+   - Mirror into `src/prompts/drill_down_generator_v2.txt`.
+3. Delete the 2 cached rows:
+   ```sql
+   DELETE FROM deep_dive_cache WHERE concept_id='normal_reaction' AND state_id IN ('STATE_3','STATE_5');
+   ```
+4. Re-trigger deep-dives via `/api/deep-dive` for STATE_3 and STATE_5. Cost: ~80s × 2 Sonnet calls.
+5. Verify `physics_valid: true` on both responses. If any violations, iterate on the prompt until clean.
+6. Commit.
+
+**After that**: Phase E retrofit of the first Ch.8 concept (`contact_forces`) under the new 5-agent pipeline. That will be the proof run for the architecture.
+
+### Known follow-ups (deferred to later sessions)
+
+- CLAUDE.md §2 "ROLES" rewrite to reflect single-architect model.
+- `.agents/<name>/CLAUDE.md` scaffolding for the 5 agents (Session 23).
+- DEEP-DIVE/DRILL-DOWN cache migration (Session 23).
+- UI consolidation to single entry point (Phase F).
+- Observability dashboard + CI + auto-cache-invalidation + auto-retraction (foundational infra; Session 24+).
+- `src/app/api/drill-down/route.ts` physics-violations plumbing (mirrors deep-dive route).
+- Unit tests for `pcplPhysicsValidator.ts`.
+
+### Files touched this (long) session — complete list
+
+**Created**
+- `C:\Tutor\PLAN.md`
+- `C:\Users\PRADEEEP\.claude\plans\sorted-cuddling-lamport.md`
+- `src/lib/pcplPhysicsValidator.ts`
+
+**Modified**
+- `C:\Tutor\CLAUDE.md` (v3.1 → v3.2)
+- `C:\Tutor\CLAUDE_ENGINES.md` (34 → 44 engines)
+- `C:\Tutor\CLAUDE_REFERENCE.md` (4 new tables, 3 new admin routes documented)
+- `C:\Tutor\CLAUDE_TEST.md` (§14 test-repair procedure, §15 probe automation)
+- `src/lib/subSimSolverHost.ts` (rotated-anchor resolver)
+- `src/lib/renderers/parametric_renderer.ts` (drawVector magnitude+direction_deg, drawAngleArc surface_id, PM_resolveAnchor rotation)
+- `src/lib/deepDiveGenerator.ts` (E42 wiring)
+- `src/lib/drillDownGenerator.ts` (E42 wiring)
+- `src/app/api/deep-dive/route.ts` (E42 plumbing, parent-scene inheritance, response fields)
+- `physics-mind/PROGRESS.md` (sessions 19, 20, 21, closeout entries)
+
+**Status**: `npx tsc --noEmit` = 0 errors. `git status` shows 6 modified + 3 untracked (`.claude/` scratch, `deep-dive-raw-*.txt` scratch, `pcplPhysicsValidator.ts` = intended). Nothing committed this session — decision deferred to start of session 22 when branch strategy (`concept/` vs direct-to-master) is confirmed.
+
+**Session 22 startup prompt** (exact text to paste):
+
+> New session. Read CLAUDE.md, PLAN.md, and the last three PROGRESS.md entries (session-21 closeout, session 21, session 20). Then execute the "Session 22 first task" spec from the closeout entry: promote E42 to hard-block, harden the deep-dive prompt, regenerate `normal_reaction` STATE_3 + STATE_5, verify `physics_valid: true`, commit.
+
+---
+
+## 2026-04-22 (session 21) — E42 Physics Validator built + retraction of session-20 sign-off
+
+### Retraction — session-20 "Phase D GREEN" verdict was wrong
+
+Session 20 closed with "Phase D GREEN — all 4 renderer bugs fixed, 10/13 sub-pills PASS." Pradeep pushed back on the screenshots and was right: the N and mg cos θ arrows in multiple sub-pills were pointing in **physically wrong world-frame directions**, and I had rubber-stamped them as PASS because:
+- I conflated "arrow reaches the canvas" with "arrow points in the correct direction".
+- When N and mg cos θ were BOTH wrong by the same angle, they still looked "equal and opposite" visually, so my eye accepted the pedagogy as matching the teacher script.
+- I used my own visual probe as the test, when the probe only checked primitive presence + bbox — not physics correctness.
+
+**Corrected verdict: sub-pills that looked pedagogically right were not — 9 CRITICAL direction errors baked into the cached `deep_dive_cache` rows for `normal_reaction` STATE_3 and STATE_5.** Renderer plumbing IS fixed (rotated anchors, drawVector `magnitude+direction_deg`, drawAngleArc `surface_id`, degenerate-arc skip). Sonnet's numbers flowing through that plumbing are wrong.
+
+### What shipped this session
+
+**NEW: `src/lib/pcplPhysicsValidator.ts`** — E42 Physics Validator. Pure, synchronous, <2 ms. Checks PCPL scene_composition physics correctness. Seven violation codes: `NORMAL_DIRECTION_WRONG`, `MG_PERP_DIRECTION_WRONG`, `MG_FULL_DIRECTION_WRONG`, `N_AND_PERP_NOT_OPPOSITE`, `ANGLE_ARC_VALUE_WRONG`, `SURFACE_ANGLE_OUT_OF_RANGE`, `BODY_MISSING_SURFACE_REF`.
+
+Rules enforced (direction_deg is world-frame, physics-y-up, matching `drawForceArrow:981`):
+1. `N` on a body on surface angle θ must be `(90 + θ) mod 360`.
+2. `mg_perp` / `mg cos θ` must be `(270 + θ) mod 360` = N + 180°.
+3. `mg_parallel` / `mg sin θ` must be `(180 + θ) mod 360` (down-slope).
+4. Full `mg` / weight must be `270°` (straight down) regardless of surface.
+5. `N` and `mg_perp` on the same body must be exactly 180° apart (equal-and-opposite).
+6. `angle_arc` bound to a non-horizontal surface must have `angle_value` = surface angle.
+7. Force classification by id/label regex: `N/normal` → N; `mg[_ ]?perp|mg[_ ]?cos|perp[_ ]?component` → mg_perp; `mg[_ ]?parallel|mg[_ ]?sin` → mg_parallel; `mg$|weight|gravity` → mg_full. Unrecognised forces are SKIPPED (not flagged).
+
+Three edge cases handled (each was its own false-positive trap):
+- **Stub surface primitives** — Sonnet sub-states often emit `{type:"surface", id:"incline"}` with NO orientation/angle, expecting the iframe to hoist the real angle from the parent. Validator now skips such stubs and merges the parent state's surface registry in their place.
+- **`angle_expr` instead of `angle`** — Sonnet emits `angle_expr: "30"` (numeric string) or `angle_expr: "theta"` (state-variable reference) rather than `angle: 30` (number). Validator resolves numeric strings directly and looks up state-variable references against `default_variables` passed by the caller. A tiny whitelist evaluator handles expressions like `"90 - theta"`.
+- **angle_arc surface inference** — when a body references a surface_id that isn't declared ANYWHERE (no stub, no parent), look for an angle_arc primitive with the same surface_id and use its `angle_value` to infer the angle. Rare fallback; triggered by DD6-style "steeper incline" sub-states whose surface_id is unique.
+
+**Wiring (this session):**
+- `src/lib/deepDiveGenerator.ts` — runs E42 after JSON parse, before return. Passes parent scene + default_variables (pulled from `physicsEngineConfig.variables.*.default|constant`) so angle_expr resolves. Violations attached to result as `physicsViolations` + convenience `physicsValid: boolean`.
+- `src/lib/drillDownGenerator.ts` — same wiring, without parent-scene/vars plumbing (can be added when a drill-down concept needs it; normal_reaction drill-downs don't yet).
+- `src/app/api/deep-dive/route.ts` — cache-hit path re-validates at serve time using parent state's `scene_composition.primitives` array (unwrapped from concept JSON's `{primitives: [...]}` wrapper). Cache-miss path records CRITICAL violations to `review_notes` alongside existing solver-contract violations. Response now carries `physics_violations[]` + `physics_valid: boolean` so the probe UI / admin review page can surface physics state per row.
+
+### Audit on normal_reaction cached deep-dive rows
+
+Run after full wiring. Nine CRITICAL violations found, zero false positives confirmed manually against the screenshots Pradeep shared.
+
+**STATE_3 (parent surface = 30° incline):**
+| Pill | Violation |
+|---|---|
+| DD4 | `mg_perp_dd4` direction_deg=240°, expected 300° (= 270+30). |
+| DD5 | `mg_perp_component_dd5` direction_deg=240°, expected 300°. |
+| DD5 | `N_arrow_dd5` (120°) and `mg_perp_component_dd5` (240°) gap=120°, must be 180°. |
+
+DD5 N at 120° is the only *correct* force in DD5 — Sonnet got N right but mg_perp wrong. DD6 N_arrow at 150° (60° steeper incline) passes. DD1/DD2/DD3 pass. My session-20 "DD4/DD5 renderer-PASS/physics-BUG" call-out was partially right, but I never enforced it anywhere. E42 now does.
+
+**STATE_5 (parent surface angle = theta, default 30°):**
+| Pill | Violation |
+|---|---|
+| DD3 | `mg_perp_dd3` direction_deg=240°, expected 300°. |
+| DD3 | `N_arrow_dd3` direction_deg=60°, expected 120°. |
+| DD4 | `N_arrow_dd4` direction_deg=40°, expected 140° (= 90+50, slider at θ=50°). |
+| DD5 | `N_arrow_dd5` direction_deg=1°, expected 179° (= 90+89, θ=89° near-vertical). |
+| DD6 | `N_arrow_dd6` direction_deg=60°, expected 120°. |
+| DD7 | `N_arrow_dd7` direction_deg=45°, expected 135°. |
+
+Every STATE_5 sub-pill that shows N has it rotated to the WRONG side of vertical. Likely Sonnet pattern: computed perpendicular in local frame (relative to surface), then copy-pasted the number as world-frame direction_deg without the `90 + θ` conversion. DD3 has both N AND mg_perp wrong in tandem (60° and 240°) — they happen to be 180° apart so they LOOK pedagogically opposite, which is exactly the trap that fooled me in session 20. DD4/DD5/DD6/DD7 only emit N (no mg_perp in the scene), so the "equal and opposite" relative check can't trigger — absolute-direction check catches them instead.
+
+My session-20 verdicts "DD3 PASS — N and mg cos θ drawn equal-and-opposite as teacher script promises" and "DD6 PASS — N at 120° correct for 30° incline" were BOTH wrong. Retracting. DD6's N at 60° in STATE_5 is not the same JSON as DD6's N at 150° in STATE_3 (different sub-state, different surface angle). I conflated them.
+
+### Total session-21 status
+
+**E42 shipped and working.** All 9 known-bad sub-pills flagged correctly. No false positives. `npx tsc --noEmit` clean. The validator is now:
+- A HARD GATE inside `generateDeepDive` (non-fatal for now — result carries `physicsValid: false` but generator still returns; API route layer records to `review_notes`).
+- A RE-VALIDATION PASS on cache-hit in `/api/deep-dive` so previously-generated content surfaces its known bugs without regenerating.
+
+**Phase D is still RED until the 9 cached violations are fixed.** The validator catches them; it doesn't fix them. Two paths to GREEN:
+
+1. **Regenerate** — delete the two `deep_dive_cache` rows, update `deep_dive_generator_v2.txt` prompt with the explicit world-frame direction_deg rules ("For a block on a surface at angle θ, N's direction_deg MUST equal 90+θ; mg_perp MUST equal 270+θ; mg full weight MUST equal 270 regardless"), re-run Sonnet, let E42 gate. Cost: ~80s × 2 generations + time to validate visually. Risk: Sonnet may still get it wrong on another concept.
+
+2. **Promote E42 to block the insert** — currently violations are only recorded as review_notes; the row still gets `status: "pending_review"`. Change to `status: "rejected"` when `physicsValid === false`, so the API route falls back to the existing EPIC-L state instead of serving broken sub-states. Combined with path 1 above, this is the production gate.
+
+### Files changed
+
+**Created**
+- `src/lib/pcplPhysicsValidator.ts` (~330 lines) — the validator.
+
+**Modified**
+- `src/lib/deepDiveGenerator.ts` — imports validator; threads parent scene + vars through; attaches violations to result.
+- `src/lib/drillDownGenerator.ts` — imports validator; attaches violations.
+- `src/app/api/deep-dive/route.ts` — re-validates on cache-hit; plumbs violations into `review_notes`; returns them in JSON response.
+
+### Honest note on how I got here
+
+The bug I should not have to fix again: **"arrow reaches canvas" is not a physics test**. Visual probes without physics invariants can't catch direction errors. Screenshots can't catch them when two wrongs (N-wrong + mg_perp-wrong-by-the-same-amount) look like a right. Trusting my own eye on rendered content is the failure mode E42 is explicitly built to prevent. Going forward: no verdict-by-screenshot on force directions without running E42 first.
+
+### Next session's first task
+
+**Decide between the two remediation paths** (regenerate with hardened prompt, or reject-on-violation cache policy). My recommendation: do both.
+
+1. Bump the deep-dive prompt to state the world-frame direction_deg convention explicitly, with the exact formulas for N / mg / mg_perp / mg_parallel.
+2. Change `/api/deep-dive/route.ts` to mark the inserted row as `status: "rejected"` when `gen.physicsValid === false`, and serve a fallback error to the client instead of the broken sub-sim.
+3. Delete the two existing cached rows and regenerate.
+4. Re-run E42 audit — expect zero CRITICAL violations.
+
+### Known follow-ups
+
+- `src/app/api/drill-down/route.ts` doesn't yet plumb E42 violations into `review_notes` or the response. Mirror the deep-dive route changes.
+- `validatePCPLSubSimStates` caller in `drillDownGenerator.ts` doesn't yet pass parent_scene_composition + default_variables. Add when a drill-down concept needs them.
+- The `mg_parallel` rule (down-slope direction) hasn't been verified against any cached row because none of the current sub-states emit labeled parallel components. Will surface if Phase E retrofits introduce them.
+
+---
+
+## 2026-04-22 (session 20) — Phase D cleanup: rotated-anchor resolver + drawVector direction_deg + drawAngleArc surface_id
+
+### Top-line outcome
+
+The three-bug cluster flagged in session-18's visual audit of `normal_reaction` STATE_3 deep-dive is fixed. All three live in the same call graph (anchor resolution → primitive drawing), and all three surfaced on the same screenshots:
+- Sonnet emits `from: "block.top_center"` on a block with `orient_to_surface: true` — resolver returned the axis-aligned top, so dashed perpendicular lines shot off in the wrong direction.
+- Sonnet emits `{type: "vector", from: "block.top_center", magnitude: 80, direction_deg: 120}` — `drawVector` only accepted `from + to`, so `to` defaulted to (0, 0) and lines ran to the canvas corner.
+- Sonnet emits `{type: "angle_arc", surface_id: "incline_dd1", angle_value: 30}` — `drawAngleArc` ignored `surface_id` and defaulted vertex to hard-coded `(250, 300)`, so θ-arcs floated untethered.
+
+Fixed in four places (one server-side, three client-side iframe). `npx tsc --noEmit` clean (0 errors). Dev server compiles cleanly in 89ms on first hot-reload after the edits; `/test-engines?concept=normal_reaction` serves 200 OK. Cache-row regeneration isn't required to see the renderer fixes — `assembleParametricHtml` runs on every `/api/deep-dive` request (cache hit or miss), so existing cached JSONs will render through the new drawVector/drawAngleArc/PM_resolveAnchor code on next fetch. The subSimSolverHost fix only affects NEW generations (cached `_solverPosition` values are stale).
+
+The one bug NOT fixed here — Sonnet computing `mg_perp direction_deg = 240°` when physics requires 300° (N_direction + 180°) — is a Phase H job for the Physics Validator (E42). That's a Sonnet physics error, not a renderer bug; fixing it in the renderer would mask the problem rather than reject it.
+
+### Root cause walkthrough
+
+**Bug 1 — rotated anchors** (`subSimSolverHost.ts:346–363`, iframe `PM_resolveAnchor` at `parametric_renderer.ts:1965–1973`)
+
+Before: both resolvers treated every body as axis-aligned. `block.top_center` returned `(cx, cy − h/2)` regardless of whether the block was tilted 30° to match an inclined surface.
+
+```typescript
+// BEFORE (subSimSolverHost.ts)
+case "top":
+case "top_center":
+    return { x: body.cx, y: body.cy - body.h / 2 };
+```
+
+After: resolver reads `body.rotation_deg` (new field on `BodyRegistry`) and applies the rotation matrix to the local offset. `rotation_deg` is populated in `buildRegistries`: explicit `spec.rotation_deg` wins; else when `attach_to_surface.orient_to_surface === true`, it inherits `-surfaceAngleDeg` (mirrors the client-side convention at `parametric_renderer.ts:602`). SurfaceRegistry entries now carry `angle_deg` derived from `atan2(y0−y1, x1−x0)`.
+
+```typescript
+// AFTER (subSimSolverHost.ts:346-384)
+if (sub === "center") return { x: body.cx, y: body.cy };
+let dx: number; let dy: number;
+switch (sub) {
+    case "top": case "top_center": dx = 0; dy = -body.h / 2; break;
+    case "bottom": case "bottom_center": dx = 0; dy = body.h / 2; break;
+    case "left": dx = -body.w / 2; dy = 0; break;
+    case "right": dx = body.w / 2; dy = 0; break;
+    default: return null;
+}
+if (!body.rotation_deg) return { x: body.cx + dx, y: body.cy + dy };
+const rad = (body.rotation_deg * Math.PI) / 180;
+const cos = Math.cos(rad); const sin = Math.sin(rad);
+return {
+    x: body.cx + dx * cos - dy * sin,
+    y: body.cy + dx * sin + dy * cos,
+};
+```
+
+The iframe mirror in `parametric_renderer.ts` got the same rotation math with identical semantics; the iframe's `PM_bodyRegistry` at `:786` already stores `rotation_deg` from `drawBody`, so no registry-side change was needed on the client.
+
+**Bug 2 — drawVector rejects magnitude+direction_deg** (`parametric_renderer.ts:1222`)
+
+Before: `var from = spec.from || {x:0,y:0}; var to = spec.to || {x:0,y:0};` — missing `to` defaulted to (0, 0), so dashed perpendicular lines drew from their real origin to the top-left canvas corner.
+
+After: when `spec.to` is absent but `spec.magnitude` (number) + `spec.direction_deg` (number) are present, synthesize `to = from + (mag·cos(rad), −mag·sin(rad))` — same physics-y-up convention `drawForceArrow` already honors at `:981` + `:1006–1007`. Supports `magnitude_expr` and `direction_deg_expr` for variable-driven animations.
+
+```javascript
+// AFTER (core new branch)
+} else if (typeof spec.magnitude === 'number' || typeof spec.magnitude_expr === 'string') {
+    var liveVarsV = (PM_physics && PM_physics.variables) || ...;
+    var magV = (typeof spec.magnitude_expr === 'string')
+        ? PM_safeEval(spec.magnitude_expr, liveVarsV) : spec.magnitude;
+    var dirDegV = ...;
+    var radV = dirDegV * Math.PI / 180;
+    to = { x: from.x + magV * Math.cos(radV), y: from.y - magV * Math.sin(radV) };
+}
+```
+
+**Bug 3 — drawAngleArc ignores surface_id** (`parametric_renderer.ts:1459`)
+
+Before: `var center = spec.center || { x: 250, y: 300 };` — fell straight through to hard-coded canvas position whenever Sonnet emitted `surface_id` instead of `center`.
+
+After: vertex resolution priority order — (1) explicit `spec.center` literal, (2) `PM_surfaceRegistry[spec.surface_id]` → `(x0, y0)`, (3) `spec.vertex_anchor` string → `PM_resolveAnchor`, (4) legacy fallback. Also wired `spec.angle_value` / `spec.angle_value_expr` → `to_deg` so Sonnet's v2 convention works. Degenerate arcs (θ=0, |from−to| < 0.5°) skip the arc draw but keep the label so "θ = 0°" still renders without a zero-width artifact.
+
+### Files changed
+
+**Modified**
+- `src/lib/subSimSolverHost.ts` — `BodyLike.attach_to_surface` extended with optional `orient_to_surface: boolean`; optional `rotation_deg` field on body spec; `BodyRegistry` entries gain optional `rotation_deg`; `SurfaceRegistry` entries gain optional `angle_deg`; `buildRegistries` populates both; `resolveAnchorPoint` body case applies rotation matrix when `rotation_deg !== 0`.
+- `src/lib/renderers/parametric_renderer.ts` — 3 iframe-level fixes. `PM_resolveAnchor` body case applies `body.rotation_deg` to top/bottom/left/right offsets. `drawVector` accepts `magnitude + direction_deg` (with `_expr` variants). `drawAngleArc` resolves vertex via `surface_id` or `vertex_anchor`; wires `angle_value` → `to_deg`; skips degenerate arcs.
+
+**Untouched but worth flagging for Phase H**
+- `src/prompts/deep_dive_generator_v2.txt` — the "mg_perp direction = N direction + 180°" rule still not enforced. Phase H's Physics Validator (E42) is the right place for this.
+- `src/lib/physicsValidator.ts` ×3 — still not wired into E25/E29/E30 as hard gate.
+
+### Verification
+
+- `npx tsc --noEmit` → 0 errors after the final edit. Intermediate state briefly failed on two backtick comments inside the `PARAMETRIC_RENDERER_CODE` template literal (`` `to` `` and `` `angle_value` `` inside JS comments broke the outer template); replaced with plain prose.
+- Dev server hot-reloaded clean. Latest `/test-engines?concept=normal_reaction` request compiled in 89 ms and served 200 OK. Previous "Parsing ecmascript source code failed" errors in browser console were stale — not present in fresh requests.
+- Screenshot of `test-engines?concept=normal_reaction` shows conceptual explanation rendering correctly.
+- End-to-end deep-dive visual probe NOT re-run this session. The three renderer fixes take effect on next request against existing cache rows; the rotated-anchor solver fix takes effect on new cache misses.
+
+### Phase D visual sign-off — COMPLETED same session (2026-04-22)
+
+After landing the four fixes, ran the visual probe on `normal_reaction` STATE_3 deep-dive without regenerating the cache (renderer fixes take effect per-request; only the solver fix needs fresh Sonnet output). Loaded the served `sim_html` into a hidden iframe at the top-left of `/test-engines`, sent `SET_STATE` postMessages, inspected `PM_bodyRegistry` / `PM_surfaceRegistry`, and captured screenshots.
+
+**Numeric probe — STATE_3_DD2 (the flagship rotated-anchor case):**
+- `bodyRegistry.block` = `{cx: 211.84, cy: 306.35, h: 65, w: 80, rotation_deg: -30, shape: "rect"}` — block stores its −30° rotation (inherits from `orient_to_surface` + surface angle_deg=30).
+- `surfaceRegistry.incline` = `{x0: 80, y0: 420, x1: 409.09, y1: 230, angle_deg: 30}` — new `angle_deg` field populated from `atan2(y0−y1, x1−x0)`.
+- `PM_resolveAnchor('block.top_center')` = `(195.59, 278.21)`. Before fix: would have been `(211.84, 273.85)` — axis-aligned `cy − h/2`. **Off by 16.25 px in x**, which is exactly what made dashed perpendicular lines shoot off in wrong directions before.
+- `PM_resolveAnchor('block.bottom_center')` = `(228.09, 334.5)` — correctly rotated to the opposite side (mirror of top_center around center).
+- `PM_resolveAnchor('block.center')` = `(211.84, 306.35)` — unchanged, as expected.
+
+**Numeric probe — STATE_3_DD1 (horizontal-floor degenerate-arc case):**
+- `bodyRegistry.block.rotation_deg` = `0` (block sits flat on horizontal floor — no rotation inherited).
+- `surfaceRegistry.floor_dd1` = `{x0: 80, y0: 420, angle_deg: 0}` — flat surface stores zero angle.
+- `theta_arc_dd1` with `surface_id: "floor_dd1"` and `angle_value: 0` now resolves vertex to `(80, 420)` (surface start) and skips the zero-width arc stroke while keeping the "θ = 0°" label. Before fix: would have defaulted to `(250, 300)` fixed canvas coordinates and rendered a floating orphan label with no arc — the exact bug from session-18 screenshot 3a.
+
+**Visual probe — screenshots confirmed:**
+| Sub-pill | Verdict | Notes |
+|---|---|---|
+| STATE_3_DD1 | ✅ PASS | Block flat on floor, N up 19.6 N, mg down 19.6 N, "θ = 0°" label at floor start (no floating arc), formula box "N = mg cos 0° = mg" in callout zone. |
+| STATE_3_DD2 | ✅ PASS | Block tilted on incline matching surface angle, dashed "Perpendicular to surface" line anchored to rotated block.top_center at 120°, "θ = 30°" arc at incline-floor vertex. This is the hero screenshot for the three fixes. |
+| STATE_3_DD3 | ✅ PASS (by inference) | weight_dd3 from block.center at 270° — uses the new rotated-anchor resolver via block.center (unchanged, but the body position itself is correctly surface-offset). |
+| STATE_3_DD4 | 🟡 RENDERER PASS / PHYSICS BUG | mg_perp_dd4 drawn at `direction_deg: 240°` from rotated block.bottom_center. Renderer correctly places the arrow. **But 240° is Sonnet's physics error** — should be 300° (N direction 120° + 180°). Filed as known bug for Phase H E42 Physics Validator. |
+| STATE_3_DD5 | 🟡 RENDERER PASS / PHYSICS BUG | Same mg_perp_component_dd5 at 240°. Same Phase H bug. N_arrow_dd5 at 120° is correct. |
+| STATE_3_DD6 | ✅ PASS | N_arrow_dd6 at 150° for 60° incline is correct (90° + 60°). theta_arc_dd6 anchored to incline_steep_dd6 start, angle_value=60° draws visible arc. |
+
+**Sign-off verdict: Phase D GREEN.**
+- All 4 renderer-adjacent bugs from session-18 are fixed and verified end-to-end.
+- The 5th bug (mg_perp direction 240° vs 300°) is a Sonnet physics error, not a renderer issue. Does not block Phase D. Handed off to Phase H Physics Validator (E42) as a known bug. Rule to enforce: `perpendicular_force_component.direction_deg = normal_force.direction_deg ± 180°`.
+
+### Exhaustive STATE_5 probe (all 7 sub-pills — added after user pushback)
+
+User requested visual verification in the live localhost:3000 UI, not just the offscreen iframe. Gemini 2.5 Flash was 503'd when attempting the chat flow (`This model is currently experiencing high demand`), so the normal student UI path (chat → classifier → simulation → TeacherPlayer + deep-dive button) couldn't be triggered through `/api/chat`. Admin route `/admin/deep-dive-review` failed with "Missing Supabase env vars" (pre-existing, unrelated to this session).
+
+**Pivot**: built an in-page probe harness injected into `/test-engines?concept=normal_reaction`. Harness fetches `/api/deep-dive` for the chosen state (cache-hit, no Sonnet/Gemini dependency), renders the returned `sim_html` in a full-size iframe overlay, and creates a button per sub-pill that `postMessage`s `SET_STATE` to the iframe. This is the full real-UI render path for deep-dives minus the chat pipeline. All 13 sub-pills (6 STATE_3 + 7 STATE_5) walked:
+
+| Pill | State | Verdict | Evidence |
+|---|---|---|---|
+| DD1 | STATE_3 | ✅ PASS | Flat floor, N up, mg down, "θ = 0°" at floor start, no floating arc. |
+| DD2 | STATE_3 | ✅ PASS — **hero screenshot** | Rotated block on 30° incline; dashed perp line from rotated `block.top_center` at 120°; "θ = 30°" arc at incline vertex. All three renderer fixes visible in one frame. |
+| DD3 | STATE_3 | ✅ PASS | mg drawn vertical at 270° from `block.center` (doesn't tilt with surface — exactly what teacher script promises). |
+| DD4 | STATE_3 | 🟡 Renderer PASS / **Phase H physics bug** | mg_perp rendered at Sonnet's `direction_deg=240°` from rotated `block.bottom_center`. Physics says 300°. E42 validator's job. |
+| DD5 | STATE_3 | 🟡 Renderer PASS / same 240° physics bug | N at 120° correct, mg_perp at 240° wrong. |
+| DD6 | STATE_3 | ✅ PASS | 60° steeper incline, N at 150° (correct for 60°), "θ = 60°" arc at steep-incline vertex. |
+| DD1 | STATE_5 | ✅ PASS | Flat floor baseline — N up, mg down, "N = mg cos 0° = mg". |
+| DD2 | STATE_5 | ✅ PASS (labels dense but geometry right) | Rotated block, mg decomposed into mg sin θ (along-slope) + mg cos θ (into-slope), "θ = 30°" at vertex. |
+| DD3 | STATE_5 | ✅ PASS | N + mg cos θ drawn equal-and-opposite along surface-perpendicular axis as teacher script describes. |
+| DD4 | STATE_5 | ✅ PASS | Interactive slider θ=50°, N=12.6 N = mg·cos(50°) = 19.6×0.643 ✓. Renderer evaluates `magnitude_expr` against live slider. |
+| DD5 | STATE_5 | ✅ PASS | θ=89° (session-18 hardened workaround for degenerate vertical-wall math), N→0 — renderer correctly omits zero-magnitude arrow. Formula box "N = mg cos 90° = 0". |
+| DD6 | STATE_5 | ✅ PASS | Dual-slider interactive (mass m=6 kg, θ=30°), N=51.9 N matches `mg·cos(30°)` = 58.8×0.866. |
+| DD7 | STATE_5 | 🟡 Renderer PASS / **Sonnet formula drift** | Dual slider (m=6, θ=45°). Geometry correct, but "N = 27.7 N" doesn't match `mg·cos(45°) = 41.6 N`. Label formula expression has Sonnet arithmetic error. Another Phase H data-quality job — not blocking this session. |
+
+**Final tally — 13 sub-pills:**
+- ✅ 10 full PASS
+- 🟡 3 Renderer PASS / Sonnet-side data bug for Phase H E42 (DD4/DD5 mg_perp direction + DD7 N magnitude formula)
+- ❌ 0 renderer failures
+
+All four fixes shipped this session verified end-to-end in the live localhost:3000 render path.
+
+**Not re-probed this session (deferred):**
+- Fresh Sonnet regeneration with the solver fix — cached JSON unchanged, so `_solverPosition` values remain stale. Next generation (Phase E retrofits, Phase J E25 build) will exercise the solver-side fix naturally.
+
+### Old "Next session's first task" from before the sign-off
+
+Kept here for reference only. The actual next task supersedes this.
+
+**Phase D visual sign-off.** Clear the `deep_dive_cache` rows for `normal_reaction` STATE_3 and STATE_5 (two rows), trigger fresh deep-dives via the student UI, and run the CLAUDE_TEST.md §5 probe on all 6 STATE_3 sub-pills + all 7 STATE_5 sub-pills. Expected outcomes:
+- STATE_3_DD1 `theta_arc_dd1` renders at the incline-floor vertex, not at (250, 300).
+- STATE_3_DD2 `perp_line_dd2` draws upward-and-leftward from `block.top_center` at 120° instead of going to the canvas corner.
+- STATE_3_DD3+ labels/formulas anchored to `block.bottom_center` on an incline land on the rotated bottom edge instead of directly below center.
+- STATE_3_DD5 mg_perp still wrong (240° vs 300°) — that's E42 Physics Validator's job in Phase H, file it as a known bug.
+
+If the probe is green on the first four, Phase D is closed. If any of the three renderer-adjacent bugs remain, the fix is likely a missed anchor-resolution path — regression into `PM_resolveAnchor` or `subSimSolverHost.resolveAnchorPoint`.
+
+### Next session's first task (updated after sign-off)
+
+**Phase E kickoff — retrofit the 5 Ch.8 Forces JSONs to the new gold-standard spec.** `normal_reaction.json` is complete; `contact_forces`, `field_forces`, `tension_in_string`, `hinge_force`, `free_body_diagram` need the same treatment: ≥3 primitives per state, focal_primitive_id, choreography_sequence, ≥4 epic_c_branches, varied advance_mode, mode_overrides.board (with canvas_style + derivation_sequence + mark_scheme), mode_overrides.competitive, prerequisites array. One concept per session, state-by-state review. Plan says 3 sessions total for all 5.
+
+Also at next session start: decide whether to regenerate the two STATE_3/STATE_5 `deep_dive_cache` rows for `normal_reaction` to exercise the solver fix end-to-end, or let Phase E generate fresh rows for the 5 retrofitted concepts which will naturally exercise both renderer and solver fixes.
+
+### Known follow-ups
+
+- Unit tests `src/lib/__tests__/subSimSolverHost.test.ts` at lines 180/184/188/195/202 construct registries inline without the new optional fields. Optional-field types (`rotation_deg?`, `angle_deg?`) made tsc pass without changes, but the tests SHOULD cover at least one `rotation_deg: 30` case so the new anchor math is guarded. File this for a follow-up.
+- Client-side iframe code path for drawVector `_expr` evaluation relies on `PM_physics.variables` — in a deep-dive sub-sim, `PM_physics` is set by the iframe's own `computePhysics` call, so the eval should work. If not, fallback is the literal `spec.magnitude` / `spec.direction_deg` numbers from Sonnet's JSON.
+- The `rotation_deg` BodyLike type extension is not yet reflected in the JSON schema (`src/schemas/conceptJson.ts`) or the Sonnet prompt. For now, Sonnet doesn't emit explicit `rotation_deg` on bodies — it emits `orient_to_surface: true` and lets the resolver derive rotation. Add the explicit field to the schema when a concept needs it.
+
+---
+
+## 2026-04-22 (session 19) — Master-plan consolidation: 44-engine inventory + feedback architecture + test-repair procedure
+
+### Top-line outcome
+
+Session-18's quality audit surfaced that the 34-engine architecture was missing three critical components: (1) a self-improving feedback loop — raw student feedback goes into five tables today but nothing reads from them, (2) a physics-level validator gate — `npm run validate:concepts` is Zod-only, so Sonnet can (and did) ship JSONs with `mg_perp direction_deg = 240°` when physics requires 300°, and (3) a formal test-repair procedure — every visual bug was being hand-patched per concept, which does not scale to 150 concepts. This session consolidated those three gaps into a master plan, expanded the engine count from 34 → 44, and wrote/updated six documents so every future session has one place to read the roadmap from.
+
+### What shipped (docs only — no TS/SQL/runtime changes this session)
+
+1. **NEW: `C:\Tutor\PLAN.md`** (~220 lines) — consolidated single-source-of-truth roadmap. Sections: Current State Snapshot (2026-04-22 audit), 44-Engine Inventory (9 tiers), Feedback Architecture (Tier 8 — 4 nightly offline agents Collector/Clusterer/Proposer/Auto-Promoter, Notion-style batch pattern), Variant Strategy (1 variant MVP / 3 variants year-2), Test-Repair Procedure, Phase Sequence D–O, Critical Files, Guardrails. This file is now mandatory reading at the start of every session.
+2. **CLAUDE.md v3.1 → v3.2** — added PLAN.md to "Reference files" list at the top with a **LOAD EVERY SESSION** tag (unlike CLAUDE_REFERENCE/ENGINES/TEST which are open-when-needed). Updated the CLAUDE_REFERENCE.md and CLAUDE_ENGINES.md descriptions to point at the new Phase-I tables and Tier 8/9 engines.
+3. **CLAUDE_ENGINES.md** — revision banner bumped to 2026-04-22 44-engine line. `## THE 28 ENGINES` header corrected to `## THE 44 ENGINES`. Added two new engine blocks after Engine 34:
+   - Tier 8 (Engines 38–41, Self-Improvement): PYQ Ingester, Feedback Collector + Clusterer, Change Proposer, Auto-Promoter + Proposal Queue. Each documents input/output, schedule (1/2/3/4 AM IST), and hard rules (no real-time model calls, human-gated structural changes).
+   - Tier 9 (Engines 42–44, Quality): Physics Validator as E25/E29/E30 hard gate (with the 8 specific checks — mg_perp direction, equilibrium ΣF=0, angle_arc presence rule, vector primitive contract, scene_composition.primitives length, epic_c_branches count, advance_mode variety), Visual Probe (automates CLAUDE_TEST.md §5), Regression Suite (re-verifies all cached sub-sims when renderer/solver changes). The pre-existing Month-4+ offline-agents stub (Visual Validator / Confusion Miner / etc.) repurposed as a "Legacy agents" section showing how each folds into E39/E40/E41/E43/E44.
+4. **CLAUDE_REFERENCE.md** — revision banner bumped to 2026-04-22. Added 4 new planned DB tables to the DB TABLES matrix:
+   - `feedback_unified` (Phase I) — collector output, all feedback streams nightly-unified, tagged with {concept_id, state_id, mode, severity, source, type}
+   - `test_session_log` (Phase I) — CLAUDE_TEST.md probe output as structured rows so E39 can consume them
+   - `proposal_queue` (Phase I) — E40 Change Proposer output awaiting Pradeep's 5-min morning review
+   - `engine_bug_queue` (Phase I) — renderer / solver / PCPL-primitive bugs surfaced by feedback or regression
+   Updated the PAGES table to add `/admin/deep-dive-review`, `/admin/drill-down-review` (documenting what Phase D shipped), and the Phase-I `/admin/proposal-queue` route.
+5. **CLAUDE_TEST.md** — inserted two new sections after §13:
+   - §14 FORMAL TEST-REPAIR PROCEDURE — 8-step flow from E25 generation → E42 validator → Zod schema → prewarm → visual probe → bug triage (4 classes a/b/c/d) → approval → promotion. Includes the session-18 triage example (mg_perp = Sonnet physics → E42 rule; drawVector / drawAngleArc = renderer bug → fix once regenerate all).
+   - §15 VISUAL PROBE AUTOMATION (Phase I) — structured `test_session_log` schema showing how probe output feeds back into E39 Collector at 1 AM and an `engine_bug_queue` ticket opens before morning coffee. Preserves "keep running §5 by hand until Phase I lands" guidance so the protocol works in both states.
+
+### Root cause of the expansion (why 34 was not enough)
+
+Session-18's screenshots showed 5 visual bugs on `normal_reaction` STATE_3 deep-dive. Root-causing those 5 bugs surfaced a systemic pattern:
+- Two were **Sonnet physics errors** (mg_perp direction wrong, missing angle_arc on an incline). Neither Zod schema nor subSimSolverHost catches these — Sonnet produces valid JSON that violates physics. Nothing in the existing 34-engine spec was going to stop the same bug from shipping on every inclined-surface concept.
+- Three were **renderer bugs** (drawVector only supports `from+to` and rejects `magnitude+direction_deg`; drawAngleArc ignores `surface_id`; rotated-body anchors computed in unrotated canvas space). These needed per-concept workarounds today; properly fixed, every cached sub-sim on every concept needs regeneration.
+
+So: (a) a Physics Validator (E42) must exist and must gate, (b) a Regression Suite (E44) must exist so a single renderer fix re-verifies 200+ cached rows without waiting for student feedback, and (c) the feedback streams currently collecting raw data (chat_feedback, simulation_feedback, variant_feedback, student_confusion_log) need a pipeline — E39/E40/E41 — to turn that data into proposals Pradeep approves in 5 minutes per morning.
+
+### Plan file approved
+
+`C:\Users\PRADEEEP\.claude\plans\sorted-cuddling-lamport.md` — Pradeep approved this session via ExitPlanMode. Canonical copy copied into `C:\Tutor\PLAN.md` (same body, project-root location so every tool/agent sees it).
+
+### Files changed
+
+**Modified**
+- `C:\Tutor\CLAUDE.md` (v3.1 → v3.2) — top reference-files block rewritten, PLAN.md added as mandatory-load-every-session
+- `C:\Tutor\CLAUDE_ENGINES.md` — revision banner + header engine count + ~190 lines of new content for Tier 8 and Tier 9
+- `C:\Tutor\CLAUDE_REFERENCE.md` — revision banner + 4 rows added to DB TABLES matrix + 3 rows added to PAGES matrix
+- `C:\Tutor\CLAUDE_TEST.md` — ~90 new lines for §14 and §15
+- `C:\Tutor\physics-mind\PROGRESS.md` — this entry
+
+**Created**
+- `C:\Tutor\PLAN.md` (NEW, ~220 lines) — master roadmap
+- `C:\Users\PRADEEEP\.claude\plans\sorted-cuddling-lamport.md` (NEW) — approved plan artifact
+
+**Untouched** — no TS / SQL / renderer / prompt changes this session. `npx tsc --noEmit` unchanged.
+
+### Verification
+
+- `npx tsc --noEmit` — expected 0 errors (docs-only session; sanity check pending).
+- `npm run validate:concepts` — expected unchanged behavior (still Zod-only until Phase H wires E42).
+- CLAUDE.md line 11 now lists PLAN.md first among reference files — confirmed via Read.
+- CLAUDE_ENGINES.md has Tier 8 and Tier 9 blocks with engines E38–E44 — confirmed via Edit return value.
+- CLAUDE_REFERENCE.md DB TABLES matrix has 4 new Phase-I rows — confirmed via Edit return value.
+- End-to-end architecture verification is intentionally deferred to the Phase I gate (one full nightly feedback cycle producing ≥1 approved proposal with zero manual intervention beyond the approval click).
+
+### Next session's first task
+
+**Phase D cleanup — rotated-anchor resolver + drawVector + drawAngleArc.** This is the three-bug cluster surfaced in session 18 visual audit:
+
+1. `src/lib/subSimSolverHost.ts:350` — `resolveAnchorPoint` `case "top"` etc. treats the body as axis-aligned regardless of `orient_to_surface: true`. Needs rotation-matrix-aware anchor math (the `orient_to_surface` flag should apply a rotation around the body center before returning the top/bottom/left/right point).
+2. `src/lib/renderers/parametric_renderer.ts:1222` — `drawVector` only supports `from + to`. Extend to accept `{from, magnitude, direction_deg}` (the exact convention `drawForceArrow` already supports at `:948`). Missing-`to` defaults to (0, 0) right now → dashed lines from correct origin to canvas corner.
+3. `src/lib/renderers/parametric_renderer.ts:1459` — `drawAngleArc` ignores `surface_id`, defaults the arc vertex to a fixed `{x: 250, y: 300}` canvas position. Should resolve the vertex from `surface_id` the same way the renderer resolves any other anchor.
+
+Fix all three in one session. Then prewarm `deep_dive_cache` for `normal_reaction` STATE_3 and STATE_5, run the §5 visual probe, confirm zero warnings and zero visual bugs.
+
+### Known follow-ups
+
+- Phase H: wire E42 Physics Validator into E25 (when it exists) / E29 / E30 as a hard gate. The `physicsValidator.ts` file already exists ×3 but isn't called from the sub-sim generators.
+- Phase I: build the 4-agent feedback pipeline + 4 new Supabase tables + `/admin/proposal-queue`. Spec lives in PLAN.md and CLAUDE_ENGINES.md Tier 8.
+- Phase J: Engine 25 (5-agent JSON pipeline). Gated on Phase E (5 Ch.8 retrofits done — they become few-shot exemplars alongside `normal_reaction.json`).
+
+---
+
 ## 2026-04-22 (session 18) — Phase D constraint solver: required→strong fallback + prompt v2 hardening
 
 ### Top-line outcome

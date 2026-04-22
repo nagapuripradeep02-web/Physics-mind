@@ -28,6 +28,7 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 import { loadConstants } from "@/lib/physics_constants";
 import { generateDeepDive } from "@/lib/deepDiveGenerator";
 import { assembleParametricHtml } from "@/lib/renderers/parametric_renderer";
+import { validatePCPLSubSimStates } from "@/lib/pcplPhysicsValidator";
 
 interface ConceptJsonShape {
     concept_id?: string;
@@ -161,6 +162,17 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: `Concept JSON not found for ${conceptId}` }, { status: 404 });
         }
         const defaultVariables = extractDefaultVariables(conceptJson);
+        // E42 surface inheritance: sub-states often omit the surface primitive
+        // because the iframe hoists it from the parent state. Pass the parent
+        // scene to the validator so it knows the actual surface angle.
+        // Concept JSONs wrap the scene in `{primitives: [...]}`. Unwrap so the
+        // validator sees a bare array of primitive specs.
+        const parentSceneRaw = conceptJson.epic_l_path?.states?.[stateId]?.scene_composition;
+        const parentSceneForValidation: unknown[] = Array.isArray(parentSceneRaw)
+            ? parentSceneRaw
+            : Array.isArray((parentSceneRaw as { primitives?: unknown[] } | null | undefined)?.primitives)
+                ? ((parentSceneRaw as { primitives: unknown[] }).primitives)
+                : [];
 
         if (cached && cached.status !== "rejected") {
             // Fire-and-forget served_count increment
@@ -179,6 +191,17 @@ export async function POST(req: NextRequest) {
                 : [];
             const enrichedFlat = enrichTeacherScriptFlat(subStates, cachedFlat);
 
+            // E42 — re-validate cached rows at serve time so the probe UI can
+            // surface physics violations on previously-generated content
+            // without a fresh Sonnet call. Cheap: <2 ms. Parent scene passed
+            // so surface primitives are inherited properly.
+            const cachedPhysics = validatePCPLSubSimStates(
+                subStates as Record<string, { scene_composition?: unknown[] }>,
+                2,
+                parentSceneForValidation,
+                defaultVariables,
+            );
+
             return NextResponse.json({
                 id: cached.id,
                 sub_states: subStates,
@@ -189,6 +212,8 @@ export async function POST(req: NextRequest) {
                 from_cache: true,
                 served_count: (cached.served_count ?? 0) + 1,
                 fingerprint_key: fingerprintKey,
+                physics_violations: cachedPhysics.violations,
+                physics_valid: cachedPhysics.valid,
             });
         }
 
@@ -225,6 +250,28 @@ export async function POST(req: NextRequest) {
                       .join(", ")}`
                 : undefined;
 
+        // E42 physics violations → review_notes. CRITICAL violations (wrong
+        // direction_deg for N/mg/mg_perp, N-perp not 180° opposite, angle_arc
+        // value mismatch) are quality-blockers for human review.
+        const physicsCritical = (gen.physicsViolations ?? []).filter(v => v.severity === 'CRITICAL');
+        const physicsNote =
+            physicsCritical.length > 0
+                ? `physics_invalid: ${physicsCritical.length} critical violation(s) — ${physicsCritical
+                      .slice(0, 5)
+                      .map((v) => `${v.code}@${v.state_id ?? ''}/${v.primitive_id}(expected=${v.expected} actual=${v.actual})`)
+                      .join(" | ")}`
+                : undefined;
+
+        const combinedReviewNote = [solverReviewNote, physicsNote].filter(Boolean).join("\n");
+
+        // E42 HARD GATE: when Sonnet's output has ANY CRITICAL physics violation,
+        // persist the row with status='rejected' (so the next request regenerates
+        // instead of serving broken content) and return a 422 fallback to the
+        // client. Student sees a "regenerating — please try again" state, NOT a
+        // sub-sim with arrows pointing the wrong way.
+        const isRejected = physicsCritical.length > 0;
+        const rowStatus = isRejected ? "rejected" : "pending_review";
+
         const { data: inserted, error: insertErr } = await supabaseAdmin
             .from("deep_dive_cache")
             .insert({
@@ -235,18 +282,37 @@ export async function POST(req: NextRequest) {
                 mode,
                 sub_states: gen.subStates,
                 teacher_script: gen.teacherScriptFlat,
-                status: "pending_review",
+                status: rowStatus,
                 generated_by: "sonnet-lazy",
                 model: "claude-sonnet-4-6",
-                served_count: 1,
-                ...(solverReviewNote ? { review_notes: solverReviewNote } : {}),
+                served_count: isRejected ? 0 : 1,
+                ...(combinedReviewNote ? { review_notes: combinedReviewNote } : {}),
             })
             .select("id")
             .maybeSingle();
 
         if (insertErr) {
             console.error("[deep-dive] cache insert error:", insertErr);
-            // Return content anyway so the student sees the result; just didn't cache it
+        }
+
+        if (isRejected) {
+            console.warn(
+                `[deep-dive] E42 rejected generation for ${fingerprintKey}: ${physicsCritical.length} critical violation(s)`,
+            );
+            return NextResponse.json(
+                {
+                    id: inserted?.id ?? null,
+                    error: "physics_validation_failed",
+                    message:
+                        "This explanation is being regenerated — the physics validator caught an error in the draft. Please try again in a moment.",
+                    status: "rejected",
+                    from_cache: false,
+                    fingerprint_key: fingerprintKey,
+                    physics_violations: gen.physicsViolations ?? [],
+                    physics_valid: false,
+                },
+                { status: 422 },
+            );
         }
 
         const simHtml = buildSubSimHtml(conceptId, gen.subStates, defaultVariables);
@@ -258,10 +324,12 @@ export async function POST(req: NextRequest) {
             teacher_script_flat: enrichedFlat,
             sim_html: simHtml,
             default_variables: defaultVariables,
-            status: "pending_review",
+            status: rowStatus,
             from_cache: false,
             served_count: 1,
             fingerprint_key: fingerprintKey,
+            physics_violations: gen.physicsViolations ?? [],
+            physics_valid: gen.physicsValid ?? true,
         });
     } catch (err) {
         console.error("[deep-dive] EXCEPTION:", err);

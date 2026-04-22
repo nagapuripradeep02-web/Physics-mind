@@ -60,9 +60,13 @@ interface BodyLike {
     h?: number;
     shape?: string;
     /** String form (v1) or object form (v2 prompt: {surface_id, position_fraction, orient_to_surface}) */
-    attach_to_surface?: string | { surface_id?: string; position_fraction?: number };
+    attach_to_surface?:
+        | string
+        | { surface_id?: string; position_fraction?: number; orient_to_surface?: boolean };
     /** Legacy t_position field (0–1 fraction along surface) */
     t_position?: number;
+    /** Explicit rotation override (p5 canvas-CW degrees). Wins over orient_to_surface. */
+    rotation_deg?: number;
 }
 
 interface SurfaceLike {
@@ -171,11 +175,31 @@ function estimateBBox(
 }
 
 interface BodyRegistry {
-    [id: string]: { cx: number; cy: number; w: number; h: number };
+    [id: string]: {
+        cx: number;
+        cy: number;
+        w: number;
+        h: number;
+        /**
+         * Body rotation in p5 canvas-CW degrees. Optional — if absent treated as 0
+         * (axis-aligned) by resolveAnchorPoint. Matches parametric_renderer.ts
+         * drawBody convention: explicit spec.rotation_deg wins; otherwise a
+         * surface-attached body inherits −surfaceAngleDeg when orient_to_surface
+         * is true; else 0.
+         */
+        rotation_deg?: number;
+    };
 }
 
 interface SurfaceRegistry {
-    [id: string]: { x0: number; y0: number; x1: number; y1: number };
+    [id: string]: {
+        x0: number;
+        y0: number;
+        x1: number;
+        y1: number;
+        /** Math-CCW angle from +x axis in degrees, derived from (x1−x0, y0−y1). Optional; buildRegistries populates it. */
+        angle_deg?: number;
+    };
 }
 
 /**
@@ -223,7 +247,10 @@ function buildRegistries(
             x1 = x0 + length * Math.cos(rad);
             y1 = y0 - length * Math.sin(rad);
         }
-        surfaces[id] = { x0, y0, x1, y1 };
+        // Math-CCW angle from +x axis. Canvas has y-down, so y0−y1 (not y1−y0).
+        // Matches the drawSurface convention read by drawBody for orient_to_surface.
+        const angle_deg = (Math.atan2(y0 - y1, x1 - x0) * 180) / Math.PI;
+        surfaces[id] = { x0, y0, x1, y1, angle_deg };
     }
 
     // Second pass — bodies.
@@ -237,6 +264,10 @@ function buildRegistries(
         const h = typeof b.height === "number" ? b.height : b.h ?? 40;
         let cx = 0;
         let cy = 0;
+        // Rotation resolution mirrors parametric_renderer.ts drawBody line 599–603:
+        // explicit spec.rotation_deg wins; else orient_to_surface inherits
+        // −surfaceAngleDeg; else 0.
+        let rotation_deg = 0;
         if (
             typeof pos.x === "number" &&
             typeof pos.y === "number"
@@ -260,6 +291,8 @@ function buildRegistries(
                     : typeof b.t_position === "number"
                         ? b.t_position
                         : 0.5;
+            const orientToSurface =
+                typeof ats === "object" && ats !== null && ats.orient_to_surface === true;
             if (surf) {
                 const surfMidX = surf.x0 + (surf.x1 - surf.x0) * t;
                 const surfMidY = surf.y0 + (surf.y1 - surf.y0) * t;
@@ -267,6 +300,8 @@ function buildRegistries(
                 const perpAngle = Math.atan2(surf.y0 - surf.y1, surf.x1 - surf.x0);
                 cx = surfMidX - (h / 2) * Math.sin(perpAngle);
                 cy = surfMidY - (h / 2) * Math.cos(perpAngle);
+                // Inherit surface tilt when the prompt requests it.
+                if (orientToSurface) rotation_deg = -(surf.angle_deg ?? 0);
             } else {
                 // Surface not yet registered — fall back to MAIN_ZONE center.
                 cx = ZONES.MAIN_ZONE.x + ZONES.MAIN_ZONE.w / 2;
@@ -277,7 +312,9 @@ function buildRegistries(
             cx = ZONES.MAIN_ZONE.x + ZONES.MAIN_ZONE.w / 2;
             cy = ZONES.MAIN_ZONE.y + ZONES.MAIN_ZONE.h / 2;
         }
-        bodies[id] = { cx, cy, w, h };
+        // Explicit rotation_deg on the body spec always wins.
+        if (typeof b.rotation_deg === "number") rotation_deg = b.rotation_deg;
+        bodies[id] = { cx, cy, w, h, rotation_deg };
     }
 
     return { bodies, surfaces };
@@ -342,25 +379,46 @@ export function resolveAnchorPoint(
         }
     }
 
-    // Body
+    // Body — apply body.rotation_deg when resolving top/bottom/left/right so
+    // that labels/formulas attached to a block on an inclined surface land on
+    // the rotated edge instead of the axis-aligned one.
     const body = bodies[lhs];
     if (body) {
+        if (sub === "center") return { x: body.cx, y: body.cy };
+        let dx: number;
+        let dy: number;
         switch (sub) {
-            case "center":
-                return { x: body.cx, y: body.cy };
             case "top":
             case "top_center":
-                return { x: body.cx, y: body.cy - body.h / 2 };
+                dx = 0;
+                dy = -body.h / 2;
+                break;
             case "bottom":
             case "bottom_center":
-                return { x: body.cx, y: body.cy + body.h / 2 };
+                dx = 0;
+                dy = body.h / 2;
+                break;
             case "left":
-                return { x: body.cx - body.w / 2, y: body.cy };
+                dx = -body.w / 2;
+                dy = 0;
+                break;
             case "right":
-                return { x: body.cx + body.w / 2, y: body.cy };
+                dx = body.w / 2;
+                dy = 0;
+                break;
             default:
                 return null;
         }
+        if (!body.rotation_deg) {
+            return { x: body.cx + dx, y: body.cy + dy };
+        }
+        const rad = (body.rotation_deg * Math.PI) / 180;
+        const cos = Math.cos(rad);
+        const sin = Math.sin(rad);
+        return {
+            x: body.cx + dx * cos - dy * sin,
+            y: body.cy + dx * sin + dy * cos,
+        };
     }
 
     // Surface

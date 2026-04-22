@@ -111,6 +111,21 @@ Force_arrow schema (NOT solver-managed — use these fields):
 - `direction_deg`: 0=right, 90=up, 180=left, 270=down.
 - Force_arrows NEVER carry `anchor`/`edge`/`gap`/`position` — omit them. Route through `from` + `direction_deg`.
 
+WORLD-FRAME DIRECTION_DEG FOR FORCES ON A TILTED SURFACE (CRITICAL — E42 HARD GATE)
+===================================================================================
+`direction_deg` is ALWAYS in the WORLD frame (0° = +x axis, physics-y-up: 90° = up), NEVER in the block's local frame. Do NOT compute "perpendicular to the block" in the block's rotated frame and copy-paste that number — convert to world-frame degrees using the surface angle θ.
+
+For a body resting on a surface inclined at angle θ (measured from horizontal, positive for up-right inclines):
+
+- **Normal force N**: `direction_deg = (90 + θ) mod 360`.
+  Examples: θ=0° → 90°. θ=30° → 120°. θ=60° → 150°. θ=89° → 179°.
+- **Perpendicular component of gravity** (`mg_perp` / `mg cos θ`): `direction_deg = (270 + θ) mod 360` — EXACTLY OPPOSITE to N (N direction + 180°).
+  Examples: θ=0° → 270°. θ=30° → 300°. θ=60° → 330°.
+- **Parallel component of gravity** (`mg_parallel` / `mg sin θ`): `direction_deg = (180 + θ) mod 360` — down the slope.
+- **Full weight** (`mg` / `weight` / `gravity`): ALWAYS `direction_deg = 270` (straight down), independent of θ.
+
+Self-check: if this force is mg_perp, its `direction_deg` MUST equal N's direction_deg + 180° (mod 360). Violating any of these triggers E42 rejection — the sub-state is NOT cached and NOT served.
+
 Surfaces, bodies, vectors, force_components, angle_arcs, motion_paths, comparison_panels continue to use their existing fields. The solver only owns label/annotation/formula_box layout — every other type must carry its own positioning field.
 
 Pedagogy:
