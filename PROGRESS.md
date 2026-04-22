@@ -1,5 +1,35 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-04-22 (session 23 preflight) — Drill-down E42 hard-block mirrored
+
+### Top-line outcome
+
+Pre-flight for Phase E done. `/api/drill-down/route.ts` now carries the same E42 hard-block gate as `/api/deep-dive/route.ts` (session 22). Before this, drill-down had zero physics validation in the serving path — Sonnet's output was inserted as `pending_review` regardless of physics correctness. Now CRITICAL violations route to `status: 'rejected'` + HTTP 422 fallback, identical to deep-dive.
+
+### What shipped
+
+- `src/app/api/drill-down/route.ts`:
+  - Imported `validatePCPLSubSimStates`.
+  - Added `parentSceneForValidation` unwrap (same idiom as deep-dive route).
+  - Cache-hit: re-validates the stored sub-sim states and returns `physics_violations` + `physics_valid` alongside the cached payload.
+  - Cache-miss: filters `gen.physicsViolations` for CRITICAL, composes a `physicsNote` review line, inserts with `status: rowStatus` and `served_count: isRejected ? 0 : 1`. Returns HTTP 422 with the student-visible regenerating message when rejected.
+
+- `src/lib/drillDownGenerator.ts`:
+  - Threaded `parentSceneComposition` + `physicsEngineConfig.variables` into `validatePCPLSubSimStates` call. Before this the generator called the validator with only the states dict, so surface-angle rules couldn't resolve `angle_expr: "theta"` and similar placeholders. Now matches `deepDiveGenerator`'s exact pattern.
+
+Type-check: `npx tsc --noEmit` = 0 errors.
+
+### Deferred to session 23 proper
+
+- **Phase E session 1**: `contact_forces.json` retrofit. Scoped in plan file `plan-for-it-what-sharded-shore.md`. One concept per session per CLAUDE.md §11 ("pedagogy-heavy content requires single-author discipline"), so starting fresh rather than cramming into session 22's tail.
+- `field_forces`, `tension_in_string`, `hinge_force`, `free_body_diagram` retrofits follow in sessions 24–26.
+
+### Next session's first task (unchanged)
+
+Phase E session 1 — retrofit `src/data/concepts/contact_forces.json` per the plan file. Gold-standard template: `normal_reaction.json`. Proposed 6-state reshape, `allow_deep_dive` on STATE_3 + STATE_6, 4 epic_c_branches, full `mode_overrides.board` + `.competitive`, `prerequisites: ["normal_reaction", "field_forces"]`. Work state-by-state with before/after paste on every section.
+
+---
+
 ## 2026-04-22 (session 22) — E42 hard-block + prompt hardening + normal_reaction STATE_3/STATE_5 regenerated clean
 
 ### Top-line outcome

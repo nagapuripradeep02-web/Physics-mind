@@ -192,9 +192,28 @@ export async function generateDrillDown(input: DrillDownGenerateInput): Promise<
         }
     }
 
-    // E42 Physics Validator — always runs.
+    // E42 Physics Validator — always runs. Parent scene + default variables
+    // (from physicsEngineConfig) let surface-angle rules resolve angle_expr
+    // placeholders like "theta" in sub-states. Mirrors deepDiveGenerator.
+    const parentSceneArr: unknown[] = Array.isArray(input.parentSceneComposition)
+        ? input.parentSceneComposition
+        : Array.isArray((input.parentSceneComposition as { primitives?: unknown[] } | null | undefined)?.primitives)
+            ? ((input.parentSceneComposition as { primitives: unknown[] }).primitives)
+            : [];
+    const varsFromConfig = (input.physicsEngineConfig && typeof input.physicsEngineConfig === 'object')
+        ? Object.fromEntries(
+            Object.entries((input.physicsEngineConfig as { variables?: Record<string, { default?: number; constant?: number }> }).variables ?? {})
+                .map(([k, v]) => [k, typeof v?.default === 'number' ? v.default
+                    : typeof v?.constant === 'number' ? v.constant
+                    : NaN])
+                .filter(([, n]) => Number.isFinite(n as number))
+          )
+        : {};
     const physicsResult = validatePCPLSubSimStates(
         states as Record<string, { scene_composition?: unknown[] }>,
+        2,
+        parentSceneArr,
+        varsFromConfig as Record<string, number>,
     );
     if (physicsResult.violations.length > 0) {
         console.warn(

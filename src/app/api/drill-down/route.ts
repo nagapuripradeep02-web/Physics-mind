@@ -32,6 +32,7 @@ import { loadConstants } from "@/lib/physics_constants";
 import { classifyConfusion } from "@/lib/confusionClassifier";
 import { generateDrillDown } from "@/lib/drillDownGenerator";
 import { assembleParametricHtml } from "@/lib/renderers/parametric_renderer";
+import { validatePCPLSubSimStates } from "@/lib/pcplPhysicsValidator";
 
 interface ConceptJsonShape {
     concept_id?: string;
@@ -137,6 +138,14 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: `Concept JSON not found for ${conceptId}` }, { status: 404 });
         }
         const defaultVariables = extractDefaultVariables(conceptJson);
+        // E42 surface inheritance: unwrap parent scene_composition so the
+        // validator can resolve angle_expr / theta references inside sub-sims.
+        const parentSceneRaw = conceptJson.epic_l_path?.states?.[stateId]?.scene_composition;
+        const parentSceneForValidation: unknown[] = Array.isArray(parentSceneRaw)
+            ? parentSceneRaw
+            : Array.isArray((parentSceneRaw as { primitives?: unknown[] } | null | undefined)?.primitives)
+                ? ((parentSceneRaw as { primitives: unknown[] }).primitives)
+                : [];
 
         if (cached && cached.status !== "rejected") {
             void supabaseAdmin
@@ -149,6 +158,15 @@ export async function POST(req: NextRequest) {
 
             const cachedStates = ((cached.sub_sim as { states?: Record<string, unknown> } | null)?.states ?? {}) as Record<string, unknown>;
             const simHtml = buildSubSimHtml(conceptId, cachedStates, defaultVariables);
+
+            // E42 re-validation on cache hit — surfaces physics issues on
+            // previously-generated content without a fresh Sonnet call.
+            const cachedPhysics = validatePCPLSubSimStates(
+                cachedStates as Record<string, { scene_composition?: unknown[] }>,
+                2,
+                parentSceneForValidation,
+                defaultVariables,
+            );
 
             return NextResponse.json({
                 cluster_id: clusterId,
@@ -163,6 +181,8 @@ export async function POST(req: NextRequest) {
                 from_cache: true,
                 served_count: (cached.served_count ?? 0) + 1,
                 fingerprint_key: fingerprintKey,
+                physics_violations: cachedPhysics.violations,
+                physics_valid: cachedPhysics.valid,
             });
         }
 
@@ -203,7 +223,9 @@ export async function POST(req: NextRequest) {
             sessionId,
         });
 
-        // 5. Upsert pending_review
+        // 5. Upsert with E42 hard-block. CRITICAL physics violations → status
+        // 'rejected' + HTTP 422 fallback so the student never sees a broken
+        // sub-sim. Mirrors /api/deep-dive/route.ts policy.
         const solverReviewNote =
             gen.layoutViolations && gen.layoutViolations.length > 0
                 ? `solver_schema_invalid: ${gen.layoutViolations.length} violation(s) — ${gen.layoutViolations
@@ -211,6 +233,20 @@ export async function POST(req: NextRequest) {
                       .map((v) => `${v.primitiveId}:${v.code}`)
                       .join(", ")}`
                 : undefined;
+
+        const physicsCritical = (gen.physicsViolations ?? []).filter(v => v.severity === 'CRITICAL');
+        const physicsNote =
+            physicsCritical.length > 0
+                ? `physics_invalid: ${physicsCritical.length} critical violation(s) — ${physicsCritical
+                      .slice(0, 5)
+                      .map((v) => `${v.code}@${v.state_id ?? ''}/${v.primitive_id}(expected=${v.expected} actual=${v.actual})`)
+                      .join(" | ")}`
+                : undefined;
+
+        const combinedReviewNote = [solverReviewNote, physicsNote].filter(Boolean).join("\n");
+
+        const isRejected = physicsCritical.length > 0;
+        const rowStatus = isRejected ? "rejected" : "pending_review";
 
         const { data: inserted, error: insertErr } = await supabaseAdmin
             .from("drill_down_cache")
@@ -224,17 +260,40 @@ export async function POST(req: NextRequest) {
                 sub_sim: gen.subSim,
                 protocol: gen.protocol,
                 teacher_script: gen.teacherScriptFlat,
-                status: "pending_review",
+                status: rowStatus,
                 generated_by: "sonnet-lazy",
                 model: "claude-sonnet-4-6",
-                served_count: 1,
-                ...(solverReviewNote ? { review_notes: solverReviewNote } : {}),
+                served_count: isRejected ? 0 : 1,
+                ...(combinedReviewNote ? { review_notes: combinedReviewNote } : {}),
             })
             .select("id")
             .maybeSingle();
 
         if (insertErr) {
             console.error("[drill-down] cache insert error:", insertErr);
+        }
+
+        if (isRejected) {
+            console.warn(
+                `[drill-down] E42 rejected generation for ${fingerprintKey}: ${physicsCritical.length} critical violation(s)`,
+            );
+            return NextResponse.json(
+                {
+                    id: inserted?.id ?? null,
+                    cluster_id: clusterId,
+                    confidence: classification.confidence,
+                    reasoning: classification.reasoning,
+                    error: "physics_validation_failed",
+                    message:
+                        "This drill-down is being regenerated — the physics validator caught an error in the draft. Please try again in a moment.",
+                    status: "rejected",
+                    from_cache: false,
+                    fingerprint_key: fingerprintKey,
+                    physics_violations: gen.physicsViolations ?? [],
+                    physics_valid: false,
+                },
+                { status: 422 },
+            );
         }
 
         const simHtml = buildSubSimHtml(conceptId, gen.subSim.states, defaultVariables);
@@ -248,11 +307,13 @@ export async function POST(req: NextRequest) {
             sim_html: simHtml,
             default_variables: defaultVariables,
             teacher_script_flat: gen.teacherScriptFlat,
-            status: "pending_review",
+            status: rowStatus,
             from_cache: false,
             served_count: 1,
             fingerprint_key: fingerprintKey,
             id: inserted?.id ?? null,
+            physics_violations: gen.physicsViolations ?? [],
+            physics_valid: gen.physicsValid ?? true,
         });
     } catch (err) {
         console.error("[drill-down] EXCEPTION:", err);
