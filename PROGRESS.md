@@ -1,5 +1,86 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-04-22 (session 18) — Phase D constraint solver: required→strong fallback + prompt v2 hardening
+
+### Top-line outcome
+
+Three fixes closed out the Phase 4.1 Phase-D rollout after yesterday's end-to-end run still emitted two `"Anchor tie failed: unsatisfiable constraint"` warnings on a fresh `normal_reaction` STATE_5 deep-dive. Student-facing render was "real real chaos" — primitives silently landing at (0, 0) and a 90° surface rendering off-canvas. Root-caused both bugs, patched the solver to self-heal, and hardened the Sonnet contract so future sub-sims cannot reproduce the failure modes. `npx tsc --noEmit` clean; all five sub-sim caches cleared; ready for a fresh visual sign-off on the desktop-app session.
+
+### Root cause (diagnosis before fix)
+
+Terminal showed:
+```
+[subSimSolverHost] warnings: [
+  'Anchor tie failed for formula_perp_dd3 (edge=bottom): unsatisfiable constraint',
+  'Anchor tie failed for zero_N_label_dd5 (edge=right): unsatisfiable constraint'
+]
+```
+
+Pulled the freshly-cached `deep_dive_cache` row for normal_reaction STATE_5 and traced every offending primitive:
+
+1. **`formula_perp_dd3`** — `"equation_expr": "Perpendicular: mg cos θ → balanced by N"` (~40 chars → ~328 px wide at drawFormulaBox's 14px bold). Anchor `FORMULA_ZONE.top_center` is at canvas coordinates `(602.5, 290)`. Centered on that anchor, the formula extends from x=438 to x=766 — **6 px past the canvas right edge at 760**. Pass A of `ConstraintSolver.solve()` had already added `x + w ≤ 760` at `Strength.required`; Pass B then tried `x + w/2 = 602.5` also at `required` (because the formula_box carried `"priority": "required"`). Kiwi threw `unsatisfiable constraint`; the existing try/catch just logged a warning and moved on, leaving the primitive's `x` variable at kiwi's default 0 → rendered at the top-left corner of the canvas.
+2. **`zero_N_label_dd5`** — STATE_5_DD5 staged a 90° "vertical wall" via `{orientation: "inclined", angle_expr: "90", position: {x: 260, y: 100}, length: 360}`. `subSimSolverHost.buildRegistries()` computed `y1 = 100 − 360·sin(90°) = −260` (off-canvas top), then the body attached at `position_fraction: 0.45` landed at `cy ≈ −62`, then `block.right` at `y = −62`, then the label's required `y + h/2 = −62` tie vs required `y ≥ 0` = infeasible. Same silent fallback to (0, 0).
+
+The compound effect: Sonnet had been treating Example C's `"priority": "required"` in the v2 prompt as a template and cargo-culting it onto every formula_box in the output. Across 6 sub-states, **6 primitives** carried `required` priority. Two of them happened to have bboxes that exceeded their zones; those two blew up and the rest were one width-change away from joining them.
+
+### What shipped
+
+1. **Solver `required`→`strong` fallback** (`src/lib/constraintSolver.ts`)
+   New local `addTie()` helper inside `ConstraintSolver.solve()`. Replaces the four inline `solver.createConstraint(...)` calls in Pass B's `switch (edge)` block with a helper that catches the kiwi throw, and when the failing strength was `required`, retries at `strong`. On successful retry: pushes `"Anchor tie relaxed required→strong for <id> (<axis>)"` to the warnings array and adds the primitive id to the `relaxed` set so the existing admin-review badges light up amber instead of the primitive silently disappearing. If even `strong` fails, emits a distinct `"failed ... even at strong"` warning. Net result: primitives gracefully end up wherever they can fit inside canvas bounds instead of defaulting to (0, 0).
+2. **Prompt priority rule + formula-width cap** (`src/prompts/deep_dive_generator_v2.txt`, mirrored in `drill_down_generator_v2.txt`)
+   - Example C formula box flipped from `"priority": "required"` → `"priority": "strong"` so Sonnet stops copying the bad pattern.
+   - New paragraph inserted directly after Example C: "Priority rule (CRITICAL — avoids 'Anchor tie failed: unsatisfiable constraint' warnings): Use `"priority": "strong"` on EVERY label, annotation, and formula_box by default. `"required"` tells the solver the anchor MUST snap, even past the canvas edge — if a long formula centered near FORMULA_ZONE.top_center exceeds the 760 px canvas width, kiwi throws and the primitive drops to (0, 0). `"strong"` lets the solver relax gracefully. Reserve `"required"` for at most ONE tiny primitive per state where pixel-perfect snap is mandatory (rare)."
+   - New paragraph immediately after: "Keep formula_box `equation_expr` short (≤ 30 characters, ideally ≤ 25). FORMULA_ZONE is only 255 pixels wide; long strings like 'Perpendicular: mg cos θ → balanced by N' will not fit and WILL break layout even at strong priority. Split long narrations into a separate `annotation` placed in CALLOUT_ZONE_R — formulas are for equations, not sentences."
+3. **Prompt surface-geometry rule** (same two files)
+   - New "Surface geometry rule (CRITICAL — prevents off-canvas walls)" block spelled out three patterns: horizontal floor, inclined ramp, vertical wall. Vertical walls MUST use `"orientation": "vertical"` with `"position": {"x": 300, "y": 430}` and `"length": 330`. Explicitly forbids `orientation: "inclined" angle: 90 y: 100` because of the `y1 = y0 − length·sin(90°)` off-canvas math.
+   - Recommends `angle: 89` on an inclined surface as the workaround for an "N → 0" pedagogy demo, since the perpendicular-to-surface direction stays numerically stable.
+
+### Files changed
+
+**Modified**
+- `src/lib/constraintSolver.ts` (~412 lines, +60 net this session) — new `addTie()` helper inside `solve()` replaces inline createConstraint in Pass B `switch (edge)` cases top/bottom/left/right. Catches kiwi `unsatisfiable constraint`, retries at strong, records relaxed set.
+- `src/prompts/deep_dive_generator_v2.txt` — Priority rule paragraph (~120 words) + formula-width cap paragraph (~60 words) + Surface geometry rule block (~110 words) inserted around Example C. Example C `priority` flipped required → strong.
+- `src/prompts/drill_down_generator_v2.txt` — same three blocks mirrored in the drill-down prompt's corresponding FORMULA_ZONE stacking section.
+
+**Untouched this session** but shipping in the same commit as part of the Phase D workstream rollout (authored in earlier sessions, covered by this handoff):
+- `src/lib/constraintSchema.ts` (NEW) — Zod + `validatePrimitiveLayout` + `validateSubSimLayout`. `SOLVER_TARGETED_TYPES` scoped to `{label, annotation, formula_box}` exactly matching `subSimSolverHost.SOLVER_TARGETED`.
+- `src/lib/subSimSolverHost.ts` (NEW) — server-side solver host + `resolveAnchorPoint` (mirrors iframe `PM_resolveAnchor`). Handles attach_to_surface object form (v2) + string form (v1), computes perpendicular contact via surface geometry.
+- `src/lib/autoPromotion.ts` (NEW) — thumbs-up threshold promotion helper for cache rows.
+- `src/lib/__tests__/constraintSolver.test.ts`, `src/lib/__tests__/subSimSolverHost.test.ts` (NEW) — unit tests.
+- `src/lib/deepDiveGenerator.ts`, `src/lib/drillDownGenerator.ts` — `max_tokens` bumped (8k→16k deep-dive, 3k→6k drill-down). Validate layout contract via `validateSubSimLayout`; propagate `layoutViolations[]` through `DeepDiveGenerateResult` / `DrillDownGenerateResult` so the API routes can persist into `review_notes`.
+- `src/lib/renderers/parametric_renderer.ts` — draw functions prefer `_solverPosition` over `_resolvedPosition` over raw `position`.
+- `src/app/api/deep-dive/route.ts`, `src/app/api/drill-down/route.ts` — review_notes plumbing.
+- `src/app/api/deep-dive/feedback/route.ts`, `src/app/api/drill-down/feedback/route.ts` (NEW) — thumbs-up/down POST routes.
+- `src/app/admin/deep-dive-review/ReviewList.tsx`, `src/app/admin/deep-dive-review/page.tsx`, `src/app/admin/drill-down-review/ReviewList.tsx`, `src/app/admin/drill-down-review/page.tsx` — Phase 5 solver-status badges (green ok / amber relaxed / red infeasible) + violation-count chips.
+- `src/components/TeacherPlayer.tsx`, `src/components/DrillDownWidget.tsx`, `src/components/DeepDiveFeedbackThumbs.tsx` (NEW), `src/components/sections/LearnConceptTab.tsx` — inline sub-state UX + feedback thumbs wiring.
+- `supabase_phase_d_feedback_migration.sql` (NEW) — `deep_dive_feedback` + `drill_down_feedback` tables.
+- `package.json`, `package-lock.json` — `@lume/kiwi` dependency.
+
+### Verification
+
+- `npx tsc --noEmit` → 0 errors after every edit this session.
+- Cleared all five sub-sim caches via Supabase MCP (`deep_dive_cache`, `drill_down_cache`, `simulation_cache`, `session_context`, plus any lesson_cache churn).
+- The two warnings from the previous run's terminal (`formula_perp_dd3` and `zero_N_label_dd5`) are now prevented at both layers: the prompt teaches Sonnet to use `strong` + short equation_expr + vertical-surface geometry, AND the solver catches it if Sonnet still slips.
+- Visual end-to-end QA deferred to the desktop-app session — user switching environments.
+
+### Next session's first task (desktop-app)
+
+1. Start a fresh `npm run dev`.
+2. Clear all five sub-sim caches (same list as above).
+3. Trigger `normal_reaction` STATE_5 deep-dive from the student UI.
+4. Expected terminal:
+   - `[deepDiveGenerator] layout contract violations: 0`
+   - `[subSimSolverHost] warnings=0` OR only `"Anchor tie relaxed required→strong"` notes (safety net working, not chaos).
+   - `stop_reason: end_turn`.
+5. Visual sign-off: force_arrows attach to their blocks, formulas stack inside FORMULA_ZONE with visible gaps, no primitive at (0, 0), vertical walls stay fully on-canvas.
+6. If green → Phase 6 cross-concept smoke test on `contact_forces`, `field_forces`, `projectile_motion`.
+
+### Known follow-ups
+
+- `.gitignore` for `deep-dive-raw-*.txt` scratch dumps that `deepDiveGenerator` writes on JSON-parse failures. Small cleanup, deferred.
+- `subSimSolverHost.buildRegistries()` currently tracks bodies as axis-aligned bboxes — when a body is `orient_to_surface: true` on an inclined surface, anchors like `block.right` / `block.top_center` are resolved in canvas space, not in block-rotated space. So far no primitive has tripped on this, but it's worth revisiting when Phase 6 hits inclined-surface-heavy concepts (`projectile_inclined`).
+- The `deep_dive_raw-<timestamp>.txt` dump path is useful when Sonnet truncates mid-JSON; keep it for now, but cap the number of dumps or move to `/tmp` in a later pass.
+
 ## 2026-04-20 (session 17) — PCPL sync fix + Engine 20 motion integrator + inline deep-dive UX
 
 ### Top-line outcome

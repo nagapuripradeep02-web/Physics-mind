@@ -25,6 +25,7 @@
     "@ai-sdk/react": "^3.0.100",
     "@anthropic-ai/sdk": "^0.78.0",
     "@google/generative-ai": "^0.24.1",
+    "@lume/kiwi": "^0.4.4",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.97.0",
     "@types/katex": "^0.16.8",

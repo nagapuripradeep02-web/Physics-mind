@@ -204,6 +204,14 @@ export async function POST(req: NextRequest) {
         });
 
         // 5. Upsert pending_review
+        const solverReviewNote =
+            gen.layoutViolations && gen.layoutViolations.length > 0
+                ? `solver_schema_invalid: ${gen.layoutViolations.length} violation(s) — ${gen.layoutViolations
+                      .slice(0, 5)
+                      .map((v) => `${v.primitiveId}:${v.code}`)
+                      .join(", ")}`
+                : undefined;
+
         const { data: inserted, error: insertErr } = await supabaseAdmin
             .from("drill_down_cache")
             .insert({
@@ -220,6 +228,7 @@ export async function POST(req: NextRequest) {
                 generated_by: "sonnet-lazy",
                 model: "claude-sonnet-4-6",
                 served_count: 1,
+                ...(solverReviewNote ? { review_notes: solverReviewNote } : {}),
             })
             .select("id")
             .maybeSingle();

@@ -27,15 +27,17 @@ export interface DrillDownRow {
     generated_by: string | null;
     model: string | null;
     created_at: string;
+    review_notes: string | null;
 }
 
 export default async function DrillDownReviewPage() {
     const { data, error } = await supabaseAdmin
         .from("drill_down_cache")
         .select(
-            "id, fingerprint_key, concept_id, state_id, cluster_id, class_level, mode, sub_sim, protocol, teacher_script, status, served_count, positive_feedback_count, negative_feedback_count, generated_by, model, created_at"
+            "id, fingerprint_key, concept_id, state_id, cluster_id, class_level, mode, sub_sim, protocol, teacher_script, status, served_count, positive_feedback_count, negative_feedback_count, generated_by, model, created_at, review_notes"
         )
         .eq("status", "pending_review")
+        .order("positive_feedback_count", { ascending: false })
         .order("created_at", { ascending: false });
 
     const rows = (data ?? []) as DrillDownRow[];

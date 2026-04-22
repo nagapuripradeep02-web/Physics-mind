@@ -26,15 +26,17 @@ export interface DeepDiveRow {
     generated_by: string | null;
     model: string | null;
     created_at: string;
+    review_notes: string | null;
 }
 
 export default async function DeepDiveReviewPage() {
     const { data, error } = await supabaseAdmin
         .from("deep_dive_cache")
         .select(
-            "id, fingerprint_key, concept_id, state_id, class_level, mode, sub_states, teacher_script, status, served_count, positive_feedback_count, negative_feedback_count, generated_by, model, created_at"
+            "id, fingerprint_key, concept_id, state_id, class_level, mode, sub_states, teacher_script, status, served_count, positive_feedback_count, negative_feedback_count, generated_by, model, created_at, review_notes"
         )
         .eq("status", "pending_review")
+        .order("positive_feedback_count", { ascending: false })
         .order("created_at", { ascending: false });
 
     const rows = (data ?? []) as DeepDiveRow[];

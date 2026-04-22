@@ -13,21 +13,45 @@ import fs from "fs";
 import path from "path";
 import Anthropic from "@anthropic-ai/sdk";
 import { logUsage } from "@/lib/usageLogger";
+import {
+    validateSubSimLayout,
+    type LayoutViolation,
+} from "@/lib/constraintSchema";
 
 const SONNET_MODEL = "claude-sonnet-4-6";
-const PROMPT_PATH = path.join(process.cwd(), "src", "prompts", "drill_down_generator.txt");
+const PROMPT_PATH_V1 = path.join(process.cwd(), "src", "prompts", "drill_down_generator.txt");
+const PROMPT_PATH_V2 = path.join(process.cwd(), "src", "prompts", "drill_down_generator_v2.txt");
 
 const SONNET_INPUT_USD_PER_MTOK = 3.0;
 const SONNET_OUTPUT_USD_PER_MTOK = 15.0;
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-let cachedPrompt: string | null = null;
+function usesRelationships(): boolean {
+    const v = process.env.DEEP_DIVE_USES_RELATIONSHIPS;
+    if (v == null) return false;
+    return v === "1" || v === "true" || v === "on";
+}
+
+let cachedPromptV1: string | null = null;
+let cachedPromptV2: string | null = null;
+let lastLoggedVariant: string | null = null;
 function loadPromptTemplate(): string {
-    if (cachedPrompt === null) {
-        cachedPrompt = fs.readFileSync(PROMPT_PATH, "utf-8");
+    const variant = usesRelationships() ? "v2-relationships" : "v1-legacy";
+    if (variant !== lastLoggedVariant) {
+        console.log(`[drillDownGenerator] prompt_variant=${variant} (DEEP_DIVE_USES_RELATIONSHIPS=${process.env.DEEP_DIVE_USES_RELATIONSHIPS ?? "unset"})`);
+        lastLoggedVariant = variant;
     }
-    return cachedPrompt;
+    if (usesRelationships()) {
+        if (cachedPromptV2 === null) {
+            cachedPromptV2 = fs.readFileSync(PROMPT_PATH_V2, "utf-8");
+        }
+        return cachedPromptV2;
+    }
+    if (cachedPromptV1 === null) {
+        cachedPromptV1 = fs.readFileSync(PROMPT_PATH_V1, "utf-8");
+    }
+    return cachedPromptV1;
 }
 
 export interface DrillDownGenerateInput {
@@ -52,6 +76,8 @@ export interface DrillDownGenerateResult {
     subSim: { states: Record<string, unknown> };
     teacherScriptFlat: Array<{ id: string; text: string }>;
     rawText: string;
+    /** Populated only when DEEP_DIVE_USES_RELATIONSHIPS is on. */
+    layoutViolations?: LayoutViolation[];
 }
 
 function extractJsonObject(text: string): unknown | null {
@@ -86,7 +112,7 @@ export async function generateDrillDown(input: DrillDownGenerateInput): Promise<
 
     const message = await anthropic.messages.create({
         model: SONNET_MODEL,
-        max_tokens: 3000,
+        max_tokens: 6000,
         temperature: 0.4,
         messages: [{ role: "user", content: prompt }],
     });
@@ -143,10 +169,27 @@ export async function generateDrillDown(input: DrillDownGenerateInput): Promise<
         throw new Error("Drill-down generator missing teacher_script_flat array.");
     }
 
+    const states = statesObj as Record<string, unknown>;
+    let layoutViolations: LayoutViolation[] | undefined;
+    if (usesRelationships()) {
+        layoutViolations = validateSubSimLayout(
+            states as Record<string, { scene_composition?: unknown[] }>,
+            { requireRelationships: true },
+        );
+        if (layoutViolations.length > 0) {
+            console.warn(
+                "[drillDownGenerator] layout contract violations:",
+                layoutViolations.length,
+                layoutViolations.slice(0, 3),
+            );
+        }
+    }
+
     return {
         protocol,
-        subSim: { states: statesObj as Record<string, unknown> },
+        subSim: { states },
         teacherScriptFlat: parsedObj.teacher_script_flat as Array<{ id: string; text: string }>,
         rawText,
+        layoutViolations,
     };
 }

@@ -3,6 +3,7 @@
 import { useState, FormEvent } from "react";
 import { HelpCircle, X } from "lucide-react";
 import SubSimPlayer, { type TeacherScriptSentence } from "@/components/SubSimPlayer";
+import DeepDiveFeedbackThumbs from "@/components/DeepDiveFeedbackThumbs";
 
 interface Props {
     conceptId: string | null | undefined;
@@ -28,6 +29,7 @@ type ResultState =
           fromCache?: boolean;
           reviewStatus?: string;
           noMatchMessage?: string;
+          cacheId?: string | null;
       }
     | { status: "error"; message: string };
 
@@ -81,6 +83,7 @@ export default function DrillDownWidget({ conceptId, currentStateId, classLevel,
                 simHtml: typeof data.sim_html === "string" ? data.sim_html : undefined,
                 fromCache: !!data.from_cache,
                 reviewStatus: typeof data.status === "string" ? data.status : undefined,
+                cacheId: typeof data.id === "string" ? data.id : null,
             });
         } catch (err) {
             setResult({ status: "error", message: err instanceof Error ? err.message : "Network error" });
@@ -186,6 +189,14 @@ export default function DrillDownWidget({ conceptId, currentStateId, classLevel,
                                             </p>
                                         ))
                                     )}
+                                    {result.cacheId && sessionId && (
+                                        <DeepDiveFeedbackThumbs
+                                            key={result.cacheId}
+                                            kind="drill-down"
+                                            cacheId={result.cacheId}
+                                            sessionId={sessionId}
+                                        />
+                                    )}
                                 </div>
                             )}
                             {result.status === "error" && (
@@ -284,6 +295,14 @@ export default function DrillDownWidget({ conceptId, currentStateId, classLevel,
                                         {s.text}
                                     </p>
                                 ))
+                            )}
+                            {result.cacheId && sessionId && (
+                                <DeepDiveFeedbackThumbs
+                                    key={result.cacheId}
+                                    kind="drill-down"
+                                    cacheId={result.cacheId}
+                                    sessionId={sessionId}
+                                />
                             )}
                         </div>
                     )}

@@ -5,6 +5,7 @@
 // ============================================================================
 
 import { computePhysics } from '@/lib/physicsEngine';
+import { solveSubSimLayout } from '@/lib/subSimSolverHost';
 
 export interface ParametricConfig {
     concept_id: string;
@@ -788,12 +789,13 @@ function drawBody(spec) {
 }
 
 function drawLabel(spec) {
-  if (!spec || !spec.position) return;
+  if (!spec || !(spec._solverPosition || spec.position)) return;
   var gate = PM_animationGate(spec);
   if (!gate.visible) return;
   var resolved = PM_interpolate(spec.text || '');
   if (!resolved) return;
-  var pos = spec.position;
+  // Phase 2 solver: prefer solver-resolved position when host wrote one.
+  var pos = spec._solverPosition || spec.position;
   var size = (spec.font_size || 14) * PM_focalPulseScale(spec);
   var color = spec.color || '#D4D4D8';
   var rgb = PM_hexToRgb(color);
@@ -816,12 +818,12 @@ function drawLabel(spec) {
 }
 
 function drawAnnotation(spec) {
-  if (!spec || !spec.position) return;
+  if (!spec || !(spec._solverPosition || spec.position)) return;
   var gate = PM_animationGate(spec);
   if (!gate.visible) return;
   var resolved = PM_interpolate(spec.text || '');
   if (!resolved) return;
-  var pos = spec.position;
+  var pos = spec._solverPosition || spec.position;
   var size = 12;
   var pulseS = PM_focalPulseScale(spec);
   var color = spec.color || '#94A3B8';
@@ -1554,7 +1556,7 @@ function drawFormulaBox(spec) {
   if (!src) return;
   var gate = PM_animationGate(spec);
   if (!gate.visible) return;
-  var pos = spec.position || { x: 500, y: 300 };
+  var pos = spec._solverPosition || spec.position || { x: 500, y: 300 };
   var textStr = PM_interpolate(String(src));
   var lines = textStr.split('\\n');
   var pulseS = PM_focalPulseScale(spec);
@@ -2342,6 +2344,13 @@ export function assembleParametricHtml(config: ParametricConfig): string {
     const precomputed = computePhysics(config.concept_id, config.default_variables);
     const precomputedJson = precomputed ? JSON.stringify(precomputed) : 'null';
     const isAnswerSheet = config.canvas_style === 'answer_sheet';
+
+    // Phase 2 — constraint solver host. Off by default; opt-in via
+    // SUB_SIM_SOLVER_ENABLED env flag. When enabled, walks every state's
+    // scene_composition and stamps `_solverPosition` onto layout-relationship
+    // primitives. Draw functions inside PARAMETRIC_RENDERER_CODE prefer this
+    // field over `spec.position`. When the flag is off, this is a no-op.
+    solveSubSimLayout(config);
 
     const bodyStyle = isAnswerSheet
         ? "background-color: #FDFBF4; background-image: linear-gradient(180deg, rgba(250,240,220,0.45), rgba(253,251,244,0) 240px);"

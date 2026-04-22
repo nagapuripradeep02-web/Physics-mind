@@ -13,9 +13,14 @@ import fs from "fs";
 import path from "path";
 import Anthropic from "@anthropic-ai/sdk";
 import { logUsage } from "@/lib/usageLogger";
+import {
+    validateSubSimLayout,
+    type LayoutViolation,
+} from "@/lib/constraintSchema";
 
 const SONNET_MODEL = "claude-sonnet-4-6";
-const PROMPT_PATH = path.join(process.cwd(), "src", "prompts", "deep_dive_generator.txt");
+const PROMPT_PATH_V1 = path.join(process.cwd(), "src", "prompts", "deep_dive_generator.txt");
+const PROMPT_PATH_V2 = path.join(process.cwd(), "src", "prompts", "deep_dive_generator_v2.txt");
 
 // Sonnet 4.6 pricing (per 1M tokens)
 const SONNET_INPUT_USD_PER_MTOK = 3.0;
@@ -23,12 +28,31 @@ const SONNET_OUTPUT_USD_PER_MTOK = 15.0;
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-let cachedPrompt: string | null = null;
+function usesRelationships(): boolean {
+    const v = process.env.DEEP_DIVE_USES_RELATIONSHIPS;
+    if (v == null) return false;
+    return v === "1" || v === "true" || v === "on";
+}
+
+let cachedPromptV1: string | null = null;
+let cachedPromptV2: string | null = null;
+let lastLoggedVariant: string | null = null;
 function loadPromptTemplate(): string {
-    if (cachedPrompt === null) {
-        cachedPrompt = fs.readFileSync(PROMPT_PATH, "utf-8");
+    const variant = usesRelationships() ? "v2-relationships" : "v1-legacy";
+    if (variant !== lastLoggedVariant) {
+        console.log(`[deepDiveGenerator] prompt_variant=${variant} (DEEP_DIVE_USES_RELATIONSHIPS=${process.env.DEEP_DIVE_USES_RELATIONSHIPS ?? "unset"})`);
+        lastLoggedVariant = variant;
     }
-    return cachedPrompt;
+    if (usesRelationships()) {
+        if (cachedPromptV2 === null) {
+            cachedPromptV2 = fs.readFileSync(PROMPT_PATH_V2, "utf-8");
+        }
+        return cachedPromptV2;
+    }
+    if (cachedPromptV1 === null) {
+        cachedPromptV1 = fs.readFileSync(PROMPT_PATH_V1, "utf-8");
+    }
+    return cachedPromptV1;
 }
 
 export interface DeepDiveGenerateInput {
@@ -50,6 +74,10 @@ export interface DeepDiveGenerateResult {
     subStates: Record<string, unknown>;
     teacherScriptFlat: Array<{ id: string; text: string }>;
     rawText: string;
+    /** Populated only when DEEP_DIVE_USES_RELATIONSHIPS is on. Non-empty list
+     *  means Sonnet emitted primitives that violated the solver contract;
+     *  caller should stash into review_notes for admin triage. */
+    layoutViolations?: LayoutViolation[];
 }
 
 function extractJsonObject(text: string): unknown | null {
@@ -92,7 +120,7 @@ export async function generateDeepDive(input: DeepDiveGenerateInput): Promise<De
 
     const message = await anthropic.messages.create({
         model: SONNET_MODEL,
-        max_tokens: 8000,
+        max_tokens: 16000,
         temperature: 0.4,
         messages: [{ role: "user", content: prompt }],
     });
@@ -153,9 +181,29 @@ export async function generateDeepDive(input: DeepDiveGenerateInput): Promise<De
         throw new Error("Deep-dive generator missing teacher_script_flat array.");
     }
 
+    const subStates = parsedObj.sub_states as Record<string, unknown>;
+    let layoutViolations: LayoutViolation[] | undefined;
+    if (usesRelationships()) {
+        // Phase 3 — validate the solver contract. Non-fatal: caller records
+        // violations in review_notes and ships the row anyway so humans see
+        // what Sonnet produced.
+        layoutViolations = validateSubSimLayout(
+            subStates as Record<string, { scene_composition?: unknown[] }>,
+            { requireRelationships: true },
+        );
+        if (layoutViolations.length > 0) {
+            console.warn(
+                "[deepDiveGenerator] layout contract violations:",
+                layoutViolations.length,
+                layoutViolations.slice(0, 3),
+            );
+        }
+    }
+
     return {
-        subStates: parsedObj.sub_states as Record<string, unknown>,
+        subStates,
         teacherScriptFlat: parsedObj.teacher_script_flat as Array<{ id: string; text: string }>,
         rawText,
+        layoutViolations,
     };
 }

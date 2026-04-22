@@ -71,6 +71,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
     const [activeDeepDiveParent, setActiveDeepDiveParent] = useState<string | null>(null);
     const [activeDeepDiveIdx, setActiveDeepDiveIdx] = useState<number | null>(null);
     const [deepDiveStatus, setDeepDiveStatus] = useState<'pending_review' | 'served' | 'fresh' | null>(null);
+    const [deepDiveCacheId, setDeepDiveCacheId] = useState<string | null>(null);
     const [deepDiveLoading, setDeepDiveLoading] = useState(false);
     const [skeletonTimer, setSkeletonTimer] = useState(false);
     const [attachments, setAttachments] = useState<string[]>([]);
@@ -183,8 +184,14 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
     // -- Draggable panel state --
     // Horizontal divider: left chat width as % of viewport (0 = hidden, 70 = max)
     const [leftWidth, setLeftWidth] = useState(45);
+    // Vertical divider: Section A (TeacherPlayer: pill row + TTS text + thumbs)
+    // height in px. Default 160 gives comfortable room for 3 lines of script
+    // text + pills + thumbs, much bigger than the old 76px which clipped
+    // everything to the pill row.
+    const [sectionAHeight, setSectionAHeight] = useState(160);
 
     const isDraggingH = useRef(false);
+    const isDraggingV = useRef(false);
     const rightPanelRef = useRef<HTMLDivElement>(null);
     // Track ANY drag in progress as React state — used to suppress iframe pointer events
     const [anyDragging, setAnyDragging] = useState(false);
@@ -195,16 +202,28 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
         setAnyDragging(true);
     }, []);
 
+    const onMouseDownV = useCallback((e: React.MouseEvent) => {
+        e.preventDefault();
+        isDraggingV.current = true;
+        setAnyDragging(true);
+    }, []);
+
     useEffect(() => {
         const onMove = (e: MouseEvent) => {
             if (isDraggingH.current) {
                 const pct = (e.clientX / window.innerWidth) * 100;
                 setLeftWidth(Math.max(20, Math.min(70, pct)));
+            } else if (isDraggingV.current && rightPanelRef.current) {
+                const rect = rightPanelRef.current.getBoundingClientRect();
+                const next = e.clientY - rect.top;
+                // 76px min (pill row only) .. 60% of right panel height max
+                setSectionAHeight(Math.max(76, Math.min(rect.height * 0.6, next)));
             }
         };
         const onUp = () => {
-            if (isDraggingH.current) {
+            if (isDraggingH.current || isDraggingV.current) {
                 isDraggingH.current = false;
+                isDraggingV.current = false;
                 setAnyDragging(false);
             }
         };
@@ -340,6 +359,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
             setActiveDeepDiveParent(stateId);
             setActiveDeepDiveIdx(0);
             setDeepDiveStatus((data?.status as typeof deepDiveStatus) ?? null);
+            setDeepDiveCacheId(typeof data?.id === 'string' ? data.id : null);
 
             // Fire SET_STATE for the first sub-pill immediately so the student
             // sees the sub-scene as soon as the sub-pills appear.
@@ -383,6 +403,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
         setActiveDeepDiveParent(null);
         setActiveDeepDiveIdx(null);
         setDeepDiveStatus(null);
+        setDeepDiveCacheId(null);
         if (parent) {
             simIframeRef.current?.contentWindow?.postMessage({ type: 'SET_STATE', state: parent }, '*');
             secondarySimIframeRef.current?.contentWindow?.postMessage({ type: 'SET_STATE', state: parent }, '*');
@@ -994,7 +1015,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
         <div className={`flex-1 flex flex-col min-h-0 overflow-hidden accent-${section}`}>
             {/* Drag overlay: prevents iframes from swallowing mouseup events and keeps cursor consistent */}
             {anyDragging && (
-                <div style={{ position: 'fixed', inset: 0, zIndex: 9999, cursor: isDraggingH.current ? 'col-resize' : 'row-resize' }} />
+                <div style={{ position: 'fixed', inset: 0, zIndex: 9999, cursor: isDraggingV.current ? 'row-resize' : 'col-resize' }} />
             )}
             
             {/* Main split: LEFT chat | divider | RIGHT panel */}
@@ -1323,10 +1344,13 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
                 >
                     {/* SECTION A: Steps list — renders for both single-panel and multi-panel
                          (DualPanelSimulation does NOT ship its own Play/Explain controls, so the
-                         TeacherPlayer compact header owns them for every concept). */}
+                         TeacherPlayer compact header owns them for every concept).
+                         Height is driven by `sectionAHeight` state so the teacher below-pills
+                         area (TTS sentence + thumbs) has room to breathe. Drag the vertical
+                         divider below to resize. */}
                     <div
                         className="hidden md:block shrink-0 bg-zinc-950"
-                        style={{ height: 76, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid #1e2030' }}
+                        style={{ height: sectionAHeight, flexShrink: 0, overflow: 'hidden', borderBottom: '1px solid #1e2030' }}
                     >
                         {currentLesson ? (
                             /* TeacherPlayer mounts as soon as lesson arrives (~2-3s).
@@ -1364,6 +1388,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
                                 deepDiveLoading={deepDiveLoading}
                                 onSubStateClick={handleSubStateClick}
                                 onDeepDiveExit={handleDeepDiveExit}
+                                deepDiveCacheId={deepDiveCacheId}
                             />
                         ) : (lessonLoading || isLoadingSim) ? (
                             /* Lesson + sim both still generating — show skeleton strip immediately */
@@ -1392,6 +1417,30 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
                                 </p>
                             </div>
                         )}
+                    </div>
+
+                    {/* VERTICAL DIVIDER — drag to resize Section A (teacher-script
+                         area) vs the simulation below. Min 76px pill-row-only,
+                         max 60 % of right panel. */}
+                    <div
+                        onMouseDown={onMouseDownV}
+                        className="hidden md:flex shrink-0 select-none items-center justify-center group"
+                        style={{
+                            height: 6, cursor: 'row-resize',
+                            background: '#1a1f2e',
+                            borderTop: '1px solid #2a3044',
+                            borderBottom: '1px solid #2a3044',
+                            transition: 'background 0.15s',
+                        }}
+                        title="Drag to resize teacher-script area vs simulation"
+                    >
+                        <div
+                            style={{
+                                width: 40, height: 2, borderRadius: 1,
+                                background: '#3a4057',
+                            }}
+                            className="group-hover:bg-zinc-500"
+                        />
                     </div>
 
                     {/* Merged info bar — worked example + mode pills + confused chip.

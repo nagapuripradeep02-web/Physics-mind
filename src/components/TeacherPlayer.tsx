@@ -7,6 +7,7 @@ import { AISimulationRenderer } from "@/components/AISimulationRenderer";
 import type { TeacherScriptStep } from "@/lib/aiSimulationGenerator";
 import { getPanelConfig, type ConceptPanelConfig } from "@/config/panelConfig";
 import { BeliefProbeCard } from "@/components/sections/BeliefProbeCard";
+import DeepDiveFeedbackThumbs from "@/components/DeepDiveFeedbackThumbs";
 
 // Inline deep-dive sub-state shape (Phase D inline UX). One entry per sub-pill
 // (3a, 3b, 3c, 3d). Populated from /api/deep-dive payload by LearnConceptTab
@@ -84,6 +85,10 @@ interface TeacherPlayerProps {
     onSubStateClick?: (subIdx: number) => void;
     /** Called to collapse inline sub-pills and return to the parent state. */
     onDeepDiveExit?: () => void;
+    /** Phase D: cache row id (deep_dive_cache.id) returned from /api/deep-dive.
+     *  When present together with sessionId and an active sub-state, the inline
+     *  thumbs-up/down rating control renders under the step-title row. */
+    deepDiveCacheId?: string | null;
 }
 
 
@@ -107,7 +112,7 @@ const LOADING_FACTS = [
     "�� Magnetic field lines always form closed loops — they never start or end",
 ];
 
-export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, aiScript, iframeRef: externalIframeRef, conceptId, secondarySimHtml, secondaryIframeRef: externalSecondaryIframeRef, sessionId, studentBelief, entryState, stateSequence, onDeepDiveClick, allowedDeepDiveStates, deepDiveSubStates, activeDeepDiveParent, activeDeepDiveIdx, deepDiveStatus, deepDiveLoading, onSubStateClick, onDeepDiveExit }: TeacherPlayerProps) {
+export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, aiScript, iframeRef: externalIframeRef, conceptId, secondarySimHtml, secondaryIframeRef: externalSecondaryIframeRef, sessionId, studentBelief, entryState, stateSequence, onDeepDiveClick, allowedDeepDiveStates, deepDiveSubStates, activeDeepDiveParent, activeDeepDiveIdx, deepDiveStatus, deepDiveLoading, onSubStateClick, onDeepDiveExit, deepDiveCacheId }: TeacherPlayerProps) {
     // Step strip uses ONLY aiScript (Stage 4). lesson.teaching_script is never shown in the strip.
     // When aiScript is null/empty, isScriptReady=false and the strip shows a skeleton loader.
     const isScriptReady = !!(aiScript?.length);
@@ -688,9 +693,9 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
                             )}
                             <div
                                 style={{
-                                    flex: 1, minWidth: 0, fontSize: 13, lineHeight: 1.35,
+                                    flex: 1, minWidth: 0, fontSize: 13, lineHeight: 1.4,
                                     display: '-webkit-box',
-                                    WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
+                                    WebkitLineClamp: 6, WebkitBoxOrient: 'vertical',
                                     overflow: 'hidden', textOverflow: 'ellipsis', wordBreak: 'break-word',
                                 }}
                             >
@@ -715,6 +720,21 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
                         </div>
                     )}
                 </div>
+                {/* Phase D: thumbs rating on active inline deep-dive sub-state.
+                     Keyed by deepDiveCacheId so switching between parent states
+                     (or a fresh deep-dive row) resets the voted state. */}
+                {activeSub && deepDiveCacheId && sessionId && (
+                    <div
+                        className="shrink-0 px-3 pb-2 -mt-1"
+                        key={deepDiveCacheId}
+                    >
+                        <DeepDiveFeedbackThumbs
+                            kind="deep-dive"
+                            cacheId={deepDiveCacheId}
+                            sessionId={sessionId}
+                        />
+                    </div>
+                )}
             </div>
         );
     }
