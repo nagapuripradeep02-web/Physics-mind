@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhysicsMind — Board Mode MVP (Atwood Machine)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { font-family: 'Inter', system-ui, sans-serif; color: #E5E7EB; background: #0A0A1A; min-height: 100vh; }
+  body { display: flex; flex-direction: column; padding-bottom: 32px; }
+
+  /* ─────────── Header ─────────── */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px; border-bottom: 1px solid #27272A;
+    background: rgba(10, 10, 26, 0.95); backdrop-filter: blur(8px);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 15px; color: #F3F4F6; }
+  .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: #3B82F6; box-shadow: 0 0 12px #3B82F6; }
+  .header-actions { display: flex; align-items: center; gap: 12px; }
+  .pill {
+    padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 500;
+    background: #18181B; border: 1px solid #27272A; color: #D4D4D8;
+  }
+  .pill.mode { background: #1E3A8A; border-color: #3B82F6; color: #FFF; }
+
+  /* ─────────── Question card ─────────── */
+  .question-card {
+    margin: 24px 32px 16px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #18181B 0%, #1F1F23 100%);
+    border: 1px solid #27272A; border-left: 3px solid #F59E0B;
+    border-radius: 12px;
+  }
+  .question-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .concept-tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #F59E0B; font-weight: 600; }
+  .q-board { font-size: 11px; color: #71717A; padding: 3px 8px; background: #09090B; border-radius: 4px; border: 1px solid #27272A; }
+  .mark-allotted { margin-left: auto; font-size: 13px; font-weight: 700; color: #FCD34D; padding: 4px 10px; background: rgba(245, 158, 11, 0.12); border-radius: 6px; }
+  .question-text { font-size: 15px; line-height: 22px; color: #E5E7EB; }
+  .question-text strong { color: #FFF; }
+
+  /* ─────────── Main grid ─────────── */
+  main {
+    display: grid; grid-template-columns: 340px 1fr; gap: 20px;
+    padding: 0 32px; max-width: 1400px; width: 100%; margin: 0 auto;
+  }
+
+  /* ─────────── Sidebar ─────────── */
+  .sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .card {
+    background: #18181B; border: 1px solid #27272A; border-radius: 12px; padding: 16px;
+  }
+  .card-title { font-size: 11px; font-weight: 600; color: #A1A1AA; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+
+  /* Step nav */
+  .step-list { display: flex; flex-direction: column; gap: 6px; }
+  .step-pill {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; border-radius: 8px; cursor: pointer;
+    background: #09090B; border: 1px solid transparent;
+    transition: all 0.15s ease;
+    font-size: 13px; color: #A1A1AA;
+  }
+  .step-pill:hover { background: #1F1F23; color: #E5E7EB; }
+  .step-pill.done { color: #86EFAC; }
+  .step-pill.current { background: #1E3A8A; border-color: #3B82F6; color: #FFF; font-weight: 600; }
+  .step-num {
+    width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; background: #27272A; color: #A1A1AA;
+    flex-shrink: 0;
+  }
+  .step-pill.done .step-num { background: #14532D; color: #86EFAC; }
+  .step-pill.current .step-num { background: #FFF; color: #1E3A8A; }
+  .step-mark { margin-left: auto; font-size: 10px; font-weight: 700; color: #F59E0B; padding: 2px 6px; background: rgba(245, 158, 11, 0.12); border-radius: 4px; flex-shrink: 0; }
+
+  /* Mark accumulator */
+  .accumulator {
+    text-align: center; padding: 20px 16px;
+    background: linear-gradient(135deg, #1F1F23, #18181B);
+  }
+  .acc-value { font-size: 44px; font-weight: 700; color: #FCD34D; line-height: 1; font-variant-numeric: tabular-nums; }
+  .acc-value span { color: #52525B; font-size: 24px; }
+  .acc-label { font-size: 11px; color: #A1A1AA; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+  .acc-bar { height: 6px; background: #09090B; border-radius: 3px; margin-top: 14px; overflow: hidden; }
+  .acc-fill { height: 100%; background: linear-gradient(90deg, #F59E0B, #FCD34D); border-radius: 3px; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+  /* Controls */
+  .controls { display: flex; gap: 8px; margin-top: 12px; }
+  .ctrl-btn {
+    flex: 1; padding: 9px; background: #09090B; border: 1px solid #27272A; border-radius: 8px;
+    color: #D4D4D8; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .ctrl-btn:hover { background: #1F1F23; color: #FFF; border-color: #3F3F46; }
+  .ctrl-btn.primary { background: #3B82F6; border-color: #3B82F6; color: #FFF; }
+  .ctrl-btn.primary:hover { background: #2563EB; }
+
+  /* PYQ */
+  .pyq-list { display: flex; flex-direction: column; gap: 8px; }
+  .pyq-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 10px; background: #09090B; border-radius: 6px; font-size: 12px;
+  }
+  .pyq-board { font-weight: 600; color: #D4D4D8; }
+  .pyq-year { color: #71717A; font-variant-numeric: tabular-nums; }
+  .pyq-mark { color: #F59E0B; font-weight: 700; font-size: 11px; }
+
+  /* Action row */
+  .action-row { display: flex; flex-direction: column; gap: 8px; }
+  .action-btn {
+    padding: 10px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: all 0.15s;
+  }
+  .action-btn.download { background: #059669; color: #FFF; }
+  .action-btn.download:hover { background: #047857; }
+  .action-btn.practice { background: #18181B; border: 1px solid #27272A; color: #D4D4D8; }
+  .action-btn.practice:hover { background: #1F1F23; color: #FFF; }
+
+  /* ─────────── Answer sheet ─────────── */
+  .sheet-wrapper {
+    background: #18181B; border: 1px solid #27272A; border-radius: 12px; padding: 24px;
+    min-height: 780px;
+  }
+  .sheet {
+    background: #FDFBF4;
+    border-radius: 4px;
+    position: relative;
+    min-height: 720px;
+    padding: 44px 56px 44px 128px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    font-family: 'Caveat', cursive;
+    color: #1E3A8A;
+    overflow: hidden;
+    background-image:
+      linear-gradient(to right, transparent 0 100px, rgba(220, 38, 38, 0.55) 100px 102px, transparent 102px),
+      repeating-linear-gradient(#FDFBF4, #FDFBF4 33px, #E5D8C3 33px, #E5D8C3 34px);
+  }
+  .sheet-header {
+    font-family: 'Inter', sans-serif; color: #111827; font-size: 11px; font-weight: 500;
+    position: absolute; top: 14px; right: 20px;
+    display: flex; gap: 14px;
+  }
+  .sheet-header .h-field span { color: #6B7280; font-weight: 400; }
+
+  /* Individual step */
+  .step-block {
+    margin-bottom: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+  }
+  .step-block.visible { opacity: 1; }
+  .step-line {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    line-height: 34px;
+    color: #1E3A8A;
+    letter-spacing: 0.02em;
+    min-height: 34px;
+    position: relative;
+  }
+  .step-line.sub { font-size: 20px; color: #1E40AF; margin-left: 18px; }
+  .eq-line {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: #B45309;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin: 4px 0 4px 18px;
+    min-height: 34px;
+  }
+  .final-boxed {
+    display: inline-block;
+    border: 2.5px solid #1E3A8A;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 26px;
+    margin: 6px 0;
+    font-weight: 500;
+    background: rgba(254, 243, 199, 0.4);
+  }
+
+  /* Mark badge (inline, near the step) */
+  .mark-badge {
+    position: absolute;
+    right: 44px;
+    background: #F59E0B;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.4);
+    transform: scale(0);
+    opacity: 0;
+    animation: pop 0.5s 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    display: flex; align-items: center; gap: 4px;
+  }
+  @keyframes pop {
+    0% { transform: scale(0) rotate(-5deg); opacity: 0; }
+    70% { transform: scale(1.12) rotate(2deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+  }
+
+  /* FBD inline SVG sizing */
+  .fbd-inline {
+    margin: 8px 0 12px 18px;
+    display: inline-block;
+    background: rgba(253, 251, 244, 0.5);
+    padding: 6px;
+    border: 1px dashed rgba(30, 58, 138, 0.3);
+    border-radius: 4px;
+  }
+
+  /* Cursor (handwriting indicator) */
+  .cursor {
+    display: inline-block; width: 2px; height: 24px; background: #1E3A8A;
+    vertical-align: middle; animation: blink 0.8s step-end infinite;
+    margin-left: 1px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Footer tag */
+  .watermark {
+    position: absolute;
+    bottom: 12px; right: 20px;
+    font-family: 'Inter', sans-serif; font-size: 9px;
+    color: rgba(107, 114, 128, 0.55);
+    letter-spacing: 0.06em;
+  }
+
+  /* Total row at end of sheet */
+  .total-row {
+    margin-top: 22px;
+    padding: 10px 16px;
+    background: rgba(5, 150, 105, 0.15);
+    border-left: 4px solid #10B981;
+    font-family: 'Inter', sans-serif;
+    color: #065F46;
+    font-size: 13px;
+    font-weight: 600;
+    display: none;
+  }
+  .total-row.visible { display: block; }
+
+  /* Download celebration */
+  .complete-hint {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: rgba(59, 130, 246, 0.15);
+    border-radius: 8px;
+    border: 1px dashed rgba(59, 130, 246, 0.4);
+    font-size: 12px;
+    color: #93C5FD;
+    text-align: center;
+    line-height: 18px;
+  }
+  .complete-hint.visible { display: block; }
+
+  /* Fade-in for elements */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+
+  /* Responsive */
+  @media (max-width: 980px) {
+    main { grid-template-columns: 1fr; }
+    .sidebar { order: 2; }
+  }
+
+  select.board-select {
+    background: #18181B; color: #FFF; border: 1px solid #27272A; border-radius: 6px;
+    padding: 5px 10px; font-size: 12px; font-family: inherit; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="brand-dot"></span>
+    PhysicsMind <span style="color:#71717A;font-weight:400;">· Board Mode (MVP)</span>
+  </div>
+  <div class="header-actions">
+    <span class="pill mode">📋 Board Exam</span>
+    <select class="board-select" id="boardSelect">
+      <option value="cbse_12" selected>CBSE · Class 12</option>
+      <option value="mah_12">Maharashtra HSC · XII</option>
+      <option value="ts_12">Telangana Intermediate · II Year</option>
+      <option value="ap_12">AP Intermediate · II Year</option>
+    </select>
+  </div>
+</header>
+
+<div class="question-card">
+  <div class="question-meta">
+    <span class="concept-tag">Ch. 8 · Laws of Motion · Atwood Machine</span>
+    <span class="q-board" id="qBoardLabel">CBSE Board Q-pattern</span>
+    <span class="mark-allotted" id="markAllotted">7 marks</span>
+  </div>
+  <div class="question-text">
+    Two masses <strong>m₁ = 5 kg</strong> and <strong>m₂ = 3 kg</strong> are connected by a light, inextensible string passing over a frictionless pulley (Atwood machine). Derive expressions for the <strong>acceleration</strong> of the system and the <strong>tension</strong> in the string. Calculate their values, taking g = 9.8 m/s².
+  </div>
+</div>
+
+<main>
+  <!-- ─── Sidebar ─── -->
+  <aside class="sidebar">
+    <div class="card">
+      <div class="card-title">Answer Plan</div>
+      <div class="step-list" id="stepList">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+    <div class="card accumulator">
+      <div class="acc-value" id="accValue">0<span>/7</span></div>
+      <div class="acc-label">Marks earned</div>
+      <div class="acc-bar"><div class="acc-fill" id="accFill" style="width: 0%"></div></div>
+      <div class="controls">
+        <button class="ctrl-btn" id="btnPrev">‹ Prev</button>
+        <button class="ctrl-btn primary" id="btnPlay">▶ Play</button>
+        <button class="ctrl-btn" id="btnNext">Next ›</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Previous Year Questions (PYQ)</div>
+      <div class="pyq-list">
+        <div class="pyq-item"><span class="pyq-board">CBSE 2024</span><span class="pyq-year">Q.26</span><span class="pyq-mark">5M</span></div>
+        <div class="pyq-item"><span class="pyq-board">Maharashtra 2023</span><span class="pyq-year">Q.14</span><span class="pyq-mark">7M</span></div>
+        <div class="pyq-item"><span class="pyq-board">CBSE 2022</span><span class="pyq-year">Q.28</span><span class="pyq-mark">5M</span></div>
+        <div class="pyq-item"><span class="pyq-board">Telangana 2022</span><span class="pyq-year">Q.19</span><span class="pyq-mark">4M</span></div>
+        <div class="pyq-item"><span class="pyq-board">CBSE 2020</span><span class="pyq-year">Q.25</span><span class="pyq-mark">5M</span></div>
+      </div>
+    </div>
+
+    <div class="card action-row">
+      <button class="action-btn download" id="btnDownload">📄 Download as PDF Answer Template</button>
+      <button class="action-btn practice">🎯 Practice Similar 7-Mark Question</button>
+    </div>
+
+    <div class="complete-hint" id="completeHint">
+      ✓ Full 7/7 answer ready.<br>
+      Download the PDF and reproduce it on your exam paper in your own handwriting.
+    </div>
+  </aside>
+
+  <!-- ─── Answer Sheet ─── -->
+  <section class="sheet-wrapper">
+    <div class="sheet" id="sheet">
+      <div class="sheet-header">
+        <span class="h-field"><span>Name:</span> ____________</span>
+        <span class="h-field"><span>Class:</span> XII</span>
+        <span class="h-field"><span>Subject:</span> Physics</span>
+        <span class="h-field"><span>Q.No:</span> 14</span>
+      </div>
+
+      <div id="answerContent"></div>
+
+      <div class="total-row" id="totalRow">
+        Total: 7 / 7 marks · All derivation steps + numerical substitution + final answer with units
+      </div>
+
+      <div class="watermark">PhysicsMind study aid · reproduce in your own handwriting · do not submit verbatim</div>
+    </div>
+  </section>
+</main>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   BOARD MODE MVP — Atwood Machine (7-mark derivation)
+   Single-file, vanilla JS. Handwriting animation via
+   character-by-character reveal at 28 chars/sec.
+   ───────────────────────────────────────────────────────────── */
+
+// The 7 steps — each atom = 1 mark. Authored in NCERT/CBSE style.
+// At runtime, board profile could trim or expand this based on mark value.
+const STEPS = [
+  {
+    id: 1,
+    title: "FBD & setup",
+    markDesc: "+1 for FBD",
+    lines: [
+      { text: "Let the heavier mass m₁ descend with acceleration a.", type: "main" },
+      { text: "Since the string is inextensible, m₂ ascends with the", type: "main" },
+      { text: "same acceleration a.", type: "main" },
+      { type: "fbd" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Newton's 2nd law for m₁",
+    markDesc: "+1 eqn for m₁",
+    lines: [
+      { text: "For m₁ (taking downward as positive):", type: "main" },
+      { text: "m₁g − T = m₁a    ... (i)", type: "eq" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Newton's 2nd law for m₂",
+    markDesc: "+1 eqn for m₂",
+    lines: [
+      { text: "For m₂ (taking upward as positive):", type: "main" },
+      { text: "T − m₂g = m₂a    ... (ii)", type: "eq" },
+    ],
+  },
+  {
+    id: 4,
+    title: "Eliminate T → solve for a",
+    markDesc: "+1 for a",
+    lines: [
+      { text: "Adding (i) and (ii):", type: "main" },
+      { text: "(m₁ − m₂) g = (m₁ + m₂) a", type: "eq" },
+      { text: "∴  a = (m₁ − m₂) g / (m₁ + m₂)", type: "eq" },
+    ],
+  },
+  {
+    id: 5,
+    title: "Back-substitute → solve for T",
+    markDesc: "+1 for T",
+    lines: [
+      { text: "Substituting a in (i):", type: "main" },
+      { text: "T = m₁g − m₁a", type: "eq" },
+      { text: "∴  T = 2 m₁ m₂ g / (m₁ + m₂)", type: "eq" },
+    ],
+  },
+  {
+    id: 6,
+    title: "Numerical substitution",
+    markDesc: "+1 numerical",
+    lines: [
+      { text: "With m₁ = 5 kg, m₂ = 3 kg, g = 9.8 m/s²:", type: "main" },
+      { text: "a = (5 − 3)(9.8) / (5 + 3) = 19.6 / 8", type: "eq" },
+      { text: "T = 2(5)(3)(9.8) / (5 + 3) = 294 / 8", type: "eq" },
+    ],
+  },
+  {
+    id: 7,
+    title: "Final answer with units",
+    markDesc: "+1 final + units",
+    lines: [
+      { text: "Final answers (with units):", type: "main" },
+      { text: "a = 2.45 m/s²", type: "boxed" },
+      { text: "T = 36.75 N", type: "boxed" },
+    ],
+  },
+];
+
+// ──── State ────
+let currentStep = 0;          // 0-indexed
+let playing = false;
+let playTimer = null;
+let typingInProgress = false;
+
+// FBD SVG for step 1
+const FBD_SVG = `
+<svg class="fbd-inline" width="240" height="220" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- ceiling -->
+  <line x1="30" y1="20" x2="210" y2="20" stroke="#1E3A8A" stroke-width="2"/>
+  <g stroke="#1E3A8A" stroke-width="1">
+    <line x1="40" y1="20" x2="34" y2="12"/><line x1="60" y1="20" x2="54" y2="12"/>
+    <line x1="80" y1="20" x2="74" y2="12"/><line x1="100" y1="20" x2="94" y2="12"/>
+    <line x1="120" y1="20" x2="114" y2="12"/><line x1="140" y1="20" x2="134" y2="12"/>
+    <line x1="160" y1="20" x2="154" y2="12"/><line x1="180" y1="20" x2="174" y2="12"/>
+    <line x1="200" y1="20" x2="194" y2="12"/>
+  </g>
+  <!-- pulley -->
+  <circle cx="120" cy="50" r="20" fill="none" stroke="#1E3A8A" stroke-width="2.5"/>
+  <circle cx="120" cy="50" r="3" fill="#1E3A8A"/>
+  <line x1="120" y1="20" x2="120" y2="30" stroke="#1E3A8A" stroke-width="2"/>
+  <!-- ropes -->
+  <line x1="100" y1="50" x2="70" y2="130" stroke="#B45309" stroke-width="1.8"/>
+  <line x1="140" y1="50" x2="170" y2="110" stroke="#B45309" stroke-width="1.8"/>
+  <!-- m1 (left, heavier, going down) -->
+  <rect x="50" y="130" width="40" height="36" fill="none" stroke="#1E3A8A" stroke-width="2"/>
+  <text x="70" y="153" text-anchor="middle" font-family="Caveat" font-size="18" fill="#1E3A8A" font-weight="600">m₁</text>
+  <!-- m2 (right, lighter, going up) -->
+  <rect x="150" y="110" width="40" height="32" fill="none" stroke="#1E3A8A" stroke-width="2"/>
+  <text x="170" y="131" text-anchor="middle" font-family="Caveat" font-size="18" fill="#1E3A8A" font-weight="600">m₂</text>
+  <!-- acceleration arrows -->
+  <g stroke="#DC2626" stroke-width="1.8" fill="#DC2626">
+    <line x1="35" y1="148" x2="35" y2="180"/>
+    <polygon points="31,176 35,184 39,176"/>
+    <text x="22" y="200" font-family="Caveat" font-size="15" fill="#DC2626">a</text>
+    <line x1="205" y1="130" x2="205" y2="98"/>
+    <polygon points="201,102 205,94 209,102"/>
+    <text x="212" y="115" font-family="Caveat" font-size="15" fill="#DC2626">a</text>
+  </g>
+  <!-- Weight labels -->
+  <text x="70" y="210" text-anchor="middle" font-family="Caveat" font-size="15" fill="#B45309">m₁g ↓</text>
+  <text x="170" y="180" text-anchor="middle" font-family="Caveat" font-size="15" fill="#B45309">m₂g ↓</text>
+</svg>
+`;
+
+// ──── Board profile adjustment (demo) ────
+const BOARD_PROFILES = {
+  cbse_12: { label: "CBSE Board Q-pattern",   marks: 7, keyword_T: "T (tension)"  },
+  mah_12:  { label: "Maharashtra HSC Q-pattern", marks: 7, keyword_T: "T (tension)" },
+  ts_12:   { label: "Telangana Intermediate Q-pattern", marks: 4, keyword_T: "T (tension force)" },
+  ap_12:   { label: "AP Intermediate Q-pattern", marks: 4, keyword_T: "T (tension force)" },
+};
+
+// ──── Build step-nav sidebar ────
+function buildStepList() {
+  const list = document.getElementById("stepList");
+  list.innerHTML = STEPS.map((s, i) => `
+    <div class="step-pill ${i === currentStep ? "current" : ""} ${i < currentStep ? "done" : ""}" data-idx="${i}">
+      <span class="step-num">${i < currentStep ? "✓" : i + 1}</span>
+      <span>${s.title}</span>
+      <span class="step-mark">${s.markDesc}</span>
+    </div>
+  `).join("");
+  list.querySelectorAll(".step-pill").forEach(el => {
+    el.onclick = () => { if (!typingInProgress) jumpToStep(parseInt(el.dataset.idx)); };
+  });
+}
+
+// ──── Update accumulator ────
+function updateAccumulator() {
+  const marks = currentStep; // (step 0 = 0 marks, step 1 = 1 mark, ..., step 7 = 7 marks after completion)
+  const shown = Math.max(0, Math.min(7, marks));
+  document.getElementById("accValue").innerHTML = `${shown}<span>/7</span>`;
+  document.getElementById("accFill").style.width = (shown / 7) * 100 + "%";
+}
+
+// ──── Render step into answer sheet with handwriting animation ────
+function renderStep(idx, animate = true) {
+  const content = document.getElementById("answerContent");
+  const step = STEPS[idx];
+
+  // Append a new block for this step
+  const block = document.createElement("div");
+  block.className = "step-block";
+  block.dataset.step = idx + 1;
+  block.style.position = "relative";
+
+  // Append all line placeholders
+  step.lines.forEach((line, lineIdx) => {
+    if (line.type === "fbd") {
+      block.insertAdjacentHTML("beforeend", FBD_SVG);
+      return;
+    }
+    const el = document.createElement("div");
+    el.className = line.type === "eq" ? "eq-line" : "step-line";
+    if (line.type === "boxed") {
+      el.innerHTML = `<span class="final-boxed"></span>`;
+    }
+    block.appendChild(el);
+  });
+
+  // Mark badge (appears after all lines typed)
+  const badge = document.createElement("div");
+  badge.className = "mark-badge";
+  badge.innerHTML = `<span>✓</span> ${step.markDesc}`;
+  badge.style.top = "4px";
+  badge.style.display = "none";
+  block.appendChild(badge);
+
+  content.appendChild(block);
+  requestAnimationFrame(() => block.classList.add("visible"));
+
+  // Animate text reveal
+  if (animate) typeLinesSequentially(block, step, 0, () => {
+    badge.style.display = "flex";
+    // After badge pops, increment accumulator + allow next step
+    setTimeout(() => {
+      currentStep = idx + 1;
+      buildStepList();
+      updateAccumulator();
+      typingInProgress = false;
+      if (currentStep >= STEPS.length) finishAnswer();
+      else if (playing) setTimeout(() => advance(), 600);
+    }, 600);
+  });
+  else instantlyFillBlock(block, step, () => {
+    badge.style.display = "flex";
+    currentStep = idx + 1;
+    buildStepList();
+    updateAccumulator();
+    typingInProgress = false;
+    if (currentStep >= STEPS.length) finishAnswer();
+  });
+}
+
+// Handwriting type effect (28 chars/sec)
+const CHAR_MS = 1000 / 28;
+function typeLinesSequentially(block, step, lineIdx, done) {
+  typingInProgress = true;
+  const lineDefs = step.lines.filter(l => l.type !== "fbd");
+  const lineEls = block.querySelectorAll(".step-line, .eq-line");
+  if (lineIdx >= lineEls.length) return done();
+
+  const el = lineEls[lineIdx];
+  const def = lineDefs[lineIdx];
+  const text = def.text;
+
+  // Boxed lines are wrapped in a span
+  const target = def.type === "boxed" ? el.querySelector(".final-boxed") : el;
+
+  let i = 0;
+  target.innerHTML = "";
+  const cursorEl = document.createElement("span");
+  cursorEl.className = "cursor";
+  target.appendChild(cursorEl);
+
+  const tick = () => {
+    if (i < text.length) {
+      cursorEl.insertAdjacentText("beforebegin", text.charAt(i));
+      i++;
+      setTimeout(tick, CHAR_MS);
+    } else {
+      cursorEl.remove();
+      setTimeout(() => typeLinesSequentially(block, step, lineIdx + 1, done), 200);
+    }
+  };
+  tick();
+}
+
+function instantlyFillBlock(block, step, done) {
+  const lineDefs = step.lines.filter(l => l.type !== "fbd");
+  const lineEls = block.querySelectorAll(".step-line, .eq-line");
+  lineEls.forEach((el, i) => {
+    const def = lineDefs[i];
+    if (!def) return;
+    if (def.type === "boxed") el.querySelector(".final-boxed").textContent = def.text;
+    else el.textContent = def.text;
+  });
+  done();
+}
+
+// ──── Navigation ────
+function advance() {
+  if (typingInProgress || currentStep >= STEPS.length) return;
+  renderStep(currentStep, true);
+}
+
+function jumpToStep(targetIdx) {
+  // Clear all → re-render up to targetIdx instantly, then animate targetIdx
+  const content = document.getElementById("answerContent");
+  content.innerHTML = "";
+  document.getElementById("totalRow").classList.remove("visible");
+  document.getElementById("completeHint").classList.remove("visible");
+  currentStep = 0;
+
+  // Fill steps before target instantly
+  for (let i = 0; i < targetIdx; i++) {
+    renderStep(i, false);
+  }
+  // Animate target
+  if (targetIdx < STEPS.length) {
+    renderStep(targetIdx, true);
+  } else {
+    finishAnswer();
+  }
+}
+
+function finishAnswer() {
+  playing = false;
+  document.getElementById("btnPlay").innerHTML = "▶ Play";
+  document.getElementById("totalRow").classList.add("visible");
+  document.getElementById("completeHint").classList.add("visible");
+}
+
+// ──── Board profile change ────
+document.getElementById("boardSelect").addEventListener("change", (e) => {
+  const profile = BOARD_PROFILES[e.target.value];
+  document.getElementById("qBoardLabel").textContent = profile.label;
+  // For demo: change question mark value if board profile differs
+  const allotted = document.getElementById("markAllotted");
+  if (profile.marks !== 7) {
+    allotted.innerHTML = `${profile.marks} marks <span style="opacity:0.6;font-weight:400;font-size:11px;">· (this board typically asks ${profile.marks}M — step count auto-trims in full product)</span>`;
+  } else {
+    allotted.textContent = "7 marks";
+  }
+});
+
+// ──── Controls ────
+document.getElementById("btnPlay").onclick = () => {
+  if (currentStep >= STEPS.length) {
+    // restart
+    document.getElementById("answerContent").innerHTML = "";
+    document.getElementById("totalRow").classList.remove("visible");
+    document.getElementById("completeHint").classList.remove("visible");
+    currentStep = 0;
+    buildStepList();
+    updateAccumulator();
+  }
+  playing = !playing;
+  document.getElementById("btnPlay").innerHTML = playing ? "⏸ Pause" : "▶ Play";
+  if (playing) advance();
+};
+document.getElementById("btnNext").onclick = () => {
+  if (typingInProgress) return;
+  advance();
+};
+document.getElementById("btnPrev").onclick = () => {
+  if (typingInProgress || currentStep === 0) return;
+  jumpToStep(currentStep - 1);
+};
+
+document.getElementById("btnDownload").onclick = () => {
+  // MVP: browser print (student can "Save as PDF" from print dialog)
+  alert("📄 PDF Export (MVP)\n\nIn the full product, this downloads a clean A4 PDF of the answer sheet without the navigation UI.\n\nFor now, use Ctrl+P / Cmd+P → 'Save as PDF'. The answer sheet renders cleanly with the watermark footer.");
+  window.print();
+};
+
+// ──── Init ────
+buildStepList();
+updateAccumulator();
+</script>
+
+<style media="print">
+  @page { size: A4; margin: 15mm; }
+  header, .sidebar, .question-card, .watermark { display: none !important; }
+  main { grid-template-columns: 1fr !important; padding: 0 !important; }
+  .sheet-wrapper { background: #FFF !important; border: none !important; padding: 0 !important; }
+  .sheet { box-shadow: none !important; min-height: auto !important; padding: 12mm 18mm 12mm 28mm !important; }
+  body { background: #FFF !important; }
+  .mark-badge { page-break-inside: avoid; }
+</style>
+
+</body>
+</html>
