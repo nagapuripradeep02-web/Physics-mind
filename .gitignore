@@ -62,6 +62,18 @@ ncert_class10_chunks.json
 dc_pandey_chunks.jsonl
 dcp_em_chunks.jsonl
 dcp_optics_chunks.jsonl
+openstax_cp_chunks.jsonl
+
+# OCR / LLM output caches (per-image / per-page JSON, gitignored, skip-on-rerun)
+.cache/
+
+# tesseract OCR data (auto-downloaded by visual validator on first run; ~10MB binary)
+eng.traineddata
+*.traineddata
+
+# debug probe + raw API dump artifacts (per-session investigation, never persistent)
+.friction-probe.json
+deep-dive-raw-*.txt
 
 # copyrighted source textbooks — never commit
 /pdfs/
