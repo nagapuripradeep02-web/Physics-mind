@@ -351,15 +351,17 @@ function computePhysics(conceptId, vars) {
 // vector_head_to_tail — Phase 0 validation demo Sim 1 (session 56). Iframe-side
 // fallback in case PM_PRECOMPUTED_PHYSICS isn't injected. Returns the same
 // shape as the TS engine (vectorHeadToTailEngine in physicsEngine/concepts/).
+// Pure DC Pandey Ch.5.4 displacement framing: walk d_east m east, then
+// d_north m north → resultant = sqrt(d_east² + d_north²).
 function computePhysics_vector_head_to_tail(vars) {
-  var v_rain = (vars && vars.v_rain != null) ? vars.v_rain : 5;
-  var v_you = (vars && vars.v_you != null) ? vars.v_you : 4;
-  var v_apparent_mag = Math.sqrt(v_rain * v_rain + v_you * v_you);
-  var theta_apparent_deg = Math.atan2(v_you, v_rain) * 180 / Math.PI;
+  var d_east = (vars && vars.d_east != null) ? vars.d_east : 3;
+  var d_north = (vars && vars.d_north != null) ? vars.d_north : 4;
+  var d_resultant_mag = Math.sqrt(d_east * d_east + d_north * d_north);
+  var theta_resultant_deg = Math.atan2(d_north, d_east) * 180 / Math.PI;
   return {
     concept_id: 'vector_head_to_tail',
-    variables: { v_rain: v_rain, v_you: v_you },
-    derived: { v_apparent_mag: v_apparent_mag, theta_apparent_deg: theta_apparent_deg },
+    variables: { d_east: d_east, d_north: d_north },
+    derived: { d_resultant_mag: d_resultant_mag, theta_resultant_deg: theta_resultant_deg },
     forces: []
   };
 }

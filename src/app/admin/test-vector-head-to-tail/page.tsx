@@ -43,11 +43,11 @@ function buildConfigForState(stateId: string): ParametricConfig {
 }
 
 const STATES_TO_VERIFY: Array<{ id: string; label: string; description: string }> = [
-    { id: 'STATE_1', label: 'STATE_1 — Three Umbrellas Hook', description: '3 callout panels + green halo on the forward-tilt panel' },
-    { id: 'STATE_2', label: 'STATE_2 — Two Velocities Named', description: 'rain arrow + walking arrow each with glow_focus pulse' },
-    { id: 'STATE_3', label: 'STATE_3 — The Tip-to-Tail Moment', description: 'rain arrow slides over to chain position; whoosh sound on USER_GESTURE' },
-    { id: 'STATE_4', label: 'STATE_4 — The Resultant Reveal', description: 'yellow diagonal draws itself; ding sound on USER_GESTURE' },
-    { id: 'STATE_5', label: 'STATE_5 — Try-It Slider', description: 'walk-speed slider; resultant updates live (note: slider primitive without bound physics may render statically here)' },
+    { id: 'STATE_1', label: 'STATE_1 — Walked Path Hook', description: 'walked path 3m east + 4m north with start/end markers + 3 guess callouts (green halo on correct one)' },
+    { id: 'STATE_2', label: 'STATE_2 — Name the Two Displacements', description: 'displacement A (3m east) + displacement B (4m north) at separate positions, each with glow_focus pulse' },
+    { id: 'STATE_3', label: 'STATE_3 — Tip-to-Tail Moment', description: 'B slides over so its tail sits at the head of A; whoosh sound on USER_GESTURE' },
+    { id: 'STATE_4', label: 'STATE_4 — Resultant Reveals as 5m', description: 'yellow diagonal draws itself; Pythagoras formula box; ding sound on USER_GESTURE' },
+    { id: 'STATE_5', label: 'STATE_5 — Try-It Slider (d_east)', description: 'd_east slider 1-8m; resultant updates live (note: slider primitive without bound physics may render statically here)' },
 ];
 
 export default function VectorHeadToTailTestPage() {
