@@ -468,4 +468,159 @@ function PM_beginSmoothCameraIfActive(scene) {
 function PM_endSmoothCameraIfActive() {
   if (PM_camState.active) pop();
 }
+
+// ═══════════════════════════════════════════════════════════════════
+// Section P6 — umbrella_scene (concept-specific primitive for vector_head_to_tail)
+// Draws: stickman + tilted umbrella + rain droplets + wet/dry outcome marker.
+// spec: { type, position: {x, y_foot}, tilt_deg, outcome: 'dry'|'front_wet'|'back_wet',
+//         scale?, label?, label_color? }
+// tilt_deg: 0 = straight up, negative = back, positive = forward (toward +x)
+// outcome: drives color of person + presence of red splashes / green tick
+// Animates rain droplets continuously (no appear_at_ms gating — runs always).
+// ═══════════════════════════════════════════════════════════════════
+
+function drawUmbrellaScene(spec) {
+  PM_resetPremiumStateIfNeeded();
+  var pos = spec.position || { x: 380, y: 360 };
+  var tilt = (typeof spec.tilt_deg === 'number') ? spec.tilt_deg : 0;
+  var outcome = spec.outcome || 'dry';
+  var scale = (typeof spec.scale === 'number') ? spec.scale : 1.0;
+
+  var headR = 10 * scale;
+  var bodyH = 35 * scale;
+  var legH = 22 * scale;
+  var armSpan = 22 * scale;
+
+  // Stickman anchor — feet at (pos.x, pos.y)
+  var feetY = pos.y;
+  var hipY = feetY - legH;
+  var shoulderY = hipY - bodyH;
+  var headCenterY = shoulderY - headR - 2;
+
+  // Determine person color based on outcome
+  var personColor = (outcome === 'dry') ? [16, 185, 129] : [148, 163, 184];  // green or slate
+  var splashColor = [239, 68, 68];  // red for splash marks
+
+  push();
+  // ── Person ──
+  stroke(personColor[0], personColor[1], personColor[2]);
+  strokeWeight(2.4 * scale);
+  noFill();
+  // Head
+  ellipse(pos.x, headCenterY, headR * 2, headR * 2);
+  // Body
+  line(pos.x, shoulderY, pos.x, hipY);
+  // Arms (slight downward angle)
+  line(pos.x, shoulderY + 4, pos.x - armSpan, shoulderY + 14);
+  line(pos.x, shoulderY + 4, pos.x + armSpan, shoulderY + 14);
+  // Legs
+  line(pos.x, hipY, pos.x - 12 * scale, feetY);
+  line(pos.x, hipY, pos.x + 12 * scale, feetY);
+
+  // ── Umbrella ──
+  // Grip = right hand approximate location
+  var gripX = pos.x + armSpan * 0.7;
+  var gripY = shoulderY + 14;
+
+  // Shaft direction: at 90° from horizontal + tilt (so tilt=0 means vertical)
+  var tiltRad = tilt * Math.PI / 180;
+  var shaftLen = 70 * scale;
+  // Shaft goes from grip UPWARD at angle tilt (0=vertical, +=forward)
+  var canopyCenterX = gripX + Math.sin(tiltRad) * shaftLen;
+  var canopyCenterY = gripY - Math.cos(tiltRad) * shaftLen;
+
+  // Shaft line (dark gray)
+  stroke(75, 85, 110);
+  strokeWeight(2.5 * scale);
+  line(gripX, gripY, canopyCenterX, canopyCenterY);
+
+  // Canopy: arc/half-ellipse perpendicular to the shaft
+  // Use rotation transform to draw a half-circle then flip
+  push();
+  translate(canopyCenterX, canopyCenterY);
+  rotate(tiltRad);
+  // Canopy color — dark blue for the umbrella
+  noStroke();
+  fill(56, 90, 168, 240);
+  // Half-ellipse opening downward (in pre-rotation frame)
+  arc(0, 0, 90 * scale, 50 * scale, Math.PI, 0, OPEN);
+  // Outline
+  stroke(20, 35, 80);
+  strokeWeight(1.5 * scale);
+  noFill();
+  arc(0, 0, 90 * scale, 50 * scale, Math.PI, 0, OPEN);
+  // Tiny tip
+  fill(20, 35, 80);
+  noStroke();
+  ellipse(0, 0, 4 * scale, 4 * scale);
+  pop();
+
+  // ── Rain droplets (continuous animation) ──
+  // Use a hash from position + time so each scene has its own animated pattern.
+  // 8 droplets falling across a 140px-wide column above the scene.
+  var rainColor = [125, 170, 230];
+  stroke(rainColor[0], rainColor[1], rainColor[2], 200);
+  strokeWeight(1.5 * scale);
+  noFill();
+  var t = (millis() / 1000);
+  var rainSpan = 130 * scale;
+  var rainTopY = headCenterY - 100 * scale;
+  var rainBottomY = headCenterY - headR - 4;
+  var rainHeight = rainBottomY - rainTopY;
+  var seed = (pos.x * 13 + pos.y * 7) % 1000;
+  for (var i = 0; i < 9; i++) {
+    var dropPhase = (t * 1.6 + (i * 0.31) + seed * 0.0017) % 1;
+    var dropY = rainTopY + dropPhase * rainHeight;
+    var dropX = (pos.x - rainSpan / 2) + ((i * 17 + seed) % 100) / 100 * rainSpan;
+    // Skip droplets that would be inside the umbrella canopy (rough check)
+    var dxFromCanopy = dropX - canopyCenterX;
+    var dyFromCanopy = dropY - canopyCenterY;
+    var insideCanopy = Math.abs(dxFromCanopy) < 45 * scale && dyFromCanopy > -8 && dyFromCanopy < 30;
+    if (insideCanopy) continue;
+    line(dropX, dropY, dropX + 1.5, dropY + 7 * scale);
+  }
+
+  // ── Outcome marker (splash on wet side, tick on dry) ──
+  if (outcome === 'front_wet') {
+    // Red splash marks on the front (right side, in walking direction)
+    stroke(splashColor[0], splashColor[1], splashColor[2], 220);
+    strokeWeight(2 * scale);
+    var fx = pos.x + 6 * scale, fy = shoulderY + 18;
+    line(fx - 4, fy - 4, fx + 4, fy + 4);
+    line(fx + 4, fy - 4, fx - 4, fy + 4);
+    line(fx + 8, fy - 8, fx + 14, fy - 2);
+    line(fx + 14, fy - 8, fx + 8, fy - 2);
+  } else if (outcome === 'back_wet') {
+    // Red splash marks on the back (left side)
+    stroke(splashColor[0], splashColor[1], splashColor[2], 220);
+    strokeWeight(2 * scale);
+    var bx = pos.x - 6 * scale, by = shoulderY + 18;
+    line(bx - 4, by - 4, bx + 4, by + 4);
+    line(bx + 4, by - 4, bx - 4, by + 4);
+    line(bx - 14, by - 8, bx - 8, by - 2);
+    line(bx - 8, by - 8, bx - 14, by - 2);
+  } else if (outcome === 'dry') {
+    // Green check mark beside head
+    stroke(16, 185, 129, 230);
+    strokeWeight(2.5 * scale);
+    noFill();
+    var ckX = pos.x + headR + 8 * scale;
+    var ckY = headCenterY;
+    line(ckX, ckY, ckX + 4, ckY + 4);
+    line(ckX + 4, ckY + 4, ckX + 12, ckY - 6);
+  }
+
+  // ── Optional caption below scene ──
+  if (typeof spec.label === 'string' && spec.label.length > 0) {
+    var labelColor = spec.label_color || (outcome === 'dry' ? '#10B981' : '#EF4444');
+    var rgb = PM_hexToRgb(labelColor);
+    fill(rgb[0], rgb[1], rgb[2], 240);
+    noStroke();
+    textSize(12 * scale);
+    textAlign(CENTER, TOP);
+    text(spec.label, pos.x, feetY + 8);
+  }
+
+  pop();
+}
 `;

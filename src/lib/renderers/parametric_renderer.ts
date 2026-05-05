@@ -2449,6 +2449,7 @@ function draw() {
     else if (lPrim.type === 'sound_cue')      drawSoundCue(lPrim);
     else if (lPrim.type === 'particle_field') drawParticleField(lPrim);
     else if (lPrim.type === 'smooth_camera')  drawSmoothCamera(lPrim);
+    else if (lPrim.type === 'umbrella_scene') drawUmbrellaScene(lPrim);
   }
   // smooth_camera close — matches PM_beginSmoothCameraIfActive(scene) at the top of draw().
   PM_endSmoothCameraIfActive();

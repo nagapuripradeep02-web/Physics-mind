@@ -71,54 +71,48 @@
         "duration": 9,
         "teaching_method": "narrative_socratic",
         "advance_mode": "auto_after_tts",
-        "focal_primitive_id": "panel_forward",
+        "focal_primitive_id": "umbrella_forward",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "header",
             "text": "You walk through monsoon rain. Which umbrella tilt keeps you dry?",
-            "position": { "x": 380, "y": 50 },
-            "font_size": 16,
+            "position": { "x": 380, "y": 40 },
+            "font_size": 15,
             "color": "#E5E7EB"
           },
           {
-            "type": "annotation",
-            "id": "panel_up",
-            "text": "Tilt straight up\n→ FRONT gets soaked",
-            "position": { "x": 150, "y": 220 },
-            "style": "callout",
-            "color": "#EF4444"
+            "type": "umbrella_scene",
+            "id": "umbrella_up",
+            "position": { "x": 150, "y": 360 },
+            "tilt_deg": 0,
+            "outcome": "front_wet",
+            "scale": 1.0,
+            "label": "Tilt straight up → FRONT soaked"
           },
           {
-            "type": "annotation",
-            "id": "panel_back",
-            "text": "Tilt backward\n→ BACK gets soaked",
-            "position": { "x": 380, "y": 220 },
-            "style": "callout",
-            "color": "#EF4444"
+            "type": "umbrella_scene",
+            "id": "umbrella_back",
+            "position": { "x": 380, "y": 360 },
+            "tilt_deg": -25,
+            "outcome": "back_wet",
+            "scale": 1.0,
+            "label": "Tilt backward → BACK soaked"
           },
           {
-            "type": "annotation",
-            "id": "panel_forward",
-            "text": "Tilt FORWARD\n→ stays dry ✓",
-            "position": { "x": 610, "y": 220 },
-            "style": "callout",
-            "color": "#10B981"
-          },
-          {
-            "type": "glow_focus",
-            "primitive_id": "panel_forward",
-            "halo_radius_px": 95,
-            "color": "#10B981",
-            "intensity": 0.5,
-            "appear_at_ms": 4000,
-            "animate_in_ms": 800
+            "type": "umbrella_scene",
+            "id": "umbrella_forward",
+            "position": { "x": 610, "y": 360 },
+            "tilt_deg": 25,
+            "outcome": "dry",
+            "scale": 1.0,
+            "label": "Tilt FORWARD → stays dry ✓"
           },
           {
             "type": "annotation",
             "id": "footer_question",
             "text": "Why forward? And how do we figure out HOW MUCH to tilt?",
-            "position": { "x": 380, "y": 420 },
+            "position": { "x": 380, "y": 460 },
             "font_size": 14,
             "color": "#FBBF24"
           }
@@ -337,7 +331,6 @@
             "color": "#34D399",
             "line_weight": 3,
             "arrow_head": true,
-            "label": "v_you",
             "appear_at_ms": 0,
             "animate_in_ms": 1
           },
@@ -352,9 +345,24 @@
             "color": "#60A5FA",
             "line_weight": 3,
             "arrow_head": true,
-            "label": "v_rain",
             "appear_at_ms": 0,
             "animate_in_ms": 1
+          },
+          {
+            "type": "annotation",
+            "id": "you_label",
+            "text": "v_you",
+            "position": { "x": 290, "y": 205 },
+            "font_size": 13,
+            "color": "#34D399"
+          },
+          {
+            "type": "annotation",
+            "id": "rain_label",
+            "text": "v_rain",
+            "position": { "x": 410, "y": 310 },
+            "font_size": 13,
+            "color": "#60A5FA"
           },
           {
             "type": "animated_path",
@@ -367,16 +375,23 @@
             "color": "#FBBF24",
             "line_weight": 4,
             "arrow_head": true,
-            "label": "v_apparent (the resultant)",
             "appear_at_ms": 5000,
             "animate_in_ms": 1300
           },
           {
+            "type": "annotation",
+            "id": "resultant_label",
+            "text": "v_apparent (the resultant)",
+            "position": { "x": 230, "y": 360 },
+            "font_size": 14,
+            "color": "#FBBF24"
+          },
+          {
             "type": "glow_focus",
             "primitive_id": "resultant_arrow",
-            "halo_radius_px": 130,
+            "halo_radius_px": 110,
             "color": "#FBBF24",
-            "intensity": 0.55,
+            "intensity": 0.32,
             "appear_at_ms": 6300,
             "animate_in_ms": 700
           },
@@ -423,73 +438,95 @@
           {
             "type": "animated_path",
             "id": "you_leg_live",
-            "from": { "x": 280, "y": 260 },
-            "to": { "x": 380, "y": 260 },
+            "from": { "x": 200, "y": 230 },
+            "to": { "x": 380, "y": 230 },
             "easing": "linear",
             "duration_ms": 1,
             "head_first": true,
             "color": "#34D399",
             "line_weight": 3,
             "arrow_head": true,
-            "label": "v_you (drag below)",
             "appear_at_ms": 0,
             "animate_in_ms": 1
           },
           {
             "type": "animated_path",
             "id": "rain_leg_live",
-            "from": { "x": 380, "y": 260 },
-            "to": { "x": 380, "y": 410 },
+            "from": { "x": 380, "y": 230 },
+            "to": { "x": 380, "y": 380 },
             "easing": "linear",
             "duration_ms": 1,
             "head_first": true,
             "color": "#60A5FA",
             "line_weight": 3,
             "arrow_head": true,
-            "label": "v_rain (5 m/s, fixed)",
             "appear_at_ms": 0,
             "animate_in_ms": 1
           },
           {
             "type": "animated_path",
             "id": "resultant_live",
-            "from": { "x": 280, "y": 260 },
-            "to": { "x": 380, "y": 410 },
+            "from": { "x": 200, "y": 230 },
+            "to": { "x": 380, "y": 380 },
             "easing": "linear",
             "duration_ms": 1,
             "head_first": true,
             "color": "#FBBF24",
             "line_weight": 4,
             "arrow_head": true,
-            "label": "v_apparent",
             "appear_at_ms": 0,
             "animate_in_ms": 1
           },
           {
             "type": "annotation",
+            "id": "you_label_live",
+            "text": "v_you (drag below)",
+            "position": { "x": 290, "y": 215 },
+            "font_size": 12,
+            "color": "#34D399"
+          },
+          {
+            "type": "annotation",
+            "id": "rain_label_live",
+            "text": "v_rain (5 m/s, fixed)",
+            "position": { "x": 410, "y": 305 },
+            "font_size": 12,
+            "color": "#60A5FA"
+          },
+          {
+            "type": "annotation",
+            "id": "resultant_label_live",
+            "text": "v_apparent",
+            "position": { "x": 230, "y": 350 },
+            "font_size": 13,
+            "color": "#FBBF24"
+          },
+          {
+            "type": "annotation",
             "id": "edge_hint_zero",
-            "text": "v_you = 0 → resultant matches rain (purely vertical)",
-            "position": { "x": 200, "y": 100 },
+            "text": "v_you = 0 → resultant purely vertical (you stand still, rain falls down)",
+            "position": { "x": 380, "y": 88 },
             "font_size": 12,
             "color": "#9CA3AF"
           },
           {
             "type": "annotation",
             "id": "edge_hint_high",
-            "text": "v_you = 8 → resultant nearly horizontal (rain feels like a wall)",
-            "position": { "x": 540, "y": 100 },
+            "text": "v_you = 8 → resultant nearly horizontal (rain feels like a wall in front)",
+            "position": { "x": 380, "y": 110 },
             "font_size": 12,
             "color": "#9CA3AF"
           },
           {
             "type": "slider",
             "id": "speed_slider",
-            "label": "Your walking speed (m/s)",
-            "var_name": "v_you",
+            "label": "Your walking speed",
+            "variable": "v_you",
             "min": 0,
             "max": 8,
             "step": 0.5,
             "default": 4,
+            "unit": "m/s",
             "position": "bottom"
           }
         ],
