@@ -6,6 +6,7 @@
 
 import { computePhysics } from '@/lib/physicsEngine';
 import { solveSubSimLayout } from '@/lib/subSimSolverHost';
+import { PREMIUM_PRIMITIVES_CODE } from '@/lib/renderers/premium_primitives';
 
 export interface ParametricConfig {
     concept_id: string;
@@ -2314,6 +2315,11 @@ function draw() {
     return;
   }
 
+  // smooth_camera open — wraps the rest of draw() in a push()/translate/scale.
+  // Placed AFTER the !PM_physics early-return so a leaked push() can't escape.
+  // Matched by PM_endSmoothCameraIfActive() at the end of draw().
+  PM_beginSmoothCameraIfActive(scene);
+
   // Pass 0 — draw surfaces (populates PM_surfaceRegistry)
   for (var s = 0; s < scene.length; s++) {
     var sPrim = scene[s];
@@ -2417,7 +2423,15 @@ function draw() {
     else if (lPrim.type === 'derivation_step') drawDerivationStep(lPrim);
     else if (lPrim.type === 'mark_badge') drawMarkBadge(lPrim);
     else if (lPrim.type === 'slider') { drawCanvasSlider(lPrim, sliderSeen, sliderTotal); sliderSeen++; }
+    // ── Premium primitives (Phase 0 validation demo, sessions 56+) ──
+    else if (lPrim.type === 'glow_focus')     drawGlowFocus(lPrim);
+    else if (lPrim.type === 'animated_path')  drawAnimatedPath(lPrim);
+    else if (lPrim.type === 'sound_cue')      drawSoundCue(lPrim);
+    else if (lPrim.type === 'particle_field') drawParticleField(lPrim);
+    else if (lPrim.type === 'smooth_camera')  drawSmoothCamera(lPrim);
   }
+  // smooth_camera close — matches PM_beginSmoothCameraIfActive(scene) at the top of draw().
+  PM_endSmoothCameraIfActive();
 
   // Diagnostic text top-right — opt-in via PM_config.show_diagnostic. Off by
   // default so STATE_1 doesn't pre-answer the pedagogical question with a
@@ -2438,6 +2452,17 @@ function draw() {
 
 window.addEventListener('message', function(e) {
   if (!e.data) return;
+  // Audio gesture-unlock — parent (TeacherPlayer) sends USER_GESTURE on first
+  // click/tap; iframe needs the signal to legally resume AudioContext under
+  // browser autoplay policy. sound_cue is silent until this fires.
+  if (e.data.type === 'USER_GESTURE') {
+    PM_audioUnlocked = true;
+    var ctxResumeTarget = PM_ensureAudioCtx();
+    if (ctxResumeTarget && ctxResumeTarget.state === 'suspended') {
+      try { ctxResumeTarget.resume(); } catch (err) {}
+    }
+    return;
+  }
   if (e.data.type === 'SET_STATE') {
     var newState = e.data.state;
     var isNewState = newState !== PM_currentState;
@@ -2596,6 +2621,7 @@ window.SIM_CONFIG = ${JSON.stringify(config)};
 window.PM_PRECOMPUTED_PHYSICS = ${precomputedJson};
 </script>
 <script>
+${PREMIUM_PRIMITIVES_CODE}
 ${PARAMETRIC_RENDERER_CODE}
 </script>
 </body></html>`;
