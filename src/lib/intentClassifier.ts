@@ -83,6 +83,8 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     'hinge_force', 'free_body_diagram',
     // Friction (Ch.8.5)
     'friction_static_kinetic',
+    // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
+    'vector_head_to_tail',
 ]);
 
 // Synonyms → canonical IDs. Gemini/Flash often return physicist-common synonyms

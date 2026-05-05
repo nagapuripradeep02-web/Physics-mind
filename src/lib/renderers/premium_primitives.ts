@@ -43,6 +43,9 @@ var PM_particleSystems = {};     // keyed by spec.id — { particles: [], lastSp
 var PM_camState = { active: false, zoom: 1, panX: 0, panY: 0,
                     targetZoom: 1, targetPanX: 0, targetPanY: 0,
                     lerpStartMs: 0, lerpDurMs: 0 };
+// Set by PARAMETRIC_RENDERER_CODE's draw() each frame so premium primitives can
+// look up sibling primitives by id (e.g., glow_focus on an animated_path).
+var PM_currentScene = null;
 
 // Reset premium state when PM_currentState changes. The existing message
 // handler in PARAMETRIC_RENDERER_CODE clears PM_bodyRegistry on a true state
@@ -59,9 +62,10 @@ function PM_resetPremiumStateIfNeeded() {
   }
 }
 
-// Resolve a primitive_id (or 'body:id', 'surface:id') into a {x, y} screen point.
-// Falls back to scene-center if the target isn't registered yet (e.g., glow_focus
-// fires on a body that's gated behind appear_at_ms).
+// Resolve a primitive_id into a {x, y} screen point. Tries body / surface
+// registries first (they have already been drawn, so positions are known),
+// then falls back to scanning the current scene for animated_path / annotation /
+// vector / force_arrow primitives that match by id. Final fallback = scene center.
 function PM_resolvePrimitiveCenter(primitiveId) {
   if (!primitiveId) return { x: 380, y: 250 };
   // Body lookup — bodyRegistry stores { x, y, w, h } in screen coords
@@ -76,6 +80,29 @@ function PM_resolvePrimitiveCenter(primitiveId) {
     if (s.orientation === 'vertical')   return { x: s.x0, y: s.y0 - s.length / 2 };
     var rad = s.angle_deg * Math.PI / 180;
     return { x: s.x0 + (s.length / 2) * Math.cos(rad), y: s.y0 - (s.length / 2) * Math.sin(rad) };
+  }
+  // Scene-scan fallback — find any primitive with matching id and infer center
+  // from its position fields. Walks PM_currentScene if the renderer set it.
+  var scene = (typeof PM_currentScene !== 'undefined' && PM_currentScene) ? PM_currentScene : null;
+  if (scene && scene.length) {
+    for (var i = 0; i < scene.length; i++) {
+      var p = scene[i];
+      if (!p || p.id !== primitiveId) continue;
+      // animated_path / vector — midpoint of from → to
+      if (p.type === 'animated_path' || p.type === 'vector') {
+        var fromPt = PM_resolveEndpoint(p.from);
+        var toPt = PM_resolveEndpoint(p.to);
+        return { x: (fromPt.x + toPt.x) / 2, y: (fromPt.y + toPt.y) / 2 };
+      }
+      // annotation / label / formula_box — explicit position field
+      if (p.position && typeof p.position.x === 'number' && typeof p.position.y === 'number') {
+        return { x: p.position.x, y: p.position.y };
+      }
+      // force_arrow — uses 'from' anchor
+      if (p.from && typeof p.from.x === 'number' && typeof p.from.y === 'number') {
+        return { x: p.from.x, y: p.from.y };
+      }
+    }
   }
   return { x: 380, y: 250 };
 }

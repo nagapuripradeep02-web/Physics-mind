@@ -353,6 +353,14 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         primary: { renderer: 'mechanics_2d', config_key: 'parallelogram_law_test', label: 'Parallelogram Law Test' },
     },
 
+    // Phase 0 validation demo Sim 1 (Ch.5.4 head-to-tail addition, session 56).
+    // First concept that uses the premium primitives (glow_focus + animated_path + sound_cue).
+    vector_head_to_tail: {
+        concept_id: 'vector_head_to_tail',
+        layout: 'single',
+        primary: { renderer: 'mechanics_2d', config_key: 'vector_head_to_tail', label: 'Head-to-Tail Vector Addition' },
+    },
+
     pressure_scalar: {
         concept_id: 'pressure_scalar',
         layout: 'single',

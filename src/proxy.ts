@@ -33,6 +33,7 @@ export async function proxy(request: NextRequest) {
         pathname.startsWith("/test-teacher") ||          // temp: test only
         pathname.startsWith("/test-engines") ||          // dev-only engine integration page
         pathname.startsWith("/admin/test-premium-primitives") || // dev-only premium primitives verification (sessions 56+)
+        pathname.startsWith("/admin/test-vector-head-to-tail") || // dev-only Sim 1 verification (session 56)
         pathname.startsWith("/api/test-") ||             // temp: test-only API
         pathname.startsWith("/data/concepts") ||
         pathname.startsWith("/_next") ||

@@ -1,5 +1,102 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-05-05 (session 56) — Phase 0 validation demo Sim 1 SHIPPED end-to-end: 6 weeks of unsaved work captured in 12 commits + pushed to GitHub, 5 premium primitives shipped (glow_focus, animated_path, sound_cue, particle_field, smooth_camera), vector_head_to_tail.json authored as first concept using premium primitives — all 5 EPIC-L states browser-verified
+
+### Top-line outcome
+
+**Three big shifts in one session, all green:**
+
+1. **Working-tree disaster averted.** Inherited a tree with 84 modified + 93 untracked files (~177 files, +33k lines, 6 weeks of work) — none of it persisted in git. Triaged into 4 buckets, executed 9 clean commits + Phase B's primitives commit + Phase C's Sim 1 commit (12 total). Pushed all 12 to origin/master at https://github.com/nagapuripradeep02-web/Physics-mind. Repo is now a true backup, not just a hard-drive snapshot.
+
+2. **5 premium primitives built end-to-end** (`src/lib/renderers/premium_primitives.ts` + dispatch wiring in `parametric_renderer.ts`):
+   - `glow_focus` — radial gradient halo via `drawingContext.createRadialGradient`
+   - `animated_path` — line/vector that draws itself tip-first; supports easing enum + arrow head + label fade-in
+   - `sound_cue` — Web Audio synthesized whoosh / click / ding; honors USER_GESTURE unlock pattern from session 53–54
+   - `particle_field` — persistent particle system for field-line visualization (built but not used in Sim 1; ready for Sim 3)
+   - `smooth_camera` — soft canvas-transform wrapper via push/translate/scale (built; ready for Sim 2/3)
+   All 5 verified in browser at `/admin/test-premium-primitives`. Zero console errors. Sound silent until USER_GESTURE as designed.
+
+3. **vector_head_to_tail.json authored end-to-end** — first Phase 0 demo concept. 5 EPIC-L states (hook → name velocities → tip-to-tail moment → resultant reveal → slider exploration) + 4 EPIC-C branches × 3 states each (numerical_addition_of_speeds, place_tail_at_origin_not_head, resultant_from_wrong_endpoint, vectors_must_be_aligned_first). Uses the 3 most-finished premium primitives (glow_focus, animated_path, sound_cue). Anchored in Mumbai monsoon walker pedagogy. All 5 EPIC-L states browser-verified through `/admin/test-vector-head-to-tail` — STATE_3 (tip-to-tail moment) and STATE_4 (resultant reveal) are the pedagogical hooks the 10-student validation will hang on.
+
+### Architectural decisions (locked this session)
+
+| Decision | Choice | Rationale |
+|---|---|---|
+| **Push to GitHub now or hold?** | Push immediately after 9-commit sequence | 6 weeks of work was hard-drive-only. Backup risk dominated any "polish before pushing" instinct. Push exposed working tree issues (LF/CRLF warnings — non-fatal) that would have surfaced later anyway. |
+| **9-commit sequence vs shortcut** | Full 9-commit walkthrough | Pradeep is non-technical; future-proof clarity beats short-term speed. Each commit is a coherent topic (architecture / DB / engines / ingestion / admin / UI / friction concept / session-55 deliverables). Subsequent sessions can read git log and understand. |
+| **Premium primitives location** | `src/lib/renderers/premium_primitives.ts` (new module) | Keeps `parametric_renderer.ts` from growing past 2400 LOC. Module exports a JS template string `PREMIUM_PRIMITIVES_CODE` injected before `PARAMETRIC_RENDERER_CODE` via `assembleParametricHtml`. |
+| **Concept name `vector_head_to_tail`** (not `vector_head_to_tail_rain`) | Anchor-agnostic name | The rule is general; the anchor is specific. Naming after the anchor (rain) would clutter the catalog as the head-to-tail rule eventually gets reused for force addition, electric field superposition, etc. |
+| **5 EPIC-L states** (not 4) | Per architect skeleton | The hook IS the validation hypothesis ("does the visual tilt-comparison earn 2-min understanding?"). Compressing it would short-circuit the very thing being tested. |
+| **4 EPIC-C branches** (not 1) | Architect-spec compliant despite session-55 schema relaxation | Misconception literature documents 4 distinct errors; validation should surface whether all 4 are pedagogically worthwhile. Schema allows ≥1 (session 55) but discipline says 4. |
+| **Walk-speed-only slider** for STATE_5 | Simpler interaction | Rain-speed-fixed makes narrative consistent ("you change, rain doesn't"). Keeps STATE_5 from becoming a sandbox without a story. |
+| **Schema_version `2.0.0` not `2.2.0`** | Constraint discovered during validation | Zod schema enforces literal "2.0.0" — v2.2 features (teaching_method, has_prebuilt_deep_dive, entry_state_map, misconception_watch, mode_overrides) are additive and validator-permitted but the version literal is locked until schema migration ships. |
+| **Iframe-side AND TS-side physics engine** | Both required | TS engine (`physicsEngine/concepts/vector_head_to_tail.ts`) provides `PM_PRECOMPUTED_PHYSICS` injected into iframe HTML. JS-side fallback (`computePhysics_vector_head_to_tail` in `PARAMETRIC_RENDERER_CODE`) handles cases where precomputed is null. Without either, `PM_physics === null` triggers "Unknown concept" early-return. |
+| **Premium primitive scene-resolver fix** | Extended `PM_resolvePrimitiveCenter` to scan `PM_currentScene` for animated_path / annotation / vector by id | Initial version only resolved body / surface registries. `glow_focus` targeting `animated_path` primitives fell back to scene-center, putting halos in wrong locations. Renderer's `draw()` now sets `PM_currentScene = scene` so primitives can look up siblings. |
+
+### Files created / modified
+
+```
+NEW (Phase B — premium primitives):
+  src/lib/renderers/premium_primitives.ts                       (~390 LOC, 5 primitives + helpers + state)
+  src/app/admin/test-premium-primitives/page.tsx                (verification scratch page)
+
+NEW (Phase C — Sim 1):
+  src/data/concepts/vector_head_to_tail.json                    (~600 LOC, 5 EPIC-L + 4×3 EPIC-C states)
+  src/lib/physicsEngine/concepts/vector_head_to_tail.ts         (TS-side compute + variable_ranges)
+  src/app/admin/test-vector-head-to-tail/page.tsx               (verification scratch page — 5 iframes, one per state)
+  .agents/proof_run/vector_head_to_tail_skeleton.md             (architect skeleton — same format as umbrella_tilt_angle proof run)
+
+MODIFIED (Phase B + C wiring):
+  src/lib/renderers/parametric_renderer.ts                      (+5 dispatch branches, smooth_camera pre/post hooks,
+                                                                 USER_GESTURE handler, PREMIUM_PRIMITIVES_CODE injection,
+                                                                 PM_currentScene exposure, computePhysics_vector_head_to_tail)
+  src/lib/physicsEngine/index.ts                                (registered vectorHeadToTailEngine in ENGINES map)
+  src/lib/intentClassifier.ts                                   (added vector_head_to_tail to VALID_CONCEPT_IDS)
+  src/lib/aiSimulationGenerator.ts                              (CONCEPT_RENDERER_MAP + PCPL_CONCEPTS entries)
+  src/config/panelConfig.ts                                     (CONCEPT_PANEL_MAP entry)
+  src/proxy.ts                                                  (auth bypass for both admin test pages)
+  .gitignore                                                    (excluded eng.traineddata + .friction-probe.json + deep-dive-raw-*.txt)
+
+DATABASE:
+  INSERT 1 row into concept_panel_config (vector_head_to_tail | 1 panel | parametric)
+  DELETE 0 rows from simulation_cache (no entries existed for new concept)
+```
+
+### Verification status
+
+- `npx tsc --noEmit` → **0 errors** after every edit
+- `npm run validate:concepts` → **60 PASS / 0 FAIL** out of 60 atomic files (was 59/59 before Sim 1)
+- Browser smoke test at `/admin/test-vector-head-to-tail`:
+  - STATE_1 (3-umbrella hook) → renders with green halo on forward-tilt panel ✓
+  - STATE_2 (two velocities) → both arrows draw in tip-first with halo pulses ✓
+  - STATE_3 (tip-to-tail moment) → THE pedagogical hook, full chain visible, halo on rain arrow midpoint, rule callout ✓
+  - STATE_4 (resultant reveal) → full triangle visible, yellow diagonal with massive amber halo ✓ (this IS the validation moment)
+  - STATE_5 (slider) → triangle visible; minor cosmetic label overlap (deferred polish)
+  - Zero console errors
+  - Sound silent until USER_GESTURE as designed
+
+### Cost accounting
+
+- API spend this session: **$0** — all work ran on Pradeep's Max plan via Claude Code subagents. No Anthropic credit burn.
+
+### Next session's first task
+
+**Author Sim 2 — Newton's 2nd law: direction matters (Class 11 Ch.5/8) + board mode**, per session-55 plan. Sim 2 is the one that gets BOARD MODE treatment (CBSE answer-sheet derivation pattern, mark_badge accumulator, +5 marks total). Estimated 4 days (1 extra for board mode). Premium primitives needed: `glow_focus`, `smooth_camera` (slight zoom on impact), `sound_cue`, `animated_path`. The smooth_camera primitive built in this session gets its first real exercise.
+
+After Sim 2 ships: Sim 3 (electrostatic field, Class 12 Ch.1, particle_field's flagship use). Then Day 15 polish + mobile testing + 10-student DM round.
+
+### Blockers discovered
+
+None at the pipeline level. STATE_5 label overlap is a cosmetic polish item, not a blocker for the validation demo. Iframe slider rendering may need verification once the SubSimPlayer wiring tries to drive `v_you` updates in real time during student exploration.
+
+### CLAUDE.md suggestions (not edited — awaiting Pradeep approval)
+
+- Document the iframe-side + TS-side physics engine duality in CLAUDE_REFERENCE.md (or CLAUDE_ENGINES.md). Two engines per concept is a recurring authoring trap — every new concept needs both, and the symptoms of missing one ("Unknown concept" red text) don't directly point at the cause.
+- Note in §6 that schema_version is locked at "2.0.0" until a schema migration ships; v2.2 fields are additive but the version literal is enforced.
+- Section 6's "6 required updates" list now needs a 7th: TS-side `physicsEngine/concepts/<id>.ts` + index.ts ENGINES map. Worth promoting to "7 required updates" to prevent future "Unknown concept" surprises.
+
+---
+
 ## 2026-05-05 (session 55) — All 59 atomic concepts now PASS validator (48→0 FAIL via 9-pass backfill script + schema relaxation + manual rewrites); auto-repair harness built and partially tested (v1 full-rewrite retired, v2 tool-use shipped — Tests A+B passed, C revealed file-content bug, fixed but blocked on API credits); strategic pivot from "robot fixes JSONs" → "archetype library + premium primitives + 3-simulation validation demo"
 
 ### Top-line outcome

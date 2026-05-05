@@ -344,7 +344,24 @@ function computePhysics(conceptId, vars) {
   if (conceptId === 'friction_static_kinetic') return computePhysics_friction_static_kinetic(vars);
   if (conceptId === 'current_not_vector') return computePhysics_current_not_vector(vars);
   if (conceptId === 'pressure_scalar') return computePhysics_pressure_scalar(vars);
+  if (conceptId === 'vector_head_to_tail') return computePhysics_vector_head_to_tail(vars);
   return null;
+}
+
+// vector_head_to_tail — Phase 0 validation demo Sim 1 (session 56). Iframe-side
+// fallback in case PM_PRECOMPUTED_PHYSICS isn't injected. Returns the same
+// shape as the TS engine (vectorHeadToTailEngine in physicsEngine/concepts/).
+function computePhysics_vector_head_to_tail(vars) {
+  var v_rain = (vars && vars.v_rain != null) ? vars.v_rain : 5;
+  var v_you = (vars && vars.v_you != null) ? vars.v_you : 4;
+  var v_apparent_mag = Math.sqrt(v_rain * v_rain + v_you * v_you);
+  var theta_apparent_deg = Math.atan2(v_you, v_rain) * 180 / Math.PI;
+  return {
+    concept_id: 'vector_head_to_tail',
+    variables: { v_rain: v_rain, v_you: v_you },
+    derived: { v_apparent_mag: v_apparent_mag, theta_apparent_deg: theta_apparent_deg },
+    forces: []
+  };
 }
 
 // ─── Section 2: Primitive drawers + helpers ─────────────────────────────────
@@ -2307,6 +2324,9 @@ function draw() {
   // shallow-cloned array; originals untouched so subsequent states still use
   // the Sonnet-authored coords.
   var scene = PM_resolveAnnotationOverlap(rawScene);
+  // Expose current scene to premium primitives so PM_resolvePrimitiveCenter can
+  // scan for animated_path / annotation / vector targets by id.
+  PM_currentScene = scene;
   var origin = { x: 380, y: 350 };
 
   if (!PM_physics) {

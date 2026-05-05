@@ -1,0 +1,1274 @@
+{
+  "concept_id": "vector_head_to_tail",
+  "concept_name": "Head-to-Tail Vector Addition — The Geometric Rule",
+  "chapter": 5,
+  "section": "5.4",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Ch.5.4 (geometric vector addition) — table-of-contents reference only; teaching authored from first principles. Phase 0 validation demo Sim 1 (session 56).",
+  "renderer_pair": {
+    "panel_a": "parametric",
+    "panel_b": "graph_interactive"
+  },
+  "available_renderer_scenarios": {
+    "parametric": ["vector_head_to_tail_rain"]
+  },
+  "prerequisites": [
+    "current_not_vector",
+    "unit_vector"
+  ],
+  "real_world_anchor": {
+    "primary": "A Mumbai college student walks home from Dadar station at 6:30 PM during the monsoon. The rain falls straight down at 5 metres per second. She walks forward at 4 metres per second. As she walks, the rain doesn't fall straight down anymore — it FEELS like it's slanting in from in front. She tilts her umbrella forward by exactly the angle of that slanted apparent rain and gets home dry. Today she's about to learn EXACTLY how that slanting direction is built — by stacking two velocity arrows tip to tail, then drawing the diagonal.",
+    "secondary": "A kid runs forward at 6 m/s in light drizzle (rain at 2 m/s downward). The drizzle now feels like it's blasting in from almost directly in front of him because his speed is three times the rain's. The same head-to-tail rule applies; the diagonal just lies almost flat. Same physics, different angle."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "exploration": ["STATE_5"]
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v_rain": {
+        "name": "Rain speed (vertical, ground frame)",
+        "unit": "m/s",
+        "min": 1,
+        "max": 10,
+        "default": 5
+      },
+      "v_you": {
+        "name": "Your walking speed (horizontal forward)",
+        "unit": "m/s",
+        "min": 0,
+        "max": 8,
+        "default": 4,
+        "step": 0.5
+      }
+    },
+    "computed_outputs": {
+      "v_apparent_mag": {
+        "formula": "sqrt(v_rain*v_rain + v_you*v_you)"
+      },
+      "theta_apparent_deg": {
+        "formula": "atan(v_you / v_rain) * 180 / PI"
+      }
+    },
+    "formulas": {
+      "head_to_tail_rule": "Place tail of v_rain at head of v_you; resultant = arrow from start of v_you to tip of v_rain",
+      "resultant_magnitude": "|v_apparent| = sqrt(v_you^2 + v_rain^2) when v_you and v_rain are perpendicular",
+      "resultant_direction": "theta from vertical = arctan(v_you / v_rain)"
+    },
+    "constraints": [
+      "Head-to-tail rule applies to ANY two vectors regardless of orientation; this concept demonstrates with perpendicular case for clarity",
+      "Resultant is the SHORTCUT — the diagonal of the chain, not the sum of the leg lengths",
+      "Order of addition does not change the resultant (commutativity); chain shape changes but endpoint stays the same",
+      "Vectors must be drawn to the same scale for the geometric construction to be meaningful"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 5,
+    "states": {
+      "STATE_1": {
+        "title": "Three Umbrellas, One Right Answer",
+        "duration": 9,
+        "teaching_method": "narrative_socratic",
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "panel_forward",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "header",
+            "text": "You walk through monsoon rain. Which umbrella tilt keeps you dry?",
+            "position": { "x": 380, "y": 50 },
+            "font_size": 16,
+            "color": "#E5E7EB"
+          },
+          {
+            "type": "annotation",
+            "id": "panel_up",
+            "text": "Tilt straight up\n→ FRONT gets soaked",
+            "position": { "x": 150, "y": 220 },
+            "style": "callout",
+            "color": "#EF4444"
+          },
+          {
+            "type": "annotation",
+            "id": "panel_back",
+            "text": "Tilt backward\n→ BACK gets soaked",
+            "position": { "x": 380, "y": 220 },
+            "style": "callout",
+            "color": "#EF4444"
+          },
+          {
+            "type": "annotation",
+            "id": "panel_forward",
+            "text": "Tilt FORWARD\n→ stays dry ✓",
+            "position": { "x": 610, "y": 220 },
+            "style": "callout",
+            "color": "#10B981"
+          },
+          {
+            "type": "glow_focus",
+            "primitive_id": "panel_forward",
+            "halo_radius_px": 95,
+            "color": "#10B981",
+            "intensity": 0.5,
+            "appear_at_ms": 4000,
+            "animate_in_ms": 800
+          },
+          {
+            "type": "annotation",
+            "id": "footer_question",
+            "text": "Why forward? And how do we figure out HOW MUCH to tilt?",
+            "position": { "x": 380, "y": 420 },
+            "font_size": 14,
+            "color": "#FBBF24"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "You're walking through monsoon rain. Three students try three umbrella tilts. Watch what happens." },
+            { "id": "s2", "text_en": "The forward-tilt student stays dry. Why? The rain falls straight down — but as you walk forward, it feels like it's coming from in front." },
+            { "id": "s3", "text_en": "The umbrella tilts toward where the rain feels like it's coming from. Today's question — how do we figure out that direction, exactly?" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Two Velocities, Named Separately",
+        "duration": 11,
+        "teaching_method": "narrative_socratic",
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "rain_arrow",
+        "scene_composition": [
+          {
+            "type": "body",
+            "id": "commuter",
+            "shape": "rect",
+            "position": { "x": 320, "y": 380 },
+            "size": { "w": 32, "h": 60 },
+            "color": "#3B82F6"
+          },
+          {
+            "type": "animated_path",
+            "id": "rain_arrow",
+            "from": { "x": 470, "y": 100 },
+            "to": { "x": 470, "y": 280 },
+            "easing": "ease_out",
+            "duration_ms": 900,
+            "head_first": true,
+            "color": "#60A5FA",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v_rain = 5 m/s ↓",
+            "appear_at_ms": 1500,
+            "animate_in_ms": 900
+          },
+          {
+            "type": "glow_focus",
+            "primitive_id": "rain_arrow",
+            "halo_radius_px": 70,
+            "color": "#FCD34D",
+            "intensity": 0.5,
+            "appear_at_ms": 1500,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "animated_path",
+            "id": "you_arrow",
+            "from": { "x": 360, "y": 410 },
+            "to": { "x": 530, "y": 410 },
+            "easing": "ease_out",
+            "duration_ms": 900,
+            "head_first": true,
+            "color": "#34D399",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v_you = 4 m/s →",
+            "appear_at_ms": 4500,
+            "animate_in_ms": 900
+          },
+          {
+            "type": "glow_focus",
+            "primitive_id": "you_arrow",
+            "halo_radius_px": 70,
+            "color": "#FCD34D",
+            "intensity": 0.5,
+            "appear_at_ms": 4500,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "annotation",
+            "id": "summary_note",
+            "text": "Two velocities. Two arrows. Different places, different directions.",
+            "position": { "x": 380, "y": 470 },
+            "font_size": 13,
+            "color": "#E5E7EB"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Two things are moving in this scene. The rain. And you." },
+            { "id": "s2", "text_en": "First — the rain. Falling straight down at five metres per second. This is one velocity vector." },
+            { "id": "s3", "text_en": "Second — you, walking forward at four metres per second. That's the other vector." },
+            { "id": "s4", "text_en": "Two velocities. Two arrows. Different places, different directions. How do we add them?" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "The Tip-to-Tail Moment",
+        "duration": 13,
+        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "rain_arrow_chained",
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "header",
+            "text": "STATE 3 — The Head-to-Tail Rule",
+            "position": { "x": 380, "y": 40 },
+            "font_size": 16,
+            "color": "#E5E7EB"
+          },
+          {
+            "type": "animated_path",
+            "id": "you_arrow_anchor",
+            "from": { "x": 200, "y": 230 },
+            "to": { "x": 380, "y": 230 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#34D399",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v_you (4 m/s)",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "animated_path",
+            "id": "rain_arrow_chained",
+            "from": { "x": 380, "y": 230 },
+            "to": { "x": 380, "y": 410 },
+            "easing": "ease_in_out",
+            "duration_ms": 1100,
+            "head_first": true,
+            "color": "#60A5FA",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v_rain (5 m/s)",
+            "appear_at_ms": 7000,
+            "animate_in_ms": 1100
+          },
+          {
+            "type": "glow_focus",
+            "primitive_id": "rain_arrow_chained",
+            "halo_radius_px": 60,
+            "color": "#FCD34D",
+            "intensity": 0.6,
+            "appear_at_ms": 6500,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "sound_cue",
+            "id": "whoosh_chain",
+            "sound": "whoosh",
+            "appear_at_ms": 7000,
+            "volume": 0.3
+          },
+          {
+            "type": "annotation",
+            "id": "rule_label",
+            "text": "Tail-of-second touches HEAD-of-first.\nThis is the rule.",
+            "position": { "x": 580, "y": 200 },
+            "style": "callout",
+            "color": "#FCD34D"
+          },
+          {
+            "type": "annotation",
+            "id": "chain_label",
+            "text": "Chain complete: v_you → v_rain",
+            "position": { "x": 380, "y": 460 },
+            "font_size": 14,
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "We've got two arrows. We need to add them. Here's the rule every physicist uses." },
+            { "id": "s2", "text_en": "Take the second vector — the rain. Pick it up by its tail." },
+            { "id": "s3", "text_en": "Where do you think we should put the rain arrow's tail?" },
+            { "id": "s4", "text_en": "Place its tail at the HEAD of the first vector. Tip to tail. That's the rule." },
+            { "id": "s5", "text_en": "The two vectors now form a chain. Walking velocity, then rain velocity, head to tail." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Both arrows must start at the same point",
+            "visual_counter": "rule_label",
+            "one_line_fix": "No — head-to-tail means TAIL of one touches HEAD of the other, never tail-to-tail."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The Resultant Reveals Itself",
+        "duration": 12,
+        "teaching_method": "narrative_socratic",
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "resultant_arrow",
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "header",
+            "text": "STATE 4 — The Resultant",
+            "position": { "x": 380, "y": 40 },
+            "font_size": 16,
+            "color": "#E5E7EB"
+          },
+          {
+            "type": "animated_path",
+            "id": "you_leg",
+            "from": { "x": 200, "y": 220 },
+            "to": { "x": 380, "y": 220 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#34D399",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v_you",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "animated_path",
+            "id": "rain_leg",
+            "from": { "x": 380, "y": 220 },
+            "to": { "x": 380, "y": 400 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#60A5FA",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v_rain",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "animated_path",
+            "id": "resultant_arrow",
+            "from": { "x": 200, "y": 220 },
+            "to": { "x": 380, "y": 400 },
+            "easing": "ease_out",
+            "duration_ms": 1300,
+            "head_first": true,
+            "color": "#FBBF24",
+            "line_weight": 4,
+            "arrow_head": true,
+            "label": "v_apparent (the resultant)",
+            "appear_at_ms": 5000,
+            "animate_in_ms": 1300
+          },
+          {
+            "type": "glow_focus",
+            "primitive_id": "resultant_arrow",
+            "halo_radius_px": 130,
+            "color": "#FBBF24",
+            "intensity": 0.55,
+            "appear_at_ms": 6300,
+            "animate_in_ms": 700
+          },
+          {
+            "type": "sound_cue",
+            "id": "ding_resultant",
+            "sound": "ding",
+            "appear_at_ms": 6300,
+            "volume": 0.35
+          },
+          {
+            "type": "annotation",
+            "id": "insight_label",
+            "text": "From the START of the chain to the TIP of the chain.\nThis diagonal IS the apparent rain — what you actually feel.",
+            "position": { "x": 380, "y": 460 },
+            "font_size": 13,
+            "color": "#FBBF24"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "We've stacked the arrows. Now where's the resultant — the actual velocity of the rain as you feel it?" },
+            { "id": "s2", "text_en": "Trace from the start of the walking arrow. Where do you think the resultant ends?" },
+            { "id": "s3", "text_en": "From the start of the chain to the tip of the chain. That diagonal is the resultant." },
+            { "id": "s4", "text_en": "And what does this diagonal mean? It's the velocity of the rain as you feel it — slanted, coming from in front. That's the direction the umbrella must tilt toward." }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Try It — Drag the Slider",
+        "duration": 20,
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "focal_primitive_id": "speed_slider",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "header",
+            "text": "STATE 5 — Your Turn",
+            "position": { "x": 380, "y": 40 },
+            "font_size": 16,
+            "color": "#E5E7EB"
+          },
+          {
+            "type": "animated_path",
+            "id": "you_leg_live",
+            "from": { "x": 280, "y": 260 },
+            "to": { "x": 380, "y": 260 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#34D399",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v_you (drag below)",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "animated_path",
+            "id": "rain_leg_live",
+            "from": { "x": 380, "y": 260 },
+            "to": { "x": 380, "y": 410 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#60A5FA",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v_rain (5 m/s, fixed)",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "animated_path",
+            "id": "resultant_live",
+            "from": { "x": 280, "y": 260 },
+            "to": { "x": 380, "y": 410 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#FBBF24",
+            "line_weight": 4,
+            "arrow_head": true,
+            "label": "v_apparent",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "annotation",
+            "id": "edge_hint_zero",
+            "text": "v_you = 0 → resultant matches rain (purely vertical)",
+            "position": { "x": 200, "y": 100 },
+            "font_size": 12,
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "annotation",
+            "id": "edge_hint_high",
+            "text": "v_you = 8 → resultant nearly horizontal (rain feels like a wall)",
+            "position": { "x": 540, "y": 100 },
+            "font_size": 12,
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "slider",
+            "id": "speed_slider",
+            "label": "Your walking speed (m/s)",
+            "var_name": "v_you",
+            "min": 0,
+            "max": 8,
+            "step": 0.5,
+            "default": 4,
+            "position": "bottom"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Your turn. Drag the slider. Watch the resultant change." },
+            { "id": "s2", "text_en": "At zero, the resultant matches the rain — purely vertical. Stand still and rain falls straight down." },
+            { "id": "s3", "text_en": "Push the slider all the way up. The resultant tips almost flat — at sprint speed the rain feels like a wall in front of you." }
+          ]
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "numerical_addition_of_speeds",
+      "misconception": "Adding the rain speed and walking speed numerically — 5 + 4 = 9 m/s",
+      "trigger_phrases": [
+        "rain plus walking is nine",
+        "5 plus 4 equals 9 mps",
+        "just add the speeds",
+        "v_apparent equals v_rain plus v_you",
+        "why not just add the numbers"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Belief — Just Add the Numbers",
+          "duration": 9,
+          "teaching_method": "misconception_confrontation",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "myth_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "myth_label",
+              "text": "MYTH: Velocities add like ordinary numbers.\n\nv_apparent = 5 + 4 = 9 m/s ✗",
+              "position": { "x": 380, "y": 180 },
+              "style": "callout",
+              "color": "#EF4444",
+              "font_size": 14
+            },
+            {
+              "type": "animated_path",
+              "id": "wrong_arrow",
+              "from": { "x": 380, "y": 280 },
+              "to": { "x": 380, "y": 430 },
+              "easing": "ease_out",
+              "duration_ms": 1000,
+              "head_first": true,
+              "color": "#EF4444",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "9 m/s ↓ (wrong)",
+              "appear_at_ms": 2000,
+              "animate_in_ms": 1000
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_consequence",
+              "text": "If apparent rain were a single 9 m/s vertical arrow,\nthe umbrella tilt would be ZERO — straight up.\n\nBut walkers DO tilt forward.\nSo this can't be right.",
+              "position": { "x": 380, "y": 470 },
+              "font_size": 13,
+              "color": "#FCD34D"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Many students assume velocities add like ordinary numbers — five plus four equals nine." },
+              { "id": "s2", "text_en": "If that were true, the apparent rain would be a single nine-metre-per-second arrow pointing straight down." },
+              { "id": "s3", "text_en": "But then the umbrella tilt would be zero — straight up. Yet every walker DOES tilt forward. So this can't be right." }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "Why Numerical Addition Fails — Direction Carries Information",
+          "duration": 10,
+          "teaching_method": "compare_contrast",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "diagnosis_text",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "diagnosis_text",
+              "text": "Numbers (scalars) only carry MAGNITUDE.\nVelocities also carry DIRECTION.\n\nAdding 5 m/s ↓ to 4 m/s → ignores the directions completely.\nThe answer must respect both magnitudes AND both directions.",
+              "position": { "x": 380, "y": 180 },
+              "style": "formula_box",
+              "color": "#FCD34D",
+              "font_size": 13
+            },
+            {
+              "type": "annotation",
+              "id": "rule_reminder",
+              "text": "That's why we use the head-to-tail rule.\nThe geometry encodes the directions.",
+              "position": { "x": 380, "y": 320 },
+              "font_size": 13,
+              "color": "#10B981"
+            },
+            {
+              "type": "animated_path",
+              "id": "correct_resultant",
+              "from": { "x": 290, "y": 380 },
+              "to": { "x": 470, "y": 460 },
+              "easing": "ease_out",
+              "duration_ms": 1100,
+              "head_first": true,
+              "color": "#10B981",
+              "line_weight": 4,
+              "arrow_head": true,
+              "label": "≈ 6.4 m/s, slanted",
+              "appear_at_ms": 4000,
+              "animate_in_ms": 1100
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Numbers only carry magnitude. Velocities also carry direction." },
+              { "id": "s2", "text_en": "Adding five-down and four-right by simple arithmetic ignores the directions completely." },
+              { "id": "s3", "text_en": "The right answer respects both magnitudes AND both directions — that's why we use the head-to-tail rule. The geometry encodes the directions." }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "The Correct Number — About 6.4 m/s, Slanted",
+          "duration": 9,
+          "teaching_method": "worked_example",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "math_box",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "math_box",
+              "text": "Right triangle:\n  horizontal leg = v_you = 4\n  vertical leg = v_rain = 5\n  hypotenuse  = v_apparent\n\n|v_apparent|² = 4² + 5² = 16 + 25 = 41\n|v_apparent|  = √41 ≈ 6.4 m/s\n\nNot 9.",
+              "position": { "x": 380, "y": 230 },
+              "style": "formula_box",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "callout_diff",
+              "text": "Gap: 9 − 6.4 = 2.6 m/s\nThat's the entire reason vectors exist as a concept.",
+              "position": { "x": 380, "y": 430 },
+              "font_size": 13,
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_header",
+              "text": "Branch 1 — Final answer ≈ 6.4 m/s",
+              "position": { "x": 380, "y": 70 },
+              "font_size": 14,
+              "color": "#E5E7EB"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Let's compute the correct answer. The horizontal leg is four, the vertical leg is five." },
+              { "id": "s2", "text_en": "By Pythagoras the hypotenuse is the square root of sixteen plus twenty-five — square root of forty-one — about six point four metres per second." },
+              { "id": "s3", "text_en": "Six point four, not nine. The gap of two point six metres per second is the entire reason vectors exist as a concept distinct from numbers." }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "place_tail_at_origin_not_head",
+      "misconception": "Stack both vector tails at the same point and draw a diagonal (parallelogram method without knowing the rule)",
+      "trigger_phrases": [
+        "both arrows start at same point",
+        "tails together",
+        "draw a parallelogram",
+        "tail to tail addition",
+        "stack from same origin"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Belief — Tail-to-Tail Stacking",
+          "duration": 9,
+          "teaching_method": "misconception_confrontation",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "myth_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "myth_label",
+              "text": "MYTH: Stack both arrows from the same starting point\n           and draw a diagonal.",
+              "position": { "x": 380, "y": 80 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "animated_path",
+              "id": "wrong_you",
+              "from": { "x": 380, "y": 280 },
+              "to": { "x": 530, "y": 280 },
+              "easing": "linear",
+              "duration_ms": 800,
+              "head_first": true,
+              "color": "#EF4444",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_you",
+              "appear_at_ms": 1000,
+              "animate_in_ms": 800
+            },
+            {
+              "type": "animated_path",
+              "id": "wrong_rain",
+              "from": { "x": 380, "y": 280 },
+              "to": { "x": 380, "y": 430 },
+              "easing": "linear",
+              "duration_ms": 800,
+              "head_first": true,
+              "color": "#EF4444",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_rain",
+              "appear_at_ms": 2000,
+              "animate_in_ms": 800
+            },
+            {
+              "type": "animated_path",
+              "id": "wrong_diagonal",
+              "from": { "x": 530, "y": 280 },
+              "to": { "x": 380, "y": 430 },
+              "easing": "ease_out",
+              "duration_ms": 1000,
+              "head_first": true,
+              "color": "#EF4444",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "wrong diagonal",
+              "appear_at_ms": 3500,
+              "animate_in_ms": 1000
+            },
+            {
+              "type": "annotation",
+              "id": "diagnosis",
+              "text": "This diagonal points DOWN-LEFT — into the ground, behind you.\nThe rain doesn't feel like that.",
+              "position": { "x": 380, "y": 480 },
+              "font_size": 13,
+              "color": "#FCD34D"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Some students stack both arrows from the same point and draw a diagonal between the heads." },
+              { "id": "s2", "text_en": "But look at where this diagonal points — down and to the left, into the ground behind you." },
+              { "id": "s3", "text_en": "That can't be the apparent rain. The rain feels like it's coming from in FRONT, not from behind." }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "The Correct Move — Slide One Arrow, Keep Direction",
+          "duration": 10,
+          "teaching_method": "compare_contrast",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "fix_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "fix_label",
+              "text": "FIX: Pick up the SECOND arrow.\n         Slide it so its TAIL touches\n         the HEAD of the FIRST.\n         Direction stays the same.",
+              "position": { "x": 380, "y": 110 },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "animated_path",
+              "id": "correct_you",
+              "from": { "x": 250, "y": 280 },
+              "to": { "x": 400, "y": 280 },
+              "easing": "linear",
+              "duration_ms": 1,
+              "head_first": true,
+              "color": "#34D399",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_you",
+              "appear_at_ms": 1500,
+              "animate_in_ms": 1
+            },
+            {
+              "type": "animated_path",
+              "id": "correct_rain",
+              "from": { "x": 400, "y": 280 },
+              "to": { "x": 400, "y": 430 },
+              "easing": "ease_in_out",
+              "duration_ms": 1000,
+              "head_first": true,
+              "color": "#60A5FA",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_rain (slid over)",
+              "appear_at_ms": 3000,
+              "animate_in_ms": 1000
+            },
+            {
+              "type": "animated_path",
+              "id": "correct_diag",
+              "from": { "x": 250, "y": 280 },
+              "to": { "x": 400, "y": 430 },
+              "easing": "ease_out",
+              "duration_ms": 1100,
+              "head_first": true,
+              "color": "#FBBF24",
+              "line_weight": 4,
+              "arrow_head": true,
+              "label": "resultant ✓",
+              "appear_at_ms": 4500,
+              "animate_in_ms": 1100
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here's the fix. Don't stack tails. Pick up the SECOND arrow and slide it so its tail touches the HEAD of the first." },
+              { "id": "s2", "text_en": "Its direction never changes — only its position. That's a parallel translation." },
+              { "id": "s3", "text_en": "Now draw the diagonal from the start of the chain to the tip. That arrow points correctly — down and forward, slanting toward the front. That's the apparent rain." }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "Same Result, Cleaner Path",
+          "duration": 8,
+          "teaching_method": "worked_example",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "summary",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "summary",
+              "text": "Two methods give the same answer:\n\n1. Head-to-tail (slide second arrow, draw diagonal)\n2. Parallelogram (stack tails, draw diagonal between heads)\n\nHead-to-tail extends naturally to 3+ vectors.\nParallelogram doesn't.\n\nLearn head-to-tail. It scales.",
+              "position": { "x": 380, "y": 250 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "footer",
+              "text": "Tail-to-tail with a diagonal between heads can also work — but you must draw the parallelogram correctly. The students above tried half the construction.",
+              "position": { "x": 380, "y": 460 },
+              "font_size": 12,
+              "color": "#9CA3AF"
+            },
+            {
+              "type": "annotation",
+              "id": "state_header",
+              "text": "Branch 2 — Both methods agree when done right",
+              "position": { "x": 380, "y": 70 },
+              "font_size": 14,
+              "color": "#E5E7EB"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "There IS a valid tail-to-tail method called the parallelogram law — but you must complete the parallelogram and draw the diagonal between the heads, not just any diagonal." },
+              { "id": "s2", "text_en": "The students earlier drew half a parallelogram — wrong direction, wrong diagonal." },
+              { "id": "s3", "text_en": "Head-to-tail is cleaner because it extends naturally to three or more vectors. Use head-to-tail. It scales." }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "resultant_from_wrong_endpoint",
+      "misconception": "Drawing the resultant from the chain JUNCTION (head of first = tail of second) instead of from the START",
+      "trigger_phrases": [
+        "resultant from the joint",
+        "diagonal from where they meet",
+        "draw arrow from head of first",
+        "starts where they connect",
+        "from the junction"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Belief — Resultant from the Junction",
+          "duration": 9,
+          "teaching_method": "misconception_confrontation",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "myth_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "myth_label",
+              "text": "MYTH: The resultant starts where the chain joins.",
+              "position": { "x": 380, "y": 80 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "animated_path",
+              "id": "you_part",
+              "from": { "x": 230, "y": 280 },
+              "to": { "x": 400, "y": 280 },
+              "easing": "linear",
+              "duration_ms": 1,
+              "head_first": true,
+              "color": "#34D399",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_you",
+              "appear_at_ms": 0,
+              "animate_in_ms": 1
+            },
+            {
+              "type": "animated_path",
+              "id": "rain_part",
+              "from": { "x": 400, "y": 280 },
+              "to": { "x": 400, "y": 430 },
+              "easing": "linear",
+              "duration_ms": 1,
+              "head_first": true,
+              "color": "#60A5FA",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_rain",
+              "appear_at_ms": 0,
+              "animate_in_ms": 1
+            },
+            {
+              "type": "animated_path",
+              "id": "wrong_resultant",
+              "from": { "x": 400, "y": 280 },
+              "to": { "x": 400, "y": 430 },
+              "easing": "ease_out",
+              "duration_ms": 800,
+              "head_first": true,
+              "color": "#EF4444",
+              "line_weight": 5,
+              "arrow_head": true,
+              "label": "wrong: this is just v_rain",
+              "appear_at_ms": 2500,
+              "animate_in_ms": 800
+            },
+            {
+              "type": "annotation",
+              "id": "diagnosis",
+              "text": "If the resultant started at the junction, it would lie on top of v_rain — adding nothing.\nThe whole chain would be pointless.",
+              "position": { "x": 380, "y": 470 },
+              "font_size": 13,
+              "color": "#FCD34D"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Some students draw the resultant from the JUNCTION — where the head of one arrow meets the tail of the next." },
+              { "id": "s2", "text_en": "But that arrow ends up lying on top of the second vector — adding nothing." },
+              { "id": "s3", "text_en": "If that were the resultant, the whole chain construction would be pointless." }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "The Correct Move — From the START of the Chain",
+          "duration": 10,
+          "teaching_method": "compare_contrast",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "fix_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "fix_label",
+              "text": "FIX: Draw from where the FIRST vector STARTED\n         to where the LAST vector ENDS.",
+              "position": { "x": 380, "y": 100 },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "animated_path",
+              "id": "you_part2",
+              "from": { "x": 230, "y": 280 },
+              "to": { "x": 400, "y": 280 },
+              "easing": "linear",
+              "duration_ms": 1,
+              "head_first": true,
+              "color": "#34D399",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_you (start here)",
+              "appear_at_ms": 0,
+              "animate_in_ms": 1
+            },
+            {
+              "type": "animated_path",
+              "id": "rain_part2",
+              "from": { "x": 400, "y": 280 },
+              "to": { "x": 400, "y": 430 },
+              "easing": "linear",
+              "duration_ms": 1,
+              "head_first": true,
+              "color": "#60A5FA",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_rain (ends here)",
+              "appear_at_ms": 0,
+              "animate_in_ms": 1
+            },
+            {
+              "type": "animated_path",
+              "id": "correct_resultant",
+              "from": { "x": 230, "y": 280 },
+              "to": { "x": 400, "y": 430 },
+              "easing": "ease_out",
+              "duration_ms": 1200,
+              "head_first": true,
+              "color": "#FBBF24",
+              "line_weight": 4,
+              "arrow_head": true,
+              "label": "resultant ✓ (start → end)",
+              "appear_at_ms": 3000,
+              "animate_in_ms": 1200
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The fix — draw from where the FIRST vector started, all the way to where the LAST vector ends." },
+              { "id": "s2", "text_en": "That's the SHORTCUT — instead of walking the chain, you take the diagonal." },
+              { "id": "s3", "text_en": "The resultant is the displacement from start to end of the chain. Always start-to-end, never junction-to-end." }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "Why It's the Shortcut",
+          "duration": 9,
+          "teaching_method": "worked_example",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "shortcut_explanation",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "shortcut_explanation",
+              "text": "Imagine actually walking the chain:\n   step 1: walk along v_you (4 m east)\n   step 2: walk along v_rain (5 m south)\n   end up: 5 m south, 4 m east of where you started\n\nThe straight line from start to end is the RESULTANT.\nIt's the SHORTCUT to the same destination.",
+              "position": { "x": 380, "y": 230 },
+              "style": "formula_box",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "callout_link",
+              "text": "Same idea: the apparent rain you FEEL is the shortcut\nfrom 'where the rain started' to 'where it lands on you'.",
+              "position": { "x": 380, "y": 430 },
+              "font_size": 13,
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_header",
+              "text": "Branch 3 — Resultant = the shortcut",
+              "position": { "x": 380, "y": 70 },
+              "font_size": 14,
+              "color": "#E5E7EB"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Imagine actually walking the chain — four metres east, then five metres south." },
+              { "id": "s2", "text_en": "You end up four east and five south of the start. The straight diagonal from start to end is the resultant." },
+              { "id": "s3", "text_en": "Same idea for the rain — the apparent rain you feel is the shortcut from where the rain started to where it lands on you." }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "vectors_must_be_aligned_first",
+      "misconception": "Both vectors must be rotated to point in the same direction before they can be added",
+      "trigger_phrases": [
+        "vectors must point same way",
+        "rotate to align before adding",
+        "must align directions",
+        "cant add perpendicular vectors directly",
+        "different directions means rotate first"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Belief — Align First, Then Add",
+          "duration": 10,
+          "teaching_method": "misconception_confrontation",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "myth_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "myth_label",
+              "text": "MYTH: I must rotate one vector to align with the other\n           before I can add them.",
+              "position": { "x": 380, "y": 90 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "animated_path",
+              "id": "rain_initial",
+              "from": { "x": 380, "y": 220 },
+              "to": { "x": 380, "y": 360 },
+              "easing": "linear",
+              "duration_ms": 1,
+              "head_first": true,
+              "color": "#60A5FA",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_rain (5 ↓)",
+              "appear_at_ms": 0,
+              "animate_in_ms": 1
+            },
+            {
+              "type": "animated_path",
+              "id": "rotated_you",
+              "from": { "x": 480, "y": 220 },
+              "to": { "x": 480, "y": 340 },
+              "easing": "ease_out",
+              "duration_ms": 1200,
+              "head_first": true,
+              "color": "#EF4444",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_you ROTATED to ↓ (wrong!)",
+              "appear_at_ms": 2000,
+              "animate_in_ms": 1200
+            },
+            {
+              "type": "annotation",
+              "id": "diagnosis",
+              "text": "If you rotate v_you to point down, you're not adding the SAME vector anymore.\nYou've changed its physical meaning — \"forward\" is not \"down\".\nThe physics breaks.",
+              "position": { "x": 380, "y": 440 },
+              "font_size": 13,
+              "color": "#FCD34D"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Some students think both vectors must point the same direction before they can be added — so they rotate one to match the other." },
+              { "id": "s2", "text_en": "But if you rotate the walking velocity to point down, it's no longer 'walking forward' — it's now 'falling down'. You've changed its physical meaning." },
+              { "id": "s3", "text_en": "The physics breaks. You can't add a different vector and expect the same answer." }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "The Correct Move — Vectors Add at Any Angle",
+          "duration": 10,
+          "teaching_method": "compare_contrast",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "fix_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "fix_label",
+              "text": "FIX: Vectors add at ANY angle.\n         The head-to-tail rule does NOT require rotation.\n         Each vector keeps its OWN direction throughout.",
+              "position": { "x": 380, "y": 110 },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "animated_path",
+              "id": "you_kept",
+              "from": { "x": 230, "y": 280 },
+              "to": { "x": 400, "y": 280 },
+              "easing": "linear",
+              "duration_ms": 1,
+              "head_first": true,
+              "color": "#34D399",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_you (kept horizontal)",
+              "appear_at_ms": 0,
+              "animate_in_ms": 1
+            },
+            {
+              "type": "animated_path",
+              "id": "rain_kept",
+              "from": { "x": 400, "y": 280 },
+              "to": { "x": 400, "y": 430 },
+              "easing": "linear",
+              "duration_ms": 1,
+              "head_first": true,
+              "color": "#60A5FA",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "v_rain (kept vertical)",
+              "appear_at_ms": 0,
+              "animate_in_ms": 1
+            },
+            {
+              "type": "animated_path",
+              "id": "good_resultant",
+              "from": { "x": 230, "y": 280 },
+              "to": { "x": 400, "y": 430 },
+              "easing": "ease_out",
+              "duration_ms": 1100,
+              "head_first": true,
+              "color": "#FBBF24",
+              "line_weight": 4,
+              "arrow_head": true,
+              "label": "resultant ✓",
+              "appear_at_ms": 2000,
+              "animate_in_ms": 1100
+            },
+            {
+              "type": "annotation",
+              "id": "explanation",
+              "text": "Both vectors keep their original directions.\nThe HEAD of v_you meets the TAIL of v_rain — that's all the alignment needed.\nThe resultant captures BOTH directions automatically.",
+              "position": { "x": 380, "y": 480 },
+              "font_size": 13,
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Vectors add at any angle. The head-to-tail rule does not require rotation." },
+              { "id": "s2", "text_en": "Each vector keeps its own direction throughout — walking stays horizontal, rain stays vertical." },
+              { "id": "s3", "text_en": "The HEAD of one meets the TAIL of the other — that's all the alignment needed. The resultant captures both directions automatically." }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "Why You Can't Reduce 2D to 1D",
+          "duration": 8,
+          "teaching_method": "worked_example",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "summary",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "summary",
+              "text": "1D motion only needs numbers (signed scalars).\n2D motion needs ARROWS — magnitude AND direction.\n\nForcing alignment collapses the second dimension.\nYou'd lose ALL the geometric information.\n\nThis is why head-to-tail exists.\nIt preserves directions while combining magnitudes.",
+              "position": { "x": 380, "y": 250 },
+              "style": "formula_box",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "footer_note",
+              "text": "Resolution into components (next concept) flips this:\nyou TEMPORARILY align with axes for arithmetic, then recombine.",
+              "position": { "x": 380, "y": 460 },
+              "font_size": 12,
+              "color": "#9CA3AF"
+            },
+            {
+              "type": "annotation",
+              "id": "state_header",
+              "text": "Branch 4 — Why head-to-tail exists",
+              "position": { "x": 380, "y": 70 },
+              "font_size": 14,
+              "color": "#E5E7EB"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "One-dimensional motion only needs numbers — signed scalars. Two-dimensional motion needs arrows — magnitude AND direction." },
+              { "id": "s2", "text_en": "Forcing alignment collapses the second dimension. You'd lose all the geometric information." },
+              { "id": "s3", "text_en": "That's why head-to-tail exists. It preserves directions while combining magnitudes." }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "A",
+      "label": "Same physics, different speeds (cyclist in light drizzle)",
+      "physical_world": "Cyclist at 6 m/s through drizzle at 2 m/s downward. Resultant ≈ 6.3 m/s, tilted nearly horizontal (≈72° from vertical).",
+      "same_physics": "Head-to-tail rule applies identically; the resultant magnitude and angle change but the geometric construction does not."
+    }
+  ],
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "note": "Stub — board mode for vector_head_to_tail will be authored in Sim 2 (Newton's 2nd law) per session-55 plan. Sim 1 ships conceptual-only."
+    },
+    "competitive": {
+      "shortcuts": [
+        "When two vectors are PERPENDICULAR, |R| = sqrt(a² + b²) (Pythagoras directly).",
+        "When two vectors are PARALLEL same direction, |R| = a + b. When ANTIPARALLEL, |R| = |a - b|.",
+        "Direction of resultant from vertical = arctan(horizontal_leg / vertical_leg) — only valid when one leg is vertical."
+      ],
+      "edge_cases": [
+        "Stationary observer (v_you = 0) → resultant equals rain direction exactly. Tilt angle = 0.",
+        "Observer matching rain horizontally → impossible for vertical-only rain (no horizontal rain component to match)."
+      ],
+      "note": "Competitive-mode states will be authored post-validation if 10-student demo confirms demand for shortcut layer."
+    }
+  }
+}
