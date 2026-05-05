@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 6.10 — classic approach problems; split from relative_motion",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "Two Rajdhani trains on the Delhi-Mumbai route — one starts from Delhi southbound at 100 km/h, the other from Mumbai northbound at 120 km/h. They are 1400 km apart at the start. Classic JEE problem: when and where do they meet? The answer is driven by one formula: time = distance divided by relative approach speed, i.e. 1400 / (100+120) = 6.36 hours. A problem every Indian student has seen.",
@@ -17,14 +17,42 @@
   },
   "physics_engine_config": {
     "variables": {
-      "d": { "name": "Initial separation", "unit": "m", "min": 0, "max": 1000, "default": 200 },
-      "V_A": { "name": "Speed of A", "unit": "m/s", "min": 0, "max": 50, "default": 15 },
-      "V_B": { "name": "Speed of B", "unit": "m/s", "min": 0, "max": 50, "default": 10 },
-      "t_meet": { "name": "Time to meet", "unit": "s", "min": 0, "max": 120, "default": 8 }
+      "d": {
+        "name": "Initial separation",
+        "unit": "m",
+        "min": 0,
+        "max": 1000,
+        "default": 200
+      },
+      "V_A": {
+        "name": "Speed of A",
+        "unit": "m/s",
+        "min": 0,
+        "max": 50,
+        "default": 15
+      },
+      "V_B": {
+        "name": "Speed of B",
+        "unit": "m/s",
+        "min": 0,
+        "max": 50,
+        "default": 10
+      },
+      "t_meet": {
+        "name": "Time to meet",
+        "unit": "s",
+        "min": 0,
+        "max": 120,
+        "default": 8
+      }
     },
     "computed_outputs": {
-      "time_approaching": { "formula": "d / (V_A + V_B)" },
-      "time_chasing": { "formula": "d / (V_A - V_B)" }
+      "time_approaching": {
+        "formula": "d / (V_A + V_B)"
+      },
+      "time_chasing": {
+        "formula": "d / (V_A - V_B)"
+      }
     },
     "formulas": {
       "approaching": "If A and B move toward each other: time_to_meet = d / (V_A + V_B)",
@@ -53,9 +81,13 @@
             "anchor": "top_center",
             "font_size": 13,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -64,10 +96,21 @@
             "vehicle_type": "car",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 4.0, "duration_sec": 6.0, "dx_px": 160, "dy_px": 0, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4,
+                "duration_sec": 6,
+                "dx_px": 160,
+                "dy_px": 0,
+                "easing": "linear"
+              }
             ]
           },
           {
@@ -76,23 +119,47 @@
             "vehicle_type": "car",
             "zone": "MAIN_ZONE",
             "anchor": "right_center",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 4.0, "duration_sec": 6.0, "dx_px": -160, "dy_px": 0, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4,
+                "duration_sec": 6,
+                "dx_px": -160,
+                "dy_px": 0,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "core_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Two objects are separated by a gap. That gap closes every second at the relative approach speed." },
-            { "text_en": "So time to meet equals initial separation divided by relative approach speed — that is the entire formula." },
-            { "text_en": "A kilometre-wide moat that drains at 10 metres per second empties in 100 seconds. The ratio IS the answer." },
-            { "text_en": "The only subtlety is identifying the correct relative speed for each geometry — same direction, opposite direction, or at an angle." }
+            {
+              "text_en": "Two objects are separated by a gap. That gap closes every second at the relative approach speed.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "So time to meet equals initial separation divided by relative approach speed — that is the entire formula.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "A kilometre-wide moat that drains at 10 metres per second empties in 100 seconds. The ratio IS the answer.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "The only subtlety is identifying the correct relative speed for each geometry — same direction, opposite direction, or at an angle.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "core_sketch"
       },
       "STATE_2": {
         "title": "Approaching Case — Relative Speed = V_A + V_B",
@@ -106,9 +173,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -119,9 +190,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -130,10 +205,21 @@
             "vehicle_type": "train",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": 180, "dy_px": 0, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 6,
+                "dx_px": 180,
+                "dy_px": 0,
+                "easing": "linear"
+              }
             ]
           },
           {
@@ -142,24 +228,51 @@
             "vehicle_type": "train",
             "zone": "MAIN_ZONE",
             "anchor": "right_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": -180, "dy_px": 0, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 6,
+                "dx_px": -180,
+                "dy_px": 0,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "approach_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Now the classic approach problem — two trains coming toward each other." },
-            { "text_en": "Delhi Rajdhani at 100, Mumbai Rajdhani at 120, separated by 1400 kilometres." },
-            { "text_en": "Because they are approaching, the gap closes at 100 plus 120 — 220 kilometres per hour." },
-            { "text_en": "Time to meet is 1400 divided by 220 — just over 6.36 hours, or 6 hours 22 minutes." },
-            { "text_en": "Multiply back: Delhi Rajdhani travels 636 kilometres south in that time — placing the meeting point near Ratlam in Madhya Pradesh. Matches real railway signalling logs." }
+            {
+              "text_en": "Now the classic approach problem — two trains coming toward each other.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "Delhi Rajdhani at 100, Mumbai Rajdhani at 120, separated by 1400 kilometres.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "Because they are approaching, the gap closes at 100 plus 120 — 220 kilometres per hour.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "Time to meet is 1400 divided by 220 — just over 6.36 hours, or 6 hours 22 minutes.",
+              "id": "state_2_s4"
+            },
+            {
+              "text_en": "Multiply back: Delhi Rajdhani travels 636 kilometres south in that time — placing the meeting point near Ratlam in Madhya Pradesh. Matches real railway signalling logs.",
+              "id": "state_2_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "approach_sketch"
       },
       "STATE_3": {
         "title": "Chase Case — Relative Speed = V_A − V_B",
@@ -173,9 +286,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -184,10 +301,21 @@
             "vehicle_type": "bike",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 4.0, "duration_sec": 6.0, "dx_px": 260, "dy_px": 0, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4,
+                "duration_sec": 6,
+                "dx_px": 260,
+                "dy_px": 0,
+                "easing": "linear"
+              }
             ]
           },
           {
@@ -196,24 +324,51 @@
             "vehicle_type": "car",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 4.0, "duration_sec": 6.0, "dx_px": 310, "dy_px": 30, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4,
+                "duration_sec": 6,
+                "dx_px": 310,
+                "dy_px": 30,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "chase_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Second case — same direction, the chase problem." },
-            { "text_en": "A thief's bike runs ahead at 60 kilometres per hour. A police jeep gives chase at 80 from behind, starting 1 kilometre back." },
-            { "text_en": "Because both move the same way, the gap closes at only 80 minus 60 — that is 20 kilometres per hour." },
-            { "text_en": "Time to catch up is 1 divided by 20 hours — three minutes. Same formula, just a different relative speed." },
-            { "text_en": "Quick sanity check — the jeep covers 4 kilometres in those 3 minutes, the thief covers 3. Difference is 1 kilometre, which is exactly the head start. The numbers close, the method works." }
+            {
+              "text_en": "Second case — same direction, the chase problem.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "A thief's bike runs ahead at 60 kilometres per hour. A police jeep gives chase at 80 from behind, starting 1 kilometre back.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "Because both move the same way, the gap closes at only 80 minus 60 — that is 20 kilometres per hour.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "Time to catch up is 1 divided by 20 hours — three minutes. Same formula, just a different relative speed.",
+              "id": "state_3_s4"
+            },
+            {
+              "text_en": "Quick sanity check — the jeep covers 4 kilometres in those 3 minutes, the thief covers 3. Difference is 1 kilometre, which is exactly the head start. The numbers close, the method works.",
+              "id": "state_3_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "chase_sketch"
       }
     }
   },
@@ -240,22 +395,63 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Wrong Instinct: d / V_A",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_dv_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The common mistake — use only ONE train's speed and divide." },
-              { "text_en": "Delhi Rajdhani at 100, distance 1400. Student writes 14 hours." },
-              { "text_en": "But the other train is eating into the gap too! You have ignored half the picture." },
-              { "text_en": "The true answer is less than half — around 6.36 hours, not 14." }
+              {
+                "text_en": "The common mistake — use only ONE train's speed and divide.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "Delhi Rajdhani at 100, distance 1400. Student writes 14 hours.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "But the other train is eating into the gap too! You have ignored half the picture.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "The true answer is less than half — around 6.36 hours, not 14.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_dv_sketch"
         },
         "STATE_2": {
           "title": "Correction: Gap-Closing Speed is the SUM",
@@ -269,21 +465,59 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Correction: Gap-Closing Speed is the SUM",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "correction_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Fix: use the relative approach speed, not either ground speed alone." },
-              { "text_en": "Both trains eat into the gap simultaneously — the gap shrinks by 100 plus 120 kilometres every hour." },
-              { "text_en": "Plug 1400 divided by 220 and you get 6.36 hours — the right answer." }
+              {
+                "text_en": "Fix: use the relative approach speed, not either ground speed alone.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "Both trains eat into the gap simultaneously — the gap shrinks by 100 plus 120 kilometres every hour.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "Plug 1400 divided by 220 and you get 6.36 hours — the right answer.",
+                "id": "state_2_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "correction_sketch"
         },
         "STATE_3": {
           "title": "Rule: Identify the Geometry First",
@@ -297,34 +531,106 @@
               "anchor": "top_center",
               "font_size": 13,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Rule: Identify the Geometry First",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "geometry_rule_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The rule to absorb is this — identify the geometry BEFORE you plug in numbers." },
-              { "text_en": "Sketch the positions and direction arrows, decide approach or chase, and only then write t equals d over relative speed." },
-              { "text_en": "The formula is just one line. The real thinking is all in the geometry." }
+              {
+                "text_en": "The rule to absorb is this — identify the geometry BEFORE you plug in numbers.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Sketch the positions and direction arrows, decide approach or chase, and only then write t equals d over relative speed.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "The formula is just one line. The real thinking is all in the geometry.",
+                "id": "state_3_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "geometry_rule_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Use Ground Speeds Alone (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Two trains approaching, medium gap", "params": { "d": 200, "V_A": 15, "V_B": 10 } },
-      { "label": "Chase: jeep catches bike", "params": { "d": 100, "V_A": 22, "V_B": 16 } },
-      { "label": "Long-distance Rajdhani meeting", "params": { "d": 1400, "V_A": 28, "V_B": 33 } }
-    ],
-    "type_b": [
-      { "label": "Ranger intercepting an elephant", "scenario": "ranger_elephant_interception" },
-      { "label": "Spacecraft orbit correction", "scenario": "chandrayaan_docking" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Two trains approaching, medium gap",
+        "params": {
+          "d": 200,
+          "V_A": 15,
+          "V_B": 10
+        }
+      },
+      "1": {
+        "label": "Chase: jeep catches bike",
+        "params": {
+          "d": 100,
+          "V_A": 22,
+          "V_B": 16
+        }
+      },
+      "2": {
+        "label": "Long-distance Rajdhani meeting",
+        "params": {
+          "d": 1400,
+          "V_A": 28,
+          "V_B": 33
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Ranger intercepting an elephant",
+        "scenario": "ranger_elephant_interception"
+      },
+      "1": {
+        "label": "Spacecraft orbit correction",
+        "scenario": "chandrayaan_docking"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

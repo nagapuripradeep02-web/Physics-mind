@@ -3,20 +3,31 @@
   "concept_name": "Contact Forces",
   "chapter": 8,
   "section": "8.1",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "NCERT Class 11 Physics Part I + HC Verma Ch.6",
+
+  "prerequisites": ["normal_reaction", "field_forces"],
+
   "renderer_pair": {
     "panel_a": "mechanics_2d",
     "panel_b": "graph_interactive"
   },
+
   "real_world_anchor": {
     "primary": "A wooden crate dragged across a concrete floor — the floor pushes up (normal reaction) and also drags backwards on the crate (friction). One contact, two forces.",
     "secondary": "Pushing a cart through a market — the handle is in contact with your hand. Your hand pushes the cart forward; the cart pushes back on your hand (normal reaction) and your skin grips the handle (friction).",
     "tertiary": "A shoe sole pressed against the road — the road pushes the sole upward (normal reaction) and resists sliding (friction). Walking is impossible without both."
   },
+
   "physics_engine_config": {
     "formulas": {
       "contact_force": "F = sqrt(N^2 + f^2)",
       "normal_reaction": "N = perpendicular to surface",
-      "friction": "f = parallel to surface, opposing motion"
+      "friction": "f = parallel to surface, opposing relative sliding",
+      "contact_angle": "theta = atan2(f, N) measured from surface normal",
+      "smooth_limit": "f = 0 so F = N",
+      "no_contact_limit": "N = 0 so F = 0 (no contact force at all)"
     },
     "variables": {
       "N": {
@@ -24,54 +35,86 @@
         "unit": "N",
         "min": 0,
         "max": 100,
-        "default": 20
+        "default": 20,
+        "role": "perpendicular_component"
       },
       "f": {
         "name": "Friction Force",
         "unit": "N",
         "min": 0,
         "max": 100,
-        "default": 15
+        "default": 15,
+        "role": "parallel_component"
       },
       "F": {
         "name": "Total Contact Force",
         "unit": "N",
-        "derived": "sqrt(N*N + f*f)"
+        "derived": "sqrt(N*N + f*f)",
+        "role": "resultant"
       },
       "theta": {
-        "name": "Angle of F with N",
+        "name": "Angle of F from surface normal",
         "unit": "degrees",
         "derived": "atan2(f, N) * 180/PI"
       }
     },
+    "computed_outputs": {
+      "F_value": { "formula": "sqrt(N*N + f*f)" },
+      "theta_value": { "formula": "atan2(f, N) * 180 / PI" }
+    },
     "constraints": [
-      "N is always perpendicular to contact surface",
+      "N is always perpendicular to contact surface, directed outward",
       "f is always parallel to contact surface",
-      "N and f are always mutually perpendicular",
-      "F = sqrt(N^2 + f^2) — Pythagoras theorem",
-      "Smooth surface: f = 0, F = N"
+      "N and f are always mutually perpendicular — they meet at 90 degrees",
+      "F = sqrt(N^2 + f^2) — Pythagoras applies because N and f are orthogonal",
+      "Smooth surface: f = 0, so F = N",
+      "No contact: N = 0 and f = 0, no contact force exists",
+      "Kinetic friction opposes relative velocity; static friction opposes tendency to slide",
+      "Static friction magnitude is bounded: 0 <= f <= mu_s * N"
     ]
   },
+
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "two_blocks_in_contact_question",
+      "zoom_single_contact_N_and_f",
+      "geometry_why_perpendicular_why_parallel",
+      "resultant_triangle_F_from_N_and_f",
+      "smooth_rough_no_contact_comparison",
+      "interactive_sliders_N_and_f"
+    ],
+    "epic_c": [
+      "N_on_wall_vs_floor",
+      "incline_N_not_vertical",
+      "smooth_floor_N_with_zero_friction",
+      "contact_force_split_into_N_plus_f",
+      "friction_opposes_relative_motion_not_applied_force"
+    ],
+    "panel_b": [
+      "N_f_parametric_arc",
+      "theta_from_f_over_N"
+    ],
+    "board": [
+      "answer_sheet_derivation",
+      "mark_badge_accumulator"
+    ]
+  },
+
   "epic_l_path": {
     "state_count": 6,
     "states": {
       "STATE_1": {
         "title": "Two Blocks in Contact — What Lives at the Surface?",
         "duration": 5,
+        "focal_primitive_id": "question_mark",
         "scene_composition": [
           {
             "type": "body",
             "id": "block_A",
             "shape": "rect",
             "label": "Block A",
-            "position": {
-              "x": 240,
-              "y": 260
-            },
-            "size": {
-              "w": 110,
-              "h": 110
-            },
+            "position": { "x": 240, "y": 260 },
+            "size": { "w": 110, "h": 110 },
             "fill_color": "#3B82F6"
           },
           {
@@ -79,71 +122,56 @@
             "id": "block_B",
             "shape": "rect",
             "label": "Block B",
-            "position": {
-              "x": 410,
-              "y": 260
-            },
-            "size": {
-              "w": 110,
-              "h": 110
-            },
+            "position": { "x": 410, "y": 260 },
+            "size": { "w": 110, "h": 110 },
             "fill_color": "#F59E0B"
           },
           {
             "type": "label",
+            "id": "question_mark",
             "text": "?",
-            "position": {
-              "x": 385,
-              "y": 265
-            },
+            "position": { "x": 385, "y": 265 },
             "font_size": 56,
             "color": "#EF4444",
             "bold": true
           },
           {
             "type": "annotation",
+            "id": "contact_line_callout",
             "text": "The blocks touch.\nWhat forces live at\nthis contact line?",
-            "position": {
-              "x": 600,
-              "y": 160
-            },
+            "position": { "x": 600, "y": 160 },
             "style": "callout"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Two blocks sit against each other. Their surfaces are in contact."
-            },
-            {
-              "id": "s2",
-              "text_en": "If you push one block, the other pushes back. Something is happening at the contact line."
-            },
-            {
-              "id": "s3",
-              "text_en": "There must be a force — without one, nothing could resist the push."
-            },
-            {
-              "id": "s4",
-              "text_en": "Today we will zoom in and find out exactly which forces emerge from that contact."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "block_A,block_B", "enter": "fade_in", "duration": 400 },
+            { "at_t": 0.7, "show": "question_mark", "enter": "pulse_in", "duration": 500 },
+            { "at_t": 1.6, "show": "contact_line_callout", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Two blocks sit against each other. Their surfaces are in contact." },
+            { "id": "s2", "text_en": "If you push one block, the other pushes back. Something is happening at the contact line." },
+            { "id": "s3", "text_en": "There must be a force — without one, nothing could resist the push." },
+            { "id": "s4", "text_en": "Today we will zoom in and find out exactly which forces emerge from that contact." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": false
       },
+
       "STATE_2": {
         "title": "Zoom In — Two Forces Emerge from the Contact",
         "duration": 7,
+        "focal_primitive_id": "N_arrow",
         "scene_composition": [
           {
             "type": "surface",
             "id": "floor",
             "orientation": "horizontal",
-            "position": {
-              "x": 120,
-              "y": 400
-            },
+            "position": { "x": 120, "y": 400 },
             "length": 420,
             "texture": "rough",
             "label": "Contact surface"
@@ -157,10 +185,7 @@
               "surface_id": "floor",
               "position_fraction": 0.5
             },
-            "size": {
-              "w": 140,
-              "h": 110
-            },
+            "size": { "w": 140, "h": 110 },
             "fill_color": "#3B82F6"
           },
           {
@@ -185,10 +210,8 @@
           },
           {
             "type": "angle_arc",
-            "center": {
-              "x": 330,
-              "y": 400
-            },
+            "id": "right_angle_arc",
+            "center": { "x": 330, "y": 400 },
             "from_deg": 90,
             "to_deg": 180,
             "radius": 32,
@@ -197,48 +220,43 @@
           },
           {
             "type": "annotation",
+            "id": "perpendicular_callout",
             "text": "N is perpendicular\nto the surface.\n\nf is parallel\nto the surface.\n\nThey meet at 90°.",
-            "position": {
-              "x": 600,
-              "y": 180
-            },
+            "position": { "x": 600, "y": 180 },
             "style": "callout"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Zoom into the contact surface. Exactly two forces emerge from it."
-            },
-            {
-              "id": "s2",
-              "text_en": "The first force points straight out of the surface. We call it the normal reaction, written N."
-            },
-            {
-              "id": "s3",
-              "text_en": "The second force lies flat along the surface and opposes any sliding. We call it friction, written f."
-            },
-            {
-              "id": "s4",
-              "text_en": "N and f always meet at a right angle. They never overlap."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "floor,block", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.6, "show": "N_arrow", "enter": "grow_perpendicular", "duration": 600 },
+            { "at_t": 1.5, "show": "f_arrow", "enter": "grow_parallel", "duration": 600 },
+            { "at_t": 2.4, "show": "right_angle_arc", "enter": "fade_in", "duration": 300 },
+            { "at_t": 2.9, "show": "perpendicular_callout", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Zoom into the contact surface. Exactly two forces emerge from it." },
+            { "id": "s2", "text_en": "The first force points straight out of the surface. We call it the normal reaction, written N." },
+            { "id": "s3", "text_en": "The second force lies flat along the surface and opposes any sliding. We call it friction, written f." },
+            { "id": "s4", "text_en": "N and f always meet at a right angle. They never overlap. Tap continue when you are ready." }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "allow_deep_dive": false
       },
+
       "STATE_3": {
-        "title": "Why Perpendicular? Why Parallel? The Geometry",
-        "duration": 7,
+        "title": "Why Perpendicular? Why Parallel? The Geometry of Contact",
+        "duration": 9,
+        "focal_primitive_id": "N_reason",
         "scene_composition": [
           {
             "type": "surface",
             "id": "floor",
             "orientation": "horizontal",
-            "position": {
-              "x": 120,
-              "y": 400
-            },
+            "position": { "x": 120, "y": 400 },
             "length": 420,
             "texture": "rough"
           },
@@ -251,10 +269,7 @@
               "surface_id": "floor",
               "position_fraction": 0.4
             },
-            "size": {
-              "w": 120,
-              "h": 100
-            },
+            "size": { "w": 120, "h": 100 },
             "fill_color": "#3B82F6"
           },
           {
@@ -281,10 +296,7 @@
             "type": "annotation",
             "id": "N_reason",
             "text": "N: A surface can only PUSH outward.\nIt cannot pull you inward.\nSo N must be perpendicular.",
-            "position": {
-              "x": 600,
-              "y": 160
-            },
+            "position": { "x": 600, "y": 160 },
             "style": "callout",
             "color": "#10B981"
           },
@@ -292,66 +304,85 @@
             "type": "annotation",
             "id": "f_reason",
             "text": "f: Sliding happens ALONG the surface.\nFriction resists that sliding,\nso f must lie along the surface.",
-            "position": {
-              "x": 600,
-              "y": 320
-            },
+            "position": { "x": 600, "y": 320 },
             "style": "callout",
             "color": "#F59E0B"
           }
         ],
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "floor,block_on_surface", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.5, "show": "N_arrow", "enter": "grow_perpendicular", "duration": 500 },
+            { "at_t": 1.2, "show": "N_reason", "enter": "fade_in", "duration": 400 },
+            { "at_t": 2.0, "show": "f_arrow", "enter": "grow_parallel", "duration": 500 },
+            { "at_t": 2.7, "show": "f_reason", "enter": "fade_in", "duration": 400 }
+          ]
+        },
         "teacher_script": {
           "tts_sentences": [
+            { "id": "s1", "text_en": "Why must N be perpendicular? Because a surface can only push outward — it cannot pull you inward." },
+            { "id": "s2", "text_en": "A table pushes you upward. It never yanks you down. Only perpendicular push is possible." },
+            { "id": "s3", "text_en": "Why must f be parallel? Because sliding happens along the surface, and friction always resists that sliding." },
+            { "id": "s4", "text_en": "Before we move on — one quick check. Pick the right reason below." }
+          ]
+        },
+        "retrieval_question": {
+          "prompt": "Why must the normal reaction N be perpendicular to the contact surface?",
+          "options": [
             {
-              "id": "s1",
-              "text_en": "Why must N be perpendicular? Because a surface can only push outward — it cannot pull you inward."
+              "id": "A",
+              "label": "Because gravity is always vertical",
+              "correct": false,
+              "feedback": "Gravity is unrelated to the direction of N. On a vertical wall, N is horizontal even though gravity still points down. The direction of N comes from the surface, not from gravity."
             },
             {
-              "id": "s2",
-              "text_en": "A table pushes you upward. It never yanks you down. Only perpendicular push is possible."
+              "id": "B",
+              "label": "Because surfaces can only push outward, not pull inward",
+              "correct": true,
+              "feedback": "Correct. A surface has no mechanism to pull an object into it. The only force it can apply is an outward push — perpendicular to itself. That is exactly N."
             },
             {
-              "id": "s3",
-              "text_en": "Why must f be parallel? Because sliding happens along the surface, and friction always resists that sliding."
+              "id": "C",
+              "label": "Because N must always equal mg",
+              "correct": false,
+              "feedback": "N is not equal to mg on an incline or in an accelerating elevator. The perpendicular rule is geometric — it holds even when magnitudes differ."
             },
             {
-              "id": "s4",
-              "text_en": "So N perpendicular and f parallel is not a coincidence — it is forced by the geometry of contact itself."
+              "id": "D",
+              "label": "Because friction would otherwise cancel N",
+              "correct": false,
+              "feedback": "Friction and N are independent components. They are perpendicular to each other, so one cannot cancel the other. The rule about N being perpendicular comes from the geometry of contact itself."
             }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "wait_for_answer",
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_only_two_forces_at_contact",
+          "what_if_surface_is_curved",
+          "can_N_ever_point_along_surface"
+        ]
       },
+
       "STATE_4": {
-        "title": "Combine Them — The Resultant Contact Force",
-        "duration": 6,
+        "title": "Combine Them — The Resultant Contact Force F",
+        "duration": 7,
+        "focal_primitive_id": "F_resultant",
         "scene_composition": [
           {
             "type": "body",
             "id": "block",
             "shape": "rect",
             "label": "Block",
-            "position": {
-              "x": 280,
-              "y": 300
-            },
-            "size": {
-              "w": 110,
-              "h": 100
-            },
+            "position": { "x": 280, "y": 300 },
+            "size": { "w": 110, "h": 100 },
             "fill_color": "#6B7280"
           },
           {
             "type": "force_arrow",
             "id": "N_component",
-            "from": {
-              "x": 335,
-              "y": 400
-            },
-            "to": {
-              "x": 335,
-              "y": 300
-            },
+            "from": { "x": 335, "y": 400 },
+            "to": { "x": 335, "y": 300 },
             "label": "N = 20 N",
             "color": "#10B981",
             "style": "dashed"
@@ -359,14 +390,8 @@
           {
             "type": "force_arrow",
             "id": "f_component",
-            "from": {
-              "x": 335,
-              "y": 400
-            },
-            "to": {
-              "x": 455,
-              "y": 400
-            },
+            "from": { "x": 335, "y": 400 },
+            "to": { "x": 455, "y": 400 },
             "label": "f = 15 N",
             "color": "#F59E0B",
             "style": "dashed"
@@ -374,14 +399,8 @@
           {
             "type": "force_arrow",
             "id": "F_resultant",
-            "from": {
-              "x": 335,
-              "y": 400
-            },
-            "to": {
-              "x": 455,
-              "y": 300
-            },
+            "from": { "x": 335, "y": 400 },
+            "to": { "x": 455, "y": 300 },
             "label": "F = 25 N",
             "color": "#EF4444",
             "style": "solid",
@@ -389,10 +408,8 @@
           },
           {
             "type": "angle_arc",
-            "center": {
-              "x": 335,
-              "y": 400
-            },
+            "id": "theta_arc",
+            "center": { "x": 335, "y": 400 },
             "from_deg": 0,
             "to_deg": 40,
             "radius": 48,
@@ -401,59 +418,61 @@
           },
           {
             "type": "formula_box",
+            "id": "pythagoras_box",
             "equation": "F = √(N² + f²) = √(20² + 15²) = √625 = 25 N",
-            "position": {
-              "x": 475,
-              "y": 260
-            },
+            "position": { "x": 475, "y": 260 },
             "border_color": "#EF4444"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "N and f sit at ninety degrees to each other, so Pythagoras applies directly."
-            },
-            {
-              "id": "s2",
-              "text_en": "The total contact force F equals the square root of N squared plus f squared."
-            },
-            {
-              "id": "s3",
-              "text_en": "Plug in twenty newtons for N and fifteen newtons for f. The resultant is twenty five newtons, at roughly thirty seven degrees from the surface normal."
-            },
-            {
-              "id": "s4",
-              "text_en": "This formula holds for every contact — smooth or rough, flat or inclined. Always."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "block", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "N_component", "enter": "grow_perpendicular", "duration": 500 },
+            { "at_t": 1.1, "show": "f_component", "enter": "grow_parallel", "duration": 500 },
+            { "at_t": 1.8, "show": "F_resultant", "enter": "grow_from_origin", "duration": 700 },
+            { "at_t": 2.7, "show": "theta_arc", "enter": "sweep", "duration": 400 },
+            { "at_t": 3.2, "show": "pythagoras_box", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "N and f sit at ninety degrees to each other, so Pythagoras applies directly." },
+            { "id": "s2", "text_en": "The total contact force F equals the square root of N squared plus f squared." },
+            { "id": "s3", "text_en": "Plug in twenty newtons for N and fifteen newtons for f. The resultant is twenty five newtons, at roughly thirty seven degrees from the surface normal." },
+            { "id": "s4", "text_en": "This formula holds for every contact — smooth or rough, flat or inclined. Always." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": false
       },
+
       "STATE_5": {
-        "title": "Special Case: Smooth Surface Means Zero Friction",
-        "duration": 5,
+        "title": "Edge Cases — Smooth (f=0) and No Contact (N=0)",
+        "duration": 7,
+        "focal_primitive_id": "edge_comparison",
         "scene_composition": [
           {
             "type": "comparison_panel",
-            "id": "rough_vs_smooth",
-            "left_label": "Rough Surface (f > 0)",
-            "right_label": "Smooth Surface (f = 0)",
+            "id": "edge_comparison",
+            "left_label": "Rough (f > 0)",
+            "middle_label": "Smooth (f = 0)",
+            "right_label": "No contact (N = 0)",
             "left_scene": [
+              {
+                "type": "surface",
+                "id": "rough_floor",
+                "orientation": "horizontal",
+                "position": { "x": 10, "y": 180 },
+                "length": 180,
+                "texture": "rough"
+              },
               {
                 "type": "body",
                 "shape": "rect",
                 "label": "Block",
                 "fill_color": "#6B7280",
-                "position": {
-                  "x": 100,
-                  "y": 150
-                },
-                "size": {
-                  "w": 80,
-                  "h": 70
-                }
+                "position": { "x": 80, "y": 130 },
+                "size": { "w": 70, "h": 55 }
               },
               {
                 "type": "force_arrow",
@@ -462,50 +481,43 @@
                 "label": "N",
                 "color": "#10B981",
                 "scale_pixels_per_unit": 3,
-                "position": {
-                  "x": 140,
-                  "y": 150
-                }
+                "position": { "x": 115, "y": 175 }
               },
               {
                 "type": "force_arrow",
                 "magnitude": 15,
-                "direction_deg": 0,
+                "direction_deg": 180,
                 "label": "f",
                 "color": "#F59E0B",
                 "scale_pixels_per_unit": 3,
-                "position": {
-                  "x": 140,
-                  "y": 185
-                }
+                "position": { "x": 115, "y": 175 }
               },
               {
                 "type": "force_arrow",
                 "magnitude": 25,
-                "direction_deg": 53,
+                "direction_deg": 127,
                 "label": "F = 25 N",
                 "color": "#EF4444",
                 "scale_pixels_per_unit": 3,
-                "position": {
-                  "x": 140,
-                  "y": 185
-                }
+                "position": { "x": 115, "y": 175 }
               }
             ],
-            "right_scene": [
+            "middle_scene": [
+              {
+                "type": "surface",
+                "id": "smooth_floor",
+                "orientation": "horizontal",
+                "position": { "x": 10, "y": 180 },
+                "length": 180,
+                "texture": "smooth"
+              },
               {
                 "type": "body",
                 "shape": "rect",
                 "label": "Block",
                 "fill_color": "#6B7280",
-                "position": {
-                  "x": 100,
-                  "y": 150
-                },
-                "size": {
-                  "w": 80,
-                  "h": 70
-                }
+                "position": { "x": 80, "y": 130 },
+                "size": { "w": 70, "h": 55 }
               },
               {
                 "type": "force_arrow",
@@ -514,80 +526,103 @@
                 "label": "N = F = 20 N",
                 "color": "#10B981",
                 "scale_pixels_per_unit": 3,
-                "position": {
-                  "x": 140,
-                  "y": 150
-                }
+                "position": { "x": 115, "y": 175 }
               },
               {
                 "type": "label",
                 "text": "f = 0\n(no friction)",
                 "color": "#9CA3AF",
-                "position": {
-                  "x": 160,
-                  "y": 210
-                },
+                "position": { "x": 90, "y": 210 },
                 "font_size": 12
+              }
+            ],
+            "right_scene": [
+              {
+                "type": "body",
+                "shape": "rect",
+                "label": "Block (in free fall)",
+                "fill_color": "#6B7280",
+                "position": { "x": 80, "y": 110 },
+                "size": { "w": 70, "h": 55 }
+              },
+              {
+                "type": "label",
+                "text": "No surface\nin contact",
+                "color": "#9CA3AF",
+                "position": { "x": 80, "y": 190 },
+                "font_size": 12
+              },
+              {
+                "type": "label",
+                "text": "N = 0, f = 0\nF = 0",
+                "color": "#EF4444",
+                "position": { "x": 80, "y": 230 },
+                "font_size": 13,
+                "bold": true
               }
             ]
           },
           {
             "type": "formula_box",
-            "equation": "Smooth surface: F = N   (because f = 0)",
-            "position": {
-              "x": 380,
-              "y": 430
-            }
+            "id": "smooth_formula",
+            "equation": "Smooth: F = N   (because f = 0)",
+            "position": { "x": 260, "y": 430 },
+            "border_color": "#10B981"
+          },
+          {
+            "type": "formula_box",
+            "id": "no_contact_formula",
+            "equation": "No contact: F = 0   (because both N = 0 and f = 0)",
+            "position": { "x": 260, "y": 470 },
+            "border_color": "#EF4444"
+          },
+          {
+            "type": "annotation",
+            "id": "smooth_is_promise",
+            "text": "In exams, the word 'smooth'\nis a promise: f = 0.\nThe word 'rough' means\nyou must account for f.",
+            "position": { "x": 620, "y": 200 },
+            "style": "callout",
+            "color": "#1F2937"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "A smooth surface means friction is zero. No sliding resistance at all."
-            },
-            {
-              "id": "s2",
-              "text_en": "So the total contact force F equals the square root of N squared plus zero, which is simply N itself."
-            },
-            {
-              "id": "s3",
-              "text_en": "On smooth problems, the contact force is just the normal reaction. The friction piece vanishes."
-            },
-            {
-              "id": "s4",
-              "text_en": "Remember this for exams: the word smooth is a promise that f equals zero."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "edge_comparison", "enter": "fade_in", "duration": 600 },
+            { "at_t": 0.9, "show": "smooth_formula", "enter": "fade_in", "duration": 400 },
+            { "at_t": 1.5, "show": "no_contact_formula", "enter": "fade_in", "duration": 400 },
+            { "at_t": 2.2, "show": "smooth_is_promise", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Two important edge cases. First — a smooth surface means friction is zero. No sliding resistance at all." },
+            { "id": "s2", "text_en": "On smooth problems, F equals N. The friction piece vanishes from the Pythagoras sum." },
+            { "id": "s3", "text_en": "Second — if there is no contact, both N and f are zero, so F is zero. A block in free fall has no contact force at all." },
+            { "id": "s4", "text_en": "Remember this for exams — the word smooth is a promise that f equals zero, and no contact means no contact force. Tap continue." }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "allow_deep_dive": false
       },
+
       "STATE_6": {
         "title": "You Control It — Vary N and f, Watch F Build",
-        "duration": 8,
+        "duration": 10,
+        "focal_primitive_id": "F_resultant",
         "scene_composition": [
           {
             "type": "body",
             "id": "block",
             "shape": "rect",
             "label": "Block",
-            "position": {
-              "x": 260,
-              "y": 280
-            },
-            "size": {
-              "w": 100,
-              "h": 90
-            },
+            "position": { "x": 260, "y": 280 },
+            "size": { "w": 100, "h": 90 },
             "fill_color": "#6B7280"
           },
           {
             "type": "force_arrow",
             "id": "N_arrow",
-            "from": {
-              "x": 310,
-              "y": 370
-            },
+            "from": { "x": 310, "y": 370 },
             "to_expr": "{x: 310, y: 370 - N * 4}",
             "magnitude_expr": "N",
             "direction_deg": 90,
@@ -599,10 +634,7 @@
           {
             "type": "force_arrow",
             "id": "f_arrow",
-            "from": {
-              "x": 310,
-              "y": 370
-            },
+            "from": { "x": 310, "y": 370 },
             "magnitude_expr": "f",
             "direction_deg": 0,
             "label_expr": "f = {f} N",
@@ -612,7 +644,7 @@
           },
           {
             "type": "vector",
-            "id": "tail_to_tip_N_then_f",
+            "id": "triangle_closing_edge",
             "from_expr": "{x: 310, y: 370 - N * 4}",
             "to_expr": "{x: 310 + f * 4, y: 370 - N * 4}",
             "color": "#F59E0B",
@@ -621,10 +653,7 @@
           {
             "type": "force_arrow",
             "id": "F_resultant",
-            "from": {
-              "x": 310,
-              "y": 370
-            },
+            "from": { "x": 310, "y": 370 },
             "magnitude_expr": "sqrt(N*N + f*f)",
             "direction_deg_expr": "atan2(N, f) * 180 / PI",
             "label_expr": "F = {sqrt(N*N + f*f).toFixed(1)} N",
@@ -634,6 +663,7 @@
           },
           {
             "type": "slider",
+            "id": "slider_N",
             "variable": "N",
             "min": 0,
             "max": 50,
@@ -643,6 +673,7 @@
           },
           {
             "type": "slider",
+            "id": "slider_f",
             "variable": "f",
             "min": 0,
             "max": 50,
@@ -652,38 +683,40 @@
           },
           {
             "type": "formula_box",
+            "id": "live_formula",
             "equation_expr": "F = √({N}² + {f}²) = {sqrt(N*N + f*f).toFixed(1)} N",
-            "position": {
-              "x": 475,
-              "y": 220
-            },
+            "position": { "x": 475, "y": 220 },
             "border_color": "#EF4444"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Now use the sliders. Vary N and f and watch the resultant F build itself."
-            },
-            {
-              "id": "s2",
-              "text_en": "Notice that F is always larger than each piece alone — the closed triangle on the canvas shows you why."
-            },
-            {
-              "id": "s3",
-              "text_en": "Drag friction to zero. F collapses onto N. That is the smooth surface limit."
-            },
-            {
-              "id": "s4",
-              "text_en": "This triangle is the geometry of every contact problem you will ever solve."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "block", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "N_arrow,f_arrow", "enter": "grow_from_origin", "duration": 500 },
+            { "at_t": 1.1, "show": "triangle_closing_edge,F_resultant", "enter": "grow_from_origin", "duration": 600 },
+            { "at_t": 1.9, "show": "slider_N,slider_f", "enter": "slide_up_from_bottom", "duration": 400 },
+            { "at_t": 2.4, "show": "live_formula", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now use the sliders. Vary N and f and watch the resultant F build itself." },
+            { "id": "s2", "text_en": "Notice that F is always larger than each piece alone — the closed triangle on the canvas shows you why." },
+            { "id": "s3", "text_en": "Drag friction to zero. F collapses onto N. That is the smooth surface limit." },
+            { "id": "s4", "text_en": "This triangle is the geometry of every contact problem you will ever solve." }
+          ]
+        },
+        "advance_mode": "interaction_complete",
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_f_opposes_relative_motion_not_applied_force",
+          "static_vs_kinetic_friction_direction",
+          "what_is_the_upper_limit_of_static_friction"
+        ]
       }
     }
   },
+
   "panel_b_config": {
     "renderer": "graph_interactive",
     "graph_type": "scatter_with_arc",
@@ -722,22 +755,17 @@
       "color": "#F59E0B",
       "size": 12,
       "label_expr": "F = {sqrt(N*N+f*f).toFixed(1)} N",
-      "sync_with_panel_a_sliders": [
-        "N",
-        "f"
-      ]
+      "sync_with_panel_a_sliders": ["N", "f"]
     },
     "annotations": [
       {
         "text": "The point slides along the arc as you vary N and f.",
-        "position": {
-          "x": 35,
-          "y": 50
-        },
+        "position": { "x": 35, "y": 50 },
         "color": "#6B7280"
       }
     ]
   },
+
   "regeneration_variants": [
     {
       "variant_id": "cricket_bat_ball",
@@ -756,6 +784,7 @@
       "scene_hint": "Ladder body. Floor contact: N vertical, f horizontal. Wall contact: N horizontal, f vertical. Two contact triangles."
     }
   ],
+
   "epic_c_branches": [
     {
       "branch_id": "N_is_always_vertical",
@@ -765,16 +794,24 @@
         "normal force is always vertical",
         "N points up"
       ],
-      "state_sequence": [
-        "EPIC_C_1",
-        "EPIC_C_2"
-      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
       "states": {
         "EPIC_C_1": {
           "title": "Your Belief: N Is Always Upward",
+          "focal_primitive_id": "wall_N_horizontal",
           "scene_composition": [
             {
+              "type": "label",
+              "id": "belief_header",
+              "text": "Belief under test: N is always upward.",
+              "position": { "x": 60, "y": 60 },
+              "font_size": 18,
+              "color": "#EF4444",
+              "bold": true
+            },
+            {
               "type": "comparison_panel",
+              "id": "floor_vs_wall",
               "left_label": "Flat floor — N is vertical (true)",
               "right_label": "Wall — N is horizontal (belief breaks)",
               "left_scene": [
@@ -784,72 +821,58 @@
                   "direction_deg": 90,
                   "label": "N (perpendicular to floor)",
                   "color": "#10B981",
-                  "position": {
-                    "x": 140,
-                    "y": 190
-                  },
+                  "position": { "x": 140, "y": 190 },
                   "scale_pixels_per_unit": 3
                 }
               ],
               "right_scene": [
                 {
                   "type": "force_arrow",
+                  "id": "wall_N_horizontal",
                   "magnitude": 20,
                   "direction_deg": 0,
                   "label": "N (perpendicular to wall, horizontal)",
                   "color": "#10B981",
-                  "position": {
-                    "x": 140,
-                    "y": 190
-                  },
+                  "position": { "x": 140, "y": 190 },
                   "scale_pixels_per_unit": 3
                 },
                 {
                   "type": "annotation",
                   "text": "The wall gives N horizontally — not upward!",
                   "color": "#EF4444",
-                  "position": {
-                    "x": 40,
-                    "y": 240
-                  }
+                  "position": { "x": 40, "y": 240 }
                 }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "rule_reveal",
+              "text": "The real rule:\nN is perpendicular to the\ncontact surface — not to gravity.\nTilt the surface and N tilts with it.",
+              "position": { "x": 600, "y": 240 },
+              "style": "callout",
+              "color": "#10B981"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "On a flat floor, N does point upward. That part is true. But the rule is not that N is always up."
-              },
-              {
-                "id": "s2",
-                "text_en": "The real rule is simple: N is always perpendicular to the contact surface."
-              },
-              {
-                "id": "s3",
-                "text_en": "For a wall, the contact surface is vertical, so N must point horizontally."
-              },
-              {
-                "id": "s4",
-                "text_en": "Tilt the surface and N tilts with it. N follows the surface, not gravity."
-              }
+              { "id": "s1", "text_en": "On a flat floor, N does point upward. That part is true. But the rule is not that N is always up." },
+              { "id": "s2", "text_en": "The real rule is simple: N is always perpendicular to the contact surface." },
+              { "id": "s3", "text_en": "For a wall, the contact surface is vertical, so N must point horizontally." },
+              { "id": "s4", "text_en": "Tilt the surface and N tilts with it. N follows the surface, not gravity." }
             ]
           },
           "advance_mode": "auto_after_tts"
         },
         "EPIC_C_2": {
           "title": "N Is Always Perpendicular — An Incline Proves It",
+          "focal_primitive_id": "N_on_incline",
           "scene_composition": [
             {
               "type": "surface",
               "id": "incline",
               "orientation": "inclined",
               "angle_deg": 30,
-              "position": {
-                "x": 180,
-                "y": 400
-              },
+              "position": { "x": 180, "y": 400 },
               "length": 300,
               "texture": "smooth"
             },
@@ -862,14 +885,12 @@
                 "surface_id": "incline",
                 "position_fraction": 0.5
               },
-              "size": {
-                "w": 90,
-                "h": 70
-              },
+              "size": { "w": 90, "h": 70 },
               "fill_color": "#6B7280"
             },
             {
               "type": "force_arrow",
+              "id": "N_on_incline",
               "from": "block_center",
               "magnitude": 25,
               "direction_deg": 120,
@@ -879,38 +900,25 @@
             },
             {
               "type": "annotation",
+              "id": "incline_callout",
               "text": "On a 30° incline, N tilts 30° from vertical.\nN is not equal to mg here —\nit equals mg·cosθ.",
-              "position": {
-                "x": 600,
-                "y": 200
-              },
+              "position": { "x": 600, "y": 200 },
               "style": "callout"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "Look at the incline. The surface is tilted thirty degrees from horizontal."
-              },
-              {
-                "id": "s2",
-                "text_en": "N stays perpendicular to the incline, which means it is thirty degrees away from vertical."
-              },
-              {
-                "id": "s3",
-                "text_en": "If N were always vertical, this whole problem would break. The math would not even work."
-              },
-              {
-                "id": "s4",
-                "text_en": "One rule only: N is perpendicular to the surface. The direction comes from the geometry, not from gravity."
-              }
+              { "id": "s1", "text_en": "Look at the incline. The surface is tilted thirty degrees from horizontal." },
+              { "id": "s2", "text_en": "N stays perpendicular to the incline, which means it is thirty degrees away from vertical." },
+              { "id": "s3", "text_en": "If N were always vertical, this whole problem would break. The math would not even work." },
+              { "id": "s4", "text_en": "One rule only: N is perpendicular to the surface. The direction comes from the geometry, not from gravity." }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "manual_click"
         }
       }
     },
+
     {
       "branch_id": "friction_is_the_only_contact_force",
       "misconception": "Contact force means friction only. Normal reaction is a different idea.",
@@ -919,22 +927,17 @@
         "only friction acts at contact",
         "N is not contact force"
       ],
-      "state_sequence": [
-        "EPIC_C_1",
-        "EPIC_C_2"
-      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
       "states": {
         "EPIC_C_1": {
           "title": "Your Belief: Contact Force Means Friction",
+          "focal_primitive_id": "smooth_N_still_contact",
           "scene_composition": [
             {
               "type": "surface",
               "id": "smooth_floor",
               "orientation": "horizontal",
-              "position": {
-                "x": 160,
-                "y": 400
-              },
+              "position": { "x": 160, "y": 400 },
               "length": 360,
               "texture": "smooth"
             },
@@ -947,14 +950,12 @@
                 "surface_id": "smooth_floor",
                 "position_fraction": 0.5
               },
-              "size": {
-                "w": 120,
-                "h": 90
-              },
+              "size": { "w": 120, "h": 90 },
               "fill_color": "#6B7280"
             },
             {
               "type": "force_arrow",
+              "id": "smooth_N_still_contact",
               "from": "block_bottom_center",
               "magnitude": 25,
               "direction_deg": 90,
@@ -964,61 +965,40 @@
             },
             {
               "type": "annotation",
+              "id": "smooth_callout",
               "text": "The surface is smooth, so f = 0.\nBut the block still touches the floor —\nand the floor still pushes back.\nThat push is a contact force.",
-              "position": {
-                "x": 600,
-                "y": 240
-              },
+              "position": { "x": 600, "y": 240 },
               "style": "callout",
               "color": "#10B981"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "A block rests on a smooth floor. No friction at all. Does that mean no contact force?"
-              },
-              {
-                "id": "s2",
-                "text_en": "Not at all. The block is still touching the floor, and the floor is still pushing back."
-              },
-              {
-                "id": "s3",
-                "text_en": "That upward push is the normal reaction, N equals twenty five newtons. It is a contact force with no friction involved."
-              },
-              {
-                "id": "s4",
-                "text_en": "Contact force is N and f together. Friction is one piece of the story, never the whole story."
-              }
+              { "id": "s1", "text_en": "A block rests on a smooth floor. No friction at all. Does that mean no contact force?" },
+              { "id": "s2", "text_en": "Not at all. The block is still touching the floor, and the floor is still pushing back." },
+              { "id": "s3", "text_en": "That upward push is the normal reaction, N equals twenty five newtons. It is a contact force with no friction involved." },
+              { "id": "s4", "text_en": "Contact force is N and f together. Friction is one piece of the story, never the whole story." }
             ]
           },
           "advance_mode": "auto_after_tts"
         },
         "EPIC_C_2": {
           "title": "Contact Force Equals N and f Together",
+          "focal_primitive_id": "F_resultant_sum",
           "scene_composition": [
             {
               "type": "body",
               "id": "block",
               "shape": "rect",
               "label": "Block",
-              "position": {
-                "x": 280,
-                "y": 300
-              },
-              "size": {
-                "w": 110,
-                "h": 100
-              },
+              "position": { "x": 280, "y": 300 },
+              "size": { "w": 110, "h": 100 },
               "fill_color": "#6B7280"
             },
             {
               "type": "force_arrow",
-              "from": {
-                "x": 335,
-                "y": 400
-              },
+              "id": "N_piece",
+              "from": { "x": 335, "y": 400 },
               "magnitude": 20,
               "direction_deg": 90,
               "label": "N (one piece)",
@@ -1028,10 +1008,8 @@
             },
             {
               "type": "force_arrow",
-              "from": {
-                "x": 335,
-                "y": 400
-              },
+              "id": "f_piece",
+              "from": { "x": 335, "y": 400 },
               "magnitude": 15,
               "direction_deg": 0,
               "label": "f (other piece)",
@@ -1041,10 +1019,8 @@
             },
             {
               "type": "force_arrow",
-              "from": {
-                "x": 335,
-                "y": 400
-              },
+              "id": "F_resultant_sum",
+              "from": { "x": 335, "y": 400 },
               "magnitude": 25,
               "direction_deg": 37,
               "label": "F (total contact force)",
@@ -1054,38 +1030,559 @@
             },
             {
               "type": "formula_box",
+              "id": "total_F_formula",
               "equation": "Contact Force = √(N² + f²)",
-              "position": {
-                "x": 560,
-                "y": 260
-              },
+              "position": { "x": 560, "y": 260 },
               "border_color": "#EF4444"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "The total contact force is built from two pieces — the normal reaction N and the friction f."
+              { "id": "s1", "text_en": "The total contact force is built from two pieces — the normal reaction N and the friction f." },
+              { "id": "s2", "text_en": "The two pieces are always perpendicular, so we combine them with Pythagoras." },
+              { "id": "s3", "text_en": "F equals the square root of N squared plus f squared. That F is the true total contact force." },
+              { "id": "s4", "text_en": "In every exam question, identify both components separately. That habit is half the battle." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    },
+
+    {
+      "branch_id": "contact_force_is_one_thing_not_two",
+      "misconception": "Contact force is a single thing — not two separate pieces.",
+      "trigger_phrases": [
+        "contact force is one force",
+        "why split contact force",
+        "N and f are the same force",
+        "isn't contact just one push"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: Contact Is a Single Push",
+          "focal_primitive_id": "single_vague_arrow",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "floor_single",
+              "orientation": "horizontal",
+              "position": { "x": 160, "y": 400 },
+              "length": 400,
+              "texture": "rough"
+            },
+            {
+              "type": "body",
+              "id": "block_single",
+              "shape": "rect",
+              "label": "Block",
+              "attach_to_surface": {
+                "surface_id": "floor_single",
+                "position_fraction": 0.5
               },
-              {
-                "id": "s2",
-                "text_en": "The two pieces are always perpendicular, so we combine them with Pythagoras."
-              },
-              {
-                "id": "s3",
-                "text_en": "F equals the square root of N squared plus f squared. That F is the true total contact force."
-              },
-              {
-                "id": "s4",
-                "text_en": "In every exam question, identify both components separately. That habit is half the battle."
-              }
+              "size": { "w": 110, "h": 90 },
+              "fill_color": "#6B7280"
+            },
+            {
+              "type": "force_arrow",
+              "id": "single_vague_arrow",
+              "from": "block_bottom_center",
+              "magnitude": 25,
+              "direction_deg": 127,
+              "label": "Contact force (one arrow?)",
+              "color": "#6B7280",
+              "scale_pixels_per_unit": 4,
+              "style": "dashed"
+            },
+            {
+              "type": "annotation",
+              "id": "vague_claim",
+              "text": "Your belief:\nContact force is\nONE push in\nsome tilted direction —\nwhy split it?",
+              "position": { "x": 600, "y": 240 },
+              "style": "callout",
+              "color": "#6B7280"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Many students draw contact force as one tilted arrow and stop there." },
+              { "id": "s2", "text_en": "It feels simpler. Why complicate it by splitting into N and f?" },
+              { "id": "s3", "text_en": "The reason is that N and f behave differently in every problem. Let me show you." }
             ]
           },
           "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "Why Split — N and f Behave Differently",
+          "focal_primitive_id": "split_reasoning",
+          "scene_composition": [
+            {
+              "type": "body",
+              "id": "block_split",
+              "shape": "rect",
+              "label": "Block",
+              "position": { "x": 240, "y": 300 },
+              "size": { "w": 110, "h": 90 },
+              "fill_color": "#6B7280"
+            },
+            {
+              "type": "force_arrow",
+              "id": "N_piece_split",
+              "from": { "x": 295, "y": 390 },
+              "magnitude": 20,
+              "direction_deg": 90,
+              "label": "N: set by perpendicular balance (e.g. mg cosθ)",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 4
+            },
+            {
+              "type": "force_arrow",
+              "id": "f_piece_split",
+              "from": { "x": 295, "y": 390 },
+              "magnitude": 15,
+              "direction_deg": 0,
+              "label": "f: set by motion or applied pull (capped by μN)",
+              "color": "#F59E0B",
+              "scale_pixels_per_unit": 4
+            },
+            {
+              "type": "annotation",
+              "id": "split_reasoning",
+              "text": "DIFFERENT RULES:\n\nN comes from the\nperpendicular force balance.\nYou solve for N with ΣF⊥ = 0.\n\nf comes from motion or pull.\nStatic: 0 ≤ f ≤ μₛ N\nKinetic: f = μₖ N\n\nOne rule cannot\nhandle both. Split them.",
+              "position": { "x": 480, "y": 170 },
+              "style": "callout_bold",
+              "color": "#1F2937"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "N and f follow completely different rules." },
+              { "id": "s2", "text_en": "N is set by the perpendicular force balance. On a flat floor it equals mg, on an incline it equals mg cos theta, in an elevator it equals m times g plus a." },
+              { "id": "s3", "text_en": "Friction is set by motion or the applied pull. It is bounded by mu times N, never exceeds it." },
+              { "id": "s4", "text_en": "One arrow cannot capture both rules. Split contact force into N and f — then solve each independently." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    },
+
+    {
+      "branch_id": "friction_always_opposes_motion",
+      "misconception": "Friction always opposes the block's motion (or the applied force).",
+      "trigger_phrases": [
+        "friction always opposes motion",
+        "friction opposes the push",
+        "direction of static friction",
+        "why does friction point forward sometimes"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: Friction Always Opposes the Block's Motion",
+          "focal_primitive_id": "walking_forward_friction",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "road_surface",
+              "orientation": "horizontal",
+              "position": { "x": 120, "y": 400 },
+              "length": 500,
+              "texture": "rough",
+              "label": "Road"
+            },
+            {
+              "type": "body",
+              "id": "walker",
+              "shape": "stickman",
+              "label": "Walker (moving →)",
+              "position": { "x": 330, "y": 360 },
+              "size": 70,
+              "fill_color": "#3B82F6",
+              "attach_to_surface": {
+                "surface_id": "road_surface",
+                "position_fraction": 0.45
+              }
+            },
+            {
+              "type": "force_arrow",
+              "id": "velocity_walker",
+              "from": "body_center",
+              "magnitude": 20,
+              "direction_deg": 0,
+              "label": "v (walker) →",
+              "color": "#3B82F6",
+              "origin_body_id": "walker",
+              "origin_anchor": "body_right"
+            },
+            {
+              "type": "force_arrow",
+              "id": "walking_forward_friction",
+              "from": "body_bottom",
+              "magnitude": 15,
+              "direction_deg": 0,
+              "label": "f (friction on foot) →",
+              "color": "#10B981",
+              "origin_body_id": "walker",
+              "origin_anchor": "body_bottom",
+              "scale_pixels_per_unit": 4
+            },
+            {
+              "type": "annotation",
+              "id": "paradox_callout",
+              "text": "Wait — the walker moves\nforward AND friction on the\nfoot also points forward?\nHow can that be?",
+              "position": { "x": 600, "y": 200 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "You walk forward. The belief is that friction must oppose your motion, so it should point backward." },
+              { "id": "s2", "text_en": "But look carefully at the foot in contact with the road. The friction on your foot actually points forward — in the direction you are walking." },
+              { "id": "s3", "text_en": "If friction pointed backward on the foot, you could never push off the ground. You would slip, like on ice." },
+              { "id": "s4", "text_en": "So the simple rule that friction opposes the block's motion is wrong. Let me show you the real rule." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "Real Rule: Friction Opposes RELATIVE Sliding",
+          "focal_primitive_id": "foot_relative_direction",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "real_rule",
+              "text": "RULE:\nFriction opposes the\nRELATIVE SLIDING of the\ncontact surface against\nthe other surface —\nnot the overall motion\nof the body.",
+              "position": { "x": 380, "y": 140 },
+              "style": "callout_bold",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "foot_relative_direction",
+              "text": "WALKING FORWARD:\nYour foot tries to slide\nBACKWARD against the road\nto push off.\nFriction opposes that slide,\nso friction points FORWARD\non the foot. That is how you\nmove at all.",
+              "position": { "x": 120, "y": 320 },
+              "style": "callout",
+              "color": "#3B82F6"
+            },
+            {
+              "type": "annotation",
+              "id": "skid_relative_direction",
+              "text": "SKIDDING FORWARD:\nCar locks its brakes.\nTire slides FORWARD against\nthe road (not rolling anymore).\nFriction opposes that slide,\nso friction points BACKWARD\non the tire. That is what\nfinally stops the car.",
+              "position": { "x": 450, "y": 320 },
+              "style": "callout",
+              "color": "#F59E0B"
+            },
+            {
+              "type": "annotation",
+              "id": "static_can_point_either_way",
+              "text": "STATIC FRICTION:\nNo motion yet, but a tendency\nto slide exists. Friction points\nwhichever way opposes that\ntendency — can be forward,\nbackward, or any direction\nalong the surface.",
+              "position": { "x": 290, "y": 500 },
+              "style": "callout_bold",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the real rule. Friction opposes the relative sliding of the two surfaces — not the overall motion of the body." },
+              { "id": "s2", "text_en": "When you walk, your foot tries to slide backward against the road. Friction opposes that, so friction on the foot points forward. That is how you push off." },
+              { "id": "s3", "text_en": "When a car skids, the locked tire slides forward along the road. Friction opposes that, so friction on the tire points backward — stopping the car." },
+              { "id": "s4", "text_en": "Static friction can point in any direction along the surface. It always chooses the direction that opposes the tendency to slide. Remember relative sliding, not overall motion." }
+            ]
+          },
+          "advance_mode": "manual_click"
         }
       }
     }
   ],
-  "schema_version": "2.0.0"
+
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 5,
+        "per_state": {
+          "STATE_1": {
+            "mark": 1,
+            "description": "Identify contact surface and draw the free body diagram showing mg, and claim that contact forces emerge from the contact line."
+          },
+          "STATE_2": {
+            "mark": 1,
+            "description": "At the contact, label two forces: N perpendicular to the surface and f parallel to the surface. State they meet at 90 degrees."
+          },
+          "STATE_3": {
+            "mark": 1,
+            "description": "Justify: N perpendicular because surfaces can only push outward; f parallel because sliding happens along the surface and friction resists it."
+          },
+          "STATE_4": {
+            "mark": 1,
+            "description": "Derive F = sqrt(N^2 + f^2) using Pythagoras. Compute theta = atan2(f, N) with correct numerical substitution."
+          },
+          "STATE_5": {
+            "mark": 1,
+            "description": "State edge cases: smooth surface gives f = 0 and F = N; no contact gives N = 0 and F = 0."
+          }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b1_s1",
+              "text": "Step 1: Identify the body — a block in contact with a surface.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 100 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s2",
+              "text": "Step 2: Mark the contact line between the two surfaces.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 140 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s3",
+              "text": "Step 3: Free body diagram — mg downward; contact forces live at the contact line.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 180 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b1",
+              "mark_value": 1,
+              "text": "+1 for FBD",
+              "tied_to_state": "STATE_1",
+              "position": { "x": 680, "y": 140 }
+            }
+          ]
+        },
+        "STATE_2": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b2_s1",
+              "text": "At the contact line, two distinct forces emerge:",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 220 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s2",
+              "text": "N = normal reaction, perpendicular to the contact surface.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 260 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s3",
+              "text": "f = friction, parallel to the contact surface.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 300 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s4",
+              "text": "N ⊥ f  (they meet at 90°).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 340 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b2",
+              "mark_value": 1,
+              "text": "+1 for labelling N and f",
+              "tied_to_state": "STATE_2",
+              "position": { "x": 680, "y": 280 }
+            }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b3_s1",
+              "text": "Why N ⊥ surface: a surface can only push outward, not pull inward.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 380 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s2",
+              "text": "Why f ∥ surface: relative sliding happens along the surface; friction resists it.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 420 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s3",
+              "text": "Therefore N and f are always mutually perpendicular at the contact.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 460 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b3",
+              "mark_value": 1,
+              "text": "+1 for geometric reasoning",
+              "tied_to_state": "STATE_3",
+              "position": { "x": 680, "y": 420 }
+            }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b4_s1",
+              "text": "N and f are orthogonal → apply Pythagoras:",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 500 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s2",
+              "text": "F = √(N² + f²)   and   tan θ = f / N",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 540 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s3",
+              "text": "Substitute N = 20 N, f = 15 N → F = √(400 + 225) = √625 = 25 N, θ ≈ 37°.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 580 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b4",
+              "mark_value": 1,
+              "text": "+1 for F and θ",
+              "tied_to_state": "STATE_4",
+              "position": { "x": 680, "y": 540 }
+            }
+          ]
+        },
+        "STATE_5": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b5_s1",
+              "text": "Edge case 1 — Smooth surface: f = 0, so F = N.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 620 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b5_s2",
+              "text": "Edge case 2 — No contact: N = 0 and f = 0, so F = 0.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 660 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b5_s3",
+              "text": "Both are consistent with F = √(N² + f²).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 700 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b5",
+              "mark_value": 1,
+              "text": "+1 for edge cases",
+              "tied_to_state": "STATE_5",
+              "position": { "x": 680, "y": 660 }
+            }
+          ]
+        }
+      }
+    },
+
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "id": "shortcut_pythagoras",
+          "rule": "Resultant contact force from N and f",
+          "formula": "F = sqrt(N^2 + f^2)",
+          "use_when": "N and f are known or can be found from force balance and motion; N ⊥ f always holds at a single contact."
+        },
+        {
+          "id": "shortcut_angle",
+          "rule": "Angle of F from the surface normal",
+          "formula": "tan(theta) = f / N  →  theta = atan2(f, N)",
+          "use_when": "You need the direction of the total contact force for equilibrium or vector addition."
+        },
+        {
+          "id": "shortcut_smooth",
+          "rule": "Smooth surface limit",
+          "formula": "f = 0  →  F = N",
+          "use_when": "The problem says 'smooth', 'frictionless', or 'mu = 0'."
+        },
+        {
+          "id": "shortcut_static_bound",
+          "rule": "Static friction magnitude bound",
+          "formula": "0 <= f <= mu_s * N",
+          "use_when": "Object is on the verge of sliding or is held by static friction; do NOT default to f = mu_s * N unless impending motion is stated."
+        },
+        {
+          "id": "shortcut_kinetic",
+          "rule": "Kinetic friction magnitude",
+          "formula": "f = mu_k * N",
+          "use_when": "Surfaces are already in relative sliding motion; friction direction opposes the relative velocity."
+        },
+        {
+          "id": "shortcut_walking_vs_skidding",
+          "rule": "Direction of friction on a contact surface",
+          "formula": "f opposes RELATIVE sliding of that surface against the other — not the overall motion of the body.",
+          "use_when": "Questions about walking, pedalling, cars accelerating/skidding, or rolling without slipping."
+        }
+      ],
+      "edge_cases": [
+        {
+          "id": "edge_block_on_incline_static",
+          "title": "Block on an incline, at the verge of sliding",
+          "trap": "Students plug in f = mu_s * N without checking whether the block is actually at the verge.",
+          "resolution": "On a static block, f = mg sin(theta) — the parallel gravity component. It reaches mu_s * N only at the verge angle. Set mg sin(theta) = mu_s * mg cos(theta) → tan(theta) = mu_s."
+        },
+        {
+          "id": "edge_rolling_without_slipping",
+          "title": "Wheel rolling without slipping on a rough surface",
+          "trap": "Students assume kinetic friction because the wheel is moving.",
+          "resolution": "The contact point is momentarily at rest relative to the ground. Friction is STATIC, bounded by mu_s * N. Direction depends on whether the wheel is accelerating, braking, or cruising."
+        },
+        {
+          "id": "edge_banked_turn_with_friction",
+          "title": "Car on a banked turn with friction",
+          "trap": "Students treat N = mg cos(theta) as always true.",
+          "resolution": "N has contributions from gravity AND centripetal acceleration. Resolve forces both perpendicular and parallel to the incline; friction adds or subtracts depending on whether the car is above or below the design speed."
+        },
+        {
+          "id": "edge_two_contacts_ladder",
+          "title": "Ladder leaning on a rough wall",
+          "trap": "Students forget the wall's friction.",
+          "resolution": "At each contact, there is its own N and its own f. For a ladder — floor contact contributes (N_floor up, f_floor horizontal), wall contact contributes (N_wall horizontal, f_wall vertical). Equilibrium: sum of F_x = 0, sum of F_y = 0, sum of torques = 0."
+        },
+        {
+          "id": "edge_impulsive_contact",
+          "title": "Cricket bat striking a ball",
+          "trap": "Students try to use Newton's second law with constant F.",
+          "resolution": "Use impulse. N acts perpendicular to the bat face, gives the ball most of its linear speed. f acts tangential to the bat face, gives the ball spin. Total impulse magnitude: J = sqrt(J_N^2 + J_f^2)."
+        }
+      ],
+      "formulas_shortform": {
+        "F_contact": "F = sqrt(N^2 + f^2)",
+        "theta_contact": "tan(theta) = f / N",
+        "smooth": "f = 0 → F = N",
+        "static_bound": "f <= mu_s * N",
+        "kinetic": "f = mu_k * N",
+        "no_contact": "N = 0 → F = 0"
+      }
+    }
+  }
 }

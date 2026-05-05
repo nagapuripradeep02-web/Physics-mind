@@ -17,14 +17,34 @@
   },
   "physics_engine_config": {
     "variables": {
-      "Ax": { "name": "A x-component", "unit": "(unitless)", "min": -10, "max": 10, "default": 3 },
-      "Ay": { "name": "A y-component", "unit": "(unitless)", "min": -10, "max": 10, "default": 4 }
+      "Ax": {
+        "name": "A x-component",
+        "unit": "(unitless)",
+        "min": -10,
+        "max": 10,
+        "default": 3
+      },
+      "Ay": {
+        "name": "A y-component",
+        "unit": "(unitless)",
+        "min": -10,
+        "max": 10,
+        "default": 4
+      }
     },
     "computed_outputs": {
-      "A_magnitude": { "formula": "sqrt(Ax*Ax + Ay*Ay)" },
-      "A_hat_x":     { "formula": "Ax / sqrt(Ax*Ax + Ay*Ay)" },
-      "A_hat_y":     { "formula": "Ay / sqrt(Ax*Ax + Ay*Ay)" },
-      "A_hat_magnitude": { "formula": "sqrt((Ax*Ax + Ay*Ay) / (Ax*Ax + Ay*Ay))" }
+      "A_magnitude": {
+        "formula": "sqrt(Ax*Ax + Ay*Ay)"
+      },
+      "A_hat_x": {
+        "formula": "Ax / sqrt(Ax*Ax + Ay*Ay)"
+      },
+      "A_hat_y": {
+        "formula": "Ay / sqrt(Ax*Ax + Ay*Ay)"
+      },
+      "A_hat_magnitude": {
+        "formula": "sqrt((Ax*Ax + Ay*Ay) / (Ax*Ax + Ay*Ay))"
+      }
     },
     "formulas": {
       "unit_vector": "A_hat = A / |A|",
@@ -47,7 +67,10 @@
           {
             "type": "force_arrow",
             "id": "vec_A",
-            "from": { "x": 200, "y": 300 },
+            "from": {
+              "x": 200,
+              "y": 300
+            },
             "magnitude": 5,
             "direction_deg": 37,
             "label": "A",
@@ -58,19 +81,47 @@
             "type": "annotation",
             "id": "question",
             "text": "An arrow carries TWO things:\nhow much (length)\nand which way (angle).\nCan we strip one away?",
-            "position": { "x": 460, "y": 150 },
+            "position": {
+              "x": 460,
+              "y": 150
+            },
             "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "state_1_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "A Direction Without a Length — What Does That Even Mean?",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Every vector carries two pieces of information: how much, and which way." },
-            { "id": "s2", "text_en": "The length is the magnitude. The tilt is the direction." },
-            { "id": "s3", "text_en": "Now a strange question — can we keep only the direction and throw away the length?" },
-            { "id": "s4", "text_en": "Physics says yes. And the tool it uses is called a unit vector." }
+            {
+              "id": "s1",
+              "text_en": "Every vector carries two pieces of information: how much, and which way."
+            },
+            {
+              "id": "s2",
+              "text_en": "The length is the magnitude. The tilt is the direction."
+            },
+            {
+              "id": "s3",
+              "text_en": "Now a strange question — can we keep only the direction and throw away the length?"
+            },
+            {
+              "id": "s4",
+              "text_en": "Physics says yes. And the tool it uses is called a unit vector."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "vec_A"
       },
       "STATE_2": {
         "title": "Divide the Vector by Its Own Length — Watch What Happens",
@@ -79,7 +130,10 @@
           {
             "type": "force_arrow",
             "id": "vec_A",
-            "from": { "x": 200, "y": 300 },
+            "from": {
+              "x": 200,
+              "y": 300
+            },
             "magnitude": 5,
             "direction_deg": 37,
             "label": "A  (|A| = 5)",
@@ -89,33 +143,59 @@
           {
             "type": "force_arrow",
             "id": "vec_A_hat",
-            "from": { "x": 200, "y": 300 },
+            "from": {
+              "x": 200,
+              "y": 300
+            },
             "magnitude": 1,
             "direction_deg": 37,
             "label": "Â = A / |A|  (length 1)",
             "color": "#10B981",
             "scale_pixels_per_unit": 40,
-            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 3,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "formula",
             "text": "Â = A / |A|\nMagnitude exactly 1.\nSame direction as A.",
-            "position": { "x": 460, "y": 260 },
+            "position": {
+              "x": 460,
+              "y": 260
+            },
             "style": "formula_box",
             "color": "#10B981"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Take any vector A. Measure its length. Call that length the magnitude, written as A in bars." },
-            { "id": "s2", "text_en": "Now divide the whole vector by that number." },
-            { "id": "s3", "text_en": "The result is a new arrow pointing the same way, but with length exactly one." },
-            { "id": "s4", "text_en": "We call it A-hat. The formula is A-hat equals A divided by the magnitude of A." },
-            { "id": "s5", "text_en": "This hat is a direction extractor. It has thrown the length away and kept only the way it points." }
+            {
+              "id": "s1",
+              "text_en": "Take any vector A. Measure its length. Call that length the magnitude, written as A in bars."
+            },
+            {
+              "id": "s2",
+              "text_en": "Now divide the whole vector by that number."
+            },
+            {
+              "id": "s3",
+              "text_en": "The result is a new arrow pointing the same way, but with length exactly one."
+            },
+            {
+              "id": "s4",
+              "text_en": "We call it A-hat. The formula is A-hat equals A divided by the magnitude of A."
+            },
+            {
+              "id": "s5",
+              "text_en": "This hat is a direction extractor. It has thrown the length away and kept only the way it points."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "vec_A"
       },
       "STATE_3": {
         "title": "î, ĵ, k̂ — The Three Canonical Direction Extractors",
@@ -124,7 +204,10 @@
           {
             "type": "force_arrow",
             "id": "i_hat",
-            "from": { "x": 300, "y": 320 },
+            "from": {
+              "x": 300,
+              "y": 320
+            },
             "magnitude": 1,
             "direction_deg": 0,
             "label": "î  (along x)",
@@ -134,7 +217,10 @@
           {
             "type": "force_arrow",
             "id": "j_hat",
-            "from": { "x": 300, "y": 320 },
+            "from": {
+              "x": 300,
+              "y": 320
+            },
             "magnitude": 1,
             "direction_deg": 90,
             "label": "ĵ  (along y)",
@@ -144,7 +230,10 @@
           {
             "type": "force_arrow",
             "id": "k_hat",
-            "from": { "x": 300, "y": 320 },
+            "from": {
+              "x": 300,
+              "y": 320
+            },
             "magnitude": 0.7,
             "direction_deg": 135,
             "label": "k̂  (along z, into page)",
@@ -156,19 +245,35 @@
             "type": "annotation",
             "id": "basis",
             "text": "Every vector in 3D\nis built from these three.\nA = Ax î + Ay ĵ + Az k̂",
-            "position": { "x": 480, "y": 240 },
+            "position": {
+              "x": 480,
+              "y": 240
+            },
             "style": "callout"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Physics fixes three unit vectors as the standard reference directions." },
-            { "id": "s2", "text_en": "i-hat points along the x-axis. j-hat points along the y-axis. k-hat points along the z-axis, into the page." },
-            { "id": "s3", "text_en": "Each has length one. Each points along exactly one axis." },
-            { "id": "s4", "text_en": "Any vector in three dimensions is just a weighted sum of these three. That is what it means when you write A equals Ax i-hat plus Ay j-hat plus Az k-hat." }
+            {
+              "id": "s1",
+              "text_en": "Physics fixes three unit vectors as the standard reference directions."
+            },
+            {
+              "id": "s2",
+              "text_en": "i-hat points along the x-axis. j-hat points along the y-axis. k-hat points along the z-axis, into the page."
+            },
+            {
+              "id": "s3",
+              "text_en": "Each has length one. Each points along exactly one axis."
+            },
+            {
+              "id": "s4",
+              "text_en": "Any vector in three dimensions is just a weighted sum of these three. That is what it means when you write A equals Ax i-hat plus Ay j-hat plus Az k-hat."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "i_hat"
       },
       "STATE_4": {
         "title": "Compute It Yourself — Â for A = 3î + 4ĵ",
@@ -177,7 +282,10 @@
           {
             "type": "force_arrow",
             "id": "vec_A_work",
-            "from": { "x": 200, "y": 360 },
+            "from": {
+              "x": 200,
+              "y": 360
+            },
             "magnitude": 5,
             "direction_deg": 53,
             "label": "A = 3î + 4ĵ  (magnitude 5)",
@@ -187,31 +295,54 @@
           {
             "type": "force_arrow",
             "id": "vec_A_hat_work",
-            "from": { "x": 200, "y": 360 },
+            "from": {
+              "x": 200,
+              "y": 360
+            },
             "magnitude": 1,
             "direction_deg": 53,
             "label": "Â = 0.6î + 0.8ĵ",
             "color": "#10B981",
             "scale_pixels_per_unit": 40,
-            "animation": { "type": "fade_in", "delay_sec": 4, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 4,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "work",
             "text": "Step 1  |A| = √(3² + 4²) = 5\nStep 2  Â = (3î + 4ĵ) / 5\n          = 0.6 î + 0.8 ĵ\nStep 3  Check  |Â| = √(0.36 + 0.64) = 1  ✓",
-            "position": { "x": 460, "y": 200 },
+            "position": {
+              "x": 460,
+              "y": 200
+            },
             "style": "formula_box"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Let us do one by hand. A equals three i-hat plus four j-hat — a 3 by 4 by 5 triangle." },
-            { "id": "s2", "text_en": "The magnitude is square root of nine plus sixteen, which is five." },
-            { "id": "s3", "text_en": "Divide every component by five. A-hat is zero point six i-hat plus zero point eight j-hat." },
-            { "id": "s4", "text_en": "Always verify. Square the components, add them, take square root. You get one. That is the unit check — and you should never skip it." }
+            {
+              "id": "s1",
+              "text_en": "Let us do one by hand. A equals three i-hat plus four j-hat — a 3 by 4 by 5 triangle."
+            },
+            {
+              "id": "s2",
+              "text_en": "The magnitude is square root of nine plus sixteen, which is five."
+            },
+            {
+              "id": "s3",
+              "text_en": "Divide every component by five. A-hat is zero point six i-hat plus zero point eight j-hat."
+            },
+            {
+              "id": "s4",
+              "text_en": "Always verify. Square the components, add them, take square root. You get one. That is the unit check — and you should never skip it."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "vec_A_work"
       }
     }
   },
@@ -233,7 +364,10 @@
             {
               "type": "force_arrow",
               "id": "vec_A_shown",
-              "from": { "x": 200, "y": 330 },
+              "from": {
+                "x": 200,
+                "y": 330
+              },
               "magnitude": 10,
               "direction_deg": 0,
               "label": "A  (|A| = 10)",
@@ -243,7 +377,10 @@
             {
               "type": "force_arrow",
               "id": "vec_A_hat_wrong",
-              "from": { "x": 200, "y": 380 },
+              "from": {
+                "x": 200,
+                "y": 380
+              },
               "magnitude": 10,
               "direction_deg": 0,
               "label": "Â?  (length 10 — WRONG)",
@@ -255,20 +392,36 @@
               "type": "annotation",
               "id": "trap",
               "text": "If Â had length 10,\nthen 10 × Â = 100 units.\nThat is not A.\nThe formula A = |A| × Â would break.",
-              "position": { "x": 520, "y": 200 },
+              "position": {
+                "x": 520,
+                "y": 200
+              },
               "style": "callout",
               "color": "#EF4444"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Some students believe that A-hat has the same length as A." },
-              { "id": "s2", "text_en": "If A is ten units long, they imagine A-hat also ten units long — just written in component form." },
-              { "id": "s3", "text_en": "Watch what breaks. If A-hat has length ten, then ten times A-hat would be one hundred units. That is not the original A." },
-              { "id": "s4", "text_en": "The whole formula A equals magnitude A times A-hat only works if A-hat has length exactly one." }
+              {
+                "id": "s1",
+                "text_en": "Some students believe that A-hat has the same length as A."
+              },
+              {
+                "id": "s2",
+                "text_en": "If A is ten units long, they imagine A-hat also ten units long — just written in component form."
+              },
+              {
+                "id": "s3",
+                "text_en": "Watch what breaks. If A-hat has length ten, then ten times A-hat would be one hundred units. That is not the original A."
+              },
+              {
+                "id": "s4",
+                "text_en": "The whole formula A equals magnitude A times A-hat only works if A-hat has length exactly one."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "vec_A_shown"
         },
         "STATE_2": {
           "title": "The Division — Watch the Arrow Shrink",
@@ -277,42 +430,73 @@
             {
               "type": "force_arrow",
               "id": "vec_A_start",
-              "from": { "x": 200, "y": 330 },
+              "from": {
+                "x": 200,
+                "y": 330
+              },
               "magnitude": 10,
               "direction_deg": 0,
               "label": "A  (10 east)",
               "color": "#F59E0B",
               "scale_pixels_per_unit": 28,
-              "animation": { "type": "translate", "dx_px": 0, "dy_px": 0, "duration_sec": 0.5 }
+              "animation": {
+                "type": "translate",
+                "dx_px": 0,
+                "dy_px": 0,
+                "duration_sec": 0.5
+              }
             },
             {
               "type": "force_arrow",
               "id": "vec_A_after",
-              "from": { "x": 200, "y": 380 },
+              "from": {
+                "x": 200,
+                "y": 380
+              },
               "magnitude": 1,
               "direction_deg": 0,
               "label": "Â = A/10 = 1î",
               "color": "#10B981",
               "scale_pixels_per_unit": 28,
-              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1.5 }
+              "animation": {
+                "type": "fade_in",
+                "delay_sec": 2,
+                "duration_sec": 1.5
+              }
             },
             {
               "type": "annotation",
               "id": "step",
               "text": "Divide by 10.\nLength collapses to 1.\nDirection stays east.",
-              "position": { "x": 520, "y": 220 },
+              "position": {
+                "x": 520,
+                "y": 220
+              },
               "style": "formula_box"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Start with A equals ten i-hat — ten units pointing east." },
-              { "id": "s2", "text_en": "Now divide it by ten. Every component shrinks by a factor of ten." },
-              { "id": "s3", "text_en": "The arrow that was ten units long becomes one unit long. Still pointing east. That is A-hat." },
-              { "id": "s4", "text_en": "Division squeezed the magnitude down to one. It did not change the direction at all." }
+              {
+                "id": "s1",
+                "text_en": "Start with A equals ten i-hat — ten units pointing east."
+              },
+              {
+                "id": "s2",
+                "text_en": "Now divide it by ten. Every component shrinks by a factor of ten."
+              },
+              {
+                "id": "s3",
+                "text_en": "The arrow that was ten units long becomes one unit long. Still pointing east. That is A-hat."
+              },
+              {
+                "id": "s4",
+                "text_en": "Division squeezed the magnitude down to one. It did not change the direction at all."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "vec_A_start"
         },
         "STATE_3": {
           "title": "Why It HAS to Be One — The Proof",
@@ -322,7 +506,10 @@
               "type": "annotation",
               "id": "proof",
               "text": "|Â| = |A / |A||\n    = |A| / |A|\n    = 1\n\nAlways. No exceptions.",
-              "position": { "x": 300, "y": 240 },
+              "position": {
+                "x": 300,
+                "y": 240
+              },
               "style": "formula_box",
               "color": "#10B981"
             },
@@ -330,18 +517,43 @@
               "type": "annotation",
               "id": "consequence",
               "text": "Unit vectors also carry\nNO physical units.\n[N] / [N] cancels.\n[m/s] / [m/s] cancels.",
-              "position": { "x": 580, "y": 240 },
+              "position": {
+                "x": 580,
+                "y": 240
+              },
               "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Why It HAS to Be One — The Proof",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "The proof is one line. Magnitude of A-hat equals magnitude of A divided by magnitude of A — which is one." },
-              { "id": "s2", "text_en": "Two more things fall out of this. First — the units cancel. If A is measured in newtons, the newtons in the numerator and denominator cancel. A-hat is dimensionless." },
-              { "id": "s3", "text_en": "Second — i-hat, j-hat and k-hat have no units either. They are pure direction labels." }
+              {
+                "id": "s1",
+                "text_en": "The proof is one line. Magnitude of A-hat equals magnitude of A divided by magnitude of A — which is one."
+              },
+              {
+                "id": "s2",
+                "text_en": "Two more things fall out of this. First — the units cancel. If A is measured in newtons, the newtons in the numerator and denominator cancel. A-hat is dimensionless."
+              },
+              {
+                "id": "s3",
+                "text_en": "Second — i-hat, j-hat and k-hat have no units either. They are pure direction labels."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "proof"
         },
         "STATE_4": {
           "title": "Your Turn — A = 6î − 8ĵ. Find Â.",
@@ -350,7 +562,10 @@
             {
               "type": "force_arrow",
               "id": "vec_practice",
-              "from": { "x": 200, "y": 260 },
+              "from": {
+                "x": 200,
+                "y": 260
+              },
               "magnitude": 10,
               "direction_deg": -53,
               "label": "A = 6î − 8ĵ",
@@ -361,20 +576,51 @@
               "type": "annotation",
               "id": "problem",
               "text": "Given  A = 6î − 8ĵ\nFind   Â\n\nStep 1  |A| = √(36 + 64) = 10\nStep 2  Â = (6î − 8ĵ) / 10 = 0.6î − 0.8ĵ\nStep 3  |Â| = √(0.36 + 0.64) = 1  ✓",
-              "position": { "x": 440, "y": 200 },
+              "position": {
+                "x": 440,
+                "y": 200
+              },
               "style": "formula_box"
+            },
+            {
+              "type": "annotation",
+              "id": "state_4_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Your Turn — A = 6î − 8ĵ. Find Â.",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Source — DC Pandey Example five point five." },
-              { "id": "s2", "text_en": "A equals six i-hat minus eight j-hat. Find A-hat." },
-              { "id": "s3", "text_en": "Magnitude — square root of thirty six plus sixty four — is ten." },
-              { "id": "s4", "text_en": "Divide each component by ten. Zero point six i-hat minus zero point eight j-hat." },
-              { "id": "s5", "text_en": "Always finish with the check. Square the components. Add. Take root. You get one. Pattern holds." }
+              {
+                "id": "s1",
+                "text_en": "Source — DC Pandey Example five point five."
+              },
+              {
+                "id": "s2",
+                "text_en": "A equals six i-hat minus eight j-hat. Find A-hat."
+              },
+              {
+                "id": "s3",
+                "text_en": "Magnitude — square root of thirty six plus sixty four — is ten."
+              },
+              {
+                "id": "s4",
+                "text_en": "Divide each component by ten. Zero point six i-hat minus zero point eight j-hat."
+              },
+              {
+                "id": "s5",
+                "text_en": "Always finish with the check. Square the components. Add. Take root. You get one. Pattern holds."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "vec_practice"
         }
       }
     }

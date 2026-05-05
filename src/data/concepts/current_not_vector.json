@@ -5,44 +5,80 @@
   "section": "5.1",
   "schema_version": "2.0.0",
   "class_level": 11,
-  "source_book": "DC Pandey Chapter 5.1 — the canonical 'scalar with direction' trap; split from scalar_vs_vector bundle",
+  "source_book": "First-principles authoring (charge conservation + vector algebra). DC Pandey Vol.1 Ch.5 used for syllabus scope only.",
+
+  "prerequisites": ["scalar_vs_vector"],
+
+  "concept_tier": "medium",
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 18
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "Current adds like a number, not like a vector, the angle never enters.",
+    "visual_confirmation": "reality_box"
+  },
+
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_3" },
+    "proof":        { "start": "STATE_3", "end": "STATE_3" },
+    "exam_trap":    { "start": "STATE_4", "end": "STATE_4" },
+    "self_test":    { "start": "STATE_5", "end": "STATE_5" }
+  },
+
   "renderer_pair": {
     "panel_a": "mechanics_2d",
     "panel_b": "graph_interactive"
   },
+
   "real_world_anchor": {
-    "primary": "A home electrical switchboard where two supply wires merge into one. The total current arriving at the switch is the arithmetic sum of the two incoming currents — it does not depend on the angle at which the wires approach each other.",
-    "secondary": "A river delta where two streams merge. The total water flowing downstream is the sum of the two upstream flows — the angle at which they join does not change the total.",
-    "tertiary": "Two taps filling the same bucket from different directions. The water level rises at the combined rate regardless of the angle between the taps. Compare this with two people pushing a trolley from different angles — there the net push does depend on the angle."
+    "primary": "A home electrical switchboard where two supply wires merge into the main switch. The total current arriving at the switch is the arithmetic sum of the two wire currents — it does not depend on the angle at which the wires approach the box. Every electrician in India knows this in their hands; few realize it is the test that proves current is a scalar.",
+    "secondary": "An auto-rickshaw stand on Brigade Road, Bengaluru. Three rickshaws arrive from three streets at random angles. The total count at the stand is one plus one plus one equals three. The angles do not enter the count. Same scalar-addition logic as currents at a junction.",
+    "tertiary": "A river delta near Vijayawada where the Krishna splits into branches that rejoin downstream. Total water flow downstream equals the sum of upstream branches, regardless of branch angle."
   },
+
   "physics_engine_config": {
     "variables": {
-      "i1": { "name": "Current in wire 1", "unit": "A", "min": 0.5, "max": 10, "default": 3 },
-      "i2": { "name": "Current in wire 2", "unit": "A", "min": 0.5, "max": 10, "default": 4 },
-      "theta_deg": { "name": "Angle between wires", "unit": "deg", "min": 0, "max": 180, "default": 60 }
-    },
-    "computed_outputs": {
-      "i_scalar_actual": { "formula": "i1 + i2" },
-      "i_if_vector": { "formula": "sqrt(i1*i1 + i2*i2 + 2*i1*i2*cos(theta_deg * PI / 180))" },
-      "mismatch": { "formula": "abs((i1 + i2) - sqrt(i1*i1 + i2*i2 + 2*i1*i2*cos(theta_deg * PI / 180)))" }
+      "i1":        { "name": "Current in wire 1",          "unit": "A",   "min": 0.5, "max": 10,  "default": 3 },
+      "i2":        { "name": "Current in wire 2",          "unit": "A",   "min": 0.5, "max": 10,  "default": 4 },
+      "theta_deg": { "name": "Angle between incoming wires","unit": "deg","min": 0,   "max": 180, "default": 60 }
     },
     "formulas": {
-      "kirchhoff": "i_total = i1 + i2  at any junction, any angle",
-      "wrong_vector_prediction": "|i_vec| = sqrt(i1^2 + i2^2 + 2 i1 i2 cos theta)  — what current would obey IF it were a vector, but does not"
+      "kirchhoff_law":             "i = i1 + i2",
+      "parallelogram_prediction":  "sqrt(i1*i1 + i2*i2 + 2*i1*i2*cos(radians(theta_deg)))"
+    },
+    "computed_outputs": {
+      "i_actual":       { "formula": "i1 + i2" },
+      "i_vector_pred":  { "formula": "sqrt(i1*i1 + i2*i2 + 2*i1*i2*cos(radians(theta_deg)))" },
+      "gap_amperes":    { "formula": "abs((i1 + i2) - sqrt(i1*i1 + i2*i2 + 2*i1*i2*cos(radians(theta_deg))))" }
     },
     "constraints": [
-      "Total current at a junction is always the scalar sum — Kirchhoff's junction rule",
-      "Vector prediction only equals scalar sum at theta = 0. For any other angle, the two diverge — and measurement always sides with the scalar sum.",
-      "This is the definitive reason current is classified as a scalar despite having a direction of flow",
-      "Current density J IS a vector — but current i through a cross-section is not"
+      "Charge is conserved at every junction (Kirchhoff's current law)",
+      "i_actual = i1 + i2 always, regardless of wire angle",
+      "i_vector_pred equals i_actual ONLY when theta = 0; for every other angle they diverge",
+      "At theta = 180 the vector model predicts |i1 - i2|, but reality still measures i1 + i2",
+      "Current density J is a vector; current i is the area-integral of J dot dA, which collapses J to a scalar",
+      "Vector classification requires BOTH magnitude+direction AND parallelogram-law obedience"
     ]
   },
+
   "epic_l_path": {
-    "state_count": 4,
+    "state_count": 5,
     "states": {
       "STATE_1": {
         "title": "Current Has Direction. So Is It a Vector?",
         "duration": 8,
+        "teaching_method": "narrative_socratic",
+        "focal_primitive_id": "question_callout",
+        "advance_mode": "auto_after_tts",
+        "misconception_watch": [
+          {
+            "belief": "If a quantity has direction, it must be a vector.",
+            "one_line_fix": "Direction is condition one of two. The next states show the second condition that current fails."
+          }
+        ],
         "scene_composition": [
           {
             "type": "force_arrow",
@@ -57,7 +93,7 @@
           {
             "type": "force_arrow",
             "id": "wire_2",
-            "from": { "x": 160, "y": 340 },
+            "from": { "x": 160, "y": 360 },
             "magnitude": 4,
             "direction_deg": 30,
             "label": "i2 = 4 A",
@@ -73,194 +109,321 @@
           },
           {
             "type": "annotation",
-            "id": "question",
+            "id": "question_callout",
             "text": "Current flows FROM -> TO.\nIt has a direction.\n\nSo - is it a vector\nlike velocity or force?",
-            "position": { "x": 500, "y": 200 },
+            "position": { "x": 540, "y": 220 },
             "style": "callout"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Look at this wire junction. Two wires meet at point O, each carrying a current." },
-            { "id": "s2", "text_en": "i one is three amperes flowing in. i two is four amperes flowing in." },
-            { "id": "s3", "text_en": "Current clearly has a direction — it flows from one point to another." },
-            { "id": "s4", "text_en": "By that logic, shouldn't current be a vector, just like velocity or force?" },
-            { "id": "s5", "text_en": "Most students answer yes. The next three states will show exactly why that answer is wrong." }
+            { "id": "s1", "text_en": "Two wires meet at a junction at point O, each carrying a current.",                              "pause_after_ms": 1200 },
+            { "id": "s2", "text_en": "i one is three amperes flowing in. i two is four amperes flowing in.",                            "pause_after_ms": 1200 },
+            { "id": "s3", "text_en": "Current clearly has a direction, it flows from one point to another.",                            "pause_after_ms": 1500 },
+            { "id": "s4", "text_en": "By that logic, shouldn't current be a vector, just like velocity or force?",                      "pause_after_ms": 1500 },
+            { "id": "s5", "text_en": "Most students answer yes. The next states show exactly why that answer is wrong.",                "pause_after_ms": 1500 }
           ]
-        },
-        "advance_mode": "auto_after_tts"
+        }
       },
+
       "STATE_2": {
         "title": "Vary the Angle. Reality Stays. Vector Prediction Wanders.",
-        "duration": 11,
+        "duration": 12,
+        "teaching_method": "compare_contrast",
+        "focal_primitive_id": "reality_box",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "misconception_watch": [
+          {
+            "belief": "Vector formula must be approximately right. Physics formulas always have small errors.",
+            "one_line_fix": "These two are exact. Reality is exactly seven amperes. Vector prediction is exactly six point zero eight at sixty degrees."
+          }
+        ],
         "scene_composition": [
           {
             "type": "force_arrow",
             "id": "wire_1_sweep",
-            "from": { "x": 160, "y": 230 },
+            "from": { "x": 100, "y": 250 },
             "magnitude": 3,
-            "direction_deg": -30,
-            "label": "i1 = 3 A",
+            "direction_deg_expr": "-theta_deg/2",
+            "label_expr": "i1 = {i1.toFixed(0)} A",
             "color": "#F59E0B",
-            "scale_pixels_per_unit": 60
+            "scale_pixels_per_unit": 38
           },
           {
             "type": "force_arrow",
             "id": "wire_2_sweep",
-            "from": { "x": 160, "y": 390 },
+            "from": { "x": 100, "y": 250 },
             "magnitude": 4,
-            "direction_deg": 30,
-            "label": "i2 = 4 A",
+            "direction_deg_expr": "theta_deg/2",
+            "label_expr": "i2 = {i2.toFixed(0)} A",
             "color": "#F59E0B",
-            "scale_pixels_per_unit": 60,
-            "animation": { "type": "rotate_about", "pivot": { "x": 385, "y": 310 }, "from_deg": 30, "to_deg": 150, "duration_sec": 6 }
-          },
-          {
-            "type": "annotation",
-            "id": "junction_dot",
-            "text": "junction O",
-            "position": { "x": 385, "y": 310 },
-            "style": "callout"
+            "scale_pixels_per_unit": 38
           },
           {
             "type": "annotation",
             "id": "reality_box",
-            "text": "Measured at junction\ni = i1 + i2 = 7 A\n\nConstant for every theta.",
-            "position": { "x": 500, "y": 160 },
+            "text_expr": "REALITY (ammeter)\ni = i1 + i2 = {(i1+i2).toFixed(2)} A\n\nConstant for every theta.\ntheta = {theta_deg.toFixed(0)} deg",
+            "position": { "x": 580, "y": 110 },
             "style": "formula_box",
-            "color": "#10B981"
+            "color": "#10B981",
+            "reveal_at_tts_id": "s3"
           },
           {
             "type": "annotation",
             "id": "vector_box",
-            "text": "IF current were a vector\n|i| = sqrt(i1^2 + i2^2 + 2 i1 i2 cos theta)\ntheta =   0  ->  7.00 A\ntheta =  60  ->  6.08 A\ntheta = 120  ->  3.61 A\ntheta = 180  ->  1.00 A",
-            "position": { "x": 500, "y": 340 },
+            "text_expr": "IF current were a vector\n|i| = sqrt(i1^2 + i2^2 + 2 i1 i2 cos theta)\n     = {sqrt(i1*i1 + i2*i2 + 2*i1*i2*cos(theta_deg*PI/180)).toFixed(2)} A\n\nGAP from reality\n    = {abs((i1+i2) - sqrt(i1*i1 + i2*i2 + 2*i1*i2*cos(theta_deg*PI/180))).toFixed(2)} A",
+            "position": { "x": 580, "y": 280 },
             "style": "formula_box",
             "color": "#EF4444"
+          },
+          {
+            "type": "slider",
+            "id": "theta_slider",
+            "variable": "theta_deg",
+            "label": "theta (drag)",
+            "min": 0,
+            "max": 180,
+            "default": 60,
+            "step": 5,
+            "unit": "deg",
+            "position": "bottom"
+          },
+          {
+            "type": "annotation",
+            "id": "aha_banner",
+            "text": "AHA: Current adds like a number,\nnot like a vector.\nThe angle never enters.",
+            "position": { "x": 200, "y": 410 },
+            "style": "callout",
+            "color": "#FCD34D",
+            "reveal_at_tts_id": "s4"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Now the test. Let the angle between the two wires sweep from zero degrees to one hundred eighty." },
-            { "id": "s2", "text_en": "At every angle, we compare two numbers." },
-            { "id": "s3", "text_en": "Reality — what you actually measure at the junction — is always seven amperes. Three plus four. The angle does not enter the calculation." },
-            { "id": "s4", "text_en": "Vector prediction — what current would obey if it were a vector — falls from seven down to one as the angle opens up." },
-            { "id": "s5", "text_en": "At sixty degrees it predicts six point zero eight amperes. Reality says seven. The prediction misses by nearly a full ampere." },
-            { "id": "s6", "text_en": "The two numbers agree only when the wires are parallel. For every other angle, they disagree. That is the failure of the vector model." }
+            { "id": "s1", "text_en": "Watch what happens when we change the angle between the two wires.",                "pause_after_ms": 1500 },
+            { "id": "s2", "text_en": "Predict, what will the ammeter read at sixty degrees?",                                "pause_after_ms": 2500 },
+            { "id": "s3", "text_en": "Reality always reads seven amperes. The angle does not enter.",                       "pause_after_ms": 1500 },
+            { "id": "s4", "text_en": "Current adds like a number, not like a vector. That is the rule.",                    "pause_after_ms": 1500 }
           ]
-        },
-        "advance_mode": "auto_after_tts"
+        }
       },
+
       "STATE_3": {
-        "title": "Kirchhoff's Junction Rule — The Formal Proof",
+        "title": "Kirchhoff's Junction Rule, The Formal Proof",
         "duration": 9,
+        "teaching_method": "narrative_socratic",
+        "focal_primitive_id": "kirchhoff_box",
+        "advance_mode": "wait_for_answer",
+        "has_prebuilt_deep_dive": false,
+        "variable_overrides": { "theta_deg": 60 },
+        "misconception_watch": [
+          {
+            "belief": "Charge conservation has nothing to do with whether current is a vector.",
+            "one_line_fix": "Charge conservation forces algebraic addition with no angle term. That is exactly what disqualifies current."
+          }
+        ],
         "scene_composition": [
           {
             "type": "force_arrow",
             "id": "wire_in_1",
-            "from": { "x": 140, "y": 240 },
+            "from": { "x": 60, "y": 230 },
             "magnitude": 3,
             "direction_deg": -25,
-            "label": "i1 (in)",
+            "label": "i1 = 3 A (in)",
             "color": "#3B82F6",
-            "scale_pixels_per_unit": 60
+            "scale_pixels_per_unit": 50
           },
           {
             "type": "force_arrow",
             "id": "wire_in_2",
-            "from": { "x": 140, "y": 380 },
+            "from": { "x": 60, "y": 330 },
             "magnitude": 4,
             "direction_deg": 25,
-            "label": "i2 (in)",
+            "label": "i2 = 4 A (in)",
             "color": "#3B82F6",
-            "scale_pixels_per_unit": 60
+            "scale_pixels_per_unit": 50
           },
           {
             "type": "force_arrow",
             "id": "wire_out",
-            "from": { "x": 385, "y": 310 },
+            "from": { "x": 250, "y": 280 },
             "magnitude": 7,
             "direction_deg": 0,
-            "label": "i (out) = 7 A",
+            "label": "i = 7 A (out)",
             "color": "#10B981",
-            "scale_pixels_per_unit": 45
+            "scale_pixels_per_unit": 28,
+            "reveal_at_tts_id": "s3"
           },
           {
             "type": "annotation",
-            "id": "kirchhoff_rule",
+            "id": "kirchhoff_box",
             "text": "Kirchhoff's junction rule\n(charge conservation)\n\nCharge in = Charge out\n=> i1 + i2 = i\n\nNO angle term.\nNO cosine.\nPure scalar arithmetic.",
-            "position": { "x": 640, "y": 220 },
+            "position": { "x": 650, "y": 280 },
             "style": "formula_box",
-            "color": "#10B981"
+            "color": "#10B981",
+            "reveal_at_tts_id": "s4"
+          },
+          {
+            "type": "derivation_step",
+            "id": "junction_proof",
+            "text": "i1 + i2 = 3 + 4 = 7 A",
+            "position": { "x": 60, "y": 420 },
+            "color": "#10B981",
+            "font_size": 18,
+            "animate_in": "handwriting"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "The formal reason is charge conservation. Whatever charge enters the junction per second must leave it per second." },
-            { "id": "s2", "text_en": "Three amperes in plus four amperes in gives seven amperes out. This is Kirchhoff's junction rule." },
-            { "id": "s3", "text_en": "Notice the equation. i one plus i two equals i. No angle. No cosine. Just plain scalar addition." },
-            { "id": "s4", "text_en": "Vectors cannot behave this way. When you add two vectors, the angle between them always enters through a cosine." },
-            { "id": "s5", "text_en": "Current has a direction of flow, but it adds like a scalar. That is why physics classifies it as a scalar despite the direction." }
+            { "id": "s1", "text_en": "Why must this be true? Charge cannot pile up at a junction.",                          "pause_after_ms": 1500 },
+            { "id": "s2", "text_en": "Predict, three amperes in here, four in there, what flows out?",                       "pause_after_ms": 2500 },
+            { "id": "s3", "text_en": "Seven amperes, the only answer that conserves charge.",                                 "pause_after_ms": 1500 },
+            { "id": "s4", "text_en": "Kirchhoff's rule. No angle term. Pure scalar arithmetic.",                              "pause_after_ms": 1500 }
           ]
-        },
-        "advance_mode": "auto_after_tts"
+        }
       },
+
       "STATE_4": {
-        "title": "JEE Trap — Assertion-Reason Practice",
-        "duration": 12,
+        "title": "The Two Conditions for a Vector",
+        "duration": 11,
+        "teaching_method": "worked_example",
+        "focal_primitive_id": "rule_box",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["condition_2_unclear", "which_test_to_apply_when", "degenerate_parallel_case"],
+        "misconception_watch": [
+          {
+            "belief": "All scalar quantities are just plain numbers without any direction-feel.",
+            "one_line_fix": "Some scalars carry direction-feel. Pressure, surface tension, current. They still fail the parallelogram-law test."
+          }
+        ],
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "jee_stem",
-            "text": "JEE Assertion-Reason\n\nAssertion (A):  Current is a vector.\nReason (R):     Current has a direction of flow.",
-            "position": { "x": 280, "y": 180 },
+            "id": "rule_box",
+            "text": "Vector requires BOTH\n\n(1) magnitude AND direction\n(2) parallelogram law\n\nCurrent satisfies (1).\nCurrent fails (2).\n\n=> Current is a scalar.",
+            "position": { "x": 200, "y": 250 },
+            "style": "formula_box",
+            "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "condition_1_line",
+            "text": "(1) magnitude + direction  <- current passes",
+            "position": { "x": 200, "y": 110 },
+            "style": "underline",
+            "color": "#10B981",
+            "reveal_at_tts_id": "s2"
+          },
+          {
+            "type": "annotation",
+            "id": "condition_2_line",
+            "text": "(2) parallelogram law  <- current FAILS",
+            "position": { "x": 200, "y": 420 },
+            "style": "underline",
+            "color": "#EF4444",
+            "reveal_at_tts_id": "s4"
+          },
+          {
+            "type": "annotation",
+            "id": "same_trap_box",
+            "text": "Same trap class\n\n* pressure\n  (F/A, magnitude only)\n* surface tension\n  (boundary scalar)\n* finite rotation\n  (axis exists, fails\n   commutativity)\n\nAll fail condition (2).",
+            "position": { "x": 580, "y": 270 },
+            "style": "callout",
+            "reveal_at_tts_id": "s4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A real vector needs two things, not one.",                                              "pause_after_ms": 1200 },
+            { "id": "s2", "text_en": "Magnitude and direction is condition one. Current passes this.",                        "pause_after_ms": 1200 },
+            { "id": "s3", "text_en": "What is condition two? Predict before reading on.",                                     "pause_after_ms": 2500 },
+            { "id": "s4", "text_en": "Obey the parallelogram law. Current fails. So do pressure, surface tension, finite rotation.", "pause_after_ms": 1500 }
+          ]
+        }
+      },
+
+      "STATE_5": {
+        "title": "Classify Six Quantities",
+        "duration": 18,
+        "teaching_method": "exploration_sliders",
+        "focal_primitive_id": "score_panel",
+        "advance_mode": "interaction_complete",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": ["pressure_seems_like_vector", "surface_tension_pull_direction", "current_classification_just_memorized"],
+        "variable_overrides": { "i1": 3, "i2": 4, "theta_deg": 60 },
+        "state_5_quantity_cards": [
+          { "id": "q_current",         "label": "Current",         "correct": "scalar", "trap_hint": "has direction-of-flow but fails parallelogram law" },
+          { "id": "q_displacement",    "label": "Displacement",    "correct": "vector", "trap_hint": "passes both conditions" },
+          { "id": "q_pressure",        "label": "Pressure",        "correct": "scalar", "trap_hint": "F/A, magnitude only" },
+          { "id": "q_force",           "label": "Force",           "correct": "vector", "trap_hint": "passes both conditions" },
+          { "id": "q_surface_tension", "label": "Surface tension", "correct": "scalar", "trap_hint": "has pull direction but obeys scalar arithmetic" },
+          { "id": "q_velocity",        "label": "Velocity",        "correct": "vector", "trap_hint": "passes both conditions" }
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "instructions",
+            "text": "Tap each quantity as Scalar or Vector.\nUse the two-condition rule.\nDirection-feel is not enough.",
+            "position": { "x": 280, "y": 130 },
+            "style": "callout",
+            "color": "#3B82F6"
+          },
+          {
+            "type": "annotation",
+            "id": "card_zone",
+            "text": "[ Card carousel renders here ]\n\nCurrent  Displacement  Pressure\nForce  Surface tension  Velocity",
+            "position": { "x": 280, "y": 290 },
+            "style": "formula_box"
+          },
+          {
+            "type": "annotation",
+            "id": "tap_zones",
+            "text": "[ Scalar ]      [ Vector ]",
+            "position": { "x": 280, "y": 410 },
             "style": "callout"
           },
           {
             "type": "annotation",
-            "id": "verdict",
-            "text": "Verdict\n\nA is FALSE.\nR is TRUE.\n\nWhy?  Direction is necessary but\nnot sufficient. The parallelogram\nlaw must also hold — it does not\nfor current.",
-            "position": { "x": 280, "y": 340 },
-            "style": "formula_box",
-            "color": "#EF4444"
-          },
-          {
-            "type": "annotation",
-            "id": "correct_answer",
-            "text": "Correct choice:\n(A is false, R is true)",
-            "position": { "x": 600, "y": 320 },
+            "id": "score_panel",
+            "text": "Score: 0 / 6\n\nThe two-condition rule:\n(1) magnitude + direction\n(2) obeys parallelogram law",
+            "position": { "x": 600, "y": 280 },
             "style": "formula_box",
             "color": "#10B981"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "This is the JEE trap you will see in assertion-reason format." },
-            { "id": "s2", "text_en": "Assertion: current is a vector. Reason: current has a direction of flow." },
-            { "id": "s3", "text_en": "Students who stop at the reason tick both true and pick the wrong option." },
-            { "id": "s4", "text_en": "The reason is true — current does have a direction. But the assertion is false." },
-            { "id": "s5", "text_en": "Having direction is only one of the two conditions for a vector. The second condition is parallelogram addition, and current fails it." },
-            { "id": "s6", "text_en": "The correct answer is: assertion false, reason true." }
+            { "id": "s1", "text_en": "Six quantities. Tap each one as scalar or vector.",                                     "pause_after_ms": 1500 },
+            { "id": "s2", "text_en": "Apply the two-condition rule. Direction-feel alone is not enough.",                     "pause_after_ms": 1800 },
+            { "id": "s3", "text_en": "Three of these are the canonical traps you just learned to dismantle.",                 "pause_after_ms": 1500 },
+            { "id": "s4", "text_en": "Tap your way through. The score panel shows your reasoning live.",                       "pause_after_ms": 1200 }
           ]
-        },
-        "advance_mode": "auto_after_tts"
+        }
       }
     }
   },
+
   "epic_c_branches": [
     {
       "branch_id": "direction_means_vector",
-      "misconception": "Any quantity with a direction is a vector",
+      "misconception": "Anything with a direction is a vector.",
       "trigger_phrases": [
         "current has direction so it is a vector",
         "anything with direction is a vector",
         "current must be a vector it flows one way",
-        "why is current not a vector even though it has direction"
+        "why is current not a vector even though it has direction",
+        "if it has direction its a vector right"
       ],
+      "state_sequence": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
       "states": {
         "STATE_1": {
-          "title": "Your Belief — Current Direction Must Make It a Vector",
+          "title": "Wrong Belief: Direction Means Vector",
           "duration": 8,
+          "teaching_method": "misconception_confrontation",
+          "focal_primitive_id": "myth_callout",
+          "advance_mode": "auto_after_tts",
           "scene_composition": [
             {
               "type": "force_arrow",
@@ -284,26 +447,28 @@
             },
             {
               "type": "annotation",
-              "id": "belief_model",
-              "text": "Your reasoning\n\nCurrent has direction.\nVectors have direction.\n=> current is a vector.\n\nWe'll test this.",
-              "position": { "x": 500, "y": 260 },
+              "id": "myth_callout",
+              "text": "Wrong belief\n\nCurrent has direction.\nVectors have direction.\n=> current is a vector.\n\nWe will test this in 3 states.",
+              "position": { "x": 540, "y": 270 },
               "style": "callout",
               "color": "#EF4444"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Your reasoning is natural. Current flows from one end of a wire to the other — it plainly has a direction." },
-              { "id": "s2", "text_en": "And everything that has a direction — velocity, force, displacement — is a vector. So current should also be a vector." },
-              { "id": "s3", "text_en": "The logic looks airtight. But it has one gap. Having a direction is the first condition for being a vector. There is a second condition, and that is where current fails." },
-              { "id": "s4", "text_en": "Let me show you the test that separates true vectors from scalars that merely carry direction." }
+              { "id": "s1", "text_en": "Your reasoning is natural. Current flows from one end of a wire to the other.",                  "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "And everything with direction, velocity, force, displacement, is a vector.",                    "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "The logic looks airtight. But there is one gap, condition two.",                                 "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "Let me show the test that separates true vectors from scalars with direction.",                  "pause_after_ms": 1200 }
             ]
-          },
-          "advance_mode": "auto_after_tts"
+          }
         },
         "STATE_2": {
-          "title": "The Parallelogram Test — What Real Vectors Do",
+          "title": "What Real Vectors Do, The Parallelogram Law",
           "duration": 10,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "test_rule",
+          "advance_mode": "auto_after_tts",
           "scene_composition": [
             {
               "type": "force_arrow",
@@ -339,25 +504,26 @@
             {
               "type": "annotation",
               "id": "test_rule",
-              "text": "Parallelogram law\n|R|^2 = |A|^2 + |B|^2 + 2|A||B| cos theta\n\nAt 90 degrees, cos = 0\n=> R = sqrt(9 + 16) = 5\n\nDisplacement obeys this.\nDoes current?",
-              "position": { "x": 540, "y": 260 },
+              "text": "Parallelogram law\n|R|^2 = |A|^2 + |B|^2 + 2|A||B| cos theta\n\nAt 90 deg: cos = 0\n=> R = sqrt(9 + 16) = 5\n\nDisplacement obeys this.\nDoes current?",
+              "position": { "x": 540, "y": 270 },
               "style": "formula_box"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Here is a real vector at work. Walk three metres east, then four metres north." },
-              { "id": "s2", "text_en": "Your final displacement is not seven metres. It is five metres at fifty-three degrees north of east." },
-              { "id": "s3", "text_en": "Displacement obeys the parallelogram law — the resultant magnitude depends on the angle between the two legs." },
-              { "id": "s4", "text_en": "That is the second condition for being a vector. Real vectors add through the parallelogram law, and the angle matters." },
-              { "id": "s5", "text_en": "Now we check whether current passes this test." }
+              { "id": "s1", "text_en": "Here is a real vector at work. Walk three metres east, then four metres north.",          "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "Your final displacement is not seven metres. It is five metres at fifty-three degrees.",   "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "Displacement obeys the parallelogram law. The angle between the legs matters.",            "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "That is condition two. Real vectors add by parallelogram law. Now we test current.",       "pause_after_ms": 1200 }
             ]
-          },
-          "advance_mode": "auto_after_tts"
+          }
         },
         "STATE_3": {
           "title": "Current Fails the Test",
           "duration": 11,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "measured_box",
+          "advance_mode": "auto_after_tts",
           "scene_composition": [
             {
               "type": "force_arrow",
@@ -381,80 +547,741 @@
             },
             {
               "type": "annotation",
-              "id": "predicted",
+              "id": "predicted_box",
               "text": "Vector prediction (wrong)\n|i| = sqrt(9 + 16 + 24 cos 60)\n    = sqrt(37) ~ 6.08 A",
-              "position": { "x": 500, "y": 180 },
+              "position": { "x": 540, "y": 190 },
               "style": "formula_box",
               "color": "#EF4444"
             },
             {
               "type": "annotation",
-              "id": "measured",
+              "id": "measured_box",
               "text": "What the ammeter reads\ni = i1 + i2\n  = 3 + 4\n  = 7 A  (always)",
-              "position": { "x": 500, "y": 340 },
+              "position": { "x": 540, "y": 350 },
               "style": "formula_box",
               "color": "#10B981"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Apply the parallelogram law to the currents at sixty degrees." },
-              { "id": "s2", "text_en": "The vector model predicts six point zero eight amperes." },
-              { "id": "s3", "text_en": "Put an ammeter on the outgoing wire and measure. You read seven amperes. Always. Every time." },
-              { "id": "s4", "text_en": "The two numbers disagree, and measurement wins. The vector model is wrong for current." },
-              { "id": "s5", "text_en": "Current carries a direction but does not obey the second condition. It fails the parallelogram law. That is why it is a scalar." }
+              { "id": "s1", "text_en": "Apply the parallelogram law to currents at sixty degrees.",                                "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "The vector model predicts six point zero eight amperes.",                                  "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "Put an ammeter on the outgoing wire. You read seven amperes. Always.",                     "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "Measurement wins. The vector model is wrong for current.",                                  "pause_after_ms": 1200 }
             ]
-          },
-          "advance_mode": "auto_after_tts"
+          }
         },
         "STATE_4": {
           "title": "The Corrected Rule",
           "duration": 9,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "two_conditions",
+          "advance_mode": "auto_after_tts",
           "scene_composition": [
             {
               "type": "annotation",
               "id": "two_conditions",
               "text": "Vector requires BOTH\n\n(1)  Has magnitude AND direction\n(2)  Obeys parallelogram law of addition\n\nCurrent satisfies (1).\nCurrent fails (2).\n\n=> Current is a scalar.",
-              "position": { "x": 300, "y": 240 },
+              "position": { "x": 280, "y": 250 },
               "style": "formula_box",
               "color": "#10B981"
             },
             {
               "type": "annotation",
               "id": "other_traps",
-              "text": "Other traps that fool\nyour original rule\n\npressure           scalar\nsurface tension    scalar\nfinite rotation    not a vector\n\nAll have direction.\nAll fail condition (2).",
-              "position": { "x": 640, "y": 240 },
+              "text": "Other traps that fool\nyour original rule\n\npressure         (scalar)\nsurface tension  (scalar)\nfinite rotation  (not vector)\n\nAll have direction.\nAll fail condition (2).",
+              "position": { "x": 600, "y": 250 },
               "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "next_time_label",
+              "text": "Next time you see a quantity\nwith direction, do not stop\nat condition one. Test (2).",
+              "position": { "x": 280, "y": 430 },
+              "style": "underline",
+              "color": "#3B82F6"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Here is the rule written cleanly. A vector needs both conditions, not just the first." },
-              { "id": "s2", "text_en": "Condition one — magnitude and direction. Condition two — obey the parallelogram law of addition." },
-              { "id": "s3", "text_en": "Current passes one and fails two, so it is a scalar." },
-              { "id": "s4", "text_en": "The same trap catches pressure, surface tension, and finite rotation. All of them have directional features, none of them obey the parallelogram law, so none of them are vectors." },
-              { "id": "s5", "text_en": "Next time you see a quantity with direction, do not stop at condition one. Test condition two." }
+              { "id": "s1", "text_en": "A vector needs both conditions, not just the first.",                                       "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "Magnitude and direction. Obey the parallelogram law of addition.",                          "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "Current passes one and fails two. So it is a scalar.",                                       "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "The same trap catches pressure, surface tension, finite rotation. Always test condition two.","pause_after_ms": 1200 }
             ]
-          },
-          "advance_mode": "auto_after_tts"
+          }
+        }
+      }
+    },
+
+    {
+      "branch_id": "pythagoras_works_at_junctions",
+      "misconception": "When two currents meet at angle theta, total = sqrt(i1^2 + i2^2 + 2 i1 i2 cos theta).",
+      "trigger_phrases": [
+        "use parallelogram for currents",
+        "currents at angle add by cosine rule",
+        "i = sqrt(i1 squared + i2 squared)",
+        "find resultant current",
+        "apply pythagoras to currents at junction"
+      ],
+      "state_sequence": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong Belief: Pythagoras Works at Junctions",
+          "duration": 9,
+          "teaching_method": "misconception_confrontation",
+          "focal_primitive_id": "wrong_working",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "jee_stem",
+              "text": "JEE Mains question\n\nTwo wires bring 3 A and 4 A into a junction\nat 60 degrees. Find total current.",
+              "position": { "x": 280, "y": 180 },
+              "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_working",
+              "text": "Wrong belief\n\ni = sqrt(i1^2 + i2^2 + 2 i1 i2 cos theta)\n  = sqrt(9 + 16 + 12)\n  = sqrt(37)\n  ~ 6.08 A\n\nApplied parallelogram law to currents.",
+              "position": { "x": 280, "y": 360 },
+              "style": "formula_box",
+              "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "common_mistake_label",
+              "text": "Common JEE Mains error.\nMechanically copying the\nvector addition formula.",
+              "position": { "x": 600, "y": 270 },
+              "style": "underline",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is a JEE Mains stem you will see in mock tests.",                                      "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "Two currents at sixty degrees. Most students reach for the parallelogram law.",              "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "They write square root of i one squared plus i two squared plus the cosine term.",          "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "It feels right. It is the formula they just learned for vector addition.",                   "pause_after_ms": 1200 },
+              { "id": "s5", "text_en": "But the answer six point zero eight is wrong. Reality is seven.",                            "pause_after_ms": 1500 }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "Place an Ammeter and Measure",
+          "duration": 9,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "ammeter_box",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "in_1",
+              "from": { "x": 160, "y": 250 },
+              "magnitude": 3,
+              "direction_deg": -30,
+              "label": "i1 = 3 A",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 60
+            },
+            {
+              "type": "force_arrow",
+              "id": "in_2",
+              "from": { "x": 160, "y": 370 },
+              "magnitude": 4,
+              "direction_deg": 30,
+              "label": "i2 = 4 A",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 60
+            },
+            {
+              "type": "force_arrow",
+              "id": "out_meas",
+              "from": { "x": 385, "y": 310 },
+              "magnitude": 7,
+              "direction_deg": 0,
+              "label": "i = 7 A",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 45
+            },
+            {
+              "type": "annotation",
+              "id": "ammeter_box",
+              "text": "Ammeter on outgoing wire\n\nReads 7.00 A\nat every angle theta.\n\nNot 6.08 A.\nNot 5.00 A at 90 deg.\nAlways 7.",
+              "position": { "x": 600, "y": 250 },
+              "style": "formula_box",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Now place an actual ammeter on the outgoing wire.",                                         "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "At every angle, every time, the ammeter reads exactly seven amperes.",                       "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "The vector formula prediction does not match the measurement.",                              "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "Measurement always wins over formula. The formula was the wrong tool.",                     "pause_after_ms": 1200 }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "Why Kirchhoff Wins",
+          "duration": 8,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "why_box",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "why_box",
+              "text": "Kirchhoff's law is not optional\n\nCharge cannot pile up.\nCharge cannot vanish.\n\nWhatever flows in must flow out.\n=> i = i1 + i2 (no angle)\n\nThe parallelogram formula\nhas no physical reason\nto apply here.",
+              "position": { "x": 280, "y": 270 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "vectors_apply_label",
+              "text": "Parallelogram law applies\nto displacements, forces,\nvelocities, fields.\n\nNot to current, not to mass\nflow rates, not to counts.",
+              "position": { "x": 600, "y": 270 },
+              "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "matching_label",
+              "text": "Right tool, right job.",
+              "position": { "x": 380, "y": 450 },
+              "style": "underline",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Why does Kirchhoff's rule win and the parallelogram law fail?",                              "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "Charge conservation is a law of nature. It forces algebraic addition.",                      "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "The parallelogram law applies to vectors. Current is not one.",                                "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "Right tool for the right job. Currents at junctions add by Kirchhoff, not by cosine.",        "pause_after_ms": 1200 }
+            ]
+          }
+        },
+        "STATE_4": {
+          "title": "The Corrected Procedure",
+          "duration": 9,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "procedure_box",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "procedure_box",
+              "text": "Currents at a junction\n\nStep 1: identify direction (in or out)\nStep 2: sum incoming\nStep 3: sum outgoing\nStep 4: incoming = outgoing\n\nNo angle ever enters.\nNo cosine, no square root.",
+              "position": { "x": 280, "y": 270 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "example_box",
+              "text": "Example\n\ni1 = 3 A in, i2 = 4 A in\ntheta = 60 (irrelevant)\ni_out = 3 + 4 = 7 A.\n\nSame answer at theta = 0,\n90, 120, 180.",
+              "position": { "x": 600, "y": 270 },
+              "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "score_label",
+              "text": "JEE-safe procedure.",
+              "position": { "x": 380, "y": 450 },
+              "style": "underline",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the JEE-safe procedure for currents at any junction.",                              "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "Identify directions, sum incoming, sum outgoing, equate them.",                              "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "No angle, no cosine, no square root. Just arithmetic.",                                       "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "If you ever reach for the parallelogram formula at a junction, you are wrong.",              "pause_after_ms": 1200 }
+            ]
+          }
+        }
+      }
+    },
+
+    {
+      "branch_id": "current_density_implies_current_is_vector",
+      "misconception": "Current density J is a vector, so current i must also be a vector.",
+      "trigger_phrases": [
+        "current density is vector so current is vector",
+        "integral of J dot dA",
+        "why is i scalar if J is vector",
+        "flux versus current",
+        "if J is vector then i is vector"
+      ],
+      "state_sequence": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong Belief: J Vector Implies i Vector",
+          "duration": 9,
+          "teaching_method": "misconception_confrontation",
+          "focal_primitive_id": "myth_J_box",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "J_arrow_1",
+              "from": { "x": 200, "y": 240 },
+              "magnitude": 2,
+              "direction_deg": 0,
+              "label": "J",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 60
+            },
+            {
+              "type": "force_arrow",
+              "id": "J_arrow_2",
+              "from": { "x": 200, "y": 310 },
+              "magnitude": 2,
+              "direction_deg": 0,
+              "label": "J",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 60
+            },
+            {
+              "type": "force_arrow",
+              "id": "J_arrow_3",
+              "from": { "x": 200, "y": 380 },
+              "magnitude": 2,
+              "direction_deg": 0,
+              "label": "J",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 60
+            },
+            {
+              "type": "annotation",
+              "id": "myth_J_box",
+              "text": "Wrong belief\n\nJ is a vector field.\ni = integral of J dot dA.\n=> i must inherit\n   the vector nature of J.",
+              "position": { "x": 540, "y": 290 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the JEE Advanced level confusion. Current density J is a vector field.",            "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "And we define current as the integral of J dot dA over the cross-section.",                  "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "If the input J is a vector, surely the output i is also a vector? It feels right.",          "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "It is wrong. The dot product changes everything. Watch.",                                     "pause_after_ms": 1200 }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "The Dot Product Collapses J to a Scalar",
+          "duration": 10,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "dot_product_box",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "J_vec",
+              "from": { "x": 180, "y": 310 },
+              "magnitude": 4,
+              "direction_deg": 30,
+              "label": "J (vector)",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 50
+            },
+            {
+              "type": "force_arrow",
+              "id": "dA_vec",
+              "from": { "x": 180, "y": 310 },
+              "magnitude": 3,
+              "direction_deg": 0,
+              "label": "dA (vector)",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 50
+            },
+            {
+              "type": "annotation",
+              "id": "dot_product_box",
+              "text": "J . dA = |J| |dA| cos theta\n\nVector . Vector = SCALAR.\n\ndot product yields a number,\nnot a vector.",
+              "position": { "x": 540, "y": 240 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "scalar_arrow_label",
+              "text": "Each contribution\nto i is a scalar.",
+              "position": { "x": 540, "y": 410 },
+              "style": "underline",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the dot product. J is a vector. dA is a vector.",                                     "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "But J dot dA is a scalar. The cosine theta turns it into a number.",                          "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "Each tiny patch of the cross-section contributes a scalar to the total.",                     "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "The dot product is where the vector nature of J disappears.",                                  "pause_after_ms": 1200 }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "Sum Over the Cross-Section",
+          "duration": 9,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "integral_box",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "integral_box",
+              "text": "i = integral over A of (J . dA)\n\nEach J . dA: scalar.\nSum of scalars: scalar.\n\ni is a scalar.\nIt has UNITS of amperes.\nNot of amperes-with-direction.",
+              "position": { "x": 280, "y": 270 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "flux_concept_label",
+              "text": "i is the FLUX of J\nthrough cross-section.\n\nFlux of any vector\nfield is always scalar.\n\n(Same as electric flux,\nmagnetic flux.)",
+              "position": { "x": 600, "y": 270 },
+              "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "j_vs_i_summary",
+              "text": "J:  vector (A/m^2)\ni:  scalar (A)",
+              "position": { "x": 280, "y": 450 },
+              "style": "underline",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "We sum the dot products over the entire cross-section.",                                      "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "Sum of scalars is a scalar. Current i is a scalar with units amperes.",                       "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "i is the flux of J through the cross-section. Flux is always scalar.",                         "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "Same as electric flux, magnetic flux. Vector field, scalar flux.",                             "pause_after_ms": 1200 }
+            ]
+          }
+        },
+        "STATE_4": {
+          "title": "J vs i, Cleanly",
+          "duration": 8,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "comparison_table",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "comparison_table",
+              "text": "Quantity     |  Type     |  Units\n-------------+-----------+--------\nJ            |  vector   |  A/m^2\ni            |  scalar   |  A\nE field      |  vector   |  V/m\nelectric flux|  scalar   |  V*m\nB field      |  vector   |  T\nmagnetic flux|  scalar   |  Wb",
+              "position": { "x": 380, "y": 270 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "rule_label",
+              "text": "Pattern\n\nField: vector.\nFlux of field: scalar.\n\nThe surface integral\ndoes the collapsing.",
+              "position": { "x": 80, "y": 270 },
+              "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "remember_label",
+              "text": "Remember the table.\nJEE Adv tests this pair.",
+              "position": { "x": 380, "y": 450 },
+              "style": "underline",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the pattern, written cleanly. Field versus flux.",                                    "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "J, electric field, magnetic field, all vectors.",                                              "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "Current, electric flux, magnetic flux, all scalars.",                                          "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "The surface integral collapses the vector. JEE Advanced tests this pair.",                     "pause_after_ms": 1200 }
+            ]
+          }
+        }
+      }
+    },
+
+    {
+      "branch_id": "scalars_can_never_have_direction",
+      "misconception": "Scalars are just numbers without any direction-feel, so anything with direction must be a vector.",
+      "trigger_phrases": [
+        "scalars cannot have direction",
+        "if it has direction it is vector",
+        "pressure has direction so it is vector",
+        "surface tension is vector",
+        "anything pointing somewhere is a vector"
+      ],
+      "state_sequence": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+      "states": {
+        "STATE_1": {
+          "title": "Wrong Belief: Direction Means Vector",
+          "duration": 9,
+          "teaching_method": "misconception_confrontation",
+          "focal_primitive_id": "three_traps_box",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "current_trap",
+              "text": "Current\n\nflows along wire\n(direction-feel)",
+              "position": { "x": 160, "y": 240 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "pressure_trap",
+              "text": "Pressure\n\npoints outward at\nevery surface\n(direction-feel)",
+              "position": { "x": 380, "y": 240 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "surface_tension_trap",
+              "text": "Surface tension\n\npulls along boundary\n(direction-feel)",
+              "position": { "x": 600, "y": 240 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "three_traps_box",
+              "text": "Wrong belief: direction-feel implies vector.\nThree counterexamples on this canvas.\nAll three are scalars.",
+              "position": { "x": 380, "y": 430 },
+              "style": "formula_box",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "If you memorized scalars are just numbers, you will fail the next three traps.",                "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "Current flows along a wire. That is direction-feel.",                                              "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "Pressure pushes outward at every point. Direction-feel.",                                          "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "Surface tension pulls along the boundary. Direction-feel.",                                        "pause_after_ms": 1500 },
+              { "id": "s5", "text_en": "All three are scalars. Direction-feel is not the same as being a vector.",                         "pause_after_ms": 1200 }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "Pressure: Direction-Feel But Magnitude-Only",
+          "duration": 10,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "pressure_definition",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "pressure_definition",
+              "text": "Pressure P = F / A\n\nF: force (vector, has direction)\nA: area (scalar magnitude)\n\nP: force-per-unit-area\n   magnitude only\n   no direction in formula\n\nThe surface element vector dA\ncarries the direction.\nNot P itself.",
+              "position": { "x": 380, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "pressure_value",
+              "text": "Air pressure at sea level\n= 1.01 x 10^5 Pa\n\nNo direction component.\nJust a number.",
+              "position": { "x": 100, "y": 280 },
+              "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "key_insight_pressure",
+              "text": "Direction-feel is a property\nof the surface vector dA,\nnot of P.",
+              "position": { "x": 380, "y": 450 },
+              "style": "underline",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is pressure. P equals force divided by area.",                                          "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "Force is a vector. Area is a magnitude. Their ratio is force-per-unit-area.",                "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "Pressure is just a number with units pascal. No direction in the formula.",                  "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "The surface element vector dA carries the direction-feel, not P itself.",                     "pause_after_ms": 1200 }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "Surface Tension: Pulls With Direction But Adds Algebraically",
+          "duration": 10,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "tension_box",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "tension_box",
+              "text": "Surface tension T\n\nT = force per unit length\n  along boundary\n\nSI unit: N / m\n\nA scalar (magnitude only).\nThe pull direction is\nset by the boundary geometry,\nnot by T itself.",
+              "position": { "x": 380, "y": 270 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "needle_example",
+              "text": "Needle floating on water\n\nSurface tension pulls\nupward along the contact\nline. The MAGNITUDE T\nis a scalar; the upward\npull comes from boundary\norientation.",
+              "position": { "x": 100, "y": 270 },
+              "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "tension_summary",
+              "text": "T adds algebraically.\nNo cosine. No vector law.",
+              "position": { "x": 380, "y": 460 },
+              "style": "underline",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Surface tension T is force per unit length, in newtons per metre.",                            "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "When a needle floats, surface tension pulls along the contact line.",                            "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "Direction-feel comes from boundary geometry. T itself is just a magnitude.",                    "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "Two surface tensions on the same boundary add algebraically. No cosine, no vector law.",        "pause_after_ms": 1200 }
+            ]
+          }
+        },
+        "STATE_4": {
+          "title": "The Corrected Class of Quantities",
+          "duration": 9,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "class_table",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "class_table",
+              "text": "Three classes\n\nA. plain scalar    (mass, time, temperature)\nB. scalar with     (current, pressure,\n   direction-feel    surface tension)\nC. vector          (force, velocity, displacement)\n\nClass B is the trap.\nMust pass parallelogram\ntest to escape into C.",
+              "position": { "x": 380, "y": 280 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "test_reminder",
+              "text": "When you meet a new\nquantity, ask:\n(1) does it have magnitude?\n(2) does it have direction?\n(3) does it obey\n    parallelogram law?\n\nAll three: vector.\nFirst two only: class B scalar.",
+              "position": { "x": 100, "y": 280 },
+              "style": "callout"
+            },
+            {
+              "type": "annotation",
+              "id": "summary_label",
+              "text": "Three classes. One test.",
+              "position": { "x": 380, "y": 450 },
+              "style": "underline",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Three classes of quantities. Plain scalar, scalar-with-direction-feel, vector.",                "pause_after_ms": 1500 },
+              { "id": "s2", "text_en": "Mass and time are class A. Current, pressure, surface tension are class B.",                    "pause_after_ms": 1500 },
+              { "id": "s3", "text_en": "Force and velocity are class C, true vectors.",                                                  "pause_after_ms": 1500 },
+              { "id": "s4", "text_en": "Class B is the trap. The parallelogram-law test is the only way to escape it.",                  "pause_after_ms": 1200 }
+            ]
+          }
         }
       }
     }
   ],
+
   "regeneration_variants": [
     {
       "variant_id": "1",
       "type": "A",
       "label": "Different currents, same junction logic",
       "physical_world": "i1 = 5 A, i2 = 12 A, any angle. Measured total always 17 A. Vector prediction drops from 17 (parallel) to 7 (anti-parallel).",
-      "same_physics": "Kirchhoff junction rule: i = i1 + i2, angle-independent"
+      "same_physics": "Kirchhoff junction rule, i = i1 + i2, angle-independent."
     },
     {
       "variant_id": "2",
       "type": "B",
       "label": "Three-wire junction (harder)",
       "physical_world": "Three wires bringing i1, i2, i3 into a junction. Measured outgoing current is i1 + i2 + i3 regardless of the three angles. Same scalar-addition behaviour, now in 3-way form.",
-      "same_physics": "Kirchhoff junction rule scales to any number of incoming wires — always scalar sum"
+      "same_physics": "Kirchhoff junction rule scales to any number of incoming wires, always scalar sum."
     }
-  ]
+  ],
+
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "x_axis": { "variable": "theta_deg", "label": "angle theta (deg)", "min": 0, "max": 180 },
+    "y_axis": { "label": "current (A)", "min": 0, "max": 9 },
+    "traces": [
+      { "id": "reality_line",     "color": "#10B981", "equation_expr": "i1 + i2",                                                                              "label": "Reality (i = i1 + i2)" },
+      { "id": "vector_pred_curve","color": "#EF4444", "equation_expr": "sqrt(i1*i1 + i2*i2 + 2*i1*i2*cos(radians(theta_deg)))",                                "label": "Vector prediction (wrong)" }
+    ],
+    "live_dot": {
+      "x_variable": "theta_deg",
+      "color": "#FCD34D",
+      "size": 8,
+      "y_expr": "i1 + i2",
+      "sync_with_panel_a_sliders": ["theta_deg", "i1", "i2"]
+    }
+  },
+
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "mark_scheme": {
+        "total_marks": 5,
+        "per_state": {
+          "STATE_1": { "marks": 1, "label": "Statement of question + claim", "cumulative": 1 },
+          "STATE_2": { "marks": 1, "label": "Test setup with junction diagram", "cumulative": 2 },
+          "STATE_3": { "marks": 1, "label": "Kirchhoff equation",              "cumulative": 3 },
+          "STATE_4": { "marks": 1, "label": "Comparison with vector law",      "cumulative": 4 },
+          "STATE_5": { "marks": 1, "label": "Conclusion",                       "cumulative": 5 }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": [
+          { "type": "derivation_step", "text": "Q. Why is electric current a scalar quantity?",                          "position": { "x": 80, "y": 80 },  "animate_in": "handwriting" },
+          { "type": "derivation_step", "text": "Statement: Current carries direction along wire but classifies as scalar.","position": { "x": 80, "y": 130 }, "animate_in": "handwriting" },
+          { "type": "mark_badge",      "marks": 1, "label": "Statement of question + claim",  "position": { "x": 660, "y": 105 } }
+        ],
+        "STATE_2": [
+          { "type": "derivation_step", "text": "Setup: i1 = 3 A, i2 = 4 A enter junction at angle theta.",               "position": { "x": 80, "y": 180 }, "animate_in": "handwriting" },
+          { "type": "derivation_step", "text": "Place ammeter on outgoing wire. Measure i_total.",                       "position": { "x": 80, "y": 220 }, "animate_in": "handwriting" },
+          { "type": "mark_badge",      "marks": 1, "label": "Test setup with junction diagram", "position": { "x": 660, "y": 200 } }
+        ],
+        "STATE_3": [
+          { "type": "derivation_step", "text": "By charge conservation at junction:",                                      "position": { "x": 80, "y": 270 }, "animate_in": "handwriting" },
+          { "type": "derivation_step", "text": "i = i1 + i2 = 3 + 4 = 7 A",                                                "position": { "x": 80, "y": 305 }, "animate_in": "handwriting" },
+          { "type": "derivation_step", "text": "(No angle term, no cos theta.)",                                            "position": { "x": 80, "y": 340 }, "animate_in": "handwriting" },
+          { "type": "mark_badge",      "marks": 1, "label": "Kirchhoff equation", "position": { "x": 660, "y": 305 } }
+        ],
+        "STATE_4": [
+          { "type": "derivation_step", "text": "Vector addition law:",                                                      "position": { "x": 80, "y": 365 }, "animate_in": "handwriting" },
+          { "type": "derivation_step", "text": "|R|^2 = |A|^2 + |B|^2 + 2|A||B| cos theta",                                "position": { "x": 80, "y": 395 }, "animate_in": "handwriting" },
+          { "type": "derivation_step", "text": "Current's law: i = i1 + i2 (no cos theta)",                                "position": { "x": 80, "y": 425 }, "animate_in": "handwriting" },
+          { "type": "mark_badge",      "marks": 1, "label": "Comparison shown",   "position": { "x": 660, "y": 395 } }
+        ],
+        "STATE_5": [
+          { "type": "derivation_step", "text": "Conclusion: current has direction-of-flow but obeys scalar arithmetic.",   "position": { "x": 80, "y": 460 }, "animate_in": "handwriting" },
+          { "type": "derivation_step", "text": "Therefore current is a scalar quantity.",                                  "position": { "x": 80, "y": 490 }, "animate_in": "handwriting" },
+          { "type": "mark_badge",      "marks": 1, "label": "Conclusion",         "position": { "x": 660, "y": 475 } }
+        ]
+      }
+    },
+    "competitive": {
+      "shortcuts": [
+        "Two-condition memory rule: vector iff (mag + direction) AND (parallelogram law). One-line filter for any new quantity.",
+        "JEE pattern, assertion-reason on current: A is FALSE, R is TRUE. Pick option (A is false, R is true).",
+        "Class of traps to memorize: pressure, surface tension, finite rotation, current. All have direction-feel, all fail condition (2)."
+      ],
+      "edge_cases": [
+        "Current density J is a vector. Current i is the area-integral i = integral of J dot dA, which collapses J to a scalar. JEE Advanced 2017 tested this pair.",
+        "Pressure has direction-of-action at any point but is defined as F/A, magnitude only. The surface element vector dA carries the direction.",
+        "Finite rotation has axis (direction) and magnitude (angle) but does NOT commute under composition, so it fails parallelogram law. Infinitesimal rotations DO commute and ARE vectors. IIT Advanced footnote."
+      ]
+    }
+  }
 }

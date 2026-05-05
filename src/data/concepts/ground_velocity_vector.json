@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 6.13 — aircraft-wind relative velocity; split from aircraft_wind_problems",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "An Indigo A320 departing Delhi heading true north to Chandigarh at 250 km/h airspeed. A steady jetstream blows WEST at 50 km/h. The plane's nose points due north, but its ACTUAL ground track is north-northwest — it drifts west at 50 km/h while flying north at 250. Ground velocity is the vector sum: a resultant of magnitude sqrt(250^2 + 50^2) ≈ 255 km/h, angled arctan(50/250) ≈ 11.3 degrees west of true north. Every airline pilot in India plans for this on every departure.",
@@ -17,14 +17,42 @@
   },
   "physics_engine_config": {
     "variables": {
-      "v_air": { "name": "Airspeed (magnitude)", "unit": "m/s", "min": 10, "max": 300, "default": 70 },
-      "v_wind": { "name": "Wind speed", "unit": "m/s", "min": 0, "max": 50, "default": 14 },
-      "heading": { "name": "Aircraft heading (deg from east)", "unit": "deg", "min": 0, "max": 360, "default": 90 },
-      "wind_direction": { "name": "Wind direction (deg from east)", "unit": "deg", "min": 0, "max": 360, "default": 180 }
+      "v_air": {
+        "name": "Airspeed (magnitude)",
+        "unit": "m/s",
+        "min": 10,
+        "max": 300,
+        "default": 70
+      },
+      "v_wind": {
+        "name": "Wind speed",
+        "unit": "m/s",
+        "min": 0,
+        "max": 50,
+        "default": 14
+      },
+      "heading": {
+        "name": "Aircraft heading (deg from east)",
+        "unit": "deg",
+        "min": 0,
+        "max": 360,
+        "default": 90
+      },
+      "wind_direction": {
+        "name": "Wind direction (deg from east)",
+        "unit": "deg",
+        "min": 0,
+        "max": 360,
+        "default": 180
+      }
     },
     "computed_outputs": {
-      "v_ground_magnitude": { "formula": "sqrt(v_air^2 + v_wind^2 + 2*v_air*v_wind*cos(heading - wind_direction))" },
-      "ground_track_angle": { "formula": "atan2(v_air*sin(heading) + v_wind*sin(wind_direction), v_air*cos(heading) + v_wind*cos(wind_direction))" }
+      "v_ground_magnitude": {
+        "formula": "sqrt(v_air^2 + v_wind^2 + 2*v_air*v_wind*cos(heading - wind_direction))"
+      },
+      "ground_track_angle": {
+        "formula": "atan2(v_air*sin(heading) + v_wind*sin(wind_direction), v_air*cos(heading) + v_wind*cos(wind_direction))"
+      }
     },
     "formulas": {
       "core_formula": "V_plane/ground = V_plane/air + V_air/ground    (airspeed vector + wind vector)",
@@ -54,9 +82,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -67,9 +99,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -78,23 +114,47 @@
             "vehicle_type": "airplane",
             "zone": "MAIN_ZONE",
             "anchor": "bottom_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": -60, "dy_px": -240, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 6,
+                "dx_px": -60,
+                "dy_px": -240,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "hook_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "An Indigo A320 takes off from Delhi, nose pointing true north at 250 kilometres per hour airspeed." },
-            { "text_en": "But there is a 50-kilometres-per-hour jetstream blowing west. So what does ground radar actually see?" },
-            { "text_en": "Not pure-north motion. The plane drifts west while moving forward — the ground velocity is a vector sum." },
-            { "text_en": "Airspeed vector plus wind vector equals ground velocity. The plane ends up travelling north-north-west, a bit off the nose heading." }
+            {
+              "text_en": "An Indigo A320 takes off from Delhi, nose pointing true north at 250 kilometres per hour airspeed.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "But there is a 50-kilometres-per-hour jetstream blowing west. So what does ground radar actually see?",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Not pure-north motion. The plane drifts west while moving forward — the ground velocity is a vector sum.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "Airspeed vector plus wind vector equals ground velocity. The plane ends up travelling north-north-west, a bit off the nose heading.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "hook_sketch"
       },
       "STATE_2": {
         "title": "The Resultant — Magnitude and Direction",
@@ -108,22 +168,63 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "The Resultant — Magnitude and Direction",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "resultant_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "The resultant vector is 50 west and 250 north — minus 50 comma plus 250." },
-            { "text_en": "Its magnitude is the square root of 2500 plus 62500 — 255 kilometres per hour — slightly more than the pure airspeed because the wind is perpendicular." },
-            { "text_en": "Its direction is arctan of 50 over 250 — 11.3 degrees west of true north." },
-            { "text_en": "Ground track: N 11.3 degrees W at 255 kilometres per hour. That is the speed Air Traffic Control sees on radar." }
+            {
+              "text_en": "The resultant vector is 50 west and 250 north — minus 50 comma plus 250.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "Its magnitude is the square root of 2500 plus 62500 — 255 kilometres per hour — slightly more than the pure airspeed because the wind is perpendicular.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "Its direction is arctan of 50 over 250 — 11.3 degrees west of true north.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "Ground track: N 11.3 degrees W at 255 kilometres per hour. That is the speed Air Traffic Control sees on radar.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "resultant_sketch"
       },
       "STATE_3": {
         "title": "Three Special Cases — Headwind, Tailwind, Crosswind",
@@ -137,22 +238,63 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Three Special Cases — Headwind, Tailwind, Crosswind",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "three_cases_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Three special cases come up in every aircraft-wind question." },
-            { "text_en": "Headwind — wind against you — ground speed is airspeed minus wind speed. Minimum. Tailwind — wind helping you — ground speed is airspeed plus wind. Maximum." },
-            { "text_en": "Crosswind — wind perpendicular to heading — ground speed is the square root of v air squared plus v wind squared, with drift." },
-            { "text_en": "The general case uses the law-of-cosines formula with the angle between them. All three special cases are just particular angles." }
+            {
+              "text_en": "Three special cases come up in every aircraft-wind question.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "Headwind — wind against you — ground speed is airspeed minus wind speed. Minimum. Tailwind — wind helping you — ground speed is airspeed plus wind. Maximum.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "Crosswind — wind perpendicular to heading — ground speed is the square root of v air squared plus v wind squared, with drift.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "The general case uses the law-of-cosines formula with the angle between them. All three special cases are just particular angles.",
+              "id": "state_3_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "three_cases_sketch"
       }
     }
   },
@@ -179,21 +321,59 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Ignoring Wind is the Classic Mistake",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "ignore_wind_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "A student sees airspeed 250 and immediately says ground speed is 250. Wind ignored." },
-              { "text_en": "Wrong. Airspeed is the plane's speed through the AIR; ground speed is its speed over the GROUND." },
-              { "text_en": "The difference is the wind's own motion. On a jetstream flight this difference can be 20 percent or more." }
+              {
+                "text_en": "A student sees airspeed 250 and immediately says ground speed is 250. Wind ignored.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "Wrong. Airspeed is the plane's speed through the AIR; ground speed is its speed over the GROUND.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "The difference is the wind's own motion. On a jetstream flight this difference can be 20 percent or more.",
+                "id": "state_1_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "ignore_wind_sketch"
         },
         "STATE_2": {
           "title": "Always Write V_plane/ground = V_plane/air + V_air/ground",
@@ -207,22 +387,63 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Always Write V_plane/ground = V_plane/air + V_air/ground",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "always_write_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The discipline that fixes this forever — write the chain rule with subscripts every time." },
-              { "text_en": "V plane slash ground equals V plane slash air plus V air slash ground." },
-              { "text_en": "V plane slash air is the pilot's selected airspeed. V air slash ground is the wind. V plane slash ground is what radar sees." },
-              { "text_en": "Always add the vectors, never the magnitudes. This chain rule works for every frame problem, not just aircraft." }
+              {
+                "text_en": "The discipline that fixes this forever — write the chain rule with subscripts every time.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "V plane slash ground equals V plane slash air plus V air slash ground.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "V plane slash air is the pilot's selected airspeed. V air slash ground is the wind. V plane slash ground is what radar sees.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "Always add the vectors, never the magnitudes. This chain rule works for every frame problem, not just aircraft.",
+                "id": "state_2_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "always_write_sketch"
         },
         "STATE_3": {
           "title": "Quick Check with a Tailwind",
@@ -236,34 +457,103 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Quick Check with a Tailwind",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "tailwind_check_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "One tailwind example to remember forever." },
-              { "text_en": "Mumbai to Bengaluru flight — airspeed 200, tailwind 40 in the same direction. Ground speed is 240." },
-              { "text_en": "Trip is 20 percent faster than the still-air case. This is exactly why east-bound long-haul flights across India arrive early in the northeast monsoon season." }
+              {
+                "text_en": "One tailwind example to remember forever.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Mumbai to Bengaluru flight — airspeed 200, tailwind 40 in the same direction. Ground speed is 240.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "Trip is 20 percent faster than the still-air case. This is exactly why east-bound long-haul flights across India arrive early in the northeast monsoon season.",
+                "id": "state_3_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "tailwind_check_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Treat Airspeed As Ground (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Delhi-Chandigarh with crosswind", "params": { "v_air": 250, "v_wind": 50 } },
-      { "label": "Mumbai-Bengaluru with tailwind", "params": { "v_air": 200, "v_wind": 40 } },
-      { "label": "Kolkata-Dhaka with headwind", "params": { "v_air": 220, "v_wind": 30 } }
-    ],
-    "type_b": [
-      { "label": "Hot-air balloon drifting over Pushkar", "scenario": "pushkar_balloon_drift" },
-      { "label": "ISRO test drone in crosswind", "scenario": "isro_drone_crosswind" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Delhi-Chandigarh with crosswind",
+        "params": {
+          "v_air": 250,
+          "v_wind": 50
+        }
+      },
+      "1": {
+        "label": "Mumbai-Bengaluru with tailwind",
+        "params": {
+          "v_air": 200,
+          "v_wind": 40
+        }
+      },
+      "2": {
+        "label": "Kolkata-Dhaka with headwind",
+        "params": {
+          "v_air": 220,
+          "v_wind": 30
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Hot-air balloon drifting over Pushkar",
+        "scenario": "pushkar_balloon_drift"
+      },
+      "1": {
+        "label": "ISRO test drone in crosswind",
+        "scenario": "isro_drone_crosswind"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

@@ -2,7 +2,7 @@
   "concept_id": "unit_vector_form",
   "concept_name": "Writing a Vector in Unit-Vector (i-hat, j-hat, k-hat) Form",
   "chapter": 5,
-  "section": "5.3",
+  "section": "5.4",
   "schema_version": "2.0.0",
   "class_level": 11,
   "source_book": "DC Pandey Chapter 5.3 — Resolution of Vectors; split from vector_components bundle",
@@ -17,13 +17,31 @@
   },
   "physics_engine_config": {
     "variables": {
-      "A_mag": { "name": "Magnitude of A", "unit": "units of A", "min": 1, "max": 10, "default": 5 },
-      "theta_deg": { "name": "Angle of A from +x axis", "unit": "deg", "min": 0, "max": 360, "default": 53 }
+      "A_mag": {
+        "name": "Magnitude of A",
+        "unit": "units of A",
+        "min": 1,
+        "max": 10,
+        "default": 5
+      },
+      "theta_deg": {
+        "name": "Angle of A from +x axis",
+        "unit": "deg",
+        "min": 0,
+        "max": 360,
+        "default": 53
+      }
     },
     "computed_outputs": {
-      "Ax": { "formula": "A_mag * cos(theta_deg * PI / 180)" },
-      "Ay": { "formula": "A_mag * sin(theta_deg * PI / 180)" },
-      "mag_check": { "formula": "sqrt((A_mag * cos(theta_deg * PI / 180))*(A_mag * cos(theta_deg * PI / 180)) + (A_mag * sin(theta_deg * PI / 180))*(A_mag * sin(theta_deg * PI / 180)))" }
+      "Ax": {
+        "formula": "A_mag * cos(theta_deg * PI / 180)"
+      },
+      "Ay": {
+        "formula": "A_mag * sin(theta_deg * PI / 180)"
+      },
+      "mag_check": {
+        "formula": "sqrt((A_mag * cos(theta_deg * PI / 180))*(A_mag * cos(theta_deg * PI / 180)) + (A_mag * sin(theta_deg * PI / 180))*(A_mag * sin(theta_deg * PI / 180)))"
+      }
     },
     "formulas": {
       "component_form": "A = Ax * i_hat + Ay * j_hat    (2D)",
@@ -49,32 +67,71 @@
           {
             "type": "force_arrow",
             "id": "orig_A",
-            "from": { "x": 220, "y": 400 },
+            "from": {
+              "x": 220,
+              "y": 400
+            },
             "magnitude": 5,
             "direction_deg": 53,
             "label": "A = 5 at 53 deg",
             "color": "#F59E0B",
             "scale_pixels_per_unit": 55,
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.8 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 0.8
+            }
           },
           {
             "type": "annotation",
             "id": "question",
             "text": "One arrow. One magnitude.\nOne angle.\n\nWhy split it into parts?\n\nBecause physics equations live\non specific axes. Force along x,\nacceleration along y, velocity along z.\n\nSplitting lets each axis be handled\nindependently — then sewn back together.",
-            "position": { "x": 540, "y": 280 },
+            "position": {
+              "x": 540,
+              "y": 280
+            },
             "style": "callout",
-            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 2,
+              "duration_sec": 1
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "state_1_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Why Split a Vector Into Parts?",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "You already know a vector as one arrow with a magnitude and a direction. So why complicate it by breaking it into pieces?" },
-            { "id": "s2", "text_en": "The reason is practical. Almost every physics equation lives on a specific axis. Newton's second law is applied along x and along y separately. Kinematics formulas work axis by axis." },
-            { "id": "s3", "text_en": "If we keep a vector as a single tilted arrow, we cannot plug it into those equations directly. We must first break it into its axis-aligned parts." },
-            { "id": "s4", "text_en": "The unit-vector form is the standard notation for this breakdown. The next three states build it step by step." }
+            {
+              "id": "s1",
+              "text_en": "You already know a vector as one arrow with a magnitude and a direction. So why complicate it by breaking it into pieces?"
+            },
+            {
+              "id": "s2",
+              "text_en": "The reason is practical. Almost every physics equation lives on a specific axis. Newton's second law is applied along x and along y separately. Kinematics formulas work axis by axis."
+            },
+            {
+              "id": "s3",
+              "text_en": "If we keep a vector as a single tilted arrow, we cannot plug it into those equations directly. We must first break it into its axis-aligned parts."
+            },
+            {
+              "id": "s4",
+              "text_en": "The unit-vector form is the standard notation for this breakdown. The next three states build it step by step."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "orig_A"
       },
       "STATE_2": {
         "title": "Meet the Unit Vectors — i-hat, j-hat, k-hat",
@@ -83,55 +140,96 @@
           {
             "type": "force_arrow",
             "id": "i_hat",
-            "from": { "x": 340, "y": 340 },
+            "from": {
+              "x": 340,
+              "y": 340
+            },
             "magnitude": 1,
             "direction_deg": 0,
             "label": "i-hat (along +x)",
             "color": "#3B82F6",
             "scale_pixels_per_unit": 70,
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 0.7 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 0.7
+            }
           },
           {
             "type": "force_arrow",
             "id": "j_hat",
-            "from": { "x": 340, "y": 340 },
+            "from": {
+              "x": 340,
+              "y": 340
+            },
             "magnitude": 1,
             "direction_deg": 90,
             "label": "j-hat (along +y)",
             "color": "#10B981",
             "scale_pixels_per_unit": 70,
-            "animation": { "type": "fade_in", "delay_sec": 1.8, "duration_sec": 0.7 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 1.8,
+              "duration_sec": 0.7
+            }
           },
           {
             "type": "force_arrow",
             "id": "k_hat",
-            "from": { "x": 340, "y": 340 },
+            "from": {
+              "x": 340,
+              "y": 340
+            },
             "magnitude": 0.7,
             "direction_deg": 135,
             "label": "k-hat (out of page)",
             "color": "#A855F7",
             "style": "dashed",
             "scale_pixels_per_unit": 70,
-            "animation": { "type": "fade_in", "delay_sec": 3.1, "duration_sec": 0.7 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 3.1,
+              "duration_sec": 0.7
+            }
           },
           {
             "type": "annotation",
             "id": "intro",
             "text": "Three special arrows\n\ni-hat points along +x\nj-hat points along +y\nk-hat points along +z\n\nEach has length EXACTLY 1.\nEach carries NO physical units\n(they are pure direction labels).\n\nPhysics adopts them as its\nstandard reference directions.",
-            "position": { "x": 580, "y": 260 },
+            "position": {
+              "x": 580,
+              "y": 260
+            },
             "style": "formula_box",
-            "animation": { "type": "fade_in", "delay_sec": 4, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 4,
+              "duration_sec": 1
+            }
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Physics fixes three reference arrows called unit vectors — i-hat, j-hat, and k-hat." },
-            { "id": "s2", "text_en": "i-hat points along the positive x-axis. j-hat points along the positive y-axis. k-hat points along the positive z-axis, out of the page." },
-            { "id": "s3", "text_en": "Each has length exactly one, and each carries no physical units. They are pure labels that say 'this way' without adding any newtons or metres of their own." },
-            { "id": "s4", "text_en": "Think of them as compass points formalised. Every vector in physics is going to be written as numbers multiplied by these three hats." }
+            {
+              "id": "s1",
+              "text_en": "Physics fixes three reference arrows called unit vectors — i-hat, j-hat, and k-hat."
+            },
+            {
+              "id": "s2",
+              "text_en": "i-hat points along the positive x-axis. j-hat points along the positive y-axis. k-hat points along the positive z-axis, out of the page."
+            },
+            {
+              "id": "s3",
+              "text_en": "Each has length exactly one, and each carries no physical units. They are pure labels that say 'this way' without adding any newtons or metres of their own."
+            },
+            {
+              "id": "s4",
+              "text_en": "Think of them as compass points formalised. Every vector in physics is going to be written as numbers multiplied by these three hats."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "i_hat"
       },
       "STATE_3": {
         "title": "Build the Vector — A = Ax i-hat + Ay j-hat",
@@ -140,7 +238,10 @@
           {
             "type": "force_arrow",
             "id": "tilt_A",
-            "from": { "x": 180, "y": 400 },
+            "from": {
+              "x": 180,
+              "y": 400
+            },
             "magnitude": 5,
             "direction_deg": 53,
             "label": "A = 5, theta = 53 deg",
@@ -150,45 +251,82 @@
           {
             "type": "force_arrow",
             "id": "Ax_part",
-            "from": { "x": 180, "y": 400 },
+            "from": {
+              "x": 180,
+              "y": 400
+            },
             "magnitude": 3,
             "direction_deg": 0,
             "label": "Ax = 3 (= 5 cos 53)",
             "color": "#3B82F6",
             "scale_pixels_per_unit": 55,
-            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 3,
+              "duration_sec": 1
+            }
           },
           {
             "type": "force_arrow",
             "id": "Ay_part",
-            "from": { "x": 345, "y": 400 },
+            "from": {
+              "x": 345,
+              "y": 400
+            },
             "magnitude": 4,
             "direction_deg": 90,
             "label": "Ay = 4 (= 5 sin 53)",
             "color": "#10B981",
             "scale_pixels_per_unit": 55,
-            "animation": { "type": "fade_in", "delay_sec": 5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 5,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "derivation",
             "text": "Drop perpendiculars\n\nShadow of A on x-axis = A cos theta\n  = 5 * 0.6 = 3\n  That is Ax.\n\nShadow of A on y-axis = A sin theta\n  = 5 * 0.8 = 4\n  That is Ay.\n\nWriting the vector\n\n  A = Ax * i-hat + Ay * j-hat\n    = 3 i-hat + 4 j-hat\n\nOne arrow. Two numbers. Two hats.\nCaptures everything about A.",
-            "position": { "x": 580, "y": 260 },
+            "position": {
+              "x": 580,
+              "y": 260
+            },
             "style": "formula_box",
             "color": "#10B981",
-            "animation": { "type": "fade_in", "delay_sec": 6.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 6.5,
+              "duration_sec": 1
+            }
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Now combine the two ideas. Take a tilted vector A of magnitude five at fifty-three degrees from the x-axis." },
-            { "id": "s2", "text_en": "Drop a perpendicular from the tip of A onto the x-axis. The horizontal shadow has length A cosine theta, which is five times zero point six equals three. That is Ax." },
-            { "id": "s3", "text_en": "Now drop a perpendicular onto the y-axis. The vertical shadow has length A sine theta, which is five times zero point eight equals four. That is Ay." },
-            { "id": "s4", "text_en": "The vector is now written as A equals three i-hat plus four j-hat. Three units along x and four units along y." },
-            { "id": "s5", "text_en": "The form is always 'number times i-hat plus number times j-hat'. The numbers carry the size. The hats carry the direction." }
+            {
+              "id": "s1",
+              "text_en": "Now combine the two ideas. Take a tilted vector A of magnitude five at fifty-three degrees from the x-axis."
+            },
+            {
+              "id": "s2",
+              "text_en": "Drop a perpendicular from the tip of A onto the x-axis. The horizontal shadow has length A cosine theta, which is five times zero point six equals three. That is Ax."
+            },
+            {
+              "id": "s3",
+              "text_en": "Now drop a perpendicular onto the y-axis. The vertical shadow has length A sine theta, which is five times zero point eight equals four. That is Ay."
+            },
+            {
+              "id": "s4",
+              "text_en": "The vector is now written as A equals three i-hat plus four j-hat. Three units along x and four units along y."
+            },
+            {
+              "id": "s5",
+              "text_en": "The form is always 'number times i-hat plus number times j-hat'. The numbers carry the size. The hats carry the direction."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "tilt_A"
       },
       "STATE_4": {
         "title": "Worked Example — A Force of 25 N at 37 deg",
@@ -197,7 +335,10 @@
           {
             "type": "force_arrow",
             "id": "force_main",
-            "from": { "x": 180, "y": 400 },
+            "from": {
+              "x": 180,
+              "y": 400
+            },
             "magnitude": 5,
             "direction_deg": 37,
             "label": "F = 25 N at 37 deg",
@@ -207,44 +348,81 @@
           {
             "type": "force_arrow",
             "id": "Fx_component",
-            "from": { "x": 180, "y": 400 },
+            "from": {
+              "x": 180,
+              "y": 400
+            },
             "magnitude": 4,
             "direction_deg": 0,
             "label": "Fx = 20 N",
             "color": "#3B82F6",
             "scale_pixels_per_unit": 55,
-            "animation": { "type": "fade_in", "delay_sec": 4, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 4,
+              "duration_sec": 1
+            }
           },
           {
             "type": "force_arrow",
             "id": "Fy_component",
-            "from": { "x": 400, "y": 400 },
+            "from": {
+              "x": 400,
+              "y": 400
+            },
             "magnitude": 3,
             "direction_deg": 90,
             "label": "Fy = 15 N",
             "color": "#10B981",
             "scale_pixels_per_unit": 55,
-            "animation": { "type": "fade_in", "delay_sec": 5.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 5.5,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "work_steps",
             "text": "Given  F = 25 N, theta = 37 deg\n\nStep 1  cos 37 = 0.8\n         sin 37 = 0.6\nStep 2  Fx = 25 * 0.8 = 20 N\n         Fy = 25 * 0.6 = 15 N\nStep 3  F = 20 i-hat + 15 j-hat  N\n\nMagnitude check\n  |F| = sqrt(400 + 225) = sqrt(625) = 25\n  Original magnitude recovered.\n\nDirection check\n  tan theta = 15 / 20 = 0.75\n  theta = 37 deg.  Correct.",
-            "position": { "x": 560, "y": 240 },
+            "position": {
+              "x": 560,
+              "y": 240
+            },
             "style": "formula_box",
-            "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 1,
+              "duration_sec": 1
+            }
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "A force of twenty-five newtons acts at thirty-seven degrees above the horizontal." },
-            { "id": "s2", "text_en": "Cosine thirty-seven is zero point eight. Sine thirty-seven is zero point six. The classic 3-4-5 triangle." },
-            { "id": "s3", "text_en": "Fx is twenty-five times zero point eight, which is twenty newtons. Fy is twenty-five times zero point six, which is fifteen." },
-            { "id": "s4", "text_en": "Write the force as twenty i-hat plus fifteen j-hat newtons. That is the full vector." },
-            { "id": "s5", "text_en": "Always finish with two sanity checks. Take the root of the sum of squares — you should recover twenty-five. Take the inverse tangent of fifteen over twenty — you should recover thirty-seven degrees. Both match, so the decomposition is correct." }
+            {
+              "id": "s1",
+              "text_en": "A force of twenty-five newtons acts at thirty-seven degrees above the horizontal."
+            },
+            {
+              "id": "s2",
+              "text_en": "Cosine thirty-seven is zero point eight. Sine thirty-seven is zero point six. The classic 3-4-5 triangle."
+            },
+            {
+              "id": "s3",
+              "text_en": "Fx is twenty-five times zero point eight, which is twenty newtons. Fy is twenty-five times zero point six, which is fifteen."
+            },
+            {
+              "id": "s4",
+              "text_en": "Write the force as twenty i-hat plus fifteen j-hat newtons. That is the full vector."
+            },
+            {
+              "id": "s5",
+              "text_en": "Always finish with two sanity checks. Take the root of the sum of squares — you should recover twenty-five. Take the inverse tangent of fifteen over twenty — you should recover thirty-seven degrees. Both match, so the decomposition is correct."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "force_main"
       }
     }
   },
@@ -266,7 +444,10 @@
             {
               "type": "force_arrow",
               "id": "bel_Ax",
-              "from": { "x": 200, "y": 400 },
+              "from": {
+                "x": 200,
+                "y": 400
+              },
               "magnitude": 3,
               "direction_deg": 0,
               "label": "Ax = 3",
@@ -276,7 +457,10 @@
             {
               "type": "force_arrow",
               "id": "bel_Ay",
-              "from": { "x": 365, "y": 400 },
+              "from": {
+                "x": 365,
+                "y": 400
+              },
               "magnitude": 4,
               "direction_deg": 90,
               "label": "Ay = 4",
@@ -287,20 +471,37 @@
               "type": "annotation",
               "id": "claim",
               "text": "Your reasoning\n\nAx = 3, Ay = 4\n=> |A| = 3 + 4 = 7?\n\nBut the diagonal arrow\nactually has length 5, not 7.\n\nWhat went wrong?",
-              "position": { "x": 540, "y": 280 },
+              "position": {
+                "x": 540,
+                "y": 280
+              },
               "style": "callout",
               "color": "#EF4444",
-              "animation": { "type": "fade_in", "delay_sec": 1, "duration_sec": 1 }
+              "animation": {
+                "type": "fade_in",
+                "delay_sec": 1,
+                "duration_sec": 1
+              }
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Students often add the two components to get the magnitude. Three plus four is seven, therefore the original vector has size seven." },
-              { "id": "s2", "text_en": "That answer feels natural because for scalar quantities — mass, money — addition is how you combine things." },
-              { "id": "s3", "text_en": "But Ax and Ay are not along the same direction. One points east, one points north. They cannot be added like scalars." }
+              {
+                "id": "s1",
+                "text_en": "Students often add the two components to get the magnitude. Three plus four is seven, therefore the original vector has size seven."
+              },
+              {
+                "id": "s2",
+                "text_en": "That answer feels natural because for scalar quantities — mass, money — addition is how you combine things."
+              },
+              {
+                "id": "s3",
+                "text_en": "But Ax and Ay are not along the same direction. One points east, one points north. They cannot be added like scalars."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "bel_Ax"
         },
         "STATE_2": {
           "title": "Follow the Arrows — You Walked a 3-4-5 Triangle",
@@ -309,7 +510,10 @@
             {
               "type": "force_arrow",
               "id": "walk_x",
-              "from": { "x": 200, "y": 400 },
+              "from": {
+                "x": 200,
+                "y": 400
+              },
               "magnitude": 3,
               "direction_deg": 0,
               "label": "3 m east",
@@ -319,7 +523,10 @@
             {
               "type": "force_arrow",
               "id": "walk_y",
-              "from": { "x": 365, "y": 400 },
+              "from": {
+                "x": 365,
+                "y": 400
+              },
               "magnitude": 4,
               "direction_deg": 90,
               "label": "4 m north",
@@ -329,34 +536,64 @@
             {
               "type": "force_arrow",
               "id": "diagonal",
-              "from": { "x": 200, "y": 400 },
+              "from": {
+                "x": 200,
+                "y": 400
+              },
               "magnitude": 5,
               "direction_deg": 53,
               "label": "|A| = 5 m (diagonal)",
               "color": "#F59E0B",
               "scale_pixels_per_unit": 55,
-              "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+              "animation": {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 1
+              }
             },
             {
               "type": "annotation",
               "id": "pyth",
               "text": "Walk 3 east, then 4 north.\nTotal distance walked: 7 m.\nEnd point: only 5 m from start.\n\nThe straight-line magnitude\nobeys Pythagoras\n|A|^2 = Ax^2 + Ay^2\n     = 9 + 16 = 25\n|A| = 5\n\nNOT 7.",
-              "position": { "x": 560, "y": 260 },
+              "position": {
+                "x": 560,
+                "y": 260
+              },
               "style": "formula_box",
               "color": "#10B981",
-              "animation": { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 1 }
+              "animation": {
+                "type": "fade_in",
+                "delay_sec": 4.5,
+                "duration_sec": 1
+              }
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Let us walk the path physically. Three metres east, then four metres north." },
-              { "id": "s2", "text_en": "Total distance on your feet — seven metres. But straight-line distance from start to finish — only five metres." },
-              { "id": "s3", "text_en": "The straight-line value is what the magnitude of A means. It obeys Pythagoras — magnitude squared equals Ax squared plus Ay squared." },
-              { "id": "s4", "text_en": "Three squared plus four squared is twenty-five. Square root is five. That is the right answer." },
-              { "id": "s5", "text_en": "Adding three and four to get seven would measure your walked path. Magnitude measures the diagonal." }
+              {
+                "id": "s1",
+                "text_en": "Let us walk the path physically. Three metres east, then four metres north."
+              },
+              {
+                "id": "s2",
+                "text_en": "Total distance on your feet — seven metres. But straight-line distance from start to finish — only five metres."
+              },
+              {
+                "id": "s3",
+                "text_en": "The straight-line value is what the magnitude of A means. It obeys Pythagoras — magnitude squared equals Ax squared plus Ay squared."
+              },
+              {
+                "id": "s4",
+                "text_en": "Three squared plus four squared is twenty-five. Square root is five. That is the right answer."
+              },
+              {
+                "id": "s5",
+                "text_en": "Adding three and four to get seven would measure your walked path. Magnitude measures the diagonal."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "walk_x"
         },
         "STATE_3": {
           "title": "The Formula You Will Always Use",
@@ -366,7 +603,10 @@
               "type": "annotation",
               "id": "final_rule",
               "text": "Magnitude from components\n\n  |A| = sqrt(Ax^2 + Ay^2)\n\nIn 3D\n  |A| = sqrt(Ax^2 + Ay^2 + Az^2)\n\nNever Ax + Ay.\nNever Ax - Ay.\nNever just |Ax|.\n\nSquare each component.\nAdd the squares.\nTake the root.",
-              "position": { "x": 380, "y": 260 },
+              "position": {
+                "x": 380,
+                "y": 260
+              },
               "style": "formula_box",
               "color": "#10B981"
             },
@@ -374,20 +614,52 @@
               "type": "annotation",
               "id": "quick_sanity",
               "text": "Sanity check\n\nFor any non-zero Ax and Ay,\n  |A|  <  Ax + Ay\n\nThe magnitude is always\nsmaller than the simple sum.\nIf your answer is larger,\nyou made a mistake.",
-              "position": { "x": 720, "y": 300 },
+              "position": {
+                "x": 720,
+                "y": 300
+              },
               "style": "callout",
-              "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+              "animation": {
+                "type": "fade_in",
+                "delay_sec": 2,
+                "duration_sec": 1
+              }
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Formula You Will Always Use",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Here is the formula to memorise. Magnitude of A equals the square root of Ax squared plus Ay squared." },
-              { "id": "s2", "text_en": "In three dimensions, add Az squared under the root. Everything else is unchanged." },
-              { "id": "s3", "text_en": "There is a quick sanity check — the magnitude is always smaller than the sum of the absolute components. If you get a magnitude that exceeds the sum, you know you added instead of taking the root." },
-              { "id": "s4", "text_en": "Square, add, root. Never just add." }
+              {
+                "id": "s1",
+                "text_en": "Here is the formula to memorise. Magnitude of A equals the square root of Ax squared plus Ay squared."
+              },
+              {
+                "id": "s2",
+                "text_en": "In three dimensions, add Az squared under the root. Everything else is unchanged."
+              },
+              {
+                "id": "s3",
+                "text_en": "There is a quick sanity check — the magnitude is always smaller than the sum of the absolute components. If you get a magnitude that exceeds the sum, you know you added instead of taking the root."
+              },
+              {
+                "id": "s4",
+                "text_en": "Square, add, root. Never just add."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "final_rule"
         }
       }
     }

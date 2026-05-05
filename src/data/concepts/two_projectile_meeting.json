@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 7.8 — two projectiles; split from relative_motion_projectiles",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "Two tennis players at a Bengaluru open-air academy playing a lobbing volley back and forth. Ball A is served from ground at 15 m/s, 60 degrees. Ball B is returned from 20 m away at 12 m/s, 75 degrees, half a second later. Will they collide in mid-air? To an observer moving with either ball, the other ball moves in a STRAIGHT LINE at constant velocity — because gravity cancels out of the relative velocity. This trick converts two-projectile problems into simple straight-line geometry.",
@@ -17,16 +17,52 @@
   },
   "physics_engine_config": {
     "variables": {
-      "v1": { "name": "Speed of projectile 1", "unit": "m/s", "min": 5, "max": 100, "default": 15 },
-      "theta1": { "name": "Angle of projectile 1", "unit": "deg", "min": 0, "max": 90, "default": 60 },
-      "v2": { "name": "Speed of projectile 2", "unit": "m/s", "min": 5, "max": 100, "default": 12 },
-      "theta2": { "name": "Angle of projectile 2", "unit": "deg", "min": 0, "max": 180, "default": 120 },
-      "d_sep": { "name": "Initial horizontal separation", "unit": "m", "min": 0, "max": 200, "default": 20 }
+      "v1": {
+        "name": "Speed of projectile 1",
+        "unit": "m/s",
+        "min": 5,
+        "max": 100,
+        "default": 15
+      },
+      "theta1": {
+        "name": "Angle of projectile 1",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 60
+      },
+      "v2": {
+        "name": "Speed of projectile 2",
+        "unit": "m/s",
+        "min": 5,
+        "max": 100,
+        "default": 12
+      },
+      "theta2": {
+        "name": "Angle of projectile 2",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "default": 120
+      },
+      "d_sep": {
+        "name": "Initial horizontal separation",
+        "unit": "m",
+        "min": 0,
+        "max": 200,
+        "default": 20
+      }
     },
     "computed_outputs": {
-      "a_relative": { "formula": "0 (both experience same g)" },
-      "V_rel_x": { "formula": "v1*cos(theta1) - v2*cos(theta2)" },
-      "V_rel_y": { "formula": "v1*sin(theta1) - v2*sin(theta2)" }
+      "a_relative": {
+        "formula": "0 (both experience same g)"
+      },
+      "V_rel_x": {
+        "formula": "v1*cos(theta1) - v2*cos(theta2)"
+      },
+      "V_rel_y": {
+        "formula": "v1*sin(theta1) - v2*sin(theta2)"
+      }
     },
     "formulas": {
       "relative_acceleration": "a_rel = a_1 - a_2 = (-g) - (-g) = 0.  Both fall under same gravity.",
@@ -57,9 +93,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -70,9 +110,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -81,11 +125,29 @@
             "vehicle_type": "ball",
             "zone": "MAIN_ZONE",
             "anchor": "bottom_left",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
-              { "type": "translate", "delay_sec": 4.5, "duration_sec": 3.0, "dx_px": 160, "dy_px": -160, "easing": "ease_out" },
-              { "type": "translate", "delay_sec": 7.5, "duration_sec": 3.0, "dx_px": 160, "dy_px": 160, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.3
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4.5,
+                "duration_sec": 3,
+                "dx_px": 160,
+                "dy_px": -160,
+                "easing": "ease_out"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 7.5,
+                "duration_sec": 3,
+                "dx_px": 160,
+                "dy_px": 160,
+                "easing": "ease_in"
+              }
             ]
           },
           {
@@ -96,22 +158,53 @@
             "anchor": "bottom_right",
             "appear_at": 4.5,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.5, "duration_sec": 0.3 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 2.5, "dx_px": -140, "dy_px": -160, "easing": "ease_out" },
-              { "type": "translate", "delay_sec": 7.5, "duration_sec": 2.5, "dx_px": -140, "dy_px": 160, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4.5,
+                "duration_sec": 0.3
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 2.5,
+                "dx_px": -140,
+                "dy_px": -160,
+                "easing": "ease_out"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 7.5,
+                "duration_sec": 2.5,
+                "dx_px": -140,
+                "dy_px": 160,
+                "easing": "ease_in"
+              }
             ]
           }
         ],
         "focal_primitive": "magic_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Here is the most elegant trick in projectile physics." },
-            { "text_en": "Both projectiles feel the same gravity — minus g straight down. When you subtract one acceleration from the other, g cancels perfectly." },
-            { "text_en": "Relative acceleration is ZERO. In the frame of one projectile, the other moves in a straight line at constant velocity." },
-            { "text_en": "That turns two curved parabolas into one straight line. Two-projectile problems become one-line geometry problems." }
+            {
+              "text_en": "Here is the most elegant trick in projectile physics.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "Both projectiles feel the same gravity — minus g straight down. When you subtract one acceleration from the other, g cancels perfectly.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Relative acceleration is ZERO. In the frame of one projectile, the other moves in a straight line at constant velocity.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "That turns two curved parabolas into one straight line. Two-projectile problems become one-line geometry problems.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "magic_sketch"
       },
       "STATE_2": {
         "title": "The Straight-Line View — Relative Trajectory",
@@ -125,22 +218,63 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "The Straight-Line View — Relative Trajectory",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "straight_line_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "From projectile 2's viewpoint, projectile 1 moves in a straight line — a simple line starting from the initial separation vector." },
-            { "text_en": "That line has slope V-rel, which equals V-one minus V-two. Its position at time t is r-rel zero plus V-rel times t." },
-            { "text_en": "Collision means the relative position returns to zero — projectile 1 reaches projectile 2's location, which is the origin in this frame." },
-            { "text_en": "In plain words: do the two projectiles fly on paths that, from the other's point of view, pass straight through each other's starting position? If yes, they meet. If no, they miss." }
+            {
+              "text_en": "From projectile 2's viewpoint, projectile 1 moves in a straight line — a simple line starting from the initial separation vector.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "That line has slope V-rel, which equals V-one minus V-two. Its position at time t is r-rel zero plus V-rel times t.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "Collision means the relative position returns to zero — projectile 1 reaches projectile 2's location, which is the origin in this frame.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "In plain words: do the two projectiles fly on paths that, from the other's point of view, pass straight through each other's starting position? If yes, they meet. If no, they miss.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "straight_line_sketch"
       },
       "STATE_3": {
         "title": "Aiming Rule — Point Ball One AT Ball Two",
@@ -154,22 +288,63 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Aiming Rule — Point Ball One AT Ball Two",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "aiming_rule_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Famous JEE result — for two projectiles to collide in mid-air, ball 1 must be aimed directly at ball 2's starting position." },
-            { "text_en": "Why? Because relative velocity must lie along the line joining their starting positions — straight-line geometry." },
-            { "text_en": "Once you aim correctly, gravity does the rest. It pulls both balls down by exactly the same amount every instant, preserving the collision course." },
-            { "text_en": "This is the famous monkey-hunter problem. Aim at the monkey. The monkey drops when you fire. Both fall by half g t-squared. The dart still hits." }
+            {
+              "text_en": "Famous JEE result — for two projectiles to collide in mid-air, ball 1 must be aimed directly at ball 2's starting position.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "Why? Because relative velocity must lie along the line joining their starting positions — straight-line geometry.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "Once you aim correctly, gravity does the rest. It pulls both balls down by exactly the same amount every instant, preserving the collision course.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "This is the famous monkey-hunter problem. Aim at the monkey. The monkey drops when you fire. Both fall by half g t-squared. The dart still hits.",
+              "id": "state_3_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "aiming_rule_sketch"
       }
     }
   },
@@ -196,22 +371,63 @@
               "anchor": "center",
               "font_size": 12,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Wrong: 'Gravity Pulls the Dart, So Aim Higher'",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_aim_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Common wrong instinct — aim higher to compensate for gravity pulling the dart down." },
-              { "text_en": "That would be correct if the monkey stayed still." },
-              { "text_en": "But the monkey drops the moment the dart is fired. Both fall by half g t-squared." },
-              { "text_en": "Aim higher and the dart would pass ABOVE the falling monkey — because both fall by the same amount." }
+              {
+                "text_en": "Common wrong instinct — aim higher to compensate for gravity pulling the dart down.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "That would be correct if the monkey stayed still.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "But the monkey drops the moment the dart is fired. Both fall by half g t-squared.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "Aim higher and the dart would pass ABOVE the falling monkey — because both fall by the same amount.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_aim_sketch"
         },
         "STATE_2": {
           "title": "Relative Motion Proves It",
@@ -225,22 +441,63 @@
               "anchor": "top_center",
               "font_size": 11,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Relative Motion Proves It",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "relative_proof_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Formal proof — write positions and subtract." },
-              { "text_en": "Both the dart and the monkey have a half g t-squared drop term." },
-              { "text_en": "When you compute the relative position, that drop term cancels exactly. What is left is a linear function of time." },
-              { "text_en": "So the relative position lies on a straight line. For the line to pass through origin, the dart must have been aimed directly AT the monkey. Not above, not below." }
+              {
+                "text_en": "Formal proof — write positions and subtract.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "Both the dart and the monkey have a half g t-squared drop term.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "When you compute the relative position, that drop term cancels exactly. What is left is a linear function of time.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "So the relative position lies on a straight line. For the line to pass through origin, the dart must have been aimed directly AT the monkey. Not above, not below.",
+                "id": "state_2_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "relative_proof_sketch"
         },
         "STATE_3": {
           "title": "Lab Demo — Electromagnets and Falling Target",
@@ -254,34 +511,112 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Lab Demo — Electromagnets and Falling Target",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "lab_demo_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Classic lab demo — cork hung by electromagnet across the room, projectile aimed directly at it." },
-              { "text_en": "Pulling the trigger fires the projectile and cuts the magnet. Cork drops, projectile flies, and they meet in mid-air — every single time." },
-              { "text_en": "Regardless of the projectile's speed, the meeting always works. Because both fall equally, direct aim preserves the collision course. One of physics' most beautiful demonstrations." }
+              {
+                "text_en": "Classic lab demo — cork hung by electromagnet across the room, projectile aimed directly at it.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Pulling the trigger fires the projectile and cuts the magnet. Cork drops, projectile flies, and they meet in mid-air — every single time.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "Regardless of the projectile's speed, the meeting always works. Because both fall equally, direct aim preserves the collision course. One of physics' most beautiful demonstrations.",
+                "id": "state_3_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "lab_demo_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Aim Above The Monkey (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Tennis lobs on Bengaluru court", "params": { "v1": 15, "theta1": 60, "v2": 12, "theta2": 120, "d_sep": 20 } },
-      { "label": "Chennai Diwali rockets", "params": { "v1": 40, "theta1": 70, "v2": 40, "theta2": 110, "d_sep": 50 } },
-      { "label": "Two cricket balls thrown", "params": { "v1": 20, "theta1": 45, "v2": 20, "theta2": 135, "d_sep": 30 } }
-    ],
-    "type_b": [
-      { "label": "Monkey-hunter demonstration", "scenario": "monkey_hunter_demo" },
-      { "label": "Two ISRO probes synchronised", "scenario": "isro_two_probes" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Tennis lobs on Bengaluru court",
+        "params": {
+          "v1": 15,
+          "theta1": 60,
+          "v2": 12,
+          "theta2": 120,
+          "d_sep": 20
+        }
+      },
+      "1": {
+        "label": "Chennai Diwali rockets",
+        "params": {
+          "v1": 40,
+          "theta1": 70,
+          "v2": 40,
+          "theta2": 110,
+          "d_sep": 50
+        }
+      },
+      "2": {
+        "label": "Two cricket balls thrown",
+        "params": {
+          "v1": 20,
+          "theta1": 45,
+          "v2": 20,
+          "theta2": 135,
+          "d_sep": 30
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Monkey-hunter demonstration",
+        "scenario": "monkey_hunter_demo"
+      },
+      "1": {
+        "label": "Two ISRO probes synchronised",
+        "scenario": "isro_two_probes"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

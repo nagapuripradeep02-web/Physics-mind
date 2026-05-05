@@ -3,19 +3,27 @@
   "concept_name": "Tension in String",
   "chapter": 8,
   "section": "8.1",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "NCERT Class 11 Physics Part I Ch.8 + HC Verma Ch.5",
+
+  "prerequisites": ["free_body_diagram", "field_forces"],
+
   "renderer_pair": {
     "panel_a": "mechanics_2d",
     "panel_b": "graph_interactive"
   },
+
   "real_world_anchor": {
     "primary": "A mango dangles from a thread tied to the ceiling. The thread pulls upward on the mango. Cut the thread and it falls — the upward pull is gone.",
     "secondary": "A bucket of water rises from a well. The rope pulls the bucket up; by Newton's third law, the bucket pulls the rope down. That mutual pull is the tension.",
     "tertiary": "An Atwood machine has unequal masses on two ends of a single rope. The system accelerates, but the tension has the same value on both sides — why?"
   },
+
   "physics_engine_config": {
     "formulas": {
-      "single_hanging_mass_equilibrium": "T = mg",
-      "single_hanging_mass_acceleration": "T = m(g - a) for upward acceleration",
+      "single_hanging_mass_equilibrium": "T = m*g",
+      "single_hanging_mass_acceleration": "T = m*(g - a) for upward acceleration",
       "atwood_tension": "T = (2 * m1 * m2 * g) / (m1 + m2)",
       "atwood_acceleration": "a = (m1 - m2) * g / (m1 + m2)"
     },
@@ -36,7 +44,7 @@
       },
       "g": {
         "name": "gravitational acceleration",
-        "unit": "m/s²",
+        "unit": "m/s^2",
         "constant": 9.8
       },
       "T": {
@@ -46,16 +54,29 @@
       },
       "a": {
         "name": "acceleration",
-        "unit": "m/s²",
+        "unit": "m/s^2",
         "derived": "(m1 - m2) * g / (m1 + m2)"
       }
     },
+    "computed_outputs": {
+      "T_atwood": { "formula": "(2 * m1 * m2 * 9.8) / (m1 + m2)" },
+      "a_atwood": { "formula": "(m1 - m2) * 9.8 / (m1 + m2)" }
+    },
+    "constraints": [
+      "A string can only PULL — it cannot push.",
+      "String tension acts AWAY from the body, along the direction of the string.",
+      "If the string breaks or goes slack, T = 0 instantly.",
+      "A rod can both push and pull; a string can only pull.",
+      "Inextensible string -> same acceleration magnitude for all connected masses.",
+      "Massless string -> tension is uniform along its length.",
+      "Massless frictionless pulley -> tension is the same on both sides."
+    ],
     "string_rules": [
       {
         "rule_number": 1,
         "name": "Inextensible string",
         "statement": "If the string is inextensible, the acceleration magnitude is the same for all masses connected by it.",
-        "implication": "|a₁| = |a₂| = ... = a"
+        "implication": "|a1| = |a2| = ... = a"
       },
       {
         "rule_number": 2,
@@ -69,29 +90,47 @@
         "statement": "If the pulley is massless and frictionless, the tension is the same on both sides of the pulley.",
         "implication": "T_left = T_right"
       }
-    ],
-    "constraints": [
-      "A string can only PULL — it cannot push.",
-      "String tension acts AWAY from the body, along the direction of the string.",
-      "If the string breaks, T = 0 instantly.",
-      "A rod can both push and pull; a string can only pull."
     ]
   },
+
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "mango_hanging_from_thread_hook",
+      "string_cut_force_vanishes",
+      "inextensible_string_shared_acceleration",
+      "massless_string_vs_massive_string",
+      "atwood_machine_formula_emerges",
+      "interactive_sliders_m1_m2"
+    ],
+    "epic_c": [
+      "string_pull_only_vs_rod",
+      "tension_uniform_in_massless_element",
+      "tension_not_always_equal_to_mg",
+      "tension_same_both_sides_ideal_pulley"
+    ],
+    "panel_b": [
+      "tension_vs_mass_harmonic_mean",
+      "acceleration_vs_mass_ratio"
+    ],
+    "board": [
+      "answer_sheet_derivation",
+      "mark_badge_accumulator"
+    ]
+  },
+
   "epic_l_path": {
     "state_count": 6,
     "states": {
       "STATE_1": {
         "title": "Mango Hanging from a Thread — What Is Holding It?",
         "duration": 5,
+        "focal_primitive_id": "mango",
         "scene_composition": [
           {
             "type": "surface",
             "id": "ceiling",
             "orientation": "horizontal",
-            "position": {
-              "x": 200,
-              "y": 80
-            },
+            "position": { "x": 200, "y": 80 },
             "length": 360,
             "texture": "wall",
             "label": "Ceiling"
@@ -101,10 +140,7 @@
             "id": "mango",
             "shape": "circle",
             "label": "Mango (1 kg)",
-            "position": {
-              "x": 380,
-              "y": 275
-            },
+            "position": { "x": 380, "y": 275 },
             "size": 38,
             "fill_color": "#F59E0B",
             "animation": {
@@ -133,39 +169,37 @@
           },
           {
             "type": "annotation",
+            "id": "hook_callout",
             "text": "Something must be pulling it up —\notherwise it would fall.\nWhere does that pull come from?",
-            "position": {
-              "x": 560,
-              "y": 220
-            },
+            "position": { "x": 560, "y": 220 },
             "style": "callout"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "A mango hangs from a thread attached to the ceiling. Gravity pulls it downward with a force of nine point eight newtons."
-            },
-            {
-              "id": "s2",
-              "text_en": "Yet it does not fall. Something upward must be balancing gravity."
-            },
-            {
-              "id": "s3",
-              "text_en": "That upward force comes from the thread. But how exactly does a thread apply a force?"
-            },
-            {
-              "id": "s4",
-              "text_en": "We call that force tension. Today we will see what tension really is and where it comes from."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "ceiling", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "thread", "enter": "draw_down", "duration": 400 },
+            { "at_t": 0.9, "show": "mango", "enter": "fade_in", "duration": 400 },
+            { "at_t": 1.4, "show": "weight", "enter": "grow_downward", "duration": 500 },
+            { "at_t": 2.1, "show": "hook_callout", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A mango hangs from a thread attached to the ceiling. Gravity pulls it downward with a force of nine point eight newtons." },
+            { "id": "s2", "text_en": "Yet it does not fall. Something upward must be balancing gravity." },
+            { "id": "s3", "text_en": "That upward force comes from the thread. But how exactly does a thread apply a force?" },
+            { "id": "s4", "text_en": "We call that force tension. Today we will see what tension really is and where it comes from." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": false
       },
+
       "STATE_2": {
         "title": "Cut the String — The Force Vanishes. Now We Know.",
         "duration": 6,
+        "focal_primitive_id": "string_vs_cut",
         "scene_composition": [
           {
             "type": "comparison_panel",
@@ -178,10 +212,7 @@
                 "shape": "circle",
                 "label": "Mango",
                 "fill_color": "#F59E0B",
-                "position": {
-                  "x": 130,
-                  "y": 140
-                },
+                "position": { "x": 130, "y": 140 },
                 "size": 38
               },
               {
@@ -191,10 +222,7 @@
                 "label": "mg",
                 "color": "#EF4444",
                 "scale_pixels_per_unit": 3,
-                "position": {
-                  "x": 130,
-                  "y": 140
-                }
+                "position": { "x": 130, "y": 140 }
               },
               {
                 "type": "force_arrow",
@@ -203,19 +231,13 @@
                 "label": "T = 9.8 N",
                 "color": "#10B981",
                 "scale_pixels_per_unit": 3,
-                "position": {
-                  "x": 130,
-                  "y": 140
-                }
+                "position": { "x": 130, "y": 140 }
               },
               {
                 "type": "annotation",
                 "text": "Equilibrium: T = mg.",
                 "color": "#10B981",
-                "position": {
-                  "x": 30,
-                  "y": 230
-                }
+                "position": { "x": 30, "y": 230 }
               }
             ],
             "right_scene": [
@@ -224,10 +246,7 @@
                 "shape": "circle",
                 "label": "Mango\n(falling)",
                 "fill_color": "#EF4444",
-                "position": {
-                  "x": 130,
-                  "y": 180
-                },
+                "position": { "x": 130, "y": 180 },
                 "size": 38
               },
               {
@@ -237,84 +256,71 @@
                 "label": "mg (only force)",
                 "color": "#EF4444",
                 "scale_pixels_per_unit": 3,
-                "position": {
-                  "x": 130,
-                  "y": 180
-                }
+                "position": { "x": 130, "y": 180 }
               },
               {
                 "type": "annotation",
                 "text": "T = 0. No string means no tension.",
                 "color": "#6B7280",
-                "position": {
-                  "x": 20,
-                  "y": 230
-                }
+                "position": { "x": 20, "y": 230 }
               }
             ]
           },
           {
+            "type": "label",
+            "id": "tension_definition_header",
+            "text": "Definition: the pulling force along a taut string.",
+            "position": { "x": 150, "y": 40 },
+            "font_size": 17,
+            "color": "#1F2937",
+            "bold": true
+          },
+          {
             "type": "annotation",
+            "id": "cut_conclusion_callout",
             "text": "Cutting the string removed exactly one thing — the upward force T. That upward force is the tension.",
-            "position": {
-              "x": 100,
-              "y": 450
-            },
+            "position": { "x": 100, "y": 450 },
             "style": "callout"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Imagine cutting the string."
-            },
-            {
-              "id": "s2",
-              "text_en": "The mango immediately starts to fall because the upward force has vanished."
-            },
-            {
-              "id": "s3",
-              "text_en": "That missing upward force was the tension. It lived inside the string."
-            },
-            {
-              "id": "s4",
-              "text_en": "At equilibrium, tension equals weight. T equals mg equals nine point eight newtons, pointing straight up along the string."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "tension_definition_header", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "string_vs_cut", "enter": "fade_in", "duration": 500 },
+            { "at_t": 1.2, "show": "cut_conclusion_callout", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Imagine cutting the string." },
+            { "id": "s2", "text_en": "The mango immediately starts to fall because the upward force has vanished." },
+            { "id": "s3", "text_en": "That missing upward force was the tension. It lived inside the string." },
+            { "id": "s4", "text_en": "At equilibrium, tension equals weight. T equals mg equals nine point eight newtons, pointing straight up along the string." }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "allow_deep_dive": false
       },
+
       "STATE_3": {
         "title": "Rule 1: Inextensible String — Same Acceleration Everywhere",
         "duration": 7,
+        "focal_primitive_id": "string_MF",
         "scene_composition": [
           {
             "type": "body",
             "id": "block_M",
             "shape": "rect",
             "label": "M",
-            "position": {
-              "x": 180,
-              "y": 280
-            },
-            "size": {
-              "w": 80,
-              "h": 70
-            },
+            "position": { "x": 180, "y": 280 },
+            "size": { "w": 80, "h": 70 },
             "fill_color": "#3B82F6"
           },
           {
             "type": "vector",
             "id": "string_MF",
-            "from": {
-              "x": 260,
-              "y": 315
-            },
-            "to": {
-              "x": 400,
-              "y": 315
-            },
+            "from": { "x": 260, "y": 315 },
+            "to": { "x": 400, "y": 315 },
             "color": "#92400E",
             "label": "Inextensible string"
           },
@@ -323,22 +329,14 @@
             "id": "block_m",
             "shape": "rect",
             "label": "m",
-            "position": {
-              "x": 400,
-              "y": 280
-            },
-            "size": {
-              "w": 70,
-              "h": 70
-            },
+            "position": { "x": 400, "y": 280 },
+            "size": { "w": 70, "h": 70 },
             "fill_color": "#F59E0B"
           },
           {
             "type": "force_arrow",
-            "from": {
-              "x": 470,
-              "y": 315
-            },
+            "id": "F_applied",
+            "from": { "x": 470, "y": 315 },
             "magnitude": 30,
             "direction_deg": 0,
             "label": "F (applied)",
@@ -367,50 +365,46 @@
           },
           {
             "type": "annotation",
+            "id": "inextensible_callout",
             "text": "Inextensible means length cannot change.\nBoth ends move at the same speed.\nSo both blocks share the same acceleration a.",
-            "position": {
-              "x": 120,
-              "y": 420
-            },
+            "position": { "x": 120, "y": 420 },
             "style": "callout"
           },
           {
             "type": "label",
+            "id": "rule_1_label",
             "text": "Rule 1",
-            "position": {
-              "x": 100,
-              "y": 120
-            },
+            "position": { "x": 100, "y": 120 },
             "font_size": 24,
             "color": "#3B82F6",
             "bold": true
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Rule one. The string is inextensible, meaning its length cannot stretch."
-            },
-            {
-              "id": "s2",
-              "text_en": "If the string cannot stretch, both of its ends must always move at the same speed."
-            },
-            {
-              "id": "s3",
-              "text_en": "Equal speed means equal acceleration. So M and m accelerate together with the same value of a."
-            },
-            {
-              "id": "s4",
-              "text_en": "This is how we build the constraint equation that links two otherwise separate blocks."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "rule_1_label,block_M,block_m", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "string_MF", "enter": "draw_right", "duration": 400 },
+            { "at_t": 0.9, "show": "F_applied", "enter": "grow_rightward", "duration": 400 },
+            { "at_t": 1.4, "show": "a_M,a_m", "enter": "grow_rightward", "duration": 400 },
+            { "at_t": 2.0, "show": "inextensible_callout", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Rule one. The string is inextensible, meaning its length cannot stretch." },
+            { "id": "s2", "text_en": "If the string cannot stretch, both of its ends must always move at the same speed." },
+            { "id": "s3", "text_en": "Equal speed means equal acceleration. So M and m accelerate together with the same value of a." },
+            { "id": "s4", "text_en": "This is how we build the constraint equation that links two otherwise separate blocks." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": true
       },
+
       "STATE_4": {
         "title": "Rules 2 and 3: Massless String, Massless Pulley — Tension Is Uniform",
         "duration": 7,
+        "focal_primitive_id": "massless_vs_massive_string",
         "scene_composition": [
           {
             "type": "comparison_panel",
@@ -420,65 +414,41 @@
             "left_scene": [
               {
                 "type": "vector",
-                "from": {
-                  "x": 60,
-                  "y": 30
-                },
-                "to": {
-                  "x": 60,
-                  "y": 240
-                },
+                "from": { "x": 60, "y": 30 },
+                "to": { "x": 60, "y": 240 },
                 "color": "#92400E",
                 "label": "Thin massless string"
               },
               {
                 "type": "label",
-                "text": "T₁ = T₂ = T₃ = T",
-                "position": {
-                  "x": 170,
-                  "y": 130
-                },
+                "text": "T1 = T2 = T3 = T",
+                "position": { "x": 170, "y": 130 },
                 "color": "#10B981"
               },
               {
                 "type": "annotation",
-                "text": "No mass inside the string →\nno extra force is needed\nto accelerate string itself.",
-                "position": {
-                  "x": 20,
-                  "y": 260
-                }
+                "text": "No mass inside the string ->\nno extra force is needed\nto accelerate string itself.",
+                "position": { "x": 20, "y": 260 }
               }
             ],
             "right_scene": [
               {
                 "type": "vector",
-                "from": {
-                  "x": 60,
-                  "y": 30
-                },
-                "to": {
-                  "x": 60,
-                  "y": 240
-                },
+                "from": { "x": 60, "y": 30 },
+                "to": { "x": 60, "y": 240 },
                 "color": "#92400E",
                 "label": "Heavy string"
               },
               {
                 "type": "label",
-                "text": "T₁ > T₂ > T₃",
-                "position": {
-                  "x": 170,
-                  "y": 130
-                },
+                "text": "T1 > T2 > T3",
+                "position": { "x": 170, "y": 130 },
                 "color": "#EF4444"
               },
               {
                 "type": "annotation",
                 "text": "Upper part also has to pull\nthe lower string's own mass.\nTension is larger at the top.",
-                "position": {
-                  "x": 20,
-                  "y": 260
-                }
+                "position": { "x": 20, "y": 260 }
               }
             ]
           },
@@ -487,60 +457,49 @@
             "id": "pulley",
             "shape": "pulley",
             "label": "Massless pulley",
-            "position": {
-              "x": 450,
-              "y": 470
-            },
+            "position": { "x": 450, "y": 470 },
             "size": 30,
             "fill_color": "#D1D5DB",
             "border_color": "#6B7280"
           },
           {
             "type": "label",
-            "text": "Rule 3: Pulley massless and frictionless → T is the same on both sides.",
-            "position": {
-              "x": 420,
-              "y": 440
-            },
+            "id": "rule_3_label",
+            "text": "Rule 3: Pulley massless and frictionless -> T is the same on both sides.",
+            "position": { "x": 380, "y": 440 },
             "font_size": 12,
             "color": "#3B82F6"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Rule two. In a massless string, the tension is the same at every point along the string."
-            },
-            {
-              "id": "s2",
-              "text_en": "The reason is simple. A massless string needs no extra force to accelerate itself."
-            },
-            {
-              "id": "s3",
-              "text_en": "Rule three. Across a massless frictionless pulley, the tension is the same on both sides."
-            },
-            {
-              "id": "s4",
-              "text_en": "These three rules together let you treat the tension as a single unknown that lives throughout the string."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "massless_vs_massive_string", "enter": "fade_in", "duration": 500 },
+            { "at_t": 1.2, "show": "pulley,rule_3_label", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Rule two. In a massless string, the tension is the same at every point along the string." },
+            { "id": "s2", "text_en": "The reason is simple. A massless string needs no extra force to accelerate itself." },
+            { "id": "s3", "text_en": "Rule three. Across a massless frictionless pulley, the tension is the same on both sides." },
+            { "id": "s4", "text_en": "These three rules together let you treat the tension as a single unknown that lives throughout the string. Tap continue." }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "allow_deep_dive": false
       },
+
       "STATE_5": {
         "title": "Atwood Machine — The Formula Emerges",
         "duration": 7,
+        "focal_primitive_id": "formula_box",
         "scene_composition": [
           {
             "type": "body",
             "id": "pulley",
             "shape": "pulley",
             "label": "Massless pulley",
-            "position": {
-              "x": 380,
-              "y": 100
-            },
+            "position": { "x": 380, "y": 100 },
             "size": 40,
             "fill_color": "#D1D5DB",
             "border_color": "#6B7280"
@@ -549,15 +508,9 @@
             "type": "body",
             "id": "mass_1",
             "shape": "rect",
-            "label_expr": "m₁ = {m1} kg",
-            "position": {
-              "x": 240,
-              "y": 265
-            },
-            "size": {
-              "w": 80,
-              "h": 70
-            },
+            "label_expr": "m1 = {m1} kg",
+            "position": { "x": 240, "y": 265 },
+            "size": { "w": 80, "h": 70 },
             "fill_color": "#3B82F6",
             "animation": {
               "type": "atwood",
@@ -570,15 +523,9 @@
             "type": "body",
             "id": "mass_2",
             "shape": "rect",
-            "label_expr": "m₂ = {m2} kg",
-            "position": {
-              "x": 440,
-              "y": 265
-            },
-            "size": {
-              "w": 80,
-              "h": 70
-            },
+            "label_expr": "m2 = {m2} kg",
+            "position": { "x": 440, "y": 265 },
+            "size": { "w": 80, "h": 70 },
             "fill_color": "#F59E0B",
             "animation": {
               "type": "atwood",
@@ -605,6 +552,7 @@
           },
           {
             "type": "force_arrow",
+            "id": "T_left",
             "from": "mass_1_top_center",
             "magnitude_expr": "(2*m1*m2*9.8)/(m1+m2)",
             "direction_deg": 90,
@@ -614,6 +562,7 @@
           },
           {
             "type": "force_arrow",
+            "id": "T_right",
             "from": "mass_2_top_center",
             "magnitude_expr": "(2*m1*m2*9.8)/(m1+m2)",
             "direction_deg": 90,
@@ -623,66 +572,63 @@
           },
           {
             "type": "force_arrow",
+            "id": "m1_weight",
             "from": "mass_1_center",
             "magnitude_expr": "m1*9.8",
             "direction_deg": 270,
-            "label_expr": "m₁g = {(m1*9.8).toFixed(1)} N",
+            "label_expr": "m1*g = {(m1*9.8).toFixed(1)} N",
             "color": "#EF4444",
             "scale_pixels_per_unit": 3
           },
           {
             "type": "force_arrow",
+            "id": "m2_weight",
             "from": "mass_2_center",
             "magnitude_expr": "m2*9.8",
             "direction_deg": 270,
-            "label_expr": "m₂g = {(m2*9.8).toFixed(1)} N",
+            "label_expr": "m2*g = {(m2*9.8).toFixed(1)} N",
             "color": "#EF4444",
             "scale_pixels_per_unit": 3
           },
           {
             "type": "formula_box",
-            "equation_expr": "T = 2m₁m₂g / (m₁+m₂) = {((2*m1*m2*9.8)/(m1+m2)).toFixed(1)} N    a = (m₁-m₂)g / (m₁+m₂) = {(((m1-m2)*9.8)/(m1+m2)).toFixed(2)} m/s²",
-            "position": {
-              "x": 60,
-              "y": 430
-            }
+            "id": "formula_box",
+            "equation_expr": "T = 2*m1*m2*g / (m1+m2) = {((2*m1*m2*9.8)/(m1+m2)).toFixed(1)} N    a = (m1-m2)*g / (m1+m2) = {(((m1-m2)*9.8)/(m1+m2)).toFixed(2)} m/s^2",
+            "position": { "x": 60, "y": 430 }
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "The Atwood machine has two masses hanging from one string over a massless pulley."
-            },
-            {
-              "id": "s2",
-              "text_en": "The heavier mass m one falls while the lighter m two rises. Both share the same tension T and the same acceleration a."
-            },
-            {
-              "id": "s3",
-              "text_en": "Apply Newton's second law to each block. Eliminate T between the two equations."
-            },
-            {
-              "id": "s4",
-              "text_en": "The result is a beautiful formula: T equals two m one m two g divided by m one plus m two — the harmonic mean of the two weights."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "pulley,string_left,string_right", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "mass_1,mass_2", "enter": "fade_in", "duration": 400 },
+            { "at_t": 1.0, "show": "m1_weight,m2_weight", "enter": "grow_downward", "duration": 500 },
+            { "at_t": 1.7, "show": "T_left,T_right", "enter": "grow_upward", "duration": 500 },
+            { "at_t": 2.4, "show": "formula_box", "enter": "typewriter", "duration": 800 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The Atwood machine has two masses hanging from one string over a massless pulley." },
+            { "id": "s2", "text_en": "The heavier mass m one falls while the lighter m two rises. Both share the same tension T and the same acceleration a." },
+            { "id": "s3", "text_en": "Apply Newton's second law to each block. Eliminate T between the two equations." },
+            { "id": "s4", "text_en": "The result is a beautiful formula: T equals two m one m two g divided by m one plus m two — the harmonic mean of the two weights." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": true
       },
+
       "STATE_6": {
         "title": "You Control It — Change Masses, See T and a Live",
         "duration": 9,
+        "focal_primitive_id": "live_formula",
         "scene_composition": [
           {
             "type": "body",
             "id": "pulley",
             "shape": "pulley",
             "label": "Pulley",
-            "position": {
-              "x": 380,
-              "y": 100
-            },
+            "position": { "x": 380, "y": 100 },
             "size": 40,
             "fill_color": "#D1D5DB",
             "border_color": "#6B7280"
@@ -691,15 +637,9 @@
             "type": "body",
             "id": "mass_1",
             "shape": "rect",
-            "label_expr": "m₁ = {m1} kg",
-            "position": {
-              "x": 240,
-              "y": 260
-            },
-            "size": {
-              "w": 80,
-              "h": 70
-            },
+            "label_expr": "m1 = {m1} kg",
+            "position": { "x": 240, "y": 260 },
+            "size": { "w": 80, "h": 70 },
             "fill_color": "#3B82F6",
             "animation": {
               "type": "atwood",
@@ -712,15 +652,9 @@
             "type": "body",
             "id": "mass_2",
             "shape": "rect",
-            "label_expr": "m₂ = {m2} kg",
-            "position": {
-              "x": 460,
-              "y": 260
-            },
-            "size": {
-              "w": 80,
-              "h": 70
-            },
+            "label_expr": "m2 = {m2} kg",
+            "position": { "x": 460, "y": 260 },
+            "size": { "w": 80, "h": 70 },
             "fill_color": "#F59E0B",
             "animation": {
               "type": "atwood",
@@ -747,6 +681,7 @@
           },
           {
             "type": "force_arrow",
+            "id": "T_left_live",
             "from": "mass_1_top_center",
             "magnitude_expr": "(2*m1*m2*9.8)/(m1+m2)",
             "direction_deg": 90,
@@ -756,6 +691,7 @@
           },
           {
             "type": "force_arrow",
+            "id": "T_right_live",
             "from": "mass_2_top_center",
             "magnitude_expr": "(2*m1*m2*9.8)/(m1+m2)",
             "direction_deg": 90,
@@ -765,63 +701,59 @@
           },
           {
             "type": "slider",
+            "id": "m1_slider",
             "variable": "m1",
             "min": 0.5,
             "max": 5,
             "step": 0.5,
             "default": 2,
-            "label": "m₁ (kg)"
+            "label": "m1 (kg)"
           },
           {
             "type": "slider",
+            "id": "m2_slider",
             "variable": "m2",
             "min": 0.5,
             "max": 5,
             "step": 0.5,
             "default": 1,
-            "label": "m₂ (kg)"
+            "label": "m2 (kg)"
           },
           {
             "type": "formula_box",
-            "equation_expr": "T = {((2*m1*m2*9.8)/(m1+m2)).toFixed(2)} N    a = {(((m1-m2)*9.8)/(m1+m2)).toFixed(2)} m/s²",
-            "position": {
-              "x": 60,
-              "y": 430
-            }
+            "id": "live_formula",
+            "equation_expr": "T = {((2*m1*m2*9.8)/(m1+m2)).toFixed(2)} N    a = {(((m1-m2)*9.8)/(m1+m2)).toFixed(2)} m/s^2",
+            "position": { "x": 60, "y": 430 }
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Drag both mass sliders and watch the system respond."
-            },
-            {
-              "id": "s2",
-              "text_en": "Set m one equal to m two. The acceleration goes to zero, and T equals mg — the system is in equilibrium."
-            },
-            {
-              "id": "s3",
-              "text_en": "Increase m one. The acceleration grows, and T sits somewhere below m one g — never above it."
-            },
-            {
-              "id": "s4",
-              "text_en": "The tension is always between m one g and m two g. It can never exceed the heavier weight."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "pulley,string_left,string_right,mass_1,mass_2,T_left_live,T_right_live,live_formula", "enter": "fade_in", "duration": 400 },
+            { "at_t": 0.6, "show": "m1_slider,m2_slider", "enter": "slide_up", "duration": 500 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Drag both mass sliders and watch the system respond." },
+            { "id": "s2", "text_en": "Set m one equal to m two. The acceleration goes to zero, and T equals mg — the system is in equilibrium." },
+            { "id": "s3", "text_en": "Increase m one. The acceleration grows, and T sits somewhere below m one g — never above it." },
+            { "id": "s4", "text_en": "The tension is always between m one g and m two g. It can never exceed the heavier weight." }
+          ]
+        },
+        "advance_mode": "interaction_complete",
+        "allow_deep_dive": false
       }
     }
   },
+
   "panel_b_config": {
     "renderer": "graph_interactive",
     "graph_type": "multi_line",
     "title": "Tension vs Mass Ratio",
-    "subtitle": "T = 2m₁m₂g / (m₁+m₂) — harmonic mean of m₁g and m₂g",
+    "subtitle": "T = 2*m1*m2*g / (m1+m2) — harmonic mean of m1*g and m2*g",
     "x_axis": {
       "variable": "m1",
-      "label": "m₁ (kg)",
+      "label": "m1 (kg)",
       "min": 0.5,
       "max": 5,
       "tick_interval": 0.5
@@ -846,7 +778,7 @@
         "id": "m1g_line",
         "equation_expr": "m1 * 9.8",
         "color": "#3B82F6",
-        "label": "m₁g",
+        "label": "m1*g",
         "style": "dashed"
       },
       {
@@ -854,7 +786,7 @@
         "type": "horizontal",
         "value_expr": "m2 * 9.8",
         "color": "#F59E0B",
-        "label_expr": "m₂g = {(m2*9.8).toFixed(1)} N",
+        "label_expr": "m2*g = {(m2*9.8).toFixed(1)} N",
         "style": "dashed"
       }
     ],
@@ -863,28 +795,23 @@
       "y_expr": "(2 * m1 * m2 * 9.8) / (m1 + m2)",
       "color": "#EF4444",
       "size": 10,
-      "sync_with_panel_a_sliders": [
-        "m1",
-        "m2"
-      ]
+      "sync_with_panel_a_sliders": ["m1", "m2"]
     },
     "annotations": [
       {
-        "text": "T always lies between m₁g and m₂g.",
-        "position": {
-          "x": 3,
-          "y": 40
-        },
+        "text": "T always lies between m1*g and m2*g.",
+        "position": { "x": 3, "y": 40 },
         "color": "#6B7280"
       }
     ]
   },
+
   "regeneration_variants": [
     {
       "variant_id": "well_bucket",
       "type": "B",
       "label": "Pulling a Bucket from a Well",
-      "physical_world": "A rope pulls a bucket of water up from a well. If accelerating upward, T = m(g + a). If decelerating, T = m(g - a).",
+      "physical_world": "A rope pulls a bucket of water up from a well. If accelerating upward, T = m*(g + a). If decelerating, T = m*(g - a).",
       "same_physics": "A string can only pull. Tension depends on the system's acceleration.",
       "scene_hint": "Well opening, bucket hanging on rope, person pulling rope. If a is upward, T is greater than mg."
     },
@@ -892,11 +819,20 @@
       "variant_id": "three_block_string",
       "type": "B",
       "label": "Three Blocks on a Smooth Surface",
-      "physical_world": "Three blocks M, m₁, m₂ on a smooth horizontal surface connected by strings. A force F pulls the end block. Find the tension in the middle string.",
+      "physical_world": "Three blocks M, m1, m2 on a smooth horizontal surface connected by strings. A force F pulls the end block. Find the tension in the middle string.",
       "same_physics": "Inextensible string means the same a for everything. Massless string means the same T throughout each segment.",
       "scene_hint": "Three blocks in a row, connected by two strings, external force on the rightmost. Solve for tension in the middle string."
+    },
+    {
+      "variant_id": "conical_pendulum",
+      "type": "B",
+      "label": "Conical Pendulum",
+      "physical_world": "A ball tied to a string swings in a horizontal circle. The string traces a cone. Tension has vertical component balancing gravity and horizontal component providing centripetal force.",
+      "same_physics": "A string can only pull along its length. Resolve T into components to handle 2D motion.",
+      "scene_hint": "String attached to a point above, ball moving in a horizontal circle. Show T along the string, mg down. T*cos(theta) = mg, T*sin(theta) = m*v^2/r."
     }
   ],
+
   "epic_c_branches": [
     {
       "branch_id": "string_can_push",
@@ -904,90 +840,80 @@
       "trigger_phrases": [
         "string can push",
         "string in compression",
-        "compression force through string"
+        "compression force through string",
+        "negative tension"
       ],
-      "state_sequence": [
-        "EPIC_C_1",
-        "EPIC_C_2"
-      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
       "states": {
         "EPIC_C_1": {
           "title": "Your Belief: String Can Push",
+          "focal_primitive_id": "string_vs_rod",
           "scene_composition": [
             {
               "type": "comparison_panel",
+              "id": "string_vs_rod",
               "left_label": "String — pull only",
               "right_label": "Rod — push AND pull",
               "left_scene": [
                 {
                   "type": "annotation",
                   "text": "Taut string: T > 0 (pull only).\nSlack string: T = 0.\nCompressing a string is impossible — it just bends.",
-                  "position": {
-                    "x": 20,
-                    "y": 100
-                  }
+                  "position": { "x": 20, "y": 100 }
                 }
               ],
               "right_scene": [
                 {
                   "type": "annotation",
                   "text": "Rod pushed: compression works.\nRod pulled: tension works.\nA rigid rod supports both directions.",
-                  "position": {
-                    "x": 20,
-                    "y": 100
-                  }
+                  "position": { "x": 20, "y": 100 }
                 }
               ]
+            },
+            {
+              "type": "label",
+              "id": "rule_label",
+              "text": "A string buckles under compression — a rod does not.",
+              "position": { "x": 130, "y": 40 },
+              "font_size": 17,
+              "color": "#1F2937",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "exam_tip",
+              "text": "Exam tip: whenever you see 'string', tension is >= 0.\nA rigid 'rod' or 'rigid link' can have negative internal force (compression).",
+              "position": { "x": 90, "y": 490 },
+              "style": "callout",
+              "color": "#F59E0B"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "This is the core difference between a string and a rigid rod."
-              },
-              {
-                "id": "s2",
-                "text_en": "A string can only pull. Try to push it and it simply buckles — it cannot carry a compression."
-              },
-              {
-                "id": "s3",
-                "text_en": "A rod is rigid. It can push and pull along its length."
-              },
-              {
-                "id": "s4",
-                "text_en": "In exam problems, whenever you see the word string, tension can only be zero or positive — never negative."
-              }
+              { "id": "s1", "text_en": "This is the core difference between a string and a rigid rod." },
+              { "id": "s2", "text_en": "A string can only pull. Try to push it and it simply buckles — it cannot carry a compression." },
+              { "id": "s3", "text_en": "A rod is rigid. It can push and pull along its length." },
+              { "id": "s4", "text_en": "In exam problems, whenever you see the word string, tension can only be zero or positive — never negative." }
             ]
           },
           "advance_mode": "auto_after_tts"
         },
         "EPIC_C_2": {
           "title": "When a String Goes Slack — T = 0, Not Negative",
+          "focal_primitive_id": "slack_callout",
           "scene_composition": [
             {
               "type": "vector",
-              "from": {
-                "x": 200,
-                "y": 100
-              },
-              "to": {
-                "x": 200,
-                "y": 300
-              },
+              "id": "taut",
+              "from": { "x": 200, "y": 100 },
+              "to": { "x": 200, "y": 300 },
               "color": "#92400E",
               "label": "Taut string (T > 0)"
             },
             {
               "type": "vector",
-              "from": {
-                "x": 450,
-                "y": 100
-              },
-              "to": {
-                "x": 450,
-                "y": 300
-              },
+              "id": "slack",
+              "from": { "x": 450, "y": 100 },
+              "to": { "x": 450, "y": 300 },
               "color": "#D1D5DB",
               "style": "dashed",
               "label": "Slack string (T = 0)"
@@ -995,53 +921,33 @@
             {
               "type": "annotation",
               "text": "Taut: T > 0.\nThe string pulls both ends toward each other.",
-              "position": {
-                "x": 40,
-                "y": 340
-              },
+              "position": { "x": 40, "y": 340 },
               "color": "#10B981"
             },
             {
               "type": "annotation",
               "text": "Slack: T = 0.\nNo force is transmitted.",
-              "position": {
-                "x": 380,
-                "y": 340
-              },
+              "position": { "x": 380, "y": 340 },
               "color": "#6B7280"
             },
             {
               "type": "annotation",
+              "id": "slack_callout",
               "text": "Tension cannot be negative. A negative T would mean pushing the ends apart — that is a rigid rod, not a string.",
-              "position": {
-                "x": 100,
-                "y": 430
-              },
+              "position": { "x": 100, "y": 430 },
               "style": "callout",
               "color": "#EF4444"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "The tension in a string is always non-negative. Either T is positive or T equals zero."
-              },
-              {
-                "id": "s2",
-                "text_en": "A zero tension simply means the string has gone slack. No force is transmitted."
-              },
-              {
-                "id": "s3",
-                "text_en": "If your calculation ever produces a negative T, your assumption about the direction of motion or about the string segment is wrong."
-              },
-              {
-                "id": "s4",
-                "text_en": "Revisit the diagram. Flip the assumed direction of acceleration or of the string segment, and redo the algebra."
-              }
+              { "id": "s1", "text_en": "The tension in a string is always non-negative. Either T is positive or T equals zero." },
+              { "id": "s2", "text_en": "A zero tension simply means the string has gone slack. No force is transmitted." },
+              { "id": "s3", "text_en": "If your calculation ever produces a negative T, your assumption about the direction of motion or about the string segment is wrong." },
+              { "id": "s4", "text_en": "Revisit the diagram. Flip the assumed direction of acceleration or of the string segment, and redo the algebra." }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "manual_click"
         }
       }
     },
@@ -1053,155 +959,368 @@
         "T1 at top is different from T2 at bottom",
         "tension varies along the string"
       ],
-      "state_sequence": [
-        "EPIC_C_1",
-        "EPIC_C_2"
-      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
       "states": {
         "EPIC_C_1": {
           "title": "Your Belief: Tension Varies Along the String",
+          "focal_primitive_id": "tension_labels",
           "scene_composition": [
             {
               "type": "vector",
-              "from": {
-                "x": 200,
-                "y": 100
-              },
-              "to": {
-                "x": 200,
-                "y": 400
-              },
+              "id": "tension_labels",
+              "from": { "x": 200, "y": 100 },
+              "to": { "x": 200, "y": 400 },
               "color": "#92400E",
               "label": "String"
             },
             {
               "type": "label",
-              "text": "T₁ at top",
-              "position": {
-                "x": 260,
-                "y": 110
-              },
+              "text": "T1 at top",
+              "position": { "x": 260, "y": 110 },
               "color": "#EF4444"
             },
             {
               "type": "label",
-              "text": "T₂ at middle?",
-              "position": {
-                "x": 260,
-                "y": 250
-              },
+              "text": "T2 at middle?",
+              "position": { "x": 260, "y": 250 },
               "color": "#EF4444"
             },
             {
               "type": "label",
-              "text": "T₃ at bottom?",
-              "position": {
-                "x": 260,
-                "y": 390
-              },
+              "text": "T3 at bottom?",
+              "position": { "x": 260, "y": 390 },
               "color": "#EF4444"
             },
             {
               "type": "annotation",
-              "text": "For a massless string: T₁ = T₂ = T₃ = T (same everywhere).\nFor a massive, accelerating string: T₁ > T₂ > T₃.",
-              "position": {
-                "x": 450,
-                "y": 200
-              },
+              "text": "For a massless string: T1 = T2 = T3 = T (same everywhere).\nFor a massive, accelerating string: T1 > T2 > T3.",
+              "position": { "x": 450, "y": 200 },
               "style": "callout"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "This is a common confusion. Does the tension vary along the string, or not?"
-              },
-              {
-                "id": "s2",
-                "text_en": "Answer: in a massless string, T is exactly the same at every point."
-              },
-              {
-                "id": "s3",
-                "text_en": "A massless string has no internal mass to accelerate, so no extra pulling is needed to carry any segment along."
-              },
-              {
-                "id": "s4",
-                "text_en": "If the string had real mass and the system were accelerating, tension would be larger at the top and smaller at the bottom."
-              }
+              { "id": "s1", "text_en": "This is a common confusion. Does the tension vary along the string, or not?" },
+              { "id": "s2", "text_en": "Answer: in a massless string, T is exactly the same at every point." },
+              { "id": "s3", "text_en": "A massless string has no internal mass to accelerate, so no extra pulling is needed to carry any segment along." },
+              { "id": "s4", "text_en": "If the string had real mass and the system were accelerating, tension would be larger at the top and smaller at the bottom." }
             ]
           },
           "advance_mode": "auto_after_tts"
         },
         "EPIC_C_2": {
           "title": "Proof: Massless String Element Has Zero Net Force",
+          "focal_primitive_id": "string_element",
           "scene_composition": [
             {
               "type": "body",
               "id": "string_element",
               "shape": "rect",
               "label": "String element (mass = 0)",
-              "position": {
-                "x": 320,
-                "y": 250
-              },
-              "size": {
-                "w": 120,
-                "h": 20
-              },
+              "position": { "x": 320, "y": 250 },
+              "size": { "w": 120, "h": 20 },
               "fill_color": "#92400E"
             },
             {
               "type": "force_arrow",
-              "from": {
-                "x": 320,
-                "y": 260
-              },
+              "id": "T1_pull",
+              "from": { "x": 320, "y": 260 },
               "magnitude": 15,
               "direction_deg": 180,
-              "label": "T₁ (pull left)",
+              "label": "T1 (pull left)",
               "color": "#3B82F6",
               "scale_pixels_per_unit": 4
             },
             {
               "type": "force_arrow",
-              "from": {
-                "x": 440,
-                "y": 260
-              },
+              "id": "T2_pull",
+              "from": { "x": 440, "y": 260 },
               "magnitude": 15,
               "direction_deg": 0,
-              "label": "T₂ (pull right)",
+              "label": "T2 (pull right)",
               "color": "#F59E0B",
               "scale_pixels_per_unit": 4
             },
             {
               "type": "formula_box",
-              "equation": "F_net = T₂ − T₁ = m_element × a = 0 × a = 0    ⇒    T₁ = T₂",
-              "position": {
-                "x": 260,
-                "y": 350
-              }
+              "id": "proof_box",
+              "equation": "F_net = T2 - T1 = m_element * a = 0 * a = 0  =>  T1 = T2",
+              "position": { "x": 260, "y": 350 }
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "Take a small element of the string. Its mass is zero."
-              },
-              {
-                "id": "s2",
-                "text_en": "Apply Newton's second law. Net force equals mass times acceleration. Mass is zero, so net force must be zero."
-              },
-              {
-                "id": "s3",
-                "text_en": "That forces T one and T two to be equal — the tensions on either side of the element must match."
-              },
-              {
-                "id": "s4",
-                "text_en": "This proof works everywhere inside the string, whether the string is straight or bent around a pulley."
-              }
+              { "id": "s1", "text_en": "Take a small element of the string. Its mass is zero." },
+              { "id": "s2", "text_en": "Apply Newton's second law. Net force equals mass times acceleration. Mass is zero, so net force must be zero." },
+              { "id": "s3", "text_en": "That forces T one and T two to be equal — the tensions on either side of the element must match." },
+              { "id": "s4", "text_en": "This proof works everywhere inside the string, whether the string is straight or bent around a pulley." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    },
+    {
+      "branch_id": "tension_always_equals_mg",
+      "misconception": "Tension in a hanging string always equals mg, even when the system is accelerating.",
+      "trigger_phrases": [
+        "tension is always mg",
+        "T equals mg in lift",
+        "tension doesn't change with acceleration",
+        "hanging mass tension is mg"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: T = mg Always",
+          "focal_primitive_id": "three_lift_panel",
+          "scene_composition": [
+            {
+              "type": "comparison_panel",
+              "id": "three_lift_panel",
+              "left_label": "Lift at rest (a = 0)",
+              "right_label": "Lift accelerating up (a > 0)",
+              "left_scene": [
+                {
+                  "type": "body",
+                  "shape": "rect",
+                  "label": "m",
+                  "fill_color": "#F59E0B",
+                  "position": { "x": 110, "y": 140 },
+                  "size": { "w": 70, "h": 60 }
+                },
+                {
+                  "type": "force_arrow",
+                  "magnitude": 10,
+                  "direction_deg": 90,
+                  "label": "T = mg",
+                  "color": "#10B981",
+                  "scale_pixels_per_unit": 3,
+                  "position": { "x": 145, "y": 165 }
+                },
+                {
+                  "type": "annotation",
+                  "text": "Equilibrium -> T = mg (correct).",
+                  "color": "#10B981",
+                  "position": { "x": 20, "y": 250 }
+                }
+              ],
+              "right_scene": [
+                {
+                  "type": "body",
+                  "shape": "rect",
+                  "label": "m",
+                  "fill_color": "#F59E0B",
+                  "position": { "x": 110, "y": 140 },
+                  "size": { "w": 70, "h": 60 }
+                },
+                {
+                  "type": "force_arrow",
+                  "magnitude": 14,
+                  "direction_deg": 90,
+                  "label": "T = m(g + a) > mg",
+                  "color": "#EF4444",
+                  "scale_pixels_per_unit": 3,
+                  "position": { "x": 145, "y": 165 }
+                },
+                {
+                  "type": "annotation",
+                  "text": "Accelerating up -> T must exceed mg.\nThe extra pull produces the acceleration.",
+                  "color": "#EF4444",
+                  "position": { "x": 20, "y": 250 }
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "id": "myth_header",
+              "text": "Myth: T = mg no matter what the lift is doing.",
+              "position": { "x": 150, "y": 40 },
+              "font_size": 17,
+              "color": "#EF4444",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "correction_callout",
+              "text": "Newton's 2nd law says T - mg = m*a.\nOnly when a = 0 does T equal mg.\nOtherwise T = m*(g + a) upward or m*(g - a) downward.",
+              "position": { "x": 100, "y": 500 },
+              "style": "callout",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Students often memorise T equals mg and then apply it blindly, even when the system is accelerating." },
+              { "id": "s2", "text_en": "That formula only holds in equilibrium — when the acceleration is zero." },
+              { "id": "s3", "text_en": "If a lift accelerates upward, the string must pull harder to produce that acceleration. T equals m times g plus a." },
+              { "id": "s4", "text_en": "If the lift accelerates downward, the string can pull less. T equals m times g minus a, and if a equals g the string goes slack and T equals zero." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "Derivation: T Follows Newton's Second Law",
+          "focal_primitive_id": "derivation_box",
+          "scene_composition": [
+            {
+              "type": "body",
+              "id": "block_inside",
+              "shape": "rect",
+              "label": "m",
+              "position": { "x": 320, "y": 220 },
+              "size": { "w": 90, "h": 80 },
+              "fill_color": "#F59E0B"
+            },
+            {
+              "type": "force_arrow",
+              "id": "T_up",
+              "from": "block_inside_top_center",
+              "magnitude": 14,
+              "direction_deg": 90,
+              "label": "T",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 3
+            },
+            {
+              "type": "force_arrow",
+              "id": "mg_down",
+              "from": "block_inside_center",
+              "magnitude": 10,
+              "direction_deg": 270,
+              "label": "mg",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 3
+            },
+            {
+              "type": "force_arrow",
+              "id": "a_up",
+              "from": "block_inside_right",
+              "magnitude": 4,
+              "direction_deg": 90,
+              "label": "a (lift)",
+              "color": "#8B5CF6",
+              "scale_pixels_per_unit": 3
+            },
+            {
+              "type": "formula_box",
+              "id": "derivation_box",
+              "equation": "sum(Fy) = m*a  =>  T - mg = m*a  =>  T = m*(g + a)",
+              "position": { "x": 60, "y": 430 },
+              "border_color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Here is the clean derivation. Isolate the mass and draw the free body diagram." },
+              { "id": "s2", "text_en": "Two forces: T upward and mg downward. Apply Newton's second law in the y direction." },
+              { "id": "s3", "text_en": "T minus mg equals m a. Rearranging, T equals m times g plus a." },
+              { "id": "s4", "text_en": "For an upward acceleration, a is positive and T exceeds mg. For a downward acceleration, a is negative and T is less than mg." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    },
+    {
+      "branch_id": "different_tension_across_pulley",
+      "misconception": "The tension is different on the two sides of a pulley because the masses differ.",
+      "trigger_phrases": [
+        "different tension on each side",
+        "T1 on left and T2 on right",
+        "heavy side has more tension",
+        "unequal tensions across pulley"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Ideal Pulley: T Is the Same on Both Sides",
+          "focal_primitive_id": "pulley_proof_panel",
+          "scene_composition": [
+            {
+              "type": "comparison_panel",
+              "id": "pulley_proof_panel",
+              "left_label": "Wrong: T_left != T_right",
+              "right_label": "Correct: T_left = T_right = T",
+              "left_scene": [
+                {
+                  "type": "body",
+                  "shape": "pulley",
+                  "fill_color": "#D1D5DB",
+                  "position": { "x": 110, "y": 80 },
+                  "size": 26
+                },
+                {
+                  "type": "label",
+                  "text": "T1 (heavy side)",
+                  "position": { "x": 20, "y": 160 },
+                  "color": "#EF4444"
+                },
+                {
+                  "type": "label",
+                  "text": "T2 (light side) != T1",
+                  "position": { "x": 20, "y": 200 },
+                  "color": "#EF4444"
+                },
+                {
+                  "type": "annotation",
+                  "text": "Feels intuitive — but violates pulley physics.",
+                  "color": "#EF4444",
+                  "position": { "x": 20, "y": 260 }
+                }
+              ],
+              "right_scene": [
+                {
+                  "type": "body",
+                  "shape": "pulley",
+                  "fill_color": "#D1D5DB",
+                  "position": { "x": 110, "y": 80 },
+                  "size": 26
+                },
+                {
+                  "type": "label",
+                  "text": "T_left = T_right = T",
+                  "position": { "x": 20, "y": 170 },
+                  "color": "#10B981"
+                },
+                {
+                  "type": "formula_box",
+                  "equation": "Pulley torque: tau = (T_right - T_left)*R = I*alpha",
+                  "position": { "x": 5, "y": 220 },
+                  "border_color": "#10B981"
+                },
+                {
+                  "type": "annotation",
+                  "text": "I = 0 and alpha finite -> T_left = T_right.",
+                  "color": "#10B981",
+                  "position": { "x": 20, "y": 280 }
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "id": "ideal_header",
+              "text": "Ideal pulley = massless + frictionless.",
+              "position": { "x": 200, "y": 40 },
+              "font_size": 17,
+              "color": "#1F2937",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "exception_callout",
+              "text": "If the pulley has mass (I > 0) or friction, then T_left != T_right.\nBoard-exam problems usually say 'massless, frictionless pulley' so you can treat T as uniform.",
+              "position": { "x": 90, "y": 500 },
+              "style": "callout",
+              "color": "#F59E0B"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "It feels natural that the heavier side should 'carry' more tension. But the physics says otherwise for an ideal pulley." },
+              { "id": "s2", "text_en": "Apply Newton's rotational law to the pulley. Net torque equals moment of inertia times angular acceleration." },
+              { "id": "s3", "text_en": "For a massless pulley, moment of inertia is zero. So the net torque must be zero, which forces the two tensions to be equal." },
+              { "id": "s4", "text_en": "When the problem gives a pulley with mass, this no longer holds and you must write separate tensions on the two sides." }
             ]
           },
           "advance_mode": "auto_after_tts"
@@ -1209,5 +1328,285 @@
       }
     }
   ],
-  "schema_version": "2.0.0"
+
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 5,
+        "per_state": {
+          "STATE_1": {
+            "mark": 1,
+            "description": "Identify the hanging mass, draw FBD with mg downward and T upward, state T as the pulling force along the string."
+          },
+          "STATE_2": {
+            "mark": 1,
+            "description": "Apply equilibrium: sum(Fy) = 0 -> T = mg. State that cutting the string removes T and the mass falls under gravity alone."
+          },
+          "STATE_3": {
+            "mark": 1,
+            "description": "State Rule 1: inextensible string -> both ends share the same acceleration magnitude. Write constraint |a1| = |a2| = a."
+          },
+          "STATE_4": {
+            "mark": 1,
+            "description": "State Rules 2 and 3: massless string -> uniform T; massless frictionless pulley -> T equal on both sides. Justify using net-force-on-element argument."
+          },
+          "STATE_5": {
+            "mark": 1,
+            "description": "Atwood machine: write Newton's law for each mass, eliminate T to get a = (m1-m2)*g/(m1+m2), then T = 2*m1*m2*g/(m1+m2)."
+          }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b1_s1",
+              "text": "Step 1: Hanging mass m on a taut thread; gravity acts downward.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 100 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s2",
+              "text": "Step 2: FBD: mg down, T up along the string.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 140 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s3",
+              "text": "Step 3: Tension acts AWAY from the body along the string.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 180 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b1",
+              "mark_value": 1,
+              "text": "+1 for FBD + T direction",
+              "tied_to_state": "STATE_1",
+              "position": { "x": 680, "y": 140 }
+            }
+          ]
+        },
+        "STATE_2": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b2_s1",
+              "text": "Step 4: Equilibrium condition: sum(Fy) = 0.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 220 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s2",
+              "text": "Step 5: T - mg = 0  =>  T = mg.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 260 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s3",
+              "text": "Step 6: Cut string -> T = 0 -> mass falls freely (a = g).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 300 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b2",
+              "mark_value": 1,
+              "text": "+1 for T = mg derivation",
+              "tied_to_state": "STATE_2",
+              "position": { "x": 680, "y": 260 }
+            }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b3_s1",
+              "text": "Step 7: Rule 1 — inextensible string keeps its length constant.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 340 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s2",
+              "text": "Step 8: Therefore both ends have the same speed at all times.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 380 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s3",
+              "text": "Step 9: Constraint: |a1| = |a2| = a (common acceleration).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 420 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b3",
+              "mark_value": 1,
+              "text": "+1 for constraint equation",
+              "tied_to_state": "STATE_3",
+              "position": { "x": 680, "y": 380 }
+            }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b4_s1",
+              "text": "Step 10: Rule 2 — massless string element: F_net = 0 -> T uniform.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 460 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s2",
+              "text": "Step 11: Rule 3 — massless frictionless pulley: I = 0 -> T_left = T_right.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 500 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s3",
+              "text": "Step 12: Treat T as a single unknown for the whole system.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 540 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b4",
+              "mark_value": 1,
+              "text": "+1 for uniform-T justification",
+              "tied_to_state": "STATE_4",
+              "position": { "x": 680, "y": 500 }
+            }
+          ]
+        },
+        "STATE_5": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b5_s1",
+              "text": "Step 13: m1*g - T = m1*a   (heavier mass falls)",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 580 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b5_s2",
+              "text": "Step 14: T - m2*g = m2*a   (lighter mass rises)",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 620 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b5_s3",
+              "text": "Step 15: Add -> a = (m1-m2)*g/(m1+m2); sub back -> T = 2*m1*m2*g/(m1+m2).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 660 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b5",
+              "mark_value": 1,
+              "text": "+1 for Atwood result",
+              "tied_to_state": "STATE_5",
+              "position": { "x": 680, "y": 620 }
+            }
+          ]
+        }
+      }
+    },
+
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "id": "shortcut_T_eq_mg_static",
+          "rule": "Static hanging mass",
+          "formula": "T = m*g",
+          "use_when": "Body hangs at rest or moves at constant velocity (a = 0)."
+        },
+        {
+          "id": "shortcut_T_in_lift",
+          "rule": "Mass in an accelerating frame",
+          "formula": "T = m*(g + a)  (up)   or   m*(g - a)  (down)",
+          "use_when": "Lift accelerates or decelerates; sign of a matches direction of the lift's acceleration."
+        },
+        {
+          "id": "shortcut_atwood_T",
+          "rule": "Atwood tension",
+          "formula": "T = 2*m1*m2*g / (m1 + m2)",
+          "use_when": "Two masses over a single massless, frictionless pulley with an inextensible, massless string."
+        },
+        {
+          "id": "shortcut_atwood_a",
+          "rule": "Atwood acceleration",
+          "formula": "a = (m1 - m2)*g / (m1 + m2)",
+          "use_when": "Same Atwood setup — sign tells which mass falls."
+        },
+        {
+          "id": "shortcut_T_bounds",
+          "rule": "Sanity check for Atwood T",
+          "formula": "min(m1, m2)*g <= T <= max(m1, m2)*g",
+          "use_when": "Quickly verifying an Atwood answer — T is always between the two weights (harmonic mean)."
+        },
+        {
+          "id": "shortcut_conical_pendulum",
+          "rule": "Conical pendulum tension",
+          "formula": "T*cos(theta) = m*g  and  T*sin(theta) = m*v^2/r",
+          "use_when": "A mass swings in a horizontal circle; theta is the string's angle from vertical."
+        }
+      ],
+      "edge_cases": [
+        {
+          "id": "edge_massive_pulley",
+          "title": "Pulley with non-zero moment of inertia",
+          "trap": "Students keep T_left = T_right even though the pulley has mass.",
+          "resolution": "Treat the pulley as a rotating body. (T_left - T_right)*R = I*alpha. Combined with a = R*alpha, the tensions become unequal."
+        },
+        {
+          "id": "edge_string_over_edge_with_friction",
+          "title": "Rope over a rough edge (capstan/belt friction)",
+          "trap": "Students assume uniform tension despite the rough contact.",
+          "resolution": "Tension changes exponentially: T2 / T1 = exp(mu * theta). Use the capstan equation when sliding is impending or occurring."
+        },
+        {
+          "id": "edge_conical_pendulum_angle_from_T",
+          "title": "Finding the string angle from required speed",
+          "trap": "Students treat theta as given when only v and length are known.",
+          "resolution": "Use tan(theta) = v^2 / (r*g) with r = L*sin(theta); solve for theta numerically or by substitution."
+        },
+        {
+          "id": "edge_free_fall_slack",
+          "title": "System in free fall",
+          "trap": "Students keep T = mg when the whole apparatus is falling.",
+          "resolution": "If the entire system is in free fall (a = g downward), then in the co-falling frame, gravity is effectively zero. All strings go slack and T = 0 throughout."
+        },
+        {
+          "id": "edge_vertical_circle_top",
+          "title": "Ball on a string at the top of a vertical circle",
+          "trap": "Students forget that the minimum speed is set by T = 0, not by energy alone.",
+          "resolution": "At the top, T + mg = m*v^2/r. Minimum v is when T = 0 -> v_min = sqrt(g*r). Below this speed, the string would need to push — impossible."
+        }
+      ],
+      "formulas_shortform": {
+        "static_T": "T = m*g",
+        "lift_T": "T = m*(g +/- a)",
+        "atwood_T": "T = 2*m1*m2*g/(m1+m2)",
+        "atwood_a": "a = (m1-m2)*g/(m1+m2)",
+        "capstan": "T2/T1 = exp(mu*theta)",
+        "vertical_circle_top_min": "v_min = sqrt(g*r)"
+      }
+    }
+  }
 }

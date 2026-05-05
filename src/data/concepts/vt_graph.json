@@ -17,12 +17,28 @@
   },
   "physics_engine_config": {
     "variables": {
-      "slope_vt": { "name": "Slope of v-t graph = acceleration", "unit": "m/s^2", "min": -20, "max": 20, "default": 2 },
-      "area_vt": { "name": "Area under v-t graph = displacement", "unit": "m", "min": 0, "max": 500, "default": 50 }
+      "slope_vt": {
+        "name": "Slope of v-t graph = acceleration",
+        "unit": "m/s^2",
+        "min": -20,
+        "max": 20,
+        "default": 2
+      },
+      "area_vt": {
+        "name": "Area under v-t graph = displacement",
+        "unit": "m",
+        "min": 0,
+        "max": 500,
+        "default": 50
+      }
     },
     "computed_outputs": {
-      "acceleration_from_slope": { "formula": "2" },
-      "displacement_from_area": { "formula": "0.5 * base * height" }
+      "acceleration_from_slope": {
+        "formula": "2"
+      },
+      "displacement_from_area": {
+        "formula": "0.5 * base * height"
+      }
     },
     "formulas": {
       "slope_is_accel": "slope of v-t graph at any point = dv/dt = acceleration at that instant",
@@ -53,9 +69,13 @@
             "anchor": "top_center",
             "font_size": 13,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -66,9 +86,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 2.0,
+            "appear_at": 2,
             "animations": [
-              { "type": "fade_in", "delay_sec": 2.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -77,24 +101,51 @@
             "vehicle_type": "lorry",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.5 },
-              { "type": "translate", "delay_sec": 4.0, "duration_sec": 6.0, "dx_px": 260, "dy_px": 0, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.5
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4,
+                "duration_sec": 6,
+                "dx_px": 260,
+                "dy_px": 0,
+                "easing": "ease_in"
+              }
             ]
           }
         ],
         "focal_primitive": "vt_graph_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "A velocity-time graph plots how fast you are moving against the clock." },
-            { "text_en": "The single most important rule on a v-t graph: the slope of the line, at any point, equals the acceleration at that instant." },
-            { "text_en": "Picture a lorry leaving a toll booth on the Mumbai-Pune Expressway. It starts at zero and steadily picks up speed." },
-            { "text_en": "On the v-t graph, that steady pick-up is a straight line rising from the origin. The steeper the line, the harder the lorry is accelerating." },
-            { "text_en": "Once the lorry cruises at 80 km/h, the velocity is constant, so the v-t line becomes perfectly flat. Zero slope means zero acceleration, not zero speed." }
+            {
+              "text_en": "A velocity-time graph plots how fast you are moving against the clock.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "The single most important rule on a v-t graph: the slope of the line, at any point, equals the acceleration at that instant.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Picture a lorry leaving a toll booth on the Mumbai-Pune Expressway. It starts at zero and steadily picks up speed.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "On the v-t graph, that steady pick-up is a straight line rising from the origin. The steeper the line, the harder the lorry is accelerating.",
+              "id": "state_1_s4"
+            },
+            {
+              "text_en": "Once the lorry cruises at 80 km/h, the velocity is constant, so the v-t line becomes perfectly flat. Zero slope means zero acceleration, not zero speed.",
+              "id": "state_1_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "vt_graph_sketch"
       },
       "STATE_2": {
         "title": "v-t Graph — Area Under the Curve is Displacement",
@@ -108,9 +159,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -121,9 +176,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -132,26 +191,67 @@
             "vehicle_type": "train",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 2.0, "dx_px": 60, "dy_px": 0, "easing": "ease_in" },
-              { "type": "translate", "delay_sec": 7.0, "duration_sec": 4.0, "dx_px": 200, "dy_px": 0, "easing": "linear" },
-              { "type": "translate", "delay_sec": 11.0, "duration_sec": 2.0, "dx_px": 60, "dy_px": 0, "easing": "ease_out" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 2,
+                "dx_px": 60,
+                "dy_px": 0,
+                "easing": "ease_in"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 7,
+                "duration_sec": 4,
+                "dx_px": 200,
+                "dy_px": 0,
+                "easing": "linear"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 11,
+                "duration_sec": 2,
+                "dx_px": 60,
+                "dy_px": 0,
+                "easing": "ease_out"
+              }
             ]
           }
         ],
         "focal_primitive": "area_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "The second power of a v-t graph: the area under the curve, between any two moments, equals the displacement in that interval." },
-            { "text_en": "Take a Bengaluru Metro train leaving Cubbon Park station. It accelerates for 15 seconds, cruises at 60 km/h for 90 seconds, and decelerates for 15 seconds into M G Road." },
-            { "text_en": "On the v-t graph, that trip is a flat-topped trapezium — a triangle going up, a rectangle on top, and a triangle coming down." },
-            { "text_en": "Sum the three areas — half times 15 times 60, plus 90 times 60, plus half times 15 times 60 — and you get the full station-to-station distance, in the same time units." },
-            { "text_en": "Shape tells you acceleration from slope. Region tells you distance from area. Two powers, one diagram." }
+            {
+              "text_en": "The second power of a v-t graph: the area under the curve, between any two moments, equals the displacement in that interval.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "Take a Bengaluru Metro train leaving Cubbon Park station. It accelerates for 15 seconds, cruises at 60 km/h for 90 seconds, and decelerates for 15 seconds into M G Road.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "On the v-t graph, that trip is a flat-topped trapezium — a triangle going up, a rectangle on top, and a triangle coming down.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "Sum the three areas — half times 15 times 60, plus 90 times 60, plus half times 15 times 60 — and you get the full station-to-station distance, in the same time units.",
+              "id": "state_2_s4"
+            },
+            {
+              "text_en": "Shape tells you acceleration from slope. Region tells you distance from area. Two powers, one diagram.",
+              "id": "state_2_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "area_sketch"
       },
       "STATE_3": {
         "title": "When Velocity Crosses the Axis — Reversing Direction",
@@ -165,9 +265,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -178,9 +282,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -189,25 +297,59 @@
             "vehicle_type": "ball",
             "zone": "MAIN_ZONE",
             "anchor": "center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
-              { "type": "translate", "delay_sec": 4.5, "duration_sec": 2.5, "dx_px": 0, "dy_px": -200, "easing": "ease_out" },
-              { "type": "translate", "delay_sec": 7.0, "duration_sec": 2.5, "dx_px": 0, "dy_px": 200, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.3
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4.5,
+                "duration_sec": 2.5,
+                "dx_px": 0,
+                "dy_px": -200,
+                "easing": "ease_out"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 7,
+                "duration_sec": 2.5,
+                "dx_px": 0,
+                "dy_px": 200,
+                "easing": "ease_in"
+              }
             ]
           }
         ],
         "focal_primitive": "cross_axis_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Here is the edge case students often miss. The v-t line can cross the time axis." },
-            { "text_en": "Think of a cricketer hitting the ball straight up. The moment after contact, velocity is strongly positive — upward." },
-            { "text_en": "Gravity slows the ball at a constant rate, so the v-t line is a perfectly straight line with slope minus g." },
-            { "text_en": "At the top of the flight the line crosses zero — the ball is stationary for a split second, then the velocity turns negative as the ball falls back." },
-            { "text_en": "Triangle above the axis is the distance up. Triangle below is the distance down. If they are equal, the ball lands where it started — net displacement zero." }
+            {
+              "text_en": "Here is the edge case students often miss. The v-t line can cross the time axis.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "Think of a cricketer hitting the ball straight up. The moment after contact, velocity is strongly positive — upward.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "Gravity slows the ball at a constant rate, so the v-t line is a perfectly straight line with slope minus g.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "At the top of the flight the line crosses zero — the ball is stationary for a split second, then the velocity turns negative as the ball falls back.",
+              "id": "state_3_s4"
+            },
+            {
+              "text_en": "Triangle above the axis is the distance up. Triangle below is the distance down. If they are equal, the ball lands where it started — net displacement zero.",
+              "id": "state_3_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "cross_axis_sketch"
       }
     }
   },
@@ -234,22 +376,63 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Trap: Area Looks Like It Might Be Velocity",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Before we correct this, let us state the belief plainly." },
-              { "text_en": "The student sees velocity plotted on the vertical axis, so anything measured on that graph feels like velocity." },
-              { "text_en": "If the line itself is velocity, the area underneath must be… more velocity? That is the trap." },
-              { "text_en": "We will break the trap with two moves: a units check, and a concrete Metro journey." }
+              {
+                "text_en": "Before we correct this, let us state the belief plainly.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "The student sees velocity plotted on the vertical axis, so anything measured on that graph feels like velocity.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "If the line itself is velocity, the area underneath must be… more velocity? That is the trap.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "We will break the trap with two moves: a units check, and a concrete Metro journey.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_sketch"
         },
         "STATE_2": {
           "title": "Units Force the Answer: m/s Multiplied by s Equals m",
@@ -263,9 +446,13 @@
               "anchor": "top_center",
               "font_size": 13,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
             },
             {
@@ -276,22 +463,51 @@
               "anchor": "bottom_center",
               "font_size": 13,
               "color": "#00796b",
-              "appear_at": 4.0,
+              "appear_at": 4,
               "animations": [
-                { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 4,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Units Force the Answer: m/s Multiplied by s Equals m",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "units_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Units are the fastest way to settle this." },
-              { "text_en": "Every thin vertical strip under the v-t curve has height velocity, in metres per second." },
-              { "text_en": "Its width is a tiny duration, in seconds. Their product is metres — displacement, not velocity." },
-              { "text_en": "So the area under a v-t curve is ALWAYS in metres, no matter what shape the curve is. It is distance, not speed." }
+              {
+                "text_en": "Units are the fastest way to settle this.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "Every thin vertical strip under the v-t curve has height velocity, in metres per second.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "Its width is a tiny duration, in seconds. Their product is metres — displacement, not velocity.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "So the area under a v-t curve is ALWAYS in metres, no matter what shape the curve is. It is distance, not speed.",
+                "id": "state_2_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "units_sketch"
         },
         "STATE_3": {
           "title": "Concrete Check: Metro Train Area = Distance in Metres",
@@ -305,9 +521,13 @@
               "anchor": "top_center",
               "font_size": 13,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
             },
             {
@@ -316,36 +536,103 @@
               "vehicle_type": "train",
               "zone": "MAIN_ZONE",
               "anchor": "bottom_center",
-              "appear_at": 3.0,
+              "appear_at": 3,
               "animations": [
-                { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.4 },
-                { "type": "translate", "delay_sec": 4.0, "duration_sec": 5.0, "dx_px": 320, "dy_px": 0, "easing": "linear" }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 3,
+                  "duration_sec": 0.4
+                },
+                {
+                  "type": "translate",
+                  "delay_sec": 4,
+                  "duration_sec": 5,
+                  "dx_px": 320,
+                  "dy_px": 0,
+                  "easing": "linear"
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Concrete Check: Metro Train Area = Distance in Metres",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "concrete_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Let us burn the correct reading into memory with one concrete number." },
-              { "text_en": "Take the Metro cruising at 60 km per hour for 90 seconds — that is 16 point six seven metres per second times 90 seconds." },
-              { "text_en": "That product is 1500 metres — one and a half kilometres of track covered. A distance, plain and simple." },
-              { "text_en": "So whenever you look at a v-t graph, say aloud: slope is acceleration, area is displacement. Never swap those two." }
+              {
+                "text_en": "Let us burn the correct reading into memory with one concrete number.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Take the Metro cruising at 60 km per hour for 90 seconds — that is 16 point six seven metres per second times 90 seconds.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "That product is 1500 metres — one and a half kilometres of track covered. A distance, plain and simple.",
+                "id": "state_3_s3"
+              },
+              {
+                "text_en": "So whenever you look at a v-t graph, say aloud: slope is acceleration, area is displacement. Never swap those two.",
+                "id": "state_3_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "concrete_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Area Is Velocity (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Heavier acceleration from rest", "params": { "slope_vt": 5, "area_vt": 80 } },
-      { "label": "Cruising at a steady speed", "params": { "slope_vt": 0, "area_vt": 120 } },
-      { "label": "Strong deceleration", "params": { "slope_vt": -6, "area_vt": 40 } }
-    ],
-    "type_b": [
-      { "label": "Bus at a bus stop", "scenario": "city_bus_accelerating_from_stop" },
-      { "label": "Rollercoaster dropping", "scenario": "rollercoaster_drop_and_brake" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Heavier acceleration from rest",
+        "params": {
+          "slope_vt": 5,
+          "area_vt": 80
+        }
+      },
+      "1": {
+        "label": "Cruising at a steady speed",
+        "params": {
+          "slope_vt": 0,
+          "area_vt": 120
+        }
+      },
+      "2": {
+        "label": "Strong deceleration",
+        "params": {
+          "slope_vt": -6,
+          "area_vt": 40
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Bus at a bus stop",
+        "scenario": "city_bus_accelerating_from_stop"
+      },
+      "1": {
+        "label": "Rollercoaster dropping",
+        "scenario": "rollercoaster_drop_and_brake"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

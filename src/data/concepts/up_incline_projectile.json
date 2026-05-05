@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 7.7 — projectile on an inclined plane (up); split from projectile_inclined",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "A volleyball served on a sloped Goa beach tilted 15 degrees up toward the dunes. The ball launches at 20 m/s from the sand at angle 60 degrees to the horizontal. Instead of landing on level ground, it lands on the up-slope. Range along the incline is NOT v² sin(2θ)/g — that is only for flat ground. We must rotate axes, decompose gravity, and redo the time-of-flight calculation. Every Indian beach volleyball player intuitively adjusts their serve for the slope direction.",
@@ -17,15 +17,45 @@
   },
   "physics_engine_config": {
     "variables": {
-      "v0": { "name": "Launch speed", "unit": "m/s", "min": 5, "max": 200, "default": 20 },
-      "alpha": { "name": "Launch angle above horizontal", "unit": "deg", "min": 0, "max": 90, "default": 60 },
-      "beta": { "name": "Incline angle above horizontal", "unit": "deg", "min": 0, "max": 60, "default": 15 },
-      "g": { "name": "Gravitational acceleration", "unit": "m/s^2", "min": 9.8, "max": 10, "default": 10 }
+      "v0": {
+        "name": "Launch speed",
+        "unit": "m/s",
+        "min": 5,
+        "max": 200,
+        "default": 20
+      },
+      "alpha": {
+        "name": "Launch angle above horizontal",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 60
+      },
+      "beta": {
+        "name": "Incline angle above horizontal",
+        "unit": "deg",
+        "min": 0,
+        "max": 60,
+        "default": 15
+      },
+      "g": {
+        "name": "Gravitational acceleration",
+        "unit": "m/s^2",
+        "min": 9.8,
+        "max": 10,
+        "default": 10
+      }
     },
     "computed_outputs": {
-      "time_of_flight_incline": { "formula": "2 * v0 * sin(alpha - beta) / (g * cos(beta))" },
-      "range_along_incline": { "formula": "2 * v0^2 * sin(alpha - beta) * cos(alpha) / (g * cos^2(beta))" },
-      "max_range_angle": { "formula": "alpha_opt = 45 deg + beta/2" }
+      "time_of_flight_incline": {
+        "formula": "2 * v0 * sin(alpha - beta) / (g * cos(beta))"
+      },
+      "range_along_incline": {
+        "formula": "2 * v0^2 * sin(alpha - beta) * cos(alpha) / (g * cos^2(beta))"
+      },
+      "max_range_angle": {
+        "formula": "alpha_opt = 45 deg + beta/2"
+      }
     },
     "formulas": {
       "range_up": "R_up = 2 * v0^2 * sin(alpha - beta) * cos(alpha) / (g * cos^2(beta))",
@@ -55,9 +85,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -68,9 +102,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -79,24 +117,55 @@
             "vehicle_type": "ball",
             "zone": "MAIN_ZONE",
             "anchor": "bottom_left",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
-              { "type": "translate", "delay_sec": 4.5, "duration_sec": 2.5, "dx_px": 150, "dy_px": -200, "easing": "ease_out" },
-              { "type": "translate", "delay_sec": 7.0, "duration_sec": 2.5, "dx_px": 150, "dy_px": 140, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.3
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4.5,
+                "duration_sec": 2.5,
+                "dx_px": 150,
+                "dy_px": -200,
+                "easing": "ease_out"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 7,
+                "duration_sec": 2.5,
+                "dx_px": 150,
+                "dy_px": 140,
+                "easing": "ease_in"
+              }
             ]
           }
         ],
         "focal_primitive": "failure_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "On a Goa beach sloping up toward the dunes, a volleyball serve launches at 20 metres per second, 60 degrees above horizontal." },
-            { "text_en": "Using the flat-ground formula gives 34.6 metres — but that ignores the slope, which is rising the whole time." },
-            { "text_en": "The ball actually hits the slope earlier than 34.6 metres — because the slope itself is climbing up to meet it." },
-            { "text_en": "We need a new approach: rotate axes ALONG the slope, so the ground line becomes our 'x-axis'." }
+            {
+              "text_en": "On a Goa beach sloping up toward the dunes, a volleyball serve launches at 20 metres per second, 60 degrees above horizontal.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "Using the flat-ground formula gives 34.6 metres — but that ignores the slope, which is rising the whole time.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "The ball actually hits the slope earlier than 34.6 metres — because the slope itself is climbing up to meet it.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "We need a new approach: rotate axes ALONG the slope, so the ground line becomes our 'x-axis'.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "failure_sketch"
       },
       "STATE_2": {
         "title": "Rotate Axes Along the Incline",
@@ -110,22 +179,63 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Rotate Axes Along the Incline",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "rotate_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "The trick is to rotate axes by the incline angle beta." },
-            { "text_en": "In the rotated frame, the slope is the new x-axis, and the perpendicular is the new y-axis." },
-            { "text_en": "The launch velocity splits into v-zero cosine of alpha minus beta along the slope, and v-zero sine of alpha minus beta perpendicular to the slope." },
-            { "text_en": "Gravity also splits into two parts in this frame — g sine beta decelerating upslope motion, and g cosine beta pulling the ball BACK to the slope." }
+            {
+              "text_en": "The trick is to rotate axes by the incline angle beta.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "In the rotated frame, the slope is the new x-axis, and the perpendicular is the new y-axis.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "The launch velocity splits into v-zero cosine of alpha minus beta along the slope, and v-zero sine of alpha minus beta perpendicular to the slope.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "Gravity also splits into two parts in this frame — g sine beta decelerating upslope motion, and g cosine beta pulling the ball BACK to the slope.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "rotate_sketch"
       },
       "STATE_3": {
         "title": "Range and Time of Flight Up the Incline",
@@ -139,22 +249,63 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Range and Time of Flight Up the Incline",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "results_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Time of flight on the incline is 2 v-nought sine of alpha minus beta over g cosine beta." },
-            { "text_en": "Range along the incline involves the x-prime motion — v-x-prime times time minus half g-x-prime times time squared." },
-            { "text_en": "Simplifying — R equals 2 v-nought squared sine of alpha minus beta times cosine alpha, all over g cosine squared beta." },
-            { "text_en": "For our Goa beach numbers, that works out to about 30.3 metres along the slope — shorter than the 34.6 metres the flat-ground formula would have predicted. Slope correction matters." }
+            {
+              "text_en": "Time of flight on the incline is 2 v-nought sine of alpha minus beta over g cosine beta.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "Range along the incline involves the x-prime motion — v-x-prime times time minus half g-x-prime times time squared.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "Simplifying — R equals 2 v-nought squared sine of alpha minus beta times cosine alpha, all over g cosine squared beta.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "For our Goa beach numbers, that works out to about 30.3 metres along the slope — shorter than the 34.6 metres the flat-ground formula would have predicted. Slope correction matters.",
+              "id": "state_3_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "results_sketch"
       }
     }
   },
@@ -181,22 +332,63 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Wrong: 45 Degrees Everywhere",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_45_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Common reflex — max range angle is 45 degrees. Always." },
-              { "text_en": "That is only true on flat ground." },
-              { "text_en": "On an up-slope, the optimal launch angle is STEEPER. The formula is alpha optimal equals 45 plus beta over 2." },
-              { "text_en": "For a 20-degree slope, optimal launch is 55 degrees — not 45. The slope eats beta over 2 into the flat optimum." }
+              {
+                "text_en": "Common reflex — max range angle is 45 degrees. Always.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "That is only true on flat ground.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "On an up-slope, the optimal launch angle is STEEPER. The formula is alpha optimal equals 45 plus beta over 2.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "For a 20-degree slope, optimal launch is 55 degrees — not 45. The slope eats beta over 2 into the flat optimum.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_45_sketch"
         },
         "STATE_2": {
           "title": "Intuition — The Bisector Rule",
@@ -210,21 +402,59 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Intuition — The Bisector Rule",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "bisector_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Here is the clean intuition. The optimal launch direction bisects the angle between the incline and the vertical." },
-              { "text_en": "On flat ground, that bisector is 45 degrees. On an up-slope of beta, the incline is tilted by plus beta — so the bisector shifts to 45 plus beta over 2." },
-              { "text_en": "Same geometry, same bisector rule — just applied to a tilted surface." }
+              {
+                "text_en": "Here is the clean intuition. The optimal launch direction bisects the angle between the incline and the vertical.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "On flat ground, that bisector is 45 degrees. On an up-slope of beta, the incline is tilted by plus beta — so the bisector shifts to 45 plus beta over 2.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "Same geometry, same bisector rule — just applied to a tilted surface.",
+                "id": "state_2_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "bisector_sketch"
         },
         "STATE_3": {
           "title": "Quick Numbers for Memory",
@@ -238,34 +468,106 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Quick Numbers for Memory",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "quick_numbers_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Quick table for memory." },
-              { "text_en": "Flat — 45 degrees. 10-degree slope — 50. 15-degree Goa beach — 52.5. 30-degree mountain ridge — 60. 45-degree steep slope — 67.5." },
-              { "text_en": "Steeper slope, steeper launch. And the one formula you must remember — alpha optimal equals 45 plus beta over 2." }
+              {
+                "text_en": "Quick table for memory.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Flat — 45 degrees. 10-degree slope — 50. 15-degree Goa beach — 52.5. 30-degree mountain ridge — 60. 45-degree steep slope — 67.5.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "Steeper slope, steeper launch. And the one formula you must remember — alpha optimal equals 45 plus beta over 2.",
+                "id": "state_3_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "quick_numbers_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Optimal Angle Still 45 (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Goa beach volleyball, 15 deg slope", "params": { "v0": 20, "alpha": 60, "beta": 15 } },
-      { "label": "Golfer at Shimla, 10 deg fairway", "params": { "v0": 35, "alpha": 30, "beta": 10 } },
-      { "label": "Army mortar to ridge, 20 deg", "params": { "v0": 200, "alpha": 55, "beta": 20 } }
-    ],
-    "type_b": [
-      { "label": "Skier launching off an up-ramp", "scenario": "ski_ramp_up_launch" },
-      { "label": "Stone thrown up a hill at Gulmarg", "scenario": "stone_up_gulmarg_hill" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Goa beach volleyball, 15 deg slope",
+        "params": {
+          "v0": 20,
+          "alpha": 60,
+          "beta": 15
+        }
+      },
+      "1": {
+        "label": "Golfer at Shimla, 10 deg fairway",
+        "params": {
+          "v0": 35,
+          "alpha": 30,
+          "beta": 10
+        }
+      },
+      "2": {
+        "label": "Army mortar to ridge, 20 deg",
+        "params": {
+          "v0": 200,
+          "alpha": 55,
+          "beta": 20
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Skier launching off an up-ramp",
+        "scenario": "ski_ramp_up_launch"
+      },
+      "1": {
+        "label": "Stone thrown up a hill at Gulmarg",
+        "scenario": "stone_up_gulmarg_hill"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

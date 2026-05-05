@@ -1,455 +1,2035 @@
 {
   "concept_id": "pressure_scalar",
-  "concept_name": "Why Pressure Is a Scalar Even Though It 'Points Everywhere'",
+  "concept_name": "Why Pressure Is a Scalar Even Though It Pushes In All Directions",
   "chapter": 5,
   "section": "5.1",
   "schema_version": "2.0.0",
   "class_level": 11,
-  "source_book": "DC Pandey Chapter 5.1 — trap quantity; split from scalar_vs_vector bundle",
+  "source_book": "First-principles authoring (Pascal's principle + F = P A n_hat). DC Pandey Vol.1 Ch.5 used for syllabus scope only.",
+  "prerequisites": [
+    "scalar_vs_vector"
+  ],
+  "concept_tier": "medium",
+  "cognitive_limits": {
+    "max_primitives_per_state": 10,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 18
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "Pressure is a number per point. The direction comes from the surface, not the pressure.",
+    "visual_confirmation": "pascal_box"
+  },
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_3"
+    },
+    "proof": {
+      "start": "STATE_3",
+      "end": "STATE_3"
+    },
+    "exam_trap": {
+      "start": "STATE_4",
+      "end": "STATE_4"
+    },
+    "self_test": {
+      "start": "STATE_5",
+      "end": "STATE_5"
+    }
+  },
   "renderer_pair": {
     "panel_a": "mechanics_2d",
     "panel_b": "graph_interactive"
   },
   "real_world_anchor": {
-    "primary": "A pressure cooker. Steam inside pushes outward on every wall — top, bottom, sides, lid — with the same pressure. The cooker has ONE pressure value written on the gauge, not six different vector arrows.",
-    "secondary": "Diving into a swimming pool. At a given depth your ears feel the same squeeze from above, below, left and right. Pressure at a point has one number — the depth determines it, not a direction.",
-    "tertiary": "A bicycle tyre inflated to 40 psi. That single number acts outward on every square inch of the inner tube, no matter which way that square inch faces. Pressure is a property of the point, not a pointer in one direction."
+    "primary": "A pressure cooker on a kitchen stove in any Indian home. Steam at the same pressure pushes outward on the lid, on the side walls, on the bottom — a single number written on the gauge, not six different vectors. The lid lifts only because the spring loading is weakest there, not because pressure points up.",
+    "secondary": "Diving in a Goa swimming pool. At three metres your ears feel the same squeeze from every direction. One depth, one pressure value, no arrow.",
+    "tertiary": "A bicycle tyre pumped to 40 psi. That single scalar acts outward on every square millimetre of inner tube, no matter which way that millimetre faces."
   },
   "physics_engine_config": {
     "variables": {
-      "rho": { "name": "Fluid density", "unit": "kg/m^3", "min": 500, "max": 13600, "default": 1000 },
-      "g": { "name": "Gravity", "unit": "m/s^2", "min": 9.8, "max": 9.8, "default": 9.8 },
-      "depth": { "name": "Depth below surface", "unit": "m", "min": 0, "max": 20, "default": 5 },
-      "face_area": { "name": "Face area", "unit": "m^2", "min": 0.01, "max": 1, "default": 0.1 }
-    },
-    "computed_outputs": {
-      "pressure": { "formula": "rho * g * depth" },
-      "force_on_face": { "formula": "rho * g * depth * face_area" }
+      "rho": {
+        "name": "Fluid density",
+        "unit": "kg/m^3",
+        "min": 500,
+        "max": 13600,
+        "default": 1000
+      },
+      "g": {
+        "name": "Gravity",
+        "unit": "m/s^2",
+        "min": 9.8,
+        "max": 9.8,
+        "default": 9.8
+      },
+      "depth": {
+        "name": "Depth below surface",
+        "unit": "m",
+        "min": 0,
+        "max": 10,
+        "default": 5
+      },
+      "face_area": {
+        "name": "Probe face area",
+        "unit": "m^2",
+        "min": 0.01,
+        "max": 1,
+        "default": 0.1
+      },
+      "face_angle_deg": {
+        "name": "Face normal angle",
+        "unit": "deg",
+        "min": 0,
+        "max": 360,
+        "default": 0
+      }
     },
     "formulas": {
-      "hydrostatic_pressure": "P = rho * g * h  (scalar, one number per depth)",
-      "force_from_pressure": "F_on_face = P * A * n_hat  (vector — direction set by the face normal n_hat)"
+      "hydrostatic_pressure": "P = rho * g * depth",
+      "force_on_face": "F = P * face_area  (direction = surface normal)",
+      "pascals_principle": "At a point in a fluid, P is identical in every direction"
+    },
+    "computed_outputs": {
+      "pressure": {
+        "formula": "rho * g * depth"
+      },
+      "force_magnitude": {
+        "formula": "rho * g * depth * face_area"
+      },
+      "fx": {
+        "formula": "rho * g * depth * face_area * cos(radians(face_angle_deg))"
+      },
+      "fy": {
+        "formula": "rho * g * depth * face_area * sin(radians(face_angle_deg))"
+      }
     },
     "constraints": [
-      "At a point inside a fluid, the pressure is the same in all directions — Pascal's principle",
-      "Force is a vector; pressure is the scalar that GENERATES force when combined with area and a surface normal",
-      "Pressure is a scalar FIELD — one value at each point in space, like temperature or density"
+      "Pascal's principle: at any point inside a fluid, pressure is the same in every direction",
+      "Pressure at depth h: P = rho * g * h, regardless of orientation of the test surface",
+      "Force on a small area is a vector: F_vec = P * A * n_hat — direction lives entirely in n_hat",
+      "If pressure were a vector, two pressures meeting at a point would add by the parallelogram law; experimentally they do not — they superpose by simple addition of magnitudes",
+      "Pressure is a scalar field: one real number assigned to each point in space, like temperature"
     ]
   },
   "epic_l_path": {
-    "state_count": 3,
+    "state_count": 5,
     "states": {
       "STATE_1": {
-        "title": "At One Point Inside a Fluid — Arrows in Every Direction",
-        "duration": 10,
+        "title": "Pressure Pushes Every Way. So Is It a Vector?",
+        "duration": 8,
+        "teaching_method": "narrative_socratic",
+        "focal_primitive_id": "question_callout",
+        "advance_mode": "auto_after_tts",
+        "misconception_watch": [
+          {
+            "belief": "Anything that pushes in a direction must be a vector.",
+            "one_line_fix": "The push has a direction. The direction comes from the wall, not from the pressure."
+          }
+        ],
         "scene_composition": [
           {
-            "type": "force_arrow",
-            "id": "press_up",
-            "from": { "x": 385, "y": 320 },
-            "magnitude": 2,
-            "direction_deg": 90,
-            "label": "",
-            "color": "#3B82F6",
-            "scale_pixels_per_unit": 40
+            "type": "body",
+            "id": "cooker_pot",
+            "shape": "rect",
+            "size": { "w": 220, "h": 160 },
+            "position": { "x": 220, "y": 290 },
+            "color": "#475569",
+            "label": ""
           },
           {
-            "type": "force_arrow",
-            "id": "press_down",
-            "from": { "x": 385, "y": 320 },
-            "magnitude": 2,
-            "direction_deg": -90,
-            "label": "",
-            "color": "#3B82F6",
-            "scale_pixels_per_unit": 40
+            "type": "body",
+            "id": "cooker_lid",
+            "shape": "rect",
+            "size": { "w": 240, "h": 22 },
+            "position": { "x": 220, "y": 200 },
+            "color": "#1F2937",
+            "label": ""
           },
           {
-            "type": "force_arrow",
-            "id": "press_left",
-            "from": { "x": 385, "y": 320 },
-            "magnitude": 2,
-            "direction_deg": 180,
-            "label": "",
-            "color": "#3B82F6",
-            "scale_pixels_per_unit": 40
-          },
-          {
-            "type": "force_arrow",
-            "id": "press_right",
-            "from": { "x": 385, "y": 320 },
-            "magnitude": 2,
-            "direction_deg": 0,
-            "label": "",
-            "color": "#3B82F6",
-            "scale_pixels_per_unit": 40
-          },
-          {
-            "type": "force_arrow",
-            "id": "press_ne",
-            "from": { "x": 385, "y": 320 },
-            "magnitude": 2,
-            "direction_deg": 45,
-            "label": "",
-            "color": "#3B82F6",
-            "scale_pixels_per_unit": 40
-          },
-          {
-            "type": "force_arrow",
-            "id": "press_nw",
-            "from": { "x": 385, "y": 320 },
-            "magnitude": 2,
-            "direction_deg": 135,
-            "label": "",
-            "color": "#3B82F6",
-            "scale_pixels_per_unit": 40
-          },
-          {
-            "type": "force_arrow",
-            "id": "press_se",
-            "from": { "x": 385, "y": 320 },
-            "magnitude": 2,
-            "direction_deg": -45,
-            "label": "",
-            "color": "#3B82F6",
-            "scale_pixels_per_unit": 40
-          },
-          {
-            "type": "force_arrow",
-            "id": "press_sw",
-            "from": { "x": 385, "y": 320 },
-            "magnitude": 2,
-            "direction_deg": -135,
-            "label": "",
-            "color": "#3B82F6",
-            "scale_pixels_per_unit": 40
+            "type": "body",
+            "id": "cooker_whistle",
+            "shape": "circle",
+            "size": 16,
+            "position": { "x": 220, "y": 178 },
+            "color": "#9CA3AF",
+            "label": "whistle"
           },
           {
             "type": "annotation",
-            "id": "point_label",
-            "text": "point P inside fluid",
-            "position": { "x": 385, "y": 390 },
-            "style": "callout"
-          },
-          {
-            "type": "annotation",
-            "id": "question",
-            "text": "Pressure pushes outward\nin every direction from point P,\nall with the same magnitude.\n\nSo which ONE direction\ndo we assign to the vector?\n\n(none — that's the point.)",
-            "position": { "x": 580, "y": 260 },
+            "id": "steam_label",
+            "text": "STEAM at 200 kPa",
+            "position": { "x": 220, "y": 290 },
             "style": "callout",
-            "color": "#EF4444"
+            "color": "#FCD34D"
+          },
+          {
+            "type": "force_arrow",
+            "id": "push_up",
+            "from": { "x": 220, "y": 290 },
+            "magnitude": 1.6,
+            "direction_deg": 90,
+            "label": "pushes lid",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 36,
+            "appear_at_ms": 800,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "force_arrow",
+            "id": "push_right",
+            "from": { "x": 220, "y": 290 },
+            "magnitude": 1.6,
+            "direction_deg": 0,
+            "label": "pushes wall",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 36,
+            "appear_at_ms": 1500,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "force_arrow",
+            "id": "push_left",
+            "from": { "x": 220, "y": 290 },
+            "magnitude": 1.6,
+            "direction_deg": 180,
+            "label": "pushes wall",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 36,
+            "appear_at_ms": 1500,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "force_arrow",
+            "id": "push_down",
+            "from": { "x": 220, "y": 290 },
+            "magnitude": 1.6,
+            "direction_deg": -90,
+            "label": "pushes bottom",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 36,
+            "appear_at_ms": 2200,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "annotation",
+            "id": "question_callout",
+            "text": "Same pressure inside.\nFour different walls.\nFour different push directions.\n\nIs pressure a vector?",
+            "position": { "x": 580, "y": 250 },
+            "style": "callout"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Zoom in on one tiny point inside a fluid. Say a point five metres below the surface of a swimming pool." },
-            { "id": "s2", "text_en": "The fluid pushes outward from that point in every direction — up, down, left, right, and every direction in between. All with the same magnitude." },
-            { "id": "s3", "text_en": "To call something a vector, we must be able to assign it a single direction. But here every direction has the same push. There is no preferred direction to pick." },
-            { "id": "s4", "text_en": "If you cannot name one direction for the quantity, it cannot be a vector. That is the first clue pressure is a scalar." },
-            { "id": "s5", "text_en": "Pressure behaves like temperature. Temperature at a point is one number. Pressure at a point is one number too." }
+            {
+              "id": "s1",
+              "text_en": "A pressure cooker holds steam at a single pressure value.",
+              "pause_after_ms": 1200
+            },
+            {
+              "id": "s2",
+              "text_en": "That same pressure pushes the lid up, the side walls outward, the bottom down.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s3",
+              "text_en": "Each push has a clear direction. So shouldn't pressure itself be a vector?",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s4",
+              "text_en": "Most students answer yes. The next state shows why that answer is wrong.",
+              "pause_after_ms": 1500
+            }
           ]
-        },
-        "advance_mode": "auto_after_tts"
+        }
       },
       "STATE_2": {
-        "title": "Pressure Is a Scalar. Force on a Face Is a Vector.",
+        "title": "Inside the Cooker. One Test Point. Rotate Its Face.",
         "duration": 12,
+        "teaching_method": "compare_contrast",
+        "focal_primitive_id": "pascal_box",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "variable_overrides": {
+          "face_angle_deg": 0
+        },
+        "misconception_watch": [
+          {
+            "belief": "If I rotate the surface, the pressure on it must change because the direction changed.",
+            "one_line_fix": "Pressure on the rotated face stays identical. Only the force arrow rotates with the face."
+          }
+        ],
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "cube_label",
-            "text": "Cube of water submerged at depth h\neach face has area A",
-            "position": { "x": 240, "y": 180 },
-            "style": "callout"
+            "id": "context_banner",
+            "text": "INSIDE THE COOKER   |   STEAM at 200 kPa",
+            "position": { "x": 280, "y": 90 },
+            "style": "callout",
+            "color": "#FCD34D"
+          },
+          {
+            "type": "body",
+            "id": "probe_dot",
+            "shape": "circle",
+            "size": 26,
+            "position": { "x": 280, "y": 280 },
+            "color": "#3B82F6",
+            "label": "test point",
+            "label_below": true,
+            "appear_at_ms": 1200,
+            "animate_in_ms": 600
           },
           {
             "type": "force_arrow",
-            "id": "face_force_up",
-            "from": { "x": 280, "y": 260 },
-            "magnitude": 3,
-            "direction_deg": -90,
-            "label": "F_top = P*A (down)",
-            "color": "#10B981",
-            "scale_pixels_per_unit": 30
-          },
-          {
-            "type": "force_arrow",
-            "id": "face_force_bot",
-            "from": { "x": 280, "y": 400 },
-            "magnitude": 3,
-            "direction_deg": 90,
-            "label": "F_bottom = P*A (up)",
-            "color": "#10B981",
-            "scale_pixels_per_unit": 30
-          },
-          {
-            "type": "force_arrow",
-            "id": "face_force_left",
-            "from": { "x": 240, "y": 330 },
-            "magnitude": 3,
-            "direction_deg": 0,
-            "label": "F_left = P*A",
-            "color": "#10B981",
-            "scale_pixels_per_unit": 30
-          },
-          {
-            "type": "force_arrow",
-            "id": "face_force_right",
-            "from": { "x": 340, "y": 330 },
-            "magnitude": 3,
-            "direction_deg": 180,
-            "label": "F_right = P*A",
-            "color": "#10B981",
-            "scale_pixels_per_unit": 30
+            "id": "probe_face",
+            "from": { "x": 280, "y": 280 },
+            "magnitude": 2.2,
+            "direction_deg_expr": "face_angle_deg",
+            "label": "force on test face",
+            "color": "#F59E0B",
+            "scale_pixels_per_unit": 38,
+            "appear_at_ms": 2000,
+            "animate_in_ms": 600
           },
           {
             "type": "annotation",
-            "id": "derivation",
-            "text": "P at depth h\n= rho * g * h\n= ONE NUMBER  (scalar)\n\nForce on each face\n= P * A * n_hat\n  scalar | area | face normal\n\nPressure supplies magnitude.\nThe face normal supplies direction.\n=> F is a vector, P is a scalar.",
-            "position": { "x": 540, "y": 260 },
-            "style": "formula_box"
+            "id": "pascal_box",
+            "text": "PASCAL'S TEST\n\nPick any tiny face\ninside the cooker.\n\nRotate it with\nthe slider.\n\nThe pressure on it\nis ALWAYS 200 kPa.\n\nOnly the orange arrow\ndirection rotates.",
+            "position": { "x": 620, "y": 240 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "reveal_at_tts_id": "s2"
+          },
+          {
+            "type": "slider",
+            "id": "face_angle_slider",
+            "variable": "face_angle_deg",
+            "label": "rotate the test face",
+            "min": 0,
+            "max": 360,
+            "default": 0,
+            "step": 15,
+            "unit": "deg",
+            "position": "bottom"
+          },
+          {
+            "type": "annotation",
+            "id": "aha_banner",
+            "text": "AHA: Pressure is a number per point.\nThe direction comes from the surface, not from the pressure.",
+            "position": { "x": 280, "y": 410 },
+            "style": "callout",
+            "color": "#FCD34D",
+            "reveal_at_tts_id": "s4"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Drop a small cube of water at depth h, each face with area A. The fluid around it presses on every face." },
-            { "id": "s2", "text_en": "All four faces feel different force directions — the top face is pushed downward, the bottom face upward, the left face rightward, the right face leftward." },
-            { "id": "s3", "text_en": "But look at the magnitudes. Every face feels the same magnitude of force — P times A." },
-            { "id": "s4", "text_en": "Pressure P is the single scalar behind all of them. It equals rho g h at depth h — one number, no direction." },
-            { "id": "s5", "text_en": "Force is pressure times area times the face normal. Pressure supplies the magnitude. The face normal supplies the direction." },
-            { "id": "s6", "text_en": "That is the cleanest way to remember it. Force is a vector. Pressure is the scalar that generates forces when combined with a surface orientation." }
+            {
+              "id": "s1",
+              "text_en": "We are now inside the cooker. Steam is at two hundred kilopascals.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s2",
+              "text_en": "Pick any tiny test face at any point in the steam.",
+              "pause_after_ms": 2000
+            },
+            {
+              "id": "s3",
+              "text_en": "Drag the slider. Rotate that face. The pressure on it stays at two hundred kilopascals.",
+              "pause_after_ms": 1800
+            },
+            {
+              "id": "s4",
+              "text_en": "Only the orange arrow rotates with the face. Direction lives on the face, not in the pressure.",
+              "pause_after_ms": 1500
+            }
           ]
-        },
-        "advance_mode": "auto_after_tts"
+        }
       },
       "STATE_3": {
-        "title": "Pressure and Temperature — Same Kind of Thing",
-        "duration": 9,
+        "title": "Same Cooker. Look at Two Walls. Same Push Size, Different Direction.",
+        "duration": 10,
+        "teaching_method": "compare_contrast",
+        "focal_primitive_id": "verdict_box",
+        "advance_mode": "wait_for_answer",
+        "has_prebuilt_deep_dive": false,
+        "misconception_watch": [
+          {
+            "belief": "If pressure is one number, then the push it makes must be in one direction too.",
+            "one_line_fix": "The push always points along the wall it pushes. Same pressure, different wall, different push direction."
+          }
+        ],
         "scene_composition": [
           {
-            "type": "annotation",
-            "id": "temperature_panel",
-            "text": "Temperature field T(x, y, z)\n\nAt any point, one number.\nE.g. T = 305 K.\n\nNo direction.\nClearly scalar.",
-            "position": { "x": 240, "y": 260 },
-            "style": "formula_box",
-            "color": "#F59E0B"
+            "type": "body",
+            "id": "cooker_pot",
+            "shape": "rect",
+            "size": { "w": 240, "h": 180 },
+            "position": { "x": 220, "y": 290 },
+            "color": "#475569",
+            "label": ""
+          },
+          {
+            "type": "body",
+            "id": "cooker_lid",
+            "shape": "rect",
+            "size": { "w": 260, "h": 20 },
+            "position": { "x": 220, "y": 200 },
+            "color": "#1F2937",
+            "label": ""
+          },
+          {
+            "type": "body",
+            "id": "cooker_whistle",
+            "shape": "circle",
+            "size": 14,
+            "position": { "x": 220, "y": 180 },
+            "color": "#9CA3AF",
+            "label": ""
           },
           {
             "type": "annotation",
-            "id": "pressure_panel",
-            "text": "Pressure field P(x, y, z)\n\nAt any point, one number.\nE.g. P = 2 x 10^5 Pa at depth 10 m.\n\nNo direction.\nAlso scalar.",
-            "position": { "x": 560, "y": 260 },
+            "id": "steam_label",
+            "text": "STEAM at 200 kPa\nsame number everywhere",
+            "position": { "x": 220, "y": 290 },
+            "style": "callout",
+            "color": "#FCD34D"
+          },
+          {
+            "type": "force_arrow",
+            "id": "push_lid",
+            "from": { "x": 220, "y": 210 },
+            "magnitude": 1.6,
+            "direction_deg": 90,
+            "label": "200 N up",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 36,
+            "appear_at_ms": 1000,
+            "animate_in_ms": 700
+          },
+          {
+            "type": "force_arrow",
+            "id": "push_side_wall",
+            "from": { "x": 340, "y": 290 },
+            "magnitude": 1.6,
+            "direction_deg": 0,
+            "label": "200 N right",
+            "color": "#10B981",
+            "scale_pixels_per_unit": 36,
+            "appear_at_ms": 2200,
+            "animate_in_ms": 700
+          },
+          {
+            "type": "annotation",
+            "id": "verdict_box",
+            "text": "Both walls feel\nthe SAME 200 N push.\n\nLid feels it as UP\n(lid faces up).\n\nSide wall feels it\nas SIDEWAYS\n(side wall faces sideways).\n\nSize comes from pressure.\nDirection comes from the wall.",
+            "position": { "x": 600, "y": 230 },
+            "style": "formula_box",
+            "color": "#10B981",
+            "reveal_at_tts_id": "s3"
+          },
+          {
+            "type": "derivation_step",
+            "id": "plain_english",
+            "text": "Pressure gives the SIZE.   The wall gives the DIRECTION.",
+            "position": { "x": 50, "y": 440 },
+            "color": "#FCD34D",
+            "font_size": 16,
+            "animate_in": "handwriting"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Same cooker. Same steam at two hundred kilopascals inside.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s2",
+              "text_en": "Predict, will the push on the lid be the same size as the push on the side wall?",
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s3",
+              "text_en": "Yes. Both walls feel the same two hundred newton push.",
+              "pause_after_ms": 1800
+            },
+            {
+              "id": "s4",
+              "text_en": "But the lid feels it as upward, the side wall feels it as sideways. The wall sets the direction.",
+              "pause_after_ms": 1800
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "The Two Conditions for a Vector. Pressure Fails the Second.",
+        "duration": 11,
+        "teaching_method": "worked_example",
+        "focal_primitive_id": "rule_box",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "pascal_test_unclear",
+          "when_does_n_hat_come_in",
+          "pressure_burst_lid"
+        ],
+        "misconception_watch": [
+          {
+            "belief": "If pressure pushes outward, that is the direction of the pressure vector.",
+            "one_line_fix": "Outward is the property of the wall the pressure acts on. The same point in fluid has pressure pushing every wall, no preferred direction."
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rule_box",
+            "text": "Vector requires BOTH\n\n(1) magnitude AND direction\n(2) parallelogram law\n\nPressure FAILS (1) at the source\n  (no preferred direction at a point).\nPressure FAILS (2)\n  (P_total != parallelogram add).\n\n=> Pressure is a scalar.",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
             "style": "formula_box",
             "color": "#10B981"
           },
           {
             "type": "annotation",
-            "id": "vector_field_note",
-            "text": "Contrast: gravitational field g(x, y, z)\nAt each point a magnitude AND a direction\n(down). That is a vector field.",
-            "position": { "x": 400, "y": 430 },
-            "style": "callout"
+            "id": "condition_1_line",
+            "text": "(1) magnitude + direction  <- pressure FAILS",
+            "position": {
+              "x": 200,
+              "y": 110
+            },
+            "style": "underline",
+            "color": "#EF4444",
+            "reveal_at_tts_id": "s2"
+          },
+          {
+            "type": "annotation",
+            "id": "condition_2_line",
+            "text": "(2) parallelogram law  <- pressure FAILS",
+            "position": {
+              "x": 200,
+              "y": 420
+            },
+            "style": "underline",
+            "color": "#EF4444",
+            "reveal_at_tts_id": "s4"
+          },
+          {
+            "type": "annotation",
+            "id": "same_trap_box",
+            "text": "Same trap class\n\n* current\n  (direction-of-flow,\n   adds algebraically)\n* surface tension\n  (boundary scalar)\n* finite rotation\n  (axis exists,\n   non-commutative)\n\nAll fail BOTH conditions.",
+            "position": {
+              "x": 580,
+              "y": 270
+            },
+            "style": "callout",
+            "reveal_at_tts_id": "s4"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "A clean way to remember this — compare pressure with temperature." },
-            { "id": "s2", "text_en": "Temperature at a point in the room is one number, say three hundred and five kelvin. No direction. Clearly a scalar." },
-            { "id": "s3", "text_en": "Pressure at a point in a fluid is one number, say two atmospheres at ten metres deep. No direction. Also a scalar." },
-            { "id": "s4", "text_en": "Both are scalar fields. One number at every point in space, changing smoothly from point to point." },
-            { "id": "s5", "text_en": "Compare that with the gravitational field. At every point it has both a magnitude and a direction — pointing downward. That is a vector field." }
+            {
+              "id": "s1",
+              "text_en": "A real vector needs two conditions. Direction at the source, and parallelogram addition.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s2",
+              "text_en": "Pressure has no preferred direction at a point. Condition one fails.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s3",
+              "text_en": "What about adding pressures from two angles? Predict before reading on.",
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s4",
+              "text_en": "Pressures add by simple superposition. Condition two fails. Pressure is a scalar.",
+              "pause_after_ms": 1500
+            }
           ]
+        }
+      },
+      "STATE_5": {
+        "title": "Classify Six Quantities",
+        "duration": 18,
+        "teaching_method": "exploration_sliders",
+        "focal_primitive_id": "score_panel",
+        "advance_mode": "interaction_complete",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "surface_tension_trap",
+          "omnidirectional_meaning",
+          "got_it_right_but_no_why"
+        ],
+        "variable_overrides": {
+          "depth": 5,
+          "face_angle_deg": 0
         },
-        "advance_mode": "auto_after_tts"
+        "state_5_quantity_cards": [
+          {
+            "id": "q_pressure",
+            "label": "Pressure",
+            "correct": "scalar",
+            "trap_hint": "pushes outward but no preferred direction at a point"
+          },
+          {
+            "id": "q_force",
+            "label": "Force",
+            "correct": "vector",
+            "trap_hint": "passes both conditions"
+          },
+          {
+            "id": "q_density",
+            "label": "Density",
+            "correct": "scalar",
+            "trap_hint": "pure magnitude, no direction"
+          },
+          {
+            "id": "q_velocity",
+            "label": "Velocity",
+            "correct": "vector",
+            "trap_hint": "passes both conditions"
+          },
+          {
+            "id": "q_surface_tension",
+            "label": "Surface tension",
+            "correct": "scalar",
+            "trap_hint": "boundary scalar, fails parallelogram law"
+          },
+          {
+            "id": "q_area",
+            "label": "Area",
+            "correct": "vector",
+            "trap_hint": "in 3D fluid mechanics, area carries an outward normal"
+          }
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "instructions",
+            "text": "Tap each quantity as Scalar or Vector.\nUse the two-condition rule.\nPushes-in-a-direction is not enough.",
+            "position": {
+              "x": 280,
+              "y": 130
+            },
+            "style": "callout",
+            "color": "#3B82F6"
+          },
+          {
+            "type": "annotation",
+            "id": "card_zone",
+            "text": "[ Card carousel renders here ]\n\nPressure  Force  Density\nVelocity  Surface tension  Area",
+            "position": {
+              "x": 280,
+              "y": 290
+            },
+            "style": "formula_box"
+          },
+          {
+            "type": "annotation",
+            "id": "tap_zones",
+            "text": "[ Scalar ]      [ Vector ]",
+            "position": {
+              "x": 280,
+              "y": 410
+            },
+            "style": "callout"
+          },
+          {
+            "type": "annotation",
+            "id": "score_panel",
+            "text": "Score: 0 / 6\n\nThe two-condition rule:\n(1) preferred direction at the source\n(2) obeys parallelogram law",
+            "position": {
+              "x": 600,
+              "y": 280
+            },
+            "style": "formula_box",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Six quantities. Tap each one as scalar or vector.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s2",
+              "text_en": "Apply the two-condition rule. Pushes in a direction is not enough.",
+              "pause_after_ms": 1800
+            },
+            {
+              "id": "s3",
+              "text_en": "Three of these are the canonical scalar traps. Watch for them.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s4",
+              "text_en": "Tap your way through. The score panel shows your reasoning live.",
+              "pause_after_ms": 1200
+            }
+          ]
+        }
       }
     }
   },
   "epic_c_branches": [
     {
-      "branch_id": "pressure_is_vector",
-      "misconception": "Pressure is a vector because it 'acts in all directions'",
+      "branch_id": "outward_means_vector",
+      "misconception": "Pressure pushes outward, that means it has a direction, so it is a vector.",
       "trigger_phrases": [
-        "pressure is a vector",
-        "pressure acts in all directions so it is a vector",
-        "pressure has direction",
-        "fluid pressure vector quantity"
+        "pressure pushes outward thats a direction",
+        "if pressure has a direction why is it scalar",
+        "pressure on a wall has a clear direction",
+        "outward push means vector right",
+        "pressure points up on the lid so it is a vector"
+      ],
+      "state_sequence": [
+        "STATE_1",
+        "STATE_2",
+        "STATE_3",
+        "STATE_4"
       ],
       "states": {
         "STATE_1": {
-          "title": "Your Belief — Pressure Acts Everywhere, So Vector",
-          "duration": 8,
+          "title": "Your Reasoning, Honestly Stated",
+          "duration": 6,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "your_belief_box",
+          "advance_mode": "auto_after_tts",
           "scene_composition": [
             {
-              "type": "force_arrow",
-              "id": "b_up",
-              "from": { "x": 385, "y": 320 },
-              "magnitude": 2,
-              "direction_deg": 90,
-              "label": "",
-              "color": "#EF4444",
-              "scale_pixels_per_unit": 40
-            },
-            {
-              "type": "force_arrow",
-              "id": "b_down",
-              "from": { "x": 385, "y": 320 },
-              "magnitude": 2,
-              "direction_deg": -90,
-              "label": "",
-              "color": "#EF4444",
-              "scale_pixels_per_unit": 40
-            },
-            {
-              "type": "force_arrow",
-              "id": "b_left",
-              "from": { "x": 385, "y": 320 },
-              "magnitude": 2,
-              "direction_deg": 180,
-              "label": "",
-              "color": "#EF4444",
-              "scale_pixels_per_unit": 40
-            },
-            {
-              "type": "force_arrow",
-              "id": "b_right",
-              "from": { "x": 385, "y": 320 },
-              "magnitude": 2,
-              "direction_deg": 0,
-              "label": "",
-              "color": "#EF4444",
-              "scale_pixels_per_unit": 40
+              "type": "annotation",
+              "id": "outward_means_vector_STATE_1_header",
+              "text": "MISCONCEPTION\nPressure pushes outward, that means it has a direction, so it is a vector.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
             },
             {
               "type": "annotation",
-              "id": "belief_text",
-              "text": "Your reasoning\n\nPressure pushes in all directions.\nThat looks like many arrows.\nVectors are arrows.\n=> pressure is a vector (maybe even many).",
-              "position": { "x": 560, "y": 280 },
+              "id": "your_belief_box",
+              "text": "Your reasoning\n\nPressure pushes outward.\nOutward is a direction.\nThings with direction are vectors.\nTherefore pressure is a vector.\n\nClean logic.\nWrong premise.",
+              "position": {
+                "x": 250,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "outward_means_vector_STATE_1_footer",
+              "text": "Branch: outward_means_vector  ·  STATE_1",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
               "style": "callout",
-              "color": "#EF4444"
+              "color": "#94A3B8"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Here is your intuition. Pressure pushes outward from a point in every direction." },
-              { "id": "s2", "text_en": "Every direction has an arrow. Arrows mean vectors. So pressure must be a vector." },
-              { "id": "s3", "text_en": "The problem is precisely that there are too many arrows, not too few. Vectors have ONE direction — not many. Let us see why that matters." }
+              {
+                "id": "s1",
+                "text_en": "Your reasoning is natural. Pressure does push outward.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "But the direction lives on the wall, not in the pressure itself.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s3",
+                "text_en": "Same pressure pushes every wall. The pressure has no preferred direction.",
+                "pause_after_ms": 1500
+              }
             ]
-          },
-          "advance_mode": "auto_after_tts"
+          }
         },
         "STATE_2": {
-          "title": "The Direction Problem — There Is No 'One' Direction",
-          "duration": 9,
+          "title": "Pascal's Test Inside the Fluid",
+          "duration": 8,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "pascal_box",
+          "advance_mode": "manual_click",
+          "variable_overrides": {
+            "depth": 5,
+            "face_angle_deg": 0
+          },
           "scene_composition": [
             {
               "type": "force_arrow",
-              "id": "force_example",
-              "from": { "x": 240, "y": 320 },
-              "magnitude": 3,
-              "direction_deg": -90,
-              "label": "Force on ball\n(one direction: down)",
-              "color": "#10B981",
-              "scale_pixels_per_unit": 30
-            },
-            {
-              "type": "force_arrow",
-              "id": "velocity_example",
-              "from": { "x": 400, "y": 320 },
-              "magnitude": 3,
-              "direction_deg": 0,
-              "label": "Velocity of car\n(one direction: east)",
-              "color": "#10B981",
-              "scale_pixels_per_unit": 30
+              "id": "rotating_face",
+              "from": {
+                "x": 200,
+                "y": 280
+              },
+              "magnitude": 2,
+              "direction_deg_expr": "face_angle_deg",
+              "label": "force on face",
+              "color": "#F59E0B",
+              "scale_pixels_per_unit": 32
             },
             {
               "type": "annotation",
-              "id": "pressure_case",
-              "text": "Pressure at the same point\n\nArrow up    ? yes\nArrow down  ? yes\nArrow east  ? yes\nArrow west  ? yes\n\nIf I ask you 'which ONE direction?'\nyou cannot answer.\n=> not a vector.",
-              "position": { "x": 560, "y": 260 },
+              "id": "pascal_box",
+              "text_expr": "PASCAL\nAt depth {depth.toFixed(0)} m, P = {(rho*g*depth/1000).toFixed(1)} kPa.\n\nFace angle = {face_angle_deg.toFixed(0)} deg.\nP is unchanged.\nForce magnitude unchanged.\nOnly arrow direction rotates.",
+              "position": {
+                "x": 560,
+                "y": 220
+              },
               "style": "formula_box",
-              "color": "#EF4444"
+              "color": "#10B981"
+            },
+            {
+              "type": "slider",
+              "id": "face_angle_slider",
+              "variable": "face_angle_deg",
+              "label": "rotate face",
+              "min": 0,
+              "max": 360,
+              "default": 0,
+              "step": 15,
+              "unit": "deg",
+              "position": "bottom"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Force on a ball has one direction — downward, say. Velocity of a car has one direction — eastward." },
-              { "id": "s2", "text_en": "To assign a vector, we must pick exactly one direction at each point. That is what 'has a direction' really means." },
-              { "id": "s3", "text_en": "At a point inside a fluid, pressure goes in every direction with equal magnitude. If you ask 'which one direction?' there is no answer." },
-              { "id": "s4", "text_en": "Equal strength everywhere is the same as no preferred direction. And no preferred direction means no vector." }
+              {
+                "id": "s1",
+                "text_en": "Place a tiny test face at depth five metres. Drag the slider.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Watch the pressure reading. It does not change as the face rotates.",
+                "pause_after_ms": 1800
+              },
+              {
+                "id": "s3",
+                "text_en": "Only the force arrow rotates with the face.",
+                "pause_after_ms": 1500
+              }
             ]
-          },
-          "advance_mode": "auto_after_tts"
+          }
         },
         "STATE_3": {
-          "title": "Force Is the Vector. Pressure Is the Scalar Behind It.",
-          "duration": 10,
+          "title": "The Direction Lives in n_hat, Not in P",
+          "duration": 8,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "decomposition",
+          "advance_mode": "manual_click",
           "scene_composition": [
             {
               "type": "annotation",
-              "id": "formula_block",
-              "text": "F = P * A * n_hat\n\nF   vector (force on the surface)\nP   scalar (pressure, one number)\nA   scalar (area, one number)\nn_hat  unit vector (surface normal)\n\nThe direction of F comes from n_hat,\nnot from P.",
-              "position": { "x": 260, "y": 240 },
+              "id": "outward_means_vector_STATE_3_header",
+              "text": "MISCONCEPTION\nPressure pushes outward, that means it has a direction, so it is a vector.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "decomposition",
+              "text": "Force = Pressure x Area x (direction perpendicular to wall)\n\nPressure   one number (no direction)\nArea       one number (size of face)\nDirection  perpendicular to the wall\n\nThe direction comes from the wall,\nnot from pressure.\n\nChange the wall, direction changes.\nPressure is unchanged.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
               "style": "formula_box",
               "color": "#10B981"
             },
             {
               "type": "annotation",
-              "id": "example",
-              "text": "Same point. Three faces.\n\nTop face: F = PA down\nSide face: F = PA horizontal\nBottom face: F = PA up\n\nP is the same number in all three.\nThe direction changes because the\nface orientation changes — not because\npressure has a direction.",
-              "position": { "x": 620, "y": 260 },
-              "style": "callout"
+              "id": "outward_means_vector_STATE_3_footer",
+              "text": "Branch: outward_means_vector  ·  STATE_3",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Here is the relationship cleanly. Force equals pressure times area times the face normal." },
-              { "id": "s2", "text_en": "Force is a vector. Pressure is a scalar. Area is a scalar. The face normal, n-hat, is a unit vector." },
-              { "id": "s3", "text_en": "The direction of the force comes entirely from n-hat — the way the surface faces. Not from the pressure itself." },
-              { "id": "s4", "text_en": "Pressure at a point has one number. Different surfaces passing through that point pick out different directions, but the pressure is unchanged." },
-              { "id": "s5", "text_en": "So when someone says pressure has a direction, what they mean is that pressure generates forces, and forces have direction. Pressure itself does not." }
+              {
+                "id": "s1",
+                "text_en": "Force from pressure has three pieces. Pressure, area, and the surface normal.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Pressure carries the magnitude. The vector lives in n hat.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s3",
+                "text_en": "Same pressure, different walls, different forces. Pressure stays scalar.",
+                "pause_after_ms": 1500
+              }
             ]
-          },
-          "advance_mode": "auto_after_tts"
+          }
         },
         "STATE_4": {
-          "title": "Quick Check — You Can Now Classify These",
-          "duration": 9,
+          "title": "Both Conditions, Both Fail",
+          "duration": 8,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "verdict_box",
+          "advance_mode": "manual_click",
           "scene_composition": [
             {
               "type": "annotation",
-              "id": "check_prompts",
-              "text": "Apply the new rule\n\nTemperature in a room:\n  one number per point, no direction\n  => SCALAR\n\nGravitational field:\n  at each point, a magnitude AND\n  a direction (downward)\n  => VECTOR\n\nPressure in a pressure cooker:\n  one number per point, no direction\n  => SCALAR\n\nElectric field of a charge:\n  at each point, magnitude AND\n  radial direction\n  => VECTOR",
-              "position": { "x": 360, "y": 260 },
-              "style": "formula_box"
+              "id": "outward_means_vector_STATE_4_header",
+              "text": "MISCONCEPTION\nPressure pushes outward, that means it has a direction, so it is a vector.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "verdict_box",
+              "text": "Verdict\n\nCondition (1)\nPressure has no preferred direction\nat a point. FAILS.\n\nCondition (2)\nPressures from two angles\nadd by superposition,\nnot parallelogram. FAILS.\n\n=> Pressure is a scalar.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "outward_means_vector_STATE_4_footer",
+              "text": "Branch: outward_means_vector  ·  STATE_4",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Apply the rule. For each quantity, ask: at one point in space, does it have a magnitude and exactly one direction?" },
-              { "id": "s2", "text_en": "Temperature — one number, no direction — scalar." },
-              { "id": "s3", "text_en": "Gravitational field — magnitude g, direction straight down — vector." },
-              { "id": "s4", "text_en": "Pressure in a cooker — one number at each point, no single direction — scalar." },
-              { "id": "s5", "text_en": "Electric field of a charge — magnitude decreases with distance, direction radially outward — vector." },
-              { "id": "s6", "text_en": "That rule will carry you through every assertion-reason trap in this section." }
+              {
+                "id": "s1",
+                "text_en": "Run the two-condition test cleanly.",
+                "pause_after_ms": 1200
+              },
+              {
+                "id": "s2",
+                "text_en": "Pressure fails both. Therefore scalar.",
+                "pause_after_ms": 1500
+              }
             ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "force_per_area_so_vector",
+      "misconception": "Pressure equals force divided by area, force is a vector, so pressure must be a vector too.",
+      "trigger_phrases": [
+        "p equals f over a so vector",
+        "force is vector so pressure is vector",
+        "if f is vector and a is scalar then p is vector",
+        "dividing a vector should give a vector",
+        "pressure inherits direction from force"
+      ],
+      "state_sequence": [
+        "STATE_1",
+        "STATE_2",
+        "STATE_3",
+        "STATE_4"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Where the Definition Goes Wrong",
+          "duration": 6,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "wrong_eq_box",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "force_per_area_so_vector_STATE_1_header",
+              "text": "MISCONCEPTION\nPressure equals force divided by area, force is a vector, so pressure must be a vector too.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_eq_box",
+              "text": "Wrong reading\n\nP = F / A\n  vector divided by number = vector?\n\nThis form is shorthand.\nThe full physics:\nForce = Pressure x Area x (perpendicular direction)\n  number x number x direction = vector.\n\nPressure is just a number.\nThe direction comes from the wall.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "force_per_area_so_vector_STATE_1_footer",
+              "text": "Branch: force_per_area_so_vector  ·  STATE_1",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "P equals F over A is a textbook shorthand. The full physics is different.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Force equals pressure times area times n hat. Two scalars and a vector.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s3",
+                "text_en": "P is the scalar. n hat is the vector. Force is the product.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "Compare The Two Forms",
+          "duration": 8,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "two_forms_box",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "force_per_area_so_vector_STATE_2_header",
+              "text": "MISCONCEPTION\nPressure equals force divided by area, force is a vector, so pressure must be a vector too.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "two_forms_box",
+              "text": "Shorthand     Full form\nP = F / A     Force = P x A x (perpendicular direction)\n\nIn the full form,\nthe direction comes from the wall.\nPressure carries no direction.\n\nThe shorthand drops the direction\nfor brevity, not because\npressure has direction.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "force_per_area_so_vector_STATE_2_footer",
+              "text": "Branch: force_per_area_so_vector  ·  STATE_2",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Two forms of the same equation. The shorthand drops n hat.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Direction always lived in n hat. The shorthand just hides it.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "Numerical Check at Two Walls",
+          "duration": 8,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "numerical_box",
+          "advance_mode": "manual_click",
+          "variable_overrides": {
+            "depth": 5,
+            "face_area": 0.1
           },
-          "advance_mode": "auto_after_tts"
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "force_per_area_so_vector_STATE_3_header",
+              "text": "MISCONCEPTION\nPressure equals force divided by area, force is a vector, so pressure must be a vector too.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "numerical_box",
+              "text_expr": "Depth {depth.toFixed(0)} m\nP = {(rho*g*depth/1000).toFixed(1)} kPa  (one number)\nA = {face_area.toFixed(2)} m^2\n\nTop wall:    F = {force_magnitude.toFixed(0)} N up\nSide wall:   F = {force_magnitude.toFixed(0)} N right\n\nSame size.\nDifferent direction.\nDirection comes from the wall.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "force_per_area_so_vector_STATE_3_footer",
+              "text": "Branch: force_per_area_so_vector  ·  STATE_3",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "At depth five metres, the pressure is the same number on every wall.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Force magnitude is the same. Direction differs because n hat differs.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s3",
+                "text_en": "Pressure as a number does not carry direction. n hat does.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
+        },
+        "STATE_4": {
+          "title": "Verdict",
+          "duration": 6,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "verdict_box",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "force_per_area_so_vector_STATE_4_header",
+              "text": "MISCONCEPTION\nPressure equals force divided by area, force is a vector, so pressure must be a vector too.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "verdict_box",
+              "text": "Verdict\n\nP appears to inherit direction\nfrom F because the\nshorthand is sloppy.\n\nFull form:\nForce = Pressure x Area x (perpendicular direction)\n\nPressure is just a number. Always.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "force_per_area_so_vector_STATE_4_footer",
+              "text": "Branch: force_per_area_so_vector  ·  STATE_4",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "P equals F over A is a derived shorthand, not a definition.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "The direction was always in n hat. Pressure stays a scalar.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "cooker_lid_bursts_up",
+      "misconception": "Pressure cookers always burst lid first, so pressure must point up.",
+      "trigger_phrases": [
+        "cooker lid bursts so pressure goes up",
+        "pressure points up because lid lifts",
+        "if pressure had no direction lid would not lift",
+        "pressure cooker proves pressure goes up",
+        "the lid is where pressure escapes so direction is up"
+      ],
+      "state_sequence": [
+        "STATE_1",
+        "STATE_2",
+        "STATE_3",
+        "STATE_4"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Same Pressure on Every Wall",
+          "duration": 6,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "cooker_facts",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "cooker_lid_bursts_up_STATE_1_header",
+              "text": "MISCONCEPTION\nPressure cookers always burst lid first, so pressure must point up.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "cooker_facts",
+              "text": "Steam at 200 kPa.\n\nForce on lid:        200 kPa * A_lid\nForce on side:       200 kPa * A_side\nForce on bottom:     200 kPa * A_bottom\n\nSame pressure.\nDifferent walls.\n\nWhy lid first?",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "cooker_lid_bursts_up_STATE_1_footer",
+              "text": "Branch: cooker_lid_bursts_up  ·  STATE_1",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Steam pressure inside a cooker pushes every wall with the same number.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "But the lid lifts first. Why?",
+                "pause_after_ms": 2500
+              }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "It's the Spring, Not the Pressure",
+          "duration": 8,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "spring_box",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "cooker_lid_bursts_up_STATE_2_header",
+              "text": "MISCONCEPTION\nPressure cookers always burst lid first, so pressure must point up.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "spring_box",
+              "text": "Cooker walls are welded steel.\nThe LID sits on a spring valve.\n\nThe spring is the weakest link\nin the chain.\n\nWhen P times A_lid exceeds the\nspring set point, the lid lifts.\n\nPressure has no preferred direction.\nThe valve has the direction.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "cooker_lid_bursts_up_STATE_2_footer",
+              "text": "Branch: cooker_lid_bursts_up  ·  STATE_2",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "The cooker walls are sealed steel. Strong everywhere.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "The lid sits on a spring-loaded valve. That spring is the weakest link.",
+                "pause_after_ms": 1800
+              },
+              {
+                "id": "s3",
+                "text_en": "When pressure times lid area beats the spring, the lid lifts.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s4",
+                "text_en": "The directionality is in the cooker design, not in the pressure.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "Imagine Equal Walls Everywhere",
+          "duration": 6,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "thought_box",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "cooker_lid_bursts_up_STATE_3_header",
+              "text": "MISCONCEPTION\nPressure cookers always burst lid first, so pressure must point up.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "thought_box",
+              "text": "Thought experiment\n\nReplace the cooker with\na perfect sphere.\nAll walls equally strong.\n\nWhich wall bursts first?\n\nNone. The sphere fails uniformly.\nNo direction is special.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "cooker_lid_bursts_up_STATE_3_footer",
+              "text": "Branch: cooker_lid_bursts_up  ·  STATE_3",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Imagine a perfect sphere instead of a cooker.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "All walls equally strong. There is no preferred bursting direction.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s3",
+                "text_en": "The cooker shape, not the pressure, decides which wall fails.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
+        },
+        "STATE_4": {
+          "title": "Verdict",
+          "duration": 6,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "verdict_box",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "cooker_lid_bursts_up_STATE_4_header",
+              "text": "MISCONCEPTION\nPressure cookers always burst lid first, so pressure must point up.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "verdict_box",
+              "text": "Verdict\n\nLid lifts due to mechanical design,\nnot due to pressure direction.\n\nPressure is the same on every wall.\nThe wall with the weakest mounting\ngives way first.\n\nP scalar. Always.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "cooker_lid_bursts_up_STATE_4_footer",
+              "text": "Branch: cooker_lid_bursts_up  ·  STATE_4",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "The cooker proves pressure pushes every wall.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "The wall that gives way is the one with the weakest seal. Geometry, not direction.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "atmospheric_only_pushes_down",
+      "misconception": "Atmospheric pressure pushes down on us, so pressure has a downward direction.",
+      "trigger_phrases": [
+        "atmospheric pressure pushes down",
+        "we feel air pressure from above",
+        "atmospheric is downward direction",
+        "pressure of air on shoulders is down",
+        "atmospheric pressure direction is gravity"
+      ],
+      "state_sequence": [
+        "STATE_1",
+        "STATE_2",
+        "STATE_3",
+        "STATE_4"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "What 101 kPa Actually Means",
+          "duration": 6,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "atm_facts",
+          "advance_mode": "auto_after_tts",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "atmospheric_only_pushes_down_STATE_1_header",
+              "text": "MISCONCEPTION\nAtmospheric pressure pushes down on us, so pressure has a downward direction.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "atm_facts",
+              "text": "Atmospheric pressure\n  P_atm = 101 kPa\n\nAir pushes you from\n  - above (head)\n  - below (feet)\n  - left, right, front, back\n\nAll the same number.\nWhy does only down feel real?",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "atmospheric_only_pushes_down_STATE_1_footer",
+              "text": "Branch: atmospheric_only_pushes_down  ·  STATE_1",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Air at one zero one kilopascals pushes you from every side.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "You only notice the down push because gravity is down too.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "Why You Don't Feel the Up Push",
+          "duration": 8,
+          "teaching_method": "compare_contrast",
+          "focal_primitive_id": "balance_box",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "atmospheric_only_pushes_down_STATE_2_header",
+              "text": "MISCONCEPTION\nAtmospheric pressure pushes down on us, so pressure has a downward direction.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "balance_box",
+              "text": "Air pushes head down: 101 kPa * A_head\nAir pushes feet up:   101 kPa * A_feet\n\nA_head = A_feet (roughly).\nForces cancel.\nYou feel zero net pressure force.\n\nWhat you feel as 'weight'\nis gravity pulling your mass,\nnot air pushing down.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "atmospheric_only_pushes_down_STATE_2_footer",
+              "text": "Branch: atmospheric_only_pushes_down  ·  STATE_2",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Air pushes your head down. Air pushes your feet up. Equal magnitudes.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "These cancel. You feel no net pressure force.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s3",
+                "text_en": "What you feel as weight is gravity, not pressure direction.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "Sealed Cup Demo",
+          "duration": 8,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "cup_demo",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "atmospheric_only_pushes_down_STATE_3_header",
+              "text": "MISCONCEPTION\nAtmospheric pressure pushes down on us, so pressure has a downward direction.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "cup_demo",
+              "text": "Fill a cup with water.\nCover with a card.\nFlip upside down.\n\nWater stays put.\n\nWhy? Air pushes UP on the card\nat 101 kPa. Same number\nas before, just direction\nrevealed by removing the\nbalanced down-push.\n\nPressure was always omnidirectional.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "atmospheric_only_pushes_down_STATE_3_footer",
+              "text": "Branch: atmospheric_only_pushes_down  ·  STATE_3",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Cover a glass of water with a card. Flip it. Water stays.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Air is now pushing up on the card with the same one zero one kilopascals.",
+                "pause_after_ms": 1800
+              },
+              {
+                "id": "s3",
+                "text_en": "Pressure was always omnidirectional. The flip just exposed the up push.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
+        },
+        "STATE_4": {
+          "title": "Verdict",
+          "duration": 6,
+          "teaching_method": "worked_example",
+          "focal_primitive_id": "verdict_box",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "atmospheric_only_pushes_down_STATE_4_header",
+              "text": "MISCONCEPTION\nAtmospheric pressure pushes down on us, so pressure has a downward direction.",
+              "position": {
+                "x": 200,
+                "y": 70
+              },
+              "style": "callout",
+              "color": "#FCD34D"
+            },
+            {
+              "type": "annotation",
+              "id": "verdict_box",
+              "text": "Verdict\n\nAtmospheric pressure has\nno preferred direction.\n\nDown only feels special because\ngravity points down,\nnot because pressure does.\n\nP scalar. Always.",
+              "position": {
+                "x": 280,
+                "y": 250
+              },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "atmospheric_only_pushes_down_STATE_4_footer",
+              "text": "Branch: atmospheric_only_pushes_down  ·  STATE_4",
+              "position": {
+                "x": 200,
+                "y": 460
+              },
+              "style": "callout",
+              "color": "#94A3B8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Atmospheric pressure pushes every direction at the same number.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Down feels real because gravity is down. Pressure stays scalar.",
+                "pause_after_ms": 1500
+              }
+            ]
+          }
         }
       }
     }
   ],
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "mark_scheme": [
+        {
+          "step": 1,
+          "marks": 1,
+          "criterion": "State Pascal's principle: P at a point is the same in every direction"
+        },
+        {
+          "step": 2,
+          "marks": 1,
+          "criterion": "Write hydrostatic formula P = rho g h"
+        },
+        {
+          "step": 3,
+          "marks": 1,
+          "criterion": "Write force-from-pressure formula F_vec = P A n_hat"
+        },
+        {
+          "step": 4,
+          "marks": 1,
+          "criterion": "Identify n_hat as the source of direction (not P)"
+        },
+        {
+          "step": 5,
+          "marks": 1,
+          "criterion": "Conclude P is a scalar field"
+        }
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Statement of Pascal's Principle",
+          "duration": 8,
+          "advance_mode": "manual_click",
+          "scene_composition": [],
+          "derivation_sequence": {
+            "primitives": [
+              {
+                "type": "derivation_step",
+                "text": "Pascal's principle:",
+                "position": {
+                  "x": 80,
+                  "y": 80
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "At any point inside a fluid in equilibrium,",
+                "position": {
+                  "x": 80,
+                  "y": 130
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "the pressure is the same in every direction.",
+                "position": {
+                  "x": 80,
+                  "y": 180
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "P is therefore a scalar quantity (no direction at the point).",
+                "position": {
+                  "x": 80,
+                  "y": 240
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "mark_badge",
+                "mark_value": 1,
+                "text": "+1 mark",
+                "position": {
+                  "x": 600,
+                  "y": 240
+                },
+                "color": "#F59E0B"
+              }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "Hydrostatic Formula",
+          "duration": 8,
+          "advance_mode": "manual_click",
+          "scene_composition": [],
+          "derivation_sequence": {
+            "primitives": [
+              {
+                "type": "derivation_step",
+                "text": "At depth h below a free surface,",
+                "position": {
+                  "x": 80,
+                  "y": 80
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "P = rho * g * h",
+                "position": {
+                  "x": 80,
+                  "y": 140
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "where rho is fluid density and g is gravity.",
+                "position": {
+                  "x": 80,
+                  "y": 200
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "mark_badge",
+                "mark_value": 1,
+                "text": "+1 mark",
+                "position": {
+                  "x": 600,
+                  "y": 200
+                },
+                "color": "#F59E0B"
+              }
+            ]
+          }
+        },
+        "STATE_3": {
+          "title": "Force-from-Pressure Vector Form",
+          "duration": 9,
+          "advance_mode": "manual_click",
+          "scene_composition": [],
+          "derivation_sequence": {
+            "primitives": [
+              {
+                "type": "derivation_step",
+                "text": "Force on a small face of area A:",
+                "position": {
+                  "x": 80,
+                  "y": 80
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "F_vec = P * A * n_hat",
+                "position": {
+                  "x": 80,
+                  "y": 140
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "where n_hat is the outward unit normal to the face.",
+                "position": {
+                  "x": 80,
+                  "y": 200
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "mark_badge",
+                "mark_value": 1,
+                "text": "+1 mark",
+                "position": {
+                  "x": 600,
+                  "y": 200
+                },
+                "color": "#F59E0B"
+              }
+            ]
+          }
+        },
+        "STATE_4": {
+          "title": "Identify the Direction",
+          "duration": 9,
+          "advance_mode": "manual_click",
+          "scene_composition": [],
+          "derivation_sequence": {
+            "primitives": [
+              {
+                "type": "derivation_step",
+                "text": "P and A are scalars. n_hat is a unit vector.",
+                "position": {
+                  "x": 80,
+                  "y": 80
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "The direction of F_vec lives entirely in n_hat.",
+                "position": {
+                  "x": 80,
+                  "y": 140
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "Pressure carries only magnitude.",
+                "position": {
+                  "x": 80,
+                  "y": 200
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "mark_badge",
+                "mark_value": 1,
+                "text": "+1 mark",
+                "position": {
+                  "x": 600,
+                  "y": 200
+                },
+                "color": "#F59E0B"
+              }
+            ]
+          }
+        },
+        "STATE_5": {
+          "title": "Conclusion",
+          "duration": 8,
+          "advance_mode": "manual_click",
+          "scene_composition": [],
+          "derivation_sequence": {
+            "primitives": [
+              {
+                "type": "derivation_step",
+                "text": "Pressure assigns one number to each point in space.",
+                "position": {
+                  "x": 80,
+                  "y": 80
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "It is a scalar field, like temperature or density.",
+                "position": {
+                  "x": 80,
+                  "y": 140
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "derivation_step",
+                "text": "Conclusion: pressure is a scalar.",
+                "position": {
+                  "x": 80,
+                  "y": 220
+                },
+                "animate_in": "handwriting"
+              },
+              {
+                "type": "mark_badge",
+                "mark_value": 1,
+                "text": "+1 mark",
+                "position": {
+                  "x": 600,
+                  "y": 220
+                },
+                "color": "#F59E0B"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "competitive": {
+      "shortcuts": [
+        "If a quantity has units of N per square metre and is defined at a point in a fluid, it is a scalar by default.",
+        "Force from pressure: F_vec = P * A * n_hat. The direction is in n_hat.",
+        "Pascal: P is the same in every direction at a point. Direction-feel comes from the surface, not the pressure.",
+        "Same trap class: surface tension, current, finite rotation."
+      ],
+      "edge_cases": [
+        "At an interface (oil on water), pressure is continuous; only its gradient changes.",
+        "In a moving fluid (Bernoulli), P drops where speed rises, but P is still scalar at every point.",
+        "In a non-inertial frame, an effective body force shifts P(h) but P stays scalar.",
+        "Stress tensor sigma_ij is the proper tensor generalisation; pressure is its isotropic scalar part."
+      ]
+    }
+  },
   "regeneration_variants": [
     {
-      "variant_id": "1",
-      "type": "A",
-      "label": "Different fluids, same rule",
-      "physical_world": "Water (rho = 1000), mercury (rho = 13600), seawater (rho = 1025) at various depths — pressure is rho g h every time, still scalar.",
-      "same_physics": "P is a scalar field whose value scales linearly with depth"
+      "variant_id": "var_pascal",
+      "type": "approach",
+      "approach": "raw_definition",
+      "label": "From Pascal",
+      "entry_state": "STATE_1"
     },
     {
-      "variant_id": "2",
-      "type": "B",
-      "label": "Gas pressure inside a closed vessel",
-      "physical_world": "A sealed pressure cooker at 2 atm has uniform pressure throughout. Walls feel force = P * A perpendicular to each wall — different directions, same scalar P.",
-      "same_physics": "Pressure is location-dependent only; force direction comes from surface orientation"
+      "variant_id": "var_two_walls",
+      "type": "approach",
+      "approach": "two_walls",
+      "label": "Two-Wall Demo",
+      "entry_state": "STATE_3"
+    },
+    {
+      "variant_id": "var_trap_drill",
+      "type": "approach",
+      "approach": "trap_drill",
+      "label": "Six Quantities",
+      "entry_state": "STATE_5"
     }
   ]
 }

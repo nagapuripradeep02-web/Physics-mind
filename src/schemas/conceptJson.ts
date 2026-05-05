@@ -30,12 +30,24 @@ const choreographyPhaseSchema = z.object({
   duration: z.number().optional(),
 });
 
+// ── Misconception Watch (per-state, optional) ───────────────────────
+// Pre-empts a common wrong belief inline within EPIC-L (distinct from
+// EPIC-C branches which fire after a wrong answer). One-liner counter.
+
+const misconceptionWatchSchema = z.object({
+  belief: z.string().min(1),
+  visual_counter: z.string().optional(),
+  one_line_fix: z.string().min(1),
+});
+
 // ── State (within epic_l_path or epic_c_branches) ───────────────────
 // advance_mode + teacher_script are now REQUIRED per state.
 // CLAUDE.md rule 15: advance_mode must be specified per state. Never global.
 // Phase A (2026-04-19) tightening:
 //   - scene_composition: required, >= 3 primitives (rule 20)
 //   - focal_primitive_id: required, non-empty (Section 6)
+// v2.2 additions (2026-05-04, optional for legacy v2.0 retrofit window):
+//   - misconception_watch: array of inline pre-emptive corrections
 
 const stateSchema = z.object({
   title: z.string(),
@@ -53,6 +65,7 @@ const stateSchema = z.object({
   choreography_sequence: z.object({
     phases: z.array(choreographyPhaseSchema),
   }).optional(),
+  misconception_watch: z.array(misconceptionWatchSchema).optional(),
 });
 
 // ── Physics Engine Config ───────────────────────────────────────────
@@ -192,6 +205,34 @@ const availableRendererScenariosSchema = z.record(
   z.array(z.string()),
 );
 
+// ── Cognitive Limits (concept-level ceiling) ────────────────────────
+// Caps clutter per state. Validator (or quality_auditor gate 5) enforces
+// each state respects these. Recommended defaults per concept_tier:
+//   simple:  primitives=4, labels=3, words=15
+//   medium:  primitives=5, labels=3, words=18
+//   complex: primitives=6, labels=4, words=20
+
+const cognitiveLimitsSchema = z.object({
+  max_primitives_per_state: z.number().int().positive(),
+  max_labels_per_state: z.number().int().positive(),
+  max_words_per_tts_sentence: z.number().int().positive(),
+});
+
+// ── Aha Moment (one explicit insight, on the AHA state) ─────────────
+// Required for any concept with epic_l_path.state_count >= 4 once schema
+// transition is complete. Statement <= 15 words to keep it memorable.
+
+const ahaMomentSchema = z.object({
+  state_id: z.string().min(1),
+  statement: z.string().min(1),
+  visual_confirmation: z.string().min(1).optional(),
+});
+
+// ── Concept Tier (authoring complexity classification) ──────────────
+// Drives default state count band + cognitive_limits defaults.
+
+const conceptTierSchema = z.enum(['simple', 'medium', 'complex']);
+
 // ── Top-Level Concept JSON Schema (v2 target) ───────────────────────
 
 export const conceptJsonSchema = z.object({
@@ -208,11 +249,27 @@ export const conceptJsonSchema = z.object({
   real_world_anchor: realWorldAnchorSchema,
   epic_l_path: epicLPathSchema,
 
-  epic_c_branches: z.array(epicCBranchSchema).min(4),
+  // Relaxed from min(4) → min(1) on 2026-05-04. The 4-branch minimum was a
+  // residual of an early design rule that proved to mismatch reality:
+  // many simple atomic concepts (vector_basics, distance_displacement,
+  // unit_vector etc.) have only 1–2 genuine misconception branches.
+  // Forcing 4 caused authors to manufacture filler branches with weak
+  // pedagogical value. Keep the floor at 1 (every atomic concept must
+  // address at least one misconception) and let concept-specific authoring
+  // decide how many real ones exist.
+  epic_c_branches: z.array(epicCBranchSchema).min(1),
   regeneration_variants: z.array(regenerationVariantSchema).optional(),
   panel_b_config: panelBConfigSchema.optional(),
   mode_overrides: modeOverridesSchema.optional(),
   available_renderer_scenarios: availableRendererScenariosSchema.optional(),
+
+  // v2.2 additions (2026-05-04). Optional during the legacy retrofit window;
+  // gold-standard concepts (v2.2-native) author all four. The validator's
+  // superRefine below adds shape checks that fire only when the field is
+  // present, so legacy v2.0 JSONs continue to pass.
+  concept_tier: conceptTierSchema.optional(),
+  cognitive_limits: cognitiveLimitsSchema.optional(),
+  aha_moment: ahaMomentSchema.optional(),
 }).passthrough().superRefine((data, ctx) => {
   // Phase A rule 16: at least 2 distinct advance_mode values across
   // epic_l_path.states. All-`auto_after_tts` ships a passive video, not an
@@ -231,6 +288,27 @@ export const conceptJsonSchema = z.object({
       path: ['epic_l_path', 'states'],
       message: `advance_mode variety: found ${modes.size} distinct value(s) (${[...modes].join(', ') || 'none'}), need >= 2. CLAUDE.md rule 16: mix auto_after_tts, manual_click, wait_for_answer, interaction_complete.`,
     });
+  }
+
+  // v2.2 aha_moment shape checks — fire only when authored.
+  // (Required-for-gold-standard gate lives in validate-concepts.ts so legacy
+  // v2.0 JSONs can stay passing during the retrofit window.)
+  if (data.aha_moment) {
+    const wordCount = data.aha_moment.statement.trim().split(/\s+/).filter(Boolean).length;
+    if (wordCount > 15) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['aha_moment', 'statement'],
+        message: `aha_moment.statement is ${wordCount} words; keep it <= 15 so students remember the insight as one sentence.`,
+      });
+    }
+    if (!(data.aha_moment.state_id in states)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['aha_moment', 'state_id'],
+        message: `aha_moment.state_id "${data.aha_moment.state_id}" must reference a state defined in epic_l_path.states.`,
+      });
+    }
   }
 });
 

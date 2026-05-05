@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 7.7 — projectile on an inclined plane (down); split from projectile_inclined",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "A mountain cyclist at Manali launching off a 12-degree downhill switchback ramp at 15 m/s at 20 degrees above horizontal. Unlike up-slope shots, here the ground FALLS AWAY — so the projectile stays airborne longer and lands much further than it would on flat ground. This is why ski jumpers and BMX riders score well on downhill ramps; the slope multiplies their range.",
@@ -17,15 +17,45 @@
   },
   "physics_engine_config": {
     "variables": {
-      "v0": { "name": "Launch speed", "unit": "m/s", "min": 5, "max": 200, "default": 15 },
-      "alpha": { "name": "Launch angle above horizontal", "unit": "deg", "min": 0, "max": 90, "default": 20 },
-      "beta": { "name": "Down-incline angle below horizontal", "unit": "deg", "min": 0, "max": 60, "default": 12 },
-      "g": { "name": "Gravitational acceleration", "unit": "m/s^2", "min": 9.8, "max": 10, "default": 10 }
+      "v0": {
+        "name": "Launch speed",
+        "unit": "m/s",
+        "min": 5,
+        "max": 200,
+        "default": 15
+      },
+      "alpha": {
+        "name": "Launch angle above horizontal",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 20
+      },
+      "beta": {
+        "name": "Down-incline angle below horizontal",
+        "unit": "deg",
+        "min": 0,
+        "max": 60,
+        "default": 12
+      },
+      "g": {
+        "name": "Gravitational acceleration",
+        "unit": "m/s^2",
+        "min": 9.8,
+        "max": 10,
+        "default": 10
+      }
     },
     "computed_outputs": {
-      "time_of_flight_down": { "formula": "2 * v0 * sin(alpha + beta) / (g * cos(beta))" },
-      "range_down_incline": { "formula": "2 * v0^2 * sin(alpha + beta) * cos(alpha) / (g * cos^2(beta))" },
-      "max_range_angle": { "formula": "alpha_opt = 45 deg - beta/2" }
+      "time_of_flight_down": {
+        "formula": "2 * v0 * sin(alpha + beta) / (g * cos(beta))"
+      },
+      "range_down_incline": {
+        "formula": "2 * v0^2 * sin(alpha + beta) * cos(alpha) / (g * cos^2(beta))"
+      },
+      "max_range_angle": {
+        "formula": "alpha_opt = 45 deg - beta/2"
+      }
     },
     "formulas": {
       "range_down": "R_down = 2 * v0^2 * sin(alpha + beta) * cos(alpha) / (g * cos^2(beta))",
@@ -56,9 +86,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -69,9 +103,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -80,23 +118,51 @@
             "vehicle_type": "bike",
             "zone": "MAIN_ZONE",
             "anchor": "top_left",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 3.0, "dx_px": 180, "dy_px": -80, "easing": "ease_out" },
-              { "type": "translate", "delay_sec": 8.0, "duration_sec": 3.0, "dx_px": 180, "dy_px": 220, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 3,
+                "dx_px": 180,
+                "dy_px": -80,
+                "easing": "ease_out"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 8,
+                "duration_sec": 3,
+                "dx_px": 180,
+                "dy_px": 220,
+                "easing": "ease_in"
+              }
             ]
           }
         ],
         "focal_primitive": "down_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "On a Manali downhill switchback, a mountain cyclist launches off a 12-degree ramp at 15 metres per second, 20 degrees above horizontal." },
-            { "text_en": "Unlike flat ground, the ground FALLS AWAY beneath the cyclist. The bike stays airborne longer — and lands much further down the slope." },
-            { "text_en": "Down-slope shots routinely go 1.5 to 3 times the flat-ground range, for the same launch speed and angle. The slope gifts you distance." }
+            {
+              "text_en": "On a Manali downhill switchback, a mountain cyclist launches off a 12-degree ramp at 15 metres per second, 20 degrees above horizontal.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "Unlike flat ground, the ground FALLS AWAY beneath the cyclist. The bike stays airborne longer — and lands much further down the slope.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Down-slope shots routinely go 1.5 to 3 times the flat-ground range, for the same launch speed and angle. The slope gifts you distance.",
+              "id": "state_1_s3"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "down_sketch"
       },
       "STATE_2": {
         "title": "Rotated Axes — Gravity ACCELERATES Motion Along the Slope",
@@ -110,22 +176,63 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Rotated Axes — Gravity ACCELERATES Motion Along the Slope",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "gravity_split_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Rotate the axes downhill, so x-prime points along the slope." },
-            { "text_en": "Gravity splits into g sine beta along the slope, PLUS g cosine beta perpendicular." },
-            { "text_en": "Crucial difference from up-slope — here g sine beta accelerates motion DOWN the slope, rather than decelerating it." },
-            { "text_en": "The rotated launch angle above the slope is alpha plus beta, not alpha minus beta. The effective launch angle is LARGER because the slope tilts the reference." }
+            {
+              "text_en": "Rotate the axes downhill, so x-prime points along the slope.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "Gravity splits into g sine beta along the slope, PLUS g cosine beta perpendicular.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "Crucial difference from up-slope — here g sine beta accelerates motion DOWN the slope, rather than decelerating it.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "The rotated launch angle above the slope is alpha plus beta, not alpha minus beta. The effective launch angle is LARGER because the slope tilts the reference.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "gravity_split_sketch"
       },
       "STATE_3": {
         "title": "Range Formula and Optimal Angle Down-Slope",
@@ -139,22 +246,63 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Range Formula and Optimal Angle Down-Slope",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "range_down_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Range down an incline is 2 v-nought squared sine of alpha plus beta, times cosine alpha, all divided by g cosine-squared beta." },
-            { "text_en": "The sign flip from minus to plus beta is what makes down-slope go further." },
-            { "text_en": "Optimal angle for maximum down-slope range is 45 degrees MINUS beta over 2 — shallower than flat ground." },
-            { "text_en": "The intuition — because the slope already helps, you should aim shallower and let the downslope do the work." }
+            {
+              "text_en": "Range down an incline is 2 v-nought squared sine of alpha plus beta, times cosine alpha, all divided by g cosine-squared beta.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "The sign flip from minus to plus beta is what makes down-slope go further.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "Optimal angle for maximum down-slope range is 45 degrees MINUS beta over 2 — shallower than flat ground.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "The intuition — because the slope already helps, you should aim shallower and let the downslope do the work.",
+              "id": "state_3_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "range_down_sketch"
       }
     }
   },
@@ -181,22 +329,63 @@
               "anchor": "center",
               "font_size": 12,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Mixing Up + and - Beta",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "mixup_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The common mistake — using the wrong sign for beta." },
-              { "text_en": "Up-slope uses alpha minus beta. Down-slope uses alpha plus beta." },
-              { "text_en": "Apply up-slope to a down-slope problem, and you will get a smaller range than flat ground — obviously wrong since down-slope should be LARGER." } ,
-              { "text_en": "The sign of beta depends on whether the slope rises or falls AWAY from the launch point." }
+              {
+                "text_en": "The common mistake — using the wrong sign for beta.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "Up-slope uses alpha minus beta. Down-slope uses alpha plus beta.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "Apply up-slope to a down-slope problem, and you will get a smaller range than flat ground — obviously wrong since down-slope should be LARGER.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "The sign of beta depends on whether the slope rises or falls AWAY from the launch point.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "mixup_sketch"
         },
         "STATE_2": {
           "title": "Which Sign? Look at the Slope Direction",
@@ -210,22 +399,63 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Which Sign? Look at the Slope Direction",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "sign_rule_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Sign rule to burn into memory." },
-              { "text_en": "Up-slope — slope rises away from the launch — use sine of alpha minus beta. Effective launch angle above slope is smaller. Range is shorter." },
-              { "text_en": "Down-slope — slope falls away from the launch — use sine of alpha plus beta. Effective angle is larger, range is longer." },
-              { "text_en": "Memory trick — 'Up takes away. Down gives.' Minus for up, plus for down." }
+              {
+                "text_en": "Sign rule to burn into memory.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "Up-slope — slope rises away from the launch — use sine of alpha minus beta. Effective launch angle above slope is smaller. Range is shorter.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "Down-slope — slope falls away from the launch — use sine of alpha plus beta. Effective angle is larger, range is longer.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "Memory trick — 'Up takes away. Down gives.' Minus for up, plus for down.",
+                "id": "state_2_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "sign_rule_sketch"
         },
         "STATE_3": {
           "title": "Sanity Check with Flat Ground (beta = 0)",
@@ -239,35 +469,110 @@
               "anchor": "top_center",
               "font_size": 11,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Sanity Check with Flat Ground (beta = 0)",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "sanity_flat_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Sanity check — both formulas must reduce to the flat-ground formula when beta equals zero." },
-              { "text_en": "Up-slope formula at beta equals zero — v-nought squared sine 2 alpha over g. Correct." },
-              { "text_en": "Down-slope formula at beta equals zero — same result, v-nought squared sine 2 alpha over g. Also correct." },
-              { "text_en": "So the only real difference between the two formulas is the sign of beta inside the sine term. Plus for down, minus for up." }
+              {
+                "text_en": "Sanity check — both formulas must reduce to the flat-ground formula when beta equals zero.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Up-slope formula at beta equals zero — v-nought squared sine 2 alpha over g. Correct.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "Down-slope formula at beta equals zero — same result, v-nought squared sine 2 alpha over g. Also correct.",
+                "id": "state_3_s3"
+              },
+              {
+                "text_en": "So the only real difference between the two formulas is the sign of beta inside the sine term. Plus for down, minus for up.",
+                "id": "state_3_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "sanity_flat_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Same Formula As Uphill (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Manali downhill ramp, 12 deg", "params": { "v0": 15, "alpha": 20, "beta": 12 } },
-      { "label": "Ramoji fountain cascade, 25 deg", "params": { "v0": 8, "alpha": 15, "beta": 25 } },
-      { "label": "Bounce pass down hill playground", "params": { "v0": 10, "alpha": 10, "beta": 30 } }
-    ],
-    "type_b": [
-      { "label": "Ski jumper on Auli slope", "scenario": "ski_jumper_auli" },
-      { "label": "Mountain water-slide jet", "scenario": "mountain_waterslide_jet" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Manali downhill ramp, 12 deg",
+        "params": {
+          "v0": 15,
+          "alpha": 20,
+          "beta": 12
+        }
+      },
+      "1": {
+        "label": "Ramoji fountain cascade, 25 deg",
+        "params": {
+          "v0": 8,
+          "alpha": 15,
+          "beta": 25
+        }
+      },
+      "2": {
+        "label": "Bounce pass down hill playground",
+        "params": {
+          "v0": 10,
+          "alpha": 10,
+          "beta": 30
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Ski jumper on Auli slope",
+        "scenario": "ski_jumper_auli"
+      },
+      "1": {
+        "label": "Mountain water-slide jet",
+        "scenario": "mountain_waterslide_jet"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

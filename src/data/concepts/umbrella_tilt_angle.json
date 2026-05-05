@@ -1,266 +1,1089 @@
 {
   "concept_id": "umbrella_tilt_angle",
-  "concept_name": "Umbrella Tilt Angle — How Far Forward to Tilt When Running",
+  "concept_name": "Umbrella Tilt Angle — tan theta = v_person / v_rain",
   "chapter": 6,
   "section": "6.12",
   "schema_version": "2.0.0",
   "class_level": 11,
-  "source_book": "DC Pandey 6.12 — umbrella tilt problem; split from rain_umbrella",
+  "source_book": "DC Pandey Ch.6 table of contents (scope reference only — content authored from first principles)",
+  "prerequisites": ["apparent_rain_velocity", "vector_basics"],
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "dadar_monsoon_sprint_hook",
+      "ground_frame_perpendicular_velocities",
+      "commuters_frame_apparent_velocity_triangle",
+      "perpendicular_canopy_rule",
+      "arctan_formula_derivation",
+      "interactive_slider_live_tilt"
+    ],
+    "epic_c": [
+      "tilt_backward_wrong",
+      "sin_cos_formula_reflex",
+      "arithmetic_velocity_sum",
+      "ground_frame_angle_conflation"
+    ],
+    "panel_b": [
+      "theta_vs_v_person_curve",
+      "v_apparent_magnitude_track"
+    ],
+    "board": [
+      "answer_sheet_derivation",
+      "mark_badge_accumulator"
+    ]
+  },
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": "graph_interactive"
   },
   "real_world_anchor": {
-    "primary": "A Mumbai local commuter running from Dadar station exit to a rickshaw stand during a heavy shower. Rain falls vertically at 5 m/s; she runs at 4 m/s. She holds her umbrella tilted forward at arctan(4/5) = 38.7 degrees — exactly perpendicular to the apparent rain direction. Hold it straight up and rain wets her front. Tilt too far and rain wets her back. Right tilt = dry commute. This one equation saves a lakh uniforms every monsoon.",
-    "secondary": "A delivery boy on a Hero Splendor in Bengaluru during a July shower. Rain at 6 m/s, bike at 18 m/s. Umbrella rigged to the helmet tilts at arctan(18/6) = 71.6 degrees — almost horizontal — because at bike speed the rain seems to blast in straight from the front.",
-    "tertiary": "A Mars exploration rover driving under suspended dust particles during a dust storm. Particles fall at 0.5 m/s; rover moves at 0.05 m/s. Tilt is arctan(0.1) ≈ 5.7 degrees. Same physics, different planet."
+    "primary": "A Mumbai local commuter stepping out of Dadar station at 6:30 PM during the monsoon. Rain falls vertically at 5 m/s; she sprints for a rickshaw at 4 m/s. She doesn't hold the umbrella straight up — she tilts it forward, about 39 degrees from vertical. Hold it straight up and the rain soaks her front. Tilt it back and her back gets drenched. That forward tilt angle equals the angle of the apparent rain in her frame. One ratio — arctan(v_person over v_rain) — saves a uniform every monsoon.",
+    "secondary": "A delivery rider on a Hero Splendor in Bengaluru traffic during an evening shower. Rain at 6 m/s, bike at 18 m/s. Helmet-rigged umbrella tilts at arctan(18 over 6) which is about 71.6 degrees — almost horizontal — because at bike speed the rain seems to blast in straight from the front.",
+    "tertiary": "A Mars exploration rover driving under suspended dust particles during a dust storm. Particles fall at 0.5 m per second; rover moves at 0.05 m per second. Tilt is arctan(0.1) which is about 5.7 degrees. Same physics, different planet."
   },
   "physics_engine_config": {
     "variables": {
-      "v_rain": { "name": "Rain speed (vertical)", "unit": "m/s", "min": 1, "max": 20, "default": 5 },
-      "v_person": { "name": "Person speed (horizontal)", "unit": "m/s", "min": 0, "max": 25, "default": 4 },
-      "theta_tilt": { "name": "Umbrella tilt forward from vertical", "unit": "deg", "min": 0, "max": 90, "default": 38.7 }
+      "v_rain": {
+        "name": "Rain speed (vertical, ground frame)",
+        "unit": "m/s",
+        "min": 1,
+        "max": 20,
+        "default": 5
+      },
+      "v_person": {
+        "name": "Commuter speed (horizontal, ground frame)",
+        "unit": "m/s",
+        "min": 0,
+        "max": 25,
+        "default": 4
+      },
+      "theta_tilt": {
+        "name": "Umbrella forward tilt from vertical",
+        "unit": "deg",
+        "derived": "atan(v_person / v_rain) * 180 / PI"
+      },
+      "v_apparent": {
+        "name": "Apparent rain speed in commuter's frame",
+        "unit": "m/s",
+        "derived": "sqrt(v_rain * v_rain + v_person * v_person)"
+      }
     },
     "computed_outputs": {
-      "theta_tilt": { "formula": "atan(v_person / v_rain) in degrees" }
+      "theta_display": { "formula": "atan(v_person / v_rain) * 180 / PI" },
+      "v_apparent_display": { "formula": "sqrt(v_rain * v_rain + v_person * v_person)" },
+      "ratio_display": { "formula": "v_person / v_rain" }
     },
     "formulas": {
-      "umbrella_rule": "Tilt the umbrella FORWARD from vertical by angle theta such that tan(theta) = v_person / v_rain",
-      "equivalence_with_apparent_velocity": "theta = angle that apparent rain velocity makes with the vertical (in the forward direction)",
-      "perpendicular_shield": "The umbrella's canopy must be perpendicular to the apparent rain direction to block maximum water.",
-      "no_tilt_for_stationary": "v_person = 0 -> theta = 0 (hold straight up)"
+      "theta_tilt_rad": "atan(v_person / v_rain)",
+      "theta_tilt_deg": "atan(v_person / v_rain) * 180 / PI",
+      "v_apparent_mag": "sqrt(v_rain * v_rain + v_person * v_person)",
+      "tilt_rule": "The umbrella shaft tilts forward from vertical by theta such that tan(theta) = v_person / v_rain",
+      "perpendicular_rule": "Canopy perpendicular to apparent rain means shaft parallel to apparent rain means tilt equals the angle the apparent rain makes with vertical"
     },
     "constraints": [
-      "Rain assumed to fall vertically in the ground frame (no crosswind).",
-      "Tilt angle is measured forward from vertical, in the plane of motion.",
-      "Formula is tan (not sin or cos) because the two velocities are perpendicular."
+      "Rain falls vertically in the ground frame (no crosswind assumed)",
+      "Tilt angle theta is measured forward from vertical, in the plane of motion",
+      "Formula uses tan (not sin or cos) because v_person and v_rain are perpendicular",
+      "v_rain > 0 always — no zero-rain state makes physical sense; also prevents division by zero",
+      "0 <= theta < 90 degrees — upper bound approached as v_person / v_rain tends to infinity"
     ]
   },
   "epic_l_path": {
-    "state_count": 3,
+    "state_count": 6,
     "states": {
       "STATE_1": {
         "title": "Hook — The Dadar Station Sprint",
         "duration": 11,
+        "focal_primitive_id": "three_wrong_tilts",
+        "allow_deep_dive": false,
+        "variable_overrides": { "v_rain": 5, "v_person": 4 },
         "scene_composition": [
           {
-            "type": "annotation",
-            "id": "hook_sketch",
-            "text": "Dadar station, 6:30 PM monsoon rush.\n\n  Rain falls vertically:  v_rain   = 5 m/s (down)\n  Commuter sprints east:  v_person = 4 m/s\n\n  Question: at what FORWARD TILT should she hold the umbrella?\n\n  Wrong answer (straight up):\n     rain slants in from the front, soaks her jeans.\n  Wrong answer (tilted backward):\n     rain still hits her from the front, even more exposed.\n  Correct answer (tilted forward):\n     umbrella shields the forward-approaching apparent rain.\n\n     theta  =  arctan(v_person / v_rain)\n            =  arctan(4 / 5)\n            =  arctan(0.8)\n            ~=  38.7 deg forward",
-            "zone": "MAIN_ZONE",
-            "anchor": "top_center",
-            "font_size": 12,
-            "color": "#111",
-            "appear_at": 0.0,
-            "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
-            ]
-          },
-          {
             "type": "label",
-            "id": "dadar_label",
-            "text": "Dadar station commuter in a downpour",
-            "zone": "MAIN_ZONE",
-            "anchor": "bottom_center",
-            "font_size": 14,
-            "color": "#333",
-            "appear_at": 3.0,
-            "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
-            ]
+            "id": "scene_title",
+            "text": "Mumbai Dadar, 6:30 PM monsoon. Rain 5 m/s. Sprint 4 m/s.",
+            "position": { "x": 60, "y": 40 },
+            "font_size": 16,
+            "color": "#1F2937"
           },
           {
-            "type": "vehicle_sprite",
-            "id": "person",
-            "vehicle_type": "person",
-            "zone": "MAIN_ZONE",
-            "anchor": "left_center",
-            "appear_at": 4.0,
-            "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 260, "dy_px": 0, "easing": "linear" }
-            ]
+            "type": "body",
+            "id": "commuter_silhouette",
+            "shape": "rect",
+            "label": "Commuter",
+            "position": { "x": 150, "y": 330 },
+            "size": { "w": 30, "h": 60 },
+            "fill_color": "#6B7280",
+            "border_color": "#374151"
+          },
+          {
+            "type": "vector",
+            "id": "rain_drop_1",
+            "from": { "x": 400, "y": 100 },
+            "to": { "x": 400, "y": 260 },
+            "label": "rain",
+            "color": "#3B82F6",
+            "style": "solid"
+          },
+          {
+            "type": "vector",
+            "id": "rain_drop_2",
+            "from": { "x": 460, "y": 80 },
+            "to": { "x": 460, "y": 240 },
+            "color": "#3B82F6",
+            "style": "solid"
+          },
+          {
+            "type": "vector",
+            "id": "rain_drop_3",
+            "from": { "x": 340, "y": 120 },
+            "to": { "x": 340, "y": 280 },
+            "color": "#3B82F6",
+            "style": "solid"
+          },
+          {
+            "type": "annotation",
+            "id": "three_wrong_tilts",
+            "text": "Three wrong tilts vs the right one:\n\n  (A) Straight up -> rain soaks front\n  (B) Tilt back -> rain still soaks front\n  (C) Tilt 90 deg -> not a shield, a roof\n\n  Correct answer: tilt FORWARD by\n  theta = arctan(v_person / v_rain)\n       = arctan(4 / 5)\n       = 38.7 deg.",
+            "position": { "x": 520, "y": 220 },
+            "style": "callout",
+            "color": "#1F2937"
           }
         ],
-        "focal_primitive": "hook_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Dadar station, monsoon rush hour. Rain falls vertically at 5 metres per second; the commuter sprints east at 4." },
-            { "text_en": "She holds an umbrella. At what angle forward should she tilt it?" },
-            { "text_en": "Straight up — rain slants into her jeans. Backward — rain still hits her from the front and she is fully exposed." },
-            { "text_en": "Correct: tilt it forward by theta equal to arctan of v person over v rain — that is arctan 4 over 5, about 38.7 degrees." }
+            { "id": "s1", "text_en": "Mumbai Dadar station, six thirty PM, peak monsoon. Rain falls vertically at five metres per second. A commuter sprints east for a rickshaw at four metres per second." },
+            { "id": "s2", "text_en": "She could hold the umbrella three wrong ways. Straight up — the rain slants in from the front and soaks her. Tilt it backward like a hood — her front still gets wet. Tilt it all the way forward — it is a roof, not a shield." },
+            { "id": "s3", "text_en": "The right answer is one specific forward tilt angle. Not thirty degrees. Not half of anything. A precise value that depends on the ratio of her speed and the rain's speed." },
+            { "id": "s4", "text_en": "That angle is arctan of four divided by five, which is thirty eight point seven degrees forward of vertical. The next five states build this answer from first principles." }
           ]
         },
         "advance_mode": "auto_after_tts"
       },
       "STATE_2": {
-        "title": "Why tan, Not sin — The Right-Angle Geometry",
-        "duration": 12,
+        "title": "Ground Frame — Two Perpendicular Velocities",
+        "duration": 10,
+        "focal_primitive_id": "ground_frame_right_angle",
+        "allow_deep_dive": false,
+        "variable_overrides": { "v_rain": 5, "v_person": 4 },
         "scene_composition": [
           {
+            "type": "label",
+            "id": "frame_label",
+            "text": "Ground frame — watching from outside the commuter",
+            "position": { "x": 60, "y": 40 },
+            "font_size": 16,
+            "color": "#1F2937"
+          },
+          {
+            "type": "body",
+            "id": "person_gf",
+            "shape": "rect",
+            "label": "4 m/s east",
+            "position": { "x": 200, "y": 360 },
+            "size": { "w": 30, "h": 60 },
+            "fill_color": "#6B7280"
+          },
+          {
+            "type": "vector",
+            "id": "v_person_arrow",
+            "from": { "x": 215, "y": 360 },
+            "to": { "x": 295, "y": 360 },
+            "label": "v_person = 4 m/s",
+            "color": "#10B981",
+            "style": "solid"
+          },
+          {
+            "type": "vector",
+            "id": "v_rain_arrow_main",
+            "from": { "x": 420, "y": 120 },
+            "to": { "x": 420, "y": 280 },
+            "label": "v_rain = 5 m/s",
+            "color": "#3B82F6",
+            "style": "solid"
+          },
+          {
+            "type": "vector",
+            "id": "v_rain_arrow_2",
+            "from": { "x": 360, "y": 140 },
+            "to": { "x": 360, "y": 280 },
+            "color": "#3B82F6",
+            "style": "solid"
+          },
+          {
+            "type": "vector",
+            "id": "v_rain_arrow_3",
+            "from": { "x": 480, "y": 100 },
+            "to": { "x": 480, "y": 280 },
+            "color": "#3B82F6",
+            "style": "solid"
+          },
+          {
             "type": "annotation",
-            "id": "triangle_sketch",
-            "text": "Right-angle vector triangle:\n\n              apparent rain velocity\n                    ||\n                    ||  <- along this line, umbrella perpendicular\n                    ||\n                    ||\n         v_rain     ||\n        (vertical)  ||\n            | __________\n            |/|\n           -+--+  v_person (horizontal)\n            |__|\n               |\n               |\n     theta = angle between apparent rain and vertical\n\n   Right triangle has:\n      opposite side = v_person (horizontal)\n      adjacent side = v_rain   (vertical)\n\n   tan(theta)  =  opposite / adjacent  =  v_person / v_rain\n\n   Hence the FAMOUS umbrella formula:\n       theta = arctan(v_person / v_rain)",
-            "zone": "MAIN_ZONE",
-            "anchor": "top_center",
-            "font_size": 12,
-            "color": "#111",
-            "appear_at": 0.0,
-            "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
-            ]
+            "id": "ground_frame_right_angle",
+            "text": "In the ground frame:\n\n  v_rain (vertical, down) is\n  PERPENDICULAR to\n  v_person (horizontal, east).\n\n  Two velocities at 90 deg.\n  Remember: PERPENDICULAR -> use tan.",
+            "position": { "x": 540, "y": 200 },
+            "style": "callout",
+            "color": "#1F2937"
           }
         ],
-        "focal_primitive": "triangle_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Why tangent, and not sine or cosine?" },
-            { "text_en": "Because the person's horizontal velocity and the rain's vertical velocity are PERPENDICULAR. The triangle they form has a 90-degree angle between them." },
-            { "text_en": "Tangent equals opposite over adjacent. Opposite is v person — horizontal. Adjacent is v rain — vertical." },
-            { "text_en": "So tan theta equals v person divided by v rain. That is the umbrella formula for life." }
+            { "id": "s1", "text_en": "Step out of the commuter's shoes for a moment. Watch from the platform, as an outside observer." },
+            { "id": "s2", "text_en": "You see two velocities. Rain falls vertically downward at five metres per second. The commuter runs horizontally east at four metres per second." },
+            { "id": "s3", "text_en": "The key structural fact: these two velocities are at ninety degrees to each other. Perpendicular." },
+            { "id": "s4", "text_en": "When two quantities in a right triangle are perpendicular, the angle between the hypotenuse and either leg is given by tangent — not sine, not cosine. Remember this. It will matter in state five." }
+          ]
+        },
+        "advance_mode": "manual_click"
+      },
+      "STATE_3": {
+        "title": "Enter the Commuter's Frame — Apparent Velocity Triangle",
+        "duration": 14,
+        "focal_primitive_id": "v_apparent_vector",
+        "allow_deep_dive": true,
+        "drill_downs": ["why_change_frame", "what_does_apparent_mean", "rain_direction_in_both_frames"],
+        "variable_overrides": { "v_rain": 5, "v_person": 4 },
+        "scene_composition": [
+          {
+            "type": "label",
+            "id": "frame_shift_header",
+            "text": "Commuter's frame — what the runner feels",
+            "position": { "x": 60, "y": 40 },
+            "font_size": 16,
+            "color": "#1F2937"
+          },
+          {
+            "type": "vector",
+            "id": "v_rain_down",
+            "from": { "x": 220, "y": 150 },
+            "to": { "x": 220, "y": 350 },
+            "label": "v_rain (5 m/s, down)",
+            "color": "#3B82F6",
+            "style": "solid"
+          },
+          {
+            "type": "vector",
+            "id": "v_ground_back",
+            "from": { "x": 220, "y": 350 },
+            "to": { "x": 140, "y": 350 },
+            "label": "-v_person (4 m/s, back)",
+            "color": "#10B981",
+            "style": "solid"
+          },
+          {
+            "type": "vector",
+            "id": "v_apparent_vector",
+            "from": { "x": 220, "y": 150 },
+            "to": { "x": 140, "y": 350 },
+            "label": "v_apparent (diagonal)",
+            "color": "#EF4444",
+            "style": "solid"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_at_top",
+            "vertex": { "x": 220, "y": 150 },
+            "from_direction": 270,
+            "to_direction": 248,
+            "label": "theta",
+            "radius": 42,
+            "color": "#EF4444"
+          },
+          {
+            "type": "annotation",
+            "id": "frame_shift_text",
+            "text": "In the commuter's frame:\n  - Rain still falls down at 5 m/s\n  - The ground moves BACKWARD at 4 m/s\n  - So rain APPEARS to come from the\n    front-and-above along the red diagonal.\n\n  The diagonal = v_apparent.\n  The angle theta = angle of apparent rain\n  from vertical.",
+            "position": { "x": 440, "y": 160 },
+            "style": "callout",
+            "color": "#1F2937"
+          },
+          {
+            "type": "annotation",
+            "id": "triangle_legs_labels",
+            "text": "The right triangle:\n  vertical leg = v_rain = 5\n  horizontal leg = v_person = 4\n  diagonal = v_apparent = sqrt(25+16) = sqrt(41) ~= 6.4",
+            "position": { "x": 440, "y": 380 },
+            "style": "callout",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now step inside the commuter's frame. What does she feel?" },
+            { "id": "s2", "text_en": "Rain still falls straight down at five metres per second — nothing changed about the rain. But the ground now slides backward under her feet at four metres per second." },
+            { "id": "s3", "text_en": "In her frame, the apparent rain velocity is the composition of these two: down at five, horizontal-backward at four. The red diagonal arrow on the screen is exactly this composition." },
+            { "id": "s4", "text_en": "Rain seems to come from the front-and-above, not straight down. That is the entire point of the frame shift. The rain's direction is different in the two frames, because the observer is different." },
+            { "id": "s5", "text_en": "The triangle at the top of the diagonal shows the geometry. Vertical leg is v_rain, five metres per second. Horizontal leg is v_person, four metres per second. The hypotenuse is v_apparent, which is the square root of twenty five plus sixteen, about six point four metres per second." }
           ]
         },
         "advance_mode": "auto_after_tts"
       },
-      "STATE_3": {
-        "title": "Speed-Tilt Table — Memorable Numbers",
-        "duration": 11,
+      "STATE_4": {
+        "title": "Perpendicular Canopy Rule — Shaft Tilts With the Apparent Rain",
+        "duration": 10,
+        "focal_primitive_id": "umbrella_shaft_tilted",
+        "allow_deep_dive": false,
+        "variable_overrides": { "v_rain": 5, "v_person": 4 },
         "scene_composition": [
           {
+            "type": "label",
+            "id": "rule_header",
+            "text": "The perpendicular canopy rule",
+            "position": { "x": 60, "y": 40 },
+            "font_size": 16,
+            "color": "#1F2937"
+          },
+          {
+            "type": "body",
+            "id": "person_tilted",
+            "shape": "rect",
+            "label": "commuter",
+            "position": { "x": 220, "y": 360 },
+            "size": { "w": 30, "h": 60 },
+            "fill_color": "#6B7280"
+          },
+          {
+            "type": "vector",
+            "id": "umbrella_shaft_tilted",
+            "from": { "x": 220, "y": 330 },
+            "to": { "x": 170, "y": 210 },
+            "label": "shaft tilted forward",
+            "color": "#8B5CF6",
+            "style": "solid"
+          },
+          {
+            "type": "vector",
+            "id": "apparent_rain_shown",
+            "from": { "x": 95, "y": 150 },
+            "to": { "x": 175, "y": 210 },
+            "label": "apparent rain",
+            "color": "#EF4444",
+            "style": "solid"
+          },
+          {
             "type": "annotation",
-            "id": "table_sketch",
-            "text": "Umbrella tilt for v_rain = 5 m/s:\n\n   v_person (m/s)  | tilt theta (deg)\n   ----------------+-----------------\n        0         |    0    (straight up)\n        1         |   11.3\n        2         |   21.8\n        3         |   31.0\n        4         |   38.7  <- Dadar commuter\n        5         |   45.0  (umbrella at 45 deg)\n        8         |   58.0\n       15         |   71.6\n       25         |   78.7\n\n   Rule of thumb:\n      SAME speed as rain -> umbrella at 45 deg.\n      DOUBLE the rain speed -> theta ~ 63 deg.\n      TEN TIMES the rain -> theta almost horizontal.",
-            "zone": "MAIN_ZONE",
-            "anchor": "top_center",
-            "font_size": 12,
-            "color": "#111",
-            "appear_at": 0.0,
-            "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
-            ]
+            "id": "perpendicular_rule_text",
+            "text": "The canopy must be PERPENDICULAR\nto the apparent rain direction.\n\nThat means the shaft (purple) must be\nPARALLEL to the apparent rain (red).\n\nSo: the umbrella shaft tilts forward\nby the SAME angle theta that the\napparent rain makes with vertical.",
+            "position": { "x": 400, "y": 200 },
+            "style": "callout",
+            "color": "#1F2937"
+          },
+          {
+            "type": "angle_arc",
+            "id": "tilt_arc",
+            "vertex": { "x": 220, "y": 330 },
+            "from_direction": 90,
+            "to_direction": 112,
+            "label": "theta",
+            "radius": 60,
+            "color": "#8B5CF6"
           }
         ],
-        "focal_primitive": "table_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "A quick speed-to-tilt reference, fixing v rain at 5 metres per second." },
-            { "text_en": "Walking speed — 21 degrees. Jogging — 31. The Dadar commuter at 4 — 38.7." },
-            { "text_en": "When your own speed equals the rain speed, the umbrella is at exactly 45 degrees." },
-            { "text_en": "Double your speed to ten times rain speed — and the umbrella lies almost horizontal. Useful for JEE and useful for daily life." }
+            { "id": "s1", "text_en": "The umbrella canopy blocks rain when it is perpendicular to the rain's approach direction. That is true in any frame." },
+            { "id": "s2", "text_en": "In the commuter's frame, the apparent rain comes in along the red diagonal at some angle from vertical. Call that angle theta." },
+            { "id": "s3", "text_en": "If the canopy must be perpendicular to the red diagonal, then the umbrella SHAFT must be parallel to the red diagonal. Shaft parallel to apparent rain." },
+            { "id": "s4", "text_en": "So the shaft tilts forward from vertical by exactly theta — the same angle that the apparent rain makes with vertical. Not half of it, not double it, exactly theta." }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click"
+      },
+      "STATE_5": {
+        "title": "Formula — tan theta = v_person / v_rain",
+        "duration": 12,
+        "focal_primitive_id": "tan_formula_box",
+        "allow_deep_dive": true,
+        "drill_downs": ["why_tan_not_sin_or_cos", "what_angle_is_this_exactly", "why_ratio_not_sum"],
+        "variable_overrides": { "v_rain": 5, "v_person": 4 },
+        "scene_composition": [
+          {
+            "type": "label",
+            "id": "formula_header",
+            "text": "Apply the tan rule to the right triangle",
+            "position": { "x": 60, "y": 40 },
+            "font_size": 16,
+            "color": "#1F2937"
+          },
+          {
+            "type": "vector",
+            "id": "adj_leg",
+            "from": { "x": 200, "y": 350 },
+            "to": { "x": 200, "y": 180 },
+            "label": "adjacent = v_rain = 5",
+            "color": "#3B82F6",
+            "style": "solid"
+          },
+          {
+            "type": "vector",
+            "id": "opp_leg",
+            "from": { "x": 200, "y": 180 },
+            "to": { "x": 336, "y": 180 },
+            "label": "opposite = v_person = 4",
+            "color": "#10B981",
+            "style": "solid"
+          },
+          {
+            "type": "vector",
+            "id": "hyp_apparent",
+            "from": { "x": 200, "y": 350 },
+            "to": { "x": 336, "y": 180 },
+            "label": "hypotenuse = v_apparent",
+            "color": "#EF4444",
+            "style": "dashed"
+          },
+          {
+            "type": "angle_arc",
+            "id": "theta_arc_here",
+            "vertex": { "x": 200, "y": 350 },
+            "from_direction": 90,
+            "to_direction": 52,
+            "label": "theta",
+            "radius": 44,
+            "color": "#8B5CF6"
+          },
+          {
+            "type": "formula_box",
+            "id": "tan_formula_box",
+            "equation": "tan(theta) = opposite / adjacent\n         = v_person / v_rain\n         = 4 / 5\n         = 0.8\n\ntheta = arctan(0.8) = 38.66 deg",
+            "position": { "x": 460, "y": 220 },
+            "border_color": "#8B5CF6"
+          },
+          {
+            "type": "annotation",
+            "id": "side_call",
+            "text": "The angle theta is measured\nfrom the VERTICAL axis\n(along v_rain).\n\nOpposite side (horizontal) = v_person.\nAdjacent side (vertical)   = v_rain.\nHypotenuse = v_apparent (not needed\nfor the angle, only the magnitude).",
+            "position": { "x": 460, "y": 90 },
+            "style": "callout",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now apply the tan rule. The angle theta sits at the bottom-left vertex of the right triangle we built." },
+            { "id": "s2", "text_en": "Opposite side — the horizontal leg, equal to v_person, four metres per second. Adjacent side — the vertical leg, equal to v_rain, five metres per second." },
+            { "id": "s3", "text_en": "Tan of theta equals opposite over adjacent, which equals v_person over v_rain, which equals four over five, which equals zero point eight." },
+            { "id": "s4", "text_en": "Theta equals arctan of zero point eight, which is thirty eight point six six degrees." },
+            { "id": "s5", "text_en": "Notice: the hypotenuse v_apparent does not enter the formula. We do not need the apparent rain's speed to find the angle. Only the ratio of v_person to v_rain." }
+          ]
+        },
+        "advance_mode": "wait_for_answer"
+      },
+      "STATE_6": {
+        "title": "Your Turn — Drag Speeds, Watch the Tilt",
+        "duration": 18,
+        "focal_primitive_id": "live_umbrella",
+        "allow_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "label",
+            "id": "interactive_header",
+            "text": "Drag the sliders. Watch the umbrella shaft track the formula.",
+            "position": { "x": 60, "y": 40 },
+            "font_size": 15,
+            "color": "#1F2937"
+          },
+          {
+            "type": "body",
+            "id": "person_live",
+            "shape": "rect",
+            "label": "commuter",
+            "position": { "x": 240, "y": 370 },
+            "size": { "w": 30, "h": 60 },
+            "fill_color": "#6B7280"
+          },
+          {
+            "type": "vector",
+            "id": "live_umbrella",
+            "from": { "x": 240, "y": 340 },
+            "to": { "x": 200, "y": 220 },
+            "label_expr": "theta = {(atan(v_person / v_rain) * 180 / PI).toFixed(1)} deg",
+            "color": "#8B5CF6",
+            "style": "solid"
+          },
+          {
+            "type": "formula_box",
+            "id": "live_readout",
+            "equation_expr": "v_person = {v_person} m/s\nv_rain   = {v_rain} m/s\ntan(theta) = {(v_person / v_rain).toFixed(2)}\ntheta    = {(atan(v_person / v_rain) * 180 / PI).toFixed(1)} deg\nv_apparent = {(sqrt(v_rain*v_rain + v_person*v_person)).toFixed(2)} m/s",
+            "position": { "x": 460, "y": 160 },
+            "border_color": "#8B5CF6"
+          },
+          {
+            "type": "slider",
+            "id": "v_person_slider",
+            "variable": "v_person",
+            "min": 0,
+            "max": 25,
+            "step": 0.5,
+            "default": 4,
+            "label": "v_person (m/s)"
+          },
+          {
+            "type": "slider",
+            "id": "v_rain_slider",
+            "variable": "v_rain",
+            "min": 1,
+            "max": 20,
+            "step": 0.5,
+            "default": 5,
+            "label": "v_rain (m/s)"
+          },
+          {
+            "type": "annotation",
+            "id": "edge_case_hints",
+            "text": "Try the edge cases:\n  - v_person = 0   -> theta = 0 (hold straight up)\n  - v_person large  -> theta near 90 (almost horizontal)\n  - v_rain huge     -> theta near 0 (heavy rain dominates)",
+            "position": { "x": 60, "y": 420 },
+            "style": "callout",
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Your turn. Two sliders control the two speeds. The purple shaft and the numeric readout update in real time." },
+            { "id": "s2", "text_en": "First try the stationary limit — drag v_person down to zero. The shaft snaps to vertical. At zero speed, the apparent rain is just the real rain, straight down, and theta is zero." },
+            { "id": "s3", "text_en": "Now push v_person high while keeping v_rain small. The shaft falls nearly horizontal. A fast runner in a drizzle needs an almost-flat umbrella." },
+            { "id": "s4", "text_en": "Finally, check the Bengaluru biker scenario. Set v_person to eighteen, v_rain to six. The angle reads seventy one point six degrees — exactly the secondary anchor from state one." },
+            { "id": "s5", "text_en": "One formula. Three scenarios. The same rule each time." }
+          ]
+        },
+        "advance_mode": "interaction_complete"
       }
     }
   },
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "title": "theta vs v_person  (v_rain held)",
+    "x_axis": {
+      "label": "v_person (m/s)",
+      "min": 0,
+      "max": 25,
+      "variable": "v_person"
+    },
+    "y_axis": {
+      "label": "theta (deg)",
+      "min": 0,
+      "max": 90
+    },
+    "traces": [
+      {
+        "id": "theta_curve_at_vrain5",
+        "formula": "atan(x / 5) * 180 / PI",
+        "variable": "x",
+        "label": "theta (deg) at v_rain = 5",
+        "color": "#8B5CF6",
+        "style": "solid"
+      }
+    ],
+    "live_dot": {
+      "x_from": "v_person",
+      "y_from": "atan(v_person / v_rain) * 180 / PI",
+      "color": "#EF4444",
+      "size": 6
+    },
+    "sync_with_panel_a_sliders": ["v_person", "v_rain"]
+  },
   "epic_c_branches": [
     {
-      "branch_id": "use_sin_instead_of_tan",
-      "misconception_summary": "Student plugs into sine or cosine by reflex, instead of using tangent.",
-      "confusion_patterns": [
-        "umbrella tilt sin formula",
-        "umbrella tilt cos formula",
-        "which trig for umbrella problem",
-        "sin or tan for rain tilt"
+      "branch_id": "tilt_backward_to_block_rain",
+      "misconception": "Student tilts the umbrella backward (toward the rear) thinking rain falls from above, like using a hood.",
+      "trigger_phrases": [
+        "tilt umbrella back like hood",
+        "lean umbrella backward",
+        "rain falls from above so tilt back",
+        "why not tilt umbrella backward",
+        "umbrella tilted wrong way"
       ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
       "states": {
-        "STATE_1": {
-          "title": "The Trap: Default to sine",
-          "duration": 10,
+        "EPIC_C_1": {
+          "title": "Myth — Tilt the Umbrella Backward Like a Hood",
+          "focal_primitive_id": "wrong_back_tilt",
+          "advance_mode": "manual_click",
           "scene_composition": [
             {
+              "type": "label",
+              "id": "myth_header",
+              "text": "Myth: Tilt the umbrella BACKWARD to shield from rain.",
+              "position": { "x": 50, "y": 40 },
+              "font_size": 16,
+              "color": "#DC2626",
+              "bold": true
+            },
+            {
+              "type": "body",
+              "id": "person_wrong",
+              "shape": "rect",
+              "label": "commuter",
+              "position": { "x": 220, "y": 360 },
+              "size": { "w": 30, "h": 60 },
+              "fill_color": "#6B7280"
+            },
+            {
+              "type": "vector",
+              "id": "wrong_back_tilt",
+              "from": { "x": 220, "y": 330 },
+              "to": { "x": 280, "y": 210 },
+              "label": "shaft tilted BACKWARD (wrong)",
+              "color": "#DC2626",
+              "style": "solid"
+            },
+            {
+              "type": "vector",
+              "id": "apparent_rain_soaks",
+              "from": { "x": 100, "y": 160 },
+              "to": { "x": 200, "y": 330 },
+              "label": "apparent rain from front",
+              "color": "#3B82F6",
+              "style": "solid"
+            },
+            {
               "type": "annotation",
-              "id": "sin_wrong_sketch",
-              "text": "Student's guess:\n  \"All tilt problems use sine or cosine.\n   Let me try  sin(theta) = v_person / v_rain\n   or similar.\"\n\n  On the Dadar example:\n   sin(theta) = 4 / 5 = 0.8 -> theta = 53.1 deg\n\n   That's not what the right-angle geometry gives.\n   Correct answer (via tan) = 38.7 deg.\n\n   14-degree error.  In board exams, that's a lost mark.",
-              "zone": "MAIN_ZONE",
-              "anchor": "center",
-              "font_size": 13,
-              "color": "#b00020",
-              "appear_at": 0.0,
-              "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
-              ]
+              "id": "wrong_outcome",
+              "text": "Result: rain slants in from the FRONT.\nBackward-tilted umbrella exposes the\nentire front of the commuter.\n\nWorse than holding it straight up.\nThe back of an umbrella is not a hood.\n\nWrong because the apparent rain in\nthe commuter's frame comes from the\nFRONT-above, not from directly above.",
+              "position": { "x": 420, "y": 200 },
+              "style": "callout",
+              "color": "#DC2626"
             }
           ],
-          "focal_primitive": "sin_wrong_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "A student reaches for sine as a reflex. Sine of theta equals v person over v rain — 0.8 — so theta equals 53 degrees?" },
-              { "text_en": "No. The correct answer is 38.7 degrees, from tangent." },
-              { "text_en": "A 14-degree error is one lost mark in a board exam. Worth getting right." }
+              { "id": "s1", "text_en": "Many students tilt the umbrella backward, thinking it protects them like a hood over the head." },
+              { "id": "s2", "text_en": "Watch what happens. The apparent rain in the commuter's frame slants in from the front-and-above. A backward tilt leaves the entire front exposed." },
+              { "id": "s3", "text_en": "This is worse than holding it straight up. Straight up catches rain from directly above; backward-tilted catches nothing and exposes everything." }
             ]
-          },
-          "advance_mode": "auto_after_tts"
+          }
         },
-        "STATE_2": {
-          "title": "Why tan: Opposite and Adjacent are Both Known",
-          "duration": 11,
+        "EPIC_C_2": {
+          "title": "Fix — Tilt FORWARD to Face the Apparent Rain",
+          "focal_primitive_id": "fix_forward_shaft",
+          "advance_mode": "auto_after_tts",
           "scene_composition": [
             {
-              "type": "annotation",
-              "id": "tan_reason_sketch",
-              "text": "Which trig function to use depends on which sides you KNOW:\n\n   sin(theta)  = opposite / hypotenuse\n   cos(theta)  = adjacent / hypotenuse\n   tan(theta)  = opposite / adjacent\n\n   In the umbrella problem:\n      opposite  =  v_person  (known, 4 m/s)\n      adjacent  =  v_rain    (known, 5 m/s)\n      hypotenuse = sqrt(4^2 + 5^2) = sqrt(41)  (must be COMPUTED)\n\n   Since we know BOTH legs but NOT the hypotenuse,\n   tan is the natural choice.\n\n   tan(theta) = v_person / v_rain  <- clean, one step.",
-              "zone": "MAIN_ZONE",
-              "anchor": "top_center",
-              "font_size": 12,
-              "color": "#111",
-              "appear_at": 0.0,
-              "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
-              ]
-            }
-          ],
-          "focal_primitive": "tan_reason_sketch",
-          "teacher_script": {
-            "tts_sentences": [
-              { "text_en": "The right trig function depends on which sides of the triangle you know." },
-              { "text_en": "We know the two legs — v person and v rain — but not the hypotenuse." },
-              { "text_en": "Sine needs the hypotenuse. Cosine needs the hypotenuse. Only tangent works directly with just the two legs." }
-            ]
-          },
-          "advance_mode": "auto_after_tts"
-        },
-        "STATE_3": {
-          "title": "Quick Sanity Check — Limits",
-          "duration": 9,
-          "scene_composition": [
+              "type": "label",
+              "id": "fix_header",
+              "text": "Fix: the shaft follows the apparent rain direction — FORWARD.",
+              "position": { "x": 50, "y": 40 },
+              "font_size": 16,
+              "color": "#10B981",
+              "bold": true
+            },
+            {
+              "type": "body",
+              "id": "person_fix",
+              "shape": "rect",
+              "position": { "x": 220, "y": 360 },
+              "size": { "w": 30, "h": 60 },
+              "fill_color": "#6B7280"
+            },
+            {
+              "type": "vector",
+              "id": "fix_forward_shaft",
+              "from": { "x": 220, "y": 330 },
+              "to": { "x": 160, "y": 220 },
+              "label": "shaft FORWARD (correct)",
+              "color": "#10B981",
+              "style": "solid"
+            },
+            {
+              "type": "vector",
+              "id": "apparent_rain_blocked",
+              "from": { "x": 100, "y": 150 },
+              "to": { "x": 165, "y": 225 },
+              "label": "apparent rain blocked by canopy",
+              "color": "#3B82F6",
+              "style": "solid"
+            },
             {
               "type": "annotation",
-              "id": "limits_sketch",
-              "text": "Always sanity-check with limits:\n\n   v_person = 0:\n     tan(theta) = 0 / v_rain = 0  -> theta = 0   (hold straight up)  OK\n     sin(theta) = 0 / v_rain = 0  -> theta = 0   (looks right, but only because v = 0)\n\n   v_person = v_rain:\n     tan(theta) = 1             -> theta = 45    (matches intuition)\n     sin(theta) = v_p / v_r = 1 -> theta = 90    (wrong -- would mean horizontal)\n\n   v_person  -> infinity:\n     tan(theta) -> infinity     -> theta -> 90   (matches: rain horizontal)\n     sin(theta) -> impossible   (ratio > 1)\n\n   Tan passes every limit.  Sin fails.\n   Tan is the right function.",
-              "zone": "MAIN_ZONE",
-              "anchor": "top_center",
-              "font_size": 11,
-              "color": "#111",
-              "appear_at": 0.0,
-              "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
-              ]
+              "id": "fix_explanation",
+              "text": "Canopy perpendicular to apparent rain -> dry commute.\n\nShaft tilts FORWARD by theta where\ntan(theta) = v_person / v_rain.\n\nMnemonic: umbrella points into the\napparent rain, like a shield faces\nan incoming arrow.",
+              "position": { "x": 420, "y": 200 },
+              "style": "callout",
+              "color": "#10B981"
             }
           ],
-          "focal_primitive": "limits_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "One quick limit check to cement it." },
-              { "text_en": "At v person equal to v rain, tangent gives 45 degrees — matches intuition. Sine would give 90 — which makes no sense." },
-              { "text_en": "As v person goes to infinity, tangent goes to 90 — rain almost horizontal, correct. Sine fails completely because the ratio exceeds one." },
-              { "text_en": "Tangent passes every test. Tangent is the right function." }
+              { "id": "s1", "text_en": "The fix: shaft points into the direction the apparent rain comes from. That is forward, not backward." },
+              { "id": "s2", "text_en": "Mnemonic — the umbrella is a shield. A shield faces the incoming arrow. The incoming arrow is the apparent rain, which comes from the front. So the shield — and therefore the shaft — must point forward." }
             ]
-          },
-          "advance_mode": "auto_after_tts"
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "sin_cos_formula_reflex",
+      "misconception": "Student reaches for sin or cos by reflex because the problem involves an angle, and gets the wrong formula.",
+      "trigger_phrases": [
+        "use sin or cos here",
+        "why not sin theta",
+        "mg cos theta habit",
+        "sin cos reflex",
+        "thought it was sine"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Myth — Use sin or cos Because There's an Angle",
+          "focal_primitive_id": "sin_cos_wrong_boxes",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "label",
+              "id": "reflex_header",
+              "text": "Myth: Any angle problem uses sin or cos.",
+              "position": { "x": 50, "y": 40 },
+              "font_size": 16,
+              "color": "#DC2626",
+              "bold": true
+            },
+            {
+              "type": "formula_box",
+              "id": "sin_cos_wrong_boxes",
+              "equation": "WRONG ATTEMPT 1:  sin(theta) = v_person / v_rain  ->  theta = arcsin(0.8) = 53.1 deg (wrong)\n\nWRONG ATTEMPT 2:  cos(theta) = v_person / v_rain  ->  theta = arccos(0.8) = 36.9 deg (wrong)\n\nCORRECT:          tan(theta) = v_person / v_rain  ->  theta = arctan(0.8) = 38.7 deg",
+              "position": { "x": 100, "y": 180 },
+              "border_color": "#DC2626"
+            },
+            {
+              "type": "annotation",
+              "id": "why_tan_here",
+              "text": "Why tan, not sin/cos?\n\n  v_rain and v_person are PERPENDICULAR.\n  They form the two LEGS of a right triangle.\n  The angle theta is between the HYPOTENUSE\n  (apparent rain) and one LEG (v_rain).\n\n  tan = opposite / adjacent (two legs)\n  sin = opposite / hypotenuse (leg over hyp)\n  cos = adjacent / hypotenuse (leg over hyp)\n\n  Only tan relates the two legs directly.\n  sin/cos need the hypotenuse — not given.",
+              "position": { "x": 100, "y": 320 },
+              "style": "callout",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Students trained on inclined planes reach for m g cos theta or m g sin theta by reflex. Here that reflex gives the wrong answer." },
+              { "id": "s2", "text_en": "Look at the formula definitions. Sine is opposite over hypotenuse; cosine is adjacent over hypotenuse. Both need the hypotenuse." },
+              { "id": "s3", "text_en": "In this problem, the two quantities given — v_rain and v_person — are the two LEGS of the right triangle, not leg and hypotenuse. The only trig function that relates two legs is tangent: opposite over adjacent." },
+              { "id": "s4", "text_en": "Rule of thumb. If the two given numbers are perpendicular — like vertical rain and horizontal sprint — use tan. If one of the given numbers is the hypotenuse, use sin or cos." }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "arithmetic_velocity_sum",
+      "misconception": "Student adds velocity magnitudes arithmetically instead of as perpendicular vectors.",
+      "trigger_phrases": [
+        "add velocities 4 plus 5",
+        "v_apparent equals sum of speeds",
+        "velocities add like numbers",
+        "why pythagoras here",
+        "velocity sum is 9"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Myth — v_apparent = v_rain + v_person (just add the numbers)",
+          "focal_primitive_id": "pythagoras_correction",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "label",
+              "id": "sum_header",
+              "text": "Myth: Apparent rain speed = 5 + 4 = 9 m/s.",
+              "position": { "x": 50, "y": 40 },
+              "font_size": 16,
+              "color": "#DC2626",
+              "bold": true
+            },
+            {
+              "type": "formula_box",
+              "id": "wrong_sum",
+              "equation": "WRONG:\n  v_apparent = v_rain + v_person = 5 + 4 = 9 m/s",
+              "position": { "x": 100, "y": 120 },
+              "border_color": "#DC2626"
+            },
+            {
+              "type": "formula_box",
+              "id": "pythagoras_correction",
+              "equation": "CORRECT (perpendicular vectors -> Pythagoras):\n\n  v_apparent = sqrt(v_rain^2 + v_person^2)\n             = sqrt(25 + 16)\n             = sqrt(41)\n             ~= 6.4 m/s\n\n  Not 9. Not 5. Six point four.",
+              "position": { "x": 100, "y": 220 },
+              "border_color": "#10B981"
+            },
+            {
+              "type": "vector",
+              "id": "vec_v_rain_pyth",
+              "from": { "x": 520, "y": 360 },
+              "to": { "x": 520, "y": 240 },
+              "label": "v_rain = 5",
+              "color": "#3B82F6"
+            },
+            {
+              "type": "vector",
+              "id": "vec_v_person_pyth",
+              "from": { "x": 520, "y": 240 },
+              "to": { "x": 620, "y": 240 },
+              "label": "v_person = 4",
+              "color": "#10B981"
+            },
+            {
+              "type": "vector",
+              "id": "vec_apparent_pyth",
+              "from": { "x": 520, "y": 360 },
+              "to": { "x": 620, "y": 240 },
+              "label": "v_app ~= 6.4",
+              "color": "#EF4444",
+              "style": "dashed"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Students add velocity magnitudes arithmetically. Five plus four is nine, therefore the apparent rain speed is nine. That is wrong." },
+              { "id": "s2", "text_en": "Velocities are vectors. When two vectors are perpendicular, the resultant magnitude is the square root of the sum of squares — Pythagoras, not arithmetic sum." },
+              { "id": "s3", "text_en": "Five squared plus four squared is twenty five plus sixteen, which is forty one. Square root of forty one is about six point four metres per second." },
+              { "id": "s4", "text_en": "Notice: six point four is between five and nine — closer to five than to nine. That is the signature of perpendicular vector addition. If the answer had been nine, you would be dealing with parallel vectors, not perpendicular ones." }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "ground_frame_angle_conflation",
+      "misconception": "Student uses the rain's ground-frame angle (which is zero) as the umbrella tilt, concluding no tilt is needed.",
+      "trigger_phrases": [
+        "rain is vertical so no tilt",
+        "rain angle is zero",
+        "ground frame rain direction",
+        "why tilt if rain is vertical",
+        "umbrella straight up"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Myth — Rain Is Vertical So the Umbrella Stays Straight Up",
+          "focal_primitive_id": "two_frames_compare",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "label",
+              "id": "frame_myth_header",
+              "text": "Myth: Rain is vertical in the ground frame — so theta = 0, no tilt.",
+              "position": { "x": 50, "y": 40 },
+              "font_size": 16,
+              "color": "#DC2626",
+              "bold": true
+            },
+            {
+              "type": "comparison_panel",
+              "id": "two_frames_compare",
+              "left_label": "Ground frame (wrong to use)",
+              "right_label": "Commuter's frame (the correct frame)",
+              "left_scene": [
+                {
+                  "type": "annotation",
+                  "text": "Rain goes straight down.\nUmbrella held vertical.\nResult: rain slants in from\nthe front of the moving\ncommuter -> front soaked.",
+                  "position": { "x": 20, "y": 80 },
+                  "color": "#DC2626"
+                },
+                {
+                  "type": "vector",
+                  "from": { "x": 150, "y": 150 },
+                  "to": { "x": 150, "y": 290 },
+                  "label": "vertical rain",
+                  "color": "#3B82F6"
+                },
+                {
+                  "type": "vector",
+                  "from": { "x": 100, "y": 350 },
+                  "to": { "x": 100, "y": 220 },
+                  "label": "shaft vertical (wrong)",
+                  "color": "#DC2626"
+                }
+              ],
+              "right_scene": [
+                {
+                  "type": "annotation",
+                  "text": "Apparent rain slants in from\nfront-above.\nShaft tilts forward to match.\nCanopy perpendicular ->\nshield works.",
+                  "position": { "x": 20, "y": 80 },
+                  "color": "#10B981"
+                },
+                {
+                  "type": "vector",
+                  "from": { "x": 80, "y": 160 },
+                  "to": { "x": 160, "y": 290 },
+                  "label": "apparent rain",
+                  "color": "#3B82F6"
+                },
+                {
+                  "type": "vector",
+                  "from": { "x": 100, "y": 350 },
+                  "to": { "x": 170, "y": 220 },
+                  "label": "shaft tilted",
+                  "color": "#10B981"
+                }
+              ]
+            },
+            {
+              "type": "annotation",
+              "id": "which_frame_rule",
+              "text": "RULE: the umbrella belongs to the commuter.\nUse HER frame — not the ground's.\n\nWhat the rain does in the ground frame\nis irrelevant. What the rain LOOKS like\nto the person holding the umbrella is\nwhat determines the correct tilt.",
+              "position": { "x": 50, "y": 450 },
+              "style": "callout",
+              "color": "#1F2937"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Students see rain falling vertically in the ground frame and conclude: rain's angle is zero, umbrella's angle is zero, no tilt needed." },
+              { "id": "s2", "text_en": "This confuses two frames. The ground-frame angle of the rain is irrelevant. What matters is the angle in the COMMUTER'S frame, because she is the one holding the umbrella." },
+              { "id": "s3", "text_en": "Rule to remember: the umbrella belongs to the commuter. Use her frame. Always." }
+            ]
+          }
         }
       }
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Dadar commuter running to rickshaw", "params": { "v_rain": 5, "v_person": 4 } },
-      { "label": "Equal speeds (umbrella at 45 deg)", "params": { "v_rain": 5, "v_person": 5 } },
-      { "label": "Biker blasting down NH-48", "params": { "v_rain": 6, "v_person": 18 } }
-    ],
-    "type_b": [
-      { "label": "School child on a scooter", "scenario": "kid_scooter_rain" },
-      { "label": "Elderly person walking slowly", "scenario": "elderly_walking_rain" }
-    ]
+  "regeneration_variants": [
+    {
+      "variant_id": "1",
+      "type": "B",
+      "label": "Hero Splendor in Bengaluru",
+      "physical_world": "A delivery rider on a bike. Rain 6 m/s, bike 18 m/s. Helmet-rigged umbrella tilts at arctan(18/6) = 71.6 degrees — almost horizontal because at bike speed the rain seems to blast in from the front.",
+      "same_physics": "Same formula tan(theta) = v_person / v_rain applies unchanged. Only the ratio changes."
+    },
+    {
+      "variant_id": "2",
+      "type": "B",
+      "label": "Mars rover dust storm",
+      "physical_world": "A Mars exploration rover driving under suspended dust. Particles fall at 0.5 m/s, rover moves at 0.05 m/s. Tilt is arctan(0.1) ≈ 5.7 degrees.",
+      "same_physics": "Formula is independent of gravity or terrain — only depends on the ratio of horizontal-to-vertical speed."
+    }
+  ],
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 6,
+        "per_state": {
+          "STATE_1": { "mark": 1, "description": "Identify the scenario: v_rain vertical, v_person horizontal, find forward tilt angle theta." },
+          "STATE_2": { "mark": 1, "description": "Observe ground frame: v_rain and v_person are perpendicular." },
+          "STATE_3": { "mark": 1, "description": "Shift to commuter's frame. Show apparent velocity = v_rain (down) plus (-v_person) (backward)." },
+          "STATE_4": { "mark": 1, "description": "State perpendicular-canopy rule: shaft parallel to apparent rain." },
+          "STATE_5": { "mark": 1, "description": "Apply tan: tan(theta) = v_person / v_rain, identify opposite and adjacent sides." },
+          "STATE_6": { "mark": 1, "description": "Compute numerical theta with correct direction (forward from vertical) and units." }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            { "type": "derivation_step", "id": "b1_s1", "text": "Given: v_rain = 5 m/s (vertical down); v_person = 4 m/s (horizontal east).", "animate_in": "handwriting", "position": { "x": 60, "y": 100 } },
+            { "type": "derivation_step", "id": "b1_s2", "text": "Find: theta, the umbrella's forward tilt from vertical.", "animate_in": "handwriting", "position": { "x": 60, "y": 140 } },
+            { "type": "mark_badge", "id": "mark_b1", "mark_value": 1, "text": "+1 for setup", "tied_to_state": "STATE_1", "position": { "x": 680, "y": 120 } }
+          ]
+        },
+        "STATE_2": {
+          "primitives": [
+            { "type": "derivation_step", "id": "b2_s1", "text": "Ground frame: rain vector downward, person vector eastward.", "animate_in": "handwriting", "position": { "x": 60, "y": 180 } },
+            { "type": "derivation_step", "id": "b2_s2", "text": "The two vectors are perpendicular (dot product zero).", "animate_in": "handwriting", "position": { "x": 60, "y": 220 } },
+            { "type": "mark_badge", "id": "mark_b2", "mark_value": 1, "text": "+1 for perpendicular observation", "tied_to_state": "STATE_2", "position": { "x": 680, "y": 200 } }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            { "type": "derivation_step", "id": "b3_s1", "text": "Shift frame: v_apparent = v_rain - v_person = (-v_person, -v_rain).", "animate_in": "handwriting", "position": { "x": 60, "y": 260 } },
+            { "type": "derivation_step", "id": "b3_s2", "text": "Apparent rain slants from front-above.", "animate_in": "handwriting", "position": { "x": 60, "y": 300 } },
+            { "type": "mark_badge", "id": "mark_b3", "mark_value": 1, "text": "+1 for frame shift", "tied_to_state": "STATE_3", "position": { "x": 680, "y": 280 } }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            { "type": "derivation_step", "id": "b4_s1", "text": "Canopy must be perpendicular to apparent rain.", "animate_in": "handwriting", "position": { "x": 60, "y": 340 } },
+            { "type": "derivation_step", "id": "b4_s2", "text": "So shaft is parallel to apparent rain, tilted forward by theta.", "animate_in": "handwriting", "position": { "x": 60, "y": 380 } },
+            { "type": "mark_badge", "id": "mark_b4", "mark_value": 1, "text": "+1 for perpendicular rule", "tied_to_state": "STATE_4", "position": { "x": 680, "y": 360 } }
+          ]
+        },
+        "STATE_5": {
+          "primitives": [
+            { "type": "derivation_step", "id": "b5_s1", "text": "Right triangle: opposite = v_person, adjacent = v_rain.", "animate_in": "handwriting", "position": { "x": 60, "y": 420 } },
+            { "type": "derivation_step", "id": "b5_s2", "text": "tan(theta) = v_person / v_rain = 4 / 5 = 0.8.", "animate_in": "handwriting", "position": { "x": 60, "y": 460 } },
+            { "type": "mark_badge", "id": "mark_b5", "mark_value": 1, "text": "+1 for formula", "tied_to_state": "STATE_5", "position": { "x": 680, "y": 440 } }
+          ]
+        },
+        "STATE_6": {
+          "primitives": [
+            { "type": "derivation_step", "id": "b6_s1", "text": "theta = arctan(0.8) = 38.7 deg FORWARD from vertical.", "animate_in": "handwriting", "position": { "x": 60, "y": 500 } },
+            { "type": "mark_badge", "id": "mark_b6", "mark_value": 1, "text": "+1 for numeric + direction", "tied_to_state": "STATE_6", "position": { "x": 680, "y": 500 } }
+          ]
+        }
+      }
+    },
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "id": "shortcut_tan_rule",
+          "rule": "Umbrella tilt formula",
+          "formula": "tan(theta) = v_person / v_rain",
+          "use_when": "Rain vertical in ground frame. Person moves horizontally. Find forward tilt of umbrella shaft."
+        },
+        {
+          "id": "shortcut_apparent_magnitude",
+          "rule": "Apparent rain speed (for completeness)",
+          "formula": "v_apparent = sqrt(v_rain^2 + v_person^2)",
+          "use_when": "Asked for the apparent rain SPEED, not the tilt angle."
+        },
+        {
+          "id": "shortcut_stationary",
+          "rule": "Stationary commuter",
+          "formula": "v_person = 0 -> theta = 0",
+          "use_when": "Not moving. Hold umbrella straight up."
+        },
+        {
+          "id": "shortcut_fast_vehicle",
+          "rule": "Fast vehicle, light rain",
+          "formula": "v_person >> v_rain -> theta -> 90 deg",
+          "use_when": "Bike, car, train — tilt approaches horizontal."
+        },
+        {
+          "id": "shortcut_heavy_rain",
+          "rule": "Heavy rain, slow commuter",
+          "formula": "v_rain >> v_person -> theta -> 0 deg",
+          "use_when": "Walking in a downpour — barely any tilt needed."
+        }
+      ],
+      "edge_cases": [
+        {
+          "id": "edge_stationary",
+          "title": "v_person = 0 (standing still)",
+          "trap": "Some students still compute a small tilt.",
+          "resolution": "arctan(0) = 0. Zero tilt. Umbrella exactly vertical."
+        },
+        {
+          "id": "edge_crosswind",
+          "title": "Rain with a crosswind (not vertical in ground frame)",
+          "trap": "Formula tan = v_person / v_rain assumes rain is vertical.",
+          "resolution": "Out of scope for this concept. Generalize: tilt equals the angle the apparent rain makes with vertical, computed by adding wind and commuter velocities properly."
+        },
+        {
+          "id": "edge_running_backward",
+          "title": "Running backward (v_person < 0)",
+          "trap": "Sign of tilt flips.",
+          "resolution": "If you run backward, tilt the umbrella backward by arctan(|v_person|/v_rain). Direction of tilt follows direction of motion."
+        },
+        {
+          "id": "edge_asked_apparent_speed",
+          "title": "Question asks for apparent rain speed, not angle",
+          "trap": "Students answer theta when magnitude was asked.",
+          "resolution": "Use sqrt(v_rain^2 + v_person^2). Always read the question carefully."
+        },
+        {
+          "id": "edge_reverse_problem",
+          "title": "Given theta, find v_person (inverse problem)",
+          "trap": "Students rearrange wrong.",
+          "resolution": "v_person = v_rain * tan(theta). Straight rearrangement."
+        }
+      ],
+      "formulas_shortform": {
+        "tilt_forward": "tan(theta) = v_person / v_rain",
+        "apparent_speed": "v_apparent = sqrt(v_rain^2 + v_person^2)",
+        "stationary": "v_person = 0 -> theta = 0",
+        "fast_vehicle": "v_person >> v_rain -> theta -> 90 deg",
+        "heavy_rain": "v_rain >> v_person -> theta -> 0"
+      }
+    }
   }
 }

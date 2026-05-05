@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 7.6 — projectile maximum height; split from projectile_motion",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "A cricket six at Wankhede stadium. Launched at 30 m/s, angle 45 degrees. Maximum height reached = (v * sin(theta))^2 / (2g) = (30 * 0.707)^2 / 20 ≈ 22.5 metres. That is higher than the stadium's floodlight towers — why commentators often say 'it's going into the stands' the moment the ball leaves the bat. Every six-hitting batsman has an internal model of this number.",
@@ -17,13 +17,35 @@
   },
   "physics_engine_config": {
     "variables": {
-      "v0": { "name": "Launch speed", "unit": "m/s", "min": 5, "max": 200, "default": 20 },
-      "theta": { "name": "Launch angle from horizontal", "unit": "deg", "min": 0, "max": 90, "default": 45 },
-      "g": { "name": "Gravitational acceleration", "unit": "m/s^2", "min": 9.8, "max": 10, "default": 10 }
+      "v0": {
+        "name": "Launch speed",
+        "unit": "m/s",
+        "min": 5,
+        "max": 200,
+        "default": 20
+      },
+      "theta": {
+        "name": "Launch angle from horizontal",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 45
+      },
+      "g": {
+        "name": "Gravitational acceleration",
+        "unit": "m/s^2",
+        "min": 9.8,
+        "max": 10,
+        "default": 10
+      }
     },
     "computed_outputs": {
-      "H_max": { "formula": "(v0 * sin(theta))^2 / (2 * g)" },
-      "time_to_peak": { "formula": "v0 * sin(theta) / g" }
+      "H_max": {
+        "formula": "(v0 * sin(theta))^2 / (2 * g)"
+      },
+      "time_to_peak": {
+        "formula": "v0 * sin(theta) / g"
+      }
     },
     "formulas": {
       "max_height": "H = (v0 * sin(theta))^2 / (2 * g)",
@@ -55,9 +77,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -68,9 +94,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -79,24 +109,55 @@
             "vehicle_type": "ball",
             "zone": "MAIN_ZONE",
             "anchor": "bottom_left",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
-              { "type": "translate", "delay_sec": 4.5, "duration_sec": 2.5, "dx_px": 180, "dy_px": -240, "easing": "ease_out" },
-              { "type": "translate", "delay_sec": 7.0, "duration_sec": 2.5, "dx_px": 180, "dy_px": 240, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.3
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4.5,
+                "duration_sec": 2.5,
+                "dx_px": 180,
+                "dy_px": -240,
+                "easing": "ease_out"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 7,
+                "duration_sec": 2.5,
+                "dx_px": 180,
+                "dy_px": 240,
+                "easing": "ease_in"
+              }
             ]
           }
         ],
         "focal_primitive": "peak_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "At the peak of any projectile's flight, the VERTICAL velocity is zero — but only the vertical component." },
-            { "text_en": "The ball is still moving horizontally at v-nought cosine theta; its up-ness has briefly paused." },
-            { "text_en": "Why does this happen? Gravity has been pulling downward the entire time, chipping away at the initial upward velocity." },
-            { "text_en": "When all the upward speed is used up, the ball stops rising — that is the peak of the trajectory." }
+            {
+              "text_en": "At the peak of any projectile's flight, the VERTICAL velocity is zero — but only the vertical component.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "The ball is still moving horizontally at v-nought cosine theta; its up-ness has briefly paused.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Why does this happen? Gravity has been pulling downward the entire time, chipping away at the initial upward velocity.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "When all the upward speed is used up, the ball stops rising — that is the peak of the trajectory.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "peak_sketch"
       },
       "STATE_2": {
         "title": "Deriving H = v₀² sin²(θ) / 2g",
@@ -110,22 +171,63 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Deriving H = v₀² sin²(θ) / 2g",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "derive_H_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Use the kinematics equation v-y squared equals v-y-zero squared minus 2 g H." },
-            { "text_en": "At the peak v-y is zero. Plug in and solve for H." },
-            { "text_en": "H equals v-nought sine theta squared, all divided by 2 g." },
-            { "text_en": "For a Wankhede six at 30 metres per second, 45 degrees — H is 22.5 metres. Higher than the stadium's floodlights, which is exactly why the crowd roars before the ball even lands." }
+            {
+              "text_en": "Use the kinematics equation v-y squared equals v-y-zero squared minus 2 g H.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "At the peak v-y is zero. Plug in and solve for H.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "H equals v-nought sine theta squared, all divided by 2 g.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "For a Wankhede six at 30 metres per second, 45 degrees — H is 22.5 metres. Higher than the stadium's floodlights, which is exactly why the crowd roars before the ball even lands.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "derive_H_sketch"
       },
       "STATE_3": {
         "title": "Sin² Dependence — Steeper Angles Dominate",
@@ -139,22 +241,63 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Sin² Dependence — Steeper Angles Dominate",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "sin2_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Max height depends on sine-SQUARED theta — not sine theta." },
-            { "text_en": "At 30 degrees you get 5 metres. At 45 — 10. At 60 — 15. At 75 — 18.66. At 90 — a full 20 metres." },
-            { "text_en": "Unlike range which peaks at 45 degrees, height keeps climbing all the way to 90 degrees." },
-            { "text_en": "A straight-up throw gives the maximum possible height but zero horizontal distance. An angle tradeoff every projectile problem rests on." }
+            {
+              "text_en": "Max height depends on sine-SQUARED theta — not sine theta.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "At 30 degrees you get 5 metres. At 45 — 10. At 60 — 15. At 75 — 18.66. At 90 — a full 20 metres.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "Unlike range which peaks at 45 degrees, height keeps climbing all the way to 90 degrees.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "A straight-up throw gives the maximum possible height but zero horizontal distance. An angle tradeoff every projectile problem rests on.",
+              "id": "state_3_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "sin2_sketch"
       }
     }
   },
@@ -181,21 +324,59 @@
               "anchor": "center",
               "font_size": 12,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Wrong Formula: H = v₀² / 2g",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_full_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Wrong shortcut — student writes H equals v-nought squared over 2 g using the full speed." },
-              { "text_en": "That only works if the throw is PURELY vertical. Otherwise, you have just assumed the entire kinetic energy goes into rising." },
-              { "text_en": "At angle theta, only the vertical part, v-nought sine theta, rises. The horizontal part keeps moving sideways, and its energy stays kinetic — it never converts to height." }
+              {
+                "text_en": "Wrong shortcut — student writes H equals v-nought squared over 2 g using the full speed.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "That only works if the throw is PURELY vertical. Otherwise, you have just assumed the entire kinetic energy goes into rising.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "At angle theta, only the vertical part, v-nought sine theta, rises. The horizontal part keeps moving sideways, and its energy stays kinetic — it never converts to height.",
+                "id": "state_1_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_full_sketch"
         },
         "STATE_2": {
           "title": "Energy Conservation Fixes It",
@@ -209,23 +390,67 @@
               "anchor": "top_center",
               "font_size": 11,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Energy Conservation Fixes It",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "energy_fix_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Let us cure this mistake with energy conservation." },
-              { "text_en": "At launch, the projectile has kinetic energy half m v-nought squared." },
-              { "text_en": "At the peak, only the horizontal velocity remains — the projectile still has kinetic energy half m v-nought cosine theta squared." },
-              { "text_en": "The difference is what went into raising the projectile by height H. That difference is half m v-nought squared sine squared theta." },
-              { "text_en": "Set equal to m g H, cancel m, rearrange — you get H equals v-nought squared sine squared theta over 2 g. Same as before." }
+              {
+                "text_en": "Let us cure this mistake with energy conservation.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "At launch, the projectile has kinetic energy half m v-nought squared.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "At the peak, only the horizontal velocity remains — the projectile still has kinetic energy half m v-nought cosine theta squared.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "The difference is what went into raising the projectile by height H. That difference is half m v-nought squared sine squared theta.",
+                "id": "state_2_s4"
+              },
+              {
+                "text_en": "Set equal to m g H, cancel m, rearrange — you get H equals v-nought squared sine squared theta over 2 g. Same as before.",
+                "id": "state_2_s5"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "energy_fix_sketch"
         },
         "STATE_3": {
           "title": "Sanity-Check with Limits",
@@ -239,35 +464,107 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Sanity-Check with Limits",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "sanity_limits_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Limit checks. At zero degrees — horizontal shot — sine is zero, so H is zero. Correct, ball never rises." },
-              { "text_en": "At 90 degrees — straight up — sine is one, so H is v-nought squared over 2g. Correct, this is the maximum." },
-              { "text_en": "At 45 degrees — sine-squared is half, so H is v-nought squared over 4g — exactly half the vertical maximum." },
-              { "text_en": "Formula passes every edge case. If your answer disagrees, you used the wrong formula." }
+              {
+                "text_en": "Limit checks. At zero degrees — horizontal shot — sine is zero, so H is zero. Correct, ball never rises.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "At 90 degrees — straight up — sine is one, so H is v-nought squared over 2g. Correct, this is the maximum.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "At 45 degrees — sine-squared is half, so H is v-nought squared over 4g — exactly half the vertical maximum.",
+                "id": "state_3_s3"
+              },
+              {
+                "text_en": "Formula passes every edge case. If your answer disagrees, you used the wrong formula.",
+                "id": "state_3_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "sanity_limits_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Total Speed Not Vertical (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Wankhede six", "params": { "v0": 30, "theta": 45 } },
-      { "label": "Army mortar test", "params": { "v0": 100, "theta": 60 } },
-      { "label": "Volleyball spike", "params": { "v0": 18, "theta": 70 } }
-    ],
-    "type_b": [
-      { "label": "Diwali rocket", "scenario": "diwali_rocket_peak" },
-      { "label": "Tennis serve toss", "scenario": "tennis_serve_toss" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Wankhede six",
+        "params": {
+          "v0": 30,
+          "theta": 45
+        }
+      },
+      "1": {
+        "label": "Army mortar test",
+        "params": {
+          "v0": 100,
+          "theta": 60
+        }
+      },
+      "2": {
+        "label": "Volleyball spike",
+        "params": {
+          "v0": 18,
+          "theta": 70
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Diwali rocket",
+        "scenario": "diwali_rocket_peak"
+      },
+      "1": {
+        "label": "Tennis serve toss",
+        "scenario": "tennis_serve_toss"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

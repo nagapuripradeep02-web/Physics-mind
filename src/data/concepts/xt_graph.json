@@ -17,12 +17,28 @@
   },
   "physics_engine_config": {
     "variables": {
-      "slope": { "name": "Slope of x-t graph = velocity", "unit": "m/s", "min": -50, "max": 50, "default": 10 },
-      "curvature_sign": { "name": "Sign of curvature = sign of acceleration", "unit": "", "min": -1, "max": 1, "default": 1 }
+      "slope": {
+        "name": "Slope of x-t graph = velocity",
+        "unit": "m/s",
+        "min": -50,
+        "max": 50,
+        "default": 10
+      },
+      "curvature_sign": {
+        "name": "Sign of curvature = sign of acceleration",
+        "unit": "",
+        "min": -1,
+        "max": 1,
+        "default": 1
+      }
     },
     "computed_outputs": {
-      "velocity_from_slope": { "formula": "10" },
-      "acceleration_from_curvature": { "formula": "2" }
+      "velocity_from_slope": {
+        "formula": "10"
+      },
+      "acceleration_from_curvature": {
+        "formula": "2"
+      }
     },
     "formulas": {
       "slope_is_velocity": "slope of x-t graph at a point = dx/dt = velocity at that point",
@@ -48,29 +64,71 @@
             "type": "annotation",
             "id": "graph_sketch",
             "text": "Position-Time graph (x vs t)\n\nx |              /\n  |            /\n  |         /\n  |      /     <- rising fast\n  |   /\n  | /            <- shallow rise\n  |_______\n  |         flat segment (at rest)\n  |_______\n  |\n  |__________________  t\n  0\n\n  Reading the shape\n    Flat     -> object at rest (v = 0)\n    Shallow  -> slow motion (small v)\n    Steep    -> fast motion (large v)",
-            "position": { "x": 340, "y": 280 },
+            "position": {
+              "x": 340,
+              "y": 280
+            },
             "style": "formula_box",
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "intro",
             "text": "Big idea\n\nAn x-t graph is a full record\nof WHERE an object has been at\nevery moment.\n\nThe SHAPE of the graph encodes\nevery other quantity:\n  velocity (slope at each point)\n  acceleration (curvature)\n\nYou can solve many kinematics\nquestions just by reading the graph.\nNo equations needed.",
-            "position": { "x": 720, "y": 300 },
+            "position": {
+              "x": 720,
+              "y": 300
+            },
             "style": "callout",
-            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 2.5,
+              "duration_sec": 1
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "state_1_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "The Graph as a Diary of Motion",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "An x-t graph is a complete diary of motion. For every moment on the time axis, the curve tells you exactly where the object was." },
-            { "id": "s2", "text_en": "Every physical quantity you care about is encoded in the shape. Velocity is the slope at each point. Acceleration is the curvature." },
-            { "id": "s3", "text_en": "A flat segment means the object is not moving — position is unchanged across that stretch of time. A shallow slope means slow motion. A steep slope means fast motion." },
-            { "id": "s4", "text_en": "You can solve most kinematics problems by looking at the graph alone. No equations needed if you know how to read the shape." },
-            { "id": "s5", "text_en": "The next two states teach you the two visual skills that matter — reading velocity from slope, and reading acceleration from curvature." }
+            {
+              "id": "s1",
+              "text_en": "An x-t graph is a complete diary of motion. For every moment on the time axis, the curve tells you exactly where the object was."
+            },
+            {
+              "id": "s2",
+              "text_en": "Every physical quantity you care about is encoded in the shape. Velocity is the slope at each point. Acceleration is the curvature."
+            },
+            {
+              "id": "s3",
+              "text_en": "A flat segment means the object is not moving — position is unchanged across that stretch of time. A shallow slope means slow motion. A steep slope means fast motion."
+            },
+            {
+              "id": "s4",
+              "text_en": "You can solve most kinematics problems by looking at the graph alone. No equations needed if you know how to read the shape."
+            },
+            {
+              "id": "s5",
+              "text_en": "The next two states teach you the two visual skills that matter — reading velocity from slope, and reading acceleration from curvature."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "graph_sketch"
       },
       "STATE_2": {
         "title": "Slope = Velocity — The First Reading Skill",
@@ -80,30 +138,72 @@
             "type": "annotation",
             "id": "slope_graph",
             "text": "x | slope = dx/dt = velocity\n  |\n  |        / <- tangent at t = 3\n  |       /\n  |      .  (point at t=3, x=10)\n  |    /\n  |  /\n  |_______________\n  |\n  |__________________  t\n  0                       t = 3\n\n  At t = 3 s:\n  tangent slope = 5 m/s\n  => instantaneous velocity is 5 m/s\n\nChord from (0, 0) to (3, 10)\n  chord slope = 10 / 3 = 3.33 m/s\n  => average velocity 0-3 s = 3.33 m/s",
-            "position": { "x": 380, "y": 280 },
+            "position": {
+              "x": 380,
+              "y": 280
+            },
             "style": "formula_box",
             "color": "#10B981",
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "slope_rules",
             "text": "Slope rules\n\nSteep positive slope   -> large positive v\nShallow positive slope -> small positive v\nZero slope (horizontal)-> v = 0 (at rest)\nNegative slope         -> v < 0 (moving in -x direction)\n\nAt a single instant, read the\nTANGENT slope. That is instantaneous v.\n\nBetween two instants, read the\nCHORD slope. That is average v.",
-            "position": { "x": 720, "y": 320 },
+            "position": {
+              "x": 720,
+              "y": 320
+            },
             "style": "callout",
-            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 2.5,
+              "duration_sec": 1
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Slope = Velocity — The First Reading Skill",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "The first reading skill — slope of the curve at any point equals velocity at that moment." },
-            { "id": "s2", "text_en": "Look at any single point on the curve. Draw the tangent line there. Its slope is the instantaneous velocity." },
-            { "id": "s3", "text_en": "If you want velocity at a single instant, use the tangent. If you want the average velocity between two instants, use the chord — the straight line joining the two points on the curve." },
-            { "id": "s4", "text_en": "Steep positive slope means high positive velocity. Shallow positive slope means slow positive motion. Flat means at rest. Negative slope means the object is moving in the negative x direction." },
-            { "id": "s5", "text_en": "This one skill — reading velocity off the slope — handles a huge fraction of kinematics graph questions. Practice it on every x-t graph you see." }
+            {
+              "id": "s1",
+              "text_en": "The first reading skill — slope of the curve at any point equals velocity at that moment."
+            },
+            {
+              "id": "s2",
+              "text_en": "Look at any single point on the curve. Draw the tangent line there. Its slope is the instantaneous velocity."
+            },
+            {
+              "id": "s3",
+              "text_en": "If you want velocity at a single instant, use the tangent. If you want the average velocity between two instants, use the chord — the straight line joining the two points on the curve."
+            },
+            {
+              "id": "s4",
+              "text_en": "Steep positive slope means high positive velocity. Shallow positive slope means slow positive motion. Flat means at rest. Negative slope means the object is moving in the negative x direction."
+            },
+            {
+              "id": "s5",
+              "text_en": "This one skill — reading velocity off the slope — handles a huge fraction of kinematics graph questions. Practice it on every x-t graph you see."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "slope_graph"
       },
       "STATE_3": {
         "title": "Curvature = Acceleration — The Second Reading Skill",
@@ -113,31 +213,76 @@
             "type": "annotation",
             "id": "curvature_graph",
             "text": "Three distinct x-t shapes\n\nA.  /  straight line (constant v)\n     /              a = 0\n    /\n\nB.       /  concave up\n      /              a > 0 (speeding up or\n    /                    slowing down in -v dir)\n  /\n\nC.  \\\n     \\  concave down\n      \\              a < 0 (slowing down or\n       \\                    speeding up in -v dir)\n        \\\n\nReading curvature in 1 second:\n  Straight -> zero acceleration.\n  Bends upward -> positive acceleration.\n  Bends downward -> negative acceleration.",
-            "position": { "x": 340, "y": 280 },
+            "position": {
+              "x": 340,
+              "y": 280
+            },
             "style": "formula_box",
             "color": "#10B981",
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "speed_up_slow_down",
             "text": "Is it speeding up or slowing down?\n\nSame sign of v and curvature -> speeding up.\nOpposite signs -> slowing down.\n\nExample 1  v > 0 (rising curve),\n            curvature > 0 (concave up)\n            -> SAME sign -> speeding up.\n\nExample 2  v > 0 (rising curve),\n            curvature < 0 (concave down)\n            -> OPPOSITE -> slowing down.\n\nSame rule as the sign_convention concept:\nsign(v) * sign(a) > 0 -> speeding up.",
-            "position": { "x": 720, "y": 320 },
+            "position": {
+              "x": 720,
+              "y": 320
+            },
             "style": "callout",
-            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 3,
+              "duration_sec": 1
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Curvature = Acceleration — The Second Reading Skill",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "The second reading skill — curvature tells you the sign of acceleration." },
-            { "id": "s2", "text_en": "A straight-line x-t graph has zero curvature, so acceleration is zero. The object moves at constant velocity." },
-            { "id": "s3", "text_en": "An x-t graph that bends upward — concave up — has positive curvature, so acceleration is positive." },
-            { "id": "s4", "text_en": "An x-t graph that bends downward — concave down — has negative curvature, so acceleration is negative." },
-            { "id": "s5", "text_en": "To tell speeding up from slowing down, check whether the signs of velocity and acceleration match. If yes, speeding up. If opposite, slowing down. Same rule we learned in the sign convention concept." },
-            { "id": "s6", "text_en": "So on a position-time graph, slope tells you velocity and its sign. Curvature tells you acceleration and its sign. Between them, you can describe any motion without writing a single formula." }
+            {
+              "id": "s1",
+              "text_en": "The second reading skill — curvature tells you the sign of acceleration."
+            },
+            {
+              "id": "s2",
+              "text_en": "A straight-line x-t graph has zero curvature, so acceleration is zero. The object moves at constant velocity."
+            },
+            {
+              "id": "s3",
+              "text_en": "An x-t graph that bends upward — concave up — has positive curvature, so acceleration is positive."
+            },
+            {
+              "id": "s4",
+              "text_en": "An x-t graph that bends downward — concave down — has negative curvature, so acceleration is negative."
+            },
+            {
+              "id": "s5",
+              "text_en": "To tell speeding up from slowing down, check whether the signs of velocity and acceleration match. If yes, speeding up. If opposite, slowing down. Same rule we learned in the sign convention concept."
+            },
+            {
+              "id": "s6",
+              "text_en": "So on a position-time graph, slope tells you velocity and its sign. Curvature tells you acceleration and its sign. Between them, you can describe any motion without writing a single formula."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "curvature_graph"
       }
     }
   },
@@ -160,19 +305,56 @@
               "type": "annotation",
               "id": "belief_frame",
               "text": "Your reasoning\n\nThe x-t graph for a thrown ball\nlooks like a parabola.\n\nI know the ball flies in a parabolic\narc in space.\n\nSo the graph IS the path of the ball,\nright?\n\n(No. The graph is a POSITION-VERSUS-TIME\nPLOT. It can look parabolic for motion\nthat moves only UP and DOWN — no\nactual arc in space.)",
-              "position": { "x": 360, "y": 280 },
+              "position": {
+                "x": 360,
+                "y": 280
+              },
               "style": "callout",
               "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Your Belief — The Graph IS the Trajectory",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Students often confuse an x-t graph with the actual spatial path of the object." },
-              { "id": "s2", "text_en": "The trap is that for some motions — for example, a ball thrown straight up and falling back — the x-t graph IS a parabola, and the real path is also 'up and down' which looks arc-like." },
-              { "id": "s3", "text_en": "But these are two different things. The graph is a plot of position versus time. The physical path is the actual trace in space." }
+              {
+                "id": "s1",
+                "text_en": "Students often confuse an x-t graph with the actual spatial path of the object."
+              },
+              {
+                "id": "s2",
+                "text_en": "The trap is that for some motions — for example, a ball thrown straight up and falling back — the x-t graph IS a parabola, and the real path is also 'up and down' which looks arc-like."
+              },
+              {
+                "id": "s3",
+                "text_en": "But these are two different things. The graph is a plot of position versus time. The physical path is the actual trace in space."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "belief_frame"
         },
         "STATE_2": {
           "title": "A Counter-Example — Straight-Line Graph for Straight Motion",
@@ -182,21 +364,64 @@
               "type": "annotation",
               "id": "counter",
               "text": "Simple case\nA car drives due east on a straight road at 60 km/h.\n\nReal path: a straight line on the ground.\nx-t graph: a straight line with slope 60.\n\nThe graph looks like a line, the path is a line.\nEasy to confuse them here.\n\nMotion of a ball thrown up and falling\n  Real path: up and straight back down\n             (one-dimensional segment)\n  x-t graph: y starts at 0, rises to peak\n             at mid-time, falls back to 0\n             - a parabola.\n\nSAME motion, graph shape is parabola,\npath shape is a single line.\n\nThe graph is a RELATIONSHIP of x to t.\nIt is NOT a physical picture of where\nthe object went.",
-              "position": { "x": 400, "y": 280 },
+              "position": {
+                "x": 400,
+                "y": 280
+              },
               "style": "formula_box",
               "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "A Counter-Example — Straight-Line Graph for Straight Motion",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Consider the clearest counter-example. A ball thrown straight up from the ground and falling back to the ground." },
-              { "id": "s2", "text_en": "The physical path is a single line — up and straight back down, along the same vertical line in space." },
-              { "id": "s3", "text_en": "But the x-t graph is a parabola. y starts at zero, rises to the peak at half the total time, and falls back to zero." },
-              { "id": "s4", "text_en": "The graph SHAPE is a parabola. The physical path is a line. Same motion, two very different pictures." },
-              { "id": "s5", "text_en": "The graph is a relationship between x and t. It is NOT a physical picture of where the object went. Keep this distinction, and you will not confuse a graph shape for a real trajectory." }
+              {
+                "id": "s1",
+                "text_en": "Consider the clearest counter-example. A ball thrown straight up from the ground and falling back to the ground."
+              },
+              {
+                "id": "s2",
+                "text_en": "The physical path is a single line — up and straight back down, along the same vertical line in space."
+              },
+              {
+                "id": "s3",
+                "text_en": "But the x-t graph is a parabola. y starts at zero, rises to the peak at half the total time, and falls back to zero."
+              },
+              {
+                "id": "s4",
+                "text_en": "The graph SHAPE is a parabola. The physical path is a line. Same motion, two very different pictures."
+              },
+              {
+                "id": "s5",
+                "text_en": "The graph is a relationship between x and t. It is NOT a physical picture of where the object went. Keep this distinction, and you will not confuse a graph shape for a real trajectory."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "counter"
         },
         "STATE_3": {
           "title": "When the Graph DOES Look Like the Path",
@@ -206,19 +431,56 @@
               "type": "annotation",
               "id": "correct_case",
               "text": "Exception: 1D motion at constant velocity\n\nObject moves along x-axis at v = 5 m/s.\nReal path: a line on the x-axis.\nx-t graph: a line with slope 5.\n\nBoth are straight lines. But even here,\nthey represent different things:\n  Path line has no 'length' dimension of time.\n  Graph line has x on one axis, t on the other.\n\nRule of thumb\n  Never assume 'graph shape = path shape'.\n  Always ask: what do the axes represent?\n  What does SLOPE mean here? CURVATURE?\n  Interpret the shape through the axes.",
-              "position": { "x": 400, "y": 280 },
+              "position": {
+                "x": 400,
+                "y": 280
+              },
               "style": "formula_box",
               "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "When the Graph DOES Look Like the Path",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "There is one case where the graph accidentally looks like the path — one-dimensional motion at constant velocity. Both the physical path and the x-t graph are straight lines." },
-              { "id": "s2", "text_en": "But even there, they represent different things. The path line is geometric — a set of points in space. The graph line has a time axis and a position axis, with slope that represents velocity." },
-              { "id": "s3", "text_en": "The rule of thumb — never assume graph shape equals path shape. Always ask: what do the axes represent? What does slope mean? What does curvature mean? Interpret the graph through the axes, not through visual resemblance." }
+              {
+                "id": "s1",
+                "text_en": "There is one case where the graph accidentally looks like the path — one-dimensional motion at constant velocity. Both the physical path and the x-t graph are straight lines."
+              },
+              {
+                "id": "s2",
+                "text_en": "But even there, they represent different things. The path line is geometric — a set of points in space. The graph line has a time axis and a position axis, with slope that represents velocity."
+              },
+              {
+                "id": "s3",
+                "text_en": "The rule of thumb — never assume graph shape equals path shape. Always ask: what do the axes represent? What does slope mean? What does curvature mean? Interpret the graph through the axes, not through visual resemblance."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "correct_case"
         }
       }
     }

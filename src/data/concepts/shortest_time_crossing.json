@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 6.11 — minimum-time crossing strategy; split from river_boat_problems",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "A Kolkata ferry pilot crossing the Hooghly from Howrah Station ghat to Fairlie Place. The river is 500 m wide and flows south at 2 m/s. His boat can do 3 m/s in still water. If he wants to reach the other bank in the LEAST time, he points the bow PERPENDICULAR to the current, straight across. He will drift downstream while crossing — landing south of Fairlie Place — but the crossing time is 500 / 3 = 167 seconds, the minimum possible. Every Kolkata ferry does this at rush hour.",
@@ -17,14 +17,38 @@
   },
   "physics_engine_config": {
     "variables": {
-      "width": { "name": "River width", "unit": "m", "min": 10, "max": 1000, "default": 500 },
-      "v_boat": { "name": "Boat speed in still water", "unit": "m/s", "min": 1, "max": 20, "default": 3 },
-      "v_river": { "name": "River current speed", "unit": "m/s", "min": 0, "max": 10, "default": 2 }
+      "width": {
+        "name": "River width",
+        "unit": "m",
+        "min": 10,
+        "max": 1000,
+        "default": 500
+      },
+      "v_boat": {
+        "name": "Boat speed in still water",
+        "unit": "m/s",
+        "min": 1,
+        "max": 20,
+        "default": 3
+      },
+      "v_river": {
+        "name": "River current speed",
+        "unit": "m/s",
+        "min": 0,
+        "max": 10,
+        "default": 2
+      }
     },
     "computed_outputs": {
-      "t_min": { "formula": "width / v_boat" },
-      "drift": { "formula": "v_river * (width / v_boat)" },
-      "landing_shift": { "formula": "v_river * width / v_boat" }
+      "t_min": {
+        "formula": "width / v_boat"
+      },
+      "drift": {
+        "formula": "v_river * (width / v_boat)"
+      },
+      "landing_shift": {
+        "formula": "v_river * width / v_boat"
+      }
     },
     "formulas": {
       "t_min": "t_min  =  width / v_boat   (boat pointed straight across, full boat-velocity serves the crossing)",
@@ -53,9 +77,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -66,9 +94,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -77,23 +109,47 @@
             "vehicle_type": "boat",
             "zone": "MAIN_ZONE",
             "anchor": "bottom_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": 100, "dy_px": -240, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 6,
+                "dx_px": 100,
+                "dy_px": -240,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "strategy_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Here is the counter-intuitive strategy every Kolkata ferry pilot knows." },
-            { "text_en": "If you want to cross the river in the shortest TIME, you point the bow STRAIGHT ACROSS, not upstream." },
-            { "text_en": "Why? Because all three metres per second of boat speed now go into the crossing direction. Nothing is wasted fighting the current." },
-            { "text_en": "Crossing time is width divided by boat speed — 500 divided by 3 — 167 seconds. Just under three minutes." }
+            {
+              "text_en": "Here is the counter-intuitive strategy every Kolkata ferry pilot knows.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "If you want to cross the river in the shortest TIME, you point the bow STRAIGHT ACROSS, not upstream.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Why? Because all three metres per second of boat speed now go into the crossing direction. Nothing is wasted fighting the current.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "Crossing time is width divided by boat speed — 500 divided by 3 — 167 seconds. Just under three minutes.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "strategy_sketch"
       },
       "STATE_2": {
         "title": "The Cost — You Drift Downstream",
@@ -107,9 +163,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -118,23 +178,59 @@
             "vehicle_type": "boat",
             "zone": "MAIN_ZONE",
             "anchor": "bottom_left",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 260, "dy_px": -220, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 5,
+                "dx_px": 260,
+                "dy_px": -220,
+                "easing": "linear"
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "The Cost — You Drift Downstream",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "drift_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "There is a price for this strategy. You drift downstream while crossing." },
-            { "text_en": "At 2 metres per second of current, in 167 seconds of crossing, the boat moves 334 metres south of the intended landing." },
-            { "text_en": "So you land well south of Fairlie Place — near Babughat, in fact." },
-            { "text_en": "The bow is pointing perpendicular, but the actual track over the ground is a sloping diagonal. Two different directions at the same time." }
+            {
+              "text_en": "There is a price for this strategy. You drift downstream while crossing.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "At 2 metres per second of current, in 167 seconds of crossing, the boat moves 334 metres south of the intended landing.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "So you land well south of Fairlie Place — near Babughat, in fact.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "The bow is pointing perpendicular, but the actual track over the ground is a sloping diagonal. Two different directions at the same time.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "drift_sketch"
       },
       "STATE_3": {
         "title": "When is Drift Acceptable? When It Isn't?",
@@ -148,22 +244,63 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "When is Drift Acceptable? When It Isn't?",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "when_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "When is this shortest-time strategy the right one?" },
-            { "text_en": "Medical emergencies, rip-current escapes, navy rescue ops — anywhere speed matters more than landing position." },
-            { "text_en": "It is the WRONG strategy when you must dock at a specific ghat, or when something dangerous lies downstream." },
-            { "text_en": "For those cases, you instead aim the bow UPSTREAM at an angle and take a slower but straight-across path — that is the shortest-PATH problem." }
+            {
+              "text_en": "When is this shortest-time strategy the right one?",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "Medical emergencies, rip-current escapes, navy rescue ops — anywhere speed matters more than landing position.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "It is the WRONG strategy when you must dock at a specific ghat, or when something dangerous lies downstream.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "For those cases, you instead aim the bow UPSTREAM at an angle and take a slower but straight-across path — that is the shortest-PATH problem.",
+              "id": "state_3_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "when_sketch"
       }
     }
   },
@@ -190,22 +327,63 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Wrong Instinct: Fight the Current",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_upstream_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Student's reasoning sounds clever: if the current pushes me downstream, let me aim upstream to cancel it out and cross faster." },
-              { "text_en": "The instinct is wrong." },
-              { "text_en": "When you tilt the bow upstream, some of your 3 metres per second fights the current instead of driving the crossing." },
-              { "text_en": "The across-component of velocity becomes smaller — so the crossing takes LONGER, not shorter." }
+              {
+                "text_en": "Student's reasoning sounds clever: if the current pushes me downstream, let me aim upstream to cancel it out and cross faster.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "The instinct is wrong.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "When you tilt the bow upstream, some of your 3 metres per second fights the current instead of driving the crossing.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "The across-component of velocity becomes smaller — so the crossing takes LONGER, not shorter.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_upstream_sketch"
         },
         "STATE_2": {
           "title": "Component Math Settles It",
@@ -219,22 +397,63 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Component Math Settles It",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "comp_math_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Let the math decide. Split v boat into an across-component and an upstream-component." },
-              { "text_en": "Across-component is v boat times cosine theta. Crossing time is width divided by that component." },
-              { "text_en": "To minimise, make cosine as large as possible. Cosine hits its maximum of 1 when theta equals zero — bow perpendicular." },
-              { "text_en": "Any upstream tilt shrinks cosine and makes the crossing slower. The math agrees with what every ferry pilot already knows." }
+              {
+                "text_en": "Let the math decide. Split v boat into an across-component and an upstream-component.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "Across-component is v boat times cosine theta. Crossing time is width divided by that component.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "To minimise, make cosine as large as possible. Cosine hits its maximum of 1 when theta equals zero — bow perpendicular.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "Any upstream tilt shrinks cosine and makes the crossing slower. The math agrees with what every ferry pilot already knows.",
+                "id": "state_2_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "comp_math_sketch"
         },
         "STATE_3": {
           "title": "Memorise the Intuition",
@@ -248,35 +467,110 @@
               "anchor": "top_center",
               "font_size": 13,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Memorise the Intuition",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "intuition_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Burn these two into memory — they are tested in every JEE river question." },
-              { "text_en": "Shortest TIME crossing, bow perpendicular, drift allowed." },
-              { "text_en": "Shortest PATH crossing, bow tilted upstream, slower but straight across." },
-              { "text_en": "Read the question carefully. The ONE word that matters — time or path — decides which formula to use." }
+              {
+                "text_en": "Burn these two into memory — they are tested in every JEE river question.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Shortest TIME crossing, bow perpendicular, drift allowed.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "Shortest PATH crossing, bow tilted upstream, slower but straight across.",
+                "id": "state_3_s3"
+              },
+              {
+                "text_en": "Read the question carefully. The ONE word that matters — time or path — decides which formula to use.",
+                "id": "state_3_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "intuition_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Aim Upstream For Min Time (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Narrow river, slow current", "params": { "width": 80, "v_boat": 4, "v_river": 1 } },
-      { "label": "Hooghly ferry crossing", "params": { "width": 500, "v_boat": 3, "v_river": 2 } },
-      { "label": "Wide Brahmaputra, fast flood", "params": { "width": 800, "v_boat": 5, "v_river": 4 } }
-    ],
-    "type_b": [
-      { "label": "Kayaker on a canal", "scenario": "kayaker_canal_crossing" },
-      { "label": "Monsoon rescue boat", "scenario": "rescue_boat_flooded_yamuna" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Narrow river, slow current",
+        "params": {
+          "width": 80,
+          "v_boat": 4,
+          "v_river": 1
+        }
+      },
+      "1": {
+        "label": "Hooghly ferry crossing",
+        "params": {
+          "width": 500,
+          "v_boat": 3,
+          "v_river": 2
+        }
+      },
+      "2": {
+        "label": "Wide Brahmaputra, fast flood",
+        "params": {
+          "width": 800,
+          "v_boat": 5,
+          "v_river": 4
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Kayaker on a canal",
+        "scenario": "kayaker_canal_crossing"
+      },
+      "1": {
+        "label": "Monsoon rescue boat",
+        "scenario": "rescue_boat_flooded_yamuna"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

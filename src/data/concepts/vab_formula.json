@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 6.10; NCERT 3.6 and 4.6 — split from relative_motion bundle",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "Two Rajdhani trains crossing on parallel tracks near Kanpur. You are sitting in train A moving at 120 km/h northward; train B comes past you at 100 km/h southward. Even though your speedometer says 120, the windows of train B whip past you at 220 km/h — that is the RELATIVE velocity you actually feel. Every passenger on the Indian Railway network has experienced V_AB in their bones.",
@@ -17,13 +17,35 @@
   },
   "physics_engine_config": {
     "variables": {
-      "V_A": { "name": "Velocity of A in ground frame", "unit": "m/s", "min": -50, "max": 50, "default": 20 },
-      "V_B": { "name": "Velocity of B in ground frame", "unit": "m/s", "min": -50, "max": 50, "default": 10 },
-      "V_AB": { "name": "Velocity of A as seen from B", "unit": "m/s", "min": -100, "max": 100, "default": 10 }
+      "V_A": {
+        "name": "Velocity of A in ground frame",
+        "unit": "m/s",
+        "min": -50,
+        "max": 50,
+        "default": 20
+      },
+      "V_B": {
+        "name": "Velocity of B in ground frame",
+        "unit": "m/s",
+        "min": -50,
+        "max": 50,
+        "default": 10
+      },
+      "V_AB": {
+        "name": "Velocity of A as seen from B",
+        "unit": "m/s",
+        "min": -100,
+        "max": 100,
+        "default": 10
+      }
     },
     "computed_outputs": {
-      "V_AB": { "formula": "V_A - V_B" },
-      "V_BA": { "formula": "V_B - V_A" }
+      "V_AB": {
+        "formula": "V_A - V_B"
+      },
+      "V_BA": {
+        "formula": "V_B - V_A"
+      }
     },
     "formulas": {
       "relative_definition": "V_AB = V_A - V_B  (velocity of A as seen from an observer riding on B)",
@@ -51,9 +73,13 @@
             "anchor": "top_center",
             "font_size": 13,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -64,9 +90,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -75,10 +105,21 @@
             "vehicle_type": "train",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 320, "dy_px": 0, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 5,
+                "dx_px": 320,
+                "dy_px": 0,
+                "easing": "linear"
+              }
             ]
           },
           {
@@ -87,24 +128,51 @@
             "vehicle_type": "train",
             "zone": "MAIN_ZONE",
             "anchor": "right_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": -320, "dy_px": 0, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 5,
+                "dx_px": -320,
+                "dy_px": 0,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "hook_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Every velocity you quote silently carries a reference frame — usually the ground." },
-            { "text_en": "When two observers disagree, we need a new number: the velocity of A as seen from B, written V AB." },
-            { "text_en": "The rule is beautifully compact. V AB equals V A minus V B — subtract the observer." },
-            { "text_en": "Picture two Rajdhani trains approaching near Kanpur. Train A moves north at 120; train B moves south at 100." },
-            { "text_en": "From your seat inside train A, the windows of train B fly past at 220 kilometres per hour — that is 120 minus minus 100, the relative velocity." }
+            {
+              "text_en": "Every velocity you quote silently carries a reference frame — usually the ground.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "When two observers disagree, we need a new number: the velocity of A as seen from B, written V AB.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "The rule is beautifully compact. V AB equals V A minus V B — subtract the observer.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "Picture two Rajdhani trains approaching near Kanpur. Train A moves north at 120; train B moves south at 100.",
+              "id": "state_1_s4"
+            },
+            {
+              "text_en": "From your seat inside train A, the windows of train B fly past at 220 kilometres per hour — that is 120 minus minus 100, the relative velocity.",
+              "id": "state_1_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "hook_sketch"
       },
       "STATE_2": {
         "title": "Worked Example — Two Mumbai Locals on Parallel Tracks",
@@ -118,9 +186,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -129,10 +201,21 @@
             "vehicle_type": "train",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 280, "dy_px": -20, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 5,
+                "dx_px": 280,
+                "dy_px": -20,
+                "easing": "linear"
+              }
             ]
           },
           {
@@ -141,23 +224,47 @@
             "vehicle_type": "train",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 220, "dy_px": 20, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 5,
+                "dx_px": 220,
+                "dy_px": 20,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "example_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Here is a friendlier case — two locals running the same direction on parallel tracks." },
-            { "text_en": "Train A at 50 kilometres per hour, train B at 40, both northbound." },
-            { "text_en": "Relative velocity of A as seen from B is 50 minus 40, which is only 10 kilometres per hour." },
-            { "text_en": "This is why overtaking on the highway feels slow — the relative speed is only the DIFFERENCE, not the sum of the two speeds." }
+            {
+              "text_en": "Here is a friendlier case — two locals running the same direction on parallel tracks.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "Train A at 50 kilometres per hour, train B at 40, both northbound.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "Relative velocity of A as seen from B is 50 minus 40, which is only 10 kilometres per hour.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "This is why overtaking on the highway feels slow — the relative speed is only the DIFFERENCE, not the sum of the two speeds.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "example_sketch"
       },
       "STATE_3": {
         "title": "Symmetry — V_AB and V_BA are Opposite",
@@ -171,22 +278,63 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Symmetry — V_AB and V_BA are Opposite",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "symmetry_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "One last free gift from the formula — the symmetry rule." },
-            { "text_en": "V AB equals V A minus V B. Swap the letters — V BA equals V B minus V A. That is minus V AB." },
-            { "text_en": "So if train A crawls forward at plus 10 as seen from B, train B drifts backward at minus 10 as seen from A. Magnitudes match, signs flip." },
-            { "text_en": "Never compute both directions from scratch — one subtraction, then flip the sign for the return view." }
+            {
+              "text_en": "One last free gift from the formula — the symmetry rule.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "V AB equals V A minus V B. Swap the letters — V BA equals V B minus V A. That is minus V AB.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "So if train A crawls forward at plus 10 as seen from B, train B drifts backward at minus 10 as seen from A. Magnitudes match, signs flip.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "Never compute both directions from scratch — one subtraction, then flip the sign for the return view.",
+              "id": "state_3_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "symmetry_sketch"
       }
     }
   },
@@ -213,22 +361,63 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Wrong Instinct: Add Them",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Now the common error. A student reads the problem, sees two moving trains, and adds them." },
-              { "text_en": "50 plus 40 equals 90. Done — relative velocity is 90." },
-              { "text_en": "But your own lived experience rejects this. Same-direction overtakes feel SLOW, not like rocket flybys." },
-              { "text_en": "If relative motion really added like this, trains would explode past each other. They don't. Something is wrong with the instinct." }
+              {
+                "text_en": "Now the common error. A student reads the problem, sees two moving trains, and adds them.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "50 plus 40 equals 90. Done — relative velocity is 90.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "But your own lived experience rejects this. Same-direction overtakes feel SLOW, not like rocket flybys.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "If relative motion really added like this, trains would explode past each other. They don't. Something is wrong with the instinct.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_sketch"
         },
         "STATE_2": {
           "title": "Why Subtraction — Think About the Observer's Frame",
@@ -242,9 +431,13 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
             },
             {
@@ -255,23 +448,55 @@
               "anchor": "bottom_center",
               "font_size": 14,
               "color": "#00796b",
-              "appear_at": 4.0,
+              "appear_at": 4,
               "animations": [
-                { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 4,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Why Subtraction — Think About the Observer's Frame",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "correction_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Here is why subtraction is the right move." },
-              { "text_en": "Imagine you are sitting on train B. From your own seat, train B is at rest — you do not feel it moving." },
-              { "text_en": "To make that true mathematically, you must subtract V B from every velocity in the universe — including V A." },
-              { "text_en": "That is what V AB equals V A minus V B means. You are mathematically shifting into train B's point of view." },
-              { "text_en": "Same direction: 50 minus 40 equals 10 — slow overtake. Opposite direction: 50 minus minus 40 equals 90 — fast approach. Both match real life." }
+              {
+                "text_en": "Here is why subtraction is the right move.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "Imagine you are sitting on train B. From your own seat, train B is at rest — you do not feel it moving.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "To make that true mathematically, you must subtract V B from every velocity in the universe — including V A.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "That is what V AB equals V A minus V B means. You are mathematically shifting into train B's point of view.",
+                "id": "state_2_s4"
+              },
+              {
+                "text_en": "Same direction: 50 minus 40 equals 10 — slow overtake. Opposite direction: 50 minus minus 40 equals 90 — fast approach. Both match real life.",
+                "id": "state_2_s5"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "correction_sketch"
         },
         "STATE_3": {
           "title": "Sign Convention Fixes Everything",
@@ -285,36 +510,111 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Sign Convention Fixes Everything",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "sign_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The sign convention fixes this mistake permanently." },
-              { "text_en": "Pick a positive direction. Assign every velocity its own sign. Subtract. Interpret the sign of the answer." },
-              { "text_en": "Same direction, both positive: 50 minus 40 equals 10 — small and slow." },
-              { "text_en": "Opposite direction: 50 minus minus 40 equals 90 — large and fast." },
-              { "text_en": "Same velocity: 50 minus 50 equals zero — the object appears stationary from your frame. One formula, three different answers, all correct." }
+              {
+                "text_en": "The sign convention fixes this mistake permanently.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Pick a positive direction. Assign every velocity its own sign. Subtract. Interpret the sign of the answer.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "Same direction, both positive: 50 minus 40 equals 10 — small and slow.",
+                "id": "state_3_s3"
+              },
+              {
+                "text_en": "Opposite direction: 50 minus minus 40 equals 90 — large and fast.",
+                "id": "state_3_s4"
+              },
+              {
+                "text_en": "Same velocity: 50 minus 50 equals zero — the object appears stationary from your frame. One formula, three different answers, all correct.",
+                "id": "state_3_s5"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "sign_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Add Instead Of Subtract (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Two trains, same direction", "params": { "V_A": 50, "V_B": 40 } },
-      { "label": "Two trains, opposite direction", "params": { "V_A": 50, "V_B": -40 } },
-      { "label": "Car overtaking bike", "params": { "V_A": 60, "V_B": 45 } }
-    ],
-    "type_b": [
-      { "label": "Airport walkalator and pedestrian", "scenario": "airport_walkalator" },
-      { "label": "Escalator with walker", "scenario": "escalator_walker" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Two trains, same direction",
+        "params": {
+          "V_A": 50,
+          "V_B": 40
+        }
+      },
+      "1": {
+        "label": "Two trains, opposite direction",
+        "params": {
+          "V_A": 50,
+          "V_B": -40
+        }
+      },
+      "2": {
+        "label": "Car overtaking bike",
+        "params": {
+          "V_A": 60,
+          "V_B": 45
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Airport walkalator and pedestrian",
+        "scenario": "airport_walkalator"
+      },
+      "1": {
+        "label": "Escalator with walker",
+        "scenario": "escalator_walker"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

@@ -17,14 +17,38 @@
   },
   "physics_engine_config": {
     "variables": {
-      "t": { "name": "Time", "unit": "s", "min": 0, "max": 20, "default": 5 },
-      "u": { "name": "Initial velocity at t=0", "unit": "m/s", "min": 0, "max": 30, "default": 0 },
-      "x0": { "name": "Initial position at t=0", "unit": "m", "min": 0, "max": 100, "default": 0 }
+      "t": {
+        "name": "Time",
+        "unit": "s",
+        "min": 0,
+        "max": 20,
+        "default": 5
+      },
+      "u": {
+        "name": "Initial velocity at t=0",
+        "unit": "m/s",
+        "min": 0,
+        "max": 30,
+        "default": 0
+      },
+      "x0": {
+        "name": "Initial position at t=0",
+        "unit": "m",
+        "min": 0,
+        "max": 100,
+        "default": 0
+      }
     },
     "computed_outputs": {
-      "a_at_t": { "formula": "2 * t" },
-      "v_at_t": { "formula": "t * t" },
-      "x_at_t": { "formula": "t * t * t / 3" }
+      "a_at_t": {
+        "formula": "2 * t"
+      },
+      "v_at_t": {
+        "formula": "t * t"
+      },
+      "x_at_t": {
+        "formula": "t * t * t / 3"
+      }
     },
     "formulas": {
       "basic_definition": "a(t) = dv/dt   =>   v(t) = u + integral from 0 to t of a(t') dt'",
@@ -49,40 +73,78 @@
             "type": "annotation",
             "id": "problem_setup",
             "text": "Scenario\n\nDriver on NH-48 varies the accelerator.\nAt t = 0, a = 0 (no press).\nAt t = 1 s, a = 2 m/s^2.\nAt t = 2 s, a = 4 m/s^2.\nAt t = 5 s, a = 10 m/s^2.\n\nGeneral pattern\n   a(t) = 2 t  m/s^2\n\nAcceleration is NOT constant.\nIt INCREASES with time.\n\nYou cannot use v = u + a t,\nbecause 'a' is not a single number.",
-            "position": { "x": 340, "y": 280 },
+            "position": {
+              "x": 340,
+              "y": 280
+            },
             "style": "formula_box",
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 1
+            }
           },
           {
             "type": "force_arrow",
             "id": "car_nh48",
-            "from": { "x": 180, "y": 460 },
+            "from": {
+              "x": 180,
+              "y": 460
+            },
             "magnitude": 2,
             "direction_deg": 0,
             "label": "CAR (growing acceleration)",
             "color": "#F59E0B",
             "scale_pixels_per_unit": 55,
-            "animation": { "type": "translate", "dx_px": 500, "dy_px": 0, "duration_sec": 6 }
+            "animation": {
+              "type": "translate",
+              "dx_px": 500,
+              "dy_px": 0,
+              "duration_sec": 6
+            }
           },
           {
             "type": "annotation",
             "id": "recipe",
             "text": "Solution recipe\n\n(1) Given a(t), integrate ONCE\n    to get v(t).\n\n(2) Integrate v(t) AGAIN\n    to get x(t).\n\n(3) Integration constants come\n    from initial conditions\n    (v(0), x(0) known).\n\nThe constant-a case is a SPECIAL\ncase where a(t) = a_0 is a flat line.\nEverything we do here generalises it.",
-            "position": { "x": 720, "y": 300 },
+            "position": {
+              "x": 720,
+              "y": 300
+            },
             "style": "callout",
-            "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 2.5,
+              "duration_sec": 1
+            }
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Imagine a driver on NH-48 playing with the accelerator. At t equals zero, his foot is off the pedal, so a is zero. A second later, a is two. Another second later, a is four. The acceleration itself is growing with time." },
-            { "id": "s2", "text_en": "In symbols, a of t equals two t. Acceleration is a function of time, not a constant number." },
-            { "id": "s3", "text_en": "This breaks our kinematic equations. v equals u plus a t assumes a is the same throughout. Here it is not." },
-            { "id": "s4", "text_en": "Calculus handles this exactly. Given a as a function of t, integrate ONCE to get velocity as a function of t. Integrate the velocity AGAIN to get position as a function of t. Two integrations, each with an integration constant that you determine from initial conditions." },
-            { "id": "s5", "text_en": "The constant-a case is just the special case where a of t equals a constant number. The calculus approach we are about to develop generalises the entire kinematics toolbox." }
+            {
+              "id": "s1",
+              "text_en": "Imagine a driver on NH-48 playing with the accelerator. At t equals zero, his foot is off the pedal, so a is zero. A second later, a is two. Another second later, a is four. The acceleration itself is growing with time."
+            },
+            {
+              "id": "s2",
+              "text_en": "In symbols, a of t equals two t. Acceleration is a function of time, not a constant number."
+            },
+            {
+              "id": "s3",
+              "text_en": "This breaks our kinematic equations. v equals u plus a t assumes a is the same throughout. Here it is not."
+            },
+            {
+              "id": "s4",
+              "text_en": "Calculus handles this exactly. Given a as a function of t, integrate ONCE to get velocity as a function of t. Integrate the velocity AGAIN to get position as a function of t. Two integrations, each with an integration constant that you determine from initial conditions."
+            },
+            {
+              "id": "s5",
+              "text_en": "The constant-a case is just the special case where a of t equals a constant number. The calculus approach we are about to develop generalises the entire kinematics toolbox."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "car_nh48"
       },
       "STATE_2": {
         "title": "First Integration — From a(t) to v(t)",
@@ -92,31 +154,76 @@
             "type": "annotation",
             "id": "integration_step",
             "text": "Step 1: integrate a(t) to get v(t)\n\nStart from a(t) = dv/dt.\n\nMultiply both sides by dt\n  dv = a(t) dt\n\nIntegrate both sides from t = 0 to t\n  integral dv  =  integral of a(t) dt\n  v(t) - v(0)  =  integral from 0 to t of a(t') dt'\n\nWith u = v(0) as initial velocity\n  v(t)  =  u + integral from 0 to t of a(t') dt'\n\nFor our example a(t') = 2 t'\n  integral 2 t' dt'  from 0 to t\n    =  t^2\n\nSo  v(t)  =  u + t^2\nWith u = 0:\n  v(t) = t^2\n\nAt t = 3 s, v = 9 m/s.\nAt t = 5 s, v = 25 m/s.",
-            "position": { "x": 380, "y": 280 },
+            "position": {
+              "x": 380,
+              "y": 280
+            },
             "style": "formula_box",
             "color": "#10B981",
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "area_under",
             "text": "Graphical reading\n\nOn an a(t) graph, the AREA under\nthe curve from 0 to t equals the\nvelocity GAINED.\n\nArea under a = 2t from 0 to t\n  is a triangle of base t and\n  height 2t\n  area = (1/2)(t)(2t) = t^2\n\nSame answer as the integration.",
-            "position": { "x": 720, "y": 340 },
+            "position": {
+              "x": 720,
+              "y": 340
+            },
             "style": "callout",
-            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 3,
+              "duration_sec": 1
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "First Integration — From a(t) to v(t)",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Step one — integrate a of t to get v of t." },
-            { "id": "s2", "text_en": "Start from the definition. Acceleration is the rate of change of velocity. In equation form, d v over d t equals a of t. Rearrange — d v equals a of t d t." },
-            { "id": "s3", "text_en": "Integrate both sides from t equals zero to some later time t. The left side gives v of t minus v at zero. The right side is the integral of a of t prime d t prime from zero to t." },
-            { "id": "s4", "text_en": "Calling the initial velocity u, we get v of t equals u plus the integral of a of t prime d t prime from zero to t. That is the working formula." },
-            { "id": "s5", "text_en": "For our example, a of t prime is two t prime. Integral from zero to t of two t prime d t prime is t squared. So v of t is u plus t squared. With u equals zero, v of t equals t squared. At three seconds, v is nine metres per second. At five seconds, twenty-five metres per second." },
-            { "id": "s6", "text_en": "A useful shortcut — on an a-versus-t graph, the area under the curve from zero to t is the velocity gained. The triangle under a equals two t has base t and height two t, so area is t squared. Same answer." }
+            {
+              "id": "s1",
+              "text_en": "Step one — integrate a of t to get v of t."
+            },
+            {
+              "id": "s2",
+              "text_en": "Start from the definition. Acceleration is the rate of change of velocity. In equation form, d v over d t equals a of t. Rearrange — d v equals a of t d t."
+            },
+            {
+              "id": "s3",
+              "text_en": "Integrate both sides from t equals zero to some later time t. The left side gives v of t minus v at zero. The right side is the integral of a of t prime d t prime from zero to t."
+            },
+            {
+              "id": "s4",
+              "text_en": "Calling the initial velocity u, we get v of t equals u plus the integral of a of t prime d t prime from zero to t. That is the working formula."
+            },
+            {
+              "id": "s5",
+              "text_en": "For our example, a of t prime is two t prime. Integral from zero to t of two t prime d t prime is t squared. So v of t is u plus t squared. With u equals zero, v of t equals t squared. At three seconds, v is nine metres per second. At five seconds, twenty-five metres per second."
+            },
+            {
+              "id": "s6",
+              "text_en": "A useful shortcut — on an a-versus-t graph, the area under the curve from zero to t is the velocity gained. The triangle under a equals two t has base t and height two t, so area is t squared. Same answer."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "integration_step"
       },
       "STATE_3": {
         "title": "Second Integration — From v(t) to x(t)",
@@ -126,23 +233,73 @@
             "type": "annotation",
             "id": "second_integration",
             "text": "Step 2: integrate v(t) to get x(t)\n\nStart from  v = dx/dt\n  dx = v(t) dt\n\nIntegrate from 0 to t\n  x(t) - x(0)  =  integral from 0 to t of v(t') dt'\n\nWith x0 = x(0) as initial position\n  x(t)  =  x0 + integral from 0 to t of v(t') dt'\n\nFor our example v(t') = t'^2\n  integral t'^2 dt'  from 0 to t\n    =  t^3 / 3\n\nSo  x(t)  =  x0 + t^3 / 3\nWith x0 = 0\n  x(t) = t^3 / 3\n\nAt t = 3 s, x = 9 m.\nAt t = 5 s, x = 41.67 m.",
-            "position": { "x": 400, "y": 280 },
+            "position": {
+              "x": 400,
+              "y": 280
+            },
             "style": "formula_box",
             "color": "#10B981",
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 1
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Second Integration — From v(t) to x(t)",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Step two — integrate v of t to get x of t. Same idea, one level deeper." },
-            { "id": "s2", "text_en": "Velocity is the rate of change of position, d x over d t equals v of t. So d x equals v of t d t." },
-            { "id": "s3", "text_en": "Integrate from zero to t. x of t minus x at zero equals integral of v of t prime d t prime." },
-            { "id": "s4", "text_en": "With the initial position x-zero, x of t equals x-zero plus the integral of v of t prime from zero to t." },
-            { "id": "s5", "text_en": "For our example, v of t prime is t prime squared. Integral is t cubed over three. So x of t equals x-zero plus t cubed over three." },
-            { "id": "s6", "text_en": "With x-zero equal to zero, x of t is t cubed over three. At three seconds, x is nine metres. At five seconds, about forty-two metres. Position grows much faster than it does under constant acceleration, because the acceleration itself was growing." }
+            {
+              "id": "s1",
+              "text_en": "Step two — integrate v of t to get x of t. Same idea, one level deeper."
+            },
+            {
+              "id": "s2",
+              "text_en": "Velocity is the rate of change of position, d x over d t equals v of t. So d x equals v of t d t."
+            },
+            {
+              "id": "s3",
+              "text_en": "Integrate from zero to t. x of t minus x at zero equals integral of v of t prime d t prime."
+            },
+            {
+              "id": "s4",
+              "text_en": "With the initial position x-zero, x of t equals x-zero plus the integral of v of t prime from zero to t."
+            },
+            {
+              "id": "s5",
+              "text_en": "For our example, v of t prime is t prime squared. Integral is t cubed over three. So x of t equals x-zero plus t cubed over three."
+            },
+            {
+              "id": "s6",
+              "text_en": "With x-zero equal to zero, x of t is t cubed over three. At three seconds, x is nine metres. At five seconds, about forty-two metres. Position grows much faster than it does under constant acceleration, because the acceleration itself was growing."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "second_integration"
       },
       "STATE_4": {
         "title": "The Workflow — Two Integrals, Then Read Off the Answer",
@@ -152,21 +309,64 @@
             "type": "annotation",
             "id": "workflow_summary",
             "text": "Workflow for a(t) problems\n\n(1) Identify a(t) from the problem.\n    Read the function of t.\n\n(2) Integrate a(t) once.\n    v(t) = u + integral of a(t') dt' from 0 to t.\n\n(3) Integrate v(t) again.\n    x(t) = x0 + integral of v(t') dt' from 0 to t.\n\n(4) Plug in initial conditions (u, x0)\n    and answer the question.\n\nNo assumption of constant a.\nWorks for ANY integrable a(t).\n\nThe 3-equation kinematics you memorised\nemerges naturally when a(t) = a (constant).",
-            "position": { "x": 400, "y": 280 },
+            "position": {
+              "x": 400,
+              "y": 280
+            },
             "style": "formula_box",
             "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "state_4_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "The Workflow — Two Integrals, Then Read Off the Answer",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_4_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Here is the workflow for any a-as-a-function-of-t problem." },
-            { "id": "s2", "text_en": "Step one — read a of t from the problem. Could be a straight line, a polynomial, a sinusoid — whatever the problem hands you." },
-            { "id": "s3", "text_en": "Step two — integrate once to get v of t. Step three — integrate again to get x of t. Step four — use initial conditions to fix u and x-zero, then answer the question." },
-            { "id": "s4", "text_en": "This workflow handles any integrable a of t. It is strictly more powerful than the constant-a kinematic equations — those are just the special case when a is constant, and the integrations give t and half t squared factors." },
-            { "id": "s5", "text_en": "If a problem gives you an a as an explicit function of t, do not try the constant-a equations. Integrate, get v, integrate again, get x. Every JEE question on this topic is built on this pattern." }
+            {
+              "id": "s1",
+              "text_en": "Here is the workflow for any a-as-a-function-of-t problem."
+            },
+            {
+              "id": "s2",
+              "text_en": "Step one — read a of t from the problem. Could be a straight line, a polynomial, a sinusoid — whatever the problem hands you."
+            },
+            {
+              "id": "s3",
+              "text_en": "Step two — integrate once to get v of t. Step three — integrate again to get x of t. Step four — use initial conditions to fix u and x-zero, then answer the question."
+            },
+            {
+              "id": "s4",
+              "text_en": "This workflow handles any integrable a of t. It is strictly more powerful than the constant-a kinematic equations — those are just the special case when a is constant, and the integrations give t and half t squared factors."
+            },
+            {
+              "id": "s5",
+              "text_en": "If a problem gives you an a as an explicit function of t, do not try the constant-a equations. Integrate, get v, integrate again, get x. Every JEE question on this topic is built on this pattern."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "workflow_summary"
       }
     }
   },
@@ -189,19 +389,56 @@
               "type": "annotation",
               "id": "belief_frame",
               "text": "Your reasoning\n\nI know v = u + a t.\nFor a(t) = 2t, at t = 5 s,\na is 10 m/s^2.\n\nSo v = 0 + 10 * 5 = 50 m/s?\n\nActually the correct answer\n(from integration) is v = 25 m/s.\n\nHuge gap. The formula does NOT\nwork when a changes over time.",
-              "position": { "x": 360, "y": 280 },
+              "position": {
+                "x": 360,
+                "y": 280
+              },
               "style": "callout",
               "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Your Belief — Use the Kinematic Equations Anyway",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "A very common error — reach for the familiar v equals u plus a t even when a is changing." },
-              { "id": "s2", "text_en": "At t equals five seconds, a of t equals two t gives a equals ten. Plug in. v equals zero plus ten times five equals fifty metres per second. Done?" },
-              { "id": "s3", "text_en": "The correct answer from proper integration is twenty-five, not fifty. The kinematic equation overshoots by a factor of two. Let us see why." }
+              {
+                "id": "s1",
+                "text_en": "A very common error — reach for the familiar v equals u plus a t even when a is changing."
+              },
+              {
+                "id": "s2",
+                "text_en": "At t equals five seconds, a of t equals two t gives a equals ten. Plug in. v equals zero plus ten times five equals fifty metres per second. Done?"
+              },
+              {
+                "id": "s3",
+                "text_en": "The correct answer from proper integration is twenty-five, not fifty. The kinematic equation overshoots by a factor of two. Let us see why."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "belief_frame"
         },
         "STATE_2": {
           "title": "Why the Equation Fails — It Multiplies by t, Not Integrates",
@@ -211,20 +448,60 @@
               "type": "annotation",
               "id": "why_fails",
               "text": "v = u + a t comes from\n  v - u = integral of a from 0 to t\n       = a * t  (ONLY when a is constant)\n\nWhen a varies over time, the integral is\nNOT simply a * t. The value a changes\nduring the interval.\n\nFor a(t) = 2t, between 0 and 5 s\n  integral of 2t dt = t^2 from 0 to 5\n  = 25\n  NOT 10 * 5 = 50\n\nUsing the constant-a formula with\nthe FINAL value of a counts the\nfull peak acceleration for the\nentire interval — overestimating.\n\nIntegration correctly averages\nthe changing a over the time window.",
-              "position": { "x": 400, "y": 280 },
+              "position": {
+                "x": 400,
+                "y": 280
+              },
               "style": "formula_box",
               "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Why the Equation Fails — It Multiplies by t, Not Integrates",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Remember where v equals u plus a t came from. It was derived assuming a is a constant throughout the interval. The integral of a constant a from zero to t is simply a times t." },
-              { "id": "s2", "text_en": "When a varies, you cannot pull it out of the integral. The integral of two t from zero to five is t squared evaluated from zero to five, which is twenty-five. Not ten times five." },
-              { "id": "s3", "text_en": "Using the constant-a formula with the final a value treats the entire window at peak acceleration. That is an overestimate — the car was NOT at acceleration ten for the full five seconds; it started at zero and ramped up." },
-              { "id": "s4", "text_en": "Integration handles this correctly because it sums up all the small instantaneous contributions, each with the actual a at that instant. That is the calculus answer and the right one." }
+              {
+                "id": "s1",
+                "text_en": "Remember where v equals u plus a t came from. It was derived assuming a is a constant throughout the interval. The integral of a constant a from zero to t is simply a times t."
+              },
+              {
+                "id": "s2",
+                "text_en": "When a varies, you cannot pull it out of the integral. The integral of two t from zero to five is t squared evaluated from zero to five, which is twenty-five. Not ten times five."
+              },
+              {
+                "id": "s3",
+                "text_en": "Using the constant-a formula with the final a value treats the entire window at peak acceleration. That is an overestimate — the car was NOT at acceleration ten for the full five seconds; it started at zero and ramped up."
+              },
+              {
+                "id": "s4",
+                "text_en": "Integration handles this correctly because it sums up all the small instantaneous contributions, each with the actual a at that instant. That is the calculus answer and the right one."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "why_fails"
         },
         "STATE_3": {
           "title": "The Rule — Always Integrate When a Is Non-Constant",
@@ -234,19 +511,56 @@
               "type": "annotation",
               "id": "safe_rule",
               "text": "Rule\n\nIf a is a CONSTANT in the interval\n  -> use v = u + a t.\n\nIf a is a FUNCTION of t (varies)\n  -> use v(t) = u + integral of a(t) dt from 0 to t.\n\nIf a is a FUNCTION of x or v (coming up)\n  -> use different tricks (see\n     a_function_of_x and a_function_of_v\n     concepts).\n\nFirst read the problem, then pick the tool.",
-              "position": { "x": 400, "y": 280 },
+              "position": {
+                "x": 400,
+                "y": 280
+              },
               "style": "formula_box",
               "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Rule — Always Integrate When a Is Non-Constant",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "The simple rule — if a is constant in the relevant interval, use v equals u plus a t. If a varies with time, always integrate." },
-              { "id": "s2", "text_en": "Before you pick any formula, first read the problem. If the problem gives you a as a function of t — a equals two t, a equals three sine t, a equals five minus t — that is your signal to reach for integration." },
-              { "id": "s3", "text_en": "The constant-a kinematic equations are a special case. They work when they work. Integration works always." }
+              {
+                "id": "s1",
+                "text_en": "The simple rule — if a is constant in the relevant interval, use v equals u plus a t. If a varies with time, always integrate."
+              },
+              {
+                "id": "s2",
+                "text_en": "Before you pick any formula, first read the problem. If the problem gives you a as a function of t — a equals two t, a equals three sine t, a equals five minus t — that is your signal to reach for integration."
+              },
+              {
+                "id": "s3",
+                "text_en": "The constant-a kinematic equations are a special case. They work when they work. Integration works always."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "safe_rule"
         }
       }
     }

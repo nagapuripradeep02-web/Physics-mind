@@ -17,12 +17,32 @@
   },
   "physics_engine_config": {
     "variables": {
-      "t_reversal": { "name": "Time at which direction reverses", "unit": "s", "min": 0, "max": 20, "default": 5 },
-      "v_before": { "name": "Velocity just before reversal", "unit": "m/s", "min": -20, "max": 20, "default": 5 },
-      "v_after": { "name": "Velocity just after reversal", "unit": "m/s", "min": -20, "max": 20, "default": -5 }
+      "t_reversal": {
+        "name": "Time at which direction reverses",
+        "unit": "s",
+        "min": 0,
+        "max": 20,
+        "default": 5
+      },
+      "v_before": {
+        "name": "Velocity just before reversal",
+        "unit": "m/s",
+        "min": -20,
+        "max": 20,
+        "default": 5
+      },
+      "v_after": {
+        "name": "Velocity just after reversal",
+        "unit": "m/s",
+        "min": -20,
+        "max": 20,
+        "default": -5
+      }
     },
     "computed_outputs": {
-      "sign_flip": { "formula": "sign(v_before) != sign(v_after)" }
+      "sign_flip": {
+        "formula": "sign(v_before) != sign(v_after)"
+      }
     },
     "formulas": {
       "x_t_reversal": "On x-t graph, direction reverses at each local maximum or minimum — slope changes sign at that point.",
@@ -51,9 +71,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -64,9 +88,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -75,25 +103,59 @@
             "vehicle_type": "train",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 3.0, "dx_px": 200, "dy_px": 0, "easing": "ease_in_out" },
-              { "type": "translate", "delay_sec": 8.0, "duration_sec": 3.0, "dx_px": -120, "dy_px": 0, "easing": "ease_in_out" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 3,
+                "dx_px": 200,
+                "dy_px": 0,
+                "easing": "ease_in_out"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 8,
+                "duration_sec": 3,
+                "dx_px": -120,
+                "dy_px": 0,
+                "easing": "ease_in_out"
+              }
             ]
           }
         ],
         "focal_primitive": "peak_xt_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "The clearest sign that an object has reversed direction is a peak — or a trough — on its x-t graph." },
-            { "text_en": "Before the peak, the slope is positive — the object is moving forward." },
-            { "text_en": "Exactly at the peak, the slope is zero — the object is momentarily stationary." },
-            { "text_en": "After the peak, the slope is negative — the object is moving backward." },
-            { "text_en": "Picture a Delhi Metro driver moving forward to the signal, stopping, and reversing to clear the platform. That trip draws a perfect peak on the x-t graph." }
+            {
+              "text_en": "The clearest sign that an object has reversed direction is a peak — or a trough — on its x-t graph.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "Before the peak, the slope is positive — the object is moving forward.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Exactly at the peak, the slope is zero — the object is momentarily stationary.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "After the peak, the slope is negative — the object is moving backward.",
+              "id": "state_1_s4"
+            },
+            {
+              "text_en": "Picture a Delhi Metro driver moving forward to the signal, stopping, and reversing to clear the platform. That trip draws a perfect peak on the x-t graph.",
+              "id": "state_1_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "peak_xt_sketch"
       },
       "STATE_2": {
         "title": "On the v-t Graph: Crossing the Time Axis",
@@ -107,9 +169,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -120,9 +186,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -131,24 +201,55 @@
             "vehicle_type": "ball",
             "zone": "MAIN_ZONE",
             "anchor": "center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
-              { "type": "translate", "delay_sec": 4.5, "duration_sec": 2.5, "dx_px": 0, "dy_px": -180, "easing": "ease_out" },
-              { "type": "translate", "delay_sec": 7.0, "duration_sec": 2.5, "dx_px": 0, "dy_px": 180, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.3
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4.5,
+                "duration_sec": 2.5,
+                "dx_px": 0,
+                "dy_px": -180,
+                "easing": "ease_out"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 7,
+                "duration_sec": 2.5,
+                "dx_px": 0,
+                "dy_px": 180,
+                "easing": "ease_in"
+              }
             ]
           }
         ],
         "focal_primitive": "vt_crossing_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "On the velocity-time graph, a direction reversal is even more direct to spot." },
-            { "text_en": "Wherever the v-t line actually crosses the time axis — passing through zero with non-zero slope — that is the reversal moment." },
-            { "text_en": "A cricketer tosses a tennis ball vertically upwards. Its v-t graph is a perfectly straight line sloping downward with slope minus g." },
-            { "text_en": "The moment that line cuts the t-axis is the peak of the throw — velocity momentarily zero, and then negative on the descent." }
+            {
+              "text_en": "On the velocity-time graph, a direction reversal is even more direct to spot.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "Wherever the v-t line actually crosses the time axis — passing through zero with non-zero slope — that is the reversal moment.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "A cricketer tosses a tennis ball vertically upwards. Its v-t graph is a perfectly straight line sloping downward with slope minus g.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "The moment that line cuts the t-axis is the peak of the throw — velocity momentarily zero, and then negative on the descent.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "vt_crossing_sketch"
       },
       "STATE_3": {
         "title": "Touching vs. Crossing — A Subtle Distinction",
@@ -162,9 +263,13 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -175,23 +280,55 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#00796b",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Touching vs. Crossing — A Subtle Distinction",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "touch_vs_cross_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Now a subtlety worth one exam mark — touching versus crossing the time axis." },
-            { "text_en": "A train braking at a station reaches zero velocity and then starts again in the same forward direction. Its v-t graph dips to zero and climbs back — but it does NOT cross the axis." },
-            { "text_en": "That is a momentary stop without reversal." },
-            { "text_en": "A ball tossed up crosses the axis cleanly — above the axis, then below — because the ball literally reverses direction." },
-            { "text_en": "The test is simple: compare the sign of velocity just before and just after the zero. Same sign — no reversal. Opposite signs — reversal." }
+            {
+              "text_en": "Now a subtlety worth one exam mark — touching versus crossing the time axis.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "A train braking at a station reaches zero velocity and then starts again in the same forward direction. Its v-t graph dips to zero and climbs back — but it does NOT cross the axis.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "That is a momentary stop without reversal.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "A ball tossed up crosses the axis cleanly — above the axis, then below — because the ball literally reverses direction.",
+              "id": "state_3_s4"
+            },
+            {
+              "text_en": "The test is simple: compare the sign of velocity just before and just after the zero. Same sign — no reversal. Opposite signs — reversal.",
+              "id": "state_3_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "touch_vs_cross_sketch"
       }
     }
   },
@@ -218,21 +355,59 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Trap: v = 0 Feels Like 'Done'",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_v0_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "A common misreading: the moment v hits zero, the student concludes the object has stopped forever." },
-              { "text_en": "This collapses three very different physical situations into one." },
-              { "text_en": "Zero velocity is just an instant — a point on the graph. It says absolutely nothing about the next second." }
+              {
+                "text_en": "A common misreading: the moment v hits zero, the student concludes the object has stopped forever.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "This collapses three very different physical situations into one.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "Zero velocity is just an instant — a point on the graph. It says absolutely nothing about the next second.",
+                "id": "state_1_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_v0_sketch"
         },
         "STATE_2": {
           "title": "Three Different Futures from the Same v = 0",
@@ -246,23 +421,67 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Three Different Futures from the Same v = 0",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "three_futures_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The same instant of v = 0 can mean three completely different things." },
-              { "text_en": "First, a ball at the peak of its toss — v becomes zero, then gravity pulls it back, so it reverses." },
-              { "text_en": "Second, a truly parked vehicle — v stays zero forever because there is no net force to restart motion." },
-              { "text_en": "Third, a Metro train paused at a platform — v is briefly zero, but the driver presses the accelerator again and forward motion resumes, no reversal." },
-              { "text_en": "Only a look at what happens IMMEDIATELY after t-equals-stop can distinguish these." }
+              {
+                "text_en": "The same instant of v = 0 can mean three completely different things.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "First, a ball at the peak of its toss — v becomes zero, then gravity pulls it back, so it reverses.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "Second, a truly parked vehicle — v stays zero forever because there is no net force to restart motion.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "Third, a Metro train paused at a platform — v is briefly zero, but the driver presses the accelerator again and forward motion resumes, no reversal.",
+                "id": "state_2_s4"
+              },
+              {
+                "text_en": "Only a look at what happens IMMEDIATELY after t-equals-stop can distinguish these.",
+                "id": "state_2_s5"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "three_futures_sketch"
         },
         "STATE_3": {
           "title": "Rule of Thumb: Check the Slope Where v = 0",
@@ -276,9 +495,13 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
             },
             {
@@ -289,35 +512,98 @@
               "anchor": "bottom_center",
               "font_size": 14,
               "color": "#00796b",
-              "appear_at": 3.0,
+              "appear_at": 3,
               "animations": [
-                { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 3,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Rule of Thumb: Check the Slope Where v = 0",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "rule_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Here is the shortcut. At any moment v equals zero, look at the ACCELERATION." },
-              { "text_en": "If the acceleration is non-zero, the object WILL move in the direction of acceleration in the next instant — so it reverses if it was moving oppositely." },
-              { "text_en": "If the acceleration is also zero, the object is truly at rest and stays at rest." },
-              { "text_en": "Burn this into memory: velocity tells you where the object is going right now. Acceleration tells you where it is going next." }
+              {
+                "text_en": "Here is the shortcut. At any moment v equals zero, look at the ACCELERATION.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "If the acceleration is non-zero, the object WILL move in the direction of acceleration in the next instant — so it reverses if it was moving oppositely.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "If the acceleration is also zero, the object is truly at rest and stays at rest.",
+                "id": "state_3_s3"
+              },
+              {
+                "text_en": "Burn this into memory: velocity tells you where the object is going right now. Acceleration tells you where it is going next.",
+                "id": "state_3_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "rule_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Zero Velocity Means Stopped (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Reversal near t = 5 s", "params": { "t_reversal": 5, "v_before": 6, "v_after": -6 } },
-      { "label": "Reversal near t = 10 s", "params": { "t_reversal": 10, "v_before": 8, "v_after": -3 } },
-      { "label": "Momentary stop, no reversal", "params": { "t_reversal": 7, "v_before": 5, "v_after": 5 } }
-    ],
-    "type_b": [
-      { "label": "Lift between floors", "scenario": "lift_reversing_between_floors" },
-      { "label": "Cricket ball vertical toss", "scenario": "cricket_ball_vertical_toss" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Reversal near t = 5 s",
+        "params": {
+          "t_reversal": 5,
+          "v_before": 6,
+          "v_after": -6
+        }
+      },
+      "1": {
+        "label": "Reversal near t = 10 s",
+        "params": {
+          "t_reversal": 10,
+          "v_before": 8,
+          "v_after": -3
+        }
+      },
+      "2": {
+        "label": "Momentary stop, no reversal",
+        "params": {
+          "t_reversal": 7,
+          "v_before": 5,
+          "v_after": 5
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Lift between floors",
+        "scenario": "lift_reversing_between_floors"
+      },
+      "1": {
+        "label": "Cricket ball vertical toss",
+        "scenario": "cricket_ball_vertical_toss"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

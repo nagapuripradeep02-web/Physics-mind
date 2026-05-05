@@ -17,12 +17,28 @@
   },
   "physics_engine_config": {
     "variables": {
-      "angle_A_deg": { "name": "direction of A", "unit": "degrees", "min": 0, "max": 360, "default": 0 },
-      "angle_B_deg": { "name": "direction of B", "unit": "degrees", "min": 0, "max": 360, "default": 60 }
+      "angle_A_deg": {
+        "name": "direction of A",
+        "unit": "degrees",
+        "min": 0,
+        "max": 360,
+        "default": 0
+      },
+      "angle_B_deg": {
+        "name": "direction of B",
+        "unit": "degrees",
+        "min": 0,
+        "max": 360,
+        "default": 60
+      }
     },
     "computed_outputs": {
-      "theta_raw_deg":  { "formula": "abs(angle_B_deg - angle_A_deg)" },
-      "theta_deg":      { "formula": "min(abs(angle_B_deg - angle_A_deg), 360 - abs(angle_B_deg - angle_A_deg))" }
+      "theta_raw_deg": {
+        "formula": "abs(angle_B_deg - angle_A_deg)"
+      },
+      "theta_deg": {
+        "formula": "min(abs(angle_B_deg - angle_A_deg), 360 - abs(angle_B_deg - angle_A_deg))"
+      }
     },
     "formulas": {
       "measurement_protocol": "Move both vectors to same tail. Arrows outward. Take smaller of the two possible angles.",
@@ -45,7 +61,10 @@
           {
             "type": "force_arrow",
             "id": "A_tail_to_head",
-            "from": { "x": 160, "y": 340 },
+            "from": {
+              "x": 160,
+              "y": 340
+            },
             "magnitude": 4,
             "direction_deg": 0,
             "label": "A",
@@ -55,7 +74,10 @@
           {
             "type": "force_arrow",
             "id": "B_tail_to_head",
-            "from": { "x": 320, "y": 340 },
+            "from": {
+              "x": 320,
+              "y": 340
+            },
             "magnitude": 4,
             "direction_deg": 150,
             "label": "B",
@@ -66,19 +88,35 @@
             "type": "annotation",
             "id": "ambiguity",
             "text": "Look at the picture.\nIs the angle between A and B\n30°, 150°, or something else?\nThere is only one correct answer.",
-            "position": { "x": 480, "y": 160 },
+            "position": {
+              "x": 480,
+              "y": 160
+            },
             "style": "callout"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Here are two vectors A and B, drawn one after the other." },
-            { "id": "s2", "text_en": "A student glances at this picture and says the angle between them is one hundred and fifty degrees." },
-            { "id": "s3", "text_en": "Another student says thirty degrees. Both are measuring from the diagram as-drawn." },
-            { "id": "s4", "text_en": "The correct angle is neither of those readings. There is a precise protocol — and most students miss it." }
+            {
+              "id": "s1",
+              "text_en": "Here are two vectors A and B, drawn one after the other."
+            },
+            {
+              "id": "s2",
+              "text_en": "A student glances at this picture and says the angle between them is one hundred and fifty degrees."
+            },
+            {
+              "id": "s3",
+              "text_en": "Another student says thirty degrees. Both are measuring from the diagram as-drawn."
+            },
+            {
+              "id": "s4",
+              "text_en": "The correct angle is neither of those readings. There is a precise protocol — and most students miss it."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "A_tail_to_head"
       },
       "STATE_2": {
         "title": "The Wrong Method — Measuring From the Page",
@@ -87,7 +125,10 @@
           {
             "type": "force_arrow",
             "id": "A_wrong",
-            "from": { "x": 160, "y": 340 },
+            "from": {
+              "x": 160,
+              "y": 340
+            },
             "magnitude": 4,
             "direction_deg": 0,
             "label": "A",
@@ -97,7 +138,10 @@
           {
             "type": "force_arrow",
             "id": "B_wrong",
-            "from": { "x": 320, "y": 340 },
+            "from": {
+              "x": 320,
+              "y": 340
+            },
             "magnitude": 4,
             "direction_deg": 150,
             "label": "B",
@@ -108,20 +152,36 @@
             "type": "annotation",
             "id": "wrong_reading",
             "text": "Reading the paper: 150°\nReading wrongly.\nB does not START where it should.",
-            "position": { "x": 480, "y": 180 },
+            "position": {
+              "x": 480,
+              "y": 180
+            },
             "style": "callout",
             "color": "#EF4444"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Here is the trap. The two arrows are drawn one after the other — tail of B at the tip of A." },
-            { "id": "s2", "text_en": "This is how you draw vectors for addition. It is not how you measure angle between them." },
-            { "id": "s3", "text_en": "The angle read straight off this picture — one hundred and fifty degrees — is wrong." },
-            { "id": "s4", "text_en": "The angle between two vectors is a property of the vectors, not of where you happen to place them on the page." }
+            {
+              "id": "s1",
+              "text_en": "Here is the trap. The two arrows are drawn one after the other — tail of B at the tip of A."
+            },
+            {
+              "id": "s2",
+              "text_en": "This is how you draw vectors for addition. It is not how you measure angle between them."
+            },
+            {
+              "id": "s3",
+              "text_en": "The angle read straight off this picture — one hundred and fifty degrees — is wrong."
+            },
+            {
+              "id": "s4",
+              "text_en": "The angle between two vectors is a property of the vectors, not of where you happen to place them on the page."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "A_wrong"
       },
       "STATE_3": {
         "title": "The Right Method — Both Tails at One Point, Arrows Outward",
@@ -130,7 +190,10 @@
           {
             "type": "force_arrow",
             "id": "A_right",
-            "from": { "x": 260, "y": 340 },
+            "from": {
+              "x": 260,
+              "y": 340
+            },
             "magnitude": 4,
             "direction_deg": 0,
             "label": "A",
@@ -140,32 +203,55 @@
           {
             "type": "force_arrow",
             "id": "B_right",
-            "from": { "x": 260, "y": 340 },
+            "from": {
+              "x": 260,
+              "y": 340
+            },
             "magnitude": 4,
             "direction_deg": 30,
             "label": "B",
             "color": "#F59E0B",
             "scale_pixels_per_unit": 40,
-            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1.5 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 2,
+              "duration_sec": 1.5
+            }
           },
           {
             "type": "annotation",
             "id": "right_angle",
             "text": "Step 1  Move both to same tail.\nStep 2  Arrows outward.\nStep 3  Measure angle between them.\n\nθ = 30°",
-            "position": { "x": 480, "y": 200 },
+            "position": {
+              "x": 480,
+              "y": 200
+            },
             "style": "formula_box",
             "color": "#10B981"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Now do it properly. Move both arrows so their tails sit at the same point." },
-            { "id": "s2", "text_en": "Arrows point outward, away from that common tail." },
-            { "id": "s3", "text_en": "The angle between them — now visible clearly — is thirty degrees. Not one hundred and fifty." },
-            { "id": "s4", "text_en": "This redraw does not change the vectors. A vector can be translated anywhere without changing. It only reveals the angle that was always there." }
+            {
+              "id": "s1",
+              "text_en": "Now do it properly. Move both arrows so their tails sit at the same point."
+            },
+            {
+              "id": "s2",
+              "text_en": "Arrows point outward, away from that common tail."
+            },
+            {
+              "id": "s3",
+              "text_en": "The angle between them — now visible clearly — is thirty degrees. Not one hundred and fifty."
+            },
+            {
+              "id": "s4",
+              "text_en": "This redraw does not change the vectors. A vector can be translated anywhere without changing. It only reveals the angle that was always there."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "A_right"
       },
       "STATE_4": {
         "title": "Always the Smaller — Why θ Never Exceeds 180°",
@@ -174,7 +260,10 @@
           {
             "type": "force_arrow",
             "id": "A_range",
-            "from": { "x": 300, "y": 320 },
+            "from": {
+              "x": 300,
+              "y": 320
+            },
             "magnitude": 4,
             "direction_deg": 0,
             "label": "A",
@@ -184,7 +273,10 @@
           {
             "type": "force_arrow",
             "id": "B_range",
-            "from": { "x": 300, "y": 320 },
+            "from": {
+              "x": 300,
+              "y": 320
+            },
             "magnitude": 4,
             "direction_deg": 120,
             "label": "B",
@@ -195,19 +287,35 @@
             "type": "annotation",
             "id": "two_angles",
             "text": "From A to B going one way:  120°\nFrom A to B going the other way:  240°\n\nWe take the smaller.  θ = 120°\n\nRange:  0° ≤ θ ≤ 180°",
-            "position": { "x": 500, "y": 180 },
+            "position": {
+              "x": 500,
+              "y": 180
+            },
             "style": "formula_box"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Between any two vectors drawn from one point, there are two possible angles — one going one way, one going the other." },
-            { "id": "s2", "text_en": "They add up to three hundred and sixty degrees. One is always smaller than or equal to one hundred eighty." },
-            { "id": "s3", "text_en": "The convention in physics is always to take the smaller one." },
-            { "id": "s4", "text_en": "That is why the angle between two vectors is never more than one hundred eighty degrees. Never two hundred, never three hundred." }
+            {
+              "id": "s1",
+              "text_en": "Between any two vectors drawn from one point, there are two possible angles — one going one way, one going the other."
+            },
+            {
+              "id": "s2",
+              "text_en": "They add up to three hundred and sixty degrees. One is always smaller than or equal to one hundred eighty."
+            },
+            {
+              "id": "s3",
+              "text_en": "The convention in physics is always to take the smaller one."
+            },
+            {
+              "id": "s4",
+              "text_en": "That is why the angle between two vectors is never more than one hundred eighty degrees. Never two hundred, never three hundred."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "A_range"
       },
       "STATE_5": {
         "title": "Special Case — Angle Between a and −(3/2)a",
@@ -216,7 +324,10 @@
           {
             "type": "force_arrow",
             "id": "a_east",
-            "from": { "x": 320, "y": 340 },
+            "from": {
+              "x": 320,
+              "y": 340
+            },
             "magnitude": 3,
             "direction_deg": 0,
             "label": "a",
@@ -226,33 +337,59 @@
           {
             "type": "force_arrow",
             "id": "minus_three_half_a",
-            "from": { "x": 320, "y": 340 },
+            "from": {
+              "x": 320,
+              "y": 340
+            },
             "magnitude": 4.5,
             "direction_deg": 180,
             "label": "−(3/2)a",
             "color": "#EF4444",
             "scale_pixels_per_unit": 40,
-            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 3,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "antiparallel",
             "text": "Any NEGATIVE scalar multiple\nflips the direction.\n−(3/2)a points opposite to a.\n\nTwo opposite arrows from one point.\nθ = 180°",
-            "position": { "x": 500, "y": 180 },
+            "position": {
+              "x": 500,
+              "y": 180
+            },
             "style": "formula_box",
             "color": "#EF4444"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "DC Pandey Example five point two. Vectors a and negative three-halves a. Find the angle between them." },
-            { "id": "s2", "text_en": "The three-halves factor stretches the arrow. But the negative sign flips its direction." },
-            { "id": "s3", "text_en": "Draw a pointing east. Then negative three-halves a points west — opposite direction, magnitude one and a half times larger." },
-            { "id": "s4", "text_en": "Tails at the same point, one east, one west. The angle between them is one hundred and eighty degrees." },
-            { "id": "s5", "text_en": "Any negative scalar multiple of a vector is antiparallel to it. The scalar's size does not matter — only its sign." }
+            {
+              "id": "s1",
+              "text_en": "DC Pandey Example five point two. Vectors a and negative three-halves a. Find the angle between them."
+            },
+            {
+              "id": "s2",
+              "text_en": "The three-halves factor stretches the arrow. But the negative sign flips its direction."
+            },
+            {
+              "id": "s3",
+              "text_en": "Draw a pointing east. Then negative three-halves a points west — opposite direction, magnitude one and a half times larger."
+            },
+            {
+              "id": "s4",
+              "text_en": "Tails at the same point, one east, one west. The angle between them is one hundred and eighty degrees."
+            },
+            {
+              "id": "s5",
+              "text_en": "Any negative scalar multiple of a vector is antiparallel to it. The scalar's size does not matter — only its sign."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "a_east"
       }
     }
   },
@@ -274,7 +411,10 @@
             {
               "type": "force_arrow",
               "id": "A_easy",
-              "from": { "x": 180, "y": 340 },
+              "from": {
+                "x": 180,
+                "y": 340
+              },
               "magnitude": 4,
               "direction_deg": 0,
               "label": "A",
@@ -284,7 +424,10 @@
             {
               "type": "force_arrow",
               "id": "B_easy",
-              "from": { "x": 340, "y": 340 },
+              "from": {
+                "x": 340,
+                "y": 340
+              },
               "magnitude": 4,
               "direction_deg": 45,
               "label": "B",
@@ -295,19 +438,35 @@
               "type": "annotation",
               "id": "easy_case",
               "text": "Easy case:\nB at A's tip, angled 45°.\nWRONG-method reading  →  45°\nRIGHT-method reading  →  45°\nThey match.  A coincidence.",
-              "position": { "x": 500, "y": 180 },
+              "position": {
+                "x": 500,
+                "y": 180
+              },
               "style": "callout"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Here is why the wrong method feels natural. Sometimes it gives the right answer by pure luck." },
-              { "id": "s2", "text_en": "B drawn from A's tip, tilted forty five degrees. Read straight off the paper — forty five degrees." },
-              { "id": "s3", "text_en": "Redraw both from one point — also forty five degrees. Same answer." },
-              { "id": "s4", "text_en": "This coincidence happens when both angles happen to agree. In harder cases they will not." }
+              {
+                "id": "s1",
+                "text_en": "Here is why the wrong method feels natural. Sometimes it gives the right answer by pure luck."
+              },
+              {
+                "id": "s2",
+                "text_en": "B drawn from A's tip, tilted forty five degrees. Read straight off the paper — forty five degrees."
+              },
+              {
+                "id": "s3",
+                "text_en": "Redraw both from one point — also forty five degrees. Same answer."
+              },
+              {
+                "id": "s4",
+                "text_en": "This coincidence happens when both angles happen to agree. In harder cases they will not."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "A_easy"
         },
         "STATE_2": {
           "title": "The Hard Case — Wrong Method Breaks",
@@ -316,7 +475,10 @@
             {
               "type": "force_arrow",
               "id": "A_hard",
-              "from": { "x": 180, "y": 340 },
+              "from": {
+                "x": 180,
+                "y": 340
+              },
               "magnitude": 4,
               "direction_deg": 0,
               "label": "A",
@@ -326,7 +488,10 @@
             {
               "type": "force_arrow",
               "id": "B_hard",
-              "from": { "x": 340, "y": 340 },
+              "from": {
+                "x": 340,
+                "y": 340
+              },
               "magnitude": 4,
               "direction_deg": 150,
               "label": "B",
@@ -337,20 +502,36 @@
               "type": "annotation",
               "id": "hard_case",
               "text": "Hard case:\nWRONG method reads: 150°\nRIGHT method reads: 30°\n\nFive-fold error.",
-              "position": { "x": 500, "y": 200 },
+              "position": {
+                "x": 500,
+                "y": 200
+              },
               "style": "callout",
               "color": "#EF4444"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Same two arrows, drawn tail-to-head. This time the wrong method reads one hundred and fifty degrees." },
-              { "id": "s2", "text_en": "Redraw both from one point. The correct angle is thirty degrees." },
-              { "id": "s3", "text_en": "A five-fold error — enough to make every dot product and every cosine formula come out wrong." },
-              { "id": "s4", "text_en": "This is why the textbook rule exists. The tail-to-head picture is for addition. For angle, always redraw from one point." }
+              {
+                "id": "s1",
+                "text_en": "Same two arrows, drawn tail-to-head. This time the wrong method reads one hundred and fifty degrees."
+              },
+              {
+                "id": "s2",
+                "text_en": "Redraw both from one point. The correct angle is thirty degrees."
+              },
+              {
+                "id": "s3",
+                "text_en": "A five-fold error — enough to make every dot product and every cosine formula come out wrong."
+              },
+              {
+                "id": "s4",
+                "text_en": "This is why the textbook rule exists. The tail-to-head picture is for addition. For angle, always redraw from one point."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "A_hard"
         },
         "STATE_3": {
           "title": "The Three Protocol Steps",
@@ -360,19 +541,56 @@
               "type": "annotation",
               "id": "three_steps",
               "text": "Step 1  Move both vectors to the SAME tail point.\n\nStep 2  Arrows point OUTWARD from that tail.\n\nStep 3  Take the SMALLER of the two possible angles.\n\nResult is unique. Result is 0° to 180°.",
-              "position": { "x": 220, "y": 180 },
+              "position": {
+                "x": 220,
+                "y": 180
+              },
               "style": "formula_box",
               "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Three Protocol Steps",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "The protocol is three lines. Same tail. Arrows outward. Smaller angle." },
-              { "id": "s2", "text_en": "Three steps, no exceptions. This rule never breaks." },
-              { "id": "s3", "text_en": "The result is always unique — between zero and one hundred eighty degrees." }
+              {
+                "id": "s1",
+                "text_en": "The protocol is three lines. Same tail. Arrows outward. Smaller angle."
+              },
+              {
+                "id": "s2",
+                "text_en": "Three steps, no exceptions. This rule never breaks."
+              },
+              {
+                "id": "s3",
+                "text_en": "The result is always unique — between zero and one hundred eighty degrees."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "three_steps"
         },
         "STATE_4": {
           "title": "DC Pandey Example 5.1 — Three Figures, Three Angles",
@@ -382,20 +600,63 @@
               "type": "annotation",
               "id": "three_figs",
               "text": "DC Pandey, Example 5.1, Fig 5.12:\n\nFigure (a)  apparent 135°,  correct  45°\nFigure (b)  apparent 30°,  correct  150°\nFigure (c)  apparent 145°,  correct  35°\n\nEach one: redraw from a common tail. Read again.",
-              "position": { "x": 240, "y": 200 },
+              "position": {
+                "x": 240,
+                "y": 200
+              },
               "style": "formula_box"
+            },
+            {
+              "type": "annotation",
+              "id": "state_4_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "DC Pandey Example 5.1 — Three Figures, Three Angles",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_4_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "DC Pandey's textbook gives three figures in example five point one — worth memorising." },
-              { "id": "s2", "text_en": "Figure a — apparent angle looks like one hundred thirty five. After redrawing from a common tail, it is forty five." },
-              { "id": "s3", "text_en": "Figure b — apparent thirty. Correct one hundred fifty." },
-              { "id": "s4", "text_en": "Figure c — apparent one hundred forty five. Correct thirty five." },
-              { "id": "s5", "text_en": "The pattern — the apparent angle plus the correct angle equals one hundred eighty when one vector has been drawn from the other's tip. Because the extension of the original vector lies along the same line." }
+              {
+                "id": "s1",
+                "text_en": "DC Pandey's textbook gives three figures in example five point one — worth memorising."
+              },
+              {
+                "id": "s2",
+                "text_en": "Figure a — apparent angle looks like one hundred thirty five. After redrawing from a common tail, it is forty five."
+              },
+              {
+                "id": "s3",
+                "text_en": "Figure b — apparent thirty. Correct one hundred fifty."
+              },
+              {
+                "id": "s4",
+                "text_en": "Figure c — apparent one hundred forty five. Correct thirty five."
+              },
+              {
+                "id": "s5",
+                "text_en": "The pattern — the apparent angle plus the correct angle equals one hundred eighty when one vector has been drawn from the other's tip. Because the extension of the original vector lies along the same line."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "three_figs"
         },
         "STATE_5": {
           "title": "Antiparallel Vectors — Angle Is Always 180°",
@@ -404,7 +665,10 @@
             {
               "type": "force_arrow",
               "id": "a_ref",
-              "from": { "x": 300, "y": 340 },
+              "from": {
+                "x": 300,
+                "y": 340
+              },
               "magnitude": 3,
               "direction_deg": 0,
               "label": "a",
@@ -414,7 +678,10 @@
             {
               "type": "force_arrow",
               "id": "neg_ka",
-              "from": { "x": 300, "y": 340 },
+              "from": {
+                "x": 300,
+                "y": 340
+              },
               "magnitude": 4.5,
               "direction_deg": 180,
               "label": "−(3/2)a",
@@ -425,20 +692,36 @@
               "type": "annotation",
               "id": "anti_rule",
               "text": "A and −(k)a  for any positive k:\nopposite direction  →  θ = 180°\n\nThe magnitude factor doesn't matter.\nOnly the sign matters.",
-              "position": { "x": 480, "y": 200 },
+              "position": {
+                "x": 480,
+                "y": 200
+              },
               "style": "formula_box",
               "color": "#EF4444"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "A trap question — find the angle between a and minus three-halves a." },
-              { "id": "s2", "text_en": "The three-halves changes the length. The minus sign flips the direction one hundred eighty degrees." },
-              { "id": "s3", "text_en": "When you redraw both from one tail, one arrow points east, the other west." },
-              { "id": "s4", "text_en": "The angle is one hundred eighty degrees. The scalar size does not matter — only the sign." }
+              {
+                "id": "s1",
+                "text_en": "A trap question — find the angle between a and minus three-halves a."
+              },
+              {
+                "id": "s2",
+                "text_en": "The three-halves changes the length. The minus sign flips the direction one hundred eighty degrees."
+              },
+              {
+                "id": "s3",
+                "text_en": "When you redraw both from one tail, one arrow points east, the other west."
+              },
+              {
+                "id": "s4",
+                "text_en": "The angle is one hundred eighty degrees. The scalar size does not matter — only the sign."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "a_ref"
         }
       }
     }

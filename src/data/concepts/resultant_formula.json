@@ -2,10 +2,33 @@
   "concept_id": "resultant_formula",
   "concept_name": "The Resultant Formula — |R| = sqrt(A^2 + B^2 + 2AB cos theta)",
   "chapter": 5,
-  "section": "5.2",
+  "section": "5.3",
   "schema_version": "2.0.0",
   "class_level": 11,
   "source_book": "DC Pandey Chapter 5.2 — Addition of Vectors; split from vector_addition bundle",
+  "prerequisites": ["vector_basics", "vector_addition"],
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "two_farmers_plough_hook",
+      "parallelogram_law_diagonal_R",
+      "perpendicular_drop_law_of_cosines",
+      "numerical_plug_in_60_deg"
+    ],
+    "epic_c": [
+      "scalar_sum_vs_vector_at_60",
+      "pythagoras_only_at_90_deg",
+      "theta_is_between_tails_not_tip_to_tip",
+      "theta_180_gives_difference_not_sum"
+    ],
+    "panel_b": [
+      "R_vs_theta_curve",
+      "R_bounded_between_diff_and_sum"
+    ],
+    "board": [
+      "answer_sheet_derivation",
+      "mark_badge_accumulator"
+    ]
+  },
   "renderer_pair": {
     "panel_a": "mechanics_2d",
     "panel_b": "graph_interactive"
@@ -46,6 +69,8 @@
       "STATE_1": {
         "title": "Two Pulls, One Plough — Where Does It Go?",
         "duration": 10,
+        "focal_primitive_id": "question",
+        "allow_deep_dive": false,
         "scene_composition": [
           {
             "type": "force_arrow",
@@ -99,6 +124,8 @@
       "STATE_2": {
         "title": "Build the Parallelogram — The Diagonal Is the Answer",
         "duration": 13,
+        "focal_primitive_id": "resultant_R",
+        "allow_deep_dive": false,
         "scene_composition": [
           {
             "type": "force_arrow",
@@ -171,14 +198,16 @@
             { "id": "s3", "text_en": "Now make parallel copies — one copy of A starting at the tip of B, one copy of B starting at the tip of A. The dashed arrows show this." },
             { "id": "s4", "text_en": "You have just closed a parallelogram. Four sides. Two tails meeting at the start, two tips meeting at the opposite corner." },
             { "id": "s5", "text_en": "Draw the diagonal from the shared tail all the way to that opposite corner. This diagonal is the resultant R." },
-            { "id": "s6", "text_en": "Its length gives the magnitude of R. Its tilt gives the direction. Our job in the next state is to find a formula for its length." }
+            { "id": "s6", "text_en": "Its length gives the magnitude of R. Its tilt gives the direction. Our job in the next state is to find a formula for its length. Tap continue." }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click"
       },
       "STATE_3": {
         "title": "Drop a Perpendicular — The Law of Cosines Emerges",
         "duration": 14,
+        "focal_primitive_id": "pythagoras_box",
+        "allow_deep_dive": true,
         "scene_composition": [
           {
             "type": "force_arrow",
@@ -254,6 +283,8 @@
       "STATE_4": {
         "title": "Plug In Numbers — A = 4, B = 3, theta = 60 deg",
         "duration": 11,
+        "focal_primitive_id": "solution",
+        "allow_deep_dive": true,
         "scene_composition": [
           {
             "type": "force_arrow",
@@ -305,7 +336,7 @@
             { "id": "s6", "text_en": "This is the formula in action. Carry it forward — it will solve every vector-addition problem you meet for the rest of the chapter." }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "interaction_complete"
       }
     }
   },
@@ -323,6 +354,7 @@
         "STATE_1": {
           "title": "Your Belief — Just Add the Numbers",
           "duration": 8,
+          "focal_primitive_id": "wrong_claim",
           "scene_composition": [
             {
               "type": "force_arrow",
@@ -366,6 +398,7 @@
         "STATE_2": {
           "title": "See the Gap — Reality at theta = 60 deg",
           "duration": 11,
+          "focal_primitive_id": "gap_explain",
           "scene_composition": [
             {
               "type": "force_arrow",
@@ -433,6 +466,7 @@
         "STATE_3": {
           "title": "When Scalar Addition Does Work — The Limit Case",
           "duration": 10,
+          "focal_primitive_id": "limit_math",
           "scene_composition": [
             {
               "type": "force_arrow",
@@ -489,6 +523,7 @@
         "STATE_4": {
           "title": "The Correct Rule You Now Own",
           "duration": 9,
+          "focal_primitive_id": "summary_rule",
           "scene_composition": [
             {
               "type": "annotation",
@@ -505,6 +540,15 @@
               "position": { "x": 640, "y": 260 },
               "style": "callout",
               "animation": { "type": "fade_in", "delay_sec": 2.5, "duration_sec": 1 }
+            },
+            {
+              "type": "label",
+              "id": "final_header",
+              "text": "One formula. Every angle. Always safe.",
+              "position": { "x": 300, "y": 60 },
+              "font_size": 18,
+              "color": "#10B981",
+              "bold": true
             }
           ],
           "teacher_script": {
@@ -513,6 +557,221 @@
               { "id": "s2", "text_en": "For any angle, the resultant magnitude follows the full formula — A squared plus B squared plus twice A B cosine theta, all under a square root." },
               { "id": "s3", "text_en": "At zero degrees, it collapses to plain addition. At ninety degrees, to Pythagoras. At one hundred eighty, to the absolute difference." },
               { "id": "s4", "text_en": "Rule of thumb — if the problem mentions an angle that is not zero, stop writing plus and start writing the formula." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+    {
+      "branch_id": "pythagoras_used_at_every_angle",
+      "misconception": "Student applies R = sqrt(A^2 + B^2) regardless of the angle between the vectors.",
+      "trigger_phrases": [
+        "pythagoras always works",
+        "root of A squared plus B squared",
+        "why add the 2AB cos theta term",
+        "isn't it just the right triangle formula"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Pythagoras Only at 90° — Elsewhere Needs the Cosine Term",
+          "focal_primitive_id": "pytha_comparison",
+          "scene_composition": [
+            {
+              "type": "comparison_panel",
+              "id": "pytha_comparison",
+              "left_label": "theta = 90 deg (Pythagoras works)",
+              "right_label": "theta != 90 deg (cosine term needed)",
+              "left_scene": [
+                {
+                  "type": "annotation",
+                  "text": "cos(90) = 0\n=> 2 A B cos theta = 0\n=> R^2 = A^2 + B^2\n=> R = sqrt(A^2 + B^2)\n\nCorrect here — cosine term\nvanishes.",
+                  "color": "#10B981",
+                  "position": { "x": 20, "y": 100 }
+                }
+              ],
+              "right_scene": [
+                {
+                  "type": "annotation",
+                  "text": "At theta = 60:\ncos(60) = 0.5\n2 A B cos theta = 12  (not 0)\nR^2 = 25 + 12 = 37\n\nIgnoring the middle term\ngives R = 5 — wrong by 1 N.",
+                  "color": "#EF4444",
+                  "position": { "x": 20, "y": 100 }
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "id": "pytha_header",
+              "text": "Pythagoras is a SPECIAL CASE, not the rule.",
+              "position": { "x": 150, "y": 40 },
+              "font_size": 17,
+              "color": "#1F2937",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "pytha_callout",
+              "text": "Always start with the full law of cosines.\nPythagoras falls out automatically when theta = 90.",
+              "position": { "x": 130, "y": 500 },
+              "style": "callout",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Pythagoras is so familiar that students use it for every vector addition. That habit fails as soon as the two vectors are not perpendicular." },
+              { "id": "s2", "text_en": "Pythagoras applies only when theta is ninety degrees. At that angle, cosine is zero and the middle term of the full formula vanishes." },
+              { "id": "s3", "text_en": "At any other angle, that middle term is non-zero. Skipping it gives a wrong answer." },
+              { "id": "s4", "text_en": "Always start with the full law of cosines. Pythagoras is the special case that falls out when the angle happens to be ninety." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+    {
+      "branch_id": "theta_measured_wrong",
+      "misconception": "Student measures theta from the tip of A to the tail of B (tip-to-tail chain), not between the tails when vectors share a common origin.",
+      "trigger_phrases": [
+        "angle between tip and tail",
+        "which angle is theta",
+        "is theta the interior angle of the triangle",
+        "angle of the triangle vs angle between vectors"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "theta Is Measured Between the Tails — Not the Supplement",
+          "focal_primitive_id": "angle_diagram",
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "ang_A",
+              "from": { "x": 240, "y": 360 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "ang_B",
+              "from": { "x": 240, "y": 360 },
+              "magnitude": 3,
+              "direction_deg": 60,
+              "label": "B",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "angle_arc",
+              "id": "angle_diagram",
+              "center": { "x": 240, "y": 360 },
+              "radius": 40,
+              "from_deg": 0,
+              "to_deg": 60,
+              "color": "#10B981",
+              "label": "theta = 60"
+            },
+            {
+              "type": "annotation",
+              "id": "correct_rule",
+              "text": "CORRECT\n\ntheta is the angle between A and B\nwhen both start from the same tail.\n\nIf you draw the triangle tip-to-tail,\nthe interior angle at the shared\nvertex is 180 - theta,\nNOT theta.",
+              "position": { "x": 520, "y": 180 },
+              "style": "formula_box",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "exam_trap",
+              "text": "Exam trap: textbook diagrams show\ntriangle completed tip-to-tail. Students\nread off the wrong angle. Always\nredraw with both tails at the origin.",
+              "position": { "x": 520, "y": 400 },
+              "style": "callout",
+              "color": "#F59E0B"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The angle theta in the formula is measured between A and B when both start from the same tail — common origin." },
+              { "id": "s2", "text_en": "Many textbook diagrams show the resultant triangle drawn tip-to-tail. In that triangle, the interior angle at the shared vertex is one hundred eighty minus theta, not theta itself." },
+              { "id": "s3", "text_en": "Using that interior angle inside the formula gives a wrong resultant by a big margin." },
+              { "id": "s4", "text_en": "Safe habit: before plugging in, always redraw A and B with both tails at the origin. Measure the angle between them. That is theta." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+    {
+      "branch_id": "theta_180_addition_wrong",
+      "misconception": "Student plugs cos(180) into the formula without realising it gives R = |A − B|, not R = A + B.",
+      "trigger_phrases": [
+        "antiparallel vectors",
+        "theta is 180",
+        "cos 180 is minus 1",
+        "subtracting vectors",
+        "opposite direction sum"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "At theta = 180°, R = |A − B| — Not A + B",
+          "focal_primitive_id": "anti_derivation",
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "anti_A",
+              "from": { "x": 200, "y": 320 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A = 4",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "anti_B",
+              "from": { "x": 200, "y": 320 },
+              "magnitude": 3,
+              "direction_deg": 180,
+              "label": "B = 3 (anti)",
+              "color": "#F59E0B",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "anti_R",
+              "from": { "x": 200, "y": 320 },
+              "magnitude": 1,
+              "direction_deg": 0,
+              "label": "R = 1",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "formula_box",
+              "id": "anti_derivation",
+              "equation": "cos(180) = -1\nR^2 = A^2 + B^2 - 2*A*B = (A - B)^2\nR = |A - B| = |4 - 3| = 1 N",
+              "position": { "x": 480, "y": 180 },
+              "border_color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "anti_callout",
+              "text": "Antiparallel vectors partially cancel.\nR is the absolute difference, NOT the sum.\nAnd R points along the LARGER vector.",
+              "position": { "x": 130, "y": 430 },
+              "style": "callout",
+              "color": "#F59E0B"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "At theta equals one hundred eighty degrees, the two vectors point in opposite directions." },
+              { "id": "s2", "text_en": "Cosine of one hundred eighty is negative one. The middle term becomes minus two A B." },
+              { "id": "s3", "text_en": "The whole expression collapses to A minus B whole squared. So R equals the absolute value of A minus B — the partial cancellation, not the full sum." },
+              { "id": "s4", "text_en": "For A equals four and B equals three, R is one newton, pointing along the direction of the larger vector A." }
             ]
           },
           "advance_mode": "auto_after_tts"
@@ -535,5 +794,246 @@
       "physical_world": "A = 3 m/s (boat paddle), B = 4 m/s (river current), angle 90 deg. Resultant velocity is 5 m/s at 53 deg.",
       "same_physics": "Formula is unit-agnostic — any two coplanar vectors combine by the same rule"
     }
-  ]
+  ],
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 4,
+        "per_state": {
+          "STATE_1": {
+            "mark": 1,
+            "description": "Identify the problem: two vectors at angle theta need to be combined into a single resultant. State the goal: find |R|."
+          },
+          "STATE_2": {
+            "mark": 1,
+            "description": "State the parallelogram law. Draw A and B from a common tail; complete the parallelogram; the diagonal from the shared tail is R."
+          },
+          "STATE_3": {
+            "mark": 1,
+            "description": "Derive |R|^2 = A^2 + B^2 + 2*A*B*cos(theta) using a perpendicular drop and Pythagoras. Show the (A + B*cos)^2 + (B*sin)^2 expansion collapses via cos^2 + sin^2 = 1."
+          },
+          "STATE_4": {
+            "mark": 1,
+            "description": "Numerical example: A = 4, B = 3, theta = 60 -> R = sqrt(37) ≈ 6.08 N. State limits: theta = 0 -> A + B; theta = 180 -> |A - B|."
+          }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b1_s1",
+              "text": "Step 1: Two vectors A and B meet at angle theta. Find the single resultant R.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 100 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s2",
+              "text": "Step 2: Scalar sum A + B only works at theta = 0. General case needs vector law.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 140 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s3",
+              "text": "Step 3: Goal: |R| in terms of A, B, theta.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 180 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b1",
+              "mark_value": 1,
+              "text": "+1 for setup",
+              "tied_to_state": "STATE_1",
+              "position": { "x": 680, "y": 140 }
+            }
+          ]
+        },
+        "STATE_2": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b2_s1",
+              "text": "Step 4: Parallelogram law — draw A and B from the same tail.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 220 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s2",
+              "text": "Step 5: Complete the parallelogram with parallel copies of A and B.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 260 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s3",
+              "text": "Step 6: R = diagonal from shared tail to opposite corner.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 300 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b2",
+              "mark_value": 1,
+              "text": "+1 for parallelogram construction",
+              "tied_to_state": "STATE_2",
+              "position": { "x": 680, "y": 260 }
+            }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b3_s1",
+              "text": "Step 7: Drop a perpendicular from tip of B onto line of A extended.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 340 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s2",
+              "text": "Step 8: Legs: (A + B*cos(theta)) horizontal, (B*sin(theta)) vertical.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 380 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s3",
+              "text": "Step 9: Pythagoras + (cos^2 + sin^2 = 1) -> R^2 = A^2 + B^2 + 2*A*B*cos(theta).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 420 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b3",
+              "mark_value": 1,
+              "text": "+1 for law-of-cosines derivation",
+              "tied_to_state": "STATE_3",
+              "position": { "x": 680, "y": 380 }
+            }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b4_s1",
+              "text": "Step 10: A = 4, B = 3, theta = 60. cos(60) = 0.5.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 460 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s2",
+              "text": "Step 11: R^2 = 16 + 9 + 12 = 37 -> R = sqrt(37) ≈ 6.08 N.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 500 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s3",
+              "text": "Step 12: Limits — theta=0 -> R=A+B; theta=90 -> Pythagoras; theta=180 -> |A-B|.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 540 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b4",
+              "mark_value": 1,
+              "text": "+1 for numerical and limits",
+              "tied_to_state": "STATE_4",
+              "position": { "x": 680, "y": 500 }
+            }
+          ]
+        }
+      }
+    },
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "id": "shortcut_formula",
+          "rule": "Resultant magnitude",
+          "formula": "R = sqrt(A^2 + B^2 + 2*A*B*cos(theta))",
+          "use_when": "Any two coplanar vectors at known angle theta between them."
+        },
+        {
+          "id": "shortcut_parallel",
+          "rule": "Parallel vectors (theta = 0)",
+          "formula": "R = A + B",
+          "use_when": "Both vectors point the same way — scalar sum is correct here."
+        },
+        {
+          "id": "shortcut_perpendicular",
+          "rule": "Perpendicular vectors (theta = 90)",
+          "formula": "R = sqrt(A^2 + B^2)",
+          "use_when": "Vectors at right angles — Pythagoras is the special case."
+        },
+        {
+          "id": "shortcut_antiparallel",
+          "rule": "Antiparallel vectors (theta = 180)",
+          "formula": "R = |A - B|  (along larger vector)",
+          "use_when": "Vectors point in opposite directions."
+        },
+        {
+          "id": "shortcut_direction",
+          "rule": "Angle of R from A",
+          "formula": "tan(alpha) = B*sin(theta) / (A + B*cos(theta))",
+          "use_when": "Direction of resultant is asked, not just magnitude."
+        },
+        {
+          "id": "shortcut_bounds",
+          "rule": "Bounds on |R|",
+          "formula": "|A - B| <= |R| <= A + B",
+          "use_when": "Quick sanity check on an answer — resultant must lie in this range."
+        }
+      ],
+      "edge_cases": [
+        {
+          "id": "edge_equal_magnitudes",
+          "title": "A = B — symmetric case",
+          "trap": "Students guess R = 2A regardless of theta.",
+          "resolution": "R = 2*A*cos(theta/2). At theta=0 -> 2A. At theta=180 -> 0. At theta=60 -> A*sqrt(3). Symmetric formula worth memorising."
+        },
+        {
+          "id": "edge_direction_confusion",
+          "title": "Angle between vectors vs angle of R",
+          "trap": "Students conflate theta (between A and B) with alpha (between R and A).",
+          "resolution": "theta is input; alpha is output. Use tan(alpha) = B*sin(theta) / (A + B*cos(theta)) to recover alpha separately."
+        },
+        {
+          "id": "edge_reversed_vector",
+          "title": "Finding A - B (instead of A + B)",
+          "trap": "Students plug negative B into the sum formula.",
+          "resolution": "A - B = A + (-B). The angle between A and -B is 180 - theta. So |A - B| = sqrt(A^2 + B^2 - 2*A*B*cos(theta))."
+        },
+        {
+          "id": "edge_three_vectors",
+          "title": "Resultant of three or more vectors",
+          "trap": "Students iterate the two-vector formula with incorrectly tracked angles.",
+          "resolution": "Resolve each vector into x and y components, sum componentwise, then Rx and Ry combine by Pythagoras. Avoid chained law-of-cosines — it compounds angle errors."
+        },
+        {
+          "id": "edge_zero_resultant",
+          "title": "When R = 0",
+          "trap": "Students think only A = B and theta = 180 gives zero.",
+          "resolution": "R = 0 iff A = B AND theta = 180. For three or more vectors, R = 0 when sum of x-components AND sum of y-components both vanish."
+        }
+      ],
+      "formulas_shortform": {
+        "R_magnitude": "R = sqrt(A^2 + B^2 + 2*A*B*cos(theta))",
+        "R_direction": "tan(alpha) = B*sin(theta) / (A + B*cos(theta))",
+        "bounds": "|A - B| <= R <= A + B",
+        "equal_mags": "A = B -> R = 2*A*cos(theta/2)",
+        "limits": "theta=0 -> A+B; theta=90 -> sqrt(A^2+B^2); theta=180 -> |A-B|"
+      }
+    }
+  }
 }

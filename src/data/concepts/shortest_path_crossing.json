@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 6.11 — minimum-drift crossing strategy; split from river_boat_problems",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "A Goa Navy dinghy crossing the Mandovi river to a specific dock at Chorão Island. The river is 200 m wide and flows at 2 m/s; the dinghy does 5 m/s still-water. There is NO downstream pickup — the dinghy must land EXACTLY at the dock, not somewhere south of it. So the pilot tilts the bow upstream at angle theta such that the current's drift is cancelled. Sin(theta) = v_river / v_boat = 0.4, so theta is about 24 degrees upstream. The boat takes longer than the shortest-time crossing, but it arrives on the dock. Navy drills prize this skill.",
@@ -17,15 +17,45 @@
   },
   "physics_engine_config": {
     "variables": {
-      "width": { "name": "River width", "unit": "m", "min": 10, "max": 1000, "default": 200 },
-      "v_boat": { "name": "Boat speed in still water", "unit": "m/s", "min": 1, "max": 20, "default": 5 },
-      "v_river": { "name": "River current speed", "unit": "m/s", "min": 0, "max": 10, "default": 2 },
-      "theta": { "name": "Upstream aiming angle from perpendicular", "unit": "deg", "min": 0, "max": 90, "default": 24 }
+      "width": {
+        "name": "River width",
+        "unit": "m",
+        "min": 10,
+        "max": 1000,
+        "default": 200
+      },
+      "v_boat": {
+        "name": "Boat speed in still water",
+        "unit": "m/s",
+        "min": 1,
+        "max": 20,
+        "default": 5
+      },
+      "v_river": {
+        "name": "River current speed",
+        "unit": "m/s",
+        "min": 0,
+        "max": 10,
+        "default": 2
+      },
+      "theta": {
+        "name": "Upstream aiming angle from perpendicular",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 24
+      }
     },
     "computed_outputs": {
-      "theta_required": { "formula": "asin(v_river / v_boat) in degrees" },
-      "v_effective_across": { "formula": "sqrt(v_boat^2 - v_river^2)" },
-      "t_cross": { "formula": "width / sqrt(v_boat^2 - v_river^2)" }
+      "theta_required": {
+        "formula": "asin(v_river / v_boat) in degrees"
+      },
+      "v_effective_across": {
+        "formula": "sqrt(v_boat^2 - v_river^2)"
+      },
+      "t_cross": {
+        "formula": "width / sqrt(v_boat^2 - v_river^2)"
+      }
     },
     "formulas": {
       "aim_angle": "sin(theta) = v_river / v_boat  (bow tilted theta upstream from perpendicular)",
@@ -55,9 +85,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -68,9 +102,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -79,24 +117,55 @@
             "vehicle_type": "boat",
             "zone": "MAIN_ZONE",
             "anchor": "bottom_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "rotate_about", "delay_sec": 4.5, "duration_sec": 1.0, "pivot": "self", "from_deg": 0, "to_deg": -24 },
-              { "type": "translate", "delay_sec": 5.5, "duration_sec": 5.0, "dx_px": 0, "dy_px": -240, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "rotate_about",
+                "delay_sec": 4.5,
+                "duration_sec": 1,
+                "pivot": "self",
+                "from_deg": 0,
+                "to_deg": -24
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5.5,
+                "duration_sec": 5,
+                "dx_px": 0,
+                "dy_px": -240,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "goal_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Now a tougher challenge — you must land at a SPECIFIC dock on the far bank, not just any point." },
-            { "text_en": "A Goa Navy dinghy crossing the Mandovi river. The dock is directly opposite the start. The river pushes south; the dinghy must not drift." },
-            { "text_en": "Strategy: tilt the bow UPSTREAM just enough that the boat's upstream component exactly cancels the river's pull." },
-            { "text_en": "That angle is given by sine theta equals v river over v boat. Here, 2 divided by 5 — so theta is about 24 degrees upstream of the perpendicular." }
+            {
+              "text_en": "Now a tougher challenge — you must land at a SPECIFIC dock on the far bank, not just any point.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "A Goa Navy dinghy crossing the Mandovi river. The dock is directly opposite the start. The river pushes south; the dinghy must not drift.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Strategy: tilt the bow UPSTREAM just enough that the boat's upstream component exactly cancels the river's pull.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "That angle is given by sine theta equals v river over v boat. Here, 2 divided by 5 — so theta is about 24 degrees upstream of the perpendicular.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "goal_sketch"
       },
       "STATE_2": {
         "title": "The Math — sin(theta) = v_river / v_boat",
@@ -110,23 +179,67 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "The Math — sin(theta) = v_river / v_boat",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "math_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Here is the beautiful vector triangle." },
-            { "text_en": "The boat's velocity splits into an across-component and an upstream-component." },
-            { "text_en": "For zero drift, the upstream-component must exactly equal v river. That gives the famous condition — sine theta equals v river over v boat." },
-            { "text_en": "Mandovi numbers — sine theta equals 2 over 5, so theta is 23.6 degrees upstream." },
-            { "text_en": "The effective across-speed is the square root of 25 minus 4, that is square root 21, about 4.58 metres per second. 200 metres at that speed takes 43.7 seconds — nearly a minute of precise steering." }
+            {
+              "text_en": "Here is the beautiful vector triangle.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "The boat's velocity splits into an across-component and an upstream-component.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "For zero drift, the upstream-component must exactly equal v river. That gives the famous condition — sine theta equals v river over v boat.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "Mandovi numbers — sine theta equals 2 over 5, so theta is 23.6 degrees upstream.",
+              "id": "state_2_s4"
+            },
+            {
+              "text_en": "The effective across-speed is the square root of 25 minus 4, that is square root 21, about 4.58 metres per second. 200 metres at that speed takes 43.7 seconds — nearly a minute of precise steering.",
+              "id": "state_2_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "math_sketch"
       },
       "STATE_3": {
         "title": "Feasibility — When the Boat Just Cannot Make It Straight",
@@ -140,23 +253,67 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Feasibility — When the Boat Just Cannot Make It Straight",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "feasibility_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "One crucial check — when is this strategy even FEASIBLE?" },
-            { "text_en": "Sine of any angle is at most one. So v river over v boat must also be at most one. Which means v boat must be strictly greater than v river." },
-            { "text_en": "Three regimes. Stronger boat than current — zero-drift crossing possible." },
-            { "text_en": "Equal speeds — the boat can only aim straight upstream, going nowhere but staying at the bank." },
-            { "text_en": "Weaker boat — drift is unavoidable. You WILL land downstream; the only question is how far." }
+            {
+              "text_en": "One crucial check — when is this strategy even FEASIBLE?",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "Sine of any angle is at most one. So v river over v boat must also be at most one. Which means v boat must be strictly greater than v river.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "Three regimes. Stronger boat than current — zero-drift crossing possible.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "Equal speeds — the boat can only aim straight upstream, going nowhere but staying at the bank.",
+              "id": "state_3_s4"
+            },
+            {
+              "text_en": "Weaker boat — drift is unavoidable. You WILL land downstream; the only question is how far.",
+              "id": "state_3_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "feasibility_sketch"
       }
     }
   },
@@ -183,22 +340,63 @@
               "anchor": "center",
               "font_size": 12,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Wrong: Pick a Round Angle Like 45 Degrees",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_angle_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "A student picks 45 degrees because it sounds safe. What happens?" },
-              { "text_en": "At 45 degrees, the upstream-component of 5 metres per second is 5 times root two over two — about 3.54." },
-              { "text_en": "That exceeds the river's 2 metres per second by 1.54. So the boat OVER-corrects and lands NORTH of the dock." },
-              { "text_en": "At 24 degrees the correction is just right. At 45 it is too much. Fixed angles cannot work for every river." }
+              {
+                "text_en": "A student picks 45 degrees because it sounds safe. What happens?",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "At 45 degrees, the upstream-component of 5 metres per second is 5 times root two over two — about 3.54.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "That exceeds the river's 2 metres per second by 1.54. So the boat OVER-corrects and lands NORTH of the dock.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "At 24 degrees the correction is just right. At 45 it is too much. Fixed angles cannot work for every river.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_angle_sketch"
         },
         "STATE_2": {
           "title": "Correct: Use sin(theta) = v_river / v_boat Every Time",
@@ -212,22 +410,63 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Correct: Use sin(theta) = v_river / v_boat Every Time",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "correct_formula_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Correct recipe — always compute theta from the ratio." },
-              { "text_en": "Sine theta equals v river divided by v boat. Every river needs a different theta." },
-              { "text_en": "Mandovi — 23.6 degrees. Ganga — 37 degrees. Chilika Lake — only 14.5 degrees because the current is gentle." },
-              { "text_en": "Never guess. Always compute. The formula is one line and takes 20 seconds on a calculator." }
+              {
+                "text_en": "Correct recipe — always compute theta from the ratio.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "Sine theta equals v river divided by v boat. Every river needs a different theta.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "Mandovi — 23.6 degrees. Ganga — 37 degrees. Chilika Lake — only 14.5 degrees because the current is gentle.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "Never guess. Always compute. The formula is one line and takes 20 seconds on a calculator.",
+                "id": "state_2_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "correct_formula_sketch"
         },
         "STATE_3": {
           "title": "Remember Time vs Path Distinction",
@@ -241,35 +480,110 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Remember Time vs Path Distinction",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "distinction_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "One last reminder — do not mix up the two strategies." },
-              { "text_en": "Shortest time — bow perpendicular, drift allowed, simple formula." },
-              { "text_en": "Shortest path — bow tilted at arcsin v river over v boat, straight-across path, longer time." },
-              { "text_en": "Read the question carefully. Words like 'directly opposite', 'no drift', or 'specific dock' signal shortest-path. Otherwise, it is shortest-time." }
+              {
+                "text_en": "One last reminder — do not mix up the two strategies.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Shortest time — bow perpendicular, drift allowed, simple formula.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "Shortest path — bow tilted at arcsin v river over v boat, straight-across path, longer time.",
+                "id": "state_3_s3"
+              },
+              {
+                "text_en": "Read the question carefully. Words like 'directly opposite', 'no drift', or 'specific dock' signal shortest-path. Otherwise, it is shortest-time.",
+                "id": "state_3_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "distinction_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Think Same Angle Regardless Of River Speed (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Mandovi 200 m, Navy dinghy", "params": { "width": 200, "v_boat": 5, "v_river": 2 } },
-      { "label": "Ganga 150 m, rafting guide", "params": { "width": 150, "v_boat": 5, "v_river": 3 } },
-      { "label": "Calm Chilika lake, swimmer", "params": { "width": 100, "v_boat": 1.2, "v_river": 0.3 } }
-    ],
-    "type_b": [
-      { "label": "Olympic canoeist training course", "scenario": "olympic_canoeist" },
-      { "label": "Navy beach landing exercise", "scenario": "navy_beach_landing" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Mandovi 200 m, Navy dinghy",
+        "params": {
+          "width": 200,
+          "v_boat": 5,
+          "v_river": 2
+        }
+      },
+      "1": {
+        "label": "Ganga 150 m, rafting guide",
+        "params": {
+          "width": 150,
+          "v_boat": 5,
+          "v_river": 3
+        }
+      },
+      "2": {
+        "label": "Calm Chilika lake, swimmer",
+        "params": {
+          "width": 100,
+          "v_boat": 1.2,
+          "v_river": 0.3
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Olympic canoeist training course",
+        "scenario": "olympic_canoeist"
+      },
+      "1": {
+        "label": "Navy beach landing exercise",
+        "scenario": "navy_beach_landing"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

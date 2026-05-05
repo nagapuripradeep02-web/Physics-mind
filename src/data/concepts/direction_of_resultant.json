@@ -2,10 +2,33 @@
   "concept_id": "direction_of_resultant",
   "concept_name": "The Direction of the Resultant — tan alpha = B sin theta / (A + B cos theta)",
   "chapter": 5,
-  "section": "5.2",
+  "section": "5.3",
   "schema_version": "2.0.0",
   "class_level": 11,
   "source_book": "DC Pandey Chapter 5.2 — direction formula for the resultant; split from vector_addition bundle",
+  "prerequisites": ["resultant_formula", "vector_basics", "vector_addition"],
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "two_tugs_ship_path_hook",
+      "perpendicular_drop_right_triangle",
+      "formula_block_reading_guide",
+      "numerical_plug_in_60_deg"
+    ],
+    "epic_c": [
+      "bisector_vs_formula_compare",
+      "alpha_from_A_vs_from_B",
+      "obtuse_theta_denominator_sign",
+      "alpha_plus_beta_equals_theta_crosscheck"
+    ],
+    "panel_b": [
+      "alpha_vs_theta_curve",
+      "alpha_lean_toward_stronger_vector"
+    ],
+    "board": [
+      "answer_sheet_derivation",
+      "mark_badge_accumulator"
+    ]
+  },
   "renderer_pair": {
     "panel_a": "mechanics_2d",
     "panel_b": "graph_interactive"
@@ -45,6 +68,8 @@
       "STATE_1": {
         "title": "Where Does the Ship Actually Go?",
         "duration": 11,
+        "focal_primitive_id": "question",
+        "allow_deep_dive": false,
         "scene_composition": [
           {
             "type": "force_arrow",
@@ -102,6 +127,8 @@
       "STATE_2": {
         "title": "Drop a Perpendicular — Build the Right Triangle",
         "duration": 13,
+        "focal_primitive_id": "triangle_explain",
+        "allow_deep_dive": true,
         "scene_composition": [
           {
             "type": "force_arrow",
@@ -177,15 +204,26 @@
             { "id": "s3", "text_en": "The perpendicular leg has length B sine theta. For our numbers, three times sine sixty is about two point six." },
             { "id": "s4", "text_en": "The horizontal leg starts at the origin and runs to the foot of that perpendicular. Its length is A plus B cosine theta — four plus three times one-half, which is five point five." },
             { "id": "s5", "text_en": "The resultant R is the hypotenuse. The angle between R and A is alpha. That is the angle we want." },
-            { "id": "s6", "text_en": "Basic trigonometry finishes the job. Tangent of alpha equals opposite over adjacent — which is B sine theta divided by A plus B cosine theta." }
+            { "id": "s6", "text_en": "Basic trigonometry finishes the job. Tangent of alpha equals opposite over adjacent — which is B sine theta divided by A plus B cosine theta. Tap continue." }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click"
       },
       "STATE_3": {
         "title": "The Formula — Remember This Exactly",
         "duration": 10,
+        "focal_primitive_id": "formula_block",
+        "allow_deep_dive": true,
         "scene_composition": [
+          {
+            "type": "label",
+            "id": "formula_header",
+            "text": "Memorise this form — reference vector matters.",
+            "position": { "x": 200, "y": 50 },
+            "font_size": 17,
+            "color": "#1F2937",
+            "bold": true
+          },
           {
             "type": "annotation",
             "id": "formula_block",
@@ -216,6 +254,8 @@
       "STATE_4": {
         "title": "Solve for the Ship — alpha = ? at theta = 60",
         "duration": 11,
+        "focal_primitive_id": "work",
+        "allow_deep_dive": false,
         "scene_composition": [
           {
             "type": "force_arrow",
@@ -268,7 +308,7 @@
             { "id": "s6", "text_en": "Not thirty, not forty-five. Twenty-five. The ship's path tilts closer to tug one because tug one is stronger. The weaker tug gets only five degrees of its own sixty-degree angle represented in the final direction." }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "interaction_complete"
       }
     }
   },
@@ -286,6 +326,7 @@
         "STATE_1": {
           "title": "Your Belief — R Sits in the Middle",
           "duration": 8,
+          "focal_primitive_id": "bel_R_wrong",
           "scene_composition": [
             {
               "type": "force_arrow",
@@ -340,7 +381,17 @@
         "STATE_2": {
           "title": "The Formula Rejects the Bisector",
           "duration": 11,
+          "focal_primitive_id": "formula_truth",
           "scene_composition": [
+            {
+              "type": "label",
+              "id": "verdict_header",
+              "text": "25.3° ≠ 30° — the bisector is wrong here.",
+              "position": { "x": 220, "y": 50 },
+              "font_size": 18,
+              "color": "#EF4444",
+              "bold": true
+            },
             {
               "type": "annotation",
               "id": "formula_truth",
@@ -372,7 +423,17 @@
         "STATE_3": {
           "title": "Mental Model — The Stronger Vector Wins",
           "duration": 9,
+          "focal_primitive_id": "lean_rule",
           "scene_composition": [
+            {
+              "type": "label",
+              "id": "rule_header",
+              "text": "Keep this mental model for every problem.",
+              "position": { "x": 200, "y": 50 },
+              "font_size": 17,
+              "color": "#10B981",
+              "bold": true
+            },
             {
               "type": "annotation",
               "id": "lean_rule",
@@ -402,6 +463,220 @@
           "advance_mode": "auto_after_tts"
         }
       }
+    },
+    {
+      "branch_id": "alpha_from_wrong_vector",
+      "misconception": "Student measures alpha from B when the problem asks for alpha from A (or vice versa), getting a different numerical answer.",
+      "trigger_phrases": [
+        "alpha from A or B",
+        "does it matter which vector is reference",
+        "measured from the wrong vector",
+        "swap A and B effect"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "alpha from A vs alpha from B — Two Different Angles",
+          "focal_primitive_id": "swap_panel",
+          "scene_composition": [
+            {
+              "type": "comparison_panel",
+              "id": "swap_panel",
+              "left_label": "alpha measured from A (A=4, B=3)",
+              "right_label": "alpha measured from B (A=3, B=4)",
+              "left_scene": [
+                {
+                  "type": "annotation",
+                  "text": "tan(alpha) = 3*sin(60) / (4 + 3*cos(60))\n           = 2.60 / 5.50\n           = 0.472\nalpha = 25.3 deg from A",
+                  "color": "#10B981",
+                  "position": { "x": 20, "y": 100 }
+                }
+              ],
+              "right_scene": [
+                {
+                  "type": "annotation",
+                  "text": "tan(beta) = 4*sin(60) / (3 + 4*cos(60))\n          = 3.46 / 5.00\n          = 0.693\nbeta = 34.7 deg from B",
+                  "color": "#10B981",
+                  "position": { "x": 20, "y": 100 }
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "id": "swap_header",
+              "text": "Two valid angles — read the question carefully.",
+              "position": { "x": 150, "y": 40 },
+              "font_size": 17,
+              "color": "#1F2937",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "check_callout",
+              "text": "Cross-check: alpha + beta = 25.3 + 34.7 = 60 = theta.\nThe two angles always sum to theta (because both measure from the same resultant).",
+              "position": { "x": 130, "y": 500 },
+              "style": "callout",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "In the formula, A is the reference vector. Swapping which vector you call A flips the result." },
+              { "id": "s2", "text_en": "For our ship — alpha from A is twenty five point three degrees. Beta, measured from B, is thirty four point seven degrees." },
+              { "id": "s3", "text_en": "Two different numbers — both correct, for different references. Read the exam question before plugging in." },
+              { "id": "s4", "text_en": "Cross-check: alpha plus beta equals theta. Twenty five point three plus thirty four point seven is exactly sixty. Always true — use it to verify your answer." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+    {
+      "branch_id": "obtuse_theta_denominator_sign",
+      "misconception": "Student applies tan^-1 naively when theta > 90 and the denominator becomes negative — loses the quadrant.",
+      "trigger_phrases": [
+        "theta greater than 90",
+        "denominator negative",
+        "alpha bigger than 90",
+        "obtuse angle resultant direction",
+        "tan inverse wrong quadrant"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "When theta > 90, the Denominator Can Go Negative",
+          "focal_primitive_id": "obtuse_derivation",
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "obt_A",
+              "from": { "x": 220, "y": 360 },
+              "magnitude": 3,
+              "direction_deg": 0,
+              "label": "A = 3",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "obt_B",
+              "from": { "x": 220, "y": 360 },
+              "magnitude": 5,
+              "direction_deg": 120,
+              "label": "B = 5 at 120 deg",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "obt_R",
+              "from": { "x": 220, "y": 360 },
+              "magnitude": 4.36,
+              "direction_deg": 97,
+              "label": "R at 97 deg from A",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "formula_box",
+              "id": "obtuse_derivation",
+              "equation": "A=3, B=5, theta=120 deg\nNum = 5*sin(120) = 4.33\nDen = 3 + 5*cos(120) = 3 + (-2.5) = 0.5  (>0 still here)\ntan(alpha) = 4.33 / 0.5 = 8.66 -> alpha = 83.4 deg\nR tilts far past the bisector — because B is bigger.",
+              "position": { "x": 470, "y": 200 },
+              "border_color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "quadrant_callout",
+              "text": "If denominator goes NEGATIVE (e.g. A=1, B=5, theta=120):\nDen = 1 - 2.5 = -1.5.\ntan^-1 alone gives alpha in wrong quadrant.\nUse atan2(num, den) — it handles sign and gives alpha in correct quadrant (0..180).",
+              "position": { "x": 130, "y": 460 },
+              "style": "callout",
+              "color": "#F59E0B"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "When theta exceeds ninety degrees, cosine theta becomes negative. The denominator A plus B cosine theta can drop toward zero — and in some cases go negative." },
+              { "id": "s2", "text_en": "A naive inverse tangent function returns an angle in the wrong quadrant when the denominator flips sign." },
+              { "id": "s3", "text_en": "Use atan2 of numerator and denominator instead. It tracks the sign of both and returns alpha in the correct zero to one eighty range." },
+              { "id": "s4", "text_en": "For calculator work: always compute numerator and denominator separately. If denominator is negative, add one hundred eighty degrees to the raw inverse tangent result." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+    {
+      "branch_id": "alpha_plus_beta_not_equals_theta",
+      "misconception": "Student computes alpha and beta independently and finds alpha + beta ≠ theta — assumes one calculation is wrong.",
+      "trigger_phrases": [
+        "alpha plus beta should equal theta",
+        "why alpha and beta don't add up",
+        "two angles from the resultant",
+        "internal angles don't sum"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "The alpha + beta = theta Cross-Check",
+          "focal_primitive_id": "crosscheck_box",
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "chk_A",
+              "from": { "x": 200, "y": 380 },
+              "magnitude": 4,
+              "direction_deg": 0,
+              "label": "A",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "chk_B",
+              "from": { "x": 200, "y": 380 },
+              "magnitude": 3,
+              "direction_deg": 60,
+              "label": "B",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "force_arrow",
+              "id": "chk_R",
+              "from": { "x": 200, "y": 380 },
+              "magnitude": 6.08,
+              "direction_deg": 25,
+              "label": "R",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 55
+            },
+            {
+              "type": "formula_box",
+              "id": "crosscheck_box",
+              "equation": "alpha = angle(R, A) = 25.3 deg\nbeta  = angle(R, B) = 34.7 deg\nalpha + beta = 60.0 deg = theta  (verified)\n\nRule: alpha + beta MUST equal theta for a valid answer.",
+              "position": { "x": 470, "y": 200 },
+              "border_color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "diagnostic_callout",
+              "text": "If alpha + beta differs from theta, one of them is wrong.\nMost common cause: computing beta from formula with (A, B) swapped\nbut forgetting to swap theta (theta stays the same — it is between A and B regardless).",
+              "position": { "x": 130, "y": 440 },
+              "style": "callout",
+              "color": "#F59E0B"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The resultant R lies between A and B. The angle from A to R is alpha. The angle from R to B is beta. Together they span the full angle theta." },
+              { "id": "s2", "text_en": "So alpha plus beta must always equal theta. This is a free sanity check for every direction calculation you do." },
+              { "id": "s3", "text_en": "For the ship: alpha is twenty five point three, beta is thirty four point seven. They add to sixty, exactly equal to theta." },
+              { "id": "s4", "text_en": "If your computed alpha and beta do NOT add to theta, one of them is wrong. Most often students swap A and B for beta but leave theta alone — theta is the same in both formulas, do not change it." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
     }
   ],
   "regeneration_variants": [
@@ -419,5 +694,247 @@
       "physical_world": "A = 4, B = 3, theta = 90 deg. Numerator 3. Denominator 4. tan alpha = 3/4 = 0.75. alpha = 37 deg. Matches classic 3-4-5 right triangle.",
       "same_physics": "At right angles, the direction formula reduces to tan alpha = B / A"
     }
-  ]
+  ],
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 4,
+        "per_state": {
+          "STATE_1": {
+            "mark": 1,
+            "description": "Identify the question: find alpha, the angle R makes with A. State that alpha depends on both magnitudes AND theta."
+          },
+          "STATE_2": {
+            "mark": 1,
+            "description": "Drop a perpendicular from tip of B (shifted) onto line of A. Identify legs: opposite = B*sin(theta), adjacent = A + B*cos(theta)."
+          },
+          "STATE_3": {
+            "mark": 1,
+            "description": "Apply trig: tan(alpha) = B*sin(theta) / (A + B*cos(theta)). Specify which vector is the reference (A)."
+          },
+          "STATE_4": {
+            "mark": 1,
+            "description": "Numerical example: A=4, B=3, theta=60 -> tan(alpha) = 2.60/5.50 ≈ 0.472 -> alpha ≈ 25.3°. Cross-check alpha + beta = theta."
+          }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b1_s1",
+              "text": "Step 1: Two vectors A and B at angle theta give resultant R. Find direction of R.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 100 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s2",
+              "text": "Step 2: alpha = angle between R and reference vector A.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 140 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s3",
+              "text": "Step 3: alpha ≠ theta/2 unless |A| = |B|.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 180 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b1",
+              "mark_value": 1,
+              "text": "+1 for setup",
+              "tied_to_state": "STATE_1",
+              "position": { "x": 680, "y": 140 }
+            }
+          ]
+        },
+        "STATE_2": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b2_s1",
+              "text": "Step 4: Drop perpendicular from tip of shifted B onto line of A.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 220 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s2",
+              "text": "Step 5: Perpendicular leg = B*sin(theta) (opposite to alpha).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 260 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s3",
+              "text": "Step 6: Horizontal leg = A + B*cos(theta) (adjacent to alpha).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 300 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b2",
+              "mark_value": 1,
+              "text": "+1 for right-triangle legs",
+              "tied_to_state": "STATE_2",
+              "position": { "x": 680, "y": 260 }
+            }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b3_s1",
+              "text": "Step 7: tan(alpha) = opposite / adjacent = B*sin(theta) / (A + B*cos(theta)).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 340 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s2",
+              "text": "Step 8: alpha = atan2(B*sin(theta), A + B*cos(theta)).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 380 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s3",
+              "text": "Step 9: A is the reference. Swapping A and B changes alpha.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 420 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b3",
+              "mark_value": 1,
+              "text": "+1 for formula",
+              "tied_to_state": "STATE_3",
+              "position": { "x": 680, "y": 380 }
+            }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b4_s1",
+              "text": "Step 10: A=4, B=3, theta=60 -> Num = 3*sin(60) = 2.60.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 460 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s2",
+              "text": "Step 11: Den = 4 + 3*cos(60) = 5.50. tan(alpha) = 0.472.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 500 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s3",
+              "text": "Step 12: alpha ≈ 25.3°. Cross-check: beta ≈ 34.7°, alpha + beta = 60° = theta.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 540 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b4",
+              "mark_value": 1,
+              "text": "+1 for numerical + cross-check",
+              "tied_to_state": "STATE_4",
+              "position": { "x": 680, "y": 500 }
+            }
+          ]
+        }
+      }
+    },
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "id": "shortcut_alpha",
+          "rule": "Direction of resultant from reference A",
+          "formula": "tan(alpha) = B*sin(theta) / (A + B*cos(theta))",
+          "use_when": "Angle of R from A is asked. Keep A as the reference."
+        },
+        {
+          "id": "shortcut_beta",
+          "rule": "Direction of resultant from reference B",
+          "formula": "tan(beta) = A*sin(theta) / (B + A*cos(theta))",
+          "use_when": "Angle of R from B is asked. Swap A and B in the main formula; theta is unchanged."
+        },
+        {
+          "id": "shortcut_sum_check",
+          "rule": "alpha + beta = theta (always)",
+          "formula": "alpha + beta = theta",
+          "use_when": "Sanity check — if your computed alpha and beta don't add to theta, one is wrong."
+        },
+        {
+          "id": "shortcut_perpendicular",
+          "rule": "Perpendicular vectors (theta = 90)",
+          "formula": "tan(alpha) = B / A",
+          "use_when": "theta = 90: cos(theta) = 0, formula collapses to a simple ratio."
+        },
+        {
+          "id": "shortcut_equal_magnitudes",
+          "rule": "Equal magnitudes (A = B)",
+          "formula": "alpha = theta / 2  (R bisects the angle)",
+          "use_when": "Symmetric case — resultant sits exactly on the bisector."
+        },
+        {
+          "id": "shortcut_lean_rule",
+          "rule": "R leans toward the stronger vector",
+          "formula": "A > B -> alpha < theta/2;  A < B -> alpha > theta/2",
+          "use_when": "Quick qualitative check before calculating precisely."
+        }
+      ],
+      "edge_cases": [
+        {
+          "id": "edge_obtuse_theta",
+          "title": "theta > 90° — denominator sign",
+          "trap": "Naive tan^-1 gives wrong-quadrant result when A + B*cos(theta) goes negative.",
+          "resolution": "Use atan2(num, den) on calculators or programming languages. By hand: if denominator is negative, add 180° to the raw arctan to get alpha in [0°, 180°]."
+        },
+        {
+          "id": "edge_antiparallel",
+          "title": "theta = 180° (antiparallel)",
+          "trap": "Students assume alpha is 90° or undefined.",
+          "resolution": "If A > B: R aligns with A, alpha = 0°. If A < B: R aligns with B, alpha = 180°. If A = B: R = 0 and alpha is undefined."
+        },
+        {
+          "id": "edge_very_small_theta",
+          "title": "theta → 0° (nearly parallel)",
+          "trap": "Students compute alpha = 0 too early, ignoring small tilt.",
+          "resolution": "For small theta: tan(alpha) ≈ B*theta / (A + B), so alpha ≈ B*theta/(A+B). R is nearly along A but tilts slightly toward B."
+        },
+        {
+          "id": "edge_wrong_reference",
+          "title": "Problem says 'angle with horizontal' but A is not horizontal",
+          "trap": "Students apply the formula without first aligning A with the asked reference.",
+          "resolution": "Resolve A into components along the asked reference direction. Then compute alpha relative to that reference — not to A."
+        },
+        {
+          "id": "edge_magnitude_zero",
+          "title": "One vector magnitude = 0",
+          "trap": "Students try to apply the formula — denominator becomes A or B only.",
+          "resolution": "If B = 0, R = A, alpha = 0 trivially. If A = 0, R = B, alpha = theta. No formula needed — handle as a degenerate case."
+        }
+      ],
+      "formulas_shortform": {
+        "alpha_from_A": "tan(alpha) = B*sin(theta) / (A + B*cos(theta))",
+        "alpha_from_B": "tan(beta) = A*sin(theta) / (B + A*cos(theta))",
+        "sum_rule": "alpha + beta = theta",
+        "perpendicular": "theta = 90 -> tan(alpha) = B/A",
+        "equal_mags": "A = B -> alpha = theta/2",
+        "lean_rule": "R leans toward the stronger vector"
+      }
+    }
+  }
 }

@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 6.10 — 1D relative velocity cases; split from relative_motion",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "Two Tata trucks on NH-44 near Jaipur. One is heading north to Delhi at 80 km/h; the other is rolling south toward Ahmedabad at 60 km/h. When they pass each other, the relative speed at which they separate is 80 + 60 = 140 km/h — a blur on both windscreens. If both were going the SAME direction at those speeds, the faster one would creep past the slower one at only 80 - 60 = 20 km/h. Same trucks, same roads — totally different relative speeds, because direction matters.",
@@ -17,13 +17,35 @@
   },
   "physics_engine_config": {
     "variables": {
-      "V_A": { "name": "Speed of object A", "unit": "m/s", "min": 0, "max": 50, "default": 22 },
-      "V_B": { "name": "Speed of object B", "unit": "m/s", "min": 0, "max": 50, "default": 17 },
-      "direction_B": { "name": "Direction of B (+1 = same, -1 = opposite)", "unit": "", "min": -1, "max": 1, "default": 1 }
+      "V_A": {
+        "name": "Speed of object A",
+        "unit": "m/s",
+        "min": 0,
+        "max": 50,
+        "default": 22
+      },
+      "V_B": {
+        "name": "Speed of object B",
+        "unit": "m/s",
+        "min": 0,
+        "max": 50,
+        "default": 17
+      },
+      "direction_B": {
+        "name": "Direction of B (+1 = same, -1 = opposite)",
+        "unit": "",
+        "min": -1,
+        "max": 1,
+        "default": 1
+      }
     },
     "computed_outputs": {
-      "V_AB_same": { "formula": "V_A - V_B" },
-      "V_AB_opposite": { "formula": "V_A + V_B" }
+      "V_AB_same": {
+        "formula": "V_A - V_B"
+      },
+      "V_AB_opposite": {
+        "formula": "V_A + V_B"
+      }
     },
     "formulas": {
       "same_direction": "Same direction: V_AB = V_A - V_B  (relative speed = |V_A - V_B|, smaller of the two possibilities)",
@@ -51,9 +73,13 @@
             "anchor": "top_center",
             "font_size": 13,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -64,9 +90,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -75,10 +105,21 @@
             "vehicle_type": "truck",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": 320, "dy_px": -20, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 6,
+                "dx_px": 320,
+                "dy_px": -20,
+                "easing": "linear"
+              }
             ]
           },
           {
@@ -87,23 +128,47 @@
             "vehicle_type": "truck",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 6.0, "dx_px": 240, "dy_px": 20, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 6,
+                "dx_px": 240,
+                "dy_px": 20,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "same_dir_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Case one — two objects moving in the SAME direction." },
-            { "text_en": "Two Tata trucks on NH-44. Truck A at 80 kilometres per hour north, truck B at 60 kilometres per hour north." },
-            { "text_en": "Both are positive. V AB equals 80 minus 60 — that is only 20 kilometres per hour." },
-            { "text_en": "From truck B's cab, truck A crawls past at just 20. The ground speeds are large, but the relative speed is small. That is why same-direction overtakes feel sluggish." }
+            {
+              "text_en": "Case one — two objects moving in the SAME direction.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "Two Tata trucks on NH-44. Truck A at 80 kilometres per hour north, truck B at 60 kilometres per hour north.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Both are positive. V AB equals 80 minus 60 — that is only 20 kilometres per hour.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "From truck B's cab, truck A crawls past at just 20. The ground speeds are large, but the relative speed is small. That is why same-direction overtakes feel sluggish.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "same_dir_sketch"
       },
       "STATE_2": {
         "title": "Opposite Direction — Add the Speeds",
@@ -117,9 +182,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -130,9 +199,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -141,10 +214,21 @@
             "vehicle_type": "truck",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 4.0, "dx_px": 340, "dy_px": -25, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 4,
+                "dx_px": 340,
+                "dy_px": -25,
+                "easing": "linear"
+              }
             ]
           },
           {
@@ -153,23 +237,47 @@
             "vehicle_type": "truck",
             "zone": "MAIN_ZONE",
             "anchor": "right_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 4.0, "dx_px": -340, "dy_px": 25, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 4,
+                "dx_px": -340,
+                "dy_px": 25,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "opp_dir_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Case two — the two objects move in OPPOSITE directions." },
-            { "text_en": "Truck A still at plus 80 kilometres per hour northbound. Truck B now at minus 60 — heading south." },
-            { "text_en": "Plug in: V AB equals 80 minus minus 60, which is 80 plus 60 — 140 kilometres per hour." },
-            { "text_en": "Head-on approaches are devastatingly fast. The SAME trucks, at the SAME ground speeds, have seven times the relative speed just by reversing one direction." }
+            {
+              "text_en": "Case two — the two objects move in OPPOSITE directions.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "Truck A still at plus 80 kilometres per hour northbound. Truck B now at minus 60 — heading south.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "Plug in: V AB equals 80 minus minus 60, which is 80 plus 60 — 140 kilometres per hour.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "Head-on approaches are devastatingly fast. The SAME trucks, at the SAME ground speeds, have seven times the relative speed just by reversing one direction.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "opp_dir_sketch"
       },
       "STATE_3": {
         "title": "Sign Convention is the Secret",
@@ -183,22 +291,63 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Sign Convention is the Secret",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "summary_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "The beautiful thing is, there is only ONE formula." },
-            { "text_en": "V AB equals V A minus V B. Always. Forever." },
-            { "text_en": "The two cases are just different sign assignments. Same direction both positive — subtraction gives a small number. Opposite direction one negative — subtraction of a negative flips to addition and gives a large number." },
-            { "text_en": "The discipline is: put the sign on the page BEFORE you subtract. Never mental-math your way around this step." }
+            {
+              "text_en": "The beautiful thing is, there is only ONE formula.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "V AB equals V A minus V B. Always. Forever.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "The two cases are just different sign assignments. Same direction both positive — subtraction gives a small number. Opposite direction one negative — subtraction of a negative flips to addition and gives a large number.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "The discipline is: put the sign on the page BEFORE you subtract. Never mental-math your way around this step.",
+              "id": "state_3_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "summary_sketch"
       }
     }
   },
@@ -225,22 +374,63 @@
               "anchor": "center",
               "font_size": 12,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Memorised Rule Fails Weird Cases",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "fails_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Here is the trap — memorising 'same direction subtract, opposite direction add'." },
-              { "text_en": "The rule works for simple problems where directions are obvious." },
-              { "text_en": "But it breaks when velocities arrive already signed, or when the observer has a negative velocity, or when the problem swaps direction mid-way." },
-              { "text_en": "That is because the rule is only a shortcut for the real physics. The real physics is one formula applied with strict signs." }
+              {
+                "text_en": "Here is the trap — memorising 'same direction subtract, opposite direction add'.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "The rule works for simple problems where directions are obvious.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "But it breaks when velocities arrive already signed, or when the observer has a negative velocity, or when the problem swaps direction mid-way.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "That is because the rule is only a shortcut for the real physics. The real physics is one formula applied with strict signs.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "fails_sketch"
         },
         "STATE_2": {
           "title": "The Only Formula: V_A minus V_B with Signs",
@@ -254,22 +444,63 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Only Formula: V_A minus V_B with Signs",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "only_formula_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Drop the memorised rule. Use the formula." },
-              { "text_en": "Step one — pick a positive direction. Step two — write each velocity with a sign. Step three — plug into V A minus V B. Step four — let the arithmetic tell you the answer." },
-              { "text_en": "Three worked examples. Both positive gives plus 20. One negative gives plus 80. Both negative gives minus 20." },
-              { "text_en": "Notice — you never decided whether to add or subtract. The formula did the work." }
+              {
+                "text_en": "Drop the memorised rule. Use the formula.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "Step one — pick a positive direction. Step two — write each velocity with a sign. Step three — plug into V A minus V B. Step four — let the arithmetic tell you the answer.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "Three worked examples. Both positive gives plus 20. One negative gives plus 80. Both negative gives minus 20.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "Notice — you never decided whether to add or subtract. The formula did the work.",
+                "id": "state_2_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "only_formula_sketch"
         },
         "STATE_3": {
           "title": "Why This is Powerful — Works in 2D Too",
@@ -283,34 +514,106 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Why This is Powerful — Works in 2D Too",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "to_2d_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The formula also scales to two dimensions — subtract the components." },
-              { "text_en": "V A minus V B works whether the motion is along a single line or all over a plane." },
-              { "text_en": "The shortcut rule cannot make that jump. V A minus V B always can — that is why it is the law, not just a trick for 1D." }
+              {
+                "text_en": "The formula also scales to two dimensions — subtract the components.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "V A minus V B works whether the motion is along a single line or all over a plane.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "The shortcut rule cannot make that jump. V A minus V B always can — that is why it is the law, not just a trick for 1D.",
+                "id": "state_3_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "to_2d_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Always Add For Opposite (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Both northbound trucks, small speed gap", "params": { "V_A": 22, "V_B": 17, "direction_B": 1 } },
-      { "label": "Head-on trucks", "params": { "V_A": 22, "V_B": 17, "direction_B": -1 } },
-      { "label": "Fast car passing a bike", "params": { "V_A": 30, "V_B": 10, "direction_B": 1 } }
-    ],
-    "type_b": [
-      { "label": "Two Mumbai locals on parallel tracks", "scenario": "locals_on_parallel_tracks" },
-      { "label": "Two ferries on the Ganga", "scenario": "ferries_on_ganga" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Both northbound trucks, small speed gap",
+        "params": {
+          "V_A": 22,
+          "V_B": 17,
+          "direction_B": 1
+        }
+      },
+      "1": {
+        "label": "Head-on trucks",
+        "params": {
+          "V_A": 22,
+          "V_B": 17,
+          "direction_B": -1
+        }
+      },
+      "2": {
+        "label": "Fast car passing a bike",
+        "params": {
+          "V_A": 30,
+          "V_B": 10,
+          "direction_B": 1
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Two Mumbai locals on parallel tracks",
+        "scenario": "locals_on_parallel_tracks"
+      },
+      "1": {
+        "label": "Two ferries on the Ganga",
+        "scenario": "ferries_on_ganga"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

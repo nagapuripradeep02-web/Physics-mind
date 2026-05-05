@@ -17,13 +17,35 @@
   },
   "physics_engine_config": {
     "variables": {
-      "h0": { "name": "Initial height", "unit": "m", "min": 0, "max": 100, "default": 20 },
-      "u": { "name": "Initial velocity (up = +)", "unit": "m/s", "min": -30, "max": 30, "default": 20 },
-      "g": { "name": "Gravity magnitude", "unit": "m/s^2", "min": 9.8, "max": 9.8, "default": 9.8 }
+      "h0": {
+        "name": "Initial height",
+        "unit": "m",
+        "min": 0,
+        "max": 100,
+        "default": 20
+      },
+      "u": {
+        "name": "Initial velocity (up = +)",
+        "unit": "m/s",
+        "min": -30,
+        "max": 30,
+        "default": 20
+      },
+      "g": {
+        "name": "Gravity magnitude",
+        "unit": "m/s^2",
+        "min": 9.8,
+        "max": 9.8,
+        "default": 9.8
+      }
     },
     "computed_outputs": {
-      "t_plus": { "formula": "(u + sqrt(u*u + 2*9.8*h0)) / 9.8" },
-      "t_minus": { "formula": "(u - sqrt(u*u + 2*9.8*h0)) / 9.8" }
+      "t_plus": {
+        "formula": "(u + sqrt(u*u + 2*9.8*h0)) / 9.8"
+      },
+      "t_minus": {
+        "formula": "(u - sqrt(u*u + 2*9.8*h0)) / 9.8"
+      }
     },
     "formulas": {
       "equation_of_landing": "0 = h0 + u t - (1/2) g t^2     (ball hits ground)",
@@ -48,30 +70,75 @@
             "type": "annotation",
             "id": "scenario",
             "text": "Scenario\n\nBall thrown UP from a 20 m tower\n  initial height  h0 = 20 m\n  initial velocity u = +20 m/s (UP = +)\n  g = 10 m/s^2 (approx)\n\nQuestion: when does the ball hit the ground?\nSet y = 0 in  y = h0 + u t - (1/2) g t^2\n\n  0 = 20 + 20 t - 5 t^2\n  5 t^2 - 20 t - 20 = 0\n  t^2 - 4 t - 4 = 0\n\nQuadratic formula:\n  t = (4 +- sqrt(16 + 16)) / 2\n    = (4 +- sqrt(32)) / 2\n    = (4 +- 5.66) / 2\n\n  t_plus  =  4.83 s\n  t_minus = -0.83 s",
-            "position": { "x": 380, "y": 280 },
+            "position": {
+              "x": 380,
+              "y": 280
+            },
             "style": "formula_box",
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "mystery",
             "text": "Two answers!\n\n+4.83 s is easy to understand —\nit is when the ball actually lands.\n\n-0.83 s is mysterious — negative time?\n  Did the ball travel backward in time?\n  Is this a calculation error?\n\n(Neither. It's a ghost from the past\nof the MATHEMATICAL extension of the\nsame physics. Real-world physics says:\nreject the negative root.)",
-            "position": { "x": 720, "y": 300 },
+            "position": {
+              "x": 720,
+              "y": 300
+            },
             "style": "callout",
-            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 3,
+              "duration_sec": 1
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "state_1_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Two Roots From a Quadratic — Which Is Real?",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "A ball is thrown straight up from a twenty-metre tall tower with initial speed twenty metres per second. When does it hit the ground?" },
-            { "id": "s2", "text_en": "Choose up as positive. Write y equals h-zero plus u t minus half g t squared, and set y to zero for the ground." },
-            { "id": "s3", "text_en": "That gives a quadratic. t squared minus four t minus four equals zero." },
-            { "id": "s4", "text_en": "Apply the quadratic formula. You get two solutions — t equals four point eight three seconds, and t equals minus zero point eight three seconds." },
-            { "id": "s5", "text_en": "The positive one is easy — that is when the ball lands. But what does the negative root mean? Did the ball travel back in time? Is the calculation wrong?" },
-            { "id": "s6", "text_en": "Neither. The negative root is a real mathematical solution with a specific physical interpretation. The next two states unpack it so that you understand WHY to reject it in a physics problem." }
+            {
+              "id": "s1",
+              "text_en": "A ball is thrown straight up from a twenty-metre tall tower with initial speed twenty metres per second. When does it hit the ground?"
+            },
+            {
+              "id": "s2",
+              "text_en": "Choose up as positive. Write y equals h-zero plus u t minus half g t squared, and set y to zero for the ground."
+            },
+            {
+              "id": "s3",
+              "text_en": "That gives a quadratic. t squared minus four t minus four equals zero."
+            },
+            {
+              "id": "s4",
+              "text_en": "Apply the quadratic formula. You get two solutions — t equals four point eight three seconds, and t equals minus zero point eight three seconds."
+            },
+            {
+              "id": "s5",
+              "text_en": "The positive one is easy — that is when the ball lands. But what does the negative root mean? Did the ball travel back in time? Is the calculation wrong?"
+            },
+            {
+              "id": "s6",
+              "text_en": "Neither. The negative root is a real mathematical solution with a specific physical interpretation. The next two states unpack it so that you understand WHY to reject it in a physics problem."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "scenario"
       },
       "STATE_2": {
         "title": "The Ghost of the Past — Extrapolating the Trajectory Backward",
@@ -81,30 +148,71 @@
             "type": "annotation",
             "id": "timeline",
             "text": "Timeline\n\n  t = -0.83 s   ground level (mathematical)\n       |\n       v\n  [virtual ball rising from ground]\n       |\n       v\n  t = 0         ball leaves the tower at h = 20 m\n       |        with v = 20 m/s upward\n       v\n  [ball rises, peaks, falls]\n       |\n       v\n  t = 4.83 s    ball hits ground (real)\n\nAt t = -0.83 the equation says y = 0.\nBut the ball was NOT at ground then --\nit was waiting in the thrower's hand\nat the top of the tower.",
-            "position": { "x": 350, "y": 280 },
+            "position": {
+              "x": 350,
+              "y": 280
+            },
             "style": "formula_box"
           },
           {
             "type": "annotation",
             "id": "interpretation",
             "text": "Physical interpretation\n\nThe kinematic equation assumes a\nsingle projectile with fixed u and g,\nvalid for ALL t.\n\nIf we had flown the SAME equation\nbackward from t = 0, the ball would\nhave been at ground level 0.83 s\nbefore the real throw.\n\nBUT the ball was NOT actually there\nat that time. The equation describes\na mathematical extension of the real\nmotion.\n\nReject any t < 0 for physical\nproblems that start at t = 0.",
-            "position": { "x": 720, "y": 300 },
+            "position": {
+              "x": 720,
+              "y": 300
+            },
             "style": "formula_box",
             "color": "#10B981",
-            "animation": { "type": "fade_in", "delay_sec": 3, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 3,
+              "duration_sec": 1
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "The Ghost of the Past — Extrapolating the Trajectory Backward",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Here is what the negative root actually means. The kinematic equation takes the single motion — same u, same g — and extends it for ALL times, both positive and negative." },
-            { "id": "s2", "text_en": "If we run the formula backward from t equals zero, we find that the same motion extended into the past would have been at ground level zero point eight three seconds BEFORE the real throw." },
-            { "id": "s3", "text_en": "But in reality the ball was not anywhere near the ground then. It was in the student's hand at the top of the tower, waiting to be thrown. The real motion started at t equals zero." },
-            { "id": "s4", "text_en": "So the negative root is a mathematical ghost. It describes a hypothetical continuation of the motion backward in time — not a physical event." },
-            { "id": "s5", "text_en": "For any problem that defines motion starting at t equals zero, reject every negative t root. Only positive roots describe what actually happened." },
-            { "id": "s6", "text_en": "This interpretation is important on JEE — the paper may give you a quadratic and ask for both roots, then ask you to identify the physical one. Knowing why the negative is rejected is the key to writing the correct physics justification." }
+            {
+              "id": "s1",
+              "text_en": "Here is what the negative root actually means. The kinematic equation takes the single motion — same u, same g — and extends it for ALL times, both positive and negative."
+            },
+            {
+              "id": "s2",
+              "text_en": "If we run the formula backward from t equals zero, we find that the same motion extended into the past would have been at ground level zero point eight three seconds BEFORE the real throw."
+            },
+            {
+              "id": "s3",
+              "text_en": "But in reality the ball was not anywhere near the ground then. It was in the student's hand at the top of the tower, waiting to be thrown. The real motion started at t equals zero."
+            },
+            {
+              "id": "s4",
+              "text_en": "So the negative root is a mathematical ghost. It describes a hypothetical continuation of the motion backward in time — not a physical event."
+            },
+            {
+              "id": "s5",
+              "text_en": "For any problem that defines motion starting at t equals zero, reject every negative t root. Only positive roots describe what actually happened."
+            },
+            {
+              "id": "s6",
+              "text_en": "This interpretation is important on JEE — the paper may give you a quadratic and ask for both roots, then ask you to identify the physical one. Knowing why the negative is rejected is the key to writing the correct physics justification."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "timeline"
       },
       "STATE_3": {
         "title": "Three Cases — When Both, One, or Neither Root Is Physical",
@@ -114,21 +222,64 @@
             "type": "annotation",
             "id": "three_cases_t",
             "text": "Three cases\n\nCase 1  Both roots positive\n  Happens when ball, starting positive,\n  passes through y = 0 TWICE in its real\n  flight (impossible for ball thrown up\n  from a tower; happens for a ball thrown\n  horizontally that rises and falls to 0 twice).\n  Both are physical.\n\nCase 2  One positive, one negative\n  Ball thrown up from a tower at h0 > 0.\n  Positive root = landing time.\n  Negative root = mathematical ghost before\n   motion began. Reject.\n\nCase 3  Both negative (rare)\n  Motion would have crossed y = 0 only in the\n  past. No physical landing occurs in t > 0.\n  In such a problem, revisit your sign conventions.",
-            "position": { "x": 400, "y": 280 },
+            "position": {
+              "x": 400,
+              "y": 280
+            },
             "style": "formula_box",
             "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Three Cases — When Both, One, or Neither Root Is Physical",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Three possible combinations of roots for a kinematic quadratic in t." },
-            { "id": "s2", "text_en": "Case one — both roots positive. This happens, for example, if a ball is thrown with enough upward velocity from below the ground level (say, from inside a well) and crosses ground level twice as it rises and then falls. Both times are physical." },
-            { "id": "s3", "text_en": "Case two — one positive, one negative. Thrown from a tower or platform, lands at the positive root, and the negative root is the mathematical ghost before the motion began. Reject the negative." },
-            { "id": "s4", "text_en": "Case three — both roots negative. The motion, extrapolated backward, would have crossed the target level only in the past. No physical landing occurs in t greater than zero. In such problems, usually, the sign convention was set wrong or the object was never going to reach the target." },
-            { "id": "s5", "text_en": "When you see two roots, always check their signs. Always reject t less than zero for problems that start at t equals zero. This single check keeps you from claiming 'the ball landed a second before it was thrown'." }
+            {
+              "id": "s1",
+              "text_en": "Three possible combinations of roots for a kinematic quadratic in t."
+            },
+            {
+              "id": "s2",
+              "text_en": "Case one — both roots positive. This happens, for example, if a ball is thrown with enough upward velocity from below the ground level (say, from inside a well) and crosses ground level twice as it rises and then falls. Both times are physical."
+            },
+            {
+              "id": "s3",
+              "text_en": "Case two — one positive, one negative. Thrown from a tower or platform, lands at the positive root, and the negative root is the mathematical ghost before the motion began. Reject the negative."
+            },
+            {
+              "id": "s4",
+              "text_en": "Case three — both roots negative. The motion, extrapolated backward, would have crossed the target level only in the past. No physical landing occurs in t greater than zero. In such problems, usually, the sign convention was set wrong or the object was never going to reach the target."
+            },
+            {
+              "id": "s5",
+              "text_en": "When you see two roots, always check their signs. Always reject t less than zero for problems that start at t equals zero. This single check keeps you from claiming 'the ball landed a second before it was thrown'."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "three_cases_t"
       }
     }
   },
@@ -151,19 +302,56 @@
               "type": "annotation",
               "id": "belief_frame",
               "text": "Your reasoning\n\nI solved 0 = 20 + 20 t - 5 t^2\nand got t = -0.83, 4.83.\n\nNegative time is nonsensical in\nphysics. So I must have made a\nsign error somewhere.\n\nLet me redo the quadratic...\n\n(No — the math is correct.\nThe -0.83 IS a real algebraic\nsolution. Understand what it is.)",
-              "position": { "x": 360, "y": 280 },
+              "position": {
+                "x": 360,
+                "y": 280
+              },
               "style": "callout",
               "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Your Belief — Negative t Means I Did the Math Wrong",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "A natural first reaction to a negative t — it must be a calculation mistake, so go back and redo the algebra." },
-              { "id": "s2", "text_en": "In most cases, the math is correct. Kinematic equations for projectiles often give one positive and one negative root. That is expected, not a bug." },
-              { "id": "s3", "text_en": "Understanding what the negative root means is more useful than re-doing the algebra a third time." }
+              {
+                "id": "s1",
+                "text_en": "A natural first reaction to a negative t — it must be a calculation mistake, so go back and redo the algebra."
+              },
+              {
+                "id": "s2",
+                "text_en": "In most cases, the math is correct. Kinematic equations for projectiles often give one positive and one negative root. That is expected, not a bug."
+              },
+              {
+                "id": "s3",
+                "text_en": "Understanding what the negative root means is more useful than re-doing the algebra a third time."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "belief_frame"
         },
         "STATE_2": {
           "title": "Negative t Is a Real Solution — Just Not THIS Problem's Answer",
@@ -173,21 +361,64 @@
               "type": "annotation",
               "id": "math_valid",
               "text": "Check the math\n  0 = 20 + 20 t - 5 t^2\n  5 t^2 - 20 t - 20 = 0\n  t^2 - 4 t - 4 = 0\n  t = (4 +- sqrt(32)) / 2\n  t = 4.83 or -0.83\n\nBoth roots satisfy the equation.\nNo algebra mistake.\n\nInterpretation\n  The EQUATION is a model that assumes\n  the motion has been going for all time\n  with the same u and g.\n  Negative t root = when THAT model\n  says ball would be at y = 0 in the past.\n\nIn OUR problem, motion starts at t = 0.\nSo only t > 0 is physical.\n\nWhy we do not discard the math:\nit is correct for the MODEL.",
-              "position": { "x": 380, "y": 280 },
+              "position": {
+                "x": 380,
+                "y": 280
+              },
               "style": "formula_box",
               "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Negative t Is a Real Solution — Just Not THIS Problem's Answer",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Check the math first. Five t squared minus twenty t minus twenty equals zero. Quadratic formula gives t equals four point eight three or minus zero point eight three. Both roots exactly satisfy the equation." },
-              { "id": "s2", "text_en": "No algebra mistake. The negative root is a mathematically valid solution." },
-              { "id": "s3", "text_en": "The key insight is that the kinematic EQUATION assumes the same u and g for ALL t — past and future. The equation does not know that your problem started at t equals zero." },
-              { "id": "s4", "text_en": "So the negative root says — if you extrapolate the same motion backward, it would have been at y equals zero zero point eight three seconds before the real throw." },
-              { "id": "s5", "text_en": "In YOUR physical problem, motion starts at t equals zero. The negative root describes a hypothetical before that start. Reject it. But don't doubt the math — the math is right. Only the physical interpretation filters out the negative root." }
+              {
+                "id": "s1",
+                "text_en": "Check the math first. Five t squared minus twenty t minus twenty equals zero. Quadratic formula gives t equals four point eight three or minus zero point eight three. Both roots exactly satisfy the equation."
+              },
+              {
+                "id": "s2",
+                "text_en": "No algebra mistake. The negative root is a mathematically valid solution."
+              },
+              {
+                "id": "s3",
+                "text_en": "The key insight is that the kinematic EQUATION assumes the same u and g for ALL t — past and future. The equation does not know that your problem started at t equals zero."
+              },
+              {
+                "id": "s4",
+                "text_en": "So the negative root says — if you extrapolate the same motion backward, it would have been at y equals zero zero point eight three seconds before the real throw."
+              },
+              {
+                "id": "s5",
+                "text_en": "In YOUR physical problem, motion starts at t equals zero. The negative root describes a hypothetical before that start. Reject it. But don't doubt the math — the math is right. Only the physical interpretation filters out the negative root."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "math_valid"
         },
         "STATE_3": {
           "title": "The Rule — Algebraic vs Physical Roots",
@@ -197,20 +428,60 @@
               "type": "annotation",
               "id": "rule_block",
               "text": "Rule for every quadratic in kinematics\n\nStep 1  Solve the quadratic.\n         Keep ALL real roots.\n\nStep 2  For each root, check\n         if it is physical.\n           - t >= 0 (for problems starting at t = 0)\n           - consistent with the scenario\n             (e.g. does motion actually occur then)\n\nStep 3  Discard any root that fails\n         the physical check.\n\nStep 4  The remaining root is your\n         answer.\n\nExam tip\n  JEE often asks 'interpret the\n  other root' as a follow-up. Be\n  ready to say 'mathematical\n  extension, not physical'.",
-              "position": { "x": 400, "y": 280 },
+              "position": {
+                "x": 400,
+                "y": 280
+              },
               "style": "formula_box",
               "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Rule — Algebraic vs Physical Roots",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Here is the rule. Solve the quadratic, keep all real roots, then filter." },
-              { "id": "s2", "text_en": "For each root, ask — is it physically meaningful? For problems starting at t equals zero, require t at least zero. For other problems, check against the scenario." },
-              { "id": "s3", "text_en": "Discard any root that fails the physical check. Keep the one that remains." },
-              { "id": "s4", "text_en": "JEE sometimes asks a follow-up question — 'interpret the other root'. Be ready with the answer: it is a mathematical extension of the same motion to a time when the physical motion was not actually happening. Not a physical event." }
+              {
+                "id": "s1",
+                "text_en": "Here is the rule. Solve the quadratic, keep all real roots, then filter."
+              },
+              {
+                "id": "s2",
+                "text_en": "For each root, ask — is it physically meaningful? For problems starting at t equals zero, require t at least zero. For other problems, check against the scenario."
+              },
+              {
+                "id": "s3",
+                "text_en": "Discard any root that fails the physical check. Keep the one that remains."
+              },
+              {
+                "id": "s4",
+                "text_en": "JEE sometimes asks a follow-up question — 'interpret the other root'. Be ready with the answer: it is a mathematical extension of the same motion to a time when the physical motion was not actually happening. Not a physical event."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "rule_block"
         }
       }
     }

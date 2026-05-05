@@ -1,11 +1,39 @@
 {
   "concept_id": "vector_resolution",
   "concept_name": "Resolving Vectors into Components",
-  "chapter": 7,
-  "section": "7.3",
+  "chapter": 5,
+  "section": "5.4",
   "source_book": "NCERT Class 11",
   "class_level": 11,
   "schema_version": "2.0.0",
+  "prerequisites": ["vector_basics", "scalar_vs_vector"],
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "trolley_pull_hook",
+      "shadow_projection_components",
+      "right_triangle_sin_cos_mapping",
+      "formula_box_with_numeric_check",
+      "block_on_incline_gravity_arrow",
+      "world_axes_introduction",
+      "world_axes_fail_on_incline",
+      "rotated_axes_along_incline",
+      "interactive_alpha_F_sliders"
+    ],
+    "epic_c": [
+      "swapped_sin_cos_triangle_replay",
+      "angle_from_y_axis_trap",
+      "components_pythagoras_not_arithmetic",
+      "axes_can_rotate_freely"
+    ],
+    "panel_b": [
+      "components_vs_angle_curves",
+      "Fcos_Fsin_crossing_at_45"
+    ],
+    "board": [
+      "answer_sheet_derivation",
+      "mark_badge_accumulator"
+    ]
+  },
   "renderer_pair": {
     "panel_a": "mechanics_2d",
     "panel_b": "graph_interactive"
@@ -244,6 +272,7 @@
         "duration": 8,
         "advance_mode": "auto_after_tts",
         "focal_primitive_id": "triangle_hypotenuse_label",
+        "allow_deep_dive": true,
         "scene_composition": [
           {
             "type": "surface",
@@ -364,6 +393,7 @@
         "duration": 12,
         "advance_mode": "auto_after_tts",
         "focal_primitive_id": "formula_box_main",
+        "allow_deep_dive": true,
         "scene_composition": [
           {
             "type": "surface",
@@ -823,6 +853,7 @@
         "duration": 14,
         "advance_mode": "auto_after_tts",
         "focal_primitive_id": "mg_components_rotated",
+        "allow_deep_dive": true,
         "scene_composition": [
           {
             "type": "surface",
@@ -950,7 +981,8 @@
               "text_en": "The lesson is permanent. Pick axes that match the motion. Resolve the forces along them. Physics becomes simple."
             }
           ]
-        }
+        },
+        "drill_downs": ["why_rotate_axes", "mg_along_vs_mg_perp", "which_axes_to_pick"]
       },
       "STATE_9": {
         "title": "Your Turn — Try Any Vector",
@@ -1094,7 +1126,7 @@
   "epic_c_branches": [
     {
       "branch_id": "swapped_sin_cos",
-      "misconception": "Student swaps sine and cosine — thinks Fx = F sinα.",
+      "misconception": "Student swaps sine and cosine — thinks Fx = F sinα when α is measured from x-axis.",
       "trigger_phrases": [
         "isn't Fx equal to F sin",
         "why not F sin alpha for horizontal",
@@ -1102,60 +1134,408 @@
         "i thought sine was the x component",
         "cos gives the vertical"
       ],
-      "state_sequence": [
-        "EPIC_C_1",
-        "EPIC_C_2"
-      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
       "states": {
         "EPIC_C_1": {
-          "title": "Check: which side of the triangle is which?",
-          "scene_composition": [],
+          "title": "Check: Which Side of the Triangle Is Which?",
+          "focal_primitive_id": "triangle_diagram",
+          "scene_composition": [
+            {
+              "type": "label",
+              "id": "title_header",
+              "text": "Triangle anatomy — which side is adjacent?",
+              "position": { "x": 150, "y": 40 },
+              "font_size": 17,
+              "color": "#1F2937",
+              "bold": true
+            },
+            {
+              "type": "force_arrow",
+              "id": "triangle_diagram",
+              "from": { "x": 200, "y": 320 },
+              "magnitude": 14,
+              "direction_deg": 50,
+              "label": "F (hypotenuse)",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 14
+            },
+            {
+              "type": "vector",
+              "id": "x_side",
+              "from": { "x": 200, "y": 320 },
+              "to": { "x": 380, "y": 320 },
+              "color": "#F59E0B",
+              "label": "adjacent (along x)"
+            },
+            {
+              "type": "vector",
+              "id": "y_side",
+              "from": { "x": 380, "y": 320 },
+              "to": { "x": 380, "y": 105 },
+              "color": "#10B981",
+              "label": "opposite (perpendicular)"
+            },
+            {
+              "type": "angle_arc",
+              "id": "alpha_at_origin",
+              "center": { "x": 200, "y": 320 },
+              "radius": 38,
+              "from_deg": 0,
+              "to_deg": 50,
+              "color": "#F59E0B",
+              "label": "α"
+            },
+            {
+              "type": "annotation",
+              "id": "rule_callout",
+              "text": "cos(α) = adjacent / hypotenuse\nSo adjacent = F * cos(α).\nThe adjacent side IS the x-axis here —\nhence Fx = F * cos(α).",
+              "position": { "x": 470, "y": 200 },
+              "style": "callout",
+              "color": "#10B981"
+            }
+          ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "Pause — this is a very common confusion. Let us settle it forever."
-              },
-              {
-                "id": "s2",
-                "text_en": "In a right triangle, cosine equals ADJACENT over hypotenuse. Sine equals OPPOSITE over hypotenuse."
-              },
-              {
-                "id": "s3",
-                "text_en": "The angle alpha is measured from the x-axis. So the x-axis is the side NEXT to the angle. That is the adjacent side."
-              },
-              {
-                "id": "s4",
-                "text_en": "Adjacent pairs with cosine. That means x pairs with cosine. Always."
-              }
+              { "id": "s1", "text_en": "Pause — this is a very common confusion. Let us settle it forever." },
+              { "id": "s2", "text_en": "In a right triangle, cosine equals adjacent over hypotenuse. Sine equals opposite over hypotenuse." },
+              { "id": "s3", "text_en": "The angle alpha is measured from the x-axis. So the x-axis is the side NEXT to the angle. That is the adjacent side." },
+              { "id": "s4", "text_en": "Adjacent pairs with cosine. That means x pairs with cosine. Always." }
             ]
           },
           "advance_mode": "auto_after_tts"
         },
         "EPIC_C_2": {
-          "title": "The Safe Rule — cos with the axis you measured FROM",
-          "scene_composition": [],
+          "title": "The Safe Rule — cos with the Axis You Measured FROM",
+          "focal_primitive_id": "rule_box",
+          "scene_composition": [
+            {
+              "type": "comparison_panel",
+              "id": "two_cases_panel",
+              "left_label": "α measured from x-axis",
+              "right_label": "α measured from y-axis",
+              "left_scene": [
+                {
+                  "type": "annotation",
+                  "text": "Fx = F cos(α)  (with x, from which we measured)\nFy = F sin(α)  (perpendicular)",
+                  "color": "#10B981",
+                  "position": { "x": 20, "y": 120 }
+                }
+              ],
+              "right_scene": [
+                {
+                  "type": "annotation",
+                  "text": "Fy = F cos(α)  (with y, from which we measured)\nFx = F sin(α)  (perpendicular)",
+                  "color": "#10B981",
+                  "position": { "x": 20, "y": 120 }
+                }
+              ]
+            },
+            {
+              "type": "formula_box",
+              "id": "rule_box",
+              "equation": "cos pairs with the axis you measured FROM.  sin pairs with the perpendicular.",
+              "position": { "x": 100, "y": 420 },
+              "border_color": "#3B82F6"
+            },
+            {
+              "type": "annotation",
+              "id": "memory_callout",
+              "text": "One sentence. Never mix them up again.",
+              "position": { "x": 200, "y": 500 },
+              "style": "callout",
+              "color": "#F59E0B"
+            }
+          ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "If you ever forget, use this one rule: cosine goes with the axis you measured the angle FROM."
-              },
-              {
-                "id": "s2",
-                "text_en": "Measured from x? Then Fx is F cos alpha, Fy is F sin alpha."
-              },
-              {
-                "id": "s3",
-                "text_en": "Measured from y? Then Fy is F cos alpha, Fx is F sin alpha."
-              },
-              {
-                "id": "s4",
-                "text_en": "It is always cosine with the axis you measured from. Never the other way around."
-              }
+              { "id": "s1", "text_en": "If you ever forget, use this one rule: cosine goes with the axis you measured the angle FROM." },
+              { "id": "s2", "text_en": "Measured from x? Then Fx is F cos alpha, Fy is F sin alpha." },
+              { "id": "s3", "text_en": "Measured from y? Then Fy is F cos alpha, Fx is F sin alpha." },
+              { "id": "s4", "text_en": "It is always cosine with the axis you measured from. Never the other way around." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    },
+    {
+      "branch_id": "angle_from_wrong_axis",
+      "misconception": "Student sees angle drawn from y-axis but still writes Fx = F cos(α).",
+      "trigger_phrases": [
+        "angle is from vertical",
+        "angle from y-axis",
+        "given angle with vertical",
+        "angle measured from ceiling"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "When the Given Angle Is Measured from the y-axis",
+          "focal_primitive_id": "y_angle_diagram",
+          "scene_composition": [
+            {
+              "type": "vector",
+              "id": "y_angle_diagram",
+              "from": { "x": 250, "y": 360 },
+              "to": { "x": 250, "y": 130 },
+              "color": "#9CA3AF",
+              "style": "dashed",
+              "label": "y-axis"
+            },
+            {
+              "type": "force_arrow",
+              "id": "vec_F",
+              "from": { "x": 250, "y": 360 },
+              "magnitude": 16,
+              "direction_deg": 60,
+              "label": "F",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 10
+            },
+            {
+              "type": "angle_arc",
+              "id": "alpha_from_y",
+              "center": { "x": 250, "y": 360 },
+              "radius": 46,
+              "from_deg": 60,
+              "to_deg": 90,
+              "color": "#F59E0B",
+              "label": "α (from y)"
+            },
+            {
+              "type": "formula_box",
+              "id": "correct_formula",
+              "equation": "Fy = F * cos(α)   (aligned with y — the axis we measured FROM)\nFx = F * sin(α)   (perpendicular to y)",
+              "position": { "x": 450, "y": 170 },
+              "border_color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "trap_callout",
+              "text": "Trap: students write Fx = F cos(α)\nby habit. Wrong here —\nbecause α is measured from y, not x.",
+              "position": { "x": 450, "y": 380 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "In many problems, the given angle is measured from the y-axis or from a surface — not from the x-axis." },
+              { "id": "s2", "text_en": "When that happens, cosine pairs with y, because y is the axis you measured from." },
+              { "id": "s3", "text_en": "So Fy equals F cosine alpha. Fx equals F sine alpha — the perpendicular component." },
+              { "id": "s4", "text_en": "Always look at the diagram first and identify which axis the angle is drawn from. That single check saves most of the sin-cos mistakes in exam papers." }
             ]
           },
           "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+    {
+      "branch_id": "components_sum_arithmetically",
+      "misconception": "Student thinks Fx + Fy equals F arithmetically (as if vectors added like numbers).",
+      "trigger_phrases": [
+        "Fx plus Fy equals F",
+        "components add to F",
+        "6 plus 7 doesn't equal 10",
+        "why Fx + Fy not equal to F",
+        "pythagoras instead of sum"
+      ],
+      "state_sequence": ["EPIC_C_1"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Why Fx + Fy ≠ F — Pythagoras, Not Arithmetic",
+          "focal_primitive_id": "pythagoras_box",
+          "scene_composition": [
+            {
+              "type": "force_arrow",
+              "id": "hypotenuse",
+              "from": { "x": 200, "y": 350 },
+              "magnitude": 10,
+              "direction_deg": 50,
+              "label": "F = 10 N",
+              "color": "#3B82F6",
+              "scale_pixels_per_unit": 15
+            },
+            {
+              "type": "vector",
+              "id": "horizontal_leg",
+              "from": { "x": 200, "y": 350 },
+              "to": { "x": 296, "y": 350 },
+              "color": "#F59E0B",
+              "label": "Fx = 6.43 N"
+            },
+            {
+              "type": "vector",
+              "id": "vertical_leg",
+              "from": { "x": 296, "y": 350 },
+              "to": { "x": 296, "y": 235 },
+              "color": "#10B981",
+              "label": "Fy = 7.66 N"
+            },
+            {
+              "type": "formula_box",
+              "id": "pythagoras_box",
+              "equation": "Fx + Fy = 6.43 + 7.66 = 14.09 N  (WRONG)\nsqrt(Fx^2 + Fy^2) = sqrt(41.3 + 58.7) = sqrt(100) = 10 N  (RIGHT)",
+              "position": { "x": 440, "y": 170 },
+              "border_color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "why_callout",
+              "text": "Components are perpendicular.\nTo recover F, use Pythagoras —\nnot arithmetic addition.",
+              "position": { "x": 440, "y": 380 },
+              "style": "callout",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A common check goes wrong here. Students compute Fx plus Fy and expect it to equal F." },
+              { "id": "s2", "text_en": "For F equals ten newtons at fifty degrees, Fx is six point four three and Fy is seven point six six. Their sum is fourteen point zero nine — not ten." },
+              { "id": "s3", "text_en": "That is not a mistake; it is the whole point of vectors. The two components are perpendicular, so they cannot be added like ordinary numbers." },
+              { "id": "s4", "text_en": "The correct way to recover F is Pythagoras: square root of Fx squared plus Fy squared. That always brings you back to ten." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        }
+      }
+    },
+    {
+      "branch_id": "axes_must_be_horizontal_vertical",
+      "misconception": "Student believes axes must always be horizontal and vertical — you cannot rotate them.",
+      "trigger_phrases": [
+        "why rotate axes",
+        "can we change axes",
+        "axes must be horizontal and vertical",
+        "why not always world xy",
+        "is it allowed to rotate axes"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: Axes Must Be World xy",
+          "focal_primitive_id": "belief_diagram",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "incline_small",
+              "orientation": "inclined",
+              "angle_deg": 30,
+              "position": { "x": 140, "y": 380 },
+              "length": 260
+            },
+            {
+              "type": "body",
+              "id": "block_small",
+              "shape": "rect",
+              "label": "m",
+              "fill_color": "#6B7280",
+              "position": { "x": 220, "y": 300 },
+              "size": { "w": 50, "h": 35 }
+            },
+            {
+              "type": "axes",
+              "id": "belief_diagram",
+              "position": { "x": 80, "y": 200 },
+              "length": 90,
+              "angle_deg": 0,
+              "color": "#EF4444",
+              "x_label": "x (forced)",
+              "y_label": "y (forced)"
+            },
+            {
+              "type": "label",
+              "id": "myth_header",
+              "text": "Myth: axes must match the room.",
+              "position": { "x": 210, "y": 60 },
+              "font_size": 18,
+              "color": "#EF4444",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_callout",
+              "text": "On an incline, forcing world x–y\nleaves mg with two ugly components\nneither of which is along the motion.\nResult: messy algebra.",
+              "position": { "x": 440, "y": 220 },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Many students assume axes must always be horizontal and vertical — that the room fixes them forever." },
+              { "id": "s2", "text_en": "That is not a rule of physics. It is a habit from early drawings." },
+              { "id": "s3", "text_en": "On an incline problem, forcing world axes leaves mg with two awkward components, neither of which points along the direction of motion." },
+              { "id": "s4", "text_en": "The algebra becomes ugly. That is the price of the wrong axis choice." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "Reality: Pick Any Perpendicular Pair You Like",
+          "focal_primitive_id": "rotated_axes_demo",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "incline_small2",
+              "orientation": "inclined",
+              "angle_deg": 30,
+              "position": { "x": 140, "y": 380 },
+              "length": 260
+            },
+            {
+              "type": "body",
+              "id": "block_small2",
+              "shape": "rect",
+              "label": "m",
+              "fill_color": "#6B7280",
+              "position": { "x": 220, "y": 300 },
+              "size": { "w": 50, "h": 35 }
+            },
+            {
+              "type": "axes",
+              "id": "rotated_axes_demo",
+              "position": { "x": 80, "y": 250 },
+              "length": 90,
+              "angle_deg": 30,
+              "color": "#10B981",
+              "x_label": "along incline",
+              "y_label": "perpendicular"
+            },
+            {
+              "type": "label",
+              "id": "freedom_header",
+              "text": "Truth: ANY perpendicular pair is valid.",
+              "position": { "x": 200, "y": 60 },
+              "font_size": 18,
+              "color": "#10B981",
+              "bold": true
+            },
+            {
+              "type": "formula_box",
+              "id": "incline_result_box",
+              "equation": "Along incline: mg sin(θ) — drives motion\nPerpendicular: mg cos(θ) — balanced by N",
+              "position": { "x": 440, "y": 210 },
+              "border_color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "freedom_callout",
+              "text": "Rule: choose axes that align with the motion\nor the constraint. The algebra becomes trivial.",
+              "position": { "x": 440, "y": 380 },
+              "style": "callout",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The rule is simple. Any two perpendicular directions can serve as axes. Physics does not care whether they are horizontal and vertical or tilted." },
+              { "id": "s2", "text_en": "On an incline, rotate the axes to match the slope. One along the incline, one perpendicular to it." },
+              { "id": "s3", "text_en": "Now mg splits cleanly. Along the incline it equals mg sine theta — the force that drives the sliding. Perpendicular it equals mg cosine theta — the force balanced by the normal reaction." },
+              { "id": "s4", "text_en": "Choosing axes that match the motion is not a trick. It is a right you always have — and using it is the difference between easy physics and painful algebra." }
+            ]
+          },
+          "advance_mode": "manual_click"
         }
       }
     }
@@ -1266,5 +1646,283 @@
       "vector_addition",
       "dot_product"
     ]
+  },
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 5,
+        "per_state": {
+          "STATE_1": {
+            "mark": 1,
+            "description": "Identify the vector F at angle α from a reference axis. State the goal: find components along two perpendicular directions."
+          },
+          "STATE_3": {
+            "mark": 1,
+            "description": "Draw the right triangle: F is the hypotenuse; adjacent side lies along the axis you measured α from; opposite side is perpendicular."
+          },
+          "STATE_4": {
+            "mark": 1,
+            "description": "Apply trigonometry: Fx = F*cos(α), Fy = F*sin(α). State the memory rule — cos pairs with the axis measured FROM."
+          },
+          "STATE_8": {
+            "mark": 1,
+            "description": "For a block on incline at angle θ, resolve mg along rotated axes: mg*sin(θ) along the slope (drives motion), mg*cos(θ) perpendicular (balanced by N)."
+          },
+          "STATE_9": {
+            "mark": 1,
+            "description": "Verify Pythagoras: sqrt(Fx^2 + Fy^2) = F. Cross-check with a numerical example (e.g., F=10 N, α=50° -> Fx=6.43, Fy=7.66, sqrt = 10)."
+          }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b1_s1",
+              "text": "Step 1: Given vector F at angle α from the x-axis.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 100 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s2",
+              "text": "Step 2: Goal — find Fx (along x) and Fy (along y).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 140 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s3",
+              "text": "Step 3: Components must satisfy Fx^2 + Fy^2 = F^2.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 180 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b1",
+              "mark_value": 1,
+              "text": "+1 for setup",
+              "tied_to_state": "STATE_1",
+              "position": { "x": 680, "y": 140 }
+            }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b3_s1",
+              "text": "Step 4: Drop perpendiculars from tip to both axes -> right triangle.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 220 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s2",
+              "text": "Step 5: F is the hypotenuse; adjacent side = x-leg; opposite side = y-leg.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 260 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s3",
+              "text": "Step 6: Angle α sits between the hypotenuse and the adjacent side.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 300 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b3",
+              "mark_value": 1,
+              "text": "+1 for triangle identification",
+              "tied_to_state": "STATE_3",
+              "position": { "x": 680, "y": 260 }
+            }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b4_s1",
+              "text": "Step 7: cos(α) = adjacent / hypotenuse -> Fx = F*cos(α).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 340 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s2",
+              "text": "Step 8: sin(α) = opposite / hypotenuse -> Fy = F*sin(α).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 380 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s3",
+              "text": "Step 9: Memory rule: cos pairs with axis measured FROM.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 420 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b4",
+              "mark_value": 1,
+              "text": "+1 for formula",
+              "tied_to_state": "STATE_4",
+              "position": { "x": 680, "y": 380 }
+            }
+          ]
+        },
+        "STATE_8": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b8_s1",
+              "text": "Step 10: On incline (angle θ), rotate axes: x along slope, y perpendicular.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 460 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b8_s2",
+              "text": "Step 11: mg_along = mg*sin(θ)  — pulls block down the slope.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 500 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b8_s3",
+              "text": "Step 12: mg_perp  = mg*cos(θ)  — balanced by normal reaction N.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 540 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b8",
+              "mark_value": 1,
+              "text": "+1 for incline resolution",
+              "tied_to_state": "STATE_8",
+              "position": { "x": 680, "y": 500 }
+            }
+          ]
+        },
+        "STATE_9": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b9_s1",
+              "text": "Step 13: Numerical check — F = 10 N, α = 50 deg.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 580 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b9_s2",
+              "text": "Step 14: Fx = 10*cos(50) = 6.43 N;  Fy = 10*sin(50) = 7.66 N.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 620 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b9_s3",
+              "text": "Step 15: sqrt(6.43^2 + 7.66^2) = sqrt(100) = 10 N. Recovered.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 660 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b9",
+              "mark_value": 1,
+              "text": "+1 for Pythagoras verification",
+              "tied_to_state": "STATE_9",
+              "position": { "x": 680, "y": 620 }
+            }
+          ]
+        }
+      }
+    },
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "id": "shortcut_basic_resolve",
+          "rule": "Resolve vector along x and y",
+          "formula": "Fx = F*cos(α),  Fy = F*sin(α)   (α from x-axis)",
+          "use_when": "Angle is given from the x-axis (or the horizontal/reference direction). Default rule."
+        },
+        {
+          "id": "shortcut_angle_from_y",
+          "rule": "When the angle is given from the y-axis",
+          "formula": "Fy = F*cos(α),  Fx = F*sin(α)",
+          "use_when": "Angle is drawn from the vertical or from a surface's perpendicular."
+        },
+        {
+          "id": "shortcut_incline_gravity",
+          "rule": "Gravity on an incline (angle θ)",
+          "formula": "mg_along = mg*sin(θ),  mg_perp = mg*cos(θ)",
+          "use_when": "Block on a ramp. Axes chosen along/perp to the slope."
+        },
+        {
+          "id": "shortcut_pythagoras",
+          "rule": "Recover magnitude from components",
+          "formula": "F = sqrt(Fx^2 + Fy^2)",
+          "use_when": "Sanity check, or when reconstructing the resultant of two perpendicular components."
+        },
+        {
+          "id": "shortcut_angle_from_components",
+          "rule": "Recover angle from components",
+          "formula": "tan(α) = Fy / Fx  ->  α = atan2(Fy, Fx)",
+          "use_when": "You have Fx and Fy and need the direction."
+        },
+        {
+          "id": "shortcut_rotated_axes",
+          "rule": "Pick axes that align with motion",
+          "formula": "Any two perpendicular directions are valid axes.",
+          "use_when": "Incline, circular motion, constrained motion. Saves algebra."
+        }
+      ],
+      "edge_cases": [
+        {
+          "id": "edge_angle_with_surface",
+          "title": "Rope tied to a block, angle given with the surface",
+          "trap": "Students assume the angle is with the horizontal when the diagram says 'with the surface' on an incline.",
+          "resolution": "If α is measured with the surface (incline at θ), then the rope makes α + θ with the horizontal. Resolve carefully — draw the diagram before plugging."
+        },
+        {
+          "id": "edge_projectile_launch_angle",
+          "title": "Projectile launched at angle θ from horizontal",
+          "trap": "Students write vx = v*sin(θ).",
+          "resolution": "θ is from horizontal, so vx = v*cos(θ) and vy = v*sin(θ). Classic cos-sin trap; apply the 'cos with the axis you measured from' rule."
+        },
+        {
+          "id": "edge_three_dimensional",
+          "title": "3D vector — direction cosines",
+          "trap": "Students apply 2D Fx = F*cos(α) without recognising the third dimension.",
+          "resolution": "Use direction cosines: Fx = F*cos(α), Fy = F*cos(β), Fz = F*cos(γ) with cos^2(α) + cos^2(β) + cos^2(γ) = 1."
+        },
+        {
+          "id": "edge_vector_in_quadrant_2_to_4",
+          "title": "Vector with angle > 90 degrees",
+          "trap": "Students treat all angles as acute and lose the sign on Fx or Fy.",
+          "resolution": "Use atan2 and the actual cos/sin values (which can be negative). Do NOT take absolute values. The sign encodes the quadrant."
+        },
+        {
+          "id": "edge_force_along_string_not_body",
+          "title": "Rope tension on a hanging block at non-vertical string",
+          "trap": "Students resolve the rope's tension along the block's axes instead of the rope's direction.",
+          "resolution": "Tension always acts along the rope. Resolve T into horizontal and vertical components using the angle the rope makes with the vertical (or horizontal)."
+        }
+      ],
+      "formulas_shortform": {
+        "from_x_axis": "Fx = F*cos(α),  Fy = F*sin(α)",
+        "from_y_axis": "Fy = F*cos(α),  Fx = F*sin(α)",
+        "incline_gravity": "mg*sin(θ) along slope,  mg*cos(θ) perpendicular",
+        "recover_F": "F = sqrt(Fx^2 + Fy^2)",
+        "recover_angle": "α = atan2(Fy, Fx)"
+      }
+    }
   }
 }

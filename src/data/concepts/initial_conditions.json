@@ -17,12 +17,32 @@
   },
   "physics_engine_config": {
     "variables": {
-      "x0": { "name": "Initial position", "unit": "m", "min": -100, "max": 100, "default": 5 },
-      "u": { "name": "Initial velocity", "unit": "m/s", "min": -50, "max": 50, "default": 3 },
-      "a": { "name": "Acceleration (constant case)", "unit": "m/s^2", "min": -20, "max": 20, "default": 2 }
+      "x0": {
+        "name": "Initial position",
+        "unit": "m",
+        "min": -100,
+        "max": 100,
+        "default": 5
+      },
+      "u": {
+        "name": "Initial velocity",
+        "unit": "m/s",
+        "min": -50,
+        "max": 50,
+        "default": 3
+      },
+      "a": {
+        "name": "Acceleration (constant case)",
+        "unit": "m/s^2",
+        "min": -20,
+        "max": 20,
+        "default": 2
+      }
     },
     "computed_outputs": {
-      "x_at_any_t": { "formula": "5 + 3 * 1 + 0.5 * 2 * 1 * 1" }
+      "x_at_any_t": {
+        "formula": "5 + 3 * 1 + 0.5 * 2 * 1 * 1"
+      }
     },
     "formulas": {
       "two_constants": "A 2nd-order equation (like d^2x/dt^2 = a) produces TWO integration constants",
@@ -48,43 +68,82 @@
             "type": "annotation",
             "id": "two_cars",
             "text": "Same road, same SPEEDS, different STARTING POINTS\n\n[DELHI]                         [AGRA]\n  CAR 1                           CAR 2\n  -> 60 km/h (southward)          <- 70 km/h (northward)\n  starts at x = 0                 starts at x = 200 km\n\nBoth cars obey the SAME equation:\n  position = starting_position + speed * time\n\nBut their SOLUTIONS differ:\n  x_1(t) = 0 + 60 t\n  x_2(t) = 200 - 70 t\n\nSame physics, different initial positions.\nThe starting point is the INITIAL CONDITION.",
-            "position": { "x": 380, "y": 280 },
+            "position": {
+              "x": 380,
+              "y": 280
+            },
             "style": "formula_box",
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 1
+            }
           },
           {
             "type": "force_arrow",
             "id": "car1",
-            "from": { "x": 200, "y": 460 },
+            "from": {
+              "x": 200,
+              "y": 460
+            },
             "magnitude": 2,
             "direction_deg": 0,
             "label": "CAR 1 from Delhi",
             "color": "#F59E0B",
             "scale_pixels_per_unit": 40,
-            "animation": { "type": "translate", "dx_px": 200, "dy_px": 0, "duration_sec": 5 }
+            "animation": {
+              "type": "translate",
+              "dx_px": 200,
+              "dy_px": 0,
+              "duration_sec": 5
+            }
           },
           {
             "type": "force_arrow",
             "id": "car2",
-            "from": { "x": 580, "y": 460 },
+            "from": {
+              "x": 580,
+              "y": 460
+            },
             "magnitude": 2,
             "direction_deg": 180,
             "label": "CAR 2 from Agra",
             "color": "#3B82F6",
             "scale_pixels_per_unit": 40,
-            "animation": { "type": "translate", "dx_px": -200, "dy_px": 0, "duration_sec": 5 }
+            "animation": {
+              "type": "translate",
+              "dx_px": -200,
+              "dy_px": 0,
+              "duration_sec": 5
+            }
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Two cars set off from opposite ends of a road. Car one from Delhi, car two from Agra. Both drive at steady speeds." },
-            { "id": "s2", "text_en": "They obey the same type of equation — position equals starting point plus speed times time. Same formula, same physics." },
-            { "id": "s3", "text_en": "Yet at any later time, they are at very different positions. Car one's x grows from zero. Car two's x shrinks from two hundred toward Delhi." },
-            { "id": "s4", "text_en": "What separates the two solutions is not the equation but the starting point. That is what an initial condition does — it picks out one specific motion from the family of all motions that obey the same equation." },
-            { "id": "s5", "text_en": "Every time you integrate, you introduce a new unknown constant. To solve for it, you need a data point — usually given by the problem as 'starts at rest' or 'released from height h'." }
+            {
+              "id": "s1",
+              "text_en": "Two cars set off from opposite ends of a road. Car one from Delhi, car two from Agra. Both drive at steady speeds."
+            },
+            {
+              "id": "s2",
+              "text_en": "They obey the same type of equation — position equals starting point plus speed times time. Same formula, same physics."
+            },
+            {
+              "id": "s3",
+              "text_en": "Yet at any later time, they are at very different positions. Car one's x grows from zero. Car two's x shrinks from two hundred toward Delhi."
+            },
+            {
+              "id": "s4",
+              "text_en": "What separates the two solutions is not the equation but the starting point. That is what an initial condition does — it picks out one specific motion from the family of all motions that obey the same equation."
+            },
+            {
+              "id": "s5",
+              "text_en": "Every time you integrate, you introduce a new unknown constant. To solve for it, you need a data point — usually given by the problem as 'starts at rest' or 'released from height h'."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "car1"
       },
       "STATE_2": {
         "title": "Two Integrations, Two Constants — How They Get Fixed",
@@ -94,23 +153,73 @@
             "type": "annotation",
             "id": "two_levels",
             "text": "Motion equation: a(t) = 2 t\n\nFirst integration (a -> v)\n  dv/dt = 2 t\n  dv = 2 t dt\n  v(t) = t^2 + C_1      <- FIRST integration constant\n\n  To fix C_1, we need 'v at some specific t'.\n  The problem says: at t = 0, v = u.\n  Plug in.  u = 0 + C_1 = C_1.\n  So  C_1 = u.\n\n  v(t) = u + t^2\n\nSecond integration (v -> x)\n  dx/dt = u + t^2\n  dx = (u + t^2) dt\n  x(t) = u t + t^3 / 3 + C_2    <- SECOND integration constant\n\n  Problem says: at t = 0, x = x0.\n  Plug in.  x0 = 0 + 0 + C_2 = C_2.\n  So  C_2 = x0.\n\n  x(t) = x0 + u t + t^3 / 3",
-            "position": { "x": 400, "y": 280 },
+            "position": {
+              "x": 400,
+              "y": 280
+            },
             "style": "formula_box",
             "color": "#10B981",
-            "animation": { "type": "fade_in", "delay_sec": 0.5, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 0.5,
+              "duration_sec": 1
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Two Integrations, Two Constants — How They Get Fixed",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Take the example a of t equals two t. Two successive integrations give us v and x, but each introduces an unknown constant." },
-            { "id": "s2", "text_en": "First integration. v equals t squared plus C-one, where C-one is our first unknown constant." },
-            { "id": "s3", "text_en": "Now we need one piece of data to find C-one. The problem gives it — at t equals zero, velocity is u. Plug in. u equals zero plus C-one, so C-one equals u. Our velocity formula is v equals u plus t squared." },
-            { "id": "s4", "text_en": "Second integration. x equals u t plus t cubed over three plus C-two — a second unknown constant." },
-            { "id": "s5", "text_en": "Again we need one data point. At t equals zero, position is x-zero. Plug in. x-zero equals C-two. So C-two equals x-zero." },
-            { "id": "s6", "text_en": "Final formula — x of t equals x-zero plus u t plus t cubed over three. Every piece is determined. Two integration constants, two initial conditions, problem solved." }
+            {
+              "id": "s1",
+              "text_en": "Take the example a of t equals two t. Two successive integrations give us v and x, but each introduces an unknown constant."
+            },
+            {
+              "id": "s2",
+              "text_en": "First integration. v equals t squared plus C-one, where C-one is our first unknown constant."
+            },
+            {
+              "id": "s3",
+              "text_en": "Now we need one piece of data to find C-one. The problem gives it — at t equals zero, velocity is u. Plug in. u equals zero plus C-one, so C-one equals u. Our velocity formula is v equals u plus t squared."
+            },
+            {
+              "id": "s4",
+              "text_en": "Second integration. x equals u t plus t cubed over three plus C-two — a second unknown constant."
+            },
+            {
+              "id": "s5",
+              "text_en": "Again we need one data point. At t equals zero, position is x-zero. Plug in. x-zero equals C-two. So C-two equals x-zero."
+            },
+            {
+              "id": "s6",
+              "text_en": "Final formula — x of t equals x-zero plus u t plus t cubed over three. Every piece is determined. Two integration constants, two initial conditions, problem solved."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "two_levels"
       },
       "STATE_3": {
         "title": "How Many Initial Conditions Do You Need?",
@@ -120,21 +229,64 @@
             "type": "annotation",
             "id": "counting_rule",
             "text": "Counting rule\n\nEvery integration introduces one unknown constant.\n\nFor kinematics:\n  - a(t) -> v(t)   needs 1 initial condition (v0 or u)\n  - v(t) -> x(t)   needs 1 initial condition (x0)\n  Total   =   2\n\nFor a 2nd-order ODE like m d^2x/dt^2 = F(x, v, t)\n  Two integrations  ->  two constants  ->  two initial conditions.\n  Usually given as (x0, v0).\n\nFor 3rd-order systems (rare)\n  three constants  ->  three initial conditions.\n\nMnemonic\n  Number of constants = order of the differential equation\n                     = number of integrations.",
-            "position": { "x": 400, "y": 280 },
+            "position": {
+              "x": 400,
+              "y": 280
+            },
             "style": "formula_box",
             "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "How Many Initial Conditions Do You Need?",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "The counting rule — every integration introduces one unknown constant, and each constant needs one piece of initial data to determine." },
-            { "id": "s2", "text_en": "For kinematics — one integration from a to v, one from v to x. Two integrations, two constants, two initial conditions." },
-            { "id": "s3", "text_en": "The two conditions are usually given as initial velocity and initial position at t equals zero. Problem phrases such as 'released from rest' tell you v equals zero; 'from a height of five metres' tells you x equals five." },
-            { "id": "s4", "text_en": "A second-order differential equation — which is what Newton's law is for particle motion — always needs exactly two initial conditions. Higher-order equations need more, but these are rare in mechanics." },
-            { "id": "s5", "text_en": "The mnemonic — number of constants equals order of the differential equation equals number of integrations. In standard kinematics, that number is always two." }
+            {
+              "id": "s1",
+              "text_en": "The counting rule — every integration introduces one unknown constant, and each constant needs one piece of initial data to determine."
+            },
+            {
+              "id": "s2",
+              "text_en": "For kinematics — one integration from a to v, one from v to x. Two integrations, two constants, two initial conditions."
+            },
+            {
+              "id": "s3",
+              "text_en": "The two conditions are usually given as initial velocity and initial position at t equals zero. Problem phrases such as 'released from rest' tell you v equals zero; 'from a height of five metres' tells you x equals five."
+            },
+            {
+              "id": "s4",
+              "text_en": "A second-order differential equation — which is what Newton's law is for particle motion — always needs exactly two initial conditions. Higher-order equations need more, but these are rare in mechanics."
+            },
+            {
+              "id": "s5",
+              "text_en": "The mnemonic — number of constants equals order of the differential equation equals number of integrations. In standard kinematics, that number is always two."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "counting_rule"
       }
     }
   },
@@ -157,19 +309,56 @@
               "type": "annotation",
               "id": "shortcut_attempt",
               "text": "Your reasoning\n\nIn kinematics, I see\n  dv = 2t dt\n  v = t^2\n\nI did not write + C.\nDoes it matter?\n\nExample\n  If block STARTS at v = 5 m/s,\n  and I write v = t^2,\n  then at t = 0 I get v = 0, NOT 5.\n  \n  My answer is wrong by 5 m/s FOREVER.",
-              "position": { "x": 360, "y": 280 },
+              "position": {
+                "x": 360,
+                "y": 280
+              },
               "style": "callout",
               "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Your Shortcut — Integrate and Skip the +C",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "A common shortcut — skip the integration constant after integrating. 'Plus C' feels like algebra clutter." },
-              { "id": "s2", "text_en": "The problem is that the constant carries real physical information. Without it, your answer is exactly wrong by the starting value." },
-              { "id": "s3", "text_en": "If the block actually started at five metres per second, writing v equals t squared would give zero at t equals zero — five units too low, forever." }
+              {
+                "id": "s1",
+                "text_en": "A common shortcut — skip the integration constant after integrating. 'Plus C' feels like algebra clutter."
+              },
+              {
+                "id": "s2",
+                "text_en": "The problem is that the constant carries real physical information. Without it, your answer is exactly wrong by the starting value."
+              },
+              {
+                "id": "s3",
+                "text_en": "If the block actually started at five metres per second, writing v equals t squared would give zero at t equals zero — five units too low, forever."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "shortcut_attempt"
         },
         "STATE_2": {
           "title": "Why +C Matters — The Universe of Wrong Answers",
@@ -179,20 +368,60 @@
               "type": "annotation",
               "id": "family_of_curves",
               "text": "Without +C\n  v = t^2\n  (one specific curve starting at 0)\n\nWith +C\n  v = t^2 + C\n  (a whole FAMILY of curves, one per C)\n\nIf the problem says 'starts at rest'\n  v(0) = 0 = 0^2 + C  ->  C = 0\n  Answer: v = t^2.\n\nIf the problem says 'starts at 5 m/s'\n  v(0) = 5 = 0^2 + C  ->  C = 5\n  Answer: v = t^2 + 5.\n\nIf the problem says 'starts at -3 m/s'\n  C = -3, so v = t^2 - 3.\n\nThe +C is the HANDLE that lets the math\ntune itself to any specific scenario.\nDropping it silently assumes the object\nstarts at rest -- a huge implicit assumption.",
-              "position": { "x": 400, "y": 280 },
+              "position": {
+                "x": 400,
+                "y": 280
+              },
               "style": "formula_box",
               "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Why +C Matters — The Universe of Wrong Answers",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Without the plus C, integration gives one specific curve. With it, you have a whole family of curves — one per value of C." },
-              { "id": "s2", "text_en": "The initial condition picks which member of the family applies to this problem. Starts at rest — C equals zero. Starts at five metres per second — C equals five. Starts at minus three — C equals minus three." },
-              { "id": "s3", "text_en": "Skipping the plus C silently fixes C equal to zero, which is equivalent to assuming the object starts at rest. For most problems, that is an unwarranted implicit assumption." },
-              { "id": "s4", "text_en": "Write the plus C every time. Then use the initial condition to solve for it. That discipline costs one extra line and saves whole classes of wrong answers." }
+              {
+                "id": "s1",
+                "text_en": "Without the plus C, integration gives one specific curve. With it, you have a whole family of curves — one per value of C."
+              },
+              {
+                "id": "s2",
+                "text_en": "The initial condition picks which member of the family applies to this problem. Starts at rest — C equals zero. Starts at five metres per second — C equals five. Starts at minus three — C equals minus three."
+              },
+              {
+                "id": "s3",
+                "text_en": "Skipping the plus C silently fixes C equal to zero, which is equivalent to assuming the object starts at rest. For most problems, that is an unwarranted implicit assumption."
+              },
+              {
+                "id": "s4",
+                "text_en": "Write the plus C every time. Then use the initial condition to solve for it. That discipline costs one extra line and saves whole classes of wrong answers."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "family_of_curves"
         },
         "STATE_3": {
           "title": "The Habit — Write C, Then Kill It With Data",
@@ -202,19 +431,56 @@
               "type": "annotation",
               "id": "habit_drill",
               "text": "Recipe\n\n(1) Integrate. Write +C_1.\n(2) Plug in the first initial condition.\n    Solve for C_1. Replace.\n(3) Integrate again. Write +C_2.\n(4) Plug in the second initial condition.\n    Solve for C_2. Replace.\n(5) Final formula has no unknown constants.\n\nEvery kinematics problem with variable a\nfollows this 5-step structure. Make it a reflex.",
-              "position": { "x": 400, "y": 280 },
+              "position": {
+                "x": 400,
+                "y": 280
+              },
               "style": "formula_box",
               "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Habit — Write C, Then Kill It With Data",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Make this a reflex. Integrate, write plus C, plug in initial condition, kill the C. Integrate again, write plus C-two, plug in, kill it." },
-              { "id": "s2", "text_en": "After two cycles, your final formula has no unknown constants. It is a specific x-of-t that matches the problem exactly." },
-              { "id": "s3", "text_en": "Every non-uniform-acceleration problem follows this five-step template. Master the template once, and the individual problem details become routine." }
+              {
+                "id": "s1",
+                "text_en": "Make this a reflex. Integrate, write plus C, plug in initial condition, kill the C. Integrate again, write plus C-two, plug in, kill it."
+              },
+              {
+                "id": "s2",
+                "text_en": "After two cycles, your final formula has no unknown constants. It is a specific x-of-t that matches the problem exactly."
+              },
+              {
+                "id": "s3",
+                "text_en": "Every non-uniform-acceleration problem follows this five-step template. Master the template once, and the individual problem details become routine."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "habit_drill"
         }
       }
     }

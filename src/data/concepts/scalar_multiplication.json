@@ -17,20 +17,42 @@
   },
   "physics_engine_config": {
     "variables": {
-      "A_magnitude": { "name": "|A|", "unit": "(unitless)", "min": 1, "max": 10, "default": 4 },
-      "A_direction_deg": { "name": "direction of A", "unit": "degrees", "min": 0, "max": 360, "default": 0 },
-      "m": { "name": "scalar multiplier", "unit": "(unitless)", "min": -3, "max": 3, "default": 2 }
+      "A_magnitude": {
+        "name": "|A|",
+        "unit": "(unitless)",
+        "min": 1,
+        "max": 10,
+        "default": 4
+      },
+      "A_direction_deg": {
+        "name": "direction of A",
+        "unit": "degrees",
+        "min": 0,
+        "max": 360,
+        "default": 0
+      },
+      "m": {
+        "name": "scalar multiplier",
+        "unit": "(unitless)",
+        "min": -3,
+        "max": 3,
+        "default": 2
+      }
     },
     "computed_outputs": {
-      "mA_magnitude":     { "formula": "abs(m) * A_magnitude" },
-      "mA_direction_deg": { "formula": "m >= 0 ? A_direction_deg : (A_direction_deg + 180) % 360" }
+      "mA_magnitude": {
+        "formula": "abs(m) * A_magnitude"
+      },
+      "mA_direction_deg": {
+        "formula": "m >= 0 ? A_direction_deg : (A_direction_deg + 180) % 360"
+      }
     },
     "formulas": {
       "magnitude_rule": "|mA| = |m| × |A|",
       "direction_rule": "Same as A if m > 0;  opposite if m < 0;  zero vector if m = 0",
-      "distributive":   "(m + n) A = mA + nA",
-      "associative":    "m (nA) = (mn) A",
-      "special_case":   "(−1) A = −A  (the negative vector)"
+      "distributive": "(m + n) A = mA + nA",
+      "associative": "m (nA) = (mn) A",
+      "special_case": "(−1) A = −A  (the negative vector)"
     },
     "constraints": [
       "Magnitude is always non-negative: |mA| ≥ 0, regardless of sign of m",
@@ -49,7 +71,10 @@
           {
             "type": "force_arrow",
             "id": "A_base",
-            "from": { "x": 200, "y": 320 },
+            "from": {
+              "x": 200,
+              "y": 320
+            },
             "magnitude": 3,
             "direction_deg": 0,
             "label": "A  (4 m/s east)",
@@ -59,32 +84,55 @@
           {
             "type": "force_arrow",
             "id": "two_A",
-            "from": { "x": 200, "y": 380 },
+            "from": {
+              "x": 200,
+              "y": 380
+            },
             "magnitude": 6,
             "direction_deg": 0,
             "label": "2A  (8 m/s east)",
             "color": "#10B981",
             "scale_pixels_per_unit": 40,
-            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 2,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "observation",
             "text": "Multiply A by 2.\nLength doubles.\nDirection unchanged.",
-            "position": { "x": 500, "y": 240 },
+            "position": {
+              "x": 500,
+              "y": 240
+            },
             "style": "formula_box",
             "color": "#10B981"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "A car moves east at four metres per second. That is the vector A." },
-            { "id": "s2", "text_en": "Double the speed — same road — and the vector becomes two times A, which is eight metres per second east." },
-            { "id": "s3", "text_en": "The arrow is twice as long. The direction has not changed at all." },
-            { "id": "s4", "text_en": "This is scalar multiplication with a positive number. Scale the length, keep the direction." }
+            {
+              "id": "s1",
+              "text_en": "A car moves east at four metres per second. That is the vector A."
+            },
+            {
+              "id": "s2",
+              "text_en": "Double the speed — same road — and the vector becomes two times A, which is eight metres per second east."
+            },
+            {
+              "id": "s3",
+              "text_en": "The arrow is twice as long. The direction has not changed at all."
+            },
+            {
+              "id": "s4",
+              "text_en": "This is scalar multiplication with a positive number. Scale the length, keep the direction."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "A_base"
       },
       "STATE_2": {
         "title": "Negative Scalar — Direction Flips, Magnitude Scales",
@@ -93,7 +141,10 @@
           {
             "type": "force_arrow",
             "id": "A_ref",
-            "from": { "x": 300, "y": 320 },
+            "from": {
+              "x": 300,
+              "y": 320
+            },
             "magnitude": 3,
             "direction_deg": 0,
             "label": "A  (east)",
@@ -103,32 +154,55 @@
           {
             "type": "force_arrow",
             "id": "neg_two_A",
-            "from": { "x": 300, "y": 380 },
+            "from": {
+              "x": 300,
+              "y": 380
+            },
             "magnitude": 6,
             "direction_deg": 180,
             "label": "−2A  (west, twice long)",
             "color": "#EF4444",
             "scale_pixels_per_unit": 40,
-            "animation": { "type": "fade_in", "delay_sec": 2, "duration_sec": 1 }
+            "animation": {
+              "type": "fade_in",
+              "delay_sec": 2,
+              "duration_sec": 1
+            }
           },
           {
             "type": "annotation",
             "id": "flip_rule",
             "text": "Multiply A by −2.\n|m| = 2  →  length doubles.\nSign is negative  →  direction flips.\n\n|−2A| = 2 |A|.  NOT −2 |A|.",
-            "position": { "x": 500, "y": 200 },
+            "position": {
+              "x": 500,
+              "y": 200
+            },
             "style": "formula_box",
             "color": "#EF4444"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Now multiply A by a negative number — say minus two." },
-            { "id": "s2", "text_en": "The magnitude is the absolute value of the scalar, times A. So the arrow becomes twice as long." },
-            { "id": "s3", "text_en": "The negative sign does a different job — it flips the direction one hundred eighty degrees. What was east now points west." },
-            { "id": "s4", "text_en": "Crucial — magnitude is always positive. Never say the magnitude of minus two A is minus two A. Magnitude is a length, length cannot be negative." }
+            {
+              "id": "s1",
+              "text_en": "Now multiply A by a negative number — say minus two."
+            },
+            {
+              "id": "s2",
+              "text_en": "The magnitude is the absolute value of the scalar, times A. So the arrow becomes twice as long."
+            },
+            {
+              "id": "s3",
+              "text_en": "The negative sign does a different job — it flips the direction one hundred eighty degrees. What was east now points west."
+            },
+            {
+              "id": "s4",
+              "text_en": "Crucial — magnitude is always positive. Never say the magnitude of minus two A is minus two A. Magnitude is a length, length cannot be negative."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "A_ref"
       },
       "STATE_3": {
         "title": "The Formula — |mA| = |m| × |A|",
@@ -138,20 +212,60 @@
             "type": "annotation",
             "id": "formula_block",
             "text": "Magnitude rule:\n|mA| = |m| × |A|\n\nDirection rule:\nm > 0  →  same as A\nm < 0  →  opposite to A\nm = 0  →  zero vector (no direction)\n\nExamples:\n|3A|   = 3 |A|,   direction  same as A\n|−5A|  = 5 |A|,   direction  opposite to A\n|0 × A| = 0,      zero vector",
-            "position": { "x": 260, "y": 170 },
+            "position": {
+              "x": 260,
+              "y": 170
+            },
             "style": "formula_box",
             "color": "#10B981"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "The Formula — |mA| = |m| × |A|",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "One magnitude rule, one direction rule. That is all you need for scalar multiplication." },
-            { "id": "s2", "text_en": "Magnitude rule — the magnitude of m times A equals the absolute value of m, multiplied by the magnitude of A." },
-            { "id": "s3", "text_en": "Direction rule — positive m preserves direction, negative m flips it, zero m collapses to the zero vector." },
-            { "id": "s4", "text_en": "Memorise these two. Every scalar multiplication problem reduces to applying them." }
+            {
+              "id": "s1",
+              "text_en": "One magnitude rule, one direction rule. That is all you need for scalar multiplication."
+            },
+            {
+              "id": "s2",
+              "text_en": "Magnitude rule — the magnitude of m times A equals the absolute value of m, multiplied by the magnitude of A."
+            },
+            {
+              "id": "s3",
+              "text_en": "Direction rule — positive m preserves direction, negative m flips it, zero m collapses to the zero vector."
+            },
+            {
+              "id": "s4",
+              "text_en": "Memorise these two. Every scalar multiplication problem reduces to applying them."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "formula_block"
       },
       "STATE_4": {
         "title": "The Algebra Works — (m + n)A = mA + nA",
@@ -160,7 +274,10 @@
           {
             "type": "force_arrow",
             "id": "sum_left",
-            "from": { "x": 160, "y": 340 },
+            "from": {
+              "x": 160,
+              "y": 340
+            },
             "magnitude": 5,
             "direction_deg": 0,
             "label": "5A  (compute (m+n)A first)",
@@ -170,7 +287,10 @@
           {
             "type": "force_arrow",
             "id": "two_A_split",
-            "from": { "x": 160, "y": 400 },
+            "from": {
+              "x": 160,
+              "y": 400
+            },
             "magnitude": 2,
             "direction_deg": 0,
             "label": "2A",
@@ -180,7 +300,10 @@
           {
             "type": "force_arrow",
             "id": "three_A_split",
-            "from": { "x": 224, "y": 400 },
+            "from": {
+              "x": 224,
+              "y": 400
+            },
             "magnitude": 3,
             "direction_deg": 0,
             "label": "3A",
@@ -191,20 +314,39 @@
             "type": "annotation",
             "id": "distribute",
             "text": "Take m = 2, n = 3, A = 5 east.\n\n(m + n) A = (2 + 3) × 5 east = 5A = 25 east\n\nmA + nA  = 2A + 3A   = 10 + 15 = 25 east\n\nThey match.  Distributivity holds exactly.",
-            "position": { "x": 360, "y": 180 },
+            "position": {
+              "x": 360,
+              "y": 180
+            },
             "style": "formula_box"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1", "text_en": "Scalars distribute over vector multiplication — exactly like ordinary numbers." },
-            { "id": "s2", "text_en": "Take m equals two, n equals three, A equals five east. The sum on the left gives five A, which is twenty five east." },
-            { "id": "s3", "text_en": "Compute the right side separately. Two A is ten east. Three A is fifteen east. Add them head to tail — twenty five east." },
-            { "id": "s4", "text_en": "Both sides match. This is why scalar algebra works on vectors — scalars themselves obey ordinary arithmetic." },
-            { "id": "s5", "text_en": "The associative rule, m times n times A equals mn times A, follows the same pattern. All of this is safe to use in calculations." }
+            {
+              "id": "s1",
+              "text_en": "Scalars distribute over vector multiplication — exactly like ordinary numbers."
+            },
+            {
+              "id": "s2",
+              "text_en": "Take m equals two, n equals three, A equals five east. The sum on the left gives five A, which is twenty five east."
+            },
+            {
+              "id": "s3",
+              "text_en": "Compute the right side separately. Two A is ten east. Three A is fifteen east. Add them head to tail — twenty five east."
+            },
+            {
+              "id": "s4",
+              "text_en": "Both sides match. This is why scalar algebra works on vectors — scalars themselves obey ordinary arithmetic."
+            },
+            {
+              "id": "s5",
+              "text_en": "The associative rule, m times n times A equals mn times A, follows the same pattern. All of this is safe to use in calculations."
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "sum_left"
       }
     }
   },
@@ -227,19 +369,56 @@
               "type": "annotation",
               "id": "belief",
               "text": "Student writes:\n|−2A| = −2 |A|\n|−2 × 5| = −10\n\nBut what is an arrow of length −10?\nWhich direction? Which size?",
-              "position": { "x": 260, "y": 220 },
+              "position": {
+                "x": 260,
+                "y": 220
+              },
               "style": "callout",
               "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Show the Wrong Belief — A Negative Length",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "A common error — students write the magnitude of minus two A as minus two times magnitude of A." },
-              { "id": "s2", "text_en": "If that were true, multiplying a five-unit vector by minus two would give an arrow of length minus ten." },
-              { "id": "s3", "text_en": "But what is an arrow of length minus ten? Length is a distance. Distance cannot be negative." }
+              {
+                "id": "s1",
+                "text_en": "A common error — students write the magnitude of minus two A as minus two times magnitude of A."
+              },
+              {
+                "id": "s2",
+                "text_en": "If that were true, multiplying a five-unit vector by minus two would give an arrow of length minus ten."
+              },
+              {
+                "id": "s3",
+                "text_en": "But what is an arrow of length minus ten? Length is a distance. Distance cannot be negative."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "belief"
         },
         "STATE_2": {
           "title": "The Two Jobs of the Minus Sign",
@@ -249,19 +428,59 @@
               "type": "annotation",
               "id": "two_jobs",
               "text": "The minus sign does TWO things —\nbut one at a time.\n\nOn a scalar quantity:\n   −5 is a number below zero.\n\nOn a vector direction:\n   −A flips the arrow 180°.\n\nIt never makes a LENGTH negative.",
-              "position": { "x": 240, "y": 180 },
+              "position": {
+                "x": 240,
+                "y": 180
+              },
               "style": "formula_box"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Two Jobs of the Minus Sign",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "The minus sign has two jobs in mathematics." },
-              { "id": "s2", "text_en": "On a scalar, minus means less than zero — a temperature of minus five, a score of minus three." },
-              { "id": "s3", "text_en": "On a vector direction, minus means flip one hundred eighty degrees." },
-              { "id": "s4", "text_en": "It never takes a length and makes it negative. Length is always non-negative." }
+              {
+                "id": "s1",
+                "text_en": "The minus sign has two jobs in mathematics."
+              },
+              {
+                "id": "s2",
+                "text_en": "On a scalar, minus means less than zero — a temperature of minus five, a score of minus three."
+              },
+              {
+                "id": "s3",
+                "text_en": "On a vector direction, minus means flip one hundred eighty degrees."
+              },
+              {
+                "id": "s4",
+                "text_en": "It never takes a length and makes it negative. Length is always non-negative."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "two_jobs"
         },
         "STATE_3": {
           "title": "The Correct Formula — Step by Step",
@@ -271,20 +490,60 @@
               "type": "annotation",
               "id": "walk_through",
               "text": "|mA|  =  |m × A|        (by definition)\n      =  |m| × |A|     (abs-value splits)\n      =  |m| × |A|      (|A| already ≥ 0)\n\nExample  A = 5 east, m = −2:\n   |−2A|  =  |−2| × |A|  =  2 × 5  =  10\n\nMagnitude is 10. Direction is WEST (because m < 0).",
-              "position": { "x": 220, "y": 180 },
+              "position": {
+                "x": 220,
+                "y": 180
+              },
               "style": "formula_box",
               "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Correct Formula — Step by Step",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              { "id": "s1", "text_en": "Here is the correct derivation. Magnitude of m A equals absolute value of m, times absolute value of A." },
-              { "id": "s2", "text_en": "The absolute value of the scalar is always positive or zero. The magnitude of A is always positive or zero." },
-              { "id": "s3", "text_en": "Their product cannot be negative. Ever." },
-              { "id": "s4", "text_en": "For minus two A with A equals five east, magnitude is ten. Direction is west — because the sign of m is negative." }
+              {
+                "id": "s1",
+                "text_en": "Here is the correct derivation. Magnitude of m A equals absolute value of m, times absolute value of A."
+              },
+              {
+                "id": "s2",
+                "text_en": "The absolute value of the scalar is always positive or zero. The magnitude of A is always positive or zero."
+              },
+              {
+                "id": "s3",
+                "text_en": "Their product cannot be negative. Ever."
+              },
+              {
+                "id": "s4",
+                "text_en": "For minus two A with A equals five east, magnitude is ten. Direction is west — because the sign of m is negative."
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "walk_through"
         }
       }
     }

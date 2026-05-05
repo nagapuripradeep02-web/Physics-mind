@@ -3,15 +3,23 @@
   "concept_name": "Free Body Diagram",
   "chapter": 8,
   "section": "8.2",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "NCERT Class 11 Physics Part I Ch.8 + HC Verma Ch.5",
+
+  "prerequisites": [],
+
   "renderer_pair": {
     "panel_a": "mechanics_2d",
     "panel_b": "graph_interactive"
   },
+
   "real_world_anchor": {
     "primary": "Three blocks stacked on each other. Showing every force in one picture is chaos. A free body diagram says: look at one body at a time.",
     "secondary": "A ladder leaning on a wall. Drawing every force at once confuses even experts. Isolate the ladder and only its own forces remain.",
     "tertiary": "A JEE problem with five bodies connected together. Writing Newton's law is impossible without a free body diagram first."
   },
+
   "physics_engine_config": {
     "variables": {
       "m": {
@@ -37,11 +45,20 @@
       }
     },
     "formulas": {
-      "equilibrium": "ΣF = 0 (static equilibrium)",
-      "newtons_second": "ΣF = ma (if accelerating)",
-      "sum_x": "ΣFx = max",
-      "sum_y": "ΣFy = may"
+      "equilibrium": "sum(F) = 0 (static equilibrium)",
+      "newtons_second": "sum(F) = ma (if accelerating)",
+      "sum_x": "sum(Fx) = m * ax",
+      "sum_y": "sum(Fy) = m * ay"
     },
+    "constraints": [
+      "Isolate EXACTLY ONE body (or one sub-system). Never two bodies together.",
+      "Show ALL forces on that body — every single one, no exceptions.",
+      "Weight (mg) always acts downward through the centre of mass.",
+      "Every removed contact or connection becomes one force arrow.",
+      "Do NOT show forces the body exerts on others — only forces ON the body.",
+      "Label every force with its symbol and direction.",
+      "After the FBD, write sum(Fx) = m*ax and sum(Fy) = m*ay and solve."
+    ],
     "fbd_rules": [
       "Rule 1: Isolate EXACTLY ONE body (or sub-system). Never two bodies together.",
       "Rule 2: Show ALL forces on that body — every single one, no exceptions.",
@@ -60,22 +77,46 @@
       "Spring force (kx) — if a spring is attached"
     ]
   },
+
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "stacked_blocks_chaos_hook",
+      "isolate_block_b_ghost_neighbors",
+      "why_isolation_works_one_equation",
+      "book_on_table_minimal_fbd",
+      "flat_vs_incline_fbd_comparison",
+      "six_force_checklist_reference"
+    ],
+    "epic_c": [
+      "two_bodies_together_wrong",
+      "weight_at_contact_point_wrong",
+      "missing_normal_force_wrong",
+      "reaction_force_on_same_body_wrong"
+    ],
+    "panel_b": [
+      "force_balance_bars",
+      "accelerating_net_force_bars"
+    ],
+    "board": [
+      "answer_sheet_derivation",
+      "mark_badge_accumulator"
+    ]
+  },
+
   "epic_l_path": {
     "state_count": 6,
     "states": {
       "STATE_1": {
         "title": "The Problem: A Complex System — Where Do You Even Start?",
         "duration": 6,
+        "focal_primitive_id": "chaos_question",
         "scene_composition": [
           {
             "type": "body",
             "id": "student",
             "shape": "stickman",
             "label": "You",
-            "position": {
-              "x": 140,
-              "y": 420
-            },
+            "position": { "x": 140, "y": 420 },
             "size": 90,
             "fill_color": "#D4D4D8"
           },
@@ -84,142 +125,95 @@
             "id": "block_A",
             "shape": "rect",
             "label": "A (2 kg)",
-            "position": {
-              "x": 280,
-              "y": 180
-            },
-            "size": {
-              "w": 100,
-              "h": 70
-            },
-            "fill_color": "#3B82F6",
-            "animation": {
-              "type": "fade_in",
-              "delay_sec": 1.4,
-              "duration_sec": 0.6
-            }
+            "position": { "x": 280, "y": 180 },
+            "size": { "w": 100, "h": 70 },
+            "fill_color": "#3B82F6"
           },
           {
             "type": "body",
             "id": "block_B",
             "shape": "rect",
             "label": "B (3 kg)",
-            "position": {
-              "x": 280,
-              "y": 250
-            },
-            "size": {
-              "w": 100,
-              "h": 80
-            },
-            "fill_color": "#F59E0B",
-            "animation": {
-              "type": "fade_in",
-              "delay_sec": 0.8,
-              "duration_sec": 0.6
-            }
+            "position": { "x": 280, "y": 250 },
+            "size": { "w": 100, "h": 80 },
+            "fill_color": "#F59E0B"
           },
           {
             "type": "body",
             "id": "block_C",
             "shape": "rect",
             "label": "C (5 kg)",
-            "position": {
-              "x": 280,
-              "y": 330
-            },
-            "size": {
-              "w": 100,
-              "h": 90
-            },
-            "fill_color": "#10B981",
-            "animation": {
-              "type": "fade_in",
-              "delay_sec": 0.2,
-              "duration_sec": 0.6
-            }
+            "position": { "x": 280, "y": 330 },
+            "size": { "w": 100, "h": 90 },
+            "fill_color": "#10B981"
           },
           {
             "type": "surface",
             "id": "floor",
             "orientation": "horizontal",
-            "position": {
-              "x": 180,
-              "y": 420
-            },
+            "position": { "x": 180, "y": 420 },
             "length": 300,
             "texture": "rough"
           },
           {
             "type": "label",
+            "id": "chaos_question",
             "text": "?",
-            "position": {
-              "x": 460,
-              "y": 270
-            },
+            "position": { "x": 460, "y": 270 },
             "font_size": 56,
             "color": "#EF4444",
             "bold": true
           },
           {
             "type": "annotation",
+            "id": "chaos_callout",
             "text": "Three stacked blocks. Which forces act where? Which equation applies to which body?",
-            "position": {
-              "x": 500,
-              "y": 170
-            },
+            "position": { "x": 500, "y": 170 },
             "style": "callout"
           },
           {
             "type": "annotation",
+            "id": "fix_preview",
             "text": "Without an FBD: chaos.  With an FBD: one body, one equation at a time.",
-            "position": {
-              "x": 60,
-              "y": 450
-            },
+            "position": { "x": 60, "y": 450 },
             "style": "callout",
             "color": "#10B981"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Three blocks stacked on each other. You are asked to find the forces everywhere."
-            },
-            {
-              "id": "s2",
-              "text_en": "Trying to draw everything in one picture gets confusing fast. Which normal reaction belongs to which pair? Where does each weight act?"
-            },
-            {
-              "id": "s3",
-              "text_en": "The free body diagram answers this by looking at only one body at a time. All other bodies are temporarily ignored."
-            },
-            {
-              "id": "s4",
-              "text_en": "This is a technique, not a trick. It is the first step in every single exam problem involving forces."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "floor,student", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.3, "show": "block_C", "enter": "fade_in", "duration": 400 },
+            { "at_t": 0.8, "show": "block_B", "enter": "fade_in", "duration": 400 },
+            { "at_t": 1.3, "show": "block_A", "enter": "fade_in", "duration": 400 },
+            { "at_t": 1.9, "show": "chaos_question", "enter": "pulse_in", "duration": 500 },
+            { "at_t": 2.5, "show": "chaos_callout,fix_preview", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Three blocks stacked on each other. You are asked to find the forces everywhere." },
+            { "id": "s2", "text_en": "Trying to draw everything in one picture gets confusing fast. Which normal reaction belongs to which pair? Where does each weight act?" },
+            { "id": "s3", "text_en": "The free body diagram answers this by looking at only one body at a time. All other bodies are temporarily ignored." },
+            { "id": "s4", "text_en": "This is a technique, not a trick. It is the first step in every single exam problem involving forces." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": false
       },
+
       "STATE_2": {
         "title": "The Isolation — Cut the Body Free. Every Cut Becomes a Force.",
         "duration": 8,
+        "focal_primitive_id": "block_B_isolated",
         "scene_composition": [
           {
             "type": "body",
             "id": "block_B_original",
             "shape": "rect",
             "label": "B",
-            "position": {
-              "x": 200,
-              "y": 260
-            },
-            "size": {
-              "w": 90,
-              "h": 75
-            },
+            "position": { "x": 200, "y": 260 },
+            "size": { "w": 90, "h": 75 },
             "fill_color": "#F59E0B"
           },
           {
@@ -227,44 +221,20 @@
             "id": "block_A_ghost",
             "shape": "rect",
             "label": "A (above)",
-            "position": {
-              "x": 200,
-              "y": 190
-            },
-            "size": {
-              "w": 90,
-              "h": 65
-            },
+            "position": { "x": 200, "y": 190 },
+            "size": { "w": 90, "h": 65 },
             "fill_color": "#3B82F6",
-            "animation": {
-              "type": "translate",
-              "dx_px": 0,
-              "dy_px": -60,
-              "delay_sec": 0.6,
-              "duration_sec": 1
-            }
+            "opacity": 0.35
           },
           {
             "type": "body",
             "id": "block_C_ghost",
             "shape": "rect",
             "label": "C (below)",
-            "position": {
-              "x": 200,
-              "y": 335
-            },
-            "size": {
-              "w": 90,
-              "h": 85
-            },
+            "position": { "x": 200, "y": 335 },
+            "size": { "w": 90, "h": 85 },
             "fill_color": "#10B981",
-            "animation": {
-              "type": "translate",
-              "dx_px": 0,
-              "dy_px": 70,
-              "delay_sec": 0.6,
-              "duration_sec": 1
-            }
+            "opacity": 0.35
           },
           {
             "type": "body",
@@ -272,98 +242,77 @@
             "shape": "rect",
             "label": "Block B (isolated)",
             "label_below": true,
-            "position": {
-              "x": 430,
-              "y": 250
-            },
-            "size": {
-              "w": 110,
-              "h": 80
-            },
+            "position": { "x": 430, "y": 250 },
+            "size": { "w": 110, "h": 80 },
             "fill_color": "#F59E0B",
             "border_color": "#D97706",
-            "border_width": 3,
-            "animation": {
-              "type": "fade_in",
-              "delay_sec": 1.8,
-              "duration_sec": 0.8
-            }
+            "border_width": 3
           },
           {
             "type": "force_arrow",
+            "id": "mg_B_arrow",
             "from": "block_B_isolated_center",
             "magnitude": 29.4,
             "direction_deg": 270,
             "label": "mg_B = 29.4 N",
             "color": "#EF4444",
-            "scale_pixels_per_unit": 2,
-            "label_offset": {
-              "dx": 10,
-              "dy": 0
-            }
+            "scale_pixels_per_unit": 2
           },
           {
             "type": "force_arrow",
+            "id": "N1_arrow",
             "from": "block_B_isolated_top_center",
             "magnitude": 19.6,
             "direction_deg": 270,
-            "label": "N₁ = 19.6 N (A pushes down)",
+            "label": "N1 = 19.6 N (A pushes down)",
             "color": "#3B82F6",
-            "scale_pixels_per_unit": 1.5,
-            "label_offset": {
-              "dx": 10,
-              "dy": -10
-            }
+            "scale_pixels_per_unit": 1.5
           },
           {
             "type": "force_arrow",
+            "id": "N2_arrow",
             "from": "block_B_isolated_bottom_center",
             "magnitude": 49,
             "direction_deg": 90,
-            "label": "N₂ = 49 N (C pushes up)",
+            "label": "N2 = 49 N (C pushes up)",
             "color": "#10B981",
-            "scale_pixels_per_unit": 1,
-            "label_offset": {
-              "dx": 10,
-              "dy": 10
-            }
+            "scale_pixels_per_unit": 1
           },
           {
             "type": "annotation",
-            "text": "Remove A → N₁ arrow (A's force on B).\nRemove C → N₂ arrow (C's force on B).\nEach removed connection becomes one force arrow.",
-            "position": {
-              "x": 60,
-              "y": 440
-            },
+            "id": "isolation_callout",
+            "text": "Remove A -> N1 arrow (A's force on B).\nRemove C -> N2 arrow (C's force on B).\nEach removed connection becomes one force arrow.",
+            "position": { "x": 60, "y": 440 },
             "style": "callout",
             "color": "#6B7280"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Isolate block B. Remove A and remove C. Only B remains on the page."
-            },
-            {
-              "id": "s2",
-              "text_en": "When A is removed, the push A exerted on B becomes a force arrow, N one, pointing downward."
-            },
-            {
-              "id": "s3",
-              "text_en": "When C is removed, the push C exerted on B becomes a force arrow, N two, pointing upward."
-            },
-            {
-              "id": "s4",
-              "text_en": "This is the magic of the free body diagram. Every removed connection is replaced by a force arrow."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "block_B_original,block_A_ghost,block_C_ghost", "enter": "fade_in", "duration": 400 },
+            { "at_t": 0.8, "show": "block_B_isolated", "enter": "slide_right", "duration": 600 },
+            { "at_t": 1.6, "show": "mg_B_arrow", "enter": "grow_downward", "duration": 400 },
+            { "at_t": 2.1, "show": "N1_arrow", "enter": "grow_downward", "duration": 400 },
+            { "at_t": 2.6, "show": "N2_arrow", "enter": "grow_upward", "duration": 400 },
+            { "at_t": 3.2, "show": "isolation_callout", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Isolate block B. Remove A and remove C. Only B remains on the page." },
+            { "id": "s2", "text_en": "When A is removed, the push A exerted on B becomes a force arrow, N one, pointing downward." },
+            { "id": "s3", "text_en": "When C is removed, the push C exerted on B becomes a force arrow, N two, pointing upward." },
+            { "id": "s4", "text_en": "This is the magic of the free body diagram. Every removed connection is replaced by a force arrow. Tap continue." }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "allow_deep_dive": true
       },
+
       "STATE_3": {
-        "title": "The WHY — The Body Only Feels Forces. It Does Not Know Its Neighbors.",
+        "title": "The WHY — The Body Only Feels Forces. It Does Not Know Its Neighbours.",
         "duration": 6,
+        "focal_primitive_id": "equation_box",
         "scene_composition": [
           {
             "type": "body",
@@ -371,99 +320,79 @@
             "shape": "rect",
             "label": "Block B",
             "label_below": true,
-            "position": {
-              "x": 300,
-              "y": 240
-            },
-            "size": {
-              "w": 130,
-              "h": 90
-            },
+            "position": { "x": 300, "y": 240 },
+            "size": { "w": 130, "h": 90 },
             "fill_color": "#F59E0B"
           },
           {
             "type": "force_arrow",
+            "id": "mg_only",
             "from": "block_isolated_center",
             "magnitude": 29.4,
             "direction_deg": 270,
             "label": "mg",
             "color": "#EF4444",
-            "scale_pixels_per_unit": 2,
-            "label_offset": {
-              "dx": 8,
-              "dy": 0
-            }
+            "scale_pixels_per_unit": 2
           },
           {
             "type": "force_arrow",
+            "id": "N1_only",
             "from": "block_isolated_top_center",
             "magnitude": 19.6,
             "direction_deg": 270,
-            "label": "N₁",
+            "label": "N1",
             "color": "#3B82F6",
-            "scale_pixels_per_unit": 1.5,
-            "label_offset": {
-              "dx": -30,
-              "dy": -8
-            }
+            "scale_pixels_per_unit": 1.5
           },
           {
             "type": "force_arrow",
+            "id": "N2_only",
             "from": "block_isolated_bottom_center",
             "magnitude": 49,
             "direction_deg": 90,
-            "label": "N₂",
+            "label": "N2",
             "color": "#10B981",
-            "scale_pixels_per_unit": 1,
-            "label_offset": {
-              "dx": 8,
-              "dy": 0
-            }
+            "scale_pixels_per_unit": 1
           },
           {
             "type": "formula_box",
-            "equation": "ΣFy = N₂ − N₁ − mg = 49 − 19.6 − 29.4 = 0 ✓",
-            "position": {
-              "x": 60,
-              "y": 430
-            },
+            "id": "equation_box",
+            "equation": "sum(Fy) = N2 - N1 - mg = 49 - 19.6 - 29.4 = 0",
+            "position": { "x": 60, "y": 430 },
             "border_color": "#10B981"
           },
           {
             "type": "annotation",
-            "text": "Block B has no idea whether A is above or C is below. It only feels the forces acting on it — N₁, N₂, mg.",
-            "position": {
-              "x": 480,
-              "y": 200
-            },
+            "id": "why_callout",
+            "text": "Block B has no idea whether A is above or C is below. It only feels the forces acting on it — N1, N2, mg.",
+            "position": { "x": 480, "y": 200 },
             "style": "callout"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Block B has no idea whether A is above or C is below. It only feels forces acting on its own surface."
-            },
-            {
-              "id": "s2",
-              "text_en": "N one is a downward force. N two is an upward force. The weight is downward."
-            },
-            {
-              "id": "s3",
-              "text_en": "Write Newton's second law directly: sum of forces in y equals N two minus N one minus mg equals zero."
-            },
-            {
-              "id": "s4",
-              "text_en": "The free body diagram turned a complicated system into a single clean equation. That is its real power."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "block_isolated", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "mg_only,N1_only,N2_only", "enter": "grow_in", "duration": 500 },
+            { "at_t": 1.2, "show": "equation_box", "enter": "typewriter", "duration": 700 },
+            { "at_t": 2.0, "show": "why_callout", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Block B has no idea whether A is above or C is below. It only feels forces acting on its own surface." },
+            { "id": "s2", "text_en": "N one is a downward force. N two is an upward force. The weight is downward." },
+            { "id": "s3", "text_en": "Write Newton's second law directly: sum of forces in y equals N two minus N one minus mg equals zero." },
+            { "id": "s4", "text_en": "The free body diagram turned a complicated system into a single clean equation. That is its real power." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": false
       },
+
       "STATE_4": {
         "title": "FBD Step-by-Step — Book on a Flat Table (Simplest Case)",
         "duration": 6,
+        "focal_primitive_id": "real_vs_fbd",
         "scene_composition": [
           {
             "type": "comparison_panel",
@@ -474,10 +403,7 @@
               {
                 "type": "surface",
                 "orientation": "horizontal",
-                "position": {
-                  "x": 30,
-                  "y": 190
-                },
+                "position": { "x": 30, "y": 190 },
                 "length": 220,
                 "texture": "rough",
                 "label": "Table"
@@ -487,22 +413,13 @@
                 "shape": "rect",
                 "label": "Book (0.5 kg)",
                 "fill_color": "#3B82F6",
-                "position": {
-                  "x": 110,
-                  "y": 130
-                },
-                "size": {
-                  "w": 80,
-                  "h": 55
-                }
+                "position": { "x": 110, "y": 130 },
+                "size": { "w": 80, "h": 55 }
               },
               {
                 "type": "annotation",
                 "text": "Looks simple — what forces are here?",
-                "position": {
-                  "x": 30,
-                  "y": 230
-                }
+                "position": { "x": 30, "y": 230 }
               }
             ],
             "right_scene": [
@@ -513,14 +430,8 @@
                 "fill_color": "#3B82F6",
                 "border_color": "#1D4ED8",
                 "border_width": 3,
-                "position": {
-                  "x": 110,
-                  "y": 130
-                },
-                "size": {
-                  "w": 80,
-                  "h": 55
-                }
+                "position": { "x": 110, "y": 130 },
+                "size": { "w": 80, "h": 55 }
               },
               {
                 "type": "force_arrow",
@@ -529,10 +440,7 @@
                 "label": "mg = 4.9 N",
                 "color": "#EF4444",
                 "scale_pixels_per_unit": 8,
-                "position": {
-                  "x": 150,
-                  "y": 160
-                }
+                "position": { "x": 150, "y": 160 }
               },
               {
                 "type": "force_arrow",
@@ -541,57 +449,57 @@
                 "label": "N = 4.9 N",
                 "color": "#10B981",
                 "scale_pixels_per_unit": 8,
-                "position": {
-                  "x": 150,
-                  "y": 160
-                }
+                "position": { "x": 150, "y": 160 }
               },
               {
                 "type": "annotation",
-                "text": "Two forces. ΣFy = N − mg = 0. N = mg = 4.9 N.",
+                "text": "Two forces. sum(Fy) = N - mg = 0. N = mg = 4.9 N.",
                 "color": "#10B981",
-                "position": {
-                  "x": 30,
-                  "y": 230
-                }
+                "position": { "x": 30, "y": 230 }
               }
             ]
           },
           {
+            "type": "label",
+            "id": "template_header",
+            "text": "The simplest template — memorise this pattern.",
+            "position": { "x": 190, "y": 40 },
+            "font_size": 17,
+            "color": "#1F2937",
+            "bold": true
+          },
+          {
             "type": "annotation",
-            "text": "The simplest free body diagram — memorize this pattern.",
-            "position": {
-              "x": 220,
-              "y": 460
-            },
+            "id": "template_callout",
+            "text": "Every harder problem is just this pattern with more arrows added.",
+            "position": { "x": 220, "y": 460 },
+            "style": "callout",
             "color": "#9CA3AF"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "The simplest free body diagram. A book resting on a table."
-            },
-            {
-              "id": "s2",
-              "text_en": "Isolate the book. Remove the table, and the contact becomes an upward normal reaction. Gravity still pulls straight down."
-            },
-            {
-              "id": "s3",
-              "text_en": "Two forces: N upward and mg downward. Sum of forces in y equals N minus mg equals zero, so N equals mg equals four point nine newtons."
-            },
-            {
-              "id": "s4",
-              "text_en": "This template repeats for every problem. Isolate the body, replace each contact with an arrow, apply Newton's law."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "template_header", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "real_vs_fbd", "enter": "fade_in", "duration": 500 },
+            { "at_t": 1.3, "show": "template_callout", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The simplest free body diagram. A book resting on a table." },
+            { "id": "s2", "text_en": "Isolate the book. Remove the table, and the contact becomes an upward normal reaction. Gravity still pulls straight down." },
+            { "id": "s3", "text_en": "Two forces: N upward and mg downward. Sum of forces in y equals N minus mg equals zero, so N equals mg equals four point nine newtons." },
+            { "id": "s4", "text_en": "This template repeats for every problem. Isolate the body, replace each contact with an arrow, apply Newton's law. Tap continue." }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "allow_deep_dive": false
       },
+
       "STATE_5": {
         "title": "FBD on an Incline — Three Forces, Only mg Is Vertical",
         "duration": 7,
+        "focal_primitive_id": "flat_vs_incline",
         "scene_composition": [
           {
             "type": "comparison_panel",
@@ -604,14 +512,8 @@
                 "shape": "rect",
                 "label": "Block",
                 "fill_color": "#6B7280",
-                "position": {
-                  "x": 110,
-                  "y": 130
-                },
-                "size": {
-                  "w": 80,
-                  "h": 60
-                }
+                "position": { "x": 110, "y": 130 },
+                "size": { "w": 80, "h": 60 }
               },
               {
                 "type": "force_arrow",
@@ -620,10 +522,7 @@
                 "label": "mg",
                 "color": "#EF4444",
                 "scale_pixels_per_unit": 3,
-                "position": {
-                  "x": 150,
-                  "y": 160
-                }
+                "position": { "x": 150, "y": 160 }
               },
               {
                 "type": "force_arrow",
@@ -632,18 +531,12 @@
                 "label": "N",
                 "color": "#10B981",
                 "scale_pixels_per_unit": 3,
-                "position": {
-                  "x": 150,
-                  "y": 160
-                }
+                "position": { "x": 150, "y": 160 }
               },
               {
                 "type": "annotation",
                 "text": "Two forces. Simple.",
-                "position": {
-                  "x": 30,
-                  "y": 240
-                }
+                "position": { "x": 30, "y": 240 }
               }
             ],
             "right_scene": [
@@ -652,10 +545,7 @@
                 "id": "incline_fbd",
                 "orientation": "inclined",
                 "angle_deg": 30,
-                "position": {
-                  "x": 30,
-                  "y": 220
-                },
+                "position": { "x": 30, "y": 220 },
                 "length": 220
               },
               {
@@ -665,14 +555,8 @@
                 "label": "Block",
                 "label_below": true,
                 "fill_color": "#6B7280",
-                "position": {
-                  "x": 100,
-                  "y": 140
-                },
-                "size": {
-                  "w": 65,
-                  "h": 45
-                },
+                "position": { "x": 100, "y": 140 },
+                "size": { "w": 65, "h": 45 },
                 "rotation_deg": -30
               },
               {
@@ -682,11 +566,7 @@
                 "direction_deg": 270,
                 "label": "mg",
                 "color": "#EF4444",
-                "scale_pixels_per_unit": 1.8,
-                "label_offset": {
-                  "dx": 4,
-                  "dy": 0
-                }
+                "scale_pixels_per_unit": 1.8
               },
               {
                 "type": "force_arrow",
@@ -695,11 +575,7 @@
                 "direction_deg": 120,
                 "label": "N",
                 "color": "#10B981",
-                "scale_pixels_per_unit": 1.8,
-                "label_offset": {
-                  "dx": -14,
-                  "dy": -4
-                }
+                "scale_pixels_per_unit": 1.8
               },
               {
                 "type": "force_arrow",
@@ -708,49 +584,57 @@
                 "direction_deg": 210,
                 "label": "f",
                 "color": "#F59E0B",
-                "scale_pixels_per_unit": 1.8,
-                "label_offset": {
-                  "dx": -18,
-                  "dy": 0
-                }
+                "scale_pixels_per_unit": 1.8
               },
               {
                 "type": "annotation",
-                "text": "mg vertical.  N ⟂ surface.  f ∥ surface.",
+                "text": "mg vertical.  N perp surface.  f along surface.",
                 "color": "#6B7280",
-                "position": {
-                  "x": 20,
-                  "y": 250
-                }
+                "position": { "x": 20, "y": 250 }
               }
             ]
+          },
+          {
+            "type": "label",
+            "id": "incline_rules_header",
+            "text": "Incline FBD rules (never forget):",
+            "position": { "x": 220, "y": 40 },
+            "font_size": 17,
+            "color": "#1F2937",
+            "bold": true
+          },
+          {
+            "type": "annotation",
+            "id": "incline_rules",
+            "text": "1. mg is ALWAYS vertical — never rotate with the incline.\n2. N is ALWAYS perpendicular to the surface — rotates with it.\n3. f is ALWAYS along the surface, opposing sliding.",
+            "position": { "x": 150, "y": 500 },
+            "style": "callout",
+            "color": "#8B5CF6"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "On an inclined surface, three forces live on the free body diagram — mg, N, and f."
-            },
-            {
-              "id": "s2",
-              "text_en": "mg is always straight down, even on an incline. Weight is a gravitational force and does not care about the surface."
-            },
-            {
-              "id": "s3",
-              "text_en": "N is always perpendicular to the surface. Tilt the incline and N tilts with it."
-            },
-            {
-              "id": "s4",
-              "text_en": "f always lies along the surface, pointing opposite to the sliding direction. These three rules repeat on every incline problem."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "incline_rules_header", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "flat_vs_incline", "enter": "fade_in", "duration": 500 },
+            { "at_t": 1.3, "show": "incline_rules", "enter": "fade_in", "duration": 500 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "On an inclined surface, three forces live on the free body diagram — mg, N, and f." },
+            { "id": "s2", "text_en": "mg is always straight down, even on an incline. Weight is a gravitational force and does not care about the surface." },
+            { "id": "s3", "text_en": "N is always perpendicular to the surface. Tilt the incline and N tilts with it." },
+            { "id": "s4", "text_en": "f always lies along the surface, pointing opposite to the sliding direction. These three rules repeat on every incline problem." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": true
       },
+
       "STATE_6": {
         "title": "The Six-Force Checklist — Never Miss a Force Again",
         "duration": 8,
+        "focal_primitive_id": "checklist_callout",
         "scene_composition": [
           {
             "type": "body",
@@ -758,130 +642,107 @@
             "shape": "rect",
             "label": "Body X",
             "label_below": true,
-            "position": {
-              "x": 200,
-              "y": 230
-            },
-            "size": {
-              "w": 150,
-              "h": 120
-            },
+            "position": { "x": 200, "y": 230 },
+            "size": { "w": 150, "h": 120 },
             "fill_color": "#6B7280"
           },
           {
             "type": "force_arrow",
+            "id": "mg_checklist",
             "from": "complex_block_center",
             "magnitude": 30,
             "direction_deg": 270,
             "label": "mg",
             "color": "#EF4444",
-            "scale_pixels_per_unit": 1.8,
-            "label_offset": {
-              "dx": 4,
-              "dy": 0
-            }
+            "scale_pixels_per_unit": 1.8
           },
           {
             "type": "force_arrow",
+            "id": "N_checklist",
             "from": "complex_block_bottom_center",
             "magnitude": 26,
             "direction_deg": 120,
             "label": "N",
             "color": "#10B981",
-            "scale_pixels_per_unit": 1.6,
-            "label_offset": {
-              "dx": -14,
-              "dy": -4
-            }
+            "scale_pixels_per_unit": 1.6
           },
           {
             "type": "force_arrow",
+            "id": "f_checklist",
             "from": "complex_block_bottom_center",
             "magnitude": 12,
             "direction_deg": 210,
             "label": "f",
             "color": "#F59E0B",
-            "scale_pixels_per_unit": 1.8,
-            "label_offset": {
-              "dx": -14,
-              "dy": 0
-            }
+            "scale_pixels_per_unit": 1.8
           },
           {
             "type": "force_arrow",
+            "id": "T_checklist",
             "from": "complex_block_top_center",
             "magnitude": 20,
             "direction_deg": 60,
             "label": "T",
             "color": "#3B82F6",
-            "scale_pixels_per_unit": 1.8,
-            "label_offset": {
-              "dx": 8,
-              "dy": -4
-            }
+            "scale_pixels_per_unit": 1.8
           },
           {
             "type": "force_arrow",
+            "id": "kx_checklist",
             "from": "complex_block_left",
             "magnitude": 15,
             "direction_deg": 180,
             "label": "kx",
             "color": "#8B5CF6",
-            "scale_pixels_per_unit": 1.8,
-            "label_offset": {
-              "dx": -4,
-              "dy": -10
-            }
+            "scale_pixels_per_unit": 1.8
           },
           {
             "type": "annotation",
-            "text": "Checklist:\n✓ Weight (mg)\n✓ N — every surface contact\n✓ f — every rough surface\n✓ T — every string/rope\n✓ Spring (kx) — if attached\n✓ Hinge (H, V) — if pin joint",
-            "position": {
-              "x": 420,
-              "y": 130
-            },
+            "id": "checklist_callout",
+            "text": "Checklist:\n- Weight (mg)\n- N — every surface contact\n- f — every rough surface\n- T — every string/rope\n- Spring (kx) — if attached\n- Hinge (H, V) — if pin joint",
+            "position": { "x": 420, "y": 130 },
             "style": "callout",
             "color": "#6B7280"
           },
           {
             "type": "formula_box",
-            "equation": "After the FBD: write ΣFx = max and ΣFy = may. Solve for the unknowns.",
-            "position": {
-              "x": 60,
-              "y": 440
-            },
+            "id": "final_step",
+            "equation": "After the FBD: write sum(Fx) = m*ax and sum(Fy) = m*ay. Solve for the unknowns.",
+            "position": { "x": 60, "y": 440 },
             "border_color": "#10B981"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Remember this six-force checklist and apply it mentally every time you build a free body diagram."
-            },
-            {
-              "id": "s2",
-              "text_en": "Weight is always present. Normal comes from every surface in contact. Friction comes from every rough surface. Tension comes from every string."
-            },
-            {
-              "id": "s3",
-              "text_en": "Spring force and hinge force appear only if those connections are present."
-            },
-            {
-              "id": "s4",
-              "text_en": "Miss a single force and your equation is wrong. A complete FBD is what makes Newton's law work."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "complex_block", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "mg_checklist", "enter": "grow_in", "duration": 300 },
+            { "at_t": 0.8, "show": "N_checklist", "enter": "grow_in", "duration": 300 },
+            { "at_t": 1.2, "show": "f_checklist", "enter": "grow_in", "duration": 300 },
+            { "at_t": 1.6, "show": "T_checklist", "enter": "grow_in", "duration": 300 },
+            { "at_t": 2.0, "show": "kx_checklist", "enter": "grow_in", "duration": 300 },
+            { "at_t": 2.5, "show": "checklist_callout", "enter": "fade_in", "duration": 500 },
+            { "at_t": 3.2, "show": "final_step", "enter": "typewriter", "duration": 700 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Remember this six-force checklist and apply it mentally every time you build a free body diagram." },
+            { "id": "s2", "text_en": "Weight is always present. Normal comes from every surface in contact. Friction comes from every rough surface. Tension comes from every string." },
+            { "id": "s3", "text_en": "Spring force and hinge force appear only if those connections are present." },
+            { "id": "s4", "text_en": "Miss a single force and your equation is wrong. A complete FBD is what makes Newton's law work." }
+          ]
+        },
+        "advance_mode": "interaction_complete",
+        "allow_deep_dive": false
       }
     }
   },
+
   "panel_b_config": {
     "renderer": "graph_interactive",
     "graph_type": "force_balance_bars",
     "title": "Force Balance Check",
-    "subtitle": "ΣFx and ΣFy must equal zero for equilibrium, or ma for acceleration",
+    "subtitle": "sum(Fx) and sum(Fy) must equal zero for equilibrium, or ma for acceleration",
     "x_axis": {
       "variable": "component",
       "label": "Force component",
@@ -907,22 +768,17 @@
     "annotations": [
       {
         "text": "A bar at zero means that component is balanced.",
-        "position": {
-          "x": 0.2,
-          "y": 35
-        },
+        "position": { "x": 0.2, "y": 35 },
         "color": "#6B7280"
       },
       {
         "text": "A non-zero bar means net force, so the body accelerates.",
-        "position": {
-          "x": 0.2,
-          "y": -40
-        },
+        "position": { "x": 0.2, "y": -40 },
         "color": "#F59E0B"
       }
     ]
   },
+
   "regeneration_variants": [
     {
       "variant_id": "atwood_fbd",
@@ -930,17 +786,26 @@
       "label": "Atwood Machine — Two FBDs",
       "physical_world": "Two masses on an Atwood machine. Draw a separate free body diagram for each mass. The same T appears in both diagrams.",
       "same_physics": "Isolate each body and show all forces. T appears in both FBDs as the string force.",
-      "scene_hint": "FBD of m₁: T up, m₁g down. FBD of m₂: T up, m₂g down. The two T's are equal because the string is massless."
+      "scene_hint": "FBD of m1: T up, m1*g down. FBD of m2: T up, m2*g down. The two T's are equal because the string is massless."
     },
     {
       "variant_id": "block_two_strings",
       "type": "B",
       "label": "Block Hanging from Two Strings at Different Angles",
-      "physical_world": "A block hangs from two strings attached to the ceiling at different angles. The FBD shows T₁ and T₂ pointing along their strings, plus mg straight down.",
-      "same_physics": "Isolate the block. Resolve T₁ and T₂ into x and y components. ΣFx = 0 and ΣFy = 0 give the two tensions.",
-      "scene_hint": "Block body. String 1 going up-left at angle α. String 2 going up-right at angle β. mg pointing straight down."
+      "physical_world": "A block hangs from two strings attached to the ceiling at different angles. The FBD shows T1 and T2 pointing along their strings, plus mg straight down.",
+      "same_physics": "Isolate the block. Resolve T1 and T2 into x and y components. sum(Fx) = 0 and sum(Fy) = 0 give the two tensions.",
+      "scene_hint": "Block body. String 1 going up-left at angle alpha. String 2 going up-right at angle beta. mg pointing straight down."
+    },
+    {
+      "variant_id": "lift_accelerating",
+      "type": "B",
+      "label": "Person Standing in an Accelerating Lift",
+      "physical_world": "A person stands on a spring scale inside a lift that accelerates upward at a m/s^2. Draw the person's FBD.",
+      "same_physics": "Isolate the person. Two forces: N from scale (up), mg (down). Apply sum(Fy) = ma -> N - mg = ma -> N = m(g + a). Apparent weight differs from true weight.",
+      "scene_hint": "Person as rect inside lift. Scale below. N up, mg down, labelled 'lift accelerates upward at a'."
     }
   ],
+
   "epic_c_branches": [
     {
       "branch_id": "show_forces_on_both_bodies",
@@ -948,18 +813,18 @@
       "trigger_phrases": [
         "show A and B together in FBD",
         "both blocks in one diagram",
-        "system FBD with all bodies"
+        "system FBD with all bodies",
+        "one FBD for the whole system"
       ],
-      "state_sequence": [
-        "EPIC_C_1",
-        "EPIC_C_2"
-      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
       "states": {
         "EPIC_C_1": {
           "title": "Your Belief: FBD Shows Forces on Multiple Bodies",
+          "focal_primitive_id": "wrong_vs_right_panel",
           "scene_composition": [
             {
               "type": "comparison_panel",
+              "id": "wrong_vs_right_panel",
               "left_label": "Wrong — both bodies together",
               "right_label": "Correct — one body at a time",
               "left_scene": [
@@ -969,23 +834,14 @@
                   "label": "A + B together?",
                   "fill_color": "#EF4444",
                   "border_color": "#EF4444",
-                  "position": {
-                    "x": 100,
-                    "y": 120
-                  },
-                  "size": {
-                    "w": 120,
-                    "h": 90
-                  }
+                  "position": { "x": 100, "y": 120 },
+                  "size": { "w": 120, "h": 90 }
                 },
                 {
                   "type": "annotation",
                   "text": "Two bodies together.\nNewton's law cannot be written this way\nwithout a separate FBD of each.",
                   "color": "#EF4444",
-                  "position": {
-                    "x": 20,
-                    "y": 250
-                  }
+                  "position": { "x": 20, "y": 250 }
                 }
               ],
               "right_scene": [
@@ -996,14 +852,8 @@
                   "fill_color": "#3B82F6",
                   "border_color": "#1D4ED8",
                   "border_width": 3,
-                  "position": {
-                    "x": 100,
-                    "y": 120
-                  },
-                  "size": {
-                    "w": 120,
-                    "h": 70
-                  }
+                  "position": { "x": 100, "y": 120 },
+                  "size": { "w": 120, "h": 70 }
                 },
                 {
                   "type": "force_arrow",
@@ -1012,73 +862,64 @@
                   "label": "mg_A",
                   "color": "#EF4444",
                   "scale_pixels_per_unit": 3,
-                  "position": {
-                    "x": 160,
-                    "y": 155
-                  }
+                  "position": { "x": 160, "y": 155 }
                 },
                 {
                   "type": "force_arrow",
                   "magnitude": 15,
                   "direction_deg": 90,
-                  "label": "N₁",
+                  "label": "N1",
                   "color": "#10B981",
                   "scale_pixels_per_unit": 3,
-                  "position": {
-                    "x": 160,
-                    "y": 155
-                  }
+                  "position": { "x": 160, "y": 155 }
                 },
                 {
                   "type": "annotation",
-                  "text": "One body. ΣF = ma can be written directly.",
+                  "text": "One body. sum(F) = ma can be written directly.",
                   "color": "#10B981",
-                  "position": {
-                    "x": 20,
-                    "y": 260
-                  }
+                  "position": { "x": 20, "y": 260 }
                 }
               ]
+            },
+            {
+              "type": "label",
+              "id": "rule_header",
+              "text": "Rule: one FBD = exactly ONE body (or one chosen sub-system).",
+              "position": { "x": 70, "y": 40 },
+              "font_size": 17,
+              "color": "#1F2937",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "internal_cancel_note",
+              "text": "Internal action-reaction pairs between the two bodies\ncancel each other — so a 'both bodies' FBD tells you nothing useful.",
+              "position": { "x": 90, "y": 490 },
+              "style": "callout",
+              "color": "#F59E0B"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "Recall the definition of a free body diagram — one body or one sub-system, fully isolated."
-              },
-              {
-                "id": "s2",
-                "text_en": "If you draw two bodies together, you would need to show the action-reaction pair of internal forces between them."
-              },
-              {
-                "id": "s3",
-                "text_en": "Those internal forces cancel each other, so the diagram tells you nothing useful."
-              },
-              {
-                "id": "s4",
-                "text_en": "One FBD means one body. Three stacked blocks means three separate FBDs."
-              }
+              { "id": "s1", "text_en": "Recall the definition of a free body diagram — one body or one sub-system, fully isolated." },
+              { "id": "s2", "text_en": "If you draw two bodies together, you would need to show the action-reaction pair of internal forces between them." },
+              { "id": "s3", "text_en": "Those internal forces cancel each other, so the diagram tells you nothing useful." },
+              { "id": "s4", "text_en": "One FBD means one body. Three stacked blocks means three separate FBDs." }
             ]
           },
           "advance_mode": "auto_after_tts"
         },
         "EPIC_C_2": {
           "title": "One Body Per FBD — Then Solve the System",
+          "focal_primitive_id": "system_callout",
           "scene_composition": [
             {
               "type": "body",
               "id": "A_fbd",
               "shape": "rect",
               "label": "FBD of A",
-              "position": {
-                "x": 150,
-                "y": 250
-              },
-              "size": {
-                "w": 90,
-                "h": 70
-              },
+              "position": { "x": 150, "y": 250 },
+              "size": { "w": 90, "h": 70 },
               "fill_color": "#3B82F6",
               "border_color": "#1D4ED8",
               "border_width": 2
@@ -1088,7 +929,7 @@
               "from": "A_fbd_center",
               "magnitude": 19.6,
               "direction_deg": 270,
-              "label": "m_A g",
+              "label": "m_A*g",
               "color": "#EF4444",
               "scale_pixels_per_unit": 2
             },
@@ -1097,7 +938,7 @@
               "from": "A_fbd_bottom_center",
               "magnitude": 19.6,
               "direction_deg": 90,
-              "label": "N₁ (B on A)",
+              "label": "N1 (B on A)",
               "color": "#10B981",
               "scale_pixels_per_unit": 2
             },
@@ -1106,14 +947,8 @@
               "id": "B_fbd",
               "shape": "rect",
               "label": "FBD of B",
-              "position": {
-                "x": 400,
-                "y": 250
-              },
-              "size": {
-                "w": 90,
-                "h": 80
-              },
+              "position": { "x": 400, "y": 250 },
+              "size": { "w": 90, "h": 80 },
               "fill_color": "#F59E0B",
               "border_color": "#D97706",
               "border_width": 2
@@ -1123,7 +958,7 @@
               "from": "B_fbd_center",
               "magnitude": 29.4,
               "direction_deg": 270,
-              "label": "m_B g",
+              "label": "m_B*g",
               "color": "#EF4444",
               "scale_pixels_per_unit": 1.5
             },
@@ -1132,7 +967,7 @@
               "from": "B_fbd_top_center",
               "magnitude": 19.6,
               "direction_deg": 270,
-              "label": "N₁ (A on B)",
+              "label": "N1 (A on B)",
               "color": "#3B82F6",
               "scale_pixels_per_unit": 2
             },
@@ -1141,42 +976,28 @@
               "from": "B_fbd_bottom_center",
               "magnitude": 49,
               "direction_deg": 90,
-              "label": "N₂ (C on B)",
+              "label": "N2 (C on B)",
               "color": "#10B981",
               "scale_pixels_per_unit": 1
             },
             {
               "type": "annotation",
+              "id": "system_callout",
               "text": "Each FBD yields one equation. Solve the equations together to find every unknown.",
-              "position": {
-                "x": 200,
-                "y": 440
-              },
+              "position": { "x": 200, "y": 440 },
               "style": "callout",
               "color": "#6B7280"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "Draw a separate FBD for each body — one for A, one for B, one for C."
-              },
-              {
-                "id": "s2",
-                "text_en": "Each FBD gives you one Newton's law equation."
-              },
-              {
-                "id": "s3",
-                "text_en": "Three bodies give three equations. Three unknowns like N one, N two, and N three get solved simultaneously."
-              },
-              {
-                "id": "s4",
-                "text_en": "This systematic approach scales. Whether you have two bodies or ten, the process is the same."
-              }
+              { "id": "s1", "text_en": "Draw a separate FBD for each body — one for A, one for B, one for C." },
+              { "id": "s2", "text_en": "Each FBD gives you one Newton's law equation." },
+              { "id": "s3", "text_en": "Three bodies give three equations. Three unknowns like N one, N two, and N three get solved simultaneously." },
+              { "id": "s4", "text_en": "This systematic approach scales. Whether you have two bodies or ten, the process is the same." }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "manual_click"
         }
       }
     },
@@ -1188,31 +1009,25 @@
         "gravity acts at the support point",
         "weight acts at contact"
       ],
-      "state_sequence": [
-        "EPIC_C_1"
-      ],
+      "state_sequence": ["EPIC_C_1"],
       "states": {
         "EPIC_C_1": {
-          "title": "Gravity Always Acts at the Center of Mass — Nowhere Else",
+          "title": "Gravity Always Acts at the Centre of Mass — Nowhere Else",
+          "focal_primitive_id": "cm_vs_contact_panel",
           "scene_composition": [
             {
               "type": "comparison_panel",
+              "id": "cm_vs_contact_panel",
               "left_label": "Belief: weight at the support point",
-              "right_label": "Reality: weight at the center of mass",
+              "right_label": "Reality: weight at the centre of mass",
               "left_scene": [
                 {
                   "type": "body",
                   "shape": "rect",
                   "label": "Block",
                   "fill_color": "#6B7280",
-                  "position": {
-                    "x": 100,
-                    "y": 120
-                  },
-                  "size": {
-                    "w": 100,
-                    "h": 80
-                  }
+                  "position": { "x": 100, "y": 120 },
+                  "size": { "w": 100, "h": 80 }
                 },
                 {
                   "type": "force_arrow",
@@ -1221,19 +1036,13 @@
                   "label": "mg? (bottom)",
                   "color": "#EF4444",
                   "scale_pixels_per_unit": 2,
-                  "position": {
-                    "x": 150,
-                    "y": 200
-                  }
+                  "position": { "x": 150, "y": 200 }
                 },
                 {
                   "type": "annotation",
-                  "text": "Wrong. Gravity is not a contact force.\nIt acts through the center of mass.",
+                  "text": "Wrong. Gravity is not a contact force.\nIt acts through the centre of mass.",
                   "color": "#EF4444",
-                  "position": {
-                    "x": 20,
-                    "y": 250
-                  }
+                  "position": { "x": 20, "y": 250 }
                 }
               ],
               "right_scene": [
@@ -1242,57 +1051,50 @@
                   "shape": "rect",
                   "label": "Block",
                   "fill_color": "#6B7280",
-                  "position": {
-                    "x": 100,
-                    "y": 120
-                  },
-                  "size": {
-                    "w": 100,
-                    "h": 80
-                  }
+                  "position": { "x": 100, "y": 120 },
+                  "size": { "w": 100, "h": 80 }
                 },
                 {
                   "type": "force_arrow",
                   "magnitude": 20,
                   "direction_deg": 270,
-                  "label": "mg (center of mass)",
+                  "label": "mg (centre of mass)",
                   "color": "#EF4444",
                   "scale_pixels_per_unit": 2,
-                  "position": {
-                    "x": 150,
-                    "y": 160
-                  }
+                  "position": { "x": 150, "y": 160 }
                 },
                 {
                   "type": "annotation",
-                  "text": "Correct. mg acts at the center of mass, always pointing down.",
+                  "text": "Correct. mg acts at the centre of mass, always pointing down.",
                   "color": "#10B981",
-                  "position": {
-                    "x": 20,
-                    "y": 250
-                  }
+                  "position": { "x": 20, "y": 250 }
                 }
               ]
+            },
+            {
+              "type": "label",
+              "id": "cm_header",
+              "text": "Gravity is a field force — it cares about mass, not contact.",
+              "position": { "x": 110, "y": 40 },
+              "font_size": 17,
+              "color": "#1F2937",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "cm_rule_callout",
+              "text": "Rule: always draw mg starting at the geometric centre\nof a uniform body, pointing straight down.",
+              "position": { "x": 140, "y": 500 },
+              "style": "callout",
+              "color": "#10B981"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "Gravity is a field force. It does not need contact to act."
-              },
-              {
-                "id": "s2",
-                "text_en": "That is why gravity acts on the center of mass of a body, not on its support point or contact point."
-              },
-              {
-                "id": "s3",
-                "text_en": "Whether a table is under the block or not, mg still points straight down from the block's center."
-              },
-              {
-                "id": "s4",
-                "text_en": "In every FBD, draw the mg arrow starting at the geometric center of the body, pointing down."
-              }
+              { "id": "s1", "text_en": "Gravity is a field force. It does not need contact to act." },
+              { "id": "s2", "text_en": "That is why gravity acts on the centre of mass of a body, not on its support point or contact point." },
+              { "id": "s3", "text_en": "Whether a table is under the block or not, mg still points straight down from the block's centre." },
+              { "id": "s4", "text_en": "In every FBD, draw the mg arrow starting at the geometric centre of the body, pointing down." }
             ]
           },
           "advance_mode": "auto_after_tts"
@@ -1305,17 +1107,18 @@
       "trigger_phrases": [
         "only weight in FBD",
         "why show N",
-        "gravity is the only force"
+        "gravity is the only force",
+        "just mg is enough"
       ],
-      "state_sequence": [
-        "EPIC_C_1"
-      ],
+      "state_sequence": ["EPIC_C_1"],
       "states": {
         "EPIC_C_1": {
           "title": "Missing N = Wrong Equation = Wrong Answer",
+          "focal_primitive_id": "missing_vs_complete",
           "scene_composition": [
             {
               "type": "comparison_panel",
+              "id": "missing_vs_complete",
               "left_label": "Incomplete FBD (N missing)",
               "right_label": "Complete FBD",
               "left_scene": [
@@ -1324,14 +1127,8 @@
                   "shape": "rect",
                   "label": "Book on table",
                   "fill_color": "#3B82F6",
-                  "position": {
-                    "x": 100,
-                    "y": 130
-                  },
-                  "size": {
-                    "w": 100,
-                    "h": 70
-                  }
+                  "position": { "x": 100, "y": 130 },
+                  "size": { "w": 100, "h": 70 }
                 },
                 {
                   "type": "force_arrow",
@@ -1340,19 +1137,13 @@
                   "label": "mg (only)",
                   "color": "#EF4444",
                   "scale_pixels_per_unit": 3,
-                  "position": {
-                    "x": 150,
-                    "y": 165
-                  }
+                  "position": { "x": 150, "y": 165 }
                 },
                 {
                   "type": "annotation",
-                  "text": "ΣFy = −mg ≠ 0.\nEquation says the book accelerates down —\nbut it is sitting still. Contradiction.",
+                  "text": "sum(Fy) = -mg != 0.\nEquation says the book accelerates down —\nbut it is sitting still. Contradiction.",
                   "color": "#EF4444",
-                  "position": {
-                    "x": 20,
-                    "y": 250
-                  }
+                  "position": { "x": 20, "y": 250 }
                 }
               ],
               "right_scene": [
@@ -1361,14 +1152,8 @@
                   "shape": "rect",
                   "label": "Book on table",
                   "fill_color": "#3B82F6",
-                  "position": {
-                    "x": 100,
-                    "y": 130
-                  },
-                  "size": {
-                    "w": 100,
-                    "h": 70
-                  }
+                  "position": { "x": 100, "y": 130 },
+                  "size": { "w": 100, "h": 70 }
                 },
                 {
                   "type": "force_arrow",
@@ -1377,10 +1162,7 @@
                   "label": "mg",
                   "color": "#EF4444",
                   "scale_pixels_per_unit": 3,
-                  "position": {
-                    "x": 150,
-                    "y": 165
-                  }
+                  "position": { "x": 150, "y": 165 }
                 },
                 {
                   "type": "force_arrow",
@@ -1389,47 +1171,582 @@
                   "label": "N (must be shown)",
                   "color": "#10B981",
                   "scale_pixels_per_unit": 3,
-                  "position": {
-                    "x": 150,
-                    "y": 165
-                  }
+                  "position": { "x": 150, "y": 165 }
                 },
                 {
                   "type": "annotation",
-                  "text": "ΣFy = N − mg = 0. The book is stationary. Correct.",
+                  "text": "sum(Fy) = N - mg = 0. The book is stationary. Correct.",
                   "color": "#10B981",
-                  "position": {
-                    "x": 20,
-                    "y": 250
-                  }
+                  "position": { "x": 20, "y": 250 }
                 }
               ]
+            },
+            {
+              "type": "label",
+              "id": "missing_header",
+              "text": "One missing force = one wrong answer.",
+              "position": { "x": 200, "y": 40 },
+              "font_size": 18,
+              "color": "#EF4444",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "fix_rule_callout",
+              "text": "Rule: every physical contact becomes exactly ONE normal reaction arrow.\nSurface contact -> N perpendicular to that surface.",
+              "position": { "x": 110, "y": 500 },
+              "style": "callout",
+              "color": "#10B981"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "If you show only mg, your equation says the net force is downward and the book should fall. But the book is not falling — something is wrong."
-              },
-              {
-                "id": "s2",
-                "text_en": "The missing force is N, the upward push of the table. That must always be shown in the diagram."
-              },
-              {
-                "id": "s3",
-                "text_en": "The rule is simple. Every physical contact becomes one normal reaction arrow. Table contact means N upward."
-              },
-              {
-                "id": "s4",
-                "text_en": "Missing a force means a wrong equation, which means a wrong answer. The FBD must be complete."
-              }
+              { "id": "s1", "text_en": "If you show only mg, your equation says the net force is downward and the book should fall. But the book is not falling — something is wrong." },
+              { "id": "s2", "text_en": "The missing force is N, the upward push of the table. That must always be shown in the diagram." },
+              { "id": "s3", "text_en": "The rule is simple. Every physical contact becomes one normal reaction arrow. Table contact means N upward." },
+              { "id": "s4", "text_en": "Missing a force means a wrong equation, which means a wrong answer. The FBD must be complete." }
             ]
           },
           "advance_mode": "auto_after_tts"
         }
       }
+    },
+    {
+      "branch_id": "reaction_force_on_same_body",
+      "misconception": "If the body pushes the table, the body's FBD should include that push on itself.",
+      "trigger_phrases": [
+        "book pushes table",
+        "include action-reaction in fbd",
+        "both newton third law forces on one body",
+        "draw reaction on same body"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: Draw Both Third-Law Forces on the Same FBD",
+          "focal_primitive_id": "reaction_trap_panel",
+          "scene_composition": [
+            {
+              "type": "comparison_panel",
+              "id": "reaction_trap_panel",
+              "left_label": "Wrong — includes book-on-table force",
+              "right_label": "Correct — only forces ON the book",
+              "left_scene": [
+                {
+                  "type": "body",
+                  "shape": "rect",
+                  "label": "Book",
+                  "fill_color": "#3B82F6",
+                  "position": { "x": 100, "y": 120 },
+                  "size": { "w": 90, "h": 60 }
+                },
+                {
+                  "type": "force_arrow",
+                  "magnitude": 15,
+                  "direction_deg": 270,
+                  "label": "mg",
+                  "color": "#EF4444",
+                  "scale_pixels_per_unit": 3,
+                  "position": { "x": 145, "y": 150 }
+                },
+                {
+                  "type": "force_arrow",
+                  "magnitude": 15,
+                  "direction_deg": 90,
+                  "label": "N (table on book)",
+                  "color": "#10B981",
+                  "scale_pixels_per_unit": 3,
+                  "position": { "x": 145, "y": 150 }
+                },
+                {
+                  "type": "force_arrow",
+                  "magnitude": 15,
+                  "direction_deg": 270,
+                  "label": "book on table (WRONG to include)",
+                  "color": "#EF4444",
+                  "scale_pixels_per_unit": 3,
+                  "style": "dashed",
+                  "position": { "x": 145, "y": 180 }
+                },
+                {
+                  "type": "annotation",
+                  "text": "Equation would become nonsense —\nsum(Fy) no longer equals zero.",
+                  "color": "#EF4444",
+                  "position": { "x": 20, "y": 240 }
+                }
+              ],
+              "right_scene": [
+                {
+                  "type": "body",
+                  "shape": "rect",
+                  "label": "Book",
+                  "fill_color": "#3B82F6",
+                  "position": { "x": 100, "y": 120 },
+                  "size": { "w": 90, "h": 60 }
+                },
+                {
+                  "type": "force_arrow",
+                  "magnitude": 15,
+                  "direction_deg": 270,
+                  "label": "mg (on book)",
+                  "color": "#EF4444",
+                  "scale_pixels_per_unit": 3,
+                  "position": { "x": 145, "y": 150 }
+                },
+                {
+                  "type": "force_arrow",
+                  "magnitude": 15,
+                  "direction_deg": 90,
+                  "label": "N (table on book)",
+                  "color": "#10B981",
+                  "scale_pixels_per_unit": 3,
+                  "position": { "x": 145, "y": 150 }
+                },
+                {
+                  "type": "annotation",
+                  "text": "Only forces acting ON the book appear here.",
+                  "color": "#10B981",
+                  "position": { "x": 20, "y": 240 }
+                }
+              ]
+            },
+            {
+              "type": "label",
+              "id": "third_law_header",
+              "text": "Newton's 3rd law pairs live on DIFFERENT FBDs.",
+              "position": { "x": 140, "y": 40 },
+              "font_size": 17,
+              "color": "#1F2937",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "third_law_callout",
+              "text": "The book-on-table force acts on the TABLE, not on the book.\nIt belongs on the TABLE's FBD, never on the book's.",
+              "position": { "x": 100, "y": 500 },
+              "style": "callout",
+              "color": "#F59E0B"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Newton's third law says that if the book pushes the table, the table pushes the book back with equal force." },
+              { "id": "s2", "text_en": "Those two forces are real, but they act on DIFFERENT bodies. One on the book, the other on the table." },
+              { "id": "s3", "text_en": "The FBD of the book shows only the forces ON the book. The book-on-table force belongs on the TABLE's FBD, not the book's." },
+              { "id": "s4", "text_en": "Mixing the pair up on a single FBD doubles the same physical effect and gives a nonsense equation." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "The Two-Body Rule — Each FBD Gets Exactly One Half of the Pair",
+          "focal_primitive_id": "split_fbds",
+          "scene_composition": [
+            {
+              "type": "body",
+              "id": "book_fbd",
+              "shape": "rect",
+              "label": "FBD of Book",
+              "position": { "x": 150, "y": 250 },
+              "size": { "w": 110, "h": 65 },
+              "fill_color": "#3B82F6",
+              "border_color": "#1D4ED8",
+              "border_width": 2
+            },
+            {
+              "type": "force_arrow",
+              "from": "book_fbd_center",
+              "magnitude": 15,
+              "direction_deg": 270,
+              "label": "mg",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 2
+            },
+            {
+              "type": "force_arrow",
+              "from": "book_fbd_bottom_center",
+              "magnitude": 15,
+              "direction_deg": 90,
+              "label": "N (table on book)",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 2
+            },
+            {
+              "type": "body",
+              "id": "table_fbd",
+              "shape": "rect",
+              "label": "FBD of Table",
+              "position": { "x": 400, "y": 250 },
+              "size": { "w": 150, "h": 65 },
+              "fill_color": "#92400E",
+              "border_color": "#7C2D12",
+              "border_width": 2
+            },
+            {
+              "type": "force_arrow",
+              "from": "table_fbd_top_center",
+              "magnitude": 15,
+              "direction_deg": 270,
+              "label": "N' (book on table)",
+              "color": "#8B5CF6",
+              "scale_pixels_per_unit": 2
+            },
+            {
+              "type": "force_arrow",
+              "from": "table_fbd_center",
+              "magnitude": 40,
+              "direction_deg": 270,
+              "label": "M*g (table weight)",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 1
+            },
+            {
+              "type": "force_arrow",
+              "id": "split_fbds",
+              "from": "table_fbd_bottom_center",
+              "magnitude": 55,
+              "direction_deg": 90,
+              "label": "N_floor (floor on table)",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 1
+            },
+            {
+              "type": "annotation",
+              "id": "split_callout",
+              "text": "N on the book's FBD and N' on the table's FBD\nare the third-law pair — equal, opposite, on DIFFERENT bodies.",
+              "position": { "x": 90, "y": 440 },
+              "style": "callout",
+              "color": "#8B5CF6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "When you need both halves of a third-law pair, draw TWO separate free body diagrams — one for each body." },
+              { "id": "s2", "text_en": "The book's FBD gets N, the force from the table on the book." },
+              { "id": "s3", "text_en": "The table's FBD gets N prime, the force from the book on the table. Same magnitude, opposite direction, different body." },
+              { "id": "s4", "text_en": "Now each FBD is consistent, each gives its own equation, and Newton's third law is respected." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
     }
   ],
-  "schema_version": "2.0.0"
+
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 6,
+        "per_state": {
+          "STATE_1": {
+            "mark": 1,
+            "description": "State the FBD principle: isolate exactly one body, show every force on that body, ignore all others."
+          },
+          "STATE_2": {
+            "mark": 1,
+            "description": "Isolate the chosen body. Replace each removed contact/connection with one labelled force arrow."
+          },
+          "STATE_3": {
+            "mark": 1,
+            "description": "Apply Newton's second law: write sum(Fx) and sum(Fy). Substitute and solve."
+          },
+          "STATE_4": {
+            "mark": 1,
+            "description": "Demonstrate on a book on a table: mg down, N up, sum(Fy) = 0 -> N = mg."
+          },
+          "STATE_5": {
+            "mark": 1,
+            "description": "Draw incline FBD: mg vertical, N perpendicular to surface, f along surface. Keep the three directions correct."
+          },
+          "STATE_6": {
+            "mark": 1,
+            "description": "Use the six-force checklist (mg, N, f, T, kx, hinge) to confirm no force is missing."
+          }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b1_s1",
+              "text": "Step 1: Identify the body of interest in the problem.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 100 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s2",
+              "text": "Step 2: State the FBD principle — isolate one body, show every force on it.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 140 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s3",
+              "text": "Step 3: Ignore everything except forces acting on this one body.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 180 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b1",
+              "mark_value": 1,
+              "text": "+1 for stating the principle",
+              "tied_to_state": "STATE_1",
+              "position": { "x": 680, "y": 140 }
+            }
+          ]
+        },
+        "STATE_2": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b2_s1",
+              "text": "Step 4: Redraw the body alone — detach it from neighbours.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 220 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s2",
+              "text": "Step 5: Replace each removed contact with an arrow (label it).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 260 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s3",
+              "text": "Step 6: Add mg at the centre of mass pointing down.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 300 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b2",
+              "mark_value": 1,
+              "text": "+1 for isolation + arrows",
+              "tied_to_state": "STATE_2",
+              "position": { "x": 680, "y": 260 }
+            }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b3_s1",
+              "text": "Step 7: Choose axes (usually x along motion, y perpendicular).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 340 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s2",
+              "text": "Step 8: Write sum(Fx) = m*ax and sum(Fy) = m*ay.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 380 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s3",
+              "text": "Step 9: Substitute known forces; solve for unknowns.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 420 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b3",
+              "mark_value": 1,
+              "text": "+1 for Newton's law application",
+              "tied_to_state": "STATE_3",
+              "position": { "x": 680, "y": 380 }
+            }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b4_s1",
+              "text": "Step 10: Example — book of mass 0.5 kg on a table.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 460 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s2",
+              "text": "Step 11: FBD: mg = 0.5 * 9.8 = 4.9 N down; N up.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 500 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s3",
+              "text": "Step 12: sum(Fy) = N - mg = 0 -> N = 4.9 N.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 540 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b4",
+              "mark_value": 1,
+              "text": "+1 for worked example",
+              "tied_to_state": "STATE_4",
+              "position": { "x": 680, "y": 500 }
+            }
+          ]
+        },
+        "STATE_5": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b5_s1",
+              "text": "Step 13: On an incline at angle theta, mg stays vertical.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 580 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b5_s2",
+              "text": "Step 14: N is perpendicular to the incline. f is along the incline, opposing motion.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 620 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b5_s3",
+              "text": "Step 15: Choose axes along and perpendicular to the incline for easier equations.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 660 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b5",
+              "mark_value": 1,
+              "text": "+1 for incline FBD",
+              "tied_to_state": "STATE_5",
+              "position": { "x": 680, "y": 620 }
+            }
+          ]
+        },
+        "STATE_6": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b6_s1",
+              "text": "Step 16: Run the six-force checklist before solving.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 700 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b6_s2",
+              "text": "Step 17: Verify mg, N, f, T, kx, and hinge (H, V) are each shown if applicable.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 740 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b6_s3",
+              "text": "Step 18: A missing force is the most common cause of wrong answers. Check twice.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 780 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b6",
+              "mark_value": 1,
+              "text": "+1 for complete checklist",
+              "tied_to_state": "STATE_6",
+              "position": { "x": 680, "y": 740 }
+            }
+          ]
+        }
+      }
+    },
+
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "id": "shortcut_one_body",
+          "rule": "One FBD per body",
+          "formula": "n bodies -> n FBDs -> n Newton equations",
+          "use_when": "Any multi-body problem. Never merge two bodies into a single FBD unless treating them as one rigid sub-system with no internal slip."
+        },
+        {
+          "id": "shortcut_mg_at_cm",
+          "rule": "mg lives at the centre of mass",
+          "formula": "Draw mg from CM straight down — regardless of support or contact point",
+          "use_when": "Every FBD. Non-negotiable."
+        },
+        {
+          "id": "shortcut_contact_to_arrow",
+          "rule": "Each removed contact becomes ONE N (and optionally one f)",
+          "formula": "surface contact -> N perp to surface; rough contact -> add f along surface",
+          "use_when": "Scanning the problem for what arrows to draw."
+        },
+        {
+          "id": "shortcut_third_law_separation",
+          "rule": "Third-law pairs live on DIFFERENT FBDs",
+          "formula": "F_AB on A's FBD, F_BA on B's FBD — never both on one diagram",
+          "use_when": "Avoiding the classic double-count trap."
+        },
+        {
+          "id": "shortcut_axis_choice",
+          "rule": "Pick axes that align with motion or constraint",
+          "formula": "Incline -> axes along/perp to incline. Circular -> radial/tangential. Generic -> x horizontal, y vertical.",
+          "use_when": "Deciding how to resolve forces before writing equations."
+        },
+        {
+          "id": "shortcut_pseudo_force",
+          "rule": "Non-inertial frame adds a pseudo force -m*a on every body",
+          "formula": "F_pseudo = -m * a_frame",
+          "use_when": "Working inside an accelerating lift/truck/rotating frame. In the ground frame, no pseudo force is needed."
+        }
+      ],
+      "edge_cases": [
+        {
+          "id": "edge_string_through_pulley",
+          "title": "String passing over a pulley",
+          "trap": "Students draw different tensions on either side of a massless frictionless pulley.",
+          "resolution": "For an ideal pulley, tension is the same throughout the string. One label T for both sides. Each mass's FBD shows the same T."
+        },
+        {
+          "id": "edge_lift_apparent_weight",
+          "title": "Apparent weight in an accelerating lift",
+          "trap": "Students write N = mg instead of accounting for the lift's acceleration.",
+          "resolution": "FBD of the person has N up and mg down. Apply sum(Fy) = ma_lift. N = m(g + a) when accelerating up, m(g - a) when accelerating down."
+        },
+        {
+          "id": "edge_incline_axis_choice",
+          "title": "Block on an incline — which axes to pick?",
+          "trap": "Students use horizontal/vertical axes, then must resolve N at an awkward angle.",
+          "resolution": "Take x along the incline (down-slope positive), y perpendicular to incline. Then N has no x component, and mg splits as mg*sin(theta) along x and mg*cos(theta) along -y."
+        },
+        {
+          "id": "edge_two_blocks_contact",
+          "title": "Two blocks pushed together on a frictionless floor",
+          "trap": "Students forget the internal contact force when doing individual FBDs.",
+          "resolution": "FBD of block 1: F_applied and contact force N_12 from block 2. FBD of block 2: contact force N_21 from block 1. N_12 and N_21 are a third-law pair."
+        },
+        {
+          "id": "edge_rigid_body_rotation",
+          "title": "Rigid body rotating about a pivot",
+          "trap": "Students apply sum(F) = 0 when the body is actually rotating.",
+          "resolution": "Add sum(tau) = I*alpha at the pivot. Force equations give the pivot reaction; torque equation gives the angular acceleration."
+        }
+      ],
+      "formulas_shortform": {
+        "equilibrium": "sum(F) = 0",
+        "newtons_second": "sum(F) = m*a",
+        "components": "sum(Fx) = m*ax,  sum(Fy) = m*ay",
+        "pseudo_force": "F_pseudo = -m * a_frame",
+        "pulley_tension": "T_left = T_right (ideal pulley)"
+      }
+    }
+  }
 }

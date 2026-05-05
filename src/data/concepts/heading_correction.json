@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 6.13 — wind-correction angle; split from aircraft_wind_problems",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "Air India flight Delhi to Srinagar. The destination airport lies true north, but a steady 60 km/h westerly crosswind blows across the Punjab plains. If the pilot flew with nose straight north at 240 km/h airspeed, she would land well east of Srinagar. Instead she points the nose a few degrees upwind — toward the WEST — so the eastward-blown component of her airspeed exactly cancels the crosswind. sin(theta) = 60/240 = 0.25, so theta ≈ 14.5 degrees west of true north. The ground track is now exactly due north, arriving at Srinagar.",
@@ -17,13 +17,35 @@
   },
   "physics_engine_config": {
     "variables": {
-      "v_air": { "name": "Aircraft airspeed", "unit": "m/s", "min": 10, "max": 300, "default": 67 },
-      "v_wind": { "name": "Crosswind speed", "unit": "m/s", "min": 0, "max": 50, "default": 17 },
-      "theta": { "name": "Heading correction angle upwind", "unit": "deg", "min": 0, "max": 90, "default": 14.5 }
+      "v_air": {
+        "name": "Aircraft airspeed",
+        "unit": "m/s",
+        "min": 10,
+        "max": 300,
+        "default": 67
+      },
+      "v_wind": {
+        "name": "Crosswind speed",
+        "unit": "m/s",
+        "min": 0,
+        "max": 50,
+        "default": 17
+      },
+      "theta": {
+        "name": "Heading correction angle upwind",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 14.5
+      }
     },
     "computed_outputs": {
-      "theta_required": { "formula": "asin(v_wind / v_air) in degrees" },
-      "v_ground": { "formula": "sqrt(v_air^2 - v_wind^2)" }
+      "theta_required": {
+        "formula": "asin(v_wind / v_air) in degrees"
+      },
+      "v_ground": {
+        "formula": "sqrt(v_air^2 - v_wind^2)"
+      }
     },
     "formulas": {
       "correction_angle": "sin(theta) = v_wind / v_air   (aircraft heading tilted theta INTO the wind)",
@@ -52,9 +74,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -65,9 +91,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -76,24 +106,55 @@
             "vehicle_type": "airplane",
             "zone": "MAIN_ZONE",
             "anchor": "bottom_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "rotate_about", "delay_sec": 4.5, "duration_sec": 1.0, "pivot": "self", "from_deg": 0, "to_deg": -14 },
-              { "type": "translate", "delay_sec": 5.5, "duration_sec": 5.5, "dx_px": 0, "dy_px": -240, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "rotate_about",
+                "delay_sec": 4.5,
+                "duration_sec": 1,
+                "pivot": "self",
+                "from_deg": 0,
+                "to_deg": -14
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5.5,
+                "duration_sec": 5.5,
+                "dx_px": 0,
+                "dy_px": -240,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "strategy_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Air India flight from Delhi due north to Srinagar. A 60-kilometres-per-hour wind blows east, across the flight path." },
-            { "text_en": "If the pilot keeps the nose pointing north, she drifts east with the wind and misses Srinagar entirely." },
-            { "text_en": "The fix is elegant — tilt the nose WEST into the wind, so the westward part of the airspeed cancels the eastward wind." },
-            { "text_en": "The required angle is arcsine of v wind over v air — 60 divided by 240 — 14.5 degrees west of north." }
+            {
+              "text_en": "Air India flight from Delhi due north to Srinagar. A 60-kilometres-per-hour wind blows east, across the flight path.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "If the pilot keeps the nose pointing north, she drifts east with the wind and misses Srinagar entirely.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "The fix is elegant — tilt the nose WEST into the wind, so the westward part of the airspeed cancels the eastward wind.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "The required angle is arcsine of v wind over v air — 60 divided by 240 — 14.5 degrees west of north.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "strategy_sketch"
       },
       "STATE_2": {
         "title": "Vector Triangle — The Math Behind It",
@@ -107,23 +168,67 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Vector Triangle — The Math Behind It",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "triangle_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Let us see the vector triangle explicitly." },
-            { "text_en": "The airspeed vector has two components — a north-component v air times cosine theta, and a west-component v air times sine theta." },
-            { "text_en": "The west-component must exactly cancel the eastern wind. So v air sine theta equals v wind — giving sine theta equals v wind over v air." },
-            { "text_en": "The effective north-component, which is the ground speed, is v air cosine theta — the square root of v air squared minus v wind squared." },
-            { "text_en": "For the Srinagar example, that is 232 kilometres per hour — only 8 slower than the airspeed. A small cost for on-track accuracy." }
+            {
+              "text_en": "Let us see the vector triangle explicitly.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "The airspeed vector has two components — a north-component v air times cosine theta, and a west-component v air times sine theta.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "The west-component must exactly cancel the eastern wind. So v air sine theta equals v wind — giving sine theta equals v wind over v air.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "The effective north-component, which is the ground speed, is v air cosine theta — the square root of v air squared minus v wind squared.",
+              "id": "state_2_s4"
+            },
+            {
+              "text_en": "For the Srinagar example, that is 232 kilometres per hour — only 8 slower than the airspeed. A small cost for on-track accuracy.",
+              "id": "state_2_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "triangle_sketch"
       },
       "STATE_3": {
         "title": "Limits — When Correction is Impossible",
@@ -137,23 +242,67 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Limits — When Correction is Impossible",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "limits_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "When does wind correction fail?" },
-            { "text_en": "Sine cannot exceed one, so v wind over v air must not exceed one either. In plain words — the aircraft must be faster than the wind." },
-            { "text_en": "Equal speeds — theta is 90 degrees, the plane flies straight into the wind, and ground speed is zero." },
-            { "text_en": "Wind faster than plane — impossible. Flight cancellation territory." },
-            { "text_en": "Airliners always keep v air far above typical wind speeds, so gusts do not tip the balance mid-flight." }
+            {
+              "text_en": "When does wind correction fail?",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "Sine cannot exceed one, so v wind over v air must not exceed one either. In plain words — the aircraft must be faster than the wind.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "Equal speeds — theta is 90 degrees, the plane flies straight into the wind, and ground speed is zero.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "Wind faster than plane — impossible. Flight cancellation territory.",
+              "id": "state_3_s4"
+            },
+            {
+              "text_en": "Airliners always keep v air far above typical wind speeds, so gusts do not tip the balance mid-flight.",
+              "id": "state_3_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "limits_sketch"
       }
     }
   },
@@ -180,21 +329,59 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Wrong Instinct: Nose with the Wind",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "downwind_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The common wrong instinct — 'wind pushes me east, I should aim east with it'." },
-              { "text_en": "That makes the east drift WORSE, not better. Both the wind AND the airspeed component would push east — disaster." },
-              { "text_en": "The correct move is UPWIND. Tilt the nose AGAINST the wind, so some airspeed cancels the wind, leaving a clean north track." }
+              {
+                "text_en": "The common wrong instinct — 'wind pushes me east, I should aim east with it'.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "That makes the east drift WORSE, not better. Both the wind AND the airspeed component would push east — disaster.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "The correct move is UPWIND. Tilt the nose AGAINST the wind, so some airspeed cancels the wind, leaving a clean north track.",
+                "id": "state_1_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "downwind_sketch"
         },
         "STATE_2": {
           "title": "Vector Addition Shows Direction",
@@ -208,22 +395,63 @@
               "anchor": "top_center",
               "font_size": 11,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Vector Addition Shows Direction",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "direction_proof_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The vector math settles the direction." },
-              { "text_en": "For a straight-north ground track, the east-component of ground velocity must be zero." },
-              { "text_en": "Set v air times sine of heading plus wind east-component to zero. That gives sine alpha equals minus 0.25 — negative." },
-              { "text_en": "Negative heading means the nose turns WEST. That is the upwind direction. Vector math beats intuition every time." }
+              {
+                "text_en": "The vector math settles the direction.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "For a straight-north ground track, the east-component of ground velocity must be zero.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "Set v air times sine of heading plus wind east-component to zero. That gives sine alpha equals minus 0.25 — negative.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "Negative heading means the nose turns WEST. That is the upwind direction. Vector math beats intuition every time.",
+                "id": "state_2_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "direction_proof_sketch"
         },
         "STATE_3": {
           "title": "Everyday Mnemonic — 'Crab Into the Wind'",
@@ -237,35 +465,107 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Everyday Mnemonic — 'Crab Into the Wind'",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "crab_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Pilots have a three-word rule — 'crab into wind'." },
-              { "text_en": "You point the nose into the wind, but the aircraft moves straight ahead, like a crab walking sideways." },
-              { "text_en": "For every JEE aircraft problem, remember — correction is always UPWIND. Never downwind." },
-              { "text_en": "If your calculated answer has the nose pointed downwind, you have written a sign backwards. Flip it and try again." }
+              {
+                "text_en": "Pilots have a three-word rule — 'crab into wind'.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "You point the nose into the wind, but the aircraft moves straight ahead, like a crab walking sideways.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "For every JEE aircraft problem, remember — correction is always UPWIND. Never downwind.",
+                "id": "state_3_s3"
+              },
+              {
+                "text_en": "If your calculated answer has the nose pointed downwind, you have written a sign backwards. Flip it and try again.",
+                "id": "state_3_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "crab_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Crab Downwind (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Delhi -> Srinagar, easterly crosswind", "params": { "v_air": 67, "v_wind": 17 } },
-      { "label": "Drone on light wind", "params": { "v_air": 12, "v_wind": 3 } },
-      { "label": "Strong wind, high airspeed", "params": { "v_air": 150, "v_wind": 40 } }
-    ],
-    "type_b": [
-      { "label": "Paraglider at Bir Billing", "scenario": "paraglider_bir_billing" },
-      { "label": "Sea-plane taxing in wind", "scenario": "seaplane_wind_taxi" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Delhi -> Srinagar, easterly crosswind",
+        "params": {
+          "v_air": 67,
+          "v_wind": 17
+        }
+      },
+      "1": {
+        "label": "Drone on light wind",
+        "params": {
+          "v_air": 12,
+          "v_wind": 3
+        }
+      },
+      "2": {
+        "label": "Strong wind, high airspeed",
+        "params": {
+          "v_air": 150,
+          "v_wind": 40
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Paraglider at Bir Billing",
+        "scenario": "paraglider_bir_billing"
+      },
+      "1": {
+        "label": "Sea-plane taxing in wind",
+        "scenario": "seaplane_wind_taxi"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

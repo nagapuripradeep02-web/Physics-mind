@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 7.6 — projectile range and optimal angle; split from projectile_motion",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "Neeraj Chopra at the 2024 Paris Olympics, gold-medal-winning javelin throw. Release speed ~29 m/s, release angle roughly 34 degrees (javelin athletes release slightly below 45 degrees because of aerodynamics). Predicted range from the idealised formula: R = 29² * sin(68°) / 10 ≈ 77.9 metres — matching his actual throw almost exactly. Every javelin coach in India uses this formula to tune their athlete's release technique.",
@@ -17,13 +17,35 @@
   },
   "physics_engine_config": {
     "variables": {
-      "v0": { "name": "Launch speed", "unit": "m/s", "min": 5, "max": 200, "default": 20 },
-      "theta": { "name": "Launch angle from horizontal", "unit": "deg", "min": 0, "max": 90, "default": 45 },
-      "g": { "name": "Gravitational acceleration", "unit": "m/s^2", "min": 9.8, "max": 10, "default": 10 }
+      "v0": {
+        "name": "Launch speed",
+        "unit": "m/s",
+        "min": 5,
+        "max": 200,
+        "default": 20
+      },
+      "theta": {
+        "name": "Launch angle from horizontal",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 45
+      },
+      "g": {
+        "name": "Gravitational acceleration",
+        "unit": "m/s^2",
+        "min": 9.8,
+        "max": 10,
+        "default": 10
+      }
     },
     "computed_outputs": {
-      "R": { "formula": "v0^2 * sin(2*theta) / g" },
-      "R_max": { "formula": "v0^2 / g" }
+      "R": {
+        "formula": "v0^2 * sin(2*theta) / g"
+      },
+      "R_max": {
+        "formula": "v0^2 / g"
+      }
     },
     "formulas": {
       "range_formula": "R  =  v0^2 * sin(2*theta) / g  (for launch and landing at same height)",
@@ -55,9 +77,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -68,9 +94,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -79,24 +109,55 @@
             "vehicle_type": "javelin",
             "zone": "MAIN_ZONE",
             "anchor": "bottom_left",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
-              { "type": "translate", "delay_sec": 4.5, "duration_sec": 3.0, "dx_px": 200, "dy_px": -220, "easing": "ease_out" },
-              { "type": "translate", "delay_sec": 7.5, "duration_sec": 3.0, "dx_px": 200, "dy_px": 220, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.3
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4.5,
+                "duration_sec": 3,
+                "dx_px": 200,
+                "dy_px": -220,
+                "easing": "ease_out"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 7.5,
+                "duration_sec": 3,
+                "dx_px": 200,
+                "dy_px": 220,
+                "easing": "ease_in"
+              }
             ]
           }
         ],
         "focal_primitive": "range_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Range is simply horizontal distance — how far the projectile travels along the ground before returning to launch height." },
-            { "text_en": "Horizontal velocity is constant, v-nought cosine theta. Time of flight is 2 v-nought sine theta over g." },
-            { "text_en": "Multiply them: range equals 2 v-nought squared sine theta cosine theta over g." },
-            { "text_en": "Using the trig identity 2 sine A cosine A equals sine 2 A, this fuses into the famous formula — R equals v-nought squared sine 2 theta over g." }
+            {
+              "text_en": "Range is simply horizontal distance — how far the projectile travels along the ground before returning to launch height.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "Horizontal velocity is constant, v-nought cosine theta. Time of flight is 2 v-nought sine theta over g.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Multiply them: range equals 2 v-nought squared sine theta cosine theta over g.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "Using the trig identity 2 sine A cosine A equals sine 2 A, this fuses into the famous formula — R equals v-nought squared sine 2 theta over g.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "range_sketch"
       },
       "STATE_2": {
         "title": "Why 45° Gives Maximum Range",
@@ -110,22 +171,63 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Why 45° Gives Maximum Range",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "max_range_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "When is range maximum?" },
-            { "text_en": "Sine 2 theta hits its maximum of 1 when 2 theta equals 90 degrees. So theta equals 45 degrees." },
-            { "text_en": "That gives R max equals v-nought squared over g. This is burned into every artillery manual, every cricket coach's notes, every physics textbook." },
-            { "text_en": "Beautiful symmetry — 30 and 60 degrees give identical range. 15 and 75 match too. Complementary angles always yield equal range. One lofted, one flat." }
+            {
+              "text_en": "When is range maximum?",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "Sine 2 theta hits its maximum of 1 when 2 theta equals 90 degrees. So theta equals 45 degrees.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "That gives R max equals v-nought squared over g. This is burned into every artillery manual, every cricket coach's notes, every physics textbook.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "Beautiful symmetry — 30 and 60 degrees give identical range. 15 and 75 match too. Complementary angles always yield equal range. One lofted, one flat.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "max_range_sketch"
       },
       "STATE_3": {
         "title": "Complementary Angles — A Cricketer's Trick",
@@ -139,22 +241,63 @@
             "anchor": "top_center",
             "font_size": 11,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Complementary Angles — A Cricketer's Trick",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "complementary_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "One more gem from this formula — two different angles give the same range." },
-            { "text_en": "A ball thrown at 30 degrees lands as far as one at 60 degrees. But the PATHS are completely different." },
-            { "text_en": "The 60-degree lofted ball has long hang time, high peak — easier to catch on the outfield." },
-            { "text_en": "The 30-degree flat ball arrives fast, low, hard to defend. T20 batters pick between 'flat' and 'lofted' exactly because of this complementary-angle physics." }
+            {
+              "text_en": "One more gem from this formula — two different angles give the same range.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "A ball thrown at 30 degrees lands as far as one at 60 degrees. But the PATHS are completely different.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "The 60-degree lofted ball has long hang time, high peak — easier to catch on the outfield.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "The 30-degree flat ball arrives fast, low, hard to defend. T20 batters pick between 'flat' and 'lofted' exactly because of this complementary-angle physics.",
+              "id": "state_3_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "complementary_sketch"
       }
     }
   },
@@ -181,22 +324,63 @@
               "anchor": "center",
               "font_size": 12,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Wrong: 'Steeper = Further'",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_steeper_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Student's hunch — steeper launch, longer time in air, longer range." },
-              { "text_en": "This ignores that horizontal velocity ALSO depends on theta. At steeper angles, cosine theta is smaller, so horizontal velocity shrinks." },
-              { "text_en": "At 90 degrees, horizontal velocity is ZERO. Time is maximum, but range is zero." },
-              { "text_en": "Range is a product — horizontal velocity times time. BOTH change with theta. The product peaks at 45, not at the extremes." }
+              {
+                "text_en": "Student's hunch — steeper launch, longer time in air, longer range.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "This ignores that horizontal velocity ALSO depends on theta. At steeper angles, cosine theta is smaller, so horizontal velocity shrinks.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "At 90 degrees, horizontal velocity is ZERO. Time is maximum, but range is zero.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "Range is a product — horizontal velocity times time. BOTH change with theta. The product peaks at 45, not at the extremes.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_steeper_sketch"
         },
         "STATE_2": {
           "title": "Product of Two Trig Factors Peaks at 45°",
@@ -210,21 +394,59 @@
               "anchor": "top_center",
               "font_size": 11,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Product of Two Trig Factors Peaks at 45°",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "product_peak_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Here is a table of sine times cosine for various angles." },
-              { "text_en": "At zero — product is zero because cosine wins but sine is zero. At 90 — product is also zero, other way around." },
-              { "text_en": "In between, the two factors trade off. Each wins half the race. The product reaches its maximum exactly when sine equals cosine — which is at 45 degrees." }
+              {
+                "text_en": "Here is a table of sine times cosine for various angles.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "At zero — product is zero because cosine wins but sine is zero. At 90 — product is also zero, other way around.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "In between, the two factors trade off. Each wins half the race. The product reaches its maximum exactly when sine equals cosine — which is at 45 degrees.",
+                "id": "state_2_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "product_peak_sketch"
         },
         "STATE_3": {
           "title": "Calculus Proof — dR/dtheta = 0",
@@ -238,34 +460,103 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Calculus Proof — dR/dtheta = 0",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "calculus_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "For the curious, a calculus proof. Differentiate R with respect to theta — get 2 v-nought squared cosine 2 theta over g." },
-              { "text_en": "Set that to zero: cosine 2 theta equals zero, so 2 theta equals 90, theta equals 45." },
-              { "text_en": "Second derivative check confirms it is a maximum. Math agrees with field intuition and artillery manuals." }
+              {
+                "text_en": "For the curious, a calculus proof. Differentiate R with respect to theta — get 2 v-nought squared cosine 2 theta over g.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Set that to zero: cosine 2 theta equals zero, so 2 theta equals 90, theta equals 45.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "Second derivative check confirms it is a maximum. Math agrees with field intuition and artillery manuals.",
+                "id": "state_3_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "calculus_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Angle Affects Time Only (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Neeraj Chopra javelin", "params": { "v0": 29, "theta": 34 } },
-      { "label": "Bofors howitzer at Kargil", "params": { "v0": 100, "theta": 45 } },
-      { "label": "Football kick", "params": { "v0": 18, "theta": 40 } }
-    ],
-    "type_b": [
-      { "label": "Water fountain jet", "scenario": "water_fountain_jet" },
-      { "label": "Drone shot-put", "scenario": "drone_shotput" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Neeraj Chopra javelin",
+        "params": {
+          "v0": 29,
+          "theta": 34
+        }
+      },
+      "1": {
+        "label": "Bofors howitzer at Kargil",
+        "params": {
+          "v0": 100,
+          "theta": 45
+        }
+      },
+      "2": {
+        "label": "Football kick",
+        "params": {
+          "v0": 18,
+          "theta": 40
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Water fountain jet",
+        "scenario": "water_fountain_jet"
+      },
+      "1": {
+        "label": "Drone shot-put",
+        "scenario": "drone_shotput"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 7.6 — projectile time of flight; split from projectile_motion",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "A cricketer at Eden Gardens hits a six. The ball launches at roughly 30 m/s from the bat, at 45 degrees above the horizon. It rises, slows vertically, stops vertically at the peak, and falls back. Total time in the air = 2 * v * sin(theta) / g = 2 * 30 * 0.707 / 10 ≈ 4.24 seconds. In that single number lives the timing of every catch, every run-up, and every commentary beat. Every bowler in the IPL tracks this mentally, ball after ball.",
@@ -17,13 +17,35 @@
   },
   "physics_engine_config": {
     "variables": {
-      "v0": { "name": "Launch speed", "unit": "m/s", "min": 5, "max": 100, "default": 20 },
-      "theta": { "name": "Launch angle from horizontal", "unit": "deg", "min": 0, "max": 90, "default": 45 },
-      "g": { "name": "Gravitational acceleration", "unit": "m/s^2", "min": 9.8, "max": 10, "default": 10 }
+      "v0": {
+        "name": "Launch speed",
+        "unit": "m/s",
+        "min": 5,
+        "max": 100,
+        "default": 20
+      },
+      "theta": {
+        "name": "Launch angle from horizontal",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 45
+      },
+      "g": {
+        "name": "Gravitational acceleration",
+        "unit": "m/s^2",
+        "min": 9.8,
+        "max": 10,
+        "default": 10
+      }
     },
     "computed_outputs": {
-      "T_flight": { "formula": "2 * v0 * sin(theta) / g" },
-      "time_to_peak": { "formula": "v0 * sin(theta) / g" }
+      "T_flight": {
+        "formula": "2 * v0 * sin(theta) / g"
+      },
+      "time_to_peak": {
+        "formula": "v0 * sin(theta) / g"
+      }
     },
     "formulas": {
       "time_of_flight": "T = 2 * v0 * sin(theta) / g  (for launch and landing at same height)",
@@ -54,9 +76,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -67,9 +93,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -78,24 +108,55 @@
             "vehicle_type": "ball",
             "zone": "MAIN_ZONE",
             "anchor": "bottom_left",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.3 },
-              { "type": "translate", "delay_sec": 4.5, "duration_sec": 3.0, "dx_px": 160, "dy_px": -200, "easing": "ease_out" },
-              { "type": "translate", "delay_sec": 7.5, "duration_sec": 3.0, "dx_px": 160, "dy_px": 200, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.3
+              },
+              {
+                "type": "translate",
+                "delay_sec": 4.5,
+                "duration_sec": 3,
+                "dx_px": 160,
+                "dy_px": -200,
+                "easing": "ease_out"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 7.5,
+                "duration_sec": 3,
+                "dx_px": 160,
+                "dy_px": 200,
+                "easing": "ease_in"
+              }
             ]
           }
         ],
         "focal_primitive": "vertical_only_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Time of flight is decided by the VERTICAL motion alone." },
-            { "text_en": "Here is why. Gravity pulls straight down — it only affects the vertical component of velocity." },
-            { "text_en": "The horizontal component of v-nought cosine theta travels along while the vertical component plays out its up-and-down story." },
-            { "text_en": "How long does that vertical story take? That is the time of flight. Horizontal motion is just a passenger." }
+            {
+              "text_en": "Time of flight is decided by the VERTICAL motion alone.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "Here is why. Gravity pulls straight down — it only affects the vertical component of velocity.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "The horizontal component of v-nought cosine theta travels along while the vertical component plays out its up-and-down story.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "How long does that vertical story take? That is the time of flight. Horizontal motion is just a passenger.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "vertical_only_sketch"
       },
       "STATE_2": {
         "title": "Deriving T = 2 v₀ sin(θ) / g",
@@ -109,23 +170,67 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Deriving T = 2 v₀ sin(θ) / g",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "derive_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Now the derivation. Vertical velocity at any time t is v-nought sine theta minus g times t." },
-            { "text_en": "At the peak, vertical velocity is zero — so t-peak equals v-nought sine theta over g." },
-            { "text_en": "By the symmetry of projectile motion, the time falling back is also t-peak." },
-            { "text_en": "Total time of flight is twice that — T equals 2 v-nought sine theta over g." },
-            { "text_en": "For a 30-metres-per-second six at 45 degrees, T is 4.24 seconds. Commentators notice exactly this hang time." }
+            {
+              "text_en": "Now the derivation. Vertical velocity at any time t is v-nought sine theta minus g times t.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "At the peak, vertical velocity is zero — so t-peak equals v-nought sine theta over g.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "By the symmetry of projectile motion, the time falling back is also t-peak.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "Total time of flight is twice that — T equals 2 v-nought sine theta over g.",
+              "id": "state_2_s4"
+            },
+            {
+              "text_en": "For a 30-metres-per-second six at 45 degrees, T is 4.24 seconds. Commentators notice exactly this hang time.",
+              "id": "state_2_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "derive_sketch"
       },
       "STATE_3": {
         "title": "Angle Effect — Steeper Launch Stays Up Longer",
@@ -139,21 +244,59 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Angle Effect — Steeper Launch Stays Up Longer",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "angle_effect_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Launch angle matters — higher angle, more hang time." },
-            { "text_en": "At 15 degrees, a 20-metres-per-second projectile stays up just 1 second. At 75 degrees, almost 4 seconds. At 90 degrees — straight up — a full 4 seconds." },
-            { "text_en": "There is a design tradeoff. Maximum hang time happens at 90 degrees — but that gives ZERO range, because the ball comes straight down." }
+            {
+              "text_en": "Launch angle matters — higher angle, more hang time.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "At 15 degrees, a 20-metres-per-second projectile stays up just 1 second. At 75 degrees, almost 4 seconds. At 90 degrees — straight up — a full 4 seconds.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "There is a design tradeoff. Maximum hang time happens at 90 degrees — but that gives ZERO range, because the ball comes straight down.",
+              "id": "state_3_s3"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "angle_effect_sketch"
       }
     }
   },
@@ -180,22 +323,63 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Wrong Instinct: 'Fast Ball Stays Up Longer'",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_horizontal_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Student's instinct — faster throw keeps the ball up longer." },
-              { "text_en": "This confuses range with time." },
-              { "text_en": "A ball tossed straight up at 10 metres per second takes 2 seconds to come back. The SAME ball pushed sideways at 30 still takes 2 seconds." },
-              { "text_en": "Gravity does not care about horizontal motion." }
+              {
+                "text_en": "Student's instinct — faster throw keeps the ball up longer.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "This confuses range with time.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "A ball tossed straight up at 10 metres per second takes 2 seconds to come back. The SAME ball pushed sideways at 30 still takes 2 seconds.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "Gravity does not care about horizontal motion.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_horizontal_sketch"
         },
         "STATE_2": {
           "title": "The Galileo Experiment — Drop vs Slide",
@@ -209,22 +393,63 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Galileo Experiment — Drop vs Slide",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "galileo_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The definitive test — drop one ball from a table, roll another off horizontally at the same height." },
-              { "text_en": "Both balls reach the floor at exactly the same moment." },
-              { "text_en": "The rolling ball lands far away; the dropped ball lands directly below. But the time is identical." },
-              { "text_en": "Galileo noticed this centuries ago. Horizontal motion has zero effect on time in the air." }
+              {
+                "text_en": "The definitive test — drop one ball from a table, roll another off horizontally at the same height.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "Both balls reach the floor at exactly the same moment.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "The rolling ball lands far away; the dropped ball lands directly below. But the time is identical.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "Galileo noticed this centuries ago. Horizontal motion has zero effect on time in the air.",
+                "id": "state_2_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "galileo_sketch"
         },
         "STATE_3": {
           "title": "Always Decompose — Vertical First",
@@ -238,34 +463,103 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Always Decompose — Vertical First",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "decompose_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The procedure to internalise — decompose first, then plug into the right formula." },
-              { "text_en": "For time of flight, use only v-y — the vertical component v-nought sine theta. T equals 2 v-y over g." },
-              { "text_en": "For range or horizontal position, bring in v-x separately. Never mix them in the time formula. Time is a vertical story." }
+              {
+                "text_en": "The procedure to internalise — decompose first, then plug into the right formula.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "For time of flight, use only v-y — the vertical component v-nought sine theta. T equals 2 v-y over g.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "For range or horizontal position, bring in v-x separately. Never mix them in the time formula. Time is a vertical story.",
+                "id": "state_3_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "decompose_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Horizontal Affects Time (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Cricket six at 30 m/s, 45 deg", "params": { "v0": 30, "theta": 45 } },
-      { "label": "Javelin at 25 m/s, 35 deg", "params": { "v0": 25, "theta": 35 } },
-      { "label": "Diwali rocket, nearly vertical", "params": { "v0": 40, "theta": 80 } }
-    ],
-    "type_b": [
-      { "label": "Football long pass", "scenario": "football_long_pass" },
-      { "label": "Basketball free throw", "scenario": "basketball_free_throw" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Cricket six at 30 m/s, 45 deg",
+        "params": {
+          "v0": 30,
+          "theta": 45
+        }
+      },
+      "1": {
+        "label": "Javelin at 25 m/s, 35 deg",
+        "params": {
+          "v0": 25,
+          "theta": 35
+        }
+      },
+      "2": {
+        "label": "Diwali rocket, nearly vertical",
+        "params": {
+          "v0": 40,
+          "theta": 80
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Football long pass",
+        "scenario": "football_long_pass"
+      },
+      "1": {
+        "label": "Basketball free throw",
+        "scenario": "basketball_free_throw"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

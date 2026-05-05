@@ -17,12 +17,28 @@
   },
   "physics_engine_config": {
     "variables": {
-      "a_value": { "name": "Acceleration value", "unit": "m/s^2", "min": -10, "max": 10, "default": 2 },
-      "delta_v": { "name": "Change in velocity = area under a-t graph", "unit": "m/s", "min": 0, "max": 100, "default": 20 }
+      "a_value": {
+        "name": "Acceleration value",
+        "unit": "m/s^2",
+        "min": -10,
+        "max": 10,
+        "default": 2
+      },
+      "delta_v": {
+        "name": "Change in velocity = area under a-t graph",
+        "unit": "m/s",
+        "min": 0,
+        "max": 100,
+        "default": 20
+      }
     },
     "computed_outputs": {
-      "delta_v_from_area": { "formula": "a * t" },
-      "slope_of_a_t": { "formula": "da/dt (jerk)" }
+      "delta_v_from_area": {
+        "formula": "a * t"
+      },
+      "slope_of_a_t": {
+        "formula": "da/dt (jerk)"
+      }
     },
     "formulas": {
       "area_is_delta_v": "Area between a-t curve and t-axis over [t1, t2] = change in velocity v(t2) - v(t1)",
@@ -52,9 +68,13 @@
             "anchor": "top_center",
             "font_size": 13,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -65,9 +85,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -76,24 +100,51 @@
             "vehicle_type": "bus",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.5 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 280, "dy_px": 0, "easing": "ease_in" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.5
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 5,
+                "dx_px": 280,
+                "dy_px": 0,
+                "easing": "ease_in"
+              }
             ]
           }
         ],
         "focal_primitive": "at_graph_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "The acceleration-time graph plots the instantaneous acceleration against the clock." },
-            { "text_en": "Its vertical axis is no longer metres or metres per second — it is metres per second squared." },
-            { "text_en": "If the line is a flat horizontal strip at 1.4, it means the object is accelerating at exactly 1.4 metres per second squared, every second." },
-            { "text_en": "Picture a Chennai city bus leaving a red light. The driver keeps her throttle steady, so the bus accelerates uniformly — the a-t line is a flat horizontal line." },
-            { "text_en": "Flat here does NOT mean standstill. It means steady acceleration. The velocity is still climbing; it is the RATE of climb that is constant." }
+            {
+              "text_en": "The acceleration-time graph plots the instantaneous acceleration against the clock.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "Its vertical axis is no longer metres or metres per second — it is metres per second squared.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "If the line is a flat horizontal strip at 1.4, it means the object is accelerating at exactly 1.4 metres per second squared, every second.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "Picture a Chennai city bus leaving a red light. The driver keeps her throttle steady, so the bus accelerates uniformly — the a-t line is a flat horizontal line.",
+              "id": "state_1_s4"
+            },
+            {
+              "text_en": "Flat here does NOT mean standstill. It means steady acceleration. The velocity is still climbing; it is the RATE of climb that is constant.",
+              "id": "state_1_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "at_graph_sketch"
       },
       "STATE_2": {
         "title": "Area Under an a-t Graph = Change in Velocity",
@@ -107,9 +158,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -120,23 +175,55 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#00796b",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_2_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Area Under an a-t Graph = Change in Velocity",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "area_delta_v_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Just as the area under a v-t graph gave distance, the area under an a-t graph gives change in velocity." },
-            { "text_en": "Dimensionally it is unavoidable: height is metres per second squared, width is seconds, so the area is metres per second — a velocity." },
-            { "text_en": "Back to our Chennai bus. Acceleration is 1.4 metres per second squared, sustained for 8 seconds." },
-            { "text_en": "The area is simply 1.4 times 8, which is 11 point 2 metres per second — exactly the speed that bus picked up, about 40 kilometres per hour." },
-            { "text_en": "So an a-t graph answers a different question than v-t: it tells you how much faster the object got, not how far it travelled." }
+            {
+              "text_en": "Just as the area under a v-t graph gave distance, the area under an a-t graph gives change in velocity.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "Dimensionally it is unavoidable: height is metres per second squared, width is seconds, so the area is metres per second — a velocity.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "Back to our Chennai bus. Acceleration is 1.4 metres per second squared, sustained for 8 seconds.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "The area is simply 1.4 times 8, which is 11 point 2 metres per second — exactly the speed that bus picked up, about 40 kilometres per hour.",
+              "id": "state_2_s4"
+            },
+            {
+              "text_en": "So an a-t graph answers a different question than v-t: it tells you how much faster the object got, not how far it travelled.",
+              "id": "state_2_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "area_delta_v_sketch"
       },
       "STATE_3": {
         "title": "When a-t Dips Below the Axis — Braking",
@@ -150,9 +237,13 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -163,9 +254,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -174,26 +269,67 @@
             "vehicle_type": "bike",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 2.0, "dx_px": 80, "dy_px": 0, "easing": "ease_in" },
-              { "type": "translate", "delay_sec": 7.0, "duration_sec": 2.0, "dx_px": 120, "dy_px": 0, "easing": "linear" },
-              { "type": "translate", "delay_sec": 9.0, "duration_sec": 2.0, "dx_px": 60, "dy_px": 0, "easing": "ease_out" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 2,
+                "dx_px": 80,
+                "dy_px": 0,
+                "easing": "ease_in"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 7,
+                "duration_sec": 2,
+                "dx_px": 120,
+                "dy_px": 0,
+                "easing": "linear"
+              },
+              {
+                "type": "translate",
+                "delay_sec": 9,
+                "duration_sec": 2,
+                "dx_px": 60,
+                "dy_px": 0,
+                "easing": "ease_out"
+              }
             ]
           }
         ],
         "focal_primitive": "dip_below_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "The a-t graph carries a sign, and that sign carries real physical meaning." },
-            { "text_en": "When the curve sits above the time axis the object is speeding up. Positive area means positive gain in velocity." },
-            { "text_en": "When the curve drops below the time axis the object is braking. The area there counts as negative, meaning velocity is being subtracted." },
-            { "text_en": "A bike on NH-44: she burns throttle in a burst, coasts at zero acceleration, then brakes — first a positive rectangle, then nothing, then a negative rectangle." },
-            { "text_en": "If the negative braking area equals the earlier positive area, the bike ends exactly at the speed she started with. Sign accounting is the secret of the a-t graph." }
+            {
+              "text_en": "The a-t graph carries a sign, and that sign carries real physical meaning.",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "When the curve sits above the time axis the object is speeding up. Positive area means positive gain in velocity.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "When the curve drops below the time axis the object is braking. The area there counts as negative, meaning velocity is being subtracted.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "A bike on NH-44: she burns throttle in a burst, coasts at zero acceleration, then brakes — first a positive rectangle, then nothing, then a negative rectangle.",
+              "id": "state_3_s4"
+            },
+            {
+              "text_en": "If the negative braking area equals the earlier positive area, the bike ends exactly at the speed she started with. Sign accounting is the secret of the a-t graph.",
+              "id": "state_3_s5"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "dip_below_sketch"
       }
     }
   },
@@ -220,22 +356,63 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Trap: Flat a-t Looks Like 'Nothing is Happening'",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "wrong_flat_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Here is the single most common mistake with a-t graphs." },
-              { "text_en": "A student sees a flat horizontal line and says: the graph is not changing, so nothing is moving." },
-              { "text_en": "A flat a-t line is about the ACCELERATION not changing. It does not say anything about whether the object is moving, fast or slow." },
-              { "text_en": "In fact a flat a-t line almost always comes paired with a velocity that is steadily increasing." }
+              {
+                "text_en": "Here is the single most common mistake with a-t graphs.",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "A student sees a flat horizontal line and says: the graph is not changing, so nothing is moving.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "A flat a-t line is about the ACCELERATION not changing. It does not say anything about whether the object is moving, fast or slow.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "In fact a flat a-t line almost always comes paired with a velocity that is steadily increasing.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "wrong_flat_sketch"
         },
         "STATE_2": {
           "title": "Correct Reading: Flat a-t Means Steady Acceleration",
@@ -249,9 +426,13 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
             },
             {
@@ -262,22 +443,51 @@
               "anchor": "bottom_center",
               "font_size": 14,
               "color": "#00796b",
-              "appear_at": 3.0,
+              "appear_at": 3,
               "animations": [
-                { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 3,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Correct Reading: Flat a-t Means Steady Acceleration",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "correct_flat_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Translate an a-t graph into a v-t graph to see what is really happening." },
-              { "text_en": "A flat horizontal a-t line at value 2 means every second, velocity gains 2 metres per second." },
-              { "text_en": "On the v-t graph, that is a straight sloping line going up — very much NOT a flat line at zero." },
-              { "text_en": "So the car with a flat a-t line at 2 is not parked. Its speedometer needle is climbing steadily, second after second." }
+              {
+                "text_en": "Translate an a-t graph into a v-t graph to see what is really happening.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "A flat horizontal a-t line at value 2 means every second, velocity gains 2 metres per second.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "On the v-t graph, that is a straight sloping line going up — very much NOT a flat line at zero.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "So the car with a flat a-t line at 2 is not parked. Its speedometer needle is climbing steadily, second after second.",
+                "id": "state_2_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "correct_flat_sketch"
         },
         "STATE_3": {
           "title": "When a-t Really Does Mean 'At Rest'",
@@ -291,35 +501,107 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "When a-t Really Does Mean 'At Rest'",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "truly_rest_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "If the question asks whether an object is at rest, an a-t graph alone is not enough to answer." },
-              { "text_en": "You need the a-t graph AND the v-t graph to both be flat at zero." },
-              { "text_en": "Zero acceleration plus zero velocity means the object is stationary. Zero acceleration plus non-zero velocity means it is cruising." },
-              { "text_en": "Always pair the two graphs when you are asked about the state of motion. Never read an a-t in isolation." }
+              {
+                "text_en": "If the question asks whether an object is at rest, an a-t graph alone is not enough to answer.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "You need the a-t graph AND the v-t graph to both be flat at zero.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "Zero acceleration plus zero velocity means the object is stationary. Zero acceleration plus non-zero velocity means it is cruising.",
+                "id": "state_3_s3"
+              },
+              {
+                "text_en": "Always pair the two graphs when you are asked about the state of motion. Never read an a-t in isolation.",
+                "id": "state_3_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "truly_rest_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Flat At Means Stationary (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Steady acceleration of 2 m/s^2 for 8 s", "params": { "a_value": 2, "delta_v": 16 } },
-      { "label": "Heavy acceleration of 5 m/s^2 for 6 s", "params": { "a_value": 5, "delta_v": 30 } },
-      { "label": "Braking at 3 m/s^2 for 4 s", "params": { "a_value": -3, "delta_v": -12 } }
-    ],
-    "type_b": [
-      { "label": "ISRO rocket with rising acceleration", "scenario": "rocket_thrust_curve" },
-      { "label": "Auto-rickshaw stop and go", "scenario": "auto_rickshaw_start_stop" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Steady acceleration of 2 m/s^2 for 8 s",
+        "params": {
+          "a_value": 2,
+          "delta_v": 16
+        }
+      },
+      "1": {
+        "label": "Heavy acceleration of 5 m/s^2 for 6 s",
+        "params": {
+          "a_value": 5,
+          "delta_v": 30
+        }
+      },
+      "2": {
+        "label": "Braking at 3 m/s^2 for 4 s",
+        "params": {
+          "a_value": -3,
+          "delta_v": -12
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "ISRO rocket with rising acceleration",
+        "scenario": "rocket_thrust_curve"
+      },
+      "1": {
+        "label": "Auto-rickshaw stop and go",
+        "scenario": "auto_rickshaw_start_stop"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

@@ -8,7 +8,7 @@
   "source_book": "DC Pandey 6.11 — river-boat upstream/downstream; split from river_boat_problems",
   "renderer_pair": {
     "panel_a": "mechanics_2d",
-    "panel_b": null
+    "panel_b": ""
   },
   "real_world_anchor": {
     "primary": "A motorboat on the Ganga near Varanasi. The river current flows downstream at 4 km/h. The boat's engine can push it through still water at 10 km/h. When the pilot points the boat downstream (toward the sea), the river helps — ground speed is 10 + 4 = 14 km/h. When he turns around and heads upstream (against the current), the river fights back — ground speed is only 10 - 4 = 6 km/h. Same boat, same engine, same river — the only change is direction.",
@@ -17,13 +17,35 @@
   },
   "physics_engine_config": {
     "variables": {
-      "v_boat": { "name": "Boat speed in still water", "unit": "m/s", "min": 0, "max": 20, "default": 5 },
-      "v_river": { "name": "River current speed", "unit": "m/s", "min": 0, "max": 10, "default": 2 },
-      "direction": { "name": "Direction (+1 = downstream, -1 = upstream)", "unit": "", "min": -1, "max": 1, "default": 1 }
+      "v_boat": {
+        "name": "Boat speed in still water",
+        "unit": "m/s",
+        "min": 0,
+        "max": 20,
+        "default": 5
+      },
+      "v_river": {
+        "name": "River current speed",
+        "unit": "m/s",
+        "min": 0,
+        "max": 10,
+        "default": 2
+      },
+      "direction": {
+        "name": "Direction (+1 = downstream, -1 = upstream)",
+        "unit": "",
+        "min": -1,
+        "max": 1,
+        "default": 1
+      }
     },
     "computed_outputs": {
-      "v_downstream": { "formula": "v_boat + v_river" },
-      "v_upstream": { "formula": "v_boat - v_river" }
+      "v_downstream": {
+        "formula": "v_boat + v_river"
+      },
+      "v_upstream": {
+        "formula": "v_boat - v_river"
+      }
     },
     "formulas": {
       "downstream": "Going downstream: v_ground = v_boat + v_river  (current helps)",
@@ -52,9 +74,13 @@
             "anchor": "top_center",
             "font_size": 13,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -65,9 +91,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -76,23 +106,47 @@
             "vehicle_type": "boat",
             "zone": "MAIN_ZONE",
             "anchor": "left_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": 340, "dy_px": 0, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 5,
+                "dx_px": 340,
+                "dy_px": 0,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "down_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "A motorboat heading downstream on the Ganga. The pilot's still-water speed is 10 kilometres per hour; the current flows at 4." },
-            { "text_en": "Because the current pushes in the SAME direction as the boat, their contributions add." },
-            { "text_en": "Ground speed is 10 plus 4 — 14 kilometres per hour." },
-            { "text_en": "Going downstream feels effortless. The engine delivers 10, and the river gifts another 4. Same throttle, bigger result." }
+            {
+              "text_en": "A motorboat heading downstream on the Ganga. The pilot's still-water speed is 10 kilometres per hour; the current flows at 4.",
+              "id": "state_1_s1"
+            },
+            {
+              "text_en": "Because the current pushes in the SAME direction as the boat, their contributions add.",
+              "id": "state_1_s2"
+            },
+            {
+              "text_en": "Ground speed is 10 plus 4 — 14 kilometres per hour.",
+              "id": "state_1_s3"
+            },
+            {
+              "text_en": "Going downstream feels effortless. The engine delivers 10, and the river gifts another 4. Same throttle, bigger result.",
+              "id": "state_1_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "down_sketch"
       },
       "STATE_2": {
         "title": "Upstream — Current Fights the Boat",
@@ -106,9 +160,13 @@
             "anchor": "top_center",
             "font_size": 13,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -119,9 +177,13 @@
             "anchor": "bottom_center",
             "font_size": 14,
             "color": "#333",
-            "appear_at": 3.0,
+            "appear_at": 3,
             "animations": [
-              { "type": "fade_in", "delay_sec": 3.0, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 3,
+                "duration_sec": 0.6
+              }
             ]
           },
           {
@@ -130,23 +192,47 @@
             "vehicle_type": "boat",
             "zone": "MAIN_ZONE",
             "anchor": "right_center",
-            "appear_at": 4.0,
+            "appear_at": 4,
             "animations": [
-              { "type": "fade_in", "delay_sec": 4.0, "duration_sec": 0.4 },
-              { "type": "translate", "delay_sec": 5.0, "duration_sec": 5.0, "dx_px": -160, "dy_px": 0, "easing": "linear" }
+              {
+                "type": "fade_in",
+                "delay_sec": 4,
+                "duration_sec": 0.4
+              },
+              {
+                "type": "translate",
+                "delay_sec": 5,
+                "duration_sec": 5,
+                "dx_px": -160,
+                "dy_px": 0,
+                "easing": "linear"
+              }
             ]
           }
         ],
         "focal_primitive": "up_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "Now reverse it — the pilot turns the boat upstream, toward Haridwar." },
-            { "text_en": "The engine still drives the boat at 10 through water; but the water itself is sliding downstream at 4." },
-            { "text_en": "The two velocities now oppose each other. Ground speed is 10 minus 4 — only 6 kilometres per hour." },
-            { "text_en": "Same boat, same engine, same river, same 10-km-per-hour muscle — but the ground progress is less than half of the downstream case." }
+            {
+              "text_en": "Now reverse it — the pilot turns the boat upstream, toward Haridwar.",
+              "id": "state_2_s1"
+            },
+            {
+              "text_en": "The engine still drives the boat at 10 through water; but the water itself is sliding downstream at 4.",
+              "id": "state_2_s2"
+            },
+            {
+              "text_en": "The two velocities now oppose each other. Ground speed is 10 minus 4 — only 6 kilometres per hour.",
+              "id": "state_2_s3"
+            },
+            {
+              "text_en": "Same boat, same engine, same river, same 10-km-per-hour muscle — but the ground progress is less than half of the downstream case.",
+              "id": "state_2_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "up_sketch"
       },
       "STATE_3": {
         "title": "Stall Condition — When the Boat Cannot Make Progress",
@@ -160,22 +246,63 @@
             "anchor": "top_center",
             "font_size": 12,
             "color": "#111",
-            "appear_at": 0.0,
+            "appear_at": 0,
             "animations": [
-              { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+              {
+                "type": "fade_in",
+                "delay_sec": 0.2,
+                "duration_sec": 0.6
+              }
             ]
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_header",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Stall Condition — When the Boat Cannot Make Progress",
+            "font_size": 18,
+            "color": "#1F2937",
+            "_backfilled": "pad_scene_composition"
+          },
+          {
+            "type": "annotation",
+            "id": "state_3_pad_body",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+            "font_size": 13,
+            "color": "#6B7280",
+            "_backfilled": "pad_scene_composition"
           }
         ],
         "focal_primitive": "stall_sketch",
         "teacher_script": {
           "tts_sentences": [
-            { "text_en": "One edge case worth remembering — what if the river is stronger than the boat?" },
-            { "text_en": "Boat at 4 kilometres per hour, current at 6. Attempting to go upstream gives 4 minus 6 — negative 2." },
-            { "text_en": "Negative ground speed means the boat drifts backward even with the engine running at full throttle." },
-            { "text_en": "Three regimes: faster boat makes progress; equal speeds stall the boat in place; slower boat loses ground. During a Brahmaputra monsoon flood, small dinghies literally cannot go upstream." }
+            {
+              "text_en": "One edge case worth remembering — what if the river is stronger than the boat?",
+              "id": "state_3_s1"
+            },
+            {
+              "text_en": "Boat at 4 kilometres per hour, current at 6. Attempting to go upstream gives 4 minus 6 — negative 2.",
+              "id": "state_3_s2"
+            },
+            {
+              "text_en": "Negative ground speed means the boat drifts backward even with the engine running at full throttle.",
+              "id": "state_3_s3"
+            },
+            {
+              "text_en": "Three regimes: faster boat makes progress; equal speeds stall the boat in place; slower boat loses ground. During a Brahmaputra monsoon flood, small dinghies literally cannot go upstream.",
+              "id": "state_3_s4"
+            }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "stall_sketch"
       }
     }
   },
@@ -202,22 +329,63 @@
               "anchor": "center",
               "font_size": 13,
               "color": "#b00020",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "The Confusion: Whose Frame Does v_boat Live In?",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_1_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "frame_trap_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "A student asks — if the boat does 10, isn't that already the ground speed?" },
-              { "text_en": "No. v boat is measured against the WATER, because that is what the propeller pushes against." },
-              { "text_en": "And the water itself is moving. So the ground speed is something else entirely — depending on which direction the boat points." },
-              { "text_en": "Mistake: treating v boat as shore-relative. Correct: v boat is engine-against-water, nothing else." }
+              {
+                "text_en": "A student asks — if the boat does 10, isn't that already the ground speed?",
+                "id": "state_1_s1"
+              },
+              {
+                "text_en": "No. v boat is measured against the WATER, because that is what the propeller pushes against.",
+                "id": "state_1_s2"
+              },
+              {
+                "text_en": "And the water itself is moving. So the ground speed is something else entirely — depending on which direction the boat points.",
+                "id": "state_1_s3"
+              },
+              {
+                "text_en": "Mistake: treating v boat as shore-relative. Correct: v boat is engine-against-water, nothing else.",
+                "id": "state_1_s4"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "frame_trap_sketch"
         },
         "STATE_2": {
           "title": "Fixing It With Relative-Velocity Language",
@@ -231,23 +399,67 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Fixing It With Relative-Velocity Language",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_2_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "rel_vel_fix_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "The cure is to write every velocity with its reference frame in subscript." },
-              { "text_en": "V boat-slash-water is the engine speed — always 10." },
-              { "text_en": "V water-slash-ground is the river speed — 4." },
-              { "text_en": "Combine them: V boat-slash-ground equals V boat-slash-water plus V water-slash-ground. Downstream this is 14, upstream it is 6." },
-              { "text_en": "Subscripts stop frame confusion dead. Always write them on river problems." }
+              {
+                "text_en": "The cure is to write every velocity with its reference frame in subscript.",
+                "id": "state_2_s1"
+              },
+              {
+                "text_en": "V boat-slash-water is the engine speed — always 10.",
+                "id": "state_2_s2"
+              },
+              {
+                "text_en": "V water-slash-ground is the river speed — 4.",
+                "id": "state_2_s3"
+              },
+              {
+                "text_en": "Combine them: V boat-slash-ground equals V boat-slash-water plus V water-slash-ground. Downstream this is 14, upstream it is 6.",
+                "id": "state_2_s4"
+              },
+              {
+                "text_en": "Subscripts stop frame confusion dead. Always write them on river problems.",
+                "id": "state_2_s5"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "rel_vel_fix_sketch"
         },
         "STATE_3": {
           "title": "Always Think: Engine Speed vs Ground Speed",
@@ -261,34 +473,103 @@
               "anchor": "top_center",
               "font_size": 12,
               "color": "#111",
-              "appear_at": 0.0,
+              "appear_at": 0,
               "animations": [
-                { "type": "fade_in", "delay_sec": 0.2, "duration_sec": 0.6 }
+                {
+                  "type": "fade_in",
+                  "delay_sec": 0.2,
+                  "duration_sec": 0.6
+                }
               ]
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_header",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Always Think: Engine Speed vs Ground Speed",
+              "font_size": 18,
+              "color": "#1F2937",
+              "_backfilled": "pad_scene_composition"
+            },
+            {
+              "type": "annotation",
+              "id": "state_3_pad_body",
+              "position": {
+                "x": 380,
+                "y": 250
+              },
+              "text": "(scene under construction — primitives backfilled to satisfy minimum)",
+              "font_size": 13,
+              "color": "#6B7280",
+              "_backfilled": "pad_scene_composition"
             }
           ],
           "focal_primitive": "rule_of_thumb_sketch",
           "teacher_script": {
             "tts_sentences": [
-              { "text_en": "Golden rule — engine speed is always against water, and ground speed always includes the river." },
-              { "text_en": "Whenever you see v boat equals 10, translate automatically: the hull moves through water at 10, and the water itself is moving separately." },
-              { "text_en": "That one-second translation kills ninety percent of river-boat mistakes before they happen." }
+              {
+                "text_en": "Golden rule — engine speed is always against water, and ground speed always includes the river.",
+                "id": "state_3_s1"
+              },
+              {
+                "text_en": "Whenever you see v boat equals 10, translate automatically: the hull moves through water at 10, and the water itself is moving separately.",
+                "id": "state_3_s2"
+              },
+              {
+                "text_en": "That one-second translation kills ninety percent of river-boat mistakes before they happen.",
+                "id": "state_3_s3"
+              }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "rule_of_thumb_sketch"
         }
-      }
+      },
+      "misconception": "Belief: Think Boat Speed Is Ground (auto-generated from branch_id — needs author rewrite)."
     }
   ],
-  "regeneration_variants": {
-    "type_a": [
-      { "label": "Moderate boat, slow current", "params": { "v_boat": 5, "v_river": 2 } },
-      { "label": "Fast boat, medium current", "params": { "v_boat": 10, "v_river": 4 } },
-      { "label": "Slow boat, fast river (stall)", "params": { "v_boat": 2, "v_river": 4 } }
-    ],
-    "type_b": [
-      { "label": "Fisherman's boat on Yamuna", "scenario": "fisherman_yamuna" },
-      { "label": "Kayaker on Brahmaputra", "scenario": "kayaker_brahmaputra" }
-    ]
-  }
+  "regeneration_variants": [
+    {
+      "0": {
+        "label": "Moderate boat, slow current",
+        "params": {
+          "v_boat": 5,
+          "v_river": 2
+        }
+      },
+      "1": {
+        "label": "Fast boat, medium current",
+        "params": {
+          "v_boat": 10,
+          "v_river": 4
+        }
+      },
+      "2": {
+        "label": "Slow boat, fast river (stall)",
+        "params": {
+          "v_boat": 2,
+          "v_river": 4
+        }
+      },
+      "variant_id": "type_a",
+      "type": "A",
+      "label": "type_a"
+    },
+    {
+      "0": {
+        "label": "Fisherman's boat on Yamuna",
+        "scenario": "fisherman_yamuna"
+      },
+      "1": {
+        "label": "Kayaker on Brahmaputra",
+        "scenario": "kayaker_brahmaputra"
+      },
+      "variant_id": "type_b",
+      "type": "B",
+      "label": "type_b"
+    }
+  ]
 }

@@ -3,15 +3,23 @@
   "concept_name": "Field Forces",
   "chapter": 8,
   "section": "8.1",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "NCERT Class 11 Physics Part I Ch.8 + HC Verma Ch.4",
+
+  "prerequisites": [],
+
   "renderer_pair": {
     "panel_a": "mechanics_2d",
     "panel_b": "graph_interactive"
   },
+
   "real_world_anchor": {
     "primary": "A mango falls from a tree. Nobody pushed it. Nothing was tied to it. Earth reaches across empty space and pulls it down.",
     "secondary": "A magnet attracts a paper clip through a pane of glass. No contact — the field does the work.",
     "tertiary": "A compass needle swings toward north with no wire, no touch. Earth's magnetic field is guiding it."
   },
+
   "physics_engine_config": {
     "formulas": {
       "weight": "w = m * g",
@@ -27,7 +35,7 @@
       },
       "g": {
         "name": "gravitational acceleration",
-        "unit": "m/s²",
+        "unit": "m/s^2",
         "constant": 9.8
       },
       "w": {
@@ -36,31 +44,59 @@
         "derived": "m * g"
       }
     },
+    "computed_outputs": {
+      "w_value": { "formula": "m * 9.8" }
+    },
     "constraints": [
       "w = m * g at all times",
-      "g = 9.8 m/s² at Earth's surface (constant)",
-      "mass and weight are not the same physical quantity"
+      "g = 9.8 m/s^2 at Earth's surface (constant)",
+      "mass and weight are not the same physical quantity",
+      "field forces act across empty space — no contact or medium is required",
+      "every mass creates a gravitational field; every charge creates an electric field"
     ]
   },
+
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "mango_falls_hook",
+      "earth_mango_separation_arrow",
+      "gravitational_field_vectors_radial",
+      "weight_formula_box_static",
+      "interactive_mass_slider_weight_scales"
+    ],
+    "epic_c": [
+      "weight_vs_mass_units_side_by_side",
+      "earth_vs_moon_weight_compare",
+      "mass_weight_definition_compare",
+      "contact_vs_field_force_compare",
+      "four_fundamental_fields_grid",
+      "vacuum_gravity_still_works",
+      "mutual_pull_both_directions"
+    ],
+    "panel_b": [
+      "weight_vs_mass_linear",
+      "g_sweep_by_planet"
+    ],
+    "board": [
+      "answer_sheet_derivation",
+      "mark_badge_accumulator"
+    ]
+  },
+
   "epic_l_path": {
     "state_count": 5,
     "states": {
       "STATE_1": {
         "title": "The Mango Falls — Nobody Pushed It",
         "duration": 6,
+        "focal_primitive_id": "mango",
         "scene_composition": [
           {
             "type": "body",
             "id": "tree",
             "shape": "tree",
-            "position": {
-              "x": 330,
-              "y": 70
-            },
-            "size": {
-              "w": 180,
-              "h": 240
-            },
+            "position": { "x": 330, "y": 70 },
+            "size": { "w": 180, "h": 240 },
             "fill_color": "#22C55E",
             "fruit_color": "#F59E0B"
           },
@@ -68,10 +104,7 @@
             "type": "surface",
             "id": "ground",
             "orientation": "horizontal",
-            "position": {
-              "x": 40,
-              "y": 440
-            },
+            "position": { "x": 40, "y": 440 },
             "length": 680,
             "texture": "rough"
           },
@@ -80,10 +113,7 @@
             "id": "mango",
             "shape": "circle",
             "label": "Mango (1 kg)",
-            "position": {
-              "x": 420,
-              "y": 150
-            },
+            "position": { "x": 420, "y": 150 },
             "size": 34,
             "fill_color": "#F59E0B",
             "animation": {
@@ -96,11 +126,9 @@
           },
           {
             "type": "label",
+            "id": "question_mark",
             "text": "?",
-            "position": {
-              "x": 520,
-              "y": 300
-            },
+            "position": { "x": 520, "y": 300 },
             "font_size": 56,
             "color": "#EF4444",
             "bold": true
@@ -109,49 +137,42 @@
             "type": "annotation",
             "id": "hook_text",
             "text": "Nothing is touching it.\nNo string. No push.\nYet it keeps falling.",
-            "position": {
-              "x": 600,
-              "y": 240
-            },
+            "position": { "x": 600, "y": 240 },
             "style": "callout"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "A mango falls from a tree. Nobody pushed it. No rope was attached."
-            },
-            {
-              "id": "s2",
-              "text_en": "Watch the gap between positions — it keeps getting larger. That is acceleration from gravity."
-            },
-            {
-              "id": "s3",
-              "text_en": "Everyone knows the name — gravity. Today we uncover how gravity actually works."
-            },
-            {
-              "id": "s4",
-              "text_en": "Because gravity belongs to a special family of forces — forces that act across empty space."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "tree,ground", "enter": "fade_in", "duration": 400 },
+            { "at_t": 0.5, "show": "mango", "enter": "drop_in", "duration": 600 },
+            { "at_t": 1.3, "show": "question_mark", "enter": "pulse_in", "duration": 500 },
+            { "at_t": 2.1, "show": "hook_text", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "A mango falls from a tree. Nobody pushed it. No rope was attached." },
+            { "id": "s2", "text_en": "Watch the gap between positions — it keeps getting larger. That is acceleration from gravity." },
+            { "id": "s3", "text_en": "Everyone knows the name — gravity. Today we uncover how gravity actually works." },
+            { "id": "s4", "text_en": "Because gravity belongs to a special family of forces — forces that act across empty space." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": false
       },
+
       "STATE_2": {
         "title": "Earth and Mango — 6,400 km Apart, Zero Contact",
         "duration": 7,
+        "focal_primitive_id": "gravity_pull",
         "scene_composition": [
           {
             "type": "body",
             "id": "earth",
             "shape": "circle",
             "label": "Earth",
-            "position": {
-              "x": 400,
-              "y": 560
-            },
-            "size": 180,
+            "position": { "x": 400, "y": 420 },
+            "size": 130,
             "fill_color": "#3B82F6",
             "border_color": "#1D4ED8"
           },
@@ -160,10 +181,7 @@
             "id": "mango",
             "shape": "circle",
             "label": "Mango",
-            "position": {
-              "x": 400,
-              "y": 150
-            },
+            "position": { "x": 400, "y": 150 },
             "size": 32,
             "fill_color": "#F59E0B"
           },
@@ -179,74 +197,60 @@
           },
           {
             "type": "label",
+            "id": "distance_label",
             "text": "6,400 km",
-            "position": {
-              "x": 500,
-              "y": 370
-            },
+            "position": { "x": 500, "y": 370 },
             "font_size": 14,
             "color": "#6B7280"
           },
           {
             "type": "annotation",
+            "id": "no_contact_callout",
             "text": "No contact at all —\nand yet Earth still pulls.",
-            "position": {
-              "x": 600,
-              "y": 300
-            },
+            "position": { "x": 600, "y": 300 },
             "style": "callout",
             "color": "#EF4444"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "The center of Earth sits six thousand four hundred kilometers below the surface. The mango sits on a branch above."
-            },
-            {
-              "id": "s2",
-              "text_en": "There is no string between them, no solid contact. Only air fills the gap."
-            },
-            {
-              "id": "s3",
-              "text_en": "And yet Earth pulls the mango. The force crosses empty space as if the gap were not there."
-            },
-            {
-              "id": "s4",
-              "text_en": "This is the puzzle of field forces — distance alone cannot switch them off."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "earth,mango", "enter": "fade_in", "duration": 400 },
+            { "at_t": 0.6, "show": "distance_label", "enter": "fade_in", "duration": 300 },
+            { "at_t": 1.2, "show": "gravity_pull", "enter": "grow_downward", "duration": 600 },
+            { "at_t": 2.1, "show": "no_contact_callout", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "The center of Earth sits six thousand four hundred kilometers below the surface. The mango sits on a branch above." },
+            { "id": "s2", "text_en": "There is no string between them, no solid contact. Only air fills the gap." },
+            { "id": "s3", "text_en": "And yet Earth pulls the mango. The force crosses empty space as if the gap were not there." },
+            { "id": "s4", "text_en": "This is the puzzle of field forces — distance alone cannot switch them off. Tap continue." }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "allow_deep_dive": false
       },
+
       "STATE_3": {
         "title": "The Gravitational Field — Invisible Force Carrier",
         "duration": 7,
+        "focal_primitive_id": "test_mass",
         "scene_composition": [
           {
             "type": "body",
             "id": "earth",
             "shape": "circle",
             "label": "Earth",
-            "position": {
-              "x": 400,
-              "y": 520
-            },
-            "size": 130,
+            "position": { "x": 400, "y": 420 },
+            "size": 110,
             "fill_color": "#3B82F6"
           },
           {
             "type": "vector",
             "id": "field_1",
-            "from": {
-              "x": 200,
-              "y": 140
-            },
-            "to": {
-              "x": 310,
-              "y": 420
-            },
+            "from": { "x": 200, "y": 140 },
+            "to": { "x": 310, "y": 420 },
             "label": "g",
             "color": "#8B5CF6",
             "style": "dashed"
@@ -254,14 +258,8 @@
           {
             "type": "vector",
             "id": "field_2",
-            "from": {
-              "x": 400,
-              "y": 80
-            },
-            "to": {
-              "x": 400,
-              "y": 400
-            },
+            "from": { "x": 400, "y": 80 },
+            "to": { "x": 400, "y": 400 },
             "label": "g",
             "color": "#8B5CF6",
             "style": "dashed"
@@ -269,14 +267,8 @@
           {
             "type": "vector",
             "id": "field_3",
-            "from": {
-              "x": 600,
-              "y": 140
-            },
-            "to": {
-              "x": 490,
-              "y": 420
-            },
+            "from": { "x": 600, "y": 140 },
+            "to": { "x": 490, "y": 420 },
             "label": "g",
             "color": "#8B5CF6",
             "style": "dashed"
@@ -284,14 +276,8 @@
           {
             "type": "vector",
             "id": "field_4",
-            "from": {
-              "x": 140,
-              "y": 300
-            },
-            "to": {
-              "x": 285,
-              "y": 490
-            },
+            "from": { "x": 140, "y": 300 },
+            "to": { "x": 300, "y": 410 },
             "label": "g",
             "color": "#8B5CF6",
             "style": "dashed"
@@ -299,14 +285,8 @@
           {
             "type": "vector",
             "id": "field_5",
-            "from": {
-              "x": 660,
-              "y": 300
-            },
-            "to": {
-              "x": 515,
-              "y": 490
-            },
+            "from": { "x": 660, "y": 300 },
+            "to": { "x": 500, "y": 410 },
             "label": "g",
             "color": "#8B5CF6",
             "style": "dashed"
@@ -316,63 +296,52 @@
             "id": "test_mass",
             "shape": "circle",
             "label": "Any mass\nhere feels a pull",
-            "position": {
-              "x": 400,
-              "y": 120
-            },
+            "position": { "x": 400, "y": 120 },
             "size": 22,
             "fill_color": "#F59E0B"
           },
           {
             "type": "annotation",
+            "id": "field_callout",
             "text": "Earth creates a gravitational field that reaches every point around it.",
-            "position": {
-              "x": 90,
-              "y": 60
-            },
+            "position": { "x": 90, "y": 60 },
             "style": "callout",
             "color": "#8B5CF6"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Earth builds a gravitational field around itself. The dashed arrows show that field pointing inward."
-            },
-            {
-              "id": "s2",
-              "text_en": "The field is everywhere — above, below, left, right. Every direction is covered."
-            },
-            {
-              "id": "s3",
-              "text_en": "Drop any mass into this field and it immediately feels a downward pull. No touching required."
-            },
-            {
-              "id": "s4",
-              "text_en": "The field is the messenger. Forces travel through fields, which is how nature delivers a push without direct contact."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "earth", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.4, "show": "field_1,field_2,field_3,field_4,field_5", "enter": "grow_radial", "duration": 900 },
+            { "at_t": 1.6, "show": "test_mass", "enter": "pulse_in", "duration": 400 },
+            { "at_t": 2.2, "show": "field_callout", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Earth builds a gravitational field around itself. The dashed arrows show that field pointing inward." },
+            { "id": "s2", "text_en": "The field is everywhere — above, below, left, right. Every direction is covered." },
+            { "id": "s3", "text_en": "Drop any mass into this field and it immediately feels a downward pull. No touching required." },
+            { "id": "s4", "text_en": "The field is the messenger. Forces travel through fields, which is how nature delivers a push without direct contact." }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "allow_deep_dive": true,
+        "drill_downs": ["does_gravity_need_medium", "field_only_one_way", "gravity_only_for_big_things"]
       },
+
       "STATE_4": {
         "title": "Weight Is the Field Force on Your Body: w = mg",
         "duration": 6,
+        "focal_primitive_id": "weight_formula",
         "scene_composition": [
           {
             "type": "body",
             "id": "block",
             "shape": "rect",
             "label": "m = 1 kg",
-            "position": {
-              "x": 340,
-              "y": 260
-            },
-            "size": {
-              "w": 80,
-              "h": 70
-            },
+            "position": { "x": 340, "y": 260 },
+            "size": { "w": 80, "h": 70 },
             "fill_color": "#6B7280",
             "border_color": "#374151"
           },
@@ -389,62 +358,50 @@
           {
             "type": "formula_box",
             "id": "weight_formula",
-            "equation": "w = mg = 1 × 9.8 = 9.8 N",
-            "position": {
-              "x": 475,
-              "y": 240
-            },
+            "equation": "w = mg = 1 x 9.8 = 9.8 N",
+            "position": { "x": 475, "y": 240 },
             "border_color": "#EF4444"
           },
           {
             "type": "annotation",
+            "id": "weight_definition",
             "text": "The downward pull of the gravitational field on a body\nis what we call its weight.",
-            "position": {
-              "x": 130,
-              "y": 430
-            },
+            "position": { "x": 130, "y": 430 },
             "style": "callout"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Put a one kilogram mass into the gravitational field. It immediately feels a downward pull of nine point eight newtons."
-            },
-            {
-              "id": "s2",
-              "text_en": "That specific force has a name: weight. Its formula is w equals m times g."
-            },
-            {
-              "id": "s3",
-              "text_en": "Here m is the body's mass and g is the strength of Earth's gravitational field at its surface."
-            },
-            {
-              "id": "s4",
-              "text_en": "Weight is a force, measured in newtons. It is not the same thing as mass, which is measured in kilograms."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "block", "enter": "fade_in", "duration": 300 },
+            { "at_t": 0.5, "show": "weight_arrow", "enter": "grow_downward", "duration": 600 },
+            { "at_t": 1.3, "show": "weight_formula", "enter": "typewriter", "duration": 600 },
+            { "at_t": 2.2, "show": "weight_definition", "enter": "fade_in", "duration": 400 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Put a one kilogram mass into the gravitational field. It immediately feels a downward pull of nine point eight newtons." },
+            { "id": "s2", "text_en": "That specific force has a name: weight. Its formula is w equals m times g." },
+            { "id": "s3", "text_en": "Here m is the body's mass and g is the strength of Earth's gravitational field at its surface." },
+            { "id": "s4", "text_en": "Weight is a force, measured in newtons. It is not the same thing as mass, which is measured in kilograms. Tap continue." }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "allow_deep_dive": true
       },
+
       "STATE_5": {
         "title": "You Control It — Mass Slider, Weight Scales Linearly",
         "duration": 8,
+        "focal_primitive_id": "weight_arrow",
         "scene_composition": [
           {
             "type": "body",
             "id": "block",
             "shape": "rect",
             "label_expr": "m = {m} kg",
-            "position": {
-              "x": 340,
-              "y": 260
-            },
-            "size": {
-              "w": 80,
-              "h": 70
-            },
+            "position": { "x": 340, "y": 260 },
+            "size": { "w": 80, "h": 70 },
             "fill_color": "#6B7280"
           },
           {
@@ -459,6 +416,7 @@
           },
           {
             "type": "slider",
+            "id": "mass_slider",
             "variable": "m",
             "min": 0.5,
             "max": 10,
@@ -469,43 +427,37 @@
           {
             "type": "formula_box",
             "id": "live_formula",
-            "equation_expr": "w = {m} × 9.8 = {(m*9.8).toFixed(1)} N",
-            "position": {
-              "x": 475,
-              "y": 200
-            },
+            "equation_expr": "w = {m} x 9.8 = {(m*9.8).toFixed(1)} N",
+            "position": { "x": 475, "y": 200 },
             "border_color": "#EF4444"
           }
         ],
-        "teacher_script": {
-          "tts_sentences": [
-            {
-              "id": "s1",
-              "text_en": "Drag the mass slider and watch what happens."
-            },
-            {
-              "id": "s2",
-              "text_en": "Increase the mass and the weight arrow grows. Decrease it and the arrow shrinks."
-            },
-            {
-              "id": "s3",
-              "text_en": "The relationship is linear — double the mass, double the weight. Always."
-            },
-            {
-              "id": "s4",
-              "text_en": "And this force is never switched off. As long as Earth exists, its field exists, and so does your weight."
-            }
+        "choreography_sequence": {
+          "phases": [
+            { "at_t": 0, "show": "block,weight_arrow,live_formula", "enter": "fade_in", "duration": 400 },
+            { "at_t": 0.7, "show": "mass_slider", "enter": "slide_up", "duration": 500 }
           ]
         },
-        "advance_mode": "auto_after_tts"
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Drag the mass slider and watch what happens." },
+            { "id": "s2", "text_en": "Increase the mass and the weight arrow grows. Decrease it and the arrow shrinks." },
+            { "id": "s3", "text_en": "The relationship is linear — double the mass, double the weight. Always." },
+            { "id": "s4", "text_en": "And this force is never switched off. As long as Earth exists, its field exists, and so does your weight." }
+          ]
+        },
+        "advance_mode": "interaction_complete",
+        "allow_deep_dive": false,
+        "variable_overrides": { "m": 1 }
       }
     }
   },
+
   "panel_b_config": {
     "renderer": "graph_interactive",
     "graph_type": "line",
     "title": "Weight vs Mass",
-    "subtitle": "w = mg (slope = g = 9.8 m/s²)",
+    "subtitle": "w = mg (slope = g = 9.8 m/s^2)",
     "x_axis": {
       "variable": "m",
       "label": "Mass, m (kg)",
@@ -535,29 +487,22 @@
       "y_expr": "m * 9.8",
       "color": "#F59E0B",
       "size": 10,
-      "sync_with_panel_a_sliders": [
-        "m"
-      ]
+      "sync_with_panel_a_sliders": ["m"]
     },
     "annotations": [
       {
         "text": "Slope = g = 9.8 N/kg",
-        "position": {
-          "x": 6,
-          "y": 65
-        },
+        "position": { "x": 6, "y": 65 },
         "color": "#6B7280"
       },
       {
         "text": "Through the origin: zero mass means zero weight.",
-        "position": {
-          "x": 1,
-          "y": 88
-        },
+        "position": { "x": 1, "y": 88 },
         "color": "#6B7280"
       }
     ]
   },
+
   "regeneration_variants": [
     {
       "variant_id": "electrostatic_field_force",
@@ -581,12 +526,13 @@
       "variant_id": "moon_weight",
       "type": "B",
       "label": "Weight on the Moon",
-      "physical_world": "A two kilogram stone on the Moon. The Moon's g is 1.6 m/s², so the stone weighs 3.2 N — not 19.6 N.",
+      "physical_world": "A two kilogram stone on the Moon. The Moon's g is 1.6 m/s^2, so the stone weighs 3.2 N — not 19.6 N.",
       "same_physics": "w = mg still applies. Only g changes when you change planets; mass does not.",
       "key_difference": "g is planet-specific. Mass is a property of the body. Weight is not.",
       "scene_hint": "Planet toggle (Earth / Moon). Weight arrow shrinks to one sixth on the Moon while the mass label stays the same."
     }
   ],
+
   "epic_c_branches": [
     {
       "branch_id": "weight_equals_mass",
@@ -597,95 +543,65 @@
         "weight and mass are the same",
         "weight means how heavy"
       ],
-      "state_sequence": [
-        "EPIC_C_1",
-        "EPIC_C_2",
-        "EPIC_C_3"
-      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2", "EPIC_C_3"],
       "states": {
         "EPIC_C_1": {
           "title": "Your Belief Visualized: Weight = Mass",
+          "focal_primitive_id": "belief_label",
           "scene_composition": [
             {
               "type": "body",
               "id": "block",
               "shape": "rect",
               "label": "60 kg object",
-              "position": {
-                "x": 280,
-                "y": 280
-              },
-              "size": {
-                "w": 90,
-                "h": 80
-              },
+              "position": { "x": 280, "y": 280 },
+              "size": { "w": 90, "h": 80 },
               "fill_color": "#6B7280"
             },
             {
               "type": "label",
+              "id": "belief_label",
               "text": "Student's belief: 'Weight = 60 kg'",
-              "position": {
-                "x": 300,
-                "y": 430
-              },
+              "position": { "x": 300, "y": 430 },
               "font_size": 15,
               "color": "#EF4444"
             },
             {
               "type": "annotation",
+              "id": "correction_callout",
               "text": "Weight is a FORCE.\nForces are measured in newtons, not kilograms.",
-              "position": {
-                "x": 560,
-                "y": 220
-              },
+              "position": { "x": 560, "y": 220 },
               "style": "callout",
               "color": "#F59E0B"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "You are saying your weight is sixty kilograms. This is one of the most common mistakes in physics."
-              },
-              {
-                "id": "s2",
-                "text_en": "Weight is a force. Forces are measured in newtons, not kilograms."
-              },
-              {
-                "id": "s3",
-                "text_en": "Sixty kilograms is your mass — how much matter your body contains."
-              },
-              {
-                "id": "s4",
-                "text_en": "Your weight is sixty times nine point eight, which equals five hundred eighty eight newtons. That is the downward pull of gravity on you."
-              }
+              { "id": "s1", "text_en": "You are saying your weight is sixty kilograms. This is one of the most common mistakes in physics." },
+              { "id": "s2", "text_en": "Weight is a force. Forces are measured in newtons, not kilograms." },
+              { "id": "s3", "text_en": "Sixty kilograms is your mass — how much matter your body contains." },
+              { "id": "s4", "text_en": "Your weight is sixty times nine point eight, which equals five hundred eighty eight newtons. That is the downward pull of gravity on you." }
             ]
           },
           "advance_mode": "auto_after_tts"
         },
         "EPIC_C_2": {
           "title": "The Moon Test — Mass Stays, Weight Changes",
+          "focal_primitive_id": "moon_panel",
           "scene_composition": [
             {
               "type": "comparison_panel",
               "id": "earth_moon_compare",
-              "left_label": "Earth (g = 9.8 m/s²)",
-              "right_label": "Moon (g = 1.6 m/s²)",
+              "left_label": "Earth (g = 9.8 m/s^2)",
+              "right_label": "Moon (g = 1.6 m/s^2)",
               "left_scene": [
                 {
                   "type": "body",
                   "shape": "rect",
                   "label": "Mass = 60 kg",
                   "fill_color": "#6B7280",
-                  "position": {
-                    "x": 100,
-                    "y": 140
-                  },
-                  "size": {
-                    "w": 90,
-                    "h": 75
-                  }
+                  "position": { "x": 100, "y": 140 },
+                  "size": { "w": 90, "h": 75 }
                 },
                 {
                   "type": "force_arrow",
@@ -694,10 +610,7 @@
                   "label": "Weight = 588 N",
                   "color": "#EF4444",
                   "scale_pixels_per_unit": 0.2,
-                  "position": {
-                    "x": 145,
-                    "y": 215
-                  }
+                  "position": { "x": 145, "y": 215 }
                 }
               ],
               "right_scene": [
@@ -706,14 +619,8 @@
                   "shape": "rect",
                   "label": "Mass = 60 kg\n(same!)",
                   "fill_color": "#6B7280",
-                  "position": {
-                    "x": 100,
-                    "y": 140
-                  },
-                  "size": {
-                    "w": 90,
-                    "h": 75
-                  }
+                  "position": { "x": 100, "y": 140 },
+                  "size": { "w": 90, "h": 75 }
                 },
                 {
                   "type": "force_arrow",
@@ -722,88 +629,83 @@
                   "label": "Weight = 96 N",
                   "color": "#EF4444",
                   "scale_pixels_per_unit": 0.5,
-                  "position": {
-                    "x": 145,
-                    "y": 215
-                  }
+                  "position": { "x": 145, "y": 215 }
                 }
               ]
+            },
+            {
+              "type": "label",
+              "id": "moon_panel",
+              "text": "Same mass. Different weight.",
+              "position": { "x": 280, "y": 50 },
+              "font_size": 18,
+              "color": "#10B981",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "moon_callout",
+              "text": "If weight equalled mass,\nthe Moon reading would still be 60.\nIt is not — because weight is a force,\nnot a property of the body.",
+              "position": { "x": 100, "y": 460 },
+              "style": "callout",
+              "color": "#F59E0B"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "Same body, same mass — but placed on two different planets."
-              },
-              {
-                "id": "s2",
-                "text_en": "On Earth the weight is five hundred eighty eight newtons. On the Moon it is only ninety six newtons — six times smaller."
-              },
-              {
-                "id": "s3",
-                "text_en": "The mass did not change at all. Only g changed."
-              },
-              {
-                "id": "s4",
-                "text_en": "If weight equaled mass, the Moon reading would still say sixty. It does not, because weight and mass are not the same quantity."
-              }
+              { "id": "s1", "text_en": "Same body, same mass — but placed on two different planets." },
+              { "id": "s2", "text_en": "On Earth the weight is five hundred eighty eight newtons. On the Moon it is only ninety six newtons — six times smaller." },
+              { "id": "s3", "text_en": "The mass did not change at all. Only g changed." },
+              { "id": "s4", "text_en": "If weight equalled mass, the Moon reading would still say sixty. It does not, because weight and mass are not the same quantity." }
             ]
           },
-          "advance_mode": "auto_after_tts"
+          "advance_mode": "manual_click"
         },
         "EPIC_C_3": {
           "title": "Clear Now: Mass vs Weight",
+          "focal_primitive_id": "final_formula",
           "scene_composition": [
             {
               "type": "comparison_panel",
+              "id": "mass_weight_panel",
               "left_label": "Mass",
               "right_label": "Weight",
               "left_scene": [
                 {
                   "type": "annotation",
                   "text": "How much matter a body contains.\nUnit: kilogram (kg).\nSame everywhere — Earth, Moon, deep space.\nScalar quantity.",
-                  "position": {
-                    "x": 20,
-                    "y": 80
-                  }
+                  "position": { "x": 20, "y": 80 }
                 }
               ],
               "right_scene": [
                 {
                   "type": "annotation",
                   "text": "The gravitational force on a body.\nUnit: newton (N).\nChanges from planet to planet.\nVector quantity (points downward).",
-                  "position": {
-                    "x": 20,
-                    "y": 80
-                  }
+                  "position": { "x": 20, "y": 80 }
                 }
               ]
             },
             {
               "type": "formula_box",
+              "id": "final_formula",
               "equation": "w = mg",
-              "position": {
-                "x": 380,
-                "y": 430
-              },
+              "position": { "x": 380, "y": 430 },
               "border_color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "exam_tip",
+              "text": "Exam rule of thumb:\nIf the unit is kg, you are talking about mass.\nIf the unit is N, you are talking about weight.",
+              "position": { "x": 90, "y": 520 },
+              "style": "callout",
+              "color": "#6B7280"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "Now the distinction is clear. Mass is a property of the body — a measure of matter."
-              },
-              {
-                "id": "s2",
-                "text_en": "Weight is a gravitational force — it depends on both m and g."
-              },
-              {
-                "id": "s3",
-                "text_en": "This distinction matters in exam problems, especially when g changes between parts of a question."
-              }
+              { "id": "s1", "text_en": "Now the distinction is clear. Mass is a property of the body — a measure of matter." },
+              { "id": "s2", "text_en": "Weight is a gravitational force — it depends on both m and g." },
+              { "id": "s3", "text_en": "This distinction matters in exam problems, especially when g changes between parts of a question." }
             ]
           },
           "advance_mode": "auto_after_tts"
@@ -818,124 +720,675 @@
         "gravity needs touching",
         "how can force act without contact"
       ],
-      "state_sequence": [
-        "EPIC_C_1",
-        "EPIC_C_2"
-      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
       "states": {
         "EPIC_C_1": {
           "title": "Your Belief: No Contact Means No Force",
+          "focal_primitive_id": "belief_split",
           "scene_composition": [
             {
               "type": "comparison_panel",
+              "id": "belief_split",
               "left_label": "Contact force (clear)",
               "right_label": "Field force (mysterious?)",
               "left_scene": [
                 {
                   "type": "annotation",
                   "text": "A hand pushes a cart.\nTouching: YES.\nForce: obvious.",
-                  "position": {
-                    "x": 20,
-                    "y": 120
-                  }
+                  "position": { "x": 20, "y": 120 }
                 }
               ],
               "right_scene": [
                 {
                   "type": "annotation",
                   "text": "Earth pulls a mango.\nTouching: NO.\nForce: still real.",
-                  "position": {
-                    "x": 20,
-                    "y": 120
-                  }
+                  "position": { "x": 20, "y": 120 }
                 }
               ]
+            },
+            {
+              "type": "label",
+              "id": "intuition_label",
+              "text": "Intuition says: 'No touch, no push.'",
+              "position": { "x": 180, "y": 50 },
+              "font_size": 17,
+              "color": "#EF4444",
+              "bold": true
+            },
+            {
+              "type": "annotation",
+              "id": "teaser_callout",
+              "text": "But nature disagrees.\nLet us see how.",
+              "position": { "x": 280, "y": 470 },
+              "style": "callout",
+              "color": "#F59E0B"
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "Your intuition says a force cannot exist without touching. That instinct is natural."
-              },
-              {
-                "id": "s2",
-                "text_en": "Push a table and it moves. Contact is visible. Cause and effect are obvious."
-              },
-              {
-                "id": "s3",
-                "text_en": "But nature has two families of forces — contact forces and field forces."
-              },
-              {
-                "id": "s4",
-                "text_en": "Field forces — gravity, magnetism, electrostatics — work across empty space with no touching at all."
-              }
+              { "id": "s1", "text_en": "Your intuition says a force cannot exist without touching. That instinct is natural." },
+              { "id": "s2", "text_en": "Push a table and it moves. Contact is visible. Cause and effect are obvious." },
+              { "id": "s3", "text_en": "But nature has two families of forces — contact forces and field forces." },
+              { "id": "s4", "text_en": "Field forces — gravity, magnetism, electrostatics — work across empty space with no touching at all." }
             ]
           },
           "advance_mode": "auto_after_tts"
         },
         "EPIC_C_2": {
           "title": "Four Real Field Forces — All Without Contact",
+          "focal_primitive_id": "four_fields_grid",
           "scene_composition": [
             {
               "type": "comparison_panel",
+              "id": "four_fields_grid",
               "left_label": "Gravity (Earth pulls mango, 6,400 km)",
               "right_label": "Magnetism (Magnet pulls iron through a gap)",
               "left_scene": [
                 {
                   "type": "annotation",
                   "text": "Field: gravitational (g).\nActs on: any mass.\nRange: infinite.",
-                  "position": {
-                    "x": 20,
-                    "y": 120
-                  }
+                  "position": { "x": 20, "y": 120 }
                 }
               ],
               "right_scene": [
                 {
                   "type": "annotation",
                   "text": "Field: magnetic (B).\nActs on: moving charges and magnets.\nRange: infinite but weakens fast.",
-                  "position": {
-                    "x": 20,
-                    "y": 120
-                  }
+                  "position": { "x": 20, "y": 120 }
                 }
               ]
             },
             {
               "type": "annotation",
+              "id": "extras_callout",
               "text": "Electrostatic and nuclear field forces complete the set of four field families in nature.",
-              "position": {
-                "x": 90,
-                "y": 420
-              },
+              "position": { "x": 90, "y": 420 },
               "style": "callout"
+            },
+            {
+              "type": "label",
+              "id": "takeaway_label",
+              "text": "Four fields. Zero contact. All real.",
+              "position": { "x": 220, "y": 50 },
+              "font_size": 18,
+              "color": "#10B981",
+              "bold": true
             }
           ],
           "teacher_script": {
             "tts_sentences": [
-              {
-                "id": "s1",
-                "text_en": "Four fundamental forces in nature — gravity, magnetism, electrostatics, and the strong nuclear force — all act across space."
-              },
-              {
-                "id": "s2",
-                "text_en": "Each one works the same way: one body creates a field around itself."
-              },
-              {
-                "id": "s3",
-                "text_en": "Any other body placed in that field immediately feels a force."
-              },
-              {
-                "id": "s4",
-                "text_en": "The field is real and physical. It is nature's substitute for direct contact."
-              }
+              { "id": "s1", "text_en": "Four fundamental forces in nature — gravity, magnetism, electrostatics, and the strong nuclear force — all act across space." },
+              { "id": "s2", "text_en": "Each one works the same way: one body creates a field around itself." },
+              { "id": "s3", "text_en": "Any other body placed in that field immediately feels a force." },
+              { "id": "s4", "text_en": "The field is real and physical. It is nature's substitute for direct contact." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    },
+    {
+      "branch_id": "field_needs_a_medium",
+      "misconception": "Gravity (or any field) needs air or some medium to travel through — it cannot work in a vacuum.",
+      "trigger_phrases": [
+        "does gravity work in vacuum",
+        "is there gravity in space",
+        "gravity needs air",
+        "field needs medium",
+        "how does gravity travel through empty space"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: Gravity Needs a Medium",
+          "focal_primitive_id": "vacuum_chamber",
+          "scene_composition": [
+            {
+              "type": "body",
+              "id": "vacuum_chamber",
+              "shape": "rect",
+              "label": "Vacuum chamber\n(all air removed)",
+              "position": { "x": 220, "y": 180 },
+              "size": { "w": 420, "h": 260 },
+              "fill_color": "#0F172A",
+              "border_color": "#94A3B8"
+            },
+            {
+              "type": "body",
+              "id": "feather",
+              "shape": "circle",
+              "label": "Feather",
+              "position": { "x": 260, "y": 250 },
+              "size": 22,
+              "fill_color": "#FDE68A"
+            },
+            {
+              "type": "body",
+              "id": "hammer",
+              "shape": "rect",
+              "label": "Hammer",
+              "position": { "x": 440, "y": 250 },
+              "size": { "w": 50, "h": 30 },
+              "fill_color": "#6B7280"
+            },
+            {
+              "type": "force_arrow",
+              "id": "g_feather",
+              "from": "feather_center",
+              "magnitude": 9.8,
+              "direction_deg": 270,
+              "label": "g still acts",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 3
+            },
+            {
+              "type": "force_arrow",
+              "id": "g_hammer",
+              "from": "hammer_center",
+              "magnitude": 9.8,
+              "direction_deg": 270,
+              "label": "g still acts",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 3
+            },
+            {
+              "type": "annotation",
+              "id": "vacuum_callout",
+              "text": "Apollo 15 moon experiment:\nNo air at all — yet feather\nand hammer both fall together.\nThe field does not need a medium.",
+              "position": { "x": 100, "y": 470 },
+              "style": "callout",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "You are wondering — if there is no air, how does gravity reach across?" },
+              { "id": "s2", "text_en": "In 1971, astronaut David Scott dropped a feather and a hammer on the Moon. No air at all." },
+              { "id": "s3", "text_en": "Both hit the ground together. Gravity worked perfectly without a single molecule of air in between." },
+              { "id": "s4", "text_en": "Fields are not sound waves. They do not need a medium. They exist in space itself." }
             ]
           },
           "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "The Field IS the Medium",
+          "focal_primitive_id": "field_as_medium",
+          "scene_composition": [
+            {
+              "type": "body",
+              "id": "earth",
+              "shape": "circle",
+              "label": "Earth",
+              "position": { "x": 200, "y": 380 },
+              "size": 110,
+              "fill_color": "#3B82F6"
+            },
+            {
+              "type": "body",
+              "id": "satellite",
+              "shape": "circle",
+              "label": "Satellite\n(in vacuum)",
+              "position": { "x": 580, "y": 160 },
+              "size": 26,
+              "fill_color": "#F59E0B"
+            },
+            {
+              "type": "vector",
+              "id": "field_as_medium",
+              "from": { "x": 560, "y": 170 },
+              "to": { "x": 260, "y": 350 },
+              "label": "Gravitational field reaches across vacuum",
+              "color": "#8B5CF6",
+              "style": "dashed"
+            },
+            {
+              "type": "label",
+              "id": "vacuum_label",
+              "text": "VACUUM — zero molecules",
+              "position": { "x": 340, "y": 90 },
+              "font_size": 14,
+              "color": "#94A3B8"
+            },
+            {
+              "type": "annotation",
+              "id": "field_rule",
+              "text": "Rule: a field is not carried BY anything.\nThe field itself is the physical fabric\nthat lets one mass pull another across\nempty space.",
+              "position": { "x": 80, "y": 500 },
+              "style": "callout",
+              "color": "#8B5CF6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Think of the field as the medium itself. The field exists even in total vacuum." },
+              { "id": "s2", "text_en": "A satellite in orbit is in near-perfect vacuum, yet Earth pulls it every second. That pull is exactly what keeps it in orbit." },
+              { "id": "s3", "text_en": "Sound waves need air. Water waves need water. But gravitational and electromagnetic fields need nothing at all." },
+              { "id": "s4", "text_en": "So the answer to 'does gravity work in vacuum' is: yes — it works best in vacuum, because nothing can block or absorb it." }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    },
+    {
+      "branch_id": "only_earth_pulls_mango",
+      "misconception": "Gravity is one-way — Earth pulls the mango, but the mango does not pull Earth.",
+      "trigger_phrases": [
+        "mango does not pull earth",
+        "only earth has gravity",
+        "small objects have no gravity",
+        "does the apple pull earth"
+      ],
+      "state_sequence": ["EPIC_C_1", "EPIC_C_2"],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: Only Big Things Pull",
+          "focal_primitive_id": "one_way_arrow",
+          "scene_composition": [
+            {
+              "type": "body",
+              "id": "earth",
+              "shape": "circle",
+              "label": "Earth",
+              "position": { "x": 400, "y": 420 },
+              "size": 130,
+              "fill_color": "#3B82F6"
+            },
+            {
+              "type": "body",
+              "id": "mango",
+              "shape": "circle",
+              "label": "Mango",
+              "position": { "x": 400, "y": 180 },
+              "size": 28,
+              "fill_color": "#F59E0B"
+            },
+            {
+              "type": "force_arrow",
+              "id": "one_way_arrow",
+              "from": "mango_center",
+              "magnitude": 9.8,
+              "direction_deg": 270,
+              "label": "Earth -> Mango (you believe this)",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 6
+            },
+            {
+              "type": "label",
+              "id": "missing_arrow",
+              "text": "? Mango -> Earth ?",
+              "position": { "x": 500, "y": 300 },
+              "font_size": 16,
+              "color": "#94A3B8"
+            },
+            {
+              "type": "annotation",
+              "id": "belief_callout",
+              "text": "Most students draw only ONE arrow.\nThey think the mango is too small to pull.\nNewton's third law says otherwise.",
+              "position": { "x": 50, "y": 80 },
+              "style": "callout",
+              "color": "#F59E0B"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "You draw one arrow — Earth pulling the mango. Most beginners stop there." },
+              { "id": "s2", "text_en": "The idea that only big objects create gravity feels natural, but it is wrong." },
+              { "id": "s3", "text_en": "Newton's third law says every force has an equal and opposite partner." },
+              { "id": "s4", "text_en": "So if Earth pulls the mango with 9.8 newtons, the mango must pull Earth with 9.8 newtons too. Both arrows exist." }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "Both Arrows Are Real — Why You Never Notice",
+          "focal_primitive_id": "mutual_arrows",
+          "scene_composition": [
+            {
+              "type": "body",
+              "id": "earth",
+              "shape": "circle",
+              "label": "Earth (6 x 10^24 kg)",
+              "position": { "x": 400, "y": 420 },
+              "size": 130,
+              "fill_color": "#3B82F6"
+            },
+            {
+              "type": "body",
+              "id": "mango",
+              "shape": "circle",
+              "label": "Mango (1 kg)",
+              "position": { "x": 400, "y": 180 },
+              "size": 28,
+              "fill_color": "#F59E0B"
+            },
+            {
+              "type": "force_arrow",
+              "id": "mutual_arrows",
+              "from": "mango_center",
+              "magnitude": 9.8,
+              "direction_deg": 270,
+              "label": "Earth on Mango = 9.8 N",
+              "color": "#EF4444",
+              "scale_pixels_per_unit": 6
+            },
+            {
+              "type": "force_arrow",
+              "id": "reaction_arrow",
+              "from": "earth_top_center",
+              "magnitude": 9.8,
+              "direction_deg": 90,
+              "label": "Mango on Earth = 9.8 N (equal!)",
+              "color": "#10B981",
+              "scale_pixels_per_unit": 6
+            },
+            {
+              "type": "formula_box",
+              "id": "acceleration_formula",
+              "equation": "a_earth = F / M = 9.8 / (6 x 10^24) ~ 10^-24 m/s^2",
+              "position": { "x": 60, "y": 70 },
+              "border_color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "why_invisible",
+              "text": "Why you never see Earth move:\nEarth's mass is huge, so its acceleration\nis so tiny that no instrument can detect it.\nThe force is there — the motion is hidden.",
+              "position": { "x": 50, "y": 560 },
+              "style": "callout",
+              "color": "#6B7280"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "The mango pulls Earth with exactly nine point eight newtons — the same force, pointing upward." },
+              { "id": "s2", "text_en": "So why does Earth not visibly jump toward the mango? Because Earth's mass is six times ten to the twenty four kilograms." },
+              { "id": "s3", "text_en": "The resulting acceleration is about ten to the negative twenty four meters per second squared. Utterly unmeasurable." },
+              { "id": "s4", "text_en": "Remember — force is mutual. Motion depends on mass. Every mass pulls every other mass, always." }
+            ]
+          },
+          "advance_mode": "manual_click"
         }
       }
     }
   ],
-  "schema_version": "2.0.0"
+
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 5,
+        "per_state": {
+          "STATE_1": {
+            "mark": 1,
+            "description": "Identify the scenario: a body (mango) falls freely with no contact. State that a force is acting and name it as gravity."
+          },
+          "STATE_2": {
+            "mark": 1,
+            "description": "Classify gravity as a field force (action at a distance). State that it crosses empty space with no medium required."
+          },
+          "STATE_3": {
+            "mark": 1,
+            "description": "Define gravitational field g as the region around Earth where any mass experiences a force. State units: N/kg or m/s^2."
+          },
+          "STATE_4": {
+            "mark": 1,
+            "description": "Write the formula w = mg. Define each symbol with units. State that weight is a force (newtons), not the same as mass (kilograms)."
+          },
+          "STATE_5": {
+            "mark": 1,
+            "description": "Show numerical example: substitute m = 1 kg and g = 9.8 m/s^2 to get w = 9.8 N. State that w is linear in m."
+          }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b1_s1",
+              "text": "Step 1: Observation — a mango falls from a tree with no contact.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 100 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s2",
+              "text": "Step 2: A force must be acting on the mango (otherwise no acceleration).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 140 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b1_s3",
+              "text": "Step 3: Name this force gravity — directed toward Earth's center.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 180 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b1",
+              "mark_value": 1,
+              "text": "+1 for identifying the force",
+              "tied_to_state": "STATE_1",
+              "position": { "x": 680, "y": 140 }
+            }
+          ]
+        },
+        "STATE_2": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b2_s1",
+              "text": "Step 4: Gravity acts without contact — it is a FIELD FORCE.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 220 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s2",
+              "text": "Step 5: Field forces cross empty space; no medium is needed.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 260 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b2_s3",
+              "text": "Step 6: Other field forces: electric, magnetic, nuclear.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 300 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b2",
+              "mark_value": 1,
+              "text": "+1 for field force classification",
+              "tied_to_state": "STATE_2",
+              "position": { "x": 680, "y": 260 }
+            }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b3_s1",
+              "text": "Step 7: Define gravitational field g = region where any mass feels a pull.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 340 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s2",
+              "text": "Step 8: At Earth's surface, g = 9.8 N/kg = 9.8 m/s^2, directed toward the centre.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 380 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b3_s3",
+              "text": "Step 9: Field = force per unit mass: g = F / m.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 420 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b3",
+              "mark_value": 1,
+              "text": "+1 for defining g",
+              "tied_to_state": "STATE_3",
+              "position": { "x": 680, "y": 380 }
+            }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b4_s1",
+              "text": "Step 10: Rearrange g = F / m to get F = mg.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 460 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s2",
+              "text": "Step 11: This force is called WEIGHT, symbol w.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 500 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b4_s3",
+              "text": "Step 12: w = mg   [w in newtons, m in kg, g in m/s^2].",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 540 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b4",
+              "mark_value": 1,
+              "text": "+1 for w = mg with units",
+              "tied_to_state": "STATE_4",
+              "position": { "x": 680, "y": 500 }
+            }
+          ]
+        },
+        "STATE_5": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "b5_s1",
+              "text": "Step 13: Substitute m = 1 kg, g = 9.8 m/s^2:",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 580 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b5_s2",
+              "text": "Step 14: w = 1 x 9.8 = 9.8 N.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 620 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "b5_s3",
+              "text": "Step 15: Weight is linear in mass: doubling m doubles w.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 660 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_b5",
+              "mark_value": 1,
+              "text": "+1 for numerical answer",
+              "tied_to_state": "STATE_5",
+              "position": { "x": 680, "y": 620 }
+            }
+          ]
+        }
+      }
+    },
+
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "id": "shortcut_w_equals_mg",
+          "rule": "Weight from mass",
+          "formula": "w = mg",
+          "use_when": "Any problem that mentions a body's mass near Earth's surface; g defaults to 9.8 m/s^2 unless stated."
+        },
+        {
+          "id": "shortcut_planet_change",
+          "rule": "Weight on another planet",
+          "formula": "w_planet = m * g_planet",
+          "use_when": "Problem switches to Moon, Mars, Jupiter, or any different g. Mass stays the same; recompute weight with the new g."
+        },
+        {
+          "id": "shortcut_field_inverse_square",
+          "rule": "Gravitational field at height h above Earth",
+          "formula": "g(h) = g0 * (R / (R + h))^2",
+          "use_when": "Altitude is non-negligible compared to Earth's radius R (e.g., satellites)."
+        },
+        {
+          "id": "shortcut_units_check",
+          "rule": "Units give away mass-vs-weight",
+          "formula": "kg -> mass, N -> weight",
+          "use_when": "Quick sanity check on any exam answer involving gravity."
+        },
+        {
+          "id": "shortcut_free_fall_a_equals_g",
+          "rule": "Free fall acceleration",
+          "formula": "a = g (downward) when gravity is the only force",
+          "use_when": "No air resistance, no contact — object is in free fall. Works for feathers in vacuum too."
+        },
+        {
+          "id": "shortcut_field_superposition",
+          "rule": "Net field from multiple sources",
+          "formula": "g_net = g_1 + g_2 + ... (vector sum)",
+          "use_when": "Two or more masses create overlapping fields; add them as vectors at the test-mass location."
+        }
+      ],
+      "edge_cases": [
+        {
+          "id": "edge_weight_in_lift",
+          "title": "Apparent weight in an accelerating lift",
+          "trap": "Students write w = mg regardless of the lift's acceleration.",
+          "resolution": "Apparent weight (reading on a spring balance) is N = m(g +/- a). Use + when the lift accelerates upward, - when downward. True weight mg is unchanged."
+        },
+        {
+          "id": "edge_weightlessness_in_orbit",
+          "title": "Astronauts floating in the ISS",
+          "trap": "Students say there is no gravity in space.",
+          "resolution": "Gravity is very much present (g ~ 8.7 m/s^2 at ISS altitude). Astronauts float because the station and astronaut are in continuous free fall around Earth — apparent weight is zero, true weight is not."
+        },
+        {
+          "id": "edge_mass_in_deep_space",
+          "title": "Mass of a body in deep space",
+          "trap": "Students assume mass becomes zero when weight is zero.",
+          "resolution": "Mass is a property of the body and never changes with location. Only weight changes. Inertia (F = ma) still works in deep space — push the body and it still resists."
+        },
+        {
+          "id": "edge_g_varies_with_latitude",
+          "title": "g at the equator vs poles",
+          "trap": "Students treat g = 9.8 m/s^2 as universal.",
+          "resolution": "g is larger at poles (~9.83) than equator (~9.78) because of Earth's rotation and oblateness. Board problems usually use g = 9.8; competitive problems may specify otherwise."
+        },
+        {
+          "id": "edge_charged_body_in_grav_field",
+          "title": "Charged mass in combined gravitational and electric field",
+          "trap": "Students add mg and qE as if they were the same kind of force.",
+          "resolution": "Both are field forces and both act independently. Total force = mg (down) + qE (along E). Sum as vectors; they do NOT cancel unless geometrically arranged to."
+        }
+      ],
+      "formulas_shortform": {
+        "weight": "w = mg",
+        "field_strength": "g = F / m",
+        "inverse_square": "g(r) = GM / r^2",
+        "free_fall": "a = g",
+        "apparent_weight_lift": "N = m(g +/- a)"
+      }
+    }
+  }
 }
