@@ -1,0 +1,2028 @@
+{
+  "concept_id": "friction_static_kinetic",
+  "concept_name": "Static vs Kinetic Friction",
+  "chapter": 8,
+  "section": "8.7",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "First-principles authoring (Newton I + II). DC Pandey Vol.1 Ch.7 used for syllabus scope only.",
+  "prerequisites": [
+    "normal_reaction",
+    "free_body_diagram"
+  ],
+  "entry_state_map": {
+    "foundational": {
+      "start": "STATE_1",
+      "end": "STATE_4"
+    },
+    "threshold": {
+      "start": "STATE_3",
+      "end": "STATE_3"
+    },
+    "comparison": {
+      "start": "STATE_5",
+      "end": "STATE_5"
+    },
+    "explore": {
+      "start": "STATE_6",
+      "end": "STATE_6"
+    }
+  },
+  "renderer_pair": {
+    "panel_a": "mechanics_2d",
+    "panel_b": "graph_interactive"
+  },
+  "real_world_anchor": {
+    "primary": "You try to push a heavy almirah across the floor of your home. You push lightly — nothing happens. You push harder — still nothing. You push as hard as you can — the almirah suddenly slides easily across the tile. That sticking-then-sliding feeling, and the strange relief once it starts moving, is the static-vs-kinetic friction story made physical.",
+    "secondary": "Anti-lock brakes on a car keep the tyres in static contact with the road instead of letting them skid. Static friction has a higher coefficient than kinetic, so the car stops faster when the tyres do not slip. That is why ABS exists — it keeps you in the static regime.",
+    "tertiary": "When you walk, your shoe pushes back on the ground. Static friction pushes you forward. If the floor is wet and the static coefficient drops below what your push needs, your shoe slips — and now you are dealing with the much smaller kinetic friction. That is why a wet floor is dangerous."
+  },
+  "physics_engine_config": {
+    "formulas": {
+      "N": "m * g",
+      "fs_max": "mu_s * m * g",
+      "fk": "mu_k * m * g",
+      "fs_actual": "min(F, mu_s * m * g)",
+      "is_slipping": "F > mu_s * m * g",
+      "net_force_when_sliding": "F - mu_k * m * g",
+      "acceleration_when_sliding": "(F - mu_k * m * g) / m"
+    },
+    "variables": {
+      "m": {
+        "name": "mass of block",
+        "unit": "kg",
+        "min": 0.5,
+        "max": 20,
+        "default": 5,
+        "role": "block_mass"
+      },
+      "mu_s": {
+        "name": "static friction coefficient",
+        "unit": "(unitless)",
+        "min": 0.1,
+        "max": 0.9,
+        "default": 0.5,
+        "role": "static_friction"
+      },
+      "mu_k": {
+        "name": "kinetic friction coefficient",
+        "unit": "(unitless)",
+        "min": 0.05,
+        "max": 0.8,
+        "default": 0.3,
+        "role": "kinetic_friction"
+      },
+      "F": {
+        "name": "applied force",
+        "unit": "N",
+        "min": 0,
+        "max": 200,
+        "default": 15,
+        "role": "applied_force"
+      },
+      "g": {
+        "name": "gravitational acceleration",
+        "unit": "m/s^2",
+        "constant": 9.8
+      },
+      "N": {
+        "name": "normal reaction",
+        "unit": "N",
+        "derived": "m * g",
+        "role": "support_force"
+      },
+      "fs_max": {
+        "name": "max static friction",
+        "unit": "N",
+        "derived": "mu_s * m * g",
+        "role": "threshold"
+      },
+      "fk": {
+        "name": "kinetic friction",
+        "unit": "N",
+        "derived": "mu_k * m * g",
+        "role": "sliding_friction"
+      }
+    },
+    "computed_outputs": {
+      "N_value": {
+        "formula": "m * 9.8"
+      },
+      "fs_max_value": {
+        "formula": "mu_s * m * 9.8"
+      },
+      "fk_value": {
+        "formula": "mu_k * m * 9.8"
+      },
+      "is_slipping": {
+        "formula": "F > mu_s * m * 9.8"
+      },
+      "net_force": {
+        "formula": "F - mu_k * m * 9.8"
+      },
+      "acceleration": {
+        "formula": "(F - mu_k * m * 9.8) / m"
+      }
+    },
+    "constraints": [
+      "fs_actual <= mu_s * N (static friction has a ceiling)",
+      "fk = mu_k * N (kinetic friction is a constant once moving)",
+      "mu_k < mu_s always (kinetic is always smaller — empirical)",
+      "friction is independent of contact area",
+      "friction opposes relative motion tendency, not absolute velocity"
+    ]
+  },
+  "available_renderer_scenarios": {
+    "epic_l": [
+      "almirah_static_no_motion",
+      "almirah_threshold_about_to_slip",
+      "almirah_kinetic_sliding",
+      "static_vs_kinetic_side_by_side",
+      "interactive_sliders_F_mu"
+    ],
+    "epic_c": [
+      "stationary_block_on_accelerating_truck",
+      "two_bricks_different_areas",
+      "wrong_mu_k_greater_than_mu_s",
+      "stationary_block_with_push"
+    ],
+    "panel_b": [
+      "fs_vs_F_applied_curve",
+      "regime_threshold_marker"
+    ],
+    "board": [
+      "answer_sheet_derivation",
+      "mark_badge_accumulator"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Push the Almirah — Why Doesn't It Move?",
+        "duration": 6,
+        "focal_primitive_id": "F_arrow_state1",
+        "teaching_method": "narrative_socratic",
+        "variable_overrides": {
+          "F": 5
+        },
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "floor_state1",
+            "orientation": "horizontal",
+            "position": {
+              "x": 100,
+              "y": 420
+            },
+            "length": 540,
+            "texture": "rough",
+            "label": "Tile floor"
+          },
+          {
+            "type": "body",
+            "id": "almirah",
+            "shape": "rect",
+            "label": "Almirah (5 kg)",
+            "position": {
+              "x": 280,
+              "y": 370
+            },
+            "size": {
+              "w": 120,
+              "h": 100
+            },
+            "fill_color": "#92400E",
+            "border_color": "#451A03",
+            "attach_to_surface": {
+              "surface_id": "floor_state1",
+              "position_fraction": 0.35
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_arrow_state1",
+            "force_id": "applied",
+            "color": "#2563EB",
+            "label": "F = 5 N",
+            "origin_body_id": "almirah",
+            "origin_anchor": "body_right",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "annotation",
+            "id": "hook_question",
+            "text": "You push lightly.\nThe almirah does not move.\nWhat is stopping it?",
+            "position": {
+              "x": 480,
+              "y": 240
+            },
+            "style": "callout",
+            "color": "#E2E8F0"
+          }
+        ],
+        "choreography_sequence": {
+          "phases": [
+            {
+              "at_t": 0,
+              "show": "floor_state1",
+              "enter": "fade_in",
+              "duration": 300
+            },
+            {
+              "at_t": 0.4,
+              "show": "almirah",
+              "enter": "drop_in",
+              "duration": 400
+            },
+            {
+              "at_t": 1.2,
+              "show": "F_arrow_state1",
+              "enter": "grow_from_body",
+              "duration": 600
+            },
+            {
+              "at_t": 2,
+              "show": "hook_question",
+              "enter": "fade_in",
+              "duration": 400
+            }
+          ]
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Imagine you are at home, trying to push a heavy almirah across the tile floor.",
+              "pause_after_ms": 1200
+            },
+            {
+              "id": "s2",
+              "text_en": "You push it lightly — say with five newtons of force.",
+              "pause_after_ms": 1000
+            },
+            {
+              "id": "s3",
+              "text_en": "The almirah does not move at all.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s4",
+              "text_en": "Something is pushing back exactly as hard as you. What is it?",
+              "pause_after_ms": 1500
+            }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "has_prebuilt_deep_dive": false
+      },
+      "STATE_2": {
+        "title": "Static Friction — It Matches Your Push, Exactly",
+        "duration": 9,
+        "focal_primitive_id": "fs_arrow_state2",
+        "teaching_method": "narrative_socratic",
+        "variable_overrides": {
+          "F": 5
+        },
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "floor_state2",
+            "orientation": "horizontal",
+            "position": {
+              "x": 100,
+              "y": 420
+            },
+            "length": 540,
+            "texture": "rough"
+          },
+          {
+            "type": "body",
+            "id": "almirah_state2",
+            "shape": "rect",
+            "label": "Almirah",
+            "position": {
+              "x": 280,
+              "y": 370
+            },
+            "size": {
+              "w": 120,
+              "h": 100
+            },
+            "fill_color": "#92400E",
+            "border_color": "#451A03",
+            "attach_to_surface": {
+              "surface_id": "floor_state2",
+              "position_fraction": 0.35
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_arrow_state2",
+            "force_id": "applied",
+            "color": "#2563EB",
+            "label": "F = 5 N",
+            "origin_body_id": "almirah_state2",
+            "origin_anchor": "body_right",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 8
+          },
+          {
+            "type": "force_arrow",
+            "id": "fs_arrow_state2",
+            "force_id": "friction",
+            "color": "#10B981",
+            "label": "fs = 5 N",
+            "origin_body_id": "almirah_state2",
+            "origin_anchor": "body_left",
+            "direction_deg": 180,
+            "scale_pixels_per_unit": 8,
+            "reveal_at_tts_id": "s3",
+            "animate_in": "fade_in",
+            "focal_highlight_ms": 800
+          },
+          {
+            "type": "annotation",
+            "id": "fs_eq_F_label",
+            "text": "Static friction\nadjusts to match F.\nNet force = 0.\nBlock stationary.",
+            "position": {
+              "x": 490,
+              "y": 230
+            },
+            "style": "callout",
+            "color": "#10B981",
+            "reveal_at_tts_id": "s4",
+            "animate_in": "fade_in"
+          }
+        ],
+        "choreography_sequence": {
+          "phases": [
+            {
+              "at_t": 0,
+              "show": "floor_state2,almirah_state2,F_arrow_state2",
+              "enter": "fade_in",
+              "duration": 300
+            }
+          ]
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "You push the almirah with a small force, five newtons to the right.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s2",
+              "text_en": "Pause for a second. Where does the friction force point — and how big is it?",
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s3",
+              "text_en": "Static friction points opposite F, with the same magnitude. The almirah does not move.",
+              "pause_after_ms": 800
+            },
+            {
+              "id": "s4",
+              "text_en": "Static friction adjusts itself to match the push. As long as F is small, fs equals F.",
+              "pause_after_ms": 1200
+            }
+          ]
+        },
+        "advance_mode": "wait_for_answer",
+        "has_prebuilt_deep_dive": false
+      },
+      "STATE_3": {
+        "title": "The Threshold — Static Friction Has a Ceiling",
+        "duration": 10,
+        "focal_primitive_id": "fs_max_label",
+        "teaching_method": "narrative_socratic",
+        "variable_overrides": {
+          "F": 24.5
+        },
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "floor_state3",
+            "orientation": "horizontal",
+            "position": {
+              "x": 100,
+              "y": 420
+            },
+            "length": 540,
+            "texture": "rough"
+          },
+          {
+            "type": "body",
+            "id": "almirah_state3",
+            "shape": "rect",
+            "label": "Almirah (5 kg)",
+            "position": {
+              "x": 280,
+              "y": 370
+            },
+            "size": {
+              "w": 120,
+              "h": 100
+            },
+            "fill_color": "#92400E",
+            "border_color": "#451A03",
+            "attach_to_surface": {
+              "surface_id": "floor_state3",
+              "position_fraction": 0.35
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_arrow_state3",
+            "force_id": "applied",
+            "color": "#2563EB",
+            "label": "F = 24.5 N",
+            "origin_body_id": "almirah_state3",
+            "origin_anchor": "body_right",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 4
+          },
+          {
+            "type": "force_arrow",
+            "id": "fs_arrow_state3",
+            "force_id": "friction",
+            "color": "#10B981",
+            "label": "fs = 24.5 N (max)",
+            "origin_body_id": "almirah_state3",
+            "origin_anchor": "body_left",
+            "direction_deg": 180,
+            "scale_pixels_per_unit": 4
+          },
+          {
+            "type": "annotation",
+            "id": "fs_max_label",
+            "text": "Maximum static friction:\nfs_max = mu_s × N\nfs_max = 0.5 × 49 = 24.5 N",
+            "position": {
+              "x": 490,
+              "y": 220
+            },
+            "style": "callout",
+            "color": "#059669",
+            "reveal_at_tts_id": "s3",
+            "animate_in": "fade_in",
+            "focal_highlight_ms": 1000
+          },
+          {
+            "type": "annotation",
+            "id": "threshold_value_label",
+            "text": "Push harder than 24.5 N\nand the almirah slips.\nThis is the threshold.",
+            "position": {
+              "x": 490,
+              "y": 380
+            },
+            "style": "callout",
+            "color": "#E2E8F0",
+            "reveal_at_tts_id": "s4",
+            "animate_in": "fade_in"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "You push harder, then harder, then harder still. What changes?",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s2",
+              "text_en": "Predict — at what value of F does the almirah finally start to slide?",
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s3",
+              "text_en": "Static friction has a maximum. Once F exceeds mu-s times N, the block slips.",
+              "pause_after_ms": 1000
+            },
+            {
+              "id": "s4",
+              "text_en": "For our five kilogram almirah with mu-s equal to 0.5, the threshold is 24.5 newtons.",
+              "pause_after_ms": 1500
+            }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          {
+            "cluster_id": "threshold_when_block_slips"
+          },
+          {
+            "cluster_id": "static_friction_max_value"
+          },
+          {
+            "cluster_id": "friction_force_direction_at_threshold"
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Kinetic Friction — Once It Moves, Friction Drops",
+        "duration": 9,
+        "focal_primitive_id": "fk_arrow_state4",
+        "teaching_method": "narrative_socratic",
+        "variable_overrides": {
+          "F": 30
+        },
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "floor_state4",
+            "orientation": "horizontal",
+            "position": {
+              "x": 100,
+              "y": 420
+            },
+            "length": 540,
+            "texture": "rough"
+          },
+          {
+            "type": "body",
+            "id": "almirah_state4",
+            "shape": "rect",
+            "label": "Almirah (sliding)",
+            "position": {
+              "x": 320,
+              "y": 370
+            },
+            "size": {
+              "w": 120,
+              "h": 100
+            },
+            "fill_color": "#92400E",
+            "border_color": "#451A03",
+            "attach_to_surface": {
+              "surface_id": "floor_state4",
+              "position_fraction": 0.3
+            },
+            "animation": {
+              "type": "slide_horizontal",
+              "accel_px_per_sec2": 200,
+              "max_dx": 150,
+              "loop_period_sec": 3.5
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_arrow_state4",
+            "force_id": "applied",
+            "color": "#2563EB",
+            "label": "F = 30 N",
+            "origin_body_id": "almirah_state4",
+            "origin_anchor": "body_right",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 4
+          },
+          {
+            "type": "force_arrow",
+            "id": "mg_arrow_state4",
+            "force_id": "weight",
+            "color": "#EF4444",
+            "label": "mg = 49 N",
+            "origin_body_id": "almirah_state4",
+            "origin_anchor": "body_center",
+            "direction_deg": 270,
+            "scale_pixels_per_unit": 1
+          },
+          {
+            "type": "force_arrow",
+            "id": "N_arrow_state4",
+            "force_id": "normal",
+            "color": "#10B981",
+            "label": "N = 49 N",
+            "origin_body_id": "almirah_state4",
+            "origin_anchor": "body_top",
+            "direction_deg": 90,
+            "scale_pixels_per_unit": 1
+          },
+          {
+            "type": "force_arrow",
+            "id": "fk_arrow_state4",
+            "force_id": "friction",
+            "color": "#F59E0B",
+            "label": "fk = 14.7 N",
+            "origin_body_id": "almirah_state4",
+            "origin_anchor": "body_left",
+            "direction_deg": 180,
+            "scale_pixels_per_unit": 4,
+            "reveal_at_tts_id": "s3",
+            "animate_in": "fade_in",
+            "focal_highlight_ms": 1000
+          },
+          {
+            "type": "annotation",
+            "id": "mu_k_less_than_mu_s_label",
+            "text": "Kinetic friction:\nfk = mu_k × N\nfk = 0.3 × 49 = 14.7 N\n(less than 24.5 N peak)",
+            "position": {
+              "x": 490,
+              "y": 220
+            },
+            "style": "callout",
+            "color": "#D97706",
+            "reveal_at_tts_id": "s4",
+            "animate_in": "fade_in"
+          },
+          {
+            "type": "annotation",
+            "id": "easier_once_moving_note",
+            "text": "That is why pushing\nis 'easier once moving' —\nmu_k is less than mu_s.",
+            "position": {
+              "x": 490,
+              "y": 380
+            },
+            "style": "callout",
+            "color": "#E2E8F0"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "The almirah is now sliding to the right at a steady pace.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s2",
+              "text_en": "Friction is still acting. Predict — does friction stay at the static maximum, or does it change?",
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s3",
+              "text_en": "Friction drops to the kinetic value, mu-k times N, which is less than the static maximum.",
+              "pause_after_ms": 1000
+            },
+            {
+              "id": "s4",
+              "text_en": "That is why pushing the almirah is much easier once it is moving — mu-k is less than mu-s.",
+              "pause_after_ms": 1200
+            }
+          ]
+        },
+        "advance_mode": "auto_after_tts",
+        "has_prebuilt_deep_dive": false
+      },
+      "STATE_5": {
+        "title": "Static vs Kinetic — Two Regimes, One Story",
+        "duration": 10,
+        "focal_primitive_id": "regime_comparison_label",
+        "teaching_method": "compare_contrast",
+        "variable_overrides": {
+          "F": 35
+        },
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "floor_static_compare",
+            "orientation": "horizontal",
+            "position": {
+              "x": 60,
+              "y": 350
+            },
+            "length": 280,
+            "texture": "rough",
+            "label": "STATIC: F < fs_max"
+          },
+          {
+            "type": "body",
+            "id": "almirah_static_compare",
+            "shape": "rect",
+            "label": "Stationary",
+            "position": {
+              "x": 160,
+              "y": 310
+            },
+            "size": {
+              "w": 90,
+              "h": 70
+            },
+            "fill_color": "#10B981",
+            "attach_to_surface": {
+              "surface_id": "floor_static_compare",
+              "position_fraction": 0.4
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "static_F_compare",
+            "force_id": "applied_force_static",
+            "magnitude": 20,
+            "color": "#2563EB",
+            "label": "F = 20 N",
+            "origin_body_id": "almirah_static_compare",
+            "origin_anchor": "body_right",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 5
+          },
+          {
+            "type": "force_arrow",
+            "id": "static_fs_compare",
+            "force_id": "static_friction_compare",
+            "magnitude": 20,
+            "color": "#10B981",
+            "label": "fs = 20 N",
+            "origin_body_id": "almirah_static_compare",
+            "origin_anchor": "body_left",
+            "direction_deg": 180,
+            "scale_pixels_per_unit": 5
+          },
+          {
+            "type": "surface",
+            "id": "floor_kinetic_compare",
+            "orientation": "horizontal",
+            "position": {
+              "x": 410,
+              "y": 350
+            },
+            "length": 280,
+            "texture": "rough",
+            "label": "KINETIC: F > fs_max"
+          },
+          {
+            "type": "body",
+            "id": "almirah_kinetic_compare",
+            "shape": "rect",
+            "label": "Sliding",
+            "position": {
+              "x": 510,
+              "y": 310
+            },
+            "size": {
+              "w": 90,
+              "h": 70
+            },
+            "fill_color": "#F59E0B",
+            "attach_to_surface": {
+              "surface_id": "floor_kinetic_compare",
+              "position_fraction": 0.4
+            },
+            "animation": {
+              "type": "slide_horizontal",
+              "accel_px_per_sec2": 180,
+              "max_dx": 60,
+              "loop_period_sec": 2.4
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "kinetic_F_compare",
+            "force_id": "applied_force_kinetic",
+            "magnitude": 35,
+            "color": "#2563EB",
+            "label": "F = 35 N",
+            "origin_body_id": "almirah_kinetic_compare",
+            "origin_anchor": "body_right",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 4
+          },
+          {
+            "type": "force_arrow",
+            "id": "kinetic_fk_compare",
+            "force_id": "kinetic_friction_compare",
+            "magnitude": 14.7,
+            "color": "#F59E0B",
+            "label": "fk = 14.7 N",
+            "origin_body_id": "almirah_kinetic_compare",
+            "origin_anchor": "body_left",
+            "direction_deg": 180,
+            "scale_pixels_per_unit": 4
+          },
+          {
+            "type": "annotation",
+            "id": "regime_comparison_label",
+            "text": "Static (F ≤ fs_max): friction matches push, block at rest.\nKinetic (F > fs_max): friction is fixed at mu_k × N, block accelerates.",
+            "position": {
+              "x": 60,
+              "y": 440
+            },
+            "style": "callout",
+            "color": "#E2E8F0"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "On the left, the push is small. Static friction matches it. The block stays put.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s2",
+              "text_en": "On the right, the push exceeds the threshold. Friction switches to kinetic — a fixed, smaller value.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s3",
+              "text_en": "Static friction is a range, from zero up to mu-s times N. Kinetic friction is a single number, mu-k times N.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s4",
+              "text_en": "Tap continue when you have compared both regimes.",
+              "pause_after_ms": 1000
+            }
+          ]
+        },
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          {
+            "cluster_id": "static_kinetic_swap"
+          },
+          {
+            "cluster_id": "mu_s_vs_mu_k_value_relationship"
+          },
+          {
+            "cluster_id": "friction_after_motion_starts"
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Try It Yourself — Vary the Push and the Coefficients",
+        "duration": 0,
+        "focal_primitive_id": "F_slider",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "surface",
+            "id": "floor_explore",
+            "orientation": "horizontal",
+            "position": {
+              "x": 100,
+              "y": 420
+            },
+            "length": 540,
+            "texture": "rough"
+          },
+          {
+            "type": "body",
+            "id": "almirah_explore",
+            "shape": "rect",
+            "label": "Almirah",
+            "position": {
+              "x": 280,
+              "y": 370
+            },
+            "size": {
+              "w": 120,
+              "h": 100
+            },
+            "fill_color": "#92400E",
+            "border_color": "#451A03",
+            "attach_to_surface": {
+              "surface_id": "floor_explore",
+              "position_fraction": 0.35
+            },
+            "animation": {
+              "type": "slide_when_kinetic",
+              "accel_expr": "(F - mu_k * m * 9.8) / m",
+              "px_per_meter": 60,
+              "max_dx": 200,
+              "loop_period_sec": 3
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "F_arrow_explore",
+            "force_id": "applied",
+            "color": "#2563EB",
+            "label_expr": "F = {F.toFixed(1)} N",
+            "origin_body_id": "almirah_explore",
+            "origin_anchor": "body_right",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 4
+          },
+          {
+            "type": "force_arrow",
+            "id": "f_arrow_explore",
+            "force_id": "friction",
+            "color": "#10B981",
+            "label_expr": "f = {Math.min(F, mu_s * m * 9.8).toFixed(1)} N",
+            "origin_body_id": "almirah_explore",
+            "origin_anchor": "body_left",
+            "direction_deg": 180,
+            "scale_pixels_per_unit": 4
+          },
+          {
+            "type": "label",
+            "id": "regime_label",
+            "text_expr": "Regime: {(F > mu_s * m * 9.8) ? 'KINETIC (sliding)' : 'STATIC (at rest)'}",
+            "position": {
+              "x": 380,
+              "y": 200
+            },
+            "font_size": 18,
+            "color": "#E2E8F0"
+          },
+          {
+            "type": "slider",
+            "id": "F_slider",
+            "variable": "F",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "default": 15,
+            "label": "Applied force F (N)"
+          },
+          {
+            "type": "slider",
+            "id": "mu_s_slider",
+            "variable": "mu_s",
+            "min": 0.1,
+            "max": 0.9,
+            "step": 0.05,
+            "default": 0.5,
+            "label": "Static coefficient mu_s"
+          },
+          {
+            "type": "slider",
+            "id": "mu_k_slider",
+            "variable": "mu_k",
+            "min": 0.05,
+            "max": 0.8,
+            "step": 0.05,
+            "default": 0.3,
+            "label": "Kinetic coefficient mu_k"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1",
+              "text_en": "Now you drive. Slide F up and down. Watch when the regime label flips from STATIC to KINETIC.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s2",
+              "text_en": "Lower mu-s and the threshold drops — the block slips with a smaller push.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s3",
+              "text_en": "Try setting mu-k larger than mu-s. The model will not let you — kinetic must always be smaller.",
+              "pause_after_ms": 1500
+            }
+          ]
+        },
+        "advance_mode": "interaction_complete",
+        "has_prebuilt_deep_dive": false
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "friction_always_opposes_velocity",
+      "misconception": "Friction always opposes the direction of velocity. (Wrong: it opposes the relative motion tendency, which can be opposite to the absolute velocity.)",
+      "trigger_phrases": [
+        "friction always opposes motion",
+        "friction is opposite to velocity",
+        "why does friction not oppose moving truck",
+        "friction direction on accelerating surface",
+        "block on accelerating truck friction"
+      ],
+      "state_sequence": [
+        "EPIC_C_1",
+        "EPIC_C_2",
+        "EPIC_C_3"
+      ],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: Friction Always Opposes Velocity",
+          "focal_primitive_id": "wrong_fs_arrow",
+          "teaching_method": "misconception_confrontation",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "truck_bed",
+              "orientation": "horizontal",
+              "position": {
+                "x": 100,
+                "y": 380
+              },
+              "length": 540,
+              "texture": "rough",
+              "label": "Truck bed (accelerating right)"
+            },
+            {
+              "type": "body",
+              "id": "block_on_truck",
+              "shape": "rect",
+              "label": "Box",
+              "position": {
+                "x": 350,
+                "y": 340
+              },
+              "size": {
+                "w": 100,
+                "h": 70
+              },
+              "fill_color": "#6B7280"
+            },
+            {
+              "type": "force_arrow",
+              "id": "truck_velocity_arrow",
+              "force_id": "truck_v",
+              "color": "#3B82F6",
+              "label": "Truck moves right",
+              "origin_body_id": "block_on_truck",
+              "origin_anchor": "body_top",
+              "direction_deg": 0,
+              "scale_pixels_per_unit": 30
+            },
+            {
+              "type": "force_arrow",
+              "id": "wrong_fs_arrow",
+              "force_id": "wrong_friction",
+              "color": "#EF4444",
+              "label": "fs = ? (wrong: backward)",
+              "origin_body_id": "block_on_truck",
+              "origin_anchor": "body_left",
+              "direction_deg": 180,
+              "scale_pixels_per_unit": 4
+            },
+            {
+              "type": "annotation",
+              "id": "myth_label",
+              "text": "MYTH:\n'Friction opposes the truck's velocity,\nso it must point backward on the box.'",
+              "position": {
+                "x": 100,
+                "y": 220
+              },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Your belief: friction always opposes the direction of motion.",
+                "pause_after_ms": 1200
+              },
+              {
+                "id": "s2",
+                "text_en": "So if the truck and the box are moving rightward together, friction on the box must point leftward — opposite the velocity.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s3",
+                "text_en": "That feels right. But there is a problem. Let me show you what really happens."
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "What Friction Actually Opposes — Relative Motion Tendency",
+          "focal_primitive_id": "correct_fs_arrow",
+          "teaching_method": "narrative_socratic",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "truck_bed_2",
+              "orientation": "horizontal",
+              "position": {
+                "x": 100,
+                "y": 380
+              },
+              "length": 540,
+              "texture": "rough",
+              "label": "Truck bed (accelerating right)"
+            },
+            {
+              "type": "body",
+              "id": "block_on_truck_2",
+              "shape": "rect",
+              "label": "Box",
+              "position": {
+                "x": 350,
+                "y": 340
+              },
+              "size": {
+                "w": 100,
+                "h": 70
+              },
+              "fill_color": "#6B7280"
+            },
+            {
+              "type": "force_arrow",
+              "id": "correct_fs_arrow",
+              "force_id": "static_friction_correct",
+              "color": "#10B981",
+              "label": "fs (forward, with truck)",
+              "origin_body_id": "block_on_truck_2",
+              "origin_anchor": "body_right",
+              "direction_deg": 0,
+              "scale_pixels_per_unit": 4
+            },
+            {
+              "type": "annotation",
+              "id": "correct_explanation",
+              "text": "Without friction, the box\nwould slide BACKWARD\nrelative to the truck.\nFriction opposes that tendency —\nso it points FORWARD.",
+              "position": {
+                "x": 100,
+                "y": 200
+              },
+              "style": "callout",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Imagine the truck suddenly accelerating. Without friction, the box would stay still while the truck moves out from under it.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "From the truck's frame, the box would slide backward. Friction opposes that tendency.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s3",
+                "text_en": "So friction on the box points FORWARD — in the same direction as the truck's motion. That is what accelerates the box along with the truck.",
+                "pause_after_ms": 1200
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_3": {
+          "title": "The Correct Rule",
+          "focal_primitive_id": "rule_label",
+          "teaching_method": "compare_contrast",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_rule",
+              "text": "WRONG: friction opposes velocity.",
+              "position": {
+                "x": 60,
+                "y": 180
+              },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "rule_label",
+              "text": "CORRECT:\nfriction opposes the\nRELATIVE MOTION TENDENCY\nbetween the two surfaces.",
+              "position": {
+                "x": 60,
+                "y": 280
+              },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "examples",
+              "text": "Push furniture standing still — fs opposite your push.\nBox on accelerating truck — fs forward (with truck).",
+              "position": {
+                "x": 60,
+                "y": 420
+              },
+              "style": "callout",
+              "color": "#E2E8F0"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "The clean rule: friction opposes the relative motion tendency between the two surfaces in contact.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Sometimes that lines up with absolute velocity. Sometimes it does not. Always check what would happen WITHOUT friction.",
+                "pause_after_ms": 1200
+              }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    },
+    {
+      "branch_id": "friction_depends_on_contact_area",
+      "misconception": "Larger contact area means larger friction. (Wrong: friction depends on N and mu only — area cancels out.)",
+      "trigger_phrases": [
+        "more area more friction",
+        "wider block has more friction",
+        "does friction depend on surface area",
+        "bigger surface bigger friction force",
+        "why area does not matter friction"
+      ],
+      "state_sequence": [
+        "EPIC_C_1",
+        "EPIC_C_2"
+      ],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: Bigger Contact Area = More Friction",
+          "focal_primitive_id": "wrong_big_friction",
+          "teaching_method": "misconception_confrontation",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "floor_two_bricks",
+              "orientation": "horizontal",
+              "position": {
+                "x": 60,
+                "y": 420
+              },
+              "length": 620,
+              "texture": "rough"
+            },
+            {
+              "type": "body",
+              "id": "brick_flat",
+              "shape": "rect",
+              "label": "Brick flat (large area)",
+              "position": {
+                "x": 180,
+                "y": 390
+              },
+              "size": {
+                "w": 160,
+                "h": 60
+              },
+              "fill_color": "#92400E"
+            },
+            {
+              "type": "body",
+              "id": "brick_edge",
+              "shape": "rect",
+              "label": "Brick on edge (small area)",
+              "position": {
+                "x": 480,
+                "y": 350
+              },
+              "size": {
+                "w": 60,
+                "h": 140
+              },
+              "fill_color": "#92400E"
+            },
+            {
+              "type": "force_arrow",
+              "id": "wrong_big_friction",
+              "force_id": "wrong_fs_big",
+              "color": "#EF4444",
+              "label": "fs = BIG?",
+              "origin_body_id": "brick_flat",
+              "origin_anchor": "body_left",
+              "direction_deg": 180,
+              "scale_pixels_per_unit": 5
+            },
+            {
+              "type": "force_arrow",
+              "id": "wrong_small_friction",
+              "force_id": "wrong_fs_small",
+              "color": "#EF4444",
+              "label": "fs = small?",
+              "origin_body_id": "brick_edge",
+              "origin_anchor": "body_left",
+              "direction_deg": 180,
+              "scale_pixels_per_unit": 8
+            },
+            {
+              "type": "annotation",
+              "id": "myth_label_area",
+              "text": "MYTH:\n'Bigger contact area\nmeans bigger friction.'",
+              "position": {
+                "x": 60,
+                "y": 200
+              },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Two identical bricks. Same mass, same material. One sits flat, one sits on its edge.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Your intuition says: the flat brick has more contact, so more friction. Let us see if that is true."
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "Why It's Wrong — Friction = mu × N, Area Cancels",
+          "focal_primitive_id": "same_friction_label",
+          "teaching_method": "narrative_socratic",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "derivation_step1",
+              "text": "Friction force = pressure × area\n= (Normal force / area) × area\n= Normal force × mu",
+              "position": {
+                "x": 60,
+                "y": 200
+              },
+              "style": "callout",
+              "color": "#E2E8F0"
+            },
+            {
+              "type": "annotation",
+              "id": "same_friction_label",
+              "text": "Both bricks have the same N\n(same mass × g).\nSo both have the same friction.\nArea cancels.",
+              "position": {
+                "x": 60,
+                "y": 350
+              },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "real_world_note",
+              "text": "Reality: try sliding a heavy book on its flat\nside vs its edge. Threshold force is the same.",
+              "position": {
+                "x": 380,
+                "y": 350
+              },
+              "style": "callout",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Friction comes from pressure times area. But pressure is normal force divided by area. So when you multiply, area cancels.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Result: friction depends only on the normal force and the coefficient. Not the area. Both bricks need the same push to slip.",
+                "pause_after_ms": 1500
+              }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    },
+    {
+      "branch_id": "kinetic_greater_than_static",
+      "misconception": "Kinetic friction is larger than static. (Wrong: mu_k < mu_s always.)",
+      "trigger_phrases": [
+        "is kinetic friction bigger than static",
+        "mu k larger than mu s",
+        "moving has more friction",
+        "fast object has more friction",
+        "kinetic friction increases with speed"
+      ],
+      "state_sequence": [
+        "EPIC_C_1",
+        "EPIC_C_2"
+      ],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: Kinetic Friction Is Larger",
+          "focal_primitive_id": "wrong_graph_label",
+          "teaching_method": "misconception_confrontation",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wrong_graph_label",
+              "text": "MYTH:\n'A moving block experiences\nMORE friction than a stationary one.\nSo mu_k > mu_s.'",
+              "position": {
+                "x": 80,
+                "y": 200
+              },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_intuition",
+              "text": "This intuition often comes from\nseeing friction 'feel stronger'\nwhen things are moving fast.\nThat is air drag, not friction.",
+              "position": {
+                "x": 80,
+                "y": 360
+              },
+              "style": "callout",
+              "color": "#E2E8F0"
+            },
+            {
+              "type": "label",
+              "id": "wrong_inequality",
+              "text": "WRONG: mu_k > mu_s",
+              "position": {
+                "x": 480,
+                "y": 280
+              },
+              "font_size": 24,
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Some students think kinetic friction is larger than static — because moving things 'feel' to have more resistance.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "That feeling is often air drag, not friction. Real friction works the other way."
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "The Truth: mu_k < mu_s Always",
+          "focal_primitive_id": "correct_inequality",
+          "teaching_method": "compare_contrast",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "physical_reason",
+              "text": "Once surfaces are sliding,\nthey have less time to 'lock in'\nat the microscopic asperities.\nFewer micro-bonds → smaller friction.",
+              "position": {
+                "x": 80,
+                "y": 200
+              },
+              "style": "callout",
+              "color": "#10B981"
+            },
+            {
+              "type": "label",
+              "id": "correct_inequality",
+              "text": "CORRECT: mu_k < mu_s",
+              "position": {
+                "x": 80,
+                "y": 380
+              },
+              "font_size": 24,
+              "color": "#10B981"
+            },
+            {
+              "type": "annotation",
+              "id": "almirah_callback",
+              "text": "Recall the almirah:\nyou had to push hard to start it,\nbut a softer push kept it sliding.\nThat is mu_k < mu_s in action.",
+              "position": {
+                "x": 380,
+                "y": 220
+              },
+              "style": "callout",
+              "color": "#3B82F6"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "When two surfaces are at rest, microscopic ridges interlock. Breaking those bonds takes more force.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Once sliding, the ridges glance off each other. Fewer bonds form, so kinetic friction is smaller. mu-k is always less than mu-s.",
+                "pause_after_ms": 1500
+              }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    },
+    {
+      "branch_id": "no_motion_means_no_friction",
+      "misconception": "If the block is not moving, friction must be zero. (Wrong: static friction adjusts to match the applied force, even when block is stationary.)",
+      "trigger_phrases": [
+        "no motion no friction",
+        "stationary block has zero friction",
+        "if not moving friction is zero",
+        "why is there friction when block is at rest",
+        "static friction zero when stationary"
+      ],
+      "state_sequence": [
+        "EPIC_C_1",
+        "EPIC_C_2"
+      ],
+      "states": {
+        "EPIC_C_1": {
+          "title": "Your Belief: No Motion = No Friction",
+          "focal_primitive_id": "wrong_zero_friction_label",
+          "teaching_method": "misconception_confrontation",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "floor_no_motion",
+              "orientation": "horizontal",
+              "position": {
+                "x": 100,
+                "y": 420
+              },
+              "length": 540,
+              "texture": "rough"
+            },
+            {
+              "type": "body",
+              "id": "almirah_no_motion",
+              "shape": "rect",
+              "label": "Almirah (still)",
+              "position": {
+                "x": 280,
+                "y": 370
+              },
+              "size": {
+                "w": 120,
+                "h": 100
+              },
+              "fill_color": "#92400E"
+            },
+            {
+              "type": "force_arrow",
+              "id": "F_state_no_motion",
+              "force_id": "applied_F_no_motion",
+              "color": "#2563EB",
+              "label": "F = 10 N",
+              "origin_body_id": "almirah_no_motion",
+              "origin_anchor": "body_right",
+              "direction_deg": 0,
+              "scale_pixels_per_unit": 6
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_zero_friction_label",
+              "text": "MYTH:\n'Block is not moving,\nso friction must be zero.\nBut wait — then why doesn't\nthe block accelerate?'",
+              "position": {
+                "x": 60,
+                "y": 200
+              },
+              "style": "callout",
+              "color": "#EF4444"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "You push the almirah with ten newtons. It does not move. Some students conclude friction must be zero.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "But Newton's first law says: if friction were zero, the ten newton push would accelerate the almirah. It does not. So friction must equal ten newtons."
+              }
+            ]
+          },
+          "advance_mode": "auto_after_tts"
+        },
+        "EPIC_C_2": {
+          "title": "Static Friction Adjusts — Even When Block Is Still",
+          "focal_primitive_id": "correct_balanced_label",
+          "teaching_method": "narrative_socratic",
+          "scene_composition": [
+            {
+              "type": "surface",
+              "id": "floor_corrected",
+              "orientation": "horizontal",
+              "position": {
+                "x": 100,
+                "y": 420
+              },
+              "length": 540,
+              "texture": "rough"
+            },
+            {
+              "type": "body",
+              "id": "almirah_corrected",
+              "shape": "rect",
+              "label": "Almirah (still)",
+              "position": {
+                "x": 280,
+                "y": 370
+              },
+              "size": {
+                "w": 120,
+                "h": 100
+              },
+              "fill_color": "#92400E"
+            },
+            {
+              "type": "force_arrow",
+              "id": "F_corrected",
+              "force_id": "applied_F_corrected",
+              "color": "#2563EB",
+              "label": "F = 10 N",
+              "origin_body_id": "almirah_corrected",
+              "origin_anchor": "body_right",
+              "direction_deg": 0,
+              "scale_pixels_per_unit": 6
+            },
+            {
+              "type": "force_arrow",
+              "id": "fs_corrected",
+              "force_id": "static_friction_corrected",
+              "color": "#10B981",
+              "label": "fs = 10 N (matches F)",
+              "origin_body_id": "almirah_corrected",
+              "origin_anchor": "body_left",
+              "direction_deg": 180,
+              "scale_pixels_per_unit": 6
+            },
+            {
+              "type": "annotation",
+              "id": "correct_balanced_label",
+              "text": "Block stationary ⇒ net force = 0.\nF + fs = 0.\nSo fs = -F: equal and opposite.\nStatic friction is NEVER zero\nwhen there is an applied force.",
+              "position": {
+                "x": 60,
+                "y": 200
+              },
+              "style": "callout",
+              "color": "#10B981"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "s1",
+                "text_en": "Block at rest means net force is zero. The push is ten newtons rightward, so static friction is ten newtons leftward. They balance.",
+                "pause_after_ms": 1500
+              },
+              {
+                "id": "s2",
+                "text_en": "Static friction is not always zero — it adjusts to whatever value cancels the applied force, up to the maximum of mu-s times N.",
+                "pause_after_ms": 1200
+              }
+            ]
+          },
+          "advance_mode": "manual_click"
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "wooden_box_on_concrete",
+      "type": "B",
+      "label": "Wooden box on concrete floor",
+      "physical_world": "wooden box (m=8 kg) on rough concrete floor (mu_s=0.4, mu_k=0.25)",
+      "same_physics": "Static-vs-kinetic regime switch with same threshold formula F > mu_s * m * g",
+      "scene_hint": "Replace almirah body with a wooden crate sprite; surface texture coarser concrete pattern."
+    },
+    {
+      "variant_id": "rubber_block_on_glass",
+      "type": "B",
+      "label": "Rubber block on glass surface",
+      "physical_world": "rubber block (m=2 kg) on glass (mu_s=0.7, mu_k=0.6) — high friction, kinetic close to static",
+      "same_physics": "Same regime-switch story; values tuned to show mu_k close to mu_s",
+      "scene_hint": "Block in dark gray (rubber); surface a transparent blue (glass)."
+    }
+  ],
+  "panel_b_config": {
+    "renderer": "graph_interactive",
+    "x_axis": {
+      "variable": "F",
+      "label": "Applied force F (N)",
+      "min": 0,
+      "max": 50
+    },
+    "y_axis": {
+      "variable": "friction_force",
+      "label": "Friction force (N)",
+      "min": 0,
+      "max": 30
+    },
+    "traces": [
+      {
+        "id": "static_regime",
+        "color": "#10B981",
+        "equation_expr": "min(F, mu_s * m * 9.8)",
+        "label": "Static (fs matches F up to fs_max)"
+      },
+      {
+        "id": "kinetic_regime",
+        "color": "#F59E0B",
+        "equation_expr": "(F > mu_s * m * 9.8) ? mu_k * m * 9.8 : null",
+        "label": "Kinetic (fk = mu_k * N, constant)"
+      }
+    ],
+    "live_dot": {
+      "x_variable": "F",
+      "color": "#2563EB",
+      "size": 8,
+      "y_expr": "(F <= mu_s * m * 9.8) ? F : mu_k * m * 9.8",
+      "sync_with_panel_a_sliders": [
+        "F",
+        "mu_s",
+        "mu_k",
+        "m"
+      ]
+    }
+  },
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 5,
+        "per_state": {
+          "STATE_1": {
+            "mark": 1,
+            "description": "Identify the body, the contact surface, and the applied force F. Draw the FBD with mg, N, F."
+          },
+          "STATE_2": {
+            "mark": 1,
+            "description": "Recognize the static regime. Write the inequality fs <= mu_s * N and equate fs = F when F is small."
+          },
+          "STATE_3": {
+            "mark": 1,
+            "description": "State the threshold condition fs_max = mu_s * N and compute the numeric value for given m, mu_s, g."
+          },
+          "STATE_4": {
+            "mark": 1,
+            "description": "Switch regimes when F > fs_max. Write fk = mu_k * N and compute the kinetic friction value."
+          },
+          "STATE_5": {
+            "mark": 1,
+            "description": "Apply Newton II to find acceleration: a = (F - fk) / m. Substitute given values and simplify."
+          }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d1_s1",
+              "text": "Step 1: Body — almirah of mass m = 5 kg on horizontal tile floor.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 100
+              }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d1_s2",
+              "text": "Forces: weight mg downward, normal N upward, applied F to the right, friction f to the left.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 140
+              }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d1_s3",
+              "text": "Vertical balance: N = mg = 5 × 9.8 = 49 N.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 180
+              }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s1",
+              "mark_value": 1,
+              "text": "+1 for FBD",
+              "tied_to_state": "STATE_1",
+              "position": {
+                "x": 680,
+                "y": 140
+              }
+            }
+          ]
+        },
+        "STATE_2": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d2_s1",
+              "text": "Step 2: For small F, block is at rest. Static friction acts.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 220
+              }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d2_s2",
+              "text": "Newton I (block at rest): F - fs = 0 ⇒ fs = F.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 260
+              }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d2_s3",
+              "text": "Constraint: fs <= mu_s * N (static friction has a ceiling).",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 300
+              }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s2",
+              "mark_value": 1,
+              "text": "+1 for static regime",
+              "tied_to_state": "STATE_2",
+              "position": {
+                "x": 680,
+                "y": 260
+              }
+            }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d3_s1",
+              "text": "Step 3: Threshold — block is on the verge of slipping when fs = fs_max.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 340
+              }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d3_s2",
+              "text": "fs_max = mu_s × N = 0.5 × 49 = 24.5 N.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 380
+              }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d3_s3",
+              "text": "Block slips when F > 24.5 N.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 420
+              }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s3",
+              "mark_value": 1,
+              "text": "+1 for threshold",
+              "tied_to_state": "STATE_3",
+              "position": {
+                "x": 680,
+                "y": 380
+              }
+            }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d4_s1",
+              "text": "Step 4: Block is now sliding. Friction switches to kinetic.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 100
+              }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d4_s2",
+              "text": "fk = mu_k × N = 0.3 × 49 = 14.7 N.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 140
+              }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d4_s3",
+              "text": "fk is constant once moving (independent of velocity, for textbook friction).",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 180
+              }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s4",
+              "mark_value": 1,
+              "text": "+1 for kinetic regime",
+              "tied_to_state": "STATE_4",
+              "position": {
+                "x": 680,
+                "y": 140
+              }
+            }
+          ]
+        },
+        "STATE_5": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d5_s1",
+              "text": "Step 5: For F = 35 N (above threshold), block slides.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 220
+              }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d5_s2",
+              "text": "Newton II: F - fk = m × a ⇒ a = (35 - 14.7) / 5.",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 260
+              }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d5_s3",
+              "text": "a = 20.3 / 5 = 4.06 m/s². Block accelerates rightward at 4.06 m/s².",
+              "animate_in": "handwriting",
+              "position": {
+                "x": 60,
+                "y": 300
+              }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s5",
+              "mark_value": 1,
+              "text": "+1 for numeric",
+              "tied_to_state": "STATE_5",
+              "position": {
+                "x": 680,
+                "y": 260
+              }
+            }
+          ]
+        }
+      }
+    },
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "trigger": "F < mu_s * m * g",
+          "formula": "fs = F (matches applied force, block stationary)",
+          "when": "Quick test: compute mu_s * m * g once. Any F below it ⇒ static, fs = F. Skip Newton II."
+        },
+        {
+          "trigger": "F > mu_s * m * g",
+          "formula": "a = (F - mu_k * m * g) / m",
+          "when": "Once you confirm F exceeds threshold, immediately use kinetic. Do NOT use mu_s in the dynamic equation."
+        },
+        {
+          "trigger": "instant a-formula on horizontal",
+          "formula": "a = g * (F / (m * g) - mu_k) = g * (F/(mg) - mu_k)",
+          "when": "Mental calc shortcut: divide F by mg, subtract mu_k, multiply by g."
+        }
+      ],
+      "edge_cases": [
+        {
+          "boundary": "F exactly equals mu_s * m * g",
+          "behavior": "Block is on the verge of slipping. Either static (fs=fs_max) or just-starting-kinetic. JEE convention: treat as static."
+        },
+        {
+          "boundary": "mu_k = mu_s",
+          "behavior": "Physically impossible (kinetic must be smaller). If a problem states this, treat as a typo or static-only problem."
+        },
+        {
+          "boundary": "block already moving but F < fk",
+          "behavior": "Kinetic friction still acts (opposes velocity). Block decelerates: a = (F - fk) / m, which is negative."
+        },
+        {
+          "boundary": "rough surface but mu_s not given",
+          "behavior": "If mu_s not stated, assume mu_s = mu_k (worst case for the problem's intent — the regime distinction is being ignored)."
+        }
+      ]
+    }
+  }
+}
