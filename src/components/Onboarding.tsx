@@ -1,14 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronRight, Zap, BookOpen, Target, Sparkles } from "lucide-react";
-import type { StudentProfile, StudentClass, StudentBoard, StudentGoal } from "@/types/student";
+import { ChevronRight, Zap, BookOpen, Target, Sparkles, Check } from "lucide-react";
+import type { StudentProfile, StudentClass, StudentBoard, StudentGoal, ClassLevel } from "@/types/student";
+import { levelToClass } from "@/types/student";
 
 interface OnboardingProps {
     onComplete: (profile: StudentProfile) => void;
 }
 
-const CLASSES: StudentClass[] = ["Class 10", "Class 11", "Class 12"];
+const CLASS_LEVELS: { level: ClassLevel; label: StudentClass; hint: string }[] = [
+    { level: 10, label: "Class 10", hint: "Foundation — NCERT 10" },
+    { level: 11, label: "Class 11", hint: "JEE/NEET Year 1 — NCERT 11" },
+    { level: 12, label: "Class 12", hint: "JEE/NEET Year 2 — NCERT 12" },
+];
 const BOARDS: StudentBoard[] = [
     "CBSE",
     "Telangana Board",
@@ -34,17 +39,26 @@ const SCARY_TOPICS = [
 export default function Onboarding({ onComplete }: OnboardingProps) {
     const [screen, setScreen] = useState(0);
     const [name, setName] = useState("");
-    const [selectedClass, setSelectedClass] = useState<StudentClass | "">("");
+    const [selectedLevels, setSelectedLevels] = useState<ClassLevel[]>([]);
     const [selectedBoard, setSelectedBoard] = useState<StudentBoard | "">("");
     const [selectedGoal, setSelectedGoal] = useState<StudentGoal | "">("");
     const [firstTopic, setFirstTopic] = useState("");
     const [customTopic, setCustomTopic] = useState("");
 
+    const toggleLevel = (level: ClassLevel) => {
+        setSelectedLevels(prev => {
+            if (prev.includes(level)) return prev.filter(l => l !== level);
+            return [...prev, level].sort((a, b) => a - b) as ClassLevel[];
+        });
+    };
+
     const handleFinish = () => {
         const topic = firstTopic === "custom" ? customTopic : firstTopic;
+        const primaryLevel = selectedLevels[0];
         const profile: StudentProfile = {
             name: name.trim() || "Student",
-            class: selectedClass as StudentClass,
+            class: levelToClass(primaryLevel),
+            class_levels: selectedLevels,
             board: selectedBoard as StudentBoard,
             goal: selectedGoal as StudentGoal,
             firstTopic: topic || "Kirchhoff's Laws",
@@ -116,31 +130,44 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                                 <BookOpen className="w-5 h-5 text-blue-400" />
                                 <span className="text-xs font-bold text-blue-400 uppercase tracking-widest">Step 1 of 3</span>
                             </div>
-                            <h2 className="text-2xl font-bold text-white">Which class are you in?</h2>
-                            <p className="text-zinc-500 text-sm mt-1">We&apos;ll tailor your syllabus and difficulty.</p>
+                            <h2 className="text-2xl font-bold text-white">Which class(es) do you study?</h2>
+                            <p className="text-zinc-500 text-sm mt-1">Pick one or more. Your catalog adapts to your selection.</p>
                         </div>
                         <div className="space-y-3">
-                            {CLASSES.map((cls) => (
-                                <button
-                                    key={cls}
-                                    onClick={() => setSelectedClass(cls)}
-                                    className={`w-full flex items-center justify-between px-5 py-4 rounded-xl border text-left transition-all ${selectedClass === cls
-                                        ? "bg-blue-600/15 border-blue-500 text-white"
-                                        : "bg-zinc-900 border-zinc-700 text-zinc-300 hover:border-zinc-500"
-                                        }`}
-                                >
-                                    <span className="font-semibold">{cls}</span>
-                                    {selectedClass === cls && (
-                                        <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
-                                            <div className="w-2 h-2 rounded-full bg-white" />
+                            {CLASS_LEVELS.map(({ level, label, hint }) => {
+                                const isSelected = selectedLevels.includes(level);
+                                return (
+                                    <button
+                                        key={level}
+                                        onClick={() => toggleLevel(level)}
+                                        aria-pressed={isSelected}
+                                        className={`w-full flex items-center justify-between px-5 py-4 rounded-xl border text-left transition-all ${isSelected
+                                            ? "bg-blue-600/15 border-blue-500 text-white"
+                                            : "bg-zinc-900 border-zinc-700 text-zinc-300 hover:border-zinc-500"
+                                            }`}
+                                    >
+                                        <div className="flex flex-col">
+                                            <span className="font-semibold">{label}</span>
+                                            <span className="text-xs text-zinc-500">{hint}</span>
                                         </div>
-                                    )}
-                                </button>
-                            ))}
+                                        <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${isSelected
+                                            ? "bg-blue-500 border-blue-500"
+                                            : "border border-zinc-600"
+                                            }`}>
+                                            {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                                        </div>
+                                    </button>
+                                );
+                            })}
+                            {selectedLevels.length > 1 && (
+                                <p className="text-xs text-blue-400/80 px-1">
+                                    {selectedLevels.length} classes selected — chapters from all will appear in your catalog.
+                                </p>
+                            )}
                         </div>
                         <button
                             onClick={() => setScreen(2)}
-                            disabled={!selectedClass}
+                            disabled={selectedLevels.length === 0}
                             className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-xl py-3.5 font-semibold text-base transition-colors"
                         >
                             Continue <ChevronRight className="w-5 h-5" />

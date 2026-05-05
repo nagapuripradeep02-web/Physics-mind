@@ -89,6 +89,10 @@ interface TeacherPlayerProps {
      *  When present together with sessionId and an active sub-state, the inline
      *  thumbs-up/down rating control renders under the step-title row. */
     deepDiveCacheId?: string | null;
+    /** Fired when the iframe broadcasts STATE_REACHED (student lands on a new state).
+     *  Used by LearnConceptTab to keep DrillDownWidget's state_id in sync with the
+     *  live current state — without this, Confused? always queries STATE_1. */
+    onStateChange?: (state: string) => void;
 }
 
 
@@ -112,7 +116,7 @@ const LOADING_FACTS = [
     "�� Magnetic field lines always form closed loops — they never start or end",
 ];
 
-export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, aiScript, iframeRef: externalIframeRef, conceptId, secondarySimHtml, secondaryIframeRef: externalSecondaryIframeRef, sessionId, studentBelief, entryState, stateSequence, onDeepDiveClick, allowedDeepDiveStates, deepDiveSubStates, activeDeepDiveParent, activeDeepDiveIdx, deepDiveStatus, deepDiveLoading, onSubStateClick, onDeepDiveExit, deepDiveCacheId }: TeacherPlayerProps) {
+export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, aiScript, iframeRef: externalIframeRef, conceptId, secondarySimHtml, secondaryIframeRef: externalSecondaryIframeRef, sessionId, studentBelief, entryState, stateSequence, onDeepDiveClick, allowedDeepDiveStates, deepDiveSubStates, activeDeepDiveParent, activeDeepDiveIdx, deepDiveStatus, deepDiveLoading, onSubStateClick, onDeepDiveExit, deepDiveCacheId, onStateChange }: TeacherPlayerProps) {
     // Step strip uses ONLY aiScript (Stage 4). lesson.teaching_script is never shown in the strip.
     // When aiScript is null/empty, isScriptReady=false and the strip shows a skeleton loader.
     const isScriptReady = !!(aiScript?.length);
@@ -179,6 +183,10 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
     const effectiveRef = externalIframeRef ?? simulationIframeRef;
     const [simReady, setSimReady] = useState(false);
     const pendingState = useRef<string | null>(null);
+    // Keep onStateChange in a ref so the []-deps message handler always calls
+    // the current prop (avoids stale-closure without re-binding the listener).
+    const onStateChangeRef = useRef(onStateChange);
+    useEffect(() => { onStateChangeRef.current = onStateChange; }, [onStateChange]);
     const playIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -201,6 +209,90 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
         const t = setTimeout(() => setIsPlaying(true), 400);
         return () => clearTimeout(t);
     }, []);
+
+    // ── Web Speech TTS ────────────────────────────────────────────────────────
+    // Browsers gate speechSynthesis behind a user gesture (Chrome/Edge autoplay
+    // policy). A primer utterance is queued on the first pointer/keyboard event
+    // anywhere on the page so subsequent automatic speak() calls succeed.
+    const ttsVoiceRef = useRef<SpeechSynthesisVoice | null>(null);
+    const ttsUnlockedRef = useRef(false);
+    const ttsLastTextRef = useRef<string>("");
+    useEffect(() => {
+        if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+        const pickVoice = () => {
+            const voices = window.speechSynthesis.getVoices();
+            if (!voices.length) return;
+            ttsVoiceRef.current =
+                voices.find(v => /en-IN/i.test(v.lang)) ??
+                voices.find(v => /en-GB/i.test(v.lang)) ??
+                voices.find(v => /^en/i.test(v.lang)) ??
+                voices[0];
+            console.log("[TTS] voice:", ttsVoiceRef.current?.name, ttsVoiceRef.current?.lang);
+        };
+        pickVoice();
+        window.speechSynthesis.addEventListener("voiceschanged", pickVoice);
+
+        const unlock = () => {
+            if (ttsUnlockedRef.current) return;
+            try {
+                const primer = new SpeechSynthesisUtterance(" ");
+                primer.volume = 0.01;
+                window.speechSynthesis.speak(primer);
+                ttsUnlockedRef.current = true;
+                console.log("[TTS] unlocked by user gesture");
+                // If we already have a current sentence queued (auto-start fired before
+                // gesture), speak it now that the engine is unlocked.
+                if (isPlaying && currentIdx >= 0 && ttsLastTextRef.current) {
+                    const u = new SpeechSynthesisUtterance(ttsLastTextRef.current);
+                    if (ttsVoiceRef.current) u.voice = ttsVoiceRef.current;
+                    u.rate = 0.95;
+                    window.speechSynthesis.speak(u);
+                }
+            } catch (e) {
+                console.warn("[TTS] unlock failed", e);
+            }
+        };
+        window.addEventListener("pointerdown", unlock, { once: true });
+        window.addEventListener("keydown", unlock, { once: true });
+
+        return () => {
+            window.speechSynthesis.removeEventListener("voiceschanged", pickVoice);
+            window.removeEventListener("pointerdown", unlock);
+            window.removeEventListener("keydown", unlock);
+            window.speechSynthesis.cancel();
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+        window.speechSynthesis.cancel();
+        if (!isPlaying || currentIdx < 0) return;
+        const sub = (activeDeepDiveParent && deepDiveSubStates && activeDeepDiveIdx != null)
+            ? deepDiveSubStates[activeDeepDiveIdx] ?? null
+            : null;
+        const text = sub ? sub.teacher_text : (steps[currentIdx]?.text ?? "");
+        if (!text.trim()) return;
+        const clean = text.replace(/\*\*/g, "").replace(/\s+/g, " ").trim();
+        ttsLastTextRef.current = clean;
+        if (!ttsUnlockedRef.current) {
+            console.log("[TTS] queued (waiting for user gesture):", clean.slice(0, 60));
+            return;
+        }
+        const u = new SpeechSynthesisUtterance(clean);
+        if (ttsVoiceRef.current) u.voice = ttsVoiceRef.current;
+        u.rate = 0.95;
+        u.pitch = 1.0;
+        u.volume = 1.0;
+        u.onerror = (e) => console.warn("[TTS] error", e);
+        console.log("[TTS] speak:", clean.slice(0, 60));
+        window.speechSynthesis.speak(u);
+    }, [currentIdx, isPlaying, steps, activeDeepDiveParent, deepDiveSubStates, activeDeepDiveIdx]);
+
+    useEffect(() => {
+        if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+        if (!isPlaying) window.speechSynthesis.cancel();
+    }, [isPlaying]);
 
     // Sends SET_STATE to primary panel; also secondary in dual layouts.
     // The msg shape accepts optional `inline_scene_composition` + `inline_variables`
@@ -282,6 +374,7 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
             }
             if (e.data.type === 'STATE_REACHED') {
                 console.log('[Sync] STATE_REACHED:', e.data.state);
+                onStateChangeRef.current?.(e.data.state);
             }
         };
         window.addEventListener('message', handler);
@@ -619,7 +712,15 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
                             ?? (stateSequence && stateSequence.length > 0
                                 ? (stateSequence[currentIdx] ?? `STATE_${currentIdx + 1}`)
                                 : `STATE_${currentIdx + 1}`);
-                        if (!allowedDeepDiveStates || !allowedDeepDiveStates.includes(currentStateName)) return null;
+                        // Session 33: student-first — Explain button shown on
+                        // every state, not just ones the architect pre-flagged
+                        // allow_deep_dive. States WITH pre-built deep-dives
+                        // serve from cache (fast); states WITHOUT generate
+                        // on-demand via Sonnet (slower spinner). No student
+                        // should be told "this state can't be explained deeper".
+                        // `allowedDeepDiveStates` retained for downstream hints
+                        // (e.g. pill rendering at :538) but no longer gates
+                        // button visibility here.
                         // Suppress the button when inline deep-dive is already active
                         // on this state (prevents a double-fetch/duplicate sub-pills).
                         if (activeDeepDiveParent === currentStateName) return null;

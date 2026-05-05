@@ -50,7 +50,9 @@ export default function DrillDownWidget({ conceptId, currentStateId, classLevel,
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     concept_id: conceptId,
-                    state_id: currentStateId,
+                    // Strip deep-dive sub-state suffix (e.g. STATE_3_DD1 → STATE_3).
+                    // confusion_cluster_registry is keyed on parent states only.
+                    state_id: currentStateId.replace(/_DD\d+$/, ""),
                     confusion_text: text.trim(),
                     class_level: classLevel ?? "11",
                     mode: mode ?? "conceptual",

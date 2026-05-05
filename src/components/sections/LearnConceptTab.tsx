@@ -29,6 +29,11 @@ import type { TeacherScriptStep } from "@/lib/aiSimulationGenerator";
 interface ConceptualMessage extends ChatMessage {
     isMvsResponse?: boolean;
     onDemandSimLabel?: string | null;
+    // Session 33: the pill's target concept_id, returned by /api/chat
+    // on_demand_available. Used when the pill is clicked to ensure the
+    // subsequent /api/generate-simulation call routes to THIS concept,
+    // not whatever was cached from the prior chat turn.
+    onDemandConceptId?: string | null;
 }
 type ConceptualChat = Chat;
 interface Concept { name: string; conceptClass: string; subject: string; }
@@ -138,6 +143,11 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
     const [variantExhausted, setVariantExhausted] = useState(false);
     const [activeVariantEntryState, setActiveVariantEntryState] = useState<string | null>(null);
     const [activeStateSequence, setActiveStateSequence] = useState<string[]>([]);
+    // Live state id broadcast by the iframe via STATE_REACHED. Takes precedence
+    // over activeVariantEntryState (which is set ONCE per variant load) so the
+    // DrillDownWidget queries the correct state_id when the student lands on
+    // STATE_3/STATE_5 via pill click.
+    const [liveCurrentState, setLiveCurrentState] = useState<string | null>(null);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
     const imgInputRef = useRef<HTMLInputElement>(null);
@@ -259,6 +269,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
         setOriginalSimHtmlMap(new Map());
         setVariantExhausted(false);
         setActiveVariantEntryState(null);
+        setLiveCurrentState(null);
 
         if (!activeConceptualId) return;
         setSkeletonTimer(true);
@@ -456,6 +467,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
         setSimError(null);
         setVariantExhausted(false);
         setActiveVariantEntryState(null);
+        setLiveCurrentState(null);
 
         // ── Lesson (~2-3s) — updates TeacherPlayer script immediately ─────────
         void fetch("/api/generate-lesson", {
@@ -625,6 +637,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
             if (orig) setAiSimHtmls(prev => new Map(prev).set(lastKey, orig));
             setActiveVariantEntryState('STATE_1');
             setActiveStateSequence([]);
+            setLiveCurrentState(null);
         } else {
             // Only swap sim HTML if this variant has a generated config
             // (thumbs-down flow). JSON-driven Type 1 variants reuse the
@@ -633,6 +646,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
             if (simHtml) setAiSimHtmls(prev => new Map(prev).set(lastKey, simHtml));
             setActiveVariantEntryState(variant.entry_state ?? 'STATE_1');
             setActiveStateSequence(variant.state_sequence ?? []);
+            setLiveCurrentState(null);
             // Note: if simHtml is null (JSON-driven variant), iframe stays
             // loaded — TeacherPlayer's variant-switch useEffect handles reset.
         }
@@ -681,6 +695,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
             if (newSimHtml && lastKey) {
                 setAiSimHtmls(prev => new Map(prev).set(lastKey, newSimHtml));
                 setActiveVariantEntryState(genData.entry_state ?? 'STATE_1');
+                setLiveCurrentState(null);
 
                 const newEntry = {
                     config: genData.config as Record<string, unknown>,
@@ -895,15 +910,23 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
             if (data.type === "on_demand_available") {
                 console.log('[chat] intercepted: on_demand_available — returning early');
                 const asstTimestamp = Date.now();
-                const fingerprintKey = res.headers.get("X-Fingerprint-Key");
-                if (fingerprintKey) {
-                    lastFingerprintKeyRef.current = fingerprintKey;
+                // Session 33 fix: /api/chat now returns the pill's target
+                // concept_id + fingerprintKey in the response body so that the
+                // subsequent /api/generate-simulation call routes to the NEW
+                // concept, not the prior turn's fingerprint. Prefer body value,
+                // fall back to the legacy X-Fingerprint-Key header.
+                const pillFingerprintKey =
+                    (typeof data.fingerprintKey === "string" && data.fingerprintKey) ||
+                    res.headers.get("X-Fingerprint-Key");
+                if (pillFingerprintKey) {
+                    lastFingerprintKeyRef.current = pillFingerprintKey;
                 }
                 const asstMsg: ConceptualMessage = {
                     role: "assistant",
                     content: "I can run a simulation of that scenario if you'd like to see it visually.",
                     timestamp: asstTimestamp,
                     onDemandSimLabel: data.sim_label,
+                    onDemandConceptId: typeof data.concept_id === "string" ? data.concept_id : null,
                 };
                 const finalMessages = [...allMessages, asstMsg];
                 void saveConceptualMessages(effectiveChatId, finalMessages);
@@ -1125,7 +1148,14 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
                                                         />
                                                         {!aiSimHtmls.has(msgKey) && (
                                                             <button
-                                                                onClick={() => triggerLessonGeneration(displayMessages.slice(0, idx + 1))}
+                                                                onClick={() => triggerLessonGeneration(
+                                                                    displayMessages.slice(0, idx + 1),
+                                                                    undefined, undefined, undefined, undefined, undefined, undefined,
+                                                                    // Session 33 fix: pass the pill's target concept_id so the
+                                                                    // generate-simulation call routes to THIS concept, not the
+                                                                    // prior chat turn's (stale) inferred concept.
+                                                                    (m as ConceptualMessage).onDemandConceptId ?? undefined,
+                                                                )}
                                                                 disabled={isLoadingSim}
                                                                 className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-[13px] font-medium rounded-xl transition-colors w-full sm:w-auto"
                                                             >
@@ -1389,6 +1419,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
                                 onSubStateClick={handleSubStateClick}
                                 onDeepDiveExit={handleDeepDiveExit}
                                 deepDiveCacheId={deepDiveCacheId}
+                                onStateChange={setLiveCurrentState}
                             />
                         ) : (lessonLoading || isLoadingSim) ? (
                             /* Lesson + sim both still generating — show skeleton strip immediately */
@@ -1482,7 +1513,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
                                 <DrillDownWidget
                                     compact
                                     conceptId={currentConceptId}
-                                    currentStateId={activeVariantEntryState ?? activeStateSequence[0] ?? (currentConceptId ? 'STATE_1' : null)}
+                                    currentStateId={liveCurrentState ?? activeVariantEntryState ?? activeStateSequence[0] ?? (currentConceptId ? 'STATE_1' : null)}
                                     classLevel={typeof profile?.class === "string" ? profile.class : undefined}
                                     mode={teachingMode}
                                     sessionId={activeConceptualId ?? undefined}

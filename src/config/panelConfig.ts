@@ -608,8 +608,17 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
     },
     umbrella_tilt_angle: {
         concept_id: 'umbrella_tilt_angle',
-        layout: 'single',
+        layout: 'dual_horizontal',
         primary: { renderer: 'mechanics_2d', config_key: 'umbrella_tilt_angle', label: 'Umbrella Tilt Angle' },
+        secondary: { renderer: 'graph_interactive', config_key: 'umbrella_tilt_angle_graph', label: 'θ vs v_person' },
+    },
+
+    // Ch.8.5 Friction (atomic, shipped session 34 — first v2.2-native gold-standard)
+    friction_static_kinetic: {
+        concept_id: 'friction_static_kinetic',
+        layout: 'dual_horizontal',
+        primary: { renderer: 'mechanics_2d', config_key: 'friction_static_kinetic', label: 'Static vs Kinetic Friction' },
+        secondary: { renderer: 'graph_interactive', config_key: 'friction_static_kinetic_graph', label: 'fs vs F_applied' },
     },
 
     // Atomic splits from former aircraft_wind_problems bundle (Ch.6.13)

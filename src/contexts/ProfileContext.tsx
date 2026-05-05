@@ -1,12 +1,19 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
-import type { StudentProfile, ConceptEntry, AppMode, ExamMode } from '@/types/student';
+import type { StudentProfile, ConceptEntry, AppMode, ExamMode, ClassLevel } from '@/types/student';
+import { classToLevel } from '@/types/student';
 import {
     getProfile, saveProfile,
     getConcepts, saveConcept, updateConceptStatus as updateConceptStatusLib,
     getModuleProgress, saveModuleProgress
 } from '@/lib/profile';
+
+function migrateClassLevels(profile: StudentProfile): StudentProfile {
+    if (profile.class_levels && profile.class_levels.length > 0) return profile;
+    const derived: ClassLevel[] = [classToLevel(profile.class)];
+    return { ...profile, class_levels: derived };
+}
 
 interface ProfileContextValue {
     profile: StudentProfile | null;
@@ -50,11 +57,16 @@ export function ProfileProvider({ children }: { children: ReactNode }) {
                 getModuleProgress(),
             ]);
             if (cancelled) return;
-            setProfile(p);
+            const migrated = p ? migrateClassLevels(p) : null;
+            setProfile(migrated);
+            if (migrated && p && (!p.class_levels || p.class_levels.length === 0)) {
+                // Persist the back-fill so future loads skip the shim
+                void saveProfile(migrated);
+            }
             setConcepts(c);
             setModuleProgressState(mp ?? {});
-            if (p?.goal === 'Board Exam') setExamMode('CBSE');
-            else if (p?.goal === 'JEE') setExamMode('JEE');
+            if (migrated?.goal === 'Board Exam') setExamMode('CBSE');
+            else if (migrated?.goal === 'JEE') setExamMode('JEE');
             setLoading(false);
         }
         load();
