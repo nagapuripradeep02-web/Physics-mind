@@ -197,7 +197,22 @@ export async function POST(req: Request) {
     }
 
     try {
-        const { messages, mode, section, attachments, profile, sessionId, marked_region } = await req.json();
+        const {
+            messages,
+            mode,
+            section,
+            attachments,
+            profile,
+            sessionId,
+            marked_region,
+            // Structured fields sent by SideChatDrawer (Phase A chat-persistence fix).
+            // When present, these override the AI-inferred values when persisting
+            // to student_confusion_log so the agent feedback loop has trustworthy
+            // {student_id, concept_id, state_id} keys.
+            concept_id: clientConceptId,
+            state_id: clientStateId,
+            student_id: clientStudentId,
+        } = await req.json();
 
         // `section` is the canonical field; fall back to `mode` for backward compat
         let sectionMode = (
@@ -208,6 +223,14 @@ export async function POST(req: Request) {
             (profile?.class as string | undefined)?.replace("Class ", "") ?? "12";
 
         const activeConceptualId = sessionId || '';
+
+        // Validate student_id is a uuid before we send it to a uuid column.
+        // Accepts the lowercase canonical form Supabase auth emits.
+        const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        const studentUuid: string | null =
+            typeof clientStudentId === "string" && UUID_RE.test(clientStudentId)
+                ? clientStudentId
+                : null;
         const turnNumber = Array.isArray(messages) ? messages.length : 1;
         const isFollowUp = turnNumber > 1;
 
@@ -319,9 +342,34 @@ Rules:
                 console.log("[chat] Follow-up classifier result:", object);
 
                 if (object.follow_up_type === 'on_demand_sim') {
+                    // Session 33 fix for "pill stale-fingerprint" silent failure:
+                    // return the pill's target concept_id + fingerprintKey so the
+                    // client can route /api/generate-simulation to the NEW concept
+                    // instead of carrying over the prior turn's (stale) fingerprint.
+                    // Without these, `LearnConceptTab.lastFingerprintKeyRef` stays
+                    // pinned to the prior concept and the pill serves a generic
+                    // fallback sim. Session 32.5's API-layer guard was a defensive
+                    // net; this is the upstream structural fix.
+                    const pillConceptId = normalizeConceptId(resolved?.resolvedConcept ?? null);
+                    // Map IntentResolver's vocabulary to classifier's Intent enum.
+                    const resolvedIntent = resolved?.intent;
+                    const pillIntent =
+                        resolvedIntent === 'full_explanation' ? 'understand'
+                        : resolvedIntent === 'specific_confusion' ? 'specific_confusion'
+                        : resolvedIntent === 'hypothetical' ? 'hypothetical'
+                        : resolvedIntent === 'derive' ? 'derive'
+                        : resolvedIntent === 'compare' ? 'compare'
+                        : 'understand';
+                    const pillClassLevel = classLevel || '12';
+                    const pillMode = sectionMode || 'conceptual';
+                    const pillFingerprintKey = pillConceptId
+                        ? `${pillConceptId}|${pillIntent}|${pillClassLevel}|${pillMode}|none`
+                        : null;
                     return jsonReply({
                         type: 'on_demand_available',
                         sim_label: object.sim_label || 'Show Simulation',
+                        concept_id: pillConceptId,
+                        fingerprintKey: pillFingerprintKey,
                     });
                 }
             } catch (err) {
@@ -555,6 +603,7 @@ Be precise and complete. Maximum 150 words.`,
                 // Fire-and-forget: log clarification/distress to student_confusion_log
                 supabaseAdmin.from('student_confusion_log').insert([{
                     session_id: activeConceptualId || crypto.randomUUID(),
+                    student_id: studentUuid,
                     raw_question: lastText || '',
                     input_type: !!marked_region ? (lastText ? 'marked_image' : 'marked_image_no_text')
                                : hasImages ? (lastText ? 'image+text' : 'image_no_text') : 'text',
@@ -563,7 +612,10 @@ Be precise and complete. Maximum 150 words.`,
                     image_uploaded: hasImages,
                     has_marked_region: !!marked_region,
                     marked_region_description: markedRegionDescription ?? null,
-                    concept_id: analysisResult.concept_id || 'unknown',
+                    // Prefer the structured concept_id sent by the client (the lesson page
+                    // knows it for sure); fall back to AI inference.
+                    concept_id: clientConceptId || analysisResult.concept_id || 'unknown',
+                    state_id: clientStateId ?? null,
                     intent: analysisResult.action === 'ACKNOWLEDGE_EMOTION' ? 'distress' : 'clarification_needed',
                     class_level: classLevel,
                     exam_mode: sectionMode,
@@ -637,15 +689,24 @@ Be precise and complete. Maximum 150 words.`,
                     console.log('[SESSION] replay requested — forcing simulation');
                 }
 
-                // Fire-and-forget: log to student_confusion_log
-                if (activeConceptualId) {
-                    confusionLogSessionId = activeConceptualId;
+                // Fire-and-forget: log to student_confusion_log.
+                // Gate accepts EITHER an active session id OR an authenticated student
+                // — that way LessonCard's SideChatDrawer (which generates a per-drawer
+                // sessionId) and any other authenticated path both persist.
+                if (activeConceptualId || studentUuid) {
+                    const logSessionId = activeConceptualId || crypto.randomUUID();
+                    confusionLogSessionId = logSessionId;
+                    // Prefer the structured concept_id from the lesson page over
+                    // intent_resolver's inference; the URL is ground truth.
+                    const persistedConceptId = clientConceptId || resolvedConceptId;
                     supabaseAdmin.from('student_confusion_log').insert([{
-                        session_id: activeConceptualId,
+                        session_id: logSessionId,
+                        student_id: studentUuid,
                         confusion_text: lastText,
                         extracted_concept_id: resolvedConceptId,
                         extracted_intent: resolved!.intent,
-                        concept_id: resolvedConceptId,
+                        concept_id: persistedConceptId,
+                        state_id: clientStateId ?? null,
                         intent: resolved!.intent,
                         image_uploaded: hasImages,
                         confidence_score: resolved!.confidence,
@@ -809,13 +870,22 @@ Be precise and complete. Maximum 150 words.`,
         if (resolved && !resolved.simulation_needed) {
             console.log('[GATE] simulation skipped — text only response');
 
-            // Load locked_facts from concept JSON for grounded answer
+            // Load grounded physics from concept JSON. v2.1 uses locked_facts; v2.2
+            // uses physics_engine_config (variables + formulas + constraints). Both
+            // are merged when present so the chat gate works for either schema.
             const { loadConstants } = await import('@/lib/physics_constants/index');
             const conceptJson = resolvedConceptId !== 'unknown'
-                ? await loadConstants(resolvedConceptId)
+                ? await loadConstants(resolvedConceptId) as Record<string, unknown> | null
                 : null;
-            const lockedFacts = conceptJson?.locked_facts
-                ? JSON.stringify(conceptJson.locked_facts)
+            const groundingParts: string[] = [];
+            if (conceptJson?.locked_facts) {
+                groundingParts.push(`LOCKED FACTS:\n${JSON.stringify(conceptJson.locked_facts)}`);
+            }
+            if (conceptJson?.physics_engine_config) {
+                groundingParts.push(`PHYSICS ENGINE CONFIG:\n${JSON.stringify(conceptJson.physics_engine_config)}`);
+            }
+            const lockedFacts = groundingParts.length > 0
+                ? groundingParts.join('\n\n')
                 : 'No specific physics constants available for this concept.';
 
             const gateResponse = await generateText({

@@ -33,6 +33,9 @@ export async function GET(req: Request) {
         ? {
             name: profileRes.data.name,
             class: profileRes.data.class,
+            class_levels: Array.isArray(profileRes.data.class_levels)
+                ? profileRes.data.class_levels.filter((n: unknown): n is 10 | 11 | 12 => n === 10 || n === 11 || n === 12)
+                : undefined,
             board: profileRes.data.board,
             goal: profileRes.data.goal,
             firstTopic: profileRes.data.first_topic,
@@ -70,11 +73,16 @@ export async function POST(req: Request) {
 
         const session_id = user.id;
 
+        const classLevels = Array.isArray(profile.class_levels)
+            ? profile.class_levels.filter((n: unknown): n is number => n === 10 || n === 11 || n === 12)
+            : null;
+
         const { error } = await supabaseAdmin.from("student_profiles").upsert(
             {
                 session_id,
                 name: profile.name,
                 class: profile.class,
+                class_levels: classLevels,
                 board: profile.board,
                 goal: profile.goal,
                 first_topic: profile.firstTopic,

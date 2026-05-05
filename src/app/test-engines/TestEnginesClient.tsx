@@ -9,6 +9,7 @@ import fieldForcesJson from '@/data/concepts/field_forces.json';
 import tensionInStringJson from '@/data/concepts/tension_in_string.json';
 import hingeForceJson from '@/data/concepts/hinge_force.json';
 import freeBodyDiagramJson from '@/data/concepts/free_body_diagram.json';
+import frictionStaticKineticJson from '@/data/concepts/friction_static_kinetic.json';
 import { SimSession } from '@/lib/engines/sim-session';
 import { PhysicsEngineAdapter } from '@/lib/engines/physics';
 import { ZoneLayoutEngine } from '@/lib/engines/zone-layout';
@@ -78,6 +79,7 @@ const CONCEPTS: Record<string, { json: unknown; label: string }> = {
   tension_in_string: { json: tensionInStringJson, label: 'Tension in String (Atwood)' },
   hinge_force: { json: hingeForceJson, label: 'Hinge Force (equilibrium)' },
   free_body_diagram: { json: freeBodyDiagramJson, label: 'Free Body Diagram (scaffold)' },
+  friction_static_kinetic: { json: frictionStaticKineticJson, label: 'Friction (static vs kinetic)' },
 };
 
 const INITIAL_DEBUG: DebugSnapshot = {
@@ -98,10 +100,11 @@ const DEFAULTS_BY_CONCEPT_DEBUG: Record<string, Record<string, number>> = {
   normal_reaction:    { m: 2, g: 9.8, theta: 30 },
   vector_resolution:  { m: 2, g: 9.8, theta: 30, F: 10, alpha: 50 },
   contact_forces:     { m: 2, g: 9.8, theta: 30, N: 20, f: 15 },
-  field_forces:       { m: 2, g: 9.8 },
+  field_forces:       { m: 1, g: 9.8 },
   tension_in_string:  { m1: 2, m2: 1, g: 9.8 },
   hinge_force:        { W: 40, F_ext: 30 },
   free_body_diagram:  { m: 2, theta: 0, scenario_type: 0 },
+  friction_static_kinetic: { m: 5, mu_s: 0.5, mu_k: 0.3, F: 15 },
 };
 
 // Return every slider declared in the state's scene_composition (dev UI renders one per slider).

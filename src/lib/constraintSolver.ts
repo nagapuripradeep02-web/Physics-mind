@@ -336,23 +336,31 @@ export class ConstraintSolver {
                             other = a;
                         }
 
+                        // Snap mover to the far side of `other` plus a 1px
+                        // margin. The previous formula `mover += overlap+1`
+                        // failed when mover was wider than other and they
+                        // were co-centered (e.g. a 50px label centred on a
+                        // 16px-wide thin obstacle): pushing by the 16px
+                        // overlap left the mover still overlapping. Full
+                        // edge-snap separates in one pass regardless of
+                        // size ratio.
                         if (axis === "y") {
                             if (
                                 mover.y + mover.h / 2 >=
                                 other.y + other.h / 2
                             ) {
-                                mover.y += dy + 1;
+                                mover.y = other.y + other.h + 1;
                             } else {
-                                mover.y -= dy + 1;
+                                mover.y = other.y - mover.h - 1;
                             }
                         } else {
                             if (
                                 mover.x + mover.w / 2 >=
                                 other.x + other.w / 2
                             ) {
-                                mover.x += dx + 1;
+                                mover.x = other.x + other.w + 1;
                             } else {
-                                mover.x -= dx + 1;
+                                mover.x = other.x - mover.w - 1;
                             }
                         }
 

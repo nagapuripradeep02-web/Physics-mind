@@ -40,9 +40,38 @@ export async function POST(req: NextRequest) {
         // BUG 1 FIX: When fingerprintKey is present, extract concept_id from its first segment.
         // fingerprintKey format: "concept_id|intent|class|mode|source"
         // Never pass raw student text as the concept — use the classified concept_id.
-        const conceptIdFromFingerprint = fingerprintKey
-            ? fingerprintKey.split('|')[0]
+        let effectiveFingerprintKey: string | undefined = fingerprintKey;
+        let conceptIdFromFingerprint = effectiveFingerprintKey
+            ? effectiveFingerprintKey.split('|')[0]
             : null;
+
+        // Session 32 FIX: stale-fingerprint guard for pill / context-switch flows.
+        // Pills (on_demand_sim, regeneration variants) call this API with an explicit
+        // `concept` that represents the new target, but historically the client carried
+        // over `lastFingerprintKeyRef` from the previous chat turn (different concept).
+        // Trusting the stale fingerprintKey routes the cache lookup to the wrong concept
+        // and serves GENERIC_FALLBACK_CONFIG silently. If the caller told us the concept
+        // explicitly AND the fingerprintKey disagrees, the fingerprintKey is stale —
+        // drop it and re-classify.
+        if (
+            effectiveFingerprintKey &&
+            conceptIdFromFingerprint &&
+            typeof concept === "string" &&
+            concept.trim() &&
+            // `concept` can be either a slug (e.g. "umbrella_tilt_angle") or raw question
+            // text; only treat a mismatch as stale when `concept` looks like a slug.
+            /^[a-z][a-z0-9_]{2,}$/.test(concept.trim()) &&
+            concept.trim() !== conceptIdFromFingerprint
+        ) {
+            console.warn(
+                "[generate-simulation] stale fingerprintKey dropped — concept mismatch:",
+                "concept=", concept,
+                "| fingerprintKey_concept=", conceptIdFromFingerprint,
+                "→ re-classifying against concept param",
+            );
+            effectiveFingerprintKey = undefined;
+            conceptIdFromFingerprint = null;
+        }
 
         const conceptToUse = conceptIdFromFingerprint || concept || question;
         const classLevelToUse = classLevel || "12";
@@ -85,20 +114,20 @@ export async function POST(req: NextRequest) {
 
         // Fast fingerprint cache check (bypasses full classifier)
         // Skip when forceRegenerate=true (e.g. Retry after SIM_ERROR) — deletes bad cache entry too
-        if (forceRegenerate && fingerprintKey) {
-            await supabaseAdmin.from("simulation_cache").delete().eq("fingerprint_key", fingerprintKey);
-            console.log("[generate-simulation] forceRegenerate: deleted cache for", fingerprintKey);
+        if (forceRegenerate && effectiveFingerprintKey) {
+            await supabaseAdmin.from("simulation_cache").delete().eq("fingerprint_key", effectiveFingerprintKey);
+            console.log("[generate-simulation] forceRegenerate: deleted cache for", effectiveFingerprintKey);
         }
 
-        if (fingerprintKey && !forceRegenerate) {
+        if (effectiveFingerprintKey && !forceRegenerate) {
             const { data: cached } = await supabaseAdmin
                 .from("simulation_cache")
                 .select("physics_config, engine, sim_brief, sim_html, secondary_sim_html, sim_type, renderer_type, teacher_script, concept_id")
-                .eq("fingerprint_key", fingerprintKey)
+                .eq("fingerprint_key", effectiveFingerprintKey)
                 .maybeSingle();
 
             if (cached?.sim_html) {
-                console.log("[generate-simulation] FINGERPRINT CACHE HIT (v3):", fingerprintKey,
+                console.log("[generate-simulation] FINGERPRINT CACHE HIT (v3):", effectiveFingerprintKey,
                     '| sim_type:', (cached as Record<string, unknown>).sim_type ?? 'single');
                 const conceptIdForLookup = cached.concept_id ?? conceptIdFromFingerprint ?? conceptToUse;
                 const cachedVariants = await fetchCachedVariants(conceptIdForLookup);
@@ -126,7 +155,7 @@ export async function POST(req: NextRequest) {
                         engine: 'p5js',
                         teacherScript: cached.teacher_script ?? null,
                         fromCache: true,
-                        fingerprintKey,
+                        fingerprintKey: effectiveFingerprintKey,
                         conceptId: cached.concept_id ?? null,
                         cached_variants: cachedVariants,
                         regeneration_variants: regenerationVariants,
@@ -144,7 +173,7 @@ export async function POST(req: NextRequest) {
                     brief: cached.sim_brief ?? {},
                     teacherScript: cached.teacher_script ?? null,
                     fromCache: true,
-                    fingerprintKey,
+                    fingerprintKey: effectiveFingerprintKey,
                     cached_variants: cachedVariants,
                     regeneration_variants: regenerationVariants,
                     allowDeepDiveStates,
@@ -154,11 +183,13 @@ export async function POST(req: NextRequest) {
 
         // FIX A: When fingerprintKey exists (from upstream /api/chat which correctly classified),
         // build the fingerprint from it. NEVER re-classify raw student text — it loses physics context.
+        // Use effectiveFingerprintKey — if the stale-fingerprint guard above dropped the
+        // caller's key due to concept mismatch, we fall through to re-classification.
         let fingerprint: Awaited<ReturnType<typeof classifyQuestion>> | null = null;
 
-        if (fingerprintKey) {
+        if (effectiveFingerprintKey) {
             // fingerprintKey format: "concept_id|intent|class_level|mode|aspect"
-            const [fp_concept_id, fp_intent, fp_class_level, fp_mode, fp_aspect] = fingerprintKey.split('|');
+            const [fp_concept_id, fp_intent, fp_class_level, fp_mode, fp_aspect] = effectiveFingerprintKey.split('|');
             fingerprint = {
                 concept_id: fp_concept_id,
                 intent: fp_intent,
@@ -166,7 +197,7 @@ export async function POST(req: NextRequest) {
                 mode: fp_mode,
                 aspect: fp_aspect,
                 confidence: 1.0,  // trust the upstream classifier fully
-                cache_key: fingerprintKey,
+                cache_key: effectiveFingerprintKey,
             } as any;
             console.log("[generate-simulation] Using fingerprintKey-derived fingerprint:", fp_concept_id);
         } else {

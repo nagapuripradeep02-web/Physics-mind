@@ -5,6 +5,7 @@ import { tensionInStringEngine } from './concepts/tension_in_string';
 import { hingeForceEngine } from './concepts/hinge_force';
 import { freeBodyDiagramEngine } from './concepts/free_body_diagram';
 import { vectorResolutionEngine } from './concepts/vector_resolution';
+import { frictionStaticKineticEngine } from './concepts/friction_static_kinetic';
 import type { ConceptPhysicsEngine, PhysicsResult } from './types';
 
 const ENGINES: Record<string, ConceptPhysicsEngine> = {
@@ -15,6 +16,7 @@ const ENGINES: Record<string, ConceptPhysicsEngine> = {
   hinge_force: hingeForceEngine,
   free_body_diagram: freeBodyDiagramEngine,
   vector_resolution: vectorResolutionEngine,
+  friction_static_kinetic: frictionStaticKineticEngine,
 };
 
 export function computePhysics(

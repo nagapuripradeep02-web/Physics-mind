@@ -81,11 +81,20 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // Forces (Ch.8)
     'field_forces', 'contact_forces', 'normal_reaction', 'tension_in_string',
     'hinge_force', 'free_body_diagram',
+    // Friction (Ch.8.5)
+    'friction_static_kinetic',
 ]);
 
 // Synonyms → canonical IDs. Gemini/Flash often return physicist-common synonyms
 // ("normal_force", "tension", "weight") instead of the slug we store. Map them
 // before the validity guard so the override can still apply.
+//
+// Also: the second block below covers legacy parent-bundle names. After the
+// 2026-04-18 atomic-split migration these bundles are no longer valid concept
+// IDs. Historical caches and older classifier outputs can still reference them,
+// so each legacy name redirects to the foundational atomic child as a safety
+// net. The CLASSIFIER_PROMPT has been pruned of these bundles — Gemini should
+// never return them for new queries — but keeping the redirect is defensive.
 export const CONCEPT_SYNONYMS: Readonly<Record<string, string>> = {
     normal_force: 'normal_reaction',
     normal_forces: 'normal_reaction',
@@ -98,10 +107,21 @@ export const CONCEPT_SYNONYMS: Readonly<Record<string, string>> = {
     gravitational_force: 'field_forces',
     fbd: 'free_body_diagram',
     laws_of_motion: 'free_body_diagram',
+    friction: 'friction_static_kinetic',
+    static_friction: 'friction_static_kinetic',
+    kinetic_friction: 'friction_static_kinetic',
+    coefficient_of_friction: 'friction_static_kinetic',
+    mu_s: 'friction_static_kinetic',
+    mu_k: 'friction_static_kinetic',
     kirchhoffs_law: 'kirchhoffs_laws',
-    // Legacy parent-bundle redirects (post-split). These IDs remain valid
-    // classifier outputs but route to the foundational atomic child of each
-    // bundle. See PROGRESS.md 2026-04-18 for the split history.
+    // Legacy parent-bundle redirects (post-split). See PROGRESS.md 2026-04-18
+    // for the split history. Each bundle routes to its foundational atomic child.
+    vector_basics: 'unit_vector',
+    vector_addition: 'resultant_formula',
+    vector_components: 'vector_resolution',
+    scalar_vs_vector: 'current_not_vector',
+    distance_vs_displacement: 'distance_displacement_basics',
+    uniform_acceleration: 'three_cases',
     non_uniform_acceleration: 'a_function_of_t',
     motion_graphs: 'xt_graph',
     relative_motion: 'vab_formula',
@@ -122,45 +142,171 @@ export function normalizeConceptId(id: string | null | undefined): string | null
     return null;
 }
 
+// ══════════════════════════════════════════════════════════════════
+// CLASSIFIER_PROMPT ↔ VALID_CONCEPT_IDS drift detector.
+// Runs once at module load (dev only). Parses the concept IDs advertised in
+// the prompt against VALID_CONCEPT_IDS + CONCEPT_SYNONYMS and logs a warning
+// for any mismatch. This is the sentinel that catches session-31.5 + 32's
+// silent failure class: the prompt advertised legacy bundle names that were
+// split months earlier, Gemini returned them, `normalizeConceptId` silently
+// resolved to the wrong atomic child, and downstream pipelines misrouted.
+//
+// Any concept a json_author registers in VALID_CONCEPT_IDS must also appear in
+// the prompt's valid list — otherwise Gemini won't know to return it. Any
+// concept in the prompt that's not in VALID_CONCEPT_IDS (and isn't an alias)
+// is a stale entry — prune it.
+//
+// Reads only the "VALID CONCEPT IDs" block (before "CRITICAL DISAMBIGUATION")
+// so disambiguation hint IDs are free to reference valid concepts without
+// re-declaration.
+// ══════════════════════════════════════════════════════════════════
+
+function extractAdvertisedConcepts(prompt: string): Set<string> {
+    const anchor = 'VALID CONCEPT IDs — you MUST return one of these exactly as written:';
+    const start = prompt.indexOf(anchor);
+    const end = prompt.indexOf('CRITICAL DISAMBIGUATION');
+    if (start < 0 || end < 0 || end <= start) return new Set();
+    const block = prompt.slice(start, end);
+    const ids = new Set<string>();
+    for (const raw of block.split('\n')) {
+        const trimmed = raw.trim();
+        // Skip section separators (── Heading ──), the anchor itself, and empty lines.
+        if (!trimmed || trimmed.startsWith('──') || trimmed.startsWith('════') || trimmed.startsWith('VALID CONCEPT')) continue;
+        // First token on a concept line is the slug (lowercase + underscores).
+        const match = trimmed.match(/^([a-z][a-z0-9_]*)/);
+        if (match) ids.add(match[1]);
+    }
+    return ids;
+}
+
+function assertClassifierPromptInSync(): void {
+    const advertised = extractAdvertisedConcepts(CLASSIFIER_PROMPT);
+    const missingFromPrompt: string[] = [];
+    const unknownInPrompt: string[] = [];
+
+    for (const valid of VALID_CONCEPT_IDS) {
+        if (!advertised.has(valid)) missingFromPrompt.push(valid);
+    }
+    for (const adv of advertised) {
+        if (!VALID_CONCEPT_IDS.has(adv) && !(adv in CONCEPT_SYNONYMS)) {
+            unknownInPrompt.push(adv);
+        }
+    }
+
+    if (missingFromPrompt.length > 0) {
+        console.warn(
+            '[intentClassifier] ⚠️ VALID_CONCEPT_IDS not advertised in CLASSIFIER_PROMPT:',
+            missingFromPrompt.join(', '),
+            '\n  → Gemini will never classify queries to these IDs until the prompt lists them.',
+            '\n  → json_author registration site #8: add each new atomic ID to the prompt\'s VALID CONCEPT IDs block.',
+        );
+    }
+    if (unknownInPrompt.length > 0) {
+        console.warn(
+            '[intentClassifier] ⚠️ CLASSIFIER_PROMPT advertises IDs not in VALID_CONCEPT_IDS or CONCEPT_SYNONYMS:',
+            unknownInPrompt.join(', '),
+            '\n  → Gemini may return these, `normalizeConceptId` will reject them, and /api/chat will fail.',
+            '\n  → Prune the prompt or add the ID to VALID_CONCEPT_IDS.',
+        );
+    }
+}
+
+// The assertion runs at the bottom of this file — after CLASSIFIER_PROMPT is
+// defined — to avoid a temporal-dead-zone ReferenceError.
+
 const CLASSIFIER_PROMPT = `You are a physics question analyzer for Indian Class 10-12 students.
 
 ════════════════════════════
 VALID CONCEPT IDs — you MUST return one of these exactly as written:
 ════════════════════════════
-  ohms_law              ← ONLY use for V=IR relationship, non-ohmic conductors, basic Ohm's Law, current in series circuits, why current is same everywhere
-  parallel_resistance
+  ── Current electricity (Ch.3) ──
+  ohms_law              ← V=IR, non-ohmic conductors, current same through series resistors
+  parallel_resistance   ← 1/R = 1/R1 + 1/R2, current splits across branches
+  series_resistance     ← R = R1 + R2, same current through every element
   kirchhoffs_voltage_law
   kirchhoffs_current_law
+  kirchhoffs_laws       ← combined KVL+KCL questions
   wheatstone_bridge
   meter_bridge
   internal_resistance
-  electric_power_heating ← use for: power dissipation, Joule heating, why wires/bulbs get hot, heating effect of current, P=I²R, P=V²/R, bulb glows, energy lost as heat
+  electric_power_heating ← P=I²R, Joule heating, bulb glows, heating effect
+  drift_velocity
+  resistivity
+  resistance
+  temperature_dependence_of_resistance
+  resistance_temperature_dependence
+  potentiometer
 
-  vector_basics         ← basic vector definition, magnitude, direction
-  vector_addition       ← triangle law, parallelogram law, resultant
-  vector_components     ← resolution of vectors, x/y components
-  scalar_vs_vector      ← scalar vs vector distinction
-  dot_product           ← scalar product, A·B = AB cosθ
-  distance_vs_displacement ← path length vs displacement
-  uniform_acceleration  ← constant acceleration, equations of motion
-  non_uniform_acceleration ← variable acceleration, a-t graphs
-  motion_graphs         ← s-t, v-t, a-t graph interpretation
-  relative_motion       ← relative velocity in 1D and 2D
-  river_boat_problems   ← river crossing, drift, minimum time
-  rain_umbrella         ← relative velocity of rain
-  aircraft_wind_problems ← aircraft heading vs velocity
-  projectile_motion     ← parabolic trajectory, range, maximum height
-  projectile_inclined   ← projectile on inclined plane
-  relative_motion_projectiles ← two projectiles, minimum distance
+  ── Vectors (Ch.5) ── atomic splits
+  vector_resolution        ← resolving a force/vector at an angle into axes
+  unit_vector              ← definition, magnitude, direction of unit vector
+  angle_between_vectors
+  scalar_multiplication    ← scaling a vector by a scalar
+  negative_vector
+  equal_vs_parallel
+  current_not_vector       ← why current is scalar despite having direction
+  parallelogram_law_test
+  pressure_scalar          ← why pressure is scalar
+  area_vector
+  resultant_formula        ← R = sqrt(P² + Q² + 2PQcosθ), triangle/parallelogram
+  special_cases            ← θ=0, θ=90, θ=180 specific resultant outcomes
+  range_inequality         ← |P−Q| ≤ |R| ≤ P+Q
+  direction_of_resultant   ← tanα = Qsinθ/(P+Qcosθ)
+  unit_vector_form         ← a = axî + ayĵ + azk̂
+  inclined_plane_components ← mgsinθ along incline, mgcosθ perpendicular
+  negative_components
+  dot_product              ← A·B = AB cosθ, scalar product
 
-  field_forces            ← gravitational force, electrostatic force, non-contact forces, weight = mg
-  contact_forces          ← normal force, friction at contact surface, contact force resultant
-  normal_reaction         ← N perpendicular to surface, N = mg cosθ on incline, reaction force
-  tension_in_string       ← string tension, rope tension, Atwood machine, T = 2m₁m₂g/(m₁+m₂)
-  hinge_force             ← hinge force, pin joint, rod on wall, hinge reaction
-  free_body_diagram       ← FBD, free body diagram, draw forces, isolate body, force diagram
+  ── Kinematics (Ch.6-7) ── atomic splits
+  distance_displacement_basics   ← path length vs displacement
+  average_speed_velocity
+  instantaneous_velocity
+  sign_convention
+  s_in_equations
+  three_cases             ← v = u + at / s = ut + ½at² / v² = u² + 2as
+  free_fall
+  sth_formula             ← s_nth displacement in n-th second
+  negative_time
+  a_function_of_t
+  a_function_of_x
+  a_function_of_v
+  initial_conditions
+  xt_graph                ← position-time graph interpretation
+  vt_graph                ← velocity-time graph interpretation
+  at_graph                ← acceleration-time graph interpretation
+  direction_reversal
 
-CRITICAL DISAMBIGUATION:
+  ── Relative motion (Ch.6.10-6.13) ── atomic splits
+  vab_formula             ← v_AB = v_A − v_B, 1D/2D relative velocity definition
+  relative_1d_cases
+  time_to_meet
+  upstream_downstream     ← boat in river, along vs against stream
+  shortest_time_crossing
+  shortest_path_crossing
+  apparent_rain_velocity  ← v_rain_rel = v_rain − v_person (magnitude + direction)
+  umbrella_tilt_angle     ← tanθ = v_person / v_rain, which way to tilt umbrella
+  ground_velocity_vector  ← aircraft + wind: v_ground = v_air + v_wind
+  heading_correction      ← pilot's heading to counter crosswind
+
+  ── Projectiles (Ch.7.6-7.8) ── atomic splits
+  time_of_flight          ← T = 2u sinθ / g
+  max_height              ← H = u² sin²θ / 2g
+  range_formula           ← R = u² sin2θ / g
+  up_incline_projectile   ← projectile up an inclined plane
+  down_incline_projectile ← projectile down an inclined plane
+  two_projectile_meeting
+  two_projectile_never_meet
+
+  ── Forces (Ch.8) ──
+  field_forces            ← gravitational force, electrostatic force, weight = mg
+  contact_forces          ← normal + friction at contact surface, resultant
+  normal_reaction         ← N perpendicular to surface, N = mg cosθ on incline
+  tension_in_string       ← rope tension, Atwood machine, T = 2m₁m₂g/(m₁+m₂)
+  hinge_force             ← pin joint, rod on wall, hinge reaction
+  free_body_diagram       ← FBD, isolate body, force diagram
+  friction_static_kinetic ← static vs kinetic friction, μₛ vs μₖ, push almirah, slipping threshold
+
+CRITICAL DISAMBIGUATION (current electricity):
 - "why does current reduce after resistor?" → ohms_law
 - "does current decrease as it flows through a resistor?" → ohms_law
 - "is current the same before and after a resistor?" → ohms_law
@@ -168,43 +314,49 @@ CRITICAL DISAMBIGUATION:
 - "how does voltage relate to current?" → ohms_law
 - "why does a wire get hot when current flows?" → electric_power_heating (NOT ohms_law)
 - "why does the bulb glow?" → electric_power_heating
-- "joule heating" → electric_power_heating
-- "heating effect of current" → electric_power_heating
-- "power dissipated in resistor" → electric_power_heating
-- "P = I²R" → electric_power_heating
-- "electric power heating" → electric_power_heating
+- "joule heating" / "P = I²R" / "heating effect of current" → electric_power_heating
 
-  CRITICAL DISAMBIGUATION (Ch.5-7 additions):
-  - "explain vector addition" → vector_addition
-  - "triangle law" → vector_addition
-  - "parallelogram law" → vector_addition
-  - "resultant of two vectors" → vector_addition
-  - "resolve a vector" → vector_components
-  - "x and y components" → vector_components
-  - "dot product" → dot_product
-  - "scalar product" → dot_product
-  - "distance vs displacement" → distance_vs_displacement
-  - "equations of motion" → uniform_acceleration
-  - "suvat" → uniform_acceleration
-  - "v-t graph" → motion_graphs
-  - "s-t graph" → motion_graphs
-  - "relative velocity" → relative_motion
-  - "river crossing" → river_boat_problems
-  - "rain falling" → rain_umbrella
-  - "projectile" → projectile_motion
-  - "range of projectile" → projectile_motion
-  - "inclined plane projectile" → projectile_inclined
-  - "gravitational force" → field_forces
-  - "weight of object" → field_forces
-  - "normal force" → normal_reaction
-  - "N = mg cosθ" → normal_reaction
-  - "friction and normal force together" → contact_forces
-  - "tension in rope" → tension_in_string
-  - "Atwood machine" → tension_in_string
-  - "hinge force on rod" → hinge_force
-  - "draw FBD" → free_body_diagram
-  - "free body diagram" → free_body_diagram
-  - "forces on block" → free_body_diagram
+CRITICAL DISAMBIGUATION (vectors, Ch.5):
+- "triangle law" / "parallelogram law" / "resultant of two vectors" → resultant_formula
+- "direction of resultant" / "angle of resultant vector" → direction_of_resultant
+- "resolve a vector" / "x and y components" → vector_resolution
+- "dot product" / "scalar product" → dot_product
+- "unit vector" → unit_vector
+- "i cap j cap k cap" / "vector in ijk form" → unit_vector_form
+
+CRITICAL DISAMBIGUATION (kinematics, Ch.6-7):
+- "distance vs displacement" → distance_displacement_basics
+- "equations of motion" / "suvat" → three_cases
+- "free fall" → free_fall
+- "nth second displacement" → sth_formula
+- "v-t graph" → vt_graph
+- "s-t graph" / "x-t graph" / "position-time graph" → xt_graph
+- "a-t graph" → at_graph
+
+CRITICAL DISAMBIGUATION (relative motion, Ch.6.10-6.13):
+- "relative velocity" / "v_AB formula" → vab_formula
+- "river crossing" / "boat in river" → upstream_downstream (or shortest_time_crossing / shortest_path_crossing for specific crossing strategy)
+- "rain falling" / "rain umbrella" without tilt angle question → apparent_rain_velocity
+- "at what angle to tilt umbrella" / "umbrella tilt angle" / "tilt my umbrella" → umbrella_tilt_angle
+- "aircraft wind" / "plane flying with wind" → ground_velocity_vector
+- "pilot heading" / "plane direction correction" → heading_correction
+
+CRITICAL DISAMBIGUATION (projectiles, Ch.7.6-7.8):
+- "range of projectile" → range_formula
+- "maximum height" → max_height
+- "time of flight" → time_of_flight
+- "projectile on incline" (upward) → up_incline_projectile
+- "projectile on incline" (downward) → down_incline_projectile
+- "two projectiles meeting" → two_projectile_meeting
+
+CRITICAL DISAMBIGUATION (forces, Ch.8):
+- "gravitational force" / "weight of object" → field_forces
+- "normal force" / "N = mg cosθ" → normal_reaction
+- "friction and normal force together" → contact_forces
+- "tension in rope" / "Atwood machine" → tension_in_string
+- "hinge force on rod" → hinge_force
+- "draw FBD" / "free body diagram" / "forces on block" → free_body_diagram
+- "static vs kinetic friction" / "μₛ vs μₖ" / "why is it easier to push once moving" / "when does block slip" / "coefficient of friction" → friction_static_kinetic
 
 If the student question matches any of the above concepts, return that exact
 concept_id string. Do NOT invent variations (e.g. "ohms_law_basic",
@@ -476,4 +628,11 @@ export async function classifyQuestion(
         console.error('[CLASSIFIER] error:', err);
         return null;
     }
+}
+
+// Run the boot-time drift assertion after CLASSIFIER_PROMPT is fully defined.
+// Console-only (no throw) so production boots even if someone forgets the sync
+// step — but the warning is loud enough that dev + CI notice on first request.
+if (process.env.NODE_ENV !== 'production') {
+    assertClassifierPromptInSync();
 }

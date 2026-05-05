@@ -247,6 +247,91 @@ function computePhysics_free_body_diagram(vars) {
   };
 }
 
+function computePhysics_friction_static_kinetic(vars) {
+  var m = (vars && vars.m != null) ? vars.m : 5;
+  var mu_s = (vars && vars.mu_s != null) ? vars.mu_s : 0.5;
+  var mu_k = (vars && vars.mu_k != null) ? vars.mu_k : 0.3;
+  var F = (vars && vars.F != null) ? vars.F : 15;
+  var mg = m * PM_G;
+  var N = mg;
+  var fs_max = mu_s * N;
+  var fk = mu_k * N;
+  var is_slipping = F > fs_max;
+  var fs_actual = is_slipping ? fk : Math.min(F, fs_max);
+  var net_force = is_slipping ? (F - fk) : 0;
+  var acceleration = is_slipping ? (net_force / m) : 0;
+  return {
+    concept_id: 'friction_static_kinetic',
+    variables: { m: m, mu_s: mu_s, mu_k: mu_k, F: F },
+    derived: {
+      mg: mg, N: N, fs_max: fs_max, fk: fk, fs_actual: fs_actual,
+      net_force: net_force, acceleration: acceleration,
+      is_slipping: is_slipping ? 1 : 0
+    },
+    forces: [
+      { id: 'weight', label: 'mg = ' + mg.toFixed(1) + ' N',
+        vector: { x: 0, y: -mg, magnitude: mg, angle_deg: -90 },
+        color: '#EF4444', draw_from: 'body_center', show: true },
+      { id: 'normal', label: 'N = ' + N.toFixed(1) + ' N',
+        vector: { x: 0, y: N, magnitude: N, angle_deg: 90 },
+        color: '#10B981', draw_from: 'body_bottom', show: true },
+      { id: 'applied', label: 'F = ' + F.toFixed(1) + ' N',
+        vector: { x: F, y: 0, magnitude: F, angle_deg: 0 },
+        color: '#2563EB', draw_from: 'body_right', show: true },
+      { id: 'friction',
+        label: is_slipping ? ('fk = ' + fk.toFixed(1) + ' N') : ('fs = ' + fs_actual.toFixed(1) + ' N'),
+        vector: { x: -fs_actual, y: 0, magnitude: fs_actual, angle_deg: 180 },
+        color: is_slipping ? '#F59E0B' : '#10B981',
+        draw_from: 'body_left', show: true }
+    ]
+  };
+}
+
+function computePhysics_current_not_vector(vars) {
+  var i1 = (vars && vars.i1 != null) ? vars.i1 : 3;
+  var i2 = (vars && vars.i2 != null) ? vars.i2 : 4;
+  var theta_deg = (vars && vars.theta_deg != null) ? vars.theta_deg : 60;
+  var theta_rad = theta_deg * Math.PI / 180;
+  var i_actual = i1 + i2;
+  var i_vector_pred = Math.sqrt(i1 * i1 + i2 * i2 + 2 * i1 * i2 * Math.cos(theta_rad));
+  var gap_amperes = Math.abs(i_actual - i_vector_pred);
+  return {
+    concept_id: 'current_not_vector',
+    variables: { i1: i1, i2: i2, theta_deg: theta_deg },
+    derived: {
+      i1: i1, i2: i2, theta_deg: theta_deg,
+      i_actual: i_actual,
+      i_vector_pred: i_vector_pred,
+      gap_amperes: gap_amperes
+    },
+    forces: []
+  };
+}
+
+function computePhysics_pressure_scalar(vars) {
+  var rho = (vars && vars.rho != null) ? vars.rho : 1000;
+  var g = (vars && vars.g != null) ? vars.g : 9.8;
+  var depth = (vars && vars.depth != null) ? vars.depth : 5;
+  var face_area = (vars && vars.face_area != null) ? vars.face_area : 0.1;
+  var face_angle_deg = (vars && vars.face_angle_deg != null) ? vars.face_angle_deg : 0;
+  var face_angle_rad = face_angle_deg * Math.PI / 180;
+  var pressure = rho * g * depth;
+  var force_magnitude = pressure * face_area;
+  var fx = force_magnitude * Math.cos(face_angle_rad);
+  var fy = force_magnitude * Math.sin(face_angle_rad);
+  return {
+    concept_id: 'pressure_scalar',
+    variables: { rho: rho, g: g, depth: depth, face_area: face_area, face_angle_deg: face_angle_deg },
+    derived: {
+      rho: rho, g: g, depth: depth, face_area: face_area, face_angle_deg: face_angle_deg,
+      pressure: pressure,
+      force_magnitude: force_magnitude,
+      fx: fx, fy: fy
+    },
+    forces: []
+  };
+}
+
 function computePhysics(conceptId, vars) {
   if (conceptId === 'field_forces') return computePhysics_field_forces(vars);
   if (conceptId === 'contact_forces') return computePhysics_contact_forces(vars);
@@ -255,6 +340,9 @@ function computePhysics(conceptId, vars) {
   if (conceptId === 'vector_resolution') return computePhysics_vector_resolution(vars);
   if (conceptId === 'hinge_force') return computePhysics_hinge_force(vars);
   if (conceptId === 'free_body_diagram') return computePhysics_free_body_diagram(vars);
+  if (conceptId === 'friction_static_kinetic') return computePhysics_friction_static_kinetic(vars);
+  if (conceptId === 'current_not_vector') return computePhysics_current_not_vector(vars);
+  if (conceptId === 'pressure_scalar') return computePhysics_pressure_scalar(vars);
   return null;
 }
 
@@ -398,10 +486,16 @@ function PM_safeEval(expr, vars) {
 function PM_interpolate(text) {
   if (typeof text !== 'string') return text;
   // Prefer live vars from PM_physics (updated every SLIDER_CHANGE) so labels like
-  // "θ = {theta}°" track the current value, not the static authoring default.
-  var vars = (PM_physics && PM_physics.variables)
+  // "theta = {theta} deg" track the current value, not the static authoring default.
+  // Merge derived fields (force_magnitude, pressure, i_actual, ...) on top of variables
+  // so JSON expressions can reference computed outputs directly without re-deriving them.
+  var baseVars = (PM_physics && PM_physics.variables)
     || (PM_config && PM_config.default_variables)
     || {};
+  var derivedVars = (PM_physics && PM_physics.derived) || {};
+  var vars = {};
+  for (var bk in baseVars) if (Object.prototype.hasOwnProperty.call(baseVars, bk)) vars[bk] = baseVars[bk];
+  for (var dk in derivedVars) if (Object.prototype.hasOwnProperty.call(derivedVars, dk)) vars[dk] = derivedVars[dk];
   return text.replace(/\\{([^{}]+)\\}/g, function(_m, body) {
     // Simple identifier — fast path for {theta} / {m1} etc.
     if (/^\\w+$/.test(body)) {
@@ -533,6 +627,47 @@ function drawBody(spec) {
     var faP = Math.max(0, Math.min(1, (faT - faDelay) / faDur));
     animOpacityMultiplier = faP;
   }
+  // Horizontal slide animations work for BOTH attached and unattached bodies
+  // (the body moves along its surface or freely on the canvas). Applied below
+  // before the attachment-restricted animation block so attach_to_surface +
+  // slide compose correctly.
+  if (spec.animation && (spec.animation.type === 'slide_horizontal'
+       || spec.animation.type === 'slide_when_kinetic')) {
+    var slideTSec = (millis() - PM_stateEnterTime) / 1000;
+    var slideAcc = 0;
+    if (spec.animation.type === 'slide_horizontal') {
+      slideAcc = (typeof spec.animation.accel_px_per_sec2 === 'number')
+        ? spec.animation.accel_px_per_sec2 : 150;
+    } else {
+      // slide_when_kinetic: accel = (F - mu_k * m * g) / m, only when F > mu_s * m * g
+      var liveVarsK = (PM_physics && PM_physics.variables)
+        || (PM_config && PM_config.default_variables) || {};
+      var Fv = liveVarsK.F || 0;
+      var muS = liveVarsK.mu_s || 0;
+      var muK = liveVarsK.mu_k || 0;
+      var mv = liveVarsK.m || 1;
+      var gv = 9.8;
+      var slipping = Fv > muS * mv * gv;
+      if (slipping) {
+        var aMs2 = (Fv - muK * mv * gv) / mv;
+        if (typeof spec.animation.accel_expr === 'string') {
+          var aE = PM_safeEval(spec.animation.accel_expr, liveVarsK);
+          if (isFinite(aE)) aMs2 = aE;
+        }
+        var ppmK = spec.animation.px_per_meter || 60;
+        slideAcc = Math.max(0, aMs2 * ppmK);
+      } else {
+        slideAcc = 0;
+      }
+    }
+    var loopT = (typeof spec.animation.loop_period_sec === 'number')
+      ? spec.animation.loop_period_sec : 0;
+    var slideMaxDx = (typeof spec.animation.max_dx === 'number') ? spec.animation.max_dx : 100;
+    var slidePhaseT = loopT > 0 ? (slideTSec % loopT) : slideTSec;
+    var slideRaw = 0.5 * slideAcc * slidePhaseT * slidePhaseT;
+    animDx = Math.min(slideRaw, slideMaxDx);
+  }
+
   if (!attachedPos && spec.animation && spec.animation.type) {
     var tSec = (millis() - PM_stateEnterTime) / 1000;
     if (spec.animation.type === 'free_fall') {
@@ -588,6 +723,11 @@ function drawBody(spec) {
       animDx = (spec.animation.dx_px || 0) * trEase;
       animDy = (spec.animation.dy_px || 0) * trEase;
     }
+  }
+  // Apply animation deltas to pos (works for both attached and unattached bodies
+  // — slide_horizontal / slide_when_kinetic compose with attach_to_surface so
+  // a sliding block stays on the floor while moving along it).
+  if (animDx !== 0 || animDy !== 0) {
     pos = { x: pos.x + animDx, y: pos.y + animDy };
   }
 
@@ -792,7 +932,9 @@ function drawLabel(spec) {
   if (!spec || !(spec._solverPosition || spec.position)) return;
   var gate = PM_animationGate(spec);
   if (!gate.visible) return;
-  var resolved = PM_interpolate(spec.text || '');
+  // Support both spec.text (literal) and spec.text_expr (template with {var}
+  // interpolation for live values like regime indicators).
+  var resolved = PM_interpolate(spec.text_expr || spec.text || '');
   if (!resolved) return;
   // Phase 2 solver: prefer solver-resolved position when host wrote one.
   var pos = spec._solverPosition || spec.position;
@@ -1848,14 +1990,16 @@ function stepMotionIntegrator() {
 // Position resolution: SliderSpec.position is 'bottom' | 'bottom_left' | 'bottom_right'.
 // CONTROL_ZONE = { x:30, y:460, w:700, h:40 } (from PM_ZONES).
 function PM_resolveSliderSlot(pos, idx, total) {
-  var SLOT_W = 220;
   var zone = PM_ZONES.CONTROL_ZONE;
-  if (pos === 'bottom_left') return { x: zone.x + 30, y: zone.y + 20, w: SLOT_W };
-  if (pos === 'bottom_right') return { x: zone.x + zone.w - SLOT_W - 30, y: zone.y + 20, w: SLOT_W };
-  // 'bottom' or unknown → auto-distribute across CONTROL_ZONE if multiple sliders
-  var span = zone.w - 60;
-  var step = total > 1 ? span / (total - 1) : 0;
-  return { x: zone.x + 30 + idx * step, y: zone.y + 20, w: SLOT_W };
+  if (pos === 'bottom_left') return { x: zone.x + 30, y: zone.y + 20, w: 220 };
+  if (pos === 'bottom_right') return { x: zone.x + zone.w - 220 - 30, y: zone.y + 20, w: 220 };
+  // 'bottom' or unknown → distribute N sliders edge-to-edge with gaps, capping
+  // per-slot width so the third slider doesn't overflow off-canvas (bug #6).
+  var t = Math.max(1, total || 1);
+  var available = zone.w - 60;
+  var gap = t > 1 ? 20 : 0;
+  var slotW = Math.min(220, (available - gap * (t - 1)) / t);
+  return { x: zone.x + 30 + (idx || 0) * (slotW + gap), y: zone.y + 20, w: slotW };
 }
 
 function drawCanvasSlider(spec, idx, total) {
@@ -2094,8 +2238,13 @@ function PM_resolveForceOrigin(spec, force, fallback) {
     }
   }
 
-  var drawFrom = spec.draw_from || (force && force.draw_from) || 'body_center';
-  var bodyId = spec.body_id || (typeof drawFrom === 'string' && drawFrom.indexOf('body_') !== 0 ? drawFrom : null);
+  var drawFrom = spec.origin_anchor || spec.draw_from || (force && force.draw_from) || 'body_center';
+  // Accept both body_id (legacy) and origin_body_id (current JSON convention).
+  // Without this, JSON force_arrows with origin_body_id silently fall back to
+  // the first registered body — pile-up bug visible on STATE_5 of friction
+  // (kinetic arrows landed on the static block).
+  var bodyId = spec.body_id || spec.origin_body_id
+    || (typeof drawFrom === 'string' && drawFrom.indexOf('body_') !== 0 ? drawFrom : null);
   var b = null;
   if (bodyId && PM_bodyRegistry[bodyId]) b = PM_bodyRegistry[bodyId];
   if (!b) {

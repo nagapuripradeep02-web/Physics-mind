@@ -24,6 +24,7 @@
 
 import {
     ConstraintSolver,
+    type BBox,
     type Edge,
     type Point,
     type Priority,
@@ -114,6 +115,54 @@ const SOLVER_TARGETED = new Set([
     "formula_box",
 ]);
 
+// Primitive types registered as fixed obstacles in the solver — labels /
+// annotations / formulas in SOLVER_TARGETED will be nudged off these in the
+// imperative overlap-sweep. Bodies are also registered (separate path in
+// solveOneScene because their bbox math lives in the body registry).
+//
+// `surface` is intentionally excluded: surfaces are long thin lines whose
+// axis-aligned bbox covers a region the surface doesn't actually occupy,
+// causing too many false-positive collisions. `motion_path` and
+// `comparison_panel` are excluded as 0-occurrence types in current cache
+// content (re-evaluate when authored examples appear).
+const OBSTACLE_TYPES = new Set([
+    "force_arrow",
+    "vector",
+    "angle_arc",
+]);
+
+interface ForceArrowLike {
+    id?: string;
+    type?: string;
+    origin_body_id?: string;
+    origin_anchor?: string;
+    magnitude?: number;
+    magnitude_expr?: string;
+    direction_deg?: number;
+    direction_deg_expr?: string;
+    scale_pixels_per_unit?: number;
+}
+
+interface VectorLike {
+    id?: string;
+    type?: string;
+    from?: { x?: number; y?: number } | string;
+    to?: { x?: number; y?: number } | string;
+    magnitude?: number;
+    magnitude_expr?: string;
+    direction_deg?: number;
+    direction_deg_expr?: string;
+}
+
+interface AngleArcLike {
+    id?: string;
+    type?: string;
+    center?: { x?: number; y?: number };
+    surface_id?: string;
+    vertex_anchor?: string;
+    radius?: number;
+}
+
 // Estimate rendered bounding box for a label/annotation/formula primitive
 // using p5's default sans-serif metrics. Approximation (±15% of textWidth).
 function estimateBBox(
@@ -172,6 +221,181 @@ function estimateBBox(
     }
 
     return { w: 60, h: 20 };
+}
+
+/**
+ * Best-effort scalar resolution server-side. Returns null when the value can
+ * only be computed via the iframe's PM_safeEval (e.g. complex expressions like
+ * "m * g * cos(theta)") — caller treats null as "skip, don't add as obstacle"
+ * to avoid bogus bboxes from default-zero magnitudes.
+ */
+function tryEvalScalar(
+    direct: number | undefined,
+    expr: string | undefined,
+    defaults: Record<string, number>,
+): number | null {
+    if (typeof direct === "number" && Number.isFinite(direct)) return direct;
+    if (typeof expr !== "string" || expr.length === 0) return null;
+    const trimmed = expr.trim();
+    if (Object.prototype.hasOwnProperty.call(defaults, trimmed)) {
+        const v = defaults[trimmed];
+        return typeof v === "number" && Number.isFinite(v) ? v : null;
+    }
+    const asNum = Number(trimmed);
+    return Number.isFinite(asNum) ? asNum : null;
+}
+
+function lineSegmentBBox(p1: Point, p2: Point, padding: number): BBox {
+    return {
+        x: Math.min(p1.x, p2.x) - padding,
+        y: Math.min(p1.y, p2.y) - padding,
+        w: Math.abs(p2.x - p1.x) + 2 * padding,
+        h: Math.abs(p2.y - p1.y) + 2 * padding,
+    };
+}
+
+/**
+ * Bounding box for a force_arrow primitive. Mirrors drawForceArrow's geometry
+ * (parametric_renderer.ts:1037): origin → tip line, with arrowhead padding.
+ * Returns null when origin or magnitude can't be resolved server-side
+ * (force_id-driven arrows that depend on the iframe physics engine, complex
+ * magnitude_expr, etc.) — better to miss an obstacle than register a bogus one.
+ */
+function bboxForForceArrow(
+    spec: ForceArrowLike,
+    bodies: BodyRegistry,
+    surfaces: SurfaceRegistry,
+    defaults: Record<string, number>,
+): BBox | null {
+    let origin: Point | null = null;
+    if (typeof spec.origin_anchor === "string") {
+        origin = resolveAnchorPoint(spec.origin_anchor, bodies, surfaces);
+    } else if (
+        typeof spec.origin_body_id === "string" &&
+        bodies[spec.origin_body_id]
+    ) {
+        const b = bodies[spec.origin_body_id];
+        // Default convention mirrors PM_resolveForceOrigin's "body_bottom".
+        origin = { x: b.cx, y: b.cy + b.h / 2 };
+    }
+    if (!origin) return null;
+
+    const mag = tryEvalScalar(spec.magnitude, spec.magnitude_expr, defaults);
+    if (mag === null || mag === 0) return null;
+    const dirDeg = tryEvalScalar(
+        spec.direction_deg,
+        spec.direction_deg_expr,
+        defaults,
+    );
+    if (dirDeg === null) return null;
+
+    const scale =
+        typeof spec.scale_pixels_per_unit === "number"
+            ? spec.scale_pixels_per_unit
+            : 5;
+    const rad = (dirDeg * Math.PI) / 180;
+    // Same physics-y-up → canvas-y-down flip as drawForceArrow.
+    const tip: Point = {
+        x: origin.x + mag * Math.cos(rad) * scale,
+        y: origin.y - mag * Math.sin(rad) * scale,
+    };
+    return lineSegmentBBox(origin, tip, 8);
+}
+
+/**
+ * Bounding box for a vector primitive. Mirrors drawVector's endpoint resolution
+ * (parametric_renderer.ts:1311): from/to may be literal points, anchor strings,
+ * or synthesised from magnitude+direction. Returns null when neither end can
+ * be resolved.
+ */
+function bboxForVector(
+    spec: VectorLike,
+    bodies: BodyRegistry,
+    surfaces: SurfaceRegistry,
+    defaults: Record<string, number>,
+): BBox | null {
+    let from: Point | null = null;
+    if (typeof spec.from === "string") {
+        from = resolveAnchorPoint(spec.from, bodies, surfaces);
+    } else if (
+        spec.from &&
+        typeof spec.from === "object" &&
+        typeof spec.from.x === "number" &&
+        typeof spec.from.y === "number"
+    ) {
+        from = { x: spec.from.x, y: spec.from.y };
+    }
+    if (!from) return null;
+
+    let to: Point | null = null;
+    if (typeof spec.to === "string") {
+        to = resolveAnchorPoint(spec.to, bodies, surfaces);
+    } else if (
+        spec.to &&
+        typeof spec.to === "object" &&
+        typeof spec.to.x === "number" &&
+        typeof spec.to.y === "number"
+    ) {
+        to = { x: spec.to.x, y: spec.to.y };
+    } else {
+        const mag = tryEvalScalar(
+            spec.magnitude,
+            spec.magnitude_expr,
+            defaults,
+        );
+        const dirDeg = tryEvalScalar(
+            spec.direction_deg,
+            spec.direction_deg_expr,
+            defaults,
+        );
+        if (mag !== null && mag !== 0 && dirDeg !== null) {
+            const rad = (dirDeg * Math.PI) / 180;
+            to = {
+                x: from.x + mag * Math.cos(rad),
+                y: from.y - mag * Math.sin(rad),
+            };
+        }
+    }
+    if (!to) return null;
+    return lineSegmentBBox(from, to, 8);
+}
+
+/**
+ * Bounding box for an angle_arc primitive. Mirrors drawAngleArc's vertex
+ * resolution (parametric_renderer.ts:1569). Bbox is the axis-aligned square
+ * around the arc circle, padded by 20px so the optional radial label sits
+ * inside it (label radius is ~radius+14 in the renderer).
+ */
+function bboxForAngleArc(
+    spec: AngleArcLike,
+    bodies: BodyRegistry,
+    surfaces: SurfaceRegistry,
+): BBox | null {
+    let center: Point | null = null;
+    if (
+        spec.center &&
+        typeof spec.center.x === "number" &&
+        typeof spec.center.y === "number"
+    ) {
+        center = { x: spec.center.x, y: spec.center.y };
+    } else if (
+        typeof spec.surface_id === "string" &&
+        surfaces[spec.surface_id]
+    ) {
+        const s = surfaces[spec.surface_id];
+        center = { x: s.x0, y: s.y0 };
+    } else if (typeof spec.vertex_anchor === "string") {
+        center = resolveAnchorPoint(spec.vertex_anchor, bodies, surfaces);
+    }
+    if (!center) return null;
+    const radius = typeof spec.radius === "number" ? spec.radius : 40;
+    const r = radius + 20;
+    return {
+        x: center.x - r,
+        y: center.y - r,
+        w: 2 * r,
+        h: 2 * r,
+    };
 }
 
 interface BodyRegistry {
@@ -529,6 +753,40 @@ function solveOneScene(
             w: body.w,
             h: body.h,
         });
+    }
+
+    // Also register force_arrow / vector / angle_arc as fixed obstacles so
+    // labels/annotations/formulas don't land on top of them. Each helper
+    // returns null when the geometry can't be reproduced server-side; we
+    // skip those (better to miss a collision than synthesise a wrong one).
+    for (const prim of primitives) {
+        if (!prim || typeof prim.type !== "string" || !prim.id) continue;
+        if (!OBSTACLE_TYPES.has(prim.type)) continue;
+        let bbox: BBox | null = null;
+        if (prim.type === "force_arrow") {
+            bbox = bboxForForceArrow(
+                prim as ForceArrowLike,
+                bodies,
+                surfaces,
+                defaults,
+            );
+        } else if (prim.type === "vector") {
+            bbox = bboxForVector(
+                prim as VectorLike,
+                bodies,
+                surfaces,
+                defaults,
+            );
+        } else if (prim.type === "angle_arc") {
+            bbox = bboxForAngleArc(prim as AngleArcLike, bodies, surfaces);
+        }
+        if (bbox) {
+            solver.addFixed(prim.id, bbox);
+        } else {
+            warnings.push(
+                `Could not register ${prim.type} ${prim.id} as obstacle (unresolved geometry); labels may overlap it.`,
+            );
+        }
     }
 
     for (const prim of primitives) {

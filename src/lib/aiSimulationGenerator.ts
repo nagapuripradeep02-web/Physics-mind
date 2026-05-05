@@ -17,6 +17,7 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 import type { ParticleFieldConfig, PhysicsConstantsFile, ValidationResult } from "@/lib/renderer_schema";
 import { RENDERER_SCHEMA_DESCRIPTION } from "@/lib/renderer_schema";
 import { validatePhysics, validatePhysicsForConcept, CONCEPT_FILE_MAP } from "@/lib/physics_validator";
+import { runVisualValidationAsync } from "@/lib/validators/visual/integrate";
 import { PARTICLE_FIELD_RENDERER_CODE } from "@/lib/renderers/particle_field_renderer";
 import { GRAPH_INTERACTIVE_RENDERER_CODE } from "@/lib/renderers/graph_interactive_renderer";
 import {
@@ -2614,16 +2615,23 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     negative_vector:                "mechanics_2d",
     equal_vs_parallel:              "mechanics_2d",
     // Atomic splits from former scalar_vs_vector bundle (Ch.5.1)
+    // NOTE: current_not_vector is ALSO in PCPL_CONCEPTS (line ~2836). v2.2.1 gold-standard
+    // retrofit landed 2026-05-04. This map entry stays for legacy fingerprintKey lookups
+    // but the PCPL set takes precedence at the sim-assembler site.
     current_not_vector:             "mechanics_2d",
     parallelogram_law_test:         "mechanics_2d",
     pressure_scalar:                "mechanics_2d",
     area_vector:                    "mechanics_2d",
     // Atomic splits from former vector_addition bundle (Ch.5.2)
+    // NOTE: resultant_formula + direction_of_resultant are ALSO in PCPL_CONCEPTS
+    // (line ~2821). The PCPL set takes precedence at the sim-assembler site; this
+    // entry is kept for epicStateBuilder metadata which uses resolveRendererType().
     resultant_formula:              "mechanics_2d",
     special_cases:                  "mechanics_2d",
     range_inequality:               "mechanics_2d",
     direction_of_resultant:         "mechanics_2d",
     // Atomic splits from former vector_components bundle (Ch.5.3)
+    // NOTE: vector_resolution is ALSO in PCPL_CONCEPTS (line ~2821).
     unit_vector_form:               "mechanics_2d",
     inclined_plane_components:      "mechanics_2d",
     negative_components:            "mechanics_2d",
@@ -2815,9 +2823,22 @@ const KNOWN_SUFFIXES = /_(?:basic|advanced|conceptual|exam|jee|neet|definition|i
 // concepts (vectors, kinematics, etc.) use the mechanics_2d assembler. This
 // is ONLY for assembler selection — the strict-engines gate below applies
 // uniformly to every concept (no more CH8 hardcoded bypass as of Phase A).
-const CH8_CONCEPTS = new Set<string>([
+// Concepts migrated to the PCPL parametric_renderer pipeline. Grows with
+// each gold-standard retrofit; when all 52 concepts are listed here, the
+// legacy mechanics_2d + 6 domain-specific renderers can be retired.
+const PCPL_CONCEPTS = new Set<string>([
+    // Ch.8 Forces (6, shipped sessions 23-27)
     'field_forces', 'contact_forces', 'normal_reaction',
     'tension_in_string', 'hinge_force', 'free_body_diagram',
+    // Ch.5 Vectors (3, shipped sessions 28-30)
+    'vector_resolution', 'resultant_formula', 'direction_of_resultant',
+    // Ch.5 Relative motion (1, shipped session 32)
+    'umbrella_tilt_angle',
+    // Ch.8.5 Friction (1, shipped session 34 — first v2.2-native gold-standard)
+    'friction_static_kinetic',
+    // Ch.5.1 Vectors-vs-scalars (1, shipped session 53 — first v2.2.1 retrofit with aha_moment + cognitive_limits)
+    'current_not_vector',
+    'pressure_scalar',
 ]);
 
 // Extract text from a tts_sentences entry. Handles both JSON shapes:
@@ -5616,10 +5637,10 @@ export async function generateSimulation(
             };
 
             // Assemble HTML for each panel directly — no switch needed
-            if (CH8_CONCEPTS.has(conceptIdForLookup)) {
+            if (PCPL_CONCEPTS.has(conceptIdForLookup)) {
                 console.log('[pcpl] parametric pipeline for concept:', conceptIdForLookup);
             }
-            const bypassPanelAHtml = CH8_CONCEPTS.has(conceptIdForLookup)
+            const bypassPanelAHtml = PCPL_CONCEPTS.has(conceptIdForLookup)
                 ? assembleParametricHtml({
                     concept_id: conceptIdForLookup,
                     scene_composition: (() => {
@@ -5636,11 +5657,14 @@ export async function generateSimulation(
                             : [];
                     })(),
                     states: (epicLStates as Record<string, { scene_composition?: unknown[] }>) ?? {},
-                    default_variables: (
-                        conceptIdForLookup === 'contact_forces' ? { N: 20, f: 15 } :
-                        conceptIdForLookup === 'normal_reaction' ? { m: 2, theta: 30 } :
-                        conceptIdForLookup === 'tension_in_string' ? { m1: 2, m2: 1 } :
-                        { m: 1 }
+                    default_variables: (Object.keys(peDefaultVars).length > 0
+                        ? peDefaultVars
+                        : (
+                            conceptIdForLookup === 'contact_forces' ? { N: 20, f: 15 } :
+                            conceptIdForLookup === 'normal_reaction' ? { m: 2, theta: 30 } :
+                            conceptIdForLookup === 'tension_in_string' ? { m1: 2, m2: 1 } :
+                            { m: 1 }
+                          )
                     ),
                     current_state: 'STATE_1',
                     canvas_style: boardCanvasStyle,
@@ -6086,7 +6110,7 @@ export async function generateSimulation(
             // Assembler selection: Ch.8 uses parametric_renderer (force_arrow,
             // block, pulley etc.); non-CH8 atomic concepts (e.g. vector splits)
             // use mechanics_2d assembler with the same epic_l_path shape.
-            const simHtml = CH8_CONCEPTS.has(conceptIdForLookup)
+            const simHtml = PCPL_CONCEPTS.has(conceptIdForLookup)
                 ? assembleParametricHtml(parametricConfig)
                 : assembleMechanics2DHtml({
                     renderer: 'mechanics_2d',
@@ -6139,7 +6163,7 @@ export async function generateSimulation(
             } else if (bypassIsFallback) {
                 console.warn(`[pcpl] ⚠️ Refusing to cache fallback config for "${conceptKey}"`);
             } else {
-                const rendererTypeForCache = CH8_CONCEPTS.has(conceptIdForLookup) ? 'parametric' : 'mechanics_2d';
+                const rendererTypeForCache = PCPL_CONCEPTS.has(conceptIdForLookup) ? 'parametric' : 'mechanics_2d';
                 const bypassUpsertPayload: Record<string, unknown> = {
                     concept_key: fingerprint?.concept_id ?? conceptKey,
                     concept_id: fingerprint?.concept_id ?? conceptIdForLookup,
@@ -6796,6 +6820,30 @@ export async function generateSimulation(
         wasCacheHit: false,
         fingerprintKey: cacheKey ?? undefined,
     });
+
+    // Visual Validator (E29) — fire-and-forget, observe-only in v1.
+    // Failures are recorded to engine_bug_queue + ai_usage_log without blocking
+    // the user-facing return. Set SKIP_VISUAL_VALIDATION=true to disable.
+    try {
+        const stateIds = Object.keys(
+            (physicsConfig as { states?: Record<string, unknown> }).states ?? {},
+        );
+        if (stateIds.length > 0) {
+            runVisualValidationAsync({
+                conceptId: conceptKey,
+                panelAHtml: simHtml,
+                stateIds,
+                panelCount: 1,
+                context: {
+                    physics_engine_config: physicsConfig,
+                    teacher_script: teacherScript ?? undefined,
+                },
+                sessionId: cacheKey ?? undefined,
+            });
+        }
+    } catch (err) {
+        console.warn('[aiSimGen] visual validator dispatch failed:', err instanceof Error ? err.message : err);
+    }
 
     return { physicsConfig, engine, brief, simHtml, teacherScript, fromCache: false, conceptKey };
 }

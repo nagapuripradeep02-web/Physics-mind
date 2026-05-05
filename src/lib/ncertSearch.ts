@@ -439,16 +439,22 @@ export async function searchNCERT(
             return ncertResults;
         }
 
-        // ── PASS 2: Advanced sources — DC Pandey + HC Verma ──────────────────
-        const [dcpResults, hcvResults] = await Promise.all([
+        // ── PASS 2: Advanced sources — DC Pandey + HC Verma + OpenStax ───────
+        // OpenStax College Physics (source_book='openstax_cp') is more
+        // pedagogical/explanatory than the problem-set rigor of DC Pandey/HCV.
+        // Useful when NCERT is weak on a concept and the student needs a clear
+        // explanation. Ingested 2026-04-30 (CC-BY 3.0 attribution required at
+        // product surface).
+        const [dcpResults, hcvResults, ossResults] = await Promise.all([
             runSearch('dc_pandey'),
             runSearch('hc_verma'),
+            runSearch('openstax_cp'),
         ]);
 
-        const advancedResults = [...dcpResults, ...hcvResults]
+        const advancedResults = [...dcpResults, ...hcvResults, ...ossResults]
             .sort((a, b) => b.similarity - a.similarity);
 
-        console.log(`[NCERT Search] Pass 2 | dc_pandey=${dcpResults.length} | hc_verma=${hcvResults.length} | top_similarity=${advancedResults[0]?.similarity?.toFixed(3) ?? 'none'}`);
+        console.log(`[NCERT Search] Pass 2 | dc_pandey=${dcpResults.length} | hc_verma=${hcvResults.length} | openstax=${ossResults.length} | top_similarity=${advancedResults[0]?.similarity?.toFixed(3) ?? 'none'}`);
 
         if (advancedResults.length > 0) {
             // Keep best NCERT chunk as physics anchor if it clears minimum threshold
