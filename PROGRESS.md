@@ -1,5 +1,240 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-05-06 (session 59) — Sim 2 Day 1 SHIPPED: newton_second_law_direction concept authored end-to-end (6 EPIC-L states + 4 EPIC-C branch heads + board mode skeleton with 5-mark scheme + competitive shortcuts/edges); physics engine TS + iframe compute pair; registered at all 6 sites; admin test page renders all 6 states clean; tsc 0 errors, validate:concepts 61/61 PASS; session 57's 267ed54 pushed to origin earlier this session; session 58's a017980 also pushed
+
+### Top-line outcome
+
+**Phase 0 validation demo Sim 2 has its Day 1 foundation complete.** The atomic concept being taught is *direction* — F = m·a as a vector equation, where a points along F (not v), and v evolves over time from a. This is the most-confused concept in mechanics and Sim 2 is the one that gets full board mode treatment.
+
+What landed end-to-end (all in one session):
+- Two pending git pushes cleared (267ed54 Sim 1 re-anchor + a017980 board-mode cumulative renderer).
+- New atomic concept JSON: `newton_second_law_direction.json` (~1080 lines).
+- Physics engine TS + iframe-side compute fallback (mirrored exactly).
+- All 6 registration sites updated.
+- Supabase `concept_panel_config` INSERT.
+- Admin test page at `/admin/test-newton-second-law-direction` (proxy-public).
+
+### Phase A — Git hygiene (cleared two pending gates)
+
+**Pre-session state**: session 57's commit `267ed54` (Sim 1 displacement re-anchor) was committed locally but unpushed; session 58's friction board-mode work was *not even committed* — five files were modified + two untracked admin test page directories were sitting in the working tree.
+
+Commit + push trace:
+```
+a017980 fix(board-mode): cumulative rendering with auto page-break + mark badge clipping fix
+267ed54 fix(sim1): re-anchor vector_head_to_tail to pure Ch.5.4 displacement framing (Option A)
+
+git push origin master
+  → To https://github.com/nagapuripradeep02-web/Physics-mind.git
+  →    a4c2e57..a017980  master -> master
+```
+
+Files explicitly named in the `git add` command (no `git add -A`) — 5 modified + 2 directories.
+
+### Phase B — Sim 2 Day 1 authoring
+
+#### Atomic boundary check (session 57 lesson — non-negotiable)
+
+Before authoring, confirmed no existing JSON covers Newton II direction:
+- Adjacent concepts in `src/data/concepts/`: `free_body_diagram` (drawing forces), `contact_forces` / `field_forces` (force taxonomy), `friction_static_kinetic` (regime-switching), `inclined_plane_components` (resolving a single force), `vector_head_to_tail` (Sim 1 vector addition).
+- DC Pandey atomic boundary: **Class 11 Ch.8 §8.4 — Newton II as a vector equation.** "Force direction sets acceleration direction, not velocity direction."
+- No collision. Net-new authoring confirmed.
+
+Topic: **stationary trolley on smooth floor** (rejected the cricket-ball-trajectory candidate from session 56 plan because it would drag in Ch.7 projectile motion machinery and violate STATE_1 default-variable self-consistency).
+
+#### Concept JSON shape
+
+```
+src/data/concepts/newton_second_law_direction.json   (~1080 lines)
+
+physics_engine_config:
+  variables:    F (N, default 10), m (kg, default 2), theta_F (deg, default 0), t (s, default 1)
+  derived:      a_mag, a_x, a_y, v_x_at_t, v_y_at_t, v_mag_at_t
+  formulas:     F=m·a (vector), |a|=|F|/m, a_x=F_x/m, v(t)=v_0+a·t
+  constraints:  net F drives a; m scales magnitude only; component independence
+
+epic_l_path: 6 states (complexity-driven per CLAUDE.md §7)
+  STATE_1 — Push the trolley hook (3 guess callouts, glow on "accelerates from 0")
+  STATE_2 — F = m·a magnitude (a = 10/2 = 5 m/s²)
+  STATE_3 — Direction matters: F at 30° → a at 30° (allow_deep_dive)
+  STATE_4 — v(t) = a·t (two velocity arrows at t=1s and t=2s)
+  STATE_5 — F doesn't equal v: rightward v + downward F → curving path (allow_deep_dive)
+  STATE_6 — Try-it slider on theta_F (0-90°)
+
+advance_mode mix (CLAUDE.md §5 Rule 15 — variety is pedagogy):
+  STATE_1: auto_after_tts
+  STATE_2: manual_click
+  STATE_3: wait_for_answer
+  STATE_4: auto_after_tts
+  STATE_5: manual_click
+  STATE_6: interaction_complete
+
+epic_c_branches: 4 misconception branches (STATE_1 only — Day 1 skeleton; full
+states authoring deferred to session 60)
+  - stationary_means_no_force      ("if not moving, F=0")
+  - velocity_equals_force          ("v points where F points")
+  - more_mass_more_force_needed    ("heavy needs more F just to be there")
+  - f_equals_mv_formula_confusion  ("Newton II says F=m·v")
+
+mode_overrides:
+  conceptual: baseline (epic_l_path as-is)
+  board:      canvas_style=answer_sheet, derivation_sequence per state,
+              5-mark scheme (FBD / a=F/m / components / v=at / numeric)
+  competitive: 4 shortcuts + 5 edge cases (frictionless, vertical F up>mg, F up<mg,
+              perpendicular F to v, two-force net)
+
+prerequisites: ["free_body_diagram", "vector_resolution"] (advisory, never gate)
+allow_deep_dive: true on STATE_3 + STATE_5 (the two hardest states)
+```
+
+Premium primitives used (sessions 55-56 stockpile): `glow_focus` (focal arrow halo), `animated_path` (force/acceleration/velocity arrows), `sound_cue` (ding on alignment in STATE_3, whoosh on curve reveal in STATE_5).
+
+#### Physics engine + iframe-side compute pair
+
+```
+NEW:  src/lib/physicsEngine/concepts/newton_second_law_direction.ts  (54 lines)
+        export const newtonSecondLawDirectionEngine: ConceptPhysicsEngine
+        compute({F, m, theta_F, t}): returns derived {a_mag, a_x, a_y,
+                                                       v_x_at_t, v_y_at_t, v_mag_at_t}
+
+NEW BLOCK in: src/lib/renderers/parametric_renderer.ts:373-401
+        function computePhysics_newton_second_law_direction(vars)
+        Mirrors TS engine exactly. Iframe-side fallback when
+        PM_PRECOMPUTED_PHYSICS isn't injected.
+```
+
+#### Six registration sites (CLAUDE.md §6) — all six lit
+
+| Site | File:line | Status |
+|---|---|---|
+| 1 JSON file | `src/data/concepts/newton_second_law_direction.json` | created |
+| 2 ENGINES map | `src/lib/physicsEngine/index.ts:10,23` | added |
+| 3 VALID_CONCEPT_IDS | `src/lib/intentClassifier.ts:88` | added |
+| 4 CLASSIFIER_PROMPT | `src/lib/intentClassifier.ts:317` (forces section + line 367 disambiguation) | added |
+| 5 CONCEPT_SYNONYMS | `src/lib/intentClassifier.ts:114-118` (newtons_second_law / f_equals_ma / second_law / etc.) | added |
+| 6 CONCEPT_RENDERER_MAP | `src/lib/aiSimulationGenerator.ts:2640` | added |
+| 7 PCPL_CONCEPTS | `src/lib/aiSimulationGenerator.ts:2853` | added |
+| 8 CONCEPT_PANEL_MAP | `src/config/panelConfig.ts:365-371` | added |
+| 9 Supabase row | `concept_panel_config` (project `dxwpkjfypzxrzgbevfnx`) | INSERTed |
+
+(The plan said "6 sites" but the codebase has 9 effective surfaces — all hit.)
+
+#### Admin test page + proxy bypass
+
+```
+NEW:  src/app/admin/test-newton-second-law-direction/page.tsx  (74 lines)
+        Mirrors src/app/admin/test-vector-head-to-tail/page.tsx exactly.
+        STATES_TO_VERIFY: STATE_1 .. STATE_6.
+        Renders each state's scene_composition through assembleParametricHtml.
+
+MODIFIED: src/proxy.ts
+        Added `/admin/test-newton-second-law-direction` prefix to public list.
+```
+
+### Verification
+
+```
+npx tsc --noEmit                                           → 0 errors
+npm run validate:concepts -- newton_second_law_direction   → PASS
+                                                              (61/61 atomic, 0 FAIL)
+```
+
+Browser smoke at `/admin/test-newton-second-law-direction`:
+- All 6 iframes loaded with 760×500 canvases
+- Each iframe has `PM_PRECOMPUTED_PHYSICS` injected with the correct derived shape
+- STATE_1 default vars (F=10, m=2, θ=0, t=1) → derived {a_mag: 5, a_x: 5, a_y: 0, v_x_at_t: 5, v_y_at_t: 0, v_mag_at_t: 5} — physics math correct
+- `PM_currentState` matches expected for each iframe (STATE_1...STATE_6)
+- Scene primitive counts: 11/7/9/9/10/7 — all ≥3 (Rule 19 satisfied)
+- Zero console errors across all 6 iframes
+- Canvas pixel data captured via toDataURL → 75KB non-blank PNG (rendering confirmed)
+
+#### Validator hiccup along the way
+
+First run failed Gate 1: `epic_c_branches[3].states.STATE_1.scene_composition: Too small: expected array to have >=3 items`. The F=mv branch had only 2 primitives (`myth_label` + `diagnosis_formula`). Fix: added a third primitive — `dimensional_check` callout showing `[m·v] = M·L·T⁻¹ ✗` vs `[m·a] = M·L·T⁻² ✓`. Pedagogically valuable too — dimensional analysis is the textbook way to spot this error. Re-validated: PASS.
+
+#### Two non-fatal cosmetic warnings remain
+
+```
+WARN  epic_l_path.states.STATE_1: OVERLAP annotation#trolley_label <-> annotation#floor_label
+WARN  epic_l_path.states.STATE_6: OVERLAP annotation#edge_hint_zero <-> annotation#edge_hint_high
+```
+
+Resolved STATE_1's overlap by moving `trolley_label` from y:405 (between trolley body bottom and floor body) to y:325 (above the trolley). STATE_6's edge-hint overlap is the same pattern Sim 1's STATE_5 uses (two adjacent stacked hint lines) — accepted as visually fine, validator heuristic is conservative.
+
+### Atomic concept boundary check (session 57 lesson, applied)
+
+Before any authoring:
+- Listed all 61 existing concept JSONs.
+- Confirmed no overlap between Newton II direction and any of:
+  - `friction_static_kinetic` (regime switch, not direction primer)
+  - `free_body_diagram` (drawing FBDs, not the law itself)
+  - `inclined_plane_components` (resolving one force into components)
+  - `contact_forces` / `field_forces` (force taxonomy)
+- Net-new authoring justified.
+
+### STATE_1 default-variable self-consistency check (session 57 lesson, applied)
+
+Pre-author requirement: with no slider interaction, STATE_1 must show physics that's obviously correct. Default variables F=10N rightward, m=2kg, θ=0, t=0:
+- Block at canvas (260, 360); force arrow from (195, 360) to (255, 360) — points rightward AT the block
+- 3 guess callouts; glow_focus on "Guess C: accelerates from 0"
+- The physics is obviously right at default vars: F is rightward, block is stationary at t=0, the correct guess is highlighted.
+
+### Files modified / created
+
+```
+NEW:
+  src/data/concepts/newton_second_law_direction.json                     (~1080 lines)
+  src/lib/physicsEngine/concepts/newton_second_law_direction.ts          (54 lines)
+  src/app/admin/test-newton-second-law-direction/page.tsx                (74 lines)
+
+MODIFIED:
+  src/lib/physicsEngine/index.ts                                         (+2 lines: import + ENGINES entry)
+  src/lib/renderers/parametric_renderer.ts                               (+30 lines: dispatch + compute fn)
+  src/lib/intentClassifier.ts                                            (+14 lines: VALID + SYNONYMS + prompt)
+  src/lib/aiSimulationGenerator.ts                                       (+8 lines: CONCEPT_RENDERER_MAP + PCPL)
+  src/config/panelConfig.ts                                              (+8 lines: CONCEPT_PANEL_MAP entry)
+  src/proxy.ts                                                           (+1 line: public-list prefix)
+
+DATABASE:
+  INSERT 1 row into concept_panel_config (newton_second_law_direction)
+```
+
+Sacred tables untouched per CLAUDE.md §3.
+
+### Out of scope for session 59 (deferred to 60–62)
+
+These were explicitly NOT done this session per the approved plan:
+- **Full EPIC-C branch authoring** — only STATE_1 of each of 4 branches landed; STATES 2-3 (compare/contrast + correct version) deferred.
+- **Board mode visual audit** — 5-mark scheme + per-state derivation_sequence shipped as JSON skeleton; the frozen-snapshot board-mode audit (mirror session 58's friction approach) is session 60.
+- **Mobile testing on $15k Android** — Phase 0 demo polish, session 61+.
+- **Layout-engine architectural decision (a/b/c)** — still deferred from session 16; revisit when Phase 0 demo is done.
+- **STATE_1 board FBD drawing primitives gap on `friction_static_kinetic.json`** — session 58 follow-up, not blocking Sim 2.
+
+### Next session's first task — session 60: Sim 2 Day 2 (board mode visual audit)
+
+1. **Clear the 4 cache tables** (CLAUDE.md §3, four separate queries).
+2. **Frozen-snapshot board-mode audit** of `/admin/test-newton-second-law-direction-board` (new page) — mirror session 58's friction approach. Capture all 5 board states post-handwriting-animation, verify cumulative answer-sheet build-up + mark badge accumulation + page-break detection.
+3. **Author missing EPIC-C branch states** (STATES 2-3 of each of the 4 branches — 8 new state authorings).
+4. **Browser smoke** of competitive mode (shortcuts + edge cases display).
+5. **Push session 59's commit** when Pradeep gives the gate.
+
+### Lessons baked in for future authoring
+
+- **The plan said "6 registration sites" but the codebase actually has 9.** ENGINES map (physicsEngine/index.ts), VALID_CONCEPT_IDS, CLASSIFIER_PROMPT (forces section), CLASSIFIER_PROMPT (disambiguation block), CONCEPT_SYNONYMS, CONCEPT_RENDERER_MAP, PCPL_CONCEPTS, CONCEPT_PANEL_MAP, Supabase concept_panel_config. CLAUDE.md §6 says 6 — should be updated to 9 to match reality. Adding to memory.
+- **Validator Rule 19 (≥3 primitives per state) catches incomplete EPIC-C branches early.** A misconception state with only `myth_label + diagnosis` is functionally complete pedagogically but fails the visual-richness gate. Adding a third primitive (e.g., `dimensional_check` for the F=mv branch, or `wrong_arrow` visual contradiction) sharpens the diagnosis AND satisfies the gate. Two-for-one.
+- **`chapter` field in concept_panel_config is `text`, not `integer`.** Wrote my JSON with `"chapter": 8` (integer) — that matches existing JSONs (friction, normal_reaction). Supabase stored it as the string "8". Convention works either way at JSON level; DB column is text.
+- **Push gate is procedural, not technical.** Session 57's 267ed54 sat unpushed for ~24 hours because Pradeep's "push it" hadn't fired. Session 58's work wasn't even *committed*. Both gates cleared in 60 seconds once given the green light. Worth flagging in PR/PROGRESS narrative pattern: "committed locally, push pending Pradeep approval" is the standard end-of-session state.
+
+### Blockers discovered
+
+None. Pipeline is clean. Sim 2 Day 1 is shipped.
+
+### CLAUDE.md suggestions (not edited — awaiting Pradeep approval)
+
+- §6 update: change "Adding a new concept — SIX required updates" to "NINE required updates", listing all sites with file:line references. Current docs undercount by 3 (CLASSIFIER_PROMPT lines, CONCEPT_SYNONYMS, CONCEPT_PANEL_MAP).
+- §11 (roadmap reference): PROGRESS.md is reverse-chronological (newest at top). Document this convention at the top of the file or in CLAUDE.md so future Claude sessions don't read the bottom expecting to find recent state. (I made this exact mistake at the start of this session and had to course-correct.)
+
+---
+
 ## 2026-05-06 (session 58) — friction_static_kinetic BOARD MODE deep visual audit + 2 fixes shipped (mark badge clipping + cumulative rendering with auto page-break); admin board test page added; conceptual mode TTS-glow + arrow placement bugs from session 17 confirmed fixed; ready to start Sim 2 (Newton's 2nd law direction matters + board mode) next session
 
 ### Top-line outcome

@@ -2634,6 +2634,9 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // NOTE: vector_head_to_tail is ALSO in PCPL_CONCEPTS below — PCPL set takes precedence at the
     // sim-assembler site. This map entry is kept for legacy fingerprintKey lookups.
     vector_head_to_tail:            "mechanics_2d",
+    // Phase 0 validation demo Sim 2 (Ch.5.4-5.5 Newton II direction, session 59)
+    // NOTE: ALSO in PCPL_CONCEPTS below.
+    newton_second_law_direction:    "mechanics_2d",
     // Atomic splits from former vector_components bundle (Ch.5.3)
     // NOTE: vector_resolution is ALSO in PCPL_CONCEPTS (line ~2821).
     unit_vector_form:               "mechanics_2d",
@@ -2846,6 +2849,9 @@ const PCPL_CONCEPTS = new Set<string>([
     // Ch.5.4 Phase 0 validation demo Sim 1 (session 56 — first concept using premium primitives:
     // glow_focus + animated_path + sound_cue)
     'vector_head_to_tail',
+    // Ch.5.4-5.5 Phase 0 validation demo Sim 2 (session 59 — F=m·a vector equation,
+    // direction matters, full board mode with 5-mark scheme + cumulative renderer)
+    'newton_second_law_direction',
 ]);
 
 // Extract text from a tts_sentences entry. Handles both JSON shapes:

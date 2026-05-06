@@ -1,0 +1,1250 @@
+{
+  "concept_id": "newton_second_law_direction",
+  "concept_name": "Newton's 2nd Law — Direction Matters (F = m·a as a Vector Equation)",
+  "chapter": 8,
+  "section": "8.4",
+  "schema_version": "2.0.0",
+  "class_level": 11,
+  "source_book": "DC Pandey Class 11 Ch.8 Laws of Motion §8.4 (Newton's Second Law) — table-of-contents reference only; teaching authored from first principles. Phase 0 validation demo Sim 2 (session 56-plan, authored session 59). The atomic concept being taught is *direction*: F is a vector, a is a vector, m is a scalar, so a points where F points — NOT where v points. This is the most-confused concept in mechanics: stationary objects can have zero net force AND non-zero F (if balanced); velocity does not equal force; mass does not 'resist' a force, it scales the acceleration response.",
+  "renderer_pair": {
+    "panel_a": "parametric",
+    "panel_b": "graph_interactive"
+  },
+  "available_renderer_scenarios": {
+    "parametric": ["block_on_smooth_floor"]
+  },
+  "prerequisites": [
+    "free_body_diagram",
+    "vector_resolution"
+  ],
+  "real_world_anchor": {
+    "primary": "A wheeled shopping trolley on a smooth, polished mall floor — friction is almost zero. You push it with a steady force from behind. The trolley does not move at a constant speed — it speeds up. The harder you push (more F), the faster it speeds up (more a). A loaded trolley (more m) speeds up slower for the same push. The trolley accelerates in the exact direction you push, even if it was already drifting sideways before you pushed. F = m·a is this rule, sharpened into a vector equation.",
+    "secondary": "Hockey puck on a wet floor (Indian schools, polished tile during winter). Slide it across with a flick — that's an instantaneous push that gives it velocity. After the flick, no force, the puck drifts at constant speed. Now flick it sideways while it moves — the puck does NOT reverse, and it does NOT keep its original direction. It curves — because the new push gives it acceleration sideways, while velocity is still forward. Velocity follows from acceleration over time. They are not the same thing.",
+    "tertiary": "Cricket ball on a smooth pitch hit at 30° upward by the bat. The bat applies force F at 30°. The ball accelerates at 30° (during contact). After contact, gravity takes over (a different F, pointing down). At every instant, a = F_net / m, and a points along F_net — the ball's velocity vector evolves from there."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3"],
+    "exploration": ["STATE_4", "STATE_5", "STATE_6"]
+  },
+  "physics_engine_config": {
+    "variables": {
+      "F": {
+        "name": "Applied force magnitude",
+        "unit": "N",
+        "min": 1,
+        "max": 50,
+        "default": 10,
+        "step": 1
+      },
+      "m": {
+        "name": "Block mass",
+        "unit": "kg",
+        "min": 0.5,
+        "max": 10,
+        "default": 2,
+        "step": 0.5
+      },
+      "theta_F": {
+        "name": "Force angle from horizontal",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 0,
+        "step": 5
+      },
+      "t": {
+        "name": "Time since force applied",
+        "unit": "s",
+        "min": 0,
+        "max": 5,
+        "default": 1,
+        "step": 0.1
+      }
+    },
+    "computed_outputs": {
+      "a_mag": {
+        "formula": "F / m"
+      },
+      "a_x": {
+        "formula": "(F * cos(theta_F * PI / 180)) / m"
+      },
+      "a_y": {
+        "formula": "(F * sin(theta_F * PI / 180)) / m"
+      },
+      "v_x_at_t": {
+        "formula": "a_x * t"
+      },
+      "v_y_at_t": {
+        "formula": "a_y * t"
+      },
+      "v_mag_at_t": {
+        "formula": "sqrt(v_x_at_t * v_x_at_t + v_y_at_t * v_y_at_t)"
+      }
+    },
+    "formulas": {
+      "newton_second_law": "F_net = m · a (vector equation — direction matters)",
+      "magnitude_only": "|a| = |F_net| / m",
+      "component_form": "a_x = F_x / m, a_y = F_y / m (each component independently)",
+      "velocity_from_acceleration": "v(t) = v_0 + a · t (starting at rest: v(t) = a · t)"
+    },
+    "constraints": [
+      "F = m·a holds for the NET force on the body — sum of all forces, not just the applied one",
+      "a points along F_net at every instant; v does NOT in general — v is the time-integral of a",
+      "Mass is a scalar — it scales magnitude only, never changes direction",
+      "If F_net = 0, then a = 0 (Newton I as a special case); v can still be non-zero (constant motion)",
+      "Each component of F maps to the same-named component of a independently (a_x = F_x/m, a_y = F_y/m)"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Push the Trolley — What Happens?",
+        "duration": 12,
+        "teaching_method": "narrative_socratic",
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "guess_correct",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "header",
+            "text": "You push a 2 kg trolley on a smooth floor with a steady 10 N force. What happens?",
+            "position": { "x": 380, "y": 40 },
+            "font_size": 15,
+            "color": "#E5E7EB"
+          },
+          {
+            "type": "body",
+            "id": "trolley",
+            "shape": "rectangle",
+            "position": { "x": 260, "y": 360 },
+            "size": { "w": 70, "h": 50 },
+            "color": "#60A5FA"
+          },
+          {
+            "type": "annotation",
+            "id": "trolley_label",
+            "text": "trolley (2 kg)",
+            "position": { "x": 260, "y": 325 },
+            "font_size": 11,
+            "color": "#60A5FA"
+          },
+          {
+            "type": "body",
+            "id": "floor",
+            "shape": "rectangle",
+            "position": { "x": 380, "y": 400 },
+            "size": { "w": 600, "h": 6 },
+            "color": "#374151"
+          },
+          {
+            "type": "annotation",
+            "id": "floor_label",
+            "text": "smooth floor (frictionless)",
+            "position": { "x": 380, "y": 425 },
+            "font_size": 10,
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "animated_path",
+            "id": "force_arrow",
+            "from": { "x": 195, "y": 360 },
+            "to": { "x": 255, "y": 360 },
+            "easing": "ease_out",
+            "duration_ms": 800,
+            "head_first": true,
+            "color": "#FBBF24",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "F = 10 N",
+            "appear_at_ms": 1500,
+            "animate_in_ms": 800
+          },
+          {
+            "type": "annotation",
+            "id": "guess_no_move",
+            "text": "Guess A:\nDoesn't move\n(stationary)",
+            "position": { "x": 540, "y": 175 },
+            "style": "callout",
+            "color": "#EF4444"
+          },
+          {
+            "type": "annotation",
+            "id": "guess_const_v",
+            "text": "Guess B:\nSlides at 5 m/s\n(constant speed)",
+            "position": { "x": 540, "y": 270 },
+            "style": "callout",
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "annotation",
+            "id": "guess_correct",
+            "text": "Guess C:\nAccelerates from 0\n(speed grows over time)",
+            "position": { "x": 540, "y": 365 },
+            "style": "callout",
+            "color": "#10B981"
+          },
+          {
+            "type": "glow_focus",
+            "primitive_id": "guess_correct",
+            "halo_radius_px": 75,
+            "color": "#10B981",
+            "intensity": 0.32,
+            "appear_at_ms": 8000,
+            "animate_in_ms": 700
+          },
+          {
+            "type": "annotation",
+            "id": "footer_question",
+            "text": "Constant force does NOT mean constant speed. F sets acceleration — speed grows from there.",
+            "position": { "x": 380, "y": 470 },
+            "font_size": 13,
+            "color": "#FBBF24"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "You push a two kilogram trolley on a smooth floor — almost no friction." },
+            { "id": "s2", "text_en": "Steady push, ten newtons, in one direction. What does the trolley do?" },
+            { "id": "s3", "text_en": "Many students reflexively say it slides at a fixed speed because the push is fixed." },
+            { "id": "s4", "text_en": "But a constant force does not mean constant speed. The trolley starts at zero, and its speed grows. It accelerates." },
+            { "id": "s5", "text_en": "Newton's second law tells us by how much. The push sets the acceleration — speed evolves from there." }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "F = m·a — Magnitude First",
+        "duration": 11,
+        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "formula_box",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "header",
+            "text": "Newton II — magnitude form",
+            "position": { "x": 380, "y": 40 },
+            "font_size": 16,
+            "color": "#E5E7EB"
+          },
+          {
+            "type": "body",
+            "id": "trolley_2",
+            "shape": "rectangle",
+            "position": { "x": 280, "y": 340 },
+            "size": { "w": 70, "h": 50 },
+            "color": "#60A5FA"
+          },
+          {
+            "type": "animated_path",
+            "id": "force_arrow_2",
+            "from": { "x": 215, "y": 340 },
+            "to": { "x": 275, "y": 340 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#FBBF24",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "F = 10 N",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "animated_path",
+            "id": "accel_arrow_2",
+            "from": { "x": 350, "y": 340 },
+            "to": { "x": 440, "y": 340 },
+            "easing": "ease_out",
+            "duration_ms": 900,
+            "head_first": true,
+            "color": "#10B981",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "a = 5 m/s²",
+            "appear_at_ms": 4000,
+            "animate_in_ms": 900
+          },
+          {
+            "type": "glow_focus",
+            "primitive_id": "accel_arrow_2",
+            "halo_radius_px": 70,
+            "color": "#10B981",
+            "intensity": 0.35,
+            "appear_at_ms": 4000,
+            "animate_in_ms": 700
+          },
+          {
+            "type": "annotation",
+            "id": "formula_box",
+            "text": "F = m · a\n\n10 N = 2 kg · a\na = 10 / 2 = 5 m/s²",
+            "position": { "x": 580, "y": 200 },
+            "style": "formula_box",
+            "color": "#FCD34D"
+          },
+          {
+            "type": "annotation",
+            "id": "interpretation",
+            "text": "Acceleration is what the force buys you — divided by mass.\nMore F → more a. More m → less a (for the same F).",
+            "position": { "x": 380, "y": 460 },
+            "font_size": 13,
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Newton's second law in magnitude form. Force equals mass times acceleration." },
+            { "id": "s2", "text_en": "Solve for acceleration. Acceleration is force divided by mass." },
+            { "id": "s3", "text_en": "Ten newtons divided by two kilograms gives five metres per second squared." },
+            { "id": "s4", "text_en": "Mass scales the response. Heavier trolley, same push, less acceleration. Lighter trolley, same push, more acceleration." }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Direction Matters — F = m·a is a Vector Equation",
+        "duration": 13,
+        "teaching_method": "narrative_socratic",
+        "advance_mode": "wait_for_answer",
+        "focal_primitive_id": "accel_arrow_tilted",
+        "allow_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "header",
+            "text": "Push at an angle. Where does a point?",
+            "position": { "x": 380, "y": 40 },
+            "font_size": 16,
+            "color": "#E5E7EB"
+          },
+          {
+            "type": "body",
+            "id": "trolley_3",
+            "shape": "rectangle",
+            "position": { "x": 320, "y": 340 },
+            "size": { "w": 70, "h": 50 },
+            "color": "#60A5FA"
+          },
+          {
+            "type": "animated_path",
+            "id": "force_arrow_tilted",
+            "from": { "x": 215, "y": 405 },
+            "to": { "x": 315, "y": 340 },
+            "easing": "ease_out",
+            "duration_ms": 900,
+            "head_first": true,
+            "color": "#FBBF24",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "F at 30°",
+            "appear_at_ms": 1500,
+            "animate_in_ms": 900
+          },
+          {
+            "type": "annotation",
+            "id": "angle_label",
+            "text": "θ = 30°",
+            "position": { "x": 240, "y": 390 },
+            "font_size": 12,
+            "color": "#FBBF24"
+          },
+          {
+            "type": "animated_path",
+            "id": "accel_arrow_tilted",
+            "from": { "x": 390, "y": 365 },
+            "to": { "x": 490, "y": 300 },
+            "easing": "ease_out",
+            "duration_ms": 1100,
+            "head_first": true,
+            "color": "#10B981",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "a (parallel to F)",
+            "appear_at_ms": 6000,
+            "animate_in_ms": 1100
+          },
+          {
+            "type": "glow_focus",
+            "primitive_id": "accel_arrow_tilted",
+            "halo_radius_px": 80,
+            "color": "#10B981",
+            "intensity": 0.4,
+            "appear_at_ms": 6000,
+            "animate_in_ms": 800
+          },
+          {
+            "type": "sound_cue",
+            "id": "ding_align",
+            "sound": "ding",
+            "appear_at_ms": 6500,
+            "volume": 0.3
+          },
+          {
+            "type": "annotation",
+            "id": "vector_box",
+            "text": "F is a vector. m is a scalar.\nDividing a vector by a scalar\nkeeps the same direction.\n\n→ a points along F",
+            "position": { "x": 600, "y": 220 },
+            "style": "formula_box",
+            "color": "#FCD34D"
+          },
+          {
+            "type": "annotation",
+            "id": "key_insight",
+            "text": "The acceleration vector is always parallel to the net force vector. Mass only changes the length, never the direction.",
+            "position": { "x": 380, "y": 460 },
+            "font_size": 13,
+            "color": "#10B981"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Now push the trolley at an angle. Force points up and to the right, at thirty degrees from horizontal." },
+            { "id": "s2", "text_en": "Where does the acceleration point? Quick answer." },
+            { "id": "s3", "text_en": "Acceleration points exactly along the force, also at thirty degrees." },
+            { "id": "s4", "text_en": "Force is a vector. Mass is a scalar. Dividing a vector by a scalar preserves direction. The arrow stays the same way; only its length changes." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Acceleration is along the floor because the trolley moves along the floor",
+            "visual_counter": "accel_arrow_tilted",
+            "one_line_fix": "Acceleration follows F, not the surface. The trolley will lift off if F has an upward component large enough."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Velocity Grows From Acceleration — Not Equal to Force",
+        "duration": 14,
+        "teaching_method": "narrative_socratic",
+        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "velocity_arrow_t2",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "header",
+            "text": "v(t) = a · t — speed grows over time",
+            "position": { "x": 380, "y": 40 },
+            "font_size": 16,
+            "color": "#E5E7EB"
+          },
+          {
+            "type": "body",
+            "id": "trolley_4",
+            "shape": "rectangle",
+            "position": { "x": 220, "y": 340 },
+            "size": { "w": 60, "h": 45 },
+            "color": "#60A5FA"
+          },
+          {
+            "type": "animated_path",
+            "id": "force_arrow_4",
+            "from": { "x": 165, "y": 340 },
+            "to": { "x": 215, "y": 340 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#FBBF24",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "F",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "annotation",
+            "id": "t0_label",
+            "text": "t = 0\nv = 0",
+            "position": { "x": 250, "y": 405 },
+            "font_size": 11,
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "animated_path",
+            "id": "velocity_arrow_t1",
+            "from": { "x": 380, "y": 280 },
+            "to": { "x": 430, "y": 280 },
+            "easing": "ease_out",
+            "duration_ms": 700,
+            "head_first": true,
+            "color": "#A78BFA",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v at t=1s (5 m/s)",
+            "appear_at_ms": 3000,
+            "animate_in_ms": 700
+          },
+          {
+            "type": "animated_path",
+            "id": "velocity_arrow_t2",
+            "from": { "x": 380, "y": 200 },
+            "to": { "x": 480, "y": 200 },
+            "easing": "ease_out",
+            "duration_ms": 900,
+            "head_first": true,
+            "color": "#A78BFA",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v at t=2s (10 m/s)",
+            "appear_at_ms": 6000,
+            "animate_in_ms": 900
+          },
+          {
+            "type": "glow_focus",
+            "primitive_id": "velocity_arrow_t2",
+            "halo_radius_px": 90,
+            "color": "#A78BFA",
+            "intensity": 0.35,
+            "appear_at_ms": 6500,
+            "animate_in_ms": 700
+          },
+          {
+            "type": "annotation",
+            "id": "vt_formula",
+            "text": "v(t) = a · t\n\nt=0: v = 0\nt=1: v = 5 m/s\nt=2: v = 10 m/s\nt=3: v = 15 m/s",
+            "position": { "x": 600, "y": 270 },
+            "style": "formula_box",
+            "color": "#FCD34D"
+          },
+          {
+            "type": "annotation",
+            "id": "key_insight_4",
+            "text": "v ≠ F. v ≠ a. v is what acceleration BUILDS UP over time.",
+            "position": { "x": 380, "y": 460 },
+            "font_size": 13,
+            "color": "#A78BFA"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "At time zero, the trolley has not moved. Velocity is zero." },
+            { "id": "s2", "text_en": "After one second, the trolley has been accelerating for one second. Velocity equals acceleration times time — five metres per second." },
+            { "id": "s3", "text_en": "After two seconds, velocity is ten metres per second. Same direction as acceleration. Same direction as the force that caused it." },
+            { "id": "s4", "text_en": "Velocity grows from acceleration. They have the same direction here, but they are not the same quantity. Acceleration is the rate of change. Velocity is the accumulated effect over time." }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "The Big Reveal — F Doesn't Equal v",
+        "duration": 15,
+        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
+        "focal_primitive_id": "curved_path",
+        "allow_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "header",
+            "text": "Trolley moving sideways. Push DOWNWARD. What happens?",
+            "position": { "x": 380, "y": 40 },
+            "font_size": 15,
+            "color": "#E5E7EB"
+          },
+          {
+            "type": "body",
+            "id": "trolley_5",
+            "shape": "rectangle",
+            "position": { "x": 200, "y": 200 },
+            "size": { "w": 60, "h": 45 },
+            "color": "#60A5FA"
+          },
+          {
+            "type": "animated_path",
+            "id": "v_initial",
+            "from": { "x": 230, "y": 175 },
+            "to": { "x": 320, "y": 175 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#A78BFA",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "v (rightward)",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "animated_path",
+            "id": "force_down",
+            "from": { "x": 230, "y": 220 },
+            "to": { "x": 230, "y": 300 },
+            "easing": "ease_out",
+            "duration_ms": 800,
+            "head_first": true,
+            "color": "#FBBF24",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "F (downward)",
+            "appear_at_ms": 2500,
+            "animate_in_ms": 800
+          },
+          {
+            "type": "animated_path",
+            "id": "a_down",
+            "from": { "x": 290, "y": 220 },
+            "to": { "x": 290, "y": 300 },
+            "easing": "ease_out",
+            "duration_ms": 800,
+            "head_first": true,
+            "color": "#10B981",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "a (along F, downward)",
+            "appear_at_ms": 4000,
+            "animate_in_ms": 800
+          },
+          {
+            "type": "animated_path",
+            "id": "curved_path",
+            "from": { "x": 230, "y": 200 },
+            "to": { "x": 480, "y": 380 },
+            "easing": "ease_in",
+            "duration_ms": 2000,
+            "head_first": true,
+            "color": "#FBBF24",
+            "line_weight": 4,
+            "arrow_head": true,
+            "label": "actual trajectory (curves down)",
+            "appear_at_ms": 7000,
+            "animate_in_ms": 2000
+          },
+          {
+            "type": "glow_focus",
+            "primitive_id": "curved_path",
+            "halo_radius_px": 100,
+            "color": "#FBBF24",
+            "intensity": 0.32,
+            "appear_at_ms": 7500,
+            "animate_in_ms": 800
+          },
+          {
+            "type": "sound_cue",
+            "id": "whoosh_curve",
+            "sound": "whoosh",
+            "appear_at_ms": 7000,
+            "volume": 0.3
+          },
+          {
+            "type": "annotation",
+            "id": "insight_box",
+            "text": "v points RIGHTWARD\nF points DOWNWARD\na points DOWNWARD (along F)\n\nThe trolley curves — v_y grows from a_y\nwhile v_x stays the same.\n\nF doesn't equal v. F equals m·a.",
+            "position": { "x": 600, "y": 240 },
+            "style": "formula_box",
+            "color": "#FCD34D"
+          },
+          {
+            "type": "annotation",
+            "id": "footer_5",
+            "text": "This is exactly how projectile motion works — gravity is constant downward force; horizontal velocity stays.",
+            "position": { "x": 380, "y": 470 },
+            "font_size": 12,
+            "color": "#9CA3AF"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Trolley is already moving rightward at constant velocity. Now apply a force straight down." },
+            { "id": "s2", "text_en": "Where does acceleration point?" },
+            { "id": "s3", "text_en": "Down — along the force. Not along the velocity. Acceleration follows F, not v." },
+            { "id": "s4", "text_en": "What does the trolley do? It curves. Horizontal velocity stays — no horizontal force, no horizontal acceleration. Vertical velocity grows from zero — because vertical acceleration acts on it." },
+            { "id": "s5", "text_en": "This is exactly projectile motion. Gravity is a constant downward force. Horizontal velocity is unchanged. The path curves." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "If F is downward, the trolley should go straight down",
+            "visual_counter": "curved_path",
+            "one_line_fix": "F sets a, not v. The trolley already had rightward v — that doesn't disappear. Instead, downward a builds up downward v on top of it. The result is curving, not straight."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Try It — Sweep the Force Angle",
+        "duration": 20,
+        "teaching_method": "exploration_sliders",
+        "advance_mode": "interaction_complete",
+        "focal_primitive_id": "angle_slider",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "header",
+            "text": "Drag the slider. Watch a rotate with F.",
+            "position": { "x": 380, "y": 40 },
+            "font_size": 15,
+            "color": "#E5E7EB"
+          },
+          {
+            "type": "body",
+            "id": "trolley_6",
+            "shape": "rectangle",
+            "position": { "x": 320, "y": 320 },
+            "size": { "w": 60, "h": 45 },
+            "color": "#60A5FA"
+          },
+          {
+            "type": "animated_path",
+            "id": "force_live",
+            "from": { "x": 220, "y": 320 },
+            "to": { "x": 315, "y": 320 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#FBBF24",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "F (drag below)",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "animated_path",
+            "id": "accel_live",
+            "from": { "x": 385, "y": 320 },
+            "to": { "x": 480, "y": 320 },
+            "easing": "linear",
+            "duration_ms": 1,
+            "head_first": true,
+            "color": "#10B981",
+            "line_weight": 3,
+            "arrow_head": true,
+            "label": "a (live)",
+            "appear_at_ms": 0,
+            "animate_in_ms": 1
+          },
+          {
+            "type": "annotation",
+            "id": "edge_hint_zero",
+            "text": "θ = 0° → F horizontal → a horizontal (trolley accelerates along floor)",
+            "position": { "x": 380, "y": 90 },
+            "font_size": 12,
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "annotation",
+            "id": "edge_hint_high",
+            "text": "θ = 90° → F vertical up → a vertical up (trolley would lift off)",
+            "position": { "x": 380, "y": 110 },
+            "font_size": 12,
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "slider",
+            "id": "angle_slider",
+            "label": "Force angle θ",
+            "variable": "theta_F",
+            "min": 0,
+            "max": 90,
+            "step": 5,
+            "default": 0,
+            "unit": "deg",
+            "position": "bottom"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1", "text_en": "Your turn. Drag the slider for the force angle." },
+            { "id": "s2", "text_en": "At zero degrees, force points horizontally and acceleration points horizontally." },
+            { "id": "s3", "text_en": "Increase the angle. Both arrows tilt up together. They are always parallel." },
+            { "id": "s4", "text_en": "At ninety degrees, force is straight up and acceleration is straight up. F equals m a — direction matters." }
+          ]
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "stationary_means_no_force",
+      "misconception": "If a body is at rest, no force acts on it (or no net force CAN act on it)",
+      "trigger_phrases": [
+        "block is stationary so no force",
+        "if it's not moving force is zero",
+        "no movement no force",
+        "stationary block has no F",
+        "F must be zero if a is zero"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Belief — Rest Means No Force",
+          "duration": 9,
+          "teaching_method": "misconception_confrontation",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "myth_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "myth_label",
+              "text": "MYTH: Stationary block ⇒ zero force on it",
+              "position": { "x": 380, "y": 100 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "body",
+              "id": "book",
+              "shape": "rectangle",
+              "position": { "x": 380, "y": 280 },
+              "size": { "w": 80, "h": 30 },
+              "color": "#9CA3AF"
+            },
+            {
+              "type": "annotation",
+              "id": "book_label",
+              "text": "Book on table — not moving",
+              "position": { "x": 380, "y": 250 },
+              "font_size": 12,
+              "color": "#9CA3AF"
+            },
+            {
+              "type": "annotation",
+              "id": "diagnosis",
+              "text": "Two forces act on the book:\n  weight mg downward\n  normal N upward\nThey balance. Net force = 0.\nBut individual forces are NOT zero.",
+              "position": { "x": 380, "y": 410 },
+              "font_size": 13,
+              "color": "#FCD34D"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "A common mistake — students see a stationary book and conclude no force acts on it." },
+              { "id": "s2", "text_en": "But weight is pulling it down, and the table is pushing it up. Two real, non-zero forces." },
+              { "id": "s3", "text_en": "They cancel. Net force is zero, so acceleration is zero, so the book stays at rest. That is what Newton's second law predicts. It does NOT say there are no forces." }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "velocity_equals_force",
+      "misconception": "Velocity points where the force points",
+      "trigger_phrases": [
+        "velocity equals force direction",
+        "v points along F",
+        "if I push right block moves right immediately",
+        "force makes velocity",
+        "F gives v"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Belief — v Follows F Directly",
+          "duration": 9,
+          "teaching_method": "misconception_confrontation",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "myth_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "myth_label",
+              "text": "MYTH: v points where F points",
+              "position": { "x": 380, "y": 100 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "animated_path",
+              "id": "wrong_v",
+              "from": { "x": 250, "y": 280 },
+              "to": { "x": 450, "y": 280 },
+              "easing": "ease_out",
+              "duration_ms": 800,
+              "head_first": true,
+              "color": "#EF4444",
+              "line_weight": 3,
+              "arrow_head": true,
+              "label": "wrong: v follows F instantly",
+              "appear_at_ms": 1500,
+              "animate_in_ms": 800
+            },
+            {
+              "type": "annotation",
+              "id": "diagnosis_v",
+              "text": "F = m·a, NOT F = m·v.\nF gives ACCELERATION (rate of change of v).\nv builds up over time from a.\nA pendulum at the bottom has v ≠ 0 even when net F = 0 momentarily.",
+              "position": { "x": 380, "y": 420 },
+              "font_size": 13,
+              "color": "#FCD34D"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Students often write F equals m v. That is wrong." },
+              { "id": "s2", "text_en": "Newton's second law is F equals m a. Force gives acceleration, not velocity." },
+              { "id": "s3", "text_en": "Velocity is what acceleration builds up over time. A pendulum swinging through the lowest point has zero net force but maximum velocity. Velocity and force are different quantities." }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "more_mass_more_force_needed",
+      "misconception": "Heavier objects need more force to exist or to stay still — confusing force with weight in dynamics",
+      "trigger_phrases": [
+        "heavy block needs more F",
+        "more mass means more force",
+        "double mass double F",
+        "mass requires force",
+        "weight equals force needed to push"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Belief — Mass Demands Force",
+          "duration": 9,
+          "teaching_method": "misconception_confrontation",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "myth_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "myth_label",
+              "text": "MYTH: Heavier ⇒ more force needed (just to be there)",
+              "position": { "x": 380, "y": 100 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "body",
+              "id": "light_block",
+              "shape": "rectangle",
+              "position": { "x": 250, "y": 290 },
+              "size": { "w": 50, "h": 40 },
+              "color": "#60A5FA"
+            },
+            {
+              "type": "annotation",
+              "id": "light_label",
+              "text": "1 kg",
+              "position": { "x": 250, "y": 340 },
+              "font_size": 12,
+              "color": "#60A5FA"
+            },
+            {
+              "type": "body",
+              "id": "heavy_block",
+              "shape": "rectangle",
+              "position": { "x": 480, "y": 280 },
+              "size": { "w": 80, "h": 60 },
+              "color": "#60A5FA"
+            },
+            {
+              "type": "annotation",
+              "id": "heavy_label",
+              "text": "10 kg",
+              "position": { "x": 480, "y": 350 },
+              "font_size": 12,
+              "color": "#60A5FA"
+            },
+            {
+              "type": "annotation",
+              "id": "diagnosis_mass",
+              "text": "Same F = 10 N applied to both:\n  light: a = 10 m/s² (jumps fast)\n  heavy: a = 1 m/s² (creeps)\nBoth ACCELERATE. Mass scales the response, not the requirement.\nF is needed to ACCELERATE, not to push back gravity.",
+              "position": { "x": 380, "y": 430 },
+              "font_size": 13,
+              "color": "#FCD34D"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "Students confuse weight with the force-needed-to-push. They aren't the same." },
+              { "id": "s2", "text_en": "Apply the same ten newton force to a one kilogram block and a ten kilogram block. Both will accelerate. The light one accelerates fast, the heavy one slow." },
+              { "id": "s3", "text_en": "Mass scales the acceleration response — it doesn't gate the existence of motion. Even one newton on a one ton truck causes acceleration. Tiny acceleration, but non-zero." }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "f_equals_mv_formula_confusion",
+      "misconception": "Writing F = m·v instead of F = m·a (formula slip with deep conceptual cost)",
+      "trigger_phrases": [
+        "F equals mv",
+        "F = m times v",
+        "force equals mass times velocity",
+        "is it F = mv",
+        "newton second law is F = mv"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "The Wrong Formula — F = m·v is Momentum, Not Newton II",
+          "duration": 10,
+          "teaching_method": "misconception_confrontation",
+          "advance_mode": "auto_after_tts",
+          "focal_primitive_id": "myth_label",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "myth_label",
+              "text": "MYTH: Newton II says F = m·v",
+              "position": { "x": 380, "y": 100 },
+              "style": "callout",
+              "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "dimensional_check",
+              "text": "Dimensions: [F] = M·L·T⁻²\n[m·v] = M·L·T⁻¹  ✗\n[m·a] = M·L·T⁻²  ✓\n\nOnly m·a has the dimensions of force.",
+              "position": { "x": 600, "y": 220 },
+              "style": "formula_box",
+              "color": "#EF4444"
+            },
+            {
+              "type": "annotation",
+              "id": "diagnosis_formula",
+              "text": "m · v has a name: it's MOMENTUM (p).\np = m·v.\nNewton's second law in fact says:\nF = dp/dt   (rate of change of momentum)\nWhen m is constant, dp/dt = m · dv/dt = m · a.\nThat's how F = m·a comes from F = dp/dt.\nF = m·v is dimensionally and physically wrong.",
+              "position": { "x": 280, "y": 320 },
+              "style": "formula_box",
+              "color": "#FCD34D"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              { "id": "s1", "text_en": "F equals m v is a common slip. m v is not a force — it's momentum." },
+              { "id": "s2", "text_en": "Newton's second law says force equals rate of change of momentum. When mass is constant, that simplifies to F equals m a." },
+              { "id": "s3", "text_en": "Momentum is what a moving body has. Force is what changes that momentum. They are different physical quantities and don't equal each other." }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "assessment_style": "stepwise_derivation_with_marks",
+      "mark_scheme": {
+        "total_marks": 5,
+        "per_state": {
+          "STATE_1": {
+            "mark": 1,
+            "description": "Identify the body, the contact surface, and the applied force F. Draw the FBD with weight, normal, applied F."
+          },
+          "STATE_2": {
+            "mark": 1,
+            "description": "Apply Newton II in magnitude form: F = m·a → solve for a = F/m with given values."
+          },
+          "STATE_3": {
+            "mark": 1,
+            "description": "Resolve F into components when F is at angle: F_x = F cos θ, F_y = F sin θ; then a_x = F_x/m, a_y = F_y/m."
+          },
+          "STATE_4": {
+            "mark": 1,
+            "description": "Use kinematics: v(t) = v_0 + a·t. Substitute initial v and computed a to find v at given t."
+          },
+          "STATE_5": {
+            "mark": 1,
+            "description": "Numeric answer with correct direction. State both magnitude and angle of v at the requested time."
+          }
+        }
+      },
+      "derivation_sequence": {
+        "STATE_1": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d1_s1",
+              "text": "Step 1: Body — block of mass m = 2 kg on frictionless smooth floor.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 100 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d1_s2",
+              "text": "Forces: weight mg ↓, normal N ↑, applied F at angle θ to horizontal.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 140 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d1_s3",
+              "text": "Floor is smooth ⇒ no friction. Vertical balance: N + F sin θ = mg.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 180 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s1",
+              "mark_value": 1,
+              "text": "+1 for FBD",
+              "tied_to_state": "STATE_1",
+              "position": { "x": 640, "y": 140 }
+            }
+          ]
+        },
+        "STATE_2": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d2_s1",
+              "text": "Step 2: Newton II in magnitude form: F = m · a.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 220 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d2_s2",
+              "text": "Solve for acceleration: a = F / m.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 260 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d2_s3",
+              "text": "For F = 10 N, m = 2 kg: a = 10 / 2 = 5 m/s².",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 300 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s2",
+              "mark_value": 1,
+              "text": "+1 for a = F/m",
+              "tied_to_state": "STATE_2",
+              "position": { "x": 640, "y": 260 }
+            }
+          ]
+        },
+        "STATE_3": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d3_s1",
+              "text": "Step 3: Resolve F into x and y components when F is at angle θ.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 340 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d3_s2",
+              "text": "F_x = F cos θ, F_y = F sin θ. Then a_x = F_x/m, a_y = F_y/m.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 380 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d3_s3",
+              "text": "Direction of a: same as F (parallel). |a| = F/m, angle = θ.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 420 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s3",
+              "mark_value": 1,
+              "text": "+1 for components",
+              "tied_to_state": "STATE_3",
+              "position": { "x": 640, "y": 380 }
+            }
+          ]
+        },
+        "STATE_4": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d4_s1",
+              "text": "Step 4: Kinematics — v(t) = v_0 + a · t (block starts at rest, v_0 = 0).",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 100 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d4_s2",
+              "text": "v(t) = a · t. With a = 5 m/s², after t = 2 s: v = 10 m/s.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 140 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d4_s3",
+              "text": "v points along a (same direction as F). v_x = a_x · t, v_y = a_y · t.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 180 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s4",
+              "mark_value": 1,
+              "text": "+1 for v(t) = at",
+              "tied_to_state": "STATE_4",
+              "position": { "x": 640, "y": 140 }
+            }
+          ]
+        },
+        "STATE_5": {
+          "primitives": [
+            {
+              "type": "derivation_step",
+              "id": "d5_s1",
+              "text": "Step 5: For F = 10 N at θ = 30°, m = 2 kg, t = 2 s, starting at rest:",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 220 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d5_s2",
+              "text": "a = 5 m/s². v = a·t = 10 m/s. Direction: 30° above horizontal.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 260 }
+            },
+            {
+              "type": "derivation_step",
+              "id": "d5_s3",
+              "text": "v_x = 10 cos 30° = 8.66 m/s, v_y = 10 sin 30° = 5 m/s. ∴ v = 10 m/s @ 30°.",
+              "animate_in": "handwriting",
+              "position": { "x": 60, "y": 300 }
+            },
+            {
+              "type": "mark_badge",
+              "id": "mark_s5",
+              "mark_value": 1,
+              "text": "+1 for numeric",
+              "tied_to_state": "STATE_5",
+              "position": { "x": 640, "y": 260 }
+            }
+          ]
+        }
+      }
+    },
+    "competitive": {
+      "assessment_style": "shortcut_plus_edge_case",
+      "shortcuts": [
+        {
+          "trigger": "frictionless surface, single force",
+          "formula": "a = F/m, direction along F",
+          "when": "Smooth horizontal surface, one external F. Skip the full FBD if it's clearly unbalanced and friction is given as zero — go direct to a = F/m."
+        },
+        {
+          "trigger": "force at angle to horizontal",
+          "formula": "a_x = F cos θ / m, a_y = F sin θ / m",
+          "when": "When F has a vertical component, a is also tilted. Don't assume motion stays along the floor — check if F_y > 0 changes contact (block could lift)."
+        },
+        {
+          "trigger": "find v after time t (from rest)",
+          "formula": "v = (F/m) · t",
+          "when": "Combine Newton II and kinematics in one step. Skip computing a separately."
+        },
+        {
+          "trigger": "two forces, same direction",
+          "formula": "a = (F_1 + F_2) / m",
+          "when": "Net force is the sum (vector sum if not collinear). a always uses NET F, never one of the individual forces."
+        }
+      ],
+      "edge_cases": [
+        {
+          "boundary": "F = 0 (no force)",
+          "behavior": "a = 0. Block continues at whatever v it already had (Newton I as a special case)."
+        },
+        {
+          "boundary": "F applied but body has friction",
+          "behavior": "Net F = F_applied - friction. a = (F_applied - friction)/m. Use NET force, not just applied."
+        },
+        {
+          "boundary": "F vertical upward, F > mg",
+          "behavior": "Block lifts off the surface. Normal becomes zero. Net F vertically = F - mg upward."
+        },
+        {
+          "boundary": "F vertical upward, F < mg",
+          "behavior": "Block stays on surface. Vertical net F = 0 (N adjusts). Horizontal net F = 0 (assuming F purely vertical). So a = 0. Block does not lift, does not move."
+        },
+        {
+          "boundary": "v initial non-zero, F perpendicular to v",
+          "behavior": "v_perp grows from a, v_parallel unchanged. Trajectory curves (this is projectile motion when F = gravity)."
+        }
+      ]
+    }
+  }
+}

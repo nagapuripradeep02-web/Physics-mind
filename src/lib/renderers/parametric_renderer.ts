@@ -349,6 +349,7 @@ function computePhysics(conceptId, vars) {
   if (conceptId === 'current_not_vector') return computePhysics_current_not_vector(vars);
   if (conceptId === 'pressure_scalar') return computePhysics_pressure_scalar(vars);
   if (conceptId === 'vector_head_to_tail') return computePhysics_vector_head_to_tail(vars);
+  if (conceptId === 'newton_second_law_direction') return computePhysics_newton_second_law_direction(vars);
   return null;
 }
 
@@ -366,6 +367,37 @@ function computePhysics_vector_head_to_tail(vars) {
     concept_id: 'vector_head_to_tail',
     variables: { d_east: d_east, d_north: d_north },
     derived: { d_resultant_mag: d_resultant_mag, theta_resultant_deg: theta_resultant_deg },
+    forces: []
+  };
+}
+
+// newton_second_law_direction — Phase 0 validation demo Sim 2 (session 59).
+// Iframe-side fallback in case PM_PRECOMPUTED_PHYSICS isn't injected. Mirrors
+// the TS engine (newtonSecondLawDirectionEngine in physicsEngine/concepts/).
+// F = m·a as a vector equation: a points along F, v(t) = a·t from rest.
+function computePhysics_newton_second_law_direction(vars) {
+  var F = (vars && vars.F != null) ? vars.F : 10;
+  var m = (vars && vars.m != null) ? vars.m : 2;
+  var theta_F = (vars && vars.theta_F != null) ? vars.theta_F : 0;
+  var t = (vars && vars.t != null) ? vars.t : 1;
+  var theta_rad = theta_F * Math.PI / 180;
+  var a_mag = F / m;
+  var a_x = a_mag * Math.cos(theta_rad);
+  var a_y = a_mag * Math.sin(theta_rad);
+  var v_x_at_t = a_x * t;
+  var v_y_at_t = a_y * t;
+  var v_mag_at_t = Math.sqrt(v_x_at_t * v_x_at_t + v_y_at_t * v_y_at_t);
+  return {
+    concept_id: 'newton_second_law_direction',
+    variables: { F: F, m: m, theta_F: theta_F, t: t },
+    derived: {
+      a_mag: a_mag,
+      a_x: a_x,
+      a_y: a_y,
+      v_x_at_t: v_x_at_t,
+      v_y_at_t: v_y_at_t,
+      v_mag_at_t: v_mag_at_t
+    },
     forces: []
   };
 }

@@ -361,6 +361,14 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         primary: { renderer: 'mechanics_2d', config_key: 'vector_head_to_tail', label: 'Head-to-Tail Vector Addition' },
     },
 
+    // Phase 0 validation demo Sim 2 (Ch.5.4-5.5 Newton II direction, session 59).
+    // First concept with full board mode (cumulative renderer + 5-mark scheme).
+    newton_second_law_direction: {
+        concept_id: 'newton_second_law_direction',
+        layout: 'single',
+        primary: { renderer: 'mechanics_2d', config_key: 'newton_second_law_direction', label: "Newton's 2nd Law — Direction Matters" },
+    },
+
     pressure_scalar: {
         concept_id: 'pressure_scalar',
         layout: 'single',

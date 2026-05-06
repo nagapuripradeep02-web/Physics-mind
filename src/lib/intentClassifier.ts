@@ -85,6 +85,8 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     'friction_static_kinetic',
     // Vector head-to-tail addition (Ch.5.4 — first Phase 0 validation demo Sim 1, session 56)
     'vector_head_to_tail',
+    // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
+    'newton_second_law_direction',
 ]);
 
 // Synonyms → canonical IDs. Gemini/Flash often return physicist-common synonyms
@@ -109,6 +111,11 @@ export const CONCEPT_SYNONYMS: Readonly<Record<string, string>> = {
     gravitational_force: 'field_forces',
     fbd: 'free_body_diagram',
     laws_of_motion: 'free_body_diagram',
+    newtons_second_law: 'newton_second_law_direction',
+    newton_second_law: 'newton_second_law_direction',
+    f_equals_ma: 'newton_second_law_direction',
+    f_ma: 'newton_second_law_direction',
+    second_law: 'newton_second_law_direction',
     friction: 'friction_static_kinetic',
     static_friction: 'friction_static_kinetic',
     kinetic_friction: 'friction_static_kinetic',
@@ -307,6 +314,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   hinge_force             ← pin joint, rod on wall, hinge reaction
   free_body_diagram       ← FBD, isolate body, force diagram
   friction_static_kinetic ← static vs kinetic friction, μₛ vs μₖ, push almirah, slipping threshold
+  newton_second_law_direction ← F = m·a as a vector equation, direction matters, a along F not v
 
 CRITICAL DISAMBIGUATION (current electricity):
 - "why does current reduce after resistor?" → ohms_law
@@ -359,6 +367,7 @@ CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "hinge force on rod" → hinge_force
 - "draw FBD" / "free body diagram" / "forces on block" → free_body_diagram
 - "static vs kinetic friction" / "μₛ vs μₖ" / "why is it easier to push once moving" / "when does block slip" / "coefficient of friction" → friction_static_kinetic
+- "F = ma" / "Newton's second law" / "direction of acceleration" / "force and direction" / "does velocity follow force" / "F = mv mistake" → newton_second_law_direction
 
 If the student question matches any of the above concepts, return that exact
 concept_id string. Do NOT invent variations (e.g. "ohms_law_basic",
