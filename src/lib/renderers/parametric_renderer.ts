@@ -792,20 +792,31 @@ function drawBody(spec) {
       animDx = (spec.animation.dx_px || 0) * trEase;
       animDy = (spec.animation.dy_px || 0) * trEase;
     } else if (spec.animation.type === 'projectile') {
-      // Physics-correct parabolic motion: x = vx·t (linear), y = 0.5·a·t² (quadratic).
-      // The body has constant horizontal velocity and constant vertical acceleration —
-      // exactly Newton II direction-matters for STATE_5 case_b (rightward v, downward F).
-      // Loops on loop_period_sec so the curve repeats. Without loop, settles at end.
-      var pjVx = spec.animation.vx_px_per_sec || 80;          // initial horizontal velocity (px/s)
-      var pjAy = spec.animation.ay_px_per_sec2 || 200;        // vertical acceleration (px/s²)
+      // Physics-correct parabolic motion: x = vx·t (linear),
+      // y = -vy0·t + 0.5·ay·t² (quadratic, canvas y-down convention).
+      // - vx_px_per_sec:           horizontal velocity (px/s, positive = rightward)
+      // - vy_initial_px_per_sec:   initial vertical velocity (px/s, positive = UPWARD; canvas
+      //                            y-down convention applies a negative sign so the ball goes UP first
+      //                            then back DOWN under gravity, like a real thrown ball)
+      // - ay_px_per_sec2:          vertical acceleration (px/s², positive = downward / gravity)
+      // - loop_period_sec:         optional loop period; without it, settles at the end of the arc
+      // - max_dx / max_dy:         positive clamps for the descent / horizontal range
+      // - min_dy:                  most-negative dy clamp (limits how high the ball rises)
+      var pjVx = spec.animation.vx_px_per_sec || 80;
+      var pjVy0 = spec.animation.vy_initial_px_per_sec || 0;   // 0 = pure horizontal-launch projectile (perpendicular F)
+      var pjAy = spec.animation.ay_px_per_sec2 || 200;
       var pjLoop = spec.animation.loop_period_sec || 0;
       var pjMaxDx = spec.animation.max_dx;
       var pjMaxDy = spec.animation.max_dy;
+      var pjMinDy = spec.animation.min_dy;
       var pjPhaseT = pjLoop > 0 ? (tSec % pjLoop) : tSec;
       var pjDx = pjVx * pjPhaseT;
-      var pjDy = 0.5 * pjAy * pjPhaseT * pjPhaseT;
+      // Canvas y increases downward — initial UPWARD velocity reduces dy (negative contribution),
+      // gravity adds positive (downward) contribution that grows as t².
+      var pjDy = -pjVy0 * pjPhaseT + 0.5 * pjAy * pjPhaseT * pjPhaseT;
       if (typeof pjMaxDx === 'number') pjDx = Math.min(pjDx, pjMaxDx);
       if (typeof pjMaxDy === 'number') pjDy = Math.min(pjDy, pjMaxDy);
+      if (typeof pjMinDy === 'number') pjDy = Math.max(pjDy, pjMinDy);
       animDx = pjDx;
       animDy = pjDy;
     }

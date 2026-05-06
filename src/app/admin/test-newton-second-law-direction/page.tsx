@@ -47,8 +47,9 @@ const STATES_TO_VERIFY: Array<{ id: string; label: string; description: string }
     { id: 'STATE_2', label: 'STATE_2 — F = m·a Magnitude', description: 'horizontal F + parallel a arrow + formula box "a = 10/2 = 5 m/s²"' },
     { id: 'STATE_3', label: 'STATE_3 — Direction Matters (Vector Equation)', description: 'F at 30° + a at 30° (parallel); ding sound on alignment; vector_box callout' },
     { id: 'STATE_4', label: 'STATE_4 — v(t) = a·t', description: 'two velocity arrows (t=1s, t=2s) growing along a; v(t) formula box; key insight v ≠ F' },
-    { id: 'STATE_5', label: 'STATE_5 — F doesn’t equal v (the curve)', description: 'rightward v_initial + downward F + downward a + curving trajectory; whoosh on curve' },
-    { id: 'STATE_6', label: 'STATE_6 — Try-It Slider (theta_F)', description: 'theta_F slider 0-90°; F + a arrows visible' },
+    { id: 'STATE_5', label: 'STATE_5 — Case A: F along v (straight line)', description: 'block on smooth floor; F, v, a all rightward; ghost block trail; insight: trajectory stays straight' },
+    { id: 'STATE_6', label: 'STATE_6 — Case B: Projectile (cannon launch)', description: 'cannon launches ball at 60°; full parabolic arc with ghost balls; mid-flight zoom; v_x constant + v_y changing strobe vectors' },
+    { id: 'STATE_7', label: 'STATE_7 — Try-It Slider (F, m, theta_F)', description: 'three sliders for F, m, theta_F; F + a arrows respond live' },
 ];
 
 export default function NewtonSecondLawDirectionTestPage() {
