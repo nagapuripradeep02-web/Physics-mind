@@ -123,13 +123,19 @@
             "id": "block_state1",
             "shape": "rect",
             "label": "Block (2 kg)",
-            "position": { "x": 280, "y": 370 },
+            "position": { "x": 220, "y": 370 },
             "size": { "w": 100, "h": 80 },
             "fill_color": "#92400E",
             "border_color": "#451A03",
             "attach_to_surface": {
               "surface_id": "floor_state1",
-              "position_fraction": 0.25
+              "position_fraction": 0.18
+            },
+            "animation": {
+              "type": "slide_horizontal",
+              "accel_px_per_sec2": 100,
+              "max_dx": 240,
+              "loop_period_sec": 4.2
             }
           },
           {
@@ -338,13 +344,19 @@
             "id": "block_state3",
             "shape": "rect",
             "label": "Block",
-            "position": { "x": 320, "y": 370 },
+            "position": { "x": 240, "y": 370 },
             "size": { "w": 100, "h": 80 },
             "fill_color": "#92400E",
             "border_color": "#451A03",
             "attach_to_surface": {
               "surface_id": "floor_state3",
-              "position_fraction": 0.4
+              "position_fraction": 0.22
+            },
+            "animation": {
+              "type": "slide_horizontal",
+              "accel_px_per_sec2": 80,
+              "max_dx": 200,
+              "loop_period_sec": 4.5
             }
           },
           {
@@ -654,26 +666,29 @@
             "font_size": 12
           },
           {
-            "type": "surface",
-            "id": "floor_case_b",
-            "orientation": "horizontal",
-            "position": { "x": 410, "y": 220 },
-            "length": 250,
-            "texture": "smooth",
-            "label": "CASE B: F perpendicular to v"
+            "type": "annotation",
+            "id": "case_b_title",
+            "text": "CASE B: F perpendicular to v",
+            "position": { "x": 540, "y": 165 },
+            "font_size": 12,
+            "color": "#9CA3AF"
           },
           {
             "type": "body",
             "id": "block_case_b",
             "shape": "rect",
             "label": "Block",
-            "position": { "x": 470, "y": 180 },
-            "size": { "w": 60, "h": 45 },
+            "position": { "x": 460, "y": 200 },
+            "size": { "w": 56, "h": 42 },
             "fill_color": "#92400E",
             "border_color": "#451A03",
-            "attach_to_surface": {
-              "surface_id": "floor_case_b",
-              "position_fraction": 0.25
+            "animation": {
+              "type": "projectile",
+              "vx_px_per_sec": 55,
+              "ay_px_per_sec2": 85,
+              "loop_period_sec": 3.6,
+              "max_dx": 175,
+              "max_dy": 180
             }
           },
           {
@@ -723,15 +738,15 @@
           {
             "type": "animated_path",
             "id": "curve_path",
-            "from": { "x": 500, "y": 165 },
-            "to": { "x": 660, "y": 380 },
+            "from": { "x": 480, "y": 200 },
+            "to": { "x": 640, "y": 380 },
             "easing": "ease_in",
             "duration_ms": 2200,
             "head_first": true,
             "color": "#FBBF24",
-            "line_weight": 3,
-            "arrow_head": true,
-            "appear_at_ms": 6000,
+            "line_weight": 2,
+            "arrow_head": false,
+            "appear_at_ms": 5500,
             "animate_in_ms": 2200
           },
           {
@@ -760,7 +775,7 @@
         "choreography_sequence": {
           "phases": [
             { "at_t": 0, "show": "floor_case_a,block_case_a,v_case_a,F_case_a,case_a_label", "enter": "fade_in", "duration": 300 },
-            { "at_t": 1.5, "show": "floor_case_b,block_case_b,v_case_b,F_case_b", "enter": "fade_in", "duration": 400 }
+            { "at_t": 1.5, "show": "case_b_title,block_case_b,v_case_b,F_case_b", "enter": "fade_in", "duration": 400 }
           ]
         },
         "teacher_script": {
@@ -1072,14 +1087,20 @@
               "type": "body",
               "id": "block_v_belief",
               "shape": "rect",
-              "label": "Block (at rest, t=0)",
-              "position": { "x": 280, "y": 370 },
+              "label": "Block (starts at rest)",
+              "position": { "x": 220, "y": 370 },
               "size": { "w": 90, "h": 70 },
               "fill_color": "#92400E",
               "border_color": "#451A03",
               "attach_to_surface": {
                 "surface_id": "floor_v_belief",
-                "position_fraction": 0.3
+                "position_fraction": 0.18
+              },
+              "animation": {
+                "type": "slide_horizontal",
+                "accel_px_per_sec2": 60,
+                "max_dx": 220,
+                "loop_period_sec": 5.0
               }
             },
             {

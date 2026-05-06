@@ -27,6 +27,7 @@ export const ANIMATION_TYPES: readonly string[] = [
     'atwood',
     'door_swing',
     'translate',
+    'projectile',
 ] as const;
 
 export const ANIMATE_IN_KINDS: readonly string[] = [

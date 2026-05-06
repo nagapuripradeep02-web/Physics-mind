@@ -791,6 +791,23 @@ function drawBody(spec) {
       var trEase = 1 - Math.pow(1 - trT, 3);
       animDx = (spec.animation.dx_px || 0) * trEase;
       animDy = (spec.animation.dy_px || 0) * trEase;
+    } else if (spec.animation.type === 'projectile') {
+      // Physics-correct parabolic motion: x = vx·t (linear), y = 0.5·a·t² (quadratic).
+      // The body has constant horizontal velocity and constant vertical acceleration —
+      // exactly Newton II direction-matters for STATE_5 case_b (rightward v, downward F).
+      // Loops on loop_period_sec so the curve repeats. Without loop, settles at end.
+      var pjVx = spec.animation.vx_px_per_sec || 80;          // initial horizontal velocity (px/s)
+      var pjAy = spec.animation.ay_px_per_sec2 || 200;        // vertical acceleration (px/s²)
+      var pjLoop = spec.animation.loop_period_sec || 0;
+      var pjMaxDx = spec.animation.max_dx;
+      var pjMaxDy = spec.animation.max_dy;
+      var pjPhaseT = pjLoop > 0 ? (tSec % pjLoop) : tSec;
+      var pjDx = pjVx * pjPhaseT;
+      var pjDy = 0.5 * pjAy * pjPhaseT * pjPhaseT;
+      if (typeof pjMaxDx === 'number') pjDx = Math.min(pjDx, pjMaxDx);
+      if (typeof pjMaxDy === 'number') pjDy = Math.min(pjDy, pjMaxDy);
+      animDx = pjDx;
+      animDy = pjDy;
     }
   }
   // Apply animation deltas to pos (works for both attached and unattached bodies
