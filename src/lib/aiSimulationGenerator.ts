@@ -4159,6 +4159,36 @@ async function generateField3DConfig(
 ): Promise<Field3DConfig> {
     const scenario = FIELD_3D_SCENARIO_MAP[conceptId] ?? "point_charge_positive";
 
+    // ── Authored-config preference (CLAUDE.md Rule 18) ──────────────────────
+    // If the concept JSON in src/data/concepts/{conceptId}.json embeds a
+    // top-level `field_3d_config` block, use it directly instead of calling
+    // Sonnet. This keeps verified content out of uncached live serving paths.
+    // First field_3d concept to ship this way: magnetic_field_wire (Sim 3,
+    // session 60).
+    try {
+        const constants = (await loadConstants(conceptId)) as
+            | (Record<string, unknown> & { field_3d_config?: Field3DConfig })
+            | null;
+        const authored = constants?.field_3d_config;
+        if (authored && typeof authored === "object") {
+            const merged: Field3DConfig = {
+                ...authored,
+                scenario_type: authored.scenario_type ?? scenario,
+                pvl_colors: authored.pvl_colors ?? {
+                    background: "#0A0A1A",
+                    text: "#D4D4D8",
+                    positive: "#EF5350",
+                    negative: "#42A5F5",
+                    field_line: "#FFF176",
+                },
+            };
+            console.log("[field_3d] Using authored field_3d_config for:", conceptId);
+            return merged;
+        }
+    } catch (loadErr) {
+        console.warn("[field_3d] loadConstants check failed, falling through to Sonnet:", loadErr);
+    }
+
     const systemPrompt = `You are a physics simulation config generator for PhysicsMind, an Indian Class 10-12 AI tutor.
 Generate a valid Field3DConfig JSON object for a Three.js 3D field renderer.
 

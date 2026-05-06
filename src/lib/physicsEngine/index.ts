@@ -8,6 +8,7 @@ import { vectorResolutionEngine } from './concepts/vector_resolution';
 import { frictionStaticKineticEngine } from './concepts/friction_static_kinetic';
 import { vectorHeadToTailEngine } from './concepts/vector_head_to_tail';
 import { newtonSecondLawDirectionEngine } from './concepts/newton_second_law_direction';
+import { magneticFieldWireEngine } from './concepts/magnetic_field_wire';
 import type { ConceptPhysicsEngine, PhysicsResult } from './types';
 
 const ENGINES: Record<string, ConceptPhysicsEngine> = {
@@ -21,6 +22,7 @@ const ENGINES: Record<string, ConceptPhysicsEngine> = {
   friction_static_kinetic: frictionStaticKineticEngine,
   vector_head_to_tail: vectorHeadToTailEngine,
   newton_second_law_direction: newtonSecondLawDirectionEngine,
+  magnetic_field_wire: magneticFieldWireEngine,
 };
 
 export function computePhysics(

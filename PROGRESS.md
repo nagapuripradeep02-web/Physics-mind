@@ -1,5 +1,224 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-05-07 (session 60 — Sim 3 Day 1 SHIPPED, pivoted from electrostatics to magnetism) — `magnetic_field_wire` authored end-to-end as the FIRST `field_3d` (Three.js) concept JSON in the codebase: 7 EPIC-L states + 4 EPIC-C branch heads + board mode (5-mark scheme + derivation_sequence) + competitive mode (4 shortcuts + 5 edge cases) + embedded deterministic `field_3d_config` (CLAUDE.md Rule 18 fix — bypasses Sonnet runtime call); physics engine TS for B = μ₀I/(2πr); `generateField3DConfig()` extended to prefer authored config from concept JSON over Sonnet runtime; 7 registration sites wired (JSON, engine, ENGINES record, VALID_CONCEPT_IDS, proxy.ts, admin test page; CONCEPT_RENDERER_MAP + panelConfig already pre-registered); admin test page at `/admin/test-magnetic-field-wire` renders all 7 states cinematically through the production `assembleField3DHtml` path; tsc 0 errors, `validate:concepts magnetic_field_wire PASS (62/62 atomic)`, browser smoke clean (Three.js r128 loaded, WebGL canvases live, 0 console errors, all per-state visibility filters + camera positions correct)
+
+### Top-line outcome
+
+**Sim 3 of the Phase 0 demo trio is shipped Day 1, and the codebase now has its first end-to-end Three.js concept.** Pradeep overrode the previous Sim 3 = electrostatics queue and picked `magnetic_field_wire` (Class 12 Ch.4 — magnetic field around a long straight current-carrying wire + right-hand rule) because (a) the 2D `× / ·` notation is the single biggest confusion source in JEE/NEET magnetism, (b) the right-hand rule is a 3D gesture students try to perform on flat paper, and (c) the Three.js scaffolding (`field_3d_renderer.ts`/.js, scenarios pre-built, 8 concept_ids pre-routed) was already shipped but had ZERO authored concept JSONs.
+
+### What landed (one session, no follow-up commits)
+
+| Area | Status |
+|---|---|
+| Concept JSON | `magnetic_field_wire.json` ~480 lines: 7 EPIC-L states with rich teacher_script (4–5 tts_sentences each), 4 EPIC-C misconception branches with trigger_phrases, board mode (canvas_style=answer_sheet + 5-step derivation_sequence + 5-mark scheme), competitive mode (4 shortcuts + 5 edge cases), `aha_moment` on STATE_2, `cognitive_limits`, `concept_tier=medium`, prerequisites array, embedded `field_3d_config` block |
+| Embedded `field_3d_config` | 7-state map with per-state `visible_elements` (precision-tuned to avoid the renderer's substring-match greediness — e.g. `"wire_main"` not `"wire"`, `"curr_arr"` not `"current_arrow"`) and `camera_position` (oblique → middle close-up → top-down for the ⊗/⊙ reveal) |
+| Physics engine | `magnetic_field_wire.ts`: `B = μ₀ · I / (2π · r)`, default I=5A, r=0.05m, returns B in T and µT, mu_0 included in derived for transparency |
+| Pipeline integration | `generateField3DConfig()` modified to read concept JSON via `loadConstants()` and prefer embedded `field_3d_config` over Sonnet runtime call. **First field_3d concept compliant with CLAUDE.md Rule 18 (no Sonnet on uncached live serving paths).** Other 7 pre-registered field_3d concept_ids fall through to existing Sonnet path until they get authored |
+| Registration | ENGINES record, VALID_CONCEPT_IDS, proxy.ts public-route allowlist, admin test page directory + page.tsx. CONCEPT_RENDERER_MAP and CONCEPT_PANEL_MAP entries were pre-existing |
+| Admin test page | `/admin/test-magnetic-field-wire` renders all 7 states via direct `assembleField3DHtml(field_3d_config-clone-with-requested-state-as-STATE_1)`; iframes 820×540 (raised from 760×500 standard so they exceed the renderer's 768px desktop threshold and load WebGL instead of mobile SVG fallback) |
+
+### Pedagogy verified per state (browser smoke)
+
+- **STATE_1 — Oersted's hook**: just the orange wire, no field circles. Caption "1820: a current-carrying wire deflects a compass. Why?" — sets up the question before the answer.
+- **STATE_2 — B-field appears in 3D**: full 18-circle structure (3 heights × 6 radii) at default oblique angle. The `aha_moment` state. Drag-to-rotate confirms the circles are real 3D, not flat.
+- **STATE_3 — Right-hand rule**: middle-height circles only (cleaner) so the student can focus on the curl direction without 18 circles competing for attention. `wait_for_answer` advance_mode prompts the RHR question.
+- **STATE_4 — Magnitude (1/r decay)**: all 18 circles visible. Caption invites the student to read the brightness decay across radii.
+- **STATE_5 — B at point P**: ONE circle (middle height, third radius). Tangent direction visible via the green arrow. Cleanest possible visualization of "B is tangent, not radial".
+- **STATE_6 — Bridge to 2D textbook (×/·)**: camera moved to `[0.1, 7, 0.1]` — straight-down view. Wire becomes a bright orange dot, circles concentric. **This is the moment that motivated picking magnetism over electrostatics** — the 3D-to-2D collapse is visually undeniable.
+- **STATE_7 — Free explore**: all elements, default oblique camera. Student can drag/scroll to test the right-hand rule at any angle.
+
+### CLAUDE.md Rule 18 compliance
+
+The pre-existing `generateField3DConfig()` function called Sonnet at runtime to generate the Field3DConfig per request. This violated CLAUDE.md Rule 18 ("Sonnet banned from UNCACHED live serving paths for verified content"). Tech debt that was un-paid because no concept JSON had been authored to test it.
+
+This session's fix at `aiSimulationGenerator.ts:4154-4181`: read concept JSON via `loadConstants()`, check for top-level `field_3d_config` key, and return it directly if present (with PVL color defaults applied). Falls through to the existing Sonnet path only when the concept JSON has no embedded config. `magnetic_field_wire` is the first concept to use the authored path; the other 7 pre-registered field_3d concept_ids continue on the Sonnet path until their JSONs get written.
+
+### Bug discovered + worked around (renderer substring-match greediness)
+
+`field_3d_renderer.js:applyState()` matches `visible_elements` tokens against `userData.elementType` and `userData.id` using **substring search** (`indexOf >= 0`). This means `"wire"` matches not just the wire object (id `wire_main`) but ALSO every `fl_wire_*` field-line and `arr_wire_*` arrow whose ID contains the substring "wire".
+
+First admin smoke caught this — STATE_1 was supposed to show wire-only but rendered all 18 circles. Worked around in JSON by using more specific tokens: `"wire_main"` instead of `"wire"`, `"curr_arr"` instead of `"current_arrow"`. Renderer fix (switch to exact match or add a separator-aware match) is deferred — the JSON-side workaround is small and the renderer is engineer-written, not AI-generated, so should be touched carefully.
+
+### Files created / modified
+
+```
+NEW:  src/data/concepts/magnetic_field_wire.json                        (~480 lines)
+NEW:  src/lib/physicsEngine/concepts/magnetic_field_wire.ts             (60 lines)
+NEW:  src/app/admin/test-magnetic-field-wire/page.tsx                   (170 lines)
+MOD:  src/lib/physicsEngine/index.ts                                    (+2 lines)
+MOD:  src/lib/intentClassifier.ts                                       (+5 lines)
+MOD:  src/lib/aiSimulationGenerator.ts                                  (+30 lines, generateField3DConfig embedded-config preference)
+MOD:  src/proxy.ts                                                      (+1 line, /admin/test-magnetic-field-wire public)
+MOD:  PROGRESS.md                                                       (this entry)
+```
+
+### Verification (end of session)
+
+```
+npx tsc --noEmit                                       → 0 errors
+npm run validate:concepts -- magnetic_field_wire       → PASS (62/62 atomic)
+Browser smoke at /admin/test-magnetic-field-wire       → all 7 iframes have WebGL canvas (818×538), Three.js r128 loaded, 0 console errors, captions/legends correct, visibility filters working after fix, camera positions place STATE_6 in top-down view
+```
+
+### Next session — Sim 3 polish OR Sim 4
+
+Day 1 ships the foundation. Iteration candidates for next session, in priority order:
+
+1. **Polish STATE_3 RHR** — current pedagogy says "imagine your hand"; could add a 3D hand model from composed cylinders/spheres (no GLTF dependency per session-60 plan risk #3) to make the gesture visible in the scene.
+2. **STATE_7 live sliders** — currently a free-explore state. Adding live `I` and `r` sliders that recompute and update the field-line density would mirror Sim 2 STATE_7's slider work. Requires `field_3d_renderer.js` extension (parallel to session 59's `accel_expr` for parametric).
+3. **Author EPIC-C branch states** — Day 1 only authored branch heads (branch_id, misconception, trigger_phrases). Authoring full state sequences for `b_points_along_current` and `cross_dot_means_current` would unlock the misconception-correction pipeline at runtime.
+4. **Sim 4 candidates**: solenoid (`magnetic_field_solenoid`, scenario `solenoid_field` ready) for natural Ch.4 progression, OR pivot back to electrostatics (`electric_field_lines`, scenario `point_charge_positive` ready) for E-field coverage.
+
+### Blockers
+
+None. Working tree dirty but committed locally; push held until "push it" per CLAUDE.md self-review checklist.
+
+---
+
+## 2026-05-06 (session 59 — extended polish, SHIPPED) — Sim 2 newton_second_law_direction iterated from Day 1 skeleton to PREMIUM demo quality across 9 commits (now on origin/master); 6 → 7 EPIC-L states with cinematic Case A (block-on-floor) + Case B (projectile cannon launch with mid-flight zoom); STATE_4 redesigned as freeze-frame demo of v(t)=a·t at t=1,2,3; STATE_7 try-it sliders now drive real floor-constrained physics (gravity + normal force, three regimes — on floor / edge / lift-off); renderer extended with `slide_horizontal` expression-driven accel + direction, new `projectile` animation type, animation `disappear_at_ms`/`fade_out_ms` gate, `smooth_camera` `appear_at_ms`; 9 commits pushed in one batch when push gate fired
+
+### Top-line outcome
+
+**Sim 2 went from "Day 1 skeleton lands" to "ship-quality Phase 0 demo" inside one extended session.** Pradeep pushed back hard on visual quality and physics accuracy at every stage; each round of feedback turned into a renderer extension or concept-JSON rewrite. By session end: 9 commits on `origin/master`, all 7 states render cinematically, sliders drive real Newton+gravity+contact physics, and the admin test page is a working showcase of what a full Phase 0 atomic concept JSON looks like at production polish.
+
+What this session iterated on top of the Day 1 foundation:
+
+| Area | Day 1 state | After session-59-extended |
+|---|---|---|
+| EPIC-L state count | 6 | **7** (split STATE_5 into Case A floor + Case B projectile) |
+| STATE_4 | looping live block, no t-freeze | **4 freeze-frame ghost blocks** at t=0/1/2/3 with growing v arrows (1:4:9 parabolic spacing) |
+| STATE_5 (Case A) | static block + 3 arrows | **Cinematic ball + ghost trail + arrows along v** |
+| STATE_6 (Case B projectile) | (didn't exist) | **2-phase cinematic**: wide trajectory with 5 ghost balls + 10 smooth arc segments, then mid-flight zoom that fades the trajectory and reveals just the ball + 3 vectors |
+| STATE_7 try-it sliders | block static, only F/a labels updated | **Block actually moves** under real floor-constrained physics: stays on floor while F·sin θ < mg, lifts off only when threshold crossed; live N + mg arrows |
+| Animation primitives | `slide_horizontal` (fixed accel) | Added: `projectile`, `slide_horizontal.accel_expr`, `slide_horizontal.direction_deg_expr`, animation `disappear_at_ms` + `fade_out_ms`, `smooth_camera.appear_at_ms` |
+
+### Iteration timeline (commit-by-commit narrative)
+
+```
+597bb94  feat(sim2): author newton_second_law_direction concept end-to-end (Sim 2 Day 1)
+6be5f1c  refactor(sim2): rewrite to friction gold-standard idiom
+5499bf5  feat(sim2): bring concept to life with physics-correct motion
+c79b678  feat(sim2): cinematic ball-projectile redesign of STATE_5
+c74dcac  feat(sim2): split STATE_5 into 2 states (case_a + case_b projectile), 7 total
+912d9b4  feat(sim2): 2-phase cinematic STATE_6 — wide projectile, then mid-flight zoom
+c153737  fix(newton_second_law_direction): make STATE_6 ball visible + extend projectile range
+402e54f  feat(sim2): freeze-frame STATE_4 (v at t=1,2,3) + live-slider STATE_7
+6ce42f4  fix(sim2-state7): real floor-constrained physics — block lifts off only when F sin θ > mg
+
+git push origin master
+  → To https://github.com/nagapuripradeep02-web/Physics-mind.git
+  →    a017980..6ce42f4  master -> master   (all 9 commits)
+```
+
+Each commit was driven by a Pradeep critique that translated into a concrete fix:
+
+1. **"the quality is not good. There is no block. There is nothing... wherever possible put motion"** → 6be5f1c rewrites to friction's gold-standard idiom, 5499bf5 brings physics-correct motion to every state.
+2. **"in case b, instead of putting a block, can you please put a ball? Show a tragic tragedy of a ball... zoom into the ball... different camera angle"** → c79b678 cinematic ball redesign with smooth_camera tracking.
+3. **"in fifth state, please put case a. Explain it really well. In state six, please put case b, which is projectile"** → c74dcac splits STATE_5 into two distinct states (Case A: F||v straight-line, Case B: projectile parabola).
+4. **"State 6 doesn't look premium. There should really have a projectile. Smooth curve... while falling in the middle of the air. You should zoom on the ball. There is no ball in the simulation"** → 912d9b4 implements 2-phase cinematic (wide projectile → mid-flight zoom that fades the decorations and shows just ball + 3 vectors).
+5. **"in State 6, there is no ball visible. I can't see any ball. There should be a round ball... increase the range of the projectile. Put a smooth curve, smooth knot curve. Not a random curve"** → c153737 fixes the circle-shape `size` format bug (must be number, not `{w,h}` object) + extends trajectory to 400px range with 10 smooth arc segments.
+6. **"In State 4 please freeze at t=1, t=2, t=3 and show what is the velocity there. And in State 7, whenever I'm dragging the slider. The block is static"** → 402e54f restructures STATE_4 to freeze-frames AND extends the renderer's slide_horizontal with `accel_expr` + `direction_deg_expr` so STATE_7's block actually moves with sliders.
+7. **"I think in reality, in state seven, when the angle is increasing, the block gradually loses the contact. Not suddenly. Like a block is directly flying in the air. Apply the real physics"** → 6ce42f4 encodes floor-constrained Newton + gravity + normal force in the JSON expressions; block now stays on floor while F·sin θ < mg, sits "on the edge" near threshold, and lifts off cleanly when threshold is crossed.
+
+### Renderer extensions shipped (`src/lib/renderers/parametric_renderer.ts`)
+
+These are general-purpose primitives — any future concept JSON can use them, not just Sim 2:
+
+- **`projectile` animation type**. Parameters: `vx_px_per_sec`, `vy_initial_px_per_sec`, `ay_px_per_sec2`, `loop_period_sec`, `max_dx`, `max_dy`, `min_dy`. Computes `dx = vx·t`, `dy = -vy0·t + 0.5·ay·t²` with clamps. Used for STATE_6 projectile.
+- **`slide_horizontal.accel_expr`** (string). Optional. Evaluated against live `PM_physics.variables` each frame, scaled by `px_per_meter`. Lets the block's acceleration track slider variables (e.g. `"F / m"` or the full floor-constrained net-accel expression).
+- **`slide_horizontal.direction_deg_expr`** (string). Optional. Evaluated each frame; decomposes the kinematic distance into x/y components so the block can slide at any angle (not just horizontal).
+- **`disappear_at_ms` + `fade_out_ms`** on `body` and `surface` primitives. Parallel to `appear_at_ms` + `animate_in_ms`. Enables the "decorations fade as the camera zooms in" effect.
+- **`smooth_camera.appear_at_ms`** in `premium_primitives.ts`. The camera stays inactive until the state-clock reaches the trigger time, then begins its zoom transition.
+- **`projectile` added to `ANIMATION_TYPES` whitelist** in `src/lib/renderers/animation_vocabulary.ts` (single source of truth for renderer + validator).
+
+### STATE_7 floor-constrained physics — encoded in JSON, no hard-coded engine
+
+The cleanest part of this session's work: real Newtonian floor physics is encoded purely in the JSON expressions, no renderer changes required:
+
+```
+accel_expr:        sqrt(pow(F·cos θ, 2) + pow(max(0, F·sin θ − mg), 2)) / m
+direction_deg_expr: atan2(max(0, F·sin θ − mg), F·cos θ) · 180 / π
+```
+
+The `max(0, …)` clamps the vertical net force at zero while the floor still has contact (the normal force absorbs anything below). When `F·sin θ` exceeds `mg`, the clamp releases and the block lifts off along the true net-force direction. Continuous transition — no jumps at threshold.
+
+Verified browser-side that all three regimes render correctly:
+- F=10, m=2, θ=45° → block stays on floor, a=3.54 m/s² horizontal, N=12.5 N
+- F=20, m=2, θ=75° → "ON THE EDGE", N=0.3 N, a=2.59 m/s² horizontal
+- F=50, m=2, θ=80° → "LIFT-OFF", N=0.0 N, block flies at 74° with a=15.44 m/s²
+
+Live status label switches between "ON FLOOR / ON THE EDGE / LIFT-OFF" based on the threshold; live arrows for `mg` (red, constant) and `N` (yellow, shrinks as θ grows) make the constraint visible. Updated teacher script teaches the deeper truth: *a is parallel to the NET force, not just the applied F. The floor is part of the story.*
+
+### STATE_4 freeze-frame design
+
+Replaced the looping live block with 4 sequential ghost blocks at parabolic positions matching `x = 0.5·a·t²` (1:4:9 ratio along the floor). Each appears every 3 seconds via `appear_at_ms`, in sync with the teacher script. Each carries:
+- A "t = N s" label on the block
+- A velocity arrow whose magnitude grows: 0 → 5 → 10 → 15 m/s (same direction, bigger arrow)
+- A per-block calculation label: "v = 5 × N = M"
+
+Final phase reveals the v(t)=a·t formula box and the "v is the build-up" insight callout. Duration extended 13s → 16s; 6 TTS sentences (was 4) walk through each freeze frame.
+
+### STATE_6 cinematic 2-phase design
+
+**Phase 1 (0-7.5s — wide trajectory):** cannon at bottom-left, ball launches at 60°, full parabolic arc traced by 10 smooth arc segments (40px x-spacing), 5 ghost balls along the trajectory marking key timestamps including the peak. v / F=mg / a vectors fade in sequentially attached to the live ball.
+
+**Phase 2 (8-10.5s — camera zoom transition):** `smooth_camera` activates at `appear_at_ms: 8000`, tracks the ball with zoom 1.9× over 2.5s. Decorations (cannon, ground, arc segments, ghost balls, peak label, scene title) all have `disappear_at_ms: 8000` + `fade_out_ms: 700` and gracefully exit during the transition.
+
+**Phase 3 (10.5s+):** clean view — only the ball + the 3 vectors remain. Pedagogically isolates the lesson: F=mg is constant downward, a is constant downward (same direction), v is what evolves.
+
+### Files modified across the session
+
+```
+src/data/concepts/newton_second_law_direction.json    (~1500 lines, ~3x growth from Day 1)
+src/lib/renderers/parametric_renderer.ts              (renderer extensions)
+src/lib/renderers/premium_primitives.ts               (smooth_camera appear_at_ms)
+src/lib/renderers/animation_vocabulary.ts             (added projectile to whitelist)
+PROGRESS.md                                           (this entry)
+```
+
+### Verification (end of session)
+
+```
+npx tsc --noEmit                                            → 0 errors
+npm run validate:concepts -- newton_second_law_direction    → PASS (61/61 atomic)
+git push origin master                                      → all 9 commits on origin
+git log origin/master..HEAD                                 → empty (working tree clean)
+```
+
+Browser smoke confirmed for every state at multiple state-clock timestamps including STATE_6 wide phase (t≈4s) and zoomed phase (t≈12s), STATE_4 freeze frames (t≈11s with all 4 blocks visible), STATE_7 with three slider configurations exercising all three physics regimes.
+
+### Lessons baked in from this session
+
+- **Circle bodies require `size` as a single number, not `{w, h}`.** `parametric_renderer.ts:903` checks `typeof spec.size === 'number'` for the `isCircle` gate; an object-format size silently fails the gate and the body never renders. Cost me one full debug round in STATE_6.
+- **Backticks inside comments break template literals.** The renderer JS lives inside an `export const = \`…\`` template literal at the top of `parametric_renderer.ts`. A markdown-style code-quote in a JS comment ends the literal and the rest of the file becomes invalid TS. Use `'accel_expr'` or `\`\`accel_expr\`\`` style, never bare \` in comments.
+- **JSON-only physics is a force-multiplier.** STATE_7's floor-constrained physics is ~150 chars of expression in the concept JSON; the renderer didn't need to know about gravity, normal force, or floor contact. Encoding the physics in expressions instead of in renderer code keeps the renderer general-purpose and lets future concepts (incline + friction + applied force, etc.) compose the same primitives.
+- **Push gate is procedural.** 9 commits sat local for the entire session until "push it" fired — exactly as designed. Worth re-stating in PROGRESS narrative pattern: every session ends in "committed locally, push pending Pradeep approval".
+
+### Next session — Sim 3 (Phase 0 final demo): ELECTROSTATICS
+
+User-stated direction: *"start next section with best and advanced and excellent electrostatic last demo simulation."*
+
+This is the third and final Phase 0 validation demo. Sim 1 = vector_head_to_tail (Ch.4), Sim 2 = newton_second_law_direction (Ch.8), Sim 3 = electrostatics (Class 12 Ch.1). With Sim 3 shipped, Phase 0 has its three flagship concepts demonstrated end-to-end across mechanics + electricity, ready for the marketing/distribution next step.
+
+Day 1 plan for session 60 (Sim 3):
+
+1. **Atomic boundary check** (CLAUDE.md §5 — non-negotiable session-57 lesson). DC Pandey/NCERT atomic concept candidates: Coulomb's Law (force between two point charges), electric field due to point charge, electric potential, Gauss's law for symmetric distributions, capacitance of parallel-plate capacitor. Decide which atomic concept gets the flagship demo treatment based on (a) misconception density in `student_confusion_log`, (b) board+JEE overlap, (c) visual richness potential. Recommend: **Coulomb's Law / Electric Field of a Point Charge** as the entry concept — purest direction-and-magnitude payoff, most-confused with gravity ("why does it fall off as 1/r² too?"), and the visual is dramatically richer than F=ma (radial field lines, equipotential surfaces, charge interactions).
+2. **Grep `src/data/concepts/` for overlap** — confirm no existing JSON covers the chosen atomic concept (none expected; Phase 0's electrostatics surface is currently empty).
+3. **Author `coulombs_law.json`** (or equivalent) end-to-end: 6-7 EPIC-L states + 4 EPIC-C branches + board mode skeleton with mark scheme + competitive shortcuts. Hooks: Indian-context anchor (e.g. lightning + tower, balloon + hair, doorknob spark in winter Delhi).
+4. **Physics engine TS** for the chosen concept (Coulomb force, field magnitude/direction, superposition).
+5. **All 9 registration sites** (the "6" the docs claim, the 9 the codebase actually has — see session-59 lesson above; until CLAUDE.md §6 is updated to 9, refer to the table at PROGRESS.md line 107).
+6. **Admin test page + proxy bypass.**
+7. **Verification gates:** `tsc 0` + `validate:concepts coulombs_law PASS` + browser smoke at `/admin/test-coulombs-law` with 0 console errors + STATE_1 default-variable self-consistency check.
+8. **Push gate** held until Pradeep's "push it".
+
+Premium primitives stockpile available out-of-the-box for Sim 3: `projectile` (charged-particle trajectory in field), `slide_horizontal` with `accel_expr` (charged block under E·q/m acceleration), `smooth_camera` (zoom into the small charge to show local field), `disappear_at_ms` + `fade_out_ms` (decorate-then-isolate cinematic pattern), `glow_focus`, `animated_path`, `sound_cue`. Strongly suggest re-using the 2-phase wide-then-zoom pattern from Sim 2 STATE_6 for any electrostatics state where the field structure is best understood at two scales (whole-system field map → local force on a single charge).
+
+### Blockers
+
+None. `origin/master` clean, pipeline green, push gate cleared, ready for Sim 3.
+
+---
+
 ## 2026-05-06 (session 59) — Sim 2 Day 1 SHIPPED: newton_second_law_direction concept authored end-to-end (6 EPIC-L states + 4 EPIC-C branch heads + board mode skeleton with 5-mark scheme + competitive shortcuts/edges); physics engine TS + iframe compute pair; registered at all 6 sites; admin test page renders all 6 states clean; tsc 0 errors, validate:concepts 61/61 PASS; session 57's 267ed54 pushed to origin earlier this session; session 58's a017980 also pushed
 
 ### Top-line outcome

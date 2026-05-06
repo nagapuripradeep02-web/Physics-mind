@@ -87,6 +87,10 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
     'newton_second_law_direction',
+    // Magnetic field of a long straight current-carrying wire + right-hand rule
+    // (Class 12 Ch.4.4 — Phase 0 validation demo Sim 3, session 60). First field_3d
+    // (Three.js) concept authored end-to-end; routed via CONCEPT_RENDERER_MAP.
+    'magnetic_field_wire',
 ]);
 
 // Synonyms → canonical IDs. Gemini/Flash often return physicist-common synonyms

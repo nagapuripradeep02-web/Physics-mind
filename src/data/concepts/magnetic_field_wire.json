@@ -1,0 +1,583 @@
+{
+  "concept_id": "magnetic_field_wire",
+  "concept_name": "Magnetic Field of a Long Straight Current-Carrying Wire (Right-Hand Rule)",
+  "chapter": 4,
+  "section": "4.4",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.4 (Magnetic field due to a current element / long straight wire) — table-of-contents reference only; teaching authored from first principles. Phase 0 validation demo Sim 3 (session 60, Day 1). The atomic concept being taught is the *direction* and *magnitude* of B around a long straight current-carrying wire: B forms concentric circles in planes perpendicular to the wire, direction by right-hand rule (thumb along I, fingers curl B), magnitude B = μ₀I/(2πr). This is the most-confused concept in Class 12 magnetism: students think B points along I, conflate × / · with current direction, and try to do the right-hand rule on flat paper. Three.js makes the 3D-ness visible.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["straight_wire_current"]
+  },
+  "prerequisites": [
+    "vector_resolution",
+    "current_not_vector"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture a USB cable plugged into a power bank charging your phone. A small steady current flows in the wire. Hold a magnetic compass within a few centimeters of the wire. Watch the needle swing — it does NOT point to magnetic north anymore; it tilts perpendicular to the wire. Switch off the current — the needle snaps back. The wire creates a magnetic field that wraps around it in 3D circles, strong enough to overpower Earth's field at close range.",
+    "secondary": "Picture an overhead high-tension power line above a Delhi street. Hundreds of amperes flow through it. Standing directly below with a sensitive compass, you would see the needle deflect perceptibly even from several meters away — because B falls off only as 1/r, not 1/r², and the current is enormous.",
+    "tertiary": "Picture an MRI machine's main coil — a current-carrying tube with the patient inside. The tube creates a magnetic field along its axis (this is actually a solenoid, but each turn is a loop, and each tiny segment of each loop is a tiny straight current-carrying piece). The whole field of the machine is just countless straight-wire B-fields added up. Master the single straight wire, you understand every magnet in the world."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I": {
+        "name": "Current in the wire",
+        "unit": "A",
+        "min": 0.5,
+        "max": 20,
+        "default": 5,
+        "step": 0.5
+      },
+      "r": {
+        "name": "Perpendicular distance from wire to field point",
+        "unit": "m",
+        "min": 0.02,
+        "max": 0.30,
+        "default": 0.05,
+        "step": 0.01
+      },
+      "mu_0": {
+        "name": "Magnetic permeability of free space",
+        "unit": "T·m/A",
+        "constant": 1.2566370614e-6
+      }
+    },
+    "computed_outputs": {
+      "B_magnitude": {
+        "formula": "(mu_0 * I) / (2 * PI * r)"
+      },
+      "B_microtesla": {
+        "formula": "((mu_0 * I) / (2 * PI * r)) * 1e6"
+      }
+    },
+    "formulas": {
+      "biot_savart_long_wire": "B = μ₀ · I / (2π · r)",
+      "direction": "B is tangent to the circle of radius r centered on the wire, in the plane perpendicular to the wire at the field point",
+      "right_hand_rule": "Point right thumb along current I; curled fingers give the sense (clockwise/counter-clockwise) of B around the wire"
+    },
+    "constraints": [
+      "Wire is treated as infinitely long and infinitesimally thin (idealization holds when r << wire length and r >> wire diameter)",
+      "B-field at any point depends ONLY on the perpendicular distance r from the wire — not on position along the wire",
+      "B is everywhere perpendicular to the radial direction (tangent to the circle through the point)",
+      "B has zero radial component and zero axial component — purely azimuthal in cylindrical coordinates around the wire",
+      "Direction reverses if the current direction reverses (right-hand rule respects sign of I)"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 26
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "B forms 3D circles around the wire — never along it.",
+    "visual_confirmation": "Drag the camera around the wire; circles look the same shape from every angle, only the perspective changes."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3"],
+    "exploration": ["STATE_4", "STATE_5", "STATE_6", "STATE_7"]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Oersted's Hook — A Current Deflects a Compass",
+        "duration": 12,
+        "focal_primitive_id": "wire_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "wire_label",
+            "position": { "x": 380, "y": 80 },
+            "text": "Straight wire — current OFF",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "scenario_label",
+            "position": { "x": 380, "y": 440 },
+            "text": "1820: Hans Christian Oersted",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "compass_callout",
+            "position": { "x": 600, "y": 250 },
+            "text": "compass needle\n(imagine it nearby)",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Imagine a simple straight wire, connected to a battery, but the switch is open — no current flows yet." },
+            { "id": "s1_2", "text_en": "Place a magnetic compass needle right next to the wire. The needle points to magnetic north — boring, expected." },
+            { "id": "s1_3", "text_en": "Now close the switch. The compass needle instantly swings — it deflects perpendicular to the wire." },
+            { "id": "s1_4", "text_en": "Hans Christian Oersted discovered this in 1820. A current-carrying wire is a magnet. But where is the field, and which way does it point?" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The Magnetic Field — 3D Circles Around the Wire",
+        "duration": 14,
+        "focal_primitive_id": "field_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Magnetic field — full 3D",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "drag_hint",
+            "position": { "x": 380, "y": 460 },
+            "text": "Drag to rotate. Field circles loop around the wire at every height.",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "current_label",
+            "position": { "x": 600, "y": 100 },
+            "text": "I (current direction)",
+            "color": "#FFAB40"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "With current flowing, the wire produces a magnetic field that fills the space around it." },
+            { "id": "s2_2", "text_en": "But here is the surprise: the field does NOT point along the wire. And it does NOT point radially away from the wire either." },
+            { "id": "s2_3", "text_en": "Drag the camera to rotate the view. You see the field forms perfect circles that loop around the wire." },
+            { "id": "s2_4", "text_en": "These are not 2D circles on paper. They are real 3D circles in three-dimensional space — at every height along the wire, a stack of circles." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "B points in the same direction as I (along the wire)",
+            "visual_counter": "Rotate the camera; observe that the field arrows are tangent to circles, never parallel to the wire.",
+            "one_line_fix": "B is perpendicular to the wire at every point — it circles around, never along."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Right-Hand Rule — Use Your Hand to Find the Direction",
+        "duration": 14,
+        "focal_primitive_id": "rhr_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rhr_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Right-Hand Rule",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "thumb_label",
+            "position": { "x": 200, "y": 200 },
+            "text": "Thumb → current direction (up the wire)",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "fingers_label",
+            "position": { "x": 560, "y": 320 },
+            "text": "Fingers curl → B-field direction\n(counter-clockwise from above)",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "How do you find which way the B-field circles go? Use your right hand." },
+            { "id": "s3_2", "text_en": "Point your right thumb in the direction the current flows — here, upward along the wire." },
+            { "id": "s3_3", "text_en": "Now curl your fingers naturally. The way your fingers curl is the direction of the B-field circles." },
+            { "id": "s3_4", "text_en": "If the current flowed downward instead, the curl would reverse — fingers go the other way." },
+            { "id": "s3_5", "text_en": "Question for you: looking down at the wire from above with current going UP, do the field circles go clockwise or counter-clockwise?" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Use the left hand because that is the natural one to wrap",
+            "one_line_fix": "Always RIGHT hand for B around current — the convention is fixed by the cross-product right-hand rule, never the left."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Magnitude — B = μ₀I / (2πr)",
+        "duration": 14,
+        "focal_primitive_id": "formula_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "formula_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "B = μ₀ · I / (2π · r)",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "decay_label",
+            "position": { "x": 380, "y": 460 },
+            "text": "B weakens as 1/r — outer rings are dimmer",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "numeric_label",
+            "position": { "x": 600, "y": 250 },
+            "text": "I = 5 A, r = 5 cm\n→ B = 2 × 10⁻⁵ T",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "How strong is the magnetic field at a perpendicular distance r from the wire?" },
+            { "id": "s4_2", "text_en": "B equals mu-naught times I divided by 2 pi r. Mu-naught is a tiny constant: 4 pi times 10 to the minus 7 tesla-meter per ampere." },
+            { "id": "s4_3", "text_en": "Notice the 1 over r. The closer you go, the stronger the field. The farther, the weaker. Each doubling of distance halves the field." },
+            { "id": "s4_4", "text_en": "Look at the rings. The inner circles are bright; the outer circles are dim. Same current, but the field decays as 1 over r." },
+            { "id": "s4_5", "text_en": "For 5 amperes at 5 centimeters, B is 2 times 10 to the minus 5 tesla — about half the Earth's magnetic field at the surface." }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "B at a Single Point — Tangent to the Circle",
+        "duration": 12,
+        "focal_primitive_id": "point_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "point_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Pick one point P — which way does B point?",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "tangent_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "B at P is TANGENT to this circle\n(not radial, not along wire)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "perp_plane_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "B ⊥ plane containing wire and P",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Pick a single point P next to the wire. Which way does the B-field point exactly there?" },
+            { "id": "s5_2", "text_en": "The answer: B is tangent to the circle through P. Not radial, not along the wire — tangent." },
+            { "id": "s5_3", "text_en": "Equivalently, B is perpendicular to the plane that contains both the wire and the point P." },
+            { "id": "s5_4", "text_en": "Use the right-hand rule again: thumb up the wire, fingers tell you which way the tangent points at P." }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Bridge to 2D — Where × and · Come From",
+        "duration": 14,
+        "focal_primitive_id": "topdown_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "topdown_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Looking straight DOWN the wire from above",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "into_page_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "× = INTO the page\n(circle going away)",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "out_of_page_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "· = OUT of page\n(circle coming toward you)",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Most physics textbooks draw this in 2D. Let me rotate the camera to look straight down at the wire from above." },
+            { "id": "s6_2", "text_en": "Now you see the field circles head-on. On one side of the wire, the circles point INTO the page. On the other side, they point OUT of the page." },
+            { "id": "s6_3", "text_en": "Textbooks draw a cross — the multiplication sign — for INTO the page. And a dot for OUT of the page." },
+            { "id": "s6_4", "text_en": "These symbols are NOT showing the current direction. They show the B-field direction at that specific point in 2D." },
+            { "id": "s6_5", "text_en": "Now when you see × and · in any diagram, you know they are just the two ends of a 3D circle around a wire — flattened to fit on paper." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "× and · show which way the current flows",
+            "one_line_fix": "× and · in B-field diagrams show the FIELD direction at that point, not the current. Look at what the symbol is labeling."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore — Rotate, Zoom, Find B at Any Angle",
+        "duration": 16,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Drag to rotate. Scroll to zoom.",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "challenge_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "Test yourself: at a point ABOVE-RIGHT of the wire,\nwhich way does B point? (Use your right hand)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_insight_label",
+            "position": { "x": 380, "y": 460 },
+            "text": "Same wire, same current — one shape (circles), one rule (right hand).",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Now you explore. Drag to rotate the view. Scroll to zoom in or out. Look at the wire from any angle you like." },
+            { "id": "s7_2", "text_en": "Notice how the same field looks completely different from each angle — but the physics is unchanged." },
+            { "id": "s7_3", "text_en": "Test yourself: at a point above-right of the wire, which way does B point? Use the right-hand rule to decide." },
+            { "id": "s7_4", "text_en": "Same wire, same current — and the field has just one shape: circles around the wire. The right-hand rule tells you the sense." }
+          ]
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "b_points_along_current",
+      "misconception": "The B-field points in the same direction as the current — it flows along the wire just like the current does.",
+      "trigger_phrases": [
+        "B is along the wire",
+        "field points where current points",
+        "magnetic field is parallel to current",
+        "B in the direction of I"
+      ],
+      "state_sequence": ["STATE_2", "STATE_3"]
+    },
+    {
+      "branch_id": "cross_dot_means_current",
+      "misconception": "The × and · symbols in textbook diagrams indicate the direction of the current (× = current into page, · = current out of page).",
+      "trigger_phrases": [
+        "cross means current into page",
+        "dot is current out",
+        "× and · show current direction"
+      ],
+      "state_sequence": ["STATE_6"]
+    },
+    {
+      "branch_id": "b_field_is_2d",
+      "misconception": "The magnetic field exists only in the 2D plane of the textbook page — the field lines are flat curves on paper, not 3D circles.",
+      "trigger_phrases": [
+        "field is in the page",
+        "B is 2D",
+        "field lines are flat",
+        "field exists on paper"
+      ],
+      "state_sequence": ["STATE_2", "STATE_5"]
+    },
+    {
+      "branch_id": "left_hand_for_current",
+      "misconception": "Use the left hand for current direction and the right hand for the magnetic force, because that is the natural way to wrap the hand around a vertical wire.",
+      "trigger_phrases": [
+        "left hand rule for B",
+        "use left hand to wrap",
+        "left hand thumb is current"
+      ],
+      "state_sequence": ["STATE_3"]
+    }
+  ],
+  "field_3d_config": {
+    "scenario_type": "straight_wire_current",
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#66BB6A",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85,
+      "arrow_spacing": 5
+    },
+    "current": {
+      "direction": [0, 1, 0],
+      "magnitude": 5,
+      "wire_color": "#FFAB40"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Oersted's discovery",
+        "visible_elements": ["wire_main"],
+        "camera_position": [3, 3, 5],
+        "caption": "1820: a current-carrying wire deflects a compass. Why?"
+      },
+      "STATE_2": {
+        "label": "B circles around the wire (3D)",
+        "visible_elements": [],
+        "camera_position": [4, 2, 4],
+        "caption": "The B-field forms 3D circles around the wire. Drag to rotate."
+      },
+      "STATE_3": {
+        "label": "Right-hand rule",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire_1", "arr_wire_1"],
+        "camera_position": [2.5, 1.2, 3.5],
+        "caption": "Right hand: thumb up (current), fingers curl (B-field direction)."
+      },
+      "STATE_4": {
+        "label": "Magnitude: B = μ₀ I / (2π r)",
+        "visible_elements": [],
+        "camera_position": [4, 0.5, 4],
+        "caption": "B falls as 1/r — outer rings (larger r) are weaker than inner rings."
+      },
+      "STATE_5": {
+        "label": "B at point P — tangent to the circle",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire_1_2", "arr_wire_1_2"],
+        "camera_position": [2.5, 0.5, 3],
+        "caption": "B at P is tangent to the circle through P (not radial, not along wire)."
+      },
+      "STATE_6": {
+        "label": "Top-down: × and · emerge",
+        "visible_elements": [],
+        "camera_position": [0.1, 7, 0.1],
+        "caption": "Looking straight down: each circle becomes ⊗ (into page) on one side, ⊙ (out) on the other."
+      },
+      "STATE_7": {
+        "label": "Free explore",
+        "visible_elements": [],
+        "camera_position": [3, 3, 5],
+        "caption": "Drag to rotate. Scroll to zoom. Predict B at any point — then check."
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  },
+  "mode_overrides": {
+    "board": {
+      "canvas_style": "answer_sheet",
+      "epic_l_path": {
+        "states": {
+          "STATE_1": {
+            "teacher_script": {
+              "tts_sentences": [
+                { "id": "b1_1", "text_en": "Step 1: Draw the wire as a vertical line. Mark the current direction with an arrow. Label it I = 5 A." },
+                { "id": "b1_2", "text_en": "State Oersted's observation in one line: a current-carrying conductor produces a magnetic field around it." }
+              ]
+            }
+          },
+          "STATE_3": {
+            "teacher_script": {
+              "tts_sentences": [
+                { "id": "b3_1", "text_en": "Step 2: State the right-hand rule. Right thumb along I; curled fingers give B direction." },
+                { "id": "b3_2", "text_en": "Draw a small circle around the wire and mark the direction of B with arrows." }
+              ]
+            }
+          },
+          "STATE_4": {
+            "teacher_script": {
+              "tts_sentences": [
+                { "id": "b4_1", "text_en": "Step 3: Write the magnitude formula. B equals mu-naught I over 2 pi r." },
+                { "id": "b4_2", "text_en": "Step 4: Substitute. mu-naught equals 4 pi times 10 to the minus 7. I equals 5. r equals 0.05." },
+                { "id": "b4_3", "text_en": "Step 5: Compute. B equals 2 times 10 to the minus 5 tesla. Mark the direction tangent to the circle at the field point." }
+              ]
+            }
+          }
+        }
+      },
+      "derivation_sequence": [
+        { "step": 1, "tied_to_state": "STATE_1", "writes": "Setup: Long straight wire, current I = 5 A flowing vertically upward.", "marks": 1 },
+        { "step": 2, "tied_to_state": "STATE_3", "writes": "Direction: By right-hand rule, B forms concentric circles around the wire (anti-clockwise when current is upward, viewed from above).", "marks": 1 },
+        { "step": 3, "tied_to_state": "STATE_4", "writes": "Formula: B = μ₀ I / (2π r)  [Biot-Savart for an infinite straight wire]", "marks": 1 },
+        { "step": 4, "tied_to_state": "STATE_4", "writes": "Substitution: B = (4π × 10⁻⁷)(5) / (2π × 0.05) = (4 × 5 × 10⁻⁷) / (2 × 0.05) = 2 × 10⁻⁵ T", "marks": 1 },
+        { "step": 5, "tied_to_state": "STATE_5", "writes": "Direction at point P: tangent to the circle of radius r through P, in the plane perpendicular to the wire at that height.", "marks": 1 }
+      ],
+      "mark_scheme": {
+        "total_marks": 5,
+        "items": [
+          { "marks": 1, "criterion": "Correctly identifies the setup (long straight wire, current direction, field point at distance r)" },
+          { "marks": 1, "criterion": "States right-hand rule for B-field direction around the wire" },
+          { "marks": 1, "criterion": "Writes the correct formula B = μ₀I/(2πr) with all symbols defined" },
+          { "marks": 1, "criterion": "Substitutes numerical values correctly with consistent SI units" },
+          { "marks": 1, "criterion": "States the final B with magnitude AND direction (tangent specification)" }
+        ]
+      }
+    },
+    "competitive": {
+      "shortcuts": [
+        {
+          "id": "tesla_quick_compute",
+          "title": "Quick magnitude in microtesla",
+          "rule": "B (in μT) ≈ 0.2 × I/r when I is in A and r is in cm. Derived from B = μ₀I/(2πr) with the constants pre-multiplied."
+        },
+        {
+          "id": "doubling_rule",
+          "title": "Distance doubling halves B",
+          "rule": "Because B ∝ 1/r, every doubling of r halves B. Useful for ratio questions: 'B at 2r is half B at r.'"
+        },
+        {
+          "id": "current_doubling",
+          "title": "Current doubling doubles B",
+          "rule": "Because B ∝ I, every doubling of current doubles B at the same point. Linear in I, inverse in r."
+        },
+        {
+          "id": "rhr_quick",
+          "title": "RHR cheat for 2D problems",
+          "rule": "If current ⊙ (out of page): B circles anti-clockwise around it. If current ⊗ (into page): B circles clockwise. Memorize once, apply everywhere."
+        }
+      ],
+      "edge_cases": [
+        {
+          "id": "point_on_wire",
+          "case": "Point ON the wire itself",
+          "answer": "B → ∞ in the idealization (1/r diverges as r → 0). In practice, the wire has finite radius and the formula B = μ₀I/(2πr) is replaced by B = μ₀Ir/(2πR²) inside, where R is the wire radius."
+        },
+        {
+          "id": "finite_wire",
+          "case": "Finite-length wire (not infinite)",
+          "answer": "Use the modified formula B = μ₀I (sin θ₁ + sin θ₂) / (4πr), where θ₁ and θ₂ are angles from the perpendicular to the wire ends. Reduces to μ₀I/(2πr) in the infinite limit (θ₁, θ₂ → 90°)."
+        },
+        {
+          "id": "two_parallel_wires",
+          "case": "Two parallel wires carrying I₁ and I₂",
+          "answer": "Use superposition: B at any point is the vector sum of the two individual circular B-fields. If currents are parallel, fields between them oppose; if anti-parallel, fields between them add."
+        },
+        {
+          "id": "point_on_wire_axis",
+          "case": "Point on the axis of the wire (extended) — not perpendicular to the wire",
+          "answer": "Trick question. The wire's B-field has zero axial component. B at any point on the wire's axis (extended infinitely) is zero — the right-hand rule has no perpendicular distance r to point at."
+        },
+        {
+          "id": "ac_current",
+          "case": "Alternating current (AC) instead of DC",
+          "answer": "Same formula B = μ₀I(t)/(2πr) applies instantaneously, with I(t) = I₀ sin(ωt). The B-field oscillates with the current — useful for understanding electromagnetic waves and induction."
+        }
+      ]
+    }
+  }
+}
