@@ -11,7 +11,11 @@ import { PREMIUM_PRIMITIVES_CODE } from '@/lib/renderers/premium_primitives';
 export interface ParametricConfig {
     concept_id: string;
     scene_composition: unknown[];
-    states?: Record<string, { scene_composition?: unknown[] }>;
+    states?: Record<string, {
+        scene_composition?: unknown[];
+        focal_primitive_id?: string;
+        focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }>;
+    }>;
     default_variables: Record<string, number>;
     current_state?: string;
     precomputed_physics?: unknown;
@@ -391,24 +395,37 @@ function PM_animationGate(spec) {
 }
 
 // ── Focal-primitive pulse ─────────────────────────────────────────────────
-// When the current state's focal_primitive_id matches spec.id, apply a soft
-// 1200ms pulse (alpha boost + 1.08x glow) centered on the end of the primitive's
-// reveal. Returns a scale multiplier for stroke/text-size. Non-focal primitives
-// return 1.0 unchanged.
+// When the current state's focal primitive matches spec.id, apply a continuous
+// sine pulse (1 + 0.12 * sin wave) so the student's eye follows the narration.
+// Focal source priority:
+//   1. focal_sequence[] — timed per-sentence switching (highlight_primitive_id + duration_ms)
+//   2. focal_primitive_id — static fallback for the whole state
+// Returns a scale multiplier ≥1. Non-focal primitives return 1.0.
 function PM_focalPulseScale(spec) {
   if (!spec || !spec.id) return 1;
   var stateData = PM_config && PM_config.states && PM_config.states[PM_currentState];
-  var focalId = stateData && stateData.focal_primitive_id;
-  if (!focalId || focalId !== spec.id) return 1;
-  var appearAt = (typeof spec.appear_at_ms === 'number') ? spec.appear_at_ms : 0;
-  var animMs = (typeof spec.animate_in_ms === 'number') ? spec.animate_in_ms : 0;
-  var pulseStart = appearAt + animMs;
-  var pulseDur = 1200;
+  if (!stateData) return 1;
   var elapsed = millis() - PM_stateEnterTime;
-  if (elapsed < pulseStart || elapsed > pulseStart + pulseDur) return 1;
-  var phase = (elapsed - pulseStart) / pulseDur; // 0..1
-  // Half-sine bump: 1 + 0.08 * sin(pi * phase) peaks at phase=0.5.
-  return 1 + 0.08 * Math.sin(Math.PI * phase);
+
+  // Priority 1: focal_sequence — cycle through highlight_primitive_id by time
+  var seq = stateData.focal_sequence;
+  var focalId = null;
+  if (seq && seq.length > 0) {
+    var cum = 0;
+    for (var i = 0; i < seq.length; i++) {
+      cum += (seq[i].duration_ms || 3000);
+      if (elapsed < cum) { focalId = seq[i].highlight_primitive_id; break; }
+    }
+    // After all segments, keep last
+    if (focalId === null) focalId = seq[seq.length - 1].highlight_primitive_id;
+  }
+
+  // Priority 2: static focal_primitive_id
+  if (!focalId) focalId = stateData.focal_primitive_id;
+
+  if (!focalId || focalId !== spec.id) return 1;
+  // Continuous sine pulse so the active arrow always glows while it is focal.
+  return 1 + 0.12 * Math.sin(elapsed / 400 * Math.PI);
 }
 
 // ── Annotation overlap resolver ───────────────────────────────────────────

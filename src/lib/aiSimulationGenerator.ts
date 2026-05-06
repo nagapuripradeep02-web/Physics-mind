@@ -2958,11 +2958,45 @@ export function applyBoardMode(conceptJson: unknown, examMode?: string): BoardMo
     }
 
     const srcStates = src.epic_l_path?.states ?? {};
+    // Board mode is answer-sheet-first: derivation builds top-to-bottom across
+    // states like a real exam answer. Accumulate primitives so STATE_N shows
+    // STATE_1..STATE_N. Auto-detect a "new page" when the next state's first
+    // primitive y is *above* the current page's max y (the author restarted
+    // the layout) — clear the accumulator and start fresh. Without this,
+    // students see each state's text alone on a near-empty canvas.
     const mergedStates: Record<string, { scene_composition?: unknown } & Record<string, unknown>> = {};
+    let pagePrims: unknown[] = [];
+    let pageMaxY = -Infinity;
+    type PrimWithPos = { position?: { y?: number } };
+    const minY = (prims: unknown[]): number => {
+        let m = Infinity;
+        for (const p of prims) {
+            const y = (p as PrimWithPos)?.position?.y;
+            if (typeof y === 'number' && y < m) m = y;
+        }
+        return m;
+    };
+    const maxY = (prims: unknown[]): number => {
+        let m = -Infinity;
+        for (const p of prims) {
+            const y = (p as PrimWithPos)?.position?.y;
+            if (typeof y === 'number' && y > m) m = y;
+        }
+        return m;
+    };
     for (const [stateKey, stateValue] of Object.entries(srcStates)) {
         const overridePrims = derivation[stateKey]?.primitives;
-        if (Array.isArray(overridePrims)) {
-            mergedStates[stateKey] = { ...stateValue, scene_composition: overridePrims };
+        if (Array.isArray(overridePrims) && overridePrims.length > 0) {
+            const stateMin = minY(overridePrims);
+            const stateMax = maxY(overridePrims);
+            if (stateMin < pageMaxY) {
+                pagePrims = [...overridePrims];
+                pageMaxY = stateMax;
+            } else {
+                pagePrims = [...pagePrims, ...overridePrims];
+                pageMaxY = Math.max(pageMaxY, stateMax);
+            }
+            mergedStates[stateKey] = { ...stateValue, scene_composition: pagePrims };
         } else {
             mergedStates[stateKey] = stateValue;
         }
@@ -5663,7 +5697,26 @@ export async function generateSimulation(
                             ? ((states[firstKey] as { scene_composition?: unknown[] }).scene_composition ?? [])
                             : [];
                     })(),
-                    states: (epicLStates as Record<string, { scene_composition?: unknown[] }>) ?? {},
+                    states: (() => {
+                        const raw = (epicLStates as Record<string, {
+                            scene_composition?: unknown[];
+                            focal_primitive_id?: string;
+                            teacher_script?: { tts_sentences?: Array<{ id?: string; pause_after_ms?: number; highlight_primitive_id?: string }> };
+                        }>) ?? {};
+                        const out: Record<string, { scene_composition?: unknown[]; focal_primitive_id?: string; focal_sequence?: Array<{ highlight_primitive_id: string; duration_ms: number }> }> = {};
+                        for (const [sid, s] of Object.entries(raw)) {
+                            const sentences = s.teacher_script?.tts_sentences ?? [];
+                            const focal_sequence = sentences
+                                .filter(sen => !!sen.highlight_primitive_id)
+                                .map(sen => ({ highlight_primitive_id: sen.highlight_primitive_id!, duration_ms: sen.pause_after_ms ?? 3000 }));
+                            out[sid] = {
+                                scene_composition: s.scene_composition,
+                                focal_primitive_id: s.focal_primitive_id,
+                                ...(focal_sequence.length > 0 ? { focal_sequence } : {}),
+                            };
+                        }
+                        return out;
+                    })(),
                     default_variables: (Object.keys(peDefaultVars).length > 0
                         ? peDefaultVars
                         : (
