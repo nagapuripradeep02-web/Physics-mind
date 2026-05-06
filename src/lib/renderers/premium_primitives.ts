@@ -426,6 +426,12 @@ function PM_collectSmoothCamera(scene) {
 function PM_beginSmoothCameraIfActive(scene) {
   var cam = PM_collectSmoothCamera(scene);
   if (!cam) { PM_camState.active = false; return; }
+  // appear_at_ms gating — let the camera zoom kick in mid-state instead of at
+  // state entry. Used by STATE_6 of newton_second_law_direction so the wide
+  // projectile view plays first, THEN the camera zooms in on the ball.
+  var camAppearAt = (typeof cam.appear_at_ms === 'number') ? cam.appear_at_ms : 0;
+  var stateElapsed = millis() - PM_stateEnterTime;
+  if (stateElapsed < camAppearAt) { PM_camState.active = false; return; }
   PM_resetPremiumStateIfNeeded();
   // Latch target on first sight per state.
   var targetZoom = (typeof cam.zoom === 'number') ? cam.zoom : 1;

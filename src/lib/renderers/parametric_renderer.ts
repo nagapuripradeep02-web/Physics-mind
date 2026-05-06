@@ -418,9 +418,20 @@ function PM_animationGate(spec) {
   if (!spec) return { visible: true, alpha: 1 };
   var appearAt = (typeof spec.appear_at_ms === 'number') ? spec.appear_at_ms : 0;
   var animMs = (typeof spec.animate_in_ms === 'number') ? spec.animate_in_ms : 0;
-  if (appearAt <= 0 && animMs <= 0) return { visible: true, alpha: 1 };
+  var disappearAt = (typeof spec.disappear_at_ms === 'number') ? spec.disappear_at_ms : Infinity;
+  var fadeOutMs = (typeof spec.fade_out_ms === 'number') ? spec.fade_out_ms : 0;
+  if (appearAt <= 0 && animMs <= 0 && disappearAt === Infinity) return { visible: true, alpha: 1 };
   var elapsed = millis() - PM_stateEnterTime;
   if (elapsed < appearAt) return { visible: false, alpha: 0 };
+  // Fade-out phase (after disappear_at_ms): alpha lerps 1 → 0 over fade_out_ms,
+  // then visible=false. Lets STATE_6 fade out the trajectory + ghost balls + cannon
+  // mid-state so the camera zoom can isolate the live ball cleanly.
+  if (elapsed >= disappearAt) {
+    if (fadeOutMs <= 0) return { visible: false, alpha: 0 };
+    var fadeProgress = Math.min(1, Math.max(0, (elapsed - disappearAt) / fadeOutMs));
+    if (fadeProgress >= 1) return { visible: false, alpha: 0 };
+    return { visible: true, alpha: 1 - fadeProgress };
+  }
   if (animMs <= 0) return { visible: true, alpha: 1 };
   var progress = Math.min(1, Math.max(0, (elapsed - appearAt) / animMs));
   return { visible: true, alpha: progress };
@@ -646,6 +657,12 @@ function drawStickman(x, y, size, rgb) {
 }
 
 function drawBody(spec) {
+  // appear_at_ms / disappear_at_ms gating — bodies (blocks, balls, cannons, ghosts)
+  // can fade in / fade out per-state for cinematic choreography. STATE_6 of
+  // newton_second_law_direction uses disappear_at_ms to clear cannon + ground +
+  // ghost balls when the camera zooms in on the live ball.
+  var bodyGate = PM_animationGate(spec);
+  if (!bodyGate.visible) return;
   // P6 — attach_to_surface: if present and surface exists, compute the attach
   // point from the surface registry. Body's BASE sits at the attach point and
   // the body rotates to lie along the surface (unless an explicit rotation_deg
@@ -1112,6 +1129,10 @@ function drawAnnotation(spec) {
 }
 
 function drawSurface(spec) {
+  // appear_at_ms / disappear_at_ms gating — surfaces (floors, ground references)
+  // can fade in / out per-state for cinematic choreography.
+  var surfGate = PM_animationGate(spec);
+  if (!surfGate.visible) return;
   var pos = spec.position || { x: 100, y: 400 };
   var length = spec.length || 200;
   var orientation = spec.orientation || 'horizontal';

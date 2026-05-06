@@ -821,28 +821,33 @@
         "scene_composition": [
           {
             "type": "smooth_camera",
-            "id": "cam_zoom_peak",
-            "pan_to": { "x": 220, "y": 290 },
-            "zoom": 1.3,
-            "duration_ms": 5500,
+            "id": "cam_zoom_to_ball",
+            "target_primitive": "ball_projectile",
+            "zoom": 2.2,
+            "duration_ms": 2500,
+            "appear_at_ms": 8000,
             "ease": "ease_in_out"
           },
           {
             "type": "annotation",
             "id": "scene_title_b",
-            "text": "CASE B — Force is GRAVITY (perpendicular to v at first). Watch the ball rise, peak, and fall.",
-            "position": { "x": 220, "y": 50 },
-            "font_size": 12,
-            "color": "#E2E8F0"
+            "text": "CASE B — Force is GRAVITY. Watch the ball rise, peak, and fall.",
+            "position": { "x": 380, "y": 30 },
+            "font_size": 13,
+            "color": "#E2E8F0",
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "surface",
             "id": "ground_b",
             "orientation": "horizontal",
             "position": { "x": 60, "y": 420 },
-            "length": 380,
+            "length": 600,
             "texture": "smooth",
-            "label": "ground"
+            "label": "ground",
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "body",
@@ -852,7 +857,9 @@
             "size": { "w": 32, "h": 18 },
             "fill_color": "#374151",
             "border_color": "#1F2937",
-            "rotation_deg": -55
+            "rotation_deg": -55,
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "annotation",
@@ -860,7 +867,9 @@
             "text": "cannon launch",
             "position": { "x": 90, "y": 440 },
             "font_size": 11,
-            "color": "#9CA3AF"
+            "color": "#9CA3AF",
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "animated_path",
@@ -872,7 +881,9 @@
             "arrow_head": false,
             "appear_at_ms": 200,
             "animate_in_ms": 350,
-            "duration_ms": 350
+            "duration_ms": 350,
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "animated_path",
@@ -884,7 +895,9 @@
             "arrow_head": false,
             "appear_at_ms": 550,
             "animate_in_ms": 350,
-            "duration_ms": 350
+            "duration_ms": 350,
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "animated_path",
@@ -896,7 +909,9 @@
             "arrow_head": false,
             "appear_at_ms": 900,
             "animate_in_ms": 350,
-            "duration_ms": 350
+            "duration_ms": 350,
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "animated_path",
@@ -908,7 +923,9 @@
             "arrow_head": false,
             "appear_at_ms": 1250,
             "animate_in_ms": 350,
-            "duration_ms": 350
+            "duration_ms": 350,
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "animated_path",
@@ -920,7 +937,9 @@
             "arrow_head": false,
             "appear_at_ms": 1600,
             "animate_in_ms": 350,
-            "duration_ms": 350
+            "duration_ms": 350,
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "animated_path",
@@ -932,7 +951,9 @@
             "arrow_head": false,
             "appear_at_ms": 1950,
             "animate_in_ms": 350,
-            "duration_ms": 350
+            "duration_ms": 350,
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "body",
@@ -941,7 +962,9 @@
             "position": { "x": 90, "y": 415 },
             "size": { "w": 16, "h": 16 },
             "fill_color": "#3F3F1A",
-            "border_color": "#52525B"
+            "border_color": "#52525B",
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "body",
@@ -950,7 +973,9 @@
             "position": { "x": 125, "y": 345 },
             "size": { "w": 16, "h": 16 },
             "fill_color": "#52431B",
-            "border_color": "#52525B"
+            "border_color": "#52525B",
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "body",
@@ -959,7 +984,9 @@
             "position": { "x": 195, "y": 285 },
             "size": { "w": 18, "h": 18 },
             "fill_color": "#7A6322",
-            "border_color": "#52525B"
+            "border_color": "#52525B",
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "annotation",
@@ -967,7 +994,9 @@
             "text": "PEAK: v_y = 0",
             "position": { "x": 195, "y": 263 },
             "font_size": 11,
-            "color": "#FBBF24"
+            "color": "#FBBF24",
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "body",
@@ -976,7 +1005,9 @@
             "position": { "x": 265, "y": 345 },
             "size": { "w": 16, "h": 16 },
             "fill_color": "#A38234",
-            "border_color": "#52525B"
+            "border_color": "#52525B",
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "body",
@@ -985,7 +1016,9 @@
             "position": { "x": 300, "y": 415 },
             "size": { "w": 16, "h": 16 },
             "fill_color": "#CFA53E",
-            "border_color": "#52525B"
+            "border_color": "#52525B",
+            "disappear_at_ms": 8000,
+            "fade_out_ms": 700
           },
           {
             "type": "body",
@@ -1052,95 +1085,16 @@
             "animate_in_ms": 600
           },
           {
-            "type": "vector",
-            "id": "strobe_vx_up",
-            "from": { "x": 125, "y": 332 },
-            "to": { "x": 165, "y": 332 },
-            "color": "#3B82F6",
-            "line_weight": 2,
-            "arrow_head": true,
-            "label": "v_x",
-            "appear_at_ms": 6500,
-            "animate_in_ms": 500
-          },
-          {
-            "type": "vector",
-            "id": "strobe_vy_up",
-            "from": { "x": 125, "y": 332 },
-            "to": { "x": 125, "y": 295 },
-            "color": "#A78BFA",
-            "line_weight": 2,
-            "arrow_head": true,
-            "label": "v_y ↑",
-            "appear_at_ms": 7000,
-            "animate_in_ms": 500
-          },
-          {
-            "type": "vector",
-            "id": "strobe_vx_peak",
-            "from": { "x": 195, "y": 273 },
-            "to": { "x": 235, "y": 273 },
-            "color": "#3B82F6",
-            "line_weight": 2,
-            "arrow_head": true,
-            "label": "v_x (only)",
-            "appear_at_ms": 7800,
-            "animate_in_ms": 500
-          },
-          {
-            "type": "vector",
-            "id": "strobe_vx_down",
-            "from": { "x": 265, "y": 332 },
-            "to": { "x": 305, "y": 332 },
-            "color": "#3B82F6",
-            "line_weight": 2,
-            "arrow_head": true,
-            "label": "v_x (same!)",
-            "appear_at_ms": 8500,
-            "animate_in_ms": 500
-          },
-          {
-            "type": "vector",
-            "id": "strobe_vy_down",
-            "from": { "x": 265, "y": 332 },
-            "to": { "x": 265, "y": 372 },
-            "color": "#A78BFA",
-            "line_weight": 2,
-            "arrow_head": true,
-            "label": "v_y ↓",
-            "appear_at_ms": 9000,
-            "animate_in_ms": 500
-          },
-          {
             "type": "annotation",
-            "id": "vx_constant",
-            "text": "v_x is CONSTANT throughout flight",
-            "position": { "x": 215, "y": 240 },
-            "font_size": 11,
-            "color": "#3B82F6",
-            "appear_at_ms": 9800,
-            "animate_in_ms": 500
-          },
-          {
-            "type": "annotation",
-            "id": "case_b_insight",
-            "text": "v_x: stays SAME\nv_y: UP → 0 (peak) → DOWN\nF: ALWAYS DOWN (gravity)",
-            "position": { "x": 540, "y": 145 },
-            "style": "callout",
-            "color": "#FBBF24",
+            "id": "zoom_in_caption",
+            "text": "Zooming in on the ball... watch its three vectors",
+            "position": { "x": 380, "y": 460 },
             "font_size": 12,
-            "appear_at_ms": 11500,
-            "animate_in_ms": 700
-          },
-          {
-            "type": "annotation",
-            "id": "case_b_formula",
-            "text": "Trajectory: PARABOLA\n\nNo F_x → v_x stays\na_y = -g → v_y changes\n\nThis is projectile motion.\nF = m·a, NEVER F = m·v.",
-            "position": { "x": 540, "y": 320 },
-            "style": "formula_box",
-            "color": "#FCD34D",
-            "appear_at_ms": 14000,
-            "animate_in_ms": 700
+            "color": "#FBBF24",
+            "appear_at_ms": 7500,
+            "animate_in_ms": 500,
+            "disappear_at_ms": 11000,
+            "fade_out_ms": 600
           }
         ],
         "choreography_sequence": {
@@ -1151,12 +1105,7 @@
             { "at_t": 1.8, "show": "v_total_b", "enter": "fade_in", "duration": 400 },
             { "at_t": 3.0, "show": "F_grav_b", "enter": "fade_in", "duration": 400 },
             { "at_t": 4.5, "show": "a_grav_b", "enter": "fade_in", "duration": 400 },
-            { "at_t": 6.5, "show": "strobe_vx_up,strobe_vy_up", "enter": "fade_in", "duration": 500 },
-            { "at_t": 7.8, "show": "strobe_vx_peak", "enter": "fade_in", "duration": 500 },
-            { "at_t": 8.5, "show": "strobe_vx_down,strobe_vy_down", "enter": "fade_in", "duration": 500 },
-            { "at_t": 9.8, "show": "vx_constant", "enter": "fade_in", "duration": 500 },
-            { "at_t": 11.5, "show": "case_b_insight", "enter": "fade_in", "duration": 500 },
-            { "at_t": 14.0, "show": "case_b_formula", "enter": "fade_in", "duration": 500 }
+            { "at_t": 7.5, "show": "zoom_in_caption", "enter": "fade_in", "duration": 500 }
           ]
         },
         "teacher_script": {
@@ -1169,63 +1118,51 @@
             },
             {
               "id": "s2",
-              "text_en": "Watch the full arc. The ball rises, slows, peaks, then falls back to the ground. The faded copies show five snapshots along the way — at launch, going up, the peak, coming down, and landing.",
-              "pause_after_ms": 2800,
+              "text_en": "Watch the full arc. The ball rises, slows, peaks, then falls back to the ground. The faded copies show snapshots along the way.",
+              "pause_after_ms": 2400,
               "highlight_primitive_id": "ghost_b_t2"
             },
             {
               "id": "s3",
-              "text_en": "The blue arrow on the ball is its current velocity. Every moment, it points along the direction of motion — tilting up first, level at peak, tilting down on the way back.",
-              "pause_after_ms": 2600,
+              "text_en": "Blue arrow — that is the ball's velocity, the direction it is moving at any instant.",
+              "pause_after_ms": 2200,
               "highlight_primitive_id": "v_total_b"
             },
             {
               "id": "s4",
-              "text_en": "The red arrow is the only force acting — gravity. It points straight down. It never changes direction. Not when the ball is going up, not at the peak, not on the way down.",
-              "pause_after_ms": 2600,
+              "text_en": "Red arrow — that is the force acting on it. Gravity. It always points straight down.",
+              "pause_after_ms": 2200,
               "highlight_primitive_id": "F_grav_b"
             },
             {
               "id": "s5",
-              "text_en": "Acceleration follows force. So acceleration also points straight down — through the entire flight.",
+              "text_en": "Green arrow — acceleration. Following force, it also points straight down throughout the flight.",
               "pause_after_ms": 2200,
               "highlight_primitive_id": "a_grav_b"
             },
             {
               "id": "s6",
-              "text_en": "Now look at the components. While going up, the ball has horizontal v_x and an upward v_y. Both contribute to the slanted velocity.",
-              "pause_after_ms": 2400,
-              "highlight_primitive_id": "strobe_vx_up"
+              "text_en": "Now let us zoom into the ball mid-flight. Everything else fades away. Just the ball and its three vectors remain.",
+              "pause_after_ms": 2800,
+              "highlight_primitive_id": "zoom_in_caption"
             },
             {
               "id": "s7",
-              "text_en": "At the peak, the upward v_y has become exactly zero. Only horizontal v_x remains. The ball is momentarily moving sideways only.",
+              "text_en": "Notice — the red and green arrows never change direction. Force and acceleration point straight down, always.",
               "pause_after_ms": 2400,
-              "highlight_primitive_id": "strobe_vx_peak"
+              "highlight_primitive_id": "F_grav_b"
             },
             {
               "id": "s8",
-              "text_en": "Coming down, v_x is still the same — gravity has not touched it. But v_y is now downward and growing.",
-              "pause_after_ms": 2400,
-              "highlight_primitive_id": "strobe_vx_down"
+              "text_en": "But the blue velocity arrow changes. The horizontal part stays the same, while the vertical part shrinks to zero at the peak, then flips and grows downward as the ball falls.",
+              "pause_after_ms": 2800,
+              "highlight_primitive_id": "v_total_b"
             },
             {
               "id": "s9",
-              "text_en": "Notice the pattern. The horizontal v_x is the same length at every moment of flight. Why? Because there is no horizontal force, so no horizontal acceleration, so v_x cannot change.",
-              "pause_after_ms": 2700,
-              "highlight_primitive_id": "vx_constant"
-            },
-            {
-              "id": "s10",
-              "text_en": "The vertical v_y is where gravity does all its work. v_y goes from upward, to zero at the peak, to downward. That is the complete fingerprint of constant downward gravity.",
+              "text_en": "That is the key insight. Force is constant. Acceleration is constant. Velocity is what evolves over time. F equals m a — never F equals m v.",
               "pause_after_ms": 2600,
-              "highlight_primitive_id": "case_b_insight"
-            },
-            {
-              "id": "s11",
-              "text_en": "This is exactly projectile motion. Every thrown ball, every kicked football, every shot arrow traces this same parabolic curve. F equals m a — never F equals m v.",
-              "pause_after_ms": 2500,
-              "highlight_primitive_id": "case_b_formula"
+              "highlight_primitive_id": "v_total_b"
             }
           ]
         },
