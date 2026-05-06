@@ -453,135 +453,261 @@
       },
       "STATE_4": {
         "title": "Velocity Builds Up Over Time — v(t) = a · t",
-        "duration": 13,
-        "focal_primitive_id": "v_arrow_state4",
+        "duration": 16,
+        "focal_primitive_id": "block_t3",
         "teaching_method": "narrative_socratic",
         "variable_overrides": {
           "F": 10,
           "m": 2,
           "theta_F": 0,
-          "t": 2
+          "t": 3
         },
         "scene_composition": [
           {
             "type": "surface",
             "id": "floor_state4",
             "orientation": "horizontal",
-            "position": { "x": 100, "y": 420 },
-            "length": 540,
+            "position": { "x": 60, "y": 420 },
+            "length": 660,
             "texture": "smooth"
           },
           {
+            "type": "annotation",
+            "id": "scene_title_4",
+            "text": "Constant a = 5 m/s² → freeze the clock at t = 1, 2, 3 s and watch v grow",
+            "position": { "x": 380, "y": 30 },
+            "font_size": 13,
+            "color": "#E2E8F0"
+          },
+          {
             "type": "body",
-            "id": "block_state4",
+            "id": "block_t0",
             "shape": "rect",
-            "label": "Block",
-            "position": { "x": 200, "y": 370 },
-            "size": { "w": 90, "h": 70 },
-            "fill_color": "#92400E",
+            "label": "t = 0 s",
+            "position": { "x": 110, "y": 370 },
+            "size": { "w": 60, "h": 50 },
+            "fill_color": "#7C2D12",
             "border_color": "#451A03",
+            "border_width": 2,
             "attach_to_surface": {
               "surface_id": "floor_state4",
-              "position_fraction": 0.15
-            },
-            "animation": {
-              "type": "slide_horizontal",
-              "accel_px_per_sec2": 100,
-              "max_dx": 320,
-              "loop_period_sec": 4.0
+              "position_fraction": 0.08
+            }
+          },
+          {
+            "type": "annotation",
+            "id": "v0_label",
+            "text": "v = 0 m/s",
+            "position": { "x": 110, "y": 460 },
+            "font_size": 12,
+            "color": "#A78BFA"
+          },
+          {
+            "type": "body",
+            "id": "block_t1",
+            "shape": "rect",
+            "label": "t = 1 s",
+            "position": { "x": 200, "y": 370 },
+            "size": { "w": 60, "h": 50 },
+            "fill_color": "#92400E",
+            "border_color": "#451A03",
+            "border_width": 2,
+            "appear_at_ms": 3000,
+            "animate_in": "fade_in",
+            "attach_to_surface": {
+              "surface_id": "floor_state4",
+              "position_fraction": 0.215
             }
           },
           {
             "type": "force_arrow",
-            "id": "F_arrow_state4",
-            "force_id": "applied",
-            "magnitude": 10,
-            "color": "#2563EB",
-            "label": "F = 10 N",
-            "origin_body_id": "block_state4",
-            "origin_anchor": "body_right",
-            "direction_deg": 0,
-            "scale_pixels_per_unit": 6
-          },
-          {
-            "type": "force_arrow",
-            "id": "a_arrow_state4",
-            "force_id": "acceleration",
-            "magnitude": 5,
-            "color": "#10B981",
-            "label": "a = 5 m/s²",
-            "origin_body_id": "block_state4",
-            "origin_anchor": "body_top",
-            "direction_deg": 0,
-            "scale_pixels_per_unit": 12,
-            "label_position": "perpendicular",
-            "label_perp_offset": -16
-          },
-          {
-            "type": "force_arrow",
-            "id": "v_arrow_state4",
+            "id": "v_arrow_t1",
             "force_id": "velocity",
-            "magnitude": 10,
+            "magnitude": 5,
             "color": "#A78BFA",
-            "label": "v grows: 0 → 5 → 10 m/s",
-            "origin_body_id": "block_state4",
-            "origin_anchor": "body_bottom",
+            "label": "v = 5 m/s",
+            "origin_body_id": "block_t1",
+            "origin_anchor": "body_top",
             "direction_deg": 0,
             "scale_pixels_per_unit": 5,
             "label_position": "perpendicular",
-            "label_perp_offset": 18,
+            "label_perp_offset": -14,
+            "appear_at_ms": 3500,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "annotation",
+            "id": "v1_calc",
+            "text": "v = 5 × 1 = 5",
+            "position": { "x": 200, "y": 460 },
+            "font_size": 11,
+            "color": "#A78BFA",
+            "appear_at_ms": 3800,
+            "animate_in": "fade_in"
+          },
+          {
+            "type": "body",
+            "id": "block_t2",
+            "shape": "rect",
+            "label": "t = 2 s",
+            "position": { "x": 360, "y": 370 },
+            "size": { "w": 60, "h": 50 },
+            "fill_color": "#A8530E",
+            "border_color": "#451A03",
+            "border_width": 2,
+            "appear_at_ms": 6000,
             "animate_in": "fade_in",
-            "focal_highlight_ms": 1000
+            "attach_to_surface": {
+              "surface_id": "floor_state4",
+              "position_fraction": 0.45
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "v_arrow_t2",
+            "force_id": "velocity",
+            "magnitude": 10,
+            "color": "#A78BFA",
+            "label": "v = 10 m/s",
+            "origin_body_id": "block_t2",
+            "origin_anchor": "body_top",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 5,
+            "label_position": "perpendicular",
+            "label_perp_offset": -14,
+            "appear_at_ms": 6500,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "annotation",
+            "id": "v2_calc",
+            "text": "v = 5 × 2 = 10",
+            "position": { "x": 360, "y": 460 },
+            "font_size": 11,
+            "color": "#A78BFA",
+            "appear_at_ms": 6800,
+            "animate_in": "fade_in"
+          },
+          {
+            "type": "body",
+            "id": "block_t3",
+            "shape": "rect",
+            "label": "t = 3 s",
+            "position": { "x": 580, "y": 370 },
+            "size": { "w": 60, "h": 50 },
+            "fill_color": "#C2710C",
+            "border_color": "#451A03",
+            "border_width": 2,
+            "appear_at_ms": 9000,
+            "animate_in": "fade_in",
+            "attach_to_surface": {
+              "surface_id": "floor_state4",
+              "position_fraction": 0.79
+            }
+          },
+          {
+            "type": "force_arrow",
+            "id": "v_arrow_t3",
+            "force_id": "velocity",
+            "magnitude": 15,
+            "color": "#A78BFA",
+            "label": "v = 15 m/s",
+            "origin_body_id": "block_t3",
+            "origin_anchor": "body_top",
+            "direction_deg": 0,
+            "scale_pixels_per_unit": 5,
+            "label_position": "perpendicular",
+            "label_perp_offset": -14,
+            "appear_at_ms": 9500,
+            "animate_in_ms": 600
+          },
+          {
+            "type": "annotation",
+            "id": "v3_calc",
+            "text": "v = 5 × 3 = 15",
+            "position": { "x": 580, "y": 460 },
+            "font_size": 11,
+            "color": "#A78BFA",
+            "appear_at_ms": 9800,
+            "animate_in": "fade_in"
+          },
+          {
+            "type": "annotation",
+            "id": "a_const_callout",
+            "text": "a stays the same: 5 m/s²\n(constant force ⇒ constant acceleration)",
+            "position": { "x": 175, "y": 95 },
+            "style": "callout",
+            "color": "#10B981",
+            "appear_at_ms": 1500,
+            "animate_in": "fade_in"
           },
           {
             "type": "annotation",
             "id": "vt_table",
             "text": "v(t) = a · t\n\nt = 0 s   →  v = 0 m/s\nt = 1 s   →  v = 5 m/s\nt = 2 s   →  v = 10 m/s\nt = 3 s   →  v = 15 m/s",
-            "position": { "x": 540, "y": 230 },
+            "position": { "x": 600, "y": 200 },
             "style": "formula_box",
             "color": "#A78BFA",
-            "reveal_at_tts_id": "s3",
+            "appear_at_ms": 11500,
             "animate_in": "fade_in"
           },
           {
             "type": "annotation",
             "id": "v_neq_F_note",
             "text": "v is NOT F. v is NOT a.\nv is what acceleration BUILDS UP over time.",
-            "position": { "x": 380, "y": 90 },
+            "position": { "x": 380, "y": 155 },
             "style": "callout",
-            "color": "#E2E8F0",
-            "reveal_at_tts_id": "s4",
+            "color": "#FBBF24",
+            "appear_at_ms": 13500,
             "animate_in": "fade_in"
           }
         ],
         "choreography_sequence": {
           "phases": [
-            { "at_t": 0, "show": "floor_state4,block_state4,F_arrow_state4,a_arrow_state4", "enter": "fade_in", "duration": 300 }
+            { "at_t": 0, "show": "floor_state4,scene_title_4,block_t0,v0_label", "enter": "fade_in", "duration": 400 },
+            { "at_t": 1.5, "show": "a_const_callout", "enter": "fade_in", "duration": 500 },
+            { "at_t": 3.0, "show": "block_t1,v_arrow_t1,v1_calc", "enter": "fade_in", "duration": 600 },
+            { "at_t": 6.0, "show": "block_t2,v_arrow_t2,v2_calc", "enter": "fade_in", "duration": 600 },
+            { "at_t": 9.0, "show": "block_t3,v_arrow_t3,v3_calc", "enter": "fade_in", "duration": 600 },
+            { "at_t": 11.5, "show": "vt_table", "enter": "fade_in", "duration": 600 },
+            { "at_t": 13.5, "show": "v_neq_F_note", "enter": "fade_in", "duration": 500 }
           ]
         },
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s1",
-              "text_en": "Acceleration is constant at five metres per second squared. Watch the block slide.",
+              "text_en": "Acceleration is constant — five metres per second squared. The same value at every instant.",
               "pause_after_ms": 1500,
-              "highlight_primitive_id": "a_arrow_state4"
+              "highlight_primitive_id": "a_const_callout"
             },
             {
               "id": "s2",
-              "text_en": "As time passes, velocity grows. Same direction as acceleration, but increasing in magnitude.",
+              "text_en": "Freeze the clock at t equals one second. Velocity is now five metres per second.",
               "pause_after_ms": 1800,
-              "highlight_primitive_id": "v_arrow_state4"
+              "highlight_primitive_id": "block_t1"
             },
             {
               "id": "s3",
-              "text_en": "After one second, v is five. After two seconds, v is ten. v of t equals a times t.",
+              "text_en": "Freeze again at t equals two seconds. Velocity has doubled to ten metres per second. Same direction, bigger arrow.",
+              "pause_after_ms": 1800,
+              "highlight_primitive_id": "block_t2"
+            },
+            {
+              "id": "s4",
+              "text_en": "And at t equals three seconds, velocity is fifteen metres per second. Notice — v grows by five each second, exactly equal to a.",
+              "pause_after_ms": 1800,
+              "highlight_primitive_id": "block_t3"
+            },
+            {
+              "id": "s5",
+              "text_en": "The pattern is simple. v of t equals a times t. Velocity is what acceleration accumulates over time.",
               "pause_after_ms": 1800,
               "highlight_primitive_id": "vt_table"
             },
             {
-              "id": "s4",
-              "text_en": "Velocity is what acceleration accumulates over time. v is not F. v is not a. v is the build-up.",
+              "id": "s6",
+              "text_en": "v is not F. v is not a. v is the build-up.",
               "pause_after_ms": 1500,
               "highlight_primitive_id": "v_neq_F_note"
             }
@@ -1246,13 +1372,21 @@
             "id": "block_explore",
             "shape": "rect",
             "label": "Block",
-            "position": { "x": 280, "y": 370 },
-            "size": { "w": 100, "h": 80 },
+            "position": { "x": 200, "y": 370 },
+            "size": { "w": 90, "h": 70 },
             "fill_color": "#92400E",
             "border_color": "#451A03",
             "attach_to_surface": {
               "surface_id": "floor_explore",
-              "position_fraction": 0.32
+              "position_fraction": 0.18
+            },
+            "animation": {
+              "type": "slide_horizontal",
+              "accel_expr": "F / m",
+              "direction_deg_expr": "theta_F",
+              "px_per_meter": 12,
+              "max_dx": 360,
+              "loop_period_sec": 3.5
             }
           },
           {

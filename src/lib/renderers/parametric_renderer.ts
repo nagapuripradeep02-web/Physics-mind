@@ -721,9 +721,30 @@ function drawBody(spec) {
        || spec.animation.type === 'slide_when_kinetic')) {
     var slideTSec = (millis() - PM_stateEnterTime) / 1000;
     var slideAcc = 0;
+    // Track whether accel came from an expression in m/s² (so we can do
+    // directional decomposition correctly using the same px/m scale).
+    var slideUsedExpr = false;
+    var slidePxPerMeter = (typeof spec.animation.px_per_meter === 'number')
+      ? spec.animation.px_per_meter : 60;
     if (spec.animation.type === 'slide_horizontal') {
-      slideAcc = (typeof spec.animation.accel_px_per_sec2 === 'number')
-        ? spec.animation.accel_px_per_sec2 : 150;
+      // Default branch: fixed pixels-per-second² (legacy). Authors who want
+      // the block to track live slider variables (Sim 2 STATE_7 try-it) can
+      // pass accel_expr like "F / m" -- evaluated each frame against the
+      // latest variables, then scaled by px_per_meter.
+      if (typeof spec.animation.accel_expr === 'string') {
+        var liveVarsSlide = (PM_physics && PM_physics.variables)
+          || (PM_config && PM_config.default_variables) || {};
+        var aSlideMs2 = PM_safeEval(spec.animation.accel_expr, liveVarsSlide);
+        if (isFinite(aSlideMs2) && aSlideMs2 >= 0) {
+          slideAcc = aSlideMs2 * slidePxPerMeter;
+          slideUsedExpr = true;
+        } else {
+          slideAcc = 0;
+        }
+      } else {
+        slideAcc = (typeof spec.animation.accel_px_per_sec2 === 'number')
+          ? spec.animation.accel_px_per_sec2 : 150;
+      }
     } else {
       // slide_when_kinetic: accel = (F - mu_k * m * g) / m, only when F > mu_s * m * g
       var liveVarsK = (PM_physics && PM_physics.variables)
@@ -751,7 +772,27 @@ function drawBody(spec) {
     var slideMaxDx = (typeof spec.animation.max_dx === 'number') ? spec.animation.max_dx : 100;
     var slidePhaseT = loopT > 0 ? (slideTSec % loopT) : slideTSec;
     var slideRaw = 0.5 * slideAcc * slidePhaseT * slidePhaseT;
-    animDx = Math.min(slideRaw, slideMaxDx);
+    var slideDist = Math.min(slideRaw, slideMaxDx);
+    // Optional direction expression (degrees, math-convention: 0° = +x, 90° = +y in physics).
+    // When present, decompose the kinematic distance into x/y components so the block
+    // slides at angle θ from horizontal — needed for STATE_7's theta_F slider.
+    if (typeof spec.animation.direction_deg_expr === 'string') {
+      var liveVarsDir = (PM_physics && PM_physics.variables)
+        || (PM_config && PM_config.default_variables) || {};
+      var thetaDirDeg = PM_safeEval(spec.animation.direction_deg_expr, liveVarsDir);
+      if (isFinite(thetaDirDeg)) {
+        var thetaDirRad = thetaDirDeg * Math.PI / 180;
+        animDx = slideDist * Math.cos(thetaDirRad);
+        // p5's y-axis points DOWN, but physics positive theta means UP — negate.
+        animDy = -slideDist * Math.sin(thetaDirRad);
+      } else {
+        animDx = slideDist;
+      }
+    } else {
+      animDx = slideDist;
+    }
+    // Suppress lint about unused tracking flag — it documents the branch taken.
+    void slideUsedExpr;
   }
 
   if (!attachedPos && spec.animation && spec.animation.type) {
