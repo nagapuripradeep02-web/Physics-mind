@@ -591,10 +591,10 @@
         "allow_deep_dive": false
       },
       "STATE_5": {
-        "title": "F Doesn't Equal v — Two Cases Side by Side",
-        "duration": 14,
-        "focal_primitive_id": "case_b_label",
-        "teaching_method": "compare_contrast",
+        "title": "F ≠ v — The Ball's Trajectory Curves",
+        "duration": 16,
+        "focal_primitive_id": "ball_main",
+        "teaching_method": "narrative_socratic",
         "variable_overrides": {
           "F": 10,
           "m": 2,
@@ -602,206 +602,282 @@
         },
         "scene_composition": [
           {
+            "type": "smooth_camera",
+            "id": "cinematic_zoom",
+            "pan_to": { "x": 250, "y": 235 },
+            "zoom": 1.18,
+            "duration_ms": 5500,
+            "ease": "ease_in_out"
+          },
+          {
+            "type": "annotation",
+            "id": "scene_title",
+            "text": "Ball with rightward velocity. Apply downward force. Watch the trajectory.",
+            "position": { "x": 215, "y": 50 },
+            "font_size": 13,
+            "color": "#E2E8F0"
+          },
+          {
             "type": "surface",
-            "id": "floor_case_a",
+            "id": "ground_ref",
             "orientation": "horizontal",
-            "position": { "x": 50, "y": 380 },
-            "length": 290,
+            "position": { "x": 80, "y": 420 },
+            "length": 380,
             "texture": "smooth",
-            "label": "CASE A: F along v"
-          },
-          {
-            "type": "body",
-            "id": "block_case_a",
-            "shape": "rect",
-            "label": "Block",
-            "position": { "x": 130, "y": 340 },
-            "size": { "w": 70, "h": 55 },
-            "fill_color": "#92400E",
-            "border_color": "#451A03",
-            "attach_to_surface": {
-              "surface_id": "floor_case_a",
-              "position_fraction": 0.3
-            },
-            "animation": {
-              "type": "slide_horizontal",
-              "accel_px_per_sec2": 90,
-              "max_dx": 100,
-              "loop_period_sec": 2.6
-            }
-          },
-          {
-            "type": "force_arrow",
-            "id": "v_case_a",
-            "force_id": "velocity_a",
-            "magnitude": 5,
-            "color": "#A78BFA",
-            "label": "v →",
-            "origin_body_id": "block_case_a",
-            "origin_anchor": "body_top",
-            "direction_deg": 0,
-            "scale_pixels_per_unit": 8,
-            "label_position": "perpendicular",
-            "label_perp_offset": -14
-          },
-          {
-            "type": "force_arrow",
-            "id": "F_case_a",
-            "force_id": "applied_a",
-            "magnitude": 8,
-            "color": "#2563EB",
-            "label": "F →",
-            "origin_body_id": "block_case_a",
-            "origin_anchor": "body_right",
-            "direction_deg": 0,
-            "scale_pixels_per_unit": 6
+            "label": "ground"
           },
           {
             "type": "annotation",
-            "id": "case_a_label",
-            "text": "F and v aligned.\nBlock speeds up\nin a straight line.",
-            "position": { "x": 175, "y": 450 },
-            "style": "callout",
-            "color": "#10B981",
-            "font_size": 12
-          },
-          {
-            "type": "annotation",
-            "id": "case_b_title",
-            "text": "CASE B: F perpendicular to v",
-            "position": { "x": 540, "y": 165 },
-            "font_size": 12,
+            "id": "launch_label",
+            "text": "Launch",
+            "position": { "x": 110, "y": 75 },
+            "font_size": 11,
             "color": "#9CA3AF"
           },
           {
+            "type": "animated_path",
+            "id": "traj_seg1",
+            "from": { "x": 110, "y": 95 },
+            "to": { "x": 166, "y": 115 },
+            "color": "#FBBF24",
+            "line_weight": 2,
+            "arrow_head": false,
+            "appear_at_ms": 200,
+            "animate_in_ms": 350,
+            "duration_ms": 350
+          },
+          {
+            "type": "animated_path",
+            "id": "traj_seg2",
+            "from": { "x": 166, "y": 115 },
+            "to": { "x": 222, "y": 173 },
+            "color": "#FBBF24",
+            "line_weight": 2,
+            "arrow_head": false,
+            "appear_at_ms": 550,
+            "animate_in_ms": 350,
+            "duration_ms": 350
+          },
+          {
+            "type": "animated_path",
+            "id": "traj_seg3",
+            "from": { "x": 222, "y": 173 },
+            "to": { "x": 278, "y": 271 },
+            "color": "#FBBF24",
+            "line_weight": 2,
+            "arrow_head": false,
+            "appear_at_ms": 900,
+            "animate_in_ms": 350,
+            "duration_ms": 350
+          },
+          {
+            "type": "animated_path",
+            "id": "traj_seg4",
+            "from": { "x": 278, "y": 271 },
+            "to": { "x": 322, "y": 375 },
+            "color": "#FBBF24",
+            "line_weight": 2,
+            "arrow_head": false,
+            "appear_at_ms": 1250,
+            "animate_in_ms": 350,
+            "duration_ms": 350
+          },
+          {
             "type": "body",
-            "id": "block_case_b",
-            "shape": "rect",
-            "label": "Block",
-            "position": { "x": 460, "y": 200 },
-            "size": { "w": 56, "h": 42 },
-            "fill_color": "#92400E",
-            "border_color": "#451A03",
+            "id": "ghost_t0",
+            "shape": "circle",
+            "position": { "x": 110, "y": 95 },
+            "size": { "w": 24, "h": 24 },
+            "fill_color": "#3F3F1A",
+            "border_color": "#52525B"
+          },
+          {
+            "type": "body",
+            "id": "ghost_t1",
+            "shape": "circle",
+            "position": { "x": 166, "y": 115 },
+            "size": { "w": 22, "h": 22 },
+            "fill_color": "#52431B",
+            "border_color": "#52525B"
+          },
+          {
+            "type": "body",
+            "id": "ghost_t2",
+            "shape": "circle",
+            "position": { "x": 222, "y": 173 },
+            "size": { "w": 22, "h": 22 },
+            "fill_color": "#7A6322",
+            "border_color": "#52525B"
+          },
+          {
+            "type": "body",
+            "id": "ghost_t3",
+            "shape": "circle",
+            "position": { "x": 278, "y": 271 },
+            "size": { "w": 22, "h": 22 },
+            "fill_color": "#A38234",
+            "border_color": "#52525B"
+          },
+          {
+            "type": "body",
+            "id": "ghost_t4",
+            "shape": "circle",
+            "position": { "x": 322, "y": 375 },
+            "size": { "w": 24, "h": 24 },
+            "fill_color": "#CFA53E",
+            "border_color": "#52525B"
+          },
+          {
+            "type": "annotation",
+            "id": "trajectory_label",
+            "text": "parabolic trajectory",
+            "position": { "x": 145, "y": 165 },
+            "font_size": 11,
+            "color": "#FBBF24"
+          },
+          {
+            "type": "body",
+            "id": "ball_main",
+            "shape": "circle",
+            "position": { "x": 110, "y": 95 },
+            "size": { "w": 30, "h": 30 },
+            "fill_color": "#FBBF24",
+            "border_color": "#92400E",
             "animation": {
               "type": "projectile",
-              "vx_px_per_sec": 55,
-              "ay_px_per_sec2": 85,
-              "loop_period_sec": 3.6,
-              "max_dx": 175,
-              "max_dy": 180
+              "vx_px_per_sec": 80,
+              "ay_px_per_sec2": 80,
+              "loop_period_sec": 2.8,
+              "max_dx": 300,
+              "max_dy": 280
             }
           },
           {
             "type": "force_arrow",
-            "id": "v_case_b",
-            "force_id": "velocity_b",
-            "magnitude": 5,
-            "color": "#A78BFA",
-            "label": "v →",
-            "origin_body_id": "block_case_b",
-            "origin_anchor": "body_top",
+            "id": "v_arrow",
+            "magnitude": 10,
             "direction_deg": 0,
-            "scale_pixels_per_unit": 8,
+            "color": "#3B82F6",
+            "label": "v (rightward, constant)",
+            "origin_body_id": "ball_main",
+            "origin_anchor": "body_top",
+            "scale_pixels_per_unit": 5,
             "label_position": "perpendicular",
-            "label_perp_offset": -14
+            "label_perp_offset": -14,
+            "appear_at_ms": 1500,
+            "animate_in_ms": 600
           },
           {
             "type": "force_arrow",
-            "id": "F_case_b",
-            "force_id": "applied_b",
+            "id": "F_arrow",
             "magnitude": 8,
-            "color": "#2563EB",
-            "label": "F ↓",
-            "origin_body_id": "block_case_b",
+            "direction_deg": 270,
+            "color": "#EF4444",
+            "label": "F (downward)",
+            "origin_body_id": "ball_main",
             "origin_anchor": "body_bottom",
-            "direction_deg": 270,
-            "scale_pixels_per_unit": 7,
-            "label_position": "perpendicular",
-            "label_perp_offset": -14
-          },
-          {
-            "type": "force_arrow",
-            "id": "a_case_b",
-            "force_id": "accel_b",
-            "magnitude": 4,
-            "color": "#10B981",
-            "label": "a ↓",
-            "origin_body_id": "block_case_b",
-            "origin_anchor": "body_right",
-            "direction_deg": 270,
-            "scale_pixels_per_unit": 9,
+            "scale_pixels_per_unit": 6,
             "label_position": "perpendicular",
             "label_perp_offset": 14,
-            "animate_in": "fade_in",
-            "focal_highlight_ms": 1000
+            "appear_at_ms": 3000,
+            "animate_in_ms": 700
           },
           {
-            "type": "animated_path",
-            "id": "curve_path",
-            "from": { "x": 480, "y": 200 },
-            "to": { "x": 640, "y": 380 },
-            "easing": "ease_in",
-            "duration_ms": 2200,
-            "head_first": true,
-            "color": "#FBBF24",
-            "line_weight": 2,
-            "arrow_head": false,
-            "appear_at_ms": 5500,
-            "animate_in_ms": 2200
+            "type": "force_arrow",
+            "id": "a_arrow",
+            "magnitude": 4,
+            "direction_deg": 270,
+            "color": "#10B981",
+            "label": "a (along F)",
+            "origin_body_id": "ball_main",
+            "origin_anchor": "body_right",
+            "scale_pixels_per_unit": 12,
+            "label_position": "perpendicular",
+            "label_perp_offset": 14,
+            "appear_at_ms": 4500,
+            "animate_in_ms": 700
           },
           {
             "type": "annotation",
-            "id": "case_b_label",
-            "text": "F is downward, v is rightward.\na follows F (downward).\nv_x stays. v_y grows.\n\nThe trajectory CURVES.\nF ≠ v. F = m·a.",
-            "position": { "x": 540, "y": 450 },
+            "id": "insight_callout",
+            "text": "v_x stays constant\nv_y grows from a_y\n→ trajectory CURVES",
+            "position": { "x": 470, "y": 130 },
             "style": "callout",
             "color": "#FBBF24",
             "font_size": 12,
-            "reveal_at_tts_id": "s3",
-            "animate_in": "fade_in"
+            "appear_at_ms": 6500,
+            "animate_in_ms": 700
+          },
+          {
+            "type": "annotation",
+            "id": "main_formula",
+            "text": "F = m · a\n(NOT F = m · v)\n\nForce sets a's direction.\nv builds up from a\nover time.",
+            "position": { "x": 480, "y": 305 },
+            "style": "formula_box",
+            "color": "#FCD34D",
+            "appear_at_ms": 8500,
+            "animate_in_ms": 700
           },
           {
             "type": "annotation",
             "id": "projectile_link",
-            "text": "This is exactly projectile motion: gravity is constant downward F.",
-            "position": { "x": 380, "y": 70 },
-            "style": "callout",
-            "color": "#E2E8F0",
+            "text": "This is exactly projectile motion — gravity is the constant downward F.",
+            "position": { "x": 215, "y": 405 },
             "font_size": 12,
-            "reveal_at_tts_id": "s4",
-            "animate_in": "fade_in"
+            "color": "#E2E8F0",
+            "appear_at_ms": 11000,
+            "animate_in_ms": 700
           }
         ],
         "choreography_sequence": {
           "phases": [
-            { "at_t": 0, "show": "floor_case_a,block_case_a,v_case_a,F_case_a,case_a_label", "enter": "fade_in", "duration": 300 },
-            { "at_t": 1.5, "show": "case_b_title,block_case_b,v_case_b,F_case_b", "enter": "fade_in", "duration": 400 }
+            { "at_t": 0, "show": "scene_title,ground_ref,launch_label,ghost_t0,ball_main", "enter": "fade_in", "duration": 400 },
+            { "at_t": 0.2, "show": "traj_seg1,traj_seg2,traj_seg3,traj_seg4", "enter": "fade_in", "duration": 350 },
+            { "at_t": 0.6, "show": "ghost_t1,ghost_t2,ghost_t3,ghost_t4,trajectory_label", "enter": "fade_in", "duration": 600 },
+            { "at_t": 1.5, "show": "v_arrow", "enter": "fade_in", "duration": 400 },
+            { "at_t": 3.0, "show": "F_arrow", "enter": "fade_in", "duration": 400 },
+            { "at_t": 4.5, "show": "a_arrow", "enter": "fade_in", "duration": 400 },
+            { "at_t": 6.5, "show": "insight_callout", "enter": "fade_in", "duration": 400 },
+            { "at_t": 8.5, "show": "main_formula", "enter": "fade_in", "duration": 400 },
+            { "at_t": 11.0, "show": "projectile_link", "enter": "fade_in", "duration": 400 }
           ]
         },
         "teacher_script": {
           "tts_sentences": [
             {
               "id": "s1",
-              "text_en": "Two cases. On the left, force is along velocity — block speeds up in a straight line.",
+              "text_en": "A ball is moving rightward at constant velocity v. The faded copies show where it will be at later times.",
               "pause_after_ms": 1800,
-              "highlight_primitive_id": "case_a_label"
+              "highlight_primitive_id": "ball_main"
             },
             {
               "id": "s2",
-              "text_en": "On the right, the block is moving rightward. We push it straight down. Where does acceleration point?",
-              "pause_after_ms": 2200,
-              "highlight_primitive_id": "a_case_b"
+              "text_en": "Now apply a constant downward force F. Where does acceleration point?",
+              "pause_after_ms": 2000,
+              "highlight_primitive_id": "F_arrow"
             },
             {
               "id": "s3",
-              "text_en": "Down. Acceleration follows force, not velocity. The horizontal velocity stays. Downward velocity grows. The trajectory curves.",
-              "pause_after_ms": 2500,
-              "highlight_primitive_id": "case_b_label"
+              "text_en": "Acceleration points along the force — straight down. Not along velocity.",
+              "pause_after_ms": 2200,
+              "highlight_primitive_id": "a_arrow"
             },
             {
               "id": "s4",
-              "text_en": "This is exactly projectile motion. Gravity is the constant downward force. F equals m a — never F equals v.",
-              "pause_after_ms": 1500,
+              "text_en": "Horizontal velocity stays the same. Downward velocity grows from zero. The trajectory curves into a parabola.",
+              "pause_after_ms": 2500,
+              "highlight_primitive_id": "insight_callout"
+            },
+            {
+              "id": "s5",
+              "text_en": "This is the most important fact in mechanics. F equals m a, never F equals m v.",
+              "pause_after_ms": 2200,
+              "highlight_primitive_id": "main_formula"
+            },
+            {
+              "id": "s6",
+              "text_en": "Real-world echo — projectile motion is exactly this. Gravity is the constant downward force, and every thrown ball traces this same curve.",
+              "pause_after_ms": 1800,
               "highlight_primitive_id": "projectile_link"
             }
           ]
