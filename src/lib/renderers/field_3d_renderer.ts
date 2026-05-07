@@ -1503,15 +1503,42 @@ export const FIELD_3D_RENDERER_CODE = `
             var dud = dx.userData;
             if (!dud) continue;
             if (dud.elementType === "compass" && dud.animate_swing && dud.needleGroup) {
-                // Swing from 0 (north) to ~ -PI/2 (eastward = perpendicular to wire)
-                // mimicking Oersted's deflection. Swing eases in over ~2s after delay.
+                // Compute the physics-correct equilibrium direction the needle
+                // should swing to:
+                //   - For straight_wire_current: B at the compass position
+                //     follows Biot-Savart's right-hand rule, B_hat = I_hat × r_hat,
+                //     where r_hat is the perpendicular unit vector from the wire
+                //     (Y-axis) to the compass. Sign of I from the active state's
+                //     current_direction_indicator ('up' = +Y, 'down' = -Y).
+                //   - For other scenarios, fall back to the legacy hardcoded -90°
+                //     (matches Oersted's classic east-deflection in earlier states).
+                if (dud.target_angle_rad == null) {
+                    var stateDefC = config.states[PM_currentState] || {};
+                    var iSign = (stateDefC.current_direction_indicator === "down") ? -1 :
+                                (stateDefC.current_direction_indicator === "up") ? 1 : 1;
+                    if (config.scenario_type === "straight_wire_current") {
+                        var pos = dud.position_world || [0, 0, 0];
+                        var rPerp = new THREE.Vector3(pos[0], 0, pos[2]);
+                        if (rPerp.length() > 0.001) {
+                            rPerp.normalize();
+                            var ihat = new THREE.Vector3(0, iSign, 0);
+                            var bDir = new THREE.Vector3().crossVectors(ihat, rPerp).normalize();
+                            // Default needle "north" is +Z. atan2(x, z) gives the
+                            // signed Y-axis rotation angle that takes +Z to bDir.
+                            dud.target_angle_rad = Math.atan2(bDir.x, bDir.z);
+                        } else {
+                            dud.target_angle_rad = -Math.PI / 2;
+                        }
+                    } else {
+                        dud.target_angle_rad = -Math.PI / 2; // legacy default
+                    }
+                }
                 var now = performance.now();
                 if (dud.swing_started_at > 0 && now >= dud.swing_started_at) {
                     var elapsed = (now - dud.swing_started_at) / 2000; // 2s sweep
                     var easeT = Math.min(1, elapsed);
                     var eased = 1 - Math.pow(1 - easeT, 3); // easeOutCubic
-                    dud.target_angle = -Math.PI / 2;        // 90° east
-                    dud.current_angle = dud.target_angle * eased;
+                    dud.current_angle = dud.target_angle_rad * eased;
                     dud.needleGroup.rotation.y = dud.current_angle;
                 }
             }
