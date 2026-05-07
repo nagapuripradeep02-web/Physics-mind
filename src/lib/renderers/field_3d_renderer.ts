@@ -162,16 +162,56 @@ canvas { display: block; width: 100%; height: 100%; }
 }
 #rhr_overlay {
     position: fixed; top: 60px; right: 12px;
-    background: rgba(0,0,0,0.82);
-    border: 1px solid rgba(252,211,77,0.45);
+    background: rgba(0,0,0,0.86);
+    border: 1px solid rgba(252,211,77,0.55);
     border-radius: 12px;
-    padding: 6px 8px 2px;
+    padding: 10px 12px;
     z-index: 12;
     display: none;
     pointer-events: none;
-    width: 168px;
+    width: 230px;
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', system-ui, sans-serif;
+    color: ${textColor};
 }
-#rhr_overlay svg { width: 100%; height: auto; display: block; }
+#rhr_overlay .rhr-title {
+    color: #FCD34D; font-size: 14px; font-weight: 700;
+    text-align: center; margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+#rhr_overlay .rhr-case {
+    margin-bottom: 8px;
+    padding: 6px 8px 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+}
+#rhr_overlay .rhr-case:last-of-type { margin-bottom: 6px; }
+#rhr_overlay .rhr-case-label {
+    font-size: 11px; font-weight: 700; margin-bottom: 4px;
+    letter-spacing: 0.2px;
+}
+#rhr_overlay .rhr-case-a-label { color: #FFB366; }
+#rhr_overlay .rhr-case-b-label { color: #82B1FF; }
+#rhr_overlay .rhr-row {
+    display: flex; align-items: center; gap: 10px;
+}
+#rhr_overlay .rhr-hand {
+    font-size: 52px; line-height: 1; flex-shrink: 0;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    user-select: none;
+}
+#rhr_overlay .rhr-curl-block { flex: 1; text-align: center; }
+#rhr_overlay .rhr-curl-svg {
+    width: 70px; height: 50px; display: block; margin: 0 auto;
+}
+#rhr_overlay .rhr-curl-text {
+    font-size: 10px; margin-top: 2px; line-height: 1.25;
+}
+#rhr_overlay .rhr-curl-a .rhr-curl-text { color: #66BB6A; font-weight: 600; }
+#rhr_overlay .rhr-curl-b .rhr-curl-text { color: #EF7B7B; font-weight: 600; }
+#rhr_overlay .rhr-footer {
+    font-size: 9px; text-align: center; margin-top: 4px;
+    opacity: 0.78; font-style: italic;
+}
 #rhr_overlay .curl-arc { animation: rhrCurlSweep 1.4s linear infinite; }
 </style>
 </head><body>
@@ -187,30 +227,34 @@ canvas { display: block; width: 100%; height: 100%; }
 </div>
 <div id="formula_overlay"></div>
 <div id="rhr_overlay">
-    <svg viewBox="0 0 220 290" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="rhrSkin" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#FFCC9F"/>
-                <stop offset="100%" stop-color="#E6A876"/>
-            </linearGradient>
-        </defs>
-        <text x="110" y="18" fill="#FCD34D" font-size="14" font-weight="bold" text-anchor="middle" font-family="system-ui, sans-serif">Right-Hand Rule</text>
-        <line x1="110" y1="42" x2="110" y2="56" stroke="#FF8C42" stroke-width="2.5" stroke-linecap="round"/>
-        <polygon points="105,46 110,32 115,46" fill="#FF8C42"/>
-        <text x="125" y="48" fill="#FF8C42" font-size="14" font-weight="bold" font-family="system-ui">I</text>
-        <rect x="98" y="56" width="24" height="78" rx="12" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.5"/>
-        <line x1="100" y1="100" x2="120" y2="100" stroke="#A57040" stroke-width="1" opacity="0.5"/>
-        <rect x="60" y="118" width="100" height="100" rx="34" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.5"/>
-        <ellipse cx="50" cy="135" rx="16" ry="10" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.2"/>
-        <ellipse cx="48" cy="155" rx="18" ry="10" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.2"/>
-        <ellipse cx="50" cy="175" rx="16" ry="10" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.2"/>
-        <ellipse cx="55" cy="194" rx="13" ry="9" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.2"/>
-        <rect x="74" y="218" width="72" height="42" rx="14" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.5"/>
-        <path d="M 30 168 a 60 30 0 0 0 -10 -52" stroke="#66BB6A" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-dasharray="6 5" class="curl-arc"/>
-        <polygon points="14,118 28,114 22,128" fill="#66BB6A"/>
-        <text x="2" y="100" fill="#66BB6A" font-size="16" font-weight="bold" font-family="system-ui">B</text>
-        <text x="110" y="282" fill="#D4D4D8" font-size="10" text-anchor="middle" font-family="system-ui">Thumb=I  ·  Fingers curl=B</text>
-    </svg>
+    <div class="rhr-title">Right-Hand Rule — Two Cases</div>
+    <div class="rhr-case">
+        <div class="rhr-case-label rhr-case-a-label">Case A · I points UP ↑</div>
+        <div class="rhr-row">
+            <div class="rhr-hand">👍</div>
+            <div class="rhr-curl-block rhr-curl-a">
+                <svg class="rhr-curl-svg" viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg">
+                    <path class="curl-arc" d="M 60 28 A 24 16 0 1 0 12 28" stroke="#66BB6A" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/>
+                    <polygon points="6,28 18,22 18,34" fill="#66BB6A"/>
+                </svg>
+                <div class="rhr-curl-text">B counter-clockwise<br/>(viewed from above)</div>
+            </div>
+        </div>
+    </div>
+    <div class="rhr-case">
+        <div class="rhr-case-label rhr-case-b-label">Case B · I points DOWN ↓</div>
+        <div class="rhr-row">
+            <div class="rhr-hand">👎</div>
+            <div class="rhr-curl-block rhr-curl-b">
+                <svg class="rhr-curl-svg" viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg">
+                    <path class="curl-arc" d="M 10 28 A 24 16 0 1 0 58 28" stroke="#EF7B7B" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/>
+                    <polygon points="64,28 52,22 52,34" fill="#EF7B7B"/>
+                </svg>
+                <div class="rhr-curl-text">B clockwise<br/>(viewed from above)</div>
+            </div>
+        </div>
+    </div>
+    <div class="rhr-footer">Same RIGHT hand — flip thumb, B reverses too</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"><\/script>
 <script>
