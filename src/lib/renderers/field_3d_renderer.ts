@@ -77,6 +77,10 @@ export interface Field3DConfig {
                 finger_curl: 'cw' | 'ccw';
                 scale?: number;
                 animate_curl?: boolean;       // pulse the fingers to animate the rule
+                // Case-specific overlay mode. 'A' = thumb-up Case A only (current up,
+                // B counter-clockwise). 'B' = thumb-down Case B only (current down,
+                // B clockwise). Omit (or 'both') = show both cases stacked.
+                case?: 'A' | 'B' | 'both';
             };
             compass?: {
                 position: [number, number, number];
@@ -95,6 +99,14 @@ export interface Field3DConfig {
         show_sliders?: boolean;
         // Multi-line text shown in a corner of the canvas (formulas, numerics)
         formula_overlay?: string;
+        // straight_wire_current scenario: rotate the field-line arrows around the
+        // wire. 'ccw' (default) for current upward; 'cw' for reversed current.
+        // Omitted = no rotation animation.
+        field_rotation_direction?: 'cw' | 'ccw';
+        // straight_wire_current scenario: animate yellow dots flowing along the
+        // wire to visualize the conventional current direction. 'up' or 'down'.
+        // Omitted = no dots shown.
+        current_direction_indicator?: 'up' | 'down';
     }>;
     // Slider configuration (used when show_sliders: true on a state)
     slider_controls?: {
@@ -213,6 +225,10 @@ canvas { display: block; width: 100%; height: 100%; }
     opacity: 0.78; font-style: italic;
 }
 #rhr_overlay .curl-arc { animation: rhrCurlSweep 1.4s linear infinite; }
+#rhr_overlay.rhr-show-a-only .rhr-case-section-b,
+#rhr_overlay.rhr-show-a-only .rhr-footer { display: none; }
+#rhr_overlay.rhr-show-b-only .rhr-case-section-a,
+#rhr_overlay.rhr-show-b-only .rhr-footer { display: none; }
 </style>
 </head><body>
 <div id="caption"></div>
@@ -227,8 +243,8 @@ canvas { display: block; width: 100%; height: 100%; }
 </div>
 <div id="formula_overlay"></div>
 <div id="rhr_overlay">
-    <div class="rhr-title">Right-Hand Rule — Two Cases</div>
-    <div class="rhr-case">
+    <div class="rhr-title">Right-Hand Rule</div>
+    <div class="rhr-case rhr-case-section-a">
         <div class="rhr-case-label rhr-case-a-label">Case A · I points UP ↑</div>
         <div class="rhr-row">
             <div class="rhr-hand">👍</div>
@@ -241,7 +257,7 @@ canvas { display: block; width: 100%; height: 100%; }
             </div>
         </div>
     </div>
-    <div class="rhr-case">
+    <div class="rhr-case rhr-case-section-b">
         <div class="rhr-case-label rhr-case-b-label">Case B · I points DOWN ↓</div>
         <div class="rhr-row">
             <div class="rhr-hand">👎</div>
@@ -724,8 +740,15 @@ export const FIELD_3D_RENDERER_CODE = `
             // Show the 2D SVG overlay pinned to the iframe corner instead of building
             // a 3D Three.js hand. The 3D mesh (createRightHand) is kept for backwards
             // compatibility but no longer rendered — the overlay is the canonical UX.
+            // Case 'A' shows only the thumb-up section; case 'B' shows only the
+            // thumb-down section; omitted/'both' shows both stacked.
             var rhrEl = document.getElementById("rhr_overlay");
-            if (rhrEl) rhrEl.style.display = "block";
+            if (rhrEl) {
+                rhrEl.classList.remove("rhr-show-a-only", "rhr-show-b-only");
+                if (extras.right_hand.case === "A") rhrEl.classList.add("rhr-show-a-only");
+                else if (extras.right_hand.case === "B") rhrEl.classList.add("rhr-show-b-only");
+                rhrEl.style.display = "block";
+            }
         }
         if (extras.compass) {
             var compass = createCompass(extras.compass);
@@ -1078,12 +1101,33 @@ export const FIELD_3D_RENDERER_CODE = `
         wire.userData = { elementType: "wire", id: "wire_main" };
         addToScene(wire);
 
-        // Current direction arrow on wire
+        // Current direction arrow on wire (head sits near top of wire by default;
+        // hidden / flipped per state via the current_direction_indicator pipeline)
         var currArrow = createArrowHead([0, 1.5, 0], [0, 1, 0], wireColor);
         currArrow.userData = { elementType: "current_arrow", id: "curr_arr" };
         addToScene(currArrow);
 
-        // Concentric circular field lines at different heights and radii
+        // Conventional-current flow visualization: 6 yellow dots evenly spaced
+        // along the wire. animate() drives their Y-position based on the current
+        // state's current_direction_indicator ('up' | 'down'). Hidden when the
+        // state has no indicator set.
+        var dotCount = 6;
+        for (var di = 0; di < dotCount; di++) {
+            var dotGeo = new THREE.SphereGeometry(0.10, 14, 14);
+            var dotMat = new THREE.MeshPhongMaterial({
+                color: 0xFFD54F, emissive: 0xFFAB00, emissiveIntensity: 0.7
+            });
+            var dot = new THREE.Mesh(dotGeo, dotMat);
+            dot.userData = { elementType: "current_dot", id: "cdot_" + di, dotIndex: di, dotCount: dotCount };
+            dot.position.set(0, -2.5 + (di / dotCount) * 5, 0);
+            dot.visible = false; // applyState turns this on per-state
+            addToScene(dot);
+        }
+
+        // Concentric circular field lines at different heights and radii.
+        // Each tube is static (closed loop — rotation is invisible), each arrow
+        // gets flow metadata so animate() can orbit it around the wire when the
+        // state requests rotation.
         var heights = [-1.5, 0, 1.5];
         for (var h = 0; h < heights.length; h++) {
             for (var ri = 0; ri < lineCount; ri++) {
@@ -1099,7 +1143,10 @@ export const FIELD_3D_RENDERER_CODE = `
                     tube.userData = { elementType: "field_line", id: "fl_wire_" + h + "_" + ri };
                     addToScene(tube);
                 }
-                // Arrow at quarter circle
+                // Arrow at quarter circle. Stored flow metadata enables orbital
+                // animation in animate(): the arrow walks around the circle of
+                // radius 'radius' at height heights[h], maintaining tangent
+                // orientation (sense flips with field_rotation_direction).
                 var qIdx = Math.floor(segments / 4);
                 if (qIdx > 0) {
                     var arrowDir = [
@@ -1108,7 +1155,13 @@ export const FIELD_3D_RENDERER_CODE = `
                         points[qIdx][2] - points[qIdx-1][2]
                     ];
                     var arrowMesh = createArrowHead(points[qIdx], arrowDir, flColor);
-                    arrowMesh.userData = { elementType: "arrow", id: "arr_wire_" + h + "_" + ri };
+                    arrowMesh.userData = {
+                        elementType: "arrow",
+                        id: "arr_wire_" + h + "_" + ri,
+                        flowRadius: radius,
+                        flowHeight: heights[h],
+                        flowAngleOffset: Math.PI / 2 // initial position = quarter circle (matches qIdx)
+                    };
                     addToScene(arrowMesh);
                 }
             }
@@ -1493,6 +1546,59 @@ export const FIELD_3D_RENDERER_CODE = `
                     var emfIntensity = Math.abs(Math.cos(time * 1.5));
                     obj.material.emissiveIntensity = 0.2 + emfIntensity * 0.8;
                     obj.material.opacity = 0.3 + emfIntensity * 0.7;
+                }
+            }
+        }
+
+        // straight_wire_current scenario:
+        //   1. Orbit field-line arrows around the wire's Y-axis (sense from
+        //      stateDef.field_rotation_direction). Tubes are closed loops so
+        //      they don't need rotation — rotating an arrow on a circle gives
+        //      the visual "flow" the user sees as B-field motion.
+        //   2. Animate yellow current_dot spheres along the wire to visualize
+        //      the conventional current direction (stateDef.current_direction_indicator).
+        if (config.scenario_type === "straight_wire_current" && stateDef) {
+            var rotDirSign = stateDef.field_rotation_direction === "cw" ? -1 :
+                             stateDef.field_rotation_direction === "ccw" ? 1 : 0;
+            var rotRate = 0.6; // radians/second
+            var curDirSign = stateDef.current_direction_indicator === "down" ? -1 :
+                             stateDef.current_direction_indicator === "up" ? 1 : 0;
+            var dotSpeed = 0.55; // wire-units per second along the 5-unit visible span
+
+            for (var swi = 0; swi < sceneObjects.length; swi++) {
+                var swObj = sceneObjects[swi];
+                var swUd = swObj.userData;
+                if (!swUd) continue;
+
+                if (swUd.elementType === "arrow" && swUd.flowRadius != null && rotDirSign !== 0 && swObj.visible) {
+                    var ang = (swUd.flowAngleOffset || 0) + time * rotRate * rotDirSign;
+                    swObj.position.set(
+                        swUd.flowRadius * Math.cos(ang),
+                        swUd.flowHeight,
+                        swUd.flowRadius * Math.sin(ang)
+                    );
+                    // Tangent direction along the circle, sense follows rotDirSign so
+                    // arrowhead always points "downstream" of the rotation.
+                    var tx = -Math.sin(ang) * rotDirSign;
+                    var tz =  Math.cos(ang) * rotDirSign;
+                    var qup = new THREE.Vector3(0, 1, 0);
+                    var qdir = new THREE.Vector3(tx, 0, tz).normalize();
+                    var arrowQuat = new THREE.Quaternion();
+                    arrowQuat.setFromUnitVectors(qup, qdir);
+                    swObj.setRotationFromQuaternion(arrowQuat);
+                }
+
+                if (swUd.elementType === "current_dot") {
+                    if (curDirSign === 0) {
+                        swObj.visible = false;
+                    } else {
+                        swObj.visible = true;
+                        var dotCount = swUd.dotCount || 6;
+                        var phase = (swUd.dotIndex || 0) / dotCount;
+                        var loopT = ((time * dotSpeed) + phase) % 1;
+                        // Up-flow: y goes -2.5 → +2.5; Down-flow: y goes +2.5 → -2.5
+                        swObj.position.y = curDirSign > 0 ? (-2.5 + loopT * 5) : (2.5 - loopT * 5);
+                    }
                 }
             }
         }

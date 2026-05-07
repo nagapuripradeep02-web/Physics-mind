@@ -167,41 +167,40 @@
         ]
       },
       "STATE_3": {
-        "title": "Right-Hand Rule — Use Your Hand to Find the Direction",
+        "title": "Case A — Current UP, B counter-clockwise",
         "duration": 14,
-        "focal_primitive_id": "rhr_label",
-        "advance_mode": "wait_for_answer",
+        "focal_primitive_id": "case_a_label",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "rhr_label",
+            "id": "case_a_label",
             "position": { "x": 380, "y": 60 },
-            "text": "Right-Hand Rule",
-            "color": "#FFF176"
+            "text": "Case A — Current UP",
+            "color": "#FFB366"
           },
           {
             "type": "annotation",
-            "id": "thumb_label",
+            "id": "current_up_label",
             "position": { "x": 200, "y": 200 },
-            "text": "Thumb → current direction (up the wire)",
-            "color": "#FFAB40"
+            "text": "I points UP — yellow dots flow up the wire",
+            "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "fingers_label",
+            "id": "ccw_label",
             "position": { "x": 560, "y": 320 },
-            "text": "Fingers curl → B-field direction\n(counter-clockwise from above)",
+            "text": "B circles run counter-clockwise\n(viewed from above)",
             "color": "#66BB6A"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Look at the right hand floating beside the wire. Its thumb points UP — exactly the direction the current is flowing." },
-            { "id": "s3_2", "text_en": "Now look at the four fingers. They curl naturally in one direction — counter-clockwise as seen from above." },
-            { "id": "s3_3", "text_en": "Compare the fingers to the green field circles. Same direction. The fingers ARE the B-field." },
-            { "id": "s3_4", "text_en": "This is the right-hand rule. Thumb along current, curled fingers along B. Always your RIGHT hand — never the left." },
-            { "id": "s3_5", "text_en": "If the current flowed downward, you'd flip your hand. Thumb down, fingers curl the other way. The field circles would reverse direction too." },
-            { "id": "s3_6", "text_en": "Quick check: looking down at the wire with current going UP, do the circles go clockwise or counter-clockwise?" }
+            { "id": "s3_1", "text_en": "Watch the yellow dots flowing UP the wire. That is the direction of the current — the conventional current I." },
+            { "id": "s3_2", "text_en": "Now look at the green B-field rings around the wire. They are rotating — counter-clockwise as seen from above." },
+            { "id": "s3_3", "text_en": "Bring up your right hand. Point the thumb UP, along the current. See how your fingers naturally curl counter-clockwise — same as the rings." },
+            { "id": "s3_4", "text_en": "This is the right-hand rule for Case A: thumb along I, fingers curl in the direction of B. Always the RIGHT hand, never the left." },
+            { "id": "s3_5", "text_en": "Hold this case in your head. Next state: we flip the current downward and watch the field reverse." }
           ]
         },
         "misconception_watch": [
@@ -212,42 +211,48 @@
         ]
       },
       "STATE_4": {
-        "title": "Magnitude — B = μ₀I / (2πr)",
+        "title": "Case B — Current DOWN, B clockwise",
         "duration": 14,
-        "focal_primitive_id": "formula_label",
-        "advance_mode": "auto_after_tts",
+        "focal_primitive_id": "case_b_label",
+        "advance_mode": "wait_for_answer",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "formula_label",
+            "id": "case_b_label",
             "position": { "x": 380, "y": 60 },
-            "text": "B = μ₀ · I / (2π · r)",
-            "color": "#FFF176"
+            "text": "Case B — Current DOWN",
+            "color": "#82B1FF"
           },
           {
             "type": "annotation",
-            "id": "decay_label",
-            "position": { "x": 380, "y": 460 },
-            "text": "B weakens as 1/r — outer rings are dimmer",
-            "color": "#D4D4D8"
+            "id": "current_down_label",
+            "position": { "x": 200, "y": 200 },
+            "text": "I points DOWN — yellow dots flow down the wire",
+            "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "numeric_label",
-            "position": { "x": 600, "y": 250 },
-            "text": "I = 5 A, r = 5 cm\n→ B = 2 × 10⁻⁵ T",
-            "color": "#66BB6A"
+            "id": "cw_label",
+            "position": { "x": 560, "y": 320 },
+            "text": "B circles run clockwise\n(viewed from above)",
+            "color": "#EF7B7B"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "How strong is the magnetic field at a perpendicular distance r from the wire?" },
-            { "id": "s4_2", "text_en": "B equals mu-naught times I divided by 2 pi r. Mu-naught is a tiny constant: 4 pi times 10 to the minus 7." },
-            { "id": "s4_3", "text_en": "See the sliders on the right. Drag the I-slider — watch the rings get brighter as current grows. Drag the r-slider — see the highlighted ring jump radius." },
-            { "id": "s4_4", "text_en": "Read the live B-readout in micro-tesla. Double the current — B doubles. Double the distance — B halves. The 1 over r decay is real, not abstract." },
-            { "id": "s4_5", "text_en": "For 5 amperes at 5 centimeters, B is 20 micro-tesla — about half the Earth's magnetic field at the surface. Try it." }
+            { "id": "s4_1", "text_en": "Now we reverse the battery. Watch the yellow dots — they are flowing DOWN the wire. The current direction has flipped." },
+            { "id": "s4_2", "text_en": "Look at the rings. They are still circling the wire, but the rotation has reversed. They now go CLOCKWISE — viewed from above." },
+            { "id": "s4_3", "text_en": "Bring up your right hand again. This time point the thumb DOWN, along the new current. Your fingers curl in the opposite sense — clockwise." },
+            { "id": "s4_4", "text_en": "Same right hand, opposite thumb, opposite curl. Reverse the current and the entire B-field reverses with it." },
+            { "id": "s4_5", "text_en": "Quick check: at a point on the LEFT of a wire carrying current downward, does B point INTO the page or OUT of it?" }
           ]
-        }
+        },
+        "misconception_watch": [
+          {
+            "belief": "The B-field strength depends on which way the current flows",
+            "one_line_fix": "Magnitude B = μ₀I/(2πr) is identical for both cases — only the DIRECTION (CCW vs CW) flips when current reverses."
+          }
+        ]
       },
       "STATE_5": {
         "title": "B at a Single Point — Tangent to the Circle",
@@ -453,12 +458,15 @@
         "caption": "The B-field forms 3D circles around the wire. Drag to rotate."
       },
       "STATE_3": {
-        "label": "Right-hand rule",
-        "visible_elements": ["wire_main", "curr_arr", "fl_wire_1", "arr_wire_1"],
-        "camera_position": [2.2, 1.0, 3.0],
-        "caption": "Thumb ↑ along current. Fingers curl in the direction of B — counter-clockwise from above.",
+        "label": "Case A — I ↑, B counter-clockwise",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
+        "camera_position": [3, 2, 4],
+        "caption": "Case A: current ↑ — B-field circles counter-clockwise (viewed from above).",
+        "field_rotation_direction": "ccw",
+        "current_direction_indicator": "up",
         "extras": {
           "right_hand": {
+            "case": "A",
             "position": [-1.8, 0, 0.8],
             "thumb_direction": [0, 1, 0],
             "finger_curl": "ccw",
@@ -468,12 +476,22 @@
         }
       },
       "STATE_4": {
-        "label": "Magnitude: B = μ₀ I / (2π r)",
-        "visible_elements": [],
-        "camera_position": [4, 0.5, 4],
-        "caption": "Drag the sliders → see the highlighted ring move and B-readout update live.",
-        "show_sliders": true,
-        "formula_overlay": "B = μ₀ I / (2π r)\nμ₀ = 4π × 10⁻⁷ T·m/A\n\nDouble I → double B\nDouble r → half B"
+        "label": "Case B — I ↓, B clockwise",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
+        "camera_position": [3, 2, 4],
+        "caption": "Case B: current ↓ — B-field circles clockwise (viewed from above). Same right hand, flipped.",
+        "field_rotation_direction": "cw",
+        "current_direction_indicator": "down",
+        "extras": {
+          "right_hand": {
+            "case": "B",
+            "position": [-1.8, 0, 0.8],
+            "thumb_direction": [0, -1, 0],
+            "finger_curl": "cw",
+            "scale": 2.2,
+            "animate_curl": true
+          }
+        }
       },
       "STATE_5": {
         "label": "B at point P — tangent to the circle",
@@ -528,37 +546,44 @@
           "STATE_3": {
             "teacher_script": {
               "tts_sentences": [
-                { "id": "b3_1", "text_en": "Step 2: State the right-hand rule. Right thumb along I; curled fingers give B direction." },
-                { "id": "b3_2", "text_en": "Draw a small circle around the wire and mark the direction of B with arrows." }
+                { "id": "b3_1", "text_en": "Step 2: State the right-hand rule. Right thumb along I (upward); curled fingers give B direction." },
+                { "id": "b3_2", "text_en": "Draw a small circle around the wire and mark the B-field direction as anti-clockwise viewed from above (Case A)." }
               ]
             }
           },
           "STATE_4": {
             "teacher_script": {
               "tts_sentences": [
-                { "id": "b4_1", "text_en": "Step 3: Write the magnitude formula. B equals mu-naught I over 2 pi r." },
-                { "id": "b4_2", "text_en": "Step 4: Substitute. mu-naught equals 4 pi times 10 to the minus 7. I equals 5. r equals 0.05." },
-                { "id": "b4_3", "text_en": "Step 5: Compute. B equals 2 times 10 to the minus 5 tesla. Mark the direction tangent to the circle at the field point." }
+                { "id": "b4_1", "text_en": "Step 3: Reverse the current. Now I flows downward. Apply the right-hand rule again — thumb DOWN, fingers curl the opposite way." },
+                { "id": "b4_2", "text_en": "Conclusion: when current direction reverses, the B-field direction reverses too. Magnitude is unchanged. Mark this on the answer sheet." }
+              ]
+            }
+          },
+          "STATE_7": {
+            "teacher_script": {
+              "tts_sentences": [
+                { "id": "b7_1", "text_en": "Step 4: Write the magnitude formula. B equals mu-naught I over 2 pi r." },
+                { "id": "b7_2", "text_en": "Step 5: Substitute. mu-naught equals 4 pi times 10 to the minus 7. I equals 5. r equals 0.05. B equals 2 times 10 to the minus 5 tesla." }
               ]
             }
           }
         }
       },
       "derivation_sequence": [
-        { "step": 1, "tied_to_state": "STATE_1", "writes": "Setup: Long straight wire, current I = 5 A flowing vertically upward.", "marks": 1 },
-        { "step": 2, "tied_to_state": "STATE_3", "writes": "Direction: By right-hand rule, B forms concentric circles around the wire (anti-clockwise when current is upward, viewed from above).", "marks": 1 },
-        { "step": 3, "tied_to_state": "STATE_4", "writes": "Formula: B = μ₀ I / (2π r)  [Biot-Savart for an infinite straight wire]", "marks": 1 },
-        { "step": 4, "tied_to_state": "STATE_4", "writes": "Substitution: B = (4π × 10⁻⁷)(5) / (2π × 0.05) = (4 × 5 × 10⁻⁷) / (2 × 0.05) = 2 × 10⁻⁵ T", "marks": 1 },
-        { "step": 5, "tied_to_state": "STATE_5", "writes": "Direction at point P: tangent to the circle of radius r through P, in the plane perpendicular to the wire at that height.", "marks": 1 }
+        { "step": 1, "tied_to_state": "STATE_1", "writes": "Setup: Long straight wire, current I = 5 A flowing vertically (we will examine BOTH directions).", "marks": 1 },
+        { "step": 2, "tied_to_state": "STATE_3", "writes": "Case A — current upward: by the right-hand rule, B forms concentric circles ANTI-CLOCKWISE around the wire (viewed from above).", "marks": 1 },
+        { "step": 3, "tied_to_state": "STATE_4", "writes": "Case B — current downward: same right-hand rule with the thumb flipped — B reverses to CLOCKWISE (viewed from above). Magnitude unchanged.", "marks": 1 },
+        { "step": 4, "tied_to_state": "STATE_7", "writes": "Magnitude: B = μ₀ I / (2π r) = (4π × 10⁻⁷)(5) / (2π × 0.05) = 2 × 10⁻⁵ T (same value for both cases)", "marks": 1 },
+        { "step": 5, "tied_to_state": "STATE_5", "writes": "Direction at point P: tangent to the circle of radius r through P, sense determined by the right-hand rule for the current direction.", "marks": 1 }
       ],
       "mark_scheme": {
         "total_marks": 5,
         "items": [
           { "marks": 1, "criterion": "Correctly identifies the setup (long straight wire, current direction, field point at distance r)" },
-          { "marks": 1, "criterion": "States right-hand rule for B-field direction around the wire" },
-          { "marks": 1, "criterion": "Writes the correct formula B = μ₀I/(2πr) with all symbols defined" },
-          { "marks": 1, "criterion": "Substitutes numerical values correctly with consistent SI units" },
-          { "marks": 1, "criterion": "States the final B with magnitude AND direction (tangent specification)" }
+          { "marks": 1, "criterion": "States right-hand rule and applies it to upward current (Case A → anti-clockwise B)" },
+          { "marks": 1, "criterion": "Recognises that reversing the current reverses the B-direction (Case B → clockwise) but NOT the magnitude" },
+          { "marks": 1, "criterion": "Writes B = μ₀I/(2πr) and substitutes numerical values correctly with consistent SI units" },
+          { "marks": 1, "criterion": "States the final B with magnitude AND direction (tangent specification, sense from RHR)" }
         ]
       }
     },

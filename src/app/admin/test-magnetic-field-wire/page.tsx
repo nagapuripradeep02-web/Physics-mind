@@ -75,12 +75,12 @@ const STATES_TO_VERIFY: Array<{ id: string; description: string }> = [
     {
         id: 'STATE_3',
         description:
-            'Right-hand rule. Wire + current arrow + middle-height field circles only (cleaner). Caption explains thumb=I, fingers=B.',
+            'Case A — current UP. Yellow dots flow up the wire, B-field arrows orbit counter-clockwise around the wire. Right-hand rule overlay shows 👍 thumb-up only.',
     },
     {
         id: 'STATE_4',
         description:
-            'Magnitude formula. All circles visible at all radii — outer rings = weaker B (1/r decay).',
+            'Case B — current DOWN. Yellow dots flow down the wire, B-field arrows orbit clockwise (reversed). Right-hand rule overlay shows 👎 thumb-down only. Same right hand, opposite thumb → opposite curl.',
     },
     {
         id: 'STATE_5',
