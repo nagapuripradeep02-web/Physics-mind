@@ -156,6 +156,23 @@ canvas { display: block; width: 100%; height: 100%; }
     max-width: 300px; display: none;
     white-space: pre-line;
 }
+@keyframes rhrCurlSweep {
+    from { stroke-dashoffset: 0; }
+    to   { stroke-dashoffset: -22; }
+}
+#rhr_overlay {
+    position: fixed; top: 60px; right: 12px;
+    background: rgba(0,0,0,0.82);
+    border: 1px solid rgba(252,211,77,0.45);
+    border-radius: 12px;
+    padding: 6px 8px 2px;
+    z-index: 12;
+    display: none;
+    pointer-events: none;
+    width: 168px;
+}
+#rhr_overlay svg { width: 100%; height: auto; display: block; }
+#rhr_overlay .curl-arc { animation: rhrCurlSweep 1.4s linear infinite; }
 </style>
 </head><body>
 <div id="caption"></div>
@@ -169,6 +186,32 @@ canvas { display: block; width: 100%; height: 100%; }
     <div id="b_readout">B = 20.0 μT</div>
 </div>
 <div id="formula_overlay"></div>
+<div id="rhr_overlay">
+    <svg viewBox="0 0 220 290" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="rhrSkin" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FFCC9F"/>
+                <stop offset="100%" stop-color="#E6A876"/>
+            </linearGradient>
+        </defs>
+        <text x="110" y="18" fill="#FCD34D" font-size="14" font-weight="bold" text-anchor="middle" font-family="system-ui, sans-serif">Right-Hand Rule</text>
+        <line x1="110" y1="42" x2="110" y2="56" stroke="#FF8C42" stroke-width="2.5" stroke-linecap="round"/>
+        <polygon points="105,46 110,32 115,46" fill="#FF8C42"/>
+        <text x="125" y="48" fill="#FF8C42" font-size="14" font-weight="bold" font-family="system-ui">I</text>
+        <rect x="98" y="56" width="24" height="78" rx="12" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.5"/>
+        <line x1="100" y1="100" x2="120" y2="100" stroke="#A57040" stroke-width="1" opacity="0.5"/>
+        <rect x="60" y="118" width="100" height="100" rx="34" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.5"/>
+        <ellipse cx="50" cy="135" rx="16" ry="10" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.2"/>
+        <ellipse cx="48" cy="155" rx="18" ry="10" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.2"/>
+        <ellipse cx="50" cy="175" rx="16" ry="10" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.2"/>
+        <ellipse cx="55" cy="194" rx="13" ry="9" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.2"/>
+        <rect x="74" y="218" width="72" height="42" rx="14" fill="url(#rhrSkin)" stroke="#A57040" stroke-width="1.5"/>
+        <path d="M 30 168 a 60 30 0 0 0 -10 -52" stroke="#66BB6A" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-dasharray="6 5" class="curl-arc"/>
+        <polygon points="14,118 28,114 22,128" fill="#66BB6A"/>
+        <text x="2" y="100" fill="#66BB6A" font-size="16" font-weight="bold" font-family="system-ui">B</text>
+        <text x="110" y="282" fill="#D4D4D8" font-size="10" text-anchor="middle" font-family="system-ui">Thumb=I  ·  Fingers curl=B</text>
+    </svg>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"><\/script>
 <script>
 window.SIM_CONFIG = ${JSON.stringify(config)};
@@ -624,14 +667,21 @@ export const FIELD_3D_RENDERER_CODE = `
             // Sub-meshes share materials w/ scene objects; safe to skip dispose here
         }
         dynamicExtras = [];
+        // Hide the 2D right-hand SVG overlay between states (session-60 polish: switched
+        // from a 3D Three.js hand mesh that read as ambiguous geometry to a clear 2D SVG
+        // pinned to the iframe corner — see #rhr_overlay in assembleField3DHtml).
+        var rhrEl = document.getElementById("rhr_overlay");
+        if (rhrEl) rhrEl.style.display = "none";
     }
 
     function applyExtras(extras) {
         if (!extras) return;
         if (extras.right_hand) {
-            var hand = createRightHand(extras.right_hand);
-            scene.add(hand);
-            dynamicExtras.push(hand);
+            // Show the 2D SVG overlay pinned to the iframe corner instead of building
+            // a 3D Three.js hand. The 3D mesh (createRightHand) is kept for backwards
+            // compatibility but no longer rendered — the overlay is the canonical UX.
+            var rhrEl = document.getElementById("rhr_overlay");
+            if (rhrEl) rhrEl.style.display = "block";
         }
         if (extras.compass) {
             var compass = createCompass(extras.compass);
