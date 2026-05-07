@@ -69,7 +69,38 @@ export interface Field3DConfig {
         highlight?: string;
         caption: string;
         animate?: boolean;
+        // ── Premium polish extras (session 60 polish iteration) ───────────────
+        extras?: {
+            right_hand?: {
+                position: [number, number, number];
+                thumb_direction: [number, number, number];
+                finger_curl: 'cw' | 'ccw';
+                scale?: number;
+                animate_curl?: boolean;       // pulse the fingers to animate the rule
+            };
+            compass?: {
+                position: [number, number, number];
+                radius?: number;
+                animate_swing?: boolean;       // swing from north to B-tangent over time
+                swing_delay_ms?: number;       // when in state lifecycle to start swinging
+            };
+            highlighted_point?: {
+                position: [number, number, number];
+                label?: string;
+                color?: string;
+                radius?: number;
+            };
+        };
+        // Show interactive I/r sliders + B readout overlay in this state
+        show_sliders?: boolean;
+        // Multi-line text shown in a corner of the canvas (formulas, numerics)
+        formula_overlay?: string;
     }>;
+    // Slider configuration (used when show_sliders: true on a state)
+    slider_controls?: {
+        I?: { min: number; max: number; step: number; default: number; label: string };
+        r?: { min: number; max: number; step: number; default: number; label: string };
+    };
     pvl_colors?: {
         background: string; text: string; positive: string; negative: string; field_line: string;
     };
@@ -103,11 +134,41 @@ canvas { display: block; width: 100%; height: 100%; }
     display: none; width: 100%; height: 100%;
     position: fixed; top: 0; left: 0; background: ${bg};
 }
+#sliders {
+    position: fixed; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 8px;
+    font: 12px/1.6 monospace; z-index: 10;
+    min-width: 180px; display: none;
+}
+#sliders label { display: block; margin-bottom: 2px; }
+#sliders input[type="range"] { width: 100%; margin-bottom: 8px; }
+#sliders #b_readout {
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #FFF176; font-weight: bold;
+}
+#formula_overlay {
+    position: fixed; bottom: 12px; right: 12px;
+    background: rgba(0,0,0,0.85); color: #FFF176;
+    padding: 10px 14px; border-radius: 8px;
+    font: 13px/1.5 monospace; z-index: 10;
+    max-width: 300px; display: none;
+    white-space: pre-line;
+}
 </style>
 </head><body>
 <div id="caption"></div>
 <div id="legend"></div>
 <div id="mobile-fallback"></div>
+<div id="sliders">
+    <label>I = <span id="i_val">5</span> A</label>
+    <input type="range" id="i_slider" min="0.5" max="20" step="0.5" value="5">
+    <label>r = <span id="r_val">5</span> cm</label>
+    <input type="range" id="r_slider" min="2" max="30" step="1" value="5">
+    <div id="b_readout">B = 20.0 μT</div>
+</div>
+<div id="formula_overlay"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"><\/script>
 <script>
 window.SIM_CONFIG = ${JSON.stringify(config)};
@@ -357,6 +418,232 @@ export const FIELD_3D_RENDERER_CODE = `
         });
         var mesh = new THREE.Mesh(geo, mat);
         return mesh;
+    }
+
+    // ── Premium primitives (session-60 polish iteration) ─────────────────
+    function createRightHand(spec) {
+        // Builds a stylised right hand at spec.position with thumb pointing
+        // along spec.thumb_direction, fingers curling spec.finger_curl
+        // ('ccw' | 'cw') around the thumb axis. All composed of basic Three.js
+        // primitives — no GLTF dependency.
+        var grp = new THREE.Group();
+        var s = spec.scale || 1;
+        var skinColor = 0xFFCC9F;
+        var skinMat = new THREE.MeshPhongMaterial({
+            color: skinColor, emissive: 0x442211, emissiveIntensity: 0.18, shininess: 30
+        });
+
+        // Palm — slightly elongated sphere
+        var palmGeo = new THREE.SphereGeometry(0.20 * s, 18, 14);
+        var palm = new THREE.Mesh(palmGeo, skinMat);
+        palm.scale.set(1.0, 0.85, 0.7);
+        grp.add(palm);
+
+        // Thumb — cylinder pointing local +Y, anchored on top of palm
+        var thumbGeo = new THREE.CylinderGeometry(0.07 * s, 0.085 * s, 0.55 * s, 12);
+        var thumb = new THREE.Mesh(thumbGeo, skinMat);
+        thumb.position.set(0, 0.35 * s, 0.04 * s);
+        grp.add(thumb);
+
+        // Thumbnail (tiny dark cap) for clarity at the thumb tip
+        var nailGeo = new THREE.SphereGeometry(0.06 * s, 8, 8);
+        var nailMat = new THREE.MeshPhongMaterial({ color: 0xCC9966 });
+        var nail = new THREE.Mesh(nailGeo, nailMat);
+        nail.position.set(0, 0.62 * s, 0.05 * s);
+        grp.add(nail);
+
+        // 4 fingers — each a quarter-circle TubeGeometry curling around +Y
+        var fingerLengths = [1.00, 1.05, 0.95, 0.80]; // index..pinky relative
+        var dir = spec.finger_curl === 'cw' ? -1 : 1;
+        var palmRadius = 0.22 * s;
+
+        for (var fi = 0; fi < 4; fi++) {
+            // each finger sits at a different Y along the palm and starts at a
+            // different starting angle in XZ plane
+            var fingerOffsetY = -0.05 * s + fi * 0.085 * s;
+            var startTheta = -Math.PI / 2 - 0.2;        // start on the back side of the palm
+            var sweepTheta = (Math.PI / 1.8) * fingerLengths[fi];  // ~100°
+
+            var pts = [];
+            var segments = 18;
+            for (var t = 0; t <= segments; t++) {
+                var u = t / segments;
+                var theta = startTheta + dir * sweepTheta * u;
+                var rad = palmRadius * (1 + 0.05 * Math.sin(u * Math.PI)); // slight bulge
+                var x = rad * Math.cos(theta);
+                var z = rad * Math.sin(theta);
+                var y = fingerOffsetY - u * 0.04 * s;   // fingers droop slightly toward palm
+                pts.push(new THREE.Vector3(x, y, z));
+            }
+            var curve = new THREE.CatmullRomCurve3(pts);
+            var fingerGeo = new THREE.TubeGeometry(curve, 24, 0.045 * s * fingerLengths[fi], 8, false);
+            var finger = new THREE.Mesh(fingerGeo, skinMat);
+            finger.userData = { fingerIndex: fi };
+            grp.add(finger);
+        }
+
+        // Wrist stub — small darker cylinder below the palm
+        var wristGeo = new THREE.CylinderGeometry(0.16 * s, 0.13 * s, 0.30 * s, 12);
+        var wristMat = new THREE.MeshPhongMaterial({ color: 0xE6B895 });
+        var wrist = new THREE.Mesh(wristGeo, wristMat);
+        wrist.position.set(0, -0.30 * s, 0);
+        grp.add(wrist);
+
+        // Position + orient so local +Y aligns with spec.thumb_direction
+        grp.position.set(spec.position[0], spec.position[1], spec.position[2]);
+        var thumbDir = new THREE.Vector3(
+            spec.thumb_direction[0], spec.thumb_direction[1], spec.thumb_direction[2]
+        ).normalize();
+        var defaultUp = new THREE.Vector3(0, 1, 0);
+        var quat = new THREE.Quaternion();
+        quat.setFromUnitVectors(defaultUp, thumbDir);
+        grp.setRotationFromQuaternion(quat);
+        grp.userData = { elementType: 'right_hand', id: 'rhr_hand', animate_curl: !!spec.animate_curl };
+
+        return grp;
+    }
+
+    function createCompass(spec) {
+        // Compass disk + N/S needle. The needle's local +Z is the "north
+        // pointer". When animate_swing is enabled, applyState rotates the
+        // needle group toward the local B-field direction over time.
+        var grp = new THREE.Group();
+        var R = spec.radius || 0.45;
+
+        // Disk base — flat cylinder lying in XZ plane
+        var diskGeo = new THREE.CylinderGeometry(R, R, 0.04, 32);
+        var diskMat = new THREE.MeshPhongMaterial({
+            color: 0xEEEEEE, transparent: true, opacity: 0.55, shininess: 60
+        });
+        var disk = new THREE.Mesh(diskGeo, diskMat);
+        grp.add(disk);
+
+        // Disk rim
+        var rimGeo = new THREE.TorusGeometry(R, 0.025, 8, 32);
+        var rimMat = new THREE.MeshPhongMaterial({ color: 0x4A4A4A });
+        var rim = new THREE.Mesh(rimGeo, rimMat);
+        rim.rotation.x = Math.PI / 2;
+        grp.add(rim);
+
+        // Needle group — rotated as a whole for the swing animation
+        var needleGrp = new THREE.Group();
+
+        // North half — red, points +Z by default
+        var northGeo = new THREE.BoxGeometry(R * 0.18, 0.06, R * 0.85);
+        var northMat = new THREE.MeshPhongMaterial({
+            color: 0xEF5350, emissive: 0x661111, emissiveIntensity: 0.4
+        });
+        var north = new THREE.Mesh(northGeo, northMat);
+        north.position.set(0, 0.045, R * 0.42);
+        needleGrp.add(north);
+
+        // South half — white/grey, points -Z
+        var southGeo = new THREE.BoxGeometry(R * 0.18, 0.06, R * 0.85);
+        var southMat = new THREE.MeshPhongMaterial({ color: 0xE0E0E0 });
+        var south = new THREE.Mesh(southGeo, southMat);
+        south.position.set(0, 0.045, -R * 0.42);
+        needleGrp.add(south);
+
+        // Tiny pivot dot
+        var pivotGeo = new THREE.SphereGeometry(0.05, 8, 8);
+        var pivotMat = new THREE.MeshPhongMaterial({ color: 0x222222 });
+        var pivot = new THREE.Mesh(pivotGeo, pivotMat);
+        pivot.position.set(0, 0.05, 0);
+        needleGrp.add(pivot);
+
+        // N/S labels on top
+        var nMarkGeo = new THREE.SphereGeometry(0.04, 8, 8);
+        var nMarkMat = new THREE.MeshPhongMaterial({
+            color: 0xFFFFFF, emissive: 0xFFFFFF, emissiveIntensity: 0.7
+        });
+        var nMark = new THREE.Mesh(nMarkGeo, nMarkMat);
+        nMark.position.set(0, 0.07, R * 0.85);
+        needleGrp.add(nMark);
+
+        grp.add(needleGrp);
+        grp.userData = {
+            elementType: 'compass',
+            id: 'compass_oersted',
+            animate_swing: !!spec.animate_swing,
+            swing_delay_ms: spec.swing_delay_ms || 1500,
+            position_world: [spec.position[0], spec.position[1], spec.position[2]],
+            needleGroup: needleGrp,
+            target_angle: 0,
+            current_angle: 0,
+            swing_started_at: -1
+        };
+        grp.position.set(spec.position[0], spec.position[1], spec.position[2]);
+        return grp;
+    }
+
+    function createHighlightedPoint(spec) {
+        // A glowing point P with optional label-anchor sphere for callouts.
+        var grp = new THREE.Group();
+        var R = spec.radius || 0.10;
+        var color = spec.color || '#FFF176';
+        var geo = new THREE.SphereGeometry(R, 16, 16);
+        var mat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(color),
+            emissive: hexToThreeColor(color),
+            emissiveIntensity: 0.9,
+            transparent: true,
+            opacity: 0.9
+        });
+        var dot = new THREE.Mesh(geo, mat);
+        grp.add(dot);
+
+        // Outer glow halo
+        var haloGeo = new THREE.SphereGeometry(R * 1.8, 16, 16);
+        var haloMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(color),
+            transparent: true,
+            opacity: 0.18,
+            emissive: hexToThreeColor(color),
+            emissiveIntensity: 0.4
+        });
+        var halo = new THREE.Mesh(haloGeo, haloMat);
+        grp.add(halo);
+
+        grp.position.set(spec.position[0], spec.position[1], spec.position[2]);
+        grp.userData = {
+            elementType: 'highlighted_point',
+            id: 'hp_point',
+            label: spec.label || '',
+            pulse: true
+        };
+        return grp;
+    }
+
+    // Track current dynamic extras so applyState can clear them between states
+    var dynamicExtras = [];
+
+    function clearDynamicExtras() {
+        for (var i = 0; i < dynamicExtras.length; i++) {
+            var obj = dynamicExtras[i];
+            scene.remove(obj);
+            // Sub-meshes share materials w/ scene objects; safe to skip dispose here
+        }
+        dynamicExtras = [];
+    }
+
+    function applyExtras(extras) {
+        if (!extras) return;
+        if (extras.right_hand) {
+            var hand = createRightHand(extras.right_hand);
+            scene.add(hand);
+            dynamicExtras.push(hand);
+        }
+        if (extras.compass) {
+            var compass = createCompass(extras.compass);
+            scene.add(compass);
+            dynamicExtras.push(compass);
+            compass.userData.swing_started_at = performance.now() + (compass.userData.swing_delay_ms || 0);
+        }
+        if (extras.highlighted_point) {
+            var hp = createHighlightedPoint(extras.highlighted_point);
+            scene.add(hp);
+            dynamicExtras.push(hp);
+        }
     }
 
     function createCoilGeometry(turns, radius, axis, length) {
@@ -908,6 +1195,28 @@ export const FIELD_3D_RENDERER_CODE = `
             animateCameraTo(stateDef.camera_position);
         }
 
+        // Premium extras (right hand, compass, highlighted point)
+        clearDynamicExtras();
+        applyExtras(stateDef.extras);
+
+        // Sliders + formula overlay visibility
+        var slidersEl = document.getElementById("sliders");
+        if (slidersEl) slidersEl.style.display = stateDef.show_sliders ? "block" : "none";
+
+        var formulaEl = document.getElementById("formula_overlay");
+        if (formulaEl) {
+            if (stateDef.formula_overlay) {
+                formulaEl.textContent = stateDef.formula_overlay;
+                formulaEl.style.display = "block";
+            } else {
+                formulaEl.style.display = "none";
+            }
+        }
+
+        // If sliders are shown for this state, refresh the field-line visual
+        // feedback so the current slider values are reflected immediately.
+        if (stateDef.show_sliders) refreshSliderVisuals();
+
         // Update legend
         updateLegend(stateDef);
     }
@@ -945,6 +1254,94 @@ export const FIELD_3D_RENDERER_CODE = `
         legendEl.innerHTML = lines.join("<br>");
     }
 
+    // ── Slider wiring (I and r — interactive in show_sliders states) ──────
+    var MU_0 = 4 * Math.PI * 1e-7;
+
+    function refreshSliderVisuals() {
+        var slidersEl = document.getElementById("sliders");
+        if (!slidersEl || slidersEl.style.display === "none") return;
+
+        var iSlider = document.getElementById("i_slider");
+        var rSlider = document.getElementById("r_slider");
+        if (!iSlider || !rSlider) return;
+
+        var I = parseFloat(iSlider.value);
+        var r_cm = parseFloat(rSlider.value);
+        var r_m = r_cm / 100;
+
+        var B = (MU_0 * I) / (2 * Math.PI * r_m);
+        var B_uT = B * 1e6;
+
+        var iValEl = document.getElementById("i_val");
+        var rValEl = document.getElementById("r_val");
+        var bReadoutEl = document.getElementById("b_readout");
+        if (iValEl) iValEl.textContent = I.toFixed(1);
+        if (rValEl) rValEl.textContent = r_cm.toFixed(0);
+        if (bReadoutEl) bReadoutEl.innerHTML = "B = " + B_uT.toFixed(1) + " μT";
+
+        // Visual feedback: scale opacity by I (more current = brighter rings)
+        // and highlight the ring closest to the slider's r.
+        // Renderer builds 6 circles per height at radii 0.6, 1.1, 1.6, 2.1, 2.6, 3.1
+        // (scene units). Map slider r (in m, 0.02 - 0.30) to scene units.
+        var SCENE_R_MIN = 0.6, SCENE_R_MAX = 3.1;
+        var sliderRMin = 0.02, sliderRMax = 0.30;
+        var sceneR = SCENE_R_MIN + ((r_m - sliderRMin) / (sliderRMax - sliderRMin)) * (SCENE_R_MAX - SCENE_R_MIN);
+        var closestRi = Math.round((sceneR - SCENE_R_MIN) / 0.5);
+        if (closestRi < 0) closestRi = 0;
+        if (closestRi > 5) closestRi = 5;
+
+        var brightness = Math.min(1, Math.log(1 + I) / Math.log(21));
+        var baseOpacity = 0.35 + brightness * 0.55;
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var obj = sceneObjects[i];
+            if (!obj.userData || !obj.material) continue;
+            var et = obj.userData.elementType;
+            var id = obj.userData.id || "";
+            if (et === "field_line" || et === "arrow") {
+                // Reset to default field-line color first
+                if (obj.material.color && obj.material.color.setHex) {
+                    obj.material.color.setHex(0x66BB6A);
+                }
+                obj.material.opacity = baseOpacity;
+                // Highlight if this ring/arrow is at the closest radius
+                var endsWithRi = id.endsWith("_" + closestRi);
+                if (endsWithRi) {
+                    if (obj.material.color && obj.material.color.setHex) {
+                        obj.material.color.setHex(0xFFEB3B); // yellow highlight
+                    }
+                    obj.material.opacity = 1.0;
+                }
+            }
+        }
+    }
+
+    function setupSliders() {
+        var iSlider = document.getElementById("i_slider");
+        var rSlider = document.getElementById("r_slider");
+        if (!iSlider || !rSlider) return;
+
+        // Apply slider_controls config to the input ranges if provided
+        if (config.slider_controls) {
+            if (config.slider_controls.I) {
+                iSlider.min = String(config.slider_controls.I.min);
+                iSlider.max = String(config.slider_controls.I.max);
+                iSlider.step = String(config.slider_controls.I.step);
+                iSlider.value = String(config.slider_controls.I.default);
+            }
+            if (config.slider_controls.r) {
+                // r slider in cm — internal unit conversion handled in refresh
+                rSlider.min = String(config.slider_controls.r.min * 100);
+                rSlider.max = String(config.slider_controls.r.max * 100);
+                rSlider.step = String(config.slider_controls.r.step * 100);
+                rSlider.value = String(config.slider_controls.r.default * 100);
+            }
+        }
+
+        iSlider.addEventListener("input", refreshSliderVisuals);
+        rSlider.addEventListener("input", refreshSliderVisuals);
+    }
+
     // ── Animation loop ────────────────────────────────────────────────────
     var time = 0;
     function animate() {
@@ -952,6 +1349,40 @@ export const FIELD_3D_RENDERER_CODE = `
         time += 0.016;
 
         lerpSpherical();
+
+        // Animate dynamic extras (compass swing, hand pulse, point pulse)
+        for (var di = 0; di < dynamicExtras.length; di++) {
+            var dx = dynamicExtras[di];
+            var dud = dx.userData;
+            if (!dud) continue;
+            if (dud.elementType === "compass" && dud.animate_swing && dud.needleGroup) {
+                // Swing from 0 (north) to ~ -PI/2 (eastward = perpendicular to wire)
+                // mimicking Oersted's deflection. Swing eases in over ~2s after delay.
+                var now = performance.now();
+                if (dud.swing_started_at > 0 && now >= dud.swing_started_at) {
+                    var elapsed = (now - dud.swing_started_at) / 2000; // 2s sweep
+                    var easeT = Math.min(1, elapsed);
+                    var eased = 1 - Math.pow(1 - easeT, 3); // easeOutCubic
+                    dud.target_angle = -Math.PI / 2;        // 90° east
+                    dud.current_angle = dud.target_angle * eased;
+                    dud.needleGroup.rotation.y = dud.current_angle;
+                }
+            }
+            if (dud.elementType === "right_hand" && dud.animate_curl) {
+                // Subtle pulse: scale fingers slightly to draw the eye
+                var pulse = 1 + 0.04 * Math.sin(time * 2.5);
+                for (var ci = 0; ci < dx.children.length; ci++) {
+                    var ch = dx.children[ci];
+                    if (ch.userData && typeof ch.userData.fingerIndex === "number") {
+                        ch.scale.set(pulse, 1, pulse);
+                    }
+                }
+            }
+            if (dud.elementType === "highlighted_point" && dud.pulse) {
+                var p = 1 + 0.15 * Math.sin(time * 3);
+                dx.scale.set(p, p, p);
+            }
+        }
 
         // Animate moving magnet in changing_flux scenario
         var stateDef = config.states[PM_currentState];
@@ -1097,6 +1528,7 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // ── Initialize ────────────────────────────────────────────────────────
     setupPostMessage();
+    setupSliders();
     buildScenario();
     animate();
 

@@ -1,5 +1,107 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-05-07 (session 60 polish — Sim 3 PREMIUM upgrade) — `magnetic_field_wire` lifted from Day 1 skeleton to premium-tier interactive demo: 3D right-hand model in STATE_3 (palm sphere + 4 curled finger TubeGeometries + thumb cylinder, oriented so local +Y aligns with thumb_direction; pulses with `animate_curl`); animated compass in STATE_1 (red+white needle on translucent disk, pivots `-π/2` over 2s with `easeOutCubic` after `swing_delay_ms` to mimic Oersted's deflection moment); interactive **sliders for I and r** in STATE_4 + STATE_7 with live B-readout in μT (e.g. I=5A, r=5cm → B=20.0μT exact); yellow highlighted ring tracks the slider's r in scene units; field-line opacity scales with `log(I)` so cranking current visibly brightens the rings; corner formula overlay (B = μ₀I/(2πr) + RHR reminder); highlighted point P in STATE_5 (glowing yellow sphere + halo, pulses); all extras and sliders are general-purpose Field3DConfig extensions reusable by any future field_3d concept
+
+### Top-line outcome
+
+**Sim 3 went from "Day 1 skeleton lands" to "premium interactive demo" inside one session.** Pradeep's review of Day 1 surfaced three concrete asks: (1) put a real 3D right-hand on screen showing the rule, with TTS narration that points at it, (2) put a magnet/compass-thing in the Oersted hook so the deflection is concrete instead of imagined, (3) make the simulation respond to dragging — sliders that change I and r and update the field visually. Every one of those landed. The result is the codebase's first **Three.js concept that's fully interactive and self-narrating**.
+
+What this iteration shipped on top of Day 1:
+
+| Area | Day 1 state | After polish |
+|---|---|---|
+| STATE_1 (Oersted hook) | wire alone, "imagine a compass" | **Compass needle visible**: disk + red(N)/white(S) needle that pivots from north to perpendicular over 2s after a 2.2s delay (= the Oersted deflection moment) |
+| STATE_3 (Right-hand rule) | "imagine your right hand" | **3D right-hand model**: palm sphere, thumb cylinder pointing up along current, 4 quarter-circle finger TubeGeometries curling CCW around thumb axis, thumb-nail accent, wrist stub. Animates with subtle finger pulse. Teacher script rewritten to point at the visible hand. |
+| STATE_4 (Magnitude) | static rings + caption | **Interactive I/r sliders + live B-readout in μT**. Drag I → all rings brighten proportionally to log(I). Drag r → yellow highlighted ring jumps to closest scene-radius. Formula overlay shows `B = μ₀I/(2πr)`, μ₀ value, "double I → double B / double r → half B". Teacher script rewritten to direct the student to the sliders. |
+| STATE_5 (B at point P) | one circle visible | **Glowing yellow point P** with halo, pulsing 3Hz, sitting on the highlighted circle to make the "tangent at this exact point" idea concrete |
+| STATE_7 (Free explore) | rotate-only | **Sliders + rotate + zoom**, formula overlay with RHR reminder. Same I/r controls as STATE_4 carry through. |
+| Renderer extensibility | scenario-based, no per-state extras | New `Field3DConfig.states[].extras` (right_hand / compass / highlighted_point) + `slider_controls` + `show_sliders` per state + `formula_overlay`. All general-purpose — solenoid, EMI, electric-field future concepts get these for free. |
+
+### Renderer extensions shipped (`src/lib/renderers/field_3d_renderer.ts`)
+
+These are general-purpose primitives — any future field_3d concept JSON can use them:
+
+- **`createRightHand(spec)`** — `spec: { position, thumb_direction, finger_curl: 'cw'|'ccw', scale, animate_curl }`. Composed of palm sphere + thumb cylinder + thumbnail + 4 quarter-circle TubeGeometry fingers + wrist stub. Quaternion-aligned so local +Y = thumb_direction. No GLTF dependency — pure primitive composition for fast load and zero asset overhead.
+- **`createCompass(spec)`** — `spec: { position, radius, animate_swing, swing_delay_ms }`. Disk base + Torus rim + needle group (red north + white south + pivot dot). When `animate_swing: true`, the needle group rotates around Y from 0 to -π/2 over 2 seconds with `easeOutCubic`, starting at `swing_delay_ms` after state entry.
+- **`createHighlightedPoint(spec)`** — glowing sphere + outer halo, pulses with `time*3` sine in animate(). For "look here" callouts.
+- **`applyExtras(extras)`** + **`clearDynamicExtras()`** — applyState now spawns/clears extras between state transitions. Extras live in `dynamicExtras[]`, kept separate from the static `sceneObjects[]` (which holds wire/circles/arrows from `buildScenario`).
+- **Slider DOM + wiring** — `<input type="range">` for I (0.5–20 A) and r (2–30 cm) in a top-right overlay. `refreshSliderVisuals()` recomputes B, updates the readout, scales field-line opacity by `log(I)`, and highlights the ring closest to the slider's r in yellow. `setupSliders()` runs once at init; `applyState` toggles overlay visibility per state's `show_sliders` flag.
+- **Formula overlay** — bottom-right pre-line text panel. Per-state `formula_overlay` string controls visibility + content.
+- **Animation loop additions** — compass swing easing, hand finger pulse, point P pulse — all driven from the existing `animate()` loop, no extra `requestAnimationFrame` needed.
+
+### Field3DConfig schema additions
+
+```ts
+states: Record<string, {
+  // ...existing...
+  extras?: {
+    right_hand?: { position, thumb_direction, finger_curl, scale, animate_curl };
+    compass?:    { position, radius, animate_swing, swing_delay_ms };
+    highlighted_point?: { position, label, color, radius };
+  };
+  show_sliders?: boolean;
+  formula_overlay?: string;
+}>;
+slider_controls?: {
+  I?: { min, max, step, default, label };
+  r?: { min, max, step, default, label };
+};
+```
+
+### Teacher script rewrites
+
+STATE_1 (4 sentences) — now narrates the visible compass directly: "Look at the scene: a vertical wire and a compass beside it. Right now the needle points north" → "Watch what happens when current starts flowing — wait for it" → "There — the compass needle just SWUNG. It snapped to point perpendicular to the wire" → Oersted attribution. The 2.2s delay is calibrated so the "wait for it" line lands just before the swing.
+
+STATE_3 (6 sentences, was 5) — narration points at the visible hand: "Look at the right hand floating beside the wire. Its thumb points UP" → "the four fingers curl naturally counter-clockwise as seen from above" → **"Compare the fingers to the green field circles. Same direction. The fingers ARE the B-field."** → RHR formal name + "always your RIGHT hand" anti-misconception → "if current flowed downward, you'd flip your hand" → quick check question.
+
+STATE_4 (5 sentences) — slider-aware: "See the sliders on the right" → "Drag the I-slider — watch the rings get brighter" / "Drag the r-slider — see the highlighted ring jump radius" → "Read the live B-readout in micro-tesla" → "Double I → B doubles. Double r → B halves" → "5A at 5cm = 20μT, half the Earth's field."
+
+STATE_7 (4 sentences) — "Now you have full control. Drag to rotate. Scroll to zoom. Use the I and r sliders" → "Watch the highlighted ring track your r-slider" → "Try to predict B before you read the meter" → "Same wire, same field shape, same rule — the numbers just scale."
+
+`cognitive_limits.max_words_per_tts_sentence` bumped 26 → 30 to allow the slider-narration sentences.
+
+### STATE_3 hand positioning iteration
+
+First render had `position: [-0.5, 0, 0]` and `scale: 1.1` — the hand was visually "small clump near wire base" buried in the field circles. Bumped to `position: [-1.8, 0, 0.8]` and `scale: 2.2` after first browser smoke. Hand is now clearly visible to the left of the wire at mid-height, thumb-up clearly readable, fingers cleanly curling in the same sense as the field circles directly behind it. Pedagogically it's "the hand IS what the field is doing".
+
+### Files modified this iteration
+
+```
+MOD: src/lib/renderers/field_3d_renderer.ts             (+~280 lines: interface extras, HTML overlay, helpers, applyExtras, slider wiring, animation loop additions)
+MOD: src/data/concepts/magnetic_field_wire.json         (state extras blocks for STATE_1/3/5/7, show_sliders for STATE_4/7, slider_controls, formula_overlay strings, teacher_script rewrites for STATE_1/3/4/7)
+MOD: PROGRESS.md                                        (this entry)
+```
+
+The standalone `public/renderers/field_3d_renderer.js` is intentionally **not** mirrored this iteration — only the TS template literal `FIELD_3D_RENDERER_CODE` is bundled into the iframe HTML by `assembleField3DHtml`. The standalone .js is for the (unused) `/renderers/field_3d.html` debug page; mirroring later if/when needed.
+
+### Verification (end of iteration)
+
+```
+npx tsc --noEmit                                       → 0 errors
+npm run validate:concepts -- magnetic_field_wire       → PASS (62/62 atomic)
+Browser smoke at /admin/test-magnetic-field-wire       → all 7 iframes render correctly:
+  STATE_1: compass visible, swings on schedule
+  STATE_3: 3D right-hand model clearly visible at scale 2.2 with thumb up + fingers curling
+  STATE_4: sliders + B-readout (5A/5cm = 20.0μT exact match), highlighted ring tracks r
+  STATE_5: glowing yellow point P with halo, pulsing
+  STATE_7: full sliders + rotate + zoom, formula overlay with RHR reminder
+  0 console errors, 0 server errors across all states
+```
+
+### Next iteration candidates
+
+1. Polish the hand model further — fingers could be more anatomical (knuckle joints, slightly curved tube curves), thumbnail + fingernails on tips
+2. Wire-side current animation — flowing electrons or pulsing glow in the wire's mesh material to make "current direction" even more concrete
+3. STATE_6 reveal animation — animate the camera transition from oblique to top-down so students see HOW the 3D becomes 2D
+4. Author the EPIC-C branch states in full (Day 1 only authored heads)
+5. Sim 4 — solenoid (`magnetic_field_solenoid` scenario already built into the renderer; just needs the JSON authoring + extras for "many wires stacked = uniform internal field")
+
+### Blockers
+
+None. Working tree dirty but local; push held until "push it".
+
+---
+
 ## 2026-05-07 (session 60 — Sim 3 Day 1 SHIPPED, pivoted from electrostatics to magnetism) — `magnetic_field_wire` authored end-to-end as the FIRST `field_3d` (Three.js) concept JSON in the codebase: 7 EPIC-L states + 4 EPIC-C branch heads + board mode (5-mark scheme + derivation_sequence) + competitive mode (4 shortcuts + 5 edge cases) + embedded deterministic `field_3d_config` (CLAUDE.md Rule 18 fix — bypasses Sonnet runtime call); physics engine TS for B = μ₀I/(2πr); `generateField3DConfig()` extended to prefer authored config from concept JSON over Sonnet runtime; 7 registration sites wired (JSON, engine, ENGINES record, VALID_CONCEPT_IDS, proxy.ts, admin test page; CONCEPT_RENDERER_MAP + panelConfig already pre-registered); admin test page at `/admin/test-magnetic-field-wire` renders all 7 states cinematically through the production `assembleField3DHtml` path; tsc 0 errors, `validate:concepts magnetic_field_wire PASS (62/62 atomic)`, browser smoke clean (Three.js r128 loaded, WebGL canvases live, 0 console errors, all per-state visibility filters + camera positions correct)
 
 ### Top-line outcome

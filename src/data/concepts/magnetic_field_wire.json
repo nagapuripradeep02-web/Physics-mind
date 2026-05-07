@@ -71,7 +71,7 @@
   "cognitive_limits": {
     "max_primitives_per_state": 5,
     "max_labels_per_state": 3,
-    "max_words_per_tts_sentence": 26
+    "max_words_per_tts_sentence": 30
   },
   "aha_moment": {
     "state_id": "STATE_2",
@@ -115,10 +115,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "Imagine a simple straight wire, connected to a battery, but the switch is open — no current flows yet." },
-            { "id": "s1_2", "text_en": "Place a magnetic compass needle right next to the wire. The needle points to magnetic north — boring, expected." },
-            { "id": "s1_3", "text_en": "Now close the switch. The compass needle instantly swings — it deflects perpendicular to the wire." },
-            { "id": "s1_4", "text_en": "Hans Christian Oersted discovered this in 1820. A current-carrying wire is a magnet. But where is the field, and which way does it point?" }
+            { "id": "s1_1", "text_en": "Look at the scene: a vertical wire and a compass beside it. Right now the needle points north — its red tip toward you." },
+            { "id": "s1_2", "text_en": "Watch what happens when current starts flowing through the wire — wait for it." },
+            { "id": "s1_3", "text_en": "There — the compass needle just SWUNG. It snapped to point perpendicular to the wire, no longer north." },
+            { "id": "s1_4", "text_en": "Hans Christian Oersted discovered this in 1820. A current-carrying wire produces a magnetic field. But where is it, and which way does it point?" }
           ]
         }
       },
@@ -196,11 +196,12 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "How do you find which way the B-field circles go? Use your right hand." },
-            { "id": "s3_2", "text_en": "Point your right thumb in the direction the current flows — here, upward along the wire." },
-            { "id": "s3_3", "text_en": "Now curl your fingers naturally. The way your fingers curl is the direction of the B-field circles." },
-            { "id": "s3_4", "text_en": "If the current flowed downward instead, the curl would reverse — fingers go the other way." },
-            { "id": "s3_5", "text_en": "Question for you: looking down at the wire from above with current going UP, do the field circles go clockwise or counter-clockwise?" }
+            { "id": "s3_1", "text_en": "Look at the right hand floating beside the wire. Its thumb points UP — exactly the direction the current is flowing." },
+            { "id": "s3_2", "text_en": "Now look at the four fingers. They curl naturally in one direction — counter-clockwise as seen from above." },
+            { "id": "s3_3", "text_en": "Compare the fingers to the green field circles. Same direction. The fingers ARE the B-field." },
+            { "id": "s3_4", "text_en": "This is the right-hand rule. Thumb along current, curled fingers along B. Always your RIGHT hand — never the left." },
+            { "id": "s3_5", "text_en": "If the current flowed downward, you'd flip your hand. Thumb down, fingers curl the other way. The field circles would reverse direction too." },
+            { "id": "s3_6", "text_en": "Quick check: looking down at the wire with current going UP, do the circles go clockwise or counter-clockwise?" }
           ]
         },
         "misconception_watch": [
@@ -241,10 +242,10 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s4_1", "text_en": "How strong is the magnetic field at a perpendicular distance r from the wire?" },
-            { "id": "s4_2", "text_en": "B equals mu-naught times I divided by 2 pi r. Mu-naught is a tiny constant: 4 pi times 10 to the minus 7 tesla-meter per ampere." },
-            { "id": "s4_3", "text_en": "Notice the 1 over r. The closer you go, the stronger the field. The farther, the weaker. Each doubling of distance halves the field." },
-            { "id": "s4_4", "text_en": "Look at the rings. The inner circles are bright; the outer circles are dim. Same current, but the field decays as 1 over r." },
-            { "id": "s4_5", "text_en": "For 5 amperes at 5 centimeters, B is 2 times 10 to the minus 5 tesla — about half the Earth's magnetic field at the surface." }
+            { "id": "s4_2", "text_en": "B equals mu-naught times I divided by 2 pi r. Mu-naught is a tiny constant: 4 pi times 10 to the minus 7." },
+            { "id": "s4_3", "text_en": "See the sliders on the right. Drag the I-slider — watch the rings get brighter as current grows. Drag the r-slider — see the highlighted ring jump radius." },
+            { "id": "s4_4", "text_en": "Read the live B-readout in micro-tesla. Double the current — B doubles. Double the distance — B halves. The 1 over r decay is real, not abstract." },
+            { "id": "s4_5", "text_en": "For 5 amperes at 5 centimeters, B is 20 micro-tesla — about half the Earth's magnetic field at the surface. Try it." }
           ]
         }
       },
@@ -359,10 +360,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Now you explore. Drag to rotate the view. Scroll to zoom in or out. Look at the wire from any angle you like." },
-            { "id": "s7_2", "text_en": "Notice how the same field looks completely different from each angle — but the physics is unchanged." },
-            { "id": "s7_3", "text_en": "Test yourself: at a point above-right of the wire, which way does B point? Use the right-hand rule to decide." },
-            { "id": "s7_4", "text_en": "Same wire, same current — and the field has just one shape: circles around the wire. The right-hand rule tells you the sense." }
+            { "id": "s7_1", "text_en": "Now you have full control. Drag to rotate. Scroll to zoom. Use the I and r sliders on the right to change current and distance." },
+            { "id": "s7_2", "text_en": "Watch how the highlighted ring tracks your r-slider, and how all rings brighten when you crank up I." },
+            { "id": "s7_3", "text_en": "Try to predict B before you read the meter: pick I and r, compute mu-naught I over 2 pi r in your head, then check." },
+            { "id": "s7_4", "text_en": "Same wire, same field shape — circles around the wire. Same rule — your right hand. The numbers just scale." }
           ]
         }
       }
@@ -426,12 +427,24 @@
       "magnitude": 5,
       "wire_color": "#FFAB40"
     },
+    "slider_controls": {
+      "I": { "min": 0.5, "max": 20, "step": 0.5, "default": 5, "label": "Current I" },
+      "r": { "min": 0.02, "max": 0.30, "step": 0.01, "default": 0.05, "label": "Distance r" }
+    },
     "states": {
       "STATE_1": {
         "label": "Oersted's discovery",
         "visible_elements": ["wire_main"],
-        "camera_position": [3, 3, 5],
-        "caption": "1820: a current-carrying wire deflects a compass. Why?"
+        "camera_position": [2.5, 1.5, 4],
+        "caption": "1820: switch on the current — the compass needle SWINGS. The wire is a magnet.",
+        "extras": {
+          "compass": {
+            "position": [1.6, 0, 0],
+            "radius": 0.5,
+            "animate_swing": true,
+            "swing_delay_ms": 2200
+          }
+        }
       },
       "STATE_2": {
         "label": "B circles around the wire (3D)",
@@ -442,20 +455,39 @@
       "STATE_3": {
         "label": "Right-hand rule",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire_1", "arr_wire_1"],
-        "camera_position": [2.5, 1.2, 3.5],
-        "caption": "Right hand: thumb up (current), fingers curl (B-field direction)."
+        "camera_position": [2.2, 1.0, 3.0],
+        "caption": "Thumb ↑ along current. Fingers curl in the direction of B — counter-clockwise from above.",
+        "extras": {
+          "right_hand": {
+            "position": [-1.8, 0, 0.8],
+            "thumb_direction": [0, 1, 0],
+            "finger_curl": "ccw",
+            "scale": 2.2,
+            "animate_curl": true
+          }
+        }
       },
       "STATE_4": {
         "label": "Magnitude: B = μ₀ I / (2π r)",
         "visible_elements": [],
         "camera_position": [4, 0.5, 4],
-        "caption": "B falls as 1/r — outer rings (larger r) are weaker than inner rings."
+        "caption": "Drag the sliders → see the highlighted ring move and B-readout update live.",
+        "show_sliders": true,
+        "formula_overlay": "B = μ₀ I / (2π r)\nμ₀ = 4π × 10⁻⁷ T·m/A\n\nDouble I → double B\nDouble r → half B"
       },
       "STATE_5": {
         "label": "B at point P — tangent to the circle",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire_1_2", "arr_wire_1_2"],
         "camera_position": [2.5, 0.5, 3],
-        "caption": "B at P is tangent to the circle through P (not radial, not along wire)."
+        "caption": "B at P is tangent to the circle through P (not radial, not along wire).",
+        "extras": {
+          "highlighted_point": {
+            "position": [1.6, 0, 0],
+            "color": "#FFEB3B",
+            "label": "P",
+            "radius": 0.10
+          }
+        }
       },
       "STATE_6": {
         "label": "Top-down: × and · emerge",
@@ -464,10 +496,12 @@
         "caption": "Looking straight down: each circle becomes ⊗ (into page) on one side, ⊙ (out) on the other."
       },
       "STATE_7": {
-        "label": "Free explore",
+        "label": "Free explore — sliders + rotate",
         "visible_elements": [],
         "camera_position": [3, 3, 5],
-        "caption": "Drag to rotate. Scroll to zoom. Predict B at any point — then check."
+        "caption": "Drag sliders to feel B = μ₀I/(2πr). Drag scene to rotate. Scroll to zoom.",
+        "show_sliders": true,
+        "formula_overlay": "Right-hand rule:\nthumb ↑ I,\nfingers ↑ B"
       }
     },
     "pvl_colors": {
