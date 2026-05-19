@@ -1,0 +1,445 @@
+# Magnetism patterns library
+
+**Source:** Diamond #1 (`magnetic_field_wire`, archetype A) + Diamond #2 (`magnetic_force_moving_charge`, archetype B). Diamond #3 (archetype C) will extend this file after M2.
+
+**Consumers:** (1) the future `scene_designer` agent (`.agents/scene_designer/CLAUDE.md`, M3) reads this when working any magnetism concept, (2) the M3.5 autoresearch loop scores generated outputs against the "required-primitives-per-archetype" table at the bottom, (3) any human authoring a new magnetism atomic/nano concept reads this before writing the concept JSON or a `program.md`.
+
+**Maintenance rule:** when a diamond session discovers a new visual primitive or choreography, the same PR that ships the diamond also extends this file. Patterns that are not in this file do not exist for downstream agents.
+
+**Reading code anchors:** every `file:line` reference cites a function name confirmed to exist in [field_3d_renderer.ts](../../src/lib/renderers/field_3d_renderer.ts) at the time of writing. Line numbers drift across refactors — if a function moves, grep for the function name, not the line.
+
+---
+
+## 1. Archetype catalog
+
+Three archetypes ship in V1. The fourth (D — atomic/materials) is deferred to M9.
+
+### A — Field visualization
+
+- **Diamond exemplar:** `magnetic_field_wire`.
+- **Visual signature:** a source (wire, solenoid, loop, magnet) embedded in 3D space; field lines radiate or curl around the source; a compass probe demonstrates the field direction at a point.
+- **Default state arc:** setup at rest → reveal field → polarity case A → polarity case B → single-point analysis (compass at one position) → top-down view (⊗/⊙ pattern) → free explore.
+- **Default extras:** `compass`, `right_hand`, `highlighted_point`, source-current-direction-indicator. Field-line geometry built per scenario.
+- **Concepts that use it:** straight wire, solenoid, circular loop, moving point charge, bar magnet, Earth's magnetism.
+
+### B — Force in field
+
+- **Diamond exemplar:** `magnetic_force_moving_charge`.
+- **Visual signature:** an ambient uniform B grid (no source); one charged particle moving through it; v and F arrows that update per frame; trajectory traced as straight line, circle, or helix depending on θ.
+- **Default state arc (θ-progression):** STATE_1 θ = 0° (F = 0, baseline drift) → STATE_2 θ = 10° (F appears, small) → STATE_3 θ = 45° (helix tightens, F over 4× bigger) → STATE_4 θ = 90° (pure circle, F max, r and T appear) → STATE_5 Fleming's left-hand reconciliation (Class-10 mnemonic bridge, optional skip via `manual_click`) → STATE_6 "why sin θ" decomposition (v_∥ + v_⊥) → STATE_7 interactive sliders.
+- **Default extras:** `ambient_field`, `particle` (with `charge-sign badge`), `velocity_vector`, `force_vector`, `particle_trail`, `palm_rule {show_3d_hand: true}`, `vector_decomposition` (only on the "why" state).
+- **Concepts that use it:** Lorentz force on moving charge, force on current-carrying wire, mass spectrometer, cyclotron, velocity selector.
+
+### C — Dipole in field
+
+- **Diamond exemplar (TBD):** `torque_on_current_loop_in_field` (Diamond #3, M2).
+- **Visual signature:** external uniform B; a closed-loop / bar-magnet dipole sits in it; opposing forces on opposite sides of the loop produce a torque couple → rotation or oscillation about an axis.
+- **Default state arc:** TBD after M2.
+- **Concepts that use it:** torque on current loop, bar magnet in field, vibration magnetometer, moving-coil galvanometer.
+
+### D — Atomic / materials (deferred to M9)
+
+Hysteresis, domain walls, electron spin. Different visual primitives entirely; do not retro-fit into archetypes A/B/C.
+
+---
+
+## 2. Primitives — extras catalog
+
+Every primitive in this catalog is a `field_3d_config` block that the renderer recognizes. The shape on the left is what the concept JSON writes; the right column names the function that builds it.
+
+### Shared primitives (both archetypes)
+
+| Primitive | Config shape | Builds at |
+|---|---|---|
+| `extras.highlighted_point` | `{ position: [x,y,z], label, color, radius }` | [createHighlightedPoint:1207](../../src/lib/renderers/field_3d_renderer.ts:1207) |
+| 3D label sprite (canvas texture, always faces camera, draws on top) | `createLabelSprite(text, color, scale)` — used internally by labels + charge badge + v/B/F hand labels. `depthTest:false`, `renderOrder:999`. | [createLabelSprite:1179](../../src/lib/renderers/field_3d_renderer.ts:1179) |
+| `equation_panel` (TTS-driven math overlay) | State-level field `equation_panel_anchor: 'top-left' \| 'top-right' \| 'bottom-left' \| 'bottom-right'` (default `'bottom-left'`). Each `tts_sentence` may declare `math_show: "<LaTeX>"` + `math_persist: true/false`. KaTeX-rendered, fades in per sentence; `math_persist: true` accumulates a derivation chain with earlier lines dimmed. Cleared automatically on state entry. | `#equation_panel` HTML element + `SET_MATH` handler in [setupPostMessage:2867](../../src/lib/renderers/field_3d_renderer.ts:2867); per-sentence dispatch in [_TtsPlayButton.tsx](../../src/app/admin/test-magnetic-force-moving-charge/_TtsPlayButton.tsx) |
+
+### Archetype A (Diamond #1) primitives
+
+| Primitive | Config shape | Builds at |
+|---|---|---|
+| `extras.right_hand` | `{ case: 'A'|'B'|'both', position, scale }` — HTML/CSS overlay with emoji + curl SVG, visibility classes `rhr-show-a-only` / `rhr-show-b-only` toggled per state via [applyState:2032](../../src/lib/renderers/field_3d_renderer.ts:2032) substring matcher. | [createRightHand:812](../../src/lib/renderers/field_3d_renderer.ts:812) |
+| `extras.compass` | `{ position, radius, animate_swing, swing_delay_ms, approach_from, approach_duration_ms }` | [createCompass:894](../../src/lib/renderers/field_3d_renderer.ts:894) + animate loop |
+| Source-current-direction indicator | State-level flag `current_direction_indicator: 'up'|'down'` | inside `buildStraightWireField` etc. |
+| Field-line geometry around source | Per-scenario `build*Field()` function | [buildStraightWireField:1667](../../src/lib/renderers/field_3d_renderer.ts:1667), [buildSolenoidField:1547](../../src/lib/renderers/field_3d_renderer.ts:1547), [buildBarMagnetField:1602](../../src/lib/renderers/field_3d_renderer.ts:1602), [buildDipoleField:1433](../../src/lib/renderers/field_3d_renderer.ts:1433) |
+| State-level flags | `field_rotation_direction: 'cw'|'ccw'`, `current_direction_indicator: 'up'|'down'`, `show_sliders`, `formula_overlay` | consumed in `applyState`/animate loop |
+
+### Archetype B (Diamond #2) primitives — NEW
+
+| Primitive | Config shape | Builds at |
+|---|---|---|
+| `ambient_field` | `{ direction: [x,y,z], magnitude, density: [nx,ny,nz], color, opacity }` — lattice of parallel arrows representing uniform B. No source. | inline in [buildLorentzForceField:1808](../../src/lib/renderers/field_3d_renderer.ts:1808) |
+| `particle` + charge-sign badge | `{ charge_sign, mass_kg, color, radius }` at top level (NOT inside `extras`). The sphere is the proton/electron; a child sprite of the sphere shows `+` or `−` and live-flips on q-toggle. The animate loop rebuilds the badge canvas only on a sign flip, not per frame. | inline in `buildLorentzForceField`; badge uses `createLabelSprite` |
+| `extras.velocity_vector` | `{ show, color, scale }` — `THREE.ArrowHelper`. Direction set per frame from `vDir`; length = `scale * glowFactor('v')`. | inline in `buildLorentzForceField` |
+| `extras.force_vector` | `{ show, color, scale }` — `THREE.ArrowHelper`. Direction set per frame from `F = q (v × B)`, sign flipped for negative q. Length scales with `sin θ` and, in STATE_6, with the v·B slider product. | inline in `buildLorentzForceField` |
+| `extras.vector_decomposition` | `{ show, color_parallel, color_perp, scale }` — emits two extra arrows `v_∥ = (v·B̂)B̂` and `v_⊥ = v − v_∥`. Used on the "why sin θ" state only. | inline in `buildLorentzForceField` |
+| `extras.particle_trail` | `{ show, color, equal_arc }` — `THREE.Line` with 600-point buffer. Capped trail by default (one full orbit then stop); becomes a circular buffer with reset-on-slider-edit when the containing state has `show_sliders: true`. | inline in `buildLorentzForceField` animate loop |
+| `extras.palm_rule` | `{ show_3d_hand: true, hand_position: [x,y,z], hand_scale: float }` — invokes the 3D right-hand mesh. Empty `{}` means no hand (used on states where the rule is not the focus). | [createLorentzHand:1027](../../src/lib/renderers/field_3d_renderer.ts:1027) |
+| `extras.fleming_left_hand` | `{ show: true }` — static SVG overlay (top-left) showing Fleming's left-hand rule with three orthogonal fingers (ForeFinger=B, seCond=v, thuMb=F). **Reconciliation-only primitive: opt-in on exactly one state per concept, never combined with the 3D right-hand mesh.** Pair with `palm_rule: {}` (empty) on the same state so the 3D hand stays hidden. | `#fleming_overlay` HTML element built inline in `assembleField3DHtml()`; toggled in `applyExtras` |
+| 3D right-hand mesh contents | Palm (squashed sphere), two-segment thumb (proximal + distal cylinders with anatomical bend), wrist stub, 4 fingers regenerated per frame via `lorentzFingerPoints`, 4 fingernail spheres tracking live fingertips, 3 label sprites (v / B / F), 3 ArrowHelpers (v / B / F) — all children of the hand group. | [createLorentzHand:1027](../../src/lib/renderers/field_3d_renderer.ts:1027) + [lorentzFingerPoints:981](../../src/lib/renderers/field_3d_renderer.ts:981) |
+| State-level flags | `trajectory_mode: 'static'|'straight'|'circle'|'helix'`, `theta_deg`, `charge_sign` (override), `show_sliders`, `formula_overlay` | consumed in `buildLorentzForceField` animate loop |
+| Slider controls (state-6 only) | Top-level `slider_controls: { q_sign, v, B, theta_deg }` each with `{ min, max, step, default, label }` | [setupSliders:2210](../../src/lib/renderers/field_3d_renderer.ts:2210) |
+
+---
+
+## 3. Choreographies — named animation idioms
+
+A choreography is a state-to-state or per-frame animation pattern that has a name and a behavior contract. JSON declares it; the renderer implements it.
+
+### Archetype A (Diamond #1)
+
+- **`compass-approach-then-deflect`** — probe glides from `approach_from` to its final position over `approach_duration_ms`, then waits `swing_delay_ms`, then the needle swings to the physics-correct B direction. Implemented in [createCompass:894](../../src/lib/renderers/field_3d_renderer.ts:894) + animate loop.
+- **`field-circle-rotation`** — field-line arrows orbit the source axis at a fixed angular velocity; sense controlled by state-level `field_rotation_direction`.
+- **`current-flow-dots`** — yellow spheres interpolate along the source path to visualize conventional current.
+
+### Archetype B (Diamond #2) — NEW
+
+- **`closed-form-trajectory`** — particle position parameterized by `t_local = time − stateStartTime`. No numerical integrator. Modes:
+  - `static` — particle at origin; `vDir = bUnit·cos θ + u1·sin θ`. Used on states where motion would distract.
+  - `straight` — particle drifts along B when θ < 30°, else along u1; `vDir = drift axis`. Used on STATE_1.
+  - `circle` — `pos = R·(cos φ, sin φ, 0)` in the (u1, u2) plane; `vDir = (−sin φ, cos φ, 0)`; phase φ = `ω · t_local · sign(q)`. Used on STATE_4.
+  - `helix` — circle in (u1, u2) plus drift `axial ∝ cos θ` along bUnit; `Rperp = R · max(0.05, sin θ)`. Used on STATE_2, STATE_3, STATE_5, STATE_6.
+  - Visual constants `R = 1.5`, `ω = 0.75` by default; both scaled by sliders in STATE_6 (see `slider-driven-physics` below).
+- **`3-phase-pause-animation`** — 9-second cycle for the 3D right-hand. `curlT` smooth-stepped through three holds where the matching label + arrow are visible:
+  - 0–15% hold flat (curlT = 0), **v phase** — v label + v arrow visible at fingertips.
+  - 15–35% curl 0 → 0.5 (no label).
+  - 35–50% hold mid-curl (curlT = 0.5), **B phase** — B label + B arrow visible.
+  - 50–70% curl 0.5 → 1 (no label).
+  - 70–92% hold full curl (curlT = 1), **F phase** — F label + F arrow visible at thumb tip.
+  - 92–100% uncurl 1 → 0.
+  - Finger geometry regenerated per frame; nails track live fingertip positions; hand is oriented every frame so that thumb aligns with `F_world` and `−z_local` aligns with `+v_world`.
+- **`slider-driven-physics`** (STATE_6 only) — read v and B sliders, normalize against `slider_controls.{v,B}.default` to get `vFactor` and `BFactor`. Map to:
+  - `R_visual = 1.5 · vFactor / BFactor` clamped to [0.35, 2.4] world units (matches r = mv/qB).
+  - `ω_visual = 0.75 · BFactor` clamped to [0.20, 3.00] rad/s (matches ω = qB/m).
+  - F-arrow length = `fLenRaw · vFactor · BFactor` clamped to 2.0 (matches |F| = qvB sin θ).
+- **`trail-reset-on-slider-edit`** (STATE_6 only) — any input event on v/B/θ/q-toggle sets a module-scope `lorentzTrailResetPending = true`. The next animate tick resets `filled = 0`, `write_index = 0`, `drawRange = 0`, so the old curve disappears and the new orbit draws cleanly from the current particle position.
+- **`tts-driven-glow-pulse`** — `glowTargets` is an ARRAY of strings (was a single string until 2026-05-14 — co-glow iteration). Values: `'v' | 'f' | 'v_parallel' | 'v_perp' | 'b' | 'trail' | 'hand' | 'fleming' | 'sliders' | 'fleming_index' | 'fleming_middle' | 'fleming_thumb'`. Set via `SET_GLOW` postMessage which accepts either a single string OR an array; the renderer normalises to an array internally. `glowFactor(target)` returns the pulse if `target ∈ glowTargets`. 3D-scene elements (vector arrows, vector labels, ambient B-field grid, particle trail, 3D right-hand mesh) pulse via scale formula `1.35 + 0.35·sin(time·3.5)`, range `[1.0, 1.7]`, ~1.8-second cycle. **DC-offset design**: the formula sits ABOVE the un-glowed baseline (1.0) for its entire active duration, so a glowing element is conspicuously enlarged the whole time, with a soft pulse on top. HTML overlays (`#fleming_overlay`, `#lorentz_sliders`) glow via a CSS `.glow-pulse` class — `@keyframes overlayGlowPulse` provides a matching amber box-shadow that is visible at every keyframe (18px / 5px / 55% opacity at 0%/100%, peaks at 36px / 12px / 100% opacity at 50%) + border-color pulse at the same 1.8-second period. Founder calibration log 2026-05-12: ±35% / 1 Hz read as a hard throb; ±12% / 3 s invisible; ±30% / 2.4 s still too subtle; ±55% / 1.8 s centered-on-1.0 — visible only at peak, invisible at trough; **`1.35 + 0.35·sin` always-elevated** — clearly visible at every phase. Trail pulses via `material.opacity` (geometry unchanged); particle sphere itself does not glow (the v/F arrows attached to it already do when their targets fire).
+- **`tts-driven-hand-phase-freeze`** (Diamond #2 — founder note 2026-05-14) — when a sentence narrates one step of the right-hand rule ("flat palm shows v", "curl through B", "thumb along F"), the 3D right-hand mesh locks at the matching curl phase instead of cycling on its own 9-second clock. Schema: `hand_phase?: 'v' | 'b' | 'f' | null` on each TTS sentence; `SET_HAND_PHASE` postMessage sets a module-scope `heldHandPhase`. In the `curlT` calc, `heldHandPhase` short-circuits the cycle: `'v' → curlT=0`, `'b' → curlT=0.5`, `'f' → curlT=1`. Glow + label-toggle + finger geometry regeneration all keep running normally — only the phase advance is frozen. Used by s4_3b/c/d and s6_6b/c/d.
+- **`tts-driven-proton-freeze`** (Diamond #2 — founder note 2026-05-14) — when a sentence narrates a property of the F or v arrow on the moving proton ("F appears, perpendicular to both v and B", "F has grown to 71%", "F always points to centre"), the proton's trajectory time is held at the snapshot value so its position (and therefore the arrow base) stops drifting across the canvas mid-sentence. Schema: `freeze_proton?: boolean` on each TTS sentence; `SET_FREEZE_PROTON` postMessage sets a module-scope `protonFreezeAt = (frozen ? t_local_now : null)`. Inside the trajectory math, `tLocal = (protonFreezeAt != null ? protonFreezeAt : time − stateStartTime)`. Glow pulse, hand cycle, and camera continue ticking — only the proton position is frozen. Used by s2_2, s2_3, s3_2, s4_2b.
+- **`co-glow-multi-target`** (Diamond #2 — founder note 2026-05-14) — for sentences that genuinely name two co-equal scene elements at once ("v cosθ along B", "cross product of B with anything along B is zero"), `glow` accepts a JSON array — both elements pulse simultaneously. Splitting the sentence would chop the physics, so this is the cleaner option. Renderer stores `glowTargets[]` and every per-element check uses `glowTargets.indexOf(t) >= 0`. Used by s2_2, s3_1, s5_2a/b/c, s6_2, s6_3a, s6_4a.
+- **`fleming-per-finger-glow`** (Diamond #2 — founder note 2026-05-14) — STATE_5 narrates the three Fleming fingers one at a time ("Index along B", "Middle along v", "Thumb along F"). Glowing the whole panel for all three is no better than glowing nothing. Each finger is wrapped in a `<g id="fleming_{index|middle|thumb}_finger">` group containing the phalanx line, nail ellipse, fingertip arrow, arrowhead polygon, and finger label. New CSS keyframe `@keyframes flemingFingerGlow` uses `filter: drop-shadow(amber)` (NOT box-shadow — that doesn't work on inline SVG children) + a subtle `transform: scale(1.05)` to make the active finger pop. 1.8s period matches the `.glow-pulse` overlay halo for perceptual sync. Combined with scene co-glow via the array form: s5_2a → `["fleming_index", "b"]`, s5_2b → `["fleming_middle", "v"]`, s5_2c → `["fleming_thumb", "f"]`.
+- **`entry-phase-trajectory`** (Diamond #2 — founder note 2026-05-14, STATE_3 first) — for closed-form helix states, optional `entry_duration: number` (seconds) on the state config inserts a straight-line approach BEFORE the helix begins. The proton flies in from outside the field along the helix's tangent vector at `tJoin = 0`, arriving at the helix-start position exactly when `tLocal = entry_duration`. Approach speed = `√((ω·R⊥)² + (0.35·cosθ)²)`, matching the helix tangent magnitude so there is no visual jolt at the join. Inside the helix branch: `tJoin = max(0, tLocal − entryDur)`; for `tLocal < entryDur`, `newPos.addScaledVector(vDir, −entrySpeed · (entryDur − tLocal))`. Companion `RESET_TRAJECTORY` postMessage (fired automatically by `_TtsPlayButton.play()`) resets `stateStartTime = time` and queues a trail clear, so the entry phase replays in sync with sentence 1. Used by STATE_3 with `entry_duration: 2.6`, narrated by s3_1a / s3_1b.
+
+---
+
+## 4. Overlay patterns
+
+How chrome (text, sliders, formulas, labels) lays out around the 3D scene.
+
+### Archetype A (Diamond #1)
+
+- Two-case A/B HTML/CSS RHR overlay with visibility classes `rhr-show-a-only` / `rhr-show-b-only` toggled by [applyState:2032](../../src/lib/renderers/field_3d_renderer.ts:2032)'s substring matcher.
+- Sliders + B-readout panel anchored top-right when `show_sliders: true`.
+- Multi-line monospace formula overlay top-right (`formula_overlay` state field).
+
+### Archetype B (Diamond #2) — NEW
+
+- **3D label sprites** built via `createLabelSprite`. `depthTest:false` + `renderOrder:999` so they always draw on top of arrows. Used for v/F/v cos θ/v sin θ labels next to scene arrows AND for v/B/F labels on the hand.
+- **Charge-sign badge** is a child sprite of the particle mesh. Canvas redrawn only on sign flip (cheap, not per-frame). Tracks the particle through every trajectory automatically.
+- **Phase-gated label/arrow visibility** inside `createLorentzHand`'s child group: v label + v arrow visible only when `phaseLabel === 'v'`; same for B and F. Toggled per frame by the animate loop reading `phaseLabel` from the 9-second cycle.
+- **STATE_6 sliders panel** — q-toggle button (+e / −e) + three range inputs (|v|, B, θ) + live F-readout in femto-Newtons. Anchored top-right. Formula overlay (F = qvB sin θ / r = mv/qB / T = 2πm/qB) anchored bottom-right so it never overlaps the sliders.
+
+### Collision rule
+
+When a state declares both `show_sliders: true` AND has a 3D overlay (palm_rule or right_hand), the 3D overlay MUST sit on the opposite corner from the slider panel. Diamond #2 learned this the hard way in mid-session — STATE_5 originally had both at top-right and they overlapped.
+
+---
+
+## 5. Physics helpers
+
+These are NOT separate functions — they're inlined directly in the relevant `build*Field` animate loop. Documented here so future authors can find the formulas without re-deriving them.
+
+### Orthonormal basis from B direction
+
+Used in `buildLorentzForceField` to build a stable frame for trajectory math regardless of which direction `ambient_field.direction` points:
+
+```
+bUnit = normalize(direction)
+u1    = (1,0,0) − (bUnit · (1,0,0)) · bUnit;  if (|bUnit · (1,0,0)| > 0.99) use (0,1,0) instead
+u1    = normalize(u1)
+u2    = normalize(cross(bUnit, u1))
+```
+
+### Lorentz force direction
+
+```
+fVec   = cross(vDir, bUnit)
+if (q < 0) fVec *= −1
+fLen   = |fVec|         // equals sin θ for unit-length vDir and bUnit
+fDir   = normalize(fVec)
+```
+
+### STATE_6 slider scaling (already in `slider-driven-physics` choreography above)
+
+```
+vFactor = v_slider_value / slider_controls.v.default
+BFactor = B_slider_value / slider_controls.B.default
+R       = clamp(1.5 · vFactor / BFactor,           0.35, 2.4)
+ω       = clamp(0.75 · BFactor,                    0.20, 3.00)
+|F|     = clamp(|F|_raw · vFactor · BFactor,        0,    2.0)
+```
+
+### Right-hand mesh handedness convention (Archetype B)
+
+The 3D right-hand mesh in `createLorentzHand` uses this local frame:
+
+| Local axis | Physical meaning | Why |
+|---|---|---|
+| `+y_local` | thumb = F | Thumb sticks up from the palm sphere. |
+| `−z_local` | flat fingers = v | At `curlT = 0`, fingers extend in the `−z` direction. |
+| `−x_local` | curled fingertips = B | At `curlT = 1`, fingertips arc around to point `−x`. |
+
+Verification: `(−z) × (−x) = (z × x) = +y` ✓ matches right-hand rule.
+
+`lorentzFingerPoints` uses **negative** `sweepTheta = −π/1.8 · fingerLength` so the curl goes from `−z` to `−x` (not `−z` to `+x`, which would be the wrong handedness). The orientation logic in the animate loop aligns `−z_local` with `+v_world` via a quaternion twist around the thumb-aligned axis.
+
+---
+
+## 6. Pedagogy patterns
+
+State-arc and per-state authoring conventions that survived the diamond review for both Diamond #1 and Diamond #2.
+
+### Universal (both archetypes)
+
+- **Per-state caption names the *why*, not the *what*.** A bad caption: "θ = 45°, helix visible." A good caption: "θ = 45°. F has grown to 71% of max — over 4× the force at 10°. Helix tightens; circular motion dominates the drift."
+- **`advance_mode` variety** — every concept must use ≥ 2 distinct `advance_mode` values across its EPIC-L states (CLAUDE.md Rule 15). Diamond #2 uses 4: `auto_after_tts`, `manual_click`, `wait_for_answer`, `interaction_complete`.
+- **`allow_deep_dive: true`** on the 2–3 hardest states only. Diamond #2 sets it on STATE_4 (full RHR application) and STATE_6 (interactive, where students can produce unexpected geometries).
+- **`aha_moment` placement** — on the first state where the concept's defining insight becomes visible. Diamond #1: when field-line direction is revealed by the compass. Diamond #2: STATE_2, the first state where F appears. Statement length ≤ 15 words.
+
+### Archetype A pedagogy
+
+- **State arc:** setup at rest → reveal field → polarity A → polarity B → single-point analysis → top-down view → free explore.
+- Compass appears AFTER the field, not before — student needs to see the field exists, then ask "what direction at this point?" then the probe answers.
+
+### Archetype B pedagogy — NEW
+
+- **θ-progression state arc** (default for archetype B): 0° → small θ → 45° → 90° → "why sin θ" decomposition → interactive. The progression makes `F = qvB sin θ` and the v∥/v⊥ decomposition emergent rather than declared.
+- **Motion in every state.** The founder explicitly rejected passive "setup with no motion" states. Even STATE_1 (F = 0) has visible drift along B so the student sees that an unforced charged particle still moves.
+- **The "why" state separates from the "what" state.** STATE_4 ends the descriptive arc ("F max, pure circle, r = mv/qB"). The "why sin θ" state starts the explanatory arc ("but where does sin θ come from? decompose v"). Do not collapse them — students who don't ask "why sin θ" still see the math; students who do ask get a dedicated visual.
+- **Reconciliation states bridge prior mnemonics — short, optional, isolated.** Indian Class-10 boards teach Fleming's left-hand rule for the motor effect; Class-11/12 NCERT + JEE/NEET use the right-hand cross product. Diamond #2 places a dedicated Fleming reconciliation state (STATE_5, between θ=90° and "why sin θ") that (a) reuses the same θ=90° scene continuing in the background, (b) hides the 3D right-hand mesh so the Fleming SVG sits alone in the top-left, (c) is `manual_click` so students who don't need the bridge skip in 2 seconds, (d) carries no `math_show` — pure verbal bridge. **Footnote the scope explicitly:** Fleming's left-hand only works for positive charge and θ=90°; the right-hand rule stays canonical for negative q and any θ. Apply the same pattern any time a chapter has a Class-10 mnemonic that competes with the v×B framework.
+- **Interactive state always last.** STATE_6 invites the student to break the picture. Place it after every prior state has explained one axis (θ, v, B, q) so the slider edits feel motivated.
+
+### State-count decomposition rubric (how to derive the arc for a NEW concept)
+
+The number of EPIC-L states is **never copied from another concept**. Diamond #1 has 7 states because B-field-around-a-source has 7 natural sub-truths; Diamond #2 has 6 because Lorentz force has 6. The next concept's count emerges from its own sub-truth list.
+
+**The 2-minute student-first-pass contract.** Every atomic concept — diamonds and the ~14 atomic M5 concepts — must convey its core insight in ≤ 2 minutes on the first watch. Nano concepts stay at 2 states per [CLAUDE.md SECTION 7](../../CLAUDE.md). Students who need more depth click into deep-dive on any state flagged `allow_deep_dive: true`; deep-dive runs longer (60–90s typical per parent) and is opt-in, so it does not consume the 2-minute budget.
+
+At ~15–25 seconds per state (TTS + visual + advance time), 2 minutes implies **5–8 states**. If your sub-truth list demands more, the surplus moves into deep-dive, not into the parent arc.
+
+**Five-step decomposition method** (Claude drafts, founder reviews):
+
+1. **Enumerate sub-truths from the source.** Read the DC Pandey section table-of-contents and the `physics_engine_config.formulas` in the concept JSON. Write a numbered list of every belief the student must hold by the end of the concept — only include sub-truths that change a prediction or a behavior. Don't pad with restatements.
+
+2. **Cluster sub-truths that share a visual.** Each cluster of sub-truths that can be taught with one camera, one set of primitives, and one piece of motion becomes one state. Sub-truths that need their own primitives or their own camera get their own state.
+
+3. **Runtime audit.** `state_count × 20s` should land between 90s and 120s. If over, push the lowest-priority sub-truth(s) into deep-dive on the most relevant parent state. If under 90s, the concept is probably under-explained — either a sub-truth is missing or the concept belongs as a nano.
+
+4. **Logical-flow check.** Each state must answer "why are we looking at this *next*?" with a reason that ties back to the previous state. If two states can be swapped without breaking the flow, the arc isn't strong enough — re-cluster.
+
+5. **Tag deep-dive parents.** Mark 2–3 states where students typically lose grip (geometric handedness, math-heavy derivations, interactive break-the-picture states) with `allow_deep_dive: true`. The actual child states are M5+ work and not required for the parent to ship.
+
+**Worked example — `magnetic_field_solenoid` (archetype A, atomic, M5):**
+
+Sub-truths from DC Pandey §26.7:
+1. A solenoid is a long coil of wire with current running through each turn.
+2. The B-field inside the solenoid is uniform and parallel to the axis.
+3. The B-field just outside the solenoid is approximately zero.
+4. `B_inside = μ₀ · n · I` where `n` is turns per unit length.
+5. Increasing current or turn density both raise B linearly.
+6. An iron core multiplies B by relative permeability μ_r (real solenoids use this).
+7. Real-world anchor: MRI machine at an Indian hospital.
+
+Clustering → states:
+- STATE_1 (sub-truth 1): wire wraps into a coil, current flows through each turn. Visual: animated current-flow dots along the wire path.
+- STATE_2 (sub-truths 2 + 3): reveal field — dense parallel arrows inside the coil, fading to ~zero outside.
+- STATE_3 (sub-truth 4): formula appears with right-hand-rule curled-fingers overlay. **aha_moment** state.
+- STATE_4 (sub-truth 5): sliders for I and n; B-readout updates live. **`allow_deep_dive`** (students will want the Ampèrian-loop derivation).
+- STATE_5 (sub-truth 6): toggle iron core on/off, watch B multiply by μ_r ≈ 1000 for soft iron.
+- Sub-truth 7 is the caption anchor on STATE_1, not its own state.
+
+Final: **5 states, ~100s runtime.** Deep-dive on STATE_4 elaborates Ampère's-law derivation in 4–5 child states.
+
+**Worked example — `velocity_selector` (archetype B, atomic, M5):**
+
+Sub-truths from DC Pandey §26.5:
+1. A velocity selector crosses an E-field and a B-field perpendicularly.
+2. A charged particle in the region feels `F_E = qE` and `F_B = qv × B` simultaneously.
+3. The two forces cancel exactly when `v = E/B` — that particle travels straight through.
+4. Particles with `v > E/B` deflect one way; `v < E/B` deflect the other way.
+5. Used as the front-end filter in mass spectrometers (anchor: ISRO LDMS instruments).
+
+Clustering → states:
+- STATE_1 (sub-truths 1 + 2): setup — E-field (vertical arrows), B-field (into page), one particle entering. Both force vectors visible. **aha_moment** is queued.
+- STATE_2 (sub-truth 3): at exactly `v = E/B`, F_E and F_B sum to zero, particle goes straight. **aha_moment** state.
+- STATE_3 (sub-truth 4): three particles enter at `v_slow`, `v_match`, `v_fast`. Only the match-velocity one exits the slit.
+- STATE_4 (sub-truth 5): interactive — slider for entering `v`, exit slit either lets the particle through or deflects it away. **`allow_deep_dive`** for the algebraic derivation of `v = E/B`.
+
+Final: **4 states, ~80s runtime.** Tight because the concept itself is tight — no need to pad.
+
+**Counterexample — when count grows past 6:**
+
+`mass_spectrometer` would naturally need: velocity selector front-end + ion entry into a uniform B → semicircular path + radius depends on m/q + detector position records the mass + multiple isotopes produce multiple peaks. That's 5 distinct visual stages plus an interactive state = 6 minimum. If a 7th "molecular vs atomic ions" sub-truth surfaces, push it to deep-dive on the isotope-peaks state or split into a sibling concept. Do not stretch the parent arc past 8 states even if the sub-truth list demands it — at that point, you have two concepts pretending to be one.
+
+**Sub-truth list authoring**: I (Claude) read the DC Pandey section and the concept's `physics_engine_config` formulas, then propose the numbered sub-truth list before authoring any state. Founder review approves or edits the list. Once approved, the clustering and state authoring follow mechanically. This decouples "what should the student believe?" (pedagogical judgement, founder-gated) from "how do we visualize each belief?" (Claude's job).
+
+### Deep-dive authoring contract
+
+Deep-dive is the opt-in elaboration of a single parent state — 4–6 child states per parent ([CLAUDE.md SECTION 7](../../CLAUDE.md)), triggered by the student clicking the "Explain step-by-step" button. Cache key: `concept_id | state_id | class_level | mode`.
+
+**Scope restriction — deep-dive applies to atomic and diamond concepts only. NEVER to nano concepts.** Nano is defined in CLAUDE.md SECTION 7 as ALWAYS exactly 2 states (one symbol or formula term) — it is already the smallest teaching unit in the system. Decomposing a 2-state nano into 4–6 child states either repeats the same content with finer chunks (no pedagogical gain) or escapes the concept itself (meaning the original was the wrong granularity and should have been authored as atomic instead). Concretely:
+
+- Never set `allow_deep_dive: true` on a nano JSON's two states.
+- Do not schedule a hand-authored deep-dive for a nano at M2.5 or any other milestone.
+- The Sonnet on-demand deep-dive path (Rule 18) must not fire on a nano `concept_id`. The cache-miss handler should respond with the standard 2-state nano content, not generate child states.
+- If a nano feels like it needs deep-dive, re-classify it as atomic and re-author at atomic granularity (5–6 states with the 2-minute budget) — do not bolt deep-dive onto a nano.
+
+**Authoring policy — analytics-driven, ship without deep-dive (decision 2026-05-11).**
+
+V1.0 ships with **zero authored deep-dive content** — not for diamonds, not for atomic concepts, not for nano (nano never gets deep-dive at all per the scope restriction above). The runtime Sonnet on-demand path that [CLAUDE.md SECTION 5 Rule 18](../../CLAUDE.md) currently permits is retired for deep-dive: runtime LLM generation cannot hit diamond bar in one shot under a spinner, and shipping mediocre elaborations on a state the student is already confused about destroys trust faster than no elaboration at all.
+
+**What ships in V1.0:**
+
+- Atomic and diamond concepts may set `allow_deep_dive: true` on the 2–3 states most likely to confuse, based on authoring judgement.
+- Clicking the **"Explain step-by-step" button on a flagged state opens a one-sentence feedback form** ("Tell me what's confusing here"), NOT a simulation. The form writes a row to `feedback_unified` keyed by `(concept_id, state_id, class_level, mode, freeform_text)`.
+- No deep-dive simulation appears in V1.0. The button is a listening surface, not a content surface.
+
+**The analytics-driven authoring queue:**
+
+Two signals per `(concept_id, state_id)` are tracked from launch:
+
+1. **Median dwell time** before the student advances past the state or abandons the session.
+2. **Feedback-form submission count** plus full text.
+
+A `(concept_id, state_id)` enters the deep-dive author queue when EITHER signal crosses a threshold:
+
+- ≥ 10 feedback-form submissions with confusion text, OR
+- Median dwell > 60 s with ≥ 50 sessions (statistically meaningful linger).
+
+Hand-author the top of the queue at ~1 deep-dive per week. The feedback text gives a precise spec — you build exactly what students asked for, not what you guessed they might want. Patterns library + parent scene primitives keep authoring effort to ~3–4 hours per deep-dive after the first.
+
+**Why this beats both runtime-Sonnet and pre-authored exemplars:**
+
+- **Authoring effort targets actual confusion.** Most flagged states will never accumulate threshold traffic and will not need deep-dive content. The handful that do, you author with diamond-bar quality from real student input.
+- **No founder review treadmill** for runtime-generated mediocrity.
+- **No upfront speculation cost** authoring deep-dives for states that turn out not to be the hardest.
+- **Quality floor stays at diamond bar** for every deep-dive that ships.
+
+**Child-state structure rules (apply when authoring from the queue):**
+
+- 4–6 child states per parent, count emerges from the parent state's sub-truth list per the State-count decomposition rubric above.
+- **Reuse the parent's scene wherever possible** — same camera, same primitives, same trajectory mode. Deep-dive zooms in on one aspect of the parent; it does not introduce new scenery. The student opened deep-dive because they wanted *more about this state*, not a new state.
+- Each child state covers exactly one sub-truth of the parent. Example for Diamond #2 STATE_4: (a) why does v ⊥ B force circular motion? (b) centripetal derivation `qvB = mv²/r → r = mv/qB`, (c) period `T = 2πm/qB` and why it's independent of v, (d) constant speed because F ⊥ v, (e) handedness depends on `q` sign.
+- Child states inherit the parent's `advance_mode` variety rule. Runtime budget is **60–90 s typical** (looser than the parent's 2-minute first-pass — the student opted in by clicking).
+- The last child state ends with a "back to parent" affordance so the student returns to the EPIC-L arc, not a dead end.
+
+**Effort:** 0 hours upfront. ~3–4 hours per deep-dive once the analytics queue flags it.
+
+---
+
+## 7. TTS / glow contract
+
+### Per-sentence schema
+
+Every `teacher_script.tts_sentences[]` entry carries:
+
+- `text_en: string` — the spoken text (required).
+- `glow: 'v' | 'f' | 'v_parallel' | 'v_perp' | 'b' | 'trail' | 'hand' | 'fleming' | 'sliders' | null` — which on-screen element to pulse-highlight while speaking. Vector targets (`v`, `f`, `v_parallel`, `v_perp`) pulse the corresponding arrow + label; `b` pulses every B-field grid arrow; `trail` pulses the particle's orbital line; `hand` pulses the 3D right-hand mesh; `fleming` pulses the Fleming-overlay HTML element; `sliders` pulses the STATE_7 sliders panel. Future diamonds extend this enum (`'mu'` for dipole moment in Diamond #3, `'rhr'` for the archetype-A 2D right-hand overlay, etc.).
+
+  **Glow-target chooser rule (mandatory for Diamond #2; founder note 2026-05-12):** every sentence that names a visible element MUST set `glow` to that element's enum value — one target per sentence, no exceptions. If a sentence references *multiple* elements sequentially (e.g., "Flat palm shows v. Curl through B. Thumb along F"), **split it into shorter sub-sentences** — each speaks ~2-4 seconds, each carries its own focused glow. This is the s4_3a/b/c/d pattern: the student's eyes land on the right element exactly when the narration names it. The renderer's pulse is calibrated to be clearly visible at every phase (range [1.0, 1.7] scale, ~1.8-second period — always elevated above baseline while active). Leave `glow: null` only when the sentence is pure teaser/transition with no visible referent.
+- `math_show?: string` — optional LaTeX expression rendered in the iframe's `#equation_panel` while this sentence speaks. KaTeX-rendered, fades in. Cleared automatically when the next sentence arrives (unless that sentence sets `math_persist: true`).
+- `math_persist?: boolean` — when `true`, this sentence's `math_show` **appends below** the previous equation(s) instead of replacing them. Use this for derivations where each step builds on the last (e.g., Diamond #2 STATE_4 chain `qvB = mv²/r → r = mv/qB → T = 2πm/qB`).
+
+**Rule of thumb for math content** (Diamond #2 retrofit lesson):
+
+Any equation the TTS narrates aloud MUST also appear visually via `math_show`. Spoken math is the opposite of concrete — students cannot mentally render `qvB = mv²/r` faster than the TTS speaks it. The visual sync is non-optional for diamond bar. A single TTS sentence should reference at most one equation; if a derivation has three algebraic steps, split into three short sentences each with its own `math_show`, the second and third using `math_persist: true`.
+
+### PostMessage protocol
+
+The admin TTS button ([_TtsPlayButton.tsx](../../src/app/admin/test-magnetic-force-moving-charge/_TtsPlayButton.tsx)) and any production TTS player must:
+
+1. Before speaking a sentence, post `{type:'SET_GLOW', target}` to the iframe.
+2. On the `SpeechSynthesisUtterance`'s `onend`, post `{type:'SET_GLOW', target:null}` to clear.
+3. On `cancel()` (user pressed Stop), post `{type:'SET_GLOW', target:null}`.
+
+The renderer's `setupPostMessage` ([setupPostMessage:2867](../../src/lib/renderers/field_3d_renderer.ts:2867)) handles `SET_GLOW`, `SET_STATE`, `INIT_CONFIG`, and `PING`. The pulse decays naturally via the `tts-driven-glow-pulse` choreography.
+
+### TTS-visual sync rule
+
+**Every `glow` target referenced in a state's TTS must correspond to a visible element rendered by that state.** Diamond #2 violated this once: STATE_1's TTS referenced "right-hand rule overlay on the left" when no overlay was rendered in STATE_1 (the 3D hand only ships in STATE_4 / STATE_5). The deviation was fixed mid-session by rewriting the TTS, not by adding an overlay.
+
+`// TODO`: lift this into the [Visual Validator](../VISUAL_VALIDATOR_SPEC.md) as a new Category H check: for each (state, sentence) pair, vision-model verifies that the sentence's `glow` target is visible on screen at that moment. Until then, the rule is enforced by founder review.
+
+### Sentence count
+
+Concept-driven, not fixed. Diamond #2 ranges 2–6 sentences per state. Keep individual sentences ≤ 30 spoken seconds (~75 words at normal English TTS rate) so the student can re-listen without losing context.
+
+---
+
+## 8. Code anchors — pattern → file:function
+
+| Pattern | File | Function / block |
+|---|---|---|
+| `Field3DConfig` interface | [field_3d_renderer.ts](../../src/lib/renderers/field_3d_renderer.ts) | top-of-file `Field3DConfig` type |
+| Compass approach + swing | field_3d_renderer.ts | [createCompass:894](../../src/lib/renderers/field_3d_renderer.ts:894) + animate loop |
+| Biot-Savart B-direction at compass position | field_3d_renderer.ts | animate loop, `compass.animate_swing` block (computes B-field from source geometry to drive needle swing) |
+| Per-state visibility tokens (`rhr-show-a-only`, `palm-show-pos-only`, etc.) | field_3d_renderer.ts | [applyState:2032](../../src/lib/renderers/field_3d_renderer.ts:2032) — substring matcher on `PM_currentState` |
+| Right-hand HTML overlay (Archetype A) | field_3d_renderer.ts | [createRightHand:812](../../src/lib/renderers/field_3d_renderer.ts:812) + `assembleField3DHtml()` `#rhr_overlay` block |
+| Highlighted point | field_3d_renderer.ts | [createHighlightedPoint:1207](../../src/lib/renderers/field_3d_renderer.ts:1207) |
+| Lorentz scene build (Archetype B) | field_3d_renderer.ts | [buildLorentzForceField:1808](../../src/lib/renderers/field_3d_renderer.ts:1808) |
+| 3D right-hand mesh + animated curl | field_3d_renderer.ts | [createLorentzHand:1027](../../src/lib/renderers/field_3d_renderer.ts:1027) + [lorentzFingerPoints:981](../../src/lib/renderers/field_3d_renderer.ts:981) |
+| Fleming's left-hand-rule SVG overlay (reconciliation) | field_3d_renderer.ts | `#fleming_overlay` HTML/CSS in `assembleField3DHtml()`; toggled in `applyExtras` via `extras.fleming_left_hand.show` |
+| 3D label sprites (canvas-textured, always-on-top) | field_3d_renderer.ts | [createLabelSprite:1179](../../src/lib/renderers/field_3d_renderer.ts:1179) |
+| `extras` dispatch (per-state opt-in primitives) | field_3d_renderer.ts | [applyExtras:1268](../../src/lib/renderers/field_3d_renderer.ts:1268) |
+| Slider wiring (Lorentz + Biot-Savart panels) | field_3d_renderer.ts | [setupSliders:2210](../../src/lib/renderers/field_3d_renderer.ts:2210) (`refreshLorentzLabels` inside) |
+| State switching | field_3d_renderer.ts | [applyState:2032](../../src/lib/renderers/field_3d_renderer.ts:2032) |
+| Legend / caption updater | field_3d_renderer.ts | [updateLegend:2115](../../src/lib/renderers/field_3d_renderer.ts:2115) |
+| Scenario dispatch | field_3d_renderer.ts | [buildScenario:1966](../../src/lib/renderers/field_3d_renderer.ts:1966) |
+| Per-scenario field builders | field_3d_renderer.ts | [buildStraightWireField:1667](../../src/lib/renderers/field_3d_renderer.ts:1667), [buildSolenoidField:1547](../../src/lib/renderers/field_3d_renderer.ts:1547), [buildBarMagnetField:1602](../../src/lib/renderers/field_3d_renderer.ts:1602), [buildDipoleField:1433](../../src/lib/renderers/field_3d_renderer.ts:1433), [buildPointChargeField:1369](../../src/lib/renderers/field_3d_renderer.ts:1369), [buildParallelPlatesField:1497](../../src/lib/renderers/field_3d_renderer.ts:1497), [buildChangingFluxField:1744](../../src/lib/renderers/field_3d_renderer.ts:1744) |
+| PostMessage contract (parent ↔ iframe) | field_3d_renderer.ts | [setupPostMessage:2867](../../src/lib/renderers/field_3d_renderer.ts:2867) — handles `SET_STATE`, `SET_GLOW`, `INIT_CONFIG`, `PING` |
+| Mobile 2D SVG fallback | field_3d_renderer.ts | [renderMobileSVG:2919](../../src/lib/renderers/field_3d_renderer.ts:2919) |
+| Admin TTS button + glow dispatch | [_TtsPlayButton.tsx](../../src/app/admin/test-magnetic-force-moving-charge/_TtsPlayButton.tsx) | Web Speech API + `SET_GLOW` postMessage |
+
+---
+
+## 9. Required-primitives-per-archetype checklist
+
+The M3.5 Visual Validator and `scene_designer` agent both consult this table. A concept that fails to include a required primitive for its archetype is a hard fail for archetype conformance.
+
+### Archetype A required
+
+- At least one of `extras.compass` (with `animate_swing: true`) or `extras.right_hand` on the field-direction-reveal state.
+- Field-line geometry — at least one of `buildStraightWireField`, `buildSolenoidField`, `buildBarMagnetField`, `buildDipoleField`, `buildPointChargeField`, or a chapter-extension. Empty scene is a fail.
+- A current-direction-indicator on the source primitive (arrow, ⊙/⊗ glyph, or directed flow dots) whenever current direction is pedagogically relevant.
+- Polarity-case visibility tokens (`rhr-show-a-only` / `rhr-show-b-only`) on multi-polarity states.
+
+### Archetype B required
+
+- Top-level `ambient_field` block (`direction`, `magnitude`, `density`, `color`, `opacity`).
+- Top-level `particle` block (`charge_sign`, `mass_kg`, `color`, `radius`) with a charge-sign badge child sprite. The badge is mandatory in every state — students must always see which charge they are watching.
+- `extras.velocity_vector: { show: true }` on every motion state (everything except a degenerate `F = 0` setup, if any).
+- `extras.force_vector: { show: true }` on every state where `θ > 0`. STATE_1-style "F = 0 baseline" states may omit it.
+- `extras.particle_trail: { show: true }` on every motion state. `equal_arc: true` only on circular-motion states (STATE_4-style "magnetic force does no work" lesson).
+- `extras.palm_rule: { show_3d_hand: true, ... }` on at least: (1) the F-reveal state and (2) the "why sin θ" decomposition state. Pure-narrative states may use `palm_rule: {}` (the empty form, which renders no hand).
+- A `trajectory_mode` declared on every state. Default is `static`; explicit choice is required for motion.
+- An interactive state with `show_sliders: true` and `slider_controls` block including at minimum `v`, `B`, `theta_deg`. `q_sign` is required when negative-charge cases are pedagogically relevant.
+
+### Archetype C required
+
+TBD after Diamond #3 (M2). Placeholder so future authors do not silently ship without a checklist.
+
+### Schema-mechanical checks (any archetype)
+
+These are enforced by `npm run validate:concepts` against the JSON schema, not by visual inspection:
+
+- `aha_moment.statement` ≤ 15 words.
+- At least 2 distinct `advance_mode` values across the `epic_l_path.states`.
+- Each EPIC-C branch's STATE_1 visually shows the wrong belief (not a neutral baseline).
+- Every state's `scene_composition.primitives` length ≥ 3.
+- Real-world anchor uses Indian context, plain English (no Hinglish).
+- `prerequisites` array references concepts that exist in `VALID_CONCEPT_IDS`.
+
+---
+
+*Diamond #3 (`torque_on_current_loop_in_field`) will extend this file at M2. When it does, expect archetype C to gain its own primitive table, choreography list (likely `dipole-torque-oscillation`, `loop-rotation-about-axis`), and pedagogy section.*
