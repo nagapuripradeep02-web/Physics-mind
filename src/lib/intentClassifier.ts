@@ -91,6 +91,11 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // (Class 12 Ch.4.4 — Phase 0 validation demo Sim 3, session 60). First field_3d
     // (Three.js) concept authored end-to-end; routed via CONCEPT_RENDERER_MAP.
     'magnetic_field_wire',
+    // Lorentz force on a moving charge — F = q v × B (Class 12 Ch.4.2 — Diamond #2
+    // of the magnetism chapter, M1 of MAGNETISM_ARCHITECTURE.md, archetype B —
+    // force-in-field). Establishes ambient B grid, moving particle, per-frame
+    // F = qv×B vector, palm-rule overlay in field_3d_renderer.ts.
+    'magnetic_force_moving_charge',
 ]);
 
 // Synonyms → canonical IDs. Gemini/Flash often return physicist-common synonyms

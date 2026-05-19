@@ -438,16 +438,15 @@
     },
     "states": {
       "STATE_1": {
-        "label": "Oersted's discovery",
+        "label": "Setup — wire and compass at rest",
         "visible_elements": ["wire_main"],
         "camera_position": [2.5, 1.5, 4],
-        "caption": "1820: switch on the current — the compass needle SWINGS. The wire is a magnet.",
+        "caption": "Setup: a vertical wire next to a compass. No field shown yet — the needle points north. Then we'll switch on the current.",
         "extras": {
           "compass": {
             "position": [1.6, 0, 0],
             "radius": 0.5,
-            "animate_swing": true,
-            "swing_delay_ms": 2200
+            "animate_swing": false
           }
         }
       },
@@ -461,7 +460,7 @@
         "label": "Case A — I ↑, B counter-clockwise",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
         "camera_position": [3, 2, 4],
-        "caption": "Case A: current ↑ — B-field circles counter-clockwise (viewed from above). Watch the compass needle deflect east.",
+        "caption": "Case A: current ↑ — B-field circles counter-clockwise (viewed from above). Watch the compass glide in, then deflect.",
         "field_rotation_direction": "ccw",
         "current_direction_indicator": "up",
         "extras": {
@@ -475,9 +474,11 @@
           },
           "compass": {
             "position": [0, 0, 1.5],
+            "approach_from": [0, 0, 4.5],
+            "approach_duration_ms": 1400,
             "radius": 0.45,
             "animate_swing": true,
-            "swing_delay_ms": 1200
+            "swing_delay_ms": 400
           }
         }
       },
@@ -485,7 +486,7 @@
         "label": "Case B — I ↓, B clockwise",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
         "camera_position": [3, 2, 4],
-        "caption": "Case B: current ↓ — B-field circles clockwise (viewed from above). Same right hand, flipped — and the compass deflects the OTHER way.",
+        "caption": "Case B: current ↓ — B-field circles clockwise. Compass approaches the SAME way — but deflects the OPPOSITE direction.",
         "field_rotation_direction": "cw",
         "current_direction_indicator": "down",
         "extras": {
@@ -499,9 +500,11 @@
           },
           "compass": {
             "position": [0, 0, 1.5],
+            "approach_from": [0, 0, 4.5],
+            "approach_duration_ms": 1400,
             "radius": 0.45,
             "animate_swing": true,
-            "swing_delay_ms": 1200
+            "swing_delay_ms": 400
           }
         }
       },

@@ -2746,7 +2746,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     viscosity_stokes:               "mechanics_2d",
     equation_of_continuity:         "mechanics_2d",
     // Electromagnetic (mechanics context)
-    magnetic_force_moving_charge:   "mechanics_2d",
+    // (magnetic_force_moving_charge: routed to field_3d below — Diamond #2, M1)
     motion_of_charge_in_field:      "mechanics_2d",
     cyclotron:                      "mechanics_2d",
     bohr_model_hydrogen:            "mechanics_2d",
@@ -2777,6 +2777,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     parallel_plate_capacitor_field: "field_3d",
     magnetic_field_solenoid:        "field_3d",
     magnetic_field_wire:            "field_3d",
+    magnetic_force_moving_charge:   "field_3d",
     gauss_law_3d:                   "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
@@ -4147,6 +4148,7 @@ const FIELD_3D_SCENARIO_MAP: Record<string, Field3DConfig["scenario_type"]> = {
     parallel_plate_capacitor_field: "parallel_plates",
     magnetic_field_solenoid:        "solenoid_field",
     magnetic_field_wire:            "straight_wire_current",
+    magnetic_force_moving_charge:   "lorentz_force_uniform_field",
     gauss_law_3d:                   "point_charge_positive",
     electromagnetic_induction_3d:   "changing_flux",
     bar_magnet_field:               "bar_magnet",

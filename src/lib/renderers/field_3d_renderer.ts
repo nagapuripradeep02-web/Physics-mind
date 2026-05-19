@@ -30,7 +30,25 @@
 
 export interface Field3DConfig {
     scenario_type: 'point_charge_positive' | 'point_charge_negative' | 'dipole' |
-        'parallel_plates' | 'solenoid_field' | 'bar_magnet' | 'straight_wire_current' | 'changing_flux';
+        'parallel_plates' | 'solenoid_field' | 'bar_magnet' | 'straight_wire_current' |
+        'changing_flux' | 'lorentz_force_uniform_field';
+    // Diamond #2 (Archetype B — force-in-field): a uniform external B grid
+    // surrounding a single moving charged particle. Drives the F = qv × B reveal,
+    // palm-rule overlay, and circular/helical trajectory across STATE_1..STATE_7.
+    ambient_field?: {
+        direction: [number, number, number];   // unit B direction, e.g. [0,0,1]
+        magnitude: number;                      // T (visual scaling only — physics is qualitative)
+        density: [number, number, number];      // lattice points per axis, e.g. [5,5,5]
+        color: string;
+        opacity?: number;                       // 0..1, default 0.45
+        extent?: number;                        // half-extent of the 3D lattice, default 3
+    };
+    particle?: {
+        charge_sign: 1 | -1;                    // +1 = positive (proton-like), -1 = negative (electron-like)
+        mass_kg?: number;                        // visual only — engine handles the numerics
+        color: string;
+        radius?: number;                         // sphere radius in world units, default 0.12
+    };
     charges?: Array<{
         id: string;
         sign: number;           // +1 or -1
@@ -87,6 +105,13 @@ export interface Field3DConfig {
                 radius?: number;
                 animate_swing?: boolean;       // swing from north to B-tangent over time
                 swing_delay_ms?: number;       // when in state lifecycle to start swinging
+                // Optional approach animation: compass starts at approach_from and
+                // glides toward `position` over approach_duration_ms BEFORE the
+                // needle swings. Pedagogical intent: student first sees the compass
+                // entering the field region, then sees the deflection — the cause
+                // (wire's B) and the effect (needle response) are sequenced.
+                approach_from?: [number, number, number];
+                approach_duration_ms?: number;
             };
             highlighted_point?: {
                 position: [number, number, number];
@@ -94,11 +119,70 @@ export interface Field3DConfig {
                 color?: string;
                 radius?: number;
             };
+            // ── Lorentz-force extras (Diamond #2) ──────────────────────────
+            // 2D SVG palm-rule overlay pinned to the iframe corner. Mirror of
+            // right_hand's role for archetype A. `case`: 'positive' = thumb-v,
+            // fingers-B, palm-out = F (right hand for +q); 'negative' = the
+            // same hand but F reverses. Omit/'both' = stacked.
+            // Optionally also renders a 3D anatomical right-hand mesh inside the
+            // scene (palm + thumb + 4 curling fingers + animated curl). Uses the
+            // *cross-product* convention: thumb along F = q v × B, fingers
+            // curl from v → B in the plane perpendicular to F.
+            palm_rule?: {
+                case?: 'positive' | 'negative' | 'both';
+                show_3d_hand?: boolean;
+                hand_position?: [number, number, number]; // world position; default off-axis [-2.6, 1.6, 0.8]
+                hand_scale?: number;                       // default 1.0
+            };
+            // Show the velocity vector arrow on the moving particle.
+            velocity_vector?: {
+                show: boolean;
+                color?: string;
+                scale?: number;       // visual length scaler, default 1.5
+            };
+            // Show the force vector arrow on the moving particle. Updates
+            // per frame as F = qv × B (direction only; magnitude is visual).
+            force_vector?: {
+                show: boolean;
+                color?: string;
+                scale?: number;       // visual length scaler, default 1.5
+            };
+            // Particle trail / trajectory trace.
+            particle_trail?: {
+                show: boolean;
+                color?: string;
+                max_segments?: number; // ring-buffer length, default 240
+                equal_arc?: boolean;   // draw segments at equal arc-length (STATE_5 emphasis)
+            };
+            // Decompose v into its component parallel to B (v cos θ) and its
+            // component perpendicular to B (v sin θ). Drawn as two extra
+            // arrows from the particle: grey for v_∥, bright orange for v_⊥.
+            // Per-frame, the renderer projects the current v onto B to get the
+            // correct components for the active θ.
+            vector_decomposition?: {
+                show: boolean;
+                color_parallel?: string; // default '#9CA3AF'
+                color_perp?: string;     // default '#FFCC9F'
+                scale?: number;          // visual length scaler, default 1.2
+            };
+            // Fleming's left-hand-rule reconciliation overlay (Diamond #2
+            // STATE_5). Three orthogonal fingers — ForeFinger=B, seCond=v,
+            // thuMb=F. Class-10 Indian-board mnemonic, valid only for +q.
+            // Opt-in for the one reconciliation state; the right-hand cross
+            // product remains canonical everywhere else.
+            fleming_left_hand?: {
+                show: boolean;
+            };
         };
         // Show interactive I/r sliders + B readout overlay in this state
         show_sliders?: boolean;
         // Multi-line text shown in a corner of the canvas (formulas, numerics)
         formula_overlay?: string;
+        // Diamond #2 retrofit (2026-05-11): which corner the TTS-driven
+        // equation panel anchors to for this state. Default 'bottom-left'.
+        // Avoid the corner occupied by sliders or RHR overlay — collision
+        // rule documented in patterns/magnetism.md §4.
+        equation_panel_anchor?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
         // straight_wire_current scenario: rotate the field-line arrows around the
         // wire. 'ccw' (default) for current upward; 'cw' for reversed current.
         // Omitted = no rotation animation.
@@ -107,11 +191,26 @@ export interface Field3DConfig {
         // wire to visualize the conventional current direction. 'up' or 'down'.
         // Omitted = no dots shown.
         current_direction_indicator?: 'up' | 'down';
+        // ── lorentz_force_uniform_field per-state config ─────────────────
+        // 'static' = particle frozen (reveal/explain states); 'circle' = uniform
+        // circular motion in the plane ⊥ B; 'helix' = helical (v has component
+        // along B); 'straight' = drift (B not yet on, STATE_1 hook).
+        trajectory_mode?: 'static' | 'circle' | 'helix' | 'straight';
+        // Angle between v and B in degrees (per-state override).
+        theta_deg?: number;
+        // Charge sign override for this state (e.g. STATE_4 flips between
+        // positive and negative to demonstrate F direction reversal).
+        charge_sign?: 1 | -1;
     }>;
     // Slider configuration (used when show_sliders: true on a state)
     slider_controls?: {
         I?: { min: number; max: number; step: number; default: number; label: string };
         r?: { min: number; max: number; step: number; default: number; label: string };
+        // ── Lorentz-force sliders (Diamond #2) ───────────────────────────
+        q_sign?: { default: 1 | -1; label: string };
+        v?: { min: number; max: number; step?: number; default: number; label: string };
+        B?: { min: number; max: number; step?: number; default: number; label: string };
+        theta_deg?: { min: number; max: number; step?: number; default: number; label: string };
     };
     pvl_colors?: {
         background: string; text: string; positive: string; negative: string; field_line: string;
@@ -168,6 +267,55 @@ canvas { display: block; width: 100%; height: 100%; }
     max-width: 300px; display: none;
     white-space: pre-line;
 }
+/* TTS-driven equation panel — anchored per state.equation_panel_anchor.
+   Each TTS sentence with math_show appends a .equation_line child; the
+   panel resets when the next sentence arrives with math_persist=false. */
+#equation_panel {
+    position: fixed; padding: 12px 16px;
+    background: rgba(10,10,26,0.92);
+    border: 1px solid rgba(252,211,77,0.45);
+    border-radius: 8px; z-index: 11;
+    max-width: 320px; display: none;
+    color: #FFF8E1; font-size: 17px;
+    line-height: 1.5;
+}
+#equation_panel.anchor-bottom-left  { bottom: 12px; left: 12px;  top: auto;   right: auto; }
+#equation_panel.anchor-bottom-right { bottom: 12px; right: 12px; top: auto;   left: auto;  }
+#equation_panel.anchor-top-left     { top:    12px; left: 12px;  bottom: auto; right: auto; }
+#equation_panel.anchor-top-right    { top:    12px; right: 12px; bottom: auto; left: auto;  }
+#equation_panel .equation_line {
+    margin: 4px 0;
+    animation: equationFadeIn 280ms ease-out;
+}
+#equation_panel .equation_line.dim {
+    opacity: 0.55;
+    color: #B0BEC5;
+}
+@keyframes equationFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+/* TTS-driven glow for HTML overlays (Fleming SVG, sliders panel, etc.).
+   Founder note 2026-05-12 (fourth pass): halo must be visible the ENTIRE
+   time .glow-pulse is on, not just at the 50% keyframe. Both 0% and 100%
+   keyframes now carry a moderate amber halo (18px / 5px / 55% opacity);
+   50% boosts to the bright peak (36px / 12px / 100% opacity). The overlay
+   never drops back to "no halo" during active glow. */
+@keyframes overlayGlowPulse {
+    0%, 100% { box-shadow: 0 0 18px  5px rgba(252,211,77,0.55); border-color: rgba(252,211,77,0.85); }
+    50%      { box-shadow: 0 0 36px 12px rgba(252,211,77,1.00); border-color: rgba(252,211,77,1.0); }
+}
+.glow-pulse { animation: overlayGlowPulse 1.8s ease-in-out infinite; }
+/* Per-finger Fleming SVG glow (founder note 2026-05-14). Box-shadow does not
+   work on inline SVG children — uses CSS filter: drop-shadow instead, plus a
+   subtle scale to make the active finger pop without disturbing the others.
+   Same 1.8s period as overlayGlowPulse so the two effects feel synchronised
+   when both fire (e.g. s5_2a glows the index finger AND the scene B grid). */
+@keyframes flemingFingerGlow {
+    0%, 100% { filter: drop-shadow(0 0  6px rgba(252,211,77,0.55)); transform: scale(1.00); }
+    50%      { filter: drop-shadow(0 0 14px rgba(252,211,77,1.00)); transform: scale(1.05); }
+}
+.glow-finger { transform-box: fill-box; transform-origin: center; animation: flemingFingerGlow 1.8s ease-in-out infinite; }
 @keyframes rhrCurlSweep {
     from { stroke-dashoffset: 0; }
     to   { stroke-dashoffset: -22; }
@@ -211,6 +359,23 @@ canvas { display: block; width: 100%; height: 100%; }
     text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     user-select: none;
 }
+#rhr_overlay .rhr-thumb-unit {
+    display: flex; flex-direction: column; align-items: center;
+    flex-shrink: 0; gap: 2px;
+}
+#rhr_overlay .rhr-i-arrow {
+    width: 22px; height: 28px; display: block;
+}
+#rhr_overlay .rhr-i-label {
+    font-size: 11px; font-weight: 700;
+    font-family: 'Cambria Math', 'Times New Roman', serif;
+    font-style: italic;
+    line-height: 1;
+}
+#rhr_overlay .rhr-curl-a .rhr-i-label,
+#rhr_overlay .rhr-i-a-label { color: #66BB6A; }
+#rhr_overlay .rhr-curl-b .rhr-i-label,
+#rhr_overlay .rhr-i-b-label { color: #EF7B7B; }
 #rhr_overlay .rhr-curl-block { flex: 1; text-align: center; }
 #rhr_overlay .rhr-curl-svg {
     width: 70px; height: 50px; display: block; margin: 0 auto;
@@ -229,6 +394,132 @@ canvas { display: block; width: 100%; height: 100%; }
 #rhr_overlay.rhr-show-a-only .rhr-footer { display: none; }
 #rhr_overlay.rhr-show-b-only .rhr-case-section-a,
 #rhr_overlay.rhr-show-b-only .rhr-footer { display: none; }
+/* ── Palm-rule overlay (Diamond #2 — Lorentz force F = qv × B) ─────────
+   Pinned top-LEFT so it never collides with #lorentz_sliders (top-right)
+   in the interactive STATE_5. The overlay is visible in every Diamond #2
+   state per founder feedback. */
+#palm_rule_overlay {
+    position: fixed; top: 60px; left: 12px;
+    background: rgba(0,0,0,0.86);
+    border: 1px solid rgba(102,187,106,0.55);
+    border-radius: 12px;
+    padding: 10px 12px;
+    z-index: 12;
+    display: none;
+    pointer-events: none;
+    width: 232px;
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', system-ui, sans-serif;
+    color: ${textColor};
+}
+#palm_rule_overlay .palm-title {
+    color: #FCD34D; font-size: 14px; font-weight: 700;
+    text-align: center; margin-bottom: 8px; letter-spacing: 0.3px;
+}
+#palm_rule_overlay .palm-case {
+    margin-bottom: 8px;
+    padding: 6px 8px 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+}
+#palm_rule_overlay .palm-case:last-of-type { margin-bottom: 6px; }
+#palm_rule_overlay .palm-case-label {
+    font-size: 11px; font-weight: 700; margin-bottom: 4px;
+    letter-spacing: 0.2px;
+}
+#palm_rule_overlay .palm-case-pos-label { color: #FFB366; }
+#palm_rule_overlay .palm-case-neg-label { color: #82B1FF; }
+#palm_rule_overlay .palm-row {
+    display: flex; align-items: center; gap: 10px;
+}
+#palm_rule_overlay .palm-hand {
+    font-size: 48px; line-height: 1; flex-shrink: 0;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    user-select: none;
+}
+#palm_rule_overlay .palm-axes-svg {
+    width: 96px; height: 64px; display: block;
+}
+#palm_rule_overlay .palm-axes-label {
+    font-size: 10px; line-height: 1.3; margin-top: 4px; text-align: center;
+}
+#palm_rule_overlay .palm-axes-pos { color: #66BB6A; font-weight: 600; }
+#palm_rule_overlay .palm-axes-neg { color: #EF7B7B; font-weight: 600; }
+#palm_rule_overlay .palm-footer {
+    font-size: 9px; text-align: center; margin-top: 4px;
+    opacity: 0.78; font-style: italic;
+}
+#palm_rule_overlay.palm-show-pos-only .palm-case-section-neg,
+#palm_rule_overlay.palm-show-pos-only .palm-footer { display: none; }
+#palm_rule_overlay.palm-show-neg-only .palm-case-section-pos,
+#palm_rule_overlay.palm-show-neg-only .palm-footer { display: none; }
+/* ── Cycling glow on v / B / F so each labelled vector is called out in turn ──
+   even without listening to the TTS. Cycle = 4.5s; each vector glows for ~0.5s
+   then dims back. Staggered by animation-delay so the student's eye is led
+   thumb (v) → fingers (B) → palm (F) → repeat. */
+@keyframes palmAxisPulse {
+    0%, 100%       { opacity: 0.55; }
+    8%             { opacity: 1.0; filter: drop-shadow(0 0 5px currentColor); }
+    20%            { opacity: 0.55; }
+}
+#palm_rule_overlay .palm-axis-v { animation: palmAxisPulse 4.5s ease-in-out infinite; animation-delay: 0s;   color: #FFAB40; }
+#palm_rule_overlay .palm-axis-b { animation: palmAxisPulse 4.5s ease-in-out infinite; animation-delay: 1.5s; color: #42A5F5; }
+#palm_rule_overlay .palm-axis-f-pos { animation: palmAxisPulse 4.5s ease-in-out infinite; animation-delay: 3.0s; color: #66BB6A; }
+#palm_rule_overlay .palm-axis-f-neg { animation: palmAxisPulse 4.5s ease-in-out infinite; animation-delay: 3.0s; color: #EF7B7B; }
+/* ── Fleming's left-hand rule overlay (Diamond #2 STATE_5 reconciliation) ──
+   Class-10 Indian-board mnemonic. Three orthogonal fingers: ForeFinger=B,
+   seCond=v, thuMb=F. Shown ONLY on the reconciliation state to acknowledge
+   the alternative without conflicting with the right-hand cross-product
+   framework used in every other state. Hidden by default. */
+#fleming_overlay {
+    position: fixed; top: 60px; left: 12px;
+    background: rgba(0,0,0,0.86);
+    border: 1px solid rgba(102,187,106,0.55);
+    border-radius: 12px;
+    padding: 10px 14px 8px;
+    z-index: 12;
+    display: none;
+    pointer-events: none;
+    width: 218px;
+    font-family: system-ui, sans-serif;
+    color: ${textColor};
+}
+#fleming_overlay .fleming-title {
+    color: #FCD34D; font-size: 14px; font-weight: 700;
+    text-align: center; margin-bottom: 2px; letter-spacing: 0.3px;
+}
+#fleming_overlay .fleming-axes-svg {
+    width: 100%; height: 178px; display: block; margin: 2px auto 2px;
+}
+#fleming_overlay .fleming-axes-label {
+    font-size: 10px; line-height: 1.4; margin-top: 2px;
+    text-align: center; color: #B0BEC5; font-style: italic;
+}
+#fleming_overlay .fleming-footer {
+    font-size: 9.5px; text-align: center; margin-top: 6px;
+    opacity: 0.82; line-height: 1.45;
+}
+/* ── Lorentz sliders (Diamond #2) ────────────────────────────────────── */
+#lorentz_sliders {
+    position: fixed; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 8px;
+    border: 1.5px solid rgba(252,211,77,0);
+    font: 12px/1.6 monospace; z-index: 10;
+    min-width: 200px; display: none;
+}
+#lorentz_sliders label { display: block; margin-bottom: 2px; }
+#lorentz_sliders input[type="range"] { width: 100%; margin-bottom: 6px; }
+#lorentz_sliders #q_toggle {
+    display: inline-block; padding: 3px 10px; border-radius: 4px;
+    background: #FFB366; color: #1A1A2E; font-weight: 700; cursor: pointer;
+    font-size: 11px; pointer-events: auto; user-select: none;
+}
+#lorentz_sliders #q_toggle.neg { background: #82B1FF; }
+#lorentz_sliders #f_readout {
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #66BB6A; font-weight: bold;
+}
 </style>
 </head><body>
 <div id="caption"></div>
@@ -242,12 +533,20 @@ canvas { display: block; width: 100%; height: 100%; }
     <div id="b_readout">B = 20.0 μT</div>
 </div>
 <div id="formula_overlay"></div>
+<div id="equation_panel" class="anchor-bottom-left"></div>
 <div id="rhr_overlay">
     <div class="rhr-title">Right-Hand Rule</div>
     <div class="rhr-case rhr-case-section-a">
         <div class="rhr-case-label rhr-case-a-label">Case A · I points UP ↑</div>
         <div class="rhr-row">
-            <div class="rhr-hand">👍</div>
+            <div class="rhr-thumb-unit">
+                <svg class="rhr-i-arrow" viewBox="0 0 22 28" xmlns="http://www.w3.org/2000/svg" aria-label="current up">
+                    <line x1="11" y1="26" x2="11" y2="6" stroke="#66BB6A" stroke-width="2.5" stroke-linecap="round"/>
+                    <polygon points="11,2 6,10 16,10" fill="#66BB6A"/>
+                </svg>
+                <div class="rhr-i-label rhr-i-a-label">I</div>
+                <div class="rhr-hand">👍</div>
+            </div>
             <div class="rhr-curl-block rhr-curl-a">
                 <svg class="rhr-curl-svg" viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg">
                     <path class="curl-arc" d="M 60 28 A 24 16 0 1 0 12 28" stroke="#66BB6A" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/>
@@ -260,7 +559,14 @@ canvas { display: block; width: 100%; height: 100%; }
     <div class="rhr-case rhr-case-section-b">
         <div class="rhr-case-label rhr-case-b-label">Case B · I points DOWN ↓</div>
         <div class="rhr-row">
-            <div class="rhr-hand">👎</div>
+            <div class="rhr-thumb-unit">
+                <div class="rhr-hand">👎</div>
+                <div class="rhr-i-label rhr-i-b-label">I</div>
+                <svg class="rhr-i-arrow" viewBox="0 0 22 28" xmlns="http://www.w3.org/2000/svg" aria-label="current down">
+                    <line x1="11" y1="2" x2="11" y2="22" stroke="#EF7B7B" stroke-width="2.5" stroke-linecap="round"/>
+                    <polygon points="11,26 6,18 16,18" fill="#EF7B7B"/>
+                </svg>
+            </div>
             <div class="rhr-curl-block rhr-curl-b">
                 <svg class="rhr-curl-svg" viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg">
                     <path class="curl-arc" d="M 10 28 A 24 16 0 1 0 58 28" stroke="#EF7B7B" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/>
@@ -272,6 +578,111 @@ canvas { display: block; width: 100%; height: 100%; }
     </div>
     <div class="rhr-footer">Same RIGHT hand — flip thumb, B reverses too</div>
 </div>
+<div id="palm_rule_overlay">
+    <div class="palm-title">Right-Hand Rule · F = q v × B</div>
+    <div class="palm-case palm-case-section-pos">
+        <div class="palm-case-label palm-case-pos-label">Positive charge (+q)</div>
+        <div class="palm-row">
+            <div class="palm-hand">🖐️</div>
+            <div>
+                <svg class="palm-axes-svg" viewBox="0 0 96 64" xmlns="http://www.w3.org/2000/svg" aria-label="v thumb, B fingers, F out of palm">
+                    <g class="palm-axis-v">
+                        <line x1="14" y1="50" x2="14" y2="14" stroke="#FFAB40" stroke-width="2.5" stroke-linecap="round"/>
+                        <polygon points="14,8 9,18 19,18" fill="#FFAB40"/>
+                        <text x="22" y="18" fill="#FFAB40" font-size="11" font-family="serif" font-style="italic">v</text>
+                    </g>
+                    <g class="palm-axis-b">
+                        <line x1="14" y1="50" x2="50" y2="50" stroke="#42A5F5" stroke-width="2.5" stroke-linecap="round"/>
+                        <polygon points="56,50 46,45 46,55" fill="#42A5F5"/>
+                        <text x="40" y="46" fill="#42A5F5" font-size="11" font-family="serif" font-style="italic">B</text>
+                    </g>
+                    <g class="palm-axis-f-pos">
+                        <line x1="14" y1="50" x2="74" y2="22" stroke="#66BB6A" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+                        <polygon points="80,18 68,18 74,28" fill="#66BB6A"/>
+                        <text x="78" y="38" fill="#66BB6A" font-size="11" font-family="serif" font-style="italic" font-weight="700">F</text>
+                    </g>
+                </svg>
+                <div class="palm-axes-label palm-axes-pos">Flat right hand:<br/>thumb=v · fingers=B<br/>palm pushes out → F</div>
+            </div>
+        </div>
+    </div>
+    <div class="palm-case palm-case-section-neg">
+        <div class="palm-case-label palm-case-neg-label">Negative charge (−q)</div>
+        <div class="palm-row">
+            <div class="palm-hand">🖐️</div>
+            <div>
+                <svg class="palm-axes-svg" viewBox="0 0 96 64" xmlns="http://www.w3.org/2000/svg" aria-label="v thumb, B fingers, F reversed for -q">
+                    <g class="palm-axis-v">
+                        <line x1="14" y1="50" x2="14" y2="14" stroke="#FFAB40" stroke-width="2.5" stroke-linecap="round"/>
+                        <polygon points="14,8 9,18 19,18" fill="#FFAB40"/>
+                        <text x="22" y="18" fill="#FFAB40" font-size="11" font-family="serif" font-style="italic">v</text>
+                    </g>
+                    <g class="palm-axis-b">
+                        <line x1="14" y1="50" x2="50" y2="50" stroke="#42A5F5" stroke-width="2.5" stroke-linecap="round"/>
+                        <polygon points="56,50 46,45 46,55" fill="#42A5F5"/>
+                        <text x="40" y="46" fill="#42A5F5" font-size="11" font-family="serif" font-style="italic">B</text>
+                    </g>
+                    <g class="palm-axis-f-neg">
+                        <line x1="74" y1="22" x2="14" y2="50" stroke="#EF7B7B" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+                        <polygon points="8,54 20,54 14,44" fill="#EF7B7B"/>
+                        <text x="78" y="38" fill="#EF7B7B" font-size="11" font-family="serif" font-style="italic" font-weight="700">F</text>
+                    </g>
+                </svg>
+                <div class="palm-axes-label palm-axes-neg">Same right hand · F reverses<br/>(opposite direction for −q)</div>
+            </div>
+        </div>
+    </div>
+    <div class="palm-footer">NCERT / DC Pandey: right-hand rule for v × B. Same hand both cases — only F's sign flips with q.</div>
+</div>
+<div id="fleming_overlay">
+    <div class="fleming-title">Fleming's Left-Hand Rule</div>
+    <svg class="fleming-axes-svg" viewBox="0 0 170 150" xmlns="http://www.w3.org/2000/svg" aria-label="left hand: forefinger up (B), thumb left (F), central finger toward viewer (v) — matches the scene orientation">
+        <ellipse cx="90" cy="90" rx="14" ry="11" fill="rgba(244,167,126,0.22)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+        <g id="fleming_index_finger">
+            <line x1="90" y1="79" x2="90" y2="20" stroke="#EFEFEF" stroke-width="6" stroke-linecap="round"/>
+            <ellipse cx="90" cy="20" rx="3.5" ry="2.2" fill="#FFE4D2" stroke="rgba(0,0,0,0.4)" stroke-width="0.7"/>
+            <line x1="90" y1="16" x2="90" y2="4" stroke="#42A5F5" stroke-width="2.5"/>
+            <polygon points="90,0 85,10 95,10" fill="#42A5F5"/>
+            <text x="50" y="14" fill="#42A5F5" font-size="11" font-weight="700">Forefinger</text>
+            <text x="98" y="30" fill="#42A5F5" font-size="13" font-weight="700" font-style="italic">B</text>
+        </g>
+        <g id="fleming_thumb">
+            <line x1="79" y1="93" x2="22" y2="98" stroke="#EFEFEF" stroke-width="6" stroke-linecap="round"/>
+            <ellipse cx="22" cy="98" rx="2.2" ry="3.3" fill="#FFE4D2" stroke="rgba(0,0,0,0.4)" stroke-width="0.7" transform="rotate(85 22 98)"/>
+            <line x1="18" y1="98" x2="6" y2="98" stroke="#66BB6A" stroke-width="2.5"/>
+            <polygon points="0,98 8,93 8,103" fill="#66BB6A"/>
+            <text x="30" y="84" fill="#66BB6A" font-size="11" font-weight="700">Thumb</text>
+            <text x="32" y="115" fill="#66BB6A" font-size="13" font-weight="700" font-style="italic">F</text>
+        </g>
+        <g id="fleming_middle_finger">
+            <line x1="92" y1="100" x2="64" y2="138" stroke="#EFEFEF" stroke-width="6" stroke-linecap="round"/>
+            <ellipse cx="64" cy="138" rx="3" ry="2.2" fill="#FFE4D2" stroke="rgba(0,0,0,0.4)" stroke-width="0.7" transform="rotate(60 64 138)"/>
+            <line x1="62" y1="140" x2="54" y2="148" stroke="#FFAB40" stroke-width="2.5"/>
+            <polygon points="50,150 58,144 60,150" fill="#FFAB40"/>
+            <text x="70" y="124" fill="#FFAB40" font-size="11" font-weight="700">Central</text>
+            <text x="78" y="138" fill="#FFAB40" font-size="13" font-weight="700" font-style="italic">v</text>
+            <text x="70" y="148" fill="#FFAB40" font-size="9" opacity="0.78">(toward you)</text>
+        </g>
+    </svg>
+    <div class="fleming-axes-label">
+        Forefinger up (B) matches the scene above
+    </div>
+    <div class="fleming-footer">
+        Works for +q only. For −q, F reverses.<br/>For any θ ≠ 90°, use right-hand rule.
+    </div>
+</div>
+<div id="lorentz_sliders">
+    <label>q = <span id="q_toggle">+e</span></label>
+    <label>|v| = <span id="v_val">1.0</span> ×10⁵ m/s</label>
+    <input type="range" id="v_slider" min="0.5" max="5" step="0.1" value="1">
+    <label>B = <span id="b_val">10</span> mT</label>
+    <input type="range" id="b_slider" min="1" max="100" step="1" value="10">
+    <label>θ(v,B) = <span id="theta_val">90</span>°</label>
+    <input type="range" id="theta_slider" min="0" max="90" step="1" value="90">
+    <div id="f_readout">F = 0.16 fN</div>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"><\/script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"><\/script>
 <script>
 window.SIM_CONFIG = ${JSON.stringify(config)};
@@ -297,6 +708,47 @@ export const FIELD_3D_RENDERER_CODE = `
     if (!config) { console.error("No SIM_CONFIG"); return; }
 
     var PM_currentState = "STATE_1";
+    var stateStartTime = 0; // animate-loop time at the moment the current state was entered (Diamond #2 trajectory parameterization)
+    // Diamond #2 — current TTS-driven glow target(s). Set via postMessage:
+    // { type: 'SET_GLOW',
+    //   target: <one of below, OR an array of below, OR null> }
+    //   'v' | 'f' | 'v_parallel' | 'v_perp' | 'b'
+    // | 'trail' | 'hand' | 'fleming' | 'sliders'
+    // | 'fleming_index' | 'fleming_middle' | 'fleming_thumb' | null
+    // Companion messages:
+    //   { type: 'SET_HAND_PHASE',     phase: 'v'|'b'|'f'|null }
+    //   { type: 'SET_FREEZE_PROTON',  frozen: boolean        }
+    // from the parent page (TtsPlayButton on the admin test page). The matching
+    // element pulses softly while the related teacher_script sentence speaks.
+    // 3D scene elements (arrows, ambient_field grid, particle_trail line, 3D
+    // right-hand mesh) pulse via the animate loop's glowFactor(); HTML overlays
+    // (Fleming SVG, lorentz_sliders) pulse via a CSS .glow-pulse class toggled
+    // in the SET_GLOW handler. Pulse is intentionally dim + slow (founder note
+    // 2026-05-12: "according to the script, slow and dim glow").
+    // Diamond #2 — TTS-driven glow now supports MULTIPLE simultaneous targets
+    // (founder note 2026-05-14: "v cosθ along B" co-glows v_parallel + b, etc).
+    // SET_GLOW accepts a string OR an array. Internally we always store an
+    // array; glowFactor(t) returns the pulse if t is in the array.
+    var glowTargets = [];
+    // Diamond #2 — when a sentence wants the proton to stop translating along
+    // its trajectory (so the F arrow is readable mid-narration), the renderer
+    // captures the local trajectory time at the freeze moment and re-uses it
+    // every frame until cleared. Hand cycle + glow + camera keep ticking.
+    var protonFreezeAt = null;
+    // Diamond #2 — pause+co-glow choreography (founder note 2026-05-14):
+    // when a teacher_script sentence is locked to a hand-rule phase, the 3D
+    // right-hand mesh freezes at that phase so the student can read the v / B
+    // / F label without the gesture cycling away. Set via postMessage:
+    //   { type: 'SET_HAND_PHASE', phase: 'v' | 'b' | 'f' | null }
+    // null resumes the default 9-second curl cycle. Phase mapping:
+    //   'v' → curlT=0  (flat palm — fingers point along v)
+    //   'b' → curlT=0.5 (mid-curl — fingertips bend toward B)
+    //   'f' → curlT=1  (full curl — thumb points along F)
+    var heldHandPhase = null;
+    // Diamond #2 — set when the user drags a v/B/q-sign slider in STATE_6.
+    // The trail update logic clears the LineGeometry buffer on the next
+    // animate tick so the old trajectory doesn't bleed into the new one.
+    var lorentzTrailResetPending = false;
     var scene, camera, renderer, animationId;
     var sceneObjects = [];
     var isDragging = false, prevMouse = { x: 0, y: 0 };
@@ -664,19 +1116,259 @@ export const FIELD_3D_RENDERER_CODE = `
         needleGrp.add(nMark);
 
         grp.add(needleGrp);
+        // If approach_from is given, the compass starts there and lerps to
+        // its final position. Otherwise it spawns directly there (legacy).
+        var startPos = spec.approach_from || spec.position;
+        var hasApproach = !!spec.approach_from;
         grp.userData = {
             elementType: 'compass',
             id: 'compass_oersted',
             animate_swing: !!spec.animate_swing,
             swing_delay_ms: spec.swing_delay_ms || 1500,
             position_world: [spec.position[0], spec.position[1], spec.position[2]],
+            approach_from: hasApproach ? [startPos[0], startPos[1], startPos[2]] : null,
+            approach_duration_ms: spec.approach_duration_ms || 1200,
+            approach_started_at: hasApproach ? -1 : 0,
+            approach_progress: hasApproach ? 0 : 1,
             needleGroup: needleGrp,
             target_angle: 0,
             current_angle: 0,
             swing_started_at: -1
         };
-        grp.position.set(spec.position[0], spec.position[1], spec.position[2]);
+        grp.position.set(startPos[0], startPos[1], startPos[2]);
         return grp;
+    }
+
+    // ── Lorentz right-hand (Diamond #2) ───────────────────────────────────
+    //   Variant of createRightHand with a shorter thumb and an *animatable*
+    //   curl progress. The fingers are regenerated each frame in the animate
+    //   loop based on a curl_t parameter (0 = straight, 1 = fully curled
+    //   around the palm). curl_t cycles 0 → 1 → 0 every ~6 seconds so the
+    //   student sees the curling action repeatedly.
+    function lorentzFingerPoints(fingerIndex, palmRadius, fingerLength, s, curlT) {
+        // Geometry conventions for the Lorentz right-hand mesh:
+        //   +y_local = thumb (= F = q v × B)
+        //   -z_local = flat-finger direction at curlT=0 (= v)
+        //   -x_local = fingertip direction at curlT=1 (= B)
+        // Check: (-z) × (-x) = (z × x) = +y ✓ matches right-hand rule.
+        var startThetaBase = -Math.PI / 2 - 0.2;
+        // Spread offsets — at curlT=0 fingers fan out from the palm like an
+        // open flat hand. The spread vanishes as fingers curl (converging to
+        // the arc).
+        var spreadOffsets = [0.20, 0.06, -0.07, -0.20];
+        var spread = (1 - curlT) * (spreadOffsets[fingerIndex] || 0);
+        var startTheta = startThetaBase + spread;
+        // Negative sweep so fingers curl from -z toward -x (B direction). The
+        // earlier positive sweep was the wrong handedness — it left thumb &
+        // curl in mirror-image of the textbook right-hand rule.
+        var sweepTheta = -(Math.PI / 1.8) * fingerLength;
+        var fingerOffsetY = -0.05 * s + fingerIndex * 0.085 * s;
+        var fingerStraightLen = 0.62 * s * fingerLength;
+        var startX = palmRadius * Math.cos(startTheta);
+        var startZ = palmRadius * Math.sin(startTheta);
+        var dirX = Math.cos(startTheta);
+        var dirZ = Math.sin(startTheta);
+        var pts = [];
+        var segments = 18;
+        for (var ti = 0; ti <= segments; ti++) {
+            var u = ti / segments;
+            // Straight position: finger extends radially outward from palm.
+            var straightX = startX + u * fingerStraightLen * dirX;
+            var straightY = fingerOffsetY - u * 0.015 * s;
+            var straightZ = startZ + u * fingerStraightLen * dirZ;
+            // Fully-curled position: finger wraps around the palm in an arc.
+            var theta = startThetaBase + sweepTheta * u;
+            var rad = palmRadius * (1 + 0.05 * Math.sin(u * Math.PI));
+            var curledX = rad * Math.cos(theta);
+            var curledY = fingerOffsetY - u * 0.04 * s;
+            var curledZ = rad * Math.sin(theta);
+            // Smooth blend.
+            var x = (1 - curlT) * straightX + curlT * curledX;
+            var y = (1 - curlT) * straightY + curlT * curledY;
+            var z = (1 - curlT) * straightZ + curlT * curledZ;
+            pts.push(new THREE.Vector3(x, y, z));
+        }
+        return pts;
+    }
+
+    function createLorentzHand(spec) {
+        var grp = new THREE.Group();
+        var s = spec.scale || 1;
+        var skinMat = new THREE.MeshPhongMaterial({
+            color: 0xFFCC9F, emissive: 0x442211, emissiveIntensity: 0.18, shininess: 30
+        });
+
+        // Palm — slightly elongated sphere
+        var palmGeo = new THREE.SphereGeometry(0.20 * s, 18, 14);
+        var palm = new THREE.Mesh(palmGeo, skinMat);
+        palm.scale.set(1.0, 0.85, 0.7);
+        grp.add(palm);
+
+        // Thumb — TWO-segment realistic. Proximal (carpometacarpal joint)
+        // angles slightly outward; distal (interphalangeal joint) bends back
+        // toward centerline. Reads as a thumb, not just a stub cylinder.
+        var thumbGroup = new THREE.Group();
+        var thumbProxGeo = new THREE.CylinderGeometry(0.085 * s, 0.092 * s, 0.20 * s, 12);
+        var thumbProx = new THREE.Mesh(thumbProxGeo, skinMat);
+        thumbProx.position.set(0.05 * s, 0.10 * s, 0.04 * s);
+        thumbProx.rotation.z = -0.30;
+        thumbGroup.add(thumbProx);
+        var thumbDistGeo = new THREE.CylinderGeometry(0.060 * s, 0.078 * s, 0.18 * s, 12);
+        var thumbDist = new THREE.Mesh(thumbDistGeo, skinMat);
+        thumbDist.position.set(-0.02 * s, 0.28 * s, 0.07 * s);
+        thumbDist.rotation.z = 0.15;
+        thumbGroup.add(thumbDist);
+        // Thumbnail cap at the tip of the distal segment
+        var nailGeo = new THREE.SphereGeometry(0.055 * s, 8, 8);
+        var nailMat = new THREE.MeshPhongMaterial({ color: 0xCC9966 });
+        var nail = new THREE.Mesh(nailGeo, nailMat);
+        nail.position.set(-0.05 * s, 0.38 * s, 0.09 * s);
+        thumbGroup.add(nail);
+        grp.add(thumbGroup);
+
+        // Wrist stub
+        var wristGeo = new THREE.CylinderGeometry(0.16 * s, 0.13 * s, 0.30 * s, 12);
+        var wristMat = new THREE.MeshPhongMaterial({ color: 0xE6B895 });
+        var wrist = new THREE.Mesh(wristGeo, wristMat);
+        wrist.position.set(0, -0.30 * s, 0);
+        grp.add(wrist);
+
+        // 4 fingers — initial geometry is t=0 (straight). Replaced per frame.
+        // Each finger gets a small fingernail-cap (tan sphere) at its tip; the
+        // animate loop tracks the live fingertip position because the finger
+        // geometry is regenerated when curlT changes.
+        var fingerLengths = [1.00, 1.05, 0.95, 0.80];
+        var palmRadius = 0.22 * s;
+        var fingerMeshes = [];
+        var fingerNails = [];
+        var nailMatF = new THREE.MeshPhongMaterial({ color: 0xCC9966, shininess: 50 });
+        for (var fi = 0; fi < 4; fi++) {
+            var pts = lorentzFingerPoints(fi, palmRadius, fingerLengths[fi], s, 0);
+            var curve = new THREE.CatmullRomCurve3(pts);
+            var tubeRadius = 0.045 * s * fingerLengths[fi];
+            var fingerGeo = new THREE.TubeGeometry(curve, 24, tubeRadius, 8, false);
+            var finger = new THREE.Mesh(fingerGeo, skinMat);
+            finger.userData = {
+                fingerIndex: fi,
+                fingerLength: fingerLengths[fi],
+                palmRadius: palmRadius,
+                scale_s: s,
+                tubeRadius: tubeRadius,
+            };
+            grp.add(finger);
+            fingerMeshes.push(finger);
+
+            // Fingernail — small sphere placed at the fingertip. Position
+            // refreshes per frame as the finger curls.
+            var nailRadius = tubeRadius * 1.05;
+            var nailGeoF = new THREE.SphereGeometry(nailRadius, 8, 8);
+            var fingerNail = new THREE.Mesh(nailGeoF, nailMatF);
+            var tipPt = pts[pts.length - 1];
+            fingerNail.position.set(tipPt.x, tipPt.y, tipPt.z);
+            grp.add(fingerNail);
+            fingerNails.push(fingerNail);
+        }
+
+        // v / B / F pointer arrows — small ArrowHelpers that emerge from the
+        // matching anatomical landmark (fingertip / thumb tip) and point in
+        // the direction the student should read off the right-hand-rule
+        // gesture. Visibility is gated by phase in the animate loop:
+        //   v phase  → v arrow shoots out of the flat fingertips
+        //   B phase  → B arrow shoots out of the fingertips at full curl
+        //   F phase  → F arrow shoots out of the thumb tip
+        var vArrowLocal = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 0, -1),
+            new THREE.Vector3(-0.10 * s, -0.05 * s, -0.55 * s),
+            0.45 * s, 0xFFAB40, 0.16 * s, 0.10 * s
+        );
+        vArrowLocal.userData = { phase_arrow: 'v' };
+        vArrowLocal.visible = false;
+        grp.add(vArrowLocal);
+        var bArrowLocal = new THREE.ArrowHelper(
+            new THREE.Vector3(-1, 0, 0),
+            new THREE.Vector3(-0.30 * s, -0.05 * s, 0.05 * s),
+            0.45 * s, 0x42A5F5, 0.16 * s, 0.10 * s
+        );
+        bArrowLocal.userData = { phase_arrow: 'b' };
+        bArrowLocal.visible = false;
+        grp.add(bArrowLocal);
+        var fArrowLocal = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 1, 0),
+            new THREE.Vector3(-0.05 * s, 0.42 * s, 0.08 * s),
+            0.45 * s, 0x66BB6A, 0.16 * s, 0.10 * s
+        );
+        fArrowLocal.userData = { phase_arrow: 'f' };
+        fArrowLocal.visible = false;
+        grp.add(fArrowLocal);
+
+        // v / B / F label sprites — fixed in hand-local space, kept close to
+        // the palm so they stay inside the iframe view regardless of which
+        // direction v / B / F point in world. Conventions:
+        //   v at -z (where flat fingers point initially)
+        //   B at -x (where fingertips point at full curl)
+        //   F at +y (thumb tip / cross-product direction)
+        var vLabel = createLabelSprite('v', '#FFAB40', 0.50 * s);
+        vLabel.position.set(-0.05 * s, -0.05 * s, -0.65 * s);
+        vLabel.userData = { phase_label: 'v' };
+        vLabel.visible = false;
+        grp.add(vLabel);
+        var bLabel = createLabelSprite('B', '#42A5F5', 0.50 * s);
+        bLabel.position.set(-0.55 * s, 0.10 * s, 0.10 * s);
+        bLabel.userData = { phase_label: 'b' };
+        bLabel.visible = false;
+        grp.add(bLabel);
+        var fLabel = createLabelSprite('F', '#66BB6A', 0.50 * s);
+        fLabel.position.set(-0.08 * s, 0.60 * s, 0.08 * s);
+        fLabel.userData = { phase_label: 'f' };
+        fLabel.visible = false;
+        grp.add(fLabel);
+
+        grp.position.set(spec.position[0], spec.position[1], spec.position[2]);
+        grp.userData = {
+            elementType: 'lorentz_hand',
+            id: 'lorentz_hand_3d',
+            finger_meshes: fingerMeshes,
+            finger_nails: fingerNails,
+            animate_curl: true,
+            v_label: vLabel,
+            b_label: bLabel,
+            f_label: fLabel,
+            v_arrow: vArrowLocal,
+            b_arrow: bArrowLocal,
+            f_arrow: fArrowLocal,
+        };
+        return grp;
+    }
+
+    // ── Text-label sprite (Diamond #2) ────────────────────────────────────
+    //   Cheap canvas-texture sprite. Always faces the camera. Used to label
+    //   v / F / v cos θ / v sin θ arrows in the Lorentz scenario.
+    function createLabelSprite(text, color, scaleFactor) {
+        var canvas = document.createElement("canvas");
+        canvas.width = 384;
+        canvas.height = 128;
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.font = "bold italic 76px 'Cambria Math', 'Times New Roman', serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        // Dark outline for legibility against the deep-blue background
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = "rgba(10,10,26,0.95)";
+        ctx.strokeText(text, canvas.width / 2, canvas.height / 2);
+        ctx.fillStyle = color;
+        ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+        var texture = new THREE.CanvasTexture(canvas);
+        texture.needsUpdate = true;
+        var material = new THREE.SpriteMaterial({
+            map: texture, transparent: true, depthTest: false, depthWrite: false
+        });
+        var sprite = new THREE.Sprite(material);
+        var s = scaleFactor != null ? scaleFactor : 0.85;
+        // aspect: 384/128 = 3
+        sprite.scale.set(s * 3, s, 1);
+        sprite.renderOrder = 999;  // always draw on top of arrows
+        return sprite;
     }
 
     function createHighlightedPoint(spec) {
@@ -732,6 +1424,16 @@ export const FIELD_3D_RENDERER_CODE = `
         // pinned to the iframe corner — see #rhr_overlay in assembleField3DHtml).
         var rhrEl = document.getElementById("rhr_overlay");
         if (rhrEl) rhrEl.style.display = "none";
+        // Hide the 2D palm-rule overlay (Diamond #2 — Lorentz force).
+        var palmEl = document.getElementById("palm_rule_overlay");
+        if (palmEl) {
+            palmEl.style.display = "none";
+            palmEl.classList.remove("palm-show-pos-only", "palm-show-neg-only");
+        }
+        // Hide the Fleming's left-hand-rule overlay (Diamond #2 STATE_5
+        // reconciliation). Only one state opts into it.
+        var flemingEl = document.getElementById("fleming_overlay");
+        if (flemingEl) flemingEl.style.display = "none";
     }
 
     function applyExtras(extras) {
@@ -754,12 +1456,61 @@ export const FIELD_3D_RENDERER_CODE = `
             var compass = createCompass(extras.compass);
             scene.add(compass);
             dynamicExtras.push(compass);
-            compass.userData.swing_started_at = performance.now() + (compass.userData.swing_delay_ms || 0);
+            var nowMs = performance.now();
+            // If approach_from is set, the compass first glides to its final
+            // position for approach_duration_ms, THEN waits swing_delay_ms
+            // before the needle swings. Otherwise the legacy timing applies
+            // (immediate + swing_delay_ms). The sequencing makes the student
+            // perceive the compass enter the field, then react to it.
+            if (compass.userData.approach_from) {
+                compass.userData.approach_started_at = nowMs;
+                compass.userData.swing_started_at =
+                    nowMs + (compass.userData.approach_duration_ms || 1200) + (compass.userData.swing_delay_ms || 0);
+            } else {
+                compass.userData.swing_started_at = nowMs + (compass.userData.swing_delay_ms || 0);
+            }
         }
         if (extras.highlighted_point) {
             var hp = createHighlightedPoint(extras.highlighted_point);
             scene.add(hp);
             dynamicExtras.push(hp);
+        }
+        // Diamond #2 (Lorentz force) — toggle the 2D palm-rule SVG overlay
+        // pinned to the iframe corner. Case 'positive' shows only the +q
+        // panel; 'negative' shows only the -q panel; 'both' / omitted shows
+        // both stacked.
+        if (extras.palm_rule) {
+            var palmEl = document.getElementById("palm_rule_overlay");
+            // 2D overlay only shows when explicitly requested via 'case'.
+            // Diamond #2 keeps the scene minimalistic — the 3D hand mesh is
+            // the canonical rule visualisation, not the 2D panel.
+            if (palmEl && extras.palm_rule.case) {
+                palmEl.classList.remove("palm-show-pos-only", "palm-show-neg-only");
+                if (extras.palm_rule.case === "positive") palmEl.classList.add("palm-show-pos-only");
+                else if (extras.palm_rule.case === "negative") palmEl.classList.add("palm-show-neg-only");
+                palmEl.style.display = "block";
+            }
+            // Optional 3D right-hand mesh — thumb along F (= q v × B), fingers
+            // animate from straight to fully curled in the plane perpendicular
+            // to F (i.e., the plane containing v and B). Per-frame orientation
+            // is recomputed in the animate loop below (elementType "lorentz_hand").
+            if (extras.palm_rule.show_3d_hand) {
+                var handPos = extras.palm_rule.hand_position || [-2.8, 1.6, 0.6];
+                var handScale = extras.palm_rule.hand_scale || 1.0;
+                var lhand = createLorentzHand({
+                    position: handPos,
+                    scale: handScale,
+                });
+                scene.add(lhand);
+                dynamicExtras.push(lhand);
+            }
+        }
+        // Diamond #2 STATE_5 — Fleming's left-hand-rule reconciliation overlay.
+        // Static SVG (three orthogonal fingers + footnote on scope). Only the
+        // dedicated reconciliation state opts in via extras.fleming_left_hand.
+        if (extras.fleming_left_hand && extras.fleming_left_hand.show) {
+            var flemingEl = document.getElementById("fleming_overlay");
+            if (flemingEl) flemingEl.style.display = "block";
         }
     }
 
@@ -1227,6 +1978,154 @@ export const FIELD_3D_RENDERER_CODE = `
         addToScene(emfMesh);
     }
 
+    // ── Lorentz force in uniform field (Diamond #2 — archetype B) ────────
+    // Build the static scene: a faint 3D lattice of B-field arrows + a single
+    // charged particle + velocity / force vector arrows + an (initially empty)
+    // trail. The animate loop updates particle position, vectors, and trail
+    // each frame based on the active state's trajectory_mode.
+    function buildLorentzForceField() {
+        var af = config.ambient_field || {
+            direction: [0, 0, 1], magnitude: 1, density: [5, 5, 5],
+            color: "#42A5F5", opacity: 0.45, extent: 3
+        };
+        var p = config.particle || { charge_sign: 1, color: "#FFB366", radius: 0.12 };
+
+        var bDir = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+        var ext = af.extent != null ? af.extent : 3;
+        var nx = af.density[0], ny = af.density[1], nz = af.density[2];
+        var sx = nx > 1 ? (2 * ext) / (nx - 1) : 0;
+        var sy = ny > 1 ? (2 * ext) / (ny - 1) : 0;
+        var sz = nz > 1 ? (2 * ext) / (nz - 1) : 0;
+        var arrowLen = 0.55;
+        var arrowOp = af.opacity != null ? af.opacity : 0.45;
+        var arrowColor = af.color || "#42A5F5";
+
+        // 1. Ambient B-field arrows — InstancedMesh would be ideal, but using
+        //    individual ArrowHelpers keeps the code consistent with the rest of
+        //    the renderer and 125 arrows render fine on desktop.
+        for (var ix = 0; ix < nx; ix++) {
+            for (var iy = 0; iy < ny; iy++) {
+                for (var iz = 0; iz < nz; iz++) {
+                    var ox = nx > 1 ? -ext + ix * sx : 0;
+                    var oy = ny > 1 ? -ext + iy * sy : 0;
+                    var oz = nz > 1 ? -ext + iz * sz : 0;
+                    var origin = new THREE.Vector3(ox, oy, oz)
+                        .addScaledVector(bDir, -arrowLen / 2);
+                    var arrH = new THREE.ArrowHelper(bDir, origin, arrowLen, arrowColor, 0.14, 0.09);
+                    arrH.userData = { elementType: "ambient_field", id: "b_arrow_" + ix + "_" + iy + "_" + iz };
+                    // Apply opacity to the helper's line + cone materials
+                    arrH.children.forEach(function(child) {
+                        if (child.material) {
+                            child.material.transparent = true;
+                            child.material.opacity = arrowOp;
+                        }
+                    });
+                    addToScene(arrH);
+                }
+            }
+        }
+
+        // 2. Charged particle (the "proton" — q = +e by default; STATE_6's
+        //    q-toggle can flip the sign).
+        var pRadius = p.radius != null ? p.radius : 0.12;
+        var particleGeo = new THREE.SphereGeometry(pRadius, 22, 22);
+        var particleMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(p.color),
+            emissive: hexToThreeColor(p.color),
+            emissiveIntensity: 0.65, shininess: 90
+        });
+        var particle = new THREE.Mesh(particleGeo, particleMat);
+        particle.position.set(0, 0, 0);
+        // Charge-sign badge — a "+" sprite that hovers just above the
+        // sphere so the student always reads which charge they are seeing.
+        // The animate loop swaps to "−" when STATE_6's q-toggle flips.
+        var chargeSprite = createLabelSprite("+", "#FFFFFF", 0.34);
+        chargeSprite.position.set(0, 0, 0);
+        chargeSprite.userData = { is_charge_badge: true, current_sign: 1 };
+        particle.add(chargeSprite);
+        particle.userData = {
+            elementType: "particle", id: "lorentz_particle",
+            charge_sign: p.charge_sign,
+            charge_sprite: chargeSprite
+        };
+        addToScene(particle);
+
+        // 3. Velocity vector arrow (initial direction will be overwritten per frame)
+        var vArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 1.2,
+            "#FFAB40", 0.22, 0.11
+        );
+        vArrow.userData = { elementType: "velocity_vector", id: "v_arrow" };
+        addToScene(vArrow);
+
+        // 4. Force vector arrow (direction recomputed per frame as q v × B)
+        var fArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 1.2,
+            "#66BB6A", 0.22, 0.11
+        );
+        fArrow.userData = { elementType: "force_vector", id: "f_arrow" };
+        addToScene(fArrow);
+
+        // 4b. Vector-decomposition arrows (Diamond #2 STATE_3 pedagogy).
+        //     Built up-front (invisible by default); visibility + length set
+        //     per-frame in the animate loop based on the active θ.
+        var vParArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 1.0,
+            "#9CA3AF", 0.18, 0.09
+        );
+        vParArrow.userData = { elementType: "v_parallel", id: "v_par_arrow" };
+        vParArrow.visible = false;
+        addToScene(vParArrow);
+
+        var vPerpArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 1.0,
+            "#FFCC9F", 0.18, 0.09
+        );
+        vPerpArrow.userData = { elementType: "v_perp", id: "v_perp_arrow" };
+        vPerpArrow.visible = false;
+        addToScene(vPerpArrow);
+
+        // 4c. Text labels — one sprite per vector, positioned at the arrow tip
+        //     in the animate loop. Visibility tracks the corresponding arrow.
+        var labelV = createLabelSprite("v", "#FFAB40", 0.85);
+        labelV.userData = { elementType: "vector_label", id: "label_v", tracks: "velocity_vector" };
+        labelV.visible = false;
+        addToScene(labelV);
+
+        var labelF = createLabelSprite("F", "#66BB6A", 0.95);
+        labelF.userData = { elementType: "vector_label", id: "label_f", tracks: "force_vector" };
+        labelF.visible = false;
+        addToScene(labelF);
+
+        var labelVPar = createLabelSprite("v cos θ", "#D1D5DB", 0.65);
+        labelVPar.userData = { elementType: "vector_label", id: "label_v_par", tracks: "v_parallel" };
+        labelVPar.visible = false;
+        addToScene(labelVPar);
+
+        var labelVPerp = createLabelSprite("v sin θ", "#FFCC9F", 0.65);
+        labelVPerp.userData = { elementType: "vector_label", id: "label_v_perp", tracks: "v_perp" };
+        labelVPerp.visible = false;
+        addToScene(labelVPerp);
+
+        // 5. Trail — BufferGeometry line populated per frame. Reset on state change.
+        //    600 frames ≈ 10s at 60fps — long enough to show ~1 full helix loop
+        //    even at θ = 10° where the period is ~8.4s.
+        var maxPts = 600;
+        var trailGeo = new THREE.BufferGeometry();
+        var positions = new Float32Array(maxPts * 3);
+        trailGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+        trailGeo.setDrawRange(0, 0);
+        var trailMat = new THREE.LineBasicMaterial({
+            color: hexToThreeColor("#FFCC9F"), transparent: true, opacity: 0.85
+        });
+        var trail = new THREE.Line(trailGeo, trailMat);
+        trail.userData = {
+            elementType: "particle_trail", id: "lorentz_trail",
+            max_points: maxPts, filled: 0, write_index: 0
+        };
+        addToScene(trail);
+    }
+
     // ── Equipotential surfaces ────────────────────────────────────────────
     function buildEquipotentialSurfaces() {
         if (!config.equipotential || !config.equipotential.show) return;
@@ -1292,6 +2191,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildChangingFluxField();
                 break;
 
+            case "lorentz_force_uniform_field":
+                buildLorentzForceField();
+                break;
+
             default:
                 // Fallback: show a single positive charge
                 buildPointChargeField(
@@ -1306,8 +2209,22 @@ export const FIELD_3D_RENDERER_CODE = `
     // ── State management ──────────────────────────────────────────────────
     function applyState(stateId) {
         PM_currentState = stateId;
+        stateStartTime = time;
         var stateDef = config.states[stateId];
         if (!stateDef) return;
+
+        // Diamond #2 (Lorentz force): reset the particle trail buffer on state
+        // change so each state animates from a clean canvas. The static-state
+        // visibility (STATE_2/3/4) won't ever fill the buffer; the moving-state
+        // visibility (STATE_5/6/7) starts from 0 each time the state is entered.
+        for (var ri = 0; ri < sceneObjects.length; ri++) {
+            var rObj = sceneObjects[ri];
+            if (rObj.userData && rObj.userData.elementType === "particle_trail") {
+                rObj.userData.filled = 0;
+                rObj.userData.write_index = 0;
+                rObj.geometry.setDrawRange(0, 0);
+            }
+        }
 
         // Update caption
         var captionEl = document.getElementById("caption");
@@ -1346,9 +2263,14 @@ export const FIELD_3D_RENDERER_CODE = `
         clearDynamicExtras();
         applyExtras(stateDef.extras);
 
-        // Sliders + formula overlay visibility
+        // Sliders + formula overlay visibility — scenario-aware: show the
+        // I/r panel for straight_wire_current, the q/v/B/θ panel for
+        // lorentz_force_uniform_field. Always hide the other.
         var slidersEl = document.getElementById("sliders");
-        if (slidersEl) slidersEl.style.display = stateDef.show_sliders ? "block" : "none";
+        var lorentzSlidersEl = document.getElementById("lorentz_sliders");
+        var isLorentz = config.scenario_type === "lorentz_force_uniform_field";
+        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz) ? "block" : "none";
+        if (lorentzSlidersEl) lorentzSlidersEl.style.display = (stateDef.show_sliders && isLorentz) ? "block" : "none";
 
         var formulaEl = document.getElementById("formula_overlay");
         if (formulaEl) {
@@ -1358,6 +2280,17 @@ export const FIELD_3D_RENDERER_CODE = `
             } else {
                 formulaEl.style.display = "none";
             }
+        }
+
+        // Equation panel anchor (TTS-driven math sync). Reset to empty
+        // whenever we enter a new state so left-over math from a previous
+        // state's TTS doesn't bleed in.
+        var equationPanelEl = document.getElementById("equation_panel");
+        if (equationPanelEl) {
+            equationPanelEl.innerHTML = "";
+            equationPanelEl.style.display = "none";
+            var anchor = stateDef.equation_panel_anchor || "bottom-left";
+            equationPanelEl.className = "anchor-" + anchor;
         }
 
         // If sliders are shown for this state, refresh the field-line visual
@@ -1487,6 +2420,75 @@ export const FIELD_3D_RENDERER_CODE = `
 
         iSlider.addEventListener("input", refreshSliderVisuals);
         rSlider.addEventListener("input", refreshSliderVisuals);
+
+        // ── Diamond #2 (Lorentz force) slider wiring ─────────────────────
+        // The q-toggle is a click-to-flip button (not a range input). v/B/θ
+        // are range inputs that update their span labels and trigger a redraw
+        // of the F readout (also recomputed in the animate loop while the
+        // Lorentz block is active — the readout has two write paths because
+        // the user may release the slider while a state is still rendering).
+        var qToggle = document.getElementById("q_toggle");
+        var vSliderL = document.getElementById("v_slider");
+        var bSliderL = document.getElementById("b_slider");
+        var thetaSliderL = document.getElementById("theta_slider");
+        if (qToggle && vSliderL && bSliderL && thetaSliderL) {
+            // Apply slider_controls config to defaults if provided
+            if (config.slider_controls) {
+                if (config.slider_controls.v) {
+                    vSliderL.min = String(config.slider_controls.v.min / 1e5);
+                    vSliderL.max = String(config.slider_controls.v.max / 1e5);
+                    vSliderL.step = String((config.slider_controls.v.step || 1e4) / 1e5);
+                    vSliderL.value = String(config.slider_controls.v.default / 1e5);
+                }
+                if (config.slider_controls.B) {
+                    bSliderL.min = String(config.slider_controls.B.min * 1000);
+                    bSliderL.max = String(config.slider_controls.B.max * 1000);
+                    bSliderL.step = String((config.slider_controls.B.step || 0.001) * 1000);
+                    bSliderL.value = String(config.slider_controls.B.default * 1000);
+                }
+                if (config.slider_controls.theta_deg) {
+                    thetaSliderL.min = String(config.slider_controls.theta_deg.min);
+                    thetaSliderL.max = String(config.slider_controls.theta_deg.max);
+                    thetaSliderL.step = String(config.slider_controls.theta_deg.step || 1);
+                    thetaSliderL.value = String(config.slider_controls.theta_deg.default);
+                }
+                if (config.slider_controls.q_sign) {
+                    qToggle.textContent = config.slider_controls.q_sign.default > 0 ? "+e" : "−e";
+                    qToggle.classList.toggle("neg", config.slider_controls.q_sign.default < 0);
+                }
+            }
+
+            function refreshLorentzLabels() {
+                var vVal = document.getElementById("v_val");
+                var bVal = document.getElementById("b_val");
+                var thetaVal = document.getElementById("theta_val");
+                if (vVal) vVal.textContent = parseFloat(vSliderL.value).toFixed(1);
+                if (bVal) bVal.textContent = parseFloat(bSliderL.value).toFixed(0);
+                if (thetaVal) thetaVal.textContent = parseFloat(thetaSliderL.value).toFixed(0);
+                // Mutate the current state's theta_deg and charge_sign so the
+                // animate loop picks them up (only when in a sliders-enabled state).
+                var stateDefS = config.states[PM_currentState];
+                if (stateDefS && stateDefS.show_sliders) {
+                    stateDefS.theta_deg = parseFloat(thetaSliderL.value);
+                    stateDefS.charge_sign = qToggle.textContent === "+e" ? 1 : -1;
+                    // Any slider edit invalidates the existing trail — wipe
+                    // it so the student sees the new orbit cleanly instead
+                    // of the old curve plus the new curve smeared together.
+                    lorentzTrailResetPending = true;
+                }
+            }
+
+            vSliderL.addEventListener("input", refreshLorentzLabels);
+            bSliderL.addEventListener("input", refreshLorentzLabels);
+            thetaSliderL.addEventListener("input", refreshLorentzLabels);
+            qToggle.addEventListener("click", function() {
+                var nowPos = qToggle.textContent === "+e";
+                qToggle.textContent = nowPos ? "−e" : "+e";
+                qToggle.classList.toggle("neg", nowPos);
+                refreshLorentzLabels();
+            });
+            refreshLorentzLabels();
+        }
     }
 
     // ── Animation loop ────────────────────────────────────────────────────
@@ -1502,6 +2504,27 @@ export const FIELD_3D_RENDERER_CODE = `
             var dx = dynamicExtras[di];
             var dud = dx.userData;
             if (!dud) continue;
+            if (dud.elementType === "compass") {
+                // Approach animation: glide compass position from approach_from
+                // to position_world over approach_duration_ms before any
+                // needle deflection happens. Runs even if animate_swing is off.
+                if (dud.approach_from && dud.approach_progress < 1) {
+                    var nowA = performance.now();
+                    if (dud.approach_started_at > 0 && nowA >= dud.approach_started_at) {
+                        var elapsedA = (nowA - dud.approach_started_at) / (dud.approach_duration_ms || 1200);
+                        var tA = Math.min(1, elapsedA);
+                        var easedA = 1 - Math.pow(1 - tA, 3); // easeOutCubic
+                        var sx = dud.approach_from[0], sy = dud.approach_from[1], sz = dud.approach_from[2];
+                        var ex = dud.position_world[0], ey = dud.position_world[1], ez = dud.position_world[2];
+                        dx.position.set(
+                            sx + (ex - sx) * easedA,
+                            sy + (ey - sy) * easedA,
+                            sz + (ez - sz) * easedA
+                        );
+                        dud.approach_progress = tA;
+                    }
+                }
+            }
             if (dud.elementType === "compass" && dud.animate_swing && dud.needleGroup) {
                 // Compute the physics-correct equilibrium direction the needle
                 // should swing to:
@@ -1630,6 +2653,463 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
 
+        // ── Lorentz force (Diamond #2) ───────────────────────────────────
+        //   Analytical particle trajectory parameterised by t_local = time -
+        //   stateStartTime. F = q v × B recomputed each frame (direction only).
+        //   No numerical integrator — closed-form circular / helical / linear
+        //   motion keeps the visual deterministic and reproducible.
+        if (config.scenario_type === "lorentz_force_uniform_field" && stateDef) {
+            var afL = config.ambient_field || { direction: [0, 0, 1] };
+            var bUnit = new THREE.Vector3(afL.direction[0], afL.direction[1], afL.direction[2]).normalize();
+
+            // Build a stable orthonormal basis {u1, u2, bUnit}. u2 is constructed
+            // as cross(u1, bUnit) (not cross(bUnit, u1)) so the orbit
+            // parameterisation pos = R*cos(phase)*u1 + R*sin(phase)*u2 for q>0
+            // produces a centripetal Lorentz force (F = qv x B pointing TOWARD
+            // the origin). The earlier cross(bUnit, u1) ordering gave a right-
+            // handed basis where F came out centrifugal — a 25-iteration-old
+            // bug surfaced by the Fleming-overlay sanity check on 2026-05-12.
+            var u1 = new THREE.Vector3(1, 0, 0);
+            if (Math.abs(bUnit.dot(u1)) > 0.99) u1 = new THREE.Vector3(0, 1, 0);
+            u1.sub(bUnit.clone().multiplyScalar(bUnit.dot(u1))).normalize();
+            var u2 = new THREE.Vector3().crossVectors(u1, bUnit).normalize();
+
+            // Pause+co-glow: when protonFreezeAt is set (via SET_FREEZE_PROTON
+            // postMessage from the TTS player), the proton's local trajectory
+            // time is held at the snapshot value so position + v/F arrow bases
+            // stop drifting while the script discusses the F arrow.
+            var tLocal = (protonFreezeAt != null) ? protonFreezeAt : (time - stateStartTime);
+            var thetaDegL = stateDef.theta_deg != null ? stateDef.theta_deg : 90;
+            var thetaRadL = (thetaDegL * Math.PI) / 180;
+            var sinT = Math.sin(thetaRadL);
+            var cosT = Math.cos(thetaRadL);
+            var chargeSignL = stateDef.charge_sign != null
+                ? stateDef.charge_sign
+                : (config.particle ? config.particle.charge_sign : 1);
+            var modeL = stateDef.trajectory_mode || "static";
+
+            // STATE_6 interactive sliders: v and B must change the visible
+            // trajectory, not just the F readout. Physics:
+            //   r = m·v / (|q|·B)    → radius ∝ v / B
+            //   ω = |q|·B / m         → angular frequency ∝ B
+            //   T = 2π·m / (|q|·B)    → period ∝ 1/B
+            // We treat the sliders as multiplicative factors relative to the
+            // JSON-declared defaults so the static states (no sliders) keep
+            // their original visual radius and speed.
+            var vFactor = 1.0;
+            var BFactor = 1.0;
+            if (stateDef.show_sliders) {
+                var vSliderEl = document.getElementById("v_slider");
+                var bSliderEl = document.getElementById("b_slider");
+                var vDefault = (config.slider_controls && config.slider_controls.v)
+                    ? (config.slider_controls.v.default / 1e5) : 1.0;
+                var BDefault = (config.slider_controls && config.slider_controls.B)
+                    ? (config.slider_controls.B.default * 1000) : 10.0;
+                if (vSliderEl) vFactor = parseFloat(vSliderEl.value) / vDefault;
+                if (bSliderEl) BFactor = parseFloat(bSliderEl.value) / BDefault;
+            }
+            // Visual radius scales as v/B, clamped so the circle stays inside
+            // the camera frustum even at extreme slider settings.
+            var R = Math.max(0.35, Math.min(2.4, 1.5 * vFactor / Math.max(0.15, BFactor)));
+            // Angular frequency scales with B, clamped so the motion never
+            // gets too sluggish or too fast to read.
+            var omega = Math.max(0.20, Math.min(3.00, 0.75 * BFactor));
+
+            // Position
+            var newPos = new THREE.Vector3();
+            var vDir = new THREE.Vector3();
+            if (modeL === "static") {
+                newPos.set(0, 0, 0);
+                // Respect theta_deg: v makes angle θ with B (B = bUnit).
+                //   θ = 0   → v along  bUnit  (parallel to B)
+                //   θ = 90° → v along  u1     (perpendicular to B)
+                //   θ in between → v at the configured angle, in the (bUnit, u1) plane.
+                vDir.copy(bUnit).multiplyScalar(cosT).add(u1.clone().multiplyScalar(sinT)).normalize();
+            } else if (modeL === "straight") {
+                // v ∥ B (theta ≈ 0): particle drifts along B, F = 0.
+                // v ⊥ B with no force visualization (rare): drift along u1.
+                var driftAlongB = thetaDegL < 30;
+                var driftAxis = driftAlongB ? bUnit : u1;
+                var driftS = ((tLocal * 0.45) % 4) - 2;
+                newPos.copy(driftAxis).multiplyScalar(driftS);
+                vDir.copy(driftAxis);
+            } else if (modeL === "circle") {
+                var phaseC = omega * tLocal * chargeSignL;
+                newPos.copy(u1).multiplyScalar(R * Math.cos(phaseC))
+                     .add(u2.clone().multiplyScalar(R * Math.sin(phaseC)));
+                // vDir formula is (-sin·u1 + cos·u2), but for q<0 the actual
+                // dpos/dt has the opposite sign (phaseC decreases with t).
+                // Multiply by chargeSignL so the velocity arrow matches the
+                // particle's actual direction of motion in both q-sign cases.
+                vDir.copy(u1).multiplyScalar(-Math.sin(phaseC))
+                    .add(u2.clone().multiplyScalar(Math.cos(phaseC)))
+                    .multiplyScalar(chargeSignL)
+                    .normalize();
+            } else if (modeL === "helix") {
+                // Optional entry phase (founder note 2026-05-14 — STATE_3):
+                // before the helix begins, the proton flies in along the
+                // helix-start tangent vector from outside the field, then
+                // crosses in seamlessly. tJoin is the helix-local time; for
+                // tLocal < entryDur it's pinned at 0 and the position is
+                // shifted backwards along v by entrySpeed × (entryDur - tLocal).
+                var entryDur = stateDef.entry_duration || 0;
+                var tJoin = Math.max(0, tLocal - entryDur);
+                var phaseH = omega * tJoin * chargeSignL;
+                var Rperp = R * Math.max(0.05, sinT);
+                var axial = ((tJoin * 0.35 * cosT) % 4) - 2;
+                newPos.copy(u1).multiplyScalar(Rperp * Math.cos(phaseH))
+                     .add(u2.clone().multiplyScalar(Rperp * Math.sin(phaseH)))
+                     .add(bUnit.clone().multiplyScalar(axial));
+                // Cyclotron part (perpendicular to B) flips sign with charge;
+                // drift along B (bUnit*cosT) does NOT — it's the conserved v∥
+                // component, unaffected by the magnetic force.
+                vDir.copy(u1).multiplyScalar(-Math.sin(phaseH) * sinT * chargeSignL)
+                    .add(u2.clone().multiplyScalar(Math.cos(phaseH) * sinT * chargeSignL))
+                    .add(bUnit.clone().multiplyScalar(cosT))
+                    .normalize();
+                if (entryDur > 0 && tLocal < entryDur) {
+                    // Approach speed matches the helix tangent magnitude at
+                    // join so the visual rate of travel is continuous.
+                    var entrySpeed = Math.sqrt(
+                        omega * omega * Rperp * Rperp + 0.35 * 0.35 * cosT * cosT
+                    );
+                    var backDist = entrySpeed * (entryDur - tLocal);
+                    newPos.addScaledVector(vDir, -backDist);
+                }
+            }
+
+            // Force direction: F = q (v × B). For visual, scale by sin θ
+            // (cross-product of unit vectors), then multiply by the v·B
+            // slider factors so STATE_6 students see F grow when they crank
+            // up |v| or |B|. Clamp to keep the arrow within a readable range.
+            var fVec = new THREE.Vector3().crossVectors(vDir, bUnit);
+            if (chargeSignL < 0) fVec.multiplyScalar(-1);
+            var fLenRaw = fVec.length();
+            var fLen = stateDef.show_sliders
+                ? Math.min(2.0, fLenRaw * vFactor * BFactor)
+                : fLenRaw;
+            var fDir = fLenRaw > 1e-6 ? fVec.normalize() : new THREE.Vector3(0, 1, 0);
+
+            // Read extras for this state to decide which arrows are visible
+            var lExtras = stateDef.extras || {};
+            var vShow = !!(lExtras.velocity_vector && lExtras.velocity_vector.show);
+            var fShow = !!(lExtras.force_vector && lExtras.force_vector.show);
+            var trailShow = !!(lExtras.particle_trail && lExtras.particle_trail.show);
+            var decompShow = !!(lExtras.vector_decomposition && lExtras.vector_decomposition.show);
+            var vScale = (lExtras.velocity_vector && lExtras.velocity_vector.scale) || 1.2;
+            var fScale = (lExtras.force_vector && lExtras.force_vector.scale) || 1.2;
+            var decompScale = (lExtras.vector_decomposition && lExtras.vector_decomposition.scale) || 1.2;
+
+            // Project v onto B once per frame for the decomposition arrows.
+            // v_∥ = (v · B̂) B̂   (length = |v| cos θ)
+            // v_⊥ = v − v_∥      (length = |v| sin θ)
+            var vDotB = vDir.dot(bUnit);
+            var vParLen = Math.abs(vDotB) * decompScale;
+            var vPerpVec = vDir.clone().sub(bUnit.clone().multiplyScalar(vDotB));
+            var vPerpLen = vPerpVec.length() * decompScale;
+            var vParDir = vDotB >= 0 ? bUnit : bUnit.clone().multiplyScalar(-1);
+            var vPerpDir = vPerpLen > 1e-6 ? vPerpVec.normalize() : new THREE.Vector3(1, 0, 0);
+
+            // Track final lengths so the labels know where the arrow tips are.
+            var finalV_len = 0, finalF_len = 0, finalVPar_len = 0, finalVPerp_len = 0;
+            // TTS-driven glow pulse: shifted DC offset so glowing elements are
+            // always larger than their un-glowed baseline (range [1.0, 1.7]).
+            // Founder note 2026-05-12 (fourth pass): centered-on-1.0 oscillations
+            // meant elements were sometimes SMALLER than baseline mid-cycle —
+            // invisible signal when caught at the dip. The new formula sits at
+            // a +35% mean elevation and oscillates ±35% around that, so the
+            // element is conspicuously enlarged for the entire duration of the
+            // glow target, with a soft pulse on top.
+            var glowPulse = 1.35 + 0.35 * Math.sin(time * 3.5);
+            function glowFactor(target) {
+                return glowTargets.indexOf(target) >= 0 ? glowPulse : 1.0;
+            }
+
+            for (var li = 0; li < sceneObjects.length; li++) {
+                var lObj = sceneObjects[li];
+                var lUd = lObj.userData;
+                if (!lUd) continue;
+                if (lUd.elementType === "particle") {
+                    lObj.position.copy(newPos);
+                    // Refresh the +/− badge if the state's charge_sign was
+                    // mutated by the STATE_6 q-toggle. Rebuilding the canvas
+                    // texture is cheap (one DOM write) and only triggers on
+                    // an actual sign flip — not every frame.
+                    var badge = lUd.charge_sprite;
+                    if (badge) {
+                        var wantedSign = stateDef.charge_sign != null
+                            ? stateDef.charge_sign
+                            : (config.particle ? config.particle.charge_sign : 1);
+                        if (badge.userData.current_sign !== wantedSign) {
+                            var bCanvas = badge.material.map.image;
+                            var bCtx = bCanvas.getContext("2d");
+                            bCtx.clearRect(0, 0, bCanvas.width, bCanvas.height);
+                            bCtx.font = "bold italic 76px 'Cambria Math', 'Times New Roman', serif";
+                            bCtx.textAlign = "center";
+                            bCtx.textBaseline = "middle";
+                            bCtx.lineWidth = 8;
+                            bCtx.strokeStyle = "rgba(10,10,26,0.95)";
+                            var bText = wantedSign < 0 ? "−" : "+";
+                            bCtx.strokeText(bText, bCanvas.width / 2, bCanvas.height / 2);
+                            bCtx.fillStyle = "#FFFFFF";
+                            bCtx.fillText(bText, bCanvas.width / 2, bCanvas.height / 2);
+                            badge.material.map.needsUpdate = true;
+                            badge.userData.current_sign = wantedSign;
+                        }
+                    }
+                } else if (lUd.elementType === "velocity_vector") {
+                    lObj.position.copy(newPos);
+                    if (vShow) {
+                        finalV_len = vScale * glowFactor("v");
+                        lObj.setDirection(vDir); lObj.setLength(finalV_len, 0.22, 0.11);
+                        lObj.visible = true;
+                    } else lObj.visible = false;
+                } else if (lUd.elementType === "force_vector") {
+                    lObj.position.copy(newPos);
+                    if (fShow && fLen > 1e-6) {
+                        finalF_len = fScale * Math.max(0.15, fLen) * glowFactor("f");
+                        lObj.setDirection(fDir);
+                        lObj.setLength(finalF_len, 0.22, 0.11);
+                        lObj.visible = true;
+                    } else {
+                        lObj.visible = false;
+                    }
+                } else if (lUd.elementType === "v_parallel") {
+                    if (decompShow && vParLen > 0.02) {
+                        finalVPar_len = vParLen * glowFactor("v_parallel");
+                        lObj.position.copy(newPos);
+                        lObj.setDirection(vParDir);
+                        lObj.setLength(finalVPar_len, 0.18, 0.09);
+                        lObj.visible = true;
+                    } else {
+                        lObj.visible = false;
+                    }
+                } else if (lUd.elementType === "v_perp") {
+                    if (decompShow && vPerpLen > 0.02) {
+                        finalVPerp_len = vPerpLen * glowFactor("v_perp");
+                        lObj.position.copy(newPos);
+                        lObj.setDirection(vPerpDir);
+                        lObj.setLength(finalVPerp_len, 0.18, 0.09);
+                        lObj.visible = true;
+                    } else {
+                        lObj.visible = false;
+                    }
+                } else if (lUd.elementType === "vector_label") {
+                    // Sync each label to its arrow's visibility + tip position.
+                    var tracks = lUd.tracks;
+                    var labelDir, labelLen, labelShow = false;
+                    if (tracks === "velocity_vector") {
+                        labelShow = vShow;
+                        labelDir = vDir; labelLen = finalV_len;
+                    } else if (tracks === "force_vector") {
+                        labelShow = fShow && fLen > 1e-6;
+                        labelDir = fDir; labelLen = finalF_len;
+                    } else if (tracks === "v_parallel") {
+                        labelShow = decompShow && vParLen > 0.02;
+                        labelDir = vParDir; labelLen = finalVPar_len;
+                    } else if (tracks === "v_perp") {
+                        labelShow = decompShow && vPerpLen > 0.02;
+                        labelDir = vPerpDir; labelLen = finalVPerp_len;
+                    }
+                    if (labelShow && labelDir && labelLen > 0) {
+                        // Place label just past the arrow tip.
+                        lObj.position.copy(newPos).addScaledVector(labelDir, labelLen + 0.22);
+                        lObj.visible = true;
+                        // Glow target scales the label up too.
+                        var tracksGlow = (
+                            (tracks === "velocity_vector" && glowTargets.indexOf("v") >= 0) ||
+                            (tracks === "force_vector"    && glowTargets.indexOf("f") >= 0) ||
+                            (tracks === "v_parallel"      && glowTargets.indexOf("v_parallel") >= 0) ||
+                            (tracks === "v_perp"          && glowTargets.indexOf("v_perp") >= 0)
+                        );
+                        var baseScale = (tracks === "v_parallel" || tracks === "v_perp") ? 0.65 : (tracks === "force_vector" ? 0.95 : 0.85);
+                        var pulse = tracksGlow ? glowPulse : 1.0;
+                        lObj.scale.set(baseScale * 3 * pulse, baseScale * pulse, 1);
+                    } else {
+                        lObj.visible = false;
+                    }
+                } else if (lUd.elementType === "ambient_field") {
+                    // TTS glow 'b': uniform B-field grid arrows scale softly
+                    // while the narration references the magnetic field.
+                    lObj.scale.setScalar(glowFactor("b"));
+                } else if (lUd.elementType === "particle_trail") {
+                    if (!trailShow) { lObj.visible = false; continue; }
+                    lObj.visible = true;
+                    // TTS glow 'trail': the orbit path pulses via opacity
+                    // (geometry is unchanged so the trace stays positionally
+                    // accurate). Base opacity 0.85 set at trail construction.
+                    var trailGlow = glowTargets.indexOf("trail") >= 0 ? glowPulse : 1.0;
+                    lObj.material.opacity = Math.min(1.0, 0.85 * trailGlow);
+                    if (lorentzTrailResetPending) {
+                        lUd.write_index = 0;
+                        lUd.filled = 0;
+                        lObj.geometry.setDrawRange(0, 0);
+                        lorentzTrailResetPending = false;
+                    }
+                    var maxP = lUd.max_points || 240;
+                    var wi = lUd.write_index || 0;
+                    // STATE_6 needs the trail to keep drawing forever so the
+                    // student sees the orbit even after the buffer fills;
+                    // for static states we keep the original cap so the
+                    // pedagogical "this is one full circle" framing stays.
+                    var infiniteTrail = !!stateDef.show_sliders;
+                    if (infiniteTrail || (lUd.filled || 0) < maxP) {
+                        var arr = lObj.geometry.attributes.position.array;
+                        arr[wi * 3 + 0] = newPos.x;
+                        arr[wi * 3 + 1] = newPos.y;
+                        arr[wi * 3 + 2] = newPos.z;
+                        if (infiniteTrail) {
+                            // Circular buffer: when we wrap, reset the
+                            // counters so the line never jumps from the end
+                            // of the buffer back to the start as one long
+                            // segment. The student sees one fresh orbit at
+                            // a time instead.
+                            lUd.write_index = wi + 1;
+                            lUd.filled = (lUd.filled || 0) + 1;
+                            if (lUd.write_index >= maxP) {
+                                lUd.write_index = 0;
+                                lUd.filled = 0;
+                                lObj.geometry.setDrawRange(0, 0);
+                            } else {
+                                lObj.geometry.setDrawRange(0, lUd.filled);
+                            }
+                        } else {
+                            lUd.write_index = wi + 1;
+                            lUd.filled = (lUd.filled || 0) + 1;
+                            lObj.geometry.setDrawRange(0, lUd.filled);
+                        }
+                        lObj.geometry.attributes.position.needsUpdate = true;
+                    }
+                }
+            }
+
+            // ── 3D right-hand: per-frame orientation + finger-curl anim ──
+            // Cross-product convention: thumb = F = q v × B; fingers start
+            // straight along v and curl toward B over a 9 s loop with three
+            // pause phases for the student to read the v / B / F label that
+            // hangs off the hand:
+            //   0–15%  flat palm, "v" visible on fingertips
+            //  15–35%  curl 0 → 0.5
+            //  35–50%  mid-curl, "B" visible inside the curl
+            //  50–70%  curl 0.5 → 1
+            //  70–92%  fully curled, "F" visible above thumb
+            //  92–100% snap back to flat
+            var handAnimT = time - stateStartTime;
+            var period = 9.0;
+            var tCycle = (handAnimT % period) / period;
+            var curlT, phaseLabel;
+            if (heldHandPhase === 'v') {
+                // TTS-driven freeze on the flat-palm phase: fingers along v.
+                curlT = 0;
+                phaseLabel = 'v';
+            } else if (heldHandPhase === 'b') {
+                // Mid-curl freeze: fingertips bend through B.
+                curlT = 0.5;
+                phaseLabel = 'b';
+            } else if (heldHandPhase === 'f') {
+                // Full-curl freeze: thumb along F.
+                curlT = 1;
+                phaseLabel = 'f';
+            } else if (tCycle < 0.15) {
+                curlT = 0;
+                phaseLabel = 'v';
+            } else if (tCycle < 0.35) {
+                var uA = (tCycle - 0.15) / 0.20;
+                curlT = 0.5 * (uA * uA * (3 - 2 * uA));
+                phaseLabel = null;
+            } else if (tCycle < 0.50) {
+                curlT = 0.5;
+                phaseLabel = 'b';
+            } else if (tCycle < 0.70) {
+                var uB = (tCycle - 0.50) / 0.20;
+                curlT = 0.5 + 0.5 * (uB * uB * (3 - 2 * uB));
+                phaseLabel = null;
+            } else if (tCycle < 0.92) {
+                curlT = 1;
+                phaseLabel = 'f';
+            } else {
+                var uC = (tCycle - 0.92) / 0.08;
+                curlT = 1 - (uC * uC * (3 - 2 * uC));
+                phaseLabel = null;
+            }
+
+            for (var hi = 0; hi < dynamicExtras.length; hi++) {
+                var handObj = dynamicExtras[hi];
+                if (!handObj.userData || handObj.userData.elementType !== "lorentz_hand") continue;
+
+                // TTS glow 'hand': the 3D right-hand mesh scales softly while
+                // the narration explicitly references "the 3D right-hand" or
+                // its fingers / palm / thumb. Multiplies on top of the base
+                // hand_scale already baked into child positions/dimensions.
+                handObj.scale.setScalar(glowFactor("hand"));
+
+                // (a) Regenerate the 4 finger geometries with current curlT,
+                //     and slide each fingernail to the new fingertip.
+                var fingers = handObj.userData.finger_meshes || [];
+                var nails = handObj.userData.finger_nails || [];
+                for (var fmi = 0; fmi < fingers.length; fmi++) {
+                    var fmesh = fingers[fmi];
+                    var fud = fmesh.userData;
+                    var pts = lorentzFingerPoints(
+                        fud.fingerIndex, fud.palmRadius, fud.fingerLength, fud.scale_s, curlT
+                    );
+                    var curve = new THREE.CatmullRomCurve3(pts);
+                    fmesh.geometry.dispose();
+                    fmesh.geometry = new THREE.TubeGeometry(curve, 24, fud.tubeRadius, 8, false);
+                    if (nails[fmi]) {
+                        var tipPt = pts[pts.length - 1];
+                        nails[fmi].position.set(tipPt.x, tipPt.y, tipPt.z);
+                    }
+                }
+
+                // (b) Toggle v / B / F label + arrow visibility per phase.
+                if (handObj.userData.v_label) handObj.userData.v_label.visible = (phaseLabel === 'v');
+                if (handObj.userData.b_label) handObj.userData.b_label.visible = (phaseLabel === 'b');
+                if (handObj.userData.f_label) handObj.userData.f_label.visible = (phaseLabel === 'f');
+                if (handObj.userData.v_arrow) handObj.userData.v_arrow.visible = (phaseLabel === 'v');
+                if (handObj.userData.b_arrow) handObj.userData.b_arrow.visible = (phaseLabel === 'b');
+                if (handObj.userData.f_arrow) handObj.userData.f_arrow.visible = (phaseLabel === 'f');
+
+                // (c) Orient the hand. Mesh conventions:
+                //     +y_local = thumb (F),  -z_local = flat fingers (v).
+                //   Step 1: quatThumb maps +y_local → fUnit (= F direction).
+                //   Step 2: quatTwist rotates around fUnit so the rotated
+                //   -z_local aligns with +v_world (the flat fingers point
+                //   along v).
+                if (fLen < 1e-6) continue;
+                var fUnit = fDir.clone().normalize();
+                var vProj = vDir.clone().sub(fUnit.clone().multiplyScalar(vDir.dot(fUnit)));
+                if (vProj.length() < 1e-6) continue;
+                vProj.normalize();
+                var quatThumb = new THREE.Quaternion().setFromUnitVectors(
+                    new THREE.Vector3(0, 1, 0), fUnit
+                );
+                var newLocalNegZ = new THREE.Vector3(0, 0, -1).applyQuaternion(quatThumb);
+                newLocalNegZ.sub(fUnit.clone().multiplyScalar(newLocalNegZ.dot(fUnit))).normalize();
+                var quatTwist = new THREE.Quaternion().setFromUnitVectors(newLocalNegZ, vProj);
+                var finalQuat = quatTwist.clone().multiply(quatThumb);
+                handObj.setRotationFromQuaternion(finalQuat);
+            }
+
+            // Update the F readout in #lorentz_sliders if visible
+            if (stateDef.show_sliders) {
+                var fReadout = document.getElementById("f_readout");
+                if (fReadout) {
+                    var vSlider = document.getElementById("v_slider");
+                    var bSlider = document.getElementById("b_slider");
+                    var thetaSlider = document.getElementById("theta_slider");
+                    if (vSlider && bSlider && thetaSlider) {
+                        var vAbs = parseFloat(vSlider.value) * 1e5;
+                        var Bval = parseFloat(bSlider.value) * 1e-3;
+                        var thetaDegSlider = parseFloat(thetaSlider.value);
+                        var sinThetaSlider = Math.sin((thetaDegSlider * Math.PI) / 180);
+                        var fNumeric = 1.602e-19 * vAbs * Bval * sinThetaSlider;
+                        fReadout.textContent = "F = " + (fNumeric * 1e15).toFixed(3) + " fN";
+                    }
+                }
+            }
+        }
+
         renderer.render(scene, camera);
     }
 
@@ -1677,8 +3157,121 @@ export const FIELD_3D_RENDERER_CODE = `
                 case "PING":
                     parent.postMessage({ type: "PONG" }, "*");
                     break;
+
+                case "RESET_TRAJECTORY":
+                    // Founder note 2026-05-14 — STATE_3 entry phase: when ▶
+                    // Play TTS is clicked, replay the trajectory from t=0 so
+                    // the proton's entry into the field plays in sync with the
+                    // narration. Also clears the particle_trail so the visible
+                    // path matches the replayed motion.
+                    stateStartTime = time;
+                    lorentzTrailResetPending = true;
+                    break;
+
+                case "SET_GLOW":
+                    // Diamond #2: TTS-driven highlight. data.target is a single
+                    // string OR an array of strings (co-glow). Valid values:
+                    //   'v' | 'f' | 'v_parallel' | 'v_perp' | 'b'
+                    // | 'trail' | 'hand' | 'fleming' | 'sliders'
+                    // | 'fleming_index' | 'fleming_middle' | 'fleming_thumb'
+                    // | null (clears).
+                    if (Array.isArray(data.target)) {
+                        glowTargets = data.target.slice();
+                    } else if (data.target) {
+                        glowTargets = [data.target];
+                    } else {
+                        glowTargets = [];
+                    }
+                    // HTML overlays (Fleming SVG, sliders panel) glow via a CSS
+                    // class — see #fleming_overlay / #lorentz_sliders + the
+                    // .glow-pulse keyframes in the iframe <style> block. 3D-
+                    // scene elements (arrows, trail, hand, B grid) pulse via
+                    // glowFactor() inside the animate loop above.
+                    var flemingEl = document.getElementById("fleming_overlay");
+                    if (flemingEl) flemingEl.classList.toggle("glow-pulse", glowTargets.indexOf("fleming") >= 0);
+                    var slidersEl = document.getElementById("lorentz_sliders");
+                    if (slidersEl) slidersEl.classList.toggle("glow-pulse", glowTargets.indexOf("sliders") >= 0);
+                    // Per-finger Fleming SVG glow (founder note 2026-05-14):
+                    // s5_2a/b/c name one finger at a time — index / middle /
+                    // thumb. Each finger is a <g> wrapper around its phalanx
+                    // line + nail + arrow shaft + arrowhead + labels; the
+                    // .glow-finger class drives an SVG-friendly drop-shadow
+                    // pulse via @keyframes flemingFingerGlow.
+                    var fingerMap = {
+                        fleming_index:  "fleming_index_finger",
+                        fleming_middle: "fleming_middle_finger",
+                        fleming_thumb:  "fleming_thumb"
+                    };
+                    for (var fkey in fingerMap) {
+                        var fEl = document.getElementById(fingerMap[fkey]);
+                        if (fEl) fEl.classList.toggle("glow-finger", glowTargets.indexOf(fkey) >= 0);
+                    }
+                    break;
+
+                case "SET_FREEZE_PROTON":
+                    // Diamond #2 pause+co-glow: snapshot the local trajectory
+                    // time so the proton (and the v / F arrows attached to it)
+                    // stop translating while the TTS narrates the F arrow.
+                    // Glow + hand cycle keep ticking — only position is frozen.
+                    if (data.frozen) {
+                        protonFreezeAt = time - stateStartTime;
+                    } else {
+                        protonFreezeAt = null;
+                    }
+                    break;
+
+                case "SET_HAND_PHASE":
+                    // Diamond #2 pause+co-glow: lock the 3D right-hand at the
+                    // 'v', 'b', or 'f' phase while a TTS sentence speaks. The
+                    // animate-loop curlT logic checks heldHandPhase first and
+                    // skips the 9-sec cycle when set. Null resumes cycling.
+                    heldHandPhase = data.phase || null;
+                    break;
+
+                case "SET_MATH":
+                    // Diamond #2 retrofit (2026-05-11): TTS-driven equation
+                    // panel. data.expression is a LaTeX string (or null/'' to
+                    // clear). data.persist=true appends; false replaces.
+                    // Renders via KaTeX (CDN-loaded in the iframe head).
+                    handleSetMath(data.expression, !!data.persist);
+                    break;
             }
         });
+    }
+
+    function handleSetMath(expression, persist) {
+        var panel = document.getElementById("equation_panel");
+        if (!panel) return;
+        var clearing = expression === null || expression === undefined || expression === "";
+        if (clearing) {
+            if (!persist) {
+                panel.innerHTML = "";
+                panel.style.display = "none";
+            }
+            return;
+        }
+        if (!persist) {
+            panel.innerHTML = "";
+        } else {
+            // Dim previously-shown lines so the newest sits visually on top.
+            var prevLines = panel.querySelectorAll(".equation_line");
+            for (var pi = 0; pi < prevLines.length; pi++) prevLines[pi].classList.add("dim");
+        }
+        var line = document.createElement("div");
+        line.className = "equation_line";
+        try {
+            if (typeof window.katex !== "undefined") {
+                window.katex.render(expression, line, {
+                    throwOnError: false, displayMode: false, output: "html"
+                });
+            } else {
+                line.textContent = expression;
+            }
+        } catch (e) {
+            line.textContent = expression;
+        }
+        panel.appendChild(line);
+        panel.style.display = "block";
     }
 
     // ── Mobile 2D SVG fallback ────────────────────────────────────────────
@@ -1739,6 +3332,32 @@ export const FIELD_3D_RENDERER_CODE = `
                 var yy = cy - 60 + i * 30;
                 svg += '<line x1="' + (cx - 88) + '" y1="' + yy + '" x2="' + (cx + 88) + '" y2="' + yy + '" stroke="' + flCol + '" stroke-width="1.5" opacity="0.6"/>';
             }
+        } else if (scenario === "lorentz_force_uniform_field") {
+            // Minimal 2D projection: ⊗ grid for B into page, orange particle in
+            // the middle, green circular trajectory if the state demands it.
+            // Full interactive Three.js trajectory is desktop-only for V1.
+            for (var bx = -2; bx <= 2; bx++) {
+                for (var by = -2; by <= 2; by++) {
+                    var gx = cx + bx * 60;
+                    var gy = cy + by * 60;
+                    svg += '<circle cx="' + gx + '" cy="' + gy + '" r="6" fill="none" stroke="#42A5F5" stroke-width="1.2" opacity="0.55"/>';
+                    svg += '<line x1="' + (gx - 4) + '" y1="' + (gy - 4) + '" x2="' + (gx + 4) + '" y2="' + (gy + 4) + '" stroke="#42A5F5" stroke-width="1.2" opacity="0.55"/>';
+                    svg += '<line x1="' + (gx - 4) + '" y1="' + (gy + 4) + '" x2="' + (gx + 4) + '" y2="' + (gy - 4) + '" stroke="#42A5F5" stroke-width="1.2" opacity="0.55"/>';
+                }
+            }
+            var modeM = stateDef.trajectory_mode || "static";
+            if (modeM === "circle" || modeM === "helix") {
+                svg += '<circle cx="' + cx + '" cy="' + cy + '" r="80" fill="none" stroke="#FFCC9F" stroke-width="2" opacity="0.7" stroke-dasharray="6 4"/>';
+            }
+            svg += '<circle cx="' + (cx + 80) + '" cy="' + cy + '" r="9" fill="#FFB366"/>';
+            // v arrow (orange)
+            svg += '<line x1="' + (cx + 80) + '" y1="' + cy + '" x2="' + (cx + 80) + '" y2="' + (cy - 50) + '" stroke="#FFAB40" stroke-width="2.5"/>';
+            svg += '<polygon points="' + (cx + 80) + ',' + (cy - 56) + ' ' + (cx + 75) + ',' + (cy - 46) + ' ' + (cx + 85) + ',' + (cy - 46) + '" fill="#FFAB40"/>';
+            svg += '<text x="' + (cx + 90) + '" y="' + (cy - 40) + '" fill="#FFAB40" font-size="12" font-style="italic">v</text>';
+            // F arrow (green) — points toward centre
+            svg += '<line x1="' + (cx + 80) + '" y1="' + cy + '" x2="' + (cx + 35) + '" y2="' + cy + '" stroke="#66BB6A" stroke-width="2.5"/>';
+            svg += '<polygon points="' + (cx + 29) + ',' + cy + ' ' + (cx + 39) + ',' + (cy - 5) + ' ' + (cx + 39) + ',' + (cy + 5) + '" fill="#66BB6A"/>';
+            svg += '<text x="' + (cx + 45) + '" y="' + (cy - 8) + '" fill="#66BB6A" font-size="12" font-style="italic" font-weight="700">F</text>';
         } else {
             svg += '<text x="' + cx + '" y="' + cy + '" fill="' + textCol + '" font-size="16" text-anchor="middle">3D view — rotate on desktop</text>';
         }

@@ -919,6 +919,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    magnetic_force_moving_charge: {
+        concept_id: 'magnetic_force_moving_charge',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'magnetic_force_moving_charge',
+            label: 'Lorentz Force (3D)',
+        },
+    },
+
     gauss_law_3d: {
         concept_id: 'gauss_law_3d',
         layout: 'single',

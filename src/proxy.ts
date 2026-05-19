@@ -37,6 +37,7 @@ export async function proxy(request: NextRequest) {
         pathname.startsWith("/admin/test-friction-static-kinetic") || // dev-only friction verification (sessions 16-17, conceptual + board)
         pathname.startsWith("/admin/test-newton-second-law-direction") || // dev-only Sim 2 verification (session 59)
         pathname.startsWith("/admin/test-magnetic-field-wire") || // dev-only Sim 3 verification (session 60, first field_3d / Three.js concept)
+        pathname.startsWith("/admin/test-magnetic-force-moving-charge") || // dev-only Diamond #2 verification (M1, Lorentz force F = qv × B)
         pathname.startsWith("/api/test-") ||             // temp: test-only API
         pathname.startsWith("/data/concepts") ||
         pathname.startsWith("/_next") ||
