@@ -55,9 +55,32 @@ Any failure on the target = FAIL, route to json_author (bounds) or architect (st
 1. Rule 15 — ≥2 distinct `advance_mode` values across `epic_l_path.states` (Zod superRefine enforces; verify by eye as a double-check).
 2. Rule 16 — `epic_c_branches[].states.STATE_1` visualizes wrong belief explicitly. Read the annotation text; it must NAME the misconception, not describe a neutral setup. Pattern: `normal_reaction.json` "Myth: Normal force always equals weight".
 3. Rule 19 — every state has `scene_composition.length ≥ 3`.
-4. Rule 20 — all three modes present: `epic_l_path` + `mode_overrides.board` + `mode_overrides.competitive`.
+4. Rule 20 — all three modes present: `epic_l_path` + `mode_overrides.board` + `mode_overrides.competitive`. **Exception**: during magnetism proof-of-concept phases M1–M6 (per `physics-mind/docs/MAGNETISM_ARCHITECTURE.md`), atomic JSONs in Ch.26 may ship conceptual-only. `mode_overrides.board` is added in M7 retrofit; `mode_overrides.competitive` in M8. Concepts in scope of this carve-out: `magnetic_field_wire`, `magnetic_force_moving_charge`, `torque_on_current_loop_in_field`, `magnetic_field_solenoid`, plus M5/M6 atomic+nano Ch.26 concepts. Do NOT FAIL these on missing `mode_overrides`. Exception expires when Ch.26 ships all three modes.
 5. Rule 21 — board mode has `canvas_style: "answer_sheet"` + `derivation_sequence` + `mark_scheme` with totals matching state count (1 mark per state minimum).
 6. Rule 23 — `prerequisites: [concept_id]` declared as soft advisory, not a gating flag.
+
+**Part 3b — Persona-lens audits (added 2026-05-17, replaces parallel-trio reviewer plan)**
+
+3b is a **pedagogy-judgment** layer. Most findings raise as `Concern` (json-author addresses iteratively); only **(a)** spatial-contiguity >2 violations in 3b.ii and **(b)** segmenting overload (any state with `scene_composition.length > 12`) raise as `FAIL`. Concerns accumulate in the report but don't block ship — PASS-WITH-NOTES is acceptable.
+
+*3b.i — Topper lens* (lived experience + `student_confusion_log` + Indian context):
+- EPIC-C STATE_1 sanity: each branch NAMES the wrong belief in text (Rule 16 in topper voice — "Myth: X" / "Wrong: Y" pattern). Missing = Concern.
+- Real-world anchor: Indian context, plain English, no Hinglish (CLAUDE.md §8). Single instance of "zameen / deewar / seedhi / tum / hain" = FAIL.
+- Exam-yield: at least ONE state implicitly maps to a JEE Main / NEET / JEE Adv PYQ pattern. If concept is exam-relevant but no state surfaces a PYQ-shaped trap, raise Concern.
+- Pacing: would a topper skip any state as "I already know this"? List skip-candidates as Concern.
+
+*3b.ii — Cognitive-load lens* (Mayer's 12 principles, condensed to 4 high-yield checks):
+- Redundancy: count TTS sentences that read on-screen text verbatim. >3 occurrences per concept = Concern.
+- Spatial contiguity: every annotation with `target_primitive_id` should sit within 150px of its target (use `_solverPosition` if set). **>2 violations = FAIL**, route to json_author for re-layout.
+- Modality: text-heavy states without TTS narration of the same payload — count. >2 heavy text-only states = Concern.
+- Segmenting: **any state with `scene_composition.length > 12` = FAIL**, route to architect for split. (>8 = Concern, watch for it.)
+
+*3b.iii — PER-canon lens* (McDermott elicit-confront-resolve + Knight 5EL + FCI):
+- McDermott E-C-R: for Newtonian concepts, each EPIC-C branch should have at least one ELICIT (STATE_1, Rule 16), one CONFRONT (state with contradicting evidence), one RESOLVE (state with correct mental model). Missing CONFRONT or RESOLVE = Concern.
+- Knight 5EL: across EPIC-L states, identify motivate / name / exemplify / contrast / apply moves. Require ≥4 of 5 represented. <4 = Concern.
+- FCI canonical misconceptions: **Newtonian topics ONLY** (force, motion, gravity, friction, Newton's laws) — list relevant FCI items, flag any not covered in `epic_c_branches` as Concern. For magnetism/electricity/optics/thermo, mark section N/A and skip without penalty (FCI is Newton-specific).
+
+**Reversal criteria** for promoting any of 3b.i/3b.ii/3b.iii to a dedicated agent: if 3 consecutive Diamonds PASS quality-auditor but fail manual founder review on the same lens (e.g., FCI items missed repeatedly on Newtonian concepts), promote that lens to its own agent file. Strongest candidate for promotion: 3b.iii (McDermott + FCI) — most distinct lens, least overlap with existing gates.
 
 **Part 3c — Socratic-reveal discipline (session 33, v2.2 check)**
 
