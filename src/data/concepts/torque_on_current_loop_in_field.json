@@ -1,0 +1,659 @@
+{
+  "concept_id": "torque_on_current_loop_in_field",
+  "concept_name": "Torque on a Current Loop in a Magnetic Field (τ = μ × B)",
+  "chapter": 4,
+  "section": "4.10",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "DC Pandey Vol 2 Ch.26 §26.6 — table-of-contents reference only; teaching authored from first principles. Diamond #3 of the magnetism chapter (phase M2 per docs/MAGNETISM_ARCHITECTURE.md §10, archetype C — closed-loop rotational dynamics). The atomic concept being taught is that a current loop in a uniform B feels zero net force but a non-zero torque τ = μ × B, where μ = NIA points perpendicular to the loop face (RHR-derived from current direction). The four most common student errors targeted here: (a) believing magnetic force does work on the loop, (b) believing the net force on a rotating loop is non-zero, (c) believing torque is maximum when μ ∥ B (alignment), (d) confusing the RHR for μ with the RHR for the current's own field. Diamond #3 establishes archetype-C renderer primitives (rectangular loop, force-pair animation, μ vector through loop face, τ vector along rotation axis, oscillation animation, loop↔bar-magnet swap) so vibration_magnetometer, moving_coil_galvanometer, and bar_magnet_in_uniform_field can author against them via the M3 patterns library. Conforms to Rule 20 M1-M6 exception: ships conceptual-only; mode_overrides.board deferred to M7, .competitive deferred to M8.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["torque_on_loop_uniform_field"]
+  },
+  "prerequisites": [
+    "magnetic_force_moving_charge",
+    "force_on_current_in_field"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture the analog galvanometer in your school physics lab — the brass-framed instrument with a thin needle that flicks across a paper scale when current flows. Inside that brass case is a tiny rectangular coil suspended in the field of two permanent magnets. When you connect a battery, current flows through the coil and the same τ = μ × B torque you'll see in a moment swings the needle. The bigger the current, the bigger the torque, the further the needle deflects against the restoring spring. Every micrometer reading on that scale is a torque measurement.",
+    "secondary": "Picture a ceiling fan motor in a Bengaluru summer apartment. Inside the white plastic housing is a rotor wound with current-carrying coils sitting in the field of the stator's permanent magnets. Each half-rotation, the commutator flips the current direction so the torque on the rotor stays in the same rotational sense. That continuous τ = μ × B torque, flipped at the right moment, is what keeps the blades spinning at 350 RPM all afternoon.",
+    "tertiary": "Picture a moving-coil microphone on stage at an IIT-Bombay Mood Indigo concert. The singer's voice vibrates a thin diaphragm, which vibrates a tiny coil sitting in a permanent-magnet field. Each oscillation of the coil is a τ = μ × B torque cycle. The induced EMF reads out the audio signal. The microphone is just a galvanometer running backwards."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "N": {
+        "name": "Number of turns in the coil",
+        "unit": "",
+        "min": 1,
+        "max": 100,
+        "default": 1,
+        "step": 1
+      },
+      "I": {
+        "name": "Current through the loop",
+        "unit": "A",
+        "min": 0.01,
+        "max": 5,
+        "default": 0.5,
+        "step": 0.01
+      },
+      "L_side": {
+        "name": "Side length of the square loop",
+        "unit": "m",
+        "min": 0.02,
+        "max": 0.30,
+        "default": 0.10,
+        "step": 0.01
+      },
+      "B": {
+        "name": "Magnitude of the uniform external field",
+        "unit": "T",
+        "min": 0.01,
+        "max": 1.0,
+        "default": 0.1,
+        "step": 0.01
+      },
+      "theta_deg": {
+        "name": "Angle between μ and B",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "default": 30,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "A_loop": {
+        "formula": "L_side * L_side"
+      },
+      "mu_magnitude": {
+        "formula": "N * I * (L_side * L_side)"
+      },
+      "tau_magnitude": {
+        "formula": "N * I * (L_side * L_side) * B * sin(theta_deg * PI / 180)"
+      },
+      "tau_max": {
+        "formula": "N * I * (L_side * L_side) * B"
+      },
+      "F_per_side": {
+        "formula": "I * L_side * B"
+      }
+    },
+    "formulas": {
+      "tau_vector": "τ = μ × B — the vector torque is the cross product of the loop's magnetic moment with the external field.",
+      "tau_magnitude": "τ = μ B sin θ — scalar magnitude; θ is the angle between μ and B; τ is maximum at θ = 90° and zero at θ = 0° or 180°.",
+      "mu_definition": "μ = N I A — the magnetic moment of the loop. Direction: perpendicular to the loop face, RHR (curl fingers along current, thumb gives μ).",
+      "net_force_zero": "F_top + F_bottom + F_left + F_right = 0 — opposite sides feel equal-and-opposite forces; the loop translates nowhere.",
+      "force_per_side": "F = I (L × B) — force on each current-carrying segment of length L.",
+      "equilibrium_stable": "θ = 0° (μ ∥ B) — stable equilibrium; small perturbation returns to alignment.",
+      "equilibrium_unstable": "θ = 180° (μ anti-parallel to B) — unstable; any perturbation grows.",
+      "no_work_on_loop": "Pure magnetic torque is conservative on the loop face. KE oscillates symmetrically about θ = 0 with no average gain — magnetic field does no NET work on the rotating loop."
+    },
+    "constraints": [
+      "B must be uniform across the loop. Non-uniform B adds a net force (gradient term) and changes the dynamics.",
+      "Loop is rigid — wire is non-deformable; geometry preserved during rotation.",
+      "Rotation axis is fixed by the geometry — the axis perpendicular to BOTH the field-aligned sides and the τ vector.",
+      "θ is measured from μ to B (not B to μ). Sign convention: positive θ → restoring torque toward θ = 0.",
+      "τ = μ × B holds for ANY planar loop shape (rectangle, circle, triangle); the rectangular case is the easy derivation, not a special case.",
+      "No emf back-reaction included here — induction belongs to the next chapter."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "ΣF can be zero while Στ is non-zero — rotation without translation.",
+    "visual_confirmation": "Watch STATE_3 → STATE_4: ΣF arrow shrinks to a literal zero badge, yet the τ vector appears and the loop starts to rotate. The two facts are simultaneously true."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "dipole_moment": ["STATE_5"],
+    "oscillation": ["STATE_7"]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Setup — a rectangular loop sits at θ = 90° in a uniform B field",
+        "duration": 16,
+        "focal_primitive_id": "setup_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "A rectangular current loop in uniform B (θ = 90°)",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "legend_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Blue arrows = B (uniform field)\nYellow loop = current-carrying coil\nOrange dots = current flowing around coil\nWatch the dots — they show which way I flows.",
+            "color": "#82B1FF"
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "Question:\nWhat happens to the loop?",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Same setup as the school-lab galvanometer — coil suspended in a permanent-magnet field.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Setup. Blue arrows are the uniform magnetic field B.", "glow": "b" },
+            { "id": "s1_2", "text_en": "The yellow rectangle is a current loop. Watch the orange dots — they flow around the loop showing you exactly which way the current moves.", "glow": "loop" },
+            { "id": "s1_3", "text_en": "The loop sits at theta equals ninety — its face is parallel to B.", "glow": "loop" },
+            { "id": "s1_4", "text_en": "Question. What does the loop do? Does it slide? Does it spin? Does it just sit there?", "glow": "question" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Force on one side — F = I L × B reveals on the left side",
+        "duration": 20,
+        "focal_primitive_id": "force_left_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "force_left_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Predict, then reveal: F on the LEFT side",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Watch the dots on the LEFT side.\nCurrent flows UP.\nB points to the right.\nPredict: which way is the force?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "See the guide (top right):\nI arrow = up, B arrow = right\n→ F = I × B points INTO the page.\nF₁ into the page. ✓",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s2_4"
+          },
+          {
+            "type": "annotation",
+            "id": "magnitude_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "F₁ = I · L_side · B. For our defaults: F₁ = 0.5 · 0.10 · 0.1 = 0.005 N.",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s2_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Watch the orange dots on the left side of the loop. They flow upward. Current on the left side is going up.", "glow": "dot_left_a" },
+            { "id": "s2_2", "text_en": "Predict before I show you. Current up, field pointing right. Which way is the force? Take three seconds.", "glow": "side_left", "pause_after_ms": 3000 },
+            { "id": "s2_3", "text_en": "Look at the guide in the upper right. Three arrows: I pointing up, B pointing right, and F equals I cross B.", "glow": "rhr_guide_left" },
+            { "id": "s2_4", "text_en": "F points into the page — away from you. That is the cross product: thumb up, fingers right, palm faces away. F-one into the page.", "glow": ["rhr_guide_left", "f_left"], "math_show": "\\vec{F}_1 = I(\\vec{L} \\times \\vec{B}),\\quad \\text{into page}" },
+            { "id": "s2_5", "text_en": "Magnitude: I times L times B. For our defaults, five thousandths of a newton.", "glow": "f_left", "math_show": "F_1 = I L B = 0.005\\,\\text{N}" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Force on the opposite side — F₂ is anti-parallel; ΣF = 0",
+        "duration": 22,
+        "focal_primitive_id": "force_right_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "force_right_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Force on the RIGHT side — and net force",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "right_predict",
+            "position": { "x": 200, "y": 230 },
+            "text": "Watch the dots on the RIGHT side.\nCurrent flows DOWN.\nB still points right.\nPredict F before looking at the guide.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "right_reveal",
+            "position": { "x": 560, "y": 230 },
+            "text": "Guide shows: I down, B right\n→ F = I × B points OUT of the page.\nF₂ and F₁ are anti-parallel. ✓",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s3_4"
+          },
+          {
+            "type": "annotation",
+            "id": "sum_zero",
+            "position": { "x": 380, "y": 470 },
+            "text": "ΣF = F₁ + F₂ = 0. The loop will NOT translate. Anywhere.",
+            "color": "#FFF176",
+            "reveal_at_tts_id": "s3_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Now the right side. Watch the orange dots — they flow downward. Current on the right is going down.", "glow": "dot_right_a" },
+            { "id": "s3_2", "text_en": "Predict again before the guide shows you. Current down, field right. Which way is the force?", "glow": "side_right", "pause_after_ms": 2500 },
+            { "id": "s3_3", "text_en": "Look at the guide. I arrow down, B arrow right. F equals I cross B — out of the page this time.", "glow": "rhr_guide_right" },
+            { "id": "s3_4", "text_en": "F-two is out of the page. Opposite direction to F-one. Same magnitude. Add them — net force is zero.", "glow": ["side_right", "f_right", "sum_zero"], "math_show": "\\sum \\vec{F} = \\vec{F}_1 + \\vec{F}_2 = 0" },
+            { "id": "s3_5", "text_en": "But notice — the forces act on DIFFERENT lines of action. Left side and right side. That asymmetry is about to matter.", "glow": ["f_left", "f_right"] }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Torque emerges — two opposite forces on different lines = a couple",
+        "duration": 28,
+        "focal_primitive_id": "torque_label",
+        "advance_mode": "wait_for_answer",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "torque_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "A couple → rotation, not translation",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "couple_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Two equal-and-opposite forces\non different lines of action\n= COUPLE",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "rotation_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "ΣF = 0  ✓  no translation\nΣτ ≠ 0  →  rotation begins",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s4_3"
+          },
+          {
+            "type": "annotation",
+            "id": "aha_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Zero net force and non-zero net torque are simultaneously true. This is the heart of rotational dynamics.",
+            "color": "#FFF176",
+            "reveal_at_tts_id": "s4_5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Two forces. Equal magnitude. Opposite direction. Different lines of action. What does that combination do?", "glow": ["f_left", "f_right"] },
+            { "id": "s4_2", "text_en": "Take three seconds. Picture the loop. Picture the forces.", "glow": "loop", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "It is a couple. A couple produces rotation with no translation. The loop will spin about the vertical axis through its centre.", "glow": ["rotation_label", "tau_arrow"] },
+            { "id": "s4_4", "text_en": "Sum of forces is zero. Sum of torques is not zero. Both statements are true at the same time.", "glow": ["sum_zero", "tau_arrow"], "math_show": "\\sum \\vec{F} = 0, \\quad \\sum \\vec{\\tau} \\neq 0" },
+            { "id": "s4_5", "text_en": "This is the heart of rotational dynamics. Forces decide translation. Torques decide rotation.", "glow": "aha_label" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "If ΣF = 0, the loop must be in equilibrium and cannot move at all.",
+            "one_line_fix": "Translational equilibrium ≠ rotational equilibrium. A couple has ΣF = 0 but Στ ≠ 0 — the loop rotates but does not translate."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "The dipole moment μ = NIA — direction by RHR through the loop face",
+        "duration": 22,
+        "focal_primitive_id": "mu_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "mu_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "The magnetic moment μ = N I A",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "mu_arrow_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "μ is a VECTOR.\nMagnitude: N · I · A\nDirection: ⊥ loop face\n(RHR: curl fingers along I,\n thumb gives μ).",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "mu_slider_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "μ-arrow length scales as N · I · A.\nDouble the turns → double μ.\nDouble the current → double μ.\nDouble the area → double μ.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "unify_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "μ unifies the loop with the bar magnet. A current loop IS a magnetic dipole. STATE 7 will make the analogy visual.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Now name the thing that makes a loop magnetic. It is called the magnetic moment, written as mu.", "glow": "mu_arrow" },
+            { "id": "s5_2", "text_en": "Magnitude: N times I times A. N is the number of turns, I is the current, A is the loop area.", "glow": "mu_arrow_label", "math_show": "\\mu = N I A" },
+            { "id": "s5_3", "text_en": "Direction: perpendicular to the loop face. Right-hand rule: curl your fingers in the direction of current. Your thumb points along mu.", "glow": "mu_arrow" },
+            { "id": "s5_4", "text_en": "Watch the mu-arrow size. It scales with N times I times A. Bigger turns or bigger current means bigger mu.", "glow": "mu_arrow" }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "τ = μ B sin θ — sweep θ from 0 to 180° and watch the torque",
+        "duration": 30,
+        "focal_primitive_id": "tau_curve_label",
+        "advance_mode": "interaction_complete",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "tau_curve_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Watch θ sweep 0 → 180° — τ scales as μ B sin θ",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "theta_predict",
+            "position": { "x": 200, "y": 230 },
+            "text": "Predict: at what angle\nis the torque MAXIMUM?\n\nθ = 0?  θ = 90?  θ = 180?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "theta_reveal",
+            "position": { "x": 560, "y": 230 },
+            "text": "Answer: θ = 90°.\nτ = μ B sin 90° = μ B\n(max)\n\nAt θ = 0 and 180°, τ = 0.\nThose are equilibria.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s6_4"
+          },
+          {
+            "type": "annotation",
+            "id": "stable_unstable",
+            "position": { "x": 380, "y": 470 },
+            "text": "θ = 0°: μ ∥ B — STABLE equilibrium. θ = 180°: μ anti-parallel to B — UNSTABLE. A small nudge here grows, and the loop flips through 180°.",
+            "color": "#FFF176",
+            "reveal_at_tts_id": "s6_6"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Watch the loop. Theta sweeps from zero up to one-eighty and back, on a ten-second cycle.", "glow": "loop" },
+            { "id": "s6_2", "text_en": "Predict first. At what angle is the torque maximum? Take three seconds.", "glow": "theta_predict", "pause_after_ms": 3000 },
+            { "id": "s6_3", "text_en": "Common wrong guess: mu parallel to B. Many students believe alignment means maximum.", "glow": "theta_predict" },
+            { "id": "s6_4", "text_en": "Actual answer: theta equals ninety degrees. Sine ninety is one — that is when the cross product is largest.", "glow": ["theta_reveal", "tau_arrow"], "math_show": "\\tau = \\mu B \\sin\\theta, \\quad \\tau_{\\max} = \\mu B \\;(\\theta = 90^{\\circ})" },
+            { "id": "s6_5", "text_en": "At theta zero, mu is parallel to B — sine is zero — torque is zero. No turning effort. That is an equilibrium.", "glow": "tau_arrow" },
+            { "id": "s6_6", "text_en": "Theta zero is stable. Theta one-eighty is also an equilibrium, but unstable. Any small perturbation grows — the loop flips.", "glow": "stable_unstable" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Torque is maximum when μ ∥ B because that is when the dipole is most aligned.",
+            "one_line_fix": "Alignment means τ = 0, not τ_max. τ = μ × B is a cross product — it is biggest when μ ⊥ B."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Loop ↔ bar magnet — same μ, same physics, oscillation interactive",
+        "duration": 26,
+        "focal_primitive_id": "unify_title",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "unify_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "A current loop IS a bar magnet",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "swap_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Watch:\nLoop fades →  bar magnet\n\nμ vector stays put.\nTorque stays the same.",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "oscillate_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "The dipole oscillates about\nθ = 0 (stable equilibrium).\n\nμ ∥ B is the resting pose —\njust like a compass needle.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "summary_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Same τ = μ × B for both. The galvanometer needle (bar magnet) and the motor rotor (current loop) live in the same equation.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Final move. Watch — the loop fades into a bar magnet with the same mu direction. Red end is N, blue end is S.", "glow": "bar_magnet_group" },
+            { "id": "s7_2", "text_en": "Notice. Torque on the bar magnet is the same as torque on the loop. The two are physically identical.", "glow": "tau_arrow" },
+            { "id": "s7_3", "text_en": "The dipole oscillates back and forth around theta equals zero — exactly like a compass needle in a field.", "glow": "loop" },
+            { "id": "s7_4", "text_en": "This is why a galvanometer needle deflects. This is why a motor rotor spins. Same physics: tau equals mu cross B.", "glow": "summary_label", "math_show": "\\vec{\\tau} = \\vec{\\mu} \\times \\vec{B}" }
+          ]
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "magnetic_force_does_work_on_loop",
+      "misconception": "The magnetic force does work on the current loop — it speeds up the rotation, so KE rises.",
+      "trigger_phrases": [
+        "magnetic force speeds up the loop",
+        "B does work on the rotating loop",
+        "torque adds kinetic energy",
+        "loop rotation gains energy from B"
+      ],
+      "state_sequence": ["STATE_4", "STATE_7"]
+    },
+    {
+      "branch_id": "net_force_nonzero_on_rotating_loop",
+      "misconception": "A rotating loop must have a net force pushing it sideways — rotation cannot happen without translation force.",
+      "trigger_phrases": [
+        "net force on the loop is nonzero",
+        "loop must translate to rotate",
+        "ΣF cannot be zero while spinning",
+        "rotation needs a sideways force"
+      ],
+      "state_sequence": ["STATE_3", "STATE_4"]
+    },
+    {
+      "branch_id": "torque_max_when_mu_parallel_to_B",
+      "misconception": "Torque is maximum when μ is parallel to B — alignment means maximum effect.",
+      "trigger_phrases": [
+        "torque max when mu parallel to B",
+        "alignment gives biggest torque",
+        "tau is largest when mu aligned",
+        "biggest spin when dipole aligned"
+      ],
+      "state_sequence": ["STATE_6"]
+    },
+    {
+      "branch_id": "rhr_for_mu_same_as_rhr_for_current_field",
+      "misconception": "The right-hand rule for μ is the same as the right-hand rule for the magnetic field around a current — fingers along the current, thumb along μ.",
+      "trigger_phrases": [
+        "mu direction by RHR for wire",
+        "RHR for mu same as B around wire",
+        "use Ampere's RHR for mu",
+        "mu tangent to loop"
+      ],
+      "state_sequence": ["STATE_5"]
+    }
+  ],
+  "field_3d_config": {
+    "scenario_type": "torque_on_loop_uniform_field",
+    "ambient_field": {
+      "direction": [1, 0, 0],
+      "magnitude": 0.1,
+      "density": [5, 5, 5],
+      "color": "#42A5F5",
+      "opacity": 0.42,
+      "extent": 2.5
+    },
+    "loop": {
+      "shape": "rectangle",
+      "side_length": 0.10,
+      "current_amps": 0.5,
+      "turns": 1,
+      "color": "#FFD54F",
+      "current_arrow_color": "#FFAB40"
+    },
+    "slider_controls": {
+      "N": { "min": 1, "max": 100, "step": 1, "default": 1, "label": "Turns N" },
+      "I": { "min": 0.01, "max": 5, "step": 0.01, "default": 0.5, "label": "Current I (A)" },
+      "L_side": { "min": 0.02, "max": 0.30, "step": 0.01, "default": 0.10, "label": "Side L (m)" },
+      "B": { "min": 0.01, "max": 1.0, "step": 0.01, "default": 0.1, "label": "Field |B| (T)" },
+      "theta_deg": { "min": 0, "max": 180, "step": 1, "default": 30, "label": "Angle θ(μ,B)" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Setup — loop at θ = 90°, no motion",
+        "visible_elements": [],
+        "camera_position": [3.5, 2, 4],
+        "caption": "Rectangular loop in uniform B. θ = 90° — loop face parallel to the field axis. No force vectors shown yet.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "loop_visible": true,
+          "current_arrows": true,
+          "force_vectors": false,
+          "mu_vector": false,
+          "tau_vector": false
+        }
+      },
+      "STATE_2": {
+        "label": "F₁ on the left side — RHR reveals F₁ out of page",
+        "visible_elements": [],
+        "camera_position": [3.5, 2, 4],
+        "caption": "Left side: current up, B right. RHR → F₁ INTO page. Magnitude I·L·B.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "loop_visible": true,
+          "current_arrows": true,
+          "force_vectors": { "show_left": true, "show_right": false, "color": "#66BB6A" },
+          "mu_vector": false,
+          "tau_vector": false,
+          "rhr_guide": { "side": "left" }
+        }
+      },
+      "STATE_3": {
+        "label": "F₂ on the right — anti-parallel — ΣF = 0",
+        "visible_elements": [],
+        "camera_position": [3.5, 2, 4],
+        "caption": "Right side: current down, B right. RHR → F₂ OUT of page. F₁ + F₂ = 0. Loop will not translate.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "loop_visible": true,
+          "current_arrows": true,
+          "force_vectors": { "show_left": true, "show_right": true, "color": "#66BB6A" },
+          "sum_force_badge": true,
+          "mu_vector": false,
+          "tau_vector": false,
+          "rhr_guide": { "side": "right" }
+        }
+      },
+      "STATE_4": {
+        "label": "Torque emerges — couple → rotation about vertical axis",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4],
+        "caption": "ΣF = 0 yet Στ ≠ 0. The couple rotates the loop about the vertical axis. τ-arrow appears along the rotation axis.",
+        "theta_deg": 90,
+        "rotation_mode": "slow_rotation",
+        "rotation_target_deg": 60,
+        "extras": {
+          "loop_visible": true,
+          "current_arrows": true,
+          "force_vectors": { "show_left": true, "show_right": true, "color": "#66BB6A" },
+          "tau_vector": { "show": true, "color": "#E879F9" },
+          "sum_force_badge": true
+        }
+      },
+      "STATE_5": {
+        "label": "μ vector through loop face — N, I, L sliders live",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4],
+        "caption": "μ = NIA. Direction: perpendicular to loop face, RHR (fingers curl with current, thumb gives μ). Sliders scale μ.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "show_sliders": ["N", "I", "L_side"],
+        "extras": {
+          "loop_visible": true,
+          "current_arrows": true,
+          "mu_vector": { "show": true, "color": "#FFD54F", "scale_factor": 1.0 },
+          "force_vectors": false,
+          "tau_vector": false
+        }
+      },
+      "STATE_6": {
+        "label": "θ sweep 0→180° — τ = μBsinθ visible",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4],
+        "caption": "Drag θ slider. Watch τ-arrow scale with sinθ. Max at 90°. Zero at 0° and 180°. Stable vs unstable equilibrium revealed.",
+        "theta_deg": 90,
+        "rotation_mode": "theta_sweep",
+        "theta_sweep_period_s": 10,
+        "extras": {
+          "loop_visible": true,
+          "current_arrows": true,
+          "mu_vector": { "show": true, "color": "#FFD54F", "scale_factor": 1.0 },
+          "tau_vector": { "show": true, "color": "#E879F9", "scales_with_sin_theta": true },
+          "field_vector": { "show": true, "color": "#42A5F5" }
+        }
+      },
+      "STATE_7": {
+        "label": "Loop ↔ bar magnet swap, oscillation animation",
+        "visible_elements": [],
+        "camera_position": [3.5, 3, 4.5],
+        "caption": "Toggle: loop becomes bar magnet, same μ. Drag to perturb, release to oscillate about θ = 0.",
+        "theta_deg": 60,
+        "rotation_mode": "oscillation",
+        "oscillation_amplitude_deg": 60,
+        "oscillation_period_s": 4,
+        "show_sliders": ["B"],
+        "extras": {
+          "loop_visible": true,
+          "current_arrows": true,
+          "mu_vector": { "show": true, "color": "#FFD54F", "scale_factor": 1.0 },
+          "tau_vector": { "show": true, "color": "#E879F9" },
+          "bar_magnet_swap": { "enabled": true, "color_n": "#EF4444", "color_s": "#3B82F6" }
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "loop": "#FFD54F",
+      "mu": "#FFD54F",
+      "tau": "#E879F9",
+      "force": "#66BB6A",
+      "field_line": "#42A5F5"
+    }
+  }
+}

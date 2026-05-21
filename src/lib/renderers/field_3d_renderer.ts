@@ -31,7 +31,7 @@
 export interface Field3DConfig {
     scenario_type: 'point_charge_positive' | 'point_charge_negative' | 'dipole' |
         'parallel_plates' | 'solenoid_field' | 'bar_magnet' | 'straight_wire_current' |
-        'changing_flux' | 'lorentz_force_uniform_field';
+        'changing_flux' | 'lorentz_force_uniform_field' | 'torque_on_loop_uniform_field';
     // Diamond #2 (Archetype B — force-in-field): a uniform external B grid
     // surrounding a single moving charged particle. Drives the F = qv × B reveal,
     // palm-rule overlay, and circular/helical trajectory across STATE_1..STATE_7.
@@ -2126,6 +2126,705 @@ export const FIELD_3D_RENDERER_CODE = `
         addToScene(trail);
     }
 
+    // ── Torque on a current loop in uniform B (Diamond #3, archetype C) ───
+    //
+    // Builds the rectangular current loop in a uniform B field for the
+    // torque_on_current_loop_in_field concept. Sets up:
+    //   1. Ambient B-field arrow lattice (reused pattern from Lorentz).
+    //   2. Rectangular current-loop wire (4 sides) with per-side current
+    //      direction arrows so the student can see which way I flows.
+    //   3. Force arrows F_left and F_right on the two vertical sides (the
+    //      sides that experience force in this θ configuration).
+    //   4. Magnetic moment μ vector through the loop face (RHR-derived).
+    //   5. Torque vector τ along the vertical rotation axis.
+    //   6. ΣF = 0 badge sprite for STATE_3.
+    //   7. Rotation axis line (faint) for visual reference.
+    //
+    // The loop, current arrows, F arrows, μ arrow rotate together as a single
+    // THREE.Group keyed off 'theta_deg' from state.extras (or oscillation).
+    function buildTorqueLoopInField() {
+        var af = config.ambient_field || {
+            direction: [1, 0, 0], magnitude: 0.1, density: [5, 5, 5],
+            color: "#42A5F5", opacity: 0.42, extent: 2.5
+        };
+        var loopCfg = config.loop || {
+            shape: "rectangle", side_length: 0.10, current_amps: 0.5,
+            turns: 1, color: "#FFD54F", current_arrow_color: "#FFAB40"
+        };
+
+        // 1. Ambient B-field arrows (uniform along af.direction).
+        var bDir = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+        var ext = af.extent != null ? af.extent : 2.5;
+        var nx = af.density[0], ny = af.density[1], nz = af.density[2];
+        var sxAmb = nx > 1 ? (2 * ext) / (nx - 1) : 0;
+        var syAmb = ny > 1 ? (2 * ext) / (ny - 1) : 0;
+        var szAmb = nz > 1 ? (2 * ext) / (nz - 1) : 0;
+        var arrowLen = 0.55;
+        var arrowOp = af.opacity != null ? af.opacity : 0.42;
+        var arrowColor = af.color || "#42A5F5";
+        for (var ix = 0; ix < nx; ix++) {
+            for (var iy = 0; iy < ny; iy++) {
+                for (var iz = 0; iz < nz; iz++) {
+                    var ox = nx > 1 ? -ext + ix * sxAmb : 0;
+                    var oy = ny > 1 ? -ext + iy * syAmb : 0;
+                    var oz = nz > 1 ? -ext + iz * szAmb : 0;
+                    var origin = new THREE.Vector3(ox, oy, oz)
+                        .addScaledVector(bDir, -arrowLen / 2);
+                    var arrH = new THREE.ArrowHelper(bDir, origin, arrowLen, arrowColor, 0.14, 0.09);
+                    arrH.userData = { elementType: "ambient_field", id: "b_arrow_" + ix + "_" + iy + "_" + iz };
+                    arrH.children.forEach(function(child) {
+                        if (child.material) {
+                            child.material.transparent = true;
+                            child.material.opacity = arrowOp;
+                        }
+                    });
+                    addToScene(arrH);
+                }
+            }
+        }
+
+        // 2. Loop group — contains the wire, current arrows, F arrows, μ arrow.
+        //    The group is rotated about the vertical (y) axis by theta to model
+        //    the loop turning in the field. We display the loop scaled up
+        //    visually (side length 1.4 world units) regardless of physical L.
+        var loopGroup = new THREE.Group();
+        loopGroup.userData = { elementType: "torque_loop_group", id: "loop_group" };
+        var visualHalf = 0.7; // half side length in world units
+
+        // 2a. Loop wire — 4 cylinders forming a square in the x-y plane.
+        var loopColor = hexToThreeColor(loopCfg.color || "#FFD54F");
+        var wireRadius = 0.025;
+        function makeWireSegment(x1, y1, z1, x2, y2, z2, sideId) {
+            var dx = x2 - x1, dy = y2 - y1, dz = z2 - z1;
+            var len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            var geom = new THREE.CylinderGeometry(wireRadius, wireRadius, len, 12);
+            var mat = new THREE.MeshPhongMaterial({
+                color: loopColor, emissive: loopColor,
+                emissiveIntensity: 0.45, shininess: 60
+            });
+            var mesh = new THREE.Mesh(geom, mat);
+            mesh.position.set((x1 + x2) / 2, (y1 + y2) / 2, (z1 + z2) / 2);
+            // Default cylinder axis is +y; orient toward (dx,dy,dz).
+            var axis = new THREE.Vector3(dx, dy, dz).normalize();
+            var up = new THREE.Vector3(0, 1, 0);
+            var quat = new THREE.Quaternion().setFromUnitVectors(up, axis);
+            mesh.quaternion.copy(quat);
+            mesh.userData = { elementType: "loop_side", id: sideId };
+            loopGroup.add(mesh);
+            return mesh;
+        }
+        // Loop sits in the x-y plane at z=0. Sides:
+        //   top:    -h,+h → +h,+h   current flows +x (matches CW-from-+z)
+        //   right:  +h,+h → +h,-h   current flows -y (DOWN)
+        //   bottom: +h,-h → -h,-h   current flows -x
+        //   left:   -h,-h → -h,+h   current flows +y (UP)
+        // For a CCW loop viewed from +z, current goes: bottom-right → top-right
+        // (up on right) is the OPPOSITE of what we want for "F₁ out of page on
+        // left side with current up". So convention: current flows CCW viewed
+        // from -z (so it goes UP on left, DOWN on right).
+        var h = visualHalf;
+        makeWireSegment(-h, +h, 0, +h, +h, 0, "side_top");
+        makeWireSegment(+h, -h, 0, -h, -h, 0, "side_bottom");
+        makeWireSegment(-h, -h, 0, -h, +h, 0, "side_left");
+        makeWireSegment(+h, +h, 0, +h, -h, 0, "side_right");
+
+        // 2b. Current direction arrows on each side (small cone glyph).
+        var currentArrowColor = loopCfg.current_arrow_color || "#FFAB40";
+        function addCurrentArrow(x, y, z, dirVec, sideId) {
+            var arrow = new THREE.ArrowHelper(
+                dirVec.clone().normalize(),
+                new THREE.Vector3(x, y, z),
+                0.30, currentArrowColor, 0.12, 0.08
+            );
+            arrow.userData = { elementType: "current_arrow", id: "current_" + sideId };
+            loopGroup.add(arrow);
+        }
+        // CW-from-+z current direction: top→right→bottom→left→top.
+        // Left side current flows UP (+y); F_left = ŷ × x̂ = -ẑ (INTO page).
+        // Right side current flows DOWN (-y); F_right = -ŷ × x̂ = +ẑ (OUT of page).
+        addCurrentArrow(0, +h, 0, new THREE.Vector3(+1, 0, 0), "top");
+        addCurrentArrow(0, -h, 0, new THREE.Vector3(-1, 0, 0), "bottom");
+        addCurrentArrow(-h, 0, 0, new THREE.Vector3(0, +1, 0), "left");
+        addCurrentArrow(+h, 0, 0, new THREE.Vector3(0, -1, 0), "right");
+
+        // 2b-2. Animated current-flow dots — 2 spheres per side, flowing in
+        //       current direction at steady speed. Visible in ALL states so
+        //       the student sees current flowing BEFORE any force prediction.
+        //       This removes the biggest invisibility: current is not a static
+        //       arrow — it flows, and the student must see it flow to intuit
+        //       the force direction before the RHR guide confirms it.
+        var dotGeom = new THREE.SphereGeometry(0.048, 10, 10);
+        // Re-use a single material cloned per dot so each can be faded independently.
+        var dotBaseMat = new THREE.MeshPhongMaterial({
+            color: 0xFFAB40, emissive: 0xFFAB40, emissiveIntensity: 0.80
+        });
+        // Each entry: id, initial t (0..1 along segment), start, end in loop-local coords.
+        // current flows start → end on each side (CW-from-+z).
+        var currentDotDefs = [
+            { id: "dot_left_a",   t: 0.10, s: [-h,-h,0], e: [-h,+h,0] },
+            { id: "dot_left_b",   t: 0.60, s: [-h,-h,0], e: [-h,+h,0] },
+            { id: "dot_top_a",    t: 0.35, s: [-h,+h,0], e: [+h,+h,0] },
+            { id: "dot_top_b",    t: 0.85, s: [-h,+h,0], e: [+h,+h,0] },
+            { id: "dot_right_a",  t: 0.10, s: [+h,+h,0], e: [+h,-h,0] },
+            { id: "dot_right_b",  t: 0.60, s: [+h,+h,0], e: [+h,-h,0] },
+            { id: "dot_bottom_a", t: 0.35, s: [+h,-h,0], e: [-h,-h,0] },
+            { id: "dot_bottom_b", t: 0.85, s: [+h,-h,0], e: [-h,-h,0] }
+        ];
+        currentDotDefs.forEach(function(dd) {
+            var dot = new THREE.Mesh(dotGeom, dotBaseMat.clone());
+            dot.userData = {
+                elementType: "current_dot", id: dd.id,
+                t: dd.t, speed: 0.35,        // traverses full side in ~2.9s
+                sideStart: dd.s.slice(), sideEnd: dd.e.slice()
+            };
+            dot.position.set(
+                dd.s[0] + (dd.e[0]-dd.s[0]) * dd.t,
+                dd.s[1] + (dd.e[1]-dd.s[1]) * dd.t,
+                dd.s[2] + (dd.e[2]-dd.s[2]) * dd.t
+            );
+            loopGroup.add(dot);
+        });
+
+        // 2c. Force arrows on the two vertical sides — F = I L × B.
+        //     B points along +x (ambient direction). On left side, current is
+        //     +y (up); F = +y × +x = -z (into page). On right side, current
+        //     is -y; F = -y × +x = +z (out of page).
+        //     NOTE: We render these in the LOOP-LOCAL frame so they rotate
+        //     with the loop. The visual direction in the static-θ=90 starting
+        //     pose is what students see in STATES 2/3/4.
+        var fColor = "#66BB6A";
+        var fLeftArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 0, -1),
+            new THREE.Vector3(-h, 0, 0),
+            0.85, fColor, 0.22, 0.11
+        );
+        fLeftArrow.userData = { elementType: "force_left", id: "f_left", visible_default: false };
+        fLeftArrow.visible = false;
+        loopGroup.add(fLeftArrow);
+
+        var fRightArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 0, +1),
+            new THREE.Vector3(+h, 0, 0),
+            0.85, fColor, 0.22, 0.11
+        );
+        fRightArrow.userData = { elementType: "force_right", id: "f_right", visible_default: false };
+        fRightArrow.visible = false;
+        loopGroup.add(fRightArrow);
+
+        // 2d. μ vector arrow — perpendicular to loop face, through centre.
+        //     In loop-local frame this is +z by RHR for our CW-from-+z
+        //     current direction.
+        var muColor = "#FFD54F";
+        var muArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 0, +1),
+            new THREE.Vector3(0, 0, 0),
+            1.0, muColor, 0.26, 0.13
+        );
+        muArrow.userData = { elementType: "mu_vector", id: "mu_arrow", visible_default: false };
+        muArrow.visible = false;
+        loopGroup.add(muArrow);
+
+        // 2e. Bar magnet swap mesh (STATE_7). Two cylinders end-to-end along
+        //     loop-local +z. Red N pole (+z half), blue S pole (-z half).
+        //     Visible only when STATE_7's bar_magnet_swap.enabled fires.
+        var barMagnetGroup = new THREE.Group();
+        barMagnetGroup.userData = { elementType: "bar_magnet_group", id: "bar_magnet_group" };
+        barMagnetGroup.visible = false;
+        var poleRadius = 0.18;
+        var poleHalfLen = 0.5;
+        var nMat = new THREE.MeshPhongMaterial({
+            color: 0xEF4444, emissive: 0xEF4444, emissiveIntensity: 0.35,
+            transparent: true, opacity: 0
+        });
+        var sMat = new THREE.MeshPhongMaterial({
+            color: 0x3B82F6, emissive: 0x3B82F6, emissiveIntensity: 0.35,
+            transparent: true, opacity: 0
+        });
+        var nGeom = new THREE.CylinderGeometry(poleRadius, poleRadius, poleHalfLen, 24);
+        var nMesh = new THREE.Mesh(nGeom, nMat);
+        // Orient cylinder along loop-local +z; cylinder default axis is +y,
+        // so rotate -90° about x to align +y → +z.
+        nMesh.rotation.x = -Math.PI / 2;
+        nMesh.position.set(0, 0, +poleHalfLen / 2);
+        nMesh.userData = { elementType: "bar_magnet_pole", id: "bar_n" };
+        barMagnetGroup.add(nMesh);
+        var sGeom = new THREE.CylinderGeometry(poleRadius, poleRadius, poleHalfLen, 24);
+        var sMesh = new THREE.Mesh(sGeom, sMat);
+        sMesh.rotation.x = -Math.PI / 2;
+        sMesh.position.set(0, 0, -poleHalfLen / 2);
+        sMesh.userData = { elementType: "bar_magnet_pole", id: "bar_s" };
+        barMagnetGroup.add(sMesh);
+        // "N" / "S" sprite labels on the end caps.
+        var nLabel = createLabelSprite("N", "#FFFFFF", 0.30);
+        nLabel.position.set(0, 0, +poleHalfLen + 0.15);
+        nLabel.material.transparent = true;
+        nLabel.material.opacity = 0;
+        nLabel.userData = { elementType: "bar_magnet_label", id: "bar_n_label" };
+        barMagnetGroup.add(nLabel);
+        var sLabel = createLabelSprite("S", "#FFFFFF", 0.30);
+        sLabel.position.set(0, 0, -poleHalfLen - 0.15);
+        sLabel.material.transparent = true;
+        sLabel.material.opacity = 0;
+        sLabel.userData = { elementType: "bar_magnet_label", id: "bar_s_label" };
+        barMagnetGroup.add(sLabel);
+        loopGroup.add(barMagnetGroup);
+
+        // 2f. "μ" sprite label — parented to loopGroup so it rotates with μ.
+        //     Positioned just past the μ-arrow tip along loop-local +z.
+        var muLabelSprite = createLabelSprite("μ", muColor, 0.40);
+        muLabelSprite.position.set(0, 0.18, 1.15);
+        muLabelSprite.visible = false;
+        muLabelSprite.userData = { elementType: "mu_label", id: "mu_label" };
+        loopGroup.add(muLabelSprite);
+
+        scene.add(loopGroup);
+        sceneObjects.push(loopGroup);
+
+        // 3. τ vector — lives in WORLD frame along the rotation axis (±y,
+        //    sign tracks sin(θ)). Magnitude scales as |sin θ|. Direction +
+        //    length are updated in updateTorqueLoopFrame each tick.
+        var tauColor = "#E879F9";
+        var tauArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 1, 0),
+            new THREE.Vector3(0, 0, 0),
+            1.0, tauColor, 0.26, 0.13
+        );
+        tauArrow.userData = { elementType: "tau_vector", id: "tau_arrow", visible_default: false };
+        tauArrow.visible = false;
+        addToScene(tauArrow);
+
+        // 3b. "τ" sprite label — stays in world frame near the τ-arrow tip.
+        //     updateTorqueLoopFrame repositions it based on the sin θ sign so
+        //     the label sits on whichever side the arrow points.
+        var tauLabelSprite = createLabelSprite("τ", tauColor, 0.40);
+        tauLabelSprite.position.set(0, 1.65, 0);
+        tauLabelSprite.visible = false;
+        tauLabelSprite.userData = { elementType: "tau_label", id: "tau_label" };
+        addToScene(tauLabelSprite);
+
+        // 3c. "B" sprite label — stays at the +x end of the visible ambient
+        //     field grid so the student always sees what those blue arrows are.
+        var bLabelSprite = createLabelSprite("B", "#82B1FF", 0.40);
+        bLabelSprite.position.set((ext != null ? ext : 2.5) + 0.4, 0, 0);
+        bLabelSprite.userData = { elementType: "b_label", id: "b_label" };
+        addToScene(bLabelSprite);
+
+        // 4. Rotation axis (faint vertical reference line through y).
+        var axisGeom = new THREE.BufferGeometry().setFromPoints([
+            new THREE.Vector3(0, -2, 0), new THREE.Vector3(0, +2, 0)
+        ]);
+        var axisMat = new THREE.LineBasicMaterial({ color: 0x888888, transparent: true, opacity: 0.25 });
+        var axisLine = new THREE.Line(axisGeom, axisMat);
+        axisLine.userData = { elementType: "rotation_axis", id: "rotation_axis" };
+        addToScene(axisLine);
+
+        // 5. ΣF = 0 badge — text sprite, hidden by default, shown in STATE_3+.
+        var sumZeroBadge = createLabelSprite("ΣF = 0", "#FFF176", 0.55);
+        sumZeroBadge.position.set(0, -1.8, 0);
+        sumZeroBadge.userData = { elementType: "sum_force_badge", id: "sum_zero", visible_default: false };
+        sumZeroBadge.visible = false;
+        addToScene(sumZeroBadge);
+
+        // 6. RHR I×B=F guide — STATE_2 shows left-side triad, STATE_3 shows
+        //    right-side triad. Each is a compact cluster of 3 arrows (I, B, F)
+        //    with sprite labels, positioned in world space so it doesn't
+        //    rotate with the loop. The student sees the guide BEFORE narration
+        //    names the force direction — their hand mirrors the arrows.
+        //
+        //    Physics: B = +x always.
+        //    Left side:  I = +y (up),  F = ŷ × x̂ = -ẑ (into page)
+        //    Right side: I = -y (down), F = -ŷ × x̂ = +ẑ (out of page)
+        function buildRHRGuide(iVec, fVec, wx, wy, wz, groupId) {
+            var grp = new THREE.Group();
+            grp.position.set(wx, wy, wz);
+            grp.userData = { elementType: "rhr_guide", id: groupId };
+            grp.visible = false;
+            var aLen = 0.52, aHead = 0.17, aHeadW = 0.10;
+            // I arrow — orange
+            var iArr = new THREE.ArrowHelper(
+                iVec.clone().normalize(), new THREE.Vector3(0,0,0),
+                aLen, 0xFFAB40, aHead, aHeadW
+            );
+            iArr.userData = { id: groupId + "_i" };
+            grp.add(iArr);
+            // B arrow — blue (always +x)
+            var bArr = new THREE.ArrowHelper(
+                new THREE.Vector3(1,0,0), new THREE.Vector3(0,0,0),
+                aLen, 0x42A5F5, aHead, aHeadW
+            );
+            bArr.userData = { id: groupId + "_b" };
+            grp.add(bArr);
+            // F = I×B arrow — green
+            var fArr = new THREE.ArrowHelper(
+                fVec.clone().normalize(), new THREE.Vector3(0,0,0),
+                aLen, 0x66BB6A, aHead, aHeadW
+            );
+            fArr.userData = { id: groupId + "_f" };
+            grp.add(fArr);
+            // Sprite labels at each arrow tip
+            var iN = iVec.clone().normalize();
+            var fN = fVec.clone().normalize();
+            var iLab = createLabelSprite("I", "#FFAB40", 0.32);
+            iLab.position.copy(iN.multiplyScalar(aLen + 0.22));
+            grp.add(iLab);
+            var bLab = createLabelSprite("B", "#82B1FF", 0.32);
+            bLab.position.set(aLen + 0.22, 0, 0);
+            grp.add(bLab);
+            var fLab = createLabelSprite("F", "#66BB6A", 0.32);
+            fLab.position.copy(fN.multiplyScalar(aLen + 0.22));
+            grp.add(fLab);
+            // Title above
+            var title = createLabelSprite("F = I × B", "#FFD54F", 0.28);
+            title.position.set(0, 0.90, 0);
+            grp.add(title);
+            return grp;
+        }
+
+        // Left-side guide (STATE_2): I up, F into page (-z)
+        var rhrGuideLeft = buildRHRGuide(
+            new THREE.Vector3(0, 1, 0),
+            new THREE.Vector3(0, 0, -1),
+            2.4, 1.0, 0.5,
+            "rhr_guide_left"
+        );
+        addToScene(rhrGuideLeft);
+
+        // Right-side guide (STATE_3): I down, F out of page (+z)
+        var rhrGuideRight = buildRHRGuide(
+            new THREE.Vector3(0, -1, 0),
+            new THREE.Vector3(0, 0, +1),
+            2.4, 1.0, 0.5,
+            "rhr_guide_right"
+        );
+        addToScene(rhrGuideRight);
+
+        // Initial pose: loop at theta_deg from state STATE_1 (default 90°).
+        // We rotate about y; θ = 90° means loop face is perpendicular to B
+        // (i.e., loop in x-y plane, μ along +z, B along +x).
+        // θ = 0 means μ aligned with B (loop face parallel to B's perpendicular).
+        // The rotation about y by angle (90° - θ) brings μ from +z toward +x.
+        // We expose this via a userData angle that the animate loop reads.
+        loopGroup.userData.theta_deg = 90;
+        loopGroup.userData.rotation_mode = "static";
+        loopGroup.userData.rotation_target_deg = 90;
+        loopGroup.userData.rotation_start_time = 0;
+        loopGroup.userData.oscillation_amplitude_deg = 0;
+        loopGroup.userData.oscillation_period_s = 4;
+
+        // Apply initial theta.
+        applyTorqueLoopTheta(loopGroup, 90);
+    }
+
+    function applyTorqueLoopTheta(loopGroup, thetaDeg) {
+        // Rotate loop group about the world Y axis so that μ (loop-local +z)
+        // moves to make angle θ with B (world +x). θ=90 → μ along +z (perp
+        // to B). θ=0 → μ along +x (parallel to B). θ=180 → μ along -x.
+        var rotY = (90 - thetaDeg) * Math.PI / 180;
+        loopGroup.rotation.set(0, rotY, 0);
+        loopGroup.userData.theta_deg = thetaDeg;
+    }
+
+    function findTorqueLoopGroup() {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            if (o.userData && o.userData.elementType === "torque_loop_group") return o;
+        }
+        return null;
+    }
+
+    function findTorqueElementById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            if (o.userData && o.userData.id === id) return o;
+        }
+        // Search inside the loopGroup too.
+        var lg = findTorqueLoopGroup();
+        if (lg) {
+            for (var j = 0; j < lg.children.length; j++) {
+                var c = lg.children[j];
+                if (c.userData && c.userData.id === id) return c;
+            }
+        }
+        return null;
+    }
+
+    function applyTorqueLoopState(stateDef) {
+        // Toggle visibility of force vectors, μ, τ, ΣF=0 badge, bar magnet
+        // mesh based on the state's extras object. Drive rotation_mode +
+        // theta_deg. Stamp fadeStartTime on newly-visible elements so the
+        // animate loop can tween their opacity from 0 → 1 over ~0.6s.
+        var lg = findTorqueLoopGroup();
+        if (!lg) return;
+        var ex = stateDef.extras || {};
+
+        // Theta — directly take from stateDef.theta_deg.
+        var theta = stateDef.theta_deg != null ? stateDef.theta_deg : 90;
+        applyTorqueLoopTheta(lg, theta);
+        lg.userData.rotation_mode = stateDef.rotation_mode || "static";
+        lg.userData.rotation_target_deg = stateDef.rotation_target_deg != null
+            ? stateDef.rotation_target_deg : theta;
+        lg.userData.rotation_start_time = time;
+        lg.userData.oscillation_amplitude_deg = stateDef.oscillation_amplitude_deg || 0;
+        lg.userData.oscillation_period_s = stateDef.oscillation_period_s || 4;
+        lg.userData.theta_sweep_period_s = stateDef.theta_sweep_period_s || 10;
+
+        function setVisibleWithFade(obj, wantVisible) {
+            if (!obj) return;
+            var wasVisible = !!obj.visible;
+            obj.visible = !!wantVisible;
+            if (wantVisible && !wasVisible) {
+                obj.userData.fadeStartTime = time;
+            } else if (!wantVisible) {
+                obj.userData.fadeStartTime = -1;
+            }
+        }
+
+        // Force-vector visibility (fade-in on appearance).
+        var fLeft = findTorqueElementById("f_left");
+        var fRight = findTorqueElementById("f_right");
+        setVisibleWithFade(fLeft, ex.force_vectors && ex.force_vectors.show_left);
+        setVisibleWithFade(fRight, ex.force_vectors && ex.force_vectors.show_right);
+
+        // μ vector — accept scale_factor in extras.mu_vector (default 1.0)
+        // so STATE_5/6/7 can show μ shrinking/growing with N·I·A.
+        var muArr = findTorqueElementById("mu_arrow");
+        var muShow = !!(ex.mu_vector && ex.mu_vector.show);
+        setVisibleWithFade(muArr, muShow);
+        var muLabel = findTorqueElementById("mu_label");
+        if (muLabel) muLabel.visible = muShow;
+        if (muArr && muShow) {
+            var muScale = (ex.mu_vector && typeof ex.mu_vector.scale_factor === "number")
+                ? ex.mu_vector.scale_factor : 1.0;
+            // length range: 0.5 (scale 0) → 1.5 (scale 2). Stays visible at
+            // scale 0 with a stub so the student can still see the vector.
+            var muLen = 0.5 + 0.5 * muScale;
+            muArr.setLength(muLen, 0.26, 0.13);
+            muArr.userData.muLen = muLen;
+        }
+
+        // τ vector (direction sign + length scaled by sin θ in updateFrame).
+        var tauArr = findTorqueElementById("tau_arrow");
+        var tauShow = !!(ex.tau_vector && ex.tau_vector.show);
+        setVisibleWithFade(tauArr, tauShow);
+        var tauLabel = findTorqueElementById("tau_label");
+        if (tauLabel) tauLabel.visible = tauShow;
+
+        // ΣF=0 badge (fade-in on appearance).
+        var sumBadge = findTorqueElementById("sum_zero");
+        setVisibleWithFade(sumBadge, ex.sum_force_badge);
+
+        // RHR I×B=F guide — shows in STATE_2 (left side) and STATE_3 (right side).
+        var rhrGuideL = findTorqueElementById("rhr_guide_left");
+        var rhrGuideR = findTorqueElementById("rhr_guide_right");
+        var rhrSide = (ex.rhr_guide && ex.rhr_guide.side) || null;
+        if (rhrGuideL) rhrGuideL.visible = (rhrSide === "left");
+        if (rhrGuideR) rhrGuideR.visible = (rhrSide === "right");
+
+        // Bar-magnet swap (STATE_7). When enabled, fade loop wire → 25%
+        // opacity and bar magnet → 100% over ~1.5s. updateTorqueLoopFrame
+        // does the per-frame tween reading barSwapStartTime.
+        var barEnabled = !!(ex.bar_magnet_swap && ex.bar_magnet_swap.enabled);
+        var barGroup = findTorqueElementById("bar_magnet_group");
+        if (barGroup) {
+            // Even if not yet visible, the animate loop reads barSwapStartTime
+            // to drive the fade. Set visible immediately; opacity starts at 0.
+            barGroup.visible = barEnabled;
+            lg.userData.barSwapStartTime = barEnabled ? time : -1;
+            lg.userData.barSwapEnabled = barEnabled;
+        }
+    }
+
+    function updateTorqueLoopFrame(dtSeconds) {
+        var lg = findTorqueLoopGroup();
+        if (!lg) return;
+        var mode = lg.userData.rotation_mode || "static";
+        var curTheta = lg.userData.theta_deg;
+
+        if (mode === "slow_rotation") {
+            // Linear interpolate from current toward rotation_target_deg
+            // over ~3 seconds.
+            var target = lg.userData.rotation_target_deg;
+            var diff = target - curTheta;
+            var step = (Math.sign(diff)) * Math.min(Math.abs(diff), 30 * dtSeconds);
+            if (Math.abs(step) > 0.01) applyTorqueLoopTheta(lg, curTheta + step);
+        } else if (mode === "oscillation") {
+            // Simple SHM about θ = 0.
+            var T = lg.userData.oscillation_period_s || 4;
+            var amp = lg.userData.oscillation_amplitude_deg || 60;
+            var phi = ((time - lg.userData.rotation_start_time) / T) * 2 * Math.PI;
+            applyTorqueLoopTheta(lg, amp * Math.cos(phi));
+        } else if (mode === "theta_sweep") {
+            // Cycle θ smoothly 0 → 90 → 180 → 90 → 0 over a configurable
+            // period (STATE_6). θ(t) = 90 + 90·sin(2π t / T). Visible cue
+            // that "τ scales with sin θ" — at t=T/4, θ=180 (sinθ=0); at
+            // t=0, θ=90 (sinθ=1); the τ-arrow direction flips at θ=0,180.
+            var Ts = lg.userData.theta_sweep_period_s || 10;
+            var phs = ((time - lg.userData.rotation_start_time) / Ts) * 2 * Math.PI;
+            applyTorqueLoopTheta(lg, 90 + 90 * Math.sin(phs));
+        }
+        // theta_controlled, manual, static — no auto-update; theta_deg is
+        // set by applyState or by an external SET_LOOP_ANGLE postMessage.
+
+        // τ-arrow direction + length. τ = μ × B. μ is loop-local +z; after
+        // rotY=(90-θ)·deg→rad, μ projects onto world axes as
+        //   μ_x = sin(rotY), μ_z = cos(rotY)
+        //   ⇒ τ = μ × B = (μ_z·sin0 − μ_x·0,  μ_x·B_z − μ_z·B_x,  ...)
+        // With B=+x, τ = (0, −μ_z·1, 0) → along ±y. The sign tracks sin(θ)
+        // because μ_z·B_x = cos(rotY)·1 = sin(θ). So τ_y = −sin(θ) of the
+        // standard convention — but for teaching, we want τ along +y when
+        // θ∈(0,180) (the loop rotates to align μ with B from the perp pose)
+        // and along −y for θ∈(−180,0). That's exactly sign(sin θ).
+        var tauArr = findTorqueElementById("tau_arrow");
+        if (tauArr && tauArr.visible) {
+            var sRaw = Math.sin(lg.userData.theta_deg * Math.PI / 180);
+            var sAbs = Math.abs(sRaw);
+            var sSign = sRaw >= 0 ? 1 : -1;
+            tauArr.setDirection(new THREE.Vector3(0, sSign, 0));
+            // Scale length AND head dimensions so the τ arrow visibly grows
+            // and shrinks as θ sweeps — at sinθ=0 it nearly vanishes
+            // (equilibria), at sinθ=1 it reaches full size (max torque).
+            var tauTotal = 0.05 + 1.2 * sAbs;
+            var tauHead = Math.max(0.04, 0.30 * sAbs);
+            var tauHeadW = Math.max(0.02, 0.15 * sAbs);
+            tauArr.setLength(tauTotal, tauHead, tauHeadW);
+        }
+
+        // Animate current-flow dots along wire segments.
+        for (var dci = 0; dci < lg.children.length; dci++) {
+            var dch = lg.children[dci];
+            if (!dch.userData || dch.userData.elementType !== "current_dot") continue;
+            var dud = dch.userData;
+            dud.t = (dud.t + dud.speed * dtSeconds) % 1.0;
+            var ds = dud.sideStart, de = dud.sideEnd;
+            dch.position.set(
+                ds[0] + (de[0]-ds[0]) * dud.t,
+                ds[1] + (de[1]-ds[1]) * dud.t,
+                ds[2] + (de[2]-ds[2]) * dud.t
+            );
+        }
+
+        // τ label tracks the τ arrow tip on whichever side it's pointing.
+        var tauLab = findTorqueElementById("tau_label");
+        if (tauLab && tauArr && tauArr.visible) {
+            var sR = Math.sin(lg.userData.theta_deg * Math.PI / 180);
+            tauLab.position.set(0, (sR >= 0 ? 1.65 : -1.65) - (sR === 0 ? 0.5 : 0), 0);
+        }
+
+        // Fade-in opacity tween for newly-visible vectors (F_left, F_right,
+        // ΣF=0 badge, τ). Reads userData.fadeStartTime stamped by
+        // applyTorqueLoopState; eases over 0.6s.
+        function tweenOpacity(obj) {
+            if (!obj || !obj.visible) return;
+            var t0 = obj.userData.fadeStartTime;
+            if (t0 == null || t0 < 0) return;
+            var pNorm = Math.min(1, (time - t0) / 0.6);
+            // For ArrowHelpers (Object3D with line + cone children).
+            if (obj.children && obj.children.length > 0) {
+                obj.children.forEach(function(c) {
+                    if (c.material) {
+                        c.material.transparent = true;
+                        c.material.opacity = pNorm;
+                    }
+                });
+            } else if (obj.material) {
+                obj.material.transparent = true;
+                obj.material.opacity = pNorm;
+            }
+        }
+        tweenOpacity(findTorqueElementById("f_left"));
+        tweenOpacity(findTorqueElementById("f_right"));
+        tweenOpacity(findTorqueElementById("sum_zero"));
+        tweenOpacity(findTorqueElementById("tau_arrow"));
+
+        // Bar-magnet swap fade (STATE_7). t∈[0,1.5s]; loop wires fade to
+        // 0.25 opacity, bar magnet fades 0 → 1. Sprite labels share the
+        // bar magnet's opacity so "N"/"S" appear in sync.
+        var swapT0 = lg.userData.barSwapStartTime;
+        if (swapT0 != null && swapT0 >= 0) {
+            var sp = Math.min(1, (time - swapT0) / 1.5);
+            var loopOp = 1.0 - 0.75 * sp;
+            var barOp = sp;
+            for (var ic = 0; ic < lg.children.length; ic++) {
+                var ch = lg.children[ic];
+                var ud = ch.userData || {};
+                if (ud.elementType === "loop_side" && ch.material) {
+                    ch.material.transparent = true;
+                    ch.material.opacity = loopOp;
+                }
+                if (ud.elementType === "current_arrow") {
+                    ch.children.forEach(function(c) {
+                        if (c.material) {
+                            c.material.transparent = true;
+                            c.material.opacity = loopOp;
+                        }
+                    });
+                }
+            }
+            var barGrp = findTorqueElementById("bar_magnet_group");
+            if (barGrp) {
+                for (var bi = 0; bi < barGrp.children.length; bi++) {
+                    var bc = barGrp.children[bi];
+                    if (bc.material) {
+                        bc.material.transparent = true;
+                        bc.material.opacity = barOp;
+                    }
+                }
+            }
+        } else {
+            // Restore full loop opacity when bar swap inactive.
+            for (var ir = 0; ir < lg.children.length; ir++) {
+                var rch = lg.children[ir];
+                var rud = rch.userData || {};
+                if (rud.elementType === "loop_side" && rch.material) {
+                    rch.material.opacity = 1.0;
+                }
+            }
+        }
+    }
+
+    function applyTorqueLoopGlow() {
+        // TTS-driven glow for torque-loop scenario children. glowTargets is
+        // populated by the SET_GLOW postMessage handler. Pulse factor matches
+        // Diamond #2's animate-loop convention: 1.35 + 0.35·sin(t·3.5) so
+        // the targeted element sits above baseline at all times in cycle.
+        var lg = findTorqueLoopGroup();
+        if (!lg) return;
+        var pulse = 1.35 + 0.35 * Math.sin(time * 3.5);
+        function f(id) { return glowTargets.indexOf(id) >= 0 ? pulse : 1.0; }
+        var loopActive = glowTargets.indexOf("loop") >= 0;
+
+        // 1) loopGroup children — wires, current arrows, F arrows, μ arrow,
+        //    bar magnet group (but skip individual bar children — handled
+        //    separately so the bar swap fade has clean ownership).
+        for (var i = 0; i < lg.children.length; i++) {
+            var c = lg.children[i];
+            var ud = c.userData || {};
+            if (!ud.id) continue;
+            if (ud.elementType === "bar_magnet_group") continue;
+            // 'loop' glow lights all 4 wire sides + 4 current arrows.
+            if (loopActive && (ud.elementType === "loop_side" || ud.elementType === "current_arrow")) {
+                c.scale.setScalar(pulse);
+            } else {
+                c.scale.setScalar(f(ud.id));
+            }
+        }
+
+        // 2) Standalone scene objects — τ arrow, ΣF=0 badge, B label, μ label
+        //    (these live in scene root, not inside loopGroup, except mu_label
+        //    which is inside loopGroup — already handled above).
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j];
+            var sud = so.userData || {};
+            if (!sud.id) continue;
+            if (sud.elementType === "ambient_field") {
+                // 'b' glow scales every ambient field arrow uniformly.
+                so.scale.setScalar(f("b"));
+            } else if (sud.id === "tau_arrow" || sud.id === "tau_label" || sud.id === "b_label" || sud.id === "sum_zero") {
+                so.scale.setScalar(f(sud.id));
+            }
+        }
+    }
+
     // ── Equipotential surfaces ────────────────────────────────────────────
     function buildEquipotentialSurfaces() {
         if (!config.equipotential || !config.equipotential.show) return;
@@ -2195,6 +2894,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildLorentzForceField();
                 break;
 
+            case "torque_on_loop_uniform_field":
+                buildTorqueLoopInField();
+                break;
+
             default:
                 // Fallback: show a single positive charge
                 buildPointChargeField(
@@ -2262,6 +2965,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // Premium extras (right hand, compass, highlighted point)
         clearDynamicExtras();
         applyExtras(stateDef.extras);
+
+        // Diamond #3 — torque-loop per-state visibility + rotation seeding.
+        if (config.scenario_type === "torque_on_loop_uniform_field") {
+            applyTorqueLoopState(stateDef);
+        }
 
         // Sliders + formula overlay visibility — scenario-aware: show the
         // I/r panel for straight_wire_current, the q/v/B/θ panel for
@@ -2498,6 +3206,12 @@ export const FIELD_3D_RENDERER_CODE = `
         time += 0.016;
 
         lerpSpherical();
+
+        // Diamond #3 — torque-loop rotation + τ-arrow scaling + TTS glow.
+        if (config.scenario_type === "torque_on_loop_uniform_field") {
+            updateTorqueLoopFrame(0.016);
+            applyTorqueLoopGlow();
+        }
 
         // Animate dynamic extras (compass swing, hand pulse, point pulse)
         for (var di = 0; di < dynamicExtras.length; di++) {
@@ -3234,6 +3948,19 @@ export const FIELD_3D_RENDERER_CODE = `
                     // clear). data.persist=true appends; false replaces.
                     // Renders via KaTeX (CDN-loaded in the iframe head).
                     handleSetMath(data.expression, !!data.persist);
+                    break;
+
+                case "SET_LOOP_ANGLE":
+                    // Diamond #3: external controller (e.g. theta slider or
+                    // TTS-driven cue) sets the current loop angle θ relative
+                    // to B in degrees. Cancels any rotation_mode auto-advance.
+                    if (config.scenario_type === "torque_on_loop_uniform_field") {
+                        var lgM = findTorqueLoopGroup();
+                        if (lgM && typeof data.theta_deg === "number") {
+                            lgM.userData.rotation_mode = "manual";
+                            applyTorqueLoopTheta(lgM, data.theta_deg);
+                        }
+                    }
                     break;
             }
         });

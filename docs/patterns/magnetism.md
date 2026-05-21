@@ -425,9 +425,128 @@ The M3.5 Visual Validator and `scene_designer` agent both consult this table. A 
 - A `trajectory_mode` declared on every state. Default is `static`; explicit choice is required for motion.
 - An interactive state with `show_sliders: true` and `slider_controls` block including at minimum `v`, `B`, `theta_deg`. `q_sign` is required when negative-charge cases are pedagogically relevant.
 
-### Archetype C required
+### Archetype C required (extracted from Diamond #3, M2)
 
-TBD after Diamond #3 (M2). Placeholder so future authors do not silently ship without a checklist.
+Archetype C = closed-loop rotational dynamics. A planar current loop (or
+equivalent magnetic dipole) sits in a uniform external B. Pedagogy hinges on
+ΣF = 0 but Στ ≠ 0 — the couple rotates the loop. τ = μ × B is the destination
+formula; μ = NIA is the new vector quantity.
+
+**Renderer extension shipped (`field_3d_renderer.ts`):**
+- `buildTorqueLoopInField()` — ambient B grid (reused pattern) + rectangular
+  loop wire (4 cylinder segments) + per-side current-direction arrows +
+  hidden-by-default F arrows on the two force-bearing sides + μ vector arrow
+  through loop face + world-frame τ vector along the rotation axis +
+  ΣF = 0 text sprite + faint rotation-axis reference line.
+- `applyTorqueLoopState(stateDef)` — toggles per-state visibility of force /
+  μ / τ / ΣF=0 elements from `stateDef.extras`; seeds rotation_mode,
+  theta_deg, and oscillation parameters.
+- `updateTorqueLoopFrame(dt)` — drives rotation animation per frame for
+  `rotation_mode ∈ {static, slow_rotation, theta_controlled, oscillation,
+  manual}`; scales τ-arrow length by |sin θ| live.
+- `SET_LOOP_ANGLE` postMessage — external `{ type: "SET_LOOP_ANGLE",
+  theta_deg }` cancels auto-rotation and snaps the loop to that angle.
+
+**Required scene_composition for archetype C:**
+- Top-level `loop` block (`shape`, `side_length`, `current_amps`, `turns`,
+  `color`, `current_arrow_color`).
+- Top-level `ambient_field` block (same shape as archetype B).
+- Per-state `theta_deg` is mandatory — sets the loop's initial angle.
+- Per-state `rotation_mode` ∈ {static, slow_rotation, theta_controlled,
+  oscillation, manual}.
+- Per-state `extras` toggles visibility: `force_vectors: { show_left,
+  show_right, color }`, `mu_vector: { show, color }`, `tau_vector: { show,
+  color }`, `sum_force_badge: true`, `field_vector: { show, color }`.
+- An interactive state (typically STATE_6 / STATE_7) with `show_sliders`
+  list naming which of `{N, I, L_side, B, theta_deg}` are exposed.
+
+**Choreography patterns extracted from Diamond #3:**
+
+#### `closed-loop-force-pair-animation`
+STATE_2 reveals F₁ on the LEFT side first (after a Socratic prediction beat).
+STATE_3 reveals F₂ on the RIGHT side, anti-parallel — surface ΣF = 0
+explicitly with a text-sprite badge that appears alongside the second force
+arrow. The visual "ΣF = 0 AND τ ≠ 0" simultaneity in STATE_4 IS the aha
+moment.
+
+#### `mu-cross-B-rotation`
+STATE_4 sets `rotation_mode: "slow_rotation"` with `rotation_target_deg`
+20–40° away from current θ. Loop visibly rotates over ~3 seconds toward
+μ ∥ B. The τ-arrow becomes visible at the same instant — students see
+"torque caused this rotation" in real time, not as a static label.
+
+#### `oscillation-around-equilibrium`
+STATE_7 sets `rotation_mode: "oscillation"` with `oscillation_amplitude_deg`
+and `oscillation_period_s`. Loop swings sinusoidally about θ = 0 (stable
+equilibrium). Pair with `bar_magnet_swap` extras flag for the loop ↔ dipole
+visual unification.
+
+#### `dipole-moment-vector-arrow`
+μ renders as a yellow ArrowHelper through the loop's centre, in loop-local
++z. Because it lives inside the loop THREE.Group, it rotates rigidly with
+the loop — students tilting the camera always see μ locked through the
+face. Direction is RHR-derived from the current's circulation sense
+(CW viewed from +z → μ points +z). Accompanying `mu_arrow_label`
+annotation explains the RHR procedure in plain text ("curl fingers along I,
+thumb gives μ").
+
+#### `current-flow-dot-animation`
+**Pattern for Pass 2 — making the invisible visible.**
+Current in a wire is invisible. Static current-direction arrows convey
+information but don't make the student FEEL current flowing. The dot
+animation remedies this.
+
+Implementation (`buildTorqueLoopInField`): 8 sphere meshes (2 per side,
+radius 0.048, MeshPhongMaterial orange #FFAB40, emissiveIntensity 0.80).
+Each mesh carries userData `{ sideStart, sideEnd, t, speed }`. In
+`updateTorqueLoopFrame`, t increments by `speed × dt` each frame and wraps
+at 1.0. Position is lerped between sideStart and sideEnd. The two dots per
+side are staggered by 0.5 so the visual spacing is uniform and the CW flow
+direction is unambiguous.
+
+**Required in all archetype-C concepts** that teach force/torque from
+current direction — the student must see the current flowing before they
+are asked to predict the force direction.
+
+Extras contract: no extras field needed. Dots are always visible (parented
+to loopGroup, rendered whenever the loop is visible). If future concepts
+need to hide dots for a specific state, add `current_dots_visible: false`
+to extras and handle in `applyTorqueLoopState`.
+
+Timing note: dots should begin from STATE_1 (the setup state) before any
+force-prediction state. The student's brain registers direction from ~2
+seconds of observation.
+
+#### `rhr-ibf-triad`
+**Pattern for Pass 2 — the hand does what text cannot.**
+When a state's narration says "right-hand rule," a text explanation is
+insufficient. The student's brain needs a visual to mirror with their hand.
+
+Implementation (`buildTorqueLoopInField`): two `buildRHRGuide` groups in
+world space — one for each force-bearing side (left: I=+y, F=-z; right:
+I=-y, F=+z). Each group contains three ArrowHelpers (I orange, B blue,
+F green) + sprite labels ("I", "B", "F") + a title sprite ("F = I × B").
+Groups live in world space (not loopGroup) so they don't rotate with the
+loop. Hidden by default.
+
+Show/hide: `extras.rhr_guide.side` = `"left"` | `"right"` | absent.
+`applyTorqueLoopState` sets `rhrGuideLeft.visible` and `rhrGuideRight.visible`
+from this field.
+
+**Pedagogical sequence rule:** the RHR guide must be visible BEFORE the
+force arrow fades in. Sequence:
+1. Current dots visible (student sees I direction)
+2. Narration asks student to predict
+3. Pause beat (3s minimum)
+4. RHR guide appears (student's hand follows the three arrows)
+5. Force arrow fades in as confirmation, not as information
+
+TTS glow target: `"rhr_guide_left"` or `"rhr_guide_right"` pulses the
+entire guide group when the narration names the guide.
+
+Position: place guides at world (2.4, 1.0, 0.5) — upper-right quadrant
+from camera position [3.5, 2, 4]. Adjust for concepts where B direction
+or loop orientation differs from the archetype-C default.
 
 ### Schema-mechanical checks (any archetype)
 
