@@ -131,6 +131,31 @@ entry_state_map:
 
 Every aspect in the map is a valid `aspect` value Gemini classifier can return. Default aspect = `foundational`. State slice defines the TeacherPlayer's start + end indices. Cross-slice pills ("See incline case?") invite deeper exploration *after* the foundational slice ends.
 
+## Two-pass cognitive lens (v2.3 addition) — required output
+
+Every skeleton ships TWO extra blocks the existing sections don't cover. Architect produces both; json_author consumes them; quality_auditor enforces them (Gate 14).
+
+### Block 1: Pass-1 strategic checklist
+
+One paragraph per item.
+
+1. **Prerequisite cliff** — for each prerequisite listed in your skeleton, name the STATE_N where this concept breaks if the student arrives without it. Add one sentence to that state's Socratic-reveal plan that patches the gap without condescending to students who have the prerequisite.
+2. **JEE-backwards trace** — write ONE JEE Main / NEET-style question on this concept. For each piece of knowledge the student needs to answer it, name the state that delivers that piece. Missing piece → add a state or extend an existing one. **M1–M6 magnetism carve-out**: under the MAGNETISM_ARCHITECTURE M1–M6 exception, trace against the conceptual EPIC-L arc only; board/competitive coverage trace is deferred to M7/M8 retrofit.
+3. **Misconception entry mapping** — for each of the 4 EPIC-C branches (Rule 16), name the specific EPIC-L sentence or visual that PLANTS that wrong belief in the student. Either modify that sentence to prevent the planting, or flag it explicitly at the planting moment. This is upstream of Rule 16: Rule 16 enforces *visualization* of the wrong belief in EPIC-C STATE_1; this mapping identifies where the EPIC-L itself plants the seed.
+
+### Block 2: Aha-moment designation (concept-level)
+
+- **PRIMARY aha** — the one thing the student will remember in 10 years. One sentence. The 10-year-memory.
+- **SUPPORTING ahas (0–2)** — moments that reinforce or set up the primary. Counter-intuitive reveals, unifications, or structural insights. **Sweet spot: 1 primary + 1 supporting (2 total).** Three is rare and only justified if every supporting clearly serves the primary.
+- **Cohesion check** — does each supporting aha set up or reinforce the primary? If a candidate aha stands alone, it doesn't belong in this concept — it belongs in a sibling atomic JSON.
+- **Wrong-belief setup** — for each aha (primary + supporting), name the 1–2 states BEFORE it that build the confident-wrong-belief the aha breaks. The aha lands when the student feels confident and slightly wrong; this requires the wrong belief to be earned first.
+- **Foundational-coverage rule** — the PRIMARY aha state MUST be inside `entry_state_map.foundational`'s range, OR `entry_state_map.foundational` must declare a mandatory exit-pill into the slice that contains the PRIMARY aha. Students entering via the foundational aspect cannot silently miss the 10-year-memory.
+
+### Block-1 / Block-2 cross-references
+
+- The 2–3 states flagged `has_prebuilt_deep_dive: true` SHOULD usually be the same states that carry Pass-1 cliff sentences — both surface "where students get stuck." If they diverge, document why in the skeleton.
+- Pass-1 misconception-entry mapping feeds Rule 16: the EPIC-L sentence that plants the misconception is the prompt the EPIC-C branch's STATE_1 confronts. The two are upstream/downstream of the same wrong belief.
+
 ## EPIC-C branches — the Rule 16 pattern
 
 **Every branch's STATE_1 shows the wrong belief, not a neutral setup.** This is the single most important architectural discipline. Strawman-style misconceptions ("some people think…") are FAIL. The wrong belief must be:
@@ -239,6 +264,10 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 - [ ] Real-world anchor is Indian, plain English, physics-true.
 - [ ] DC Pandey check line in output: scope only, no teaching method copied.
 - [ ] Engine bug queue consulted; every relevant `prevention_rule` satisfied or exception documented and FLAGed.
+- [ ] **Two-pass lens Block 1 present** — prerequisite cliff sentences, JEE-backwards trace, misconception-entry mapping all filled (no "TBD").
+- [ ] **Two-pass lens Block 2 present** — PRIMARY aha named in one sentence, 0–2 SUPPORTING ahas declared, cohesion check done, wrong-belief setup states identified for each aha.
+- [ ] **Foundational-coverage rule satisfied** — PRIMARY aha state is inside `entry_state_map.foundational` range OR a mandatory exit-pill into the primary-aha slice is declared.
+- [ ] **M1–M6 magnetism carve-out applied where relevant** — for Ch.26 atomic JSONs under the carve-out, JEE-backwards trace is against conceptual EPIC-L only; board/competitive coverage deferred to M7/M8.
 - [ ] No section missing. Skeleton is handoff-ready to physics_author.
 
 ## Escalation

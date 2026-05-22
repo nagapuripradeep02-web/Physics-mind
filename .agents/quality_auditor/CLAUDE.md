@@ -17,7 +17,17 @@ A single report with:
 - **VERDICT**: PASS or FAIL
 - **Gate results**: 7 gates, each with ✓ / ✗ / N/A, and one-line evidence (file:line, probe output, or network response).
 - **Screenshots**: one per EPIC-L state (visual proof), one per `allow_deep_dive: true` state inside deep-dive, one of drill-down sub-sim.
-- **Return-to-author feedback**: if FAIL, which agent to route back to (architect for structure, physics_author for formulas, json_author for coords).
+- **Return-to-author feedback**: if FAIL, name exactly ONE upstream agent to route back to, with a `[reason: ...]` tag from the four-tag system below.
+
+**Reason tags (v2.3 addition)**:
+- `[reason: schema]` — Zod / validator failure (Gates 1, 2).
+- `[reason: pass-1]` — strategic Pass-1 gap (Gate 14).
+- `[reason: pass-2]` — experience Pass-2 gap (Gate 3c today; Gate 15 once promoted from `physics-mind/docs/PASS_2_PROPOSAL.md`).
+- `[reason: bug-class]` — engine bug queue regression (Gate 8).
+
+**Dual-failure routing rule (upstream wins)**: on simultaneous Pass-1 + Pass-2 FAIL, route to `alex:architect` with `[reason: pass-1]`. Pass-2 re-audit happens only after Pass-1 PASSes — downstream is rebuilt on a fixed strategic foundation, not patched on a broken one.
+
+**Scene_designer advisory mode (M4+)**: from the moment `peter_parker:scene_designer` begins producing candidate JSONs, Gate 14 enters **advisory mode for scene_designer output only** — FAIL becomes `PASS-WITH-NOTES`. Hand-authored diamonds stay on hard FAIL. Advisory mode promotes to hard FAIL once `docs/patterns/magnetism.md` (and any other patterns library scene_designer composes from) has been retrofitted with Pass-2 annotations.
 
 ## Tools allowed
 
@@ -305,6 +315,22 @@ Cross-reference every `animation: {…}` and `animate_in: …` field in the cand
 - `animation.type: "rotate_about"` — no renderer code for this; ✗ FAIL.
 - `animation.type: "slide_horizontal"` outside legacy mechanics_2d — ✗ FAIL.
 - Any "camera transform" / "zoom" verb — renderer has no transform layer; ✗ FAIL with note to author to use motion_path/comparison_panel/banner instead.
+
+### Gate 14 — Pass-1 strategic audit (v2.3 addition)
+
+**Backfill carve-out**: Gate 14 applies to concepts authored or retrofitted on **2026-05-22 or later**. Concepts shipped before this date are exempt from Gate 14 until they're touched again, at which point they backfill Block 1 + Block 2 as part of the change. Without this carve-out, the next audit run would fail every shipped JSON that lacks PRIMARY-aha designation.
+
+Confirm the architect's skeleton (and the JSON's leading comment block, if json_author copied it forward) contains:
+
+- **14a.** Per-state prerequisite-cliff sentences for every prerequisite listed.
+- **14b.** A worked JEE-style question with state-by-state coverage trace. Every piece of the answer is covered by at least one state. **M1–M6 magnetism carve-out**: for concepts under the MAGNETISM_ARCHITECTURE exception (`magnetic_field_wire`, `magnetic_force_moving_charge`, `torque_on_current_loop_in_field`, `magnetic_field_solenoid`, plus M5/M6 atomic+nano Ch.26 concepts), JEE-backwards traces against the conceptual EPIC-L arc only; board/competitive coverage trace is deferred to M7/M8 retrofit. Do NOT FAIL on missing board/competitive trace for these concepts.
+- **14c.** Misconception-entry mapping — each of 4 EPIC-C branches has a named EPIC-L sentence-or-visual it ties back to.
+- **14d.** Aha declaration block — exactly 1 PRIMARY + 0–2 SUPPORTING + cohesion check done + wrong-belief setup states identified.
+- **14e. Foundational-coverage check** — the PRIMARY aha state is inside `entry_state_map.foundational`'s range, OR `entry_state_map.foundational` declares a mandatory exit-pill into the primary-aha slice. Otherwise students entering via the foundational aspect silently miss the 10-year-memory.
+
+Any sub-check missing or marked "TBD" = FAIL, route to `alex:architect` with reason tag `[reason: pass-1]`.
+
+**Note**: Gate 15 (Pass-2 four-question audit) is **intentionally not in this spec yet**. It lives in `physics-mind/docs/PASS_2_PROPOSAL.md` pending dogfood validation on Diamond #4. After validation, Gate 15 promotes here as a sibling check. Until then, Pass-2 enforcement happens at Gate 3c (Socratic-reveal discipline) and Gate 3b (persona-lens audits) only.
 
 ### Reporting addendum
 

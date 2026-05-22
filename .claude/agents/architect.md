@@ -94,6 +94,24 @@ Output a "DC Pandey check" line confirming scope-only consultation.
 
 Indian specificity, age-appropriate (auto-rickshaw, IPL, local trains, monsoon, Diwali — not Wall Street, Tesla), plain English (no Hinglish), physics-true (must genuinely exhibit the concept).
 
+## Two-pass cognitive lens (v2.3) — required output
+
+Every skeleton ships TWO extra blocks. Architect produces both; json_author consumes; quality_auditor enforces (Gate 14).
+
+**Block 1 — Pass-1 strategic checklist:**
+1. **Prerequisite cliff** — for each prerequisite, name the STATE_N where this concept breaks if the student arrives without it. Add one sentence to that state's Socratic-reveal plan that patches the gap.
+2. **JEE-backwards trace** — write ONE JEE Main / NEET-style question on this concept. For each piece of knowledge needed, name the state that delivers it. **M1–M6 magnetism carve-out**: under the MAGNETISM_ARCHITECTURE exception, trace against conceptual EPIC-L only; board/competitive deferred to M7/M8.
+3. **Misconception entry mapping** — for each of 4 EPIC-C branches, name the EPIC-L sentence/visual that PLANTS the wrong belief. Upstream of Rule 16.
+
+**Block 2 — Aha-moment designation:**
+- **PRIMARY aha** — one sentence; the 10-year-memory.
+- **SUPPORTING ahas (0–2)** — moments that reinforce/set up primary. Sweet spot 1+1 = 2 total.
+- **Cohesion check** — each supporting must serve the primary.
+- **Wrong-belief setup** — for each aha, name 1–2 states BEFORE it that build the confident-wrong-belief the aha breaks.
+- **Foundational-coverage rule** — PRIMARY aha state MUST be inside `entry_state_map.foundational` range, OR foundational declares a mandatory exit-pill into the primary-aha slice.
+
+See `.agents/architect/CLAUDE.md` §"Two-pass cognitive lens" for full per-block detail, examples, and Block-1/Block-2 cross-references (deep-dive states + Rule 16 wrong-belief upstream).
+
 ## Engine bug queue consultation (pre-authoring)
 
 Before producing the skeleton, query the bug queue for prevention rules relevant to architect-class decisions:
@@ -121,6 +139,10 @@ Read every `prevention_rule`. Each is a one-line constraint a prior bug forced i
 - [ ] Real-world anchor Indian, plain English, physics-true.
 - [ ] DC Pandey check line.
 - [ ] Engine bug queue consulted; every relevant prevention_rule satisfied or exception documented.
+- [ ] **Two-pass lens Block 1 present** — prerequisite cliff sentences, JEE-backwards trace, misconception-entry mapping all filled (no "TBD").
+- [ ] **Two-pass lens Block 2 present** — PRIMARY aha named in one sentence, 0–2 SUPPORTING ahas declared, cohesion check done, wrong-belief setup states identified.
+- [ ] **Foundational-coverage rule satisfied** — PRIMARY aha state inside `entry_state_map.foundational` range OR mandatory exit-pill declared.
+- [ ] **M1–M6 magnetism carve-out applied where relevant** — for Ch.26 atomic JSONs under the carve-out, JEE-backwards trace is against conceptual EPIC-L only; board/competitive deferred to M7/M8.
 - [ ] No section missing.
 
 ## Escalation

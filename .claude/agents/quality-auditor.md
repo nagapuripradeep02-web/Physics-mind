@@ -26,6 +26,16 @@ Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session
 
 A single report with VERDICT (PASS or FAIL), per-gate ✓/✗/N/A with one-line evidence, screenshots (per EPIC-L state, per `has_prebuilt_deep_dive` state, drill-down sub-sim), and return-to-author routing if FAIL.
 
+**Reason tags (v2.3 addition)** — FAIL routing must carry one tag from:
+- `[reason: schema]` — Zod / validator failure (Gates 1, 2).
+- `[reason: pass-1]` — strategic Pass-1 gap (Gate 14).
+- `[reason: pass-2]` — experience Pass-2 gap (Gate 3c today; Gate 15 once promoted from PASS_2_PROPOSAL.md).
+- `[reason: bug-class]` — engine bug queue regression (Gate 8).
+
+**Dual-failure routing rule (upstream wins)** — on simultaneous Pass-1 + Pass-2 FAIL, route to `alex:architect` with `[reason: pass-1]`. Pass-2 re-audit happens only after Pass-1 PASSes — downstream is rebuilt on a fixed strategic foundation, not patched on a broken one.
+
+**Scene_designer advisory mode (M4+)** — from when `peter_parker:scene_designer` produces candidate JSONs, Gate 14 enters advisory mode for scene_designer output only (FAIL → `PASS-WITH-NOTES`); hand-authored diamonds stay on hard FAIL. Promotes to hard FAIL once patterns library (`docs/patterns/magnetism.md` etc.) retrofitted with Pass-2 annotations.
+
 ## Tools allowed
 
 - `Read`, `Grep`, `Glob`.
@@ -106,6 +116,21 @@ For each row:
 3. `probe_type='manual'` — read prevention_rule, walk through the concept artifact by hand, attest in the report.
 
 ANY probe failure = Gate 8 FAIL, route to the bug's `owner_cluster` (e.g., `peter_parker:renderer_primitives`). Reference the `bug_class` in the failure note so the cluster knows which row to update if the prevention_rule needs revision.
+
+### Gate 14 — Pass-1 strategic audit (v2.3 addition)
+
+**Backfill carve-out**: applies to concepts authored or retrofitted **2026-05-22 or later**. Concepts shipped earlier are exempt until next touch.
+
+Confirm the architect's skeleton (and JSON's leading comment if json_author copied it forward) contains:
+- **14a.** Per-state prerequisite-cliff sentences for every prerequisite listed.
+- **14b.** JEE-style question with state-by-state coverage trace. **M1–M6 magnetism carve-out**: for Ch.26 atomic JSONs under MAGNETISM_ARCHITECTURE exception (`magnetic_field_wire`, `magnetic_force_moving_charge`, `torque_on_current_loop_in_field`, `magnetic_field_solenoid`, plus M5/M6 atomics+nanos), JEE-backwards trace is conceptual-only; board/competitive deferred. Do NOT FAIL on missing board/competitive trace.
+- **14c.** Misconception-entry mapping — each of 4 EPIC-C branches tied to a named EPIC-L sentence/visual.
+- **14d.** Aha declaration — exactly 1 PRIMARY + 0–2 SUPPORTING + cohesion check + wrong-belief setup states.
+- **14e.** Foundational-coverage — PRIMARY aha state inside `entry_state_map.foundational` range OR mandatory exit-pill declared.
+
+Any sub-check missing or marked "TBD" = FAIL, route to `alex:architect` with `[reason: pass-1]`.
+
+Gate 15 (Pass-2 four-question audit) is intentionally NOT in this spec yet — lives in `docs/PASS_2_PROPOSAL.md` pending Diamond #4 dogfood validation. Until then Pass-2 enforcement is via Gate 3c (Socratic-reveal) + Gate 3b (persona-lens).
 
 ## Silent-failure catalog (probe actively — Zod cannot see these)
 
