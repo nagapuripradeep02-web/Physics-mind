@@ -96,6 +96,12 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // force-in-field). Establishes ambient B grid, moving particle, per-frame
     // F = qv×B vector, palm-rule overlay in field_3d_renderer.ts.
     'magnetic_force_moving_charge',
+    // Torque on a current loop in a uniform magnetic field — τ = μ × B
+    // (Class 12 Ch.4.10 — Diamond #3 of the magnetism chapter, phase M2 of
+    // MAGNETISM_ARCHITECTURE.md, archetype C — closed-loop rotational dynamics).
+    // Establishes rectangular loop, force-pair animation, μ vector through loop
+    // face, τ vector along rotation axis, and loop↔bar-magnet swap in field_3d_renderer.ts.
+    'torque_on_current_loop_in_field',
 ]);
 
 // Synonyms → canonical IDs. Gemini/Flash often return physicist-common synonyms

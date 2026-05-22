@@ -929,6 +929,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    torque_on_current_loop_in_field: {
+        concept_id: 'torque_on_current_loop_in_field',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'torque_on_current_loop_in_field',
+            label: 'Torque on Loop (3D)',
+        },
+    },
+
     gauss_law_3d: {
         concept_id: 'gauss_law_3d',
         layout: 'single',

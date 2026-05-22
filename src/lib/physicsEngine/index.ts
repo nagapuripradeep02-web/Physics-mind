@@ -10,6 +10,7 @@ import { vectorHeadToTailEngine } from './concepts/vector_head_to_tail';
 import { newtonSecondLawDirectionEngine } from './concepts/newton_second_law_direction';
 import { magneticFieldWireEngine } from './concepts/magnetic_field_wire';
 import { magneticForceMovingChargeEngine } from './concepts/magnetic_force_moving_charge';
+import { torqueOnCurrentLoopInFieldEngine } from './concepts/torque_on_current_loop_in_field';
 import type { ConceptPhysicsEngine, PhysicsResult } from './types';
 
 const ENGINES: Record<string, ConceptPhysicsEngine> = {
@@ -25,6 +26,7 @@ const ENGINES: Record<string, ConceptPhysicsEngine> = {
   newton_second_law_direction: newtonSecondLawDirectionEngine,
   magnetic_field_wire: magneticFieldWireEngine,
   magnetic_force_moving_charge: magneticForceMovingChargeEngine,
+  torque_on_current_loop_in_field: torqueOnCurrentLoopInFieldEngine,
 };
 
 export function computePhysics(

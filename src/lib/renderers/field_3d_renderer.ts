@@ -20,6 +20,7 @@
 // postMessage bridge:
 //   IN:  { type: 'SET_STATE', state: 'STATE_N' }
 //        { type: 'INIT_CONFIG', config: Field3DConfig }
+//        { type: 'REPLAY_ANIMATIONS' }   ← admin harness: rewind one-shot anims
 //        { type: 'PING' }
 //   OUT: { type: 'SIM_READY' }          — on load
 //        { type: 'STATE_REACHED', state: 'STATE_N' }  — on state apply
@@ -520,6 +521,20 @@ canvas { display: block; width: 100%; height: 100%; }
     border-top: 1px solid rgba(255,255,255,0.2);
     color: #66BB6A; font-weight: bold;
 }
+#torque_sliders {
+    position: fixed; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 8px;
+    font: 12px/1.6 monospace; z-index: 10;
+    min-width: 200px; display: none;
+}
+#torque_sliders label { display: block; margin-bottom: 2px; }
+#torque_sliders input[type="range"] { width: 100%; margin-bottom: 6px; }
+#torque_sliders #tau_readout {
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #E879F9; font-weight: bold;
+}
 </style>
 </head><body>
 <div id="caption"></div>
@@ -680,6 +695,17 @@ canvas { display: block; width: 100%; height: 100%; }
     <label>θ(v,B) = <span id="theta_val">90</span>°</label>
     <input type="range" id="theta_slider" min="0" max="90" step="1" value="90">
     <div id="f_readout">F = 0.16 fN</div>
+</div>
+<div id="torque_sliders">
+    <label>N = <span id="n_torque_val">1</span> turns</label>
+    <input type="range" id="n_torque_slider" min="1" max="100" step="1" value="1">
+    <label>I = <span id="i_torque_val">0.50</span> A</label>
+    <input type="range" id="i_torque_slider" min="0.01" max="5" step="0.01" value="0.5">
+    <label>B = <span id="b_torque_val">0.10</span> T</label>
+    <input type="range" id="b_torque_slider" min="0.01" max="1" step="0.01" value="0.1">
+    <label>θ(μ,B) = <span id="theta_torque_val">45</span>°</label>
+    <input type="range" id="theta_torque_slider" min="0" max="180" step="1" value="45">
+    <div id="tau_readout">τ = 0.0 μN·m</div>
 </div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"><\/script>
@@ -2563,6 +2589,7 @@ export const FIELD_3D_RENDERER_CODE = `
         lg.userData.rotation_mode = stateDef.rotation_mode || "static";
         lg.userData.rotation_target_deg = stateDef.rotation_target_deg != null
             ? stateDef.rotation_target_deg : theta;
+        lg.userData.rotation_init_theta_deg = theta;
         lg.userData.rotation_start_time = time;
         lg.userData.oscillation_amplitude_deg = stateDef.oscillation_amplitude_deg || 0;
         lg.userData.oscillation_period_s = stateDef.oscillation_period_s || 4;
@@ -2680,13 +2707,43 @@ export const FIELD_3D_RENDERER_CODE = `
             var sAbs = Math.abs(sRaw);
             var sSign = sRaw >= 0 ? 1 : -1;
             tauArr.setDirection(new THREE.Vector3(0, sSign, 0));
+            // Slider-driven scaling for STATE_11 sandbox: when sliders have
+            // been seeded (by applyState or by the slider input handler),
+            // τ scales as (N·I·B) relative to defaults. Sub-linear power
+            // (^0.4) plus a hard cap of 2.5× keeps the arrow on-canvas at
+            // extreme values. Other torque states leave slider_* unset →
+            // mult stays at 1.0, preserving the original 0.05+1.2*sAbs.
+            var sliderN = lg.userData.slider_N;
+            var sliderI = lg.userData.slider_I;
+            var sliderB = lg.userData.slider_B;
+            var tauMult = 1.0;
+            if (typeof sliderN === "number" && typeof sliderI === "number" && typeof sliderB === "number") {
+                var rawMult = (sliderN / 1) * (sliderI / 0.5) * (sliderB / 0.1);
+                tauMult = Math.min(2.5, Math.pow(Math.max(0.001, rawMult), 0.4));
+            }
             // Scale length AND head dimensions so the τ arrow visibly grows
             // and shrinks as θ sweeps — at sinθ=0 it nearly vanishes
             // (equilibria), at sinθ=1 it reaches full size (max torque).
-            var tauTotal = 0.05 + 1.2 * sAbs;
-            var tauHead = Math.max(0.04, 0.30 * sAbs);
-            var tauHeadW = Math.max(0.02, 0.15 * sAbs);
+            var tauTotal = 0.05 + 1.2 * sAbs * tauMult;
+            var tauHead = Math.max(0.04, 0.30 * sAbs * Math.min(1.6, tauMult));
+            var tauHeadW = Math.max(0.02, 0.15 * sAbs * Math.min(1.6, tauMult));
             tauArr.setLength(tauTotal, tauHead, tauHeadW);
+        }
+
+        // μ-arrow per-frame length update — driven by sliders N and I in
+        // the STATE_11 sandbox. Mirrors the τ-arrow guard: only fires when
+        // slider_* userData has been seeded; otherwise leaves whatever
+        // applyTorqueLoopState set for the current state.
+        var muArrF = findTorqueElementById("mu_arrow");
+        if (muArrF && muArrF.visible) {
+            var muN = lg.userData.slider_N;
+            var muI = lg.userData.slider_I;
+            if (typeof muN === "number" && typeof muI === "number") {
+                var muRawMult = (muN / 1) * (muI / 0.5);
+                var muMult = Math.min(3.0, Math.pow(Math.max(0.001, muRawMult), 0.5));
+                var muLenFrame = 0.5 + 0.5 * muMult;
+                muArrF.setLength(muLenFrame, 0.26, 0.13);
+            }
         }
 
         // Animate current-flow dots along wire segments.
@@ -2973,12 +3030,47 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // Sliders + formula overlay visibility — scenario-aware: show the
         // I/r panel for straight_wire_current, the q/v/B/θ panel for
-        // lorentz_force_uniform_field. Always hide the other.
+        // lorentz_force_uniform_field, the N/I/B/θ panel for
+        // torque_on_loop_uniform_field. Always hide the others.
         var slidersEl = document.getElementById("sliders");
         var lorentzSlidersEl = document.getElementById("lorentz_sliders");
+        var torqueSlidersEl = document.getElementById("torque_sliders");
         var isLorentz = config.scenario_type === "lorentz_force_uniform_field";
-        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz) ? "block" : "none";
+        var isTorque = config.scenario_type === "torque_on_loop_uniform_field";
+        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque) ? "block" : "none";
         if (lorentzSlidersEl) lorentzSlidersEl.style.display = (stateDef.show_sliders && isLorentz) ? "block" : "none";
+        if (torqueSlidersEl) {
+            var showTorqueSliders = !!(stateDef.show_sliders && isTorque);
+            torqueSlidersEl.style.display = showTorqueSliders ? "block" : "none";
+            if (showTorqueSliders) {
+                // Sync the θ slider thumb to the state's theta_deg so the
+                // visible loop angle matches the slider position on entry.
+                // Also seed the loop group's slider_* userData with current
+                // slider values so per-frame μ/τ scaling reads them from
+                // the very first frame (before the user drags anything).
+                var nT = document.getElementById("n_torque_slider");
+                var iT = document.getElementById("i_torque_slider");
+                var bT = document.getElementById("b_torque_slider");
+                var thT = document.getElementById("theta_torque_slider");
+                if (thT && typeof stateDef.theta_deg === "number") {
+                    thT.value = String(stateDef.theta_deg);
+                    var thV = document.getElementById("theta_torque_val");
+                    if (thV) thV.textContent = String(Math.round(stateDef.theta_deg));
+                }
+                var lgSync = findTorqueLoopGroup();
+                if (lgSync && nT && iT && bT && thT) {
+                    lgSync.userData.slider_N = parseFloat(nT.value);
+                    lgSync.userData.slider_I = parseFloat(iT.value);
+                    lgSync.userData.slider_B = parseFloat(bT.value);
+                    lgSync.userData.slider_theta_deg = parseFloat(thT.value);
+                }
+                // Re-fire the slider input handler so the τ readout
+                // recomputes against the just-synced θ value (otherwise
+                // the readout shows the stale value from setupSliders'
+                // initial refreshTorqueLabels() at slider_controls.default).
+                if (thT) thT.dispatchEvent(new Event("input", { bubbles: true }));
+            }
+        }
 
         var formulaEl = document.getElementById("formula_overlay");
         if (formulaEl) {
@@ -3174,7 +3266,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (bVal) bVal.textContent = parseFloat(bSliderL.value).toFixed(0);
                 if (thetaVal) thetaVal.textContent = parseFloat(thetaSliderL.value).toFixed(0);
                 // Mutate the current state's theta_deg and charge_sign so the
-                // animate loop picks them up (only when in a sliders-enabled state).
+                // animate loop picks them up (only when in a sliders-enabled
+                // state in the Lorentz scenario — without the scenario guard
+                // this scribbles the torque-loop config's theta_deg too).
+                if (config.scenario_type !== "lorentz_force_uniform_field") return;
                 var stateDefS = config.states[PM_currentState];
                 if (stateDefS && stateDefS.show_sliders) {
                     stateDefS.theta_deg = parseFloat(thetaSliderL.value);
@@ -3196,6 +3291,91 @@ export const FIELD_3D_RENDERER_CODE = `
                 refreshLorentzLabels();
             });
             refreshLorentzLabels();
+        }
+
+        // ── Diamond #3 (torque on current loop) slider wiring ────────────
+        // Four range inputs: N, I, B, θ. The θ slider directly rotates the
+        // loop via applyTorqueLoopTheta (matches SET_LOOP_ANGLE). N, I, B
+        // are read by the per-frame μ/τ-arrow scaling in
+        // updateTorqueLoopFrame. τ readout shows τ = N·I·A·B·|sinθ| in μN·m.
+        var nTorque = document.getElementById("n_torque_slider");
+        var iTorque = document.getElementById("i_torque_slider");
+        var bTorque = document.getElementById("b_torque_slider");
+        var thetaTorque = document.getElementById("theta_torque_slider");
+        if (nTorque && iTorque && bTorque && thetaTorque) {
+            if (config.slider_controls) {
+                if (config.slider_controls.N) {
+                    nTorque.min = String(config.slider_controls.N.min);
+                    nTorque.max = String(config.slider_controls.N.max);
+                    nTorque.step = String(config.slider_controls.N.step);
+                    nTorque.value = String(config.slider_controls.N.default);
+                }
+                if (config.slider_controls.I) {
+                    iTorque.min = String(config.slider_controls.I.min);
+                    iTorque.max = String(config.slider_controls.I.max);
+                    iTorque.step = String(config.slider_controls.I.step);
+                    iTorque.value = String(config.slider_controls.I.default);
+                }
+                if (config.slider_controls.B) {
+                    bTorque.min = String(config.slider_controls.B.min);
+                    bTorque.max = String(config.slider_controls.B.max);
+                    bTorque.step = String(config.slider_controls.B.step);
+                    bTorque.value = String(config.slider_controls.B.default);
+                }
+                if (config.slider_controls.theta_deg) {
+                    thetaTorque.min = String(config.slider_controls.theta_deg.min);
+                    thetaTorque.max = String(config.slider_controls.theta_deg.max);
+                    thetaTorque.step = String(config.slider_controls.theta_deg.step);
+                    thetaTorque.value = String(config.slider_controls.theta_deg.default);
+                }
+            }
+
+            function refreshTorqueLabels() {
+                var nVal = document.getElementById("n_torque_val");
+                var iVal = document.getElementById("i_torque_val");
+                var bVal = document.getElementById("b_torque_val");
+                var thVal = document.getElementById("theta_torque_val");
+                var tauReadout = document.getElementById("tau_readout");
+
+                var n = parseFloat(nTorque.value);
+                var i = parseFloat(iTorque.value);
+                var b = parseFloat(bTorque.value);
+                var th = parseFloat(thetaTorque.value);
+
+                if (nVal) nVal.textContent = n.toFixed(0);
+                if (iVal) iVal.textContent = i.toFixed(2);
+                if (bVal) bVal.textContent = b.toFixed(2);
+                if (thVal) thVal.textContent = th.toFixed(0);
+
+                var lgT = findTorqueLoopGroup();
+                if (lgT) {
+                    lgT.userData.slider_N = n;
+                    lgT.userData.slider_I = i;
+                    lgT.userData.slider_B = b;
+                    lgT.userData.slider_theta_deg = th;
+                    // θ slider takes direct rotation control — switch to
+                    // manual mode and apply immediately.
+                    lgT.userData.rotation_mode = "manual";
+                    applyTorqueLoopTheta(lgT, th);
+                }
+
+                // τ = N·I·A·B·|sinθ| in N·m → display in μN·m for legibility.
+                // A = L² with L from slider_controls.L_side.default (slider
+                // not exposed in V1.0 sandbox — only the four primary knobs).
+                var Lside = (config.slider_controls && config.slider_controls.L_side
+                            && typeof config.slider_controls.L_side.default === "number")
+                            ? config.slider_controls.L_side.default : 0.1;
+                var area = Lside * Lside;
+                var tauNm = n * i * area * b * Math.abs(Math.sin(th * Math.PI / 180));
+                var tauUNm = tauNm * 1e6;
+                if (tauReadout) tauReadout.textContent = "τ = " + tauUNm.toFixed(2) + " μN·m";
+            }
+
+            nTorque.addEventListener("input", refreshTorqueLabels);
+            iTorque.addEventListener("input", refreshTorqueLabels);
+            bTorque.addEventListener("input", refreshTorqueLabels);
+            thetaTorque.addEventListener("input", refreshTorqueLabels);
+            refreshTorqueLabels();
         }
     }
 
@@ -3959,6 +4139,25 @@ export const FIELD_3D_RENDERER_CODE = `
                         if (lgM && typeof data.theta_deg === "number") {
                             lgM.userData.rotation_mode = "manual";
                             applyTorqueLoopTheta(lgM, data.theta_deg);
+                        }
+                    }
+                    break;
+
+                case "REPLAY_ANIMATIONS":
+                    // Admin-harness hook: rewind one-shot time-driven animations
+                    // (bar-magnet swap, slow_rotation flip) so they play in sync
+                    // with TTS narration when the founder clicks ▶ Play TTS.
+                    // Continuous modes (theta_sweep, oscillation) restart from
+                    // phi=0 for a clean visual reset.
+                    if (config.scenario_type === "torque_on_loop_uniform_field") {
+                        var lgR = findTorqueLoopGroup();
+                        if (lgR) {
+                            var initT = lgR.userData.rotation_init_theta_deg;
+                            if (typeof initT === "number") applyTorqueLoopTheta(lgR, initT);
+                            lgR.userData.rotation_start_time = time;
+                            if (lgR.userData.barSwapEnabled) {
+                                lgR.userData.barSwapStartTime = time;
+                            }
                         }
                     }
                     break;

@@ -2084,6 +2084,7 @@ ELECTROSTATICS / MAGNETISM / FIELDS:
   ampere_circuital_law   — Ampere's law ∮B·dl=μ₀I
   force_on_current_carrying_conductor — F=BIl sinθ, force on wire in field
   magnetic_force_moving_charge — Lorentz force F=q(v×B)
+  torque_on_current_loop_in_field — τ = μ×B on planar loop in uniform B; μ=NIA
   motion_of_charge_in_field — helical motion, radius r=mv/qB
   cyclotron              — cyclotron, frequency independent of speed
   magnetic_dipole_bar_magnet — bar magnet, dipole, field lines, poles
@@ -2778,6 +2779,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     magnetic_field_solenoid:        "field_3d",
     magnetic_field_wire:            "field_3d",
     magnetic_force_moving_charge:   "field_3d",
+    torque_on_current_loop_in_field:"field_3d",
     gauss_law_3d:                   "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
@@ -3342,6 +3344,7 @@ const MECHANICS_SCENARIO_MAP: Record<string, string> = {
     equation_of_continuity:         "free_body_diagram",
     // Electromagnetic (mechanics context)
     magnetic_force_moving_charge:   "circular",
+    torque_on_current_loop_in_field:"circular",
     motion_of_charge_in_field:      "circular",
     cyclotron:                      "circular",
     bohr_model_hydrogen:            "circular",
@@ -4149,6 +4152,7 @@ const FIELD_3D_SCENARIO_MAP: Record<string, Field3DConfig["scenario_type"]> = {
     magnetic_field_solenoid:        "solenoid_field",
     magnetic_field_wire:            "straight_wire_current",
     magnetic_force_moving_charge:   "lorentz_force_uniform_field",
+    torque_on_current_loop_in_field:"torque_on_loop_uniform_field",
     gauss_law_3d:                   "point_charge_positive",
     electromagnetic_induction_3d:   "changing_flux",
     bar_magnet_field:               "bar_magnet",

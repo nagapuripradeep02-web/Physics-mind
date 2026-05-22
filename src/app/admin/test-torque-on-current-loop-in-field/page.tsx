@@ -4,7 +4,7 @@
 // assembleField3DHtml + Three.js field_3d renderer + concept JSON path.
 // Reachable at /admin/test-torque-on-current-loop-in-field.
 //
-// Renders all 7 EPIC-L states directly from the embedded `field_3d_config`
+// Renders all 11 EPIC-L states directly from the embedded `field_3d_config`
 // block in src/data/concepts/torque_on_current_loop_in_field.json — bypassing
 // the live Sonnet pipeline (CLAUDE.md Rule 18) so authoring is deterministic.
 // Mirrors the pattern from Diamond #1 (magnetic_field_wire) and Diamond #2
@@ -94,17 +94,37 @@ const STATES_TO_VERIFY: Array<{ id: string; description: string }> = [
     {
         id: 'STATE_5',
         description:
-            'Magnetic moment μ = NIA revealed as a yellow vector through the loop face (RHR: fingers curl with I, thumb gives μ). Sliders for N, I, L_side scale μ live.',
+            'Magnetic moment μ = NIA revealed as a yellow vector through the loop face (RHR: fingers curl with I, thumb gives μ). Observe-only — sliders deferred to STATE_11 per the interactivity-only-in-final-state rule.',
     },
     {
         id: 'STATE_6',
         description:
-            'θ sweep 0° → 180°. τ-arrow scales as sin θ. Max at 90°. Zero at 0° (stable equilibrium, μ ∥ B) and 180° (unstable). Theta slider drives the rotation interactively.',
+            'θ sweeps 0° → 180° on a 10-second cycle (no sliders). τ-arrow scales as sin θ — student watches the sine shape emerge before any prediction is asked.',
     },
     {
         id: 'STATE_7',
         description:
-            'Toggle: loop ↔ bar magnet (red N pole / blue S pole). Same μ direction, same τ. Oscillation animation about θ = 0 (stable equilibrium) when released from θ = 60°.',
+            'Loop pinned at θ = 90°. Wrong-belief prompt (μ ∥ B is max) appears on the left. Answer reveal (max at θ = 90°, cross-product reasoning) appears on the right via reveal_at_tts_id.',
+    },
+    {
+        id: 'STATE_8',
+        description:
+            'Stable equilibrium — loop oscillates ±20° around θ = 0° with a 3-second period. Restoring torque visible. Compass-needle analogy in annotation.',
+    },
+    {
+        id: 'STATE_9',
+        description:
+            'Unstable equilibrium — loop starts at θ = 170° (just past the unstable pose). slow_rotation drives it through 180° → 360° (≡ 0°). Pencil-on-its-tip analogy.',
+    },
+    {
+        id: 'STATE_10',
+        description:
+            'Loop ↔ bar magnet swap at θ = 60°. bar_magnet_swap enabled (red N / blue S). μ stays put, τ stays put — same physics. Galvanometer / motor / MRI anchor.',
+    },
+    {
+        id: 'STATE_11',
+        description:
+            'Interactive sandbox — the ONLY state with sliders. N, I, B, θ live. τ and μ arrows update on every drag. Three challenge prompts in annotation.',
     },
 ];
 
@@ -124,7 +144,7 @@ export default function TorqueOnCurrentLoopInFieldTestPage() {
                 torque_on_current_loop_in_field — end-to-end verification (Diamond #3)
             </h1>
             <p style={{ fontSize: 12, opacity: 0.65, maxWidth: 920, marginBottom: 16 }}>
-                {json.concept_name}. Renders all 7 EPIC-L states of{' '}
+                {json.concept_name}. Renders all 11 EPIC-L states of{' '}
                 <code>torque_on_current_loop_in_field.json</code> through the
                 production <code>assembleField3DHtml</code> path, reading the embedded{' '}
                 <code>field_3d_config</code> block directly (no Sonnet runtime call).
