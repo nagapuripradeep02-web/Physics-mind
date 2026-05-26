@@ -6167,13 +6167,25 @@ export async function generateSimulation(
         }
     }
 
-    // ── Strict-engines bypass (PCPL parametric OR mechanics_2d) ────────────
+    // ── Strict-engines bypass (PCPL parametric OR mechanics_2d OR field_3d) ──
     // Fires only when the concept JSON meets the v2 data-driven spec via
     // hasCompleteAtomicPayload (scene_composition >= 3 primitives per state,
     // focal_primitive_id set, >= 2 distinct advance_modes, >= 4 epic_c branches).
     // Self-contained — skips Stage 1/2/3B/4. CH8 hardcoded bypass removed
     // 2026-04-19 as part of Phase A tightening.
+    //
+    // field_3d branch (added 2026-05-23, session "diamond-4-visual-verification"):
+    // When rendererType === 'field_3d' AND the concept JSON has a top-level
+    // `field_3d_config` block, assemble via assembleField3DHtml directly so the
+    // Three.js renderer is preserved end-to-end. Previously, field_3d concepts
+    // fell into the non-PCPL else-branch (assembleMechanics2DHtml) and got
+    // cached as mechanics_2d HTML, silently collapsing Diamond #1/#2/#3/#4 to
+    // the wrong renderer when the Sonnet SimulationBrief fallback fired.
     const atomicGatePasses = hasCompleteAtomicPayload(physicsConstants);
+    const authoredField3dConfig =
+        rendererType === 'field_3d'
+            ? ((physicsConstants as { field_3d_config?: Field3DConfig })?.field_3d_config ?? null)
+            : null;
     if (atomicGatePasses) {
         console.log(`[pcpl] strict-engines bypass (content gate) for concept:`, conceptIdForLookup);
         try {
@@ -6209,12 +6221,36 @@ export async function generateSimulation(
                 canvas_style: canvasStyle,
             };
 
-            // Assembler selection: Ch.8 uses parametric_renderer (force_arrow,
-            // block, pulley etc.); non-CH8 atomic concepts (e.g. vector splits)
-            // use mechanics_2d assembler with the same epic_l_path shape.
-            const simHtml = PCPL_CONCEPTS.has(conceptIdForLookup)
-                ? assembleParametricHtml(parametricConfig)
-                : assembleMechanics2DHtml({
+            // Assembler selection — Rule 18 honors authored configs in this order:
+            //   field_3d (Three.js)  — magnetism Diamonds #1–4 + other field concepts
+            //   parametric           — Ch.8 PCPL concepts (force_arrow, block, pulley)
+            //   mechanics_2d         — vector splits, kinematics, default 2D atomic
+            // For field_3d we feed the authored config from the concept JSON, NOT
+            // the parametric config built above (which is mechanics-shaped).
+            let rendererTypeForCache: 'parametric' | 'mechanics_2d' | 'field_3d';
+            let physicsConfigForReturn: unknown;
+            let simHtml: string;
+            if (authoredField3dConfig) {
+                console.log('[pcpl] field_3d authored config detected — using assembleField3DHtml for:', conceptIdForLookup);
+                const field3dCfg: Field3DConfig = {
+                    ...authoredField3dConfig,
+                    pvl_colors: authoredField3dConfig.pvl_colors ?? {
+                        background: '#0A0A1A',
+                        text: '#D4D4D8',
+                        positive: '#EF5350',
+                        negative: '#42A5F5',
+                        field_line: '#FFF176',
+                    },
+                };
+                simHtml = assembleField3DHtml(field3dCfg);
+                rendererTypeForCache = 'field_3d';
+                physicsConfigForReturn = field3dCfg;
+            } else if (PCPL_CONCEPTS.has(conceptIdForLookup)) {
+                simHtml = assembleParametricHtml(parametricConfig);
+                rendererTypeForCache = 'parametric';
+                physicsConfigForReturn = parametricConfig;
+            } else {
+                simHtml = assembleMechanics2DHtml({
                     renderer: 'mechanics_2d',
                     renderer_hint: (physicsConstants as { renderer_hint?: unknown })?.renderer_hint ?? {
                         scenario_type: conceptIdForLookup,
@@ -6225,6 +6261,9 @@ export async function generateSimulation(
                     pvl_colors: { background: '#0A0A1A', text: '#D4D4D8' },
                     locked_facts: (physicsConstants as { locked_facts?: unknown })?.locked_facts ?? {},
                 } as unknown as import("@/lib/renderers/mechanics_2d_renderer").Mechanics2DConfig);
+                rendererTypeForCache = 'mechanics_2d';
+                physicsConfigForReturn = parametricConfig;
+            }
 
             // Build teacher script from pre-authored tts_sentences across ALL states (zero LLM).
             const pmTeacherSteps: TeacherScriptStep[] = [];
@@ -6265,16 +6304,15 @@ export async function generateSimulation(
             } else if (bypassIsFallback) {
                 console.warn(`[pcpl] ⚠️ Refusing to cache fallback config for "${conceptKey}"`);
             } else {
-                const rendererTypeForCache = PCPL_CONCEPTS.has(conceptIdForLookup) ? 'parametric' : 'mechanics_2d';
                 const bypassUpsertPayload: Record<string, unknown> = {
                     concept_key: fingerprint?.concept_id ?? conceptKey,
                     concept_id: fingerprint?.concept_id ?? conceptIdForLookup,
                     fingerprint_key: cacheKey,
-                    physics_config: parametricConfig,
+                    physics_config: physicsConfigForReturn,
                     sim_brief: brief,
                     sim_html: simHtml,
                     teacher_script: pmTeacherScript ?? null,
-                    engine: 'p5js',
+                    engine: rendererTypeForCache === 'field_3d' ? 'threejs' : 'p5js',
                     class_level: fingerprint?.class_level ?? classLevel,
                     served_count: 0,
                     pipeline_version: 'v5-strict-engines',
@@ -6303,8 +6341,8 @@ export async function generateSimulation(
             }
 
             return {
-                physicsConfig: parametricConfig as unknown as PhysicsConfig,
-                engine: "p5js" as SimEngine,
+                physicsConfig: physicsConfigForReturn as PhysicsConfig,
+                engine: (rendererTypeForCache === 'field_3d' ? 'threejs' : 'p5js') as SimEngine,
                 brief,
                 simHtml,
                 teacherScript: pmTeacherScript,
