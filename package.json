@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed:concepts": "tsx --env-file=.env.local src/scripts/seed-concepts.ts",
+    "seed:comprehension-quiz": "tsx --env-file=.env.local src/scripts/seed-comprehension-quiz.ts",
     "extract:ncert": "node --env-file=.env.local src/scripts/extract-ncert.mjs",
     "test:stage2": "npx tsx --env-file=.env.local src/scripts/testStage2.ts",
     "mineru": "cd mineru-service && uvicorn main:app --host 0.0.0.0 --port 8000 --reload",

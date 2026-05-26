@@ -8,6 +8,12 @@ import type { TeacherScriptStep } from "@/lib/aiSimulationGenerator";
 import { getPanelConfig, type ConceptPanelConfig } from "@/config/panelConfig";
 import { BeliefProbeCard } from "@/components/sections/BeliefProbeCard";
 import DeepDiveFeedbackThumbs from "@/components/DeepDiveFeedbackThumbs";
+import { ComprehensionMCQOverlay } from "@/components/comprehension/ComprehensionMCQOverlay";
+import {
+    getComprehensionSessionId,
+    hasMCQBeenShown,
+    detectDeviceContext,
+} from "@/lib/comprehensionSession";
 
 // Inline deep-dive sub-state shape (Phase D inline UX). One entry per sub-pill
 // (3a, 3b, 3c, 3d). Populated from /api/deep-dive payload by LearnConceptTab
@@ -196,6 +202,19 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
     // reset useEffect only fires when the variant actually changes.
     const prevSequenceRef = useRef<string>('');
 
+    // ── Comprehension Metric v1 (2026-05-23) ───────────────────────────────────
+    // Session_id fallback: use sessionId prop when provided (LearnConceptTab),
+    // else generate + persist an anonymous UUID in localStorage.
+    const [generatedSessionId] = useState(() => getComprehensionSessionId());
+    const sessionIdFinal = sessionId ?? generatedSessionId;
+    // Tracks the currently-open state_interaction_log row (state_id + entry time).
+    // Closed on next STATE_REACHED OR component unmount.
+    const interactionLogRef = useRef<{ state_id: string; entered_at: number } | null>(null);
+    // Replay count per state_id within this session (increments each visit).
+    const replayCountsRef = useRef<Map<string, number>>(new Map());
+    // Controls MCQ overlay visibility — triggered on isComplete.
+    const [showMCQ, setShowMCQ] = useState(false);
+
     // Cycle facts while simulation is loading
     useEffect(() => {
         if (!isLoadingSim) return;
@@ -380,6 +399,73 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
         window.addEventListener('message', handler);
         return () => window.removeEventListener('message', handler);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    // Comprehension Metric v1: state_interaction_log writes.
+    // Independent message listener from the sync one above so we don't risk
+    // breaking that critical path. Fires on STATE_REACHED: closes the prior
+    // log row (POSTs exited_at + dwell_ms), opens a new one for the new state.
+    // On unmount: closes the currently-open row with abandoned=true.
+    useEffect(() => {
+        if (!conceptId) return;
+        const ctx = detectDeviceContext();
+
+        const writeRow = (
+            state_id: string,
+            entered_at: number,
+            options: { completed?: boolean; abandoned?: boolean } = {}
+        ) => {
+            const state_index = parseInt(state_id.replace('STATE_', ''), 10) || 1;
+            const replay_count = Math.max(0, (replayCountsRef.current.get(state_id) ?? 1) - 1);
+            void fetch('/api/comprehension/log-interaction', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    session_id: sessionIdFinal,
+                    concept_id: conceptId,
+                    state_id,
+                    state_index,
+                    entered_at: new Date(entered_at).toISOString(),
+                    exited_at: new Date(Date.now()).toISOString(),
+                    dwell_ms: Date.now() - entered_at,
+                    replay_count,
+                    completed: options.completed ?? false,
+                    abandoned: options.abandoned ?? false,
+                    device_class: ctx.device_class,
+                    network_type: ctx.network_type,
+                }),
+            }).catch(() => { /* fire-and-forget */ });
+        };
+
+        const handler = (e: MessageEvent) => {
+            if (e.data?.type !== 'STATE_REACHED') return;
+            const newStateId = e.data.state;
+            if (typeof newStateId !== 'string') return;
+            const prior = interactionLogRef.current;
+            if (prior) writeRow(prior.state_id, prior.entered_at);
+            const seenCount = (replayCountsRef.current.get(newStateId) ?? 0) + 1;
+            replayCountsRef.current.set(newStateId, seenCount);
+            interactionLogRef.current = { state_id: newStateId, entered_at: Date.now() };
+        };
+        window.addEventListener('message', handler);
+
+        return () => {
+            window.removeEventListener('message', handler);
+            const prior = interactionLogRef.current;
+            if (prior) {
+                writeRow(prior.state_id, prior.entered_at, { abandoned: true });
+                interactionLogRef.current = null;
+            }
+        };
+    }, [conceptId, sessionIdFinal]);
+
+    // Comprehension Metric v1: trigger MCQ overlay when simulation completes.
+    // Suppress if student has already seen MCQ for this concept this browser session.
+    useEffect(() => {
+        if (!isComplete || !conceptId) return;
+        if (hasMCQBeenShown(conceptId)) return;
+        const t = setTimeout(() => setShowMCQ(true), 800);
+        return () => clearTimeout(t);
+    }, [isComplete, conceptId]);
 
     // Phase 4: when variant changes (stateSequence or entryState prop changes),
     // reset the player to the beginning of the new sequence.
@@ -841,6 +927,7 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
     }
 
     return (
+        <>
         <div className="mt-3 w-full rounded-2xl border border-zinc-800 bg-zinc-950 overflow-hidden">
 
             {/* ── Header: play/pause + progress dots ── */}
@@ -1114,5 +1201,17 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
                 )}
             </div>
         </div>
+        {/* Comprehension Metric v1 (2026-05-23): MCQ overlay on sim completion */}
+        {conceptId && (
+            <ComprehensionMCQOverlay
+                isOpen={showMCQ}
+                conceptId={conceptId}
+                conceptName={lesson?.key_insight ?? undefined}
+                sessionId={sessionIdFinal}
+                onClose={() => setShowMCQ(false)}
+                onReplay={handlePlayPause}
+            />
+        )}
+        </>
     );
 }
