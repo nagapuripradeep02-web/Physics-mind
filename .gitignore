@@ -55,6 +55,10 @@ route_backup.txt
 /test-results/
 /playwright-report/
 
+# visual-validator frame-dump runs (THE EYE) — working artifacts, never repo content
+# (visual_baselines/ IS tracked — those are the approved regression baselines)
+/.visual_runs/
+
 # large regeneratable data (extracted from PDFs / generated JSONL)
 /ncert/
 ncert_chunks.jsonl

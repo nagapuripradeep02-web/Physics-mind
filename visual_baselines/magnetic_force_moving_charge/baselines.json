@@ -1,0 +1,31 @@
+{
+  "approved_at": "2026-06-10T17:14:58.638Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\magnetic_force_moving_charge\\20260610-184836",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": false
+    },
+    "STATE_2": {
+      "compare": false
+    },
+    "STATE_3": {
+      "compare": false
+    },
+    "STATE_4": {
+      "compare": false
+    },
+    "STATE_5": {
+      "compare": false
+    },
+    "STATE_6": {
+      "compare": false
+    },
+    "STATE_7": {
+      "compare": false
+    },
+    "STATE_8": {
+      "compare": false
+    }
+  }
+}

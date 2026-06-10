@@ -1,5 +1,26 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-06-10 (Visual-Validator FULL BUILD complete + A5 proof run GREEN) — closed the visual-testing gap on `magnetic_force_moving_charge`. Shipped all 6 visual upgrades + Gemini→Sonnet→Opus escalation ladder + proposal_queue table (Steps 0–11), then ran the gate on the A5 diamond and used it to find + fix THREE validator blind spots that were manufacturing false failures. **Final: 204/204 checks pass, $0.57, Valid YES. First regression baselines locked.**
+
+### The proof run that mattered — the gate was lying, and "actually look at the frames" caught it
+The founder spotted that a STATE_1 `I2` "formula not rendered" FAIL was wrong — the formula (`F = qvB sinθ = qvB·0 = 0`) was clearly on screen in his live view. Tracing it exposed that the headless capture **never plays TTS**, so any TTS-synced content was invisible to the validator. That one eyeball catch unwound into three distinct validator bugs (all the same root: the validator wasn't fed what the concept JSON / live experience actually contains):
+
+| Bug (all `peter_parker:visual_validator`) | Symptom | Fix |
+|---|---|---|
+| **TTS-synced math_show invisible to capture** | I2 false-failed on STATE_1/2/4 (formula renders via `SET_MATH` during narration; capture is silent) | Harness now replays the per-sentence `SET_MATH` schedule (real persist) and snapshots one equation-panel frame per formula → fed to the Cat I task. KaTeX renders in capture (verified $0 via `visual:eyes` — STATE_1 single formula + STATE_4 `qvB=mv²/r → r=mv/qB` chain both correct). |
+| **Storyboard metadata never plumbed** | E2 ("focal_primitive_id empty {}") + E3 ("anchor null") false-failed — both exist in JSON (focal per state; anchor = BARC Kolkata cyclotron / ISRO / CRT) but the smoke context never passed them | Smoke now sources `real_world_anchor` + `focal_primitive_ids` (+ `tts_visual_bindings`) from the concept JSON into `VisionGateContext`. |
+| **Parser brittle on escalation tier** | 37 "Vision response was not valid JSON" failures the first time Sonnet escalations ran cleanly (run 1 had died on credit exhaustion before they executed) — model wrapped JSON in prose / echoed LaTeX `\sin` as invalid JSON escapes | `extractJsonObject` (balanced-brace, string-aware) + `sanitizeJsonEscapes` fallback in `parseCategoryResponse`; `SHARED_OUTPUT_RULES` rules 6–7 (end-after-`}`, escape/plain-text formulas). 6 new unit tests reproduce the exact failure shapes. |
+
+### Design decision (founder): narration delivery is acceptable for V1
+E3 (Indian anchor) + E5 (formulas) are delivered via TTS narration, not drawn persistently on the 3D canvas. Founder chose **accept narration delivery** — added an E3/E5 carve-out to `SYSTEM_E` (judge the sound-on experience: an anchor/formula DECLARED in metadata + narrated counts as delivered; only fail if absent everywhere). This also resolved an I2↔E5 self-contradiction (I2 said the formula renders, E5 said it was missing — same formula).
+
+### Files touched (validator hardening)
+`screenshotter.ts` (+`ttsMathByState`/`i2_frames`, `captureI2Frames`), `ttsBindings.ts` (+`math_persist`, `buildTtsMathByState`), `visionGate.ts` (Cat I per-formula frames; Cat E gets bindings), `promptTemplates.ts` (robust parser + SYSTEM_I multi-frame + SYSTEM_E carve-out + output rules), `smoke_visual_validator.ts` + `visual_eyes.ts` (plumb anchor/focal/math), `frameDump.ts` (dump i2 frames). New test: `parseCategoryResponse.test.ts` (6). All: `tsc` 0 errors, 22/22 visual tests green. Baselines: `visual_baselines/magnetic_force_moving_charge/` (8 states, all `compare:false` animated-state flake guard) — needs `git add`.
+
+### Cost: 5 paid smoke runs today (~$2.70 total, under the $5/concept/day cap). Run 1 $0.33 (credit-death), run 3 $0.61, run 3.5 $0.56, run 4 $0.64 (parser bug exposed), run 5 $0.57 (GREEN).
+
+### Next session first task: decide whether to fold these three validator fixes into the auto-fire generation path (currently they only activate on the manual smoke/eyes path via opt-in flags — auto-fire behavior is byte-unchanged by design). Also: the C3/C5/A2 polish items on this diamond remain deferred (camera jump STATE_6→7, Fleming non-persist declaration, STATE_2 'F' label touch) — minor, not blocking.
+
 ## 2026-05-07 (session 60 polish — Sim 3 PREMIUM upgrade) — `magnetic_field_wire` lifted from Day 1 skeleton to premium-tier interactive demo: 3D right-hand model in STATE_3 (palm sphere + 4 curled finger TubeGeometries + thumb cylinder, oriented so local +Y aligns with thumb_direction; pulses with `animate_curl`); animated compass in STATE_1 (red+white needle on translucent disk, pivots `-π/2` over 2s with `easeOutCubic` after `swing_delay_ms` to mimic Oersted's deflection moment); interactive **sliders for I and r** in STATE_4 + STATE_7 with live B-readout in μT (e.g. I=5A, r=5cm → B=20.0μT exact); yellow highlighted ring tracks the slider's r in scene units; field-line opacity scales with `log(I)` so cranking current visibly brightens the rings; corner formula overlay (B = μ₀I/(2πr) + RHR reminder); highlighted point P in STATE_5 (glowing yellow sphere + halo, pulses); all extras and sliders are general-purpose Field3DConfig extensions reusable by any future field_3d concept
 
 ### Top-line outcome

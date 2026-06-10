@@ -1,8 +1,29 @@
 # Visual Validator Specification — Engine E29
 
-**Version:** 1.0 | **Date:** 2026-04-27 | **Owner:** Pradeep
+**Version:** 2.0 | **Date:** 2026-06-10 | **Owner:** Pradeep
 **Companion code:** [`src/lib/validators/visual/spec.ts`](../src/lib/validators/visual/spec.ts)
-**Companion migration:** [`supabase_2026-04-27_engine_bug_queue_visual_categories_migration.sql`](../supabase_2026-04-27_engine_bug_queue_visual_categories_migration.sql)
+**Companion migrations:** [`supabase_2026-04-27_engine_bug_queue_visual_categories_migration.sql`](../supabase_2026-04-27_engine_bug_queue_visual_categories_migration.sql) + [`supabase_2026-06-10_engine_bug_queue_visual_upgrades_migration.sql`](../supabase_2026-06-10_engine_bug_queue_visual_upgrades_migration.sql)
+
+> **v2.0 (2026-06-10, "advanced level" upgrade — founder-approved FULL BUILD):**
+> 44 checks across 9 categories (A–I). New since v1.0:
+> - **Dense adjacent-frame motion checks D5/D6/D7** — every state captured at ~1s
+>   intervals; adjacent pairs pixel-diffed (deterministic, $0). Catches what 5
+>   frozen keyframes can't: sliders not driving trajectories, mid-state teleports,
+>   animations that die partway.
+> - **H2 visual regression** — per-state renders pixelmatched against APPROVED
+>   baselines in `visual_baselines/<concept_id>/` (approve via `npm run
+>   visual:approve`). Catches silent drift after renderer/JSON changes.
+> - **Category I — TTS↔visual semantic sync (I1/I2)** — every `glow` target and
+>   `math_show` a tts_sentence declares must be present on screen. Runs only when
+>   concept-JSON bindings are provided (smoke script does; auto-fire stays dormant).
+> - **Cost ladder** — vision categories run Gemini 2.5 Flash FIRST; any
+>   error/parse-failure/failed-check escalates that category to Sonnet 4.6
+>   (authoritative); Opus tier flag-gated via `VISION_ESCALATION_MAX_TIER=opus`.
+>   Kill-switch: `VISION_LADDER=off` → legacy direct-Sonnet.
+> - **THE EYE protocol** — `npm run visual:eyes -- <concept_id>` dumps EVERY frame
+>   to `.visual_runs/` so Claude actually LOOKS before founder review
+>   (AUTHORING_PIPELINE.md §3). Surface-everything output: every check printed,
+>   pass and fail, no truncation.
 
 ---
 
@@ -12,7 +33,7 @@ The canonical rubric for the post-render Visual Validator that gates every Physi
 
 1. **This document** — narrative reference for authoring agents (Alex, physics-author, peter_parker), founder reviews, and onboarding new contributors.
 2. **`spec.ts`** — TypeScript types and runtime rubric, source of truth for the vision-model gate.
-3. **`engine_bug_queue` rows** (38 seeded by the 2026-04-27 migration) — durable bug-class taxonomy that quality-auditor probes against in Gate 8.
+3. **`engine_bug_queue` rows** (44 seeded: 38 by the 2026-04-27 migration + 6 by the 2026-06-10 visual-upgrades migration) — durable bug-class taxonomy that quality-auditor probes against in Gate 8.
 
 When this document, `spec.ts`, and the migration drift, **`spec.ts` is authoritative** — re-derive the others.
 
@@ -22,7 +43,7 @@ When this document, `spec.ts`, and the migration drift, **`spec.ts` is authorita
 - **If you're implementing the validator**: each check has a pass criterion that maps directly to a vision-model prompt fragment (in `promptTemplates.ts`).
 - **If you're reviewing a failed validation**: the `bug_class` ties the failure to a row in `engine_bug_queue` with prevention rule + probe logic.
 
-## The 38 checks across 7 categories
+## The 44 checks across 9 categories
 
 ### Category A — Layout integrity (single panel, 6 checks)
 
@@ -63,7 +84,7 @@ Vision model receives screenshot pairs (STATE_N, STATE_{N+1}) and compares:
 | **C4 Focal evolution** | The `focal_primitive_id` shifts sensibly state-to-state (highlighting matches the teaching script narrative). | `CHOREOGRAPHY_FOCAL_DRIFT` |
 | **C5 Annotation persistence** | An annotation introduced in STATE_N persists in STATE_{N+1} unless `is_persistent: false` is explicitly set. | `CHOREOGRAPHY_ANNOTATION_FLICKER` |
 
-### Category D — Animation correctness (4 checks)
+### Category D — Animation correctness (8 checks: 4 vision + D1p + 3 dense-pixel)
 
 Vision model receives 5 keyframes captured at t = 0s, 2.5s, 5s, 7.5s, 10s:
 
@@ -73,6 +94,17 @@ Vision model receives 5 keyframes captured at t = 0s, 2.5s, 5s, 7.5s, 10s:
 | **D2 Smooth motion** | No frame shows a body at a position outside the convex hull of (previous frame, next frame) — no jitter or mid-motion teleport. | `ANIMATION_JITTER` |
 | **D3 Timing matches narration** | When `teacher_script` declares STATE_N narration is X seconds, the sim remains in STATE_N visuals for between (X−1) and (X+1) seconds. *Skipped when timing metadata absent.* | `ANIMATION_TIMING_DRIFT` |
 | **D4 No stuck frames** | Sim does not freeze on the same frame for > 3 seconds mid-state (would indicate render crash). | `ANIMATION_STUCK` |
+
+**Dense adjacent-frame checks (2026-06-10, deterministic pixelGate, $0):** every state is
+captured at ~1s intervals (`visual:eyes` always; smoke with `--dense`); adjacent frame pairs are
+pixel-diffed. These catch motion failures *between* keyframes that D1–D4 structurally cannot see:
+
+| Check | Pass criterion | Failure → bug class |
+|---|---|---|
+| **D1p Plays (pixel)** | pixelmatch diff between first and last keyframe ≥ 30% (deterministic complement to D1). | `ANIMATION_NO_PLAYBACK_PIXEL` |
+| **D5 Dense motion present** | When the state DECLARES motion (`trajectory_mode` ≠ static / `advance_mode: auto_after_animation`), ≥1 adjacent pair differs by ≥0.5% of pixels. *Skipped when motion expectation unknown — never guesses.* | `ANIMATION_NO_MOTION` |
+| **D6 No mid-state pixel teleport** | No adjacent pair diff exceeds max(20%, 8× median pair diff). A spike = parameter snap / trail reset / camera jump mid-state. | `ANIMATION_TELEPORT_PIXEL` |
+| **D7 No stuck tail** | The last 3+ adjacent pairs are not all frozen (<0.5%) while earlier pairs moved — a frozen tail means the animation died mid-state. | `ANIMATION_STUCK_TAIL` |
 
 ### Category E — Pedagogical quality (act as teacher, 6 checks)
 
@@ -111,6 +143,67 @@ Panel B is a graph; it must be readable by a Class 11 student:
 | **G5 Live dot in visible range** | The yellow `live_dot` is inside the axis box, not clipped at the edges. | `DUALPANEL_LIVEDOT_OFF_GRAPH` |
 | **G6 Legend if multiple traces** | When 2 or more traces render, a legend renders to disambiguate them. | `DUALPANEL_NO_LEGEND` |
 
+### Category H — Authoring hygiene (deterministic, 2 checks)
+
+No LLM. pixelGate (H1) + regressionGate (H2):
+
+| Check | Pass criterion | Failure → bug class |
+|---|---|---|
+| **H1 Template substitution leak** | No rendered text contains unsubstituted `{var}` / `{expr.toFixed(N)}` placeholders. DOM scan in screenshotter + tesseract OCR backstop on canvas text. | `TEMPLATE_LEAK` |
+| **H2 Visual regression vs baseline** | Each state render pixelmatches its APPROVED baseline (`visual_baselines/<concept_id>/<state>.png`, width-640 normalized) within tolerance (default 2%). *Skipped when no baseline approved; animated states default `compare:false` (flake guard — baseline kept for human reference).* | `VISUAL_REGRESSION` |
+
+**Baseline workflow:** `npm run visual:eyes -- <id>` → review → `npm run visual:approve -- <id>`
+(copies the newest run into `visual_baselines/`, git-tracked, ~70 KB/state) → every later run
+auto-compares. Re-approve after intentional visual changes. Scope: hand-authored diamonds only.
+
+### Category I — TTS↔visual semantic sync (vision, 2 checks per bound state)
+
+Runs ONLY when the caller provides concept-JSON bindings (`extractTtsVisualBindings` →
+`tts_visual_bindings` in the vision context). The generation-time auto-fire path passes none →
+Category I dormant there. The smoke script loads `src/data/concepts/<id>.json` and wires it.
+
+| Check | Pass criterion | Failure → bug class |
+|---|---|---|
+| **I1 Glow target present** | Every `tts_sentences[].glow` target in the state maps to a visible, identifiable element in the render (judged with a primitive legend). PRESENCE only — never glow brightness (the 1.8s pulse means any captured instant can be mid-pulse). | `TTS_GLOW_TARGET_MISSING` |
+| **I2 Declared math rendered** | Every `math_show` expression declared in the state is visibly rendered on screen. Vacuous pass when none declared. | `TTS_MATH_NOT_RENDERED` |
+
+---
+
+## Model cost ladder (2026-06-10)
+
+Vision category tasks run through a tiered ladder in `visionGate.ts`:
+
+| Tier | Model | Role |
+|---|---|---|
+| 0 | deterministic (pixelGate / regressionGate / DOM) | Free checks always run first/parallel |
+| 1 | **Gemini 2.5 Flash** | Cheap first pass per category task. A CLEAN PASS is accepted as-is. |
+| 2 | **Claude Sonnet 4.6** (authoritative) | Runs when Gemini errors, fails JSON/schema parse, or reports ANY failed check. Sonnet's verdict replaces Gemini's. |
+| 3 | **Claude Opus** (flag-gated) | `VISION_ESCALATION_MAX_TIER=opus` → re-judges once when Sonnet still fails. Default OFF. |
+
+Correctness never depends on Gemini: anything non-clean escalates. Kill-switch `VISION_LADDER=off`
+restores the legacy direct-Sonnet path (also auto-disabled when a test injects a mock client or no
+`GOOGLE_GENERATIVE_AI_API_KEY` exists). Per-tier cost logged to `ai_usage_log`
+(`metadata.ladder_tier`: gemini / sonnet_direct / sonnet_escalated / opus_escalated).
+
+---
+
+## THE EYE protocol (operational discipline)
+
+The validator only has power when it RUNS and its output is LOOKED AT (AUTHORING_PIPELINE.md §3 —
+the 25-iteration Diamond #2 session happened with this rig built but unused). Before ANY founder
+review of a diamond:
+
+```bash
+npm run visual:eyes -- <concept_id>          # $0 — capture all states + dense frames,
+                                             # run all deterministic gates, dump PNGs
+# → Read EVERY printed PNG path. Actually look.
+npm run smoke:visual-validator -- <concept_id> --dense   # vision categories (ladder)
+npm run visual:approve -- <concept_id>       # once founder-approved → baseline locked
+```
+
+Surface-everything rule: both scripts print EVERY check result, pass and fail, full failure
+evidence, no `+N more` truncation. Nothing ships hidden.
+
 ---
 
 ## Conditional checks
@@ -123,7 +216,7 @@ Three checks are skipped when prerequisites aren't present:
 | **E4** Misconception shown | `epic_c_branches` not authored on this concept |
 | **F1–F4, G1–G6** Multi-panel checks | `panel_count < 2` (single-panel sim) |
 
-In all other cases, all 38 checks run on every state of every concept's first generation pass.
+In all other cases, all applicable checks run on every state (dense D5–D7 require --dense / visual:eyes capture; H2 requires an approved baseline; Category I requires concept-JSON bindings) of every concept's first generation pass.
 
 ---
 
@@ -135,7 +228,7 @@ In all other cases, all 38 checks run on every state of every concept's first ge
 | **MAJOR** | Hard fail with retry. May fall back if retry doesn't fix. | Most layout (A), choreography (C), graph quality (G) |
 | **MODERATE** | Soft fail — logged and retried. Ships if retry passes; ships with warning if both attempts fail in the absence of a CRITICAL/MAJOR fail. | Cosmetic (A4 readability), camera continuity (C3), gridline visibility (G3) |
 
-Severity is recorded per-row in `engine_bug_queue` for each of the 38 seeded bug classes.
+Severity is recorded per-row in `engine_bug_queue` for each of the 44 seeded bug classes.
 
 ---
 
@@ -167,4 +260,4 @@ Per validation run: ~7 vision-model calls × ~$0.005/call = **~$0.04 per concept
 
 ---
 
-*Last sync with `spec.ts`: 2026-04-27. Last sync with engine_bug_queue migration: 2026-04-27.*
+*Last sync with `spec.ts`: 2026-06-10. Last sync with engine_bug_queue migrations: 2026-06-10 (44 rows live in DB — verified).*

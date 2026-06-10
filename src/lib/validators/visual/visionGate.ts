@@ -1,16 +1,29 @@
 /**
  * Visual Validator — vision gate (Engine E29, Day 4).
  *
- * Orchestrates the 7-category check across all states by:
+ * Orchestrates the vision categories (A–G + I) across all states by:
  *   - Building category-specific prompts (promptTemplates.ts)
- *   - Calling Claude Sonnet 4.6 vision in parallel with cache_control on system prompts
+ *   - Calling vision models in parallel through a COST LADDER (2026-06-10):
+ *       Tier 1 Gemini 2.5 Flash  — cheap first pass per category task
+ *       Tier 2 Claude Sonnet 4.6 — AUTHORITATIVE; runs when Gemini errors,
+ *                                  fails JSON/schema parse, or reports ANY
+ *                                  failed check. Sonnet's verdict replaces
+ *                                  Gemini's entirely.
+ *       Tier 3 Claude Opus       — flag-gated (VISION_ESCALATION_MAX_TIER=opus);
+ *                                  re-judges once when Sonnet still fails.
+ *     Clean Gemini passes are accepted (the common case → big cost cut).
+ *     Kill-switch: VISION_LADDER=off → legacy direct-Sonnet path. The ladder
+ *     also disables itself when a custom Anthropic client is injected (tests)
+ *     or no GOOGLE_GENERATIVE_AI_API_KEY is configured.
  *   - Parsing structured JSON responses into CheckResult[]
  *   - Deriving F1 (state desync) and F4 (PARAM_UPDATE relay) from DOM-level timings
  *     captured by screenshotter.ts (no LLM call needed for those two)
- *   - Aggregating + logging cost telemetry to ai_usage_log
+ *   - Aggregating + logging per-tier cost telemetry to ai_usage_log
  */
 
 import Anthropic from '@anthropic-ai/sdk';
+import { google } from '@ai-sdk/google';
+import { generateText } from 'ai';
 import type {
     BugClass,
     CheckResult,
@@ -19,8 +32,9 @@ import type {
     VisualValidationResult,
 } from './spec';
 import { VISUAL_CHECKS, formatCheckError } from './spec';
-import { buildCategoryPrompt, parseCategoryResponse, type ScreenshotRef } from './promptTemplates';
+import { buildCategoryPrompt, parseCategoryResponse, type PromptOutput, type ScreenshotRef } from './promptTemplates';
 import type { CaptureResult } from './screenshotter';
+import type { StateTtsContext } from './ttsBindings';
 import { logUsage } from '@/lib/usageLogger';
 
 // ─── Public types ─────────────────────────────────────────────────────────────
@@ -41,6 +55,12 @@ export interface VisionGateContext {
     panel_b_traces?: unknown;
     panel_b_config?: unknown;
     live_dot?: unknown;
+    /**
+     * Category I — per-state TTS visual bindings (extractTtsVisualBindings on
+     * the concept JSON). Absent → Category I is dormant (the auto-fire path
+     * never passes this, so its behavior is byte-for-byte unchanged).
+     */
+    tts_visual_bindings?: Record<string, StateTtsContext>;
 }
 
 export interface RunVisionGateInput {
@@ -58,13 +78,29 @@ export interface RunVisionGateInput {
     sessionId?: string;
 }
 
-// ─── Pricing for Claude Sonnet 4.6 (per token) ────────────────────────────────
+// ─── Model tiers + pricing (per token) ────────────────────────────────────────
+
+const SONNET_MODEL = 'claude-sonnet-4-6';
+const OPUS_MODEL = 'claude-opus-4-8';
+const GEMINI_MODEL = 'gemini-2.5-flash';
 
 const SONNET_4_6_PRICING = {
     input:          3.00 / 1_000_000,
     output:         15.00 / 1_000_000,
     cache_creation: 3.75 / 1_000_000,   // 1.25× input
     cache_read:     0.30 / 1_000_000,   // 0.10× input
+} as const;
+
+const OPUS_PRICING = {
+    input:          15.00 / 1_000_000,
+    output:         75.00 / 1_000_000,
+    cache_creation: 18.75 / 1_000_000,
+    cache_read:     1.50 / 1_000_000,
+} as const;
+
+const GEMINI_FLASH_PRICING = {
+    input:  0.30 / 1_000_000,
+    output: 2.50 / 1_000_000,
 } as const;
 
 interface MessageUsage {
@@ -74,12 +110,13 @@ interface MessageUsage {
     cache_read_input_tokens?: number | null;
 }
 
-function estimateCostUsd(usage: MessageUsage): number {
+function estimateAnthropicCostUsd(usage: MessageUsage, model: string): number {
+    const p = model === OPUS_MODEL ? OPUS_PRICING : SONNET_4_6_PRICING;
     return (
-        usage.input_tokens * SONNET_4_6_PRICING.input
-        + usage.output_tokens * SONNET_4_6_PRICING.output
-        + (usage.cache_creation_input_tokens ?? 0) * SONNET_4_6_PRICING.cache_creation
-        + (usage.cache_read_input_tokens ?? 0) * SONNET_4_6_PRICING.cache_read
+        usage.input_tokens * p.input
+        + usage.output_tokens * p.output
+        + (usage.cache_creation_input_tokens ?? 0) * p.cache_creation
+        + (usage.cache_read_input_tokens ?? 0) * p.cache_read
     );
 }
 
@@ -108,85 +145,153 @@ export async function runVisionGate(input: RunVisionGateInput): Promise<VisualVa
         context: input.context,
     });
 
-    const aggregateUsage = { input: 0, output: 0, cacheCreate: 0, cacheRead: 0 };
     let totalCost = 0;
+
+    // Ladder availability: explicit kill-switch, no Gemini key, or an injected
+    // Anthropic client (tests) all force the legacy direct-Sonnet path.
+    const ladderEnabled =
+        process.env.VISION_LADDER !== 'off'
+        && !!process.env.GOOGLE_GENERATIVE_AI_API_KEY
+        && !input.client;
+    const opusEnabled = process.env.VISION_ESCALATION_MAX_TIER === 'opus';
+
+    const logTier = (
+        task: VisionTask, provider: string, model: string, prompt: PromptOutput,
+        outputChars: number, cost: number, taskStart: number, wasCacheHit: boolean, tier: string,
+    ): void => {
+        void logUsage({
+            sessionId: input.sessionId,
+            taskType: `visual_validator_cat_${task.category.toLowerCase()}`,
+            provider,
+            model,
+            inputChars: prompt.userText.length + prompt.systemPrompt.length,
+            outputChars,
+            latencyMs: Date.now() - taskStart,
+            estimatedCostUsd: cost,
+            fingerprintKey: `${input.conceptId}|${task.category}|${task.scope}`,
+            wasCacheHit,
+            metadata: {
+                concept_id: input.conceptId,
+                scope: task.scope,
+                panel_count: input.panelCount,
+                ladder_tier: tier,
+            },
+        });
+    };
+
+    const callAnthropic = async (prompt: PromptOutput, model: string): Promise<{ text: string; usage: MessageUsage }> => {
+        const message = await client.messages.create({
+            model,
+            max_tokens: 1500,
+            system: [{
+                type: 'text',
+                text: prompt.systemPrompt,
+                cache_control: { type: 'ephemeral' },
+            }],
+            messages: [{
+                role: 'user',
+                content: [
+                    { type: 'text', text: prompt.userText },
+                    ...prompt.images.map(b64 => ({
+                        type: 'image' as const,
+                        source: {
+                            type: 'base64' as const,
+                            media_type: 'image/png' as const,
+                            data: b64,
+                        },
+                    })),
+                ],
+            }],
+        });
+        const text = message.content
+            .filter((b): b is Anthropic.TextBlock => b.type === 'text')
+            .map(b => b.text)
+            .join('\n');
+        return { text, usage: message.usage as MessageUsage };
+    };
+
+    const callGemini = async (prompt: PromptOutput): Promise<{ text: string; cost: number }> => {
+        const result = await generateText({
+            model: google(GEMINI_MODEL),
+            system: prompt.systemPrompt,
+            messages: [{
+                role: 'user',
+                content: [
+                    { type: 'text', text: prompt.userText },
+                    ...prompt.images.map(b64 => ({
+                        type: 'image' as const,
+                        image: b64,
+                        mediaType: 'image/png' as const,
+                    })),
+                ],
+            }],
+        });
+        const inputTokens = result.usage?.inputTokens ?? 0;
+        const outputTokens = result.usage?.outputTokens ?? 0;
+        const cost = inputTokens * GEMINI_FLASH_PRICING.input + outputTokens * GEMINI_FLASH_PRICING.output;
+        return { text: result.text, cost };
+    };
+
+    const parseFor = (task: VisionTask, rawText: string): CheckResult[] =>
+        parseCategoryResponse({
+            category: task.category,
+            scope: task.scope,
+            rawText,
+            hasEpicC: input.hasEpicC,
+            hasTimingMetadata: input.hasTimingMetadata,
+        });
 
     const runOne = async (task: VisionTask): Promise<CheckResult[]> => {
         const taskStart = Date.now();
+        const prompt = buildCategoryPrompt({
+            category: task.category,
+            conceptId: input.conceptId,
+            scope: task.scope,
+            screenshots: task.screenshots,
+            context: task.context,
+            hasEpicC: input.hasEpicC,
+            hasTimingMetadata: input.hasTimingMetadata,
+        });
+
+        // ── Tier 1: Gemini Flash. A clean pass is accepted as-is; anything
+        // else (error / parse failure / any failed check) escalates to Sonnet.
+        if (ladderEnabled) {
+            try {
+                const gemini = await callGemini(prompt);
+                totalCost += gemini.cost;
+                logTier(task, 'google', GEMINI_MODEL, prompt, gemini.text.length, gemini.cost, taskStart, false, 'gemini');
+                const geminiResults = parseFor(task, gemini.text);
+                if (geminiResults.every(r => r.passed)) return geminiResults;
+            } catch {
+                // Gemini unavailable — fall through to Sonnet silently.
+            }
+        }
+
+        // ── Tier 2: Sonnet (authoritative).
         try {
-            const prompt = buildCategoryPrompt({
-                category: task.category,
-                conceptId: input.conceptId,
-                scope: task.scope,
-                screenshots: task.screenshots,
-                context: task.context,
-                hasEpicC: input.hasEpicC,
-                hasTimingMetadata: input.hasTimingMetadata,
-            });
+            const sonnetStart = Date.now();
+            const sonnet = await callAnthropic(prompt, SONNET_MODEL);
+            const sonnetCost = estimateAnthropicCostUsd(sonnet.usage, SONNET_MODEL);
+            totalCost += sonnetCost;
+            logTier(task, 'anthropic', SONNET_MODEL, prompt, sonnet.text.length, sonnetCost, sonnetStart,
+                (sonnet.usage.cache_read_input_tokens ?? 0) > 0, ladderEnabled ? 'sonnet_escalated' : 'sonnet_direct');
+            const sonnetResults = parseFor(task, sonnet.text);
 
-            const message = await client.messages.create({
-                model: 'claude-sonnet-4-6',
-                max_tokens: 1500,
-                system: [{
-                    type: 'text',
-                    text: prompt.systemPrompt,
-                    cache_control: { type: 'ephemeral' },
-                }],
-                messages: [{
-                    role: 'user',
-                    content: [
-                        { type: 'text', text: prompt.userText },
-                        ...prompt.images.map(b64 => ({
-                            type: 'image' as const,
-                            source: {
-                                type: 'base64' as const,
-                                media_type: 'image/png' as const,
-                                data: b64,
-                            },
-                        })),
-                    ],
-                }],
-            });
-
-            const text = message.content
-                .filter((b): b is Anthropic.TextBlock => b.type === 'text')
-                .map(b => b.text)
-                .join('\n');
-
-            const usage = message.usage as MessageUsage;
-            aggregateUsage.input      += usage.input_tokens;
-            aggregateUsage.output     += usage.output_tokens;
-            aggregateUsage.cacheCreate += usage.cache_creation_input_tokens ?? 0;
-            aggregateUsage.cacheRead  += usage.cache_read_input_tokens ?? 0;
-            const cost = estimateCostUsd(usage);
-            totalCost += cost;
-
-            // Best-effort usage log; never blocks
-            void logUsage({
-                sessionId: input.sessionId,
-                taskType: `visual_validator_cat_${task.category.toLowerCase()}`,
-                provider: 'anthropic',
-                model: 'claude-sonnet-4-6',
-                inputChars: prompt.userText.length + prompt.systemPrompt.length,
-                outputChars: text.length,
-                latencyMs: Date.now() - taskStart,
-                estimatedCostUsd: cost,
-                fingerprintKey: `${input.conceptId}|${task.category}|${task.scope}`,
-                wasCacheHit: (usage.cache_read_input_tokens ?? 0) > 0,
-                metadata: {
-                    concept_id: input.conceptId,
-                    scope: task.scope,
-                    panel_count: input.panelCount,
-                },
-            });
-
-            return parseCategoryResponse({
-                category: task.category,
-                scope: task.scope,
-                rawText: text,
-                hasEpicC: input.hasEpicC,
-                hasTimingMetadata: input.hasTimingMetadata,
-            });
+            // ── Tier 3 (flag-gated): Opus re-judges once when Sonnet still fails.
+            if (opusEnabled && sonnetResults.some(r => !r.passed)) {
+                try {
+                    const opusStart = Date.now();
+                    const opus = await callAnthropic(prompt, OPUS_MODEL);
+                    const opusCost = estimateAnthropicCostUsd(opus.usage, OPUS_MODEL);
+                    totalCost += opusCost;
+                    logTier(task, 'anthropic', OPUS_MODEL, prompt, opus.text.length, opusCost, opusStart,
+                        (opus.usage.cache_read_input_tokens ?? 0) > 0, 'opus_escalated');
+                    return parseFor(task, opus.text);
+                } catch {
+                    return sonnetResults; // Opus unavailable — Sonnet verdict stands.
+                }
+            }
+            return sonnetResults;
         } catch (err) {
             // On API failure, emit a synthetic failure for every check this task owned
             // so the retry loop sees actionable feedback rather than silent gaps.
@@ -321,8 +426,42 @@ function buildVisionTasks(input: BuildTasksInput): VisionTask[] {
             teacher_script: context.teacher_script,
             real_world_anchor: context.real_world_anchor,
             focal_primitive_ids: context.focal_primitive_ids,
+            // Drives the E5 carve-out: formulas delivered via TTS-synced math_show
+            // count as present even though they're absent from the silent frames.
+            tts_visual_bindings: context.tts_visual_bindings,
         },
     });
+
+    // Cat I — TTS↔visual semantic sync, per state WITH bindings only.
+    // The auto-fire path passes no bindings → no Cat I tasks → unchanged behavior.
+    if (context.tts_visual_bindings) {
+        for (const sc of stateCaptures) {
+            const stateContext = context.tts_visual_bindings[sc.state_id];
+            if (!stateContext || stateContext.bindings.length === 0) continue;
+            // Frame 0 = the base scene (I1 glow-target presence). Subsequent
+            // frames (when the harness replayed SET_MATH) each show one declared
+            // formula in the equation panel while its sentence speaks (I2).
+            const screenshots = [
+                { label: `${sc.state_id} — base scene`, pngB64: sc.panel_a_png_b64 },
+            ];
+            for (const f of sc.i2_frames ?? []) {
+                screenshots.push({
+                    label: `${sc.state_id} — equation panel while ${f.sentence_id} speaks (expects: ${f.expression})`,
+                    pngB64: f.panel_a_png_b64,
+                });
+            }
+            tasks.push({
+                category: 'I',
+                scope: sc.state_id,
+                screenshots,
+                context: {
+                    tts_bindings: stateContext.bindings,
+                    primitive_legend: stateContext.primitive_legend,
+                    has_formula_frames: (sc.i2_frames?.length ?? 0) > 0,
+                },
+            });
+        }
+    }
 
     if (isMulti) {
         // Cat F vision (F2, F3) — per state, side-by-side composite
@@ -417,5 +556,6 @@ function expectedChecksForCategory(
         case 'F': return ['F2', 'F3'];
         case 'G': return ['G1', 'G2', 'G3', 'G4', 'G5', 'G6'];
         case 'H': throw new Error('Category H is deterministic (pixelGate.ts) — never dispatched here.');
+        case 'I': return ['I1', 'I2'];
     }
 }

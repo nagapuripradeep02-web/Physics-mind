@@ -23,7 +23,8 @@ export type VisualCategory =
     | 'E'  // Pedagogical quality (act as teacher)
     | 'F'  // Panel A / Panel B bilateral sync (multi-panel only)
     | 'G'  // Panel B practical understanding (multi-panel only)
-    | 'H'; // Authoring hygiene (deterministic checks — pixelGate.ts)
+    | 'H'  // Authoring hygiene (deterministic checks — pixelGate.ts / regressionGate.ts)
+    | 'I'; // TTS–visual semantic sync (vision, requires concept-JSON tts bindings)
 
 export const CATEGORY_NAMES: Record<VisualCategory, string> = {
     A: 'Layout integrity',
@@ -34,6 +35,7 @@ export const CATEGORY_NAMES: Record<VisualCategory, string> = {
     F: 'Panel A/B bilateral sync',
     G: 'Panel B practical understanding',
     H: 'Authoring hygiene',
+    I: 'TTS–visual semantic sync',
 };
 
 // ─── Check identifiers ────────────────────────────────────────────────────────
@@ -45,16 +47,18 @@ export type VisualCheckId =
     | 'B1' | 'B2' | 'B3' | 'B4' | 'B5' | 'B6' | 'B7'
     // Category C — Choreography correctness
     | 'C1' | 'C2' | 'C3' | 'C4' | 'C5'
-    // Category D — Animation correctness
-    | 'D1' | 'D1p' | 'D2' | 'D3' | 'D4'
+    // Category D — Animation correctness (D5–D7 = dense adjacent-frame, pixelGate)
+    | 'D1' | 'D1p' | 'D2' | 'D3' | 'D4' | 'D5' | 'D6' | 'D7'
     // Category E — Pedagogical quality
     | 'E1' | 'E2' | 'E3' | 'E4' | 'E5' | 'E6'
     // Category F — Panel A/B bilateral sync
     | 'F1' | 'F2' | 'F3' | 'F4'
     // Category G — Panel B practical understanding
     | 'G1' | 'G2' | 'G3' | 'G4' | 'G5' | 'G6'
-    // Category H — Authoring hygiene (pixelGate)
-    | 'H1';
+    // Category H — Authoring hygiene (pixelGate / regressionGate)
+    | 'H1' | 'H2'
+    // Category I — TTS–visual semantic sync
+    | 'I1' | 'I2';
 
 // ─── Bug-class taxonomy (mirrors engine_bug_queue migration) ──────────────────
 
@@ -85,6 +89,9 @@ export type BugClass =
     | 'ANIMATION_JITTER'
     | 'ANIMATION_TIMING_DRIFT'
     | 'ANIMATION_STUCK'
+    | 'ANIMATION_NO_MOTION'
+    | 'ANIMATION_TELEPORT_PIXEL'
+    | 'ANIMATION_STUCK_TAIL'
     // Category E
     | 'PEDAGOGY_CONCEPT_UNCLEAR'
     | 'PEDAGOGY_NO_FOCAL'
@@ -104,9 +111,13 @@ export type BugClass =
     | 'DUALPANEL_NO_TRACE'
     | 'DUALPANEL_LIVEDOT_OFF_GRAPH'
     | 'DUALPANEL_NO_LEGEND'
-    // Category H — pixelGate deterministic checks
+    // Category H — pixelGate / regressionGate deterministic checks
     | 'TEMPLATE_LEAK'
-    | 'ANIMATION_NO_PLAYBACK_PIXEL';
+    | 'ANIMATION_NO_PLAYBACK_PIXEL'
+    | 'VISUAL_REGRESSION'
+    // Category I — TTS–visual semantic sync
+    | 'TTS_GLOW_TARGET_MISSING'
+    | 'TTS_MATH_NOT_RENDERED';
 
 // ─── Check spec ───────────────────────────────────────────────────────────────
 
@@ -269,6 +280,26 @@ export const VISUAL_CHECKS: Record<VisualCheckId, VisualCheckSpec> = {
         passCriterion: 'Sim does not freeze on the same frame for more than 3 seconds mid-state (would indicate render crash).',
         bugClass: 'ANIMATION_STUCK',
     },
+    // D5–D7 are pixel-resolved from dense adjacent-frame capture (per state,
+    // ~1s spacing). They never enter vision prompts.
+    D5: {
+        id: 'D5', category: 'D', name: 'Dense motion present',
+        passCriterion: 'When the state declares motion (trajectory_mode ≠ static / advance_mode auto_after_animation), at least one adjacent dense-frame pair differs by ≥ 0.5% of pixels. Skipped when motion expectation is unknown.',
+        bugClass: 'ANIMATION_NO_MOTION',
+        validationMethod: 'pixel',
+    },
+    D6: {
+        id: 'D6', category: 'D', name: 'No mid-state pixel teleport',
+        passCriterion: 'No adjacent dense-frame pair diff exceeds max(20%, 8× the median pair diff) — a spike means a mid-state visual discontinuity.',
+        bugClass: 'ANIMATION_TELEPORT_PIXEL',
+        validationMethod: 'pixel',
+    },
+    D7: {
+        id: 'D7', category: 'D', name: 'No stuck tail',
+        passCriterion: 'The last 3+ adjacent dense pairs are not all frozen (< 0.5% diff) while earlier pairs showed motion — a frozen tail means the animation died mid-state.',
+        bugClass: 'ANIMATION_STUCK_TAIL',
+        validationMethod: 'pixel',
+    },
 
     // ── Category E — Pedagogical quality ─────────────────────────────────────
     E1: {
@@ -376,6 +407,26 @@ export const VISUAL_CHECKS: Record<VisualCheckId, VisualCheckSpec> = {
         passCriterion: 'No rendered text contains unsubstituted {var} or {expr.toFixed(N)} PCPL placeholders. Verified via DOM scan in screenshotter.ts and OCR backstop on canvas-rendered text.',
         bugClass: 'TEMPLATE_LEAK',
         validationMethod: 'ocr',
+    },
+    H2: {
+        id: 'H2', category: 'H', name: 'Visual regression vs approved baseline',
+        passCriterion: 'Each state render pixelmatches its approved baseline in visual_baselines/<concept_id>/ within tolerance (default 2%). Skipped when no baseline is approved or the state is excluded (compare:false for animated states).',
+        bugClass: 'VISUAL_REGRESSION',
+        validationMethod: 'pixel',
+    },
+
+    // ── Category I — TTS–visual semantic sync (vision) ───────────────────────
+    // Runs only when the concept JSON provides tts_sentences bindings (glow /
+    // math_show). The auto-fire path passes no bindings → category dormant.
+    I1: {
+        id: 'I1', category: 'I', name: 'Glow target present on screen',
+        passCriterion: 'Every tts_sentence glow target in this state corresponds to a visible, identifiable element in the rendered state. Judge PRESENCE only — never glow brightness (the 1.8s pulse means any captured instant can be mid-pulse).',
+        bugClass: 'TTS_GLOW_TARGET_MISSING',
+    },
+    I2: {
+        id: 'I2', category: 'I', name: 'Declared math is rendered',
+        passCriterion: 'Every math_show expression declared by a tts_sentence in this state is visibly rendered somewhere on screen. Vacuous pass when no sentence declares math_show.',
+        bugClass: 'TTS_MATH_NOT_RENDERED',
     },
 };
 

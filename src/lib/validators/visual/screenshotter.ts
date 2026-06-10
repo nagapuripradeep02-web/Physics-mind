@@ -37,6 +37,39 @@ export interface CaptureRequest {
     viewport?: { width: number; height: number };
     /** Per-step timeout in ms. Defaults to 5000. */
     perStateTimeoutMs?: number;
+    /**
+     * Dense per-second frame capture for EVERY state (adjacent-frame motion
+     * analysis: D5/D6/D7 in pixelGate). Opt-in — the generation-time auto-fire
+     * path never sets this, so its latency/cost profile is unchanged.
+     */
+    dense?: DenseCaptureOptions;
+    /**
+     * Per-state ordered TTS math_show replay sequence (Category I2). The headless
+     * capture never drives TTS, so KaTeX equation panels that the TeacherPlayer
+     * shows via SET_MATH are absent from the normal frame — which made I2
+     * false-positive on every TTS-synced formula. When set, the harness replays
+     * each math_show via SET_MATH (applying persist) and snapshots the equation
+     * panel per formula into StateCapture.i2_frames. Opt-in — auto-fire never
+     * sets it, so its behavior is unchanged.
+     */
+    ttsMathByState?: Record<string, TtsMathStepInput[]>;
+}
+
+export interface TtsMathStepInput {
+    sentence_id: string;
+    /** LaTeX expression posted via SET_MATH. */
+    math_show: string;
+    /** persist flag (append vs replace) passed to SET_MATH. */
+    math_persist: boolean;
+}
+
+export interface DenseCaptureOptions {
+    /** Interval between dense frames. Default 1000ms. */
+    intervalMs?: number;
+    /** Per-state capture duration in ms (clamped 3000–15000). Default 10000. */
+    durationMsByState?: Record<string, number>;
+    /** Safety cap on frames per state. Default 15. */
+    maxFramesPerState?: number;
 }
 
 export interface StateCapture {
@@ -45,6 +78,21 @@ export interface StateCapture {
     panel_b_png_b64?: string;
     /** Side-by-side composite for Cat F vision prompts. */
     combined_png_b64?: string;
+    /**
+     * Category I2 per-formula frames — one panel-A snapshot per declared
+     * math_show sentence, captured while that formula is on screen (SET_MATH
+     * replayed by the harness). Present only when CaptureRequest.ttsMathByState
+     * was set for this state. Lets the vision model confirm each formula renders
+     * in the frame where the student actually sees it.
+     */
+    i2_frames?: I2Frame[];
+}
+
+export interface I2Frame {
+    sentence_id: string;
+    /** The LaTeX expression that should be visible in this frame. */
+    expression: string;
+    panel_a_png_b64: string;
 }
 
 export interface TimingMeasurement {
@@ -75,6 +123,18 @@ export interface AnimationTimeseries {
     capture_times_ms: number[];
 }
 
+export interface DenseTimeseries {
+    state_id: string;
+    /** Base64 PNGs at ~intervalMs spacing across the state's duration. */
+    frames_b64: string[];
+    /**
+     * ACTUAL capture timestamps (ms relative to series start). Playwright
+     * screenshot latency makes nominal offsets drift — consumers must use
+     * these, never assume uniform spacing.
+     */
+    capture_times_ms: number[];
+}
+
 export interface TemplateLeakFinding {
     state_id: string;
     panel: PanelName;
@@ -87,6 +147,8 @@ export interface CaptureResult {
     timings: TimingMeasurement[];
     param_relay: ParamRelayMeasurement;
     animation_timeseries?: AnimationTimeseries;
+    /** Per-state dense frame series — present only when CaptureRequest.dense was set. */
+    dense_timeseries?: DenseTimeseries[];
     /**
      * H1 (template substitution leak) — DOM-scan findings collected per state per panel.
      * Inline scan inside the capture loop. Empty array = no leaks via DOM path
@@ -211,6 +273,7 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
         const stateCaptures: StateCapture[] = [];
         const timings: TimingMeasurement[] = [];
         const templateLeakDomFindings: TemplateLeakFinding[] = [];
+        const denseTimeseries: DenseTimeseries[] = [];
         for (const stateId of req.stateIds) {
             const timing = await driveToState(page, stateId, hasPanelB, perStateTimeoutMs);
             timings.push(timing);
@@ -236,6 +299,38 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             if (hasPanelB) {
                 const bLeaks = await scanLeaksInFrame(page, 'panel_b');
                 for (const txt of bLeaks) templateLeakDomFindings.push({ state_id: stateId, panel: 'panel_b', sample_text: txt });
+            }
+
+            // Dense series — the state is already active here, so capture in place.
+            // Runs BEFORE the I2 math replay so motion frames stay free of the
+            // equation panel (which would otherwise register as a first-frame diff).
+            if (req.dense) {
+                try {
+                    denseTimeseries.push(await captureDenseSeries(page, stateId, req.dense));
+                } catch (err) {
+                    warnings.push(`Dense capture failed for ${stateId}: ${err instanceof Error ? err.message : String(err)}`);
+                }
+            }
+
+            // Category I2 — replay this state's TTS math_show sequence so the
+            // KaTeX equation panel renders, and snapshot per formula. The headless
+            // capture never drives TTS, so without this the panel is always blank
+            // and I2 false-positives on every TTS-synced formula.
+            const mathSteps = req.ttsMathByState?.[stateId];
+            if (mathSteps && mathSteps.length > 0) {
+                try {
+                    const frames = await captureI2Frames(page, mathSteps);
+                    if (frames.length > 0) {
+                        const target = stateCaptures.find(c => c.state_id === stateId);
+                        if (target) target.i2_frames = frames;
+                    }
+                } catch (err) {
+                    warnings.push(`I2 math capture failed for ${stateId}: ${err instanceof Error ? err.message : String(err)}`);
+                } finally {
+                    // Clear the panel so the next state / animation time-series
+                    // is not polluted by leftover equation lines.
+                    await postMathToPanelA(page, null, false);
+                }
             }
         }
 
@@ -263,6 +358,7 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             timings,
             param_relay: paramRelay,
             animation_timeseries: animationTimeseries,
+            dense_timeseries: req.dense ? denseTimeseries : undefined,
             template_leak_dom_findings: templateLeakDomFindings,
             warnings,
         };
@@ -339,6 +435,44 @@ async function readStateReached(page: Page, frameName: PanelName, stateId: strin
     }
 }
 
+/** Post a SET_MATH message to Panel A (drives the renderer's equation panel). */
+async function postMathToPanelA(page: Page, expression: string | null, persist: boolean): Promise<void> {
+    try {
+        await page.evaluate(({ expr, p }) => {
+            const w = window as unknown as { __postToPanel?: (panel: string, msg: unknown) => void };
+            w.__postToPanel?.('A', { type: 'SET_MATH', expression: expr, persist: p });
+        }, { expr: expression, p: persist });
+    } catch {
+        // Non-fatal — the caller surfaces a warning if frames end up empty.
+    }
+}
+
+/**
+ * Replay a state's math_show sequence and snapshot Panel A after each formula.
+ * Each step posts SET_MATH (applying its persist flag, exactly like the
+ * TeacherPlayer), waits for KaTeX render + the 280ms fade-in, then captures.
+ * The panel is reset before the sequence so prior states don't bleed in.
+ */
+async function captureI2Frames(page: Page, steps: TtsMathStepInput[]): Promise<I2Frame[]> {
+    const frames: I2Frame[] = [];
+    // Start from a clean panel so a persist chain accumulates exactly as it
+    // would live (replace clears it; append builds on the prior lines).
+    await postMathToPanelA(page, null, false);
+    await page.waitForTimeout(60);
+    for (const step of steps) {
+        await postMathToPanelA(page, step.math_show, step.math_persist);
+        // KaTeX render is synchronous; the equation_line fade-in is 280ms.
+        await page.waitForTimeout(360);
+        const png = await captureIframe(page, 'panel_a');
+        frames.push({
+            sentence_id: step.sentence_id,
+            expression: step.math_show,
+            panel_a_png_b64: png.toString('base64'),
+        });
+    }
+    return frames;
+}
+
 async function captureIframe(page: Page, frameName: PanelName): Promise<Buffer> {
     const locator = page.locator(`#${frameName}`);
     return await locator.screenshot({ type: 'png' });
@@ -403,6 +537,40 @@ async function composeSideBySide(left: Buffer, right: Buffer): Promise<Buffer> {
 }
 
 const KEYFRAME_OFFSETS_MS = [0, 2500, 5000, 7500, 10000];
+
+const DENSE_DEFAULT_INTERVAL_MS = 1000;
+const DENSE_DEFAULT_DURATION_MS = 10000;
+const DENSE_MIN_DURATION_MS = 3000;
+const DENSE_MAX_DURATION_MS = 15000;
+const DENSE_DEFAULT_MAX_FRAMES = 15;
+
+/**
+ * Capture a dense frame series for the CURRENT state (caller has already
+ * driven the page to `stateId`). Panel A only — motion analysis targets the
+ * primary simulation canvas.
+ */
+async function captureDenseSeries(
+    page: Page, stateId: string, opts: DenseCaptureOptions,
+): Promise<DenseTimeseries> {
+    const intervalMs = opts.intervalMs ?? DENSE_DEFAULT_INTERVAL_MS;
+    const rawDuration = opts.durationMsByState?.[stateId] ?? DENSE_DEFAULT_DURATION_MS;
+    const durationMs = Math.min(DENSE_MAX_DURATION_MS, Math.max(DENSE_MIN_DURATION_MS, rawDuration));
+    const maxFrames = opts.maxFramesPerState ?? DENSE_DEFAULT_MAX_FRAMES;
+    const frameCount = Math.min(maxFrames, Math.floor(durationMs / intervalMs) + 1);
+
+    const start = Date.now();
+    const frames: string[] = [];
+    const captureTimes: number[] = [];
+    for (let i = 0; i < frameCount; i++) {
+        const targetMs = start + i * intervalMs;
+        const wait = Math.max(0, targetMs - Date.now());
+        if (wait > 0) await page.waitForTimeout(wait);
+        const png = await captureIframe(page, 'panel_a');
+        frames.push(png.toString('base64'));
+        captureTimes.push(Date.now() - start);
+    }
+    return { state_id: stateId, frames_b64: frames, capture_times_ms: captureTimes };
+}
 
 async function captureAnimationTimeseries(
     page: Page, stateId: string, hasPanelB: boolean, timeoutMs: number,

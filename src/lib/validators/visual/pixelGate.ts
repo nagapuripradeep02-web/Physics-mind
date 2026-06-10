@@ -4,6 +4,9 @@
  * Runs in parallel with the Sonnet vision gate. Emits CheckResult[] for the
  * pixel/ocr methods declared in spec.ts:
  *   - D1p (pixel): pixelmatch first vs last animation frame
+ *   - D5/D6/D7 (pixel): adjacent dense-frame motion analysis per state —
+ *                  no-motion / mid-state teleport / stuck-tail. Run only when
+ *                  the capture carried dense_timeseries (visual:eyes, --dense).
  *   - H1  (ocr):   tesseract OCR backstop for {var} template leaks rendered
  *                  into canvas/SVG (DOM-scan path lives in screenshotter.ts)
  *
@@ -14,7 +17,7 @@ import { Buffer } from 'node:buffer';
 import pixelmatch from 'pixelmatch';
 import sharp from 'sharp';
 import { createWorker, type Worker } from 'tesseract.js';
-import type { CaptureResult, TemplateLeakFinding } from './screenshotter';
+import type { CaptureResult, DenseTimeseries, TemplateLeakFinding } from './screenshotter';
 import type { CheckResult, VisualCheckId } from './spec';
 import { VISUAL_CHECKS } from './spec';
 
@@ -24,6 +27,12 @@ export interface RunPixelGateInput {
     conceptId: string;
     capture: CaptureResult;
     panelCount: number;
+    /**
+     * Per-state declared-motion map (deriveMotionExpectations). D5 enforces
+     * only on `true`; `false`/`undefined` → skip. Optional — without it the
+     * dense checks still run D6/D7 (teleport/stuck-tail need no declaration).
+     */
+    expectsMotion?: Record<string, boolean | undefined>;
 }
 
 export interface PixelGateResult {
@@ -37,6 +46,17 @@ export interface PixelGateResult {
 const D1P_DIFF_THRESHOLD_RATIO = 0.30; // ≥30% pixels must differ — mirrors D1
 const PIXELMATCH_OPTIONS = { threshold: 0.1, includeAA: false } as const;
 
+// Dense adjacent-frame motion analysis (D5/D6/D7)
+// Calibrated on magnetic_force_moving_charge (field_3d, 2026-06-10 first real
+// run): a truly frozen canvas diffs ~0.00–0.05%/s; a small orbiting particle
+// on a mostly-static 3D scene diffs 0.23–0.61%/s. 0.1% separates the two
+// cleanly. (The original 0.5% guess false-failed every small-particle state.)
+const DENSE_MOTION_EPSILON = 0.001;       // <0.1% adjacent diff = "frozen" pair
+const DENSE_TELEPORT_ABS_RATIO = 0.20;    // spike floor: 20% of pixels
+const DENSE_TELEPORT_MEDIAN_FACTOR = 8;   // spike: >8x the median pair diff
+const DENSE_TELEPORT_MIN_MEDIAN = 0.001;  // median must be real motion, not noise
+const DENSE_STUCK_TAIL_PAIRS = 3;         // ≥3 trailing frozen pairs = stuck tail
+
 // Tesseract template-leak literal characters to search for in OCR output.
 // Conservative — false positives on legitimate `{` text are acceptable since
 // physics simulations almost never render literal braces.
@@ -49,7 +69,30 @@ export async function runPixelGate(input: RunPixelGateInput): Promise<PixelGateR
     const results: CheckResult[] = [];
 
     // D1p — animation pixel-change check (async: sharp decode is async)
-    results.push(await buildD1pResult(input.capture));
+    let d1p = await buildD1pResult(input.capture);
+
+    // D5/D6/D7 — adjacent dense-frame motion analysis (only when dense capture ran)
+    const denseMaxDiffByState = new Map<string, number>();
+    for (const series of input.capture.dense_timeseries ?? []) {
+        const dense = await runDenseChecks(series, input.expectsMotion?.[series.state_id]);
+        results.push(...dense.results);
+        if (dense.maxDiff !== undefined) denseMaxDiffByState.set(series.state_id, dense.maxDiff);
+    }
+
+    // Cyclic-path correction (calibrated 2026-06-10 on magnetic_force_moving_charge):
+    // D1p compares FIRST vs LAST frame, so a periodic orbit that returns to phase
+    // false-fails as "static". When the dense series for the same state proves
+    // motion (max adjacent diff ≥ epsilon), the dense evidence is strictly better
+    // — D1p's purpose is catching static images, and this image demonstrably moves.
+    const d1pStateId = input.capture.animation_timeseries?.state_id;
+    if (!d1p.passed && d1pStateId !== undefined) {
+        const denseMax = denseMaxDiffByState.get(d1pStateId);
+        if (denseMax !== undefined && denseMax >= DENSE_MOTION_EPSILON) {
+            d1p = mkResult('D1p', d1p.state_id, true,
+                `OK — first/last frames similar (cyclic path returning to phase), but dense adjacent frames prove motion: max ${(denseMax * 100).toFixed(2)}%/s ≥ ${(DENSE_MOTION_EPSILON * 100).toFixed(1)}%.`);
+        }
+    }
+    results.unshift(d1p);
 
     // H1 — template substitution leak (DOM findings + OCR backstop)
     const h1Results = await runH1Checks(input.capture);
@@ -110,6 +153,100 @@ async function runD1pDiff(
         return mkResult('D1p', `TIMESERIES@${stateId}`, true,
             `Skipped — pixel decode failed: ${err instanceof Error ? err.message : String(err)}`);
     }
+}
+
+// ─── D5/D6/D7 — adjacent dense-frame motion analysis ──────────────────────────
+
+/**
+ * Compute adjacent-pair pixel-diff ratios for one state's dense series, then
+ * evaluate the three motion checks against the diff profile:
+ *   D5 no-motion:   expectsMotion=true but max(diffs) < epsilon
+ *   D6 teleport:    one pair spikes way above the median (mid-state jump)
+ *   D7 stuck tail:  trailing frozen pairs after earlier motion (animation died)
+ */
+async function runDenseChecks(
+    series: DenseTimeseries,
+    expectsMotion: boolean | undefined,
+): Promise<{ results: CheckResult[]; maxDiff?: number }> {
+    const stateId = series.state_id;
+    if (series.frames_b64.length < 3) {
+        return {
+            results: (['D5', 'D6', 'D7'] as const).map(id =>
+                mkResult(id, stateId, true, `Skipped — dense series has ${series.frames_b64.length} frames (<3).`)),
+        };
+    }
+
+    let diffs: number[];
+    try {
+        diffs = await adjacentDiffRatios(series.frames_b64);
+    } catch (err) {
+        const why = `Skipped — dense frame decode failed: ${err instanceof Error ? err.message : String(err)}`;
+        return { results: (['D5', 'D6', 'D7'] as const).map(id => mkResult(id, stateId, true, why)) };
+    }
+
+    const times = series.capture_times_ms;
+    const pairLabel = (i: number): string => `t=${times[i] ?? '?'}ms→t=${times[i + 1] ?? '?'}ms`;
+    const maxDiff = Math.max(...diffs);
+    const med = median(diffs);
+    const profile = diffs.map((d, i) => `${pairLabel(i)}: ${(d * 100).toFixed(2)}%`).join(' | ');
+    const results: CheckResult[] = [];
+
+    // D5 — declared motion must be visible
+    if (expectsMotion === true) {
+        const passed = maxDiff >= DENSE_MOTION_EPSILON;
+        results.push(mkResult('D5', stateId, passed, passed
+            ? `OK — motion visible: max adjacent diff ${(maxDiff * 100).toFixed(2)}% (≥${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% required). Profile: ${profile}`
+            : `State declares motion but pixels never move: max adjacent diff ${(maxDiff * 100).toFixed(2)}% (<${(DENSE_MOTION_EPSILON * 100).toFixed(1)}%) across ${diffs.length} pairs. The animation loop is not driving the declared trajectory. Profile: ${profile}`));
+    } else {
+        results.push(mkResult('D5', stateId, true,
+            `Skipped — motion expectation ${expectsMotion === false ? 'declared static' : 'unknown'} for ${stateId}.`));
+    }
+
+    // D6 — no mid-state pixel teleport
+    const teleportThreshold = Math.max(DENSE_TELEPORT_ABS_RATIO, DENSE_TELEPORT_MEDIAN_FACTOR * med);
+    const spikeIdx = med > DENSE_TELEPORT_MIN_MEDIAN
+        ? diffs.findIndex(d => d > teleportThreshold)
+        : -1;
+    results.push(mkResult('D6', stateId, spikeIdx === -1, spikeIdx === -1
+        ? `OK — no adjacent pair exceeds max(20%, 8×median=${(DENSE_TELEPORT_MEDIAN_FACTOR * med * 100).toFixed(2)}%). Profile: ${profile}`
+        : `Mid-state pixel teleport at ${pairLabel(spikeIdx)}: ${(diffs[spikeIdx] * 100).toFixed(1)}% of pixels changed in one ~1s step (median pair diff ${(med * 100).toFixed(2)}%). Something jumped/reset mid-state. Profile: ${profile}`));
+
+    // D7 — no stuck tail after earlier motion
+    const tail = diffs.slice(-DENSE_STUCK_TAIL_PAIRS);
+    const earlier = diffs.slice(0, -DENSE_STUCK_TAIL_PAIRS);
+    const tailFrozen = tail.length >= DENSE_STUCK_TAIL_PAIRS && tail.every(d => d < DENSE_MOTION_EPSILON);
+    const earlierMoved = earlier.some(d => d >= DENSE_MOTION_EPSILON);
+    const stuck = tailFrozen && earlierMoved;
+    results.push(mkResult('D7', stateId, !stuck, !stuck
+        ? `OK — no frozen tail (last ${tail.length} pairs not all <${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% after earlier motion). Profile: ${profile}`
+        : `Animation died mid-state: last ${DENSE_STUCK_TAIL_PAIRS} adjacent pairs all <${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% diff while earlier pairs showed motion (max ${(Math.max(...earlier) * 100).toFixed(2)}%). Likely a render-loop exception or trajectory time-clamp. Profile: ${profile}`));
+
+    return { results, maxDiff };
+}
+
+/** Decode the series once, then pixelmatch each adjacent pair. */
+async function adjacentDiffRatios(framesB64: string[]): Promise<number[]> {
+    const decoded = await Promise.all(framesB64.map(decodeRgba));
+    const diffs: number[] = [];
+    for (let i = 0; i < decoded.length - 1; i++) {
+        const a = decoded[i];
+        const b = decoded[i + 1];
+        if (a.width !== b.width || a.height !== b.height) {
+            // Dimension drift mid-series — treat as identical (skip-friendly).
+            diffs.push(0);
+            continue;
+        }
+        const diffPx = pixelmatch(a.data, b.data, undefined, a.width, a.height, PIXELMATCH_OPTIONS);
+        diffs.push(diffPx / (a.width * a.height));
+    }
+    return diffs;
+}
+
+function median(values: number[]): number {
+    if (values.length === 0) return 0;
+    const sorted = [...values].sort((x, y) => x - y);
+    const mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 === 0 ? (sorted[mid - 1] + sorted[mid]) / 2 : sorted[mid];
 }
 
 // ─── H1 — template leak (DOM findings + OCR backstop) ─────────────────────────

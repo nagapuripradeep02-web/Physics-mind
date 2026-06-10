@@ -81,6 +81,8 @@ OUTPUT RULES (apply to every response):
    - For pedagogy: what concept was unclear and why a Class 11 student would miss it.
 4. Vague failure evidence ("looks bad", "seems off", "not great") is forbidden — return passed=true if you cannot cite specifics.
 5. If the screenshot is unreadable or missing, return passed=true with evidence="screenshot unavailable" — do NOT guess failures.
+6. The response MUST start with "{" and end with "}". Output nothing after the closing brace — no notes, no summary.
+7. evidence is a JSON string: escape every backslash as \\\\ and every inner double-quote as \\". Prefer plain text — write formulas WITHOUT LaTeX (e.g. "F = qvB sin(theta)", not "F = qvB \\sin\\theta") to avoid escape errors.
 `.trim();
 
 const PASS_ON_DOUBT = `When evidence is borderline or unclear, return passed=true. The validator's bias is "ship if not clearly broken" — not "ship only if clearly perfect".`;
@@ -310,9 +312,13 @@ ${checkLine('E6')}
 
 E1 IS GRADED: return one of "yes" / "partially" / "no". Only "no" counts as failure (yes and partially both pass).
 
+DELIVERY MODEL (read before judging E3 and E5) — this simulation is narrated. The default student experience has TTS sound ON. Content delivered through narration + its synced overlays IS delivered to the student, even though the silent static screenshots do not show it:
+- E3 (Indian anchor): PASS when a substantive Indian-context anchor is DECLARED in the JSON metadata above (it is woven into the narration the student hears). Do NOT fail E3 merely because the anchor is not drawn as a sketch/label on the 3D canvas. Fail E3 ONLY if NO anchor is declared, or the declared anchor is generic/Western.
+- E5 (formula on screen): a formula listed in "Formulas delivered via TTS-synced equation panel (math_show)" above renders in the equation panel while its sentence is spoken (Category I2 confirms this directly). Treat such a formula as PRESENT at the state where it is referenced. Do NOT fail E5 for a formula that is declared as math_show for that state. Fail E5 ONLY if a verbally-referenced formula is neither shown on canvas NOR declared as a math_show for any state.
+
 ${SHARED_OUTPUT_RULES}
 
-INDIAN CONTEXT NOTE: real-world anchors are things like Mumbai local trains, Manali highway turns, Diwali fireworks, IIT-JEE exam scenarios. Generic Western examples (Boston subway, German autobahn) do NOT count as anchors.`;
+INDIAN CONTEXT NOTE: real-world anchors are things like Mumbai local trains, Manali highway turns, Diwali fireworks, IIT-JEE exam scenarios, ISRO/BARC/cyclotron references. Generic Western examples (Boston subway, German autobahn) do NOT count as anchors.`;
 
 const SYSTEM_E_WITH_EPICC = `${SYSTEM_E_BASE}
 ${checkLine('E4')}${SYSTEM_E_BODY}
@@ -342,17 +348,35 @@ JSON SCHEMA (E4 is intentionally omitted because epic_c_branches was not authore
 
 ${PASS_ON_DOUBT}`;
 
+/** Per-state list of declared math_show formulas, for the storyboard E5 carve-out. */
+function summarizeTtsMathShown(bindings: unknown): string {
+    if (!bindings || typeof bindings !== 'object') return '  (none declared)';
+    const lines: string[] = [];
+    for (const [stateId, ctx] of Object.entries(bindings as Record<string, unknown>)) {
+        const list = (ctx as { bindings?: Array<{ math_show?: string }> })?.bindings ?? [];
+        const formulas = list.map(b => b.math_show).filter((m): m is string => typeof m === 'string' && m.length > 0);
+        if (formulas.length > 0) lines.push(`  ${stateId}: ${formulas.join('  |  ')}`);
+    }
+    return lines.length > 0 ? lines.join('\n') : '  (none declared)';
+}
+
 function buildPedagogyPrompt(input: PromptInput): PromptOutput {
     const includeEpicC = input.hasEpicC === true;
     const teacherScript = JSON.stringify(input.context?.teacher_script ?? {}, null, 2);
     const anchor = JSON.stringify(input.context?.real_world_anchor ?? null);
     const focalIds = JSON.stringify(input.context?.focal_primitive_ids ?? {}, null, 2);
+    const ttsMathShown = summarizeTtsMathShown(input.context?.tts_visual_bindings);
     const screenshotList = input.screenshots.map((s, i) => `Image ${i + 1}: ${s.label}`).join('\n');
     const userText = `Concept: ${input.conceptId}
 Scope: ${input.scope} (full storyboard)
 
 Real-world anchor declared in JSON metadata: ${anchor}
 focal_primitive_id per state: ${focalIds}
+
+Formulas delivered via TTS-synced equation panel (math_show) per state — these
+render in the equation panel WHILE the narration speaks them (default sound-on
+experience; separately confirmed present by Category I2):
+${ttsMathShown}
 
 Teacher script across all states:
 \`\`\`json
@@ -473,6 +497,74 @@ The image below is Panel B alone. Check G1-G6 and return JSON.`;
     };
 }
 
+// ─── Category I — TTS–visual semantic sync ────────────────────────────────────
+
+const SYSTEM_I = `You are a narration-visual coherence reviewer for physics teaching simulations.
+Each teaching state has spoken TTS sentences. Some sentences declare a "glow" target — the id of a scene element the renderer pulse-highlights while the sentence speaks. Some declare "math_show" — a formula the equation panel must display.
+Your job: inspect the screenshot(s) of a state and verify the narration's visual promises are kept.
+
+You may be given MORE THAN ONE image. A "FRAME MANIFEST" in the user message lists each image in order with its label:
+- Image 1 is always the BASE SCENE (no equation panel forced) — judge I1 from this image.
+- Any IMAGES AFTER the first are EQUATION-PANEL FRAMES: the harness drove the renderer to display ONE declared math_show formula per frame (because the headless capture does not play TTS, the equation panel is otherwise blank). Each such frame's label names the exact formula it should show. Judge I2 from these per-formula frames.
+- If only ONE image is given, judge BOTH I1 and I2 from it (legacy single-frame mode).
+
+THE CHECKS:
+${checkLine('I1')}
+${checkLine('I2')}
+
+CRITICAL JUDGING RULES:
+- I1 judges PRESENCE ONLY: is the element each glow target names visible and identifiable in the BASE SCENE image? You are given a primitive legend mapping target ids to what they look like (e.g., "v" = the orange velocity arrow, "b" = the blue field grid, "hand" = the 3D right-hand mesh).
+- NEVER judge glow brightness, pulsing, or highlight intensity — the glow pulses on a 1.8-second cycle, so the captured instant can be anywhere in the pulse. An un-glowed but PRESENT element passes.
+- I2: every declared math_show formula must be visibly rendered (typeset in the equation panel/overlay, or as readable text). When per-formula equation-panel frames are provided, check each formula in ITS OWN labelled frame — the formula is rendered there if the equation panel shows that expression (KaTeX-typeset OR plain-text are both acceptable; you are confirming it RENDERS, not its typography). When NO sentence in this state declares math_show, return passed=true with evidence "no math_show declared".
+- Do NOT fail I2 merely because a formula is absent from the BASE SCENE image — TTS-synced formulas only appear in their dedicated equation-panel frames.
+
+${SHARED_OUTPUT_RULES}
+
+JSON SCHEMA:
+{
+  "I1": { "passed": boolean, "evidence": string },
+  "I2": { "passed": boolean, "evidence": string }
+}
+
+${PASS_ON_DOUBT}`;
+
+function buildTtsSyncPrompt(input: PromptInput): PromptOutput {
+    const bindings = JSON.stringify(input.context?.tts_bindings ?? [], null, 2);
+    const legend = JSON.stringify(input.context?.primitive_legend ?? [], null, 2);
+    const hasFormulaFrames = input.context?.has_formula_frames === true;
+    const manifest = input.screenshots
+        .map((s, i) => `  Image ${i + 1}: ${s.label}`)
+        .join('\n');
+    const i2Guidance = hasFormulaFrames
+        ? `I2: check each declared math_show in its OWN equation-panel frame (Images 2+, labelled with the expected formula). The base scene (Image 1) intentionally has no equation panel.`
+        : `I2: check each declared math_show is visibly rendered in the image.`;
+    const userText = `Concept: ${input.conceptId}
+Scope: ${input.scope}
+
+FRAME MANIFEST (images are provided in this order):
+${manifest}
+
+TTS sentences for this state (text + glow target(s) + optional math_show):
+\`\`\`json
+${bindings}
+\`\`\`
+
+Primitive legend (what each glow target id looks like on screen):
+\`\`\`json
+${legend}
+\`\`\`
+
+I1: from the BASE SCENE (Image 1), is each glow target present and identifiable?
+${i2Guidance}
+Return JSON.`;
+    return {
+        systemPrompt: SYSTEM_I,
+        userText,
+        images: input.screenshots.map(s => s.pngB64),
+        expectedChecks: ['I1', 'I2'],
+    };
+}
+
 // ─── Public router ────────────────────────────────────────────────────────────
 
 export function buildCategoryPrompt(input: PromptInput): PromptOutput {
@@ -485,6 +577,7 @@ export function buildCategoryPrompt(input: PromptInput): PromptOutput {
         case 'F': return buildPanelSyncPrompt(input);
         case 'G': return buildPanelBGraphPrompt(input);
         case 'H': throw new Error('Category H is deterministic (pixelGate.ts) — must not be dispatched to vision.');
+        case 'I': return buildTtsSyncPrompt(input);
     }
 }
 
@@ -539,6 +632,10 @@ const panelGraphResponseSchema = z.object({
     G4: baseCheck, G5: baseCheck, G6: baseCheck,
 });
 
+const ttsSyncResponseSchema = z.object({
+    I1: baseCheck, I2: baseCheck,
+});
+
 // ─── Response parser ──────────────────────────────────────────────────────────
 
 export interface ParseInput {
@@ -559,6 +656,46 @@ function stripJsonFences(raw: string): string {
         .replace(/^```\s*/, '')
         .replace(/```\s*$/, '')
         .trim();
+}
+
+/**
+ * Extract the first balanced top-level JSON object from a model response,
+ * tolerating leading or trailing prose (e.g. "Here is my analysis: {…}. Note…").
+ * Scans with string-literal awareness so braces inside evidence strings — and
+ * backslash escapes, even invalid ones — don't end the object early. Returns the
+ * input unchanged when no opening brace is found (lets JSON.parse report cleanly).
+ */
+function extractJsonObject(raw: string): string {
+    const start = raw.indexOf('{');
+    if (start < 0) return raw;
+    let depth = 0;
+    let inString = false;
+    for (let i = start; i < raw.length; i++) {
+        const ch = raw[i];
+        if (inString) {
+            if (ch === '\\') { i++; continue; } // skip the escaped char (valid or not)
+            if (ch === '"') inString = false;
+            continue;
+        }
+        if (ch === '"') inString = true;
+        else if (ch === '{') depth++;
+        else if (ch === '}') {
+            depth--;
+            if (depth === 0) return raw.slice(start, i + 1);
+        }
+    }
+    return raw.slice(start); // unbalanced — hand the remainder to JSON.parse
+}
+
+/**
+ * Replace backslash escapes that JSON forbids (e.g. LaTeX \sin, \,, \vec that
+ * the model echoes into evidence strings) with a doubled backslash, so they
+ * survive JSON.parse as literal text. Only the eight valid JSON escapes
+ * (\" \\ \/ \b \f \n \r \t and \uXXXX) are left untouched. Applied ONLY as a
+ * fallback after a strict parse fails, so well-formed responses are unaffected.
+ */
+function sanitizeJsonEscapes(json: string): string {
+    return json.replace(/\\(?![\\"/bfnrtu])/g, '\\\\');
 }
 
 function makeResult(
@@ -587,17 +724,24 @@ function makeResult(
  * returns malformed JSON.
  */
 export function parseCategoryResponse(input: ParseInput): CheckResult[] {
-    const cleaned = stripJsonFences(input.rawText);
+    const cleaned = extractJsonObject(stripJsonFences(input.rawText));
     const expectedChecks = expectedChecksFor(input.category, input.hasEpicC, input.hasTimingMetadata);
 
     let parsedJson: unknown;
     try {
         parsedJson = JSON.parse(cleaned);
-    } catch (err) {
-        const message = err instanceof Error ? err.message : 'unknown parse error';
-        return expectedChecks.map(id =>
-            makeResult(id, input.scope, false, `Vision response was not valid JSON: ${message}`),
-        );
+    } catch {
+        // Fallback: the model likely echoed LaTeX (\sin, \,, \vec) into an
+        // evidence string, producing invalid JSON escapes. Sanitize and retry
+        // once before giving up.
+        try {
+            parsedJson = JSON.parse(sanitizeJsonEscapes(cleaned));
+        } catch (err2) {
+            const message = err2 instanceof Error ? err2.message : 'unknown parse error';
+            return expectedChecks.map(id =>
+                makeResult(id, input.scope, false, `Vision response was not valid JSON: ${message}`),
+            );
+        }
     }
 
     const schema = schemaFor(input.category, input.hasEpicC, input.hasTimingMetadata);
@@ -645,6 +789,7 @@ function expectedChecksFor(
         case 'F': return ['F2', 'F3'];
         case 'G': return ['G1', 'G2', 'G3', 'G4', 'G5', 'G6'];
         case 'H': throw new Error('Category H is deterministic (pixelGate.ts) — never dispatched here.');
+        case 'I': return ['I1', 'I2'];
     }
 }
 
@@ -662,5 +807,6 @@ function schemaFor(
         case 'F': return panelSyncResponseSchema;
         case 'G': return panelGraphResponseSchema;
         case 'H': throw new Error('Category H is deterministic (pixelGate.ts) — never dispatched here.');
+        case 'I': return ttsSyncResponseSchema;
     }
 }

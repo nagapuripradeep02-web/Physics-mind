@@ -2,17 +2,25 @@
  * Smoke test for the Visual Validator (Engine E29).
  *
  * Loads a cached simulation from simulation_cache and runs the full validator
- * pipeline against it: Playwright screenshot capture, 7-category vision gate,
- * F1/F4 DOM timing, engine_bug_queue write-back.
+ * pipeline against it: Playwright screenshot capture, vision gate (cost ladder
+ * Gemini→Sonnet→Opus-flag), Category I TTS↔visual sync (when the concept JSON
+ * has glow/math_show bindings), F1/F4 DOM timing, deterministic pixel +
+ * regression gates, engine_bug_queue write-back.
  *
  * Usage:
- *   npx tsx --env-file=.env.local src/scripts/smoke_visual_validator.ts [concept_id]
+ *   npx tsx --env-file=.env.local src/scripts/smoke_visual_validator.ts [concept_id] [--dense] [--dump-frames]
+ *     --dense        capture ~1s frames per state and run D5/D6/D7 motion checks
+ *     --dump-frames  write every captured PNG to .visual_runs/<id>/<ts>/
  *
  * Prereqs (one-time):
  *   npx playwright install chromium
  *
- * Cost: ~$0.04-0.30 per run depending on state count and panel count.
+ * Cost: ~$0.04-0.35 per run depending on state count, panel count, and ladder
+ *       behavior (clean Gemini passes are much cheaper than Sonnet escalations).
  *       Stays under the $5/concept/day cap unless you re-run repeatedly.
+ *
+ * Output discipline (founder rule, 2026-06-10): print EVERY check result,
+ * pass AND fail — nothing summarized away, no "+N more" truncation.
  *
  * Defaults:
  *   concept_id = normal_reaction (single-panel, mechanics_2d)
@@ -21,53 +29,64 @@
 // MUST be the first import — guarantees .env.local values win over any empty
 // system-env values that Node 24 + --env-file leaves unfilled.
 import '@/lib/loadEnvLocal';
-import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { captureSimStates } from '@/lib/validators/visual/screenshotter';
 import { runVisionGate } from '@/lib/validators/visual/visionGate';
 import { runPixelGate } from '@/lib/validators/visual/pixelGate';
+import { runRegressionGate } from '@/lib/validators/visual/regressionGate';
 import { deriveStateIds } from '@/lib/validators/visual/deriveStateIds';
+import { deriveStateDurationsMs, deriveMotionExpectations } from '@/lib/validators/visual/deriveStateMeta';
+import { dumpCaptureToDisk } from '@/lib/validators/visual/frameDump';
+import { extractTtsVisualBindings, buildTtsMathByState } from '@/lib/validators/visual/ttsBindings';
 import type { VisionGateContext } from '@/lib/validators/visual/visionGate';
+import type { CheckResult } from '@/lib/validators/visual/spec';
+import { loadCachedSim, loadConceptJson, fail } from './lib/loadCachedSim';
 
-interface CacheRow {
-    sim_html: string;
-    secondary_sim_html: string | null;
-    physics_config: Record<string, unknown> | null;
-    teacher_script: unknown;
-    sim_type: string | null;
-    fingerprint_key: string | null;
+/** Build {STATE_N: focal_primitive_id} from the concept JSON's epic_l_path. */
+function extractFocalPrimitiveIds(
+    conceptJson: Record<string, unknown> | null,
+): Record<string, string> | undefined {
+    const elp = conceptJson?.epic_l_path as { states?: Record<string, unknown> } | undefined;
+    const states = elp?.states;
+    if (!states || typeof states !== 'object') return undefined;
+    const out: Record<string, string> = {};
+    for (const [stateId, raw] of Object.entries(states)) {
+        const focal = (raw as { focal_primitive_id?: unknown })?.focal_primitive_id;
+        if (typeof focal === 'string' && focal.length > 0) out[stateId] = focal;
+    }
+    return Object.keys(out).length > 0 ? out : undefined;
 }
 
-function fail(message: string, exitCode = 1): never {
-    console.error(`\n❌ ${message}\n`);
-    process.exit(exitCode);
-}
-
-// deriveStateIds extracted to '@/lib/validators/visual/deriveStateIds'
-
-async function loadCachedSim(conceptId: string): Promise<CacheRow> {
-    const { data, error } = await supabaseAdmin
-        .from('simulation_cache')
-        .select('sim_html, secondary_sim_html, physics_config, teacher_script, sim_type, fingerprint_key')
-        .eq('concept_key', conceptId)
-        .order('served_count', { ascending: false })
-        .limit(1)
-        .maybeSingle<CacheRow>();
-    if (error) fail(`simulation_cache query failed: ${error.message}`);
-    if (!data) fail(`No cached simulation found for concept_id="${conceptId}". Run /api/generate-simulation against this concept first.`);
-    if (!data.sim_html) fail(`Cached row exists but sim_html is empty for "${conceptId}".`);
-    return data;
+function printAllResults(results: CheckResult[]): void {
+    const byCategory = new Map<string, CheckResult[]>();
+    for (const r of results) {
+        const arr = byCategory.get(r.category) ?? [];
+        arr.push(r);
+        byCategory.set(r.category, arr);
+    }
+    for (const [cat, rows] of [...byCategory.entries()].sort()) {
+        const failures = rows.filter(r => !r.passed).length;
+        console.log(`\n  Category ${cat} — ${rows.length} checks, ${failures} failed:`);
+        for (const r of rows) {
+            const sym = r.passed ? '✓' : '✗';
+            // Failures print FULL evidence (surface-everything); passes a readable slice.
+            const evidence = r.passed && r.evidence.length > 140 ? `${r.evidence.slice(0, 140)}…` : r.evidence;
+            console.log(`    ${sym} [${r.check_id}] ${r.state_id}: ${evidence}`);
+        }
+    }
 }
 
 async function main(): Promise<void> {
-    const conceptId = (process.argv[2] ?? 'normal_reaction').trim();
+    const args = process.argv.slice(2);
+    const flags = new Set(args.filter(a => a.startsWith('--')));
+    const conceptId = (args.find(a => !a.startsWith('--')) ?? 'normal_reaction').trim();
+    const dense = flags.has('--dense');
+    const dumpFrames = flags.has('--dump-frames');
     const overallStart = Date.now();
-    // Deterministic-only mode skips the AI vision gate (~$0.04–$0.30 / run)
-    // and runs only screenshot capture + pixel gate + DOM timing. Used by
-    // `npm run validate:concepts -- --with-smoke <id>` and any post-cache-
-    // regen hook that needs a cheap visual sanity check.
+    // Deterministic-only mode skips the AI vision gate (~$0.04–$0.35 / run)
+    // and runs only screenshot capture + pixel/regression gates + DOM timing.
     const skipVision = process.env.SKIP_VISUAL_VALIDATION === 'true';
 
-    console.log(`\n🔍 Visual Validator smoke test — concept: ${conceptId}${skipVision ? ' (deterministic-only)' : ''}\n`);
+    console.log(`\n🔍 Visual Validator smoke test — concept: ${conceptId}${skipVision ? ' (deterministic-only)' : ''}${dense ? ' +dense' : ''}\n`);
 
     const cached = await loadCachedSim(conceptId);
     const stateIds = deriveStateIds(cached.physics_config);
@@ -75,13 +94,27 @@ async function main(): Promise<void> {
 
     const isMulti = cached.sim_type === 'multi_panel' && !!cached.secondary_sim_html;
     const panelCount = isMulti ? 2 : 1;
+    const expectsMotion = deriveMotionExpectations(cached.physics_config);
+
+    // Category I bindings come from the RAW concept JSON (glow / math_show are
+    // not in the cached teacher_script). Absent file or no bindings → Category
+    // I stays dormant, exactly like the auto-fire path.
+    const conceptJson = loadConceptJson(conceptId);
+    const ttsBindings = conceptJson ? extractTtsVisualBindings(conceptJson) : {};
+    const boundStates = Object.keys(ttsBindings).length;
+    // Per-state math_show replay sequence — drives SET_MATH during capture so
+    // Category I2 sees TTS-synced formulas the headless harness would otherwise
+    // never render. Only populated when bindings exist.
+    const ttsMathByState = boundStates > 0 ? buildTtsMathByState(ttsBindings) : undefined;
+    const i2FormulaStates = ttsMathByState ? Object.keys(ttsMathByState).length : 0;
 
     console.log(`  Sim type:    ${cached.sim_type ?? 'single (default)'}`);
     console.log(`  Panel count: ${panelCount}`);
     console.log(`  States:      ${stateIds.join(', ')}`);
     console.log(`  Sim HTML:    ${cached.sim_html.length} chars`);
     if (isMulti) console.log(`  Panel B:     ${cached.secondary_sim_html?.length ?? 0} chars`);
-    console.log(`  Fingerprint: ${cached.fingerprint_key ?? '(none)'}\n`);
+    console.log(`  Fingerprint: ${cached.fingerprint_key ?? '(none)'}`);
+    console.log(`  Cat I:       ${boundStates > 0 ? `${boundStates} states with TTS bindings${i2FormulaStates > 0 ? `, ${i2FormulaStates} with math_show (I2 formula replay on)` : ''}` : 'dormant (no concept-JSON glow/math_show bindings)'}\n`);
 
     console.log('📸 Capturing screenshots via Playwright...');
     const captureStart = Date.now();
@@ -90,10 +123,12 @@ async function main(): Promise<void> {
         panelAHtml: cached.sim_html,
         panelBHtml: isMulti ? (cached.secondary_sim_html as string) : undefined,
         stateIds,
+        dense: dense ? { intervalMs: 1000, durationMsByState: deriveStateDurationsMs(cached.physics_config) } : undefined,
+        ttsMathByState,
     });
     console.log(`   ✅ ${capture.state_captures.length} state captures in ${Date.now() - captureStart}ms`);
     if (capture.warnings.length > 0) {
-        console.log(`   ⚠️  Capture warnings:`);
+        console.log('   ⚠️  Capture warnings (ALL):');
         for (const w of capture.warnings) console.log(`      - ${w}`);
     }
 
@@ -105,16 +140,22 @@ async function main(): Promise<void> {
         console.log(`   F4 relay: A→B ${capture.param_relay.a_to_b_ms ?? 'TIMEOUT'}ms, B→A ${capture.param_relay.b_to_a_ms ?? 'TIMEOUT'}ms`);
     }
 
-    let visionResult: { valid: boolean; errors: string[]; check_results: Array<{ check_id: string; state_id: string; passed: boolean; evidence: string; category: string }>; cost_usd: number; duration_ms: number };
+    let visionResult: { valid: boolean; errors: string[]; check_results: CheckResult[]; cost_usd: number; duration_ms: number };
     if (skipVision) {
         console.log('\n⏭️  Skipping vision gate (SKIP_VISUAL_VALIDATION=true) — deterministic checks only.');
         visionResult = { valid: true, errors: [], check_results: [], cost_usd: 0, duration_ms: 0 };
     } else {
-        console.log('\n🤖 Running vision gate (Claude Sonnet 4.6 × ~7 categories)...');
+        const ladder = process.env.VISION_LADDER !== 'off' && !!process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+        console.log(`\n🤖 Running vision gate (${ladder ? 'ladder: Gemini Flash → Sonnet 4.6' : 'direct: Sonnet 4.6'}${process.env.VISION_ESCALATION_MAX_TIER === 'opus' ? ' → Opus' : ''})...`);
         const visionStart = Date.now();
         const context: VisionGateContext = {
             physics_engine_config: cached.physics_config ?? undefined,
             teacher_script:        cached.teacher_script ?? undefined,
+            tts_visual_bindings:   boundStates > 0 ? ttsBindings : undefined,
+            // Storyboard (Category E) metadata lives in the concept JSON, NOT the
+            // cached sim — without it E2/E3 false-fail on null anchor / empty focal.
+            real_world_anchor:     conceptJson?.real_world_anchor ?? undefined,
+            focal_primitive_ids:   extractFocalPrimitiveIds(conceptJson),
         };
         visionResult = await runVisionGate({
             conceptId,
@@ -127,27 +168,25 @@ async function main(): Promise<void> {
         console.log(`   ✅ Vision gate finished in ${Date.now() - visionStart}ms`);
     }
 
-    console.log('\n🎯 Running pixel gate (deterministic D1p + H1, no API)...');
-    const pixelStart = Date.now();
-    const pixelResult = await runPixelGate({ conceptId, capture, panelCount });
-    console.log(`   ✅ Pixel gate finished in ${Date.now() - pixelStart}ms (cost: $${pixelResult.cost_usd.toFixed(4)})`);
+    console.log('\n🎯 Running deterministic gates (pixel D1p/H1' + (dense ? '/D5/D6/D7' : '') + ' + regression H2, no API)...');
+    const [pixelResult, regressionResult] = await Promise.all([
+        runPixelGate({ conceptId, capture, panelCount, expectsMotion }),
+        runRegressionGate({ conceptId, capture }),
+    ]);
+    console.log(`   ✅ Deterministic gates finished ($0)`);
     console.log(`   DOM template-leak findings: ${capture.template_leak_dom_findings.length}`);
-    for (const r of pixelResult.check_results) {
-        const sym = r.passed ? '✓' : '✗';
-        console.log(`   ${sym} [${r.check_id}] ${r.state_id}: ${r.evidence.slice(0, 100)}${r.evidence.length > 100 ? '…' : ''}`);
-    }
 
-    // Merge vision + pixel results into combined VisualValidationResult shape
-    const result = {
-        valid: visionResult.valid && pixelResult.check_results.every(r => r.passed),
-        errors: [...visionResult.errors, ...pixelResult.check_results.filter(r => !r.passed).map(r => `[${r.check_id}] ${r.state_id}: ${r.evidence}`)],
-        check_results: [...visionResult.check_results, ...pixelResult.check_results],
-        cost_usd: visionResult.cost_usd, // pixel cost is always 0
-        duration_ms: Math.max(visionResult.duration_ms, pixelResult.duration_ms),
-    };
+    const allChecks: CheckResult[] = [
+        ...visionResult.check_results,
+        ...pixelResult.check_results,
+        ...regressionResult.check_results,
+    ];
+    const deterministicFailures = [...pixelResult.check_results, ...regressionResult.check_results]
+        .filter(r => !r.passed);
+    const valid = visionResult.valid && deterministicFailures.length === 0;
 
-    const totalChecks = result.check_results.length;
-    const passed = result.check_results.filter(r => r.passed).length;
+    const totalChecks = allChecks.length;
+    const passed = allChecks.filter(r => r.passed).length;
     const failed = totalChecks - passed;
 
     console.log('\n📊 Results');
@@ -155,34 +194,23 @@ async function main(): Promise<void> {
     console.log(`  Total checks:  ${totalChecks}`);
     console.log(`  Passed:        ${passed}`);
     console.log(`  Failed:        ${failed}`);
-    console.log(`  Cost:          $${result.cost_usd.toFixed(4)}`);
+    console.log(`  Cost:          $${visionResult.cost_usd.toFixed(4)}`);
     console.log(`  Total time:    ${Date.now() - overallStart}ms`);
-    console.log(`  Valid:         ${result.valid ? 'YES ✅' : 'NO ❌'}`);
-    console.log('  ──────────────────────────────────────────────────────────────\n');
+    console.log(`  Valid:         ${valid ? 'YES ✅' : 'NO ❌'}`);
+    console.log('  ──────────────────────────────────────────────────────────────');
 
-    // Group failures by category
-    if (failed > 0) {
-        console.log('❌ Failed checks:\n');
-        const byCategory = new Map<string, typeof result.check_results>();
-        for (const r of result.check_results) {
-            if (r.passed) continue;
-            const arr = byCategory.get(r.category) ?? [];
-            arr.push(r);
-            byCategory.set(r.category, arr);
-        }
-        for (const [cat, rows] of byCategory.entries()) {
-            console.log(`  Category ${cat} (${rows.length} failure${rows.length === 1 ? '' : 's'}):`);
-            for (const r of rows.slice(0, 5)) {
-                console.log(`    [${r.check_id}] ${r.state_id}: ${r.evidence.slice(0, 140)}${r.evidence.length > 140 ? '…' : ''}`);
-            }
-            if (rows.length > 5) console.log(`    … and ${rows.length - 5} more`);
-            console.log('');
-        }
-    } else {
-        console.log('✅ All checks passed.\n');
+    // Surface-everything: EVERY check, pass and fail, full failure evidence.
+    printAllResults(allChecks);
+
+    if (dumpFrames) {
+        console.log('\n💾 Dumping frames to disk (--dump-frames)...');
+        const dump = dumpCaptureToDisk({ conceptId, capture });
+        console.log(`   Run dir: ${dump.dir}`);
+        for (const f of dump.files) console.log(f);
     }
 
-    process.exit(result.valid ? 0 : 1);
+    console.log(failed === 0 ? '\n✅ All checks passed.\n' : `\n❌ ${failed} check(s) failed — every one is listed above.\n`);
+    process.exit(valid ? 0 : 1);
 }
 
 main().catch(err => {

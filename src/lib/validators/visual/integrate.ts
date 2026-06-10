@@ -26,6 +26,7 @@
 import { captureSimStates, type CaptureRequest } from './screenshotter';
 import { runVisionGate, type VisionGateContext } from './visionGate';
 import { runPixelGate } from './pixelGate';
+import { runRegressionGate } from './regressionGate';
 import type { CheckResult, VisualValidationResult } from './spec';
 import { formatCheckError } from './spec';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
@@ -89,9 +90,11 @@ export async function runVisualValidation(opts: RunValidationOptions): Promise<R
 
     const capture = await captureSimStates(captureReq);
 
-    // Run vision (Sonnet) and pixel/ocr (deterministic) gates in parallel.
-    // pixelGate is free + ~0.5-3s; vision is ~$0.04-0.30 + ~10-30s.
-    const [visionResult, pixelResult] = await Promise.all([
+    // Run vision (ladder), pixel/ocr, and baseline-regression gates in parallel.
+    // pixelGate + regressionGate are free; vision is ~$0.04-0.30 + ~10-30s.
+    // regressionGate skip-passes when no baseline is approved, so this stays
+    // safe on the generation-time auto-fire path.
+    const [visionResult, pixelResult, regressionResult] = await Promise.all([
         runVisionGate({
             conceptId:         opts.conceptId,
             capture,
@@ -106,16 +109,24 @@ export async function runVisualValidation(opts: RunValidationOptions): Promise<R
             capture,
             panelCount: opts.panelCount,
         }),
+        runRegressionGate({
+            conceptId: opts.conceptId,
+            capture,
+        }),
     ]);
 
-    const mergedChecks: CheckResult[] = [...visionResult.check_results, ...pixelResult.check_results];
-    const pixelErrors = pixelResult.check_results.filter(r => !r.passed).map(formatCheckError);
+    const deterministicChecks: CheckResult[] = [
+        ...pixelResult.check_results,
+        ...regressionResult.check_results,
+    ];
+    const mergedChecks: CheckResult[] = [...visionResult.check_results, ...deterministicChecks];
+    const deterministicErrors = deterministicChecks.filter(r => !r.passed).map(formatCheckError);
     const result: VisualValidationResult = {
-        valid: visionResult.valid && pixelResult.check_results.every(r => r.passed),
-        errors: [...visionResult.errors, ...pixelErrors],
+        valid: visionResult.valid && deterministicChecks.every(r => r.passed),
+        errors: [...visionResult.errors, ...deterministicErrors],
         check_results: mergedChecks,
-        cost_usd: visionResult.cost_usd, // pixelResult.cost_usd is always 0
-        duration_ms: Math.max(visionResult.duration_ms, pixelResult.duration_ms),
+        cost_usd: visionResult.cost_usd, // pixel/regression cost_usd is always 0
+        duration_ms: Math.max(visionResult.duration_ms, pixelResult.duration_ms, regressionResult.duration_ms),
     };
 
     // Always record failures, regardless of mode — observe mode still wants the data
