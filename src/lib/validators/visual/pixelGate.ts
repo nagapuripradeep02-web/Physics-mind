@@ -55,7 +55,14 @@ const DENSE_MOTION_EPSILON = 0.001;       // <0.1% adjacent diff = "frozen" pair
 const DENSE_TELEPORT_ABS_RATIO = 0.20;    // spike floor: 20% of pixels
 const DENSE_TELEPORT_MEDIAN_FACTOR = 8;   // spike: >8x the median pair diff
 const DENSE_TELEPORT_MIN_MEDIAN = 0.001;  // median must be real motion, not noise
-const DENSE_STUCK_TAIL_PAIRS = 3;         // ≥3 trailing frozen pairs = stuck tail
+const DENSE_STUCK_TAIL_PAIRS = 3;         // MIN trailing frozen pairs = stuck tail
+// D7 tail window scales with series length: max(3, 10% of pairs). With the
+// 30s/31-frame unclamp (2026-06-10) a fixed 3-pair window would be 3s of a 30s
+// state — too small to distinguish a real late freeze from capture-latency
+// wobble. ≤30 pairs keeps the original window of 3 (backward compatible).
+function denseTailPairs(pairCount: number): number {
+    return Math.max(DENSE_STUCK_TAIL_PAIRS, Math.ceil(pairCount * 0.1));
+}
 
 // Tesseract template-leak literal characters to search for in OCR output.
 // Conservative — false positives on legitimate `{` text are acceptable since
@@ -211,15 +218,16 @@ async function runDenseChecks(
         ? `OK — no adjacent pair exceeds max(20%, 8×median=${(DENSE_TELEPORT_MEDIAN_FACTOR * med * 100).toFixed(2)}%). Profile: ${profile}`
         : `Mid-state pixel teleport at ${pairLabel(spikeIdx)}: ${(diffs[spikeIdx] * 100).toFixed(1)}% of pixels changed in one ~1s step (median pair diff ${(med * 100).toFixed(2)}%). Something jumped/reset mid-state. Profile: ${profile}`));
 
-    // D7 — no stuck tail after earlier motion
-    const tail = diffs.slice(-DENSE_STUCK_TAIL_PAIRS);
-    const earlier = diffs.slice(0, -DENSE_STUCK_TAIL_PAIRS);
-    const tailFrozen = tail.length >= DENSE_STUCK_TAIL_PAIRS && tail.every(d => d < DENSE_MOTION_EPSILON);
+    // D7 — no stuck tail after earlier motion (window scales with series length)
+    const tailPairs = denseTailPairs(diffs.length);
+    const tail = diffs.slice(-tailPairs);
+    const earlier = diffs.slice(0, -tailPairs);
+    const tailFrozen = tail.length >= tailPairs && tail.every(d => d < DENSE_MOTION_EPSILON);
     const earlierMoved = earlier.some(d => d >= DENSE_MOTION_EPSILON);
     const stuck = tailFrozen && earlierMoved;
     results.push(mkResult('D7', stateId, !stuck, !stuck
         ? `OK — no frozen tail (last ${tail.length} pairs not all <${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% after earlier motion). Profile: ${profile}`
-        : `Animation died mid-state: last ${DENSE_STUCK_TAIL_PAIRS} adjacent pairs all <${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% diff while earlier pairs showed motion (max ${(Math.max(...earlier) * 100).toFixed(2)}%). Likely a render-loop exception or trajectory time-clamp. Profile: ${profile}`));
+        : `Animation died mid-state: last ${tailPairs} adjacent pairs all <${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% diff while earlier pairs showed motion (max ${(Math.max(...earlier) * 100).toFixed(2)}%). Likely a render-loop exception or trajectory time-clamp. Profile: ${profile}`));
 
     return { results, maxDiff };
 }

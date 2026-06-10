@@ -45,7 +45,16 @@ export interface BaselineManifest {
     source_run: string;
     /** Diff-ratio tolerance (0–1). Default 0.02 = 2% of pixels. */
     tolerance: number;
-    states: Record<string, { compare: boolean }>;
+    states: Record<string, {
+        /** Live panel-A compare. False for animated states (phase flake). */
+        compare: boolean;
+        /**
+         * Frozen-frame compare — the SET_TIME_FREEZE deterministic capture
+         * (<STATE>__frozen.png). Runs even when `compare` is false: it exists
+         * precisely so animated states still get regression protection.
+         */
+        compare_frozen?: boolean;
+    }>;
 }
 
 // ─── Tunables ─────────────────────────────────────────────────────────────────
@@ -77,38 +86,58 @@ export async function runRegressionGate(input: RunRegressionGateInput): Promise<
         const stateMeta = manifest.states[sc.state_id];
         const baselinePath = join(baselineDir, `${sc.state_id}.png`);
 
+        // ── Live panel-A compare ─────────────────────────────────────────
         if (!stateMeta || !existsSync(baselinePath)) {
             results.push(mkH2(sc.state_id, true, `Skipped — no approved baseline for ${sc.state_id}.`));
-            continue;
-        }
-        if (stateMeta.compare === false) {
+        } else if (stateMeta.compare === false) {
             results.push(mkH2(sc.state_id, true,
                 `Skipped — ${sc.state_id} excluded from auto-compare (compare:false, typically an animated state). Baseline kept for human reference.`));
-            continue;
+        } else {
+            results.push(await compareAgainstBaseline(sc.state_id, sc.panel_a_png_b64, baselinePath, tolerance));
         }
 
-        try {
-            const current = await normalizeRgba(Buffer.from(sc.panel_a_png_b64, 'base64'));
-            const baseline = await normalizeRgba(readFileSync(baselinePath));
-            if (current.width !== baseline.width || current.height !== baseline.height) {
-                results.push(mkH2(sc.state_id, false,
-                    `Render dimensions drifted vs baseline after width-${BASELINE_NORMALIZED_WIDTH} normalization: current ${current.width}x${current.height} vs baseline ${baseline.width}x${baseline.height}. Canvas size or aspect ratio changed.`));
-                continue;
+        // ── Frozen-frame compare (runs even when live compare is false —
+        //    that is its purpose: animated states get deterministic coverage
+        //    via the SET_TIME_FREEZE capture) ──────────────────────────────
+        if (stateMeta?.compare_frozen === true) {
+            const frozenId = `${sc.state_id}__frozen`;
+            const frozenBaselinePath = join(baselineDir, `${frozenId}.png`);
+            if (!sc.frozen_png_b64) {
+                results.push(mkH2(frozenId, true,
+                    `Skipped — manifest expects a frozen compare but this capture has no frozen frame (run with frozenFrame enabled, e.g. npm run visual:eyes).`));
+            } else if (!existsSync(frozenBaselinePath)) {
+                results.push(mkH2(frozenId, true, `Skipped — no approved frozen baseline for ${sc.state_id}.`));
+            } else {
+                results.push(await compareAgainstBaseline(frozenId, sc.frozen_png_b64, frozenBaselinePath, tolerance));
             }
-            const totalPx = current.width * current.height;
-            const diffPx = pixelmatch(current.data, baseline.data, undefined, current.width, current.height, PIXELMATCH_OPTIONS);
-            const ratio = diffPx / totalPx;
-            const passed = ratio <= tolerance;
-            results.push(mkH2(sc.state_id, passed, passed
-                ? `OK — ${(ratio * 100).toFixed(2)}% pixels differ vs approved baseline (tolerance ${(tolerance * 100).toFixed(1)}%).`
-                : `Visual regression: ${(ratio * 100).toFixed(2)}% of pixels differ vs the approved baseline (tolerance ${(tolerance * 100).toFixed(1)}%). A renderer or JSON change altered this approved state — review before shipping, or re-approve via npm run visual:approve if the change is intentional.`));
-        } catch (err) {
-            results.push(mkH2(sc.state_id, true,
-                `Skipped — baseline compare failed: ${err instanceof Error ? err.message : String(err)}`));
         }
     }
 
     return { check_results: results, cost_usd: 0, duration_ms: Date.now() - start };
+}
+
+/** Normalize both sides to width 640 and pixelmatch against the baseline file. */
+async function compareAgainstBaseline(
+    checkScope: string, currentB64: string, baselinePath: string, tolerance: number,
+): Promise<CheckResult> {
+    try {
+        const current = await normalizeRgba(Buffer.from(currentB64, 'base64'));
+        const baseline = await normalizeRgba(readFileSync(baselinePath));
+        if (current.width !== baseline.width || current.height !== baseline.height) {
+            return mkH2(checkScope, false,
+                `Render dimensions drifted vs baseline after width-${BASELINE_NORMALIZED_WIDTH} normalization: current ${current.width}x${current.height} vs baseline ${baseline.width}x${baseline.height}. Canvas size or aspect ratio changed.`);
+        }
+        const totalPx = current.width * current.height;
+        const diffPx = pixelmatch(current.data, baseline.data, undefined, current.width, current.height, PIXELMATCH_OPTIONS);
+        const ratio = diffPx / totalPx;
+        const passed = ratio <= tolerance;
+        return mkH2(checkScope, passed, passed
+            ? `OK — ${(ratio * 100).toFixed(2)}% pixels differ vs approved baseline (tolerance ${(tolerance * 100).toFixed(1)}%).`
+            : `Visual regression: ${(ratio * 100).toFixed(2)}% of pixels differ vs the approved baseline (tolerance ${(tolerance * 100).toFixed(1)}%). A renderer or JSON change altered this approved state — review before shipping, or re-approve via npm run visual:approve if the change is intentional.`);
+    } catch (err) {
+        return mkH2(checkScope, true,
+            `Skipped — baseline compare failed: ${err instanceof Error ? err.message : String(err)}`);
+    }
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

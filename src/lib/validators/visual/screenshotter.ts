@@ -53,6 +53,17 @@ export interface CaptureRequest {
      * sets it, so its behavior is unchanged.
      */
     ttsMathByState?: Record<string, TtsMathStepInput[]>;
+    /**
+     * Deterministic frozen-frame capture for H2 regression baselines. For each
+     * state (after dense + I2 capture, so motion analysis is unaffected) the
+     * harness posts RESET_TRAJECTORY then SET_TIME_FREEZE {at_ms} — the
+     * renderer pins its virtual clock at the state-local offset, making every
+     * time-driven pixel identical across runs. Renderers without the handler
+     * degrade gracefully (the frame is captured unpinned; visual_approve's
+     * determinism check decides whether it becomes a compared baseline).
+     * Opt-in — auto-fire never sets it.
+     */
+    frozenFrame?: { atMs: number; settleMs?: number };
 }
 
 export interface TtsMathStepInput {
@@ -66,9 +77,9 @@ export interface TtsMathStepInput {
 export interface DenseCaptureOptions {
     /** Interval between dense frames. Default 1000ms. */
     intervalMs?: number;
-    /** Per-state capture duration in ms (clamped 3000–15000). Default 10000. */
+    /** Per-state capture duration in ms (clamped 3000–30000). Default 10000. */
     durationMsByState?: Record<string, number>;
-    /** Safety cap on frames per state. Default 15. */
+    /** Safety cap on frames per state. Default 31. */
     maxFramesPerState?: number;
 }
 
@@ -86,6 +97,13 @@ export interface StateCapture {
      * in the frame where the student actually sees it.
      */
     i2_frames?: I2Frame[];
+    /**
+     * Deterministic frozen frame (panel A) — virtual clock pinned at
+     * CaptureRequest.frozenFrame.atMs via SET_TIME_FREEZE. Present only when
+     * frozenFrame was requested. Compared against the __frozen.png baseline
+     * by regressionGate when the manifest sets compare_frozen.
+     */
+    frozen_png_b64?: string;
 }
 
 export interface I2Frame {
@@ -184,6 +202,11 @@ ${hasPanelB ? `<iframe id="panel_b" name="panel_b" src="${PANEL_B_PATH}"></ifram
 (function(){
   var readyA = false, readyB = ${hasPanelB ? 'false' : 'true'};
   window.__simReady = function(){ return readyA && readyB; };
+  // STATE_REACHED registry — sims post STATE_REACHED to window.parent (= THIS
+  // wrapper window), NOT to their own iframe window, so it must be recorded
+  // here. Timestamps are wrapper performance.now() — the same clock
+  // driveToState() uses for postTs, so the subtraction is valid.
+  window.__pmStateReachedByPanel = { A: {}, B: {} };
   function panelOf(source){
     var a = document.getElementById('panel_a');
     var b = document.getElementById('panel_b');
@@ -196,6 +219,9 @@ ${hasPanelB ? `<iframe id="panel_b" name="panel_b" src="${PANEL_B_PATH}"></ifram
     if (e.data && e.data.type === 'SIM_READY'){
       if (src === 'A') readyA = true;
       if (src === 'B') readyB = true;
+    }
+    if (e.data && e.data.type === 'STATE_REACHED' && typeof e.data.state === 'string'){
+      if (src === 'A' || src === 'B') window.__pmStateReachedByPanel[src][e.data.state] = performance.now();
     }
     if (e.data && e.data.type === 'PARAM_UPDATE'){
       var target = src === 'A' ? document.getElementById('panel_b') : document.getElementById('panel_a');
@@ -212,21 +238,21 @@ ${hasPanelB ? `<iframe id="panel_b" name="panel_b" src="${PANEL_B_PATH}"></ifram
 }
 
 /**
- * Probe injected into each panel iframe so we can read STATE_REACHED + PARAM_UPDATE
- * arrival timestamps without modifying the sim HTML itself.
+ * Probe injected into each panel iframe so we can read PARAM_UPDATE arrival
+ * timestamps without modifying the sim HTML itself. (STATE_REACHED is recorded
+ * in the WRAPPER window — sims post it to window.parent, so an iframe-side
+ * listener would never see it.) Receipt uses Date.now(): the relay post
+ * timestamp is taken in the wrapper window, and performance.now() timeOrigins
+ * differ between frames — wall clock is the only shared clock.
  */
 const PANEL_PROBE_SCRIPT = `
 (function(){
   if (window.__pmProbeInstalled) return;
   window.__pmProbeInstalled = true;
-  window.__pmStateReached = {};
   window.__pmParamReceived = null;
   window.addEventListener('message', function(e){
-    if (e.data && e.data.type === 'STATE_REACHED' && typeof e.data.state === 'string'){
-      window.__pmStateReached[e.data.state] = performance.now();
-    }
     if (e.data && e.data.type === 'PARAM_UPDATE' && e.data.__pmTest === true){
-      window.__pmParamReceived = { ts: performance.now(), key: e.data.key, value: e.data.value };
+      window.__pmParamReceived = { ts: Date.now(), key: e.data.key, value: e.data.value };
     }
   });
 })();
@@ -279,7 +305,12 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             timings.push(timing);
             if (timing.timed_out) warnings.push(`STATE_REACHED timeout for ${stateId}`);
 
-            await page.waitForTimeout(150);
+            // Settle past the renderer's 800ms state-transition interpolation
+            // before ANY capture. Before the 2026-06-10 handshake fix the
+            // (always-failing) 5s STATE_REACHED timeout masked this; a 150ms
+            // wait then caught the transition flash as a ~98% first-frame diff
+            // (false D6 teleport) and mid-transition static frames.
+            await page.waitForTimeout(1000);
 
             const panelAPng = await captureIframe(page, 'panel_a');
             const panelBPng = hasPanelB ? await captureIframe(page, 'panel_b') : undefined;
@@ -330,6 +361,20 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
                     // Clear the panel so the next state / animation time-series
                     // is not polluted by leftover equation lines.
                     await postMathToPanelA(page, null, false);
+                }
+            }
+
+            // Frozen frame — LAST in the per-state sequence (freezing before the
+            // dense series would kill D5's motion evidence). RESET_TRAJECTORY
+            // makes the pin state-local; release + reset afterward so the next
+            // state never renders pinned.
+            if (req.frozenFrame) {
+                try {
+                    const frozen = await captureFrozenFrame(page, hasPanelB, req.frozenFrame);
+                    const target = stateCaptures.find(c => c.state_id === stateId);
+                    if (target) target.frozen_png_b64 = frozen;
+                } catch (err) {
+                    warnings.push(`Frozen-frame capture failed for ${stateId}: ${err instanceof Error ? err.message : String(err)}`);
                 }
             }
         }
@@ -390,8 +435,18 @@ async function driveToState(
     page: Page, stateId: string, hasPanelB: boolean, timeoutMs: number,
 ): Promise<TimingMeasurement> {
     const postTs = await page.evaluate(({ id, hasB }) => {
+        const w = window as unknown as {
+            __postToPanel?: (panel: string, msg: unknown) => void;
+            __pmStateReachedByPanel?: Record<string, Record<string, number>>;
+        };
+        // Clear any stale timestamp for this state — captureAnimationTimeseries
+        // re-drives a state already visited, and a leftover entry would
+        // short-circuit the poll with the OLD arrival time.
+        if (w.__pmStateReachedByPanel) {
+            delete w.__pmStateReachedByPanel.A?.[id];
+            delete w.__pmStateReachedByPanel.B?.[id];
+        }
         const t0 = performance.now();
-        const w = window as unknown as { __postToPanel?: (panel: string, msg: unknown) => void };
         w.__postToPanel?.('A', { type: 'SET_STATE', state: id });
         if (hasB) w.__postToPanel?.('B', { type: 'SET_STATE', state: id });
         return t0;
@@ -401,8 +456,8 @@ async function driveToState(
     let aTs: number | undefined;
     let bTs: number | undefined;
     while (Date.now() < deadline && (aTs === undefined || (hasPanelB && bTs === undefined))) {
-        if (aTs === undefined) aTs = await readStateReached(page, 'panel_a', stateId);
-        if (hasPanelB && bTs === undefined) bTs = await readStateReached(page, 'panel_b', stateId);
+        if (aTs === undefined) aTs = await readStateReached(page, 'A', stateId);
+        if (hasPanelB && bTs === undefined) bTs = await readStateReached(page, 'B', stateId);
         if (aTs === undefined || (hasPanelB && bTs === undefined)) {
             await page.waitForTimeout(25);
         }
@@ -421,18 +476,56 @@ async function driveToState(
     };
 }
 
-async function readStateReached(page: Page, frameName: PanelName, stateId: string): Promise<number | undefined> {
-    const frame = getFrame(page, frameName);
-    if (!frame) return undefined;
+/**
+ * Read a STATE_REACHED arrival timestamp from the WRAPPER window's registry.
+ * Sims post STATE_REACHED to window.parent (the wrapper), so it is recorded
+ * there — an iframe-side read would never see it (the bug behind the universal
+ * "STATE_REACHED timeout" warnings prior to 2026-06-10).
+ */
+async function readStateReached(page: Page, panel: 'A' | 'B', stateId: string): Promise<number | undefined> {
     try {
-        const result = await frame.evaluate((id) => {
-            const w = window as unknown as { __pmStateReached?: Record<string, number> };
-            return w.__pmStateReached?.[id] ?? null;
-        }, stateId);
+        const result = await page.evaluate(({ p, id }) => {
+            const w = window as unknown as { __pmStateReachedByPanel?: Record<string, Record<string, number>> };
+            return w.__pmStateReachedByPanel?.[p]?.[id] ?? null;
+        }, { p: panel, id: stateId });
         return typeof result === 'number' ? result : undefined;
     } catch {
         return undefined;
     }
+}
+
+/** Post an arbitrary message to one or both panels via the wrapper relay. */
+async function postToPanels(page: Page, msg: Record<string, unknown>, hasPanelB: boolean): Promise<void> {
+    try {
+        await page.evaluate(({ m, hasB }) => {
+            const w = window as unknown as { __postToPanel?: (panel: string, msg: unknown) => void };
+            w.__postToPanel?.('A', m);
+            if (hasB) w.__postToPanel?.('B', m);
+        }, { m: msg, hasB: hasPanelB });
+    } catch {
+        // Non-fatal — callers surface warnings on missing output.
+    }
+}
+
+/**
+ * Capture the deterministic frozen frame for the CURRENT state:
+ * RESET_TRAJECTORY (re-zeroes the renderer's state-local clock + trail) →
+ * SET_TIME_FREEZE {at_ms} (virtual clock advances to the pin and holds) →
+ * settle wait (covers the pin run-up PLUS the renderer's wall-clock easings,
+ * e.g. the compass swing, which SET_TIME_FREEZE cannot pin — see the renderer
+ * handler comment) → screenshot → release the pin + reset.
+ */
+async function captureFrozenFrame(
+    page: Page, hasPanelB: boolean, opts: { atMs: number; settleMs?: number },
+): Promise<string> {
+    await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
+    await postToPanels(page, { type: 'SET_TIME_FREEZE', at_ms: opts.atMs }, hasPanelB);
+    const settle = Math.max(opts.atMs * 1.1 + 500, opts.settleMs ?? 3000);
+    await page.waitForTimeout(settle);
+    const png = await captureIframe(page, 'panel_a');
+    await postToPanels(page, { type: 'SET_TIME_FREEZE', frozen: false }, hasPanelB);
+    await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
+    return png.toString('base64');
 }
 
 /** Post a SET_MATH message to Panel A (drives the renderer's equation panel). */
@@ -541,8 +634,12 @@ const KEYFRAME_OFFSETS_MS = [0, 2500, 5000, 7500, 10000];
 const DENSE_DEFAULT_INTERVAL_MS = 1000;
 const DENSE_DEFAULT_DURATION_MS = 10000;
 const DENSE_MIN_DURATION_MS = 3000;
-const DENSE_MAX_DURATION_MS = 15000;
-const DENSE_DEFAULT_MAX_FRAMES = 15;
+// 30s / 31 frames: follow the declared state duration (states run 15-20s) —
+// dense frames feed ONLY the $0 pixel gates, never the vision models, so the
+// cap is a wall-time guard, not a cost guard. Raised from 15000/15 on
+// 2026-06-10 (old clamp dropped the tail of any state longer than 15s).
+const DENSE_MAX_DURATION_MS = 30000;
+const DENSE_DEFAULT_MAX_FRAMES = 31;
 
 /**
  * Capture a dense frame series for the CURRENT state (caller has already
@@ -594,8 +691,11 @@ async function measureParamRelay(page: Page, timeoutMs: number): Promise<ParamRe
     await resetParamReceived(page, 'panel_a');
     await resetParamReceived(page, 'panel_b');
 
+    // Date.now() on BOTH sides: the post happens in the wrapper window, the
+    // receipt is recorded in the iframe probe — performance.now() timeOrigins
+    // differ between frames, so wall clock is the only valid shared clock.
     const aPostTs = await page.evaluate(() => {
-        const t0 = performance.now();
+        const t0 = Date.now();
         const w = window as unknown as { __postToPanel?: (panel: string, msg: unknown) => void };
         w.__postToPanel?.('A', {
             type: 'PARAM_UPDATE', __pmTest: true, key: '__pm_relay_test', value: 1, ts: t0,
@@ -608,7 +708,7 @@ async function measureParamRelay(page: Page, timeoutMs: number): Promise<ParamRe
     await resetParamReceived(page, 'panel_b');
 
     const bPostTs = await page.evaluate(() => {
-        const t0 = performance.now();
+        const t0 = Date.now();
         const w = window as unknown as { __postToPanel?: (panel: string, msg: unknown) => void };
         w.__postToPanel?.('B', {
             type: 'PARAM_UPDATE', __pmTest: true, key: '__pm_relay_test', value: 2, ts: t0,

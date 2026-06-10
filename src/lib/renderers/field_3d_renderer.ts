@@ -761,6 +761,18 @@ export const FIELD_3D_RENDERER_CODE = `
     // captures the local trajectory time at the freeze moment and re-uses it
     // every frame until cleared. Hand cycle + glow + camera keep ticking.
     var protonFreezeAt = null;
+    // Visual-validator regression capture (2026-06-10) — SET_TIME_FREEZE pins
+    // the virtual time var at stateStartTime + at_ms/1000 so every time-driven
+    // element (trajectory, trail, glow phase, theta_sweep, oscillation) renders
+    // the IDENTICAL frame on every run → deterministic pixels for H2 frozen
+    // baselines. Pin-by-target: time advances normally up to the pin, then
+    // holds (a jump would skip per-frame trail/integration accumulation).
+    // KNOWN RESIDUAL: compass approach/swing easings read performance.now()
+    // (wall clock) — they are NOT frozen; both reach a terminal pose within
+    // ~3.2s, so capture callers must settle-wait ≥3s before screenshotting.
+    //   { type: 'SET_TIME_FREEZE', at_ms: 1500 }  → pin at state-local 1.5s
+    //   { type: 'SET_TIME_FREEZE', frozen: false } → release the pin
+    var freezeAtTime = null;
     // Diamond #2 — pause+co-glow choreography (founder note 2026-05-14):
     // when a teacher_script sentence is locked to a hand-rule phase, the 3D
     // right-hand mesh freezes at that phase so the student can read the v / B
@@ -3383,13 +3395,25 @@ export const FIELD_3D_RENDERER_CODE = `
     var time = 0;
     function animate() {
         animationId = requestAnimationFrame(animate);
-        time += 0.016;
+        // SET_TIME_FREEZE pin-by-target: advance virtual time normally until
+        // the pin, then hold — never jump, so per-frame accumulators (particle
+        // trail, slow_rotation integration) build the exact same frame count
+        // every run → deterministic pixels for regression baselines.
+        var heldAtPin = false;
+        if (freezeAtTime !== null && time + 0.016 >= freezeAtTime) {
+            time = freezeAtTime;
+            heldAtPin = true;
+        } else {
+            time += 0.016;
+        }
 
         lerpSpherical();
 
         // Diamond #3 — torque-loop rotation + τ-arrow scaling + TTS glow.
         if (config.scenario_type === "torque_on_loop_uniform_field") {
-            updateTorqueLoopFrame(0.016);
+            // slow_rotation integrates by dt independent of the time var —
+            // pass 0 while held at the pin so the loop angle freezes too.
+            updateTorqueLoopFrame(heldAtPin ? 0 : 0.016);
             applyTorqueLoopGlow();
         }
 
@@ -4038,6 +4062,9 @@ export const FIELD_3D_RENDERER_CODE = `
                 case "SET_STATE":
                     var newState = data.state || data.payload;
                     if (newState && config.states[newState]) {
+                        // A new state must never start under a stale time pin
+                        // (SET_TIME_FREEZE without a matching release).
+                        freezeAtTime = null;
                         if (!isMobile) {
                             applyState(newState);
                         } else {
@@ -4120,6 +4147,19 @@ export const FIELD_3D_RENDERER_CODE = `
                     // animate-loop curlT logic checks heldHandPhase first and
                     // skips the 9-sec cycle when set. Null resumes cycling.
                     heldHandPhase = data.phase || null;
+                    break;
+
+                case "SET_TIME_FREEZE":
+                    // Visual-validator regression capture: pin virtual time at
+                    // stateStartTime + at_ms/1000 (see freezeAtTime declaration
+                    // for the determinism contract + compass caveat). Callers
+                    // send RESET_TRAJECTORY first so the pin is state-local.
+                    if (data.frozen === false) {
+                        freezeAtTime = null;
+                    } else {
+                        var freezeOffsetMs = typeof data.at_ms === "number" && data.at_ms > 0 ? data.at_ms : 1500;
+                        freezeAtTime = stateStartTime + freezeOffsetMs / 1000;
+                    }
                     break;
 
                 case "SET_MATH":

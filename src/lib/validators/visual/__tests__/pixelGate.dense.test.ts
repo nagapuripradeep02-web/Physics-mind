@@ -161,4 +161,44 @@ describe('pixelGate dense checks (D5/D6/D7)', () => {
         const result = await runPixelGate({ conceptId: 'test', capture, panelCount: 1 });
         expect(result.check_results.filter(r => ['D5', 'D6', 'D7'].includes(r.check_id))).toHaveLength(0);
     });
+
+    // ── D7 proportional tail window (30s/31-frame unclamp, 2026-06-10) ──
+    // Window = max(3, ceil(10% of pairs)). 36 frames → 35 pairs → window 4.
+
+    it('D7 long series: fails when the last 4 pairs are frozen (window=4 at 35 pairs)', async () => {
+        // 31 moving frames + 5 copies of the last → 36 frames, 35 pairs,
+        // window ceil(3.5)=4; the trailing 5 frozen pairs cover the window.
+        const moving = await movingFrames(31, 4);
+        const frozen = moving[moving.length - 1];
+        const frames = [...moving, frozen, frozen, frozen, frozen, frozen];
+        const capture = mkCapture([mkSeries('STATE_5', frames)]);
+        const result = await runPixelGate({ conceptId: 'test', capture, panelCount: 1 });
+        const d7 = result.check_results.find(r => r.check_id === 'D7' && r.state_id === 'STATE_5');
+        expect(d7!.passed).toBe(false);
+        expect(d7!.evidence).toContain('last 4 adjacent pairs');
+    });
+
+    it('D7 long series: passes when only 3 trailing pairs are frozen (window=4 needs all 4)', async () => {
+        // 32 moving frames + 3 copies of the last → 35 frames, 34 pairs,
+        // window ceil(3.4)=4; tail = [motion, frozen, frozen, frozen] → not
+        // all frozen → pass. Long series demand MORE frozen evidence — intent.
+        const moving = await movingFrames(32, 4);
+        const frozen = moving[moving.length - 1];
+        const frames = [...moving, frozen, frozen, frozen];
+        const capture = mkCapture([mkSeries('STATE_6', frames)]);
+        const result = await runPixelGate({ conceptId: 'test', capture, panelCount: 1 });
+        const d7 = result.check_results.find(r => r.check_id === 'D7' && r.state_id === 'STATE_6');
+        expect(d7!.passed).toBe(true);
+    });
+
+    it('D7 short series (≤30 pairs): window stays 3 — backward compatible', async () => {
+        const moving = await movingFrames(6, 15);
+        const frozen = moving[moving.length - 1];
+        const frames = [...moving, frozen, frozen, frozen]; // 9 frames → 8 pairs → window max(3, 1) = 3; 3 frozen pairs
+        const capture = mkCapture([mkSeries('STATE_7', frames)]);
+        const result = await runPixelGate({ conceptId: 'test', capture, panelCount: 1 });
+        const d7 = result.check_results.find(r => r.check_id === 'D7' && r.state_id === 'STATE_7');
+        expect(d7!.passed).toBe(false);
+        expect(d7!.evidence).toContain('last 3 adjacent pairs');
+    });
 });

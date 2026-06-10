@@ -76,6 +76,22 @@ async function main(): Promise<void> {
         const animated = expectsMotion[stateId] === true;
         states[stateId] = { compare: !animated };
         console.log(`   ${animated ? '◌' : '✓'} ${stateId}.png (${Math.round(downscaled.length / 1024)} KB)${animated ? ' — compare:false (animated state, reference only)' : ''}`);
+
+        // Frozen baseline — the SET_TIME_FREEZE deterministic capture. This is
+        // what gives ANIMATED states real H2 protection (live compare is off
+        // for them by design). If a state's frozen frame proves flaky, flip
+        // compare_frozen to false in baselines.json — same philosophy as
+        // compare:false.
+        const frozenSrcPath = join(runDir, `${stateId}__frozen.png`);
+        if (existsSync(frozenSrcPath)) {
+            const frozenDownscaled = await sharp(readFileSync(frozenSrcPath))
+                .resize({ width: BASELINE_NORMALIZED_WIDTH, withoutEnlargement: false })
+                .png()
+                .toBuffer();
+            writeFileSync(join(baselineDir, `${stateId}__frozen.png`), frozenDownscaled);
+            states[stateId].compare_frozen = true;
+            console.log(`   ❄ ${stateId}__frozen.png (${Math.round(frozenDownscaled.length / 1024)} KB) — compare_frozen:true (deterministic pinned frame)`);
+        }
     }
 
     const manifest: BaselineManifest = {

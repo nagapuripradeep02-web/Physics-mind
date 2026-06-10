@@ -20,7 +20,10 @@
 // MUST be the first import — guarantees .env.local values win over any empty
 // system-env values that Node 24 + --env-file leaves unfilled.
 import '@/lib/loadEnvLocal';
+import { writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { captureSimStates } from '@/lib/validators/visual/screenshotter';
+import { buildContactSheets } from '@/lib/validators/visual/contactSheet';
 import { runPixelGate } from '@/lib/validators/visual/pixelGate';
 import { runRegressionGate } from '@/lib/validators/visual/regressionGate';
 import { deriveStateIds } from '@/lib/validators/visual/deriveStateIds';
@@ -87,6 +90,8 @@ async function main(): Promise<void> {
         stateIds,
         dense: { intervalMs: 1000, durationMsByState },
         ttsMathByState,
+        // Deterministic pinned frame per state — the H2 frozen-baseline source.
+        frozenFrame: { atMs: 1500 },
     });
     const denseFrameCount = (capture.dense_timeseries ?? []).reduce((n, s) => n + s.frames_b64.length, 0);
     console.log(`   ✅ ${capture.state_captures.length} states + ${denseFrameCount} dense frames in ${Date.now() - captureStart}ms`);
@@ -118,7 +123,26 @@ async function main(): Promise<void> {
     console.log(`   Run dir:  ${dump.dir}`);
     console.log(`   Manifest: ${dump.manifestPath}`);
 
-    console.log(`\n👁  LOOK AT THESE — Read every file below before presenting to the founder:\n`);
+    // Contact sheets — one grid PNG per state (static + dense + I2 + frozen).
+    // Reading 8 sheets replaces reading ~90 individual frames.
+    const sheetPaths: string[] = [];
+    try {
+        const sheets = await buildContactSheets(capture);
+        for (const sheet of sheets) {
+            const p = join(dump.dir, `${sheet.state_id}__contact_sheet.png`);
+            writeFileSync(p, sheet.png);
+            sheetPaths.push(p);
+        }
+    } catch (err) {
+        console.log(`   ⚠️  Contact-sheet build failed (individual frames below still valid): ${err instanceof Error ? err.message : String(err)}`);
+    }
+
+    if (sheetPaths.length > 0) {
+        console.log(`\n👁  CONTACT SHEETS — Read these FIRST (one grid per state; drill into individual frames only where a cell looks wrong):\n`);
+        for (const p of sheetPaths) console.log(p);
+    }
+
+    console.log(`\n👁  Individual frames (drill-down — every file the sheets were built from):\n`);
     for (const f of dump.files) console.log(f);
 
     const failed = allResults.filter(r => !r.passed).length;

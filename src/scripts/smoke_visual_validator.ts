@@ -29,7 +29,10 @@
 // MUST be the first import — guarantees .env.local values win over any empty
 // system-env values that Node 24 + --env-file leaves unfilled.
 import '@/lib/loadEnvLocal';
+import { writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { captureSimStates } from '@/lib/validators/visual/screenshotter';
+import { buildContactSheets } from '@/lib/validators/visual/contactSheet';
 import { runVisionGate } from '@/lib/validators/visual/visionGate';
 import { runPixelGate } from '@/lib/validators/visual/pixelGate';
 import { runRegressionGate } from '@/lib/validators/visual/regressionGate';
@@ -125,6 +128,9 @@ async function main(): Promise<void> {
         stateIds,
         dense: dense ? { intervalMs: 1000, durationMsByState: deriveStateDurationsMs(cached.physics_config) } : undefined,
         ttsMathByState,
+        // Frozen frame rides the --dense flag: both are deterministic-capture
+        // extras the auto-fire path never requests.
+        frozenFrame: dense ? { atMs: 1500 } : undefined,
     });
     console.log(`   ✅ ${capture.state_captures.length} state captures in ${Date.now() - captureStart}ms`);
     if (capture.warnings.length > 0) {
@@ -206,6 +212,17 @@ async function main(): Promise<void> {
         console.log('\n💾 Dumping frames to disk (--dump-frames)...');
         const dump = dumpCaptureToDisk({ conceptId, capture });
         console.log(`   Run dir: ${dump.dir}`);
+        try {
+            const sheets = await buildContactSheets(capture);
+            console.log('\n   Contact sheets (Read these first — one grid per state):');
+            for (const sheet of sheets) {
+                const p = join(dump.dir, `${sheet.state_id}__contact_sheet.png`);
+                writeFileSync(p, sheet.png);
+                console.log(`   ${p}`);
+            }
+        } catch (err) {
+            console.log(`   ⚠️  Contact-sheet build failed: ${err instanceof Error ? err.message : String(err)}`);
+        }
         for (const f of dump.files) console.log(f);
     }
 

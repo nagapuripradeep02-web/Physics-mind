@@ -14,7 +14,11 @@
  */
 
 const DURATION_MIN_MS = 3000;
-const DURATION_MAX_MS = 15000;
+// 30s cap: real states run 15-20s and the dense work is $0 (pixel math only —
+// vision models never see dense frames), so follow the declared duration.
+// Raised from 15000 on 2026-06-10 — the old clamp silently dropped the tail
+// of any state longer than 15s, blinding D7 to late freezes.
+const DURATION_MAX_MS = 30000;
 
 type StateRecord = Record<string, Record<string, unknown>>;
 
@@ -39,7 +43,7 @@ function resolveStates(physicsConfig: Record<string, unknown> | null): StateReco
 }
 
 /**
- * Per-state capture duration in ms, clamped to [3000, 15000]. States declare
+ * Per-state capture duration in ms, clamped to [3000, 30000]. States declare
  * `duration` in SECONDS (v2 epic_l_path) — values that look like seconds
  * (< 120) are converted; values that look like ms pass through.
  */

@@ -19,7 +19,7 @@ import { Buffer } from 'node:buffer';
 import type { CaptureResult } from './screenshotter';
 
 export interface FrameDumpEntry {
-    role: 'state_panel_a' | 'state_panel_b' | 'state_combined' | 'dense' | 'keyframe' | 'i2_formula';
+    role: 'state_panel_a' | 'state_panel_b' | 'state_combined' | 'dense' | 'keyframe' | 'i2_formula' | 'frozen';
     state_id: string;
     t_ms?: number;
     /** For i2_formula frames: the TTS sentence id + LaTeX expression shown. */
@@ -75,6 +75,12 @@ export function dumpCaptureToDisk(opts: DumpCaptureOptions): FrameDumpResult {
             writePng(`${sc.state_id}__i2_${String(i + 1).padStart(2, '0')}_${f.sentence_id}.png`, f.panel_a_png_b64,
                 { role: 'i2_formula', state_id: sc.state_id, sentence_id: f.sentence_id, expression: f.expression });
         });
+        // Deterministic frozen frame (H2 regression source — visual_approve
+        // copies this into visual_baselines/<concept>/<STATE>__frozen.png).
+        if (sc.frozen_png_b64) {
+            writePng(`${sc.state_id}__frozen.png`, sc.frozen_png_b64,
+                { role: 'frozen', state_id: sc.state_id });
+        }
     }
 
     for (const series of opts.capture.dense_timeseries ?? []) {
