@@ -8,7 +8,7 @@ Make the physics airtight before json_author renders anything visual. Every form
 
 ## Input contract
 
-Architect's markdown skeleton — 7 sections: atomic claim, state count + arc, 4 EPIC-C branches, allow_deep_dive states, drill-down cluster candidates, prerequisites, real-world anchor.
+Architect's markdown skeleton — the full output contract defined in `.agents/architect/CLAUDE.md` §"Output contract" (10 sections as of 2026-06-11, including the Pass-1 strategic block, PRIMARY-aha designation, the Rule 16a misconception confrontation plan, and the **Definition of Done** block). Do not duplicate the section list here — the architect spec is the source of truth.
 
 ## Output contract
 
@@ -177,8 +177,22 @@ Read every `prevention_rule`. Each is a one-line constraint a prior bug forced i
 - [ ] Engine bug queue consulted; every relevant `prevention_rule` satisfied or exception documented and FLAGed.
 - [ ] DC Pandey check: no formula, explanation, or example problem imported from external books.
 
+## v2.3 + Definition of Done alignment (added 2026-06-11)
+
+The pipeline moved while this spec stood still (v2.3 landed 2026-05-22/30; the DoD gate 2026-06-10). The physics block must now ALSO cover:
+
+1. **Definition of Done — physics-layer rows.** The architect's DoD block (skeleton section 10) is the build contract; quality_auditor Gate 0 enforces it. Your block supplies the physics behind each DoD row:
+   - **Symbol-label table**: for every vector/quantity the narration names, give the exact label string + unit + (where dynamic) the `PM_interpolate` expression. A narrated quantity with no label entry is a Gate 0 FAIL downstream.
+   - **Right-hand-rule states**: specify WHICH rule (grip for circulation, cross-product for a single dB/F) and the orientation math — **compute, don't guess** (biot_savart lesson, 2026-06-11): hand/overlay screen position from the camera basis (screen-right ≈ `normalize(viewDir × up)`; prefer camera-relative anchoring over hand-tuned world coords), orientation via `makeBasis`/quaternion with a **det = +1 handedness check** (a mirrored right hand teaches wrong physics), timings as explicit phase fractions.
+   - **Motion rows**: map every DoD motion row to one of the 6 canonical E11 motions (table above) with its equation + parameters.
+2. **`aha_moment` physics check.** The architect designates 1 PRIMARY (+0–2 SUPPORTING) aha. Verify the ≤15-word statement is physically TRUE and that the designated state's physics actually demonstrates it. Wrong-but-memorable is the worst outcome — flag and send back.
+3. **`misconception_watch` counters (Rule 16a — EPIC-C deferred).** Since 2026-06-10, misconceptions are confronted INSIDE EPIC-L, not in EPIC-C branches. For each watch entry, physics-check `visual_counter` + `one_line_fix` — the one-liner must be correct physics, not just persuasive.
+4. **Assessment physics check (concepts authored 2026-05-30+).** The 6 quiz questions ship with the JSON (`assessment` + `coverage_map`). Verify every correct answer is correct, every `distractor_misconception` is a real wrong belief that yields that wrong option, and `parallel_form_stem` (when present) is physics-equivalent to the original.
+5. **Modes by phase.** The board mark scheme (output section 4) applies only when the concept's phase ships board mode (e.g., Ch.26 magnetism defers board/competitive to M7/M8). State explicitly in your block which modes the DoD requires, so json_author neither skips a required mode nor half-builds a deferred one.
+6. **Your reveal timeline feeds Gate 15 (Pass-2).** The per-state TTS→reveal rows are the raw material for the four-question experiential audit (what moves / where the eye goes). Write them knowing they will be audited against Q3/Q4.
+
 ## Escalation
 
 If the architect's skeleton has a physics error (wrong misconception, missing prerequisite, claim that isn't atomic) — STOP, document the issue, send back. Don't paper over.
 
-If a formula has edge cases the architect didn't account for (θ=90° divide-by-zero, negative tension impossible) — flag in output; json_author may need extra `variable_overrides` states or the architect may need to add a misconception branch.
+If a formula has edge cases the architect didn't account for (θ=90° divide-by-zero, negative tension impossible) — flag in output; json_author may need extra `variable_overrides` states or the architect may need to add a `misconception_watch` beat (EPIC-C branch only if the founder explicitly requested branches).

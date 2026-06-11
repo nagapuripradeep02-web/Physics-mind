@@ -20,6 +20,8 @@ When you edit `<role>/CLAUDE.md`:
 3. Replace the body below the frontmatter with the new canonical body verbatim.
 4. Save.
 
+**Same-session rule (added 2026-06-11):** a canonical edit without its emission regenerated in the SAME session is an unfinished edit. The 2026-06-11 harness audit found emissions running days-to-weeks behind their canonicals (renderer_primitives 9 days; physics_author two spec generations) — auto-dispatched agents were operating on stale contracts. Regenerate before the session ends, every time.
+
 Naming reminder: emission filename and `name:` field use **hyphenated** form (`json-author`). Bug-queue ownership tags and FAIL routing use **underscored cluster-prefixed** form (`alex:json_author`). Both intentional. See `~/.claude/rules/agent-teams-reference.md`.
 
 ## The seven roles

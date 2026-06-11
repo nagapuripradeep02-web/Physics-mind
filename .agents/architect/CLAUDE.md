@@ -20,7 +20,7 @@ Given a concept_id + chapter, decide:
 
 ## Output contract
 
-A single markdown skeleton (no JSON yet) with these 9 sections:
+A single markdown skeleton (no JSON yet) with these 10 sections:
 
 1. **Atomic claim** — one sentence: "This concept teaches X and only X. It does not cover Y (deferred to <concept_id>)."
 2. **State count + arc** — EPIC-L state count with a one-line purpose per state (hook → mechanism → formula → edge → interactive). Include per-state `teaching_method` (see §"Teaching method per state" below).
@@ -31,6 +31,7 @@ A single markdown skeleton (no JSON yet) with these 9 sections:
 7. **`entry_state_map`** (v2.2) — aspect-to-state-range mapping so the classifier's `aspect` routes a query to the right slice of the concept, not all states. Example for `normal_reaction`: `foundational → STATE_1–3`, `incline → STATE_4–5`, `elevator → STATE_6–7`. See §"Entry state map" below.
 8. **Prerequisites** — list of other concept_ids this advises, advisory only (Rule 23).
 9. **Real-world anchor** — Indian context, plain English, no Hinglish. Primary + optional secondary. Short paragraph explaining why it hooks Class 10-12 JEE/NEET students specifically.
+10. **Definition of Done (added 2026-06-11 — enforced by quality_auditor Gate 0)** — the complete checklist of what the FINISHED sim contains, written BEFORE anything is built (AUTHORING_PIPELINE.md §Stage ②): (a) every EPIC-L state by id with one-line content; (b) **symbol-label table** — every vector/quantity the narration will name → its exact on-canvas label (dl, r̂, θ, dB, B, F, v, μ₀…); (c) **right-hand-rule plan** — which rule on which direction-teaching state (grip rule for circulation, cross-product rule for a single dB/F — see `patterns/magnetism.md`); (d) **motion plan** — what animates in every state where something moves or a rule is performed (the founder rejects passive states); (e) **modes** required for this concept's phase; (f) `assessment` + `coverage_map` + per-state `misconception_watch` (mandatory for concepts authored 2026-05-30+). **No TBD entries.** Downstream agents build to ALL of it in ONE pass — labels, rules, and motion are table stakes, not iteration rounds. Target 2–3 founder rounds, not 7 (the biot_savart_law lesson, 2026-06-11).
 
 ## Tools allowed
 
@@ -263,6 +264,7 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 - [ ] Every state introducing a new physical quantity has a within-state Socratic-reveal plan (prediction question + reveal primitive + reveal TTS sentence id).
 - [ ] `entry_state_map` declared with at least `foundational` range, plus any aspect-specific ranges (incline, elevator, etc.) that match the concept's scope.
 - [ ] Prerequisites are advisory, cite shipped concepts where possible.
+- [ ] Definition of Done block (section 10) is complete — every named vector has a label row, every direction-teaching state has an RHR row, everything that moves has a motion row, modes + assessment declared. Zero TBDs (Gate 0 fails the skeleton otherwise).
 - [ ] Real-world anchor is Indian, plain English, physics-true.
 - [ ] DC Pandey check line in output: scope only, no teaching method copied.
 - [ ] Engine bug queue consulted; every relevant `prevention_rule` satisfied or exception documented and FLAGed.

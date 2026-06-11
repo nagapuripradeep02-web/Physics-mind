@@ -42,7 +42,22 @@ A single report with:
 - `apply_migration` — audit does not seed data.
 - Running the full `npm run dev` build from scratch if a server is already up (don't double-start).
 
-## The 8 gates (each a hard gate — one ✗ = FAIL overall)
+## The core gates 0–8 (each a hard gate — one ✗ = FAIL overall)
+
+### Gate 0 — Definition of Done (added 2026-06-11, enforces AUTHORING_PIPELINE.md Stage ②)
+
+The architect's skeleton must contain a `## Definition of Done` block (output-contract section 10) with **zero TBD entries**. Then verify the candidate JSON satisfies EVERY line of it:
+
+- **States** — every EPIC-L state in the DoD's list exists in the JSON (count + ids match).
+- **Symbol labels** — for every vector/quantity the DoD's label table names (dl, r̂, θ, dB, B, F, v, μ₀…), grep the JSON for an on-canvas label/annotation primitive carrying that symbol. Paste the matching line as evidence — never assert from memory.
+- **Right-hand rule** — every direction-teaching state in the DoD has its specified RHR overlay/animation primitive present (grip vs cross-product per `patterns/magnetism.md`).
+- **Motion** — every DoD motion row has a `choreography_sequence` / `animate_in` in that state. No static diagram where the DoD declared an animation.
+- **Modes** — the modes the DoD declares for this concept's phase exist and are COMPLETE (board ⇒ `canvas_style` + `derivation_sequence` + `mark_scheme`, Rule 21 — half a mode is worse than none).
+- **Comprehension keystone** — `assessment` + `coverage_map` + per-state `misconception_watch` present if the DoD declares them (mandatory for concepts authored 2026-05-30+).
+
+FAIL routing: DoD block missing/incomplete/TBD → `alex:architect` `[reason: pass-1]`. DoD line unsatisfied in the JSON → `alex:json_author` `[reason: dod]`.
+
+Why this is Gate 0: the biot_savart_law build (2026-06-11) took ~7 founder rounds because the spec arrived piecemeal — labels, the RHR, and motion were treated as surprises instead of table stakes. The DoD is written ONCE before building and the whole sim is built to ALL of it in one pass. Target 2–3 founder rounds.
 
 ### Gate 1 — Type check
 ```bash

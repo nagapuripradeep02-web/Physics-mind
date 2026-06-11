@@ -154,6 +154,27 @@ already turns.
 
 ---
 
+## Where every lesson gets filed (routing rule — added 2026-06-11)
+
+A lesson that stays in chat does not compound. The 2026-06-11 harness audit found the cost of
+skipping this: the Definition-of-Done lesson lived in this file + memory but in ZERO agent specs,
+and the physics_author spec sat two upgrades stale. **File every lesson in the SAME session it was
+learned, in exactly ONE home (link from elsewhere — never copy):**
+
+| Lesson type | Its ONE home |
+|---|---|
+| Bug / incident (something broke) | `engine_bug_queue` row WITH `prevention_rule` (`npm run log:lesson`) |
+| Reusable visual / choreography / physics idiom | `docs/patterns/<chapter>.md` |
+| Authoring contract change (what an agent must produce) | the owning `.agents/<role>/CLAUDE.md` → regenerate its emission in the same session |
+| Process change (how this pipeline runs) | this file (AUTHORING_PIPELINE.md) |
+| Never-violate rule | root `CLAUDE.md` (founder approval required; rule numbers are permanent — append, never renumber) |
+| Strategy discussion / decision context | `docs/DISCUSSIONS.md` |
+
+**The end-of-session check:** if the founder corrected anything this session, name the row above
+it was filed under before wrapping up. "It's in the chat" = not filed.
+
+---
+
 ## The hard floor (never bends — Rule 18 / The Learning Model)
 
 Every feedback-driven change is **offline, written as a reviewable artifact, and human-gated**
