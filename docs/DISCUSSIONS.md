@@ -5,6 +5,21 @@ Updated every session. Most recent entry at the top.
 
 ---
 
+## Session 65 — Harness audit executed in 3 founder-approved batches; founder dictates the phased GTM sequence: professor gate → 100-student feedback pool → free teacher pilots (1–2 chapters) → paid monthly teacher subscriptions (3–4 chapters) = v1 (2026-06-11)
+
+> **Execution (one line):** the methodology audit's three fix-batches all shipped (commits `edc45e4`, `4fdb7e9`, `c5fe946`): EPIC-C policy unified to EPIC-L-first everywhere, Definition-of-Done became quality_auditor Gate 0, lesson-routing rule added to AUTHORING_PIPELINE.md, evidence-discipline rule (no verdict without machine-extracted proof), Gate 21 board-completeness check (caught `vector_head_to_tail`'s half-built board mode on first run), `engine_bug_queue` row_type migration applied (38 probe definitions separated; true open incidents = 8).
+>
+> **DECISION — the phased loop and monetization sequence (founder, dictated):**
+> 1. **Now:** create quality EPIC-L simulations → **one expert professor** reviews → update from his feedback. That is the entire current loop; the old testing protocol's quality-verification core (per-state audit) stays required. Deep-dive / drill-down remain deferred (CLAUDE_TEST.md §7–8 now carry DO-NOT-TEST banners).
+> 2. **Later:** a free feedback pool of **~100 students** — for behavior, confusion, and comprehension signals only.
+> 3. **After 1–2 solid chapters:** give the sims **free to 2–3 teachers**; collect their feedback while they actually teach with them.
+> 4. **After 3–4 chapters:** **start selling to teachers — monthly subscription** ("use the simulations to explain to your students"). This is v1 and the start of marketing.
+> 5. The sims update continuously from teacher + student feedback thereafter — the catalog is never "done."
+>
+> **GTM implication:** teachers are the **first paying customers** (refines the Session 61–63 institute-pilot direction; the April "creator-led, no B2B" stance is superseded for the near term — creator-led distribution remains the later scale layer, not the first revenue).
+
+---
+
 ## Session 64 — Pipeline simplicity audit: lock in "EPIC-L-first, defer EPIC-C / deep-dive / drill-down until students exist"; Pass-2 lens promoted to Gate 15; solenoid dropped-pause regression caught & fixed (2026-06-10)
 
 > Founder, on seeing the full authoring pipeline laid out, asked the right question — *"are we overcomplicating this?"* Verdict: the spine is sound and maps cleanly to the founder's intended loop (**build EPIC-L → professor feedback → update → student feedback → update**), but we were building the **student-feedback machinery before any students exist.**
