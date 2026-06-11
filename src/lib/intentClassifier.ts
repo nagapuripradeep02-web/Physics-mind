@@ -91,6 +91,11 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // (Class 12 Ch.4.4 — Phase 0 validation demo Sim 3, session 60). First field_3d
     // (Three.js) concept authored end-to-end; routed via CONCEPT_RENDERER_MAP.
     'magnetic_field_wire',
+    // The Biot-Savart law — dB = (μ₀/4π) I(dl × r̂)/r² for a single current element,
+    // summed along a straight wire to recover B = μ₀I/(2πr) (Class 12 Ch.4.4,
+    // archetype A meta). Distinct from the legacy magnetic_field_biot_savart id;
+    // routed to the field_3d biot_savart_element scenario.
+    'biot_savart_law',
     // Lorentz force on a moving charge — F = q v × B (Class 12 Ch.4.2 — Diamond #2
     // of the magnetism chapter, M1 of MAGNETISM_ARCHITECTURE.md, archetype B —
     // force-in-field). Establishes ambient B grid, moving particle, per-frame
@@ -102,6 +107,15 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // Establishes rectangular loop, force-pair animation, μ vector through loop
     // face, τ vector along rotation axis, and loop↔bar-magnet swap in field_3d_renderer.ts.
     'torque_on_current_loop_in_field',
+    // Magnetic field of a long solenoid — B = μ₀nI inside, ≈0 outside
+    // (Class 12 Ch.4.8 — Diamond #4 of the magnetism chapter, M4 binary-gate
+    // validator per MAGNETISM_ARCHITECTURE.md, archetype A — field-viz).
+    // PRIMARY aha: per-turn radial components cancel → uniform axial B inside.
+    // SUPPORTING aha: right-hand grip swaps roles — fingers curl with current,
+    // thumb gives B. Conceptual-only ship; board (M7) and competitive (M8)
+    // deferred. Renderer wires wire_to_coil_morph (STATE_1) and
+    // right_hand.case='solenoid' with fade_from_case='A' (STATE_5).
+    'magnetic_field_solenoid',
 ]);
 
 // Synonyms → canonical IDs. Gemini/Flash often return physicist-common synonyms
@@ -331,6 +345,13 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   friction_static_kinetic ← static vs kinetic friction, μₛ vs μₖ, push almirah, slipping threshold
   newton_second_law_direction ← F = m·a as a vector equation, direction matters, a along F not v
 
+  ── Moving Charges and Magnetism (Class 12 Ch.4) ──
+  magnetic_field_wire             ← B around a straight current-carrying wire, B = μ₀I/(2πr), right-hand rule (thumb = I, fingers = B)
+  biot_savart_law                 ← the Biot-Savart law itself: dB = (μ₀/4π) I(dl × r̂)/r² for a current element, sinθ dependence, summed/integrated to recover B = μ₀I/(2πr)
+  magnetic_force_moving_charge    ← Lorentz force F = q v × B on a moving charge, F ⊥ v and B, cyclotron motion
+  torque_on_current_loop_in_field ← τ = μ × B on a current loop, magnetic moment μ = NIA, loop ↔ bar magnet equivalence
+  magnetic_field_solenoid         ← B = μ₀nI inside a long solenoid, ≈ 0 outside, RHR-swap (fingers = I, thumb = B inside)
+
 CRITICAL DISAMBIGUATION (current electricity):
 - "why does current reduce after resistor?" → ohms_law
 - "does current decrease as it flows through a resistor?" → ohms_law
@@ -373,6 +394,13 @@ CRITICAL DISAMBIGUATION (projectiles, Ch.7.6-7.8):
 - "projectile on incline" (upward) → up_incline_projectile
 - "projectile on incline" (downward) → down_incline_projectile
 - "two projectiles meeting" → two_projectile_meeting
+
+CRITICAL DISAMBIGUATION (magnetism, Ch.4):
+- "field around a wire" / "B-field of a current-carrying wire" / "right-hand rule for wire" → magnetic_field_wire
+- "Biot-Savart law" / "dB from a current element" / "dl × r" / "where does B = μ₀I/2πr come from" / "field of one current element" / "sinθ in magnetic field" → biot_savart_law
+- "force on moving charge" / "Lorentz force" / "F = qv × B" / "cyclotron" → magnetic_force_moving_charge
+- "torque on a current loop" / "magnetic moment" / "μ = NIA" / "loop in magnetic field" → torque_on_current_loop_in_field
+- "solenoid" / "B inside a solenoid" / "B = μ₀nI" / "turns per metre" / "RHR for solenoid" / "field of a coil" → magnetic_field_solenoid
 
 CRITICAL DISAMBIGUATION (forces, Ch.8):
 - "gravitational force" / "weight of object" → field_forces

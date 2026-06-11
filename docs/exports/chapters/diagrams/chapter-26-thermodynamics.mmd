@@ -1,0 +1,45 @@
+graph TD
+  c0["zeroth law atomic"]
+  c1["internal energy atomic"]
+  c2["first law atomic"]
+  c3["isothermal process atomic"]
+  c4["adiabatic process atomic"]
+  c5["isobaric process atomic"]
+  c6["isochoric process atomic"]
+  c7["specific heat atomic"]
+  c8["carnot cycle atomic"]
+  c9["heat engine atomic"]
+  c10["second law kelvin planck atomic"]
+  c11["second law clausius atomic"]
+  c12["kp clausius equivalence atomic"]
+  c13["reversible vs irreversible atomic"]
+  c14["entropy atomic"]
+  c0 --> c1
+  c1 --> c2
+  c2 --> c3
+  c2 --> c4
+  c7 --> c4
+  c2 --> c5
+  c7 --> c5
+  c2 --> c6
+  c7 --> c6
+  c2 --> c7
+  c3 --> c8
+  c4 --> c8
+  c2 --> c8
+  c8 --> c9
+  c2 --> c9
+  c5 --> c9
+  c6 --> c9
+  c8 --> c10
+  c9 --> c10
+  c9 --> c11
+  c10 --> c12
+  c11 --> c12
+  c2 --> c13
+  c10 --> c13
+  c8 --> c14
+  c13 --> c14
+  c10 --> c14
+  classDef diamond fill:#fde68a,stroke:#d97706,stroke-width:2px;
+  class c3,c4,c8,c14 diamond;

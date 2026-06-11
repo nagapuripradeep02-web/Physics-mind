@@ -16,7 +16,7 @@ import MisconceptionVerifyCard from "@/components/MisconceptionVerifyCard";
 import { SimulationSwitcher } from "@/components/SimulationSwitcher";
 import DeepDiveModal from "@/components/DeepDiveModal";
 import { usesInlineDeepDive } from "@/config/inlineDeepDiveConcepts";
-import type { DeepDiveSubState } from "@/components/TeacherPlayer";
+import type { DeepDiveSubState, MisconceptionWatchItem } from "@/components/TeacherPlayer";
 import DrillDownWidget from "@/components/DrillDownWidget";
 import { type TeachingMode } from "@/components/TeachingModeToggle";
 import { getConceptMeta } from "@/config/conceptMeta";
@@ -99,6 +99,12 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
     // State IDs with allow_deep_dive:true, per message key. Populated from the
     // sim-API response; gates the "Explain" button in TeacherPlayer.
     const [allowDeepDiveMap, setAllowDeepDiveMap] = useState<Map<string, string[]>>(new Map());
+    // Per-state misconception_watch arrays (Rule 16a), per message key. Populated
+    // from the sim-API response; TeacherPlayer renders an inline "common mistake"
+    // callout keyed to the current EPIC-L state.
+    const [misconceptionWatchMap, setMisconceptionWatchMap] = useState<
+        Map<string, Record<string, MisconceptionWatchItem[]>>
+    >(new Map());
     const [isLoadingSim, setIsLoadingSim] = useState(false);
     const [multiPanelData, setMultiPanelData] = useState<Map<string, {
         panelAHtml: string;
@@ -302,6 +308,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
     const currentJsonVariants = lastKey ? jsonVariantsMap.get(lastKey) ?? null : null;
     const currentFingerprintKey = lastKey ? fingerprintKeyMap.get(lastKey) ?? null : null;
     const currentAllowedDeepDiveStates = lastKey ? allowDeepDiveMap.get(lastKey) ?? null : null;
+    const currentMisconceptionWatch = lastKey ? misconceptionWatchMap.get(lastKey) ?? undefined : undefined;
 
     // ── Inline deep-dive handlers ────────────────────────────────────────
     // Trigger: student clicks "Explain step-by-step" on a concept in the
@@ -538,6 +545,9 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
                 if (Array.isArray(data.allowDeepDiveStates)) {
                     setAllowDeepDiveMap(prev => new Map(prev).set(key, data.allowDeepDiveStates));
                 }
+                if (data.misconceptionWatch && typeof data.misconceptionWatch === 'object') {
+                    setMisconceptionWatchMap(prev => new Map(prev).set(key, data.misconceptionWatch as Record<string, MisconceptionWatchItem[]>));
+                }
                 if (data.teacherScript?.length) setAiTeacherScripts(prev => new Map(prev).set(key, data.teacherScript));
                 if (data.fingerprintKey) setFingerprintKeyMap(prev => new Map(prev).set(key, data.fingerprintKey));
                 if (data.cached_variants?.length) setCachedVariantsMap(prev => new Map(prev).set(key, data.cached_variants));
@@ -560,6 +570,9 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
                 if (resolvedConceptId) setAiConceptIds(prev => new Map(prev).set(key, resolvedConceptId));
                 if (Array.isArray(data.allowDeepDiveStates)) {
                     setAllowDeepDiveMap(prev => new Map(prev).set(key, data.allowDeepDiveStates));
+                }
+                if (data.misconceptionWatch && typeof data.misconceptionWatch === 'object') {
+                    setMisconceptionWatchMap(prev => new Map(prev).set(key, data.misconceptionWatch as Record<string, MisconceptionWatchItem[]>));
                 }
                 if (data.teacherScript?.length) setAiTeacherScripts(prev => new Map(prev).set(key, data.teacherScript));
                 if (data.fingerprintKey) setFingerprintKeyMap(prev => new Map(prev).set(key, data.fingerprintKey));
@@ -1411,6 +1424,7 @@ export default function LearnConceptTab({ onGoToCompetitive, section = 'conceptu
                                     }
                                     : undefined}
                                 allowedDeepDiveStates={currentAllowedDeepDiveStates ?? undefined}
+                                misconceptionWatch={currentMisconceptionWatch}
                                 deepDiveSubStates={deepDiveSubStates}
                                 activeDeepDiveParent={activeDeepDiveParent}
                                 activeDeepDiveIdx={activeDeepDiveIdx}

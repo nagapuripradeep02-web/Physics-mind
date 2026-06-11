@@ -1,0 +1,25 @@
+graph TD
+  c0["fluid pressure atomic"]
+  c1["pascals law atomic"]
+  c2["archimedes buoyancy atomic"]
+  c3["continuity equation atomic"]
+  c4["bernoullis principle atomic"]
+  c5["viscosity atomic"]
+  c6["stokes terminal velocity atomic"]
+  c7["reynolds number atomic"]
+  c8["surface tension atomic"]
+  c9["capillary action atomic"]
+  c0 --> c1
+  c0 --> c2
+  c0 --> c3
+  c3 --> c4
+  c0 --> c4
+  c0 --> c5
+  c5 --> c6
+  c5 --> c7
+  c3 --> c7
+  c0 --> c8
+  c8 --> c9
+  c0 --> c9
+  classDef diamond fill:#fde68a,stroke:#d97706,stroke-width:2px;
+  class c1,c2,c4,c8 diamond;

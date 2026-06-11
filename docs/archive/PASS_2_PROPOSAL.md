@@ -1,8 +1,12 @@
-# PASS_2_PROPOSAL — student-experience lens, pending dogfood
+# PASS_2_PROPOSAL — student-experience lens — ✅ PROMOTED 2026-06-10
 
-> **PROPOSAL — dogfood on Diamond #4 before formalizing into agent specs. Do not treat as authoritative until promoted.**
+> **PROMOTED.** Dogfooded on Diamond #4 (`magnetic_field_solenoid`) on 2026-06-10 and promoted, with 6 revisions, into the canonical specs. The four-question lens is now live as:
+> - `quality_auditor/CLAUDE.md` → **Gate 15** (+ `.claude/agents/quality-auditor.md` emission)
+> - `json_author/CLAUDE.md` → **Pass-2 four-question lens** self-check (+ `.claude/agents/json-author.md` emission)
 >
-> Created 2026-05-22. Owner: founder + orchestrator.
+> The dogfood record + the 6 revisions (esp. the field_3d renderer-family carve-out and the all-states sampling fix) live in `docs/notes/diamond4-pass2-notes.md`. **This file is a historical record only — do not author against it; use the canonical specs.**
+>
+> Created 2026-05-22. Promoted 2026-06-10. Owner: founder + orchestrator.
 
 ## Status
 

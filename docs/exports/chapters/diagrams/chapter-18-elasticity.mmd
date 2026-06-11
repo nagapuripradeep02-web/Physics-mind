@@ -1,0 +1,30 @@
+graph TD
+  c0["rigid body idealisation breaks atomic"]
+  c1["stress strain atomic"]
+  c2["hookes law atomic"]
+  c3["stress strain curve atomic"]
+  c4["youngs modulus atomic"]
+  c5["modulus of rigidity atomic"]
+  c6["bulk modulus atomic"]
+  c7["poissons ratio atomic"]
+  c8["elastic pe atomic"]
+  c9["construction engineering applications atomic"]
+  c0 --> c1
+  c1 --> c2
+  c1 --> c3
+  c2 --> c3
+  c1 --> c4
+  c2 --> c4
+  c1 --> c5
+  c2 --> c5
+  c1 --> c6
+  c2 --> c6
+  c1 --> c7
+  c4 --> c7
+  c1 --> c8
+  c2 --> c8
+  c4 --> c9
+  c5 --> c9
+  c3 --> c9
+  classDef diamond fill:#fde68a,stroke:#d97706,stroke-width:2px;
+  class c1,c3,c4 diamond;

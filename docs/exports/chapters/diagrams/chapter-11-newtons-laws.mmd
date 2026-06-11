@@ -1,0 +1,47 @@
+graph TD
+  c0["newton first law atomic"]
+  c1["newton second law atomic"]
+  c2["newton third law atomic"]
+  c3["gravity force atomic"]
+  c4["normal force atomic"]
+  c5["tension force atomic"]
+  c6["friction force atomic"]
+  c7["spring force atomic"]
+  c8["applied external force atomic"]
+  c9["pseudo force atomic"]
+  c10["free body diagram atomic"]
+  c11["equilibrium of particle atomic"]
+  c12["mechanical constraints atomic"]
+  c13["connected bodies atomic"]
+  c14["block on incline atomic"]
+  c0 --> c1
+  c1 --> c2
+  c1 --> c3
+  c1 --> c4
+  c3 --> c4
+  c1 --> c5
+  c2 --> c5
+  c1 --> c6
+  c4 --> c6
+  c1 --> c7
+  c1 --> c8
+  c0 --> c9
+  c1 --> c9
+  c1 --> c10
+  c3 --> c10
+  c4 --> c10
+  c5 --> c10
+  c6 --> c10
+  c0 --> c11
+  c10 --> c11
+  c5 --> c12
+  c1 --> c12
+  c1 --> c13
+  c10 --> c13
+  c5 --> c13
+  c12 --> c13
+  c1 --> c14
+  c10 --> c14
+  c6 --> c14
+  classDef diamond fill:#fde68a,stroke:#d97706,stroke-width:2px;
+  class c1,c10,c13,c14 diamond;

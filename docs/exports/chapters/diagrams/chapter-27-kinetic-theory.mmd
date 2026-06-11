@@ -1,0 +1,24 @@
+graph TD
+  c0["kt assumptions atomic"]
+  c1["ideal gas equation atomic"]
+  c2["kinetic theory pressure atomic"]
+  c3["kinetic temperature atomic"]
+  c4["molecular speed distribution atomic"]
+  c5["maxwell boltzmann distribution atomic"]
+  c6["equipartition theorem atomic"]
+  c7["mean free path atomic"]
+  c0 --> c1
+  c0 --> c2
+  c1 --> c2
+  c2 --> c3
+  c1 --> c3
+  c3 --> c4
+  c5 --> c4
+  c3 --> c5
+  c3 --> c6
+  c4 --> c6
+  c0 --> c7
+  c1 --> c7
+  c4 --> c7
+  classDef diamond fill:#fde68a,stroke:#d97706,stroke-width:2px;
+  class c2,c5 diamond;

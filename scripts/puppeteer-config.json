@@ -1,0 +1,5 @@
+{
+  "executablePath": "C:/Users/PRADEEEP/.cache/puppeteer/chrome/win64-148.0.7778.97/chrome-win64/chrome.exe",
+  "headless": true,
+  "args": ["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"]
+}

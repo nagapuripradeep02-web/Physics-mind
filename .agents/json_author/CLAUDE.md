@@ -185,6 +185,19 @@ Default aspect = `foundational`. Unknown `aspect` from classifier → fall throu
 
 Exit pills at the end of each slice invite deeper exploration: *"See incline case?"* / *"See elevator case?"* — click navigates to that aspect's start state within the same JSON.
 
+## Pass-2 four-question lens (v2.3 addition, promoted 2026-06-10) — per-state self-check
+
+**Layering note**: §"Socratic reveal" in `architect/CLAUDE.md` and the `reveal_at_tts_id` + `pause_after_ms` wiring above are the **tactical execution** of Pass-2. The four-question lens below is the **strategic presence-check that the tactic was executed for the right reason**. Socratic reveal answers Q3 (what moves) and partially Q4 (where eye goes). It does NOT answer Q1 or Q2. You must answer all four — and record them concretely in `physics-mind/docs/notes/<concept_id>-pass2-notes.md` (the dogfood exemplar is `docs/notes/diamond4-pass2-notes.md`).
+
+Before declaring a state done, answer all four in concrete terms (not generic). If you can't, the state isn't done. **Commit to a fix, don't just observe a problem** — write "`focal_primitive_id` points at the title label; repoint it to the morph primitive" not "the eye instinctively follows the motion." (The Diamond #4 dogfood flagged exactly this evasion.)
+
+1. **What does the student NOT know yet at this moment?** Not what I want to teach — what is genuinely invisible to them right now. Name it in physics terms ("the current direction is invisible until dots flow"), not abstract ("they don't know the answer yet").
+2. **What would make them FEEL the confusion before resolving it?** Not explain it. *Feel* it. Use `pause_after_ms ≥ 2000` after the prediction question. The student should sit in "wait, something is happening and I don't know why yet" for at least 2 seconds.
+3. **What needs to MOVE or APPEAR to make the physics visible — not described?** If you're writing words about current flowing, you've failed. The current should be moving on screen before the words start. (`reveal_at_tts_id` does the timing; `animate_in` does the motion.) **Renderer-family note**: if this concept renders via **field_3d** (no `teaching_method`; `renderer_pair = field_3d`), Q3 motion is authored in `field_3d_config.states.STATE_N.*` via `reveal_at_ms` (absolute ms after state-enter), and Q2 pause is `pause_after_ms` on the prediction `tts_sentence` — keep the two in sync (the `reveal_at_ms` must land AFTER the pause window). **Do not rely on `reveal_at_tts_id` / `animate_in` inside `scene_composition` for field_3d; those drive only the PCPL/parametric_renderer family.** When porting a physics-block within-state timeline into a field_3d JSON, **carry the `pause_after_ms` values forward verbatim — dropping them is the exact regression Diamond #4 shipped with** (see `docs/notes/diamond4-pass2-notes.md`).
+4. **Where does the student's hand or eye go?** Not where I want them to look — where they instinctively look. Put the important thing there; `focal_primitive_id` must point at the physics-bearing element, not the top title label. For RHR / FBD / gesture-based states, ALSO ask: what does the student's hand want to do? Does the on-screen animation mirror that gesture? For field_3d, that is `field_3d_config…extras.right_hand` with `animate_curl: true`. If not, escalate to `peter_parker:renderer_primitives` for a gesture-mirror primitive — don't ship a static-arrow workaround silently.
+
+**Re-entry orientation rule**: the first 5 seconds of every state should re-establish context visually — the relevant bodies, field, and vectors visible — so a returning student (who hasn't watched the prior states this session) can orient without rewatching. New content lands AFTER that 5s of orientation. A delayed first reveal (`reveal_at_ms > 2000`) must not leave a bare/static object on screen during the orientation window.
+
 ## Teacher script — language discipline (Rule 13)
 
 `teacher_script.tts_sentences[i] = { id: string, text_en: string }`. **`text_en` is the only language field**. Never `text`. The TTS pipeline handles translation downstream.
@@ -238,6 +251,10 @@ If a rule cannot be satisfied for a legitimate reason, document the exception in
 - [ ] No primitive type used outside the verified list. Every `*_expr` references only declared vars.
 - [ ] Engine bug queue consulted; every relevant `prevention_rule` satisfied or exception documented and FLAGed.
 - [ ] DC Pandey check: first-principles content, no imported examples/phrasing.
+- [ ] Pass-2 four-question lens answered concretely for every state (not "TBD", not generic) and recorded in `physics-mind/docs/notes/<concept_id>-pass2-notes.md`.
+- [ ] Re-entry orientation check — first 5s of each state shows relevant context; no delayed first reveal (`reveal_at_ms > 2000`) leaves a bare object during the orientation window.
+- [ ] For RHR/FBD/gesture states: gesture-mirror primitive present (`field_3d_config…right_hand.animate_curl:true` for field_3d) OR escalation note attached (`peter_parker:renderer_primitives` bug filed).
+- [ ] field_3d concepts: every physics-block `pause_after_ms` carried forward into the JSON (the Diamond #4 dropped-pause regression check).
 
 ## Escalation
 

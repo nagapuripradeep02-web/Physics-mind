@@ -919,6 +919,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    biot_savart_law: {
+        concept_id: 'biot_savart_law',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'biot_savart_law',
+            label: 'Biot-Savart (3D)',
+        },
+    },
+
     magnetic_force_moving_charge: {
         concept_id: 'magnetic_force_moving_charge',
         layout: 'single',

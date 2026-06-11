@@ -32,7 +32,20 @@
 export interface Field3DConfig {
     scenario_type: 'point_charge_positive' | 'point_charge_negative' | 'dipole' |
         'parallel_plates' | 'solenoid_field' | 'bar_magnet' | 'straight_wire_current' |
-        'changing_flux' | 'lorentz_force_uniform_field' | 'torque_on_loop_uniform_field';
+        'changing_flux' | 'lorentz_force_uniform_field' | 'torque_on_loop_uniform_field' |
+        'biot_savart_element';
+    // Biot-Savart concept (Archetype A meta): a single current element dl on a
+    // straight wire, the unit vector r̂ to a field point P, the cross-product
+    // dl × r̂, the contribution dB at P, and a staggered accumulation of many
+    // elements whose dB's sum into the circular field B = μ₀I/2πr. Defaults
+    // for the element/point geometry live in biot_defaults; per-state behaviour
+    // (single element vs sequence accumulation vs integrated circle) is set via
+    // the per-state biot_element block.
+    biot_defaults?: {
+        field_point_P?: [number, number, number];   // world position of P
+        wire_half_length?: number;                   // half-length of the wire
+        num_elements?: number;                        // elements in sequence mode
+    };
     // Diamond #2 (Archetype B — force-in-field): a uniform external B grid
     // surrounding a single moving charged particle. Drives the F = qv × B reveal,
     // palm-rule overlay, and circular/helical trajectory across STATE_1..STATE_7.
@@ -99,7 +112,18 @@ export interface Field3DConfig {
                 // Case-specific overlay mode. 'A' = thumb-up Case A only (current up,
                 // B counter-clockwise). 'B' = thumb-down Case B only (current down,
                 // B clockwise). Omit (or 'both') = show both cases stacked.
-                case?: 'A' | 'B' | 'both';
+                // 'solenoid' = solenoid grip (fingers curl WITH current loops,
+                // thumb gives B inside) — used by magnetic_field_solenoid Diamond #4
+                // STATE_5 to teach the RHR-swap from wire to solenoid.
+                case?: 'A' | 'B' | 'both' | 'solenoid';
+                // Optional cross-fade from a previous case (Diamond #4 STATE_5):
+                // when set, the overlay starts visible at 'fade_from_case' for
+                // ~400ms, then cross-fades to `case` over `fade_duration_ms`.
+                // Pedagogical use: STATE_5 begins with the wire-RHR (Case A) the
+                // student remembers from Diamond #1, then swaps to the solenoid
+                // grip so the student feels the grip role-swap as a visual flip.
+                fade_from_case?: 'A' | 'B' | 'solenoid';
+                fade_duration_ms?: number;
             };
             compass?: {
                 position: [number, number, number];
@@ -202,6 +226,98 @@ export interface Field3DConfig {
         // Charge sign override for this state (e.g. STATE_4 flips between
         // positive and negative to demonstrate F direction reversal).
         charge_sign?: 1 | -1;
+        // Diamond #4 (magnetic_field_solenoid STATE_1): start the scene with
+        // a straight wire (cylinder) visible and the coil hidden, then after
+        // `straight_duration_ms` cross-fade over `morph_duration_ms` so the
+        // straight wire fades out while the coil fades in. Pedagogical move:
+        // "you already know the field around a single wire... but what if we
+        // coil it?" Only applies to `solenoid_field` scenario; ignored else.
+        wire_to_coil_morph?: {
+            enabled: boolean;
+            straight_duration_ms?: number;   // default 3000
+            morph_duration_ms?: number;      // default 1500
+        };
+        // Diamond #4 STATE_2 — per-turn field circles around each coil turn.
+        // 6 sets of B-circles (one per turn) reveal in sequence with a stagger
+        // so the student sees individual per-turn fields before they're asked
+        // (STATE_3) to add them up. opacity_dim lets STATE_3 carry these over
+        // at 30% so the new axial arrows visually dominate.
+        per_turn_field_circles?: {
+            enabled: boolean;
+            highlight_first?: boolean;       // STATE_2: first turn pulses to focus eye
+            reveal_at_ms?: number;           // when (after state enter) reveal begins; default 3500 (~s2_3)
+            reveal_stagger_ms?: number;      // per-turn delay; default 250
+            reveal_fade_ms?: number;         // per-turn fade-in duration; default 500
+            opacity_dim?: number;            // dimmed steady opacity (carryover use); default 1.0 = full
+        };
+        // Diamond #4 STATE_3 — red radial-cancellation arrows BETWEEN adjacent
+        // turns (5 zones for 6 turns). Two opposing arrows per zone show the
+        // mirror-image radial components meeting and cancelling.
+        radial_cancellation_arrows?: {
+            enabled: boolean;
+            color?: string;                  // default "#EF4444"
+            reveal_at_ms?: number;           // ms after state enter; default 6000 (~s3_3 after 3s pause)
+            fade_in_duration_ms?: number;    // default 800
+            arrow_length?: number;           // default 0.55 (world units)
+        };
+        // Diamond #4 STATE_3 — blue axial arrows that "arise" (build up from
+        // length 0 to full) along the central solenoid axis, AFTER the radial
+        // cancellation arrows. Triggers the dim of per_turn_field_circles via
+        // a co-fade hook when both primitives are on the same state.
+        axial_buildup_arrows?: {
+            enabled: boolean;
+            color?: string;                  // default "#3B82F6"
+            count?: number;                  // default 5
+            reveal_at_ms?: number;           // ms after state enter; default 8500 (~s3_4)
+            arise_duration_ms?: number;      // default 1000
+            arrow_length_max?: number;       // default 1.0 (world units along axis)
+        };
+        // ── biot_savart_element per-state config ─────────────────────────
+        // Drives the Biot-Savart scene. accumulate_mode:
+        //   'single'     — one element dl at element_position_on_wire, with
+        //                  r̂ / dl×r̂ / dB shown per the show_* flags.
+        //   'sequence'   — many elements light up along the wire on a stagger
+        //                  (reveal_at_ms + i*reveal_stagger_ms), each dropping a
+        //                  dB contribution that stacks at P; the circle ramps in.
+        //   'integrated' — the assembled circular field shown at circle_opacity;
+        //                  individual elements hidden.
+        biot_element?: {
+            field_point_P?: [number, number, number];
+            element_position_on_wire?: number;   // y-coord of the highlighted dl
+            accumulate_mode?: 'single' | 'sequence' | 'integrated';
+            num_elements?: number;
+            wire_half_length?: number;
+            show_rhat?: boolean;
+            show_theta?: boolean;
+            show_cross?: boolean;
+            show_dB?: boolean;
+            show_proportion_bars?: boolean;
+            direction_practice?: boolean;        // STATE_6: orbiting circulation arrow
+            show_current_flow?: boolean;         // animate flow dots up the wire (live current)
+            weight_by_sin_theta?: boolean;       // STATE_8: emphasise sinθ/r² weighting + scan ring
+            circle_opacity?: number;             // integrated-mode circle opacity
+            reveal_at_ms?: number;
+            reveal_stagger_ms?: number;
+            reveal_fade_ms?: number;
+            // ── Right-hand-rule hands (2026-06-11) ───────────────────────
+            // Grip / thumb rule: thumb = current I (up the wire), curled
+            // fingers = B circulation. Shown on the result-recall +
+            // reconciliation states (STATE_1, STATE_9). Reuses the
+            // archetype-A 3D grip mesh (createRightHand).
+            show_grip_hand?: boolean;
+            // Cross-product rule: flat fingers along dl, curl toward r̂,
+            // thumb = dB. Shown where per-element direction is taught/applied
+            // (STATE_5, STATE_6). Reuses the Diamond-#2 3D cross-product mesh
+            // (createLorentzHand), relabeled dl / r-hat / dB and oriented to
+            // the biot geometry. NEVER put the grip hand on these states — a
+            // single element's dB is the cross product, not the grip rule.
+            show_cross_hand?: boolean;
+            // Optional per-state world position for each hand (the front-view
+            // and top-down states need different placements to stay in frame).
+            // Omitted = the hand's build-time home position.
+            grip_hand_position?: [number, number, number];
+            cross_hand_position?: [number, number, number];
+        };
     }>;
     // Slider configuration (used when show_sliders: true on a state)
     slider_controls?: {
@@ -392,9 +508,30 @@ canvas { display: block; width: 100%; height: 100%; }
 }
 #rhr_overlay .curl-arc { animation: rhrCurlSweep 1.4s linear infinite; }
 #rhr_overlay.rhr-show-a-only .rhr-case-section-b,
+#rhr_overlay.rhr-show-a-only .rhr-case-section-solenoid,
 #rhr_overlay.rhr-show-a-only .rhr-footer { display: none; }
 #rhr_overlay.rhr-show-b-only .rhr-case-section-a,
+#rhr_overlay.rhr-show-b-only .rhr-case-section-solenoid,
 #rhr_overlay.rhr-show-b-only .rhr-footer { display: none; }
+/* Diamond #4 STATE_5 — solenoid grip (fingers curl WITH current loops,
+   thumb gives B inside). Single-section "show only" mode. Both wire
+   sections + footer are hidden so the student sees ONLY the new grip. */
+#rhr_overlay.rhr-show-solenoid-only .rhr-case-section-a,
+#rhr_overlay.rhr-show-solenoid-only .rhr-case-section-b,
+#rhr_overlay.rhr-show-solenoid-only .rhr-footer { display: none; }
+/* Solenoid case styling — green wrapper to match field colour, label colour
+   to distinguish from Cases A/B. The curl SVG inside arcs in the opposite
+   axis to wire-RHR to communicate "fingers wrap the coils, thumb is B". */
+#rhr_overlay .rhr-case-solenoid-label { color: #66BB6A; }
+#rhr_overlay .rhr-curl-solenoid .rhr-curl-text { color: #66BB6A; font-weight: 600; }
+#rhr_overlay .rhr-curl-solenoid .rhr-i-label,
+#rhr_overlay .rhr-i-solenoid-label { color: #66BB6A; }
+/* Diamond #4 STATE_5 — cross-fade transition between wire case and solenoid
+   case. The overlay starts opaque at the "fade_from_case", then fades to 0
+   over fade_duration_ms/2, swaps the show-only class, then fades back to 1.
+   CSS owns the opacity transition; JS owns the class swap. */
+#rhr_overlay { transition: opacity 0.6s ease-in-out; }
+#rhr_overlay.rhr-fade-out { opacity: 0; }
 /* ── Palm-rule overlay (Diamond #2 — Lorentz force F = qv × B) ─────────
    Pinned top-LEFT so it never collides with #lorentz_sliders (top-right)
    in the interactive STATE_5. The overlay is visible in every Diamond #2
@@ -588,6 +725,26 @@ canvas { display: block; width: 100%; height: 100%; }
                     <polygon points="64,28 52,22 52,34" fill="#EF7B7B"/>
                 </svg>
                 <div class="rhr-curl-text">B clockwise<br/>(viewed from above)</div>
+            </div>
+        </div>
+    </div>
+    <div class="rhr-case rhr-case-section-solenoid">
+        <div class="rhr-case-label rhr-case-solenoid-label">Solenoid · fingers curl WITH current loops</div>
+        <div class="rhr-row">
+            <div class="rhr-thumb-unit">
+                <svg class="rhr-i-arrow" viewBox="0 0 22 28" xmlns="http://www.w3.org/2000/svg" aria-label="thumb gives B inside">
+                    <line x1="11" y1="26" x2="11" y2="6" stroke="#66BB6A" stroke-width="2.5" stroke-linecap="round"/>
+                    <polygon points="11,2 6,10 16,10" fill="#66BB6A"/>
+                </svg>
+                <div class="rhr-i-label rhr-i-solenoid-label">B</div>
+                <div class="rhr-hand">👍</div>
+            </div>
+            <div class="rhr-curl-block rhr-curl-solenoid">
+                <svg class="rhr-curl-svg" viewBox="0 0 70 50" xmlns="http://www.w3.org/2000/svg">
+                    <path class="curl-arc" d="M 60 28 A 24 16 0 1 0 12 28" stroke="#66BB6A" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 5"/>
+                    <polygon points="6,28 18,22 18,34" fill="#66BB6A"/>
+                </svg>
+                <div class="rhr-curl-text">Fingers follow I around the coil<br/>(thumb axial = B inside)</div>
             </div>
         </div>
     </div>
@@ -1460,8 +1617,12 @@ export const FIELD_3D_RENDERER_CODE = `
         // Hide the 2D right-hand SVG overlay between states (session-60 polish: switched
         // from a 3D Three.js hand mesh that read as ambiguous geometry to a clear 2D SVG
         // pinned to the iframe corner — see #rhr_overlay in assembleField3DHtml).
+        // Also clear the Diamond #4 fade-out class so the next show starts opaque.
         var rhrEl = document.getElementById("rhr_overlay");
-        if (rhrEl) rhrEl.style.display = "none";
+        if (rhrEl) {
+            rhrEl.style.display = "none";
+            rhrEl.classList.remove("rhr-fade-out");
+        }
         // Hide the 2D palm-rule overlay (Diamond #2 — Lorentz force).
         var palmEl = document.getElementById("palm_rule_overlay");
         if (palmEl) {
@@ -1481,13 +1642,43 @@ export const FIELD_3D_RENDERER_CODE = `
             // a 3D Three.js hand. The 3D mesh (createRightHand) is kept for backwards
             // compatibility but no longer rendered — the overlay is the canonical UX.
             // Case 'A' shows only the thumb-up section; case 'B' shows only the
-            // thumb-down section; omitted/'both' shows both stacked.
+            // thumb-down section; 'solenoid' shows only the solenoid-grip section
+            // (Diamond #4 STATE_5); omitted/'both' shows both wire cases stacked.
             var rhrEl = document.getElementById("rhr_overlay");
             if (rhrEl) {
-                rhrEl.classList.remove("rhr-show-a-only", "rhr-show-b-only");
-                if (extras.right_hand.case === "A") rhrEl.classList.add("rhr-show-a-only");
-                else if (extras.right_hand.case === "B") rhrEl.classList.add("rhr-show-b-only");
+                function applyRhrCase(caseStr) {
+                    rhrEl.classList.remove(
+                        "rhr-show-a-only", "rhr-show-b-only", "rhr-show-solenoid-only"
+                    );
+                    if (caseStr === "A") rhrEl.classList.add("rhr-show-a-only");
+                    else if (caseStr === "B") rhrEl.classList.add("rhr-show-b-only");
+                    else if (caseStr === "solenoid") rhrEl.classList.add("rhr-show-solenoid-only");
+                }
+                var targetCase = extras.right_hand.case;
+                var fromCase = extras.right_hand.fade_from_case;
+                rhrEl.classList.remove("rhr-fade-out");
                 rhrEl.style.display = "block";
+                if (fromCase && targetCase && fromCase !== targetCase) {
+                    // Diamond #4 STATE_5: start at fromCase, fade out, swap, fade in.
+                    // Half the duration goes to fade-out, half to fade-in. Default
+                    // total 1200ms gives a calm visual switch matched to TTS pace.
+                    var dur = extras.right_hand.fade_duration_ms || 1200;
+                    var half = Math.max(200, dur / 2);
+                    applyRhrCase(fromCase);
+                    // Defer the fade start so the student sees the "from" pose for
+                    // a beat before it dissolves — mirrors the TTS sentence cadence.
+                    setTimeout(function() {
+                        if (rhrEl.style.display === "none") return; // state changed
+                        rhrEl.classList.add("rhr-fade-out");
+                        setTimeout(function() {
+                            if (rhrEl.style.display === "none") return;
+                            applyRhrCase(targetCase);
+                            rhrEl.classList.remove("rhr-fade-out");
+                        }, half);
+                    }, half);
+                } else {
+                    applyRhrCase(targetCase);
+                }
             }
         }
         if (extras.compass) {
@@ -1766,9 +1957,36 @@ export const FIELD_3D_RENDERER_CODE = `
         var flColor = config.field_lines.color_positive || "#66BB6A";
         var lineCount = config.field_lines.count || 8;
 
+        // Diamond #4 STATE_1 morph stand-in: a straight axial wire built once
+        // and kept hidden by default. When a state has wire_to_coil_morph
+        // enabled, the animate loop fades the wire out and the coil group in
+        // over the configured window so the student sees a "straight wire
+        // becoming a coil" sequence. Stays hidden for all other states.
+        var axis = coilConf.axis || [0, 0, 1];
+        var aLen = Math.sqrt(axis[0]*axis[0] + axis[1]*axis[1] + axis[2]*axis[2]) || 1;
+        var aUnit = [axis[0]/aLen, axis[1]/aLen, axis[2]/aLen];
+        var halfL = solenoidLength / 2;
+        var morphWireStart = [-aUnit[0]*halfL, -aUnit[1]*halfL, -aUnit[2]*halfL];
+        var morphWireEnd   = [ aUnit[0]*halfL,  aUnit[1]*halfL,  aUnit[2]*halfL];
+        var morphWire = createWire(morphWireStart, morphWireEnd, "#FFAB40", 0.06);
+        morphWire.material.transparent = true;
+        morphWire.material.opacity = 0;
+        morphWire.visible = false;
+        morphWire.userData = { elementType: "wire_morph_stand_in", id: "solenoid_morph_wire" };
+        addToScene(morphWire);
+
         // Coil geometry
         var coilGroup = createCoilGeometry(coilConf.turns, coilConf.radius, coilConf.axis, solenoidLength);
         coilGroup.userData = { elementType: "coil", id: "solenoid_coil" };
+        // Materials inside the group must be transparent so per-frame opacity
+        // tweens land. createCoilGeometry returns a Group of Meshes; flag each.
+        for (var ci = 0; ci < coilGroup.children.length; ci++) {
+            var cm = coilGroup.children[ci];
+            if (cm.material) {
+                cm.material.transparent = true;
+                cm.material.opacity = 1;
+            }
+        }
         addToScene(coilGroup);
 
         // Internal field lines — dense, parallel to axis
@@ -1812,6 +2030,125 @@ export const FIELD_3D_RENDERER_CODE = `
                 tube.userData = { elementType: "field_line_external", id: "fl_ext_" + i };
                 addToScene(tube);
             }
+        }
+
+        // ── Diamond #4 STATE_2 — per-turn field circles (one per coil turn).
+        //   Built in coilGroup-local space (axis = +Z before rotation) so each
+        //   turn's circle sits in the plane of that turn. Hidden by default;
+        //   applyState turns them on when stateDef.per_turn_field_circles is set,
+        //   and animate() fades them in at reveal_at_ms with a per-turn stagger.
+        var ptColor = "#FFD54F"; // per-turn highlight color (yellow)
+        var ptTurns = coilConf.turns || 6;
+        for (var pti = 0; pti < ptTurns; pti++) {
+            var turnZ = solenoidLength * ((pti + 0.5) / ptTurns - 0.5);
+            // Wrap a slightly-larger ring around each turn so the field-circle
+            // is visually distinct from the coil tube itself.
+            var circleR = coilConf.radius * 1.18;
+            var circlePts = [];
+            var segs = 40;
+            for (var cs = 0; cs <= segs; cs++) {
+                var ca = (cs / segs) * Math.PI * 2;
+                circlePts.push([circleR * Math.cos(ca), circleR * Math.sin(ca), turnZ]);
+            }
+            var ptTube = createTubeLine(circlePts, ptColor, 0.018);
+            if (ptTube) {
+                ptTube.userData = { elementType: "per_turn_field_circle", id: "ptfc_" + pti, turnIndex: pti };
+                if (ptTube.material) {
+                    ptTube.material.transparent = true;
+                    ptTube.material.opacity = 0;
+                }
+                ptTube.visible = false;
+                coilGroup.add(ptTube);
+            }
+        }
+
+        // ── Diamond #4 STATE_3 — radial cancellation arrows (RED) between
+        //   adjacent turns. For ptTurns turns there are ptTurns-1 inter-turn
+        //   zones; each zone gets a pair of opposing arrows (top + bottom of
+        //   the coil cross-section) pointing toward each other to visualize
+        //   the mirror-image radial cancellation.
+        var rcColor = "#EF4444";
+        var rcZones = Math.max(1, ptTurns - 1);
+        for (var rci = 0; rci < rcZones; rci++) {
+            // Zone z-position halfway between turn rci and turn rci+1.
+            var zA = solenoidLength * ((rci + 0.5) / ptTurns - 0.5);
+            var zB = solenoidLength * ((rci + 1 + 0.5) / ptTurns - 0.5);
+            var zMid = (zA + zB) / 2;
+            var rArm = coilConf.radius * 0.9;
+            // Pair 1: top (above-axis) arrows meeting in the middle.
+            // Arrow from upper-turn side (above) pointing DOWN to zMid; arrow
+            // from lower-turn side (below) pointing UP to zMid. Show in two
+            // pair-positions (top of cross-section and bottom) so the
+            // cancellation reads from multiple angles.
+            var pairs = [
+                { x: 0,  y:  rArm },
+                { x: 0,  y: -rArm }
+            ];
+            for (var pi = 0; pi < pairs.length; pi++) {
+                var p = pairs[pi];
+                // Upper turn's contribution points toward zMid from zA side
+                var upArr = createArrowHead(
+                    [p.x, p.y, zMid],
+                    [0, 0, zA < zB ? 1 : -1],
+                    rcColor
+                );
+                upArr.userData = { elementType: "radial_cancel_arrow", id: "rca_" + rci + "_up_" + pi };
+                if (upArr.material) { upArr.material.transparent = true; upArr.material.opacity = 0; }
+                upArr.visible = false;
+                coilGroup.add(upArr);
+                var dnArr = createArrowHead(
+                    [p.x, p.y, zMid],
+                    [0, 0, zA < zB ? -1 : 1],
+                    rcColor
+                );
+                dnArr.userData = { elementType: "radial_cancel_arrow", id: "rca_" + rci + "_dn_" + pi };
+                if (dnArr.material) { dnArr.material.transparent = true; dnArr.material.opacity = 0; }
+                dnArr.visible = false;
+                coilGroup.add(dnArr);
+            }
+        }
+
+        // ── Diamond #4 STATE_3 — axial buildup arrows (BLUE) along the
+        //   central solenoid axis. These "arise" — animate from length 0
+        //   to full length over arise_duration_ms — so the student sees
+        //   the axial field BUILD as the cancellation completes.
+        //   Each arrow is a (cylinder shaft + cone head) pair so we can
+        //   scale the shaft length per-frame. Built in local +Z space.
+        var axColor = "#3B82F6";
+        var axCount = 5;
+        for (var axi = 0; axi < axCount; axi++) {
+            var zAx = solenoidLength * ((axi + 0.5) / axCount - 0.5);
+            // Shaft: a thin cylinder we'll scale on Z. Built unit-length 1
+            // along +Z, oriented with up=+Z (matches the coil's local axis).
+            var shaftGeo = new THREE.CylinderGeometry(0.025, 0.025, 1, 8);
+            var shaftMat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(axColor),
+                transparent: true,
+                opacity: 0
+            });
+            var shaft = new THREE.Mesh(shaftGeo, shaftMat);
+            // Default cylinder is along +Y; rotate to +Z.
+            shaft.rotation.x = Math.PI / 2;
+            shaft.position.set(0, 0, zAx);
+            shaft.visible = false;
+            shaft.userData = {
+                elementType: "axial_buildup_shaft",
+                id: "axb_shaft_" + axi,
+                baseZ: zAx,
+                axIndex: axi
+            };
+            coilGroup.add(shaft);
+            var headMesh = createArrowHead([0, 0, zAx], [0, 0, 1], axColor);
+            headMesh.material.transparent = true;
+            headMesh.material.opacity = 0;
+            headMesh.visible = false;
+            headMesh.userData = {
+                elementType: "axial_buildup_head",
+                id: "axb_head_" + axi,
+                baseZ: zAx,
+                axIndex: axi
+            };
+            coilGroup.add(headMesh);
         }
     }
 
@@ -1955,6 +2292,351 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
         }
+    }
+
+    function buildBiotSavartField(config_unused) {
+        // Archetype A meta — Biot-Savart law, choreographed for storytelling.
+        // Reuses createWire / createTubeLine / createArrowHead / createHighlightedPoint.
+        // Each vector is a "grow-from-origin" group (anchored at its tail, children in
+        // local space) so the animate loop can draw it outward on a per-state schedule
+        // (revealAt by elementType). Plus: current-flow dots (live wire), an angle arc,
+        // an orbiting circulation arrow, a scan highlight, and the dB accumulation.
+        var wireColor = (config.current && config.current.wire_color) ? config.current.wire_color : "#FFAB40";
+        var flColor = config.field_lines.color_positive || "#66BB6A";
+        var rhatColor = "#D4D4D8";
+        var crossColor = "#66BB6A";
+        var dbColor = "#66BB6A";
+        var thetaColor = "#FFF176";
+        var defs = config.biot_defaults || {};
+        var P = defs.field_point_P || [1.6, 0, 0];
+        var wireHalf = defs.wire_half_length || 3.0;
+        var numElements = defs.num_elements || 9;
+
+        // ── tiny vector helpers (ES5, no THREE dependency) ──────────────
+        function vlen(a) { return Math.sqrt(a[0]*a[0] + a[1]*a[1] + a[2]*a[2]); }
+        function vsub(a, b) { return [a[0]-b[0], a[1]-b[1], a[2]-b[2]]; }
+        function vadd(a, b) { return [a[0]+b[0], a[1]+b[1], a[2]+b[2]]; }
+        function vscale(a, s) { return [a[0]*s, a[1]*s, a[2]*s]; }
+        function vdot(a, b) { return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]; }
+        function vnorm(a) { var L = vlen(a) || 1; return [a[0]/L, a[1]/L, a[2]/L]; }
+        function vcross(a, b) {
+            return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
+        }
+
+        // A grow-from-origin vector arrow: Group anchored at its tail, with the shaft
+        // tube + cone head built in LOCAL coords (origin to tip). The animate loop
+        // grows it by scaling the group 0→1 (draws outward from the tail) and fades
+        // the children via their stored baseOpacity. revealAt = ms after state enter.
+        function bsArrow(from, to, color, rad, elementType, id, revealAt) {
+            var grp = new THREE.Group();
+            grp.position.set(from[0], from[1], from[2]);
+            var lto = vsub(to, from);
+            var tube = createTubeLine([[0, 0, 0], lto], color, rad || 0.02);
+            if (tube) {
+                tube.material.transparent = true;
+                tube.userData = { baseOpacity: tube.material.opacity };
+                grp.add(tube);
+            }
+            var head = createArrowHead(lto, lto, color);
+            head.material.transparent = true;
+            head.userData = { baseOpacity: 1 };
+            grp.add(head);
+            grp.userData = { elementType: elementType, id: id, revealAt: revealAt, grows: true, fadeChildren: true };
+            return grp;
+        }
+
+        var dlDir = [0, 1, 0]; // current flows up the wire
+
+        // Wire
+        var wire = createWire([0, -wireHalf, 0], [0, wireHalf, 0], wireColor, 0.06);
+        wire.userData = { elementType: "wire", id: "bs_wire" };
+        addToScene(wire);
+
+        // Current direction arrow
+        var currArrow = createArrowHead([0, wireHalf * 0.6, 0], [0, 1, 0], wireColor);
+        currArrow.userData = { elementType: "current_arrow", id: "bs_curr_arrow" };
+        addToScene(currArrow);
+
+        // ── Current-flow dots — animate up the wire to show the live current.
+        //   Shown only when the active state sets biot_element.show_current_flow.
+        var flowCount = 7;
+        for (var fd = 0; fd < flowCount; fd++) {
+            var fGeo = new THREE.SphereGeometry(0.07, 10, 10);
+            var fMat = new THREE.MeshPhongMaterial({
+                color: 0xFFF59D, emissive: 0xFFD54F, emissiveIntensity: 0.85,
+                transparent: true, opacity: 0
+            });
+            var fdot = new THREE.Mesh(fGeo, fMat);
+            fdot.position.set(0, -wireHalf + (fd / flowCount) * (2 * wireHalf), 0);
+            fdot.userData = { elementType: "biot_flow", id: "bs_flow_" + fd, phase: fd / flowCount };
+            fdot.visible = false;
+            addToScene(fdot);
+        }
+
+        // Field point P — grow-in pop (revealAt 0)
+        var pPoint = createHighlightedPoint({ position: P, color: "#FFEB3B", label: "P", radius: 0.12 });
+        pPoint.userData = { elementType: "field_point", id: "bs_point_P", pulse: true, revealAt: 0, grows: true, fadeChildren: false };
+        addToScene(pPoint);
+
+        // Primary single element dl at the wire origin (y = 0): a short, fat,
+        // brighter cylinder so it reads as "this one piece". Grows in at 250ms.
+        var dlHalf = 0.28;
+        var dlMid = [0, 0, 0];
+        var dl = createWire([0, -dlHalf, 0], [0, dlHalf, 0], wireColor, 0.12);
+        dl.material.emissive = hexToThreeColor(wireColor);
+        dl.material.emissiveIntensity = 0.55;
+        dl.userData = { elementType: "biot_dl", id: "bs_dl", revealAt: 250, grows: true, fadeChildren: false };
+        addToScene(dl);
+
+        // r̂ arrow: element → P (draws outward at 1000ms)
+        var rVec = vsub(P, dlMid);
+        var rHat = vnorm(rVec);
+        var rhatArrow = bsArrow(dlMid, vadd(dlMid, vscale(rHat, vlen(rVec))), rhatColor, 0.02, "biot_rhat", "bs_rhat", 1000);
+        addToScene(rhatArrow);
+
+        // Angle arc θ between dl (up) and r̂, at the element (reveals at 2000ms).
+        var arcGrp = new THREE.Group();
+        arcGrp.position.set(dlMid[0], dlMid[1], dlMid[2]);
+        var arcA = vnorm(dlDir);
+        var arcDot = Math.max(-1, Math.min(1, vdot(arcA, rHat)));
+        var arcAng = Math.acos(arcDot);
+        var arcW = vnorm(vsub(rHat, vscale(arcA, arcDot)));
+        var arcPts = [], arcRad = 0.45, arcSegs = 24;
+        for (var as = 0; as <= arcSegs; as++) {
+            var at = (as / arcSegs) * arcAng;
+            arcPts.push(vadd(vscale(arcA, arcRad * Math.cos(at)), vscale(arcW, arcRad * Math.sin(at))));
+        }
+        var arcTube = createTubeLine(arcPts, thetaColor, 0.012);
+        if (arcTube) {
+            arcTube.material.transparent = true;
+            arcTube.userData = { baseOpacity: 1 };
+            arcGrp.add(arcTube);
+        }
+        arcGrp.userData = { elementType: "biot_theta", id: "bs_theta", revealAt: 2000, grows: true, fadeChildren: true };
+        addToScene(arcGrp);
+
+        // dl × r̂ at the element — perpendicular to both. For a straight wire and a
+        // fixed P this direction is the SAME for every element (why dB's ADD).
+        // Draws at 2800ms.
+        var crossDir = vnorm(vcross(dlDir, rHat));
+        var crossArrow = bsArrow(dlMid, vadd(dlMid, vscale(crossDir, 0.9)), crossColor, 0.022, "biot_cross", "bs_cross", 2800);
+        addToScene(crossArrow);
+
+        // dB at P (along dl × r̂) — the contribution of this one element. Draws at 3700ms.
+        var dBArrow = bsArrow(P, vadd(P, vscale(crossDir, 0.9)), dbColor, 0.025, "biot_db", "bs_dB", 3700);
+        addToScene(dBArrow);
+
+        // ── Accumulation elements + stacked dB contributions at P ────────
+        // Each element's dB ∝ sinθ/r² and points along crossDir; we stack the
+        // contributions at P so the growing column visualises the integral.
+        var weights = [], ys = [], maxW = 1e-9, totalW = 0;
+        for (var ai = 0; ai < numElements; ai++) {
+            var frac = numElements > 1 ? (ai / (numElements - 1)) : 0.5;
+            var yEl = -wireHalf * 0.85 + frac * (wireHalf * 1.7);
+            var rv = vsub(P, [0, yEl, 0]);
+            var rlen = vlen(rv);
+            var sinTheta = vlen(vcross(dlDir, vnorm(rv)));   // |dlDir × r̂|, dlDir unit
+            var w = sinTheta / (rlen * rlen);
+            weights.push(w); ys.push(yEl); totalW += w;
+            if (w > maxW) maxW = w;
+        }
+        var STACK_TARGET = 1.6; // world height of the fully summed column
+        var cum = 0;
+        for (var bi = 0; bi < numElements; bi++) {
+            var grp = new THREE.Group();
+            // wire marker
+            var mkGeo = new THREE.SphereGeometry(0.085, 12, 12);
+            var mkMat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(wireColor), emissive: hexToThreeColor(wireColor),
+                emissiveIntensity: 0.7, transparent: true, opacity: 0
+            });
+            var mk = new THREE.Mesh(mkGeo, mkMat);
+            mk.position.set(0, ys[bi], 0);
+            grp.add(mk);
+            // stacked dB contribution at P
+            var len = STACK_TARGET * (weights[bi] / totalW);
+            var from = vadd(P, vscale(crossDir, cum));
+            var to = vadd(P, vscale(crossDir, cum + len));
+            cum += len;
+            var seg = createTubeLine([from, to], dbColor, 0.03);
+            if (seg) { seg.material.transparent = true; seg.material.opacity = 0; grp.add(seg); }
+            grp.visible = false;
+            grp.userData = {
+                elementType: "biot_accum", id: "bs_accum_" + bi,
+                elemIndex: bi, sinThetaWeight: weights[bi] / maxW, elemY: ys[bi]
+            };
+            addToScene(grp);
+        }
+
+        // Scan highlight — a bright disc that travels down the wire in STATE_8 so
+        // the eye follows the sinθ/r² weighting from the dominant middle element to
+        // the vanishing ends. Shown only when biot_element.weight_by_sin_theta.
+        var scanGeo = new THREE.TorusGeometry(0.22, 0.03, 8, 24);
+        var scanMat = new THREE.MeshPhongMaterial({
+            color: 0xFFFFFF, emissive: 0xFFF176, emissiveIntensity: 0.9,
+            transparent: true, opacity: 0
+        });
+        var scanner = new THREE.Mesh(scanGeo, scanMat);
+        scanner.rotation.x = Math.PI / 2; // lie flat around the wire
+        scanner.userData = { elementType: "biot_scan", id: "bs_scanner" };
+        scanner.visible = false;
+        addToScene(scanner);
+
+        // ── Assembled circular field (the circle through P) ──────────────
+        // Three stacked rings at radius rP; opacity is driven per-frame (faint in
+        // STATE_1, ramps during accumulation, bright in STATE_9/10).
+        var rP = Math.sqrt(P[0]*P[0] + P[2]*P[2]) || 1.6;
+        var ringHeights = [-1.2, 0, 1.2];
+        for (var rh = 0; rh < ringHeights.length; rh++) {
+            var rpts = [], rsegs = 48;
+            for (var rs = 0; rs <= rsegs; rs++) {
+                var ra = (rs / rsegs) * Math.PI * 2;
+                rpts.push([rP * Math.cos(ra), ringHeights[rh], rP * Math.sin(ra)]);
+            }
+            var ring = createTubeLine(rpts, flColor, 0.02);
+            if (ring) {
+                ring.material.transparent = true;
+                ring.material.opacity = 0;
+                ring.userData = { elementType: "biot_circle", id: "bs_circle_ring_" + rh };
+                addToScene(ring);
+            }
+            // physically-correct tangent arrow at P on the mid ring (dl × r̂).
+            // animate() orbits it around the wire when the state sets circulate.
+            if (rh === 1) {
+                var carr = createArrowHead(P, crossDir, flColor);
+                carr.material.transparent = true;
+                carr.material.opacity = 0;
+                carr.userData = { elementType: "biot_circle", id: "bs_circle_arr", orbitRadius: rP };
+                addToScene(carr);
+            }
+        }
+
+        // Orbiting circulation arrow for the top-down dot/cross practice (STATE_6):
+        // a green arrow that travels around the wire so the student SEES the field
+        // circulate. animate() drives its angle when biot_element.direction_practice.
+        var orbitArr = createArrowHead([rP, 0, 0], crossDir, flColor);
+        orbitArr.material.transparent = true;
+        orbitArr.material.opacity = 0;
+        orbitArr.userData = { elementType: "biot_orbit", id: "bs_orbit", orbitRadius: rP };
+        orbitArr.visible = false;
+        addToScene(orbitArr);
+
+        // ── In-scene symbol labels (camera-facing sprites) ───────────────
+        // Textbook-style annotations placed ON the diagram: dl, r, θ, P, dl×r̂,
+        // dB, I, B. Each label id is "<element_id>_label" so the existing
+        // visible_elements tokens (bs_dl, bs_rhat, bs_theta, bs_point_P, bs_cross,
+        // bs_dB, bs_curr_arrow, bs_circle) match it by substring and show/hide it
+        // with its element. revealAt matches the element so the symbol fades in as
+        // the shape draws (handled as isLabel in the animate loop — fade, no scale).
+        function bsLabel(text, pos, color, id, revealAt) {
+            var spr = createLabelSprite(text, color, 0.5);
+            spr.position.set(pos[0], pos[1], pos[2]);
+            spr.material.transparent = true;
+            spr.material.opacity = 0;
+            spr.userData = { elementType: "biot_label", id: id, revealAt: revealAt, grows: true, isLabel: true, fadeChildren: false };
+            addToScene(spr);
+        }
+        // midpoint of r̂ (element → P), offset below the shaft for the "r" label
+        var rMid = vscale(vadd(dlMid, P), 0.5);
+        bsLabel("dl", vadd(dlMid, [-0.6, 0.18, 0.35]), wireColor, "bs_dl_label", 250);
+        bsLabel("r", vadd(rMid, [0.0, -0.42, 0.25]), rhatColor, "bs_rhat_label", 1000);
+        bsLabel("\\u03b8", vadd(dlMid, [0.5, 0.5, 0.2]), thetaColor, "bs_theta_label", 2000);
+        bsLabel("P", vadd(P, [0.18, 0.5, 0.25]), "#FFEB3B", "bs_point_P_label", 0);
+        bsLabel("dl\\u00d7r\\u0302", vadd(dlMid, vadd(vscale(crossDir, 0.9), [0.25, 0.5, 0])), crossColor, "bs_cross_label", 2800);
+        bsLabel("dB", vadd(P, vadd(vscale(crossDir, 0.9), [0.4, 0.4, 0])), dbColor, "bs_dB_label", 3700);
+        bsLabel("I", [0.42, wireHalf * 0.6 + 0.2, 0.0], wireColor, "bs_curr_arrow_label", 0);
+        bsLabel("B", [-rP, 0.45, 0.0], flColor, "bs_circle_B_label", 400);
+
+        // ── Grip / thumb rule hand (STATE_1, STATE_9) — ANIMATED ─────────
+        // Uses the Diamond-#2 animatable mesh so the fingers curl realistically
+        // (regenerated per frame via lorentzFingerPoints in animate block 7).
+        // The mesh's IDENTITY orientation already IS the grip gesture for this
+        // scene: thumb +y = I (up the wire), and the finger sweep -z -> -x is a
+        // positive rotation about +y = exactly the B circulation sense for
+        // current up. 2-beat story: flat hold ("I" on thumb) -> curl -> full-
+        // curl hold ("B" on the curled fingertips) -> uncurl, repeat.
+        var gripHand = createLorentzHand({ position: [-2.4, 0.2, 0.6], scale: 1.0 });
+        if (gripHand.userData.v_label) gripHand.userData.v_label.visible = false;
+        if (gripHand.userData.b_label) gripHand.userData.b_label.visible = false;
+        if (gripHand.userData.f_label) gripHand.userData.f_label.visible = false;
+        if (gripHand.userData.v_arrow) gripHand.userData.v_arrow.visible = false;
+        if (gripHand.userData.b_arrow) gripHand.userData.b_arrow.visible = false;
+        if (gripHand.userData.f_arrow) gripHand.userData.f_arrow.visible = false;
+        // Repurpose the thumb arrow (+y) as I and the curl arrow (-x) as B.
+        if (gripHand.userData.f_arrow) gripHand.userData.f_arrow.setColor(new THREE.Color(0xFFAB40));
+        if (gripHand.userData.b_arrow) gripHand.userData.b_arrow.setColor(new THREE.Color(0x66BB6A));
+        var gripILabel = createLabelSprite("I", wireColor, 0.5);
+        if (gripHand.userData.f_label) gripILabel.position.copy(gripHand.userData.f_label.position);
+        gripILabel.visible = false;
+        gripHand.add(gripILabel);
+        var gripBLabel = createLabelSprite("B", flColor, 0.5);
+        if (gripHand.userData.b_label) gripBLabel.position.copy(gripHand.userData.b_label.position);
+        gripBLabel.visible = false;
+        gripHand.add(gripBLabel);
+        gripHand.userData.elementType = "biot_grip_hand";
+        gripHand.userData.id = "bs_grip_hand";
+        gripHand.userData.homePos = [-2.4, 0.2, 0.6];
+        gripHand.userData.i_label = gripILabel;
+        gripHand.userData.b_grip_label = gripBLabel;
+        gripHand.visible = false;
+        addToScene(gripHand);
+
+        // ── Cross-product rule hand (STATE_5, STATE_6) ───────────────────
+        // Reuses the Diamond-#2 cross-product mesh: flat fingers (-z local)
+        // along dl, fingertips curl (-x local) toward r-hat, thumb (+y local)
+        // = dB. We relabel v/B/F -> dl / r-hat / dB, curl the fingers to a
+        // held mid-gesture, reveal the three pointer arrows, and orient the
+        // whole hand to the biot geometry. Hidden by default; applyState shows
+        // it only when biot_element.show_cross_hand is set.
+        var crossHand = createLorentzHand({ position: [-2.6, 1.7, 1.0], scale: 0.85 });
+        // ANIMATED: the fingers are regenerated per frame in animate block 7
+        // (clone of Diamond-#2's 3-phase-pause-animation), so no fixed curl is
+        // baked here. 3-beat story: flat fingers ("dl") -> curl -> mid-curl
+        // hold ("r-hat") -> full curl ("dB" on the thumb) -> snap back.
+        // Arrows + relabeled sprites start hidden; the animate loop shows each
+        // only during its hold phase. Recolor the r-hat arrow grey to match the
+        // scene's r-hat (the Lorentz mesh painted it blue for B).
+        if (crossHand.userData.v_arrow) crossHand.userData.v_arrow.visible = false;  // -z -> dl
+        if (crossHand.userData.b_arrow) {
+            crossHand.userData.b_arrow.visible = false;                               // -x -> r-hat
+            crossHand.userData.b_arrow.setColor(new THREE.Color(0xD4D4D8));
+        }
+        if (crossHand.userData.f_arrow) crossHand.userData.f_arrow.visible = false;  // +y -> dB
+        // Swap the v/B/F text for dl / r-hat / dB at the same local landmarks.
+        if (crossHand.userData.v_label) crossHand.userData.v_label.visible = false;
+        if (crossHand.userData.b_label) crossHand.userData.b_label.visible = false;
+        if (crossHand.userData.f_label) crossHand.userData.f_label.visible = false;
+        var dlHandLabel = createLabelSprite("dl", wireColor, 0.42);
+        if (crossHand.userData.v_label) dlHandLabel.position.copy(crossHand.userData.v_label.position);
+        dlHandLabel.visible = false;
+        crossHand.add(dlHandLabel);
+        var rhatHandLabel = createLabelSprite("r\\u0302", rhatColor, 0.42);
+        if (crossHand.userData.b_label) rhatHandLabel.position.copy(crossHand.userData.b_label.position);
+        rhatHandLabel.visible = false;
+        crossHand.add(rhatHandLabel);
+        var dBHandLabel = createLabelSprite("dB", dbColor, 0.42);
+        if (crossHand.userData.f_label) dBHandLabel.position.copy(crossHand.userData.f_label.position);
+        dBHandLabel.visible = false;
+        crossHand.add(dBHandLabel);
+        crossHand.userData.dl_label = dlHandLabel;
+        crossHand.userData.rhat_label = rhatHandLabel;
+        crossHand.userData.db_label = dBHandLabel;
+        // Orient: flat fingers (-z) -> dl, curled tips (-x) -> r-hat side, thumb
+        // (+y) -> dB. Use the orthonormalised frame (dl, dB x dl, dB) so the
+        // mapping stays a proper rotation even when θ != 90° (P off-axis).
+        var thumbDirW = crossDir;        // dB = dl x r-hat (unit)
+        var fingerDirW = vnorm(dlDir);   // dl (unit)
+        var curlDirW = vnorm(vcross(thumbDirW, fingerDirW)); // r-hat side (perp part of r-hat)
+        var hbX = new THREE.Vector3(-curlDirW[0], -curlDirW[1], -curlDirW[2]);
+        var hbY = new THREE.Vector3(thumbDirW[0], thumbDirW[1], thumbDirW[2]);
+        var hbZ = new THREE.Vector3(-fingerDirW[0], -fingerDirW[1], -fingerDirW[2]);
+        var hbBasis = new THREE.Matrix4().makeBasis(hbX, hbY, hbZ);
+        crossHand.setRotationFromMatrix(hbBasis);
+        crossHand.userData.elementType = "biot_cross_hand";
+        crossHand.userData.id = "bs_cross_hand";
+        crossHand.userData.homePos = [-2.6, 1.7, 1.0];
+        crossHand.visible = false;
+        addToScene(crossHand);
     }
 
     function buildChangingFluxField(config_unused) {
@@ -2955,6 +3637,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildStraightWireField();
                 break;
 
+            case "biot_savart_element":
+                buildBiotSavartField();
+                break;
+
             case "changing_flux":
                 buildChangingFluxField();
                 break;
@@ -3031,6 +3717,46 @@ export const FIELD_3D_RENDERER_CODE = `
             animateCameraTo(stateDef.camera_position);
         }
 
+        // Diamond #4 STATE_1 wire-to-coil morph: when a state opts in via
+        // wire_to_coil_morph.enabled, force the straight stand-in wire visible
+        // + opaque, and the coil hidden + transparent. The animate loop drives
+        // the cross-fade from there. For ALL other states (incl. the default
+        // case where the wire doesn't exist) the stand-in stays invisible and
+        // the coil stays fully visible — matching pre-Diamond-#4 behavior.
+        if (config.scenario_type === "solenoid_field") {
+            var morphCfg = stateDef.wire_to_coil_morph;
+            var morphWireObj = null, coilObj = null;
+            for (var mi = 0; mi < sceneObjects.length; mi++) {
+                var mo = sceneObjects[mi];
+                if (mo.userData && mo.userData.id === "solenoid_morph_wire") morphWireObj = mo;
+                if (mo.userData && mo.userData.id === "solenoid_coil") coilObj = mo;
+            }
+            if (morphCfg && morphCfg.enabled) {
+                if (morphWireObj) {
+                    morphWireObj.visible = true;
+                    if (morphWireObj.material) morphWireObj.material.opacity = 1;
+                }
+                if (coilObj) {
+                    coilObj.visible = true;
+                    for (var coi = 0; coi < coilObj.children.length; coi++) {
+                        var ch = coilObj.children[coi];
+                        if (ch.material) ch.material.opacity = 0;
+                    }
+                }
+            } else {
+                if (morphWireObj) {
+                    morphWireObj.visible = false;
+                    if (morphWireObj.material) morphWireObj.material.opacity = 0;
+                }
+                if (coilObj) {
+                    for (var coj = 0; coj < coilObj.children.length; coj++) {
+                        var ch2 = coilObj.children[coj];
+                        if (ch2.material) ch2.material.opacity = 1;
+                    }
+                }
+            }
+        }
+
         // Premium extras (right hand, compass, highlighted point)
         clearDynamicExtras();
         applyExtras(stateDef.extras);
@@ -3038,6 +3764,52 @@ export const FIELD_3D_RENDERER_CODE = `
         // Diamond #3 — torque-loop per-state visibility + rotation seeding.
         if (config.scenario_type === "torque_on_loop_uniform_field") {
             applyTorqueLoopState(stateDef);
+        }
+
+        // Biot-Savart — seed the choreography on state entry: collapse every
+        // grow-from-origin vector to scale 0 (the animate loop draws them back in
+        // on schedule) so there is no full-size flash on the first frame. Also
+        // hide the flow dots / orbit arrow / scanner until the animate loop turns
+        // them on for the active state.
+        if (config.scenario_type === "biot_savart_element") {
+            for (var bri = 0; bri < sceneObjects.length; bri++) {
+                var bro = sceneObjects[bri];
+                var brud = bro.userData;
+                if (!brud || !brud.elementType) continue;
+                if (brud.grows) {
+                    if (brud.isLabel) {
+                        if (bro.material) bro.material.opacity = 0;
+                    } else {
+                        bro.scale.setScalar(0.0001);
+                        if (brud.fadeChildren) {
+                            for (var brc = 0; brc < bro.children.length; brc++) {
+                                if (bro.children[brc].material) bro.children[brc].material.opacity = 0;
+                            }
+                        }
+                    }
+                }
+                if (brud.elementType === "biot_flow" || brud.elementType === "biot_orbit" || brud.elementType === "biot_scan") {
+                    bro.visible = false;
+                    if (bro.material) bro.material.opacity = 0;
+                }
+                // Right-hand-rule hands: visibility owned entirely by the
+                // per-state biot_element flags (this loop runs AFTER the
+                // generic visible_elements matcher, so it is authoritative).
+                if (brud.elementType === "biot_grip_hand") {
+                    bro.visible = !!(stateDef.biot_element && stateDef.biot_element.show_grip_hand);
+                    if (bro.visible) {
+                        var gp = (stateDef.biot_element && stateDef.biot_element.grip_hand_position) || brud.homePos;
+                        if (gp) bro.position.set(gp[0], gp[1], gp[2]);
+                    }
+                }
+                if (brud.elementType === "biot_cross_hand") {
+                    bro.visible = !!(stateDef.biot_element && stateDef.biot_element.show_cross_hand);
+                    if (bro.visible) {
+                        var xp = (stateDef.biot_element && stateDef.biot_element.cross_hand_position) || brud.homePos;
+                        if (xp) bro.position.set(xp[0], xp[1], xp[2]);
+                    }
+                }
+            }
         }
 
         // Sliders + formula overlay visibility — scenario-aware: show the
@@ -3132,6 +3904,10 @@ export const FIELD_3D_RENDERER_CODE = `
         } else if (scenario === "straight_wire_current") {
             lines.push("\\u26aa Wire carries current I");
             lines.push("\\u26aa Circles = B field");
+        } else if (scenario === "biot_savart_element") {
+            lines.push("\\u26aa Amber = current element dl");
+            lines.push("\\u26aa Grey = r̂ to point P");
+            lines.push("\\u26aa Green = dB (⊥ dl & r̂)");
         } else if (scenario === "parallel_plates") {
             lines.push("\\u26aa Red plate = +");
             lines.push("\\u26aa Blue plate = \\u2212");
@@ -3567,6 +4343,387 @@ export const FIELD_3D_RENDERER_CODE = `
                         // Up-flow: y goes -2.5 → +2.5; Down-flow: y goes +2.5 → -2.5
                         swObj.position.y = curDirSign > 0 ? (-2.5 + loopT * 5) : (2.5 - loopT * 5);
                     }
+                }
+            }
+        }
+
+        // ── Diamond #4 STATE_1 wire-to-coil morph (solenoid_field) ───────
+        //   When the active state has wire_to_coil_morph.enabled, drive the
+        //   stand-in straight wire opacity 1→0 and the coil opacity 0→1 over
+        //   the configured window. Reads stateStartTime (set by applyState)
+        //   so each entry into the state replays the morph from t=0.
+        if (config.scenario_type === "solenoid_field" && stateDef && stateDef.wire_to_coil_morph && stateDef.wire_to_coil_morph.enabled) {
+            var msSinceStart = (time - stateStartTime) * 1000;
+            var straightDur = stateDef.wire_to_coil_morph.straight_duration_ms || 3000;
+            var morphDur = stateDef.wire_to_coil_morph.morph_duration_ms || 1500;
+            var wireOpacity, coilOpacity;
+            if (msSinceStart < straightDur) {
+                wireOpacity = 1; coilOpacity = 0;
+            } else if (msSinceStart < straightDur + morphDur) {
+                var u = (msSinceStart - straightDur) / morphDur;
+                // smoothstep ease for visual continuity
+                u = u * u * (3 - 2 * u);
+                wireOpacity = 1 - u; coilOpacity = u;
+            } else {
+                wireOpacity = 0; coilOpacity = 1;
+            }
+            for (var msi = 0; msi < sceneObjects.length; msi++) {
+                var mso = sceneObjects[msi];
+                if (!mso.userData) continue;
+                if (mso.userData.id === "solenoid_morph_wire" && mso.material) {
+                    mso.material.opacity = wireOpacity;
+                    mso.visible = wireOpacity > 0.01;
+                } else if (mso.userData.id === "solenoid_coil") {
+                    for (var mci = 0; mci < mso.children.length; mci++) {
+                        var mch = mso.children[mci];
+                        if (mch.material) mch.material.opacity = coilOpacity;
+                    }
+                    mso.visible = coilOpacity > 0.01;
+                }
+            }
+        }
+
+        // ── Diamond #4 STATE_2/STATE_3 — per_turn_field_circles +
+        //   radial_cancellation_arrows + axial_buildup_arrows. These primitives
+        //   live as children of solenoid_coil so the coil's axis-rotation
+        //   applies automatically. Default state: all hidden. When a state opts
+        //   in via stateDef.*_*, drive opacity/scale from (time - stateStartTime).
+        if (config.scenario_type === "solenoid_field" && stateDef) {
+            var coilForChildren = null;
+            for (var cci = 0; cci < sceneObjects.length; cci++) {
+                var cco = sceneObjects[cci];
+                if (cco.userData && cco.userData.id === "solenoid_coil") {
+                    coilForChildren = cco; break;
+                }
+            }
+            if (coilForChildren) {
+                var localMs = (time - stateStartTime) * 1000;
+                var ptCfg = stateDef.per_turn_field_circles;
+                var rcCfg = stateDef.radial_cancellation_arrows;
+                var axCfg = stateDef.axial_buildup_arrows;
+                var ptRevealAt = (ptCfg && ptCfg.reveal_at_ms != null) ? ptCfg.reveal_at_ms : 3500;
+                var ptStagger = (ptCfg && ptCfg.reveal_stagger_ms != null) ? ptCfg.reveal_stagger_ms : 250;
+                var ptFade = (ptCfg && ptCfg.reveal_fade_ms != null) ? ptCfg.reveal_fade_ms : 500;
+                var ptDimSteady = (ptCfg && ptCfg.opacity_dim != null) ? ptCfg.opacity_dim : 1.0;
+                var ptHighlightFirst = !!(ptCfg && ptCfg.highlight_first);
+                var rcColorActive = (rcCfg && rcCfg.color) || "#EF4444";
+                var rcRevealAt = (rcCfg && rcCfg.reveal_at_ms != null) ? rcCfg.reveal_at_ms : 6000;
+                var rcFade = (rcCfg && rcCfg.fade_in_duration_ms != null) ? rcCfg.fade_in_duration_ms : 800;
+                var axColorActive = (axCfg && axCfg.color) || "#3B82F6";
+                var axRevealAt = (axCfg && axCfg.reveal_at_ms != null) ? axCfg.reveal_at_ms : 8500;
+                var axArise = (axCfg && axCfg.arise_duration_ms != null) ? axCfg.arise_duration_ms : 1000;
+                var axLenMax = (axCfg && axCfg.arrow_length_max != null) ? axCfg.arrow_length_max : 1.0;
+                // Co-fade: when axial arrows finish arising on the same state
+                // that also has per_turn_field_circles, the circles dim to 30%
+                // so the axial field dominates visually (architect-specified).
+                var coFadeDim = 1.0;
+                if (axCfg && axCfg.enabled && ptCfg && ptCfg.enabled) {
+                    var axDoneAt = axRevealAt + axArise;
+                    if (localMs >= axDoneAt) coFadeDim = 0.3;
+                    else if (localMs >= axRevealAt) {
+                        var fu = (localMs - axRevealAt) / Math.max(1, axArise);
+                        coFadeDim = 1.0 - 0.7 * Math.max(0, Math.min(1, fu));
+                    }
+                }
+                for (var chi = 0; chi < coilForChildren.children.length; chi++) {
+                    var ch = coilForChildren.children[chi];
+                    var ud = ch.userData;
+                    if (!ud) continue;
+                    if (ud.elementType === "per_turn_field_circle") {
+                        if (!ptCfg || !ptCfg.enabled) {
+                            ch.visible = false;
+                            if (ch.material) ch.material.opacity = 0;
+                            continue;
+                        }
+                        var turnRevealStart = ptRevealAt + ud.turnIndex * ptStagger;
+                        // Highlight-first behaviour: if highlight_first and first
+                        // turn (index 0), it's visible from state enter (t=0).
+                        if (ptHighlightFirst && ud.turnIndex === 0) {
+                            turnRevealStart = 0;
+                        }
+                        var turnOpacity = 0;
+                        if (localMs >= turnRevealStart + ptFade) {
+                            turnOpacity = ptDimSteady * coFadeDim;
+                        } else if (localMs >= turnRevealStart) {
+                            var tu = (localMs - turnRevealStart) / Math.max(1, ptFade);
+                            turnOpacity = ptDimSteady * coFadeDim * Math.max(0, Math.min(1, tu));
+                        }
+                        ch.visible = turnOpacity > 0.01;
+                        if (ch.material) ch.material.opacity = turnOpacity;
+                    } else if (ud.elementType === "radial_cancel_arrow") {
+                        if (!rcCfg || !rcCfg.enabled) {
+                            ch.visible = false;
+                            if (ch.material) ch.material.opacity = 0;
+                            continue;
+                        }
+                        var rcOpacity = 0;
+                        if (localMs >= rcRevealAt + rcFade) {
+                            rcOpacity = 1;
+                        } else if (localMs >= rcRevealAt) {
+                            var ru = (localMs - rcRevealAt) / Math.max(1, rcFade);
+                            rcOpacity = Math.max(0, Math.min(1, ru));
+                        }
+                        ch.visible = rcOpacity > 0.01;
+                        if (ch.material) {
+                            ch.material.opacity = rcOpacity;
+                            if (rcCfg.color) ch.material.color = hexToThreeColor(rcColorActive);
+                        }
+                    } else if (ud.elementType === "axial_buildup_shaft") {
+                        if (!axCfg || !axCfg.enabled) {
+                            ch.visible = false;
+                            if (ch.material) ch.material.opacity = 0;
+                            continue;
+                        }
+                        var axU = 0;
+                        if (localMs >= axRevealAt + axArise) axU = 1;
+                        else if (localMs >= axRevealAt) {
+                            axU = (localMs - axRevealAt) / Math.max(1, axArise);
+                            axU = axU * axU * (3 - 2 * axU); // smoothstep
+                        }
+                        var shaftLen = axLenMax * axU;
+                        // Scale on the cylinder's local Y (its length axis;
+                        // we rotated x=PI/2 so local Y maps to world ±Z).
+                        ch.scale.y = Math.max(0.001, shaftLen);
+                        ch.visible = axU > 0.01;
+                        if (ch.material) {
+                            ch.material.opacity = axU;
+                            if (axCfg.color) ch.material.color = hexToThreeColor(axColorActive);
+                        }
+                    } else if (ud.elementType === "axial_buildup_head") {
+                        if (!axCfg || !axCfg.enabled) {
+                            ch.visible = false;
+                            if (ch.material) ch.material.opacity = 0;
+                            continue;
+                        }
+                        var axU2 = 0;
+                        if (localMs >= axRevealAt + axArise) axU2 = 1;
+                        else if (localMs >= axRevealAt) {
+                            axU2 = (localMs - axRevealAt) / Math.max(1, axArise);
+                            axU2 = axU2 * axU2 * (3 - 2 * axU2);
+                        }
+                        // Head sits at the tip of the shaft (baseZ + shaftLen).
+                        var headZ = ud.baseZ + axLenMax * axU2;
+                        ch.position.set(0, 0, headZ);
+                        ch.visible = axU2 > 0.05;
+                        if (ch.material) {
+                            ch.material.opacity = axU2;
+                            if (axCfg.color) ch.material.color = hexToThreeColor(axColorActive);
+                        }
+                    }
+                }
+            }
+        }
+
+        // ── Biot-Savart choreography ─────────────────────────────────────
+        //   Storytelling motion, all keyed off localMsB = (time - stateStartTime):
+        //     • grow-from-origin reveal of dl / r̂ / θ-arc / dl×r̂ / dB on a
+        //       per-element schedule (revealAt by elementType) → the vectors draw
+        //       themselves in narration order.
+        //     • current-flow dots animate up the wire (show_current_flow).
+        //     • dB accumulation reveals on a stagger; the circle ramps in (sequence).
+        //     • the tangent arrow orbits the wire (circulate / direction_practice).
+        //     • a scan ring travels down the wire for the sinθ/r² weighting (STATE_8).
+        //   Visibility of each element is still owned by applyState/visible_elements;
+        //   here we only drive per-frame scale / opacity / position.
+        if (config.scenario_type === "biot_savart_element" && stateDef) {
+            var be = stateDef.biot_element || {};
+            var modeB = be.accumulate_mode || "single";
+            var localMsB = (time - stateStartTime) * 1000;
+            var revealAtB = be.reveal_at_ms != null ? be.reveal_at_ms : 1500;
+            var staggerB = be.reveal_stagger_ms != null ? be.reveal_stagger_ms : 350;
+            var fadeB = be.reveal_fade_ms != null ? be.reveal_fade_ms : 400;
+            var nElB = (config.biot_defaults && config.biot_defaults.num_elements) || 9;
+            var lastStartB = revealAtB + (nElB - 1) * staggerB + fadeB;
+            // Single-element teaching states get the full staggered draw-on; the
+            // integrated/sequence states reveal their few elements quickly so the
+            // narrative beat (accumulation / result) isn't held up.
+            var revFactorB = (modeB === "single") ? 1 : 0.28;
+            var growMsB = (modeB === "single") ? 720 : 450;
+            var biotPulseB = 0.5 + 0.5 * Math.abs(Math.sin(time * 3.0));
+            var wireHalfB = (config.biot_defaults && config.biot_defaults.wire_half_length) || 3.0;
+
+            function smooth01(x) { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); }
+
+            for (var bsi = 0; bsi < sceneObjects.length; bsi++) {
+                var bso = sceneObjects[bsi];
+                var bud = bso.userData;
+                if (!bud || !bud.elementType) continue;
+
+                // 1) Reveal tagged elements. Vectors (dl, r̂, θ, dl×r̂, dB, P) grow
+                //    from their origin; symbol labels just fade in at fixed scale.
+                if (bud.grows && bso.visible) {
+                    var rAtB = (bud.revealAt != null ? bud.revealAt : 0) * revFactorB;
+                    var kB = (localMsB <= rAtB) ? 0 : smooth01((localMsB - rAtB) / growMsB);
+                    if (bud.isLabel) {
+                        if (bso.material) bso.material.opacity = kB;
+                    } else {
+                        bso.scale.setScalar(Math.max(0.0001, kB));
+                        if (bud.fadeChildren) {
+                            for (var gci = 0; gci < bso.children.length; gci++) {
+                                var gch = bso.children[gci];
+                                if (gch.material) {
+                                    var baseO = (gch.userData && gch.userData.baseOpacity != null) ? gch.userData.baseOpacity : 1;
+                                    gch.material.opacity = kB * baseO;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // 2) Current-flow dots — march up the wire when the state asks for it
+                if (bud.elementType === "biot_flow") {
+                    if (be.show_current_flow) {
+                        bso.visible = true;
+                        var speed = 0.55; // wire-units per second
+                        var span = 2 * wireHalfB;
+                        var yF = -wireHalfB + (((bud.phase + (localMsB / 1000) * (speed / span)) % 1) * span);
+                        bso.position.set(0, yF, 0);
+                        if (bso.material) bso.material.opacity = 0.9;
+                    } else {
+                        bso.visible = false;
+                        if (bso.material) bso.material.opacity = 0;
+                    }
+                }
+
+                // 3) dB accumulation reveal (sequence) + optional sinθ-weight emphasis
+                if (bud.elementType === "biot_accum") {
+                    var opB = 0;
+                    if (modeB === "sequence") {
+                        var startB = revealAtB + bud.elemIndex * staggerB;
+                        if (localMsB >= startB + fadeB) opB = 1;
+                        else if (localMsB >= startB) opB = Math.max(0, Math.min(1, (localMsB - startB) / Math.max(1, fadeB)));
+                    }
+                    // STATE_8: scale the wire marker by its sinθ/r² weight so the
+                    // dominant middle element visibly swells and the ends shrink.
+                    var mkScale = be.weight_by_sin_theta ? (0.4 + 1.6 * bud.sinThetaWeight) : 1.0;
+                    for (var bci = 0; bci < bso.children.length; bci++) {
+                        var ach = bso.children[bci];
+                        if (ach.material) ach.material.opacity = opB;
+                        if (ach.geometry && ach.geometry.type === "SphereGeometry") ach.scale.setScalar(mkScale);
+                    }
+                }
+
+                // 4) Assembled circle opacity (faint → ramps with accumulation → bright)
+                else if (bud.elementType === "biot_circle") {
+                    var cOpB = 0;
+                    if (modeB === "integrated") {
+                        cOpB = be.circle_opacity != null ? be.circle_opacity : 0.9;
+                    } else if (modeB === "sequence") {
+                        var progB = (localMsB <= revealAtB) ? 0
+                            : (localMsB >= lastStartB ? 1 : (localMsB - revealAtB) / Math.max(1, lastStartB - revealAtB));
+                        cOpB = 0.85 * Math.max(0, Math.min(1, progB));
+                    } else {
+                        cOpB = be.circle_opacity != null ? be.circle_opacity : 0;
+                    }
+                    if (bso.material) bso.material.opacity = cOpB;
+                    // Orbit the tangent arrow around the wire to show circulation.
+                    if (bud.id === "bs_circle_arr" && bso.visible && bud.orbitRadius) {
+                        var angC = (localMsB / 1000) * 0.7; // ccw
+                        var rO = bud.orbitRadius;
+                        bso.position.set(rO * Math.cos(angC), 0, -rO * Math.sin(angC));
+                        // tangent direction (ccw) = derivative of (cos, 0, -sin)
+                        var tdir = new THREE.Vector3(-Math.sin(angC), 0, -Math.cos(angC));
+                        var upv = new THREE.Vector3(0, 1, 0);
+                        var qC = new THREE.Quaternion(); qC.setFromUnitVectors(upv, tdir);
+                        bso.setRotationFromQuaternion(qC);
+                        if (bso.material) bso.material.opacity = Math.max(cOpB, 0.55);
+                    }
+                }
+
+                // 5) Orbiting circulation arrow for the top-down dot/cross practice
+                else if (bud.elementType === "biot_orbit") {
+                    if (be.direction_practice) {
+                        bso.visible = true;
+                        var angO = (localMsB / 1000) * 0.9; // ccw (current out of page)
+                        var rOb = bud.orbitRadius || 1.6;
+                        bso.position.set(rOb * Math.cos(angO), 0, -rOb * Math.sin(angO));
+                        var tdirO = new THREE.Vector3(-Math.sin(angO), 0, -Math.cos(angO));
+                        var qO = new THREE.Quaternion(); qO.setFromUnitVectors(new THREE.Vector3(0, 1, 0), tdirO);
+                        bso.setRotationFromQuaternion(qO);
+                        if (bso.material) bso.material.opacity = 0.95;
+                    } else {
+                        bso.visible = false;
+                        if (bso.material) bso.material.opacity = 0;
+                    }
+                }
+
+                // 6) Scan ring travels down the wire during the weighting state
+                else if (bud.elementType === "biot_scan") {
+                    if (be.weight_by_sin_theta) {
+                        bso.visible = true;
+                        var scanT = smooth01((localMsB - 600) / 4000);
+                        bso.position.set(0, wireHalfB * 0.85 - scanT * (wireHalfB * 1.7), 0);
+                        if (bso.material) bso.material.opacity = 0.85 * biotPulseB;
+                    } else {
+                        bso.visible = false;
+                        if (bso.material) bso.material.opacity = 0;
+                    }
+                }
+            }
+
+            // 7) Right-hand-rule hands — realistic finger curl with pause
+            //    phases (clone of Diamond-#2's 3-phase-pause-animation). The
+            //    4 finger tube geometries are regenerated each frame from
+            //    lorentzFingerPoints at the current curl progress, and the
+            //    fingernails slide to the live fingertips — so the curl reads
+            //    as a human hand closing, not a morph. Each hold phase shows
+            //    exactly one label + pointer arrow so the student's eye lands
+            //    on the right direction at the right moment. The cycle starts
+            //    at state entry (localMsB), so the story always begins flat.
+            var handSecB = localMsB / 1000;
+            for (var bhi = 0; bhi < sceneObjects.length; bhi++) {
+                var hnd = sceneObjects[bhi];
+                var hud = hnd.userData;
+                if (!hud || !hud.finger_meshes) continue;
+                if (hud.elementType !== "biot_cross_hand" && hud.elementType !== "biot_grip_hand") continue;
+                if (!hnd.visible) continue;
+                var hCurl, hPhase;
+                if (hud.elementType === "biot_grip_hand") {
+                    // 2-beat grip cycle (7 s): flat hold (thumb = I) -> curl ->
+                    // full-curl hold (fingers = B circulation) -> uncurl.
+                    var gc = (handSecB % 7.0) / 7.0;
+                    if (gc < 0.22) { hCurl = 0; hPhase = "i"; }
+                    else if (gc < 0.45) { var gu = (gc - 0.22) / 0.23; hCurl = gu * gu * (3 - 2 * gu); hPhase = null; }
+                    else if (gc < 0.88) { hCurl = 1; hPhase = "b"; }
+                    else { var gv = (gc - 0.88) / 0.12; hCurl = 1 - gv * gv * (3 - 2 * gv); hPhase = null; }
+                } else {
+                    // 3-beat cross-product cycle (9 s, same timing as Diamond
+                    // #2): flat (dl) -> mid-curl (r-hat) -> full curl (dB) ->
+                    // snap back.
+                    var cc = (handSecB % 9.0) / 9.0;
+                    if (cc < 0.15) { hCurl = 0; hPhase = "dl"; }
+                    else if (cc < 0.35) { var cu = (cc - 0.15) / 0.20; hCurl = 0.5 * (cu * cu * (3 - 2 * cu)); hPhase = null; }
+                    else if (cc < 0.50) { hCurl = 0.5; hPhase = "rhat"; }
+                    else if (cc < 0.70) { var cv = (cc - 0.50) / 0.20; hCurl = 0.5 + 0.5 * (cv * cv * (3 - 2 * cv)); hPhase = null; }
+                    else if (cc < 0.92) { hCurl = 1; hPhase = "db"; }
+                    else { var cw = (cc - 0.92) / 0.08; hCurl = 1 - cw * cw * (3 - 2 * cw); hPhase = null; }
+                }
+                var hFingers = hud.finger_meshes || [];
+                var hNails = hud.finger_nails || [];
+                for (var hfi = 0; hfi < hFingers.length; hfi++) {
+                    var hf = hFingers[hfi];
+                    var hfd = hf.userData;
+                    var hpts = lorentzFingerPoints(hfd.fingerIndex, hfd.palmRadius, hfd.fingerLength, hfd.scale_s, hCurl);
+                    var hcurve = new THREE.CatmullRomCurve3(hpts);
+                    hf.geometry.dispose();
+                    hf.geometry = new THREE.TubeGeometry(hcurve, 24, hfd.tubeRadius, 8, false);
+                    if (hNails[hfi]) {
+                        var htip = hpts[hpts.length - 1];
+                        hNails[hfi].position.set(htip.x, htip.y, htip.z);
+                    }
+                }
+                if (hud.elementType === "biot_grip_hand") {
+                    if (hud.i_label) hud.i_label.visible = (hPhase === "i");
+                    if (hud.b_grip_label) hud.b_grip_label.visible = (hPhase === "b");
+                    if (hud.f_arrow) hud.f_arrow.visible = (hPhase === "i");   // thumb arrow = I
+                    if (hud.b_arrow) hud.b_arrow.visible = (hPhase === "b");   // curl arrow  = B
+                } else {
+                    if (hud.dl_label) hud.dl_label.visible = (hPhase === "dl");
+                    if (hud.rhat_label) hud.rhat_label.visible = (hPhase === "rhat");
+                    if (hud.db_label) hud.db_label.visible = (hPhase === "db");
+                    if (hud.v_arrow) hud.v_arrow.visible = (hPhase === "dl");
+                    if (hud.b_arrow) hud.b_arrow.visible = (hPhase === "rhat");
+                    if (hud.f_arrow) hud.f_arrow.visible = (hPhase === "db");
                 }
             }
         }

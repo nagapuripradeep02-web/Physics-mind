@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useState, useEffect, useMemo, useRef } from "react";
-import { Play, Pause, RotateCcw, BookOpen, Loader2, X } from "lucide-react";
+import { Play, Pause, RotateCcw, BookOpen, Loader2, X, AlertTriangle } from "lucide-react";
 import type { Lesson, TeachingStep } from "@/lib/teacherEngine";
 import { AISimulationRenderer } from "@/components/AISimulationRenderer";
 import type { TeacherScriptStep } from "@/lib/aiSimulationGenerator";
@@ -34,6 +34,15 @@ export interface DeepDiveSubState {
     /** Per-sub-state Indian real-world anchor (overrides the parent concept's
      *  global anchor on the EXAMPLE tag while this sub-state is active). */
     example_anchor?: string;
+}
+
+/** Rule 16a inline pre-emptive misconception correction (one entry of a
+ *  state's misconception_watch array). Mirrors misconceptionWatchSchema in
+ *  src/schemas/conceptJson.ts. */
+export interface MisconceptionWatchItem {
+    belief: string;
+    visual_counter?: string;
+    one_line_fix: string;
 }
 
 interface TeacherPlayerProps {
@@ -99,6 +108,11 @@ interface TeacherPlayerProps {
      *  Used by LearnConceptTab to keep DrillDownWidget's state_id in sync with the
      *  live current state — without this, Confused? always queries STATE_1. */
     onStateChange?: (state: string) => void;
+    /** Rule 16a: per-state misconception_watch arrays, keyed by state id.
+     *  Renders an inline "common mistake" callout under the step title on the
+     *  matching EPIC-L state. Absent/empty = nothing renders (the 62
+     *  un-retrofitted concepts). */
+    misconceptionWatch?: Record<string, MisconceptionWatchItem[]>;
 }
 
 
@@ -122,7 +136,7 @@ const LOADING_FACTS = [
     "�� Magnetic field lines always form closed loops — they never start or end",
 ];
 
-export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, aiScript, iframeRef: externalIframeRef, conceptId, secondarySimHtml, secondaryIframeRef: externalSecondaryIframeRef, sessionId, studentBelief, entryState, stateSequence, onDeepDiveClick, allowedDeepDiveStates, deepDiveSubStates, activeDeepDiveParent, activeDeepDiveIdx, deepDiveStatus, deepDiveLoading, onSubStateClick, onDeepDiveExit, deepDiveCacheId, onStateChange }: TeacherPlayerProps) {
+export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, aiScript, iframeRef: externalIframeRef, conceptId, secondarySimHtml, secondaryIframeRef: externalSecondaryIframeRef, sessionId, studentBelief, entryState, stateSequence, onDeepDiveClick, allowedDeepDiveStates, deepDiveSubStates, activeDeepDiveParent, activeDeepDiveIdx, deepDiveStatus, deepDiveLoading, onSubStateClick, onDeepDiveExit, deepDiveCacheId, onStateChange, misconceptionWatch }: TeacherPlayerProps) {
     // Step strip uses ONLY aiScript (Stage 4). lesson.teaching_script is never shown in the strip.
     // When aiScript is null/empty, isScriptReady=false and the strip shows a skeleton loader.
     const isScriptReady = !!(aiScript?.length);
@@ -664,6 +678,19 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
         const currentTitle = titleMatch ? titleMatch[1].replace(/\*\*/g, "") : currentText.split("\n")[0];
         const currentRest = currentText.slice(currentTitle.length).trim();
 
+        // Current EPIC-L state id — same derivation as the Explain button below.
+        // Keys the inline misconception_watch callout (Rule 16a).
+        const currentSimStateId = currentIdx >= 0
+            ? (steps[currentIdx]?.ai_sim_state
+                ?? (stateSequence && stateSequence.length > 0
+                    ? (stateSequence[currentIdx] ?? `STATE_${currentIdx + 1}`)
+                    : `STATE_${currentIdx + 1}`))
+            : null;
+        // Suppress while a deep-dive sub-state is active (its own teaching takes over).
+        const activeWatches = (!activeSub && currentSimStateId && misconceptionWatch)
+            ? (misconceptionWatch[currentSimStateId] ?? [])
+            : [];
+
         return (
             <div className="flex flex-col bg-zinc-950 overflow-hidden h-full">
                 {/* Header: play/pause + numbered state pills + counter + Explain */}
@@ -907,6 +934,38 @@ export default function TeacherPlayer({ lesson, simHtml, isLoadingSim, compact, 
                         </div>
                     )}
                 </div>
+                {/* Rule 16a: inline "common mistake" callout for the current state.
+                     Proactively confronts the documented wrong belief in EPIC-L so a
+                     silent student is corrected without typing a confusion phrase.
+                     Renders only when the current state authored a misconception_watch. */}
+                {activeWatches.length > 0 && (
+                    <div className="shrink-0 px-3 pb-2 flex flex-col gap-1.5">
+                        {activeWatches.map((w, i) => (
+                            <div
+                                key={i}
+                                style={{
+                                    border: '1px solid rgba(245,158,11,0.40)',
+                                    background: 'rgba(245,158,11,0.07)',
+                                    borderRadius: 6,
+                                    padding: '6px 10px',
+                                }}
+                            >
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
+                                    <AlertTriangle className="w-3 h-3" style={{ color: '#F59E0B', flexShrink: 0 }} />
+                                    <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: '#F59E0B' }}>
+                                        Common mistake
+                                    </span>
+                                </div>
+                                <div style={{ fontSize: 11.5, lineHeight: 1.4, color: 'rgba(232,230,240,0.70)', fontStyle: 'italic' }}>
+                                    “{w.belief}”
+                                </div>
+                                <div style={{ fontSize: 12, lineHeight: 1.4, color: '#f5f5f5', fontWeight: 600, marginTop: 2 }}>
+                                    {w.one_line_fix}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
                 {/* Phase D: thumbs rating on active inline deep-dive sub-state.
                      Keyed by deepDiveCacheId so switching between parent states
                      (or a fresh deep-dive row) resets the voted state. */}

@@ -39,6 +39,8 @@ export async function proxy(request: NextRequest) {
         pathname.startsWith("/admin/test-magnetic-field-wire") || // dev-only Sim 3 verification (session 60, first field_3d / Three.js concept)
         pathname.startsWith("/admin/test-magnetic-force-moving-charge") || // dev-only Diamond #2 verification (M1, Lorentz force F = qv × B)
         pathname.startsWith("/admin/test-torque-on-current-loop-in-field") || // dev-only Diamond #3 verification (M2, τ = μ × B on a current loop)
+        pathname.startsWith("/admin/test-magnetic-field-solenoid") || // dev-only Diamond #4 verification (M3, B = μ₀nI inside a solenoid)
+        pathname.startsWith("/admin/test-biot-savart-law") || // dev-only Biot-Savart verification (archetype A meta, dB = μ₀I(dl×r̂)/4πr²)
         pathname.startsWith("/api/test-") ||             // temp: test-only API
         pathname.startsWith("/data/concepts") ||
         pathname.startsWith("/_next") ||

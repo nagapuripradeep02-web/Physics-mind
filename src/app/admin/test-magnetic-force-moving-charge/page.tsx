@@ -55,6 +55,14 @@
 //       helix kicks in; s3_1 split into s3_1a ("watch the proton enter…")
 //       and s3_1b ("now inside the field, the Lorentz force kicks in…").
 //
+// Iteration 7 (2026-06-10, A5 patch): "magnetic force does no work → speed
+// constant" promoted out of the overloaded STATE_4 into its own dedicated
+// STATE_5 (predict→reveal: the v arrow swings while the equal-arc trail proves
+// |v| constant; formula overlay F⊥v → F·v=0). Fleming / why-sinθ / interactive
+// renumbered STATE_5/6/7 → STATE_6/7/8 — the arc is now 8 states. Cross-refs
+// (entry_state_map, EPIC-C branches, aha_moment, captions) updated; tsc +
+// validate:concepts PASS. STATES_TO_VERIFY below extended to all 8 states.
+//
 // All mechanisms catalogued in detail at docs/patterns/magnetism.md §3.
 
 import { readFileSync } from 'fs';
@@ -139,15 +147,20 @@ const STATES_TO_VERIFY: Array<{ id: string; description: string }> = [
     {
         id: 'STATE_5',
         description:
-            'Fleming’s left-hand rule reconciliation — Class-10 mnemonic shown as a top-left SVG overlay (ForeFinger=B, seCond=v, thuMb=F). Same θ = 90° circular scene continues from STATE_4; 3D right-hand mesh is hidden so the Fleming overlay sits alone. Caption notes the scope: works for +q only; right-hand rule stays canonical for negative charges and any θ ≠ 90°.',
+            'A5 (NEW) — Speed never changes; magnetic force does no work. Same θ = 90° circle continues. The orange v arrow swings to a new direction every instant, while the equal-arc trail dots prove |v| is constant. Bottom-right formula overlay: F ⊥ v → F·v = 0 → Δ(½mv²) = 0 → |v| constant. Predict→reveal beat (advance_mode wait_for_answer); confronts the #1 misconception "a stronger field makes it go faster".',
     },
     {
         id: 'STATE_6',
         description:
-            'Why sin θ? — v decomposed into v cos θ (grey, along B — does nothing) and v sin θ (orange dashed, ⊥ B — makes F). Labels visible on every arrow. Decomposition reveals F = q · (v sin θ) · B.',
+            'Fleming’s left-hand rule reconciliation — Class-10 mnemonic shown as a top-left SVG overlay (ForeFinger=B, seCond=v, thuMb=F). Same θ = 90° circular scene continues. Caption notes the scope: works for +q only; right-hand rule stays canonical for negative charges and any θ ≠ 90°.',
     },
     {
         id: 'STATE_7',
+        description:
+            'Why sin θ? — v decomposed into v cos θ (grey, along B — does nothing) and v sin θ (orange dashed, ⊥ B — makes F). Labels visible on every arrow. Decomposition reveals F = q · (v sin θ) · B.',
+    },
+    {
+        id: 'STATE_8',
         description:
             'Interactive — top-right sliders for q sign, |v|, B, θ. Bottom-right formula overlay. Drag the angle slider from 0 → 90 to feel the path morph straight → helix → circle.',
     },
@@ -169,7 +182,7 @@ export default function MagneticForceMovingChargeTestPage() {
                 magnetic_force_moving_charge — end-to-end verification
             </h1>
             <p style={{ fontSize: 12, opacity: 0.65, maxWidth: 920, marginBottom: 16 }}>
-                {json.concept_name}. Renders all 5 EPIC-L states of{' '}
+                {json.concept_name}. Renders all 8 EPIC-L states of{' '}
                 <code>magnetic_force_moving_charge.json</code> through the production{' '}
                 <code>assembleField3DHtml</code> path, reading the embedded{' '}
                 <code>field_3d_config</code> block directly (no Sonnet runtime call).

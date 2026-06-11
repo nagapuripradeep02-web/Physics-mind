@@ -1,0 +1,34 @@
+graph TD
+  c0["ac voltage source atomic"]
+  c1["phasor representation atomic"]
+  c2["ac resistor circuit"]
+  c3["ac inductor circuit"]
+  c4["ac capacitor circuit"]
+  c5["lcr series circuit atomic"]
+  c6["resonance in lcr atomic"]
+  c7["power in ac circuit atomic"]
+  c8["lc oscillations atomic"]
+  c9["transformer in ac atomic"]
+  c10["wattless current atomic"]
+  c11["choke coil atomic"]
+  c0 --> c1
+  c0 --> c2
+  c0 --> c3
+  c1 --> c3
+  c0 --> c4
+  c1 --> c4
+  c2 --> c5
+  c3 --> c5
+  c4 --> c5
+  c1 --> c5
+  c5 --> c6
+  c8 --> c6
+  c5 --> c7
+  c2 --> c7
+  c7 --> c10
+  c3 --> c10
+  c4 --> c10
+  c3 --> c11
+  c10 --> c11
+  classDef diamond fill:#fde68a,stroke:#d97706,stroke-width:2px;
+  class c6 diamond;

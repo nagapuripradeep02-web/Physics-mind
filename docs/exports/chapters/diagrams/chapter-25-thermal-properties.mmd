@@ -1,0 +1,24 @@
+graph TD
+  c0["temperature scales atomic"]
+  c1["thermal expansion atomic"]
+  c2["calorimetry principle atomic"]
+  c3["specific heat solid liquid atomic"]
+  c4["latent heat atomic"]
+  c5["heat conduction atomic"]
+  c6["heat convection atomic"]
+  c7["stefan boltzmann atomic"]
+  c8["wien displacement atomic"]
+  c9["newtons law of cooling atomic"]
+  c0 --> c1
+  c0 --> c2
+  c3 --> c2
+  c2 --> c3
+  c3 --> c4
+  c0 --> c5
+  c1 --> c5
+  c0 --> c6
+  c0 --> c7
+  c7 --> c8
+  c7 --> c9
+  classDef diamond fill:#fde68a,stroke:#d97706,stroke-width:2px;
+  class c1,c2,c4,c7,c8 diamond;

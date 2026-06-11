@@ -1,0 +1,33 @@
+graph TD
+  c0["rigid body rotation atomic"]
+  c1["rotational kinematics atomic"]
+  c2["moment of inertia atomic"]
+  c3["torque atomic"]
+  c4["tau eq i alpha atomic"]
+  c5["rotational work energy atomic"]
+  c6["angular momentum atomic"]
+  c7["conservation of angular momentum atomic"]
+  c8["pure rolling atomic"]
+  c9["rolling on incline atomic"]
+  c10["torsional pendulum atomic"]
+  c11["flywheel application atomic"]
+  c0 --> c1
+  c0 --> c2
+  c0 --> c3
+  c3 --> c4
+  c2 --> c4
+  c1 --> c4
+  c4 --> c5
+  c3 --> c6
+  c2 --> c6
+  c1 --> c6
+  c6 --> c7
+  c3 --> c7
+  c1 --> c8
+  c8 --> c9
+  c4 --> c9
+  c4 --> c10
+  c2 --> c11
+  c5 --> c11
+  classDef diamond fill:#fde68a,stroke:#d97706,stroke-width:2px;
+  class c2,c4,c9,c11 diamond;

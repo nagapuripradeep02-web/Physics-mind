@@ -396,6 +396,18 @@
           ]
         },
         "advance_mode": "wait_for_answer",
+        "misconception_watch": [
+          {
+            "belief": "If the block is not moving, there is no friction acting on it.",
+            "visual_counter": "The block sits still while a force arrow pushes right; a friction arrow of identical length appears pointing left, and a net-force meter holds at exactly zero as the push grows.",
+            "one_line_fix": "No motion does not mean no friction; static friction grows to exactly cancel your push."
+          },
+          {
+            "belief": "Friction is one fixed-size force set only by the surface, so it cannot equal my push.",
+            "visual_counter": "As the applied-force slider rises from 10 N to 30 N to 50 N, the friction arrow stretches to match it tick-for-tick, with a live readout showing f_s = F at each step.",
+            "one_line_fix": "Static friction is not fixed; it self-adjusts to whatever push you apply, up to its limit."
+          }
+        ],
         "allow_deep_dive": false
       },
       "STATE_3": {
@@ -519,6 +531,18 @@
           ]
         },
         "advance_mode": "manual_click",
+        "misconception_watch": [
+          {
+            "belief": "Any applied force, however small, will start the block moving.",
+            "visual_counter": "Small pushes leave the block frozen while a rising 'static reserve' bar fills toward mu_s*N; only when the push crosses that line does the block break free and move.",
+            "one_line_fix": "Motion begins only after your push beats the ceiling f_s_max = mu_s*N."
+          },
+          {
+            "belief": "More contact area means more friction, so a box lying flat is harder to slide than one on its end.",
+            "visual_counter": "The same box is shown flat-down and end-down side by side; both display the identical normal force N and identical f_s_max bar, and both break free at the same push value.",
+            "one_line_fix": "Friction depends on the normal force, not on how much surface touches; area does not matter."
+          }
+        ],
         "allow_deep_dive": true,
         "drill_downs": ["threshold_when_block_slips", "static_friction_max_value", "friction_force_direction_at_threshold"]
       },
@@ -671,6 +695,18 @@
           ]
         },
         "advance_mode": "auto_after_tts",
+        "misconception_watch": [
+          {
+            "belief": "A moving object feels more friction than a stationary one, so friction jumps up once it slides.",
+            "visual_counter": "At the instant of slipping, the friction arrow visibly snaps shorter from mu_s*N down to mu_k*N, and a paired bar chart shows the kinetic bar lower than the static-max bar.",
+            "one_line_fix": "Friction drops, not rises, when sliding starts: mu_k < mu_s."
+          },
+          {
+            "belief": "Friction always points opposite the applied force.",
+            "visual_counter": "The block slides right while the push also points right; the kinetic-friction arrow is drawn pointing left, anchored to a 'relative-motion' label rather than to the push arrow.",
+            "one_line_fix": "Friction opposes the sliding (relative motion), not your push direction."
+          }
+        ],
         "allow_deep_dive": false
       },
       "STATE_5": {
@@ -839,6 +875,18 @@
           ]
         },
         "advance_mode": "manual_click",
+        "misconception_watch": [
+          {
+            "belief": "Both static and kinetic friction are single fixed numbers for a surface.",
+            "visual_counter": "Two panels side by side: the static panel shows a shaded range bar from 0 up to mu_s*N, while the kinetic panel shows a single flat line at mu_k*N that never changes with speed.",
+            "one_line_fix": "Static friction is a range up to mu_s*N; only kinetic friction is a single fixed value."
+          },
+          {
+            "belief": "Kinetic friction is larger than static friction because moving needs more force.",
+            "visual_counter": "The two panels are aligned on one axis so the kinetic line (mu_k*N) clearly sits below the top of the static range (mu_s*N), with the gap labelled mu_k < mu_s.",
+            "one_line_fix": "The hardest pull is to get it started; once moving, friction is smaller, so mu_k < mu_s."
+          }
+        ],
         "allow_deep_dive": true,
         "drill_downs": ["static_kinetic_swap", "mu_s_vs_mu_k_value_relationship", "friction_after_motion_starts"]
       },
@@ -2027,5 +2075,139 @@
         }
       ]
     }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered static-vs-kinetic friction when they can state that static friction self-adjusts to exactly match the applied force while the block stays at rest (f_s = F), that this self-adjustment has a ceiling f_s_max = mu_s*N so the block slips only once the push exceeds it, that the instant sliding begins friction drops to a smaller fixed kinetic value f_k = mu_k*N with mu_k < mu_s, and that static friction is therefore a range from 0 up to mu_s*N rather than a single fixed force while kinetic friction is one fixed value. (Friction's independence of contact area and its opposes-relative-motion direction rule are confronted inline via misconception_watch but are not yet assessed by this V1 quiz, because EPIC-L does not yet teach them as primary ideas.)",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A heavy almirah sits on the floor. You push it gently with a horizontal force of 40 N and it does not move at all. What is the magnitude of the friction force acting on the almirah at that instant?",
+        "options": {
+          "A": "Exactly 40 N, in the direction opposite to your push",
+          "B": "Equal to mu_s times N, regardless of how hard you push",
+          "C": "Zero, because the almirah is not moving",
+          "D": "A fixed value set only by the floor material, independent of your push"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "friction_is_a_fixed_force",
+          "C": "no_motion_means_no_friction",
+          "D": "friction_is_a_fixed_force"
+        },
+        "tested_idea": "Static friction self-adjusts to exactly match the applied force (f_s = F) so net force is zero while at rest.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A loaded handcart is parked on level ground. A worker pulls horizontally with 60 N and the cart stays still. What is the magnitude of the friction force on the cart right then?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A wooden crate rests on a floor where mu_s = 0.5, mu_k = 0.3, and the normal force N = 200 N. You slowly increase your horizontal push from 0 N upward. At what push does the crate first begin to slide?",
+        "options": {
+          "A": "When the push exceeds 100 N, because the crate slips only once it overcomes the static ceiling f_s_max = mu_s*N = 100 N",
+          "B": "It starts sliding the instant any push is applied, because a crate sitting still has no friction acting on it until it moves",
+          "C": "When the push exceeds 60 N, because sliding begins as soon as you beat the kinetic value mu_k*N = 60 N",
+          "D": "It depends only on how much floor the crate touches, since a larger contact area means more friction to overcome"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "no_motion_means_no_friction",
+          "C": "uses_kinetic_coeff_for_onset",
+          "D": "friction_depends_on_contact_area"
+        },
+        "tested_idea": "Static friction has a ceiling f_s_max = mu_s*N; the block slips only once the applied force exceeds it.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A steel trunk sits on a platform with mu_s = 0.4, mu_k = 0.25, and normal force N = 250 N. The applied horizontal force is raised gradually from zero. At what force does the trunk just start to move?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A crate sits on a floor. You push horizontally with a slowly increasing force, and the crate stays put until your push reaches a certain size, after which it suddenly begins to slide. What does this threshold push force equal at the instant sliding starts?",
+        "options": {
+          "A": "mu_s times the normal force (mu_s*N) — the maximum value static friction can reach before the crate slips",
+          "B": "Zero, because as long as the crate is not moving there is no friction acting on it",
+          "C": "mu_k times the normal force (mu_k*N), since the crate is about to move and kinetic friction governs the start of sliding",
+          "D": "A single fixed friction force set by the crate, the same value no matter how hard you push"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "no_motion_means_no_friction",
+          "C": "uses_kinetic_coeff_for_onset",
+          "D": "friction_is_a_fixed_force"
+        },
+        "tested_idea": "The threshold push that just starts sliding equals the static ceiling mu_s*N (not the kinetic value).",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A book rests on a table. You press sideways with a gradually growing force; the book holds still until the force reaches a particular size, then it abruptly starts to slide. What is the size of the push at the moment it begins to slide?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "You push a box hard enough that it just starts to slide, then keeps sliding at steady speed. The instant sliding begins, what happens to the friction force on the box?",
+        "options": {
+          "A": "It drops to a smaller fixed value, f_k = mu_k*N, because kinetic friction is less than the static maximum (mu_k < mu_s)",
+          "B": "It jumps to a larger value, because a moving object experiences more friction than a stationary one",
+          "C": "It stays exactly the same as the maximum static value, because friction is a single fixed force set by the surfaces",
+          "D": "It drops to zero, because friction was only there to hold the stationary box in place, and the box is no longer stationary"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "kinetic_greater_than_static",
+          "C": "friction_is_a_fixed_force",
+          "D": "motion_means_no_friction"
+        },
+        "tested_idea": "Once sliding starts, friction switches to a fixed smaller kinetic value f_k = mu_k*N with mu_k < mu_s.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "After straining to get a heavy suitcase moving across a tiled floor, it suddenly slides more easily and you keep it going at constant speed. The moment it began to slide, what happened to the friction force acting on it?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "You slowly push a heavy almirah on a rough floor. It will not budge until your push reaches 24.5 N, and at that instant it breaks free and starts sliding. The moment it begins to slide steadily, what happens to the friction force on the almirah?",
+        "options": {
+          "A": "It drops to a single fixed kinetic value f_k = mu_k x N that is smaller than the 24.5 N static peak — which is why it suddenly feels easier to keep pushing.",
+          "B": "It rises above 24.5 N, because a moving block experiences more friction than a stationary one (mu_k > mu_s).",
+          "C": "It falls to zero the instant the almirah starts moving, because friction only acts on a stationary block.",
+          "D": "It stays locked at exactly 24.5 N, because friction is one fixed force value that does not change between not-moving and moving."
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "kinetic_greater_than_static",
+          "C": "motion_means_no_friction",
+          "D": "friction_is_a_fixed_force"
+        },
+        "tested_idea": "Once a block slides, friction switches from the adjustable static range to a single fixed kinetic value f_k = mu_k*N that is smaller than the static maximum (mu_k < mu_s).",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A loaded handcart on a level road refuses to roll until the vendor's push reaches 18 N, at which point it breaks free and begins sliding forward at a steady pace. The instant it starts sliding, what happens to the friction force on the cart?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Which statement correctly contrasts static and kinetic friction for a block on a given surface?",
+        "options": {
+          "A": "Static friction can take any value from 0 up to mu_s*N (a range), while kinetic friction is a single fixed value mu_k*N once sliding",
+          "B": "Both are single fixed values, equal to mu_s*N at rest and the same while moving",
+          "C": "Kinetic friction is the larger fixed value and static is the smaller, since moving needs more friction",
+          "D": "Neither acts until the block moves, so static friction is always zero"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "friction_is_a_fixed_force",
+          "C": "kinetic_greater_than_static",
+          "D": "no_motion_means_no_friction"
+        },
+        "tested_idea": "Static friction is a range (0 to mu_s*N) whereas kinetic friction is a single fixed value (mu_k*N).",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "For a trunk resting on and then sliding across the same floor, which statement best describes how the static and kinetic friction differ in nature?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": ["Q1"],
+      "STATE_3": ["Q2", "Q3"],
+      "STATE_4": ["Q4", "Q5"],
+      "STATE_5": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_6"]
   }
 }

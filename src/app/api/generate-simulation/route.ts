@@ -112,6 +112,32 @@ export async function POST(req: NextRequest) {
             } catch { return []; }
         };
 
+        // Helper: per-state misconception_watch arrays (Rule 16a). The client
+        // renders these as an inline "common mistake" callout keyed to the
+        // current EPIC-L state. Returns {} when none are authored, so the
+        // 62 un-retrofitted concepts simply show nothing. (CLAUDE.md rule 16a.)
+        const fetchMisconceptionWatch = async (
+            conceptId: string,
+        ): Promise<Record<string, Array<{ belief: string; visual_counter?: string; one_line_fix: string }>>> => {
+            try {
+                const constants = await loadConstants(conceptId) as {
+                    epic_l_path?: {
+                        states?: Record<string, {
+                            misconception_watch?: Array<{ belief: string; visual_counter?: string; one_line_fix: string }>;
+                        }>;
+                    };
+                } | null;
+                const states = constants?.epic_l_path?.states ?? {};
+                const out: Record<string, Array<{ belief: string; visual_counter?: string; one_line_fix: string }>> = {};
+                for (const [id, s] of Object.entries(states)) {
+                    if (Array.isArray(s?.misconception_watch) && s.misconception_watch.length > 0) {
+                        out[id] = s.misconception_watch;
+                    }
+                }
+                return out;
+            } catch { return {}; }
+        };
+
         // Fast fingerprint cache check (bypasses full classifier)
         // Skip when forceRegenerate=true (e.g. Retry after SIM_ERROR) — deletes bad cache entry too
         if (forceRegenerate && effectiveFingerprintKey) {
@@ -133,6 +159,7 @@ export async function POST(req: NextRequest) {
                 const cachedVariants = await fetchCachedVariants(conceptIdForLookup);
                 const regenerationVariants = await fetchRegenerationVariants(conceptIdForLookup);
                 const allowDeepDiveStates = await fetchAllowDeepDiveStates(conceptIdForLookup);
+                const misconceptionWatch = await fetchMisconceptionWatch(conceptIdForLookup);
 
                 // Multi-panel cache hit — return dual-panel shape
                 if ((cached as Record<string, unknown>).sim_type === 'multi_panel' && cached.secondary_sim_html) {
@@ -160,6 +187,7 @@ export async function POST(req: NextRequest) {
                         cached_variants: cachedVariants,
                         regeneration_variants: regenerationVariants,
                         allowDeepDiveStates,
+                        misconceptionWatch,
                     });
                 }
 
@@ -177,6 +205,7 @@ export async function POST(req: NextRequest) {
                     cached_variants: cachedVariants,
                     regeneration_variants: regenerationVariants,
                     allowDeepDiveStates,
+                    misconceptionWatch,
                 });
             }
         }
@@ -260,6 +289,7 @@ export async function POST(req: NextRequest) {
             const cachedVariantsMulti = await fetchCachedVariants(conceptIdForLookupMulti);
             const regenerationVariantsMulti = await fetchRegenerationVariants(conceptIdForLookupMulti);
             const allowDeepDiveStatesMulti = await fetchAllowDeepDiveStates(conceptIdForLookupMulti);
+            const misconceptionWatchMulti = await fetchMisconceptionWatch(conceptIdForLookupMulti);
             return NextResponse.json({
                 type: 'multi_panel',
                 panel_a: result.panel_a,
@@ -277,6 +307,7 @@ export async function POST(req: NextRequest) {
                 cached_variants: cachedVariantsMulti,
                 regeneration_variants: regenerationVariantsMulti,
                 allowDeepDiveStates: allowDeepDiveStatesMulti,
+                misconceptionWatch: misconceptionWatchMulti,
             });
         }
 
@@ -297,6 +328,7 @@ export async function POST(req: NextRequest) {
         const cachedVariantsSingle = await fetchCachedVariants(conceptIdForLookupSingle);
         const regenerationVariantsSingle = await fetchRegenerationVariants(conceptIdForLookupSingle);
         const allowDeepDiveStatesSingle = await fetchAllowDeepDiveStates(conceptIdForLookupSingle);
+        const misconceptionWatchSingle = await fetchMisconceptionWatch(conceptIdForLookupSingle);
         return NextResponse.json({
             simHtml: primarySimHtml,
             secondarySimHtml,
@@ -310,6 +342,7 @@ export async function POST(req: NextRequest) {
             cached_variants: cachedVariantsSingle,
             regeneration_variants: regenerationVariantsSingle,
             allowDeepDiveStates: allowDeepDiveStatesSingle,
+            misconceptionWatch: misconceptionWatchSingle,
         });
 
     } catch (err) {

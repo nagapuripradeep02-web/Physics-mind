@@ -3,6 +3,7 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
+    AlertTriangle,
     ArrowRight,
     BookOpen,
     ChevronDown,
@@ -17,6 +18,7 @@ import {
     X,
 } from "lucide-react";
 import { AISimulationRenderer } from "@/components/AISimulationRenderer";
+import type { MisconceptionWatchItem } from "@/components/TeacherPlayer";
 import type { CatalogConcept, NanoDef } from "@/lib/conceptCatalog";
 import type { TeacherScriptStep } from "@/lib/aiSimulationGenerator";
 import { getSessionId } from "@/lib/session";
@@ -27,6 +29,7 @@ interface SimResult {
     simHtml: string | null;
     teacherScript: TeacherScriptStep[] | null;
     allowDeepDiveStates: string[];
+    misconceptionWatch: Record<string, MisconceptionWatchItem[]>;
     fingerprintKey: string | null;
     conceptId: string | null;
 }
@@ -433,6 +436,10 @@ export default function LessonCard({ concept, classLevel }: LessonCardProps) {
     })();
 
     const currentStateTitle = stateSteps.find(s => s.sim_state === currentState)?.title ?? null;
+    // Rule 16a: inline "common mistake" callouts authored for the current state.
+    const activeWatches = (currentState && sim?.misconceptionWatch)
+        ? (sim.misconceptionWatch[currentState] ?? [])
+        : [];
     const isLastState = stateSteps.length > 0 && currentState === stateSteps[stateSteps.length - 1]?.sim_state;
     const isDeepDiveState = sim?.allowDeepDiveStates.includes(currentState ?? "") ?? false;
 
@@ -465,6 +472,7 @@ export default function LessonCard({ concept, classLevel }: LessonCardProps) {
                 // Common fields
                 teacherScript?: TeacherScriptStep[] | null;
                 allowDeepDiveStates?: string[];
+                misconceptionWatch?: Record<string, MisconceptionWatchItem[]>;
                 fingerprintKey?: string | null;
                 conceptId?: string | null;
             };
@@ -482,6 +490,7 @@ export default function LessonCard({ concept, classLevel }: LessonCardProps) {
                 simHtml: resolvedHtml,
                 teacherScript: data.teacherScript ?? null,
                 allowDeepDiveStates: data.allowDeepDiveStates ?? [],
+                misconceptionWatch: data.misconceptionWatch ?? {},
                 fingerprintKey: data.fingerprintKey ?? null,
                 conceptId: data.conceptId ?? null,
             });
@@ -644,6 +653,34 @@ export default function LessonCard({ concept, classLevel }: LessonCardProps) {
                     {stateSteps.length > 0 && (
                         <div className="px-4 py-2 border-t border-zinc-800/60">
                             <StateDots steps={stateSteps} currentState={currentState} />
+                        </div>
+                    )}
+
+                    {/* Rule 16a: inline "common mistake" callout for the current state.
+                        Proactively confronts the documented wrong belief in EPIC-L so a
+                        silent student is corrected without typing a confusion phrase. */}
+                    {activeWatches.length > 0 && (
+                        <div className="px-4 pb-3 flex flex-col gap-1.5 border-t border-zinc-800/60 pt-2">
+                            {activeWatches.map((w, i) => (
+                                <div
+                                    key={i}
+                                    className="rounded-md border px-3 py-2"
+                                    style={{ borderColor: "rgba(245,158,11,0.40)", background: "rgba(245,158,11,0.07)" }}
+                                >
+                                    <div className="flex items-center gap-1.5 mb-0.5">
+                                        <AlertTriangle className="w-3 h-3 shrink-0" style={{ color: "#F59E0B" }} />
+                                        <span className="text-[9px] font-bold uppercase tracking-wider" style={{ color: "#F59E0B" }}>
+                                            Common mistake
+                                        </span>
+                                    </div>
+                                    <div className="text-[11.5px] leading-snug italic" style={{ color: "rgba(232,230,240,0.70)" }}>
+                                        “{w.belief}”
+                                    </div>
+                                    <div className="text-[12px] leading-snug font-semibold mt-0.5" style={{ color: "#f5f5f5" }}>
+                                        {w.one_line_fix}
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     )}
                 </div>

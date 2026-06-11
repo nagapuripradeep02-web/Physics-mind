@@ -103,6 +103,16 @@ WHERE status = 'FIXED'
 
 Read every `prevention_rule`. Examples: bug #13 requires every body in a state with a surface primitive to declare `attach_to_surface`; bug #14 requires every annotation color to have luminance contrast ≥ 4.5:1 against the canvas; bug #16 requires consistent use of `origin_body_id` (not `body_id`) field name. Document any exception and FLAG to quality-auditor.
 
+## Pass-2 four-question lens (v2.3, promoted 2026-06-10) — per-state self-check
+
+Tactical Socratic-reveal (`reveal_at_tts_id` + `pause_after_ms`) is the *execution*; this lens is the *strategic presence-check*. Answer all four concretely per state (record in `docs/notes/<concept_id>-pass2-notes.md`); **commit to a fix, don't just observe**:
+1. What does the student NOT know yet? (physics terms, not "they don't know the answer").
+2. What makes them FEEL the confusion before it resolves? `pause_after_ms >= 2000` after the prediction.
+3. What MOVES/APPEARS (not described)? Motion before words. **field_3d** (no `teaching_method`): author motion in `field_3d_config.states.STATE_N.* reveal_at_ms` and pause in `pause_after_ms` — keep synced (reveal after pause). Do NOT use `reveal_at_tts_id` for field_3d. **Carry every physics-block `pause_after_ms` forward verbatim — dropping them is the Diamond #4 regression.**
+4. Where does the eye/hand go? `focal_primitive_id` = the physics element, not the title label. RHR/gesture states: on-screen hand mirrors the gesture (`field_3d…right_hand.animate_curl:true`) or escalate to `peter_parker:renderer_primitives`.
+
+**Re-entry**: first ~5s of each state re-establishes context; a delayed first reveal (`reveal_at_ms > 2000`) must not leave a bare object on screen during the window.
+
 ## Self-review checklist
 
 - [ ] `npx tsc --noEmit` → 0 errors; `npm run validate:concepts` → target PASSES, no bounds WARN.
@@ -112,6 +122,7 @@ Read every `prevention_rule`. Examples: bug #13 requires every body in a state w
 - [ ] No primitive type used outside the verified list. Every `*_expr` references only declared vars.
 - [ ] Engine bug queue consulted; every relevant prevention_rule satisfied or exception documented.
 - [ ] DC Pandey check.
+- [ ] Pass-2 four-question lens answered concretely per state (recorded in `docs/notes/<concept_id>-pass2-notes.md`); re-entry first-5s context; field_3d `pause_after_ms` carried forward; RHR gesture-mirror or escalation note.
 
 ## Escalation
 

@@ -1,0 +1,25 @@
+graph TD
+  c0["centre of mass atomic"]
+  c1["linear momentum atomic"]
+  c2["conservation of momentum atomic"]
+  c3["elastic collision 1d atomic"]
+  c4["elastic collision 2d atomic"]
+  c5["inelastic collision atomic"]
+  c6["perfectly inelastic collision atomic"]
+  c7["coefficient of restitution atomic"]
+  c8["rocket equation atomic"]
+  c9["reduced mass atomic"]
+  c0 --> c1
+  c1 --> c2
+  c2 --> c3
+  c3 --> c4
+  c2 --> c5
+  c7 --> c5
+  c5 --> c6
+  c2 --> c6
+  c3 --> c7
+  c5 --> c7
+  c2 --> c8
+  c0 --> c9
+  classDef diamond fill:#fde68a,stroke:#d97706,stroke-width:2px;
+  class c0,c3,c8 diamond;

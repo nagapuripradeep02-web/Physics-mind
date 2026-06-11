@@ -1,0 +1,37 @@
+graph TD
+  c0["magnetic flux definition"]
+  c1["faradays law"]
+  c2["lenz law"]
+  c3["motional emf"]
+  c4["eddy currents atomic"]
+  c5["self inductance"]
+  c6["mutual inductance"]
+  c7["energy stored in inductor"]
+  c8["lr circuit growth decay"]
+  c9["ac generator"]
+  c10["dc generator"]
+  c11["transformer atomic"]
+  c12["magnetic field solenoid"]
+  c13["lc oscillation future"]
+  c0 --> c1
+  c1 --> c2
+  c1 --> c3
+  c2 --> c3
+  c2 --> c4
+  c1 --> c4
+  c1 --> c5
+  c12 --> c5
+  c5 --> c6
+  c1 --> c6
+  c5 --> c7
+  c5 --> c8
+  c1 --> c9
+  c3 --> c9
+  c9 --> c10
+  c6 --> c11
+  c1 --> c11
+  c9 --> c11
+  c5 --> c13
+  c7 --> c13
+  classDef diamond fill:#fde68a,stroke:#d97706,stroke-width:2px;
+  class c1,c2,c3,c9 diamond;

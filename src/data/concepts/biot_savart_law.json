@@ -1,0 +1,899 @@
+{
+  "concept_id": "biot_savart_law",
+  "concept_name": "The Biot-Savart Law — Magnetic Field of a Current Element",
+  "chapter": 4,
+  "section": "4.4",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.4 (Biot-Savart Law) — table-of-contents reference only; teaching authored from first principles. Pedagogy SEQUENCE sourced (structure only, never prose) from a Physics Wallah lecture 'Moving Charges and Magnetism 01: Biot-Savart Law' per AUTHORING_PIPELINE.md Stage 1. The atomic concept being taught is the GENERAL law dB = (μ₀/4π) I(dl × r̂)/r² for a single current element, and how summing every element along a straight wire RECOVERS the familiar circular field B = μ₀I/(2πr). This is the most-confused derivation in Class 12 magnetism: students think dB points along the current, treat every element as contributing equally, and never see that the circular field they memorised is built (integrated) from countless tiny perpendicular contributions. The field_3d renderer makes the element, the cross-product direction, and the accumulation visible in 3D.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["biot_savart_element"]
+  },
+  "prerequisites": [
+    "magnetic_field_wire",
+    "dot_product"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture the main coil of an MRI machine in a hospital — a tube wound with current-carrying wire. The huge, steady magnetic field it places around the patient is not produced by some single magic source. It is the sum of the tiny fields of millions of short wire segments, each one a current element obeying the Biot-Savart law. Master the field of ONE element and you understand the field of every coil, magnet, and motor ever built.",
+    "secondary": "Picture a single straight power-supply wire in your home inverter. To find the magnetic field it makes at a nearby point, you cannot use the whole wire at once — you mentally chop it into tiny pieces, find the field of each piece with Biot-Savart, and add them up. The familiar B = μ₀I/2πr is the answer to that addition, not a separate rule.",
+    "tertiary": "Picture a circular current loop, like a single turn of an electromagnet. The field at its centre is found the same way: break the loop into current elements, apply Biot-Savart to each, and sum. Every magnetic field in the world is just dB contributions added up — the Biot-Savart law is the atom of magnetostatics."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I": {
+        "name": "Current in the wire",
+        "unit": "A",
+        "min": 0.5,
+        "max": 20,
+        "default": 5,
+        "step": 0.5
+      },
+      "r": {
+        "name": "Perpendicular distance from wire to field point P",
+        "unit": "m",
+        "min": 0.02,
+        "max": 0.30,
+        "default": 0.05,
+        "step": 0.01
+      },
+      "dl": {
+        "name": "Length of one current element",
+        "unit": "m",
+        "min": 0.001,
+        "max": 0.05,
+        "default": 0.01
+      },
+      "theta": {
+        "name": "Angle between the current element dl and the unit vector r-hat to P",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "default": 90
+      },
+      "mu_0": {
+        "name": "Magnetic permeability of free space",
+        "unit": "T·m/A",
+        "constant": 1.2566370614e-6
+      }
+    },
+    "computed_outputs": {
+      "dB_magnitude": {
+        "formula": "(mu_0 * I * dl * sin(theta)) / (4 * PI * r * r)"
+      },
+      "B_magnitude": {
+        "formula": "(mu_0 * I) / (2 * PI * r)"
+      },
+      "B_microtesla": {
+        "formula": "((mu_0 * I) / (2 * PI * r)) * 1e6"
+      }
+    },
+    "formulas": {
+      "biot_savart_vector": "dB = (μ₀/4π) · I (dl × r̂) / r²",
+      "biot_savart_scalar": "dB = (μ₀/4π) · I dl sinθ / r²",
+      "direction": "dB is along dl × r̂ — perpendicular to BOTH the current element and the line to P (tangent to the circle through P)",
+      "integrated_straight_wire": "Summing dB over an infinite straight wire gives B = μ₀I/(2πr)",
+      "constant": "μ₀/4π = 10⁻⁷ T·m/A"
+    },
+    "constraints": [
+      "dB is the field of ONE infinitesimal current element; the total field at P is the vector sum (integral) over all elements of the wire",
+      "Magnitude dB ∝ I, ∝ dl, ∝ sinθ, and ∝ 1/r² (inverse-square in distance)",
+      "Direction of dB is dl × r̂ — perpendicular to both dl and r̂, never along the wire and never radially toward P",
+      "An element collinear with r̂ (θ → 0 or 180°) contributes zero field at P because sinθ = 0",
+      "Integrating Biot-Savart over an infinite straight wire reproduces exactly B = μ₀I/(2πr); over a finite wire it gives B = (μ₀I/4πr)(sinφ₁ + sinφ₂)"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_7",
+    "statement": "The circular field is the sum of one tiny dB from every current element.",
+    "visual_confirmation": "Watch the elements switch on one by one; their perpendicular dB contributions add up and the full circle assembles itself."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6", "STATE_7"],
+    "exploration": ["STATE_8", "STATE_9", "STATE_10"]
+  },
+  "epic_l_path": {
+    "state_count": 10,
+    "states": {
+      "STATE_1": {
+        "title": "The Result You Already Know",
+        "duration": 13,
+        "focal_primitive_id": "result_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "result_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Straight wire: B = μ₀I / 2πr",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "recall_label",
+            "position": { "x": 180, "y": 250 },
+            "text": "You met this with\nthe compass + right-hand rule",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "But WHERE does\nthe circle come from?",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "You already know this: a long straight wire carrying current wraps a magnetic field in circles around itself." },
+            { "id": "s1_2", "text_en": "Its strength is B equals mu-naught I over two pi r. You met it with the compass and the right-hand rule." },
+            { "id": "s1_3", "text_en": "But here is the real question: WHERE does that circular field come from? Why a circle, and why that exact size?" },
+            { "id": "s1_4", "text_en": "To answer it, we stop looking at the whole wire and zoom into one tiny piece of it." }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Zoom In — One Tiny Current Element dl",
+        "duration": 14,
+        "focal_primitive_id": "dl_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "dl_label",
+            "position": { "x": 250, "y": 230 },
+            "text": "dl — one tiny element\n(carries the same current I)",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "point_p_label",
+            "position": { "x": 580, "y": 250 },
+            "text": "P — a point in space",
+            "color": "#FFEB3B"
+          },
+          {
+            "type": "annotation",
+            "id": "chop_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Chop the wire into countless pieces",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Chop the wire into countless tiny pieces. Each piece has a small length we call d-l, and it carries the same current I." },
+            { "id": "s2_2", "text_en": "Here is one such element, d-l, glowing on the wire. This little arrow points along the current." },
+            { "id": "s2_3", "text_en": "Pick any point P in space near the wire. We will ask: how much magnetic field does THIS one element create at P?" },
+            { "id": "s2_4", "text_en": "Biot and Savart answered exactly that. The law is about one element first; we add up all of them later." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "d-l means the whole wire taken as one source",
+            "visual_counter": "Only the short glowing segment lights up, not the whole wire — the field is built by summing every such piece.",
+            "one_line_fix": "d-l is one infinitesimal piece of the wire; the total field is the sum of the contributions of every piece."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "The Geometry — r-hat and the Angle θ",
+        "duration": 14,
+        "focal_primitive_id": "rhat_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rhat_label",
+            "position": { "x": 470, "y": 200 },
+            "text": "r̂ — direction from dl to P\n(distance r)",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "theta_label",
+            "position": { "x": 300, "y": 300 },
+            "text": "θ — angle between dl and r̂",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "geometry_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Two things fix the field at P: r and θ",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "To describe P's position, draw an arrow from the element d-l straight to the point P. Its length is r, the distance." },
+            { "id": "s3_2", "text_en": "The unit vector along it, r-hat, just gives the direction from the element toward P." },
+            { "id": "s3_3", "text_en": "Now notice the angle between the element d-l and this arrow r-hat. Call it theta. This angle will matter a lot." },
+            { "id": "s3_4", "text_en": "Two things fix the field at P: how far P is, the distance r, and this angle theta. Let us build the formula from them." }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Build the Law from Its Proportionalities",
+        "duration": 16,
+        "focal_primitive_id": "prop_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "prop_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "dB ∝ I · dl · sinθ\ndB ∝ 1/r²",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_label",
+            "position": { "x": 540, "y": 250 },
+            "text": "dB = (μ₀/4π) · I dl sinθ / r²",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "constant_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "μ₀/4π = 10⁻⁷ T·m/A",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Experiment shows the field d-B from one element grows with the current. More current, more field: d-B is proportional to I." },
+            { "id": "s4_2", "text_en": "It also grows with the length of the element and with sine of the angle theta. Longer piece, larger angle, stronger contribution." },
+            { "id": "s4_3", "text_en": "And it weakens with distance, not as one over r, but as one over r squared, an inverse-square fall-off." },
+            { "id": "s4_4", "text_en": "Put them together with the constant mu-naught over four pi. Scalar form: d-B equals mu-naught over four pi, times I d-l sine theta, over r squared." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Every element of the wire contributes equally to the field at P",
+            "visual_counter": "The proportionality bars shrink for far-off, small-angle elements — sinθ and 1/r² both cut the contribution down.",
+            "one_line_fix": "Contribution scales as sinθ over r squared: the element across from P gives the most, the far collinear ends give almost nothing."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "The Cross Product — Direction of dB",
+        "duration": 16,
+        "focal_primitive_id": "cross_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "cross_label",
+            "position": { "x": 250, "y": 200 },
+            "text": "dB ‖ dl × r̂\n(⊥ to both)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "direction_label",
+            "position": { "x": 540, "y": 300 },
+            "text": "tangent to the circle —\nnever along the wire",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "into_page_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Right hand: curl dl → r̂, thumb = dB",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "That gave the SIZE of d-B. But a field also has a direction. Which way does d-B point at P?" },
+            { "id": "s5_2", "text_en": "The full law is a cross product: d-B is along d-l cross r-hat, perpendicular to BOTH the element and the line to P." },
+            { "id": "s5_3", "text_en": "Curl your right hand from d-l toward r-hat; your thumb gives d-B. Here it points straight into the page, the cross symbol." },
+            { "id": "s5_4", "text_en": "So d-B never points along the wire and never points toward P. It is perpendicular to both, tangent to the circle through P." },
+            { "id": "s5_5", "text_en": "Quick check before we go on: at a point on the OTHER side of the wire, does d-B point into the page or out of it?" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "d-B points along the current d-l, that is, along the wire",
+            "visual_counter": "The d-B arrow at P is drawn perpendicular to the element and to r-hat, lying tangent to the circle — never parallel to the wire.",
+            "one_line_fix": "d-B is perpendicular to BOTH d-l and r-hat by the cross product; it is tangent to the circle, never along the wire."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Predict the Direction (dot · / cross ⊗)",
+        "duration": 15,
+        "focal_primitive_id": "predict_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Apply the rule yourself",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "case_out_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "· current OUT of page\n→ B circles anti-clockwise",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "case_in_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "⊗ current INTO page\n→ B circles clockwise",
+            "color": "#42A5F5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Let us practise the direction rule. When the current comes straight out of the page toward you, we mark it with a dot." },
+            { "id": "s6_2", "text_en": "Use d-l cross r-hat for a point to its right: the field circles anti-clockwise, so on the right side d-B points up." },
+            { "id": "s6_3", "text_en": "Now flip it. Current going INTO the page, marked with a cross. The field circles clockwise instead." },
+            { "id": "s6_4", "text_en": "Same cross-product rule every time. The dot and cross are just the current pointing at you or away from you." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "d-B points along r-hat, straight toward the point P",
+            "visual_counter": "Across all dot and cross cases, the field arrow stays tangent to the circle — it never points radially from the wire to P.",
+            "one_line_fix": "d-B is perpendicular to r-hat, tangent to the circle, never radially toward P."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "The Circle Assembles Itself",
+        "duration": 16,
+        "focal_primitive_id": "assemble_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "assemble_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Add every element's dB → the circle emerges",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "sum_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "each element drops\na tiny dB at P",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "circle_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "∑ dB = the full\ncircular field B",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Now the payoff. The whole wire is millions of these elements. Each one adds its own tiny d-B at P." },
+            { "id": "s7_2", "text_en": "Watch them switch on, one after another, up and down the wire. Every element drops a small d-B contribution at P." },
+            { "id": "s7_3", "text_en": "Add them all; that is the integral. The tiny perpendicular pieces line up and build one smooth circular field." },
+            { "id": "s7_4", "text_en": "The circle you already knew was never assumed. It EMERGES from summing Biot-Savart over every element of the wire." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Biot-Savart's law and Ampere's law give different magnetic fields",
+            "visual_counter": "The assembled circle's size matches B = μ₀I/2πr exactly — the very field Ampere's law gives.",
+            "one_line_fix": "Summing every d-B from Biot-Savart gives exactly B equals mu-naught I over two pi r, the same field Ampere's law gives."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "Why the Far Ends Barely Matter",
+        "duration": 15,
+        "focal_primitive_id": "weight_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "weight_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Contribution ∝ sinθ / r²",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "near_label",
+            "position": { "x": 540, "y": 240 },
+            "text": "element across from P\n(θ = 90°): biggest dB",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "far_label",
+            "position": { "x": 180, "y": 380 },
+            "text": "far ends (θ → 0):\nsinθ → 0, dB ≈ 0",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Not every element pulls its weight. Look at the lengths of the d-B arrows as we walk along the wire." },
+            { "id": "s8_2", "text_en": "The element directly across from P, where theta is ninety degrees and r is smallest, gives the biggest contribution." },
+            { "id": "s8_3", "text_en": "Far up or down the wire, the element nearly lines up with r-hat. Sine theta shrinks toward zero, so its d-B almost vanishes." },
+            { "id": "s8_4", "text_en": "That is why a long wire behaves like an infinite one: the distant ends add almost nothing. The nearby piece dominates." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "An element's contribution falls off only because of the one-over-r-squared distance term",
+            "visual_counter": "The far-end arrows collapse faster than distance alone would predict, because their sinθ is also heading to zero.",
+            "one_line_fix": "It falls off from BOTH one-over-r-squared AND sine theta; the collinear ends vanish because sine theta goes to zero."
+          }
+        ]
+      },
+      "STATE_9": {
+        "title": "Biot-Savart ⇒ the Familiar Result",
+        "duration": 14,
+        "focal_primitive_id": "result_formula_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "result_formula_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Infinite wire: B = μ₀I / 2πr",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "agree_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "exactly the formula\nyou started with",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "finite_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "finite wire: B = (μ₀I/4πr)\n(sinφ₁ + sinφ₂)",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "Carry out the full sum for an infinite straight wire and the magnitude comes out to mu-naught I over two pi r." },
+            { "id": "s9_2", "text_en": "Exactly the formula you started with. Biot-Savart did not just agree with it; it EXPLAINED where it comes from." },
+            { "id": "s9_3", "text_en": "For a finite wire the answer is mu-naught I over four pi r, times sine phi-one plus sine phi-two, a topic for another day." },
+            { "id": "s9_4", "text_en": "One law for one element, summed over the whole wire, reproduces every straight-wire field you will ever meet." }
+          ]
+        }
+      },
+      "STATE_10": {
+        "title": "Explore — Move P, Watch dB and the Sum",
+        "duration": 16,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Drag the I and r sliders",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "challenge_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "Predict before the meter:\nbigger I → stronger, bigger r → weaker",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_label",
+            "position": { "x": 380, "y": 440 },
+            "text": "One element · one cross-product rule · summed over the wire",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s10_1", "text_en": "Your turn. Use the sliders to change the current I and the distance r, and watch the assembled circle respond." },
+            { "id": "s10_2", "text_en": "Move the field point closer and the contributions grow; push it far away and the whole field weakens as one over r." },
+            { "id": "s10_3", "text_en": "Predict before you read the meter: bigger I means stronger field, bigger r means weaker. The shape stays a circle." },
+            { "id": "s10_4", "text_en": "One element, one cross-product rule, summed over the wire. That is the Biot-Savart law, and that is where B comes from." }
+          ]
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "db_along_wire",
+      "misconception": "The field contribution dB points in the same direction as the current element dl — along the wire.",
+      "trigger_phrases": [
+        "dB is along the wire",
+        "field points along dl",
+        "dB in the direction of the current",
+        "magnetic field parallel to dl"
+      ],
+      "state_sequence": ["STATE_5"]
+    },
+    {
+      "branch_id": "equal_contributions",
+      "misconception": "Every current element of the wire contributes the same amount of field at P, regardless of its angle or distance.",
+      "trigger_phrases": [
+        "every element contributes equally",
+        "all pieces give the same field",
+        "angle does not matter for dB",
+        "each dl adds the same amount"
+      ],
+      "state_sequence": ["STATE_4", "STATE_8"]
+    },
+    {
+      "branch_id": "biot_vs_ampere_differ",
+      "misconception": "The Biot-Savart law and Ampere's law give different values for the magnetic field of a straight wire.",
+      "trigger_phrases": [
+        "Biot-Savart gives a different answer than Ampere",
+        "the two laws disagree",
+        "summing dB does not give mu0 I over 2 pi r"
+      ],
+      "state_sequence": ["STATE_7", "STATE_9"]
+    },
+    {
+      "branch_id": "dl_is_whole_wire",
+      "misconception": "The current element dl in the Biot-Savart law means the entire wire, not an infinitesimal piece.",
+      "trigger_phrases": [
+        "dl is the whole wire",
+        "dl is the full length",
+        "what is dl, the whole wire?"
+      ],
+      "state_sequence": ["STATE_2"]
+    },
+    {
+      "branch_id": "db_radial",
+      "misconception": "The field contribution dB points straight from the element toward P, along r-hat (radially).",
+      "trigger_phrases": [
+        "dB points toward P",
+        "field points along r",
+        "dB is radial",
+        "dB along r-hat"
+      ],
+      "state_sequence": ["STATE_5", "STATE_6"]
+    }
+  ],
+  "field_3d_config": {
+    "scenario_type": "biot_savart_element",
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#66BB6A",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85,
+      "arrow_spacing": 5
+    },
+    "current": {
+      "direction": [0, 1, 0],
+      "magnitude": 5,
+      "wire_color": "#FFAB40"
+    },
+    "slider_controls": {
+      "I": { "min": 0.5, "max": 20, "step": 0.5, "default": 5, "label": "Current I" },
+      "r": { "min": 0.02, "max": 0.30, "step": 0.01, "default": 0.05, "label": "Distance r" }
+    },
+    "biot_defaults": {
+      "field_point_P": [1.6, 0, 0],
+      "wire_half_length": 3.0,
+      "num_elements": 9
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The result you already know",
+        "visible_elements": ["bs_wire", "bs_curr_arrow", "bs_circle"],
+        "camera_position": [2.5, 1.5, 4],
+        "caption": "A straight wire makes a circular field B = μ₀I/2πr. But where does the circle come from?",
+        "biot_element": {
+          "field_point_P": [1.6, 0, 0],
+          "accumulate_mode": "integrated",
+          "show_rhat": false,
+          "show_cross": false,
+          "show_dB": false,
+          "show_current_flow": true,
+          "circle_opacity": 0.25,
+          "show_grip_hand": true
+        }
+      },
+      "STATE_2": {
+        "label": "One tiny current element dl",
+        "visible_elements": ["bs_wire", "bs_curr_arrow", "bs_dl", "bs_point_P"],
+        "camera_position": [1.8, 0.6, 2.4],
+        "caption": "Chop the wire into pieces. One element dl, carrying current I, and a field point P.",
+        "biot_element": {
+          "field_point_P": [1.6, 0, 0],
+          "element_position_on_wire": 0.0,
+          "accumulate_mode": "single",
+          "show_rhat": false,
+          "show_cross": false,
+          "show_dB": false,
+          "show_current_flow": true
+        }
+      },
+      "STATE_3": {
+        "label": "Geometry: r-hat and angle θ",
+        "visible_elements": ["bs_wire", "bs_dl", "bs_point_P", "bs_rhat", "bs_theta"],
+        "camera_position": [2.2, 0.4, 2.6],
+        "caption": "Draw r̂ from the element to P (distance r). Note the angle θ between dl and r̂.",
+        "biot_element": {
+          "field_point_P": [1.6, 0, 0],
+          "element_position_on_wire": 0.0,
+          "accumulate_mode": "single",
+          "show_rhat": true,
+          "show_theta": true,
+          "show_cross": false,
+          "show_dB": false
+        }
+      },
+      "STATE_4": {
+        "label": "Build the law from proportionalities",
+        "visible_elements": ["bs_wire", "bs_dl", "bs_point_P", "bs_rhat", "bs_theta"],
+        "camera_position": [2.2, 0.4, 2.6],
+        "caption": "dB ∝ I · dl · sinθ / r²  →  dB = (μ₀/4π) I dl sinθ / r²",
+        "formula_overlay": "dB = (μ₀/4π) · I dl sinθ / r²",
+        "biot_element": {
+          "field_point_P": [1.6, 0, 0],
+          "element_position_on_wire": 0.0,
+          "accumulate_mode": "single",
+          "show_rhat": true,
+          "show_theta": true,
+          "show_proportion_bars": true,
+          "show_cross": false,
+          "show_dB": false
+        }
+      },
+      "STATE_5": {
+        "label": "Cross product — direction of dB",
+        "visible_elements": ["bs_dl", "bs_point_P", "bs_rhat", "bs_cross", "bs_dB"],
+        "camera_position": [2.0, 0.5, 2.4],
+        "caption": "dB ‖ dl × r̂ — perpendicular to both, tangent to the circle (into the page here).",
+        "biot_element": {
+          "field_point_P": [1.6, 0, 0],
+          "element_position_on_wire": 0.0,
+          "accumulate_mode": "single",
+          "show_rhat": true,
+          "show_cross": true,
+          "show_dB": true,
+          "show_cross_hand": true,
+          "cross_hand_position": [-1.12, 0.5, 0.84]
+        }
+      },
+      "STATE_6": {
+        "label": "Predict the direction (dot/cross)",
+        "visible_elements": ["bs_wire", "bs_point_P"],
+        "camera_position": [0.1, 6.5, 0.1],
+        "caption": "Current ⊙ out → field anti-clockwise; current ⊗ in → field clockwise. Same dl × r̂ rule.",
+        "biot_element": {
+          "field_point_P": [1.6, 0, 0],
+          "element_position_on_wire": 0.0,
+          "accumulate_mode": "single",
+          "direction_practice": true,
+          "show_rhat": false,
+          "show_cross": false,
+          "show_dB": false,
+          "show_cross_hand": true
+        }
+      },
+      "STATE_7": {
+        "label": "The circle assembles itself",
+        "visible_elements": ["bs_wire", "bs_curr_arrow", "bs_point_P", "bs_accum", "bs_dB", "bs_circle"],
+        "camera_position": [3.5, 1.5, 4.5],
+        "caption": "Each element drops a tiny dB at P. Add them all — the full circular field emerges.",
+        "biot_element": {
+          "field_point_P": [1.6, 0, 0],
+          "accumulate_mode": "sequence",
+          "num_elements": 9,
+          "reveal_at_ms": 1500,
+          "reveal_stagger_ms": 350,
+          "reveal_fade_ms": 400,
+          "show_current_flow": true,
+          "show_dB": true
+        }
+      },
+      "STATE_8": {
+        "label": "Why the far ends barely matter",
+        "visible_elements": ["bs_wire", "bs_point_P", "bs_accum"],
+        "camera_position": [3, 0.3, 3.5],
+        "caption": "Contribution ∝ sinθ/r². The element across from P dominates; the far collinear ends vanish.",
+        "biot_element": {
+          "field_point_P": [1.6, 0, 0],
+          "accumulate_mode": "sequence",
+          "num_elements": 9,
+          "weight_by_sin_theta": true,
+          "reveal_at_ms": 800,
+          "reveal_stagger_ms": 250,
+          "reveal_fade_ms": 300
+        }
+      },
+      "STATE_9": {
+        "label": "Biot-Savart ⇒ the familiar result",
+        "visible_elements": ["bs_wire", "bs_circle", "bs_point_P"],
+        "camera_position": [3, 2, 4],
+        "caption": "Summed over the infinite wire: B = μ₀I/2πr — exactly the formula you started with.",
+        "formula_overlay": "∑ dB  →  B = μ₀I / 2πr",
+        "biot_element": {
+          "field_point_P": [1.6, 0, 0],
+          "accumulate_mode": "integrated",
+          "circle_opacity": 0.9,
+          "show_grip_hand": true
+        }
+      },
+      "STATE_10": {
+        "label": "Free explore — sliders + rotate",
+        "visible_elements": ["bs_wire", "bs_circle", "bs_point_P", "bs_dB"],
+        "camera_position": [3, 3, 5],
+        "caption": "Drag I and r. Move P. Watch dB and the assembled circle rescale. Drag to rotate, scroll to zoom.",
+        "show_sliders": true,
+        "formula_overlay": "dB = (μ₀/4π) I dl×r̂ / r²   →   B = μ₀I/2πr",
+        "biot_element": {
+          "field_point_P": [1.6, 0, 0],
+          "accumulate_mode": "integrated",
+          "circle_opacity": 0.9,
+          "show_dB": true
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the Biot-Savart law when they can state that it gives the magnetic field dB of a SINGLE infinitesimal current element dl (not the whole wire), that the magnitude is dB = (μ₀/4π) I dl sinθ/r² so the contribution grows with current and element length, grows with sinθ, and falls as the inverse square of distance, that the DIRECTION is dl × r̂ — perpendicular to both the element and the line to P, tangent to the circle and never along the wire or radially toward P — that current out of the page (·) circulates the field anti-clockwise while current into the page (⊗) circulates it clockwise, that the TOTAL field at any point is the vector sum (integral) of every element's dB so that summing over an infinite straight wire reproduces exactly B = μ₀I/2πr (identical to Ampere's law), and that distant elements contribute negligibly because their sinθ tends to zero. (The finite-wire result B = (μ₀I/4πr)(sinφ₁+sinφ₂) and on-axis loop fields are downstream applications, not assessed by this conceptual V1 quiz.)",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "In the Biot-Savart law dB = (μ₀/4π) I(dl × r̂)/r², what does the term 'dl' (the current element) refer to?",
+        "options": {
+          "A": "A very short piece of the wire, of length dl, carrying the current I — the total field is found by adding the contributions of all such pieces",
+          "B": "The entire length of the wire, treated as one single source of field",
+          "C": "The distance from the wire to the point P where the field is being measured",
+          "D": "The small change in the current as you move along the wire"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "dl_is_whole_wire",
+          "C": "dl_is_the_distance",
+          "D": "dl_is_current_change"
+        },
+        "tested_idea": "dl is one infinitesimal current-carrying element of the wire; the total field is the sum over all such elements.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "When the Biot-Savart law is applied to a bent or curved wire, what does the quantity dl stand for in the expression for dB?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A straight wire carries current I and P is a fixed point. Element X is directly across from P (angle θ = 90°, smallest distance r); element Y of the same length is far along the wire (θ ≈ 10°, much larger distance). Which produces the larger field dB at P, and why?",
+        "options": {
+          "A": "X, because dB ∝ sinθ/r²: X has the largest sinθ and the smallest r, while Y's small angle and greater distance both shrink its contribution",
+          "B": "They contribute equally, because both elements have the same length and carry the same current I",
+          "C": "Y, because it is farther from P, and a greater distance always means a stronger magnetic field",
+          "D": "X, but only because it is closer — the angle θ has no effect on the size of dB"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "equal_contributions",
+          "C": "farther_means_stronger",
+          "D": "angle_irrelevant_to_db"
+        },
+        "tested_idea": "An element's field contribution scales as sinθ/r², so the element across from P (θ=90°, smallest r) dominates and far small-angle elements add little.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "For a point P beside a long wire, compare the field contributions of the element nearest P and an element near the far end of the wire. Which is larger, and why?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "By the Biot-Savart law, in which direction does the field contribution dB at point P point?",
+        "options": {
+          "A": "Perpendicular to BOTH the element dl and the line to P, given by dl × r̂ — tangent to the circle through P",
+          "B": "Along the wire, in the same direction as the current element dl",
+          "C": "Straight from the element toward P, pointing along r̂",
+          "D": "Always vertically upward, no matter where P is located"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "db_along_wire",
+          "C": "db_radial",
+          "D": "db_fixed_direction"
+        },
+        "tested_idea": "dB is perpendicular to both dl and r̂ (the cross product dl × r̂) — tangent to the circle, never along the wire and never radial.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Using the Biot-Savart law, what is the direction of the magnetic field contribution dB produced at a nearby point P by a single current element?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A current flows straight OUT of the page (shown by a dot ⊙). For a point P directly to the RIGHT of the wire, which way does the magnetic field point?",
+        "options": {
+          "A": "Upward — the field circulates anti-clockwise around current that comes out of the page, so on the right side it is tangent and points up",
+          "B": "To the right, straight away from the wire toward P",
+          "C": "Out of the page, in the same direction the dot represents",
+          "D": "Downward — current coming out of the page circulates clockwise"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "db_radial",
+          "C": "field_equals_current_direction",
+          "D": "wrong_circulation_sense"
+        },
+        "tested_idea": "Current out of the page (⊙) circulates the field anti-clockwise; using dl × r̂ the field is tangent (up on the right side), never radial.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "A wire carries current INTO the page (marked ⊗). For a point directly to the LEFT of the wire, which way does the magnetic field point?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "You integrate the Biot-Savart contributions dB from every element of an infinite straight wire. What total field B do you get at perpendicular distance r?",
+        "options": {
+          "A": "Exactly B = μ₀I/2πr — the same circular field Ampere's law gives; the result emerges from summing all the elements",
+          "B": "A different, larger value than Ampere's law gives, because Biot-Savart counts every element separately",
+          "C": "Zero, because the contributions from elements above and below P cancel each other out",
+          "D": "A field that points along the wire, since all the dl elements point along the wire"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "biot_vs_ampere_differ",
+          "C": "contributions_cancel",
+          "D": "db_along_wire"
+        },
+        "tested_idea": "Summing every dB from the Biot-Savart law over the infinite wire yields exactly B = μ₀I/2πr, identical to Ampere's law — the circle emerges from the sum.",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "Integrating the Biot-Savart contributions of all elements of a long straight wire, what magnetic field do you obtain at perpendicular distance r, and how does it compare with Ampere's law?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Why does an infinitely long wire give almost the same field at a nearby point P as a wire that is merely very long?",
+        "options": {
+          "A": "Because each element's contribution ∝ sinθ/r²: the distant elements nearly line up with r̂ (sinθ → 0) and are far away, so they add almost nothing",
+          "B": "Because the distant elements actually contribute the most, but they cancel out in pairs",
+          "C": "Because every element contributes equally, so adding a few more elements at the ends changes nothing noticeably",
+          "D": "Because the magnetic field does not depend on the length of the wire at all, only on the current"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "far_ends_dominate",
+          "C": "equal_contributions",
+          "D": "field_independent_of_geometry"
+        },
+        "tested_idea": "Distant elements contribute negligibly because sinθ → 0 (and r is large), so a very long wire behaves almost like an infinite one.",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "As a wire is made longer and longer, why does the field at a nearby point P stop increasing noticeably once the wire is already long?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": ["Q1"],
+      "STATE_4": ["Q2"],
+      "STATE_5": ["Q3"],
+      "STATE_6": ["Q4"],
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_3", "STATE_9", "STATE_10"]
+  }
+}

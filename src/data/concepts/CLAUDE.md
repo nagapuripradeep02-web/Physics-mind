@@ -16,7 +16,7 @@ Subdir conventions for the directory that holds PhysicsMind's atomic concept JSO
 
 Missing any one = silent pipeline failure.
 
-1. `src/data/concepts/{concept_id}.json` — full definition. Required: `scene_composition.primitives.length ≥ 3` per state, `focal_primitive_id` per state, varied `advance_mode`, 4–7 `epic_c_branches`, `prerequisites: [concept_id]`, `mode_overrides.board` (`canvas_style` + `derivation_sequence` + `mark_scheme`), `mode_overrides.competitive` (`shortcuts` + `edge_cases`). Magnetism carve-out (M1–M6): conceptual-only is permitted; board+competitive ship later at M7/M8.
+1. `src/data/concepts/{concept_id}.json` — full definition. Required: `scene_composition.primitives.length ≥ 3` per state, `focal_primitive_id` per state, varied `advance_mode`, 4–7 `epic_c_branches`, `prerequisites: [concept_id]`, `mode_overrides.board` (`canvas_style` + `derivation_sequence` + `mark_scheme`), `mode_overrides.competitive` (`shortcuts` + `edge_cases`). Magnetism carve-out (M1–M6): conceptual-only is permitted; board+competitive ship later at M7/M8. **Comprehension keystone (2026-05-30+):** new/retrofitted concepts also ship an `assessment` block (6-question backward-designed pre/post quiz with `distractor_misconceptions` + `teaches_state` + `parallel_form_stem` per question) and a `coverage_map` (`by_state` + `non_assessed_states`), plus per-state `misconception_watch` for the wrong beliefs confronted in EPIC-L (Rule 16a). Enforced by Gates 19/20; the 62 pre-existing atomics are exempt until retrofitted.
 2. SQL INSERT into `concept_panel_config` (or `CONCEPT_PANEL_MAP` in `src/config/panelConfig.ts`).
 3. `CONCEPT_RENDERER_MAP` entry in `src/lib/aiSimulationGenerator.ts` (~line 2564).
 4. `VALID_CONCEPT_IDS` set in `src/lib/intentClassifier.ts` (~line 36).
@@ -31,6 +31,10 @@ Missing any one = silent pipeline failure.
 | Gate 12 | ≥ 2 distinct `advance_mode` values across `epic_l_path.states` |
 | Gate 13 | Animation primitive vocabulary (only allowed primitives in renderer) |
 | Gate 14 | Pass-1 strategic audit — applies to concepts authored or retrofitted **2026-05-22+** (see backfill carve-out) |
+| Gate 19 | **Coverage** — fires only when an `assessment` block is present: every quiz `teaches_state` is real, no orphan states (vs `non_assessed_states`), no uncovered questions, placement agrees. Machine-enforced in `conceptJson.ts` superRefine. |
+| Gate 20 | **Quiz quality** — fires only when `assessment` present: every wrong option carries a `distractor_misconception` (correct option not a key), ≥3 distinct `tested_idea`, ≥1 question hits the aha state, unique q_ids. Machine-enforced; auditor judges distractor-reality + keyed-answer correctness. |
+
+(Gates 16 POE / 17 one-variable / 18 concrete-first are quality_auditor-judgment gates; Gate 15 is reserved for Pass-2. Comprehension gates phase in via field-presence — the 62 atomics without an `assessment` block are unaffected until retrofitted.)
 
 Run `npm run validate:concepts` before declaring done. Run `npx tsc --noEmit` for type safety.
 

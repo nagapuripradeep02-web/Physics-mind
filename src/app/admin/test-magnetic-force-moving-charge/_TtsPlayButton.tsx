@@ -84,11 +84,20 @@ export function TtsPlayButton({ sentences, iframeTitle, label }: TtsPlayButtonPr
     function pickVoice(): SpeechSynthesisVoice | null {
         const voices = window.speechSynthesis.getVoices();
         if (voices.length === 0) return null;
+        // Prefer ON-DEVICE (local) voices. Windows 11 enumerates dozens of
+        // Microsoft "Online (Natural)" voices (localService === false) —
+        // including every en-IN voice — but those REMOTE voices produce NO
+        // audio through Chrome's Web Speech API (they need the Azure Speech
+        // SDK). Picking en-IN first therefore selected a silent voice. Filter
+        // to local voices first; only fall back to the full list if a machine
+        // genuinely has no local voice installed.
+        const local = voices.filter((v) => v.localService);
+        const pool = local.length > 0 ? local : voices;
         return (
-            voices.find((v) => v.lang === 'en-IN') ??
-            voices.find((v) => v.lang === 'en-US') ??
-            voices.find((v) => v.lang.startsWith('en')) ??
-            voices[0]
+            pool.find((v) => v.lang === 'en-IN') ??
+            pool.find((v) => v.lang === 'en-US') ??
+            pool.find((v) => v.lang.startsWith('en')) ??
+            pool[0]
         );
     }
 
