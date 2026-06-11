@@ -258,7 +258,7 @@ Every atomic JSON ships:
 2. `mode_overrides.board` — answer-sheet derivation (the "write it on exam" mode).
 3. `mode_overrides.competitive` — shortcuts + edge cases (the "JEE/NEET" mode).
 
-Conceptual-only JSONs are allowed only for legacy retrofits already in production. New authoring ships all three from day one.
+~~Conceptual-only JSONs are allowed only for legacy retrofits already in production. New authoring ships all three from day one.~~ **SUPERSEDED (2026-06-11 conceptual-only directive, CLAUDE.md Rule 20 suspension): new authoring ships conceptual (`epic_l_path`) ONLY; board + competitive are deferred to future retrofit phases. The three-mode description above remains the long-term target shape.**
 
 ### 4.5 Indian context anchors
 

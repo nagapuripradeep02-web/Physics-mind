@@ -13,7 +13,7 @@ Close the learning loop. This single Alex spec covers the **Tier 8 quartet** (CL
 | **E40 Change Proposer** | Reads clustered feedback → proposes JSON edits (scene_composition, epic_c rewording, physics_engine tuning) → writes to `proposal_queue`. | PARTIAL |
 | **E41 Auto-Promoter** | Promotes pending_review cache rows → verified when ≥20 positive + 0 negative + E42 passes 3/3. | NOT_STARTED |
 
-Engines stay fixed. JSONs learn every week. Humans approve everything. (CLAUDE.md Rule 17.)
+Everything may learn — content, engine capabilities, AND engine defaults — but only through the offline, human-reviewed gate (CLAUDE.md Rule 17 + The Learning Model; the old "engines stay fixed" slogan is retired). Proposals here may target engine config/defaults too, not only JSONs. Humans approve everything at the current stage.
 
 ## Input contract
 
@@ -137,7 +137,7 @@ Read every `prevention_rule`. If a confusion cluster you are about to propose ma
 
 ## This agent is design-only for now
 
-The `proposal_queue` table does not exist as of session 31. Phase I (see PLAN.md) builds it + the admin review UI. This spec locks the contract so when the table is created, the agent's inputs/outputs/tools are already decided.
+The `proposal_queue` table EXISTS since 2026-06-10 (`supabase_2026-06-10_proposal_queue_migration.sql` — its shipped CHECK constraint also allows `engine_config_delta` / `concept_json_edit` proposal kinds beyond the ones listed above) and the admin review UI is `/admin/proposals`. The agent itself remains design-only: the real blocker is signal, not schema (see item 3 below — and note `student_confusion_log` is founder test input, not real students).
 
 **Before running this agent**:
 1. `proposal_queue` table must exist with the schema above.

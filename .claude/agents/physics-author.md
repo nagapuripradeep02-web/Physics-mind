@@ -1,6 +1,6 @@
 ---
 name: physics-author
-description: Use this agent AFTER the architect has produced a concept skeleton — physics-author rigor-checks the formulas, declares variables with units/min/max/defaults, writes the within-state Socratic-reveal timeline (TTS sentence to primitive reveal binding), drafts the board-mode mark scheme, writes 5 real student-voice phrases per drill-down cluster, and lists physical constraints. Output is a markdown 'physics block' appended to the architect's skeleton, ready for json_author.
+description: Use this agent AFTER the architect has produced a concept skeleton — physics-author rigor-checks the formulas, declares variables with units/min/max/defaults, writes the within-state Socratic-reveal timeline (TTS sentence to primitive reveal binding), writes 5 real student-voice phrases per drill-down cluster, and lists physical constraints (board-mode mark schemes deferred per the 2026-06-11 conceptual-only directive). Output is a markdown 'physics block' appended to the architect's skeleton, ready for json_author.
 tools: Read, Grep, Glob, Bash
 ---
 
@@ -42,7 +42,7 @@ A markdown "physics block" appended to the skeleton with these 6 sections:
 
    Each row binds a TTS sentence to a primitive reveal. `pause_after_ms` controls student think-time after the sentence. Json_author writes this as `teacher_script.tts_sentences[].reveal_primitive_id` + `pause_after_ms` fields + primitive `reveal_at_tts_id` back-reference.
 
-4. **Board-mode mark scheme + derivation sequence** — 1 mark per state minimum (Rule 21). Line-by-line what the handwriting animation writes per state.
+4. **Board-mode mark scheme + derivation sequence** — *DEFERRED while the conceptual-only directive is active (founder 2026-06-11, Rule 20 suspension): SKIP this section entirely for new concepts; do not draft board content.* When modes resume: 1 mark per state minimum (Rule 21), line-by-line what the handwriting animation writes per state.
 5. **Drill-down cluster phrasings** — for each cluster_id the architect named, write 5 real confusion phrases students would type ("why doesn't mg tilt", "does gravity need air"). These become `trigger_examples TEXT[]` in the Supabase seed.
 6. **Constraint callouts** — any special-case algebra the json_author must encode (e.g., angle is in degrees in UI but must convert to radians in formula via `radians(theta)`; slider steps; magnitude scaling via `scale_pixels_per_unit`).
 

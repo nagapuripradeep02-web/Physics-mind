@@ -30,7 +30,7 @@ Naming reminder: emission filename and `name:` field use **hyphenated** form (`j
 |---|---|---|---|
 | Alex | `architect` | pipelined #1 | Produces 9-section skeleton + Pass-1 strategic checklist (v2.3) |
 | Alex | `physics_author` | pipelined #2 | Produces physics block (variables, formulas, constraints, reveals) |
-| Alex | `json_author` | pipelined #3 | Produces the `.json` + 6 registration sites + SQL migration |
+| Alex | `json_author` | pipelined #3 | Produces the `.json` + 8 registration sites + SQL migration |
 | Alex | `quality_auditor` | pipelined #4 (gate) | Per-gate PASS/FAIL verdict + return-to-author FAIL routing. Reports only, never edits. |
 | Peter Parker | `renderer_primitives` | FAIL-routed | Display layer in `parametric_renderer.ts` + PCPL primitives. Never call directly. |
 | Peter Parker | `runtime_generation` | FAIL-routed | Generator + jsonModifier + cache sweeps. Only agent that runs `DELETE` on cache tables. Never call directly. |
@@ -51,6 +51,6 @@ Section headers carry a `(v2.x addition)` tag (e.g. architect's `Two-pass cognit
 
 ## Cross-references
 
-- `physics-mind/docs/PASS_2_PROPOSAL.md` — Pass-2 framework, dogfood-pending.
+- `physics-mind/docs/archive/PASS_2_PROPOSAL.md` — Pass-2 framework. SHIPPED as Gate 15 (quality_auditor) + json_author guidance after the Diamond-#4 dogfood (Session 64); doc archived.
 - `~/.claude/rules/agent-teams-reference.md` — full agent-teams decision rule + cluster taxonomy.
 - Root `C:\Tutor\CLAUDE.md` §2 — Claude's role definition + self-review checklist.

@@ -1,101 +1,89 @@
-# `.agents/` — Role Specifications for Concept Authoring
+# `.agents/` — Canonical Agent Specifications
 
-These files codify **how one Claude instance plays each of five roles** when retrofitting or authoring an atomic concept JSON. They are NOT runnable subagents — they are documentation templates that the solo Claude reads per-session to stay aligned with hard-won learnings from sessions 1–30.
+> Rewritten 2026-06-11 (Batch A of the codebase audit). The previous README described
+> a five-role, non-runnable, pre-session-32 world that no longer exists.
 
-## The pipeline
+Seven roles, two clusters plus one offline agent. Each `<role>/CLAUDE.md` here is the
+**founder-edited canonical source**; `physics-mind/.claude/agents/<role>.md` is the
+**emitted dispatch wrapper** (YAML frontmatter + canonical body) that Claude Code's
+native auto-dispatch actually reads. These ARE runnable subagents — dispatch via the
+Agent tool with the hyphenated name (`json-author`), or let auto-dispatch match on the
+wrapper description. Governance, regeneration procedure, and the same-session
+emission-regen rule live in [`./CLAUDE.md`](./CLAUDE.md) — read that before editing
+any spec.
+
+## The pipeline (Alex cluster — sequential, never parallel)
 
 ```
 architect ──► physics_author ──► json_author ──► quality_auditor ──► (ship)
-                                                       │
-                                                       ▼
-                                               (nightly, orthogonal)
-                                                       │
-                                                       ▼
-                                                feedback_collector
-                                                       │
-                                                       ▼
-                                          proposal_queue → Pradeep approves
-                                                       │
-                                                       ▼
-                                          architect re-opens (if new misconception found)
+                                                       │ FAIL routes back to the
+                                                       │ named upstream agent, or
+                                                       ▼ escalates to Peter Parker
+                                       peter_parker:renderer_primitives
+                                       peter_parker:runtime_generation
+                                       (engine cluster — never call directly;
+                                        see peter_parker/OVERVIEW.md)
+
+feedback_collector — OFFLINE nightly only (E38–E41 quartet); writes to
+proposal_queue for founder approval. Never in live serving paths.
 ```
 
-- **architect** decides WHAT: state count, arc shape, Rule 16a misconception beats (EPIC-C branches deferred until real students exist — 2026-06-10 directive), Definition of Done, deep-dive hot states, prerequisites, Indian anchor.
-- **physics_author** decides HOW MUCH: formulas, variables, constraints, mark scheme, drill-down phrasings.
-- **json_author** decides WHERE: coordinates, primitives, modes, registration.
-- **quality_auditor** decides IF: gates 0–20, silent-failure probes, anti-plagiarism, visual walk — every verdict with machine-extracted evidence.
-- **feedback_collector** decides WHAT CHANGES NEXT: cluster proposals from live student signal (Phase I, offline).
+- **architect** decides WHAT: state count, arc shape, Rule 16a misconception beats
+  (EPIC-C branches deferred until real students exist — 2026-06-10 directive),
+  Definition of Done, deep-dive hot states, prerequisites, Indian anchor.
+- **physics_author** decides HOW MUCH: formulas, variables, constraints, reveal
+  timeline, drill-down phrasings. (Board mark schemes: deferred — conceptual-only
+  directive 2026-06-11.)
+- **json_author** decides WHERE: coordinates, primitives, conceptual mode only
+  (no mode_overrides while the 2026-06-11 directive is active), 8 registration sites,
+  SQL migration.
+- **quality_auditor** decides IF: gates 0–20 with machine-extracted evidence,
+  silent-failure probes, anti-plagiarism, visual walk. Reports + routes; never edits.
+  (Gates 5/6 deep-dive/drill-down currently deferred — see banners in its spec.)
+- **feedback_collector** decides WHAT CHANGES NEXT: cluster proposals from student
+  signal. Design-locked; fuel-starved until real students exist.
 
 ## Reading order per session
 
-Each agent reads **only its own file** plus:
-1. Project-level `C:\Tutor\CLAUDE.md` (mandatory every session).
-2. `C:\Tutor\physics-mind\PLAN.md` (mandatory every session).
-3. Upstream agent's **output** (not spec) — e.g., json_author reads physics_author's markdown block, not physics_author's spec file.
-4. Reference files as needed: `CLAUDE_REFERENCE.md`, `CLAUDE_ENGINES.md`, `CLAUDE_TEST.md`.
+One role at a time. Each agent reads ONLY its own spec plus:
+1. `C:\Tutor\CLAUDE.md` (mandatory every session).
+2. `C:\Tutor\PLAN.md` (canonical copy — the physics-mind/PLAN.md pointer redirects
+   there; read its status banner).
+3. The upstream agent's OUTPUT (not its spec).
+4. Reference files as needed: `C:\Tutor\CLAUDE_REFERENCE.md` (April snapshot —
+   verify before relying), `C:\Tutor\CLAUDE_ENGINES.md` (canonical engine numbering:
+   E38–E41 quartet, E42 validator), `C:\Tutor\CLAUDE_TEST.md`,
+   `docs/AUTHORING_PIPELINE.md` (the authoring SOP — follow for every new sim).
 
-**Anti-pattern**: reading all 5 agent specs at once. Context bloat + role confusion. The solo Claude is ONE agent at a time.
+**Anti-pattern**: loading all seven specs at once — context bloat + role confusion.
 
-## Hard-won learnings baked into every spec
+## Current-phase directives every spec already encodes (2026-06-11)
 
-From sessions 30.5–30.7 bug sprint (see PROGRESS.md):
+1. **Conceptual mode only** — board + competitive dropped (CLAUDE.md Rule 20
+   suspension). New JSONs ship `epic_l_path` only.
+2. **EPIC-L-first** — zero `epic_c_branches` until real students exist; misconceptions
+   confronted inside EPIC-L (Rule 16a).
+3. **No runtime deep-dive** (Rule 18) — the Explain button routes to a feedback form;
+   deep-dives are hand-authored post-analytics only.
+4. **Evidence discipline** — no PASS/FAIL claim without pasted tool output (a 2026-06-11
+   audit subagent fabricated a compliance finding; never again).
+5. **Definition of Done before building** — architect section 10 + quality_auditor
+   Gate 0 (the biot_savart ~7-round lesson).
 
-1. **Zod-pass ≠ works.** quality_auditor has 7 active probes; Zod is just gate 2.
-2. **Off-canvas primitives slip past Zod.** Bounds check in `validate-concepts.ts` + quality_auditor gate 4 visual walk.
-3. **Variable interpolation can leak** from test-env defaults into production labels. `variable_overrides` defensive pattern on critical states.
-4. **UI stale-closure bugs** infect drill-down state sync. quality_auditor gate 6 inspects the network request body.
-5. **Empty cluster registry** silently breaks drill-down. json_author ships a SQL migration with every concept; quality_auditor verifies row count before gate 6.
-6. **DC Pandey is scope-only** (Rule 8). All 4 authoring agents include a DC Pandey check in their self-review.
+## History
 
-## Proof-run plan — session 32
-
-Target concept: **`umbrella_tilt_angle`** (Ch.5 Vectors/Kinematics, currently legacy-FAIL).
-
-Why this one:
-- Atomic (one teachable idea — apparent rain direction = rain velocity relative to runner).
-- Has one sharp misconception ("rain is always vertical") — clean EPIC-C STATE_1.
-- Medium complexity: 5-state EPIC-L arc (hook → vector diagram → relative velocity → formula → interactive angle slider).
-- Indian anchor ready-made: Mumbai local monsoon, auto-rickshaw passenger tilting the umbrella.
-- Physics_engine_config fits the vector_resolution template — 3 variables (v_rain_y, v_runner_x, tilt_angle), 2 formulas.
-
-Session 32 procedure:
-1. Solo Claude reads ONLY `architect/CLAUDE.md` + project CLAUDE.md. Produces architect skeleton for `umbrella_tilt_angle`.
-2. Clear context. Claude reads ONLY `physics_author/CLAUDE.md` + the architect output. Produces physics block.
-3. Clear context. Claude reads ONLY `json_author/CLAUDE.md` + both upstream outputs. Writes JSON + SQL migration.
-4. Clear context. Claude reads ONLY `quality_auditor/CLAUDE.md` + the final JSON. Runs 7 gates.
-5. If all gates pass → ship. If any fail → route to the named agent per gate feedback.
-
-Expected duration: 4 × 45 min sub-sessions = ~3 hours total (vs ~90-120 min for manual session 28-30 retrofits). First proof run will be slower; the savings kick in on retrofits 11+ once the handoffs are smooth.
-
-## File sizes
-
-| File | Lines | Purpose |
-|---|---|---|
-| `architect/CLAUDE.md` | 150 | skeleton authoring |
-| `physics_author/CLAUDE.md` | 142 | physics rigor |
-| `json_author/CLAUDE.md` | 148 | schema + canvas + registration |
-| `quality_auditor/CLAUDE.md` | 148 | 7 gates + silent-failure probes |
-| `feedback_collector/CLAUDE.md` | 130 | Phase I nightly loop |
-
-Target was ≤150 each. All hit budget.
-
-## What these files are NOT
-
-- **Not runnable subagents.** Claude Code's `.claude/agents/` mechanism (frontmatter + invocation via Task tool) is deferred. If Pradeep later wants runnable subagents, each `.agents/<name>/CLAUDE.md` converts 1:1 — the content transfers.
-- **Not replacement for `CLAUDE.md`.** Project CLAUDE.md has the 23 critical design rules, glossary, and architectural context. Agent specs EXTEND these — they don't duplicate them.
-- **Not frozen.** As more concepts ship through the pipeline, patterns will surface that aren't yet in these specs. Update them via a normal session edit + PROGRESS.md note.
-
-## Out-of-scope for this system
-
-- `CLAUDE_ENGINES.md` engine-level agents (Tier 8 Feedback Collector/Clusterer/Proposer/Auto-Promoter). Those are runtime services, not authoring agents. The `feedback_collector/CLAUDE.md` here is the **authoring-time design doc**; the runtime implementation lives in `src/lib/feedback/` when built.
-- Image/diagram rendering agents. Diagrams come from scene_composition + parametric_renderer, not a separate image agent.
-- Board-mode handwriting animation agent. Derivation_sequence primitives are authored by json_author inline.
+The original five-spec system (sessions 30.5–31) treated these as non-runnable
+role-play templates with a planned session-32 proof run on `umbrella_tilt_angle`.
+That proof run happened (2026-04-23), the specs became dispatchable wrappers in
+session 36, Peter Parker + the umbrella CLAUDE.md arrived later, and the specs have
+since grown far past their original ≤150-line budget (quality_auditor alone is 400+
+lines of accumulated gate law). Old content is in git history.
 
 ## Cross-references
 
-- Project CLAUDE.md: `C:\Tutor\CLAUDE.md`
-- Master roadmap: `C:\Tutor\physics-mind\PLAN.md`
-- Reference files: `C:\Tutor\physics-mind\CLAUDE_REFERENCE.md`, `CLAUDE_ENGINES.md`, `CLAUDE_TEST.md`
-- Session history: `C:\Tutor\physics-mind\PROGRESS.md`
-- Zod schema: `C:\Tutor\physics-mind\src\schemas\conceptJson.ts`
-- Validator + bounds check: `C:\Tutor\physics-mind\src\scripts\validate-concepts.ts`
+- Governance + regen procedure: [`./CLAUDE.md`](./CLAUDE.md)
+- Engine cluster charter: [`./peter_parker/OVERVIEW.md`](./peter_parker/OVERVIEW.md)
+- Project manual: `C:\Tutor\CLAUDE.md` · Roadmap: `C:\Tutor\PLAN.md`
+- Authoring SOP: `docs/AUTHORING_PIPELINE.md` · Session log: `physics-mind/PROGRESS.md`
+- Zod schema: `src/schemas/conceptJson.ts` · Validator: `src/scripts/validate-concepts.ts`
+- Agent-teams decision rule: `~/.claude/rules/agent-teams-reference.md`

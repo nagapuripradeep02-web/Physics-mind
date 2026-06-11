@@ -55,7 +55,7 @@ peter_parker:<cluster>   [reads tagged bug, fixes engine, writes regen directive
 peter_parker:runtime_generation   [executes regen sweep on affected cache tables]
       │
       ▼
-quality_auditor   [re-runs 7 hard gates on affected concepts]
+quality_auditor   [re-runs gates 0–20 on affected concepts]
       │
       ▼
 founder   [approves promotion to verified / gold-standard]
@@ -114,8 +114,8 @@ Decisions locked here so future specs and fixes don't re-litigate:
 Flagged so future sessions can close the loop without re-discovering:
 
 1. **Update `quality_auditor/CLAUDE.md` escalation targets** — today's spec routes only to `architect`, `physics_author`, `json_author`. Add `peter_parker:renderer_primitives` and `peter_parker:runtime_generation` as routing targets. One-line-per-cluster edit.
-2. **Update `.agents/README.md`** — today's README names only Alex. Add a pointer to this OVERVIEW.md so new sessions find Peter Parker.
-3. **Phase I migration** — when `engine_bug_queue` + `proposal_queue` + `cache_regen_log` tables exist, migrate the markdown conventions to structured rows and update both active-cluster specs to point at the table API.
+2. ~~**Update `.agents/README.md`**~~ — DONE 2026-06-11 (README rewritten; names all seven roles + points here).
+3. **Phase I migration** — `engine_bug_queue` + `proposal_queue` tables now EXIST (migrations 2026-04-25 / 2026-06-10; `cache_regen_log` still pending) — the bug-ledger half of this TODO is live via `npm run log:lesson`; the cache_regen_log half remains open.
 
 These three edits are not part of this spec's scope; they're follow-up work for the sessions that execute Phase F1 friction fixes and Phase I table creation.
 

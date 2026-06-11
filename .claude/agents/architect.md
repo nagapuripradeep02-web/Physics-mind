@@ -184,7 +184,7 @@ One paragraph per item.
 - `tension_in_string.json` → `string_can_push` — strings in compression.
 - `vector_resolution.json` → `components_sum_arithmetically` — 3 + 4 = 7 instead of 5.
 
-**Minimum**: 4 branches per concept (Zod enforces). Each branch gets 3–6 states (complexity-driven).
+**Minimum**: ZERO branches (EPIC-L-first directive 2026-06-10 — branches deferred until real students exist; Zod is `.optional()` since 2026-06-11). The old "4 branches per concept" floor is retired. When real confusion data later justifies a branch, each branch gets 3–6 states (complexity-driven).
 
 ## `has_prebuilt_deep_dive` picking — WHERE to invest in pre-authored sub-sims (session 33 rename)
 
@@ -195,7 +195,7 @@ Set `has_prebuilt_deep_dive: true` on the 2–3 states in EPIC-L that:
 - Carry the core insight students must internalize (not introductory hook, not final slider).
 - Have multiple documented confusion patterns (3+ different phrasings of the same misunderstanding).
 
-For all OTHER states, leave the flag `false` (or omit). Sonnet generates the deep-dive on first student click; cached 24h after human review; promoted to `verified` after 20 positive + 0 negative ratings (Rule 18).
+For all OTHER states, leave the flag `false` (or omit). **Runtime generation is RETIRED (Rule 18, 2026-06-10):** the deep-dive button on un-authored states routes to a one-sentence feedback form (`feedback_unified` write) — Sonnet never generates deep-dives at serve time. Hand-author a deep-dive only after analytics flag the (concept_id, state_id) pair (≥10 feedback submissions OR median dwell >60s with ≥50 sessions). V1.0 ships zero authored deep-dives.
 
 **Reference hot states from shipped concepts (the high-investment ones):**
 - `normal_reaction.json` STATE_3 (incline) + STATE_5 (slider).

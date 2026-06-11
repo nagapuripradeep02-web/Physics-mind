@@ -70,7 +70,7 @@ For every NEW simulation:
 - [ ] Every vector/quantity the narration names has an in-scene **symbol label** (dl, r̂, θ, dB, B, F, v, μ, …).
 - [ ] Where **direction** is taught: the correct **right-hand rule** on those states — grip rule for circulation, cross-product rule for a single dB/F. Right rule on the right state (see `patterns/magnetism.md`).
 - [ ] **Motion wherever something moves or a rule is performed** — no static diagram where an animation teaches better (curling hand, flowing current, assembling field, orbiting tangent). The founder rejects passive states.
-- [ ] All three modes if the concept's phase requires them (conceptual always; board + competitive unless a documented carve-out).
+- [ ] **Conceptual mode ONLY** (founder directive 2026-06-11, CLAUDE.md Rule 20 suspension): do NOT author `mode_overrides.board` / `mode_overrides.competitive` — board + competitive are dropped for the current phase and resume later as dedicated retrofit phases.
 - [ ] `assessment` + `coverage_map` + per-state `misconception_watch` if authored 2026-05-30+.
 
 **Compute, don't guess.** Every placement, timing, and orientation is derivable up front — guess-and-recapture costs more than the math:
@@ -186,6 +186,6 @@ rewrite a lesson.
 ---
 
 *Status of the loop today: Part 1 (authoring) ~65% built and battle-tested; Part 2 (production /
-student) wired but empty — 0 students, `proposal_queue` table not yet created, Tier-8 agents are
-markdown specs. The professor gate (④) is the human comprehension/pedagogy gate that lets the loop
+student) wired but empty — 0 students; `proposal_queue` and `engine_bug_queue` tables EXIST
+(migrations 2026-06-10 / 2026-04-25), Tier-8 agents are markdown specs. The professor gate (④) is the human comprehension/pedagogy gate that lets the loop
 close NOW on 1–2 reviewers instead of waiting for 2,000 students. See Session 59 audit.*

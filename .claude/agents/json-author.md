@@ -59,9 +59,9 @@ Emit `src/data/concepts/<id>.json` conforming to v2.1 gold-standard schema. Wire
 - `physics_engine_config` required.
 - `real_world_anchor: { primary: string, secondary?, tertiary? }` required.
 - `epic_l_path: { state_count: int ≥ 2, states: {…} }` required.
-- `epic_c_branches: [...]` min 4 (Zod enforces).
+- `epic_c_branches` — OPTIONAL, and OMIT for new concepts (EPIC-L-first directive 2026-06-10; Zod is `.optional()` since 2026-06-11 — the old min-4 floor is retired). Misconceptions are confronted inside EPIC-L per Rule 16a.
 - `regeneration_variants: [...]` — Type B dominant (different world, same physics).
-- `mode_overrides: { board: {…}, competitive: {…} }` — both required (Rule 20).
+- `mode_overrides` — **OMIT for new concepts** (conceptual-only directive 2026-06-11, Rule 20 suspension: board + competitive are dropped this phase). If a board override IS authored (legacy/retrofit), Gate 21 enforces all-or-nothing: `canvas_style` + `derivation_sequence` + `mark_scheme` together or validation FAILs.
 
 **superRefine**: ≥2 distinct `advance_mode` values across EPIC-L states (Rule 15). All-`auto_after_tts` = Zod FAIL.
 
@@ -84,11 +84,11 @@ Renderer canvas set at `parametric_renderer.ts:2124` → `createCanvas(760, 500)
 
 5 zones at `parametric_renderer.ts:1993-1999`: MAIN_ZONE (scene), CALLOUT_ZONE_R (callouts), FORMULA_ZONE (boxes), CONTROL_ZONE (sliders), TITLE_ZONE. Prefer `zone: "CALLOUT_ZONE_R", anchor: "top_left"` over absolute coords for label/annotation/formula_box — survives layout changes.
 
-## Primitive types — 12 built + 22 planned (target 34)
+## Primitive types — 14 built + planned (target 34)
 
-Current state: **12 built** are safe to use today. **22 planned** are NOT yet implemented — if your concept needs one, STOP and file an engine bug against the `renderer_primitives` cluster, **do not invent the primitive**.
+Current state: **14 primitive files** exist in `src/lib/pcplRenderer/primitives/` (verified 2026-06-11 — the table below predates `derivation_step` + `mark_badge`, both board-mode primitives, deferred per the conceptual-only directive). Planned primitives are NOT yet implemented — if your concept needs one, STOP and file an engine bug against the `renderer_primitives` cluster, **do not invent the primitive**.
 
-**Built (12) — safe to use** (the renderer maps them in `parametric_renderer.ts`):
+**Built — safe to use** (the renderer maps them in `parametric_renderer.ts`):
 
 | type | purpose | key fields |
 |---|---|---|
@@ -124,7 +124,7 @@ Adding a new concept requires touching ALL of these. Missing ANY ONE = silent pi
 2. `concept_panel_config` Supabase table (SQL INSERT) OR `CONCEPT_PANEL_MAP` in `src/config/panelConfig.ts`. If the concept ships Panel B (graph/board split), set `layout: 'dual_horizontal'` with `secondary` block — `layout: 'single'` silently drops the secondary panel.
 3. `CONCEPT_RENDERER_MAP` entry in `src/lib/aiSimulationGenerator.ts` (line ~2564) — **legacy concepts only**; PCPL-migrated concepts go to #7 instead and are REMOVED from this map.
 4. `VALID_CONCEPT_IDS` set in `src/lib/intentClassifier.ts` (line ~36).
-5. Tag `has_prebuilt_deep_dive: true` on 2–3 hard states (cache-warming hint, NOT a gate — every state shows the Explain button to students per session 33). Populate `drill_downs: [...]` arrays on those states.
+5. Tag `has_prebuilt_deep_dive: true` on 2–3 hard states (cache-warming hint, NOT a gate — every state shows the Explain button to students per session 33). Populate `drill_downs: [...]` arrays on those states. **Note (Rule 18, 2026-06-10): un-authored states do NOT generate via Sonnet at runtime — the button routes to a feedback form; deep-dives are hand-authored only after analytics flag the state.**
 6. Retire parent bundle (if splitting) — rename old bundle to `<bundle_id>.legacy.json.deleted` and add a legacy-bundle entry in `CONCEPT_SYNONYMS` (`intentClassifier.ts` ~line 110) pointing to the foundational atomic child (defensive for historical caches).
 7. **`PCPL_CONCEPTS` set** in `aiSimulationGenerator.ts:2821` — add the new concept_id so production routes to `parametric_renderer`. If you skip this, the concept appears to work on `/test-engines` (which calls `assembleParametricHtml` directly) but in production chat flow (`/api/generate-simulation`) routes to legacy `mechanics_2d_renderer`. This was missed for Ch.5 concepts through sessions 28-30 and discovered post-hoc in session 31.5.
 8. **`CLASSIFIER_PROMPT` VALID CONCEPT IDs block** in `intentClassifier.ts` (line ~137). Add the new atomic ID under the correct chapter section with a one-line hint. If you skip this, `VALID_CONCEPT_IDS` knows the concept but Gemini never returns it — queries route to the nearest advertised sibling instead, and `normalizeConceptId` silently maps to the wrong atomic. Also add a CRITICAL DISAMBIGUATION line for the new ID's common student phrasings. A dev-only boot assertion in `intentClassifier.ts` warns on startup whenever site #4 and site #8 drift apart — check server logs for `[intentClassifier] ⚠️`. This silent failure was first caught in session 32.
@@ -220,9 +220,9 @@ Before declaring a state done, answer all four in concrete terms (not generic). 
 - Indian real-world concrete (*"a mango from a tree"*, *"an elevator floor"*) not abstract (*"an object"*).
 - 3–5 sentences per state typical.
 
-## Modes — ALL THREE required (Rule 20)
+## Modes — CONCEPTUAL ONLY for new concepts (Rule 20 SUSPENDED 2026-06-11)
 
-Every concept ships `epic_l_path` (conceptual baseline) + `mode_overrides.board` + `mode_overrides.competitive`. Rule 21 for board:
+**Current directive (founder, 2026-06-11):** new concepts ship `epic_l_path` (conceptual depth) ONLY. Do NOT author `mode_overrides.board` or `mode_overrides.competitive` — board + competitive are dropped for this phase and resume later as dedicated retrofit phases. The reference below applies ONLY when touching a legacy concept that already carries a board override (Gate 21 then enforces all-or-nothing — ship it complete or strip it). Rule 21 for board:
 
 - `canvas_style: "answer_sheet"` (white ruled background).
 - `derivation_sequence` — per-state primitive array with `animate_in: "handwriting"`.

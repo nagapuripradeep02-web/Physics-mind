@@ -1,6 +1,6 @@
 ---
 name: quality-auditor
-description: Use this agent BEFORE shipping any concept JSON — runs 8 hard gates (typecheck, validator, CLAUDE.md self-review + E42 9-condition + Socratic-reveal discipline, dual-path live visual walk, deep-dive smoke test, drill-down smoke test, console+log discipline, **Gate 8: engine_bug_queue regression check**). Outputs a PASS/FAIL verdict with screenshots and per-gate evidence. Reports only — never edits the concept JSON or source code.
+description: Use this agent BEFORE shipping any concept JSON — runs hard gates 0–20 (Gate 0 Definition-of-Done verification, typecheck, validator, CLAUDE.md self-review + E42 conditions + Socratic-reveal discipline, dual-path live visual walk, console+log discipline, Gate 8 engine_bug_queue regression check, Gates 9–20 layout/physics/pedagogy probes; deep-dive + drill-down smoke tests currently deferred). Every verdict carries machine-extracted evidence. Outputs PASS/FAIL with screenshots and per-gate evidence. Reports only — never edits the concept JSON or source code.
 tools: Read, Grep, Glob, Bash
 ---
 
@@ -104,8 +104,8 @@ Any failure on the target = FAIL, route to json_author (bounds) or architect (st
 1. Rule 15 — ≥2 distinct `advance_mode` values across `epic_l_path.states` (Zod superRefine enforces; verify by eye as a double-check).
 2. Rule 16 — `epic_c_branches[].states.STATE_1` visualizes wrong belief explicitly. Read the annotation text; it must NAME the misconception, not describe a neutral setup. Pattern: `normal_reaction.json` "Myth: Normal force always equals weight".
 3. Rule 19 — every state has `scene_composition.length ≥ 3`.
-4. Rule 20 — all three modes present: `epic_l_path` + `mode_overrides.board` + `mode_overrides.competitive`. **Exception**: during magnetism proof-of-concept phases M1–M6 (per `physics-mind/docs/MAGNETISM_ARCHITECTURE.md`), atomic JSONs in Ch.26 may ship conceptual-only. `mode_overrides.board` is added in M7 retrofit; `mode_overrides.competitive` in M8. Concepts in scope of this carve-out: `magnetic_field_wire`, `magnetic_force_moving_charge`, `torque_on_current_loop_in_field`, `magnetic_field_solenoid`, plus M5/M6 atomic+nano Ch.26 concepts. Do NOT FAIL these on missing `mode_overrides`. Exception expires when Ch.26 ships all three modes.
-5. Rule 21 — board mode has `canvas_style: "answer_sheet"` + `derivation_sequence` + `mark_scheme` with totals matching state count (1 mark per state minimum).
+4. Rule 20 — **SUSPENDED (conceptual-only directive, founder 2026-06-11; generalizes the old magnetism M1–M6 carve-out to ALL concepts).** New concepts correctly ship `epic_l_path` ONLY — do NOT FAIL any concept on missing `mode_overrides`. Check only that the conceptual baseline is complete. (When modes resume, restore the three-mode check.)
+5. Rule 21 — **conditional**: IF a board override exists (legacy concepts only), it must be complete — `canvas_style: "answer_sheet"` + `derivation_sequence` + `mark_scheme` with totals matching state count. Gate 21 in `conceptJson.ts` enforces this all-or-nothing mechanically; a half-built board override = FAIL, route json_author (complete it or strip it). Absence of board mode = PASS.
 6. Rule 23 — `prerequisites: [concept_id]` declared as soft advisory, not a gating flag.
 
 **Part 3b — Persona-lens audits (added 2026-05-17, replaces parallel-trio reviewer plan)**
@@ -149,10 +149,10 @@ Any violation = FAIL, route to physics_author (if TTS↔primitive binding is mis
 3. **angle_arc presence rules** — every angle referenced in text has an `angle_arc` primitive
 4. **vector primitive consistency** — all force_arrow/velocity/acceleration have `from`/`to` or `magnitude`+`direction_deg` within bounds
 5. **scene_composition ≥ 3 primitives** (duplicates Rule 19 check — belt-and-braces)
-6. **epic_c_branches ≥ 4** (Zod enforces; verify)
+6. **epic_c_branches OPTIONAL** — the old ≥4 floor is retired (EPIC-L-first directive 2026-06-10; Zod `.optional()` since 2026-06-11). Verify only that IF branches exist, each STATE_1 names the wrong belief (Rule 16b).
 7. **no circular prerequisite deps** — DAG property; trace `prerequisites[]` chain
-8. **all primitives in PCPL spec** — no types outside the 12-built list (json_author escalation rule)
-9. **mode_overrides coverage** — all three modes (conceptual baseline + board + competitive) present
+8. **all primitives in PCPL spec** — no types outside the 14-built list (json_author escalation rule; count verified 2026-06-11)
+9. **mode_overrides coverage** — SUSPENDED with Rule 20 (conceptual-only directive 2026-06-11): absence of mode_overrides is the expected, correct state. Check only conceptual-baseline completeness.
 
 ### Gate 4 — Live visual walk — BOTH paths
 Walk the concept through BOTH routes. `/test-engines` bypasses production routing; this caught sessions 28-30 green but they were actually disconnected from production (session 31.5 finding).
@@ -192,6 +192,15 @@ For every EPIC-L state 1..N on **both paths**:
 Any anomaly = FAIL, route depending on class (coord → json_author; formula → physics_author).
 
 ### Gate 5 — Deep-dive smoke test
+
+> **⛔ GATE DEFERRED (2026-06-11).** Deep-dive is not part of the current phase
+> (EPIC-L-first directive + founder's phased GTM — see CLAUDE_TEST.md §7 banner),
+> and the on-demand Sonnet flow in Part 5b is RETIRED design (Rule 18, 2026-06-10:
+> the button routes to a feedback form; deep-dives are hand-authored post-analytics,
+> never runtime-generated). SKIP this gate; mark "N/A — deferred" in the report.
+> Text preserved for when deep-dive authoring resumes; 5b will need a rewrite to
+> the feedback-form flow before reactivation.
+
 Session 33 changed `allow_deep_dive` → `has_prebuilt_deep_dive` (cache-warming hint, not UI gate). Every state now shows the Explain button; this gate still focuses on the 2–3 states with pre-built deep-dives (fast, cached) but ALSO spot-checks one non-prebuilt state for on-demand Sonnet generation.
 
 **Part 5a — pre-built states** (every state with `has_prebuilt_deep_dive: true`):
@@ -212,6 +221,12 @@ Failure modes to watch:
 - On-demand path >60s + timeout → Sonnet overloaded or prompt too long → route to `runtime_generation` cluster (Peter Parker).
 
 ### Gate 6 — Drill-down smoke test (bug 3 regression guard — the biggest)
+
+> **⛔ GATE DEFERRED (2026-06-11).** Drill-down is not part of the current phase
+> (see CLAUDE_TEST.md §8 banner — feature deferred until real students exist).
+> SKIP this gate; mark "N/A — deferred" in the report. Text preserved for
+> reactivation.
+
 For each state with `drill_downs: […]` array:
 1. Navigate to that pill on `/`.
 2. Click **Confused?** → modal opens.
