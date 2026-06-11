@@ -1398,10 +1398,6 @@
     }
   ],
   "mode_overrides": {
-    "board": {
-      "canvas_style": "answer_sheet",
-      "note": "Stub — board mode for vector_head_to_tail will be authored in Sim 2 (Newton's 2nd law) per session-55 plan. Sim 1 ships conceptual-only."
-    },
     "competitive": {
       "shortcuts": [
         "When two vectors are PERPENDICULAR, |R| = sqrt(a² + b²) (Pythagoras directly).",

@@ -4,24 +4,22 @@ Subdir conventions for the directory that holds PhysicsMind's atomic concept JSO
 
 ## What lives here
 
-63 atomic concept JSONs + 1 legacy bundle (`class12_current_electricity.json`, see root §6.2). Filename = `concept_id` (snake_case, no spaces). v2.3 schema (PRIMARY-aha designation + Pass-1 strategic checklist + Pass-2 four-question lens deferred to `PASS_2_PROPOSAL.md`).
+66 atomic concept JSONs + 1 legacy bundle (`class12_current_electricity.json`, see root §6.2) — count verified 2026-06-11. Filename = `concept_id` (snake_case, no spaces). v2.3 schema (PRIMARY-aha designation + Pass-1 strategic checklist; Pass-2 shipped as Gate 15 — see `docs/archive/PASS_2_PROPOSAL.md`).
 
 ## Before editing any JSON, read
 
-1. Root `C:\Tutor\CLAUDE.md` §6 (the six required updates) — **mandatory**.
+1. Root `C:\Tutor\CLAUDE.md` §6 (the EIGHT required updates) — **mandatory**.
 2. `C:\Tutor\physics-mind\docs\ARCHITECTURE_v2.2.md` §"v2.2 schema deltas with JSON examples".
 3. `C:\Tutor\physics-mind\.agents\architect\CLAUDE.md` §"Two-pass cognitive lens (v2.3 addition)".
 
-## The six required updates for a NEW concept
+## Registration for a NEW concept — EIGHT required updates
 
-Missing any one = silent pipeline failure.
+**The authoritative list lives in root `CLAUDE.md` §6 (eight sites since 2026-06-11 — adds `PCPL_CONCEPTS` + `CLASSIFIER_PROMPT`, the two documented silent-failure sites). Do not rely on older six-item copies.** Per-file requirements current as of 2026-06-11:
 
-1. `src/data/concepts/{concept_id}.json` — full definition. Required: `scene_composition.primitives.length ≥ 3` per state, `focal_primitive_id` per state, varied `advance_mode`, 4–7 `epic_c_branches`, `prerequisites: [concept_id]`, `mode_overrides.board` (`canvas_style` + `derivation_sequence` + `mark_scheme`), `mode_overrides.competitive` (`shortcuts` + `edge_cases`). Magnetism carve-out (M1–M6): conceptual-only is permitted; board+competitive ship later at M7/M8. **Comprehension keystone (2026-05-30+):** new/retrofitted concepts also ship an `assessment` block (6-question backward-designed pre/post quiz with `distractor_misconceptions` + `teaches_state` + `parallel_form_stem` per question) and a `coverage_map` (`by_state` + `non_assessed_states`), plus per-state `misconception_watch` for the wrong beliefs confronted in EPIC-L (Rule 16a). Enforced by Gates 19/20; the 62 pre-existing atomics are exempt until retrofitted.
-2. SQL INSERT into `concept_panel_config` (or `CONCEPT_PANEL_MAP` in `src/config/panelConfig.ts`).
-3. `CONCEPT_RENDERER_MAP` entry in `src/lib/aiSimulationGenerator.ts` (~line 2564).
-4. `VALID_CONCEPT_IDS` set in `src/lib/intentClassifier.ts` (~line 36).
-5. Deep-dive flagging: `epic_l_path.states.STATE_N.allow_deep_dive: true` on 2–3 hard states per concept.
-6. Parent-bundle retirement (if splitting): rename old bundle to `{bundle_id}.legacy.json.deleted` and add a `CONCEPT_SYNONYMS` redirect entry — keep parent out of `VALID_CONCEPT_IDS`.
+- `scene_composition.primitives.length ≥ 3` per state, `focal_primitive_id` per state, varied `advance_mode`, `prerequisites: [concept_id]`.
+- `epic_c_branches` — OMIT for new concepts (EPIC-L-first directive 2026-06-10; misconceptions confronted inside EPIC-L per Rule 16a; Zod `.optional()`).
+- `mode_overrides` — OMIT for new concepts (conceptual-only directive 2026-06-11, Rule 20 suspension — board + competitive dropped this phase; Gate 21 enforces all-or-nothing on any legacy board override).
+- **Comprehension keystone (2026-05-30+):** new/retrofitted concepts also ship an `assessment` block (6-question backward-designed pre/post quiz with `distractor_misconceptions` + `teaches_state` + `parallel_form_stem` per question) and a `coverage_map` (`by_state` + `non_assessed_states`), plus per-state `misconception_watch` (Rule 16a). Enforced by Gates 19/20; pre-existing atomics exempt until retrofitted.
 
 ## Hard validator gates that frequently fail here
 
@@ -40,7 +38,7 @@ Run `npm run validate:concepts` before declaring done. Run `npx tsc --noEmit` fo
 
 ## Common pitfalls
 
-- **`contact_forces.json` duplicate-keys parse bug** — known OPEN in `engine_bug_queue`, severity MAJOR. Do not use as template until fixed.
+- **`contact_forces.json` duplicate-keys parse bug — RESOLVED (false alarm).** Verified clean parse 2026-06-11; no `engine_bug_queue` row for it ever existed. Safe to read as a template again.
 - **Legacy bundle redirect** — `class12_current_electricity.json` is array-of-concepts (old `physics_constants/` shape). `ohms_law`, `drift_velocity`, etc. route here, not to standalone files. See root §6.2 + `LEGACY_SPLIT_BACKLOG.md`.
 - **Fallback chain** — `loadConstants(conceptId)` reads `data/concepts/` first, falls back to `src/lib/physics_constants/` (171 legacy files). NEVER add new files to `physics_constants/`.
 - **Interactivity rule** — sliders / interactive controls allowed in the LAST EPIC-L state only (Rule established session 2026-05-21). Earlier states with `show_sliders` violate this — strip them.
@@ -49,5 +47,5 @@ Run `npm run validate:concepts` before declaring done. Run `npx tsc --noEmit` fo
 ## Related docs
 
 - `physics-mind/docs/MAGNETISM_ARCHITECTURE.md` — M1–M8 phase carve-outs for Ch.26 concepts.
-- `physics-mind/docs/PASS_2_PROPOSAL.md` — Pass-2 four-question lens (proposal, dogfood on Diamond #4).
+- `physics-mind/docs/archive/PASS_2_PROPOSAL.md` — Pass-2 four-question lens (SHIPPED as Gate 15 after the Diamond-#4 dogfood; doc archived).
 - `physics-mind/.agents/quality_auditor/CLAUDE.md` — full gate list including Gate 14 reasoning.
