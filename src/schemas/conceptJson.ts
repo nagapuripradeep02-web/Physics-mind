@@ -340,6 +340,63 @@ export const conceptJsonSchema = z.object({
     });
   }
 
+  // ── Gate 21 — board-mode completeness (CLAUDE.md Rule 21, added 2026-06-11)
+  // A board override is ALL-OR-NOTHING: canvas_style="answer_sheet" +
+  // derivation_sequence + mark_scheme. A half-authored board mode renders a
+  // broken answer-sheet for students — worse than no board mode at all.
+  // derivation_sequence lives in any of three shipped shapes:
+  //   (a) board.derivation_sequence — top-level: array (magnetic_field_wire)
+  //       or object keyed by STATE_N (friction_static_kinetic et al. — the
+  //       boardModeMerge shape: derivation_sequence[STATE_N].primitives)
+  //   (b) board.epic_l_path.states.<sid>.derivation_sequence — per-state
+  //   (c) board.states.<sid>.derivation_sequence — per-state (pressure_scalar)
+  const boardOverride = (data.mode_overrides as Record<string, unknown> | undefined)
+    ?.board as Record<string, unknown> | undefined;
+  if (boardOverride) {
+    if (boardOverride.canvas_style !== 'answer_sheet') {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['mode_overrides', 'board', 'canvas_style'],
+        message: `Gate 21a (Rule 21): mode_overrides.board.canvas_style must be "answer_sheet" (found: ${JSON.stringify(boardOverride.canvas_style)}).`,
+      });
+    }
+    const topDS = boardOverride.derivation_sequence;
+    const hasTopLevelDS =
+      topDS != null &&
+      (Array.isArray(topDS)
+        ? topDS.length > 0
+        : typeof topDS === 'object' && Object.keys(topDS).length > 0);
+    const stateContainers = [
+      (boardOverride.epic_l_path as { states?: Record<string, unknown> } | undefined)?.states,
+      boardOverride.states as Record<string, unknown> | undefined,
+    ];
+    const hasPerStateDS = stateContainers.some(
+      (container) =>
+        container &&
+        typeof container === 'object' &&
+        Object.values(container).some(
+          (s) =>
+            s !== null &&
+            typeof s === 'object' &&
+            (s as Record<string, unknown>).derivation_sequence != null,
+        ),
+    );
+    if (!hasTopLevelDS && !hasPerStateDS) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['mode_overrides', 'board'],
+        message: 'Gate 21b (Rule 21): board mode has no derivation_sequence (top-level array or per-state). Ship board mode complete, or not at all.',
+      });
+    }
+    if (boardOverride.mark_scheme == null) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['mode_overrides', 'board'],
+        message: 'Gate 21c (Rule 21): board mode has no mark_scheme. Every board state ties to marks (1 state = 1 mark minimum).',
+      });
+    }
+  }
+
   // v2.2 aha_moment shape checks — fire only when authored.
   // (Required-for-gold-standard gate lives in validate-concepts.ts so legacy
   // v2.0 JSONs can stay passing during the retrofit window.)

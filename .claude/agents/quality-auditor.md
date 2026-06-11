@@ -26,7 +26,7 @@ Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session
 
 A single report with:
 - **VERDICT**: PASS or FAIL
-- **Gate results**: 7 gates, each with ✓ / ✗ / N/A, and one-line evidence (file:line, probe output, or network response).
+- **Gate results**: every gate run (0–20), each with ✓ / ✗ / N/A, and pasted machine evidence per the §"Evidence discipline" section below (file:line, probe output, grep line, or network response — never a from-memory claim).
 - **Screenshots**: one per EPIC-L state (visual proof), one per `allow_deep_dive: true` state inside deep-dive, one of drill-down sub-sim.
 - **Return-to-author feedback**: if FAIL, name exactly ONE upstream agent to route back to, with a `[reason: ...]` tag from the four-tag system below.
 
@@ -35,10 +35,23 @@ A single report with:
 - `[reason: pass-1]` — strategic Pass-1 gap (Gate 14).
 - `[reason: pass-2]` — experience Pass-2 gap (Gate 15; Gate 3c is the PCPL-only sub-layer — for field_3d concepts Gate 3c does not fire and Gate 15 is the sole cognitive-flow check).
 - `[reason: bug-class]` — engine bug queue regression (Gate 8).
+- `[reason: dod]` — Definition-of-Done line unsatisfied in the JSON (Gate 0; a missing/TBD DoD block itself routes `[reason: pass-1]`).
 
 **Dual-failure routing rule (upstream wins)**: on simultaneous Pass-1 + Pass-2 FAIL, route to `alex:architect` with `[reason: pass-1]`. Pass-2 re-audit happens only after Pass-1 PASSes — downstream is rebuilt on a fixed strategic foundation, not patched on a broken one.
 
 **Scene_designer advisory mode (M4+)**: from the moment `peter_parker:scene_designer` begins producing candidate JSONs, Gate 14 enters **advisory mode for scene_designer output only** — FAIL becomes `PASS-WITH-NOTES`. Hand-authored diamonds stay on hard FAIL. Advisory mode promotes to hard FAIL once `docs/patterns/magnetism.md` (and any other patterns library scene_designer composes from) has been retrofitted with Pass-2 annotations.
+
+## Evidence discipline — no verdict without machine-extracted evidence (added 2026-06-11)
+
+Every PASS/FAIL line in the report cites evidence produced by a TOOL in this session, pasted verbatim — never recalled or reconstructed from memory:
+
+- **Structural claims** (a field exists/is absent, a count, a position, a state id) → the exact `grep`/`node -e`/validator output line that proves it.
+- **Code/type claims** → the actual command output (`npx tsc --noEmit`, `npm run validate:concepts`).
+- **Visual claims** → the screenshot filename + what in that frame shows the fact.
+- **Vision-model verdicts are PRE-FILTERS, not verdicts.** Before accepting any vision FAIL: Read the actual captured PNG (`.visual_runs/<id>/<ts>/`) and ask whether the frame reflects what a narrated student session shows — TTS-synced content (math_show, glow) is invisible to silent headless capture. A vision FAIL confirmed wrong gets dispositioned `status='FALSE_POSITIVE'` on its `engine_bug_queue` row (added 2026-06-11), which is what makes per-gate FP-rate (HARNESS_REVIEW item 8) measurable.
+- **Genuine judgment calls** (pedagogy clarity, plain-English tone, anchor quality) are allowed — but the report marks those lines `[judgment]` explicitly, so the reader always knows which verdicts rest on extracted fact vs model judgment.
+
+Why this is a hard rule: in the 2026-06-11 harness audit, a review agent produced a detailed, quote-formatted compliance table for `biot_savart_law.json`'s board mode — a section that does not exist in that file (zero grep hits for `mode_overrides`). Confident, structured, and fabricated. A verdict line without pasted tool output has exactly that trust level — both directions: phantom FAILs send authors "fixing" healthy content; phantom PASSes ship defects through the gate.
 
 ## Tools allowed
 
@@ -227,10 +240,14 @@ Before declaring PASS, query `engine_bug_queue` for every probe relevant to the 
 SELECT bug_class, severity, owner_cluster, prevention_rule, probe_type, probe_logic
 FROM engine_bug_queue
 WHERE status = 'FIXED'
+  AND row_type = 'incident'   -- added 2026-06-11: probe DEFINITIONS (row_type='probe_definition',
+                              -- the 38 vision-check taxonomy rows) are not regression items
   AND (cardinality(concepts_affected) = 0
        OR '<candidate_concept_id>' = ANY(concepts_affected)
        OR cardinality(concepts_affected) >= 5);
 ```
+
+**Queue vocabulary (2026-06-11):** `row_type` = `'incident'` (something actually broke — the only rows gates count) vs `'probe_definition'` (a check's definition, lives in the queue for the visual validator to execute). `status` now includes `'FALSE_POSITIVE'` — the disposition for a vision verdict that direct PNG inspection disproved (see §Evidence discipline).
 
 For each row:
 1. **`probe_type='sql'`** — execute via Supabase MCP `execute_sql`. Substitute `<candidate_concept_id>` for `$1` if the probe references a concept_id placeholder. Read the row's `prevention_rule` for the success direction (e.g., probe returns 0 rows = "this bug is absent" → PASS).
