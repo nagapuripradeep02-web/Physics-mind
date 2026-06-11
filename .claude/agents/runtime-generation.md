@@ -30,7 +30,7 @@ Triggered by a tagged bug in one of:
 - Inline markdown in [physics-mind/PROGRESS.md](../../PROGRESS.md) session audit block.
 - Per-concept [physics-mind/docs/concepts/\<concept_id\>.QA_REPORT.md](../../docs/concepts/) when batched.
 - An incoming regen directive from `renderer_primitives` (executes sweep, does not fix code).
-- A row in `engine_bug_queue` (Phase I — landed session 36).
+- (Future) a row in `engine_bug_queue` once Phase I lands.
 
 A triageable bug carries `concept_id`, `state_id`, `mode`, `class_level`, reproduction recipe, expected vs actual. For regen directives the input is the directive block itself (affected tables + concept IDs + modes + fix summary).
 
@@ -91,8 +91,8 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 ## Sacred files — the cluster's scope boundary
 
 **Generation core**
-- [src/lib/aiSimulationGenerator.ts](../../src/lib/aiSimulationGenerator.ts) — ~2800 lines. Orchestrates simulation generation, reads/writes `simulation_cache`. Includes `CONCEPT_RENDERER_MAP` at line ~2564 (renderer dispatch table). **Bug #1 site (m=1 leak) at lines 5653–5661.**
-- [src/lib/jsonModifier.ts](../../src/lib/jsonModifier.ts) — `fetchTechnologyConfig()` at lines ~65–100 merges `physics_engine_config.variables` into runtime default_variables.
+- [src/lib/aiSimulationGenerator.ts](../../src/lib/aiSimulationGenerator.ts) — ~2800 lines. Orchestrates simulation generation, reads/writes `simulation_cache`. Includes `CONCEPT_RENDERER_MAP` at line ~2564 (renderer dispatch table).
+- [src/lib/jsonModifier.ts](../../src/lib/jsonModifier.ts) — `fetchTechnologyConfig()` at lines ~65–100 merges `physics_engine_config.variables` into runtime default_variables. **Bug #1 site (m=1 leak).**
 
 **Physics constants loading**
 - [src/lib/physics_constants/index.ts](../../src/lib/physics_constants/index.ts) — `loadConstants(conceptId)` reads `src/data/concepts/` first, falls back to `src/lib/physics_constants/`. `normalizeOldStates()` bridges legacy `simulation_states` to `epic_l_path`.
@@ -131,18 +131,14 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 
 ## Silent-failure catalog — seeded from session 34
 
-Rows here MUST stay in sync with `engine_bug_queue` rows whose `owner_cluster = 'peter_parker:runtime_generation'`. See §"Engine bug queue update (post-fix)" below.
-
 | Bug class | Active probe |
 |---|---|
-| `m=1` variable leak — `aiSimulationGenerator.ts:5653` hardcoded `default_variables: { m: 1 }` fallback overrode every JSON's declared defaults (friction bug #1 — also infects every PCPL concept with ≥2 declared variables) | For any concept with ≥2 entries in `physics_engine_config.variables.*.default`, POST `/api/generate-simulation` and assert that `PM_config.default_variables` in the generated HTML contains every declared variable with the JSON's declared default value. SQL probe: `SELECT position('"default_variables":{"m":1' IN sim_html) FROM simulation_cache WHERE concept_id = $1` returns 0. |
+| `m=1` variable leak — `jsonModifier.fetchTechnologyConfig` only merges `m.default`; every other variable silently falls back to 1 (friction bug #1 — also infects every other PCPL concept with ≥2 declared variables) | For any concept with ≥2 entries in `physics_engine_config.variables.*.default`, POST `/api/generate-simulation` and assert that `PM_config.default_variables` in the generated HTML contains every declared variable with the JSON's declared default value. |
 | `/api/chat` rejects a valid concept with "no physics constants" (bugs #8, #9) | POST `/api/chat` with any `VALID_CONCEPT_IDS` entry whose JSON has `physics_engine_config.formulas`. Response MUST NOT contain "no specific physics constants available" or "physics facts do not offer information". It MUST reference at least one formula symbol from the JSON (`μs`, `N`, `fs_max`, etc.). |
 | `/api/generate-lesson` same class as above | Same probe as chat, against the lesson route. |
 | Engine physics_forces don't reach `PM_physics` on generate (bug #4 runtime half) | When a concept has a `physicsEngine/concepts/<id>.ts` entry, the generated HTML's `PM_physics.forces` array MUST contain every force the engine returned with `show: true`. |
-| Cached stale after engine fix ships without regen | After every fix, confirm the target concept's cache rows were deleted and refilled. `SELECT created_at FROM simulation_cache WHERE concept_id = 'X' AND mode = 'Y'` returns a timestamp newer than the fix commit. |
+| Cached stale after engine fix ships without regen | After every fix, confirm the target concept's cache rows were deleted and refilled. `SELECT updated_at FROM simulation_cache WHERE concept_id = 'X' AND mode = 'Y'` returns a timestamp newer than the fix commit. |
 | Sonnet invoked on verified content path (Rule 18 violation) | Static audit: grep for calls into `deepDiveGenerator` / `drillDownGenerator` from routes other than `/api/deep-dive` and `/api/drill-down`. Result MUST be empty. `/api/chat` and `/api/generate-lesson` never call Sonnet for a verified concept. |
-| Slider drag doesn't recompute kinetic friction (bug #11 — friction STATE_4 deferred) | `PARAM_UPDATE` listener routes through `computePhysics_friction_static_kinetic`. Probe: `preview_fill` slider, then assert `PM_physics.forces.fk` magnitude updates proportionally to `μk * m * g`. |
-| Animation-type registry missing entries blocks new motion (bug #15 site — `slide_horizontal` and `slide_when_kinetic` were absent in pre-session-34 renderer) | Probe: `Object.keys(PM_animations)` includes every animation_type referenced in any shipped concept JSON's `choreography_sequence.animate_in`. |
 
 Add a row for every new runtime bug class surfaced.
 
@@ -216,12 +212,23 @@ Before fixing, check the layer:
 
 ## Engine bug queue update (post-fix)
 
-After fixing a bug:
-1. If the bug already exists in `engine_bug_queue` (matched by `bug_class` snake_case identifier, or by `root_cause` + `owner_cluster`) → UPDATE the row: `status='FIXED'`, `fixed_at=now()`, append to `fixed_in_files`, append any newly-affected concept ids to `concepts_affected`.
-2. If new → INSERT a row with: `bug_class` (snake_case identifier), `title` (human label), `severity` (CRITICAL | MAJOR | MODERATE), `owner_cluster='peter_parker:runtime_generation'`, `root_cause` (one line), `prevention_rule` (one line — what every future artifact must satisfy), `probe_type` ('sql' | 'js_eval' | 'manual'), `probe_logic` (literal SQL body or JS eval body — copy from this spec's silent-failure catalog above), `concepts_affected` (TEXT[] enumerated wide — when in doubt include all 8 PCPL concepts), `fixed_in_files` (TEXT[]), `discovered_in_session`, `status='FIXED'`.
-3. Add the same row to this spec's silent-failure catalog table (markdown row above) so future sessions reading the spec see it without a DB query.
+After fixing a bug, the queue is the durable home for the prevention rule. Update it BEFORE writing the regen directive — `quality_auditor`'s Gate 8 reads the queue, so a fix that doesn't update it will silently regress next session. Bug #1's `concepts_affected` was correctly enumerated to all 8 PCPL concepts because the `m=1` leak was a generator-layer defect threatening every JSON, not just friction; follow that conservative-blast-radius pattern.
 
-The queue and the spec catalog table are kept in sync. `quality_auditor`'s Gate 8 reads the queue and runs every probe before approving the next concept — so any bug you fail to register here will silently regress next session. Bug #1's `concepts_affected` was correctly enumerated to all 8 PCPL concepts because the `m=1` leak was a generator-layer defect threatening every JSON, not just friction.
+1. **If the bug already exists in `engine_bug_queue`** (matched by `bug_class` snake_case identifier OR by `root_cause` + `owner_cluster`): UPDATE the row — set `status='FIXED'`, `fixed_at=now()`, append to `fixed_in_files`, append any newly-affected concept ids to `concepts_affected`.
+2. **If new**: INSERT a row with —
+   - `bug_class` (snake_case identifier),
+   - `title` (human label),
+   - `severity` ('CRITICAL' | 'MAJOR' | 'MODERATE'),
+   - `owner_cluster='peter_parker:runtime_generation'`,
+   - `root_cause` (one line),
+   - `prevention_rule` (one line — what every future artifact must satisfy),
+   - `probe_type` ('sql' | 'js_eval' | 'manual'),
+   - `probe_logic` (literal SQL body or JS-eval body — copy from this spec's silent-failure catalog above; auditor will execute it verbatim),
+   - `concepts_affected` (TEXT[] enumerated wide — for generator-layer bugs default to all 8 PCPL concepts),
+   - `fixed_in_files` (TEXT[]),
+   - `discovered_in_session`,
+   - `status='FIXED'`.
+3. **Add the same row to this spec's silent-failure catalog table** (markdown row above) so future sessions reading the spec see the bug class without needing a DB query. The queue and the spec catalog table are kept in sync.
 
 ## Self-review checklist — run before declaring a fix done
 
@@ -241,7 +248,7 @@ The queue and the spec catalog table are kept in sync. `quality_auditor`'s Gate 
 
 | # | Bug | Root cause layer |
 |---|---|---|
-| 1 | `m=1` runtime leak — every variable other than `m` silently falls to 1 | `aiSimulationGenerator.ts:5653` hardcoded `default_variables: { m: 1 }` fallback |
+| 1 | `m=1` runtime leak — every variable other than `m` silently falls to 1 | `jsonModifier.fetchTechnologyConfig` — default_variables merge reads only `m.default` |
 | 8 | Board-mode `/api/chat` rejects friction with "no physics constants available" | `chat/route.ts` does not read `physics_engine_config` via `loadConstants()` |
 | 9 | Conceptual `/api/chat` same rejection | Same site as #8 |
 

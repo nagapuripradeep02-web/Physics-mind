@@ -20,10 +20,10 @@ architect ──► physics_author ──► json_author ──► quality_audit
                                           architect re-opens (if new misconception found)
 ```
 
-- **architect** decides WHAT: state count, arc shape, 4 EPIC-C branches, deep-dive hot states, prerequisites, Indian anchor.
+- **architect** decides WHAT: state count, arc shape, Rule 16a misconception beats (EPIC-C branches deferred until real students exist — 2026-06-10 directive), Definition of Done, deep-dive hot states, prerequisites, Indian anchor.
 - **physics_author** decides HOW MUCH: formulas, variables, constraints, mark scheme, drill-down phrasings.
 - **json_author** decides WHERE: coordinates, primitives, modes, registration.
-- **quality_auditor** decides IF: 7 gates, silent-failure probes, anti-plagiarism, visual walk.
+- **quality_auditor** decides IF: gates 0–20, silent-failure probes, anti-plagiarism, visual walk — every verdict with machine-extracted evidence.
 - **feedback_collector** decides WHAT CHANGES NEXT: cluster proposals from live student signal (Phase I, offline).
 
 ## Reading order per session

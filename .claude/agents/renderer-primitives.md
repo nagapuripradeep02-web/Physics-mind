@@ -29,7 +29,7 @@ This cluster holds the line on Rule 6 (PM_currentState is the only state variabl
 Triggered by a tagged bug in one of:
 - Inline markdown in [physics-mind/PROGRESS.md](../../PROGRESS.md) session audit block (current convention).
 - Per-concept [physics-mind/docs/concepts/\<concept_id\>.QA_REPORT.md](../../docs/concepts/) file when `quality_auditor` batches.
-- A row in `engine_bug_queue` (Phase I — landed session 36).
+- (Future) a row in `engine_bug_queue` once Phase I lands.
 
 A triageable bug carries at minimum:
 - `concept_id`, `state_id`, `mode` (conceptual | board | competitive), `class_level`.
@@ -121,7 +121,7 @@ Producer side (initial `PM_physics` population on generate) belongs to `runtime_
 
 ## Silent-failure catalog — seeded from session 34 (friction_static_kinetic)
 
-Rendering bugs that Zod + API-level probes cannot catch. Each row lists the bug class and the active probe this cluster runs before declaring a fix done. **Rows here MUST stay in sync with `engine_bug_queue` rows whose `owner_cluster = 'peter_parker:renderer_primitives'`** — see §"Engine bug queue update (post-fix)" below.
+Rendering bugs that Zod + API-level probes cannot catch. Each row lists the bug class and the active probe this cluster runs before declaring a fix done.
 
 | Bug class | Active probe |
 |---|---|
@@ -131,8 +131,6 @@ Rendering bugs that Zod + API-level probes cannot catch. Each row lists the bug 
 | Ghost duplicate body primitive on state transition (bug #5) | Scene diff between STATE_N and STATE_N+1 must not produce superimposed body primitives during the 800 ms fade. Screenshot-diff at t=400 ms: only one body instance visible. |
 | Previous state's primitives bleed into next state (bug #7) | TeacherPlayer state-swap MUST clear the prior `scene_composition` before applying the new one. Probe: at `STATE_REACHED` postMessage, assert canvas pixels at prior-state focal primitive coordinates are background color. |
 | Slider value changes, physics doesn't recompute (bug #10) | `PARAM_UPDATE` listener must re-eval `PM_physics.variables`, re-run the matching `computePhysics_<concept>` (read-only call into runtime_generation territory), and redraw. Probe: change slider value via `preview_fill`, then `preview_snapshot`; arrow length changed proportionally. |
-| Block penetrates floor when `attach_to_surface` missing on body (bug #13 — friction STATE_4) | Probe: for any state with both a `body` primitive and a `surface` primitive, body's bottom edge y ≥ surface y. If JSON omits `attach_to_surface`, hand back to `alex:json_author`. |
-| `origin_body_id` field-name mismatch silently misroutes arrows (bug #16 — friction STATE_5 fs/N/mg drew on Block A instead of Block B) | `PM_resolveForceOrigin` accepts both `body_id` (legacy) and `origin_body_id` (current) field names. JS-eval probe: `PM_resolveForceOrigin({origin_body_id:'B'}).x === PM_resolveForceOrigin({body_id:'B'}).x`. |
 
 Add a row to this catalog every time a new rendering bug class is surfaced. The catalog is the regression suite.
 
@@ -166,17 +164,28 @@ Before writing engine code, confirm the bug is actually an engine bug. Three exp
 
 - If the bug requires a prompt change (e.g., Sonnet's `deep_dive_generator_v2.txt` emits bad specs) → route to `runtime_generation`.
 - If the bug requires a new JSON schema field → route to `alex:architect`, then `alex:json_author`.
-- If the bug reveals a missing `quality_auditor` probe → route to `quality_auditor` so the probe gets added to the 8-gate list.
+- If the bug reveals a missing `quality_auditor` probe → route to `quality_auditor` so the probe gets added to the 7-gate list.
 - If the fix needs a Supabase schema change (new column, new index, new table) → stop and escalate to founder. No cluster has schema authority.
 
 ## Engine bug queue update (post-fix)
 
-After fixing a bug:
-1. If the bug already exists in `engine_bug_queue` (matched by `bug_class` snake_case identifier, or by `root_cause` + `owner_cluster`) → UPDATE the row: `status='FIXED'`, `fixed_at=now()`, append to `fixed_in_files`, append any newly-affected concept ids to `concepts_affected`.
-2. If new → INSERT a row with: `bug_class` (snake_case identifier), `title` (human label), `severity` (CRITICAL | MAJOR | MODERATE), `owner_cluster='peter_parker:renderer_primitives'`, `root_cause` (one line), `prevention_rule` (one line — what every future artifact must satisfy), `probe_type` ('sql' | 'js_eval' | 'manual'), `probe_logic` (literal SQL body or JS eval body — copy from this spec's silent-failure catalog above), `concepts_affected` (TEXT[] enumerated wide), `fixed_in_files` (TEXT[]), `discovered_in_session`, `status='FIXED'`.
-3. Add the same row to this spec's silent-failure catalog table (markdown row above) so future sessions reading the spec see it without a DB query.
+After fixing a bug, the queue is the durable home for the prevention rule. Update it BEFORE writing the regen directive — `quality_auditor`'s Gate 8 reads the queue, so a fix that doesn't update it will silently regress next session.
 
-The queue and the spec catalog table are kept in sync. `quality_auditor`'s Gate 8 reads the queue and runs every probe before approving the next concept — so any bug you fail to register here will silently regress next session.
+1. **If the bug already exists in `engine_bug_queue`** (matched by `bug_class` snake_case identifier OR by `root_cause` + `owner_cluster`): UPDATE the row — set `status='FIXED'`, `fixed_at=now()`, append to `fixed_in_files`, append any newly-affected concept ids to `concepts_affected`.
+2. **If new**: INSERT a row with —
+   - `bug_class` (snake_case identifier),
+   - `title` (human label),
+   - `severity` ('CRITICAL' | 'MAJOR' | 'MODERATE'),
+   - `owner_cluster='peter_parker:renderer_primitives'`,
+   - `root_cause` (one line),
+   - `prevention_rule` (one line — what every future artifact must satisfy),
+   - `probe_type` ('sql' | 'js_eval' | 'manual'),
+   - `probe_logic` (literal SQL body or JS-eval body — copy from this spec's silent-failure catalog above; auditor will execute it verbatim),
+   - `concepts_affected` (TEXT[] enumerated wide — when in doubt include every PCPL concept that touches the same primitive),
+   - `fixed_in_files` (TEXT[]),
+   - `discovered_in_session`,
+   - `status='FIXED'`.
+3. **Add the same row to this spec's silent-failure catalog table** (markdown row above) so future sessions reading the spec see the bug class without needing a DB query. The queue and the spec catalog table are kept in sync.
 
 ## Self-review checklist — run before declaring a fix done
 
@@ -200,7 +209,82 @@ The queue and the spec catalog table are kept in sync. `quality_auditor`'s Gate 
 | 5 | Ghost duplicate block on state transition | Transition fade overlays instead of replacing |
 | 7 | STATE_1 hook bleeds into STATE_2/3 | TeacherPlayer scene-swap not clearing prior primitives |
 | 10 | Sliders change values but block doesn't move; arrow length doesn't update | `PARAM_UPDATE` listener not wired to re-run compute + redraw |
-| 13 | Block penetrates floor in STATE_4 | Body primitive needs `attach_to_surface` reference; otherwise renders at absolute y |
-| 16 | STATE_5 fs/N/mg arrows drew on wrong block | `PM_resolveForceOrigin` only read `body_id`, JSON convention emits `origin_body_id` |
 
-These are the exemplar bugs this spec was seeded from.
+These are the exemplar bugs this spec was seeded from. Six bugs, one cluster, one regen directive covering `friction_static_kinetic` across conceptual + board modes.
+
+---
+
+## Renderer behavior — sessions 53-54 reference (current_not_vector + pressure_scalar)
+
+Authors writing JSONs need to know exactly what the renderer accepts. This section is the source of truth for what works, what silently no-ops, and what to escalate.
+
+### What is wired
+
+**Primitive types accepted at top level of `scene_composition`** (see `parametric_renderer.ts:2378-2388`):
+`label`, `annotation`, `angle_arc`, `formula_box`, `axes`, `vector`, `motion_path`, `comparison_panel`, `derivation_step`, `mark_badge`, `slider`, `body`, `force_arrow`, `surface`, `force_components`.
+
+**Body shapes** (`drawBody`, line 741+):
+`rect` (with `size: {w, h}`), `circle` (`size: number`), `stickman`, `tree`, `pulley`, `door`. No "cooker" or other domain shapes — composite real-world objects are built from rect/circle bodies layered together.
+
+**Animation gating**:
+- `appear_at_ms: number` — primitive invisible before this delay (since state entry).
+- `animate_in_ms: number` — fade-in duration after appear_at_ms.
+- `animate_in: "handwriting"` — character-by-character cursive on `derivation_step` (font: Kalam).
+- `animate_in: "fade_in"` — alpha 0→1 ramp on bodies and labels carrying the field.
+- `animation: { type: "fade_in", delay_sec, duration_sec }` — body-specific fade.
+
+**Expression-driven fields** (interpolated via `PM_interpolate` reading `PM_physics.variables` ∪ `PM_physics.derived`):
+`text_expr`, `label_expr`, `magnitude_expr`, `direction_deg_expr`, `to_deg_expr`, `angle_value_expr`. All accept `{...}` templates with JS expressions, math functions, `.toFixed()`, etc.
+
+**Body label positioning**:
+- Default: label rendered at body centre.
+- `label_below: true` — label sits 12 px below the body's bottom edge.
+- `label_above: true` — label sits 10 px above the body's top edge (rect/boxed only).
+
+**Slider**:
+- Drag updates `PM_sliderValues[spec.variable]`, re-runs `computePhysics(concept_id, vars)`, posts `PARAM_UPDATE` to parent. Live numeric labels referencing the slider variable update on every drag.
+
+### What looks plausible but silently no-ops (DO NOT AUTHOR)
+
+| Field | Reality |
+|---|---|
+| `animation.type: "rotate_about"` | No renderer code; primitive renders normally with no rotation. |
+| `animation.type: "slide_horizontal"` outside legacy mechanics_2d | Ignored by parametric_renderer. |
+| `animation.type: "translate"` with `pivot` or `path` | Only specific `body.animation.type === "translate"` sub-cases work; arbitrary translates ignored. |
+| Any "camera transform" / "zoom" / "viewport scale" | The renderer has no global scale/translate stack. Authors who need this escalate to renderer_primitives. |
+| `direction_deg_expr` inside a `comparison_panel` sub-scene | Sub-scene force_arrows read `direction_deg` literal only; expressions fail silently. |
+
+### Sub-scene caveats (`comparison_panel.left_scene` / `right_scene`)
+
+`PM_drawSubScene` is a stripped-down renderer:
+- `body`, `force_arrow`, `vector`, `label`, `annotation`, `surface`, `formula_box` are dispatched.
+- Force arrows do NOT support `direction_deg_expr` or slider-driven angles.
+- Bodies do NOT register into `PM_bodyRegistry` for outer-scene anchor resolution.
+- No `appear_at_ms` gating inside sub-scenes (timing fields ignored).
+
+If your concept needs slider-driven primitives inside a side-by-side comparison, file an engine bug; do not work around it in the JSON.
+
+### Template-literal trap (renderer source edits)
+
+The runtime renderer code from line ~43 to ~2599 of `parametric_renderer.ts` lives inside `export const PARAMETRIC_RENDERER_CODE = \`…\``. **Do not write ASCII backticks inside comments in this region** — they close the template literal and emit `TS1005: ',' expected` parse errors. Use single quotes in comments. This burned us once (PM_interpolate derived-merge, session 54).
+
+### Adding a new concept's `computePhysics_<id>` function
+
+Every concept that authors expressions against `computed_outputs` (force_magnitude, pressure, i_actual, …) needs a matching JS function in the renderer. Pattern (see `parametric_renderer.ts:290` for `current_not_vector`, line 311+ for the dispatcher):
+
+```js
+function computePhysics_<id>(vars) {
+  // 1. Pull each variable with a default fallback.
+  var x = (vars && vars.x != null) ? vars.x : <default>;
+  // 2. Compute every key listed under physics_engine_config.computed_outputs.
+  var pressure = rho * g * depth;
+  return {
+    concept_id: '<id>',
+    variables: { x: x, /* ... */ },
+    derived: { pressure: pressure, /* every computed_output here */ },
+    forces: []
+  };
+}
+```
+
+Then add `if (conceptId === '<id>') return computePhysics_<id>(vars);` to the dispatcher. Without this, expressions referencing computed_outputs evaluate to `undefined` and labels go blank (or post the renderer-fix, leak `{...}` literally because `PM_physics.derived` doesn't exist).
