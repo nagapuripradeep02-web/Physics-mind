@@ -2778,6 +2778,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     parallel_plate_capacitor_field: "field_3d",
     magnetic_field_solenoid:        "field_3d",
     magnetic_field_wire:            "field_3d",
+    biot_savart_law:                "field_3d",
     magnetic_force_moving_charge:   "field_3d",
     torque_on_current_loop_in_field:"field_3d",
     gauss_law_3d:                   "field_3d",
@@ -2886,14 +2887,16 @@ const VALID_ADVANCE_MODES = new Set<string>([
 // assembler. Per CLAUDE.md Section 11 Phase A + Section 5 rules 16 and 20.
 //
 // Per-state requirements:
-//   1. scene_composition is an array with length >= 3 (rule 20)
+//   1. scene_composition is an array with length >= 3 (rule 19)
 //   2. focal_primitive_id is a non-empty string (Section 6)
 //   3. teacher_script.tts_sentences has at least one item with text
 //   4. advance_mode is in VALID_ADVANCE_MODES
 //
 // Top-level requirements:
-//   5. epic_c_branches is an array with length >= 4 (Section 11 Phase A)
-//   6. At least 2 distinct advance_mode values across states (rule 16)
+//   5. epic_c_branches OPTIONAL (EPIC-L-first directive 2026-06-10 —
+//      misconceptions confronted inside EPIC-L via Rule 16a); when present,
+//      must be an array
+//   6. At least 2 distinct advance_mode values across states (rule 15)
 export function hasCompleteAtomicPayload(conceptJson: unknown): boolean {
     if (typeof conceptJson !== 'object' || conceptJson === null) return false;
     const root = conceptJson as {
@@ -2926,7 +2929,7 @@ export function hasCompleteAtomicPayload(conceptJson: unknown): boolean {
 
     if (advanceModes.size < 2) return false;
 
-    if (!Array.isArray(root.epic_c_branches) || root.epic_c_branches.length < 4) return false;
+    if (root.epic_c_branches !== undefined && !Array.isArray(root.epic_c_branches)) return false;
 
     return true;
 }
@@ -4151,6 +4154,7 @@ const FIELD_3D_SCENARIO_MAP: Record<string, Field3DConfig["scenario_type"]> = {
     parallel_plate_capacitor_field: "parallel_plates",
     magnetic_field_solenoid:        "solenoid_field",
     magnetic_field_wire:            "straight_wire_current",
+    biot_savart_law:                "biot_savart_element",
     magnetic_force_moving_charge:   "lorentz_force_uniform_field",
     torque_on_current_loop_in_field:"torque_on_loop_uniform_field",
     gauss_law_3d:                   "point_charge_positive",

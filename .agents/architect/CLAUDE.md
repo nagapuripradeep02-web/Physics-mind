@@ -7,7 +7,7 @@ First in the pipeline. Produces the skeleton that the other agents fill in.
 Given a concept_id + chapter, decide:
 - What is the atomic concept? (one teachable idea — one student question)
 - How many EPIC-L states does it take to build full understanding? (CLAUDE.md §7 table)
-- What are the 4 genuine misconceptions students bring to this concept? (EPIC-C branches)
+- What are the genuine misconceptions students bring to this concept? (They feed the EPIC-L `misconception_watch` + predict→reveal beats — Rule 16a. EPIC-C branches are deferred until real students exist: EPIC-L-first directive, 2026-06-10.)
 - Which 2–3 states should support deep-dive?
 - Which prerequisites (other atomic concepts) does this assume?
 - What Indian real-world anchor makes the hook land?
@@ -25,7 +25,7 @@ A single markdown skeleton (no JSON yet) with these 9 sections:
 1. **Atomic claim** — one sentence: "This concept teaches X and only X. It does not cover Y (deferred to <concept_id>)."
 2. **State count + arc** — EPIC-L state count with a one-line purpose per state (hook → mechanism → formula → edge → interactive). Include per-state `teaching_method` (see §"Teaching method per state" below).
 3. **Within-state choreography plan** — for each state that introduces a NEW physical quantity, write the Socratic-reveal timeline: (a) what's visible at t=0, (b) the prediction question (TTS sentence that asks student to predict), (c) what primitive reveals the answer + at which TTS sentence id, (d) the follow-up explanation. See §"Socratic reveal" below.
-4. **EPIC-C branches (4)** — for each: branch_id, misconception one-liner (the wrong belief), a note on how STATE_1 will visualize it explicitly (Rule 16).
+4. **Misconception confrontation plan** — list the genuine wrong beliefs and, for each, the EPIC-L state + `misconception_watch` beat that confronts it (Rule 16a). EPIC-C branches are NOT authored by default (EPIC-L-first directive, 2026-06-10); only when the founder explicitly requests them, give branch_id + misconception one-liner + how STATE_1 visualizes the wrong belief explicitly (Rule 16b).
 5. **`has_prebuilt_deep_dive` states** — 2–3 state IDs whose deep-dive sub-sims are worth pre-authoring (fast cache hit). **Not a gate** — every state shows the Explain button to students; this flag just means the deep-dive is pre-built, not on-demand (Sonnet). Justify each ("this is where students historically get stuck, so we invest in a hand-authored deep-dive").
 6. **Drill-down clusters** — for each `has_prebuilt_deep_dive` state, 3 cluster_id candidates (snake_case) + one-sentence description. Physics_author will flesh out trigger_examples.
 7. **`entry_state_map`** (v2.2) — aspect-to-state-range mapping so the classifier's `aspect` routes a query to the right slice of the concept, not all states. Example for `normal_reaction`: `foundational → STATE_1–3`, `incline → STATE_4–5`, `elevator → STATE_6–7`. See §"Entry state map" below.
@@ -141,7 +141,7 @@ One paragraph per item.
 
 1. **Prerequisite cliff** — for each prerequisite listed in your skeleton, name the STATE_N where this concept breaks if the student arrives without it. Add one sentence to that state's Socratic-reveal plan that patches the gap without condescending to students who have the prerequisite.
 2. **JEE-backwards trace** — write ONE JEE Main / NEET-style question on this concept. For each piece of knowledge the student needs to answer it, name the state that delivers that piece. Missing piece → add a state or extend an existing one. **M1–M6 magnetism carve-out**: under the MAGNETISM_ARCHITECTURE M1–M6 exception, trace against the conceptual EPIC-L arc only; board/competitive coverage trace is deferred to M7/M8 retrofit.
-3. **Misconception entry mapping** — for each of the 4 EPIC-C branches (Rule 16), name the specific EPIC-L sentence or visual that PLANTS that wrong belief in the student. Either modify that sentence to prevent the planting, or flag it explicitly at the planting moment. This is upstream of Rule 16: Rule 16 enforces *visualization* of the wrong belief in EPIC-C STATE_1; this mapping identifies where the EPIC-L itself plants the seed.
+3. **Misconception entry mapping (Rule 16, two-part)** — for each documented wrong belief: **(16a, primary)** name the EPIC-L state that should *proactively confront* it inside the learn path, and author a `misconception_watch` entry there (`belief` + `visual_counter` + `one_line_fix`) plus a predict→reveal beat — so a silent, teacherless student is corrected without having to type a confusion phrase. Also name the EPIC-L sentence/visual that might *plant* the belief and either prevent it or flag it at the planting moment. **(16b, fallback)** when an EPIC-C branch exists as the reactive fallback, its STATE_1 still shows the wrong belief explicitly (never neutral). The proactive 16a requirement applies to concepts authored/retrofitted 2026-05-30+ (carve-out, same as Gate 14).
 
 ### Block 2: Aha-moment designation (concept-level)
 
@@ -154,9 +154,11 @@ One paragraph per item.
 ### Block-1 / Block-2 cross-references
 
 - The 2–3 states flagged `has_prebuilt_deep_dive: true` SHOULD usually be the same states that carry Pass-1 cliff sentences — both surface "where students get stuck." If they diverge, document why in the skeleton.
-- Pass-1 misconception-entry mapping feeds Rule 16: the EPIC-L sentence that plants the misconception is the prompt the EPIC-C branch's STATE_1 confronts. The two are upstream/downstream of the same wrong belief.
+- Pass-1 misconception-entry mapping feeds Rule 16 (both parts): the EPIC-L `misconception_watch` proactively confronts the wrong belief in the learn path (16a); the EPIC-C branch's STATE_1 confronts the same belief reactively when it fires (16b). Same wrong belief, two confrontation points — proactive primary, reactive fallback.
 
 ## EPIC-C branches — the Rule 16 pattern
+
+**Rule 16 is two-part (changed 2026-05-30):** **(16a)** the key wrong belief is confronted *proactively inside EPIC-L* (per-state `misconception_watch` + a predict→reveal beat) so every student — including the silent one who never types — is corrected on the first pass. **(16b)** the EPIC-C branch is the *reactive fallback* for confusions that survive, fired when the student types a confusion phrase. This section governs 16b. The discipline below is unchanged; only confrontation's *primary* home moved from EPIC-C to EPIC-L. See root `CLAUDE.md` Rule 16 + `docs/COMPREHENSION_LOOP_PLAN.md`.
 
 **Every branch's STATE_1 shows the wrong belief, not a neutral setup.** This is the single most important architectural discipline. Strawman-style misconceptions ("some people think…") are FAIL. The wrong belief must be:
 
@@ -254,8 +256,8 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 
 - [ ] Atomic claim is ONE sentence. If it's two sentences, split into two concepts.
 - [ ] State count matches the §7 table given concept complexity.
-- [ ] 4 EPIC-C branches, each with a real (not strawman) misconception.
-- [ ] Each EPIC-C STATE_1 plan describes visualizing the wrong belief in primitives, not just stating it in a teacher_script sentence.
+- [ ] Every key misconception has an EPIC-L confrontation beat (`misconception_watch` + predict→reveal, Rule 16a). EPIC-C branches only if explicitly requested (EPIC-L-first directive, 2026-06-10) — each real, not strawman.
+- [ ] (When EPIC-C branches are authored) each STATE_1 plan describes visualizing the wrong belief in primitives, not just stating it in a teacher_script sentence.
 - [ ] 2–3 `has_prebuilt_deep_dive` states picked (cache-hint, not a gate), each with 3 candidate cluster_ids.
 - [ ] Every EPIC-L state has a `teaching_method` field (v2.2).
 - [ ] Every state introducing a new physical quantity has a within-state Socratic-reveal plan (prediction question + reveal primitive + reveal TTS sentence id).

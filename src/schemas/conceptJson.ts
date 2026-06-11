@@ -44,7 +44,7 @@ const misconceptionWatchSchema = z.object({
 // advance_mode + teacher_script are now REQUIRED per state.
 // CLAUDE.md rule 15: advance_mode must be specified per state. Never global.
 // Phase A (2026-04-19) tightening:
-//   - scene_composition: required, >= 3 primitives (rule 20)
+//   - scene_composition: required, >= 3 primitives (rule 19)
 //   - focal_primitive_id: required, non-empty (Section 6)
 // v2.2 additions (2026-05-04, optional for legacy v2.0 retrofit window):
 //   - misconception_watch: array of inline pre-emptive corrections
@@ -228,6 +228,50 @@ const ahaMomentSchema = z.object({
   visual_confirmation: z.string().min(1).optional(),
 });
 
+// ── Assessment (pre/post comprehension quiz) ────────────────────────
+// The pre/post MCQ quiz that MEASURES comprehension (North Star: a cold,
+// teacherless student reaches 80–85% on the first pass). Backward-designed:
+// the 6 questions together define mastery, and each maps to the EPIC-L
+// state that teaches its idea (see coverage_map). Optional during phase-in
+// — Gates 19/20 in the superRefine fire ONLY when `assessment` is present,
+// so the un-retrofitted atomics keep passing.
+// See docs/COMPREHENSION_LOOP_PLAN.md.
+
+const quizQuestionSchema = z.object({
+  q_id: z.string().min(1),
+  stem: z.string().min(1),
+  options: z.object({
+    A: z.string().min(1),
+    B: z.string().min(1),
+    C: z.string().min(1),
+    D: z.string().min(1),
+  }),
+  correct: z.enum(['A', 'B', 'C', 'D']),
+  // Keyed by option letter. The "every wrong option present + correct NOT a
+  // key" check is Gate 19a in the superRefine. A z.string() key (vs an enum
+  // key) avoids zod/v4 record enum-key narrowing uncertainty.
+  distractor_misconceptions: z.record(z.string(), z.string().min(1)),
+  tested_idea: z.string().min(1),
+  teaches_state: z.string().min(1),
+  difficulty: z.enum(['core', 'stretch']),
+  // Reworded equivalent stem (same physics, different surface story/numbers)
+  // for the post-test, to blunt the pre/post memory effect.
+  parallel_form_stem: z.string().min(1).optional(),
+});
+
+const assessmentSchema = z.object({
+  mastery_definition: z.string().min(1),
+  questions: z.array(quizQuestionSchema).length(6),
+});
+
+const coverageMapSchema = z.object({
+  by_state: z.record(z.string(), z.array(z.string())),
+  // States that legitimately teach no testable claim (hook, interactive
+  // sliders). First-class auditable declaration — Gate 19d exempts these
+  // from the orphan check; quality_auditor sanity-checks they're truthful.
+  non_assessed_states: z.array(z.string()).default([]),
+});
+
 // ── Concept Tier (authoring complexity classification) ──────────────
 // Drives default state count band + cognitive_limits defaults.
 
@@ -249,15 +293,15 @@ export const conceptJsonSchema = z.object({
   real_world_anchor: realWorldAnchorSchema,
   epic_l_path: epicLPathSchema,
 
-  // Relaxed from min(4) → min(1) on 2026-05-04. The 4-branch minimum was a
-  // residual of an early design rule that proved to mismatch reality:
-  // many simple atomic concepts (vector_basics, distance_displacement,
-  // unit_vector etc.) have only 1–2 genuine misconception branches.
-  // Forcing 4 caused authors to manufacture filler branches with weak
-  // pedagogical value. Keep the floor at 1 (every atomic concept must
-  // address at least one misconception) and let concept-specific authoring
-  // decide how many real ones exist.
-  epic_c_branches: z.array(epicCBranchSchema).min(1),
+  // Relaxed from min(4) → min(1) on 2026-05-04 (forcing 4 caused authors to
+  // manufacture filler branches), then made OPTIONAL on 2026-06-11 per the
+  // EPIC-L-first directive (founder, 2026-06-10): misconceptions are
+  // confronted INSIDE EPIC-L via misconception_watch + predict→reveal beats
+  // (CLAUDE.md Rule 16a). EPIC-C branches are authored only once real
+  // student confusion data exists. When present, every branch must still be
+  // a real (non-strawman) misconception with STATE_1 showing the wrong
+  // belief explicitly (Rule 16b).
+  epic_c_branches: z.array(epicCBranchSchema).optional(),
   regeneration_variants: z.array(regenerationVariantSchema).optional(),
   panel_b_config: panelBConfigSchema.optional(),
   mode_overrides: modeOverridesSchema.optional(),
@@ -270,10 +314,16 @@ export const conceptJsonSchema = z.object({
   concept_tier: conceptTierSchema.optional(),
   cognitive_limits: cognitiveLimitsSchema.optional(),
   aha_moment: ahaMomentSchema.optional(),
+
+  // Comprehension-loop keystone (2026-05-30). Optional during the phase-in
+  // window; Gates 19/20 in the superRefine fire only when `assessment` is
+  // present, so the 62 un-retrofitted atomics stay passing.
+  assessment: assessmentSchema.optional(),
+  coverage_map: coverageMapSchema.optional(),
 }).passthrough().superRefine((data, ctx) => {
-  // Phase A rule 16: at least 2 distinct advance_mode values across
-  // epic_l_path.states. All-`auto_after_tts` ships a passive video, not an
-  // interactive lesson — reject.
+  // Phase A — CLAUDE.md rule 15: at least 2 distinct advance_mode values
+  // across epic_l_path.states. All-`auto_after_tts` ships a passive video,
+  // not an interactive lesson — reject.
   const states = data.epic_l_path?.states ?? {};
   const modes = new Set<string>();
   for (const state of Object.values(states)) {
@@ -286,7 +336,7 @@ export const conceptJsonSchema = z.object({
     ctx.addIssue({
       code: 'custom',
       path: ['epic_l_path', 'states'],
-      message: `advance_mode variety: found ${modes.size} distinct value(s) (${[...modes].join(', ') || 'none'}), need >= 2. CLAUDE.md rule 16: mix auto_after_tts, manual_click, wait_for_answer, interaction_complete.`,
+      message: `advance_mode variety: found ${modes.size} distinct value(s) (${[...modes].join(', ') || 'none'}), need >= 2. CLAUDE.md rule 15: mix auto_after_tts, manual_click, wait_for_answer, interaction_complete.`,
     });
   }
 
@@ -308,6 +358,150 @@ export const conceptJsonSchema = z.object({
         path: ['aha_moment', 'state_id'],
         message: `aha_moment.state_id "${data.aha_moment.state_id}" must reference a state defined in epic_l_path.states.`,
       });
+    }
+  }
+
+  // ── Gate 19 (coverage) + Gate 20 (quiz-quality) ───────────────────
+  // (Gates 16 POE / 17 one-variable / 18 concrete-first are auditor-judgment
+  //  gates defined in the quality_auditor spec; Gate 15 is reserved for the
+  //  Pass-2 audit. Only the two machine gates below run in code.)
+  // Fire ONLY when an assessment is authored (phase-in carve-out, same
+  // pattern as aha_moment above). The machine checks live here; the
+  // pedagogical-reality checks (distractors are REAL student errors,
+  // mastery_definition is honest) are the quality_auditor's job.
+  // See docs/COMPREHENSION_LOOP_PLAN.md.
+  if (data.assessment) {
+    const questions = data.assessment.questions ?? [];
+    const stateIds = new Set(Object.keys(states));
+    const coverage = data.coverage_map;
+    const byState = coverage?.by_state ?? {};
+    const nonAssessed = new Set(coverage?.non_assessed_states ?? []);
+    const qIds = questions.map((q) => q.q_id);
+    const letters = ['A', 'B', 'C', 'D'] as const;
+
+    // Gate 19a — coverage_map required when assessment present.
+    if (!coverage) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['coverage_map'],
+        message: 'Gate 19a: coverage_map is required when assessment is authored.',
+      });
+    }
+
+    // Gate 20d — q_ids unique.
+    const dupQ = [...new Set(qIds.filter((id, i) => qIds.indexOf(id) !== i))];
+    if (dupQ.length > 0) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['assessment', 'questions'],
+        message: `Gate 20d: duplicate q_id(s): ${dupQ.join(', ')}.`,
+      });
+    }
+
+    questions.forEach((q, i) => {
+      // Gate 19b — teaches_state must be a real EPIC-L state.
+      if (!stateIds.has(q.teaches_state)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['assessment', 'questions', i, 'teaches_state'],
+          message: `Gate 19b: teaches_state "${q.teaches_state}" is not a state in epic_l_path.states.`,
+        });
+      }
+      // Gate 19f — teaches_state must agree with coverage_map placement.
+      if (!(byState[q.teaches_state] ?? []).includes(q.q_id)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['assessment', 'questions', i, 'teaches_state'],
+          message: `Gate 19f: ${q.q_id}.teaches_state="${q.teaches_state}" but coverage_map.by_state["${q.teaches_state}"] does not list ${q.q_id}.`,
+        });
+      }
+      // Gate 20a — every wrong option has a misconception; correct is NOT a key.
+      const map = q.distractor_misconceptions ?? {};
+      for (const letter of letters) {
+        if (letter === q.correct) {
+          if (letter in map) {
+            ctx.addIssue({
+              code: 'custom',
+              path: ['assessment', 'questions', i, 'distractor_misconceptions'],
+              message: `Gate 20a: correct option ${letter} must NOT appear in distractor_misconceptions for ${q.q_id}.`,
+            });
+          }
+        } else if (!map[letter]) {
+          ctx.addIssue({
+            code: 'custom',
+            path: ['assessment', 'questions', i, 'distractor_misconceptions'],
+            message: `Gate 20a: wrong option ${letter} of ${q.q_id} has no distractor_misconception.`,
+          });
+        }
+      }
+    });
+
+    // Gate 19c — by_state keys are real states; listed q_ids are real.
+    for (const [sid, qs] of Object.entries(byState)) {
+      if (!stateIds.has(sid)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['coverage_map', 'by_state'],
+          message: `Gate 19c: coverage_map.by_state key "${sid}" is not a real EPIC-L state.`,
+        });
+      }
+      for (const qid of qs) {
+        if (!qIds.includes(qid)) {
+          ctx.addIssue({
+            code: 'custom',
+            path: ['coverage_map', 'by_state', sid],
+            message: `Gate 19c: coverage_map lists unknown question "${qid}" under ${sid}.`,
+          });
+        }
+      }
+    }
+
+    // Gate 19d — recompute orphan states (no question AND not declared non_assessed).
+    const coveredStates = new Set(
+      Object.entries(byState).filter(([, qs]) => qs.length > 0).map(([sid]) => sid),
+    );
+    const orphans = [...stateIds].filter(
+      (sid) => !coveredStates.has(sid) && !nonAssessed.has(sid),
+    );
+    if (orphans.length > 0) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['coverage_map'],
+        message: `Gate 19d: state(s) ${orphans.join(', ')} are neither assessed nor declared in non_assessed_states.`,
+      });
+    }
+
+    // Gate 19e — recompute uncovered questions (never placed in any by_state list).
+    const placedQ = new Set(Object.values(byState).flat());
+    const uncovered = qIds.filter((id) => !placedQ.has(id));
+    if (uncovered.length > 0) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['assessment', 'questions'],
+        message: `Gate 19e: question(s) ${uncovered.join(', ')} are not placed in coverage_map.by_state.`,
+      });
+    }
+
+    // Gate 20b — >= 3 distinct tested_idea.
+    const ideas = new Set(questions.map((q) => q.tested_idea));
+    if (ideas.size < 3) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['assessment', 'questions'],
+        message: `Gate 20b: quiz spans only ${ideas.size} distinct tested_idea(s); need >= 3.`,
+      });
+    }
+
+    // Gate 20c — if aha_moment authored, >= 1 question teaches the aha state.
+    if (data.aha_moment) {
+      const ahaStateId = data.aha_moment.state_id;
+      if (!questions.some((q) => q.teaches_state === ahaStateId)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['assessment', 'questions'],
+          message: `Gate 20c: no question maps to the aha_moment state "${ahaStateId}".`,
+        });
+      }
     }
   }
 });

@@ -22,7 +22,7 @@ A single report with:
 **Reason tags (v2.3 addition)**:
 - `[reason: schema]` — Zod / validator failure (Gates 1, 2).
 - `[reason: pass-1]` — strategic Pass-1 gap (Gate 14).
-- `[reason: pass-2]` — experience Pass-2 gap (Gate 3c today; Gate 15 once promoted from `physics-mind/docs/PASS_2_PROPOSAL.md`).
+- `[reason: pass-2]` — experience Pass-2 gap (Gate 15; Gate 3c is the PCPL-only sub-layer — for field_3d concepts Gate 3c does not fire and Gate 15 is the sole cognitive-flow check).
 - `[reason: bug-class]` — engine bug queue regression (Gate 8).
 
 **Dual-failure routing rule (upstream wins)**: on simultaneous Pass-1 + Pass-2 FAIL, route to `alex:architect` with `[reason: pass-1]`. Pass-2 re-audit happens only after Pass-1 PASSes — downstream is rebuilt on a fixed strategic foundation, not patched on a broken one.
@@ -324,13 +324,46 @@ Confirm the architect's skeleton (and the JSON's leading comment block, if json_
 
 - **14a.** Per-state prerequisite-cliff sentences for every prerequisite listed.
 - **14b.** A worked JEE-style question with state-by-state coverage trace. Every piece of the answer is covered by at least one state. **M1–M6 magnetism carve-out**: for concepts under the MAGNETISM_ARCHITECTURE exception (`magnetic_field_wire`, `magnetic_force_moving_charge`, `torque_on_current_loop_in_field`, `magnetic_field_solenoid`, plus M5/M6 atomic+nano Ch.26 concepts), JEE-backwards traces against the conceptual EPIC-L arc only; board/competitive coverage trace is deferred to M7/M8 retrofit. Do NOT FAIL on missing board/competitive trace for these concepts.
-- **14c.** Misconception-entry mapping — each of 4 EPIC-C branches has a named EPIC-L sentence-or-visual it ties back to.
+- **14c.** Misconception-entry mapping — every key misconception has a named EPIC-L sentence-or-visual confrontation beat (Rule 16a). When EPIC-C branches are authored (optional per the EPIC-L-first directive, 2026-06-10), each branch additionally ties back to one of those beats.
 - **14d.** Aha declaration block — exactly 1 PRIMARY + 0–2 SUPPORTING + cohesion check done + wrong-belief setup states identified.
 - **14e. Foundational-coverage check** — the PRIMARY aha state is inside `entry_state_map.foundational`'s range, OR `entry_state_map.foundational` declares a mandatory exit-pill into the primary-aha slice. Otherwise students entering via the foundational aspect silently miss the 10-year-memory.
 
 Any sub-check missing or marked "TBD" = FAIL, route to `alex:architect` with reason tag `[reason: pass-1]`.
 
-**Note**: Gate 15 (Pass-2 four-question audit) is **intentionally not in this spec yet**. It lives in `physics-mind/docs/PASS_2_PROPOSAL.md` pending dogfood validation on Diamond #4. After validation, Gate 15 promotes here as a sibling check. Until then, Pass-2 enforcement happens at Gate 3c (Socratic-reveal discipline) and Gate 3b (persona-lens audits) only.
+### Gate 15 — Pass-2 four-question audit (v2.3 addition, promoted 2026-06-10 after Diamond #4 dogfood)
+
+**Backfill carve-out**: same as Gate 14 — applies to concepts authored or retrofitted on 2026-05-22 or later; earlier concepts backfill on next touch.
+
+**Layering note**: Gate 15 sits ABOVE Gate 3c. 3c is the *implementation check* (do `reveal_at_tts_id` bindings exist? Is the prediction sentence before the reveal sentence?). 15 is the *intent check* (does what reveals actually answer "what makes them feel confusion?"). 3c PASSes do not imply 15 PASSes. Gate 3b (persona-lens) and Gate 15 coexist: 3b is the author persona ("would Mayer / a topper approve?"), 15 is the per-state cognitive presence check.
+
+**Renderer-family note (REQUIRED before walking 15b/15c — determines which fields you audit):**
+- **(a) PCPL / parametric_renderer concepts** (states carry `teaching_method: "narrative_socratic"`): within-state reveal is `scene_composition` primitives bound via `reveal_at_tts_id`, and prediction think-time is `pause_after_ms` on the prediction tts_sentence. **Gate 3c runs underneath; Gate 15 is the intent layer above it.**
+- **(b) field_3d concepts** (no `teaching_method`; `renderer_pair = field_3d` — e.g. ALL magnetism diamonds): **Gate 3c DOES NOT FIRE** (its trigger `teaching_method: "narrative_socratic"` is absent), so **Gate 15 is the ONLY cognitive-flow check in the audit.** Within-state motion lives in `field_3d_config.states.STATE_N.*` keyed by `reveal_at_ms` (absolute ms after state-enter, synced to TTS by author intent), **NOT** `reveal_at_tts_id`. When you walk 15b/15c on a field_3d concept: (i) **15b pause** — confirm the prediction tts_sentence carries `pause_after_ms ≥ 2000` AND the corresponding `field_3d_config` `reveal_at_ms` sits AFTER that pause window (so the answer does not appear during think-time); a prediction sentence with no `pause_after_ms` = 15b FAIL. (ii) **15c motion** — cite the `field_3d_config` `reveal_at_ms` primitive (`per_turn_field_circles`, `radial_cancellation_arrows`, `axial_buildup_arrows`, `right_hand.animate_curl`, etc.), NOT `reveal_at_tts_id`. (iii) **annotation orphaning** — a `scene_composition` annotation that names a referent (e.g. `cancel_label` naming the radial arrows) must NOT render at t=0 while its referent `reveal_at_ms` is delayed; flag as a 15c timing violation. **Do NOT instruct json_author to add `reveal_at_tts_id` to a field_3d primitive — the renderer does not read it.**
+
+Walk 15a–15d on **EVERY EPIC-L state** (not a sample — the four-question lens is the per-state strategic presence check; sampling defeats its purpose and would miss a systemic regression, e.g. a 2-state spot-check that happens to draw only a passing state):
+
+- **15a.** "What student doesn't know" is named in physics terms ("the axial direction of B is invisible until the blue arrows arise"), not abstract ("they don't know the answer yet").
+- **15b.** "What makes them feel confusion" cites a specific pause beat / primitive visibility ("`pause_after_ms 3000` on `s3_2`; cancellation arrows hidden until `reveal_at_ms 6000`"). A prediction sentence with no `pause_after_ms ≥ 2000` fails 15b — verify against the JSON, do not take the author's word.
+- **15c.** "What moves to make physics visible" cites a primitive with `reveal_at_ms` (field_3d) or `animate_in` / `reveal_at_tts_id` (PCPL), and motion precedes the words.
+- **15d.** "Where the student's hand/eye goes" cites a focal primitive or annotation position — and `focal_primitive_id` must point at the physics-bearing element, not the top title label. For directional-rule states (RHR, FBD, vector decomposition): for **field_3d**, confirm `field_3d_config.states.STATE_N.extras.right_hand` has `animate_curl: true` (+ `fade_from_case` for grip-swap states) — a static hand with `animate_curl` absent/false on an RHR state = 15d FAIL with escalation note `[escalation: peter_parker:renderer_primitives — RHR hand static, no animate_curl]`. A missing `reveal_at_tts_id` on `right_hand` is NOT a 15d finding for field_3d. For **PCPL**, confirm a hand-mirror gesture primitive is present OR an explicit escalation note exists.
+
+Any state failing >2 of the four checks 15a–15d = FAIL, route to `alex:json_author` with reason tag `[reason: pass-2]`. A **systemic pattern** (the same sub-check failing on 3+ states, e.g. prediction pause missing across multiple states) is a single FAIL routed to `alex:json_author`, not N separate findings.
+
+**Re-entry orientation sub-check (15e)**: check every non-introductory state whose first reveal is delayed (`field_3d_config.states.STATE_N` has any `reveal_at_ms > 2000`, or any `scene_composition` primitive has `reveal_at_tts_id`) — minimum 3 states. Each must establish visual context (relevant bodies, field, carryover vectors) in the first ~5s BEFORE the delayed content lands. A state that shows only a bare/static object during the orientation window (e.g. a coil with no field for ~4s before circles reveal at `reveal_at_ms 4000`) = violation. Heavy violation (2+ states) = FAIL.
+
+**Dogfood provenance**: validated on Diamond #4 (`magnetic_field_solenoid`) 2026-06-10 — caught a json_author regression (4 of 5 physics-block `pause_after_ms` beats dropped) that no other gate catches, because Gate 3c does not fire on field_3d. See `physics-mind/docs/notes/diamond4-pass2-notes.md`.
+
+### Gates 16–20 — comprehension keystone (2026-05-30 addition)
+
+Fire only when the concept carries an `assessment` block (phase-in carve-out, same pattern as Gate 14). Gates **19 + 20 are machine-enforced** in `src/schemas/conceptJson.ts` `.superRefine` (hard FAIL); the auditor adds the judgment halves below. Gates 16–18 are auditor-judgment now; full machine enforcement is P2. (Gate 15 = Pass-2 four-question audit, now live above.) See `physics-mind/docs/COMPREHENSION_LOOP_PLAN.md`.
+
+- **Gate 16 — Predict-Observe-Explain (POE), Rule 16a.** Every concept proactively confronts its key wrong belief(s) INSIDE EPIC-L: the state teaching a misconception-bearing idea carries a `misconception_watch` entry + a predict→reveal beat (student predicts BEFORE the reveal). `misconception_watch` is the hook. Target ≥2 POE states per EPIC-L. Confirm EPIC-C is the reactive *fallback* (16b), not the only place the belief is confronted. Auditor-judgment now.
+- **Gate 17 — One new variable per state.** Each EPIC-L state introduces ≤1 new physical variable/symbol; a state introducing μs + threshold + inequality at once is overloaded → split. Auditor-judgment now (symbol-count heuristic warning is a later validator add).
+- **Gate 18 — Concrete before abstract.** First teaching state is a concrete visible scene; no general-formula-only state precedes a concrete one. Auditor-judgment now.
+- **Gate 19 — Coverage (machine-enforced, hard FAIL).** In `conceptJson.ts`: **19a** coverage_map required when assessment present; **19b** every `teaches_state` is a real EPIC-L state; **19c** by_state keys + listed q_ids are real; **19d** no orphan state (neither assessed nor in `non_assessed_states`); **19e** no uncovered question (every q placed in `by_state`); **19f** each `teaches_state` agrees with its `by_state` placement. **Auditor judgment:** `non_assessed_states` are TRULY non-teaching (hook / interactive sliders), not a dodge.
+- **Gate 20 — Quiz quality (machine + judgment).** Machine (`conceptJson.ts`): **20a** every wrong option has a `distractor_misconception` and the correct option is NOT a key; **20b** ≥3 distinct `tested_idea`; **20c** ≥1 question maps to the aha state; **20d** unique q_ids. **Auditor judgment (the real gate):** every distractor encodes a REAL documented student misconception (not arbitrary); the keyed answer is physically correct and unambiguous; `mastery_definition` is honest. **WARNING (not FAIL):** any question missing `parallel_form_stem` — identical pre/post stems measure recall, not learning.
+
+Gate 16 (and Rule 16a) apply to concepts authored/retrofitted **2026-05-30 or later**; earlier concepts exempt until next touch.
 
 ### Reporting addendum
 
