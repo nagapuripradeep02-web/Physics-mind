@@ -32,7 +32,7 @@ Payment: **₹500 per accepted Packet**, by UPI, within 48 hours of acceptance.
 1. **NEVER open a simulation before your First-Look session.** Your honest first impression is the most valuable data we collect, and it can only happen once. If you preview the sim, the Packet cannot be accepted. You will always receive the link only at the start of the session.
 2. **Every state gets a verdict.** Good / Minor issue / Major issue. "This state is good, here is why it works" is equally paid work — you are NOT paid more for finding more problems.
 3. **Be specific.** Every flag must say WHAT exactly, WHERE exactly, and WHY. See the examples in Section 6.
-4. **Every flag points to a timestamp** in your recording (mm:ss) so we can see the exact moment you mean.
+4. **Mark every problem with your VOICE: say "FLAG" out loud.** The moment you notice an issue, say it into the recording — *"Flag: state 4 — the arrows appear too fast."* Your spoken flag is the marker; we find it in the recording later. The **state number** is the address of every issue. Timestamps are filled later from the recording playback (approximate is fine).
 5. **Work independently.** Do not discuss a simulation with any other reviewer before you submit your sheet.
 6. **Honesty over politeness.** We are not looking for compliments. A defect you find today is a defect no student ever sees.
 
@@ -48,11 +48,13 @@ Payment: **₹500 per accepted Packet**, by UPI, within 48 hours of acceptance.
 - The simulation link is shared NOW, not before.
 - Watch it in **auto mode with narration ON**, from the first state to the last.
 - **Speak every thought aloud as it comes:** "this is clear", "wait, why did the arrow flip?", "this text is too small", "this state moved too fast for a student".
+- When something is a real problem, mark it with your voice: **"FLAG: state 3 — …"**. That's all — no screenshots, no writing during the session.
 - You may pause and replay. The founder stays silent — this is your moment, not a discussion.
 
 ### Step 3 — Teach it (Part B)
 - Now **mute the narration**. You are the teacher.
 - Teach the concept your own way, using the simulation as your blackboard: jump between states in any order, replay animations, move the sliders.
+- **Need to write or draw? Two tools are ready:** (1) **Zoom Annotate** — draw arrows, circles, labels directly ON TOP of the simulation. Please do this freely: wherever you feel the need to draw, the simulation is probably missing a visual, and your drawing tells us exactly what to add. (2) For derivations and longer writing, a **blank whiteboard tab** (Excalidraw / Zoom Whiteboard) is kept open beside the simulation — switch to it like you'd turn to the blackboard.
 - Your "student" (the founder, or later your real student) will ask questions — answer them as you would in a real class.
 
 ### Step 4 — Fill the Review Sheet (Part C)
@@ -62,7 +64,7 @@ Payment: **₹500 per accepted Packet**, by UPI, within 48 hours of acceptance.
   - **Minor** — works, but should be improved. Reason + suggested fix required.
   - **Major** — confusing, wrong, or broken for a student. Reason + suggested fix required.
 - Pick the problem category: *too fast / too crowded / missing visual / wrong emphasis / physics error / confusing narration / other*.
-- Add the recording timestamp (mm:ss) where the issue is visible.
+- **Timestamps:** fill the sheet with the recording open in any video player — scrub to the moment and copy the player's time. Approximate is fine ("around 12:40"). If you said "FLAG" aloud at that moment, you may leave the timestamp blank — your voice marker is enough.
 - Finish the sheet the same day or the next day, while memory is fresh.
 
 ### Step 5 — Submit
@@ -83,7 +85,7 @@ The founder checks the Packet against the recordings within 1–2 days and relea
 |---|---|
 | A state row left empty | Verdict every state, even if "Good" |
 | Vague reasons ("make it better", "more engaging") | Name the exact element + the exact problem |
-| No timestamps on flags | Note them while reviewing, not from memory |
+| Flag has neither a timestamp nor a spoken "FLAG" marker | Say "FLAG: state N" aloud during sessions, or scrub the recording when filling the sheet |
 | Simulation was opened before First-Look | Just don't — wait for the session |
 | Recording silent / too short / sim barely used | Check your mic at the start; teach properly |
 

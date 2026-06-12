@@ -12,13 +12,15 @@
 - [ ] Send her: `CONTRIBUTOR_GUIDE` + `CONTRIBUTOR_AGREEMENT` (PDF or the file). Ask for "I AGREE — [name, date]" on WhatsApp **before** the session.
 - [ ] Pick simulation #1 (recommend `magnetic_field_wire`). **Do NOT send her any sim link tonight.** The First-Look only counts if it is genuinely her first look.
 - [ ] Start `npm run dev` before the call; test the sim once yourself; close that tab.
-- [ ] Zoom: enable recording (local is fine) + remote control.
+- [ ] **Confirm the current state number/name is visible in the player UI.** If it isn't, prepare a one-page "state cheat-sheet" for her (state # + name + one line on what's on screen) so she can always address issues by state number.
+- [ ] Zoom: enable recording (local is fine) + remote control + **participant annotation** (Settings → In Meeting Basic → Annotation ON).
+- [ ] Open a blank **Excalidraw tab** (excalidraw.com — no login needed) next to the sim tab before sharing — this is her "blackboard" for derivations during the teaching pass.
 
 ## 1. Session agenda (~90 min, one simulation)
 
 | Time | What | Your job |
 |---|---|---|
-| 0–15 | Brief: what PhysicsMind is, what the data is used for, confirm agreement received, confirm ₹500/packet | Talk |
+| 0–15 | Brief: what PhysicsMind is, what the data is used for, confirm agreement received, confirm ₹500/packet. **Teach her the two conventions: say "FLAG: state N — …" aloud for every issue (her voice is the marker — no screenshots, no timestamps needed live), and Zoom Annotate / the Excalidraw tab are her board during the teaching pass** | Talk |
 | 15–20 | Start recording. Share screen, give her remote control. Open the sim NOW | Setup |
 | 20–45 | **First-Look**: auto mode, narration ON, she thinks aloud | **STAY SILENT.** Do not explain, defend, or coach. Note timestamps of her strongest reactions |
 | 45–80 | **Teaching pass**: she mutes TTS and teaches you as a student | Act like a real student: ask 2–3 honest questions ("why did it curve that way?"). Don't show product knowledge |
@@ -55,7 +57,18 @@ She works alone ONLY after **two consecutive Packets pass QA without rework**. S
 | Sim activity in logs before session time | Previewed the sim | First-Look invalid for that sim; use a different sim |
 | Quality drops on solo packets vs together packets | Effort discount when unobserved | Return to joint sessions for 1–2 sims |
 
-## 5. Payments & records
+## 5. Build list for the testing phase (priority order — nothing required for session 1)
+
+| # | Item | Size | When | What it replaces |
+|---|---|---|---|---|
+| 1 | Visible state badge in the player ("STATE 4 / 8") if not already shown | Tiny | This week | The paper cheat-sheet |
+| 2 | Time-boxed tunnel OR minimum security batch + small deploy | S | Before her solo phase | You hosting every session |
+| 3 | In-sim 🚩 flag button (one click logs {state, time, category}) — the Addendum-2 teacher flag button | S–M | Week 2–3 | The "FLAG aloud" convention |
+| 4 | Lesson Recorder v0 (in-app mic + sim event log, time-aligned) — already planned in Addendum 1 | M (1–2 wks) | When solo phase is stable | Zoom recording entirely — and it makes timestamps AUTOMATIC (every state change is logged with clock time, so flags self-localize) |
+
+Note: her Zoom annotations during teaching are DATA — wherever she draws on the sim, the sim is missing a visual (feeds the Addendum-12 derivation panel and missing-visual signals). Save annotated frames when QAing.
+
+## 6. Payments & records
 
 - ₹500 per accepted Packet (her caliber justified the premium over ₹400; cap ~₹700 if she negotiates).
 - Keep a simple ledger tab: date · sim · packet status · amount · UPI ref.
