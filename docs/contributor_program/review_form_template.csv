@@ -1,0 +1,9 @@
+Simulation,State #,State name,Verdict (Good/Minor/Major),Problem category,What exactly is the problem? (be specific: what element + where + why),Suggested fix,Recording timestamp (mm:ss),Notes (optional)
+magnetic_field_wire,1,,,,,,,
+magnetic_field_wire,2,,,,,,,
+magnetic_field_wire,3,,,,,,,
+magnetic_field_wire,4,,,,,,,
+magnetic_field_wire,5,,,,,,,
+magnetic_field_wire,6,,,,,,,
+magnetic_field_wire,7,,,,,,,
+magnetic_field_wire,8,,,,,,,
