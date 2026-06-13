@@ -1,6 +1,11 @@
-# Curriculum Architecture Proposal — v0.1 (AWAITING FOUNDER APPROVAL)
+# Curriculum Architecture Proposal — v0.1 (§8 DATA FIXES APPLIED 2026-06-13)
 
-> **Status: PROPOSAL.** Produced 2026-06-13 (Session 67) by the curriculum-architect pass over the
+> **Status: §8 data-hygiene items SOLVED (Batch 1, "core now"); build queue still awaiting build.**
+> Founder approved solving the §8 list on 2026-06-13. The catalog DATA fixes (T5 page, 7 cycle breaks,
+> T12 rename, transformer de-dup, rebuild, T50 finding) are DONE — see the resolution box in §8. The
+> Top-20 BUILD queue (§5) is unchanged and still flows into the authoring pipeline when building starts.
+>
+> **Status (original): PROPOSAL.** Produced 2026-06-13 (Session 67) by the curriculum-architect pass over the
 > full Stage-2 catalog. Nothing here edits the catalog or builds anything — this is the reviewable
 > plan per Rule 17 (offline, human-approved). On approval, items flow into the normal authoring
 > pipeline (architect → physics-author → json-author → quality-auditor, AUTHORING_PIPELINE.md).
@@ -282,3 +287,18 @@ manual-eye-only gate declared for 3D states.
 4. Approve the §3 reclassifications (minimum: RHR nano→atomic, needed by queue item #2).
 5. Verify-flag: T50 Communication Systems vs current NCERT/JEE syllabus.
 6. Note: exam-weight scores are from public exam analyses until E38 (PYQ Ingester) ships — re-score then.
+
+---
+
+### §8 RESOLUTION (Batch 1 applied 2026-06-13, scope = "core now, rest staged")
+
+| Item | Status | What was done |
+|---|---|---|
+| **D1 — T5 Vectors page** | ✅ DONE | Authored `docs/catalog/pilot-topic-5-vectors.md` (14 atomic + 5 nano, all already shipped; ids verbatim). Rebuild now resolves the bare `vector_resolution` references (22×) that were dangling. Chapter export `chapter-05-vectors.md` generated (catalog now 45 chapters). |
+| **D4 / §2.3 — 7 cycle breaks** | ✅ DONE | One Requires-cell edit each in T14, T17, T25, T39, T46(×2), T50. Rebuild confirms **"Chapters with circular prerequisites: none"** (was 7); global SCC check = 0. T25 broken in the correct direction (specific-heat is fundamental; calorimetry uses it). |
+| **D7 — transformer de-dup** | ✅ DONE | T39 `transformer_in_ac_atomic` re-scoped to the AC extension (now depends on T35 `transformer_atomic`, no longer restates the turn-ratio principle). Kept as a thin atomic — NOT demoted to nano, because it owns 3 child nanos (demotion → nano-under-nano). Non-destructive. |
+| **D8 — T12 rename** | ✅ DONE | `friction_drives_motion_misconception` → `static_friction_drives_motion` (teaches the positive concept; wrong belief is its Rule-16a opening beat). Single source edit; code `A26` references auto-resolve; no built JSON / src code used the id. |
+| **§3 RHR + dipole reclassification** | ✅ NO EDIT NEEDED | Both already correct in SOURCE: `magnetic_force_direction_right_hand_rule` is already `atomic` in `pilot-topic-36`; `electric_dipole_definition` is already split into atomic + 3 nanos. The proposal flagged them off a STALE export — the rebuild refreshed them. (Real residual T5 gap: `vector_cross_product` is unbuilt — recommended next T5 atomic, unblocks queue item #2.) |
+| **§8.5 — T50 syllabus** | ✅ NOTED | **Communication Systems was dropped from the rationalised NCERT Class-12 syllabus and is off-syllabus for JEE Main / NEET** (per knowledge through Jan 2026). Action: T50 parked at the very bottom of the build queue; **verify against the official 2026 syllabus PDF before any T50 build.** No catalog deletion. |
+| **Build mechanics** | ✅ DONE | Added `npm run build:catalog` (extract + 3 builders). Regenerated CSV / chapter MD / diamonds one-pager. |
+| **D2 full + D3 full** | ⏸ STAGED (next pass) | Full "Built in repo?" reconciliation for the ~48 kinematics/forces sims, and the full ~243-unresolved-reference normalization (incl. the 9× `vector_resolution_atomic` suffix-variant refs), deferred per the chosen scope. |
