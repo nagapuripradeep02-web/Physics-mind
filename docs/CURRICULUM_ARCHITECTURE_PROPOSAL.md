@@ -5,6 +5,16 @@
 > T12 rename, transformer de-dup, rebuild, T50 finding) are DONE — see the resolution box in §8. The
 > Top-20 BUILD queue (§5) is unchanged and still flows into the authoring pipeline when building starts.
 >
+> **⚠ "BUILT" CORRECTION (founder, 2026-06-13).** This proposal originally spoke of "67 built JSONs on
+> disk." That is FILE COUNT, not product. The **only real current product is the diamonds** (≈5 finished:
+> magnetic_field_wire, magnetic_force_moving_charge, biot_savart_law, torque_on_current_loop_in_field,
+> friction_static_kinetic) **+ magnetic_field_solenoid still in progress.** The other ~60 disk JSONs
+> (all vectors, kinematics, projectile, forces) are **OLD ARCHITECTURE / below the quality bar, set
+> aside** — rebuild-to-diamond candidates, NOT shipped lessons (the project's own Session-59 note: "of 63
+> built JSONs, only 4 are diamond-level"). Read every "built/shipped" mention below as "an old file exists
+> on disk," not "done." The build-ORDER queue (§5) is UNAFFECTED — it already front-loads finishing the
+> diamonds and treats almost everything else as not-yet-built.
+>
 > **Status (original): PROPOSAL.** Produced 2026-06-13 (Session 67) by the curriculum-architect pass over the
 > full Stage-2 catalog. Nothing here edits the catalog or builds anything — this is the reviewable
 > plan per Rule 17 (offline, human-approved). On approval, items flow into the normal authoring
@@ -13,7 +23,8 @@
 > **Evidence base:** all 1,542 catalog rows parsed programmatically from
 > `docs/exports/PhysicsMind_Concept_Catalog.csv` (713 atomic + 829 nano, 1,995 resolved prereq
 > edges); all 44 chapter pathway files read; cross-topic-dependency-matrix + stage-4-consolidation +
-> cognitive-error-prevention-index read; 67 built JSONs on disk reconciled against catalog IDs.
+> cognitive-error-prevention-index read; 67 JSON FILES on disk reconciled against catalog IDs (file
+> presence only — NOT a quality-bar "built" claim; see the BUILT CORRECTION box above).
 > Analysis script: throwaway, run from temp, not committed.
 
 ---
@@ -294,7 +305,7 @@ manual-eye-only gate declared for 3D states.
 
 | Item | Status | What was done |
 |---|---|---|
-| **D1 — T5 Vectors page** | ✅ DONE | Authored `docs/catalog/pilot-topic-5-vectors.md` (14 atomic + 5 nano, all already shipped; ids verbatim). Rebuild now resolves the bare `vector_resolution` references (22×) that were dangling. Chapter export `chapter-05-vectors.md` generated (catalog now 45 chapters). |
+| **D1 — T5 Vectors page** | ✅ DONE | Authored `docs/catalog/pilot-topic-5-vectors.md` (14 atomic + 5 nano; ids verbatim). **Marked OLD ARCHITECTURE / set aside — `In repo? = —` throughout, NOT shipped product** (per the BUILT CORRECTION box at top). Rebuild resolves the bare `vector_resolution` references (22×) that were dangling. Chapter export `chapter-05-vectors.md` generated (catalog now 45 chapters). |
 | **D4 / §2.3 — 7 cycle breaks** | ✅ DONE | One Requires-cell edit each in T14, T17, T25, T39, T46(×2), T50. Rebuild confirms **"Chapters with circular prerequisites: none"** (was 7); global SCC check = 0. T25 broken in the correct direction (specific-heat is fundamental; calorimetry uses it). |
 | **D7 — transformer de-dup** | ✅ DONE | T39 `transformer_in_ac_atomic` re-scoped to the AC extension (now depends on T35 `transformer_atomic`, no longer restates the turn-ratio principle). Kept as a thin atomic — NOT demoted to nano, because it owns 3 child nanos (demotion → nano-under-nano). Non-destructive. |
 | **D8 — T12 rename** | ✅ DONE | `friction_drives_motion_misconception` → `static_friction_drives_motion` (teaches the positive concept; wrong belief is its Rule-16a opening beat). Single source edit; code `A26` references auto-resolve; no built JSON / src code used the id. |
