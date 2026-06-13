@@ -5,6 +5,25 @@ Updated every session. Most recent entry at the top.
 
 ---
 
+## Session 67 — Curriculum architecture pass, the "only diamonds are real product" correction, and the full-curriculum build-out roadmap (2026-06-13)
+
+> ### Topic 1: The "built" correction — only the diamonds count
+> Founder corrected Claude's working model: the **only real, current product is ~5 diamonds** (T36 magnetism ×4 + T12 friction) **+ the solenoid still in progress.** The ~60 vector/kinematics/projectile/forces JSONs on disk are **OLD ARCHITECTURE** — an Apr–May batch built by an earlier, lower-bar process — and are **set aside, NOT product** (confirmed by git dates + the Session-59 record "of 63 built JSONs only 4 are diamond-level"). Key nuance: the difference is the *authoring method / quality bar*, not the JSON schema (a diamond and an old file look structurally near-identical). Decision: **just fix the labels** (no files moved/deleted) — the catalog now counts only the diamonds as built; the old files stay as rebuild-to-diamond skeletons. *(This corrected a framing error in the same session's catalog work, which had treated all 67 disk files as "built.")*
+>
+> ### Topic 2: Catalog made build-ready (data hygiene)
+> Ran a full curriculum-architect pass over the 44-chapter Stage-2 catalog (1,563 concepts) and fixed the data defects that would corrupt any build plan: authored the **missing T5 Vectors page** (the catalog's largest hole — `vector_resolution` is the most-required prerequisite in the whole catalog yet had zero rows), **broke 7 prerequisite cycles**, renamed a misleading concept id, de-duplicated the transformer, and added a repeatable `build:catalog` step. The catalog is now internally consistent (0 cycles) — a trustworthy substrate to plan a build against. *(The build-ORDER work this enabled is the real strategic output below.)*
+>
+> ### Topic 3: The full-curriculum build-out roadmap (V1-first) — the missing map
+> The catalog *list* was complete, but **nothing sequenced the 44 chapters into a build order** — my earlier architecture proposal only sequenced the first ~20 concepts. Wrote `docs/CURRICULUM_BUILD_ROADMAP.md`, the long-deferred "Stage-5 priority queue," establishing the strategic frame:
+> - **Two orders are different and both matter:** *teaching order* = the dependency DAG a student traverses (roots → modern); *build order* = impact-weighted, NOT strict dependency (prerequisites are advisory, Rule 23). That's *why* magnetism — late in the teaching DAG — was built first: visually rich, proves archetypes, anchors the contributor pipeline.
+> - **Phase 0 (the master lever):** finish + validate the solenoid (the M4 gate that *proves the build method works*), then build the patterns-library + auto-eval loop that drops a post-bootstrap concept from ~6 founder-hours to ~45 min. **Nothing scales until this exists** — it's what turns "a decade solo" into a tractable content engine.
+> - **Phase 1 = V1 foundation subset (~13 concepts):** complete the T36 Magnetism chapter (→ first *complete*, demo-able chapter + a full professor-packet set for Asmi) + the T11 Newton's-Laws spine (the single biggest foundation in the catalog, 47% misconception density). This is the near-term build target — proves the comprehension loop, not "build all 1,560."
+> - **Phases 2–8:** the complete dependency-ordered expansion of all 44 chapters (foundation completion → rest of mechanics → waves → thermo/fluids → electrostatics & circuits → optics → modern), each tagged new-build vs rebuild and by visual archetype.
+> - **Honest scale:** V1 ≈ a few months; the full curriculum is a **multi-year content engine** — which is the moat (a content company, not a one-time build). Reaffirms the founder's own "V1 = ~15 concepts, don't think 1,129."
+> - **Immediate next action:** drive the solenoid to *properly done* (visual gate + professor-ready).
+
+---
+
 ## Session 66 — Founder re-derives the strategy from first principles and sharpens it: no standalone student release until the AI professor exists; teacher recordings become the AI professor's training corpus (2026-06-11)
 
 > Founder dictated a full strategic statement: (1) **no "general physics"** — curriculum-lock to India and expand outward (Indian → other curricula is downhill; the reverse is uphill); (2) **a student cannot understand a bare simulation** — without a teacher or an AI tutor, sims+TTS alone don't teach, so *why release sims to students at all yet?*; (3) the **vision restated** — a personalized-education product: a ChatGPT-like universal interface (assignments, weak-spot analysis, exam scheduling) + a per-simulation **voice AI professor** that controls the sim, answers queries, runs Feynman-back ("close the sim, explain it to me") and "close your eyes, imagine" guided imagery; (4) the **new sequencing** — release sims to TEACHERS only; collect teacher feedback, behavior, and **recordings of how they teach with the sims**; iterate ~1 year; THEN attach the AI voice professor and go to students.
