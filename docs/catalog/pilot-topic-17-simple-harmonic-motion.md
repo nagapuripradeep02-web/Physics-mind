@@ -127,7 +127,7 @@ $ Glob src/data/concepts/*.json | grep -iE "(shm|harmonic|oscillation|pendulum|s
 
 | ID | Concept | Type | Sim? | In repo? | Requires | Required-by | Notes |
 |---|---|---|---|---|---|---|---|
-| **A18** | `simple_pendulum_period_formula` | atomic | ✅ | — | A1, A21, free_fall [T6], small_angle_approximation | A19, A20 | T = 2π√(L/g). Per S-G4 — distinct atomic from physical pendulum. NCERT §14.8.2, HCV1 §12.8. **Indian-context anchor:** "What length of pendulum ticks seconds?" — NCERT Ex 14.9, answer L = 1 m. |
+| **A18** | `simple_pendulum_period_formula` | atomic | ✅ | — | A1, free_fall [T6], small_angle_approximation | A19, A20 | T = 2π√(L/g). Per S-G4 — distinct atomic from physical pendulum. NCERT §14.8.2, HCV1 §12.8. **Indian-context anchor:** "What length of pendulum ticks seconds?" — NCERT Ex 14.9, answer L = 1 m. **Cycle break (2026-06-13):** removed A21 (angular-SHM eqn) from Requires — the simple pendulum is derived directly from linear F=−kx + small-angle approx, not from the general angular-SHM equation. Leaves clean A18→A20→A21. |
 | ↳ A18.n1 | `small_angle_sin_theta_approx_theta` | nano | ✅ | — | A18 | A18, A20, A21 | sin θ ≈ θ for θ < 0.349 rad (20°). Justifies linearization. NCERT Table 14.1 + safety bound at 50° for ≤5% error. |
 | ↳ A18.n2 | `pendulum_independent_of_mass_and_amplitude` | nano | ✅ | — | A18 | — | T does not depend on bob mass or (small) amplitude — the Galileo observation. Per NCERT 14.8.2 introductory paragraph. |
 | **A19** | `g_determination_via_pendulum_in_lab` | atomic | ✅ | — | A18 | — | g = 4π²L/T². Lab procedure: measure 20 oscillations to reduce stopwatch error. HCV1 §12.8 (Determination of g). |
