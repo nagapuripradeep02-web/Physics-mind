@@ -714,6 +714,231 @@
       }
     },
     {
+      "num": 5,
+      "slug": "vectors",
+      "title": "Vectors",
+      "file": "pilot-topic-5-vectors.md",
+      "rows": [
+        {
+          "id": "unit_vector",
+          "concept": "A vector of magnitude 1 that carries direction only; any vector = (magnitude) × (unit vector). Notation â = A/\\|A\\|. The basis of all component work.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "—",
+          "requiredBy": "[vector_head_to_tail, equal_vs_parallel, vector_resolution, unit_vector_form]",
+          "notes": "DAG root; alias target of legacy `vector_basics`",
+          "code": ""
+        },
+        {
+          "id": "scalar_multiplication",
+          "concept": "Multiplying a vector by scalar k scales its magnitude by \\|k\\| and keeps direction if k>0, reverses it if k<0.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "—",
+          "requiredBy": "[negative_vector, parallelogram_law_test]",
+          "notes": "foundation operation",
+          "code": ""
+        },
+        {
+          "id": "negative_vector",
+          "concept": "−A is A with the same magnitude but opposite direction (the k=−1 case of scalar multiplication). A + (−A) = 0.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[scalar_multiplication]",
+          "requiredBy": "[angle_between_vectors]",
+          "notes": "sign-of-a-vector scaffold",
+          "code": ""
+        },
+        {
+          "id": "vector_head_to_tail",
+          "concept": "Geometric (triangle) addition: place the tail of B at the head of A; the arrow from A's tail to B's head is the resultant. Generalises to the polygon law.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[unit_vector]",
+          "requiredBy": "[resultant_formula, parallelogram_law_test]",
+          "notes": "foundational addition; alias-related to `vector_addition`",
+          "code": ""
+        },
+        {
+          "id": "equal_vs_parallel",
+          "concept": "Equal vectors: same magnitude AND direction (position irrelevant). Parallel: same direction, any magnitude. Distinguishes \"equal\" from \"parallel/collinear.\"",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[unit_vector]",
+          "requiredBy": "—",
+          "notes": "**cognitive_error_target:** \"vectors at different points can't be equal\"",
+          "code": ""
+        },
+        {
+          "id": "angle_between_vectors",
+          "concept": "Protocol: bring both vectors to a common tail, arrows pointing outward; the angle between them is ≤ 180°. Critical for dot/cross products and resultant direction.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[negative_vector]",
+          "requiredBy": "[resultant_formula, dot_product, vector_resolution]",
+          "notes": "**cognitive_error_target:** \"measure the angle without moving both to one tail\"",
+          "code": ""
+        },
+        {
+          "id": "parallelogram_law_test",
+          "concept": "The definitive test for whether a quantity is a vector: it must add by the parallelogram (equivalently triangle) law AND obey scalar multiplication. Direction alone is not enough.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[vector_head_to_tail, scalar_multiplication]",
+          "requiredBy": "[current_not_vector, pressure_scalar, area_vector]",
+          "notes": "V-G3; the \"is it a vector?\" gate",
+          "code": ""
+        },
+        {
+          "id": "current_not_vector",
+          "concept": "Electric current has a direction (along the wire) yet is a SCALAR — at a junction currents add algebraically (Kirchhoff), not by the parallelogram law. The counterexample that defines \"vector.\"",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[parallelogram_law_test]",
+          "requiredBy": "[drift_velocity(T34)]",
+          "notes": "V-G2; alias target of legacy `scalar_vs_vector`; **cognitive_error_target:** \"anything with direction is a vector\"",
+          "code": ""
+        },
+        {
+          "id": "pressure_scalar",
+          "concept": "Pressure pushes in all directions at a point yet is a SCALAR; the vector is the FORCE on a chosen surface, F = P·(A n̂). Distinguishes the scalar field from the vector it generates.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[current_not_vector]",
+          "requiredBy": "[fluid_pressure_atomic(T20)]",
+          "notes": "V-G2; **cognitive_error_target:** \"pressure has a direction so it's a vector\"",
+          "code": ""
+        },
+        {
+          "id": "area_vector",
+          "concept": "Area is a scalar (size of a surface) but can be promoted to a vector A = A n̂ (magnitude × outward normal) — the form used for flux. Two faces of one quantity.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[parallelogram_law_test]",
+          "requiredBy": "[electric_flux(T30), magnetic_flux_definition(T35)]",
+          "notes": "bridge to flux chapters",
+          "code": ""
+        },
+        {
+          "id": "resultant_formula",
+          "concept": "Magnitude of A + B from the law of cosines: \\|R\\| = √(A² + B² + 2AB cos θ). Why scalar addition fails when θ ≠ 0.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[vector_head_to_tail, angle_between_vectors]",
+          "requiredBy": "[special_cases, range_inequality, direction_of_resultant]",
+          "notes": "V-G4; alias-related to `vector_addition`",
+          "code": ""
+        },
+        {
+          "id": "special_cases",
+          "concept": "The three shortcuts: θ=0° → R = A+B; θ=90° → R = √(A²+B²); θ=180° → R = \\|A−B\\|.",
+          "type": "nano",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[resultant_formula]",
+          "requiredBy": "—",
+          "notes": "parent: resultant_formula; built as a fuller sim (V-G7)",
+          "code": ""
+        },
+        {
+          "id": "range_inequality",
+          "concept": "The resultant is bounded: \\|A−B\\| ≤ R ≤ A+B. Maximum when parallel, minimum when antiparallel.",
+          "type": "nano",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[resultant_formula]",
+          "requiredBy": "—",
+          "notes": "parent: resultant_formula; built as a fuller sim (V-G7)",
+          "code": ""
+        },
+        {
+          "id": "direction_of_resultant",
+          "concept": "The resultant's direction: tan α = B sin θ / (A + B cos θ), measured from A.",
+          "type": "nano",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[resultant_formula]",
+          "requiredBy": "—",
+          "notes": "parent: resultant_formula; built as a fuller sim (V-G7)",
+          "code": ""
+        },
+        {
+          "id": "vector_resolution",
+          "concept": "Splitting a vector into perpendicular components A_x = A cos θ, A_y = A sin θ; choosing axes to simplify a problem; recovering the vector by Pythagoras. The workhorse of all 2D physics.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[unit_vector, angle_between_vectors]",
+          "requiredBy": "[inclined_plane_components, negative_components, unit_vector_form, dot_product, position_frame_of_reference_atomic(T6), sign_convention_1d_atomic(T6), vector_kinematics_2d_atomic(T7), projectile_decoupling_atomic(T8), free_body_diagram(T11), magnetic_force_direction_right_hand_rule(T36), antenna_range_formula(T50)]",
+          "notes": "V-G5; alias target of legacy `vector_components`; **the most-required concept in the whole catalog**",
+          "code": ""
+        },
+        {
+          "id": "inclined_plane_components",
+          "concept": "Resolving weight on a slope: mg sin θ along the incline, mg cos θ perpendicular. The canonical resolution application.",
+          "type": "nano",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[vector_resolution]",
+          "requiredBy": "[block_on_incline(T11), friction_block_on_inclined_plane(T12)]",
+          "notes": "parent: vector_resolution; built as a fuller sim (V-G7)",
+          "code": ""
+        },
+        {
+          "id": "negative_components",
+          "concept": "Components carry signs that track direction (e.g. a vector in the 2nd quadrant has negative x-component); sign ≠ size.",
+          "type": "nano",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[vector_resolution]",
+          "requiredBy": "—",
+          "notes": "parent: vector_resolution; sign-discipline scaffold (V-G7)",
+          "code": ""
+        },
+        {
+          "id": "unit_vector_form",
+          "concept": "Writing a vector in î, ĵ, k̂ form: A = A_x î + A_y ĵ + A_z k̂. The algebraic representation behind component addition and products.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[unit_vector, vector_resolution]",
+          "requiredBy": "[dot_product]",
+          "notes": "the algebra form of resolution",
+          "code": ""
+        },
+        {
+          "id": "dot_product",
+          "concept": "Scalar product A·B = \\|A\\|\\|B\\| cos θ = A_x B_x + A_y B_y + A_z B_z. Geometric meaning (projection/overlap); zero ⇔ perpendicular.",
+          "type": "atomic",
+          "sim": "yes",
+          "inRepo": "yes",
+          "requires": "[vector_resolution, angle_between_vectors]",
+          "requiredBy": "[work_done_by_constant_force(T13)]",
+          "notes": "gateway to work, flux, power",
+          "code": ""
+        }
+      ],
+      "counts": {
+        "atomic": 14,
+        "nano": 5,
+        "other": 0,
+        "total": 19,
+        "simYes": 19,
+        "repoY": 19
+      }
+    },
+    {
       "num": 6,
       "slug": "kinematics-1d",
       "title": "Kinematics 1d",
@@ -2880,7 +3105,7 @@
           "sim": "yes",
           "inRepo": "yes",
           "requires": "friction_as_contact_force_component",
-          "requiredBy": "kinetic_friction_formula_f_equals_mu_k_N, static_friction_self_adjusting, mu_static_greater_than_mu_kinetic, friction_direction_opposes_relative_motion, friction_drives_motion_misconception",
+          "requiredBy": "kinetic_friction_formula_f_equals_mu_k_N, static_friction_self_adjusting, mu_static_greater_than_mu_kinetic, friction_direction_opposes_relative_motion, static_friction_drives_motion",
           "notes": "**Sources:** HCV1 §6.2–6.3, NCERT §5.9.1, DCM1 Type 1 (Concept). **v1?:** TRUE. EPIC-C: misconception \"all friction is the same\" → confronted.",
           "code": "A2"
         },
@@ -2935,7 +3160,7 @@
           "sim": "yes",
           "inRepo": "yes",
           "requires": "static_vs_kinetic_friction_distinction, `newton_first_law` (Topic 11)",
-          "requiredBy": "limiting_static_friction_max_value, friction_drives_motion_misconception",
+          "requiredBy": "limiting_static_friction_max_value, static_friction_drives_motion",
           "notes": "**Sources:** HCV1 §6.3 (\"self-adjustable\"), NCERT §5.9.1 (\"self-adjusting frictional force\"). **v1?:** TRUE. Key EPIC-C: misconception \"friction is always μN\" → wrong (only at limit).",
           "code": "A4"
         },
@@ -2968,7 +3193,7 @@
           "sim": "yes",
           "inRepo": "yes",
           "requires": "static_friction_self_adjusting, kinetic_friction_formula_f_equals_mu_k_N",
-          "requiredBy": "mu_static_greater_than_mu_kinetic, angle_of_repose, friction_drives_motion_misconception",
+          "requiredBy": "mu_static_greater_than_mu_kinetic, angle_of_repose, static_friction_drives_motion",
           "notes": "**Sources:** HCV1 §6.3 + Eq. 6.5, NCERT Eq. 5.13/5.14, DCM1 Concept block. **v1?:** TRUE.",
           "code": "A5"
         },
@@ -3001,7 +3226,7 @@
           "sim": "yes",
           "inRepo": "yes",
           "requires": "kinetic_friction_formula_f_equals_mu_k_N, limiting_static_friction_max_value",
-          "requiredBy": "friction_drives_motion_misconception",
+          "requiredBy": "static_friction_drives_motion",
           "notes": "**Sources:** HCV1 §6.3 (\"found experimentally that μ_k is less than μ_s\"), NCERT §5.9.1, coefficient table HCV1 §6.6. **v1?:** TRUE. Real-world: explains ABS brakes.",
           "code": "A6"
         },
@@ -3012,7 +3237,7 @@
           "sim": "yes",
           "inRepo": "—",
           "requires": "static_vs_kinetic_friction_distinction, `relative_velocity` (Topic 5)",
-          "requiredBy": "friction_drives_motion_misconception, friction_in_accelerating_frame, conveyor_belt_friction",
+          "requiredBy": "static_friction_drives_motion, friction_in_accelerating_frame, conveyor_belt_friction",
           "notes": "**Sources:** HCV1 §6.2 (\"direction of f_k on the body … is opposite to the velocity of the body with respect to the surface\"); NCERT §5.9.1 (\"frictional force opposes relative motion\"); DCM1 Type 7 (explicit, two-block case). **v1?:** TRUE. **CRITICAL misconception:** \"friction always opposes motion\" → wrong (it opposes RELATIVE motion; can drive motion — see A26).",
           "code": "A7"
         },
@@ -3375,7 +3600,7 @@
           "sim": "yes",
           "inRepo": "—",
           "requires": "friction_in_accelerating_frame, static_friction_self_adjusting, friction_direction_opposes_relative_motion",
-          "requiredBy": "friction_in_accelerating_frame, friction_drives_motion_misconception",
+          "requiredBy": "friction_in_accelerating_frame, static_friction_drives_motion",
           "notes": "parent: A20. Sources: NCERT §5.9.1 explicit (\"static friction provides the same acceleration to the box as that of the train\").",
           "code": "N20.2"
         },
@@ -3501,14 +3726,14 @@
           "code": "A25"
         },
         {
-          "id": "friction_drives_motion_misconception",
+          "id": "static_friction_drives_motion",
           "concept": "Friction can ACCELERATE objects (not just oppose motion) — cars accelerate due to road friction; walking relies on friction",
           "type": "atomic",
           "sim": "yes",
           "inRepo": "—",
           "requires": "static_friction_self_adjusting, friction_direction_opposes_relative_motion, static_friction_provides_acceleration, `newton_third_law` (Topic 11)",
           "requiredBy": "—",
-          "notes": "**Sources:** HCV1 §6.5 (atomic-level explanation has the famous \"general misconception that friction always opposes motion\" callout); NCERT §5.9.1 (\"static friction is important in daily life. We are able to walk because of friction. It is impossible for a car to move on a very slippery road. … friction between the tyres and the road provides the necessary external force to accelerate the car\"); DCM1 Level-1 Q11 (assertion: \"frictional force exerted by surface on the person is opposite to his motion\" — FALSE; force is in the direction of motion). **v1?:** TRUE — **CRITICAL EPIC-C** atomic. STATE_1 shows the wrong belief: \"friction always opposes motion.\" Counter-state shows: car wheel pushing back on road, road pushing forward on car (Newton's 3rd), so friction drives car forward.",
+          "notes": "**Renamed 2026-06-13** from `friction_drives_motion_misconception` — the id implied a misconception sim, but the atomic teaches the POSITIVE concept (static friction drives motion); the wrong belief is just its EPIC-L opening beat (Rule 16a). Code A26 references unchanged. **Sources:** HCV1 §6.5 (atomic-level explanation has the famous \"general misconception that friction always opposes motion\" callout); NCERT §5.9.1 (\"static friction is important in daily life. We are able to walk because of friction. It is impossible for a car to move on a very slippery road. … friction between the tyres and the road provides the necessary external force to accelerate the car\"); DCM1 Level-1 Q11 (assertion: \"frictional force exerted by surface on the person is opposite to his motion\" — FALSE; force is in the direction of motion). **v1?:** TRUE — **CRITICAL EPIC-C** atomic. STATE_1 shows the wrong belief: \"friction always opposes motion.\" Counter-state shows: car wheel pushing back on road, road pushing forward on car (Newton's 3rd), so friction drives car forward.",
           "code": "A26"
         },
         {
@@ -3517,8 +3742,8 @@
           "type": "nano",
           "sim": "yes",
           "inRepo": "—",
-          "requires": "friction_drives_motion_misconception, friction_direction_opposes_relative_motion, `newton_third_law`",
-          "requiredBy": "friction_drives_motion_misconception",
+          "requires": "static_friction_drives_motion, friction_direction_opposes_relative_motion, `newton_third_law`",
+          "requiredBy": "static_friction_drives_motion",
           "notes": "parent: A26. Sources: NCERT §5.9.1 (Fig 5.14 banked-road + car wheel discussion). `granularity_question: candidate_micro` — single key insight.",
           "code": "N26.1"
         },
@@ -3528,8 +3753,8 @@
           "type": "nano",
           "sim": "yes",
           "inRepo": "—",
-          "requires": "friction_drives_motion_misconception, static_friction_on_driven_wheel",
-          "requiredBy": "friction_drives_motion_misconception",
+          "requires": "static_friction_drives_motion, static_friction_on_driven_wheel",
+          "requiredBy": "static_friction_drives_motion",
           "notes": "parent: A26. Sources: NCERT §5.9.1 (\"we are able to walk because of friction\").",
           "code": "N26.2"
         },
@@ -4552,9 +4777,9 @@
           "type": "atomic",
           "sim": "yes",
           "inRepo": "—",
-          "requires": "[conservation_of_momentum_atomic, coefficient_of_restitution_atomic]",
-          "requiredBy": "[perfectly_inelastic_collision_atomic, real_world_collisions_nano]",
-          "notes": "MC-G6; **cognitive_error_target:** \"real collisions are elastic\" → most real collisions are partly inelastic",
+          "requires": "[conservation_of_momentum_atomic]",
+          "requiredBy": "[perfectly_inelastic_collision_atomic, real_world_collisions_nano, coefficient_of_restitution_atomic]",
+          "notes": "MC-G6; **cognitive_error_target:** \"real collisions are elastic\" → most real collisions are partly inelastic. **Cycle break (2026-06-13):** removed `coefficient_of_restitution_atomic` from Requires — teach the phenomenon (KE lost) first; e quantifies it (now in Required-by).",
           "code": ""
         },
         {
@@ -6059,13 +6284,13 @@
         },
         {
           "id": "simple_pendulum_period_formula",
-          "concept": "T = 2π√(L/g). Per S-G4 — distinct atomic from physical pendulum. NCERT §14.8.2, HCV1 §12.8. **Indian-context anchor:** \"What length of pendulum ticks seconds?\" — NCERT Ex 14.9, answer L = 1 m.",
+          "concept": "T = 2π√(L/g). Per S-G4 — distinct atomic from physical pendulum. NCERT §14.8.2, HCV1 §12.8. **Indian-context anchor:** \"What length of pendulum ticks seconds?\" — NCERT Ex 14.9, answer L = 1 m. **Cycle break (2026-06-13):** removed A21 (angular-SHM eqn) from Requires — the simple pendulum is derived directly from linear F=−kx + small-angle approx, not from the general angular-SHM equation. Leaves clean A18→A20→A21.",
           "type": "atomic",
           "sim": "yes",
           "inRepo": "—",
-          "requires": "shm_definition_force_minus_kx, angular_shm_equation_gamma_minus_k_theta, free_fall [T6], small_angle_approximation",
+          "requires": "shm_definition_force_minus_kx, free_fall [T6], small_angle_approximation",
           "requiredBy": "g_determination_via_pendulum_in_lab, physical_pendulum_period_formula",
-          "notes": "T = 2π√(L/g). Per S-G4 — distinct atomic from physical pendulum. NCERT §14.8.2, HCV1 §12.8. **Indian-context anchor:** \"What length of pendulum ticks seconds?\" — NCERT Ex 14.9, answer L = 1 m.",
+          "notes": "T = 2π√(L/g). Per S-G4 — distinct atomic from physical pendulum. NCERT §14.8.2, HCV1 §12.8. **Indian-context anchor:** \"What length of pendulum ticks seconds?\" — NCERT Ex 14.9, answer L = 1 m. **Cycle break (2026-06-13):** removed A21 (angular-SHM eqn) from Requires — the simple pendulum is derived directly from linear F=−kx + small-angle approx, not from the general angular-SHM equation. Leaves clean A18→A20→A21.",
           "code": "A18"
         },
         {
@@ -8661,9 +8886,9 @@
           "type": "atomic",
           "sim": "yes",
           "inRepo": "—",
-          "requires": "[calorimetry_principle_atomic, internal_energy_atomic(T26)]",
-          "requiredBy": "[latent_heat_atomic]",
-          "notes": "TP-G4; **closes T26 forward-edge** (Cv defined → operational Q = mCΔT form)",
+          "requires": "[internal_energy_atomic(T26)]",
+          "requiredBy": "[latent_heat_atomic, calorimetry_principle_atomic]",
+          "notes": "TP-G4; **closes T26 forward-edge** (Cv defined → operational Q = mCΔT form). **Cycle break (2026-06-13):** removed `calorimetry_principle_atomic` from Requires — Q=mCΔT (specific heat) is the fundamental definition; calorimetry (heat-lost = heat-gained) USES it, so calorimetry requires specific-heat, not the reverse.",
           "code": ""
         },
         {
@@ -13677,9 +13902,9 @@
           "type": "atomic",
           "sim": "yes",
           "inRepo": "—",
-          "requires": "[ac_resistor_circuit, ac_inductor_circuit, ac_capacitor_circuit, phasor_representation_atomic, impedance_triangle_nano]",
-          "requiredBy": "[resonance_in_lcr_atomic, power_in_ac_circuit_atomic]",
-          "notes": "Combines all 3 previous atomics via vector addition of voltage phasors",
+          "requires": "[ac_resistor_circuit, ac_inductor_circuit, ac_capacitor_circuit, phasor_representation_atomic]",
+          "requiredBy": "[resonance_in_lcr_atomic, power_in_ac_circuit_atomic, impedance_triangle_nano]",
+          "notes": "Combines all 3 previous atomics via vector addition of voltage phasors. **Cycle break (2026-06-13):** removed `impedance_triangle_nano` from Requires — a nano cannot precede its parent atomic; the triangle is DERIVED from the LCR result (now in Required-by).",
           "code": ""
         },
         {
@@ -13794,13 +14019,13 @@
         },
         {
           "id": "transformer_in_ac_atomic",
-          "concept": "V_s/V_p = N_s/N_p (turn ratio); I_s/I_p = N_p/N_s (ideal); soft-iron core minimises hysteresis loss; step-up vs step-down",
+          "concept": "**AC-grid extension of `transformer_atomic` (T35)** — the core V_s/V_p = N_s/N_p turn-ratio principle is owned by T35; THIS row adds only the AC-specific physics: soft-iron core minimises hysteresis loss, lamination cuts eddy losses, and step-up/step-down in the 50 Hz grid context.",
           "type": "atomic",
           "sim": "yes",
           "inRepo": "—",
-          "requires": "[mutual_inductance(T35), hysteresis_loop_atomic(T37), soft_vs_hard_magnetic_materials_nano(T37), faradays_law(T35)]",
+          "requires": "[transformer_atomic(T35), hysteresis_loop_atomic(T37), soft_vs_hard_magnetic_materials_nano(T37)]",
           "requiredBy": "[transformer_losses_nano, ac_traction_application_nano]",
-          "notes": "AC-G7; **closes T37 hysteresis forward-edge** + extends T35 transformer atomic",
+          "notes": "AC-G7; **closes T37 hysteresis forward-edge**. **De-dup 2026-06-13:** was a near-duplicate of T35 `transformer_atomic`; re-scoped to the AC extension (depends on T35, no longer restates the turn-ratio principle). Kept as a thin atomic — NOT demoted to nano because it owns 3 child nanos (losses / step-up-down / traction); demotion would create nano-under-nano.",
           "code": ""
         },
         {
@@ -16039,9 +16264,9 @@
           "type": "atomic",
           "sim": "yes",
           "inRepo": "—",
-          "requires": "[`electron_emission_modes`]",
-          "requiredBy": "[`einstein_photoelectric_equation`, `threshold_frequency_v_zero`]",
-          "notes": "NCERT §11.2 + Table 11.1. The energy barrier electrons must overcome.",
+          "requires": "—",
+          "requiredBy": "[`einstein_photoelectric_equation`, `threshold_frequency_v_zero`, `electron_emission_modes`]",
+          "notes": "NCERT §11.2 + Table 11.1. The energy barrier electrons must overcome. **Cycle break (2026-06-13):** removed `electron_emission_modes` from Requires — φ₀ is an independent material property; the emission modes presuppose it (now in Required-by).",
           "code": ""
         },
         {
@@ -16127,9 +16352,9 @@
           "type": "atomic",
           "sim": "yes",
           "inRepo": "—",
-          "requires": "[`work_function_phi_zero`, `einstein_photoelectric_equation`]",
-          "requiredBy": "—",
-          "notes": "NCERT eq 11.3 + §11.4.3. Cs ν₀ = 5.16 × 10¹⁴ Hz (visible); Pt ν₀ = UV.",
+          "requires": "[`work_function_phi_zero`]",
+          "requiredBy": "[`einstein_photoelectric_equation`]",
+          "notes": "NCERT eq 11.3 + §11.4.3. Cs ν₀ = 5.16 × 10¹⁴ Hz (visible); Pt ν₀ = UV. **Cycle break (2026-06-13):** removed `einstein_photoelectric_equation` from Requires — the threshold is the OBSERVATION; Einstein's equation explains it. Teaching order: threshold observed → wave theory fails → Einstein resolves.",
           "code": ""
         },
         {
@@ -17412,9 +17637,9 @@
           "type": "atomic",
           "sim": "yes",
           "inRepo": "—",
-          "requires": "[bandwidth_signal_vs_channel, antenna_range_formula]",
-          "requiredBy": "[satellite_communication, frequency_modulation]",
-          "notes": "Indian-anchor: FM Rainbow 102.6 MHz",
+          "requires": "[bandwidth_signal_vs_channel]",
+          "requiredBy": "[satellite_communication, frequency_modulation, antenna_range_formula]",
+          "notes": "Indian-anchor: FM Rainbow 102.6 MHz. **Cycle break (2026-06-13):** removed `antenna_range_formula` from Requires — space-wave (line-of-sight) is the parent mode; the range formula quantifies it (now in Required-by).",
           "code": ""
         },
         {
@@ -17605,12 +17830,12 @@
     }
   ],
   "grand": {
-    "atomic": 713,
-    "nano": 831,
+    "atomic": 727,
+    "nano": 836,
     "other": 0,
-    "simYes": 1398,
-    "inRepoYes": 9
+    "simYes": 1417,
+    "inRepoYes": 28
   },
-  "fileCount": 44,
-  "uniqueIds": 1542
+  "fileCount": 45,
+  "uniqueIds": 1561
 }

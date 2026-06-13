@@ -56,7 +56,7 @@ graph TD
 - **`lc_oscillations_atomic`** — Energy oscillates between L (½LI²) and C (½CV²) at ω = 1/√(LC); analogous to SHM with q ↔ x
   - ↳ `q_obeys_shm_equation_nano` — d²q/dt² = −q/(LC); compare to d²x/dt² = −ω²x with ω² = 1/LC
   - ↳ `energy_partition_oscillation_nano` — At t=0 all energy in C; at quarter-period all in L; full period returns; ½LI₀² = ½CV₀²
-- **`transformer_in_ac_atomic`** — V_s/V_p = N_s/N_p (turn ratio); I_s/I_p = N_p/N_s (ideal); soft-iron core minimises hysteresis loss; step-up vs step-down
+- **`transformer_in_ac_atomic`** — **AC-grid extension of `transformer_atomic` (T35)** — the core V_s/V_p = N_s/N_p turn-ratio principle is owned by T35; THIS row adds only the AC-specific physics: soft-iron core minimises hysteresis loss, lamination cuts eddy losses, and step-up/step-down in the 50 Hz grid context.
   - ↳ `transformer_losses_nano` — 4 loss mechanisms: copper (I²R), hysteresis (T37 area-of-B-H-loop), eddy currents (T35 → laminated core), flux leakage. Efficiency η typically 96-99%
   - ↳ `step_up_vs_step_down_nano` — N_s > N_p → step-up (high-voltage transmission); N_s < N_p → step-down (consumer end). India: 11 kV / 33 kV / 132 kV / 220 kV / 400 kV / 765 kV grid
   - ↳ `ac_traction_application_nano` — Indian Railways: 25 kV / 50 Hz overhead → on-board step-down + rectifier + traction motor. ~70% of route-km electrified

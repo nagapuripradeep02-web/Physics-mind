@@ -1,6 +1,6 @@
 # PhysicsMind — Highest-Impact ("Diamond") Simulations
 
-> **For physics-teacher review — start here.** These are the **68 highest-leverage simulations** out of the full 1544-concept catalogue: the "aha" moments where a single well-built interactive does the most to create real understanding (and break the most common wrong belief).
+> **For physics-teacher review — start here.** These are the **68 highest-leverage simulations** out of the full 1563-concept catalogue: the "aha" moments where a single well-built interactive does the most to create real understanding (and break the most common wrong belief).
 
 **The ask:** for each one — what is the cleanest demonstration, the exact moment of insight, and the misconception it must shatter? These are the ones worth designing most carefully.
 

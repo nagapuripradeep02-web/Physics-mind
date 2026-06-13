@@ -7,8 +7,6 @@
 
 **Foundations (teach first, nothing in this chapter comes before them):** shm_definition_force_minus_kx
 
-> ⚠ **5 concept(s) have circular prerequisites** in the source catalogue (marked ⟲ below) — i.e. they list each other as prerequisites. The level placement for these is a best-effort break of the loop; worth a human review of the intended order.
-
 ## Concept dependency graph (atomic backbone)
 
 ```mermaid
@@ -66,7 +64,6 @@ graph TD
   c5 --> c16
   c0 --> c16
   c0 --> c17
-  c20 --> c17
   c17 --> c18
   c17 --> c19
   c0 --> c20
@@ -95,6 +92,9 @@ graph TD
 
 - **`shm_acceleration_equals_minus_omega_squared_x`** — a = −ω²x. From a = F/m + F = −kx, ω² = k/m. Maximum at extremes, zero at mean.
   - ↳ `a_x_graph_straight_line_negative_slope` — a−x is a line through origin, slope −ω². DCM2 14.2 (Fig 14.5) canonical figure.
+- **`simple_pendulum_period_formula`** — T = 2π√(L/g). Per S-G4 — distinct atomic from physical pendulum. NCERT §14.8.2, HCV1 §12.8. **Indian-context anchor:** "What length of pendulum ticks seconds?" — NCERT Ex 14.9, answer L = 1 m. **Cycle break (2026-06-13):** removed A21 (angular-SHM eqn) from Requires — the simple pendulum is derived directly from linear F=−kx + small-angle approx, not from the general angular-SHM equation. Leaves clean A18→A20→A21.
+  - ↳ `small_angle_sin_theta_approx_theta` — sin θ ≈ θ for θ < 0.349 rad (20°). Justifies linearization. NCERT Table 14.1 + safety bound at 50° for ≤5% error.
+  - ↳ `pendulum_independent_of_mass_and_amplitude` — T does not depend on bob mass or (small) amplitude — the Galileo observation. Per NCERT 14.8.2 introductory paragraph.
 - **`damping_force_proportional_to_velocity`** — F_d = −bv. Total force on block: m d²x/dt² + b dx/dt + kx = 0. NCERT §14.9.
   - ↳ `b_dimensionless_ratio_b_over_sqrt_km` — b/√(km) determines damping regime. NCERT Eq 14.34 onward.
   - ↳ `critical_damping_concept` — When b²/4m² = k/m, motion just barely returns without oscillating. HCV1 §12.12.
@@ -109,6 +109,8 @@ graph TD
   - ↳ `phase_angle_meaning` — Argument (ωt+φ) is phase; φ is phase constant set by initial conditions. HCV1 §12.4(d).
   - ↳ `sin_vs_cos_form_equivalence` — A sin(ωt + π/2) = A cos(ωt). Choice depends on convenience. HCV1 §12.4(e).
 - **`block_attached_to_single_spring_period_formula`** — T = 2π√(m/k). The canonical entry pattern. NCERT §14.8.1, HCV1 §12.2.
+- **`g_determination_via_pendulum_in_lab`** — g = 4π²L/T². Lab procedure: measure 20 oscillations to reduce stopwatch error. HCV1 §12.8 (Determination of g).
+- **`physical_pendulum_period_formula`** — Per S-G4. Rigid body suspended through point O: T = 2π√(I/mgL). HCV1 §12.9. Rod-as-pendulum, meter-stick-pendulum patterns.
 - **`damped_oscillation_solution_exp_decay_envelope`** — x(t) = A e^(−bt/2m) cos(ω′t + φ), ω′ = √(k/m − b²/4m²). Amplitude decays exponentially. NCERT Fig 14.20.
   - ↳ `t_half_amplitude_decay` — T_{1/2,amp} = (ln 2)·2m/b. From e^(−bt/2m) = 1/2. NCERT Ex 14.10.
   - ↳ `t_half_energy_is_half_of_amplitude_half` — E ∝ A² → T_{1/2,energy} = T_{1/2,amp}/2. Common JEE distinction. NCERT Ex 14.10(c).
@@ -133,6 +135,8 @@ graph TD
   - ↳ `springs_in_parallel_keff_equals_sum` — Two springs both attached to block side-by-side: k_eff = k₁ + k₂. NCERT Ex 14.6 (two springs k each on either side, T = 2π√(m/2k)).
   - ↳ `springs_in_series_keff_reciprocal_sum` — End-to-end springs: 1/k_eff = 1/k₁ + 1/k₂.
 - **`vertical_spring_block_gravity_shifts_equilibrium`** — Hanging spring: mean position shifts by mg/k but T is unchanged. HCV1 W.Ex 5. Common misconception trap.
+- **`angular_shm_equation_gamma_minus_k_theta`** — Per S-G5. Angular equivalent of F=−kx: Γ = −kθ. T = 2π√(I/k). HCV1 §12.7. **Indian-context anchor:** hanging umbrella oscillations.
+  - ↳ `angular_omega_squared_equals_k_over_I` — ω² = k/I. Analogous to k/m in linear SHM.
 - **`forced_oscillation_steady_state_at_driver_frequency`** — External F₀ cos(ω_d t) drives system. Eventually x(t) = A_d cos(ω_d t + φ), at driver frequency ω_d, not natural ω. NCERT §14.10.
 - **`linear_combination_of_sin_and_cos_is_shm`** — A sin ωt + B cos ωt = D sin(ωt + φ) where D = √(A²+B²), tan φ = B/A. The trig-identity bedrock. NCERT Eq 14.3c, HCV1 §12.11.
 
@@ -144,6 +148,7 @@ graph TD
   - ↳ `t_equals_T_over_12_to_half_amplitude` — sin ωt = 1/2 ⇒ ωt = π/6 ⇒ t = T/12.
 - **`block_between_two_walls_with_springs_period`** — Block compressed by spring on one side and stretched on other → both forces toward mean → F = −2kx → T = 2π√(m/2k). NCERT Ex 14.6.
 - **`block_collides_with_spring_amplitude_from_kinetic_energy`** — Block of mass m with speed v hits spring → ½mv² = ½kA² → A = v√(m/k). HCV1 W.Ex 9. Connects T13 (KE) → T17 (amplitude).
+- **`torsional_pendulum_disc_on_wire_period`** — Disc twisted on wire: torsional constant k, T = 2π√(I/k). HCV1 §12.10 (Fig 12.14). Used for measuring torsional rigidity.
 - **`resonance_amplitude_peaks_at_natural_frequency`** — Amplitude A_d maximum when ω_d ≈ ω. Peak sharpness ↑ when damping ↓. NCERT Fig 14.21. **Indian-context anchor:** "Soldiers go out of step while crossing a bridge — same reason an earthquake will not cause uniform damage to all buildings, even of same strength" (direct NCERT 14.10 closing paragraph).
   - ↳ `coupled_pendulum_demonstration_natural_freq_match` — 5 pendulums on common rope: only the one with matching length picks up large amplitude. NCERT Fig 14.22.
 - **`superposition_two_shm_same_direction`** — Per S-G6 split (A). Two SHMs along same axis with phase difference δ: x = A sin(ωt + ε) where A = √(A₁²+A₂²+2A₁A₂ cos δ). HCV1 §12.11(A).
@@ -155,17 +160,6 @@ graph TD
   - ↳ `delta_pi_line_through_origin_negative_slope` — δ=π: y = −(A₂/A₁) x. Line, negative slope. Fig 12.20.
   - ↳ `delta_pi_over_2_ellipse_along_axes` — δ=π/2: x²/A₁² + y²/A₂² = 1. Standard ellipse along the coordinate axes. Fig 12.21.
   - ↳ `equal_amplitudes_delta_pi_over_2_circle` — A₁=A₂ AND δ=π/2: x²+y² = A². Pure circle. (Foreshadow of UCM→SHM bridge.)
-
-### Level 5
-
-- **`simple_pendulum_period_formula`** ⟲ — T = 2π√(L/g). Per S-G4 — distinct atomic from physical pendulum. NCERT §14.8.2, HCV1 §12.8. **Indian-context anchor:** "What length of pendulum ticks seconds?" — NCERT Ex 14.9, answer L = 1 m.
-  - ↳ `small_angle_sin_theta_approx_theta` — sin θ ≈ θ for θ < 0.349 rad (20°). Justifies linearization. NCERT Table 14.1 + safety bound at 50° for ≤5% error.
-  - ↳ `pendulum_independent_of_mass_and_amplitude` — T does not depend on bob mass or (small) amplitude — the Galileo observation. Per NCERT 14.8.2 introductory paragraph.
-- **`g_determination_via_pendulum_in_lab`** ⟲ — g = 4π²L/T². Lab procedure: measure 20 oscillations to reduce stopwatch error. HCV1 §12.8 (Determination of g).
-- **`physical_pendulum_period_formula`** ⟲ — Per S-G4. Rigid body suspended through point O: T = 2π√(I/mgL). HCV1 §12.9. Rod-as-pendulum, meter-stick-pendulum patterns.
-- **`angular_shm_equation_gamma_minus_k_theta`** ⟲ — Per S-G5. Angular equivalent of F=−kx: Γ = −kθ. T = 2π√(I/k). HCV1 §12.7. **Indian-context anchor:** hanging umbrella oscillations.
-  - ↳ `angular_omega_squared_equals_k_over_I` — ω² = k/I. Analogous to k/m in linear SHM.
-- **`torsional_pendulum_disc_on_wire_period`** ⟲ — Disc twisted on wire: torsional constant k, T = 2π√(I/k). HCV1 §12.10 (Fig 12.14). Used for measuring torsional rigidity.
 
 ### Other sub-concepts (parent atomic is in another chapter)
 

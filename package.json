@@ -16,6 +16,7 @@
     "validate:concepts": "npx tsx src/scripts/validate-concepts.ts",
     "check:scenarios": "npx tsx src/scripts/check-scenarios.ts",
     "migrate:concepts": "npx tsx src/scripts/migrate_v1_to_v2.ts",
+    "build:catalog": "node scripts/extract_catalog.js && node scripts/build_teacher_catalog.js && node scripts/build_chapter_pathways.js && node scripts/build_diamonds_onepager.js",
     "smoke": "playwright test",
     "smoke:install": "playwright install chromium",
     "smoke:visual-validator": "npx tsx --env-file=.env.local src/scripts/smoke_visual_validator.ts",

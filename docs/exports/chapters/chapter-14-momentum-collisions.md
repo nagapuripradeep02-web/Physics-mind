@@ -7,8 +7,6 @@
 
 **Foundations (teach first, nothing in this chapter comes before them):** centre_of_mass_atomic
 
-> ⚠ **3 concept(s) have circular prerequisites** in the source catalogue (marked ⟲ below) — i.e. they list each other as prerequisites. The level placement for these is a best-effort break of the loop; worth a human review of the intended order.
-
 ## Concept dependency graph (atomic backbone)
 
 ```mermaid
@@ -28,7 +26,6 @@ graph TD
   c2 --> c3
   c3 --> c4
   c2 --> c5
-  c7 --> c5
   c5 --> c6
   c2 --> c6
   c3 --> c7
@@ -65,6 +62,7 @@ graph TD
 
 - **`elastic_collision_1d_atomic`** 💎 — 1D collision conserving BOTH momentum AND kinetic energy. Closed-form solution: v₁' = ((m₁−m₂)v₁ + 2m₂v₂)/(m₁+m₂); v₂' = ((m₂−m₁)v₂ + 2m₁v₁)/(m₁+m₂). Equal-mass case: simple velocity exchange.
   - ↳ `equal_mass_velocity_exchange_nano` — m₁ = m₂: v₁' = v₂; v₂' = v₁. Classic Newton's cradle / billiards visualization.
+- **`inelastic_collision_atomic`** — Momentum conserved; KE NOT conserved (some converted to heat, sound, deformation). Coefficient of restitution e ∈ [0,1] characterises energy retention  _(targets misconception: real collisions are elastic)_
 - **`rocket_equation_atomic`** 💎 — Tsiolkovsky: v − v₀ = u·ln(M₀/M); rocket gains speed by ejecting mass at exhaust-speed u; specific impulse I_sp = u/g₀ measures fuel efficiency
   - ↳ `isro_pslv_multistage_nano` — PSLV: 4 stages (PS1 solid + PS2 liquid + PS3 solid + PS4 liquid); each stage burns + separates (explosion → reverse collision). Total Δv achievable via Tsiolkovsky summed across stages.
   - ↳ `specific_impulse_i_sp_nano` — I_sp = u/g₀ in seconds; chemical rocket: 250-450 s; ion thruster: 1000-5000 s; ISRO LAM (liquid apogee motor) ~300 s
@@ -73,12 +71,8 @@ graph TD
 
 - **`elastic_collision_2d_atomic`** — 2D oblique elastic collision: conservation of momentum applied PER COMPONENT (x and y), plus conservation of KE; results in coupled equations. Geometric significance: post-collision velocity directions form right angle for equal masses
   - ↳ `right_angle_for_equal_masses_nano` — When equal masses collide elastically with one at rest: post-collision velocity vectors are perpendicular. Classic billiards-shot geometry.
-
-### Level 5
-
-- **`inelastic_collision_atomic`** ⟲ — Momentum conserved; KE NOT conserved (some converted to heat, sound, deformation). Coefficient of restitution e ∈ [0,1] characterises energy retention  _(targets misconception: real collisions are elastic)_
-- **`perfectly_inelastic_collision_atomic`** ⟲ — Bodies stick together after collision; common post-collision velocity v_f = (m₁v₁ + m₂v₂)/(m₁+m₂); maximum KE-loss case; e = 0
+- **`perfectly_inelastic_collision_atomic`** — Bodies stick together after collision; common post-collision velocity v_f = (m₁v₁ + m₂v₂)/(m₁+m₂); maximum KE-loss case; e = 0
   - ↳ `railway_buffer_collision_nano` — Two Indian Railways wagons couple on track: bodies stick (Janney coupler engagement) → perfectly inelastic; coupling-and-uncoupling at Mughalsarai/Bandra/Itarsi yards.
-- **`coefficient_of_restitution_atomic`** ⟲ — e = |v_separation|/|v_approach|; e = 1 elastic, e = 0 perfectly inelastic, 0 < e < 1 general inelastic. Property of the COLLISION PAIR (not single object)  _(targets misconception: e is property of one ball)_
+- **`coefficient_of_restitution_atomic`** — e = |v_separation|/|v_approach|; e = 1 elastic, e = 0 perfectly inelastic, 0 < e < 1 general inelastic. Property of the COLLISION PAIR (not single object)  _(targets misconception: e is property of one ball)_
   - ↳ `bouncing_ball_height_nano` — Ball dropped from height h₀ bounces to h₁ = e²h₀; nth bounce → h_n = e^(2n)h₀; series of decreasing heights
   - ↳ `cricket_bat_ball_nano` — Cricket ball-bat collision: e ≈ 0.45 for hardened-leather + willow; affects six-vs-four trajectory; depends on bat-thickness, ball-condition, swing-speed. Indian cricket-equipment-industry context.

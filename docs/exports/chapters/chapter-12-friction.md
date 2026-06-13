@@ -35,7 +35,7 @@ graph TD
   c21["friction with applied force at angle"]
   c22["conveyor belt friction"]
   c23["two blocks friction velocity equalisation"]
-  c24["friction drives motion misconception"]
+  c24["static friction drives motion"]
   c25["circular motion friction provides centripetal"]
   c26["lab measurement of mu"]
   c27["friction increases with normal not with horizontal applied"]
@@ -131,7 +131,7 @@ graph TD
   - ↳ `pseudo_force_in_non_inertial_frame` — In accelerating frame, add −ma fictitious force to body
   - ↳ `static_friction_provides_acceleration` — From ground frame: it's static friction that pushes the box along with the train (no pseudo-force needed)
 - **`two_blocks_friction_velocity_equalisation`** — Two stacked blocks given different initial velocities; friction equalizes them over time
-- **`friction_drives_motion_misconception`** — Friction can ACCELERATE objects (not just oppose motion) — cars accelerate due to road friction; walking relies on friction
+- **`static_friction_drives_motion`** — Friction can ACCELERATE objects (not just oppose motion) — cars accelerate due to road friction; walking relies on friction
   - ↳ `static_friction_on_driven_wheel` — Engine torque → wheel pushes back on road → road pushes forward on wheel (Newton's 3rd law)
   - ↳ `walking_relies_on_friction_with_ground` — Foot pushes back on ground → ground pushes forward on foot → human walks
 
