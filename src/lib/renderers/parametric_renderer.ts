@@ -2438,6 +2438,11 @@ function setup() {
 }
 
 function draw() {
+  // Visual-validator capture hook: expose the state-local SIM-TIME clock so the
+  // headless screenshotter can poll for reveals to fire. Parametric gates reveals
+  // on millis() (wall-clock), so this is already correct under throttling — exposed
+  // for a uniform poll path with field_3d (which is frame-count-based and DOES lag).
+  window.PM_simTimeMs = millis() - PM_stateEnterTime;
   var isAnswerSheet = PM_config && PM_config.canvas_style === 'answer_sheet';
   if (isAnswerSheet) {
     background(253, 251, 244); // off-white paper

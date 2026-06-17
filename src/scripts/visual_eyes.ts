@@ -27,7 +27,7 @@ import { buildContactSheets } from '@/lib/validators/visual/contactSheet';
 import { runPixelGate } from '@/lib/validators/visual/pixelGate';
 import { runRegressionGate } from '@/lib/validators/visual/regressionGate';
 import { deriveStateIds } from '@/lib/validators/visual/deriveStateIds';
-import { deriveStateDurationsMs, deriveMotionExpectations } from '@/lib/validators/visual/deriveStateMeta';
+import { deriveStateDurationsMs, deriveMotionExpectations, deriveMaxRevealTimeMs, deriveHoldExpectations } from '@/lib/validators/visual/deriveStateMeta';
 import { dumpCaptureToDisk } from '@/lib/validators/visual/frameDump';
 import { extractTtsVisualBindings, buildTtsMathByState } from '@/lib/validators/visual/ttsBindings';
 import type { CheckResult } from '@/lib/validators/visual/spec';
@@ -76,9 +76,17 @@ async function main(): Promise<void> {
     const ttsMathByState = Object.keys(ttsBindings).length > 0 ? buildTtsMathByState(ttsBindings) : undefined;
     const i2FormulaStates = ttsMathByState ? Object.keys(ttsMathByState).length : 0;
 
+    // Sim-time-aware capture targets. The concept JSON is authoritative for
+    // field_3d reveal timings (field_3d_config.states); fall back to the cached
+    // physics_config when the JSON is unavailable.
+    const revealSource = conceptJson ?? cached.physics_config;
+    const maxRevealMsByState = deriveMaxRevealTimeMs(revealSource);
+    const holdExpectations = deriveHoldExpectations(revealSource);
+
     console.log(`  Sim type:    ${cached.sim_type ?? 'single (default)'}`);
     console.log(`  States:      ${stateIds.join(', ')}`);
     console.log(`  Motion map:  ${stateIds.map(s => `${s}=${expectsMotion[s] ?? '?'}`).join(', ')}`);
+    console.log(`  Reveal map:  ${stateIds.map(s => `${s}=${maxRevealMsByState[s] ?? '?'}ms${holdExpectations[s] ? `(${holdExpectations[s]})` : ''}`).join(', ')}`);
     if (i2FormulaStates > 0) console.log(`  I2 formulas: replaying math_show in ${i2FormulaStates} states (equation-panel frames dumped)`);
 
     console.log('\n📸 Capturing every state + dense ~1s frames (this takes 1–3 min)...');
@@ -90,8 +98,13 @@ async function main(): Promise<void> {
         stateIds,
         dense: { intervalMs: 1000, durationMsByState },
         ttsMathByState,
-        // Deterministic pinned frame per state — the H2 frozen-baseline source.
-        frozenFrame: { atMs: 1500 },
+        // Sim-time-aware primary capture — pin+poll PM_simTimeMs to each state's
+        // all-reveals-complete time so late reveals are photographed (headless
+        // rAF throttling lags field_3d's frame-count clock → false negatives).
+        maxRevealMsByState,
+        // Deterministic pinned frame per state at its reveal-complete time — the
+        // H2 frozen-baseline source (was a fixed 1500ms, which missed late reveals).
+        frozenFrame: { atMsByState: maxRevealMsByState },
     });
     const denseFrameCount = (capture.dense_timeseries ?? []).reduce((n, s) => n + s.frames_b64.length, 0);
     console.log(`   ✅ ${capture.state_captures.length} states + ${denseFrameCount} dense frames in ${Date.now() - captureStart}ms`);
@@ -102,7 +115,7 @@ async function main(): Promise<void> {
 
     console.log('\n🎯 Running deterministic gates (pixel + dense motion + regression — $0)...');
     const [pixelResult, regressionResult] = await Promise.all([
-        runPixelGate({ conceptId, capture, panelCount: isMulti ? 2 : 1, expectsMotion }),
+        runPixelGate({ conceptId, capture, panelCount: isMulti ? 2 : 1, expectsMotion, holdExpectations }),
         runRegressionGate({ conceptId, capture }),
     ]);
 

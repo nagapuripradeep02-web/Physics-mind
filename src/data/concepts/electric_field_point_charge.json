@@ -1,0 +1,680 @@
+{
+  "concept_id": "electric_field_point_charge",
+  "concept_name": "Electric Field due to a Point Charge (and its Field Lines)",
+  "chapter": 1,
+  "section": "1.6",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.1 Electric Charges and Fields (§1.6 Electric Field, §1.8 Electric Field Lines) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (define E from force on a test charge → magnitude kQ/r² → direction by sign → field-line representation → density-means-strength → the two field-line rules), never copied. The atomic idea: a point charge fills the space around it with a field E = kQ/r² pointing radially (outward for +Q, inward for −Q), and the field-line picture — radial lines whose crowding encodes the field strength — is a map of that same 1/r² fact. Built for reviewer Asmi Singh (teaches this 2026-06-18); the field_3d renderer already ships point-charge scenarios, so this is assembly + a v2 JSON. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "point_charge_positive"
+    ]
+  },
+  "prerequisites": [
+    "coulombs_law"
+  ],
+  "real_world_anchor": {
+    "primary": "Run a plastic comb through dry hair, then hold it near tiny bits of torn paper on a table. The paper jumps up to the comb without being touched. The charged comb fills the space around it with an electric field, and that field reaches out and pulls the paper. The paper bits are little test charges revealing the field that was already there.",
+    "secondary": "Picture a single charged raindrop high in a monsoon cloud. Around that one charge, the electric field points straight outward in every direction, getting weaker the farther you go — exactly E = kQ/r². Stack billions of them and you get the giant fields that end in a lightning strike.",
+    "tertiary": "A Van de Graaff generator in a school physics lab piles charge onto a metal dome. Bring your hand near and your hair stands up along the field lines — each strand lines up with the radial electric field pointing away from the positively charged sphere."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "Q": {
+        "name": "Source charge",
+        "unit": "nC",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "r": {
+        "name": "Distance from the charge to the field point",
+        "unit": "cm",
+        "min": 2,
+        "max": 20,
+        "default": 5,
+        "step": 1
+      },
+      "k": {
+        "name": "Coulomb constant",
+        "unit": "N·m²/C²",
+        "constant": 8987551787.368176
+      }
+    },
+    "computed_outputs": {
+      "E_field": {
+        "formula": "(k * (Q * 1e-9)) / ((r / 100) * (r / 100))"
+      }
+    },
+    "formulas": {
+      "field_definition": "E = F / q  (force per unit positive test charge)",
+      "point_charge_field": "E = k Q / r²",
+      "direction": "radially OUTWARD from a positive charge, radially INWARD toward a negative charge",
+      "field_line_rules": "field lines never cross; the tangent gives E direction; line density ∝ field strength"
+    },
+    "constraints": [
+      "E is a property of space — it exists around the charge whether or not a test charge is present, and its value does not depend on the size of the test charge q used to probe it",
+      "For a single point charge the field is radial with spherical symmetry — magnitude depends ONLY on the distance r, not on direction",
+      "E ∝ 1/r² — halving the distance r quadruples the field strength E",
+      "Reversing the sign of Q reverses EVERY field vector (outward ↔ inward); the magnitude kQ/r² is unchanged",
+      "Field lines never cross (the field has exactly one direction at every point), and a field line shows the DIRECTION of the field, not the path a released charge travels along"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Crowded field lines mean a strong field — the picture IS the 1/r² law.",
+    "visual_confirmation": "Watch the lines bunch tightly near the charge and fan apart far away; where they crowd, the field is strong — exactly where kQ/r² is large."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "representation": [
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "What is an Electric Field? — E = F/q",
+        "duration": 13,
+        "focal_primitive_id": "e_def_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "source_label",
+            "position": {
+              "x": 360,
+              "y": 70
+            },
+            "text": "+Q",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "test_label",
+            "position": {
+              "x": 540,
+              "y": 250
+            },
+            "text": "test charge q",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "e_def_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E = F / q",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Here is a single charge Q sitting in empty space. Bring a tiny positive test charge q near it."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "The test charge feels a force F — even though nothing is touching it. The space around Q is doing the pushing."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "We give that push a name: the electric field. E is the force per unit charge — E equals F divided by q."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "The field is a property of the space itself. It is there whether or not we put a test charge in to feel it."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The Field of a Point Charge — E = kQ/r²",
+        "duration": 14,
+        "focal_primitive_id": "formula_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "point_label",
+            "position": {
+              "x": 540,
+              "y": 230
+            },
+            "text": "P",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "e_arrow_label",
+            "position": {
+              "x": 590,
+              "y": 200
+            },
+            "text": "E",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E = k Q / r²",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Pick a point P at a distance r from the charge. The field there points straight out, along the line from Q to P."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Its strength is E equals k Q over r squared. This is just the Coulomb force on a unit test charge."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Move P closer and the arrow grows fast. Move it away and the arrow shrinks."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Halve the distance and the field becomes four times stronger — because of the r squared in the denominator."
+            }
+          ]
+        },
+        "allow_deep_dive": true
+      },
+      "STATE_3": {
+        "title": "Sign Sets the Direction — Flip Q to Negative",
+        "duration": 13,
+        "focal_primitive_id": "sign_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sign_label",
+            "position": {
+              "x": 360,
+              "y": 70
+            },
+            "text": "−Q",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "inward_label",
+            "position": {
+              "x": 540,
+              "y": 250
+            },
+            "text": "E points IN",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "out for +Q · in for −Q",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Before I change anything — predict. If I make the charge negative, which way will the field point?"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Watch. Every single arrow flips. For a negative charge the field points radially INWARD, toward the charge."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "The magnitude is exactly the same, k Q over r squared. Only the direction reversed."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "The sign of the charge owns the direction: outward for positive, inward for negative."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field always points away from the charge / a negative charge has no field",
+            "visual_counter": "Flip Q negative and watch every arrow reverse to point inward — the field is just as strong, only reversed.",
+            "one_line_fix": "Direction is set by the sign of Q: outward for +Q, inward for −Q. Magnitude kQ/r² is unchanged."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Field Lines — Joining the Arrows into a Map",
+        "duration": 13,
+        "focal_primitive_id": "tangent_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "lines_label",
+            "position": {
+              "x": 360,
+              "y": 70
+            },
+            "text": "+Q",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "tangent_label",
+            "position": {
+              "x": 540,
+              "y": 250
+            },
+            "text": "tangent = E direction",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "map_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "field lines = the map of E",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Instead of drawing one arrow at a time, we join them into continuous lines streaming out of the charge."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "These are the electric field lines — the map of the field in the whole space at once."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "At any point, the tangent to the line gives the direction of E there."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "For a positive charge the lines stream outward in every direction, like spokes from a hub in three dimensions."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Density = Strength — the 1/r² Made Visible",
+        "duration": 15,
+        "focal_primitive_id": "density_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "near_label",
+            "position": {
+              "x": 380,
+              "y": 200
+            },
+            "text": "crowded → strong",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "far_label",
+            "position": {
+              "x": 600,
+              "y": 360
+            },
+            "text": "spread → weak",
+            "color": "#90CAF9"
+          },
+          {
+            "type": "annotation",
+            "id": "density_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E ∝ line density",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Look closely. Where are the lines most crowded together — and what does that tell you about the field there?"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Near the charge the lines bunch tightly: the field is strong. Far away they fan apart: the field is weak."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The crowding of the lines IS the field strength. Dense lines mean a strong field."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "So the picture and the formula are the same fact: the lines thin out as 1 over r squared, exactly like E."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Field lines are just decorative arrows pointing outward, all equal — spacing means nothing",
+            "visual_counter": "Show the lines bunched near the charge and spread far away; the spacing carries the magnitude.",
+            "one_line_fix": "Line density encodes field strength — crowded lines = strong field, spread lines = weak field."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Two Rules — Lines Never Cross, and a Line Is Not a Path",
+        "duration": 14,
+        "focal_primitive_id": "rule1_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rule1_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "lines never cross",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rule2_label",
+            "position": {
+              "x": 360,
+              "y": 250
+            },
+            "text": "direction ≠ path",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rules_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "one direction per point",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Two rules people get wrong. First: can two field lines cross each other?"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "No. If they crossed, the field would point two ways at one point — impossible. Lines never cross."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Second: a field line is NOT the track a charge slides along. It shows the direction of the force at each point."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "A released charge follows the field's direction moment by moment — it does not ride the line like a rail."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Field lines can cross, and a charge travels along a field line like a track",
+            "visual_counter": "Show two lines crossing with a cross-out, and a charge sitting on a line with a cross-out, then the correct single-direction picture.",
+            "one_line_fix": "Lines never cross (one direction per point); a line is the direction of E, not the path of a moving charge."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore — Drive Q, Sign and Distance",
+        "duration": 16,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": {
+              "x": 360,
+              "y": 70
+            },
+            "text": "drag the sliders",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "e_live_label",
+            "position": {
+              "x": 590,
+              "y": 200
+            },
+            "text": "E",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_formula",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E = k Q / r²",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now you drive it. Change the charge Q, flip its sign, and slide the point P closer or farther."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Watch the field arrow and the live readout. Double Q and E doubles. Flip the sign and the arrow reverses."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Halve the distance and the field jumps four times stronger — feel the 1 over r squared."
+            },
+            {
+              "id": "s7_4",
+              "text_en": "Same charge, same radial picture, one rule: E equals k Q over r squared."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "point_charge_positive",
+    "electric_explorer": true,
+    "field_lines": {
+      "count": 24,
+      "color_positive": "#EF5350",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85,
+      "arrow_spacing": 5
+    },
+    "slider_controls": {
+      "Q": {
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "label": "Charge Q"
+      },
+      "q_sign": {
+        "default": 1,
+        "label": "Sign"
+      },
+      "r": {
+        "min": 0.02,
+        "max": 0.2,
+        "step": 0.01,
+        "default": 0.05,
+        "label": "Distance r"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "What is E — test charge feels a force",
+        "visible_elements": [],
+        "camera_position": [
+          2.5,
+          1.5,
+          4
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "show_field": "none",
+        "show_test_charge": true,
+        "show_e_arrow": false,
+        "formula_overlay": "E = F / q"
+      },
+      "STATE_2": {
+        "label": "E of a point charge — one radial arrow",
+        "visible_elements": [],
+        "camera_position": [
+          2.8,
+          1.2,
+          4
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "show_field": "none",
+        "show_test_charge": false,
+        "show_e_arrow": true,
+        "formula_overlay": "E = k Q / r²"
+      },
+      "STATE_3": {
+        "label": "Sign sets direction — flip to −Q",
+        "visible_elements": [],
+        "camera_position": [
+          3,
+          1.5,
+          4
+        ],
+        "caption": "",
+        "charge_sign": -1,
+        "show_charge": "minus",
+        "show_field": "minus",
+        "show_test_charge": false,
+        "show_e_arrow": false,
+        "formula_overlay": "−Q: E points IN"
+      },
+      "STATE_4": {
+        "label": "Field lines = the map",
+        "visible_elements": [],
+        "camera_position": [
+          3.2,
+          2,
+          4.5
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "show_field": "plus",
+        "show_test_charge": false,
+        "show_e_arrow": false,
+        "formula_overlay": "tangent = E direction"
+      },
+      "STATE_5": {
+        "label": "Density = strength (PRIMARY aha)",
+        "visible_elements": [],
+        "camera_position": [
+          2.6,
+          1.6,
+          3.6
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "show_field": "plus",
+        "show_test_charge": false,
+        "show_e_arrow": false,
+        "formula_overlay": "E ∝ line density",
+        "show_density_probe": true
+      },
+      "STATE_6": {
+        "label": "Two rules — never cross, not a path",
+        "visible_elements": [],
+        "camera_position": [
+          3,
+          2,
+          4.5
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "show_field": "plus",
+        "show_test_charge": false,
+        "show_e_arrow": false,
+        "show_rule_wrongs": true,
+        "formula_overlay": "lines never cross  ·  direction ≠ path"
+      },
+      "STATE_7": {
+        "label": "Free explore — Q, sign, distance",
+        "visible_elements": [],
+        "camera_position": [
+          3,
+          2,
+          5
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "show_field": "plus",
+        "show_test_charge": false,
+        "show_e_arrow": true,
+        "show_sliders": true,
+        "formula_overlay": "E = k Q / r²"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

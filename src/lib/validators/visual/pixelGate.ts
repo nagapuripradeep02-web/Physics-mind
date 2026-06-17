@@ -33,6 +33,15 @@ export interface RunPixelGateInput {
      * dense checks still run D6/D7 (teleport/stuck-tail need no declaration).
      */
     expectsMotion?: Record<string, boolean | undefined>;
+    /**
+     * Per-state hold intent (deriveHoldExpectations). When a state DECLARES
+     * 'reveal_hold' (one-shot timed reveal then holds) or 'interactive' (user-
+     * driven explorer, static without a drag the headless harness never makes),
+     * a frozen tail / near-identical first-last is EXPECTED — D7 + D1p are
+     * relaxed to pass-with-note rather than false-failing. `undefined` → strict.
+     * Optional; only declared intent relaxes (never guesses).
+     */
+    holdExpectations?: Record<string, 'reveal_hold' | 'interactive' | undefined>;
 }
 
 export interface PixelGateResult {
@@ -81,7 +90,11 @@ export async function runPixelGate(input: RunPixelGateInput): Promise<PixelGateR
     // D5/D6/D7 — adjacent dense-frame motion analysis (only when dense capture ran)
     const denseMaxDiffByState = new Map<string, number>();
     for (const series of input.capture.dense_timeseries ?? []) {
-        const dense = await runDenseChecks(series, input.expectsMotion?.[series.state_id]);
+        const dense = await runDenseChecks(
+            series,
+            input.expectsMotion?.[series.state_id],
+            input.holdExpectations?.[series.state_id],
+        );
         results.push(...dense.results);
         if (dense.maxDiff !== undefined) denseMaxDiffByState.set(series.state_id, dense.maxDiff);
     }
@@ -97,6 +110,19 @@ export async function runPixelGate(input: RunPixelGateInput): Promise<PixelGateR
         if (denseMax !== undefined && denseMax >= DENSE_MOTION_EPSILON) {
             d1p = mkResult('D1p', d1p.state_id, true,
                 `OK — first/last frames similar (cyclic path returning to phase), but dense adjacent frames prove motion: max ${(denseMax * 100).toFixed(2)}%/s ≥ ${(DENSE_MOTION_EPSILON * 100).toFixed(1)}%.`);
+        }
+    }
+    // Hold-intent relaxation: a state that DECLARES reveal-then-hold or interactive
+    // is static by design once its reveal completes (or until a drag the headless
+    // harness never makes) — D1's static-image check doesn't apply. Only declared
+    // intent relaxes; unknown states stay strict.
+    if (!d1p.passed && d1pStateId !== undefined) {
+        const hold = input.holdExpectations?.[d1pStateId];
+        if (hold === 'reveal_hold' || hold === 'interactive') {
+            d1p = mkResult('D1p', d1p.state_id, true,
+                `OK (relaxed) — first/last frames similar, but state declares ${hold} `
+                + `(${hold === 'reveal_hold' ? 'one-shot reveal then holds' : 'user-driven explorer, static without a drag'}) — `
+                + `D1's static-image check does not apply.`);
         }
     }
     results.unshift(d1p);
@@ -174,6 +200,7 @@ async function runD1pDiff(
 async function runDenseChecks(
     series: DenseTimeseries,
     expectsMotion: boolean | undefined,
+    holdExpectation: 'reveal_hold' | 'interactive' | undefined,
 ): Promise<{ results: CheckResult[]; maxDiff?: number }> {
     const stateId = series.state_id;
     if (series.frames_b64.length < 3) {
@@ -225,9 +252,18 @@ async function runDenseChecks(
     const tailFrozen = tail.length >= tailPairs && tail.every(d => d < DENSE_MOTION_EPSILON);
     const earlierMoved = earlier.some(d => d >= DENSE_MOTION_EPSILON);
     const stuck = tailFrozen && earlierMoved;
-    results.push(mkResult('D7', stateId, !stuck, !stuck
-        ? `OK — no frozen tail (last ${tail.length} pairs not all <${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% after earlier motion). Profile: ${profile}`
-        : `Animation died mid-state: last ${tailPairs} adjacent pairs all <${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% diff while earlier pairs showed motion (max ${(Math.max(...earlier) * 100).toFixed(2)}%). Likely a render-loop exception or trajectory time-clamp. Profile: ${profile}`));
+    if (stuck && (holdExpectation === 'reveal_hold' || holdExpectation === 'interactive')) {
+        // Declared reveal-then-hold / interactive: a frozen tail after the early
+        // reveal motion is EXPECTED, not a dead render loop. Relax to pass.
+        results.push(mkResult('D7', stateId, true,
+            `OK (relaxed) — frozen tail is expected: ${stateId} declares ${holdExpectation} `
+            + `(${holdExpectation === 'reveal_hold' ? 'one-shot reveal then holds still' : 'user-driven explorer, static without a drag'}). `
+            + `Last ${tailPairs} pairs <${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% after earlier motion (max ${(Math.max(...earlier) * 100).toFixed(2)}%). Profile: ${profile}`));
+    } else {
+        results.push(mkResult('D7', stateId, !stuck, !stuck
+            ? `OK — no frozen tail (last ${tail.length} pairs not all <${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% after earlier motion). Profile: ${profile}`
+            : `Animation died mid-state: last ${tailPairs} adjacent pairs all <${(DENSE_MOTION_EPSILON * 100).toFixed(1)}% diff while earlier pairs showed motion (max ${(Math.max(...earlier) * 100).toFixed(2)}%). Likely a render-loop exception or trajectory time-clamp. Profile: ${profile}`));
+    }
 
     return { results, maxDiff };
 }

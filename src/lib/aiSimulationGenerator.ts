@@ -2071,6 +2071,7 @@ GRAVITATION / FLUIDS:
 ELECTROSTATICS / MAGNETISM / FIELDS:
   coulombs_law           — Coulomb's law, F=kq₁q₂/r², electric force
   electric_field_lines   — electric field, field lines, E=F/q
+  electric_field_point_charge — E of a point charge E=kQ/r², radial field, field lines, density=strength
   electric_dipole        — dipole moment p=2ql, field and torque on dipole
   electric_flux_gauss    — electric flux Φ=E·A, Gauss's law
   gauss_law_3d           — Gauss's law 3D, enclosed charge, spherical symmetry
@@ -2774,12 +2775,14 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     ideal_gas_kinetic_theory:       "thermodynamics",
     // Field 3D concepts — all routed to the field_3d (Three.js) renderer
     electric_field_lines:           "field_3d",
+    electric_field_point_charge:    "field_3d",
     electric_potential_3d:          "field_3d",
     parallel_plate_capacitor_field: "field_3d",
     magnetic_field_solenoid:        "field_3d",
     magnetic_field_wire:            "field_3d",
     biot_savart_law:                "field_3d",
     magnetic_force_moving_charge:   "field_3d",
+    force_on_current_carrying_wire: "field_3d",
     torque_on_current_loop_in_field:"field_3d",
     gauss_law_3d:                   "field_3d",
     electromagnetic_induction_3d:   "field_3d",
@@ -4150,6 +4153,7 @@ function getOpticsRayFallback(scenario: OpticsRayConfig["scenario_type"]): Optic
 // ── FIELD_3D_SCENARIO_MAP — concept_id → scenario_type ───────────────────────
 const FIELD_3D_SCENARIO_MAP: Record<string, Field3DConfig["scenario_type"]> = {
     electric_field_lines:           "point_charge_positive",
+    electric_field_point_charge:    "point_charge_positive",
     electric_potential_3d:          "dipole",
     parallel_plate_capacitor_field: "parallel_plates",
     magnetic_field_solenoid:        "solenoid_field",

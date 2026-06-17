@@ -123,41 +123,43 @@ function buildConfigForState(stateId: string): Field3DConfig | null {
     };
 }
 
+// Re-ordered 0° → 90° → 45° → 10° per reviewer Asmi (2026-06-16). Descriptions
+// match each STATE_N key's CURRENT content (the iframe reads the JSON live).
 const STATES_TO_VERIFY: Array<{ id: string; description: string }> = [
     {
         id: 'STATE_1',
         description:
-            'θ = 0° — v parallel to B. Orange v arrow aligned with vertical blue B grid. Particle drifts straight; F vector absent (F = 0). Right-hand-rule overlay visible top-left.',
+            'θ = 0° — v ∥ B, no electric field (E = 0). Orange v aligned with the blue B grid; particle drifts straight, F = 0. The full Lorentz law F = qE + qv×B is shown during narration. (RHR removed here per reviewer — it now lives at the 90° state.)',
     },
     {
         id: 'STATE_2',
         description:
-            'θ = 10° — v tilted slightly off B. Path is a long stretched helix (slow drift along B + tiny circles ⊥ B). Green F arrow is short (sin 10° ≈ 0.17).',
+            'θ = 90° — pure circle, F at maximum, always pointing to the centre. RHR taught here via the 3D hand (fingers along v → curl toward B → thumb gives F). r = mv/(qB), T = 2πm/(qB). The circle now closes into a full loop.',
     },
     {
         id: 'STATE_3',
         description:
-            'θ = 45° — helix tightens. F is over 4× larger than at θ = 10° (sin 45° ≈ 0.71). Circular motion now dominates over drift. No decomposition here — pure narrative of "F grows with θ".',
+            'Speed never changes — magnetic force does no work. Same θ = 90° circle continues; equal-arc trail dots prove |v| constant. F ⊥ v → F·v = 0 → Δ(½mv²) = 0. Predict→reveal (wait_for_answer); confronts "a stronger field makes it go faster".',
     },
     {
         id: 'STATE_4',
         description:
-            'θ = 90° — pure circle. F at maximum, always pointing to circle centre. r = mv/(qB), T = 2πm/(qB). Equal trail-spacing proves |v| constant.',
+            'Fleming’s left-hand-rule reconciliation — Class-10 mnemonic (ForeFinger=B, seCond=v, thuMb=F) on the same θ = 90° scene. Works for +q only; the right-hand rule stays canonical for −q and any θ ≠ 90°.',
     },
     {
         id: 'STATE_5',
         description:
-            'A5 (NEW) — Speed never changes; magnetic force does no work. Same θ = 90° circle continues. The orange v arrow swings to a new direction every instant, while the equal-arc trail dots prove |v| is constant. Bottom-right formula overlay: F ⊥ v → F·v = 0 → Δ(½mv²) = 0 → |v| constant. Predict→reveal beat (advance_mode wait_for_answer); confronts the #1 misconception "a stronger field makes it go faster".',
+            'θ = 45° — tilt back down from the 90° circle; the closed circle opens into a (balanced) helix because part of v now drifts along B. F = qvB·sin 45° ≈ 0.71 max. Sets up the component split next.',
     },
     {
         id: 'STATE_6',
         description:
-            'Fleming’s left-hand rule reconciliation — Class-10 mnemonic shown as a top-left SVG overlay (ForeFinger=B, seCond=v, thuMb=F). Same θ = 90° circular scene continues. Caption notes the scope: works for +q only; right-hand rule stays canonical for negative charges and any θ ≠ 90°.',
+            'Why sin θ? — v decomposed into v cos θ (grey, ∥ B — feels no force, but carries the proton forward) and v sin θ (orange dashed, ⊥ B — makes F). General r = m·v·sinθ/(qB), T = 2πm/(qB). The 3D right-hand cycles v → B → F.',
     },
     {
         id: 'STATE_7',
         description:
-            'Why sin θ? — v decomposed into v cos θ (grey, along B — does nothing) and v sin θ (orange dashed, ⊥ B — makes F). Labels visible on every arrow. Decomposition reveals F = q · (v sin θ) · B.',
+            'θ = 10° — v almost parallel to B; a very stretched helix (long forward drift, tiny circles ⊥ B), nearly back to the straight line. F = qvB·sin 10° ≈ 0.17 max.',
     },
     {
         id: 'STATE_8',

@@ -37,7 +37,7 @@ import { runVisionGate } from '@/lib/validators/visual/visionGate';
 import { runPixelGate } from '@/lib/validators/visual/pixelGate';
 import { runRegressionGate } from '@/lib/validators/visual/regressionGate';
 import { deriveStateIds } from '@/lib/validators/visual/deriveStateIds';
-import { deriveStateDurationsMs, deriveMotionExpectations } from '@/lib/validators/visual/deriveStateMeta';
+import { deriveStateDurationsMs, deriveMotionExpectations, deriveMaxRevealTimeMs, deriveHoldExpectations } from '@/lib/validators/visual/deriveStateMeta';
 import { dumpCaptureToDisk } from '@/lib/validators/visual/frameDump';
 import { extractTtsVisualBindings, buildTtsMathByState } from '@/lib/validators/visual/ttsBindings';
 import type { VisionGateContext } from '@/lib/validators/visual/visionGate';
@@ -103,6 +103,12 @@ async function main(): Promise<void> {
     // not in the cached teacher_script). Absent file or no bindings → Category
     // I stays dormant, exactly like the auto-fire path.
     const conceptJson = loadConceptJson(conceptId);
+    // Sim-time-aware capture targets + hold intent (concept JSON authoritative
+    // for field_3d reveal timings; fall back to cached physics_config). Only
+    // engaged with --dense (where frozen/dense capture runs).
+    const revealSource = conceptJson ?? cached.physics_config;
+    const maxRevealMsByState = deriveMaxRevealTimeMs(revealSource);
+    const holdExpectations = deriveHoldExpectations(revealSource);
     const ttsBindings = conceptJson ? extractTtsVisualBindings(conceptJson) : {};
     const boundStates = Object.keys(ttsBindings).length;
     // Per-state math_show replay sequence — drives SET_MATH during capture so
@@ -128,9 +134,13 @@ async function main(): Promise<void> {
         stateIds,
         dense: dense ? { intervalMs: 1000, durationMsByState: deriveStateDurationsMs(cached.physics_config) } : undefined,
         ttsMathByState,
+        // Sim-time-aware primary capture — pin+poll PM_simTimeMs to each state's
+        // all-reveals-complete time so late reveals are photographed.
+        maxRevealMsByState: dense ? maxRevealMsByState : undefined,
         // Frozen frame rides the --dense flag: both are deterministic-capture
-        // extras the auto-fire path never requests.
-        frozenFrame: dense ? { atMs: 1500 } : undefined,
+        // extras the auto-fire path never requests. Pinned per state at its
+        // reveal-complete time (was a fixed 1500ms, which missed late reveals).
+        frozenFrame: dense ? { atMsByState: maxRevealMsByState } : undefined,
     });
     console.log(`   ✅ ${capture.state_captures.length} state captures in ${Date.now() - captureStart}ms`);
     if (capture.warnings.length > 0) {
@@ -176,7 +186,7 @@ async function main(): Promise<void> {
 
     console.log('\n🎯 Running deterministic gates (pixel D1p/H1' + (dense ? '/D5/D6/D7' : '') + ' + regression H2, no API)...');
     const [pixelResult, regressionResult] = await Promise.all([
-        runPixelGate({ conceptId, capture, panelCount, expectsMotion }),
+        runPixelGate({ conceptId, capture, panelCount, expectsMotion, holdExpectations: dense ? holdExpectations : undefined }),
         runRegressionGate({ conceptId, capture }),
     ]);
     console.log(`   ✅ Deterministic gates finished ($0)`);

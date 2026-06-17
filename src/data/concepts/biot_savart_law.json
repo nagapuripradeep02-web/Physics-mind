@@ -590,7 +590,8 @@
     },
     "slider_controls": {
       "I": { "min": 0.5, "max": 20, "step": 0.5, "default": 5, "label": "Current I" },
-      "r": { "min": 0.02, "max": 0.30, "step": 0.01, "default": 0.05, "label": "Distance r" }
+      "r": { "min": 0.02, "max": 0.30, "step": 0.01, "default": 0.05, "label": "Distance r" },
+      "theta_deg": { "min": 30, "max": 150, "step": 5, "default": 90, "label": "Angle θ (dl–r̂)" }
     },
     "biot_defaults": {
       "field_point_P": [1.6, 0, 0],
@@ -602,7 +603,7 @@
         "label": "The result you already know",
         "visible_elements": ["bs_wire", "bs_curr_arrow", "bs_circle"],
         "camera_position": [2.5, 1.5, 4],
-        "caption": "A straight wire makes a circular field B = μ₀I/2πr. But where does the circle come from?",
+        "caption": "",
         "biot_element": {
           "field_point_P": [1.6, 0, 0],
           "accumulate_mode": "integrated",
@@ -618,7 +619,7 @@
         "label": "One tiny current element dl",
         "visible_elements": ["bs_wire", "bs_curr_arrow", "bs_dl", "bs_point_P"],
         "camera_position": [1.8, 0.6, 2.4],
-        "caption": "Chop the wire into pieces. One element dl, carrying current I, and a field point P.",
+        "caption": "",
         "biot_element": {
           "field_point_P": [1.6, 0, 0],
           "element_position_on_wire": 0.0,
@@ -633,7 +634,7 @@
         "label": "Geometry: r-hat and angle θ",
         "visible_elements": ["bs_wire", "bs_dl", "bs_point_P", "bs_rhat", "bs_theta"],
         "camera_position": [2.2, 0.4, 2.6],
-        "caption": "Draw r̂ from the element to P (distance r). Note the angle θ between dl and r̂.",
+        "caption": "",
         "biot_element": {
           "field_point_P": [1.6, 0, 0],
           "element_position_on_wire": 0.0,
@@ -648,7 +649,7 @@
         "label": "Build the law from proportionalities",
         "visible_elements": ["bs_wire", "bs_dl", "bs_point_P", "bs_rhat", "bs_theta"],
         "camera_position": [2.2, 0.4, 2.6],
-        "caption": "dB ∝ I · dl · sinθ / r²  →  dB = (μ₀/4π) I dl sinθ / r²",
+        "caption": "",
         "formula_overlay": "dB = (μ₀/4π) · I dl sinθ / r²",
         "biot_element": {
           "field_point_P": [1.6, 0, 0],
@@ -665,7 +666,7 @@
         "label": "Cross product — direction of dB",
         "visible_elements": ["bs_dl", "bs_point_P", "bs_rhat", "bs_cross", "bs_dB"],
         "camera_position": [2.0, 0.5, 2.4],
-        "caption": "dB ‖ dl × r̂ — perpendicular to both, tangent to the circle (into the page here).",
+        "caption": "",
         "biot_element": {
           "field_point_P": [1.6, 0, 0],
           "element_position_on_wire": 0.0,
@@ -681,7 +682,7 @@
         "label": "Predict the direction (dot/cross)",
         "visible_elements": ["bs_wire", "bs_point_P"],
         "camera_position": [0.1, 6.5, 0.1],
-        "caption": "Current ⊙ out → field anti-clockwise; current ⊗ in → field clockwise. Same dl × r̂ rule.",
+        "caption": "",
         "biot_element": {
           "field_point_P": [1.6, 0, 0],
           "element_position_on_wire": 0.0,
@@ -697,7 +698,7 @@
         "label": "The circle assembles itself",
         "visible_elements": ["bs_wire", "bs_curr_arrow", "bs_point_P", "bs_accum", "bs_dB", "bs_circle"],
         "camera_position": [3.5, 1.5, 4.5],
-        "caption": "Each element drops a tiny dB at P. Add them all — the full circular field emerges.",
+        "caption": "",
         "biot_element": {
           "field_point_P": [1.6, 0, 0],
           "accumulate_mode": "sequence",
@@ -713,7 +714,7 @@
         "label": "Why the far ends barely matter",
         "visible_elements": ["bs_wire", "bs_point_P", "bs_accum"],
         "camera_position": [3, 0.3, 3.5],
-        "caption": "Contribution ∝ sinθ/r². The element across from P dominates; the far collinear ends vanish.",
+        "caption": "",
         "biot_element": {
           "field_point_P": [1.6, 0, 0],
           "accumulate_mode": "sequence",
@@ -728,7 +729,7 @@
         "label": "Biot-Savart ⇒ the familiar result",
         "visible_elements": ["bs_wire", "bs_circle", "bs_point_P"],
         "camera_position": [3, 2, 4],
-        "caption": "Summed over the infinite wire: B = μ₀I/2πr — exactly the formula you started with.",
+        "caption": "",
         "formula_overlay": "∑ dB  →  B = μ₀I / 2πr",
         "biot_element": {
           "field_point_P": [1.6, 0, 0],
@@ -739,11 +740,11 @@
       },
       "STATE_10": {
         "label": "Free explore — sliders + rotate",
-        "visible_elements": ["bs_wire", "bs_circle", "bs_point_P", "bs_dB"],
+        "visible_elements": ["bs_wire", "bs_circle", "bs_point_P"],
         "camera_position": [3, 3, 5],
-        "caption": "Drag I and r. Move P. Watch dB and the assembled circle rescale. Drag to rotate, scroll to zoom.",
+        "caption": "",
         "show_sliders": true,
-        "formula_overlay": "dB = (μ₀/4π) I dl×r̂ / r²   →   B = μ₀I/2πr",
+        "formula_overlay": "dB = (μ₀/4π) I dl sinθ / r²   ·   r = d/sinθ   ·   B = μ₀I/2πd",
         "biot_element": {
           "field_point_P": [1.6, 0, 0],
           "accumulate_mode": "integrated",

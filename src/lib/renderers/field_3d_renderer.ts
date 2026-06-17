@@ -33,7 +33,7 @@ export interface Field3DConfig {
     scenario_type: 'point_charge_positive' | 'point_charge_negative' | 'dipole' |
         'parallel_plates' | 'solenoid_field' | 'bar_magnet' | 'straight_wire_current' |
         'changing_flux' | 'lorentz_force_uniform_field' | 'torque_on_loop_uniform_field' |
-        'biot_savart_element';
+        'biot_savart_element' | 'force_on_current_wire';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -198,6 +198,34 @@ export interface Field3DConfig {
             fleming_left_hand?: {
                 show: boolean;
             };
+            // ── force_on_current_wire extras (F = I L × B) ───────────────────
+            // Loosely typed (matching the sibling lorentz extras philosophy):
+            // the renderer reads .show + per-element shape fields off these at
+            // build/applyExtras/animate time. See buildForceOnCurrentWire().
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            wire?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            current_arrows?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            F_net_arrow?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            charge_arrows?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            hand_3d?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            current_flip?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            decoy_30_angle?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            true_90_arc?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            bent_wire?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            chord_arrow?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            square_loop?: any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            side_forces?: any;
         };
         // Show interactive I/r sliders + B readout overlay in this state
         show_sliders?: boolean;
@@ -328,6 +356,9 @@ export interface Field3DConfig {
         v?: { min: number; max: number; step?: number; default: number; label: string };
         B?: { min: number; max: number; step?: number; default: number; label: string };
         theta_deg?: { min: number; max: number; step?: number; default: number; label: string };
+        // ── force_on_current_wire sliders ───────────────────────────────
+        L?: { min: number; max: number; step?: number; default: number; label: string };
+        current_dir?: { default: 1 | -1; label: string };
     };
     pvl_colors?: {
         background: string; text: string; positive: string; negative: string; field_line: string;
@@ -358,6 +389,9 @@ canvas { display: block; width: 100%; height: 100%; }
     padding: 8px 16px; border-radius: 8px; font: 14px/1.4 system-ui, sans-serif;
     z-index: 10; text-align: center; max-width: 80%; pointer-events: none;
 }
+/* Rule 24: the sim is the teacher's silent visual — no prose caption box.
+   When a state's caption is empty, hide the box entirely (no empty pill). */
+#caption:empty { display: none; }
 #mobile-fallback {
     display: none; width: 100%; height: 100%;
     position: fixed; top: 0; left: 0; background: ${bg};
@@ -672,6 +706,27 @@ canvas { display: block; width: 100%; height: 100%; }
     border-top: 1px solid rgba(255,255,255,0.2);
     color: #E879F9; font-weight: bold;
 }
+#fcw_sliders {
+    position: fixed; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 8px;
+    font: 12px/1.6 monospace; z-index: 10;
+    min-width: 200px; display: none;
+}
+#fcw_sliders label { display: block; margin-bottom: 2px; }
+#fcw_sliders input[type="range"] { width: 100%; margin-bottom: 6px; }
+#fcw_sliders #fcw_dir_toggle {
+    display: inline-block; padding: 3px 10px; border-radius: 4px;
+    background: #FFB366; color: #1A1A2E; font-weight: 700; cursor: pointer;
+    font-size: 11px; pointer-events: auto; user-select: none;
+    border: none; margin-top: 2px;
+}
+#fcw_sliders #fcw_dir_toggle.reversed { background: #82B1FF; }
+#fcw_sliders #fcw_f_readout {
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #66BB6A; font-weight: bold;
+}
 </style>
 </head><body>
 <div id="caption"></div>
@@ -864,6 +919,18 @@ canvas { display: block; width: 100%; height: 100%; }
     <input type="range" id="theta_torque_slider" min="0" max="180" step="1" value="45">
     <div id="tau_readout">τ = 0.0 μN·m</div>
 </div>
+<div id="fcw_sliders">
+    <label>I = <span id="fcw_i_val">2</span> A</label>
+    <input type="range" id="fcw_i_slider" min="0.5" max="5" step="0.5" value="2">
+    <label>L = <span id="fcw_l_val">0.5</span> m</label>
+    <input type="range" id="fcw_l_slider" min="0.1" max="1" step="0.1" value="0.5">
+    <label>B = <span id="fcw_b_val">0.5</span> T</label>
+    <input type="range" id="fcw_b_slider" min="0.1" max="1" step="0.1" value="0.5">
+    <label>θ(L,B) = <span id="fcw_theta_val">90</span>°</label>
+    <input type="range" id="fcw_theta_slider" min="0" max="90" step="1" value="90">
+    <button id="fcw_dir_toggle" type="button">Flip current →</button>
+    <div id="fcw_f_readout">F = 0.50 N</div>
+</div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"><\/script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"><\/script>
@@ -944,9 +1011,25 @@ export const FIELD_3D_RENDERER_CODE = `
     // The trail update logic clears the LineGeometry buffer on the next
     // animate tick so the old trajectory doesn't bleed into the new one.
     var lorentzTrailResetPending = false;
+    // force_on_current_wire — sign of the conventional current along the wire
+    // (+1 = along config.current.direction, -1 = reversed). Driven by the
+    // STATE_7 flip button and the STATE_3 current_flip timer. The animate loop
+    // reads this to orient the current arrows + the net/per-charge F arrows.
+    var fcwCurrentDir = 1;
+    // STATE_3 current_flip: STATE-LOCAL sim-time offset (ms since state entry)
+    // at which the current auto-reverses, armed on STATE_3 entry from
+    // extras.current_flip.reverse_at_ms; null = off. Sim-clock based (not
+    // wall-clock) so it also fires under SET_TIME_FREEZE in the visual gate.
+    var fcwFlipAt = null;
     var scene, camera, renderer, animationId;
     var sceneObjects = [];
     var isDragging = false, prevMouse = { x: 0, y: 0 };
+    // Tap detection (teacher freeze gesture): a clean click/tap with no drag
+    // posts CANVAS_TAP to the parent player, which toggles the freeze. A drag
+    // still rotates the scene (and rotates the frozen frame while paused).
+    var tapDownX = 0, tapDownY = 0, tapMoved = false;
+    function tapDist(x, y) { return Math.abs(x - tapDownX) + Math.abs(y - tapDownY); }
+    function emitTap() { if (!tapMoved) { try { parent.postMessage({ type: "CANVAS_TAP" }, "*"); } catch (e) {} } }
     var spherical = { theta: Math.PI / 4, phi: Math.PI / 3, radius: 8 };
     var targetSpherical = { theta: spherical.theta, phi: spherical.phi, radius: spherical.radius };
     var animating = false;
@@ -982,9 +1065,11 @@ export const FIELD_3D_RENDERER_CODE = `
     renderer.domElement.addEventListener("mousedown", function(e) {
         isDragging = true;
         prevMouse.x = e.clientX; prevMouse.y = e.clientY;
+        tapDownX = e.clientX; tapDownY = e.clientY; tapMoved = false;
     });
     renderer.domElement.addEventListener("mousemove", function(e) {
         if (!isDragging) return;
+        if (!tapMoved && tapDist(e.clientX, e.clientY) > 6) tapMoved = true;
         var dx = e.clientX - prevMouse.x;
         var dy = e.clientY - prevMouse.y;
         spherical.theta -= dx * 0.005;
@@ -994,7 +1079,7 @@ export const FIELD_3D_RENDERER_CODE = `
         prevMouse.x = e.clientX; prevMouse.y = e.clientY;
         updateCameraFromSpherical();
     });
-    renderer.domElement.addEventListener("mouseup", function() { isDragging = false; });
+    renderer.domElement.addEventListener("mouseup", function() { isDragging = false; emitTap(); });
     renderer.domElement.addEventListener("mouseleave", function() { isDragging = false; });
     renderer.domElement.addEventListener("wheel", function(e) {
         spherical.radius = Math.max(3, Math.min(20, spherical.radius + e.deltaY * 0.01));
@@ -1008,10 +1093,12 @@ export const FIELD_3D_RENDERER_CODE = `
     renderer.domElement.addEventListener("touchstart", function(e) {
         if (e.touches.length === 1) {
             touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            tapDownX = e.touches[0].clientX; tapDownY = e.touches[0].clientY; tapMoved = false;
         }
     });
     renderer.domElement.addEventListener("touchmove", function(e) {
         if (!touchStart || e.touches.length !== 1) return;
+        if (!tapMoved && tapDist(e.touches[0].clientX, e.touches[0].clientY) > 8) tapMoved = true;
         var dx = e.touches[0].clientX - touchStart.x;
         var dy = e.touches[0].clientY - touchStart.y;
         spherical.theta -= dx * 0.005;
@@ -1022,7 +1109,7 @@ export const FIELD_3D_RENDERER_CODE = `
         updateCameraFromSpherical();
         e.preventDefault();
     }, { passive: false });
-    renderer.domElement.addEventListener("touchend", function() { touchStart = null; });
+    renderer.domElement.addEventListener("touchend", function() { touchStart = null; emitTap(); });
 
     // ── Camera helpers ────────────────────────────────────────────────────
     function updateCameraFromSpherical() {
@@ -1253,6 +1340,163 @@ export const FIELD_3D_RENDERER_CODE = `
         return grp;
     }
 
+    // ── Articulated right-hand RHR (Diamond #4 STATE_6) ───────────────────
+    //   A production-grade, anatomically articulated right hand placed BESIDE
+    //   the solenoid (NOT wrapping the coil). Each finger is a 3-phalange
+    //   kinematic chain (proximal/middle/distal) with rounded knuckle joints,
+    //   exactly like the reference animation (Animations for Physics and
+    //   Astronomy, "Right Hand Rule for Cross Products"). The hand makes a real
+    //   fist-curl: every joint bends as curlT 0→1, the fingers sweeping AROUND
+    //   the local +y axis (= the thumb = the solenoid axis = B). The whole group
+    //   is rotated so local +y aligns with spec.thumb_direction so the thumb runs
+    //   parallel to the coil axis; curlSign sets the wrap sense to match the
+    //   conventional current.
+    //
+    //   rhrFingerJoints() is forward kinematics for ONE finger and returns its
+    //   4 joint positions [MCP, PIP, DIP, TIP]; the animate loop rebuilds the
+    //   finger tube + repositions the knuckle spheres each frame. curlT is a
+    //   pure function of (time - stateStartTime) so it freezes deterministically
+    //   under SET_TIME_FREEZE for THE EYE.
+    function rhrFingerJoints(fingerIndex, sc, curlT, curlSign) {
+        var yArr = [0.34, 0.115, -0.115, -0.34];               // fingers stacked along +y (closer together)
+        var lenF = [0.92, 1.05, 1.0, 0.78][fingerIndex];       // anatomical: middle > ring > index > pinky
+        var yBase = yArr[fingerIndex] * sc;
+        var r0 = 0.11 * sc;                                    // base buried in the palm front → seamless merge
+        var L = [0.27 * sc * lenF, 0.21 * sc * lenF, 0.165 * sc * lenF];
+        var maxA = [1.18, 1.42, 1.20];                         // per-joint max bend (rad)
+        var joints = [new THREE.Vector3(r0, yBase, 0)];        // MCP base, on the +x side
+        var ang = 0;
+        var p = joints[0].clone();
+        for (var s = 0; s < 3; s++) {
+            ang += curlSign * maxA[s] * curlT;                 // cumulative bend about +y
+            // segment direction = flat +x rotated about +y by ang
+            var dir = new THREE.Vector3(Math.cos(ang), 0, -Math.sin(ang));
+            p = p.clone().add(dir.multiplyScalar(L[s]));
+            joints.push(p.clone());
+        }
+        return joints;                                         // [MCP, PIP, DIP, TIP]
+    }
+
+    // ── Shared refined right-hand model ───────────────────────
+    //   The articulated hand built for the solenoid (segmented FK fingers +
+    //   knuckles, smooth thumb, rounded flat palm, tapered wrist) — extracted
+    //   so the Lorentz / Biot-Savart cross-product hands reuse the SAME model.
+    //   rhr-local frame: fingers extend +x and curl toward -z, thumb +y.
+    // Global right-hand size multiplier — founder directive: shrink every hand
+    // (solenoid grip + Lorentz/Biot cross-product) uniformly. Each call's
+    // spec.scale is multiplied by this, so relative sizes are preserved.
+    var HAND_SIZE_FACTOR = 0.7;
+    function buildArticulatedHandParts(sc, curlSign) {
+        var grp = new THREE.Group();
+        var skinMat = new THREE.MeshPhongMaterial({
+            color: 0xE8B98E, emissive: 0x3a1d0e, emissiveIntensity: 0.16, shininess: 26
+        });
+        var jointMat = new THREE.MeshPhongMaterial({
+            color: 0xEEC6A0, emissive: 0x3a1d0e, emissiveIntensity: 0.14, shininess: 26
+        });
+        var nailMat = new THREE.MeshPhongMaterial({ color: 0xCC9966, shininess: 50 });
+        var segR = 0.058 * sc;
+        var fingerTubes = [], fingerKnuckles = [], fingerNails = [];
+        for (var fi = 0; fi < 4; fi++) {
+            var j0 = rhrFingerJoints(fi, sc, 0, curlSign);
+            var tube = new THREE.Mesh(
+                new THREE.TubeGeometry(new THREE.CatmullRomCurve3(j0), 24, segR, 12, false), skinMat
+            );
+            tube.userData = { fingerIndex: fi };
+            grp.add(tube);
+            fingerTubes.push(tube);
+            var ks = [];
+            for (var k = 0; k < 3; k++) {
+                var kr = (k === 0) ? segR * 1.55 : segR * 1.08;
+                var kmat = (k === 0) ? skinMat : jointMat;
+                var ksph = new THREE.Mesh(new THREE.SphereGeometry(kr, 14, 12), kmat);
+                ksph.position.copy(j0[k]);
+                grp.add(ksph);
+                ks.push(ksph);
+            }
+            fingerKnuckles.push(ks);
+            var fnail = new THREE.Mesh(new THREE.SphereGeometry(segR * 1.0, 8, 8), nailMat);
+            fnail.position.copy(j0[3]);
+            grp.add(fnail);
+            fingerNails.push(fnail);
+        }
+        var palm = new THREE.Mesh(new THREE.SphereGeometry(0.34 * sc, 24, 20), skinMat);
+        palm.scale.set(1.20, 1.34, 0.52);
+        palm.position.set(-0.15 * sc, 0, 0);
+        grp.add(palm);
+        var wrist = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.18 * sc, 0.215 * sc, 0.60 * sc, 20), skinMat
+        );
+        wrist.setRotationFromQuaternion(
+            new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(-1, 0, 0))
+        );
+        wrist.scale.set(1.0, 1.0, 0.9);
+        wrist.position.set(-0.78 * sc, 0, 0);
+        grp.add(wrist);
+        var wcap = new THREE.Mesh(new THREE.SphereGeometry(0.18 * sc, 16, 12), skinMat);
+        wcap.scale.set(1.0, 1.0, 0.9);
+        wcap.position.set(-1.08 * sc, 0, 0);
+        grp.add(wcap);
+        var tGrp = new THREE.Group();
+        var thumbPts = [
+            new THREE.Vector3(0, -0.04 * sc, 0),
+            new THREE.Vector3(-0.015 * sc, 0.16 * sc, 0.015 * sc),
+            new THREE.Vector3(-0.038 * sc, 0.36 * sc, 0.038 * sc),
+            new THREE.Vector3(-0.052 * sc, 0.54 * sc, 0.052 * sc)
+        ];
+        var thumbTube = new THREE.Mesh(
+            new THREE.TubeGeometry(new THREE.CatmullRomCurve3(thumbPts), 28, 0.082 * sc, 12, false), skinMat
+        );
+        tGrp.add(thumbTube);
+        var tnail = new THREE.Mesh(new THREE.SphereGeometry(0.082 * sc, 10, 8), nailMat);
+        tnail.position.copy(thumbPts[3]);
+        tGrp.add(tnail);
+        tGrp.position.set(0.05 * sc, 0.22 * sc, 0.10 * sc);
+        grp.add(tGrp);
+        return {
+            group: grp, fingerTubes: fingerTubes, fingerKnuckles: fingerKnuckles,
+            fingerNails: fingerNails, segR: segR
+        };
+    }
+
+    function createSolenoidGripHand(spec) {
+        var grp = new THREE.Group();
+        var sc = (spec.scale || 1) * HAND_SIZE_FACTOR;
+        var curlSign = (spec.finger_curl === 'cw') ? -1 : 1;
+        var parts = buildArticulatedHandParts(sc, curlSign);
+        grp.add(parts.group);
+
+        // B arrow + label off the thumb tip — blue, pointing up the axis (B).
+        if (spec.show_b_label !== false) {
+            var bTip = new THREE.Vector3(0.0, 0.80 * sc, 0.15 * sc);
+            var bArrow = new THREE.ArrowHelper(
+                new THREE.Vector3(0, 1, 0), bTip,
+                0.80 * sc, 0x42A5F5, 0.20 * sc, 0.12 * sc
+            );
+            grp.add(bArrow);
+            var bLabel = createLabelSprite('B', '#42A5F5', 0.6 * sc);
+            bLabel.position.set(0.20 * sc, bTip.y + 0.95 * sc, 0.15 * sc);
+            grp.add(bLabel);
+        }
+
+        // Position BESIDE the coil + orient local +y → thumb_direction so the
+        // thumb runs parallel to the solenoid axis and the fingers curl around it.
+        grp.position.set(spec.position[0], spec.position[1], spec.position[2]);
+        var thumbDir = new THREE.Vector3(
+            spec.thumb_direction[0], spec.thumb_direction[1], spec.thumb_direction[2]
+        ).normalize();
+        grp.setRotationFromQuaternion(
+            new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), thumbDir)
+        );
+        grp.userData = {
+            elementType: 'solenoid_grip_hand', id: 'solenoid_grip_hand',
+            finger_tubes: parts.fingerTubes, finger_knuckles: parts.fingerKnuckles, finger_nails: parts.fingerNails,
+            sc: sc, curlSign: curlSign, seg_tube_r: parts.segR,
+            animate_curl: spec.animate_curl !== false
+        };
+        return grp;
+    }
+
     function createCompass(spec) {
         // Compass disk + N/S needle. The needle's local +Z is the "north
         // pointer". When animate_swing is enabled, applyState rotates the
@@ -1388,83 +1632,22 @@ export const FIELD_3D_RENDERER_CODE = `
 
     function createLorentzHand(spec) {
         var grp = new THREE.Group();
-        var s = spec.scale || 1;
-        var skinMat = new THREE.MeshPhongMaterial({
-            color: 0xFFCC9F, emissive: 0x442211, emissiveIntensity: 0.18, shininess: 30
-        });
+        // moving_charge (lorentz_force scenario): founder wants this hand a bit
+        // smaller still (0.6); the Biot-Savart cross/grip hands keep the shared
+        // HAND_SIZE_FACTOR.
+        var lorentzFactor = (config.scenario_type === 'lorentz_force_uniform_field') ? 0.5 : HAND_SIZE_FACTOR;
+        var s = (spec.scale || 1) * lorentzFactor;
+        // Refined articulated hand (the solenoid model), placed in a +90deg-
+        // about-+y sub-group so the rhr-local frame (fingers +x, curl -z,
+        // thumb +y) maps to the cross-product frame the orientation + label
+        // code below assume: fingers -z = v/dl, curl -x = B/r-hat, thumb
+        // +y = F/dB.
+        var curlSign = 1;
+        var parts = buildArticulatedHandParts(s, curlSign);
+        parts.group.rotation.y = Math.PI / 2;
+        grp.add(parts.group);
 
-        // Palm — slightly elongated sphere
-        var palmGeo = new THREE.SphereGeometry(0.20 * s, 18, 14);
-        var palm = new THREE.Mesh(palmGeo, skinMat);
-        palm.scale.set(1.0, 0.85, 0.7);
-        grp.add(palm);
-
-        // Thumb — TWO-segment realistic. Proximal (carpometacarpal joint)
-        // angles slightly outward; distal (interphalangeal joint) bends back
-        // toward centerline. Reads as a thumb, not just a stub cylinder.
-        var thumbGroup = new THREE.Group();
-        var thumbProxGeo = new THREE.CylinderGeometry(0.085 * s, 0.092 * s, 0.20 * s, 12);
-        var thumbProx = new THREE.Mesh(thumbProxGeo, skinMat);
-        thumbProx.position.set(0.05 * s, 0.10 * s, 0.04 * s);
-        thumbProx.rotation.z = -0.30;
-        thumbGroup.add(thumbProx);
-        var thumbDistGeo = new THREE.CylinderGeometry(0.060 * s, 0.078 * s, 0.18 * s, 12);
-        var thumbDist = new THREE.Mesh(thumbDistGeo, skinMat);
-        thumbDist.position.set(-0.02 * s, 0.28 * s, 0.07 * s);
-        thumbDist.rotation.z = 0.15;
-        thumbGroup.add(thumbDist);
-        // Thumbnail cap at the tip of the distal segment
-        var nailGeo = new THREE.SphereGeometry(0.055 * s, 8, 8);
-        var nailMat = new THREE.MeshPhongMaterial({ color: 0xCC9966 });
-        var nail = new THREE.Mesh(nailGeo, nailMat);
-        nail.position.set(-0.05 * s, 0.38 * s, 0.09 * s);
-        thumbGroup.add(nail);
-        grp.add(thumbGroup);
-
-        // Wrist stub
-        var wristGeo = new THREE.CylinderGeometry(0.16 * s, 0.13 * s, 0.30 * s, 12);
-        var wristMat = new THREE.MeshPhongMaterial({ color: 0xE6B895 });
-        var wrist = new THREE.Mesh(wristGeo, wristMat);
-        wrist.position.set(0, -0.30 * s, 0);
-        grp.add(wrist);
-
-        // 4 fingers — initial geometry is t=0 (straight). Replaced per frame.
-        // Each finger gets a small fingernail-cap (tan sphere) at its tip; the
-        // animate loop tracks the live fingertip position because the finger
-        // geometry is regenerated when curlT changes.
-        var fingerLengths = [1.00, 1.05, 0.95, 0.80];
-        var palmRadius = 0.22 * s;
-        var fingerMeshes = [];
-        var fingerNails = [];
-        var nailMatF = new THREE.MeshPhongMaterial({ color: 0xCC9966, shininess: 50 });
-        for (var fi = 0; fi < 4; fi++) {
-            var pts = lorentzFingerPoints(fi, palmRadius, fingerLengths[fi], s, 0);
-            var curve = new THREE.CatmullRomCurve3(pts);
-            var tubeRadius = 0.045 * s * fingerLengths[fi];
-            var fingerGeo = new THREE.TubeGeometry(curve, 24, tubeRadius, 8, false);
-            var finger = new THREE.Mesh(fingerGeo, skinMat);
-            finger.userData = {
-                fingerIndex: fi,
-                fingerLength: fingerLengths[fi],
-                palmRadius: palmRadius,
-                scale_s: s,
-                tubeRadius: tubeRadius,
-            };
-            grp.add(finger);
-            fingerMeshes.push(finger);
-
-            // Fingernail — small sphere placed at the fingertip. Position
-            // refreshes per frame as the finger curls.
-            var nailRadius = tubeRadius * 1.05;
-            var nailGeoF = new THREE.SphereGeometry(nailRadius, 8, 8);
-            var fingerNail = new THREE.Mesh(nailGeoF, nailMatF);
-            var tipPt = pts[pts.length - 1];
-            fingerNail.position.set(tipPt.x, tipPt.y, tipPt.z);
-            grp.add(fingerNail);
-            fingerNails.push(fingerNail);
-        }
-
-        // v / B / F pointer arrows — small ArrowHelpers that emerge from the
+                // v / B / F pointer arrows — small ArrowHelpers that emerge from the
         // matching anatomical landmark (fingertip / thumb tip) and point in
         // the direction the student should read off the right-hand-rule
         // gesture. Visibility is gated by phase in the animate loop:
@@ -1522,8 +1705,12 @@ export const FIELD_3D_RENDERER_CODE = `
         grp.userData = {
             elementType: 'lorentz_hand',
             id: 'lorentz_hand_3d',
-            finger_meshes: fingerMeshes,
-            finger_nails: fingerNails,
+            finger_meshes: parts.fingerTubes,
+            finger_knuckles: parts.fingerKnuckles,
+            finger_nails: parts.fingerNails,
+            sc: s,
+            curlSign: curlSign,
+            seg_tube_r: parts.segR,
             animate_curl: true,
             v_label: vLabel,
             b_label: bLabel,
@@ -1563,6 +1750,45 @@ export const FIELD_3D_RENDERER_CODE = `
         // aspect: 384/128 = 3
         sprite.scale.set(s * 3, s, 1);
         sprite.renderOrder = 999;  // always draw on top of arrows
+        return sprite;
+    }
+
+    // ── Wide text-label sprite ────────────────────────────────────────────
+    //   Like createLabelSprite, but sizes the canvas to the MEASURED text width
+    //   so multi-word labels (e.g. "couple \\u2192 torque") are never clipped by
+    //   the fixed 384px canvas. The sprite world-width scales with the canvas
+    //   aspect so the glyphs keep the same on-screen height as a short label.
+    function createWideLabelSprite(text, color, heightScale) {
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+        var fontSpec = "bold 64px 'Cambria Math', 'Times New Roman', serif";
+        // First-pass measure on a temporary context to size the canvas.
+        ctx.font = fontSpec;
+        var pad = 48;
+        var measured = Math.ceil(ctx.measureText(text).width) + pad;
+        canvas.width = Math.max(384, measured);
+        canvas.height = 128;
+        // Re-acquire the context (resizing the canvas clears font state).
+        ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.font = fontSpec;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = "rgba(10,10,26,0.95)";
+        ctx.strokeText(text, canvas.width / 2, canvas.height / 2);
+        ctx.fillStyle = color;
+        ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+        var texture = new THREE.CanvasTexture(canvas);
+        texture.needsUpdate = true;
+        var material = new THREE.SpriteMaterial({
+            map: texture, transparent: true, depthTest: false, depthWrite: false
+        });
+        var sprite = new THREE.Sprite(material);
+        var h = heightScale != null ? heightScale : 0.42;
+        var aspect = canvas.width / canvas.height;   // keep glyphs unstretched
+        sprite.scale.set(h * aspect, h, 1);
+        sprite.renderOrder = 999;
         return sprite;
     }
 
@@ -1680,6 +1906,23 @@ export const FIELD_3D_RENDERER_CODE = `
                     applyRhrCase(targetCase);
                 }
             }
+            // Diamond #4 STATE_6 — also build the real 3D right hand that grips
+            // the solenoid (fingers wrap the coil with the current; thumb up the
+            // axis = B). The 2D overlay above stays as a corner legend.
+            if (extras.right_hand.render_3d) {
+                var gripHand = createSolenoidGripHand({
+                    position: extras.right_hand.position || [0, -0.6, 0],
+                    thumb_direction: extras.right_hand.thumb_direction || [0, 1, 0],
+                    finger_curl: extras.right_hand.finger_curl || 'ccw',
+                    grip_radius: extras.right_hand.grip_radius || 0.8,
+                    scale: extras.right_hand.scale || 1.0,
+                    back_azimuth: extras.right_hand.back_azimuth,
+                    show_b_label: extras.right_hand.show_b_label,
+                    animate_curl: extras.right_hand.animate_curl
+                });
+                scene.add(gripHand);
+                dynamicExtras.push(gripHand);
+            }
         }
         if (extras.compass) {
             var compass = createCompass(extras.compass);
@@ -1771,6 +2014,49 @@ export const FIELD_3D_RENDERER_CODE = `
         return group;
     }
 
+    // Sample a polyline at arc-length fraction frac (0..1, wraps). Used to
+    // animate current-flow dots along the concatenated solenoid helix at a
+    // constant visual speed. cum = cumulative arc length per point, len = total.
+    function sampleHelix(frac, pts, cum, len) {
+        if (!pts || pts.length < 2 || !len) return [0, 0, 0];
+        var f = frac - Math.floor(frac);          // wrap into [0,1)
+        var target = f * len;
+        var idx = pts.length - 1;
+        for (var k = 1; k < cum.length; k++) {
+            if (cum[k] >= target) { idx = k; break; }
+        }
+        var i0 = Math.max(0, idx - 1), i1 = idx;
+        var seg = cum[i1] - cum[i0] || 1;
+        var u = (target - cum[i0]) / seg;
+        var a = pts[i0], b = pts[i1];
+        return [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u, a[2] + (b[2] - a[2]) * u];
+    }
+
+    // Shrink a decomposition arrow toward P (= the coil-local origin) by factor
+    // (1 to 0). Used to annihilate the equal-and-opposite radial halves. Relies
+    // on the arrow's tail being at the origin (sample_point = [0,0,0]).
+    function applyDecompTransform(ch, ud, factor) {
+        if (ud.role === "shaft") {
+            ch.scale.set(factor, factor, factor);
+        } else if (ud.role === "head") {
+            var f = Math.max(0.0001, factor);
+            ch.position.set(ud.toP[0] * factor, ud.toP[1] * factor, ud.toP[2] * factor);
+            ch.scale.set(1.25 * f, 1.25 * f, 1.25 * f);
+        }
+    }
+
+    // Translate a decomposition arrow along +z by liftZ. Used to stack the
+    // right axial half head-to-tail on the left one (→ 2× in the axial state).
+    function applyDecompLift(ch, ud, liftZ) {
+        if (ud.role === "shaft") {
+            ch.scale.set(1, 1, 1);
+            ch.position.set(0, 0, liftZ);
+        } else if (ud.role === "head") {
+            ch.scale.set(1.25, 1.25, 1.25);
+            ch.position.set(ud.toP[0], ud.toP[1], ud.toP[2] + liftZ);
+        }
+    }
+
     // ── Scenario builders ─────────────────────────────────────────────────
 
     function buildPointChargeField(charge, lineCount) {
@@ -1809,15 +2095,19 @@ export const FIELD_3D_RENDERER_CODE = `
                     charge.position[2] + dz * r * dir
                 ]);
 
-                // Arrows at spacing intervals
+                // Arrows at spacing intervals. Arrowheads point ALONG the field:
+                // OUTWARD (away) for +q, INWARD (toward the charge) for -q.
+                // Increasing-s is always away from the charge, so multiply by the
+                // sign to flip the arrowhead for a negative charge.
                 if (s > 0 && s % config.field_lines.arrow_spacing === 0) {
                     var prevIdx = s - 1;
+                    var aSign = charge.sign < 0 ? -1 : 1;
                     arrowPoints.push({
                         pos: points[s],
                         dir: [
-                            points[s][0] - points[prevIdx][0],
-                            points[s][1] - points[prevIdx][1],
-                            points[s][2] - points[prevIdx][2]
+                            (points[s][0] - points[prevIdx][0]) * aSign,
+                            (points[s][1] - points[prevIdx][1]) * aSign,
+                            (points[s][2] - points[prevIdx][2]) * aSign
                         ]
                     });
                 }
@@ -1825,7 +2115,9 @@ export const FIELD_3D_RENDERER_CODE = `
 
             var tube = createTubeLine(points, color, 0.02);
             if (tube) {
-                tube.userData = { elementType: "field_line", id: "fl_" + charge.id + "_" + i };
+                // unitDir = the line's outward radial direction (golden-angle), so
+                // the electric STATE_5 probe can brighten lines near its heading.
+                tube.userData = { elementType: "field_line", id: "fl_" + charge.id + "_" + i, unitDir: [dx, dy, dz] };
                 addToScene(tube);
             }
 
@@ -2012,21 +2304,25 @@ export const FIELD_3D_RENDERER_CODE = `
             addToScene(arrowMesh);
         }
 
-        // External field lines — curved loops from one end back to the other
+        // External field lines — TRUE closed return loops (bar-magnet pattern):
+        //   exit the top end near the axis, sweep out and around the outside, and
+        //   re-enter the bottom end — continuous with the internal lines (flux
+        //   continuity, ∇·B = 0). Kept FEW and FAINT so a long solenoid reads
+        //   "outside ≈ 0" (dense inside ≫ sparse outside).
         var externalLines = Math.max(3, Math.floor(lineCount * 0.4));
         for (var i = 0; i < externalLines; i++) {
             var angle = (i / externalLines) * Math.PI * 2;
-            var bulge = 1.5 + (i / externalLines) * 1.5;
+            var extBulge = 1.1 + (i / externalLines) * 1.9;   // how far out this loop swings
             var points = [];
-            for (var s = 0; s <= 24; s++) {
-                var t = s / 24;
-                var z = -solenoidLength / 2 + t * solenoidLength;
-                var blend = Math.sin(t * Math.PI);
-                var extR = coilConf.radius + bulge * blend;
-                points.push([extR * Math.cos(angle), extR * Math.sin(angle), z]);
+            for (var s = 0; s <= 40; s++) {
+                var phi = (s / 40) * Math.PI;                  // 0..π: top end → outside → bottom end
+                var rr = coilConf.radius * 0.5 + extBulge * Math.sin(phi);
+                var zz = (solenoidLength / 2) * Math.cos(phi); // +L/2 → -L/2
+                points.push([rr * Math.cos(angle), rr * Math.sin(angle), zz]);
             }
-            var tube = createTubeLine(points, flColor, 0.015);
+            var tube = createTubeLine(points, flColor, 0.012);
             if (tube) {
+                if (tube.material) { tube.material.transparent = true; tube.material.opacity = 0.28; }
                 tube.userData = { elementType: "field_line_external", id: "fl_ext_" + i };
                 addToScene(tube);
             }
@@ -2093,7 +2389,9 @@ export const FIELD_3D_RENDERER_CODE = `
                     rcColor
                 );
                 upArr.userData = { elementType: "radial_cancel_arrow", id: "rca_" + rci + "_up_" + pi };
-                if (upArr.material) { upArr.material.transparent = true; upArr.material.opacity = 0; }
+                if (upArr.material) { upArr.material.transparent = true; upArr.material.opacity = 0; upArr.material.depthTest = false; upArr.material.depthWrite = false; }
+                upArr.renderOrder = 998;
+                upArr.scale.set(1.5, 1.5, 1.5);
                 upArr.visible = false;
                 coilGroup.add(upArr);
                 var dnArr = createArrowHead(
@@ -2102,53 +2400,264 @@ export const FIELD_3D_RENDERER_CODE = `
                     rcColor
                 );
                 dnArr.userData = { elementType: "radial_cancel_arrow", id: "rca_" + rci + "_dn_" + pi };
-                if (dnArr.material) { dnArr.material.transparent = true; dnArr.material.opacity = 0; }
+                if (dnArr.material) { dnArr.material.transparent = true; dnArr.material.opacity = 0; dnArr.material.depthTest = false; dnArr.material.depthWrite = false; }
+                dnArr.renderOrder = 998;
+                dnArr.scale.set(1.5, 1.5, 1.5);
                 dnArr.visible = false;
                 coilGroup.add(dnArr);
             }
         }
 
-        // ── Diamond #4 STATE_3 — axial buildup arrows (BLUE) along the
-        //   central solenoid axis. These "arise" — animate from length 0
-        //   to full length over arise_duration_ms — so the student sees
-        //   the axial field BUILD as the cancellation completes.
-        //   Each arrow is a (cylinder shaft + cone head) pair so we can
-        //   scale the shaft length per-frame. Built in local +Z space.
+        // ── Diamond #4 STATE_3 — axial buildup arrows (BLUE) down the solenoid
+        //   centre: a small bundle of bold blue tubes + arrowheads that fade in
+        //   AFTER the radial cancellation, showing "one uniform axial field
+        //   survives." Built with createTubeLine + createArrowHead — the same
+        //   primitives the field lines / per-turn circles use, which render
+        //   reliably as coilGroup children (the prior CylinderGeometry shaft did
+        //   not render). depthTest:false so they show through the front turns.
         var axColor = "#3B82F6";
-        var axCount = 5;
+        var axCount = 3;
+        var axHalf = solenoidLength * 0.42;
         for (var axi = 0; axi < axCount; axi++) {
-            var zAx = solenoidLength * ((axi + 0.5) / axCount - 0.5);
-            // Shaft: a thin cylinder we'll scale on Z. Built unit-length 1
-            // along +Z, oriented with up=+Z (matches the coil's local axis).
-            var shaftGeo = new THREE.CylinderGeometry(0.025, 0.025, 1, 8);
-            var shaftMat = new THREE.MeshPhongMaterial({
-                color: hexToThreeColor(axColor),
-                transparent: true,
-                opacity: 0
+            var axOff = (axi - (axCount - 1) / 2) * (coilConf.radius * 0.30);
+            var axPts = [];
+            for (var aps = 0; aps <= 12; aps++) {
+                var apz = -axHalf + (aps / 12) * (axHalf * 2);
+                axPts.push([axOff, 0, apz]);
+            }
+            var axTube = createTubeLine(axPts, axColor, 0.05);
+            if (axTube) {
+                if (axTube.material) {
+                    axTube.material.transparent = true;
+                    axTube.material.opacity = 0;
+                }
+                axTube.visible = false;
+                axTube.userData = { elementType: "axial_buildup_tube", id: "axb_tube_" + axi, axIndex: axi };
+                coilGroup.add(axTube);
+            }
+            var axHead = createArrowHead([axOff, 0, axHalf], [0, 0, 1], axColor);
+            if (axHead.material) {
+                axHead.material.transparent = true;
+                axHead.material.opacity = 0;
+            }
+            axHead.scale.set(2.2, 2.2, 2.2);
+            axHead.visible = false;
+            axHead.userData = { elementType: "axial_buildup_head", id: "axb_head_" + axi, axIndex: axi };
+            coilGroup.add(axHead);
+        }
+
+        // ════════════════════════════════════════════════════════════════════
+        // Diamond #4 enrichment (2026-06-14) — current motion, per-turn Biot-
+        // Savart B, diametric-twin radial decomposition, axial stack. Built in
+        // the coilGroup-local +Z frame (coilGroup is NOT rotated for axis
+        // [0,1,0]). All hidden by default; the animate loop reveals per state.
+        // ════════════════════════════════════════════════════════════════════
+
+        // ── 1. Current-flow dots — animate ALONG the helix to show the live
+        //   current direction (the renderer had flow dots for wire/biot/torque
+        //   but none on the solenoid). Concatenate every turn into one polyline
+        //   + cumulative arc length so dots move at constant visual speed.
+        var helixPts = [];
+        for (var hti = 0; hti < ptTurns; hti++) {
+            for (var hai = 0; hai < 64; hai++) {        // 0..63: skip the seam dup
+                var hAng = (hai / 64) * Math.PI * 2;
+                helixPts.push([
+                    coilConf.radius * Math.cos(hAng),
+                    coilConf.radius * Math.sin(hAng),
+                    solenoidLength * ((hti + hai / 64) / ptTurns - 0.5)
+                ]);
+            }
+        }
+        var helixCum = [0];
+        var helixLen = 0;
+        for (var hci = 1; hci < helixPts.length; hci++) {
+            var hpa = helixPts[hci - 1], hpb = helixPts[hci];
+            helixLen += Math.sqrt(
+                (hpb[0]-hpa[0])*(hpb[0]-hpa[0]) +
+                (hpb[1]-hpa[1])*(hpb[1]-hpa[1]) +
+                (hpb[2]-hpa[2])*(hpb[2]-hpa[2])
+            );
+            helixCum.push(helixLen);
+        }
+        coilGroup.userData.helixPts = helixPts;
+        coilGroup.userData.helixCum = helixCum;
+        coilGroup.userData.helixLen = helixLen;
+
+        var cfColor = (config.current && config.current.wire_color) || "#FFD54F";
+        var cfCount = (config.current && config.current.flow_dot_count) || 14;
+        for (var cfi = 0; cfi < cfCount; cfi++) {
+            var cfGeo = new THREE.SphereGeometry(0.085, 14, 14);
+            var cfMat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(cfColor), emissive: hexToThreeColor("#FFAB00"),
+                emissiveIntensity: 0.85, transparent: true, opacity: 0
             });
-            var shaft = new THREE.Mesh(shaftGeo, shaftMat);
-            // Default cylinder is along +Y; rotate to +Z.
-            shaft.rotation.x = Math.PI / 2;
-            shaft.position.set(0, 0, zAx);
-            shaft.visible = false;
-            shaft.userData = {
-                elementType: "axial_buildup_shaft",
-                id: "axb_shaft_" + axi,
-                baseZ: zAx,
-                axIndex: axi
-            };
-            coilGroup.add(shaft);
-            var headMesh = createArrowHead([0, 0, zAx], [0, 0, 1], axColor);
-            headMesh.material.transparent = true;
-            headMesh.material.opacity = 0;
-            headMesh.visible = false;
-            headMesh.userData = {
-                elementType: "axial_buildup_head",
-                id: "axb_head_" + axi,
-                baseZ: zAx,
-                axIndex: axi
-            };
-            coilGroup.add(headMesh);
+            var cfDot = new THREE.Mesh(cfGeo, cfMat);
+            cfDot.userData = { elementType: "current_flow_dot", id: "cfd_" + cfi, t: cfi / cfCount, speed: 0.16 };
+            cfDot.visible = false;
+            cfDot.renderOrder = 997;
+            var cfInit = sampleHelix(cfi / cfCount, helixPts, helixCum, helixLen);
+            cfDot.position.set(cfInit[0], cfInit[1], cfInit[2]);
+            coilGroup.add(cfDot);
+        }
+
+        // ── 2. STATE_2 "each turn makes its own B" — small Biot-Savart B-circles
+        //   wrapping AROUND the wire (perpendicular to the local tangent), the
+        //   straight-wire field (Diamond #1) bent around the loop, plus a short
+        //   axial mini-arrow through each loop centre (the turn's net field).
+        var wrapColor = "#7FE7FF";
+        var wrapPerTurn = 6;
+        var wrapR = 0.2;
+        for (var wti = 0; wti < ptTurns; wti++) {
+            var wTurnZ = solenoidLength * ((wti + 0.5) / ptTurns - 0.5);
+            for (var wpi = 0; wpi < wrapPerTurn; wpi++) {
+                var wPhi = (wpi / wrapPerTurn) * Math.PI * 2;
+                var wcx = coilConf.radius * Math.cos(wPhi);
+                var wcy = coilConf.radius * Math.sin(wPhi);
+                // local wire tangent (in-plane approx for a tight coil)
+                var tgx = -Math.sin(wPhi), tgy = Math.cos(wPhi), tgz = 0;
+                // u = tangent × zhat, v = tangent × u  → basis of the plane ⟂ tangent
+                var uxv = tgy, uyv = -tgx, uzv = 0;
+                var uln = Math.sqrt(uxv*uxv + uyv*uyv + uzv*uzv) || 1; uxv/=uln; uyv/=uln; uzv/=uln;
+                var vxv = tgy*uzv - tgz*uyv, vyv = tgz*uxv - tgx*uzv, vzv = tgx*uyv - tgy*uxv;
+                var vln = Math.sqrt(vxv*vxv + vyv*vyv + vzv*vzv) || 1; vxv/=vln; vyv/=vln; vzv/=vln;
+                var wrapPts = [];
+                var wsegs = 22;
+                for (var wsi = 0; wsi <= wsegs; wsi++) {
+                    var wth = (wsi / wsegs) * Math.PI * 2;
+                    wrapPts.push([
+                        wcx + wrapR*(Math.cos(wth)*uxv + Math.sin(wth)*vxv),
+                        wcy + wrapR*(Math.cos(wth)*uyv + Math.sin(wth)*vyv),
+                        wTurnZ + wrapR*(Math.cos(wth)*uzv + Math.sin(wth)*vzv)
+                    ]);
+                }
+                var wrapTube = createTubeLine(wrapPts, wrapColor, 0.013);
+                if (wrapTube) {
+                    if (wrapTube.material) { wrapTube.material.transparent = true; wrapTube.material.opacity = 0; }
+                    wrapTube.visible = false;
+                    wrapTube.userData = { elementType: "wire_wrap_circle", id: "wwc_" + wti + "_" + wpi, turnIndex: wti };
+                    coilGroup.add(wrapTube);
+                }
+            }
+            var ptaArrow = createArrowHead([0, 0, wTurnZ + 0.28], [0, 0, 1], "#3B82F6");
+            if (ptaArrow.material) { ptaArrow.material.transparent = true; ptaArrow.material.opacity = 0; }
+            ptaArrow.scale.set(1.3, 1.3, 1.3);
+            ptaArrow.visible = false;
+            ptaArrow.userData = { elementType: "per_turn_axial_arrow", id: "pta_" + wti, turnIndex: wti };
+            coilGroup.add(ptaArrow);
+        }
+
+        // ── 3. Diametric-twin radial decomposition (STATE_3). At a point P on the
+        //   axis, the field from a current element on the RIGHT and its diametric
+        //   twin on the LEFT split into axial (z, blue) + radial (x, red) pieces:
+        //   radial halves are equal & opposite → cancel; axial halves add. P is the
+        //   local origin so the red radials can shrink-to-P to annihilate.
+        function addDecompArrow(idBase, fromP, toP, color, shaftR, etype) {
+            var shaft = createTubeLine([fromP, toP], color, shaftR);
+            if (shaft) {
+                if (shaft.material) { shaft.material.transparent = true; shaft.material.opacity = 0; shaft.material.depthTest = false; shaft.material.depthWrite = false; }
+                shaft.renderOrder = 999;
+                shaft.visible = false;
+                shaft.userData = { elementType: etype, id: idBase + "_shaft", role: "shaft", fromP: fromP.slice(), toP: toP.slice() };
+                coilGroup.add(shaft);
+            }
+            var hDir = [toP[0]-fromP[0], toP[1]-fromP[1], toP[2]-fromP[2]];
+            var head = createArrowHead(toP, hDir, color);
+            if (head.material) { head.material.transparent = true; head.material.opacity = 0; head.material.depthTest = false; head.material.depthWrite = false; }
+            head.renderOrder = 999;
+            head.scale.set(1.25, 1.25, 1.25);
+            head.visible = false;
+            head.userData = { elementType: etype, id: idBase + "_head", role: "head", fromP: fromP.slice(), toP: toP.slice() };
+            coilGroup.add(head);
+        }
+
+        var rdG = config.radial_decomposition_geometry || {};
+        var rdFocalTurn = (rdG.focal_turn != null) ? rdG.focal_turn : 1;
+        var rdRingZ = (rdG.ring_z != null) ? rdG.ring_z : solenoidLength * ((rdFocalTurn + 0.5) / ptTurns - 0.5);
+        var rdP = rdG.sample_point || [0, 0, 0];
+        var rdArrowLen = rdG.arrow_len || 1.25;
+        var rdRad = coilConf.radius;
+        var rdD = rdP[2] - rdRingZ;                                   // axial offset ring→P
+        var rdMag = Math.sqrt(rdD*rdD + rdRad*rdRad) || 1;
+        var rdAxL = rdArrowLen * (rdRad / rdMag);                     // axial component length
+        var rdRadL = rdArrowLen * (Math.abs(rdD) / rdMag);           // radial component length
+
+        // source current elements (the diametric twins on the ring) + the axis point
+        var elR = createChargeSphere([rdRad, 0, rdRingZ], "#FFAB40", 0.09);
+        elR.userData = { elementType: "rd_element", id: "rd_el_right" }; elR.visible = false;
+        if (elR.material) { elR.material.transparent = true; elR.material.opacity = 0; }
+        coilGroup.add(elR);
+        var elL = createChargeSphere([-rdRad, 0, rdRingZ], "#FFAB40", 0.09);
+        elL.userData = { elementType: "rd_element", id: "rd_el_left" }; elL.visible = false;
+        if (elL.material) { elL.material.transparent = true; elL.material.opacity = 0; }
+        coilGroup.add(elL);
+        var axPt = createChargeSphere(rdP, "#FFFFFF", 0.07);
+        axPt.userData = { elementType: "rd_axis_point", id: "rd_axis_point" }; axPt.visible = false;
+        if (axPt.material) { axPt.material.transparent = true; axPt.material.opacity = 0; }
+        coilGroup.add(axPt);
+        // faint causal rays element → P
+        var rayR = createTubeLine([[rdRad,0,rdRingZ], rdP], "#9CA3AF", 0.008);
+        if (rayR) { if (rayR.material){ rayR.material.transparent=true; rayR.material.opacity=0; } rayR.visible=false; rayR.userData={ elementType:"rd_ray", id:"rd_ray_right" }; coilGroup.add(rayR); }
+        var rayL = createTubeLine([[-rdRad,0,rdRingZ], rdP], "#9CA3AF", 0.008);
+        if (rayL) { if (rayL.material){ rayL.material.transparent=true; rayL.material.opacity=0; } rayL.visible=false; rayL.userData={ elementType:"rd_ray", id:"rd_ray_left" }; coilGroup.add(rayL); }
+
+        // full contribution arrows at P (yellow): up-and-out / up-and-in
+        addDecompArrow("rd_contrib_right", rdP, [rdP[0]+rdRadL, rdP[1], rdP[2]+rdAxL], "#FFD54F", 0.03, "rd_contribution");
+        addDecompArrow("rd_contrib_left",  rdP, [rdP[0]-rdRadL, rdP[1], rdP[2]+rdAxL], "#FFD54F", 0.03, "rd_contribution");
+        // axial components (blue) — both point +z (add)
+        addDecompArrow("rd_axial_right", rdP, [rdP[0], rdP[1], rdP[2]+rdAxL], "#3B82F6", 0.026, "rd_axial");
+        addDecompArrow("rd_axial_left",  rdP, [rdP[0], rdP[1], rdP[2]+rdAxL], "#3B82F6", 0.026, "rd_axial");
+        // radial components (red) — point +x and -x (equal & opposite → cancel)
+        addDecompArrow("rd_radial_right", rdP, [rdP[0]+rdRadL, rdP[1], rdP[2]], "#EF4444", 0.026, "rd_radial");
+        addDecompArrow("rd_radial_left",  rdP, [rdP[0]-rdRadL, rdP[1], rdP[2]], "#EF4444", 0.026, "rd_radial");
+        // doubled axial sum (for the AXIAL state head-to-tail stack)
+        addDecompArrow("ax_stack_sum", rdP, [rdP[0], rdP[1], rdP[2]+2*rdAxL], "#3B82F6", 0.036, "ax_stack_sum");
+
+        // ── Beat 3 (2026-06-14): along-length axial stack. Short blue axial
+        //   arrows at successive z down the axis, revealed left to right
+        //   (staggered) so the student sees the WHOLE-solenoid summation —
+        //   every ring along L adding its axial bit into one uniform field
+        //   (the n.dx.i superposition Alakh Pandey teaches). Complements the
+        //   single-ring diametric-twin stack above. Hidden until STATE_4.
+        var lsCount = 6;
+        var lsHalf = solenoidLength * 0.40;
+        var lsLen = coilConf.radius * 0.55;
+        for (var lsi = 0; lsi < lsCount; lsi++) {
+            var lsz = -lsHalf + (lsi / (lsCount - 1)) * (lsHalf * 2);
+            var lsShaft = createTubeLine([[0, 0, lsz], [0, 0, lsz + lsLen]], "#3B82F6", 0.03);
+            if (lsShaft) {
+                if (lsShaft.material) { lsShaft.material.transparent = true; lsShaft.material.opacity = 0; lsShaft.material.depthTest = false; lsShaft.material.depthWrite = false; }
+                lsShaft.renderOrder = 997; lsShaft.visible = false;
+                lsShaft.userData = { elementType: "length_stack_arrow", id: "length_stack_" + lsi + "_shaft", lsIndex: lsi };
+                coilGroup.add(lsShaft);
+            }
+            var lsHead = createArrowHead([0, 0, lsz + lsLen], [0, 0, 1], "#3B82F6");
+            if (lsHead.material) { lsHead.material.transparent = true; lsHead.material.opacity = 0; lsHead.material.depthTest = false; lsHead.material.depthWrite = false; }
+            lsHead.scale.set(1.1, 1.1, 1.1); lsHead.renderOrder = 997; lsHead.visible = false;
+            lsHead.userData = { elementType: "length_stack_arrow", id: "length_stack_" + lsi + "_head", lsIndex: lsi };
+            coilGroup.add(lsHead);
+        }
+
+        // ── Beat 1 (2026-06-14): N/S pole labels at the solenoid ends — the
+        //   "a solenoid IS a bar magnet" hook. Four sprites (N+S at each end);
+        //   the animate loop shows the correct pair per field_lines_dir so the
+        //   poles SWAP when the current reverses (STATE_8) — exactly Alakh
+        //   Pandey's suspended-solenoid demo (rests N-S; reverse battery ->
+        //   flips 180 degrees). N is the end the interior field points toward.
+        var poleZ = solenoidLength * 0.5 + 0.55;
+        var poleSpecs = [
+            { id: "pole_Np", end: 1, pole: "N", text: "N", color: "#EF4444", z: poleZ },
+            { id: "pole_Sp", end: 1, pole: "S", text: "S", color: "#3B82F6", z: poleZ },
+            { id: "pole_Nn", end: -1, pole: "N", text: "N", color: "#EF4444", z: -poleZ },
+            { id: "pole_Sn", end: -1, pole: "S", text: "S", color: "#3B82F6", z: -poleZ }
+        ];
+        for (var psi = 0; psi < poleSpecs.length; psi++) {
+            var ps = poleSpecs[psi];
+            var plab = createLabelSprite(ps.text, ps.color, 0.44);
+            plab.position.set(0, 0, ps.z);
+            if (plab.material) plab.material.opacity = 0;
+            plab.visible = false;
+            plab.userData = { elementType: "pole_label", id: ps.id, end: ps.end, pole: ps.pole };
+            coilGroup.add(plab);
         }
     }
 
@@ -2555,7 +3064,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // positive rotation about +y = exactly the B circulation sense for
         // current up. 2-beat story: flat hold ("I" on thumb) -> curl -> full-
         // curl hold ("B" on the curled fingertips) -> uncurl, repeat.
-        var gripHand = createLorentzHand({ position: [-2.4, 0.2, 0.6], scale: 1.0 });
+        var gripHand = createLorentzHand({ position: [2.4, 0.2, 0.6], scale: 1.0 });
         if (gripHand.userData.v_label) gripHand.userData.v_label.visible = false;
         if (gripHand.userData.b_label) gripHand.userData.b_label.visible = false;
         if (gripHand.userData.f_label) gripHand.userData.f_label.visible = false;
@@ -2575,7 +3084,7 @@ export const FIELD_3D_RENDERER_CODE = `
         gripHand.add(gripBLabel);
         gripHand.userData.elementType = "biot_grip_hand";
         gripHand.userData.id = "bs_grip_hand";
-        gripHand.userData.homePos = [-2.4, 0.2, 0.6];
+        gripHand.userData.homePos = [2.4, 0.2, 0.6];
         gripHand.userData.i_label = gripILabel;
         gripHand.userData.b_grip_label = gripBLabel;
         gripHand.visible = false;
@@ -2637,6 +3146,50 @@ export const FIELD_3D_RENDERER_CODE = `
         crossHand.userData.homePos = [-2.6, 1.7, 1.0];
         crossHand.visible = false;
         addToScene(crossHand);
+
+        // ── STATE_10 interactive-explorer object set ─────────────────────
+        // Own, dedicated objects (NOT the authored choreography ones) so the
+        // explorer never fights the grow/reveal animation. Hidden by default;
+        // applyState shows them only when stateDef.show_sliders, and
+        // refreshBiotExplorer() drives them from the I / r / θ sliders so the
+        // single element, r-hat, and dB all obey Biot-Savart. The authored
+        // rings (bs_circle) + point P (bs_point_P) ARE reused (scaled / moved)
+        // and reset to their built pose on every biot state entry.
+        var expElemMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(wireColor), emissive: hexToThreeColor(wireColor),
+            emissiveIntensity: 0.6
+        });
+        var expElem = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.55, 16), expElemMat);
+        expElem.userData = { elementType: "biot_explorer", id: "bs_exp_elem" };
+        expElem.visible = false;
+        addToScene(expElem);
+
+        var expRhat = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 1.6, 0xD4D4D8, 0.26, 0.15);
+        expRhat.userData = { elementType: "biot_explorer", id: "bs_exp_rhat" };
+        expRhat.visible = false;
+        addToScene(expRhat);
+
+        var expDb = new THREE.ArrowHelper(new THREE.Vector3(0, 0, -1), new THREE.Vector3(P[0], P[1], P[2]), 1.0, 0x66BB6A, 0.22, 0.14);
+        expDb.userData = { elementType: "biot_explorer", id: "bs_exp_db" };
+        expDb.visible = false;
+        addToScene(expDb);
+
+        var expDbLabel = createLabelSprite("dB", dbColor, 0.5);
+        expDbLabel.userData = { elementType: "biot_explorer", id: "bs_exp_db_label" };
+        expDbLabel.visible = false;
+        addToScene(expDbLabel);
+
+        var expElemLabel = createLabelSprite("dl", wireColor, 0.42);
+        expElemLabel.userData = { elementType: "biot_explorer", id: "bs_exp_elem_label" };
+        expElemLabel.visible = false;
+        addToScene(expElemLabel);
+
+        // "r" label rides the slant r̂ line (element→P) so the student SEES that
+        // r is the element-to-P distance, equal to the circle radius only at θ=90°.
+        var expRLabel = createLabelSprite("r", rhatColor, 0.42);
+        expRLabel.userData = { elementType: "biot_explorer", id: "bs_exp_r_label" };
+        expRLabel.visible = false;
+        addToScene(expRLabel);
     }
 
     function buildChangingFluxField(config_unused) {
@@ -3590,6 +4143,591 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── Force on a current-carrying wire (F = I L × B, archetype B meta) ──
+    //
+    // Concept force_on_current_carrying_wire. A straight current-carrying wire
+    // (along +x) sits in a uniform B field (along +y), so F = I (L̂ × B̂) runs
+    // along +z (× current_dir). Builds, up-front and mostly hidden:
+    //   1. Ambient uniform-B arrow lattice (reused Lorentz/torque pattern).
+    //   2. wire            — straight current wire (createWire), id "fcw_wire".
+    //   3. current_arrows  — small cones along the wire (conventional I).
+    //   4. F_net_arrow      — ArrowHelper, direction = current_dir·(L̂×B̂),
+    //                         length ∝ B·I·L·sinθ, recomputed per frame.
+    //   5. charge_arrows    — count drifting carriers, each with a small
+    //                         parallel q(v_d×B) arrow (the STATE_2 derivation).
+    //   6. hand_3d          — RHR cross-product hand (createLorentzHand),
+    //                         fingers=L, curl=B, thumb=F (STATE_3 only).
+    //   7. decoy_30_angle   — RED wrong 30°-to-page-edge arc (STATE_4).
+    //   8. true_90_arc      — the true ∠(L,B) arc (STATE_4), distinct primitive.
+    //   9. bent_wire        — zig-zag tube through waypoints (STATE_5).
+    //  10. chord_arrow      — straight chord end→end, snapshot reveal (STATE_5).
+    //  11. square_loop      — closed loop + per-side outward force arrows that
+    //                         sum to zero but form a couple (STATE_6).
+    // Per-state visibility is owned by applyForceWireState() (reads extras.<key>
+    // .show). Per-frame behaviour (drift, current-flip, live F) lives in the
+    // animate loop's force_on_current_wire block.
+    function buildForceOnCurrentWire() {
+        // ── tiny ES5 vector helpers (no THREE dependency) ────────────────
+        function fwCross(a, b) {
+            return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
+        }
+        function fwNorm(a) {
+            var L = Math.sqrt(a[0]*a[0]+a[1]*a[1]+a[2]*a[2]) || 1;
+            return [a[0]/L, a[1]/L, a[2]/L];
+        }
+
+        var af = config.ambient_field || {
+            direction: [0, 1, 0], magnitude: 0.5, density: [5, 5, 5],
+            color: "#42A5F5", opacity: 0.42, extent: 2.5
+        };
+        var cur = config.current || { direction: [1, 0, 0], magnitude: 2, wire_color: "#FFB366" };
+        var wireColor = cur.wire_color || "#FFB366";
+        var wireDir = fwNorm(cur.direction || [1, 0, 0]);   // L̂ (along conventional current)
+        var bDir = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+
+        // 1. Ambient B-field arrow lattice (uniform along af.direction).
+        var ext = af.extent != null ? af.extent : 2.5;
+        var nx = af.density[0], ny = af.density[1], nz = af.density[2];
+        var sxAmb = nx > 1 ? (2 * ext) / (nx - 1) : 0;
+        var syAmb = ny > 1 ? (2 * ext) / (ny - 1) : 0;
+        var szAmb = nz > 1 ? (2 * ext) / (nz - 1) : 0;
+        var arrowLen = 0.55;
+        var arrowOp = af.opacity != null ? af.opacity : 0.42;
+        var arrowColor = af.color || "#42A5F5";
+        for (var ix = 0; ix < nx; ix++) {
+            for (var iy = 0; iy < ny; iy++) {
+                for (var iz = 0; iz < nz; iz++) {
+                    var ox = nx > 1 ? -ext + ix * sxAmb : 0;
+                    var oy = ny > 1 ? -ext + iy * syAmb : 0;
+                    var oz = nz > 1 ? -ext + iz * szAmb : 0;
+                    var origin = new THREE.Vector3(ox, oy, oz)
+                        .addScaledVector(bDir, -arrowLen / 2);
+                    var arrH = new THREE.ArrowHelper(bDir, origin, arrowLen, arrowColor, 0.14, 0.09);
+                    arrH.userData = { elementType: "ambient_field", id: "b_arrow_" + ix + "_" + iy + "_" + iz };
+                    arrH.children.forEach(function(child) {
+                        if (child.material) {
+                            child.material.transparent = true;
+                            child.material.opacity = arrowOp;
+                        }
+                    });
+                    addToScene(arrH);
+                }
+            }
+        }
+
+        // B sprite label at the +y end of the lattice.
+        var bLabelF = createLabelSprite("B", "#82B1FF", 0.40);
+        bLabelF.position.set(0, ext + 0.4, 0);
+        bLabelF.userData = { elementType: "fcw_b_label", id: "fcw_b_label" };
+        addToScene(bLabelF);
+
+        // 2. Straight current-carrying wire (along ±wireDir). Half-length 1.8.
+        var wireHalf = 1.8;
+        var wEnd = [wireDir[0]*wireHalf, wireDir[1]*wireHalf, wireDir[2]*wireHalf];
+        var wStart = [-wEnd[0], -wEnd[1], -wEnd[2]];
+        var fwWire = createWire(wStart, wEnd, wireColor, 0.09);
+        fwWire.material.emissive = hexToThreeColor(wireColor);
+        fwWire.material.emissiveIntensity = 0.4;
+        fwWire.userData = { elementType: "fcw_wire", id: "fcw_wire" };
+        addToScene(fwWire);
+
+        // L sprite label near the +current end of the wire.
+        var lLabelF = createLabelSprite("L", "#FFCC9F", 0.40);
+        lLabelF.position.set(wEnd[0] + 0.3, wEnd[1] + 0.2, wEnd[2]);
+        lLabelF.userData = { elementType: "fcw_l_label", id: "fcw_l_label" };
+        addToScene(lLabelF);
+
+        // 3. Current direction arrows along the wire. Built as BOLD cones whose
+        //    radius (0.13) is larger than the wire tube radius (0.09) so each
+        //    clearly PROTRUDES from the wire instead of hiding inside it. Bright
+        //    yellow, emissive. Orientation flips per frame when current_dir
+        //    reverses (STATE_3). Default cone axis is +y → setRotation in the
+        //    animate loop maps it onto the (possibly flipped) current direction.
+        var nCurArrows = 5;
+        for (var ca = 0; ca < nCurArrows; ca++) {
+            var fracC = (ca + 0.5) / nCurArrows;            // 0..1 along the wire
+            var posC = [
+                wStart[0] + (wEnd[0]-wStart[0]) * fracC,
+                wStart[1] + (wEnd[1]-wStart[1]) * fracC,
+                wStart[2] + (wEnd[2]-wStart[2]) * fracC
+            ];
+            var cGeo = new THREE.ConeGeometry(0.13, 0.34, 14);
+            var cMat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor("#FFD54F"), emissive: hexToThreeColor("#FFD54F"),
+                emissiveIntensity: 0.6, shininess: 70
+            });
+            var cArr = new THREE.Mesh(cGeo, cMat);
+            cArr.position.set(posC[0], posC[1], posC[2]);
+            cArr.setRotationFromQuaternion(
+                new THREE.Quaternion().setFromUnitVectors(
+                    new THREE.Vector3(0, 1, 0),
+                    new THREE.Vector3(wireDir[0], wireDir[1], wireDir[2]).normalize()
+                )
+            );
+            cArr.userData = {
+                elementType: "fcw_current_arrow", id: "fcw_curr_" + ca,
+                baseDir: wireDir.slice(),
+                phase: fracC        // 0..1 starting position along the wire (for sim-time drift)
+            };
+            addToScene(cArr);
+        }
+
+        // 4. Net force arrow F = I (L̂ × B̂). Direction + length recomputed per
+        //    frame (length ∝ B·I·L·sinθ, with a readable floor). Tail at the
+        //    wire centre. BOLD: a thick shaft (cylinder overlay) + a large clear
+        //    cone head, bright green, so it reads as a proper arrow even broadside
+        //    to the camera. The ArrowHelper carries the head; a child cylinder
+        //    thickens the shaft (ArrowHelper lines render 1px and vanish broadside).
+        var fNet = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 0),
+            1.2, "#66BB6A", 0.40, 0.22
+        );
+        // Thick shaft tube riding inside the arrow so it is visible from any
+        // angle. Re-scaled + re-oriented per frame in the animate loop.
+        var fNetShaftGeo = new THREE.CylinderGeometry(0.055, 0.055, 1, 12);
+        var fNetShaftMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#66BB6A"), emissive: hexToThreeColor("#66BB6A"),
+            emissiveIntensity: 0.5, shininess: 60
+        });
+        var fNetShaft = new THREE.Mesh(fNetShaftGeo, fNetShaftMat);
+        fNetShaft.userData = { fcwRole: "f_net_shaft" };
+        fNet.add(fNetShaft);
+        fNet.userData = { elementType: "fcw_F_net", id: "fcw_F_net", shaft: fNetShaft };
+        addToScene(fNet);
+
+        // F sprite label — repositioned to the F-arrow tip per frame.
+        var fLabelF = createLabelSprite("F", "#66BB6A", 0.42);
+        fLabelF.userData = { elementType: "fcw_f_label", id: "fcw_f_label" };
+        addToScene(fLabelF);
+
+        // 5. Charge carriers (STATE_2 derivation-as-picture). count spheres
+        //    drift ALONG the wire; each carries a small per-carrier force arrow
+        //    q(v_d x B), all parallel, all the same direction (= F-hat). They
+        //    stack visually into the net F arrow.
+        var chargeCount = 7;
+        var perChargeFhat = fwNorm(fwCross(wireDir, [bDir.x, bDir.y, bDir.z]));
+        for (var ch = 0; ch < chargeCount; ch++) {
+            var fracH = (ch + 0.5) / chargeCount;
+            var cPos = [
+                wStart[0] + (wEnd[0]-wStart[0]) * fracH,
+                wStart[1] + (wEnd[1]-wStart[1]) * fracH,
+                wStart[2] + (wEnd[2]-wStart[2]) * fracH
+            ];
+            var carrier = createChargeSphere(cPos, "#FFCC9F", 0.10);
+            carrier.userData = {
+                elementType: "fcw_carrier", id: "fcw_carrier_" + ch,
+                phase: fracH        // 0..1 starting position along the wire
+            };
+            addToScene(carrier);
+
+            // Per-carrier force arrow — BOLD + clearly parallel (each is one
+            // carrier's q(v_d×B), all pointing along the SAME F̂; they visually
+            // stack into the net F). Length 0.7 with a thick cone + child shaft
+            // so the "all parallel, all same way" reading is unmistakable.
+            var PCF_LEN = 0.7;
+            var pcArr = new THREE.ArrowHelper(
+                new THREE.Vector3(perChargeFhat[0], perChargeFhat[1], perChargeFhat[2]),
+                new THREE.Vector3(cPos[0], cPos[1], cPos[2]),
+                PCF_LEN, "#FFCC9F", 0.22, 0.12
+            );
+            var pcShaftGeo = new THREE.CylinderGeometry(0.03, 0.03, PCF_LEN - 0.22, 10);
+            var pcShaftMat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor("#FFCC9F"), emissive: hexToThreeColor("#FFCC9F"),
+                emissiveIntensity: 0.45, shininess: 50
+            });
+            var pcShaft = new THREE.Mesh(pcShaftGeo, pcShaftMat);
+            pcShaft.position.set(0, (PCF_LEN - 0.22) / 2, 0);   // +y-local = arrow axis
+            pcArr.add(pcShaft);
+            pcArr.userData = {
+                elementType: "fcw_carrier_force", id: "fcw_cforce_" + ch,
+                carrierIndex: ch
+            };
+            addToScene(pcArr);
+        }
+
+        // 6. RHR cross-product hand (STATE_3): fingers=L (current), curl→B,
+        //    thumb=F. Reuses the Diamond #2 articulated cross-product mesh.
+        //    Sits JUST ABOVE the wire centre (NOT in the far corner) so it
+        //    clearly relates to the wire. The fcw scenario does NOT run the
+        //    lorentz hand-animation block, so the hand is a STATIC prop: its
+        //    pose + the L/B/F labels are set once here (orientation in
+        //    applyForceWireState). Built hidden; shown only for STATE_3.
+        //    fcwHandHome chosen near the wire centre, lifted in +y above the
+        //    wire and pulled slightly toward the camera (+z) so it does not
+        //    occlude the wire.
+        var fcwHandHome = [0.0, 1.35, 0.9];
+        var fwHand = createLorentzHand({ position: fcwHandHome, scale: 1.3 });
+        var fcwHandSc = fwHand.userData.sc || 1;
+        // Hide the hand's built-in phase v/B/F labels — the lorentz toggler that
+        // would manage them never runs for fcw, so they would sit stale. We add
+        // our own always-on L/B/F labels below instead.
+        if (fwHand.userData.v_label) fwHand.userData.v_label.visible = false;
+        if (fwHand.userData.b_label) fwHand.userData.b_label.visible = false;
+        if (fwHand.userData.f_label) fwHand.userData.f_label.visible = false;
+
+        // Three macroscopic labels parented to the hand group so they ride its
+        // transform (position/scale). Local placement mirrors the hand frame
+        // conventions (fingers -z_local, curl -x_local, thumb +y_local) so each
+        // label sits at the right landmark; after applyForceWireState orients
+        // the group, "L" rides the fingers, "B" the curl, "F" the thumb.
+        var fcwLabL = createLabelSprite("L", "#FFD54F", 0.55 * fcwHandSc);
+        fcwLabL.position.set(-0.05 * fcwHandSc, -0.05 * fcwHandSc, -0.78 * fcwHandSc);
+        fcwLabL.userData = { fcwRole: "hand_label_L" };
+        fwHand.add(fcwLabL);
+        var fcwLabB = createLabelSprite("B", "#82B1FF", 0.55 * fcwHandSc);
+        fcwLabB.position.set(-0.70 * fcwHandSc, 0.10 * fcwHandSc, 0.10 * fcwHandSc);
+        fcwLabB.userData = { fcwRole: "hand_label_B" };
+        fwHand.add(fcwLabB);
+        var fcwLabF = createLabelSprite("F", "#66BB6A", 0.55 * fcwHandSc);
+        fcwLabF.position.set(-0.05 * fcwHandSc, 0.72 * fcwHandSc, 0.08 * fcwHandSc);
+        fcwLabF.userData = { fcwRole: "hand_label_F" };
+        fwHand.add(fcwLabF);
+
+        fwHand.userData.elementType = "fcw_hand";
+        fwHand.userData.id = "fcw_hand";
+        fwHand.userData.fcw_home = fcwHandHome.slice();
+        fwHand.visible = false;
+        addToScene(fwHand);
+
+        // 7. Decoy 30° angle arc (STATE_4) — RED, the WRONG angle the wire makes
+        //    with a drawn page-edge reference line. Drawn from the wire (+x) down
+        //    toward a reference direction 30° below the wire in the x-y plane,
+        //    placed near the +current end so it does NOT overlap true_90_arc
+        //    (which sits at the wire centre between L and B).
+        var decoyArc = buildFcwAngleArc(
+            [wEnd[0] - 0.4, wEnd[1], wEnd[2]],   // centre near the wire end
+            wireDir,                              // arm 1 = L (wire)
+            // arm 2 = wireDir rotated 30° toward -y in the x-y plane (a drawn edge)
+            fwNorm([
+                wireDir[0]*Math.cos(-Math.PI/6) - wireDir[1]*Math.sin(-Math.PI/6),
+                wireDir[0]*Math.sin(-Math.PI/6) + wireDir[1]*Math.cos(-Math.PI/6),
+                0
+            ]),
+            0.7, "#EF5350"
+        );
+        decoyArc.userData = { elementType: "fcw_decoy_arc", id: "fcw_decoy_arc" };
+        decoyArc.visible = false;
+        addToScene(decoyArc);
+        var decoyLab = createLabelSprite("30°", "#EF5350", 0.34);
+        decoyLab.position.set(wEnd[0] + 0.1, wEnd[1] - 0.7, wEnd[2]);
+        decoyLab.userData = { elementType: "fcw_decoy_label", id: "fcw_decoy_label" };
+        decoyLab.visible = false;
+        addToScene(decoyLab);
+
+        // 8. True ∠(L,B) arc (STATE_4) — GREEN, between L (wire +x) and B (+y),
+        //    drawn at the wire CENTRE so it is visually distinct from the red
+        //    decoy arc near the wire end. Here L ⊥ B so the arc spans 90°.
+        var trueArc = buildFcwAngleArc(
+            [0, 0, 0],
+            wireDir,
+            [bDir.x, bDir.y, bDir.z],
+            0.85, "#66BB6A"
+        );
+        trueArc.userData = { elementType: "fcw_true_arc", id: "fcw_true_arc" };
+        trueArc.visible = false;
+        addToScene(trueArc);
+        var trueLab = createLabelSprite("θ", "#66BB6A", 0.40);
+        trueLab.position.set(0.7, 0.7, 0);
+        trueLab.userData = { elementType: "fcw_true_label", id: "fcw_true_label" };
+        trueLab.visible = false;
+        addToScene(trueLab);
+
+        // 9. Bent wire (STATE_5) — a zig-zag tube through the state's waypoints.
+        //    Waypoints come from the per-state extras; build with a sensible
+        //    default so the element exists even before applyExtras runs.
+        var defaultWaypts = [[-1.4, -0.6, 0], [-0.5, 0.7, 0], [0.4, -0.5, 0], [1.4, 0.6, 0]];
+        var bentTube = createTubeLine(defaultWaypts, wireColor, 0.07);
+        if (bentTube) {
+            bentTube.material.emissive = hexToThreeColor(wireColor);
+            bentTube.material.emissiveIntensity = 0.35;
+            bentTube.userData = { elementType: "fcw_bent_wire", id: "fcw_bent_wire" };
+            bentTube.visible = false;
+            addToScene(bentTube);
+        }
+
+        // 10. Chord arrow (STATE_5) — the straight chord from first→last
+        //     waypoint. Snapshot reveal (a discrete shown element, NOT a morph).
+        var chordFrom = defaultWaypts[0];
+        var chordTo = defaultWaypts[defaultWaypts.length - 1];
+        var chordVec = [chordTo[0]-chordFrom[0], chordTo[1]-chordFrom[1], chordTo[2]-chordFrom[2]];
+        var chordLen = Math.sqrt(chordVec[0]*chordVec[0]+chordVec[1]*chordVec[1]+chordVec[2]*chordVec[2]) || 1;
+        var chordArr = new THREE.ArrowHelper(
+            new THREE.Vector3(chordVec[0]/chordLen, chordVec[1]/chordLen, chordVec[2]/chordLen),
+            new THREE.Vector3(chordFrom[0], chordFrom[1], chordFrom[2]),
+            chordLen, "#66BB6A", 0.18, 0.10
+        );
+        chordArr.userData = { elementType: "fcw_chord", id: "fcw_chord" };
+        chordArr.visible = false;
+        addToScene(chordArr);
+        var chordLab = createLabelSprite("L_chord", "#66BB6A", 0.34);
+        chordLab.position.set((chordFrom[0]+chordTo[0])/2, (chordFrom[1]+chordTo[1])/2 + 0.35, 0);
+        chordLab.userData = { elementType: "fcw_chord_label", id: "fcw_chord_label" };
+        chordLab.visible = false;
+        addToScene(chordLab);
+
+        // 11. Square loop (STATE_6) — closed square in the x-y plane + four
+        //     outward per-side force arrows that sum to zero (couple/twist).
+        //     net F_net_arrow is hidden in STATE_6 (chord closes → ΣF = 0).
+        var loopGrpF = new THREE.Group();
+        loopGrpF.userData = { elementType: "fcw_square_loop", id: "fcw_square_loop" };
+        loopGrpF.visible = false;
+        var lhSide = 0.8;   // half-side (full side 1.6 from JSON default)
+        var loopColF = hexToThreeColor(wireColor);
+        function fwLoopSeg(x1, y1, x2, y2, segId) {
+            var dx = x2 - x1, dy = y2 - y1;
+            var len = Math.sqrt(dx*dx + dy*dy);
+            var geom = new THREE.CylinderGeometry(0.05, 0.05, len, 12);
+            var mat = new THREE.MeshPhongMaterial({
+                color: loopColF, emissive: loopColF, emissiveIntensity: 0.4, shininess: 60
+            });
+            var mesh = new THREE.Mesh(geom, mat);
+            mesh.position.set((x1+x2)/2, (y1+y2)/2, 0);
+            var axis = new THREE.Vector3(dx, dy, 0).normalize();
+            var up = new THREE.Vector3(0, 1, 0);
+            mesh.quaternion.copy(new THREE.Quaternion().setFromUnitVectors(up, axis));
+            mesh.userData = { elementType: "fcw_loop_side", id: segId };
+            loopGrpF.add(mesh);
+        }
+        // CCW loop viewed from +z: bottom (→ +x), right (↑ +y), top (← -x), left (↓ -y)
+        fwLoopSeg(-lhSide, -lhSide, +lhSide, -lhSide, "loop_bottom");
+        fwLoopSeg(+lhSide, -lhSide, +lhSide, +lhSide, "loop_right");
+        fwLoopSeg(+lhSide, +lhSide, -lhSide, +lhSide, "loop_top");
+        fwLoopSeg(-lhSide, +lhSide, -lhSide, -lhSide, "loop_left");
+
+        // Per-side force arrows F = I (Lside × B). B = +y. Only the horizontal
+        // sides (current along ±x) feel a force ⊥ to the page (±z); the vertical
+        // sides carry current ∥ B → ZERO force. Top current is -x → F = -x̂×ŷ =
+        // -ẑ (into page); bottom current +x → F = +ẑ (out of page). The two are
+        // equal and opposite → ΣF = 0, but on opposite sides → a couple (twist).
+        // BOLD arrows (thick cone, length 1.0) so the couple reads broadside; a
+        // child shaft cylinder thickens them the same way as the net-F arrow.
+        function fwSideForce(px, py, dirZ, sideId) {
+            var sfLen = 1.0;
+            var arr = new THREE.ArrowHelper(
+                new THREE.Vector3(0, 0, dirZ), new THREE.Vector3(px, py, 0),
+                sfLen, "#66BB6A", 0.34, 0.18
+            );
+            var sfShaftGeo = new THREE.CylinderGeometry(0.045, 0.045, sfLen - 0.34, 12);
+            var sfShaftMat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor("#66BB6A"), emissive: hexToThreeColor("#66BB6A"),
+                emissiveIntensity: 0.5, shininess: 60
+            });
+            var sfShaft = new THREE.Mesh(sfShaftGeo, sfShaftMat);
+            sfShaft.position.set(0, (sfLen - 0.34) / 2, 0);   // +y-local = arrow axis
+            arr.add(sfShaft);
+            arr.userData = { elementType: "fcw_side_force", id: sideId };
+            loopGrpF.add(arr);
+        }
+        fwSideForce(0, +lhSide, -1, "fcw_force_top");     // top current -x → into page
+        fwSideForce(0, -lhSide, +1, "fcw_force_bottom");  // bottom current +x → out of page
+
+        // The two vertical sides carry current ∥ B → F = 0. Mark them so the
+        // loop's FOUR sides are all visibly accounted for and the student sees
+        // WHY only the horizontal pair forms the couple (not a missing arrow).
+        function fwZeroForceMark(px, py, sideId) {
+            var z = createLabelSprite("F=0", "#9CA3AF", 0.26);
+            z.position.set(px, py, 0);
+            z.userData = { elementType: "fcw_side_force", id: sideId };
+            loopGrpF.add(z);
+        }
+        fwZeroForceMark(+lhSide + 0.45, 0, "fcw_force_right_zero");  // right side ∥ B
+        fwZeroForceMark(-lhSide - 0.45, 0, "fcw_force_left_zero");   // left side  ∥ B
+        // Couple/twist hint — wide label so the FULL "couple → torque" string
+        // shows (the fixed-width createLabelSprite canvas clipped it to
+        // "uple → torq"). createWideLabelSprite sizes the canvas to the text.
+        var coupleLab = createWideLabelSprite("couple \\u2192 torque", "#FFF176", 0.34);
+        coupleLab.position.set(0, -lhSide - 0.6, 0);
+        coupleLab.userData = { elementType: "fcw_couple_label", id: "fcw_couple_label" };
+        loopGrpF.add(coupleLab);
+        addToScene(loopGrpF);
+    }
+
+    // Parametric angle arc between two arm directions, anchored at centre,
+    // built via Gram-Schmidt (matching the Biot-Savart arc pattern) + a tube.
+    // Returns a Group placed at centre; the arc spans the angle between
+    // armA and armB at radius rad.
+    function buildFcwAngleArc(centre, armA, armB, rad, color) {
+        function v3(a) { return new THREE.Vector3(a[0], a[1], a[2]); }
+        var a = v3(armA).normalize();
+        var b = v3(armB).normalize();
+        var d = Math.max(-1, Math.min(1, a.dot(b)));
+        var ang = Math.acos(d);
+        // Component of b perpendicular to a (Gram-Schmidt), normalized.
+        var w = b.clone().sub(a.clone().multiplyScalar(d));
+        if (w.length() < 1e-6) w = new THREE.Vector3(0, 0, 1); else w.normalize();
+        var pts = [], segs = 28;
+        for (var s = 0; s <= segs; s++) {
+            var t = (s / segs) * ang;
+            var x = a.x * rad * Math.cos(t) + w.x * rad * Math.sin(t);
+            var y = a.y * rad * Math.cos(t) + w.y * rad * Math.sin(t);
+            var z = a.z * rad * Math.cos(t) + w.z * rad * Math.sin(t);
+            pts.push([x, y, z]);
+        }
+        var grp = new THREE.Group();
+        grp.position.set(centre[0], centre[1], centre[2]);
+        var tube = createTubeLine(pts, color, 0.022);
+        if (tube) {
+            tube.material.transparent = true;
+            tube.material.opacity = 0.95;
+            grp.add(tube);
+        }
+        return grp;
+    }
+
+    // Per-state visibility + positioning for the force_on_current_wire scenario.
+    // The generic visible_elements matcher in applyState leaves these elements
+    // alone (their elementTypes are not listed in visible_elements), so this
+    // function is authoritative: it reads each extras.<key>.show flag and the
+    // per-state shape fields, then toggles + repositions the matching meshes.
+    function applyForceWireState(stateDef) {
+        var ex = (stateDef && stateDef.extras) || {};
+        function flag(o) { return !!(o && o.show); }
+
+        // Reset the current direction on every state entry. STATE_3 arms a
+        // one-shot auto-flip; STATE_7 lets the student drive it via the button.
+        fcwCurrentDir = 1;
+        var fcwDirToggleEl = document.getElementById("fcw_dir_toggle");
+        if (fcwDirToggleEl) {
+            fcwDirToggleEl.textContent = "Flip current \\u2192";
+            fcwDirToggleEl.classList.remove("reversed");
+        }
+        if (ex.current_flip && ex.current_flip.show) {
+            // Store the flip threshold as a STATE-LOCAL sim-time offset (ms since
+            // state entry), NOT a wall-clock performance.now() stamp. The animate
+            // loop compares it against (time - stateStartTime)*1000 so the flip
+            // also fires when the visual gate pins the clock past the threshold
+            // via SET_TIME_FREEZE (wall-clock + heldAtPin gating used to swallow
+            // it entirely — the flip showed no before/after change in capture).
+            fcwFlipAt = (typeof ex.current_flip.reverse_at_ms === "number") ? ex.current_flip.reverse_at_ms : 9000;
+        } else {
+            fcwFlipAt = null;
+        }
+
+        var showWire = flag(ex.wire);
+        var showCurArrows = flag(ex.current_arrows);
+        var showFNet = flag(ex.F_net_arrow);
+        var showCharges = flag(ex.charge_arrows);
+        var showHand = flag(ex.hand_3d);
+        var showDecoy = flag(ex.decoy_30_angle);
+        var showTrue = flag(ex.true_90_arc);
+        var showBent = flag(ex.bent_wire);
+        var showChord = flag(ex.chord_arrow);
+        var showLoop = flag(ex.square_loop);
+        var showSideForces = flag(ex.side_forces);
+
+        // Charge count override from the state (default 7).
+        var chargeCountState = (ex.charge_arrows && ex.charge_arrows.count) || 7;
+
+        // STATE_5 bent-wire waypoints + chord override.
+        var bentWaypts = (ex.bent_wire && ex.bent_wire.waypoints) || null;
+        var chordFrom = (ex.chord_arrow && ex.chord_arrow.from) || null;
+        var chordTo = (ex.chord_arrow && ex.chord_arrow.to) || null;
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            var et = ud.elementType;
+
+            if (et === "fcw_wire") { o.visible = showWire; }
+            else if (et === "fcw_l_label") { o.visible = showWire; }
+            else if (et === "fcw_current_arrow") { o.visible = showCurArrows; }
+            else if (et === "fcw_F_net") { o.visible = showFNet; }
+            else if (et === "fcw_f_label") { o.visible = showFNet; }
+            else if (et === "fcw_carrier") {
+                var ci = parseInt((ud.id || "fcw_carrier_0").split("_").pop(), 10);
+                o.visible = showCharges && ci < chargeCountState;
+            }
+            else if (et === "fcw_carrier_force") {
+                o.visible = showCharges && (ud.carrierIndex < chargeCountState) &&
+                    !!(ex.charge_arrows && ex.charge_arrows.per_charge_force);
+            }
+            else if (et === "fcw_hand") {
+                o.visible = showHand;
+                if (showHand) {
+                    // Place the hand JUST ABOVE the wire centre (renderer-owned
+                    // home), NOT the far-corner JSON hand_position — so it
+                    // clearly relates to the wire. (JSON hand_position kept for
+                    // back-compat but intentionally overridden here.)
+                    var home = (ud.fcw_home && ud.fcw_home.length === 3) ? ud.fcw_home : [0.0, 1.35, 0.9];
+                    o.position.set(home[0], home[1], home[2]);
+
+                    // Static cross-product orientation: thumb (+y_local) → F̂,
+                    // then twist so the flat fingers (-z_local) point along L
+                    // (the current). With L = +x and B = +y, F̂ = L̂×B̂ = +z.
+                    // Mirrors the lorentz hand-orientation math (which does NOT
+                    // run for fcw), applied once here.
+                    var lU = new THREE.Vector3(1, 0, 0);                 // L = current (+x)
+                    var bU = new THREE.Vector3(0, 1, 0);                 // B (+y)
+                    var fU = new THREE.Vector3().crossVectors(lU, bU);   // F̂ = +z
+                    if (fU.length() > 1e-6) {
+                        fU.normalize();
+                        var qThumb = new THREE.Quaternion().setFromUnitVectors(
+                            new THREE.Vector3(0, 1, 0), fU
+                        );
+                        var negZ = new THREE.Vector3(0, 0, -1).applyQuaternion(qThumb);
+                        negZ.sub(fU.clone().multiplyScalar(negZ.dot(fU)));
+                        if (negZ.length() > 1e-6) {
+                            negZ.normalize();
+                            var lProj = lU.clone().sub(fU.clone().multiplyScalar(lU.dot(fU)));
+                            if (lProj.length() > 1e-6) {
+                                lProj.normalize();
+                                var qTwist = new THREE.Quaternion().setFromUnitVectors(negZ, lProj);
+                                o.setRotationFromQuaternion(qTwist.clone().multiply(qThumb));
+                            }
+                        }
+                    }
+                }
+            }
+            else if (et === "fcw_decoy_arc" || et === "fcw_decoy_label") { o.visible = showDecoy; }
+            else if (et === "fcw_true_arc" || et === "fcw_true_label") { o.visible = showTrue; }
+            else if (et === "fcw_bent_wire") {
+                o.visible = showBent;
+                if (showBent && bentWaypts && bentWaypts.length >= 2) {
+                    // Rebuild the tube geometry to the state's waypoints.
+                    var vecs = bentWaypts.map(function(p) { return new THREE.Vector3(p[0], p[1], p[2]); });
+                    var curve = new THREE.CatmullRomCurve3(vecs);
+                    var newGeo = new THREE.TubeGeometry(curve, Math.max(bentWaypts.length * 8, 24), 0.07, 8, false);
+                    if (o.geometry) o.geometry.dispose();
+                    o.geometry = newGeo;
+                }
+            }
+            else if (et === "fcw_chord") {
+                o.visible = showChord;
+                if (showChord && chordFrom && chordTo) {
+                    var cv = [chordTo[0]-chordFrom[0], chordTo[1]-chordFrom[1], chordTo[2]-chordFrom[2]];
+                    var cl = Math.sqrt(cv[0]*cv[0]+cv[1]*cv[1]+cv[2]*cv[2]) || 1;
+                    o.position.set(chordFrom[0], chordFrom[1], chordFrom[2]);
+                    o.setDirection(new THREE.Vector3(cv[0]/cl, cv[1]/cl, cv[2]/cl));
+                    o.setLength(cl, 0.18, 0.10);
+                }
+            }
+            else if (et === "fcw_chord_label") {
+                o.visible = showChord;
+                if (showChord && chordFrom && chordTo) {
+                    o.position.set((chordFrom[0]+chordTo[0])/2, (chordFrom[1]+chordTo[1])/2 + 0.35, 0);
+                }
+            }
+            else if (et === "fcw_square_loop") { o.visible = showLoop; }
+            else if (et === "fcw_couple_label") { /* child of loop group */ }
+        }
+
+        // Side-force arrows + couple label live inside the loop group; toggle
+        // them based on side_forces.show (independent of the loop wire itself).
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var grp = sceneObjects[j];
+            if (!grp.userData || grp.userData.elementType !== "fcw_square_loop") continue;
+            for (var k = 0; k < grp.children.length; k++) {
+                var c = grp.children[k];
+                var cet = c.userData && c.userData.elementType;
+                if (cet === "fcw_side_force") c.visible = showSideForces;
+                else if (cet === "fcw_couple_label") {
+                    c.visible = showSideForces && !!(ex.side_forces && ex.side_forces.show_couple);
+                }
+            }
+        }
+    }
+
     // ── Build scenario ────────────────────────────────────────────────────
     function buildScenario() {
         clearScene();
@@ -3600,6 +4738,10 @@ export const FIELD_3D_RENDERER_CODE = `
         switch (scenario) {
             case "point_charge_positive":
             case "point_charge_negative":
+                if (config.electric_explorer) {
+                    buildElectricDiamond();
+                    break;
+                }
                 var charge = charges[0] || {
                     id: "q1", sign: scenario === "point_charge_positive" ? 1 : -1,
                     magnitude: 1, position: [0, 0, 0],
@@ -3651,6 +4793,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "torque_on_loop_uniform_field":
                 buildTorqueLoopInField();
+                break;
+
+            case "force_on_current_wire":
+                buildForceOnCurrentWire();
                 break;
 
             default:
@@ -3766,12 +4912,25 @@ export const FIELD_3D_RENDERER_CODE = `
             applyTorqueLoopState(stateDef);
         }
 
+        // force_on_current_wire — per-state element visibility + positioning
+        // (authoritative; runs after the generic visible_elements matcher).
+        if (config.scenario_type === "force_on_current_wire") {
+            applyForceWireState(stateDef);
+        }
+
         // Biot-Savart — seed the choreography on state entry: collapse every
         // grow-from-origin vector to scale 0 (the animate loop draws them back in
         // on schedule) so there is no full-size flash on the first frame. Also
         // hide the flow dots / orbit arrow / scanner until the animate loop turns
         // them on for the active state.
         if (config.scenario_type === "biot_savart_element") {
+            // Authored field point + circle radius — used to RESET the reused
+            // rings / P to their built pose on every state entry, so the
+            // STATE_10 explorer's edits (which scale the rings + move P) never
+            // leak into the other states.
+            var authP = (config.biot_defaults && config.biot_defaults.field_point_P) || [1.6, 0, 0];
+            var authRP = Math.sqrt(authP[0] * authP[0] + authP[2] * authP[2]) || 1.6;
+            var showExplorer = !!stateDef.show_sliders;
             for (var bri = 0; bri < sceneObjects.length; bri++) {
                 var bro = sceneObjects[bri];
                 var brud = bro.userData;
@@ -3809,7 +4968,27 @@ export const FIELD_3D_RENDERER_CODE = `
                         if (xp) bro.position.set(xp[0], xp[1], xp[2]);
                     }
                 }
+                // RESET reused objects to their built pose (the explorer mutates
+                // these; reset every entry so non-explorer states stay correct).
+                if (brud.elementType === "biot_circle") {
+                    if (brud.id && brud.id.indexOf("bs_circle_ring") === 0) bro.scale.set(1, 1, 1);
+                    if (brud.id === "bs_circle_arr") brud.orbitRadius = authRP;
+                }
+                if (brud.elementType === "field_point" && brud.id === "bs_point_P") {
+                    bro.position.set(authP[0], authP[1], authP[2]);
+                }
+                // Interactive-explorer objects: shown ONLY in the slider state.
+                if (brud.elementType === "biot_explorer") {
+                    bro.visible = showExplorer;
+                }
             }
+        }
+
+        // Point-charge electric diamond — authoritative per-state visibility
+        // (field sets, charge labels, test charge, emphasis E-arrow, rule-wrong
+        // glyphs) + emphasis-arrow pose. Runs after the generic matcher + extras.
+        if (config.electric_explorer) {
+            applyElectricState(stateDef);
         }
 
         // Sliders + formula overlay visibility — scenario-aware: show the
@@ -3819,9 +4998,26 @@ export const FIELD_3D_RENDERER_CODE = `
         var slidersEl = document.getElementById("sliders");
         var lorentzSlidersEl = document.getElementById("lorentz_sliders");
         var torqueSlidersEl = document.getElementById("torque_sliders");
+        var fcwSlidersEl = document.getElementById("fcw_sliders");
         var isLorentz = config.scenario_type === "lorentz_force_uniform_field";
         var isTorque = config.scenario_type === "torque_on_loop_uniform_field";
-        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque) ? "block" : "none";
+        var isFcw = config.scenario_type === "force_on_current_wire";
+        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw) ? "block" : "none";
+        if (fcwSlidersEl) {
+            var showFcwSliders = !!(stateDef.show_sliders && isFcw);
+            fcwSlidersEl.style.display = showFcwSliders ? "block" : "none";
+            if (showFcwSliders) {
+                // Sync the θ slider to the state's theta_deg on entry, then
+                // re-fire its input handler so the F readout matches.
+                var thF = document.getElementById("fcw_theta_slider");
+                if (thF && typeof stateDef.theta_deg === "number") {
+                    thF.value = String(stateDef.theta_deg);
+                    var thVF = document.getElementById("fcw_theta_val");
+                    if (thVF) thVF.textContent = String(Math.round(stateDef.theta_deg));
+                    thF.dispatchEvent(new Event("input", { bubbles: true }));
+                }
+            }
+        }
         if (lorentzSlidersEl) lorentzSlidersEl.style.display = (stateDef.show_sliders && isLorentz) ? "block" : "none";
         if (torqueSlidersEl) {
             var showTorqueSliders = !!(stateDef.show_sliders && isTorque);
@@ -3889,6 +5085,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var legendEl = document.getElementById("legend");
         if (!legendEl) return;
 
+        // Rule 24 (sim is the teacher's silent visual): the electric diamond ships
+        // with NO on-canvas prose legend — labels live in the 3D scene instead.
+        if (config.electric_explorer) { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+
         var scenario = config.scenario_type;
         var lines = [];
         lines.push("<b>" + (stateDef.label || PM_currentState) + "</b>");
@@ -3925,9 +5125,128 @@ export const FIELD_3D_RENDERER_CODE = `
     // ── Slider wiring (I and r — interactive in show_sliders states) ──────
     var MU_0 = 4 * Math.PI * 1e-7;
 
+    function biotFindById(id) {
+        for (var k = 0; k < sceneObjects.length; k++) {
+            var o = sceneObjects[k];
+            if (o.userData && o.userData.id === id) return o;
+        }
+        return null;
+    }
+
+    // ── Biot-Savart STATE_10 explorer — I / d / θ drive real physics ───────
+    // The teacher's key point (2026-06-17 review): the Biot-Savart r is the
+    // distance from the ELEMENT to P, equal to the field-circle radius ONLY at
+    // θ=90°. So the slider is the perpendicular distance d (= circle radius),
+    // and the true slant r = d / sinθ is COMPUTED + shown changing as θ moves.
+    //   d (slider) → moves P + rescales the field circle; B = μ0 I / 2π d (whole wire)
+    //   θ (slider) → slides the element along the wire so angle(dl, r̂)=θ; the slant
+    //                r̂ line (= true r) lengthens, and dB = (μ0/4π) I dl sinθ / r²
+    //   I (slider) → scales B and dB.
+    // dB direction is dl × r̂ (tangent at P). Numeric readouts are EXACT; the dB
+    // arrow length is a bounded visual of the true dB.
+    function refreshBiotExplorer() {
+        var iS = document.getElementById("i_slider");
+        var rS = document.getElementById("r_slider");
+        var thS = document.getElementById("theta_slider");
+        if (!iS || !rS) return;
+        var I = parseFloat(iS.value);
+        var d_cm = parseFloat(rS.value);          // slider = PERPENDICULAR distance to P = circle radius
+        var d_m = d_cm / 100;
+        var thetaDeg = thS ? parseFloat(thS.value) : 90;
+        var thetaRad = thetaDeg * Math.PI / 180;
+        var sinT = Math.sin(thetaRad);
+        var cosT = Math.cos(thetaRad);
+        var sinSafe = Math.max(Math.abs(sinT), 0.02);
+
+        // d (2..30 cm) → scene circle radius (~1.4..2.8; default 5cm ≈ built 1.6)
+        var sceneR = 1.4 + ((d_cm - 2) / 28) * 1.4;
+        if (sceneR < 1.4) sceneR = 1.4;
+        if (sceneR > 2.8) sceneR = 2.8;
+
+        // TRUE Biot-Savart r = element→P distance = d / sinθ (= d only at 90°).
+        var rTrue_m = d_m / sinSafe;
+        var B_uT = (MU_0 * I) / (2 * Math.PI * d_m) * 1e6;     // whole-wire field at P (uses d)
+        var dl_m = 0.01;
+        var dB_uT = (MU_0 / (4 * Math.PI)) * I * dl_m * sinT / (rTrue_m * rTrue_m) * 1e6; // one element (uses true r)
+
+        // P on +x at the circle radius; move it + rescale the reused rings.
+        var Px = sceneR, Py = 0, Pz = 0;
+        var pP = biotFindById("bs_point_P");
+        if (pP) pP.position.set(Px, Py, Pz);
+        var k = sceneR / 1.6;
+        for (var ci = 0; ci < sceneObjects.length; ci++) {
+            var co = sceneObjects[ci]; var cud = co.userData;
+            if (!cud || cud.elementType !== "biot_circle") continue;
+            if (cud.id && cud.id.indexOf("bs_circle_ring") === 0) co.scale.set(k, 1, k);
+            if (cud.id === "bs_circle_arr") cud.orbitRadius = sceneR;
+        }
+
+        // element y so that angle(dl=+y, r̂)=θ ⇒ y = -d·cotθ (clamped to wire).
+        // Sliding the element (changing θ) lengthens the slant r — exactly why
+        // r and the circle radius coincide only at 90°.
+        var cot = (Math.abs(sinT) < 1e-4) ? 0 : (cosT / sinT);
+        var yEl = -sceneR * cot;
+        var wireLim = 2.9;
+        if (yEl > wireLim) yEl = wireLim;
+        if (yEl < -wireLim) yEl = -wireLim;
+        var expElem = biotFindById("bs_exp_elem");
+        if (expElem) expElem.position.set(0, yEl, 0);
+        var expElemLabel = biotFindById("bs_exp_elem_label");
+        if (expElemLabel) expElemLabel.position.set(-0.5, yEl + 0.1, 0.0);
+
+        // r̂ = the SLANT line element→P (the true r). Label "r" rides its midpoint.
+        var rx = Px, ry = Py - yEl, rz = Pz;
+        var rlen = Math.sqrt(rx * rx + ry * ry + rz * rz) || 1;
+        var rhx = rx / rlen, rhy = ry / rlen, rhz = rz / rlen;
+        var expRhat = biotFindById("bs_exp_rhat");
+        if (expRhat) {
+            expRhat.position.set(0, yEl, 0);
+            expRhat.setDirection(new THREE.Vector3(rhx, rhy, rhz));
+            expRhat.setLength(rlen, Math.min(0.3, 0.22 * rlen), Math.min(0.18, 0.13 * rlen));
+        }
+        var expRLabel = biotFindById("bs_exp_r_label");
+        if (expRLabel) expRLabel.position.set(rhx * rlen * 0.5 + 0.14, yEl + rhy * rlen * 0.5 + 0.14, rhz * rlen * 0.5);
+
+        // dB ∝ dl × r̂ (dl=+y) ⇒ (rhz, 0, -rhx); tangent at P. Length = bounded
+        // visual of the TRUE dB (normalised to the default I=5,θ=90,d=5cm ⇒ 2 µT).
+        var cdx = rhz, cdy = 0, cdz = -rhx;
+        var clen = Math.sqrt(cdx * cdx + cdz * cdz) || 1;
+        var cnx = cdx / clen, cny = cdy / clen, cnz = cdz / clen;
+        var dBrel = dB_uT / 2.0;
+        var dbLen = 0.3 + 1.0 * Math.tanh(0.55 * dBrel);
+        var expDb = biotFindById("bs_exp_db");
+        if (expDb) {
+            expDb.position.set(Px, Py, Pz);
+            expDb.setDirection(new THREE.Vector3(cnx, cny, cnz));
+            expDb.setLength(dbLen, 0.2, 0.13);
+        }
+        var expDbLabel = biotFindById("bs_exp_db_label");
+        if (expDbLabel) {
+            expDbLabel.position.set(Px + cnx * (dbLen + 0.3), Py + 0.12, Pz + cnz * (dbLen + 0.3));
+        }
+
+        var iVal = document.getElementById("i_val");
+        var rVal = document.getElementById("r_val");
+        var thVal = document.getElementById("theta_val");
+        var bEl = document.getElementById("b_readout");
+        var dbEl = document.getElementById("db_readout");
+        var rTrueEl = document.getElementById("rtrue_readout");
+        if (iVal) iVal.textContent = I.toFixed(1);
+        if (rVal) rVal.textContent = String(Math.round(d_cm));
+        if (thVal) thVal.textContent = String(Math.round(thetaDeg));
+        if (bEl) bEl.innerHTML = "B = " + B_uT.toFixed(1) + " \\u03bcT";
+        if (dbEl) dbEl.innerHTML = "dB = " + dB_uT.toFixed(2) + " \\u03bcT";
+        if (rTrueEl) rTrueEl.innerHTML = "r (dl\\u2192P) = d/sin\\u03b8 = " + (rTrue_m * 100).toFixed(1) + " cm";
+    }
+
     function refreshSliderVisuals() {
         var slidersEl = document.getElementById("sliders");
         if (!slidersEl || slidersEl.style.display === "none") return;
+
+        // Biot-Savart owns a dedicated interactive explorer (P / circle / element
+        // / r̂ / dB all respond to I, r, θ). Delegate and return.
+        if (config.scenario_type === "biot_savart_element") { refreshBiotExplorer(); return; }
+        if (config.electric_explorer) { refreshElectricExplorer(); return; }
 
         var iSlider = document.getElementById("i_slider");
         var rSlider = document.getElementById("r_slider");
@@ -3984,6 +5303,215 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── Electric point-charge diamond (electric_field_point_charge) ───────────
+    //   Builds BOTH a +Q and a -Q radial field at the origin (sign flip = a
+    //   visibility toggle, never a mid-state rebuild), plus a STATE_1 test charge
+    //   + F arrow, an emphasis E-arrow at the field point P (STATE_2 static +
+    //   STATE_7 slider-driven), and STATE_6 rule-wrong glyphs. Gated entirely on
+    //   config.electric_explorer so legacy point-charge concepts are untouched.
+    var electricSign = 1;
+
+    function ecFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+        }
+        return null;
+    }
+
+    function buildElectricDiamond() {
+        var posColor = config.field_lines.color_positive || "#EF5350";
+        var negColor = config.field_lines.color_negative || "#42A5F5";
+        var count = config.field_lines.count || 12;
+
+        // Both field sets at the origin — sign flip toggles visibility.
+        buildPointChargeField({ id: "q_plus", sign: 1, magnitude: 1, position: [0, 0, 0], color: posColor }, count);
+        buildPointChargeField({ id: "q_minus", sign: -1, magnitude: 1, position: [0, 0, 0], color: negColor }, count);
+
+        // Source-charge labels (both at origin; one shown at a time).
+        var lblPlus = createLabelSprite("+Q", posColor, 0.6);
+        lblPlus.position.set(0, 0.55, 0);
+        lblPlus.userData = { elementType: "electric_aux", id: "lbl_q_plus" };
+        addToScene(lblPlus);
+        var lblMinus = createLabelSprite("\\u2212Q", negColor, 0.6);
+        lblMinus.position.set(0, 0.55, 0);
+        lblMinus.userData = { elementType: "electric_aux", id: "lbl_q_minus" };
+        addToScene(lblMinus);
+
+        // STATE_1 test charge q + force arrow F (the E = F/q hook).
+        var testQ = createChargeSphere([1.3, 0, 0], "#FFF176", 0.14);
+        testQ.userData = { elementType: "electric_aux", id: "ec_test_q" };
+        addToScene(testQ);
+        var testLbl = createLabelSprite("q", "#FFF176", 0.42);
+        testLbl.position.set(1.3, 0.35, 0);
+        testLbl.userData = { elementType: "electric_aux", id: "ec_test_lbl" };
+        addToScene(testLbl);
+        var fArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(1.3, 0, 0), 0.9, 0x66BB6A, 0.22, 0.13);
+        fArrow.userData = { elementType: "electric_aux", id: "ec_f_arrow" };
+        addToScene(fArrow);
+        var fLbl = createLabelSprite("F", "#66BB6A", 0.42);
+        fLbl.position.set(2.35, 0.2, 0);
+        fLbl.userData = { elementType: "electric_aux", id: "ec_f_lbl" };
+        addToScene(fLbl);
+
+        // Emphasis E-arrow at the field point P (STATE_2 static + STATE_7 driven).
+        var pDot = createChargeSphere([1.6, 0, 0], "#FFEB3B", 0.09);
+        pDot.userData = { elementType: "electric_aux", id: "ec_p_dot" };
+        addToScene(pDot);
+        var pLbl = createLabelSprite("P", "#FFF176", 0.4);
+        pLbl.position.set(1.6, -0.32, 0);
+        pLbl.userData = { elementType: "electric_aux", id: "ec_p_lbl" };
+        addToScene(pLbl);
+        var eArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(1.6, 0, 0), 1.2, 0xEF5350, 0.26, 0.15);
+        eArrow.userData = { elementType: "electric_aux", id: "ec_e_arrow" };
+        addToScene(eArrow);
+        var eLbl = createLabelSprite("E", "#66BB6A", 0.5);
+        eLbl.position.set(3.0, 0.2, 0);
+        eLbl.userData = { elementType: "electric_aux", id: "ec_e_lbl" };
+        addToScene(eLbl);
+        var rLbl = createLabelSprite("r", "#D4D4D8", 0.4);
+        rLbl.position.set(0.8, -0.3, 0);
+        rLbl.userData = { elementType: "electric_aux", id: "ec_r_lbl" };
+        addToScene(rLbl);
+
+        // STATE_5 density-probe: a glowing probe that sweeps radially out/back; its
+        // E-arrow shrinks as kQ/r² while the field lines around it brighten where
+        // they crowd — density and strength fall together (the PRIMARY aha, animated).
+        var probe = createChargeSphere([1.0, 0, 0], "#FFEB3B", 0.13);
+        probe.userData = { elementType: "electric_aux", id: "ec_probe" };
+        addToScene(probe);
+        var probeArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(1.0, 0, 0), 1.5, 0x66BB6A, 0.3, 0.18);
+        probeArrow.userData = { elementType: "electric_aux", id: "ec_probe_arrow" };
+        addToScene(probeArrow);
+        var probeELbl = createLabelSprite("E", "#66BB6A", 0.5);
+        probeELbl.position.set(2.6, 0.22, 0);
+        probeELbl.userData = { elementType: "electric_aux", id: "ec_probe_E_lbl" };
+        addToScene(probeELbl);
+
+        // STATE_6 rule-wrong glyphs: crossing lines (struck out) + charge-on-a-rail
+        // (struck out). The teaching shows the wrong belief, then corrects it.
+        var crossA = createTubeLine([[-2.7, 1.5, 0], [-1.5, 2.5, 0]], "#9E9E9E", 0.03);
+        if (crossA) { crossA.userData = { elementType: "electric_aux", id: "ec_cross_a" }; addToScene(crossA); }
+        var crossB = createTubeLine([[-2.7, 2.5, 0], [-1.5, 1.5, 0]], "#9E9E9E", 0.03);
+        if (crossB) { crossB.userData = { elementType: "electric_aux", id: "ec_cross_b" }; addToScene(crossB); }
+        var crossX = createLabelSprite("\\u2717", "#EF5350", 0.7);
+        crossX.position.set(-2.1, 2.0, 0.05);
+        crossX.userData = { elementType: "electric_aux", id: "ec_cross_x" };
+        addToScene(crossX);
+        var pathLine = createTubeLine([[1.4, 1.6, 0], [3.0, 2.4, 0]], "#9E9E9E", 0.03);
+        if (pathLine) { pathLine.userData = { elementType: "electric_aux", id: "ec_path_line" }; addToScene(pathLine); }
+        var pathDot = createChargeSphere([2.2, 2.0, 0], "#FFF176", 0.1);
+        pathDot.userData = { elementType: "electric_aux", id: "ec_path_dot" };
+        addToScene(pathDot);
+        var pathX = createLabelSprite("\\u2717", "#EF5350", 0.7);
+        pathX.position.set(2.2, 2.5, 0.05);
+        pathX.userData = { elementType: "electric_aux", id: "ec_path_x" };
+        addToScene(pathX);
+    }
+
+    function setElectricPolarity(sign) {
+        electricSign = sign;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i]; var ud = o.userData;
+            if (!ud || !ud.id) continue;
+            var id = ud.id;
+            if (id.indexOf("fl_q_plus") === 0 || id.indexOf("arr_q_plus") === 0) o.visible = (sign > 0);
+            else if (id.indexOf("fl_q_minus") === 0 || id.indexOf("arr_q_minus") === 0) o.visible = (sign < 0);
+            else if (id === "q_plus" || id === "lbl_q_plus") o.visible = (sign > 0);
+            else if (id === "q_minus" || id === "lbl_q_minus") o.visible = (sign < 0);
+        }
+    }
+
+    function applyElectricState(stateDef) {
+        if (!stateDef) return;
+        var showField = stateDef.show_field || "none";    // none | plus | minus
+        var showCharge = stateDef.show_charge || "plus";   // plus | minus
+        var showTest = !!stateDef.show_test_charge;
+        var showEArrow = !!stateDef.show_e_arrow;
+        var showRuleWrongs = !!stateDef.show_rule_wrongs;
+        var showProbe = !!stateDef.show_density_probe;
+        electricSign = (showCharge === "minus") ? -1 : 1;
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud || !ud.id) continue;
+            var id = ud.id;
+            // Reset field-line opacity on every entry (the STATE_5 probe dims/
+            // brightens lines per-frame; restore full opacity for all other states).
+            if (ud.elementType === "field_line" && o.material) o.material.opacity = config.field_lines.opacity || 0.85;
+            if (id.indexOf("fl_q_plus") === 0 || id.indexOf("arr_q_plus") === 0) {
+                o.visible = (showField === "plus");
+            } else if (id.indexOf("fl_q_minus") === 0 || id.indexOf("arr_q_minus") === 0) {
+                o.visible = (showField === "minus");
+            } else if (id === "q_plus" || id === "lbl_q_plus") {
+                o.visible = (showCharge === "plus");
+            } else if (id === "q_minus" || id === "lbl_q_minus") {
+                o.visible = (showCharge === "minus");
+            } else if (id === "ec_test_q" || id === "ec_test_lbl" || id === "ec_f_arrow" || id === "ec_f_lbl") {
+                o.visible = showTest;
+            } else if (id === "ec_e_arrow" || id === "ec_e_lbl" || id === "ec_p_dot" || id === "ec_p_lbl" || id === "ec_r_lbl") {
+                o.visible = showEArrow;
+            } else if (id === "ec_probe" || id === "ec_probe_arrow" || id === "ec_probe_E_lbl") {
+                o.visible = showProbe;
+            } else if (id.indexOf("ec_cross") === 0 || id.indexOf("ec_path") === 0) {
+                o.visible = showRuleWrongs;
+            }
+        }
+        if (showEArrow) refreshElectricExplorer();
+    }
+
+    function refreshElectricExplorer() {
+        var kE = 8.9875517873681764e9;
+        var qS = document.getElementById("ec_q_slider");
+        var rS = document.getElementById("ec_r_slider");
+        var scQ = (config.slider_controls && config.slider_controls.Q) || {};
+        var scR = (config.slider_controls && config.slider_controls.r) || {};
+        var Q_nC = qS ? parseFloat(qS.value) : (scQ.default != null ? scQ.default : 5);
+        var r_cm = rS ? parseFloat(rS.value) : ((scR.default != null ? scR.default : 0.05) * 100);
+        var r_m = r_cm / 100;
+        var sign = electricSign;
+
+        var E = kE * (Q_nC * 1e-9) / (r_m * r_m);          // N/C
+        var Eref = kE * (5 * 1e-9) / (0.05 * 0.05);          // default reference
+
+        // r_cm (2..20) → scene radius (1.0..3.0).
+        var sceneR = 1.0 + ((r_cm - 2) / 18) * 2.0;
+        if (sceneR < 1.0) sceneR = 1.0;
+        if (sceneR > 3.0) sceneR = 3.0;
+
+        var Px = sceneR, Py = 0, Pz = 0;
+        var dirX = sign > 0 ? 1 : -1;                        // outward for +, inward for -
+        var arrColor = sign > 0 ? 0xEF5350 : 0x42A5F5;
+        var len = 0.4 + 1.6 * Math.tanh(0.8 * (E / Eref));
+
+        var pDot = ecFindById("ec_p_dot");
+        if (pDot) pDot.position.set(Px, Py, Pz);
+        var pLbl = ecFindById("ec_p_lbl");
+        if (pLbl) pLbl.position.set(Px, -0.32, 0);
+        var rLbl = ecFindById("ec_r_lbl");
+        if (rLbl) rLbl.position.set(Px * 0.5, -0.3, 0);
+
+        var eArrow = ecFindById("ec_e_arrow");
+        if (eArrow) {
+            eArrow.position.set(Px, Py, Pz);
+            eArrow.setDirection(new THREE.Vector3(dirX, 0, 0));
+            eArrow.setLength(len, Math.min(0.3, 0.25 * len), Math.min(0.18, 0.14 * len));
+            if (eArrow.setColor) eArrow.setColor(new THREE.Color(arrColor));
+        }
+        var eLbl = ecFindById("ec_e_lbl");
+        if (eLbl) eLbl.position.set(Px + dirX * (len + 0.25), 0.2, 0);
+
+        var qVal = document.getElementById("ec_q_val");
+        var rVal = document.getElementById("ec_r_val");
+        var eOut = document.getElementById("ec_e_readout");
+        if (qVal) qVal.textContent = (sign > 0 ? "+" : "\\u2212") + Math.round(Q_nC);
+        if (rVal) rVal.textContent = String(Math.round(r_cm));
+        if (eOut) {
+            var disp = E >= 1000 ? (E / 1000).toFixed(1) + " kN/C" : Math.round(E) + " N/C";
+            eOut.innerHTML = "E = " + disp;
+        }
+    }
+
     function setupSliders() {
         var iSlider = document.getElementById("i_slider");
         var rSlider = document.getElementById("r_slider");
@@ -4008,6 +5536,129 @@ export const FIELD_3D_RENDERER_CODE = `
 
         iSlider.addEventListener("input", refreshSliderVisuals);
         rSlider.addEventListener("input", refreshSliderVisuals);
+
+        // ── Diamond #4 (solenoid) slider wiring: B = μ₀ n I ──────────────────
+        //   The default #sliders panel is wire-centric (I + r → B = μ₀I/2πr).
+        //   A solenoid's field is B = μ₀ n I (independent of r), so for the
+        //   solenoid_field scenario rebuild the panel with turn-density n and
+        //   current I controls + an mT readout (solenoid B is ~1000× a wire's).
+        if (config.scenario_type === "solenoid_field") {
+            var solPanel = document.getElementById("sliders");
+            if (solPanel) {
+                var scN = (config.slider_controls && config.slider_controls.n) || {};
+                var scI = (config.slider_controls && config.slider_controls.I) || {};
+                var nDef = scN.default != null ? scN.default : 1000;
+                var nMin = scN.min != null ? scN.min : 100;
+                var nMax = scN.max != null ? scN.max : 5000;
+                var nStep = scN.step != null ? scN.step : 100;
+                var iDef = scI.default != null ? scI.default : 2;
+                var iMin = scI.min != null ? scI.min : 0.1;
+                var iMax = scI.max != null ? scI.max : 10;
+                var iStep = scI.step != null ? scI.step : 0.1;
+                solPanel.innerHTML =
+                    '<label>n = <span id="sol_n_val">' + nDef + '</span> turns/m</label>' +
+                    '<input type="range" id="sol_n_slider" min="' + nMin + '" max="' + nMax + '" step="' + nStep + '" value="' + nDef + '">' +
+                    '<label>I = <span id="sol_i_val">' + iDef + '</span> A</label>' +
+                    '<input type="range" id="sol_i_slider" min="' + iMin + '" max="' + iMax + '" step="' + iStep + '" value="' + iDef + '">' +
+                    '<div id="b_readout">B = 0 mT</div>';
+                var refreshSolenoidSliders = function () {
+                    var nS = document.getElementById("sol_n_slider");
+                    var iS = document.getElementById("sol_i_slider");
+                    if (!nS || !iS) return;
+                    var nv = parseFloat(nS.value);
+                    var iv = parseFloat(iS.value);
+                    var Bsol = MU_0 * nv * iv; // tesla
+                    var nValEl = document.getElementById("sol_n_val");
+                    var iValEl2 = document.getElementById("sol_i_val");
+                    var bEl = document.getElementById("b_readout");
+                    if (nValEl) nValEl.textContent = String(Math.round(nv));
+                    if (iValEl2) iValEl2.textContent = iv.toFixed(1);
+                    if (bEl) bEl.innerHTML = "B = " + (Bsol * 1000).toFixed(2) + " mT";
+                };
+                var solN = document.getElementById("sol_n_slider");
+                var solI = document.getElementById("sol_i_slider");
+                if (solN) solN.addEventListener("input", refreshSolenoidSliders);
+                if (solI) solI.addEventListener("input", refreshSolenoidSliders);
+                refreshSolenoidSliders();
+            }
+        }
+
+        // ── Biot-Savart (STATE_10) slider wiring: I, r, θ → P / circle / dB ──
+        //   The default panel is I + r only. Rebuild it with a θ control and a
+        //   dB readout; all three drive refreshBiotExplorer (real physics).
+        if (config.scenario_type === "biot_savart_element") {
+            var biotPanel = document.getElementById("sliders");
+            if (biotPanel) {
+                var bsI = (config.slider_controls && config.slider_controls.I) || {};
+                var bsR = (config.slider_controls && config.slider_controls.r) || {};
+                var bsTh = (config.slider_controls && config.slider_controls.theta_deg) || {};
+                var biIDef = bsI.default != null ? bsI.default : 5;
+                var biIMin = bsI.min != null ? bsI.min : 0.5;
+                var biIMax = bsI.max != null ? bsI.max : 20;
+                var biIStep = bsI.step != null ? bsI.step : 0.5;
+                var biRDef = (bsR.default != null ? bsR.default : 0.05) * 100;
+                var biRMin = (bsR.min != null ? bsR.min : 0.02) * 100;
+                var biRMax = (bsR.max != null ? bsR.max : 0.30) * 100;
+                var biRStep = (bsR.step != null ? bsR.step : 0.01) * 100;
+                var biThDef = bsTh.default != null ? bsTh.default : 90;
+                var biThMin = bsTh.min != null ? bsTh.min : 30;
+                var biThMax = bsTh.max != null ? bsTh.max : 150;
+                var biThStep = bsTh.step != null ? bsTh.step : 5;
+                biotPanel.innerHTML =
+                    '<label>I = <span id="i_val">' + biIDef.toFixed(1) + '</span> A</label>' +
+                    '<input type="range" id="i_slider" min="' + biIMin + '" max="' + biIMax + '" step="' + biIStep + '" value="' + biIDef + '">' +
+                    '<label>d = <span id="r_val">' + Math.round(biRDef) + '</span> cm (\\u22a5 wire\\u2192P = circle radius)</label>' +
+                    '<input type="range" id="r_slider" min="' + biRMin + '" max="' + biRMax + '" step="' + biRStep + '" value="' + biRDef + '">' +
+                    '<label>\\u03b8 = <span id="theta_val">' + Math.round(biThDef) + '</span>\\u00b0 (dl, r\\u0302)</label>' +
+                    '<input type="range" id="theta_slider" min="' + biThMin + '" max="' + biThMax + '" step="' + biThStep + '" value="' + biThDef + '">' +
+                    '<div id="b_readout">B = 0 \\u03bcT</div>' +
+                    '<div id="rtrue_readout">r (dl\\u2192P) = 0 cm</div>' +
+                    '<div id="db_readout">dB = 0 \\u03bcT</div>';
+                var biiEl = document.getElementById("i_slider");
+                var birEl = document.getElementById("r_slider");
+                var bithEl = document.getElementById("theta_slider");
+                if (biiEl) biiEl.addEventListener("input", refreshBiotExplorer);
+                if (birEl) birEl.addEventListener("input", refreshBiotExplorer);
+                if (bithEl) bithEl.addEventListener("input", refreshBiotExplorer);
+                refreshBiotExplorer();
+            }
+        }
+
+        // ── Electric point-charge explorer (STATE_7): Q, sign, r → E = kQ/r² ──
+        //   Rebuild the #sliders panel with a charge slider, a sign-flip button,
+        //   and a distance slider; all drive refreshElectricExplorer (real physics).
+        if (config.electric_explorer) {
+            var ecPanel = document.getElementById("sliders");
+            if (ecPanel) {
+                var ecQ = (config.slider_controls && config.slider_controls.Q) || {};
+                var ecR = (config.slider_controls && config.slider_controls.r) || {};
+                var qDef = ecQ.default != null ? ecQ.default : 5;
+                var qMin = ecQ.min != null ? ecQ.min : 1;
+                var qMax = ecQ.max != null ? ecQ.max : 10;
+                var qStep = ecQ.step != null ? ecQ.step : 1;
+                var rDef = (ecR.default != null ? ecR.default : 0.05) * 100;
+                var rMin = (ecR.min != null ? ecR.min : 0.02) * 100;
+                var rMax = (ecR.max != null ? ecR.max : 0.20) * 100;
+                var rStep = (ecR.step != null ? ecR.step : 0.01) * 100;
+                ecPanel.innerHTML =
+                    '<label>Q = <span id="ec_q_val">+' + Math.round(qDef) + '</span> nC</label>' +
+                    '<input type="range" id="ec_q_slider" min="' + qMin + '" max="' + qMax + '" step="' + qStep + '" value="' + qDef + '">' +
+                    '<button id="ec_sign_toggle" style="margin:6px 0;padding:4px 10px;cursor:pointer;border-radius:4px;border:1px solid #555;background:#222;color:#eee;">flip sign (+/\\u2212)</button>' +
+                    '<label>r = <span id="ec_r_val">' + Math.round(rDef) + '</span> cm</label>' +
+                    '<input type="range" id="ec_r_slider" min="' + rMin + '" max="' + rMax + '" step="' + rStep + '" value="' + rDef + '">' +
+                    '<div id="ec_e_readout">E = 0 N/C</div>';
+                var ecQS = document.getElementById("ec_q_slider");
+                var ecRS = document.getElementById("ec_r_slider");
+                var ecToggle = document.getElementById("ec_sign_toggle");
+                if (ecQS) ecQS.addEventListener("input", refreshElectricExplorer);
+                if (ecRS) ecRS.addEventListener("input", refreshElectricExplorer);
+                if (ecToggle) ecToggle.addEventListener("click", function () {
+                    setElectricPolarity(electricSign > 0 ? -1 : 1);
+                    refreshElectricExplorer();
+                });
+                refreshElectricExplorer();
+            }
+        }
 
         // ── Diamond #2 (Lorentz force) slider wiring ─────────────────────
         // The q-toggle is a click-to-flip button (not a range input). v/B/θ
@@ -4165,6 +5816,82 @@ export const FIELD_3D_RENDERER_CODE = `
             thetaTorque.addEventListener("input", refreshTorqueLabels);
             refreshTorqueLabels();
         }
+
+        // ── force_on_current_wire slider wiring ──────────────────────────
+        // Four range inputs (I, L, B, θ) + a flip-current button. The F
+        // readout = B·I·L·sinθ (Newtons). The animate loop reads the slider
+        // values + fcwCurrentDir directly to recompute the live F arrow, so
+        // these handlers only need to update the labels + readout.
+        var fcwI = document.getElementById("fcw_i_slider");
+        var fcwL = document.getElementById("fcw_l_slider");
+        var fcwB = document.getElementById("fcw_b_slider");
+        var fcwTheta = document.getElementById("fcw_theta_slider");
+        var fcwDirToggle = document.getElementById("fcw_dir_toggle");
+        if (fcwI && fcwL && fcwB && fcwTheta) {
+            if (config.slider_controls) {
+                if (config.slider_controls.I) {
+                    fcwI.min = String(config.slider_controls.I.min);
+                    fcwI.max = String(config.slider_controls.I.max);
+                    fcwI.step = String(config.slider_controls.I.step);
+                    fcwI.value = String(config.slider_controls.I.default);
+                }
+                if (config.slider_controls.L) {
+                    fcwL.min = String(config.slider_controls.L.min);
+                    fcwL.max = String(config.slider_controls.L.max);
+                    fcwL.step = String(config.slider_controls.L.step != null ? config.slider_controls.L.step : 0.1);
+                    fcwL.value = String(config.slider_controls.L.default);
+                }
+                if (config.slider_controls.B) {
+                    fcwB.min = String(config.slider_controls.B.min);
+                    fcwB.max = String(config.slider_controls.B.max);
+                    fcwB.step = String(config.slider_controls.B.step != null ? config.slider_controls.B.step : 0.1);
+                    fcwB.value = String(config.slider_controls.B.default);
+                }
+                if (config.slider_controls.theta_deg) {
+                    fcwTheta.min = String(config.slider_controls.theta_deg.min);
+                    fcwTheta.max = String(config.slider_controls.theta_deg.max);
+                    fcwTheta.step = String(config.slider_controls.theta_deg.step != null ? config.slider_controls.theta_deg.step : 1);
+                    fcwTheta.value = String(config.slider_controls.theta_deg.default);
+                }
+            }
+
+            function refreshFcwLabels() {
+                var iVal = document.getElementById("fcw_i_val");
+                var lVal = document.getElementById("fcw_l_val");
+                var bVal = document.getElementById("fcw_b_val");
+                var thVal = document.getElementById("fcw_theta_val");
+                var fReadout = document.getElementById("fcw_f_readout");
+                var Iv = parseFloat(fcwI.value);
+                var Lv = parseFloat(fcwL.value);
+                var Bv = parseFloat(fcwB.value);
+                var thv = parseFloat(fcwTheta.value);
+                if (iVal) iVal.textContent = Iv.toFixed(1);
+                if (lVal) lVal.textContent = Lv.toFixed(1);
+                if (bVal) bVal.textContent = Bv.toFixed(1);
+                if (thVal) thVal.textContent = thv.toFixed(0);
+                // Mutate the active state's theta_deg so the animate loop + the
+                // angle arcs follow the slider (scenario-guarded).
+                if (config.scenario_type === "force_on_current_wire") {
+                    var sd = config.states[PM_currentState];
+                    if (sd && sd.show_sliders) sd.theta_deg = thv;
+                }
+                var Fn = Bv * Iv * Lv * Math.sin(thv * Math.PI / 180);
+                if (fReadout) fReadout.textContent = "F = " + Fn.toFixed(2) + " N";
+            }
+
+            fcwI.addEventListener("input", refreshFcwLabels);
+            fcwL.addEventListener("input", refreshFcwLabels);
+            fcwB.addEventListener("input", refreshFcwLabels);
+            fcwTheta.addEventListener("input", refreshFcwLabels);
+            if (fcwDirToggle) {
+                fcwDirToggle.addEventListener("click", function() {
+                    fcwCurrentDir = -fcwCurrentDir;
+                    fcwDirToggle.classList.toggle("reversed", fcwCurrentDir < 0);
+                    fcwDirToggle.textContent = fcwCurrentDir < 0 ? "Flip current \\u2190" : "Flip current \\u2192";
+                });
+            }
+            refreshFcwLabels();
+        }
     }
 
     // ── Animation loop ────────────────────────────────────────────────────
@@ -4183,6 +5910,15 @@ export const FIELD_3D_RENDERER_CODE = `
             time += 0.016;
         }
 
+        // Visual-validator capture hook: expose the renderer's SIM-TIME clock
+        // (state-local ms) so the headless screenshotter can poll for reveals
+        // to actually fire instead of guessing on wall-clock (rAF is throttled
+        // in headless → sim-time lags wall-clock → false negatives). Set every
+        // frame incl. while frozen, where time === freezeAtTime, so the poller
+        // can terminate at the pin. Compares directly to reveal_at_ms / the
+        // SET_TIME_FREEZE at_ms offset.
+        window.PM_simTimeMs = (time - stateStartTime) * 1000;
+
         lerpSpherical();
 
         // Diamond #3 — torque-loop rotation + τ-arrow scaling + TTS glow.
@@ -4191,6 +5927,48 @@ export const FIELD_3D_RENDERER_CODE = `
             // pass 0 while held at the pin so the loop angle freezes too.
             updateTorqueLoopFrame(heldAtPin ? 0 : 0.016);
             applyTorqueLoopGlow();
+        }
+
+        // Electric diamond STATE_5 — the density↔strength aha, in motion.
+        // A probe sweeps radially out and back; its E-arrow shrinks as kQ/r²
+        // (strength), and the field lines around it brighten where they crowd
+        // (dense near → sparse far, the lit reach shrinking ∝ 1/distance). Density
+        // and strength fall together — the aha is shown, not just narrated.
+        if (config.electric_explorer && PM_currentState === "STATE_5") {
+            var tt5 = time - stateStartTime;
+            var per5 = 5.0;                              // 5s out-and-back loop
+            var ph5 = (tt5 % per5) / per5;               // 0..1
+            var tri5 = ph5 < 0.5 ? ph5 * 2 : 2 - ph5 * 2;
+            var sm5 = tri5 * tri5 * (3 - 2 * tri5);       // smoothstep ease
+            var nearX5 = 0.7, farX5 = 3.2;
+            var px5 = nearX5 + (farX5 - nearX5) * sm5;
+            var rel5 = (nearX5 * nearX5) / (px5 * px5);   // 1 near → ~0.05 far (∝ 1/r²)
+            var pulse5 = 0.82 + 0.18 * Math.sin(tt5 * 4);
+
+            var ecProbe = ecFindById("ec_probe");
+            if (ecProbe) ecProbe.position.set(px5, 0, 0);
+            var ecPArr = ecFindById("ec_probe_arrow");
+            var aLen5 = 0.3 + 1.8 * rel5;
+            if (ecPArr) {
+                ecPArr.position.set(px5, 0, 0);
+                ecPArr.setDirection(new THREE.Vector3(1, 0, 0));
+                ecPArr.setLength(aLen5, Math.min(0.34, 0.26 * aLen5), Math.min(0.2, 0.16 * aLen5));
+            }
+            var ecPLbl5 = ecFindById("ec_probe_E_lbl");
+            if (ecPLbl5) ecPLbl5.position.set(px5 + aLen5 + 0.3, 0.22, 0);
+
+            // Crowd spotlight: brighten +Q field lines within the probe's angular
+            // reach (atan(reach/distance) → shrinks with distance → many lit near,
+            // few far). This is the field-line density made visible, in motion.
+            var reach5 = Math.atan2(0.95, px5);
+            for (var li5 = 0; li5 < sceneObjects.length; li5++) {
+                var lo5 = sceneObjects[li5];
+                var lud5 = lo5.userData;
+                if (!lud5 || lud5.elementType !== "field_line" || !lud5.id) continue;
+                if (lud5.id.indexOf("fl_q_plus") !== 0 || !lud5.unitDir || !lo5.material) continue;
+                var ang5 = Math.acos(Math.max(-1, Math.min(1, lud5.unitDir[0])));
+                lo5.material.opacity = (ang5 < reach5) ? (0.95 * pulse5) : 0.12;
+            }
         }
 
         // Animate dynamic extras (compass swing, hand pulse, point pulse)
@@ -4267,6 +6045,36 @@ export const FIELD_3D_RENDERER_CODE = `
                     if (ch.userData && typeof ch.userData.fingerIndex === "number") {
                         ch.scale.set(pulse, 1, pulse);
                     }
+                }
+            }
+            if (dud.elementType === "solenoid_grip_hand") {
+                // Curl the articulated fingers open → fist, hold, then release and
+                // repeat. curlT is a PURE function of (time - stateStartTime) so
+                // SET_TIME_FREEZE pins it deterministically. By ~1.3s the fist is
+                // closed and holds, so the reveal-time capture (default 1500ms)
+                // photographs the closed fist.
+                var gT = time - stateStartTime;
+                var gPeriod = 6.5;
+                var gtc = gT % gPeriod;
+                var gcurl;
+                if (gtc < 1.3) { var gu = gtc / 1.3; gcurl = gu * gu * (3 - 2 * gu); }
+                else if (gtc < 5.2) { gcurl = 1; }
+                else { var gu2 = (gtc - 5.2) / 1.3; gcurl = 1 - gu2 * gu2 * (3 - 2 * gu2); }
+                var gTubes = dud.finger_tubes || [];
+                var gKnu = dud.finger_knuckles || [];
+                var gNails = dud.finger_nails || [];
+                for (var gfi = 0; gfi < gTubes.length; gfi++) {
+                    var gjoints = rhrFingerJoints(gfi, dud.sc, gcurl, dud.curlSign);
+                    var gt = gTubes[gfi];
+                    gt.geometry.dispose();
+                    gt.geometry = new THREE.TubeGeometry(
+                        new THREE.CatmullRomCurve3(gjoints), 24, dud.seg_tube_r, 12, false
+                    );
+                    var gks = gKnu[gfi] || [];
+                    for (var gkk = 0; gkk < gks.length; gkk++) {
+                        if (gks[gkk]) gks[gkk].position.copy(gjoints[gkk]);
+                    }
+                    if (gNails[gfi]) gNails[gfi].position.copy(gjoints[3]);
                 }
             }
             if (dud.elementType === "highlighted_point" && dud.pulse) {
@@ -4468,47 +6276,184 @@ export const FIELD_3D_RENDERER_CODE = `
                             ch.material.opacity = rcOpacity;
                             if (rcCfg.color) ch.material.color = hexToThreeColor(rcColorActive);
                         }
-                    } else if (ud.elementType === "axial_buildup_shaft") {
+                    } else if (ud.elementType === "axial_buildup_tube" || ud.elementType === "axial_buildup_head") {
+                        // Blue axial field (tube + arrowhead) fades in after the
+                        // radial cancellation — opacity reveal (the tube is full
+                        // length; the head is fixed at the tip). smoothstep over
+                        // arise_duration_ms starting at reveal_at_ms.
                         if (!axCfg || !axCfg.enabled) {
                             ch.visible = false;
                             if (ch.material) ch.material.opacity = 0;
                             continue;
                         }
-                        var axU = 0;
-                        if (localMs >= axRevealAt + axArise) axU = 1;
+                        var axO = 0;
+                        if (localMs >= axRevealAt + axArise) axO = 1;
                         else if (localMs >= axRevealAt) {
-                            axU = (localMs - axRevealAt) / Math.max(1, axArise);
-                            axU = axU * axU * (3 - 2 * axU); // smoothstep
+                            axO = (localMs - axRevealAt) / Math.max(1, axArise);
+                            axO = axO * axO * (3 - 2 * axO); // smoothstep
                         }
-                        var shaftLen = axLenMax * axU;
-                        // Scale on the cylinder's local Y (its length axis;
-                        // we rotated x=PI/2 so local Y maps to world ±Z).
-                        ch.scale.y = Math.max(0.001, shaftLen);
-                        ch.visible = axU > 0.01;
+                        ch.visible = axO > 0.01;
                         if (ch.material) {
-                            ch.material.opacity = axU;
+                            ch.material.opacity = axO;
                             if (axCfg.color) ch.material.color = hexToThreeColor(axColorActive);
                         }
-                    } else if (ud.elementType === "axial_buildup_head") {
-                        if (!axCfg || !axCfg.enabled) {
-                            ch.visible = false;
-                            if (ch.material) ch.material.opacity = 0;
-                            continue;
+                    } else if (ud.elementType === "current_flow_dot") {
+                        // Live current flowing ALONG the helix. heldAtPin?0:0.016
+                        // is the freeze-determinism guard (mirrors the torque dot).
+                        var cfCfg = stateDef.current_flow;
+                        if (!cfCfg || !cfCfg.enabled) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
+                        var cfReveal = (cfCfg.reveal_at_ms != null) ? cfCfg.reveal_at_ms : 0;
+                        if (localMs < cfReveal) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
+                        var cfDir = (cfCfg.direction === "reverse") ? -1 : 1;
+                        var cfSpeed = (cfCfg.speed != null) ? cfCfg.speed : (ud.speed || 0.16);
+                        var cfDt = heldAtPin ? 0 : 0.016;
+                        ud.t = (ud.t + cfDir * cfSpeed * cfDt + 1.0) % 1.0;
+                        var cfPos = sampleHelix(ud.t, coilForChildren.userData.helixPts, coilForChildren.userData.helixCum, coilForChildren.userData.helixLen);
+                        ch.position.set(cfPos[0], cfPos[1], cfPos[2]);
+                        ch.visible = true;
+                        if (ch.material) ch.material.opacity = 1;
+                    } else if (ud.elementType === "wire_wrap_circle") {
+                        // STATE_2: Biot-Savart B-circles around the FOCAL turn's wire.
+                        var wbCfg = stateDef.per_turn_biot;
+                        var wbFocal = (wbCfg && wbCfg.focal_turn != null) ? wbCfg.focal_turn : 0;
+                        if (!wbCfg || !wbCfg.enabled || ud.turnIndex !== wbFocal) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
+                        var wbReveal = (wbCfg.reveal_at_ms != null) ? wbCfg.reveal_at_ms : 500;
+                        var wbFade = (wbCfg.reveal_fade_ms != null) ? wbCfg.reveal_fade_ms : 600;
+                        var wbO = 0;
+                        if (localMs >= wbReveal + wbFade) wbO = 1;
+                        else if (localMs >= wbReveal) wbO = (localMs - wbReveal) / Math.max(1, wbFade);
+                        ch.visible = wbO > 0.01;
+                        if (ch.material) ch.material.opacity = wbO * 0.95;
+                    } else if (ud.elementType === "per_turn_axial_arrow") {
+                        // STATE_2: each turn's NET axial field, staggered across turns.
+                        var pbCfg = stateDef.per_turn_biot;
+                        if (!pbCfg || !pbCfg.enabled) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
+                        var paReveal = (pbCfg.axial_reveal_at_ms != null) ? pbCfg.axial_reveal_at_ms : 1800;
+                        var paStagger = (pbCfg.axial_stagger_ms != null) ? pbCfg.axial_stagger_ms : 250;
+                        var paStart = paReveal + ud.turnIndex * paStagger;
+                        var paO = 0;
+                        if (localMs >= paStart + 500) paO = 1;
+                        else if (localMs >= paStart) paO = (localMs - paStart) / 500;
+                        ch.visible = paO > 0.01;
+                        if (ch.material) ch.material.opacity = paO * 0.9;
+                    } else if (ud.elementType === "rd_element" || ud.elementType === "rd_axis_point" || ud.elementType === "rd_ray" || ud.elementType === "rd_contribution") {
+                        // STATE_3 radial decomposition: source elements, axis point,
+                        // causal rays, and the full (yellow) contribution arrows.
+                        var rdCfg = stateDef.radial_decomposition;
+                        if (!rdCfg || !rdCfg.enabled) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
+                        var rdRevC = (rdCfg.reveal_contributions_at_ms != null) ? rdCfg.reveal_contributions_at_ms : 1500;
+                        var rdRevCFade = (rdCfg.contributions_fade_ms != null) ? rdCfg.contributions_fade_ms : 700;
+                        var rdSplitAt = (rdCfg.split_at_ms != null) ? rdCfg.split_at_ms : 4000;
+                        var rdBaseO = 0;
+                        if (localMs >= rdRevC + rdRevCFade) rdBaseO = 1;
+                        else if (localMs >= rdRevC) rdBaseO = (localMs - rdRevC) / Math.max(1, rdRevCFade);
+                        var rdDim = 1.0;
+                        if (ud.elementType === "rd_ray") rdDim = 0.4;
+                        if (ud.elementType === "rd_contribution" && localMs >= rdSplitAt) rdDim = 0.3;
+                        var rdOpac = rdBaseO * rdDim;
+                        ch.visible = rdOpac > 0.01;
+                        if (ch.material) ch.material.opacity = rdOpac;
+                    } else if (ud.elementType === "rd_axial" || ud.elementType === "rd_radial") {
+                        // Shared by STATE_3 (radial: split → annihilate red) and
+                        // STATE_4 (axial: stack the blue halves head-to-tail).
+                        var rdCfg2 = stateDef.radial_decomposition;
+                        var axsCfg = stateDef.axial_stack;
+                        if ((!rdCfg2 || !rdCfg2.enabled) && (!axsCfg || !axsCfg.enabled)) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
+                        if (rdCfg2 && rdCfg2.enabled) {
+                            var splitAt = (rdCfg2.split_at_ms != null) ? rdCfg2.split_at_ms : 4000;
+                            var splitFade = (rdCfg2.split_fade_ms != null) ? rdCfg2.split_fade_ms : 700;
+                            var annAt = (rdCfg2.annihilate_at_ms != null) ? rdCfg2.annihilate_at_ms : 7000;
+                            var annDur = (rdCfg2.annihilate_dur_ms != null) ? rdCfg2.annihilate_dur_ms : 1200;
+                            var splitO = 0;
+                            if (localMs >= splitAt + splitFade) splitO = 1;
+                            else if (localMs >= splitAt) splitO = (localMs - splitAt) / Math.max(1, splitFade);
+                            if (ud.elementType === "rd_radial") {
+                                var shrink = 1;
+                                if (localMs >= annAt + annDur) shrink = 0;
+                                else if (localMs >= annAt) { var av = (localMs - annAt) / Math.max(1, annDur); shrink = 1 - av * av * (3 - 2 * av); }
+                                applyDecompTransform(ch, ud, shrink);
+                                var rdrO = splitO * shrink;
+                                ch.visible = rdrO > 0.01;
+                                if (ch.material) ch.material.opacity = rdrO;
+                            } else {
+                                applyDecompTransform(ch, ud, 1);
+                                ch.visible = splitO > 0.01;
+                                if (ch.material) ch.material.opacity = splitO;
+                            }
+                        } else {
+                            // AXIAL state — red hidden; blue halves reveal + stack.
+                            if (ud.elementType === "rd_radial") { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
+                            var asReveal = (axsCfg.reveal_at_ms != null) ? axsCfg.reveal_at_ms : 0;
+                            var asStackAt = (axsCfg.stack_at_ms != null) ? axsCfg.stack_at_ms : 1200;
+                            var asStackDur = (axsCfg.stack_dur_ms != null) ? axsCfg.stack_dur_ms : 1000;
+                            var stackU = 0;
+                            if (localMs >= asStackAt + asStackDur) stackU = 1;
+                            else if (localMs >= asStackAt) { var su = (localMs - asStackAt) / Math.max(1, asStackDur); stackU = su * su * (3 - 2 * su); }
+                            var liftZ = 0;
+                            if (ud.id.indexOf("rd_axial_right") === 0) liftZ = stackU * (ud.toP[2] - ud.fromP[2]);
+                            applyDecompLift(ch, ud, liftZ);
+                            var asO = (localMs >= asReveal) ? 1 : 0;
+                            ch.visible = asO > 0.01;
+                            if (ch.material) ch.material.opacity = asO;
                         }
-                        var axU2 = 0;
-                        if (localMs >= axRevealAt + axArise) axU2 = 1;
-                        else if (localMs >= axRevealAt) {
-                            axU2 = (localMs - axRevealAt) / Math.max(1, axArise);
-                            axU2 = axU2 * axU2 * (3 - 2 * axU2);
+                    } else if (ud.elementType === "ax_stack_sum") {
+                        // STATE_4: the doubled axial arrow (2× = adds).
+                        var assCfg = stateDef.axial_stack;
+                        if (!assCfg || !assCfg.enabled) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
+                        var sumReveal = (assCfg.sum_reveal_at_ms != null) ? assCfg.sum_reveal_at_ms : 2600;
+                        var sumO = 0;
+                        if (localMs >= sumReveal + 700) sumO = 1;
+                        else if (localMs >= sumReveal) sumO = (localMs - sumReveal) / 700;
+                        ch.visible = sumO > 0.01;
+                        if (ch.material) ch.material.opacity = sumO;
+                    } else if (ud.elementType === "length_stack_arrow") {
+                        // Beat 3 (STATE_4): along-length axial arrows reveal
+                        // left to right (staggered) — every ring along L adds
+                        // its axial bit, building the uniform field end to end.
+                        var lsCfg = stateDef.length_stack;
+                        if (!lsCfg || !lsCfg.enabled) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
+                        var lsReveal = (lsCfg.reveal_at_ms != null) ? lsCfg.reveal_at_ms : 1800;
+                        var lsStagger = (lsCfg.stagger_ms != null) ? lsCfg.stagger_ms : 260;
+                        var lsFade = (lsCfg.fade_ms != null) ? lsCfg.fade_ms : 500;
+                        var lsStart = lsReveal + (ud.lsIndex || 0) * lsStagger;
+                        var lsO = 0;
+                        if (localMs >= lsStart + lsFade) lsO = 1;
+                        else if (localMs >= lsStart) lsO = (localMs - lsStart) / Math.max(1, lsFade);
+                        ch.visible = lsO > 0.01;
+                        if (ch.material) ch.material.opacity = lsO * 0.92;
+                    } else if (ud.elementType === "pole_label") {
+                        // Beat 1 (STATE_5 + STATE_8): N/S pole labels. Show the
+                        // correct pair per field direction so they SWAP when the
+                        // current reverses. N is the end the interior field B
+                        // points toward: dir>0 -> +z end = N; dir<0 -> swap.
+                        var plCfg = stateDef.pole_labels;
+                        if (!plCfg || !plCfg.enabled) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
+                        var plDir = (stateDef.field_lines_dir != null) ? stateDef.field_lines_dir : 1;
+                        var wantN = (plDir >= 0) ? (ud.end === 1) : (ud.end === -1);
+                        var showThis = (ud.pole === "N") ? wantN : !wantN;
+                        var plReveal = (plCfg.reveal_at_ms != null) ? plCfg.reveal_at_ms : 300;
+                        var plFade = (plCfg.fade_ms != null) ? plCfg.fade_ms : 500;
+                        var plO = 0;
+                        if (showThis) {
+                            if (localMs >= plReveal + plFade) plO = 1;
+                            else if (localMs >= plReveal) plO = (localMs - plReveal) / Math.max(1, plFade);
                         }
-                        // Head sits at the tip of the shaft (baseZ + shaftLen).
-                        var headZ = ud.baseZ + axLenMax * axU2;
-                        ch.position.set(0, 0, headZ);
-                        ch.visible = axU2 > 0.05;
-                        if (ch.material) {
-                            ch.material.opacity = axU2;
-                            if (axCfg.color) ch.material.color = hexToThreeColor(axColorActive);
-                        }
+                        ch.visible = plO > 0.01;
+                        if (ch.material) ch.material.opacity = plO;
+                    }
+                }
+
+                // Field-line arrow direction follows the current (RHR); flips to
+                // -z on the reverse-current state (field_lines_dir = -1). The
+                // internal field lines + arrows are top-level sceneObjects.
+                var flDir = (stateDef.field_lines_dir != null) ? stateDef.field_lines_dir : 1;
+                for (var fli = 0; fli < sceneObjects.length; fli++) {
+                    var flo = sceneObjects[fli];
+                    if (flo.userData && flo.userData.elementType === "arrow" && flo.userData.id && flo.userData.id.indexOf("arr_int_") === 0) {
+                        var flUp = new THREE.Vector3(0, 1, 0);
+                        var flTgt = new THREE.Vector3(0, 0, flDir >= 0 ? 1 : -1);
+                        var flQ = new THREE.Quaternion(); flQ.setFromUnitVectors(flUp, flTgt);
+                        flo.setRotationFromQuaternion(flQ);
                     }
                 }
             }
@@ -4699,18 +6644,16 @@ export const FIELD_3D_RENDERER_CODE = `
                     else { var cw = (cc - 0.92) / 0.08; hCurl = 1 - cw * cw * (3 - 2 * cw); hPhase = null; }
                 }
                 var hFingers = hud.finger_meshes || [];
+                var hKnu = hud.finger_knuckles || [];
                 var hNails = hud.finger_nails || [];
                 for (var hfi = 0; hfi < hFingers.length; hfi++) {
                     var hf = hFingers[hfi];
-                    var hfd = hf.userData;
-                    var hpts = lorentzFingerPoints(hfd.fingerIndex, hfd.palmRadius, hfd.fingerLength, hfd.scale_s, hCurl);
-                    var hcurve = new THREE.CatmullRomCurve3(hpts);
+                    var hj = rhrFingerJoints(hfi, hud.sc, hCurl, hud.curlSign);
                     hf.geometry.dispose();
-                    hf.geometry = new THREE.TubeGeometry(hcurve, 24, hfd.tubeRadius, 8, false);
-                    if (hNails[hfi]) {
-                        var htip = hpts[hpts.length - 1];
-                        hNails[hfi].position.set(htip.x, htip.y, htip.z);
-                    }
+                    hf.geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(hj), 24, hud.seg_tube_r, 12, false);
+                    var hkn = hKnu[hfi] || [];
+                    for (var hkk = 0; hkk < hkn.length; hkk++) { if (hkn[hkk]) hkn[hkk].position.copy(hj[hkk]); }
+                    if (hNails[hfi]) hNails[hfi].position.copy(hj[3]);
                 }
                 if (hud.elementType === "biot_grip_hand") {
                     if (hud.i_label) hud.i_label.visible = (hPhase === "i");
@@ -4829,9 +6772,28 @@ export const FIELD_3D_RENDERER_CODE = `
                 // shifted backwards along v by entrySpeed × (entryDur - tLocal).
                 var entryDur = stateDef.entry_duration || 0;
                 var tJoin = Math.max(0, tLocal - entryDur);
-                var phaseH = omega * tJoin * chargeSignL;
-                var Rperp = R * Math.max(0.05, sinT);
-                var axial = ((tJoin * 0.35 * cosT) % 4) - 2;
+                // Balanced helix (reviewer Asmi, 2026-06-16): split ONE base
+                // speed (omega·HELIX_R) into a perpendicular part (∝ sinθ — the
+                // cyclotron circle) and an axial part (∝ cosθ — the conserved v∥
+                // drift), so at θ = 45°, where v·cosθ = v·sinθ, the forward drift
+                // per orbit equals the circle's circumference and circling vs
+                // forward look balanced. The old hard-coded 0.35·cosθ made the
+                // drift ~3× too slow, so 45° read as a tight circle.
+                // HELIX_R shrinks the radius so a FULL balanced loop fits the
+                // visible axial range (a balanced 45° helix has pitch = circum-
+                // ference, so the circle has to be small to fit on screen). The
+                // motion loops cleanly over loopDur — proton + trail restart
+                // together at −AX/2 instead of teleporting mid-orbit (the old
+                // modulo-4 axial wrap drew a long dead-zone line and left the
+                // trail half-drawn, which is what the reviewer saw).
+                var HELIX_R = R * 0.5;
+                var AX_RANGE = 4.5;
+                var Rperp = HELIX_R * Math.max(0.05, sinT);
+                var axialSpeed = omega * HELIX_R * cosT;
+                var loopDur = axialSpeed > 1e-4 ? (AX_RANGE / axialSpeed) : 1e9;
+                var tHelix = loopDur < 1e8 ? (tJoin % loopDur) : tJoin;
+                var phaseH = omega * tHelix * chargeSignL;
+                var axial = (tHelix * axialSpeed) - (AX_RANGE / 2);
                 newPos.copy(u1).multiplyScalar(Rperp * Math.cos(phaseH))
                      .add(u2.clone().multiplyScalar(Rperp * Math.sin(phaseH)))
                      .add(bUnit.clone().multiplyScalar(axial));
@@ -4846,7 +6808,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     // Approach speed matches the helix tangent magnitude at
                     // join so the visual rate of travel is continuous.
                     var entrySpeed = Math.sqrt(
-                        omega * omega * Rperp * Rperp + 0.35 * 0.35 * cosT * cosT
+                        omega * omega * Rperp * Rperp + axialSpeed * axialSpeed
                     );
                     var backDist = entrySpeed * (entryDur - tLocal);
                     newPos.addScaledVector(vDir, -backDist);
@@ -5021,39 +6983,75 @@ export const FIELD_3D_RENDERER_CODE = `
                         lObj.geometry.setDrawRange(0, 0);
                         lorentzTrailResetPending = false;
                     }
-                    var maxP = lUd.max_points || 240;
+                    var maxP = lUd.max_points || 600;
                     var wi = lUd.write_index || 0;
                     // STATE_6 needs the trail to keep drawing forever so the
                     // student sees the orbit even after the buffer fills;
                     // for static states we keep the original cap so the
                     // pedagogical "this is one full circle" framing stays.
                     var infiniteTrail = !!stateDef.show_sliders;
-                    if (infiniteTrail || (lUd.filled || 0) < maxP) {
-                        var arr = lObj.geometry.attributes.position.array;
-                        arr[wi * 3 + 0] = newPos.x;
-                        arr[wi * 3 + 1] = newPos.y;
-                        arr[wi * 3 + 2] = newPos.z;
-                        if (infiniteTrail) {
-                            // Circular buffer: when we wrap, reset the
-                            // counters so the line never jumps from the end
-                            // of the buffer back to the start as one long
-                            // segment. The student sees one fresh orbit at
-                            // a time instead.
-                            lUd.write_index = wi + 1;
-                            lUd.filled = (lUd.filled || 0) + 1;
-                            if (lUd.write_index >= maxP) {
-                                lUd.write_index = 0;
-                                lUd.filled = 0;
-                                lObj.geometry.setDrawRange(0, 0);
+                    // Only sample the trail when the proton has actually moved
+                    // since the last point. Two reviewer bugs this fixes (Asmi,
+                    // 2026-06-16):
+                    //  (a) circle "not completed" — a TTS freeze_proton holds
+                    //      the proton still, but the old code kept writing the
+                    //      SAME point every frame, burning the fixed buffer so
+                    //      the 90° circle stopped ~0.95 of a turn short and
+                    //      never closed. Skipping stationary frames lets every
+                    //      buffer slot advance the orbit, so it closes.
+                    //  (b) helix "path not drawn" — when the axial coordinate
+                    //      wraps (+2 → −2) the two samples are ~4 units apart,
+                    //      so the trail drew one long segment straight across
+                    //      the field. We detect that jump and start a fresh
+                    //      trace instead of drawing the dead-zone line.
+                    var movedOK = true;
+                    var isJump = false;
+                    if ((lUd.filled || 0) > 0) {
+                        var ddx = newPos.x - lUd.last_x;
+                        var ddy = newPos.y - lUd.last_y;
+                        var ddz = newPos.z - lUd.last_z;
+                        var step2 = ddx * ddx + ddy * ddy + ddz * ddz;
+                        movedOK = step2 >= 1e-7;   // skip duplicate (frozen) frames
+                        isJump = step2 > 4.0;      // axial wrap discontinuity (~4 units)
+                    }
+                    if (movedOK) {
+                        if (isJump) {
+                            // Discontinuity (helix wrap): refresh the trace so
+                            // we never draw a long segment across the dead zone.
+                            wi = 0;
+                            lUd.write_index = 0;
+                            lUd.filled = 0;
+                        }
+                        if (infiniteTrail || (lUd.filled || 0) < maxP) {
+                            var arr = lObj.geometry.attributes.position.array;
+                            arr[wi * 3 + 0] = newPos.x;
+                            arr[wi * 3 + 1] = newPos.y;
+                            arr[wi * 3 + 2] = newPos.z;
+                            lUd.last_x = newPos.x;
+                            lUd.last_y = newPos.y;
+                            lUd.last_z = newPos.z;
+                            if (infiniteTrail) {
+                                // Circular buffer: when we wrap, reset the
+                                // counters so the line never jumps from the end
+                                // of the buffer back to the start as one long
+                                // segment. The student sees one fresh orbit at
+                                // a time instead.
+                                lUd.write_index = wi + 1;
+                                lUd.filled = (lUd.filled || 0) + 1;
+                                if (lUd.write_index >= maxP) {
+                                    lUd.write_index = 0;
+                                    lUd.filled = 0;
+                                    lObj.geometry.setDrawRange(0, 0);
+                                } else {
+                                    lObj.geometry.setDrawRange(0, lUd.filled);
+                                }
                             } else {
+                                lUd.write_index = wi + 1;
+                                lUd.filled = (lUd.filled || 0) + 1;
                                 lObj.geometry.setDrawRange(0, lUd.filled);
                             }
-                        } else {
-                            lUd.write_index = wi + 1;
-                            lUd.filled = (lUd.filled || 0) + 1;
-                            lObj.geometry.setDrawRange(0, lUd.filled);
+                            lObj.geometry.attributes.position.needsUpdate = true;
                         }
-                        lObj.geometry.attributes.position.needsUpdate = true;
                     }
                 }
             }
@@ -5121,20 +7119,16 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (a) Regenerate the 4 finger geometries with current curlT,
                 //     and slide each fingernail to the new fingertip.
                 var fingers = handObj.userData.finger_meshes || [];
+                var knuckles = handObj.userData.finger_knuckles || [];
                 var nails = handObj.userData.finger_nails || [];
                 for (var fmi = 0; fmi < fingers.length; fmi++) {
                     var fmesh = fingers[fmi];
-                    var fud = fmesh.userData;
-                    var pts = lorentzFingerPoints(
-                        fud.fingerIndex, fud.palmRadius, fud.fingerLength, fud.scale_s, curlT
-                    );
-                    var curve = new THREE.CatmullRomCurve3(pts);
+                    var fj = rhrFingerJoints(fmi, handObj.userData.sc, curlT, handObj.userData.curlSign);
                     fmesh.geometry.dispose();
-                    fmesh.geometry = new THREE.TubeGeometry(curve, 24, fud.tubeRadius, 8, false);
-                    if (nails[fmi]) {
-                        var tipPt = pts[pts.length - 1];
-                        nails[fmi].position.set(tipPt.x, tipPt.y, tipPt.z);
-                    }
+                    fmesh.geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fj), 24, handObj.userData.seg_tube_r, 12, false);
+                    var fkn = knuckles[fmi] || [];
+                    for (var fkk = 0; fkk < fkn.length; fkk++) { if (fkn[fkk]) fkn[fkk].position.copy(fj[fkk]); }
+                    if (nails[fmi]) nails[fmi].position.copy(fj[3]);
                 }
 
                 // (b) Toggle v / B / F label + arrow visibility per phase.
@@ -5182,6 +7176,160 @@ export const FIELD_3D_RENDERER_CODE = `
                         fReadout.textContent = "F = " + (fNumeric * 1e15).toFixed(3) + " fN";
                     }
                 }
+            }
+        }
+
+        // ── force_on_current_wire per-frame: drift carriers, current-flip,
+        //    live F = current_dir·I·(L̂×B̂), |F| ∝ B·I·L·sinθ. ────────────────
+        if (config.scenario_type === "force_on_current_wire" && stateDef) {
+            var afF = config.ambient_field || { direction: [0, 1, 0] };
+            var curF = config.current || { direction: [1, 0, 0], magnitude: 2 };
+            var bUnitF = new THREE.Vector3(afF.direction[0], afF.direction[1], afF.direction[2]).normalize();
+            var lUnitF = new THREE.Vector3(curF.direction[0], curF.direction[1], curF.direction[2]).normalize();
+
+            // STATE_3 one-shot auto current-flip. Threshold is a state-local
+            // sim-time offset (ms); compare against (time - stateStartTime)*1000
+            // so the flip ALSO fires when the visual gate pins the clock past the
+            // threshold via SET_TIME_FREEZE (PM_simTimeMs is this same sim-clock).
+            // We do NOT leave fcwCurrentDir latched to -1 here: we set it directly
+            // from whether sim-time has passed the threshold, so a re-pin BEFORE
+            // the flip time correctly shows the pre-flip (forward) state too.
+            var fcwStateMs = (time - stateStartTime) * 1000;
+            if (fcwFlipAt !== null) {
+                fcwCurrentDir = (fcwStateMs >= fcwFlipAt) ? -1 : 1;
+            }
+
+            // Read I, L, B, θ — from sliders in the interactive state, else from
+            // config defaults + the per-state theta_deg.
+            var thetaDegF = (typeof stateDef.theta_deg === "number") ? stateDef.theta_deg : 90;
+            var Ival = curF.magnitude != null ? curF.magnitude : 2;
+            var Lval = (config.slider_controls && config.slider_controls.L && config.slider_controls.L.default != null)
+                ? config.slider_controls.L.default : 0.5;
+            var Bval2 = afF.magnitude != null ? afF.magnitude : 0.5;
+            if (stateDef.show_sliders) {
+                var fiEl = document.getElementById("fcw_i_slider");
+                var flEl = document.getElementById("fcw_l_slider");
+                var fbEl = document.getElementById("fcw_b_slider");
+                if (fiEl) Ival = parseFloat(fiEl.value);
+                if (flEl) Lval = parseFloat(flEl.value);
+                if (fbEl) Bval2 = parseFloat(fbEl.value);
+            }
+            var sinThetaF = Math.sin(thetaDegF * Math.PI / 180);
+
+            // Effective current direction (sign-flipped) and F̂ = curDir·(L̂×B̂).
+            var effLdir = lUnitF.clone().multiplyScalar(fcwCurrentDir);
+            var fHatF = new THREE.Vector3().crossVectors(effLdir, bUnitF);
+            var fRawLen = fHatF.length();
+            if (fRawLen > 1e-6) fHatF.normalize(); else fHatF.set(0, 0, 1);
+            // Visual length of the net F arrow: scale B·I·L·sinθ into a readable
+            // 0..1.8 world-unit range (max F at I=5,L=1,B=1,θ=90 → B·I·L = 5).
+            var fMag = Bval2 * Ival * Lval * Math.abs(sinThetaF);
+            // Visible length: grow with B·I·L·sinθ but NEVER below a readable
+            // floor (~0.9 world units) so a small |F| still reads as a bold arrow
+            // rather than a tiny nub. In the interactive state it stretches up to
+            // ~2.0 so the student sees it respond to the sliders.
+            var FCW_F_MIN_LEN = 0.9;
+            var fNetLen = Math.max(FCW_F_MIN_LEN, Math.min(2.0, 0.42 * fMag + FCW_F_MIN_LEN));
+
+            // Per-frame element updates.
+            for (var fwi = 0; fwi < sceneObjects.length; fwi++) {
+                var fo = sceneObjects[fwi];
+                var fud = fo.userData;
+                if (!fud || !fud.elementType) continue;
+                var fet = fud.elementType;
+
+                if (fet === "fcw_current_arrow") {
+                    // Orient cones along the (possibly flipped) current direction.
+                    fo.setRotationFromQuaternion(
+                        new THREE.Quaternion().setFromUnitVectors(
+                            new THREE.Vector3(0, 1, 0), effLdir.clone().normalize()
+                        )
+                    );
+                    // Drift the cones ALONG the wire so current visibly "flows"
+                    // (marching-ants). Phase is derived from SIM-TIME (state-local
+                    // seconds), mirroring the fcw_carrier block below, so the flow
+                    // is deterministic AND still plays mid-flow when the visual gate
+                    // pins the clock via SET_TIME_FREEZE (a wall-clock / !heldAtPin
+                    // accumulator would freeze and re-trigger the D7 motion FAIL).
+                    // Subtle/steady: one wire-length per ~3.6s. Direction follows
+                    // the (flipped) current so cones reverse on the STATE_3 flip.
+                    var FCW_CUR_DRIFT_RATE = 0.28;   // phase units per second
+                    var curBasePhase = (typeof fud.phase === "number") ? fud.phase : 0;
+                    var curSimSec = fcwStateMs / 1000;
+                    var curDriftPhase = curBasePhase + FCW_CUR_DRIFT_RATE * curSimSec * fcwCurrentDir;
+                    curDriftPhase = ((curDriftPhase % 1) + 1) % 1;
+                    var curWHalfF = 1.8;
+                    var curAlongF = (curDriftPhase * 2 - 1) * curWHalfF;   // -1.8 .. +1.8 along wire
+                    fo.position.set(
+                        lUnitF.x * curAlongF, lUnitF.y * curAlongF, lUnitF.z * curAlongF
+                    );
+                } else if (fet === "fcw_F_net") {
+                    if (fo.visible) {
+                        fo.setDirection(fHatF);
+                        // Bold head: clamp head length to ~30% of the shaft but
+                        // keep a generous floor so the cone never collapses.
+                        var fHeadLen = Math.max(0.32, Math.min(0.5, fNetLen * 0.3));
+                        fo.setLength(fNetLen, fHeadLen, 0.22);
+                        // Thick shaft cylinder spanning tail→head-base. The
+                        // ArrowHelper points the arrow along +y in its own frame,
+                        // so the child cylinder (also +y-aligned) lines up; centre
+                        // it at half the shaft length, scale Y to the shaft span.
+                        if (fud.shaft) {
+                            var shaftLen = Math.max(0.0001, fNetLen - fHeadLen);
+                            fud.shaft.scale.set(1, shaftLen, 1);
+                            fud.shaft.position.set(0, shaftLen / 2, 0);
+                        }
+                    }
+                } else if (fet === "fcw_f_label") {
+                    if (fo.visible) {
+                        // Park the "F" label just BEYOND the arrow tip (not at the
+                        // wire centre) so it clearly belongs to the arrow head.
+                        var fLabOff = fNetLen + 0.35;
+                        fo.position.set(fHatF.x * fLabOff, fHatF.y * fLabOff, fHatF.z * fLabOff);
+                    }
+                } else if (fet === "fcw_carrier") {
+                    if (fo.visible) {
+                        // Drift the carrier ALONG the wire so the wire visibly
+                        // "flows". Phase is derived from SIM-TIME (state-local
+                        // seconds) rather than a per-frame accumulator, so the
+                        // drift is deterministic AND still shows the carriers
+                        // mid-flow when the visual gate pins the clock (the old
+                        // !heldAtPin accumulator froze them under a pin). One full
+                        // traverse ~= 4.4s; direction follows the (flipped) current.
+                        var FCW_DRIFT_RATE = 0.225;   // phase units per second
+                        var basePhase = (typeof fud.phase === "number") ? fud.phase : 0;
+                        var simSec = fcwStateMs / 1000;
+                        var driftPhase = basePhase + FCW_DRIFT_RATE * simSec * fcwCurrentDir;
+                        driftPhase = ((driftPhase % 1) + 1) % 1;
+                        var wHalfF = 1.8;
+                        var alongF = (driftPhase * 2 - 1) * wHalfF;   // -1.8 .. +1.8 along wire
+                        fo.position.set(
+                            lUnitF.x * alongF, lUnitF.y * alongF, lUnitF.z * alongF
+                        );
+                    }
+                } else if (fet === "fcw_carrier_force") {
+                    if (fo.visible) {
+                        // Per-carrier force arrow: tail tracks its carrier, all
+                        // parallel along F̂. (They visually stack into F_net.)
+                        var carrier = null;
+                        for (var cci = 0; cci < sceneObjects.length; cci++) {
+                            var cco = sceneObjects[cci];
+                            if (cco.userData && cco.userData.elementType === "fcw_carrier" &&
+                                cco.userData.id === "fcw_carrier_" + fud.carrierIndex) { carrier = cco; break; }
+                        }
+                        if (carrier) {
+                            fo.position.copy(carrier.position);
+                            fo.setDirection(fHatF);
+                        }
+                    }
+                }
+            }
+
+            // Update the STATE_7 readout (also written by the slider handler;
+            // recomputed here in case the auto-flip / state-sync changed θ).
+            if (stateDef.show_sliders) {
+                var fcwRead = document.getElementById("fcw_f_readout");
+                if (fcwRead) fcwRead.textContent = "F = " + fMag.toFixed(2) + " N";
             }
         }
 
@@ -5317,6 +7465,19 @@ export const FIELD_3D_RENDERER_CODE = `
                         var freezeOffsetMs = typeof data.at_ms === "number" && data.at_ms > 0 ? data.at_ms : 1500;
                         freezeAtTime = stateStartTime + freezeOffsetMs / 1000;
                     }
+                    break;
+
+                case "SET_TIME_JUMP":
+                    // Live-viewer scrubber: instantly set the clock to a state-local
+                    // ms (forward OR backward) and hold there. Unlike SET_TIME_FREEZE
+                    // (which advances forward to the pin), this is an immediate set —
+                    // used only by the interactive review player, never the
+                    // deterministic visual gate. Reveals are pure functions of
+                    // (time - stateStartTime), so they re-evaluate at the new time;
+                    // per-frame accumulators (e.g. lorentz trail) do not un-draw.
+                    var jumpMs = typeof data.at_ms === "number" && data.at_ms >= 0 ? data.at_ms : 0;
+                    time = stateStartTime + jumpMs / 1000;
+                    freezeAtTime = time;
                     break;
 
                 case "SET_MATH":

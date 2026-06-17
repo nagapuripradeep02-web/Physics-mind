@@ -14,6 +14,8 @@
     "mineru": "cd mineru-service && uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
     "dev:full": "concurrently \"npm run dev\" \"npm run mineru\"",
     "validate:concepts": "npx tsx src/scripts/validate-concepts.ts",
+    "build:review": "npx tsx src/scripts/build_review_site.ts",
+    "deploy:review": "node src/scripts/deploy_review.mjs",
     "check:scenarios": "npx tsx src/scripts/check-scenarios.ts",
     "migrate:concepts": "npx tsx src/scripts/migrate_v1_to_v2.ts",
     "build:catalog": "node scripts/extract_catalog.js && node scripts/build_teacher_catalog.js && node scripts/build_chapter_pathways.js && node scripts/build_diamonds_onepager.js",

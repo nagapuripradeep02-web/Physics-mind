@@ -1,0 +1,1536 @@
+{
+  "concept_id": "magnetic_field_solenoid",
+  "concept_name": "Magnetic Field of a Long Solenoid (B = μ₀nI inside, ≈0 outside)",
+  "chapter": 4,
+  "section": "4.8",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "DC Pandey Vol 2 Ch.26 §26.8 (Magnetic field due to a long solenoid) — table-of-contents reference only; teaching authored from first principles. Diamond #4 of the magnetism chapter (M4 binary-gate validator). The atomic concept being taught is the *direction* (axial inside, near-zero outside; right-hand rule grip swap from wire-RHR) and *magnitude* (B = μ₀nI, with n = turns per unit length). PRIMARY aha lives in STATE_4: each current element's radial field is annihilated by its diametric twin across the ring (STATE_3) so only the axial components survive and ADD into one uniform axial field (STATE_4) — what looks like chaotic overlapping circles becomes one uniform axial field. SUPPORTING aha in STATE_6: the right-hand grip swaps roles — for a straight wire thumb=I, fingers=B, but for a solenoid fingers wrap WITH the current loops and thumb gives B inside. Four most common misconceptions targeted: B is radial (looks like spokes), outside is just a weaker version of inside, total turns N matters (not density n), and the wire-RHR transfers unchanged to solenoids. Conceptual-only ship per MAGNETISM_ARCHITECTURE.md M1–M6 carve-out; board mode (M7) and competitive mode (M8) deferred. Diamond #4 is the binary-gate validator for the recursive-bootstrap method: templated from Diamond #1 magnetic_field_wire, must ship with ≤1 round of human iteration to prove the architect→physics_author→json_author→quality_auditor pipeline.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "solenoid_field"
+    ]
+  },
+  "prerequisites": [
+    "magnetic_field_wire",
+    "right_hand_rule_curl",
+    "vector_resolution"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture the MRI machine in a Bangalore hospital — the tube the patient slides into. That tube is a giant solenoid, kilometres of copper wire coiled tightly around the patient's bore. When current flows through those coils, the inside of the tube fills with a powerful, uniform magnetic field — 1.5 tesla, ten thousand times stronger than Earth's field. The patient's body sits in that uniform field, and hydrogen atoms inside their tissues respond. The whole imaging trick depends on one piece of physics: the field inside a long solenoid is UNIFORM and AXIAL. If the field varied from point to point inside the tube, the image would be unreadable. The MRI works because B = μ₀nI is constant everywhere inside.",
+    "secondary": "Picture the starter motor in a Mumbai auto-rickshaw. When the driver turns the key, current surges through a small solenoid coil; the resulting axial field yanks an iron core inward, which mechanically pushes the starter pinion into the engine flywheel. No solenoid → no engine start. Every auto-rickshaw on Indian roads carries this concept under the hood.",
+    "tertiary": "Picture a doorbell button in a Chennai apartment. Press it and a small solenoid coil inside the bell housing energizes; the resulting axial field pulls an iron plunger that strikes the chime. Release the button, the field collapses, a spring snaps the plunger back. Solenoids turn an electrical pulse into a mechanical kick — the same principle as the MRI's giant uniform field, scaled down to a single chime strike."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "n": {
+        "name": "Turns per metre",
+        "unit": "/m",
+        "min": 100,
+        "max": 5000,
+        "default": 1000
+      },
+      "I": {
+        "name": "Current through the coil",
+        "unit": "A",
+        "min": 0.1,
+        "max": 10,
+        "default": 2
+      },
+      "N_demo": {
+        "name": "Total turn count (display only — for STATE_7 stretch demonstrative)",
+        "unit": "turns",
+        "min": 6,
+        "max": 1000,
+        "default": 500
+      },
+      "L_demo": {
+        "name": "Solenoid length (display only — paired with N_demo to show n = N/L)",
+        "unit": "m",
+        "min": 0.05,
+        "max": 2.0,
+        "default": 0.5
+      },
+      "mu_0": {
+        "name": "Permeability of free space",
+        "unit": "T*m/A",
+        "constant": 1.2566370614e-06
+      },
+      "current_direction": {
+        "name": "Current direction sign (+1 forward, -1 reversed)",
+        "unit": "",
+        "min": -1,
+        "max": 1,
+        "default": 1
+      }
+    },
+    "computed_outputs": {
+      "B_inside": {
+        "formula": "mu_0 * n * I"
+      },
+      "B_inside_mT": {
+        "formula": "(mu_0 * n * I) * 1000"
+      },
+      "B_outside": {
+        "formula": "0"
+      },
+      "n_from_demo": {
+        "formula": "N_demo / L_demo"
+      },
+      "B_inside_demo": {
+        "formula": "mu_0 * (N_demo / L_demo) * I"
+      }
+    },
+    "formulas": {
+      "B_inside_long_solenoid": "B = μ₀ · n · I",
+      "n_definition": "n = N / L (turns per unit length, units /m)",
+      "axial_superposition": "B_axial_total = sum of B_axial from each turn — radial components cancel between adjacent turns; only axial components survive",
+      "B_outside_long_limit": "B_outside ≈ 0 (contributions from turns at different axial positions cancel almost everywhere outside)",
+      "rhr_solenoid": "Right-hand grip — fingers curl WITH the current loops, thumb gives B inside (role-swap from wire-RHR where thumb is current)",
+      "reverse_current": "Reversing current direction reverses B_inside direction; magnitude |B| = μ₀·n·|I| is unchanged",
+      "stretch_demonstrative": "If N stays fixed and L doubles, n halves, B halves"
+    },
+    "constraints": [
+      "Long-solenoid idealization: L >> R (length much greater than radius of one turn). Formula B = μ₀·n·I is exact only in this limit.",
+      "End effects ignored: at the open ends, B weakens to roughly μ₀·n·I/2; we do not model end-fringing in the renderer.",
+      "B_outside treated as 0 in renderer though physically it is vanishingly small (cancellation argument).",
+      "Current is uniform around every turn — the same I flows through the entire coiled wire.",
+      "Direction by right-hand-rule curl: fingers along current loops, thumb along B inside.",
+      "Field is purely axial inside (zero radial, zero azimuthal component) in the long-solenoid limit."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Axial pieces add into one uniform field; radial pieces cancel.",
+    "visual_confirmation": "The two blue axial halves stack head-to-tail into a doubled arrow and the interior fills with uniform axial field lines while the per-turn circles fade to 30%."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "rhr_application": [
+      "STATE_6"
+    ],
+    "formula": [
+      "STATE_7",
+      "STATE_8"
+    ],
+    "exploration": [
+      "STATE_9"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "The Coiled Wire — What if we wrap a current?",
+        "duration": 12,
+        "focal_primitive_id": "coiled_wire_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "coiled_wire_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Straight wire → coiled wire",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "no_field_yet_label",
+            "position": {
+              "x": 200,
+              "y": 230
+            },
+            "text": "Same wire. Same current.\nDifferent shape — different field.",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "morph_hint",
+            "position": {
+              "x": 560,
+              "y": 230
+            },
+            "text": "Watch the wire bend\ninto a spring (helix).",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "You already know the field around a single wire — circles."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "But what if we coil the wire — wrap it into a spring shape?"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Each turn is still just a piece of wire carrying the same current. But the combined field changes shape dramatically. Let's see how."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Each Turn Makes Its Own Field",
+        "duration": 16,
+        "focal_primitive_id": "turn_focus_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "turn_focus_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "One turn at a time — same B-circles as a straight wire",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "prereq_callback",
+            "position": {
+              "x": 200,
+              "y": 230
+            },
+            "text": "Reminder: a straight wire\nmakes B-circles around it\n(covered in Diamond #1).",
+            "color": "#82B1FF"
+          },
+          {
+            "type": "annotation",
+            "id": "chaos_hint",
+            "position": {
+              "x": 560,
+              "y": 230
+            },
+            "text": "Six turns. Six sets of circles.\nThe chaos hides a pattern.",
+            "color": "#FFAB40"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Quick reminder — a straight wire carrying current makes B-circles around it. Each turn of the solenoid is just a wire bent into a circle. Focus on this one turn."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Watch the little blue circles wrap right around the wire — that is the same field, now curled into a loop. Each turn makes its own field, with a net push straight along the axis."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Now do the same for every turn. Six turns spread over some length L. Hold that 'spread over L' in your head — it will matter in STATE 7."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Six sets of circles look chaotic. But the chaos hides a pattern — the radial parts will cancel, and only the axial parts survive. Watch."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Radial Pieces Cancel — Every Twin Across the Ring",
+        "duration": 24,
+        "focal_primitive_id": "radial_cancel_label",
+        "advance_mode": "wait_for_answer",
+        "allow_deep_dive": true,
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "radial_cancel_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Radial pieces cancel — net sideways field is zero",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "diametric_twin_hint",
+            "position": {
+              "x": 200,
+              "y": 230
+            },
+            "text": "Every bit of current has a\ntwin directly across the ring.\nTheir sideways fields are\nequal and OPPOSITE.",
+            "color": "#EF7B7B"
+          },
+          {
+            "type": "annotation",
+            "id": "vector_resolution_hint",
+            "position": {
+              "x": 560,
+              "y": 230
+            },
+            "text": "Split each twin's field:\none piece along the axis,\none pointing sideways (radial).\nSame trick as a force on an incline.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Pick a point on the central axis. Now look at one tiny piece of current on the ring — and its twin directly across the ring."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "When their two fields reach the axis, what do the sideways parts do? Pause for a moment and predict.",
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s3_2_5",
+              "text_en": "Split each twin's field into two pieces — one along the axis, one pointing sideways. Same trick as resolving a force on an incline."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "The two sideways pieces point straight at each other — equal and opposite. They annihilate. The net radial field is exactly zero."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "Sum every twin around the ring, and every ring along the length — not a shred of sideways field survives. Only the along-axis pieces are left."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Axial Pieces Add — One Uniform Field Inside",
+        "duration": 20,
+        "focal_primitive_id": "axial_field_label",
+        "advance_mode": "manual_click",
+        "allow_deep_dive": true,
+        "has_prebuilt_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "axial_field_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Axial pieces ADD → one uniform field inside",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "axial_add_label",
+            "position": {
+              "x": 200,
+              "y": 230
+            },
+            "text": "Both axial pieces point the\nSAME way. Stack them head\nto tail — they double, not cancel.",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "uniform_survives_hint",
+            "position": {
+              "x": 560,
+              "y": 230
+            },
+            "text": "Over every twin and every ring:\none steady axial field filling\nthe inside — like a bar magnet.",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4a_1",
+              "text_en": "Now the other halves — the pieces pointing along the solenoid's long axis."
+            },
+            {
+              "id": "s4a_2",
+              "text_en": "Both twins' axial pieces point the SAME way. Stack them head to tail — they reinforce, they add. The sideways parts cancelled; these double."
+            },
+            {
+              "id": "s4a_3",
+              "text_en": "Now repeat for every ring stacked along the whole length — watch each one add its axial bit, building the field end to end."
+            },
+            {
+              "id": "s4a_4",
+              "text_en": "The result: one uniform, axial magnetic field filling the inside — straight and steady, like a giant bar magnet. That uniform field is exactly what the MRI depends on. Outside is the next surprise."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Outside the Solenoid — Where Did the Field Go?",
+        "duration": 18,
+        "focal_primitive_id": "b_outside_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "b_outside_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Outside the solenoid: B ≈ 0",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "inside_strong_label",
+            "position": {
+              "x": 200,
+              "y": 230
+            },
+            "text": "Inside: uniform, strong, axial\n(field is concentrated here)",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "outside_cancel_label",
+            "position": {
+              "x": 560,
+              "y": 230
+            },
+            "text": "Outside: turns at different\npositions cancel almost\nperfectly — B fades to ≈ 0",
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "annotation",
+            "id": "electromagnet_note",
+            "position": {
+              "x": 380,
+              "y": 460
+            },
+            "text": "Switch it on and hang it freely — it lines up North–South. A solenoid is an electromagnet: a bar magnet you control.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Inside, the field is uniform and strong. But outside — what do you predict?",
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Most students guess the field outside is just a weaker version of inside. Watch what really happens."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Contributions from turns at different positions cancel almost completely outside. For a long solenoid, B outside is approximately zero."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "All the field energy is concentrated INSIDE the solenoid. This is why solenoids make excellent electromagnets."
+            },
+            {
+              "id": "s4_5",
+              "text_en": "Hang this coil freely and it swings to point North–South — a solenoid is a bar magnet you can switch on and off."
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "RHR for a Solenoid — Curl with the Current, Thumb is B",
+        "duration": 18,
+        "focal_primitive_id": "solenoid_rhr_label",
+        "advance_mode": "manual_click",
+        "allow_deep_dive": true,
+        "has_prebuilt_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "solenoid_rhr_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Same right hand — grip swaps roles",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "wire_grip_recall",
+            "position": {
+              "x": 200,
+              "y": 230
+            },
+            "text": "Wire (Diamond #1):\nthumb = current I\nfingers = field B",
+            "color": "#82B1FF"
+          },
+          {
+            "type": "annotation",
+            "id": "solenoid_grip_new",
+            "position": {
+              "x": 560,
+              "y": 230
+            },
+            "text": "Solenoid (now):\nfingers = current I\nthumb = field B inside",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "swap_summary",
+            "position": {
+              "x": 380,
+              "y": 460
+            },
+            "text": "Wire is straight → thumb is straight (= I). Coil curls → fingers curl (= I). The other one is always B.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "In Diamond 1 you learned: thumb along current, fingers curl with B. That was for a STRAIGHT wire."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "For a solenoid, what changes? Which hand part now follows the current?",
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The roles swap. FINGERS curl with the current loops; THUMB gives B inside."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "Same right hand. Different grip. Wire: thumb is current, fingers are B. Solenoid: fingers are current, thumb is B."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "The Formula — B = μ₀nI, and n is Turns Per Unit Length",
+        "duration": 22,
+        "focal_primitive_id": "formula_label",
+        "advance_mode": "manual_click",
+        "allow_deep_dive": true,
+        "has_prebuilt_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "formula_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "B = μ₀ n I — three factors, no distance r",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "n_definition_label",
+            "position": {
+              "x": 200,
+              "y": 230
+            },
+            "text": "n = N / L\n(turns per metre, units /m)\nDENSITY matters, not raw count.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "scaling_label",
+            "position": {
+              "x": 560,
+              "y": 230
+            },
+            "text": "Double n → double B\nDouble I → double B\nStretch L 2× (N fixed) → B halves",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "uniformity_note",
+            "position": {
+              "x": 380,
+              "y": 460
+            },
+            "text": "No 1/r dependence inside — that is what 'uniform' means. B is the same at every interior point.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "How strong is B inside? Predict: does it depend on total turns N, or on something else?",
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s6_2",
+              "text_en": "n is turns per unit length: count the turns N, then divide by the length L. The density of loops matters, not the raw count N."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The formula: B equals mu-naught times n times I. Three factors, no distance r — that is what 'uniform' means."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Double the turns per metre, double the field. Double the current, double the field. Stretch the same wire to twice the length and n halves — so B halves."
+            }
+          ]
+        }
+      },
+      "STATE_8": {
+        "title": "Reverse the Current — Field Flips, Magnitude Unchanged",
+        "duration": 16,
+        "focal_primitive_id": "reverse_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "reverse_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Reverse the current → B flips, and the N and S poles swap ends. Magnitude unchanged.",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "current_flip_label",
+            "position": {
+              "x": 200,
+              "y": 230
+            },
+            "text": "Current direction reverses.\nWatch the yellow dots\nrun the other way.",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "b_flip_label",
+            "position": {
+              "x": 560,
+              "y": 230
+            },
+            "text": "B inside flips by 180°.\n|B| = μ₀ n I unchanged —\nonly direction reverses.",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "rhr_flip_note",
+            "position": {
+              "x": 380,
+              "y": 460
+            },
+            "text": "Right hand again: flip your grip, thumb now points the opposite way. Formula B = μ₀nI doesn't care about sign.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now we reverse the battery. Watch the current direction."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Predict: which way will B point now?",
+              "pause_after_ms": 2000
+            },
+            {
+              "id": "s7_3",
+              "text_en": "B flips to point the opposite way — and the North and South poles swap ends along with it."
+            },
+            {
+              "id": "s7_4",
+              "text_en": "Right hand again — flip your grip, thumb now points the other way. Magnitude formula B = μ-naught n I is unchanged; only direction reverses."
+            },
+            {
+              "id": "s7_5",
+              "text_en": "If it were hanging freely, the whole solenoid would spin 180 degrees to realign — exactly the suspended-magnet demo."
+            }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Explore — Tune n, I, and Watch B Inside",
+        "duration": 24,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "You drive: tune n and I, watch B = μ₀ n I",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "sliders_hint",
+            "position": {
+              "x": 200,
+              "y": 230
+            },
+            "text": "Top-right sliders:\nn = turns / metre\nI = current (A)\nB reads live below.",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "uniformity_check",
+            "position": {
+              "x": 560,
+              "y": 230
+            },
+            "text": "Move the probe INSIDE —\nB reads the same anywhere.\nMove it OUTSIDE — B ≈ 0.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_first",
+            "position": {
+              "x": 380,
+              "y": 460
+            },
+            "text": "Try to predict B before you read the meter. Double n in your head — does the readout match?",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Now you drive. Crank up n — watch B grow proportionally."
+            },
+            {
+              "id": "s8_2",
+              "text_en": "Bring I down — watch B shrink. Try to predict B before you read the meter."
+            },
+            {
+              "id": "s8_3",
+              "text_en": "Notice: no matter where you place the probe INSIDE the solenoid, B reads the same. That is the uniformity. Outside, the probe reads near-zero."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "epic_c_branches": [
+    {
+      "branch_id": "b_solenoid_field_is_radial",
+      "misconception": "The B-field inside a solenoid points radially outward from the axis, like a star pattern, because each turn creates a circle so the overlap must spread outward.",
+      "trigger_phrases": [
+        "B points outward from the axis",
+        "field is radial inside the solenoid",
+        "field spreads outward like spokes",
+        "B points away from the centerline"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Myth: B points radially outward like spokes of a wheel",
+          "duration": 12,
+          "focal_primitive_id": "myth_label",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "myth_label",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "WRONG belief — B points radially outward",
+              "color": "#EF7B7B"
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_arrows_label",
+              "position": {
+                "x": 200,
+                "y": 230
+              },
+              "text": "Red arrows (wrong):\nspokes pointing outward\nfrom the axis",
+              "color": "#EF7B7B"
+            },
+            {
+              "type": "annotation",
+              "id": "why_wrong_label",
+              "position": {
+                "x": 560,
+                "y": 230
+              },
+              "text": "If B were radial, the\nMRI image would have no\nuniform axis — useless.",
+              "color": "#D4D4D8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "c1_1",
+                "text_en": "Some students see the overlapping circles and imagine the field shoots radially outward from the axis, like spokes of a wheel."
+              },
+              {
+                "id": "c1_2",
+                "text_en": "Hold this picture for a moment — then we test it against what the field really does."
+              }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "Correction: radial parts CANCEL, axial parts ADD",
+          "duration": 14,
+          "focal_primitive_id": "fix_label",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "fix_label",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Mirror-image symmetry: radial parts cancel between turns",
+              "color": "#66BB6A"
+            },
+            {
+              "type": "annotation",
+              "id": "cancel_fix_label",
+              "position": {
+                "x": 200,
+                "y": 230
+              },
+              "text": "Each turn's radial part has\nan equal-opposite from the\nnext turn — net radial = 0.",
+              "color": "#42A5F5"
+            },
+            {
+              "type": "annotation",
+              "id": "axial_survives_label",
+              "position": {
+                "x": 560,
+                "y": 230
+              },
+              "text": "Axial parts all point the\nsame way (same RHR sense)\n→ they ADD up.",
+              "color": "#66BB6A"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "c2_1",
+                "text_en": "Two adjacent turns are mirror images across the gap between them. Their radial fields point in opposite directions and cancel."
+              },
+              {
+                "id": "c2_2",
+                "text_en": "The axial parts, in contrast, both point the same way — they survive and sum up to one uniform axial B."
+              },
+              {
+                "id": "c2_3",
+                "text_en": "So inside the solenoid, B is along the axis — never radial."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "b_outside_solenoid_is_strong",
+      "misconception": "The B-field outside the solenoid is just slightly weaker than inside — it falls off gradually like a wire's 1/r field.",
+      "trigger_phrases": [
+        "outside is just weaker than inside",
+        "B outside falls off slowly",
+        "field outside is similar to inside",
+        "outside has a weaker field"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Myth: outside is just a weak version of inside",
+          "duration": 12,
+          "focal_primitive_id": "weak_outside_myth",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "weak_outside_myth",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "WRONG belief — outside is a weaker version of inside",
+              "color": "#EF7B7B"
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_outside_arrows",
+              "position": {
+                "x": 200,
+                "y": 230
+              },
+              "text": "Red arrows (wrong):\noutside has moderate B,\nfalling off gradually like 1/r.",
+              "color": "#EF7B7B"
+            },
+            {
+              "type": "annotation",
+              "id": "wire_intuition_label",
+              "position": {
+                "x": 560,
+                "y": 230
+              },
+              "text": "Sounds reasonable —\na wire's field falls as 1/r.\nBut a solenoid is different.",
+              "color": "#D4D4D8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "c1_1",
+                "text_en": "Many students assume B outside is like B inside, just weaker — falling off gradually with distance."
+              },
+              {
+                "id": "c1_2",
+                "text_en": "The intuition comes from the straight wire, where B drops as 1 over r. But a solenoid is not one wire."
+              }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "Correction: outside ≈ 0 because contributions cancel",
+          "duration": 14,
+          "focal_primitive_id": "outside_zero_fix",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "outside_zero_fix",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Outside: turns at different positions cancel — B ≈ 0",
+              "color": "#66BB6A"
+            },
+            {
+              "type": "annotation",
+              "id": "cancel_outside_label",
+              "position": {
+                "x": 200,
+                "y": 230
+              },
+              "text": "Outside any one turn,\nfar-away turns contribute\nfields pointing every way.",
+              "color": "#42A5F5"
+            },
+            {
+              "type": "annotation",
+              "id": "near_zero_label",
+              "position": {
+                "x": 560,
+                "y": 230
+              },
+              "text": "Vector sum ≈ 0 everywhere\noutside a long solenoid.\nAll the field stays INSIDE.",
+              "color": "#66BB6A"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "c2_1",
+                "text_en": "Outside the solenoid, contributions from turns at different axial positions point in many directions and cancel almost completely."
+              },
+              {
+                "id": "c2_2",
+                "text_en": "For a long solenoid, B outside is approximately zero — not just weaker, but essentially gone."
+              },
+              {
+                "id": "c2_3",
+                "text_en": "This is why solenoids make excellent electromagnets: all the field energy stays inside the tube."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "b_field_depends_on_N_not_n",
+      "misconception": "Doubling the number of turns N doubles the field. Length of the solenoid doesn't matter — only how many turns you have.",
+      "trigger_phrases": [
+        "B depends on total turns N",
+        "doubling turns doubles B",
+        "length of solenoid doesn't matter",
+        "only N matters in the formula"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Myth: same N = same B, length doesn't matter",
+          "duration": 12,
+          "focal_primitive_id": "N_myth_label",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "N_myth_label",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "WRONG belief — only N (total turns) matters",
+              "color": "#EF7B7B"
+            },
+            {
+              "type": "annotation",
+              "id": "two_solenoids_label",
+              "position": {
+                "x": 200,
+                "y": 230
+              },
+              "text": "Two solenoids:\nboth have N = 10 turns,\none is 2× the length.",
+              "color": "#EF7B7B"
+            },
+            {
+              "type": "annotation",
+              "id": "instinct_label",
+              "position": {
+                "x": 560,
+                "y": 230
+              },
+              "text": "Instinct says:\nsame N → same B.\nLet's test that.",
+              "color": "#D4D4D8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "c1_1",
+                "text_en": "Picture two solenoids: both have the same total turns N, but one is stretched to twice the length."
+              },
+              {
+                "id": "c1_2",
+                "text_en": "Many students assume B is the same in both — same N, same current, same field."
+              }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "Correction: n = N / L is what matters, not N alone",
+          "duration": 14,
+          "focal_primitive_id": "n_fix_label",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "n_fix_label",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Density n = N / L is what enters the formula",
+              "color": "#66BB6A"
+            },
+            {
+              "type": "annotation",
+              "id": "short_solenoid_label",
+              "position": {
+                "x": 200,
+                "y": 230
+              },
+              "text": "Short one: N = 10, L = 0.5 m\nn = 20 turns / m\nB = μ₀ · 20 · I",
+              "color": "#42A5F5"
+            },
+            {
+              "type": "annotation",
+              "id": "long_solenoid_label",
+              "position": {
+                "x": 560,
+                "y": 230
+              },
+              "text": "Long one: N = 10, L = 1.0 m\nn = 10 turns / m\nB = HALF of the short one",
+              "color": "#FFAB40"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "c2_1",
+                "text_en": "Stretching the solenoid halves the turn density n. With N fixed and L doubled, n halves."
+              },
+              {
+                "id": "c2_2",
+                "text_en": "Since B = mu-naught times n times I, B in the longer solenoid is HALF of B in the shorter one."
+              },
+              {
+                "id": "c2_3",
+                "text_en": "Total turns N matters only through n. Length matters. Density is the right number."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "branch_id": "b_rhr_same_as_wire",
+      "misconception": "Use the same right-hand rule as for a wire: thumb along the current, fingers curl in B-direction. That should work for the solenoid too.",
+      "trigger_phrases": [
+        "use the wire right-hand rule for solenoid",
+        "same RHR as a straight wire",
+        "thumb along current for solenoid",
+        "wire rule works for coils"
+      ],
+      "states": {
+        "STATE_1": {
+          "title": "Myth: wire-RHR transfers unchanged to a solenoid",
+          "duration": 12,
+          "focal_primitive_id": "wire_rule_carry_label",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "wire_rule_carry_label",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "WRONG belief — wire-RHR works unchanged for solenoid",
+              "color": "#EF7B7B"
+            },
+            {
+              "type": "annotation",
+              "id": "wire_thumb_label",
+              "position": {
+                "x": 200,
+                "y": 230
+              },
+              "text": "Wire-RHR:\nthumb = current\nfingers = B\n(applied to one turn's tangent)",
+              "color": "#EF7B7B"
+            },
+            {
+              "type": "annotation",
+              "id": "wrong_radial_b_label",
+              "position": {
+                "x": 560,
+                "y": 230
+              },
+              "text": "Result: B comes out\nradially outward from\nthe coil — clearly wrong.",
+              "color": "#D4D4D8"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "c1_1",
+                "text_en": "Some students apply the wire right-hand rule to a single turn's local tangent and try to read B for the whole solenoid."
+              },
+              {
+                "id": "c1_2",
+                "text_en": "Thumb along the local current, fingers curl to B — but this gives a radial direction, not the axial answer we know is right."
+              }
+            ]
+          }
+        },
+        "STATE_2": {
+          "title": "Correction: grip swaps — fingers curl with the coils, thumb is B",
+          "duration": 14,
+          "focal_primitive_id": "grip_swap_fix",
+          "advance_mode": "manual_click",
+          "scene_composition": [
+            {
+              "type": "annotation",
+              "id": "grip_swap_fix",
+              "position": {
+                "x": 380,
+                "y": 60
+              },
+              "text": "Solenoid grip: fingers curl WITH the loops, thumb gives B inside",
+              "color": "#66BB6A"
+            },
+            {
+              "type": "annotation",
+              "id": "geometry_match_label",
+              "position": {
+                "x": 200,
+                "y": 230
+              },
+              "text": "Wire is straight →\nthumb is straight = I.\nCoil curls →\nfingers curl = I.",
+              "color": "#42A5F5"
+            },
+            {
+              "type": "annotation",
+              "id": "thumb_is_B_label",
+              "position": {
+                "x": 560,
+                "y": 230
+              },
+              "text": "Whatever isn't I is B.\nFor a solenoid:\nthumb = B (axial inside).",
+              "color": "#66BB6A"
+            }
+          ],
+          "teacher_script": {
+            "tts_sentences": [
+              {
+                "id": "c2_1",
+                "text_en": "For a solenoid, the grip swaps roles. FINGERS curl in the same direction the current flows around the coil."
+              },
+              {
+                "id": "c2_2",
+                "text_en": "THUMB then points along B inside the solenoid — axial."
+              },
+              {
+                "id": "c2_3",
+                "text_en": "Same right hand, different grip. Wire: thumb = I. Solenoid: fingers = I. The other one is always B."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "regeneration_variants": [
+    {
+      "variant_id": "stronger_b",
+      "type": "type_a_parameter",
+      "label": "Higher current and density",
+      "scene_hint": "Push n = 3000/m and I = 5 A — feel the formula scale."
+    },
+    {
+      "variant_id": "loose_solenoid",
+      "type": "type_a_parameter",
+      "label": "Loose coil (low n)",
+      "scene_hint": "Drop n to 200/m — B inside shrinks proportionally."
+    },
+    {
+      "variant_id": "stretch_demo",
+      "type": "type_b_world",
+      "label": "Same wire, stretched 2× length",
+      "physical_world": "Take a 500-turn solenoid of 0.5 m and stretch it to 1.0 m — n halves, B halves.",
+      "same_physics": "B = μ₀nI applies to both lengths; only n changes."
+    }
+  ],
+  "field_3d_config": {
+    "scenario_type": "solenoid_field",
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#66BB6A",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85,
+      "arrow_spacing": 5
+    },
+    "current": {
+      "direction": [
+        0,
+        1,
+        0
+      ],
+      "magnitude": 2,
+      "wire_color": "#FFAB40"
+    },
+    "coil": {
+      "turns": 6,
+      "radius": 0.8,
+      "axis": [
+        0,
+        1,
+        0
+      ]
+    },
+    "slider_controls": {
+      "I": {
+        "min": 0.1,
+        "max": 10,
+        "step": 0.1,
+        "default": 2,
+        "label": "Current I (A)"
+      },
+      "n": {
+        "min": 100,
+        "max": 5000,
+        "step": 100,
+        "default": 1000,
+        "label": "Turns per metre n"
+      }
+    },
+    "radial_decomposition_geometry": {
+      "focal_turn": 1,
+      "sample_point": [
+        0,
+        0,
+        0
+      ],
+      "arrow_len": 1.3
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The Coiled Wire — straight wire morphs into a coil",
+        "visible_elements": [
+          "solenoid_morph_wire",
+          "solenoid_coil"
+        ],
+        "camera_position": [
+          3.5,
+          1.5,
+          4
+        ],
+        "caption": "A straight wire (Diamond #1) coils into a 6-turn helix, the current already flowing through it. No field shown yet — we'll see what the coil does to it.",
+        "wire_to_coil_morph": {
+          "enabled": true,
+          "straight_duration_ms": 3000,
+          "morph_duration_ms": 1500
+        },
+        "current_flow": {
+          "enabled": true,
+          "direction": "forward",
+          "reveal_at_ms": 4600
+        }
+      },
+      "STATE_2": {
+        "label": "Each turn makes its own B — circles wrap around the wire",
+        "visible_elements": [
+          "solenoid_coil"
+        ],
+        "camera_position": [
+          3.2,
+          1.6,
+          4.2
+        ],
+        "caption": "Each turn is a wire bent into a circle. The blue B-circles wrap right around the wire; each turn's net field points along the axis.",
+        "per_turn_biot": {
+          "enabled": true,
+          "focal_turn": 0,
+          "reveal_at_ms": 500,
+          "reveal_fade_ms": 700,
+          "axial_reveal_at_ms": 2000,
+          "axial_stagger_ms": 280
+        },
+        "per_turn_field_circles": {
+          "enabled": true,
+          "highlight_first": true,
+          "reveal_at_ms": 3200,
+          "reveal_stagger_ms": 250,
+          "reveal_fade_ms": 500
+        },
+        "current_flow": {
+          "enabled": true,
+          "direction": "forward"
+        }
+      },
+      "STATE_3": {
+        "label": "Radial pieces cancel — diametric twins across the ring",
+        "visible_elements": [
+          "solenoid_coil"
+        ],
+        "camera_position": [
+          3,
+          1.0,
+          3.4
+        ],
+        "caption": "On the axis, the field from one current element and its diametric twin split into axial (blue) + radial (red) pieces. The two red radial halves are equal and opposite — they annihilate. Net radial: zero.",
+        "per_turn_field_circles": {
+          "enabled": true,
+          "reveal_at_ms": 0,
+          "reveal_stagger_ms": 0,
+          "reveal_fade_ms": 0,
+          "opacity_dim": 0.28
+        },
+        "radial_decomposition": {
+          "enabled": true,
+          "reveal_contributions_at_ms": 2000,
+          "contributions_fade_ms": 700,
+          "split_at_ms": 4500,
+          "split_fade_ms": 700,
+          "annihilate_at_ms": 7000,
+          "annihilate_dur_ms": 1300
+        },
+        "current_flow": {
+          "enabled": true,
+          "direction": "forward"
+        }
+      },
+      "STATE_4": {
+        "label": "Axial pieces add — one uniform field survives",
+        "visible_elements": [
+          "solenoid_coil",
+          "field_line_internal",
+          "arrow"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          3.8
+        ],
+        "caption": "The two blue axial halves point the same way — stack them head to tail and they double. Over every twin and every ring: one uniform axial field fills the inside.",
+        "per_turn_field_circles": {
+          "enabled": true,
+          "reveal_at_ms": 0,
+          "reveal_stagger_ms": 0,
+          "reveal_fade_ms": 0
+        },
+        "axial_stack": {
+          "enabled": true,
+          "reveal_at_ms": 0,
+          "stack_at_ms": 1400,
+          "stack_dur_ms": 1100,
+          "sum_reveal_at_ms": 2800
+        },
+        "axial_buildup_arrows": {
+          "enabled": true,
+          "color": "#3B82F6",
+          "count": 5,
+          "reveal_at_ms": 4600,
+          "arise_duration_ms": 900,
+          "arrow_length_max": 1.2
+        },
+        "current_flow": {
+          "enabled": true,
+          "direction": "forward"
+        },
+        "length_stack": {
+          "enabled": true,
+          "reveal_at_ms": 1800,
+          "stagger_ms": 260,
+          "fade_ms": 500
+        }
+      },
+      "STATE_5": {
+        "label": "Outside ≈ 0 — long-solenoid limit",
+        "visible_elements": [
+          "solenoid_coil",
+          "field_line_internal",
+          "field_line_external",
+          "arrow"
+        ],
+        "camera_position": [
+          4.2,
+          2,
+          5.2
+        ],
+        "caption": "Inside: uniform, strong, axial. The few faint external lines loop right around back to the other end — for a long solenoid B outside falls to ≈ 0.",
+        "current_flow": {
+          "enabled": true,
+          "direction": "forward"
+        },
+        "pole_labels": {
+          "enabled": true,
+          "reveal_at_ms": 300,
+          "fade_ms": 500
+        }
+      },
+      "STATE_6": {
+        "label": "RHR-swap — fingers curl with current, thumb is B",
+        "visible_elements": [
+          "solenoid_coil",
+          "field_line_internal",
+          "arrow"
+        ],
+        "camera_position": [
+          3,
+          1.8,
+          4
+        ],
+        "caption": "Right hand again — but the grip swaps. Fingers curl with the coil's current; thumb points along B inside.",
+        "extras": {
+          "right_hand": {
+            "case": "solenoid",
+            "fade_from_case": "A",
+            "fade_duration_ms": 1400,
+            "position": [
+              0,
+              1.7,
+              0.4
+            ],
+            "thumb_direction": [
+              0,
+              0,
+              1
+            ],
+            "finger_curl": "ccw",
+            "scale": 1.2,
+            "animate_curl": true,
+            "render_3d": true,
+            "show_b_label": true
+          }
+        },
+        "current_flow": {
+          "enabled": true,
+          "direction": "forward"
+        }
+      },
+      "STATE_7": {
+        "label": "Formula reveal — B = μ₀ n I, n is turns per metre",
+        "visible_elements": [
+          "solenoid_coil",
+          "field_line_internal",
+          "arrow"
+        ],
+        "camera_position": [
+          3,
+          1.8,
+          4
+        ],
+        "caption": "B = μ₀ · n · I, where n = N/L is turns per metre. Three factors, no distance r inside. Stretch to 2× length — n halves, B halves.",
+        "current_flow": {
+          "enabled": true,
+          "direction": "forward"
+        }
+      },
+      "STATE_8": {
+        "label": "Reverse current — B flips, |B| unchanged",
+        "visible_elements": [
+          "solenoid_coil",
+          "field_line_internal",
+          "arrow"
+        ],
+        "camera_position": [
+          3,
+          1.8,
+          4
+        ],
+        "caption": "Reverse the battery — the dots run the other way and the field arrows flip. B inside reverses 180°. Magnitude |B| = μ₀nI unchanged.",
+        "current_flow": {
+          "enabled": true,
+          "direction": "reverse"
+        },
+        "field_lines_dir": -1,
+        "pole_labels": {
+          "enabled": true,
+          "reveal_at_ms": 300,
+          "fade_ms": 500
+        }
+      },
+      "STATE_9": {
+        "label": "Explore — tune I, watch B = μ₀ n I",
+        "visible_elements": [
+          "solenoid_coil",
+          "field_line_internal",
+          "arrow"
+        ],
+        "camera_position": [
+          3.5,
+          2,
+          5
+        ],
+        "caption": "Drag the I slider. Watch B inside scale linearly with I (and with n).",
+        "show_sliders": true,
+        "formula_overlay": "B = μ₀ n I\nn = N / L\nInside: uniform\nOutside: ≈ 0",
+        "current_flow": {
+          "enabled": true,
+          "direction": "forward"
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#66BB6A",
+      "negative": "#42A5F5",
+      "field_line": "#42A5F5"
+    }
+  }
+}

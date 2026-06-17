@@ -1,0 +1,617 @@
+{
+  "concept_id": "force_on_current_carrying_wire",
+  "concept_name": "Magnetic Force on a Current-Carrying Wire (F = I L × B)",
+  "chapter": 4,
+  "section": "4.3",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "DC Pandey Vol 2 Ch.36 (force on a current-carrying conductor in a magnetic field) — table-of-contents reference only; teaching authored from first principles. Concept A15, the natural successor to magnetic_force_moving_charge (the prerequisite): a wire is just a pipe full of moving charges, so the single-charge force F = qv×B summed over all the carriers in a length L becomes F = I L × B. The atomic idea being taught is (1) the DERIVATION as a picture — n carriers per unit volume, each drifting at v_d, the per-carrier force qv_dB adds up to (nAL)·q·v_d·B = (I)(LB), so the messy microscopic picture collapses into one clean macroscopic law; (2) DIRECTION via the right-hand rule on the macroscopic vectors L (along conventional current) and B; (3) the sin θ between L and B — the wire-orientation analogue of the v–B angle; (4) two classic traps — the 30° decoy angle (θ is between L and B, not between the wire and the page edge) and the bent-wire result (only the straight chord from end to end matters, F = I (L_chord) × B); (5) the closed-loop net-zero result that seeds the next concept (torque_on_current_loop_in_field). Indian anchor: the electric motor in every Indian home — the ceiling fan, the mixer-grinder, the borewell pump — every one of them spins because F = I L × B pushes on current-carrying wires sitting in a magnetic field.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["force_on_current_wire"]
+  },
+  "prerequisites": [
+    "magnetic_force_moving_charge"
+  ],
+  "real_world_anchor": {
+    "primary": "Look up at the ceiling fan spinning over your head right now. Inside its motor, coils of copper wire carry current, and they sit inside the magnetic field of fixed magnets. The field pushes on every current-carrying wire with a force F = I L × B, and those pushes add up into the turning that spins the blades. The same force runs the mixer-grinder in the kitchen and the borewell pump that lifts water — every electric motor in an Indian home is F = I L × B at work.",
+    "secondary": "Picture the loudspeaker in your phone or in a cheap Bluetooth speaker. A coil of wire is glued to the paper cone and sits in the gap of a small permanent magnet. When the music signal sends current back and forth through the coil, F = I L × B pushes the coil — and the cone — in and out hundreds of times a second. That push is the sound you hear. The coil is a current-carrying wire in a magnetic field; the force is exactly the one in this lesson.",
+    "tertiary": "Picture an electric local train or the Delhi Metro pulling out of a station. Its traction motors are huge versions of the ceiling-fan motor — thick current-carrying windings sitting in a strong magnetic field. F = I L × B on those windings is what accelerates a hundred-tonne train. Scale up the current and the field, and the same little formula moves a whole train."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I": {
+        "name": "Current in the wire",
+        "unit": "A",
+        "min": 0.5,
+        "max": 5,
+        "default": 2,
+        "step": 0.5
+      },
+      "L": {
+        "name": "Length of wire inside the field",
+        "unit": "m",
+        "min": 0.1,
+        "max": 1,
+        "default": 0.5,
+        "step": 0.1
+      },
+      "B": {
+        "name": "Magnitude of the uniform magnetic field",
+        "unit": "T",
+        "min": 0.1,
+        "max": 1,
+        "default": 0.5,
+        "step": 0.1
+      },
+      "theta_deg": {
+        "name": "Angle between L (current) and B",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 90,
+        "step": 1
+      },
+      "current_dir": {
+        "name": "Direction of conventional current along the wire",
+        "unit": "",
+        "min": -1,
+        "max": 1,
+        "default": 1,
+        "step": 2
+      },
+      "n": {
+        "name": "Carrier number density (derivation only — shown as in-canvas math, not a slider)",
+        "unit": "1/m^3",
+        "role": "derivation_only",
+        "derived": "carrier density of copper, ~8.5e28; used only in the STATE_2 derivation picture"
+      },
+      "A": {
+        "name": "Wire cross-sectional area (derivation only — shown as in-canvas math, not a slider)",
+        "unit": "m^2",
+        "role": "derivation_only",
+        "derived": "cross-section of the wire; cancels in I = nAqv_d during the STATE_2 derivation"
+      },
+      "q": {
+        "name": "Charge per carrier (derivation only — shown as in-canvas math, not a slider)",
+        "unit": "C",
+        "role": "derivation_only",
+        "derived": "electron charge magnitude; folds into I = nAqv_d during the STATE_2 derivation"
+      },
+      "v_d": {
+        "name": "Drift velocity of carriers (derivation only — shown as in-canvas math, not a slider)",
+        "unit": "m/s",
+        "role": "derivation_only",
+        "derived": "carrier drift speed; folds into I = nAqv_d during the STATE_2 derivation"
+      }
+    },
+    "computed_outputs": {
+      "F_magnitude": {
+        "formula": "B * I * L * sin(theta_deg * PI / 180)"
+      },
+      "F_max": {
+        "formula": "B * I * L"
+      },
+      "sin_factor": {
+        "formula": "sin(theta_deg * PI / 180)"
+      }
+    },
+    "formulas": {
+      "force_vector": "F = I (L × B) — L is a vector of magnitude (wire length) pointing along the conventional current; the cross product gives the direction (right-hand rule).",
+      "force_magnitude": "F = B I L sin θ — maximum when L ⊥ B (θ = 90°), zero when L ∥ B (θ = 0° or 180°).",
+      "derivation_from_single_charge": "Each carrier feels q v_d B. A length L of wire holds nAL carriers. Total F = (nAL)(q v_d B) = (n A q v_d)(L B) = I L B, since I = n A q v_d.",
+      "bent_wire_chord_rule": "For a wire bent between two end points, only the straight chord from start to end matters: F = I (L_chord × B). The bends cancel.",
+      "closed_loop_net_force": "For a closed loop in a uniform field, the chord from start to end is zero, so the net force is zero — but opposite sides feel opposite forces, which produces a torque (next concept)."
+    },
+    "constraints": [
+      "B must be uniform across the wire — a non-uniform field changes the force along the length.",
+      "L is a vector along the conventional current direction; reversing the current reverses F.",
+      "θ is the angle between L (the current direction) and B — NOT the angle the wire makes with the page edge or any drawn reference line.",
+      "When L ∥ B (θ = 0°), the cross product is zero — the wire feels no force however large the current.",
+      "For a bent or curved wire in a uniform field, F depends only on the straight chord joining the two ends: F = I (L_chord × B).",
+      "For a closed loop in a uniform field the net force is exactly zero (the chord closes on itself); the loop feels a torque instead."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "A wire is just moving charges; summing qv×B over them gives F=ILB.",
+    "visual_confirmation": "In STATE_2 the nAL carriers each carry a tiny qv_dB arrow; they stack into one big F arrow, and the symbols collapse: nAqv_d is exactly the current I, leaving F = I L B."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "exploration": ["STATE_5", "STATE_6", "STATE_7"]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Hook: the ceiling fan spins because a magnetic field pushes its wires",
+        "duration": 16,
+        "focal_primitive_id": "hook_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "hook_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Why does an electric motor turn?",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "setup_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Blue arrows = uniform field B.\nOrange wire carries current I.\nL points along the current.",
+            "color": "#82B1FF"
+          },
+          {
+            "type": "annotation",
+            "id": "claim_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "The field pushes on the\ncurrent-carrying wire.\nThat push is F = I L × B.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Ceiling fan, mixer, pump — every motor in your home runs on this one push.",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Look up at the ceiling fan turning over your head. Why does it spin?", "glow": "wire" },
+            { "id": "s1_2", "text_en": "Inside its motor, copper wires carry current and sit inside a magnetic field.", "glow": ["wire", "b"] },
+            { "id": "s1_3", "text_en": "The field pushes on each current-carrying wire. That push is the force we will build today.", "glow": "f_net" },
+            { "id": "s1_4", "text_en": "The blue arrows are the field B. The orange wire carries current I, and L points along the current.", "glow": ["b", "wire"] },
+            { "id": "s1_5", "text_en": "The whole formula is F equals I times L cross B. Let us see where it comes from.", "glow": "f_net", "math_show": "\\vec{F} = I\\,\\vec{L}\\times\\vec{B}" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Derivation as a picture: add up qv×B over every carrier → F = I L × B",
+        "duration": 34,
+        "focal_primitive_id": "derive_title",
+        "advance_mode": "wait_for_answer",
+        "allow_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "derive_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "Where does F = I L × B come from?",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "carriers_label",
+            "position": { "x": 200, "y": 215 },
+            "text": "A wire is a pipe of moving charges.\nEach carrier feels q v_d B.\nA length L holds n·A·L carriers.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "collapse_label",
+            "position": { "x": 560, "y": 215 },
+            "text": "F = (n·A·L)·(q·v_d·B)\n     = (n·A·q·v_d)·(L·B)\nand n·A·q·v_d is just I.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "result_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "So F = I L B. The messy carrier picture collapses into one clean law. A wire is just charges — qv×B, added up.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "You already know the force on one moving charge: q times v cross B.", "glow": "charge_arrows", "math_show": "\\vec{F}_1 = q\\,\\vec{v}_d\\times\\vec{B}" },
+            { "id": "s2_2", "text_en": "A wire is nothing but a pipe full of moving charges, all drifting along the wire at the drift speed v d.", "glow": "charge_arrows" },
+            { "id": "s2_pred", "text_en": "Predict first. If one charge feels q v d B, what does a whole length L of wire feel? Think before we add them up.", "glow": "charge_arrows" },
+            { "id": "s2_3", "text_en": "Count the carriers. A length L of wire with cross-section A holds n times A times L of them.", "glow": "charge_arrows", "math_show": "N = n\\,A\\,L" },
+            { "id": "s2_4", "text_en": "Each one feels q v d B, so the total force is n A L times q v d B.", "glow": "F_net_arrow", "math_show": "F = (nAL)(q v_d B)", "math_persist": true },
+            { "id": "s2_5", "text_en": "Now regroup the symbols. Pull out n times A times q times v d, and leave L times B behind.", "glow": "F_net_arrow", "math_show": "F = (n A q v_d)(L B)", "math_persist": true },
+            { "id": "s2_6", "text_en": "But n times A times q times v d is exactly the current I. That is the definition of current.", "glow": "F_net_arrow", "math_show": "I = n A q v_d" },
+            { "id": "s2_7", "text_en": "So the whole thing collapses to F equals I L B. The messy carrier picture becomes one clean law.", "glow": "F_net_arrow", "math_show": "F = I L B", "math_persist": true },
+            { "id": "s2_8", "text_en": "That is the big idea. A wire is just charges, and I L cross B is q v cross B added up over all of them.", "glow": "F_net_arrow" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Direction: the right-hand rule on L and B",
+        "duration": 24,
+        "focal_primitive_id": "dir_title",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "dir_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "Which way does the force point?",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "rhr_steps_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Right hand:\nfingers point along L (the current),\ncurl toward B,\nthumb gives F.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "perp_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "F is perpendicular to BOTH\nthe wire and the field.\nReverse the current → F flips.",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "dir_explainer_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Same right-hand rule as the single charge — now L plays the role v played. Flip the current direction and the whole force reverses.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "We have the size of the force. Now, which way does it push the wire?", "glow": "f_net" },
+            { "id": "s3_2", "text_en": "Use the right hand. Point your fingers along L, the current direction.", "glow": ["hand", "wire"], "hand_phase": "v" },
+            { "id": "s3_3", "text_en": "Curl them toward B, the field.", "glow": ["hand", "b"], "hand_phase": "b" },
+            { "id": "s3_4", "text_en": "Your thumb now points along F — the force on the wire.", "glow": ["hand", "f_net"], "hand_phase": "f" },
+            { "id": "s3_5", "text_en": "F is perpendicular to both the wire and the field — exactly like the single-charge rule, with L playing the part v played.", "glow": "f_net", "math_show": "\\vec{F} = I\\,\\vec{L}\\times\\vec{B}" },
+            { "id": "s3_6", "text_en": "Now flip the current the other way. Watch the force flip with it.", "glow": ["wire", "f_net"] },
+            { "id": "s3_7", "text_en": "Reverse the current, reverse the force. That sign change is how a motor keeps turning the same way.", "glow": "f_net" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "The angle trap: θ is between L and B, not the wire and the page",
+        "duration": 26,
+        "focal_primitive_id": "angle_title",
+        "advance_mode": "wait_for_answer",
+        "allow_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "angle_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "What is the angle θ in F = B I L sin θ?",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "trap_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Tempting wrong answer: 30°,\nthe angle the wire makes\nwith the edge of the page.",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "true_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "True θ = angle between L and B.\nHere L ⊥ B, so θ = 90°\nand F = B I L (maximum).",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "angle_explainer_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Always read θ between the current direction L and the field B — never between the wire and some drawn line. Tilt L toward B and F shrinks as sin θ.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "The magnitude is B times I times L times sine theta. Everything hangs on which angle theta is.", "glow": "true_90_arc", "math_show": "F = B\\,I\\,L\\,\\sin\\theta" },
+            { "id": "s4_pred", "text_en": "Predict first. The wire is drawn at thirty degrees to the page edge. Is theta thirty degrees? Decide before I show you.", "glow": "decoy_30_angle" },
+            { "id": "s4_2", "text_en": "It is a trap. The thirty-degree angle to the page edge has nothing to do with the physics.", "glow": "decoy_30_angle" },
+            { "id": "s4_3", "text_en": "Theta is the angle between L, the current direction, and B, the field.", "glow": ["true_90_arc", "b"], "math_show": "\\theta = \\angle(\\vec{L},\\vec{B})" },
+            { "id": "s4_4", "text_en": "Here L points across the field, so theta is ninety degrees, and the force is at its maximum, B I L.", "glow": "true_90_arc", "math_show": "F = B I L\\,\\sin 90^{\\circ} = B I L" },
+            { "id": "s4_5", "text_en": "Tilt L toward B and theta shrinks. The force falls off as sine theta.", "glow": "f_net", "math_show": "F \\propto \\sin\\theta" },
+            { "id": "s4_6", "text_en": "When L lines up with B, theta is zero, sine zero is zero, and the wire feels no force at all.", "glow": "f_net", "math_show": "\\theta = 0 \\;\\Rightarrow\\; F = 0" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "θ in F = BIL sin θ is the angle the wire makes with the edge of the page or with the horizontal.",
+            "one_line_fix": "θ is ALWAYS the angle between the current direction L and the field B. The angle to any drawn line on the page is irrelevant."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Bent wire = its straight chord: F = I (L_chord × B)",
+        "duration": 26,
+        "focal_primitive_id": "bent_title",
+        "advance_mode": "manual_click",
+        "allow_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "bent_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "A bent wire — does every kink matter?",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "bent_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "The wire zig-zags between two ends.\nIt looks complicated.\nDo we add up every segment?",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "chord_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "No — only the straight CHORD\nfrom one end to the other counts.\nF = I (L_chord × B).",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "bent_explainer_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "In a uniform field the bends cancel; the force depends only on the straight line joining the two ends. Replace any bent wire with its chord.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Here is a wire that zig-zags between two end points. It carries the same current I.", "glow": "bent_wire" },
+            { "id": "s5_pred", "text_en": "Predict first. To get the force, do we have to add up every twist and bend? Decide before we reveal it.", "glow": "bent_wire" },
+            { "id": "s5_2", "text_en": "The surprising answer is no. In a uniform field, all the bends cancel out.", "glow": "bent_wire" },
+            { "id": "s5_3", "text_en": "Only the straight chord from one end to the other matters.", "glow": "chord_arrow" },
+            { "id": "s5_4", "text_en": "Watch — replace the whole bent wire with that single straight chord.", "glow": "chord_arrow" },
+            { "id": "s5_5", "text_en": "The force is I times that chord vector cross B. The wiggles in between contribute nothing.", "glow": "chord_arrow", "math_show": "\\vec{F} = I\\,(\\vec{L}_{\\text{chord}}\\times\\vec{B})", "math_persist": true },
+            { "id": "s5_6", "text_en": "So for any bent or curved wire in a uniform field, just draw the straight line joining its two ends.", "glow": "chord_arrow" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "For a bent wire you must integrate the force over every little segment and add them all up.",
+            "one_line_fix": "In a UNIFORM field only the straight chord between the two end points matters: F = I (L_chord × B). The bends cancel exactly."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "A closed loop feels zero net force (but a torque) — the chord closes",
+        "duration": 26,
+        "focal_primitive_id": "loop_title",
+        "advance_mode": "manual_click",
+        "allow_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "loop_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "What about a closed loop?",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "sides_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Opposite sides carry current\nin opposite directions,\nso their forces point opposite ways.",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "netzero_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "The chord from start back to start\nis zero → net force = 0.\nThe forces TWIST it instead.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "loop_explainer_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "A closed loop's chord closes on itself, so the net force is exactly zero — but the opposite forces form a couple that turns the loop. That torque is the next concept.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Now bend the wire all the way into a closed square loop carrying current I.", "glow": "square_loop" },
+            { "id": "s6_pred", "text_en": "Predict first. Using the chord rule, what is the net force on a closed loop? Think before we check.", "glow": "square_loop" },
+            { "id": "s6_2", "text_en": "Use the chord rule. The chord runs from the starting point back to the same starting point.", "glow": "square_loop" },
+            { "id": "s6_3", "text_en": "That chord has zero length, so the net force on a closed loop in a uniform field is exactly zero.", "glow": "square_loop", "math_show": "\\vec{L}_{\\text{chord}} = 0 \\;\\Rightarrow\\; \\vec{F}_{\\text{net}} = 0" },
+            { "id": "s6_4", "text_en": "But look at the sides. Opposite sides carry current opposite ways, so they feel forces in opposite directions.", "glow": "side_forces" },
+            { "id": "s6_5", "text_en": "Equal and opposite forces on opposite sides do not push the loop — they twist it. That twist is a torque.", "glow": "side_forces" },
+            { "id": "s6_6", "text_en": "Zero net force, but a turning torque. That torque is exactly how a motor loop spins — and it is our next concept.", "glow": "side_forces" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A current loop in a magnetic field gets pushed along by a net force.",
+            "one_line_fix": "In a uniform field the net force on a closed loop is zero (the chord closes). Opposite sides feel opposite forces, which produce a TORQUE, not a push."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Try it — drag the sliders, flip the current, watch F",
+        "duration": 28,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "You drive it now",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "sliders_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Top-right sliders: I · L · B · θ\nplus a button to flip the current.\nThe F readout updates live.",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "challenge_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "Try: θ = 90 → biggest force\nθ = 0 → no force\nFlip current → F reverses\nDouble I → F doubles",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "summary_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Same right-hand rule everywhere. F = B I L sin θ — current, length, field, and the L–B angle are the four knobs.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Your turn. The top-right sliders set the current I, the length L, the field B, and the angle theta.", "glow": "sliders" },
+            { "id": "s7_2", "text_en": "Set theta to ninety degrees and the force is at its largest, B I L.", "glow": "f_net" },
+            { "id": "s7_3", "text_en": "Drag theta down to zero and the force vanishes — the wire is now along the field.", "glow": "f_net" },
+            { "id": "s7_4", "text_en": "Double the current and watch the force double. F is straight-line proportional to I.", "glow": "f_net" },
+            { "id": "s7_5", "text_en": "Tap the flip-current button and watch the force reverse. That is the whole concept in your hands.", "glow": ["sliders", "f_net"] }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "force_on_current_wire",
+    "ambient_field": {
+      "direction": [0, 1, 0],
+      "magnitude": 0.5,
+      "density": [5, 5, 5],
+      "color": "#42A5F5",
+      "opacity": 0.42,
+      "extent": 2.5
+    },
+    "current": {
+      "direction": [1, 0, 0],
+      "magnitude": 2,
+      "wire_color": "#FFB366"
+    },
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#66BB6A",
+      "color_negative": "#82B1FF",
+      "opacity": 0.85,
+      "arrow_spacing": 5
+    },
+    "slider_controls": {
+      "I": { "min": 0.5, "max": 5, "step": 0.5, "default": 2, "label": "Current I" },
+      "L": { "min": 0.1, "max": 1, "step": 0.1, "default": 0.5, "label": "Length L" },
+      "B": { "min": 0.1, "max": 1, "step": 0.1, "default": 0.5, "label": "Field |B|" },
+      "theta_deg": { "min": 0, "max": 90, "step": 1, "default": 90, "label": "Angle θ(L,B)" },
+      "current_dir": { "default": 1, "label": "Current direction" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Hook — current-carrying wire in a uniform field B, F = I L × B",
+        "visible_elements": [],
+        "camera_position": [4.6, 2.2, 2.2],
+        "caption": "",
+        "theta_deg": 90,
+        "extras": {
+          "wire": { "show": true, "color": "#FFB366", "direction": [1, 0, 0] },
+          "current_arrows": { "show": true, "color": "#FFD54F", "direction": [1, 0, 0] },
+          "F_net_arrow": { "show": true, "color": "#66BB6A" }
+        }
+      },
+      "STATE_2": {
+        "label": "Derivation as a picture — n·A·L carriers, each q·v_d·B, stacking into I·L·B",
+        "visible_elements": [],
+        "camera_position": [4.4, 2.4, 2.3],
+        "caption": "",
+        "theta_deg": 90,
+        "formula_overlay": "F = (nAL)(q v_d B)\n  = (n A q v_d)(L B)\n  = I L B",
+        "extras": {
+          "wire": { "show": true, "color": "#FFB366", "direction": [1, 0, 0] },
+          "charge_arrows": { "show": true, "color": "#FFCC9F", "count": 7, "per_charge_force": true },
+          "F_net_arrow": { "show": true, "color": "#66BB6A", "build_from_sum": true }
+        }
+      },
+      "STATE_3": {
+        "label": "Direction — right-hand rule on L and B; flip current → F flips",
+        "visible_elements": [],
+        "camera_position": [4.6, 2.4, 2.5],
+        "caption": "",
+        "theta_deg": 90,
+        "extras": {
+          "wire": { "show": true, "color": "#FFB366", "direction": [1, 0, 0] },
+          "current_arrows": { "show": true, "color": "#FFD54F", "direction": [1, 0, 0] },
+          "F_net_arrow": { "show": true, "color": "#66BB6A" },
+          "hand_3d": { "show": true, "hand_position": [2.2, 1.6, -1.6], "hand_scale": 1.7, "labels": { "fingers": "L", "curl": "B", "thumb": "F" } },
+          "current_flip": { "show": true, "reverse_at_ms": 9000 }
+        }
+      },
+      "STATE_4": {
+        "label": "Angle trap — θ is ∠(L,B) = 90° here, not the 30° to the page edge",
+        "visible_elements": [],
+        "camera_position": [4.4, 2.4, 2.3],
+        "caption": "",
+        "theta_deg": 90,
+        "extras": {
+          "wire": { "show": true, "color": "#FFB366", "direction": [1, 0, 0] },
+          "current_arrows": { "show": true, "color": "#FFD54F", "direction": [1, 0, 0] },
+          "F_net_arrow": { "show": true, "color": "#66BB6A" },
+          "decoy_30_angle": { "show": true, "color": "#EF5350", "deg": 30, "label": "30° (wrong)" },
+          "true_90_arc": { "show": true, "color": "#66BB6A", "between": ["L", "B"], "label": "θ = 90°" }
+        }
+      },
+      "STATE_5": {
+        "label": "Bent wire = straight chord — F = I (L_chord × B); snapshot swap (no morph)",
+        "visible_elements": [],
+        "camera_position": [4.6, 2.6, 2.4],
+        "caption": "",
+        "theta_deg": 90,
+        "extras": {
+          "bent_wire": { "show": true, "color": "#FFB366", "waypoints": [[-1.4, -0.6, 0], [-0.5, 0.7, 0], [0.4, -0.5, 0], [1.4, 0.6, 0]] },
+          "chord_arrow": { "show": true, "color": "#66BB6A", "from": [-1.4, -0.6, 0], "to": [1.4, 0.6, 0], "reveal": "snapshot", "label": "L_chord" },
+          "F_net_arrow": { "show": true, "color": "#66BB6A" }
+        }
+      },
+      "STATE_6": {
+        "label": "Closed loop — chord closes → net F = 0; opposite sides → torque",
+        "visible_elements": [],
+        "camera_position": [4.4, 2.8, 2.6],
+        "caption": "",
+        "theta_deg": 90,
+        "extras": {
+          "square_loop": { "show": true, "color": "#FFB366", "side": 1.6, "current_dir": "ccw" },
+          "side_forces": { "show": true, "color": "#66BB6A", "show_couple": true },
+          "F_net_arrow": { "show": false }
+        }
+      },
+      "STATE_7": {
+        "label": "Interactive — sliders for I, L, B, θ + flip-current button",
+        "visible_elements": [],
+        "camera_position": [4.8, 2.6, 2.6],
+        "caption": "",
+        "theta_deg": 90,
+        "show_sliders": true,
+        "formula_overlay": "F = B I L sin θ\nF_max = B I L\nflip current → F reverses",
+        "extras": {
+          "wire": { "show": true, "color": "#FFB366", "direction": [1, 0, 0] },
+          "current_arrows": { "show": true, "color": "#FFD54F", "direction": [1, 0, 0] },
+          "F_net_arrow": { "show": true, "color": "#66BB6A" }
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#FFB366",
+      "negative": "#82B1FF",
+      "field_line": "#42A5F5"
+    }
+  }
+}

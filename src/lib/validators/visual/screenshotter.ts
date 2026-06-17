@@ -62,8 +62,23 @@ export interface CaptureRequest {
      * degrade gracefully (the frame is captured unpinned; visual_approve's
      * determinism check decides whether it becomes a compared baseline).
      * Opt-in — auto-fire never sets it.
+     *
+     * atMs is the flat fallback; atMsByState lets each state pin at its own
+     * all-reveals-complete sim-time (see maxRevealMsByState) so late reveals
+     * land in the baseline. captureFrozenFrame picks atMsByState[id] ?? atMs ?? 1500.
      */
-    frozenFrame?: { atMs: number; settleMs?: number };
+    frozenFrame?: { atMs?: number; atMsByState?: Record<string, number>; settleMs?: number };
+    /**
+     * Per-state "all-reveals-complete" sim-time (state-local ms), from
+     * deriveMaxRevealTimeMs. When set for a state, the PRIMARY vision frame is
+     * captured sim-time-aware: the harness pins the renderer clock at the target
+     * (SET_TIME_FREEZE) and POLLS window.PM_simTimeMs until it actually reaches
+     * the target before the screenshot — so timed reveals are photographed even
+     * though headless rAF throttling makes field_3d's frame-count clock lag
+     * wall-clock. After capture the pin is released so the dense series runs
+     * live. Absent for a state → the legacy fixed 1s settle is used. Opt-in.
+     */
+    maxRevealMsByState?: Record<string, number>;
 }
 
 export interface TtsMathStepInput {
@@ -305,12 +320,38 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             timings.push(timing);
             if (timing.timed_out) warnings.push(`STATE_REACHED timeout for ${stateId}`);
 
-            // Settle past the renderer's 800ms state-transition interpolation
-            // before ANY capture. Before the 2026-06-10 handshake fix the
-            // (always-failing) 5s STATE_REACHED timeout masked this; a 150ms
-            // wait then caught the transition flash as a ~98% first-frame diff
-            // (false D6 teleport) and mid-transition static frames.
-            await page.waitForTimeout(1000);
+            // Sim-time-aware primary capture. When this state declares a reveal
+            // schedule, pin the renderer clock at the all-reveals-complete time
+            // and POLL window.PM_simTimeMs until it actually gets there — so late
+            // reveals are photographed despite headless rAF throttling lagging
+            // field_3d's frame-count clock. Otherwise fall back to the legacy
+            // fixed settle (covers the renderer's 800ms state-transition interp).
+            const revealTargetMs = req.maxRevealMsByState?.[stateId];
+            if (revealTargetMs != null && revealTargetMs > 0) {
+                await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
+                await postToPanels(page, { type: 'SET_TIME_FREEZE', at_ms: revealTargetMs }, hasPanelB);
+                const poll = await pollSimTimeReached(page, 'panel_a', revealTargetMs, {
+                    wallCapMs: revealTargetMs * 2.5 + 4000,
+                });
+                if (!poll.reached) {
+                    warnings.push(
+                        `Sim-time poll stalled for ${stateId}: reached ${Math.round(poll.lastSimMs)}/${revealTargetMs}ms `
+                        + `in ${poll.waitedMs}ms — capturing anyway (frame may under-show late reveals)`,
+                    );
+                }
+                // Compass + other performance.now()-driven easings can't be pinned;
+                // give them a settle floor (matches captureFrozenFrame's rationale).
+                // For throttled field_3d the poll itself usually waits well past this.
+                const settleRemaining = 3200 - poll.waitedMs;
+                if (settleRemaining > 0) await page.waitForTimeout(settleRemaining);
+            } else {
+                // Settle past the renderer's 800ms state-transition interpolation
+                // before ANY capture. Before the 2026-06-10 handshake fix the
+                // (always-failing) 5s STATE_REACHED timeout masked this; a 150ms
+                // wait then caught the transition flash as a ~98% first-frame diff
+                // (false D6 teleport) and mid-transition static frames.
+                await page.waitForTimeout(1000);
+            }
 
             const panelAPng = await captureIframe(page, 'panel_a');
             const panelBPng = hasPanelB ? await captureIframe(page, 'panel_b') : undefined;
@@ -330,6 +371,16 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             if (hasPanelB) {
                 const bLeaks = await scanLeaksInFrame(page, 'panel_b');
                 for (const txt of bLeaks) templateLeakDomFindings.push({ state_id: stateId, panel: 'panel_b', sample_text: txt });
+            }
+
+            // Release the primary-frame time pin BEFORE the dense series so the
+            // dense capture sees a LIVE clock from a fresh state-local t=0 (D5/D6/D7
+            // need motion). SET_TIME_FREEZE{frozen:false} clears the pin;
+            // RESET_TRAJECTORY re-zeroes stateStartTime + the trail. No-op on
+            // renderers without these handlers.
+            if (revealTargetMs != null && revealTargetMs > 0) {
+                await postToPanels(page, { type: 'SET_TIME_FREEZE', frozen: false }, hasPanelB);
+                await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
             }
 
             // Dense series — the state is already active here, so capture in place.
@@ -370,7 +421,8 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
             // state never renders pinned.
             if (req.frozenFrame) {
                 try {
-                    const frozen = await captureFrozenFrame(page, hasPanelB, req.frozenFrame);
+                    const atMs = req.frozenFrame.atMsByState?.[stateId] ?? req.frozenFrame.atMs ?? 1500;
+                    const frozen = await captureFrozenFrame(page, hasPanelB, { atMs, settleMs: req.frozenFrame.settleMs });
                     const target = stateCaptures.find(c => c.state_id === stateId);
                     if (target) target.frozen_png_b64 = frozen;
                 } catch (err) {
@@ -416,6 +468,48 @@ export async function captureSimStates(req: CaptureRequest): Promise<CaptureResu
 
 function getFrame(page: Page, name: PanelName): Frame | null {
     return page.frame({ name }) ?? null;
+}
+
+/**
+ * Poll the renderer's exposed SIM-TIME clock (window.PM_simTimeMs, state-local
+ * ms) inside a panel iframe until it reaches targetMs, or until the wall-clock
+ * cap. This is the sim-time-aware wait that defeats the headless-rAF-throttling
+ * false negative: rather than guessing on wall-clock, we wait for the renderer's
+ * own clock to actually advance past the reveal time. Degrades gracefully —
+ * returns reached:false on cap so the caller can warn + capture anyway (never hangs).
+ */
+async function pollSimTimeReached(
+    page: Page, frameName: PanelName, targetMs: number,
+    opts: { wallCapMs: number; pollMs?: number },
+): Promise<{ reached: boolean; lastSimMs: number; waitedMs: number }> {
+    const pollMs = opts.pollMs ?? 50;
+    // Tolerance absorbs the renderer's discrete 16ms frame step AND float drift:
+    // SET_TIME_FREEZE pins time at stateStartTime + targetMs/1000, and
+    // (stateStartTime + x) - stateStartTime is not exactly x in float when
+    // stateStartTime is large, so PM_simTimeMs can land at e.g. 7299.999 for a
+    // 7300 target. Without this the poll misses the pin and burns the full cap.
+    const SIM_TIME_TOLERANCE_MS = 50;
+    const start = Date.now();
+    let lastSimMs = 0;
+    while (Date.now() - start < opts.wallCapMs) {
+        const frame = getFrame(page, frameName);
+        if (frame) {
+            try {
+                const sim = await frame.evaluate(() => {
+                    const w = window as unknown as { PM_simTimeMs?: number };
+                    return typeof w.PM_simTimeMs === 'number' ? w.PM_simTimeMs : null;
+                });
+                if (typeof sim === 'number') {
+                    lastSimMs = sim;
+                    if (sim >= targetMs - SIM_TIME_TOLERANCE_MS) return { reached: true, lastSimMs: sim, waitedMs: Date.now() - start };
+                }
+            } catch {
+                // Frame mid-navigation or renderer without PM_simTimeMs — retry / time out.
+            }
+        }
+        await page.waitForTimeout(pollMs);
+    }
+    return { reached: false, lastSimMs, waitedMs: Date.now() - start };
 }
 
 async function injectPanelProbe(page: Page, frameName: PanelName, warnings: string[]): Promise<void> {
@@ -520,8 +614,15 @@ async function captureFrozenFrame(
 ): Promise<string> {
     await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);
     await postToPanels(page, { type: 'SET_TIME_FREEZE', at_ms: opts.atMs }, hasPanelB);
+    // Poll the renderer's actual sim-clock to REACH the pin before settling —
+    // headless rAF throttling means field_3d's frame-count clock can still be
+    // climbing to the pin when the wall-clock settle below would otherwise fire.
+    const poll = await pollSimTimeReached(page, 'panel_a', opts.atMs, { wallCapMs: opts.atMs * 2.5 + 4000 });
+    // Settle covers the pin run-up PLUS performance.now()-driven easings (compass
+    // swing) the pin can't freeze. Subtract time already spent polling.
     const settle = Math.max(opts.atMs * 1.1 + 500, opts.settleMs ?? 3000);
-    await page.waitForTimeout(settle);
+    const settleRemaining = settle - poll.waitedMs;
+    if (settleRemaining > 0) await page.waitForTimeout(settleRemaining);
     const png = await captureIframe(page, 'panel_a');
     await postToPanels(page, { type: 'SET_TIME_FREEZE', frozen: false }, hasPanelB);
     await postToPanels(page, { type: 'RESET_TRAJECTORY' }, hasPanelB);

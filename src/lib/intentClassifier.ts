@@ -87,6 +87,10 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
     'newton_second_law_direction',
+    // Electric field of a point charge + its field lines (Class 12 Ch.1.6/1.8 —
+    // first electrostatics diamond; field_3d point_charge_positive scenario via the
+    // electric_explorer dual-field path). Built for reviewer Asmi (2026-06-18).
+    'electric_field_point_charge',
     // Magnetic field of a long straight current-carrying wire + right-hand rule
     // (Class 12 Ch.4.4 — Phase 0 validation demo Sim 3, session 60). First field_3d
     // (Three.js) concept authored end-to-end; routed via CONCEPT_RENDERER_MAP.
@@ -101,6 +105,14 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // force-in-field). Establishes ambient B grid, moving particle, per-frame
     // F = qv×B vector, palm-rule overlay in field_3d_renderer.ts.
     'magnetic_force_moving_charge',
+    // Magnetic force on a current-carrying wire — F = I L × B (Class 12 Ch.36,
+    // concept A15). The macroscopic successor to magnetic_force_moving_charge:
+    // a wire is a pipe of moving charges, so summing q v × B over n·A·L carriers
+    // gives F = I L × B. Teaches the derivation-as-picture, RHR on L and B, the
+    // sin θ(L,B) angle trap, the bent-wire = straight-chord result, and the
+    // closed-loop net-zero force (which seeds torque_on_current_loop_in_field).
+    // Routed to the field_3d force_on_current_wire scenario.
+    'force_on_current_carrying_wire',
     // Torque on a current loop in a uniform magnetic field — τ = μ × B
     // (Class 12 Ch.4.10 — Diamond #3 of the magnetism chapter, phase M2 of
     // MAGNETISM_ARCHITECTURE.md, archetype C — closed-loop rotational dynamics).
@@ -129,6 +141,7 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
 // net. The CLASSIFIER_PROMPT has been pruned of these bundles — Gemini should
 // never return them for new queries — but keeping the redirect is defensive.
 export const CONCEPT_SYNONYMS: Readonly<Record<string, string>> = {
+    electric_field_lines: 'electric_field_point_charge',
     normal_force: 'normal_reaction',
     normal_forces: 'normal_reaction',
     tension: 'tension_in_string',
@@ -345,10 +358,14 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   friction_static_kinetic ← static vs kinetic friction, μₛ vs μₖ, push almirah, slipping threshold
   newton_second_law_direction ← F = m·a as a vector equation, direction matters, a along F not v
 
+  ── Electric Charges and Fields (Class 12 Ch.1) ──
+  electric_field_point_charge     ← electric field of a point charge E = kQ/r², radial direction (out for +Q, in for −Q), field lines, line density = field strength, E = F/q
+
   ── Moving Charges and Magnetism (Class 12 Ch.4) ──
   magnetic_field_wire             ← B around a straight current-carrying wire, B = μ₀I/(2πr), right-hand rule (thumb = I, fingers = B)
   biot_savart_law                 ← the Biot-Savart law itself: dB = (μ₀/4π) I(dl × r̂)/r² for a current element, sinθ dependence, summed/integrated to recover B = μ₀I/(2πr)
   magnetic_force_moving_charge    ← Lorentz force F = q v × B on a moving charge, F ⊥ v and B, cyclotron motion
+  force_on_current_carrying_wire  ← force on a current-carrying wire F = I L × B, BIL sinθ, the motor force, right-hand rule on L and B
   torque_on_current_loop_in_field ← τ = μ × B on a current loop, magnetic moment μ = NIA, loop ↔ bar magnet equivalence
   magnetic_field_solenoid         ← B = μ₀nI inside a long solenoid, ≈ 0 outside, RHR-swap (fingers = I, thumb = B inside)
 
@@ -395,10 +412,14 @@ CRITICAL DISAMBIGUATION (projectiles, Ch.7.6-7.8):
 - "projectile on incline" (downward) → down_incline_projectile
 - "two projectiles meeting" → two_projectile_meeting
 
+CRITICAL DISAMBIGUATION (electrostatics, Ch.1):
+- "electric field of a point charge" / "E = kQ/r²" / "field due to a charge" / "electric field lines" / "field lines of a positive/negative charge" / "E = F/q" → electric_field_point_charge
+
 CRITICAL DISAMBIGUATION (magnetism, Ch.4):
 - "field around a wire" / "B-field of a current-carrying wire" / "right-hand rule for wire" → magnetic_field_wire
 - "Biot-Savart law" / "dB from a current element" / "dl × r" / "where does B = μ₀I/2πr come from" / "field of one current element" / "sinθ in magnetic field" → biot_savart_law
 - "force on moving charge" / "Lorentz force" / "F = qv × B" / "cyclotron" → magnetic_force_moving_charge
+- "force on a current-carrying wire" / "F = IL×B" / "BIL sinθ" / "force on a wire in a magnetic field" / "motor force" → force_on_current_carrying_wire
 - "torque on a current loop" / "magnetic moment" / "μ = NIA" / "loop in magnetic field" → torque_on_current_loop_in_field
 - "solenoid" / "B inside a solenoid" / "B = μ₀nI" / "turns per metre" / "RHR for solenoid" / "field of a coil" → magnetic_field_solenoid
 

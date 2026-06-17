@@ -89,3 +89,9 @@ venv*/
 */venv*/
 __pycache__/
 *.pyc
+
+# Static review-site build artifact (build:review) — not tracked
+review-site/
+
+# Local Netlify folder
+.netlify

@@ -874,6 +874,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    electric_field_point_charge: {
+        concept_id: 'electric_field_point_charge',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'electric_field_point_charge',
+            label: 'Field of a Point Charge (3D)',
+        },
+    },
+
     electric_potential_3d: {
         concept_id: 'electric_potential_3d',
         layout: 'dual_horizontal',
@@ -946,6 +956,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'torque_on_current_loop_in_field',
             label: 'Torque on Loop (3D)',
+        },
+    },
+
+    force_on_current_carrying_wire: {
+        concept_id: 'force_on_current_carrying_wire',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'force_on_current_carrying_wire',
+            label: 'Force on Wire (3D)',
         },
     },
 
