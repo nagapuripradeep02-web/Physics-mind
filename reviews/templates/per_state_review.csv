@@ -1,0 +1,10 @@
+state_id,state_title,correct_YN,order_ok_YN,labels_present_YN,reads_with_sound_off_YN,how_i_would_use,problem_or_missing,priority_P1P2P3
+EXAMPLE (delete this row),A charge feels a force,Y,Y,N,Y,point at the green F arrow first,the label q is missing on the charge,P1
+STATE_1,,,,,,,,
+STATE_2,,,,,,,,
+STATE_3,,,,,,,,
+STATE_4,,,,,,,,
+STATE_5,,,,,,,,
+STATE_6,,,,,,,,
+STATE_7,,,,,,,,
+RECOMMENDED_ORDER,"the order you'd teach the states in, e.g. 1,2,4,3,5,6,7",,,,,,,

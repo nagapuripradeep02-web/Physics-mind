@@ -69,11 +69,38 @@ _Status legend: 🟡 in review · 🟢 changes implemented · ⚪ awaiting revie
 
 ## How a review cycle runs
 
-1. Reviewer reviews a sim (solo) and/or on a call → we record video + they fill an Excel.
-2. We drop the raw transcript(s) and their Excel into that sim's `sources/`.
-3. We merge everything into `feedback.md` (the master change-list).
-4. We implement the changes, mark items done, redeploy the review link.
+> **Reviewer-facing docs:** what we ask a reviewer to do lives in **[REVIEWER_GUIDE.md](REVIEWER_GUIDE.md)**
+> (the 6-question per-state review, "teach naturally," Drive logistics, a copy-paste message). The
+> per-state Excel template is **[templates/per_state_review.csv](templates/per_state_review.csv)**.
+
+A deep reviewer produces **two channels**, and we extract different things from each:
+
+| Channel | What it is | What we extract |
+|---|---|---|
+| **Class recording** (with a student) | the reviewer teaching naturally, student present | comprehension signal — **student questions** (and which state was on screen), where the teacher **compensated** (stepped away from the sim), and the **aha** moments |
+| **Per-state review** (solo recording *or* Excel) | the 6-question audit + recommended state order | the teacher's verdict per state → the **fix list** + the canonical default order (Rule 25d) |
+
+**Stance:** the reviewer reviews as a **teacher** (the per-state audit — her expertise). She does *not*
+role-play a student — the **real student in the class recording** supplies the student's-eye view, which
+is stronger than any prediction.
+
+**Conflict rule:** if the per-state review says a state is fine but the class recording shows the real
+student confused there, **the class recording wins** — a real student stumbling outranks inspection.
+
+Steps:
+
+1. Reviewer sends both channels into the shared Drive folder (see the guide).
+2. Download, then turn each video into a timestamped transcript + frames with the **`/watch`** skill
+   (`/watch "<local_video_path>"`), and drop those + any Excel **verbatim** into that sim's `sources/`
+   (raw, never edited).
+3. Extract per the table above and **merge everything into `feedback.md`** (the master change-list); each
+   item tagged `source:` + `priority:` + `status:`.
+4. Sort every item through the **promotion filter** (below); implement the this-sim fixes, log recurring
+   mistake-classes to the scar list (`npm run log:lesson`, with a `prevention_rule`), redeploy the review
+   link.
 5. Reviewer re-reviews → suggests a smaller second pass → repeat until ✅ approved.
+6. **Storage discipline:** once the transcript + frames are in `sources/`, delete the raw multi-GB video
+   from Drive — the distilled artifacts are the keepers.
 
 ## Promotion filter — turning one reviewer's feedback into rules for ALL sims
 

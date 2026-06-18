@@ -60,6 +60,61 @@ For every NEW simulation:
 
 ---
 
+## The `engine_bug_queue` lifecycle — before / during / after (the compounding circle)
+
+The box above ("RUNNING ALONGSIDE") is the *what*; this is the *when*. `engine_bug_queue` is the
+durable **scar list** — every past bug + a `prevention_rule` + an automated probe. It threads through
+the pipeline at three moments, and reviewer feedback (`reviews/<slug>/<concept_id>/feedback.md`)
+connects to it at the end. Mental model: a kitchen's "mistakes book" on the wall — read before every
+dish, added to whenever a new mistake is found.
+
+**BEFORE — design (stages ①–②).** The architect and the other Alex agents **read** the queue first:
+it's the "mistakes never to repeat" checklist laid *over* the pedagogy sources. The queue does **not**
+supply the sim's content (that's the professor video + HCV + NCERT + DCP) — it supplies the accumulated
+lessons so the new design sidesteps every known trap. *(Architect spec carries a "consult the bug queue
+before producing any artifact" contract.)*
+
+**DURING — build + visual gate (stage ③).** The pre-flight auditor **replays** every relevant probe
+against the candidate (Gate 8 = regression check). Any *new* bug found and fixed during the 1–2 build
+rounds is **written** to the queue (`npm run log:lesson`, with a `prevention_rule`). Content bugs → fixed
+by Alex; true engine bugs → Peter Parker.
+
+**AFTER — professor gate (stage ④).** The reviewer (Asmi) returns two channels → we extract into
+**`feedback.md`**, the per-sim inbox (see `reviews/README.md` + `reviews/REVIEWER_GUIDE.md`). Then the
+4-bucket filter decides what — if anything — graduates *out* of `feedback.md`:
+
+| A `feedback.md` item that is… | Goes to | Reaches the queue? |
+|---|---|---|
+| a fix for **this sim only** (a label, a state, an order tweak) | Alex edits this sim's JSON; stays in `feedback.md` | ❌ no |
+| a **true engine bug** (renderer wrong for *all* sims) | Peter Parker fixes the engine **+ logs a probe** | ✅ yes |
+| a **recurring mistake-class** (any sim could hit it) | `npm run log:lesson` → a queue probe | ✅ yes |
+| a **teaching principle**, corroborated by a 2nd reviewer or doctrine | a numbered **CLAUDE.md rule** (founder approval) | ➡️ rulebook |
+| one-off reviewer taste, not yet repeated | `reviews/README.md` candidate list (awaits reviewer #2) | ❌ not yet |
+
+So **most reviewer feedback stays in `feedback.md`** (this-sim content fixes routed to Alex —
+`json_author` / `physics_author` / `architect`); only the *"must never happen in ANY sim again"* slice
+climbs into the queue. (For the full lesson-type → home mapping, see "Where every lesson gets filed"
+below.)
+
+**The circle (why it compounds).** Because the queue is read at the *start* of every new sim and
+written to *during* + *after*, it grows each cycle — so sim #N+1 is born knowing every mistake sims
+#1…#N (and their reviews) taught. Fewer mistakes → fewer iterations → the engine gets harder to break
+every week.
+
+```
+   engine_bug_queue (scar list) ──read before──▶  ①② design a new sim
+        ▲             ▲                                    │
+        │             │                                    ▼
+   written during ────┤                              ③ build + visual gate (Gate 8 replays probes)
+   (build-time bugs)  │                                    │
+        │             │                                    ▼
+        │      written after ◀── 4-bucket filter ◀──  ④ Asmi → feedback.md
+        │      (the "never-again" slice only)              │
+        └────────────────────────────────────────────▶  (⑤ next sim starts smarter)
+```
+
+---
+
 ## Stage ② — the Definition of Done (build the COMPLETE version in ONE pass)
 
 "Build it perfectly" only collapses the iteration count if you decide what *complete* means **before** building, then build to all of it at once. The `biot_savart_law` sim (2026-06-11) took ~7 founder turns because the spec arrived piecemeal — concept, then "add the symbols," then "add the right-hand rule," then "animate the hand" — each a separate round. Labels, the rule, and motion are **table stakes** for a direction-teaching field sim, not surprises. They belong in v1.
