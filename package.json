@@ -27,6 +27,8 @@
     "log:lesson": "npx tsx --env-file=.env.local src/scripts/log_lesson.ts",
     "prewarm:deepdive": "npx tsx --env-file=.env.local src/scripts/prewarm_deepdive.ts",
     "solve:layout": "npx tsx --env-file=.env.local src/scripts/solve_layout.ts",
+    "sync:agents": "node scripts/sync-agents.js",
+    "check:agents": "node scripts/sync-agents.js --check",
     "test": "vitest run"
   },
   "dependencies": {

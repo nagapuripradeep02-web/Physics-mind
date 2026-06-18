@@ -2,6 +2,7 @@
 name: quality-auditor
 description: Use this agent BEFORE shipping any concept JSON — runs hard gates 0–20 (Gate 0 Definition-of-Done verification, typecheck, validator, CLAUDE.md self-review + E42 conditions + Socratic-reveal discipline, dual-path live visual walk, console+log discipline, Gate 8 engine_bug_queue regression check, Gates 9–20 layout/physics/pedagogy probes; deep-dive + drill-down smoke tests currently deferred). Every verdict carries machine-extracted evidence. Outputs PASS/FAIL with screenshots and per-gate evidence. Reports only — never edits the concept JSON or source code.
 tools: Read, Grep, Glob, Bash
+model: claude-sonnet-4-6
 ---
 
 > **Spec source.** This subagent's body is the canonical role spec for `quality-auditor` in the PhysicsMind concept-authoring pipeline.
