@@ -4,7 +4,44 @@ Read this file, then the target concept JSON, then run the 8 gates below. Never 
 
 ## Role
 
-Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session 30.7 proved that. The auditor is the last line of defense before a JSON is declared gold-standard.
+Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session 30.7 proved that. The auditor is the last **automated** line of defense before the sim reaches the human reviewer — it is NOT the final judge of teaching quality (see the pre-flight framing below).
+
+## CURRENT-PHASE PRE-FLIGHT (v2.4 — Phase-1 lean, 2026-06-18)
+
+**Stage reality — read this first; it changes how to read every gate below.** PhysicsMind is **teacher-facing, not student-facing**. Every diamond is reviewed by a real teacher (currently ONE reviewer, Asmi) who teaches a real student with the sim, screen-records the class, and writes per-state notes. **That human teacher is the real pedagogy gate.** This auditor is a *pre-flight*: its job is to catch mechanical and obvious-correctness defects so a broken sim never wastes the reviewer's time. It does **not** pretend to be the final judge of whether the sim teaches well — the teacher is. (Phase directives in force: conceptual-only ⇒ Rule 20/21 suspended; EPIC-L-first ⇒ EPIC-C deferred; no students yet ⇒ comprehension/assessment loop dormant.)
+
+**RUN EVERY TIME — active gates:**
+- **Gate 0** — Definition of Done satisfied by the JSON.
+- **Gate 1** — `npx tsc --noEmit` = 0 errors.
+- **Gate 2** — `npm run validate:concepts` PASS + zero canvas-bounds warnings on target.
+- **Gate 3a** — CLAUDE.md §2 mechanical rules: Rule 15 (advance_mode variety), Rule 19 (≥3 primitives/state), Rule 23 (prerequisites advisory).
+- **Gate 3c** — Socratic-reveal discipline — **only if any state has `teaching_method: "narrative_socratic"` (PCPL). Does NOT fire for field_3d diamonds** (all current magnetism/electric diamonds).
+- **Gate 3d** — E42 physics 9-condition check.
+- **Gate 4 (+4a, +4b)** — live visual walk both paths + classifier-reachability + pill freshness. For field_3d diamonds this is `visual:eyes` / direct capture — **actually look at every state.**
+- **Gate 7** — console + log discipline (zero errors/warnings on target routes).
+- **Gate 8** — `engine_bug_queue` regression check ← **the scar list.** Every probe relevant to the candidate must pass. This is the mechanism by which the pre-flight gets smarter every week as the reviewer surfaces new mistake-classes (Phase 3).
+- **Gate 9** — layout overlap (script).
+- **Gate 10** — expression resolution (no `{var}` leak).
+- **Gate 11** — plain-English (no Hinglish; no technical-notation in conceptual mode).
+- **Gate 12** — visual continuity across states.
+- **Gate 13** — animation-vocabulary (no silently-no-op animation types).
+- **Gate 14 (a, c, d, e)** — Pass-1 strategic completeness of the skeleton. **14b (worked JEE-question coverage trace) is DORMANT** — conceptual-only directive defers problem-class coverage.
+- **Gate 15** — Pass-2 four-question per-state cognitive-flow audit. For field_3d this is the sole cognitive check — keep it; it is cheap and catches per-state regressions before the reviewer does.
+- **Anti-plagiarism probe** (CLAUDE.md §8) on ALL `text_en` fields.
+
+**CONDITIONAL — run only if the trigger is present:**
+- **Rule 16 / EPIC-C check** — only if `epic_c_branches` exist (rare this phase; EPIC-L-first).
+- **Rule 20/21 + Gate 3d#9 mode checks** — only if a legacy `mode_overrides` block exists. New diamonds ship conceptual-only; absence = PASS, never FAIL.
+
+**DORMANT THIS PHASE — skip, mark "N/A — deferred"; do NOT run, do NOT FAIL on:**
+- **Gate 5** — deep-dive smoke test (feature deferred; Rule 18 routes to a feedback form).
+- **Gate 6** — drill-down smoke test (deferred until real students).
+- **Gates 16–20** — comprehension keystone (assessment / coverage / quiz). Fire ONLY if the concept carries an `assessment` block — not authored this phase (no students, no comprehension metric). The machine-enforced halves in `conceptJson.ts` still apply automatically IF an assessment block is ever present.
+- **Gate 3b heavy pedagogy lenses** — **3b.i topper and 3b.iii PER-canon/FCI are now ADVISORY only; the real reviewer (Asmi) owns lived pedagogy judgment.** Keep ONLY 3b.ii's two *mechanical* hard-FAILs in the active path: spatial-contiguity >2 violations, and any state with `scene_composition.length > 12` (segmenting overload).
+
+**Verdict routing.** PASS = every ACTIVE gate ✓ (or N/A) with pasted evidence + every state visually looked at. A PASS hands off to founder → reviewer (Asmi); the human class + per-state Excel is the real teaching gate. FAIL still routes to exactly ONE upstream agent with a `[reason: ...]` tag (unchanged — see below).
+
+**Re-activation triggers** (when a dormant layer wakes, this lean list grows back): deep-dive / drill-down / comprehension gates → real students generate data; the full 3b pedagogy panel split into independent adversarial judges → multiple reviewers + several diamonds/week make human review the bottleneck (Finding #3 fix); board/competitive mode gates → modes resume (Rule 20 lifted).
 
 ## Input contract
 
@@ -98,6 +135,8 @@ Any failure on the target = FAIL, route to json_author (bounds) or architect (st
 6. Rule 23 — `prerequisites: [concept_id]` declared as soft advisory, not a gating flag.
 
 **Part 3b — Persona-lens audits (added 2026-05-17, replaces parallel-trio reviewer plan)**
+
+> **PHASE-1 DEMOTION (2026-06-18, see CURRENT-PHASE PRE-FLIGHT).** The heavy pedagogy-judgment lenses — **3b.i (topper)** and **3b.iii (PER-canon / McDermott / FCI)** — are now **ADVISORY ONLY**: surface them as notes, never as FAIL or blocking Concerns. A real teacher (Asmi) with a real student is the pedagogy gate and judges these far better than an AI predicting them. Keep enforcing ONLY the two *mechanical* hard-FAILs from **3b.ii**: spatial-contiguity >2 violations, and any state with `scene_composition.length > 12`. Full 3b reactivates as an independent adversarial panel when human review becomes the bottleneck (Finding #3 trigger). Text below preserved verbatim for that reactivation.
 
 3b is a **pedagogy-judgment** layer. Most findings raise as `Concern` (json-author addresses iteratively); only **(a)** spatial-contiguity >2 violations in 3b.ii and **(b)** segmenting overload (any state with `scene_composition.length > 12`) raise as `FAIL`. Concerns accumulate in the report but don't block ship — PASS-WITH-NOTES is acceptable.
 
@@ -401,6 +440,8 @@ Any state failing >2 of the four checks 15a–15d = FAIL, route to `alex:json_au
 **Dogfood provenance**: validated on Diamond #4 (`magnetic_field_solenoid`) 2026-06-10 — caught a json_author regression (4 of 5 physics-block `pause_after_ms` beats dropped) that no other gate catches, because Gate 3c does not fire on field_3d. See `physics-mind/docs/notes/diamond4-pass2-notes.md`.
 
 ### Gates 16–20 — comprehension keystone (2026-05-30 addition)
+
+> **⛔ DORMANT THIS PHASE (2026-06-18, see CURRENT-PHASE PRE-FLIGHT).** No students, no comprehension metric ⇒ no `assessment` blocks authored this phase, so these gates do not fire. The machine-enforced halves of Gates 19–20 (+ Gate 21) in `conceptJson.ts` `.superRefine` still apply automatically IF an assessment block is ever present — this banner only stands down the auditor's *manual* walk. Reactivates when real students + the comprehension loop come online. Text preserved verbatim.
 
 Fire only when the concept carries an `assessment` block (phase-in carve-out, same pattern as Gate 14). Gates **19 + 20 are machine-enforced** in `src/schemas/conceptJson.ts` `.superRefine` (hard FAIL); the auditor adds the judgment halves below. Gates 16–18 are auditor-judgment now; full machine enforcement is P2. (Gate 15 = Pass-2 four-question audit, now live above.) See `physics-mind/docs/COMPREHENSION_LOOP_PLAN.md`.
 
