@@ -884,6 +884,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    force_on_charge_in_field: {
+        concept_id: 'force_on_charge_in_field',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'force_on_charge_in_field',
+            label: 'Force on a Charge — F = qE (3D)',
+        },
+    },
+
     electric_potential_3d: {
         concept_id: 'electric_potential_3d',
         layout: 'dual_horizontal',

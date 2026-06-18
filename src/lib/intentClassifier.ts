@@ -91,6 +91,10 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // first electrostatics diamond; field_3d point_charge_positive scenario via the
     // electric_explorer dual-field path). Built for reviewer Asmi (2026-06-18).
     'electric_field_point_charge',
+    // Force on a charge placed in an electric field, F = qE (Class 12 Ch.1.7 —
+    // companion/inverse of electric_field_point_charge; field_3d uniform_field_force
+    // scenario: uniform plate field, constant force, parabolic deflection, a = qE/m).
+    'force_on_charge_in_field',
     // Magnetic field of a long straight current-carrying wire + right-hand rule
     // (Class 12 Ch.4.4 — Phase 0 validation demo Sim 3, session 60). First field_3d
     // (Three.js) concept authored end-to-end; routed via CONCEPT_RENDERER_MAP.
@@ -360,6 +364,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
 
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   electric_field_point_charge     ← electric field of a point charge E = kQ/r², radial direction (out for +Q, in for −Q), field lines, line density = field strength, E = F/q
+  force_on_charge_in_field        ← force on a charge placed in a field F = qE, direction by sign (along E for +q, opposite for −q), constant force in a uniform field, a = qE/m, parabolic deflection of a launched charge
 
   ── Moving Charges and Magnetism (Class 12 Ch.4) ──
   magnetic_field_wire             ← B around a straight current-carrying wire, B = μ₀I/(2πr), right-hand rule (thumb = I, fingers = B)
@@ -414,6 +419,7 @@ CRITICAL DISAMBIGUATION (projectiles, Ch.7.6-7.8):
 
 CRITICAL DISAMBIGUATION (electrostatics, Ch.1):
 - "electric field of a point charge" / "E = kQ/r²" / "field due to a charge" / "electric field lines" / "field lines of a positive/negative charge" / "E = F/q" → electric_field_point_charge
+- "force on a charge in a field" / "F = qE" / "force on a charge between plates" / "why does a charge curve in a field" / "charge deflected by an electric field" / "a = qE/m" → force_on_charge_in_field
 
 CRITICAL DISAMBIGUATION (magnetism, Ch.4):
 - "field around a wire" / "B-field of a current-carrying wire" / "right-hand rule for wire" → magnetic_field_wire

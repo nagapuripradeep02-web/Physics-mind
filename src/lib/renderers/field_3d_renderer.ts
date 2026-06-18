@@ -33,7 +33,7 @@ export interface Field3DConfig {
     scenario_type: 'point_charge_positive' | 'point_charge_negative' | 'dipole' |
         'parallel_plates' | 'solenoid_field' | 'bar_magnet' | 'straight_wire_current' |
         'changing_flux' | 'lorentz_force_uniform_field' | 'torque_on_loop_uniform_field' |
-        'biot_savart_element' | 'force_on_current_wire';
+        'biot_savart_element' | 'force_on_current_wire' | 'uniform_field_force';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -4767,6 +4767,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildParallelPlatesField();
                 break;
 
+            case "uniform_field_force":
+                buildForceFieldDiamond();
+                break;
+
             case "solenoid_field":
                 buildSolenoidField();
                 break;
@@ -4991,6 +4995,14 @@ export const FIELD_3D_RENDERER_CODE = `
             applyElectricState(stateDef);
         }
 
+        // Uniform-field force diamond (force_on_charge_in_field, F = qE) —
+        // per-state visibility (charge, F/v arrows, trails, multi-mass charges)
+        // + motion-mode reset. Gated on config.force_field_explorer so nothing
+        // else is touched. The per-frame integrator lives in the animate loop.
+        if (config.force_field_explorer) {
+            applyForceFieldState(stateDef);
+        }
+
         // Sliders + formula overlay visibility — scenario-aware: show the
         // I/r panel for straight_wire_current, the q/v/B/θ panel for
         // lorentz_force_uniform_field, the N/I/B/θ panel for
@@ -5088,6 +5100,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // Rule 24 (sim is the teacher's silent visual): the electric diamond ships
         // with NO on-canvas prose legend — labels live in the 3D scene instead.
         if (config.electric_explorer) { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        if (config.force_field_explorer) { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
 
         var scenario = config.scenario_type;
         var lines = [];
@@ -5247,6 +5260,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // / r̂ / dB all respond to I, r, θ). Delegate and return.
         if (config.scenario_type === "biot_savart_element") { refreshBiotExplorer(); return; }
         if (config.electric_explorer) { refreshElectricExplorer(); return; }
+        if (config.force_field_explorer) { refreshForceFieldExplorer(); return; }
 
         var iSlider = document.getElementById("i_slider");
         var rSlider = document.getElementById("r_slider");
@@ -5512,6 +5526,191 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── Uniform-field force diamond (force_on_charge_in_field, F = qE) ────────
+    //   A charge in a UNIFORM field between two horizontal plates (top +, bottom
+    //   −), E pointing straight DOWN. A constant force F = qE gives a constant
+    //   acceleration a = qE/m, so a charge launched sideways traces a PARABOLA —
+    //   exactly like gravity (the PRIMARY aha, STATE_5). Built once; per-state
+    //   visibility + motion mode are driven by applyForceFieldState + the
+    //   animate-loop integrator. Gated entirely on config.force_field_explorer.
+    var FF_TOP_Y = 1.45, FF_BOT_Y = -1.45;     // plate y-positions (E spans the gap)
+    var FF_PLATE_W = 3.8, FF_PLATE_D = 2.4;    // plate size (x, z)
+    var ffSign = 1;                            // current charge sign (+1 / −1)
+    // Slider-driven values for the STATE_7 explorer (read by the integrator).
+    var ffExpAccel = 0.55, ffExpFy = -1, ffExpFLen = 0.95;
+
+    function ffFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+        }
+        return null;
+    }
+
+    function ffMakeTrail(id, color) {
+        var maxPts = 600;
+        var g = new THREE.BufferGeometry();
+        var arr = new Float32Array(maxPts * 3);
+        g.setAttribute("position", new THREE.BufferAttribute(arr, 3));
+        g.setDrawRange(0, 0);
+        var mat = new THREE.LineBasicMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 0.9 });
+        var line = new THREE.Line(g, mat);
+        line.userData = { elementType: "particle_trail", id: id, max_points: maxPts, filled: 0, write_index: 0, ff_last_phase: 0 };
+        addToScene(line);
+        return line;
+    }
+
+    function buildForceFieldDiamond() {
+        var posColor = (config.pvl_colors && config.pvl_colors.positive) || "#EF5350";
+        var negColor = (config.pvl_colors && config.pvl_colors.negative) || "#42A5F5";
+        var flColor = (config.field_lines && config.field_lines.color_positive) || "#7EA6FF";
+        var chColor = "#FFF176";
+
+        // Plates (thin in Y): top = + (red), bottom = − (blue).
+        var topPlate = new THREE.Mesh(
+            new THREE.BoxGeometry(FF_PLATE_W, 0.06, FF_PLATE_D),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(posColor), transparent: true, opacity: 0.5 }));
+        topPlate.position.set(0, FF_TOP_Y, 0);
+        topPlate.userData = { elementType: "ff_plate", id: "ff_plate_top" };
+        addToScene(topPlate);
+        var botPlate = new THREE.Mesh(
+            new THREE.BoxGeometry(FF_PLATE_W, 0.06, FF_PLATE_D),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(negColor), transparent: true, opacity: 0.5 }));
+        botPlate.position.set(0, FF_BOT_Y, 0);
+        botPlate.userData = { elementType: "ff_plate", id: "ff_plate_bot" };
+        addToScene(botPlate);
+        var topMark = createLabelSprite("+", posColor, 0.5);
+        topMark.position.set(-FF_PLATE_W / 2 - 0.25, FF_TOP_Y, 0);
+        topMark.userData = { elementType: "ff_plate", id: "ff_mark_top" };
+        addToScene(topMark);
+        var botMark = createLabelSprite("\\u2212", negColor, 0.5);
+        botMark.position.set(-FF_PLATE_W / 2 - 0.25, FF_BOT_Y, 0);
+        botMark.userData = { elementType: "ff_plate", id: "ff_mark_bot" };
+        addToScene(botMark);
+
+        // Uniform field lines (vertical, pointing DOWN) on a grid.
+        var nx = 4, nz = 3;
+        for (var ix = 0; ix < nx; ix++) {
+            for (var iz = 0; iz < nz; iz++) {
+                var x = ((ix + 0.5) / nx - 0.5) * (FF_PLATE_W * 0.78);
+                var z = ((iz + 0.5) / nz - 0.5) * (FF_PLATE_D * 0.7);
+                var fline = createTubeLine([[x, FF_TOP_Y - 0.1, z], [x, FF_BOT_Y + 0.1, z]], flColor, 0.015);
+                if (fline) { fline.userData = { elementType: "ff_field", id: "ff_fl_" + ix + "_" + iz }; addToScene(fline); }
+                var farr = createArrowHead([x, 0.0, z], [0, -1, 0], flColor);
+                farr.userData = { elementType: "ff_field", id: "ff_arr_" + ix + "_" + iz };
+                addToScene(farr);
+            }
+        }
+        var eLbl = createLabelSprite("E", flColor, 0.5);
+        eLbl.position.set(FF_PLATE_W * 0.30, 0.55, FF_PLATE_D * 0.33);
+        eLbl.userData = { elementType: "ff_field", id: "ff_e_lbl" };
+        addToScene(eLbl);
+
+        // Main charge + its F and v arrows + label + trail.
+        var charge = createChargeSphere([0, 0.3, 0], chColor, 0.16);
+        charge.userData = { elementType: "ff_charge", id: "ff_charge" };
+        addToScene(charge);
+        var qLbl = createLabelSprite("q", chColor, 0.45);
+        qLbl.position.set(0, 0.66, 0);
+        qLbl.userData = { elementType: "ff_charge", id: "ff_q_lbl" };
+        addToScene(qLbl);
+        var fArrow = new THREE.ArrowHelper(new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, 0.3, 0), 0.95, 0x66BB6A, 0.24, 0.14);
+        fArrow.userData = { elementType: "ff_force", id: "ff_f_arrow" };
+        addToScene(fArrow);
+        var fLbl = createLabelSprite("F = qE", "#66BB6A", 0.46);
+        fLbl.position.set(0.6, -0.2, 0);
+        fLbl.userData = { elementType: "ff_force", id: "ff_f_lbl" };
+        addToScene(fLbl);
+        var vArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0.3, 0), 0.9, 0xFFAB40, 0.22, 0.12);
+        vArrow.userData = { elementType: "ff_vel", id: "ff_v_arrow" };
+        addToScene(vArrow);
+        var vLbl = createLabelSprite("v", "#FFAB40", 0.44);
+        vLbl.userData = { elementType: "ff_vel", id: "ff_v_lbl" };
+        addToScene(vLbl);
+        ffMakeTrail("ff_trail", chColor);
+
+        // STATE_6 multi-mass: a light charge (whips, sharp curve) + a heavy charge
+        // (barely curves) — SAME force F = qE, different mass → a = qE/m.
+        var lightCh = createChargeSphere([0, 0.3, 0], "#A5D6A7", 0.12);
+        lightCh.userData = { elementType: "ff_mass", id: "ff_charge_light" };
+        addToScene(lightCh);
+        var lightLbl = createLabelSprite("light m", "#A5D6A7", 0.38);
+        lightLbl.userData = { elementType: "ff_mass", id: "ff_light_lbl" };
+        addToScene(lightLbl);
+        ffMakeTrail("ff_trail_light", "#A5D6A7");
+        var heavyCh = createChargeSphere([0, 0.3, 0], "#EF9A9A", 0.22);
+        heavyCh.userData = { elementType: "ff_mass", id: "ff_charge_heavy" };
+        addToScene(heavyCh);
+        var heavyLbl = createLabelSprite("heavy m", "#EF9A9A", 0.38);
+        heavyLbl.userData = { elementType: "ff_mass", id: "ff_heavy_lbl" };
+        addToScene(heavyLbl);
+        ffMakeTrail("ff_trail_heavy", "#EF9A9A");
+    }
+
+    function applyForceFieldState(stateDef) {
+        if (!stateDef) return;
+        var mode = stateDef.motion_mode || "rest";
+        ffSign = (stateDef.ff_sign != null) ? stateDef.ff_sign : 1;
+        var showMain = (mode !== "launch_parabola_multimass");
+        var showArrows = (mode === "rest" || mode === "accelerate_straight" || mode === "launch_parabola" || mode === "explorer");
+        var showV = (mode === "accelerate_straight" || mode === "launch_parabola" || mode === "explorer");
+        var showTrailMain = showV;
+        var showMass = (mode === "launch_parabola_multimass");
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i]; var ud = o.userData;
+            if (!ud || !ud.id) continue;
+            var et = ud.elementType;
+            if (et === "ff_plate" || et === "ff_field") { o.visible = true; }
+            else if (ud.id === "ff_charge" || ud.id === "ff_q_lbl") { o.visible = showMain; }
+            else if (et === "ff_force") { o.visible = showMain && showArrows; }
+            else if (et === "ff_vel") { o.visible = showMain && showV; }
+            else if (ud.id === "ff_trail") { o.visible = showMain && showTrailMain; }
+            else if (et === "ff_mass") { o.visible = showMass; }
+            else if (ud.id === "ff_trail_light" || ud.id === "ff_trail_heavy") { o.visible = showMass; }
+        }
+
+        // Park the main charge + F arrow at the rest position for non-motion states.
+        if (mode === "rest") {
+            var fy = -ffSign;                 // +q → F down (E is down); −q → F up
+            var rp = [0, 0.3, 0];
+            var ch = ffFindById("ff_charge"); if (ch) ch.position.set(rp[0], rp[1], rp[2]);
+            var ql = ffFindById("ff_q_lbl"); if (ql) ql.position.set(rp[0], rp[1] + 0.36, rp[2]);
+            var fa = ffFindById("ff_f_arrow");
+            if (fa) { fa.position.set(rp[0], rp[1], rp[2]); fa.setDirection(new THREE.Vector3(0, fy, 0)); fa.setLength(0.95, 0.24, 0.14); }
+            var flb = ffFindById("ff_f_lbl"); if (flb) flb.position.set(rp[0] + 0.6, rp[1] + fy * 0.6, rp[2]);
+        }
+    }
+
+    function refreshForceFieldExplorer() {
+        var qS = document.getElementById("ff_q_slider");
+        var eS = document.getElementById("ff_e_slider");
+        var mS = document.getElementById("ff_m_slider");
+        var scQ = (config.slider_controls && config.slider_controls.q) || {};
+        var scE = (config.slider_controls && config.slider_controls.E) || {};
+        var scM = (config.slider_controls && config.slider_controls.m) || {};
+        var q = qS ? parseFloat(qS.value) : (scQ.default != null ? scQ.default : 5);
+        var E = eS ? parseFloat(eS.value) : (scE.default != null ? scE.default : 5);
+        var m = mS ? parseFloat(mS.value) : (scM.default != null ? scM.default : 5);
+        var sign = ffSign;
+        var F = q * E;                         // µN  (q[nC] × E[kN/C])
+        var aRel = (q * E) / m;                // relative acceleration units
+
+        // Drive the integrator (explorer mode reads these every frame).
+        var aRef = (5 * 5) / 5;                // default reference (q=5,E=5,m=5) = 5
+        ffExpAccel = Math.max(0.12, Math.min(1.6, 0.55 * (aRel / aRef)));
+        ffExpFy = -sign;
+        ffExpFLen = 0.45 + 1.25 * Math.tanh(0.5 * (F / 25));
+
+        var qVal = document.getElementById("ff_q_val");
+        var eVal = document.getElementById("ff_e_val");
+        var mVal = document.getElementById("ff_m_val");
+        var out = document.getElementById("ff_readout");
+        if (qVal) qVal.textContent = (sign > 0 ? "+" : "\\u2212") + Math.round(q);
+        if (eVal) eVal.textContent = String(Math.round(E));
+        if (mVal) mVal.textContent = String(Math.round(m));
+        if (out) out.innerHTML = "F = qE = " + F.toFixed(0) + " \\u00b5N<br>a = qE/m = " + aRel.toFixed(1);
+    }
+
     function setupSliders() {
         var iSlider = document.getElementById("i_slider");
         var rSlider = document.getElementById("r_slider");
@@ -5657,6 +5856,43 @@ export const FIELD_3D_RENDERER_CODE = `
                     refreshElectricExplorer();
                 });
                 refreshElectricExplorer();
+            }
+        }
+
+        // ── Uniform-field force explorer (STATE_7): q, sign, E, m → F = qE, a = qE/m ──
+        //   Rebuild the #sliders panel with charge / field / mass sliders + a
+        //   sign-flip button; all drive refreshForceFieldExplorer (real F = qE,
+        //   a = qE/m) and the animate-loop parabola.
+        if (config.force_field_explorer) {
+            var ffPanel = document.getElementById("sliders");
+            if (ffPanel) {
+                var sQ = (config.slider_controls && config.slider_controls.q) || {};
+                var sE = (config.slider_controls && config.slider_controls.E) || {};
+                var sM = (config.slider_controls && config.slider_controls.m) || {};
+                var qD = sQ.default != null ? sQ.default : 5, qMn = sQ.min != null ? sQ.min : 1, qMx = sQ.max != null ? sQ.max : 10, qSt = sQ.step != null ? sQ.step : 1;
+                var eD = sE.default != null ? sE.default : 5, eMn = sE.min != null ? sE.min : 1, eMx = sE.max != null ? sE.max : 10, eSt = sE.step != null ? sE.step : 1;
+                var mD = sM.default != null ? sM.default : 5, mMn = sM.min != null ? sM.min : 1, mMx = sM.max != null ? sM.max : 10, mSt = sM.step != null ? sM.step : 1;
+                ffPanel.innerHTML =
+                    '<label>q = <span id="ff_q_val">+' + Math.round(qD) + '</span> nC</label>' +
+                    '<input type="range" id="ff_q_slider" min="' + qMn + '" max="' + qMx + '" step="' + qSt + '" value="' + qD + '">' +
+                    '<button id="ff_sign_toggle" style="margin:6px 0;padding:4px 10px;cursor:pointer;border-radius:4px;border:1px solid #555;background:#222;color:#eee;">flip sign (+/\\u2212)</button>' +
+                    '<label>E = <span id="ff_e_val">' + Math.round(eD) + '</span> kN/C</label>' +
+                    '<input type="range" id="ff_e_slider" min="' + eMn + '" max="' + eMx + '" step="' + eSt + '" value="' + eD + '">' +
+                    '<label>m = <span id="ff_m_val">' + Math.round(mD) + '</span> units</label>' +
+                    '<input type="range" id="ff_m_slider" min="' + mMn + '" max="' + mMx + '" step="' + mSt + '" value="' + mD + '">' +
+                    '<div id="ff_readout">F = qE<br>a = qE/m</div>';
+                var ffQS = document.getElementById("ff_q_slider");
+                var ffES = document.getElementById("ff_e_slider");
+                var ffMS = document.getElementById("ff_m_slider");
+                var ffTog = document.getElementById("ff_sign_toggle");
+                if (ffQS) ffQS.addEventListener("input", refreshForceFieldExplorer);
+                if (ffES) ffES.addEventListener("input", refreshForceFieldExplorer);
+                if (ffMS) ffMS.addEventListener("input", refreshForceFieldExplorer);
+                if (ffTog) ffTog.addEventListener("click", function () {
+                    ffSign = (ffSign > 0 ? -1 : 1);
+                    refreshForceFieldExplorer();
+                });
+                refreshForceFieldExplorer();
             }
         }
 
@@ -5968,6 +6204,102 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (lud5.id.indexOf("fl_q_plus") !== 0 || !lud5.unitDir || !lo5.material) continue;
                 var ang5 = Math.acos(Math.max(-1, Math.min(1, lud5.unitDir[0])));
                 lo5.material.opacity = (ang5 < reach5) ? (0.95 * pulse5) : 0.12;
+            }
+        }
+
+        // Uniform-field force diamond (force_on_charge_in_field) — per-frame
+        // motion. Constant force F = qE → constant acceleration a = qE/m.
+        // STATE_4 straight drop, STATE_5 sideways launch → PARABOLA (the gravity
+        // analogy, PRIMARY aha), STATE_6 same F / different mass, STATE_7
+        // slider-driven. Driven by the state clock (Rule 26), never TTS.
+        if (config.scenario_type === "uniform_field_force") {
+            var ffSt = config.states[PM_currentState] || {};
+            var ffMode = ffSt.motion_mode || "rest";
+            var ffTL = time - stateStartTime;
+
+            var ffPush = function (trailObj, x, y, z) {
+                var ud = trailObj.userData; var maxP = ud.max_points;
+                var attr = trailObj.geometry.getAttribute("position");
+                var wi = ud.write_index || 0;
+                if (wi >= maxP) return;
+                attr.array[wi * 3] = x; attr.array[wi * 3 + 1] = y; attr.array[wi * 3 + 2] = z;
+                ud.write_index = wi + 1; ud.filled = ud.write_index;
+                trailObj.geometry.setDrawRange(0, ud.filled);
+                attr.needsUpdate = true;
+            };
+            var ffResetTrail = function (trailObj) {
+                if (!trailObj) return;
+                trailObj.userData.write_index = 0; trailObj.userData.filled = 0;
+                trailObj.geometry.setDrawRange(0, 0);
+            };
+
+            if (ffMode === "accelerate_straight" || ffMode === "launch_parabola" || ffMode === "explorer") {
+                var aVis, vx, startX, fy, fLen;
+                if (ffMode === "explorer") {
+                    aVis = ffExpAccel; vx = 1.15; startX = -1.7; fy = ffExpFy; fLen = ffExpFLen;
+                } else if (ffMode === "launch_parabola") {
+                    aVis = 0.55; vx = 1.2; startX = -1.7; fy = -ffSign; fLen = 0.95;
+                } else {
+                    aVis = 1.6; vx = 0; startX = 0; fy = -ffSign; fLen = 0.95;
+                }
+                var startY = (fy < 0) ? 1.15 : -1.15;     // start near the plate the charge moves away from
+                var period = (ffMode === "accelerate_straight") ? 3.4 : 4.4;
+                var ph = ffTL % period;
+                var tr = ffFindById("ff_trail");
+                if (tr) {
+                    if (ph < (tr.userData.ff_last_phase || 0)) ffResetTrail(tr);
+                    tr.userData.ff_last_phase = ph;
+                }
+                var rawX = startX + vx * ph;
+                var rawY = startY + fy * 0.5 * aVis * ph * ph;
+                var cy = Math.max(FF_BOT_Y + 0.18, Math.min(FF_TOP_Y - 0.18, rawY));
+                var cx = Math.max(-1.85, Math.min(1.85, rawX));
+                var moving = (cy === rawY) && (cx === rawX);
+
+                var ch = ffFindById("ff_charge");
+                if (ch) ch.position.set(cx, cy, 0);
+                var ql = ffFindById("ff_q_lbl"); if (ql) ql.position.set(cx, cy + 0.36, 0);
+                var fa = ffFindById("ff_f_arrow");
+                if (fa) { fa.position.set(cx, cy, 0); fa.setDirection(new THREE.Vector3(0, fy, 0)); fa.setLength(fLen, 0.24, 0.14); }
+                var flb = ffFindById("ff_f_lbl"); if (flb) flb.position.set(cx + 0.62, cy + fy * 0.5, 0);
+
+                var vyc = fy * aVis * ph;                  // dy/dt
+                var sp = Math.sqrt(vx * vx + vyc * vyc);
+                var va = ffFindById("ff_v_arrow");
+                if (va && sp > 1e-4) {
+                    va.position.set(cx, cy, 0);
+                    va.setDirection(new THREE.Vector3(vx / sp, vyc / sp, 0));
+                    va.setLength(Math.min(1.4, 0.35 + 0.55 * sp), 0.22, 0.12);
+                }
+                var vlb = ffFindById("ff_v_lbl");
+                if (vlb && sp > 1e-4) vlb.position.set(cx + (vx / sp) * 1.05 + 0.12, cy + (vyc / sp) * 0.6 + 0.34, 0);
+
+                if (moving && tr) ffPush(tr, cx, cy, 0);
+            } else if (ffMode === "launch_parabola_multimass") {
+                var periodM = 4.4;
+                var phM = ffTL % periodM;
+                var fyM = -ffSign;
+                var startYM = (fyM < 0) ? 1.15 : -1.15;
+                var vxM = 1.2, startXM = -1.7;
+                var defsM = [
+                    { id: "ff_charge", trail: "ff_trail", a: 0.55, lbl: null },
+                    { id: "ff_charge_light", trail: "ff_trail_light", a: 0.95, lbl: "ff_light_lbl" },
+                    { id: "ff_charge_heavy", trail: "ff_trail_heavy", a: 0.30, lbl: "ff_heavy_lbl" }
+                ];
+                for (var mI = 0; mI < defsM.length; mI++) {
+                    var dM = defsM[mI];
+                    var trM = ffFindById(dM.trail);
+                    if (trM && phM < (trM.userData.ff_last_phase || 0)) ffResetTrail(trM);
+                    var rxM = startXM + vxM * phM;
+                    var ryM = startYM + fyM * 0.5 * dM.a * phM * phM;
+                    var cyM = Math.max(FF_BOT_Y + 0.18, Math.min(FF_TOP_Y - 0.18, ryM));
+                    var cxM = Math.max(-1.85, Math.min(1.85, rxM));
+                    var movM = (cyM === ryM) && (cxM === rxM);
+                    var chM = ffFindById(dM.id); if (chM) chM.position.set(cxM, cyM, 0);
+                    if (dM.lbl) { var lblM = ffFindById(dM.lbl); if (lblM) lblM.position.set(cxM - 0.62, cyM + 0.12, 0); }
+                    if (movM && trM) ffPush(trM, cxM, cyM, 0);
+                    if (trM) trM.userData.ff_last_phase = phM;
+                }
             }
         }
 

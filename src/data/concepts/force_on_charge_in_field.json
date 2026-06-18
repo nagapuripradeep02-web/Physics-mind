@@ -1,0 +1,673 @@
+{
+  "concept_id": "force_on_charge_in_field",
+  "concept_name": "Force on a Charge in an Electric Field (F = qE)",
+  "chapter": 1,
+  "section": "1.7",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.1 Electric Charges and Fields (§1.7 Electric Field, force on a charge) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (define the force from E = F/q rearranged → direction set by the sign of q → magnitude F = qE → constant force gives constant acceleration a = qE/m → a sideways launch curves into a parabola, exactly like gravity → mass changes the curvature, not the force), never copied. The atomic idea: a charge q placed in a field E feels a force F = qE — along E for +q, opposite E for −q; because the field between parallel plates is uniform, that force is constant, so the charge moves like a projectile under gravity and a sideways launch traces a parabola. The companion/inverse of electric_field_point_charge (which builds the field; this one feels it). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a). field_3d renderer, new uniform_field_force scenario.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "uniform_field_force"
+    ]
+  },
+  "prerequisites": [
+    "electric_field_point_charge"
+  ],
+  "real_world_anchor": {
+    "primary": "An inkjet printer fires tiny charged ink droplets between two charged plates. The uniform field between the plates pushes each droplet sideways with a constant force F = qE, curving its path into a parabola so it lands on exactly the right spot on the page. Change the charge on a droplet and you change where it lands — that is how the printer steers ink without any moving nozzle.",
+    "secondary": "An old CRT television steers a beam of electrons the same way. The electrons pass between charged plates, feel a constant sideways force F = qE, and bend into a parabola to hit the right point on the screen — sweeping fast enough to paint the whole picture, line by line.",
+    "tertiary": "An electrostatic precipitator in an Indian coal thermal power plant charges the ash particles in the flue gas, then a strong field pulls each charged speck sideways with F = qE onto a collecting plate — cleaning the smoke before it leaves the chimney. Same law, industrial scale."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "q": {
+        "name": "Charge placed in the field",
+        "unit": "nC",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "E": {
+        "name": "Uniform field strength",
+        "unit": "kN/C",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "m": {
+        "name": "Mass of the charge (relative)",
+        "unit": "units",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "F_force": {
+        "formula": "(q * 1e-9) * (E * 1e3)"
+      },
+      "a_acceleration": {
+        "formula": "((q * 1e-9) * (E * 1e3)) / m"
+      }
+    },
+    "formulas": {
+      "force_definition": "F = q E  (rearranged from the field definition E = F / q)",
+      "direction": "F is along E for a positive charge, opposite to E for a negative charge",
+      "acceleration": "a = F / m = q E / m  (constant, because E is uniform)",
+      "trajectory": "a sideways launch traces a parabola — constant force, exactly like projectile motion under gravity"
+    },
+    "constraints": [
+      "F = qE depends on the charge and the field only — it does NOT depend on the charge's velocity (unlike the magnetic force qv×B, the electric force acts even on a charge at rest)",
+      "Between parallel plates the field is uniform, so the force F = qE is constant in size and direction everywhere in the gap",
+      "A constant force gives a constant acceleration a = qE/m — the charge moves like a projectile under gravity",
+      "The force F always points along E (for +q); the velocity can point any way, so the force direction and the motion direction are generally different",
+      "Doubling the charge or the field doubles the force; a heavier mass gives a smaller acceleration for the same force (a = qE/m)"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Constant force F = qE bends a sideways launch into a parabola, like gravity.",
+    "visual_confirmation": "Launch the charge across the field; the green force stays fixed downward while the path bends into a parabola, just like a ball thrown sideways under gravity."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "representation": [
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "A Charge in a Field Feels a Force — F = qE",
+        "duration": 13,
+        "focal_primitive_id": "force_def_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_label",
+            "position": {
+              "x": 600,
+              "y": 120
+            },
+            "text": "uniform E",
+            "color": "#7EA6FF"
+          },
+          {
+            "type": "annotation",
+            "id": "charge_label",
+            "position": {
+              "x": 360,
+              "y": 250
+            },
+            "text": "charge q",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "force_def_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "F = q E",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Here is a uniform electric field between two charged plates — every field line points the same way, straight down."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Place a positive charge q in it. The field grabs the charge and pushes it with a force F."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "We already know E equals F over q. Rearrange it: the force on the charge is F equals q times E."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "So the field is not just a picture — it is what pushes any charge you place inside it."
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Sign Sets the Direction — Flip q to Negative",
+        "duration": 14,
+        "focal_primitive_id": "sign_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sign_label",
+            "position": {
+              "x": 360,
+              "y": 120
+            },
+            "text": "−q",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "up_label",
+            "position": {
+              "x": 540,
+              "y": 250
+            },
+            "text": "F points UP",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "+q: along E · −q: opposite E",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Before I change anything — predict. If the charge is negative, which way does the force point?"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Watch the force arrow. For a negative charge it flips and points UP — opposite to the field."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "The size F equals q E is unchanged. Only the direction reversed, because the sign of q reversed."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Positive charge: force along E. Negative charge: force opposite E. The sign owns the direction."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A negative charge feels no force in a field, or feels a force in the same direction as a positive charge",
+            "visual_counter": "Flip q negative and watch the force arrow reverse to point up, opposite the field — same size, opposite direction.",
+            "one_line_fix": "F = qE: the force is along E for +q and opposite E for −q; the magnitude qE is the same."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "How Big? — F = qE Scales with q and E",
+        "duration": 13,
+        "focal_primitive_id": "magnitude_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "charge3_label",
+            "position": {
+              "x": 360,
+              "y": 120
+            },
+            "text": "+q",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "force3_label",
+            "position": {
+              "x": 540,
+              "y": 270
+            },
+            "text": "F",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "magnitude_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "double q ⇒ double F",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "How big is the push? The force is F equals q times E — nothing else."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Double the charge and the force doubles. The field has twice as much charge to pull on."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Move to a stronger field — denser field lines — and the same charge feels a bigger force."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "There is no velocity in this formula. A charge sitting perfectly still still feels the full force qE."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Constant Force, Constant Acceleration — a = qE/m",
+        "duration": 14,
+        "focal_primitive_id": "accel_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "release_label",
+            "position": {
+              "x": 360,
+              "y": 120
+            },
+            "text": "released from rest",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "vel_label",
+            "position": {
+              "x": 540,
+              "y": 300
+            },
+            "text": "v grows",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "accel_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "a = qE / m",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now let the charge go from rest. The force is constant, so the charge accelerates straight along the field."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Newton's law gives the acceleration: a equals F over m, which is q E over m."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The force arrow stays the same length the whole way — but the velocity keeps growing."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "This is exactly free fall, but with the electric force qE playing the role of gravity."
+            }
+          ]
+        },
+        "allow_deep_dive": true
+      },
+      "STATE_5": {
+        "title": "Launch It Sideways — the Path Is a Parabola",
+        "duration": 16,
+        "focal_primitive_id": "parabola_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "launch_label",
+            "position": {
+              "x": 360,
+              "y": 120
+            },
+            "text": "launched sideways",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "force5_label",
+            "position": {
+              "x": 560,
+              "y": 300
+            },
+            "text": "F stays down",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "parabola_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "constant F ⇒ parabola",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Now launch the charge sideways across the field. Predict — what shape will its path be?"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Watch. The force stays fixed, pointing along the field, while the path bends into a parabola."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The force never points where the charge is going. It is sideways to the motion, yet it curves the path."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "This is exactly a ball thrown sideways under gravity. A constant force always gives a parabola."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The force pushes the charge along its direction of motion, so the charge speeds straight down the field line it sits on",
+            "visual_counter": "Launch the charge sideways; the green force stays fixed downward while the velocity points along the curving path — force and motion are clearly different directions.",
+            "one_line_fix": "F = qE sets the force direction (along E), not the motion direction; a constant sideways force bends the path into a parabola."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Same Force, Different Mass — a = qE/m",
+        "duration": 14,
+        "focal_primitive_id": "mass_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "light_label",
+            "position": {
+              "x": 380,
+              "y": 200
+            },
+            "text": "light m → sharp curve",
+            "color": "#A5D6A7"
+          },
+          {
+            "type": "annotation",
+            "id": "heavy_label",
+            "position": {
+              "x": 560,
+              "y": 330
+            },
+            "text": "heavy m → gentle curve",
+            "color": "#EF9A9A"
+          },
+          {
+            "type": "annotation",
+            "id": "mass_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "same F · a = qE / m",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Send in two charges with the same charge and the same field — but different masses."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "They feel the exact same force F equals q E. But watch their paths split apart."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The light one whips into a sharp curve. The heavy one barely bends. Same force, different acceleration."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Because a equals q E over m: a bigger mass gives a smaller acceleration for the very same force."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A bigger charge or a stronger field always makes the charge move faster, regardless of its mass",
+            "visual_counter": "Two charges with identical q and E but different mass curve by different amounts — the heavier one accelerates less.",
+            "one_line_fix": "The force is qE, but the motion is a = qE/m — mass matters: heavier means less acceleration for the same force."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_7": {
+        "title": "Explore — Drive q, Sign, Field and Mass",
+        "duration": 16,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": {
+              "x": 360,
+              "y": 120
+            },
+            "text": "drag the sliders",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "live_force_label",
+            "position": {
+              "x": 560,
+              "y": 300
+            },
+            "text": "F = qE",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_formula",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "a = qE / m",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now you drive it. Change the charge, flip its sign, change the field strength and the mass."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Watch the force F equals q E grow and flip, and watch the parabola tighten or stretch."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "A bigger charge or field steepens the curve; a bigger mass flattens it — that is a equals q E over m."
+            },
+            {
+              "id": "s7_4",
+              "text_en": "One law runs all of it: the force is q E, and the motion is q E divided by the mass."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "uniform_field_force",
+    "force_field_explorer": true,
+    "field_lines": {
+      "count": 12,
+      "color_positive": "#7EA6FF",
+      "color_negative": "#42A5F5",
+      "opacity": 0.7,
+      "arrow_spacing": 5
+    },
+    "slider_controls": {
+      "q": {
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "label": "Charge q"
+      },
+      "E": {
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "label": "Field E"
+      },
+      "m": {
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "label": "Mass m"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A charge in a field feels a force — F = qE",
+        "visible_elements": [],
+        "camera_position": [
+          1.7,
+          0.8,
+          4.7
+        ],
+        "caption": "",
+        "motion_mode": "rest",
+        "ff_sign": 1,
+        "formula_overlay": "F = qE"
+      },
+      "STATE_2": {
+        "label": "Sign sets direction — flip to −q",
+        "visible_elements": [],
+        "camera_position": [
+          1.7,
+          0.8,
+          4.7
+        ],
+        "caption": "",
+        "motion_mode": "rest",
+        "ff_sign": -1,
+        "formula_overlay": "−q: F points opposite E"
+      },
+      "STATE_3": {
+        "label": "How big — F = qE scales with q and E",
+        "visible_elements": [],
+        "camera_position": [
+          1.6,
+          0.7,
+          4.6
+        ],
+        "caption": "",
+        "motion_mode": "rest",
+        "ff_sign": 1,
+        "formula_overlay": "F = qE   (double q ⇒ double F)"
+      },
+      "STATE_4": {
+        "label": "Constant force ⇒ constant acceleration",
+        "visible_elements": [],
+        "camera_position": [
+          1.4,
+          0.4,
+          4.9
+        ],
+        "caption": "",
+        "motion_mode": "accelerate_straight",
+        "ff_sign": 1,
+        "formula_overlay": "a = qE / m"
+      },
+      "STATE_5": {
+        "label": "Sideways launch ⇒ parabola (PRIMARY aha)",
+        "visible_elements": [],
+        "camera_position": [
+          0.7,
+          0.3,
+          5.6
+        ],
+        "caption": "",
+        "motion_mode": "launch_parabola",
+        "ff_sign": 1,
+        "formula_overlay": "constant F  ⇒  parabola (like gravity)"
+      },
+      "STATE_6": {
+        "label": "Same force, different mass — a = qE/m",
+        "visible_elements": [],
+        "camera_position": [
+          0.6,
+          0.3,
+          5.7
+        ],
+        "caption": "",
+        "motion_mode": "launch_parabola_multimass",
+        "ff_sign": 1,
+        "formula_overlay": "same F  ·  a = qE / m"
+      },
+      "STATE_7": {
+        "label": "Free explore — q, sign, field, mass",
+        "visible_elements": [],
+        "camera_position": [
+          1.0,
+          0.5,
+          5.6
+        ],
+        "caption": "",
+        "motion_mode": "explorer",
+        "ff_sign": 1,
+        "show_sliders": true,
+        "formula_overlay": "F = qE   ·   a = qE / m"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#7EA6FF"
+    }
+  }
+}

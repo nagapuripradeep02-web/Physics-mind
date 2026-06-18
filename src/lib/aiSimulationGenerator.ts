@@ -2776,6 +2776,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     // Field 3D concepts — all routed to the field_3d (Three.js) renderer
     electric_field_lines:           "field_3d",
     electric_field_point_charge:    "field_3d",
+    force_on_charge_in_field:       "field_3d",
     electric_potential_3d:          "field_3d",
     parallel_plate_capacitor_field: "field_3d",
     magnetic_field_solenoid:        "field_3d",
