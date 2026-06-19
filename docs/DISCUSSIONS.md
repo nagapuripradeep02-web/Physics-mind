@@ -5,6 +5,64 @@ Updated every session. Most recent entry at the top.
 
 ---
 
+## Session 73 — GTM strategy pivot: B2B India abandoned; teacher co-development partnerships + student pilot → direct B2C launch (2026-06-20)
+
+> Context: EXIST grant consultation appointment booked for June 22, 2PM. Original EXIST application described a B2B/B2B2C India strategy. That strategy has materially changed and this session locked the replacement before the consultation.
+
+### Decision — Kill the B2B sales motion entirely. Teacher partnerships are co-development relationships, not a revenue track.
+
+The B2B/B2B2C India strategy (Sessions 61–65) assumed: build quality sims → sell to institutes/teachers → they pay → students use → data accumulates. Two reasons it's dead:
+
+1. **It validates the wrong product.** B2B validates "sim as teacher visual aid" (teacher is the customer). UAE B2C needs "AI professor autonomous with the student" (student is the customer). These are different products. A year of B2B sales does not prove the AI professor works without a teacher present.
+2. **It generates the wrong data.** B2B telemetry = teacher usage patterns. What's needed = student doubt logs + comprehension signals + AI professor coverage gaps. The co-development teacher partnerships produce exactly that, at zero sales cost.
+
+| Role | Old model | New model |
+|---|---|---|
+| Teachers (Asmi + reviewers) | Future paying B2B customers | Co-development partners. Contribute: per-state sim review + screen recordings with students |
+| Students of reviewer teachers | Future B2B2C end-users | Free pilot users. Contribute: doubt logs + feedback while using the AI professor |
+| Revenue bridge | B2B institute deals | EXIST grant (€25k, non-dilutive) |
+| First paying customers | Indian institutes | Students in India + UAE (B2C, Q1 2027) |
+
+### Student pilot design (ground reality)
+
+**Who:** 20–30 students drawn from Asmi's and 1–2 other reviewer teachers' existing classes. NOT cold-recruited strangers — the teacher's trust relationship is the onboarding mechanism.
+
+**What they get:** Free access to the AI professor + sims for 2–3 months. For a JEE student paying ₹2,000–5,000/month for tuition, this is genuinely valuable — no payment needed from them.
+
+**What we get from them:** (1) Doubt logs — every question asked, whether AI answered or fell through → unmissed clusters. (2) State dwell time + drop-off points → authoring gaps. (3) Comprehension check questions → actual learning signal. (4) Fallthrough questions → become new doubt bundles next sprint.
+
+**Quality floor before pilot opens:** One chapter (magnetism, 5 diamonds) fully reviewed by Asmi + content library authored (narration scripts + doubt bundles covering ~70% of predicted questions). AI professor can narrate states + answer the majority of student questions. Fallthrough path: "Good question — I'll flag that for your teacher" (logged, never silence or hallucination).
+
+**Chapter rollout rhythm:** One chapter ships when it is COMPLETE — all diamonds reviewed, narration scripts authored, doubt bundles at ~70% coverage. ~2–3 months per chapter. Do not rush to weekly cadence — quality is the moat.
+
+### Realistic timeline to public release
+
+| Phase | What | When |
+|---|---|---|
+| Teacher review phase | Asmi + 1–2 reviewers review magnetism + electrostatics; screen recordings extracted; content library authored | June–August 2026 |
+| AI professor substrate | Voice narration + sim state control + doubt answering working for magnetism | August–September 2026 |
+| Student pilot — first cohort | 8–10 of Asmi's students, magnetism chapter, Asmi available as fallback | September–October 2026 |
+| Pilot expansion | 20–30 students, 2nd reviewer's students, electrostatics added | November–December 2026 |
+| Public B2C launch — India + UAE | Magnetism + electrostatics at full quality, AI professor working | Q1 2027 (target: February) |
+
+### Geography: India + UAE simultaneously at first public release
+
+Not UK, not US. UAE students sit JEE/NEET in-country with the same CBSE curriculum → zero rebuild. UK/US requires real curriculum adaptation → Year 2.
+
+### EXIST consultation prep (June 22, 2PM)
+
+The original EXIST application described B2B/B2B2C. Key talking points to explain the pivot:
+
+1. **What changed:** realised B2B validates "sim as teacher tool" but the core product is "AI professor for students" — different products, different validation needs.
+2. **Why this is stronger for the grant case:** teacher co-development at zero sales cost + EXIST grant as runway bridge directly into B2C launch is cleaner than grinding slow enterprise deals while building a student product for UAE.
+3. **How teachers fit:** quality validators + content partners, not customers. They give us screen recordings + per-state sim feedback; their students get free AI physics tutoring. Value exchange, no cash.
+4. **The milestone EXIST is funding:** build 2 chapters at diamond quality + AI professor substrate + 30-student pilot → B2C launch in India + UAE. EXIST covers the build runway; B2C launch is the first self-sustaining revenue step.
+5. **Funding sequence unchanged:** EXIST now (non-dilutive) → Indian pre-seed early-mid 2027 after pilot lift-number confirmed.
+
+**What supersedes from Sessions 61–66:** The teacher subscription v1 revenue model (step 4 in the June 11 GTM sequence) is cancelled. The "free pilot with teachers' students" step (step 3) is now the terminal state of the India phase — we go directly from co-development pilot to B2C launch. B2B India never happens.
+
+---
+
 ## Session 72 — Two future-product questions answered against the stage rule: the teacher companion (a retention surface, not a new product) and fully-dynamic primitive control for the voice professor (a verified-operation vocabulary, not free control) (2026-06-19)
 
 > Context: two "is this possible / should we build it" questions, both about layers *above* the current teacher-facing sim product. Both answered with the same stage-matched discipline (2026-06-18): the layer is real, the architecture already points at it, build the cheap brick now and light up the engine only when there's fuel. Neither changes what we author today.
