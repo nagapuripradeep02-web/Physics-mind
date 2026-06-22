@@ -105,7 +105,7 @@ The cluster owns these files end-to-end. Bugs routed here land on one of these. 
 
 **PostMessage contract — consumer side owned here.**
 Producer side (initial `PM_physics` population on generate) belongs to `runtime_generation`. This cluster owns how the iframe listens, applies `SET_STATE`, and re-renders on `PARAM_UPDATE`. The contract boundary is:
-- Renderer MUST: emit `SIM_READY` on load, emit `STATE_REACHED` on state application, listen for `SET_STATE`, listen for `PARAM_UPDATE`. (CLAUDE.md §5 postMessage contract.)
+- Renderer MUST: emit `SIM_READY` on load, emit `STATE_REACHED` on state application, listen for `SET_STATE`, listen for `PARAM_UPDATE`. (CLAUDE.md §6 postMessage contract.)
 - Renderer MUST NOT: generate `PM_physics` from scratch — runtime_generation provides it.
 
 ## Silent-failure catalog — seeded from session 34 (friction_static_kinetic)
@@ -123,7 +123,7 @@ Rendering bugs that Zod + API-level probes cannot catch. Each row lists the bug 
 
 Add a row to this catalog every time a new rendering bug class is surfaced. The catalog is the regression suite.
 
-## Rules this cluster enforces (CLAUDE.md §5)
+## Rules this cluster enforces (CLAUDE.md §7)
 
 - **Rule 6** — `PM_currentState` is the ONLY state variable. Never introduce a parallel `currentState` integer anywhere in this cluster. A fix that adds a second state variable is rejected.
 - **Rule 19** — `scene_composition.primitives.length ≥ 3` per state. The renderer MUST NOT hide a thin JSON via silent fallback drawing. If a state ships with 0–2 primitives, the renderer renders what's there and the probe fails — then `json_author` gets the handoff-back. Visual layer lives in JSON, not in renderer mercy.

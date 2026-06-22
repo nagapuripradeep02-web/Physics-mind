@@ -114,7 +114,7 @@ For `drill_down_cache` rows with `served_count ≥ 20`:
 
 Three hard rules derived from Pradeep's operating principles:
 
-1. **Never touch sacred tables** (CLAUDE.md §3 NEVER DELETE list): `student_confusion_log`, `ncert_content`, `ai_usage_log`, `chat_feedback`, `variant_feedback`, `simulation_feedback`, etc. Read only.
+1. **Never touch sacred tables** (CLAUDE.md §6 NEVER DELETE list): `student_confusion_log`, `ncert_content`, `ai_usage_log`, `chat_feedback`, `variant_feedback`, `simulation_feedback`, etc. Read only.
 2. **Never push changes live.** Every write is a proposal, never a cache mutation or registry edit.
 3. **Never auto-delete or archive student data.** Archiving a cluster doesn't delete the student_confusion_log rows that fed into it; it only marks the cluster row `status = 'archived'`. History is forever.
 

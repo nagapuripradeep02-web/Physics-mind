@@ -76,7 +76,7 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 - `Read`, `Grep`, `Glob`, `Explore` on any file.
 - `Edit`, `Write` on the sacred files listed below and nowhere else.
 - `Bash` for `npm run dev`, `npx tsc --noEmit`, running scripts under `src/scripts/`, and SELECT + DELETE SQL on cache tables via the Supabase MCP.
-- `execute_sql` via Supabase MCP — **limited to cache tables only** (simulation_cache, lesson_cache, response_cache, equation_cache, deep_dive_cache, drill_down_cache, session_context). Never touches feedback tables, student_confusion_log, ncert_content, ai_usage_log, or any sacred table (CLAUDE.md §3).
+- `execute_sql` via Supabase MCP — **limited to cache tables only** (simulation_cache, lesson_cache, response_cache, equation_cache, deep_dive_cache, drill_down_cache, session_context). Never touches feedback tables, student_confusion_log, ncert_content, ai_usage_log, or any sacred table (CLAUDE.md §6).
 - `preview_*` tools for serving-path verification.
 
 ## Tools forbidden
@@ -86,7 +86,7 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 - `Edit` / `Write` on `src/lib/engines/anchor-resolver/**`, `src/lib/engines/choreography/**`, `src/lib/engines/zone-layout/**`, `src/lib/engines/scale/**`, `src/lib/subSimSolverHost.ts`. Renderer territory.
 - `apply_migration`. Schema changes escalate to founder.
 - `Edit` / `Write` on any `.agents/**` spec file.
-- `execute_sql` writes on sacred tables (CLAUDE.md §3 NEVER DELETE list): `student_confusion_log`, `ncert_content`, `ai_usage_log`, `tts_translation_cache`, `tts_audio_cache`, `pyq_questions`, `physics_concept_map`, `concept_panel_config`, `chat_feedback`, `variant_feedback`, `simulation_feedback`.
+- `execute_sql` writes on sacred tables (CLAUDE.md §6 NEVER DELETE list): `student_confusion_log`, `ncert_content`, `ai_usage_log`, `tts_translation_cache`, `tts_audio_cache`, `pyq_questions`, `physics_concept_map`, `concept_panel_config`, `chat_feedback`, `variant_feedback`, `simulation_feedback`.
 
 ## Sacred files — the cluster's scope boundary
 
@@ -126,7 +126,7 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 `simulation_cache`, `lesson_cache`, `response_cache`, `equation_cache`, `deep_dive_cache`, `drill_down_cache`, `session_context`. Also `confusion_cluster_registry` is read here (written by Alex `json_author` during concept authoring).
 
 **Regen scripts**
-- [src/scripts/clear_cache.mjs](../../src/scripts/clear_cache.mjs) — manual cache-clear, referenced by CLAUDE.md §3.
+- [src/scripts/clear_cache.mjs](../../src/scripts/clear_cache.mjs) — manual cache-clear, referenced by CLAUDE.md §6.
 - [src/scripts/regen-normal-reaction-dd.ts](../../src/scripts/regen-normal-reaction-dd.ts) — per-concept deep-dive regen template; clone this pattern for new regens.
 
 ## Silent-failure catalog — seeded from session 34
@@ -142,7 +142,7 @@ For handoff-back cases (root cause is Alex's or `renderer_primitives`'s):
 
 Add a row for every new runtime bug class surfaced.
 
-## Rules this cluster enforces (CLAUDE.md §5)
+## Rules this cluster enforces (CLAUDE.md §7)
 
 - **Rule 5** — AI NEVER writes rendering code at Stage 2. This cluster emits configuration JSON (scene_composition, physics_forces, PM_physics fields) only. Stage 3B emits p5.js HTML — also this cluster, but still config-driven, not freeform code.
 - **Rule 9** — Cached sims persist forever; DELETE is the only invalidation. No TTL, no background sweeper (yet). Every fix that changes observable runtime behavior ships with a regen.
@@ -241,7 +241,7 @@ After fixing a bug, the queue is the durable home for the prevention rule. Updat
 - [ ] No edits under `src/data/concepts/`, `src/lib/pcplRenderer/**`, `src/lib/engines/**`, `src/lib/subSimSolverHost.ts`, the display-side of `parametric_renderer.ts`.
 - [ ] No Sonnet invocation added on `/api/chat` or `/api/generate-lesson` (Rule 18).
 - [ ] If fix touched a sub-sim generator, `pending_review` badge still appears on first-call response.
-- [ ] No sacred-table writes (CLAUDE.md §3 list).
+- [ ] No sacred-table writes (CLAUDE.md §6 list).
 - [ ] `engine_bug_queue` row INSERTed or UPDATEd; silent-failure catalog table above also updated.
 
 ## Reference — session 34 friction bugs routed here

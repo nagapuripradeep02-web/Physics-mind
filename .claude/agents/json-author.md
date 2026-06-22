@@ -256,7 +256,7 @@ If a rule cannot be satisfied for a legitimate reason, document the exception in
 ## Self-review checklist (run before handoff to quality_auditor)
 
 - [ ] `npx tsc --noEmit` → 0 errors; `npm run validate:concepts` → target PASSES, no bounds WARN.
-- [ ] CLAUDE.md §2 checklist items 3–8 (Rules 15, 16, 19, 20, 21, Indian-context anchor).
+- [ ] CLAUDE.md §6 checklist items 3–8 (Rules 15, 16, 19, 20, 21, Indian-context anchor).
 - [ ] All 8 registration sites touched. Especially sites #7 (`PCPL_CONCEPTS`) and #8 (`CLASSIFIER_PROMPT`) — boot-time assertion in `intentClassifier.ts` must log zero warnings after your changes.
 - [ ] SQL migration drafted (physics_author's phrasings → INSERT rows into `confusion_cluster_registry`).
 - [ ] No primitive type used outside the verified list. Every `*_expr` references only declared vars.

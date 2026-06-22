@@ -17,7 +17,7 @@ First in the pipeline. Produces the skeleton that the other agents fill in.
 
 Given a concept_id + chapter, decide:
 - What is the atomic concept? (one teachable idea — one student question)
-- How many EPIC-L states does it take to build full understanding? (CLAUDE.md §7 table)
+- How many EPIC-L states does it take to build full understanding? (CLAUDE.md §5 table)
 - What are the genuine misconceptions students bring to this concept? (They feed the EPIC-L `misconception_watch` + predict→reveal beats — Rule 16a. EPIC-C branches are deferred until real students exist: EPIC-L-first directive, 2026-06-10.)
 - Which 2–3 states should support deep-dive?
 - Which prerequisites (other atomic concepts) does this assume?
@@ -60,7 +60,7 @@ A single markdown skeleton (no JSON yet) with these 10 sections:
 
 Dhurandar-principle: a 4-hour movie works when the story earns it. A 12-state simulation works when the concept needs 12. Don't pad, don't truncate. Let the physics dictate the length.
 
-**Sanity check reference** (CLAUDE.md §7 — calibration, not a ceiling):
+**Sanity check reference** (CLAUDE.md §5 — calibration, not a ceiling):
 
 ```
 Very simple (distance, displacement):  2–3 states
@@ -72,7 +72,7 @@ Very complex (moment of inertia):      10–12 states
 
 If you land outside this range, either the concept isn't atomic (consider splitting) or it's genuinely more complex than the table predicts (document why in the skeleton).
 
-**Real-time generation (DEEP-DIVE / DRILL-DOWN) follows the same rule.** Sonnet may produce 3, 5, or 8 sub-states per the confusion's complexity. The 4-6 range in CLAUDE.md §7 is a bounded suggestion for offline authoring, not a runtime rule.
+**Real-time generation (DEEP-DIVE / DRILL-DOWN) follows the same rule.** Sonnet may produce 3, 5, or 8 sub-states per the confusion's complexity. The 4-6 range in CLAUDE.md §5 is a bounded suggestion for offline authoring, not a runtime rule.
 
 **Reference counts from shipped concepts:**
 - `field_forces.json` → 5 states (medium)
@@ -223,7 +223,7 @@ vector_basics (legacy, not yet retrofitted)
 
 When proposing a new concept, add an edge from its prerequisites to it and note in the skeleton whether prerequisite concepts are shipped (gold-standard) or still legacy.
 
-## DC Pandey usage — explicit allow / forbid (CLAUDE.md §8)
+## DC Pandey usage — explicit allow / forbid (CLAUDE.md §5)
 
 **ALLOWED:**
 - Chapter table of contents — confirm "normal reaction" is in Ch. 8 Forces, not Ch. 7 Laws of Motion.
@@ -267,7 +267,7 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 ## Self-review checklist — run before submitting your skeleton
 
 - [ ] Atomic claim is ONE sentence. If it's two sentences, split into two concepts.
-- [ ] State count matches the §7 table given concept complexity.
+- [ ] State count matches the §5 table given concept complexity.
 - [ ] Every key misconception has an EPIC-L confrontation beat (`misconception_watch` + predict→reveal, Rule 16a). EPIC-C branches only if explicitly requested (EPIC-L-first directive, 2026-06-10) — each real, not strawman.
 - [ ] (When EPIC-C branches are authored) each STATE_1 plan describes visualizing the wrong belief in primitives, not just stating it in a teacher_script sentence.
 - [ ] 2–3 `has_prebuilt_deep_dive` states picked (cache-hint, not a gate), each with 3 candidate cluster_ids.

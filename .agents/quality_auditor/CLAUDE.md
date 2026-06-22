@@ -14,7 +14,7 @@ Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session
 - **Gate 0** — Definition of Done satisfied by the JSON.
 - **Gate 1** — `npx tsc --noEmit` = 0 errors.
 - **Gate 2** — `npm run validate:concepts` PASS + zero canvas-bounds warnings on target.
-- **Gate 3a** — CLAUDE.md §2 mechanical rules: Rule 15 (advance_mode variety), Rule 19 (≥3 primitives/state), Rule 23 (prerequisites advisory).
+- **Gate 3a** — CLAUDE.md §6 mechanical rules: Rule 15 (advance_mode variety), Rule 19 (≥3 primitives/state), Rule 23 (prerequisites advisory).
 - **Gate 3c** — Socratic-reveal discipline — **only if any state has `teaching_method: "narrative_socratic"` (PCPL). Does NOT fire for field_3d diamonds** (all current magnetism/electric diamonds).
 - **Gate 3d** — E42 physics 9-condition check.
 - **Gate 4 (+4a, +4b)** — live visual walk both paths + classifier-reachability + pill freshness. For field_3d diamonds this is `visual:eyes` / direct capture — **actually look at every state.**
@@ -27,7 +27,7 @@ Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session
 - **Gate 13** — animation-vocabulary (no silently-no-op animation types).
 - **Gate 14 (a, c, d, e)** — Pass-1 strategic completeness of the skeleton. **14b (worked JEE-question coverage trace) is DORMANT** — conceptual-only directive defers problem-class coverage.
 - **Gate 15** — Pass-2 four-question per-state cognitive-flow audit. For field_3d this is the sole cognitive check — keep it; it is cheap and catches per-state regressions before the reviewer does.
-- **Anti-plagiarism probe** (CLAUDE.md §8) on ALL `text_en` fields.
+- **Anti-plagiarism probe** (CLAUDE.md §5) on ALL `text_en` fields.
 
 **CONDITIONAL — run only if the trigger is present:**
 - **Rule 16 / EPIC-C check** — only if `epic_c_branches` exist (rare this phase; EPIC-L-first).
@@ -125,8 +125,8 @@ Expected:
 
 Any failure on the target = FAIL, route to json_author (bounds) or architect (structure).
 
-### Gate 3 — Self-review checklist (CLAUDE.md §2) + E42's 9 conditions
-**Part 3a — CLAUDE.md §2 rules**:
+### Gate 3 — Self-review checklist (CLAUDE.md §6) + E42's 9 conditions
+**Part 3a — CLAUDE.md §6 rules**:
 1. Rule 15 — ≥2 distinct `advance_mode` values across `epic_l_path.states` (Zod superRefine enforces; verify by eye as a double-check).
 2. Rule 16 — `epic_c_branches[].states.STATE_1` visualizes wrong belief explicitly. Read the annotation text; it must NAME the misconception, not describe a neutral setup. Pattern: `normal_reaction.json` "Myth: Normal force always equals weight".
 3. Rule 19 — every state has `scene_composition.length ≥ 3`.
@@ -142,7 +142,7 @@ Any failure on the target = FAIL, route to json_author (bounds) or architect (st
 
 *3b.i — Topper lens* (lived experience + `student_confusion_log` + Indian context):
 - EPIC-C STATE_1 sanity: each branch NAMES the wrong belief in text (Rule 16 in topper voice — "Myth: X" / "Wrong: Y" pattern). Missing = Concern.
-- Real-world anchor: Indian context, plain English, no Hinglish (CLAUDE.md §8). Single instance of "zameen / deewar / seedhi / tum / hain" = FAIL.
+- Real-world anchor: Indian context, plain English, no Hinglish (CLAUDE.md §5). Single instance of "zameen / deewar / seedhi / tum / hain" = FAIL.
 - Exam-yield: at least ONE state implicitly maps to a JEE Main / NEET / JEE Adv PYQ pattern. If concept is exam-relevant but no state surfaces a PYQ-shaped trap, raise Concern.
 - Pacing: would a topper skip any state as "I already know this"? List skip-candidates as Concern.
 
@@ -320,7 +320,7 @@ Two Tier 9 engines (NOT_STARTED) will automate most manual work: **E43 Visual Pr
 | **Static-dump state (33)** | Gate 3c — state with `teaching_method: narrative_socratic` but zero primitives bound to `reveal_at_tts_id`. Every primitive visible at t=0 = no Socratic reveal. Fail; route to physics_author for within-state timeline. |
 | **Bug-queue probe regressions (NEW session 36)** | Gate 8 — execute every FIXED row's `probe_logic` with `concepts_affected` matching the candidate or wildcarded. Any probe failure surfaces a regression of that bug class against the new artifact. |
 
-## Anti-plagiarism probe (CLAUDE.md §8)
+## Anti-plagiarism probe (CLAUDE.md §5)
 
 Spot-check real-world anchors + teacher_script text across all 9 states. **Red flags** (each = FAIL, route to architect):
 - Hinglish tokens: *zameen, deewar, seedhi, tum, hain, kya*.
