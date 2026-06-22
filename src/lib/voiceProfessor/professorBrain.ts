@@ -19,10 +19,12 @@ import {
     buildBeatsSchema,
     validateBeats,
     validateOp,
-    PARAM_NAMES,
+    DEFAULT_SURFACE,
     type Beat,
     type Operation,
     type ParamName,
+    type ParamSpec,
+    type ControlSurface,
 } from "./operations";
 import { classifyConfusion, type ClusterRow } from "@/lib/confusionClassifier";
 import { describeViewAxis } from "./framing";
@@ -125,7 +127,16 @@ interface ConceptJson {
     concept_name?: string;
     real_world_anchor?: Record<string, string>;
     physics_engine_config?: {
-        variables?: Record<string, { default?: number; unit?: string }>;
+        variables?: Record<string, {
+            default?: number;
+            min?: number;
+            max?: number;
+            unit?: string;
+            units?: string;
+            label?: string;
+            description?: string;
+            snap?: string;        // "sign" → a ±1 sign-only knob (e.g. q_sign)
+        }>;
         computed_outputs?: Record<string, { formula?: string }>;
     };
     aha_moment?: { statement?: string; visual_confirmation?: string };
@@ -166,6 +177,17 @@ interface BundleJson {
     // get a "knobs" line (mirrors the old hardcoded map, incl. omitting Fleming);
     // when absent, every state gets an auto-generated knob line from the variables.
     state_hints?: Record<string, string>;
+    // Optional EXPLICIT control-surface overrides for the voice professor (Rule 28).
+    // When absent, the surface is auto-derived from the concept JSON (params from
+    // physics_engine_config.variables, glow tokens from per-state + bundle tokens)
+    // with the magnetic defaults — so magnetic_force_moving_charge needs none.
+    control_surface?: {
+        glow_targets?: string[];
+        params?: Array<{ name: string; min: number; max: number; snap_sign?: boolean }>;
+        freeze?: boolean;
+        reset_trajectory?: boolean;
+        color_legend?: Array<[string, string]>;
+    };
 }
 
 // A move whose ops have already been validated at load time → ready to stream.
@@ -188,6 +210,7 @@ interface ConceptGrounding {
     variableDefaults: Record<string, number>;     // knob -> default (announce-compute baseline)
     stateCameras: Record<string, [number, number, number]>;  // per-state authored camera_position (framing)
     gatedStates: Array<{ state: string; releaseRe: RegExp | null; note: string }>;  // aside states gated from generative jumps
+    surface: ControlSurface;                       // Rule 28 control surface (glow/knobs/readouts/freeze) for validation + schema
 }
 
 const groundingCache = new Map<string, ConceptGrounding | null>();
@@ -292,6 +315,81 @@ function buildGrounding(conceptId: string): ConceptGrounding | null {
         ? Object.values(concept.real_world_anchor).join("\n  ")
         : "";
 
+    // ── Control surface (Rule 28): the per-concept whitelist the generative
+    //    professor may drive. AUTO-DERIVED from the concept JSON, with optional
+    //    explicit overrides from bundle.control_surface. magnetic_force_moving_charge
+    //    declares none, so it falls back to the auto-derived/default values —
+    //    identical to the old hardcoded behaviour. A NEW concept becomes professor-
+    //    drivable by declaring its objects/knobs here, with zero engine edits. ──
+    const cs = bundle?.control_surface;
+
+    // Knobs + bounds: explicit override, else auto-derived from every variable that
+    // carries a min/max (q_sign-style sign knobs snap to ±1).
+    const paramSpecs: Record<string, ParamSpec> = {};
+    if (cs?.params && cs.params.length) {
+        for (const p of cs.params) {
+            if (p && typeof p.name === "string" && typeof p.min === "number" && typeof p.max === "number") {
+                paramSpecs[p.name] = { min: p.min, max: p.max, snapSign: p.snap_sign === true };
+            }
+        }
+    } else {
+        for (const k of knobNames) {
+            const v = variables[k];
+            if (v && typeof v.min === "number" && typeof v.max === "number") {
+                const snapSign = v.snap === "sign" || (v.min === -1 && v.max === 1);
+                paramSpecs[k] = { min: v.min, max: v.max, snapSign };
+            }
+        }
+    }
+    const params = Object.keys(paramSpecs).length > 0 ? paramSpecs : DEFAULT_SURFACE.params;
+
+    // Glow tokens: explicit override, else the union of every per-state glow token
+    // plus any token a cluster or reviewed move references (so authored content
+    // never validates away). Falls back to the magnetic default set if empty.
+    let glow: Set<string>;
+    if (cs?.glow_targets && cs.glow_targets.length) {
+        glow = new Set(cs.glow_targets);
+    } else {
+        glow = new Set<string>();
+        for (const id of stateIds) for (const t of deriveStateElements(states[id])) glow.add(t);
+        for (const c of bundle?.clusters ?? []) for (const t of flattenGlow(c.glow)) glow.add(t);
+        for (const m of bundle?.moves ?? []) for (const b of m.sequence ?? []) for (const o of b.ops ?? []) {
+            const rec = o as Record<string, unknown>;
+            for (const key of ["target", "object", "a", "b"]) {
+                const val = rec[key];
+                if (typeof val === "string") glow.add(val);
+            }
+            const tgts = rec.targets;
+            if (Array.isArray(tgts)) for (const t of tgts) { if (typeof t === "string") glow.add(t); }
+            const tgt = rec.target;
+            if (Array.isArray(tgt)) for (const t of tgt) { if (typeof t === "string") glow.add(t); }
+        }
+        if (glow.size === 0) glow = new Set(DEFAULT_SURFACE.glow);
+    }
+
+    const surface: ControlSurface = {
+        glow,
+        params,
+        readouts: new Set(readoutNames),
+        freeze: cs?.freeze ?? true,
+        resetTrajectory: cs?.reset_trajectory ?? true,
+    };
+
+    // On-screen colour legend: explicit override, else the magnetic default palette.
+    const colorLegend: Array<[string, string]> = cs?.color_legend ?? FIELD3D_COLOR_LEGEND;
+
+    // Knob list for the prompt's set_param line — each knob's range + (if the
+    // concept variable declares one) its plain-English description/units, so the
+    // model is grounded in what every knob means.
+    const paramVocab = Object.keys(surface.params).map((name) => {
+        const v = variables[name] ?? {};
+        const spec = surface.params[name];
+        const units = v.units ?? v.unit ?? "";
+        const desc = v.description ?? v.label ?? "";
+        const range = spec.snapSign ? "+1 or -1" : `${spec.min}-${spec.max}${units ? " " + units : ""}`;
+        return `${name} (${range}${desc ? ", " + desc : ""})`;
+    }).join("; ");
+
     const stableSystem = [
         `You are an expert physics professor in a TEACHER-FACING, generative live demo. You teach "${concept.concept_name ?? conceptId}" by NARRATING and CONTROLLING a 3D simulation in real time. You reason and explain on the fly and may answer ANY question — but every physics claim must stay consistent with the DECLARED PHYSICS below, and you may drive the simulation ONLY through the listed operations.`,
         ``,
@@ -315,17 +413,21 @@ function buildGrounding(conceptId: string): ConceptGrounding | null {
         `- set_glow {target}: highlight a scene element. target is a single glow token, an array of tokens, or null to clear. Only glow tokens listed as "on-screen" for the state you are currently showing.`,
         `- set_math {expression, persist}: show a LaTeX equation in the side panel (persist:true stacks it, false replaces). Use "" to clear.`,
         `- set_hand_phase {phase}: lock the 3D right-hand at "v" (fingers along v), "b" (curl toward B), or "f" (thumb gives F); null resumes. Only meaningful where a hand is on screen.`,
-        `- set_freeze_proton {frozen}: pause/unpause the moving particle.`,
-        `- set_param {param, value}: turn ONE physics knob — the verified engine recomputes the motion, so you NEVER state the resulting numbers yourself. param is one of: theta_deg (0-90, the angle between v and B), v (50000-500000 m/s, the speed), B (0.001-0.1 T, the field strength), q_sign (+1 or -1, the charge sign). Out-of-range values are clamped. Emit set_state FIRST, then set_param, and only turn knobs listed for the state you are showing. Reach for this whenever the student asks to change / control / vary / increase / decrease a parameter, OR when turning a knob shows the idea better than words (e.g. lower theta_deg to open the circle into a helix).`,
-        `- sweep_param {param, to, duration_ms}: SMOOTHLY animate one knob to a target value over duration_ms (300-8000). Prefer this over set_param when the student should WATCH the change happen — e.g. {"op":"sweep_param","param":"theta_deg","to":0,"duration_ms":2500} opens the circle into a helix before their eyes. Same knobs and bounds as set_param; narrate the motion while it animates.`,
+        surface.freeze ? `- set_freeze_proton {frozen}: pause/unpause the moving particle.` : ``,
+        Object.keys(surface.params).length
+            ? `- set_param {param, value}: turn ONE physics knob — the verified engine recomputes the motion, so you NEVER state the resulting numbers yourself. param is one of: ${paramVocab}. Out-of-range values are clamped. Emit set_state FIRST, then set_param, and only turn knobs listed for the state you are showing. Reach for this whenever the student asks to change / control / vary / increase / decrease a parameter, OR when turning a knob shows the idea better than words.`
+            : ``,
+        Object.keys(surface.params).length
+            ? `- sweep_param {param, to, duration_ms}: SMOOTHLY animate one knob to a target value over duration_ms (300-8000). Prefer this over set_param when the student should WATCH the change happen before their eyes. Same knobs and bounds as set_param; narrate the motion while it animates.`
+            : ``,
         `- dim_except {targets} / point_at {target}: keep the listed element(s) bright and DIM everything else, to focus the eye (e.g. dim_except {"targets":["f"]} = "look only at the force"). targets/target are glow tokens valid for the current state; dim_except with [] clears the dimming. Clears automatically on the next set_state.`,
         readoutNames.length ? `- announce {readout}: surface a verified engine-computed value on screen. It is ALSO spoken aloud for you automatically, so do NOT say the number yourself — just narrate around it ("watch how strong the force gets"). readout is one of: ${readoutNames.join(", ")}.` : ``,
         `- pause / resume: pause FREEZES the moving picture so you can explain a held moment; resume plays it on. Your spoken narration keeps going while paused — describe the frozen frame, then resume. This is how you "pause, explain, play": pause, say the key point, resume.`,
         `- set_speed {rate}: playback speed. 1 = normal, 0.5 = half, 0.3 = clear slow-motion. Drop to 0.3-0.5 for anything subtle (the curve of the path, the direction of F) so the student can actually follow the motion.`,
         `- set_camera {view}: glide the 3D camera to a verified viewpoint to FRAME what you are explaining (the move is animated; you often PAUSE there next). view is one of: "face_on" (look straight down the field axis B — circular motion reads as a true circle), "edge_on" (from the side — a helix shows its forward stretch and a circle reads as a flat line), "top" (bird's-eye), "closer" / "wider" (zoom in / out), "default" (the standard 3/4 angle). Use it to make the SHAPE obvious — e.g. set_camera face_on to prove the path really is a circle, or set_camera edge_on then pause to show a helix climbing along B.`,
-        `- frame_object {object}: glide the camera to the EXACT angle that best shows one object, computed from its live 3D direction — use this when what you are about to explain would be hard to see from where the student is looking (e.g. a vector pointing toward the camera reads as a dot). object is a glow token (v, f, b, v_parallel, v_perp). Prefer this over set_camera when you want to make ONE specific arrow clearly visible; say something like "let me turn this so you can see the velocity" as you do it.`,
+        `- frame_object {object}: glide the camera to the EXACT angle that best shows one object, computed from its live 3D direction — use this when what you are about to explain would be hard to see from where the student is looking (e.g. a vector pointing toward the camera reads as a dot). object is one of the glow tokens listed as on-screen for the current state. Prefer this over set_camera when you want to make ONE specific arrow clearly visible; say something like "let me turn this so you can see it" as you do it.`,
         `- show_angle_between {a, b, label?}: draw a yellow arc and angle label between two arrows, visible even when they are COLLINEAR (overlap as a single arrow from every camera angle). Use this whenever theta is near 0° or 180° — no camera move can separate v and B when they point the same way, so frame_object/set_camera will NOT help; this is the only tool that makes the angle readable. a and b are glow tokens. Example: {"op":"show_angle_between","a":"v","b":"b"} at theta=0 shows a "0°" label beside the overlapping arrows. The arc auto-clears on the next set_state. The optional label overrides the computed angle text.`,
-        `- reset_trajectory: restart the particle path.`,
+        surface.resetTrajectory ? `- reset_trajectory: restart the particle path.` : ``,
         `Never invent operations or glow tokens outside this list — anything else is dropped.`,
         ``,
         `# How to teach with the picture — the 80/20 rule (THIS IS THE CRAFT)`,
@@ -339,7 +441,7 @@ function buildGrounding(conceptId: string): ConceptGrounding | null {
         exemplarLines.join("\n"),
         ``,
         `# On-screen colours (the renderer's ACTUAL colours — never guess a colour)`,
-        FIELD3D_COLOR_LEGEND.map(([what, colour]) => `- ${what} → ${colour}`).join("\n"),
+        colorLegend.map(([what, colour]) => `- ${what} → ${colour}`).join("\n"),
         `When you point at an arrow, prefer its LETTER label (v, B, F) over its colour. If you DO name a colour it MUST match the list above — never call v "blue" or B "red".`,
         ``,
         `# Style`,
@@ -355,11 +457,10 @@ function buildGrounding(conceptId: string): ConceptGrounding | null {
 
     // Validate each reviewed move's ops once, at load (bad ops dropped; empty moves skipped).
     const validStateIds = new Set(stateIds);
-    const readoutSet = new Set(readoutNames);
     const moves: ValidatedMove[] = [];
     for (const m of bundle?.moves ?? []) {
         if (!m.move_id || !Array.isArray(m.sequence)) continue;
-        const { beats } = validateBeats({ beats: m.sequence }, validStateIds, readoutSet);
+        const { beats } = validateBeats({ beats: m.sequence }, validStateIds, surface);
         if (beats.length === 0) continue;
         moves.push({
             moveId: m.move_id,
@@ -394,6 +495,7 @@ function buildGrounding(conceptId: string): ConceptGrounding | null {
         variableDefaults,
         stateCameras,
         gatedStates,
+        surface,
     };
     groundingCache.set(conceptId, grounding);
     return grounding;
@@ -551,7 +653,7 @@ async function resolveTurn(
             if (re.test(text) && params.indexOf(param) < 0) params.push(param);
         }
         if (params.length === 0 && GENERIC_PARAM_RE.test(text)) {
-            for (const p of PARAM_NAMES) params.push(p);
+            for (const p of Object.keys(grounding.surface.params)) params.push(p);
         }
         if (params.length > 0) {
             resolved.wantsManipulation = true;
@@ -722,13 +824,13 @@ function attachReadout(beat: Beat, grounding: ConceptGrounding, params: Record<s
  * spoken words are the founder-reviewed answer, paced across measured beats. $0,
  * deterministic, guaranteed-correct — just delivered as a mini-lesson.
  */
-function richClusterBeats(c: BundleCluster, validStateIds: Set<string>): Beat[] {
+function richClusterBeats(c: BundleCluster, validStateIds: Set<string>, surface: ControlSurface): Beat[] {
     const focalRaw: unknown[] = [];
     if (c.jump_to_state) focalRaw.push({ op: "set_state", state: c.jump_to_state });
     if (c.glow != null) focalRaw.push({ op: "set_glow", target: c.glow });
     if (c.math_show) focalRaw.push({ op: "set_math", expression: c.math_show, persist: false });
     const focalOps: Operation[] = [];
-    for (const o of focalRaw) { const { op } = validateOp(o, validStateIds); if (op) focalOps.push(op); }
+    for (const o of focalRaw) { const { op } = validateOp(o, validStateIds, surface); if (op) focalOps.push(op); }
 
     const answer = (c.answer_text ?? "").trim();
     const sentences = answer.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
@@ -834,7 +936,7 @@ export async function runProfessorTurn(input: ProfessorInput): Promise<Professor
     while (messages.length && messages[0].role === "assistant") messages.shift();
     messages.push({ role: "user", content: buildUserTurn(input, resolved ?? undefined) });
 
-    const schema = buildBeatsSchema(turnStateIds, grounding.readoutNames);
+    const schema = buildBeatsSchema(turnStateIds, grounding.surface);
 
     let rawText = "";
     let usage: Anthropic.Usage | undefined;
@@ -879,7 +981,7 @@ export async function runProfessorTurn(input: ProfessorInput): Promise<Professor
         }
     }
 
-    const { beats, droppedOps } = validateBeats(parsed, turnValidStateIds, new Set(grounding.readoutNames));
+    const { beats, droppedOps } = validateBeats(parsed, turnValidStateIds, grounding.surface);
     const params = { ...grounding.variableDefaults };
     const beatsWithReadouts = beats.map((b) => attachReadout(b, grounding, params));
 
@@ -890,7 +992,7 @@ export async function runProfessorTurn(input: ProfessorInput): Promise<Professor
         // this doubt matched one; otherwise the generic graceful fallback.
         fallbackUsed = true;
         if (resolved?.cluster?.answer_text) {
-            finalBeats = richClusterBeats(resolved.cluster, validStateIds);
+            finalBeats = richClusterBeats(resolved.cluster, validStateIds, grounding.surface);
         } else {
             const jump =
                 input.currentState && validStateIds.has(input.currentState)
@@ -1025,7 +1127,6 @@ export async function runProfessorTurnStream(
     let droppedOps = 0;
     let emitted = 0;
     let outputChars = 0;
-    const readoutSet = new Set(grounding.readoutNames);
     const streamParams = { ...grounding.variableDefaults };   // running knob state for announce-compute
 
     const consumeLine = (line: string): void => {
@@ -1036,7 +1137,7 @@ export async function runProfessorTurnStream(
         try { parsed = JSON.parse(cleaned); } catch { return; }   // incomplete / not-JSON line → skip
         if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return;
         if (typeof (parsed as { say?: unknown }).say !== "string") return;
-        const { beats, droppedOps: d } = validateBeats({ beats: [parsed] }, turnValidStateIds, readoutSet);
+        const { beats, droppedOps: d } = validateBeats({ beats: [parsed] }, turnValidStateIds, grounding.surface);
         droppedOps += d;
         if (beats.length === 0) return;
         emitted += 1;
@@ -1088,7 +1189,7 @@ export async function runProfessorTurnStream(
         // Prefer the verified cluster answer (taught carefully) if this doubt matched one;
         // otherwise the generic graceful fallback. Never fabricate physics.
         if (resolved?.cluster?.answer_text) {
-            try { for (const b of richClusterBeats(resolved.cluster, validStateIds)) onBeat(b); } catch { /* client gone */ }
+            try { for (const b of richClusterBeats(resolved.cluster, validStateIds, grounding.surface)) onBeat(b); } catch { /* client gone */ }
         } else {
             const jump =
                 input.currentState && validStateIds.has(input.currentState)
