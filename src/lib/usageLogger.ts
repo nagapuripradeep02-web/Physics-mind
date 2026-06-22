@@ -17,6 +17,9 @@ export interface UsageLogEntry {
     estimatedCostUsd: number;
     fingerprintKey?: string;
     wasCacheHit: boolean;
+    // Who generated this usage — separates founder testing from real student
+    // usage so cost-per-student is clean. Defaults to 'founder_test'.
+    actor?: "founder_test" | "student" | "reviewer";
     metadata?: Record<string, unknown>;
 }
 
@@ -35,6 +38,7 @@ export async function logUsage(entry: UsageLogEntry): Promise<void> {
                 estimated_cost_usd: entry.estimatedCostUsd,
                 fingerprint_key: entry.fingerprintKey ?? null,
                 was_cache_hit: entry.wasCacheHit,
+                actor: entry.actor ?? 'founder_test',
                 question_date: new Date().toISOString().split('T')[0],
                 metadata: entry.metadata ?? {},
             });

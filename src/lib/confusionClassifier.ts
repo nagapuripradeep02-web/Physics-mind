@@ -39,6 +39,16 @@ export interface ClassifyConfusionInput {
     conceptId: string;
     stateId?: string;
     sessionId?: string;
+    /** Cost-tracking tag (founder_test default) so the Haiku classify cost is
+     *  attributed to the right actor. */
+    actor?: "founder_test" | "student" | "reviewer";
+    /**
+     * When provided, these clusters are classified against directly and the
+     * Supabase confusion_cluster_registry lookup is skipped. Used by the voice
+     * professor to classify a spoken doubt against a hand-authored local bundle
+     * without touching the DB. Omit to keep the default registry behaviour.
+     */
+    clusters?: ClusterRow[];
 }
 
 export interface ClassifyConfusionResult {
@@ -47,7 +57,7 @@ export interface ClassifyConfusionResult {
     reasoning: string;
 }
 
-interface ClusterRow {
+export interface ClusterRow {
     cluster_id: string;
     label: string;
     description: string | null;
@@ -134,7 +144,7 @@ export async function classifyConfusion(
     const startTime = Date.now();
     const { confusionText, conceptId, stateId, sessionId } = input;
 
-    const clusters = await loadCandidateClusters(conceptId, stateId);
+    const clusters = input.clusters ?? (await loadCandidateClusters(conceptId, stateId));
     if (clusters.length === 0) {
         return {
             clusterId: null,
@@ -179,6 +189,7 @@ export async function classifyConfusion(
             latencyMs: Date.now() - startTime,
             estimatedCostUsd: estimatedCost,
             wasCacheHit: false,
+            actor: input.actor,
             metadata: { conceptId, stateId: stateId ?? null, candidateCount: clusters.length },
         });
     } catch (err) {

@@ -39,6 +39,9 @@ export async function proxy(request: NextRequest) {
         pathname.startsWith("/admin/test-torque-on-current-loop-in-field") || // dev-only Diamond #3 verification (M2, τ = μ × B on a current loop)
         pathname.startsWith("/admin/test-magnetic-field-solenoid") || // dev-only Diamond #4 verification (M3, B = μ₀nI inside a solenoid)
         pathname.startsWith("/admin/test-biot-savart-law") || // dev-only Biot-Savart verification (archetype A meta, dB = μ₀I(dl×r̂)/4πr²)
+        pathname.startsWith("/voice-professor") ||       // dev/demo: voice professor demo page (Session 73 backend-first build)
+        pathname.startsWith("/api/voice-professor") ||   // dev/demo: voice professor generative brain (Sonnet)
+        pathname.startsWith("/api/voice/") ||            // dev/demo: Sarvam STT/TTS proxies
         pathname.startsWith("/api/test-") ||             // temp: test-only API
         pathname.startsWith("/data/concepts") ||
         pathname.startsWith("/_next") ||

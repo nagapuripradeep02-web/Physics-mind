@@ -1,0 +1,320 @@
+{
+  "concept_id": "magnetic_force_moving_charge",
+  "concept_name": "Lorentz Force on a Moving Charged Particle",
+  "version": "1.0.0",
+  "review_status": "draft_pending_founder_review",
+  "reviewed_by": null,
+  "reviewed_at": null,
+  "notes": "Voice-professor doubt bundle. Haiku CLASSIFIES a spoken doubt into one of these clusters; the answer_text is served verbatim (Rule 17/18 — no live physics generation). Every answer is hand-authored and MUST be founder-reviewed before any student use. jump_to_state values are validated against field_3d_config.states at load time; glow tokens must be in the field_3d_renderer SET_GLOW vocabulary (v|f|b|v_parallel|v_perp|trail|hand|fleming|sliders|fleming_index|fleming_middle|fleming_thumb).",
+  "fallback": {
+    "label": "fallback",
+    "answer_text": "That's a good question. Let me bring up the key picture for this so we can look at it together.",
+    "default_jump_to_state": "STATE_2"
+  },
+  "gated_states": [
+    {
+      "state": "STATE_4",
+      "release_when": "left[- ]?hand|fleming",
+      "note": "Fleming's LEFT-hand rule (Class-10 reconciliation aside). Only show when the student explicitly asks about the left hand or Fleming — never on a right-hand-rule question (use STATE_2 / STATE_6, the right-hand states, for those)."
+    }
+  ],
+  "clusters": [
+    {
+      "cluster_id": "force_does_no_work_speed",
+      "label": "Does the force speed it up?",
+      "description": "Student thinks a magnetic field can increase the particle's speed or add energy.",
+      "trigger_examples": [
+        "does it speed up",
+        "does the magnetic field make it go faster",
+        "why doesn't the speed change",
+        "does a stronger field make it move faster",
+        "can the field give it more energy"
+      ],
+      "answer_text": "No — a magnetic force can only steer the charge, never speed it up. The force stays perpendicular to the velocity, so it does zero work and the speed is locked. A stronger field just makes a tighter circle.",
+      "jump_to_state": "STATE_3",
+      "glow": ["f", "v"],
+      "math_show": "\\vec{F}\\cdot\\vec{v}=0"
+    },
+    {
+      "cluster_id": "why_a_circle",
+      "label": "Why is the path a circle?",
+      "description": "Student asks why the trajectory comes out circular when v is perpendicular to B.",
+      "trigger_examples": [
+        "why is it a circle",
+        "why does it go round",
+        "why is the path circular",
+        "what makes it loop around"
+      ],
+      "answer_text": "Because the force is always perpendicular to the velocity and constant in size, it always points to one centre. A steady sideways pull at constant speed is exactly what bends a path into a circle.",
+      "jump_to_state": "STATE_2",
+      "glow": "f",
+      "math_show": null
+    },
+    {
+      "cluster_id": "right_hand_rule",
+      "label": "How does the right-hand rule work?",
+      "description": "Student wants the procedure for finding the direction of the magnetic force.",
+      "trigger_examples": [
+        "what's the right hand rule",
+        "how do I find the direction of the force",
+        "which way does the force point",
+        "how do I use my hand for this"
+      ],
+      "answer_text": "Point your right-hand fingers along v, curl them toward B, and your thumb gives the force. Fingers first, thumb last. For a negative charge, the force points the opposite way.",
+      "jump_to_state": "STATE_2",
+      "glow": "hand",
+      "math_show": null
+    },
+    {
+      "cluster_id": "force_along_v",
+      "label": "Is the force along the motion?",
+      "description": "Student believes the force pushes the particle forward, in the direction of v.",
+      "trigger_examples": [
+        "isn't the force in the direction it's moving",
+        "does the force push it forward",
+        "is F along v",
+        "does the field push it ahead"
+      ],
+      "answer_text": "No — the force is never along the motion. It is the cross product of v and B, so it sits at ninety degrees to v. That is why it turns the particle instead of speeding it up.",
+      "jump_to_state": "STATE_6",
+      "glow": ["f", "v"],
+      "math_show": null
+    },
+    {
+      "cluster_id": "force_along_b",
+      "label": "Is the force along the field?",
+      "description": "Student believes the force points along the magnetic field B.",
+      "trigger_examples": [
+        "is the force along the field",
+        "does it push along B",
+        "is F in the direction of B",
+        "does the field pull it along the field lines"
+      ],
+      "answer_text": "No — the force is perpendicular to B as well. The part of the velocity along B feels nothing; only the part across B makes a force. So F is never along the field.",
+      "jump_to_state": "STATE_6",
+      "glow": ["f", "b"],
+      "math_show": null
+    },
+    {
+      "cluster_id": "what_is_theta",
+      "label": "What is theta?",
+      "description": "Student asks what the angle theta in the formula refers to.",
+      "trigger_examples": [
+        "what is theta",
+        "what's the angle",
+        "the angle between what",
+        "what does the angle mean here"
+      ],
+      "answer_text": "Theta is the angle between the velocity and the magnetic field. At ninety degrees the force is strongest and you get a full circle. At zero degrees they are parallel and there is no force.",
+      "jump_to_state": "STATE_1",
+      "glow": null,
+      "math_show": "F = qvB\\,\\sin\\theta"
+    },
+    {
+      "cluster_id": "other_angles_helix",
+      "label": "What happens at other angles?",
+      "description": "Student asks about angles between 0 and 90 degrees and why the path becomes a helix.",
+      "trigger_examples": [
+        "what about other angles",
+        "what if it's at forty five degrees",
+        "what happens in between",
+        "why does it become a spiral"
+      ],
+      "answer_text": "Between zero and ninety the circle opens into a helix. The part of the velocity along B drifts forward while the part across B keeps circling. A smaller angle gives a longer, more stretched-out spiral.",
+      "jump_to_state": "STATE_5",
+      "glow": "trail",
+      "math_show": null
+    },
+    {
+      "cluster_id": "why_sin_theta",
+      "label": "Why sin theta in the formula?",
+      "description": "Student thinks sin theta is an arbitrary correction factor to memorise.",
+      "trigger_examples": [
+        "why sine theta",
+        "where does the sin come from",
+        "why is there a sin in the formula",
+        "is sin theta just a correction"
+      ],
+      "answer_text": "Sin theta is not magic. Split the velocity into a part along B and a part across B. Only the across part, which is v times sin theta, makes the force. So F is really q times that perpendicular slice times B.",
+      "jump_to_state": "STATE_6",
+      "glow": ["v_perp", "v_parallel"],
+      "math_show": "F = q\\,v_{\\perp}\\,B = qvB\\,\\sin\\theta"
+    },
+    {
+      "cluster_id": "left_vs_right_hand",
+      "label": "Isn't it the left-hand rule?",
+      "description": "Student asks about Fleming's left-hand rule versus the right-hand cross product.",
+      "trigger_examples": [
+        "isn't it the left hand",
+        "what about Fleming's left hand rule",
+        "do I use my left hand",
+        "which hand do I use"
+      ],
+      "answer_text": "Fleming's left-hand rule works too for a positive charge — index along B, middle along v, thumb gives force. We prefer the right-hand cross product because it handles any angle and negative charges without extra rules.",
+      "jump_to_state": "STATE_4",
+      "glow": "fleming",
+      "math_show": null
+    },
+    {
+      "cluster_id": "what_is_r_and_T",
+      "label": "Radius and time period",
+      "description": "Student asks for the radius of the circle or the time period of one loop.",
+      "trigger_examples": [
+        "what's the radius",
+        "how big is the circle",
+        "what's the time period",
+        "how long does one loop take"
+      ],
+      "answer_text": "The radius is m v over q B — faster particles make bigger circles. But the period, two pi m over q B, does not depend on speed at all. Every loop takes the same time.",
+      "jump_to_state": "STATE_2",
+      "glow": null,
+      "math_show": "r = \\dfrac{mv}{qB},\\quad T = \\dfrac{2\\pi m}{qB}"
+    }
+  ],
+  "state_hints": {
+    "STATE_1": "theta_deg, v, B, q_sign — straight (θ≈0) baseline; raise θ to bend the path",
+    "STATE_2": "theta_deg, v, B, q_sign — circle at θ=90; LOWER θ to open the circle into a helix; raise B for a tighter/faster circle; flip q_sign to reverse the circulation",
+    "STATE_3": "theta_deg, v, B, q_sign — constant-speed circle; same knobs",
+    "STATE_5": "theta_deg, v, B, q_sign — helix at θ=45; change θ to reshape the helix",
+    "STATE_6": "theta_deg, v, B, q_sign — decomposition at θ=45; change θ to grow/shrink v⊥ (the slice that makes F)",
+    "STATE_7": "theta_deg, v, B, q_sign — stretched helix at θ=10; raise θ toward 90 to tighten it into a circle",
+    "STATE_8": "theta_deg, v, B, q_sign — interactive sliders on screen; turning a knob also moves its slider"
+  },
+  "moves": [
+    {
+      "move_id": "circle_to_helix_demo",
+      "label": "circle to helix demo",
+      "description": "Marquee gesture: perfect circle → announce the force → sweep the angle so the circle opens into a helix → tighter field → flip the charge. Bound to the F2 hero button (offline-safe).",
+      "trigger_examples": [
+        "show me the demo",
+        "show me the helix demo",
+        "run the demo",
+        "show me what it does",
+        "circle to helix"
+      ],
+      "sequence": [
+        {
+          "say": "Here a charged particle moves straight across the magnetic field, so it traces a perfect circle.",
+          "ops": [{ "op": "set_state", "state": "STATE_2" }, { "op": "set_glow", "target": ["v", "f"] }]
+        },
+        {
+          "say": "This is how strong the magnetic force is right now.",
+          "ops": [{ "op": "announce", "readout": "F_magnitude" }]
+        },
+        {
+          "say": "Now watch closely as I slowly tilt the angle down — the circle opens up into a helix.",
+          "ops": [{ "op": "sweep_param", "param": "theta_deg", "to": 25, "duration_ms": 3000 }]
+        },
+        {
+          "say": "A stronger field winds that helix tighter.",
+          "ops": [{ "op": "set_param", "param": "B", "value": 0.06 }]
+        },
+        {
+          "say": "And if I flip the charge to negative, it spirals the opposite way — the same law, F equals q v cross B, the whole time.",
+          "ops": [{ "op": "set_param", "param": "q_sign", "value": -1 }]
+        }
+      ]
+    },
+    {
+      "move_id": "force_focus",
+      "label": "focus on the force",
+      "description": "Dim everything except the force and velocity to show F stays perpendicular to v.",
+      "trigger_examples": [
+        "focus on the force",
+        "show me just the force",
+        "highlight only the force"
+      ],
+      "sequence": [
+        {
+          "say": "Let me fade everything except the force and the velocity.",
+          "ops": [{ "op": "set_state", "state": "STATE_2" }, { "op": "dim_except", "targets": ["f", "v"] }]
+        },
+        {
+          "say": "See how the force always sits at ninety degrees to the velocity, pointing straight to the centre.",
+          "ops": [{ "op": "announce", "readout": "F_magnitude" }]
+        }
+      ]
+    },
+    {
+      "move_id": "full_lesson_walkthrough",
+      "label": "explain the full concept",
+      "description": "The standardized, reviewed full-concept performance. Walks all 8 states in the authored order (0° → 90° → no-work → Fleming → 45° → why sinθ → 10° → interactive), narrating each beat while driving the sim — face-on circle, slow-motion equal-arc trail, the two θ-sweep climaxes (circle opens into a helix, helix stretches), and the v-decomposition. Served verbatim and identical for every student. Bound to the 'Explain full concept' button via intent=explain_whole.",
+      "trigger_examples": [
+        "teach me the whole concept",
+        "explain the full concept",
+        "walk me through everything",
+        "explain the whole thing",
+        "start the lesson"
+      ],
+      "sequence": [
+        {
+          "say": "Let me walk you through how a magnetic field steers a moving charge. Blue arrows are the field B; the orange arrow is the velocity v. Right now v points along B, so theta is zero. Since F equals q v B sine theta and sine zero is zero, there is no force — the proton drifts straight.",
+          "ops": [
+            { "op": "set_state", "state": "STATE_1" },
+            { "op": "set_glow", "target": ["b", "v"] },
+            { "op": "set_math", "expression": "F = qvB\\,\\sin\\theta = 0" }
+          ]
+        },
+        {
+          "say": "Now turn v to ninety degrees, perpendicular to B. Sine ninety is one, so the force is maximum and always points to the centre, bending the path into a perfect circle. Newton's law gives radius r = m v over q B and period T = two pi m over q B — independent of speed.",
+          "ops": [
+            { "op": "set_state", "state": "STATE_2" },
+            { "op": "set_camera", "view": "face_on" },
+            { "op": "set_glow", "target": "f" },
+            { "op": "announce", "readout": "F_magnitude" },
+            { "op": "set_math", "expression": "qvB = \\dfrac{mv^2}{r} \\;\\Rightarrow\\; r = \\dfrac{mv}{qB},\\; T = \\dfrac{2\\pi m}{qB}" }
+          ]
+        },
+        {
+          "say": "Here is the big idea. The force stays perpendicular to the velocity, so it does zero work. Watch the trail in slow motion — the dots stay equally spaced, so the speed never changes. A magnetic force only steers a charge; it can never speed it up or slow it down.",
+          "ops": [
+            { "op": "set_state", "state": "STATE_3" },
+            { "op": "dim_except", "targets": ["f", "v"] },
+            { "op": "set_speed", "rate": 0.4 },
+            { "op": "set_math", "expression": "W = \\vec{F}\\cdot\\vec{v} = 0" }
+          ]
+        },
+        {
+          "say": "A quick bridge for Class-ten students: some of you know this as Fleming's left-hand rule — index along B, middle along v, thumb gives F. For a positive charge it gives the exact same direction. We prefer the right hand because it works for any angle and any charge. Same physics.",
+          "ops": [
+            { "op": "set_state", "state": "STATE_4" },
+            { "op": "set_glow", "target": "fleming" }
+          ]
+        },
+        {
+          "say": "Now tilt v back to forty-five degrees, and watch the closed circle open up into a helix. Part of v drifts forward along B while the rest keeps circling around it. The force is still here, but it has dropped to about seventy-one percent of its maximum.",
+          "ops": [
+            { "op": "set_state", "state": "STATE_5" },
+            { "op": "set_camera", "view": "edge_on" },
+            { "op": "set_glow", "target": ["f", "trail"] },
+            { "op": "sweep_param", "param": "theta_deg", "from": 90, "to": 45, "duration_ms": 3500 }
+          ]
+        },
+        {
+          "say": "But where does that sine theta come from? Break v into two pieces. The part along B, v cosine theta, makes no force — it only carries the proton forward. Only the perpendicular part, v sine theta, curls and makes the force. So F equals q times v sine theta times B.",
+          "ops": [
+            { "op": "set_state", "state": "STATE_6" },
+            { "op": "dim_except", "targets": ["v_perp", "v_parallel"] },
+            { "op": "set_math", "expression": "F = q\\,v_{\\perp}B = qvB\\,\\sin\\theta" }
+          ]
+        },
+        {
+          "say": "Push theta down to ten degrees — v almost parallel to B. The force is still perpendicular to both, but small: sine ten is about zero point one seven. The helix stretches out, with long forward drift and tiny circles. Nudge it to zero and the circles vanish — a straight line again.",
+          "ops": [
+            { "op": "set_state", "state": "STATE_7" },
+            { "op": "set_camera", "view": "edge_on" },
+            { "op": "set_glow", "target": "trail" },
+            { "op": "sweep_param", "param": "theta_deg", "from": 45, "to": 10, "duration_ms": 3500 }
+          ]
+        },
+        {
+          "say": "Now it is your turn. Use the four sliders — charge sign, speed, field, and angle — and watch the path respond live. Try theta zero for a straight line, ninety for a circle, anything in between for a helix. Whenever you have a question, just ask me.",
+          "ops": [
+            { "op": "set_state", "state": "STATE_8" },
+            { "op": "set_glow", "target": "sliders" }
+          ]
+        }
+      ]
+    }
+  ]
+}

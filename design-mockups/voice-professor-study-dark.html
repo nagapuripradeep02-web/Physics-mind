@@ -1,0 +1,265 @@
+<!-- @dsCard group="B2C AI Professor" name="Voice Professor — The Study · Dark (Claude-inspired warm dark mode)" subtitle="Full page · warm charcoal + clay" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PhysicsMind — Voice Professor (The Study · Dark)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* ── Warm DARK tokens (Claude dark-mode inspired) — port to React theme ── */
+    --bg:        #1C1B19;   /* page — warm near-black, NOT cold blue-black */
+    --surface:   #262523;   /* raised panels (rail items, professor panel, bubbles) */
+    --surface-2: #302E2B;   /* inputs / hover */
+    --surface-3: #3A3835;   /* highest raise */
+    --sim:       #100E0B;   /* the sim canvas — deepest, warm black */
+
+    --clay:      #D97757;   /* signature accent (Claude coral) — pops on dark */
+    --clay-deep: #C96442;
+    --clay-soft: #E2A98D;
+    --clay-wash: rgba(217,119,87,.15);   /* clay-tinted dark for active / you-bubble */
+    --sage:      #74B594;   /* calm status green */
+
+    --ink:       #ECE9E2;   /* warm off-white */
+    --ink-dim:   #A8A299;
+    --ink-faint: #726C63;
+    --line:      rgba(245,240,230,.10);
+    --line-2:    rgba(245,240,230,.055);
+
+    --radius:    16px;
+    --font-disp: "Fraunces", Georgia, serif;
+    --font-ui:   "Inter", system-ui, -apple-system, sans-serif;
+    --lift:      0 1px 0 rgba(255,255,255,.03) inset, 0 12px 30px -18px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--font-ui); color: var(--ink); background: var(--bg);
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  /* a barely-there warm glow so the dark page isn't flat */
+  body::before {
+    content:""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(46% 38% at 100% 0%, rgba(217,119,87,.07), transparent 60%),
+      radial-gradient(40% 32% at 0% 100%, rgba(116,181,148,.04), transparent 60%);
+  }
+  .app { position: relative; z-index: 1; min-height: 100%; }
+
+  /* ── Header ─────────────────────────────────────────────────── */
+  header {
+    display: flex; align-items: center; gap: 18px; padding: 16px 30px;
+    border-bottom: 1px solid var(--line); background: rgba(28,27,25,.8); backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .mark { width: 40px; height: 40px; border-radius: 12px; background: var(--clay); display: grid; place-items: center;
+    box-shadow: 0 6px 18px -6px rgba(217,119,87,.55); }
+  .mark svg { width: 23px; height: 23px; }
+  .wordmark b { font-family: var(--font-disp); font-weight: 600; font-size: 19px; letter-spacing: -.01em; color: var(--ink); display:block; line-height:1; }
+  .wordmark span { font-size: 9.5px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-faint); margin-top: 4px; display:block; }
+  .vrule { width: 1px; height: 28px; background: var(--line); }
+  .concept { font-family: var(--font-disp); font-size: 17px; font-weight: 500; color: var(--ink); font-style: italic; }
+  .hd-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+  .status { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-dim); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 8px rgba(116,181,148,.6); }
+  .verified { display: flex; align-items: center; gap: 7px; padding: 6px 13px 6px 9px; border-radius: 999px;
+    font-size: 11px; letter-spacing: .04em; font-weight: 600; color: var(--clay-soft);
+    background: var(--clay-wash); border: 1px solid rgba(217,119,87,.3); }
+  .verified svg { width: 14px; height: 14px; }
+
+  /* ── Stage grid ─────────────────────────────────────────────── */
+  main { display: grid; grid-template-columns: 236px minmax(0,1fr) 400px; gap: 28px; padding: 28px 30px 34px; align-items: start; }
+  .eyebrow { font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-faint); padding: 0 2px 12px; font-weight: 600; }
+
+  /* Syllabus rail */
+  .rail { display: flex; flex-direction: column; }
+  .states { display: flex; flex-direction: column; }
+  .state { position: relative; text-align: left; cursor: pointer; padding: 13px 12px 13px 16px;
+    display: flex; gap: 13px; align-items: flex-start; border-bottom: 1px solid var(--line-2); transition: .16s ease; }
+  .state:hover { background: var(--surface); border-radius: 10px; border-bottom-color: transparent; }
+  .state .num { font-family: var(--font-disp); font-size: 14px; font-weight: 600; color: var(--ink-faint); width: 18px; flex: none; text-align: center; line-height: 1.4; }
+  .state .t { font-size: 13px; line-height: 1.45; color: var(--ink-dim); }
+  .state.on { background: var(--clay-wash); border-radius: 10px; border-bottom-color: transparent; }
+  .state.on::before { content:""; position:absolute; left:0; top:9px; bottom:9px; width:3px; border-radius:3px; background: var(--clay); }
+  .state.on .num { color: var(--clay-soft); }
+  .state.on .t { color: var(--ink); font-weight: 500; }
+
+  /* Center sim — deepest panel, gently framed (no harsh contrast now) */
+  .stage { position: relative; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .stage::before { content:""; position:absolute; left:50%; top:250px; transform:translate(-50%,-50%);
+    width:min(112%,940px); height:600px; pointer-events:none; z-index:0;
+    background: radial-gradient(closest-side, rgba(217,119,87,.10), transparent 72%); filter: blur(12px); }
+  .figure {
+    position: relative; z-index: 1; width: 100%; height: 478px; border-radius: 20px; padding: 14px;
+    background: linear-gradient(160deg, #2A2825, #201E1B);      /* warm charcoal bezel = same material as panels */
+    border: 1px solid var(--line);
+    box-shadow: var(--lift);
+  }
+  .figure::before { content:""; position:absolute; inset:0; border-radius:20px; padding:1px; pointer-events:none;
+    background: linear-gradient(160deg, rgba(226,169,141,.4), rgba(217,119,87,.12) 48%, rgba(255,255,255,.03));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+  .canvas { position: absolute; inset: 14px; border-radius: 12px; overflow: hidden;
+    background: radial-gradient(120% 120% at 50% 32%, #16110C 0%, #0A0806 74%);
+    box-shadow: inset 0 1px 0 rgba(255,214,176,.08), inset 0 0 70px rgba(0,0,0,.5); }
+  .canvas svg.field { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .62; }
+  .glowdot { position: absolute; left: 50%; top: 56%; transform: translate(-50%,-50%); width: 15px; height: 15px; border-radius: 50%;
+    background: radial-gradient(circle, #fff, #FFCF8A 55%, transparent 72%); box-shadow: 0 0 24px 6px rgba(255,176,74,.6); }
+  .hud { position: absolute; left: 14px; top: 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    padding: 8px 11px; border-radius: 11px; background: rgba(10,8,6,.66); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.1); }
+  .hud .lead { font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--clay-soft); margin-right: 2px; }
+  .chip { font-family: ui-monospace, monospace; font-size: 11.5px; padding: 3px 8px; border-radius: 7px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05); color: #ECE7DB; }
+  .chip.hot { border-color: rgba(226,169,141,.55); background: rgba(217,119,87,.24); color: #FFE3D4; }
+
+  .figcap { display: flex; align-items: center; gap: 14px; font-size: 12.5px; color: var(--ink-faint); }
+  .figcap b { font-family: var(--font-disp); font-style: italic; font-weight: 500; color: var(--ink-dim); }
+  .ghost { cursor: pointer; font-size: 12.5px; font-weight: 600; color: var(--clay-soft); padding: 7px 14px; border-radius: 9px;
+    background: var(--surface); border: 1px solid rgba(217,119,87,.3); transition: .16s; }
+  .ghost:hover { background: var(--clay-wash); }
+  .ghost b { color: var(--ink-faint); font-weight: 500; }
+
+  /* Professor panel */
+  .panel { display: flex; flex-direction: column; gap: 16px; }
+  .panel-head { display: flex; align-items: baseline; justify-content: space-between; padding: 0 2px; }
+  .panel-head .who { font-family: var(--font-disp); font-size: 17px; font-weight: 600; color: var(--ink); }
+  .panel-head .st { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--ink-dim); }
+
+  .cta-row { display: flex; gap: 11px; }
+  .talk { flex: 1; cursor: pointer; border: none; border-radius: 14px; padding: 16px; color: #fff; font-size: 15px; font-weight: 600; font-family: var(--font-ui);
+    background: var(--clay); box-shadow: 0 12px 28px -10px rgba(217,119,87,.55), inset 0 1px 0 rgba(255,255,255,.22);
+    display: flex; align-items: center; justify-content: center; gap: 11px; transition: .16s; }
+  .talk:hover { background: var(--clay-deep); }
+  .talk .wave { display: flex; align-items: center; gap: 3px; height: 16px; }
+  .talk .wave i { width: 3px; border-radius: 3px; background: rgba(255,255,255,.92); }
+  .talk .wave i:nth-child(1){height:6px} .talk .wave i:nth-child(2){height:13px} .talk .wave i:nth-child(3){height:16px}
+  .talk .wave i:nth-child(4){height:9px} .talk .wave i:nth-child(5){height:14px} .talk .wave i:nth-child(6){height:6px}
+  .whole { cursor: pointer; border-radius: 14px; padding: 16px; font-size: 14.5px; font-weight: 600; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); display: flex; align-items: center; gap: 8px; transition: .16s; }
+  .whole:hover { border-color: rgba(217,119,87,.4); background: var(--surface-2); }
+  .whole svg { width: 13px; height: 13px; fill: var(--clay-soft); }
+
+  .ask { display: flex; gap: 10px; }
+  .ask input { flex: 1; border-radius: 12px; padding: 13px 15px; font-size: 14px; font-family: var(--font-ui); color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); outline: none; transition: .16s; }
+  .ask input::placeholder { color: var(--ink-faint); }
+  .ask input:focus { border-color: rgba(217,119,87,.5); box-shadow: 0 0 0 3px rgba(217,119,87,.12); background: var(--surface-2); }
+  .send { cursor: pointer; border-radius: 12px; padding: 0 18px; font-size: 14px; font-weight: 600; color: var(--ink-dim); background: var(--surface); border: 1px solid var(--line); }
+
+  .log { border-radius: var(--radius); padding: 16px; height: 356px; overflow: hidden; background: var(--surface);
+    border: 1px solid var(--line); display: flex; flex-direction: column; gap: 13px; }
+  .bubble { border-radius: 13px; padding: 12px 15px; font-size: 14px; line-height: 1.55; }
+  .bubble .lbl { font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+  .bubble.prof { background: var(--surface-2); border: 1px solid var(--line); color: var(--ink);
+    font-family: var(--font-disp); font-size: 15px; line-height: 1.6; }
+  .bubble.prof .lbl { font-family: var(--font-ui); color: var(--clay-soft); }
+  .bubble.you { background: var(--clay-wash); color: var(--ink); align-self: flex-end; max-width: 82%; border: 1px solid rgba(217,119,87,.2); }
+  .bubble.you .lbl { color: var(--clay-soft); }
+  .disc { font-size: 11px; line-height: 1.55; color: var(--ink-faint); padding: 0 2px; }
+  .disc b { color: var(--ink-dim); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <div class="mark">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg>
+        </div>
+        <div class="wordmark"><b>PhysicsMind</b><span>AI Professor</span></div>
+      </div>
+      <div class="vrule"></div>
+      <div class="concept">Lorentz Force on a Moving Charged Particle</div>
+      <div class="hd-right">
+        <div class="status"><span class="dot"></span> Sim ready</div>
+        <div class="verified">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.2 1.6 2.7-.2.9 2.6 2.2 1.6-.9 2.6.9 2.6-2.2 1.6-.9 2.6-2.7-.2L12 21.5l-2.2-1.6-2.7.2-.9-2.6L4 15.9l.9-2.6L4 10.7l2.2-1.6.9-2.6 2.7.2z" fill="rgba(217,119,87,.2)" stroke="rgba(217,119,87,.6)" stroke-width="1.1"/><path d="M8.6 12l2.1 2.1 4.6-4.6" stroke="#E2A98D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Teacher-Verified
+        </div>
+      </div>
+    </header>
+
+    <!-- Stage -->
+    <main>
+      <!-- Syllabus -->
+      <div class="rail">
+        <div class="eyebrow">Today's lesson</div>
+        <div class="states">
+          <div class="state on"><span class="num">1</span><span class="t">θ = 0°: v parallel to B, no force → straight line</span></div>
+          <div class="state"><span class="num">2</span><span class="t">θ = 90°: F maximum → full circle, r and T appear</span></div>
+          <div class="state"><span class="num">3</span><span class="t">It turns, but the speed never changes — no work</span></div>
+          <div class="state"><span class="num">4</span><span class="t">Fleming's left-hand rule — same physics</span></div>
+          <div class="state"><span class="num">5</span><span class="t">θ = 45°: the circle opens into a helix</span></div>
+          <div class="state"><span class="num">6</span><span class="t">Why sin θ? — resolve v into ∥ and ⟂ parts</span></div>
+          <div class="state"><span class="num">7</span><span class="t">θ = 10°: almost parallel → a stretched helix</span></div>
+          <div class="state"><span class="num">8</span><span class="t">Try it — drag the sliders, watch the path</span></div>
+        </div>
+      </div>
+
+      <!-- Center sim figure -->
+      <div class="stage">
+        <div class="figure">
+          <div class="canvas">
+            <svg class="field" viewBox="0 0 600 470" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <marker id="ah" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5566cc"/></marker>
+                <marker id="av" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#FFB04A"/></marker>
+                <marker id="af" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#5BE0A8"/></marker>
+              </defs>
+              <g stroke="#5061c4" stroke-width="1.4" marker-end="url(#ah)" opacity="0.62">
+                <line x1="70" y1="60" x2="70" y2="30"/><line x1="170" y1="70" x2="170" y2="40"/><line x1="270" y1="58" x2="270" y2="28"/><line x1="370" y1="72" x2="370" y2="42"/><line x1="470" y1="60" x2="470" y2="30"/><line x1="530" y1="70" x2="530" y2="40"/>
+                <line x1="110" y1="160" x2="110" y2="130"/><line x1="210" y1="170" x2="210" y2="140"/><line x1="330" y1="158" x2="330" y2="128"/><line x1="430" y1="172" x2="430" y2="142"/><line x1="520" y1="160" x2="520" y2="130"/>
+                <line x1="70" y1="270" x2="70" y2="240"/><line x1="180" y1="280" x2="180" y2="250"/><line x1="420" y1="278" x2="420" y2="248"/><line x1="510" y1="270" x2="510" y2="240"/>
+                <line x1="120" y1="380" x2="120" y2="350"/><line x1="240" y1="392" x2="240" y2="362"/><line x1="360" y1="380" x2="360" y2="350"/><line x1="470" y1="392" x2="470" y2="362"/>
+              </g>
+              <path d="M300 300 q40 -30 0 -60 q-40 -30 0 -60 q40 -30 0 -60" fill="none" stroke="rgba(255,176,74,.4)" stroke-width="2"/>
+              <line x1="300" y1="263" x2="300" y2="360" stroke="#FFB04A" stroke-width="3" marker-end="url(#av)"/>
+              <line x1="300" y1="263" x2="218" y2="222" stroke="#5BE0A8" stroke-width="3" marker-end="url(#af)"/>
+              <text x="305" y="352" fill="#FFB04A" font-family="Fraunces" font-size="18" font-style="italic">V</text>
+              <text x="196" y="220" fill="#5BE0A8" font-family="Fraunces" font-size="18" font-style="italic">F</text>
+            </svg>
+            <div class="glowdot"></div>
+            <div class="hud">
+              <span class="lead">Professor is controlling</span>
+              <span class="chip hot">θ = 90°</span>
+              <span class="chip">B = 0.05 T</span>
+              <span class="chip">r = 1.7 cm</span>
+            </div>
+          </div>
+        </div>
+        <div class="figcap">
+          <b>drag to rotate · scroll to zoom</b>
+          <span>·</span>
+          <button class="ghost">▶ Hero demo <b>(F2)</b></button>
+        </div>
+      </div>
+
+      <!-- Professor note -->
+      <div class="panel">
+        <div class="panel-head">
+          <div class="who">Your professor</div>
+          <div class="st"><span class="dot"></span> Listening, ready</div>
+        </div>
+        <div class="cta-row">
+          <button class="talk"><span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i></span> Tap to talk</button>
+          <button class="whole"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Whole concept</button>
+        </div>
+        <div class="ask">
+          <input placeholder="Ask anything — e.g. &ldquo;open it into a helix&rdquo;" />
+          <button class="send">Send</button>
+        </div>
+        <div class="log">
+          <div class="bubble you"><div class="lbl">You</div>Why does it move in a circle?</div>
+          <div class="bubble prof"><div class="lbl">Professor</div>Watch the green force arrow — it always points straight to the centre, so it only bends the path and never speeds the particle up. That steady inward pull is exactly what traces a circle.</div>
+        </div>
+        <div class="disc"><b>Generated live by Claude</b>, grounded in verified physics and limited to safe simulation operations; voice by Sarvam. The AI only turns bounded knobs — the verified engine computes the physics.</div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

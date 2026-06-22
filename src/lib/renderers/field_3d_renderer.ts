@@ -908,6 +908,7 @@ canvas { display: block; width: 100%; height: 100%; }
     <input type="range" id="theta_slider" min="0" max="90" step="1" value="90">
     <div id="f_readout">F = 0.16 fN</div>
 </div>
+<div id="vp_readout" style="position:absolute; top:14px; left:50%; transform:translateX(-50%); display:none; padding:6px 16px; background:rgba(10,10,26,0.82); border:1px solid rgba(255,210,122,0.55); border-radius:9px; color:#FFD27A; font:700 17px/1.2 'Cambria Math','Times New Roman',serif; letter-spacing:0.3px; z-index:30; pointer-events:none;"></div>
 <div id="torque_sliders">
     <label>N = <span id="n_torque_val">1</span> turns</label>
     <input type="range" id="n_torque_slider" min="1" max="100" step="1" value="1">
@@ -1011,6 +1012,37 @@ export const FIELD_3D_RENDERER_CODE = `
     // The trail update logic clears the LineGeometry buffer on the next
     // animate tick so the old trajectory doesn't bleed into the new one.
     var lorentzTrailResetPending = false;
+    // Voice Professor (Session 72 / Rule 27) — when the AI professor turns a
+    // knob via the SET_PARAM postMessage, the chosen INPUT values are stashed
+    // here and the lorentz animate loop reads them in the MOVING states
+    // (STATE_2/3/4/5/6/7) that have no on-screen sliders. The verified physics
+    // (R proportional to v/B, omega to B, F = q v x B, sin-theta helix split)
+    // is unchanged — the AI only picks bounded inputs, never the physics.
+    // Reset to null on every state entry (applyState) so a knob set in one
+    // state never leaks into another.
+    //   { theta_deg?: 0..90, vFactor?: >0, BFactor?: >0, charge_sign?: +/-1 }
+    var professorParamOverride = null;
+    // Voice Professor pacing (Rule 26 clock contract): playbackRate scales how
+    // fast sim-time advances (slow motion for hard moments); paused holds the
+    // whole sim so the professor can explain a frozen frame, then play it on.
+    // Both reset to default on every state entry (applyState). TTS is client-
+    // side, so PAUSE freezes the picture while the professor keeps talking.
+    var playbackRate = 1.0;
+    var paused = false;
+    // Voice Professor (sweep_param): smoothly animate ONE knob over time. The
+    // animate loop interpolates from->to over durSec (on the master clock) and
+    // writes the value into professorParamOverride each frame; the trail is reset
+    // ONCE at sweep start so the path morphs visibly. Reset on state entry.
+    //   { param, from, to, startTime (sec), durSec }
+    var professorParamSweep = null;
+    // Voice Professor (dim_except / point_at): glow tokens that stay BRIGHT while
+    // every other scene element is dimmed (focus/emphasis). Empty = no emphasis.
+    // Reset on state entry. Array of SET_GLOW tokens.
+    var emphasisTargets = [];
+    // Voice Professor (announce): which verified readout to surface as an on-canvas
+    // chip (F_magnitude | r_cyclotron | T_cyclotron | omega_cyclotron), computed
+    // live from the physics each frame. null = hidden. Reset on state entry.
+    var activeReadout = null;
     // force_on_current_wire — sign of the conventional current along the wire
     // (+1 = along config.current.direction, -1 = reversed). Driven by the
     // STATE_7 flip button and the STATE_3 current_flip timer. The animate loop
@@ -1023,6 +1055,18 @@ export const FIELD_3D_RENDERER_CODE = `
     var fcwFlipAt = null;
     var scene, camera, renderer, animationId;
     var sceneObjects = [];
+    // Live world-space unit directions of the physics objects, keyed by glow token
+    // (v / f / b / v_parallel / v_perp). Filled by each scenario's animate block and
+    // reported to the parent (OBJECT_DIRS) so the voice professor can judge framing,
+    // and read by frameObject() to compute the exact camera that best shows an object.
+    var objectDirections = {};
+    var lastDirEmit = 0;
+    // Voice Professor: the live angle-arc overlay drawn by showAngleBetween (Gap 2);
+    // cleared on the next state entry or the next show_angle_between call.
+    var _angleArcGroup = null;
+    // Timestamp (sim-time) of the last DELIBERATE camera op (set_camera / frame_object).
+    // Auto-frame-on-emphasis defers to it briefly so an intentional view is never overridden.
+    var explicitCameraAt = -10;
     var isDragging = false, prevMouse = { x: 0, y: 0 };
     // Tap detection (teacher freeze gesture): a clean click/tap with no drag
     // posts CANVAS_TAP to the parent player, which toggles the freeze. A drag
@@ -1079,7 +1123,7 @@ export const FIELD_3D_RENDERER_CODE = `
         prevMouse.x = e.clientX; prevMouse.y = e.clientY;
         updateCameraFromSpherical();
     });
-    renderer.domElement.addEventListener("mouseup", function() { isDragging = false; emitTap(); });
+    renderer.domElement.addEventListener("mouseup", function() { isDragging = false; emitTap(); emitCameraView(); });
     renderer.domElement.addEventListener("mouseleave", function() { isDragging = false; });
     renderer.domElement.addEventListener("wheel", function(e) {
         spherical.radius = Math.max(3, Math.min(20, spherical.radius + e.deltaY * 0.01));
@@ -1109,7 +1153,7 @@ export const FIELD_3D_RENDERER_CODE = `
         updateCameraFromSpherical();
         e.preventDefault();
     }, { passive: false });
-    renderer.domElement.addEventListener("touchend", function() { touchStart = null; emitTap(); });
+    renderer.domElement.addEventListener("touchend", function() { touchStart = null; emitTap(); emitCameraView(); });
 
     // ── Camera helpers ────────────────────────────────────────────────────
     function updateCameraFromSpherical() {
@@ -1122,6 +1166,15 @@ export const FIELD_3D_RENDERER_CODE = `
         camera.lookAt(0, 0, 0);
     }
 
+    // Report the viewer's actual camera axis (unit, camera -> origin) so the voice
+    // professor can judge whether what it is about to explain is visible from here
+    // and reframe if not. Fired on drag/zoom end and when a camera move settles.
+    function emitCameraView() {
+        var p = camera.position;
+        var m = Math.sqrt(p.x * p.x + p.y * p.y + p.z * p.z) || 1;
+        try { parent.postMessage({ type: "CAMERA_VIEW", axis: [-p.x / m, -p.y / m, -p.z / m] }, "*"); } catch (e) {}
+    }
+
     function animateCameraTo(pos) {
         if (!pos) return;
         var r = Math.sqrt(pos[0]*pos[0] + pos[1]*pos[1] + pos[2]*pos[2]);
@@ -1129,6 +1182,199 @@ export const FIELD_3D_RENDERER_CODE = `
         targetSpherical.phi = r > 0 ? Math.acos(Math.max(-1, Math.min(1, pos[1] / r))) : Math.PI / 3;
         targetSpherical.theta = Math.atan2(pos[2], pos[0]);
         animating = true;
+    }
+
+    // Cartesian camera position for a spherical {theta, phi, radius} (mirrors
+    // updateCameraFromSpherical). Used to evaluate the RESTING/target view so a
+    // mid-lerp camera never misleads the framing decision.
+    function sphericalToCart(s) {
+        return [
+            s.radius * Math.sin(s.phi) * Math.cos(s.theta),
+            s.radius * Math.cos(s.phi),
+            s.radius * Math.sin(s.phi) * Math.sin(s.theta)
+        ];
+    }
+
+    // The camera that best shows a SET of object directions. An arrow parallel to the
+    // view axis reads as a dot; perpendicular = fully across the screen. So we want the
+    // view axis whose WORST alignment with any direction is smallest. Sample the sphere,
+    // prefer the candidate that is genuinely WELL-framed (worst badness < FRAME_TARGET ~
+    // arrow within ~20deg of the image plane) and closest to the current view (minimal,
+    // natural move); else the global best compromise. For a coplanar set (the v-
+    // decomposition) the plane-normal views score ~0 and win, so every highlighted vector
+    // becomes visible at once. dirs = array of [x,y,z].
+    // Two thresholds give hysteresis: FRAME_GATE = when it's worth moving at all (the
+    // object is meaningfully hidden); FRAME_TARGET = what counts as a good destination.
+    var FRAME_GATE = 0.5;     // autoFrame moves only if the worst object is hidden beyond this
+    var FRAME_TARGET = 0.34;  // a candidate view counts as well-framed below this
+    function bestCameraForDirs(dirs) {
+        var R = (targetSpherical.radius || spherical.radius) || 8;
+        var ns = [];
+        for (var i = 0; i < dirs.length; i++) {
+            var d = dirs[i]; if (!d) continue;
+            var dm = Math.sqrt(d[0]*d[0] + d[1]*d[1] + d[2]*d[2]); if (dm < 1e-6) continue;
+            ns.push([d[0]/dm, d[1]/dm, d[2]/dm]);
+        }
+        if (ns.length === 0) return null;
+        var curCart = sphericalToCart(targetSpherical);
+        var curMag = Math.sqrt(curCart[0]*curCart[0] + curCart[1]*curCart[1] + curCart[2]*curCart[2]) || 1;
+        var curAxis = [-curCart[0]/curMag, -curCart[1]/curMag, -curCart[2]/curMag];
+        function maxBadnessAxis(axis) {
+            var worst = 0;
+            for (var k = 0; k < ns.length; k++) {
+                var b = Math.abs(ns[k][0]*axis[0] + ns[k][1]*axis[1] + ns[k][2]*axis[2]);
+                if (b > worst) worst = b;
+            }
+            return worst;
+        }
+        // Candidate views: a phi/theta grid (avoid the poles, include ~pi/2 so true
+        // along-axis views are reachable) + the current view.
+        var phis = [0.3, 0.55, 0.8, 1.05, 1.31, 1.5708, 1.83, 2.09, 2.34, 2.59, 2.84];
+        var bestAcceptable = null, bestAcceptDot = -2;
+        var bestAny = null, bestAnyBad = 2;
+        function consider(cart) {
+            var mg = Math.sqrt(cart[0]*cart[0] + cart[1]*cart[1] + cart[2]*cart[2]) || 1;
+            var axis = [-cart[0]/mg, -cart[1]/mg, -cart[2]/mg];
+            var bad = maxBadnessAxis(axis);
+            if (bad < bestAnyBad) { bestAnyBad = bad; bestAny = cart; }
+            if (bad < FRAME_TARGET) {
+                var closeness = curAxis[0]*axis[0] + curAxis[1]*axis[1] + curAxis[2]*axis[2];
+                if (closeness > bestAcceptDot) { bestAcceptDot = closeness; bestAcceptable = cart; }
+            }
+        }
+        consider(curCart);
+        for (var pi = 0; pi < phis.length; pi++) {
+            for (var ti = 0; ti < 24; ti++) {
+                var th = ti * (Math.PI * 2 / 24);
+                consider([
+                    R * Math.sin(phis[pi]) * Math.cos(th),
+                    R * Math.cos(phis[pi]),
+                    R * Math.sin(phis[pi]) * Math.sin(th)
+                ]);
+            }
+        }
+        return bestAcceptable || bestAny;
+    }
+
+    // Explicit "frame this object" (the frame_object op) — always glides to the best
+    // angle for that one object. The AI names it; the engine computes the angle.
+    function frameObject(token) {
+        var d = objectDirections[token];
+        if (!d) return;
+        var pos = bestCameraForDirs([d]);
+        if (pos) animateCameraTo(pos);
+    }
+
+    // Auto-frame coupled to EMPHASIS: when the sim highlights object(s), make sure the
+    // viewer can actually SEE them. Frames the highlighted SET (plane-aware), but only
+    // when they are genuinely hidden, never while the user is dragging or just after a
+    // deliberate camera op, and debounced so the same set never re-triggers. This is the
+    // universal visibility guarantee (lesson + generative + doubt), at zero AI effort.
+    var lastFramedKey = "";
+    function autoFrameEmphasis(tokens) {
+        if (!tokens || tokens.length === 0) { lastFramedKey = ""; return; }
+        if (isDragging) return;                                   // never fight a manual orbit
+        if (time - explicitCameraAt < 1.5) return;                // a deliberate view just won
+        var dirs = [], key = [];
+        for (var i = 0; i < tokens.length; i++) {
+            var d = objectDirections[tokens[i]];
+            if (d) { dirs.push(d); key.push(tokens[i]); }
+        }
+        if (dirs.length === 0) return;                            // nothing spatial to frame
+        key = key.sort().join(",");
+        if (key === lastFramedKey) return;                        // already framed this set
+        // Only-when-hidden gate: judged from the RESTING (target) view.
+        var curCart = sphericalToCart(targetSpherical);
+        var cm = Math.sqrt(curCart[0]*curCart[0] + curCart[1]*curCart[1] + curCart[2]*curCart[2]) || 1;
+        var curAxis = [-curCart[0]/cm, -curCart[1]/cm, -curCart[2]/cm];
+        var worst = 0;
+        for (var j = 0; j < dirs.length; j++) {
+            var dd = dirs[j];
+            var dmag = Math.sqrt(dd[0]*dd[0] + dd[1]*dd[1] + dd[2]*dd[2]) || 1;
+            var bad = Math.abs((dd[0]*curAxis[0] + dd[1]*curAxis[1] + dd[2]*curAxis[2]) / dmag);
+            if (bad > worst) worst = bad;
+        }
+        lastFramedKey = key;
+        if (worst < FRAME_GATE) return;                           // already visible enough — don't move
+        var pos = bestCameraForDirs(dirs);
+        if (pos) animateCameraTo(pos);
+    }
+
+    // Report the live object directions to the parent (throttled) so the professor
+    // can decide whether what it is about to explain is visible from here.
+    function emitObjectDirs() {
+        try { parent.postMessage({ type: "OBJECT_DIRS", dirs: objectDirections }, "*"); } catch (e) {}
+    }
+
+    // Voice Professor (Gap 2): draw a yellow arc + angle label between two physics
+    // objects, readable even when they are COLLINEAR (theta 0/180), where no camera
+    // angle can separate two arrows pointing the same way. Uses the live world
+    // directions in objectDirections (the same source frameObject reads), builds an
+    // orthonormal basis (e1 along a, e2 perpendicular toward b) via Gram-Schmidt,
+    // and samples the arc p(t) = R*(cos t * e1 + sin t * e2) for t in [0, angle].
+    function showAngleBetween(tokenA, tokenB, labelOverride) {
+        if (_angleArcGroup) { scene.remove(_angleArcGroup); _angleArcGroup = null; }
+        if (!tokenA || !tokenB) return;
+        var dA = objectDirections[tokenA];
+        var dB = objectDirections[tokenB];
+        if (!dA || !dB) return;
+        var mA = Math.sqrt(dA[0]*dA[0]+dA[1]*dA[1]+dA[2]*dA[2]) || 1;
+        var mB = Math.sqrt(dB[0]*dB[0]+dB[1]*dB[1]+dB[2]*dB[2]) || 1;
+        var e1 = [dA[0]/mA, dA[1]/mA, dA[2]/mA];
+        var nb = [dB[0]/mB, dB[1]/mB, dB[2]/mB];
+        var cosT = Math.max(-1, Math.min(1, e1[0]*nb[0]+e1[1]*nb[1]+e1[2]*nb[2]));
+        var arcAngle = Math.acos(cosT);
+        var angleDeg = Math.round(arcAngle * 180 / Math.PI);
+        var proj = cosT;
+        var e2raw = [nb[0]-proj*e1[0], nb[1]-proj*e1[1], nb[2]-proj*e1[2]];
+        var e2m = Math.sqrt(e2raw[0]*e2raw[0]+e2raw[1]*e2raw[1]+e2raw[2]*e2raw[2]);
+        if (e2m < 1e-4) {
+            // a and b are (anti)parallel: pick any perpendicular so the label has a place to sit.
+            var arb = (Math.abs(e1[0]) < 0.9) ? [1,0,0] : [0,1,0];
+            var dp = arb[0]*e1[0]+arb[1]*e1[1]+arb[2]*e1[2];
+            e2raw = [arb[0]-dp*e1[0], arb[1]-dp*e1[1], arb[2]-dp*e1[2]];
+            e2m = Math.sqrt(e2raw[0]*e2raw[0]+e2raw[1]*e2raw[1]+e2raw[2]*e2raw[2]) || 1;
+        }
+        var e2 = [e2raw[0]/e2m, e2raw[1]/e2m, e2raw[2]/e2m];
+        var RADIUS = 1.2;
+        var STEPS = 32;
+        var group = new THREE.Group();
+        if (arcAngle > 0.01) {
+            var pts = [];
+            for (var si = 0; si <= STEPS; si++) {
+                var t = (si / STEPS) * arcAngle;
+                pts.push(new THREE.Vector3(
+                    (e1[0]*Math.cos(t)+e2[0]*Math.sin(t))*RADIUS,
+                    (e1[1]*Math.cos(t)+e2[1]*Math.sin(t))*RADIUS,
+                    (e1[2]*Math.cos(t)+e2[2]*Math.sin(t))*RADIUS
+                ));
+            }
+            var geo = new THREE.BufferGeometry().setFromPoints(pts);
+            var mat = new THREE.LineBasicMaterial({ color: 0xffdd44 });
+            group.add(new THREE.Line(geo, mat));
+        }
+        // Label sits at the arc midpoint for real angles; for near-zero angles, nudge
+        // it out along the perpendicular so it does not overlap the stacked arrows.
+        var midT = arcAngle > 0.1 ? arcAngle / 2 : Math.PI / 2;
+        var lx = (e1[0]*Math.cos(midT)+e2[0]*Math.sin(midT))*(RADIUS+0.4);
+        var ly = (e1[1]*Math.cos(midT)+e2[1]*Math.sin(midT))*(RADIUS+0.4);
+        var lz = (e1[2]*Math.cos(midT)+e2[2]*Math.sin(midT))*(RADIUS+0.4);
+        var labelText = labelOverride || (angleDeg + '°');
+        var cnv = document.createElement('canvas');
+        cnv.width = 128; cnv.height = 64;
+        var ctx2 = cnv.getContext('2d');
+        ctx2.clearRect(0, 0, 128, 64);
+        ctx2.font = 'bold 28px Arial';
+        ctx2.fillStyle = '#ffdd44';
+        ctx2.textAlign = 'center';
+        ctx2.fillText(labelText, 64, 42);
+        var tex = new THREE.CanvasTexture(cnv);
+        var spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false }));
+        spr.position.set(lx, ly, lz);
+        spr.scale.set(0.8, 0.4, 1.0);
+        group.add(spr);
+        scene.add(group);
+        _angleArcGroup = group;
     }
 
     function lerpSpherical() {
@@ -1144,8 +1390,29 @@ export const FIELD_3D_RENDERER_CODE = `
             spherical.phi = targetSpherical.phi;
             spherical.radius = targetSpherical.radius;
             animating = false;
+            updateCameraFromSpherical();
+            emitCameraView();   // camera move finished — report the resting viewpoint
+            return;
         }
         updateCameraFromSpherical();
+    }
+
+    // Voice Professor (Session-72 operation vocabulary, camera edition): named
+    // viewpoints the AI can request so it can frame an explanation, then often
+    // PAUSE there. Tuned for the lorentz scenario (B along +y, vertical): face_on
+    // looks straight DOWN the field axis (small phi) so circular motion reads as
+    // a true circle; edge_on views from the side (phi = pi/2) so a helix shows
+    // its forward stretch and a circle reads as a flat line; top is an angled
+    // bird's-eye; closer/wider zoom. lerpSpherical animates the move (no teleport).
+    function applyCameraView(view) {
+        if (view === "default") { targetSpherical.theta = Math.PI / 4; targetSpherical.phi = Math.PI / 3; targetSpherical.radius = 8; }
+        else if (view === "face_on") { targetSpherical.theta = Math.PI / 4; targetSpherical.phi = 0.18; targetSpherical.radius = 8; }
+        else if (view === "edge_on") { targetSpherical.theta = 0; targetSpherical.phi = Math.PI / 2; targetSpherical.radius = 9; }
+        else if (view === "top") { targetSpherical.theta = Math.PI / 4; targetSpherical.phi = 0.5; targetSpherical.radius = 9; }
+        else if (view === "closer") { targetSpherical.radius = Math.max(3, targetSpherical.radius - 3); }
+        else if (view === "wider") { targetSpherical.radius = Math.min(20, targetSpherical.radius + 3); }
+        else return;
+        animating = true;
     }
 
     // ── Scene management ──────────────────────────────────────────────────
@@ -4821,6 +5088,9 @@ export const FIELD_3D_RENDERER_CODE = `
         var stateDef = config.states[stateId];
         if (!stateDef) return;
 
+        // Voice Professor (Gap 2): clear any angle-arc overlay on state entry.
+        if (_angleArcGroup) { scene.remove(_angleArcGroup); _angleArcGroup = null; }
+
         // Diamond #2 (Lorentz force): reset the particle trail buffer on state
         // change so each state animates from a clean canvas. The static-state
         // visibility (STATE_2/3/4) won't ever fill the buffer; the moving-state
@@ -4833,6 +5103,22 @@ export const FIELD_3D_RENDERER_CODE = `
                 rObj.geometry.setDrawRange(0, 0);
             }
         }
+
+        // Voice Professor: clear any AI-set parameter override on state entry
+        // (Rule 27 anti-leak — mirrors the trail reset above). A knob the
+        // professor turned in one state must never carry into the next. Pacing
+        // (speed / pause) also resets so each state starts at normal playback.
+        professorParamOverride = null;
+        playbackRate = 1.0;
+        paused = false;
+        // Voice Professor sweep / emphasis / readout also reset on state entry
+        // (same Rule 27 anti-leak — a gesture in one state never carries over).
+        professorParamSweep = null;
+        emphasisTargets = [];
+        lastFramedKey = "";   // a re-glowed set in the new state should re-frame
+        activeReadout = null;
+        var roHide = document.getElementById("vp_readout");
+        if (roHide) roHide.style.display = "none";
 
         // Update caption
         var captionEl = document.getElementById("caption");
@@ -6138,12 +6424,19 @@ export const FIELD_3D_RENDERER_CODE = `
         // the pin, then hold — never jump, so per-frame accumulators (particle
         // trail, slow_rotation integration) build the exact same frame count
         // every run → deterministic pixels for regression baselines.
+        // Voice Professor pacing: playbackRate scales how fast sim-time advances
+        // (slow motion); paused holds it entirely. All motion is parameterised by
+        // (time - stateStartTime), so this slows / freezes EVERY concept's
+        // choreography uniformly — the professor can pause, explain, then play on.
+        var step = paused ? 0 : 0.016 * playbackRate;
         var heldAtPin = false;
-        if (freezeAtTime !== null && time + 0.016 >= freezeAtTime) {
+        if (paused) {
+            heldAtPin = true;
+        } else if (freezeAtTime !== null && time + step >= freezeAtTime) {
             time = freezeAtTime;
             heldAtPin = true;
         } else {
-            time += 0.016;
+            time += step;
         }
 
         // Visual-validator capture hook: expose the renderer's SIM-TIME clock
@@ -6157,11 +6450,15 @@ export const FIELD_3D_RENDERER_CODE = `
 
         lerpSpherical();
 
+        // Report live object directions to the parent ~3x/sec (the previous frame's
+        // cached dirs; negligibly stale) so the professor can judge framing.
+        if (time - lastDirEmit > 0.3) { lastDirEmit = time; emitObjectDirs(); }
+
         // Diamond #3 — torque-loop rotation + τ-arrow scaling + TTS glow.
         if (config.scenario_type === "torque_on_loop_uniform_field") {
             // slow_rotation integrates by dt independent of the time var —
             // pass 0 while held at the pin so the loop angle freezes too.
-            updateTorqueLoopFrame(heldAtPin ? 0 : 0.016);
+            updateTorqueLoopFrame(heldAtPin ? 0 : step);
             applyTorqueLoopGlow();
         }
 
@@ -7029,14 +7326,57 @@ export const FIELD_3D_RENDERER_CODE = `
             // time is held at the snapshot value so position + v/F arrow bases
             // stop drifting while the script discusses the F arrow.
             var tLocal = (protonFreezeAt != null) ? protonFreezeAt : (time - stateStartTime);
-            var thetaDegL = stateDef.theta_deg != null ? stateDef.theta_deg : 90;
+            // Voice Professor (sweep_param): interpolate a knob over time, writing
+            // into professorParamOverride so the existing override path below
+            // renders it. Runs on the master clock, so PAUSE / SET_TIME_FREEZE
+            // hold the sweep too. The trail was reset once at sweep start.
+            if (professorParamSweep) {
+                if (!professorParamOverride) professorParamOverride = {};
+                var swP = professorParamSweep.durSec > 0
+                    ? (time - professorParamSweep.startTime) / professorParamSweep.durSec : 1;
+                if (swP < 0) swP = 0;
+                if (swP > 1) swP = 1;
+                var swVal = professorParamSweep.from + (professorParamSweep.to - professorParamSweep.from) * swP;
+                var swParam = professorParamSweep.param;
+                var scSw = config.slider_controls || {};
+                if (swParam === "theta_deg") {
+                    professorParamOverride.theta_deg = Math.max(0, Math.min(90, swVal));
+                } else if (swParam === "v") {
+                    var vDefSw = (scSw.v && scSw.v.default) ? scSw.v.default : 1e5;
+                    professorParamOverride.vFactor = Math.max(5e4, Math.min(5e5, swVal)) / vDefSw;
+                } else if (swParam === "B") {
+                    var bDefSw = (scSw.B && scSw.B.default) ? scSw.B.default : 0.01;
+                    professorParamOverride.BFactor = Math.max(0.001, Math.min(0.1, swVal)) / bDefSw;
+                } else if (swParam === "q_sign") {
+                    professorParamOverride.charge_sign = swVal < 0 ? -1 : 1;
+                }
+                if (swP >= 1) professorParamSweep = null;
+            }
+            // Voice Professor override (Session 72): in moving states with no
+            // on-screen sliders, an AI-set theta / charge-sign takes precedence
+            // over the authored state default. In STATE_8 the sliders own these
+            // (refreshLorentzLabels mutates stateDef.theta_deg), so the override
+            // is consulted ONLY when show_sliders is false.
+            var ppo = (!stateDef.show_sliders && professorParamOverride) ? professorParamOverride : null;
+            var thetaDegL = (ppo && ppo.theta_deg != null)
+                ? ppo.theta_deg
+                : (stateDef.theta_deg != null ? stateDef.theta_deg : 90);
             var thetaRadL = (thetaDegL * Math.PI) / 180;
             var sinT = Math.sin(thetaRadL);
             var cosT = Math.cos(thetaRadL);
-            var chargeSignL = stateDef.charge_sign != null
-                ? stateDef.charge_sign
-                : (config.particle ? config.particle.charge_sign : 1);
+            var chargeSignL = (ppo && ppo.charge_sign != null)
+                ? ppo.charge_sign
+                : (stateDef.charge_sign != null
+                    ? stateDef.charge_sign
+                    : (config.particle ? config.particle.charge_sign : 1));
             var modeL = stateDef.trajectory_mode || "static";
+            // Money-shot: when the professor dials theta off 90 in a circle
+            // state (STATE_2/3/4), open the circle into a helix so the change
+            // is visible. The helix branch below is self-contained verified
+            // physics: v-parallel (cos theta) drift + v-perp (sin theta) circle.
+            if (ppo && ppo.theta_deg != null && modeL === "circle" && thetaDegL > 0 && thetaDegL < 88) {
+                modeL = "helix";
+            }
 
             // STATE_6 interactive sliders: v and B must change the visible
             // trajectory, not just the F readout. Physics:
@@ -7057,6 +7397,11 @@ export const FIELD_3D_RENDERER_CODE = `
                     ? (config.slider_controls.B.default * 1000) : 10.0;
                 if (vSliderEl) vFactor = parseFloat(vSliderEl.value) / vDefault;
                 if (bSliderEl) BFactor = parseFloat(bSliderEl.value) / BDefault;
+            } else if (ppo) {
+                // AI-set |v| / |B|, already converted to factor-of-default in
+                // the SET_PARAM handler (same math as the slider path above).
+                if (ppo.vFactor != null) vFactor = ppo.vFactor;
+                if (ppo.BFactor != null) BFactor = ppo.BFactor;
             }
             // Visual radius scales as v/B, clamped so the circle stays inside
             // the camera frustum even at extreme slider settings.
@@ -7154,7 +7499,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var fVec = new THREE.Vector3().crossVectors(vDir, bUnit);
             if (chargeSignL < 0) fVec.multiplyScalar(-1);
             var fLenRaw = fVec.length();
-            var fLen = stateDef.show_sliders
+            var fLen = (stateDef.show_sliders || ppo)
                 ? Math.min(2.0, fLenRaw * vFactor * BFactor)
                 : fLenRaw;
             var fDir = fLenRaw > 1e-6 ? fVec.normalize() : new THREE.Vector3(0, 1, 0);
@@ -7179,19 +7524,114 @@ export const FIELD_3D_RENDERER_CODE = `
             var vParDir = vDotB >= 0 ? bUnit : bUnit.clone().multiplyScalar(-1);
             var vPerpDir = vPerpLen > 1e-6 ? vPerpVec.normalize() : new THREE.Vector3(1, 0, 0);
 
+            // Cache the live world directions so frameObject() can compute the ideal
+            // camera and the parent can judge framing (keyed by glow token). bUnit is
+            // the field direction; the rest depend on theta/charge for this frame.
+            objectDirections.v = [vDir.x, vDir.y, vDir.z];
+            objectDirections.f = [fDir.x, fDir.y, fDir.z];
+            objectDirections.b = [bUnit.x, bUnit.y, bUnit.z];
+            objectDirections.v_parallel = [vParDir.x, vParDir.y, vParDir.z];
+            objectDirections.v_perp = [vPerpDir.x, vPerpDir.y, vPerpDir.z];
+
             // Track final lengths so the labels know where the arrow tips are.
             var finalV_len = 0, finalF_len = 0, finalVPar_len = 0, finalVPerp_len = 0;
-            // TTS-driven glow pulse: shifted DC offset so glowing elements are
-            // always larger than their un-glowed baseline (range [1.0, 1.7]).
-            // Founder note 2026-05-12 (fourth pass): centered-on-1.0 oscillations
-            // meant elements were sometimes SMALLER than baseline mid-cycle —
-            // invisible signal when caught at the dip. The new formula sits at
-            // a +35% mean elevation and oscillates ±35% around that, so the
-            // element is conspicuously enlarged for the entire duration of the
-            // glow target, with a soft pulse on top.
-            var glowPulse = 1.35 + 0.35 * Math.sin(time * 3.5);
-            function glowFactor(target) {
-                return glowTargets.indexOf(target) >= 0 ? glowPulse : 1.0;
+            // Highlight = a steady BRIGHTNESS glow, NOT a size change. The old
+            // glowFactor enlarged the object to 1.0x-1.7x every frame, which read
+            // as a distracting "throb bigger/smaller" on the vector / hand / field
+            // (founder note 2026-06-20). Now a glowed object keeps its exact size
+            // and just brightens in place: an emissive boost on lit materials (the
+            // 3D hand) and a colour-shift toward white on the flat arrow / field
+            // materials. Base values are cached on each material's userData so the
+            // effect is fully reversible the instant the glow clears.
+            var GLOW_WHITE = new THREE.Color(0xFFFFFF);
+            // Glow TIERS (founder ask: stress the object being named). OFF = no glow;
+            // BASE = a faint always-on glow on the key vectors so the scene reads alive;
+            // STRESS = the object the professor is naming RIGHT NOW — clearly brighter, in
+            // its OWN colour, so the student's eye lands on it. This is a BRIGHTNESS channel
+            // only (no size throb — founder 2026-06-20); it layers on top of the independent
+            // dim/opacity channel (setObjDim), which is left untouched. Dial the look here:
+            var GLOW_OFF = 0, GLOW_BASE = 1, GLOW_STRESS = 2;
+            var GLOW_EMI = [0, 0.22, 1.0];     // emissiveIntensity per tier (lit materials)
+            var GLOW_LERP = [0, 0.10, 0.55];   // colour-shift toward white per tier (flat materials)
+            function isGlow(target) { return glowTargets.indexOf(target) >= 0; }
+            function setObjGlow(obj, level) {
+                obj.traverse(function(gNode) {
+                    if (!gNode.material) return;
+                    var gMats = Array.isArray(gNode.material) ? gNode.material : [gNode.material];
+                    for (var gmi = 0; gmi < gMats.length; gmi++) {
+                        var gm = gMats[gmi];
+                        if (gm.emissive) {
+                            if (gm.userData.baseEmiHex === undefined) {
+                                gm.userData.baseEmiHex = gm.emissive.getHex();
+                                gm.userData.baseEmiInt = gm.emissiveIntensity;
+                                gm.userData.baseOwnHex = gm.color ? gm.color.getHex() : 0xFFFFFF;
+                            }
+                            if (level === GLOW_OFF) {
+                                gm.emissive.setHex(gm.userData.baseEmiHex);
+                                gm.emissiveIntensity = gm.userData.baseEmiInt;
+                            } else {
+                                // Glow in the object's OWN colour (not a fixed amber) so a
+                                // stressed green force glows green and orange v glows orange.
+                                gm.emissive.setHex(gm.userData.baseOwnHex);
+                                gm.emissiveIntensity = GLOW_EMI[level];
+                            }
+                        } else if (gm.color) {
+                            if (!gm.userData.baseCol) gm.userData.baseCol = gm.color.clone();
+                            gm.color.copy(gm.userData.baseCol).lerp(GLOW_WHITE, GLOW_LERP[level]);
+                        }
+                    }
+                });
+            }
+            // Voice Professor (dim_except / point_at): fade an element via opacity
+            // (a different channel than glow's brightness, so the two coexist).
+            // Base opacity is cached on userData so it is fully reversible.
+            function setObjDim(obj, on) {
+                obj.traverse(function(dNode) {
+                    if (!dNode.material) return;
+                    var dMats = Array.isArray(dNode.material) ? dNode.material : [dNode.material];
+                    for (var dmi = 0; dmi < dMats.length; dmi++) {
+                        var dm = dMats[dmi];
+                        if (dm.userData.baseOpacity === undefined) {
+                            dm.userData.baseOpacity = (dm.opacity != null) ? dm.opacity : 1;
+                            dm.userData.baseTransparent = (dm.transparent === true);
+                        }
+                        if (on) {
+                            dm.transparent = true;
+                            dm.opacity = dm.userData.baseOpacity * 0.18;
+                        } else {
+                            dm.opacity = dm.userData.baseOpacity;
+                            dm.transparent = dm.userData.baseTransparent;
+                        }
+                    }
+                });
+            }
+            // Voice Professor (Gap 3): raise a highlighted object OVER the scene
+            // depth buffer so occlusion can never hide it behind the particle, the
+            // trail, or another arrow. Mirrors setObjDim's traverse pattern: an
+            // ArrowHelper's line + cone are children, so traverse reaches both.
+            // The order arg (camera-distance-sorted by the caller) keeps two
+            // promoted arrows correctly ordered relative to each other.
+            function setObjDepthPromote(obj, on, order) {
+                obj.traverse(function(pNode) {
+                    if (!pNode.material) return;
+                    // Cache the ORIGINAL renderOrder/depthTest the first time so the
+                    // restore returns to it (some nodes ship a non-zero renderOrder /
+                    // depthTest:false — e.g. charge-badge sprites — never clobber those).
+                    if (pNode.userData.baseRenderOrderSaved !== true) {
+                        pNode.userData.baseRenderOrder = pNode.renderOrder;
+                        pNode.userData.baseRenderOrderSaved = true;
+                    }
+                    pNode.renderOrder = on ? order : pNode.userData.baseRenderOrder;
+                    var pMats = Array.isArray(pNode.material) ? pNode.material : [pNode.material];
+                    for (var pmi = 0; pmi < pMats.length; pmi++) {
+                        var pm = pMats[pmi];
+                        if (pm.userData.baseDepthSaved !== true) {
+                            pm.userData.baseDepthTest = pm.depthTest;
+                            pm.userData.baseDepthSaved = true;
+                        }
+                        pm.depthTest = on ? false : pm.userData.baseDepthTest;
+                    }
+                });
             }
 
             for (var li = 0; li < sceneObjects.length; li++) {
@@ -7229,36 +7669,40 @@ export const FIELD_3D_RENDERER_CODE = `
                 } else if (lUd.elementType === "velocity_vector") {
                     lObj.position.copy(newPos);
                     if (vShow) {
-                        finalV_len = vScale * glowFactor("v");
+                        finalV_len = vScale;
                         lObj.setDirection(vDir); lObj.setLength(finalV_len, 0.22, 0.11);
+                        setObjGlow(lObj, isGlow("v") ? GLOW_STRESS : GLOW_BASE);
                         lObj.visible = true;
                     } else lObj.visible = false;
                 } else if (lUd.elementType === "force_vector") {
                     lObj.position.copy(newPos);
                     if (fShow && fLen > 1e-6) {
-                        finalF_len = fScale * Math.max(0.15, fLen) * glowFactor("f");
+                        finalF_len = fScale * Math.max(0.15, fLen);
                         lObj.setDirection(fDir);
                         lObj.setLength(finalF_len, 0.22, 0.11);
+                        setObjGlow(lObj, isGlow("f") ? GLOW_STRESS : GLOW_BASE);
                         lObj.visible = true;
                     } else {
                         lObj.visible = false;
                     }
                 } else if (lUd.elementType === "v_parallel") {
                     if (decompShow && vParLen > 0.02) {
-                        finalVPar_len = vParLen * glowFactor("v_parallel");
+                        finalVPar_len = vParLen;
                         lObj.position.copy(newPos);
                         lObj.setDirection(vParDir);
                         lObj.setLength(finalVPar_len, 0.18, 0.09);
+                        setObjGlow(lObj, isGlow("v_parallel") ? GLOW_STRESS : GLOW_BASE);
                         lObj.visible = true;
                     } else {
                         lObj.visible = false;
                     }
                 } else if (lUd.elementType === "v_perp") {
                     if (decompShow && vPerpLen > 0.02) {
-                        finalVPerp_len = vPerpLen * glowFactor("v_perp");
+                        finalVPerp_len = vPerpLen;
                         lObj.position.copy(newPos);
                         lObj.setDirection(vPerpDir);
                         lObj.setLength(finalVPerp_len, 0.18, 0.09);
+                        setObjGlow(lObj, isGlow("v_perp") ? GLOW_STRESS : GLOW_BASE);
                         lObj.visible = true;
                     } else {
                         lObj.visible = false;
@@ -7285,30 +7729,29 @@ export const FIELD_3D_RENDERER_CODE = `
                         lObj.position.copy(newPos).addScaledVector(labelDir, labelLen + 0.22);
                         lObj.visible = true;
                         // Glow target scales the label up too.
-                        var tracksGlow = (
-                            (tracks === "velocity_vector" && glowTargets.indexOf("v") >= 0) ||
-                            (tracks === "force_vector"    && glowTargets.indexOf("f") >= 0) ||
-                            (tracks === "v_parallel"      && glowTargets.indexOf("v_parallel") >= 0) ||
-                            (tracks === "v_perp"          && glowTargets.indexOf("v_perp") >= 0)
-                        );
+                        // Labels keep a STEADY size (no throb). The arrow they
+                        // track carries the brightness glow; the label just rides
+                        // along at its base scale.
                         var baseScale = (tracks === "v_parallel" || tracks === "v_perp") ? 0.65 : (tracks === "force_vector" ? 0.95 : 0.85);
-                        var pulse = tracksGlow ? glowPulse : 1.0;
-                        lObj.scale.set(baseScale * 3 * pulse, baseScale * pulse, 1);
+                        lObj.scale.set(baseScale * 3, baseScale, 1);
                     } else {
                         lObj.visible = false;
                     }
                 } else if (lUd.elementType === "ambient_field") {
-                    // TTS glow 'b': uniform B-field grid arrows scale softly
-                    // while the narration references the magnetic field.
-                    lObj.scale.setScalar(glowFactor("b"));
+                    // TTS glow 'b': brighten the B-field grid arrows IN PLACE
+                    // while the narration references the magnetic field — no size
+                    // change (force base scale, then apply the brightness glow).
+                    lObj.scale.setScalar(1);
+                    setObjGlow(lObj, isGlow("b") ? GLOW_STRESS : GLOW_BASE);
                 } else if (lUd.elementType === "particle_trail") {
                     if (!trailShow) { lObj.visible = false; continue; }
                     lObj.visible = true;
                     // TTS glow 'trail': the orbit path pulses via opacity
                     // (geometry is unchanged so the trace stays positionally
                     // accurate). Base opacity 0.85 set at trail construction.
-                    var trailGlow = glowTargets.indexOf("trail") >= 0 ? glowPulse : 1.0;
-                    lObj.material.opacity = Math.min(1.0, 0.85 * trailGlow);
+                    // Brightness glow only (opacity) — geometry unchanged, no throb.
+                    setObjGlow(lObj, glowTargets.indexOf("trail") >= 0 ? GLOW_STRESS : GLOW_BASE);
+                    lObj.material.opacity = glowTargets.indexOf("trail") >= 0 ? 1.0 : 0.85;
                     if (lorentzTrailResetPending) {
                         lUd.write_index = 0;
                         lUd.filled = 0;
@@ -7446,7 +7889,8 @@ export const FIELD_3D_RENDERER_CODE = `
                 // the narration explicitly references "the 3D right-hand" or
                 // its fingers / palm / thumb. Multiplies on top of the base
                 // hand_scale already baked into child positions/dimensions.
-                handObj.scale.setScalar(glowFactor("hand"));
+                handObj.scale.setScalar(1);
+                setObjGlow(handObj, isGlow("hand") ? GLOW_STRESS : GLOW_OFF);
 
                 // (a) Regenerate the 4 finger geometries with current curlT,
                 //     and slide each fingernail to the new fingertip.
@@ -7507,6 +7951,104 @@ export const FIELD_3D_RENDERER_CODE = `
                         var fNumeric = 1.602e-19 * vAbs * Bval * sinThetaSlider;
                         fReadout.textContent = "F = " + (fNumeric * 1e15).toFixed(3) + " fN";
                     }
+                }
+            }
+
+            // Voice Professor (dim_except / point_at): fade every element whose
+            // token is not emphasised. Second pass keyed by elementType so the
+            // glow call-sites above stay untouched.
+            var EMPH_TOKEN = {
+                velocity_vector: "v", force_vector: "f", v_parallel: "v_parallel",
+                v_perp: "v_perp", ambient_field: "b", particle_trail: "trail", lorentz_hand: "hand"
+            };
+            for (var emi = 0; emi < sceneObjects.length; emi++) {
+                var emObj = sceneObjects[emi];
+                if (!emObj.userData) continue;
+                var emTok = EMPH_TOKEN[emObj.userData.elementType];
+                if (!emTok) continue;
+                var emDim = emphasisTargets.length > 0 && emphasisTargets.indexOf(emTok) < 0;
+                setObjDim(emObj, emDim);
+            }
+
+            // Voice Professor (Gap 3 — occlusion): the "focus set" = whatever is
+            // currently highlighted (glow ∪ the bright side of dim_except). Promote
+            // those over everything else so the thing being explained is never hidden
+            // behind geometry; restore depth every frame for anything NOT in focus
+            // (so clearing glow / changing state self-heals — no applyState cleanup).
+            var _focus = glowTargets.slice();
+            for (var fei = 0; fei < emphasisTargets.length; fei++) {
+                if (_focus.indexOf(emphasisTargets[fei]) < 0) _focus.push(emphasisTargets[fei]);
+            }
+            var _camPos = camera.position;
+            var _promote = [];
+            for (var pi = 0; pi < sceneObjects.length; pi++) {
+                var pObj = sceneObjects[pi];
+                if (!pObj.userData) continue;
+                var pTok = EMPH_TOKEN[pObj.userData.elementType];
+                if (pTok && _focus.indexOf(pTok) >= 0) {
+                    var _wp = new THREE.Vector3();
+                    pObj.getWorldPosition(_wp);
+                    _promote.push({ obj: pObj, d: _wp.distanceTo(_camPos) });
+                } else {
+                    setObjDepthPromote(pObj, false, 0);
+                }
+            }
+            // Farther highlighted objects get a LOWER renderOrder so a nearer
+            // highlighted arrow still draws on top of one behind it.
+            _promote.sort(function(a, b) { return b.d - a.d; });
+            for (var qi = 0; qi < _promote.length; qi++) {
+                setObjDepthPromote(_promote[qi].obj, true, 990 + qi);
+            }
+
+            // Voice Professor (announce): surface a verified readout as an on-canvas
+            // chip, computed live from the SAME formulas the concept declares (so it
+            // matches the value the server speaks).
+            var roEl = document.getElementById("vp_readout");
+            if (roEl) {
+                if (activeReadout) {
+                    var scR = config.slider_controls || {};
+                    var vDefR = (scR.v && scR.v.default) ? scR.v.default : 1e5;
+                    var bDefR = (scR.B && scR.B.default) ? scR.B.default : 0.01;
+                    var vAbsR, BvalR, thetaRdeg, qR;
+                    if (stateDef.show_sliders) {
+                        var vSl = document.getElementById("v_slider");
+                        var bSl = document.getElementById("b_slider");
+                        var tSl = document.getElementById("theta_slider");
+                        var qTg = document.getElementById("q_toggle");
+                        vAbsR = vSl ? parseFloat(vSl.value) * 1e5 : vDefR;
+                        BvalR = bSl ? parseFloat(bSl.value) * 1e-3 : bDefR;
+                        thetaRdeg = tSl ? parseFloat(tSl.value) : 90;
+                        qR = (qTg && qTg.textContent === "−e") ? -1 : 1;
+                    } else {
+                        var ppoR = professorParamOverride || {};
+                        vAbsR = (ppoR.vFactor != null) ? ppoR.vFactor * vDefR : vDefR;
+                        BvalR = (ppoR.BFactor != null) ? ppoR.BFactor * bDefR : bDefR;
+                        thetaRdeg = (ppoR.theta_deg != null) ? ppoR.theta_deg
+                            : (stateDef.theta_deg != null ? stateDef.theta_deg : 90);
+                        qR = (ppoR.charge_sign != null) ? ppoR.charge_sign
+                            : (stateDef.charge_sign != null ? stateDef.charge_sign
+                                : (config.particle ? config.particle.charge_sign : 1));
+                    }
+                    var qeR = 1.602176634e-19, mpR = 1.67262192369e-27;
+                    var sinR = Math.sin(thetaRdeg * Math.PI / 180);
+                    var roVal = null, roSym = "", roUnit = "";
+                    if (activeReadout === "F_magnitude") { roVal = Math.abs(qR) * qeR * vAbsR * BvalR * sinR; roSym = "F"; roUnit = "N"; }
+                    else if (activeReadout === "r_cyclotron") { roVal = (BvalR > 0) ? (mpR * vAbsR * sinR) / (qeR * BvalR) : 0; roSym = "r"; roUnit = "m"; }
+                    else if (activeReadout === "T_cyclotron") { roVal = (BvalR > 0) ? (2 * Math.PI * mpR) / (qeR * BvalR) : 0; roSym = "T"; roUnit = "s"; }
+                    else if (activeReadout === "omega_cyclotron") { roVal = (qeR * BvalR) / mpR; roSym = "ω"; roUnit = "rad/s"; }
+                    if (roVal != null && isFinite(roVal)) {
+                        var aR = Math.abs(roVal);
+                        var pfx = [[9, "G"], [6, "M"], [3, "k"], [0, ""], [-3, "m"], [-6, "µ"], [-9, "n"], [-12, "p"], [-15, "f"], [-18, "a"]];
+                        var chR = pfx[pfx.length - 1];
+                        for (var pri = 0; pri < pfx.length; pri++) { if (aR >= Math.pow(10, pfx[pri][0])) { chR = pfx[pri]; break; } }
+                        var mantR = roVal / Math.pow(10, chR[0]);
+                        roEl.textContent = roSym + " = " + (Math.round(mantR * 100) / 100) + " " + chR[1] + roUnit;
+                        roEl.style.display = "block";
+                    } else {
+                        roEl.style.display = "none";
+                    }
+                } else {
+                    roEl.style.display = "none";
                 }
             }
         }
@@ -7709,6 +8251,7 @@ export const FIELD_3D_RENDERER_CODE = `
                             renderMobileSVG();
                         }
                         parent.postMessage({ type: "STATE_REACHED", state: newState }, "*");
+                        lastDirEmit = 0; // force a fresh OBJECT_DIRS report for the new state
                     }
                     break;
 
@@ -7764,6 +8307,9 @@ export const FIELD_3D_RENDERER_CODE = `
                         var fEl = document.getElementById(fingerMap[fkey]);
                         if (fEl) fEl.classList.toggle("glow-finger", glowTargets.indexOf(fkey) >= 0);
                     }
+                    // Visibility guarantee: turn so the highlighted object(s) are actually
+                    // visible (plane-aware; only when hidden; defers to deliberate cameras).
+                    autoFrameEmphasis(glowTargets);
                     break;
 
                 case "SET_FREEZE_PROTON":
@@ -7830,6 +8376,150 @@ export const FIELD_3D_RENDERER_CODE = `
                             lgM.userData.rotation_mode = "manual";
                             applyTorqueLoopTheta(lgM, data.theta_deg);
                         }
+                    }
+                    break;
+
+                case "SET_PARAM":
+                    // Voice Professor (Session 72 / Rule 27): the AI professor
+                    // turns ONE physics knob. It supplies only a bounded INPUT
+                    // value — the verified animate-loop physics computes the
+                    // result. Lorentz scenario only. Accumulates across multiple
+                    // SET_PARAM messages within a state; reset to null on the
+                    // next SET_STATE (applyState). Out-of-range values clamp.
+                    if (config.scenario_type === "lorentz_force_uniform_field"
+                        && typeof data.param === "string"
+                        && typeof data.value === "number" && isFinite(data.value)) {
+                        if (!professorParamOverride) professorParamOverride = {};
+                        var sc = config.slider_controls || {};
+                        if (data.param === "theta_deg") {
+                            professorParamOverride.theta_deg = Math.max(0, Math.min(90, data.value));
+                        } else if (data.param === "v") {
+                            var vDef = (sc.v && sc.v.default) ? sc.v.default : 1e5;
+                            professorParamOverride.vFactor = Math.max(5e4, Math.min(5e5, data.value)) / vDef;
+                        } else if (data.param === "B") {
+                            var bDef = (sc.B && sc.B.default) ? sc.B.default : 0.01;
+                            professorParamOverride.BFactor = Math.max(0.001, Math.min(0.1, data.value)) / bDef;
+                        } else if (data.param === "q_sign") {
+                            professorParamOverride.charge_sign = data.value < 0 ? -1 : 1;
+                        }
+                        // New inputs invalidate the drawn trajectory.
+                        lorentzTrailResetPending = true;
+                        // If the on-screen sliders are visible (STATE_8), reflect
+                        // the value so the audience sees the knob move; the
+                        // slider's own input handler then drives the physics.
+                        var lsEl = document.getElementById("lorentz_sliders");
+                        if (lsEl && lsEl.style.display !== "none") {
+                            if (data.param === "theta_deg") {
+                                var thS = document.getElementById("theta_slider");
+                                if (thS) { thS.value = String(professorParamOverride.theta_deg); thS.dispatchEvent(new Event("input", { bubbles: true })); }
+                            } else if (data.param === "v") {
+                                var vS = document.getElementById("v_slider");
+                                if (vS) { vS.value = String(Math.max(5e4, Math.min(5e5, data.value)) / 1e5); vS.dispatchEvent(new Event("input", { bubbles: true })); }
+                            } else if (data.param === "B") {
+                                var bS = document.getElementById("b_slider");
+                                if (bS) { bS.value = String(Math.max(0.001, Math.min(0.1, data.value)) * 1000); bS.dispatchEvent(new Event("input", { bubbles: true })); }
+                            } else if (data.param === "q_sign") {
+                                var qT = document.getElementById("q_toggle");
+                                var wantPos = data.value >= 0;
+                                if (qT && (qT.textContent === "+e") !== wantPos) qT.click();
+                            }
+                        }
+                    }
+                    break;
+
+                case "SWEEP_PARAM":
+                    // Voice Professor: smoothly animate ONE knob to a target over
+                    // duration_ms. Resolve the current value as the start (unless given),
+                    // arm the sweep, and reset the trail once so the morph is visible.
+                    if (config.scenario_type === "lorentz_force_uniform_field"
+                        && typeof data.param === "string"
+                        && typeof data.to === "number" && isFinite(data.to)) {
+                        var swStateDef = config.states[PM_currentState] || {};
+                        var ppoSw = professorParamOverride || {};
+                        var scSwH = config.slider_controls || {};
+                        var fromValSw;
+                        if (typeof data.from === "number" && isFinite(data.from)) {
+                            fromValSw = data.from;
+                        } else if (data.param === "theta_deg") {
+                            fromValSw = (ppoSw.theta_deg != null) ? ppoSw.theta_deg
+                                : (swStateDef.theta_deg != null ? swStateDef.theta_deg : 90);
+                        } else if (data.param === "q_sign") {
+                            fromValSw = (ppoSw.charge_sign != null) ? ppoSw.charge_sign
+                                : (swStateDef.charge_sign != null ? swStateDef.charge_sign : 1);
+                        } else if (data.param === "v") {
+                            var vDefSwH = (scSwH.v && scSwH.v.default) ? scSwH.v.default : 1e5;
+                            fromValSw = (ppoSw.vFactor != null) ? ppoSw.vFactor * vDefSwH : vDefSwH;
+                        } else if (data.param === "B") {
+                            var bDefSwH = (scSwH.B && scSwH.B.default) ? scSwH.B.default : 0.01;
+                            fromValSw = (ppoSw.BFactor != null) ? ppoSw.BFactor * bDefSwH : bDefSwH;
+                        } else {
+                            fromValSw = data.to;
+                        }
+                        var durMsSw = (typeof data.duration_ms === "number" && isFinite(data.duration_ms))
+                            ? Math.max(300, Math.min(8000, data.duration_ms)) : 2000;
+                        professorParamSweep = { param: data.param, from: fromValSw, to: data.to, startTime: time, durSec: durMsSw / 1000 };
+                        lorentzTrailResetPending = true;
+                    }
+                    break;
+
+                case "SET_EMPHASIS":
+                    // Voice Professor (dim_except / point_at): keep the listed glow
+                    // tokens bright and dim the rest. Empty / disabled clears.
+                    if (data.enabled && Array.isArray(data.targets)) {
+                        emphasisTargets = data.targets.slice();
+                    } else {
+                        emphasisTargets = [];
+                    }
+                    // Visibility guarantee: frame the spotlighted set (same as glow).
+                    autoFrameEmphasis(emphasisTargets);
+                    break;
+
+                case "SET_READOUT":
+                    // Voice Professor (announce): show a verified computed value as
+                    // an on-canvas chip (the animate loop computes it live). null hides.
+                    activeReadout = (typeof data.readout === "string") ? data.readout : null;
+                    if (!activeReadout) {
+                        var roClear = document.getElementById("vp_readout");
+                        if (roClear) roClear.style.display = "none";
+                    }
+                    break;
+
+                case "SET_SPEED":
+                    // Voice Professor pacing: slow the whole simulation down (or
+                    // back to normal). rate in (0,1] = slow motion. Clamped.
+                    if (typeof data.rate === "number" && isFinite(data.rate)) {
+                        playbackRate = Math.max(0.1, Math.min(2.0, data.rate));
+                    }
+                    break;
+
+                case "PAUSE":
+                    // Freeze the sim clock (motion + choreography) so the professor
+                    // can explain a held frame. TTS is client-side and keeps
+                    // playing — the professor narrates over the frozen picture.
+                    paused = true;
+                    break;
+
+                case "RESUME":
+                    paused = false;
+                    break;
+
+                case "SET_CAMERA":
+                    // Voice Professor: rotate / zoom to a named viewpoint so the
+                    // professor can frame the explanation (often PAUSE there next).
+                    if (typeof data.view === "string") { applyCameraView(data.view); explicitCameraAt = time; }
+                    break;
+
+                case "FRAME_OBJECT":
+                    // Voice Professor: glide to the exact angle that best shows this
+                    // object, computed from its live direction (continuous, any object).
+                    if (typeof data.object === "string") { frameObject(data.object); explicitCameraAt = time; }
+                    break;
+
+                case "SHOW_ANGLE_BETWEEN":
+                    // Voice Professor: draw an arc + angle label between two objects,
+                    // readable even when they are collinear (theta 0/180).
+                    if (typeof data.a === "string" && typeof data.b === "string") {
+                        showAngleBetween(data.a, data.b, typeof data.label === "string" ? data.label : null);
                     }
                     break;
 
