@@ -1,0 +1,108 @@
+# CLAUDE_RULES.md — Full rule bodies + dormant specs (archive)
+
+> **Why this file exists.** `CLAUDE.md` §7 carries a *one-line numbered index* of Rules 1–28. The
+> **full verbatim body of every rule lives here.** Rule numbers are PERMANENT (Rule 5) — they are
+> cited by the validator (`conceptJson.ts` "Gate N"), the agent specs, and `CLAUDE_TEST.md`. Never
+> delete or renumber a rule; if a rule goes dormant, it stays numbered here. New rules append at the end.
+>
+> Tags used in the CLAUDE.md index: **[ACTIVE]** = enforced now · **[DORMANT]** = suspended/deferred,
+> body preserved here · **[V2]** = student-facing voice-professor (vision), not the current mission.
+
+---
+
+## §5 preamble (permanent — reproduced from CLAUDE.md)
+
+> Rule numbers are PERMANENT — never renumber an existing rule; new rules append at the end.
+> Validator messages, agent specs, and CLAUDE_TEST.md cite these numbers, and a renumber silently
+> breaks every cross-reference.
+
+---
+
+## The 28 Rules (verbatim)
+
+1. **Chat API returns JSON** `{ explanation, ncertSources, usage }` — no streaming ever
+2. **Three teaching modes are separate functions** — never mixed in one response
+3. **Strategy buttons** (Board Format / JEE Tips) are UI-only — never appended to explanation text
+4. **Cache key is 5-dimensional**: concept_id|intent|class_level|mode|aspect
+5. **AI NEVER writes rendering code in Stage 2** — Stage 2 emits configuration JSON. Stage 3B emits p5.js HTML for concept-specific renderers.
+6. **PM_currentState is the ONLY state variable** in simulations — never create a parallel `currentState` integer
+7. `NCERTSourcesWidget` uses inline styles (no Tailwind dependency)
+8. `usageLogger.ts` uses camelCase: `taskType`, `sessionId`
+9. Delete `simulation_cache` rows for a concept to force regeneration (cached sims persist forever)
+10. Tier 1/2 cache hits return `ncertSources: []` — known limitation, session_context still writes
+11. **NEVER hardcode state count** — state count is concept-driven. EPIC-L = complexity-driven (2–12 states, see §7 — never "always 6"), EPIC-C branches = 0 until real students exist (EPIC-L-first directive 2026-06-10; when authored, 3–6 states each), micro = 2–3, board = 5–8. (See SECTION 7 STATE COUNT RULES.)
+12. **Sonnet picks scenarios ONLY from `available_renderer_scenarios`** in the concept JSON — never invents scenario strings.
+13. **`teacher_script` uses `text_en`** (not `text`) — language is a pipeline responsibility, not Sonnet's.
+14. **Escape sequences**: use `\\u0027` not `\'` for apostrophes in template literals
+15. **advance_mode must be specified per state** in SimulationConfig — never global. **Variety is pedagogy**: a multi-state EPIC-L must mix `auto_after_tts`, `manual_click`, `wait_for_answer`, and `interaction_complete` across states. All-`auto_after_tts` ships a passive video, not an interactive lesson — validator must reject.
+16. **Confront the wrong belief explicitly — primarily INSIDE EPIC-L (proactive), with EPIC-C as the reactive fallback.** Two parts: **(16a)** every concept proactively confronts its key wrong belief(s) *inside the EPIC-L learn path* — via per-state `misconception_watch` + a predict→reveal beat — so a silent, teacherless student is corrected without having to type a confusion phrase. **(16b)** when an EPIC-C branch *does* fire (reactive fallback), its STATE_1 still shows the wrong belief explicitly, never a neutral baseline; no strawmen; visualize the real documented student error. *Carve-out:* 16a applies to concepts authored or retrofitted under this rule (2026-05-30+); earlier concepts are exempt until next touch (same pattern as Gate 14). The principle (confront the real wrong belief, never neutral) is unchanged from the old rule — only its primary *location* moved from EPIC-C to EPIC-L. See `docs/COMPREHENSION_LOOP_PLAN.md`.
+17. **Everything may learn — content, engine capabilities, AND engine defaults — but only through an OFFLINE, human-reviewed gate that ships versioned, reviewable artifacts. The ONE hard floor: no un-reviewed generative process ever decides physics a student sees at runtime.** This replaces the old "engines learn nothing" slogan, which was too blunt (it conflated dangerous runtime generation with legitimate offline improvement). "Humans approve everything" is the *current stage*, not a permanent law — it graduates toward automated approval as Tier-9 gates (Physics Validator / Visual Probe / Regression Suite) earn trust. Core contracts (PM_currentState, PostMessage, EPIC-L/EPIC-C, cache fingerprint) change rarely, deliberately, with migration. **See "The Learning Model" below.**
+18. **Sonnet banned from UNCACHED live serving paths for verified content.** Permitted only for rare drill-down cluster misses behind a spinner + `pending_review` badge with founder review within 24h or auto-promote after 20 positive feedbacks with zero negatives. **Deep-dive (the "Explain step-by-step" button on flagged states) is NOT runtime-generated** — the button routes to a one-sentence feedback form that writes to `feedback_unified`. Deep-dive child states are hand-authored at diamond bar only after analytics flag a (concept_id, state_id) pair (threshold ≥ 10 feedback submissions OR median dwell > 60s with ≥ 50 sessions). See `docs/patterns/magnetism.md` §6 Deep-dive authoring contract.
+19. **Every atomic JSON state must have `scene_composition.primitives.length ≥ 3`**. Empty primitive arrays silently pass the legacy `hasCompleteAtomicPayload` gate — fixed in gate v2. Visual layer must come from JSON, not from hand-coded renderer fallback.
+20. **Every atomic JSON ships all three modes from day one** — `epic_l_path` (baseline = conceptual) + `mode_overrides.board` + `mode_overrides.competitive`. **SUSPENDED — conceptual-only directive (founder, 2026-06-11; also Sessions 61/63):** board mode and competitive mode are dropped for the current phase. New atomics ship `epic_l_path` (conceptual depth) ONLY — do NOT author `mode_overrides.board` or `mode_overrides.competitive`. This generalizes the old magnetism M1–M6 carve-out to ALL concepts. Existing shipped mode_overrides stay as-is (Gate 21 keeps them honest). Rule text retained verbatim above for when modes resume (likely as dedicated retrofit phases, M7/M8 pattern).
+21. **Board mode simulations are answer-sheet-first** *(applies only IF/WHEN a board override is authored — deferred per Rule 20 suspension)*. `canvas_style: "answer_sheet"` (white ruled background), `derivation_sequence` drives primitive-by-primitive handwriting animation, every state carries a `mark_badge` tied to a specific line in the `mark_scheme`. Final state = the answer template the student should reproduce. Gate 21 in `conceptJson.ts` enforces all-or-nothing: a board override missing any of the three components FAILs validation.
+22. **DEEP-DIVE and DRILL-DOWN are mutually exclusive entry paths.** DEEP-DIVE fires on button click (zero-config, generic "explain this state step-by-step"). DRILL-DOWN fires on typed confusion phrase (Haiku classifier → cluster). Never mix the triggers.
+23. **Prerequisites are advisory, not gating.** `prerequisites: [concept_id]` shown as a soft suggestion ("This builds on X — 5 min intro?"), never as a hard block. Indian students jump topics — respect that.
+24. **The sim is the teacher's silent VISUAL — not their script, not their whiteboard.** The V1 audience is a tutor who teaches *with* the sim (knows the physics, narrates in their own voice, derives on their own whiteboard) — so the sim must give them the one thing they can't: an accurate, manipulable, moving picture. Concretely: **(24a)** on-canvas text is **labels + equations + derivation steps ONLY — never prose/statement sentences** ("nobody reads it; I know physics, I'll look at the sim"). **(24b)** The visual must read correctly with sound OFF. **(24c)** Prefer concept-visuals over algebra-derivation walkthroughs; show the *physical picture* a derivation is about, not lines of algebra (that's the teacher's whiteboard). **(24d)** **TTS off by default** in the teacher product — BUT always author the `teacher_script` + sentence→reveal bindings even though unplayed: it is the B2C orchestration-policy seed (carry, don't force — delivery engine swaps from TTS→AI-professor-voice later with no rework). First surfaced by reviewer Asmi Singh (2026-06-15) + the Session 69 "sim is the teacher's visual" doctrine. See DISCUSSIONS.md Session 69.
+25. **Pedagogical sequencing is a correctness requirement, not a nicety.** The defect class only a practicing teacher catches — *wrong teaching order with right physics* — is exactly what makes tutors bounce. **(25a)** States introduce **foundation before complexity** — never show a derived/special case before the case it depends on (e.g. 90° circular *before* 45° helix *before* 10° stretched helix). **(25b)** **Never reference a concept or term in a state before the state that teaches it** (no right-hand-rule at θ=0 where it isn't taught yet; no "drift" callout before drift is introduced). **(25c)** **Co-locate each explanation with the visual it describes** — if narration promises "now we'll see V split," the split appears *in that state*, not several states later. **(25d) Authored order vs runtime reorder.** Rules 25a–25b define the **authored default order** (foundation-first; no term referenced before the state that teaches it). A teacher may **reorder states at runtime** — the sim is their visual aid, not a fixed narrative. The sim therefore guarantees each state's **visual is self-contained** (labels + equations in-state, no callback needing the previous state on screen — already required by 24a + 25c); but once a teacher reorders, pedagogical prerequisite sequencing becomes the teacher's own call. Reordering is a runtime view choice and **never alters the authored default arc.** First surfaced by reviewer Asmi Singh (2026-06-15; the 0→90→45→10 reorder); 25d added Session 71 (2026-06-17). See DISCUSSIONS.md Sessions 69 + 71.
+26. **Playback runs on the state's own clock; audio rides on top.** Reveals, motion, and choreography are driven by the state's timeline clock (`PM_simTimeMs`) — **never gated on TTS/`speechSynthesis` events** (a reveal must not wait on a spoken sentence; the script syncs to the clock, not the clock to the script). This is what makes the visual read with sound off (Rule 24b) and removes the TTS-coupling behind the headless-capture timing bugs. **(26a) Mute** silences audio output only — clock, reveals, and motion continue unchanged; TTS is muted by default in the teacher product (Rule 24d). **(26b) Tap-to-pause** freezes the clock *and* pauses audio together; **tap/resume** continues both from the same position (TTS resumes where it left off). **(26c)** `advance_mode: auto_after_tts` (Rule 15) means "advance after the narration *timeline* elapses," measured on the clock — identical behavior muted or unmuted. Renderers add `PAUSE`/`RESUME`/`MUTE` to the PostMessage contract (§5). Surfaced Session 71 (2026-06-17). See DISCUSSIONS.md Session 71.
+27. **Every new primitive ships with a stable addressable ID and exposes its key parameters through the postMessage/slider control surface.** Physics objects (particles, vectors, field lines, hands, paths) must not be baked into the renderer as hardcoded internal tokens — use the **explorer pattern**: a named object set, hidden by default, RESET to its built pose on every state entry, driven by `PARAM_UPDATE` postMessage or slider. The `biot_explorer` set in `biot_savart_law` (I/r/θ → moves P, circle, element, r̂, dB) is the canonical seed. Annotation/label primitives already carry `id` in `scene_composition` — this rule extends that discipline to physics objects. **Why it matters:** un-addressable, un-parameterized objects permanently corner the dynamic-control future (voice professor, agent-driven operations vocabulary — Session 72). Static one-offs built into the renderer require rework to become controllable; addressable+parametric primitives make every shipped sim a brick in the dynamic-control wall at no extra cost. **Not retroactive** — existing diamonds are exempt; discipline applies to new work only. Surfaced Session 72 (2026-06-19). See DISCUSSIONS.md Session 72.
+28. **Every new field_3d simulation ships a "Professor Pack" as DATA, never new engine code.** The voice-professor control layer is **build-once, reused by every concept**: the operation vocabulary + validation leash (`operations.ts`), the camera-framing engine (`framing.ts`), the beat streaming + API route, the client player, and the generic field_3d renderer message-handlers. A new sim does NOT rewrite any of it. The per-concept **Professor Pack** is authored as data: **(28a)** in the concept JSON — `physics_engine_config.variables` (with min/max → the turnable knobs) + `computed_outputs` (→ `announce` readouts) + each state's `teacher_script` glow tokens (→ the addressable objects) + per-state `field_3d_config…camera_position`; **(28b)** in the renderer scenario — draw the scene and cache each object's LIVE 3D direction in `objectDirections[id]` + emit `OBJECT_DIRS` (this is the *visual* code — the only per-sim engine work — and is what makes `frame_object`/auto-framing work; extends Rule 27); **(28c)** in `src/data/voice_professor/<id>.json` — a `fallback`, 8–12 founder-reviewed misconception `clusters` (seed from the concept's EPIC-C / Rule-16a beliefs), a `full_lesson_walkthrough` move (the reviewed "sheet music," one beat per state in authored order), and an optional `control_surface` block that OVERRIDES the auto-derived defaults (`glow_targets`, `params`, `freeze`, `reset_trajectory`, `color_legend`). The professor's runtime whitelist (`ControlSurface`) is **auto-derived from the concept JSON** by `professorBrain.buildGrounding`, so most of the pack is free. **Operations are GENERIC VERBS over named objects** (`set_state`, `set_glow`, `dim_except`, `frame_object`, `set_param`, `sweep_param`, `announce`, `pause`/`resume`, `set_camera`, `show_angle_between`): a sim **NEVER invents its own ops or its own grammar** — it exposes objects + knobs + states and reuses the vocabulary. A genuinely new verb is a rare, GENERIC, engine-level addition that benefits every sim, never a per-concept one. The pack is part of **Definition of Done**: drafted at author time (`review_status: draft_pending_founder_review`) and locked only after the teacher review (Rule 17/18 — the professor serves reviewed content + verified-engine outputs, never improvised physics). **Why it matters:** the professor's flexibility — drive any object / knob / camera angle on command — is the product; if the control surface is rebuilt per sim, every concept is a from-scratch integration. Authoring it as data makes every new sim professor-ready at ~$0 with zero engine churn. **Not retroactive** — existing diamonds are exempt; discipline applies to new work. Surfaced Session 76 (2026-06-22); foundation built data-driven on branch `feat/voice-professor-generalize` (pending merge). Extends Rule 27. See DISCUSSIONS.md Session 76.
+
+---
+
+## The Learning Model (what "learns" actually means) — full summary
+
+"The engine learns" is FIVE different things; do not collapse them. The real axis is
+**offline+reviewed vs online+un-reviewed**, and **where the learned artifact lives**:
+- **1 capabilities** (build a better renderer), **2 defaults/params tuned from data** (versioned config via nightly-agent proposal → founder approval), **3 personalization policy** (selects among reviewed content; later, needs scale) → **✅ allowed & encouraged** (offline + reviewed + reviewable-artifact; they compound quality).
+- **4 live LLM generation at serve time**, **5 engine rewrites its own code** → **❌ forbidden** (un-reviewed runtime generation in the correctness path; meaning 4 = the Rule 18 hard floor).
+
+Engine-default learning (meaning 2) is a first-class loop, not just JSON — same `proposal_queue` gate.
+"Humans approve everything" is the *current* stage, graduating toward auto-promote as Tier-9 gates earn
+trust. Caution: loops need DATA — with ~4 diamonds and ~no students, meanings 2–3 are fuel-starved; allow
+engine learning architecturally now, but build content + the cohort before lighting the loops up.
+
+**Full 5-row table + graduation path + sequencing caution: see `CLAUDE_APPENDIX.md` §C.**
+
+---
+
+## Dormant §7 state-count sub-blocks (preserved from the original §7)
+
+These are DORMANT under the conceptual-only + EPIC-L-first directives. The live §7 (complexity-driven
+EPIC-L, MICRO, HOTSPOT, WHAT-IF) stays in CLAUDE.md.
+
+```
+EPIC-C: 3-6 states per branch WHEN authored. Branch count: 0 until real
+        students exist (EPIC-L-first directive 2026-06-10) — misconceptions
+        are confronted inside EPIC-L via Rule 16a instead
+
+DEEP-DIVE:  4-6 sub-states per parent state (complexity-driven)
+            triggered by student clicking "Explain step-by-step" button
+            cache key: concept_id | state_id | class_level | mode
+DRILL-DOWN: 2-4 sub-states (MICRO or LOCAL protocol)
+            triggered by student typing a confusion phrase
+            cache key: concept_id | state_id | cluster_id | class_level | mode
+BOARD mode: 5-8 states, always tied to mark_scheme (1 state = 1 mark minimum)
+            — DEFERRED while conceptual-only directive active (Rule 20 suspension)
+```
+
+---
+
+## DC Pandey / external books — full rule (preserved from §8)
+
+```
+DC Pandey (OPTION B, since 2026-05-30): use for THREE things only —
+  (1) TABLE OF CONTENTS — which concepts exist per chapter;
+  (2) PROBLEM-VARIANT mining — competitive-mode shortcuts + edge_cases + problem-class taxonomy;
+  (3) MISCONCEPTION EXTRACTION — extract the student's wrong BELIEF (the belief only) for EPIC-C branches + EPIC-L `misconception_watch`.
+NEVER (DCP): copy teaching sequences, copy explanations/prose, or reference figure numbers.
+HC Verma: pedagogy + first-principles derivation — consult for EPIC-L SEQUENCE / derivation order. Claude knows the physics content; HCV informs the teaching ORDER, never copied verbatim.
+NCERT: Indian-context `real_world_anchor` source (Claude also knows it).
+PYQ Papers: OPTIONAL for pyq_references field only (Month 4+)
+
+Teaching: Claude's OWN pedagogical judgment (informed by HCV sequence study, never copied)
+Real-world anchors: Indian context from NCERT (NOT textbook examples)
+Language: Plain English ONLY. Never Hinglish.
+Never: "Zameen", "Deewar", "Seedhi", "tum", "hain"
+```
