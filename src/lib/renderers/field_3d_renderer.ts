@@ -5315,7 +5315,10 @@ export const FIELD_3D_RENDERER_CODE = `
     //   plus the generic visible_elements matcher (labels / dq highlights / P).
     //   Mirrors the wire_to_coil_morph cross-fade + biot accumulation patterns.
     var CD_P = [2.8, 0.35, 0];                  // field point P (world)
-    var CD_CHUNKS = [[-0.7,0.95,0.35],[0.65,1.05,-0.25],[-0.55,-0.55,0.45],[0.7,-0.85,0.2],[0.05,0.15,-0.45],[-0.2,-1.15,-0.1]];
+    // All six as a clean 2×3 grid just IN FRONT of the front face (z≈0.85 > the
+    // solid's 0.8 front) and rendered opaque, so none are occluded or dimmed by
+    // the semi-transparent body (founder note 2026-06-24).
+    var CD_CHUNKS = [[-0.65,1.0,0.85],[0.65,1.0,0.85],[-0.65,0.0,0.85],[0.65,0.0,0.85],[-0.65,-1.05,0.85],[0.65,-1.05,0.85]];
 
     function cdHexNum(c) { return parseInt(String(c).replace("#", ""), 16); }
     function cdBox(pos, size, colorHex, op) {
@@ -5417,6 +5420,7 @@ export const FIELD_3D_RENDERER_CODE = `
             var cp = CD_CHUNKS[ci];
             var chunk = cdBox(cp, 0.40, dqColor, 1);
             chunk.material.emissiveIntensity = 0.9;
+            chunk.material.transparent = false;   // opaque → always crisp, no transparency-sort dimming
             chunk.userData = { elementType: "cd_chunk", id: "cd_chunk_" + ci, cdIndex: ci };
             addToScene(chunk);
             var dEi = cdArrow(cp, [CD_P[0], CD_P[1], CD_P[2]], 1.2, cdDeColor, 0.28, 0.16);
