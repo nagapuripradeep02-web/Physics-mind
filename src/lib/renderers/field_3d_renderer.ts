@@ -7755,20 +7755,12 @@ export const FIELD_3D_RENDERER_CODE = `
                     dud.needleGroup.rotation.y = dud.current_angle;
                 }
             }
-            if (dud.elementType === "right_hand" && dud.animate_curl) {
-                // Draw the eye with a gentle in-hue emissive shimmer — NEVER size
-                // (founder choice 2026-06-24: emphasis brightens, it never resizes;
-                // the old 'scale fingers slightly' pulse was the zoom-in/zoom-out
-                // bulge). Palm/thumb/fingers share skinMat (emissive 0x442211); the
-                // shimmer lifts its emissiveIntensity 0.18 -> 0.30 and back.
-                var handGlow = 0.18 + 0.12 * (0.5 + 0.5 * Math.sin(time * 2.5));
-                for (var ci = 0; ci < dx.children.length; ci++) {
-                    var ch = dx.children[ci];
-                    if (ch.material && ch.material.emissive) {
-                        ch.material.emissiveIntensity = handGlow;
-                    }
-                }
-            }
+            // Right-hand stays STATIC at its normal built appearance — no scale
+            // pulse AND no emissive shimmer (founder feedback 2026-06-24: the
+            // shimmer looked bad; leave the hand exactly as built — full normal
+            // brightness, never dimmed, never pulsing). animate_curl is now a
+            // no-op for the static RHR hand; we deliberately never touch its
+            // scale or emissiveIntensity, so it holds the base set in createRightHand.
             if (dud.elementType === "solenoid_grip_hand") {
                 // Curl the articulated fingers open → fist, hold, then release and
                 // repeat. curlT is a PURE function of (time - stateStartTime) so
@@ -8847,9 +8839,12 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (!handObj.userData || handObj.userData.elementType !== "lorentz_hand") continue;
 
                 // TTS glow 'hand': the 3D right-hand BRIGHTENS (emissive lift on
-                // its skin; peers dim) while the narration references it — the
-                // hand never resizes (the base hand_scale stays untouched).
-                applyGlowEmphasis(handObj, isFocal("hand"), glowActive, glowT);
+                // its skin) while the narration references it — but it NEVER dims
+                // and NEVER resizes (founder choice 2026-06-24: the hand stays at
+                // full brightness always; brightenOnly=true skips every opacity
+                // write, so when v/F/B are the focal glow the hand holds solid
+                // instead of fading to a 'brightless' 40%).
+                applyGlowEmphasis(handObj, isFocal("hand"), glowActive, glowT, true);
 
                 // (a) Regenerate the 4 finger geometries with current curlT,
                 //     and slide each fingernail to the new fingertip.
