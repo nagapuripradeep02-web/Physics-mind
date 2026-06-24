@@ -1,0 +1,939 @@
+{
+  "concept_id": "charge_distribution",
+  "concept_name": "Charge Densities (λ, σ, ρ) and the dq-Superposition Idea",
+  "chapter": 1,
+  "section": "1.15",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.1 Electric Charges and Fields (continuous charge distributions §1.15) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (an extended body is NOT a point charge → describe how the charge is spread, λ/σ/ρ → one element's charge dq = λdl/σdA/ρdV → each element is a Coulomb point charge dE = k·dq/r² → add every element's field, the vector sum E = Σ dE → the continuum limit ∫ dE → drive it with a density slider), never copied. The atomic idea: an extended charged body's field is the VECTOR SUM of its pieces' fields — each tiny piece dq is a point charge dE = k·dq/r², and E = Σ dE → ∫ dE — and the body is described by a charge DENSITY (λ C/m, σ C/m², ρ C/m³), not by its total charge Q. New unified field_3d scenario charge_distribution: ONE morphing body (rod → sheet → solid) with dq highlights, a field point P, and dynamic dE/net-E arrows. Prerequisites coulombs_law (point-charge force) + electric_field_point_charge (point-charge field). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "charge_distribution"
+    ]
+  },
+  "prerequisites": [
+    "coulombs_law",
+    "electric_field_point_charge"
+  ],
+  "real_world_anchor": {
+    "primary": "Run a plastic comb or a plastic ruler through dry hair — the charge does not sit at one point, it spreads all along the length of the comb. To describe it you need charge per unit length, the linear charge density λ: how many coulombs sit on each metre of the comb. The field it makes near its tip is the sum of the field of every charged bit along it, not kQ of a single point at its centre.",
+    "secondary": "A charged metal plate, or the front glass of an old CRT television after you switch it off, holds its charge spread over a flat surface. Now the right measure is charge per unit area, the surface charge density σ in coulombs per square metre — and the field just off the screen is the sum of the field of every small patch of charge on it.",
+    "tertiary": "The charged region of a monsoon thundercloud, or the metal dome of a Van de Graaff generator in the school lab, carries charge spread through a whole volume. There the measure is charge per unit volume, the volume charge density ρ in coulombs per cubic metre — and the field around it is still just the vector sum of the field of every tiny chunk of that charged region."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "Q": {
+        "name": "Total charge on the body",
+        "unit": "nC",
+        "min": 1,
+        "max": 20,
+        "default": 10,
+        "step": 1
+      },
+      "L": {
+        "name": "Rod length (line geometry)",
+        "unit": "cm",
+        "min": 5,
+        "max": 20,
+        "default": 10,
+        "step": 1
+      },
+      "A": {
+        "name": "Sheet area (surface geometry)",
+        "unit": "cm²",
+        "min": 10,
+        "max": 40,
+        "default": 20,
+        "step": 1
+      },
+      "V": {
+        "name": "Solid volume (volume geometry)",
+        "unit": "cm³",
+        "min": 20,
+        "max": 80,
+        "default": 40,
+        "step": 1
+      },
+      "lambda": {
+        "name": "Linear charge density",
+        "unit": "C/m",
+        "min": 0.05,
+        "max": 2,
+        "default": 1,
+        "step": 0.05
+      },
+      "sigma": {
+        "name": "Surface charge density",
+        "unit": "C/m²",
+        "min": 0.025,
+        "max": 2,
+        "default": 0.5,
+        "step": 0.025
+      },
+      "rho": {
+        "name": "Volume charge density",
+        "unit": "C/m³",
+        "min": 0.0125,
+        "max": 1,
+        "default": 0.25,
+        "step": 0.0125
+      },
+      "density": {
+        "name": "Charge density (active geometry)",
+        "unit": "demo",
+        "min": 0.2,
+        "max": 2,
+        "default": 1,
+        "step": 0.1
+      },
+      "dl_demo": {
+        "name": "Size of one element dq (demo)",
+        "unit": "demo",
+        "constant": 0.5
+      },
+      "r": {
+        "name": "Distance from a dq to P",
+        "unit": "demo",
+        "min": 1,
+        "max": 4,
+        "default": 2,
+        "step": 0.1
+      },
+      "k": {
+        "name": "Coulomb constant",
+        "unit": "N·m²/C²",
+        "constant": 8987551787.368176
+      },
+      "k_demo": {
+        "name": "Demo field-scale constant",
+        "unit": "demo",
+        "constant": 4
+      },
+      "epsilon_0": {
+        "name": "Permittivity of free space",
+        "unit": "C²/(N·m²)",
+        "constant": 8.854e-12
+      }
+    },
+    "computed_outputs": {
+      "dq_demo": {
+        "formula": "density * dl_demo"
+      },
+      "dE_magnitude": {
+        "formula": "(k_demo * (density * dl_demo)) / (r * r)"
+      },
+      "net_E_proxy": {
+        "formula": "8 * ((k_demo * (density * dl_demo)) / (2.0 * 2.0)) * 0.55"
+      }
+    },
+    "formulas": {
+      "linear_density": "λ = Q / L  (C/m)",
+      "surface_density": "σ = Q / A  (C/m²)",
+      "volume_density": "ρ = Q / V  (C/m³)",
+      "element_charge": "dq = λ·dl = σ·dA = ρ·dV",
+      "element_field": "dE = k·dq / r²  (radial from each piece)",
+      "superposition_sum": "E = Σ dE",
+      "superposition_integral": "E = ∫ dE  (continuum limit)"
+    },
+    "constraints": [
+      "A charge density is charge per unit LENGTH (λ, C/m), AREA (σ, C/m²), or VOLUME (ρ, C/m³) — not the total charge Q; the unit tells you which.",
+      "dq = λ·dl = σ·dA = ρ·dV is an identity of FORM, not a sum: each gives one element's charge in coulombs, and exactly ONE form applies to a given body.",
+      "Near or just off an extended charged body the field is NOT kQ_total/r² of a point at its centre — that only holds far away.",
+      "Superposition is exact and linear: the field of the whole body is the vector sum of its elements' fields, E = Σ dE, with no cross-terms.",
+      "∫ dE is the continuum limit of the discrete sum Σ dE as each element shrinks to zero size.",
+      "Each element dq behaves as a point charge: its field dE = k·dq/r² points radially from THAT element toward P, never along the body.",
+      "Units must stay dimensionally consistent: λ·dl, σ·dA, ρ·dV each reduce to coulombs (C)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "An extended charge's field is just the sum of its pieces' fields.",
+    "visual_confirmation": "Chunks switch on one-by-one, each throwing a dE arrow; the arrows add head-to-tail into the net E — which is not the central kQ/r² ghost."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "representation": [
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "An extended charge is NOT a point charge",
+        "duration": 16,
+        "focal_primitive_id": "not_point_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rod_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "charged rod, total charge Q",
+            "color": "#EF5350",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "ghost_label",
+            "position": {
+              "x": 590,
+              "y": 200
+            },
+            "text": "guess: k Q / r²",
+            "color": "#9E9E9E",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "not_point_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E ≠ k Q / r²  near an extended body",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Here is a charged rod with total charge Q, and a point P just off its end where we want the field."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "It is tempting to treat the whole rod as one point charge at its centre. If you did, you would use k Q over r squared. Will the real field match that?"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Watch — here is the field the rod really makes at P. It does not match that single-point guess."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "Near an extended body the field is NOT k Q over r squared. To get it right, we must add the field of every piece."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "An extended charge acts like a single point charge kQ_total/r² at its centre.",
+            "visual_counter": "Draw the ghost kQ/r² arrow at P, then reveal the real net-field arrow — clearly stronger and tilted near the body.",
+            "one_line_fix": "Near an extended body the field is NOT kQ/r²; you must add the field of every piece."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Line density λ = Q/L",
+        "duration": 14,
+        "focal_primitive_id": "lambda_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "dq_line_tag",
+            "position": {
+              "x": 420,
+              "y": 200
+            },
+            "text": "dq = λ·dl",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "L_tag",
+            "position": {
+              "x": 360,
+              "y": 120
+            },
+            "text": "length L",
+            "color": "#D4D4D8",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "lambda_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "λ = Q / L   (C/m)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "So we describe how the charge is spread out. For a rod, that is charge per unit length."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Take one tiny segment of length d-l. The charge on it is d-q, equal to lambda times d-l."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Lambda is the total charge divided by the length, Q over L. Here that is one coulomb per metre."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Surface density σ = Q/A",
+        "duration": 14,
+        "focal_primitive_id": "sigma_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "dq_surface_tag",
+            "position": {
+              "x": 420,
+              "y": 200
+            },
+            "text": "dq = σ·dA",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sheet_tag",
+            "position": {
+              "x": 360,
+              "y": 120
+            },
+            "text": "rod widens into a sheet",
+            "color": "#D4D4D8",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sigma_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "σ = Q / A   (C/m²)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "What if the same charge were smeared over a flat surface instead of a thin rod? How would we measure its spread now?"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The rod widens into a sheet. Now we use charge per unit area: sigma equals Q over A, in coulombs per square metre."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "The charge on one small patch d-A is d-q, equal to sigma times d-A. Same idea, one dimension up."
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Volume density ρ = Q/V — one unifying line",
+        "duration": 15,
+        "focal_primitive_id": "rho_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "dq_volume_tag",
+            "position": {
+              "x": 420,
+              "y": 200
+            },
+            "text": "dq = ρ·dV",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "unify_tag",
+            "position": {
+              "x": 360,
+              "y": 120
+            },
+            "text": "dq = λdl = σdA = ρdV",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "rho_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "ρ = Q / V   (C/m³)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "And if the charge fills a solid block, all the way through? What would we divide by then?"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The sheet thickens into a solid. Now it is charge per unit volume: rho equals Q over V, in coulombs per cubic metre."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "One unifying line: the charge of any tiny piece is lambda d-l, or sigma d-A, or rho d-V — the unit tells you which body you have."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Density is the same as charge; λ, σ, ρ are three names for the same number.",
+            "visual_counter": "Show λ (C/m), σ (C/m²), ρ (C/m³) side by side — different units, different dq formula each.",
+            "one_line_fix": "Density = charge per unit length/area/volume; the unit tells you which. dq = λdl OR σdA OR ρdV, never mixed."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Each piece is a point charge: dE = k·dq/r²",
+        "duration": 16,
+        "focal_primitive_id": "de_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "p_tag",
+            "position": {
+              "x": 600,
+              "y": 175
+            },
+            "text": "field point P",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "r_tag",
+            "position": {
+              "x": 480,
+              "y": 230
+            },
+            "text": "r",
+            "color": "#D4D4D8",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "de_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "dE = k·dq / r²   (radial)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Here is one single piece, d-q, lifted out of the body, with the field point P over here. Which way does its field point at P?"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Watch. This one piece throws a field straight out toward P: d-E equals k d-q over r squared — exactly a point charge."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "That is the key idea: every tiny piece of the body is just a Coulomb point charge, pointing radially away from itself."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A continuous distribution can't be a sum of point charges; a piece's field points along the body.",
+            "visual_counter": "Isolate one dq chunk and show its dE pointing radially from the chunk to P, like a point charge.",
+            "one_line_fix": "Every tiny piece dq IS a point charge; its field is k dq/r² pointing away from THAT piece."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Add every piece: E = Σ dE → ∫ dE",
+        "duration": 18,
+        "focal_primitive_id": "sum_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "p_net_tag",
+            "position": {
+              "x": 600,
+              "y": 175
+            },
+            "text": "P",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "ghost_net_tag",
+            "position": {
+              "x": 590,
+              "y": 285
+            },
+            "text": "not the k Q / r² guess",
+            "color": "#9E9E9E",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sum_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E = Σ dE → ∫ dE",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now do that for every piece at once. Add them all."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Each piece switches on and throws its own d-E arrow toward P — one small field per chunk."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Lay the arrows head to tail. They add into one net field E — and notice it is shorter and tilted, not the centre-point guess."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "This sum, over infinitely many infinitely small pieces, is the integral: E equals the sum of d-E, becomes the integral of d-E."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Adding up the pieces gives the same direction as one central point charge.",
+            "visual_counter": "Add the dE arrows head-to-tail and overlay the ghost kQ/r² — the net E differs in size and direction.",
+            "one_line_fix": "The vector SUM of the pieces' fields (∫dE) is the real field, and it is not the centre-point's kQ/r²."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_7": {
+        "title": "Explore — drive the density",
+        "duration": 16,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "drag the density slider",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "e_live_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "E grows with ρ",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "explore_formula",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E = ∫ dE   (each piece a point charge)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now you drive it. The body is a solid, so its density is rho."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Slide the density up and every piece's field grows, so the net field E grows with it."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Same rule every time: each piece is a point charge, and the real field is the vector sum of them all."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered charge distribution when they can (1) state and unit-check λ (C/m), σ (C/m²), ρ (C/m³) and read one element's charge as λdl/σdA/ρdV; (2) explain density is charge per unit length/area/volume, not total charge, and that equal Q can give different densities; (3) recognise that near an extended body the field is NOT kQ/r²; (4) state the dq-superposition idea — each element is a point charge dE=k·dq/r², and the body's field is the vector sum ∫dE.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A charged rod carries linear charge density λ. What does λ tell you, and in what units?",
+        "options": {
+          "A": "Charge on each unit length, C/m",
+          "B": "Charge on each unit area, C/m²",
+          "C": "The total charge on the rod, C",
+          "D": "Charge on each unit volume, C/m³"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "density is per-area not per-length",
+          "C": "density is the total charge",
+          "D": "density is per-volume not per-length"
+        },
+        "tested_idea": "λ is charge per unit LENGTH (C/m).",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A long wire carries surface charge density σ on its skin. What is σ and its units?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A flat plate carries σ and a solid block carries ρ. Which is correct?",
+        "options": {
+          "A": "σ is per unit area (C/m²); ρ is per unit volume (C/m³) — different quantities, different units",
+          "B": "Both are per unit area, both C/m²",
+          "C": "ρ is per area (C/m²); σ is per volume (C/m³)",
+          "D": "Same number whenever they carry the same total charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "all densities are per area",
+          "C": "swaps σ and ρ",
+          "D": "same Q means same density"
+        },
+        "tested_idea": "σ (C/m²) and ρ (C/m³) are distinct; the unit tells which.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A wire carries λ and a sheet carries σ. State which is per length and which per area, with units."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "You want the field just off the end of a charged rod. Can you use kQ/r² with Q the total charge?",
+        "options": {
+          "A": "No — close to an extended body the field is not kQ/r²; add the field of every piece",
+          "B": "Yes — exactly kQ/r², treating the rod as one point charge at its centre",
+          "C": "Yes, but replace Q with λ in the same formula",
+          "D": "No field exists just off the end, because the charge is spread out"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "extended body is a point charge",
+          "C": "swaps total charge for density in the point formula",
+          "D": "spread charge means no field"
+        },
+        "tested_idea": "Near an extended body kQ/r² fails; the field is the sum of every element's field.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "P sits a short distance above the middle of a charged sheet. Is the field kQ/r² with Q the total charge? Why?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "What is the electric field of an extended charged body equal to?",
+        "options": {
+          "A": "The vector sum of all its tiny pieces' fields, each a point charge — E = ∫dE",
+          "B": "The field of its total charge Q at the body's centre, kQ/r²",
+          "C": "The field of just the nearest piece",
+          "D": "The plain numerical sum of each piece's field, ignoring directions"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "field equals central point charge",
+          "C": "only nearest piece contributes",
+          "D": "adds magnitudes not vectors"
+        },
+        "tested_idea": "The body's field is the VECTOR sum ∫dE of its elements.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "How do you find the total field a charged disc makes at a point in front of it, from its pieces' fields?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Two points sit at different places around the same charged rod. A student says the field is identical at both because total Q is the same. Right?",
+        "options": {
+          "A": "No — the field is the vector sum of the pieces' fields, so it changes with position; same Q does not mean same field",
+          "B": "Yes — once Q is fixed, the field is the same everywhere around the rod",
+          "C": "Yes — kQ/r² depends only on Q, which hasn't changed",
+          "D": "No, but only because the rod's length differs at the two points"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "same total Q same field everywhere",
+          "C": "field depends only on total Q",
+          "D": "length changes between points"
+        },
+        "tested_idea": "The field around a distribution varies with position even though Q is fixed.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A charged plate makes a field. A student says it's the same everywhere in the room because the plate's charge is unchanged. Correct?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Rod A and rod B carry the SAME total charge, but B is twice as long as A. How do their linear charge densities compare?",
+        "options": {
+          "A": "Rod A has the higher λ — same charge over a shorter length means more charge per metre",
+          "B": "Same λ, because they carry the same total charge",
+          "C": "Rod B has the higher λ, because it is longer",
+          "D": "λ can't be compared unless they also carry the same total length"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "same Q means same density",
+          "C": "longer body means higher density",
+          "D": "density needs extra info"
+        },
+        "tested_idea": "λ = Q/L: with Q fixed, the shorter rod has the larger density.",
+        "teaches_state": "STATE_2",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Two plates carry equal total charge but B has twice the area of A. Which has the larger σ, and why?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": [
+        "Q3"
+      ],
+      "STATE_2": [
+        "Q1",
+        "Q6"
+      ],
+      "STATE_4": [
+        "Q2"
+      ],
+      "STATE_6": [
+        "Q4",
+        "Q5"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_3",
+      "STATE_5",
+      "STATE_7"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "charge_distribution",
+    "slider_controls": {
+      "density": {
+        "min": 0.2,
+        "max": 2,
+        "step": 0.1,
+        "default": 1,
+        "label": "Charge density"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "An extended charge is NOT a point charge",
+        "visible_elements": [
+          "cd_P",
+          "cd_lbl_P",
+          "cd_lbl_Q",
+          "cd_lbl_ghost"
+        ],
+        "camera_position": [
+          2.5,
+          1.6,
+          7.8
+        ],
+        "caption": "",
+        "charge_dist": {
+          "dim": "line",
+          "show_ghost": true,
+          "show_real_E": true
+        },
+        "formula_overlay": "E ≠ kQ/r²  (near an extended body)"
+      },
+      "STATE_2": {
+        "label": "Line density λ = Q/L",
+        "visible_elements": [
+          "cd_dq_line",
+          "cd_lbl_lambda",
+          "cd_lbl_dq_line",
+          "cd_lbl_Q",
+          "cd_lbl_L"
+        ],
+        "camera_position": [
+          2.5,
+          1.6,
+          7.8
+        ],
+        "caption": "",
+        "charge_dist": {
+          "dim": "line"
+        },
+        "formula_overlay": "λ = Q/L   (C/m)\ndq = λ·dl"
+      },
+      "STATE_3": {
+        "label": "Surface density σ = Q/A",
+        "visible_elements": [
+          "cd_dq_surface",
+          "cd_lbl_sigma",
+          "cd_lbl_dq_surface"
+        ],
+        "camera_position": [
+          3,
+          1.2,
+          7.6
+        ],
+        "caption": "",
+        "charge_dist": {
+          "dim": "surface",
+          "morph_from": "line",
+          "morph_at_ms": 1500,
+          "morph_duration_ms": 1500
+        },
+        "formula_overlay": "σ = Q/A   (C/m²)\ndq = σ·dA"
+      },
+      "STATE_4": {
+        "label": "Volume density ρ = Q/V — one unifying line",
+        "visible_elements": [
+          "cd_dq_volume",
+          "cd_lbl_rho",
+          "cd_lbl_dq_volume",
+          "cd_lbl_unify"
+        ],
+        "camera_position": [
+          3,
+          1.2,
+          7.6
+        ],
+        "caption": "",
+        "charge_dist": {
+          "dim": "volume",
+          "morph_from": "surface",
+          "morph_at_ms": 1500,
+          "morph_duration_ms": 1500
+        },
+        "formula_overlay": "ρ = Q/V   (C/m³)\ndq = ρ·dV"
+      },
+      "STATE_5": {
+        "label": "Each piece is a point charge: dE = k·dq/r²",
+        "visible_elements": [
+          "cd_dq_volume",
+          "cd_P",
+          "cd_lbl_P",
+          "cd_lbl_dE",
+          "cd_lbl_r"
+        ],
+        "camera_position": [
+          2.5,
+          1.6,
+          7.8
+        ],
+        "caption": "",
+        "charge_dist": {
+          "dim": "volume",
+          "show_single_dE": true
+        },
+        "formula_overlay": "dq = a point charge\ndE = k·dq/r²"
+      },
+      "STATE_6": {
+        "label": "Add every piece: E = Σ dE → ∫ dE (PRIMARY aha)",
+        "visible_elements": [
+          "cd_P",
+          "cd_lbl_P",
+          "cd_lbl_E",
+          "cd_lbl_ghost"
+        ],
+        "camera_position": [
+          3,
+          1.2,
+          7.6
+        ],
+        "caption": "",
+        "charge_dist": {
+          "dim": "volume",
+          "accumulate_dE": true,
+          "accumulate_at_ms": 1200,
+          "accumulate_stagger_ms": 380,
+          "show_ghost": true
+        },
+        "formula_overlay": "E = Σ dE → ∫ dE"
+      },
+      "STATE_7": {
+        "label": "Free explore — drive the density",
+        "visible_elements": [
+          "cd_P",
+          "cd_lbl_P",
+          "cd_lbl_E"
+        ],
+        "camera_position": [
+          2.5,
+          1.6,
+          7.8
+        ],
+        "caption": "",
+        "charge_dist": {
+          "dim": "volume",
+          "density_slider": true
+        },
+        "formula_overlay": "drag density → field scales"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

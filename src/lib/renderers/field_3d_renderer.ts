@@ -34,7 +34,8 @@ export interface Field3DConfig {
         'dipole_field' | 'parallel_plates' | 'solenoid_field' | 'bar_magnet' |
         'straight_wire_current' | 'changing_flux' | 'lorentz_force_uniform_field' |
         'torque_on_loop_uniform_field' | 'biot_savart_element' | 'force_on_current_wire' |
-        'uniform_field_force' | 'dipole_in_uniform_field' | 'coulombs_law_force';
+        'uniform_field_force' | 'dipole_in_uniform_field' | 'coulombs_law_force' |
+        'charge_distribution';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -347,6 +348,25 @@ export interface Field3DConfig {
             grip_hand_position?: [number, number, number];
             cross_hand_position?: [number, number, number];
         };
+        // ── charge_distribution per-state config (λ/σ/ρ unified morph) ───
+        // One body cross-fades rod(line/λ) → sheet(surface/σ) → solid(volume/ρ).
+        // `dim` = geometry shown at the END of this state; `morph_from` cross-
+        // fades from that geometry to `dim` over morph_duration_ms (starting at
+        // morph_at_ms). The dq → dE → ΣE arrows are toggled by the flags below;
+        // labels / dq highlights / P are gated by the generic visible_elements.
+        charge_dist?: {
+            dim?: 'line' | 'surface' | 'volume';
+            morph_from?: 'line' | 'surface' | 'volume';
+            morph_at_ms?: number;            // default 0
+            morph_duration_ms?: number;      // default 1500
+            show_single_dE?: boolean;        // STATE_5: one dE arrow from the spotlit chunk to P
+            show_ghost?: boolean;            // STATE_1/6: dim kQ/r² ghost point + arrow (misconception artifact)
+            show_real_E?: boolean;           // STATE_1: the real (different) net field at P
+            accumulate_dE?: boolean;         // STATE_6: chunks switch on one-by-one; dE's assemble into net E
+            accumulate_at_ms?: number;       // default 1200
+            accumulate_stagger_ms?: number;  // default 380
+            density_slider?: boolean;        // STATE_7: show density slider; net E scales with it
+        };
     }>;
     // Slider configuration (used when show_sliders: true on a state)
     slider_controls?: {
@@ -360,6 +380,8 @@ export interface Field3DConfig {
         // ── force_on_current_wire sliders ───────────────────────────────
         L?: { min: number; max: number; step?: number; default: number; label: string };
         current_dir?: { default: 1 | -1; label: string };
+        // charge_distribution density slider (STATE_7 explore)
+        density?: { min: number; max: number; step?: number; default: number; label: string };
     };
     pvl_colors?: {
         background: string; text: string; positive: string; negative: string; field_line: string;
@@ -5285,6 +5307,191 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── charge_distribution scenario (λ/σ/ρ + the dq-superposition idea) ────
+    //   ONE unified morphing body: a charged rod (line, λ) cross-fades into a
+    //   sheet (surface, σ), then into a solid (volume, ρ). The dq → dE → ΣE
+    //   visual is reused on each geometry. Built once; per-state behaviour is
+    //   driven by stateDef.charge_dist (morph / accumulation / density slider)
+    //   plus the generic visible_elements matcher (labels / dq highlights / P).
+    //   Mirrors the wire_to_coil_morph cross-fade + biot accumulation patterns.
+    var CD_P = [2.8, 0.35, 0];                  // field point P (world)
+    var CD_CHUNKS = [[-0.7,0.95,0.35],[0.65,1.05,-0.25],[-0.55,-0.55,0.45],[0.7,-0.85,0.2],[0.05,0.15,-0.45],[-0.2,-1.15,-0.1]];
+
+    function cdHexNum(c) { return parseInt(String(c).replace("#", ""), 16); }
+    function cdBox(pos, size, colorHex, op) {
+        var mat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(colorHex), emissive: hexToThreeColor(colorHex),
+            emissiveIntensity: 0.5, transparent: true, opacity: op == null ? 1 : op
+        });
+        var mesh = new THREE.Mesh(new THREE.BoxGeometry(size, size, size), mat);
+        mesh.position.set(pos[0], pos[1], pos[2]);
+        return mesh;
+    }
+    function cdArrow(fromPos, toPos, length, colorHex, headL, headW) {
+        var dir = new THREE.Vector3(toPos[0]-fromPos[0], toPos[1]-fromPos[1], toPos[2]-fromPos[2]).normalize();
+        return new THREE.ArrowHelper(dir, new THREE.Vector3(fromPos[0], fromPos[1], fromPos[2]),
+            length, cdHexNum(colorHex), headL || 0.26, headW || 0.14);
+    }
+    function cdSetArrowOpacity(arrow, op) {
+        if (arrow.line && arrow.line.material) { arrow.line.material.transparent = true; arrow.line.material.opacity = op; }
+        if (arrow.cone && arrow.cone.material) { arrow.cone.material.transparent = true; arrow.cone.material.opacity = op; }
+    }
+    function cdLabel(text, colorHex, scale, pos, id, wide) {
+        var spr = wide ? createWideLabelSprite(text, colorHex, scale) : createLabelSprite(text, colorHex, scale);
+        spr.position.set(pos[0], pos[1], pos[2]);
+        spr.userData = { elementType: "cd_label", id: id };
+        addToScene(spr);
+        return spr;
+    }
+
+    function buildChargeDistribution() {
+        var bodyColor = (config.pvl_colors && config.pvl_colors.positive) || "#EF5350";
+        var dqColor = "#FFF176";
+        var fieldColor = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+        var ghostColor = "#9E9E9E";
+
+        // ── Geometry (cross-fade morph): rod → sheet → solid, all at origin ──
+        var rod = createWire([0, -1.6, 0], [0, 1.6, 0], bodyColor, 0.13);
+        rod.material.transparent = true; rod.material.opacity = 0.95;
+        rod.userData = { elementType: "cd_geom", id: "cd_rod", cdDim: "line", cdBaseOp: 0.95 };
+        addToScene(rod);
+
+        var sheet = new THREE.Mesh(
+            new THREE.BoxGeometry(2.6, 3.2, 0.12),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(bodyColor), emissive: hexToThreeColor(bodyColor), emissiveIntensity: 0.25, transparent: true, opacity: 0 })
+        );
+        sheet.userData = { elementType: "cd_geom", id: "cd_sheet", cdDim: "surface", cdBaseOp: 0.55 };
+        addToScene(sheet);
+
+        var solid = new THREE.Mesh(
+            new THREE.BoxGeometry(2.4, 3.2, 1.6),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(bodyColor), emissive: hexToThreeColor(bodyColor), emissiveIntensity: 0.2, transparent: true, opacity: 0 })
+        );
+        solid.userData = { elementType: "cd_geom", id: "cd_solid", cdDim: "volume", cdBaseOp: 0.4 };
+        addToScene(solid);
+
+        // ── dq highlights (one per geometry) ──
+        var dqLine = createWire([0, 0.18, 0], [0, 0.6, 0], dqColor, 0.17);
+        dqLine.userData = { elementType: "cd_dq", id: "cd_dq_line" };
+        addToScene(dqLine);
+        var dqSurf = cdBox([0.55, 0.45, 0.07], 0.42, dqColor, 1);
+        dqSurf.userData = { elementType: "cd_dq", id: "cd_dq_surface" };
+        addToScene(dqSurf);
+        var dqVol = cdBox([0.4, 0.4, 0.45], 0.36, dqColor, 1);
+        dqVol.userData = { elementType: "cd_dq", id: "cd_dq_volume" };
+        addToScene(dqVol);
+
+        // ── Field point P ──
+        var pDot = createChargeSphere(CD_P, "#FFEB3B", 0.1);
+        pDot.userData = { elementType: "cd_point", id: "cd_P" };
+        addToScene(pDot);
+
+        // ── Ghost "treat the whole body as one point kQ/r²" (misconception
+        //   artifact: dim grey + "?" label, so a sound-off reader reads it as
+        //   the WRONG guess being refuted — physics-author flag #4). ──
+        var ghostPt = createChargeSphere([0, 0, 0], ghostColor, 0.17);
+        ghostPt.material.transparent = true; ghostPt.material.opacity = 0.6;
+        ghostPt.userData = { elementType: "cd_ghost", id: "cd_ghost_pt" };
+        addToScene(ghostPt);
+        var ghostArrow = cdArrow([CD_P[0], CD_P[1], CD_P[2]], [CD_P[0] + 1, CD_P[1], CD_P[2]], 1.0, ghostColor, 0.22, 0.13);
+        cdSetArrowOpacity(ghostArrow, 0.55);
+        ghostArrow.userData = { elementType: "cd_ghost", id: "cd_ghost_arrow" };
+        addToScene(ghostArrow);
+
+        // ── Real (different) net field at P — STATE_1 reveal ──
+        var realE = cdArrow([CD_P[0], CD_P[1], CD_P[2]], [CD_P[0] + 0.75, CD_P[1] + 0.6, CD_P[2]], 1.5, fieldColor, 0.3, 0.16);
+        realE.userData = { elementType: "cd_realE", id: "cd_real_E" };
+        addToScene(realE);
+
+        // ── Single dE from the spotlit chunk to P — STATE_5 ──
+        var c5 = [0.4, 0.4, 0.45];
+        var dESingle = cdArrow(c5, [CD_P[0], CD_P[1], CD_P[2]], 1.3, fieldColor, 0.26, 0.14);
+        dESingle.userData = { elementType: "cd_dE_single", id: "cd_dE_single" };
+        addToScene(dESingle);
+
+        // ── STATE_6 chunks + per-chunk dE + net E (the integral assembling) ──
+        for (var ci = 0; ci < CD_CHUNKS.length; ci++) {
+            var cp = CD_CHUNKS[ci];
+            var chunk = cdBox(cp, 0.26, dqColor, 1);
+            chunk.userData = { elementType: "cd_chunk", id: "cd_chunk_" + ci, cdIndex: ci };
+            addToScene(chunk);
+            var dEi = cdArrow(cp, [CD_P[0], CD_P[1], CD_P[2]], 0.9, fieldColor, 0.18, 0.1);
+            dEi.userData = { elementType: "cd_chunk_dE", id: "cd_chunk_dE_" + ci, cdIndex: ci };
+            addToScene(dEi);
+        }
+        var netE = cdArrow([CD_P[0], CD_P[1], CD_P[2]], [CD_P[0] + 0.7, CD_P[1] + 0.5, CD_P[2]], 1.6, fieldColor, 0.34, 0.18);
+        netE.userData = { elementType: "cd_netE", id: "cd_E_net" };
+        addToScene(netE);
+
+        // ── Labels (3D sprites; visibility via visible_elements per state) ──
+        cdLabel("Q", "#D4D4D8", 0.5, [0, 1.95, 0], "cd_lbl_Q", false);
+        cdLabel("L", "#D4D4D8", 0.42, [0.45, -0.9, 0], "cd_lbl_L", false);
+        cdLabel("\\u03BB = Q/L", "#FFCA28", 0.55, [-1.85, 1.15, 0], "cd_lbl_lambda", true);
+        cdLabel("dq = \\u03BB\\u00B7dl", "#66BB6A", 0.45, [1.15, 0.5, 0], "cd_lbl_dq_line", true);
+        cdLabel("\\u03C3 = Q/A", "#FFCA28", 0.55, [-1.95, 1.15, 0], "cd_lbl_sigma", true);
+        cdLabel("dq = \\u03C3\\u00B7dA", "#66BB6A", 0.45, [1.55, 0.6, 0.3], "cd_lbl_dq_surface", true);
+        cdLabel("\\u03C1 = Q/V", "#FFCA28", 0.55, [-1.95, 1.15, 0], "cd_lbl_rho", true);
+        cdLabel("dq = \\u03C1\\u00B7dV", "#66BB6A", 0.45, [1.6, 0.7, 0.6], "cd_lbl_dq_volume", true);
+        cdLabel("dq = \\u03BBdl = \\u03C3dA = \\u03C1dV", "#66BB6A", 0.42, [0, -2.3, 0], "cd_lbl_unify", true);
+        cdLabel("P", "#FFF176", 0.42, [CD_P[0], CD_P[1] - 0.4, CD_P[2]], "cd_lbl_P", false);
+        cdLabel("dE = k\\u00B7dq/r\\u00B2", "#66BB6A", 0.45, [1.6, 1.15, 0], "cd_lbl_dE", true);
+        cdLabel("r", "#D4D4D8", 0.4, [1.5, 0.05, 0.25], "cd_lbl_r", false);
+        cdLabel("E = \\u03A3 dE \\u2192 \\u222B dE", "#66BB6A", 0.5, [2.0, 1.5, 0], "cd_lbl_E", true);
+        cdLabel("kQ/r\\u00B2 ?", "#9E9E9E", 0.42, [1.25, -0.55, 0], "cd_lbl_ghost", true);
+
+        // ── Density slider (STATE_7 explore — Rule 27 explorer pattern) ──
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var sc = (config.slider_controls && config.slider_controls.density) || { min: 0.2, max: 2, step: 0.1, default: 1, label: "Charge density" };
+        window.PM_cdDensity = sc.default;
+        window.PM_cdUserDragged = false;
+        var panel = document.createElement("div");
+        panel.id = "cdist_sliders";
+        panel.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:170px;display:none;";
+        panel.innerHTML = '<label>' + sc.label + ': <span id="cd_density_val">' + sc.default + '</span></label>' +
+            '<input type="range" id="cd_density_slider" min="' + sc.min + '" max="' + sc.max + '" step="' + (sc.step || 0.1) + '" value="' + sc.default + '" style="width:100%">' +
+            '<div style="margin-top:6px;color:#FFF176">field E \\u221d density</div>';
+        document.body.appendChild(panel);
+        var cdSlider = document.getElementById("cd_density_slider");
+        var cdVal = document.getElementById("cd_density_val");
+        if (cdSlider) cdSlider.addEventListener("input", function () {
+            window.PM_cdUserDragged = true;   // stop the auto-demo sweep once driven
+            window.PM_cdDensity = parseFloat(cdSlider.value);
+            if (cdVal) cdVal.textContent = cdSlider.value;
+        });
+    }
+
+    // Per-state seeding (entry): geometry-morph baseline + dynamic arrow
+    // visibility. The animate loop then drives the morph tween / accumulation /
+    // density scaling every frame.
+    function applyChargeDistributionState(stateDef) {
+        var cd = stateDef.charge_dist || {};
+        var dim = cd.dim || "line";
+        var fromDim = cd.morph_from || null;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud) continue;
+            if (ud.elementType === "cd_geom") {
+                var startDim = fromDim || dim;    // pre-tween baseline
+                var op = (ud.cdDim === startDim) ? ud.cdBaseOp : 0;
+                if (o.material) o.material.opacity = op;
+                o.visible = op > 0.01;
+            } else if (ud.elementType === "cd_dE_single") {
+                o.visible = !!cd.show_single_dE;
+            } else if (ud.elementType === "cd_chunk" || ud.elementType === "cd_chunk_dE") {
+                o.visible = false;                 // revealed one-by-one by the animate loop
+            } else if (ud.elementType === "cd_netE") {
+                o.visible = !!(cd.accumulate_dE || cd.density_slider);
+            } else if (ud.elementType === "cd_ghost") {
+                o.visible = !!cd.show_ghost;
+            } else if (ud.elementType === "cd_realE") {
+                o.visible = !!cd.show_real_E;
+            }
+        }
+        var cdistPanel = document.getElementById("cdist_sliders");
+        if (cdistPanel) cdistPanel.style.display = cd.density_slider ? "block" : "none";
+    }
+
     // ── Build scenario ────────────────────────────────────────────────────
     function buildScenario() {
         clearScene();
@@ -5370,6 +5577,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "force_on_current_wire":
                 buildForceOnCurrentWire();
+                break;
+
+            case "charge_distribution":
+                buildChargeDistribution();
                 break;
 
             default:
@@ -5498,6 +5709,14 @@ export const FIELD_3D_RENDERER_CODE = `
             applyForceWireState(stateDef);
         }
 
+        // charge_distribution — per-state geometry-morph baseline + dynamic
+        // arrow visibility (net E / single dE / ghost / real E / chunks). The
+        // animate loop then drives the morph tween + dE accumulation + the
+        // STATE_7 density scaling per frame.
+        if (config.scenario_type === "charge_distribution") {
+            applyChargeDistributionState(stateDef);
+        }
+
         // Biot-Savart — seed the choreography on state entry: collapse every
         // grow-from-origin vector to scale 0 (the animate loop draws them back in
         // on schedule) so there is no full-size flash on the first frame. Also
@@ -5605,7 +5824,8 @@ export const FIELD_3D_RENDERER_CODE = `
         var isTorque = config.scenario_type === "torque_on_loop_uniform_field";
         var isFcw = config.scenario_type === "force_on_current_wire";
         var isDipole = config.scenario_type === "dipole_in_uniform_field";
-        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole) ? "block" : "none";
+        var isCdist = config.scenario_type === "charge_distribution";
+        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isCdist) ? "block" : "none";
         if (fcwSlidersEl) {
             var showFcwSliders = !!(stateDef.show_sliders && isFcw);
             fcwSlidersEl.style.display = showFcwSliders ? "block" : "none";
@@ -5708,6 +5928,9 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.electric_explorer) { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         if (config.force_field_explorer) { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         if (config.coulomb_explorer) { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // charge_distribution is a silent visual (Rule 24): labels live in the 3D
+        // scene — suppress the generic point-charge legend.
+        if (config.scenario_type === "charge_distribution") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
 
         var scenario = config.scenario_type;
         var lines = [];
@@ -7823,6 +8046,79 @@ export const FIELD_3D_RENDERER_CODE = `
                     var emfIntensity = Math.abs(Math.cos(time * 1.5));
                     obj.material.emissiveIntensity = 0.2 + emfIntensity * 0.8;
                     obj.material.opacity = 0.3 + emfIntensity * 0.7;
+                }
+            }
+        }
+
+        // ── charge_distribution: geometry morph (rod→sheet→solid), dq
+        //   accumulation (STATE_6), and the STATE_7 density-driven net-field
+        //   scaling. Reads stateDef.charge_dist + (time - stateStartTime);
+        //   mirrors wire_to_coil_morph + biot sequence-accumulation timing. ──
+        if (config.scenario_type === "charge_distribution" && stateDef) {
+            var cdc = stateDef.charge_dist || {};
+            var cdMs = (time - stateStartTime) * 1000;
+            var cdDim = cdc.dim || "line";
+            var cdFrom = cdc.morph_from || null;
+            var cdMorphAt = cdc.morph_at_ms != null ? cdc.morph_at_ms : 0;
+            var cdMorphDur = cdc.morph_duration_ms != null ? cdc.morph_duration_ms : 1500;
+            var cdU = 1;   // 0 → fully fromDim, 1 → fully dim
+            if (cdFrom) {
+                if (cdMs < cdMorphAt) cdU = 0;
+                else if (cdMs < cdMorphAt + cdMorphDur) { cdU = (cdMs - cdMorphAt) / cdMorphDur; cdU = cdU * cdU * (3 - 2 * cdU); }
+                else cdU = 1;
+            }
+            var cdAccAt = cdc.accumulate_at_ms != null ? cdc.accumulate_at_ms : 1200;
+            var cdStagger = cdc.accumulate_stagger_ms != null ? cdc.accumulate_stagger_ms : 380;
+            var cdRevealed = 0;
+            if (cdc.accumulate_dE) {
+                for (var cai = 0; cai < CD_CHUNKS.length; cai++) {
+                    if (cdMs >= cdAccAt + cai * cdStagger && (cai + 1) > cdRevealed) cdRevealed = cai + 1;
+                }
+            }
+            for (var cdi = 0; cdi < sceneObjects.length; cdi++) {
+                var cdo = sceneObjects[cdi];
+                var cud = cdo.userData;
+                if (!cud) continue;
+                if (cud.elementType === "cd_geom") {
+                    var top;
+                    if (!cdFrom) top = (cud.cdDim === cdDim) ? cud.cdBaseOp : 0;
+                    else if (cud.cdDim === cdDim) top = cud.cdBaseOp * cdU;
+                    else if (cud.cdDim === cdFrom) top = cud.cdBaseOp * (1 - cdU);
+                    else top = 0;
+                    if (cdo.material) cdo.material.opacity = top;
+                    cdo.visible = top > 0.01;
+                } else if (cud.elementType === "cd_chunk" && cdc.accumulate_dE) {
+                    cdo.visible = cud.cdIndex < cdRevealed;
+                } else if (cud.elementType === "cd_chunk_dE" && cdc.accumulate_dE) {
+                    var t0 = cdAccAt + cud.cdIndex * cdStagger;
+                    if (cdMs >= t0) {
+                        cdo.visible = true;
+                        var g = Math.min(1, (cdMs - t0) / 400);
+                        if (cdo.setLength) cdo.setLength(0.95 * g, 0.18, 0.1);
+                    } else { cdo.visible = false; }
+                } else if (cud.elementType === "cd_netE") {
+                    if (cdc.accumulate_dE) {
+                        cdo.visible = cdRevealed > 0;
+                        if (cdo.setLength) cdo.setLength(0.45 + 1.25 * (cdRevealed / CD_CHUNKS.length), 0.34, 0.18);
+                    } else if (cdc.density_slider) {
+                        cdo.visible = true;
+                        var cdDens;
+                        if (window.PM_cdUserDragged) {
+                            cdDens = window.PM_cdDensity != null ? window.PM_cdDensity : 1;
+                        } else {
+                            // Auto-demo until the teacher grabs the slider: gently sweep
+                            // the density so the explore state self-animates (a REAL
+                            // magnitude change — Rule 29 compliant). The net field arrow
+                            // grows and shrinks with the density it represents.
+                            cdDens = 1.1 + 0.9 * Math.sin(cdMs / 1400);
+                            window.PM_cdDensity = cdDens;
+                            var cdAutoSlider = document.getElementById("cd_density_slider");
+                            if (cdAutoSlider) cdAutoSlider.value = String(cdDens);
+                            var cdAutoVal = document.getElementById("cd_density_val");
+                            if (cdAutoVal) cdAutoVal.textContent = cdDens.toFixed(1);
+                        }
+                        if (cdo.setLength) cdo.setLength(0.5 + 1.35 * cdDens, 0.34, 0.18);
+                    }
                 }
             }
         }

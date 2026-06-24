@@ -97,6 +97,15 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // first electrostatics diamond; field_3d point_charge_positive scenario via the
     // electric_explorer dual-field path). Built for reviewer Asmi (2026-06-18).
     'electric_field_point_charge',
+    // Continuous charge distributions — linear λ (C/m), surface σ (C/m²), volume
+    // ρ (C/m³) charge density + the dq-superposition idea (Class 12 Ch.1.15).
+    // An extended body's field is NOT kQ/r² of a point at its centre; each piece
+    // dq is a Coulomb point charge dE = k·dq/r², and the body's field is the
+    // vector sum E = Σ dE → ∫ dE. New unified field_3d charge_distribution
+    // scenario: ONE morphing body (rod → sheet → solid) with dq highlights, a
+    // field point P, and dynamic dE/net-E arrows. Prereqs coulombs_law +
+    // electric_field_point_charge.
+    'charge_distribution',
     // Force on a charge placed in an electric field, F = qE (Class 12 Ch.1.7 —
     // companion/inverse of electric_field_point_charge; field_3d uniform_field_force
     // scenario: uniform plate field, constant force, parabolic deflection, a = qE/m).
@@ -376,6 +385,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   ── Electric Charges and Fields (Class 12 Ch.1) ──
   coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
   electric_field_point_charge     ← electric field of a point charge E = kQ/r², radial direction (out for +Q, in for −Q), field lines, line density = field strength, E = F/q
+  charge_distribution             ← linear (λ), surface (σ), volume (ρ) charge density; field of an extended/continuous charge
   force_on_charge_in_field        ← force on a charge placed in a field F = qE, direction by sign (along E for +q, opposite for −q), constant force in a uniform field, a = qE/m, parabolic deflection of a launched charge
   electric_dipole_in_field        ← electric dipole in a UNIFORM field: torque τ = p × E = pE sin θ, the force couple ±qE with zero net force, rotation toward alignment, stable (θ=0) vs unstable (θ=180°) equilibrium, potential energy U = −pE cos θ
 
@@ -433,6 +443,8 @@ CRITICAL DISAMBIGUATION (projectiles, Ch.7.6-7.8):
 CRITICAL DISAMBIGUATION (electrostatics, Ch.1):
 - "coulomb's law" / "force between two charges" / "F = kq₁q₂/r²" / "inverse square law" / "Coulomb force" / "do two charges attract or repel" / "force between point charges" / "superposition of forces" → coulombs_law
 - "electric field of a point charge" / "E = kQ/r²" / "field due to a charge" / "electric field lines" / "field lines of a positive/negative charge" / "E = F/q" → electric_field_point_charge
+- "charge density" / "linear charge density" / "surface charge density" / "volume charge density" / "λ" / "σ" / "ρ" → charge_distribution
+- "field from a rod" / "line of charge" / "charged sheet" / "charged disc" / "sphere of charge" → charge_distribution
 - "force on a charge in a field" / "F = qE" / "force on a charge between plates" / "why does a charge curve in a field" / "charge deflected by an electric field" / "a = qE/m" → force_on_charge_in_field
 - "dipole in a uniform field" / "torque on a dipole" / "τ = pE sinθ" / "p cross E" / "why does a dipole rotate in a field" / "dipole potential energy" / "U = −pE cosθ" / "stable equilibrium of a dipole" → electric_dipole_in_field
 

@@ -882,6 +882,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    charge_distribution: {
+        concept_id: 'charge_distribution',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'charge_distribution',
+            label: 'Charge Densities λ, σ, ρ (3D)',
+        },
+    },
+
     force_on_charge_in_field: {
         concept_id: 'force_on_charge_in_field',
         layout: 'single',

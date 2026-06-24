@@ -184,6 +184,20 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
     if (isEnabled(morph) && morph) {
         candidates.push(asNum(morph.straight_duration_ms, F3D.morphStraight) + asNum(morph.morph_duration_ms, F3D.morphDur));
     }
+    // charge_distribution: the rod→sheet→solid cross-fade (morph_from) and the
+    // STATE_6 dq accumulation are one-shot timed reveals that then HOLD still —
+    // pin the frozen frame past their payoff so the capture shows the completed
+    // morph / assembled net field, and so deriveHoldExpectations marks them
+    // reveal_hold (D7/D1p are otherwise false-failed by the static tail).
+    const cd = asObj(state.charge_dist);
+    if (cd) {
+        if (typeof cd.morph_from === 'string') {
+            candidates.push(asNum(cd.morph_at_ms, 0) + asNum(cd.morph_duration_ms, 1500));
+        }
+        if (cd.accumulate_dE === true) {
+            candidates.push(asNum(cd.accumulate_at_ms, 1200) + 6 * asNum(cd.accumulate_stagger_ms, 380) + 500);
+        }
+    }
     const pt = asObj(state.per_turn_field_circles);
     if (isEnabled(pt) && pt) {
         candidates.push(
@@ -316,6 +330,10 @@ export function deriveHoldExpectations(
             const state = asObj(stateRaw);
             if (!state) { out[stateId] = undefined; continue; }
             if (state.show_sliders === true) { out[stateId] = 'interactive'; continue; }
+            // charge_distribution explore state: the density slider drives the
+            // net-field arrow; static until a drag the headless harness never does.
+            const cdHold = asObj(state.charge_dist);
+            if (cdHold && cdHold.density_slider === true) { out[stateId] = 'interactive'; continue; }
             const tm = state.trajectory_mode;
             const moves = typeof tm === 'string' && tm !== 'static' && tm !== 'frozen' && tm !== 'none';
             if (moves) { out[stateId] = undefined; continue; }

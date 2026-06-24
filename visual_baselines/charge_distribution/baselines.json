@@ -1,0 +1,35 @@
+{
+  "approved_at": "2026-06-24T14:50:55.956Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\charge_distribution\\20260624-162245",
+  "tolerance": 0.02,
+  "states": {
+    "STATE_1": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_2": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_3": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_4": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_5": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
+      "compare": true,
+      "compare_frozen": true
+    }
+  }
+}
