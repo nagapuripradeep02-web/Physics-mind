@@ -5410,12 +5410,16 @@ export const FIELD_3D_RENDERER_CODE = `
         addToScene(dESingle);
 
         // ── STATE_6 chunks + per-chunk dE + net E (the integral assembling) ──
+        //   Sized + brightened (founder note 2026-06-24): the chunks glow and the
+        //   dE arrows are large enough to read the accumulation clearly.
+        var cdDeColor = "#8CF5A0";   // brighter green than the base field green
         for (var ci = 0; ci < CD_CHUNKS.length; ci++) {
             var cp = CD_CHUNKS[ci];
-            var chunk = cdBox(cp, 0.26, dqColor, 1);
+            var chunk = cdBox(cp, 0.40, dqColor, 1);
+            chunk.material.emissiveIntensity = 0.9;
             chunk.userData = { elementType: "cd_chunk", id: "cd_chunk_" + ci, cdIndex: ci };
             addToScene(chunk);
-            var dEi = cdArrow(cp, [CD_P[0], CD_P[1], CD_P[2]], 0.9, fieldColor, 0.18, 0.1);
+            var dEi = cdArrow(cp, [CD_P[0], CD_P[1], CD_P[2]], 1.2, cdDeColor, 0.28, 0.16);
             dEi.userData = { elementType: "cd_chunk_dE", id: "cd_chunk_dE_" + ci, cdIndex: ci };
             addToScene(dEi);
         }
@@ -8094,7 +8098,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     if (cdMs >= t0) {
                         cdo.visible = true;
                         var g = Math.min(1, (cdMs - t0) / 400);
-                        if (cdo.setLength) cdo.setLength(0.95 * g, 0.18, 0.1);
+                        if (cdo.setLength) cdo.setLength(1.2 * g, 0.28, 0.16);
                     } else { cdo.visible = false; }
                 } else if (cud.elementType === "cd_netE") {
                     if (cdc.accumulate_dE) {
