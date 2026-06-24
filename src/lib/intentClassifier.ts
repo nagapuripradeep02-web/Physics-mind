@@ -87,6 +87,12 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     'vector_head_to_tail',
     // Newton's 2nd law: direction matters (Class 11 Ch.5.4-5.5 — Phase 0 validation demo Sim 2, session 59)
     'newton_second_law_direction',
+    // Coulomb's law — force between two point charges, F = k q₁q₂/r² (Class 12
+    // Ch.1.5/1.6 — the FOUNDATION of the electrostatics family + prerequisite of
+    // electric_field_point_charge; field_3d coulombs_law_force scenario: equal &
+    // opposite pair, sign→attract/repel, 1/r² falloff, ∝q₁q₂, vector form,
+    // superposition. Vacuum law only — the dielectric/K-factor is a separate sim).
+    'coulombs_law',
     // Electric field of a point charge + its field lines (Class 12 Ch.1.6/1.8 —
     // first electrostatics diamond; field_3d point_charge_positive scenario via the
     // electric_explorer dual-field path). Built for reviewer Asmi (2026-06-18).
@@ -95,6 +101,11 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // companion/inverse of electric_field_point_charge; field_3d uniform_field_force
     // scenario: uniform plate field, constant force, parabolic deflection, a = qE/m).
     'force_on_charge_in_field',
+    // Electric dipole in a uniform external field, τ = p × E (Class 12 Ch.1.12 —
+    // field_3d dipole_in_uniform_field scenario: force couple ±qE, zero net force,
+    // torque toward alignment, stable/unstable equilibrium, U = −pE cos θ). The
+    // electric sibling of torque_on_current_loop_in_field.
+    'electric_dipole_in_field',
     // Magnetic field of a long straight current-carrying wire + right-hand rule
     // (Class 12 Ch.4.4 — Phase 0 validation demo Sim 3, session 60). First field_3d
     // (Three.js) concept authored end-to-end; routed via CONCEPT_RENDERER_MAP.
@@ -363,8 +374,10 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   newton_second_law_direction ← F = m·a as a vector equation, direction matters, a along F not v
 
   ── Electric Charges and Fields (Class 12 Ch.1) ──
+  coulombs_law                    ← force between two point charges F = k q₁q₂/r², k ≈ 9×10⁹; like charges repel / unlike attract; equal & opposite pair (Newton's 3rd); 1/r² inverse-square falloff; F ∝ q₁q₂; vector form along the line joining; superposition (net force = vector sum)
   electric_field_point_charge     ← electric field of a point charge E = kQ/r², radial direction (out for +Q, in for −Q), field lines, line density = field strength, E = F/q
   force_on_charge_in_field        ← force on a charge placed in a field F = qE, direction by sign (along E for +q, opposite for −q), constant force in a uniform field, a = qE/m, parabolic deflection of a launched charge
+  electric_dipole_in_field        ← electric dipole in a UNIFORM field: torque τ = p × E = pE sin θ, the force couple ±qE with zero net force, rotation toward alignment, stable (θ=0) vs unstable (θ=180°) equilibrium, potential energy U = −pE cos θ
 
   ── Moving Charges and Magnetism (Class 12 Ch.4) ──
   magnetic_field_wire             ← B around a straight current-carrying wire, B = μ₀I/(2πr), right-hand rule (thumb = I, fingers = B)
@@ -418,8 +431,10 @@ CRITICAL DISAMBIGUATION (projectiles, Ch.7.6-7.8):
 - "two projectiles meeting" → two_projectile_meeting
 
 CRITICAL DISAMBIGUATION (electrostatics, Ch.1):
+- "coulomb's law" / "force between two charges" / "F = kq₁q₂/r²" / "inverse square law" / "Coulomb force" / "do two charges attract or repel" / "force between point charges" / "superposition of forces" → coulombs_law
 - "electric field of a point charge" / "E = kQ/r²" / "field due to a charge" / "electric field lines" / "field lines of a positive/negative charge" / "E = F/q" → electric_field_point_charge
 - "force on a charge in a field" / "F = qE" / "force on a charge between plates" / "why does a charge curve in a field" / "charge deflected by an electric field" / "a = qE/m" → force_on_charge_in_field
+- "dipole in a uniform field" / "torque on a dipole" / "τ = pE sinθ" / "p cross E" / "why does a dipole rotate in a field" / "dipole potential energy" / "U = −pE cosθ" / "stable equilibrium of a dipole" → electric_dipole_in_field
 
 CRITICAL DISAMBIGUATION (magnetism, Ch.4):
 - "field around a wire" / "B-field of a current-carrying wire" / "right-hand rule for wire" → magnetic_field_wire

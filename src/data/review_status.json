@@ -1,0 +1,37 @@
+{
+  "magnetic_force_moving_charge": {
+    "reviewed": true,
+    "reviewer": "Asmi Singh",
+    "reviewed_date": "2026-06-15",
+    "videos": [
+      { "label": "Asmi review", "url": "" }
+    ]
+  },
+  "biot_savart_law": {
+    "reviewed": true,
+    "reviewer": "Asmi Singh",
+    "reviewed_date": "",
+    "videos": []
+  },
+  "electric_field_point_charge": {
+    "reviewed": true,
+    "reviewer": "Asmi Singh",
+    "reviewed_date": "2026-06-18",
+    "videos": [
+      { "label": "Student explainer (with her student)", "url": "" },
+      { "label": "State-wise self-review", "url": "" }
+    ]
+  },
+  "electric_field_dipole": {
+    "reviewed": false,
+    "reviewer": "",
+    "reviewed_date": "",
+    "videos": []
+  },
+  "electric_dipole_in_field": {
+    "reviewed": false,
+    "reviewer": "",
+    "reviewed_date": "",
+    "videos": []
+  }
+}

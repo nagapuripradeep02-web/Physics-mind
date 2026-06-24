@@ -140,16 +140,14 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
 
     coulombs_law: {
         concept_id: 'coulombs_law',
-        layout: 'dual_horizontal',
+        // Rebuilt 2026-06-23 as a single-panel field_3d diamond (the old
+        // dual particle_field + graph_interactive panels were OLD architecture,
+        // never a finished product). New scenario coulombs_law_force.
+        layout: 'single',
         primary: {
-            renderer: 'particle_field',
-            config_key: 'coulombs_law_sim',
-            label: 'Force Between Charges',
-        },
-        secondary: {
-            renderer: 'graph_interactive',
-            config_key: 'coulombs_law_graph',
-            label: 'Force vs Distance',
+            renderer: 'field_3d',
+            config_key: 'coulombs_law',
+            label: 'Coulomb Force Between Two Charges (3D)',
         },
     },
 

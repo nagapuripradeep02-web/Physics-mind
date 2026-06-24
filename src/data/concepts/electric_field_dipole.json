@@ -1,0 +1,582 @@
+{
+  "concept_id": "electric_field_dipole",
+  "concept_name": "Electric Field due to an Electric Dipole",
+  "chapter": 1,
+  "section": "1.9",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.1 Electric Charges and Fields (§1.9 Electric Dipole, §1.10 Electric Field due to a Dipole) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (define the dipole and its moment p → field at an axial point by superposition → field at an equatorial point → compare axial=2×equatorial → the 1/r³ falloff → the field-line map), never copied. The atomic idea: a dipole's field anywhere is just the SUPERPOSITION of the two point-charge fields E+ and E−; on the axis they reinforce along p (E≈2kp/r³), on the equator the survivors add opposite to p (E≈kp/r³), and because the two opposite charges nearly cancel at distance the field dies as 1/r³ — faster than a single charge's 1/r². Built for reviewer Asmi Singh; new field_3d scenario dipole_field. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "dipole_field"
+    ]
+  },
+  "prerequisites": [
+    "electric_field_point_charge"
+  ],
+  "real_world_anchor": {
+    "primary": "A water molecule is a tiny permanent electric dipole: the oxygen end is slightly negative and the two hydrogen ends slightly positive, so it carries a built-in dipole moment p. Every glass of water is full of these little dipoles, and the field each one makes around itself is exactly the dipole field we are drawing here.",
+    "secondary": "Inside a microwave oven, the electric field flips billions of times a second. The water dipoles in your food try to keep turning to line up with it, and all that twisting is what heats the food. The torque that flips them and the field they make are two sides of the same dipole.",
+    "tertiary": "Put an insulator — a slab of plastic or glass — into an electric field and its molecules stretch into countless tiny dipoles. The dipole field of each one adds up to the way a dielectric weakens the field inside it, the idea behind every capacitor with a slab in it."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "q": {
+        "name": "Magnitude of each charge",
+        "unit": "nC",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "r": {
+        "name": "Distance from the dipole centre to the field point",
+        "unit": "scene",
+        "min": 1.0,
+        "max": 2.4,
+        "default": 1.6,
+        "step": 0.1
+      },
+      "theta": {
+        "name": "Angle of the field point from the dipole axis",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "default": 0,
+        "step": 5
+      },
+      "k": {
+        "name": "Coulomb constant",
+        "unit": "N·m²/C²",
+        "constant": 8987551787.368176
+      }
+    },
+    "computed_outputs": {
+      "E_axial": {
+        "formula": "2 * k * p / (r * r * r)"
+      },
+      "E_equatorial": {
+        "formula": "k * p / (r * r * r)"
+      },
+      "E_general": {
+        "formula": "(k * p / (r * r * r)) * sqrt(1 + 3 * cos(theta) * cos(theta))"
+      }
+    },
+    "formulas": {
+      "dipole_moment": "p = q × 2a, a vector pointing from −q to +q",
+      "superposition": "E_net = E+ + E−  (the two point-charge fields added as vectors)",
+      "axial_field": "E_axial = 2 k p / r³, along p (far field, r ≫ a)",
+      "equatorial_field": "E_equatorial = k p / r³, opposite to p (far field, r ≫ a)",
+      "general_point": "E = (k p / r³) √(1 + 3cos²θ); θ measured from the axis"
+    },
+    "constraints": [
+      "The dipole field at ANY point is just the vector sum of the two point-charge fields E+ (away from +q) and E− (toward −q) — there is no new law, only superposition",
+      "On the axis the two fields reinforce along p; on the equator their components along p cancel and the components opposite p survive — so axial points along p and equatorial points opposite p",
+      "At the same distance the axial field is exactly TWICE the equatorial field (far field)",
+      "Both axial and equatorial fields fall off as 1/r³ — faster than a single point charge's 1/r² — because the +q and −q nearly cancel when seen from far away",
+      "Only the dipole moment p = q·2a matters at a distance, not q and a separately: a bigger charge or a wider separation give the same field if p is the same"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "A dipole's field dies as 1/r³ — faster than a single charge.",
+    "visual_confirmation": "Watch the net arrow at three growing distances collapse far quicker than a single charge would; the near + and − fields nearly erase each other at range."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "representation": [
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Dipole & moment p",
+        "duration": 13,
+        "focal_primitive_id": "p_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "plus_label",
+            "position": { "x": 470, "y": 250 },
+            "text": "+q",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "minus_label",
+            "position": { "x": 290, "y": 250 },
+            "text": "−q",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "p_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "p = q · 2a  (− → +)",
+            "color": "#FFCA28"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "An electric dipole is just two equal and opposite charges, plus q and minus q, held a small distance apart."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "We capture it in one quantity: the dipole moment p. Its size is charge times separation, q times two a."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "p is a vector. By convention it points from the negative charge to the positive charge."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "Our question for the whole lesson: what electric field does this little pair set up in the space around it?"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Axial point — superpose",
+        "duration": 15,
+        "focal_primitive_id": "axial_formula",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "eplus_label",
+            "position": { "x": 600, "y": 210 },
+            "text": "E+ (away from +q)",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "eminus_label",
+            "position": { "x": 600, "y": 300 },
+            "text": "E− (toward −q)",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "axial_formula",
+            "position": { "x": 360, "y": 440 },
+            "text": "E_axial ≈ 2 k p / r³",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Take a point P out along the axis, on the line through both charges. Find the field by superposition."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "The near plus q pushes outward — a strong red arrow. The far minus q pulls back — a weaker blue arrow."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "They lie along the same line, so the green net field points along p, the way p points."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Work it out far away and the axial field is two k p over r cubed."
+            }
+          ]
+        },
+        "allow_deep_dive": true
+      },
+      "STATE_3": {
+        "title": "Equatorial point",
+        "duration": 15,
+        "focal_primitive_id": "equatorial_formula",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 360, "y": 80 },
+            "text": "predict: which way will E point?",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "cancel_label",
+            "position": { "x": 560, "y": 210 },
+            "text": "up/down parts cancel",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "equatorial_formula",
+            "position": { "x": 360, "y": 440 },
+            "text": "E_eq ≈ k p / r³  (opposite p)",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Now move P out sideways, onto the perpendicular bisector. Before I draw it — predict which way the field points."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "E plus and E minus are now equal in length but tilted. Their parts pointing up and down cancel."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "What survives points sideways — opposite to p, back toward the negative charge's side."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "Far away the equatorial field is k p over r cubed, pointing opposite to p."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The dipole field always points from + to − like p, everywhere around the dipole",
+            "visual_counter": "Show the equatorial net arrow pointing OPPOSITE to p while the axial one points along p.",
+            "one_line_fix": "Direction depends on where you stand: along p on the axis, opposite p on the equator."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Axial = 2 × equatorial",
+        "duration": 13,
+        "focal_primitive_id": "ratio_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "axial_tag",
+            "position": { "x": 600, "y": 250 },
+            "text": "axial: 2kp/r³",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "equatorial_tag",
+            "position": { "x": 330, "y": 120 },
+            "text": "equatorial: kp/r³",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "ratio_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "E_axial = 2 × E_equatorial",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Put the two cases side by side at the same distance from the centre."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The axial arrow is exactly twice as long as the equatorial one — same r, double the field."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "And they point differently: axial along p, equatorial opposite p."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "One clean rule to remember: on the axis the dipole field is twice as strong as on the equator."
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "1/r³ falloff",
+        "duration": 16,
+        "focal_primitive_id": "falloff_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "near_tag",
+            "position": { "x": 430, "y": 200 },
+            "text": "near → strong",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "far_tag",
+            "position": { "x": 620, "y": 280 },
+            "text": "far → tiny",
+            "color": "#90CAF9"
+          },
+          {
+            "type": "annotation",
+            "id": "falloff_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "E ∝ 1/r³  (faster than 1/r²)",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Watch the net arrow at three growing distances. What happens to its length as I step outward?"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "It collapses — far faster than a single charge would. The dipole field goes as one over r cubed."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Here is why: from far away the plus and the minus almost line up and nearly cancel each other."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "What is left is a faint leftover that fades as r cubed, not r squared. A dipole hides quickly at a distance."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A dipole's field falls off like a point charge, as 1/r²",
+            "visual_counter": "Show the net arrow shrinking across three distances much faster than a 1/r² arrow would.",
+            "one_line_fix": "A dipole field dies as 1/r³ — faster than 1/r² — because the opposite charges nearly cancel far away."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Dipole field-line map",
+        "duration": 14,
+        "focal_primitive_id": "pattern_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "out_label",
+            "position": { "x": 470, "y": 150 },
+            "text": "out of +q",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "into_label",
+            "position": { "x": 270, "y": 150 },
+            "text": "into −q",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "pattern_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "E ∝ √(1 + 3cos²θ) / r³",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Join all those net arrows into continuous field lines and you get the dipole's map."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Every line leaves the positive charge and curves around to land on the negative charge."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The lines crowd most near the axis — that is where the field is strongest, just as we found."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "In general the strength is k p over r cubed times root of one plus three cosine squared theta."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Explore",
+        "duration": 16,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 360, "y": 80 },
+            "text": "drag q, r and θ",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "elive_label",
+            "position": { "x": 600, "y": 220 },
+            "text": "E_net",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_formula",
+            "position": { "x": 360, "y": 440 },
+            "text": "E = (k p / r³) √(1 + 3cos²θ)",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now you drive it. Move the point P around the dipole with the angle slider and watch the net field swing."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "At zero degrees you are on the axis — the field is strong and points along p."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "At ninety degrees you are on the equator — about half as strong, pointing opposite p."
+            },
+            {
+              "id": "s7_4",
+              "text_en": "Slide r outward and feel how fast it fades; raise q and the whole field grows. One dipole, one pattern."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "dipole_field",
+    "dipole_explorer": true,
+    "field_lines": {
+      "count": 14,
+      "color_positive": "#EF5350",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85,
+      "arrow_spacing": 4
+    },
+    "slider_controls": {
+      "q": {
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "label": "Charge q"
+      },
+      "r": {
+        "min": 1.0,
+        "max": 2.4,
+        "step": 0.1,
+        "default": 1.6,
+        "label": "Distance r"
+      },
+      "theta": {
+        "min": 0,
+        "max": 180,
+        "step": 5,
+        "default": 0,
+        "label": "Angle θ"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The dipole + moment p",
+        "visible_elements": [],
+        "camera_position": [0.5, 1.2, 4.5],
+        "caption": "",
+        "probe_mode": "none",
+        "formula_overlay": "p = q · 2a   (points − → +)"
+      },
+      "STATE_2": {
+        "label": "Axial point — superpose E+ and E−",
+        "visible_elements": [],
+        "camera_position": [0.6, 0.9, 6.2],
+        "caption": "",
+        "probe_mode": "axial",
+        "show_components": true,
+        "formula_overlay": "E_axial ≈ 2 k p / r³  (along p)"
+      },
+      "STATE_3": {
+        "label": "Equatorial point",
+        "visible_elements": [],
+        "camera_position": [0.4, 1.2, 6.2],
+        "caption": "",
+        "probe_mode": "equatorial",
+        "show_components": true,
+        "formula_overlay": "E_eq ≈ k p / r³  (opposite p)"
+      },
+      "STATE_4": {
+        "label": "Axial = 2 × equatorial",
+        "visible_elements": [],
+        "camera_position": [0.6, 1.2, 6.4],
+        "caption": "",
+        "probe_mode": "none",
+        "show_compare": true,
+        "formula_overlay": "E_axial = 2 × E_equatorial"
+      },
+      "STATE_5": {
+        "label": "1/r³ falloff (PRIMARY aha)",
+        "visible_elements": [],
+        "camera_position": [0.9, 0.9, 6.2],
+        "caption": "",
+        "probe_mode": "none",
+        "show_falloff": true,
+        "formula_overlay": "E ∝ 1/r³   (faster than 1/r²)"
+      },
+      "STATE_6": {
+        "label": "Field-line map",
+        "visible_elements": [],
+        "camera_position": [0.5, 1.8, 5.2],
+        "caption": "",
+        "probe_mode": "none",
+        "show_field_lines": true,
+        "formula_overlay": "E ∝ √(1 + 3cos²θ) / r³"
+      },
+      "STATE_7": {
+        "label": "Free explore — q, r, θ",
+        "visible_elements": [],
+        "camera_position": [0.6, 1.1, 6.4],
+        "caption": "",
+        "probe_mode": "explorer",
+        "show_components": true,
+        "show_sliders": true,
+        "formula_overlay": "E = (k p / r³) √(1 + 3cos²θ)"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

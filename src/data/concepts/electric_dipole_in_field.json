@@ -1,0 +1,656 @@
+{
+  "concept_id": "electric_dipole_in_field",
+  "concept_name": "Electric Dipole in a Uniform External Field (τ = p × E)",
+  "chapter": 1,
+  "section": "1.12",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics Ch.1 §1.12 (Dipole in a Uniform External Field) — table-of-contents reference only; teaching authored from first principles. Sibling of torque_on_current_loop_in_field: an electric dipole of moment p in a uniform field E feels zero net force but a non-zero torque τ = p × E that rotates it toward alignment, with potential energy U = −p·E. Board/NCERT depth — torque, the force couple, stable/unstable equilibrium, and potential energy; the JEE small-oscillation period T = 2π√(I/pE) is intentionally out of scope (founder decision 2026-06-23). The four student errors targeted: (a) believing a uniform field pushes the dipole bodily along the field (net force is zero — only torque), (b) believing the dipole feels no force at all (each charge feels qE; they form a couple), (c) believing torque is maximum when p ∥ E (it is zero there; maximum at 90°), (d) believing θ = 180° is just as stable as θ = 0° (it is the energy maximum — unstable). Reuses the archetype-C rotational-dynamics renderer primitives established by the torque-loop diamond (moment vector, couple forces, τ along the rotation axis, oscillation, θ-sweep). Conforms to the EPIC-L-first directive (no epic_c_branches) and the conceptual-only directive (no mode_overrides).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["dipole_in_uniform_field"]
+  },
+  "prerequisites": [
+    "electric_field_point_charge",
+    "force_on_charge_in_field"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture a compass needle. A compass needle is a tiny dipole sitting in the Earth's field. Let it go and it swings until it points along the field, then holds there. Push it aside and it springs back. That 'springs back to alignment' behaviour is exactly the torque τ = pE sin θ doing its job — and an electric dipole in an electric field behaves the very same way.",
+    "secondary": "A water molecule is a permanent electric dipole — the oxygen end is slightly negative, the two hydrogen ends slightly positive, so it carries a built-in dipole moment p. Switch on an electric field and trillions of these little dipoles twist to line up with it. That mass alignment of water dipoles is the same τ = p × E you are about to watch on a single dipole, multiplied a billion-billion times.",
+    "tertiary": "Inside a microwave oven, a rapidly reversing electric field grabs the dipole water molecules in your dal and flips them back and forth about 2.45 billion times every second. The friction of all that flipping is the heat that warms your food. Same torque τ = p × E on a dipole — just an E that keeps reversing direction."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "q": {
+        "name": "Magnitude of each charge",
+        "unit": "nC",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 0.5
+      },
+      "d": {
+        "name": "Charge separation 2a",
+        "unit": "cm",
+        "min": 1,
+        "max": 5,
+        "default": 2,
+        "step": 0.5
+      },
+      "E": {
+        "name": "Magnitude of the uniform external field",
+        "unit": "kV/m",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 0.5
+      },
+      "theta_deg": {
+        "name": "Angle between p and E",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "default": 60,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "p_magnitude": {
+        "formula": "(q * 1e-9) * (d / 100)"
+      },
+      "torque": {
+        "formula": "(q * 1e-9) * (d / 100) * (E * 1000) * sin(theta_deg * PI / 180)"
+      },
+      "torque_max": {
+        "formula": "(q * 1e-9) * (d / 100) * (E * 1000)"
+      },
+      "U": {
+        "formula": "-1 * (q * 1e-9) * (d / 100) * (E * 1000) * cos(theta_deg * PI / 180)"
+      },
+      "force_net": {
+        "formula": "0"
+      }
+    },
+    "formulas": {
+      "torque_vector": "τ = p × E — the vector torque is the cross product of the dipole moment with the external field; it is perpendicular to both p and E.",
+      "torque_magnitude": "τ = pE sin θ — scalar magnitude; θ is the angle between p and E; τ is maximum at θ = 90° and zero at θ = 0° or 180°.",
+      "dipole_moment": "p = q · 2a — the dipole moment points from the −q charge to the +q charge; its magnitude is charge times separation.",
+      "potential_energy": "U = −p·E = −pE cos θ — minimum (−pE) at θ = 0°, zero at θ = 90°, maximum (+pE) at θ = 180°.",
+      "net_force_zero": "F_net = (+q)E + (−q)E = 0 in a UNIFORM field — the two charge-forces are equal and opposite, so the dipole rotates but does not translate.",
+      "equilibrium_stable": "θ = 0° (p ∥ E) — stable equilibrium; U is a minimum, and a small nudge produces a restoring torque back toward alignment.",
+      "equilibrium_unstable": "θ = 180° (p anti-parallel to E) — unstable equilibrium; U is a maximum, and any tiny nudge grows until the dipole flips around to θ = 0°."
+    },
+    "constraints": [
+      "E must be uniform across the dipole. A non-uniform field adds a net force (the gradient term F = p·∇E) and the dipole would also translate.",
+      "The dipole is rigid — the charge separation 2a is fixed during rotation.",
+      "τ = p × E is a vector perpendicular to BOTH p and E; its magnitude is pE sin θ.",
+      "θ is measured from p to E. Positive θ gives a restoring torque toward θ = 0°.",
+      "U = −p·E is defined up to a constant; the standard NCERT reference is U = 0 at θ = 90°.",
+      "Point-dipole idealisation: the separation 2a is much smaller than the scale over which the field varies."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Net force is zero, yet the torque is not — the dipole rotates without moving.",
+    "visual_confirmation": "Watch STATE_3 → STATE_4: the two equal-and-opposite charge forces resolve to a ΣF = 0 badge, yet the τ vector appears and the dipole begins to turn. Both facts are true at once."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "exploration": ["STATE_5", "STATE_6", "STATE_7", "STATE_8"]
+  },
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "A dipole and its moment p = q · 2a",
+        "duration": 16,
+        "focal_primitive_id": "setup_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "An electric dipole: +q and −q a small distance apart",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "moment_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "The dipole moment p\npoints from −q to +q.\nMagnitude: p = q · 2a.",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "no_field_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "No external field yet.\nNext: drop this dipole\ninto a uniform field E.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "A water molecule is exactly this — a built-in electric dipole.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "This is an electric dipole. A positive charge and an equal negative charge, a small distance apart.", "glow": "dipole" },
+            { "id": "s1_2", "text_en": "The yellow arrow is the dipole moment p. It points from the negative charge to the positive charge.", "glow": "p", "math_show": "\\vec{p} = q \\cdot 2a" },
+            { "id": "s1_3", "text_en": "Its size is the charge times the separation, p equals q times two a.", "glow": "p" },
+            { "id": "s1_4", "text_en": "There is no field yet. Next, we drop this dipole into a uniform external field.", "glow": "dipole" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Place it in a uniform field E",
+        "duration": 18,
+        "focal_primitive_id": "field_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "A uniform field E — the same everywhere",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "uniform_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Every blue arrow is identical:\nsame length, same direction.\nThat is what 'uniform' means.",
+            "color": "#82B1FF"
+          },
+          {
+            "type": "annotation",
+            "id": "angle_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "The dipole sits at an angle θ\nto the field. Watch the yellow\narc between p and E.",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "What will the field do to this tilted dipole?",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Now switch on a uniform electric field. Every blue arrow is identical in length and direction.", "glow": "e" },
+            { "id": "s2_2", "text_en": "Uniform means the field is the same at every point in space. It does not get stronger or weaker anywhere.", "glow": "e" },
+            { "id": "s2_3", "text_en": "The dipole sits tilted at an angle theta to the field. The yellow arc marks that angle between p and E.", "glow": "theta" },
+            { "id": "s2_4", "text_en": "Question. What does the field do to this tilted dipole? Keep watching.", "glow": "dipole" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Two forces: +qE and −qE — a couple",
+        "duration": 22,
+        "focal_primitive_id": "forces_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "forces_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Each charge feels a force in the field",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "plus_force_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "On +q: force +qE,\nalong the field.\nOn −q: force −qE,\nopposite the field.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "couple_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "Equal. Opposite. But on\ndifferent lines of action.\nThat is a COUPLE.",
+            "color": "#FFCC9F",
+            "reveal_at_tts_id": "s3_3"
+          },
+          {
+            "type": "annotation",
+            "id": "magnitude_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Each force has magnitude qE. They do not cancel as a pair — they twist.",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s3_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Look at each charge separately. The positive charge feels a force q E, pointing along the field.", "glow": "forces", "math_show": "\\vec{F}_+ = +q\\vec{E}" },
+            { "id": "s3_2", "text_en": "The negative charge feels a force q E pointing the opposite way, against the field.", "glow": "forces", "math_show": "\\vec{F}_- = -q\\vec{E}" },
+            { "id": "s3_3", "text_en": "Two forces. Equal in size. Opposite in direction. But acting on different lines. That combination is called a couple.", "glow": "forces" },
+            { "id": "s3_4", "text_en": "So the dipole does feel forces. It is just that the two forces are set up to twist it, not to push it.", "glow": "forces" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A dipole placed in a field feels no force at all, because the charges are equal and opposite.",
+            "one_line_fix": "Each charge DOES feel a force qE. The two are equal and opposite, so they form a couple — zero net force, but a real twisting torque."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Net force zero, but torque is not",
+        "duration": 26,
+        "focal_primitive_id": "torque_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "torque_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "ΣF = 0, yet the dipole turns",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "sum_zero_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Add the two forces:\n+qE and −qE cancel.\nΣF = 0 → no sliding.",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rotate_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "But the couple makes a torque.\nThe purple arrow is τ.\nThe dipole rotates toward E.",
+            "color": "#E879F9",
+            "reveal_at_tts_id": "s4_3"
+          },
+          {
+            "type": "annotation",
+            "id": "aha_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Zero net force and non-zero torque are both true at once. The dipole turns without moving off the spot.",
+            "color": "#FFF176",
+            "reveal_at_tts_id": "s4_5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Now add the two forces together. Plus q E and minus q E cancel exactly. The net force is zero.", "glow": "sum", "math_show": "\\sum \\vec{F} = 0" },
+            { "id": "s4_2", "text_en": "Zero net force means the dipole will not slide anywhere. Take three seconds — does that mean nothing happens?", "glow": "dipole", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "No. The couple produces a torque. The purple arrow is tau, and the dipole begins to rotate toward the field.", "glow": "tau" },
+            { "id": "s4_4", "text_en": "Net force zero, but torque not zero. Both statements are true at the same moment.", "glow": ["sum", "tau"], "math_show": "\\sum \\vec{F} = 0, \\quad \\vec{\\tau} \\neq 0" },
+            { "id": "s4_5", "text_en": "Forces decide sliding. Torques decide turning. A uniform field gives the dipole only a turn.", "glow": "tau" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A uniform field pushes the dipole bodily along the direction of the field.",
+            "one_line_fix": "In a UNIFORM field the net force is exactly zero — the dipole only rotates to align with E, it does not translate."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "τ = pE sin θ — sweep θ and watch τ trace a sine",
+        "duration": 22,
+        "focal_primitive_id": "sweep_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sweep_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Watch θ sweep — τ rises and falls",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "grows_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "τ is zero when p lines up with E,\ngrows as the dipole tilts,\nand falls back to zero again.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "sine_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "Functional form:\nτ = pE sin θ.\nThis is a sine curve.",
+            "color": "#E879F9"
+          },
+          {
+            "type": "annotation",
+            "id": "watch_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Watch only. The purple τ arrow grows and shrinks with the angle.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Watch the angle sweep from zero through ninety to one eighty and back. Keep your eye on the purple torque arrow.", "glow": "theta" },
+            { "id": "s5_2", "text_en": "The torque starts at zero, grows as the dipole tilts away from the field, peaks, then falls back to zero.", "glow": "tau" },
+            { "id": "s5_3", "text_en": "That shape is a sine. Tau equals p E sine theta. Where does it reach its biggest value? You will guess next.", "glow": "tau", "math_show": "\\tau = pE\\sin\\theta" }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Where is τ maximum? — predict before you see",
+        "duration": 22,
+        "focal_primitive_id": "predict_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "At what angle is the torque MAXIMUM?",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "wrong_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Common wrong guess:\nθ = 0° (p lined up with E).\n\"Aligned must be biggest, right?\"",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "answer_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "Answer: θ = 90°.\nτ = pE sin 90° = pE.\nA cross product is biggest\nwhen the vectors are perpendicular.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s6_3"
+          },
+          {
+            "type": "annotation",
+            "id": "cross_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "τ = p × E. Parallel → sin 0 = 0 → τ = 0. Perpendicular → sin 90 = 1 → τ = max.",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s6_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "The dipole is now frozen at ninety degrees. Look at the torque arrow — it is fully extended.", "glow": "tau" },
+            { "id": "s6_2", "text_en": "Predict first. At what angle is the torque largest? Take three seconds.", "glow": "theta", "pause_after_ms": 3000 },
+            { "id": "s6_3", "text_en": "Many students say zero degrees, where p lines up with E. That feels right, but it is wrong. The answer is ninety.", "glow": "tau", "math_show": "\\tau_{\\max} = pE \\;\\text{at}\\; \\theta = 90^{\\circ}" },
+            { "id": "s6_4", "text_en": "Because tau is a cross product. Cross products are biggest when the two vectors are perpendicular, and zero when they are parallel.", "glow": "theta" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Torque is maximum when p is parallel to E, because that is when the dipole is most aligned.",
+            "one_line_fix": "Alignment means τ = 0, not τ_max. τ = p × E is a cross product — it is largest when p ⊥ E (θ = 90°)."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Stable vs unstable equilibrium — and U = −pE cos θ",
+        "duration": 26,
+        "focal_primitive_id": "equilibrium_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "equilibrium_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Two angles give τ = 0 — but they are not the same",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "stable_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "θ = 0° (p ∥ E): U is LOWEST.\nNudge it → it swings back.\nStable. The dipole oscillates here.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "unstable_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "θ = 180° (p against E): U is HIGHEST.\nAny nudge grows → it flips around.\nUnstable. Look at the U-meter on the left.",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "energy_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "U = −pE cos θ. Lowest at θ = 0° (stable), highest at θ = 180° (unstable).",
+            "color": "#FFCA28"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Torque is zero at two angles. Theta zero, where p lines up with E, and theta one eighty, where p points against E.", "glow": "u" },
+            { "id": "s7_2", "text_en": "But they are not equally safe. Watch the dipole oscillate gently about theta zero. Nudge it and it always swings back.", "glow": "dipole" },
+            { "id": "s7_3", "text_en": "That is stable equilibrium. On the U-meter the marker sits at the bottom — the energy is lowest here.", "glow": "u", "math_show": "U = -pE\\cos\\theta" },
+            { "id": "s7_4", "text_en": "Theta one eighty is the opposite. The energy is at the top, the maximum. Any tiny nudge grows and the dipole flips all the way to theta zero.", "glow": "u" },
+            { "id": "s7_5", "text_en": "So a dipole, like a compass needle, always settles pointing along the field — the lowest energy pose.", "glow": "dipole" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "θ = 180° is just as stable as θ = 0°, because the torque is zero at both angles.",
+            "one_line_fix": "Only θ = 0° is stable — it is the energy minimum. θ = 180° is the energy maximum, so any nudge grows and the dipole flips to θ = 0°."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "Your turn — drag p, E and θ; watch τ and U respond",
+        "duration": 0,
+        "focal_primitive_id": "sandbox_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sandbox_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Sandbox — drag the three sliders",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "equation_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "τ = pE sin θ\nU = −pE cos θ\n\np doubles → τ doubles\nE doubles → τ doubles\nθ moves → τ traces a sine",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "challenge_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "Try these:\n1. Set θ = 90° — τ is biggest.\n2. Set θ = 0° — τ = 0, U lowest.\n3. Set θ = 180° — τ = 0, U highest.",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Your turn. Three sliders — the dipole moment p, the field E, and the angle theta. Drag them and watch the torque arrow respond.", "glow": "sandbox_label" },
+            { "id": "s8_2", "text_en": "Try the three challenges. Set theta to ninety for the biggest torque, then to zero and one eighty to find the two equilibria.", "glow": "challenge_label" }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "dipole_in_uniform_field",
+    "ambient_field": {
+      "direction": [1, 0, 0],
+      "magnitude": 0.1,
+      "density": [5, 5, 5],
+      "color": "#42A5F5",
+      "opacity": 0.42,
+      "extent": 2.5
+    },
+    "dipole": {
+      "color_plus": "#EF5350",
+      "color_minus": "#42A5F5",
+      "p_color": "#FFCA28"
+    },
+    "slider_controls": {
+      "p": { "min": 1, "max": 10, "step": 0.5, "default": 5, "label": "Dipole moment p" },
+      "E": { "min": 1, "max": 10, "step": 0.5, "default": 5, "label": "Field E (kV/m)" },
+      "theta_deg": { "min": 0, "max": 180, "step": 1, "default": 45, "label": "Angle θ(p,E)" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A dipole and its moment p — no field yet",
+        "visible_elements": [],
+        "camera_position": [3, 2.2, 4],
+        "caption": "Two charges +q and −q with the dipole moment p pointing −q → +q. The external field is not switched on yet.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "e_field": false,
+          "p_animate_in": true,
+          "force_vectors": { "show_plus": false, "show_minus": false },
+          "tau_vector": false,
+          "sum_force_badge": false,
+          "theta_arc": { "show": false },
+          "energy_meter": { "show": false }
+        }
+      },
+      "STATE_2": {
+        "label": "Place it in a uniform field E (θ ≈ 60°)",
+        "visible_elements": [],
+        "camera_position": [3, 2.2, 4],
+        "caption": "The uniform field E (identical blue arrows) is switched on. The dipole sits tilted at θ to the field; the yellow arc marks the angle.",
+        "theta_deg": 60,
+        "rotation_mode": "static",
+        "extras": {
+          "e_field": true,
+          "e_field_animate_in": true,
+          "force_vectors": { "show_plus": false, "show_minus": false },
+          "tau_vector": false,
+          "sum_force_badge": false,
+          "theta_arc": { "show": true },
+          "energy_meter": { "show": false }
+        }
+      },
+      "STATE_3": {
+        "label": "The force couple — +qE and −qE",
+        "visible_elements": [],
+        "camera_position": [3, 2.2, 4],
+        "caption": "Each charge feels a force qE: +qE along E on +q, −qE against E on −q. Equal, opposite, on different lines — a couple.",
+        "theta_deg": 60,
+        "rotation_mode": "static",
+        "extras": {
+          "e_field": true,
+          "force_vectors": { "show_plus": true, "show_minus": true },
+          "tau_vector": false,
+          "sum_force_badge": false,
+          "theta_arc": { "show": true },
+          "energy_meter": { "show": false }
+        }
+      },
+      "STATE_4": {
+        "label": "ΣF = 0, τ ≠ 0 — the dipole rotates toward E",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4],
+        "caption": "The two forces sum to zero (ΣF = 0 badge), yet the couple makes a torque τ. The dipole begins to rotate toward alignment.",
+        "theta_deg": 55,
+        "rotation_mode": "oscillation",
+        "oscillation_amplitude_deg": 55,
+        "oscillation_period_s": 3.4,
+        "extras": {
+          "e_field": true,
+          "force_vectors": { "show_plus": true, "show_minus": true },
+          "tau_vector": { "show": true },
+          "sum_force_badge": true,
+          "theta_arc": { "show": true },
+          "energy_meter": { "show": false }
+        }
+      },
+      "STATE_5": {
+        "label": "θ sweep 0 → 180° — τ traces a sine",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4],
+        "caption": "θ animates 0 → 180° and back on a 10-second cycle. The τ arrow scales with sin θ — zero at 0° and 180°, biggest in the middle.",
+        "theta_deg": 90,
+        "rotation_mode": "theta_sweep",
+        "theta_sweep_period_s": 10,
+        "extras": {
+          "e_field": true,
+          "force_vectors": { "show_plus": false, "show_minus": false },
+          "tau_vector": { "show": true },
+          "sum_force_badge": false,
+          "theta_arc": { "show": true },
+          "energy_meter": { "show": false }
+        }
+      },
+      "STATE_6": {
+        "label": "Frozen at θ = 90° — predict the maximum",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4],
+        "caption": "The dipole is pinned at θ = 90°, where τ = pE is at its maximum. Wrong-belief prompt and answer reveal via reveal_at_tts_id.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "e_field": true,
+          "force_vectors": { "show_plus": false, "show_minus": false },
+          "tau_vector": { "show": true },
+          "tau_pulse": true,
+          "sum_force_badge": false,
+          "theta_arc": { "show": true },
+          "energy_meter": { "show": false }
+        }
+      },
+      "STATE_7": {
+        "label": "Stable oscillation about θ = 0° + U-meter",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4.5],
+        "caption": "The dipole oscillates gently about θ = 0° (stable). The U-meter shows U = −pE cos θ: lowest at θ = 0°, highest at θ = 180°.",
+        "theta_deg": 0,
+        "rotation_mode": "oscillation",
+        "oscillation_amplitude_deg": 25,
+        "oscillation_period_s": 3,
+        "extras": {
+          "e_field": true,
+          "force_vectors": { "show_plus": false, "show_minus": false },
+          "tau_vector": { "show": true },
+          "sum_force_badge": false,
+          "theta_arc": { "show": true },
+          "energy_meter": { "show": true }
+        }
+      },
+      "STATE_8": {
+        "label": "Interactive sandbox — drag p, E, θ",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4.5],
+        "caption": "Sliders control p, E and θ. The τ arrow, the force couple, the U-meter and the readout all update on every drag.",
+        "theta_deg": 45,
+        "rotation_mode": "manual",
+        "show_sliders": true,
+        "extras": {
+          "e_field": true,
+          "force_vectors": { "show_plus": true, "show_minus": true },
+          "tau_vector": { "show": true },
+          "sum_force_badge": false,
+          "theta_arc": { "show": true },
+          "energy_meter": { "show": true }
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#42A5F5"
+    }
+  }
+}

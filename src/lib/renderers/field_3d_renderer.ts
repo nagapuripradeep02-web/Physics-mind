@@ -31,9 +31,10 @@
 
 export interface Field3DConfig {
     scenario_type: 'point_charge_positive' | 'point_charge_negative' | 'dipole' |
-        'parallel_plates' | 'solenoid_field' | 'bar_magnet' | 'straight_wire_current' |
-        'changing_flux' | 'lorentz_force_uniform_field' | 'torque_on_loop_uniform_field' |
-        'biot_savart_element' | 'force_on_current_wire' | 'uniform_field_force';
+        'dipole_field' | 'parallel_plates' | 'solenoid_field' | 'bar_magnet' |
+        'straight_wire_current' | 'changing_flux' | 'lorentz_force_uniform_field' |
+        'torque_on_loop_uniform_field' | 'biot_savart_element' | 'force_on_current_wire' |
+        'uniform_field_force' | 'dipole_in_uniform_field' | 'coulombs_law_force';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -706,6 +707,20 @@ canvas { display: block; width: 100%; height: 100%; }
     border-top: 1px solid rgba(255,255,255,0.2);
     color: #E879F9; font-weight: bold;
 }
+#dipole_sliders {
+    position: fixed; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 8px;
+    font: 12px/1.6 monospace; z-index: 10;
+    min-width: 200px; display: none;
+}
+#dipole_sliders label { display: block; margin-bottom: 2px; }
+#dipole_sliders input[type="range"] { width: 100%; margin-bottom: 6px; }
+#dipole_sliders #dipole_readout {
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #E879F9; font-weight: bold;
+}
 #fcw_sliders {
     position: fixed; top: 12px; right: 12px;
     background: rgba(0,0,0,0.85); color: ${textColor};
@@ -919,6 +934,15 @@ canvas { display: block; width: 100%; height: 100%; }
     <input type="range" id="theta_torque_slider" min="0" max="180" step="1" value="45">
     <div id="tau_readout">τ = 0.0 μN·m</div>
 </div>
+<div id="dipole_sliders">
+    <label>p = <span id="p_dipole_val">5.0</span> ×10⁻³⁰ C·m</label>
+    <input type="range" id="p_dipole_slider" min="1" max="10" step="0.5" value="5">
+    <label>E = <span id="e_dipole_val">5.0</span> kV/m</label>
+    <input type="range" id="e_dipole_slider" min="1" max="10" step="0.5" value="5">
+    <label>θ(p,E) = <span id="theta_dipole_val">45</span>°</label>
+    <input type="range" id="theta_dipole_slider" min="0" max="180" step="1" value="45">
+    <div id="dipole_readout">τ = 0.0 · U = 0.0</div>
+</div>
 <div id="fcw_sliders">
     <label>I = <span id="fcw_i_val">2</span> A</label>
     <input type="range" id="fcw_i_slider" min="0.5" max="5" step="0.5" value="2">
@@ -970,16 +994,69 @@ export const FIELD_3D_RENDERER_CODE = `
     //   { type: 'SET_FREEZE_PROTON',  frozen: boolean        }
     // from the parent page (TtsPlayButton on the admin test page). The matching
     // element pulses softly while the related teacher_script sentence speaks.
-    // 3D scene elements (arrows, ambient_field grid, particle_trail line, 3D
-    // right-hand mesh) pulse via the animate loop's glowFactor(); HTML overlays
-    // (Fleming SVG, lorentz_sliders) pulse via a CSS .glow-pulse class toggled
-    // in the SET_GLOW handler. Pulse is intentionally dim + slow (founder note
-    // 2026-05-12: "according to the script, slow and dim glow").
+    // 3D scene elements (arrows, ambient_field grid, 3D right-hand mesh)
+    // BRIGHTEN while their peers dim, via applyGlowEmphasis() in the animate
+    // loop — no size change (founder choice 2026-06-24); the particle_trail
+    // line shimmers via opacity. HTML overlays (Fleming SVG, lorentz_sliders)
+    // pulse via a CSS .glow-pulse class toggled in the SET_GLOW handler.
     // Diamond #2 — TTS-driven glow now supports MULTIPLE simultaneous targets
     // (founder note 2026-05-14: "v cosθ along B" co-glows v_parallel + b, etc).
     // SET_GLOW accepts a string OR an array. Internally we always store an
-    // array; glowFactor(t) returns the pulse if t is in the array.
+    // array; isFocal(t)/applyGlowEmphasis read it to brighten focal + dim peers.
     var glowTargets = [];
+
+    // ── Glow emphasis: brightness + focus-dim, NEVER size ─────────────────
+    // Replaces the old size "bulge" (a 1.0->1.7 scale pulse that, on vectors,
+    // dishonestly implied a changing magnitude). Founder choice 2026-06-24:
+    // glow means the focal element(s) BRIGHTEN — gently and IN their own hue so
+    // colour-coding (v=orange, F=green, B=blue) survives — while peers DIM.
+    // Nothing ever changes size. brightenOnly skips ALL opacity writes, for
+    // scenarios that run their own fade-in choreography (dipole / torque /
+    // grip-hand): there we only brighten the focal and never dim/clobber a
+    // fade. Baselines are captured lazily per material the first time touched.
+    var GLOW_WHITE = new THREE.Color(0xffffff);
+    var GLOW_DIM_OPACITY = 0.4;
+    function glowEmphT(t) { return 0.5 + 0.5 * Math.sin(t * 3.5); } // 0..1 pulse
+    function _glowEachMat(obj, fn) {
+        obj.traverse(function (n) {
+            if (!n.material) return;
+            var ms = Array.isArray(n.material) ? n.material : [n.material];
+            for (var i = 0; i < ms.length; i++) {
+                var m = ms[i];
+                if (!m.userData) m.userData = {};
+                if (m.userData._glowBaseOp == null) m.userData._glowBaseOp = m.opacity;
+                if (m.color && !m.userData._glowBaseCol) m.userData._glowBaseCol = m.color.clone();
+                if (m.emissive && m.userData._glowBaseEmI == null) m.userData._glowBaseEmI = m.emissiveIntensity;
+                fn(m);
+            }
+        });
+    }
+    // focal -> gentle in-hue brighten; peer -> dim (unless brightenOnly); idle
+    // -> restore baseline. brightenOnly never writes opacity (fade-safe).
+    function applyGlowEmphasis(obj, isFocalObj, glowActive, p, brightenOnly) {
+        var touchOp = !brightenOnly;
+        var colT = 0.10 + 0.18 * p;   // <= 0.28 toward white: a glow, not a wash
+        var emB  = 0.40 + 0.30 * p;   // warm in-hue glow where emissive exists
+        _glowEachMat(obj, function (m) {
+            if (!glowActive) {
+                if (touchOp) m.opacity = m.userData._glowBaseOp;
+                if (m.color && m.userData._glowBaseCol) m.color.copy(m.userData._glowBaseCol);
+                if (m.emissive) m.emissiveIntensity = m.userData._glowBaseEmI;
+            } else if (isFocalObj) {
+                if (touchOp) { m.transparent = true; m.opacity = 1.0; }
+                if (m.color && m.userData._glowBaseCol) m.color.copy(m.userData._glowBaseCol).lerp(GLOW_WHITE, colT);
+                if (m.emissive) m.emissiveIntensity = m.userData._glowBaseEmI + emB;
+            } else if (touchOp) {
+                m.transparent = true; m.opacity = GLOW_DIM_OPACITY;
+            } else {
+                // brightenOnly peer: keep its own opacity/fade; just ensure its
+                // colour/emissive are never left mid-brighten.
+                if (m.color && m.userData._glowBaseCol) m.color.copy(m.userData._glowBaseCol);
+                if (m.emissive) m.emissiveIntensity = m.userData._glowBaseEmI;
+            }
+        });
+    }
+
     // Diamond #2 — when a sentence wants the proton to stop translating along
     // its trajectory (so the F arrow is readable mid-narration), the renderer
     // captures the local trajectory time at the freeze moment and re-uses it
@@ -4087,45 +4164,525 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     function applyTorqueLoopGlow() {
-        // TTS-driven glow for torque-loop scenario children. glowTargets is
-        // populated by the SET_GLOW postMessage handler. Pulse factor matches
-        // Diamond #2's animate-loop convention: 1.35 + 0.35·sin(t·3.5) so
-        // the targeted element sits above baseline at all times in cycle.
+        // TTS-driven glow = gentle in-hue BRIGHTEN of the targeted element(s),
+        // never a size change (founder choice 2026-06-24). brightenOnly=true:
+        // this scenario owns its own opacity fades (tweenOpacity + bar swap),
+        // so we never dim peers or write opacity here — only colour/emissive.
         var lg = findTorqueLoopGroup();
         if (!lg) return;
-        var pulse = 1.35 + 0.35 * Math.sin(time * 3.5);
-        function f(id) { return glowTargets.indexOf(id) >= 0 ? pulse : 1.0; }
+        var glowActive = glowTargets.length > 0;
+        var glowP = glowEmphT(time);
         var loopActive = glowTargets.indexOf("loop") >= 0;
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
 
         // 1) loopGroup children — wires, current arrows, F arrows, μ arrow,
-        //    bar magnet group (but skip individual bar children — handled
-        //    separately so the bar swap fade has clean ownership).
+        //    bar magnet group (skip individual bar children — bar swap fade
+        //    owns them).
         for (var i = 0; i < lg.children.length; i++) {
             var c = lg.children[i];
             var ud = c.userData || {};
             if (!ud.id) continue;
             if (ud.elementType === "bar_magnet_group") continue;
             // 'loop' glow lights all 4 wire sides + 4 current arrows.
-            if (loopActive && (ud.elementType === "loop_side" || ud.elementType === "current_arrow")) {
-                c.scale.setScalar(pulse);
-            } else {
-                c.scale.setScalar(f(ud.id));
-            }
+            var cFocal = (loopActive && (ud.elementType === "loop_side" || ud.elementType === "current_arrow")) || on(ud.id);
+            applyGlowEmphasis(c, cFocal, glowActive, glowP, true);
         }
 
-        // 2) Standalone scene objects — τ arrow, ΣF=0 badge, B label, μ label
-        //    (these live in scene root, not inside loopGroup, except mu_label
-        //    which is inside loopGroup — already handled above).
+        // 2) Standalone scene objects — τ arrow, ΣF=0 badge, B label, μ label.
         for (var j = 0; j < sceneObjects.length; j++) {
             var so = sceneObjects[j];
             var sud = so.userData || {};
             if (!sud.id) continue;
             if (sud.elementType === "ambient_field") {
-                // 'b' glow scales every ambient field arrow uniformly.
-                so.scale.setScalar(f("b"));
+                applyGlowEmphasis(so, on("b"), glowActive, glowP, true);
             } else if (sud.id === "tau_arrow" || sud.id === "tau_label" || sud.id === "b_label" || sud.id === "sum_zero") {
-                so.scale.setScalar(f(sud.id));
+                applyGlowEmphasis(so, on(sud.id), glowActive, glowP, true);
             }
+        }
+    }
+
+    // ── Electric dipole in a uniform external field (τ = p × E) ───────────────
+    // Sibling of the torque-on-loop scenario. A rigid electric dipole (two
+    // charges ±q on a short rod; dipole moment p points −q → +q) sits in a
+    // uniform external field E. Each charge feels qE; the two forces are equal,
+    // opposite, and on different lines of action — a couple. ΣF = 0, but the
+    // torque τ = p × E rotates the dipole toward alignment (θ = 0, stable) and
+    // away from anti-alignment (θ = 180°, unstable). U = −pE cos θ.
+    //
+    // REUSE: p is placed along loop-local +z — exactly where the loop's μ sits —
+    // so applyTorqueLoopTheta() rotates p correctly and τ = p × E lands along
+    // ±y scaling with sin θ, identical to the loop's τ machinery (no axis
+    // re-bookkeeping). The genuinely dipole-specific pieces: the two-charge
+    // body, the world-frame ±qE couple arrows (tails track the rotating charges,
+    // directions fixed along ±E), a θ-arc between p and E, and a U(θ) meter.
+    function buildDipoleInField() {
+        var af = config.ambient_field || {
+            direction: [1, 0, 0], magnitude: 0.1, density: [5, 5, 5],
+            color: "#42A5F5", opacity: 0.42, extent: 2.5
+        };
+        var dip = config.dipole || {};
+        var posColor = dip.color_plus || "#EF5350";
+        var negColor = dip.color_minus || "#42A5F5";
+        var pColor = dip.p_color || "#FFCA28";
+        var fColor = "#66BB6A";
+
+        // 1. Ambient E-field arrows (uniform along af.direction).
+        var eDir = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+        var ext = af.extent != null ? af.extent : 2.5;
+        var nx = af.density[0], ny = af.density[1], nz = af.density[2];
+        var sxAmb = nx > 1 ? (2 * ext) / (nx - 1) : 0;
+        var syAmb = ny > 1 ? (2 * ext) / (ny - 1) : 0;
+        var szAmb = nz > 1 ? (2 * ext) / (nz - 1) : 0;
+        var arrowLen = 0.55;
+        var arrowOp = af.opacity != null ? af.opacity : 0.42;
+        var arrowColor = af.color || "#42A5F5";
+        for (var ix = 0; ix < nx; ix++) {
+            for (var iy = 0; iy < ny; iy++) {
+                for (var iz = 0; iz < nz; iz++) {
+                    var ox = nx > 1 ? -ext + ix * sxAmb : 0;
+                    var oy = ny > 1 ? -ext + iy * syAmb : 0;
+                    var oz = nz > 1 ? -ext + iz * szAmb : 0;
+                    var origin = new THREE.Vector3(ox, oy, oz).addScaledVector(eDir, -arrowLen / 2);
+                    var arrH = new THREE.ArrowHelper(eDir, origin, arrowLen, arrowColor, 0.14, 0.09);
+                    arrH.userData = { elementType: "ambient_field", id: "e_arrow_" + ix + "_" + iy + "_" + iz };
+                    arrH.children.forEach(function(child) {
+                        if (child.material) { child.material.transparent = true; child.material.opacity = arrowOp; }
+                    });
+                    addToScene(arrH);
+                }
+            }
+        }
+
+        // 2. Dipole body group — rotated about world Y by applyTorqueLoopTheta.
+        //    p is loop-local +z (so it plays exactly the role of μ).
+        var dipoleGroup = new THREE.Group();
+        dipoleGroup.userData = { elementType: "torque_loop_group", id: "loop_group" };
+        var halfSep = 0.7; // half charge separation in world units
+        dipoleGroup.userData.dpf_half = halfSep;
+        dipoleGroup.userData.dpf_p_default = (config.slider_controls && config.slider_controls.p
+            && typeof config.slider_controls.p.default === "number") ? config.slider_controls.p.default : 5;
+        dipoleGroup.userData.dpf_E_default = (config.slider_controls && config.slider_controls.E
+            && typeof config.slider_controls.E.default === "number") ? config.slider_controls.E.default : 5;
+
+        // 2a. Charge spheres at loop-local (0,0,±halfSep).
+        var qPlus = createChargeSphere([0, 0, halfSep], posColor, 0.20);
+        qPlus.userData = { elementType: "dipole_charge", id: "dpf_q_plus" };
+        dipoleGroup.add(qPlus);
+        var qMinus = createChargeSphere([0, 0, -halfSep], negColor, 0.20);
+        qMinus.userData = { elementType: "dipole_charge", id: "dpf_q_minus" };
+        dipoleGroup.add(qMinus);
+
+        // 2b. Rigid rod connecting the charges (cylinder default +y → align +z).
+        var rodGeom = new THREE.CylinderGeometry(0.03, 0.03, 2 * halfSep, 12);
+        var rodMat = new THREE.MeshPhongMaterial({
+            color: 0xCFD8DC, emissive: 0x37474F, emissiveIntensity: 0.3, shininess: 40
+        });
+        var rod = new THREE.Mesh(rodGeom, rodMat);
+        rod.rotation.x = Math.PI / 2;
+        rod.userData = { elementType: "dipole_rod", id: "dpf_rod" };
+        dipoleGroup.add(rod);
+
+        // 2c. Dipole-moment vector p (−q → +q, loop-local +z). Drawn OFFSET
+        //     below the dumbbell axis (loop-local −y) so it reads as a clear,
+        //     distinct arrow — the hero quantity of this concept — instead of
+        //     hiding behind the connecting rod.
+        var pOffsetY = -0.45;
+        var pArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, pOffsetY, -halfSep),
+            2 * halfSep + 0.2, hexToThreeColor(pColor), 0.26, 0.16
+        );
+        pArrow.userData = { elementType: "dipole_p", id: "dpf_p_arrow" };
+        dipoleGroup.add(pArrow);
+
+        // 2d. +q / −q / p sprite labels (parented so they rotate with the body).
+        var lblPlus = createLabelSprite("+q", posColor, 0.40);
+        lblPlus.position.set(0, 0.34, halfSep);
+        lblPlus.userData = { elementType: "dipole_label", id: "dpf_lbl_plus" };
+        dipoleGroup.add(lblPlus);
+        var lblMinus = createLabelSprite("\\u2212q", negColor, 0.40);
+        lblMinus.position.set(0, 0.34, -halfSep);
+        lblMinus.userData = { elementType: "dipole_label", id: "dpf_lbl_minus" };
+        dipoleGroup.add(lblMinus);
+        var lblP = createLabelSprite("p", pColor, 0.42);
+        lblP.position.set(0, pOffsetY - 0.32, halfSep + 0.15);
+        lblP.userData = { elementType: "dipole_label", id: "dpf_p_lbl" };
+        dipoleGroup.add(lblP);
+
+        scene.add(dipoleGroup);
+        sceneObjects.push(dipoleGroup);
+
+        // 3. ±qE couple force arrows — WORLD frame, directions fixed along ±E.
+        //    Tails repositioned each frame to the rotated charge positions.
+        var fPlus = new THREE.ArrowHelper(eDir.clone(), new THREE.Vector3(0, 0, halfSep), 0.85, fColor, 0.22, 0.11);
+        fPlus.userData = { elementType: "dipole_force", id: "dpf_f_plus", visible_default: false };
+        fPlus.visible = false;
+        addToScene(fPlus);
+        var fMinus = new THREE.ArrowHelper(eDir.clone().multiplyScalar(-1), new THREE.Vector3(0, 0, -halfSep), 0.85, fColor, 0.22, 0.11);
+        fMinus.userData = { elementType: "dipole_force", id: "dpf_f_minus", visible_default: false };
+        fMinus.visible = false;
+        addToScene(fMinus);
+        var fPlusLbl = createLabelSprite("+qE", fColor, 0.36);
+        fPlusLbl.visible = false;
+        fPlusLbl.userData = { elementType: "dipole_force", id: "dpf_f_plus_lbl", visible_default: false };
+        addToScene(fPlusLbl);
+        var fMinusLbl = createLabelSprite("\\u2212qE", fColor, 0.36);
+        fMinusLbl.visible = false;
+        fMinusLbl.userData = { elementType: "dipole_force", id: "dpf_f_minus_lbl", visible_default: false };
+        addToScene(fMinusLbl);
+
+        // 4. τ vector — WORLD frame along ±y (sign = sign(sin θ)), |τ| ∝ |sin θ|.
+        var tauColor = "#E879F9";
+        var tauArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 1.0, tauColor, 0.26, 0.13);
+        tauArrow.userData = { elementType: "dipole_tau", id: "dpf_tau_arrow", visible_default: false };
+        tauArrow.visible = false;
+        addToScene(tauArrow);
+        var tauLabel = createLabelSprite("\\u03c4", tauColor, 0.40);
+        tauLabel.position.set(0, 1.65, 0);
+        tauLabel.visible = false;
+        tauLabel.userData = { elementType: "dipole_tau", id: "dpf_tau_label", visible_default: false };
+        addToScene(tauLabel);
+
+        // 5. "E" label at the +x end of the ambient grid (always visible).
+        var eLabel = createLabelSprite("E", "#82B1FF", 0.42);
+        eLabel.position.set(ext + 0.4, 0, 0);
+        eLabel.userData = { elementType: "dipole_e_label", id: "dpf_e_label" };
+        addToScene(eLabel);
+
+        // 6. Rotation axis reference (faint vertical line through y).
+        var axisGeom = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -2, 0), new THREE.Vector3(0, 2, 0)]);
+        var axisMat = new THREE.LineBasicMaterial({ color: 0x888888, transparent: true, opacity: 0.22 });
+        var axisLine = new THREE.Line(axisGeom, axisMat);
+        axisLine.userData = { elementType: "dipole_axis", id: "dpf_axis" };
+        addToScene(axisLine);
+
+        // 7. ΣF = 0 badge (hidden until the couple state).
+        var sumBadge = createLabelSprite("\\u03a3F = 0", "#FFF176", 0.52);
+        sumBadge.position.set(0, -1.85, 0);
+        sumBadge.visible = false;
+        sumBadge.userData = { elementType: "dipole_badge", id: "dpf_sum_zero", visible_default: false };
+        addToScene(sumBadge);
+
+        // 8. θ-arc between p and E, flat in the x–z plane (y = 0). The arc
+        //    azimuth (from +x toward +z) equals θ, so it grows/shrinks with the
+        //    rotation. Positions updated in place each frame.
+        var ARC_SEGS = 32;
+        var arcPts = [];
+        for (var ai = 0; ai <= ARC_SEGS; ai++) arcPts.push(new THREE.Vector3(0.65, 0, 0));
+        var arcGeom = new THREE.BufferGeometry().setFromPoints(arcPts);
+        var arcMat = new THREE.LineBasicMaterial({ color: 0xFFD54F, transparent: true, opacity: 0.9 });
+        var arcLine = new THREE.Line(arcGeom, arcMat);
+        arcLine.visible = false;
+        arcLine.userData = { elementType: "dipole_arc", id: "dpf_theta_arc", visible_default: false, segs: ARC_SEGS };
+        addToScene(arcLine);
+        var arcLbl = createLabelSprite("\\u03b8", "#FFD54F", 0.40);
+        arcLbl.visible = false;
+        arcLbl.userData = { elementType: "dipole_arc", id: "dpf_theta_lbl", visible_default: false };
+        addToScene(arcLbl);
+
+        // 9. U(θ) energy meter — a vertical track at x ≈ −2.7 with a moving dot
+        //    at y = −top·cos θ (U min at θ=0 → bottom; U max at θ=180° → top).
+        var meterX = -2.7, meterTop = 1.5, meterBot = -1.5;
+        var trackGeom = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(meterX, meterBot, 0), new THREE.Vector3(meterX, meterTop, 0)]);
+        var trackMat = new THREE.LineBasicMaterial({ color: 0xB0BEC5, transparent: true, opacity: 0.55 });
+        var track = new THREE.Line(trackGeom, trackMat);
+        track.visible = false;
+        track.userData = { elementType: "dipole_energy", id: "dpf_u_track", visible_default: false };
+        addToScene(track);
+        var uDot = createChargeSphere([meterX, 0, 0], "#FFCA28", 0.11);
+        uDot.visible = false;
+        uDot.userData = { elementType: "dipole_energy", id: "dpf_u_dot", visible_default: false, meterX: meterX, top: meterTop };
+        addToScene(uDot);
+        var uLbl = createLabelSprite("U", "#FFCA28", 0.40);
+        uLbl.position.set(meterX, meterTop + 0.35, 0);
+        uLbl.visible = false;
+        uLbl.userData = { elementType: "dipole_energy", id: "dpf_u_lbl", visible_default: false };
+        addToScene(uLbl);
+        var uMaxLbl = createLabelSprite("U max", "#EF5350", 0.30);
+        uMaxLbl.position.set(meterX + 0.7, meterTop, 0);
+        uMaxLbl.visible = false;
+        uMaxLbl.userData = { elementType: "dipole_energy", id: "dpf_u_max_lbl", visible_default: false };
+        addToScene(uMaxLbl);
+        var uMinLbl = createLabelSprite("U min", "#66BB6A", 0.30);
+        uMinLbl.position.set(meterX + 0.7, meterBot, 0);
+        uMinLbl.visible = false;
+        uMinLbl.userData = { elementType: "dipole_energy", id: "dpf_u_min_lbl", visible_default: false };
+        addToScene(uMinLbl);
+
+        // Initial pose: θ from STATE_1 (default 90°).
+        dipoleGroup.userData.theta_deg = 90;
+        dipoleGroup.userData.rotation_mode = "static";
+        dipoleGroup.userData.rotation_target_deg = 90;
+        dipoleGroup.userData.rotation_start_time = 0;
+        dipoleGroup.userData.oscillation_amplitude_deg = 0;
+        dipoleGroup.userData.oscillation_period_s = 4;
+        applyTorqueLoopTheta(dipoleGroup, 90);
+    }
+
+    function applyDipoleInFieldState(stateDef) {
+        var lg = findTorqueLoopGroup();
+        if (!lg) return;
+        var ex = stateDef.extras || {};
+
+        var theta = stateDef.theta_deg != null ? stateDef.theta_deg : 90;
+        applyTorqueLoopTheta(lg, theta);
+        lg.userData.rotation_mode = stateDef.rotation_mode || "static";
+        lg.userData.rotation_target_deg = stateDef.rotation_target_deg != null ? stateDef.rotation_target_deg : theta;
+        lg.userData.rotation_init_theta_deg = theta;
+        lg.userData.rotation_start_time = time;
+        lg.userData.oscillation_amplitude_deg = stateDef.oscillation_amplitude_deg || 0;
+        lg.userData.oscillation_period_s = stateDef.oscillation_period_s || 4;
+        lg.userData.theta_sweep_period_s = stateDef.theta_sweep_period_s || 10;
+        lg.userData.swing_decay_s = stateDef.swing_decay_s || 2.2;
+
+        function setVisibleWithFade(obj, want) {
+            if (!obj) return;
+            var was = !!obj.visible;
+            obj.visible = !!want;
+            if (want && !was) obj.userData.fadeStartTime = time;
+            else if (!want) obj.userData.fadeStartTime = -1;
+        }
+
+        var fv = ex.force_vectors || {};
+        setVisibleWithFade(findTorqueElementById("dpf_f_plus"), !!fv.show_plus);
+        setVisibleWithFade(findTorqueElementById("dpf_f_minus"), !!fv.show_minus);
+        var fpl = findTorqueElementById("dpf_f_plus_lbl"); if (fpl) fpl.visible = !!fv.show_plus;
+        var fml = findTorqueElementById("dpf_f_minus_lbl"); if (fml) fml.visible = !!fv.show_minus;
+
+        var tauShow = !!(ex.tau_vector && ex.tau_vector.show);
+        setVisibleWithFade(findTorqueElementById("dpf_tau_arrow"), tauShow);
+        var tl = findTorqueElementById("dpf_tau_label"); if (tl) tl.visible = tauShow;
+
+        setVisibleWithFade(findTorqueElementById("dpf_sum_zero"), !!ex.sum_force_badge);
+
+        var arcShow = !!(ex.theta_arc && ex.theta_arc.show);
+        var arc = findTorqueElementById("dpf_theta_arc"); if (arc) arc.visible = arcShow;
+        var arcLbl = findTorqueElementById("dpf_theta_lbl"); if (arcLbl) arcLbl.visible = arcShow;
+
+        var meterShow = !!(ex.energy_meter && ex.energy_meter.show);
+        ["dpf_u_track", "dpf_u_dot", "dpf_u_lbl", "dpf_u_max_lbl", "dpf_u_min_lbl"].forEach(function(id) {
+            var o = findTorqueElementById(id); if (o) o.visible = meterShow;
+        });
+
+        // Ambient E-field grid + its "E" label — shown by default; hidden only
+        // when a state explicitly sets e_field:false (STATE_1 introduces the
+        // dipole BEFORE the field appears). When e_field_animate_in is set the
+        // arrows start at opacity 0 so updateFrame can fade the field "on".
+        var showField = ex.e_field !== false;
+        var fieldAnimateIn = !!ex.e_field_animate_in;
+        for (var si = 0; si < sceneObjects.length; si++) {
+            var so = sceneObjects[si]; var sud = so.userData || {};
+            if (sud.elementType === "ambient_field") {
+                so.visible = showField;
+                if (showField && so.children) {
+                    var op0 = fieldAnimateIn ? 0 : 0.42;
+                    so.children.forEach(function(c) { if (c.material) { c.material.transparent = true; c.material.opacity = op0; } });
+                }
+            } else if (sud.id === "dpf_e_label") {
+                so.visible = showField;
+            }
+        }
+
+        // ── Choreography stamps (one-shot reveal animations) ──────────────────
+        // Field switch-on (STATE_2): fade the uniform field up from 0.
+        lg.userData.fieldGrowStartTime = fieldAnimateIn ? time : -1;
+        // τ throb to emphasise "this is the maximum torque" (STATE_6).
+        lg.userData.tauPulse = !!ex.tau_pulse;
+        // p-vector draw-in (STATE_1): the moment arrow grows from −q to +q.
+        lg.userData.pGrowStartTime = ex.p_animate_in ? time : -1;
+    }
+
+    function updateDipoleInFieldFrame(dtSeconds) {
+        var lg = findTorqueLoopGroup();
+        if (!lg) return;
+        var mode = lg.userData.rotation_mode || "static";
+        var curTheta = lg.userData.theta_deg;
+
+        if (mode === "slow_rotation") {
+            var target = lg.userData.rotation_target_deg;
+            var diff = target - curTheta;
+            var step = (Math.sign(diff)) * Math.min(Math.abs(diff), 30 * dtSeconds);
+            if (Math.abs(step) > 0.01) applyTorqueLoopTheta(lg, curTheta + step);
+        } else if (mode === "oscillation") {
+            var T = lg.userData.oscillation_period_s || 4;
+            var amp = lg.userData.oscillation_amplitude_deg || 20;
+            var phi = ((time - lg.userData.rotation_start_time) / T) * 2 * Math.PI;
+            applyTorqueLoopTheta(lg, amp * Math.cos(phi));
+        } else if (mode === "theta_sweep") {
+            var Ts = lg.userData.theta_sweep_period_s || 10;
+            var phs = ((time - lg.userData.rotation_start_time) / Ts) * 2 * Math.PI;
+            applyTorqueLoopTheta(lg, 90 + 90 * Math.sin(phs));
+        } else if (mode === "damped_swing") {
+            // The field swings the dipole into alignment, overshooting and
+            // settling at θ=0 — the compass-needle dynamic. θ(t) = θ₀·e^(−t/τ)
+            // ·cos(2π t / T); τ flips direction on each overshoot (restoring).
+            var Td = lg.userData.oscillation_period_s || 3.0;
+            var decayS = lg.userData.swing_decay_s || 2.2;
+            var ts = time - lg.userData.rotation_start_time;
+            var amp0 = lg.userData.rotation_init_theta_deg != null ? lg.userData.rotation_init_theta_deg : 60;
+            applyTorqueLoopTheta(lg, amp0 * Math.exp(-ts / decayS) * Math.cos((ts / Td) * 2 * Math.PI));
+        }
+
+        // Reveal-grow helper — length scales 0 to full over dur seconds once an
+        // element is stamped visible (reuses fadeStartTime), so vectors GROW out
+        // of their anchor rather than just fading in.
+        function dpfGrow(obj, dur) {
+            if (!obj || !obj.userData) return 1;
+            var t0 = obj.userData.fadeStartTime;
+            if (t0 == null || t0 < 0) return 1;
+            return Math.min(1, (time - t0) / (dur || 0.6));
+        }
+
+        var thetaRad = lg.userData.theta_deg * Math.PI / 180;
+        var phiRot = (90 - lg.userData.theta_deg) * Math.PI / 180; // group's world-Y rotation
+        var half = lg.userData.dpf_half || 0.7;
+        var sinPhi = Math.sin(phiRot), cosPhi = Math.cos(phiRot);
+        var plusPos = new THREE.Vector3(half * sinPhi, 0, half * cosPhi);
+        var minusPos = new THREE.Vector3(-half * sinPhi, 0, -half * cosPhi);
+
+        // ±qE arrows: tails at the charges, directions fixed along ±E (world ±x).
+        var slE = lg.userData.slider_E;
+        var eLen = 0.85;
+        if (typeof slE === "number") {
+            var eDef = lg.userData.dpf_E_default || slE;
+            eLen = Math.max(0.35, Math.min(1.5, 0.85 * (slE / eDef)));
+        }
+        var fPlus = findTorqueElementById("dpf_f_plus");
+        var gP = dpfGrow(fPlus, 0.6);
+        if (fPlus) { fPlus.position.copy(plusPos); fPlus.setLength(Math.max(0.04, eLen * gP), 0.22 * Math.min(1, gP + 0.2), 0.11 * Math.min(1, gP + 0.2)); }
+        var fMinus = findTorqueElementById("dpf_f_minus");
+        var gM = dpfGrow(fMinus, 0.6);
+        if (fMinus) { fMinus.position.copy(minusPos); fMinus.setLength(Math.max(0.04, eLen * gM), 0.22 * Math.min(1, gM + 0.2), 0.11 * Math.min(1, gM + 0.2)); }
+        var fPlusLbl = findTorqueElementById("dpf_f_plus_lbl");
+        if (fPlusLbl) fPlusLbl.position.set(plusPos.x + eLen * gP + 0.28, plusPos.y + 0.18, plusPos.z);
+        var fMinusLbl = findTorqueElementById("dpf_f_minus_lbl");
+        if (fMinusLbl) fMinusLbl.position.set(minusPos.x - eLen * gM - 0.28, minusPos.y + 0.18, minusPos.z);
+
+        // τ-arrow direction (±y) + length ∝ |sin θ| with slider scaling on p, E.
+        var tauArr = findTorqueElementById("dpf_tau_arrow");
+        if (tauArr && tauArr.visible) {
+            var sRaw = Math.sin(thetaRad);
+            var sAbs = Math.abs(sRaw);
+            var sSign = sRaw >= 0 ? 1 : -1;
+            tauArr.setDirection(new THREE.Vector3(0, sSign, 0));
+            var slP = lg.userData.slider_p;
+            var tauMult = 1.0;
+            if (typeof slP === "number" && typeof slE === "number") {
+                var pDef = lg.userData.dpf_p_default || slP;
+                var eDef2 = lg.userData.dpf_E_default || slE;
+                var rawMult = (slP / pDef) * (slE / eDef2);
+                tauMult = Math.min(2.5, Math.pow(Math.max(0.001, rawMult), 0.4));
+            }
+            var tauGrow = dpfGrow(tauArr, 0.6);
+            var tauThrob = lg.userData.tauPulse ? (1 + 0.12 * Math.sin(time * 5)) : 1;
+            var tauTotal = (0.05 + 1.2 * sAbs * tauMult) * tauGrow * tauThrob;
+            var tauHead = Math.max(0.04, 0.30 * sAbs * Math.min(1.6, tauMult)) * tauGrow;
+            var tauHeadW = Math.max(0.02, 0.15 * sAbs * Math.min(1.6, tauMult)) * tauGrow;
+            tauArr.setLength(tauTotal, tauHead, tauHeadW);
+            var tauLab = findTorqueElementById("dpf_tau_label");
+            if (tauLab) tauLab.position.set(0, (sRaw >= 0 ? 1.65 : -1.65), 0);
+        }
+
+        // θ-arc: azimuth 0 (+x) → θ (toward +z) in the x–z plane.
+        var arc = findTorqueElementById("dpf_theta_arc");
+        if (arc && arc.visible && arc.geometry) {
+            var segs = arc.userData.segs || 32;
+            var rArc = 0.65;
+            var posAttr = arc.geometry.attributes.position;
+            for (var k = 0; k <= segs; k++) {
+                var az = thetaRad * (k / segs);
+                posAttr.setXYZ(k, rArc * Math.cos(az), 0, rArc * Math.sin(az));
+            }
+            posAttr.needsUpdate = true;
+            var aLbl = findTorqueElementById("dpf_theta_lbl");
+            if (aLbl) {
+                var midAz = thetaRad * 0.5;
+                aLbl.position.set((rArc + 0.32) * Math.cos(midAz), 0.05, (rArc + 0.32) * Math.sin(midAz));
+            }
+        }
+
+        // U-meter dot: y = −top·cos θ (U min at θ=0 → bottom; U max at θ=180° → top).
+        var uDot = findTorqueElementById("dpf_u_dot");
+        if (uDot && uDot.visible) {
+            var top = uDot.userData.top != null ? uDot.userData.top : 1.5;
+            uDot.position.set(uDot.userData.meterX, -top * Math.cos(thetaRad), 0);
+        }
+
+        // p-vector draw-in (STATE_1): grow the moment arrow from 0 → full so the
+        // student sees it drawn from −q to +q. Held at full length otherwise.
+        var pArr = findTorqueElementById("dpf_p_arrow");
+        if (pArr) {
+            var pFull = 2 * half + 0.2;
+            var pgt = lg.userData.pGrowStartTime;
+            if (pgt != null && pgt >= 0) {
+                var pg = Math.min(1, (time - pgt) / 0.9);
+                pArr.setLength(Math.max(0.04, pFull * pg), 0.26 * Math.min(1, pg + 0.15), 0.16 * Math.min(1, pg + 0.15));
+            } else {
+                pArr.setLength(pFull, 0.26, 0.16);
+            }
+        }
+
+        // Field switch-on (STATE_2): fade the uniform-field arrows up from 0 so
+        // the field visibly "turns on" over ~1s.
+        var fgt = lg.userData.fieldGrowStartTime;
+        if (fgt != null && fgt >= 0) {
+            var fgp = Math.min(1, (time - fgt) / 1.0);
+            for (var fai = 0; fai < sceneObjects.length; fai++) {
+                var fao = sceneObjects[fai];
+                if (!fao.userData || fao.userData.elementType !== "ambient_field" || !fao.children) continue;
+                fao.children.forEach(function(c) { if (c.material) { c.material.transparent = true; c.material.opacity = 0.42 * fgp; } });
+            }
+        }
+
+        // Fade-in tween for newly-visible force arrows / τ / badge.
+        function tweenOpacity(obj) {
+            if (!obj || !obj.visible) return;
+            var t0 = obj.userData.fadeStartTime;
+            if (t0 == null || t0 < 0) return;
+            var pNorm = Math.min(1, (time - t0) / 0.6);
+            if (obj.children && obj.children.length > 0) {
+                obj.children.forEach(function(c) { if (c.material) { c.material.transparent = true; c.material.opacity = pNorm; } });
+            } else if (obj.material) { obj.material.transparent = true; obj.material.opacity = pNorm; }
+        }
+        tweenOpacity(findTorqueElementById("dpf_f_plus"));
+        tweenOpacity(findTorqueElementById("dpf_f_minus"));
+        tweenOpacity(findTorqueElementById("dpf_sum_zero"));
+        tweenOpacity(findTorqueElementById("dpf_tau_arrow"));
+    }
+
+    function applyDipoleInFieldGlow() {
+        // TTS-driven glow = gentle in-hue BRIGHTEN of the targeted element(s),
+        // never a size change (founder choice 2026-06-24). brightenOnly=true:
+        // this scenario owns its own opacity fades (tweenOpacity), so we never
+        // dim peers or write opacity here — only colour/emissive.
+        var lg = findTorqueLoopGroup();
+        if (!lg) return;
+        var glowActive = glowTargets.length > 0;
+        var glowP = glowEmphT(time);
+        function on(key) { return glowTargets.indexOf(key) >= 0; }
+
+        function isFocalUd(ud) {
+            var et = ud.elementType, id = ud.id;
+            if (on("dipole") && (et === "dipole_charge" || et === "dipole_rod" || et === "dipole_p" || et === "dipole_label")) return true;
+            if (on("p") && (et === "dipole_p" || id === "dpf_p_lbl")) return true;
+            if (on("e") && (et === "ambient_field" || id === "dpf_e_label")) return true;
+            if (on("forces") && et === "dipole_force") return true;
+            if (on("tau") && et === "dipole_tau") return true;
+            if (on("sum") && et === "dipole_badge") return true;
+            if (on("theta") && et === "dipole_arc") return true;
+            if (on("u") && et === "dipole_energy") return true;
+            if (glowTargets.indexOf(id) >= 0) return true;
+            return false;
+        }
+
+        for (var i = 0; i < lg.children.length; i++) {
+            var c = lg.children[i]; var ud = c.userData || {};
+            if (!ud.id) continue;
+            applyGlowEmphasis(c, isFocalUd(ud), glowActive, glowP, true);
+        }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j]; var sud = so.userData || {};
+            if (!sud.id || so === lg) continue;
+            applyGlowEmphasis(so, isFocalUd(sud), glowActive, glowP, true);
         }
     }
 
@@ -4763,6 +5320,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildEquipotentialSurfaces();
                 break;
 
+            case "dipole_field":
+                buildDipoleFieldDiamond();
+                break;
+
+            case "coulombs_law_force":
+                buildCoulombsLawDiamond();
+                break;
+
             case "parallel_plates":
                 buildParallelPlatesField();
                 break;
@@ -4797,6 +5362,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "torque_on_loop_uniform_field":
                 buildTorqueLoopInField();
+                break;
+
+            case "dipole_in_uniform_field":
+                buildDipoleInField();
                 break;
 
             case "force_on_current_wire":
@@ -4916,6 +5485,13 @@ export const FIELD_3D_RENDERER_CODE = `
             applyTorqueLoopState(stateDef);
         }
 
+        // Electric dipole in a uniform field — per-state visibility + rotation
+        // seeding (sibling of the torque-loop scenario; shares the rotation
+        // engine but renders a two-charge dipole body and ±qE couple arrows).
+        if (config.scenario_type === "dipole_in_uniform_field") {
+            applyDipoleInFieldState(stateDef);
+        }
+
         // force_on_current_wire — per-state element visibility + positioning
         // (authoritative; runs after the generic visible_elements matcher).
         if (config.scenario_type === "force_on_current_wire") {
@@ -4995,6 +5571,19 @@ export const FIELD_3D_RENDERER_CODE = `
             applyElectricState(stateDef);
         }
 
+        // Electric dipole diamond — per-state visibility (charges + p always on;
+        // superposition probe / comparison / falloff / field lines per state) +
+        // arrow recompute. Gated on config.dipole_explorer.
+        if (config.dipole_explorer) {
+            applyDipoleFieldState(stateDef);
+        }
+
+        // Coulomb's law diamond — per-state visibility (two-charge pair / falloff
+        // / superposition groups) + arrow poses. Gated on config.coulomb_explorer.
+        if (config.coulomb_explorer) {
+            applyCoulombsLawState(stateDef);
+        }
+
         // Uniform-field force diamond (force_on_charge_in_field, F = qE) —
         // per-state visibility (charge, F/v arrows, trails, multi-mass charges)
         // + motion-mode reset. Gated on config.force_field_explorer so nothing
@@ -5011,10 +5600,12 @@ export const FIELD_3D_RENDERER_CODE = `
         var lorentzSlidersEl = document.getElementById("lorentz_sliders");
         var torqueSlidersEl = document.getElementById("torque_sliders");
         var fcwSlidersEl = document.getElementById("fcw_sliders");
+        var dipoleSlidersEl = document.getElementById("dipole_sliders");
         var isLorentz = config.scenario_type === "lorentz_force_uniform_field";
         var isTorque = config.scenario_type === "torque_on_loop_uniform_field";
         var isFcw = config.scenario_type === "force_on_current_wire";
-        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw) ? "block" : "none";
+        var isDipole = config.scenario_type === "dipole_in_uniform_field";
+        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole) ? "block" : "none";
         if (fcwSlidersEl) {
             var showFcwSliders = !!(stateDef.show_sliders && isFcw);
             fcwSlidersEl.style.display = showFcwSliders ? "block" : "none";
@@ -5063,6 +5654,21 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (thT) thT.dispatchEvent(new Event("input", { bubbles: true }));
             }
         }
+        if (dipoleSlidersEl) {
+            var showDipoleSliders = !!(stateDef.show_sliders && isDipole);
+            dipoleSlidersEl.style.display = showDipoleSliders ? "block" : "none";
+            if (showDipoleSliders) {
+                // Sync the θ slider thumb to the state's theta_deg, then re-fire
+                // the dipole slider handler so the τ/U readout matches on entry.
+                var thD = document.getElementById("theta_dipole_slider");
+                if (thD && typeof stateDef.theta_deg === "number") {
+                    thD.value = String(stateDef.theta_deg);
+                    var thVD = document.getElementById("theta_dipole_val");
+                    if (thVD) thVD.textContent = String(Math.round(stateDef.theta_deg));
+                    thD.dispatchEvent(new Event("input", { bubbles: true }));
+                }
+            }
+        }
 
         var formulaEl = document.getElementById("formula_overlay");
         if (formulaEl) {
@@ -5101,6 +5707,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // with NO on-canvas prose legend — labels live in the 3D scene instead.
         if (config.electric_explorer) { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         if (config.force_field_explorer) { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        if (config.coulomb_explorer) { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
 
         var scenario = config.scenario_type;
         var lines = [];
@@ -5260,6 +5867,8 @@ export const FIELD_3D_RENDERER_CODE = `
         // / r̂ / dB all respond to I, r, θ). Delegate and return.
         if (config.scenario_type === "biot_savart_element") { refreshBiotExplorer(); return; }
         if (config.electric_explorer) { refreshElectricExplorer(); return; }
+        if (config.dipole_explorer) { refreshDipoleExplorer(); return; }
+        if (config.coulomb_explorer) { refreshCoulombsLawExplorer(); return; }
         if (config.force_field_explorer) { refreshForceFieldExplorer(); return; }
 
         var iSlider = document.getElementById("i_slider");
@@ -5524,6 +6133,539 @@ export const FIELD_3D_RENDERER_CODE = `
             var disp = E >= 1000 ? (E / 1000).toFixed(1) + " kN/C" : Math.round(E) + " N/C";
             eOut.innerHTML = "E = " + disp;
         }
+    }
+
+    // ── Electric DIPOLE field diamond (electric_field_dipole) ─────────────────
+    //   +q and -q a fixed distance apart (dipole moment p, - -> +). At any field
+    //   point P the net field is the SUPERPOSITION E+ (from +q, away) + E- (from
+    //   -q, toward it). Axial point -> E along p, ~2kp/r^3; equatorial point ->
+    //   E opposite p, ~kp/r^3 (so axial is twice equatorial); both die as 1/r^3.
+    //   All elements built once, hidden, then shown per state by
+    //   applyDipoleFieldState; STATE_7 explorer drives q / r / theta live. Gated
+    //   on config.dipole_explorer so nothing else is touched.
+    var dfA = 0.5;        // half-separation (+q at +dfA, -q at -dfA on the x-axis)
+    var dfQ = 1.0;        // charge magnitude (visual units; scaled by the q slider)
+    var dfScale = 1.0;    // |E| -> arrow-length scale, calibrated at build time
+    var dfLines = [];     // stored field-line polylines (for STATE_6 flowing dots)
+
+    // Net field of the dipole at (px,py,pz): the two Coulomb fields, superposed.
+    function dipoleFieldAt(px, py, pz, qMag) {
+        var q = (qMag != null) ? qMag : dfQ;
+        var dxp = px - dfA, dyp = py, dzp = pz;
+        var rp = Math.sqrt(dxp * dxp + dyp * dyp + dzp * dzp);
+        var rp3 = Math.pow(rp < 0.18 ? 0.18 : rp, 3);
+        var dxn = px + dfA, dyn = py, dzn = pz;
+        var rn = Math.sqrt(dxn * dxn + dyn * dyn + dzn * dzn);
+        var rn3 = Math.pow(rn < 0.18 ? 0.18 : rn, 3);
+        var ep = [q * dxp / rp3, q * dyp / rp3, q * dzp / rp3];      // away from +q
+        var en = [-q * dxn / rn3, -q * dyn / rn3, -q * dzn / rn3];   // toward -q
+        var net = [ep[0] + en[0], ep[1] + en[1], ep[2] + en[2]];
+        return { ep: ep, en: en, net: net };
+    }
+
+    function dfVecMag(v) { return Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]); }
+
+    // Point an ArrowHelper at origin along vec, length proportional to |vec| (so
+    // the axial-vs-equatorial 2x ratio and the 1/r^3 falloff read faithfully),
+    // clamped only as a safety rail. Returns the magnitude.
+    function dfSetArrow(arrow, origin, vec, color) {
+        if (!arrow) return 0;
+        var mag = dfVecMag(vec);
+        if (mag < 1e-9) { arrow.visible = false; return 0; }
+        arrow.visible = true;
+        arrow.position.set(origin[0], origin[1], origin[2]);
+        arrow.setDirection(new THREE.Vector3(vec[0] / mag, vec[1] / mag, vec[2] / mag));
+        var len = dfScale * mag;
+        if (len < 0.2) len = 0.2;
+        if (len > 1.4) len = 1.4;
+        arrow.setLength(len, Math.min(0.3, 0.28 * len), Math.min(0.2, 0.16 * len));
+        if (color != null && arrow.setColor) arrow.setColor(new THREE.Color(color));
+        return mag;
+    }
+
+    // Set an arrow with an EXPLICIT length + direction (used by the comparison /
+    // falloff "law" arrows so 2:1 and 1/r^3 read exactly, free of near-field skew).
+    function dfSetArrowLD(arrow, origin, dir, length, color) {
+        if (!arrow) return;
+        arrow.visible = true;
+        arrow.position.set(origin[0], origin[1], origin[2]);
+        var d = new THREE.Vector3(dir[0], dir[1], dir[2]); d.normalize();
+        arrow.setDirection(d);
+        arrow.setLength(length, Math.min(0.3, 0.28 * length), Math.min(0.2, 0.16 * length));
+        if (color != null && arrow.setColor) arrow.setColor(new THREE.Color(color));
+    }
+
+    // Like dfSetArrow but scaled by a 0..1 build factor (for the STATE_2/3 staggered
+    // grow-in choreography). factor<=0.01 hides the arrow (not yet revealed).
+    function dfGrowArrow(arrow, origin, vec, color, factor) {
+        if (!arrow) return;
+        var mag = dfVecMag(vec);
+        if (mag < 1e-9 || factor <= 0.01) { arrow.visible = false; return; }
+        arrow.visible = true;
+        var base = dfScale * mag;
+        if (base < 0.2) base = 0.2;
+        if (base > 1.4) base = 1.4;
+        var len = base * factor;
+        if (len < 0.06) len = 0.06;
+        arrow.position.set(origin[0], origin[1], origin[2]);
+        arrow.setDirection(new THREE.Vector3(vec[0] / mag, vec[1] / mag, vec[2] / mag));
+        arrow.setLength(len, Math.min(0.3, 0.26 * len), Math.min(0.2, 0.16 * len));
+        if (color != null && arrow.setColor) arrow.setColor(new THREE.Color(color));
+    }
+
+    function dfId(id) { return ecFindById(id); }
+
+    // Position the single superposition probe (P + E+, E-, E_net) at a point and
+    // recompute its three arrows. showComponents toggles the E+ / E- pair.
+    function dfPlaceProbe(px, py, pz, showComponents, qMag) {
+        var f = dipoleFieldAt(px, py, pz, qMag);
+        var pdot = dfId("df_P_dot"); if (pdot) pdot.position.set(px, py, pz);
+        var plbl = dfId("df_P_lbl"); if (plbl) plbl.position.set(px, py - 0.34, pz);
+        var ep = dfId("df_eplus"); dfSetArrow(ep, [px, py, pz], f.ep, 0xEF5350);
+        var en = dfId("df_eminus"); dfSetArrow(en, [px, py, pz], f.en, 0x42A5F5);
+        var net = dfId("df_enet"); var nm = dfSetArrow(net, [px, py, pz], f.net, 0x66BB6A);
+        if (ep) ep.visible = ep.visible && showComponents;
+        if (en) en.visible = en.visible && showComponents;
+        // Net label rides just past the net arrow tip.
+        var nlbl = dfId("df_enet_lbl");
+        if (nlbl) {
+            var nmag = dfVecMag(f.net);
+            if (nmag > 1e-9) {
+                var l = dfScale * nmag; if (l < 0.22) l = 0.22; if (l > 2.3) l = 2.3;
+                nlbl.position.set(px + f.net[0] / nmag * (l + 0.28), py + f.net[1] / nmag * (l + 0.28), pz + f.net[2] / nmag * (l + 0.28));
+            }
+        }
+        var eplbl = dfId("df_eplus_lbl"); if (eplbl) { eplbl.visible = showComponents; eplbl.position.set(px + f.ep[0] * 0.5 + 0.12, py + f.ep[1] * 0.5 + 0.12, pz); }
+        var enlbl = dfId("df_eminus_lbl"); if (enlbl) { enlbl.visible = showComponents; enlbl.position.set(px + f.en[0] * 0.5 + 0.12, py + f.en[1] * 0.5 - 0.12, pz); }
+        return nm;
+    }
+
+    function buildDipoleFieldDiamond() {
+        var posColor = config.field_lines.color_positive || "#EF5350";
+        var negColor = config.field_lines.color_negative || "#42A5F5";
+
+        // Calibrate the |E| -> length scale so an axial net arrow at r=1.5 reads ~0.9.
+        var refMag = dfVecMag(dipoleFieldAt(1.5, 0, 0, 1.0).net);
+        dfScale = refMag > 1e-9 ? (0.9 / refMag) : 1.0;
+
+        // The two charges + dipole-moment vector p (from -q to +q).
+        var qp = createChargeSphere([dfA, 0, 0], posColor, 0.22);
+        qp.userData = { elementType: "dipole", id: "df_q_plus" }; addToScene(qp);
+        var qn = createChargeSphere([-dfA, 0, 0], negColor, 0.22);
+        qn.userData = { elementType: "dipole", id: "df_q_minus" }; addToScene(qn);
+        var lp = createLabelSprite("+q", posColor, 0.46); lp.position.set(dfA, 0.42, 0);
+        lp.userData = { elementType: "dipole", id: "df_lbl_plus" }; addToScene(lp);
+        var ln = createLabelSprite("\\u2212q", negColor, 0.46); ln.position.set(-dfA, 0.42, 0);
+        ln.userData = { elementType: "dipole", id: "df_lbl_minus" }; addToScene(ln);
+        var pArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-dfA, 0, 0), 2 * dfA, 0xFFCA28, 0.22, 0.14);
+        pArrow.userData = { elementType: "dipole", id: "df_p_arrow" }; addToScene(pArrow);
+        var pLbl = createLabelSprite("p", "#FFCA28", 0.5); pLbl.position.set(0, -0.36, 0);
+        pLbl.userData = { elementType: "dipole", id: "df_p_lbl" }; addToScene(pLbl);
+
+        // Superposition probe (STATE_2 axial, STATE_3 equatorial, STATE_7 explorer).
+        var pdot = createChargeSphere([1.5, 0, 0], "#FFEB3B", 0.09);
+        pdot.userData = { elementType: "dipole", id: "df_P_dot" }; addToScene(pdot);
+        var plbl = createLabelSprite("P", "#FFF176", 0.4); plbl.position.set(1.5, -0.34, 0);
+        plbl.userData = { elementType: "dipole", id: "df_P_lbl" }; addToScene(plbl);
+        var eplus = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(1.5, 0, 0), 0.8, 0xEF5350, 0.22, 0.14);
+        eplus.userData = { elementType: "dipole", id: "df_eplus" }; addToScene(eplus);
+        var eminus = new THREE.ArrowHelper(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(1.5, 0, 0), 0.5, 0x42A5F5, 0.18, 0.12);
+        eminus.userData = { elementType: "dipole", id: "df_eminus" }; addToScene(eminus);
+        var enet = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(1.5, 0, 0), 1.6, 0x66BB6A, 0.3, 0.18);
+        enet.userData = { elementType: "dipole", id: "df_enet" }; addToScene(enet);
+        var eplbl = createLabelSprite("E+", "#EF5350", 0.4); eplbl.userData = { elementType: "dipole", id: "df_eplus_lbl" }; addToScene(eplbl);
+        var enlbl = createLabelSprite("E\\u2212", "#42A5F5", 0.4); enlbl.userData = { elementType: "dipole", id: "df_eminus_lbl" }; addToScene(enlbl);
+        var enetlbl = createLabelSprite("E", "#66BB6A", 0.5); enetlbl.userData = { elementType: "dipole", id: "df_enet_lbl" }; addToScene(enetlbl);
+
+        // STATE_4 comparison: net arrows at an axial AND an equatorial point, same r.
+        var cmpAxNet = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(1.5, 0, 0), 1.2, 0x66BB6A, 0.3, 0.18);
+        cmpAxNet.userData = { elementType: "dipole", id: "df_cmp_ax" }; addToScene(cmpAxNet);
+        var cmpAxLbl = createLabelSprite("axial", "#66BB6A", 0.46); cmpAxLbl.position.set(1.7, 0.5, 0);
+        cmpAxLbl.userData = { elementType: "dipole", id: "df_cmp_ax_lbl" }; addToScene(cmpAxLbl);
+        var cmpAxDot = createChargeSphere([1.5, 0, 0], "#FFEB3B", 0.08);
+        cmpAxDot.userData = { elementType: "dipole", id: "df_cmp_ax_dot" }; addToScene(cmpAxDot);
+        var cmpEqNet = new THREE.ArrowHelper(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(0, 1.5, 0), 0.6, 0x66BB6A, 0.24, 0.15);
+        cmpEqNet.userData = { elementType: "dipole", id: "df_cmp_eq" }; addToScene(cmpEqNet);
+        var cmpEqLbl = createLabelSprite("equatorial", "#66BB6A", 0.46); cmpEqLbl.position.set(0.0, 1.95, 0);
+        cmpEqLbl.userData = { elementType: "dipole", id: "df_cmp_eq_lbl" }; addToScene(cmpEqLbl);
+        var cmpEqDot = createChargeSphere([0, 1.5, 0], "#FFEB3B", 0.08);
+        cmpEqDot.userData = { elementType: "dipole", id: "df_cmp_eq_dot" }; addToScene(cmpEqDot);
+
+        // STATE_5 falloff: three axial net arrows at growing r (length ~ 1/r^3).
+        var fxs = [1.2, 1.7, 2.2];
+        for (var fi = 0; fi < fxs.length; fi++) {
+            var fnet = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(fxs[fi], 0, 0), 1.0, 0x66BB6A, 0.26, 0.16);
+            fnet.userData = { elementType: "dipole", id: "df_fall_" + fi }; addToScene(fnet);
+            var fdot = createChargeSphere([fxs[fi], 0, 0], "#FFEB3B", 0.07);
+            fdot.userData = { elementType: "dipole", id: "df_fall_dot_" + fi }; addToScene(fdot);
+        }
+        var fallLbl = createLabelSprite("E \\u221d 1/r\\u00b3", "#FFF176", 0.5); fallLbl.position.set(1.6, -0.6, 0);
+        fallLbl.userData = { elementType: "dipole", id: "df_fall_lbl" }; addToScene(fallLbl);
+
+        // STATE_6 field-line pattern: curved lines from +q to -q (the dipole map).
+        // Each polyline is stored in dfLines so the animate loop can flow dots along it.
+        dfLines = [];
+        var lineCount = config.field_lines.count || 14;
+        var p1 = [dfA, 0, 0], p2 = [-dfA, 0, 0];
+        var goldenAngle = Math.PI * (3 - Math.sqrt(5));
+        for (var i = 0; i < lineCount; i++) {
+            var frac = 1 - (i / (lineCount - 1)) * 2;
+            var radiusAtFrac = Math.sqrt(Math.max(0, 1 - frac * frac));
+            var th = goldenAngle * i;
+            var bulge = 1.4 + Math.abs(frac) * 1.6;
+            var offX = radiusAtFrac * Math.cos(th) * bulge;
+            var offY = frac * bulge;
+            var offZ = radiusAtFrac * Math.sin(th) * bulge;
+            var pts = [];
+            var segs = 24;
+            for (var s = 0; s <= segs; s++) {
+                var t = s / segs;
+                var cx = p1[0] * (1 - t) + p2[0] * t;
+                var cy = p1[1] * (1 - t) + p2[1] * t;
+                var cz = p1[2] * (1 - t) + p2[2] * t;
+                var blend = Math.sin(t * Math.PI);
+                pts.push([cx + offX * blend, cy + offY * blend, cz + offZ * blend]);
+            }
+            dfLines.push(pts);
+            var tube = createTubeLine(pts, posColor, 0.017);
+            if (tube) { tube.userData = { elementType: "dipole", id: "df_fl_" + i }; addToScene(tube); }
+            var mid = Math.floor(segs / 2);
+            var adir = [pts[mid][0] - pts[mid - 1][0], pts[mid][1] - pts[mid - 1][1], pts[mid][2] - pts[mid - 1][2]];
+            var ah = createArrowHead(pts[mid], adir, posColor);
+            ah.userData = { elementType: "dipole", id: "df_fl_arr_" + i }; addToScene(ah);
+        }
+
+        // STATE_6 flow dots — bright spheres that travel +q -> -q along the lines
+        // (animate loop drives them). One per stored line, hidden by default.
+        for (var fdi = 0; fdi < dfLines.length; fdi++) {
+            var flow = createChargeSphere(dfLines[fdi][0], "#FFF59D", 0.06);
+            flow.userData = { elementType: "dipole", id: "df_flow_" + fdi };
+            addToScene(flow);
+        }
+
+        // STATE_5 moving sweep probe — glides out/back; its net arrow collapses as
+        // 1/r^3 (animate loop). Hidden by default.
+        var sweepDot = createChargeSphere([1.2, 0, 0], "#FFEB3B", 0.1);
+        sweepDot.userData = { elementType: "dipole", id: "df_sweep_dot" }; addToScene(sweepDot);
+        var sweepArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(1.2, 0, 0), 1.3, 0x66BB6A, 0.3, 0.18);
+        sweepArrow.userData = { elementType: "dipole", id: "df_sweep_arrow" }; addToScene(sweepArrow);
+    }
+
+    // Per-state visibility for the dipole diamond. Reads stateDef flags:
+    //   probe_mode: "axial" | "equatorial" | "explorer" | "none"
+    //   show_components (E+/E-), show_compare (STATE_4), show_falloff (STATE_5),
+    //   show_field_lines (STATE_6).
+    function applyDipoleFieldState(stateDef) {
+        if (!stateDef) return;
+        var mode = stateDef.probe_mode || "none";
+        var showComp = !!stateDef.show_components;
+        var showCompare = !!stateDef.show_compare;
+        var showFall = !!stateDef.show_falloff;
+        var showLines = !!stateDef.show_field_lines;
+        var showProbe = (mode === "axial" || mode === "equatorial" || mode === "explorer");
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i]; var ud = o.userData;
+            if (!ud || ud.elementType !== "dipole" || !ud.id) continue;
+            var id = ud.id;
+            if (id.indexOf("df_flow_") === 0) o.visible = showLines;       // flowing dots (STATE_6)
+            else if (id.indexOf("df_fl_") === 0) o.visible = showLines;     // field lines + their arrows
+            else if (id.indexOf("df_cmp_") === 0) o.visible = showCompare;
+            else if (id.indexOf("df_sweep_") === 0) o.visible = showFall;        // moving sweep probe (STATE_5 hero)
+            else if (id.indexOf("df_fall_dot_") === 0) o.visible = showFall;      // faint sample-position markers
+            else if (id.indexOf("df_fall_") === 0) o.visible = false;             // static arrows retired (moving sweep replaces them)
+            else if (id === "df_P_dot" || id === "df_P_lbl" || id === "df_enet" || id === "df_enet_lbl") o.visible = showProbe;
+            else if (id === "df_eplus" || id === "df_eminus" || id === "df_eplus_lbl" || id === "df_eminus_lbl") o.visible = showProbe && showComp;
+            else o.visible = true;   // charges + p vector always on
+        }
+
+        if (mode === "axial") dfPlaceProbe(1.5, 0, 0, showComp, 1.0);
+        else if (mode === "equatorial") dfPlaceProbe(0, 1.5, 0, showComp, 1.0);
+        else if (mode === "explorer") refreshDipoleExplorer();
+
+        // Comparison + falloff use the clean far-field LAW (axial = 2 x equatorial,
+        // E ~ 1/r^3) so the teaching point reads exactly, free of near-field skew.
+        if (showCompare) {
+            dfSetArrowLD(dfId("df_cmp_ax"), [1.5, 0, 0], [1, 0, 0], 1.2, 0x66BB6A);
+            dfSetArrowLD(dfId("df_cmp_eq"), [0, 1.5, 0], [-1, 0, 0], 0.6, 0x66BB6A);
+        }
+        // STATE_5 falloff is shown in MOTION by the moving sweep probe (animate
+        // loop); the three df_fall_dot_ markers stay as faint sample posts.
+    }
+
+    function refreshDipoleExplorer() {
+        var qS = document.getElementById("df_q_slider");
+        var rS = document.getElementById("df_r_slider");
+        var thS = document.getElementById("df_theta_slider");
+        var scQ = (config.slider_controls && config.slider_controls.q) || {};
+        var scR = (config.slider_controls && config.slider_controls.r) || {};
+        var scT = (config.slider_controls && config.slider_controls.theta) || {};
+        var qv = qS ? parseFloat(qS.value) : (scQ.default != null ? scQ.default : 5);
+        var rv = rS ? parseFloat(rS.value) : (scR.default != null ? scR.default : 1.6);
+        var tv = thS ? parseFloat(thS.value) : (scT.default != null ? scT.default : 0);
+        var rad = tv * Math.PI / 180;
+        var px = rv * Math.cos(rad), py = rv * Math.sin(rad), pz = 0;
+        // q slider (1..10) scales the visual charge around the calibrated unit.
+        dfPlaceProbe(px, py, pz, true, qv / 5);
+
+        var qVal = document.getElementById("df_q_val"); if (qVal) qVal.textContent = String(Math.round(qv));
+        var rVal = document.getElementById("df_r_val"); if (rVal) rVal.textContent = rv.toFixed(1);
+        var tVal = document.getElementById("df_theta_val"); if (tVal) tVal.textContent = String(Math.round(tv));
+        var out = document.getElementById("df_e_readout");
+        if (out) {
+            var nm = dfVecMag(dipoleFieldAt(px, py, pz, qv / 5).net);
+            var rel = nm / (dfVecMag(dipoleFieldAt(1.5, 0, 0, 1.0).net) || 1);
+            out.innerHTML = "|E| \\u2248 " + rel.toFixed(2) + " \\u00d7 (axial r=1.5)";
+        }
+    }
+
+    // ── Coulomb's law diamond (coulombs_law, F = k q1 q2 / r\\u00b2) ──────────
+    //   Two point charges on the x-axis with an EQUAL-and-opposite force pair
+    //   (Newton's 3rd — both arrows always share ONE length, so the "equal &
+    //   opposite" beat is impossible to mis-draw), the sign -> attract/repel
+    //   flip, the 1/r\\u00b2 falloff, F \\u221d q1 q2 product scaling, the vector
+    //   form, and the superposition of several charges. Built once; per-state
+    //   visibility + the law-beat arrow lengths are driven by
+    //   applyCoulombsLawState; the STATE_9 explorer + STATE_5 sweep run off
+    //   refreshCoulombsLawExplorer + the animate loop. Gated on
+    //   config.coulomb_explorer.
+    var CL_HX = 1.5;           // home half-separation (q1 at -CL_HX, q2 at +CL_HX)
+    var CL_R0 = 0.22;          // home charge radius
+    var clExplorerSign = 1;    // STATE_9 q2 sign from the flip button (+1 / -1)
+
+    function clId(id) { return ecFindById(id); }
+    function clSetVis(id, on) { var o = clId(id); if (o) o.visible = on; }
+
+    // Point an ArrowHelper at origin along dir with an EXPLICIT length (the law
+    // beats need exact ratios: equal pair, 1 : 1/4 : 1/9 falloff, 2x doubling).
+    function clSetArrow(arrow, origin, dir, length, color) {
+        if (!arrow) return;
+        var len = length; if (len < 0.16) len = 0.16; if (len > 1.5) len = 1.5;
+        arrow.visible = true;
+        arrow.position.set(origin[0], origin[1], origin[2]);
+        var d = new THREE.Vector3(dir[0], dir[1], dir[2]); d.normalize();
+        arrow.setDirection(d);
+        arrow.setLength(len, Math.min(0.3, 0.28 * len), Math.min(0.2, 0.16 * len));
+        if (color != null && arrow.setColor) arrow.setColor(new THREE.Color(color));
+    }
+
+    function buildCoulombsLawDiamond() {
+        var posColor = config.field_lines.color_positive || "#EF5350";
+        var negColor = config.field_lines.color_negative || "#42A5F5";
+        var forceColor = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+
+        // The two charges + labels (q2 carries a hidden "-q2" label for the sign
+        // state; q2 recolours blue when negative).
+        var q1 = createChargeSphere([-CL_HX, 0, 0], posColor, CL_R0);
+        q1.userData = { elementType: "coulomb", id: "cl_q1" }; addToScene(q1);
+        var q2 = createChargeSphere([CL_HX, 0, 0], posColor, CL_R0);
+        q2.userData = { elementType: "coulomb", id: "cl_q2" }; addToScene(q2);
+        var l1 = createLabelSprite("+q\\u2081", posColor, 0.46); l1.position.set(-CL_HX, 0.46, 0);
+        l1.userData = { elementType: "coulomb", id: "cl_q1_lbl" }; addToScene(l1);
+        var l2 = createLabelSprite("+q\\u2082", posColor, 0.46); l2.position.set(CL_HX, 0.46, 0);
+        l2.userData = { elementType: "coulomb", id: "cl_q2_lbl" }; addToScene(l2);
+        var l2n = createLabelSprite("\\u2212q\\u2082", negColor, 0.46); l2n.position.set(CL_HX, 0.46, 0);
+        l2n.userData = { elementType: "coulomb", id: "cl_q2_lbl_neg" }; addToScene(l2n);
+
+        // Join line (= direction of the force) + distance label r.
+        var rline = createTubeLine([[-CL_HX, 0, 0], [CL_HX, 0, 0]], "#FFCA28", 0.012);
+        if (rline) { rline.userData = { elementType: "coulomb", id: "cl_r_line" }; addToScene(rline); }
+        var rlbl = createLabelSprite("r", "#FFCA28", 0.4); rlbl.position.set(0, -0.4, 0);
+        rlbl.userData = { elementType: "coulomb", id: "cl_r_label" }; addToScene(rlbl);
+
+        // The equal-and-opposite force pair + labels (below each charge).
+        var f12 = new THREE.ArrowHelper(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(-CL_HX, 0, 0), 0.9, 0x66BB6A, 0.28, 0.18);
+        f12.userData = { elementType: "coulomb", id: "cl_f12" }; addToScene(f12);
+        var f21 = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(CL_HX, 0, 0), 0.9, 0x66BB6A, 0.28, 0.18);
+        f21.userData = { elementType: "coulomb", id: "cl_f21" }; addToScene(f21);
+        var f12l = createLabelSprite("F\\u2081\\u2082", forceColor, 0.4); f12l.position.set(-CL_HX, -0.44, 0);
+        f12l.userData = { elementType: "coulomb", id: "cl_f12_lbl" }; addToScene(f12l);
+        var f21l = createLabelSprite("F\\u2082\\u2081", forceColor, 0.4); f21l.position.set(CL_HX, -0.44, 0);
+        f21l.userData = { elementType: "coulomb", id: "cl_f21_lbl" }; addToScene(f21l);
+
+        // STATE_6 product scaling: faint "before" ghost arrows at base length.
+        var g12 = new THREE.ArrowHelper(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(-CL_HX, 0, 0), 0.6, 0x3A5A3A, 0.2, 0.13);
+        g12.userData = { elementType: "coulomb", id: "cl_ghost12" }; addToScene(g12);
+        var g21 = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(CL_HX, 0, 0), 0.6, 0x3A5A3A, 0.2, 0.13);
+        g21.userData = { elementType: "coulomb", id: "cl_ghost21" }; addToScene(g21);
+
+        // STATE_5 falloff group: a fixed source + three sample charges at d, 2d,
+        // 3d with force arrows of explicit length 1 : 1/4 : 1/9, plus a moving
+        // sweep charge whose arrow collapses as 1/r\\u00b2 in the animate loop.
+        var fallSrcX = -2.7, fallStep = 1.55, fallBase = 0.9;
+        var src = createChargeSphere([fallSrcX, 0, 0], posColor, CL_R0);
+        src.userData = { elementType: "coulomb", id: "cl_fall_src" }; addToScene(src);
+        var srcl = createLabelSprite("+q\\u2081", posColor, 0.44); srcl.position.set(fallSrcX, 0.46, 0);
+        srcl.userData = { elementType: "coulomb", id: "cl_fall_src_lbl" }; addToScene(srcl);
+        for (var ci = 0; ci < 3; ci++) {
+            var nn = ci + 1;
+            var px = fallSrcX + fallStep * nn;
+            var dot = createChargeSphere([px, 0, 0], posColor, 0.14);
+            dot.userData = { elementType: "coulomb", id: "cl_fall_dot_" + ci }; addToScene(dot);
+            var arr = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(px, 0, 0), fallBase / (nn * nn), 0x66BB6A, 0.24, 0.15);
+            arr.userData = { elementType: "coulomb", id: "cl_fall_arr_" + ci }; addToScene(arr);
+        }
+        var swDot = createChargeSphere([fallSrcX + fallStep, 0.6, 0], "#FFF59D", 0.17);
+        swDot.userData = { elementType: "coulomb", id: "cl_sweep_dot" }; addToScene(swDot);
+        var swArr = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(fallSrcX + fallStep, 0, 0), 1.15, 0x66BB6A, 0.28, 0.17);
+        swArr.userData = { elementType: "coulomb", id: "cl_sweep_arr" }; addToScene(swArr);
+
+        // STATE_8 superposition: a test charge q feels forces F1, F2 from two
+        // sources (source A reuses cl_q1, repositioned); F_net is their tip-to-
+        // tail vector sum.
+        var qt = createChargeSphere([0.2, 0.3, 0], "#FFEE58", 0.18);
+        qt.userData = { elementType: "coulomb", id: "cl_qt" }; addToScene(qt);
+        var qtl = createLabelSprite("q", "#FFF176", 0.42); qtl.position.set(0.2, 0.74, 0);
+        qtl.userData = { elementType: "coulomb", id: "cl_qt_lbl" }; addToScene(qtl);
+        var q3 = createChargeSphere([0.2, -1.9, 0], posColor, CL_R0);
+        q3.userData = { elementType: "coulomb", id: "cl_q3" }; addToScene(q3);
+        var q3l = createLabelSprite("+q\\u2082", posColor, 0.44); q3l.position.set(0.64, -1.9, 0);
+        q3l.userData = { elementType: "coulomb", id: "cl_q3_lbl" }; addToScene(q3l);
+        var fa = new THREE.ArrowHelper(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(0.2, 0.3, 0), 0.9, 0x66BB6A, 0.26, 0.16);
+        fa.userData = { elementType: "coulomb", id: "cl_fa" }; addToScene(fa);
+        var fb = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0.2, 0.3, 0), 0.9, 0x66BB6A, 0.26, 0.16);
+        fb.userData = { elementType: "coulomb", id: "cl_fb" }; addToScene(fb);
+        var ftt = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(-0.7, 0.3, 0), 0.9, 0x5A8A5A, 0.22, 0.14);
+        ftt.userData = { elementType: "coulomb", id: "cl_ftt" }; addToScene(ftt);
+        var fnet = new THREE.ArrowHelper(new THREE.Vector3(-0.707, 0.707, 0), new THREE.Vector3(0.2, 0.3, 0), 1.27, 0xFFEE58, 0.3, 0.18);
+        fnet.userData = { elementType: "coulomb", id: "cl_fnet" }; addToScene(fnet);
+        var fal = createLabelSprite("F\\u2081", forceColor, 0.4); fal.userData = { elementType: "coulomb", id: "cl_fa_lbl" }; addToScene(fal);
+        var fbl = createLabelSprite("F\\u2082", forceColor, 0.4); fbl.userData = { elementType: "coulomb", id: "cl_fb_lbl" }; addToScene(fbl);
+        var fnl = createLabelSprite("F", "#FFF176", 0.46); fnl.userData = { elementType: "coulomb", id: "cl_fnet_lbl" }; addToScene(fnl);
+    }
+
+    // Per-state visibility + arrow poses for the coulomb diamond.
+    function applyCoulombsLawState(stateDef) {
+        if (!stateDef) return;
+        var explorer = !!stateDef.explorer;
+        var showForce = !!stateDef.show_force || explorer;
+        var showDist = !!stateDef.show_distance || explorer;
+        var sign = (stateDef.q2_sign === -1) ? -1 : 1;
+        var thirdLaw = !!stateDef.show_third_law_pair;
+        var product = !!stateDef.show_product_scaling;
+        var fall = !!stateDef.falloff_demo;
+        var superpose = !!stateDef.superposition;
+
+        var posColor = config.field_lines.color_positive || "#EF5350";
+        var negColor = config.field_lines.color_negative || "#42A5F5";
+        var forceColor = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+
+        // Hide every coulomb object; the per-mode blocks switch groups back on.
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            if (o.userData && o.userData.elementType === "coulomb") o.visible = false;
+        }
+
+        // Reset reused objects to their home pose (defends against leak from the
+        // falloff / superposition / explorer repositioning).
+        var q1 = clId("cl_q1"), q2 = clId("cl_q2"), q1l = clId("cl_q1_lbl");
+        if (q1) { q1.position.set(-CL_HX, 0, 0); q1.scale.set(1, 1, 1); if (q1.material) { q1.material.color.set(posColor); q1.material.emissive.set(posColor); } }
+        if (q2) { q2.position.set(CL_HX, 0, 0); q2.scale.set(1, 1, 1); var c2 = (sign < 0) ? negColor : posColor; if (q2.material) { q2.material.color.set(c2); q2.material.emissive.set(c2); } }
+        if (q1l) q1l.position.set(-CL_HX, 0.46, 0);
+        var rline0 = clId("cl_r_line"); if (rline0) rline0.scale.set(1, 1, 1);
+        var rlbl0 = clId("cl_r_label"); if (rlbl0) rlbl0.position.set(0, -0.4, 0);
+        var f12l0 = clId("cl_f12_lbl"); if (f12l0) f12l0.position.set(-CL_HX, -0.44, 0);
+        var f21l0 = clId("cl_f21_lbl"); if (f21l0) f21l0.position.set(CL_HX, -0.44, 0);
+        var q2lp = clId("cl_q2_lbl"); if (q2lp) q2lp.position.set(CL_HX, 0.46, 0);
+        var q2ln = clId("cl_q2_lbl_neg"); if (q2ln) q2ln.position.set(CL_HX, 0.46, 0);
+
+        if (fall) {
+            clSetVis("cl_fall_src", true); clSetVis("cl_fall_src_lbl", true);
+            for (var fi = 0; fi < 3; fi++) { clSetVis("cl_fall_dot_" + fi, true); clSetVis("cl_fall_arr_" + fi, true); }
+            clSetVis("cl_sweep_dot", true); clSetVis("cl_sweep_arr", true);
+            return;
+        }
+        if (superpose) { applyCoulombSuperposition(forceColor); return; }
+
+        // The two-charge "pair" states (1,2,3,4,6,7,9).
+        clSetVis("cl_q1", true); clSetVis("cl_q2", true); clSetVis("cl_q1_lbl", true);
+        clSetVis(sign < 0 ? "cl_q2_lbl_neg" : "cl_q2_lbl", true);
+        if (showDist) { clSetVis("cl_r_line", true); clSetVis("cl_r_label", true); }
+        if (thirdLaw && q2) q2.scale.set(1.7, 1.7, 1.7);
+        if (product && q1) q1.scale.set(1.7, 1.7, 1.7);
+
+        if (showForce) {
+            var s = sign;   // +1 repel, -1 attract
+            if (product) {
+                clSetArrow(clId("cl_ghost12"), [-CL_HX, 0, 0], [-s, 0, 0], 0.6, "#3A5A3A");
+                clSetArrow(clId("cl_ghost21"), [CL_HX, 0, 0], [s, 0, 0], 0.6, "#3A5A3A");
+                clSetVis("cl_ghost12", true); clSetVis("cl_ghost21", true);
+                clSetArrow(clId("cl_f12"), [-CL_HX, 0, 0], [-s, 0, 0], 1.2, forceColor);
+                clSetArrow(clId("cl_f21"), [CL_HX, 0, 0], [s, 0, 0], 1.2, forceColor);
+            } else {
+                clSetArrow(clId("cl_f12"), [-CL_HX, 0, 0], [-s, 0, 0], 0.9, forceColor);
+                clSetArrow(clId("cl_f21"), [CL_HX, 0, 0], [s, 0, 0], 0.9, forceColor);
+            }
+            clSetVis("cl_f12", true); clSetVis("cl_f21", true);
+            clSetVis("cl_f12_lbl", true); clSetVis("cl_f21_lbl", true);
+        }
+
+        if (explorer) refreshCoulombsLawExplorer();
+    }
+
+    function applyCoulombSuperposition(forceColor) {
+        var qtPos = [0.2, 0.3, 0];
+        var q1 = clId("cl_q1"), q1l = clId("cl_q1_lbl");
+        if (q1) q1.position.set(2.2, 0.3, 0);
+        if (q1l) q1l.position.set(2.2, 0.74, 0);
+        clSetVis("cl_q1", true); clSetVis("cl_q1_lbl", true);
+        clSetVis("cl_qt", true); clSetVis("cl_qt_lbl", true);
+        clSetVis("cl_q3", true); clSetVis("cl_q3_lbl", true);
+        clSetArrow(clId("cl_fa"), qtPos, [-1, 0, 0], 0.9, forceColor);                       // F1 (from source A, points left)
+        clSetArrow(clId("cl_fb"), qtPos, [0, 1, 0], 0.9, forceColor);                        // F2 (from source B, points up)
+        clSetArrow(clId("cl_ftt"), [qtPos[0] - 0.9, qtPos[1], 0], [0, 1, 0], 0.9, "#5A8A5A"); // tip-to-tail copy of F2
+        clSetArrow(clId("cl_fnet"), qtPos, [-0.9, 0.9, 0], 1.27, "#FFEE58");                  // resultant F_net
+        clSetVis("cl_fa", true); clSetVis("cl_fb", true); clSetVis("cl_ftt", true); clSetVis("cl_fnet", true);
+        clSetVis("cl_fa_lbl", true); clSetVis("cl_fb_lbl", true); clSetVis("cl_fnet_lbl", true);
+        var fal = clId("cl_fa_lbl"); if (fal) fal.position.set(qtPos[0] - 0.72, qtPos[1] + 0.26, 0);
+        var fbl = clId("cl_fb_lbl"); if (fbl) fbl.position.set(qtPos[0] + 0.34, qtPos[1] + 0.62, 0);
+        var fnl = clId("cl_fnet_lbl"); if (fnl) fnl.position.set(qtPos[0] - 1.04, qtPos[1] + 1.12, 0);
+    }
+
+    function refreshCoulombsLawExplorer() {
+        var q1S = document.getElementById("cl_q1_slider");
+        var q2S = document.getElementById("cl_q2_slider");
+        var rS = document.getElementById("cl_r_slider");
+        var sc1 = (config.slider_controls && config.slider_controls.q1) || {};
+        var sc2 = (config.slider_controls && config.slider_controls.q2) || {};
+        var scR = (config.slider_controls && config.slider_controls.r) || {};
+        var q1v = q1S ? parseFloat(q1S.value) : (sc1.default != null ? sc1.default : 5);
+        var q2v = q2S ? parseFloat(q2S.value) : (sc2.default != null ? sc2.default : 5);
+        var rcm = rS ? parseFloat(rS.value) : (scR.default != null ? scR.default : 5);
+        var sgn = clExplorerSign;
+        var posColor = config.field_lines.color_positive || "#EF5350";
+        var negColor = config.field_lines.color_negative || "#42A5F5";
+        var forceColor = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+
+        // Distance (cm) -> scene separation (linear, framing only).
+        var sep = 1.4 + (rcm - 2) / 18 * 3.4; if (sep < 0.8) sep = 0.8;
+        var half = sep / 2;
+        var q1 = clId("cl_q1"), q2 = clId("cl_q2");
+        if (q1) q1.position.set(-half, 0, 0);
+        if (q2) q2.position.set(half, 0, 0);
+        var q1l = clId("cl_q1_lbl"); if (q1l) q1l.position.set(-half, 0.46, 0);
+        var q2lp = clId("cl_q2_lbl"), q2ln = clId("cl_q2_lbl_neg");
+        if (q2lp) { q2lp.position.set(half, 0.46, 0); q2lp.visible = (sgn >= 0); }
+        if (q2ln) { q2ln.position.set(half, 0.46, 0); q2ln.visible = (sgn < 0); }
+        var c2 = (sgn < 0) ? negColor : posColor;
+        if (q2 && q2.material) { q2.material.color.set(c2); q2.material.emissive.set(c2); }
+        var rline = clId("cl_r_line"); if (rline) rline.scale.set(sep / (2 * CL_HX), 1, 1);
+
+        // Arrow length faithful to physical 1/r\\u00b2 and \\u221d q1 q2
+        // (default q1=q2=5, r=5cm -> 0.9 world units).
+        var physRel = (q1v * q2v) / (rcm * rcm);   // reference (5*5)/(5*5) = 1
+        var len = 0.9 * physRel; if (len < 0.16) len = 0.16; if (len > 1.5) len = 1.5;
+        var s = sgn;   // q1 is always positive, so the pair sign is q2's sign
+        clSetArrow(clId("cl_f12"), [-half, 0, 0], [-s, 0, 0], len, forceColor);
+        clSetArrow(clId("cl_f21"), [half, 0, 0], [s, 0, 0], len, forceColor);
+        var f12l = clId("cl_f12_lbl"); if (f12l) f12l.position.set(-half, -0.44, 0);
+        var f21l = clId("cl_f21_lbl"); if (f21l) f21l.position.set(half, -0.44, 0);
+
+        var v1 = document.getElementById("cl_q1_val"); if (v1) v1.textContent = "+" + Math.round(q1v);
+        var v2 = document.getElementById("cl_q2_val"); if (v2) v2.textContent = (sgn < 0 ? "\\u2212" : "+") + Math.round(q2v);
+        var vr = document.getElementById("cl_r_val"); if (vr) vr.textContent = String(Math.round(rcm));
+        var out = document.getElementById("cl_f_readout");
+        if (out) out.innerHTML = "|F| \\u2248 " + physRel.toFixed(2) + " \\u00d7 (q\\u2081=q\\u2082=5, r=5cm) \\u2014 " + (sgn < 0 ? "attract" : "repel");
     }
 
     // ── Uniform-field force diamond (force_on_charge_in_field, F = qE) ────────
@@ -5859,6 +7001,71 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
 
+        // ── Electric dipole explorer (STATE_7): q, r, theta → move P, watch E_net ──
+        if (config.dipole_explorer) {
+            var dfPanel = document.getElementById("sliders");
+            if (dfPanel) {
+                var dq = (config.slider_controls && config.slider_controls.q) || {};
+                var dr = (config.slider_controls && config.slider_controls.r) || {};
+                var dt = (config.slider_controls && config.slider_controls.theta) || {};
+                var dqDef = dq.default != null ? dq.default : 5, dqMin = dq.min != null ? dq.min : 1, dqMax = dq.max != null ? dq.max : 10, dqStep = dq.step != null ? dq.step : 1;
+                var drDef = dr.default != null ? dr.default : 2.2, drMin = dr.min != null ? dr.min : 1.4, drMax = dr.max != null ? dr.max : 3.2, drStep = dr.step != null ? dr.step : 0.1;
+                var dtDef = dt.default != null ? dt.default : 0, dtMin = dt.min != null ? dt.min : 0, dtMax = dt.max != null ? dt.max : 180, dtStep = dt.step != null ? dt.step : 5;
+                dfPanel.innerHTML =
+                    '<label>q = <span id="df_q_val">' + Math.round(dqDef) + '</span></label>' +
+                    '<input type="range" id="df_q_slider" min="' + dqMin + '" max="' + dqMax + '" step="' + dqStep + '" value="' + dqDef + '">' +
+                    '<label>r = <span id="df_r_val">' + drDef.toFixed(1) + '</span></label>' +
+                    '<input type="range" id="df_r_slider" min="' + drMin + '" max="' + drMax + '" step="' + drStep + '" value="' + drDef + '">' +
+                    '<label>\\u03b8 = <span id="df_theta_val">' + Math.round(dtDef) + '</span>\\u00b0</label>' +
+                    '<input type="range" id="df_theta_slider" min="' + dtMin + '" max="' + dtMax + '" step="' + dtStep + '" value="' + dtDef + '">' +
+                    '<div id="df_e_readout">|E| \\u2248 1.00 \\u00d7</div>';
+                var dfQS = document.getElementById("df_q_slider");
+                var dfRS = document.getElementById("df_r_slider");
+                var dfTS = document.getElementById("df_theta_slider");
+                if (dfQS) dfQS.addEventListener("input", refreshDipoleExplorer);
+                if (dfRS) dfRS.addEventListener("input", refreshDipoleExplorer);
+                if (dfTS) dfTS.addEventListener("input", refreshDipoleExplorer);
+                refreshDipoleExplorer();
+            }
+        }
+
+        // ── Coulomb's-law explorer (STATE_9): q1, q2, r + sign flip → F = k q1 q2/r² ──
+        //   Rebuild the #sliders panel with two charge sliders, a q2 sign-flip
+        //   button, and a distance slider; all drive refreshCoulombsLawExplorer
+        //   (arrow length faithful to the physical 1/r² and ∝ q1 q2).
+        if (config.coulomb_explorer) {
+            var clPanel = document.getElementById("sliders");
+            if (clPanel) {
+                var c1 = (config.slider_controls && config.slider_controls.q1) || {};
+                var c2 = (config.slider_controls && config.slider_controls.q2) || {};
+                var cr = (config.slider_controls && config.slider_controls.r) || {};
+                var q1Def = c1.default != null ? c1.default : 5, q1Min = c1.min != null ? c1.min : 1, q1Max = c1.max != null ? c1.max : 10, q1Step = c1.step != null ? c1.step : 1;
+                var q2Def = c2.default != null ? c2.default : 5, q2Min = c2.min != null ? c2.min : 1, q2Max = c2.max != null ? c2.max : 10, q2Step = c2.step != null ? c2.step : 1;
+                var crDef = cr.default != null ? cr.default : 5, crMin = cr.min != null ? cr.min : 2, crMax = cr.max != null ? cr.max : 20, crStep = cr.step != null ? cr.step : 1;
+                clPanel.innerHTML =
+                    '<label>q\\u2081 = <span id="cl_q1_val">+' + Math.round(q1Def) + '</span> nC</label>' +
+                    '<input type="range" id="cl_q1_slider" min="' + q1Min + '" max="' + q1Max + '" step="' + q1Step + '" value="' + q1Def + '">' +
+                    '<label>q\\u2082 = <span id="cl_q2_val">+' + Math.round(q2Def) + '</span> nC</label>' +
+                    '<input type="range" id="cl_q2_slider" min="' + q2Min + '" max="' + q2Max + '" step="' + q2Step + '" value="' + q2Def + '">' +
+                    '<button id="cl_sign_toggle" style="margin:6px 0;padding:4px 10px;cursor:pointer;border-radius:4px;border:1px solid #555;background:#222;color:#eee;">flip q\\u2082 sign (+/\\u2212)</button>' +
+                    '<label>r = <span id="cl_r_val">' + Math.round(crDef) + '</span> cm</label>' +
+                    '<input type="range" id="cl_r_slider" min="' + crMin + '" max="' + crMax + '" step="' + crStep + '" value="' + crDef + '">' +
+                    '<div id="cl_f_readout">|F| \\u2248 1.00 \\u00d7</div>';
+                var clQ1 = document.getElementById("cl_q1_slider");
+                var clQ2 = document.getElementById("cl_q2_slider");
+                var clR = document.getElementById("cl_r_slider");
+                var clTog = document.getElementById("cl_sign_toggle");
+                if (clQ1) clQ1.addEventListener("input", refreshCoulombsLawExplorer);
+                if (clQ2) clQ2.addEventListener("input", refreshCoulombsLawExplorer);
+                if (clR) clR.addEventListener("input", refreshCoulombsLawExplorer);
+                if (clTog) clTog.addEventListener("click", function () {
+                    clExplorerSign = (clExplorerSign > 0) ? -1 : 1;
+                    refreshCoulombsLawExplorer();
+                });
+                refreshCoulombsLawExplorer();
+            }
+        }
+
         // ── Uniform-field force explorer (STATE_7): q, sign, E, m → F = qE, a = qE/m ──
         //   Rebuild the #sliders panel with charge / field / mass sliders + a
         //   sign-flip button; all drive refreshForceFieldExplorer (real F = qE,
@@ -6053,6 +7260,73 @@ export const FIELD_3D_RENDERER_CODE = `
             refreshTorqueLabels();
         }
 
+        // ── dipole_in_uniform_field slider wiring ─────────────────────────
+        // Three range inputs (p, E, θ). θ drives rotation directly via
+        // applyTorqueLoopTheta (manual mode); p and E seed slider_p / slider_E
+        // so the per-frame τ / force-arrow scaling in updateDipoleInFieldFrame
+        // reads them. The readout shows τ = pE·sinθ and U = −pE·cosθ in scaled
+        // units (the relationship is the teaching point, not the absolute size).
+        var pDipole = document.getElementById("p_dipole_slider");
+        var eDipole = document.getElementById("e_dipole_slider");
+        var thetaDipole = document.getElementById("theta_dipole_slider");
+        if (pDipole && eDipole && thetaDipole) {
+            if (config.slider_controls) {
+                if (config.slider_controls.p) {
+                    pDipole.min = String(config.slider_controls.p.min);
+                    pDipole.max = String(config.slider_controls.p.max);
+                    pDipole.step = String(config.slider_controls.p.step);
+                    pDipole.value = String(config.slider_controls.p.default);
+                }
+                if (config.slider_controls.E) {
+                    eDipole.min = String(config.slider_controls.E.min);
+                    eDipole.max = String(config.slider_controls.E.max);
+                    eDipole.step = String(config.slider_controls.E.step);
+                    eDipole.value = String(config.slider_controls.E.default);
+                }
+                if (config.slider_controls.theta_deg) {
+                    thetaDipole.min = String(config.slider_controls.theta_deg.min);
+                    thetaDipole.max = String(config.slider_controls.theta_deg.max);
+                    thetaDipole.step = String(config.slider_controls.theta_deg.step);
+                    thetaDipole.value = String(config.slider_controls.theta_deg.default);
+                }
+            }
+
+            function refreshDipoleLabels() {
+                var pVal = document.getElementById("p_dipole_val");
+                var eVal = document.getElementById("e_dipole_val");
+                var thVal = document.getElementById("theta_dipole_val");
+                var readout = document.getElementById("dipole_readout");
+
+                var p = parseFloat(pDipole.value);
+                var e = parseFloat(eDipole.value);
+                var th = parseFloat(thetaDipole.value);
+
+                if (pVal) pVal.textContent = p.toFixed(1);
+                if (eVal) eVal.textContent = e.toFixed(1);
+                if (thVal) thVal.textContent = th.toFixed(0);
+
+                var lgD = findTorqueLoopGroup();
+                if (lgD) {
+                    lgD.userData.slider_p = p;
+                    lgD.userData.slider_E = e;
+                    lgD.userData.slider_theta_deg = th;
+                    lgD.userData.rotation_mode = "manual";
+                    applyTorqueLoopTheta(lgD, th);
+                }
+
+                // τ = pE sinθ, U = −pE cosθ in scaled units (p in 10⁻³⁰ C·m,
+                // E in kV/m → product ~10⁻²⁶; show the 10⁻²⁶ coefficient).
+                var tauD = 0.1 * p * e * Math.abs(Math.sin(th * Math.PI / 180));
+                var uD = -0.1 * p * e * Math.cos(th * Math.PI / 180);
+                if (readout) readout.textContent = "\\u03c4 = " + tauD.toFixed(2) + "   U = " + uD.toFixed(2);
+            }
+
+            pDipole.addEventListener("input", refreshDipoleLabels);
+            eDipole.addEventListener("input", refreshDipoleLabels);
+            thetaDipole.addEventListener("input", refreshDipoleLabels);
+            refreshDipoleLabels();
+        }
+
         // ── force_on_current_wire slider wiring ──────────────────────────
         // Four range inputs (I, L, B, θ) + a flip-current button. The F
         // readout = B·I·L·sinθ (Newtons). The animate loop reads the slider
@@ -6165,6 +7439,13 @@ export const FIELD_3D_RENDERER_CODE = `
             applyTorqueLoopGlow();
         }
 
+        // Electric dipole in a uniform field — rotation + τ scaling + couple-
+        // arrow repositioning + θ-arc + U-meter + TTS glow.
+        if (config.scenario_type === "dipole_in_uniform_field") {
+            updateDipoleInFieldFrame(heldAtPin ? 0 : 0.016);
+            applyDipoleInFieldGlow();
+        }
+
         // Electric diamond STATE_5 — the density↔strength aha, in motion.
         // A probe sweeps radially out and back; its E-arrow shrinks as kQ/r²
         // (strength), and the field lines around it brighten where they crowd
@@ -6205,6 +7486,111 @@ export const FIELD_3D_RENDERER_CODE = `
                 var ang5 = Math.acos(Math.max(-1, Math.min(1, lud5.unitDir[0])));
                 lo5.material.opacity = (ang5 < reach5) ? (0.95 * pulse5) : 0.12;
             }
+        }
+
+        // Electric dipole diamond — per-state motion (state clock, Rule 26; never TTS).
+        if (config.dipole_explorer) {
+            var dtt = time - stateStartTime;
+            var dcs = PM_currentState;
+
+            if (dcs === "STATE_1") {
+                // Gentle breathing — charges glow + p arrow length pulse.
+                var pul1 = 0.5 + 0.32 * Math.sin(dtt * 2.0);
+                var qpm = dfId("df_q_plus"), qnm = dfId("df_q_minus");
+                if (qpm && qpm.material) qpm.material.emissiveIntensity = 0.5 + pul1 * 0.4;
+                if (qnm && qnm.material) qnm.material.emissiveIntensity = 0.5 + pul1 * 0.4;
+                var pAr1 = dfId("df_p_arrow");
+                if (pAr1) { var pl1 = 2 * dfA * (0.97 + 0.05 * Math.sin(dtt * 2.0)); pAr1.setLength(pl1, 0.22, 0.14); }
+            } else if (dcs === "STATE_2" || dcs === "STATE_3") {
+                // Staggered build: E+ grows, then E-, then the net assembles, then pulses.
+                var isAx = (dcs === "STATE_2");
+                var px2 = isAx ? 1.5 : 0.0, py2 = isAx ? 0.0 : 1.5;
+                var f2 = dipoleFieldAt(px2, py2, 0, 1.0);
+                var b1 = Math.min(1, dtt / 0.8);
+                var b2 = Math.min(1, Math.max(0, (dtt - 0.8) / 0.8));
+                var b3raw = Math.min(1, Math.max(0, (dtt - 1.6) / 0.8));
+                var netPulse = b3raw >= 1 ? (0.93 + 0.07 * Math.sin(dtt * 3.0)) : b3raw;
+                dfGrowArrow(dfId("df_eplus"), [px2, py2, 0], f2.ep, 0xEF5350, b1);
+                dfGrowArrow(dfId("df_eminus"), [px2, py2, 0], f2.en, 0x42A5F5, b2);
+                dfGrowArrow(dfId("df_enet"), [px2, py2, 0], f2.net, 0x66BB6A, netPulse);
+            } else if (dcs === "STATE_4") {
+                // Both nets breathe in sync — the 2:1 length contrast read in motion.
+                var pul4 = 0.92 + 0.08 * Math.sin(dtt * 3.0);
+                dfSetArrowLD(dfId("df_cmp_ax"), [1.5, 0, 0], [1, 0, 0], 1.2 * pul4, 0x66BB6A);
+                dfSetArrowLD(dfId("df_cmp_eq"), [0, 1.5, 0], [-1, 0, 0], 0.6 * pul4, 0x66BB6A);
+            } else if (dcs === "STATE_5") {
+                // Moving sweep probe — glides out and back; net arrow collapses as 1/r^3.
+                var per5d = 5.0;
+                var ph5d = (dtt % per5d) / per5d;
+                var tri5d = ph5d < 0.5 ? ph5d * 2 : 2 - ph5d * 2;
+                var sm5d = tri5d * tri5d * (3 - 2 * tri5d);
+                var nearXd = 1.1, farXd = 2.6;
+                var pxd = nearXd + (farXd - nearXd) * sm5d;
+                var reld = Math.pow(nearXd / pxd, 3);
+                var swDot = dfId("df_sweep_dot");
+                if (swDot) swDot.position.set(pxd, 0, 0);
+                var swArr = dfId("df_sweep_arrow");
+                if (swArr) {
+                    var lend = 0.25 + 1.25 * reld;
+                    swArr.position.set(pxd, 0, 0);
+                    swArr.setDirection(new THREE.Vector3(1, 0, 0));
+                    swArr.setLength(lend, Math.min(0.3, 0.26 * lend), Math.min(0.2, 0.16 * lend));
+                }
+            } else if (dcs === "STATE_6") {
+                // Flowing dots travel +q -> -q along each stored field-line polyline.
+                var speed6 = 0.16;
+                for (var fl6 = 0; fl6 < dfLines.length; fl6++) {
+                    var dot6 = dfId("df_flow_" + fl6);
+                    if (!dot6) continue;
+                    var line6 = dfLines[fl6];
+                    if (!line6 || line6.length < 2) continue;
+                    var off6 = fl6 / Math.max(1, dfLines.length);
+                    var tt6 = (((dtt * speed6 + off6) % 1) + 1) % 1;
+                    var fpos = (line6.length - 1) * tt6;
+                    var i6 = Math.floor(fpos);
+                    var fr6 = fpos - i6;
+                    var a6 = line6[i6], c6 = line6[Math.min(line6.length - 1, i6 + 1)];
+                    dot6.position.set(a6[0] + (c6[0] - a6[0]) * fr6, a6[1] + (c6[1] - a6[1]) * fr6, a6[2] + (c6[2] - a6[2]) * fr6);
+                }
+            }
+        }
+
+        // Coulomb's law diamond — per-state motion (state clock, Rule 26; never TTS).
+        if (config.coulomb_explorer) {
+            var ct = time - stateStartTime;
+            var ccs = PM_currentState;
+            if (ccs === "STATE_5") {
+                // Moving sweep charge: glides out and back along its own row; its
+                // force arrow collapses as 1/r\\u00b2 (the inverse-square in motion).
+                // LINEAR triangle (no smoothstep) keeps the per-frame motion
+                // uniform so it never freezes at the turning points (D5/D7 gate).
+                var srcX5 = -2.7, nearD5 = 1.2, farD5 = 4.9, per5 = 4.0;
+                var ph5 = (ct % per5) / per5;
+                var tri5 = ph5 < 0.5 ? ph5 * 2 : 2 - ph5 * 2;
+                var d5 = nearD5 + (farD5 - nearD5) * tri5;
+                var rel5 = (nearD5 / d5) * (nearD5 / d5);
+                var sd5 = clId("cl_sweep_dot"); if (sd5) sd5.position.set(srcX5 + d5, 0.6, 0);
+                var sa5 = clId("cl_sweep_arr");
+                if (sa5) {
+                    var l5 = 0.14 + 0.9 * rel5;
+                    sa5.position.set(srcX5 + d5, 0.6, 0);
+                    sa5.setDirection(new THREE.Vector3(1, 0, 0));
+                    sa5.setLength(l5, Math.min(0.3, 0.26 * l5), Math.min(0.2, 0.16 * l5));
+                }
+            } else if (ccs === "STATE_6") {
+                // Doubling (auto_after_animation): the pair arrows grow base -> 2x
+                // and back while q1 pulses, so "double a charge -> double F" reads
+                // in motion against the static faint "before" ghosts.
+                var fcc6 = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+                var grow6 = 0.6 + 0.6 * (0.5 - 0.5 * Math.cos(ct * 1.7));   // 0.6 .. 1.2 .. 0.6
+                clSetArrow(clId("cl_f12"), [-CL_HX, 0, 0], [-1, 0, 0], grow6, fcc6);
+                clSetArrow(clId("cl_f21"), [CL_HX, 0, 0], [1, 0, 0], grow6, fcc6);
+                var bq6 = clId("cl_q1");
+                if (bq6) { var sc6 = 1.7 * (0.95 + 0.07 * Math.sin(ct * 1.7)); bq6.scale.set(sc6, sc6, sc6); }
+            }
+            // STATE_1/2/3/4/7/8 are intentionally static teaching frames (the
+            // dynamism lives in the STATE_5 sweep + STATE_6 doubling). Static is
+            // fine for the motion gate (D7 only flags motion that DIES mid-state).
         }
 
         // Uniform-field force diamond (force_on_charge_in_field) — per-frame
@@ -6370,12 +7756,16 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
             if (dud.elementType === "right_hand" && dud.animate_curl) {
-                // Subtle pulse: scale fingers slightly to draw the eye
-                var pulse = 1 + 0.04 * Math.sin(time * 2.5);
+                // Draw the eye with a gentle in-hue emissive shimmer — NEVER size
+                // (founder choice 2026-06-24: emphasis brightens, it never resizes;
+                // the old 'scale fingers slightly' pulse was the zoom-in/zoom-out
+                // bulge). Palm/thumb/fingers share skinMat (emissive 0x442211); the
+                // shimmer lifts its emissiveIntensity 0.18 -> 0.30 and back.
+                var handGlow = 0.18 + 0.12 * (0.5 + 0.5 * Math.sin(time * 2.5));
                 for (var ci = 0; ci < dx.children.length; ci++) {
                     var ch = dx.children[ci];
-                    if (ch.userData && typeof ch.userData.fingerIndex === "number") {
-                        ch.scale.set(pulse, 1, pulse);
+                    if (ch.material && ch.material.emissive) {
+                        ch.material.emissiveIntensity = handGlow;
                     }
                 }
             }
@@ -6410,8 +7800,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
             if (dud.elementType === "highlighted_point" && dud.pulse) {
-                var p = 1 + 0.15 * Math.sin(time * 3);
-                dx.scale.set(p, p, p);
+                // Beat the "look here" point by BRIGHTNESS, not size (founder
+                // choice 2026-06-24). Child 0 = core dot (emissive breathes),
+                // child 1 = halo (opacity breathes); geometry never scales.
+                var hpB = 0.5 + 0.5 * Math.sin(time * 3); // 0..1
+                for (var hpi = 0; hpi < dx.children.length; hpi++) {
+                    var hpc = dx.children[hpi];
+                    if (!hpc.material) continue;
+                    if (hpi === 0) {
+                        hpc.material.emissiveIntensity = 0.7 + 0.5 * hpB;
+                    } else {
+                        hpc.material.opacity = 0.12 + 0.18 * hpB;
+                    }
+                }
             }
         }
 
@@ -7181,18 +8582,15 @@ export const FIELD_3D_RENDERER_CODE = `
 
             // Track final lengths so the labels know where the arrow tips are.
             var finalV_len = 0, finalF_len = 0, finalVPar_len = 0, finalVPerp_len = 0;
-            // TTS-driven glow pulse: shifted DC offset so glowing elements are
-            // always larger than their un-glowed baseline (range [1.0, 1.7]).
-            // Founder note 2026-05-12 (fourth pass): centered-on-1.0 oscillations
-            // meant elements were sometimes SMALLER than baseline mid-cycle —
-            // invisible signal when caught at the dip. The new formula sits at
-            // a +35% mean elevation and oscillates ±35% around that, so the
-            // element is conspicuously enlarged for the entire duration of the
-            // glow target, with a soft pulse on top.
+            // TTS-driven glow = brightness + focus-dim, NEVER size (founder
+            // choice 2026-06-24). The old size "bulge" (1.0->1.7 scale) is gone;
+            // glowing elements brighten and their peers dim via applyGlowEmphasis,
+            // so a vector's length stays an honest magnitude. glowPulse is kept
+            // ONLY for the particle-trail's opacity shimmer (an anchor, not size).
             var glowPulse = 1.35 + 0.35 * Math.sin(time * 3.5);
-            function glowFactor(target) {
-                return glowTargets.indexOf(target) >= 0 ? glowPulse : 1.0;
-            }
+            var glowActive = glowTargets.length > 0;
+            var glowT = glowEmphT(time);
+            function isFocal(target) { return glowTargets.indexOf(target) >= 0; }
 
             for (var li = 0; li < sceneObjects.length; li++) {
                 var lObj = sceneObjects[li];
@@ -7229,37 +8627,41 @@ export const FIELD_3D_RENDERER_CODE = `
                 } else if (lUd.elementType === "velocity_vector") {
                     lObj.position.copy(newPos);
                     if (vShow) {
-                        finalV_len = vScale * glowFactor("v");
+                        finalV_len = vScale;
                         lObj.setDirection(vDir); lObj.setLength(finalV_len, 0.22, 0.11);
                         lObj.visible = true;
+                        applyGlowEmphasis(lObj, isFocal("v"), glowActive, glowT);
                     } else lObj.visible = false;
                 } else if (lUd.elementType === "force_vector") {
                     lObj.position.copy(newPos);
                     if (fShow && fLen > 1e-6) {
-                        finalF_len = fScale * Math.max(0.15, fLen) * glowFactor("f");
+                        finalF_len = fScale * Math.max(0.15, fLen);
                         lObj.setDirection(fDir);
                         lObj.setLength(finalF_len, 0.22, 0.11);
                         lObj.visible = true;
+                        applyGlowEmphasis(lObj, isFocal("f"), glowActive, glowT);
                     } else {
                         lObj.visible = false;
                     }
                 } else if (lUd.elementType === "v_parallel") {
                     if (decompShow && vParLen > 0.02) {
-                        finalVPar_len = vParLen * glowFactor("v_parallel");
+                        finalVPar_len = vParLen;
                         lObj.position.copy(newPos);
                         lObj.setDirection(vParDir);
                         lObj.setLength(finalVPar_len, 0.18, 0.09);
                         lObj.visible = true;
+                        applyGlowEmphasis(lObj, isFocal("v_parallel"), glowActive, glowT);
                     } else {
                         lObj.visible = false;
                     }
                 } else if (lUd.elementType === "v_perp") {
                     if (decompShow && vPerpLen > 0.02) {
-                        finalVPerp_len = vPerpLen * glowFactor("v_perp");
+                        finalVPerp_len = vPerpLen;
                         lObj.position.copy(newPos);
                         lObj.setDirection(vPerpDir);
                         lObj.setLength(finalVPerp_len, 0.18, 0.09);
                         lObj.visible = true;
+                        applyGlowEmphasis(lObj, isFocal("v_perp"), glowActive, glowT);
                     } else {
                         lObj.visible = false;
                     }
@@ -7284,7 +8686,8 @@ export const FIELD_3D_RENDERER_CODE = `
                         // Place label just past the arrow tip.
                         lObj.position.copy(newPos).addScaledVector(labelDir, labelLen + 0.22);
                         lObj.visible = true;
-                        // Glow target scales the label up too.
+                        // Label tracks its arrow's focal state but keeps a
+                        // CONSTANT size — only its brightness/opacity changes.
                         var tracksGlow = (
                             (tracks === "velocity_vector" && glowTargets.indexOf("v") >= 0) ||
                             (tracks === "force_vector"    && glowTargets.indexOf("f") >= 0) ||
@@ -7292,15 +8695,16 @@ export const FIELD_3D_RENDERER_CODE = `
                             (tracks === "v_perp"          && glowTargets.indexOf("v_perp") >= 0)
                         );
                         var baseScale = (tracks === "v_parallel" || tracks === "v_perp") ? 0.65 : (tracks === "force_vector" ? 0.95 : 0.85);
-                        var pulse = tracksGlow ? glowPulse : 1.0;
-                        lObj.scale.set(baseScale * 3 * pulse, baseScale * pulse, 1);
+                        lObj.scale.set(baseScale * 3, baseScale, 1);
+                        applyGlowEmphasis(lObj, tracksGlow, glowActive, glowT);
                     } else {
                         lObj.visible = false;
                     }
                 } else if (lUd.elementType === "ambient_field") {
-                    // TTS glow 'b': uniform B-field grid arrows scale softly
-                    // while the narration references the magnetic field.
-                    lObj.scale.setScalar(glowFactor("b"));
+                    // TTS glow 'b': the uniform B-field grid BRIGHTENS (and its
+                    // peers dim) while the narration references the field — it
+                    // never resizes (the grid spacing stays an honest scale).
+                    applyGlowEmphasis(lObj, isFocal("b"), glowActive, glowT);
                 } else if (lUd.elementType === "particle_trail") {
                     if (!trailShow) { lObj.visible = false; continue; }
                     lObj.visible = true;
@@ -7442,11 +8846,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 var handObj = dynamicExtras[hi];
                 if (!handObj.userData || handObj.userData.elementType !== "lorentz_hand") continue;
 
-                // TTS glow 'hand': the 3D right-hand mesh scales softly while
-                // the narration explicitly references "the 3D right-hand" or
-                // its fingers / palm / thumb. Multiplies on top of the base
-                // hand_scale already baked into child positions/dimensions.
-                handObj.scale.setScalar(glowFactor("hand"));
+                // TTS glow 'hand': the 3D right-hand BRIGHTENS (emissive lift on
+                // its skin; peers dim) while the narration references it — the
+                // hand never resizes (the base hand_scale stays untouched).
+                applyGlowEmphasis(handObj, isFocal("hand"), glowActive, glowT);
 
                 // (a) Regenerate the 4 finger geometries with current curlT,
                 //     and slide each fingernail to the new fingertip.
@@ -7743,8 +9146,8 @@ export const FIELD_3D_RENDERER_CODE = `
                     // HTML overlays (Fleming SVG, sliders panel) glow via a CSS
                     // class — see #fleming_overlay / #lorentz_sliders + the
                     // .glow-pulse keyframes in the iframe <style> block. 3D-
-                    // scene elements (arrows, trail, hand, B grid) pulse via
-                    // glowFactor() inside the animate loop above.
+                    // scene elements (arrows, hand, B grid) brighten + peers dim
+                    // via applyGlowEmphasis() in the animate loop above.
                     var flemingEl = document.getElementById("fleming_overlay");
                     if (flemingEl) flemingEl.classList.toggle("glow-pulse", glowTargets.indexOf("fleming") >= 0);
                     var slidersEl = document.getElementById("lorentz_sliders");
@@ -7824,7 +9227,8 @@ export const FIELD_3D_RENDERER_CODE = `
                     // Diamond #3: external controller (e.g. theta slider or
                     // TTS-driven cue) sets the current loop angle θ relative
                     // to B in degrees. Cancels any rotation_mode auto-advance.
-                    if (config.scenario_type === "torque_on_loop_uniform_field") {
+                    if (config.scenario_type === "torque_on_loop_uniform_field" ||
+                        config.scenario_type === "dipole_in_uniform_field") {
                         var lgM = findTorqueLoopGroup();
                         if (lgM && typeof data.theta_deg === "number") {
                             lgM.userData.rotation_mode = "manual";
@@ -7839,7 +9243,8 @@ export const FIELD_3D_RENDERER_CODE = `
                     // with TTS narration when the founder clicks ▶ Play TTS.
                     // Continuous modes (theta_sweep, oscillation) restart from
                     // phi=0 for a clean visual reset.
-                    if (config.scenario_type === "torque_on_loop_uniform_field") {
+                    if (config.scenario_type === "torque_on_loop_uniform_field" ||
+                        config.scenario_type === "dipole_in_uniform_field") {
                         var lgR = findTorqueLoopGroup();
                         if (lgR) {
                             var initT = lgR.userData.rotation_init_theta_deg;

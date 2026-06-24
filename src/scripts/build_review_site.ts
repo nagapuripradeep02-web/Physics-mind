@@ -79,6 +79,31 @@ type ReviewState = {
 const ROOT = process.cwd();
 const CONCEPTS_DIR = join(ROOT, 'src', 'data', 'concepts');
 const OUT_DIR = join(ROOT, 'review-site');
+const REVIEW_STATUS_PATH = join(ROOT, 'src', 'data', 'review_status.json');
+
+// ── Review-tracking manifest (who reviewed what, + her recorded videos) ───────
+// Single source of truth the founder edits after each review; drives the catalog
+// badges + video links. Missing/malformed file → every sim simply shows
+// "Not yet reviewed" (the builder never fails on it).
+
+type ReviewVideo = { label?: string; url?: string };
+type ReviewStatusEntry = {
+    reviewed?: boolean;
+    reviewer?: string;
+    reviewed_date?: string;
+    videos?: ReviewVideo[];
+};
+type ReviewStatusMap = Record<string, ReviewStatusEntry>;
+
+function loadReviewStatus(): ReviewStatusMap {
+    if (!existsSync(REVIEW_STATUS_PATH)) return {};
+    try {
+        return JSON.parse(readFileSync(REVIEW_STATUS_PATH, 'utf-8')) as ReviewStatusMap;
+    } catch {
+        console.warn(`   ⚠ could not parse ${REVIEW_STATUS_PATH} — catalog will show all sims as unreviewed`);
+        return {};
+    }
+}
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -160,74 +185,198 @@ function renderConceptPage(
     const canonicalOrder =
         fromFlow.length === states.length ? fromFlow : states.map((_, i) => i);
     const orderJson = embedJson(canonicalOrder);
+    // Header status pill — reflects the review-tracking manifest (Teacher-Verified vs awaiting review).
+    const review = loadReviewStatus()[conceptId];
+    const statusPill =
+        review?.reviewed === true
+            ? `<div class="verified"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.2 1.6 2.7-.2.9 2.6 2.2 1.6-.9 2.6.9 2.6-2.2 1.6-.9 2.6-2.7-.2L12 21.5l-2.2-1.6-2.7.2-.9-2.6L4 15.9l.9-2.6L4 10.7l2.2-1.6.9-2.6 2.7.2z" fill="rgba(203,104,67,.2)" stroke="rgba(203,104,67,.6)" stroke-width="1.1"/><path d="M8.6 12l2.1 2.1 4.6-4.6" stroke="#E3A07F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Teacher-Verified${review?.reviewer ? ' &middot; ' + escapeHtml(review.reviewer) : ''}</div>`
+            : `<div class="verified pending"><span class="dot"></span> Awaiting review</div>`;
     return `<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${escapeHtml(conceptName)} — PhysicsMind review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#0A0A1A; --panel:#13132b; --ink:#E5E7EB; --muted:#9aa0b4; --amber:#FCD34D; --green:#66BB6A; --red:#EF5350; }
+  :root{
+    /* warm-dark surfaces (the student-product standard theme) */
+    --bg:#1C1B19; --surface:#262523; --surface-2:#302E2B; --surface-3:#3A3835; --sim:#100E0B;
+    /* terracotta accent (the standard) */
+    --clay:#CB6843; --clay-deep:#B0552F; --clay-soft:#E3A07F; --clay-wash:rgba(203,104,67,.15);
+    --sage:#74B594;                 /* calm status green / drop-target */
+    /* ink + hairlines */
+    --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
+    --line:rgba(245,240,230,.10); --line-2:rgba(245,240,230,.055);
+    --red:#E06A52;                  /* warm-tuned pause/stop */
+    --radius:14px;
+    --font-disp:"Fraunces",Georgia,"Times New Roman",serif;
+    --font-ui:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --lift:0 1px 0 rgba(255,255,255,.03) inset, 0 12px 30px -18px rgba(0,0,0,.7);
+    /* legacy aliases — repointed so existing var() references inherit the warm palette */
+    --panel:var(--surface); --amber:var(--clay); --green:var(--clay); --muted:var(--ink-dim);
+  }
   * { box-sizing: border-box; }
   html, body { margin:0; padding:0; height:100%; background:var(--bg); color:var(--ink);
-               font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-  #app { display:flex; flex-direction:row; height:100vh; }
+               font-family: var(--font-ui); -webkit-font-smoothing:antialiased; }
+  /* a barely-there warm glow so the dark page isn't flat (matches the student product) */
+  body::before { content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(46% 38% at 100% 0%, rgba(203,104,67,.07), transparent 60%),
+      radial-gradient(40% 32% at 0% 100%, rgba(116,181,148,.04), transparent 60%); }
+  #app { position:relative; z-index:1; display:flex; flex-direction:row; height:100vh; }
   /* ── vertical state rail (replaces next/prev — Rule 25d) ── */
-  #rail { flex:0 0 216px; width:216px; display:flex; flex-direction:column;
-          border-right:1px solid #23233f; background:var(--panel); min-height:0; }
-  #railhead { padding:10px 12px 8px; border-bottom:1px solid #23233f; }
-  #railhead .rt { font-size:12px; font-weight:700; color:var(--amber); letter-spacing:0.03em; }
-  #railhead .rh { font-size:11px; color:var(--muted); margin-top:3px; line-height:1.35; }
-  #railhead .rbtns { margin-top:8px; }
+  #rail { flex:0 0 200px; width:200px; display:flex; flex-direction:column;
+          border-right:1px solid var(--line); background:var(--surface); min-height:0; }
+  #railhead { padding:14px 14px 10px; border-bottom:1px solid var(--line); }
+  #railhead .rt { font-size:10.5px; font-weight:600; color:var(--ink-faint);
+                  letter-spacing:.18em; text-transform:uppercase; }
+  #railhead .rbtns { margin-top:9px; }
   button.mini { font-size:11px; padding:5px 9px; }
-  #cards { flex:1 1 auto; overflow-y:auto; padding:8px; }
-  .card { display:flex; align-items:flex-start; gap:8px; padding:9px 10px; margin-bottom:6px;
-          background:#1b1b38; border:1px solid #2a2a4a; border-radius:8px; cursor:pointer; }
-  .card:hover { border-color:#3d3d63; }
-  .card.active { border-color:var(--amber); background:#26264a; }
+  #cards { flex:1 1 auto; overflow-y:auto; padding:6px 6px; }
+  /* flat, minimal one-line rows (matches the student product's lesson list) */
+  .card { position:relative; display:flex; align-items:center; gap:11px;
+          padding:9px 12px 9px 14px; cursor:pointer;
+          border-bottom:1px solid var(--line-2); transition:background .16s ease; }
+  .card:last-child { border-bottom:0; }
+  .card:hover { background:var(--surface-2); }
+  .card:hover .grip { opacity:1; }
+  .card.active { background:var(--clay-wash); border-bottom-color:transparent; }
+  .card.active::before { content:""; position:absolute; left:0; top:7px; bottom:7px; width:3px;
+                         border-radius:3px; background:var(--clay); }
   .card.dragging { opacity:0.45; }
-  .card.dragover { border-color:var(--green); }
-  .card .num { flex:0 0 20px; height:20px; border-radius:50%; background:#34345c; color:#cfd2e6;
-               font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; }
-  .card.active .num { background:var(--amber); color:#0A0A1A; }
-  .card .ttl { font-size:12px; line-height:1.3; color:var(--ink); }
-  .card .grip { margin-left:auto; color:#54547a; font-size:12px; cursor:grab; }
+  .card.dragover { box-shadow: inset 0 2px 0 var(--clay); }
+  .card .num { flex:0 0 18px; font-family:var(--font-disp); font-weight:600;
+               color:var(--ink-faint); font-size:14px; text-align:center; }
+  .card.active .num { color:var(--clay-soft); }
+  .card .ttl { flex:1 1 auto; min-width:0; font-size:12.5px; line-height:1.45; color:var(--ink-dim);
+               white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .card.active .ttl { color:var(--ink); font-weight:500; }
+  .card .grip { flex:none; margin-left:4px; color:var(--ink-faint); font-size:12px; cursor:grab;
+                opacity:0; transition:opacity .16s ease; }
   #main { flex:1 1 auto; display:flex; flex-direction:column; min-width:0; min-height:0; }
-  header { padding:8px 14px; border-bottom:1px solid #23233f; }
-  header h1 { font-size:15px; margin:0; color:var(--amber); font-weight:700; }
-  header .hint { font-size:12px; color:var(--muted); margin-top:2px; }
-  #stage { position:relative; flex:1 1 auto; min-height:0; background:#000; }
+  header { padding:11px 18px 10px; border-bottom:1px solid var(--line); }
+  .brandbar { display:flex; align-items:center; gap:15px; }
+  .logo { display:flex; align-items:center; gap:11px; flex:none; }
+  .mark { width:36px; height:36px; border-radius:11px; background:var(--clay); flex:none;
+          display:grid; place-items:center; box-shadow:0 6px 18px -6px rgba(203,104,67,.55); }
+  .mark svg { width:21px; height:21px; }
+  .wordmark b { font-family:var(--font-disp); font-weight:600; font-size:17px; letter-spacing:-.01em;
+                color:var(--ink); display:block; line-height:1; }
+  .wordmark span { font-family:var(--font-ui); font-size:8.5px; letter-spacing:.22em;
+                   text-transform:uppercase; color:var(--ink-faint); margin-top:4px; display:block; }
+  .vrule { width:1px; height:28px; background:var(--line); flex:none; }
+  header h1.concept { font-family:var(--font-disp); font-style:italic; font-size:17px; font-weight:500;
+                      color:var(--ink); margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .hd-right { margin-left:auto; display:flex; align-items:center; gap:13px; flex:none; }
+  .verified { display:flex; align-items:center; gap:7px; padding:6px 13px 6px 9px; border-radius:999px;
+              font-size:10.5px; letter-spacing:.04em; font-weight:600; text-transform:uppercase; white-space:nowrap;
+              color:var(--clay-soft); background:var(--clay-wash); border:1px solid rgba(203,104,67,.3); }
+  .verified svg { width:14px; height:14px; }
+  .verified.pending { color:var(--ink-dim); background:rgba(245,240,230,.04); border-color:var(--line); }
+  .verified .dot { width:7px; height:7px; border-radius:50%; background:var(--sage);
+                   box-shadow:0 0 8px rgba(116,181,148,.6); }
+  #stage { position:relative; flex:1 1 auto; min-height:0; background:var(--sim); }
+  #stage::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:3; border-radius:0;
+                  box-shadow: inset 0 0 0 1px var(--line), inset 0 0 70px rgba(0,0,0,.4); }
   #sim { width:100%; height:100%; border:0; display:block; }
-  #caption { position:absolute; left:50%; bottom:12px; transform:translateX(-50%);
-             background:rgba(0,0,0,0.78); color:var(--ink); padding:8px 16px;
-             border-radius:8px; font-size:15px; line-height:1.4; max-width:86%;
-             text-align:center; pointer-events:none; min-height:1.2em; }
+  #caption { position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
+             background:rgba(16,14,11,0.82); backdrop-filter:blur(8px); color:var(--ink);
+             padding:8px 16px; border:1px solid var(--line);
+             border-radius:11px; font-size:15px; line-height:1.4; max-width:86%;
+             text-align:center; pointer-events:none; min-height:1.2em; z-index:5; }
   #paused { position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
-            display:none; background:rgba(239,83,80,0.94); color:#fff;
-            padding:7px 18px; border-radius:20px; font-size:14px; font-weight:700;
-            z-index:6; pointer-events:none; box-shadow:0 2px 12px rgba(0,0,0,0.45); }
+            display:none; background:var(--red); color:#fff;
+            padding:7px 18px; border-radius:999px; font-size:14px; font-weight:600;
+            z-index:6; pointer-events:none; box-shadow:0 8px 24px -8px rgba(0,0,0,0.6); }
   #tapcue { position:absolute; top:14px; left:50%; transform:translateX(-50%);
             display:none; opacity:0; transition:opacity 0.6s ease;
-            background:rgba(0,0,0,0.72); color:#FFD54F; padding:6px 16px;
-            border-radius:18px; font-size:13px; font-weight:600; z-index:7;
+            background:rgba(16,14,11,0.8); backdrop-filter:blur(6px); color:var(--clay-soft);
+            padding:6px 16px; border:1px solid var(--line);
+            border-radius:999px; font-size:13px; font-weight:600; z-index:7;
             pointer-events:none; box-shadow:0 2px 10px rgba(0,0,0,0.4); }
-  #scrubbar { flex:0 0 auto; display:flex; align-items:center; gap:10px; padding:6px 14px;
-              border-top:1px solid #23233f; background:#0d0d22; }
+  #scrubbar { flex:0 0 auto; display:flex; align-items:center; gap:12px; padding:8px 18px;
+              border-top:1px solid var(--line); background:var(--surface); }
   #scrub { flex:1 1 auto; width:auto; }
-  #scrubtime { font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums;
+  #scrubtime { font-size:11px; color:var(--ink-dim); font-variant-numeric:tabular-nums;
                min-width:74px; text-align:right; }
-  footer { flex:0 0 auto; padding:8px 14px; border-top:1px solid #23233f; background:var(--panel); }
-  #statelabel { font-size:13px; font-weight:600; color:var(--amber); margin-bottom:8px;
-                white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  footer { flex:0 0 auto; padding:10px 18px; border-top:1px solid var(--line); background:var(--surface); }
+  #statelabel { font-family:var(--font-disp); font-size:13.5px; font-weight:600; color:var(--clay-soft);
+                margin-bottom:9px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .controls { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-  button { font:inherit; font-size:13px; font-weight:700; border:0; border-radius:8px;
-           padding:8px 14px; cursor:pointer; background:#3b3b5c; color:#E5E7EB; }
-  button.primary { background:var(--green); color:#0A0A1A; }
+  button { font:inherit; font-family:var(--font-ui); font-size:13px; font-weight:600;
+           border:1px solid var(--line); border-radius:10px;
+           padding:8px 14px; cursor:pointer; background:var(--surface-2); color:var(--ink);
+           transition:background .15s ease, border-color .15s ease; }
+  button:hover { background:var(--surface-3); }
+  button.primary { background:var(--clay); color:#fff; border-color:transparent; box-shadow:var(--lift); }
+  button.primary:hover { background:var(--clay-deep); }
   button.primary.playing { background:var(--red); }
-  button.on { background:var(--green); color:#0A0A1A; }
+  button.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
   button:disabled { opacity:0.4; cursor:default; }
   .spacer { flex:1 1 auto; }
-  label.ctl { font-size:12px; color:var(--muted); display:inline-flex; align-items:center; gap:6px; }
-  input[type=range] { width:120px; vertical-align:middle; }
+  label.ctl { font-size:12px; color:var(--ink-dim); display:inline-flex; align-items:center; gap:6px; }
+  /* custom range (scrubber + speed) — warm track, clay thumb */
+  input[type=range] { width:120px; vertical-align:middle; -webkit-appearance:none; appearance:none;
+                      height:5px; border-radius:999px; background:var(--surface-3); cursor:pointer; }
+  #scrub { height:6px; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:15px; height:15px;
+                      border-radius:50%; background:var(--clay); border:2px solid var(--bg);
+                      box-shadow:0 1px 4px rgba(0,0,0,.5); }
+  input[type=range]::-moz-range-thumb { width:14px; height:14px; border-radius:50%; background:var(--clay);
+                      border:2px solid var(--bg); box-shadow:0 1px 4px rgba(0,0,0,.5); }
+  input[type=range]::-moz-range-track { height:5px; border-radius:999px; background:var(--surface-3); }
+
+  /* ── Whiteboard + unified pen (teaching surface) ── */
+  #rail { transition: flex-basis .14s ease, width .14s ease; }
+  #rail.collapsed { flex:0 0 0 !important; width:0 !important; border-right:0; }
+  #railToggle { flex:0 0 14px; width:14px; display:flex; align-items:center; justify-content:center;
+                background:var(--surface); border-right:1px solid var(--line); color:var(--ink-dim);
+                cursor:pointer; font-size:13px; user-select:none; }
+  #railToggle:hover { color:var(--clay-soft); background:var(--surface-2); }
+  #boardToggle { flex:0 0 14px; width:14px; display:flex; align-items:center; justify-content:center;
+                 background:var(--surface); border-left:1px solid var(--line); color:var(--ink-dim);
+                 cursor:pointer; font-size:13px; user-select:none; }
+  #boardToggle:hover { color:var(--clay-soft); background:var(--surface-2); }
+  #main.hidden { display:none; }
+  #divider { flex:0 0 6px; width:6px; cursor:col-resize; background:var(--line); align-self:stretch; }
+  #divider:hover { background:rgba(203,104,67,.4); }
+  #divider.hidden { display:none; }
+  #boardCol { flex:0 0 480px; min-width:0; display:flex; flex-direction:column;
+              background:var(--bg); border-left:1px solid var(--line); }
+  #boardCol.hidden { display:none; }
+  #boardToolbar { flex:0 0 auto; display:flex; align-items:center; gap:5px; flex-wrap:wrap;
+                  padding:7px 9px; background:var(--surface); border-bottom:1px solid var(--line); }
+  #boardToolbar .grp { display:inline-flex; align-items:center; gap:4px; padding-right:6px;
+                       margin-right:2px; border-right:1px solid var(--line); }
+  #boardToolbar .grp:last-child { border-right:0; }
+  #boardScroll { flex:1 1 auto; position:relative; overflow-y:scroll; overflow-x:hidden;
+                 overscroll-behavior:contain; background:#ffffff; }
+  #boardScroll.dark { background:#16110C; }
+  #wbCanvas { display:block; position:sticky; top:0; left:0; width:100%; height:100%;
+              touch-action:pan-y; z-index:2; }
+  #wbSpacer { width:1px; height:1px; pointer-events:none; }
+  #simOverlay { position:absolute; inset:0; z-index:4; touch-action:none; }
+  #simPenBar { position:absolute; top:10px; left:10px; z-index:9; display:flex; gap:6px;
+               background:rgba(16,14,11,0.82); backdrop-filter:blur(6px); padding:5px 6px; border-radius:10px;
+               border:1px solid var(--line); box-shadow:0 2px 10px rgba(0,0,0,0.4); }
+  #simPenBar .seg { display:inline-flex; border:1px solid var(--line); border-radius:7px; overflow:hidden; }
+  #simPenBar .seg .pmbtn { border-radius:0; border:0; }
+  #stage.sim-draw #simOverlay { box-shadow: inset 0 0 0 2px rgba(203,104,67,0.55); cursor: crosshair; }
+  #stage.sim-draw #paused { display:none !important; }
+  .pmbtn { font:inherit; font-family:var(--font-ui); font-size:12px; font-weight:600;
+           border:1px solid var(--line); border-radius:7px;
+           padding:5px 8px; cursor:pointer; background:var(--surface-2); color:var(--ink); }
+  .pmbtn:hover { background:var(--surface-3); }
+  .pmbtn.on { background:var(--clay-wash); color:var(--clay-soft); border-color:rgba(203,104,67,.4); }
+  .swatch { width:18px; height:18px; border-radius:50%; border:2px solid var(--line);
+            cursor:pointer; padding:0; }
+  .swatch.sel { border-color:var(--clay); box-shadow:0 0 0 1px var(--clay); }
+  #wbColor { width:24px; height:22px; padding:0; border:1px solid var(--line); border-radius:6px;
+             background:none; cursor:pointer; }
+  body.dragging { user-select:none; cursor:col-resize; }
+  body.dragging iframe { pointer-events:none; }
 </style>
 </head>
 <body>
@@ -235,18 +384,33 @@ function renderConceptPage(
   <aside id="rail">
     <div id="railhead">
       <div class="rt">STATES</div>
-      <div class="rh">Open any state, in any order. Drag to reorder for your own teaching flow.</div>
       <div class="rbtns"><button id="defaultOrderBtn" class="mini">&#8635; Default order</button></div>
     </div>
     <div id="cards"></div>
   </aside>
+  <div id="railToggle" title="Show/hide the state rail">&#9776;</div>
   <div id="main">
     <header>
-      <h1>${escapeHtml(conceptName)}</h1>
-      <div class="hint">Open any state from the rail. <b>Tap the sim to pause</b> (tap again to resume) · drag to rotate · scroll to zoom. Narration is OFF by default — unmute to hear the script.</div>
+      <div class="brandbar">
+        <div class="logo">
+          <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+          <div class="wordmark"><b>PhysicsMind</b><span>Teacher Review</span></div>
+        </div>
+        <div class="vrule"></div>
+        <h1 class="concept">${escapeHtml(conceptName)}</h1>
+        <div class="hd-right">${statusPill}</div>
+      </div>
     </header>
     <div id="stage">
       <iframe id="sim" src="sim.html" title="sim" allow="autoplay"></iframe>
+      <canvas id="simOverlay"></canvas>
+      <div id="simPenBar">
+        <span class="seg">
+          <button id="simMoveBtn" class="pmbtn on" title="Move the 3D sim — drag to rotate, scroll to zoom">&#9995; Move</button>
+          <button id="simDrawBtn" class="pmbtn" title="Draw on the sim — freezes the view so it can't move while you annotate">&#9999; Draw</button>
+        </span>
+        <button id="simClearBtn" class="pmbtn" title="Clear sim annotations">Clear</button>
+      </div>
       <div id="paused">&#9208; Paused — tap to resume</div>
       <div id="tapcue">&#9208; Tap the sim anytime to pause</div>
       <div id="caption"></div>
@@ -268,6 +432,43 @@ function renderConceptPage(
       </div>
     </footer>
   </div>
+  <div id="divider" class="hidden"></div>
+  <aside id="boardCol" class="hidden">
+    <div id="boardToolbar">
+      <span class="grp">
+        <button id="wbPenBtn" class="pmbtn on" data-tool="pen" title="Pen">&#9999; Pen</button>
+        <button id="wbHiBtn" class="pmbtn" data-tool="highlighter" title="Highlighter">&#128396; Hi</button>
+        <button id="wbEraseBtn" class="pmbtn" data-tool="eraser" title="Eraser (drag over a stroke to remove it)">&#9003; Erase</button>
+      </span>
+      <span class="grp" id="wbSwatches"></span>
+      <span class="grp">
+        <input id="wbColor" type="color" value="#111111" title="Custom colour">
+      </span>
+      <span class="grp">
+        <button class="pmbtn" data-size="2" title="Thin">S</button>
+        <button class="pmbtn on" data-size="3" title="Medium">M</button>
+        <button class="pmbtn" data-size="6" title="Thick">L</button>
+      </span>
+      <span class="grp">
+        <button id="wbUndoBtn" class="pmbtn" title="Undo (Ctrl+Z)">&#8634; Undo</button>
+        <button id="wbRedoBtn" class="pmbtn" title="Redo (Ctrl+Shift+Z)">&#8635; Redo</button>
+        <button id="wbClearBtn" class="pmbtn" title="Clear the whiteboard">Clear</button>
+      </span>
+      <span class="grp">
+        <button id="wbThemeBtn" class="pmbtn" title="Switch the page between white and dark">&#9680; Page</button>
+      </span>
+      <span class="grp">
+        <button id="lyBothBtn" class="pmbtn on" title="Sim + whiteboard side by side">Both</button>
+        <button id="lySimBtn" class="pmbtn" title="Simulation only">Sim</button>
+        <button id="lyBoardBtn" class="pmbtn" title="Whiteboard only">Board</button>
+      </span>
+    </div>
+    <div id="boardScroll">
+      <canvas id="wbCanvas"></canvas>
+      <div id="wbSpacer"></div>
+    </div>
+  </aside>
+  <div id="boardToggle" title="Show/hide the whiteboard">&#8249;</div>
 </div>
 <script>
   var STATES = ${statesJson};
@@ -276,6 +477,12 @@ function renderConceptPage(
   var STATE_COUNT = STATES.length;
   var CONCEPT_ID = ${idJson};
   var DEFAULT_ORDER = ${orderJson};
+
+  // Reveal-timeline pacing (Rule 26: reveals ride the state clock, not TTS). Tunable.
+  var WPM = 150;             // words/min at rate 1.0 — controls how fast reveals advance
+  var MIN_SENTENCE_MS = 1400;   // floor so a short sentence still holds a readable beat
+  var GAP_MS = 280;         // breathing gap between sentences
+  var LOOP_MS = 90;         // reveal-loop cadence (ms)
 
   var iframe = document.getElementById('sim');
   var statelabel = document.getElementById('statelabel');
@@ -325,15 +532,20 @@ function renderConceptPage(
 
   var frozen = false;
   var simReady = false;
-  var playing = false;
-  var cancelled = false;
+  var playing = false;        // play-intent: timeline should advance whenever not frozen
   var voice = null;
-  var pendingSpeak = null;   // state id we asked to render and want to narrate on STATE_REACHED
-  var speakingSi = 0;        // sentence index currently being spoken
-  var resumeSi = -1;         // saved on freeze → resume-where-left-off (Rule 26b)
-  var wasPlaying = false;
+  var pendingRoll = null;     // state id we asked to render and want to roll on STATE_REACHED
   var scrubbing = false;
+  // ── Clock-driven reveal timeline (Rule 26) ──
+  var timeline = [];          // [{ start, end, si }] state-local ms, rebuilt per state entry
+  var timelineTotal = 0;      // ms; end of the last sentence — drives scrubEl.max + end-detect
+  var curSi = -1;             // sentence index whose reveals are currently applied
+  var spokenSi = -1;          // sentence index whose utterance was last started (audio dedupe)
+  var loopHandle = null;      // setInterval handle for the reveal loop
+  var ended = false;          // end-latch + transition suppression while the clock is stale
   var dragFrom = -1;
+  var simSurface = null;             // sim-overlay annotation surface (set up after the player)
+  var boardSurface = null;           // whiteboard surface (set up after the player)
 
   // Warm the voice list (populates asynchronously on first call in Chrome).
   try { window.speechSynthesis.getVoices(); } catch (e) {}
@@ -362,6 +574,129 @@ function renderConceptPage(
   function sendReplay() { post({ type: 'REPLAY_ANIMATIONS' }); }
   function clearSync() { sendGlow(null); sendHand(null); sendFreeze(false); }
 
+  // ════════════════════════════════════════════════════════════════════════
+  //  CLOCK-DRIVEN REVEAL TIMELINE (Rule 26)
+  //  Reveals (glow / hand / freeze / math + caption) ride the state's own clock
+  //  (iframe PM_simTimeMs), never TTS events. Audio is a passenger: each sentence
+  //  is spoken when the clock enters its window. So the visual is identical with
+  //  sound on or off; MUTE silences audio only; PAUSE/SCRUB/RESUME stay coherent
+  //  because the sim clock already freezes / jumps / resets for us.
+  // ════════════════════════════════════════════════════════════════════════
+  // Estimate a sentence's spoken length from its character count (chars/word ~5.5)
+  // scaled by the TTS rate, so the same rate paces reveals AND audio. Char-based
+  // on purpose: a /\\s+/ regex would be mangled by the outer template literal.
+  function estSentenceMs(text) {
+    var chars = (text || '').length;
+    var rate = parseFloat(rateEl.value) || 0.9;
+    var words = chars / 5.5;
+    var ms = (words / (WPM * rate)) * 60000;
+    return Math.max(MIN_SENTENCE_MS, Math.round(ms));
+  }
+  function computeTimeline() {
+    var st = cur();
+    var sents = st.sentences || [];
+    timeline = [];
+    var t = 0;
+    for (var i = 0; i < sents.length; i++) {
+      var dur = estSentenceMs(sents[i].text);
+      timeline.push({ start: t, end: t + dur, si: i });
+      t = t + dur + GAP_MS;
+    }
+    timelineTotal = timeline.length > 0
+      ? timeline[timeline.length - 1].end
+      : Math.max(1, Math.round((st.duration || 12) * 1000));
+    scrubEl.max = String(Math.max(1, timelineTotal));
+  }
+  // Sentence index whose [start,end) window holds state-local ms t. Clamp: before
+  // the first → 0, after the last → last. -1 only when the state has no sentences.
+  function activeSiAt(t) {
+    if (timeline.length === 0) return -1;
+    if (t < timeline[0].start) return 0;
+    for (var i = 0; i < timeline.length; i++) {
+      if (t >= timeline[i].start && t < timeline[i].end) return timeline[i].si;
+    }
+    return timeline[timeline.length - 1].si;
+  }
+  // Paint one sentence's reveals + caption. Idempotent on curSi, so postMessages
+  // fire only at sentence boundaries, not every tick. The next sentence overwrites
+  // the previous reveals (a sentence with glow:null actively clears — intended).
+  function applyReveal(si) {
+    if (si === curSi) return;
+    curSi = si;
+    if (si < 0) { caption.textContent = ''; clearSync(); sendMath(null, false); return; }
+    var s = cur().sentences[si];
+    sendGlow(s.glow);
+    sendHand(s.hand_phase);
+    sendFreeze(s.freeze_proton);
+    if (s.math_show) { sendMath(s.math_show, s.math_persist); }
+    else if (!s.math_persist) { sendMath(null, false); }
+    caption.textContent = s.text;
+  }
+  // Speak the active sentence if audio is allowed. No onend chaining — the clock,
+  // not the voice, advances reveals. Avoids speechSynthesis.pause/resume (flaky):
+  // freeze/mute cancel, resume re-speaks the current sentence.
+  function speakCurrent() {
+    if (muted || !playing || frozen || curSi < 0) return;
+    if (curSi === spokenSi) return;
+    if (!voice) voice = pickVoice();
+    spokenSi = curSi;
+    try { window.speechSynthesis.cancel(); } catch (e) {}
+    var s = cur().sentences[curSi];
+    var u = new SpeechSynthesisUtterance(s.text);
+    u.rate = parseFloat(rateEl.value) || 0.9;
+    u.pitch = 1.0;
+    if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'en-US'; }
+    try { window.speechSynthesis.speak(u); } catch (e) {}
+  }
+  // Renderer never signals end-of-timeline, so detect it here. Auto-advance is
+  // mute-independent (Rule 26c); the last state holds its final frame.
+  function onTimelineEnd() {
+    ended = true;
+    if (autoEl.checked && idx < order.length - 1) {
+      goToState(idx + 1, playing);
+    } else {
+      playing = false; setPlayBtnUI(false);
+      try { window.speechSynthesis.cancel(); } catch (e) {}
+      post({ type: 'SET_TIME_FREEZE', at_ms: timelineTotal });   // hold a clean final frame
+      frozen = true;
+    }
+  }
+  // The single always-on loop: read the sim clock, paint the matching reveal,
+  // ride audio along, and keep the scrubber display in sync.
+  function revealTick() {
+    if (!simReady) return;
+    var t = readSimTimeMs();
+    if (timelineTotal > 0 && t >= timelineTotal) {
+      if (!ended) onTimelineEnd();
+      if (!scrubbing) { scrubEl.value = String(timelineTotal); updateScrubLabel(timelineTotal); }
+      return;
+    }
+    ended = false;
+    var si = activeSiAt(t);
+    if (si !== curSi) { applyReveal(si); spokenSi = -1; }
+    speakCurrent();
+    if (!scrubbing && !frozen) {
+      scrubEl.value = String(t);
+      updateScrubLabel(parseInt(scrubEl.value, 10) || 0);
+    }
+  }
+  function startLoop() { if (loopHandle == null) loopHandle = setInterval(revealTick, LOOP_MS); }
+  function stopLoop() { if (loopHandle != null) { clearInterval(loopHandle); loopHandle = null; } }
+  // Roll the current state from the top: reset clock, replay one-shots, un-pin, play.
+  function rollTimeline() {
+    if (!voice) voice = pickVoice();
+    computeTimeline();
+    curSi = -1; spokenSi = -1; ended = true;   // suppress end-detect until the clock resets
+    sendReset();
+    sendReplay();
+    post({ type: 'SET_TIME_FREEZE', frozen: false });
+    frozen = false; pausedBadge.style.display = 'none';
+    scrubbing = false;
+    playing = true; setPlayBtnUI(true);
+    applyReveal(activeSiAt(0));
+    speakCurrent();
+  }
+
   // ── Freeze-frame (teacher pause) ──────────────────────────────────────────
   // Tap the sim / spacebar / footer Pause pins the CURRENT frame so a teacher
   // can explain over a still picture (and still drag-rotate it). SET_STATE
@@ -371,25 +706,21 @@ function renderConceptPage(
     if (frozen) return;
     frozen = true;
     retireTapCue();                     // they discovered pause — stop hinting
-    post({ type: 'SET_TIME_FREEZE', at_ms: readSimTimeMs() });
-    resumeSi = speakingSi;              // remember where narration was (Rule 26b)
-    wasPlaying = playing;
-    cancelled = true;
-    window.speechSynthesis.cancel();
-    setPlayingUI(false);
+    post({ type: 'SET_TIME_FREEZE', at_ms: readSimTimeMs() });   // pin clock → reveals hold (Rule 26b)
+    try { window.speechSynthesis.cancel(); } catch (e) {}        // audio stops; play-intent survives
+    spokenSi = -1;                      // so resume re-speaks the current sentence
+    setPlayBtnUI(false);
     pausedBadge.style.display = 'block';
   }
   function unfreeze() {
     if (!frozen) return;
     frozen = false;
-    post({ type: 'SET_TIME_FREEZE', frozen: false });
+    post({ type: 'SET_TIME_FREEZE', frozen: false });   // clock resumes from where it was pinned
     pausedBadge.style.display = 'none';
-    if (wasPlaying && !muted && resumeSi >= 0) {   // resume narration where it left off
-      cancelled = false;
-      setPlayingUI(true);
-      speakFrom(resumeSi);
-    }
-    wasPlaying = false; resumeSi = -1;
+    playing = true;                     // resume (or tap-to-play an idle frame)
+    setPlayBtnUI(true);
+    spokenSi = -1;
+    speakCurrent();                     // re-voice current sentence now (audio gated on mute inside)
   }
   function toggleFreeze() { if (frozen) unfreeze(); else freeze(); }
 
@@ -415,9 +746,9 @@ function renderConceptPage(
     if (tapCue) { tapCue.style.opacity = '0'; tapCue.style.display = 'none'; }
   }
 
-  function setPlayingUI(on) {
-    playing = on;
-    if (on) { playBtn.innerHTML = '&#9209; Pause'; playBtn.classList.add('playing'); }
+  // Button glyph ONLY — never touches play-intent (freeze() shows Play while intent persists).
+  function setPlayBtnUI(showPause) {
+    if (showPause) { playBtn.innerHTML = '&#9209; Pause'; playBtn.classList.add('playing'); }
     else { playBtn.innerHTML = '&#9654; Play state'; playBtn.classList.remove('playing'); }
   }
 
@@ -430,11 +761,12 @@ function renderConceptPage(
         var card = document.createElement('div');
         card.className = 'card' + (pos === idx ? ' active' : '');
         card.setAttribute('draggable', 'true');
+        card.title = s.title;
         var num = document.createElement('span'); num.className = 'num'; num.textContent = String(pos + 1);
         var ttl = document.createElement('span'); ttl.className = 'ttl'; ttl.textContent = s.title;
         var grip = document.createElement('span'); grip.className = 'grip'; grip.innerHTML = '&#8942;';
         card.appendChild(num); card.appendChild(ttl); card.appendChild(grip);
-        card.addEventListener('click', function () { pause(); goToState(pos, !muted); });
+        card.addEventListener('click', function () { pause(); goToState(pos, false); });
         card.addEventListener('dragstart', function (e) { dragFrom = pos; card.classList.add('dragging'); try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(pos)); } catch (_) {} });
         card.addEventListener('dragend', function () { card.classList.remove('dragging'); clearDragOver(); dragFrom = -1; });
         card.addEventListener('dragover', function (e) { e.preventDefault(); card.classList.add('dragover'); });
@@ -470,97 +802,61 @@ function renderConceptPage(
     counter.textContent = (idx + 1) + ' / ' + order.length;
     var cards = cardsEl.querySelectorAll('.card');
     for (var i = 0; i < cards.length; i++) cards[i].classList.toggle('active', i === idx);
-    scrubEl.max = String(Math.max(1, Math.round((st.duration || 12) * 1000)));
+    // scrubEl.max is owned by computeTimeline() (the choreography length, not authored duration).
   }
 
-  // Move to the given order-position. If speak (and not muted), narrate after STATE_REACHED.
-  function goToState(pos, speak) {
+  // Move to the given order-position. autoRoll = start the timeline on entry (reveals always
+  // play once rolled; audio follows mute). Else: idle on the opening frame until Play (Rule 26).
+  function goToState(pos, autoRoll) {
     idx = Math.max(0, Math.min(order.length - 1, pos));
-    cancelled = false;
     if (frozen) { frozen = false; pausedBadge.style.display = 'none'; }  // SET_STATE releases the pin
-    window.speechSynthesis.cancel();
+    try { window.speechSynthesis.cancel(); } catch (e) {}
     caption.textContent = '';
+    curSi = -1; spokenSi = -1; ended = true;   // suppress end-detect until the new clock is fresh
     clearSync();
     sendMath(null, false);
+    if (simSurface) { simSurface.clear(); if (simDrawMode) setSimDraw(false); }   // annotations belong to the frame being left; new state is rotatable again
     scrubEl.value = '0';
+    computeTimeline();
     updateBadge();
-    speak = speak && !muted;
-    pendingSpeak = speak ? cur().id : null;
     sendState(cur().id);
-    if (speak) {
+    if (autoRoll) {
+      pendingRoll = cur().id;
       var want = cur().id;
-      setTimeout(function () {
-        if (pendingSpeak === want) { pendingSpeak = null; beginStateNarration(); }
-      }, 400);
+      setTimeout(function () { if (pendingRoll === want) { pendingRoll = null; rollTimeline(); } }, 400);
+    } else {
+      pendingRoll = null;
+      playing = false; setPlayBtnUI(false);
+      post({ type: 'SET_TIME_FREEZE', at_ms: 0 });   // hold the opening frame until Play
+      frozen = true;
+      applyReveal(activeSiAt(0));                     // show the opening beat (not blank)
     }
-  }
-
-  function beginStateNarration() {
-    if (muted) return;                  // muted-by-default: animation plays, audio is opt-in
-    if (!voice) voice = pickVoice();
-    sendReset();
-    sendReplay();
-    setPlayingUI(true);
-    speakFrom(0);
-  }
-
-  function speakFrom(si) {
-    if (cancelled) return;
-    var st = cur();
-    speakingSi = si;
-    if (si >= st.sentences.length) {
-      // Finished this state's narration.
-      clearSync();
-      setPlayingUI(false);
-      caption.textContent = '';
-      if (autoEl.checked && !muted && idx < order.length - 1) {
-        goToState(idx + 1, true);
-      }
-      return;
-    }
-    var s = st.sentences[si];
-    var u = new SpeechSynthesisUtterance(s.text);
-    u.rate = parseFloat(rateEl.value) || 0.9;
-    u.pitch = 1.0;
-    if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'en-US'; }
-    sendGlow(s.glow);
-    sendHand(s.hand_phase);
-    sendFreeze(s.freeze_proton);
-    if (s.math_show) { sendMath(s.math_show, s.math_persist); }
-    else if (!s.math_persist) { sendMath(null, false); }
-    caption.textContent = s.text;
-    u.onend = function () { sendGlow(null); sendHand(null); sendFreeze(false); speakFrom(si + 1); };
-    u.onerror = function () { sendGlow(null); sendHand(null); sendFreeze(false); speakFrom(si + 1); };
-    window.speechSynthesis.speak(u);
   }
 
   function play() {
-    // The click is the Web-Speech gesture-unlock. Explicit Play narrates the
-    // CURRENT state even when muted-by-default (a deliberate "hear the script").
-    if (frozen) { frozen = false; post({ type: 'SET_TIME_FREEZE', frozen: false }); pausedBadge.style.display = 'none'; }
-    if (!voice) voice = pickVoice();
-    cancelled = false;
-    wasPlaying = false; resumeSi = -1;
-    sendReset();
-    sendReplay();
-    setPlayingUI(true);
-    speakFrom(0);
+    rollTimeline();   // unpins + rolls the current state from the top; this click unlocks Web Speech
     showTapCue();
   }
+  // Minimal "stop before navigating" — goToState handles clearing reveals.
   function pause() {
-    cancelled = true;
-    window.speechSynthesis.cancel();
-    setPlayingUI(false);
-    clearSync();
+    playing = false;
+    try { window.speechSynthesis.cancel(); } catch (e) {}
+    setPlayBtnUI(false);
   }
 
-  playBtn.addEventListener('click', function () { if (playing) freeze(); else play(); });
-  replayBtn.addEventListener('click', function () { pause(); goToState(idx, !muted); });
+  playBtn.addEventListener('click', function () {
+    if (playing && !frozen) { freeze(); }            // playing → pause-hold
+    else if (frozen && playing) { unfreeze(); }      // paused mid-play → resume
+    else { play(); }                                 // idle / ended → roll from top
+  });
+  replayBtn.addEventListener('click', function () { pause(); goToState(idx, true); });
   defaultOrderBtn.addEventListener('click', resetOrder);
+  // Rule 26a: MUTE is audio ONLY — never pauses the clock, reveals, or play-intent.
   muteBtn.addEventListener('click', function () {
     muted = !muted;
     try { localStorage.setItem(LS_MUTE, muted ? '1' : '0'); } catch (e) {}
-    if (muted) pause();
+    if (muted) { try { window.speechSynthesis.cancel(); } catch (e) {} }
+    else { spokenSi = -1; speakCurrent(); }
     applyMuteUI();
   });
 
@@ -568,22 +864,28 @@ function renderConceptPage(
   scrubEl.addEventListener('input', function () {
     scrubbing = true;
     var ms = parseInt(scrubEl.value, 10) || 0;
-    cancelled = true; window.speechSynthesis.cancel(); setPlayingUI(false);
-    frozen = true; wasPlaying = false; resumeSi = -1; pausedBadge.style.display = 'block';
+    try { window.speechSynthesis.cancel(); } catch (e) {}
     post({ type: 'SET_TIME_JUMP', at_ms: ms });   // instant jump + hold (both directions)
+    frozen = true;
+    curSi = -1; applyReveal(activeSiAt(ms));       // show the reveal at the scrub point now
     updateScrubLabel(ms);
   });
-  scrubEl.addEventListener('change', function () { scrubbing = false; });
+  // Release: SET_TIME_JUMP holds, so if we were playing we must un-pin to resume.
+  scrubEl.addEventListener('change', function () {
+    scrubbing = false;
+    if (playing) {
+      post({ type: 'SET_TIME_FREEZE', frozen: false });
+      frozen = false;
+      spokenSi = -1; speakCurrent();
+    }
+    // not playing → stay pinned on the scrubbed frame.
+  });
   function updateScrubLabel(ms) {
     var mx = parseInt(scrubEl.max, 10) || 1000;
     scrubTime.textContent = (ms / 1000).toFixed(1) + ' / ' + (mx / 1000).toFixed(1) + 's';
   }
-  setInterval(function () {
-    if (!simReady || scrubbing || frozen) return;
-    var ms = readSimTimeMs();
-    scrubEl.value = String(ms);
-    updateScrubLabel(parseInt(scrubEl.value, 10) || 0);
-  }, 140);
+  // Rate change re-paces the current state's reveal windows.
+  rateEl.addEventListener('change', function () { if (simReady) computeTimeline(); });
 
   window.addEventListener('message', function (e) {
     var t = e.data && e.data.type;
@@ -591,11 +893,12 @@ function renderConceptPage(
       simReady = true;
       buildRail();
       applyMuteUI();
-      goToState(0, false);   // show first state silently (narration off by default)
+      startLoop();
+      goToState(0, false);   // open the first state on its opening frame; Play to roll
     } else if (t === 'STATE_REACHED') {
-      if (pendingSpeak && e.data.state === pendingSpeak) {
-        pendingSpeak = null;
-        beginStateNarration();
+      if (pendingRoll && e.data.state === pendingRoll) {
+        pendingRoll = null;
+        rollTimeline();
       }
     } else if (t === 'CANVAS_TAP') {
       toggleFreeze();
@@ -605,13 +908,392 @@ function renderConceptPage(
   // Spacebar toggles freeze; arrow keys step the (possibly reordered) sequence.
   window.addEventListener('keydown', function (e) {
     if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); toggleFreeze(); }
-    else if (e.key === 'ArrowRight') { e.preventDefault(); if (idx < order.length - 1) { pause(); goToState(idx + 1, !muted); } }
-    else if (e.key === 'ArrowLeft') { e.preventDefault(); if (idx > 0) { pause(); goToState(idx - 1, !muted); } }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); if (idx < order.length - 1) { pause(); goToState(idx + 1, false); } }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); if (idx > 0) { pause(); goToState(idx - 1, false); } }
   });
+
+  // ════════════════════════════════════════════════════════════════════════
+  //  WHITEBOARD + UNIFIED PEN  (one pen, two surfaces: sim overlay + board)
+  //  Vanilla Canvas2D + Pointer Events. No deps. Strokes are vectors so the
+  //  whiteboard scrolls endlessly and undo/redraw stay cheap.
+  // ════════════════════════════════════════════════════════════════════════
+  var TOOL = { tool: 'pen', color: '#111111', size: 3 };
+  var COLOR_LIGHT = '#111111', COLOR_DARK = '#f5f5f5';
+  var isDefaultColor = true;          // true until the teacher deliberately picks a colour
+  var lastSurface = null;             // surface that received the last stroke (for undo/redo)
+
+  function pmDist(a, b) { var dx = a.x - b.x, dy = a.y - b.y; return Math.sqrt(dx * dx + dy * dy); }
+  function pmDistToSeg(p, a, b) {
+    var dx = b.x - a.x, dy = b.y - a.y;
+    var len2 = dx * dx + dy * dy;
+    if (len2 === 0) return pmDist(p, a);
+    var t = ((p.x - a.x) * dx + (p.y - a.y) * dy) / len2;
+    t = Math.max(0, Math.min(1, t));
+    return pmDist(p, { x: a.x + t * dx, y: a.y + t * dy });
+  }
+
+  function makeSurface(canvas, opts) {
+    opts = opts || {};
+    var scrolls = !!opts.scrolls;
+    var ctx = canvas.getContext('2d');
+    var strokes = [];
+    var ops = [];          // undo stack of { type:'add'|'erase'|'clear', ... }
+    var redo = [];
+    var scrollOffset = 0;
+    var dpr = 1, cssW = 1, cssH = 1;
+    var drawing = false, erasing = false, drawPid = null;
+    var curStroke = null, eraseHits = [];
+    var bgIsDark = false;
+    var saveTimer = null;
+
+    function bboxOf(pts) {
+      var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      for (var i = 0; i < pts.length; i++) {
+        var p = pts[i];
+        if (p.x < minX) minX = p.x; if (p.y < minY) minY = p.y;
+        if (p.x > maxX) maxX = p.x; if (p.y > maxY) maxY = p.y;
+      }
+      return { minX: minX, minY: minY, maxX: maxX, maxY: maxY };
+    }
+    function styleFor(s) {
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      if (s.tool === 'highlighter') { ctx.globalAlpha = 0.32; ctx.strokeStyle = s.color; ctx.lineWidth = s.size * 4; }
+      else { ctx.globalAlpha = 1; ctx.strokeStyle = s.color; ctx.lineWidth = s.size; }
+    }
+    function paint(s) {
+      if (!s.points.length) return;
+      styleFor(s);
+      ctx.beginPath();
+      var p0 = s.points[0];
+      ctx.moveTo(p0.x, p0.y - scrollOffset);
+      if (s.points.length === 1) ctx.lineTo(p0.x + 0.05, p0.y - scrollOffset);
+      else for (var i = 1; i < s.points.length; i++) ctx.lineTo(s.points[i].x, s.points[i].y - scrollOffset);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    function render() {
+      ctx.clearRect(0, 0, cssW, cssH);
+      var top = scrollOffset, bot = scrollOffset + cssH;
+      for (var i = 0; i < strokes.length; i++) {
+        var b = strokes[i].bbox;
+        if (b.maxY < top || b.minY > bot) continue;
+        paint(strokes[i]);
+      }
+    }
+    function contentBottom() { var mb = 0; for (var i = 0; i < strokes.length; i++) { if (strokes[i].bbox.maxY > mb) mb = strokes[i].bbox.maxY; } return mb; }
+    function growSpacer() {
+      if (!opts.spacerEl || !opts.scrollEl) return;
+      var need = Math.max(contentBottom() + cssH, opts.scrollEl.scrollTop + cssH * 1.5);
+      opts.spacerEl.style.height = Math.round(need) + 'px';
+    }
+    function resize() {
+      // A <canvas> is a replaced element: CSS inset:0 does NOT stretch it, so we
+      // must set its CSS box explicitly. Board → its scroll container; sim overlay
+      // → its parent (#stage), so it covers the full sim (not a tiny default box).
+      var sizeEl = opts.scrollEl || canvas.parentElement;
+      if (sizeEl) { canvas.style.width = sizeEl.clientWidth + 'px'; canvas.style.height = sizeEl.clientHeight + 'px'; }
+      var rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, Math.round(rect.width));
+      cssH = Math.max(1, Math.round(rect.height));
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      growSpacer();
+      render();
+    }
+    function toLocal(e) {
+      var rect = canvas.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top + scrollOffset };
+    }
+    function hitStroke(s, pt, r) {
+      var rad = r / 2 + s.size / 2 + 3, b = s.bbox;
+      if (pt.x < b.minX - rad || pt.x > b.maxX + rad || pt.y < b.minY - rad || pt.y > b.maxY + rad) return false;
+      if (s.points.length === 1) return pmDist(pt, s.points[0]) <= rad;
+      for (var i = 0; i < s.points.length - 1; i++) if (pmDistToSeg(pt, s.points[i], s.points[i + 1]) <= rad) return true;
+      return false;
+    }
+    function eraseAt(pt) {
+      var changed = false;
+      for (var i = strokes.length - 1; i >= 0; i--) {
+        if (hitStroke(strokes[i], pt, TOOL.size)) { eraseHits.push(strokes.splice(i, 1)[0]); changed = true; }
+      }
+      if (changed) render();
+    }
+
+    function onDown(e) {
+      if (scrolls && e.pointerType === 'touch') return;     // finger scrolls the board; pen/mouse draw
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (opts.onActivate) opts.onActivate();
+      drawPid = e.pointerId;
+      try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
+      var pt = toLocal(e);
+      if (TOOL.tool === 'eraser') { erasing = true; eraseHits = []; eraseAt(pt); e.preventDefault(); return; }
+      drawing = true;
+      curStroke = { tool: TOOL.tool, color: TOOL.color, size: TOOL.size, points: [pt] };
+      e.preventDefault();
+    }
+    function onMove(e) {
+      if (e.pointerId !== drawPid) return;
+      if (erasing) { eraseAt(toLocal(e)); e.preventDefault(); return; }
+      if (!drawing || !curStroke) return;
+      e.preventDefault();
+      var pt = toLocal(e), last = curStroke.points[curStroke.points.length - 1];
+      if (Math.abs(pt.x - last.x) < 1.2 && Math.abs(pt.y - last.y) < 1.2) return;
+      curStroke.points.push(pt);
+      if (curStroke.tool === 'highlighter') { render(); paint(curStroke); }   // single pass — no double-darkening
+      else { styleFor(curStroke); ctx.beginPath(); ctx.moveTo(last.x, last.y - scrollOffset); ctx.lineTo(pt.x, pt.y - scrollOffset); ctx.stroke(); ctx.globalAlpha = 1; }
+    }
+    function onUp(e) {
+      if (e.pointerId !== drawPid) return;
+      drawPid = null;
+      if (erasing) { erasing = false; if (eraseHits.length) { ops.push({ type: 'erase', strokes: eraseHits.slice() }); redo.length = 0; persist(); } eraseHits = []; return; }
+      if (!drawing || !curStroke) return;
+      drawing = false;
+      if (curStroke.points.length) {
+        curStroke.bbox = bboxOf(curStroke.points);
+        strokes.push(curStroke);
+        ops.push({ type: 'add', stroke: curStroke });
+        redo.length = 0;
+        growSpacer(); persist(); render();
+      }
+      curStroke = null;
+    }
+    canvas.addEventListener('pointerdown', onDown);
+    canvas.addEventListener('pointermove', onMove);
+    canvas.addEventListener('pointerup', onUp);
+    canvas.addEventListener('pointercancel', function (e) { if (e.pointerId === drawPid) { drawPid = null; drawing = false; erasing = false; curStroke = null; render(); } });
+    canvas.addEventListener('touchmove', function (ev) { if (drawing || erasing) ev.preventDefault(); }, { passive: false });
+
+    function undo() {
+      var op = ops.pop(); if (!op) return;
+      if (op.type === 'add') { var k = strokes.indexOf(op.stroke); if (k >= 0) strokes.splice(k, 1); }
+      else if (op.type === 'erase' || op.type === 'clear') { for (var i = 0; i < op.strokes.length; i++) strokes.push(op.strokes[i]); }
+      redo.push(op); growSpacer(); persist(); render();
+    }
+    function redoOp() {
+      var op = redo.pop(); if (!op) return;
+      if (op.type === 'add') { strokes.push(op.stroke); }
+      else if (op.type === 'erase') { for (var i = 0; i < op.strokes.length; i++) { var k = strokes.indexOf(op.strokes[i]); if (k >= 0) strokes.splice(k, 1); } }
+      else if (op.type === 'clear') { strokes.length = 0; }
+      ops.push(op); growSpacer(); persist(); render();
+    }
+    function clear() {
+      if (!strokes.length) return;
+      ops.push({ type: 'clear', strokes: strokes.slice() });
+      strokes.length = 0; redo.length = 0;
+      growSpacer(); persist(); render();
+    }
+    function setScroll(v) { scrollOffset = v; render(); growSpacer(); }
+    function setDark(d) { bgIsDark = d; if (opts.scrollEl) opts.scrollEl.classList.toggle('dark', d); render(); }
+
+    function persist() {
+      if (!opts.persistKey) return;
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(function () {
+        try { localStorage.setItem(opts.persistKey, JSON.stringify({ v: 1, strokes: strokes.slice(0, 5000), theme: bgIsDark ? 'dark' : 'light' })); } catch (e) {}
+      }, 500);
+    }
+    function restore() {
+      if (!opts.persistKey) return null;
+      try {
+        var raw = localStorage.getItem(opts.persistKey);
+        if (!raw) return null;
+        var d = JSON.parse(raw);
+        if (d && d.strokes) {
+          strokes = d.strokes;
+          for (var i = 0; i < strokes.length; i++) if (!strokes[i].bbox) strokes[i].bbox = bboxOf(strokes[i].points);
+        }
+        return d || null;
+      } catch (e) { return null; }
+    }
+
+    return {
+      resize: resize, render: render, undo: undo, redo: redoOp, clear: clear,
+      setScroll: setScroll, setDark: setDark, isDark: function () { return bgIsDark; },
+      restore: restore, count: function () { return strokes.length; }
+    };
+  }
+
+  // ── Layout: rail | railToggle | main(sim) | divider | boardCol ──────────────
+  var RAIL_W = 200, DIV_W = 6, TOG_W = 14, BTOG_W = 14, SIM_MIN = 772;  // keep sim > 768 so field_3d stays 3D
+  var boardOpen = false, railCollapsed = false, layoutMode = 'both', boardWidth = 480;
+
+  var railEl = document.getElementById('rail');
+  var railToggleEl = document.getElementById('railToggle');
+  var boardToggleEl = document.getElementById('boardToggle');
+  var mainEl = document.getElementById('main');
+  var dividerEl = document.getElementById('divider');
+  var boardColEl = document.getElementById('boardCol');
+  var boardScrollEl = document.getElementById('boardScroll');
+  var wbCanvasEl = document.getElementById('wbCanvas');
+  var wbSpacerEl = document.getElementById('wbSpacer');
+  var simOverlayEl = document.getElementById('simOverlay');
+  var wbBtn = boardToggleEl;   // the slim right-edge tab opens/collapses the whiteboard
+
+  var LS_WBUI = 'pm_wbui_' + CONCEPT_ID;
+  function loadWbUI() {
+    try { var d = JSON.parse(localStorage.getItem(LS_WBUI) || 'null'); if (d) { if (typeof d.boardWidth === 'number') boardWidth = d.boardWidth; if (typeof d.railCollapsed === 'boolean') railCollapsed = d.railCollapsed; } } catch (e) {}
+  }
+  function saveWbUI() { try { localStorage.setItem(LS_WBUI, JSON.stringify({ boardWidth: boardWidth, railCollapsed: railCollapsed })); } catch (e) {} }
+
+  function applyLayout() {
+    railEl.classList.toggle('collapsed', railCollapsed);
+    if (railToggleEl) railToggleEl.innerHTML = railCollapsed ? '›' : '‹';
+    if (boardToggleEl) boardToggleEl.innerHTML = boardOpen ? '›' : '‹';
+    if (!boardOpen) {
+      dividerEl.classList.add('hidden'); boardColEl.classList.add('hidden'); mainEl.classList.remove('hidden');
+      mainEl.style.flex = '1 1 auto'; mainEl.style.width = '';
+    } else if (layoutMode === 'board') {
+      mainEl.classList.add('hidden'); dividerEl.classList.add('hidden'); boardColEl.classList.remove('hidden');
+      boardColEl.style.flex = '1 1 auto'; boardColEl.style.width = '';
+    } else if (layoutMode === 'sim') {
+      boardColEl.classList.add('hidden'); dividerEl.classList.add('hidden'); mainEl.classList.remove('hidden');
+      mainEl.style.flex = '1 1 auto'; mainEl.style.width = '';
+    } else {
+      mainEl.classList.remove('hidden'); boardColEl.classList.remove('hidden'); dividerEl.classList.remove('hidden');
+      var railW = railCollapsed ? 0 : RAIL_W;
+      var avail = document.documentElement.clientWidth - railW - TOG_W - BTOG_W;
+      var maxBoard = avail - DIV_W - SIM_MIN;
+      if (maxBoard < 220 && !railCollapsed) { railCollapsed = true; railEl.classList.add('collapsed'); avail = document.documentElement.clientWidth - TOG_W - BTOG_W; maxBoard = avail - DIV_W - SIM_MIN; }
+      var bw = Math.max(220, Math.min(boardWidth, Math.max(220, maxBoard)));
+      boardWidth = bw;
+      var mw = Math.max(SIM_MIN, avail - DIV_W - bw);
+      mainEl.style.flex = '0 0 ' + mw + 'px'; mainEl.style.width = mw + 'px';
+      boardColEl.style.flex = '0 0 ' + bw + 'px'; boardColEl.style.width = bw + 'px';
+    }
+    requestAnimationFrame(function () { if (boardSurface) boardSurface.resize(); if (simSurface) simSurface.resize(); });
+  }
+
+  function setBoardOpen(open) {
+    boardOpen = open;
+    if (open) { if (layoutMode !== 'board' && layoutMode !== 'sim') layoutMode = 'both'; if (document.documentElement.clientWidth < 1200) railCollapsed = true; }
+    wbBtn.classList.toggle('on', open);
+    applyLayout(); saveWbUI();
+  }
+  function markLayoutBtns() {
+    document.getElementById('lyBothBtn').classList.toggle('on', layoutMode === 'both');
+    document.getElementById('lySimBtn').classList.toggle('on', layoutMode === 'sim');
+    document.getElementById('lyBoardBtn').classList.toggle('on', layoutMode === 'board');
+  }
+
+  wbBtn.addEventListener('click', function () { setBoardOpen(!boardOpen); });
+  railToggleEl.addEventListener('click', function () { railCollapsed = !railCollapsed; applyLayout(); saveWbUI(); });
+  document.getElementById('lyBothBtn').addEventListener('click', function () { layoutMode = 'both'; boardOpen = true; wbBtn.classList.add('on'); markLayoutBtns(); applyLayout(); });
+  document.getElementById('lySimBtn').addEventListener('click', function () { layoutMode = 'sim'; markLayoutBtns(); applyLayout(); });
+  document.getElementById('lyBoardBtn').addEventListener('click', function () { layoutMode = 'board'; boardOpen = true; wbBtn.classList.add('on'); markLayoutBtns(); applyLayout(); });
+
+  // Divider drag (clamped so the sim never drops below 768 → stays 3D)
+  var dragging = false, dragStartX = 0, dragStartBW = 0;
+  dividerEl.addEventListener('pointerdown', function (e) { dragging = true; dragStartX = e.clientX; dragStartBW = boardWidth; try { dividerEl.setPointerCapture(e.pointerId); } catch (_) {} document.body.classList.add('dragging'); e.preventDefault(); });
+  dividerEl.addEventListener('pointermove', function (e) { if (!dragging) return; boardWidth = dragStartBW + (dragStartX - e.clientX); applyLayout(); });
+  dividerEl.addEventListener('pointerup', function (e) { if (!dragging) return; dragging = false; try { dividerEl.releasePointerCapture(e.pointerId); } catch (_) {} document.body.classList.remove('dragging'); saveWbUI(); });
+
+  // ── Surfaces ────────────────────────────────────────────────────────────────
+  loadWbUI();
+  simSurface = makeSurface(simOverlayEl, { scrolls: false, onActivate: function () { lastSurface = simSurface; } });
+  boardSurface = makeSurface(wbCanvasEl, { scrolls: true, scrollEl: boardScrollEl, spacerEl: wbSpacerEl, persistKey: 'pm_wb_' + CONCEPT_ID, onActivate: function () { lastSurface = boardSurface; } });
+  lastSurface = boardSurface;
+  var restored = boardSurface.restore();
+  boardScrollEl.addEventListener('scroll', function () { boardSurface.setScroll(boardScrollEl.scrollTop); });
+  simOverlayEl.style.pointerEvents = 'none';   // start in Interact mode (sim draggable)
+  try { new ResizeObserver(function () { if (simSurface) simSurface.resize(); }).observe(document.getElementById('stage')); } catch (e) {}
+  window.addEventListener('resize', function () { applyLayout(); });
+
+  // ── Pen toolbar (shared by both surfaces via TOOL) ───────────────────────────
+  var SWATCHES = ['#111111', '#EF5350', '#FCD34D', '#66BB6A', '#5B8DEF', '#f5f5f5'];
+  var swatchWrap = document.getElementById('wbSwatches');
+  var colorInput = document.getElementById('wbColor');
+  function refreshSwatchSel() {
+    var els = swatchWrap.querySelectorAll('.swatch');
+    for (var i = 0; i < els.length; i++) els[i].classList.toggle('sel', els[i].getAttribute('data-color') === TOOL.color);
+    colorInput.value = (/^#[0-9a-fA-F]{6}$/.test(TOOL.color)) ? TOOL.color : '#111111';
+  }
+  for (var ci = 0; ci < SWATCHES.length; ci++) {
+    (function (col) {
+      var b = document.createElement('button');
+      b.className = 'swatch'; b.setAttribute('data-color', col); b.style.background = col;
+      b.title = col;
+      b.addEventListener('click', function () { TOOL.color = col; isDefaultColor = false; refreshSwatchSel(); });
+      swatchWrap.appendChild(b);
+    })(SWATCHES[ci]);
+  }
+  colorInput.addEventListener('input', function () { TOOL.color = colorInput.value; isDefaultColor = false; refreshSwatchSel(); });
+
+  function setTool(t) {
+    TOOL.tool = t;
+    document.getElementById('wbPenBtn').classList.toggle('on', t === 'pen');
+    document.getElementById('wbHiBtn').classList.toggle('on', t === 'highlighter');
+    document.getElementById('wbEraseBtn').classList.toggle('on', t === 'eraser');
+  }
+  document.getElementById('wbPenBtn').addEventListener('click', function () { setTool('pen'); });
+  document.getElementById('wbHiBtn').addEventListener('click', function () { setTool('highlighter'); });
+  document.getElementById('wbEraseBtn').addEventListener('click', function () { setTool('eraser'); });
+
+  var sizeBtns = document.querySelectorAll('#boardToolbar [data-size]');
+  for (var si = 0; si < sizeBtns.length; si++) {
+    (function (btn) {
+      btn.addEventListener('click', function () {
+        TOOL.size = parseFloat(btn.getAttribute('data-size')) || 3;
+        for (var j = 0; j < sizeBtns.length; j++) sizeBtns[j].classList.toggle('on', sizeBtns[j] === btn);
+      });
+    })(sizeBtns[si]);
+  }
+
+  document.getElementById('wbUndoBtn').addEventListener('click', function () { (lastSurface || boardSurface).undo(); });
+  document.getElementById('wbRedoBtn').addEventListener('click', function () { (lastSurface || boardSurface).redo(); });
+  document.getElementById('wbClearBtn').addEventListener('click', function () { boardSurface.clear(); });
+  document.getElementById('wbThemeBtn').addEventListener('click', function () {
+    var dark = !boardSurface.isDark();
+    boardSurface.setDark(dark);
+    if (isDefaultColor) { TOOL.color = dark ? COLOR_DARK : COLOR_LIGHT; refreshSwatchSel(); }
+    saveWbUI();
+  });
+
+  // ── Sim Draw / Interact toggle (scoped to the sim only) ──────────────────────
+  // The pen is shared, but the two surfaces have opposite backgrounds: the board
+  // is a white page (black ink reads best) while the sim is a dark 3D scene
+  // (black ink is invisible). So while the teacher hasn't deliberately chosen a
+  // colour, the default flips to a bright ink on the sim and back to page-contrast
+  // ink on the board. A colour they DID pick is kept on both.
+  var simDrawMode = false;
+  var SIM_DEFAULT_COLOR = '#EF5350';   // red — visible on the dark sim, distinct from the blue field + amber v
+  var stageEl = document.getElementById('stage');
+  var simMoveBtn = document.getElementById('simMoveBtn');
+  var simDrawBtn = document.getElementById('simDrawBtn');
+  function boardDefaultColor() { return boardSurface.isDark() ? COLOR_DARK : COLOR_LIGHT; }
+  function setSimDraw(on) {
+    simDrawMode = on;
+    simOverlayEl.style.pointerEvents = on ? 'auto' : 'none';   // auto = overlay captures the pen, sim can't be dragged
+    stageEl.classList.toggle('sim-draw', on);                   // red border + crosshair + "sim locked" banner
+    simDrawBtn.classList.toggle('on', on);
+    simMoveBtn.classList.toggle('on', !on);
+    if (isDefaultColor) { TOOL.color = on ? SIM_DEFAULT_COLOR : boardDefaultColor(); refreshSwatchSel(); }
+    if (on) { lastSurface = simSurface; freeze(); }             // annotate a still frame (Rule 26b path)
+  }
+  simDrawBtn.addEventListener('click', function () { setSimDraw(true); });
+  simMoveBtn.addEventListener('click', function () { setSimDraw(false); });
+  document.getElementById('simClearBtn').addEventListener('click', function () { simSurface.clear(); });
+
+  // Restore saved page theme + apply default colour for it
+  if (restored && restored.theme === 'dark') { boardSurface.setDark(true); if (isDefaultColor) TOOL.color = COLOR_DARK; }
+  refreshSwatchSel();
+
+  // Ctrl+Z / Ctrl+Shift+Z (toolbar buttons cover the case where the iframe has focus)
+  window.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'z' || e.key === 'Z')) { e.preventDefault(); if (e.shiftKey) (lastSurface || boardSurface).redo(); else (lastSurface || boardSurface).undo(); }
+    else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || e.key === 'Y')) { e.preventDefault(); (lastSurface || boardSurface).redo(); }
+  });
+
+  // Debug hook for verification (no effect on UX)
+  window.PM_wb_count = function () { return { board: boardSurface.count(), sim: simSurface.count(), simDraw: simDrawMode, boardOpen: boardOpen }; };
+
+  applyLayout();
 
   // Initial paint (rail + mute) in case SIM_READY already fired before this ran.
   buildRail();
   applyMuteUI();
+  startLoop();
   if (iframe.contentWindow) { post({ type: 'PING' }); }
 </script>
 </body></html>
@@ -637,51 +1319,102 @@ function rebuildCatalog(): void {
         }
     }
     entries.sort((a, b) => a.name.localeCompare(b.name));
+
+    const status = loadReviewStatus();
+    const reviewedCount = entries.filter((e) => status[e.id]?.reviewed).length;
+
     const cards = entries
-        .map(
-            (e) =>
-                `    <a class="card" href="./${encodeURIComponent(e.id)}/"><span class="t">${escapeHtml(
-                    e.name,
-                )}</span><span class="id">${escapeHtml(e.id)}</span></a>`,
-        )
+        .map((e) => {
+            const st = status[e.id];
+            const badge = st?.reviewed
+                ? `<span class="badge ok">&#10003; Reviewed${st.reviewer ? ` &middot; ${escapeHtml(st.reviewer)}` : ''}${
+                      st.reviewed_date ? ` &middot; ${escapeHtml(st.reviewed_date)}` : ''
+                  }</span>`
+                : `<span class="badge pending">Not yet reviewed</span>`;
+            const videos = (st?.videos ?? [])
+                .map((v) => {
+                    const label = escapeHtml(v.label ?? 'video');
+                    return v.url && v.url.trim()
+                        ? `<a class="vid" href="${escapeHtml(v.url)}" target="_blank" rel="noopener">&#127909; ${label}</a>`
+                        : `<span class="vid muted">&#127909; ${label} — pending</span>`;
+                })
+                .join('');
+            const videoRow = videos ? `\n      <div class="vids">${videos}</div>` : '';
+            // The whole card is the sim link; videos open in a new tab (stopPropagation via target=_blank on <a>).
+            return `    <div class="card">
+      <a class="open" href="./${encodeURIComponent(e.id)}/"><span class="t">${escapeHtml(
+                e.name,
+            )}</span><span class="id">${escapeHtml(e.id)}</span></a>
+      <div class="meta">${badge}</div>${videoRow}
+    </div>`;
+        })
         .join('\n');
+
     const html = `<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PhysicsMind — simulations for review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  html,body{margin:0;background:#0A0A1A;color:#E5E7EB;font-family:system-ui,Segoe UI,Roboto,sans-serif;}
-  .wrap{max-width:760px;margin:0 auto;padding:28px 18px;}
-  h1{font-size:20px;color:#FCD34D;margin:0 0 4px;}
-  p.sub{color:#9aa0b4;font-size:13px;margin:0 0 22px;}
-  .card{display:flex;flex-direction:column;gap:2px;padding:14px 16px;margin-bottom:10px;
-        background:#13132b;border:1px solid #23233f;border-radius:10px;text-decoration:none;color:#E5E7EB;}
-  .card:hover{border-color:#FCD34D;}
-  .card .t{font-size:15px;font-weight:700;}
-  .card .id{font-size:12px;color:#9aa0b4;font-family:ui-monospace,monospace;}
-  .empty{color:#9aa0b4;font-size:14px;}
+  :root{ --bg:#1C1B19; --surface:#262523; --surface-2:#302E2B; --clay:#CB6843; --clay-soft:#E3A07F;
+         --clay-wash:rgba(203,104,67,.15); --sage:#74B594; --ink:#ECE9E2; --ink-dim:#A8A299; --ink-faint:#726C63;
+         --line:rgba(245,240,230,.10);
+         --font-disp:"Fraunces",Georgia,"Times New Roman",serif; --font-ui:"Inter",system-ui,-apple-system,sans-serif; }
+  *{box-sizing:border-box;}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased;}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(46% 38% at 100% 0%, rgba(203,104,67,.07), transparent 60%),
+               radial-gradient(40% 32% at 0% 100%, rgba(116,181,148,.04), transparent 60%);}
+  .wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:34px 20px;}
+  .masthead{display:flex;align-items:center;gap:12px;}
+  .masthead .mark{width:38px;height:38px;border-radius:11px;background:var(--clay);flex:none;
+        display:grid;place-items:center;box-shadow:0 6px 18px -6px rgba(203,104,67,.55);}
+  .masthead .mark svg{width:22px;height:22px;}
+  .brand b{font-family:var(--font-disp);font-weight:600;font-size:18px;letter-spacing:-.01em;color:var(--ink);display:block;line-height:1;}
+  .brand span{font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px;display:block;}
+  h1{font-family:var(--font-disp);font-size:22px;font-weight:600;color:var(--ink);margin:20px 0 4px;}
+  p.sub{color:var(--ink-dim);font-size:13px;margin:0 0 24px;}
+  .card{padding:15px 17px;margin-bottom:11px;background:var(--surface);border:1px solid var(--line);border-radius:13px;
+        transition:border-color .16s ease, background .16s ease;}
+  .card:hover{border-color:rgba(203,104,67,.4);background:var(--surface-2);}
+  .card .open{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--ink);}
+  .card .t{font-family:var(--font-disp);font-size:16px;font-weight:600;}
+  .card .id{font-size:12px;color:var(--ink-faint);font-family:ui-monospace,monospace;}
+  .meta{margin-top:11px;}
+  .badge{display:inline-block;font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:999px;letter-spacing:.02em;}
+  .badge.ok{color:#d3efdd;background:rgba(116,181,148,.16);border:1px solid rgba(116,181,148,.4);}
+  .badge.pending{color:var(--ink-dim);background:rgba(245,240,230,.04);border:1px solid var(--line);}
+  .vids{margin-top:9px;display:flex;flex-wrap:wrap;gap:8px;}
+  .vid{font-size:12px;padding:4px 11px;border-radius:9px;border:1px solid rgba(203,104,67,.3);text-decoration:none;
+       color:var(--clay-soft);background:var(--clay-wash);}
+  .vid:hover{border-color:var(--clay);}
+  .vid.muted{color:var(--ink-faint);background:rgba(245,240,230,.04);border-color:var(--line);}
+  .empty{color:var(--ink-dim);font-size:14px;}
 </style>
 </head>
 <body><div class="wrap">
-  <h1>PhysicsMind — simulations for review</h1>
-  <p class="sub">Open a simulation, watch it once start-to-finish, then review it state by state.</p>
+  <div class="masthead">
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.3" fill="#fff"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(120 12 12)"/></svg></div>
+    <div class="brand"><b>PhysicsMind</b><span>Teacher Review</span></div>
+  </div>
+  <h1>Simulations for review</h1>
+  <p class="sub">Open a simulation, watch it once start-to-finish, then review it state by state.${
+      entries.length ? ` &middot; ${reviewedCount}/${entries.length} reviewed` : ''
+  }</p>
 ${cards || '  <p class="empty">No simulations built yet.</p>'}
 </div></body></html>
 `;
     writeFileSync(join(OUT_DIR, 'index.html'), html, 'utf-8');
-    console.log(`   catalog: review-site/index.html (${entries.length} sim${entries.length === 1 ? '' : 's'})`);
+    console.log(`   catalog: review-site/index.html (${entries.length} sim${entries.length === 1 ? '' : 's'}, ${reviewedCount} reviewed)`);
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
 
-function main(): void {
-    const conceptId = (process.argv[2] ?? '').trim();
-    if (!conceptId) {
-        console.error('Usage: npx tsx src/scripts/build_review_site.ts <concept_id>');
-        process.exit(1);
-    }
-
+/** Build the per-concept review files (sim.html + player + meta.json). Caller refreshes the catalog. */
+function buildOne(conceptId: string): void {
     const json = loadConcept(conceptId);
     if (!json.field_3d_config) {
         console.error(`✖ ${conceptId}: no field_3d_config block — only field_3d diamonds are supported.`);
@@ -695,7 +1428,7 @@ function main(): void {
     }
     const missing = states.filter((s) => s.sentences.length === 0).map((s) => s.id);
     if (missing.length > 0) {
-        console.warn(`   ⚠ states with no narration (will show silently): ${missing.join(', ')}`);
+        console.warn(`   ⚠ ${conceptId}: states with no narration (will show silently): ${missing.join(', ')}`);
     }
 
     const conceptDir = join(OUT_DIR, conceptId);
@@ -719,14 +1452,47 @@ function main(): void {
         'utf-8',
     );
 
-    console.log(`\n✅ Built review page for ${conceptId} (${states.length} states)`);
-    console.log(`   review-site/${conceptId}/index.html  + sim.html`);
+    console.log(`✅ Built review page for ${conceptId} (${states.length} states) → review-site/${conceptId}/`);
+}
 
-    // 4) refresh the catalog
+function main(): void {
+    const arg = (process.argv[2] ?? '').trim();
+
+    if (!arg) {
+        console.error('Usage:');
+        console.error('  npx tsx src/scripts/build_review_site.ts <concept_id>   build one sim + refresh catalog');
+        console.error('  npx tsx src/scripts/build_review_site.ts --all          rebuild every sim in review_status.json');
+        console.error('  npx tsx src/scripts/build_review_site.ts --catalog      refresh catalog only (badges/videos)');
+        process.exit(1);
+    }
+
+    // --catalog: just regenerate the landing page from existing folders + review_status.json
+    if (arg === '--catalog') {
+        rebuildCatalog();
+        console.log(`\nCatalog refreshed from src/data/review_status.json.`);
+        return;
+    }
+
+    // --all: build every concept listed in the review-status manifest
+    if (arg === '--all') {
+        const ids = Object.keys(loadReviewStatus());
+        if (ids.length === 0) {
+            console.error('✖ --all: src/data/review_status.json has no concepts. Add entries first.');
+            process.exit(1);
+        }
+        console.log(`Building ${ids.length} sim${ids.length === 1 ? '' : 's'} from review_status.json …\n`);
+        for (const id of ids) buildOne(id);
+        rebuildCatalog();
+        console.log(`\nNext: npm run serve:review  →  http://localhost:8080/`);
+        console.log(`(or npm run deploy:review to push review-site/ to Netlify)\n`);
+        return;
+    }
+
+    // single concept
+    buildOne(arg);
     rebuildCatalog();
-
-    console.log(`\nNext: drag the ./review-site folder to https://app.netlify.com/drop`);
-    console.log(`then send the reviewer the link …/${conceptId}/\n`);
+    console.log(`\nNext: npm run serve:review  →  http://localhost:8080/${arg}/`);
+    console.log(`(or npm run deploy:review to push review-site/ to Netlify)\n`);
 }
 
 main();

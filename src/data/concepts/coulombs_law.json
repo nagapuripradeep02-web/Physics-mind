@@ -1,0 +1,874 @@
+{
+  "concept_id": "coulombs_law",
+  "concept_name": "Coulomb's Law — Force Between Two Point Charges",
+  "chapter": 1,
+  "section": "1.6",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.1 Electric Charges and Fields (§1.5 Basic Properties of Electric Charge, §1.6 Coulomb's Law, §1.5a Forces between Multiple Charges / Principle of Superposition) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (a force acts between charges without contact → its magnitude law F = k q₁q₂/r² → sign sets attract vs repel → the pair is equal and opposite → the 1/r² falloff → proportionality to the product → force is a vector → superposition of many charges), never copied. The atomic idea: two point charges exert an electric force on each other along the line joining them, equal and opposite (Newton's third law), of size F = k q₁q₂/r² — proportional to each charge and falling as the inverse square of the separation; with several charges the net force on one is the VECTOR SUM of the individual pair forces (superposition). This diamond is the VACUUM law only — the dielectric-medium factor F = F_vacuum/K is authored as a SEPARATE simulation per founder decision (2026-06-23). It is the foundation prerequisite of the electric_field_point_charge / force_on_charge_in_field / electric_field_dipole diamonds. New field_3d scenario coulombs_law_force. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "coulombs_law_force"
+    ]
+  },
+  "prerequisites": [],
+  "real_world_anchor": {
+    "primary": "Run a plastic comb through dry hair and hold it over tiny bits of paper — the paper jumps up to the comb. That snatch is the Coulomb force between the charge on the comb and the opposite charge it pulls to the surface of the paper. Bring the comb closer and the pull gets sharply stronger; rub it harder so it carries more charge and the pull grows too — exactly the two knobs of F = k q₁q₂/r².",
+    "secondary": "Inside every atom an electron is held to the nucleus by nothing but this same Coulomb force, F = k e²/r². NCERT notes it is about 10³⁹ times stronger than the gravity between them — the law that lifts a scrap of paper is the law that holds matter together.",
+    "tertiary": "In a monsoon thundercloud, charge slowly separates between the cloud base and the ground. The Coulomb force between them climbs as the charge grows until the air can no longer hold it back, and it discharges as a lightning strike."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "q1": {
+        "name": "First charge",
+        "unit": "nC",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "q2": {
+        "name": "Second charge",
+        "unit": "nC",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "r": {
+        "name": "Separation between the charges",
+        "unit": "cm",
+        "min": 2,
+        "max": 20,
+        "default": 5,
+        "step": 1
+      },
+      "k": {
+        "name": "Coulomb constant",
+        "unit": "N·m²/C²",
+        "constant": 8987551787.368176
+      }
+    },
+    "computed_outputs": {
+      "F_force": {
+        "formula": "(k * (q1 * 1e-9) * (q2 * 1e-9)) / ((r / 100) * (r / 100))"
+      }
+    },
+    "formulas": {
+      "coulomb_scalar": "F = k q₁ q₂ / r²,  k = 9 × 10⁹ N·m²/C²",
+      "vector_form": "F₁₂ = (k q₁ q₂ / r²) r̂  — directed along the line joining the charges",
+      "sign_rule": "like charges repel, unlike attract;  F₁₂ = −F₂₁ (equal and opposite)",
+      "inverse_square": "F ∝ 1/r²  — double r gives one quarter the force",
+      "product_rule": "F ∝ q₁ q₂  — double either charge doubles the force",
+      "superposition": "F_net = F₁ + F₂ + …  — the vector sum of the separate pair forces"
+    },
+    "constraints": [
+      "The Coulomb force acts across empty space (action at a distance) — the charges need no contact, no wire and no medium to push or pull on each other",
+      "The two forces are ALWAYS equal in magnitude and opposite in direction (Newton's third law), even when one charge is far larger than the other — because the product q₁q₂ is the same for both",
+      "Like signs repel and unlike attract; reversing one charge's sign reverses BOTH arrows but leaves the magnitude k q₁q₂/r² unchanged",
+      "The force falls off as the inverse square of separation: doubling r drops it to one quarter, tripling r to one ninth — never merely to one half",
+      "The force is proportional to the product of the charges: doubling either charge doubles the force felt by BOTH charges equally",
+      "With several charges the net force on any one is the vector sum of its individual pair forces — each pair acts independently (principle of superposition)"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Double the distance and the force drops to a quarter, not a half.",
+    "visual_confirmation": "Step the second charge out to 2r and 3r and watch the force arrow collapse to one quarter, then one ninth, of its length."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "representation": [
+      "STATE_7",
+      "STATE_8"
+    ],
+    "exploration": [
+      "STATE_9"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "Two charges push on each other",
+        "duration": 13,
+        "focal_primitive_id": "force_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "q1_label",
+            "position": { "x": 285, "y": 250 },
+            "text": "+q₁",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "q2_label",
+            "position": { "x": 475, "y": 250 },
+            "text": "+q₂",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "force_label",
+            "position": { "x": 370, "y": 440 },
+            "text": "force F — no contact",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Here are two charges sitting a little apart, with nothing between them but empty space."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Each one feels a push from the other — a real force — even though nothing is touching."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Two like charges, both positive, push each other apart, as the green arrows show."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "This electric push across empty space is the Coulomb force. The whole lesson is about how big it is and which way it points."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Charges must touch, or need air or a wire between them, to push or pull on each other",
+            "visual_counter": "Show the force arrows spanning the empty gap between the two charges with nothing connecting them.",
+            "one_line_fix": "The Coulomb force acts straight across empty space — no contact and no medium are needed."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "F = k q₁ q₂ / r²",
+        "duration": 15,
+        "focal_primitive_id": "formula_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "r_label",
+            "position": { "x": 375, "y": 215 },
+            "text": "r",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "k_note",
+            "position": { "x": 585, "y": 120 },
+            "text": "k = 9 × 10⁹",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_label",
+            "position": { "x": 370, "y": 440 },
+            "text": "F = k q₁ q₂ / r²",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Coulomb measured this force and found one clean rule for its size."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "The force equals k times the first charge times the second charge, divided by the distance squared."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Here r is the distance between the charges, and k is Coulomb's constant."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Do not let k fool you — it is about nine times ten to the ninth, a huge number. That is why even tiny charges feel a real force."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "k is a small correction factor that barely changes the result",
+            "visual_counter": "Display k = 9 × 10⁹ N·m²/C² beside the formula so its size is unmistakable.",
+            "one_line_fix": "k ≈ 9 × 10⁹ is enormous — that is why charges of only a few nanocoulombs still push measurably."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_3": {
+        "title": "Sign → attract or repel",
+        "duration": 14,
+        "focal_primitive_id": "sign_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 370, "y": 80 },
+            "text": "predict: which way do the arrows point?",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "q2neg_label",
+            "position": { "x": 475, "y": 250 },
+            "text": "−q₂",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "sign_label",
+            "position": { "x": 370, "y": 440 },
+            "text": "opposite → attract",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Now flip the second charge to negative. Before I redraw the arrows — predict which way they will point."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Opposite charges attract, so both arrows now point inward, pulling the charges together."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Like charges repel, unlike charges attract — the sign of the charges sets the direction."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "But notice the size of the force has not changed at all; only the direction flipped."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The direction of the force is set by the bigger charge, or a negative charge feels no force",
+            "visual_counter": "Flip q₂ negative and show BOTH arrows reverse to point inward, still equal in length.",
+            "one_line_fix": "Sign decides direction only: like repel, unlike attract — and a negative charge feels exactly the same size of force."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Equal and opposite (Newton's 3rd)",
+        "duration": 14,
+        "focal_primitive_id": "third_law_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "f12_tag",
+            "position": { "x": 280, "y": 200 },
+            "text": "F₁₂",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "f21_tag",
+            "position": { "x": 490, "y": 200 },
+            "text": "F₂₁",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "third_law_label",
+            "position": { "x": 370, "y": 440 },
+            "text": "|F₁₂| = |F₂₁|",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now make the second charge far bigger than the first — five times the size."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "You might expect the big charge to push harder than the little one feels. Watch the arrows."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "They are exactly the same length. The force on charge one equals the force on charge two."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "That is Newton's third law, and the formula shows why: the product q₁ times q₂ is the same for both."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The bigger or stronger charge pushes harder than the smaller charge feels",
+            "visual_counter": "Draw q₂ five times the size of q₁, yet keep both force arrows identical in length.",
+            "one_line_fix": "The pair force is always equal and opposite — q₁q₂ is shared, so neither charge feels more than the other."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Double r → quarter F",
+        "duration": 16,
+        "focal_primitive_id": "falloff_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "r_step_tag",
+            "position": { "x": 420, "y": 200 },
+            "text": "r → 2r → 3r",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "quarter_tag",
+            "position": { "x": 605, "y": 285 },
+            "text": "F → F/4 → F/9",
+            "color": "#90CAF9"
+          },
+          {
+            "type": "annotation",
+            "id": "falloff_label",
+            "position": { "x": 370, "y": 440 },
+            "text": "F ∝ 1/r²",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Keep the charges the same and just move them apart. If I double the distance, what happens to the force? Predict first."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "It does not halve — it drops to a quarter. The arrow shrinks to one fourth of its length."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Move out to three times the distance and the force falls to one ninth."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "That is the inverse square law: force goes as one over r squared. Distance matters a great deal."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Doubling the distance halves the force (the force falls off as 1/r, linearly)",
+            "visual_counter": "Step the charge from r to 2r and show the arrow drop to one QUARTER, not one half.",
+            "one_line_fix": "Force falls as 1/r²: double r gives one quarter, triple r gives one ninth."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Double a charge → double F",
+        "duration": 14,
+        "focal_primitive_id": "product_label",
+        "advance_mode": "auto_after_animation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "q1_double_tag",
+            "position": { "x": 285, "y": 150 },
+            "text": "q₁ → 2q₁",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "f_double_tag",
+            "position": { "x": 490, "y": 150 },
+            "text": "F → 2F",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "product_label",
+            "position": { "x": 370, "y": 440 },
+            "text": "F ∝ q₁ q₂",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now hold the distance fixed and double the first charge instead."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Both arrows double in length — the force is twice as strong on each charge."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The force is proportional to the product of the charges, q₁ times q₂."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Double either charge and you double the force; the distance has done nothing here."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Doubling one charge changes the two arrows by different amounts, or also changes the effect of distance",
+            "visual_counter": "Double q₁ at fixed r and show BOTH arrows grow to exactly double, together.",
+            "one_line_fix": "F ∝ q₁q₂: doubling either charge doubles the force equally on both, with r untouched."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Force is a vector",
+        "duration": 14,
+        "focal_primitive_id": "vector_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rhat_tag",
+            "position": { "x": 470, "y": 150 },
+            "text": "along r̂ (line joining)",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "dir_tag",
+            "position": { "x": 600, "y": 285 },
+            "text": "size and direction",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "vector_label",
+            "position": { "x": 370, "y": 440 },
+            "text": "F₁₂ = (k q₁ q₂ / r²) r̂",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "So far we have talked about how big the force is. But force is a vector — it has a direction too."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "The Coulomb force always lies along the straight line joining the two charges."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "We write that direction as r-hat, the unit vector pointing from one charge to the other."
+            },
+            {
+              "id": "s7_4",
+              "text_en": "Writing it as a vector matters, because it lets us add forces from several charges in the next step."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The Coulomb force is just a number (a magnitude), with no direction to track",
+            "visual_counter": "Show the force arrow pinned along the line joining the charges, labelled with the unit vector r̂.",
+            "one_line_fix": "Force is a vector: it has both a size, k q₁q₂/r², and a direction, along the line joining the charges."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "Many charges add up",
+        "duration": 16,
+        "focal_primitive_id": "superpose_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "f1_tag",
+            "position": { "x": 320, "y": 175 },
+            "text": "F₁",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "f2_tag",
+            "position": { "x": 525, "y": 175 },
+            "text": "F₂",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "superpose_label",
+            "position": { "x": 370, "y": 440 },
+            "text": "F_net = F₁ + F₂  (vectors)",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Real problems have more than two charges. Here a charge feels a pull from two others at once."
+            },
+            {
+              "id": "s8_2",
+              "text_en": "Each pair acts on its own: charge one gives force F-one, charge two gives force F-two."
+            },
+            {
+              "id": "s8_3",
+              "text_en": "The net force is not their numbers added — it is the two arrows added tip to tail, as vectors."
+            },
+            {
+              "id": "s8_4",
+              "text_en": "Add every pair force as a vector and you get the total. This is the principle of superposition."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The net force comes only from the nearest or biggest charge, or you just add the force magnitudes",
+            "visual_counter": "Show F₁ and F₂ added tip-to-tail into a resultant that points in a new direction, not along either one.",
+            "one_line_fix": "Superposition: add each pair force as a VECTOR (tip to tail), not as plain numbers, and every charge counts."
+          }
+        ]
+      },
+      "STATE_9": {
+        "title": "Explore",
+        "duration": 16,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 370, "y": 80 },
+            "text": "drag q₁, q₂ and r",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "f_live_label",
+            "position": { "x": 475, "y": 220 },
+            "text": "F",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_formula",
+            "position": { "x": 370, "y": 440 },
+            "text": "F = k q₁ q₂ / r²",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "Now you drive it. Slide the two charges and the distance and watch the force respond live."
+            },
+            {
+              "id": "s9_2",
+              "text_en": "Raise either charge and the arrows grow together; the force tracks the product q₁ times q₂."
+            },
+            {
+              "id": "s9_3",
+              "text_en": "Push the charges apart and feel how fast the force fades — that is the inverse square at work."
+            },
+            {
+              "id": "s9_4",
+              "text_en": "Flip a charge negative and the arrows turn inward to attract. One law, every case."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered Coulomb's law when they can compute the force between two point charges from F = k q₁q₂/r² (handling the nanocoulomb and centimetre units), predict attraction versus repulsion from the signs alone, apply the equal-and-opposite pair force (Newton's third law) no matter how unequal the charges are, reason numerically that the force falls as 1/r² (double r → one quarter) and grows as the product q₁q₂ (double a charge → double the force), and find the net force on a charge from several others as the VECTOR sum of the separate pair forces (superposition). The dielectric-medium factor F = F_vacuum/K is taught in a separate simulation and is not assessed here.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "Two charges of +5 nC each are placed 5 cm apart in vacuum. What is the force between them, and in which direction does each charge feel it?",
+        "options": {
+          "A": "About 9 × 10⁻⁵ N, directed outward — each charge is pushed away from the other (repulsion)",
+          "B": "About 9 × 10⁻⁵ N, directed inward — the two charges are pulled together (attraction)",
+          "C": "Zero, because the two charges are equal and therefore cancel each other out",
+          "D": "About 45 N, found by multiplying the charges and dividing by the distance without squaring it"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "like_charges_attract",
+          "C": "equal_charges_cancel",
+          "D": "forgets_square_and_units"
+        },
+        "tested_idea": "Apply F = k q₁q₂/r² with correct nC and cm units; like charges repel, so each is pushed outward.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Two +3 nC charges sit 6 cm apart in vacuum. Estimate the force on each charge and state which way it acts."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "Charge A is +10 nC and charge B is +1 nC, held a fixed distance apart. How does the force ON A compare with the force ON B?",
+        "options": {
+          "A": "They are equal in size and opposite in direction — A feels exactly the same force B does",
+          "B": "The force on A is 10 times larger, because A carries ten times the charge",
+          "C": "The force on B is 10 times larger, because the bigger charge A pushes the smaller one harder",
+          "D": "It cannot be compared without also knowing the masses of the two charges"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "bigger_charge_feels_more",
+          "C": "bigger_charge_pushes_harder",
+          "D": "force_needs_mass"
+        },
+        "tested_idea": "The pair force is equal and opposite (Newton's third law); the shared product q₁q₂ means neither charge feels more, however unequal they are.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A +20 nC charge and a +2 nC charge are a set distance apart. Compare the magnitude of the electric force each one experiences."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "Two charges feel a force F. Without changing the charges, you double the distance between them. What is the new force?",
+        "options": {
+          "A": "F/4 — the force falls as the inverse square of the distance",
+          "B": "F/2 — doubling the distance halves the force",
+          "C": "2F — moving the charges apart increases the force",
+          "D": "F — the distance does not affect the strength of the force"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "inverse_linear_falloff",
+          "C": "force_grows_with_distance",
+          "D": "distance_irrelevant"
+        },
+        "tested_idea": "F ∝ 1/r²: doubling the separation cuts the force to one quarter, not one half.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Two charges experience a force F. If you move them three times as far apart, what does the force become?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "Two charges feel a force F. Keeping the distance the same, you triple ONE of the charges. What is the new force?",
+        "options": {
+          "A": "3F — the force is proportional to the product of the charges",
+          "B": "9F — tripling a charge multiplies the force by three squared",
+          "C": "F/3 — increasing a charge reduces the force on it",
+          "D": "F — only the distance, not the charges, changes the force"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "squares_the_charge_factor",
+          "C": "more_charge_less_force",
+          "D": "charge_irrelevant"
+        },
+        "tested_idea": "F ∝ q₁q₂: tripling one charge triples the force (the square only applies to distance, not charge).",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "Two charges feel a force F. If you double one of the two charges while holding the separation fixed, what is the new force?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A +q and a −q attract each other with force F. You now make BOTH charges negative, keeping their sizes and separation the same. What happens to the force?",
+        "options": {
+          "A": "Same size F, but now repulsive — the magnitude k q₁q₂/r² is unchanged; only the direction reverses",
+          "B": "The force vanishes, because two negative charges cancel each other",
+          "C": "The force is still attractive, because the charges have the same size",
+          "D": "The force becomes half as strong, because both charges are now the same sign"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "two_negatives_cancel",
+          "C": "same_size_means_attract",
+          "D": "same_sign_halves_force"
+        },
+        "tested_idea": "Sign sets direction only: two like charges repel, but the magnitude k q₁q₂/r² is the same as before.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Two opposite charges attract with force F. If you flip both signs so they are now both positive, what is the new force?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A charge sits between two others and feels a force F₁ pointing left from one and an equal force F₂ pointing straight up from the other. What is the net force on it?",
+        "options": {
+          "A": "The vector sum of F₁ and F₂ — pointing diagonally up-and-left, with magnitude √(F₁² + F₂²)",
+          "B": "F₁ + F₂ as plain numbers, pointing left because the left force comes first",
+          "C": "Only F₁, because the net force is set by the single nearest or strongest charge",
+          "D": "Zero, because a leftward force and an upward force always cancel"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "adds_magnitudes_not_vectors",
+          "C": "only_nearest_charge_counts",
+          "D": "perpendicular_forces_cancel"
+        },
+        "tested_idea": "Superposition: the net force is the VECTOR sum of the separate pair forces, not a scalar sum and not just the nearest charge.",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A charge is pulled by one neighbour with a force pointing right and by another with an equal force pointing down. What is the resultant force on it?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": ["Q1"],
+      "STATE_3": ["Q5"],
+      "STATE_4": ["Q2"],
+      "STATE_5": ["Q3"],
+      "STATE_6": ["Q4"],
+      "STATE_8": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_7", "STATE_9"]
+  },
+  "field_3d_config": {
+    "scenario_type": "coulombs_law_force",
+    "coulomb_explorer": true,
+    "field_lines": {
+      "count": 12,
+      "color_positive": "#EF5350",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85,
+      "arrow_spacing": 4
+    },
+    "slider_controls": {
+      "q1": {
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "label": "Charge q₁"
+      },
+      "q2": {
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "default": 5,
+        "label": "Charge q₂"
+      },
+      "r": {
+        "min": 2,
+        "max": 20,
+        "step": 1,
+        "default": 5,
+        "label": "Distance r"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Two charges push on each other",
+        "visible_elements": [],
+        "camera_position": [0.4, 1.0, 5.2],
+        "caption": "",
+        "show_force": true,
+        "q2_sign": 1,
+        "formula_overlay": "force F — across empty space"
+      },
+      "STATE_2": {
+        "label": "F = k q₁ q₂ / r²",
+        "visible_elements": [],
+        "camera_position": [0.4, 1.0, 5.4],
+        "caption": "",
+        "show_force": true,
+        "show_distance": true,
+        "q2_sign": 1,
+        "formula_overlay": "F = k q₁ q₂ / r²"
+      },
+      "STATE_3": {
+        "label": "Sign → attract or repel",
+        "visible_elements": [],
+        "camera_position": [0.4, 1.0, 5.4],
+        "caption": "",
+        "show_force": true,
+        "show_distance": true,
+        "q2_sign": -1,
+        "formula_overlay": "unlike → attract,  like → repel"
+      },
+      "STATE_4": {
+        "label": "Equal and opposite (Newton's 3rd)",
+        "visible_elements": [],
+        "camera_position": [0.4, 1.0, 5.6],
+        "caption": "",
+        "show_force": true,
+        "show_third_law_pair": true,
+        "q2_sign": 1,
+        "formula_overlay": "|F₁₂| = |F₂₁|"
+      },
+      "STATE_5": {
+        "label": "1/r² falloff (PRIMARY aha)",
+        "visible_elements": [],
+        "camera_position": [0.9, 0.9, 6.2],
+        "caption": "",
+        "falloff_demo": true,
+        "q2_sign": 1,
+        "formula_overlay": "F ∝ 1/r²   (double r → F/4)"
+      },
+      "STATE_6": {
+        "label": "Double a charge → double F",
+        "visible_elements": [],
+        "camera_position": [0.4, 1.0, 5.6],
+        "caption": "",
+        "show_force": true,
+        "show_product_scaling": true,
+        "q2_sign": 1,
+        "formula_overlay": "F ∝ q₁ q₂"
+      },
+      "STATE_7": {
+        "label": "Force is a vector",
+        "visible_elements": [],
+        "camera_position": [0.4, 1.0, 5.6],
+        "caption": "",
+        "show_force": true,
+        "vector_mode": true,
+        "q2_sign": 1,
+        "formula_overlay": "F₁₂ = (k q₁ q₂ / r²) r̂"
+      },
+      "STATE_8": {
+        "label": "Many charges add up (superposition)",
+        "visible_elements": [],
+        "camera_position": [0.5, 1.3, 6.0],
+        "caption": "",
+        "superposition": true,
+        "formula_overlay": "F_net = F₁ + F₂  (vector sum)"
+      },
+      "STATE_9": {
+        "label": "Free explore — q₁, q₂, r",
+        "visible_elements": [],
+        "camera_position": [0.4, 1.0, 5.6],
+        "caption": "",
+        "explorer": true,
+        "show_sliders": true,
+        "formula_overlay": "F = k q₁ q₂ / r²"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

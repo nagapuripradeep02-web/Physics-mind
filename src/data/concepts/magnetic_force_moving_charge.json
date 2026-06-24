@@ -104,7 +104,7 @@
     "state_count": 8,
     "states": {
       "STATE_1": {
-        "title": "θ = 0°: v parallel to B, no electric field → F = 0, straight line",
+        "title": "θ = 0° → straight line",
         "duration": 18,
         "focal_primitive_id": "theta0_label",
         "advance_mode": "auto_after_tts",
@@ -149,7 +149,7 @@
         }
       },
       "STATE_2": {
-        "title": "θ = 90°: F maximum → full circle → r and T appear",
+        "title": "θ = 90° → full circle",
         "duration": 30,
         "focal_primitive_id": "theta90_label",
         "advance_mode": "wait_for_answer",
@@ -210,7 +210,7 @@
         ]
       },
       "STATE_3": {
-        "title": "It turns, but the speed never changes — magnetic force does no work",
+        "title": "No work → speed constant",
         "duration": 24,
         "focal_primitive_id": "speed_frozen_label",
         "advance_mode": "wait_for_answer",
@@ -265,7 +265,7 @@
         ]
       },
       "STATE_4": {
-        "title": "Fleming's left-hand rule — Class-10 mnemonic, same physics",
+        "title": "Fleming's left-hand rule",
         "duration": 14,
         "focal_primitive_id": "fleming_title",
         "advance_mode": "manual_click",
@@ -312,7 +312,7 @@
         }
       },
       "STATE_5": {
-        "title": "θ = 45°: tilt back from the circle → it opens into a helix",
+        "title": "θ = 45° → helix",
         "duration": 22,
         "focal_primitive_id": "theta45_label",
         "advance_mode": "manual_click",
@@ -358,7 +358,7 @@
         }
       },
       "STATE_6": {
-        "title": "Why sin θ? — resolve v into v cos θ (∥ B) + v sin θ (⊥ B)",
+        "title": "Why sin θ? — resolve v",
         "duration": 30,
         "focal_primitive_id": "why_sin_label",
         "advance_mode": "manual_click",
@@ -419,7 +419,7 @@
         ]
       },
       "STATE_7": {
-        "title": "θ = 10°: almost parallel → a very stretched helix",
+        "title": "θ = 10° → stretched helix",
         "duration": 22,
         "focal_primitive_id": "theta10_label",
         "advance_mode": "manual_click",
@@ -463,7 +463,7 @@
         }
       },
       "STATE_8": {
-        "title": "Try it — drag the sliders, watch the path",
+        "title": "Try it",
         "duration": 28,
         "focal_primitive_id": "explore_label",
         "advance_mode": "interaction_complete",

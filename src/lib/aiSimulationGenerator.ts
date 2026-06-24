@@ -2775,6 +2775,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     ideal_gas_kinetic_theory:       "thermodynamics",
     // Field 3D concepts — all routed to the field_3d (Three.js) renderer
     electric_field_lines:           "field_3d",
+    coulombs_law:                   "field_3d",
     electric_field_point_charge:    "field_3d",
     force_on_charge_in_field:       "field_3d",
     electric_potential_3d:          "field_3d",
@@ -2785,6 +2786,7 @@ export const CONCEPT_RENDERER_MAP: Record<string, "circuit_live" | "particle_fie
     magnetic_force_moving_charge:   "field_3d",
     force_on_current_carrying_wire: "field_3d",
     torque_on_current_loop_in_field:"field_3d",
+    electric_dipole_in_field:       "field_3d",
     gauss_law_3d:                   "field_3d",
     electromagnetic_induction_3d:   "field_3d",
     bar_magnet_field:               "field_3d",
@@ -2797,7 +2799,9 @@ export const RENDERER_MAP: Record<string, "particle_field" | "graph_interactive"
     ohms_law:                 "graph_interactive",
     resistivity:              "graph_interactive",
     photoelectric:            "graph_interactive",
-    coulombs_law:             "graph_interactive",
+    // coulombs_law removed 2026-06-23 — rebuilt as a single-panel field_3d
+    // diamond (CONCEPT_RENDERER_MAP → "field_3d"); the old graph_interactive
+    // panel is retired.
     electric_power_heating:   "graph_interactive",
 };
 
@@ -4154,6 +4158,7 @@ function getOpticsRayFallback(scenario: OpticsRayConfig["scenario_type"]): Optic
 // ── FIELD_3D_SCENARIO_MAP — concept_id → scenario_type ───────────────────────
 const FIELD_3D_SCENARIO_MAP: Record<string, Field3DConfig["scenario_type"]> = {
     electric_field_lines:           "point_charge_positive",
+    coulombs_law:                   "coulombs_law_force",
     electric_field_point_charge:    "point_charge_positive",
     electric_potential_3d:          "dipole",
     parallel_plate_capacitor_field: "parallel_plates",
@@ -4162,6 +4167,7 @@ const FIELD_3D_SCENARIO_MAP: Record<string, Field3DConfig["scenario_type"]> = {
     biot_savart_law:                "biot_savart_element",
     magnetic_force_moving_charge:   "lorentz_force_uniform_field",
     torque_on_current_loop_in_field:"torque_on_loop_uniform_field",
+    electric_dipole_in_field:       "dipole_in_uniform_field",
     gauss_law_3d:                   "point_charge_positive",
     electromagnetic_induction_3d:   "changing_flux",
     bar_magnet_field:               "bar_magnet",
