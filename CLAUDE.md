@@ -197,7 +197,7 @@ Reveals/motion run on the state's own clock (`PM_simTimeMs`), never on TTS event
 `tsc` 0 · `validate:concepts` target PASSES · Rule 15 (≥2 advance_mode) · Rule 16a (EPIC-L confronts the
 wrong belief) · Rule 19 (≥3 primitives/state) · Rule 24 (labels/equations only, reads sound-off) ·
 Rule 25 (foundation-first, no untaught term, explanation co-located with its visual) · Rule 27 (new
-physics objects = explorer pattern: stable ID + params) · Indian anchor, plain English · **THE EYE**
+physics objects = explorer pattern: stable ID + params) · Rule 29 (emphasis = brightness, never size — no zoom/bulge) · Indian anchor, plain English · **THE EYE**
 (§5 ③) with zero new `engine_bug_queue` rows.
 
 ---
@@ -235,6 +235,7 @@ physics objects = explorer pattern: stable ID + params) · Indian anchor, plain 
 26. **[A]** Playback runs on the state's own clock (`PM_simTimeMs`), never gated on TTS; MUTE = audio only, PAUSE/RESUME = clock+audio together (§6).
 27. **[A]** Every new primitive ships a stable addressable ID + key params via postMessage/slider (explorer pattern; `biot_explorer` is the seed).
 28. **[V2]** Every new field_3d sim ships a "Professor Pack" as DATA (concept JSON knobs/objects/states + reviewed `voice_professor/<id>.json`), never new engine code. Generic verbs over named objects; never invent per-sim ops. (§4)
+29. **[A]** Emphasis is brightness, NEVER size — no zoom-in/zoom-out "bulge" on any element. Focal brightens + peers dim via `applyGlowEmphasis()`; named meshes (the 3D hand) stay static, full-bright, never dim (`brightenOnly`); a vector's length changes ONLY when the real physical magnitude does (e.g. `tauThrob`). (CLAUDE_RULES.md)
 
 ---
 
