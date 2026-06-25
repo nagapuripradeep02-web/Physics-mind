@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PhysicsMind — EXIST Consultation</title>
+<style>
+  :root{
+    --bg:#0f0b08; --bg2:#1a120c; --panel:#1c140d;
+    --ink:#f4ece1; --muted:#bcab95; --faint:#8c7c69;
+    --accent:#e07a42;   /* PhysicsMind terracotta-orange */
+    --accent2:#eaa63c;  /* warm amber/gold */
+    --blue:#5b8bc4;     /* field arrows */
+    --green:#6fcf7f;    /* force vector */
+    --line:rgba(224,122,66,.18);
+    --serif:"Georgia","Iowan Old Style","Times New Roman",serif;
+    --sans:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:
+      radial-gradient(1100px 700px at 84% -12%, rgba(224,122,66,.13), transparent 60%),
+      radial-gradient(900px 620px at -12% 112%, rgba(234,166,60,.08), transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    overflow:hidden;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .slide{
+    position:fixed; inset:0;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:8vh 9vw;
+    opacity:0; transform:translateY(14px); pointer-events:none;
+    transition:opacity .45s ease, transform .45s ease;
+  }
+  .slide.active{opacity:1; transform:none; pointer-events:auto}
+  .kicker{
+    font-size:.82rem; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--accent); font-weight:700; margin-bottom:1.4rem;
+  }
+  h1{font-family:var(--serif); font-size:5.2rem; line-height:1.02; letter-spacing:-.01em; font-weight:700}
+  h2{font-family:var(--serif); font-size:2.9rem; line-height:1.14; font-weight:700; max-width:18ch}
+  .tag{font-family:var(--serif); font-style:italic; font-size:1.55rem; color:var(--muted); margin-top:1.4rem; font-weight:400; max-width:30ch}
+  ul{list-style:none; margin-top:2.2rem; display:flex; flex-direction:column; gap:1.05rem; max-width:40ch}
+  li{position:relative; padding-left:1.7rem; font-size:1.42rem; line-height:1.4; color:#ece3d6}
+  li::before{content:""; position:absolute; left:0; top:.6em; width:.6rem; height:.6rem;
+    background:var(--accent); border-radius:2px; transform:rotate(45deg)}
+  li b{color:#fff; font-weight:700}
+  .accent2::before{background:var(--accent2)!important}
+  .caption{margin-top:2rem; color:var(--faint); font-size:1.05rem; font-style:italic}
+  /* title slide */
+  .wordmark{display:flex; align-items:center; gap:1.3rem}
+  .logomark{width:74px; height:74px; border-radius:18px;
+    background:linear-gradient(160deg,#ec8a4e,#cf6233);
+    display:grid; place-items:center; box-shadow:0 8px 30px rgba(224,122,66,.35); flex:none}
+  .title h1 span{color:var(--accent)}
+  .title .meta{margin-top:2.6rem; color:var(--muted); font-size:1.2rem; line-height:1.9}
+  .title .meta b{color:var(--ink)}
+  .badge{display:inline-block; margin-top:1.9rem; padding:.5rem 1.15rem; border:1px solid var(--accent);
+    border-radius:999px; color:var(--accent); font-size:.8rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700}
+  /* teacher-verified pill (echoes the product) */
+  .pill{display:inline-flex; align-items:center; gap:.5rem; align-self:flex-start; margin-top:1.8rem;
+    padding:.4rem 1rem; border:1px solid var(--accent); border-radius:999px;
+    color:var(--accent); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; font-weight:700}
+  .pill::before{content:"✓"; font-size:.8rem}
+  /* solution image area */
+  .shot{margin-top:2.1rem; max-width:46ch; border:1.5px dashed rgba(224,122,66,.55);
+    border-radius:14px; background:linear-gradient(180deg,rgba(224,122,66,.07),rgba(15,11,8,.25));
+    padding:2.2rem; color:var(--muted); font-size:1.05rem}
+  .shot b{color:var(--accent)}
+  /* two-column ask slide */
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; margin-top:2.2rem; max-width:60ch}
+  .cols h3{font-size:1.05rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent2); margin-bottom:1.2rem}
+  .cols ul{margin-top:0; gap:.8rem}
+  .cols li{font-size:1.18rem}
+  /* chrome */
+  .bar{position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--accent2)); width:12.5%; transition:width .4s ease; z-index:10}
+  .counter{position:fixed; bottom:3vh; right:4vw; color:var(--faint); font-size:.95rem; letter-spacing:.05em; z-index:10}
+  .brand{position:fixed; bottom:3vh; left:4vw; color:var(--faint); font-size:.95rem; letter-spacing:.06em; font-weight:700; font-family:var(--serif); z-index:10}
+  .brand b{color:var(--accent)}
+  .hint{position:fixed; bottom:3vh; left:50%; transform:translateX(-50%); color:var(--faint); font-size:.82rem; opacity:.6; z-index:10}
+  /* field-line motif */
+  .motif{position:absolute; right:5vw; top:50%; transform:translateY(-50%); width:30vw; max-width:430px; opacity:.6; pointer-events:none}
+  @media (max-width:1100px){ h1{font-size:3.6rem} h2{font-size:2.2rem} .motif{display:none} }
+  @media print{
+    body{overflow:visible}
+    .slide{position:static; opacity:1!important; transform:none; pointer-events:auto; height:100vh; page-break-after:always}
+    .bar,.counter,.hint{display:none}
+    .brand{position:static}
+  }
+</style>
+</head>
+<body>
+<div class="bar"></div>
+
+<!-- 1 -->
+<section class="slide title active">
+  <div class="kicker">Deep-tech education · Dresden</div>
+  <div class="wordmark">
+    <span class="logomark">
+      <svg width="42" height="42" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="5">
+        <circle cx="50" cy="50" r="9" fill="#fff" stroke="none"/>
+        <ellipse cx="50" cy="50" rx="40" ry="16"/>
+        <ellipse cx="50" cy="50" rx="40" ry="16" transform="rotate(60 50 50)"/>
+        <ellipse cx="50" cy="50" rx="40" ry="16" transform="rotate(120 50 50)"/>
+      </svg>
+    </span>
+    <h1>Physics<span>Mind</span></h1>
+  </div>
+  <div class="tag">A personal science tutor for every student who doesn&rsquo;t have one.</div>
+  <div class="meta">
+    <b>Pradeep Nagapuri</b> &mdash; Graduate, Dresden International University (2026)<br>
+    Deep-tech education startup &middot; built in Dresden, Germany
+  </div>
+  <div class="badge">Applying for EXIST-Gründerstipendium</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <div class="kicker">The Problem</div>
+  <h2>Understanding science shouldn&rsquo;t depend on affording a great teacher.</h2>
+  <ul>
+    <li>A great personal tutor is the biggest advantage in learning &mdash; and the rarest</li>
+    <li>Video and text don&rsquo;t make abstract concepts <b>click</b></li>
+    <li>Students memorise formulas; <b>misconceptions go uncorrected</b></li>
+    <li>1-to-1 tutoring is expensive and <b>doesn&rsquo;t scale</b></li>
+  </ul>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <svg class="motif" viewBox="0 0 200 200" fill="none">
+    <circle cx="100" cy="100" r="34" stroke="#5b8bc4" stroke-width="1.2" opacity=".55"/>
+    <circle cx="100" cy="100" r="56" stroke="#5b8bc4" stroke-width="1.2" opacity=".35"/>
+    <circle cx="100" cy="100" r="80" stroke="#5b8bc4" stroke-width="1.2" opacity=".2"/>
+    <path d="M30 150 Q100 30 170 150" stroke="#6fcf7f" stroke-width="2" opacity=".85"/>
+    <circle cx="100" cy="100" r="13" fill="#e07a42"/>
+    <text x="92" y="106" font-family="Georgia" font-size="16" fill="#fff">+</text>
+    <circle cx="55" cy="118" r="4" fill="#6fcf7f"/>
+  </svg>
+  <div class="kicker">The Solution</div>
+  <h2>We make the concept <i>move</i>.</h2>
+  <ul>
+    <li>Physics-accurate, <b>interactive simulations</b></li>
+    <li>An <b>AI professor</b> that explains and drives the simulation live, by voice</li>
+    <li>&ldquo;ChatGPT <i>tells</i> you &mdash; PhysicsMind <i>shows</i> you&rdquo;</li>
+  </ul>
+  <div class="shot">&#9658;&nbsp; <b>Insert a live simulation screenshot here</b> &mdash; e.g. the Lorentz-force sim. (In the meeting, open the real sim on your laptop.)</div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="kicker">Why It&rsquo;s Different</div>
+  <h2>Not another tutoring app &mdash; a deep-tech engine.</h2>
+  <ul>
+    <li>Physics engines compute everything; the AI writes only <b>configuration, never the physics</b> &rarr; always accurate</li>
+    <li>A <b>curriculum-specific simulation library</b> &mdash; our core IP</li>
+    <li>A proprietary <b>data flywheel</b>: every student doubt improves the next explanation</li>
+  </ul>
+  <div class="caption">Defensible technology + knowledge &mdash; not a feature a competitor can copy.</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="kicker">Product · B2C</div>
+  <h2>Direct-to-student subscription.</h2>
+  <ul>
+    <li>Students <b>subscribe directly</b> &mdash; web app + AI voice professor</li>
+    <li>Tiered: simulations &rarr; AI doubt-solving &rarr; voice professor</li>
+    <li><b>Concept clarity first</b>; exam depth grows with the student</li>
+  </ul>
+  <div class="caption">No dependence on schools or institutions.</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="kicker">Market &amp; Go-to-Market</div>
+  <h2>A focused entry into a global market.</h2>
+  <ul>
+    <li>Global STEM learning &mdash; underserved by <b>simulation-first</b> products</li>
+    <li>Build on the <b>Indian curriculum</b> (deepest &rarr; ports to AP / A-level / IB)</li>
+    <li>First revenue: <b>UAE diaspora</b> &mdash; same curriculum, high willingness to pay</li>
+    <li>Year 2: India scale + Western curricula</li>
+  </ul>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="kicker">Traction &amp; Feasibility</div>
+  <h2>Already building. Already validated by a teacher.</h2>
+  <ul>
+    <li><b>Gold-standard simulations built</b> &mdash; magnetism &amp; electrostatics</li>
+    <li>Working <b>AI authoring pipeline</b> + AI voice-professor prototype</li>
+    <li>A <b>teacher co-development partner</b> reviewing real lessons</li>
+    <li>Built solo, from Germany, with AI-assisted development</li>
+  </ul>
+  <div class="pill">Teacher-verified</div>
+  <div class="caption">Pre-revenue today &mdash; a teacher-supervised student pilot is the next step.</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="kicker">EXIST · The Ask</div>
+  <h2>What the stipend makes possible.</h2>
+  <div class="cols">
+    <div>
+      <h3>The 12-month plan</h3>
+      <ul>
+        <li>Build the concept library to depth</li>
+        <li>Run a teacher + student pilot</li>
+        <li>Reach first paying users</li>
+        <li>Build a German-based deep-tech company</li>
+      </ul>
+    </div>
+    <div>
+      <h3>My questions for you</h3>
+      <ul>
+        <li class="accent2">Eligibility (DIU graduate, 2026)</li>
+        <li class="accent2">Team requirement</li>
+        <li class="accent2">Professor / mentor</li>
+        <li class="accent2">Visa pathway (&sect;20 &rarr; &sect;21)</li>
+        <li class="accent2">Next steps &amp; timeline</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="brand"><b>Physics</b>Mind</div>
+<div class="counter">1 / 8</div>
+<div class="hint">&larr; &rarr; to navigate &middot; F11 fullscreen &middot; Ctrl/Cmd+P &rarr; Save as PDF</div>
+
+<script>
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i);});
+    document.querySelector('.counter').textContent=(i+1)+' / '+slides.length;
+    document.querySelector('.bar').style.width=((i+1)/slides.length*100)+'%';
+  }
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','ArrowDown',' ','PageDown'].indexOf(e.key)>-1){e.preventDefault();show(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();show(i-1);}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+  });
+  document.addEventListener('click',function(e){ if(e.target.closest('a'))return; show(i+1); });
+  show(0);
+</script>
+</body>
+</html>
