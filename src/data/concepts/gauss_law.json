@@ -1,0 +1,877 @@
+{
+  "concept_id": "gauss_law",
+  "concept_name": "Gauss's Law: Φ = q_enc/ε₀",
+  "chapter": 1,
+  "section": "1.18",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.1 Electric Charges and Fields (Gauss's law statement §1.18) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (the prerequisite electric_flux ended at 'net flux through a closed surface is proportional to the charge inside' → name the exact constant of proportionality: it is 1/ε₀, so net Φ = q_enc/ε₀ → ε₀ is one fixed constant of nature, 8.854×10⁻¹² → because the net depends only on q_enc, ANY closed surface you imagine around the charge — sphere, cube, blob — gives the same q_enc/ε₀, and we call that imagined surface a Gaussian surface → a charge sitting OUTSIDE any closed surface contributes exactly zero, since every line that enters also leaves → and q_enc is the ALGEBRAIC sum of the enclosed charges, signs and all, so the net flux can be zero or negative → finally let the student add, remove and reshape and watch the live Φ = q_enc/ε₀ readout follow only the enclosed charge), never copied. The atomic idea: the net electric flux through ANY closed surface equals the charge enclosed divided by the permittivity of free space, Φ = q_enc/ε₀, with ε₀ = 8.854×10⁻¹² C²/(N·m²) a fixed constant of nature; the value is set ONLY by q_enc and is utterly independent of the surface's shape or size (any such imagined closed surface is a Gaussian surface); a charge outside contributes exactly zero; and q_enc is the signed algebraic sum of the enclosed charges, so net flux can be zero or negative. SCOPE: STATEMENT ONLY — no E-from-symmetry derivation (that is deferred to gauss_law_sphere etc.). Reuses the field_3d closed-surface machinery from electric_flux but flips the net-flux LABEL from '∝ q_enc' to '= q_enc/ε₀' and writes ε₀ on-canvas from STATE_2 — this INTENTIONALLY inverts electric_flux's 'no ε₀' cut-line guard (architect FLAG #1). Prerequisites electric_flux + charge_distribution. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "gauss_law"
+    ]
+  },
+  "prerequisites": [
+    "electric_flux",
+    "charge_distribution"
+  ],
+  "real_world_anchor": {
+    "primary": "Light some agarbatti — incense sticks — inside a closed room. The total amount of smoke leaving the room each second depends only on how many sticks are burning INSIDE, not on the shape of the room and not on a stick burning in the neighbour's room next door. Draw any imaginary bubble around the burning sticks — a sphere, a box, any closed shape — and the same total smoke crosses out of it. That is Gauss's law: the net flux out of any closed surface is set only by the source enclosed, and the electric version fixes the exact amount as q_enc divided by ε₀.",
+    "secondary": "The charged metal dome of a Van de Graaff generator in the school lab carries a fixed charge. Imagine any closed bubble drawn around the dome — close to it or far, round or lumpy — and the net electric field crossing out of that bubble is the same, fixed entirely by the charge on the dome and the constant ε₀, never by the bubble you chose to draw."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "q_enc": {
+        "name": "Charge enclosed by the Gaussian surface",
+        "unit": "demo nC",
+        "min": -2,
+        "max": 3,
+        "default": 1,
+        "step": 0.5
+      },
+      "q_in_pos": {
+        "name": "Positive charge inside the surface",
+        "unit": "demo nC",
+        "min": 0,
+        "max": 2,
+        "default": 1,
+        "step": 0.5
+      },
+      "q_in_neg": {
+        "name": "Negative charge inside the surface",
+        "unit": "demo nC",
+        "min": -2,
+        "max": 0,
+        "default": -1,
+        "step": 0.5
+      },
+      "q_out": {
+        "name": "Charge sitting outside the surface",
+        "unit": "demo nC",
+        "min": -2,
+        "max": 2,
+        "default": 1,
+        "step": 0.5
+      },
+      "charge_x": {
+        "name": "Position of the enclosed charge inside the surface",
+        "unit": "demo",
+        "min": -2.2,
+        "max": 2.2,
+        "default": 0,
+        "step": 0.05
+      },
+      "surface_shape": {
+        "name": "Closed-surface shape (0 sphere, 1 cube, 2 blob)",
+        "unit": "index",
+        "min": 0,
+        "max": 2,
+        "default": 0,
+        "step": 1
+      },
+      "epsilon_0": {
+        "name": "Permittivity of free space (a fixed constant of nature)",
+        "unit": "C²/(N·m²)",
+        "min": 8.854e-12,
+        "max": 8.854e-12,
+        "default": 8.854e-12,
+        "step": 1
+      },
+      "DEMO_FLUX_PER_NC": {
+        "name": "Demo flux readout per nanocoulomb enclosed",
+        "unit": "demo N·m²/C per nC",
+        "min": 100,
+        "max": 100,
+        "default": 100,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "q_enc_sum": {
+        "formula": "q_in_pos + q_in_neg"
+      },
+      "net_flux": {
+        "formula": "q_enc / epsilon_0"
+      },
+      "net_flux_demo": {
+        "formula": "q_enc * DEMO_FLUX_PER_NC"
+      },
+      "net_flux_pair_demo": {
+        "formula": "(q_in_pos + q_in_neg) * DEMO_FLUX_PER_NC"
+      },
+      "per_face_proxy": {
+        "formula": "(q_enc * DEMO_FLUX_PER_NC) / 6"
+      },
+      "outside_net_demo": {
+        "formula": "0"
+      }
+    },
+    "formulas": {
+      "gauss_law": "Φ = q_enc / ε₀   (net flux through any closed surface)",
+      "epsilon_value": "ε₀ = 8.854×10⁻¹² C²/(N·m²)   (one fixed constant of nature)",
+      "shape_independence": "any closed surface around the same q_enc gives the same Φ = q_enc/ε₀ — sphere, cube or blob",
+      "enclosed_only": "only the charge INSIDE the closed surface sets the net flux",
+      "outside_zero": "a charge outside a closed surface ⇒ net Φ = 0 (every line entering also leaves)",
+      "algebraic_sum": "q_enc = Σ qᵢ   (the signed algebraic sum of the enclosed charges)",
+      "sign_of_flux": "net Φ > 0 for net + charge inside, net Φ < 0 for net − charge inside, 0 when they cancel"
+    },
+    "constraints": [
+      "The net flux through a closed surface is computed for the surface as a WHOLE, not face by face — so the surface's shape never changes it; only the enclosed charge does (M1).",
+      "ε₀ is a single fixed constant of nature, 8.854×10⁻¹² C²/(N·m²); it does not depend on the surface, the medium in this vacuum statement, or any choice you make (M2).",
+      "A bigger or lumpier closed surface does NOT catch more or less net flux — any closed surface around the same q_enc gives exactly q_enc/ε₀ (M3).",
+      "A charge sitting OUTSIDE the closed surface contributes exactly zero net flux, no matter how close it is — every field line that enters one part of the surface leaves through another (M4).",
+      "q_enc is the signed ALGEBRAIC sum of the enclosed charges, Σ qᵢ — so the net flux can be zero (equal + and −) or negative (net − charge inside), not just a positive total (M5).",
+      "A Gaussian surface is an IMAGINARY closed surface you choose for convenience; it is not a real object and need not coincide with any physical boundary."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Net flux through any closed surface is the same: set only by the charge inside.",
+    "visual_confirmation": "The closed surface morphs from a sphere to a cube to a lumpy blob while the net-flux readout stays pinned at exactly q_enc/ε₀ the whole time."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "gaussian_surface": [
+      "STATE_3",
+      "STATE_4"
+    ],
+    "exploration": [
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Net flux is set by the charge inside — but by exactly how much?",
+        "duration": 15,
+        "focal_primitive_id": "proportional_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "carry_in_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "net Φ depends only on q_enc",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "but by exactly how much?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "proportional_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "net Φ ∝ q_enc   (the constant comes next)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "From electric flux you know the net flux out of any closed surface is set only by the charge trapped inside it."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "So far we only said net flux is proportional to the enclosed charge. But proportional with what exact constant?"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Think about it: is the net flux just equal to the charge inside, or is there a fixed number multiplying it?",
+              "pause_after_ms": 2600
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The net flux is computed face by face, so the surface's shape changes how much you get.",
+            "visual_counter": "Coming up, the very same charge inside a sphere and inside a lumpy blob gives the identical net flux q_enc/ε₀.",
+            "one_line_fix": "Net flux is fixed by the enclosed charge alone; the surface shape is your free choice."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "The constant is 1/ε₀: Φ = q_enc/ε₀",
+        "duration": 17,
+        "focal_primitive_id": "gauss_equation_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "epsilon_value_label",
+            "position": {
+              "x": 360,
+              "y": 95
+            },
+            "text": "ε₀ = 8.854×10⁻¹² C²/(N·m²)",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "constant_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "the constant is 1/ε₀",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "gauss_equation_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ = q_enc / ε₀",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Here is the answer. The proportional sign becomes an equals, and the exact constant multiplying the charge is one over epsilon-nought."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "So the net flux equals the enclosed charge divided by epsilon-nought. This is Gauss's law: Phi equals q-enclosed over epsilon-nought."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Epsilon-nought is a fixed constant of nature, eight point eight five times ten to the minus twelve. Same everywhere, never a fudge factor."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "ε₀ is some adjustable factor that depends on the surface, the medium, or is just a fudge to make the numbers fit.",
+            "visual_counter": "The fixed value 8.854×10⁻¹² writes onto the canvas and stays put no matter what surface or charge is shown.",
+            "one_line_fix": "ε₀ is one fixed constant of nature, the same for every closed surface."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_3": {
+        "title": "Any closed (Gaussian) surface — same q_enc/ε₀",
+        "duration": 19,
+        "focal_primitive_id": "pinned_readout_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "gaussian_surface_label",
+            "position": {
+              "x": 360,
+              "y": 95
+            },
+            "text": "Gaussian surface = any closed surface you choose",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "morph_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "sphere → cube → blob",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "pinned_readout_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ = q_enc/ε₀  stays the same",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Any closed surface you imagine around the charge is called a Gaussian surface. It is imaginary — you choose it for convenience."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Watch the readout as I change the surface. Will a bigger, lumpier surface catch more flux, or less, or the same?",
+              "pause_after_ms": 2700
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Watch: the surface morphs from a sphere to a cube to a lumpy blob, and the net-flux readout never moves off q-enclosed over epsilon-nought."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "That is the whole point. Any closed surface around the same charge gives the same Phi equals q-enclosed over epsilon-nought."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A bigger or lumpier closed surface catches more, or less, net flux than a small neat one.",
+            "visual_counter": "The surface morphs sphere → cube → blob while the readout holds dead steady at q_enc/ε₀.",
+            "one_line_fix": "Any closed surface around the same q_enc gives the same q_enc/ε₀ — shape and size never matter."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_4": {
+        "title": "Charges outside contribute zero",
+        "duration": 18,
+        "focal_primitive_id": "enclosed_only_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "outside_charge_label",
+            "position": {
+              "x": 360,
+              "y": 95
+            },
+            "text": "this charge sits OUTSIDE the surface",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "enter_leave_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "every line in also leaves → net 0",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "enclosed_only_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "q_out outside → net Φ = 0",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now the charge sits entirely outside the closed surface. Its field still reaches the surface. So what should the net flux be?",
+              "pause_after_ms": 2700
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Watch the lines. The field enters the surface on one side and leaves on the other — every line in also comes out."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "So the plus and minus contributions cancel exactly. The net flux drops to zero, no matter how close the outside charge gets."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "That is why only the enclosed charge counts in Gauss's law. Outside charges contribute exactly zero net flux."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A charge just outside the surface still pushes some net flux through it, and the closer it is, the more it adds.",
+            "visual_counter": "As the outside charge approaches, the field lines that enter one side leave the other; the readout holds at exactly zero.",
+            "one_line_fix": "A charge outside a closed surface contributes exactly zero net flux — every line that enters also leaves."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "q_enc is the ALGEBRAIC sum — signs matter",
+        "duration": 18,
+        "focal_primitive_id": "signed_sum_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "two_charge_label",
+            "position": {
+              "x": 360,
+              "y": 95
+            },
+            "text": "+q and −q both inside",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "algebraic_sum_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "q_enc = Σ qᵢ  (signed)",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "signed_sum_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "net Φ can be 0, or negative",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Now put two charges inside, a plus q and a minus q. What is the enclosed charge that goes into Gauss's law?",
+              "pause_after_ms": 2600
+            },
+            {
+              "id": "s5_2",
+              "text_en": "It is the algebraic sum, q-enclosed equals the sum of the charges with their signs. Plus q and minus q add to zero."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "So the net flux is zero, even though there is charge inside. Now I add a second negative charge inside the same surface."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "The enclosed sum is now negative, so the readout turns red and the field points inward. q-enclosed is a signed sum."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "q_enc is the total or the biggest charge inside, and flux can never be negative.",
+            "visual_counter": "+q and −q give net zero; adding a second negative charge drives q_enc negative, so the flux turns red and points inward.",
+            "one_line_fix": "q_enc is the signed algebraic sum Σ qᵢ; net flux can be zero or negative."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Explore: add, remove and reshape — watch Φ = q_enc/ε₀",
+        "duration": 16,
+        "focal_primitive_id": "live_readout_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": {
+              "x": 360,
+              "y": 95
+            },
+            "text": "drag q_enc, reshape the surface",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "live_readout_label",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "live Φ = q_enc/ε₀",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "explore_rule_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "only q_enc moves the readout — never the shape",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now you drive it. Use the sliders to add or remove enclosed charge and to reshape the closed surface."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Watch the live readout. It always equals q-enclosed over epsilon-nought, following only the charge you trap inside."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Reshape the surface all you like — the readout will not budge unless you change the enclosed charge. That is Gauss's law."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the statement of Gauss's law when they can (1) state that the net electric flux through any closed surface equals the enclosed charge divided by ε₀, Φ = q_enc/ε₀; (2) say that ε₀ = 8.854×10⁻¹² C²/(N·m²) is a fixed constant of nature, not a surface- or medium-dependent factor; (3) explain that the net flux is set ONLY by q_enc and is independent of the closed surface's shape and size — that any such imagined closed surface is a Gaussian surface; (4) state that a charge entirely outside a closed surface contributes exactly zero net flux because every line that enters also leaves; and (5) treat q_enc as the signed algebraic sum Σ qᵢ of the enclosed charges, so that the net flux can be zero (equal + and −) or negative (net − charge inside).",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A single charge q sits inside a closed surface. According to Gauss's law, what is the net electric flux through the surface?",
+        "options": {
+          "A": "q/ε₀ — the enclosed charge divided by the permittivity of free space",
+          "B": "q — the net flux is simply equal to the enclosed charge",
+          "C": "q·ε₀ — the enclosed charge times the permittivity of free space",
+          "D": "ε₀/q — the permittivity divided by the enclosed charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "drops the constant ε₀ entirely, leaving net flux equal to the charge",
+          "C": "multiplies by ε₀ instead of dividing by it",
+          "D": "inverts the relation, dividing ε₀ by the charge"
+        },
+        "tested_idea": "Gauss's law: the net flux through a closed surface is q_enc/ε₀.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A burning agarbatti stick sits inside a sealed room. If the room's net 'smoke flux' follows the same rule, write the net flux in terms of the enclosed source and the constant ε₀."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "The same charge q is placed first inside a small sphere, then inside a large cube drawn around it. How does the net flux through the cube compare with the net flux through the sphere?",
+        "options": {
+          "A": "It is the same — both equal q/ε₀, since net flux depends only on the enclosed charge, not the surface's shape or size",
+          "B": "It is larger for the cube, because the cube has more surface area to let flux through",
+          "C": "It is smaller for the cube, because the flux spreads out over a bigger surface",
+          "D": "It cannot be compared — the flux through a cube and a sphere are computed by different rules"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "thinks a bigger surface catches more net flux",
+          "C": "thinks a bigger surface dilutes the net flux",
+          "D": "thinks surface shape changes which rule applies"
+        },
+        "tested_idea": "Net flux is independent of the closed surface's shape and size; any surface around q gives q/ε₀.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "One burning agarbatti stick sits inside a small round paper lantern, then inside a large box-shaped lantern. Does the total smoke leaving change when you swap the lantern's shape, and why?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A point charge sits entirely OUTSIDE a closed surface; no charge is inside. What is the net electric flux through that surface?",
+        "options": {
+          "A": "Zero — every field line that enters the surface on one side leaves on another, so the contributions cancel",
+          "B": "Positive — the outside charge's field still points through the surface, so it pushes a net flux out",
+          "C": "It depends on the distance — the closer the outside charge, the larger the net flux through the surface",
+          "D": "q_out/ε₀ — the outside charge counts in Gauss's law just like an inside one"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes the outside field always yields a positive net flux",
+          "C": "thinks the net flux grows as the outside charge gets nearer",
+          "D": "treats an outside charge as if it were enclosed"
+        },
+        "tested_idea": "A charge outside a closed surface contributes exactly zero net flux.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Your neighbour burns an agarbatti stick in the next room, with none in yours. What is the net smoke flux out of your sealed room, and why?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A closed surface encloses a charge of +2 nC and a charge of −2 nC. What is the net electric flux through the surface?",
+        "options": {
+          "A": "Zero — q_enc is the signed algebraic sum, +2 + (−2) = 0, so the net flux is zero",
+          "B": "4 nC/ε₀ — add up the magnitudes of all the charges inside",
+          "C": "2 nC/ε₀ — use the larger of the two enclosed charges",
+          "D": "Net flux can never be zero when there is charge inside the surface"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "sums charge magnitudes instead of the signed algebraic sum",
+          "C": "uses the biggest single charge rather than the algebraic sum",
+          "D": "believes net flux must be nonzero whenever charge is present"
+        },
+        "tested_idea": "q_enc is the signed algebraic sum Σ qᵢ, so equal + and − charges give zero net flux.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A sealed box on the Van de Graaff bench encloses one +2 nC clip and one −2 nC clip. Using q_enc = Σ qᵢ, what is the net flux through the box?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "In Gauss's law, what exactly is a 'Gaussian surface'?",
+        "options": {
+          "A": "Any imaginary closed surface you choose around the charge for convenience — it need not be a real physical object",
+          "B": "A real metal surface that must physically surround the charge for the law to hold",
+          "C": "Only a perfect sphere centred on the charge — no other shape is allowed",
+          "D": "The actual outer surface of the charged body itself"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "thinks the Gaussian surface must be a real material boundary",
+          "C": "thinks only a centred sphere qualifies as a Gaussian surface",
+          "D": "confuses the imagined surface with the charged body's own surface"
+        },
+        "tested_idea": "A Gaussian surface is an imaginary closed surface chosen for convenience — any closed shape works.",
+        "teaches_state": "STATE_3",
+        "difficulty": "stretch",
+        "parallel_form_stem": "When we say 'draw any bubble around the burning agarbatti', what kind of bubble counts — a real wall, or any imagined closed shape? Tie this to the term Gaussian surface."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A closed surface encloses a charge of +2q. A separate charge of −q sits just outside the surface. What is the net electric flux through the surface?",
+        "options": {
+          "A": "2q/ε₀ — only the enclosed +2q counts; the outside −q contributes exactly zero",
+          "B": "q/ε₀ — combine the inside +2q and the outside −q to get a net q",
+          "C": "3q/ε₀ — add the magnitudes of the inside +2q and the outside −q",
+          "D": "Zero — the outside −q cancels part of the inside charge's flux"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "lets the outside charge combine into q_enc",
+          "C": "sums all charge magnitudes regardless of inside/outside",
+          "D": "thinks the outside charge cancels enclosed flux"
+        },
+        "tested_idea": "Only enclosed charge sets the net flux: q_enc = +2q gives 2q/ε₀; an outside charge contributes zero.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Two agarbatti sticks burn inside your sealed room and one burns just outside the door. Counting only what is enclosed, what is the net smoke flux out of your room?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "Q1"
+      ],
+      "STATE_3": [
+        "Q2",
+        "Q5"
+      ],
+      "STATE_4": [
+        "Q3"
+      ],
+      "STATE_5": [
+        "Q4",
+        "Q6"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_6"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "gauss_law",
+    "slider_controls": {
+      "q_enc": {
+        "min": -2,
+        "max": 3,
+        "step": 0.5,
+        "default": 1,
+        "label": "q_enc (nC)"
+      },
+      "surface_shape": {
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "default": 0,
+        "label": "Surface shape"
+      },
+      "charge_x": {
+        "min": -2.2,
+        "max": 2.2,
+        "step": 0.05,
+        "default": 0,
+        "label": "Charge position"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Net flux is set by the charge inside — but by exactly how much?",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss": {
+          "q_enc": 1,
+          "surface_shape": 0,
+          "flow": true
+        }
+      },
+      "STATE_2": {
+        "label": "The constant is 1/ε₀: Φ = q_enc/ε₀",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss": {
+          "q_enc": 1,
+          "surface_shape": 0,
+          "show_equation": true,
+          "show_epsilon": true,
+          "equation_at_ms": 1200
+        },
+        "formula_overlay": "Φ = q_enc / ε₀"
+      },
+      "STATE_3": {
+        "label": "Any closed (Gaussian) surface — same q_enc/ε₀ (PRIMARY aha)",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss": {
+          "q_enc": 1,
+          "show_surface_label": true,
+          "show_equation": true,
+          "show_epsilon": true,
+          "morph": {
+            "from": 0,
+            "to": 2,
+            "at_ms": 1500,
+            "duration_ms": 5000
+          }
+        },
+        "formula_overlay": "Φ = q_enc / ε₀  (any surface)"
+      },
+      "STATE_4": {
+        "label": "Charges outside contribute zero",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.6,
+          8
+        ],
+        "caption": "",
+        "gauss": {
+          "outside_demo": true,
+          "q_out": 1,
+          "surface_shape": 0,
+          "flow": true,
+          "show_equation": true,
+          "show_epsilon": true
+        },
+        "formula_overlay": "charge outside → net Φ = 0"
+      },
+      "STATE_5": {
+        "label": "q_enc is the ALGEBRAIC sum — signs matter",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss": {
+          "signed": true,
+          "q_in_pos": 1,
+          "q_in_neg": -1,
+          "surface_shape": 0,
+          "add_charge": {
+            "q": -1,
+            "pos": [
+              -0.6,
+              0.45,
+              0.2
+            ],
+            "at_ms": 1500,
+            "fade_ms": 1000
+          },
+          "show_equation": true,
+          "show_epsilon": true
+        },
+        "formula_overlay": "q_enc = Σ qᵢ → Φ = q_enc/ε₀"
+      },
+      "STATE_6": {
+        "label": "Explore: add, remove and reshape — watch Φ = q_enc/ε₀",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          8
+        ],
+        "caption": "",
+        "gauss": {
+          "sliders": true,
+          "q_enc": 1,
+          "surface_shape": 0,
+          "charge_x": 0,
+          "show_equation": true,
+          "show_epsilon": true
+        },
+        "formula_overlay": "live Φ = q_enc / ε₀"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

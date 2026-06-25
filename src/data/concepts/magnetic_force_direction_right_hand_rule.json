@@ -1,0 +1,598 @@
+{
+  "concept_id": "magnetic_force_direction_right_hand_rule",
+  "concept_name": "Which Way Does the Force Point? — the Right-Hand Rule for F = q v × B",
+  "chapter": 4,
+  "section": "4.2",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the 'force on a moving charge' heading that precedes the magnitude lesson); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This concept is the DIRECTION-only sibling of magnetic_force_moving_charge: it teaches HOW to find which way the magnetic force points using the right-hand rule for F = q v × B, and nothing about its size. The atomic claim: the magnetic force on a moving charge is perpendicular to BOTH the velocity v and the field B at the same time; the right hand chooses which of the two perpendicular directions, and a negative charge flips the answer by 180 degrees. It deliberately does NOT teach the magnitude F = qvB sin(theta), the circular-motion radius r = mv/qB, the period, or any Newton/Tesla number — those belong to magnetic_force_moving_charge and are NEVER shown on-canvas here. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal). Renders on field_3d via the rhr_force_direction scenario (the direction-only sibling of lorentz_force_uniform_field), which shares the 3D right-hand mesh (extras.palm_rule.show_3d_hand). Lighter atom by founder carve-out: no assessment block, no coverage_map.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["rhr_force_direction"]
+  },
+  "prerequisites": [
+    "magnetic_field_concept_B",
+    "vector_resolution"
+  ],
+  "real_world_anchor": {
+    "primary": "Hold a strong magnet near the glass of an old CRT television or a school-lab CRT monitor while a bright picture is showing. The picture warps and the colours smear in a curved swirl. Inside that tube a beam of electrons is racing toward the screen, and the magnet's field is shoving each moving electron sideways — bending the whole beam. Which way the picture warps depends entirely on which way that sideways magnetic force points, and that is exactly what the right-hand rule tells you. Move the magnet to the other side and the warp swings the other way.",
+    "secondary": "At the VECC cyclotron in Kolkata, charged particles are whipped round and round and steered along their path by carefully aimed magnetic forces. Every bend in their track is a magnetic force pushing sideways on a moving charge — the same q v × B direction rule, scaled up to a research machine that accelerates beams for medicine and physics."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "v": {
+        "name": "Speed of the moving charge (direction-only here; the number is never shown)",
+        "unit": "m/s",
+        "min": 0,
+        "max": 10,
+        "default": 6,
+        "step": 1
+      },
+      "B": {
+        "name": "Magnetic field strength (direction-only here; the number is never shown)",
+        "unit": "T",
+        "min": 0,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "theta_deg": {
+        "name": "Angle between v and B (controls only whether a sideways force exists)",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "default": 90,
+        "step": 5
+      },
+      "q_sign": {
+        "name": "Sign of the charge: +1 positive, -1 negative (flips the force direction)",
+        "unit": "",
+        "min": -1,
+        "max": 1,
+        "default": 1,
+        "step": 2
+      }
+    },
+    "formulas": {
+      "force_is_perpendicular_to_velocity": "The magnetic force is always perpendicular to the velocity — it never points along the motion",
+      "force_is_perpendicular_to_field": "The magnetic force is also perpendicular to the field — it is at right angles to BOTH v and B at once",
+      "right_hand_picks_the_side": "Point the right-hand fingers along v, curl them through the smaller angle toward B, and the thumb gives the direction of the force for a positive charge",
+      "negative_charge_flips_it": "For a negative charge the force points the opposite way — a full 180 degrees from the positive-charge answer",
+      "no_push_along_the_field": "When v points along B there is no sideways force at all; only the part of v across the field gets pushed"
+    },
+    "constraints": [
+      "This concept teaches the DIRECTION of the magnetic force only — it never shows a magnitude number, F = qvB sin(theta), the radius r = mv/qB, the period, or any Newton or Tesla value",
+      "The magnetic force is perpendicular to the velocity v at every instant",
+      "The magnetic force is perpendicular to the field B at every instant",
+      "Because the force is q times (v cross B), a negative charge reverses the direction by 180 degrees while v and B stay the same",
+      "When v is parallel to B (theta = 0 or 180 degrees) or the charge is at rest, there is no magnetic force — the F arrow is hidden, never a zero-length stub",
+      "theta_deg controls only whether a sideways force exists and how far across the field v lies — it is direction information, not a magnitude readout",
+      "The right-hand rule gives v cross B; the force on the actual charge is q times that, so the charge's sign decides the final side"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "F points square to both v and B; the right hand picks the side.",
+    "visual_confirmation": "Right-angle marks prove F is perpendicular to both v and B; STATE_4 then flips F a full 180 degrees for a negative charge."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6"],
+    "the_rule": ["STATE_1", "STATE_2", "STATE_3"],
+    "negative_charge": ["STATE_4"],
+    "exam_diagram": ["STATE_5"]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "The Sideways Shove — which way?",
+        "duration": 13,
+        "focal_primitive_id": "force_reveal_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "a charge speeds through a magnetic field",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "it does NOT go straight —\nwhich way is it pushed?",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "force_reveal_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "a sideways force appears — across the motion, not along it",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A charge is moving through a magnetic field. Watch its path." },
+            { "id": "s1_2", "text_en": "It doesn't go straight — something shoves it sideways. Which way will the push point?", "pause_after_ms": 2500 },
+            { "id": "s1_3", "text_en": "A force appears — pointing sideways, across the motion, not along it." },
+            { "id": "s1_4", "text_en": "This sideways shove is the magnetic force. The rest of this lesson is: which way does it point?" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The magnetic force pushes the charge along its motion and speeds it up",
+            "visual_counter": "The force arrow pops out sideways, square across the velocity arrow — never forward along the path.",
+            "one_line_fix": "The magnetic force is square to the motion — it steers the charge sideways, it never pushes it forward."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "The Rule — fingers v, curl to B, thumb is F",
+        "duration": 16,
+        "focal_primitive_id": "rule_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "fingers_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "right hand: point fingers along v",
+            "color": "#FFB366"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "Predict: which way\nis your thumb pointing?",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "rule_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "thumb points where the FORCE points",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Here's the rule. Open your right hand. Point your fingers along v, the way the charge moves.", "hand_phase": "v" },
+            { "id": "s2_2", "text_en": "Now curl your fingers through the smaller angle, toward B, the field.", "hand_phase": "b" },
+            { "id": "s2_3", "text_en": "Your thumb now points one specific way. Before I show it — which way is your thumb pointing?", "pause_after_ms": 3000 },
+            { "id": "s2_4", "text_en": "Your thumb gives the direction of the force. The force points where the thumb points.", "hand_phase": "f" },
+            { "id": "s2_5", "text_en": "Release the charge — it gets pushed exactly the way the thumb showed.", "freeze_proton": false }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The thumb shows how fast or how hard the charge is pushed",
+            "visual_counter": "The thumb is just a pointer for the force direction — nothing about its length stands for speed or strength.",
+            "one_line_fix": "The thumb only picks the DIRECTION of the force — it is a pointer, never a throttle."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Square to BOTH — F is perpendicular to v and to B",
+        "duration": 15,
+        "focal_primitive_id": "perp_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "angle_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "look at the angle between F and v",
+            "color": "#FFB366"
+          },
+          {
+            "type": "annotation",
+            "id": "perp_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "right angle to v\nAND right angle to B",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "plane_label",
+            "position": { "x": 560, "y": 410 },
+            "text": "F stands straight out of the\nflat sheet that holds v and B",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Look at the force arrow against the velocity arrow. What angle is between them?", "pause_after_ms": 2500 },
+            { "id": "s3_2", "text_en": "A right angle. The force is exactly perpendicular to the velocity." },
+            { "id": "s3_3", "text_en": "And it's also perpendicular to the field. The force is at right angles to BOTH at once." },
+            { "id": "s3_4", "text_en": "Let me tilt the view: F stands straight out of the flat sheet that holds v and B." },
+            { "id": "s3_5", "text_en": "The magnetic force never points along the motion. It always points out to the side, square to both v and B." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The force lies somewhere in the same plane as v and B, leaning between them",
+            "visual_counter": "Tilting the view shows F standing straight out of the v–B sheet, with right-angle marks on both v and B.",
+            "one_line_fix": "F is square to BOTH v and B — it sticks out of their plane, it never leans between them."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Flip the Sign — a negative charge reverses F",
+        "duration": 16,
+        "focal_primitive_id": "flip_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "same_setup_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "same v, same B — but now the charge is negative",
+            "color": "#FFB366"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "Predict: force the SAME way,\nor the OPPOSITE way?",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "flip_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "opposite — a negative charge flips F a full 180°",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Same velocity, same field as before. But now the charge is negative — an electron, say." },
+            { "id": "s4_2", "text_en": "Run the same right-hand rule: fingers along v, curl to B, thumb out. Where does the force point now — same way, or opposite?", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "Opposite. For a negative charge the force flips a full 180 degrees." },
+            { "id": "s4_4", "text_en": "The right-hand rule still gives you v cross B — but the force is q times that, so a negative q turns it around." },
+            { "id": "s4_5", "text_en": "Same hand, same gesture. Only the sign of the charge decided the side." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The right-hand rule gives the same force direction whatever the sign of the charge",
+            "visual_counter": "With the same v and B, the F arrow flips a full 180 degrees for a negative charge — a fading ghost marks where the positive-charge force pointed.",
+            "one_line_fix": "Negative charge → reverse the thumb. Same rule, opposite answer."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_5": {
+        "title": "Into the Page — ⊗ and ⊙ are the same hand",
+        "duration": 16,
+        "focal_primitive_id": "page_glyph_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "glyph_legend_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "⊗ = into the page    ⊙ = out of the page",
+            "color": "#FFB366"
+          },
+          {
+            "type": "annotation",
+            "id": "page_glyph_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "same rule: fingers along v,\ncurl into the page toward B",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "end_on_label",
+            "position": { "x": 560, "y": 410 },
+            "text": "a flat ⊗ / ⊙ diagram is just\nour 3D rule seen end-on",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "In textbooks the field often points straight into the page. We draw that as a cross in a circle." },
+            { "id": "s5_2", "text_en": "A cross is the tail of an arrow flying away from you — into the page. A dot is the tip coming toward you — out of the page." },
+            { "id": "s5_3", "text_en": "It's the SAME rule. Point fingers along v, curl them into the page toward B, read the thumb.", "hand_phase": "f" },
+            { "id": "s5_4", "text_en": "Watch what happens if I flip the cross to a dot — out of the page instead." },
+            { "id": "s5_5", "text_en": "The thumb swings the other way. A flat cross-in-circle or dot-in-circle diagram is just our 3D rule seen end-on." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The cross and dot symbols are just decoration, and a flat diagram can't be connected to the 3D right-hand rule",
+            "visual_counter": "The 3D hand re-orients its fingers INTO the page for the cross, and the force it gives matches the 2D answer exactly.",
+            "one_line_fix": "Cross means fingers into the page, dot means fingers out — then it is the same hand."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Along the Field — no shove, then explore",
+        "duration": 18,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "parallel_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "now v points along B — same direction",
+            "color": "#FFB366"
+          },
+          {
+            "type": "annotation",
+            "id": "zero_force_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "no sideways push at all —\nthe force is zero",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "swing the angle, change v, change B, flip the charge — watch which way F points",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "One last case. Here the charge moves straight along the field — v and B point the same way." },
+            { "id": "s6_2", "text_en": "Try the right-hand rule. Fingers along v, curl toward B — but there's nothing to curl through. What force do you expect?", "pause_after_ms": 3000 },
+            { "id": "s6_3", "text_en": "None. When v lines up with B, there is no sideways push at all. The force is zero." },
+            { "id": "s6_4", "text_en": "Now you drive it. Swing the angle, change the speed, change the field, flip the charge — and watch which way the force points." },
+            { "id": "s6_5", "text_en": "As you turn v away from B, the force grows; bring it back in line, it shrinks to nothing." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "There is always a magnetic force on a moving charge, no matter which way it moves",
+            "visual_counter": "Sliding v parallel to B makes the F arrow vanish; only when v tilts across B does a force reappear.",
+            "one_line_fix": "Move along B and the force is zero — only the part of v across the field gets pushed."
+          }
+        ]
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "rhr_force_direction",
+    "ambient_field": {
+      "direction": [0, 0, 1],
+      "magnitude": 1,
+      "density": [5, 5, 5],
+      "color": "#42A5F5",
+      "opacity": 0.45,
+      "extent": 3
+    },
+    "particle": {
+      "charge_sign": 1,
+      "color": "#FFB366",
+      "radius": 0.12
+    },
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#42A5F5",
+      "color_negative": "#42A5F5",
+      "opacity": 0.45,
+      "arrow_spacing": 5
+    },
+    "slider_controls": {
+      "v": { "min": 0, "max": 10, "step": 1, "default": 6, "label": "|v|" },
+      "B": { "min": 0, "max": 10, "step": 1, "default": 5, "label": "B" },
+      "theta_deg": { "min": 0, "max": 90, "step": 1, "default": 0, "label": "θ(v,B)" },
+      "q_sign": { "default": 1, "label": "q" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The sideways shove — which way?",
+        "visible_elements": ["particle", "v_arrow", "field_grid"],
+        "camera_position": [2.5, 1.5, 4],
+        "caption": "",
+        "advance_mode": "auto_after_tts",
+        "duration": 13,
+        "trajectory_mode": "straight",
+        "theta_deg": 90,
+        "hide_magnitude_readout": true,
+        "rhr": {
+          "view": "space_view",
+          "f_appear_at_ms": 6000,
+          "f_appear_fade_ms": 600,
+          "hide_magnitude_readout": true
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A charge is moving through a magnetic field. Watch its path." },
+            { "id": "s1_2", "text_en": "It doesn't go straight — something shoves it sideways. Which way will the push point?", "pause_after_ms": 2500 },
+            { "id": "s1_3", "text_en": "A force appears — pointing sideways, across the motion, not along it." },
+            { "id": "s1_4", "text_en": "This sideways shove is the magnetic force. The rest of this lesson is: which way does it point?" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "The rule — fingers v, curl to B, thumb is F",
+        "visible_elements": ["particle", "v_arrow", "field_grid", "right_hand"],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "wait_for_answer",
+        "duration": 16,
+        "trajectory_mode": "static",
+        "theta_deg": 90,
+        "charge_sign": 1,
+        "hide_magnitude_readout": true,
+        "rhr": {
+          "view": "space_view",
+          "show_hand": true,
+          "hide_magnitude_readout": true
+        },
+        "extras": {
+          "palm_rule": {
+            "show_3d_hand": true,
+            "hand_position": [-2.8, 1.6, 0.6],
+            "hand_scale": 1.0
+          }
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Here's the rule. Open your right hand. Point your fingers along v, the way the charge moves.", "hand_phase": "v" },
+            { "id": "s2_2", "text_en": "Now curl your fingers through the smaller angle, toward B, the field.", "hand_phase": "b" },
+            { "id": "s2_3", "text_en": "Your thumb now points one specific way. Before I show it — which way is your thumb pointing?", "pause_after_ms": 3000 },
+            { "id": "s2_4", "text_en": "Your thumb gives the direction of the force. The force points where the thumb points.", "hand_phase": "f" },
+            { "id": "s2_5", "text_en": "Release the charge — it gets pushed exactly the way the thumb showed.", "freeze_proton": false }
+          ]
+        }
+      },
+      "STATE_3": {
+        "label": "Square to BOTH — F perpendicular to v and B",
+        "visible_elements": ["particle", "v_arrow", "f_arrow", "field_grid", "right_hand"],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "manual_click",
+        "duration": 15,
+        "trajectory_mode": "static",
+        "theta_deg": 90,
+        "charge_sign": 1,
+        "hide_magnitude_readout": true,
+        "rhr": {
+          "view": "space_view",
+          "show_right_angle_marks": true,
+          "camera_orbit_deg": 30,
+          "camera_orbit_duration_ms": 4000,
+          "hide_magnitude_readout": true
+        },
+        "extras": {
+          "palm_rule": {
+            "show_3d_hand": true,
+            "hand_position": [-2.8, 1.6, 0.6],
+            "hand_scale": 1.0
+          }
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Look at the force arrow against the velocity arrow. What angle is between them?", "pause_after_ms": 2500 },
+            { "id": "s3_2", "text_en": "A right angle. The force is exactly perpendicular to the velocity." },
+            { "id": "s3_3", "text_en": "And it's also perpendicular to the field. The force is at right angles to BOTH at once." },
+            { "id": "s3_4", "text_en": "Let me tilt the view: F stands straight out of the flat sheet that holds v and B." },
+            { "id": "s3_5", "text_en": "The magnetic force never points along the motion. It always points out to the side, square to both v and B." }
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "Flip the sign — a negative charge reverses F",
+        "visible_elements": ["particle", "v_arrow", "f_arrow", "field_grid", "right_hand"],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "wait_for_answer",
+        "duration": 16,
+        "trajectory_mode": "static",
+        "theta_deg": 90,
+        "charge_sign": -1,
+        "hide_magnitude_readout": true,
+        "rhr": {
+          "view": "space_view",
+          "show_ghost_f": true,
+          "ghost_f_fade_ms": 1400,
+          "hide_magnitude_readout": true
+        },
+        "extras": {
+          "palm_rule": {
+            "show_3d_hand": true,
+            "hand_position": [-2.8, 1.6, 0.6],
+            "hand_scale": 1.0
+          }
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Same velocity, same field as before. But now the charge is negative — an electron, say." },
+            { "id": "s4_2", "text_en": "Run the same right-hand rule: fingers along v, curl to B, thumb out. Where does the force point now — same way, or opposite?", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "Opposite. For a negative charge the force flips a full 180 degrees." },
+            { "id": "s4_4", "text_en": "The right-hand rule still gives you v cross B — but the force is q times that, so a negative q turns it around." },
+            { "id": "s4_5", "text_en": "Same hand, same gesture. Only the sign of the charge decided the side." }
+          ]
+        }
+      },
+      "STATE_5": {
+        "label": "Into the page — cross and dot are the same hand",
+        "visible_elements": ["particle", "v_arrow", "f_arrow", "page_glyphs", "right_hand"],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "manual_click",
+        "duration": 16,
+        "trajectory_mode": "static",
+        "theta_deg": 90,
+        "charge_sign": 1,
+        "hide_magnitude_readout": true,
+        "ambient_field": {
+          "direction": [0, 0, -1]
+        },
+        "rhr": {
+          "view": "page_view",
+          "show_page_glyphs": true,
+          "page_legend": true,
+          "glyph_toggle_at_ms": 5000,
+          "hide_magnitude_readout": true
+        },
+        "extras": {
+          "palm_rule": {
+            "show_3d_hand": true,
+            "hand_position": [-2.8, 1.6, 0.6],
+            "hand_scale": 1.0
+          }
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "In textbooks the field often points straight into the page. We draw that as a cross in a circle." },
+            { "id": "s5_2", "text_en": "A cross is the tail of an arrow flying away from you — into the page. A dot is the tip coming toward you — out of the page." },
+            { "id": "s5_3", "text_en": "It's the SAME rule. Point fingers along v, curl them into the page toward B, read the thumb.", "hand_phase": "f" },
+            { "id": "s5_4", "text_en": "Watch what happens if I flip the cross to a dot — out of the page instead." },
+            { "id": "s5_5", "text_en": "The thumb swings the other way. A flat cross-in-circle or dot-in-circle diagram is just our 3D rule seen end-on." }
+          ]
+        }
+      },
+      "STATE_6": {
+        "label": "Along the field — no shove, then explore",
+        "visible_elements": ["particle", "v_arrow", "field_grid"],
+        "camera_position": [3, 2, 5],
+        "caption": "",
+        "advance_mode": "interaction_complete",
+        "duration": 18,
+        "trajectory_mode": "static",
+        "theta_deg": 0,
+        "charge_sign": 1,
+        "show_sliders": true,
+        "hide_magnitude_readout": true,
+        "rhr": {
+          "view": "space_view",
+          "hide_magnitude_readout": true
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "One last case. Here the charge moves straight along the field — v and B point the same way." },
+            { "id": "s6_2", "text_en": "Try the right-hand rule. Fingers along v, curl toward B — but there's nothing to curl through. What force do you expect?", "pause_after_ms": 3000 },
+            { "id": "s6_3", "text_en": "None. When v lines up with B, there is no sideways push at all. The force is zero." },
+            { "id": "s6_4", "text_en": "Now you drive it. Swing the angle, change the speed, change the field, flip the charge — and watch which way the force points." },
+            { "id": "s6_5", "text_en": "As you turn v away from B, the force grows; bring it back in line, it shrinks to nothing." }
+          ]
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#FFB366",
+      "negative": "#42A5F5",
+      "field_line": "#42A5F5"
+    }
+  }
+}

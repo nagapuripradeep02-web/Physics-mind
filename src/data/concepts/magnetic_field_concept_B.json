@@ -1,0 +1,665 @@
+{
+  "concept_id": "magnetic_field_concept_B",
+  "concept_name": "What Is a Magnetic Field? — B as a Vector Field Sourced by Moving Charge",
+  "chapter": 4,
+  "section": "4.3",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the chapter-opening 'what is a magnetic field' idea that precedes §4.4 magnitude); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This concept slots BEFORE magnetic_field_wire (§4.4): it establishes WHAT a magnetic field IS — a genuine vector field that exists at every point of space, sourced by MOVING charge (current), revealed (not created) by a compass — exactly as the electric field is a vector field sourced by a still charge and revealed by a test charge. It deliberately does NOT teach the magnitude B = μ₀I/(2πr); that numeric lesson belongs to magnetic_field_wire. The atomic claim: a moving charge fills the space around it with a vector field B that CIRCULATES around the wire (azimuthal, tangent, perpendicular to the wire), just as a static charge fills space with the radial vector field E. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal). Renders on field_3d via the straight_wire_current scenario; the STATE_2/3 compass on→off→on toggle and the STATE_6 side-by-side E-vs-B comparison panel are FLAGGED to renderer_primitives as new scenario support.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["straight_wire_current"]
+  },
+  "prerequisites": [
+    "current_not_vector",
+    "electric_field_point_charge"
+  ],
+  "real_world_anchor": {
+    "primary": "Lay a cheap magnetic compass beside the wire of your phone charger while the phone is charging. The needle twitches a little off north — and snaps straight back to north the instant you unplug it. There is no magnet anywhere near it. The moving charge in the wire — the current — reached out into the space around the wire and pushed the needle. Switch the current on and off, and the field appears and vanishes with it.",
+    "secondary": "In 1820 Hans Christian Oersted noticed his compass needle twitch every time he ran a current through a nearby wire. That tiny twitch was the birth of electromagnetism — proof that a moving charge makes a magnetic field. You can repeat his experiment on a desk with a battery, a wire, and a compass."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I": {
+        "name": "Current in the wire (the source)",
+        "unit": "A",
+        "min": 0,
+        "max": 5,
+        "default": 3,
+        "step": 0.5
+      },
+      "r": {
+        "name": "Distance from the wire to the field-probe point",
+        "unit": "m",
+        "min": 0.02,
+        "max": 0.30,
+        "default": 0.05,
+        "step": 0.01
+      },
+      "mu_0": {
+        "name": "Magnetic permeability of free space",
+        "unit": "T·m/A",
+        "constant": 1.2566370614e-6
+      },
+      "Q": {
+        "name": "Source charge (STATE_6 analogy panel — display only)",
+        "unit": "nC",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "q": {
+        "name": "Positive test charge that reveals E (STATE_6 analogy — display only)",
+        "unit": "nC",
+        "min": 1,
+        "max": 5,
+        "default": 1,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "B_magnitude": {
+        "formula": "(mu_0 * I) / (2 * PI * r)"
+      }
+    },
+    "formulas": {
+      "field_is_vector": "B is a genuine vector field: at every point of space it has a size and a direction",
+      "source_is_moving_charge": "The source of B is moving charge — a current. A charge at rest makes no magnetic field.",
+      "direction_circulates": "B circulates AROUND the wire — it is tangent to the circle through the point, perpendicular to the wire, never along it",
+      "strength_relation_qualitative": "B is stronger nearer the wire and stronger with more current (the magnitude itself is taught in the next concept)",
+      "compass_reveals": "A compass is a test object: it REVEALS the field that is already there — it does not create it",
+      "E_B_analogy": "A still charge fills space with a radial field E; a moving charge fills space with a circulating field B — both are vector fields revealed by a test object"
+    },
+    "constraints": [
+      "Steady DC current is assumed throughout",
+      "Long straight wire idealization: B is azimuthal only — it circulates around the wire with zero radial and zero axial component",
+      "The source of B is moving charge (current); a charge at rest produces zero magnetic field",
+      "A compass is an ideal test dipole that REVEALS the field, it does not create it",
+      "B is a genuine vector field — defined with a size and direction at every point of space, whether or not a compass is there",
+      "The magnitude B = μ₀I/(2πr) is grounding only here; the numeric magnitude lesson belongs to magnetic_field_wire and is never shown on-canvas in this concept",
+      "B_magnitude at I = 0 is cleanly zero (STATE_3 is reachable because I has min 0)"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "A moving charge circles space with B, as a still charge fills space with E.",
+    "visual_confirmation": "Both panels reveal a vector field with a test object — radial E on the left, circulating B on the right; same idea, two sources."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6"],
+    "source": ["STATE_1", "STATE_2", "STATE_3"],
+    "analogy": ["STATE_5", "STATE_6"]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "The Source — a current starts to flow",
+        "duration": 13,
+        "focal_primitive_id": "source_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "wire_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "Wire + battery — switch open, no current yet",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "current_dots_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "current dots flow UP\nwhen the switch closes",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "source_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "the SOURCE is moving charge",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Here is a plain wire joined to a battery. The switch is open, so no current flows yet — nothing is moving." },
+            { "id": "s1_2", "text_en": "Now the switch closes. Watch the yellow dots — charge starts moving up the wire. That moving charge is the current." },
+            { "id": "s1_3", "text_en": "Hold on to this one idea: the source we are studying is moving charge. Not a magnet — a current." }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Oersted's Reveal — the compass swings",
+        "duration": 14,
+        "focal_primitive_id": "compass_needle",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "compass_needle",
+            "position": { "x": 560, "y": 250 },
+            "text": "compass needle\n(points north at rest)",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "Predict: which way will the needle turn?",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "oersted_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "needle swings to the LOCAL field direction",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Bring a compass next to the live wire. At rest, its needle simply points north." },
+            { "id": "s2_2", "text_en": "Before I show you — predict. With current flowing, which way do you think the needle will swing? Take a moment.", "pause_after_ms": 3000 },
+            { "id": "s2_3", "text_en": "Watch. The needle swings away from north and lines up tangent to the field that circles the wire." },
+            { "id": "s2_4", "text_en": "This is exactly what Oersted saw in 1820. A current — moving charge — bends the compass. That was the birth of electromagnetism." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The compass needle just points straight at the wire, like it is being pulled toward it",
+            "visual_counter": "The needle settles tangent to the circle around the wire, not radially toward it.",
+            "one_line_fix": "The needle aligns with the LOCAL field direction, which circles the wire — it does not point at the wire."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "No Current, No Field",
+        "duration": 13,
+        "focal_primitive_id": "source_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "switch_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "Switch opens — current goes to zero",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "Predict: what happens\nto the needle now?",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "source_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "no current → no field. There is no magnet here.",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Now I open the switch. The current drops to zero — the moving charge stops." },
+            { "id": "s3_2", "text_en": "Before it happens — predict. With the current gone, what will the compass needle do? Think about it.", "pause_after_ms": 3000 },
+            { "id": "s3_3", "text_en": "It snaps straight back to north. The field vanished the instant the current stopped." },
+            { "id": "s3_4", "text_en": "So the field never came from a magnet. It came from the moving charge. Stop the charge, and the field is gone." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "There must be a hidden magnet somewhere making the field",
+            "visual_counter": "The needle returns to north the moment the current stops — nothing magnetic remains in the scene.",
+            "one_line_fix": "A magnetic field needs moving charge, not a magnet. No current means no field."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The Field Fills All Space",
+        "duration": 14,
+        "focal_primitive_id": "space_fill_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "Predict: at a NEW spot, will the needle turn the same way?",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "hop_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "move the compass\nto another point",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "space_fill_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "the field is at EVERY point — not just where the compass sits",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Switch the current back on and move the compass to a brand-new spot near the wire." },
+            { "id": "s4_2", "text_en": "Predict first: at this new point, does the needle turn the same way, or a different way? Take a second.", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "It deflects again — but tangent to the circle at THIS point, so it lines up in a different direction." },
+            { "id": "s4_4", "text_en": "The field was already there, at every point in the space. The compass only reveals what was waiting at each spot." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field only exists at the one place where the compass is sitting",
+            "visual_counter": "The compass hops to many points and deflects at each — faint tangent field markers appear everywhere, not just under the needle.",
+            "one_line_fix": "The field exists at every point of space; the compass just reveals it wherever you place it."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "B Is a Vector Field",
+        "duration": 15,
+        "focal_primitive_id": "tangent_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rings_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "B circulates AROUND the wire — full 3D rings",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "tangent_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "B is tangent, perpendicular\nto the wire — never along it",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "vector_field_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "a vector at EVERY point\n= a vector field",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Now show the whole field at once. Tangent arrows appear all around the wire and join into full 3D rings." },
+            { "id": "s5_2", "text_en": "Every arrow circulates around the wire. None points along the wire, and none points straight out from it." },
+            { "id": "s5_3", "text_en": "B is perpendicular to the wire, tangent to the circle through each point." },
+            { "id": "s5_4", "text_en": "A size and a direction at every point of space — that is exactly what we mean by a vector field." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The magnetic field points along the wire, in the same direction as the current",
+            "visual_counter": "Rotate the view: every B arrow is tangent to a ring around the wire, never parallel to it.",
+            "one_line_fix": "B circulates around the wire — perpendicular to it, tangent to the circle, never along the wire."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Just Like E",
+        "duration": 16,
+        "focal_primitive_id": "reveal_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "e_radial_label",
+            "position": { "x": 180, "y": 120 },
+            "text": "still +Q: E points straight OUT\n(test charge q reveals it)",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "b_circulate_label",
+            "position": { "x": 560, "y": 120 },
+            "text": "moving charge: B CIRCLES around\n(compass reveals it)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "analogy_label",
+            "position": { "x": 360, "y": 250 },
+            "text": "both are vector fields — a test object reveals each",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "still charge → radial E   ·   moving charge → circulating B",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Put the two side by side. On the left, a still charge Q with a test charge q feeling a force." },
+            { "id": "s6_2", "text_en": "The test charge reveals the electric field E, pointing straight out from the charge in every direction." },
+            { "id": "s6_3", "text_en": "On the right, the current wire with a compass. The compass reveals the magnetic field B, circling around the wire." },
+            { "id": "s6_4", "text_en": "Both are vector fields filling space, and a test object reveals each — the test charge for E, the compass for B." },
+            { "id": "s6_5", "text_en": "Here is the whole idea: a still charge fills space with a radial E; a moving charge fills space with a circulating B." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The magnetic field is just the electric field — B and E are the same thing",
+            "visual_counter": "Left panel: E streams radially OUT from a still charge. Right panel: B circles AROUND a moving charge. Same idea, different source and shape.",
+            "one_line_fix": "E and B are both vector fields, but E comes from a still charge and points out, while B comes from a moving charge and circles around."
+          }
+        ],
+        "allow_deep_dive": true
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "straight_wire_current",
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#66BB6A",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85,
+      "arrow_spacing": 5
+    },
+    "current": {
+      "direction": [0, 1, 0],
+      "magnitude": 3,
+      "wire_color": "#FFAB40"
+    },
+    "slider_controls": {
+      "I": { "min": 0, "max": 5, "step": 0.5, "default": 3, "label": "Current I" },
+      "r": { "min": 0.02, "max": 0.30, "step": 0.01, "default": 0.05, "label": "Distance r" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The source — switch closes, current flows up",
+        "visible_elements": ["wire_main", "curr_arr"],
+        "camera_position": [2.5, 1.5, 4],
+        "caption": "",
+        "reveal_at_ms": 1500,
+        "current_direction_indicator": "up",
+        "biot_element": null,
+        "extras": {
+          "switch_toggle": {
+            "start_state": "open",
+            "close_at_ms": 1500,
+            "i_before": 0,
+            "i_after": 3
+          }
+        }
+      },
+      "STATE_2": {
+        "label": "Oersted reveal — needle swings to local B",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "reveal_at_ms": 2800,
+        "field_rotation_direction": "ccw",
+        "current_direction_indicator": "up",
+        "extras": {
+          "compass": {
+            "position": [1.6, 0, 0],
+            "approach_from": [4.5, 0, 0],
+            "approach_duration_ms": 1200,
+            "radius": 0.45,
+            "animate_swing": true,
+            "swing_delay_ms": 2800,
+            "align_to_local_field": true
+          }
+        }
+      },
+      "STATE_3": {
+        "label": "No current, no field — needle snaps back",
+        "visible_elements": ["wire_main"],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "reveal_at_ms": 2800,
+        "current_direction_indicator": "off",
+        "extras": {
+          "switch_toggle": {
+            "start_state": "closed",
+            "open_at_ms": 2800,
+            "i_before": 3,
+            "i_after": 0
+          },
+          "compass": {
+            "position": [1.6, 0, 0],
+            "radius": 0.45,
+            "animate_swing": true,
+            "snap_back_to_north": true,
+            "snap_back_at_ms": 2800,
+            "align_to_local_field": true
+          }
+        }
+      },
+      "STATE_4": {
+        "label": "The field fills space — compass hops point to point",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "reveal_at_ms": 2800,
+        "field_rotation_direction": "ccw",
+        "current_direction_indicator": "up",
+        "extras": {
+          "compass": {
+            "position": [-1.4, 0, 0.8],
+            "approach_from": [1.6, 0, 0],
+            "approach_duration_ms": 1200,
+            "radius": 0.45,
+            "animate_swing": true,
+            "swing_delay_ms": 2800,
+            "align_to_local_field": true
+          },
+          "faint_field_probes": {
+            "points": [[1.6, 0, 0], [-1.4, 0, 0.8], [0, 0, 1.6], [0.9, 0, -1.3]],
+            "show_tangent_markers": true,
+            "opacity": 0.4
+          }
+        }
+      },
+      "STATE_5": {
+        "label": "B is a vector field — full 3D rings, all tangent",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
+        "camera_position": [4, 2, 4],
+        "caption": "",
+        "reveal_at_ms": 1500,
+        "field_rotation_direction": "ccw",
+        "current_direction_indicator": "up"
+      },
+      "STATE_6": {
+        "label": "Just like E — radial E (left) vs circulating B (right)",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
+        "camera_position": [3, 2, 5],
+        "caption": "",
+        "reveal_at_ms": 1500,
+        "field_rotation_direction": "ccw",
+        "current_direction_indicator": "up",
+        "show_sliders": false,
+        "hide_magnitude_readout": true,
+        "extras": {
+          "dual_field_compare": {
+            "left_panel": {
+              "scenario": "point_charge_positive",
+              "show_test_charge": true,
+              "field": "radial_E",
+              "label": "still +Q: radial E"
+            },
+            "right_panel": {
+              "scenario": "straight_wire_current",
+              "show_compass": true,
+              "field": "circulating_B",
+              "label": "moving charge: circulating B"
+            }
+          },
+          "compass": {
+            "position": [1.6, 0, 0],
+            "radius": 0.4,
+            "animate_swing": false,
+            "align_to_local_field": true
+          }
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can say that a magnetic field B is a genuine VECTOR field — a size and a direction at every point of space — whose SOURCE is moving charge (a current), not a magnet; that a charge at rest makes no magnetic field, so when the current stops the field vanishes (the compass snaps back to north); that a compass is a TEST object that REVEALS the field already present at each point, it does not create it, and the field exists everywhere, not only where the compass sits; that near a straight wire B CIRCULATES around the wire — tangent to the circle through each point, perpendicular to the wire, never along it and never radially out; and that this is the magnetic counterpart of the electric field — a still charge fills space with a radial field E revealed by a test charge, while a moving charge fills space with a circulating field B revealed by a compass, the two being alike as vector fields but differing in source (still vs moving charge) and shape (radial vs circulating). (The magnitude B = μ₀I/(2πr) is deliberately NOT assessed here — it is taught by magnetic_field_wire.)",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A compass needle deflects when held next to a current-carrying wire. What is the actual SOURCE of the magnetic field that turns the needle?",
+        "options": {
+          "A": "The moving charge in the wire — the current",
+          "B": "A small hidden magnet inside or near the wire",
+          "C": "The voltage of the battery, sitting at the ends of the wire",
+          "D": "The metal of the wire itself, because metals are magnetic"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "field_needs_a_magnet",
+          "C": "voltage_is_the_source",
+          "D": "metal_wire_is_the_source"
+        },
+        "tested_idea": "The source of a magnetic field is moving charge (current), not a magnet, a voltage, or the wire material.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "When current flows through a straight wire and a nearby compass twitches, what is producing the magnetic field?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "You switch OFF the current in the wire and the compass needle swings straight back to north. What does this tell you?",
+        "options": {
+          "A": "The field is gone — with no moving charge there is no magnetic field",
+          "B": "The field is still there; a magnet remains, the compass just stopped responding",
+          "C": "The wire is now negatively charged, which cancels the field",
+          "D": "The field reversed direction, so the needle happens to read north again"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "field_needs_a_magnet",
+          "C": "static_charge_makes_b",
+          "D": "field_merely_reversed"
+        },
+        "tested_idea": "When the current stops the magnetic field vanishes, because a charge at rest produces no magnetic field — confirming the source is moving charge.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Unplugging the charger makes the nearby compass return to north. Why does the magnetic field disappear?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A compass deflects beside a live wire. What did the compass actually DO to the magnetic field?",
+        "options": {
+          "A": "It revealed a field that was already present at that point in space",
+          "B": "It created the field — without the compass there would be no field there",
+          "C": "It pulled the field out of the wire toward itself",
+          "D": "It only shows a field exactly where its needle sits and nowhere else"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "compass_creates_the_field",
+          "C": "compass_pulls_field_out",
+          "D": "field_only_where_compass_sits"
+        },
+        "tested_idea": "A compass is a test object that reveals the field already present at every point; it does not create the field or limit it to one spot.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Moving the compass to a new point near the wire shows another deflection. What is the compass doing to the field?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "Near a long straight current-carrying wire, in which direction does the magnetic field B point at a nearby point?",
+        "options": {
+          "A": "It circles AROUND the wire — tangent to the circle through the point, perpendicular to the wire",
+          "B": "Along the wire, in the same direction as the current",
+          "C": "Radially outward from the wire, like spokes from a hub",
+          "D": "Straight toward the wire, pulling everything inward"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "b_along_the_wire",
+          "C": "b_is_radial_outward",
+          "D": "b_points_at_wire"
+        },
+        "tested_idea": "B circulates around the wire — tangent and perpendicular to the wire, never along it and never radial.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "For a straight wire carrying current upward, which way does the magnetic field point at a point beside the wire?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "How is the magnetic field B like the electric field E of a point charge?",
+        "options": {
+          "A": "Both are vector fields filling space, each revealed by a test object placed in it",
+          "B": "They are identical — B is just another name for the electric field E",
+          "C": "Both point radially outward in straight lines from their source",
+          "D": "Neither has a direction; both are just numbers attached to each point"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "b_equals_e",
+          "C": "both_radial",
+          "D": "fields_have_no_direction"
+        },
+        "tested_idea": "E and B are alike as vector fields that fill space and are revealed by a test object — the test charge for E, the compass for B.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "What do the electric field of a still charge and the magnetic field of a current have in common?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "What is the key DIFFERENCE between the sources of the electric field E and the magnetic field B?",
+        "options": {
+          "A": "E comes from charge at rest; B comes from charge in motion",
+          "B": "E needs a wire to exist, while B does not need a wire",
+          "C": "E is a vector but B is just a number with no direction",
+          "D": "There is no difference — both come from the same moving charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "e_needs_a_wire",
+          "C": "b_has_no_direction",
+          "D": "same_source_for_e_and_b"
+        },
+        "tested_idea": "The electric field is sourced by static charge while the magnetic field is sourced by moving charge — same kind of object (vector field), different source.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A still charge makes an electric field; a moving charge makes a magnetic field. State the difference in their sources."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_3": ["Q2"],
+      "STATE_4": ["Q3"],
+      "STATE_5": ["Q4"],
+      "STATE_6": ["Q5", "Q6"]
+    },
+    "non_assessed_states": ["STATE_2"]
+  }
+}

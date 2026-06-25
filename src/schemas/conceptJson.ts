@@ -261,7 +261,12 @@ const quizQuestionSchema = z.object({
 
 const assessmentSchema = z.object({
   mastery_definition: z.string().min(1),
-  questions: z.array(quizQuestionSchema).length(6),
+  // Relaxed from .length(6) → .min(6) on 2026-06-24: a quality pass that grows
+  // a concept's EPIC-L path (e.g. electric_flux 8→10 states) needs to add
+  // questions for the new assessed states. The 6-question concepts stay valid;
+  // Gates 19/20 already enforce coverage/quality for however many questions are
+  // present (same widening pattern as epic_c_branches: min(4)→min(1)→optional).
+  questions: z.array(quizQuestionSchema).min(6),
 });
 
 const coverageMapSchema = z.object({

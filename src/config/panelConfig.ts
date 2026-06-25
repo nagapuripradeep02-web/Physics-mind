@@ -892,6 +892,36 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    electric_flux: {
+        concept_id: 'electric_flux',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'electric_flux',
+            label: 'Electric Flux Φ = E·A (3D)',
+        },
+    },
+
+    gauss_law: {
+        concept_id: 'gauss_law',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'gauss_law',
+            label: "Gauss's Law Φ = q/ε₀ (3D)",
+        },
+    },
+
+    gauss_law_sphere: {
+        concept_id: 'gauss_law_sphere',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'gauss_law_sphere',
+            label: 'Charged Shell: E=0 inside, kq/r² outside (3D)',
+        },
+    },
+
     force_on_charge_in_field: {
         concept_id: 'force_on_charge_in_field',
         layout: 'single',
@@ -937,6 +967,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    magnetic_field_concept_B: {
+        concept_id: 'magnetic_field_concept_B',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'magnetic_field_concept_B',
+            label: 'What Is a Magnetic Field? (3D)',
+        },
+    },
+
     magnetic_field_wire: {
         concept_id: 'magnetic_field_wire',
         layout: 'single',
@@ -964,6 +1004,26 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'magnetic_force_moving_charge',
             label: 'Lorentz Force (3D)',
+        },
+    },
+
+    magnetic_force_direction_right_hand_rule: {
+        concept_id: 'magnetic_force_direction_right_hand_rule',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'magnetic_force_direction_right_hand_rule',
+            label: 'Right-Hand Rule for F = q v × B (3D)',
+        },
+    },
+
+    magnetic_force_perpendicular_no_work: {
+        concept_id: 'magnetic_force_perpendicular_no_work',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'magnetic_force_perpendicular_no_work',
+            label: 'Magnetic Force Does No Work (3D)',
         },
     },
 

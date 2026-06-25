@@ -78,9 +78,26 @@ export function deriveStateDurationsMs(
 export function deriveMotionExpectations(
     physicsConfig: Record<string, unknown> | null,
 ): Record<string, boolean | undefined> {
-    const states = resolveStates(physicsConfig);
     const out: Record<string, boolean | undefined> = {};
+
+    // field_3d (authoritative shape): a gauss block with flow:true declares
+    // continuous field-line flow — D5/D6 should expect ongoing pixel motion.
+    // Read from field_3d_config.states (or a cached field_3d-as-physics_config)
+    // since the gauss block does not live on epic_l_path.states.
+    const f3d = resolveField3dStates(physicsConfig);
+    if (f3d) {
+        for (const [stateId, stateRaw] of Object.entries(f3d.states)) {
+            const state = asObj(stateRaw);
+            const gauss = state ? asObj(state.gauss) : null;
+            if (gauss && gauss.flow === true) { out[stateId] = true; continue; }
+            // Other field_3d states fall through to the epic_l_path-based pass
+            // below (trajectory_mode / advance_mode), so don't set them here.
+        }
+    }
+
+    const states = resolveStates(physicsConfig);
     for (const [stateId, state] of Object.entries(states)) {
+        if (out[stateId] !== undefined) continue;   // already decided by the field_3d pass
         // field_3d: trajectory_mode declares the motion contract directly.
         const trajectoryMode = state.trajectory_mode;
         if (typeof trajectoryMode === 'string') {
@@ -196,6 +213,166 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
         if (cd.accumulate_dE === true) {
             candidates.push(asNum(cd.accumulate_at_ms, 1200) + 6 * asNum(cd.accumulate_stagger_ms, 380) + 500);
+        }
+    }
+    // electric_flux: the open-surface theta_anim tilt sweep and the closed-
+    // surface face accumulation are one-shot timed reveals that then HOLD still
+    // (mirror charge_distribution) — pin the frozen frame past their payoff and
+    // let deriveHoldExpectations mark them reveal_hold, so D7/D1p are not
+    // false-failed by the static tail after the sweep / accumulation completes.
+    const flux = asObj(state.flux);
+    if (flux) {
+        const ta = asObj(flux.theta_anim);
+        if (ta) candidates.push(asNum(ta.at_ms, 0) + asNum(ta.duration_ms, 2000) + 500);
+        if (flux.accumulate_faces === true) {
+            candidates.push(asNum(flux.accumulate_at_ms, 1000) + 6 * asNum(flux.accumulate_stagger_ms, 350) + 500);
+        }
+    }
+    // gauss_law: the Gauss's-law STATEMENT scenario (Φ = q_enc/ε₀). Its one-shot
+    // timed reveals then HOLD still (mirror electric_flux) — pin the frozen frame
+    // past their payoff so the capture photographs the completed reveal, and so
+    // deriveHoldExpectations marks the non-slider states reveal_hold (D7/D1p are
+    // otherwise false-failed by the static tail). Beats:
+    //   • equation_at_ms — STATE_2's "∝ q_enc" → "= q_enc/ε₀" + ε₀ morph (a reveal).
+    //   • morph          — STATE_3's sphere→cube→blob surface sweep, readout pinned.
+    //   • add_charge     — STATE_5's second −q fades in (q_enc 0 → −1, readout reds,
+    //                      lines flip inward); reveal completes at at_ms + fade_ms.
+    // NOTE: outside_demo (STATE_4) and flow:true (STATE_1, STATE_4) declare
+    // CONTINUOUS field-line flow — handled as motion in deriveMotionExpectations,
+    // not as a one-shot reveal_hold here.
+    const gauss = asObj(state.gauss);
+    if (gauss) {
+        if (typeof gauss.equation_at_ms === 'number') {
+            candidates.push(asNum(gauss.equation_at_ms, 1200) + 600);
+        }
+        const morph = asObj(gauss.morph);
+        if (morph) candidates.push(asNum(morph.at_ms, 0) + asNum(morph.duration_ms, 4500) + 500);
+        const addCharge = asObj(gauss.add_charge);
+        if (addCharge) {
+            candidates.push(asNum(addCharge.at_ms, 1500) + asNum(addCharge.fade_ms, 1000) + 500);
+        }
+    }
+    // gauss_law_sphere: the E-from-symmetry SHELL scenario (E = 0 inside, kq/r²
+    // outside, via Gauss + spherical symmetry). Its per-state `gauss_sphere` beats
+    // are one-shot timed reveals that then HOLD (the field is static once revealed;
+    // any ambient field-flow glow / interior test-probe is supplementary motion).
+    // Pin the frozen frame past each payoff so THE EYE photographs the completed
+    // reveal, and so deriveHoldExpectations marks the non-slider states reveal_hold
+    // (D7/D1p would otherwise false-fail on the static tail). Beats:
+    //   • radial_arrow_at_ms / ghost_rotation — STATE_2 symmetry (P arrow + spin).
+    //   • equation_at_ms                      — STATE_3 Φ=E·4πr² ⇒ E=kq/r² write-in.
+    //   • shell_appears_at_ms                 — STATE_4 compare-mode: point charge
+    //                                           shown first, then the shell fades in
+    //                                           on the left (one-shot, then holds).
+    //   • shrink_through_R / arrows_collapse_at_ms — STATE_5 inside → q_enc=0 → E=0.
+    //   • plot_draw_*                         — STATE_6 E-vs-r curve draw.
+    // NOTE: STATE_7's r_gauss slider is user-driven (interactive) — handled in
+    // deriveHoldExpectations, not here.
+    const gsph = asObj(state.gauss_sphere);
+    if (gsph) {
+        if (typeof gsph.radial_arrow_at_ms === 'number') {
+            candidates.push(asNum(gsph.radial_arrow_at_ms, 3700) + 500);
+        }
+        const ghost = asObj(gsph.ghost_rotation);
+        if (ghost) candidates.push(asNum(ghost.at_ms, 4600) + asNum(ghost.duration_ms, 1200) + 500);
+        if (typeof gsph.equation_at_ms === 'number') {
+            candidates.push(asNum(gsph.equation_at_ms, 4600) + 600);
+        }
+        if (typeof gsph.shell_appears_at_ms === 'number') {
+            // compare-mode: the shell fades in (~0.9s) after the point-charge phase,
+            // then both hold side-by-side — pin past the fade so the reveal_hold
+            // classification sees the completed comparison.
+            candidates.push(asNum(gsph.shell_appears_at_ms, 5000) + 900 + 500);
+        }
+        const shrink = asObj(gsph.shrink_through_R);
+        if (shrink) candidates.push(asNum(shrink.at_ms, 0) + asNum(shrink.duration_ms, 900) + 500);
+        if (typeof gsph.arrows_collapse_at_ms === 'number') {
+            candidates.push(asNum(gsph.arrows_collapse_at_ms, 4500) + 500);
+        }
+        if (typeof gsph.plot_draw_at_ms === 'number') {
+            candidates.push(asNum(gsph.plot_draw_at_ms, 800) + asNum(gsph.plot_draw_duration_ms, 4000) + 500);
+        }
+    }
+    // rhr_force_direction: the DIRECTION-ONLY F = qv×B sibling. Its reveal beats
+    // are one-shot timed gestures that then HOLD still — pin the frozen frame
+    // past each payoff so the capture photographs the completed reveal, and so
+    // deriveHoldExpectations marks the non-moving, non-slider states reveal_hold
+    // (D7/D1p would otherwise false-fail on the static tail). Beats:
+    //   • f_appear_at_ms        — STATE_1's sideways F pop-in (then it holds).
+    //   • show_hand             — STATE_2's v→B→F curl reveal (one 9s cycle).
+    //   • camera_orbit_*        — STATE_3's ~30° orbit settles then holds.
+    //   • glyph_toggle_at_ms    — STATE_5's ⊗↔⊙ flip (F reverses, then holds).
+    //   • show_right_angle_marks / show_ghost_f — short marks that hold.
+    const rhr = asObj(state.rhr);
+    if (rhr) {
+        if (typeof rhr.f_appear_at_ms === 'number') {
+            candidates.push(asNum(rhr.f_appear_at_ms, 0) + asNum(rhr.f_appear_fade_ms, 600) + 500);
+        }
+        if (rhr.show_hand === true) {
+            // One full v→B→F hand-curl cycle is 9s in the renderer; pin past it
+            // so the frozen frame shows the thumb-along-F payoff, not mid-curl.
+            candidates.push(9000);
+        }
+        if (typeof rhr.camera_orbit_deg === 'number' && rhr.camera_orbit_deg !== 0) {
+            candidates.push(asNum(rhr.camera_orbit_duration_ms, 4000) + 500);
+        }
+        if (typeof rhr.glyph_toggle_at_ms === 'number' && rhr.glyph_toggle_at_ms > 0) {
+            candidates.push(asNum(rhr.glyph_toggle_at_ms, 0) + 800);
+        }
+        if (rhr.show_ghost_f === true) {
+            candidates.push(asNum(rhr.ghost_f_fade_ms, 1400) + 300);
+        }
+        if (rhr.show_right_angle_marks === true) {
+            candidates.push(2000);   // marks are drawn ~immediately, then hold
+        }
+    }
+    // magnetic_no_work: the DIRECTION + NO-WORK sibling (F ⊥ v ⇒ W = 0 ⇒ |v|
+    // constant). Its reveal beats are one-shot timed gestures + meter/split
+    // launches that then HOLD (the orbit keeps moving, but the TEACHING payload —
+    // the F arrow, the d-nub + W=0 callout, the |v|/W meters, the split panels —
+    // is revealed once and then steady). Pin the frozen frame past each payoff so
+    // THE EYE photographs the completed reveal, and so deriveHoldExpectations
+    // marks the non-slider, non-continuously-moving states reveal_hold. Beats:
+    //   • f_appear_at_ms       — STATE_1/2 F pop-in (then it holds ⊥ to v).
+    //   • predict_reveal_at_ms — STATE_2/4 predict-then-reveal beat.
+    //   • show_displacement_d  — STATE_3 d-nub + "W = F·d·cos90° = 0" callout.
+    //   • show_speed_meter     — STATE_4 |v| meter appears (holds flat).
+    //   • split_compare        — STATE_5 split panels fade in, then the contrast
+    //                            runs (electric speeds up / magnetic steers).
+    const nw = asObj(state.no_work);
+    if (nw) {
+        if (typeof nw.f_appear_at_ms === 'number') {
+            candidates.push(asNum(nw.f_appear_at_ms, 0) + asNum(nw.f_appear_fade_ms, 600) + 500);
+        }
+        if (typeof nw.predict_reveal_at_ms === 'number' && nw.predict_reveal_at_ms > 0) {
+            candidates.push(asNum(nw.predict_reveal_at_ms, 0) + 800);
+        }
+        if (nw.show_displacement_d === true) {
+            candidates.push(2000);   // d-nub + W=0 callout draw ~immediately, then hold
+        }
+        if (nw.show_speed_meter === true) {
+            candidates.push(2500);   // |v| meter appears + holds dead-flat for a beat
+        }
+        // STATE_4 velocity compass: six ghost v-arrows freeze at one full orbit
+        // (velocity_compass_at_ms) then HOLD — pin past the deploy so THE EYE
+        // photographs all six equal arrows (the |v| = const proof).
+        if (typeof nw.velocity_compass_at_ms === 'number') {
+            candidates.push(asNum(nw.velocity_compass_at_ms, 8500) + 800);
+        }
+        const split = asObj(nw.split_compare);
+        if (split) {
+            // Both panels fade in at reveal_at_ms (+600 fade); give the contrast a
+            // few seconds so the captured frame shows the electric side already
+            // speeding up + the magnetic side still steering at constant speed.
+            candidates.push(asNum(split.reveal_at_ms, 0) + 600 + 3500);
+            // SEQUENTIAL reveal: the magnetic side appears later, at
+            // sequential_delay_ms (it stays hidden while the teacher explains the
+            // electric side first). Pin past its fade + a few seconds of orbit so
+            // the captured frame shows BOTH the electric side speeding up AND the
+            // magnetic side steering at constant speed.
+            if (typeof split.sequential_delay_ms === 'number') {
+                candidates.push(asNum(split.sequential_delay_ms, 5500) + 600 + 4000);
+            }
         }
     }
     const pt = asObj(state.per_turn_field_circles);
@@ -334,6 +511,33 @@ export function deriveHoldExpectations(
             // net-field arrow; static until a drag the headless harness never does.
             const cdHold = asObj(state.charge_dist);
             if (cdHold && cdHold.density_slider === true) { out[stateId] = 'interactive'; continue; }
+            // electric_flux: theta/charge sliders are user-driven (static until a
+            // drag the headless harness never performs). The theta_anim / face-
+            // accumulate states are caught by the reveal_hold fallback below
+            // (their maxReveal > DEFAULT_REVEAL_MS via maxRevealForField3dState).
+            const fluxHold = asObj(state.flux);
+            if (fluxHold && (fluxHold.charge_slider === true || fluxHold.theta_slider === true)) { out[stateId] = 'interactive'; continue; }
+            // gauss_law explore state: the q_enc / surface_shape / charge_x
+            // sliders drive the live Φ = q_enc/ε₀ readout; static until a drag the
+            // headless harness never performs.
+            const gaussHold = asObj(state.gauss);
+            if (gaussHold && gaussHold.sliders === true) { out[stateId] = 'interactive'; continue; }
+            // gauss_law flow:true states (STATE_1 hook, STATE_4 outside-charge):
+            // the field lines flow continuously, so this is ongoing motion — NOT a
+            // reveal-then-hold. Mark undefined to keep the strict motion gate, so
+            // D5/D6/D7 expect ongoing pixel motion rather than a static tail.
+            if (gaussHold && gaussHold.flow === true) { out[stateId] = undefined; continue; }
+            // gauss_law_sphere explore state: the r_gauss slider drives the live
+            // readout / arrows / E-vs-r plot — static until a drag the headless
+            // harness never performs (its idle auto-sweep is supplementary). The
+            // STATE_2/3/4/5/6 reveal beats are one-shot reveals then hold — caught
+            // by the reveal_hold fallback below (their maxReveal > DEFAULT_REVEAL_MS
+            // via the gauss_sphere block in maxRevealForField3dState above).
+            const gsphHold = asObj(state.gauss_sphere);
+            if (gsphHold && gsphHold.sliders === true) { out[stateId] = 'interactive'; continue; }
+            // The gauss equation_at_ms / morph / add_charge states are one-shot
+            // reveals then hold — caught by the reveal_hold fallback below (their
+            // maxReveal > DEFAULT_REVEAL_MS via maxRevealForField3dState above).
             const tm = state.trajectory_mode;
             const moves = typeof tm === 'string' && tm !== 'static' && tm !== 'frozen' && tm !== 'none';
             if (moves) { out[stateId] = undefined; continue; }

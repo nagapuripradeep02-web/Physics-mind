@@ -97,6 +97,10 @@ export const CONCEPT_KEYWORD_MAP: Record<string, string> = {
     // Fields and Magnetism
     "electric field": "electric_field",
     "gauss law": "gauss_law",
+    "field inside a shell": "gauss_law_sphere",
+    "field outside a charged sphere": "gauss_law_sphere",
+    "charged shell": "gauss_law_sphere",
+    "electrostatic shielding": "gauss_law_sphere",
     "electric potential": "electric_potential",
     "capacitor": "capacitors",
     "magnetic field": "magnetic_field",

@@ -1,0 +1,1234 @@
+{
+  "concept_id": "electric_flux",
+  "concept_name": "Electric Flux Φ = E·A and Net Flux Through a Closed Surface",
+  "chapter": 1,
+  "section": "1.16",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.1 Electric Charges and Fields (electric flux §1.16) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (flux is how much field pierces an area, NOT the field strength itself → face-on lets the most through → tilt by θ and the count drops by cosθ, with θ measured to the area's NORMAL → split E into a part along the normal that pierces and a part along the surface that grazes → edge-on gives zero → write it as the dot product Φ = E·A = EA cosθ → past 90° the flux turns negative as the field enters from behind → close the surface into a box: outgoing − incoming = net flux, accumulate the six faces into one running total → that net depends only on the charge trapped inside, holds when the charge moves inside, and goes to zero when the charge sits outside → finally let the student spin θ through a full turn and watch signed Φ trace EA cosθ), never copied. The atomic idea: electric flux Φ counts how much of a vector field pierces an oriented area, Φ = E·A = EA cosθ with θ to the normal; only the along-normal component E cosθ pierces while the along-surface part E sinθ grazes; flux is signed (out = +, in = −); the NET flux through any closed surface is set only by the enclosed charge — independent of the charge's position and the surface's shape — and is exactly zero when the charge is outside. Unified field_3d scenario electric_flux: an OPEN disc in a uniform field with a tiltable normal n̂, a θ arc, component-split arrows, a live pierce-tally and Φ = EA cosθ readout, then a CLOSED cube with axes, a movable interior/exterior charge and per-face flux accumulation. Prerequisites electric_field_point_charge + area_vector + dot_product. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a). CUT-LINE GUARD: Gauss's law proper (Φ = q/ε₀) is DEFERRED to a separate gauss_law concept — net flux here is stated only as ∝ q_enc (steady) or 0, with NO ε₀, no 8.85e-12, no Φ = q/ε₀ equation anywhere in STATE_8/STATE_9.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "electric_flux"
+    ]
+  },
+  "prerequisites": [
+    "electric_field_point_charge",
+    "area_vector",
+    "dot_product"
+  ],
+  "real_world_anchor": {
+    "primary": "Hold a wire ring up in moving air — under a ceiling fan, or out of a moving train's window. Turn the ring face-on to the airflow and the most air streams straight through it. Tilt it edge-on to the same breeze and almost no air gets through, even though the ring and the wind are unchanged. The air streaming through the ring is exactly flux: how much of a moving field passes through an oriented area, and it depends on the ring's tilt, not just on how strong the wind is.",
+    "secondary": "A rooftop solar panel catches the most sunlight at noon when it faces the sun squarely — its surface is perpendicular to the rays. As the sun moves and the rays strike at a slant, the same panel captures less light per second, even though the sunshine and the panel are unchanged. The light captured is the flux of the sun's rays through the panel's area, biggest when the panel faces the source head-on and falling off as it tilts away.",
+    "tertiary": "A fishing net held across a flowing river catches the most water when its mouth faces straight into the current. Swing the same net so its opening lies along the flow and barely any water passes through it. The water flowing through the net is the flux of the river's velocity field through the net's area — set by the net's orientation to the current, not by the river's speed alone."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "E": {
+        "name": "Electric field strength",
+        "unit": "demo N/C",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 0.5
+      },
+      "A": {
+        "name": "Area of the surface",
+        "unit": "demo m²",
+        "min": 0.5,
+        "max": 4,
+        "default": 2,
+        "step": 0.25
+      },
+      "theta": {
+        "name": "Tilt of the area's normal n̂ to the field",
+        "unit": "deg",
+        "min": 0,
+        "max": 360,
+        "default": 0,
+        "step": 5
+      },
+      "q_enc": {
+        "name": "Charge enclosed by the closed surface",
+        "unit": "demo nC",
+        "min": 0,
+        "max": 2,
+        "default": 1,
+        "step": 0.5
+      },
+      "charge_x": {
+        "name": "Position of the charge relative to the box",
+        "unit": "demo",
+        "min": -2.2,
+        "max": 2.2,
+        "default": 0,
+        "step": 0.05
+      }
+    },
+    "computed_outputs": {
+      "Phi": {
+        "formula": "E * A * cos(theta * PI / 180)"
+      },
+      "net_Phi": {
+        "formula": "q_enc"
+      }
+    },
+    "formulas": {
+      "flux_definition": "Φ = E·A   (the dot product of field and area vector)",
+      "flux_with_angle": "Φ = E A cosθ   (θ measured from the area's normal n̂)",
+      "component_split": "E cosθ pierces (along n̂), E sinθ grazes (along the surface) → Φ = (E cosθ)·A",
+      "edge_on": "θ = 90°  ⇒  Φ = 0   (field skims the surface, nothing pierces)",
+      "signed_flux": "Φ > 0 when the field leaves the surface, Φ < 0 when it enters",
+      "net_closed_flux": "net Φ through a closed surface ∝ q_enc   (steady, independent of where the charge sits or the box's shape)",
+      "charge_outside": "charge outside a closed surface  ⇒  net Φ = 0   (every line entering also leaves)"
+    },
+    "constraints": [
+      "Flux Φ is NOT the field strength E; it is how much of the field pierces an area: Φ = E·A, so a smaller area in the same field has smaller flux though E is identical.",
+      "The angle θ in Φ = EA cosθ is measured from the field to the area's NORMAL n̂, never from the field to the surface itself.",
+      "Split E into a part along the normal (E cosθ) and a part along the surface (E sinθ); only the along-normal part pierces the face — the along-surface part grazes past and contributes nothing.",
+      "Tilting the area drops flux by a factor cosθ; at θ = 90° (edge-on) the flux is exactly zero even though area and field are unchanged.",
+      "Flux is signed: field leaving the surface counts as positive flux, field entering counts as negative flux; past θ = 90° the readout goes negative.",
+      "The NET flux through a closed surface is the signed sum of all six faces, and that sum depends only on the charge enclosed — moving the charge off-centre rebalances the per-face flux but holds the net steady.",
+      "If the charge sits entirely OUTSIDE the closed surface (no charge enclosed), the net flux is exactly zero: whatever field enters one face leaves through another."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_8",
+    "statement": "Net field out of any closed box depends only on the charge trapped inside.",
+    "visual_confirmation": "The six faces light up one-by-one and accumulate into one running net total that lands on a value set by the enclosed charge — not by any single face."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6",
+      "STATE_7",
+      "STATE_8"
+    ],
+    "orientation": [
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "closed_surface": [
+      "STATE_7",
+      "STATE_8",
+      "STATE_9"
+    ],
+    "exploration": [
+      "STATE_10"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 10,
+    "states": {
+      "STATE_1": {
+        "title": "Flux is how much field pierces an area — not the field itself",
+        "duration": 16,
+        "focal_primitive_id": "pierce_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ring_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "field E pierces the ring",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "count_label",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "8 lines pierce → Φ is the count",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "pierce_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ counts what pierces — Φ ≠ E",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Here is a ring held face-on in a uniform field, like a wire loop in front of a fan. Watch the field lines pierce straight through it."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Count them: eight lines go through. That count is the electric flux. Now, is flux just another name for the field strength E?"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "No. Shrink the ring in the same field and fewer lines pierce, so the flux drops, even though E at every point is unchanged."
+            },
+            {
+              "id": "s1_4",
+              "text_en": "So flux measures how much field pierces an area. It is not the field at a point. Flux is not E."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Flux is just another name for field strength E.",
+            "visual_counter": "A smaller ring in the SAME field catches fewer lines → smaller Φ though E is identical.",
+            "one_line_fix": "Φ counts how much field pierces an area; E is the field at a point."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Face-on: every line through, Φ = E·A is maximum",
+        "duration": 13,
+        "focal_primitive_id": "max_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "normal_tag",
+            "position": {
+              "x": 420,
+              "y": 150
+            },
+            "text": "normal n̂ ∥ field",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "all_through_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "every line through",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "max_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ = E·A   (face-on → maximum)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Face-on, the area's normal n̂ points straight along the field, and every single line passes through."
+            },
+            {
+              "id": "s2_2",
+              "text_en": "This is the most flux you can get: Φ equals E times A, the field strength times the area."
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Tilt it: flux drops by cosθ, θ measured to the normal",
+        "duration": 17,
+        "focal_primitive_id": "cos_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "theta_tag",
+            "position": {
+              "x": 440,
+              "y": 175
+            },
+            "text": "θ is E-to-normal n̂",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "tally_drop_tag",
+            "position": {
+              "x": 600,
+              "y": 265
+            },
+            "text": "tally falls 8 → 5 on tilt",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "cos_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ = EA cosθ   (θ to the normal)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Same field, same area. Now I tilt the ring. Will the flux stay the same, since neither E nor A has changed?"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Watch the tally as it tilts: it falls from eight down to five. Tilting alone cuts the flux."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "The drop is a factor cosθ. And θ is the angle from the field to the area's normal n̂, not to the surface itself."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "So flux is E times A times cosθ. Read θ to the normal, the little arrow sticking out of the surface."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Same area and same field means flux can't change by tilting; and θ is measured to the surface.",
+            "visual_counter": "Identical E and A, tally falls 8→5 on tilt; the θ arc is drawn to the NORMAL n̂, not the face.",
+            "one_line_fix": "Tilting drops flux by cosθ; θ is E-to-normal, not E-to-surface."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Why cosθ: E splits into a part that pierces and a part that grazes",
+        "duration": 18,
+        "focal_primitive_id": "pierce_part_label",
+        "advance_mode": "wait_for_answer",
+        "variable_overrides": {
+          "theta": 55
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "angle_to_normal_tag",
+            "position": {
+              "x": 430,
+              "y": 165
+            },
+            "text": "θ is E-to-normal n̂",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "grazes_tag",
+            "position": {
+              "x": 610,
+              "y": 230
+            },
+            "text": "E sinθ grazes → pierces nothing",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "pierce_part_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ = (E cosθ)·A = EA cosθ",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Hold the tilt at fifty-five degrees. Here is the field E, and here is the normal n-hat, with the angle theta between them."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Split E into two arrows: one straight along the normal, one along the surface. Which one do you think actually pierces the face?"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Only the along-normal part, E cosθ, goes through. The along-surface part, E sinθ, just grazes past and pierces nothing."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "So the flux is that piercing part times the area: Φ equals E cosθ times A, which is exactly EA cosθ."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "θ is the angle the field makes with the surface, and the bigger component (E sinθ, along the surface) is what carries the flux.",
+            "visual_counter": "θ is drawn from E to the NORMAL n̂, not to the face; and the along-surface arrow E sinθ — the LONGER one at 55° — pierces nothing, while the shorter along-normal arrow E cosθ is the only part that goes through.",
+            "one_line_fix": "θ is E-to-normal; only the along-normal component E cosθ pierces, never the along-surface part."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Edge-on: θ = 90°, zero flux",
+        "duration": 14,
+        "focal_primitive_id": "zero_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "edge_tag",
+            "position": {
+              "x": 440,
+              "y": 175
+            },
+            "text": "θ → 90°, edge-on",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "skim_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "lines skim past → tally 0",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "zero_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "θ = 90°  ⇒  Φ = 0",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Keep tilting all the way to edge-on, until the ring lies along the field, normal at ninety degrees."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Now the lines skim past the edge and not one pierces the face. The tally drops to zero."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Edge-on gives exactly zero flux, even though the area and the field never changed. Orientation alone can shut it off."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Edge-on still lets plenty through.",
+            "visual_counter": "θ→90°, tally→0, Φ=0 though area and field unchanged.",
+            "one_line_fix": "Edge-on gives zero flux — orientation alone can shut it off."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Why it works: flux is the dot product E·A",
+        "duration": 16,
+        "focal_primitive_id": "dot_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "area_vec_tag",
+            "position": {
+              "x": 440,
+              "y": 150
+            },
+            "text": "A = A n̂  (area vector)",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "proj_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "E projected onto n̂",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "dot_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ = E·A = EA cosθ",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Why exactly cosθ? Give the area a direction: the area vector A points along the normal n̂, with length equal to the area."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Flux is then the dot product of E and A. The dot product keeps only the part of E that lines up with the normal."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "That part is E times cosθ, so the flux is E times A times cosθ. One clean line: Φ equals E dot A."
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Flux has a sign: out is +, in is −",
+        "duration": 17,
+        "focal_primitive_id": "sign_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "out_tag",
+            "position": {
+              "x": 440,
+              "y": 150
+            },
+            "text": "field leaving → Φ > 0",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "in_tag",
+            "position": {
+              "x": 600,
+              "y": 230
+            },
+            "text": "field entering back → Φ < 0",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sign_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ is signed: out = +, in = −",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "So far the field left through the front of the surface, and the flux was positive. What happens if I tilt past ninety degrees?"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Now the field meets the surface from behind and enters through it. Watch the readout."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "It turns red and goes negative. Field leaving the surface is positive flux; field entering is negative flux."
+            },
+            {
+              "id": "s7_4",
+              "text_en": "Flux carries a sign. That sign is the whole point when we close the surface into a box next."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Flux is always positive; you just add up everything piercing.",
+            "visual_counter": "Past 90° the readout turns red and negative as the field enters the back.",
+            "one_line_fix": "Flux is signed: field leaving = +, field entering = −."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "Close the box: the six faces add up to net Φ ∝ charge inside",
+        "duration": 19,
+        "focal_primitive_id": "net_sum_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "axes_tag",
+            "position": {
+              "x": 330,
+              "y": 95
+            },
+            "text": "x · y · z faces of the closed box",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sum_running_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "faces add: Σ Φ_faces",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "net_sum_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "net Φ = Σ Φ_faces ∝ q_enc",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Now wrap the surface all the way around the charge into a closed box, with x, y and z axes to keep track of the six faces."
+            },
+            {
+              "id": "s8_2",
+              "text_en": "Field leaving a face counts plus, field entering counts minus. Watch the six face values light up one by one and add together."
+            },
+            {
+              "id": "s8_3",
+              "text_en": "Each face shows its own number, and they pile up into one running total: the net flux out of the whole box."
+            },
+            {
+              "id": "s8_4",
+              "text_en": "That net total is set only by the charge trapped inside — net Φ is proportional to q-enclosed, and nothing on the surface changes it."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The net flux is just whatever the nearest or brightest face shows; the per-face numbers don't combine into one fixed total.",
+            "visual_counter": "All six face values light up and accumulate on-screen into a single running net total that lands on a value set by the enclosed charge — not by any one face.",
+            "one_line_fix": "Net Φ is the signed sum of all six faces, and that sum is proportional to the charge enclosed."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_9": {
+        "title": "Move it inside, then sweep it outside: net holds, then net goes to zero",
+        "duration": 19,
+        "focal_primitive_id": "outside_zero_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "inside_invariance_tag",
+            "position": {
+              "x": 330,
+              "y": 95
+            },
+            "text": "off-centre inside → net holds",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "enter_leave_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "every line in also leaves",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "outside_zero_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "charge outside → net Φ = 0",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "First drag the charge off-centre, still inside the box. The near faces gain, the far faces lose — but watch the net total."
+            },
+            {
+              "id": "s9_2",
+              "text_en": "It does not budge. Position inside never changes the net. Now what if the charge sits entirely OUTSIDE the box — what should the net be?"
+            },
+            {
+              "id": "s9_3",
+              "text_en": "Watch as it sweeps outside: every field line that enters one face leaves through another, so the plus and minus faces cancel."
+            },
+            {
+              "id": "s9_4",
+              "text_en": "The net flux drops to exactly zero. No charge enclosed means no net flux — a first taste of what a closed surface really counts."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A charge just outside the box still pushes its field through, so it adds some net flux — and the closer it is, the more net flux it gives.",
+            "visual_counter": "As the charge sweeps outside, the field lines that enter one side of the box leave through the other; the positive and negative face values cancel and the net total reads exactly zero, no matter how close the charge gets.",
+            "one_line_fix": "A charge outside a closed surface contributes zero net flux — every line that enters also leaves."
+          }
+        ]
+      },
+      "STATE_10": {
+        "title": "Explore: spin the disc through a full turn and watch signed Φ",
+        "duration": 16,
+        "focal_primitive_id": "explore_theta_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "drag_theta_tag",
+            "position": {
+              "x": 430,
+              "y": 160
+            },
+            "text": "drag θ: 0 → 360°",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sign_flip_tag",
+            "position": {
+              "x": 610,
+              "y": 225
+            },
+            "text": "past 90° → Φ turns negative",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "explore_theta_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ = EA cosθ, signed, all the way round",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s10_1",
+              "text_en": "Now you drive it. Drag theta and spin the disc through a full turn, from zero all the way to three-sixty."
+            },
+            {
+              "id": "s10_2",
+              "text_en": "Face-on, the flux is biggest and positive. At ninety degrees the disc is edge-on and Φ falls to zero."
+            },
+            {
+              "id": "s10_3",
+              "text_en": "Push past ninety and Φ turns negative as the field enters from behind; at one-eighty it is fully negative again."
+            },
+            {
+              "id": "s10_4",
+              "text_en": "The whole time, the piercing component E cosθ and the lines-through tally move together, tracing Φ equals EA cosθ across the full circle."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered electric flux when they can (1) say that flux Φ counts how much of a field pierces an oriented area and is NOT the field strength E, so a smaller area in the same field has less flux; (2) compute Φ = EA cosθ with θ measured from the field to the area's NORMAL n̂, including that only the along-normal component E cosθ pierces while the along-surface part E sinθ grazes, and that edge-on (θ=90°) gives zero flux; (3) write flux as the dot product Φ = E·A and explain why that projection gives the cosθ; (4) state that flux is signed (out = +, in = −); and (5) state that the NET flux through a closed surface depends only on the charge enclosed — independent of the charge's position and the surface's shape — and is exactly zero when the charge sits outside the surface.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "Two rings sit in the same uniform field, both face-on, but ring B is smaller than ring A. A student says the flux is the same through both because the field strength E is identical. Correct?",
+        "options": {
+          "A": "No — flux counts how much field pierces the area, so the smaller ring B has less flux even though E is the same",
+          "B": "Yes — flux is just the field strength E, which is identical at both rings",
+          "C": "Yes — once the field is uniform, every surface in it has the same flux",
+          "D": "No — the smaller ring B actually has more flux because the lines are squeezed together"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "flux equals field strength E, not field-through-area",
+          "C": "uniform field means equal flux regardless of area",
+          "D": "smaller area concentrates lines into more flux"
+        },
+        "tested_idea": "Flux Φ is field-through-area, not field strength E; smaller area → less flux.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A wide net and a narrow net face the same river current head-on. A student says the same amount of water flows through each because the current speed is the same. Right?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A flat area is tilted so its NORMAL makes 60° with a uniform field E. The area is A. What is the flux through it?",
+        "options": {
+          "A": "EA cos60° — θ is the angle from the field to the normal",
+          "B": "EA sin60° — θ is the angle from the field to the surface",
+          "C": "EA — tilting doesn't change the flux as long as E and A are fixed",
+          "D": "EA cos30° — measure the angle from the field to the surface and take its cosine"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "uses sin and measures θ to the surface, not the normal",
+          "C": "tilting doesn't affect flux",
+          "D": "measures the angle to the surface (30°) instead of to the normal (60°)"
+        },
+        "tested_idea": "Φ = EA cosθ with θ measured from the field to the area's NORMAL.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A solar panel's normal makes 60° with the sun's rays of intensity E over area A. Write the light flux it captures."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A ring is turned edge-on to a uniform field, so it lies exactly along the field lines. What is the electric flux through it?",
+        "options": {
+          "A": "Zero — at edge-on (θ=90°) the lines skim past and none pierce the face",
+          "B": "Maximum — edge-on lets the most field through",
+          "C": "EA — the same as face-on, since the area hasn't changed",
+          "D": "Half of EA — edge-on lets exactly half the field through"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "edge-on is thought to maximise flux",
+          "C": "flux depends only on area, not orientation",
+          "D": "edge-on lets half the field through"
+        },
+        "tested_idea": "Edge-on (θ=90°) gives zero flux even though area and field are unchanged.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A wire loop is held so its plane lies along the airflow from a fan. How much air streams through the loop?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "Why does the flux through an area come out as EA cosθ?",
+        "options": {
+          "A": "Because flux is the dot product E·A, which keeps only the part of E along the normal n̂ — and that part is E cosθ",
+          "B": "Because flux is the cross product E × A, whose magnitude is EA sinθ",
+          "C": "Because the area shrinks to A cosθ when you tilt it, and the field is unchanged",
+          "D": "Because the field weakens to E cosθ inside the tilted area"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "flux is a cross product giving sinθ",
+          "C": "thinks the area itself physically shrinks on tilt",
+          "D": "thinks the field strength changes when the area is tilted"
+        },
+        "tested_idea": "Flux is the dot product E·A; the projection of E onto n̂ gives the cosθ.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Explain, using the area vector A = A n̂, why the light a tilted panel captures is E·A and not E×A."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A uniform field enters a flat surface from behind (the field points into the surface, not out of it). A student records the flux as positive. Right?",
+        "options": {
+          "A": "No — field entering the surface counts as NEGATIVE flux; only field leaving counts as positive",
+          "B": "Yes — flux is always positive; you just add up everything that pierces",
+          "C": "Yes — direction never matters for flux, only how many lines pierce",
+          "D": "No — but only because the field weakened; the sign of flux is always positive"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "flux is always positive, just a count",
+          "C": "flux ignores the in/out direction",
+          "D": "flux sign is always positive; blames field strength"
+        },
+        "tested_idea": "Flux is signed: field leaving the surface = +, field entering = −.",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "Wind blows into the back of a held ring (toward you, not away). Is the air flux through the ring counted as positive or negative, and why?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A single charge sits inside a closed box. You drag it off-centre toward one face, then swap the box for a differently shaped one. What happens to the NET flux out of the closed surface?",
+        "options": {
+          "A": "It stays the same — net flux depends only on the charge enclosed, not its position or the box's shape",
+          "B": "It increases as the charge nears a face, because that face's flux grows",
+          "C": "It changes whenever the box's shape changes, since a bigger box has more surface",
+          "D": "It drops to zero once the charge is off-centre, because the faces become unequal"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "net flux grows when the charge moves near a face",
+          "C": "net flux depends on the surface's shape/size",
+          "D": "off-centre charge makes the net flux cancel to zero"
+        },
+        "tested_idea": "Net flux through a closed surface depends only on q_enc — independent of the charge's position and the box's shape.",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A lit candle sits inside a sealed paper lantern. You shift it to a corner and reshape the lantern. Does the total light escaping the lantern change? Tie this back to net flux and enclosed charge."
+      },
+      {
+        "q_id": "Q7",
+        "stem": "A uniform field E strikes a flat surface whose normal makes angle θ with the field. The field is split into a part along the normal (E cosθ) and a part along the surface (E sinθ). Which part actually contributes to the flux through the surface?",
+        "options": {
+          "A": "Only the along-normal part, E cosθ — that is the part that pierces the surface, so Φ = (E cosθ)A = EA cosθ",
+          "B": "The full field E, since the whole field is present at the surface either way",
+          "C": "The along-surface part, E sinθ, because at most tilts it is the larger of the two components",
+          "D": "Neither component matters — the flux drops only because the area itself physically shrinks to A cosθ"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "thinks all of E contributes regardless of orientation",
+          "C": "picks the bigger arrow and assumes magnitude means contribution; θ measured to the surface",
+          "D": "attributes cosθ to the area physically shrinking rather than the projection of E onto the normal"
+        },
+        "tested_idea": "Only the along-normal component E cosθ pierces the surface and carries the flux.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Wind hits a window screen whose normal is tilted by θ to the airflow. The wind speed splits into a part straight through (v cosθ) and a part sliding along its face (v sinθ). Which part sets how much air actually passes through?"
+      },
+      {
+        "q_id": "Q8",
+        "stem": "A single point charge sits entirely OUTSIDE a closed box (no charge is inside the box). What is the net electric flux through the box's surface?",
+        "options": {
+          "A": "Zero — every field line that enters the box through one face leaves through another, so the positive and negative face contributions cancel",
+          "B": "Positive — the charge's field points outward, so it must push a positive net flux through the box",
+          "C": "It depends on the distance — the closer the outside charge, the larger the net flux through the box",
+          "D": "It depends on which face is nearest the charge — that face dominates and sets the net flux"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes outward field always yields positive net flux",
+          "C": "confuses per-face flux (changes) with net (does not)",
+          "D": "lets the nearest face stand in for the net"
+        },
+        "tested_idea": "A charge outside a closed surface contributes zero net flux — lines entering equal lines leaving.",
+        "teaches_state": "STATE_9",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A lamp stands just outside a sealed glass box. Counting light entering one side as positive and leaving as negative, what is the net light flux through the box, and why?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": [
+        "Q1"
+      ],
+      "STATE_3": [
+        "Q2"
+      ],
+      "STATE_4": [
+        "Q7"
+      ],
+      "STATE_5": [
+        "Q3"
+      ],
+      "STATE_6": [
+        "Q4"
+      ],
+      "STATE_7": [
+        "Q5"
+      ],
+      "STATE_8": [
+        "Q6"
+      ],
+      "STATE_9": [
+        "Q8"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_2",
+      "STATE_10"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "electric_flux",
+    "flux_defaults": {
+      "E": 5,
+      "A": 2
+    },
+    "slider_controls": {
+      "theta_deg": {
+        "min": 0,
+        "max": 360,
+        "step": 5,
+        "default": 0,
+        "label": "Tilt θ"
+      },
+      "charge_x": {
+        "min": -2.2,
+        "max": 2.2,
+        "step": 0.05,
+        "default": 0,
+        "label": "Charge position"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Flux is how much field pierces an area — not the field itself",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          2.5,
+          1.6,
+          7.8
+        ],
+        "caption": "",
+        "flux": {
+          "mode": "open",
+          "theta_deg": 0,
+          "show_tally": true
+        }
+      },
+      "STATE_2": {
+        "label": "Face-on: every line through, Φ = E·A is maximum",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          2.5,
+          1.6,
+          7.8
+        ],
+        "caption": "",
+        "flux": {
+          "mode": "open",
+          "theta_deg": 0,
+          "show_normal": true,
+          "show_tally": true
+        },
+        "formula_overlay": "Φ = E·A"
+      },
+      "STATE_3": {
+        "label": "Tilt it: flux drops by cosθ, θ measured to the normal",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.2,
+          7.6
+        ],
+        "caption": "",
+        "flux": {
+          "mode": "open",
+          "theta_anim": {
+            "from_deg": 0,
+            "to_deg": 55,
+            "at_ms": 5000,
+            "duration_ms": 2500
+          },
+          "show_normal": true,
+          "show_theta_arc": true,
+          "show_tally": true
+        },
+        "formula_overlay": "Φ = EA cosθ"
+      },
+      "STATE_4": {
+        "label": "Why cosθ: E splits into a part that pierces and a part that grazes",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.2,
+          7.2
+        ],
+        "caption": "",
+        "flux": {
+          "mode": "open",
+          "theta_deg": 55,
+          "show_normal": true,
+          "show_theta_arc": true,
+          "show_components": true,
+          "show_projection": true
+        },
+        "formula_overlay": "Φ = (E cosθ)·A = EA cosθ",
+        "equation_panel_anchor": "top_right"
+      },
+      "STATE_5": {
+        "label": "Edge-on: θ = 90°, zero flux",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.2,
+          7.6
+        ],
+        "caption": "",
+        "flux": {
+          "mode": "open",
+          "theta_anim": {
+            "from_deg": 0,
+            "to_deg": 90,
+            "at_ms": 3300,
+            "duration_ms": 2500
+          },
+          "show_normal": true,
+          "show_theta_arc": true,
+          "show_tally": true
+        },
+        "formula_overlay": "θ = 90°  ⇒  Φ = 0"
+      },
+      "STATE_6": {
+        "label": "Why it works: flux is the dot product E·A",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          2.5,
+          1.6,
+          7.8
+        ],
+        "caption": "",
+        "flux": {
+          "mode": "open",
+          "theta_deg": 50,
+          "show_normal": true,
+          "show_theta_arc": true,
+          "show_area_vector": true
+        },
+        "formula_overlay": "Φ = E·A = EA cosθ"
+      },
+      "STATE_7": {
+        "label": "Flux has a sign: out is +, in is −",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.2,
+          7.6
+        ],
+        "caption": "",
+        "flux": {
+          "mode": "open",
+          "theta_anim": {
+            "from_deg": 60,
+            "to_deg": 120,
+            "at_ms": 4800,
+            "duration_ms": 2800
+          },
+          "show_normal": true,
+          "show_theta_arc": true,
+          "signed": true
+        },
+        "formula_overlay": "out = +,  in = −"
+      },
+      "STATE_8": {
+        "label": "Close the box: six faces add to net Φ ∝ charge inside (PRIMARY aha)",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "flux": {
+          "mode": "closed",
+          "show_axes": true,
+          "show_face_values": true,
+          "accumulate_faces": true,
+          "accumulate_at_ms": 5000,
+          "accumulate_stagger_ms": 450
+        },
+        "formula_overlay": "net Φ = Σ Φ_faces ∝ q_enc"
+      },
+      "STATE_9": {
+        "label": "Move it inside, then sweep it outside: net holds, then net → 0",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          2.8,
+          1.6,
+          8
+        ],
+        "caption": "",
+        "flux": {
+          "mode": "closed",
+          "show_axes": true,
+          "show_face_values": true,
+          "move_charge": true,
+          "outside_demo": true,
+          "charge_slider": true
+        },
+        "formula_overlay": "inside → net ∝ q_enc · outside → net 0"
+      },
+      "STATE_10": {
+        "label": "Explore: spin the disc through a full turn and watch signed Φ",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.2,
+          7.2
+        ],
+        "caption": "",
+        "flux": {
+          "mode": "open",
+          "theta_slider": true,
+          "signed": true,
+          "show_normal": true,
+          "show_theta_arc": true,
+          "show_tally": true,
+          "show_components": true
+        },
+        "formula_overlay": "spin θ 0→360°: Φ = EA cosθ",
+        "equation_panel_anchor": "top_right"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}
