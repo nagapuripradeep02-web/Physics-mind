@@ -1,0 +1,1017 @@
+{
+  "concept_id": "electric_potential_point_charge",
+  "concept_name": "Potential of a Point Charge — V = kQ/r (falls off as 1/r)",
+  "chapter": 2,
+  "section": "2.2",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.2 Electrostatic Potential and Capacitance (§2.2 Potential due to a point charge) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (recall the equipotential shells already met in the prerequisite electric_potential_meaning → ask the unanswered question: how BIG is the potential V at a given distance r? → state the answer V = kQ/r, point P's shell lights up with its value → read the formula: r sits downstairs to the FIRST power, one power of r, not r squared → confront the 1/r-squared instinct: halve r and the field-trained student predicts V quadruples, but V only DOUBLES because V falls as 1/r → put both falloffs on one graph: the bright V = kQ/r (1/r) curve rides ABOVE the dimmed E = kQ/r² (1/r²) ghost far out → V is a SIGNED SCALAR: flip Q's sign and the V number flips sign, hill becomes well, no arrow ever → hand the explorer the slider: drag r, watch V climb gently on the 1/r curve), never copied. The atomic idea: the electric potential of a point charge at distance r is V = kQ/r — it falls off as 1/r, ONE power of r, which is SLOWER than the field's 1/r²; so halving r only DOUBLES V (not quadruples it), and V reaches farther out than the force you would feel. V is a signed scalar (no arrow): for +Q it is a positive hill, for −Q a negative well, with V(∞)=0. SCOPE: this is the point-charge FORMULA/VALUE diamond of Ch.2 — it teaches V = kQ/r and its 1/r falloff. It declares electric_potential_meaning (what V MEANS, V = W/q) as a prerequisite and does NOT re-teach it. It does NOT cover superposition of potentials from MULTIPLE charges, the gradient relation E = −dV/dr, the potential of a dipole, capacitance, or conductor equipotential. The headline contrast is V ∝ 1/r vs E ∝ 1/r² — voltage reaches farther than force. NEW field_3d potential primitives reuse the point_charge_positive scenario and the electric_potential_meaning shell/explorer primitives (bunched-near-the-charge V-labelled equipotential shells with per-state reveal, a halve-r predict→reveal beat with a live V count-up, a V-vs-r curve panel with a BRIGHT 1/r curve over a DIMMED 1/r² ghost meeting at r0=2, a sign-flip recolor, and a draggable potential_explorer with a live curve dot). Prerequisites electric_potential_meaning + electric_field_point_charge + coulombs_law. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the three misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "point_charge_positive"
+    ]
+  },
+  "prerequisites": [
+    "electric_potential_meaning",
+    "electric_field_point_charge",
+    "coulombs_law"
+  ],
+  "real_world_anchor": {
+    "primary": "In a school physics lab, the metal dome of a Van de Graaff generator is charged to a high voltage. Stand near it and the voltage you would measure stays high even a fair way out — it drops only GENTLY with distance. But the force you would actually feel, the push on a small charge, dies away fast as you step back. That gap is the whole idea: the potential V of the dome falls off as one over the distance r, while the force, the field E, falls off as one over r squared. Voltage reaches farther than force.",
+    "secondary": "Run a plastic comb through dry hair and hold it near a thin stream of water. Close to the comb the pull on the water is strong; step the comb back and the pull weakens quickly — that is the field's one-over-r-squared. But the potential the comb sets up in the air around it fades more slowly, one-over-r, lingering farther out than the force does.",
+    "tertiary": "A charged thundercloud sits at a huge potential relative to the ground far below. The potential reaches all the way down to the ground — one-over-r is a long, gentle reach — even though the actual force on a stray charge high in the air, the field, has fallen off much faster, as one-over-r-squared."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "Q": {
+        "name": "Source charge on the dome (kept at +1 across the falloff arc; its SIGN flips in the sign-flip states)",
+        "unit": "demo nC",
+        "min": 1,
+        "max": 1,
+        "default": 1,
+        "step": 1
+      },
+      "r": {
+        "name": "Distance of the field point P from the source charge (the STATE_6 drag owns this; drives which shell P sits on and the live V readout)",
+        "unit": "demo units",
+        "min": 0.5,
+        "max": 4.0,
+        "default": 1.5,
+        "step": 0.05
+      },
+      "k": {
+        "name": "Coulomb constant k = 1/(4*pi*epsilon_0) (the k in V = k*Q/r)",
+        "unit": "N*m^2/C^2",
+        "min": 8990000000,
+        "max": 8990000000,
+        "default": 8990000000,
+        "step": 1
+      },
+      "epsilon_0": {
+        "name": "Permittivity of free space (a fixed constant of nature)",
+        "unit": "C^2/(N*m^2)",
+        "min": 8.854e-12,
+        "max": 8.854e-12,
+        "default": 8.854e-12,
+        "step": 1
+      },
+      "DEMO_V_PER_NC": {
+        "name": "Demo potential readout per demo-nC of source charge at unit demo radius — THE round number the whole 1/r series rides on (12 gives the shell table V=24/12/8/6/4/3 at r=0.5/1/1.5/2/3/4 and STATE_3's exact 6->12 doubling)",
+        "unit": "demo V per (demo nC) at r=1",
+        "min": 12,
+        "max": 12,
+        "default": 12,
+        "step": 1
+      },
+      "charge_sign": {
+        "name": "Sign of the source charge (+1 hill, -1 well) — flips V's sign without ever adding an arrow",
+        "unit": "sign",
+        "min": -1,
+        "max": 1,
+        "default": 1,
+        "step": 2
+      }
+    },
+    "computed_outputs": {
+      "V_demo": {
+        "formula": "DEMO_V_PER_NC * Q / Math.max(r, 0.05)"
+      },
+      "V_signed_demo": {
+        "formula": "charge_sign * DEMO_V_PER_NC * Q / Math.max(r, 0.05)"
+      },
+      "E_ghost_demo": {
+        "formula": "DEMO_V_PER_NC * Q * (2 / Math.max(r, 0.05)) * (2 / Math.max(r, 0.05)) / 2"
+      }
+    },
+    "derived_fields_declared": [
+      "V_demo",
+      "V_signed_demo",
+      "E_ghost_demo"
+    ],
+    "formulas": {
+      "potential_point_charge": "V = k*Q/r",
+      "field_point_charge": "E = k*Q/r^2",
+      "falloff_contrast": "V ~ 1/r, E ~ 1/r^2",
+      "scalar_sign": "V is a signed scalar; +Q is a hill (V>0), -Q a well (V<0), no arrow",
+      "reference": "V(infinity) = 0",
+      "k": "8.99e9"
+    },
+    "constraints": [
+      "The potential of a point charge falls off as 1/r, while its field falls off as 1/r^2: V ~ 1/r is ONE power of r gentler than E ~ 1/r^2 (C1).",
+      "Halving the distance r only DOUBLES the potential V (it does not quadruple it): V = k*Q/r, so r -> r/2 gives V -> 2V, NOT 4V - the 4x quadrupling is the field's 1/r^2 behaviour, not the potential's (C2).",
+      "The potential V is a signed SCALAR: one number per point, no direction and no arrow - flipping the sign of the source charge flips the SIGN of V (hill to well), never adds a direction (C3).",
+      "The reference is V(infinity) = 0 and V = k*Q/r is finite for every r >= 0.05 (the demo clamps r at 0.05 to avoid the unphysical r=0 blow-up) (C4).",
+      "The Coulomb constant is k = 8.99e9 N*m^2/C^2; the on-screen V numbers use round DEMO units (DEMO_V_PER_NC = 12) so the 1/r series reads 24/12/8/6/4/3, not SI volts (C5).",
+      "Far from the charge V rides ABOVE E: because V fades as 1/r and E dies as 1/r^2, the two meet at r0 = 2 and then diverge, V staying larger - voltage reaches farther than force (C6)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "V = kQ/r fades as 1/r, gentler than E's 1/r² — V rides above E.",
+    "visual_confirmation": "On one V-vs-r graph, the bright V = kQ/r curve (1/r) and the dimmed E = kQ/r² ghost (1/r²) meet at r = 2, then split apart with the bright V curve riding visibly above the dim E ghost as r grows.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "falloff": [
+      "STATE_3",
+      "STATE_4"
+    ],
+    "sign": [
+      "STATE_5"
+    ],
+    "exploration": [
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Back at the same +Q dome — how big is V at distance r?",
+        "duration": 14,
+        "focal_primitive_id": "how_big_question_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "source_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "the same +Q charged dome",
+            "color": "#EF5350",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "shells_known_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "shells of equal potential V (you know these)",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "how_big_question_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "each shell has one V number — how big at distance r?",
+            "color": "#D4D4D8",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "We are back at the same charged dome, like a school Van de Graaff generator. You already know the shells of equal potential V wrap around it.",
+              "reveal_primitive_id": "shells_known_label",
+              "appear_at_ms": 600
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Each shell carries one number, the potential V on that shell. But we never asked: how BIG is that number at a given distance r?",
+              "reveal_primitive_id": "how_big_question_label",
+              "appear_at_ms": 7000,
+              "pause_after_ms": 1500
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Potential is just a vague 'amount of charge' on the dome, not a definite number you can read off at a chosen distance.",
+            "visual_counter": "The faint equipotential shells each carry one plain V number, and the hook asks for the value at a specific distance r - a single definite number is waiting to be named.",
+            "one_line_fix": "At every distance r the potential has one exact value, V = kQ/r; this diamond names that number."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "The answer: V = kQ/r — one power of r, not r squared",
+        "duration": 18,
+        "focal_primitive_id": "formula_callout_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "point_p_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "field point P at distance r",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "v_value_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "shell at P lights up: V = 8",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "formula_callout_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "V = k Q / r   (r downstairs, one power)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Pick a point P out here at distance r from the charge Q. What is the potential V exactly there?",
+              "reveal_primitive_id": "point_p_label",
+              "appear_at_ms": 800
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Here is the answer. The potential V = k Q / r. The shell at P lights up and shows its value.",
+              "reveal_primitive_id": "v_value_label",
+              "appear_at_ms": 5000
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Read the formula carefully: the distance r is downstairs, to the first power. One power of r, not r squared. Hold on to that.",
+              "reveal_primitive_id": "formula_callout_label",
+              "appear_at_ms": 11000,
+              "pause_after_ms": 1200
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The potential of a point charge must fall off as 1/r squared, just like the field does.",
+            "visual_counter": "The formula callout writes V = kQ/r with r downstairs to the FIRST power only, and the shell at P shows its single value - one power of r, planted before the misconception is tested.",
+            "one_line_fix": "Potential has only ONE power of r downstairs: V = kQ/r, gentler than the field's 1/r squared."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Halve r — the 1/r² instinct says ×4, but V only DOUBLES",
+        "duration": 22,
+        "focal_primitive_id": "doubles_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "misconception_confrontation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "halve_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "halve r: from r = 2 in to r = 1",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "field instinct: ×4 to V = 24?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "doubles_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "no — V only DOUBLES: 6 → 12  (V ~ 1/r)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Point P sits at distance r = 2, where the potential V reads 6. Now I halve the distance, bringing P in to r = 1.",
+              "reveal_primitive_id": "halve_label",
+              "appear_at_ms": 800
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Predict the new potential V. The electric field E goes as one over r squared, so halving r makes E four times bigger. Does the potential V also jump four times, to 24?",
+              "reveal_primitive_id": "predict_label",
+              "appear_at_ms": 6000,
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Watch. The potential V only DOUBLES, from 6 to 12. Not four times — just twice.",
+              "reveal_primitive_id": "doubles_label",
+              "appear_at_ms": 9200,
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s3_4",
+              "text_en": "That is because the potential V = k Q / r falls as one over r, one power gentler than the field's one over r squared.",
+              "reveal_primitive_id": "doubles_label",
+              "appear_at_ms": 13500
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Halving the distance to a point charge makes the potential V four times bigger, because the student has internalised the field's 1/r squared falloff.",
+            "visual_counter": "P is pulled from r = 2 to r = 1 and the live V count climbs 6 -> 12, a clean DOUBLING, never reaching the predicted 24; the field's 4x is explicitly the wrong instinct.",
+            "one_line_fix": "V = kQ/r falls as 1/r, so halving r DOUBLES V (6 -> 12); the 4x quadrupling belongs to the field's 1/r squared, not the potential."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_one_power_of_r",
+          "halve_r_doubles_v",
+          "v_nonzero_where_e_dead"
+        ]
+      },
+      "STATE_4": {
+        "title": "Both falloffs on one graph: V (1/r) rides above E (1/r²)",
+        "duration": 30,
+        "focal_primitive_id": "gap_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "v_curve_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "bright: V = k Q / r  (gentle 1/r)",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "e_ghost_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "dimmed ghost: E = k Q / r²  (steep 1/r²)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "gap_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "meet at r = 2, then split — V rides above E far out",
+            "color": "#D4D4D8",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Let us see both falloffs on one graph: potential V up the side, distance r along the bottom.",
+              "reveal_primitive_id": "v_curve_label",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Here is the potential V = k Q / r, a gentle one-over-r curve. Bright.",
+              "reveal_primitive_id": "v_curve_label",
+              "appear_at_ms": 4000
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Now fade in the electric field E = k Q / r squared beneath it, dimmed. The two meet at distance r = 2.",
+              "reveal_primitive_id": "e_ghost_label",
+              "appear_at_ms": 9000,
+              "pause_after_ms": 1200
+            },
+            {
+              "id": "s4_4",
+              "text_en": "Move outward and they split apart. The potential V rides ABOVE the field E far out — it fades slowly while the field dies fast. That gap is the whole idea: one power of r gentler.",
+              "reveal_primitive_id": "gap_label",
+              "appear_at_ms": 14000,
+              "pause_after_ms": 1800
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The potential curve and the field curve are basically the same shape; kQ/r and kQ/r squared blur together.",
+            "visual_counter": "Two distinct curves on one graph - the bright 1/r potential visibly fades slower and rides ABOVE the dimmed 1/r squared field ghost for every r past their r = 2 crossing.",
+            "one_line_fix": "kQ/r (potential) and kQ/r squared (field) are different curves: the 1/r potential is gentler and stays larger far out."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "curve_shape_1r_vs_1r2",
+          "crossover_intuition",
+          "sign_on_the_curve"
+        ]
+      },
+      "STATE_5": {
+        "title": "V is a SIGNED scalar: flip Q and the hill becomes a well — no arrow",
+        "duration": 22,
+        "focal_primitive_id": "well_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "scalar_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "V = k Q / r is a SCALAR — a signed number, no arrow",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_sign_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "flip Q to −Q: arrow appears, or just sign flips?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "well_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "the V number flips to minus — a well, no arrow",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "One more thing about the potential V = k Q / r. It is a SCALAR — a single signed number, no arrow, unlike the electric field E.",
+              "reveal_primitive_id": "scalar_label",
+              "appear_at_ms": 800
+            },
+            {
+              "id": "s5_2",
+              "text_en": "For a positive charge Q the potential V is positive everywhere: a hill. If I flip Q to negative, predict — does an arrow appear, or does the number just change sign?",
+              "reveal_primitive_id": "predict_sign_label",
+              "appear_at_ms": 6000,
+              "pause_after_ms": 2600
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Watch. Flip the sign of the charge Q, and the potential V flips from plus to minus — a well, not a hill. No arrow ever appears. The sign is in the number, never a direction.",
+              "reveal_primitive_id": "well_label",
+              "appear_at_ms": 9500,
+              "pause_after_ms": 1200
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The potential is a vector that points outward from a positive charge, so flipping the charge sign should make an arrow appear or reverse.",
+            "visual_counter": "Flipping Q to negative recolors the shells and flips every V label from plus to minus - a well instead of a hill - and NO arrow is ever drawn on the potential.",
+            "one_line_fix": "V = kQ/r is a signed scalar: flipping the source charge flips V's SIGN (hill to well), it never adds or reverses a direction."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Explore: drag r, watch V climb gently on the 1/r curve",
+        "duration": 16,
+        "focal_primitive_id": "drag_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "drag_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "drag r — P's shell lights up, V reads out live",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "gentle_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "dot tracks the 1/r curve — V climbs GENTLY",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sign_toggle_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "flip Q to −Q: same gentle 1/r, now below zero",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now you drive. Drag the field point in and out to change the distance r. The shell it lands on lights up and the potential V reads out live.",
+              "reveal_primitive_id": "drag_label",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Watch the dot on the one-over-r curve track with you, and feel the potential V rise GENTLY as you pull r in — doubling the closeness only doubles V, never four times.",
+              "reveal_primitive_id": "gentle_label",
+              "appear_at_ms": 5000
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Flip the charge Q to negative if you like, and the whole potential V hill becomes a well — same gentle one-over-r shape, just below zero.",
+              "reveal_primitive_id": "sign_toggle_label",
+              "appear_at_ms": 9000
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the potential of a point charge when they can (1) state V = kQ/r, the potential at distance r from a point charge Q; (2) recognise that V falls off as 1/r, ONE power of r, slower than the field's 1/r squared; (3) compute that halving r DOUBLES V (not quadruples it), distinguishing the potential's 1/r from the field's 1/r squared; (4) treat V as a signed scalar with no direction, so flipping the source charge's sign flips V's sign (hill to well) without adding an arrow; (5) explain why V is still appreciable where the force is nearly dead - because 1/r reaches farther than 1/r squared; and (6) plug numbers into V = kQ/r correctly, including reading the 1/r (not 1/r squared) dependence on r.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "What is the electric potential V at a distance r from a point charge Q (with V = 0 at infinity)?",
+        "options": {
+          "A": "V = kQ/r - the charge over the distance, to the first power",
+          "B": "V = kQ/r² - the charge over the distance squared",
+          "C": "V = kQr - the charge times the distance",
+          "D": "V = kQ/r³ - the charge over the distance cubed"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "uses the field's 1/r squared falloff for the potential, the central misconception this diamond confronts",
+          "C": "makes V grow with distance instead of falling off",
+          "D": "uses the dipole-potential 1/r squared or an invented 1/r cubed dependence"
+        },
+        "tested_idea": "The potential of a point charge is V = kQ/r, with a single power of r downstairs.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A small charged sphere acts as a point charge Q. Taking the potential to be zero infinitely far away, what is the potential V at distance r from it?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "At a point a distance r from a point charge the potential is V = 6 (demo units). You move to half that distance, r/2. What is the potential there?",
+        "options": {
+          "A": "12 - the potential doubles, because V = kQ/r falls as 1/r",
+          "B": "24 - the potential quadruples, because halving r multiplies it by four",
+          "C": "6 - the potential is unchanged, since it does not depend on distance",
+          "D": "3 - the potential halves when you move closer"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "applies the field's 1/r squared (x4 on halving r) to the potential - the key misconception",
+          "C": "thinks potential is the same everywhere around the charge, ignoring the 1/r dependence",
+          "D": "gets the direction of change backwards, lowering V on moving closer"
+        },
+        "tested_idea": "Halving r doubles V because V = kQ/r falls off as 1/r, not 1/r squared.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Near a charged dome the potential at some spot is V. You walk in to half the distance from the dome. By what factor does the potential change?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "How do the potential V and the field E of a point charge fall off with distance r, and which one fades more slowly?",
+        "options": {
+          "A": "V ~ 1/r and E ~ 1/r²; V fades more slowly and stays larger far out",
+          "B": "Both V and E fall off as 1/r², at the same rate",
+          "C": "V ~ 1/r² and E ~ 1/r; the field fades more slowly",
+          "D": "Both fall off as 1/r, so they stay equal everywhere"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "gives the potential the field's 1/r squared falloff, the core blur this diamond fixes",
+          "C": "swaps the two falloffs, attaching 1/r squared to V and 1/r to E",
+          "D": "makes both fall off as 1/r, erasing the one-power-of-r difference"
+        },
+        "tested_idea": "V ~ 1/r falls off one power of r more gently than E ~ 1/r squared, so V rides above E far from the charge.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Compare how the potential and the electric field of a point charge weaken as you move away. Which fades faster, and what is each one's power of r?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "The source charge is changed from +Q to −Q. What happens to the potential V at a fixed point near it?",
+        "options": {
+          "A": "V flips sign, from positive to negative - a well instead of a hill, still a number with no direction",
+          "B": "An arrow appears on V, pointing inward toward the negative charge",
+          "C": "V keeps the same positive value, since potential has no sign",
+          "D": "V becomes a vector pointing away from the charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats the scalar potential as a vector that gains a direction when the charge sign flips",
+          "C": "forgets that V = kQ/r carries the sign of Q, so −Q makes V negative",
+          "D": "conflates the scalar V with the vector field E, giving it a direction"
+        },
+        "tested_idea": "V is a signed scalar: flipping the source charge's sign flips V's sign (hill to well) without adding any direction.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Replace a positive point charge with an equal negative one. Describe what changes about the potential at a nearby fixed point."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Far from a point charge, the force you would feel on a test charge is almost nothing, yet the potential V is still clearly non-zero. Why?",
+        "options": {
+          "A": "Because V ~ 1/r fades more slowly than the force's E ~ 1/r², so V is still appreciable where E has nearly died",
+          "B": "Because the potential and the force fall off at exactly the same rate, so this cannot happen",
+          "C": "Because the potential is created by a battery, not by the charge",
+          "D": "Because V actually grows with distance, so it is largest far away"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes V and E share the same falloff, contradicting 1/r vs 1/r squared",
+          "C": "invents an external source for the potential instead of the charge itself",
+          "D": "makes V increase with distance, reversing the 1/r falloff"
+        },
+        "tested_idea": "V ~ 1/r reaches farther than the force's 1/r squared, so the potential is still appreciable where the field is nearly dead.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Step well back from a charged dome until the push on a small charge is barely detectable. Why is the voltage at that spot still clearly non-zero?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A point charge gives potential V = 12 (demo units) at distance r = 1. What is the potential at r = 3?",
+        "options": {
+          "A": "4 - V = kQ/r so V scales as 1/r: tripling r divides V by 3",
+          "B": "1.33 - V scales as 1/r², so tripling r divides V by 9",
+          "C": "36 - V grows with distance, so tripling r triples V",
+          "D": "12 - V is the same at every distance"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "uses the field's 1/r squared (divide by 9) instead of the potential's 1/r (divide by 3)",
+          "C": "makes V grow with r instead of falling off",
+          "D": "treats V as independent of distance"
+        },
+        "tested_idea": "V = kQ/r scales as 1/r, so tripling the distance divides the potential by 3, not by 9.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "At distance r = 1 from a point charge the potential is 12 demo units. Read off the potential at r = 4 using V = kQ/r."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "Q1",
+        "Q6"
+      ],
+      "STATE_4": [
+        "Q2",
+        "Q3",
+        "Q5"
+      ],
+      "STATE_5": [
+        "Q4"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_3",
+      "STATE_6"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "point_charge_positive",
+    "explorer_id": "potential_explorer",
+    "potential_meaning": {
+      "potential_defaults": {
+        "demo_v_per_nc": 12,
+        "Q": 1,
+        "r_destination": 1.5,
+        "clamp_r_min": 0.05,
+        "charge_sign": 1
+      }
+    },
+    "field_lines": {
+      "count": 24,
+      "color_positive": "#EF5350",
+      "color_negative": "#42A5F5",
+      "opacity": 0.45,
+      "arrow_spacing": 5
+    },
+    "slider_controls": {
+      "r": {
+        "min": 0.5,
+        "max": 4.0,
+        "step": 0.05,
+        "default": 1.5,
+        "label": "Field-point distance r"
+      }
+    },
+    "colors": {
+      "positive": "#EF5350",
+      "test_charge": "#FFF176",
+      "equipotential": "#4FC3F7",
+      "field": "#66BB6A",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "equipotential": {
+      "show": false,
+      "color": "#4FC3F7",
+      "opacity": 0.14,
+      "label_each_shell": true,
+      "shells": [
+        {
+          "radius": 1.0,
+          "v_label": "12"
+        },
+        {
+          "radius": 1.5,
+          "v_label": "8"
+        },
+        {
+          "radius": 2.0,
+          "v_label": "6"
+        },
+        {
+          "radius": 3.0,
+          "v_label": "4"
+        }
+      ]
+    },
+    "v_vs_r_curve": {
+      "show": false,
+      "x_var": "r",
+      "x_min": 0.5,
+      "x_max": 4.0,
+      "x_label": "distance r",
+      "y_label": "potential V",
+      "meet_at_r": 2.0,
+      "curves": [
+        {
+          "id": "v_curve_bright",
+          "output": "V_demo",
+          "shape": "one_over_r",
+          "emphasis": "bright",
+          "color": "#4FC3F7",
+          "label": "V = kQ/r"
+        },
+        {
+          "id": "e_ghost_dim",
+          "output": "E_ghost_demo",
+          "shape": "one_over_r2",
+          "emphasis": "dimmed",
+          "color": "#66BB6A",
+          "label": "E = kQ/r²"
+        }
+      ],
+      "live_dot": {
+        "bind_to": "r",
+        "on_curve": "v_curve_bright"
+      }
+    },
+    "halve_r_beat": {
+      "show": false,
+      "from_r": 2.0,
+      "to_r": 1.0,
+      "from_v": 6,
+      "to_v": 12,
+      "predicted_wrong_v": 24,
+      "count_up_output": "V_demo"
+    },
+    "sign_flip": {
+      "show": false,
+      "charge_sign_var": "charge_sign",
+      "recolor_shells": true,
+      "flip_v_label_sign": true,
+      "draws_arrow": false
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Recall hook - same +Q dome, faint known shells",
+        "visible_elements": [
+          "charge_plus",
+          "field_lines_faint",
+          "equipotential_shells_faint"
+        ],
+        "camera_position": [
+          2.6,
+          1.6,
+          4.2
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "off",
+          "show_equipotential": "faint",
+          "show_v_curve": false
+        },
+        "formula_overlay": ""
+      },
+      "STATE_2": {
+        "label": "Answer V = kQ/r - shell at P lights up",
+        "visible_elements": [
+          "charge_plus",
+          "field_lines_faint",
+          "point_P",
+          "equipotential_shell_at_P",
+          "v_value_on_shell"
+        ],
+        "camera_position": [
+          2.8,
+          1.5,
+          4.0
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "off",
+          "show_equipotential": true,
+          "show_test_charge": true,
+          "test_charge_r": 1.5,
+          "show_v_callout": true,
+          "v_callout_at_ms": 5000,
+          "shell_relight_at_ms": 5000
+        },
+        "formula_overlay": "V = kQ/r"
+      },
+      "STATE_3": {
+        "label": "Halve r - predict x4, reveal only x2 (6 to 12)",
+        "visible_elements": [
+          "charge_plus",
+          "field_lines_faint",
+          "equipotential_shells",
+          "test_charge_moving",
+          "v_count_up"
+        ],
+        "camera_position": [
+          2.8,
+          1.5,
+          4.0
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "off",
+          "show_equipotential": true,
+          "show_test_charge": true,
+          "test_charge_r": 2.0,
+          "predict_reveal_at_ms": 9200,
+          "halve_r_at_ms": 9200,
+          "halve_r_duration_ms": 1600,
+          "count_up_from_v": 6,
+          "count_up_to_v": 12
+        },
+        "formula_overlay": "V: 6 -> 12  (x2, not x4)"
+      },
+      "STATE_4": {
+        "label": "PRIMARY aha - V (1/r) curve over E (1/r2) ghost, meet at r=2",
+        "visible_elements": [
+          "v_vs_r_axes",
+          "v_curve_bright",
+          "e_ghost_dim",
+          "crossover_marker_r2",
+          "gap_far_out"
+        ],
+        "camera_position": [
+          2.6,
+          1.7,
+          3.8
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "faint",
+          "show_equipotential": false,
+          "show_v_curve": true,
+          "v_curve_draw_at_ms": 4000,
+          "v_curve_draw_duration_ms": 3000,
+          "e_ghost_fade_at_ms": 9000,
+          "crossover_at_r": 2.0,
+          "gap_highlight_at_ms": 14000
+        },
+        "formula_overlay": "V ~ 1/r  vs  E ~ 1/r^2"
+      },
+      "STATE_5": {
+        "label": "Sign flip - +Q hill to -Q well, no arrow",
+        "visible_elements": [
+          "charge_sign_toggle",
+          "equipotential_shells",
+          "v_labels_signed",
+          "scalar_no_arrow_label"
+        ],
+        "camera_position": [
+          2.8,
+          1.6,
+          4.2
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "off",
+          "show_equipotential": true,
+          "show_sign_flip": true,
+          "sign_flip_at_ms": 9500,
+          "sign_flip_duration_ms": 1500,
+          "draws_arrow": false
+        },
+        "formula_overlay": "V = kQ/r  (signed scalar, no arrow)"
+      },
+      "STATE_6": {
+        "label": "Explore - drag r, live V on the 1/r curve, sign toggle",
+        "visible_elements": [
+          "charge_plus",
+          "equipotential_shells",
+          "test_charge_draggable",
+          "v_readout_live",
+          "v_curve_with_live_dot",
+          "sign_toggle_control"
+        ],
+        "camera_position": [
+          2.8,
+          1.8,
+          4.5
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_equipotential": true,
+          "show_test_charge": true,
+          "show_v_curve": true,
+          "draggable_test_charge": true,
+          "live_curve_dot": true,
+          "sign_toggle": true,
+          "idle_auto_sweep": true
+        },
+        "formula_overlay": "V = kQ/r  (drag r)"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

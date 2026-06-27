@@ -32,10 +32,11 @@ const CONCEPTS_DIR = join(ROOT, 'src', 'data', 'concepts');
 const OUT_DIR = join(ROOT, 'review-site');
 const SARVAM_URL = 'https://api.sarvam.ai/text-to-speech';
 
-// Default to the battle-tested bulbul:v2 + female "anushka" (supports en/hi/te)
-// for first-run reliability. Switch to v3 + a v3 female speaker via flags.
-const DEFAULT_MODEL = 'bulbul:v2';
-const DEFAULT_SPEAKER = 'anushka';
+// Default to bulbul:v3 + female "priya" (supports en/hi/te). v3 is purpose-built
+// for code-mixing / Romanized text / abbreviations — the inline-English path our
+// trilingual narration uses (Rule 30). Override via --model / --speaker flags.
+const DEFAULT_MODEL = 'bulbul:v3';
+const DEFAULT_SPEAKER = 'priya';
 const SAMPLE_RATE = 22050;
 const PACE = 1.0;
 

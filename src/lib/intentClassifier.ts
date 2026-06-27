@@ -192,6 +192,21 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // route-animating test charge + work tally, ΔV/inf markers, draggable V explorer).
     // Prereqs electric_field_point_charge + coulombs_law.
     'electric_potential_meaning',
+    // Potential of a point charge — the FORMULA/VALUE diamond (Class 12 Ch.2.2). V at
+    // distance r from a point charge Q is V = kQ/r, and it falls off as 1/r — ONE power
+    // of r, SLOWER than the field's 1/r². CUT-LINE vs electric_potential_meaning: that
+    // sibling (the opener) teaches what potential MEANS (V = W/q, work per unit charge);
+    // THIS one teaches the point-charge VALUE/FORMULA V = kQ/r and its 1/r falloff. So
+    // "V = kQ/r" / "potential at distance r from a point charge" / "why 1/r not 1/r²" /
+    // "halve r and V doubles not quadruples" / "equipotential spheres around a point
+    // charge" → here; "what potential means" / "V = W/q" / "work per unit charge" →
+    // electric_potential_meaning. Halving r DOUBLES V (not ×4); V is a signed scalar
+    // (+Q hill, −Q well, no arrow). Routed to the field_3d point_charge_positive scenario
+    // (reuses the labelled-shell + draggable potential_explorer primitives) plus a new
+    // V-vs-r curve panel (bright 1/r over a dimmed 1/r² ghost meeting at r0=2). Declares
+    // electric_potential_meaning as a prerequisite; does NOT re-teach it, and stops short
+    // of multi-charge superposition, E = −dV/dr, or capacitance.
+    'electric_potential_point_charge',
     // What IS a magnetic field — B as a vector field SOURCED by moving charge,
     // REVEALED (not created) by a compass (Class 12 Ch.4.3 — slots BEFORE
     // magnetic_field_wire §4.4). Conceptual-only: establishes source→Oersted→
@@ -540,6 +555,7 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
 
   ── Electrostatic Potential and Capacitance (Class 12 Ch.2) ──
   electric_potential_meaning      ← the MEANING of electric potential V = W/q: the work done per unit positive test charge to bring it from infinity to a point; a single SCALAR per place (no direction, NOT a vector, NOT the field E); path-independent because the electrostatic force is conservative; the reference V(∞)=0; ΔV = V_B − V_A is the per-unit-charge work between two points (closer to a +source ⇒ higher V); potential energy U = qV (belongs to the charge, scales with q) vs potential V (belongs to the place, does not); equipotential surfaces (level sets of V) with E ⊥ to them, downhill (V = altitude, E = slope). Teaches V = W/q and STOPS SHORT of V = kQ/r (that is the separate sibling). Route "what is electric potential", "what does voltage at a point mean", "V = W/q", "work per unit charge", "is potential a vector or scalar", "potential vs potential energy", "potential at a point", "equipotential surface meaning" here.
+  electric_potential_point_charge ← the FORMULA/VALUE of the potential of a point charge: V = kQ/r at distance r, which falls off as 1/r — ONE power of r, SLOWER than the field's 1/r². Halving r only DOUBLES V (not ×4 — the ×4 is the field's 1/r² instinct); V rides ABOVE E far out (they meet at r₀=2 then diverge); V is a SIGNED SCALAR (+Q hill, −Q well, no arrow). Teaches the point-charge VALUE V = kQ/r and its 1/r falloff; declares electric_potential_meaning (what V MEANS) as a prerequisite and does NOT re-teach it, and STOPS SHORT of multi-charge superposition of potentials, E = −dV/dr, the dipole potential, or capacitance. Route "V = kQ/r", "potential at distance r from a point charge", "potential due to a point charge", "why does potential fall off 1/r not 1/r²", "halve r does V quadruple", "equipotential spheres around a point charge", "is the potential of a negative charge negative" here.
 
   ── Moving Charges and Magnetism (Class 12 Ch.4) ──
   magnetic_field_concept_B        ← what a magnetic field IS: a vector field sourced by MOVING charge (current), revealed (not created) by a compass; B circulates around the wire; no current = no field; just like E but from moving charge. Does NOT cover the magnitude B = μ₀I/(2πr).
@@ -623,6 +639,8 @@ CRITICAL DISAMBIGUATION (electrostatics, Ch.1):
 CRITICAL DISAMBIGUATION (electrostatic potential, Ch.2):
 - "what is electric potential" / "what does voltage at a point mean" / "meaning of potential" / "V = W/q" / "work per unit charge" / "potential at a point" / "is potential a vector or a scalar" / "does potential have a direction" / "potential vs potential energy" / "why divide work by charge" / "V(∞)=0 / reference at infinity" / "potential difference between two points" / "ΔV = V_B − V_A" / "what is an equipotential surface" / "why is E perpendicular to the equipotential" → electric_potential_meaning
   (electric_potential_meaning is the MEANING of V: V = W/q, a SCALAR property of the place, path-independent, with V(∞)=0 and ΔV = V_B − V_A. It STOPS SHORT of the point-charge formula V = kQ/r — if the student asks for the actual VALUE/FORMULA of V at distance r from a point charge, that is the separate sibling electric_potential_point_charge, NOT this concept. Distinct from electric_field_point_charge (the VECTOR E = kQ/r²) — V is the scalar, E is the arrow. Distinct from potential ENERGY of a system of charges. Anything asking what potential/voltage MEANS, why it is a scalar, V = W/q, V-vs-U, the infinity reference, or what an equipotential surface is belongs here.)
+- "V = kQ/r" / "potential due to a point charge" / "potential at distance r from a point charge" / "how big is the potential a distance r away" / "why does potential fall off as 1/r" / "why 1/r not 1/r²" / "why isn't potential 1/r squared like the field" / "if I halve the distance does the potential quadruple / double" / "halve r and V doubles" / "equipotential spheres around a point charge" / "is the potential of a negative charge negative" → electric_potential_point_charge
+  (electric_potential_point_charge is the point-charge FORMULA/VALUE: V = kQ/r, falling off as 1/r — ONE power of r, SLOWER than the field's 1/r². The CUT-LINE vs electric_potential_meaning: if the student asks what potential/voltage MEANS, V = W/q, work per unit charge, or whether V is a scalar → electric_potential_meaning (the opener); if they ask for the VALUE/FORMULA of V at distance r from a point charge, V = kQ/r, the 1/r falloff, the halve-r-doubles result, or why it is gentler than the field's 1/r² → electric_potential_point_charge. Distinct from electric_field_point_charge (the VECTOR E = kQ/r², which falls off as 1/r²) — V = kQ/r is the scalar with the GENTLER 1/r falloff. Halving r DOUBLES V here (the ×4 quadrupling is the field's instinct, the wrong answer). STOPS SHORT of multi-charge superposition of potentials, E = −dV/dr, the dipole potential, and capacitance.)
 
 CRITICAL DISAMBIGUATION (magnetism, Ch.4):
 - "what is a magnetic field" / "where does a magnetic field come from" / "does a current make a magnetic field" / "compass moves near a wire" / "Oersted experiment" / "is a magnetic field like an electric field" / "no current no field" / "moving charge makes magnetic field" → magnetic_field_concept_B

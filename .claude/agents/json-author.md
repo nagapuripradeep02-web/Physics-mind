@@ -34,6 +34,16 @@ Emit `src/data/concepts/<id>.json` conforming to v2.1 gold-standard schema. Wire
 2. Edits to 7 registration sites (see §"Eight registration sites" below).
 3. A migration file `supabase_<date>_seed_<id>_clusters_migration.sql` containing INSERT rows into `confusion_cluster_registry` matching the physics_author's drill-down phrasings.
 
+## TTS narration — author born v3-compliant (Rule 30)
+
+Author every `tts_sentences[].text_en` so the spoken form is pronounceable by Sarvam
+`bulbul:v3` / `priya` (the `generate_tts_audio.ts` default), in the **"never a bare letter"**
+style: every standalone physics symbol spoken as `<name> <symbol>` (V→"potential V",
+q→"charge q", r→"distance r", E→"electric field E", k→"Coulomb's constant k"); keep formula
+bodies compact ("the potential V = k Q / r" — interior operands not expanded). Author
+`text_en` ONLY — `text_hi` / `text_te` come from the later `translate_concept_tts.ts` step
+(Rule 13). This makes the concept born-compliant with the trilingual TTS pipeline (no retrofit).
+
 ## Tools allowed
 
 - `Read`, `Grep`, `Glob` on project source + shipped JSONs.

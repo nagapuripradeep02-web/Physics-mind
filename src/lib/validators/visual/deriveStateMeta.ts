@@ -435,6 +435,22 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
     //   • shells_at_ms / e_arrow_at_ms — STATE_6 shells fade-in + ⊥ E draw.
     // STATE_7 (draggable_test_charge) is user-driven → deriveHoldExpectations
     // (interactive), not pinned here; its idle auto-sweep is supplementary motion.
+    //
+    // electric_potential_point_charge (the V = kQ/r FORMULA sibling, same scenario +
+    // potential_meaning block but with the extra V-vs-r-curve and sign-flip beats).
+    // Same one-shot-reveal-then-HOLD contract; pin past each NEW payoff:
+    //   • shell_relight_at_ms / v_callout_at_ms — STATE_2 shell-relight + V callout.
+    //   • predict_reveal_at_ms + halve_r_at_ms/_duration_ms — STATE_3 halve-r predict→
+    //     reveal beat: P slides r=2→1 while the live V count climbs count_up_from_v→
+    //     count_up_to_v (the 6→12 doubling). Pin past the slide + the count-up land.
+    //   • v_curve_draw_at_ms/_duration_ms + e_ghost_fade_at_ms + gap_highlight_at_ms —
+    //     STATE_4 PRIMARY aha: the bright 1/r V curve draws left→right, the dim 1/r²
+    //     E ghost fades in beneath it, then the divergence gap highlights (the last
+    //     payoff). Pin past gap_highlight so the frozen frame photographs the split.
+    //   • sign_flip_at_ms/_duration_ms — STATE_5 +Q hill → −Q well recolor + V-label
+    //     sign prepend (NO arrow ever — draws_arrow:false). Pin past the flip land.
+    // STATE_6 (draggable_test_charge + live_curve_dot + sign_toggle) is user-driven →
+    // deriveHoldExpectations (interactive), not pinned here.
     const pot = asObj(state.potential);
     if (pot) {
         const routeDur = asNum(pot.route_duration_ms, 4000);
@@ -469,6 +485,40 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
         if (typeof pot.e_arrow_at_ms === 'number') {
             candidates.push(asNum(pot.e_arrow_at_ms, 0) + 700 + 300);
+        }
+        // ── electric_potential_point_charge NEW beats ──────────────────────────
+        // STATE_2: shell-relight + V callout (shell_relight_at_ms == v_callout_at_ms
+        // == 5000). v_callout_at_ms already pins above; add the shell relight cue so
+        // the per-state max is never under it.
+        if (typeof pot.shell_relight_at_ms === 'number') {
+            candidates.push(asNum(pot.shell_relight_at_ms, 0) + 700);
+        }
+        // STATE_3: halve-r predict→reveal — P slides r=2→1 (halve_r_at_ms +
+        // halve_r_duration_ms) while the V count climbs from→to; the predict beat
+        // resolves at predict_reveal_at_ms. Pin past the SLIDE completion + a cushion
+        // so the frozen frame shows P arrived at r=1 with the count-up landed on 12.
+        if (typeof pot.predict_reveal_at_ms === 'number') {
+            candidates.push(asNum(pot.predict_reveal_at_ms, 0) + 800);
+        }
+        if (typeof pot.halve_r_at_ms === 'number') {
+            candidates.push(asNum(pot.halve_r_at_ms, 0) + asNum(pot.halve_r_duration_ms, 1600) + 500);
+        }
+        // STATE_4: V-vs-r curve draw (left→right sweep) → E ghost fade-in → gap
+        // highlight (the LAST payoff). Pin past gap_highlight so the frozen frame
+        // photographs the bright-V-above-dim-E divergence, not mid-draw.
+        if (typeof pot.v_curve_draw_at_ms === 'number') {
+            candidates.push(asNum(pot.v_curve_draw_at_ms, 0) + asNum(pot.v_curve_draw_duration_ms, 3000) + 500);
+        }
+        if (typeof pot.e_ghost_fade_at_ms === 'number') {
+            candidates.push(asNum(pot.e_ghost_fade_at_ms, 0) + 700 + 300);
+        }
+        if (typeof pot.gap_highlight_at_ms === 'number') {
+            candidates.push(asNum(pot.gap_highlight_at_ms, 0) + 1200 + 500);
+        }
+        // STATE_5: sign flip — +Q hill → −Q well recolor + V-label sign prepend, over
+        // sign_flip_duration_ms. NO arrow (draws_arrow:false). Pin past the flip land.
+        if (typeof pot.sign_flip_at_ms === 'number') {
+            candidates.push(asNum(pot.sign_flip_at_ms, 0) + asNum(pot.sign_flip_duration_ms, 1500) + 500);
         }
     }
     // rhr_force_direction: the DIRECTION-ONLY F = qv×B sibling. Its reveal beats
@@ -832,23 +882,38 @@ export function deriveHoldExpectations(
             // in maxRevealForField3dState above).
             const gssHold = asObj(state.gauss_sheet);
             if (gssHold && gssHold.sliders === true) { out[stateId] = 'interactive'; continue; }
-            // electric_potential_meaning: classify per the `potential` block —
-            //   draggable_test_charge → STATE_7 explorer (the test charge renders at
-            //     full + idle auto-sweeps, but a real DRAG is user-driven and the
-            //     headless harness never performs it) → interactive.
-            //   animate_route / release_at_ms → STATE_2/3 are declared MOTION in
-            //     deriveMotionExpectations → keep the strict gate (undefined) so
+            // electric_potential_meaning / electric_potential_point_charge: classify
+            // per the `potential` block —
+            //   draggable_test_charge → the explorer state (STATE_7 in the meaning
+            //     sibling, STATE_6 here with live_curve_dot + sign_toggle). The test
+            //     charge renders at full + idle auto-sweeps, but a real DRAG / toggle
+            //     is user-driven and the headless harness never performs it →
+            //     interactive.
+            //   animate_route / release_at_ms → STATE_2/3 (meaning) are declared MOTION
+            //     in deriveMotionExpectations → keep the strict gate (undefined) so
             //     D5/D6/D7 expect ongoing pixel motion, not a static tail.
-            //   the remaining beats (q→2q grow, ΔV/∞ markers, shells, V write-in) are
-            //     one-shot reveals then hold → reveal_hold via the fallback below
-            //     (their maxReveal > DEFAULT_REVEAL_MS via the `potential` block in
-            //     maxRevealForField3dState above).
+            //   the remaining beats (q→2q grow, ΔV/∞ markers, shells, V write-in, the
+            //     point_charge halve-r slide+count-up, the V-vs-r curve draw + gap, the
+            //     sign-flip recolor) are one-shot reveals then HOLD → reveal_hold via
+            //     the fallback below (their maxReveal > DEFAULT_REVEAL_MS via the
+            //     `potential` block in maxRevealForField3dState above).
             const potHold = asObj(state.potential);
             if (potHold) {
                 if (potHold.draggable_test_charge === true) { out[stateId] = 'interactive'; continue; }
                 const routes = Array.isArray(potHold.animate_route) && potHold.animate_route.length > 0;
                 if (routes || typeof potHold.release_at_ms === 'number') { out[stateId] = undefined; continue; }
-                // other potential states → reveal_hold fallback below.
+                // Any OTHER potential state has NO continuous driver (no drag, no
+                // route travel, no release fly-out — those are the only motion sources
+                // in the potential arc). It is therefore a reveal-THEN-HOLD state: it
+                // fades its elements in on the state/TTS clock (the faint shells + V
+                // labels of a RECALL HOOK like STATE_1, or the one-shot reveal beats of
+                // STATE_2/4/5) and then holds a static payoff frame. Classify it
+                // reveal_hold directly — not via the maxReveal>DEFAULT fallback, which
+                // mis-classifies a static hook (e.g. STATE_1, whose only reveals are
+                // TTS appear_at_ms shell fades, NOT keys the potential block exposes to
+                // maxRevealForField3dState) as motion and false-fails D7. Generic: true
+                // for every non-drag, non-route, non-release potential state.
+                out[stateId] = 'reveal_hold'; continue;
             }
             // amperes_circuital_law: classify per acl_element.mode —
             //   'integrated' → slider explore (user-driven; the renderer renders at

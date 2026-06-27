@@ -167,11 +167,45 @@ export interface Field3DConfig {
     //   the engine NEVER hardcodes this concept's values.
     potential_meaning?: {
         potential_defaults?: {
-            demo_v_per_nc?: number;   // demo V per nC at unit demo radius (default 9)
+            demo_v_per_nc?: number;   // demo V per nC at unit demo radius (default 9; the
+                                      // V=kQ/r FORMULA sibling supplies 12 — read it explicitly)
             Q?: number;               // source charge (default 1)
             r_destination?: number;   // the guided-state destination radius (default 1.5)
             clamp_r_min?: number;     // r floor to avoid 1/r blow-up (default 0.05)
+            charge_sign?: number;     // +1 hill / −1 well (default 1); sign-flip states drive it
         };
+    };
+    // ── electric_potential_point_charge V-vs-r curve panel (STATE_4 PRIMARY aha +
+    //   STATE_6 live dot). An HTML <canvas> overlay drawing a BRIGHT 1/r V curve over
+    //   a DIMMED dashed 1/r² E ghost, meeting at meet_at_r then diverging (V rides
+    //   above). Built only when present; the V=W/q "meaning" sibling omits it.
+    //   `curves` is descriptive metadata (the engine reads color/emphasis/shape);
+    //   the magnitudes come from pmVDemo (bright) + pmEGhost (ghost).
+    v_vs_r_curve?: {
+        show?: boolean;               // top-level gate (per-state via potential.show_v_curve)
+        x_var?: string;               // 'r'
+        x_min?: number; x_max?: number;
+        x_label?: string; y_label?: string;
+        meet_at_r?: number;           // r0 where the bright V and dim E ghost cross (default 2)
+        curves?: Array<{
+            id: string;
+            output?: string;          // 'V_demo' | 'E_ghost_demo'
+            shape?: 'one_over_r' | 'one_over_r2';
+            emphasis?: 'bright' | 'dimmed';
+            color?: string;
+            label?: string;
+        }>;
+        live_dot?: { bind_to?: string; on_curve?: string };  // STATE_6 tracking dot
+    };
+    // ── electric_potential_point_charge sign flip (STATE_5 + STATE_6). Recolors the
+    //   shells (+Q hill red-family → −Q well blue-family) and prepends a minus sign to
+    //   each shell's V label. NEVER draws an arrow (draws_arrow:false — constraint C3).
+    sign_flip?: {
+        show?: boolean;               // top-level gate (per-state via potential.show_sign_flip)
+        charge_sign_var?: string;     // 'charge_sign'
+        recolor_shells?: boolean;
+        flip_v_label_sign?: boolean;
+        draws_arrow?: boolean;        // MUST be false — the renderer honours it
     };
     // The amber test charge's route + the live work tally (STATE_2/3/4). Two paths
     // each tick their own tally to the SAME value (path-independence); STATE_4
@@ -269,6 +303,33 @@ export interface Field3DConfig {
             // STATE_7 explorer: render at full immediately + idle auto-sweep + drag.
             draggable_test_charge?: boolean;
             idle_auto_sweep?: boolean;
+            // ── electric_potential_point_charge NEW per-state cues ──────────────
+            // STATE_2: relight the shell at P + write its V value (== v_callout cue).
+            shell_relight_at_ms?: number;
+            // STATE_3: halve-r predict→reveal — P slides from r=2 to r=1 while the V
+            // count climbs count_up_from_v → count_up_to_v (the 6→12 doubling).
+            predict_reveal_at_ms?: number;
+            halve_r_at_ms?: number;
+            halve_r_duration_ms?: number;
+            count_up_from_v?: number;
+            count_up_to_v?: number;
+            // STATE_4: V-vs-r curve panel — draw the bright 1/r V curve, fade in the
+            // dim 1/r² E ghost, then highlight the divergence gap (the PRIMARY aha).
+            show_v_curve?: boolean;
+            v_curve_draw_at_ms?: number;
+            v_curve_draw_duration_ms?: number;
+            e_ghost_fade_at_ms?: number;
+            crossover_at_r?: number;
+            gap_highlight_at_ms?: number;
+            // STATE_5: sign flip — recolor shells + prepend a minus to each V label.
+            // NEVER an arrow (draws_arrow:false honoured — constraint C3).
+            show_sign_flip?: boolean;
+            sign_flip_at_ms?: number;
+            sign_flip_duration_ms?: number;
+            draws_arrow?: boolean;
+            // STATE_6: explorer extras — the live curve dot + a sign toggle.
+            live_curve_dot?: boolean;
+            sign_toggle?: boolean;
         };
         // Per-state ambient_field override. Used by rhr_force_direction STATE_5
         // to point B into the page (direction:[0,0,-1]) while other states keep
@@ -8068,7 +8129,11 @@ export const FIELD_3D_RENDERER_CODE = `
                     if (startHidden) { vlbl.visible = false; if (vlbl.material) vlbl.material.opacity = 0; }
                     vlbl.userData = {
                         elementType: "equipotential_label", id: "eq_lbl_" + si,
-                        shellRadius: sr, isPmShell: true
+                        shellRadius: sr, isPmShell: true,
+                        // base (positive-charge) V text, kept so the sign-flip state
+                        // (electric_potential_point_charge STATE_5) can prepend a minus
+                        // and reset back to "+" on re-entry without re-parsing the sprite.
+                        baseVLabel: String(sh.v_label)
                     };
                     addToScene(vlbl);
                 }
@@ -8109,17 +8174,51 @@ export const FIELD_3D_RENDERER_CODE = `
     function pmDefaults() {
         var d = (config.potential_meaning && config.potential_meaning.potential_defaults) || {};
         return {
+            // demo_v_per_nc: the round number the whole 1/r series rides on. The
+            // V=W/q "meaning" sibling rides on 9; the V=kQ/r "formula" sibling
+            // (electric_potential_point_charge) rides on 12 (so the shell table reads
+            // 24/12/8/6/4/3 and the STATE_3 halve-r beat doubles 6→12). Read the
+            // config value EXPLICITLY — the 12 is load-bearing, never fall back to 9
+            // when this concept's config supplies it.
             vPerNc: (typeof d.demo_v_per_nc === "number") ? d.demo_v_per_nc : 9,
             Q: (typeof d.Q === "number") ? d.Q : 1,
             rDest: (typeof d.r_destination === "number") ? d.r_destination : 1.5,
-            clampR: (typeof d.clamp_r_min === "number") ? d.clamp_r_min : 0.05
+            clampR: (typeof d.clamp_r_min === "number") ? d.clamp_r_min : 0.05,
+            // charge_sign: +1 (positive hill) / −1 (negative well). The sign-flip
+            // states (electric_potential_point_charge STATE_5/6) drive this; the live
+            // value lives on window.PM_pmChargeSign (seeded from this default).
+            chargeSign: (typeof d.charge_sign === "number") ? d.charge_sign : 1
         };
     }
-    // V_demo(r) — the 1/r demo potential. Internally kQ/r-shaped; NO formula label
-    // is emitted before the STATE_7 teaser (that is the JSON's job, not the engine's).
+    // The live source-charge sign (mutated by the STATE_5 flip / STATE_6 toggle).
+    // Seeded from pmDefaults().chargeSign in applyPotentialMeaningState.
+    function pmChargeSign() {
+        return (typeof window.PM_pmChargeSign === "number") ? window.PM_pmChargeSign : pmDefaults().chargeSign;
+    }
+    // V_demo(r) — the 1/r demo potential MAGNITUDE. Internally kQ/r-shaped; NO formula
+    // label is emitted before the explorer teaser (that is the JSON's job).
     function pmVDemo(r) {
         var d = pmDefaults();
         return d.vPerNc * d.Q / Math.max(r, d.clampR);
+    }
+    // V_signed_demo(r) — the SIGNED demo potential = charge_sign · V_demo. For +Q a
+    // positive hill, for −Q a negative well (the sign lives in the NUMBER, never an
+    // arrow — Rule 16a secondary / constraint C3).
+    function pmVSigned(r) {
+        return pmChargeSign() * pmVDemo(r);
+    }
+    // E_ghost_demo(r) — the 1/r² FIELD ghost for the V-vs-r comparison plot ONLY.
+    // Normalised to MEET the bright 1/r V curve at the crossover r0 (meet_at_r): at
+    // r=r0 it equals V_demo(r0), then it falls FASTER (1/r²) so the bright V rides
+    // above for r>r0 (the PRIMARY aha). Never used to size any real 3D primitive.
+    function pmEGhost(r, r0) {
+        var d = pmDefaults();
+        var meetR = (typeof r0 === "number" && r0 > 0) ? r0 : 2.0;
+        // value at r0 of the bright V curve, scaled by (r0/r)² so it matches at r0
+        // then drops as 1/r². == config E_ghost_demo with meet_at_r=2 (V_demo(2)=6).
+        var vAtMeet = pmVDemo(meetR);
+        var rr = Math.max(r, d.clampR);
+        return vAtMeet * (meetR * meetR) / (rr * rr);
     }
     function pmFindById(id) {
         for (var i = 0; i < sceneObjects.length; i++) {
@@ -8310,6 +8409,49 @@ export const FIELD_3D_RENDERER_CODE = `
         vReadout.visible = false;
         vReadout.userData = { elementType: "pm_v_readout", id: "pm_v_readout" };
         addToScene(vReadout);
+
+        // ── V-vs-r curve panel (electric_potential_point_charge STATE_4 + STATE_6) ──
+        //   An HTML <canvas> overlay (NOT a Three.js mesh), mirroring the gauss-line
+        //   E-vs-r plot panel: a BRIGHT 1/r V curve (cyan) over a DIMMED dashed 1/r²
+        //   E ghost (green), meeting at meet_at_r then diverging (V rides above). The
+        //   live tracking dot (STATE_6) rides the live r on the bright V curve. Built
+        //   hidden; applyPotentialMeaningState toggles display per show_v_curve. Only
+        //   created when this concept supplies the v_vs_r_curve block (the V=W/q
+        //   "meaning" sibling has no curve block, so nothing is added for it).
+        if (config.v_vs_r_curve) {
+            var pcPlot = document.createElement("div");
+            pcPlot.id = "ppc_v_plot";
+            pcPlot.style.cssText = "position:fixed;left:12px;bottom:12px;background:rgba(0,0,0,0.82);padding:8px;border-radius:8px;z-index:10;display:none;";
+            pcPlot.innerHTML = '<canvas id="ppc_v_plot_canvas" width="340" height="220"></canvas>';
+            document.body.appendChild(pcPlot);
+        }
+
+        // ── sign-toggle button (electric_potential_point_charge STATE_6) ──────────
+        //   Flips the source-charge sign (+Q hill ↔ −Q well): recolors shells + flips
+        //   every V label's sign + flips the live V readout. NEVER draws an arrow
+        //   (constraint C3). Built hidden; applyPotentialMeaningState shows it when the
+        //   state declares sign_toggle. The headless harness never clicks it (the
+        //   default +Q pose is the captured baseline).
+        if (config.sign_flip) {
+            var pcBtn = document.createElement("button");
+            pcBtn.id = "ppc_sign_toggle";
+            pcBtn.textContent = "flip Q sign (+/\\u2212)";
+            pcBtn.style.cssText = "position:fixed;right:12px;bottom:12px;z-index:11;padding:6px 12px;cursor:pointer;border-radius:6px;border:1px solid #555;background:#222;color:#eee;font:12px monospace;display:none;";
+            pcBtn.addEventListener("click", function () {
+                var next = (pmChargeSign() > 0) ? -1 : 1;
+                window.PM_pmChargeSign = next;
+                pmApplyChargeSign(next, true);
+                try {
+                    parent.postMessage({
+                        type: "PARAM_UPDATE",
+                        explorer_id: (config.explorer_id || "potential_explorer"),
+                        param: "charge_sign",
+                        value: next
+                    }, "*");
+                } catch (e) {}
+            });
+            document.body.appendChild(pcBtn);
+        }
     }
 
     // Per-state seeding for electric_potential_meaning. Runs AFTER the generic
@@ -8319,6 +8461,11 @@ export const FIELD_3D_RENDERER_CODE = `
     function applyPotentialMeaningState(stateDef) {
         var p = (stateDef && stateDef.potential) || {};
         var d = pmDefaults();
+        // FORMULA sibling (electric_potential_point_charge) when the config carries the
+        // v_vs_r_curve block; the V=W/q MEANING sibling has no such block. Used to gate
+        // meaning-only sprites (e.g. the "W/q = 0" work-per-charge label) that must NOT
+        // leak into the formula concept's STATE_2 shell-relight (it sets show_v_callout).
+        var isFormulaPC = !!config.v_vs_r_curve;
 
         // Field-line opacity (faint / normal / off) for this state.
         var flMode = p.show_field || "faint";
@@ -8366,7 +8513,11 @@ export const FIELD_3D_RENDERER_CODE = `
             updateLabelSpriteText(t2, "W = 0");
         }
         var wpq = pmFindById("pm_wpq");
-        if (wpq) { wpq.visible = !!p.show_v_callout; if (wt) updateLabelSpriteText(wpq, "W/q = " + ((typeof wt.W_per_q_value === "number") ? wt.W_per_q_value : 6)); }
+        // The "W/q = N" sprite is a MEANING-sibling artifact (V = W/q). The FORMULA
+        // sibling sets show_v_callout:true in STATE_2 only to relight the shell at P —
+        // it must NOT show "W/q = 0". Guard on !isFormulaPC so the meaning concept
+        // (isFormulaPC=false) keeps showing it unchanged.
+        if (wpq) { wpq.visible = !!p.show_v_callout && !isFormulaPC; if (wt) updateLabelSpriteText(wpq, "W/q = " + ((typeof wt.W_per_q_value === "number") ? wt.W_per_q_value : 6)); }
 
         // Energy badge (reset to full; the frame loop drains it after release).
         var badge = pmFindById("pm_energy_badge");
@@ -8439,6 +8590,59 @@ export const FIELD_3D_RENDERER_CODE = `
         window.PM_pmUserDragged = false;
         window.PM_pmDragR = seedR;
         window.PM_pmDragDir = null;
+
+        // ── electric_potential_point_charge: seed the charge sign + reset shells/
+        //   labels to the +Q (hill) baseline at EVERY state entry. The STATE_5 flip
+        //   re-mutates PM_pmChargeSign in the frame loop (at sign_flip_at_ms); the
+        //   STATE_6 explorer re-mutates it on the sign-toggle CLICK. Resetting to the
+        //   config default on entry keeps the captured baseline deterministic for THE
+        //   EYE (every state opens as the canonical +Q hill, Rule 26) and lets a
+        //   re-entry start clean. Only runs for the FORMULA sibling (config.sign_flip).
+        if (config.sign_flip) {
+            window.PM_pmChargeSign = d.chargeSign;             // canonical +Q on entry
+            pmApplyChargeSign(window.PM_pmChargeSign, true);   // immediate recolor (no fade)
+        }
+
+        // ── V-vs-r curve panel: shown when this state declares show_v_curve. Built
+        //   only when config.v_vs_r_curve exists; the per-frame loop draws it.
+        if (config.v_vs_r_curve) {
+            var vPlotEl = document.getElementById("ppc_v_plot");
+            if (vPlotEl) vPlotEl.style.display = p.show_v_curve ? "block" : "none";
+        }
+
+        // ── sign-toggle button: shown only in the explorer state (sign_toggle). ──
+        if (config.sign_flip) {
+            var sgnBtn = document.getElementById("ppc_sign_toggle");
+            if (sgnBtn) sgnBtn.style.display = p.sign_toggle ? "block" : "none";
+        }
+    }
+
+    // Recolor the equipotential shells + their V labels for the source-charge SIGN.
+    //   sign > 0  → +Q hill: shells keep the cyan equipotential colour, V labels read
+    //               their base positive value.
+    //   sign < 0  → −Q well: shells recolor to the blue (negative) family, every V
+    //               label gets a leading minus. NO arrow is ever drawn (the potential
+    //               is a signed SCALAR — constraint C3 / Rule 16a secondary). Called
+    //               from the STATE_5 flip + STATE_6 toggle + each apply() entry reset.
+    function pmApplyChargeSign(sign, immediate) {
+        var neg = sign < 0;
+        var posCol = (config.colors && config.colors.equipotential) || (config.equipotential && config.equipotential.color) || "#4FC3F7";
+        var negCol = (config.pvl_colors && config.pvl_colors.negative) || (config.colors && config.colors.negative) || "#42A5F5";
+        var shellCol = neg ? negCol : posCol;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.isPmShell) continue;
+            if (ud.elementType === "equipotential" && o.material && o.material.color) {
+                o.material.color.setHex(hexToThreeColor(shellCol));
+            } else if (ud.elementType === "equipotential_label" && ud.baseVLabel != null) {
+                var base = String(ud.baseVLabel);
+                var txt = neg ? ("V = -" + base) : ("V = " + base);
+                updateLabelSpriteText(o, txt);
+            }
+        }
+        // immediate is accepted for symmetry with the fade caller; the recolor itself
+        // is instantaneous (a colour swap), so no per-frame easing is needed here.
+        return immediate;
     }
 
     // Per-frame driver for electric_potential_meaning. Pure function of the state
@@ -8523,8 +8727,14 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
 
-        // ── STATE_4: q->2q grow + tally double + V = W/q write-in (HOLD) ─────
-        if (p.show_v_callout) {
+        // ── STATE_4 (V=W/q sibling): q->2q grow + tally double + V = W/q write-in
+        //   (HOLD). The grow / work-tally / W/q / "V = W/q" sprite are MEANING-concept
+        //   artifacts — gate them to the meaning sibling (no v_vs_r_curve block). The
+        //   FORMULA sibling (electric_potential_point_charge) reuses show_v_callout on
+        //   its STATE_2 only to relight the shell + write the correct V value (the
+        //   "V = 8"-style number), handled in the dedicated shell-relight block below.
+        var isFormulaPC = !!config.v_vs_r_curve;
+        if (p.show_v_callout && !isFormulaPC) {
             var tc4 = pmFindById("pm_test_charge");
             var t1b = pmFindById("pm_tally_path1");
             var wpqM = pmFindById("pm_wpq");
@@ -8569,6 +8779,91 @@ export const FIELD_3D_RENDERER_CODE = `
                 vop.visible = vShown;
                 if (vop.material) vop.material.opacity = vShown ? 1 : 0;
                 updateLabelSpriteText(vop, "V = " + (Math.round(pmVDemo(destR) * 10) / 10));
+            }
+        }
+
+        // ── electric_potential_point_charge STATE_2: shell-at-P relight + V value ──
+        //   The formula sibling's STATE_2: at shell_relight_at_ms (== v_callout_at_ms)
+        //   the shell containing P brightens and its correct V value (V = kQ/r, e.g.
+        //   V = 8 at r=1.5 with vPerNc=12) writes onto the point. No work tally, no
+        //   q->2q grow, no "V = W/q" sprite — those belong to the meaning sibling.
+        if (isFormulaPC && p.show_v_callout) {
+            var pcDestR = (typeof p.test_charge_r === "number") ? p.test_charge_r : d.rDest;
+            var relAt = (typeof p.shell_relight_at_ms === "number") ? p.shell_relight_at_ms
+                : ((typeof p.v_callout_at_ms === "number") ? p.v_callout_at_ms : null);
+            var pcShown = (relAt == null) || (ms >= relAt);
+            // suppress the meaning-only "V = W/q" callout sprite for this concept.
+            var vcoF = pmFindById("pm_v_callout");
+            if (vcoF) { vcoF.visible = false; if (vcoF.material) vcoF.material.opacity = 0; }
+            var vopF = pmFindById("pm_v_on_point");
+            if (vopF) {
+                vopF.visible = pcShown;
+                if (vopF.material) vopF.material.opacity = pcShown ? 1 : 0;
+                vopF.position.set(pcDestR, -0.5, 0);
+                updateLabelSpriteText(vopF, "V = " + (Math.round(pmVDemo(pcDestR) * 10) / 10));
+            }
+            // (the shell-at-P relight brighten is applied in the generic show_equipotential
+            // block below — placed there so the per-shell base-opacity reset can't clobber it.)
+        }
+
+        // ── electric_potential_point_charge STATE_3: halve-r slide + V count-up ────
+        //   P slides from r=2 (test_charge_r) to r=1 over halve_r_duration_ms starting
+        //   at halve_r_at_ms, while the V readout counts up count_up_from_v →
+        //   count_up_to_v (the 6 -> 12 DOUBLING — NOT the predicted x4 to 24). The
+        //   slide HOLDS at r=1 with the count landed on 12 (Rule 26; one-shot then hold).
+        if (isFormulaPC && (typeof p.halve_r_at_ms === "number" || typeof p.count_up_from_v === "number")) {
+            var fromR = (typeof p.test_charge_r === "number") ? p.test_charge_r : 2.0;
+            var toR = 1.0;   // halving r=2 lands at r=1 (the lesson's fixed beat)
+            var hAt = (typeof p.halve_r_at_ms === "number") ? p.halve_r_at_ms : null;
+            var hDur = (typeof p.halve_r_duration_ms === "number") ? p.halve_r_duration_ms : 1600;
+            var fromV = (typeof p.count_up_from_v === "number") ? p.count_up_from_v : Math.round(pmVDemo(fromR));
+            var toV = (typeof p.count_up_to_v === "number") ? p.count_up_to_v : Math.round(pmVDemo(toR));
+            var hf = (hAt == null) ? 1 : Math.max(0, Math.min(1, (ms - hAt) / hDur));
+            var rNow3 = fromR + (toR - fromR) * hf;
+            var vNow3 = fromV + (toV - fromV) * hf;
+            var tc3p = pmFindById("pm_test_charge");
+            var tcl3p = pmFindById("pm_test_charge_label");
+            var vop3 = pmFindById("pm_v_on_point");
+            if (tc3p) { tc3p.visible = true; tc3p.scale.setScalar(1); tc3p.position.set(rNow3, 0, 0); }
+            if (tcl3p) { tcl3p.visible = true; tcl3p.position.set(rNow3, 0.34, 0); updateLabelSpriteText(tcl3p, "+q"); }
+            if (vop3) {
+                vop3.visible = true;
+                if (vop3.material) vop3.material.opacity = 1;
+                vop3.position.set(rNow3, -0.5, 0);
+                updateLabelSpriteText(vop3, "V = " + (Math.round(vNow3 * 10) / 10));
+            }
+        }
+
+        // ── electric_potential_point_charge STATE_4: V-vs-r curve panel draw ───────
+        //   Draw the bright 1/r V curve (cyan) over the dim dashed 1/r² E ghost (green),
+        //   meeting at meet_at_r then diverging. Sweeps left->right over
+        //   v_curve_draw_duration_ms from v_curve_draw_at_ms; the ghost fades in at
+        //   e_ghost_fade_at_ms; the gap highlights at gap_highlight_at_ms. (PRIMARY aha.)
+        //   SKIP in the draggable explorer state — STATE_6 draws the curve + the live
+        //   tracking dot from its own block below (after PM_ppcLiveR is set), so we
+        //   never double-draw nor draw a dot-less frame here first.
+        if (isFormulaPC && p.show_v_curve && !p.draggable_test_charge) {
+            drawPotentialPointChargeCurve(p, ms);
+        }
+
+        // ── electric_potential_point_charge STATE_5: sign flip (+Q hill -> -Q well) ─
+        //   At sign_flip_at_ms the source sign flips: shells recolor to the blue
+        //   (negative) family, every V label gets a leading minus. NO arrow is ever
+        //   drawn (draws_arrow:false honoured — constraint C3 / Rule 16a secondary).
+        //   The flip HOLDS its end pose after sign_flip_duration_ms.
+        if (isFormulaPC && p.show_sign_flip) {
+            var sfAt = (typeof p.sign_flip_at_ms === "number") ? p.sign_flip_at_ms : null;
+            var flipped = (sfAt != null) && (ms >= sfAt);
+            var wantSign = flipped ? -1 : 1;
+            if (window.PM_pmChargeSign !== wantSign) {
+                window.PM_pmChargeSign = wantSign;
+                pmApplyChargeSign(wantSign, true);
+            }
+            // honour draws_arrow:false — make sure no E arrow leaks into this state.
+            if (p.draws_arrow !== true) {
+                var eaF = pmFindById("pm_e_arrow"), ealF = pmFindById("pm_e_label");
+                if (eaF) { eaF.visible = false; eaF.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0; }); }
+                if (ealF) { ealF.visible = false; if (ealF.material) ealF.material.opacity = 0; }
             }
         }
 
@@ -8637,6 +8932,23 @@ export const FIELD_3D_RENDERER_CODE = `
                     if (sho.material) sho.material.opacity = targetOp * sf;
                 }
             }
+            // electric_potential_point_charge STATE_2: AFTER the base reset above, RELIGHT
+            // the shell at P (brighten it well above its peers) once shell_relight_at_ms
+            // lands. Placed here so it is not clobbered by the per-shell base-opacity
+            // reset in the loop. The non-explorer states only (the explorer brightens its
+            // own nearest shell in the drag block).
+            if (isFormulaPC && !p.draggable_test_charge && typeof p.shell_relight_at_ms === "number" && ms >= p.shell_relight_at_ms) {
+                var relR = (typeof p.test_charge_r === "number") ? p.test_charge_r : d.rDest;
+                var relNear = null, relND = 1e9;
+                for (var rs = 0; rs < sceneObjects.length; rs++) {
+                    var rso = sceneObjects[rs], rsu = rso.userData;
+                    if (!rsu || rsu.elementType !== "equipotential" || !rsu.isPmShell) continue;
+                    var rsd = Math.abs((rsu.shellRadius || 0) - relR);
+                    if (rsd < relND) { relND = rsd; relNear = rso; }
+                }
+                var relBase = (config.equipotential && config.equipotential.opacity) || 0.14;
+                if (relNear && relNear.material) relNear.material.opacity = Math.min(0.55, relBase * 3.5);
+            }
         }
         if (p.show_e_arrow) {
             var ea = pmFindById("pm_e_arrow"), eal = pmFindById("pm_e_label");
@@ -8675,13 +8987,16 @@ export const FIELD_3D_RENDERER_CODE = `
             if (tc7) { tc7.visible = true; tc7.scale.setScalar(1); tc7.position.copy(pos); }
             if (tcLbl7) { tcLbl7.visible = true; tcLbl7.position.set(pos.x + camU2.x * 0.34, pos.y + camU2.y * 0.34, pos.z + camU2.z * 0.34); }
             if (hit7) { hit7.visible = true; hit7.position.copy(pos); }
+            // live V readout. The FORMULA sibling reads the SIGNED V (so a −Q toggle
+            // shows a negative number — the well); the meaning sibling reads |V|.
+            var vNowExp = isFormulaPC ? pmVSigned(rNow) : pmVDemo(rNow);
             if (vrd) {
                 vrd.visible = true;
                 if (vrd.material) vrd.material.opacity = 1;
                 vrd.position.set(pos.x + camU2.x * 0.7, pos.y + camU2.y * 0.7, pos.z + camU2.z * 0.7);
-                updateLabelSpriteText(vrd, "V = " + (Math.round(pmVDemo(rNow) * 10) / 10));
+                updateLabelSpriteText(vrd, "V = " + (Math.round(vNowExp * 10) / 10));
             }
-            // highlight the nearest shell + keep E ⊥ to it (along the radial dir).
+            // highlight the nearest shell (peers stay at base op).
             var nearest = null, nearestD = 1e9;
             for (var s7 = 0; s7 < sceneObjects.length; s7++) {
                 var so7 = sceneObjects[s7], su7 = so7.userData;
@@ -8691,15 +9006,192 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (so7.material) so7.material.opacity = (config.equipotential && config.equipotential.opacity) || 0.14;
             }
             if (nearest && nearest.material) nearest.material.opacity = Math.min(0.5, ((config.equipotential && config.equipotential.opacity) || 0.14) * 3);
-            var ea7 = pmFindById("pm_e_arrow"), eal7 = pmFindById("pm_e_label");
-            if (ea7) {
-                ea7.visible = true;
-                ea7.position.copy(pos);
-                ea7.setDirection(dir);                // E points radially out = downhill = ⊥ shells
-                ea7.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0.95; });
+            if (isFormulaPC) {
+                // FORMULA sibling STATE_6: V is a SCALAR — NEVER draw the E arrow here
+                // (constraint C3). Keep any built arrow forced off. Instead, ride the
+                // live tracking dot on the V-vs-r curve panel (live_curve_dot) and let
+                // the sign-toggle recolor the shells (handled via PM_pmChargeSign +
+                // pmApplyChargeSign on toggle / apply reset).
+                var eaOff = pmFindById("pm_e_arrow"), ealOff = pmFindById("pm_e_label");
+                if (eaOff) { eaOff.visible = false; eaOff.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0; }); }
+                if (ealOff) { ealOff.visible = false; if (ealOff.material) ealOff.material.opacity = 0; }
+                // the panel is shown via show_v_curve; the dot is drawn inside
+                // drawPotentialPointChargeCurve, bound to the live explorer r.
+                if (p.show_v_curve) {
+                    window.PM_ppcLiveR = rNow;        // hand the live r to the curve dot
+                    drawPotentialPointChargeCurve(p, ms);
+                }
+            } else {
+                // MEANING sibling STATE_7: the E arrow ⊥ shells IS the lesson — draw it.
+                var ea7 = pmFindById("pm_e_arrow"), eal7 = pmFindById("pm_e_label");
+                if (ea7) {
+                    ea7.visible = true;
+                    ea7.position.copy(pos);
+                    ea7.setDirection(dir);            // E points radially out = downhill = ⊥ shells
+                    ea7.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0.95; });
+                }
+                if (eal7) { eal7.visible = true; if (eal7.material) eal7.material.opacity = 1; eal7.position.set(pos.x + dir.x * 0.9, pos.y + dir.y * 0.9 + 0.3, pos.z + dir.z * 0.9); }
             }
-            if (eal7) { eal7.visible = true; if (eal7.material) eal7.material.opacity = 1; eal7.position.set(pos.x + dir.x * 0.9, pos.y + dir.y * 0.9 + 0.3, pos.z + dir.z * 0.9); }
         }
+    }
+
+    // ── V-vs-r curve panel painter (electric_potential_point_charge) ──────────────
+    //   Adapted from updateGaussLineFrame's E-vs-r plot. Draws on the #ppc_v_plot_canvas
+    //   2D context inside the Three.js scene's HTML overlay:
+    //     • BRIGHT 1/r V curve (cyan #4FC3F7) — pmVDemo(r), the PRIMARY trace.
+    //     • DIMMED dashed 1/r² E ghost (green #66BB6A) — pmEGhost(r, meet_at_r),
+    //       normalised to MEET the bright curve at meet_at_r then fall FASTER, so the
+    //       bright V rides ABOVE the dim E for r>meet_at_r (the divergence = the aha).
+    //     • a crossover tick at meet_at_r where the two cross.
+    //     • a GLOWING live tracking dot on the bright V curve (STATE_6 only), at the
+    //       live explorer r (window.PM_ppcLiveR).
+    //   STATE_4 timing: the bright curve sweeps left->right over v_curve_draw_duration
+    //   from v_curve_draw_at_ms; the ghost fades in at e_ghost_fade_at_ms; the gap
+    //   between the two highlights at gap_highlight_at_ms (a soft band + a glow pulse).
+    //   Emphasis is BRIGHTNESS only — the curves never bulge (Rule 29); only the dot
+    //   moves position. Pure state clock (Rule 26).
+    function drawPotentialPointChargeCurve(p, ms) {
+        var vc = config.v_vs_r_curve || {};
+        var cvs = document.getElementById("ppc_v_plot_canvas");
+        if (!cvs || !cvs.getContext) return;
+        var ctx = cvs.getContext("2d");
+        var W = cvs.width, H = cvs.height;
+        ctx.clearRect(0, 0, W, H);
+        var textCol = (config.colors && config.colors.text) || "#D4D4D8";
+        // curve colours + the meet radius, from the config (data-driven).
+        var brightCol = "#4FC3F7", ghostCol = "#66BB6A";
+        var curves = vc.curves || [];
+        for (var ci = 0; ci < curves.length; ci++) {
+            if (curves[ci] && curves[ci].emphasis === "bright" && curves[ci].color) brightCol = curves[ci].color;
+            if (curves[ci] && curves[ci].emphasis === "dimmed" && curves[ci].color) ghostCol = curves[ci].color;
+        }
+        var meetR = (typeof vc.meet_at_r === "number") ? vc.meet_at_r
+            : ((typeof p.crossover_at_r === "number") ? p.crossover_at_r : 2.0);
+        var rMinP = (typeof vc.x_min === "number") ? vc.x_min : 0.5;
+        var rMaxP = (typeof vc.x_max === "number") ? vc.x_max : 4.0;
+
+        var padL = 40, padB = 28, padT = 16, padR = 14;
+        var x0 = padL, x1 = W - padR, y0 = H - padB, y1 = padT;
+        // y range: peak at the closest plotted r, with a little headroom.
+        var vPeak = pmVDemo(rMinP);
+        var vMax = vPeak > 0 ? vPeak * 1.08 : 1;
+        function px(rv) { return x0 + (x1 - x0) * Math.max(0, Math.min(1, (rv - rMinP) / (rMaxP - rMinP))); }
+        function py(vv) { return y0 + (y1 - y0) * Math.max(0, Math.min(1, vv / vMax)); }
+
+        // axes + labels.
+        ctx.strokeStyle = "#888"; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x0, y1); ctx.lineTo(x0, y0); ctx.lineTo(x1, y0); ctx.stroke();
+        ctx.fillStyle = textCol; ctx.font = "11px monospace";
+        ctx.fillText(vc.y_label || "V", x0 - 32, y1 + 8);
+        ctx.fillText(vc.x_label || "r", x1 - 8, y0 + 18);
+
+        // left->right draw sweep on the state clock (Rule 26).
+        var drawAt = (typeof p.v_curve_draw_at_ms === "number") ? p.v_curve_draw_at_ms / 1000 : 0;
+        var drawDur = (typeof p.v_curve_draw_duration_ms === "number") ? p.v_curve_draw_duration_ms / 1000 : 0;
+        var t = ms / 1000;
+        // STATE_6 (live dot, no draw cue) renders the full curves immediately.
+        var hasDrawCue = (typeof p.v_curve_draw_at_ms === "number");
+        var drawP = (!hasDrawCue) ? 1 : (drawDur > 0 ? Math.max(0, Math.min(1, (t - drawAt) / drawDur)) : 1);
+        var rDrawn = rMinP + (rMaxP - rMinP) * drawP;
+
+        // E ghost fade-in (STATE_4 e_ghost_fade_at_ms); full for STATE_6.
+        var ghAt = (typeof p.e_ghost_fade_at_ms === "number") ? p.e_ghost_fade_at_ms / 1000 : null;
+        var ghAlpha = (ghAt == null) ? 0.6 : Math.max(0, Math.min(0.6, 0.6 * (t - ghAt) / 0.7));
+
+        // DIM dashed 1/r² E ghost — meets the bright curve at meetR, then falls faster.
+        if (ghAlpha > 0.001) {
+            ctx.save();
+            ctx.globalAlpha = ghAlpha / 0.6;     // normalise so the stroke colour reads
+            ctx.strokeStyle = ghostCol; ctx.lineWidth = 1.8; ctx.setLineDash([5, 4]);
+            ctx.beginPath();
+            var started2 = false;
+            for (var rg = rMinP; rg <= rDrawn + 1e-6 && rg <= rMaxP; rg += (rMaxP - rMinP) / 240) {
+                var eg = pmEGhost(rg, meetR);
+                if (!started2) { ctx.moveTo(px(rg), py(eg)); started2 = true; }
+                else ctx.lineTo(px(rg), py(eg));
+            }
+            ctx.stroke(); ctx.setLineDash([]);
+            ctx.restore();
+        }
+
+        // gap highlight (STATE_4 gap_highlight_at_ms): a soft band between the two
+        // curves for r>meetR + a brief glow pulse on the bright curve.
+        var gapAt = (typeof p.gap_highlight_at_ms === "number") ? p.gap_highlight_at_ms / 1000 : null;
+        var gapOn = (gapAt != null) && (t >= gapAt);
+        if (gapOn) {
+            ctx.save();
+            ctx.globalAlpha = 0.16;
+            ctx.fillStyle = brightCol;
+            ctx.beginPath();
+            var firstGap = true;
+            for (var rb = meetR; rb <= rMaxP + 1e-6; rb += (rMaxP - rMinP) / 160) {
+                var xb = px(rb);
+                if (firstGap) { ctx.moveTo(xb, py(pmVDemo(rb))); firstGap = false; }
+                else ctx.lineTo(xb, py(pmVDemo(rb)));
+            }
+            for (var rb2 = rMaxP; rb2 >= meetR - 1e-6; rb2 -= (rMaxP - rMinP) / 160) {
+                ctx.lineTo(px(rb2), py(pmEGhost(rb2, meetR)));
+            }
+            ctx.closePath(); ctx.fill();
+            ctx.restore();
+        }
+
+        // BRIGHT 1/r V curve (cyan) — drawn last so it rides on top.
+        ctx.strokeStyle = brightCol; ctx.lineWidth = 2.6;
+        if (gapOn && (t - gapAt) < 1.2) {
+            // brief brightness pulse as the gap lands (brightness, not size — Rule 29).
+            ctx.shadowColor = brightCol;
+            ctx.shadowBlur = 8 + 14 * (1 - (t - gapAt) / 1.2);
+        }
+        ctx.beginPath();
+        var started = false;
+        for (var rr = rMinP; rr <= rDrawn + 1e-6 && rr <= rMaxP; rr += (rMaxP - rMinP) / 240) {
+            var vv = pmVDemo(rr);
+            if (!started) { ctx.moveTo(px(rr), py(vv)); started = true; }
+            else ctx.lineTo(px(rr), py(vv));
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // crossover tick at meetR (only once both curves are drawn past it).
+        if (rDrawn >= meetR - 1e-6) {
+            var cx = px(meetR), cy = py(pmVDemo(meetR));
+            ctx.fillStyle = textCol; ctx.font = "10px monospace";
+            ctx.fillText("r=" + meetR, cx - 10, y0 - 4);
+            ctx.strokeStyle = "rgba(212,212,216,0.5)"; ctx.lineWidth = 1; ctx.setLineDash([2, 3]);
+            ctx.beginPath(); ctx.moveTo(cx, y0); ctx.lineTo(cx, cy); ctx.stroke(); ctx.setLineDash([]);
+        }
+
+        // GLOWING live tracking dot on the bright V curve (STATE_6 only).
+        if (p.live_curve_dot && typeof window.PM_ppcLiveR === "number") {
+            var rDot = Math.max(rMinP, Math.min(rMaxP, window.PM_ppcLiveR));
+            var dxp = px(rDot), dyp = py(pmVDemo(rDot));
+            var grad = ctx.createRadialGradient(dxp, dyp, 1, dxp, dyp, 10);
+            grad.addColorStop(0, "rgba(79,195,247,0.55)");
+            grad.addColorStop(1, "rgba(79,195,247,0)");
+            ctx.fillStyle = grad;
+            ctx.beginPath(); ctx.arc(dxp, dyp, 10, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = brightCol;
+            ctx.beginPath(); ctx.arc(dxp, dyp, 5, 0, Math.PI * 2); ctx.fill();
+            ctx.strokeStyle = "#FFFFFF"; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(dxp, dyp, 5, 0, Math.PI * 2); ctx.stroke();
+        }
+
+        // curve legend (label which is which; brightness conveys emphasis, not size).
+        // Anchored to the panel's TOP-RIGHT corner — both curves are HIGH only at small
+        // r (the LEFT edge), so the upper-right is the empty region where neither curve
+        // can reach (V is small at large r). Right-aligned at x1-6 so the longer green
+        // "E ..." row never collides with the steep cyan rise on the left, the y-axis
+        // label (top-LEFT, x0-32), the "r=2" crossover tick, or the "r" x-label
+        // (bottom-right). 14px row spacing keeps the two legend rows apart.
+        ctx.save();
+        ctx.textAlign = "right";
+        ctx.font = "10px monospace";
+        ctx.fillStyle = brightCol;
+        ctx.fillText("V = kQ/r  (1/r)", x1 - 6, y1 + 12);
+        ctx.fillStyle = ghostCol;
+        ctx.fillText("E = kQ/r\\u00b2  (1/r\\u00b2)", x1 - 6, y1 + 26);
+        ctx.restore();
     }
 
     // ── Force on a current-carrying wire (F = I L × B, archetype B meta) ──

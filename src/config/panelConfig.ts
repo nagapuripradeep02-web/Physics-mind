@@ -966,6 +966,21 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.2 — Electrostatic Potential and Capacitance (§2.2). The point-charge
+    // FORMULA diamond: V = kQ/r and its 1/r falloff (one power of r, gentler
+    // than the field's 1/r²). Declares electric_potential_meaning (what V MEANS,
+    // V = W/q) as a prerequisite; does NOT re-teach it, and stops short of
+    // superposition / E = −dV/dr / capacitance.
+    electric_potential_point_charge: {
+        concept_id: 'electric_potential_point_charge',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'electric_potential_point_charge',
+            label: 'Potential of a Point Charge — V = kQ/r (3D)',
+        },
+    },
+
     force_on_charge_in_field: {
         concept_id: 'force_on_charge_in_field',
         layout: 'single',
