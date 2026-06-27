@@ -147,10 +147,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "This is an electric dipole. A positive charge and an equal negative charge, a small distance apart.", "glow": "dipole" },
-            { "id": "s1_2", "text_en": "The yellow arrow is the dipole moment p. It points from the negative charge to the positive charge.", "glow": "p", "math_show": "\\vec{p} = q \\cdot 2a" },
-            { "id": "s1_3", "text_en": "Its size is the charge times the separation, p equals q times two a.", "glow": "p" },
-            { "id": "s1_4", "text_en": "There is no field yet. Next, we drop this dipole into a uniform external field.", "glow": "dipole" }
+            { "id": "s1_1", "text_en": "This is an electric dipole. A positive charge and an equal negative charge, a small distance apart.", "text_hi": "यह एक electric dipole है। एक positive charge और एक बराबर negative charge, थोड़ी सी दूरी पर।", "text_te": "ఇది ఒక electric dipole. ఒక positive charge మరియు సమానమైన negative charge, కొంచెం దూరంలో ఉన్నాయి.", "glow": "dipole" },
+            { "id": "s1_2", "text_en": "The yellow arrow is the dipole moment p. It points from the negative charge to the positive charge.", "text_hi": "पीला arrow dipole moment p है। यह negative charge से positive charge की तरफ point करता है।", "text_te": "పసుపు రంగు arrow dipole moment p. ఇది negative charge నుండి positive charge వైపు point చేస్తుంది.", "glow": "p", "math_show": "\\vec{p} = q \\cdot 2a" },
+            { "id": "s1_3", "text_en": "Its size is the charge times the separation, p equals q times two a.", "text_hi": "इसका size charge गुना separation है, यानी p equals q times two a।", "text_te": "దాని size charge గుణకారం separation, అంటే p equals q times two a.", "glow": "p" },
+            { "id": "s1_4", "text_en": "There is no field yet. Next, we drop this dipole into a uniform external field.", "text_hi": "अभी कोई field नहीं है। अगले step में, हम इस dipole को एक uniform external field में डालेंगे।", "text_te": "ఇంకా field లేదు. తర్వాత, మనం ఈ dipole ని ఒక uniform external field లో వేస్తాం.", "glow": "dipole" }
           ]
         }
       },
@@ -191,10 +191,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Now switch on a uniform electric field. Every blue arrow is identical in length and direction.", "glow": "e" },
-            { "id": "s2_2", "text_en": "Uniform means the field is the same at every point in space. It does not get stronger or weaker anywhere.", "glow": "e" },
-            { "id": "s2_3", "text_en": "The dipole sits tilted at an angle theta to the field. The yellow arc marks that angle between p and E.", "glow": "theta" },
-            { "id": "s2_4", "text_en": "Question. What does the field do to this tilted dipole? Keep watching.", "glow": "dipole" }
+            { "id": "s2_1", "text_en": "Now switch on a uniform electric field. Every blue arrow is identical in length and direction.", "text_hi": "अब एक uniform electric field को switch on करते हैं। हर नीला arrow length और direction में identical है।", "text_te": "ఇప్పుడు ఒక uniform electric field switch on చేద్దాం. ప్రతి నీలి arrow length మరియు direction లో identical గా ఉంది.", "glow": "e" },
+            { "id": "s2_2", "text_en": "Uniform means the field is the same at every point in space. It does not get stronger or weaker anywhere.", "text_hi": "Uniform का मतलब है कि field हर जगह एक समान है। यह कहीं stronger या weaker नहीं होती।", "text_te": "Uniform అంటే field అన్ని చోట్లా ఒకేలా ఉంటుంది. ఇది ఎక్కడా stronger లేదా weaker కాదు.", "glow": "e" },
+            { "id": "s2_3", "text_en": "The dipole sits tilted at an angle theta to the field. The yellow arc marks that angle between p and E.", "text_hi": "Dipole field के साथ theta angle पर tilted है। पीला arc उस angle को mark करता है जो p और E के बीच में है।", "text_te": "Dipole field తో theta angle లో tilted గా ఉంది. పసుపు రంగు arc p మరియు E మధ్య ఉన్న ఆ angle ని చూపిస్తుంది.", "glow": "theta" },
+            { "id": "s2_4", "text_en": "Question. What does the field do to this tilted dipole? Keep watching.", "text_hi": "Question। यह field इस tilted dipole के साथ क्या करती है? देखते रहो।", "text_te": "Question. ఈ field ఈ tilted dipole కి ఏమి చేస్తుందో? చూస్తూ ఉండండి.", "glow": "dipole" }
           ]
         }
       },
@@ -237,10 +237,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Look at each charge separately. The positive charge feels a force q E, pointing along the field.", "glow": "forces", "math_show": "\\vec{F}_+ = +q\\vec{E}" },
-            { "id": "s3_2", "text_en": "The negative charge feels a force q E pointing the opposite way, against the field.", "glow": "forces", "math_show": "\\vec{F}_- = -q\\vec{E}" },
-            { "id": "s3_3", "text_en": "Two forces. Equal in size. Opposite in direction. But acting on different lines. That combination is called a couple.", "glow": "forces" },
-            { "id": "s3_4", "text_en": "So the dipole does feel forces. It is just that the two forces are set up to twist it, not to push it.", "glow": "forces" }
+            { "id": "s3_1", "text_en": "Look at each charge separately. The positive charge feels a force q E, pointing along the field.", "text_hi": "हर charge को अलग-अलग देखो। positive charge को एक force q E महसूस होता है, जो field की direction में point करता है।", "text_te": "ప్రతి charge ని విడిగా చూడండి. positive charge కి ఒక force q E అనిపిస్తుంది, అది field వైపు point చేస్తుంది.", "glow": "forces", "math_show": "\\vec{F}_+ = +q\\vec{E}" },
+            { "id": "s3_2", "text_en": "The negative charge feels a force q E pointing the opposite way, against the field.", "text_hi": "negative charge को भी force q E महसूस होता है, लेकिन वह opposite direction में, field के against।", "text_te": "negative charge కి కూడా force q E అనిపిస్తుంది, కానీ అది opposite వైపు, field కి వ్యతిరేకంగా.", "glow": "forces", "math_show": "\\vec{F}_- = -q\\vec{E}" },
+            { "id": "s3_3", "text_en": "Two forces. Equal in size. Opposite in direction. But acting on different lines. That combination is called a couple.", "text_hi": "दो forces। size में बराबर। direction में opposite। लेकिन अलग-अलग lines पर act करते हैं। इस combination को couple कहते हैं।", "text_te": "రెండు forces. size లో సమానం. direction లో opposite. కానీ వేర్వేరు lines పై act చేస్తాయి. ఈ combination ని couple అంటారు.", "glow": "forces" },
+            { "id": "s3_4", "text_en": "So the dipole does feel forces. It is just that the two forces are set up to twist it, not to push it.", "text_hi": "तो dipole को forces ज़रूर महसूस होती हैं। बस यह है कि दोनों forces उसे push नहीं करतीं, बल्कि twist करने के लिए set up हैं।", "text_te": "కాబట్టి dipole కి forces అనిపిస్తాయే. కేవలం ఆ రెండు forces దాన్ని push చేయవు, twist చేయడానికి set up అయ్యాయి.", "glow": "forces" }
           ]
         },
         "misconception_watch": [
@@ -289,11 +289,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Now add the two forces together. Plus q E and minus q E cancel exactly. The net force is zero.", "glow": "sum", "math_show": "\\sum \\vec{F} = 0" },
-            { "id": "s4_2", "text_en": "Zero net force means the dipole will not slide anywhere. Take three seconds — does that mean nothing happens?", "glow": "dipole", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "No. The couple produces a torque. The purple arrow is tau, and the dipole begins to rotate toward the field.", "glow": "tau" },
-            { "id": "s4_4", "text_en": "Net force zero, but torque not zero. Both statements are true at the same moment.", "glow": ["sum", "tau"], "math_show": "\\sum \\vec{F} = 0, \\quad \\vec{\\tau} \\neq 0" },
-            { "id": "s4_5", "text_en": "Forces decide sliding. Torques decide turning. A uniform field gives the dipole only a turn.", "glow": "tau" }
+            { "id": "s4_1", "text_en": "Now add the two forces together. Plus q E and minus q E cancel exactly. The net force is zero.", "text_hi": "अब दोनों forces को जोड़ो। plus q E और minus q E बिल्कुल cancel हो जाती हैं। net force zero हो जाती है।", "text_te": "ఇప్పుడు రెండు forces ని కలపండి. plus q E మరియు minus q E పూర్తిగా cancel అవుతాయి. net force zero అవుతుంది.", "glow": "sum", "math_show": "\\sum \\vec{F} = 0" },
+            { "id": "s4_2", "text_en": "Zero net force means the dipole will not slide anywhere. Take three seconds — does that mean nothing happens?", "text_hi": "zero net force का मतलब है dipole कहीं slide नहीं करेगा। तीन seconds लो — क्या इसका मतलब है कि कुछ नहीं होता?", "text_te": "zero net force అంటే dipole ఎక్కడికీ slide అవ్వదు. మూడు seconds తీసుకోండి — దీని అర్థం ఏమీ జరగదా?", "glow": "dipole", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "No. The couple produces a torque. The purple arrow is tau, and the dipole begins to rotate toward the field.", "text_hi": "नहीं। couple एक torque produce करता है। बैंगनी arrow tau है, और dipole field की तरफ rotate होना शुरू हो जाता है।", "text_te": "లేదు. couple ఒక torque produce చేస్తుంది. ఊదా రంగు arrow tau, మరియు dipole field వైపు rotate అవ్వడం మొదలవుతుంది.", "glow": "tau" },
+            { "id": "s4_4", "text_en": "Net force zero, but torque not zero. Both statements are true at the same moment.", "text_hi": "net force zero, लेकिन torque zero नहीं। दोनों बातें एक ही moment पर true हैं।", "text_te": "net force zero, కానీ torque zero కాదు. రెండు statements ఒకే moment లో true గా ఉంటాయి.", "glow": ["sum", "tau"], "math_show": "\\sum \\vec{F} = 0, \\quad \\vec{\\tau} \\neq 0" },
+            { "id": "s4_5", "text_en": "Forces decide sliding. Torques decide turning. A uniform field gives the dipole only a turn.", "text_hi": "Forces sliding decide करती हैं। Torques turning decide करते हैं। एक uniform field dipole को सिर्फ़ एक turn देती है।", "text_te": "Forces sliding decide చేస్తాయి. Torques turning decide చేస్తాయి. ఒక uniform field dipole కి కేవలం ఒక turn ఇస్తుంది.", "glow": "tau" }
           ]
         },
         "misconception_watch": [
@@ -340,9 +340,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Watch the angle sweep from zero through ninety to one eighty and back. Keep your eye on the purple torque arrow.", "glow": "theta" },
-            { "id": "s5_2", "text_en": "The torque starts at zero, grows as the dipole tilts away from the field, peaks, then falls back to zero.", "glow": "tau" },
-            { "id": "s5_3", "text_en": "That shape is a sine. Tau equals p E sine theta. Where does it reach its biggest value? You will guess next.", "glow": "tau", "math_show": "\\tau = pE\\sin\\theta" }
+            { "id": "s5_1", "text_en": "Watch the angle sweep from zero through ninety to one eighty and back. Keep your eye on the purple torque arrow.", "text_hi": "angle को zero से ninety होते हुए one eighty तक और वापस sweep होते देखो। बैंगनी torque arrow पर नज़र रखो।", "text_te": "angle zero నుండి ninety గుండా one eighty వరకు మరియు తిరిగి sweep అవ్వడం చూడండి. ఊదా torque arrow పై దృష్టి పెట్టండి.", "glow": "theta" },
+            { "id": "s5_2", "text_en": "The torque starts at zero, grows as the dipole tilts away from the field, peaks, then falls back to zero.", "text_hi": "torque zero से शुरू होता है, जैसे-जैसे dipole field से tilt होता है बढ़ता है, peak करता है, फिर zero पर वापस आ जाता है।", "text_te": "torque zero నుండి మొదలవుతుంది, dipole field నుండి tilt అవుతూ పెరుగుతుంది, peak చేరుతుంది, తర్వాత zero కి తిరిగి వస్తుంది.", "glow": "tau" },
+            { "id": "s5_3", "text_en": "That shape is a sine. Tau equals p E sine theta. Where does it reach its biggest value? You will guess next.", "text_hi": "यह shape एक sine है। tau equals p E sine theta। यह अपनी सबसे बड़ी value कहाँ reach करता है? अगले step में तुम guess करोगे।", "text_te": "ఆ shape ఒక sine. tau equals p E sine theta. ఇది అత్యధిక value ఎక్కడ reach అవుతుంది? తర్వాత మీరు guess చేస్తారు.", "glow": "tau", "math_show": "\\tau = pE\\sin\\theta" }
           ]
         }
       },
@@ -385,10 +385,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "The dipole is now frozen at ninety degrees. Look at the torque arrow — it is fully extended.", "glow": "tau" },
-            { "id": "s6_2", "text_en": "Predict first. At what angle is the torque largest? Take three seconds.", "glow": "theta", "pause_after_ms": 3000 },
-            { "id": "s6_3", "text_en": "Many students say zero degrees, where p lines up with E. That feels right, but it is wrong. The answer is ninety.", "glow": "tau", "math_show": "\\tau_{\\max} = pE \\;\\text{at}\\; \\theta = 90^{\\circ}" },
-            { "id": "s6_4", "text_en": "Because tau is a cross product. Cross products are biggest when the two vectors are perpendicular, and zero when they are parallel.", "glow": "theta" }
+            { "id": "s6_1", "text_en": "The dipole is now frozen at ninety degrees. Look at the torque arrow — it is fully extended.", "text_hi": "dipole अभी ninety degrees पर frozen है। torque arrow को देखो — यह पूरी तरह extended है।", "text_te": "dipole ఇప్పుడు ninety degrees వద్ద frozen గా ఉంది. torque arrow చూడండి — అది పూర్తిగా extended గా ఉంది.", "glow": "tau" },
+            { "id": "s6_2", "text_en": "Predict first. At what angle is the torque largest? Take three seconds.", "text_hi": "पहले predict करो। torque किस angle पर सबसे बड़ा है? तीन seconds लो।", "text_te": "మొదట predict చేయండి. torque ఏ angle వద్ద అత్యధికంగా ఉంటుంది? మూడు seconds తీసుకోండి.", "glow": "theta", "pause_after_ms": 3000 },
+            { "id": "s6_3", "text_en": "Many students say zero degrees, where p lines up with E. That feels right, but it is wrong. The answer is ninety.", "text_hi": "बहुत से students कहते हैं zero degrees, जहाँ p, E के साथ line up होता है। यह सही लगता है, लेकिन यह गलत है। answer ninety है।", "text_te": "చాలా students zero degrees అంటారు, అక్కడ p, E తో line up అవుతుంది. అది సరిగ్గా అనిపిస్తుంది, కానీ అది తప్పు. answer ninety.", "glow": "tau", "math_show": "\\tau_{\\max} = pE \\;\\text{at}\\; \\theta = 90^{\\circ}" },
+            { "id": "s6_4", "text_en": "Because tau is a cross product. Cross products are biggest when the two vectors are perpendicular, and zero when they are parallel.", "text_hi": "क्योंकि tau एक cross product है। cross products सबसे बड़े होते हैं जब दोनों vectors perpendicular हों, और zero जब वे parallel हों।", "text_te": "ఎందుకంటే tau ఒక cross product. cross products అత్యధికంగా ఉంటాయి రెండు vectors perpendicular గా ఉన్నప్పుడు, మరియు zero గా ఉంటాయి parallel గా ఉన్నప్పుడు.", "glow": "theta" }
           ]
         },
         "misconception_watch": [
@@ -435,11 +435,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Torque is zero at two angles. Theta zero, where p lines up with E, and theta one eighty, where p points against E.", "glow": "u" },
-            { "id": "s7_2", "text_en": "But they are not equally safe. Watch the dipole oscillate gently about theta zero. Nudge it and it always swings back.", "glow": "dipole" },
-            { "id": "s7_3", "text_en": "That is stable equilibrium. On the U-meter the marker sits at the bottom — the energy is lowest here.", "glow": "u", "math_show": "U = -pE\\cos\\theta" },
-            { "id": "s7_4", "text_en": "Theta one eighty is the opposite. The energy is at the top, the maximum. Any tiny nudge grows and the dipole flips all the way to theta zero.", "glow": "u" },
-            { "id": "s7_5", "text_en": "So a dipole, like a compass needle, always settles pointing along the field — the lowest energy pose.", "glow": "dipole" }
+            { "id": "s7_1", "text_en": "Torque is zero at two angles. Theta zero, where p lines up with E, and theta one eighty, where p points against E.", "text_hi": "Torque दो angles पर zero है। theta zero, जहाँ p, E के साथ line up होता है, और theta one eighty, जहाँ p, E के against point करता है।", "text_te": "Torque రెండు angles వద్ద zero గా ఉంటుంది. theta zero వద్ద, అక్కడ p, E తో line up అవుతుంది, మరియు theta one eighty వద్ద, అక్కడ p, E కి వ్యతిరేకంగా point చేస్తుంది.", "glow": "u" },
+            { "id": "s7_2", "text_en": "But they are not equally safe. Watch the dipole oscillate gently about theta zero. Nudge it and it always swings back.", "text_hi": "लेकिन वे दोनों equally safe नहीं हैं। dipole को theta zero के आसपास gently oscillate होते देखो। इसे nudge करो और यह हमेशा वापस swing करता है।", "text_te": "కానీ అవి రెండూ equally safe కాదు. dipole theta zero చుట్టూ gently oscillate అవ్వడం చూడండి. దాన్ని nudge చేయండి మరియు అది ఎప్పుడూ తిరిగి swing అవుతుంది.", "glow": "dipole" },
+            { "id": "s7_3", "text_en": "That is stable equilibrium. On the U-meter the marker sits at the bottom — the energy is lowest here.", "text_hi": "यह stable equilibrium है। U-meter पर marker नीचे sit करता है — यहाँ energy सबसे कम है।", "text_te": "ఇది stable equilibrium. U-meter పై marker కింద ఉంది — ఇక్కడ energy అత్యల్పంగా ఉంది.", "glow": "u", "math_show": "U = -pE\\cos\\theta" },
+            { "id": "s7_4", "text_en": "Theta one eighty is the opposite. The energy is at the top, the maximum. Any tiny nudge grows and the dipole flips all the way to theta zero.", "text_hi": "theta one eighty इसके बिल्कुल उल्टा है। energy सबसे ऊपर है, maximum पर। कोई भी tiny nudge बढ़ता है और dipole flip होकर theta zero पर आ जाता है।", "text_te": "theta one eighty దీనికి పూర్తి వ్యతిరేకం. energy అత్యధికంగా, maximum వద్ద ఉంది. ఏ tiny nudge అయినా పెరిగి dipole theta zero కి flip అవుతుంది.", "glow": "u" },
+            { "id": "s7_5", "text_en": "So a dipole, like a compass needle, always settles pointing along the field — the lowest energy pose.", "text_hi": "इसलिए एक dipole, compass needle की तरह, हमेशा field की direction में point करते हुए settle होता है — यह सबसे कम energy की position है।", "text_te": "కాబట్టి ఒక dipole, compass needle లాగా, ఎప్పుడూ field వైపు point చేస్తూ settle అవుతుంది — ఇది అత్యల్ప energy pose.", "glow": "dipole" }
           ]
         },
         "misconception_watch": [
@@ -479,8 +479,8 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "Your turn. Three sliders — the dipole moment p, the field E, and the angle theta. Drag them and watch the torque arrow respond.", "glow": "sandbox_label" },
-            { "id": "s8_2", "text_en": "Try the three challenges. Set theta to ninety for the biggest torque, then to zero and one eighty to find the two equilibria.", "glow": "challenge_label" }
+            { "id": "s8_1", "text_en": "Your turn. Three sliders — the dipole moment p, the field E, and the angle theta. Drag them and watch the torque arrow respond.", "text_hi": "अब तुम्हारी बारी। तीन sliders — dipole moment p, field E, और angle theta। इन्हें drag करो और torque arrow को respond करते देखो।", "text_te": "ఇప్పుడు మీ వంతు. మూడు sliders — dipole moment p, field E, మరియు angle theta. వాటిని drag చేయండి మరియు torque arrow respond అవ్వడం చూడండి.", "glow": "sandbox_label" },
+            { "id": "s8_2", "text_en": "Try the three challenges. Set theta to ninety for the biggest torque, then to zero and one eighty to find the two equilibria.", "text_hi": "तीन challenges try करो। सबसे बड़े torque के लिए theta को ninety पर set करो, फिर दोनों equilibria ढूंढने के लिए zero और one eighty पर।", "text_te": "మూడు challenges try చేయండి. అత్యధిక torque కోసం theta ని ninety కి set చేయండి, తర్వాత రెండు equilibria కనుగొనడానికి zero మరియు one eighty కి.", "glow": "challenge_label" }
           ]
         }
       }

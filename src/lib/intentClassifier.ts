@@ -139,6 +139,36 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // concentric shell + expandable Gaussian sphere + radial arrows that vanish
     // inside / follow 1/r² outside + E-vs-r plot. Prereqs gauss_law + electric_flux.
     'gauss_law_sphere',
+    // E-from-symmetry for a uniformly charged SOLID (insulating) sphere: E grows
+    // LINEARLY inside (E = kq·r/R³, q_enc = q·(r/R)³, zero at the centre), equals
+    // kq/r² outside, and is CONTINUOUS at r=R (peak at the surface, no jump).
+    // Reuses the field_3d gauss_law_sphere scenario with gauss_sphere.distribution
+    // = 'solid'. Distinct from the hollow shell (gauss_law_sphere). Prereqs
+    // gauss_law + electric_flux.
+    'gauss_law_solid_sphere',
+    // E-from-symmetry for an INFINITE LINE / WIRE of uniform linear charge density
+    // λ (Class 12 Ch.1.15): cylindrical symmetry → E radial, ⊥ to the line, constant
+    // on a coaxial ring; a coaxial Gaussian CYLINDER (the two flat end caps carry
+    // zero flux, only the curved wall counts) gives Φ = E·(2πrL) = λL/ε₀, the L
+    // cancels ⇒ E = λ/(2πε₀r). The headline: the line falls off as 1/r, NOT 1/r²
+    // like a point charge (the cylinder area 2πrL grows LINEARLY with r, a sphere's
+    // 4πr² grows quadratically). Distinct from the sphere siblings (1/r² / ramp-then-
+    // 1/r²) and from the bare statement (gauss_law) / flux definition (electric_flux).
+    // WIRE / LINE ONLY — no plane/sheet, no finite-line end effects. NEW field_3d
+    // gauss_law_line scenario. Prereqs gauss_law + electric_flux + charge_distribution.
+    'gauss_law_line',
+    // E-from-symmetry for an INFINITE PLANE SHEET of uniform surface charge density
+    // σ (Class 12 Ch.1.15): planar symmetry → E ⊥ the sheet, pointing away on BOTH
+    // sides, equal everywhere; a Gaussian PILLBOX (the curved wall carries zero flux,
+    // only the two flat caps count — the exact INVERSE of the line's cylinder) gives
+    // Φ = 2EA = σA/ε₀, the A cancels ⇒ E = σ/(2ε₀). The headline: the field is
+    // CONSTANT — it does NOT fall off with distance at all (unlike the line's 1/r or
+    // the point's 1/r²), because the pillbox encloses the same σA patch however far
+    // out the caps sit. The ½ comes from flux leaving BOTH caps, so an ISOLATED sheet
+    // gives σ/2ε₀, distinct from the σ/ε₀ conductor-surface / between-two-plates case
+    // (a DIFFERENT concept). SHEET / PLANE ONLY — no line/sphere, no edge effects. NEW
+    // field_3d gauss_law_sheet scenario. Prereqs gauss_law + electric_flux + charge_distribution.
+    'gauss_law_sheet',
     // Force on a charge placed in an electric field, F = qE (Class 12 Ch.1.7 —
     // companion/inverse of electric_field_point_charge; field_3d uniform_field_force
     // scenario: uniform plate field, constant force, parabolic deflection, a = qE/m).
@@ -148,6 +178,20 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // torque toward alignment, stable/unstable equilibrium, U = −pE cos θ). The
     // electric sibling of torque_on_current_loop_in_field.
     'electric_dipole_in_field',
+    // Electric potential — the MEANING of V (Class 12 Ch.2.1-2.2). V at a point is
+    // the work done per unit positive test charge to bring it from infinity to the
+    // point: V = W/q. A single SCALAR per location (no direction), path-independent
+    // because the electrostatic force is conservative, measured against V(inf)=0; so V
+    // is a property of the PLACE, not of the test charge that probes it, and ΔV = V_B
+    // − V_A is the per-unit-charge work between two points. Equal-V points wrap the
+    // charge as equipotential shells; E is the perpendicular downhill arrow (V is
+    // altitude, E is slope). Foundation/meaning diamond — teaches V = W/q and STOPS
+    // SHORT of V = kQ/r (deferred to the sibling electric_potential_point_charge,
+    // which declares THIS as a prerequisite). Routed to the field_3d
+    // point_charge_positive scenario + the new potential primitives (labelled shells,
+    // route-animating test charge + work tally, ΔV/inf markers, draggable V explorer).
+    // Prereqs electric_field_point_charge + coulombs_law.
+    'electric_potential_meaning',
     // What IS a magnetic field — B as a vector field SOURCED by moving charge,
     // REVEALED (not created) by a compass (Class 12 Ch.4.3 — slots BEFORE
     // magnetic_field_wire §4.4). Conceptual-only: establishes source→Oersted→
@@ -164,6 +208,15 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // archetype A meta). Distinct from the legacy magnetic_field_biot_savart id;
     // routed to the field_3d biot_savart_element scenario.
     'biot_savart_law',
+    // Ampère's circuital law — ∮B·dl = μ₀ I_enc applied to a long straight wire
+    // (Class 12 Ch.4.5). Choose a coaxial circular Amperian loop, use symmetry
+    // (|B| constant AND tangent on the loop ⇒ cosθ = 1) to reduce the line integral
+    // to ∮B·dl = B·(2πr), set it equal to μ₀I and DERIVE B = μ₀I/(2πr). The
+    // integral-law route to the straight-wire field (vs the Biot-Savart
+    // element-summation route in biot_savart_law) — returns the SAME field. WIRE
+    // ONLY — no solenoid, no toroid, no off-axis / non-symmetric loop. Routed to
+    // the field_3d amperes_circuital_law scenario.
+    'amperes_circuital_law',
     // Lorentz force on a moving charge — F = q v × B (Class 12 Ch.4.2 — Diamond #2
     // of the magnetism chapter, M1 of MAGNETISM_ARCHITECTURE.md, archetype B —
     // force-in-field). Establishes ambient B grid, moving particle, per-frame
@@ -184,6 +237,28 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // aha "steers, never speeds up". Teaches NO magnitude (no F = qvB sinθ, no
     // r = mv/qB, no period). Routed to the field_3d magnetic_no_work scenario.
     'magnetic_force_perpendicular_no_work',
+    // How BIG the circle is — the radius r = mv/qB for a charge moving
+    // perpendicular to a uniform field (Class 12 Ch.4.2). The radius / SIZE
+    // sibling of magnetic_force_moving_charge: a charge perpendicular to a
+    // uniform B travels in a CLOSED circle whose radius grows with momentum
+    // (m or v, the numerator) and tightens with grip (q or B, the denominator),
+    // r = mv/qB. The only surfaced quantity is r, and only as a RELATIVE
+    // readout. Deliberately teaches NO period T = 2πm/qB (that is the future
+    // cyclotron_period_independent_of_speed) and NO force magnitude / qvB sinθ
+    // (that is magnetic_force_moving_charge). Routed to the field_3d
+    // radius_in_uniform_field scenario.
+    'circular_motion_charge_in_uniform_B',
+    // How LONG one orbit takes — the period T = 2πm/qB for a charge in a uniform
+    // field, and its independence from speed v and radius r (Class 12 Ch.4.2). The
+    // PERIOD / TIMING sibling of circular_motion_charge_in_uniform_B: it surfaces
+    // the one quantity #4 hid (lap time) and proves a faster charge traces a BIGGER
+    // circle but completes each lap in the SAME time — the extra distance is paid by
+    // the extra speed (v cancels: T = 2πr/v with r = mv/qB → T = 2πm/qB). The only
+    // surfaced quantity is T, and only as a RELATIVE lap-timer (never seconds, never
+    // a frequency number). Teaches NO radius re-derivation (cites #4), NO force
+    // magnitude / qvB sinθ (that is magnetic_force_moving_charge), and no
+    // Ampere / loop / dipole. Routed to the field_3d cyclotron_period scenario.
+    'cyclotron_period_independent_of_speed',
     // Magnetic force on a current-carrying wire — F = I L × B (Class 12 Ch.36,
     // concept A15). The macroscopic successor to magnetic_force_moving_charge:
     // a wire is a pipe of moving charges, so summing q v × B over n·A·L carriers
@@ -198,6 +273,16 @@ export const VALID_CONCEPT_IDS: ReadonlySet<string> = new Set([
     // Establishes rectangular loop, force-pair animation, μ vector through loop
     // face, τ vector along rotation axis, and loop↔bar-magnet swap in field_3d_renderer.ts.
     'torque_on_current_loop_in_field',
+    // A current loop acts as a magnetic dipole — the FIELD-EQUIVALENCE concept:
+    // the loop sources a field identical to a bar magnet's, has moment m = NIA
+    // (a vector along the axis), and aligns like a compass in an external field.
+    // Distinct from torque_on_current_loop_in_field (τ=μ×B dynamics). Uses the
+    // field_3d current_loop_acts_as_dipole scenario.
+    'current_loop_acts_as_dipole',
+    // Force between two parallel currents — F/L = μ₀I₁I₂/2πd; parallel currents
+    // ATTRACT, antiparallel REPEL (opposite of like charges); defines the ampere.
+    // field_3d parallel_currents_force scenario.
+    'parallel_currents_force',
     // Magnetic field of a long solenoid — B = μ₀nI inside, ≈0 outside
     // (Class 12 Ch.4.8 — Diamond #4 of the magnetism chapter, M4 binary-gate
     // validator per MAGNETISM_ARCHITECTURE.md, archetype A — field-viz).
@@ -302,8 +387,11 @@ function extractAdvertisedConcepts(prompt: string): Set<string> {
         const trimmed = raw.trim();
         // Skip section separators (── Heading ──), the anchor itself, and empty lines.
         if (!trimmed || trimmed.startsWith('──') || trimmed.startsWith('════') || trimmed.startsWith('VALID CONCEPT')) continue;
-        // First token on a concept line is the slug (lowercase + underscores).
-        const match = trimmed.match(/^([a-z][a-z0-9_]*)/);
+        // First token on a concept line is the slug (lowercase start, then
+        // letters/digits/underscores — including a trailing capital like the
+        // `_B` in magnetic_field_concept_B / circular_motion_charge_in_uniform_B,
+        // which the old [a-z0-9_] class truncated, causing a drift misclassify).
+        const match = trimmed.match(/^([a-z][A-Za-z0-9_]*)/);
         if (match) ids.add(match[1]);
     }
     return ids;
@@ -444,18 +532,29 @@ VALID CONCEPT IDs — you MUST return one of these exactly as written:
   electric_flux                   ← electric flux Φ = ∫E·dA; flux through a surface, dependence on field strength and orientation; net flux through a closed surface (stops at net flux ∝ enclosed charge — does NOT introduce ε₀ or Φ = q/ε₀)
   gauss_law                       ← Gauss's law STATEMENT: net flux through ANY closed (Gaussian) surface = q_enc/ε₀; ε₀ = 8.854×10⁻¹² is a fixed constant of nature; net set ONLY by the enclosed charge (independent of the surface's shape/size); a charge outside contributes zero; q_enc is the signed algebraic sum Σ qᵢ. Statement only — no E-from-symmetry derivation.
   gauss_law_sphere                ← APPLYING Gauss's law + spherical symmetry to a uniformly charged SHELL to SOLVE for E(r): E = 0 everywhere inside (r<R), E = kq/r² = q/(4πε₀r²) outside (r≥R, like a point charge at the centre); r from the CENTRE not the surface; external field independent of shell radius R; E jumps from 0 to peak kq/R² at the surface; shielding (E=0 inside a hollow charged shell). The E-FROM-SYMMETRY application for a shell — NOT the bare statement (gauss_law) and NOT the flux definition Φ=E·A (electric_flux).
+  gauss_law_solid_sphere          ← APPLYING Gauss's law + spherical symmetry to a uniformly charged SOLID (insulating) sphere to SOLVE for E(r): E = kq·r/R³ inside (r<R, grows LINEARLY from 0 at the centre because only q_enc = q·(r/R)³ is enclosed), E = kq/r² outside (r≥R, like a point charge); CONTINUOUS at r=R (both give kq/R²), so the field peaks AT the surface with NO jump. The SOLID-ball case — distinct from the hollow shell (gauss_law_sphere, which is zero inside and jumps at the surface). Route "field inside a solid sphere", "uniformly charged solid sphere / ball", "insulating charged sphere", "volume charge density sphere", "E inside a charged ball" here.
+  gauss_law_line                  ← APPLYING Gauss's law + CYLINDRICAL symmetry to an INFINITE LINE / WIRE of uniform linear charge density λ to SOLVE for E(r): a coaxial Gaussian CYLINDER (flat end caps carry zero flux, only the curved wall counts) gives Φ = E·(2πrL) = λL/ε₀, the L cancels ⇒ E = λ/(2πε₀r), radial and ⊥ to the line and independent of axial position. The headline: the line falls off as 1/r, NOT 1/r² like a point charge (cylinder area 2πrL grows linearly with r). WIRE / LINE ONLY — no plane/sheet, no finite-line ends. Route "field of an infinite/line charge", "E near a charged wire", "E = λ/2πε₀r", "why 1/r not 1/r²", "Gaussian cylinder for a wire" here.
+  gauss_law_sheet                 ← APPLYING Gauss's law + PLANAR symmetry to an INFINITE PLANE SHEET of uniform surface charge density σ to SOLVE for E: a Gaussian PILLBOX (the curved WALL carries zero flux, only the two flat CAPS count — the exact INVERSE of the line's cylinder) gives Φ = 2EA = σA/ε₀, the A cancels ⇒ E = σ/(2ε₀), ⊥ to the sheet, pointing away on BOTH sides, equal everywhere. The headline: the field is CONSTANT — it does NOT fall off with distance at all (NOT the line's 1/r, NOT the point's 1/r²), because the pillbox encloses the same σA patch however far out the caps sit. The ½ is from flux leaving BOTH caps, so an ISOLATED sheet gives σ/2ε₀ — distinct from the σ/ε₀ conductor-surface / between-two-plates case (a DIFFERENT concept). SHEET / PLANE ONLY — no line/sphere, no edge effects. Route "field of an infinite charged sheet/plane", "E = σ/2ε₀", "why doesn't the sheet field fall off", "uniform field from a sheet", "Gaussian pillbox" here.
   force_on_charge_in_field        ← force on a charge placed in a field F = qE, direction by sign (along E for +q, opposite for −q), constant force in a uniform field, a = qE/m, parabolic deflection of a launched charge
   electric_dipole_in_field        ← electric dipole in a UNIFORM field: torque τ = p × E = pE sin θ, the force couple ±qE with zero net force, rotation toward alignment, stable (θ=0) vs unstable (θ=180°) equilibrium, potential energy U = −pE cos θ
+
+  ── Electrostatic Potential and Capacitance (Class 12 Ch.2) ──
+  electric_potential_meaning      ← the MEANING of electric potential V = W/q: the work done per unit positive test charge to bring it from infinity to a point; a single SCALAR per place (no direction, NOT a vector, NOT the field E); path-independent because the electrostatic force is conservative; the reference V(∞)=0; ΔV = V_B − V_A is the per-unit-charge work between two points (closer to a +source ⇒ higher V); potential energy U = qV (belongs to the charge, scales with q) vs potential V (belongs to the place, does not); equipotential surfaces (level sets of V) with E ⊥ to them, downhill (V = altitude, E = slope). Teaches V = W/q and STOPS SHORT of V = kQ/r (that is the separate sibling). Route "what is electric potential", "what does voltage at a point mean", "V = W/q", "work per unit charge", "is potential a vector or scalar", "potential vs potential energy", "potential at a point", "equipotential surface meaning" here.
 
   ── Moving Charges and Magnetism (Class 12 Ch.4) ──
   magnetic_field_concept_B        ← what a magnetic field IS: a vector field sourced by MOVING charge (current), revealed (not created) by a compass; B circulates around the wire; no current = no field; just like E but from moving charge. Does NOT cover the magnitude B = μ₀I/(2πr).
   magnetic_field_wire             ← B around a straight current-carrying wire, B = μ₀I/(2πr), right-hand rule (thumb = I, fingers = B)
   biot_savart_law                 ← the Biot-Savart law itself: dB = (μ₀/4π) I(dl × r̂)/r² for a current element, sinθ dependence, summed/integrated to recover B = μ₀I/(2πr)
+  amperes_circuital_law           ← Ampère's circuital law ∮B·dl = μ₀I_enc applied to a long straight wire: choose a coaxial circular Amperian loop, use symmetry (|B| constant & tangent) to get ∮B·dl = B·(2πr), set = μ₀I to DERIVE B = μ₀I/(2πr). The integral-law route (vs the Biot-Savart element-summation route). WIRE ONLY — no solenoid/toroid.
   magnetic_force_moving_charge    ← Lorentz force F = q v × B on a moving charge: the MAGNITUDE F = qvB sinθ and the resulting circular/cyclotron motion (radius r = mv/qB)
   magnetic_force_direction_right_hand_rule ← which WAY the magnetic force points: the right-hand rule for F = q v × B (fingers v, curl to B, thumb F), F ⊥ both v and B, a negative charge flips F by 180°, ⊗/⊙ into/out-of-page, v∥B → F = 0. DIRECTION only — no magnitude, no F = qvB sinθ, no circular motion.
   magnetic_force_perpendicular_no_work ← why a magnetic force can NEVER change a charge's SPEED: F ⊥ v at every instant → W = F·d·cos90° = 0 → ΔKE = 0 (work-energy theorem) → |v| is locked; the force only TURNS the velocity, never adds energy ("steers, not accelerates"). NO-WORK / energy only — no magnitude, no F = qvB sinθ, no radius r = mv/qB.
+  circular_motion_charge_in_uniform_B ← how BIG the circle is: the RADIUS r = mv/qB for a charge moving perpendicular to a uniform field. Bigger with momentum (m or v, numerator), tighter with grip (q or B, denominator); the curved path CLOSES into a circle. SIZE / radius only — no period T = 2πm/qB (that is a separate concept), no force magnitude / qvB sinθ.
+  cyclotron_period_independent_of_speed ← how LONG one orbit takes: the PERIOD T = 2πm/qB and why it is INDEPENDENT of speed v and radius r. A faster charge traces a bigger circle but finishes each lap in the SAME time (T = 2πr/v with r = mv/qB → v cancels → T = 2πm/qB). Also the cyclotron frequency f = qB/2πm. TIMING / period only — no radius re-derivation (cites the size concept), no force magnitude / qvB sinθ.
   force_on_current_carrying_wire  ← force on a current-carrying wire F = I L × B, BIL sinθ, the motor force, right-hand rule on L and B
   torque_on_current_loop_in_field ← τ = μ × B on a current loop, magnetic moment μ = NIA, loop ↔ bar magnet equivalence
+  current_loop_acts_as_dipole     ← a current loop IS a magnetic dipole: its EXTERNAL field is identical to a bar magnet's, m = NIA is a vector along the axis, two faces are N and S poles, and it aligns like a compass in a field. The FIELD-EQUIVALENCE concept (vs torque_on_current_loop_in_field, which is the τ=μ×B dynamics).
+  parallel_currents_force         ← force between two parallel current-carrying wires: F/L = μ₀I₁I₂/2πd. Parallel (same-direction) currents ATTRACT, antiparallel REPEL (opposite of like charges). Defines the ampere.
   magnetic_field_solenoid         ← B = μ₀nI inside a long solenoid, ≈ 0 outside, RHR-swap (fingers = I, thumb = B inside)
 
 CRITICAL DISAMBIGUATION (current electricity):
@@ -511,20 +610,37 @@ CRITICAL DISAMBIGUATION (electrostatics, Ch.1):
 - "Gauss's law" / "gauss law" / "Φ = q/ε₀" / "flux equals charge over epsilon naught" / "q over epsilon naught" / "q over epsilon zero" / "enclosed charge" / "charge enclosed over epsilon" / "Gaussian surface" / "net flux through a closed surface in terms of charge" / "epsilon naught in flux" → gauss_law
   (gauss_law is the STATEMENT Φ = q_enc/ε₀ with the named constant ε₀ = 8.854×10⁻¹². Anything that asks for the EXACT value of net flux in terms of the enclosed charge, names ε₀, says "Gauss's law", or asks "what is a Gaussian surface" belongs here. electric_flux only sets up "net flux ∝ q_enc" without ε₀; the E-from-symmetry derivation for a sphere/cylinder/sheet is a SEPARATE later concept (gauss_law_sphere), NOT gauss_law.)
 - "field inside a shell" / "field outside a charged sphere" / "field of a charged shell" / "E inside a hollow sphere" / "E=0 inside conductor" / "E=0 inside a shell" / "field of a uniformly charged spherical shell" / "shielding" / "electrostatic shielding" / "why is there no field inside a charged ball" / "field of a Van de Graaff dome" / "charged shell acts like a point charge" → gauss_law_sphere
-  (gauss_law_sphere is APPLYING Gauss's law + symmetry to SOLVE for the field of a charged SHELL: E=0 inside (r<R), E=kq/r² outside (r≥R). Route here anything asking for the actual field E(r) of a shell/sphere, the inside-is-zero / shielding result, or the outside-looks-like-a-point-charge result. The CUT-LINE: gauss_law_sphere = APPLYING Gauss to get E(r) for a shell; gauss_law = the STATEMENT Φ=q/ε₀ alone; electric_flux = the flux definition Φ=E·A. If the student wants a NUMBER or formula for the field inside/outside a sphere, it is gauss_law_sphere, never gauss_law.)
+  (gauss_law_sphere is APPLYING Gauss's law + symmetry to SOLVE for the field of a charged SHELL: E=0 inside (r<R), E=kq/r² outside (r≥R). Route here anything asking for the actual field E(r) of a shell/sphere, the inside-is-zero / shielding result, or the outside-looks-like-a-point-charge result. The CUT-LINE: gauss_law_sphere = APPLYING Gauss to get E(r) for a shell; gauss_law = the STATEMENT Φ=q/ε₀ alone; electric_flux = the flux definition Φ=E·A. If the student wants a NUMBER or formula for the field inside/outside a HOLLOW sphere/shell, it is gauss_law_sphere, never gauss_law. If they specify a SOLID / uniformly charged ball / volume charge, route to gauss_law_solid_sphere instead.)
+- "field inside a solid sphere" / "uniformly charged solid sphere" / "uniformly charged ball" / "insulating charged sphere" / "E inside a charged ball" / "volume charge density sphere" / "field inside a sphere of charge that grows with r" / "E proportional to r inside" → gauss_law_solid_sphere
+  (gauss_law_solid_sphere is the SOLID-ball case: E grows LINEARLY inside (E=kq·r/R³, zero at the centre), E=kq/r² outside, CONTINUOUS at the surface with the peak AT r=R. The CUT-LINE vs gauss_law_sphere: a SOLID / uniformly-charged-volume / insulating ball → gauss_law_solid_sphere (nonzero, rising inside); a HOLLOW shell / conductor / surface charge → gauss_law_sphere (zero inside, jumps at R).)
+- "field of an infinite line charge" / "field near a charged wire" / "E of a long charged wire" / "E = λ/2πε₀r" / "E = lambda over 2 pi epsilon naught r" / "why 1/r not 1/r²" / "why does the wire field fall off slower than a point charge" / "Gaussian cylinder for a wire" / "linear charge density field" / "field of a charged transmission line" → gauss_law_line
+  (gauss_law_line is the INFINITE LINE / WIRE case: a coaxial Gaussian CYLINDER (end caps carry zero flux) gives E = λ/(2πε₀r), radial and ⊥ to the line, FALLING OFF AS 1/r — NOT 1/r² like a point charge — because the cylinder area 2πrL grows LINEARLY with r. The CUT-LINE: a straight LINE / WIRE / rod / 1-D charge → gauss_law_line (1/r); a SPHERE / shell / ball → gauss_law_sphere or gauss_law_solid_sphere (1/r²); a POINT charge → electric_field_point_charge. Anything asking for the field, formula, or 1/r-vs-1/r² falloff of a long/infinite charged WIRE belongs here, NOT to the bare statement gauss_law or the flux definition electric_flux.)
+- "field of an infinite charged sheet" / "field of a charged plane" / "E of an infinite plane sheet" / "E = σ/2ε₀" / "E = sigma over 2 epsilon naught" / "why doesn't the sheet field fall off" / "why is the sheet field constant" / "uniform field from a sheet" / "Gaussian pillbox" / "surface charge density field" / "field of a charged photocopier drum/plate" → gauss_law_sheet
+  (gauss_law_sheet is the INFINITE PLANE SHEET case: a Gaussian PILLBOX (the curved WALL carries zero flux, only the two flat CAPS count) gives E = σ/(2ε₀), ⊥ to the sheet, away on BOTH sides, and CONSTANT — it does NOT fall off with distance at all, unlike the line (1/r) or the point (1/r²), because the pillbox encloses the same σA patch at any distance. The CUT-LINE: a flat PLANE / SHEET / large charged plate → gauss_law_sheet (constant field, σ/2ε₀); a LINE / WIRE → gauss_law_line (1/r); a SPHERE / shell / ball → gauss_law_sphere / gauss_law_solid_sphere (1/r²). IMPORTANT — distinguish σ/2ε₀ (an ISOLATED sheet → gauss_law_sheet) from σ/ε₀ (the field just outside a CONDUCTOR surface, or between TWO parallel plates — a DIFFERENT concept, NOT gauss_law_sheet). Anything asking why a sheet's field is constant / doesn't weaken, or for E = σ/2ε₀ of a single isolated sheet, belongs here.)
 - "force on a charge in a field" / "F = qE" / "force on a charge between plates" / "why does a charge curve in a field" / "charge deflected by an electric field" / "a = qE/m" → force_on_charge_in_field
 - "dipole in a uniform field" / "torque on a dipole" / "τ = pE sinθ" / "p cross E" / "why does a dipole rotate in a field" / "dipole potential energy" / "U = −pE cosθ" / "stable equilibrium of a dipole" → electric_dipole_in_field
+
+CRITICAL DISAMBIGUATION (electrostatic potential, Ch.2):
+- "what is electric potential" / "what does voltage at a point mean" / "meaning of potential" / "V = W/q" / "work per unit charge" / "potential at a point" / "is potential a vector or a scalar" / "does potential have a direction" / "potential vs potential energy" / "why divide work by charge" / "V(∞)=0 / reference at infinity" / "potential difference between two points" / "ΔV = V_B − V_A" / "what is an equipotential surface" / "why is E perpendicular to the equipotential" → electric_potential_meaning
+  (electric_potential_meaning is the MEANING of V: V = W/q, a SCALAR property of the place, path-independent, with V(∞)=0 and ΔV = V_B − V_A. It STOPS SHORT of the point-charge formula V = kQ/r — if the student asks for the actual VALUE/FORMULA of V at distance r from a point charge, that is the separate sibling electric_potential_point_charge, NOT this concept. Distinct from electric_field_point_charge (the VECTOR E = kQ/r²) — V is the scalar, E is the arrow. Distinct from potential ENERGY of a system of charges. Anything asking what potential/voltage MEANS, why it is a scalar, V = W/q, V-vs-U, the infinity reference, or what an equipotential surface is belongs here.)
 
 CRITICAL DISAMBIGUATION (magnetism, Ch.4):
 - "what is a magnetic field" / "where does a magnetic field come from" / "does a current make a magnetic field" / "compass moves near a wire" / "Oersted experiment" / "is a magnetic field like an electric field" / "no current no field" / "moving charge makes magnetic field" → magnetic_field_concept_B
 - "field around a wire" / "B-field of a current-carrying wire" / "right-hand rule for wire" / "how strong is the field" / "B = μ₀I/2πr" → magnetic_field_wire
 - "Biot-Savart law" / "dB from a current element" / "dl × r" / "where does B = μ₀I/2πr come from" / "field of one current element" / "sinθ in magnetic field" → biot_savart_law
-- "how big is the magnetic force" / "F = qvB sinθ" / "magnitude of the Lorentz force" / "cyclotron" / "radius of the circular path" / "r = mv/qB" / "why does the charge go in a circle" → magnetic_force_moving_charge
+- "Ampère's circuital law" / "∮B·dl = μ₀I_enc" / "circulation of B" / "Amperian loop" / "derive B=μ₀I/2πr from Ampère" / "why is the loop a circle" / "what is enclosed current" → amperes_circuital_law
+- "how big is the magnetic force" / "F = qvB sinθ" / "magnitude of the Lorentz force" / "the size of the magnetic force" → magnetic_force_moving_charge
+- "how big is the circle" / "radius of the circular path" / "r = mv/qB" / "why does the charge go in a circle" / "how big is the orbit" / "does a heavier / faster charge make a bigger circle" / "does a stronger field make a smaller circle" / "what sets the size of the circle" → circular_motion_charge_in_uniform_B
 - "which way does the magnetic force point" / "right-hand rule for a moving charge" / "fingers v curl to B thumb F" / "direction of F = qv × B" / "F perpendicular to v and B" / "does the force flip for a negative charge / electron" / "cross and dot into the page out of the page force" / "v parallel to B force is zero" → magnetic_force_direction_right_hand_rule
 - "why does a magnetic force do no work" / "why can't a magnetic field speed up a charge" / "does the speed change in a magnetic field" / "magnetic force only changes direction not speed" / "force perpendicular to velocity does no work" / "why is kinetic energy constant in a magnetic field" / "magnetic field steers but doesn't accelerate" → magnetic_force_perpendicular_no_work
-- DISAMBIGUATION: "Lorentz force" or "F = qv × B" alone, asking HOW BIG / circular motion → magnetic_force_moving_charge; asking WHICH WAY / right-hand rule / sign flip / into-the-page → magnetic_force_direction_right_hand_rule; asking WHY NO WORK / why speed doesn't change / "steers not speeds up" / ΔKE = 0 → magnetic_force_perpendicular_no_work; asking the magnitude / radius / period (r = mv/qB, T) → magnetic_force_moving_charge (NOT the no-work concept, which shows no magnitude)
+- DISAMBIGUATION: "Lorentz force" or "F = qv × B" alone, asking WHICH WAY / right-hand rule / sign flip / into-the-page → magnetic_force_direction_right_hand_rule; asking WHY NO WORK / why speed doesn't change / "steers not speeds up" / ΔKE = 0 → magnetic_force_perpendicular_no_work
+- "period / time per orbit / how long is one lap / how often it goes round / does the lap time change with speed / T = 2πm/qB / cyclotron frequency / f = qB/2πm / why is the period independent of speed" → cyclotron_period_independent_of_speed
+- DISAMBIGUATION (RADIUS vs MAGNITUDE vs PERIOD of circular motion): "radius / how big the circle / r = mv/qB / does m,v,q,B change the size" → circular_motion_charge_in_uniform_B; "magnitude / how strong the force / F = qvB sinθ / how many Newtons" → magnetic_force_moving_charge; "period / time per orbit / how often / how long is one lap / T = 2πm/qB / cyclotron frequency" → cyclotron_period_independent_of_speed. The RADIUS atom surfaces ONLY the circle's size r (never the force magnitude, never the period); the PERIOD atom surfaces ONLY the lap time T (it cites r = mv/qB but never re-derives it, and never shows the force magnitude).
 - "force on a current-carrying wire" / "F = IL×B" / "BIL sinθ" / "force on a wire in a magnetic field" / "motor force" → force_on_current_carrying_wire
-- "torque on a current loop" / "magnetic moment" / "μ = NIA" / "loop in magnetic field" → torque_on_current_loop_in_field
+- "torque on a current loop" / "couple on a loop" / "τ = μ × B" / "loop rotating in a magnetic field" → torque_on_current_loop_in_field
+- "is a current loop a magnet" / "loop acts as a dipole" / "current loop is a magnetic dipole" / "loop field is like a bar magnet" / "why is a loop a dipole" / "magnetic moment of a loop m = NIA" → current_loop_acts_as_dipole
+- DISAMBIGUATION (loop torque vs loop-as-dipole): if the question is about the loop TURNING / the torque / the couple in a field → torque_on_current_loop_in_field; if it is about the loop BEING a magnet / its field looking like a bar magnet / what m = NIA is → current_loop_acts_as_dipole.
+- "force between two parallel wires" / "two wires carrying current attract or repel" / "F/L = μ₀I₁I₂/2πd" / "parallel currents attract" / "why does the ampere get defined this way" → parallel_currents_force
 - "solenoid" / "B inside a solenoid" / "B = μ₀nI" / "turns per metre" / "RHR for solenoid" / "field of a coil" → magnetic_field_solenoid
 
 CRITICAL DISAMBIGUATION (forces, Ch.8):

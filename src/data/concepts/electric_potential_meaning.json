@@ -1,0 +1,1095 @@
+{
+  "concept_id": "electric_potential_meaning",
+  "concept_name": "Electric Potential — Work Done per Unit Charge (V = W/q)",
+  "chapter": 2,
+  "section": "2.1-2.2",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.2 Electrostatic Potential and Capacitance (§2.1 Introduction, §2.2 Electrostatic Potential) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (push a test charge in from far away → the work to reach a point is one fixed number because the electrostatic force is conservative → that banked work is the charge's potential ENERGY U → divide out the test charge to strip the prober: V = W/q is a property of the PLACE → anchor the zero at infinity, V(∞)=0, and read ΔV = V_B − V_A as the per-unit-charge work between two points → V is a SCALAR: equal-V points wrap the charge as equipotential shells, one number per shell, no arrow, while E is the perpendicular downhill arrow → drag the test charge across shells: V is altitude, E is slope), never copied. The atomic idea: electric potential V at a point is the work done per unit positive test charge to bring that charge from infinity to the point — a single scalar number attached to each location (no direction), path-independent because the electrostatic force is conservative, measured against V(∞)=0; so V is a property of the place, not of the test charge you probe it with, and ΔV between two points is the per-unit-charge work to move between them. SCOPE: this is the foundation/MEANING diamond of Ch.2 — it teaches what V MEANS (V = W/q) and STOPS SHORT of the point-charge formula V = kQ/r (deferred to the sibling electric_potential_point_charge, which declares THIS concept as a prerequisite). Does NOT cover E = −dV/dr as a computational tool (only a one-line 'E is the slope of V' teaser at the very end), potential energy of a SYSTEM of charges, capacitance, or conductor equipotential. NEW field_3d potential primitives (FOUNDER-APPROVED engine build): 1/r-spaced V-labelled equipotential shells with per-state reveal, a route-animating test charge + live work tally with q→2q grow, a ΔV bracket + ∞·V=0 reference marker billboarded camera-right, and a draggable V-readout explorer (potential_explorer) with idle auto-sweep, all reusing the point_charge_positive scenario. Prerequisites electric_field_point_charge + coulombs_law. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the five misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "point_charge_positive"
+    ]
+  },
+  "prerequisites": [
+    "electric_field_point_charge",
+    "coulombs_law"
+  ],
+  "real_world_anchor": {
+    "primary": "In a school physics lab, the metal dome of a Van de Graaff generator piles positive charge onto its surface. The space around it becomes a steep hill of potential. Slide a tiny charged ball up toward the dome and it takes real effort against the field shoving it away — and higher up that hill means higher potential. Far away the hill flattens to nothing, the natural zero. The dome's potential is one single number for the whole hilltop, no matter which way you walked the ball in — it is a scalar, a property of the place, not of the ball.",
+    "secondary": "Run a plastic comb through dry hair and hold it near a thin stream of water or torn bits of paper. The charged comb sets up its own little hill of potential in the air around it. Bring a test charge closer to the comb and it takes more work to get there — so that spot sits higher on the hill, at a higher potential.",
+    "tertiary": "Before a monsoon lightning strike, charge separates inside a storm cloud until the cloud base and the ground sit at hugely different potentials — a potential difference of millions of volts. The strike itself is that ΔV suddenly made visible: the per-unit-charge work to jump from ground to cloud, paid out all at once."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "Q": {
+        "name": "Source charge on the dome (kept positive across the whole arc)",
+        "unit": "demo nC",
+        "min": 1,
+        "max": 1,
+        "default": 1,
+        "step": 1
+      },
+      "q_test": {
+        "name": "Test charge brought in from infinity (doubles to 2 in the STATE_4 reveal)",
+        "unit": "demo nC",
+        "min": 1,
+        "max": 2,
+        "default": 1,
+        "step": 1
+      },
+      "r": {
+        "name": "Distance of the test charge from the source (drives which shell it sits on; the STATE_7 drag owns this)",
+        "unit": "demo units",
+        "min": 0.5,
+        "max": 4.0,
+        "default": 1.5,
+        "step": 0.05
+      },
+      "k": {
+        "name": "Coulomb constant k = 1/(4*pi*epsilon_0) (declared so a numeric V value can show on points; the FORMULA V=kQ/r is withheld until the STATE_7 teaser)",
+        "unit": "N*m^2/C^2",
+        "min": 8990000000,
+        "max": 8990000000,
+        "default": 8990000000,
+        "step": 1
+      },
+      "epsilon_0": {
+        "name": "Permittivity of free space (a fixed constant of nature)",
+        "unit": "C^2/(N*m^2)",
+        "min": 8.854e-12,
+        "max": 8.854e-12,
+        "default": 8.854e-12,
+        "step": 1
+      },
+      "DEMO_V_PER_NC": {
+        "name": "Demo potential readout per demo-nC of source charge at unit demo radius (mirror of the sibling DEMO_E_PER_NC convention)",
+        "unit": "demo V per (demo nC) at r=1",
+        "min": 9,
+        "max": 9,
+        "default": 9,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "V_demo": {
+        "formula": "DEMO_V_PER_NC * Q / Math.max(r, 0.05)"
+      },
+      "W_demo": {
+        "formula": "q_test * (DEMO_V_PER_NC * Q / Math.max(r, 0.05))"
+      },
+      "W_per_q": {
+        "formula": "DEMO_V_PER_NC * Q / Math.max(r, 0.05)"
+      },
+      "U_demo": {
+        "formula": "q_test * (DEMO_V_PER_NC * Q / Math.max(r, 0.05))"
+      },
+      "delta_V": {
+        "formula": "(DEMO_V_PER_NC * Q / Math.max(1.0, 0.05)) - (DEMO_V_PER_NC * Q / Math.max(1.5, 0.05))"
+      }
+    },
+    "formulas": {
+      "potential_definition": "V = W / q",
+      "potential_energy": "U = q V",
+      "path_independence": "W depends only on the start and end points, never on the route (the electrostatic force is conservative)",
+      "reference": "V(infinity) = 0",
+      "potential_difference": "Delta V = V_B - V_A",
+      "scalar_nature": "V is a scalar; equipotential surfaces are the level sets of V (one number per surface, no direction)",
+      "field_relation_teaser": "E points in the direction of decreasing V, perpendicular to the equipotential surfaces (the full gradient relation E = -dV/dr is deferred)"
+    },
+    "constraints": [
+      "V is a SCALAR: one number per point, no direction - it is NOT a vector and is NOT the field E (C1).",
+      "The work to bring a charge to a point, and therefore V at that point, is path-independent: it depends only on the endpoints because the electrostatic force is conservative (C2).",
+      "V is independent of the test charge used to probe it: V = W/q, NOT W*q - doubling the test charge doubles W but leaves W/q unchanged (C3).",
+      "The reference is V(infinity) = 0: potential is measured as work per unit charge brought in from infinitely far away (C4).",
+      "Closer to a positive source means more work to bring a positive charge in, hence HIGHER potential: V rises as r falls and V -> 0 as r grows large (C5).",
+      "Potential energy U = qV scales with the charge q; potential V = U/q = W/q does NOT - U belongs to the charge, V belongs to the place (C6).",
+      "The field E is perpendicular to the equipotential surfaces and points toward LOWER V (downhill); equipotential surfaces are the level sets of V (C7).",
+      "Delta V between two points is the per-unit-charge work to move a charge between them, Delta V = V_B - V_A - that is what a voltage between two points means (C8)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "Potential is a scalar — one number per place; the field E points downhill.",
+    "visual_confirmation": "Cyan equipotential shells fade in, each carrying one plain V number and no arrow, while the only arrow — E — is drawn meeting a shell at 90 degrees, pointing from the high-V shell toward the low-V shell."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "definition": [
+      "STATE_4",
+      "STATE_5"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "A +Q dome — how much effort to push a test charge in close?",
+        "duration": 14,
+        "focal_primitive_id": "effort_question_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "source_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "+Q charged dome",
+            "color": "#EF5350",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "test_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "+q far out",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "effort_question_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "push it in close — effort? which way matters?",
+            "color": "#D4D4D8",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "This metal dome is charged up, like the top of a Van de Graaff generator. A tiny positive charge sits far out, where the push barely reaches.", "text_hi": "यह metal dome charge up है, बिल्कुल Van de Graaff generator के top की तरह। एक tiny positive charge बहुत दूर बैठा है, जहाँ field का push मुश्किल से पहुँचता है।", "text_te": "ఈ metal dome charge up అయ్యింది, Van de Graaff generator top లాగా. ఒక tiny positive charge చాలా దూరంగా ఉంది, అక్కడికి field యొక్క push అందట్లేదు."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "To push that small charge in close to the dome, against the field shoving it away, will it take effort, and does it matter which way you walk it in?", "text_hi": "उस छोटे charge को dome के पास push करने के लिए, field के against जो उसे दूर धकेल रही है — क्या उसमें effort लगेगा, और क्या मायने रखता है कि आप किस रास्ते से ले जाते हैं?", "text_te": "ఆ చిన్న charge ని dome దగ్గరకి push చేయడానికి, field కి వ్యతిరేకంగా — అందులో effort పడుతుందా, మరియు మీరు ఏ దారిలో తీసుకెళ్ళినా తేడా ఉంటుందా?",
+              "pause_after_ms": 2600
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Potential is something a battery has at its terminals - a point in empty space cannot 'have a potential'.",
+            "visual_counter": "The hook shows a charged dome and a test charge far out in empty space, posing the effort question - no battery anywhere, yet pushing the charge in plainly takes work.",
+            "one_line_fix": "Every point in a field has a potential: it is the work per unit charge to bring a test charge there from infinity, no battery required."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Two different paths, same total effort: the field is conservative",
+        "duration": 22,
+        "focal_primitive_id": "conservative_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "path1_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "path 1: straight in",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "path2_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "path 2: the long way",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "conservative_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "W = 6 both routes — conservative",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Watch me bring it in two ways. Path one is a straight dash inward. Path two loops the long way around. Predict: same effort, or different?", "text_hi": "देखो मैं इसे दो तरीकों से लाता हूँ। Path one सीधे अंदर की तरफ है। Path two लंबे रास्ते से घूमकर। Predict करो: same effort लगेगा, या अलग?", "text_te": "నేను దీన్ని రెండు విధాలుగా తీసుకొస్తా చూడండి. Path one నేరుగా లోపలికి. Path two పొడవైన దారి చుట్టూ. Predict చేయండి: same effort అవుతుందా, వేరుగా ఉంటుందా?",
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Here goes path one, straight in. Watch the work tally climb as I push it against the field, all the way to the point.", "text_hi": "यह रहा path one, सीधे अंदर। देखो work tally कैसे बढ़ता है जब मैं इसे field के against push करता हूँ, उस point तक।", "text_te": "ఇదిగో path one, నేరుగా లోపలికి. నేను దీన్ని field కి వ్యతిరేకంగా push చేస్తున్నప్పుడు work tally ఎలా పెరుగుతుందో చూడండి, ఆ point వరకు."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Now path two, the long looping way to the very same point. Its own tally climbs, and lands on the same total.", "text_hi": "अब path two, उसी point तक पहुँचने का लंबा looping रास्ता। इसका अपना tally बढ़ता है, और उसी total पर आकर रुकता है।", "text_te": "ఇప్పుడు path two, అదే point కి చేరే పొడవైన looping దారి. దాని own tally పెరుగుతుంది, మరియు అదే total మీద ఆగుతుంది."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Two completely different routes, identical effort. The electrostatic force is conservative, so only the start and end points matter, never the path.", "text_hi": "दो बिल्कुल अलग routes, पर effort एकसमान। Electrostatic force conservative है, इसलिए केवल start और end points मायने रखते हैं, path कभी नहीं।", "text_te": "రెండు పూర్తిగా వేర్వేరు routes, కానీ effort ఒకటే. Electrostatic force conservative అయినందువల్ల, start మరియు end points మాత్రమే పనికొస్తాయి, path ఎప్పుడూ కాదు."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Different routes to the same point cost different amounts of effort - the path you take matters.",
+            "visual_counter": "A straight dash and a long looping route both end on the same point with two identical work tallies (W = 6 and W = 6).",
+            "one_line_fix": "The electrostatic force is conservative, so the work to reach a point depends only on the endpoints, never on the path."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_3": {
+        "title": "That stored effort is the charge's potential ENERGY, U",
+        "duration": 18,
+        "focal_primitive_id": "energy_label",
+        "advance_mode": "auto_after_tts",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "held_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "+q held at the point",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "release_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "let go — it flies back out",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "energy_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "U = stored energy",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "That effort you spent pushing in did not vanish. If I let go of the charge right now, what do you think happens?", "text_hi": "वो effort जो तुमने push करने में लगाया, वो गया नहीं। अगर मैं अभी charge को छोड़ दूँ, तो क्या होगा बताओ?", "text_te": "మీరు push చేయడానికి పెట్టిన ఆ effort అదృశ్యం కాలేదు. నేను ఇప్పుడే charge ని వదిలేస్తే, ఏం జరుగుతుందని అనుకుంటున్నారు?",
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Watch. Let go, and it flies straight back outward along the field, picking up speed as the stored energy drains away to nothing.", "text_hi": "देखो। छोड़ा, और यह field के साथ सीधे बाहर उड़ जाता है, speed पकड़ता जाता है जैसे stored energy खाली होती जाती है।", "text_te": "చూడండి. వదిలేశాను, మరియు ఇది field వెంట నేరుగా బయటికి దూసుకెళ్తుంది, stored energy drain అవుతున్నకొద్దీ speed పెరుగుతుంది."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "The work you did was banked as the charge's electric potential energy, U, at that spot. Stored effort the field gives back when released.", "text_hi": "तुमने जो work किया वो उस charge की electric potential energy, U, के रूप में उस जगह जमा हो गया। वही stored effort जो field release होने पर वापस देती है।", "text_te": "మీరు చేసిన work ఆ charge యొక్క electric potential energy, U, గా ఆ చోట దాచుకోబడింది. అదే stored effort ని field release అయినప్పుడు తిరిగి ఇస్తుంది."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The stored effort is a force pushing the charge, or the potential itself is what pushes it.",
+            "visual_counter": "Releasing the charge converts the stored energy U into motion - it flies outward and the badge drains to zero; nothing pushes except the field E.",
+            "one_line_fix": "The banked work is potential ENERGY (U = qV), energy that converts to motion on release - not a force and not the potential itself."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Divide out the test charge: V = W/q is a property of the PLACE",
+        "duration": 30,
+        "focal_primitive_id": "v_definition_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "doubling_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "+q grows to +2q: W doubles 6 → 12",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "ratio_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "W / q stays 6",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "v_definition_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "V = W / q   (V = 6 at this place)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "The work to bring a charge here depends on how big the charge is. A fatter charge fights the field harder, so it costs more effort.", "text_hi": "किसी charge को यहाँ तक लाने में जो work लगता है वो charge की size पर निर्भर करता है। बड़ा charge field से ज़्यादा लड़ता है, इसलिए ज़्यादा effort लगता है।", "text_te": "ఒక charge ని ఇక్కడికి తీసుకురావడానికి అయ్యే work, charge ఎంత పెద్దదో దానిపై ఆధారపడుతుంది. పెద్ద charge field తో ఎక్కువగా పోరాడుతుంది, అందుకే ఎక్కువ effort అవుతుంది."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Swap the small charge for one twice as big, a 2q. Predict the work to bring it to the same point, and predict the work divided by the charge.", "text_hi": "छोटे charge की जगह दोगुना बड़ा, एक 2q लाओ। Predict करो कि उसे उसी point तक लाने में कितना work लगेगा, और work divided by the charge कितना होगा।", "text_te": "చిన్న charge బదులు రెట్టింపు పెద్దది, ఒక 2q తీసుకురండి. దాన్ని అదే point కి తీసుకురావడానికి work ఎంత అవుతుందో, మరియు work divided by the charge ఎంతుంటుందో predict చేయండి.",
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Watch. The charge doubles, and the work tally doubles with it, from 6 up to 12. But the work divided by the charge stays exactly the same.", "text_hi": "देखो। Charge double होता है, और work tally भी double होती है, 6 से 12 तक। लेकिन work divided by the charge बिल्कुल same रहती है।", "text_te": "చూడండి. Charge double అవుతుంది, మరియు work tally కూడా double అవుతుంది, 6 నుండి 12 వరకు. కానీ work divided by the charge సరిగ్గా same గా ఉంటుంది."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "That unchanging ratio is the electric potential, V. V equals W over q. This place has a potential V, no matter which charge you used to find it.", "text_hi": "वो न बदलने वाला ratio ही electric potential, V है। V equals W over q। इस जगह का potential V है, चाहे तुमने किसी भी charge से उसे find किया हो।", "text_te": "ఆ మారని ratio నే electric potential, V. V equals W over q. ఈ చోటికి potential V ఉంది, మీరు దేనితో కనుగొన్నా సరే."
+            },
+            {
+              "id": "s4_5",
+              "text_en": "Dividing out the test charge strips away the prober. What is left, V, is a property of the place and the source, the same number for any charge.", "text_hi": "Test charge को divide करके निकाल देने से prober हट जाता है। जो बचता है, V, वो उस जगह और source की property है, किसी भी charge के लिए same number।", "text_te": "Test charge ని divide చేసి తీసివేయడం వల్ల prober తొలగిపోతుంది. మిగిలేది, V, ఆ చోట మరియు source యొక్క property, ఏ charge కైనా same number."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The potential at a point depends on the test charge you use - a bigger charge gives a bigger potential.",
+            "visual_counter": "Doubling the charge to 2q doubles the work tally (6 -> 12) but the ratio W/q stays exactly 6; V = 6 is the same for q and 2q.",
+            "one_line_fix": "V = W/q divides the test charge out, so V is the same number whatever charge probes it - it belongs to the place, not the charge."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_5": {
+        "title": "Reference at infinity: V(∞)=0, and ΔV between two points",
+        "duration": 30,
+        "focal_primitive_id": "delta_v_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "reference_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "∞ · V = 0  (measure from here)",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "points_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "A: V = 6   ·   B closer: V = 9",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "delta_v_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "ΔV = V_B − V_A = +3",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "We have been saying 'work to bring it here', but from where? We need a starting line. The natural zero is infinitely far away, where the field cannot reach.", "text_hi": "हम 'work to bring it here' कह रहे थे, लेकिन कहाँ से? हमें एक starting line चाहिए। Natural zero बहुत दूर infinity पर है, जहाँ field पहुँच नहीं सकती।", "text_te": "మేము 'work to bring it here' అంటున్నాం, కానీ ఎక్కడి నుండి? మాకు ఒక starting line కావాలి. Natural zero అనంత దూరంలో infinity వద్ద ఉంది, అక్కడికి field చేరలేదు."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "So we set the potential at infinity to zero. The far marker lights up: at infinity, V equals zero. Everything is measured from there.", "text_hi": "तो हम infinity पर potential को zero set करते हैं। दूर का marker जलता है: infinity पर, V equals zero। सब कुछ वहाँ से measure किया जाता है।", "text_te": "కాబట్టి మేము infinity వద్ద potential ని zero గా set చేస్తాం. దూరపు marker వెలుగుతుంది: infinity వద్ద, V equals zero. అక్కడి నుండే అన్నీ measure చేస్తాం."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Now mark a second point, B, closer in than A. Predict: for this positive dome, is B's potential higher than A's, or lower?", "text_hi": "अब A से थोड़ा अंदर एक दूसरा point B mark करो। Predict करो: इस positive dome के लिए, B का potential A से ऊँचा होगा या नीचा?", "text_te": "ఇప్పుడు A కంటే కొంచెం లోపల ఒక రెండో point B ని mark చేయండి. Predict చేయండి: ఈ positive dome కి, B యొక్క potential A కంటే ఎక్కువగా ఉంటుందా లేదా తక్కువగా?",
+              "pause_after_ms": 2600
+            },
+            {
+              "id": "s5_4",
+              "text_en": "B is closer, so it took more work to reach, so its potential is higher: 9 against A's 6. The gap between them, V_B minus V_A, is the potential difference, ΔV equals 3.", "text_hi": "B ज़्यादा पास है, इसलिए वहाँ पहुँचने में ज़्यादा work लगा, इसलिए उसका potential ऊँचा है: A के 6 के मुकाबले 9। उनके बीच का gap, V_B minus V_A, potential difference है, delta V equals 3।", "text_te": "B దగ్గరగా ఉంది కాబట్టి చేరడానికి ఎక్కువ work అయింది, కాబట్టి దాని potential ఎక్కువ: A యొక్క 6 కి బదులు 9. వాటి మధ్య gap, V_B minus V_A, potential difference, delta V equals 3."
+            },
+            {
+              "id": "s5_5",
+              "text_en": "That difference, the per-unit-charge work to move from A to B, is exactly what people mean by a 'voltage between two points'.", "text_hi": "वो difference, A से B तक move करने का per-unit-charge work, यही है जो लोग 'voltage between two points' से मतलब निकालते हैं।", "text_te": "ఆ difference, A నుండి B కి move చేయడానికి per-unit-charge work, ఇదే అందరూ 'voltage between two points' అని చెప్పేది."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A point closer to the charge has a LOWER potential, or the potential difference depends on the path A to B.",
+            "visual_counter": "Point B, closer in, reads V = 9 against A's V = 6; the Delta V bracket reads +3, and is the same whatever route joins A and B.",
+            "one_line_fix": "Closer to a positive source means more work to arrive, so HIGHER V; Delta V = V_B - V_A is path-independent, set only by the two points."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "V is a SCALAR: shells of equal potential; E is the perpendicular arrow",
+        "duration": 30,
+        "focal_primitive_id": "scalar_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "e_known_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "E: an arrow at every point (you know this)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "shells_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "equipotential shells: one V number, no arrow",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "scalar_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "V = scalar (altitude) · E ⟂ shells (slope)",
+            "color": "#D4D4D8",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "You already know E. It is an arrow, a vector, one at every point, pointing the way a charge gets pushed. Here it is, faint.", "text_hi": "तुम E को पहले से जानते हो। यह एक arrow है, एक vector, हर point पर एक, जो दिशा बताता है कि charge को कहाँ push मिलेगी। यह रहा, हल्का-सा।", "text_te": "మీకు E ఇప్పటికే తెలుసు. అది ఒక arrow, ఒక vector, ప్రతి point వద్ద ఒకటి, charge కి ఏ దిశలో push అవుతుందో చూపిస్తుంది. ఇదిగో, తక్కువ brightness తో."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Is potential an arrow too? Does the potential at a point have a direction, like E does? Predict before I reveal the shells.", "text_hi": "क्या potential भी एक arrow है? क्या किसी point पर potential की कोई direction होती है, जैसे E की होती है? Shells reveal करने से पहले predict करो।", "text_te": "Potential కూడా ఒక arrow అంటారా? ఒక point వద్ద potential కి కూడా direction ఉంటుందా, E లాగా? Shells reveal చేయడానికి ముందు predict చేయండి.",
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s6_3",
+              "text_en": "No. Watch the surfaces of equal potential appear: nested shells, each carrying one plain number, no arrow. Every point on a shell shares one V.", "text_hi": "नहीं। देखो equal potential की surfaces कैसे appear होती हैं: nested shells, हर एक पर एक plain number, कोई arrow नहीं। एक shell पर हर point एक ही V share करता है।", "text_te": "లేదు. Equal potential యొక్క surfaces ఎలా appear అవుతున్నాయో చూడండి: nested shells, ఒక్కో దానిపై ఒక plain number, arrow లేదు. ఒక shell మీద ప్రతి point ఒకే V share చేసుకుంటుంది."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "V is a scalar, one number per place. Equal-V points form whole surfaces. And here is E, drawn on a shell, meeting it square at ninety degrees, pointing downhill.", "text_hi": "V एक scalar है, हर जगह एक number। Equal-V points मिलकर पूरी surfaces बनाते हैं। और यह रहा E, एक shell पर drawn, उससे ninety degrees पर मिलता है, downhill की तरफ point करता है।", "text_te": "V ఒక scalar, ప్రతి చోటు ఒక number. Equal-V points కలిసి పూర్తి surfaces తయారు చేస్తాయి. మరియు ఇదిగో E, ఒక shell మీద drawn, దానిని ninety degrees లో కలుస్తూ, downhill వైపు point చేస్తుంది."
+            },
+            {
+              "id": "s6_5",
+              "text_en": "So potential is your altitude, a single number for each height, and the field E is the slope, the arrow that points straight downhill, always perpendicular.", "text_hi": "तो potential तुम्हारी altitude है, हर height के लिए एक single number, और field E slope है, वो arrow जो हमेशा सीधे downhill point करता है, हमेशा perpendicular।", "text_te": "కాబట్టి potential మీ altitude, ప్రతి height కి ఒక single number, మరియు field E slope, ఆ arrow అది ఎప్పుడూ నేరుగా downhill point చేస్తుంది, ఎప్పుడూ perpendicular గా."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Potential is a vector with a direction, or potential IS the electric field E.",
+            "visual_counter": "The shells carry one plain number each and no arrowhead; the only arrow is E, drawn perpendicular to a shell, pointing downhill.",
+            "one_line_fix": "V is a scalar - one number per place, no direction; equal-V points form whole surfaces. E is the separate vector that points straight downhill, perpendicular to them."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_7": {
+        "title": "Explore: drag the test charge across shells — altitude vs slope",
+        "duration": 16,
+        "focal_primitive_id": "altitude_slope_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "drag_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "drag the +q — its shell lights up, V reads out",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "altitude_slope_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "V = altitude · E = slope",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "teaser_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "next: V = kQ/r →",
+            "color": "#90CAF9",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now you drive. Drag the test charge. The shell it sits on lights up and its potential V reads out: the same V anywhere on that shell.", "text_hi": "अब तुम drive करो। Test charge को drag करो। जिस shell पर वो बैठता है वो light up होती है और उसका potential V readout होता है: उस shell पर कहीं भी same V।", "text_te": "ఇప్పుడు మీరు drive చేయండి. Test charge ని drag చేయండి. అది కూర్చున్న shell light up అవుతుంది మరియు దాని potential V readout అవుతుంది: ఆ shell మీద ఎక్కడైనా same V."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Walk it inward across the shells and V climbs. The green arrow, E, always points straight downhill, square to the shells. V is your altitude, E is the slope.", "text_hi": "इसे shells के across अंदर की तरफ ले जाओ और V बढ़ता जाता है। Green arrow, E, हमेशा shells के square पर, सीधे downhill point करता है। V तुम्हारी altitude है, E slope है।", "text_te": "దీన్ని shells అంతటా లోపలికి నడిపించండి మరియు V పెరుగుతుంది. Green arrow, E, ఎప్పుడూ shells కి square గా, నేరుగా downhill point చేస్తుంది. V మీ altitude, E slope."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "One question left for next time: exactly how big is V at distance r from a point charge? That is V = kQ/r, the formula behind these shells.", "text_hi": "अगली बार के लिए एक question बचा है: ठीक-ठीक V कितना होता है जब point charge से distance r हो? वो है V equals k Q over r, इन shells के पीछे का formula।", "text_te": "తర్వాత సారికి ఒక question మిగిలింది: ఒక point charge నుండి distance r వద్ద V సరిగ్గా ఎంత? అది V equals k Q over r, ఈ shells వెనక ఉన్న formula."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the meaning of electric potential when they can (1) state V = W/q, the work per unit positive test charge to bring it from infinity to the point; (2) explain that this work, and therefore V, is path-independent because the electrostatic force is conservative; (3) show that V is independent of the test charge used, since doubling the charge doubles the work but leaves the ratio W/q unchanged; (4) distinguish potential V (a scalar property of the place) from potential energy U = qV (energy of the charge, scaling with q); (5) use the reference V(infinity) = 0 and read Delta V = V_B - V_A as the per-unit-charge work between two points, knowing that closer to a positive source means higher V; and (6) recognise that V is a scalar whose equal-value points form equipotential surfaces, with the field E perpendicular to them, pointing toward lower V.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "Electric potential V at a point is defined as the work W done to bring a test charge q there from infinity, combined how?",
+        "options": {
+          "A": "V = W/q - the work per unit charge",
+          "B": "V = W*q - the work times the charge",
+          "C": "V = W - just the work done, the charge does not enter",
+          "D": "V = q/W - the charge per unit work"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "multiplies by the charge instead of dividing, confusing potential V with potential energy U = qV",
+          "C": "drops the test charge entirely, so the number would change with the charge used",
+          "D": "inverts the ratio, giving charge per unit work instead of work per unit charge"
+        },
+        "tested_idea": "Electric potential is the work done per unit positive test charge, V = W/q.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "It takes work W to carry a small charge q from far away up to a charged Van de Graaff dome's surroundings. How is the potential V at that spot built from W and q?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "Which statement about electric potential V at a point is correct?",
+        "options": {
+          "A": "V is a scalar - a single number with no direction",
+          "B": "V is a vector pointing along the electric field E",
+          "C": "V is a vector pointing radially outward from a positive charge",
+          "D": "V is just another name for the electric field E"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imagines potential as an arrow aligned with E, treating a scalar as a vector",
+          "C": "gives potential the radial direction of the field instead of recognising it has no direction",
+          "D": "conflates the scalar potential V with the vector field E"
+        },
+        "tested_idea": "V is a scalar (one number per place); equal-V points form equipotential surfaces. E is the separate vector.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "Around a charged dome, is the potential at a point an arrow (with a direction) or a plain number? Pick the correct description."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "You bring a charge from infinity to a point P by a short straight route, and a friend brings an identical charge to the same point P by a long winding route. Compare the work each of you does.",
+        "options": {
+          "A": "The work is the same - it depends only on the start and end points",
+          "B": "The longer winding route requires more work",
+          "C": "The work depends on the exact route each person takes",
+          "D": "The winding route stores extra energy in the charge along the way"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "thinks a longer path costs more work, ignoring that the electrostatic force is conservative",
+          "C": "believes the route matters, not just the endpoints",
+          "D": "imagines a path-dependent extra energy, which a conservative field cannot store"
+        },
+        "tested_idea": "Work to reach a point is path-independent because the electrostatic force is conservative, so V is well-defined.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Two students slide a charged ball up to the same spot near a charged comb, one straight in, one looping around. Do they do the same total work, or different amounts?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "At a point near a charged dome, the potential is V. If you probe the SAME point with a charge twice as large (2q instead of q), what is the potential there?",
+        "options": {
+          "A": "Still V - the potential is the same, since V = W/q and both W and q double",
+          "B": "2V - twice the charge gives twice the potential",
+          "C": "V/2 - a bigger charge sees a smaller potential",
+          "D": "It depends on q, so it cannot be stated without knowing the charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "doubles V with the charge, confusing potential V with potential energy U = qV (which does double)",
+          "C": "invents an inverse dependence of V on the probing charge",
+          "D": "thinks V cannot be defined without specifying the test charge"
+        },
+        "tested_idea": "V is independent of the test charge: doubling q doubles W but leaves W/q unchanged.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A spot near a charged rod has potential V when probed with a tiny charge. Probe the very same spot with a charge ten times bigger. What potential do you read?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Near a positively charged dome, point B is closer to the dome than point A. Taking V(infinity) = 0, compare the potentials and the meaning of Delta V = V_B - V_A.",
+        "options": {
+          "A": "V_B is higher than V_A; Delta V is the work per unit charge to move from A to B",
+          "B": "V_B is lower than V_A, because being closer means less potential",
+          "C": "V_B equals V_A, since potential is the same everywhere around the dome",
+          "D": "Delta V depends on which path you take from A to B"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "thinks closer to the charge means lower potential, getting the sign of the gradient backwards",
+          "C": "imagines a uniform potential around the dome, ignoring that V rises toward the source",
+          "D": "believes the potential difference is path-dependent, contradicting the conservative field"
+        },
+        "tested_idea": "Closer to a positive source means higher V; Delta V = V_B - V_A is the path-independent per-unit-charge work between the points.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Standing near a charged Van de Graaff dome, point B is nearer the dome than point A. Is B at a higher or lower potential, and what does the difference between them mean?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A charge q sits at a point where the potential is V. How do the potential V of the place and the potential energy U of the charge relate, and which one changes if you swap in a bigger charge?",
+        "options": {
+          "A": "U = qV; the energy U scales with the charge, but the potential V of the place does not",
+          "B": "V and U are the same quantity with the same value",
+          "C": "U does not depend on the charge q at all",
+          "D": "V = qU; the potential scales with the charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "conflates the place's potential V with the charge's energy U, treating them as identical",
+          "C": "forgets that U = qV scales with the charge, while V does not",
+          "D": "inverts the relation, making the place's potential depend on the probing charge"
+        },
+        "tested_idea": "U = qV: potential energy belongs to the charge and scales with q; potential belongs to the place and does not.",
+        "teaches_state": "STATE_3",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Two different charges, q and 2q, sit at the same spot near a charged dome. Do they have the same potential energy, the same potential, both, or neither?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "Q3"
+      ],
+      "STATE_3": [
+        "Q6"
+      ],
+      "STATE_4": [
+        "Q1",
+        "Q4"
+      ],
+      "STATE_5": [
+        "Q5"
+      ],
+      "STATE_6": [
+        "Q2"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_7"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "point_charge_positive",
+    "explorer_id": "potential_explorer",
+    "potential_meaning": {
+      "potential_defaults": {
+        "demo_v_per_nc": 9,
+        "Q": 1,
+        "r_destination": 1.5,
+        "clamp_r_min": 0.05
+      }
+    },
+    "field_lines": {
+      "count": 24,
+      "color_positive": "#EF5350",
+      "color_negative": "#42A5F5",
+      "opacity": 0.45,
+      "arrow_spacing": 5
+    },
+    "slider_controls": {
+      "r": {
+        "min": 0.5,
+        "max": 4.0,
+        "step": 0.05,
+        "default": 1.5,
+        "label": "Test-charge distance r"
+      }
+    },
+    "colors": {
+      "positive": "#EF5350",
+      "test_charge": "#FFF176",
+      "equipotential": "#4FC3F7",
+      "field": "#66BB6A",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "equipotential": {
+      "show": false,
+      "color": "#4FC3F7",
+      "opacity": 0.14,
+      "label_each_shell": true,
+      "shells": [
+        {
+          "radius": 1.0,
+          "v_label": "9"
+        },
+        {
+          "radius": 1.5,
+          "v_label": "6"
+        },
+        {
+          "radius": 2.0,
+          "v_label": "4.5"
+        },
+        {
+          "radius": 3.0,
+          "v_label": "3"
+        }
+      ]
+    },
+    "test_charge_route": {
+      "explorer_id": "potential_explorer",
+      "start_r": 3.5,
+      "destination_r": 1.5,
+      "paths": [
+        {
+          "id": "path_1",
+          "shape": "straight_radial",
+          "tally_id": "W_path1"
+        },
+        {
+          "id": "path_2",
+          "shape": "looping_arc",
+          "tally_id": "W_path2"
+        }
+      ],
+      "work_tally": {
+        "W_path1_value": 6,
+        "W_path2_value": 6,
+        "W_2q_value": 12,
+        "W_per_q_value": 6
+      },
+      "doubling": {
+        "from_q": 1,
+        "to_q": 2,
+        "grow_label": "+q -> +2q"
+      }
+    },
+    "reference_marker": {
+      "show": false,
+      "label": "∞ · V = 0",
+      "position_r": 4.0,
+      "billboard": "camera_right"
+    },
+    "delta_v_bracket": {
+      "show": false,
+      "point_A": {
+        "r": 1.5,
+        "V_label": "6",
+        "name": "A"
+      },
+      "point_B": {
+        "r": 1.0,
+        "V_label": "9",
+        "name": "B"
+      },
+      "delta_v_label": "ΔV = V_B − V_A = 3",
+      "billboard": "camera_right"
+    },
+    "energy_badge": {
+      "show": false,
+      "U_value": 6,
+      "drains_to": 0,
+      "label": "U = stored energy"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Hook - effort to push a charge in?",
+        "visible_elements": [
+          "charge_plus",
+          "field_lines_faint",
+          "test_charge_far"
+        ],
+        "camera_position": [
+          2.6,
+          1.6,
+          4.2
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "faint",
+          "show_test_charge": true,
+          "test_charge_r": 3.5,
+          "show_work_tally": false,
+          "show_equipotential": false
+        },
+        "formula_overlay": ""
+      },
+      "STATE_2": {
+        "label": "Two paths, same work - conservative",
+        "visible_elements": [
+          "charge_plus",
+          "field_lines_faint",
+          "test_charge_route",
+          "work_tally_x2"
+        ],
+        "camera_position": [
+          2.8,
+          1.4,
+          4.2
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "faint",
+          "show_test_charge": true,
+          "show_work_tally": true,
+          "show_equipotential": false,
+          "animate_route": [
+            "path_1",
+            "path_2"
+          ],
+          "route_at_ms": [
+            5400,
+            12000
+          ],
+          "route_duration_ms": 4000
+        },
+        "formula_overlay": "W = 6 both routes"
+      },
+      "STATE_3": {
+        "label": "Stored effort = potential energy U",
+        "visible_elements": [
+          "charge_plus",
+          "field_lines_faint",
+          "test_charge_at_dest",
+          "energy_badge"
+        ],
+        "camera_position": [
+          2.8,
+          1.5,
+          4.0
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "faint",
+          "show_test_charge": true,
+          "test_charge_r": 1.5,
+          "show_energy_badge": true,
+          "show_equipotential": false,
+          "release_at_ms": 5200,
+          "release_duration_ms": 3500
+        },
+        "formula_overlay": "U = W"
+      },
+      "STATE_4": {
+        "label": "Divide out q - V = W/q (the definition)",
+        "visible_elements": [
+          "charge_plus",
+          "test_charge_at_dest",
+          "work_tally",
+          "v_callout",
+          "v_value_on_point"
+        ],
+        "camera_position": [
+          2.8,
+          1.5,
+          4.0
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "faint",
+          "show_test_charge": true,
+          "test_charge_r": 1.5,
+          "show_work_tally": true,
+          "show_v_callout": true,
+          "show_equipotential": false,
+          "doubling_at_ms": 12500,
+          "doubling_duration_ms": 1200,
+          "v_callout_at_ms": 19500
+        },
+        "formula_overlay": "V = W/q"
+      },
+      "STATE_5": {
+        "label": "Reference V(inf)=0 and delta V",
+        "visible_elements": [
+          "charge_plus",
+          "test_charge_at_dest",
+          "reference_marker",
+          "delta_v_bracket",
+          "point_A",
+          "point_B"
+        ],
+        "camera_position": [
+          2.8,
+          1.6,
+          4.2
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "faint",
+          "show_test_charge": true,
+          "test_charge_r": 1.5,
+          "show_reference_marker": true,
+          "show_delta_v_bracket": true,
+          "show_equipotential": false,
+          "reference_at_ms": 6000,
+          "delta_v_at_ms": 18000
+        },
+        "formula_overlay": "delta V = V_B - V_A = 3"
+      },
+      "STATE_6": {
+        "label": "PRIMARY aha - V scalar shells, E perpendicular",
+        "visible_elements": [
+          "charge_plus",
+          "field_lines_faint",
+          "equipotential_shells",
+          "e_arrow_perp",
+          "scalar_label"
+        ],
+        "camera_position": [
+          2.6,
+          1.7,
+          3.8
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "faint",
+          "show_equipotential": true,
+          "show_e_arrow": true,
+          "shells_at_ms": 12000,
+          "e_arrow_at_ms": 19000
+        },
+        "formula_overlay": "V = scalar . E perpendicular to shells"
+      },
+      "STATE_7": {
+        "label": "Explore - drag the test charge, read V",
+        "visible_elements": [
+          "charge_plus",
+          "equipotential_shells",
+          "test_charge_draggable",
+          "v_readout_live",
+          "e_arrow_live",
+          "teaser_pill"
+        ],
+        "camera_position": [
+          2.8,
+          1.8,
+          4.5
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_equipotential": true,
+          "show_test_charge": true,
+          "show_e_arrow": true,
+          "draggable_test_charge": true,
+          "idle_auto_sweep": true
+        },
+        "formula_overlay": "V = altitude . E = slope"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

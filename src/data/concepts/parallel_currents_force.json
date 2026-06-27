@@ -1,0 +1,805 @@
+{
+  "concept_id": "parallel_currents_force",
+  "concept_name": "Force Between Two Parallel Currents",
+  "chapter": 4,
+  "section": "4.11",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.11 (Force between two parallel currents, definition of the ampere) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the Indian real-world anchor + the SI ampere definition only. The atomic concept: two long parallel wires exert a magnetic force on each other. Wire 1's field at wire 2 is B₁ = μ₀I₁/2πd; wire 2 (current I₂ in that field) feels F = I₂ L × B₁, giving force-per-length F/L = μ₀I₁I₂/2πd. The result that traps students: PARALLEL currents ATTRACT and ANTIPARALLEL currents REPEL — the exact opposite of like/unlike electric charges. By Newton's third law the two wires feel equal-and-opposite forces. This relationship DEFINES the ampere (1 A is the current that, in two infinite parallel wires 1 m apart, gives F/L = 2×10⁻⁷ N/m). Deepest confusions targeted: (a) 'like currents repel, like charges do', (b) the force depends on only one of the currents, (c) reversing BOTH currents flips attraction (it does not). Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["parallel_currents_force"]
+  },
+  "prerequisites": [
+    "magnetic_field_wire",
+    "force_on_current_carrying_wire"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture the thick parallel busbars in a substation or the twin conductors feeding a big motor. When a huge fault current surges through them, the bars physically jerk toward or away from each other — that mechanical kick is exactly this F/L = μ₀I₁I₂/2πd force, which is why heavy busbars are clamped down.",
+    "secondary": "Picture the SI definition of the ampere itself: take two infinitely long parallel wires one metre apart; the current that makes them push or pull on each other with a force of 2×10⁻⁷ newton per metre IS one ampere. This very force is how the unit of current was defined.",
+    "tertiary": "Picture the windings packed side by side inside a powerful electromagnet or transformer coil. Adjacent turns carry current in the same direction, so they attract — the coil squeezes itself together. Engineers must brace the windings against exactly this inter-current force."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I1": {
+        "name": "Current in wire 1",
+        "unit": "A",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "I2": {
+        "name": "Current in wire 2",
+        "unit": "A",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "d": {
+        "name": "Separation between the wires",
+        "unit": "m",
+        "min": 0.02,
+        "max": 0.50,
+        "default": 0.10,
+        "step": 0.01
+      },
+      "mu_0": {
+        "name": "Magnetic permeability of free space",
+        "unit": "T·m/A",
+        "constant": 1.2566370614e-6
+      }
+    },
+    "computed_outputs": {
+      "B1_at_wire2": {
+        "formula": "(mu_0 * I1) / (2 * PI * d)"
+      },
+      "force_per_length": {
+        "formula": "(mu_0 * I1 * I2) / (2 * PI * d)"
+      },
+      "force_per_length_uN": {
+        "formula": "((mu_0 * I1 * I2) / (2 * PI * d)) * 1e6"
+      }
+    },
+    "formulas": {
+      "field_of_wire1": "B₁ = μ₀I₁/2πd — wire 1's magnetic field at the location of wire 2.",
+      "force_on_wire2": "F = I₂ L × B₁ — wire 2 carries current I₂ through wire 1's field, so it feels a force (RHR gives the direction).",
+      "force_per_length": "F/L = μ₀I₁I₂/2πd — force per unit length; symmetric in I₁ and I₂.",
+      "attract_repel": "Parallel currents ATTRACT; antiparallel currents REPEL (opposite to like/unlike charges).",
+      "newtons_third_law": "The two wires feel equal-and-opposite forces (action–reaction), even when I₁ ≠ I₂.",
+      "ampere_definition": "1 ampere: the current that makes two infinite parallel wires 1 m apart attract with F/L = 2×10⁻⁷ N/m."
+    },
+    "constraints": [
+      "Wires are long and straight; the long-wire field B₁ = μ₀I₁/2πd is used (end effects ignored).",
+      "B from one wire is evaluated AT the other wire's line; both wires lie in the same plane.",
+      "The force is mutual and equal-opposite (Newton's third law) regardless of whether I₁ = I₂.",
+      "Parallel (same-direction) currents attract; antiparallel (opposite) currents repel.",
+      "Reversing BOTH currents leaves the force unchanged (attraction stays attraction).",
+      "Steady currents only — no induced-EMF / time-varying effects (that is the next chapter)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Parallel currents attract — the opposite of like charges.",
+    "visual_confirmation": "STATE_5 shows both wires' force arrows pointing toward each other; reversing one current (STATE_7) flips them to point apart (repel)."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5"],
+    "formula": ["STATE_6"],
+    "antiparallel": ["STATE_7"]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "Two parallel wires",
+        "duration": 14,
+        "focal_primitive_id": "setup_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Two long parallel wires, both carrying current upward",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "legend_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Orange dots = current flowing.\nLeft wire = I₁, right wire = I₂.\nBoth currents point up (parallel).",
+            "color": "#82B1FF"
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "Question:\nDo these two wires push or pull\non each other? Or nothing?",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Same setup as two heavy busbars side by side in a substation.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Two long parallel wires. The orange dots show current flowing — both currents point straight up.", "text_hi": "दो लंबे parallel wires हैं। ये orange dots current का बहना दिखाते हैं — दोनों currents सीधे ऊपर की ओर हैं।", "text_te": "రెండు పొడవైన parallel wires ఉన్నాయి. ఈ orange dots current ప్రవహించడాన్ని చూపిస్తాయి — రెండు currents నేరుగా పైకి ఉన్నాయి.", "glow": "setup_label" },
+            { "id": "s1_2", "text_en": "Left wire carries I-one, right wire carries I-two. They are not touching.", "text_hi": "बायाँ wire I-one ले जाता है, दायाँ wire I-two ले जाता है। ये एक-दूसरे को छू नहीं रहे।", "text_te": "ఎడమ wire I-one మోస్తుంది, కుడి wire I-two మోస్తుంది. ఇవి ఒకదానికొకటి తాకడం లేదు.", "glow": "legend_label" },
+            { "id": "s1_3", "text_en": "The question. Do they push apart, pull together, or do nothing at all?", "text_hi": "अब सवाल यह है। क्या ये एक-दूसरे को दूर धकेलते हैं, पास खींचते हैं, या कुछ भी नहीं करते?", "text_te": "ఇప్పుడు ప్రశ్న ఇది. ఇవి ఒకదాన్నొకటి దూరంగా నెడతాయా, దగ్గరకు లాగుతాయా, లేదా ఏమీ చేయవా?", "glow": "question_label" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Wire 1 makes a field at wire 2",
+        "duration": 18,
+        "focal_primitive_id": "field_title",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "Wire 1's field reaches across to wire 2",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "field_explain",
+            "position": { "x": 200, "y": 230 },
+            "text": "Wire 1 is a current — it makes\ncircular field lines around itself.\nAt wire 2 the field is\nB₁ = μ₀I₁/2πd.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "field_reveal",
+            "position": { "x": 560, "y": 230 },
+            "text": "The green arrow at wire 2\nis B₁ — wire 1's field,\nright where wire 2 sits.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s2_3"
+          },
+          {
+            "type": "annotation",
+            "id": "field_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "Farther apart (bigger d) → weaker B₁ at wire 2.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Forget wire 2 for a second. Wire 1 is a current, so it wraps the space around it in circular magnetic field lines.", "text_hi": "एक पल के लिए wire 2 को भूल जाइए। Wire 1 एक current है, इसलिए यह अपने चारों ओर के space को circular magnetic field lines से लपेट देता है।", "text_te": "ఒక్క క్షణం wire 2 ని మర్చిపోండి. Wire 1 ఒక current, కాబట్టి ఇది తన చుట్టూ ఉన్న space ని circular magnetic field lines తో చుట్టేస్తుంది.", "glow": "field_title" },
+            { "id": "s2_2", "text_en": "Those circles reach all the way across to wire 2. The strength there is B-one equals mu-zero I-one over two pi d.", "text_hi": "ये circles पूरे रास्ते wire 2 तक पहुँचते हैं। वहाँ इसकी strength है B-one equals mu-zero I-one over two pi d।", "text_te": "ఈ circles పూర్తిగా wire 2 వరకు చేరతాయి. అక్కడ దాని strength B-one equals mu-zero I-one over two pi d.", "glow": "field_explain", "math_show": "B_1 = \\frac{\\mu_0 I_1}{2\\pi d}" },
+            { "id": "s2_3", "text_en": "The green arrow marks B-one right at wire 2's position. That is the field wire 2 is sitting in.", "text_hi": "हरा arrow ठीक wire 2 की position पर B-one को दिखाता है। यही वह field है जिसमें wire 2 बैठा है।", "text_te": "ఆకుపచ్చ arrow సరిగ్గా wire 2 position వద్ద B-one ని చూపిస్తుంది. wire 2 ఉన్నది ఈ field లోనే.", "glow": "field_reveal" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Wire 2 feels a force",
+        "duration": 20,
+        "focal_primitive_id": "force_title",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "force_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "A current in a field feels a force",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "force_predict",
+            "position": { "x": 200, "y": 230 },
+            "text": "Wire 2 carries I₂ through B₁.\nF = I₂ L × B₁.\nPredict: which way is the force\non wire 2 pushed?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "force_reveal",
+            "position": { "x": 560, "y": 230 },
+            "text": "Right-hand rule → the force on\nwire 2 points toward wire 1.\nWire 2 is pulled inward.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s3_3"
+          },
+          {
+            "type": "annotation",
+            "id": "force_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "F = I₂ L × B₁ — the same force-on-a-current-in-a-field you already know.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Now bring wire 2 back. It carries current I-two, and it sits inside wire 1's field B-one.", "text_hi": "अब wire 2 को वापस लाइए। यह current I-two ले जाता है, और यह wire 1 के field B-one के अंदर बैठा है।", "text_te": "ఇప్పుడు wire 2 ని తిరిగి తీసుకురండి. ఇది current I-two మోస్తుంది, మరియు ఇది wire 1 యొక్క field B-one లోపల ఉంది.", "glow": "force_title" },
+            { "id": "s3_2", "text_en": "A current in a magnetic field always feels a force, F equals I-two L cross B-one. Predict the direction. Take three seconds.", "text_hi": "magnetic field में रखा current हमेशा एक force महसूस करता है, F equals I-two L cross B-one। दिशा का अनुमान लगाइए। तीन सेकंड लीजिए।", "text_te": "magnetic field లో ఉన్న current ఎప్పుడూ ఒక force ని అనుభవిస్తుంది, F equals I-two L cross B-one. దిశను ఊహించండి. మూడు సెకన్లు తీసుకోండి.", "glow": "force_predict", "pause_after_ms": 3000 },
+            { "id": "s3_3", "text_en": "The right-hand rule gives a force on wire 2 pointing toward wire 1. Wire 2 is pulled inward.", "text_hi": "right-hand rule से wire 2 पर एक force मिलता है जो wire 1 की ओर इशारा करता है। Wire 2 अंदर की ओर खिंचता है।", "text_te": "right-hand rule ప్రకారం wire 2 పై wire 1 వైపు చూపే force వస్తుంది. Wire 2 లోపలికి లాగబడుతుంది.", "glow": ["force_reveal", "pcf_F2"], "math_show": "\\vec{F} = I_2 \\vec{L} \\times \\vec{B}_1" }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "Wire 1 feels a force too",
+        "duration": 20,
+        "focal_primitive_id": "force1_title",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "force1_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "Now wire 2's field pushes back on wire 1",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "force1_predict",
+            "position": { "x": 200, "y": 230 },
+            "text": "Wire 2 also makes a field B₂.\nWire 1 carries I₁ through it.\nF = I₁ L × B₂.\nPredict: which way is wire 1 pushed?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "force1_reveal",
+            "position": { "x": 560, "y": 230 },
+            "text": "Right-hand rule → the force on\nwire 1 points toward wire 2.\nWire 1 is pulled inward too.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s4_3"
+          },
+          {
+            "type": "annotation",
+            "id": "force1_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "Symmetry: each wire sits in the other's field and is pushed toward it.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Now flip the roles. Wire 2 is a current too, so it makes its own field B-two, and wire 1 sits right inside it.", "text_hi": "अब roles बदलिए। Wire 2 भी एक current है, इसलिए यह अपना खुद का field B-two बनाता है, और wire 1 ठीक उसके अंदर बैठा है।", "text_te": "ఇప్పుడు roles మార్చండి. Wire 2 కూడా ఒక current, కాబట్టి ఇది తన సొంత field B-two ని తయారు చేస్తుంది, మరియు wire 1 సరిగ్గా దాని లోపల ఉంది.", "glow": ["force1_title", "pcf_b2_at_1"] },
+            { "id": "s4_2", "text_en": "Wire 1 carries I-one through that field, so it feels a force, F equals I-one L cross B-two. Predict the direction. Take three seconds.", "text_hi": "Wire 1 उस field में से I-one ले जाता है, इसलिए यह एक force महसूस करता है, F equals I-one L cross B-two। दिशा का अनुमान लगाइए। तीन सेकंड लीजिए।", "text_te": "Wire 1 ఆ field గుండా I-one ని మోస్తుంది, కాబట్టి ఇది ఒక force ని అనుభవిస్తుంది, F equals I-one L cross B-two. దిశను ఊహించండి. మూడు సెకన్లు తీసుకోండి.", "glow": "force1_predict", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "The right-hand rule gives a force on wire 1 pointing toward wire 2. Wire 1 is pulled inward too.", "text_hi": "right-hand rule से wire 1 पर एक force मिलता है जो wire 2 की ओर इशारा करता है। Wire 1 भी अंदर की ओर खिंचता है।", "text_te": "right-hand rule ప్రకారం wire 1 పై wire 2 వైపు చూపే force వస్తుంది. Wire 1 కూడా లోపలికి లాగబడుతుంది.", "glow": ["force1_reveal", "pcf_F1"], "math_show": "\\vec{F} = I_1 \\vec{L} \\times \\vec{B}_2" }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "Parallel currents attract",
+        "duration": 26,
+        "focal_primitive_id": "attract_title",
+        "advance_mode": "wait_for_answer",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "attract_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "Parallel currents ATTRACT",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "attract_predict",
+            "position": { "x": 200, "y": 230 },
+            "text": "By Newton's third law, wire 1\nfeels an equal force toward wire 2.\nBoth arrows point inward —\nthe wires pull together.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "attract_warn",
+            "position": { "x": 560, "y": 230 },
+            "text": "Careful! Like CHARGES repel.\nBut like (parallel) CURRENTS\nATTRACT. Opposite rule.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s5_4"
+          },
+          {
+            "type": "annotation",
+            "id": "attract_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "Two forces, equal and opposite, both inward — the wires move toward each other.",
+            "color": "#FFF176",
+            "reveal_at_tts_id": "s5_5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Wire 2 is pulled toward wire 1. What about wire 1? Take three seconds.", "text_hi": "Wire 2 wire 1 की ओर खिंचता है। और wire 1 का क्या? तीन सेकंड लीजिए।", "text_te": "Wire 2 wire 1 వైపు లాగబడుతుంది. మరి wire 1 సంగతేంటి? మూడు సెకన్లు తీసుకోండి.", "glow": "attract_title", "pause_after_ms": 3000 },
+            { "id": "s5_2", "text_en": "By Newton's third law, wire 1 feels an equal and opposite force — toward wire 2.", "text_hi": "Newton's third law के अनुसार, wire 1 एक बराबर और विपरीत force महसूस करता है — wire 2 की ओर।", "text_te": "Newton's third law ప్రకారం, wire 1 సమానమైన మరియు వ్యతిరేక force ని అనుభవిస్తుంది — wire 2 వైపు.", "glow": ["pcf_F1", "pcf_F2"] },
+            { "id": "s5_3", "text_en": "Both forces point inward. The two wires pull together. Parallel currents attract.", "text_hi": "दोनों forces अंदर की ओर इशारा करते हैं। दोनों wires पास खिंचते हैं। Parallel currents attract करते हैं।", "text_te": "రెండు forces లోపలికి చూపుతాయి. రెండు wires దగ్గరకు లాగబడతాయి. Parallel currents attract అవుతాయి.", "glow": "attract_predict" },
+            { "id": "s5_4", "text_en": "Watch the trap. Like charges repel. But like currents — same direction — attract. It is the opposite rule.", "text_hi": "इस जाल से सावधान रहिए। Like charges repel करते हैं। लेकिन like currents — एक ही direction — attract करते हैं। यह उल्टा rule है।", "text_te": "ఈ ట్రాప్ ని గమనించండి. Like charges repel అవుతాయి. కానీ like currents — ఒకే direction — attract అవుతాయి. ఇది వ్యతిరేక rule.", "glow": "attract_warn" },
+            { "id": "s5_5", "text_en": "Two equal, opposite, inward forces. The wires draw together.", "text_hi": "दो बराबर, विपरीत, अंदर की ओर forces। दोनों wires पास आ जाते हैं।", "text_te": "రెండు సమానమైన, వ్యతిరేక, లోపలికి ఉన్న forces. రెండు wires దగ్గరకు వస్తాయి.", "glow": "attract_note" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Parallel (same-direction) currents repel, the way like electric charges repel.",
+            "one_line_fix": "It is the opposite for currents: parallel currents ATTRACT. Each wire sits in the other's field and is pushed toward it."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "The force per unit length",
+        "duration": 20,
+        "focal_primitive_id": "formula_title",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "formula_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "F/L = μ₀ I₁ I₂ / 2πd",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_explain",
+            "position": { "x": 200, "y": 230 },
+            "text": "Put it together:\nB₁ = μ₀I₁/2πd, then F = I₂LB₁.\nForce per metre:\nF/L = μ₀I₁I₂/2πd.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_symmetry",
+            "position": { "x": 560, "y": 230 },
+            "text": "Symmetric in I₁ and I₂ —\nboth currents matter equally.\nBigger currents or smaller d\n→ stronger force.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "The force depends on BOTH currents and the separation d.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Put the two pieces together. B-one is mu-zero I-one over two pi d, and the force is I-two L times that field.", "text_hi": "अब दोनों हिस्सों को जोड़िए। B-one है mu-zero I-one over two pi d, और force है I-two L times that field।", "text_te": "ఇప్పుడు రెండు భాగాలను కలపండి. B-one అంటే mu-zero I-one over two pi d, మరియు force అంటే I-two L times that field.", "glow": "formula_explain" },
+            { "id": "s6_2", "text_en": "Per metre of wire, the force is mu-zero I-one I-two over two pi d.", "text_hi": "wire के प्रति metre, force है mu-zero I-one I-two over two pi d।", "text_te": "wire యొక్క ప్రతి metre కి, force అంటే mu-zero I-one I-two over two pi d.", "glow": "formula_title", "math_show": "\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi d}" },
+            { "id": "s6_3", "text_en": "Notice it is symmetric — both currents count equally. Stronger currents or a smaller gap mean a bigger force.", "text_hi": "ध्यान दीजिए यह symmetric है — दोनों currents बराबर मायने रखते हैं। ज़्यादा currents या छोटा gap मतलब बड़ा force।", "text_te": "గమనించండి ఇది symmetric — రెండు currents సమానంగా లెక్కకు వస్తాయి. ఎక్కువ currents లేదా చిన్న gap అంటే పెద్ద force.", "glow": "formula_symmetry" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The force depends on only one of the currents (the 'source' wire).",
+            "one_line_fix": "F/L = μ₀I₁I₂/2πd is symmetric — it depends on BOTH currents equally. Each wire is source and receiver at once."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Reverse one current → repel",
+        "duration": 20,
+        "focal_primitive_id": "repel_title",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "repel_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "Antiparallel currents REPEL",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "repel_explain",
+            "position": { "x": 200, "y": 230 },
+            "text": "Flip wire 2's current downward.\nNow the currents are opposite.\nThe force on each wire\nreverses — it points outward.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "repel_reveal",
+            "position": { "x": 560, "y": 230 },
+            "text": "Same direction → attract.\nOpposite direction → repel.\nThat is the whole rule.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s7_3"
+          },
+          {
+            "type": "annotation",
+            "id": "repel_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "Reversing BOTH currents would keep them attracting — only the relative direction matters.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Now wire 2's current points the opposite way — downward. The two currents are antiparallel.", "text_hi": "अब wire 2 का current उल्टी दिशा में है — नीचे की ओर। दोनों currents antiparallel हैं।", "text_te": "ఇప్పుడు wire 2 యొక్క current వ్యతిరేక దిశలో ఉంది — కిందికి. రెండు currents antiparallel.", "glow": "repel_title" },
+            { "id": "s7_2", "text_en": "Both force arrows now point outward. The wires push apart. Antiparallel currents repel.", "text_hi": "अब दोनों force arrows बाहर की ओर इशारा करते हैं। दोनों wires दूर धकेलते हैं। Antiparallel currents repel करते हैं।", "text_te": "ఇప్పుడు రెండు force arrows బయటికి చూపుతాయి. రెండు wires దూరంగా నెడతాయి. Antiparallel currents repel అవుతాయి.", "glow": ["pcf_F1", "pcf_F2"] },
+            { "id": "s7_3", "text_en": "So the rule is simple. Same direction attracts, opposite direction repels.", "text_hi": "तो rule सरल है। एक ही direction attract करती है, उल्टी direction repel करती है।", "text_te": "కాబట్టి rule సింపుల్. ఒకే direction attract చేస్తుంది, వ్యతిరేక direction repel చేస్తుంది.", "glow": "repel_reveal" },
+            { "id": "s7_4", "text_en": "And if you reversed both currents together, they would still attract — only the relative direction matters.", "text_hi": "और अगर आप दोनों currents को एक साथ उल्टा कर दें, तब भी वे attract करेंगे — सिर्फ़ relative direction मायने रखती है।", "text_te": "ఇంకా మీరు రెండు currents ని ఒకేసారి తిప్పేస్తే, అవి ఇంకా attract అవుతాయి — relative direction మాత్రమే ముఖ్యం.", "glow": "repel_note" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Reversing both currents together flips attraction into repulsion.",
+            "one_line_fix": "Only the RELATIVE direction matters. Reverse both and they still attract; reverse just one and they repel."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "This defines the ampere",
+        "duration": 18,
+        "focal_primitive_id": "ampere_title",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ampere_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "This force defines the ampere",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "ampere_explain",
+            "position": { "x": 200, "y": 230 },
+            "text": "Take two infinite parallel wires\n1 metre apart, each 1 ampere.\nThen F/L = 2×10⁻⁷ N/m.\nThat is how 1 A was defined.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "ampere_why",
+            "position": { "x": 560, "y": 230 },
+            "text": "A force you can measure\nfixes the unit of current —\nthe ampere is a base SI unit.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "ampere_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "Substation busbars are clamped precisely because this force is real and large at high currents.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "This force is so fundamental it once defined the ampere itself.", "text_hi": "यह force इतना मौलिक है कि कभी इसने खुद ampere को परिभाषित किया था।", "text_te": "ఈ force ఎంత ప్రాథమికమైనదంటే, ఒకప్పుడు ఇది ampere నే నిర్వచించింది.", "glow": "ampere_title" },
+            { "id": "s8_2", "text_en": "Two infinite parallel wires, one metre apart, each carrying one ampere, attract with two times ten to the minus seven newtons per metre.", "text_hi": "दो infinite parallel wires, एक metre की दूरी पर, हर एक में one ampere, two times ten to the minus seven newtons per metre से attract करते हैं।", "text_te": "రెండు infinite parallel wires, ఒక metre దూరంలో, ఒక్కొక్కటి one ampere మోస్తూ, two times ten to the minus seven newtons per metre తో attract అవుతాయి.", "glow": "ampere_explain", "math_show": "\\frac{F}{L} = 2\\times10^{-7}\\,\\text{N/m}" },
+            { "id": "s8_3", "text_en": "A measurable force fixing the unit of current — that is why the ampere is a base SI unit.", "text_hi": "एक मापने योग्य force जो current की unit तय करता है — इसीलिए ampere एक base SI unit है।", "text_te": "current యొక్క unit ని నిర్ధారించే ఒక కొలవగల force — అందుకే ampere ఒక base SI unit.", "glow": "ampere_why" }
+          ]
+        }
+      },
+      "STATE_9": {
+        "title": "Your turn",
+        "duration": 30,
+        "focal_primitive_id": "sandbox_title",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sandbox_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "Explore: change I₁, I₂, and the direction",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "sandbox_guide",
+            "position": { "x": 200, "y": 230 },
+            "text": "Drag I₁ and I₂ — the force\narrows grow with both.\nPress the button to reverse I₂\nand flip attract ↔ repel.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "sandbox_challenge",
+            "position": { "x": 560, "y": 230 },
+            "text": "Challenge:\nMake the force as large as you can.\nThen flip to repulsion.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "sandbox_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "F/L = μ₀I₁I₂/2πd — same direction attracts, opposite repels.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "Your turn. Drag I-one and I-two and watch the force arrows respond.", "text_hi": "अब आपकी बारी। I-one और I-two को खींचिए और देखिए force arrows कैसे बदलते हैं।", "text_te": "ఇప్పుడు మీ వంతు. I-one మరియు I-two ని లాగండి, force arrows ఎలా స్పందిస్తాయో చూడండి.", "glow": "sandbox_title" },
+            { "id": "s9_2", "text_en": "Both currents grow the force together. Press the button to reverse I-two.", "text_hi": "दोनों currents मिलकर force बढ़ाते हैं। I-two को उल्टा करने के लिए button दबाइए।", "text_te": "రెండు currents కలిసి force ని పెంచుతాయి. I-two ని తిప్పడానికి button నొక్కండి.", "glow": "sandbox_guide", "math_show": "\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi d}" },
+            { "id": "s9_3", "text_en": "Same direction, they attract. Opposite direction, they repel. Try both.", "text_hi": "एक ही direction, वे attract करते हैं। उल्टी direction, वे repel करते हैं। दोनों आज़माइए।", "text_te": "ఒకే direction, అవి attract అవుతాయి. వ్యతిరేక direction, అవి repel అవుతాయి. రెండూ ప్రయత్నించండి.", "glow": "sandbox_challenge" }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "parallel_currents_force",
+    "wire_separation": 2.4,
+    "current": {
+      "wire_color": "#FFAB40"
+    },
+    "field_lines": {
+      "count": 5,
+      "color_positive": "#66BB6A"
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "positive": "#EF5350",
+      "negative": "#42A5F5"
+    },
+    "slider_controls": {
+      "I1": { "min": 1, "max": 10, "step": 1, "default": 5, "label": "Current I₁ (A)" },
+      "I2": { "min": 1, "max": 10, "step": 1, "default": 5, "label": "Current I₂ (A)" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Two parallel wires, currents up, dots flowing",
+        "visible_elements": [],
+        "camera_position": [2.2, 1.6, 6.2],
+        "caption": "Two long parallel wires. Both currents point up. Orange dots show the current flowing. No field or force shown yet.",
+        "extras": {
+          "current_dots": true,
+          "wire_1_dir": "up",
+          "wire_2_dir": "up"
+        }
+      },
+      "STATE_2": {
+        "label": "Wire 1's B-field circles + B1 vector at wire 2",
+        "visible_elements": [],
+        "camera_position": [1.2, 4.2, 5.2],
+        "caption": "Wire 1's circular field reaches wire 2. The green arrow is B1 = mu0 I1 / 2 pi d at wire 2's location.",
+        "extras": {
+          "current_dots": true,
+          "show_field": true,
+          "show_b1": true,
+          "wire_1_dir": "up",
+          "wire_2_dir": "up"
+        }
+      },
+      "STATE_3": {
+        "label": "Force on wire 2 toward wire 1 (RHR)",
+        "visible_elements": [],
+        "camera_position": [2.2, 1.6, 6.2],
+        "caption": "Wire 2 carries I2 through B1, so F = I2 L x B1 points toward wire 1. Wire 2 is pulled inward. The right hand shows the rule: fingers along I, curl into B1, thumb gives F.",
+        "extras": {
+          "current_dots": true,
+          "show_b1": true,
+          "show_forces": true,
+          "force_on_wire_1": false,
+          "force_on_wire_2": true,
+          "show_rhr_hand": true,
+          "wire_1_dir": "up",
+          "wire_2_dir": "up"
+        }
+      },
+      "STATE_4": {
+        "label": "Force on wire 1 toward wire 2 (RHR mirror of S3)",
+        "visible_elements": [],
+        "camera_position": [-2.2, 1.6, 6.2],
+        "caption": "Wire 1 carries I1 through B2 (wire 2's field), so F = I1 L x B2 points toward wire 2. Wire 1 is pulled inward too. The right hand: fingers along I1, curl into B2, thumb gives F.",
+        "extras": {
+          "current_dots": true,
+          "show_b2": true,
+          "show_forces": true,
+          "force_on_wire_1": true,
+          "force_on_wire_2": false,
+          "show_rhr_hand_wire1": true,
+          "wire_1_dir": "up",
+          "wire_2_dir": "up"
+        }
+      },
+      "STATE_5": {
+        "label": "Both forces inward — parallel currents attract (AHA)",
+        "visible_elements": [],
+        "camera_position": [2.2, 1.6, 6.2],
+        "caption": "Newton's third law: wire 1 feels an equal force toward wire 2. Both arrows point inward — the wires attract.",
+        "extras": {
+          "current_dots": true,
+          "show_forces": true,
+          "force_on_wire_1": true,
+          "force_on_wire_2": true,
+          "wire_1_dir": "up",
+          "wire_2_dir": "up"
+        }
+      },
+      "STATE_6": {
+        "label": "F/L = mu0 I1 I2 / 2 pi d",
+        "visible_elements": [],
+        "camera_position": [2.2, 1.6, 6.2],
+        "caption": "Combine B1 and F: force per length F/L = mu0 I1 I2 / 2 pi d. Symmetric in both currents.",
+        "extras": {
+          "current_dots": true,
+          "show_forces": true,
+          "force_on_wire_1": true,
+          "force_on_wire_2": true,
+          "wire_1_dir": "up",
+          "wire_2_dir": "up"
+        }
+      },
+      "STATE_7": {
+        "label": "Antiparallel currents -> repel",
+        "visible_elements": [],
+        "camera_position": [2.2, 1.6, 6.2],
+        "caption": "Wire 2's current now points DOWN (antiparallel). The force arrows point outward — antiparallel currents repel.",
+        "extras": {
+          "current_dots": true,
+          "show_forces": true,
+          "force_on_wire_1": true,
+          "force_on_wire_2": true,
+          "wire_1_dir": "up",
+          "wire_2_dir": "down"
+        }
+      },
+      "STATE_8": {
+        "label": "Defines the ampere (static)",
+        "visible_elements": [],
+        "camera_position": [2.2, 1.6, 6.2],
+        "caption": "Two infinite parallel wires 1 m apart, each 1 A, attract with F/L = 2e-7 N/m. This defines the ampere.",
+        "extras": {
+          "current_dots": true,
+          "show_forces": true,
+          "force_on_wire_1": true,
+          "force_on_wire_2": true,
+          "wire_1_dir": "up",
+          "wire_2_dir": "up"
+        }
+      },
+      "STATE_9": {
+        "label": "Sandbox — I1, I2 sliders + reverse-I2 toggle",
+        "visible_elements": [],
+        "camera_position": [2.2, 1.6, 6.2],
+        "caption": "Drag I1 and I2 to grow the force; press reverse-I2 to flip attract/repel. F/L = mu0 I1 I2 / 2 pi d.",
+        "show_sliders": true,
+        "extras": {
+          "current_dots": true,
+          "show_forces": true,
+          "force_on_wire_1": true,
+          "force_on_wire_2": true,
+          "wire_1_dir": "up",
+          "wire_2_dir": "up"
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can explain that one wire's magnetic field at the other wire is B = μ₀I/2πd, that the second wire (a current in that field) feels F = I L × B so the force per length between two parallel wires is F/L = μ₀I₁I₂/2πd, that this expression is symmetric in the two currents and the two wires feel equal-and-opposite forces (Newton's third law), that PARALLEL (same-direction) currents ATTRACT while ANTIPARALLEL (opposite) currents REPEL — the opposite of like/unlike electric charges — that only the relative current direction matters (reversing both leaves attraction unchanged), and that this measurable force is what historically defined the ampere (2×10⁻⁷ N/m for two wires 1 m apart at 1 A).",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "Two long parallel wires carry current in the SAME direction. They:",
+        "options": {
+          "A": "Attract each other",
+          "B": "Repel each other",
+          "C": "Feel no force",
+          "D": "Twist but feel no net force"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Applies the like-charges-repel rule to currents (it is reversed for currents)",
+          "C": "Thinks parallel wires do not interact magnetically",
+          "D": "Confuses the linear force with the torque on a loop"
+        },
+        "tested_idea": "Parallel (same-direction) currents attract",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Two straight wires side by side carry current the same way. What do they do to each other?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "Two parallel wires carry current in OPPOSITE directions. The force between them is:",
+        "options": {
+          "A": "Repulsive",
+          "B": "Attractive",
+          "C": "Zero",
+          "D": "Always stronger than for parallel currents"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Reverses the antiparallel rule",
+          "C": "Thinks opposite currents cancel any force",
+          "D": "Invents a magnitude difference that does not exist (same |F/L|)"
+        },
+        "tested_idea": "Antiparallel (opposite) currents repel",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "Current runs up one wire and down a parallel wire. Do they attract or repel?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "The force per unit length between two parallel wires is F/L = μ₀I₁I₂/2πd. If you double ONLY I₁, the force:",
+        "options": {
+          "A": "Doubles",
+          "B": "Stays the same",
+          "C": "Quadruples",
+          "D": "Halves"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks the force depends on only one current or neither",
+          "C": "Doubles both currents instead of one",
+          "D": "Inverts the dependence on I₁"
+        },
+        "tested_idea": "F/L is linear in each current (symmetric in I₁, I₂)",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "In F/L = μ₀I₁I₂/2πd, the current in just one wire is doubled. By what factor does the force change?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "Wire 1 carries 6 A and wire 2 carries 2 A. How do the forces they exert on each other compare?",
+        "options": {
+          "A": "Equal in magnitude and opposite in direction (Newton's third law)",
+          "B": "Wire 1's force on wire 2 is three times larger",
+          "C": "Wire 2 feels a force but wire 1 feels none",
+          "D": "They are equal and in the same direction"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks the bigger current pushes harder (ignores Newton's third law)",
+          "C": "Thinks only the 'source' wire exerts a force",
+          "D": "Forgets the forces are oppositely directed"
+        },
+        "tested_idea": "The two wires feel equal-and-opposite forces even when I₁ ≠ I₂",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "One wire carries 8 A, the other 2 A. Compare the magnitudes and directions of the forces on the two wires."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Two parallel wires attract. You reverse the current in BOTH wires at the same time. They now:",
+        "options": {
+          "A": "Still attract",
+          "B": "Repel",
+          "C": "Feel no force",
+          "D": "Attract only if the currents are equal"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks reversing both flips the force (only relative direction matters)",
+          "C": "Thinks reversal cancels the force",
+          "D": "Adds a spurious equal-currents condition"
+        },
+        "tested_idea": "Only the relative current direction matters; reversing both keeps attraction",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Two attracting parallel wires both have their currents reversed together. What happens to the force?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "What does the force between two parallel currents historically define?",
+        "options": {
+          "A": "The ampere (the SI unit of current)",
+          "B": "The volt",
+          "C": "The tesla",
+          "D": "The coulomb"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses current with potential difference",
+          "C": "Confuses the defining force with the unit of magnetic field",
+          "D": "Confuses current with charge"
+        },
+        "tested_idea": "This force defines the ampere (2×10⁻⁷ N/m at 1 m, 1 A)",
+        "teaches_state": "STATE_8",
+        "difficulty": "core",
+        "parallel_form_stem": "The 2×10⁻⁷ N/m force between two 1 m-apart wires at 1 A fixes which SI base unit?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_5": ["Q1", "Q4"],
+      "STATE_6": ["Q3"],
+      "STATE_7": ["Q2", "Q5"],
+      "STATE_8": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_9"]
+  }
+}

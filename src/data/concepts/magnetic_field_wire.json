@@ -115,10 +115,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "Look at the scene: a vertical wire and a compass beside it. Right now the needle points north — its red tip toward you." },
-            { "id": "s1_2", "text_en": "Watch what happens when current starts flowing through the wire — wait for it." },
-            { "id": "s1_3", "text_en": "There — the compass needle just SWUNG. It snapped to point perpendicular to the wire, no longer north." },
-            { "id": "s1_4", "text_en": "Hans Christian Oersted discovered this in 1820. A current-carrying wire produces a magnetic field. But where is it, and which way does it point?" }
+            { "id": "s1_1", "text_en": "Look at the scene: a vertical wire and a compass beside it. Right now the needle points north — its red tip toward you.", "text_hi": "दृश्य देखिए: एक vertical wire और उसके बगल में एक compass। अभी needle north की तरफ point कर रही है — इसकी लाल tip आपकी तरफ है।", "text_te": "దృశ్యాన్ని చూడండి: ఒక vertical wire మరియు దాని పక్కన ఒక compass. ఇప్పుడు needle north వైపు point చేస్తోంది — దాని ఎర్రటి tip మీ వైపు ఉంది." },
+            { "id": "s1_2", "text_en": "Watch what happens when current starts flowing through the wire — wait for it.", "text_hi": "ध्यान से देखिए — जब wire में current बहना शुरू होती है, तब क्या होता है — ज़रा रुकिए।", "text_te": "జాగ్రత్తగా చూడండి — wire లో current ప్రవహించడం మొదలైనప్పుడు ఏం జరుగుతుందో — కొంచెం ఆగండి." },
+            { "id": "s1_3", "text_en": "There — the compass needle just SWUNG. It snapped to point perpendicular to the wire, no longer north.", "text_hi": "देखिए — compass needle अभी अचानक हिल गई! यह wire के perpendicular direction में snap हो गई, अब north की तरफ नहीं रही।", "text_te": "చూడండి — compass needle ఇప్పుడు ఒక్కసారిగా కదిలింది! అది wire కి perpendicular గా snap అయింది, ఇక north వైపు లేదు." },
+            { "id": "s1_4", "text_en": "Hans Christian Oersted discovered this in 1820. A current-carrying wire produces a magnetic field. But where is it, and which way does it point?", "text_hi": "Hans Christian Oersted ने 1820 में यह खोज की। एक current-carrying wire, magnetic field produce करती है। लेकिन यह field कहाँ है, और किस direction में point करती है?", "text_te": "Hans Christian Oersted 1820 లో దీన్ని కనుగొన్నాడు. ఒక current-carrying wire, magnetic field ను produce చేస్తుంది. కానీ అది ఎక్కడ ఉంది, మరియు ఏ direction లో point చేస్తుంది?" }
           ]
         }
       },
@@ -152,10 +152,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "With current flowing, the wire produces a magnetic field that fills the space around it." },
-            { "id": "s2_2", "text_en": "But here is the surprise: the field does NOT point along the wire. And it does NOT point radially away from the wire either." },
-            { "id": "s2_3", "text_en": "Drag the camera to rotate the view. You see the field forms perfect circles that loop around the wire." },
-            { "id": "s2_4", "text_en": "These are not 2D circles on paper. They are real 3D circles in three-dimensional space — at every height along the wire, a stack of circles." }
+            { "id": "s2_1", "text_en": "With current flowing, the wire produces a magnetic field that fills the space around it.", "text_hi": "current बहने के साथ, wire अपने चारों ओर के space में एक magnetic field produce करती है।", "text_te": "current ప్రవహించడంతో, wire తన చుట్టూ ఉన్న space లో ఒక magnetic field ను produce చేస్తుంది." },
+            { "id": "s2_2", "text_en": "But here is the surprise: the field does NOT point along the wire. And it does NOT point radially away from the wire either.", "text_hi": "लेकिन यहाँ एक हैरान करने वाली बात है: यह field wire के along point नहीं करती। और यह wire से radially बाहर की तरफ भी point नहीं करती।", "text_te": "కానీ ఇక్కడ ఒక ఆశ్చర్యకరమైన విషయం ఉంది: ఈ field, wire వెంట point చేయదు. మరియు ఇది wire నుండి radially బయటకు కూడా point చేయదు." },
+            { "id": "s2_3", "text_en": "Drag the camera to rotate the view. You see the field forms perfect circles that loop around the wire.", "text_hi": "camera को rotate करने के लिए drag कीजिए। आप देख सकते हैं कि field, perfect circles बनाती है जो wire के चारों ओर loop करती हैं।", "text_te": "view ని rotate చేయడానికి camera ని drag చేయండి. మీరు చూడవచ్చు — field, perfect circles గా ఏర్పడుతుంది, అవి wire చుట్టూ loop అవుతాయి." },
+            { "id": "s2_4", "text_en": "These are not 2D circles on paper. They are real 3D circles in three-dimensional space — at every height along the wire, a stack of circles.", "text_hi": "ये कागज़ पर बनाए गए 2D circles नहीं हैं। ये असली 3D circles हैं, three-dimensional space में — wire के हर height पर, circles का एक stack।", "text_te": "ఇవి కాగితం మీద గీసిన 2D circles కాదు. ఇవి నిజమైన 3D circles, three-dimensional space లో ఉన్నాయి — wire వెంట ప్రతి height వద్ద, circles యొక్క ఒక stack." }
           ]
         },
         "misconception_watch": [
@@ -196,11 +196,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Watch the yellow dots flowing UP the wire. That is the direction of the current — the conventional current I." },
-            { "id": "s3_2", "text_en": "Now look at the green B-field rings around the wire. They are rotating — counter-clockwise as seen from above." },
-            { "id": "s3_3", "text_en": "Bring up your right hand. Point the thumb UP, along the current. See how your fingers naturally curl counter-clockwise — same as the rings." },
-            { "id": "s3_4", "text_en": "This is the right-hand rule for Case A: thumb along I, fingers curl in the direction of B. Always the RIGHT hand, never the left." },
-            { "id": "s3_5", "text_en": "Hold this case in your head. Next state: we flip the current downward and watch the field reverse." }
+            { "id": "s3_1", "text_en": "Watch the yellow dots flowing UP the wire. That is the direction of the current — the conventional current I.", "text_hi": "wire में ऊपर की तरफ बह रहे पीले dots को देखिए। यही conventional current I की direction है।", "text_te": "wire లో పైకి ప్రవహిస్తున్న పసుపు dots ని చూడండి. అదే conventional current I యొక్క direction." },
+            { "id": "s3_2", "text_en": "Now look at the green B-field rings around the wire. They are rotating — counter-clockwise as seen from above.", "text_hi": "अब wire के चारों ओर बने हरे B-field rings को देखिए। वे rotate हो रहे हैं — ऊपर से देखने पर counter-clockwise।", "text_te": "ఇప్పుడు wire చుట్టూ ఉన్న ఆకుపచ్చ B-field rings ని చూడండి. అవి rotate అవుతున్నాయి — పైనుండి చూస్తే counter-clockwise గా." },
+            { "id": "s3_3", "text_en": "Bring up your right hand. Point the thumb UP, along the current. See how your fingers naturally curl counter-clockwise — same as the rings.", "text_hi": "अपना right hand उठाइए। thumb को ऊपर की तरफ point कीजिए, current की direction में। देखिए कैसे आपकी fingers naturally counter-clockwise curl होती हैं — बिल्कुल उन rings की तरह।", "text_te": "మీ right hand తీసుకోండి. thumb ని పైకి point చేయండి, current వెంట. మీ fingers naturally counter-clockwise గా curl అవడం చూడండి — rings లాగే." },
+            { "id": "s3_4", "text_en": "This is the right-hand rule for Case A: thumb along I, fingers curl in the direction of B. Always the RIGHT hand, never the left.", "text_hi": "यह है Case A के लिए right-hand rule: thumb को I के along रखो, fingers B की direction में curl होती हैं। हमेशा RIGHT hand, कभी left नहीं।", "text_te": "ఇది Case A కోసం right-hand rule: thumb ని I వెంట పెట్టండి, fingers B యొక్క direction లో curl అవుతాయి. ఎప్పుడూ RIGHT hand మాత్రమే, ఎప్పటికీ left కాదు." },
+            { "id": "s3_5", "text_en": "Hold this case in your head. Next state: we flip the current downward and watch the field reverse.", "text_hi": "इस case को अपने दिमाग में रखिए। अगला state: हम current को नीचे की तरफ flip करेंगे और field को reverse होते हुए देखेंगे।", "text_te": "ఈ case ని మీ మనసులో పెట్టుకోండి. తదుపరి state: మనం current ని కిందికి flip చేసి, field reverse అవడాన్ని చూస్తాం." }
           ]
         },
         "misconception_watch": [
@@ -240,11 +240,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Now we reverse the battery. Watch the yellow dots — they are flowing DOWN the wire. The current direction has flipped." },
-            { "id": "s4_2", "text_en": "Look at the rings. They are still circling the wire, but the rotation has reversed. They now go CLOCKWISE — viewed from above." },
-            { "id": "s4_3", "text_en": "Bring up your right hand again. This time point the thumb DOWN, along the new current. Your fingers curl in the opposite sense — clockwise." },
-            { "id": "s4_4", "text_en": "Same right hand, opposite thumb, opposite curl. Reverse the current and the entire B-field reverses with it." },
-            { "id": "s4_5", "text_en": "Quick check: at a point on the LEFT of a wire carrying current downward, does B point INTO the page or OUT of it?" }
+            { "id": "s4_1", "text_en": "Now we reverse the battery. Watch the yellow dots — they are flowing DOWN the wire. The current direction has flipped.", "text_hi": "अब हम battery को reverse करते हैं। yellow dots को देखिए — वे wire के अंदर नीचे की तरफ flow हो रहे हैं। current की direction flip हो गई है।", "text_te": "ఇప్పుడు మనం battery ని reverse చేస్తున్నాం. yellow dots చూడండి — అవి wire లో కిందికి flow అవుతున్నాయి. current direction flip అయింది." },
+            { "id": "s4_2", "text_en": "Look at the rings. They are still circling the wire, but the rotation has reversed. They now go CLOCKWISE — viewed from above.", "text_hi": "rings को देखिए। वे अभी भी wire के चारों तरफ circle कर रही हैं, लेकिन rotation reverse हो गई है। अब वे CLOCKWISE जा रही हैं — ऊपर से देखने पर।", "text_te": "rings చూడండి. అవి ఇంకా wire చుట్టూ circling చేస్తున్నాయి, కానీ rotation reverse అయింది. అవి ఇప్పుడు CLOCKWISE గా వెళ్తున్నాయి — పై నుండి చూస్తే." },
+            { "id": "s4_3", "text_en": "Bring up your right hand again. This time point the thumb DOWN, along the new current. Your fingers curl in the opposite sense — clockwise.", "text_hi": "फिर से अपना right hand उठाइए। इस बार thumb को नीचे की तरफ point कीजिए, नई current की direction में। आपकी fingers opposite sense में curl होंगी — clockwise।", "text_te": "మళ్ళీ మీ right hand తీసుకోండి. ఈసారి thumb ని కిందికి point చేయండి, కొత్త current వెంట. మీ fingers opposite sense లో curl అవుతాయి — clockwise గా." },
+            { "id": "s4_4", "text_en": "Same right hand, opposite thumb, opposite curl. Reverse the current and the entire B-field reverses with it.", "text_hi": "Same right hand, opposite thumb, opposite curl। current को reverse करो और पूरा B-field उसके साथ reverse हो जाता है।", "text_te": "అదే right hand, opposite thumb, opposite curl. current ని reverse చేయండి మరియు మొత్తం B-field కూడా దానితో పాటు reverse అవుతుంది." },
+            { "id": "s4_5", "text_en": "Quick check: at a point on the LEFT of a wire carrying current downward, does B point INTO the page or OUT of it?", "text_hi": "Quick check: एक wire पर जिसमें current नीचे की तरफ flow हो रही है, उसके LEFT side के किसी point पर, B page के INTO point करता है या OUT of it?", "text_te": "Quick check: కిందికి current carry చేసే wire యొక్క LEFT వైపు ఉన్న ఒక point దగ్గర, B page లోపలికి point చేస్తుందా లేదా బయటికా?" }
           ]
         },
         "misconception_watch": [
@@ -284,10 +284,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Pick a single point P next to the wire. Which way does the B-field point exactly there?" },
-            { "id": "s5_2", "text_en": "The answer: B is tangent to the circle through P. Not radial, not along the wire — tangent." },
-            { "id": "s5_3", "text_en": "Equivalently, B is perpendicular to the plane that contains both the wire and the point P." },
-            { "id": "s5_4", "text_en": "Use the right-hand rule again: thumb up the wire, fingers tell you which way the tangent points at P." }
+            { "id": "s5_1", "text_en": "Pick a single point P next to the wire. Which way does the B-field point exactly there?", "text_hi": "wire के पास एक single point P चुनिए। ठीक वहाँ B-field किस तरफ point करता है?", "text_te": "wire పక్కన ఒక్క point P తీసుకోండి. సరిగ్గా అక్కడ B-field ఏ దిశలో point చేస్తుంది?" },
+            { "id": "s5_2", "text_en": "The answer: B is tangent to the circle through P. Not radial, not along the wire — tangent.", "text_hi": "जवाब यह है: B उस circle पर tangent होता है जो P से गुज़रती है। radial नहीं, wire के along नहीं — बल्कि tangent।", "text_te": "సమాధానం ఇది: B అనేది P గుండా వెళ్ళే circle కి tangent గా ఉంటుంది. radial కాదు, wire వెంట కాదు — tangent మాత్రమే." },
+            { "id": "s5_3", "text_en": "Equivalently, B is perpendicular to the plane that contains both the wire and the point P.", "text_hi": "दूसरे शब्दों में, B उस plane के perpendicular है जिसमें wire और point P दोनों हैं।", "text_te": "మరో విధంగా చెప్పాలంటే, B అనేది wire మరియు point P రెండూ ఉన్న plane కి perpendicular గా ఉంటుంది." },
+            { "id": "s5_4", "text_en": "Use the right-hand rule again: thumb up the wire, fingers tell you which way the tangent points at P.", "text_hi": "फिर से right-hand rule use करिए: अंगूठे को wire की तरफ ऊपर रखिए, उंगलियाँ बताएंगी कि P पर tangent किस direction में है।", "text_te": "మళ్ళీ right-hand rule వాడండి: బొటన వేలిని wire వెంట పైకి పెట్టండి, వేళ్ళు P వద్ద tangent ఏ direction లో ఉందో చెప్తాయి." }
           ]
         }
       },
@@ -321,11 +321,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Most physics textbooks draw this in 2D. Let me rotate the camera to look straight down at the wire from above." },
-            { "id": "s6_2", "text_en": "Now you see the field circles head-on. On one side of the wire, the circles point INTO the page. On the other side, they point OUT of the page." },
-            { "id": "s6_3", "text_en": "Textbooks draw a cross — the multiplication sign — for INTO the page. And a dot for OUT of the page." },
-            { "id": "s6_4", "text_en": "These symbols are NOT showing the current direction. They show the B-field direction at that specific point in 2D." },
-            { "id": "s6_5", "text_en": "Now when you see × and · in any diagram, you know they are just the two ends of a 3D circle around a wire — flattened to fit on paper." }
+            { "id": "s6_1", "text_en": "Most physics textbooks draw this in 2D. Let me rotate the camera to look straight down at the wire from above.", "text_hi": "ज़्यादातर physics textbooks इसे 2D में draw करते हैं। मैं camera को ऊपर से wire की तरफ सीधा rotate करता हूँ।", "text_te": "చాలా physics textbooks దీన్ని 2D లో draw చేస్తాయి. నేను camera ని పైనుండి wire వైపు నేరుగా చూసేలా rotate చేస్తాను." },
+            { "id": "s6_2", "text_en": "Now you see the field circles head-on. On one side of the wire, the circles point INTO the page. On the other side, they point OUT of the page.", "text_hi": "अब आपको field circles सामने से दिख रहे हैं। wire के एक तरफ, circles page के INTO की तरफ point करते हैं। दूसरी तरफ, वे page के OUT of the page की तरफ point करते हैं।", "text_te": "ఇప్పుడు మీకు field circles నేరుగా కనిపిస్తున్నాయి. wire కి ఒక వైపు, circles INTO the page వైపు point అవుతాయి. మరో వైపు, అవి OUT of the page వైపు point అవుతాయి." },
+            { "id": "s6_3", "text_en": "Textbooks draw a cross — the multiplication sign — for INTO the page. And a dot for OUT of the page.", "text_hi": "Textbooks INTO the page के लिए cross — यानी multiplication sign — draw करते हैं। और OUT of the page के लिए dot।", "text_te": "Textbooks INTO the page కోసం cross — అంటే multiplication sign — draw చేస్తాయి. మరియు OUT of the page కోసం dot వాడతాయి." },
+            { "id": "s6_4", "text_en": "These symbols are NOT showing the current direction. They show the B-field direction at that specific point in 2D.", "text_hi": "ये symbols current direction नहीं दिखा रहे। ये 2D में उस specific point पर B-field direction दिखाते हैं।", "text_te": "ఈ symbols current direction చూపించడం లేదు. ఇవి 2D లో ఆ specific point వద్ద B-field direction చూపిస్తాయి." },
+            { "id": "s6_5", "text_en": "Now when you see × and · in any diagram, you know they are just the two ends of a 3D circle around a wire — flattened to fit on paper.", "text_hi": "अब जब भी आप किसी diagram में × और · देखें, आपको पता है कि ये किसी wire के चारों तरफ एक 3D circle के दो सिरे हैं — बस paper पर flat करके दिखाए गए हैं।", "text_te": "ఇప్పుడు మీరు ఏ diagram లోనైనా × మరియు · చూసినప్పుడు, అవి ఒక wire చుట్టూ ఉన్న 3D circle యొక్క రెండు చివరలు మాత్రమే అని మీకు తెలుసు — కేవలం paper మీద flat చేసి చూపించబడ్డాయి." }
           ]
         },
         "misconception_watch": [
@@ -365,10 +365,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Now you have full control. Drag to rotate. Scroll to zoom. Use the I and r sliders on the right to change current and distance." },
-            { "id": "s7_2", "text_en": "Watch how the highlighted ring tracks your r-slider, and how all rings brighten when you crank up I." },
-            { "id": "s7_3", "text_en": "Try to predict B before you read the meter: pick I and r, compute mu-naught I over 2 pi r in your head, then check." },
-            { "id": "s7_4", "text_en": "Same wire, same field shape — circles around the wire. Same rule — your right hand. The numbers just scale." }
+            { "id": "s7_1", "text_en": "Now you have full control. Drag to rotate. Scroll to zoom. Use the I and r sliders on the right to change current and distance.", "text_hi": "अब आपका पूरा control है। Drag करके rotate करिए। Scroll करके zoom करिए। Current और distance बदलने के लिए right side पर I और r sliders use करिए।", "text_te": "ఇప్పుడు మీకు పూర్తి control ఉంది. Drag చేసి rotate చేయండి. Scroll చేసి zoom చేయండి. Current మరియు distance మార్చడానికి కుడి వైపు I మరియు r sliders వాడండి." },
+            { "id": "s7_2", "text_en": "Watch how the highlighted ring tracks your r-slider, and how all rings brighten when you crank up I.", "text_hi": "देखिए कैसे highlighted ring आपके r-slider को track करती है, और जब आप I को बढ़ाते हैं तो सभी rings कैसे brighten हो जाती हैं।", "text_te": "Highlighted ring మీ r-slider ని ఎలా track చేస్తుందో గమనించండి, మరియు మీరు I ని పెంచినప్పుడు అన్ని rings ఎలా brighten అవుతాయో చూడండి." },
+            { "id": "s7_3", "text_en": "Try to predict B before you read the meter: pick I and r, compute mu-naught I over 2 pi r in your head, then check.", "text_hi": "Meter पढ़ने से पहले B predict करने की कोशिश करिए: I और r चुनिए, दिमाग में mu-naught I over 2 pi r compute करिए, फिर check करिए।", "text_te": "Meter చదవడానికి ముందు B ని predict చేయడానికి ప్రయత్నించండి: I మరియు r ఎంచుకోండి, మనసులో mu-naught I over 2 pi r compute చేయండి, తర్వాత check చేయండి." },
+            { "id": "s7_4", "text_en": "Same wire, same field shape — circles around the wire. Same rule — your right hand. The numbers just scale.", "text_hi": "Same wire, same field shape — wire के चारों ओर circles। Same rule — आपका right hand। Numbers बस scale होते हैं।", "text_te": "Same wire, same field shape — wire చుట్టూ circles. Same rule — మీ right hand. Numbers మాత్రమే scale అవుతాయి." }
           ]
         }
       }

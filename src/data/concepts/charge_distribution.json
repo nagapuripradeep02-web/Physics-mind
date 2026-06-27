@@ -225,19 +225,19 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Here is a charged rod with total charge Q, and a point P just off its end where we want the field."
+              "text_en": "Here is a charged rod with total charge Q, and a point P just off its end where we want the field.", "text_hi": "यहाँ एक charged rod है जिसका total charge Q है, और इसके सिरे से ठीक बाहर एक point P है जहाँ हमें field चाहिए।", "text_te": "ఇక్కడ ఒక charged rod ఉంది, దాని total charge Q, మరియు దాని చివర నుండి కొద్ది దూరంలో ఒక point P ఉంది, అక్కడ మనకు field కావాలి."
             },
             {
               "id": "s1_2",
-              "text_en": "It is tempting to treat the whole rod as one point charge at its centre. If you did, you would use k Q over r squared. Will the real field match that?"
+              "text_en": "It is tempting to treat the whole rod as one point charge at its centre. If you did, you would use k Q over r squared. Will the real field match that?", "text_hi": "पूरे rod को उसके centre पर एक point charge के रूप में मानना tempting है। अगर आप ऐसा करते, तो आप k Q over r squared का उपयोग करते। क्या real field उससे match करेगा?", "text_te": "మొత్తం rod ని దాని centre లో ఒక point charge గా పరిగణించడం tempting గా ఉంటుంది. మీరు అలా చేస్తే, మీరు k Q over r squared ను ఉపయోగిస్తారు. Real field దానికి match అవుతుందా?"
             },
             {
               "id": "s1_3",
-              "text_en": "Watch — here is the field the rod really makes at P. It does not match that single-point guess."
+              "text_en": "Watch — here is the field the rod really makes at P. It does not match that single-point guess.", "text_hi": "देखिए — यह वह field है जो rod वास्तव में P पर बनाता है। यह उस single-point guess से match नहीं करता।", "text_te": "చూడండి — rod వాస్తవానికి P వద్ద సృష్టించే field ఇది. ఇది ఆ single-point guess తో match అవ్వదు."
             },
             {
               "id": "s1_4",
-              "text_en": "Near an extended body the field is NOT k Q over r squared. To get it right, we must add the field of every piece."
+              "text_en": "Near an extended body the field is NOT k Q over r squared. To get it right, we must add the field of every piece.", "text_hi": "एक extended body के पास field k Q over r squared नहीं होता है। इसे सही करने के लिए, हमें हर piece के field को जोड़ना होगा।", "text_te": "ఒక extended body దగ్గర field k Q over r squared కాదు. దీన్ని సరిగ్గా పొందడానికి, మనం ప్రతి piece యొక్క field ను జోడించాలి."
             }
           ]
         },
@@ -293,15 +293,15 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "So we describe how the charge is spread out. For a rod, that is charge per unit length."
+              "text_en": "So we describe how the charge is spread out. For a rod, that is charge per unit length.", "text_hi": "तो हम बताते हैं कि charge कैसे फैला हुआ है। एक rod के लिए, वह charge per unit length है।", "text_te": "కాబట్టి charge ఎలా విస్తరించి ఉందో మనం వివరిస్తాము. ఒక rod కోసం, అది charge per unit length."
             },
             {
               "id": "s2_2",
-              "text_en": "Take one tiny segment of length d-l. The charge on it is d-q, equal to lambda times d-l."
+              "text_en": "Take one tiny segment of length d-l. The charge on it is d-q, equal to lambda times d-l.", "text_hi": "एक tiny segment जिसकी length d-l है, लें। उस पर charge d-q है, जो lambda times d-l के बराबर है।", "text_te": "d-l length ఉన్న ఒక tiny segment ను తీసుకోండి. దానిపై ఉన్న charge d-q, ఇది lambda times d-l కి సమానం."
             },
             {
               "id": "s2_3",
-              "text_en": "Lambda is the total charge divided by the length, Q over L. Here that is one coulomb per metre."
+              "text_en": "Lambda is the total charge divided by the length, Q over L. Here that is one coulomb per metre.", "text_hi": "Lambda total charge को length से divide करने पर मिलता है, Q over L। यहाँ यह one coulomb per metre है।", "text_te": "Lambda అనేది total charge ని length తో divide చేయగా వచ్చేది, Q over L. ఇక్కడ అది one coulomb per metre."
             }
           ]
         }
@@ -350,15 +350,15 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "What if the same charge were smeared over a flat surface instead of a thin rod? How would we measure its spread now?"
+              "text_en": "What if the same charge were smeared over a flat surface instead of a thin rod? How would we measure its spread now?", "text_hi": "क्या होगा यदि वही charge एक thin rod के बजाय एक flat surface पर फैला दिया जाए? अब हम उसके spread को कैसे मापेंगे?", "text_te": "ఒక thin rod కు బదులుగా అదే charge ఒక flat surface పై పూయబడితే ఏమిటి? ఇప్పుడు మనం దాని spread ను ఎలా కొలుస్తాము?"
             },
             {
               "id": "s3_2",
-              "text_en": "The rod widens into a sheet. Now we use charge per unit area: sigma equals Q over A, in coulombs per square metre."
+              "text_en": "The rod widens into a sheet. Now we use charge per unit area: sigma equals Q over A, in coulombs per square metre.", "text_hi": "Rod एक sheet में फैल जाती है। अब हम charge per unit area का उपयोग करते हैं: sigma equals Q over A, coulombs per square metre में।", "text_te": "Rod ఒక sheet గా మారుతుంది. ఇప్పుడు మనం charge per unit area ను ఉపయోగిస్తాము: sigma equals Q over A, coulombs per square metre లో."
             },
             {
               "id": "s3_3",
-              "text_en": "The charge on one small patch d-A is d-q, equal to sigma times d-A. Same idea, one dimension up."
+              "text_en": "The charge on one small patch d-A is d-q, equal to sigma times d-A. Same idea, one dimension up.", "text_hi": "एक small patch d-A पर charge d-q है, जो sigma times d-A के बराबर है। Same idea, one dimension up।", "text_te": "ఒక small patch d-A పై ఉన్న charge d-q, ఇది sigma times d-A కి సమానం. Same idea, one dimension up."
             }
           ]
         }
@@ -407,15 +407,15 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "And if the charge fills a solid block, all the way through? What would we divide by then?"
+              "text_en": "And if the charge fills a solid block, all the way through? What would we divide by then?", "text_hi": "और अगर charge पूरे solid block में भर जाए तो? तब हम किससे divide करेंगे?", "text_te": "మరియు charge మొత్తం solid block నిండి ఉంటే? అప్పుడు మనం దేనితో divide చేస్తాం?"
             },
             {
               "id": "s4_2",
-              "text_en": "The sheet thickens into a solid. Now it is charge per unit volume: rho equals Q over V, in coulombs per cubic metre."
+              "text_en": "The sheet thickens into a solid. Now it is charge per unit volume: rho equals Q over V, in coulombs per cubic metre.", "text_hi": "Sheet एक solid में thick हो जाती है। अब यह charge per unit volume है: rho equals Q over V, coulombs per cubic metre में।", "text_te": "Sheet ఒక solid గా మారుతుంది. ఇప్పుడు ఇది charge per unit volume: rho equals Q over V, coulombs per cubic metre లో."
             },
             {
               "id": "s4_3",
-              "text_en": "One unifying line: the charge of any tiny piece is lambda d-l, or sigma d-A, or rho d-V — the unit tells you which body you have."
+              "text_en": "One unifying line: the charge of any tiny piece is lambda d-l, or sigma d-A, or rho d-V — the unit tells you which body you have.", "text_hi": "एक unifying line: किसी भी tiny piece का charge lambda d-l, या sigma d-A, या rho d-V होता है — unit आपको बताती है कि आपके पास कौन सा body है।", "text_te": "ఒక unifying line: ఏదైనా tiny piece యొక్క charge lambda d-l, లేదా sigma d-A, లేదా rho d-V — unit మీరు ఏ body ని కలిగి ఉన్నారో చెబుతుంది."
             }
           ]
         },
@@ -471,15 +471,15 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Here is one single piece, d-q, lifted out of the body, with the field point P over here. Which way does its field point at P?"
+              "text_en": "Here is one single piece, d-q, lifted out of the body, with the field point P over here. Which way does its field point at P?", "text_hi": "यहाँ एक single piece, d-q है, जिसे body से बाहर निकाला गया है, और field point P यहाँ है। P पर इसका field किस तरफ point करता है?", "text_te": "ఇక్కడ ఒక single piece, d-q, body నుండి బయటకు తీయబడింది, field point P ఇక్కడ ఉంది. P వద్ద దాని field ఏ వైపు point చేస్తుంది?"
             },
             {
               "id": "s5_2",
-              "text_en": "Watch. This one piece throws a field straight out toward P: d-E equals k d-q over r squared — exactly a point charge."
+              "text_en": "Watch. This one piece throws a field straight out toward P: d-E equals k d-q over r squared — exactly a point charge.", "text_hi": "देखिए। यह एक piece P की तरफ straight field फेंकता है: d-E equals k d-q over r squared — बिल्कुल एक point charge।", "text_te": "చూడండి. ఈ ఒక piece P వైపు straight field ను విసురుతుంది: d-E equals k d-q over r squared — సరిగ్గా ఒక point charge లాగా."
             },
             {
               "id": "s5_3",
-              "text_en": "That is the key idea: every tiny piece of the body is just a Coulomb point charge, pointing radially away from itself."
+              "text_en": "That is the key idea: every tiny piece of the body is just a Coulomb point charge, pointing radially away from itself.", "text_hi": "यह key idea है: body का हर tiny piece सिर्फ एक Coulomb point charge है, जो अपने आप से radially away point करता है।", "text_te": "అది key idea: body లోని ప్రతి tiny piece కేవలం ఒక Coulomb point charge, అది తన నుండి radially away point చేస్తుంది."
             }
           ]
         },
@@ -536,19 +536,19 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Now do that for every piece at once. Add them all."
+              "text_en": "Now do that for every piece at once. Add them all.", "text_hi": "अब यह एक साथ हर piece के लिए करें। उन सभी को add करें।", "text_te": "ఇప్పుడు ప్రతి piece కోసం ఒకేసారి అలా చేయండి. వాటన్నిటినీ add చేయండి."
             },
             {
               "id": "s6_2",
-              "text_en": "Each piece switches on and throws its own d-E arrow toward P — one small field per chunk."
+              "text_en": "Each piece switches on and throws its own d-E arrow toward P — one small field per chunk.", "text_hi": "हर piece switch on होता है और P की तरफ अपना d-E arrow फेंकता है — हर chunk के लिए एक छोटा field।", "text_te": "ప్రతి piece switch on అయ్యి, P వైపు తన d-E arrow ను విసురుతుంది — ప్రతి chunk కు ఒక చిన్న field."
             },
             {
               "id": "s6_3",
-              "text_en": "Lay the arrows head to tail. They add into one net field E — and notice it is shorter and tilted, not the centre-point guess."
+              "text_en": "Lay the arrows head to tail. They add into one net field E — and notice it is shorter and tilted, not the centre-point guess.", "text_hi": "Arrows को head to tail रखें। वे एक net field E में add होते हैं — और ध्यान दें कि यह छोटा और tilted है, centre-point guess नहीं।", "text_te": "Arrows ను head to tail ఉంచండి. అవి ఒక net field E గా add అవుతాయి — మరియు అది పొట్టిగా మరియు tilted గా ఉందని గమనించండి, centre-point guess కాదు."
             },
             {
               "id": "s6_4",
-              "text_en": "This sum, over infinitely many infinitely small pieces, is the integral: E equals the sum of d-E, becomes the integral of d-E."
+              "text_en": "This sum, over infinitely many infinitely small pieces, is the integral: E equals the sum of d-E, becomes the integral of d-E.", "text_hi": "यह sum, infinitely many infinitely small pieces पर, integral है: E equals the sum of d-E, integral of d-E बन जाता है।", "text_te": "ఇది sum, infinitely many infinitely small pieces పై, integral: E equals the sum of d-E, integral of d-E అవుతుంది."
             }
           ]
         },
@@ -605,15 +605,15 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "Now you drive it. The body is a solid, so its density is rho."
+              "text_en": "Now you drive it. The body is a solid, so its density is rho.", "text_hi": "अब आप इसे चलाइए। body एक solid है, तो इसकी density rho है।", "text_te": "ఇప్పుడు మీరు దీన్ని నడిపించండి. body ఒక solid, కాబట్టి దాని density rho."
             },
             {
               "id": "s7_2",
-              "text_en": "Slide the density up and every piece's field grows, so the net field E grows with it."
+              "text_en": "Slide the density up and every piece's field grows, so the net field E grows with it.", "text_hi": "density को slide up करें और हर piece का field बढ़ता है, तो net field E भी उसके साथ बढ़ता है।", "text_te": "density ని slide up చేయండి మరియు ప్రతి piece యొక్క field పెరుగుతుంది, కాబట్టి net field E కూడా దానితో పాటు పెరుగుతుంది."
             },
             {
               "id": "s7_3",
-              "text_en": "Same rule every time: each piece is a point charge, and the real field is the vector sum of them all."
+              "text_en": "Same rule every time: each piece is a point charge, and the real field is the vector sum of them all.", "text_hi": "हर बार same rule: हर piece एक point charge है, और real field उन सभी का vector sum है।", "text_te": "ప్రతిసారీ same rule: ప్రతి piece ఒక point charge, మరియు real field అన్నిటి vector sum."
             }
           ]
         }

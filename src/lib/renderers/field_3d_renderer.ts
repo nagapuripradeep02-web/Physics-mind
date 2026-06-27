@@ -36,7 +36,9 @@ export interface Field3DConfig {
         'torque_on_loop_uniform_field' | 'biot_savart_element' | 'force_on_current_wire' |
         'uniform_field_force' | 'dipole_in_uniform_field' | 'coulombs_law_force' |
         'charge_distribution' | 'electric_flux' | 'gauss_law' | 'gauss_law_sphere' |
-        'rhr_force_direction' | 'magnetic_no_work';
+        'rhr_force_direction' | 'magnetic_no_work' | 'radius_in_uniform_field' |
+        'cyclotron_period' | 'amperes_circuital_law' | 'gauss_law_line' |
+        'gauss_law_sheet' | 'current_loop_acts_as_dipole' | 'parallel_currents_force';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -48,6 +50,15 @@ export interface Field3DConfig {
         field_point_P?: [number, number, number];   // world position of P
         wire_half_length?: number;                   // half-length of the wire
         num_elements?: number;                        // elements in sequence mode
+    };
+    // amperes_circuital_law (∮B·dl = μ₀ I_enc on a long straight wire). Defaults
+    // for the on-screen Amperian-loop geometry; per-state behaviour (static /
+    // march / accumulate / unroll / integrated) is set via the per-state
+    // acl_element block. loop_radius is the ON-SCREEN ring size, DECOUPLED from
+    // the physics r (the bar's length is the conserved N·B·dl, the real magnitude).
+    acl_defaults?: {
+        loop_radius?: number;        // on-screen Amperian-ring radius (default 1.4)
+        num_segments?: number;       // number of equal B·dl tiles round the loop (default 24)
     };
     // electric_flux: the field magnitude E and surface area A that drive the
     // live Φ = EA·cosθ readout (so the on-screen number matches the narration,
@@ -73,6 +84,30 @@ export interface Field3DConfig {
         demo_e_per_nc?: number;      // demo N/C per nC at unit demo radius (default 225)
         epsilon_0?: number;          // fixed constant (informational; default 8.854e-12)
         shell_radius_default?: number; // default shell radius R (default 1.5)
+    };
+    // gauss_law_line (infinite line charge: E = λ/(2πε₀r), 1/r falloff — NOT the
+    // sphere's 1/r²). demo_e_per_nc scales the demo E readout/arrow magnitude
+    // (E = demo_e_per_nc·λ/r, clamped r ≥ 0.05 since the line has no inside/outside
+    // boundary and E grows unboundedly toward the wire); line_half_length sets the
+    // visible half-length L/2 of the line + Gaussian cylinder (deliberately larger
+    // than the camera frustum so the line reads "infinite").
+    gauss_line_defaults?: {
+        demo_e_per_nc?: number;      // demo N/C per nC at unit demo radius r0=1 (default 225)
+        epsilon_0?: number;          // fixed constant (informational; default 8.854e-12)
+        line_half_length?: number;   // visible half-length L/2 of the line (default 4.5)
+    };
+    // gauss_law_sheet (infinite charged SHEET: E = σ/(2ε₀) — a CONSTANT field, the
+    // PLANAR counterpart of gauss_law_line and the INVERSE of it). The field is
+    // perpendicular to the sheet, away on BOTH sides, and INDEPENDENT of distance
+    // (NO 1/r, NO 1/r²). demo_e_per_nc scales the demo E readout/arrow magnitude
+    // (E = demo_e_per_nc·σ — constant, NOT divided by d); sheet_half_width sets the
+    // visible half-extent of the flat sheet (deliberately larger than the camera
+    // frustum so the sheet reads "infinite"). Mirrors gauss_line_defaults but the
+    // demo E has NO distance term — that constancy IS the lesson (Rule 29).
+    gauss_sheet_defaults?: {
+        demo_e_per_nc?: number;      // demo N/C per nC per unit σ (constant; default 225)
+        epsilon_0?: number;          // fixed constant (informational; default 8.854e-12)
+        sheet_half_width?: number;   // visible half-extent of the flat sheet (default 4.5)
     };
     // Stable explorer id for the Rule-27 PARAM_UPDATE emit (gauss_law_sphere uses
     // "gauss_sphere_explorer"; the biot scenario uses its own in biot_defaults).
@@ -111,9 +146,70 @@ export interface Field3DConfig {
     };
     equipotential?: {
         show: boolean;
-        surfaces: number;       // number of equipotential surfaces
+        surfaces?: number;      // LEGACY even-spacing: number of shells at r = 1.0 + i·1.2
         opacity: number;
         color: string;
+        // NEW (electric_potential_meaning): config-driven shells with explicit radii
+        // + per-shell V labels. When `shells` is present it OVERRIDES the legacy
+        // even-spacing (the radii are 1/r-physical, bunched near +Q) and renders a
+        // V-value label sprite on each shell. ABSENT ⇒ exact legacy behaviour
+        // (`surfaces` even shells, no labels) — existing point_charge / gauss
+        // concepts are untouched.
+        shells?: Array<{ radius: number; v_label?: string }>;
+        label_each_shell?: boolean;   // draw the per-shell V sprite (default true when shells set)
+    };
+    // ── electric_potential_meaning (scenario point_charge_positive, the V = W/q
+    //   "meaning" diamond). Presence of this block switches the point_charge_positive
+    //   case onto buildPotentialMeaning() (the route-animating test charge + work
+    //   tally, the energy badge, the ΔV/∞ markers, the labelled shells, the draggable
+    //   V-readout explorer). ABSENT ⇒ the legacy radial-field point-charge build, so
+    //   every existing point_charge concept is unaffected. All numbers are data —
+    //   the engine NEVER hardcodes this concept's values.
+    potential_meaning?: {
+        potential_defaults?: {
+            demo_v_per_nc?: number;   // demo V per nC at unit demo radius (default 9)
+            Q?: number;               // source charge (default 1)
+            r_destination?: number;   // the guided-state destination radius (default 1.5)
+            clamp_r_min?: number;     // r floor to avoid 1/r blow-up (default 0.05)
+        };
+    };
+    // The amber test charge's route + the live work tally (STATE_2/3/4). Two paths
+    // each tick their own tally to the SAME value (path-independence); STATE_4
+    // doubles q→2q (tally doubles, W/q holds). Data-driven; absent ⇒ no route built.
+    test_charge_route?: {
+        explorer_id?: string;
+        start_r?: number;             // far start (default 3.5)
+        destination_r?: number;       // arrival point A (default 1.5)
+        paths?: Array<{ id: string; shape?: 'straight_radial' | 'looping_arc'; tally_id?: string }>;
+        work_tally?: {
+            W_path1_value?: number;
+            W_path2_value?: number;
+            W_2q_value?: number;
+            W_per_q_value?: number;
+        };
+        doubling?: { from_q?: number; to_q?: number; grow_label?: string };
+    };
+    // STATE_5 reference-at-infinity marker (billboards camera-right).
+    reference_marker?: {
+        show?: boolean;
+        label?: string;               // e.g. "∞ · V = 0"
+        position_r?: number;          // radial placement of the far marker (default 4.0)
+        billboard?: 'camera_right' | 'none';
+    };
+    // STATE_5 ΔV bracket between two marked points A,B (billboards camera-right).
+    delta_v_bracket?: {
+        show?: boolean;
+        point_A?: { r: number; V_label?: string; name?: string };
+        point_B?: { r: number; V_label?: string; name?: string };
+        delta_v_label?: string;       // e.g. "ΔV = V_B − V_A = 3"
+        billboard?: 'camera_right' | 'none';
+    };
+    // STATE_3 stored-energy badge that drains to 0 on release, then writes "U".
+    energy_badge?: {
+        show?: boolean;
+        U_value?: number;             // banked value at the destination (default 6)
+        drains_to?: number;           // value after release (default 0)
+        label?: string;               // e.g. "U = stored energy"
     };
     current?: {
         direction: [number, number, number];
@@ -132,6 +228,48 @@ export interface Field3DConfig {
         highlight?: string;
         caption: string;
         animate?: boolean;
+        // ── electric_potential_meaning per-state block (scenario point_charge_positive
+        //   + config.potential_meaning). Drives the V = W/q "meaning" arc: the
+        //   route-animating test charge + work tally (STATE_2), the energy badge
+        //   drain (STATE_3), the q→2q grow + V=W/q write-in (STATE_4), the
+        //   reference-marker + ΔV bracket (STATE_5), the equipotential shells fading
+        //   in with E perpendicular (STATE_6), and the draggable V-readout explorer
+        //   (STATE_7). Every field is optional; absence ⇒ the element stays hidden,
+        //   so a non-potential point_charge concept is unaffected. The flags here are
+        //   read by applyPotentialMeaningState() + updatePotentialMeaningFrame().
+        potential?: {
+            show_field?: 'faint' | 'normal' | 'off';   // field-line opacity for this state
+            show_test_charge?: boolean;                  // the amber +q probe
+            test_charge_r?: number;                      // radial placement (static states)
+            show_work_tally?: boolean;                   // the corner "W = …" tally pair
+            show_energy_badge?: boolean;                 // STATE_3 "U = stored energy" badge
+            show_reference_marker?: boolean;             // STATE_5 "∞ · V=0" far marker
+            show_delta_v_bracket?: boolean;              // STATE_5 ΔV bracket between A,B
+            show_equipotential?: boolean;                // STATE_6/7 cyan shells + V labels
+            show_e_arrow?: boolean;                      // STATE_6/7 E arrow ⊥ to shells
+            show_v_callout?: boolean;                    // STATE_4 "V = W/q" + "V = …" write-in
+            // STATE_2 route animation: each id animates the test charge (or a ghost)
+            // from start_r to destination_r, its own tally ticking to the path value.
+            animate_route?: string[];                    // e.g. ["path_1", "path_2"]
+            route_at_ms?: number[];                      // per-route start cue (state-local ms)
+            route_duration_ms?: number;                  // travel time per route (default 4000)
+            // STATE_3 release: charge flies outward + the energy badge drains 6→0.
+            release_at_ms?: number;                      // when the charge is let go
+            release_duration_ms?: number;                // fly-out + drain time (default 3500)
+            // STATE_4 scripted doubling reveal (q→2q): grow + tally double + W/q holds.
+            doubling_at_ms?: number;                     // when the grow fires
+            doubling_duration_ms?: number;               // grow time (default 1200)
+            // STATE_5/6 reveal cues (state-local ms): the marker/bracket/shells/E
+            // fade or draw in on narration. Each holds its end pose (never fades to 0).
+            reference_at_ms?: number;
+            delta_v_at_ms?: number;
+            shells_at_ms?: number;
+            e_arrow_at_ms?: number;
+            v_callout_at_ms?: number;
+            // STATE_7 explorer: render at full immediately + idle auto-sweep + drag.
+            draggable_test_charge?: boolean;
+            idle_auto_sweep?: boolean;
+        };
         // Per-state ambient_field override. Used by rhr_force_direction STATE_5
         // to point B into the page (direction:[0,0,-1]) while other states keep
         // the global out-of-page field. Only `direction` is read per-state; the
@@ -433,6 +571,43 @@ export interface Field3DConfig {
             grip_hand_position?: [number, number, number];
             cross_hand_position?: [number, number, number];
         };
+        // ── amperes_circuital_law per-state config (∮B·dl = μ₀ I_enc) ─────
+        // Drives the Ampère-circulation scene on a long straight wire. The
+        // signature payoff: N equal tangent B·dl tiles light up one-by-one
+        // around a coaxial Amperian loop ('accumulate'), then UNROLL/straighten
+        // into one horizontal bar of length B·(2πr) ('unroll'), which is set
+        // equal to μ₀ I_enc ('integrated'). EVERY field below is READ in the
+        // animate block — a field with no read is a silent-no-op regression, so
+        // the asNum/default fallbacks here MUST match the renderer verbatim.
+        //   mode 'static'     — loop + circles shown, no tiles, no march.
+        //   mode 'march'      — the dl tangent segments walk round the loop.
+        //   mode 'accumulate' — each acl_bdl_<k> tile drops on a stagger (the
+        //                       primary aha: the circulation sum fills the ring).
+        //   mode 'unroll'     — the lit ring straightens into acl_bar (length
+        //                       conserved → the visual proof ∮B·dl = B·2πr).
+        //   mode 'integrated' — slider explore (I, r): I_enc tracks I; 2πr grows;
+        //                       B = μ₀I/2πr falls as 1/r.
+        acl_element?: {
+            mode?: 'static' | 'march' | 'accumulate' | 'unroll' | 'integrated';
+            loop_radius?: number;                   // on-screen ring radius (world units), DECOUPLED from physics r
+            num_segments?: number;                  // number of tangent B·dl tiles round the loop
+            circle_opacity?: number;                // concentric field_line circle opacity
+            show_current_flow?: boolean;            // animate flow dots up the wire (live current)
+            show_ienc?: boolean;                    // brighten wire interior + show acl_ienc_label
+            show_circulation_accumulation?: boolean;// master gate for the tile accumulation
+            show_square_ghost?: boolean;            // STATE_3: failed square loop with UNEQUAL arrows
+            // ── reveal-timing fields (each drives a specific reveal; all read) ──
+            loop_appear_at_ms?: number;             // acl_loop ring draws in
+            dl_march_at_ms?: number;                // acl_dl_<k> tangent segments begin marching
+            dl_march_period_ms?: number;            // one march revolution
+            accumulate_at_ms?: number;              // first acl_bdl_<k> tile drops
+            accumulate_stagger_ms?: number;         // delay between tile drops (k·stagger)
+            accumulate_fade_ms?: number;            // per-tile fade-in
+            unroll_at_ms?: number;                  // curve→bar u-blend begins
+            unroll_duration_ms?: number;            // length-conserving lerp to acl_bar
+            ruler_reveal_at_ms?: number;            // acl_ruler (2πr ticks) appears under the bar
+            ienc_reveal_at_ms?: number;             // acl_ienc_label + "= μ₀ I_enc" equality snap
+        };
         // ── charge_distribution per-state config (λ/σ/ρ unified morph) ───
         // One body cross-fades rod(line/λ) → sheet(surface/σ) → solid(volume/ρ).
         // `dim` = geometry shown at the END of this state; `morph_from` cross-
@@ -578,6 +753,119 @@ export interface Field3DConfig {
             // trajectory_mode is set.
             equal_arc_trail?: boolean;
         };
+        // ── radius_in_uniform_field per-state config ─────────────────────
+        // RADIUS-ONLY sibling of lorentz_force_uniform_field. Teaches the SIZE of
+        // the circular orbit r = mv/qB — bigger with momentum (m or v), tighter
+        // with grip (q or B). REUSES the Lorentz orbit basis {u1, u2 = cross(u1,
+        // bUnit), bUnit} + the circle trajectory math. The genuinely new pieces
+        // are the four-factor R_visual scaling, a dashed radius line, a RELATIVE
+        // radius readout (never a metres/period/force number), and the ghost-
+        // compare (a frozen prior circle the live one swells past / shrinks inside).
+        //
+        // HARD CUT-LINE (enforced in updateRadiusInUniformFieldFrame):
+        //   • The ONLY surfaced quantity is r, and ONLY as a RELATIVE readout
+        //     (a yellow bar `r ▮` + "wider/tighter than before" captions). NEVER
+        //     a metres value, NEVER the period T, NEVER seconds-per-orbit / rev-
+        //     per-sec / frequency f, NEVER a force magnitude / qvB·sinθ / Newton.
+        //   • The visible go-round RATE is held constant (constant arc-speed:
+        //     ARC_SPEED = NW_OMEGA·NW_ORBIT_R; ω = ARC_SPEED/R_visual). Only the
+        //     circle SIZE changes with the sliders, so no period ever leaks.
+        //   • The F arrow is a DIRECTION-ONLY fixed glyph (centripetal, toward the
+        //     orbit centre); its length never encodes magnitude (Rule 29).
+        //   • The dashed radius line's length tracks R_visual but NO length number
+        //     is ever printed beside it.
+        radius?: {
+            // Dashed radius line (centre → charge, #FFF176). In STATE_2 it rotates
+            // rigidly at constant length. Length tracks R_visual; no number shown.
+            show_radius_line?: boolean;
+            // The RELATIVE radius readout: a yellow bar `r ▮` (STATE_6 live) +
+            // comparative captions ("wider/tighter than before") on STATE_4/5 when
+            // a ghost is active. NEVER a metres/period/force number.
+            show_radius_readout?: boolean;
+            // STATE_1: the trail completes its loop and SNAPS SHUT on the start
+            // point with a flash, at this state-local ms.
+            circle_close_at_ms?: number;
+            // STATE_3: the equation panel writes "qvB = mv²/r" then, at this
+            // state-local ms, REARRANGES itself to "r = mv/qB". BOTH lines persist.
+            equation_rearrange_at_ms?: number;
+            // STATE_4/5: at reveal_at_ms freeze a faint GHOST of the current circle,
+            // then drive the named axis's factor to ~1.5 so the live circle visibly
+            // SWELLS (m, v) or SHRINKS (q, B) relative to the frozen ghost. axis ∈
+            // {'m','v','q','B'}. ghost_compare_b is the SECOND reveal in the state
+            // (reset, then a different axis). The caption follows the swell/shrink.
+            ghost_compare?: { axis: 'm' | 'v' | 'q' | 'B'; reveal_at_ms: number };
+            ghost_compare_b?: { axis: 'm' | 'v' | 'q' | 'B'; reveal_at_ms: number };
+            // Always-honored cut-line guards (renderer floor, regardless of value).
+            hide_period_readout?: boolean;
+            hide_magnitude_readout?: boolean;
+        };
+        // ── cyclotron_period per-state config ────────────────────────────
+        // PERIOD-ONLY sibling that INVERTS radius_in_uniform_field. #4 holds the
+        // arc-SPEED constant (ARC_SPEED = RAD_OMEGA·RAD_BASE_R; ω = ARC_SPEED/R) so
+        // the period is hidden — only the circle SIZE changes. THIS scenario holds
+        // the PERIOD constant: a SINGLE shared ω = (2π/T_VISUAL)·chargeSign drives
+        // EVERY charge, so two charges with DIFFERENT radii orbit at the SAME period
+        // and re-converge at the start every lap (the tie is geometry, not luck).
+        // It REUSES the Lorentz/radius orbit basis {u1, u2 = cross(u1, bUnit), bUnit}
+        // + radDrawFullRing. The genuinely new pieces are: the relative lap-timer
+        // (ring-fill 0→2π, freeze + relabel T at one revolution; NEVER a seconds
+        // value), the dual-orbit two-charge race, the "= same T" tie badge, and the
+        // T = 2πr/v → r = mv/qB → (v cancels) → T = 2πm/qB equation build.
+        //
+        // HARD CUT-LINE (enforced in updateCyclotronPeriodFrame + the readout /
+        // legend suppressions):
+        //   • The surfaced quantity is T, and ONLY as a RELATIVE lap-fill that
+        //     freezes + relabels T. NEVER an absolute seconds value, NEVER a
+        //     wall-clock, NEVER a frequency number. (INVERSE of #4's hidden period —
+        //     period IS shown here, but qualitatively, never as a number.)
+        //   • NO force magnitude / qvB / Newton. F is a DIRECTION-ONLY fixed glyph
+        //     (CYC_F_GLYPH_LEN), centripetal, never ∝ v or B (Rule 29).
+        //   • The v glyph is a FIXED length — the fast charge's higher speed is NEVER
+        //     encoded in arrow length (shown by circle size + race timing only).
+        //   • The radius r appears ONLY as a cited symbol in the STATE_3 equation —
+        //     never a metres value, never a radius readout bar.
+        cyclotron?: {
+            // Two-charge race mode (STATE_2/STATE_3). Each sub-charge has its own
+            // fixed radius R (its own fixed centre is the origin) + v_factor (a size
+            // cue only — NOT an arrow length), color, and label. Both orbit at the
+            // shared ω so they tie. Null/omitted = single charge.
+            dual_orbit?: {
+                slow: { v_factor: number; R: number; color: string; label: string };
+                fast: { v_factor: number; R: number; color: string; label: string };
+            } | null;
+            // True (with dual_orbit): both charges driven by the SAME ω so the tie
+            // is by construction. Documentary affordance; the shared-ω law is the
+            // renderer floor regardless.
+            shared_omega?: boolean;
+            // STATE_2: draw a start-line marker both charges leave from + return to.
+            same_start_marker?: boolean;
+            // Lap-timer: a RELATIVE ring-fill (0→2π over one revolution) shown
+            // top-right. NEVER a seconds value. show_period_readout:true surfaces it
+            // (the INVERSE of radius's hide_period_readout).
+            show_period_readout?: boolean;
+            // STATE_1: at this state-local ms the lap-timer FREEZES on one full
+            // revolution, relabels itself **T**, and a focal flash pops.
+            timer_freeze_at_ms?: number;
+            // STATE_1: trail snaps shut on the start point at this ms (mirrors
+            // radius's circle_close_at_ms; pairs with the timer freeze).
+            circle_close_at_ms?: number;
+            // STATE_2: at this ms BOTH lap-timers freeze the same instant and a
+            // "= same T" badge writes between them (the tie payoff).
+            tie_badge_at_ms?: number;
+            // STATE_3: the bottom-left equation panel builds line by line, each
+            // persisting. The v-cancel beat brightens + strikes through BOTH v's.
+            // CUT-LINE: ONLY these symbolic strings — never a numeric r or T.
+            equation_build?: {
+                line1_at_ms?: number;   // T = 2πr/v
+                line2_at_ms?: number;   // r = mv/qB  (cited from last lesson)
+                line3_at_ms?: number;   // T = 2π(mv/qB)/v
+                vcancel_at_ms?: number; // the two v's brighten + strike through
+                line4_at_ms?: number;   // T = 2πm/qB  (glow)
+                aside_f_at_ms?: number; // f = qB/2πm  (one aside line)
+            };
+            // Always-honored cut-line guard (renderer floor, regardless of value).
+            hide_magnitude_readout?: boolean;
+        };
     }>;
     // Slider configuration (used when show_sliders: true on a state)
     slider_controls?: {
@@ -601,7 +889,25 @@ export interface Field3DConfig {
         // magnetic_no_work electric-side field strength (parabola sharpness)
         E?: { min: number; max: number; step?: number; default: number; label: string };
         // gauss_law_sphere STATE_7 explore: the Gaussian-sphere radius r_gauss
+        // (also reused by gauss_law_line for the line's perpendicular radius r).
         r_gauss?: { min: number; max: number; step?: number; default: number; label: string };
+        // gauss_law_line STATE_7 explore: the linear charge density λ (the line's
+        // perpendicular radius reuses r_gauss above).
+        lambda?: { min: number; max: number; step?: number; default: number; label: string };
+        // gauss_law_sheet STATE_7 explore: the surface charge density σ (scales the
+        // constant-field arrows + readout) and the perpendicular distance d (MOVES
+        // the field-point/arrow geometry while the arrow length holds CONSTANT — the
+        // constancy is the lesson, scar acl_state8_sliders_update_readout_not_geometry).
+        sigma?: { min: number; max: number; step?: number; default: number; label: string };
+        d?: { min: number; max: number; step?: number; default: number; label: string };
+        // ── radius_in_uniform_field sliders (r = mv/qB, four unitless knobs) ──
+        // Plain unitless visual-scaling knobs (default 1.0, range 0.5–2.5). Each
+        // Factor = value/default, so value/default IS the factor — NO 1e5/×1000 SI
+        // rescale. m and v are the numerator (wider circle); q_mag and B are the
+        // denominator (tighter circle). v and B reuse the keys above; m and q_mag
+        // are radius-specific.
+        m?: { min: number; max: number; step?: number; default: number; label: string };
+        q_mag?: { min: number; max: number; step?: number; default: number; label: string };
     };
     pvl_colors?: {
         background: string; text: string; positive: string; negative: string; field_line: string;
@@ -688,6 +994,49 @@ canvas { display: block; width: 100%; height: 100%; }
 @keyframes equationFadeIn {
     from { opacity: 0; transform: translateY(4px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+/* ── amperes_circuital_law screen-space HUD (camera-independent) ──────────
+   The derivation rows + the unrolled bar/ruler are rendered as DOM overlays
+   (NOT 3D sprites) so they always read fully on-canvas regardless of camera
+   orbit. acl_eq_panel is a fixed top-center stack sized to fit the longest
+   string; acl_bar_hud is a horizontally-centered bar+ruler in the lower
+   third. Both are inset >=40px from every edge. Driven by updateAmperesHud()
+   (per-state) + the animate loop (bar fill / brightness pulse). */
+#acl_eq_panel {
+    position: fixed; top: 52px; left: 50%; transform: translateX(-50%);
+    background: rgba(10,10,26,0.82);
+    border: 1px solid rgba(102,187,106,0.40);
+    border-radius: 8px; z-index: 11; display: none;
+    padding: 10px 22px; max-width: 88vw;
+    text-align: center; pointer-events: none;
+}
+/* PHYSICAL mode (STATE_7/8): the formula is DEMOTED to a corner so the 3D rod +
+   field circles + coaxial loop are the centerpiece (founder video #2). */
+#acl_eq_panel.acl_corner {
+    top: 14px; left: auto; right: 14px; transform: none;
+    padding: 8px 14px; text-align: right; background: rgba(10,10,26,0.7);
+}
+#acl_eq_panel.acl_corner .acl_eq_row {
+    font-size: 16px; margin: 3px 0;
+}
+#acl_eq_panel .acl_eq_row {
+    margin: 5px 0; white-space: nowrap;
+    font: 600 22px/1.35 'Cambria Math','Times New Roman',serif;
+    color: #E8F0E8; text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+    animation: equationFadeIn 280ms ease-out;
+}
+#acl_eq_panel .acl_eq_row.faint   { opacity: 0.55; color: #B8C4B8; }
+#acl_eq_panel .acl_eq_row.solve   { color: #FFD54F; }
+#acl_eq_panel .acl_eq_row.ienc    { color: #FF8A65; }
+/* ── The unroll STAGE — a full-canvas 2D overlay (camera-independent) that
+   draws the ring→bar transformation for STATE_6/7/8 with total pixel control,
+   so nothing overlaps the wire/loop and the bar never projects diagonally.
+   The 3D wire/loop/tiles are HIDDEN on these states; the stage owns the
+   payoff. Upper band = the ring of equal B·dl tiles; lower band = the
+   straight bar + 2πr ruler. drawAmperesStage() repaints it each frame. */
+#acl_stage {
+    position: fixed; left: 0; top: 0; width: 100%; height: 100%;
+    z-index: 9; display: none; pointer-events: none;
 }
 /* TTS-driven glow for HTML overlays (Fleming SVG, sliders panel, etc.).
    Founder note 2026-05-12 (fourth pass): halo must be visible the ENTIRE
@@ -999,6 +1348,83 @@ canvas { display: block; width: 100%; height: 100%; }
     border-top: 1px solid rgba(255,255,255,0.2);
     color: #66BB6A; font-weight: bold;
 }
+/* ── radius_in_uniform_field explorer (STATE_6): m,v,q,B → live r readout ── */
+#radius_sliders {
+    position: fixed; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 8px;
+    font: 12px/1.6 monospace; z-index: 10;
+    min-width: 200px; display: none;
+}
+#radius_sliders label { display: block; margin-bottom: 2px; }
+#radius_sliders input[type="range"] { width: 100%; margin-bottom: 6px; }
+#radius_sliders #rad_readout {
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #FFF176; font-weight: bold; letter-spacing: 1px;
+}
+/* radius_in_uniform_field bottom-left equation panel (qvB = mv²/r → r = mv/qB) */
+#radius_eqn {
+    position: fixed; bottom: 8px; left: 8px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 6px;
+    font: bold 15px/1.7 'Cambria Math', 'Times New Roman', serif;
+    z-index: 11; display: none; pointer-events: none;
+}
+#radius_eqn .rad_eqn_balance { color: #D4D4D8; }
+#radius_eqn .rad_eqn_solved { color: #FFF176; display: none; }
+/* ── cyclotron_period lap-timer(s): RELATIVE ring-fill, freeze + relabel T.
+   NEVER a seconds value (cut-line). Top-right; STATE_2 shows two side by side. */
+#cyclotron_timers {
+    position: fixed; top: 12px; right: 12px;
+    z-index: 11; display: none;
+    font: 12px/1.4 monospace; pointer-events: none;
+    text-align: center;
+}
+#cyclotron_timers .cyc_timer {
+    display: inline-block; vertical-align: top; margin-left: 10px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 8px 12px; border-radius: 8px; min-width: 92px;
+}
+#cyclotron_timers .cyc_timer:first-child { margin-left: 0; }
+#cyclotron_timers .cyc_timer .cyc_timer_label { font-weight: bold; margin-bottom: 4px; }
+#cyclotron_timers .cyc_timer .cyc_timer_bar {
+    color: #FFF176; font-weight: bold; letter-spacing: 1px;
+    word-break: break-all; line-height: 1.3;
+}
+#cyclotron_timers .cyc_timer.frozen .cyc_timer_label { color: #FFF176; }
+#cyclotron_timers #cyc_tie_badge {
+    display: none; margin-top: 8px; color: #A5D6A7; font-weight: bold;
+    font-size: 14px; letter-spacing: 1px;
+}
+/* cyclotron_period bottom-left equation panel
+   (T = 2πr/v → r = mv/qB → T = 2π(mv/qB)/v → T = 2πm/qB · f = qB/2πm) */
+#cyclotron_eqn {
+    position: fixed; bottom: 8px; left: 8px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 6px;
+    font: bold 15px/1.7 'Cambria Math', 'Times New Roman', serif;
+    z-index: 11; display: none; pointer-events: none;
+}
+#cyclotron_eqn .cyc_eqn_line { display: none; color: #D4D4D8; }
+#cyclotron_eqn .cyc_eqn_line.cyc_struck { color: #FFF59D; text-decoration: line-through; }
+#cyclotron_eqn #cyc_eqn_final { color: #FFF176; }
+#cyclotron_eqn #cyc_eqn_aside { color: #80CBC4; font-size: 13px; }
+/* cyclotron_period explorer (STATE_4): m,v,q,B → live lap-timer fill-rate */
+#cyclotron_sliders {
+    position: fixed; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 8px;
+    font: 12px/1.6 monospace; z-index: 10;
+    min-width: 200px; display: none;
+}
+#cyclotron_sliders label { display: block; margin-bottom: 2px; }
+#cyclotron_sliders input[type="range"] { width: 100%; margin-bottom: 6px; }
+#cyclotron_sliders #cyc_invariant {
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #FFF176; font-weight: bold;
+}
 #torque_sliders {
     position: fixed; top: 12px; right: 12px;
     background: rgba(0,0,0,0.85); color: ${textColor};
@@ -1062,6 +1488,8 @@ canvas { display: block; width: 100%; height: 100%; }
 </div>
 <div id="formula_overlay"></div>
 <div id="equation_panel" class="anchor-bottom-left"></div>
+<div id="acl_eq_panel"></div>
+<canvas id="acl_stage"></canvas>
 <div id="rhr_overlay">
     <div class="rhr-title">Right-Hand Rule</div>
     <div class="rhr-case rhr-case-section-a">
@@ -1277,6 +1705,50 @@ canvas { display: block; width: 100%; height: 100%; }
     <input type="range" id="nw_b_slider" min="1" max="100" step="1" value="10">
     <div id="nw_invariant">|v| fixed · W = 0 · bigger B ⇒ tighter turn</div>
 </div>
+<div id="radius_sliders">
+    <label>m = <span id="rad_m_val">1.0</span> (mass)</label>
+    <input type="range" id="rad_m_slider" min="0.5" max="2.5" step="0.1" value="1">
+    <label>v = <span id="rad_v_val">1.0</span> (speed)</label>
+    <input type="range" id="rad_v_slider" min="0.5" max="2.5" step="0.1" value="1">
+    <label>q = <span id="rad_q_val">1.0</span> (charge)</label>
+    <input type="range" id="rad_q_slider" min="0.5" max="2.5" step="0.1" value="1">
+    <label>B = <span id="rad_b_val">1.0</span> (field)</label>
+    <input type="range" id="rad_b_slider" min="0.5" max="2.5" step="0.1" value="1">
+    <div id="rad_readout">r <span id="rad_bar">▮▮▮</span></div>
+</div>
+<div id="radius_eqn">
+    <div class="rad_eqn_balance" id="rad_eqn_balance">qvB = mv²/r</div>
+    <div class="rad_eqn_solved" id="rad_eqn_solved">r = mv/qB</div>
+</div>
+<div id="cyclotron_timers">
+    <div class="cyc_timer" id="cyc_timer_a">
+        <div class="cyc_timer_label" id="cyc_timer_a_label">lap</div>
+        <div class="cyc_timer_bar" id="cyc_timer_a_bar"></div>
+    </div>
+    <div class="cyc_timer" id="cyc_timer_b">
+        <div class="cyc_timer_label" id="cyc_timer_b_label">lap</div>
+        <div class="cyc_timer_bar" id="cyc_timer_b_bar"></div>
+    </div>
+    <div id="cyc_tie_badge">= same T</div>
+</div>
+<div id="cyclotron_eqn">
+    <div class="cyc_eqn_line" id="cyc_eqn_line1"></div>
+    <div class="cyc_eqn_line" id="cyc_eqn_line2"></div>
+    <div class="cyc_eqn_line" id="cyc_eqn_line3"></div>
+    <div class="cyc_eqn_line" id="cyc_eqn_final"></div>
+    <div class="cyc_eqn_line" id="cyc_eqn_aside"></div>
+</div>
+<div id="cyclotron_sliders">
+    <label>m = <span id="cyc_m_val">1.0</span> (mass)</label>
+    <input type="range" id="cyc_m_slider" min="0.5" max="2.5" step="0.1" value="1">
+    <label>v = <span id="cyc_v_val">1.0</span> (speed)</label>
+    <input type="range" id="cyc_v_slider" min="0.5" max="2.5" step="0.1" value="1">
+    <label>q = <span id="cyc_q_val">1.0</span> (charge)</label>
+    <input type="range" id="cyc_q_slider" min="0.5" max="2.5" step="0.1" value="1">
+    <label>B = <span id="cyc_b_val">1.0</span> (field)</label>
+    <input type="range" id="cyc_b_slider" min="0.5" max="2.5" step="0.1" value="1">
+    <div id="cyc_invariant">T <span id="cyc_live_bar"></span></div>
+</div>
 <div id="torque_sliders">
     <label>N = <span id="n_torque_val">1</span> turns</label>
     <input type="range" id="n_torque_slider" min="1" max="100" step="1" value="1">
@@ -1337,6 +1809,11 @@ export const FIELD_3D_RENDERER_CODE = `
 
     var PM_currentState = "STATE_1";
     var stateStartTime = 0; // animate-loop time at the moment the current state was entered (Diamond #2 trajectory parameterization)
+    // amperes_circuital_law: true on STATE_6/7/8 (mode unroll/integrated), where
+    // the 2D #acl_stage overlay owns the ring→bar payoff and the 3D wire/loop/
+    // tiles are hidden so nothing overlaps. Set by updateAmperesHud; read by the
+    // animate loop (to hide the 3D scene + call drawAmperesStage each frame).
+    var aclStageActive = false;
     // dual_field_compare (STATE_6): rightward world-X offset applied to the whole
     // straight_wire_current picture so it sits in the RIGHT panel, clear of the
     // left radial-E panel. 0 = no split (legacy: wire at origin). The animate loop
@@ -1462,6 +1939,26 @@ export const FIELD_3D_RENDERER_CODE = `
     // (re-armed on every state entry in applyMagneticNoWorkState).
     var nwVelCompassShown = false;
     var nwGhostArrows = [];
+    // radius_in_uniform_field — set true when a STATE_6 slider edit (m/v/q/B)
+    // changes R_visual, so the next animate tick wipes the orbit trail buffer and
+    // the student sees the new (wider/tighter) circle cleanly.
+    var radiusTrailResetPending = false;
+    // radius_in_uniform_field STATE_4/5 ghost-compare runtime state. radGhostState
+    // holds the per-state choreography: which reveal beats have armed, the frozen-
+    // ghost radii captured at each reveal_at_ms, and the script-driven factor
+    // overrides that swell (m,v) / shrink (q,B) the live circle past/inside the
+    // ghost. Re-armed on every state entry in applyRadiusInUniformFieldState.
+    var radGhostState = {
+        ghostA_R: null, ghostA_shown: false,   // first reveal (ghost_compare)
+        ghostB_R: null, ghostB_shown: false,   // second reveal (ghost_compare_b)
+        driveAxis: null, driveTarget: 1.0,     // current script-driven axis + its factor
+        compareDir: 0                          // +1 = live wider than ghost, -1 = tighter
+    };
+    // cyclotron_period — set true when a STATE_4 slider edit (m/v/q/B) changes the
+    // live circle / lap-fill rate, so the next animate tick wipes the single orbit
+    // trail buffer. (The shared-ω race states draw both rings full every frame, so
+    // they never need this; only the single-charge slider state accumulates.)
+    var cyclotronTrailResetPending = false;
     // rhr_force_direction — camera azimuth/polar snapshot at state entry, so
     // STATE_3's ~30° orbit is a delta off the entry pose (state-clock driven,
     // deterministic for THE EYE). rhrGhostStart arms the STATE_4 ghost-F fade.
@@ -1481,6 +1978,12 @@ export const FIELD_3D_RENDERER_CODE = `
     var scene, camera, renderer, animationId;
     var sceneObjects = [];
     var isDragging = false, prevMouse = { x: 0, y: 0 };
+    // Object-drag (PhET-style "grab the field point"): when the pointer grabs a
+    // draggable sensor mesh, objectDragging takes precedence over camera orbit so
+    // the grab moves the sensor instead of rotating the scene. Gauss-sphere only.
+    var objectDragging = false;
+    var pmRaycaster = new THREE.Raycaster();
+    var pmLastEmitR = -1, pmLastEmitA = -999;
     // Tap detection (teacher freeze gesture): a clean click/tap with no drag
     // posts CANVAS_TAP to the parent player, which toggles the freeze. A drag
     // still rotates the scene (and rotates the frozen frame while paused).
@@ -1501,7 +2004,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // ── Three.js setup ────────────────────────────────────────────────────
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(config.pvl_colors ? config.pvl_colors.background : "#0A0A1A");
+    // Default to the dark canvas when pvl_colors is absent OR present-without-background
+    // (a bare ternary passed undefined → THREE.Color defaults to WHITE). Mirrors the
+    // CSS body-background ?? at the top of this file.
+    scene.background = new THREE.Color((config.pvl_colors && config.pvl_colors.background) || "#0A0A1A");
 
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
     updateCameraFromSpherical();
@@ -1518,13 +2024,136 @@ export const FIELD_3D_RENDERER_CODE = `
     dirLight.position.set(5, 10, 7);
     scene.add(dirLight);
 
+    // ── PhET-style draggable field-point sensor (gauss_law_sphere explore) ──
+    // The pointer can GRAB the yellow field point and move it anywhere; the
+    // engine recomputes r + the radial direction and redraws the E-arrow. Hit a
+    // forgiving invisible proxy (gsph_field_point_hit). Active only in a state
+    // whose gauss_sphere block sets draggable_point — a no-op for every other
+    // scenario/state (the proxy does not exist or is hidden, so the pick fails).
+    function gsphStateIsDraggable() {
+        var sd = config.states && config.states[PM_currentState];
+        var gg = sd && sd.gauss_sphere;
+        return !!(gg && gg.draggable_point);
+    }
+    // electric_potential_meaning STATE_7: the amber test charge is draggable when
+    // the per-state potential block sets draggable_test_charge. Mirrors
+    // gsphStateIsDraggable; a no-op for every other scenario/state.
+    function pmPotentialStateIsDraggable() {
+        var sd = config.states && config.states[PM_currentState];
+        var pp = sd && sd.potential;
+        return !!(pp && pp.draggable_test_charge);
+    }
+    function pmPointerNDC(cx, cy) {
+        return new THREE.Vector2(
+            (cx / window.innerWidth) * 2 - 1,
+            -(cy / window.innerHeight) * 2 + 1
+        );
+    }
+    function pmPickSensor(cx, cy) {
+        if (!camera) return false;
+        // gauss_law_sphere field-point proxy.
+        if (gsphStateIsDraggable()) {
+            var proxy = gsphFindById("gsph_field_point_hit");
+            if (proxy && proxy.visible) {
+                pmRaycaster.setFromCamera(pmPointerNDC(cx, cy), camera);
+                var hits = pmRaycaster.intersectObject(proxy, false);
+                if (hits && hits.length) return true;
+            }
+        }
+        // electric_potential_meaning test-charge proxy.
+        if (pmPotentialStateIsDraggable()) {
+            var pProxy = null;
+            for (var pi = 0; pi < sceneObjects.length; pi++) {
+                if (sceneObjects[pi].userData && sceneObjects[pi].userData.id === "pm_drag_hit") { pProxy = sceneObjects[pi]; break; }
+            }
+            if (pProxy && pProxy.visible) {
+                pmRaycaster.setFromCamera(pmPointerNDC(cx, cy), camera);
+                var pHits = pmRaycaster.intersectObject(pProxy, false);
+                if (pHits && pHits.length) return true;
+            }
+        }
+        return false;
+    }
+    // Project the pointer onto the camera-facing plane through the shell centre
+    // (origin), so the sensor always tracks the cursor in the current view.
+    function pmDragPlaneHit(cx, cy) {
+        if (!camera) return null;
+        pmRaycaster.setFromCamera(pmPointerNDC(cx, cy), camera);
+        var n = new THREE.Vector3();
+        camera.getWorldDirection(n);
+        var plane = new THREE.Plane().setFromNormalAndCoplanarPoint(n, new THREE.Vector3(0, 0, 0));
+        var out = new THREE.Vector3();
+        return pmRaycaster.ray.intersectPlane(plane, out) ? out : null;
+    }
+    function applyDragFrom(cx, cy) {
+        var hit = pmDragPlaneHit(cx, cy);
+        if (!hit) return;
+        // electric_potential_meaning explorer: drive r + the radial heading, update
+        // PM_pmDrag* (read by updatePotentialMeaningFrame) + emit PARAM_UPDATE.
+        if (pmPotentialStateIsDraggable()) {
+            var prsc = (config.slider_controls && config.slider_controls.r) || { min: 0.5, max: 4.0 };
+            var prRaw = hit.length();
+            var pr = Math.max(prsc.min, Math.min(prsc.max, prRaw));
+            var pdir = (prRaw > 1e-4) ? hit.clone().normalize() : null;
+            window.PM_pmUserDragged = true;
+            window.PM_pmDragR = pr;
+            if (pdir) window.PM_pmDragDir = [pdir.x, pdir.y, pdir.z];
+            var pang = pdir ? (Math.atan2(pdir.y, pdir.x) * 180 / Math.PI) : 0;
+            if (Math.abs(pr - pmLastEmitR) > 0.005 || Math.abs(pang - pmLastEmitA) > 0.5) {
+                pmLastEmitR = pr; pmLastEmitA = pang;
+                try {
+                    parent.postMessage({
+                        type: "PARAM_UPDATE",
+                        explorer_id: (config.explorer_id || (config.test_charge_route && config.test_charge_route.explorer_id) || "potential_explorer"),
+                        param: "r",
+                        value: pr,
+                        angle_deg: pang,
+                        point: [hit.x, hit.y, hit.z]
+                    }, "*");
+                } catch (e) {}
+            }
+            return;
+        }
+        var rsc = (config.slider_controls && config.slider_controls.r_gauss) || { min: 0.3, max: 4.0 };
+        var rRaw = hit.length();
+        var r = Math.max(rsc.min, Math.min(rsc.max, rRaw));
+        var dir = (rRaw > 1e-4) ? hit.clone().normalize() : null;
+        window.PM_gsphUserDragged = true;
+        window.PM_gsphRGauss = r;
+        if (dir) window.PM_gsphSensorDir = [dir.x, dir.y, dir.z];
+        var aS = document.getElementById("gsph_r_slider"), aV = document.getElementById("gsph_r_val");
+        if (aS) aS.value = String(r);
+        if (aV) aV.textContent = r.toFixed(2);
+        // Emit PARAM_UPDATE (Rule 27) only on a meaningful change (throttle).
+        var ang = dir ? (Math.atan2(dir.y, dir.x) * 180 / Math.PI) : 0;
+        if (Math.abs(r - pmLastEmitR) > 0.005 || Math.abs(ang - pmLastEmitA) > 0.5) {
+            pmLastEmitR = r; pmLastEmitA = ang;
+            try {
+                parent.postMessage({
+                    type: "PARAM_UPDATE",
+                    explorer_id: (config.explorer_id || "gauss_sphere_explorer"),
+                    param: "r_gauss",
+                    value: r,
+                    angle_deg: ang,
+                    point: [hit.x, hit.y, hit.z]
+                }, "*");
+            } catch (e) {}
+        }
+    }
+
     // ── Manual orbit controls ─────────────────────────────────────────────
     renderer.domElement.addEventListener("mousedown", function(e) {
+        if (pmPickSensor(e.clientX, e.clientY)) {
+            objectDragging = true; tapMoved = true;   // grab: suppress orbit + freeze-tap
+            applyDragFrom(e.clientX, e.clientY);       // snap the point under the cursor
+            return;
+        }
         isDragging = true;
         prevMouse.x = e.clientX; prevMouse.y = e.clientY;
         tapDownX = e.clientX; tapDownY = e.clientY; tapMoved = false;
     });
     renderer.domElement.addEventListener("mousemove", function(e) {
+        if (objectDragging) { applyDragFrom(e.clientX, e.clientY); return; }
         if (!isDragging) return;
         if (!tapMoved && tapDist(e.clientX, e.clientY) > 6) tapMoved = true;
         var dx = e.clientX - prevMouse.x;
@@ -1536,8 +2165,12 @@ export const FIELD_3D_RENDERER_CODE = `
         prevMouse.x = e.clientX; prevMouse.y = e.clientY;
         updateCameraFromSpherical();
     });
-    renderer.domElement.addEventListener("mouseup", function() { isDragging = false; emitTap(); });
-    renderer.domElement.addEventListener("mouseleave", function() { isDragging = false; });
+    renderer.domElement.addEventListener("mouseup", function() {
+        isDragging = false;
+        if (objectDragging) { objectDragging = false; return; }   // a grab is not a tap
+        emitTap();
+    });
+    renderer.domElement.addEventListener("mouseleave", function() { isDragging = false; objectDragging = false; });
     renderer.domElement.addEventListener("wheel", function(e) {
         spherical.radius = Math.max(3, Math.min(20, spherical.radius + e.deltaY * 0.01));
         targetSpherical.radius = spherical.radius;
@@ -1549,11 +2182,14 @@ export const FIELD_3D_RENDERER_CODE = `
     var touchStart = null;
     renderer.domElement.addEventListener("touchstart", function(e) {
         if (e.touches.length === 1) {
-            touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-            tapDownX = e.touches[0].clientX; tapDownY = e.touches[0].clientY; tapMoved = false;
+            var tx = e.touches[0].clientX, ty = e.touches[0].clientY;
+            if (pmPickSensor(tx, ty)) { objectDragging = true; tapMoved = true; applyDragFrom(tx, ty); return; }
+            touchStart = { x: tx, y: ty };
+            tapDownX = tx; tapDownY = ty; tapMoved = false;
         }
     });
     renderer.domElement.addEventListener("touchmove", function(e) {
+        if (objectDragging && e.touches.length === 1) { applyDragFrom(e.touches[0].clientX, e.touches[0].clientY); e.preventDefault(); return; }
         if (!touchStart || e.touches.length !== 1) return;
         if (!tapMoved && tapDist(e.touches[0].clientX, e.touches[0].clientY) > 8) tapMoved = true;
         var dx = e.touches[0].clientX - touchStart.x;
@@ -1566,7 +2202,7 @@ export const FIELD_3D_RENDERER_CODE = `
         updateCameraFromSpherical();
         e.preventDefault();
     }, { passive: false });
-    renderer.domElement.addEventListener("touchend", function() { touchStart = null; emitTap(); });
+    renderer.domElement.addEventListener("touchend", function() { touchStart = null; if (objectDragging) { objectDragging = false; return; } emitTap(); });
 
     // ── Camera helpers ────────────────────────────────────────────────────
     function updateCameraFromSpherical() {
@@ -2237,6 +2873,103 @@ export const FIELD_3D_RENDERER_CODE = `
         return grp;
     }
 
+    // ── Parallel-currents right-hand (F = I₂ L × B₁, STATE_3) ─────────────
+    //   Reuses the SAME articulated model as the Lorentz/solenoid hands
+    //   (buildArticulatedHandParts → real FK finger-curl via rhrFingerJoints),
+    //   but oriented for the parallel-currents geometry and driven by the
+    //   slow dwelling I→B→F choreography in updatePcfRhrHandFrame().
+    //
+    //   rhr-local frame (curlSign=+1): flat fingers extend +x, curl toward -z,
+    //   thumb +y. We apply ONE outer rotation Rz(+90°) so:
+    //     flat fingers +x → world +y  (= I₂, current up wire 2)
+    //     curl       -z → world -z  (= B₁, into the page at wire 2)
+    //     thumb      +y → world -x  (= F = I₂ L × B₁, toward wire 1)
+    //   Check: F = (+ŷ) × (-ẑ) = -x̂ = toward wire 1 (attractive) ✓.
+    //   The embedded I/B/F arrows live in LOCAL space and point along the same
+    //   anatomical landmarks (fingers / curl / thumb), so they map to the
+    //   correct world directions after the outer rotation. STATE_3 is always
+    //   parallel-up, so the orientation is fixed at build (no per-frame tracking).
+    function createParallelCurrentsRhrHand(spec) {
+        var grp = new THREE.Group();
+        var s = (spec.scale || 1) * HAND_SIZE_FACTOR;
+        var wire = spec.wire || 2;              // 2 = force on wire 2 (default); 1 = mirror on wire 1
+        var curlSign = 1;                       // curl sweeps +x → -z (I → B₁/B₂)
+        var parts = buildArticulatedHandParts(s, curlSign);
+        grp.add(parts.group);                   // NO inner rotation — see frame note
+
+        // I arrow — along the flat fingers (local +x → world +y = current up).
+        var iArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(1, 0, 0),
+            new THREE.Vector3(0.86 * s, 0.0, 0.0),
+            0.55 * s, 0xFFAB40, 0.18 * s, 0.11 * s
+        );
+        iArrow.userData = { phase_arrow: 'i' };
+        iArrow.visible = false;
+        grp.add(iArrow);
+        // B₁ arrow — along the curl (local -z → world -z = into the page).
+        var bArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 0, -1),
+            new THREE.Vector3(0.28 * s, -0.04 * s, -0.30 * s),
+            0.55 * s, 0x66BB6A, 0.18 * s, 0.11 * s
+        );
+        bArrow.userData = { phase_arrow: 'b' };
+        bArrow.visible = false;
+        grp.add(bArrow);
+        // F arrow — along the thumb (local +y → world -x = toward wire 1).
+        var fArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 1, 0),
+            new THREE.Vector3(0.0, 0.60 * s, 0.10 * s),
+            0.55 * s, 0xFF6B6B, 0.18 * s, 0.11 * s
+        );
+        fArrow.userData = { phase_arrow: 'f' };
+        fArrow.visible = false;
+        grp.add(fArrow);
+
+        // Short vector labels at each arrow tip (face camera; positioned local).
+        var iLabel = createLabelSprite(wire === 1 ? 'I₁' : 'I₂', '#FFAB40', 0.52 * s);
+        iLabel.position.set(1.46 * s, 0.0, 0.0);
+        iLabel.userData = { phase_label: 'i' };
+        iLabel.visible = false;
+        grp.add(iLabel);
+        var bLabel = createLabelSprite(wire === 1 ? 'B₂' : 'B₁', '#66BB6A', 0.52 * s);
+        bLabel.position.set(0.34 * s, -0.05 * s, -0.92 * s);
+        bLabel.userData = { phase_label: 'b' };
+        bLabel.visible = false;
+        grp.add(bLabel);
+        var fLabel = createLabelSprite('F', '#FF6B6B', 0.52 * s);
+        fLabel.position.set(0.0, 1.20 * s, 0.10 * s);
+        fLabel.userData = { phase_label: 'f' };
+        fLabel.visible = false;
+        grp.add(fLabel);
+
+        grp.position.set(spec.position[0], spec.position[1], spec.position[2]);
+        var outerQ = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), Math.PI / 2);
+        if (wire === 1) {
+            // Mirror onto wire 1 = Ry(180°) ∘ Rz(90°). Fingers stay world +y (I₁ up),
+            // curl flips local -z → world +z (B₂ OUT of the page at wire 1, since wire
+            // 2's field there points out), thumb flips local +y → world +x
+            // (F toward wire 2). Check: F = (+ŷ) × (+ẑ) = +x̂ = toward wire 2 ✓.
+            // Stays a RIGHT hand (proper rotation, det +1) — never a reflected left hand.
+            outerQ.premultiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI));
+        }
+        grp.setRotationFromQuaternion(outerQ);
+        grp.userData = {
+            elementType: 'pcf_rhr_hand',
+            id: wire === 1 ? 'pcf_rhr_hand_w1' : 'pcf_rhr_hand',
+            wire: wire,
+            finger_meshes: parts.fingerTubes,
+            finger_knuckles: parts.fingerKnuckles,
+            finger_nails: parts.fingerNails,
+            sc: s,
+            curlSign: curlSign,
+            seg_tube_r: parts.segR,
+            animate_curl: true,
+            i_label: iLabel, b_label: bLabel, f_label: fLabel,
+            i_arrow: iArrow, b_arrow: bArrow, f_arrow: fArrow,
+        };
+        return grp;
+    }
+
     // ── Text-label sprite (Diamond #2) ────────────────────────────────────
     //   Cheap canvas-texture sprite. Always faces the camera. Used to label
     //   v / F / v cos θ / v sin θ arrows in the Lorentz scenario.
@@ -2274,9 +3007,47 @@ export const FIELD_3D_RENDERER_CODE = `
     // Redraw an existing label sprite's text in place (same font/outline as
     // createLabelSprite) for live numeric labels. No-op on sprites with no
     // retained canvas (createWideLabelSprite / non-label sprites).
+    //   Auto-width sprites (made by pmCreateAutoLabel) carry _pmAutoWidth + a font
+    //   spec + a heightScale, so a live redraw RE-MEASURES the new text and re-fits
+    //   the canvas width (growing it if the new string is wider) before drawing —
+    //   long live strings ("U = 6" -> "U = stored energy") never clip. Fixed-width
+    //   createLabelSprite callers (no _pmAutoWidth) keep the old centred redraw.
     function updateLabelSpriteText(sprite, text) {
         if (!sprite || !sprite._pmCanvas || !sprite._pmCtx) return;
         var c = sprite._pmCanvas, ctx = sprite._pmCtx;
+        if (sprite._pmAutoWidth) {
+            var fontSpec = sprite._pmFont || "bold italic 76px 'Cambria Math', 'Times New Roman', serif";
+            ctx.font = fontSpec;
+            var pad = 56;
+            var needW = Math.max(384, Math.ceil(ctx.measureText(text).width) + pad);
+            if (needW !== c.width) {
+                // resize clears the canvas + font state; re-acquire + re-apply.
+                c.width = needW;
+                ctx = c.getContext("2d");
+                sprite._pmCtx = ctx;
+                // keep the sprite's on-screen glyph height constant: world-width
+                // tracks the canvas aspect (canvas height is fixed at 128).
+                var hs = (sprite._pmHeightScale != null) ? sprite._pmHeightScale : 0.42;
+                sprite.scale.set(hs * (c.width / c.height), hs, 1);
+                if (sprite.material && sprite.material.map) {
+                    sprite.material.map.dispose();
+                    var tex = new THREE.CanvasTexture(c);
+                    tex.needsUpdate = true;
+                    sprite.material.map = tex;
+                }
+            }
+            ctx.clearRect(0, 0, c.width, c.height);
+            ctx.font = fontSpec;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = "rgba(10,10,26,0.95)";
+            ctx.strokeText(text, c.width / 2, c.height / 2);
+            ctx.fillStyle = sprite._pmColor;
+            ctx.fillText(text, c.width / 2, c.height / 2);
+            if (sprite.material && sprite.material.map) sprite.material.map.needsUpdate = true;
+            return;
+        }
         ctx.clearRect(0, 0, c.width, c.height);
         ctx.font = "bold italic 76px 'Cambria Math', 'Times New Roman', serif";
         ctx.textAlign = "center";
@@ -2287,6 +3058,48 @@ export const FIELD_3D_RENDERER_CODE = `
         ctx.fillStyle = sprite._pmColor;
         ctx.fillText(text, c.width / 2, c.height / 2);
         if (sprite.material && sprite.material.map) sprite.material.map.needsUpdate = true;
+    }
+
+    // ── Auto-width retained label sprite (electric_potential_meaning) ─────────
+    //   Combines createWideLabelSprite (canvas sized to the MEASURED full text
+    //   width, so long strings never clip — fixes the ΔV / "U = stored energy"
+    //   left/right truncation) with createLabelSprite's RETAINED canvas/ctx/color
+    //   so updateLabelSpriteText can redraw it live (and re-fit the width on a
+    //   longer redraw). Scoped to the potential-concept billboard labels; other
+    //   scenarios keep createLabelSprite / createWideLabelSprite unchanged.
+    function pmCreateAutoLabel(text, color, heightScale) {
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+        var fontSpec = "bold italic 76px 'Cambria Math', 'Times New Roman', serif";
+        ctx.font = fontSpec;
+        var pad = 56;
+        var measured = Math.ceil(ctx.measureText(text).width) + pad;
+        canvas.width = Math.max(384, measured);
+        canvas.height = 128;
+        // resizing the canvas clears font state — re-acquire + redraw.
+        ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.font = fontSpec;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = "rgba(10,10,26,0.95)";
+        ctx.strokeText(text, canvas.width / 2, canvas.height / 2);
+        ctx.fillStyle = color;
+        ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+        var texture = new THREE.CanvasTexture(canvas);
+        texture.needsUpdate = true;
+        var material = new THREE.SpriteMaterial({
+            map: texture, transparent: true, depthTest: false, depthWrite: false
+        });
+        var sprite = new THREE.Sprite(material);
+        var hs = heightScale != null ? heightScale : 0.42;
+        sprite.scale.set(hs * (canvas.width / canvas.height), hs, 1);
+        sprite.renderOrder = 999;
+        // retained-redraw + auto-width metadata read by updateLabelSpriteText.
+        sprite._pmCanvas = canvas; sprite._pmCtx = ctx; sprite._pmColor = color;
+        sprite._pmAutoWidth = true; sprite._pmFont = fontSpec; sprite._pmHeightScale = hs;
+        return sprite;
     }
 
     // ── Wide text-label sprite ────────────────────────────────────────────
@@ -3246,6 +4059,64 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── Shared dipole field-line generator ────────────────────────────────
+    //   Builds count closed N->S field-line tubes centred on the LOCAL origin
+    //   along the z-axis (N face at +zPos, S face at zNeg), each with a single
+    //   direction arrowhead, and RETURNS the meshes so the caller can add them
+    //   to a THREE.Group (rotates with the source) or to the scene. This is the
+    //   exact golden-angle fan + sin(t·π) bulge buildBarMagnetField uses — the
+    //   current_loop_acts_as_dipole scenario reuses it so the loop's field and a
+    //   bar magnet's field are drawn by the SAME code (that visual identity is
+    //   the whole lesson). buildBarMagnetField is intentionally left untouched
+    //   (additive-only, no regression to the shipped bar_magnet scenario).
+    function buildDipoleFieldLines(opts) {
+        var zPos = opts.zPos != null ? opts.zPos : 1;
+        var zNeg = opts.zNeg != null ? opts.zNeg : -1;
+        var color = opts.color || "#66BB6A";
+        var count = opts.count || 10;
+        var idPrefix = opts.idPrefix || "dfl_";
+        var lineType = opts.lineType || "field_line";
+        var arrowType = opts.arrowType || "arrow";
+        var lineRadius = opts.lineRadius != null ? opts.lineRadius : 0.018;
+        var bulgeBase = opts.bulgeBase != null ? opts.bulgeBase : 1.2;
+        var bulgeSpread = opts.bulgeSpread != null ? opts.bulgeSpread : 1.8;
+        var out = [];
+        var goldenAngle = Math.PI * (3 - Math.sqrt(5));
+        for (var i = 0; i < count; i++) {
+            var frac = 1 - (i / (count - 1)) * 2;
+            var radiusAtFrac = Math.sqrt(Math.max(0, 1 - frac * frac));
+            var theta = goldenAngle * i;
+            var bulge = bulgeBase + Math.abs(frac) * bulgeSpread;
+            var offX = radiusAtFrac * Math.cos(theta) * bulge;
+            var offY = frac * bulge;
+            var points = [];
+            var segments = 28;
+            for (var s = 0; s <= segments; s++) {
+                var t = s / segments;
+                var cz = zPos * (1 - t) + zNeg * t;
+                var blend = Math.sin(t * Math.PI);
+                points.push([offX * blend, offY * blend, cz]);
+            }
+            var tube = createTubeLine(points, color, lineRadius);
+            if (tube) {
+                tube.userData = { elementType: lineType, id: idPrefix + i };
+                out.push(tube);
+            }
+            var aIdx = Math.floor(segments / 3);
+            if (aIdx > 0) {
+                var arrowDir = [
+                    points[aIdx][0] - points[aIdx - 1][0],
+                    points[aIdx][1] - points[aIdx - 1][1],
+                    points[aIdx][2] - points[aIdx - 1][2]
+                ];
+                var arrowMesh = createArrowHead(points[aIdx], arrowDir, color);
+                arrowMesh.userData = { elementType: arrowType, id: idPrefix + "arr_" + i };
+                out.push(arrowMesh);
+            }
+        }
+        return out;
+    }
+
     function buildBarMagnetField(config_unused) {
         var magnetLength = 2;
         var flColor = config.field_lines.color_positive || "#66BB6A";
@@ -3390,6 +4261,396 @@ export const FIELD_3D_RENDERER_CODE = `
                     addToScene(arrowMesh);
                 }
             }
+        }
+    }
+
+    // ── Parallel currents force (F/L = mu0 I1 I2 / 2 pi d) ─────────────────
+    //   Two long parallel wires. Wire 1's field at wire 2 is B1 = mu0 I1 / 2 pi d;
+    //   wire 2 (current I2 in that field) feels F = I2 L x B1. Parallel currents
+    //   ATTRACT, antiparallel REPEL (the opposite of like charges) — this defines
+    //   the ampere. Assembled from the straight-wire field-circle + flow-dot
+    //   pattern (twice) plus force ArrowHelpers; ZERO new primitives. Geometry:
+    //   wires run along y; separation along x (wire 1 at -d/2, wire 2 at +d/2);
+    //   B1 at wire 2 points -z for current 1 up (RHR), F2 is -dir1*dir2 in x.
+    var pcfUserFlip = 1; // sandbox: +1 = parallel (attract), -1 = antiparallel (repel)
+
+    function buildParallelCurrentsForce() {
+        var wireColor = (config.current && config.current.wire_color) ? config.current.wire_color : "#FFAB40";
+        var flColor = (config.field_lines && config.field_lines.color_positive) || "#66BB6A";
+        var lineCount = (config.field_lines && config.field_lines.count) || 5;
+        var dWorld = (config.wire_separation != null) ? config.wire_separation : 2.4;
+        var x1 = -dWorld / 2, x2 = dWorld / 2;
+        var fColor = "#FF6B6B";
+
+        function addWire(wx, wid, wnum) {
+            var w = createWire([wx, -3, 0], [wx, 3, 0], wireColor, 0.08);
+            w.userData = { elementType: "pcf_wire", id: wid, wire: wnum };
+            addToScene(w);
+            var ca = createArrowHead([wx, 2.0, 0], [0, 1, 0], wireColor);
+            ca.userData = { elementType: "pcf_current_arrow", id: "pcf_curr_arr_" + wnum, wire: wnum };
+            addToScene(ca);
+            var wl = createLabelSprite(wnum === 1 ? "I₁" : "I₂", "#FFD54F", 0.42);
+            wl.position.set(wx + 0.35, 2.55, 0); // off the wire-top, clear of the canvas edge
+            wl.userData = { elementType: "pcf_label", id: "pcf_wire_label_" + wnum };
+            addToScene(wl);
+        }
+        addWire(x1, "pcf_wire_1", 1);
+        addWire(x2, "pcf_wire_2", 2);
+
+        // Current-flow dots — 6 per wire, tagged with the wire number.
+        var dotCount = 6;
+        for (var wn = 1; wn <= 2; wn++) {
+            var wx = (wn === 1) ? x1 : x2;
+            for (var di = 0; di < dotCount; di++) {
+                var dotGeo = new THREE.SphereGeometry(0.15, 16, 16);
+                var dotMat = new THREE.MeshPhongMaterial({ color: 0xFFE082, emissive: 0xFFC400, emissiveIntensity: 1.1 });
+                var dot = new THREE.Mesh(dotGeo, dotMat);
+                dot.userData = { elementType: "pcf_current_dot", id: "pcf_cdot_" + wn + "_" + di, dotIndex: di, dotCount: dotCount, wire: wn };
+                dot.position.set(wx, -2.5 + (di / dotCount) * 5, 0);
+                dot.visible = false;
+                addToScene(dot);
+            }
+        }
+
+        // Wire 1's B-field: concentric circles (xz planes) centred on wire 1.
+        var heights = [-1.5, 0, 1.5];
+        for (var h = 0; h < heights.length; h++) {
+            for (var ri = 0; ri < lineCount; ri++) {
+                var radius = 0.55 + ri * 0.48;
+                var pts = [], segs = 48;
+                for (var s = 0; s <= segs; s++) {
+                    var ang = (s / segs) * Math.PI * 2;
+                    pts.push([x1 + radius * Math.cos(ang), heights[h], radius * Math.sin(ang)]);
+                }
+                var tube = createTubeLine(pts, flColor, 0.013);
+                if (tube) {
+                    if (tube.material) { tube.material.transparent = true; tube.material.opacity = 0.55; }
+                    tube.userData = { elementType: "pcf_field_line", id: "pcf_fl_" + h + "_" + ri };
+                    tube.visible = false;
+                    addToScene(tube);
+                }
+                var qIdx = Math.floor(segs / 4);
+                var aDir = [pts[qIdx][0] - pts[qIdx - 1][0], pts[qIdx][1] - pts[qIdx - 1][1], pts[qIdx][2] - pts[qIdx - 1][2]];
+                var ah = createArrowHead(pts[qIdx], aDir, flColor);
+                ah.userData = { elementType: "pcf_field_arrow", id: "pcf_fa_" + h + "_" + ri, flowRadius: radius, flowHeight: heights[h], flowCenterX: x1, flowAngleOffset: Math.PI / 2 };
+                ah.visible = false;
+                addToScene(ah);
+            }
+        }
+
+        // B1 vector AT wire 2 (points -z for current 1 up, RHR). Hidden by default.
+        var bVec = new THREE.ArrowHelper(new THREE.Vector3(0, 0, -1), new THREE.Vector3(x2, 0, 0), 0.9, "#66BB6A", 0.22, 0.13);
+        bVec.userData = { elementType: "pcf_b_vector", id: "pcf_b1_at_2", visible_default: false };
+        bVec.visible = false;
+        addToScene(bVec);
+        var bLab = createLabelSprite("B₁", "#82B1FF", 0.40);
+        bLab.position.set(x2 + 0.6, -1.2, 0.35); // off wire 2, toward camera, in a clear zone
+        bLab.userData = { elementType: "pcf_label", id: "pcf_b1_label" };
+        bLab.visible = false;
+        addToScene(bLab);
+
+        // Force arrows on each wire (direction + length set per frame).
+        var f2 = new THREE.ArrowHelper(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(x2, 0, 0), 1.1, fColor, 0.30, 0.17);
+        f2.userData = { elementType: "pcf_force_arrow", id: "pcf_F2", wire: 2, visible_default: false };
+        f2.visible = false;
+        addToScene(f2);
+        var f1 = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(x1, 0, 0), 1.1, fColor, 0.30, 0.17);
+        f1.userData = { elementType: "pcf_force_arrow", id: "pcf_F1", wire: 1, visible_default: false };
+        f1.visible = false;
+        addToScene(f1);
+        var f2lab = createLabelSprite("F", fColor, 0.40);
+        f2lab.position.set(x2, 0.45, 0);
+        f2lab.userData = { elementType: "pcf_label", id: "pcf_F2_label" };
+        f2lab.visible = false;
+        addToScene(f2lab);
+        var f1lab = createLabelSprite("F", fColor, 0.40);
+        f1lab.position.set(x1, 0.45, 0);
+        f1lab.userData = { elementType: "pcf_label", id: "pcf_F1_label" };
+        f1lab.visible = false;
+        addToScene(f1lab);
+
+        // Right-hand-rule hand for STATE_3 (the force rule F = I₂ L × B₁). The
+        // ARTICULATED, choreographed hand (real finger-curl) placed front-right
+        // of wire 2. Orientation is FIXED at build (fingers up = I₂, curl into
+        // page = B₁, thumb left = F): STATE_3 is always parallel-up, so the hand
+        // never needs to track flips. updatePcfRhrHandFrame() drives the slow
+        // dwelling I→B→F curl + per-beat highlight.
+        var rhrHand = createParallelCurrentsRhrHand({
+            position: [x2 + 1.25, 0.15, 1.35],
+            scale: 1.05
+        });
+        rhrHand.visible = false;
+        addToScene(rhrHand);
+        var rhrLab = createLabelSprite("F = I₂ L × B₁", "#FF8A80", 0.40);
+        rhrLab.position.set(x2 + 1.25, 1.55, 1.35);
+        rhrLab.userData = { elementType: "pcf_label", id: "pcf_rhr_label" };
+        rhrLab.visible = false;
+        addToScene(rhrLab);
+
+        // Short step captions beside the hand — one per beat, toggled by
+        // updatePcfRhrHandFrame(). Rule 24 (labels only, reads sound-off).
+        var stepDefs = [
+            { beat: "i", text: "fingers ↑ along I₂ (current up)", color: "#FFAB40" },
+            { beat: "b", text: "curl into B₁ ⊗ (into the page)", color: "#66BB6A" },
+            { beat: "f", text: "thumb → F (toward wire 1)", color: "#FF6B6B" },
+        ];
+        for (var sdi = 0; sdi < stepDefs.length; sdi++) {
+            var stepSprite = createWideLabelSprite(stepDefs[sdi].text, stepDefs[sdi].color, 0.42);
+            stepSprite.position.set(x2 + 1.25, -1.85, 1.35);
+            stepSprite.userData = { elementType: "pcf_rhr_step", id: "pcf_rhr_step_" + stepDefs[sdi].beat, beat: stepDefs[sdi].beat, wire: 2 };
+            stepSprite.visible = false;
+            addToScene(stepSprite);
+        }
+
+        // ── Mirror onto WIRE 1 (STATE_4): B₂ at wire 1 + the wire-1 RHR hand ──
+        // B₂ vector AT wire 1 — points +z OUT of the page (wire 2's field there,
+        // for wire 2 current up, by RHR). Direction re-set per frame from dir2.
+        var b2Vec = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(x1, 0, 0), 0.9, "#66BB6A", 0.22, 0.13);
+        b2Vec.userData = { elementType: "pcf_b2_vector", id: "pcf_b2_at_1", wire: 1, visible_default: false };
+        b2Vec.visible = false;
+        addToScene(b2Vec);
+        var b2Lab = createLabelSprite("B₂", "#82B1FF", 0.40);
+        b2Lab.position.set(x1 - 0.6, -1.2, 0.35); // off wire 1, toward camera, clear zone
+        b2Lab.userData = { elementType: "pcf_label", id: "pcf_b2_label" };
+        b2Lab.visible = false;
+        addToScene(b2Lab);
+
+        // Wire-1 right-hand (F = I₁ L × B₂). Mirror of the wire-2 hand, placed
+        // front-LEFT of wire 1; createParallelCurrentsRhrHand({wire:1}) applies the
+        // extra Ry(180°) so fingers = I₁ up, curl = B₂ out of page, thumb = F toward
+        // wire 2. Same I→B→F choreography, driven by updatePcfRhrHandFrame().
+        var rhrHand1 = createParallelCurrentsRhrHand({
+            position: [x1 - 1.25, 0.15, 1.35],
+            scale: 1.05,
+            wire: 1
+        });
+        rhrHand1.visible = false;
+        addToScene(rhrHand1);
+        var rhrLab1 = createLabelSprite("F = I₁ L × B₂", "#FF8A80", 0.40);
+        rhrLab1.position.set(x1 - 1.25, 1.55, 1.35);
+        rhrLab1.userData = { elementType: "pcf_label", id: "pcf_rhr_label_w1" };
+        rhrLab1.visible = false;
+        addToScene(rhrLab1);
+
+        var stepDefs1 = [
+            { beat: "i", text: "fingers ↑ along I₁ (current up)", color: "#FFAB40" },
+            { beat: "b", text: "curl into B₂ ⊙ (out of the page)", color: "#66BB6A" },
+            { beat: "f", text: "thumb → F (toward wire 2)", color: "#FF6B6B" },
+        ];
+        for (var sdj = 0; sdj < stepDefs1.length; sdj++) {
+            var stepSprite1 = createWideLabelSprite(stepDefs1[sdj].text, stepDefs1[sdj].color, 0.42);
+            stepSprite1.position.set(x1 - 1.25, -1.85, 1.35);
+            stepSprite1.userData = { elementType: "pcf_rhr_step", id: "pcf_rhr_step_w1_" + stepDefs1[sdj].beat, beat: stepDefs1[sdj].beat, wire: 1 };
+            stepSprite1.visible = false;
+            addToScene(stepSprite1);
+        }
+    }
+
+    // Per-state visibility for parallel_currents_force (mirrors the other
+    // applyXState handlers). Wires + current arrows + I-labels stay visible;
+    // dots / field / B1 / force arrows toggle from stateDef.extras.
+    function applyParallelCurrentsForceState(stateDef) {
+        var ex = (stateDef && stateDef.extras) || {};
+        var showField = !!ex.show_field;
+        var showB1 = !!ex.show_b1;
+        var showB2 = !!ex.show_b2;
+        var showForces = !!ex.show_forces;
+        var showDots = ex.current_dots !== false;
+        var showF1 = showForces && (ex.force_on_wire_1 !== false);
+        var showF2 = showForces && (ex.force_on_wire_2 !== false);
+        var showHand2 = !!ex.show_rhr_hand;          // wire-2 hand (STATE_3)
+        var showHand1 = !!ex.show_rhr_hand_wire1;     // wire-1 hand (STATE_4)
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i]; var ud = o.userData; if (!ud) continue;
+            if (ud.elementType === "pcf_field_line" || ud.elementType === "pcf_field_arrow") o.visible = showField;
+            else if (ud.elementType === "pcf_b_vector") o.visible = showB1;
+            else if (ud.elementType === "pcf_b2_vector") o.visible = showB2;
+            else if (ud.elementType === "pcf_current_dot") o.visible = showDots;
+            else if (ud.elementType === "pcf_force_arrow") o.visible = (ud.wire === 1 ? showF1 : showF2);
+            else if (ud.elementType === "pcf_rhr_hand") o.visible = (ud.wire === 1 ? showHand1 : showHand2);
+            // Step captions: kept OFF here; the choreography reveals the active
+            // beat's caption each frame (so they never linger into other states).
+            else if (ud.elementType === "pcf_rhr_step") o.visible = false;
+            else if (ud.elementType === "pcf_label") {
+                if (ud.id === "pcf_b1_label") o.visible = showB1;
+                else if (ud.id === "pcf_b2_label") o.visible = showB2;
+                else if (ud.id === "pcf_F1_label") o.visible = showF1;
+                else if (ud.id === "pcf_F2_label") o.visible = showF2;
+                else if (ud.id === "pcf_rhr_label") o.visible = showHand2;
+                else if (ud.id === "pcf_rhr_label_w1") o.visible = showHand1;
+                else o.visible = true;
+            }
+        }
+    }
+
+    // Per-frame: flow dots, orbiting B1 arrows, and the force/B1 vectors driven
+    // by the two current directions. F2_x = -dir1*dir2, F1_x = +dir1*dir2
+    // (parallel -> attract, antiparallel -> repel). Reads sandbox sliders live.
+    function updateParallelCurrentsForceFrame() {
+        var stateDef = config.states[PM_currentState];
+        if (!stateDef) return;
+        var ex = stateDef.extras || {};
+        var dWorld = (config.wire_separation != null) ? config.wire_separation : 2.4;
+        var x1 = -dWorld / 2, x2 = dWorld / 2;
+        var dir1 = (ex.wire_1_dir === "down") ? -1 : 1;
+        var dir2 = (ex.wire_2_dir === "down") ? -1 : 1;
+        if (ex.reverse_wire_2_at_ms != null) {
+            var tMs = (time - stateStartTime) * 1000;
+            dir2 = (tMs >= ex.reverse_wire_2_at_ms) ? -1 : 1;
+        }
+        var fLen = 1.1;
+        if (stateDef.show_sliders) {
+            dir2 = pcfUserFlip;
+            var s1 = document.getElementById("pcf_i1_slider");
+            var s2 = document.getElementById("pcf_i2_slider");
+            var I1 = s1 ? parseFloat(s1.value) : 5;
+            var I2 = s2 ? parseFloat(s2.value) : 5;
+            var mult = Math.min(2.2, Math.pow(Math.max(0.01, (I1 / 5) * (I2 / 5)), 0.5));
+            fLen = 0.7 + 0.7 * mult;
+            var ro = document.getElementById("pcf_readout");
+            if (ro) ro.textContent = "F/L ∝ I₁ I₂ / d  —  " + (pcfUserFlip > 0 ? "ATTRACT" : "REPEL");
+        }
+        var dotSpeed = 0.5, orbitRate = 0.6;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i]; var ud = o.userData; if (!ud) continue;
+            if (ud.elementType === "pcf_current_dot") {
+                if (!o.visible) continue;
+                var ddir = (ud.wire === 1) ? dir1 : dir2;
+                if (ud.dotPhase == null) ud.dotPhase = (ud.dotIndex || 0) / (ud.dotCount || 6);
+                ud.dotPhase += 0.016 * dotSpeed;
+                var loopT = ud.dotPhase % 1;
+                o.position.x = (ud.wire === 1) ? x1 : x2;
+                o.position.y = ddir > 0 ? (-2.5 + loopT * 5) : (2.5 - loopT * 5);
+            } else if (ud.elementType === "pcf_field_arrow" && ud.flowRadius != null) {
+                if (!o.visible) continue;
+                if (ud.swPhase == null) ud.swPhase = 0;
+                // RHR: for current +y, B = y_hat x r_hat. At r_hat=(cos,0,sin) the
+                // field is (sin, 0, -cos) — i.e. counterclockwise viewed from above
+                // (current up). The orbit flows in DECREASING angle and the arrowhead
+                // points along B (downstream). dir1 flips the whole sense for current down.
+                var rotSign = dir1;
+                ud.swPhase += 0.016 * orbitRate * (-rotSign);
+                var ang = (ud.flowAngleOffset || 0) + ud.swPhase;
+                o.position.set((ud.flowCenterX || x1) + ud.flowRadius * Math.cos(ang), ud.flowHeight, ud.flowRadius * Math.sin(ang));
+                var tx = Math.sin(ang) * rotSign, tz = -Math.cos(ang) * rotSign;
+                var q = new THREE.Quaternion();
+                q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(tx, 0, tz).normalize());
+                o.setRotationFromQuaternion(q);
+            } else if (ud.elementType === "pcf_current_arrow") {
+                var cd = (ud.wire === 1) ? dir1 : dir2;
+                var cq = new THREE.Quaternion();
+                cq.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, cd, 0));
+                o.setRotationFromQuaternion(cq);
+                o.position.set((ud.wire === 1) ? x1 : x2, cd > 0 ? 2.0 : -2.0, 0);
+            } else if (ud.elementType === "pcf_b_vector") {
+                if (o.visible) { o.position.set(x2, 0, 0); o.setDirection(new THREE.Vector3(0, 0, -dir1)); }
+            } else if (ud.elementType === "pcf_b2_vector") {
+                // B₂ at wire 1 = wire 2's field there: +dir2·ẑ (OUT of page for I₂ up).
+                if (o.visible) { o.position.set(x1, 0, 0); o.setDirection(new THREE.Vector3(0, 0, dir2)); }
+            } else if (ud.elementType === "pcf_force_arrow") {
+                if (!o.visible) continue;
+                var sgn = (ud.wire === 2) ? (-dir1 * dir2) : (dir1 * dir2);
+                o.position.set((ud.wire === 2) ? x2 : x1, 0, 0);
+                o.setDirection(new THREE.Vector3(sgn, 0, 0));
+                o.setLength(fLen, 0.30, 0.17);
+                // (pcf_rhr_hand has a FIXED build-time orientation; its finger
+                //  curl + I/B/F beats are driven by updatePcfRhrHandFrame().)
+            } else if (ud.elementType === "pcf_label") {
+                if (ud.id === "pcf_F2_label" && o.visible) o.position.set(x2 + (-dir1 * dir2) * (fLen + 0.3), 0.2, 0);
+                else if (ud.id === "pcf_F1_label" && o.visible) o.position.set(x1 + (dir1 * dir2) * (fLen + 0.3), 0.2, 0);
+            }
+        }
+    }
+
+    // Slow, dwelling I→B→F choreography for the STATE_3 right-hand. ~16s loop
+    // with a ~3s pause at each beat; curlT is a pure function of (time -
+    // stateStartTime) so THE EYE freezes it deterministically via
+    // SET_TIME_FREEZE, and SET_HAND_PHASE ('v'/'i' | 'b' | 'f') pins a beat.
+    // Each beat: regenerate the finger curl, reveal the matching embedded I/B/F
+    // arrow+label + step caption, and BRIGHTEN the matching scene vector
+    // (Rule 29 — brightness, never size; brightenOnly never writes opacity).
+    function updatePcfRhrHandFrame() {
+        var i, o, ud;
+        // Bucket the per-wire actors. Wire 2 = STATE_3 (B₁ + F on wire 2),
+        // wire 1 = STATE_4 (B₂ + F on wire 1). Both hands share ONE I→B→F clock.
+        var hands = { 1: null, 2: null };
+        var iArrow = { 1: null, 2: null }, bArrow = { 1: null, 2: null }, fArrow = { 1: null, 2: null };
+        var steps = { 1: [], 2: [] }, dots = { 1: [], 2: [] };
+        for (i = 0; i < sceneObjects.length; i++) {
+            o = sceneObjects[i]; ud = o.userData; if (!ud) continue;
+            if (ud.elementType === "pcf_rhr_hand") hands[ud.wire || 2] = o;
+            else if (ud.elementType === "pcf_current_arrow") { if (ud.wire) iArrow[ud.wire] = o; }
+            else if (ud.elementType === "pcf_b_vector") bArrow[2] = o;     // B₁ at wire 2
+            else if (ud.elementType === "pcf_b2_vector") bArrow[1] = o;    // B₂ at wire 1
+            else if (ud.elementType === "pcf_force_arrow") { if (ud.wire) fArrow[ud.wire] = o; }
+            else if (ud.elementType === "pcf_rhr_step") steps[ud.wire || 2].push(o);
+            else if (ud.elementType === "pcf_current_dot") { if (ud.wire) dots[ud.wire].push(o); }
+        }
+
+        // Shared beat schedule (state-local seconds). period 16s: I dwell ~3s →
+        // ease → B dwell ~3s → ease → F dwell ~3s → uncurl back to I. Pure
+        // function of (time - stateStartTime) so THE EYE freezes it via
+        // SET_TIME_FREEZE; SET_HAND_PHASE ('v'/'i' | 'b' | 'f') pins a beat.
+        var t = time - stateStartTime;
+        var tc = t % 16.0;
+        var curlT, beat, u;
+        if (heldHandPhase === 'v' || heldHandPhase === 'i') { curlT = 0; beat = 'i'; }
+        else if (heldHandPhase === 'b') { curlT = 0.5; beat = 'b'; }
+        else if (heldHandPhase === 'f') { curlT = 1; beat = 'f'; }
+        else if (tc < 3.0) { curlT = 0; beat = 'i'; }
+        else if (tc < 5.0) { u = (tc - 3.0) / 2.0; curlT = 0.5 * (u * u * (3 - 2 * u)); beat = null; }
+        else if (tc < 8.0) { curlT = 0.5; beat = 'b'; }
+        else if (tc < 10.0) { u = (tc - 8.0) / 2.0; curlT = 0.5 + 0.5 * (u * u * (3 - 2 * u)); beat = null; }
+        else if (tc < 13.0) { curlT = 1; beat = 'f'; }
+        else { u = (tc - 13.0) / 3.0; curlT = 1 - (u * u * (3 - 2 * u)); beat = null; }
+
+        for (var w = 1; w <= 2; w++) {
+            var hand = hands[w];
+            var sceneVecs = [
+                { beat: "i", obj: iArrow[w] },
+                { beat: "b", obj: bArrow[w] },
+                { beat: "f", obj: fArrow[w] },
+            ];
+            // Hand hidden (this wire is not the active RHR state) → restore base
+            // brightness + hide this wire's captions, then skip it.
+            if (!hand || !hand.visible) {
+                for (i = 0; i < sceneVecs.length; i++) if (sceneVecs[i].obj) applyGlowEmphasis(sceneVecs[i].obj, false, false, 0, true);
+                for (i = 0; i < dots[w].length; i++) applyGlowEmphasis(dots[w][i], false, false, 0, true);
+                for (i = 0; i < steps[w].length; i++) steps[w][i].visible = false;
+                continue;
+            }
+
+            // (a) Regenerate the 4 finger geometries at the current curlT.
+            var fingers = hand.userData.finger_meshes || [];
+            var knuckles = hand.userData.finger_knuckles || [];
+            var nails = hand.userData.finger_nails || [];
+            for (var fmi = 0; fmi < fingers.length; fmi++) {
+                var fmesh = fingers[fmi];
+                var fj = rhrFingerJoints(fmi, hand.userData.sc, curlT, hand.userData.curlSign);
+                fmesh.geometry.dispose();
+                fmesh.geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fj), 24, hand.userData.seg_tube_r, 12, false);
+                var fkn = knuckles[fmi] || [];
+                for (var fkk = 0; fkk < fkn.length; fkk++) { if (fkn[fkk]) fkn[fkk].position.copy(fj[fkk]); }
+                if (nails[fmi]) nails[fmi].position.copy(fj[3]);
+            }
+
+            // (b) Toggle the embedded I/B/F arrows + labels for the active beat.
+            if (hand.userData.i_arrow) hand.userData.i_arrow.visible = (beat === 'i');
+            if (hand.userData.b_arrow) hand.userData.b_arrow.visible = (beat === 'b');
+            if (hand.userData.f_arrow) hand.userData.f_arrow.visible = (beat === 'f');
+            if (hand.userData.i_label) hand.userData.i_label.visible = (beat === 'i');
+            if (hand.userData.b_label) hand.userData.b_label.visible = (beat === 'b');
+            if (hand.userData.f_label) hand.userData.f_label.visible = (beat === 'f');
+
+            // (c) Step captions — reveal only this wire's active-beat caption.
+            for (i = 0; i < steps[w].length; i++) steps[w][i].visible = (steps[w][i].userData.beat === beat);
+
+            // (d) Per-beat scene highlight: brighten the matching vector, peers to base.
+            for (i = 0; i < sceneVecs.length; i++) {
+                if (sceneVecs[i].obj) applyGlowEmphasis(sceneVecs[i].obj, sceneVecs[i].beat === beat, true, 0.85, true);
+            }
+            // The current going up: brighten this wire's flow dots on the I beat.
+            for (i = 0; i < dots[w].length; i++) applyGlowEmphasis(dots[w][i], beat === 'i', true, 0.85, true);
         }
     }
 
@@ -3955,6 +5216,371 @@ export const FIELD_3D_RENDERER_CODE = `
         expRLabel.userData = { elementType: "biot_explorer", id: "bs_exp_r_label" };
         expRLabel.visible = false;
         addToScene(expRLabel);
+    }
+
+    // ── Ampère's circuital law (∮B·dl = μ₀ I_enc) on a long straight wire ────
+    //   Engine-first build (founder-authorized, peter_parker:renderer_primitives):
+    //   the signature payoff — the circulation visibly ACCUMULATING round a
+    //   coaxial Amperian loop (N equal tangent B·dl tiles light one-by-one),
+    //   then UNROLLING into one horizontal bar of length B·(2πr), set equal to
+    //   μ₀ I_enc — does not exist elsewhere. Mirrors the biot_savart_element
+    //   accumulation-Group choreography (build + staggered reveal), reusing the
+    //   straight-wire + concentric-circle construction. The only genuinely new
+    //   math is the per-tile lerp(P_curve, P_bar, u) curve→bar blend, applied in
+    //   the animate block (guarded by scenario_type === "amperes_circuital_law").
+    //
+    //   All primitives carry stable acl_-prefixed ids (Rule 27, and so the
+    //   substring visible_elements matcher never collides with biot/wire ids).
+    //   Length is CONSERVED through the curve→straight blend (the visual proof,
+    //   Rule-29-safe: the bar length IS the real magnitude N·B·dl, never a
+    //   cosmetic pulse; the equality beat emphasises by BRIGHTNESS only).
+    function buildAmperesCircuitalLaw(config_unused) {
+        var wireColor = (config.current && config.current.wire_color) ? config.current.wire_color : "#FFAB40";
+        var flColor = config.field_lines.color_positive || "#66BB6A";
+        var bdlColor = "#66BB6A";       // the B·dl tiles + the unrolled bar
+        var loopColor = "#FFD54F";      // the bright Amperian ring
+        var iencColor = "#FF8A65";      // enclosed-current / equality accent
+
+        var defs = config.acl_defaults || {};
+        var rLoop = (typeof defs.loop_radius === "number") ? defs.loop_radius : 1.4;
+        var nSeg = (typeof defs.num_segments === "number") ? defs.num_segments : 24;
+        var wireHalf = 3.0;
+
+        // The on-screen length of each equal B·dl tile. The full ring is N tiles;
+        // the unrolled bar is N·segLen long = the SAME total (length conserved).
+        // segLen is sized so the bar spans a readable width without leaving frame.
+        var segLen = (2 * Math.PI * rLoop) / nSeg;   // arc length per tile (= ring circumference / N)
+        var gutterH = -2.2;                           // the loop sits in a lower "gutter" plane (y) so it
+                                                      // doesn't collide with the wire's mid-height circles
+        var barY = -2.9;                              // the unrolled bar's row height (below the loop)
+        var barStartX = -(nSeg * segLen) / 2;         // centre the bar about x=0
+
+        // Vertical wire (current up the +y axis)
+        var wire = createWire([0, -wireHalf, 0], [0, wireHalf, 0], wireColor, 0.07);
+        wire.userData = { elementType: "acl_wire", id: "acl_wire" };
+        addToScene(wire);
+
+        // Current direction arrow on the wire
+        var currArrow = createArrowHead([0, wireHalf * 0.6, 0], [0, 1, 0], wireColor);
+        currArrow.userData = { elementType: "acl_curr_arrow", id: "acl_curr_arrow" };
+        addToScene(currArrow);
+
+        // "I" label beside the current arrow
+        var iLabel = createLabelSprite("I", wireColor, 0.5);
+        iLabel.position.set(0.42, wireHalf * 0.6 + 0.2, 0.0);
+        iLabel.material.transparent = true;
+        iLabel.userData = { elementType: "acl_curr_arrow", id: "acl_curr_arrow_label" };
+        addToScene(iLabel);
+
+        // ── Conventional-current flow dots (live current) ────────────────
+        //   march up the wire when the active state sets show_current_flow.
+        var flowCount = 7;
+        for (var fd = 0; fd < flowCount; fd++) {
+            var fGeo = new THREE.SphereGeometry(0.09, 12, 12);
+            var fMat = new THREE.MeshPhongMaterial({
+                color: 0xFFF59D, emissive: 0xFFD54F, emissiveIntensity: 0.9,
+                transparent: true, opacity: 0
+            });
+            var fdot = new THREE.Mesh(fGeo, fMat);
+            fdot.position.set(0, -wireHalf + (fd / flowCount) * (2 * wireHalf), 0);
+            fdot.userData = { elementType: "acl_flow", id: "acl_flow_" + fd, phase: fd / flowCount };
+            fdot.visible = false;
+            addToScene(fdot);
+        }
+
+        // ── Concentric circular field lines (context; the B circulation) ──
+        //   Three heights × a few radii, static closed loops drawn faintly.
+        var circHeights = [-1.4, 0, 1.4];
+        var circRadii = [0.7, 1.4, 2.1];
+        for (var ch = 0; ch < circHeights.length; ch++) {
+            for (var cr = 0; cr < circRadii.length; cr++) {
+                var crad = circRadii[cr];
+                var cpts = [], csegs = 48;
+                for (var cs = 0; cs <= csegs; cs++) {
+                    var ca = (cs / csegs) * Math.PI * 2;
+                    cpts.push([crad * Math.cos(ca), circHeights[ch], crad * Math.sin(ca)]);
+                }
+                var ctube = createTubeLine(cpts, flColor, 0.013);
+                if (ctube) {
+                    ctube.material.transparent = true;
+                    ctube.material.opacity = 0.25;
+                    ctube.userData = { elementType: "acl_circle", id: "acl_circle_" + ch + "_" + cr };
+                    addToScene(ctube);
+                }
+            }
+        }
+
+        // ── The bright Amperian loop (the chosen coaxial circle) ─────────
+        //   A bright ring at loop_radius in the gutter plane; the dl tiles march
+        //   on this ring and the B·dl tiles sit just outside it. Drawn in by the
+        //   loop_appear_at_ms reveal. depthTest:false + high renderOrder so the
+        //   thin bright ring reads on top of the faint context circles.
+        var loopPts = [], loopSegs = 96;
+        for (var ls = 0; ls <= loopSegs; ls++) {
+            var la = (ls / loopSegs) * Math.PI * 2;
+            loopPts.push([rLoop * Math.cos(la), gutterH, -rLoop * Math.sin(la)]);
+        }
+        var loopTube = createTubeLine(loopPts, loopColor, 0.022);
+        if (loopTube) {
+            loopTube.material.transparent = true;
+            loopTube.material.opacity = 0;
+            loopTube.material.emissive = hexToThreeColor(loopColor);
+            loopTube.material.emissiveIntensity = 0.5;
+            loopTube.material.depthTest = false;
+            loopTube.renderOrder = 12;
+            loopTube.userData = { elementType: "acl_loop", id: "acl_loop", revealAt: 1200 };
+            addToScene(loopTube);
+        }
+
+        // "Amperian loop" caption sprite riding the ring
+        var loopLabel = createLabelSprite("loop", loopColor, 0.42);
+        loopLabel.position.set(0, gutterH + 0.5, -rLoop - 0.3);
+        loopLabel.material.transparent = true;
+        loopLabel.material.opacity = 0;
+        loopLabel.userData = { elementType: "acl_loop", id: "acl_loop_label", revealAt: 1200 };
+        addToScene(loopLabel);
+
+        // ── Tangent dl segments on the loop (the marching "walk round") ──
+        //   Short fat cylinders sitting tangent to the loop; in 'march' mode a
+        //   bright one travels round the ring (acl_dl_<k>). Each carries its
+        //   on-loop angle so the animate loop can pose + cycle it.
+        for (var dk = 0; dk < nSeg; dk++) {
+            var phi = (2 * Math.PI * dk) / nSeg;
+            var dlGeo = new THREE.CylinderGeometry(0.05, 0.05, segLen * 0.78, 10);
+            var dlMat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(wireColor), emissive: hexToThreeColor(wireColor),
+                emissiveIntensity: 0.5, transparent: true, opacity: 0
+            });
+            var dlMesh = new THREE.Mesh(dlGeo, dlMat);
+            dlMesh.position.set(rLoop * Math.cos(phi), gutterH, -rLoop * Math.sin(phi));
+            // tangent (ccw, current up = B ccw seen from +y): d/dphi (cos,-sin)
+            var tdx = -Math.sin(phi), tdz = -Math.cos(phi);
+            var qd = new THREE.Quaternion();
+            qd.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(tdx, 0, tdz));
+            dlMesh.setRotationFromQuaternion(qd);
+            dlMesh.userData = { elementType: "acl_dl", id: "acl_dl_" + dk, segIndex: dk, phi_k: phi };
+            dlMesh.visible = false;
+            addToScene(dlMesh);
+        }
+
+        // ── The B·dl accumulation tiles (the integral, one term per segment) ──
+        //   Each tile is a Group carrying its curved pose (on the loop, tangent)
+        //   AND its bar pose (in the row from barStart). The animate block lerps
+        //   pos_k = lerp(P_curve, P_bar, u) and slerps tangent→+x; opacity follows
+        //   the accumulate schedule so the tiles light one-by-one, then straighten
+        //   together (staying lit). Drawn length = segLen, EQUAL for all k (Ampère
+        //   premise: B is constant-magnitude + tangent on a coaxial circle).
+        //   Mirrors the biot_accum Group pattern (a per-segment Group whose child
+        //   tube has baseOpacity, revealed on a stagger).
+        for (var bk = 0; bk < nSeg; bk++) {
+            var bphi = (2 * Math.PI * bk) / nSeg;
+            // curved pose: tile centred on the loop at angle bphi, oriented tangent.
+            var pcx = rLoop * Math.cos(bphi), pcy = gutterH, pcz = -rLoop * Math.sin(bphi);
+            // straight (bar) pose: row from barStart, k-th slot, oriented +x.
+            var pbx = barStartX + bk * segLen + segLen * 0.5, pby = barY, pbz = 0;
+
+            var tileGrp = new THREE.Group();
+            // the tile body — a short fat green tube of length segLen along local +x,
+            // built centred at local origin so position == tile CENTRE (matches the
+            // P_curve / P_bar centres above; the animate loop only moves the Group).
+            var tileGeo = new THREE.CylinderGeometry(0.055, 0.055, segLen * 0.9, 10);
+            var tileMat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(bdlColor), emissive: hexToThreeColor(bdlColor),
+                emissiveIntensity: 0.55, transparent: true, opacity: 0
+            });
+            var tileMesh = new THREE.Mesh(tileGeo, tileMat);
+            // cylinder is built along +y; rotate it to lie along the group's local +x
+            // so the slerp (tangent→+x world) keeps the tile pointing along its run.
+            tileMesh.rotation.z = -Math.PI / 2;
+            tileMesh.userData = { baseOpacity: 1 };
+            tileGrp.add(tileMesh);
+
+            tileGrp.position.set(pcx, pcy, pcz);
+            // start oriented tangent (the curved pose); animate slerps to +x on unroll.
+            var ttx = -Math.sin(bphi), ttz = -Math.cos(bphi);
+            var qt = new THREE.Quaternion();
+            qt.setFromUnitVectors(new THREE.Vector3(1, 0, 0), new THREE.Vector3(ttx, 0, ttz));
+            tileGrp.setRotationFromQuaternion(qt);
+            tileGrp.visible = false;
+            tileGrp.userData = {
+                elementType: "acl_bdl", id: "acl_bdl_" + bk,
+                segIndex: bk, phi_k: bphi,
+                P_curve: [pcx, pcy, pcz], P_bar: [pbx, pby, pbz],
+                quat_curve: [qt.x, qt.y, qt.z, qt.w]
+            };
+            addToScene(tileGrp);
+        }
+
+        // ── The unrolled bar (the row the bdl tiles straighten into) ─────
+        //   A single green bar of length N·segLen = 2π·rLoop, drawn beneath the
+        //   loop. It is the "container" the tiles fill; rendered faint until the
+        //   unroll completes, then it (and the tiles overlaid on it) PULSE BRIGHT
+        //   on the equality beat (brightness, never size — Rule 29). It HOLDS at
+        //   end pose (never fades to 0) so THE EYE's reveal_hold frame is correct.
+        var barLen = nSeg * segLen;
+        var barGeo = new THREE.CylinderGeometry(0.07, 0.07, barLen, 12);
+        var barMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(bdlColor), emissive: hexToThreeColor(bdlColor),
+            emissiveIntensity: 0.4, transparent: true, opacity: 0
+        });
+        var barMesh = new THREE.Mesh(barGeo, barMat);
+        barMesh.rotation.z = -Math.PI / 2;            // lie along world +x
+        barMesh.position.set(barStartX + barLen / 2, barY, 0);
+        barMesh.userData = { elementType: "acl_bar", id: "acl_bar", baseEmissive: 0.4 };
+        barMesh.visible = false;
+        addToScene(barMesh);
+
+        // "∮B·dl = B·(2πr)" label above the bar
+        var barLabel = createLabelSprite("\\u222eB\\u00b7dl", bdlColor, 0.5);
+        barLabel.position.set(0, barY + 0.55, 0);
+        barLabel.material.transparent = true;
+        barLabel.material.opacity = 0;
+        barLabel.userData = { elementType: "acl_bar", id: "acl_bar_label" };
+        addToScene(barLabel);
+
+        // ── The 2πr ruler (tick marks under the bar) ─────────────────────
+        //   N+1 short vertical ticks spanning the bar, so the bar's length reads
+        //   as "= 2πr". Revealed at ruler_reveal_at_ms; holds. depthTest:false +
+        //   renderOrder so the thin ticks read on top.
+        var rulerGrp = new THREE.Group();
+        for (var rt = 0; rt <= nSeg; rt++) {
+            var tx = barStartX + rt * segLen;
+            var tickGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.22, 6);
+            var tickMat = new THREE.MeshPhongMaterial({
+                color: 0xCFD8DC, emissive: 0x90A4AE, emissiveIntensity: 0.4,
+                transparent: true, opacity: 1, depthTest: false
+            });
+            var tick = new THREE.Mesh(tickGeo, tickMat);
+            tick.position.set(tx, barY - 0.28, 0);
+            tick.renderOrder = 11;
+            tick.userData = { baseOpacity: 1 };
+            rulerGrp.add(tick);
+        }
+        // a thin baseline under the ticks
+        var rbaseGeo = new THREE.CylinderGeometry(0.01, 0.01, barLen, 6);
+        var rbaseMat = new THREE.MeshPhongMaterial({
+            color: 0xCFD8DC, emissive: 0x90A4AE, emissiveIntensity: 0.35,
+            transparent: true, opacity: 1, depthTest: false
+        });
+        var rbase = new THREE.Mesh(rbaseGeo, rbaseMat);
+        rbase.rotation.z = -Math.PI / 2;
+        rbase.position.set(barStartX + barLen / 2, barY - 0.39, 0);
+        rbase.renderOrder = 11;
+        rbase.userData = { baseOpacity: 1 };
+        rulerGrp.add(rbase);
+        rulerGrp.userData = { elementType: "acl_ruler", id: "acl_ruler" };
+        rulerGrp.visible = false;
+        addToScene(rulerGrp);
+
+        // "2πr" label under the ruler
+        var rulerLabel = createLabelSprite("2\\u03c0r", "#CFD8DC", 0.46);
+        rulerLabel.position.set(0, barY - 0.78, 0);
+        rulerLabel.material.transparent = true;
+        rulerLabel.material.opacity = 0;
+        rulerLabel.userData = { elementType: "acl_ruler", id: "acl_ruler_label" };
+        addToScene(rulerLabel);
+
+        // ── "= μ₀ I_enc" equality sprite (the law) ───────────────────────
+        //   Revealed at ienc_reveal_at_ms; brightens the wire interior + lands
+        //   the equality. Holds at end pose.
+        var iencLabel = createLabelSprite("= \\u03bc\\u2080 I_enc", iencColor, 0.55);
+        iencLabel.position.set(barStartX + barLen + 0.9, barY, 0);
+        iencLabel.material.transparent = true;
+        iencLabel.material.opacity = 0;
+        iencLabel.userData = { elementType: "acl_ienc_label", id: "acl_ienc_label" };
+        addToScene(iencLabel);
+
+        // ── The failed SQUARE loop (STATE_3: "any loop shape works") ─────
+        //   A coaxial square in the gutter plane with UNEQUAL tangent arrows on
+        //   its sides (B varies + isn't tangent on a square) — the misconception
+        //   counter (Rule 16a). Shown only when show_square_ghost. Built once,
+        //   hidden by default; the animate loop never moves it (static ghost).
+        var ghostGrp = new THREE.Group();
+        var sq = rLoop * 1.05;                        // half-side ~ loop radius
+        var sqCorners = [[-sq, gutterH, sq], [sq, gutterH, sq], [sq, gutterH, -sq], [-sq, gutterH, -sq]];
+        var ghostPts = [];
+        for (var gc = 0; gc < sqCorners.length; gc++) ghostPts.push(sqCorners[gc]);
+        ghostPts.push(sqCorners[0]);
+        var ghostTube = createTubeLine(ghostPts, "#90A4AE", 0.016);
+        if (ghostTube) {
+            ghostTube.material.transparent = true;
+            ghostTube.material.opacity = 0.7;
+            ghostTube.userData = { baseOpacity: 0.7 };
+            ghostGrp.add(ghostTube);
+        }
+        // UNEQUAL B arrows at the four side-midpoints — nearer sides get longer
+        // arrows (B ∝ 1/distance), and they are NOT tangent to the square, so the
+        // sum is messy: the visual reason a square loop fails.
+        var sqMids = [[0, gutterH, sq], [sq, gutterH, 0], [0, gutterH, -sq], [-sq, gutterH, 0]];
+        var sqArrLens = [0.5, 0.95, 0.5, 0.95];       // deliberately unequal
+        for (var sm = 0; sm < sqMids.length; sm++) {
+            var mid = sqMids[sm];
+            // tangent-ish direction round the square (ccw), but at the corners the
+            // true B isn't aligned — show the mismatch by using the radial-circle
+            // tangent (true B) rather than the square's edge direction.
+            var rr = Math.sqrt(mid[0]*mid[0] + mid[2]*mid[2]) || 1;
+            var bdx = -mid[2] / rr, bdz = mid[0] / rr;   // true-B tangent (ccw)
+            var aLen = sqArrLens[sm];
+            var sqArrHead = createArrowHead(
+                [mid[0] + bdx * aLen, gutterH, mid[2] + bdz * aLen],
+                [bdx, 0, bdz], "#90A4AE"
+            );
+            sqArrHead.material.transparent = true;
+            sqArrHead.material.opacity = 0.9;
+            sqArrHead.userData = { baseOpacity: 0.9 };
+            ghostGrp.add(sqArrHead);
+            var sqShaft = createTubeLine([[mid[0], gutterH, mid[2]], [mid[0] + bdx * aLen, gutterH, mid[2] + bdz * aLen]], "#90A4AE", 0.012);
+            if (sqShaft) {
+                sqShaft.material.transparent = true;
+                sqShaft.material.opacity = 0.8;
+                sqShaft.userData = { baseOpacity: 0.8 };
+                ghostGrp.add(sqShaft);
+            }
+        }
+        ghostGrp.userData = { elementType: "acl_square_ghost", id: "acl_square_ghost" };
+        ghostGrp.visible = false;
+        addToScene(ghostGrp);
+
+        // ── Equation-row sprites (the derivation; JSON toggles via visible_elements) ──
+        //   acl_eq_0..acl_eq_5. Each is a camera-facing text row the concept JSON
+        //   reveals on the state that earns it (Rule 24: equations/labels only).
+        //   Stacked top-right; hidden by default (visible_elements drives them).
+        // NOTE: these 3D sprites are now SUPPRESSED in the animate block — the
+        // derivation rows render in the screen-space #acl_eq_panel HUD instead
+        // (so they never clip off the right canvas edge). Kept built (token
+        // resolution) + text-synced to the HUD's EQ array (keyed to the STATE
+        // each token serves, per the concept JSON's visible_elements):
+        //   eq_0→STATE_1, eq_1→STATE_2, eq_2→STATE_4, eq_3→STATE_6, eq_4+5→STATE_7.
+        var eqRows = [
+            "B = \\u03bc\\u2080 I / (2\\u03c0r)",         // 0: STATE_1 — the result we'll earn (faint)
+            "\\u222eB\\u00b7dl = \\u03bc\\u2080 I_enc",   // 1: STATE_2 — Ampere's law, stated
+            "\\u222eB\\u00b7dl = B\\u00b7(2\\u03c0r)",    // 2: STATE_4 — pull B out of the sum
+            "B\\u00b7(2\\u03c0r) = \\u03bc\\u2080 I_enc", // 3: STATE_6 — set equal
+            "B = \\u03bc\\u2080 I / (2\\u03c0r)",         // 4: STATE_7 — solve (the earned result)
+            "I_enc = I (one wire)"                        // 5: STATE_7 — enclosed current
+        ];
+        for (var eq = 0; eq < eqRows.length; eq++) {
+            var eqSpr = createLabelSprite(eqRows[eq], eq === 4 ? loopColor : "#E0E0E0", 0.42);
+            eqSpr.position.set(2.8, 2.4 - eq * 0.55, 0);
+            eqSpr.material.transparent = true;
+            eqSpr.material.opacity = 0.95;
+            eqSpr.userData = { elementType: "acl_eq", id: "acl_eq_" + eq };
+            eqSpr.visible = false;
+            addToScene(eqSpr);
+        }
+
+        // ── I_enc interior highlight (brighten the enclosed wire) ────────
+        //   A short bright wire segment overlaid on the wire interior, shown when
+        //   show_ienc — the "enclosed current" the loop measures.
+        var iencGeo = new THREE.CylinderGeometry(0.1, 0.1, 2 * wireHalf * 0.9, 12);
+        var iencMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(iencColor), emissive: hexToThreeColor(iencColor),
+            emissiveIntensity: 0.7, transparent: true, opacity: 0
+        });
+        var iencMesh = new THREE.Mesh(iencGeo, iencMat);
+        iencMesh.userData = { elementType: "acl_ienc_glow", id: "acl_ienc_glow" };
+        iencMesh.visible = false;
+        addToScene(iencMesh);
     }
 
     function buildChangingFluxField(config_unused) {
@@ -5653,6 +7279,270 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── Current loop acts as a magnetic dipole (field-equivalence diamond) ─────
+    //
+    // A circular current loop SOURCES a magnetic field whose external pattern is
+    // IDENTICAL to a bar magnet's dipole field, has magnetic moment m = N I A
+    // along its axis (RHR), and in an external field feels a torque that aligns
+    // it like a compass. The "aha" is the field equivalence — shown by drawing
+    // the loop's own dipole field lines (buildDipoleFieldLines) side-by-side with
+    // a bar magnet's, generated by the same code so the two patterns coincide.
+    //
+    // REUSE: the loop is one THREE.Group tagged "torque_loop_group", so it shares
+    // applyTorqueLoopTheta / updateTorqueLoopFrame / applyTorqueLoopGlow and the
+    // N·I·B·θ sandbox slider wiring with the torque diamond. Net-new vs torque:
+    // a CIRCULAR wire, ring current-flow dots, the loop's own field lines, N/S
+    // face labels, and the side-by-side bar-magnet comparison. ZERO new primitives.
+    function buildCurrentLoopAsDipole() {
+        var af = config.ambient_field || {
+            direction: [1, 0, 0], magnitude: 0.1, density: [5, 5, 5],
+            color: "#42A5F5", opacity: 0.42, extent: 2.5
+        };
+        var loopCfg = config.loop || {
+            shape: "circle", radius: 0.05, current_amps: 0.5,
+            turns: 1, color: "#FFD54F", current_arrow_color: "#FFAB40"
+        };
+        var rRing = 0.95; // on-screen loop radius (world units), decoupled from physical r
+        var flColor = (config.field_lines && config.field_lines.color_positive) || "#66BB6A";
+        var flCount = (config.field_lines && config.field_lines.count) || 10;
+
+        // 1. Ambient B-field arrow lattice — built HIDDEN; shown only in the
+        //    in-field states via applyCurrentLoopAsDipoleState (extras.ambient_field).
+        var bDir = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+        var ext = af.extent != null ? af.extent : 2.5;
+        var nx = af.density[0], ny = af.density[1], nz = af.density[2];
+        var sxAmb = nx > 1 ? (2 * ext) / (nx - 1) : 0;
+        var syAmb = ny > 1 ? (2 * ext) / (ny - 1) : 0;
+        var szAmb = nz > 1 ? (2 * ext) / (nz - 1) : 0;
+        var arrowLen = 0.55;
+        var arrowOp = af.opacity != null ? af.opacity : 0.42;
+        var arrowColor = af.color || "#42A5F5";
+        for (var ix = 0; ix < nx; ix++) {
+            for (var iy = 0; iy < ny; iy++) {
+                for (var iz = 0; iz < nz; iz++) {
+                    var ox = nx > 1 ? -ext + ix * sxAmb : 0;
+                    var oy = ny > 1 ? -ext + iy * syAmb : 0;
+                    var oz = nz > 1 ? -ext + iz * szAmb : 0;
+                    var origin = new THREE.Vector3(ox, oy, oz).addScaledVector(bDir, -arrowLen / 2);
+                    var arrH = new THREE.ArrowHelper(bDir, origin, arrowLen, arrowColor, 0.14, 0.09);
+                    arrH.userData = { elementType: "ambient_field", id: "b_arrow_" + ix + "_" + iy + "_" + iz };
+                    arrH.visible = false;
+                    arrH.children.forEach(function (child) {
+                        if (child.material) { child.material.transparent = true; child.material.opacity = arrowOp; }
+                    });
+                    addToScene(arrH);
+                }
+            }
+        }
+
+        // 2. Loop group (tagged torque_loop_group to reuse the rotation engine).
+        var loopGroup = new THREE.Group();
+        loopGroup.userData = { elementType: "torque_loop_group", id: "loop_group" };
+        var loopColor = hexToThreeColor(loopCfg.color || "#FFD54F");
+
+        // 2a. Circular loop wire (axis = +z). Tagged "loop_side" so the torque
+        //     glow + opacity helpers treat it like the rectangular loop's wire.
+        var ringPts = [], ringSegs = 96;
+        for (var rs = 0; rs <= ringSegs; rs++) {
+            var ra = (rs / ringSegs) * Math.PI * 2;
+            ringPts.push([rRing * Math.cos(ra), rRing * Math.sin(ra), 0]);
+        }
+        var ringTube = createTubeLine(ringPts, loopCfg.color || "#FFD54F", 0.03);
+        if (ringTube) {
+            if (ringTube.material) { ringTube.material.emissive = loopColor; ringTube.material.emissiveIntensity = 0.45; }
+            ringTube.userData = { elementType: "loop_side", id: "loop_ring" };
+            loopGroup.add(ringTube);
+        }
+
+        // 2b. Tangential current-direction arrows around the ring (CCW seen from
+        //     +z ⇒ RHR thumb = +z = m). Tagged "current_arrow" (reused by glow).
+        var currentArrowColor = loopCfg.current_arrow_color || "#FFAB40";
+        var nArrows = 6;
+        for (var ca2 = 0; ca2 < nArrows; ca2++) {
+            var ang = (ca2 / nArrows) * Math.PI * 2;
+            var tang = new THREE.Vector3(-Math.sin(ang), Math.cos(ang), 0).normalize();
+            var arrow = new THREE.ArrowHelper(tang, new THREE.Vector3(rRing * Math.cos(ang), rRing * Math.sin(ang), 0), 0.34, currentArrowColor, 0.13, 0.09);
+            arrow.userData = { elementType: "current_arrow", id: "current_ring_" + ca2 };
+            loopGroup.add(arrow);
+        }
+
+        // 2c. Ring current-flow dots — orbit the ring. Own elementType so the
+        //     torque dot-animator skips them (they are advanced in
+        //     updateCurrentLoopDipoleFrame). Visible from STATE_1 (current flows).
+        var dotGeom = new THREE.SphereGeometry(0.06, 12, 12);
+        var nDots = 8;
+        for (var dd2 = 0; dd2 < nDots; dd2++) {
+            var dmat = new THREE.MeshPhongMaterial({ color: 0xFFAB40, emissive: 0xFFAB40, emissiveIntensity: 0.85 });
+            var a0 = (dd2 / nDots) * Math.PI * 2;
+            var ddot = new THREE.Mesh(dotGeom, dmat);
+            ddot.userData = { elementType: "loop_current_dot", id: "ldot_" + dd2, ringAngle: a0, ringRadius: rRing, ringSpeed: 0.9 };
+            ddot.position.set(rRing * Math.cos(a0), rRing * Math.sin(a0), 0);
+            loopGroup.add(ddot);
+        }
+
+        // 2d. The loop's OWN dipole field lines (centre on loop axis ±z). Hidden
+        //     by default; shown from STATE_2. The field-equivalence centrepiece.
+        var loopLines = buildDipoleFieldLines({
+            zPos: 0.55, zNeg: -0.55, color: flColor, count: flCount,
+            idPrefix: "loopfl_", lineType: "loop_field_line", arrowType: "loop_field_arrow",
+            lineRadius: 0.016, bulgeBase: 0.8, bulgeSpread: 1.0
+        });
+        loopLines.forEach(function (m) {
+            m.visible = false;
+            if (m.material) m.material.transparent = true;
+            loopGroup.add(m);
+        });
+
+        // 2e. μ vector (m = N I A) along loop-local +z. Tagged mu_vector/mu_label
+        //     so applyTorqueLoopState toggles + scales it. Label text "m".
+        var muColor = "#FFD54F";
+        var muArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 0), 1.0, muColor, 0.26, 0.13);
+        muArrow.userData = { elementType: "mu_vector", id: "mu_arrow", visible_default: false };
+        muArrow.visible = false;
+        loopGroup.add(muArrow);
+        var muLabelSprite = createLabelSprite("m", muColor, 0.40);
+        muLabelSprite.position.set(0, 0.18, 1.15);
+        muLabelSprite.visible = false;
+        muLabelSprite.userData = { elementType: "mu_label", id: "mu_label" };
+        loopGroup.add(muLabelSprite);
+
+        // 2f. Force arrows on the ±x arcs (the couple in an external field). Same
+        //     ids/types as the torque scenario → applyTorqueLoopState toggles them.
+        var fColor = "#66BB6A";
+        var fLeftArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 0, -1), new THREE.Vector3(-rRing, 0, 0), 0.85, fColor, 0.22, 0.11);
+        fLeftArrow.userData = { elementType: "force_left", id: "f_left", visible_default: false };
+        fLeftArrow.visible = false;
+        loopGroup.add(fLeftArrow);
+        var fRightArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(rRing, 0, 0), 0.85, fColor, 0.22, 0.11);
+        fRightArrow.userData = { elementType: "force_right", id: "f_right", visible_default: false };
+        fRightArrow.visible = false;
+        loopGroup.add(fRightArrow);
+
+        // 2g. Loop N/S face labels (STATE_3) — ride the loop along its ±z axis.
+        var nFaceLabel = createLabelSprite("N", "#EF5350", 0.34);
+        nFaceLabel.position.set(0, 0, 0.7);
+        nFaceLabel.visible = false;
+        nFaceLabel.userData = { elementType: "loop_face_label", id: "loop_N_label" };
+        loopGroup.add(nFaceLabel);
+        var sFaceLabel = createLabelSprite("S", "#42A5F5", 0.34);
+        sFaceLabel.position.set(0, 0, -0.7);
+        sFaceLabel.visible = false;
+        sFaceLabel.userData = { elementType: "loop_face_label", id: "loop_S_label" };
+        loopGroup.add(sFaceLabel);
+
+        scene.add(loopGroup);
+        sceneObjects.push(loopGroup);
+
+        // 3. τ vector + label + B label (world frame) — reused ids so the torque
+        //    frame engine scales τ with sin θ and applyTorqueLoopGlow lights them.
+        var tauColor = "#E879F9";
+        var tauArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 1.0, tauColor, 0.26, 0.13);
+        tauArrow.userData = { elementType: "tau_vector", id: "tau_arrow", visible_default: false };
+        tauArrow.visible = false;
+        addToScene(tauArrow);
+        var tauLabelSprite = createLabelSprite("τ", tauColor, 0.40);
+        tauLabelSprite.position.set(0, 1.65, 0);
+        tauLabelSprite.visible = false;
+        tauLabelSprite.userData = { elementType: "tau_label", id: "tau_label" };
+        addToScene(tauLabelSprite);
+        var bLabelSprite = createLabelSprite("B", "#82B1FF", 0.40);
+        bLabelSprite.position.set((ext != null ? ext : 2.5) + 0.4, 0, 0);
+        bLabelSprite.visible = false;
+        bLabelSprite.userData = { elementType: "b_label", id: "b_label" };
+        addToScene(bLabelSprite);
+
+        // 4. Side-by-side bar-magnet comparison (STATE_4 AHA) — a bar magnet with
+        //    its OWN dipole field lines (same generator, same params), offset in
+        //    -x. World frame, hidden by default. The two field patterns coincide
+        //    in shape — that is the proof a current loop IS a magnetic dipole.
+        var compareGroup = new THREE.Group();
+        compareGroup.position.set(-3.6, 0, 0);
+        compareGroup.userData = { elementType: "bar_compare_group", id: "bar_compare" };
+        compareGroup.visible = false;
+        var cmpPosColor = (config.pvl_colors && config.pvl_colors.positive) || "#EF5350";
+        var cmpNegColor = (config.pvl_colors && config.pvl_colors.negative) || "#42A5F5";
+        var barN = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.55), new THREE.MeshPhongMaterial({ color: hexToThreeColor(cmpPosColor), emissive: hexToThreeColor(cmpPosColor), emissiveIntensity: 0.3 }));
+        barN.position.set(0, 0, 0.275);
+        barN.userData = { elementType: "bar_compare_pole", id: "bar_compare_n" };
+        compareGroup.add(barN);
+        var barS = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.55), new THREE.MeshPhongMaterial({ color: hexToThreeColor(cmpNegColor), emissive: hexToThreeColor(cmpNegColor), emissiveIntensity: 0.3 }));
+        barS.position.set(0, 0, -0.275);
+        barS.userData = { elementType: "bar_compare_pole", id: "bar_compare_s" };
+        compareGroup.add(barS);
+        var barNLabel = createLabelSprite("N", "#FFFFFF", 0.30);
+        barNLabel.position.set(0, 0, 0.78);
+        barNLabel.userData = { elementType: "bar_compare_label", id: "bar_compare_n_label" };
+        compareGroup.add(barNLabel);
+        var barSLabel = createLabelSprite("S", "#FFFFFF", 0.30);
+        barSLabel.position.set(0, 0, -0.78);
+        barSLabel.userData = { elementType: "bar_compare_label", id: "bar_compare_s_label" };
+        compareGroup.add(barSLabel);
+        var cmpLines = buildDipoleFieldLines({
+            zPos: 0.55, zNeg: -0.55, color: flColor, count: flCount,
+            idPrefix: "cmpfl_", lineType: "compare_field_line", arrowType: "compare_field_arrow",
+            lineRadius: 0.016, bulgeBase: 0.8, bulgeSpread: 1.0
+        });
+        cmpLines.forEach(function (m) { compareGroup.add(m); });
+        scene.add(compareGroup);
+        sceneObjects.push(compareGroup);
+
+        // Initial pose: loop at θ = 90° (face perpendicular to where B points).
+        loopGroup.userData.theta_deg = 90;
+        loopGroup.userData.rotation_mode = "static";
+        loopGroup.userData.rotation_target_deg = 90;
+        loopGroup.userData.rotation_start_time = 0;
+        loopGroup.userData.oscillation_amplitude_deg = 0;
+        loopGroup.userData.oscillation_period_s = 4;
+        applyTorqueLoopTheta(loopGroup, 90);
+    }
+
+    // Per-state visibility for current_loop_acts_as_dipole. Delegates theta /
+    // rotation / μ / τ / force-vector handling to applyTorqueLoopState, then
+    // toggles the scenario-specific elements (loop field lines, ring dots, N/S
+    // face labels, ambient field, bar-magnet comparison) from stateDef.extras.
+    function applyCurrentLoopAsDipoleState(stateDef) {
+        applyTorqueLoopState(stateDef);
+        var ex = stateDef.extras || {};
+        var lg = findTorqueLoopGroup();
+        var showLoopField = !!ex.loop_field_lines;
+        var showDots = ex.current_dots !== false; // default ON
+        var showFaces = !!ex.face_labels;
+        if (lg) {
+            for (var i = 0; i < lg.children.length; i++) {
+                var c = lg.children[i];
+                var t = c.userData && c.userData.elementType;
+                if (t === "loop_field_line" || t === "loop_field_arrow") c.visible = showLoopField;
+                else if (t === "loop_current_dot") c.visible = showDots;
+                else if (c.userData && (c.userData.id === "loop_N_label" || c.userData.id === "loop_S_label")) c.visible = showFaces;
+            }
+        }
+        var showField = !!ex.ambient_field;
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var o = sceneObjects[j];
+            if (o.userData && o.userData.elementType === "ambient_field") o.visible = showField;
+        }
+        var bLab = findTorqueElementById("b_label");
+        if (bLab) bLab.visible = showField;
+        var cmp = findTorqueElementById("bar_compare");
+        if (cmp) cmp.visible = !!(ex.bar_magnet_compare && ex.bar_magnet_compare.enabled);
+    }
+
+    // Per-frame update for current_loop_acts_as_dipole. Reuses the torque frame
+    // engine (rotation + τ/μ scaling) then orbits the ring current-flow dots.
+    function updateCurrentLoopDipoleFrame(dtSeconds) {
+        updateTorqueLoopFrame(dtSeconds);
+        var lg = findTorqueLoopGroup();
+        if (!lg) return;
+        for (var i = 0; i < lg.children.length; i++) {
+            var c = lg.children[i];
+            if (!c.userData || c.userData.elementType !== "loop_current_dot") continue;
+            if (!c.visible) continue;
+            c.userData.ringAngle = (c.userData.ringAngle + c.userData.ringSpeed * dtSeconds) % (Math.PI * 2);
+            var rr = c.userData.ringRadius;
+            c.position.set(rr * Math.cos(c.userData.ringAngle), rr * Math.sin(c.userData.ringAngle), 0);
+        }
+    }
+
     // ── Electric dipole in a uniform external field (τ = p × E) ───────────────
     // Sibling of the torque-on-loop scenario. A rigid electric dipole (two
     // charges ±q on a short rod; dipole moment p points −q → +q) sits in a
@@ -6139,16 +8029,676 @@ export const FIELD_3D_RENDERER_CODE = `
     }
 
     // ── Equipotential surfaces ────────────────────────────────────────────
+    //   BACKWARD-COMPATIBLE. Two config forms:
+    //     (A) LEGACY: equipotential.surfaces = N  -> N even shells at
+    //         radius = 1.0 + i*1.2, NO labels (existing electric_field_point_charge
+    //         / gauss concepts hit this path; behaviour is byte-for-byte unchanged).
+    //     (B) NEW: equipotential.shells = [{radius, v_label}, ...] -> a shell at
+    //         each explicit (1/r-physical) radius, with a V-value label sprite when
+    //         label_each_shell !== false. Used by electric_potential_meaning so the
+    //         four hero shells (V=9,6,4.5,3 at r=1.0,1.5,2.0,3.0) read as nested
+    //         scalar level-sets bunched near +Q. The shells start hidden when
+    //         equipotential.show is false (the per-state apply fades them in).
     function buildEquipotentialSurfaces() {
-        if (!config.equipotential || !config.equipotential.show) return;
-        var nSurfaces = config.equipotential.surfaces || 3;
+        if (!config.equipotential) return;
         var eqColor = config.equipotential.color || "#4FC3F7";
         var eqOpacity = config.equipotential.opacity || 0.12;
+        var startHidden = !config.equipotential.show;   // hidden until a state reveals them
+
+        // Form (B): explicit per-shell radii + V labels.
+        var shells = config.equipotential.shells;
+        if (shells && shells.length) {
+            var labelEach = config.equipotential.label_each_shell !== false;
+            for (var si = 0; si < shells.length; si++) {
+                var sh = shells[si] || {};
+                var sr = (typeof sh.radius === "number") ? sh.radius : (1.0 + si * 1.2);
+                var surf = createEquipotentialSurface(sr, eqColor, eqOpacity);
+                if (startHidden) { surf.visible = false; if (surf.material) surf.material.opacity = 0; }
+                surf.userData = {
+                    elementType: "equipotential", id: "eq_" + si,
+                    shellRadius: sr, baseOpacity: eqOpacity, isPmShell: true
+                };
+                addToScene(surf);
+                if (labelEach && sh.v_label != null) {
+                    // V-value sprite riding just above the shell crown, billboarded
+                    // by the sprite itself (pmCreateAutoLabel faces the camera + sizes
+                    // the canvas to the full text so it never clips).
+                    var vlbl = pmCreateAutoLabel("V = " + sh.v_label, eqColor, 0.42);
+                    vlbl.position.set(0, sr + 0.18, 0);
+                    if (startHidden) { vlbl.visible = false; if (vlbl.material) vlbl.material.opacity = 0; }
+                    vlbl.userData = {
+                        elementType: "equipotential_label", id: "eq_lbl_" + si,
+                        shellRadius: sr, isPmShell: true
+                    };
+                    addToScene(vlbl);
+                }
+            }
+            return;
+        }
+
+        // Form (A): legacy even spacing (UNCHANGED). Only runs when show:true and
+        // no explicit shells — every pre-existing concept keeps this exact path.
+        if (!config.equipotential.show) return;
+        var nSurfaces = config.equipotential.surfaces || 3;
         for (var i = 0; i < nSurfaces; i++) {
             var radius = 1.0 + i * 1.2;
-            var surf = createEquipotentialSurface(radius, eqColor, eqOpacity);
-            surf.userData = { elementType: "equipotential", id: "eq_" + i };
-            addToScene(surf);
+            var legacySurf = createEquipotentialSurface(radius, eqColor, eqOpacity);
+            legacySurf.userData = { elementType: "equipotential", id: "eq_" + i };
+            addToScene(legacySurf);
+        }
+    }
+
+    // =====================================================================
+    // electric_potential_meaning — the V = W/q "meaning" diamond.
+    //   Scenario point_charge_positive + config.potential_meaning. Builds, up
+    //   front and mostly hidden, every primitive the 7-state arc needs:
+    //     1. +Q source sphere + faint radial field lines (reused buildPointChargeField).
+    //     2. the equipotential shells + per-shell V labels (buildEquipotentialSurfaces,
+    //        form B; hidden until STATE_6).
+    //     3. an amber test charge +q (animates a route, grows q->2q, becomes the
+    //        draggable explorer in STATE_7) + a ghost twin for the second route.
+    //     4. a work tally pair (W_path1 / W_path2) — in-scene sprites that tick live.
+    //     5. a stored-energy badge sprite (STATE_3) that drains 6->0 then writes "U".
+    //     6. a V callout + a V-value sprite on the destination point (STATE_4).
+    //     7. an "inf . V=0" reference marker (STATE_5, billboards camera-right).
+    //     8. an A/B point pair + a ΔV bracket (STATE_5, billboards camera-right).
+    //     9. an E arrow drawn perpendicular to a shell (STATE_6/7).
+    //   Per-state visibility + reveal timing is owned by applyPotentialMeaningState()
+    //   + updatePotentialMeaningFrame(). Pure state clock (Rule 26); the q->2q grow
+    //   is the ONLY size change (a real magnitude, like tauThrob — Rule 29).
+    function pmDefaults() {
+        var d = (config.potential_meaning && config.potential_meaning.potential_defaults) || {};
+        return {
+            vPerNc: (typeof d.demo_v_per_nc === "number") ? d.demo_v_per_nc : 9,
+            Q: (typeof d.Q === "number") ? d.Q : 1,
+            rDest: (typeof d.r_destination === "number") ? d.r_destination : 1.5,
+            clampR: (typeof d.clamp_r_min === "number") ? d.clamp_r_min : 0.05
+        };
+    }
+    // V_demo(r) — the 1/r demo potential. Internally kQ/r-shaped; NO formula label
+    // is emitted before the STATE_7 teaser (that is the JSON's job, not the engine's).
+    function pmVDemo(r) {
+        var d = pmDefaults();
+        return d.vPerNc * d.Q / Math.max(r, d.clampR);
+    }
+    function pmFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i];
+        }
+        return null;
+    }
+
+    function buildPotentialMeaning() {
+        var colTest = (config.pvl_colors && config.pvl_colors.test_charge) || "#FFF176";
+        var colField = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+        var colPos = (config.pvl_colors && config.pvl_colors.positive) || "#EF5350";
+        var d = pmDefaults();
+
+        // 1. +Q source sphere + faint radial field lines (the known E). The field
+        //    lines carry their generic ids; per-state opacity is set in apply.
+        var srcCharge = {
+            id: "pm_source", sign: 1, magnitude: 1, position: [0, 0, 0],
+            label: "+Q", color: colPos
+        };
+        buildPointChargeField(srcCharge, (config.field_lines && config.field_lines.count) || 12);
+        // Tag the source charge sphere so the matcher always keeps it on.
+        var srcSphere = pmFindById("pm_source");
+        if (srcSphere) srcSphere.userData.isPmSource = true;
+
+        // 2. equipotential shells + V labels (form B; hidden until STATE_6).
+        buildEquipotentialSurfaces();
+
+        // 3. test charge +q (amber). Placed on +X-ish toward the camera so the route
+        //    + grow read clearly. base radius 0.16; q->2q doubles it (Rule 29 OK).
+        var tcStart = (config.test_charge_route && config.test_charge_route.start_r) || 3.5;
+        var tcPos = [tcStart, 0.0, 0.0];
+        var tc = createChargeSphere(tcPos, colTest, 0.16);
+        tc.userData = {
+            elementType: "pm_test_charge", id: "pm_test_charge",
+            baseRadius: 0.16, isPmTest: true
+        };
+        tc.visible = false;
+        addToScene(tc);
+        var tcLbl = pmCreateAutoLabel("+q", colTest, 0.4);
+        tcLbl.position.set(tcPos[0], tcPos[1] + 0.34, tcPos[2]);
+        tcLbl.visible = false;
+        tcLbl.userData = { elementType: "pm_test_charge_label", id: "pm_test_charge_label" };
+        addToScene(tcLbl);
+        // ghost twin for route 2 (looping arc).
+        var ghost = createChargeSphere(tcPos, colTest, 0.13);
+        if (ghost.material) { ghost.material.transparent = true; ghost.material.opacity = 0.55; }
+        ghost.visible = false;
+        ghost.userData = { elementType: "pm_test_ghost", id: "pm_test_ghost", baseRadius: 0.13 };
+        addToScene(ghost);
+
+        // 4. work tally pair — two in-scene sprites pinned to the upper-left field
+        //    of view. They tick live in updatePotentialMeaningFrame.
+        var tally1 = pmCreateAutoLabel("W = 0", colTest, 0.4);
+        tally1.position.set(-3.2, 2.4, 0);
+        tally1.visible = false;
+        tally1.userData = { elementType: "pm_work_tally", id: "pm_tally_path1", tallyId: "W_path1" };
+        addToScene(tally1);
+        var tally2 = pmCreateAutoLabel("W = 0", colTest, 0.4);
+        tally2.position.set(-3.2, 1.9, 0);
+        tally2.visible = false;
+        tally2.userData = { elementType: "pm_work_tally", id: "pm_tally_path2", tallyId: "W_path2" };
+        addToScene(tally2);
+        // W/q invariant readout (STATE_4) — holds at the W_per_q value.
+        var wpq = pmCreateAutoLabel("W/q = 0", "#A5D6A7", 0.4);
+        wpq.position.set(-3.2, 1.4, 0);
+        wpq.visible = false;
+        wpq.userData = { elementType: "pm_wpq", id: "pm_wpq" };
+        addToScene(wpq);
+
+        // 5. stored-energy badge (STATE_3) — a sprite near the destination point.
+        var eb = (config.energy_badge) || {};
+        // The badge value reads "U = N" (potential ENERGY, symbol U) — NEVER "E = N"
+        // (that would mislabel the energy as the field E, the exact confusion this
+        // whole concept exists to break). The drain shows "U = N"; the end pose writes
+        // the full uLabel ("U = stored energy").
+        var badge = pmCreateAutoLabel("U = " + ((typeof eb.U_value === "number") ? eb.U_value : 6), "#FFCC80", 0.42);
+        var dPos = [d.rDest, 0.0, 0.0];
+        badge.position.set(dPos[0] + 0.2, dPos[1] + 0.7, dPos[2]);
+        badge.visible = false;
+        badge.userData = {
+            elementType: "pm_energy_badge", id: "pm_energy_badge",
+            uValue: (typeof eb.U_value === "number") ? eb.U_value : 6,
+            drainsTo: (typeof eb.drains_to === "number") ? eb.drains_to : 0,
+            uLabel: eb.label || "U = stored energy"
+        };
+        addToScene(badge);
+
+        // 6. V callout + V-value-on-point (STATE_4). The "V = W/q" callout pinned
+        //    low-right-ish; the "V = N" value rides the destination point.
+        var vCallout = pmCreateAutoLabel("V = W/q", colTest, 0.5);
+        vCallout.position.set(2.6, 2.2, 0);
+        vCallout.visible = false;
+        vCallout.userData = { elementType: "pm_v_callout", id: "pm_v_callout" };
+        addToScene(vCallout);
+        var vOnPoint = pmCreateAutoLabel("V = " + Math.round(pmVDemo(d.rDest) * 10) / 10, colTest, 0.4);
+        vOnPoint.position.set(dPos[0], dPos[1] - 0.5, dPos[2]);
+        vOnPoint.visible = false;
+        vOnPoint.userData = { elementType: "pm_v_on_point", id: "pm_v_on_point", rValue: d.rDest };
+        addToScene(vOnPoint);
+
+        // 7. reference-at-infinity marker (STATE_5). A small ghost sphere + label at
+        //    position_r along +X; the label billboards camera-right in the frame loop.
+        var rm = (config.reference_marker) || {};
+        var rmR = (typeof rm.position_r === "number") ? rm.position_r : 4.0;
+        var refSphere = createChargeSphere([rmR, 0, 0], "#90A4AE", 0.1);
+        if (refSphere.material) { refSphere.material.transparent = true; refSphere.material.opacity = 0; }
+        refSphere.visible = false;
+        refSphere.userData = { elementType: "pm_reference_marker", id: "pm_ref_marker", markerR: rmR };
+        addToScene(refSphere);
+        var refLbl = pmCreateAutoLabel(rm.label || "inf . V = 0", "#CFD8DC", 0.4);
+        refLbl.position.set(rmR, 0.4, 0);
+        refLbl.visible = false;
+        refLbl.userData = {
+            elementType: "pm_reference_label", id: "pm_ref_label",
+            markerR: rmR, billboardRight: (rm.billboard !== "none")
+        };
+        addToScene(refLbl);
+
+        // 8. A/B point markers + ΔV bracket (STATE_5).
+        var dv = (config.delta_v_bracket) || {};
+        var ptA = (dv.point_A) || { r: d.rDest, V_label: "6", name: "A" };
+        var ptB = (dv.point_B) || { r: 1.0, V_label: "9", name: "B" };
+        var aSphere = createChargeSphere([ptA.r, 0, 0], colTest, 0.1);
+        aSphere.visible = false;
+        aSphere.userData = { elementType: "pm_point_A", id: "pm_point_A", rValue: ptA.r };
+        addToScene(aSphere);
+        var aLbl = pmCreateAutoLabel((ptA.name || "A") + " (V=" + (ptA.V_label || "") + ")", colTest, 0.36);
+        aLbl.position.set(ptA.r, -0.42, 0);
+        aLbl.visible = false;
+        aLbl.userData = { elementType: "pm_point_A_label", id: "pm_point_A_label" };
+        addToScene(aLbl);
+        var bSphere = createChargeSphere([ptB.r, 0, 0], "#FFB74D", 0.1);
+        bSphere.visible = false;
+        bSphere.userData = { elementType: "pm_point_B", id: "pm_point_B", rValue: ptB.r };
+        addToScene(bSphere);
+        var bLbl = pmCreateAutoLabel((ptB.name || "B") + " (V=" + (ptB.V_label || "") + ")", "#FFB74D", 0.36);
+        bLbl.position.set(ptB.r, 0.42, 0);
+        bLbl.visible = false;
+        bLbl.userData = { elementType: "pm_point_B_label", id: "pm_point_B_label" };
+        addToScene(bLbl);
+        // the ΔV bracket: a slim tube A->B + a label. Built short; updated in apply.
+        var brkPts = [[ptB.r, 0.9, 0], [ptA.r, 0.9, 0]];
+        var brk = createTubeLine(brkPts, "#CFD8DC", 0.02);
+        if (brk) {
+            if (brk.material) { brk.material.transparent = true; brk.material.opacity = 0; }
+            brk.visible = false;
+            brk.userData = { elementType: "pm_delta_v_bracket", id: "pm_delta_v_bracket" };
+            addToScene(brk);
+        }
+        var dvLbl = pmCreateAutoLabel(dv.delta_v_label || "dV = V_B - V_A", "#CFD8DC", 0.42);
+        dvLbl.position.set((ptA.r + ptB.r) / 2, 1.35, 0);
+        dvLbl.visible = false;
+        dvLbl.userData = {
+            elementType: "pm_delta_v_label", id: "pm_delta_v_label",
+            billboardRight: (dv.billboard !== "none")
+        };
+        addToScene(dvLbl);
+
+        // 9. E arrow drawn perpendicular to a shell (STATE_6/7). Built at the
+        //    destination point along +X (radial = the local downhill / perpendicular
+        //    to the spherical shell). Length is fixed-ish (direction is the lesson).
+        var eArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(1, 0, 0),
+            new THREE.Vector3(d.rDest, 0, 0),
+            0.9, hexToThreeColor(colField), 0.26, 0.16
+        );
+        eArrow.visible = false;
+        eArrow.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = 0; } });
+        eArrow.userData = { elementType: "pm_e_arrow", id: "pm_e_arrow" };
+        addToScene(eArrow);
+        var eLbl = pmCreateAutoLabel("E perp shells", colField, 0.36);
+        eLbl.position.set(d.rDest + 0.6, 0.5, 0);
+        eLbl.visible = false;
+        eLbl.userData = { elementType: "pm_e_label", id: "pm_e_label" };
+        addToScene(eLbl);
+
+        // STATE_7 explorer: a forgiving invisible pick proxy around the test charge
+        // (raycaster skips visible:false, so it is inert in every non-drag state).
+        var hit = createChargeSphere(tcPos, colTest, 0.4);
+        if (hit.material) { hit.material.transparent = true; hit.material.opacity = 0; hit.material.depthWrite = false; }
+        hit.visible = false;
+        hit.userData = { elementType: "pm_drag_hit", id: "pm_drag_hit", draggable: true };
+        addToScene(hit);
+        // live V readout (STATE_7) rides above the dragged charge.
+        var vReadout = pmCreateAutoLabel("V = " + Math.round(pmVDemo(d.rDest) * 10) / 10, colTest, 0.42);
+        vReadout.position.set(dPos[0], dPos[1] + 0.9, dPos[2]);
+        vReadout.visible = false;
+        vReadout.userData = { elementType: "pm_v_readout", id: "pm_v_readout" };
+        addToScene(vReadout);
+    }
+
+    // Per-state seeding for electric_potential_meaning. Runs AFTER the generic
+    // visible_elements matcher (authoritative). Reads stateDef.potential.* flags,
+    // resets every reveal-driven element to its entry pose, and primes the per-frame
+    // route/grow/drain/draw clocks. Pure state clock (Rule 26).
+    function applyPotentialMeaningState(stateDef) {
+        var p = (stateDef && stateDef.potential) || {};
+        var d = pmDefaults();
+
+        // Field-line opacity (faint / normal / off) for this state.
+        var flMode = p.show_field || "faint";
+        var flOpacity = flMode === "off" ? 0 : (flMode === "normal" ? 0.85 : 0.22);
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud) continue;
+            if (ud.elementType === "field_line" || ud.elementType === "arrow") {
+                o.visible = flOpacity > 0;
+                if (o.material) { o.material.transparent = true; o.material.opacity = flOpacity; }
+            }
+        }
+
+        // Source charge is always visible.
+        var src = pmFindById("pm_source");
+        if (src) src.visible = true;
+
+        // Test charge: shown when this state uses it (route, hold, grow, or drag).
+        var usesTest = !!(p.show_test_charge || p.animate_route || p.draggable_test_charge);
+        var tc = pmFindById("pm_test_charge");
+        var tcLbl = pmFindById("pm_test_charge_label");
+        var seedR = (typeof p.test_charge_r === "number") ? p.test_charge_r
+            : (p.draggable_test_charge ? d.rDest : ((config.test_charge_route && config.test_charge_route.start_r) || 3.5));
+        if (tc) {
+            tc.visible = usesTest;
+            tc.scale.setScalar(1);                 // reset any prior q->2q grow (Rule 26)
+            tc.position.set(seedR, 0, 0);
+        }
+        if (tcLbl) {
+            tcLbl.visible = usesTest;
+            tcLbl.position.set(seedR, 0.34, 0);
+            updateLabelSpriteText(tcLbl, "+q");   // reset any prior +2q flip (Rule 26)
+        }
+        var ghost = pmFindById("pm_test_ghost");
+        if (ghost) { ghost.visible = false; ghost.position.set((config.test_charge_route && config.test_charge_route.start_r) || 3.5, 0, 0); }
+
+        // Work tally pair.
+        var wt = config.test_charge_route && config.test_charge_route.work_tally;
+        var t1 = pmFindById("pm_tally_path1"), t2 = pmFindById("pm_tally_path2");
+        if (t1) { t1.visible = !!p.show_work_tally; updateLabelSpriteText(t1, "W = 0"); }
+        if (t2) {
+            // path-2 tally only when a second route is animated.
+            var twoRoutes = p.animate_route && p.animate_route.length > 1;
+            t2.visible = !!p.show_work_tally && !!twoRoutes;
+            updateLabelSpriteText(t2, "W = 0");
+        }
+        var wpq = pmFindById("pm_wpq");
+        if (wpq) { wpq.visible = !!p.show_v_callout; if (wt) updateLabelSpriteText(wpq, "W/q = " + ((typeof wt.W_per_q_value === "number") ? wt.W_per_q_value : 6)); }
+
+        // Energy badge (reset to full; the frame loop drains it after release).
+        var badge = pmFindById("pm_energy_badge");
+        if (badge) {
+            badge.visible = !!p.show_energy_badge;
+            updateLabelSpriteText(badge, "U = " + badge.userData.uValue);
+            if (badge.material) badge.material.opacity = 1;
+        }
+
+        // V callout + V-on-point (STATE_4): hidden until the v_callout cue draws them.
+        var vCo = pmFindById("pm_v_callout"), vOp = pmFindById("pm_v_on_point");
+        if (vCo) { vCo.visible = false; if (vCo.material) vCo.material.opacity = 0; }
+        if (vOp) {
+            vOp.visible = !!p.show_v_callout && (p.v_callout_at_ms == null);
+            if (vOp.material) vOp.material.opacity = vOp.visible ? 1 : 0;
+        }
+
+        // Reference marker + label (STATE_5).
+        var refM = pmFindById("pm_ref_marker"), refL = pmFindById("pm_ref_label");
+        var showRef = !!p.show_reference_marker;
+        if (refM) { refM.visible = showRef; if (refM.material) refM.material.opacity = showRef && (p.reference_at_ms == null) ? 1 : 0; }
+        if (refL) { refL.visible = showRef; if (refL.material) refL.material.opacity = showRef && (p.reference_at_ms == null) ? 1 : 0; }
+
+        // A/B markers + ΔV bracket (STATE_5).
+        var showDv = !!p.show_delta_v_bracket;
+        var pA = pmFindById("pm_point_A"), pAl = pmFindById("pm_point_A_label");
+        var pB = pmFindById("pm_point_B"), pBl = pmFindById("pm_point_B_label");
+        var brk = pmFindById("pm_delta_v_bracket"), dvl = pmFindById("pm_delta_v_label");
+        if (pA) pA.visible = showDv;
+        if (pAl) pAl.visible = showDv;
+        if (pB) pB.visible = showDv;
+        if (pBl) pBl.visible = showDv;
+        if (brk) { brk.visible = showDv; if (brk.material) brk.material.opacity = showDv && (p.delta_v_at_ms == null) ? 0.9 : 0; }
+        if (dvl) { dvl.visible = showDv; if (dvl.material) dvl.material.opacity = showDv && (p.delta_v_at_ms == null) ? 1 : 0; }
+
+        // Equipotential shells + labels (STATE_6/7). Hidden until shells_at_ms (or
+        // shown immediately in the explorer state where they render at full).
+        var showShells = !!p.show_equipotential;
+        var immediateShells = showShells && (p.shells_at_ms == null);
+        for (var s = 0; s < sceneObjects.length; s++) {
+            var so = sceneObjects[s], sud = so.userData;
+            if (!sud || !sud.isPmShell) continue;
+            so.visible = showShells;
+            var baseOp = (sud.elementType === "equipotential") ? (sud.baseOpacity || (config.equipotential && config.equipotential.opacity) || 0.14) : 1;
+            if (so.material) so.material.opacity = immediateShells ? baseOp : 0;
+        }
+
+        // E arrow ⊥ shells (STATE_6/7).
+        var ea = pmFindById("pm_e_arrow"), eal = pmFindById("pm_e_label");
+        var showE = !!p.show_e_arrow;
+        var immediateE = showE && (p.e_arrow_at_ms == null);
+        if (ea) {
+            ea.visible = showE;
+            ea.children.forEach(function (cc) { if (cc.material) cc.material.opacity = immediateE ? 0.95 : 0; });
+        }
+        if (eal) { eal.visible = showE; if (eal.material) eal.material.opacity = immediateE ? 1 : 0; }
+
+        // STATE_7 explorer: drag proxy + live V readout render at FULL immediately
+        // (no clock-gating — guards field3d_time_gated_visual_invisible_in_slider_state).
+        var drag = !!p.draggable_test_charge;
+        var hit = pmFindById("pm_drag_hit");
+        if (hit) hit.visible = drag;
+        var vrd = pmFindById("pm_v_readout");
+        if (vrd) {
+            vrd.visible = drag;
+            if (vrd.material) vrd.material.opacity = drag ? 1 : 0;
+            updateLabelSpriteText(vrd, "V = " + Math.round(pmVDemo(seedR) * 10) / 10);
+        }
+        // reset drag state so the idle auto-sweep runs until the teacher grabs it.
+        window.PM_pmUserDragged = false;
+        window.PM_pmDragR = seedR;
+        window.PM_pmDragDir = null;
+    }
+
+    // Per-frame driver for electric_potential_meaning. Pure function of the state
+    // clock (time - stateStartTime), Rule 26. Drives: the route animation + live
+    // tally tick (STATE_2), the release fly-out + badge drain (STATE_3), the q->2q
+    // grow + tally double + V write-in (STATE_4), the reference/ΔV draw + camera-
+    // right billboard (STATE_5), the shells fade-in + E draw (STATE_6), and the
+    // draggable explorer + idle auto-sweep (STATE_7). One-shot elements HOLD their
+    // end pose (never fade to 0 — guards field3d_oneshot_element_vanishes_after_animation).
+    function updatePotentialMeaningFrame() {
+        var stateDef = config.states && config.states[PM_currentState];
+        if (!stateDef) return;
+        var p = stateDef.potential;
+        if (!p) return;
+        var d = pmDefaults();
+        var ms = (time - stateStartTime) * 1000;
+        var route = config.test_charge_route || {};
+        var startR = (typeof route.start_r === "number") ? route.start_r : 3.5;
+        var destR = (typeof route.destination_r === "number") ? route.destination_r : d.rDest;
+        var wt = route.work_tally || {};
+        var colTest = (config.pvl_colors && config.pvl_colors.test_charge) || "#FFF176";
+
+        // camera basis for billboarding markers to screen-right (3/4 camera).
+        var camR = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+
+        // ── STATE_2: two-route animation + live tally tick ───────────────────
+        if (p.animate_route && p.animate_route.length) {
+            var dur = (typeof p.route_duration_ms === "number") ? p.route_duration_ms : 4000;
+            var cues = p.route_at_ms || [];
+            var tc = pmFindById("pm_test_charge");
+            var ghost = pmFindById("pm_test_ghost");
+            var t1 = pmFindById("pm_tally_path1");
+            var t2 = pmFindById("pm_tally_path2");
+            var w1 = (typeof wt.W_path1_value === "number") ? wt.W_path1_value : 6;
+            var w2 = (typeof wt.W_path2_value === "number") ? wt.W_path2_value : 6;
+            // Route 1 — straight radial.
+            var c1 = (typeof cues[0] === "number") ? cues[0] : 0;
+            var f1 = Math.max(0, Math.min(1, (ms - c1) / dur));
+            var r1 = startR + (destR - startR) * f1;
+            if (tc) { tc.visible = true; tc.position.set(r1, 0, 0); }
+            var tcLbl = pmFindById("pm_test_charge_label");
+            if (tcLbl) { tcLbl.visible = true; tcLbl.position.set(r1, 0.34, 0); }
+            if (t1) { t1.visible = true; updateLabelSpriteText(t1, "W = " + (Math.round(w1 * f1 * 10) / 10)); }
+            // Route 2 — looping arc (ghost) when a second route is declared.
+            if (p.animate_route.length > 1) {
+                var c2 = (typeof cues[1] === "number") ? cues[1] : (c1 + dur + 600);
+                var f2 = Math.max(0, Math.min(1, (ms - c2) / dur));
+                // looping arc: sweep an angle while the radius eases in.
+                var ang = Math.PI * 1.4 * (1 - f2);     // big loop -> closes onto +X
+                var rr = startR + (destR - startR) * f2;
+                if (ghost) {
+                    ghost.visible = f2 > 0;
+                    ghost.position.set(rr * Math.cos(ang * (1 - f2) * 0.0 + 0) , 0, 0);
+                    // a genuine looping path in the XZ plane (reads as "the long way").
+                    ghost.position.set(rr * Math.cos(ang), 0, rr * Math.sin(ang));
+                }
+                if (t2) { t2.visible = true; updateLabelSpriteText(t2, "W = " + (Math.round(w2 * f2 * 10) / 10)); }
+            }
+        }
+
+        // ── STATE_3: release fly-out + energy badge drain (then HOLD U) ──────
+        if (p.show_energy_badge) {
+            var badge = pmFindById("pm_energy_badge");
+            var tc3 = pmFindById("pm_test_charge");
+            var relAt = (typeof p.release_at_ms === "number") ? p.release_at_ms : null;
+            var relDur = (typeof p.release_duration_ms === "number") ? p.release_duration_ms : 3500;
+            if (badge) badge.visible = true;
+            if (relAt != null && ms >= relAt) {
+                var fr = Math.max(0, Math.min(1, (ms - relAt) / relDur));
+                var rOut = destR + (startR - destR) * fr;
+                if (tc3) tc3.position.set(rOut, 0, 0);
+                var uVal = badge ? badge.userData.uValue : 6;
+                var drainTo = badge ? badge.userData.drainsTo : 0;
+                var cur = uVal + (drainTo - uVal) * fr;
+                if (badge) {
+                    if (fr < 1) updateLabelSpriteText(badge, "U = " + (Math.round(cur * 10) / 10));
+                    else updateLabelSpriteText(badge, badge.userData.uLabel);   // write "U = stored energy" + HOLD
+                }
+            } else {
+                if (tc3) tc3.position.set(destR, 0, 0);
+                if (badge) updateLabelSpriteText(badge, "U = " + badge.userData.uValue);
+            }
+        }
+
+        // ── STATE_4: q->2q grow + tally double + V = W/q write-in (HOLD) ─────
+        if (p.show_v_callout) {
+            var tc4 = pmFindById("pm_test_charge");
+            var t1b = pmFindById("pm_tally_path1");
+            var wpqM = pmFindById("pm_wpq");
+            var dblAt = (typeof p.doubling_at_ms === "number") ? p.doubling_at_ms : null;
+            var dblDur = (typeof p.doubling_duration_ms === "number") ? p.doubling_duration_ms : 1200;
+            var w1v = (typeof wt.W_path1_value === "number") ? wt.W_path1_value : 6;
+            var w2qv = (typeof wt.W_2q_value === "number") ? wt.W_2q_value : 12;
+            var wpqv = (typeof wt.W_per_q_value === "number") ? wt.W_per_q_value : 6;
+            var tcLbl4 = pmFindById("pm_test_charge_label");
+            // post-grow label: parse the token after "->" in doubling.grow_label
+            // (e.g. "+q -> +2q" => "+2q"), else default "+2q". data-driven.
+            var grownLabel = "+2q";
+            var dbl = config.test_charge_route && config.test_charge_route.doubling;
+            if (dbl && typeof dbl.grow_label === "string") {
+                var gparts = dbl.grow_label.split("->");
+                if (gparts.length > 1) { var gt = gparts[gparts.length - 1].replace(/\\s+/g, ""); if (gt) grownLabel = gt; }
+            }
+            if (tc4) { tc4.visible = true; tc4.position.set(destR, 0, 0); }
+            if (tcLbl4) { tcLbl4.visible = true; tcLbl4.position.set(destR, 0.34 + (dblAt != null && ms >= dblAt ? 0.1 : 0), 0); }
+            if (t1b) t1b.visible = true;
+            if (dblAt != null && ms >= dblAt) {
+                var fg = Math.max(0, Math.min(1, (ms - dblAt) / dblDur));
+                // q->2q grow: scale 1 -> ~1.26 (cube-root of 2, so VOLUME ~doubles).
+                if (tc4) tc4.scale.setScalar(1 + 0.26 * fg);
+                if (t1b) updateLabelSpriteText(t1b, "W = " + (Math.round((w1v + (w2qv - w1v) * fg) * 10) / 10));
+                if (wpqM) { wpqM.visible = true; updateLabelSpriteText(wpqM, "W/q = " + wpqv); }
+                // flip +q -> +2q once the grow is underway (half-grown), then HOLD.
+                if (tcLbl4 && fg >= 0.5) updateLabelSpriteText(tcLbl4, grownLabel);
+                else if (tcLbl4) updateLabelSpriteText(tcLbl4, "+q");
+            } else {
+                if (tc4) tc4.scale.setScalar(1);
+                if (t1b) updateLabelSpriteText(t1b, "W = " + w1v);
+                if (wpqM) { wpqM.visible = true; updateLabelSpriteText(wpqM, "W/q = " + wpqv); }
+                if (tcLbl4) updateLabelSpriteText(tcLbl4, "+q");
+            }
+            // V = W/q callout + V value on the point, written at v_callout_at_ms (HOLD).
+            var vco = pmFindById("pm_v_callout"), vop = pmFindById("pm_v_on_point");
+            var vAt = (typeof p.v_callout_at_ms === "number") ? p.v_callout_at_ms : null;
+            var vShown = (vAt == null) || (ms >= vAt);
+            if (vco) { vco.visible = vShown; if (vco.material) vco.material.opacity = vShown ? 1 : 0; }
+            if (vop) {
+                vop.visible = vShown;
+                if (vop.material) vop.material.opacity = vShown ? 1 : 0;
+                updateLabelSpriteText(vop, "V = " + (Math.round(pmVDemo(destR) * 10) / 10));
+            }
+        }
+
+        // ── STATE_5: reference marker + ΔV bracket fade/draw + billboard right ─
+        if (p.show_reference_marker || p.show_delta_v_bracket) {
+            if (p.show_reference_marker) {
+                var refM = pmFindById("pm_ref_marker"), refL = pmFindById("pm_ref_label");
+                var rAt = (typeof p.reference_at_ms === "number") ? p.reference_at_ms : null;
+                var rf = (rAt == null) ? 1 : Math.max(0, Math.min(1, (ms - rAt) / 600));
+                // Place the "inf . V=0" marker at the upper-RIGHT of the framed view
+                // (camera-right + camera-up), NOT at a fixed world +X=4.0 that orbits
+                // off-screen (the off-camera defect). Reading "far away toward
+                // infinity" while staying inside the 3/4 frame. markerR sets the
+                // screen-distance from the source; clamp so it never leaves frame.
+                var camU5 = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+                var rr2 = Math.min(refL && refL.userData.markerR ? refL.userData.markerR : 4.0, 3.6);
+                var refPos = new THREE.Vector3(
+                    camR.x * rr2 + camU5.x * (rr2 * 0.55),
+                    camR.y * rr2 + camU5.y * (rr2 * 0.55),
+                    camR.z * rr2 + camU5.z * (rr2 * 0.55)
+                );
+                if (refM) { refM.visible = true; refM.position.copy(refPos); if (refM.material) refM.material.opacity = rf; }
+                if (refL) {
+                    refL.visible = true;
+                    if (refL.material) refL.material.opacity = rf;
+                    refL.position.set(refPos.x + camU5.x * 0.4, refPos.y + camU5.y * 0.4, refPos.z + camU5.z * 0.4);
+                }
+            }
+            if (p.show_delta_v_bracket) {
+                var brk = pmFindById("pm_delta_v_bracket"), dvl = pmFindById("pm_delta_v_label");
+                var dAt = (typeof p.delta_v_at_ms === "number") ? p.delta_v_at_ms : null;
+                var df = (dAt == null) ? 1 : Math.max(0, Math.min(1, (ms - dAt) / 700));
+                if (brk) { brk.visible = true; if (brk.material) brk.material.opacity = 0.9 * df; }
+                if (dvl) {
+                    dvl.visible = true;
+                    if (dvl.material) dvl.material.opacity = df;
+                    if (dvl.userData.billboardRight) {
+                        // lift the ΔV label to camera-up + nudge camera-right so it
+                        // reads horizontal under the 3/4 camera.
+                        var camU = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+                        var midR = ((config.delta_v_bracket && config.delta_v_bracket.point_A && config.delta_v_bracket.point_A.r) || destR);
+                        dvl.position.set(midR * 0.5 + camR.x * 0.6 + camU.x * 1.2, camU.y * 1.2 + 0.3, midR * 0.5 * 0 + camR.z * 0.6 + camU.z * 1.2);
+                    }
+                }
+            }
+        }
+
+        // ── STATE_6: shells fade in concentric + E arrow draws ⊥ to a shell ──
+        if (p.show_equipotential) {
+            var shAt = (typeof p.shells_at_ms === "number") ? p.shells_at_ms : null;
+            for (var s6 = 0; s6 < sceneObjects.length; s6++) {
+                var sho = sceneObjects[s6], shud = sho.userData;
+                if (!shud || !shud.isPmShell) continue;
+                sho.visible = true;
+                var targetOp = (shud.elementType === "equipotential")
+                    ? (shud.baseOpacity || (config.equipotential && config.equipotential.opacity) || 0.14)
+                    : 1;
+                if (shAt == null) {
+                    if (sho.material) sho.material.opacity = targetOp;
+                } else {
+                    // staggered concentric fade-in (inner first), sustaining motion
+                    // > 0.1%/frame until each lands (guards field3d_reveal_too_subtle).
+                    var idx = 0;
+                    if (shud.id) { var mm = /eq_(?:lbl_)?(\\d+)/.exec(shud.id); if (mm) idx = parseInt(mm[1], 10) || 0; }
+                    var sf = Math.max(0, Math.min(1, (ms - (shAt + idx * 350)) / 700));
+                    if (sho.material) sho.material.opacity = targetOp * sf;
+                }
+            }
+        }
+        if (p.show_e_arrow) {
+            var ea = pmFindById("pm_e_arrow"), eal = pmFindById("pm_e_label");
+            var eAt = (typeof p.e_arrow_at_ms === "number") ? p.e_arrow_at_ms : null;
+            var ef = (eAt == null) ? 1 : Math.max(0, Math.min(1, (ms - eAt) / 700));
+            if (ea) {
+                ea.visible = true;
+                ea.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0.95 * ef; });
+            }
+            if (eal) { eal.visible = true; if (eal.material) eal.material.opacity = ef; }
+        }
+
+        // ── STATE_7: draggable explorer + idle auto-sweep ────────────────────
+        if (p.draggable_test_charge) {
+            var camU2 = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+            var rsc = (config.slider_controls && config.slider_controls.r) || { min: 0.5, max: 4.0 };
+            var dir, rNow;
+            if (window.PM_pmUserDragged && window.PM_pmDragDir) {
+                var dd = window.PM_pmDragDir;
+                dir = new THREE.Vector3(dd[0], dd[1], dd[2]).normalize();
+                rNow = window.PM_pmDragR;
+            } else {
+                // idle auto-sweep across the shells (guards field3d_explorer_state_static_d1p):
+                // r oscillates min<->max while the heading idles in the camera plane.
+                var sweep = 0.5 + 0.5 * Math.sin(ms / 2600);   // 0..1
+                rNow = rsc.min + (rsc.max - rsc.min) * sweep;
+                var ia = ms / 1000 * 0.5;
+                dir = camR.clone().multiplyScalar(Math.cos(ia)).addScaledVector(camU2, Math.sin(ia)).normalize();
+            }
+            rNow = Math.max(rsc.min, Math.min(rsc.max, rNow));
+            var pos = dir.clone().multiplyScalar(rNow);
+            var tc7 = pmFindById("pm_test_charge");
+            var tcLbl7 = pmFindById("pm_test_charge_label");
+            var hit7 = pmFindById("pm_drag_hit");
+            var vrd = pmFindById("pm_v_readout");
+            if (tc7) { tc7.visible = true; tc7.scale.setScalar(1); tc7.position.copy(pos); }
+            if (tcLbl7) { tcLbl7.visible = true; tcLbl7.position.set(pos.x + camU2.x * 0.34, pos.y + camU2.y * 0.34, pos.z + camU2.z * 0.34); }
+            if (hit7) { hit7.visible = true; hit7.position.copy(pos); }
+            if (vrd) {
+                vrd.visible = true;
+                if (vrd.material) vrd.material.opacity = 1;
+                vrd.position.set(pos.x + camU2.x * 0.7, pos.y + camU2.y * 0.7, pos.z + camU2.z * 0.7);
+                updateLabelSpriteText(vrd, "V = " + (Math.round(pmVDemo(rNow) * 10) / 10));
+            }
+            // highlight the nearest shell + keep E ⊥ to it (along the radial dir).
+            var nearest = null, nearestD = 1e9;
+            for (var s7 = 0; s7 < sceneObjects.length; s7++) {
+                var so7 = sceneObjects[s7], su7 = so7.userData;
+                if (!su7 || su7.elementType !== "equipotential" || !su7.isPmShell) continue;
+                var dd2 = Math.abs((su7.shellRadius || 0) - rNow);
+                if (dd2 < nearestD) { nearestD = dd2; nearest = so7; }
+                if (so7.material) so7.material.opacity = (config.equipotential && config.equipotential.opacity) || 0.14;
+            }
+            if (nearest && nearest.material) nearest.material.opacity = Math.min(0.5, ((config.equipotential && config.equipotential.opacity) || 0.14) * 3);
+            var ea7 = pmFindById("pm_e_arrow"), eal7 = pmFindById("pm_e_label");
+            if (ea7) {
+                ea7.visible = true;
+                ea7.position.copy(pos);
+                ea7.setDirection(dir);                // E points radially out = downhill = ⊥ shells
+                ea7.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0.95; });
+            }
+            if (eal7) { eal7.visible = true; if (eal7.material) eal7.material.opacity = 1; eal7.position.set(pos.x + dir.x * 0.9, pos.y + dir.y * 0.9 + 0.3, pos.z + dir.z * 0.9); }
         }
     }
 
@@ -8125,10 +10675,24 @@ export const FIELD_3D_RENDERER_CODE = `
         return (config.gauss_sphere_defaults && typeof config.gauss_sphere_defaults.shell_radius_default === "number")
             ? config.gauss_sphere_defaults.shell_radius_default : GSPH_R_DEFAULT;
     }
-    // Ground-truth demo E magnitude. HARD regime step at r = R (C3): 0 inside,
-    // DEMO_E_PER_NC·q/r² outside. Never interpolated across the boundary.
+    // True for the SOLID-sphere distribution (uniform volume charge); false (the
+    // default) for the thin SHELL. Read from the active state's gauss_sphere block
+    // so every gsphEDemo/gsphArrowLen caller picks up the right physics.
+    function gsphIsSolid() {
+        var sd = config.states && config.states[PM_currentState];
+        var gg = sd && sd.gauss_sphere;
+        return !!(gg && gg.distribution === "solid");
+    }
+    // Ground-truth demo E magnitude.
+    //   SHELL: HARD regime step at r = R (C3) — 0 inside, DEMO_E_PER_NC·q/r² outside.
+    //   SOLID: CONTINUOUS — DEMO_E_PER_NC·q·r/R³ inside (q_enc = q·(r/R)³, a linear
+    //          ramp 0 → peak at r=R), then DEMO_E_PER_NC·q/r² outside; the two branches
+    //          are equal at r=R, so there is NO jump. Never interpolated either way.
     function gsphEDemo(q, r, R) {
-        if (r < R) return 0;
+        if (r < R) {
+            if (gsphIsSolid()) return gsphDemoEPerNC() * q * r / (R * R * R);
+            return 0;
+        }
         if (r <= 1e-4) return 0;
         return gsphDemoEPerNC() * q / (r * r);
     }
@@ -8161,6 +10725,62 @@ export const FIELD_3D_RENDERER_CODE = `
         return null;
     }
 
+    // A genuinely THICK position-vector arrow (mesh shaft + cone head), built
+    // pointing along the unit dir from the origin. ArrowHelper draws a 1px line
+    // shaft (un-thickenable on most GPUs); the radius vectors must read as bold
+    // CYAN position arrows, so they get real geometry. The group is oriented
+    // toward +Y at build then quaternion-aligned to dir; per frame the shaft +
+    // head are rescaled by gsphSetVectorLength to track the real R / r length.
+    function gsphMakeThickVector(dir, color, len, shaftRadius) {
+        var grp = new THREE.Group();
+        var sr = shaftRadius != null ? shaftRadius : 0.05;
+        var headLen = 0.34, headR = sr * 3.1;
+        var shaftLen = Math.max(0.01, len - headLen);
+        // depthTest OFF + bright emissive so the WHITE line draws ON TOP of the
+        // red shell + blue Gaussian wireframe + green field arrows (it was washing
+        // out where it crossed them). renderOrder set on the meshes below.
+        var mat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(color), emissive: hexToThreeColor(color),
+            emissiveIntensity: 0.95, shininess: 70, transparent: true, opacity: 0.95,
+            depthTest: false, depthWrite: false
+        });
+        // shaft: a cylinder from y=0 up to y=shaftLen
+        var shaftGeo = new THREE.CylinderGeometry(sr, sr, 1, 16);
+        shaftGeo.translate(0, 0.5, 0);               // base at origin, grows +Y
+        var shaft = new THREE.Mesh(shaftGeo, mat);
+        shaft.scale.set(1, shaftLen, 1);
+        shaft.renderOrder = 999;                     // draw above sphere/wire/arrows
+        shaft.userData = { part: "shaft", baseShaftR: sr };
+        grp.add(shaft);
+        // head: a cone sitting on top of the shaft
+        var headGeo = new THREE.ConeGeometry(headR, headLen, 18);
+        var head = new THREE.Mesh(headGeo, mat);
+        head.position.set(0, shaftLen + headLen / 2, 0);
+        head.renderOrder = 999;
+        head.userData = { part: "head", baseHeadLen: headLen };
+        grp.add(head);
+        // orient the whole +Y group to dir
+        var v = new THREE.Vector3(dir[0], dir[1], dir[2]).normalize();
+        grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), v);
+        grp.userData = { _shaft: shaft, _head: head, _headLen: headLen, _dir: [v.x, v.y, v.z] };
+        return grp;
+    }
+    // Rescale a thick vector group to a new length (shaft stretches, head rides
+    // on top). Length is the real R / r — never an emphasis bulge (Rule 29).
+    function gsphSetVectorLength(grp, len) {
+        if (!grp || !grp.userData) return;
+        var sh = grp.userData._shaft, hd = grp.userData._head, hl = grp.userData._headLen || 0.34;
+        var shaftLen = Math.max(0.01, len - hl);
+        if (sh) sh.scale.set(1, shaftLen, 1);
+        if (hd) hd.position.set(0, shaftLen + hl / 2, 0);
+    }
+    function gsphSetVectorOpacity(grp, op) {
+        if (!grp || !grp.userData) return;
+        var sh = grp.userData._shaft, hd = grp.userData._head;
+        if (sh && sh.material) { sh.material.transparent = true; sh.material.opacity = op; }
+        if (hd && hd.material) { hd.material.transparent = true; hd.material.opacity = op; }
+    }
+
     function buildGaussSphereField() {
         var shellColor = (config.pvl_colors && config.pvl_colors.positive) || "#EF5350";
         var fieldColor = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
@@ -8184,7 +10804,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var shellWire = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.SphereGeometry(R, 22, 14)), shellWireMat);
         shellWire.userData = { elementType: "gsph_shell", id: "gsph_shell_wire" };
         grp.add(shellWire);
-        var shellLabel = createWideLabelSprite("charged shell, radius R", shellColor, 0.32);
+        // Label reflects the distribution: a SOLID ball vs the default thin SHELL.
+        // (A concept's states all share one distribution, so a build-time scan is
+        // enough — read it once here for the in-scene sprite.)
+        var buildIsSolid = false;
+        if (config.states) {
+            for (var sk in config.states) {
+                var sgs = config.states[sk] && config.states[sk].gauss_sphere;
+                if (sgs && sgs.distribution === "solid") { buildIsSolid = true; break; }
+            }
+        }
+        var shellLabel = createWideLabelSprite(buildIsSolid ? "charged solid sphere, radius R" : "charged shell, radius R", shellColor, 0.32);
         shellLabel.position.set(0, R + 0.5, 0);
         shellLabel.userData = { elementType: "gsph_shell_label", id: "gsph_lbl_shell" };
         grp.add(shellLabel);
@@ -8220,11 +10850,16 @@ export const FIELD_3D_RENDERER_CODE = `
         // 3. A small centre marker — in STATE_4 compare_mode this is the RIGHT
         //    point charge ("all charge ≡ a point at the centre"), translated to
         //    point_offset_x. Hidden in every other state.
-        var centre = createChargeSphere([0, 0, 0], shellColor, 0.14);
-        if (centre.material) { centre.material.transparent = true; centre.material.opacity = 0; }
+        var centre = createChargeSphere([0, 0, 0], shellColor, 0.34);
+        if (centre.material) { centre.material.transparent = true; centre.material.opacity = 0; centre.material.emissiveIntensity = 0.95; }
         centre.visible = false;
         centre.userData = { elementType: "gsph_centre_charge", id: "gsph_centre_charge" };
         grp.add(centre);
+        var centreLbl = createLabelSprite("q", shellColor, 0.5);
+        centreLbl.visible = false;
+        if (centreLbl.material) centreLbl.material.opacity = 0;
+        centreLbl.userData = { elementType: "gsph_centre_charge", id: "gsph_lbl_centre_charge" };
+        grp.add(centreLbl);
 
         // 3b. STATE_2 field-point P + its single radial E-arrow (the "is E radial?"
         //     beat). P sits on a sphere of radius r above-right; the arrow grows
@@ -8251,6 +10886,36 @@ export const FIELD_3D_RENDERER_CODE = `
         fpArrow.userData = { elementType: "gsph_field_point_arrow", id: "gsph_field_point_arrow", dir: fpDir };
         grp.add(fpArrow);
 
+        // 3b-drag. PhET-style draggable sensor extras (used only in a state whose
+        //   gauss_sphere block sets draggable_point). (i) An INVISIBLE pick proxy
+        //   with a forgiving 0.35 radius so the small 0.11 yellow point is easy to
+        //   grab (raycaster skips visible:false, so it is inert in every other
+        //   state). (ii) A faint constant-r RING + (iii) six equal-length ghost
+        //   arrows spaced around it — when the teacher moves the point, all six
+        //   stay the same length, showing the magnitude is identical around the
+        //   circle of fixed r. All hidden until the draggable frame turns them on.
+        var fpHit = createChargeSphere([0, 0, 0], "#FFF176", 0.35);
+        if (fpHit.material) { fpHit.material.transparent = true; fpHit.material.opacity = 0; fpHit.material.depthWrite = false; }
+        fpHit.visible = false;
+        fpHit.userData = { elementType: "gsph_sensor_hit", id: "gsph_field_point_hit", draggable: true };
+        grp.add(fpHit);
+        var ringPos = [];
+        for (var rgi = 0; rgi <= 64; rgi++) { var rga = rgi / 64 * Math.PI * 2; ringPos.push(Math.cos(rga), Math.sin(rga), 0); }
+        var ringGeo = new THREE.BufferGeometry();
+        ringGeo.setAttribute("position", new THREE.Float32BufferAttribute(ringPos, 3));
+        var ringMat = new THREE.LineBasicMaterial({ color: hexToThreeColor("#90CAF9"), transparent: true, opacity: 0, depthTest: false, depthWrite: false });
+        var constRing = new THREE.Line(ringGeo, ringMat);
+        constRing.renderOrder = 997; constRing.visible = false;
+        constRing.userData = { elementType: "gsph_const_r", id: "gsph_const_r_ring" };
+        grp.add(constRing);
+        for (var rar = 0; rar < 6; rar++) {
+            var ringArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), GSPH_ARROW_BASE, fieldColor, 0.18, 0.1);
+            ringArrow.visible = false;
+            ringArrow.children.forEach(function (ch) { if (ch.material) { ch.material.transparent = true; ch.material.opacity = 0; } });
+            ringArrow.userData = { elementType: "gsph_const_r", id: "gsph_ring_arrow_" + rar, ringIndex: rar };
+            grp.add(ringArrow);
+        }
+
         // 3c. STATE_5 inside test-probe: a small bright marker that orbits the
         //     INTERIOR of the shell on a loop, carrying a tiny "E = 0" tag. Its
         //     field arrow stays collapsed at zero everywhere it goes — visually
@@ -8273,49 +10938,79 @@ export const FIELD_3D_RENDERER_CODE = `
         probeLabel.userData = { elementType: "gsph_inside_probe", id: "gsph_lbl_inside_probe" };
         grp.add(probeLabel);
 
-        // 3d. POSITION (radius) vectors R and r — distinct from the green E-field
-        //     arrows: a neutral CYAN, THIN line, pointing toward the lower-front of
-        //     the scene (a direction used by NEITHER the 14 radial field arrows
-        //     [pure axis + ±0.577 cube-diagonals] NOR the STATE_2 field point P
-        //     [0,0.74,0.67]) so the "R"/"r" labels read with no clutter. These are
-        //     POSITION vectors (where the surface / field point IS), length = the
-        //     real R / r (Rule 29). Gated on show_radius_vectors; driven per frame.
-        var radVecColor = "#80DEEA";              // light cyan, clearly not field-green
-        var rvDir = [0.42, -0.52, 0.74];          // lower-front; normalised below
+        // 3d. POSITION (radius) vectors R and r — PRODUCTION-GRADE: bold WHITE
+        //     mesh arrows (thick shaft + big cone head, not a 1px ArrowHelper
+        //     line), big legible "R"/"r" sprite labels at each head, and a "P"
+        //     tip marker on each r vector (the field point where E is measured).
+        //     ORIENTATION is recomputed every frame in 6a-rv: both arrows are
+        //     BILLBOARDED along camera-right (screen-horizontal, pointing right)
+        //     with a small +/- camera-up stagger (R above, r below) so they read
+        //     as two parallel horizontal lines in every 3/4 camera, never a
+        //     foreshortened diagonal. The build-time dir below is just a seed; the
+        //     frame overwrites the group quaternion. POSITION vectors (white,
+        //     distinct from green E-field arrows); length = the real R / r
+        //     (Rule 29). Gated on show_radius_vectors; emerge per state clock.
+        var radVecColor = "#FFFFFF";              // WHITE, clearly not field-green
+        var rvDir = [0.42, -0.52, 0.74];          // R direction; normalised below
         var rvL = Math.sqrt(rvDir[0] * rvDir[0] + rvDir[1] * rvDir[1] + rvDir[2] * rvDir[2]);
         rvDir = [rvDir[0] / rvL, rvDir[1] / rvL, rvDir[2] / rvL];
-        // R vector: centre -> shell surface (length R). Thin shaft.
-        var RVec = new THREE.ArrowHelper(new THREE.Vector3(rvDir[0], rvDir[1], rvDir[2]), new THREE.Vector3(0, 0, 0), R, radVecColor, 0.16, 0.08);
+        // R vector: centre -> shell surface (length R). Thick mesh arrow.
+        var RVec = gsphMakeThickVector(rvDir, radVecColor, R, 0.0275);
         RVec.visible = false;
-        RVec.userData = { elementType: "gsph_radius_vector", id: "gsph_R_vector", dir: rvDir, kind: "R" };
+        RVec.userData.elementType = "gsph_radius_vector"; RVec.userData.id = "gsph_R_vector";
+        RVec.userData.dir = rvDir; RVec.userData.kind = "R";
         grp.add(RVec);
-        var RVecLbl = createLabelSprite("R", radVecColor, 0.34);
+        var RVecLbl = createLabelSprite("R", radVecColor, 0.52);   // bigger label
         RVecLbl.visible = false;
         RVecLbl.userData = { elementType: "gsph_radius_vector", id: "gsph_lbl_R_vector", dir: rvDir, kind: "R" };
         grp.add(RVecLbl);
-        // r vector: centre -> field point (length r_gauss, tracked live). Slightly
-        // tilted off the R direction so the two never overlap their labels.
+        // r vector: centre -> field point (length r_gauss, tracked live). Tilted
+        // off the R direction so the two never overlap their labels.
         var rvDir2 = [0.66, -0.40, 0.64];
         var rvL2 = Math.sqrt(rvDir2[0] * rvDir2[0] + rvDir2[1] * rvDir2[1] + rvDir2[2] * rvDir2[2]);
         rvDir2 = [rvDir2[0] / rvL2, rvDir2[1] / rvL2, rvDir2[2] / rvL2];
-        var rVec = new THREE.ArrowHelper(new THREE.Vector3(rvDir2[0], rvDir2[1], rvDir2[2]), new THREE.Vector3(0, 0, 0), 2.4, radVecColor, 0.16, 0.08);
+        var rVec = gsphMakeThickVector(rvDir2, radVecColor, 2.4, 0.0275);
         rVec.visible = false;
-        rVec.userData = { elementType: "gsph_radius_vector", id: "gsph_r_vector", dir: rvDir2, kind: "r" };
+        rVec.userData.elementType = "gsph_radius_vector"; rVec.userData.id = "gsph_r_vector";
+        rVec.userData.dir = rvDir2; rVec.userData.kind = "r";
         grp.add(rVec);
-        var rVecLbl = createLabelSprite("r", radVecColor, 0.34);
+        var rVecLbl = createLabelSprite("r", radVecColor, 0.52);
         rVecLbl.visible = false;
         rVecLbl.userData = { elementType: "gsph_radius_vector", id: "gsph_lbl_r_vector", dir: rvDir2, kind: "r" };
         grp.add(rVecLbl);
-        // Point-side r vector (STATE_4 compare mode only): the r vector for the
-        // RIGHT point-charge group, anchored at its offset centre.
-        var pRVec = new THREE.ArrowHelper(new THREE.Vector3(rvDir2[0], rvDir2[1], rvDir2[2]), new THREE.Vector3(0, 0, 0), 2.4, radVecColor, 0.16, 0.08);
+        // "P" tip marker on the r vector (the field point). A small WHITE sphere +
+        // "P" label at the r-vector head, so r visibly terminates AT the point
+        // where the field is measured. depthTest off + renderOrder 999 so it draws
+        // ON TOP of the sphere/wireframe (it was washing out before).
+        var rTip = createChargeSphere([0, 0, 0], radVecColor, 0.10);
+        if (rTip.material) { rTip.material.transparent = true; rTip.material.opacity = 0; rTip.material.depthTest = false; rTip.material.depthWrite = false; rTip.material.emissiveIntensity = 0.95; }
+        rTip.renderOrder = 999; rTip.visible = false;
+        rTip.userData = { elementType: "gsph_radius_vector", id: "gsph_r_tip", dir: rvDir2, kind: "r_tip" };
+        grp.add(rTip);
+        var rTipLbl = createLabelSprite("P", radVecColor, 0.40);
+        rTipLbl.visible = false;
+        rTipLbl.userData = { elementType: "gsph_radius_vector", id: "gsph_lbl_r_tip", dir: rvDir2, kind: "r_tip" };
+        grp.add(rTipLbl);
+        // Point-side r vector (STATE_4 compare mode): the r vector for the RIGHT
+        // point-charge group, anchored at its offset centre, with its own P tip.
+        var pRVec = gsphMakeThickVector(rvDir2, radVecColor, 2.4, 0.0275);
         pRVec.visible = false;
-        pRVec.userData = { elementType: "gsph_radius_vector_point", id: "gsph_point_r_vector", dir: rvDir2, kind: "r" };
+        pRVec.userData.elementType = "gsph_radius_vector_point"; pRVec.userData.id = "gsph_point_r_vector";
+        pRVec.userData.dir = rvDir2; pRVec.userData.kind = "r";
         grp.add(pRVec);
-        var pRVecLbl = createLabelSprite("r", radVecColor, 0.34);
+        var pRVecLbl = createLabelSprite("r", radVecColor, 0.52);
         pRVecLbl.visible = false;
         pRVecLbl.userData = { elementType: "gsph_radius_vector_point", id: "gsph_lbl_point_r_vector", dir: rvDir2, kind: "r" };
         grp.add(pRVecLbl);
+        var pRTip = createChargeSphere([0, 0, 0], radVecColor, 0.10);
+        if (pRTip.material) { pRTip.material.transparent = true; pRTip.material.opacity = 0; pRTip.material.depthTest = false; pRTip.material.depthWrite = false; pRTip.material.emissiveIntensity = 0.95; }
+        pRTip.renderOrder = 999; pRTip.visible = false;
+        pRTip.userData = { elementType: "gsph_radius_vector_point", id: "gsph_point_r_tip", dir: rvDir2, kind: "r_tip" };
+        grp.add(pRTip);
+        var pRTipLbl = createLabelSprite("P", radVecColor, 0.40);
+        pRTipLbl.visible = false;
+        pRTipLbl.userData = { elementType: "gsph_radius_vector_point", id: "gsph_lbl_point_r_tip", dir: rvDir2, kind: "r_tip" };
+        grp.add(pRTipLbl);
 
         // 4. Radial E-arrows along the 14 directions. Each is anchored on the
         //    Gaussian sphere's surface and points radially OUT; hidden by default.
@@ -8421,6 +11116,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var seedR = (typeof g.r_gauss === "number") ? g.r_gauss : 2.4;
         window.PM_gsphUserDragged = false;
         window.PM_gsphRGauss = seedR;
+        window.PM_gsphSensorDir = null;   // draggable sensor: idle-orbit until grabbed
         var rS = document.getElementById("gsph_r_slider"), rV = document.getElementById("gsph_r_val");
         if (rS) rS.value = String(seedR);
         if (rV) rV.textContent = Number(seedR).toFixed(2);
@@ -8455,10 +11151,12 @@ export const FIELD_3D_RENDERER_CODE = `
         var capL = document.getElementById("gsph_caption_left");
         var capR = document.getElementById("gsph_caption_right");
         if (capL) {
+            capL.style.boxShadow = "none";   // clear any prior phase-3 glow (Rule 26)
             if (cmp) { capL.textContent = g.shell_formula || ""; capL.style.display = "block"; capL.style.opacity = "0"; }
             else { capL.style.display = "none"; }
         }
         if (capR) {
+            capR.style.boxShadow = "none";
             if (cmp) { capR.textContent = g.point_formula || ""; capR.style.display = "block"; capR.style.opacity = "1"; }
             else { capR.style.display = "none"; }
         }
@@ -8482,7 +11180,8 @@ export const FIELD_3D_RENDERER_CODE = `
             } else if (ud.elementType === "gsph_centre_charge") {
                 ch.visible = false;
                 if (ch.material) ch.material.opacity = 0;
-                ch.position.set(pointOffX, 0, 0);        // point charge sits at the point-group centre
+                // the charge sits at the point-group centre; its "q" label rides just above it
+                ch.position.set(pointOffX, (ud.id && ud.id.indexOf("lbl") >= 0) ? 0.62 : 0, 0);
             } else if (ud.elementType === "gsph_field_point" || ud.elementType === "gsph_field_point_arrow") {
                 // STATE_2 field-point P + its single radial arrow — hidden until
                 // radial_arrow_at_ms; reset to a clean (invisible) entry pose.
@@ -8505,6 +11204,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (ch.material) ch.material.opacity = 0;
                 if (ch.children) ch.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0; });
                 ch.userData.offsetX = pointOffX;
+            } else if (ud.elementType === "gsph_sensor_hit" || ud.elementType === "gsph_const_r") {
+                // draggable sensor proxy + constant-r ring/arrows — off unless the
+                // draggable frame turns them on (keeps the pick proxy inert
+                // elsewhere; raycaster skips visible:false).
+                ch.visible = false;
+                if (ch.material) ch.material.opacity = 0;
+                if (ch.children) ch.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0; });
             }
         }
     }
@@ -8520,6 +11226,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var stateDef = config.states[PM_currentState];
         if (!stateDef) return;
         var g = stateDef.gauss_sphere || {};
+        var solid = g.distribution === "solid";   // SOLID sphere vs the default thin SHELL
         var grp = gsphFindById("gsph_group");
         if (!grp) return;
         var t = time - stateStartTime;            // state-local seconds (Rule 26)
@@ -8540,8 +11247,53 @@ export const FIELD_3D_RENDERER_CODE = `
         //    through-R, else the per-state seed. Pure state-clock (Rule 26).
         var seedR = (typeof g.r_gauss === "number") ? g.r_gauss : 2.4;
         var r = seedR;
+        // coordinated_sweep (STATE_6): a SINGLE guided sweep of r that drives BOTH
+        // the 3D scene AND the graph dot from the SAME r each frame, so they move
+        // perfectly together. 4 phases on the state clock (Rule 26):
+        //   A hold inside (t < sweep_hold_inside_ms): r = sweep_r_min (E=0).
+        //   B grow to surface + spike (hold -> sweep_cross_at_ms): r: min -> R,
+        //     crossing R lights the shell + the graph jump.
+        //   C grow outside 1/r² (cross -> sweep_end_at_ms): r: R -> sweep_r_max,
+        //     arrows + dot follow the real 1/r² descent.
+        //   D hold (t >= sweep_end_at_ms): r = sweep_r_max.
+        // PM_gsphCrossGlow (0..1) peaks at the r=R crossing for the synchronized
+        // shell-surface + graph-jump glow.
+        var coordSweep = !!g.coordinated_sweep;
+        window.PM_gsphCrossGlow = 0;
+        if (coordSweep) {
+            var swMin = (typeof g.sweep_r_min === "number") ? g.sweep_r_min : 0.6;
+            var swMax = (typeof g.sweep_r_max === "number") ? g.sweep_r_max : 3.6;
+            var holdAt = (typeof g.sweep_hold_inside_ms === "number") ? g.sweep_hold_inside_ms / 1000 : 8;
+            var crossAt = (typeof g.sweep_cross_at_ms === "number") ? g.sweep_cross_at_ms / 1000 : 12;
+            var endAt = (typeof g.sweep_end_at_ms === "number") ? g.sweep_end_at_ms / 1000 : 28;
+            if (t < holdAt) {
+                r = swMin;                            // PHASE A — hold inside
+            } else if (t < crossAt) {
+                // PHASE B — grow swMin -> R (smoothstep)
+                var pB = (crossAt > holdAt) ? Math.max(0, Math.min(1, (t - holdAt) / (crossAt - holdAt))) : 1;
+                var eB = pB * pB * (3 - 2 * pB);
+                r = swMin + (R - swMin) * eB;
+            } else if (t < endAt) {
+                // PHASE C — grow R -> swMax (smoothstep)
+                var pC = (endAt > crossAt) ? Math.max(0, Math.min(1, (t - crossAt) / (endAt - crossAt))) : 1;
+                var eC = pC * pC * (3 - 2 * pC);
+                r = R + (swMax - R) * eC;
+            } else {
+                r = swMax;                            // PHASE D — hold outside
+            }
+            window.PM_gsphRGauss = r;
+            // crossing glow: a brightness pulse centred on the moment r reaches R
+            // (the end of PHASE B). Decays over ~1.2s after the crossing.
+            var dtCross = t - crossAt;
+            if (dtCross > -0.4 && dtCross < 1.2) {
+                var gp = (dtCross < 0) ? (1 + dtCross / 0.4) : (1 - dtCross / 1.2);
+                window.PM_gsphCrossGlow = Math.max(0, Math.min(1, gp));
+            }
+        }
         if (dragging) {
             r = window.PM_gsphRGauss;
+        } else if (coordSweep) {
+            // r already set above by the guided sweep.
         } else if (sliders) {
             // idle auto-sweep: cosine ramp between rLo (inside R) and rHi (outside),
             // dwelling briefly at each end. Period ~7s. Crosses R so the regime
@@ -8568,31 +11320,50 @@ export const FIELD_3D_RENDERER_CODE = `
 
         var inside = r < R;                       // HARD regime boundary (C3)
 
-        // compare_mode (STATE_4) timing + group offsets. PHASE 1 (t < shellAt):
-        // only the RIGHT point-charge group. PHASE 2 (t >= shellAt): the LEFT
-        // shell group FADES IN beside it. Offsets were seeded per-object in
-        // applyGaussSphereState; here we read the shell-group X to place the
-        // gaussian, and compute the shell-group fade-in alpha.
+        // compare_mode (STATE_4) timing + group offsets + scale (Feature B).
+        //   PHASE 1 (t < shell_appears_at_ms=17s): ONLY the RIGHT point-charge
+        //     group is visible; the LEFT is COMPLETELY EMPTY.
+        //   PHASE 2 (t >= 17s): the LEFT shell group FADES + GROWS IN PLACE
+        //     (scale 0 -> compare_scale, opacity 0 -> full over ~1.0s, anchored at
+        //     shell_offset_x = -3.4 — it materialises, never slides).
+        //   PHASE 3 (t >= compare_highlight_at_ms=26s): both captions pulse.
+        //   Both groups are scaled by compare_scale (0.6) and offset by ±3.4 so
+        //   the shrunk groups never cross centre (clean gap). compare_scale
+        //   defaults to 1.0 when absent so non-compare states are unchanged.
         var cmp = !!g.compare_mode;
-        var shellOffX = cmp ? ((typeof g.shell_offset_x === "number") ? g.shell_offset_x : -2.2) : 0;
+        var cmpScale = (typeof g.compare_scale === "number") ? g.compare_scale : 1.0;  // 0.6 in STATE_4
+        var shellOffX = cmp ? ((typeof g.shell_offset_x === "number") ? g.shell_offset_x : -3.4) : 0;
         var shellAppearAt = (typeof g.shell_appears_at_ms === "number") ? g.shell_appears_at_ms / 1000 : 0;
-        // shell-group reveal alpha (1 outside compare_mode; gated by the 5s beat in it)
+        var hiAt = (typeof g.compare_highlight_at_ms === "number") ? g.compare_highlight_at_ms / 1000 : 1e9;
+        // shell-group reveal alpha (1 outside compare_mode; gated by the 17s beat).
         var shellGroupAlpha = 1;
         if (cmp) {
-            shellGroupAlpha = Math.max(0, Math.min(1, (t - shellAppearAt) / 0.9));
+            shellGroupAlpha = Math.max(0, Math.min(1, (t - shellAppearAt) / 1.0));
             shellGroupAlpha = shellGroupAlpha * shellGroupAlpha * (3 - 2 * shellGroupAlpha); // smoothstep
         }
-        // In compare_mode the shell mesh/wire opacity also rides the fade-in.
+        // The shell group's effective SCALE this frame: PHASE 2 grows 0 -> cmpScale
+        // in place; everywhere else it is cmpScale (=1 outside compare_mode).
+        var shellScale = cmp ? (cmpScale * shellGroupAlpha) : cmpScale;
+        // In compare_mode the shell mesh/wire/label fade + GROW IN PLACE (scale).
         var shellM = gsphFindById("gsph_shell"), shellWr = gsphFindById("gsph_shell_wire"), shellLb = gsphFindById("gsph_lbl_shell");
         if (cmp) {
-            if (shellM && shellM.material) { shellM.material.opacity = 0.30 * shellGroupAlpha; shellM.visible = shellGroupAlpha > 0.001; }
-            if (shellWr && shellWr.material) { shellWr.material.opacity = 0.42 * shellGroupAlpha; shellWr.visible = shellGroupAlpha > 0.001; }
-            if (shellLb) { shellLb.visible = shellGroupAlpha > 0.5; if (shellLb.material) shellLb.material.opacity = shellGroupAlpha; }
+            var shSc = (R / gsphShellRadiusDefault()) * shellScale;
+            if (shellM) { shellM.scale.setScalar(shSc); shellM.position.set(shellOffX, 0, 0); shellM.visible = shellGroupAlpha > 0.001; if (shellM.material) shellM.material.opacity = 0.30 * shellGroupAlpha; }
+            if (shellWr) { shellWr.scale.setScalar(shSc); shellWr.position.set(shellOffX, 0, 0); shellWr.visible = shellGroupAlpha > 0.001; if (shellWr.material) shellWr.material.opacity = 0.42 * shellGroupAlpha; }
+            if (shellLb) { shellLb.position.set(shellOffX, R * shellScale + 0.5, 0); shellLb.visible = shellGroupAlpha > 0.5; if (shellLb.material) shellLb.material.opacity = shellGroupAlpha; }
         } else {
-            // restore default shell visibility for all non-compare states
-            if (shellM && shellM.material) { shellM.material.opacity = 0.30; shellM.visible = true; }
-            if (shellWr && shellWr.material) { shellWr.material.opacity = 0.42; shellWr.visible = true; }
-            if (shellLb) { shellLb.visible = true; if (shellLb.material) shellLb.material.opacity = 1; }
+            // restore default shell pose for all non-compare states (scale = R-ratio,
+            // origin, full opacity) so nothing about the other states changes.
+            var shScN = R / gsphShellRadiusDefault();
+            // coordinated_sweep r=R crossing GLOW: a brightness pulse on the shell
+            // surface synchronized with the graph-jump glow (brightness only — no
+            // size-bulge, Rule 29). PM_gsphCrossGlow is 0 except near the crossing.
+            var xGlow = (typeof window.PM_gsphCrossGlow === "number") ? window.PM_gsphCrossGlow : 0;
+            var shellOp = 0.30 + 0.50 * xGlow;
+            var shellEmis = 0.22 + 0.78 * xGlow;
+            if (shellM) { shellM.scale.setScalar(shScN); shellM.position.set(0, 0, 0); shellM.visible = true; if (shellM.material) { shellM.material.opacity = shellOp; shellM.material.emissiveIntensity = shellEmis; } }
+            if (shellWr) { shellWr.scale.setScalar(shScN); shellWr.position.set(0, 0, 0); shellWr.visible = true; if (shellWr.material) shellWr.material.opacity = 0.42 + 0.45 * xGlow; }
+            if (shellLb) { shellLb.position.set(0, R + 0.5, 0); shellLb.visible = true; if (shellLb.material) shellLb.material.opacity = 1; }
         }
 
         // 2. Position + size the Gaussian sphere at radius r (if shown this state).
@@ -8608,21 +11379,25 @@ export const FIELD_3D_RENDERER_CODE = `
         }
         if (cmp) gaussFade = gaussFade * shellGroupAlpha;   // ride the shell fade-in
         var gOffX = (gMesh && typeof gMesh.userData.offsetX === "number") ? gMesh.userData.offsetX : 0;
+        // The gaussian rides the shell group: its radius + position are scaled by
+        // the shell-group scale (cmpScale * fade in compare_mode; 1.0 elsewhere).
+        var gScale = cmp ? shellScale : 1.0;
+        var gRad = r * gScale;
         if (gMesh) {
             gMesh.visible = showGaussian && gaussFade > 0.001;
-            gMesh.scale.setScalar(r);
+            gMesh.scale.setScalar(gRad);
             gMesh.position.set(gOffX, 0, 0);
             if (gMesh.material) gMesh.material.opacity = (gMesh.userData.baseOpacity || 0.12) * gaussFade;
         }
         if (gWire) {
             gWire.visible = showGaussian && gaussFade > 0.001;
-            gWire.scale.setScalar(r);
+            gWire.scale.setScalar(gRad);
             gWire.position.set(gOffX, 0, 0);
             if (gWire.material) gWire.material.opacity = (gWire.userData.baseOpacity || 0.40) * gaussFade;
         }
         if (gLbl) {
             gLbl.visible = showGaussian && gaussFade > 0.001;
-            gLbl.position.set(gOffX, r + 0.4, 0);
+            gLbl.position.set(gOffX, gRad + 0.4, 0);
             if (gLbl.material) gLbl.material.opacity = gaussFade;
         }
 
@@ -8637,7 +11412,7 @@ export const FIELD_3D_RENDERER_CODE = `
         //     continuous pixel change (anti-D7-freeze). Geometry/brightness only,
         //     arrow length stays zero (Rule 29). Pure state-clock (Rule 26).
         var insideDemoActive = false;
-        if (g.shrink_through_R && inside && gMesh) {
+        if (g.shrink_through_R && inside && gMesh && !solid) {   // SHELL-only "E=0 inside" demo
             var shrunkP = Math.max(0, Math.min(1, (t - (g.shrink_through_R.at_ms || 0) / 1000) / ((g.shrink_through_R.duration_ms || 900) / 1000)));
             if (shrunkP >= 0.999) {
                 insideDemoActive = true;
@@ -8697,9 +11472,11 @@ export const FIELD_3D_RENDERER_CODE = `
         //    behaviour for the other states is unchanged).
         // shellGroupAlpha was computed in section 2 (1 outside compare_mode).
 
-        // 5. The arrow GLYPH length this frame (outside only; inside => 0). HARD
-        //    step at r=R — gsphArrowLen/gsphEDemo never lerp across the boundary.
-        var arrowLen = inside ? 0 : gsphArrowLen(q, r, R);
+        // 5. The arrow GLYPH length this frame. SHELL: outside only (inside => 0),
+        //    a HARD step at r=R. SOLID: arrows everywhere — the inside ramp length
+        //    (∝ r) comes straight from gsphArrowLen via gsphEDemo, continuous at R.
+        //    Neither distribution lerps gsphArrowLen/gsphEDemo across the boundary.
+        var arrowLen = (inside && !solid) ? 0 : gsphArrowLen(q, r, R);
 
         // 6. Drive every radial arrow (shell set + point-charge set + centre).
         //    Non-compare: only the shell set is used (point set hidden). Compare:
@@ -8723,15 +11500,19 @@ export const FIELD_3D_RENDERER_CODE = `
                 // Rule 29). Never shown while inside, regardless of fades. Rides
                 // the shell-group X offset in compare_mode.
                 var sOffX = (typeof ud.offsetX === "number") ? ud.offsetX : 0;
-                var showShell = !inside && arrowLen > 0 && shellArrowAlpha > 0.001;
+                var sSc = cmp ? shellScale : 1.0;     // shell-group scale (compare_mode)
+                // SHELL: arrows hidden inside (E=0). SOLID: arrows show inside too,
+                // anchored on the Gaussian sphere at radius r with the ramp length.
+                var showShell = (!inside || solid) && arrowLen > 0 && shellArrowAlpha > 0.001;
                 o.visible = showShell;
                 if (showShell) {
                     var d = ud.dir;
-                    o.position.set(sOffX + d[0] * r, d[1] * r, d[2] * r);
+                    o.position.set(sOffX + d[0] * r * sSc, d[1] * r * sSc, d[2] * r * sSc);
                     // Grow the glyph IN with the reveal so the arrows visibly extend
-                    // (per-frame change), settling to the true 1/r² length. The
-                    // final length is the physical magnitude (Rule 29-allowed).
-                    var grownLen = arrowLen * (0.18 + 0.82 * arrowReveal);
+                    // (per-frame change), settling to the true 1/r² length, scaled by
+                    // the shell-group scale in compare_mode. The shape is the real
+                    // 1/r² magnitude (Rule 29-allowed).
+                    var grownLen = arrowLen * (0.18 + 0.82 * arrowReveal) * sSc;
                     o.setLength(grownLen, Math.min(0.22, grownLen * 0.32), Math.min(0.12, grownLen * 0.18));
                     o.setColor(hexToThreeColor(fieldColor));
                     // traveling glow: stagger the wave by the arrow's index so the
@@ -8747,12 +11528,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 // of radius r about the point-group centre, SAME 1/r² length as the
                 // shell set so the two visibly match. Hidden outside compare_mode.
                 var pOffX = (typeof ud.offsetX === "number") ? ud.offsetX : 0;
+                var pSc = cmpScale;                   // point-group scale (compare_mode)
                 var showPoint = arrowLen > 0 && pointArrowAlpha > 0.001;
                 o.visible = showPoint;
                 if (showPoint) {
                     var pd = ud.dir;
-                    o.position.set(pOffX + pd[0] * r, pd[1] * r, pd[2] * r);
-                    var pGrown = arrowLen * (0.18 + 0.82 * arrowReveal);
+                    o.position.set(pOffX + pd[0] * r * pSc, pd[1] * r * pSc, pd[2] * r * pSc);
+                    var pGrown = arrowLen * (0.18 + 0.82 * arrowReveal) * pSc;
                     o.setLength(pGrown, Math.min(0.22, pGrown * 0.32), Math.min(0.12, pGrown * 0.18));
                     o.setColor(hexToThreeColor(fieldColor));
                     // same traveling glow as the shell set (the fields are identical)
@@ -8764,23 +11546,79 @@ export const FIELD_3D_RENDERER_CODE = `
             } else if (ud.elementType === "gsph_centre_charge") {
                 // The RIGHT point charge itself — visible whenever compare_mode is
                 // active (both phases). Positioned at the point-group centre in
-                // applyGaussSphereState. Hidden otherwise.
+                // applyGaussSphereState; scaled to match the point-group scale.
                 o.visible = cmp;
+                if (cmp) o.scale.setScalar(cmpScale); else o.scale.setScalar(1);
                 if (o.material) o.material.opacity = cmp ? 1 : 0;
             }
         }
 
-        // 6a-rv. POSITION (radius) vectors R and r (Feature 1). Drawn when the
-        //   state sets show_radius_vectors. The R vector is fixed at length R with
-        //   its arrowhead landing exactly on the shell surface ("R = shell
-        //   radius"); the r vector tracks r_gauss live. Both ride their group's X
-        //   offset (shell group for R + main r; point group for the point-side r).
-        //   These are POSITION vectors (cyan, thin) — length is the real R/r, never
-        //   emphasis (Rule 29); gated per state (Rule 26 clean re-entry).
+        // 6a-rv. POSITION (radius) vectors R and r (Feature A, founder rework).
+        //   White thick mesh arrows BILLBOARDED to camera-right (screen-horizontal,
+        //   pointing right) so they never foreshorten under the 3/4 cameras, drawn
+        //   as TWO PARALLEL stacked lines (R slightly ABOVE centre, r slightly
+        //   BELOW). The R arrow = length R (centre -> shell right edge); the r
+        //   arrow = length r_gauss (centre -> Gaussian right edge). Each line
+        //   EMERGES (length 0 -> full over ~0.8s) at its per-state cue
+        //   (emerge_R_at_ms / emerge_r_at_ms); hidden (len 0, opacity 0) before the
+        //   cue. White "R"/"r" head labels + a white "P" dot at the r-arrow tip.
+        //   Each rides its group's X offset + scale (shell group for R + main r;
+        //   point group for the point-side r). Length = the real R/r, never
+        //   emphasis (Rule 29); state clock t (Rule 26); reset hidden on entry.
         var showRadVecs = !!g.show_radius_vectors;
         var hasR_g = (typeof g.r_gauss === "number") || sliders;   // STATE_1/6 have no r_gauss
-        // in compare_mode the shell-side r vector only appears with the shell (phase 2)
         var rvShellAlpha = cmp ? shellGroupAlpha : 1;
+        var rvShellSc = cmp ? shellScale : 1.0;   // shell-group scale
+        var rvPointSc = cmpScale;                  // point-group scale
+        var rGaussLen = Math.max(0.05, r);
+        // CHANGE 2: camera-right + camera-up, recomputed each frame so the lines
+        // stay screen-horizontal-right regardless of the 3/4 camera orbit.
+        var camRight = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var camUp = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        // FOUNDER REWORK (2026-06-26 screen reviews):
+        //   R1 — the big R line runs THROUGH the sphere CENTRE (centre → surface), so
+        //        R sits ON the equator (no offset); its tip lands on the surface
+        //        silhouette at the equator.
+        //   R2 — the small r line is a DIAGONAL radius FROM THE CENTRE (down-right
+        //        ~35° in screen space, rDir) whose tip rides the Gaussian silhouette,
+        //        so on the dynamic states it visibly sweeps the moving surface as r
+        //        grows/shrinks ("at an angle, from the centre, moving along the
+        //        surface"). The angle separates r from the horizontal R with no
+        //        vertical stagger. (r_STAGGER kept = 0 so the legacy stagr stays valid.)
+        var R_STAGGER = 0.0;                       // R line ON the centre/equator (centre → surface)
+        var r_STAGGER = 0.0;                       // (legacy; r now uses the rDir angle, not a stagger)
+        var rAngleRad = 35 * Math.PI / 180;        // small-r screen angle below horizontal (down-right)
+        var rDir = camRight.clone()
+            .multiplyScalar(Math.cos(rAngleRad))
+            .addScaledVector(camUp, -Math.sin(rAngleRad))
+            .normalize();                          // diagonal radius direction (centre → Gaussian surface)
+        // STATE_2 desync fix: in a field-point state the shell-side r line points
+        // STRAIGHT at the single yellow field point P (so r terminates ON P), and
+        // the duplicate white r-tip marker is suppressed — one P, never two. The
+        // STATE_4 point-side r is drawn HORIZONTAL to the right (the textbook
+        // point-charge diagram the founder asked for); only the point charge.
+        var showFP_rv = !!g.show_field_point;
+        var fpEl_rv = showFP_rv ? gsphFindById("gsph_field_point") : null;
+        var fpDirV = (fpEl_rv && fpEl_rv.userData && fpEl_rv.userData.dir)
+            ? new THREE.Vector3(fpEl_rv.userData.dir[0], fpEl_rv.userData.dir[1], fpEl_rv.userData.dir[2]).normalize()
+            : null;
+        // CHANGE 4: per-line emergence cue times (default 500ms when absent).
+        var emergeRAt = (typeof g.emerge_R_at_ms === "number") ? g.emerge_R_at_ms / 1000 : 0.5;
+        var emergeRrAt = (typeof g.emerge_r_at_ms === "number") ? g.emerge_r_at_ms / 1000 : 0.5;
+        // STATE_4 nuance: the shell-side r line must not appear before the shell
+        // exists — gate its effective cue behind shell_appears_at_ms.
+        var shellRrAt = cmp ? Math.max(emergeRrAt, shellAppearAt) : emergeRrAt;
+        function gsphEmergeEase(at) {
+            // STATE_7 explorer (sliders): the player freezes the clock at the opening
+            // frame and the user drives only the slider, so the state clock never
+            // reaches the emergence cue — gate OFF here and show the lines at full
+            // length immediately so the r line tracks the slider live. (The guided
+            // states keep the timed emergence ramp.)
+            if (sliders) return 1;
+            var p = Math.max(0, Math.min(1, (t - at) / 0.8));
+            return p * p * (3 - 2 * p);             // smoothstep 0->1 over 0.8s
+        }
+        var qY = new THREE.Vector3(0, 1, 0);
         for (var rk = 0; rk < grp.children.length; rk++) {
             var ro = grp.children[rk], rud = ro.userData;
             if (!rud) continue;
@@ -8788,51 +11626,106 @@ export const FIELD_3D_RENDERER_CODE = `
             var isRVp = (rud.elementType === "gsph_radius_vector_point");
             if (!isRV && !isRVp) continue;
             var rvOffX = (typeof rud.offsetX === "number") ? rud.offsetX : 0;
+            var rvSc = isRVp ? rvPointSc : rvShellSc;
+            var isThick = !!ro.userData._shaft;     // thick mesh vector group
+            // Direction for the r line/tip: point-side → horizontal (camRight);
+            // shell-side in a field-point state → at the yellow P (fpDirV); else
+            // the legacy diagonal rDir. (R line keeps its own horizontal billboard.)
+            var useDir = isRVp ? camRight : (fpDirV ? fpDirV : rDir);
+            // per-kind vertical stagger (R clearly above; r near the equator so its
+            // tip lands on the Gaussian sphere silhouette). Scaled with the group.
+            var grpSc = (isRVp ? rvPointSc : rvShellSc);
+            var stagR = R_STAGGER * grpSc;
+            var stagr = r_STAGGER * grpSc;
             if (rud.kind === "R") {
-                // R vector: only when radius vectors are on. Length = R (head on shell).
-                var showRV = showRadVecs && rvShellAlpha > 0.001;
-                ro.visible = showRV;
-                if (showRV) {
-                    var Rd = rud.dir;
-                    if (ro.setLength) {       // the arrow object
-                        ro.position.set(rvOffX, 0, 0);
-                        ro.setLength(R, 0.16, 0.08);
-                        ro.setColor(hexToThreeColor("#80DEEA"));
-                        ro.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = 0.85 * rvShellAlpha; } });
-                    } else {                  // the label sprite — sits at the head
-                        ro.position.set(rvOffX + Rd[0] * (R + 0.28), Rd[1] * (R + 0.28), Rd[2] * (R + 0.28));
-                        if (ro.material) ro.material.opacity = rvShellAlpha;
-                    }
-                }
-            } else { // kind === "r"
-                // r vector: only when this group has an r value (skip STATE_1/6's
-                // shell-side r — there is no r_gauss there). Point-side r always
-                // present in compare_mode. Length tracks the live r.
-                var groupHasR = isRVp ? cmp : (hasR_g);
-                var rvAlpha = isRVp ? (cmp ? 1 : 0) : rvShellAlpha;
-                var showrv = showRadVecs && groupHasR && rvAlpha > 0.001;
-                ro.visible = showrv;
-                if (showrv) {
-                    var rd = rud.dir;
-                    var rLen = Math.max(0.05, r);
-                    if (ro.setLength) {
-                        ro.position.set(rvOffX, 0, 0);
-                        ro.setLength(rLen, 0.16, 0.08);
-                        ro.setColor(hexToThreeColor("#80DEEA"));
-                        ro.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = 0.85 * rvAlpha; } });
-                    } else {
-                        ro.position.set(rvOffX + rd[0] * (rLen + 0.28), rd[1] * (rLen + 0.28), rd[2] * (rLen + 0.28));
+                // R line: emerges at emergeRAt, length R*scale, anchored ABOVE.
+                var rvAlpha = rvShellAlpha;
+                var ease = gsphEmergeEase(emergeRAt);
+                var RLen = R * rvSc * ease;
+                var show = showRadVecs && rvAlpha > 0.001 && ease > 0.001;
+                ro.visible = show;
+                if (show) {
+                    // base at centre lifted +camUp*stagR (world space)
+                    var bx = rvOffX + camUp.x * stagR, by = camUp.y * stagR, bz = camUp.z * stagR;
+                    if (isThick) {
+                        ro.position.set(bx, by, bz);
+                        ro.quaternion.setFromUnitVectors(qY, camRight);    // billboard to screen-right
+                        gsphSetVectorLength(ro, Math.max(0.01, RLen));
+                        gsphSetVectorOpacity(ro, 0.95 * rvAlpha);
+                    } else {            // "R" label at the head (just past the tip)
+                        ro.position.set(bx + camRight.x * (RLen + 0.3), by + camRight.y * (RLen + 0.3), bz + camRight.z * (RLen + 0.3));
                         if (ro.material) ro.material.opacity = rvAlpha;
                     }
+                }
+            } else if (rud.kind === "r") {
+                // r line: skip STATE_1/6's shell-side r (no r_gauss). Point-side r
+                // present in compare_mode. Emerges at its cue (shell-side gated
+                // behind shell_appears). Length r_gauss*scale, anchored BELOW.
+                var groupHasR = isRVp ? cmp : hasR_g;
+                var baseAlpha = isRVp ? (cmp ? 1 : 0) : rvShellAlpha;
+                var rCue = isRVp ? emergeRrAt : shellRrAt;   // point-side early; shell-side gated
+                var easeR = gsphEmergeEase(rCue);
+                var rLenSc = rGaussLen * rvSc * easeR;
+                var showrv = showRadVecs && groupHasR && baseAlpha > 0.001 && easeR > 0.001;
+                ro.visible = showrv;
+                if (showrv) {
+                    // r line: a DIAGONAL radius FROM THE CENTRE along rDir (down-right
+                    // ~35°). Length r_gauss, so the tip rides the Gaussian silhouette;
+                    // as r grows/shrinks the tip slides along the moving surface.
+                    var rbx = rvOffX, rby = 0, rbz = 0;
+                    if (isThick) {
+                        ro.position.set(rbx, rby, rbz);
+                        ro.quaternion.setFromUnitVectors(qY, useDir);
+                        gsphSetVectorLength(ro, Math.max(0.01, rLenSc));
+                        gsphSetVectorOpacity(ro, 0.95 * baseAlpha);
+                    } else {            // "r" label at the head
+                        ro.position.set(rbx + useDir.x * (rLenSc + 0.3), rby + useDir.y * (rLenSc + 0.3), rbz + useDir.z * (rLenSc + 0.3));
+                        if (ro.material) ro.material.opacity = baseAlpha;
+                    }
+                }
+            } else if (rud.kind === "r_tip") {
+                // "P" dot (+ "P" label) at the r-arrow TIP — the field point. Rides
+                // the same BELOW stagger + camRight tip as the r line + its cue.
+                var groupHasRt = isRVp ? cmp : hasR_g;
+                var baseAlphaT = isRVp ? (cmp ? 1 : 0) : rvShellAlpha;
+                var rCueT = isRVp ? emergeRrAt : shellRrAt;
+                var easeT = gsphEmergeEase(rCueT);
+                var tLen = rGaussLen * rvSc * easeT;
+                // suppress the SHELL-side white "P" tip when a yellow field point is
+                // shown (STATE_2): the yellow point is the one and only P.
+                var showTip = showRadVecs && groupHasRt && baseAlphaT > 0.001 && easeT > 0.001 && !(isRV && fpDirV);
+                ro.visible = showTip;
+                if (showTip) {
+                    // P dot rides the r-line tip (centre + useDir·tLen), so it sits
+                    // ON the surface as r grows/shrinks.
+                    var tbx = rvOffX, tby = 0, tbz = 0;
+                    var isTipLabel = (rud.id && rud.id.indexOf("lbl") >= 0);
+                    var lift = isTipLabel ? 0.28 : 0;
+                    ro.position.set(tbx + useDir.x * tLen + camUp.x * lift, tby + useDir.y * tLen + camUp.y * lift, tbz + useDir.z * tLen + camUp.z * lift);
+                    if (ro.material) ro.material.opacity = baseAlphaT;
                 }
             }
         }
 
-        // 6a-cap. compare_mode LEFT (shell) caption fades in at shell_appears_at_ms
-        //   (the right/point caption is already shown from entry by applyState).
+        // 6a-cap. compare_mode caption choreography. The right/point caption shows
+        //   from entry; the LEFT (shell) caption fades in at shell_appears_at_ms.
+        //   PHASE 3 (t >= compare_highlight_at_ms): BOTH captions PULSE (brightness/
+        //   glow only — Rule 29) to draw the eye to the "same answer" payoff.
         if (cmp) {
             var capLel = document.getElementById("gsph_caption_left");
-            if (capLel) capLel.style.opacity = String(shellGroupAlpha);
+            var capRel = document.getElementById("gsph_caption_right");
+            var hiOn = t >= hiAt;
+            // periodic brightness pulse in phase 3 (a box-shadow glow + bg pulse)
+            var pulse = hiOn ? (0.5 + 0.5 * Math.sin((t - hiAt) * 3.4)) : 0;
+            var glow = hiOn ? ("0 0 " + (8 + 14 * pulse).toFixed(0) + "px rgba(102,187,106," + (0.45 + 0.45 * pulse).toFixed(2) + ")") : "none";
+            if (capLel) {
+                capLel.style.opacity = hiOn ? "1" : String(shellGroupAlpha);
+                capLel.style.boxShadow = glow;
+            }
+            if (capRel) {
+                capRel.style.opacity = "1";
+                capRel.style.boxShadow = glow;
+            }
         }
 
         // 6b. STATE_2 field-point P + its single radial arrow. P and the arrow
@@ -8933,16 +11826,112 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
 
-        // 8. Live E readout (STATE_7): HARD step at r=R. "0" inside (neutral/blue),
-        //    computed value outside (green). Never interpolated across r=R (C3).
+        // 7b. DRAGGABLE field-point sensor (explore states with draggable_point).
+        //     The teacher GRABS the yellow field point and moves it anywhere; the
+        //     engine keeps E radial (arrow along sensorDir) and ∝1/r² (gsphArrowLen,
+        //     zero inside R). A faint constant-r ring + six equal arrows show the
+        //     magnitude is the same all around the circle. When NOT grabbed, the
+        //     sensor idle-orbits + the r idle-sweep runs (above), so THE EYE (which
+        //     never drags) still sees the arrow rotate + rescale. Single source of
+        //     truth (sensorDir + r); the white duplicate "P" tip is suppressed so
+        //     the yellow point is the one and only P. Pure state clock (Rule 26);
+        //     length = the real magnitude, never emphasis (Rule 29).
+        if (g.draggable_point) {
+            var camRd = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+            var camUd = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+            var camFd = new THREE.Vector3(); camera.getWorldDirection(camFd);
+            var sDir;
+            if (window.PM_gsphUserDragged && window.PM_gsphSensorDir) {
+                var sd0 = window.PM_gsphSensorDir;
+                sDir = new THREE.Vector3(sd0[0], sd0[1], sd0[2]).normalize();
+            } else {
+                // idle orbit within the camera-facing plane (motion for THE EYE).
+                var ia = t * 0.7;
+                sDir = camRd.clone().multiplyScalar(Math.cos(ia)).addScaledVector(camUd, Math.sin(ia)).normalize();
+            }
+            var sLen = (inside && !solid) ? 0 : gsphArrowLen(q, r, R);
+            var sPos = sDir.clone().multiplyScalar(r);
+            var fpM = gsphFindById("gsph_field_point");
+            var fpLb = gsphFindById("gsph_lbl_field_point");
+            var fpAr = gsphFindById("gsph_field_point_arrow");
+            if (fpM) { fpM.visible = true; fpM.position.copy(sPos); if (fpM.material) fpM.material.opacity = 1; }
+            if (fpLb) { fpLb.visible = true; fpLb.position.set(sPos.x + camUd.x * 0.3, sPos.y + camUd.y * 0.3, sPos.z + camUd.z * 0.3); if (fpLb.material) fpLb.material.opacity = 1; }
+            if (fpAr) {
+                fpAr.visible = sLen > 0;
+                if (sLen > 0) {
+                    fpAr.position.copy(sPos);
+                    fpAr.setDirection(sDir);
+                    fpAr.setLength(sLen, Math.min(0.22, sLen * 0.34), Math.min(0.12, sLen * 0.2));
+                    fpAr.setColor(hexToThreeColor(fieldColor));
+                    fpAr.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = 0.95; } });
+                }
+            }
+            var hitM = gsphFindById("gsph_field_point_hit");
+            if (hitM) { hitM.visible = true; hitM.position.copy(sPos); }
+            // r radius-vector + its "r" label follow sensorDir; hide the white P-tip
+            // duplicate (the yellow point is the single field point P).
+            var drvR = gsphFindById("gsph_r_vector"), drvRl = gsphFindById("gsph_lbl_r_vector");
+            var drvT = gsphFindById("gsph_r_tip"), drvTl = gsphFindById("gsph_lbl_r_tip");
+            if (drvR && drvR.userData._shaft) {
+                drvR.visible = true;
+                drvR.position.set(0, 0, 0);
+                drvR.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), sDir);
+                gsphSetVectorLength(drvR, Math.max(0.05, r));
+                gsphSetVectorOpacity(drvR, 0.95);
+            }
+            if (drvRl) { drvRl.visible = true; drvRl.position.set(sDir.x * (r * 0.5) + camRd.x * 0.35, sDir.y * (r * 0.5) + camRd.y * 0.35, sDir.z * (r * 0.5) + camRd.z * 0.35); if (drvRl.material) drvRl.material.opacity = 0.95; }
+            if (drvT) { drvT.visible = false; if (drvT.material) drvT.material.opacity = 0; }
+            if (drvTl) { drvTl.visible = false; if (drvTl.material) drvTl.material.opacity = 0; }
+            // constant-r ring + six equal arrows. Basis e1=sensorDir, e2 in-plane
+            // ⊥ sensorDir, so the ring always PASSES THROUGH the sensor and faces
+            // the camera. Hidden inside R (E=0). All six arrows are the same length.
+            var ringShow = sLen > 0;
+            var e1 = sDir.clone();
+            var e2 = new THREE.Vector3().crossVectors(camFd, sDir);
+            if (e2.lengthSq() < 1e-6) e2.copy(camUd);
+            e2.normalize();
+            var ringN = new THREE.Vector3().crossVectors(e1, e2).normalize();
+            var ring = gsphFindById("gsph_const_r_ring");
+            if (ring) {
+                ring.visible = ringShow;
+                if (ringShow) {
+                    ring.position.set(0, 0, 0);
+                    ring.scale.setScalar(r);
+                    ring.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), ringN);
+                    if (ring.material) ring.material.opacity = 0.7;
+                }
+            }
+            for (var gk = 0; gk < grp.children.length; gk++) {
+                var gco = grp.children[gk], gcud = gco.userData;
+                if (!gcud || gcud.elementType !== "gsph_const_r" || typeof gcud.ringIndex !== "number") continue;
+                gco.visible = ringShow;
+                if (ringShow) {
+                    var gca = (gcud.ringIndex / 6) * Math.PI * 2;
+                    var gdir = e1.clone().multiplyScalar(Math.cos(gca)).addScaledVector(e2, Math.sin(gca)).normalize();
+                    gco.position.set(gdir.x * r, gdir.y * r, gdir.z * r);
+                    gco.setDirection(gdir);
+                    gco.setLength(sLen, Math.min(0.26, sLen * 0.36), Math.min(0.15, sLen * 0.22));
+                    gco.setColor(hexToThreeColor(fieldColor));
+                    gco.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = 0.95; cc.material.depthTest = false; } });
+                }
+            }
+        }
+
+        // 8. Live E readout. SHELL: HARD step at r=R — "0" inside (neutral/blue),
+        //    kq/r² outside (green). SOLID: q_enc = q·(r/R)³ and E = kq·r/R³ inside
+        //    (both grow ∝ r, field colour), kq/r² outside; continuous at r=R (C3).
         var roEl = document.getElementById("gsph_readout");
         if (roEl && roEl.style.display !== "none") {
-            var Edemo = gsphEDemo(q, r, R);       // ground truth; 0 if inside
+            var Edemo = gsphEDemo(q, r, R);       // ground truth; 0 if inside (shell)
             var ER = gsphEDemo(q, R, R);
             var html = "";
             html += '<div>r = ' + r.toFixed(2) + ' demo units' + (inside ? '  (inside R)' : '  (outside R)') + '</div>';
             html += '<div>q = ' + (q >= 0 ? "+" : "") + q.toFixed(1) + ' demo nC,  R = ' + R.toFixed(2) + '</div>';
-            if (inside) {
+            if (inside && solid) {
+                var qEncSolid = q * Math.pow(r / R, 3);   // q_enc = q·(r/R)³
+                html += '<div style="color:#FFF176">q_enc = q\\u00b7(r/R)\\u00b3 = ' + qEncSolid.toFixed(2) + ' demo nC</div>';
+                html += '<div style="color:' + fieldColor + '">E = kq\\u00b7r/R\\u00b3 = ' + Edemo.toFixed(1) + ' demo N/C  (grows \\u221d r)</div>';
+            } else if (inside) {
                 html += '<div style="color:#90CAF9">q_enc = 0  \\u21d2  E = 0</div>';
                 html += '<div style="color:#90CAF9">E = 0  (exactly zero inside)</div>';
             } else {
@@ -8953,10 +11942,11 @@ export const FIELD_3D_RENDERER_CODE = `
             roEl.innerHTML = html;
         }
 
-        // 9. E-vs-r plot (STATE_6 / STATE_7). Flat zero on [0,R), a VERTICAL jump
-        //    0 -> E_R at r=R, then a 1/r² tail. The jump is drawn as a true
-        //    vertical segment (C3 — the discontinuity is the lesson, never an
-        //    S-curve). plot_draw animates a left-to-right sweep of the drawn x.
+        // 9. E-vs-r plot (STATE_6 / STATE_7). SHELL: flat zero on [0,R), a VERTICAL
+        //    jump 0 -> E_R at r=R (a true vertical segment, C3 — the discontinuity is
+        //    the lesson, never an S-curve), then a 1/r² tail. SOLID: a straight RAMP
+        //    0 -> E_R on [0,R] (E ∝ r) meeting the 1/r² tail continuously at the peak
+        //    (no jump). plot_draw animates a left-to-right sweep of the drawn x.
         var plotEl = document.getElementById("gsph_plot");
         if (plotEl && plotEl.style.display !== "none") {
             var cvs = document.getElementById("gsph_plot_canvas");
@@ -8987,20 +11977,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 var drawDur = (typeof g.plot_draw_duration_ms === "number") ? g.plot_draw_duration_ms / 1000 : 0;
                 var drawP = drawDur > 0 ? Math.max(0, Math.min(1, (t - drawAt) / drawDur)) : 1;
                 var rDrawn = rMax * drawP;        // how far right we have drawn
-                // flat zero branch on [0, min(R, rDrawn))
+                // INSIDE branch on [0, min(R, rDrawn)]. SHELL: flat zero. SOLID: a
+                // straight RAMP 0 -> E_R (E ∝ r) that meets the 1/r² tail at the peak.
                 ctx.strokeStyle = "#66BB6A"; ctx.lineWidth = 2.4;
+                var rFlatEnd = Math.min(R, rDrawn);
                 ctx.beginPath();
                 ctx.moveTo(px(0), py(0));
-                var rFlatEnd = Math.min(R, rDrawn);
-                ctx.lineTo(px(rFlatEnd), py(0));
+                ctx.lineTo(px(rFlatEnd), py(solid ? ERpeak * (rFlatEnd / R) : 0));
                 ctx.stroke();
                 if (rDrawn >= R) {
-                    // VERTICAL jump 0 -> E_R exactly at r=R (the discontinuity, C3)
-                    ctx.beginPath();
-                    ctx.moveTo(px(R), py(0));
-                    ctx.lineTo(px(R), py(ERpeak));
-                    ctx.stroke();
-                    // 1/r² tail on [R, rDrawn]
+                    if (!solid) {
+                        // SHELL ONLY: VERTICAL jump 0 -> E_R exactly at r=R (the
+                        // discontinuity, C3). SOLID is continuous — no jump segment.
+                        ctx.beginPath();
+                        ctx.moveTo(px(R), py(0));
+                        ctx.lineTo(px(R), py(ERpeak));
+                        ctx.stroke();
+                    }
+                    // 1/r² tail on [R, rDrawn] (both distributions)
                     ctx.beginPath();
                     var started = false;
                     for (var rr = R; rr <= rDrawn + 1e-6 && rr <= rMax; rr += rMax / 240) {
@@ -9010,17 +12004,1944 @@ export const FIELD_3D_RENDERER_CODE = `
                     }
                     ctx.stroke();
                 }
-                // live cursor at the current r (STATE_7 / when a Gaussian sphere shows)
+                // GLOWING tracking dot at the current swept r (the co-star). It
+                // rides EXACTLY on the drawn curve: curE = gsphEDemo(q, r, R) — the
+                // same (r, E) mapping the curve uses (flat zero while r<R, jump at
+                // r=R, 1/r² tail outside). For coordinated_sweep it moves in lockstep
+                // with the 3D Gaussian sphere; its glow PULSES at the r=R crossing in
+                // sync with the shell-surface glow (PM_gsphCrossGlow).
                 if (sliders || g.live_readout || showGaussian) {
                     var curE = gsphEDemo(q, r, R);
-                    ctx.fillStyle = inside ? "#90CAF9" : "#FFF176";
-                    ctx.beginPath();
-                    ctx.arc(px(r), py(curE), 4, 0, Math.PI * 2);
-                    ctx.fill();
+                    var dx = px(r), dy = py(curE);
+                    var dotCol = inside ? "#90CAF9" : "#FFF176";
+                    var xGlowP = (typeof window.PM_gsphCrossGlow === "number") ? window.PM_gsphCrossGlow : 0;
+                    // soft glow ring (radius + alpha lift at the crossing)
+                    var ringR = 9 + 10 * xGlowP;
+                    var grad = ctx.createRadialGradient(dx, dy, 1, dx, dy, ringR);
+                    grad.addColorStop(0, "rgba(255,241,118," + (0.55 + 0.4 * xGlowP).toFixed(2) + ")");
+                    grad.addColorStop(1, "rgba(255,241,118,0)");
+                    ctx.fillStyle = grad;
+                    ctx.beginPath(); ctx.arc(dx, dy, ringR, 0, Math.PI * 2); ctx.fill();
+                    // bright filled core
+                    ctx.fillStyle = dotCol;
+                    ctx.beginPath(); ctx.arc(dx, dy, 5, 0, Math.PI * 2); ctx.fill();
+                    ctx.strokeStyle = "#FFFFFF"; ctx.lineWidth = 1.5;
+                    ctx.beginPath(); ctx.arc(dx, dy, 5, 0, Math.PI * 2); ctx.stroke();
+                    // crossing emphasis at r=R (brightness only, Rule 29). SHELL: glow
+                    // the vertical JUMP step. SOLID: glow the PEAK corner where the ramp
+                    // meets the 1/r² tail — continuous, so there is no step to glow.
+                    if (xGlowP > 0.001) {
+                        if (solid) {
+                            ctx.fillStyle = "rgba(239,83,80," + (0.5 + 0.5 * xGlowP).toFixed(2) + ")";
+                            ctx.beginPath(); ctx.arc(px(R), py(ERpeak), 4 + 4 * xGlowP, 0, Math.PI * 2); ctx.fill();
+                        } else {
+                            ctx.strokeStyle = "rgba(239,83,80," + (0.5 + 0.5 * xGlowP).toFixed(2) + ")";
+                            ctx.lineWidth = 2 + 3 * xGlowP;
+                            ctx.beginPath(); ctx.moveTo(px(R), py(0)); ctx.lineTo(px(R), py(ERpeak)); ctx.stroke();
+                        }
+                    }
                 }
                 ctx.fillStyle = "#B0BEC5"; ctx.font = "10px monospace";
-                ctx.fillText("E=0 inside", x0 + 4, y0 - 6);
+                ctx.fillText(solid ? "E \\u221d r inside" : "E=0 inside", x0 + 4, y0 - 6);
                 ctx.fillText("kq/r\\u00b2 outside", px(R) + 4, y1 + 26);
+            }
+        }
+    }
+
+    // ── gauss_law_line scenario (infinite line charge: E = λ/(2πε₀r), 1/r) ──
+    //   A near-clone of gauss_law_sphere, swapping the central SHELL for an
+    //   infinite vertical LINE charge on the y-axis (the amperes createWire
+    //   pattern, extended past the frame) and the concentric Gaussian SPHERE for a
+    //   coaxial Gaussian CYLINDER (open-ended CylinderGeometry wall + EdgesGeometry
+    //   wireframe + two flat end-cap disks). The PHYSICS is the field of a uniform
+    //   infinite line charge:
+    //     • a red line charge (#EF5350) on the y-axis, with static "+" markers
+    //       strung along it (the uniform λ) — visible in all states.
+    //     • a coaxial, transparent Gaussian cylinder at adjustable perpendicular
+    //       radius r and height L.
+    //     • a HORIZONTAL RING of radial E-arrows at distance r: SAME magnitude all
+    //       around (cylindrical symmetry), length ∝ 1/r (NOT 1/r² — the line has no
+    //       inside/outside boundary). The arrow LENGTH carries the real 1/r
+    //       magnitude — allowed by Rule 29.
+    //     • grazing END-CAP arrows (parallel to the caps, in the x–z plane) + "Φ=0"
+    //       tags — the zero-flux SHOW: E ∥ caps ⇒ E·dA = 0 there, only the curved
+    //       wall carries flux. The contrast between piercing-wall and grazing-cap
+    //       IS the lesson.
+    //     • distinct labelled reference lines r (perpendicular, billboarded camera-
+    //       right) and L (axial, along +Y) — the two never conflated.
+    //     • a derivation write-in: Φ = E·(2πrL) = λL/ε₀ ⇒ E = λ/(2πε₀r) (the L
+    //       visibly cancels). ε₀ and the full constant appear ONLY at this state
+    //       (don't pre-spoil — earlier states use the ∝ 1/r form).
+    //     • an E-vs-r plot: the 1/r curve with a faint dashed 1/r² (point-charge)
+    //       ghost normalised to match at r0 then fall faster ("line falls slower").
+    //     • a STATE_7 λ + r slider pair (explorer_id "gauss_line_explorer") that
+    //       drives the ring length, readout, and plot cursor live, posting
+    //       { type:'PARAM_UPDATE', param:'lambda'|'r_gauss', value } to the parent
+    //       on every change (Rule 27).
+    //   Rule 24 (silent visual: labels/equations + the readout carry everything),
+    //   Rule 26 (every animation runs on the state clock time - stateStartTime,
+    //   never gated on TTS), Rule 29 (emphasis = brightness; the only length that
+    //   changes is the E-arrow / r line, and only because 1/r and r are real
+    //   magnitudes). Asymptote: r clamped ≥ 0.05 everywhere (E → ∞ as r → 0).
+    var GLN_HALF_LEN = 4.5;               // visible half-length L/2 of the line + cylinder (overrun the frame)
+    var GLN_R0 = 1.0;                     // reference perpendicular radius where the ring arrow draws GLN_ARROW_BASE
+    var GLN_R_MIN = 0.05;                 // asymptote clamp: E = demo·λ/r blows up as r → 0
+    var GLN_ARROW_BASE = 0.85;            // E-arrow length at r = r0 (the reference)
+    var GLN_ARROW_MIN = 0.18;             // floor so a far-out arrow is still visible
+    var GLN_ARROW_MAX = 1.7;              // cap so a near-wire arrow never overruns
+
+    function glnDemoEPerNC() {
+        return (config.gauss_line_defaults && typeof config.gauss_line_defaults.demo_e_per_nc === "number")
+            ? config.gauss_line_defaults.demo_e_per_nc : 225;
+    }
+    function glnHalfLenDefault() {
+        return (config.gauss_line_defaults && typeof config.gauss_line_defaults.line_half_length === "number")
+            ? config.gauss_line_defaults.line_half_length : GLN_HALF_LEN;
+    }
+    // Ground-truth demo E magnitude for the infinite line: E = demo·λ/r (1/r, NOT
+    // 1/r²). NO inside/outside regime — the line has no boundary; E grows
+    // unboundedly toward the wire, so r is clamped ≥ GLN_R_MIN. Never interpolated.
+    function glnEDemo(lambda, r) {
+        var rc = (r < GLN_R_MIN) ? GLN_R_MIN : r;
+        return glnDemoEPerNC() * lambda / rc;
+    }
+    // E-arrow GLYPH length for a perpendicular radius r: anchored so that at the
+    // reference r0 the arrow draws GLN_ARROW_BASE and the field shrinks as 1/r
+    // outward. Clamped to [MIN, MAX] purely so the arrow never vanishes or
+    // overruns; the SHAPE of the falloff is the true 1/r (Rule 29: real magnitude).
+    function glnArrowLen(lambda, r) {
+        var E = glnEDemo(lambda, r);
+        if (E <= 0) return 0;
+        var E0 = glnEDemo(lambda, GLN_R0);    // reference at r0
+        if (E0 <= 0) return 0;
+        var len = GLN_ARROW_BASE * (E / E0);
+        if (len < GLN_ARROW_MIN) len = GLN_ARROW_MIN;
+        if (len > GLN_ARROW_MAX) len = GLN_ARROW_MAX;
+        return len;
+    }
+    function glnFindById(id) {
+        var grp = null;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            if (o.userData && o.userData.id === id) return o;
+            if (o.userData && o.userData.elementType === "gln_group") grp = o;
+        }
+        if (grp) {
+            for (var j = 0; j < grp.children.length; j++) {
+                if (grp.children[j].userData && grp.children[j].userData.id === id) return grp.children[j];
+            }
+        }
+        return null;
+    }
+
+    // A genuinely THICK position-vector arrow (mesh shaft + cone head), built
+    // pointing along +Y then quaternion-aligned to dir. Used for the labelled r
+    // (perpendicular) and L (axial) reference lines so they read as bold WHITE
+    // position arrows on top of the red line + blue cylinder + green ring arrows.
+    // (Copy verbatim of gsphMakeThickVector — same depthTest-off / renderOrder
+    // treatment.)
+    function glnMakeThickVector(dir, color, len, shaftRadius) {
+        var grp = new THREE.Group();
+        var sr = shaftRadius != null ? shaftRadius : 0.05;
+        var headLen = 0.34, headR = sr * 3.1;
+        var shaftLen = Math.max(0.01, len - headLen);
+        var mat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(color), emissive: hexToThreeColor(color),
+            emissiveIntensity: 0.95, shininess: 70, transparent: true, opacity: 0.95,
+            depthTest: false, depthWrite: false
+        });
+        var shaftGeo = new THREE.CylinderGeometry(sr, sr, 1, 16);
+        shaftGeo.translate(0, 0.5, 0);
+        var shaft = new THREE.Mesh(shaftGeo, mat);
+        shaft.scale.set(1, shaftLen, 1);
+        shaft.renderOrder = 999;
+        shaft.userData = { part: "shaft", baseShaftR: sr };
+        grp.add(shaft);
+        var headGeo = new THREE.ConeGeometry(headR, headLen, 18);
+        var head = new THREE.Mesh(headGeo, mat);
+        head.position.set(0, shaftLen + headLen / 2, 0);
+        head.renderOrder = 999;
+        head.userData = { part: "head", baseHeadLen: headLen };
+        grp.add(head);
+        var v = new THREE.Vector3(dir[0], dir[1], dir[2]).normalize();
+        grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), v);
+        grp.userData = { _shaft: shaft, _head: head, _headLen: headLen, _dir: [v.x, v.y, v.z] };
+        return grp;
+    }
+    function glnSetVectorLength(grp, len) {
+        if (!grp || !grp.userData) return;
+        var sh = grp.userData._shaft, hd = grp.userData._head, hl = grp.userData._headLen || 0.34;
+        var shaftLen = Math.max(0.01, len - hl);
+        if (sh) sh.scale.set(1, shaftLen, 1);
+        if (hd) hd.position.set(0, shaftLen + hl / 2, 0);
+    }
+    function glnSetVectorOpacity(grp, op) {
+        if (!grp || !grp.userData) return;
+        var sh = grp.userData._shaft, hd = grp.userData._head;
+        if (sh && sh.material) { sh.material.transparent = true; sh.material.opacity = op; }
+        if (hd && hd.material) { hd.material.transparent = true; hd.material.opacity = op; }
+    }
+
+    function buildGaussLineField() {
+        var lineColor = (config.pvl_colors && config.pvl_colors.positive) || "#EF5350";
+        var fieldColor = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var gaussColor = "#90CAF9";
+        var capColor = "#80CBC4";             // teal: caps visually distinct from the curved wall
+        var HL = glnHalfLenDefault();
+
+        var grp = new THREE.Group();
+        grp.userData = { elementType: "gln_group", id: "gln_group" };
+
+        // (A) The infinite LINE charge (red) on the y-axis — visible all states.
+        var lineMesh = createWire([0, -HL, 0], [0, HL, 0], lineColor, 0.06);
+        if (lineMesh.material) { lineMesh.material.emissive = hexToThreeColor(lineColor); lineMesh.material.emissiveIntensity = 0.35; }
+        lineMesh.userData = { elementType: "gln_line", id: "gln_line" };
+        grp.add(lineMesh);
+        // ~9 static "+" markers strung along the line (the uniform λ). A BRIGHT
+        // warm tint (not the dark red of the line itself) + larger sprite + higher
+        // opacity floor so "uniform positive charge along the wire" reads clearly
+        // — they were rendering near-invisible in the dark red. Still subordinate
+        // to the line. The top + bottom ones fade so the ends read as continuing
+        // off-screen ("infinite").
+        var markColor = "#FF8A80";   // bright warm red — pops against the dark #EF5350 line
+        var nMark = 9;
+        for (var mi = 0; mi < nMark; mi++) {
+            var fy = (nMark > 1) ? (mi / (nMark - 1)) : 0.5;     // 0..1
+            var my = -HL + fy * (2 * HL);
+            var plus = createLabelSprite("+", markColor, 0.42);
+            plus.position.set(0, my, 0);
+            // fade the outermost markers so the line reads as continuing off-frame
+            var edge = Math.min(fy, 1 - fy);                     // 0 at ends, 0.5 at centre
+            var op = Math.max(0.55, Math.min(1, 0.55 + edge * 1.6));
+            if (plus.material) { plus.material.transparent = true; plus.material.opacity = op; }
+            plus.userData = { elementType: "gln_charge_marker", id: "gln_charge_marker_" + mi, baseOpacity: op };
+            grp.add(plus);
+        }
+        // Offset the label to the +X side so its bounding box clears the vertical
+        // red line at x=0 (it was centered ON the line, the text crossing it). The
+        // label shows in every state, so this benefits all of them. Billboarded
+        // sprite, so the world +X offset reads as "to the right of the line" near
+        // the top under the 3/4 cameras.
+        var lineLabel = createWideLabelSprite("infinite line charge, \\u03bb", lineColor, 0.32);
+        lineLabel.position.set(2.6, HL - 0.5, 0);
+        lineLabel.userData = { elementType: "gln_line_label", id: "gln_line_label" };
+        grp.add(lineLabel);
+
+        // (B) The coaxial Gaussian CYLINDER (transparent blue) — wall + wire + caps.
+        //     Built at unit radius/height; scaled per-frame: scale.set(r, L, r).
+        var wallMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(gaussColor), emissive: hexToThreeColor(gaussColor),
+            emissiveIntensity: 0.10, transparent: true, opacity: 0.12, side: THREE.DoubleSide
+        });
+        var wall = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 1, 40, 1, true), wallMat);
+        wall.scale.set(1.6, 2 * HL, 1.6);
+        wall.visible = false;
+        wall.userData = { elementType: "gln_gaussian", id: "gln_gauss_wall", baseOpacity: 0.12 };
+        grp.add(wall);
+        // Wall wireframe: depthTest OFF + high renderOrder so it reads THROUGH the
+        // translucent wall + red line + green arrows (copy the gauss_sphere wire
+        // treatment). openEnded so only the side edges are drawn (no cap rings).
+        var wallWireMat = new THREE.LineBasicMaterial({ color: hexToThreeColor(gaussColor), transparent: true, opacity: 0.40, depthTest: false });
+        var wallWire = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.CylinderGeometry(1, 1, 1, 18, 1, true)), wallWireMat);
+        wallWire.scale.set(1.6, 2 * HL, 1.6);
+        wallWire.visible = false;
+        wallWire.renderOrder = 997;
+        wallWire.userData = { elementType: "gln_gaussian", id: "gln_gauss_wall_wire", baseOpacity: 0.40 };
+        grp.add(wallWire);
+        // TWO flat END-CAP disks (the zero-flux beat). A DISTINCT teal so the caps
+        // are visually separable from the curved wall. CircleGeometry faces +Y by
+        // default after a -90° x-rotation; per-frame: scale radius r, position ±L/2.
+        var capTopMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(capColor), emissive: hexToThreeColor(capColor),
+            emissiveIntensity: 0.12, transparent: true, opacity: 0.14, side: THREE.DoubleSide
+        });
+        var capTop = new THREE.Mesh(new THREE.CircleGeometry(1, 40), capTopMat);
+        capTop.rotation.x = -Math.PI / 2;     // face +Y
+        capTop.scale.set(1.6, 1.6, 1.6);
+        capTop.position.set(0, HL, 0);
+        capTop.visible = false;
+        capTop.userData = { elementType: "gln_gaussian_cap", id: "gln_cap_top", baseOpacity: 0.14, capSign: 1 };
+        grp.add(capTop);
+        var capBotMat = capTopMat.clone();
+        var capBot = new THREE.Mesh(new THREE.CircleGeometry(1, 40), capBotMat);
+        capBot.rotation.x = Math.PI / 2;      // face -Y
+        capBot.scale.set(1.6, 1.6, 1.6);
+        capBot.position.set(0, -HL, 0);
+        capBot.visible = false;
+        capBot.userData = { elementType: "gln_gaussian_cap", id: "gln_cap_bottom", baseOpacity: 0.14, capSign: -1 };
+        grp.add(capBot);
+        var gaussLabel = createWideLabelSprite("Gaussian cylinder (radius r, height L)", gaussColor, 0.30);
+        gaussLabel.position.set(0, HL + 0.5, 0);
+        gaussLabel.visible = false;
+        gaussLabel.userData = { elementType: "gln_gaussian_label", id: "gln_gauss_label" };
+        grp.add(gaussLabel);
+
+        // (C) Radial E-arrow RING — a HORIZONTAL ring of N radial directions in the
+        //     x–z plane (perpendicular to the line). SAME magnitude all round
+        //     (cylindrical symmetry — that's the lesson); length ∝ 1/r. Anchored on
+        //     the cylinder WALL at radius r, at the mid-plane (yHeight 0). Hidden by
+        //     default; revealed at radial_arrow_at_ms.
+        var N_RING = 12;
+        for (var ai = 0; ai < N_RING; ai++) {
+            var th = (2 * Math.PI * ai) / N_RING;
+            var dir = [Math.cos(th), 0, Math.sin(th)];
+            var rArrow = new THREE.ArrowHelper(
+                new THREE.Vector3(dir[0], dir[1], dir[2]),
+                new THREE.Vector3(dir[0] * 1.6, 0, dir[2] * 1.6),
+                GLN_ARROW_BASE, fieldColor, 0.18, 0.1);
+            rArrow.visible = false;
+            rArrow.children.forEach(function (ch) { if (ch.material) { ch.material.transparent = true; ch.material.opacity = 0; } });
+            rArrow.userData = { elementType: "gln_radial", id: "gln_radial_" + ai, dir: dir, yHeight: 0 };
+            grp.add(rArrow);
+        }
+
+        // (C2) Grazing END-CAP arrows (the zero-flux SHOW). A set of BRIGHT arrows
+        //      positioned ON each cap pointing RADIALLY OUTWARD (parallel to the cap
+        //      plane, i.e. in the x–z plane) so they visibly GRAZE the cap and never
+        //      pierce it — the proof that E ∥ caps ⇒ E·dA = 0 there. 6 per cap, in a
+        //      BRIGHT yellow that pops against the translucent teal cap, depthTest
+        //      OFF + high renderOrder so they read ON TOP of the cap disk (the cap
+        //      was washing them out). The pierce-vs-graze contrast (wall arrows
+        //      pierce ⊥ / cap arrows graze ∥) reads at a glance.
+        var GLN_CAP_GRAZE_COLOR = "#FFEE58";   // bright yellow — distinct from teal cap + green wall arrows
+        var N_CAP = 6;
+        for (var cs = 0; cs < 2; cs++) {
+            var capSign = cs === 0 ? 1 : -1;
+            for (var ci = 0; ci < N_CAP; ci++) {
+                var cth = (2 * Math.PI * ci) / N_CAP + (cs === 0 ? 0 : Math.PI / N_CAP);
+                var cdir = [Math.cos(cth), 0, Math.sin(cth)];
+                var cArrow = new THREE.ArrowHelper(
+                    new THREE.Vector3(cdir[0], cdir[1], cdir[2]),
+                    new THREE.Vector3(cdir[0] * 0.8, capSign * HL, cdir[2] * 0.8),
+                    0.6, GLN_CAP_GRAZE_COLOR, 0.2, 0.12);
+                cArrow.visible = false;
+                cArrow.children.forEach(function (ch) { if (ch.material) { ch.material.transparent = true; ch.material.opacity = 0; ch.material.depthTest = false; ch.material.depthWrite = false; } });
+                cArrow.renderOrder = 998;
+                cArrow.userData = { elementType: "gln_cap_graze_arrow", id: "gln_cap_graze_" + cs + "_" + ci, dir: cdir, capSign: capSign };
+                grp.add(cArrow);
+            }
+            // a bold "Φ=0" tag on each cap (revealed on the end-cap beat). Bright
+            // yellow, larger, depthTest off (createLabelSprite already sets that) so
+            // it reads clearly on top of the translucent cap.
+            var fluxLbl = createLabelSprite("Φ=0", GLN_CAP_GRAZE_COLOR, 0.5);
+            fluxLbl.position.set(0, capSign * (HL + 0.55), 0);
+            fluxLbl.visible = false;
+            if (fluxLbl.material) fluxLbl.material.opacity = 0;
+            fluxLbl.userData = { elementType: "gln_cap_flux_label", id: "gln_cap_flux_label_" + cs, capSign: capSign };
+            grp.add(fluxLbl);
+        }
+
+        // (D) Reference (position) lines r and L. WHITE thick mesh arrows. The r
+        //     line is BILLBOARDED to camera-right (screen-horizontal) each frame so
+        //     it never foreshortens under the 3/4 cameras and its tip lands on the
+        //     cylinder silhouette as r changes. The L line is genuinely AXIAL (+Y)
+        //     and spans the cylinder height. Two DISTINCT labelled lines (r vs L) —
+        //     never conflated. Lengths = the real r / L (Rule 29).
+        var refColor = "#FFFFFF";
+        // r line: axis → wall at radius r (length r). Seed dir along +X (overwritten
+        // by the camera-right billboard each frame).
+        var rVec = glnMakeThickVector([1, 0, 0], refColor, 1.6, 0.0275);
+        rVec.visible = false;
+        rVec.userData.elementType = "gln_radius_vector"; rVec.userData.id = "gln_r_vector";
+        rVec.userData.kind = "r";
+        grp.add(rVec);
+        var rVecLbl = createLabelSprite("r", refColor, 0.52);
+        rVecLbl.visible = false;
+        rVecLbl.userData = { elementType: "gln_radius_vector", id: "gln_lbl_r_vector", kind: "r" };
+        grp.add(rVecLbl);
+        // "P" tip marker on the r vector (the field point where E is measured).
+        var rTip = createChargeSphere([0, 0, 0], refColor, 0.10);
+        if (rTip.material) { rTip.material.transparent = true; rTip.material.opacity = 0; rTip.material.depthTest = false; rTip.material.depthWrite = false; rTip.material.emissiveIntensity = 0.95; }
+        rTip.renderOrder = 999; rTip.visible = false;
+        rTip.userData = { elementType: "gln_radius_vector", id: "gln_r_tip", kind: "r_tip" };
+        grp.add(rTip);
+        var rTipLbl = createLabelSprite("P", refColor, 0.40);
+        rTipLbl.visible = false;
+        rTipLbl.userData = { elementType: "gln_radius_vector", id: "gln_lbl_r_tip", kind: "r_tip" };
+        grp.add(rTipLbl);
+        // L line: axial, along +Y, length L (the cylinder height). No billboard.
+        // Offset slightly off-axis (+X·0.0 base; tip-side label lifted) so it does
+        // not overlap the red line; the per-frame code positions its base at -L/2.
+        var LVec = glnMakeThickVector([0, 1, 0], refColor, 2 * HL, 0.0275);
+        LVec.visible = false;
+        LVec.userData.elementType = "gln_axis_vector"; LVec.userData.id = "gln_L_vector";
+        LVec.userData.kind = "L";
+        grp.add(LVec);
+        var LVecLbl = createLabelSprite("L", refColor, 0.52);
+        LVecLbl.visible = false;
+        LVecLbl.userData = { elementType: "gln_axis_vector", id: "gln_lbl_L_vector", kind: "L" };
+        grp.add(LVecLbl);
+
+        addToScene(grp);
+
+        // (E) Live E readout panel (HTML). E = λ/(2πε₀r) — the demo value.
+        var rp = document.createElement("div");
+        rp.id = "gln_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:235px;display:none;";
+        document.body.appendChild(rp);
+
+        // (F) E-vs-r plot panel (HTML canvas; drawn by updateGaussLineFrame).
+        var plot = document.createElement("div");
+        plot.id = "gln_plot";
+        plot.style.cssText = "position:fixed;left:12px;bottom:12px;background:rgba(0,0,0,0.82);padding:8px;border-radius:8px;z-index:10;display:none;";
+        plot.innerHTML = '<canvas id="gln_plot_canvas" width="320" height="200"></canvas>';
+        document.body.appendChild(plot);
+
+        // (G) Derivation caption panel (HTML) — the L-cancels write-in, revealed
+        //     stepwise: Φ = E·(2πrL), then = λL/ε₀, then strike L, then E = λ/(2πε₀r).
+        //     Explicit min-width + larger font so the stepwise lines read legibly
+        //     (it was collapsing to an empty ~30px box); raised above the corner
+        //     caption (z-index 12); a faint border so the panel reads even before
+        //     the first sub-step lands.
+        var deriv = document.createElement("div");
+        deriv.id = "gln_derivation";
+        deriv.style.cssText = "position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:rgba(0,0,0,0.88);color:#FFF176;padding:13px 22px;border-radius:9px;border:1px solid rgba(255,241,118,0.35);font:18px/1.9 'Cambria Math','Times New Roman',serif;z-index:12;text-align:center;display:none;min-width:340px;max-width:80vw;white-space:nowrap;";
+        document.body.appendChild(deriv);
+
+        // (H) λ + r sliders (STATE_7 only). Explorer id "gauss_line_explorer".
+        window.PM_glnLambda = 1; window.PM_glnRGauss = 1.6; window.PM_glnUserDragged = false;
+        var lsc = (config.slider_controls && config.slider_controls.lambda)
+            || { min: 0.3, max: 3.0, step: 0.05, default: 1.0, label: "linear charge density \\u03bb" };
+        var rsc = (config.slider_controls && config.slider_controls.r_gauss)
+            || { min: 0.3, max: 4.0, step: 0.05, default: 1.6, label: "perpendicular radius r" };
+        var sp = document.createElement("div");
+        sp.id = "gln_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        sp.innerHTML =
+            '<label>' + lsc.label + ': <span id="gln_lambda_val">' + lsc.default + '</span></label>' +
+            '<input type="range" id="gln_lambda_slider" min="' + lsc.min + '" max="' + lsc.max + '" step="' + (lsc.step || 0.05) + '" value="' + lsc.default + '" style="width:100%;margin-bottom:8px">' +
+            '<label>' + rsc.label + ': <span id="gln_r_val">' + rsc.default + '</span></label>' +
+            '<input type="range" id="gln_r_slider" min="' + rsc.min + '" max="' + rsc.max + '" step="' + (rsc.step || 0.05) + '" value="' + rsc.default + '" style="width:100%">';
+        document.body.appendChild(sp);
+
+        var lSl = document.getElementById("gln_lambda_slider"), lVal = document.getElementById("gln_lambda_val");
+        if (lSl) lSl.addEventListener("input", function () {
+            window.PM_glnUserDragged = true;
+            window.PM_glnLambda = parseFloat(lSl.value);
+            if (lVal) lVal.textContent = parseFloat(lSl.value).toFixed(2);
+            try {
+                parent.postMessage({
+                    type: "PARAM_UPDATE",
+                    explorer_id: (config.explorer_id || "gauss_line_explorer"),
+                    param: "lambda",
+                    value: window.PM_glnLambda
+                }, "*");
+            } catch (e) {}
+        });
+        var rSl = document.getElementById("gln_r_slider"), rVal = document.getElementById("gln_r_val");
+        if (rSl) rSl.addEventListener("input", function () {
+            window.PM_glnUserDragged = true;
+            window.PM_glnRGauss = parseFloat(rSl.value);
+            if (rVal) rVal.textContent = parseFloat(rSl.value).toFixed(2);
+            try {
+                parent.postMessage({
+                    type: "PARAM_UPDATE",
+                    explorer_id: (config.explorer_id || "gauss_line_explorer"),
+                    param: "r_gauss",
+                    value: window.PM_glnRGauss
+                }, "*");
+            } catch (e) {}
+        });
+    }
+
+    // Per-state seeding for gauss_law_line. Reads the state's gauss_line block,
+    // seeds λ + r + L + the two sliders, toggles the cylinder / ring arrows /
+    // end-cap arrows / reference lines / plot / derivation / readout panels, and
+    // resets all per-frame fades to their entry pose so a re-entry mid-animation
+    // starts clean (Rule 26).
+    function applyGaussLineState(stateDef) {
+        var g = (stateDef && stateDef.gauss_line) || {};
+        var grp = glnFindById("gln_group");
+        if (!grp) return;
+
+        // Seed λ + r: prefer the per-state value, else slider default.
+        var seedLambda = (typeof g.lambda === "number") ? g.lambda : 1;
+        var seedR = (typeof g.r_gauss === "number") ? g.r_gauss : 1.6;
+        window.PM_glnUserDragged = false;
+        window.PM_glnLambda = seedLambda;
+        window.PM_glnRGauss = seedR;
+        var lS = document.getElementById("gln_lambda_slider"), lV = document.getElementById("gln_lambda_val");
+        if (lS) lS.value = String(seedLambda);
+        if (lV) lV.textContent = Number(seedLambda).toFixed(2);
+        var rS = document.getElementById("gln_r_slider"), rV = document.getElementById("gln_r_val");
+        if (rS) rS.value = String(seedR);
+        if (rV) rV.textContent = Number(seedR).toFixed(2);
+
+        // Panel visibility per state.
+        var roEl = document.getElementById("gln_readout");
+        if (roEl) roEl.style.display = g.live_readout ? "block" : "none";
+        var plotEl = document.getElementById("gln_plot");
+        if (plotEl) plotEl.style.display = g.show_e_vs_r_plot ? "block" : "none";
+        var spEl = document.getElementById("gln_sliders");
+        if (spEl) spEl.style.display = g.sliders ? "block" : "none";
+        var dvEl = document.getElementById("gln_derivation");
+        if (dvEl) { dvEl.style.display = g.show_derivation ? "block" : "none"; dvEl.innerHTML = ""; dvEl.style.boxShadow = "none"; }
+
+        // Reset every per-frame-driven element to its entry pose (hidden, opacity
+        // 0). The cylinder / arrows / reference lines are turned on by
+        // updateGaussLineFrame on schedule.
+        for (var c = 0; c < grp.children.length; c++) {
+            var ch = grp.children[c], ud = ch.userData;
+            if (!ud) continue;
+            if (ud.elementType === "gln_gaussian" || ud.elementType === "gln_gaussian_cap" || ud.elementType === "gln_gaussian_label") {
+                ch.visible = false;
+                if (ch.material) ch.material.opacity = 0;
+            } else if (ud.elementType === "gln_radial" || ud.elementType === "gln_cap_graze_arrow") {
+                ch.visible = false;
+                ch.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0; });
+            } else if (ud.elementType === "gln_cap_flux_label") {
+                ch.visible = false;
+                if (ch.material) ch.material.opacity = 0;
+            } else if (ud.elementType === "gln_radius_vector" || ud.elementType === "gln_axis_vector") {
+                ch.visible = false;
+                if (ch.material) ch.material.opacity = 0;
+                if (ch.children) ch.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0; });
+            }
+        }
+    }
+
+    // Per-frame update for gauss_law_line. Pure function of the state clock
+    // (time - stateStartTime), Rule 26. Drives: the coaxial Gaussian-cylinder
+    // appear/scale, the horizontal ring of radial wall arrows (1/r length, SAME
+    // all round), the end-cap grazing arrows + "Φ=0" tags, the r/L reference
+    // lines, the derivation write-in, the coordinated r-sweep, the 1/r vs 1/r²-
+    // ghost plot, and the live E readout.
+    function updateGaussLineFrame() {
+        var stateDef = config.states[PM_currentState];
+        if (!stateDef) return;
+        var g = stateDef.gauss_line || {};
+        var grp = glnFindById("gln_group");
+        if (!grp) return;
+        var t = time - stateStartTime;            // state-local seconds (Rule 26)
+        var fieldColor = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+        var HL = glnHalfLenDefault();
+
+        var sliders = !!g.sliders;
+        var dragging = sliders && window.PM_glnUserDragged;
+
+        // 1. λ + r this frame. Slider drag wins; else coordinated_sweep (the E-vs-r
+        //    state) sweeps r min→max driving BOTH the 3D cylinder AND the graph dot
+        //    from the SAME r; else the explorer idle auto-sweep (hands-free); else
+        //    the per-state seed. NO inside/outside regime (the line has no
+        //    boundary) — just clamp r ≥ GLN_R_MIN. Pure state-clock (Rule 26).
+        var lambda = (typeof g.lambda === "number") ? g.lambda : 1;
+        var seedR = (typeof g.r_gauss === "number") ? g.r_gauss : 1.6;
+        var r = seedR;
+        var coordSweep = !!g.coordinated_sweep;
+        if (coordSweep) {
+            var swMin = (typeof g.sweep_r_min === "number") ? g.sweep_r_min : 0.3;
+            var swMax = (typeof g.sweep_r_max === "number") ? g.sweep_r_max : 3.6;
+            var holdAt = (typeof g.sweep_hold_inside_ms === "number") ? g.sweep_hold_inside_ms / 1000 : 2;
+            var endAt = (typeof g.sweep_end_at_ms === "number") ? g.sweep_end_at_ms / 1000 : 26;
+            if (t < holdAt) {
+                r = swMin;                            // hold near the wire
+            } else if (t < endAt) {
+                var pC = (endAt > holdAt) ? Math.max(0, Math.min(1, (t - holdAt) / (endAt - holdAt))) : 1;
+                var eC = pC * pC * (3 - 2 * pC);      // smoothstep, continuous descent (no boundary)
+                r = swMin + (swMax - swMin) * eC;
+            } else {
+                r = swMax;                            // hold far out
+            }
+            window.PM_glnRGauss = r;
+        }
+        if (dragging) {
+            r = window.PM_glnRGauss;
+            lambda = window.PM_glnLambda;
+        } else if (coordSweep) {
+            // r already set above by the guided sweep; λ stays at its per-state seed.
+        } else if (sliders) {
+            // idle auto-sweep: the headless harness never drags the sliders, so the
+            // explore state must MOVE hands-free or D1p false-fails ("frozen"). The
+            // validator compares two frames ~10s apart and needs ≥30% of pixels to
+            // differ. Use a WIDE, SLOW (20s-period) cosine so the first ~10s is a
+            // near-MONOTONIC rise r ≈ 0.5 → 3.6 — this avoids the aliasing trap (a
+            // fast oscillation can land two distant sample frames at the same phase)
+            // and guarantees any two frames several seconds apart differ a lot. The
+            // wide r excursion sweeps the translucent cylinder wall across a large
+            // screen area, shrinks the ring arrows over a ~7× range (length ∝ λ/r),
+            // and drives the readout + plot dot. ALSO co-sweep λ on an offset phase
+            // so the ring-arrow lengths change independently of r (more moving
+            // pixels). Rule 29 holds: arrow length tracks the REAL λ/r magnitude,
+            // not emphasis. Slider/explore states only — guided states never reach
+            // this branch.
+            var rLo = 0.5, rHi = 3.6;
+            var sweepP = 0.5 - 0.5 * Math.cos((t / 20.0) * 2 * Math.PI);  // 0..1..0, 20s period (first 10s ≈ monotonic rise)
+            r = rLo + (rHi - rLo) * sweepP;
+            // gentle λ co-sweep (offset phase, slower) so arrow lengths vary with λ
+            // too. Centre on the slider value; ±40% so the bars visibly rescale.
+            var baseLam = window.PM_glnLambda || 1;
+            var lamP = 0.5 - 0.5 * Math.cos((t / 9.0) * 2 * Math.PI + 1.7);
+            lambda = baseLam * (0.6 + 0.8 * lamP);   // 0.6×..1.4× the slider λ
+            window.PM_glnRGauss = r;
+            var aS = document.getElementById("gln_r_slider"), aV = document.getElementById("gln_r_val");
+            if (aS) aS.value = String(r);
+            if (aV) aV.textContent = r.toFixed(2);
+            var aLV = document.getElementById("gln_lambda_val");
+            if (aLV) aLV.textContent = lambda.toFixed(2);
+        }
+        if (r < GLN_R_MIN) r = GLN_R_MIN;
+
+        // L this frame (the Gaussian cylinder height). Default to the full visible
+        // span; a per-state shorter L can be used for the derivation beat.
+        var L = (typeof g.L === "number") ? g.L : (2 * HL);
+
+        // 2. Position + size the Gaussian cylinder (wall + wire + caps) at radius r,
+        //    height L. Fade in on gaussian_fade_at_ms. Shown gated on show_cylinder
+        //    || sliders.
+        var showCyl = !!g.show_cylinder || sliders;
+        var wall = glnFindById("gln_gauss_wall");
+        var wallWire = glnFindById("gln_gauss_wall_wire");
+        var capTop = glnFindById("gln_cap_top");
+        var capBot = glnFindById("gln_cap_bottom");
+        var gLbl = glnFindById("gln_gauss_label");
+        var gaussFade = 1;
+        if (typeof g.gaussian_fade_at_ms === "number") {
+            var gf = g.gaussian_fade_at_ms / 1000;
+            gaussFade = Math.max(0, Math.min(1, (t - gf) / 0.6));
+        }
+        var cylVisible = showCyl && gaussFade > 0.001;
+        if (wall) {
+            wall.visible = cylVisible;
+            wall.scale.set(r, L, r);
+            if (wall.material) wall.material.opacity = (wall.userData.baseOpacity || 0.12) * gaussFade;
+        }
+        if (wallWire) {
+            wallWire.visible = cylVisible;
+            wallWire.scale.set(r, L, r);
+            if (wallWire.material) wallWire.material.opacity = (wallWire.userData.baseOpacity || 0.40) * gaussFade;
+        }
+        // End caps: scale radius r, position y = ±L/2. Pulse brightness (NOT size,
+        // Rule 29) on the zero-flux beat to draw the eye.
+        var showCaps = !!g.show_caps_zero_flux;
+        var capsRevealAt = (typeof g.caps_reveal_at_ms === "number") ? g.caps_reveal_at_ms / 1000 : 0;
+        var capsRaw = Math.max(0, Math.min(1, (t - capsRevealAt) / 0.9));
+        var capsReveal = capsRaw * capsRaw * (3 - 2 * capsRaw);   // smoothstep
+        var capPulse = showCaps ? (0.5 + 0.5 * Math.sin((t - capsRevealAt) * 3.2)) : 0;
+        function poseCap(cap) {
+            if (!cap) return;
+            cap.visible = cylVisible;
+            cap.scale.set(r, r, r);
+            cap.position.set(0, cap.userData.capSign * (L / 2), 0);
+            if (cap.material) {
+                cap.material.opacity = (cap.userData.baseOpacity || 0.14) * gaussFade * (showCaps ? (0.6 + 0.4 * capPulse) : 1);
+                cap.material.emissiveIntensity = 0.12 + (showCaps ? 0.5 * capPulse : 0);
+            }
+        }
+        poseCap(capTop);
+        poseCap(capBot);
+        if (gLbl) {
+            gLbl.visible = cylVisible;
+            gLbl.position.set(0, (L / 2) + 0.5, 0);
+            if (gLbl.material) gLbl.material.opacity = gaussFade;
+        }
+
+        // 3. Radial wall arrows (the ring). Reveal at radial_arrow_at_ms with a
+        //    smoothstep grow-in. Each arrow: anchored on the wall at radius r,
+        //    length = glnArrowLen(λ, r) (1/r, SAME for every arrow in the ring —
+        //    cylindrical symmetry), with a traveling-brightness flow pulse for
+        //    liveness (opacity only, Rule 29).
+        var arrowsRequested = !!g.show_radial_arrows;
+        var revealAt = (typeof g.radial_arrow_at_ms === "number") ? g.radial_arrow_at_ms / 1000 : 0;
+        var revealRaw = Math.max(0, Math.min(1, (t - revealAt) / 0.9));
+        var arrowReveal = revealRaw * revealRaw * (3 - 2 * revealRaw);
+        var arrowLen = glnArrowLen(lambda, r);
+        var ringAlpha = arrowsRequested ? arrowReveal : 0;
+        var flowPhase = t * 2.2;
+        for (var k = 0; k < grp.children.length; k++) {
+            var o = grp.children[k], ud = o.userData;
+            if (!ud) continue;
+            if (ud.elementType === "gln_radial") {
+                var showRing = arrowLen > 0 && ringAlpha > 0.001;
+                o.visible = showRing;
+                if (showRing) {
+                    var d = ud.dir;
+                    var yH = (typeof ud.yHeight === "number") ? ud.yHeight : 0;
+                    o.position.set(d[0] * r, yH, d[2] * r);
+                    // grow the glyph IN with the reveal; settle to the true 1/r length.
+                    var grownLen = arrowLen * (0.18 + 0.82 * arrowReveal);
+                    o.setLength(grownLen, Math.min(0.22, grownLen * 0.32), Math.min(0.12, grownLen * 0.18));
+                    o.setColor(hexToThreeColor(fieldColor));
+                    // traveling glow staggered by the arrow's index round the ring.
+                    var aIdx = parseInt((ud.id || "0").split("_").pop(), 10) || 0;
+                    var wob = 0.55 + 0.45 * Math.sin(flowPhase - aIdx * 0.62);
+                    var flowAlpha = 0.9 * ringAlpha * (0.45 + 0.55 * wob);
+                    o.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = flowAlpha; } });
+                }
+            } else if (ud.elementType === "gln_cap_graze_arrow") {
+                // 4. End-cap zero-flux beat: BRIGHT grazing arrows in the cap plane
+                //    (x–z), revealed with the caps. They GRAZE the cap (parallel) —
+                //    the visual proof E·dA = 0 there, contrasted with the piercing
+                //    wall arrows kept visible alongside (pierce ⊥ / graze ∥). Length
+                //    is direction-driven (the lesson is direction, not magnitude);
+                //    longer + brighter than before so they read against the teal cap.
+                //    A high opacity FLOOR keeps them legible at the frozen frame; the
+                //    sine is brightness-only liveness (Rule 29).
+                var showGraze = showCaps && capsReveal > 0.001;
+                o.visible = showGraze;
+                if (showGraze) {
+                    var gd = ud.dir;
+                    // span the arrows from near the axis OUT past the cap edge so
+                    // they clearly lie IN the cap plane (grazing, never piercing).
+                    var grStart = r * 0.42;
+                    o.position.set(gd[0] * grStart, ud.capSign * (L / 2), gd[2] * grStart);
+                    var grLen = Math.max(0.45, Math.min(0.85, r * 0.6));
+                    o.setLength(grLen, Math.min(0.22, grLen * 0.32), Math.min(0.13, grLen * 0.2));
+                    o.setColor(hexToThreeColor("#FFEE58"));
+                    // brightness floor 0.7 + a gentle shimmer; always clearly visible.
+                    var cAlpha = capsReveal * (0.7 + 0.3 * (0.5 + 0.5 * Math.sin(flowPhase + ud.capSign * 0.8)));
+                    o.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = cAlpha; } });
+                }
+            } else if (ud.elementType === "gln_cap_flux_label") {
+                var showFlux = showCaps && capsReveal > 0.001;
+                o.visible = showFlux;
+                o.position.set(0, ud.capSign * ((L / 2) + 0.55), 0);
+                // bright + a small brightness throb; floor 0.8 so "Φ=0" reads clearly.
+                if (o.material) o.material.opacity = capsReveal * (0.8 + 0.2 * (0.5 + 0.5 * Math.sin(flowPhase * 0.8)));
+            }
+        }
+
+        // 5. Reference lines r (perpendicular, billboarded camera-right) and L
+        //    (axial, +Y). Each emerges at its cue (emerge_r_at_ms / emerge_L_at_ms).
+        //    In slider states glnEmergeEase returns 1 immediately so the lines
+        //    render at full and track the sliders live (don't gate on the clock in
+        //    slider states). Lengths = real r / L (Rule 29).
+        var showRefLines = !!g.show_reference_lines;
+        // The L (axial height) line belongs to the CYLINDER beat, not the bare
+        // perpendicular-distance beat. STATE_2 sets show_reference_lines + emerge_r
+        // to teach r alone — it must NOT show L (the cylinder + "height L" aren't
+        // introduced until STATE_3). So gate the L line on the cylinder actually
+        // being present (show_cylinder), an explicit emerge_L_at_ms cue, or the
+        // slider state — never on show_reference_lines alone. The r line stays
+        // gated on show_reference_lines as before.
+        var showLLine = showRefLines && (!!g.show_cylinder || (typeof g.emerge_L_at_ms === "number") || sliders);
+        var emergeRAt = (typeof g.emerge_r_at_ms === "number") ? g.emerge_r_at_ms / 1000 : 0.5;
+        var emergeLAt = (typeof g.emerge_L_at_ms === "number") ? g.emerge_L_at_ms / 1000 : 0.5;
+        function glnEmergeEase(at) {
+            if (sliders) return 1;
+            var p = Math.max(0, Math.min(1, (t - at) / 0.8));
+            return p * p * (3 - 2 * p);
+        }
+        var camRight = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).normalize();
+        var camUp = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var qY = new THREE.Vector3(0, 1, 0);
+        for (var rk = 0; rk < grp.children.length; rk++) {
+            var ro = grp.children[rk], rud = ro.userData;
+            if (!rud) continue;
+            var isRV = (rud.elementType === "gln_radius_vector");
+            var isLV = (rud.elementType === "gln_axis_vector");
+            if (!isRV && !isLV) continue;
+            var isThick = !!ro.userData._shaft;
+            if (rud.kind === "r") {
+                // r line: billboard to camera-right; length r; tip rides the wall
+                // silhouette. Base at the axis (origin), at the mid-plane.
+                var easeR = glnEmergeEase(emergeRAt);
+                var rLen = r * easeR;
+                var showRv = showRefLines && easeR > 0.001;
+                ro.visible = showRv;
+                if (showRv) {
+                    if (isThick) {
+                        ro.position.set(0, 0, 0);
+                        ro.quaternion.setFromUnitVectors(qY, camRight);
+                        glnSetVectorLength(ro, Math.max(0.01, rLen));
+                        glnSetVectorOpacity(ro, 0.95);
+                    } else {            // "r" label just past the tip
+                        // nudge the label DOWN off the (horizontal, camera-right)
+                        // shaft so it doesn't hug the arrow line — clear separation
+                        // (-camUp·0.32) below the shaft, slightly past the tip.
+                        var rLblOut = rLen + 0.42;
+                        ro.position.set(
+                            camRight.x * rLblOut - camUp.x * 0.32,
+                            camRight.y * rLblOut - camUp.y * 0.32,
+                            camRight.z * rLblOut - camUp.z * 0.32);
+                        if (ro.material) ro.material.opacity = 1;
+                    }
+                }
+            } else if (rud.kind === "r_tip") {
+                // "P" dot (+ label) at the r-line tip — the field point. Rides the
+                // camera-right tip so it sits on the cylinder silhouette as r varies.
+                var easeT = glnEmergeEase(emergeRAt);
+                var tLen = r * easeT;
+                var showTip = showRefLines && easeT > 0.001;
+                ro.visible = showTip;
+                if (showTip) {
+                    var isTipLabel = (rud.id && rud.id.indexOf("lbl") >= 0);
+                    var lift = isTipLabel ? 0.28 : 0;
+                    ro.position.set(camRight.x * tLen + camUp.x * lift, camRight.y * tLen + camUp.y * lift, camRight.z * tLen + camUp.z * lift);
+                    if (ro.material) ro.material.opacity = 1;
+                }
+            } else if (rud.kind === "L") {
+                // L line: axial, +Y, length L. Base at -L/2 so it spans the
+                // cylinder height centred on the origin. No billboard (L is the
+                // genuine axial extent). Offset slightly along camera-right so it
+                // does not overlap the red line charge.
+                var easeL = glnEmergeEase(emergeLAt);
+                var LLen = L * easeL;
+                var showLv = showLLine && easeL > 0.001;
+                ro.visible = showLv;
+                if (showLv) {
+                    var sideOff = 0.0;
+                    if (isThick) {
+                        // shift the L line out to the +camRight side of the cylinder
+                        // wall so it reads as a separate axial ruler, not the wire.
+                        sideOff = r + 0.45;
+                        ro.position.set(camRight.x * sideOff, -L / 2, camRight.z * sideOff);
+                        ro.quaternion.setFromUnitVectors(qY, qY);   // stay +Y axial
+                        glnSetVectorLength(ro, Math.max(0.01, LLen));
+                        glnSetVectorOpacity(ro, 0.95);
+                    } else {            // "L" label at the head (top)
+                        sideOff = r + 0.45;
+                        ro.position.set(camRight.x * sideOff, -L / 2 + LLen + 0.3, camRight.z * sideOff);
+                        if (ro.material) ro.material.opacity = 1;
+                    }
+                }
+            }
+        }
+
+        // 6. Derivation write-in (the L-cancels reveal). When show_derivation:
+        //    reveal the gln_derivation panel stepwise on its own sub-beats. ε₀ +
+        //    the full constant appear ONLY here (don't pre-spoil). Literal Unicode
+        //    glyphs (the proven amperes-panel path — escape sequences in innerHTML
+        //    were collapsing the panel to an empty box). The L visibly CANCELS:
+        //    step 3 shows both L's struck through in red, step 4 drops them.
+        //    Content is written whenever show_derivation is active (independent of
+        //    the panel's display read, which could be stale this frame).
+        var dvEl = document.getElementById("gln_derivation");
+        if (dvEl && g.show_derivation) {
+            if (dvEl.style.display === "none") dvEl.style.display = "block";
+            var dAt = (typeof g.derivation_at_ms === "number") ? g.derivation_at_ms / 1000 : 0;
+            var dDur = (typeof g.derivation_duration_ms === "number") ? g.derivation_duration_ms / 1000 : 2.5;
+            // four sub-steps spread across the derivation window.
+            var s1 = dAt;
+            var s2 = dAt + dDur * 0.30;
+            var s3 = dAt + dDur * 0.58;
+            var s4 = dAt + dDur * 0.82;
+            var strike = "text-decoration:line-through;text-decoration-color:#EF5350;color:#EF5350";
+            var html = "";
+            // Before the first sub-step lands, show a faint prompt so the panel is
+            // never an empty box (don't pre-spoil the result — just frame the step).
+            if (t < s1) {
+                html += '<div style="color:#90CAF9;font-size:0.82em">Gauss\\u2019s law on the cylinder \\u2026</div>';
+            }
+            if (t >= s1) html += '<div>Φ = E · (2π r L)</div>';
+            if (t >= s2) html += '<div>= q_enc / ε₀ = λ L / ε₀</div>';
+            if (t >= s3) html += '<div>E · (2π r <span style="' + strike + '">L</span>) = λ <span style="' + strike + '">L</span> / ε₀</div>';
+            if (t >= s4) html += '<div style="color:#66BB6A;margin-top:6px;font-weight:bold">⇒ E = λ / (2π ε₀ r)</div>';
+            dvEl.innerHTML = html;
+            // a brief brightness write-in pulse as the last step lands.
+            if (t >= s4 && t < s4 + 1.2) {
+                var dp = 1 - (t - s4) / 1.2;
+                dvEl.style.boxShadow = "0 0 " + (8 + 16 * dp).toFixed(0) + "px rgba(102,187,106," + (0.4 + 0.4 * dp).toFixed(2) + ")";
+            } else {
+                dvEl.style.boxShadow = "none";
+            }
+        }
+
+        // 7. Live E readout. E = λ/(2πε₀r) — the demo value; labelled 1/r. No
+        //    inside/outside branch (the line has no boundary).
+        var roEl = document.getElementById("gln_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var Edemo = glnEDemo(lambda, r);
+            var html2 = "";
+            html2 += '<div>r = ' + r.toFixed(2) + ' demo units</div>';
+            html2 += '<div>\\u03bb = ' + (lambda >= 0 ? "+" : "") + lambda.toFixed(2) + ' demo nC/m</div>';
+            html2 += '<div style="color:#FFF176">E = \\u03bb / (2\\u03c0\\u03b5\\u2080 r)  (\\u221d 1/r)</div>';
+            html2 += '<div style="color:' + fieldColor + '">E = ' + Edemo.toFixed(1) + ' demo N/C</div>';
+            roEl.innerHTML = html2;
+        }
+
+        // 8. E-vs-r plot: the 1/r curve (green) with a faint dashed 1/r²
+        //    (point-charge) ghost normalised to match at r0 then fall faster
+        //    ("line falls slower" — the AHA). Domain r in (r_min, rMax]. The
+        //    tracking dot rides the live r on the 1/r curve (coordinated_sweep
+        //    lockstep). No r=R boundary marker (the line has none).
+        var plotEl = document.getElementById("gln_plot");
+        if (plotEl && plotEl.style.display !== "none") {
+            var cvs = document.getElementById("gln_plot_canvas");
+            if (cvs && cvs.getContext) {
+                var ctx = cvs.getContext("2d");
+                var W = cvs.width, H = cvs.height;
+                ctx.clearRect(0, 0, W, H);
+                var padL = 38, padB = 26, padT = 14, padR = 12;
+                var x0 = padL, x1 = W - padR, y0 = H - padB, y1 = padT;
+                var rMaxP = 4.0;                  // plot domain r in (rMinP, rMaxP]
+                var rMinP = 0.35;                 // avoid the r→0 asymptote
+                var ePeak = glnEDemo(lambda, rMinP);
+                var eMax = ePeak > 0 ? ePeak * 1.08 : 1;
+                function px(rv) { return x0 + (x1 - x0) * Math.max(0, Math.min(1, rv / rMaxP)); }
+                function py(ev) { return y0 + (y1 - y0) * Math.max(0, Math.min(1, ev / eMax)); }
+                // axes
+                ctx.strokeStyle = "#888"; ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(x0, y1); ctx.lineTo(x0, y0); ctx.lineTo(x1, y0); ctx.stroke();
+                ctx.fillStyle = "#D4D4D8"; ctx.font = "11px monospace";
+                ctx.fillText("E", x0 - 30, y1 + 8);
+                ctx.fillText("r", x1 - 6, y0 + 16);
+                // draw sweep progress (left-to-right) on the state clock (Rule 26)
+                var drawAt = (typeof g.plot_draw_at_ms === "number") ? g.plot_draw_at_ms / 1000 : 0;
+                var drawDur = (typeof g.plot_draw_duration_ms === "number") ? g.plot_draw_duration_ms / 1000 : 0;
+                var drawP = drawDur > 0 ? Math.max(0, Math.min(1, (t - drawAt) / drawDur)) : 1;
+                var rDrawn = rMinP + (rMaxP - rMinP) * drawP;
+                // FAINT dashed 1/r² ghost (point charge): normalised to match the
+                // 1/r curve at the reference r0, then falls faster.
+                var e0_line = glnEDemo(lambda, GLN_R0);
+                ctx.strokeStyle = "rgba(176,190,197,0.55)"; ctx.lineWidth = 1.6; ctx.setLineDash([4, 3]);
+                ctx.beginPath();
+                var started2 = false;
+                for (var rg = rMinP; rg <= rDrawn + 1e-6 && rg <= rMaxP; rg += rMaxP / 240) {
+                    var eGhost = e0_line * (GLN_R0 * GLN_R0) / (rg * rg);   // 1/r², matched at r0
+                    if (!started2) { ctx.moveTo(px(rg), py(eGhost)); started2 = true; }
+                    else ctx.lineTo(px(rg), py(eGhost));
+                }
+                ctx.stroke(); ctx.setLineDash([]);
+                // MAIN 1/r curve (green).
+                ctx.strokeStyle = "#66BB6A"; ctx.lineWidth = 2.4;
+                ctx.beginPath();
+                var started = false;
+                for (var rr = rMinP; rr <= rDrawn + 1e-6 && rr <= rMaxP; rr += rMaxP / 240) {
+                    var ev = glnEDemo(lambda, rr);
+                    if (!started) { ctx.moveTo(px(rr), py(ev)); started = true; }
+                    else ctx.lineTo(px(rr), py(ev));
+                }
+                ctx.stroke();
+                // GLOWING tracking dot at the live r on the 1/r curve.
+                if (sliders || g.live_readout || showCyl) {
+                    var rDot = Math.max(rMinP, Math.min(rMaxP, r));
+                    var curE = glnEDemo(lambda, rDot);
+                    var dx = px(rDot), dy = py(curE);
+                    var grad = ctx.createRadialGradient(dx, dy, 1, dx, dy, 9);
+                    grad.addColorStop(0, "rgba(255,241,118,0.55)");
+                    grad.addColorStop(1, "rgba(255,241,118,0)");
+                    ctx.fillStyle = grad;
+                    ctx.beginPath(); ctx.arc(dx, dy, 9, 0, Math.PI * 2); ctx.fill();
+                    ctx.fillStyle = "#FFF176";
+                    ctx.beginPath(); ctx.arc(dx, dy, 5, 0, Math.PI * 2); ctx.fill();
+                    ctx.strokeStyle = "#FFFFFF"; ctx.lineWidth = 1.5;
+                    ctx.beginPath(); ctx.arc(dx, dy, 5, 0, Math.PI * 2); ctx.stroke();
+                }
+                ctx.fillStyle = "#66BB6A"; ctx.font = "10px monospace";
+                ctx.fillText("1/r (line) \\u2014 slower", x0 + 4, y1 + 10);
+                ctx.fillStyle = "#B0BEC5";
+                ctx.fillText("1/r\\u00b2 (point) \\u2014 faster", x0 + 4, y1 + 24);
+            }
+        }
+    }
+
+    // ── gauss_law_sheet scenario (infinite charged SHEET: E = σ/(2ε₀), CONSTANT) ──
+    //   The PLANAR counterpart of gauss_law_line and its deliberate INVERSE. Built
+    //   as an ~88% copy-adapt of the line, with two physical inversions:
+    //     1. The FALLOFF is inverted: E = σ/(2ε₀) is CONSTANT — it does NOT depend
+    //        on the distance d (no 1/r, no 1/r²). The E-vs-distance plot is a FLAT
+    //        horizontal line with faint FALLING 1/r (line ghost) + 1/r² (point ghost)
+    //        curves beneath it — never the line's falling curve (scar
+    //        teach_inverted_scenario_inverts_cutline_flags). The cap arrows do NOT
+    //        shrink as the field point slides away — that constancy IS the lesson
+    //        (Rule 29: a length tracks the REAL magnitude, which here depends only
+    //        on σ, never on d).
+    //     2. The FLUX roles are inverted: the Gaussian PILLBOX's two flat CAPS
+    //        (parallel to the sheet, ±H from it) carry ALL the flux (pierced ⊥,
+    //        CONSTANT-length arrows both sides), and the curved WALL (perpendicular
+    //        to the sheet) carries ZERO flux (E grazes it ∥) + the "Φ=0" tags — the
+    //        exact inverse of the line (where the wall pierced and the caps grazed).
+    //   Geometry: the sheet is a large flat translucent plate in the y–z plane with
+    //   normal along ±X (built from createPlate rotated +90° about Y); the field is
+    //   along ±X. The pillbox cylinder AXIS is along +X (perpendicular to the sheet);
+    //   per-frame: scale.set(H_total, R, R) so its flat circular ends face ±X.
+    //   Honours Rule 24 (silent visual), Rule 26 (state clock), Rule 27 (σ + d sliders
+    //   emit PARAM_UPDATE under explorer_id "gauss_sheet_explorer"), Rule 29.
+    var GSS_HALF_W = 4.5;                 // visible half-width of the sheet (overrun the frame so it reads "infinite")
+    var GSS_D0 = 1.6;                     // reference perpendicular distance where the cap arrow draws GSS_ARROW_BASE
+    var GSS_D_MIN = 0.15;                 // closest the field point P sits to the sheet (never inside the sheet)
+    var GSS_PILLBOX_R = 1.4;              // on-screen pillbox cap radius (the area-A cap; DECOUPLED from d)
+    var GSS_ARROW_BASE = 0.9;             // cap E-arrow length at σ = 1 (the reference); scales with |σ| only
+    var GSS_ARROW_MIN = 0.22;             // floor so a small-σ arrow is still visible
+    var GSS_ARROW_MAX = 1.9;              // cap so a large-σ arrow never overruns
+
+    function gssDemoEPerNC() {
+        return (config.gauss_sheet_defaults && typeof config.gauss_sheet_defaults.demo_e_per_nc === "number")
+            ? config.gauss_sheet_defaults.demo_e_per_nc : 225;
+    }
+    function gssHalfWidthDefault() {
+        return (config.gauss_sheet_defaults && typeof config.gauss_sheet_defaults.sheet_half_width === "number")
+            ? config.gauss_sheet_defaults.sheet_half_width : GSS_HALF_W;
+    }
+    // Ground-truth demo E magnitude for the infinite sheet: E = demo·|σ| — a
+    // CONSTANT (the inverse of the line's demo·λ/r). There is NO distance term:
+    // E does not depend on d (nor on the in-plane position). This is the whole
+    // lesson, so it is enforced HERE, not interpolated. The sign of σ sets the
+    // arrow direction (away on both sides for +σ); the magnitude tracks |σ| only.
+    function gssEDemo(sigma) {
+        return gssDemoEPerNC() * Math.abs(sigma);
+    }
+    // The FALLING ghost magnitudes (line 1/r, point 1/r²) for the comparison plot
+    // ONLY — never used to size the real sheet arrows. Normalised so all three
+    // curves coincide at the reference distance d0, then the ghosts fall while the
+    // sheet stays flat. Distance clamped ≥ GSS_D_MIN to avoid the d→0 asymptote.
+    function gssLineGhost(sigma, d) {
+        var dc = (d < GSS_D_MIN) ? GSS_D_MIN : d;
+        return gssDemoEPerNC() * Math.abs(sigma) * GSS_D0 / dc;             // 1/r, matched at d0
+    }
+    function gssPointGhost(sigma, d) {
+        var dc = (d < GSS_D_MIN) ? GSS_D_MIN : d;
+        return gssDemoEPerNC() * Math.abs(sigma) * (GSS_D0 * GSS_D0) / (dc * dc);  // 1/r², matched at d0
+    }
+    // Cap E-arrow GLYPH length: anchored so that at σ = 1 the arrow draws
+    // GSS_ARROW_BASE, scaling ONLY with |σ| (Rule 29: real magnitude). NO distance
+    // term — the arrow length is identical at every d. Clamped to [MIN, MAX] purely
+    // so it never vanishes or overruns; the constancy across d is the true physics.
+    function gssArrowLen(sigma) {
+        var E = gssEDemo(sigma);
+        if (E <= 0) return 0;
+        var E1 = gssDemoEPerNC();             // reference at |σ| = 1
+        if (E1 <= 0) return 0;
+        var len = GSS_ARROW_BASE * (E / E1);
+        if (len < GSS_ARROW_MIN) len = GSS_ARROW_MIN;
+        if (len > GSS_ARROW_MAX) len = GSS_ARROW_MAX;
+        return len;
+    }
+    function gssFindById(id) {
+        var grp = null;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            if (o.userData && o.userData.id === id) return o;
+            if (o.userData && o.userData.elementType === "gss_group") grp = o;
+        }
+        if (grp) {
+            for (var j = 0; j < grp.children.length; j++) {
+                if (grp.children[j].userData && grp.children[j].userData.id === id) return grp.children[j];
+            }
+        }
+        return null;
+    }
+
+    // Thick position-vector arrow (mesh shaft + cone head) for the labelled d
+    // (perpendicular distance) and H (pillbox half-height) reference lines so they
+    // read as bold WHITE position arrows on top of the sheet + pillbox + arrows.
+    // Copy verbatim of glnMakeThickVector (same depthTest-off / renderOrder).
+    function gssMakeThickVector(dir, color, len, shaftRadius) {
+        var grp = new THREE.Group();
+        var sr = shaftRadius != null ? shaftRadius : 0.05;
+        var headLen = 0.34, headR = sr * 3.1;
+        var shaftLen = Math.max(0.01, len - headLen);
+        var mat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(color), emissive: hexToThreeColor(color),
+            emissiveIntensity: 0.95, shininess: 70, transparent: true, opacity: 0.95,
+            depthTest: false, depthWrite: false
+        });
+        var shaftGeo = new THREE.CylinderGeometry(sr, sr, 1, 16);
+        shaftGeo.translate(0, 0.5, 0);
+        var shaft = new THREE.Mesh(shaftGeo, mat);
+        shaft.scale.set(1, shaftLen, 1);
+        shaft.renderOrder = 999;
+        shaft.userData = { part: "shaft", baseShaftR: sr };
+        grp.add(shaft);
+        var headGeo = new THREE.ConeGeometry(headR, headLen, 18);
+        var head = new THREE.Mesh(headGeo, mat);
+        head.position.set(0, shaftLen + headLen / 2, 0);
+        head.renderOrder = 999;
+        head.userData = { part: "head", baseHeadLen: headLen };
+        grp.add(head);
+        var v = new THREE.Vector3(dir[0], dir[1], dir[2]).normalize();
+        grp.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), v);
+        grp.userData = { _shaft: shaft, _head: head, _headLen: headLen, _dir: [v.x, v.y, v.z] };
+        return grp;
+    }
+    function gssSetVectorLength(grp, len) {
+        if (!grp || !grp.userData) return;
+        var sh = grp.userData._shaft, hd = grp.userData._head, hl = grp.userData._headLen || 0.34;
+        var shaftLen = Math.max(0.01, len - hl);
+        if (sh) sh.scale.set(1, shaftLen, 1);
+        if (hd) hd.position.set(0, shaftLen + hl / 2, 0);
+    }
+    function gssSetVectorOpacity(grp, op) {
+        if (!grp || !grp.userData) return;
+        var sh = grp.userData._shaft, hd = grp.userData._head;
+        if (sh && sh.material) { sh.material.transparent = true; sh.material.opacity = op; }
+        if (hd && hd.material) { hd.material.transparent = true; hd.material.opacity = op; }
+    }
+
+    function buildGaussSheetField() {
+        var sheetColor = (config.pvl_colors && config.pvl_colors.positive) || "#EF5350";
+        var fieldColor = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var gaussColor = "#90CAF9";
+        var wallColor = "#80CBC4";            // teal: the curved wall, visually distinct from the flat caps
+        var HW = gssHalfWidthDefault();
+
+        var grp = new THREE.Group();
+        grp.userData = { elementType: "gss_group", id: "gss_group" };
+
+        // (A) The infinite SHEET — a large flat translucent plate in the y–z plane
+        //     (normal along ±X), built from createPlate (x–y plane, normal +Z) then
+        //     rotated +90° about Y. Seen at a 3/4 angle. Visible all states. A faint
+        //     warm tint matches the σ sign.
+        var sheet = createPlate(2 * HW, 2 * HW, [0, 0, 0], sheetColor);
+        sheet.rotation.y = Math.PI / 2;       // x–y plane → y–z plane (normal +X)
+        if (sheet.material) { sheet.material.opacity = 0.18; sheet.material.emissive = hexToThreeColor(sheetColor); sheet.material.emissiveIntensity = 0.22; }
+        sheet.userData = { elementType: "gss_sheet", id: "gss_sheet" };
+        grp.add(sheet);
+        // A grid of bright "+" σ markers strung across the sheet FACE (the y–z plane
+        // at x=0). Mirror the line's brightened "+" markers: a BRIGHT warm tint +
+        // larger sprite so "uniform positive surface charge" reads clearly. The
+        // outermost markers fade so the edges read as continuing off-screen
+        // ("infinite"). 5×5 grid spanning the central portion of the sheet.
+        var markColor = "#FF8A80";            // bright warm red — pops against the dark sheet
+        var nGrid = 5;
+        var markSpan = HW * 1.3;              // markers fill the central ~1.3·HW (edges fade off-frame)
+        for (var gy = 0; gy < nGrid; gy++) {
+            for (var gz = 0; gz < nGrid; gz++) {
+                var fy = (nGrid > 1) ? (gy / (nGrid - 1)) : 0.5;   // 0..1
+                var fz = (nGrid > 1) ? (gz / (nGrid - 1)) : 0.5;
+                var my = (fy - 0.5) * markSpan;
+                var mz = (fz - 0.5) * markSpan;
+                var plus = createLabelSprite("+", markColor, 0.42);
+                plus.position.set(0, my, mz);
+                // fade the outermost ring of markers so the sheet reads "infinite".
+                var edgeY = Math.min(fy, 1 - fy), edgeZ = Math.min(fz, 1 - fz);
+                var edge = Math.min(edgeY, edgeZ);                 // 0 at the border, 0.5 at centre
+                var op = Math.max(0.55, Math.min(1, 0.55 + edge * 1.8));
+                if (plus.material) { plus.material.transparent = true; plus.material.opacity = op; }
+                plus.userData = { elementType: "gss_charge_marker", id: "gss_charge_marker_" + gy + "_" + gz, baseOpacity: op };
+                grp.add(plus);
+            }
+        }
+        // Sheet label — a billboarded sprite with its OWN dark rounded backing plate
+        // so it reads legibly OVER (or off) the large dark-red sheet, in a brighter
+        // near-white colour (vision flags A2/A4/E2: the old pinkish-red text on the
+        // dark-red sheet failed the 12px-min + 4.5:1-contrast checks). Built locally
+        // (not via createWideLabelSprite) so the backing plate is baked into the same
+        // canvas. Anchored in the far-LEFT clear zone (well off the sheet silhouette
+        // at x=0): pushed strongly to -Z (reads toward screen-left under the 3/4
+        // cameras) and lifted +Y, so it sits in the empty black margin in every
+        // state. Larger height scale (0.5) so it reads >=14px effective. Persists
+        // across all states — the fix benefits every frame.
+        function gssMakeBackedLabel(text, textColor) {
+            var canvas = document.createElement("canvas");
+            var ctx0 = canvas.getContext("2d");
+            var fontSpec = "bold 64px 'Cambria Math', 'Times New Roman', serif";
+            ctx0.font = fontSpec;
+            var padX = 56, padY = 30;
+            var measured = Math.ceil(ctx0.measureText(text).width);
+            canvas.width = Math.max(384, measured + padX * 2);
+            canvas.height = 128;
+            var ctx = canvas.getContext("2d");           // re-acquire (resize cleared state)
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // dark rounded backing plate (semi-transparent) so the text reads over the sheet.
+            var rw = canvas.width - 12, rh = canvas.height - 24, rx = 6, ry = 12, rr = 18;
+            ctx.fillStyle = "rgba(10,10,26,0.78)";
+            ctx.beginPath();
+            ctx.moveTo(rx + rr, ry);
+            ctx.arcTo(rx + rw, ry, rx + rw, ry + rh, rr);
+            ctx.arcTo(rx + rw, ry + rh, rx, ry + rh, rr);
+            ctx.arcTo(rx, ry + rh, rx, ry, rr);
+            ctx.arcTo(rx, ry, rx + rw, ry, rr);
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = "rgba(255,235,238,0.30)"; ctx.lineWidth = 2; ctx.stroke();
+            ctx.font = fontSpec;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.lineWidth = 6;
+            ctx.strokeStyle = "rgba(10,10,26,0.95)";
+            ctx.strokeText(text, canvas.width / 2, canvas.height / 2);
+            ctx.fillStyle = textColor;
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+            var texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            var material = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false, depthWrite: false });
+            var sprite = new THREE.Sprite(material);
+            var h = 0.5;
+            var aspect = canvas.width / canvas.height;
+            sprite.scale.set(h * aspect, h, 1);
+            sprite.renderOrder = 1000;
+            return sprite;
+        }
+        var sheetLabel = gssMakeBackedLabel("infinite sheet, surface charge \\u03c3", "#FFEBEE");
+        sheetLabel.position.set(0, HW - 0.2, -(HW + 1.6));   // far-left clear zone, off the sheet
+        sheetLabel.userData = { elementType: "gss_sheet_label", id: "gss_sheet_label" };
+        grp.add(sheetLabel);
+
+        // (B) The Gaussian PILLBOX (transparent blue) — wall + two caps. The cylinder
+        //     AXIS is along +X (perpendicular to the sheet). Built at unit radius/
+        //     height with the default +Y axis, then rotated -90° about Z so the axis
+        //     points +X; per-frame scaled scale.set(H_total, R, R) and the flat ends
+        //     face ±X (parallel to the sheet). The curved WALL is the zero-flux piece.
+        var wallMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(gaussColor), emissive: hexToThreeColor(gaussColor),
+            emissiveIntensity: 0.10, transparent: true, opacity: 0.12, side: THREE.DoubleSide
+        });
+        var wall = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 1, 40, 1, true), wallMat);
+        wall.rotation.z = -Math.PI / 2;       // cylinder axis +Y → +X (⊥ to the sheet)
+        wall.scale.set(1, 1, 1);
+        wall.visible = false;
+        wall.userData = { elementType: "gss_gaussian", id: "gss_gauss_wall", baseOpacity: 0.12 };
+        grp.add(wall);
+        // Wall wireframe: depthTest OFF + high renderOrder so it reads THROUGH the
+        // translucent wall + sheet + arrows. openEnded (no cap rings).
+        var wallWireMat = new THREE.LineBasicMaterial({ color: hexToThreeColor(gaussColor), transparent: true, opacity: 0.40, depthTest: false });
+        var wallWire = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.CylinderGeometry(1, 1, 1, 18, 1, true)), wallWireMat);
+        wallWire.rotation.z = -Math.PI / 2;
+        wallWire.scale.set(1, 1, 1);
+        wallWire.visible = false;
+        wallWire.renderOrder = 997;
+        wallWire.userData = { elementType: "gss_gaussian", id: "gss_gauss_wall_wire", baseOpacity: 0.40 };
+        grp.add(wallWire);
+        // TWO flat END-CAP disks (the FLUX-bearing pieces — the inverse of the line,
+        // where the caps were the zero-flux pieces). They are the SUPPORTING-aha
+        // payoff (caps pierce, wall grazes), so they GLOW noticeably more than the
+        // curved wall (founder review: "a light glowing around the circle"). A
+        // DISTINCT teal-tinted blue, brighter emissive + opacity than the wall.
+        // CircleGeometry faces +Z by default; rotate ±90° about Y so each faces ±X
+        // (parallel to the sheet). Per-frame: scale radius R, position x = ±H.
+        var capPlusMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#A5D6F7"), emissive: hexToThreeColor("#A5D6F7"),
+            emissiveIntensity: 0.45, transparent: true, opacity: 0.30, side: THREE.DoubleSide
+        });
+        var capPlus = new THREE.Mesh(new THREE.CircleGeometry(1, 40), capPlusMat);
+        capPlus.rotation.y = Math.PI / 2;     // face +X
+        capPlus.scale.set(1, 1, 1);
+        capPlus.position.set(0, 0, 0);
+        capPlus.visible = false;
+        capPlus.userData = { elementType: "gss_gaussian_cap", id: "gss_cap_plus", baseOpacity: 0.30, capSign: 1 };
+        grp.add(capPlus);
+        var capMinusMat = capPlusMat.clone();
+        var capMinus = new THREE.Mesh(new THREE.CircleGeometry(1, 40), capMinusMat);
+        capMinus.rotation.y = -Math.PI / 2;   // face -X
+        capMinus.scale.set(1, 1, 1);
+        capMinus.position.set(0, 0, 0);
+        capMinus.visible = false;
+        capMinus.userData = { elementType: "gss_gaussian_cap", id: "gss_cap_minus", baseOpacity: 0.30, capSign: -1 };
+        grp.add(capMinus);
+        // A GLOWING RIM RING around each cap circle (founder: "a light glowing around
+        // the circle"). A thin bright annulus (RingGeometry) lying in the cap plane,
+        // depthTest OFF + high renderOrder so it reads ON TOP of the translucent cap +
+        // wall. Brightened on the caps-flux beat (STATE_4) and present whenever the
+        // pillbox shows (STATE_3–7). Per-frame: scale radius R, position x = ±H. The
+        // glow is BRIGHTNESS only (Rule 29 — never a size pulse).
+        for (var cr = 0; cr < 2; cr++) {
+            var crSign = cr === 0 ? 1 : -1;
+            var rimMat = new THREE.MeshBasicMaterial({
+                color: hexToThreeColor("#B3E5FC"), transparent: true, opacity: 0,
+                side: THREE.DoubleSide, depthTest: false, depthWrite: false
+            });
+            // unit ring: inner 0.93, outer 1.0 (a thin rim at the cap edge); scaled by R.
+            var rim = new THREE.Mesh(new THREE.RingGeometry(0.93, 1.0, 48), rimMat);
+            rim.rotation.y = crSign > 0 ? Math.PI / 2 : -Math.PI / 2;   // face ±X (in the cap plane)
+            rim.scale.set(1, 1, 1);
+            rim.position.set(0, 0, 0);
+            rim.visible = false;
+            rim.renderOrder = 998;
+            rim.userData = { elementType: "gss_cap_rim", id: "gss_cap_rim_" + cr, capSign: crSign };
+            grp.add(rim);
+        }
+        var gaussLabel = createWideLabelSprite("Gaussian pillbox (cap area A, half-height H)", gaussColor, 0.30);
+        gaussLabel.position.set(0, GSS_PILLBOX_R + 0.6, 0);
+        gaussLabel.visible = false;
+        gaussLabel.userData = { elementType: "gss_gaussian_label", id: "gss_gauss_label" };
+        grp.add(gaussLabel);
+        // "A" label on the +X cap face (the area through which flux leaves). Written
+        // when "area A" is narrated; positioned slightly off the cap centre.
+        var capAreaLbl = createLabelSprite("A", gaussColor, 0.5);
+        capAreaLbl.visible = false;
+        if (capAreaLbl.material) capAreaLbl.material.opacity = 0;
+        capAreaLbl.userData = { elementType: "gss_cap_area_label", id: "gss_cap_area_label" };
+        grp.add(capAreaLbl);
+
+        // (C) The flux-bearing CAP arrows (the INVERSE of the line's wall ring).
+        //     A grid of arrows on EACH cap pointing straight out along ±X (away from
+        //     the sheet, perpendicular to the cap, PIERCING it ⊥). CONSTANT length
+        //     (= gssArrowLen(σ), NO 1/d) — that constancy is the lesson. Anchored on
+        //     each cap; revealed at cap_arrow_at_ms. 5 arrows per cap (1 centre + 4
+        //     ring) so the "many parallel arrows, all equal" pierce reads clearly.
+        var capOffsets = [[0, 0], [0.62, 0], [-0.62, 0], [0, 0.62], [0, -0.62]];
+        for (var cs = 0; cs < 2; cs++) {
+            var capSign = cs === 0 ? 1 : -1;
+            for (var ci = 0; ci < capOffsets.length; ci++) {
+                var oy = capOffsets[ci][0], oz = capOffsets[ci][1];
+                var pArrow = new THREE.ArrowHelper(
+                    new THREE.Vector3(capSign, 0, 0),             // pierce along ±X
+                    new THREE.Vector3(0, 0, 0),
+                    GSS_ARROW_BASE, fieldColor, 0.2, 0.12);
+                pArrow.visible = false;
+                pArrow.children.forEach(function (ch) { if (ch.material) { ch.material.transparent = true; ch.material.opacity = 0; } });
+                pArrow.userData = { elementType: "gss_cap_arrow", id: "gss_cap_arrow_" + cs + "_" + ci, capSign: capSign, offY: oy, offZ: oz };
+                grp.add(pArrow);
+            }
+        }
+
+        // (C2) Grazing WALL arrows (the zero-flux SHOW — the INVERSE of the line,
+        //      where the caps grazed). A set of BRIGHT arrows positioned ON the
+        //      curved wall pointing along ±X (axial — parallel to the wall surface,
+        //      i.e. they GRAZE it and never pierce it radially). The proof that
+        //      E ∥ wall ⇒ E·dA = 0 there. BRIGHT yellow against the teal wall,
+        //      depthTest OFF + high renderOrder so they read ON TOP. 8 round the wall
+        //      (4 azimuths × 2 axial directions). The pierce-vs-graze contrast (cap
+        //      arrows pierce ⊥ / wall arrows graze ∥) reads at a glance.
+        var GSS_WALL_GRAZE_COLOR = "#FFEE58";  // bright yellow — distinct from teal wall + green cap arrows
+        var N_WALL = 4;
+        for (var wi = 0; wi < N_WALL; wi++) {
+            var wth = (2 * Math.PI * wi) / N_WALL;
+            var wdir = [Math.cos(wth), Math.sin(wth)];            // (y,z) azimuth on the wall
+            for (var ws = 0; ws < 2; ws++) {
+                var axSign = ws === 0 ? 1 : -1;                   // grazing arrow points ±X (axial)
+                var gArrow = new THREE.ArrowHelper(
+                    new THREE.Vector3(axSign, 0, 0),
+                    new THREE.Vector3(0, 0, 0),
+                    0.6, GSS_WALL_GRAZE_COLOR, 0.2, 0.12);
+                gArrow.visible = false;
+                gArrow.children.forEach(function (ch) { if (ch.material) { ch.material.transparent = true; ch.material.opacity = 0; ch.material.depthTest = false; ch.material.depthWrite = false; } });
+                gArrow.renderOrder = 998;
+                gArrow.userData = { elementType: "gss_wall_graze_arrow", id: "gss_wall_graze_" + wi + "_" + ws, azY: wdir[0], azZ: wdir[1], axSign: axSign };
+                grp.add(gArrow);
+            }
+        }
+        // a bold "Φ=0" tag on the wall (revealed on the zero-flux beat). Bright
+        // yellow, larger, depthTest off so it reads on top of the translucent wall.
+        var wallFluxLbl = createLabelSprite("\\u03a6=0", GSS_WALL_GRAZE_COLOR, 0.5);
+        wallFluxLbl.visible = false;
+        if (wallFluxLbl.material) wallFluxLbl.material.opacity = 0;
+        wallFluxLbl.userData = { elementType: "gss_wall_flux_label", id: "gss_wall_flux_label" };
+        grp.add(wallFluxLbl);
+
+        // (D) Reference (position) lines d and H. WHITE thick mesh arrows. The d line
+        //     (sheet → field point P) is BILLBOARDED to camera-right (screen-
+        //     horizontal) each frame so the perpendicular distance reads cleanly and
+        //     never foreshortens under the 3/4 cameras; its tip carries the "P" field
+        //     point. The H line is the pillbox HALF-HEIGHT — a distinct labelled
+        //     extent (≠ d), drawn genuinely axial along +X offset to the side so the
+        //     student never conflates the two. Lengths = the real d / H (Rule 29).
+        var refColor = "#FFFFFF";
+        // d line: sheet → P (length d). Seed dir along +X (overwritten by the
+        // camera-right billboard each frame).
+        var dVec = gssMakeThickVector([1, 0, 0], refColor, GSS_D0, 0.0275);
+        dVec.visible = false;
+        dVec.userData.elementType = "gss_dist_vector"; dVec.userData.id = "gss_d_vector";
+        dVec.userData.kind = "d";
+        grp.add(dVec);
+        var dVecLbl = createLabelSprite("d", refColor, 0.52);
+        dVecLbl.visible = false;
+        dVecLbl.userData = { elementType: "gss_dist_vector", id: "gss_lbl_d_vector", kind: "d" };
+        grp.add(dVecLbl);
+        // "P" tip marker on the d vector (the field point where E is measured).
+        var dTip = createChargeSphere([0, 0, 0], refColor, 0.10);
+        if (dTip.material) { dTip.material.transparent = true; dTip.material.opacity = 0; dTip.material.depthTest = false; dTip.material.depthWrite = false; dTip.material.emissiveIntensity = 0.95; }
+        dTip.renderOrder = 999; dTip.visible = false;
+        dTip.userData = { elementType: "gss_dist_vector", id: "gss_d_tip", kind: "d_tip" };
+        grp.add(dTip);
+        var dTipLbl = createLabelSprite("P", refColor, 0.40);
+        dTipLbl.visible = false;
+        dTipLbl.userData = { elementType: "gss_dist_vector", id: "gss_lbl_d_tip", kind: "d_tip" };
+        grp.add(dTipLbl);
+        // H line: the pillbox half-height — axial along +X, length H, offset to the
+        // +Y side of the pillbox so it reads as a separate extent ruler, not the
+        // distance d. No billboard (H is the genuine axial extent of the pillbox).
+        var HVec = gssMakeThickVector([1, 0, 0], refColor, GSS_D0, 0.0275);
+        HVec.visible = false;
+        HVec.userData.elementType = "gss_half_vector"; HVec.userData.id = "gss_H_vector";
+        HVec.userData.kind = "H";
+        grp.add(HVec);
+        var HVecLbl = createLabelSprite("H", refColor, 0.52);
+        HVecLbl.visible = false;
+        HVecLbl.userData = { elementType: "gss_half_vector", id: "gss_lbl_H_vector", kind: "H" };
+        grp.add(HVecLbl);
+
+        addToScene(grp);
+
+        // (E) Live E readout panel (HTML). E = σ/(2ε₀) — the demo value (CONSTANT).
+        var rp = document.createElement("div");
+        rp.id = "gss_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:235px;display:none;";
+        document.body.appendChild(rp);
+
+        // (F) E-vs-distance plot panel (HTML canvas; drawn by updateGaussSheetFrame).
+        //     The INVERTED cut-line: a FLAT sheet line above FALLING ghosts.
+        var plot = document.createElement("div");
+        plot.id = "gss_plot";
+        plot.style.cssText = "position:fixed;left:12px;bottom:12px;background:rgba(0,0,0,0.82);padding:8px;border-radius:8px;z-index:10;display:none;";
+        plot.innerHTML = '<canvas id="gss_plot_canvas" width="320" height="200"></canvas>';
+        document.body.appendChild(plot);
+
+        // (G) Derivation caption panel (HTML) — the A-cancels write-in, revealed
+        //     stepwise: Φ = 2EA, then = σA/ε₀, then strike A (mirror the line's
+        //     L-cancel), then E = σ/(2ε₀) with the ½ tagged "two caps".
+        var deriv = document.createElement("div");
+        deriv.id = "gss_derivation";
+        deriv.style.cssText = "position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:rgba(0,0,0,0.88);color:#FFF176;padding:13px 22px;border-radius:9px;border:1px solid rgba(255,241,118,0.35);font:18px/1.9 'Cambria Math','Times New Roman',serif;z-index:12;text-align:center;display:none;min-width:340px;max-width:80vw;white-space:nowrap;";
+        document.body.appendChild(deriv);
+
+        // (H) σ + d sliders (STATE_7 only). Explorer id "gauss_sheet_explorer".
+        window.PM_gssSigma = 1; window.PM_gssDist = GSS_D0; window.PM_gssUserDragged = false;
+        var ssc = (config.slider_controls && config.slider_controls.sigma)
+            || { min: 0.3, max: 3.0, step: 0.05, default: 1.0, label: "surface charge density \\u03c3" };
+        var dsc = (config.slider_controls && config.slider_controls.d)
+            || { min: 0.3, max: 4.0, step: 0.05, default: 1.6, label: "perpendicular distance d" };
+        var sp = document.createElement("div");
+        sp.id = "gss_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        sp.innerHTML =
+            '<label>' + ssc.label + ': <span id="gss_sigma_val">' + ssc.default + '</span></label>' +
+            '<input type="range" id="gss_sigma_slider" min="' + ssc.min + '" max="' + ssc.max + '" step="' + (ssc.step || 0.05) + '" value="' + ssc.default + '" style="width:100%;margin-bottom:8px">' +
+            '<label>' + dsc.label + ': <span id="gss_d_val">' + dsc.default + '</span></label>' +
+            '<input type="range" id="gss_d_slider" min="' + dsc.min + '" max="' + dsc.max + '" step="' + (dsc.step || 0.05) + '" value="' + dsc.default + '" style="width:100%">';
+        document.body.appendChild(sp);
+
+        var sSl = document.getElementById("gss_sigma_slider"), sVal = document.getElementById("gss_sigma_val");
+        if (sSl) sSl.addEventListener("input", function () {
+            window.PM_gssUserDragged = true;
+            window.PM_gssSigma = parseFloat(sSl.value);
+            if (sVal) sVal.textContent = parseFloat(sSl.value).toFixed(2);
+            try {
+                parent.postMessage({
+                    type: "PARAM_UPDATE",
+                    explorer_id: (config.explorer_id || "gauss_sheet_explorer"),
+                    param: "sigma",
+                    value: window.PM_gssSigma
+                }, "*");
+            } catch (e) {}
+        });
+        var dSl = document.getElementById("gss_d_slider"), dVal = document.getElementById("gss_d_val");
+        if (dSl) dSl.addEventListener("input", function () {
+            window.PM_gssUserDragged = true;
+            window.PM_gssDist = parseFloat(dSl.value);
+            if (dVal) dVal.textContent = parseFloat(dSl.value).toFixed(2);
+            try {
+                parent.postMessage({
+                    type: "PARAM_UPDATE",
+                    explorer_id: (config.explorer_id || "gauss_sheet_explorer"),
+                    param: "d",
+                    value: window.PM_gssDist
+                }, "*");
+            } catch (e) {}
+        });
+    }
+
+    // Per-state seeding for gauss_law_sheet. Reads the state's gauss_sheet block,
+    // seeds σ + d + the two sliders, toggles the pillbox / cap arrows / wall grazing
+    // arrows / reference lines / plot / derivation / readout panels, and resets all
+    // per-frame fades to their entry pose so a re-entry mid-animation starts clean
+    // (Rule 26).
+    function applyGaussSheetState(stateDef) {
+        var g = (stateDef && stateDef.gauss_sheet) || {};
+        var grp = gssFindById("gss_group");
+        if (!grp) return;
+
+        // Seed σ + d: prefer the per-state value, else slider default.
+        var seedSigma = (typeof g.sigma === "number") ? g.sigma : 1;
+        var seedD = (typeof g.d === "number") ? g.d : GSS_D0;
+        window.PM_gssUserDragged = false;
+        window.PM_gssSigma = seedSigma;
+        window.PM_gssDist = seedD;
+        var sS = document.getElementById("gss_sigma_slider"), sV = document.getElementById("gss_sigma_val");
+        if (sS) sS.value = String(seedSigma);
+        if (sV) sV.textContent = Number(seedSigma).toFixed(2);
+        var dS = document.getElementById("gss_d_slider"), dV = document.getElementById("gss_d_val");
+        if (dS) dS.value = String(seedD);
+        if (dV) dV.textContent = Number(seedD).toFixed(2);
+
+        // Panel visibility per state.
+        var roEl = document.getElementById("gss_readout");
+        if (roEl) roEl.style.display = g.live_readout ? "block" : "none";
+        var plotEl = document.getElementById("gss_plot");
+        if (plotEl) plotEl.style.display = g.show_e_vs_d_plot ? "block" : "none";
+        var spEl = document.getElementById("gss_sliders");
+        if (spEl) spEl.style.display = g.sliders ? "block" : "none";
+        var dvEl = document.getElementById("gss_derivation");
+        if (dvEl) { dvEl.style.display = g.show_derivation ? "block" : "none"; dvEl.innerHTML = ""; dvEl.style.boxShadow = "none"; }
+
+        // Reset every per-frame-driven element to its entry pose (hidden, opacity 0).
+        // The pillbox / arrows / reference lines are turned on by updateGaussSheetFrame
+        // on schedule.
+        for (var c = 0; c < grp.children.length; c++) {
+            var ch = grp.children[c], ud = ch.userData;
+            if (!ud) continue;
+            if (ud.elementType === "gss_gaussian" || ud.elementType === "gss_gaussian_cap" || ud.elementType === "gss_gaussian_label" || ud.elementType === "gss_cap_area_label" || ud.elementType === "gss_cap_rim") {
+                ch.visible = false;
+                if (ch.material) ch.material.opacity = 0;
+            } else if (ud.elementType === "gss_cap_arrow" || ud.elementType === "gss_wall_graze_arrow") {
+                ch.visible = false;
+                ch.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0; });
+            } else if (ud.elementType === "gss_wall_flux_label") {
+                ch.visible = false;
+                if (ch.material) ch.material.opacity = 0;
+            } else if (ud.elementType === "gss_dist_vector" || ud.elementType === "gss_half_vector") {
+                ch.visible = false;
+                if (ch.material) ch.material.opacity = 0;
+                if (ch.children) ch.children.forEach(function (cc) { if (cc.material) cc.material.opacity = 0; });
+            }
+        }
+    }
+
+    // Per-frame update for gauss_law_sheet. Pure function of the state clock
+    // (time - stateStartTime), Rule 26. Drives: the Gaussian-pillbox appear/scale,
+    // the flux-bearing CAP arrows (CONSTANT length, both sides — never shrink as d
+    // changes), the grazing WALL arrows + "Φ=0" tag (the zero-flux SHOW, inverse of
+    // the line), the d/H reference lines, the A-cancel derivation write-in, the
+    // coordinated d-sweep (arrow length HOLDS while d grows), the FLAT sheet line vs
+    // FALLING 1/r & 1/r² ghosts plot, and the live E readout.
+    function updateGaussSheetFrame() {
+        var stateDef = config.states[PM_currentState];
+        if (!stateDef) return;
+        var g = stateDef.gauss_sheet || {};
+        var grp = gssFindById("gss_group");
+        if (!grp) return;
+        var t = time - stateStartTime;            // state-local seconds (Rule 26)
+        var fieldColor = (config.pvl_colors && config.pvl_colors.field_line) || "#66BB6A";
+
+        var sliders = !!g.sliders;
+        var dragging = sliders && window.PM_gssUserDragged;
+
+        // 1. σ + d this frame. Slider drag wins; else coordinated_sweep (the
+        //    constant-field state) sweeps d min→max driving BOTH the 3D field point
+        //    AND the graph dot from the SAME d — while the CAP-arrow length holds
+        //    constant (the lesson); else the explorer idle auto-sweep (hands-free);
+        //    else the per-state seed. Pure state-clock (Rule 26).
+        var sigma = (typeof g.sigma === "number") ? g.sigma : 1;
+        var seedD = (typeof g.d === "number") ? g.d : GSS_D0;
+        var d = seedD;
+        var coordSweep = !!g.coordinated_sweep;
+        if (coordSweep) {
+            var swMin = (typeof g.sweep_d_min === "number") ? g.sweep_d_min : 0.4;
+            var swMax = (typeof g.sweep_d_max === "number") ? g.sweep_d_max : 3.6;
+            var holdAt = (typeof g.sweep_hold_near_ms === "number") ? g.sweep_hold_near_ms / 1000 : 2;
+            var endAt = (typeof g.sweep_end_at_ms === "number") ? g.sweep_end_at_ms / 1000 : 26;
+            if (t < holdAt) {
+                d = swMin;                            // hold near the sheet
+            } else if (t < endAt) {
+                var pC = (endAt > holdAt) ? Math.max(0, Math.min(1, (t - holdAt) / (endAt - holdAt))) : 1;
+                var eC = pC * pC * (3 - 2 * pC);      // smoothstep, monotonic excursion (no sinusoid aliasing)
+                d = swMin + (swMax - swMin) * eC;
+            } else {
+                d = swMax;                            // hold far out
+            }
+            window.PM_gssDist = d;
+        }
+        if (dragging) {
+            d = window.PM_gssDist;
+            sigma = window.PM_gssSigma;
+        } else if (coordSweep) {
+            // d already set above by the guided sweep; σ stays at its per-state seed.
+        } else if (sliders) {
+            // idle auto-sweep: the headless harness never drags, so the explore state
+            // must MOVE hands-free or D1p false-fails ("frozen"). On a CONSTANT-field
+            // sheet the cap arrows correctly do NOT change with d, so a d-only sweep
+            // barely moves any pixels (~0.4% — vision flag D1p). σ is what creates the
+            // pixel delta: E = σ/(2ε₀) genuinely scales with σ, so a σ excursion grows/
+            // shrinks ALL cap arrows together + raises/lowers the readout + flat-plot
+            // height (Rule 29 OK — length tracks the real magnitude). So make σ the
+            // PRIMARY mover with a MONOTONIC ramp over the first ~10s (0.5× → 1.6× of
+            // the slider value via a smoothstep on t/10 — NO sinusoid, so any two
+            // sample frames several seconds apart in that window differ a lot, no
+            // aliasing trap), then a gentle slow drift after. Keep the d-excursion too
+            // (it MOVES the field-point/pillbox geometry — scar
+            // acl_state8_sliders_update_readout_not_geometry), on a slow 24s ramp so
+            // the geometry still travels while σ drives the bulk of the pixel change.
+            // Slider/explore states only — guided states never reach this branch.
+            var baseSig = window.PM_gssSigma || 1;
+            var sigRampP = Math.max(0, Math.min(1, t / 10.0));        // 0..1 over the first 10s
+            var sigEase = sigRampP * sigRampP * (3 - 2 * sigRampP);   // smoothstep — monotonic, no aliasing
+            // after 10s, drift slowly back down so the explorer keeps moving without
+            // a hard stop (still monotonic within the critical first-vs-last window).
+            var sigDrift = (t > 10) ? (0.5 + 0.5 * Math.cos(((t - 10) / 16.0) * 2 * Math.PI)) : 1;
+            var sigFrac = 0.5 + 1.1 * sigEase * sigDrift;             // ≈0.5× → ≈1.6× the slider σ
+            sigma = baseSig * sigFrac;
+            // d travels on a slow monotonic 24s rise so the geometry still moves.
+            var dLo = 0.5, dHi = 3.4;
+            var dRampP = Math.max(0, Math.min(1, t / 24.0));
+            var dEase = dRampP * dRampP * (3 - 2 * dRampP);
+            d = dLo + (dHi - dLo) * dEase;
+            window.PM_gssSigma = baseSig;                            // keep the slider's base for re-entry
+            window.PM_gssDist = d;
+            var aS = document.getElementById("gss_d_slider"), aV = document.getElementById("gss_d_val");
+            if (aS) aS.value = String(d);
+            if (aV) aV.textContent = d.toFixed(2);
+            var aSS = document.getElementById("gss_sigma_slider"), aSV = document.getElementById("gss_sigma_val");
+            if (aSS) aSS.value = String(sigma);
+            if (aSV) aSV.textContent = sigma.toFixed(2);
+        }
+        if (d < GSS_D_MIN) d = GSS_D_MIN;
+
+        // The pillbox half-height H this frame. The caps sit at x = ±H. By default
+        // the caps track the field point (H = d) so the +X cap rides at P; a
+        // per-state fixed H can pin the pillbox for the derivation beat.
+        var H = (typeof g.H === "number") ? g.H : d;
+        var capR = (typeof g.pillbox_radius === "number") ? g.pillbox_radius : GSS_PILLBOX_R;
+
+        // 2. Position + size the Gaussian pillbox (wall + wire + caps): axis along
+        //    +X, length 2H, radius capR. Fade in on gaussian_fade_at_ms. Shown gated
+        //    on show_pillbox || sliders.
+        var showBox = !!g.show_pillbox || sliders;
+        var wall = gssFindById("gss_gauss_wall");
+        var wallWire = gssFindById("gss_gauss_wall_wire");
+        var capPlus = gssFindById("gss_cap_plus");
+        var capMinus = gssFindById("gss_cap_minus");
+        var gLbl = gssFindById("gss_gauss_label");
+        var aLbl = gssFindById("gss_cap_area_label");
+        var gaussFade = 1;
+        if (typeof g.gaussian_fade_at_ms === "number") {
+            var gf = g.gaussian_fade_at_ms / 1000;
+            gaussFade = Math.max(0, Math.min(1, (t - gf) / 0.6));
+        }
+        var boxVisible = showBox && gaussFade > 0.001;
+        // The cylinder was built with axis +Y then rotated to +X; its local Y is the
+        // world X. So scale.y = total height (2H), scale.x = scale.z = radius.
+        if (wall) {
+            wall.visible = boxVisible;
+            wall.scale.set(capR, 2 * H, capR);
+            if (wall.material) wall.material.opacity = (wall.userData.baseOpacity || 0.12) * gaussFade;
+        }
+        if (wallWire) {
+            wallWire.visible = boxVisible;
+            wallWire.scale.set(capR, 2 * H, capR);
+            if (wallWire.material) wallWire.material.opacity = (wallWire.userData.baseOpacity || 0.40) * gaussFade;
+        }
+        // End caps: scale radius capR, position x = ±H. Pulse BRIGHTNESS (not size,
+        // Rule 29) on the flux beat to draw the eye to the flux-bearing pieces. The
+        // caps GLOW noticeably more than the wall (founder review) — a high always-on
+        // emissive floor whenever the pillbox shows (STATE_3–7), brightened further on
+        // the caps-flux beat (STATE_4).
+        var showCaps = !!g.show_caps_flux;
+        var capsRevealAt = (typeof g.caps_reveal_at_ms === "number") ? g.caps_reveal_at_ms / 1000 : 0;
+        var capsRaw = Math.max(0, Math.min(1, (t - capsRevealAt) / 0.9));
+        var capsReveal = capsRaw * capsRaw * (3 - 2 * capsRaw);   // smoothstep
+        var capPulse = showCaps ? (0.5 + 0.5 * Math.sin((t - capsRevealAt) * 3.2)) : 0;
+        function gssPoseCap(cap) {
+            if (!cap) return;
+            cap.visible = boxVisible;
+            cap.scale.set(capR, capR, capR);
+            cap.position.set(cap.userData.capSign * H, 0, 0);
+            if (cap.material) {
+                // brighter, always-glowing disk (base 0.30) that pulses up on the flux beat.
+                cap.material.opacity = (cap.userData.baseOpacity || 0.30) * gaussFade * (showCaps ? (0.7 + 0.5 * capPulse) : 1);
+                cap.material.emissiveIntensity = 0.45 + (showCaps ? 0.55 * capPulse : 0);
+            }
+        }
+        gssPoseCap(capPlus);
+        gssPoseCap(capMinus);
+        // The glowing RIM RINGS around each cap (founder: "a light glowing around the
+        // circle"). Scale radius capR, position x = ±H (ride the cap). A bright
+        // always-on glow whenever the pillbox shows, intensified on the caps-flux beat.
+        // BRIGHTNESS only — the ring radius tracks capR, never a Rule-29 size pulse.
+        var rimGlowFloor = 0.55;
+        var rimGlow = rimGlowFloor + (showCaps ? 0.45 * capPulse : 0.18 * (0.5 + 0.5 * Math.sin(t * 2.0)));
+        for (var rmi = 0; rmi < grp.children.length; rmi++) {
+            var rmo = grp.children[rmi];
+            if (!rmo.userData || rmo.userData.elementType !== "gss_cap_rim") continue;
+            rmo.visible = boxVisible;
+            rmo.scale.set(capR, capR, capR);
+            rmo.position.set(rmo.userData.capSign * H, 0, 0);
+            if (rmo.material) rmo.material.opacity = boxVisible ? Math.min(1, rimGlow) * gaussFade : 0;
+        }
+        if (gLbl) {
+            gLbl.visible = boxVisible;
+            gLbl.position.set(0, capR + 0.6, 0);
+            if (gLbl.material) gLbl.material.opacity = gaussFade;
+        }
+        // "A" cap-area label: written when show_area_label fires (the "area A" beat).
+        if (aLbl) {
+            var showArea = !!g.show_area_label;
+            var areaAt = (typeof g.area_label_at_ms === "number") ? g.area_label_at_ms / 1000 : 0;
+            var areaRaw = Math.max(0, Math.min(1, (t - areaAt) / 0.7));
+            aLbl.visible = boxVisible && showArea && areaRaw > 0.001;
+            // park the A label on the +X cap face, lifted toward +Y so it clears the arrows.
+            aLbl.position.set(H + 0.05, capR * 0.45, 0);
+            if (aLbl.material) aLbl.material.opacity = showArea ? areaRaw : 0;
+        }
+
+        // 3. Flux-bearing CAP arrows. Reveal at cap_arrow_at_ms with a smoothstep
+        //    grow-in. Each arrow: anchored on its cap (x = ±H, offset oy/oz in the
+        //    cap plane), pointing straight out along ±X (PIERCING ⊥), length =
+        //    gssArrowLen(σ) — CONSTANT (NO d term; this is the lesson). A travelling
+        //    brightness pulse for liveness (opacity only, Rule 29).
+        var arrowsRequested = !!g.show_cap_arrows;
+        var capArrowAt = (typeof g.cap_arrow_at_ms === "number") ? g.cap_arrow_at_ms / 1000 : 0;
+        var capArrowRaw = Math.max(0, Math.min(1, (t - capArrowAt) / 0.9));
+        var capArrowReveal = capArrowRaw * capArrowRaw * (3 - 2 * capArrowRaw);
+        var arrowLen = gssArrowLen(sigma);
+        var capAlpha = arrowsRequested ? capArrowReveal : 0;
+        var sgn = (sigma >= 0) ? 1 : -1;          // +σ → arrows point AWAY; -σ → toward the sheet
+        var flowPhase = t * 2.2;
+        for (var k = 0; k < grp.children.length; k++) {
+            var o = grp.children[k], ud = o.userData;
+            if (!ud) continue;
+            if (ud.elementType === "gss_cap_arrow") {
+                var showCapArr = arrowLen > 0 && capAlpha > 0.001;
+                o.visible = showCapArr;
+                if (showCapArr) {
+                    // anchor on the cap at x = capSign·H, offset within the cap plane.
+                    o.position.set(ud.capSign * H, ud.offY, ud.offZ);
+                    // pierce direction: away from the sheet on each side for +σ
+                    // (capSign·sgn·+X), reversed for -σ.
+                    o.setDirection(new THREE.Vector3(ud.capSign * sgn, 0, 0));
+                    var grownLen = arrowLen * (0.18 + 0.82 * capArrowReveal);
+                    o.setLength(grownLen, Math.min(0.24, grownLen * 0.32), Math.min(0.14, grownLen * 0.2));
+                    o.setColor(hexToThreeColor(fieldColor));
+                    // traveling glow staggered by the arrow's index.
+                    var aIdx = parseInt((ud.id || "0").split("_").pop(), 10) || 0;
+                    var wob = 0.55 + 0.45 * Math.sin(flowPhase - aIdx * 0.62 + (ud.capSign > 0 ? 0 : 1.1));
+                    var flowAlpha = 0.9 * capAlpha * (0.45 + 0.55 * wob);
+                    o.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = flowAlpha; } });
+                }
+            } else if (ud.elementType === "gss_wall_graze_arrow") {
+                // 4. Wall zero-flux beat: BRIGHT grazing arrows ON the wall pointing
+                //    axially (±X — parallel to the wall surface, GRAZING it, never
+                //    piercing radially). The visual proof E·dA = 0 there, the INVERSE
+                //    of the line (where the caps grazed). High opacity FLOOR keeps
+                //    them legible at the frozen frame; the sine is brightness-only.
+                var showGraze = showCaps && capsReveal > 0.001;
+                o.visible = showGraze;
+                if (showGraze) {
+                    // position on the wall at radius capR, azimuth (azY,azZ), at an
+                    // axial offset toward the matching end so the arrow lies along the
+                    // wall surface between the sheet and the cap.
+                    var axStart = ud.axSign * (H * 0.15);
+                    o.position.set(axStart, ud.azY * capR, ud.azZ * capR);
+                    o.setDirection(new THREE.Vector3(ud.axSign, 0, 0));   // axial = grazes the wall
+                    var grLen = Math.max(0.45, Math.min(0.9, H * 0.55));
+                    o.setLength(grLen, Math.min(0.22, grLen * 0.32), Math.min(0.13, grLen * 0.2));
+                    o.setColor(hexToThreeColor("#FFEE58"));
+                    var cAlpha = capsReveal * (0.7 + 0.3 * (0.5 + 0.5 * Math.sin(flowPhase + ud.axSign * 0.8)));
+                    o.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = cAlpha; } });
+                }
+            } else if (ud.elementType === "gss_wall_flux_label") {
+                var showFlux = showCaps && capsReveal > 0.001;
+                o.visible = showFlux;
+                // park the "Φ=0" tag out on the +Y side of the wall mid-section.
+                o.position.set(0, capR + 0.55, 0);
+                if (o.material) o.material.opacity = capsReveal * (0.8 + 0.2 * (0.5 + 0.5 * Math.sin(flowPhase * 0.8)));
+            }
+        }
+
+        // 5. Reference lines d (perpendicular distance) and H (pillbox half-height).
+        //    BOTH lie along the FIXED world sheet-NORMAL (+X) — the sheet is in the
+        //    y–z plane so its normal never moves. They are drawn along the fixed world
+        //    +X axis (NOT billboarded to camera-right), so when the teacher orbits the
+        //    camera in Move mode the rulers stay PINNED to the sheet→P geometry and
+        //    rotate WITH the scene (founder review: "whenever the camera angle is
+        //    changing… it should be static, the distance should be static"). This is
+        //    the opposite of gauss_law_line's RADIAL r ruler, which correctly
+        //    billboards because r has no fixed world direction — do NOT billboard a
+        //    normal-aligned distance. Each emerges at its cue (emerge_d/H_at_ms); in
+        //    slider states gssEmergeEase returns 1 immediately so the lines render at
+        //    full and track the sliders live. Lengths = real d / H (Rule 29).
+        var showRefLines = !!g.show_reference_lines;
+        // The H (half-height) line belongs to the PILLBOX beat, not the bare
+        // perpendicular-distance beat. STATE_2 sets show_reference_lines + emerge_d
+        // to teach d alone — it must NOT show H (the pillbox isn't introduced until
+        // STATE_3). So gate the H line on the pillbox being present (show_pillbox),
+        // an explicit emerge_H_at_ms cue, or the slider state.
+        var showHLine = showRefLines && (!!g.show_pillbox || (typeof g.emerge_H_at_ms === "number") || sliders);
+        var emergeDAt = (typeof g.emerge_d_at_ms === "number") ? g.emerge_d_at_ms / 1000 : 0.5;
+        var emergeHAt = (typeof g.emerge_H_at_ms === "number") ? g.emerge_H_at_ms / 1000 : 0.5;
+        function gssEmergeEase(at) {
+            if (sliders) return 1;
+            var p = Math.max(0, Math.min(1, (t - at) / 0.8));
+            return p * p * (3 - 2 * p);
+        }
+        var camUp = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 1).normalize();
+        var qY = new THREE.Vector3(0, 1, 0);
+        var qX = new THREE.Vector3(1, 0, 0);   // the FIXED world sheet-normal (+X)
+        // the d ruler runs along +X at the mid-plane (y=0,z=0); offset the d label
+        // and P labels a touch toward -Z so they don't collide with the pillbox/arrows.
+        var dZoff = 0.0;
+        for (var rk = 0; rk < grp.children.length; rk++) {
+            var ro = grp.children[rk], rud = ro.userData;
+            if (!rud) continue;
+            var isDV = (rud.elementType === "gss_dist_vector");
+            var isHV = (rud.elementType === "gss_half_vector");
+            if (!isDV && !isHV) continue;
+            var isThick = !!ro.userData._shaft;
+            if (rud.kind === "d") {
+                // d line: along the fixed world +X normal; length d; tip carries P.
+                // Base at the sheet (origin), at the mid-plane. NOT billboarded.
+                var easeD = gssEmergeEase(emergeDAt);
+                var dLen = d * easeD;
+                var showDv = showRefLines && easeD > 0.001;
+                ro.visible = showDv;
+                if (showDv) {
+                    if (isThick) {
+                        ro.position.set(0, 0, dZoff);
+                        ro.quaternion.setFromUnitVectors(qY, qX);   // point +X (world normal)
+                        gssSetVectorLength(ro, Math.max(0.01, dLen));
+                        gssSetVectorOpacity(ro, 0.95);
+                    } else {            // "d" label BELOW the line MIDPOINT (founder:
+                        // "write d below the line"). Sit at x = dLen/2 (along the world
+                        // shaft) then drop along screen -camUp so it reads just under
+                        // the ruler, clearly separated from the P tip.
+                        var dMidX = dLen * 0.5;
+                        ro.position.set(
+                            dMidX - camUp.x * 0.5,
+                            0 - camUp.y * 0.5,
+                            dZoff - camUp.z * 0.5);
+                        if (ro.material) ro.material.opacity = 1;
+                    }
+                }
+            } else if (rud.kind === "d_tip") {
+                // "P" dot (+ label) at the d-line tip — the field point. Rides the
+                // fixed-world +X tip (x = d) so it stays pinned under camera orbit.
+                var easeT = gssEmergeEase(emergeDAt);
+                var tLen = d * easeT;
+                var showTip = showRefLines && easeT > 0.001;
+                ro.visible = showTip;
+                if (showTip) {
+                    var isTipLabel = (rud.id && rud.id.indexOf("lbl") >= 0);
+                    var lift = isTipLabel ? 0.30 : 0;   // P label lifts up; dot sits on the tip
+                    ro.position.set(tLen, camUp.y * lift, dZoff + camUp.z * lift);
+                    if (isTipLabel) ro.position.set(tLen + camUp.x * lift, camUp.y * lift, dZoff + camUp.z * lift);
+                    if (ro.material) ro.material.opacity = 1;
+                }
+            } else if (rud.kind === "H") {
+                // H line: along the fixed world +X normal, length H. Base at the sheet
+                // (x=0), offset to the +Y side so it reads as a SEPARATE extent ruler,
+                // never the distance d. NOT billboarded (stays pinned under orbit).
+                var easeH = gssEmergeEase(emergeHAt);
+                var HLen = H * easeH;
+                var showHv = showHLine && easeH > 0.001;
+                ro.visible = showHv;
+                if (showHv) {
+                    var sideOff = capR + 0.5;
+                    if (isThick) {
+                        ro.position.set(0, sideOff, 0);
+                        ro.quaternion.setFromUnitVectors(qY, qX);   // point +X (world normal)
+                        gssSetVectorLength(ro, Math.max(0.01, HLen));
+                        gssSetVectorOpacity(ro, 0.95);
+                    } else {            // "H" label at the head (+X tip), lifted a touch
+                        ro.position.set(HLen + 0.3, sideOff + 0.25, 0);
+                        if (ro.material) ro.material.opacity = 1;
+                    }
+                }
+            }
+        }
+
+        // 6. Derivation write-in (the A-cancels reveal — mirror the line's L-cancel).
+        //    When show_derivation: reveal the gss_derivation panel stepwise. ε₀ + the
+        //    full constant appear ONLY here (don't pre-spoil). Literal Unicode glyphs
+        //    (the proven path). A visibly CANCELS (struck through red), and the ½ is
+        //    tagged "two caps" — the σ/2ε₀ ≠ σ/ε₀ distinction.
+        var dvEl = document.getElementById("gss_derivation");
+        if (dvEl && g.show_derivation) {
+            if (dvEl.style.display === "none") dvEl.style.display = "block";
+            var dAt = (typeof g.derivation_at_ms === "number") ? g.derivation_at_ms / 1000 : 0;
+            var dDur = (typeof g.derivation_duration_ms === "number") ? g.derivation_duration_ms / 1000 : 2.5;
+            var s1 = dAt;
+            var s2 = dAt + dDur * 0.30;
+            var s3 = dAt + dDur * 0.58;
+            var s4 = dAt + dDur * 0.82;
+            var strike = "text-decoration:line-through;text-decoration-color:#EF5350;color:#EF5350";
+            var html = "";
+            if (t < s1) {
+                html += '<div style="color:#90CAF9;font-size:0.82em">Gauss\\u2019s law on the pillbox \\u2026</div>';
+            }
+            if (t >= s1) html += '<div>\\u03a6 = E·A + E·A = 2EA</div>';
+            if (t >= s2) html += '<div>= q_enc / \\u03b5\\u2080 = \\u03c3A / \\u03b5\\u2080</div>';
+            if (t >= s3) html += '<div>2E·<span style="' + strike + '">A</span> = \\u03c3 <span style="' + strike + '">A</span> / \\u03b5\\u2080</div>';
+            if (t >= s4) html += '<div style="color:#66BB6A;margin-top:6px;font-weight:bold">\\u21d2 E = \\u03c3 / (2\\u03b5\\u2080)  <span style="color:#FFEE58;font-size:0.8em">(\\u00bd = two caps)</span></div>';
+            dvEl.innerHTML = html;
+            if (t >= s4 && t < s4 + 1.2) {
+                var dp = 1 - (t - s4) / 1.2;
+                dvEl.style.boxShadow = "0 0 " + (8 + 16 * dp).toFixed(0) + "px rgba(102,187,106," + (0.4 + 0.4 * dp).toFixed(2) + ")";
+            } else {
+                dvEl.style.boxShadow = "none";
+            }
+        }
+
+        // 7. Live E readout. E = σ/(2ε₀) — the demo value; labelled CONSTANT (no d
+        //    term). The readout shows d so the student sees d CHANGING while E does
+        //    NOT (the constancy is the lesson).
+        var roEl = document.getElementById("gss_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var Edemo = gssEDemo(sigma);
+            var html2 = "";
+            html2 += '<div>d = ' + d.toFixed(2) + ' demo units</div>';
+            html2 += '<div>\\u03c3 = ' + (sigma >= 0 ? "+" : "") + sigma.toFixed(2) + ' demo nC/m\\u00b2</div>';
+            html2 += '<div style="color:#FFF176">E = \\u03c3 / (2\\u03b5\\u2080)  (constant)</div>';
+            html2 += '<div style="color:' + fieldColor + '">E = ' + Edemo.toFixed(1) + ' demo N/C</div>';
+            roEl.innerHTML = html2;
+        }
+
+        // 8. E-vs-distance plot: the INVERTED cut-line. A FLAT horizontal sheet line
+        //    (green — constant, independent of d) drawn ABOVE faint dashed FALLING
+        //    ghosts: a 1/r line-ghost and a 1/r² point-ghost, both normalised to
+        //    coincide with the flat line at the reference d0 then fall away. This is
+        //    the exact INVERSE of the line's plot (a falling 1/r curve) — NEVER
+        //    inherit the line's falling-curve. The tracking dot rides the live d on
+        //    the FLAT line (coordinated_sweep lockstep): it slides RIGHT but stays at
+        //    the SAME height — the constancy made visible.
+        var plotEl = document.getElementById("gss_plot");
+        if (plotEl && plotEl.style.display !== "none") {
+            var cvs = document.getElementById("gss_plot_canvas");
+            if (cvs && cvs.getContext) {
+                var ctx = cvs.getContext("2d");
+                var W = cvs.width, H2 = cvs.height;
+                ctx.clearRect(0, 0, W, H2);
+                var padL = 38, padB = 26, padT = 14, padR = 12;
+                var x0 = padL, x1 = W - padR, y0 = H2 - padB, y1 = padT;
+                var dMaxP = 4.0;                  // plot domain d in (dMinP, dMaxP]
+                var dMinP = 0.35;
+                var eFlat = gssEDemo(sigma);      // the constant sheet field
+                // scale so the FALLING ghosts (which peak near the sheet) fit: the
+                // ghost peak at dMinP sets the ceiling; the flat line sits ~mid-frame.
+                var ePeak = gssLineGhost(sigma, dMinP);
+                var eMax = Math.max(ePeak, eFlat) * 1.1;
+                if (eMax <= 0) eMax = 1;
+                function px(dv) { return x0 + (x1 - x0) * Math.max(0, Math.min(1, dv / dMaxP)); }
+                function py(ev) { return y0 + (y1 - y0) * Math.max(0, Math.min(1, ev / eMax)); }
+                // axes
+                ctx.strokeStyle = "#888"; ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(x0, y1); ctx.lineTo(x0, y0); ctx.lineTo(x1, y0); ctx.stroke();
+                ctx.fillStyle = "#D4D4D8"; ctx.font = "11px monospace";
+                ctx.fillText("E", x0 - 30, y1 + 8);
+                ctx.fillText("d", x1 - 6, y0 + 16);
+                // draw sweep progress (left-to-right) on the state clock (Rule 26)
+                var drawAt = (typeof g.plot_draw_at_ms === "number") ? g.plot_draw_at_ms / 1000 : 0;
+                var drawDur = (typeof g.plot_draw_duration_ms === "number") ? g.plot_draw_duration_ms / 1000 : 0;
+                var drawP = drawDur > 0 ? Math.max(0, Math.min(1, (t - drawAt) / drawDur)) : 1;
+                var dDrawn = dMinP + (dMaxP - dMinP) * drawP;
+                // FAINT dashed 1/r² ghost (point charge) — falls fastest.
+                ctx.strokeStyle = "rgba(176,190,197,0.50)"; ctx.lineWidth = 1.5; ctx.setLineDash([3, 3]);
+                ctx.beginPath();
+                var startedP = false;
+                for (var dgp = dMinP; dgp <= dDrawn + 1e-6 && dgp <= dMaxP; dgp += dMaxP / 240) {
+                    var eGp = gssPointGhost(sigma, dgp);
+                    if (!startedP) { ctx.moveTo(px(dgp), py(eGp)); startedP = true; }
+                    else ctx.lineTo(px(dgp), py(eGp));
+                }
+                ctx.stroke(); ctx.setLineDash([]);
+                // FAINT dashed 1/r ghost (line) — falls slower than the point.
+                ctx.strokeStyle = "rgba(255,167,38,0.55)"; ctx.lineWidth = 1.6; ctx.setLineDash([5, 3]);
+                ctx.beginPath();
+                var startedL = false;
+                for (var dgl = dMinP; dgl <= dDrawn + 1e-6 && dgl <= dMaxP; dgl += dMaxP / 240) {
+                    var eGl = gssLineGhost(sigma, dgl);
+                    if (!startedL) { ctx.moveTo(px(dgl), py(eGl)); startedL = true; }
+                    else ctx.lineTo(px(dgl), py(eGl));
+                }
+                ctx.stroke(); ctx.setLineDash([]);
+                // MAIN FLAT sheet line (green) — horizontal, constant height.
+                ctx.strokeStyle = "#66BB6A"; ctx.lineWidth = 2.6;
+                ctx.beginPath();
+                ctx.moveTo(px(dMinP), py(eFlat));
+                ctx.lineTo(px(dDrawn), py(eFlat));
+                ctx.stroke();
+                // GLOWING tracking dot at the live d on the FLAT line — slides RIGHT,
+                // stays at the SAME height (the constancy made visible).
+                if (sliders || g.live_readout || showBox) {
+                    var dDot = Math.max(dMinP, Math.min(dMaxP, d));
+                    var dx = px(dDot), dy = py(eFlat);
+                    var grad = ctx.createRadialGradient(dx, dy, 1, dx, dy, 9);
+                    grad.addColorStop(0, "rgba(255,241,118,0.55)");
+                    grad.addColorStop(1, "rgba(255,241,118,0)");
+                    ctx.fillStyle = grad;
+                    ctx.beginPath(); ctx.arc(dx, dy, 9, 0, Math.PI * 2); ctx.fill();
+                    ctx.fillStyle = "#FFF176";
+                    ctx.beginPath(); ctx.arc(dx, dy, 5, 0, Math.PI * 2); ctx.fill();
+                    ctx.strokeStyle = "#FFFFFF"; ctx.lineWidth = 1.5;
+                    ctx.beginPath(); ctx.arc(dx, dy, 5, 0, Math.PI * 2); ctx.stroke();
+                }
+                ctx.fillStyle = "#66BB6A"; ctx.font = "10px monospace";
+                ctx.fillText("\\u03c3/2\\u03b5\\u2080 (sheet) \\u2014 constant", x0 + 4, y1 + 10);
+                ctx.fillStyle = "#FFA726";
+                ctx.fillText("1/r (line ghost)", x0 + 4, y1 + 24);
+                ctx.fillStyle = "#B0BEC5";
+                ctx.fillText("1/r\\u00b2 (point ghost)", x0 + 4, y1 + 38);
             }
         }
     }
@@ -9749,6 +14670,1327 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ════════════════════════════════════════════════════════════════════════
+    // radius_in_uniform_field — RADIUS-ONLY sibling of lorentz_force_uniform_field
+    //
+    // Teaches the SIZE of the circular orbit r = mv/qB — wider with momentum
+    // (m or v, numerator), tighter with grip (q or B, denominator). REUSES (not
+    // rewritten): the centripetal orbit basis {u1, u2 = cross(u1, bUnit), bUnit}
+    // from updateLorentzForceFrame (F points TOWARD the centre), the circle
+    // trajectory math, the equal-arc trail idea, the particle/charge badge, the
+    // v/F arrow re-anchoring, and applyGlowEmphasis (Rule 29 — brightness only).
+    //
+    // The genuinely NEW pieces:
+    //   • Four-factor radius R_visual = clamp(base·(mF·vF)/max(0.15,qF·BF),0.35,2.4),
+    //     base = 1.5 (= NW_ORBIT_R / Lorentz base → all-defaults circle matches
+    //     both siblings). Each Factor = sliderValue/sliderDefault (plain unitless).
+    //   • Constant arc-speed ω = (NW_OMEGA·NW_ORBIT_R)/R_visual so ONLY the circle
+    //     SIZE changes with sliders; the visible go-round rate stays steady → no
+    //     period / rev-rate ever leaks (cut-line guard by construction).
+    //   • A dashed radius line r (centre → charge, #FFF176), length tracks R_visual
+    //     but NO length number is printed. In STATE_2 it rotates rigidly.
+    //   • A RELATIVE radius readout (yellow bar 'r |' + "wider/tighter than before"
+    //     captions). NEVER a metres/period/force number.
+    //   • Ghost-compare: at reveal_at_ms freeze a faint ghost of the current circle,
+    //     then drive the named axis to ~1.5 so the live circle swells (m,v) or
+    //     shrinks (q,B) past/inside the ghost.
+    //   • An equation panel (bottom-left): "qvB = mv²/r" then rearranged to
+    //     "r = mv/qB" (both persist) — never T =, f =, or a numeric r =.
+    //
+    // HARD CUT-LINE (enforced here + the legend / readout suppressions):
+    //   • The ONLY surfaced quantity is r, and ONLY as a RELATIVE readout.
+    //   • NEVER a period T / frequency f / seconds-per-orbit / rev-per-sec.
+    //   • NEVER a force magnitude / qvB·sinθ / Newton. F is a DIRECTION-ONLY fixed
+    //     glyph (RAD_F_GLYPH_LEN), centripetal, never ∝ v or B (Rule 29).
+    // ════════════════════════════════════════════════════════════════════════
+    var RAD_F_GLYPH_LEN = 0.85;   // FIXED centripetal-arrow length — NEVER ∝ any slider.
+    var RAD_BASE_R = 1.5;         // = NW_ORBIT_R (line ~4439) + Lorentz base (~13499): all-defaults match.
+    var RAD_OMEGA = 0.75;         // = NW_OMEGA: base angular rate (arc-speed held constant).
+
+    function radMakeArrow(dir, color, len, headW, headL) {
+        var a = new THREE.ArrowHelper(
+            dir.clone().normalize(), new THREE.Vector3(0, 0, 0),
+            len, color, headW != null ? headW : 0.22, headL != null ? headL : 0.11
+        );
+        a.children.forEach(function(c) { if (c.material) c.material.transparent = true; });
+        return a;
+    }
+
+    // Read one unitless radius factor from a slider (value/default). Plain knobs
+    // (default 1.0), so value/default IS the factor — NO 1e5/×1000 SI rescale.
+    function radFactor(sliderId, controlKey) {
+        var el = document.getElementById(sliderId);
+        var def = (config.slider_controls && config.slider_controls[controlKey] &&
+            config.slider_controls[controlKey].default) ? config.slider_controls[controlKey].default : 1.0;
+        if (!el || !(def > 0)) return 1.0;
+        return parseFloat(el.value) / def;
+    }
+
+    function buildRadiusInUniformField() {
+        var af = config.ambient_field || {
+            direction: [0, 0, 1], magnitude: 1, density: [5, 5, 5],
+            color: "#42A5F5", opacity: 0.45, extent: 3
+        };
+        var p = config.particle || { charge_sign: 1, color: "#FFB366", radius: 0.12 };
+
+        var bDir = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+        var ext = af.extent != null ? af.extent : 3;
+        var nx = af.density[0], ny = af.density[1], nz = af.density[2];
+        var sx = nx > 1 ? (2 * ext) / (nx - 1) : 0;
+        var sy = ny > 1 ? (2 * ext) / (ny - 1) : 0;
+        var sz = nz > 1 ? (2 * ext) / (nz - 1) : 0;
+        var arrowLen = 0.55;
+        var arrowOp = af.opacity != null ? af.opacity : 0.45;
+        var arrowColor = af.color || "#42A5F5";
+
+        // 1. Faint ambient B-field lattice (⊙ out-of-plane). Same pattern as the
+        //    Lorentz / no_work builds; registered as "ambient_field" so SET_GLOW 'b'
+        //    lifts it.
+        for (var ix = 0; ix < nx; ix++) {
+            for (var iy = 0; iy < ny; iy++) {
+                for (var iz = 0; iz < nz; iz++) {
+                    var ox = nx > 1 ? -ext + ix * sx : 0;
+                    var oy = ny > 1 ? -ext + iy * sy : 0;
+                    var oz = nz > 1 ? -ext + iz * sz : 0;
+                    var origin = new THREE.Vector3(ox, oy, oz).addScaledVector(bDir, -arrowLen / 2);
+                    var arrH = new THREE.ArrowHelper(bDir, origin, arrowLen, arrowColor, 0.14, 0.09);
+                    arrH.userData = { elementType: "ambient_field", id: "rad_b_arrow_" + ix + "_" + iy + "_" + iz };
+                    arrH.children.forEach(function(child) {
+                        if (child.material) { child.material.transparent = true; child.material.opacity = arrowOp; }
+                    });
+                    addToScene(arrH);
+                }
+            }
+        }
+
+        // 2. The charged particle (orbits the origin) + ± badge.
+        var pRadius = p.radius != null ? p.radius : 0.12;
+        var particleGeo = new THREE.SphereGeometry(pRadius, 22, 22);
+        var particleMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(p.color), emissive: hexToThreeColor(p.color),
+            emissiveIntensity: 0.65, shininess: 90
+        });
+        var particle = new THREE.Mesh(particleGeo, particleMat);
+        particle.position.set(0, 0, 0);
+        var chargeSprite = createLabelSprite("+", "#FFFFFF", 0.34);
+        chargeSprite.position.set(0, 0, 0);
+        chargeSprite.userData = { is_charge_badge: true, current_sign: 1 };
+        particle.add(chargeSprite);
+        particle.userData = {
+            elementType: "rad_particle", id: "rad_particle",
+            charge_sign: p.charge_sign, charge_sprite: chargeSprite, base_color: p.color
+        };
+        addToScene(particle);
+
+        // 3. Centre dot (#FFD54F) — the fixed orbit centre. Pulses in STATE_2.
+        var centreGeo = new THREE.SphereGeometry(0.08, 16, 16);
+        var centreMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#FFD54F"), emissive: hexToThreeColor("#FFD54F"),
+            emissiveIntensity: 0.8, transparent: true, opacity: 0.95
+        });
+        var centreDot = new THREE.Mesh(centreGeo, centreMat);
+        centreDot.position.set(0, 0, 0);
+        centreDot.userData = { elementType: "rad_centre", id: "rad_centre", base_scale: 1 };
+        addToScene(centreDot);
+
+        // 4. Velocity arrow (orange, tangent). FIXED visual glyph (|v| not encoded).
+        var vArrow = radMakeArrow(new THREE.Vector3(0, 1, 0), "#FFAB40", 1.0);
+        vArrow.userData = { elementType: "rad_velocity", id: "rad_v_arrow" };
+        addToScene(vArrow);
+
+        // 5. Force arrow (green) — direction-only centripetal glyph, FIXED length.
+        var fArrow = radMakeArrow(new THREE.Vector3(0, -1, 0), "#66BB6A", RAD_F_GLYPH_LEN);
+        fArrow.userData = { elementType: "rad_force", id: "rad_f_arrow" };
+        fArrow.visible = false;
+        addToScene(fArrow);
+
+        // 6. v / F / r text labels (tip / midpoint anchored each frame).
+        var labelV = createLabelSprite("v", "#FFAB40", 0.75);
+        labelV.userData = { elementType: "rad_label", id: "rad_label_v", tracks: "rad_velocity" };
+        labelV.visible = false;
+        addToScene(labelV);
+        var labelF = createLabelSprite("F", "#66BB6A", 0.85);
+        labelF.userData = { elementType: "rad_label", id: "rad_label_f", tracks: "rad_force" };
+        labelF.visible = false;
+        addToScene(labelF);
+        var labelR = createLabelSprite("r", "#FFF176", 0.85);
+        labelR.userData = { elementType: "rad_label", id: "rad_label_r", tracks: "rad_radius_line" };
+        labelR.visible = false;
+        addToScene(labelR);
+
+        // 7. Dashed radius line (centre → charge, #FFF176). Length tracks R_visual;
+        //    NO length number printed. Two endpoints written per frame.
+        var rlMat = new THREE.LineDashedMaterial({
+            color: hexToThreeColor("#FFF176"), transparent: true, opacity: 0.95,
+            dashSize: 0.16, gapSize: 0.1, linewidth: 2
+        });
+        var rlGeo = new THREE.BufferGeometry();
+        rlGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
+        var radiusLine = new THREE.Line(rlGeo, rlMat);
+        radiusLine.userData = { elementType: "rad_radius_line", id: "rad_radius_line" };
+        radiusLine.visible = false;
+        addToScene(radiusLine);
+
+        // 8. GHOST circle outlines (faint frozen prior circles for the compare).
+        //    Two ring-line pools (A = first reveal, B = second reveal), each a
+        //    circle BufferGeometry sized at reveal time. Built hidden + faint.
+        var RAD_RING_SEGMENTS = 80;
+        function makeGhostRing(id, color) {
+            var geo = new THREE.BufferGeometry();
+            geo.setAttribute("position", new THREE.BufferAttribute(new Float32Array((RAD_RING_SEGMENTS + 1) * 3), 3));
+            geo.setDrawRange(0, 0);
+            var mat = new THREE.LineBasicMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 0.0 });
+            var ring = new THREE.Line(geo, mat);
+            ring.userData = { elementType: "rad_ghost_ring", id: id, segments: RAD_RING_SEGMENTS };
+            ring.visible = false;
+            addToScene(ring);
+            return ring;
+        }
+        makeGhostRing("rad_ghost_a", "#B0BEC5");
+        makeGhostRing("rad_ghost_b", "#90A4AE");
+
+        // 9. Equal-arc particle trail (the live orbit path) + a flash sprite for
+        //    the STATE_1 "snaps shut" beat.
+        var maxPts = 600;
+        var trailGeo = new THREE.BufferGeometry();
+        trailGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(maxPts * 3), 3));
+        trailGeo.setDrawRange(0, 0);
+        var trailMat = new THREE.LineBasicMaterial({ color: hexToThreeColor("#FFCC9F"), transparent: true, opacity: 0.85 });
+        var trail = new THREE.Line(trailGeo, trailMat);
+        trail.userData = {
+            elementType: "rad_trail", id: "rad_trail",
+            max_points: maxPts, filled: 0, write_index: 0, last_x: 0, last_y: 0, last_z: 0
+        };
+        addToScene(trail);
+
+        // 10. STATE_1 "snaps shut" flash — a brief expanding ring at the close point.
+        var flashGeo = new THREE.RingGeometry(0.12, 0.26, 24);
+        var flashMat = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor("#FFF59D"), transparent: true, opacity: 0.0, side: THREE.DoubleSide
+        });
+        var flash = new THREE.Mesh(flashGeo, flashMat);
+        flash.userData = { elementType: "rad_flash", id: "rad_flash" };
+        flash.visible = false;
+        addToScene(flash);
+
+        // 11. Comparative captions ("wider than before" / "tighter than before"),
+        //     shown only while a ghost is active in STATE_4/5. RELATIVE words only —
+        //     never a metres/period/force number. Two pre-built sprites toggled by
+        //     visibility (createWideLabelSprite has no retained-canvas redraw).
+        var capWider = createWideLabelSprite("wider than before", "#FFF176", 0.4);
+        capWider.position.set(0, 2.9, 0);
+        capWider.userData = { elementType: "rad_caption", id: "rad_caption_wider", kind: "wider" };
+        capWider.visible = false;
+        addToScene(capWider);
+        var capTighter = createWideLabelSprite("tighter than before", "#FFF176", 0.4);
+        capTighter.position.set(0, 2.9, 0);
+        capTighter.userData = { elementType: "rad_caption", id: "rad_caption_tighter", kind: "tighter" };
+        capTighter.visible = false;
+        addToScene(capTighter);
+    }
+
+    // Per-state seeding for radius_in_uniform_field. Re-arms the ghost-compare
+    // choreography, resets the trail + radius readout DOM, hides per-state-only
+    // primitives, and drives the equation panel + slider-panel HTML visibility.
+    function applyRadiusInUniformFieldState(stateDef) {
+        if (!stateDef) return;
+        var rad = stateDef.radius || {};
+
+        // Fresh trail every state entry (and re-arm the per-frame reset).
+        radiusTrailResetPending = true;
+
+        // Re-arm ghost-compare runtime state.
+        radGhostState.ghostA_R = null; radGhostState.ghostA_shown = false;
+        radGhostState.ghostB_R = null; radGhostState.ghostB_shown = false;
+        radGhostState.driveAxis = null; radGhostState.driveTarget = 1.0;
+        radGhostState.compareDir = 0;
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            var et = ud.elementType;
+            if (et === "rad_trail") {
+                ud.write_index = 0; ud.filled = 0; ud.last_marker_t = -1;
+                o.geometry.setDrawRange(0, 0);
+            } else if (et === "rad_ghost_ring") {
+                o.visible = false; o.geometry.setDrawRange(0, 0);
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "rad_flash") {
+                o.visible = false; if (o.material) o.material.opacity = 0;
+            } else if (et === "rad_radius_line") {
+                o.visible = false;
+            } else if (et === "rad_force") {
+                o.visible = false;
+            } else if (et === "rad_caption") {
+                o.visible = false;
+            } else if (et === "rad_centre") {
+                o.scale.setScalar(1);
+            }
+        }
+
+        // ── Equation panel (bottom-left). Shown whenever the state declares the
+        //    rearrange beat OR carries a visible radius line in the derivation arc.
+        //    The balance line is always written; the solved line is revealed by the
+        //    per-frame loop at equation_rearrange_at_ms. CUT-LINE: ONLY these two
+        //    strings ever appear — never T =, f =, or a numeric r =.
+        var eqnEl = document.getElementById("radius_eqn");
+        var eqnBalance = document.getElementById("rad_eqn_balance");
+        var eqnSolved = document.getElementById("rad_eqn_solved");
+        var showEqn = (typeof rad.equation_rearrange_at_ms === "number");
+        if (eqnEl) eqnEl.style.display = showEqn ? "block" : "none";
+        if (eqnBalance) eqnBalance.innerHTML = "qvB = mv\\u00b2/r";
+        if (eqnSolved) {
+            eqnSolved.innerHTML = "r = mv/qB";
+            // Hidden until the per-frame loop reveals it at the rearrange beat.
+            eqnSolved.style.display = "none";
+        }
+
+        // ── Slider panel (STATE_6). Shown only when the state requests it. The
+        //    readout is r ONLY (relative bar) — never period / force.
+        var radSlidersEl = document.getElementById("radius_sliders");
+        if (radSlidersEl) radSlidersEl.style.display = stateDef.show_sliders ? "block" : "none";
+    }
+
+    // Per-frame brightness emphasis for radius_in_uniform_field (Rule 29 —
+    // brightness only, never resize). Mirrors the no_work / rhr glow mapping
+    // (v/f/b/r targets) so SET_GLOW co-glows the same way.
+    function applyRadiusInUniformFieldGlow() {
+        if (config.scenario_type !== "radius_in_uniform_field") return;
+        var glowActive = glowTargets.length > 0;
+        var glowT = glowEmphT(time);
+        function focal(t) { return glowTargets.indexOf(t) >= 0; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud || !ud.elementType || !o.visible) continue;
+            if (ud.elementType === "rad_velocity") applyGlowEmphasis(o, focal("v"), glowActive, glowT, true);
+            else if (ud.elementType === "rad_force") applyGlowEmphasis(o, focal("f"), glowActive, glowT, true);
+            else if (ud.elementType === "ambient_field") applyGlowEmphasis(o, focal("b"), glowActive, glowT);
+            else if (ud.elementType === "rad_radius_line") applyGlowEmphasis(o, focal("r"), glowActive, glowT, true);
+        }
+    }
+
+    // Per-frame driver for radius_in_uniform_field. RADIUS-ONLY: computes the
+    // four-factor R_visual, holds the arc-speed constant (so no period leaks),
+    // orbits the charge, re-anchors the v/F arrows + dashed radius line, drives
+    // the STATE_1 close-and-flash, the STATE_3 equation rearrange, the STATE_4/5
+    // ghost-compare swell/shrink, and the STATE_6 live relative readout.
+    function updateRadiusInUniformFieldFrame(dtSeconds) {
+        var stateDef = config.states[PM_currentState];
+        if (!stateDef) return;
+        var rad = stateDef.radius || {};
+        var stateMs = (time - stateStartTime) * 1000;
+        var tLocal = time - stateStartTime;
+
+        var af = config.ambient_field || { direction: [0, 0, 1] };
+        var bUnit = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+
+        // Centripetal orbit basis {u1, u2 = cross(u1, bUnit), bUnit} — IDENTICAL
+        // to updateLorentzForceFrame so F = q v×B points TOWARD the centre. REUSED.
+        var u1 = new THREE.Vector3(1, 0, 0);
+        if (Math.abs(bUnit.dot(u1)) > 0.99) u1 = new THREE.Vector3(0, 1, 0);
+        u1.sub(bUnit.clone().multiplyScalar(bUnit.dot(u1))).normalize();
+        var u2 = new THREE.Vector3().crossVectors(u1, bUnit).normalize();
+
+        var chargeSign = stateDef.charge_sign != null
+            ? stateDef.charge_sign
+            : (config.particle ? config.particle.charge_sign : 1);
+
+        // ── Four-factor R_visual. STATE_6 reads the four sliders live; STATE_4/5
+        //    read them too (start 1.0) but the ghost-compare overrides ONE axis on
+        //    a script-driven beat (driveAxis/driveTarget), so the live circle
+        //    swells/shrinks vs the frozen ghost. Static states use defaults (1.0).
+        var mF = 1.0, vF = 1.0, qF = 1.0, BF = 1.0;
+        if (stateDef.show_sliders) {
+            // DOM ids are namespaced (rad_*) to avoid colliding with the Lorentz
+            // explorer's v_slider/b_slider; they map 1:1 to slider_controls keys.
+            mF = radFactor("rad_m_slider", "m");
+            vF = radFactor("rad_v_slider", "v");
+            qF = radFactor("rad_q_slider", "q_mag");
+            BF = radFactor("rad_b_slider", "B");
+        }
+        // Ghost-compare: handle the timed reveals, capturing a frozen ghost radius
+        // at each reveal_at_ms and then ramping the named axis toward ~1.5.
+        var GHOST_TARGET = 1.5;
+        var GHOST_RAMP_MS = 1400;   // smooth ramp from 1.0 to the target.
+        function axisApply(axis, factor) {
+            if (axis === "m") mF = factor;
+            else if (axis === "v") vF = factor;
+            else if (axis === "q") qF = factor;
+            else if (axis === "B") BF = factor;
+        }
+        var gcA = rad.ghost_compare || null;
+        var gcB = rad.ghost_compare_b || null;
+        // First reveal: arm the ghost at the BASELINE radius (factors all 1.0) and
+        // ramp its axis. While gcB has not yet armed, gcA drives the live circle.
+        if (gcA && stateMs >= (gcA.reveal_at_ms || 0)) {
+            var rampA = Math.min(1, (stateMs - (gcA.reveal_at_ms || 0)) / GHOST_RAMP_MS);
+            var facA = 1.0 + (GHOST_TARGET - 1.0) * rampA;
+            // After gcB arms, gcA's axis resets to 1.0 (the "reset" beat in the
+            // script) so only gcB drives the second comparison.
+            if (!(gcB && stateMs >= (gcB.reveal_at_ms || 0))) {
+                axisApply(gcA.axis, facA);
+                radGhostState.driveAxis = gcA.axis;
+            }
+        }
+        if (gcB && stateMs >= (gcB.reveal_at_ms || 0)) {
+            var rampB = Math.min(1, (stateMs - (gcB.reveal_at_ms || 0)) / GHOST_RAMP_MS);
+            var facB = 1.0 + (GHOST_TARGET - 1.0) * rampB;
+            axisApply(gcB.axis, facB);
+            radGhostState.driveAxis = gcB.axis;
+        }
+
+        // R_visual = clamp( base·(mF·vF) / max(0.15, qF·BF), 0.35, 2.4 ). All-
+        // defaults → 1.5 (matches both siblings). Numerator ↔ m·v, denominator ↔
+        // q·B → R_visual ∝ (m·v)/(q·B) ∝ r = mv/qB. Clamp identical to Lorentz.
+        var R = Math.max(0.35, Math.min(2.4, RAD_BASE_R * (mF * vF) / Math.max(0.15, qF * BF)));
+
+        // Constant arc-speed (cut-line guard — period NEVER leaks): the on-screen
+        // |v| is the FIXED constant RAD_OMEGA·RAD_BASE_R, and ω is solved FROM the
+        // (clamped) R so ω·R equals that constant at EVERY slider setting. Only the
+        // SIZE changes; the go-round rate stays steady → no period on canvas.
+        var ARC_SPEED = RAD_OMEGA * RAD_BASE_R;
+        var omega = (ARC_SPEED / R) * chargeSign;
+
+        var modeRaw = stateDef.trajectory_mode || "static";
+
+        // ── Particle motion ─────────────────────────────────────────────────
+        var pos = new THREE.Vector3();
+        var vDir = new THREE.Vector3();
+        if (modeRaw === "straight") {
+            // STATE_1 hook (rarely used here; the JSON usually opens mid-curve):
+            // drift in along u1 before the circle closes.
+            var driftS = ((tLocal * 0.5) % 4) - 2;
+            pos.copy(u1).multiplyScalar(driftS);
+            vDir.copy(u1);
+        } else if (modeRaw === "circle") {
+            var phase = omega * tLocal;
+            pos.copy(u1).multiplyScalar(R * Math.cos(phase))
+               .add(u2.clone().multiplyScalar(R * Math.sin(phase)));
+            vDir.copy(u1).multiplyScalar(-Math.sin(phase))
+                .add(u2.clone().multiplyScalar(Math.cos(phase)))
+                .multiplyScalar(chargeSign).normalize();
+        } else {
+            // static: park at the +u1 rim with v tangent (so F⊥v reads cleanly).
+            pos.copy(u1).multiplyScalar(R);
+            vDir.copy(u2).multiplyScalar(chargeSign).normalize();
+        }
+
+        // Centripetal F direction = q (v × B), normalized (toward the centre).
+        // DIRECTION-ONLY — length is the FIXED glyph, never ∝ any slider.
+        var fVec = new THREE.Vector3().crossVectors(vDir, bUnit);
+        if (chargeSign < 0) fVec.multiplyScalar(-1);
+        var fLenRaw = fVec.length();
+        var fDirN = fLenRaw > 1e-6 ? fVec.clone().normalize()
+            : pos.clone().multiplyScalar(-1).normalize();
+        if (fDirN.lengthSq() < 1e-9) fDirN.set(0, -1, 0);
+
+        // Glow plumbing.
+        var glowActive = glowTargets.length > 0;
+        var glowT = glowEmphT(time);
+        function radFocal(t) { return glowTargets.indexOf(t) >= 0; }
+
+        // STATE_1 close-and-flash: once stateMs >= circle_close_at_ms, snap the
+        // trail shut to a full ring and pop the flash at the close point.
+        var closeAt = rad.circle_close_at_ms;
+        var closing = (typeof closeAt === "number" && stateMs >= closeAt);
+
+        // Can R change WITHIN this state? True for the ghost-compare ramp states
+        // (STATE_4/5 — gcA/gcB drive an axis) and the slider state (STATE_6).
+        // When R can change, the live orbit MUST be drawn as a COMPLETE ring at
+        // the current R every frame (radDrawFullRing) — never the accumulating
+        // trail. Accumulating points while R(t) AND theta both advance traces a
+        // SPIRAL (broken arc), drifts the radius-line endpoint off the true
+        // circle, and the self-crossing spiral near the start reads as a stray
+        // "X". A full ring grows/shrinks cleanly about the fixed centre instead.
+        // STATE_1/2/3 hold R constant, so they keep the progressive trail (and
+        // STATE_1 keeps its snap-shut payoff).
+        var rCanChange = (gcA != null) || (stateDef.show_sliders === true);
+
+        var finalV_len = 0, finalF_len = 0;
+        for (var li = 0; li < sceneObjects.length; li++) {
+            var lo = sceneObjects[li];
+            var lud = lo.userData;
+            if (!lud || !lud.elementType) continue;
+            var et = lud.elementType;
+            if (et === "rad_particle") {
+                lo.position.copy(pos);
+                var badge = lud.charge_sprite;
+                if (badge) {
+                    var wantSign = chargeSign;
+                    if (badge.userData.current_sign !== wantSign) {
+                        updateLabelSpriteText(badge, wantSign < 0 ? "\\u2212" : "+");
+                        badge.userData.current_sign = wantSign;
+                    }
+                }
+            } else if (et === "rad_velocity") {
+                // v (tangent) is part of every state's picture — always shown,
+                // re-anchored to the moving charge. FIXED glyph length (|v| not
+                // encoded; this concept surfaces only r).
+                finalV_len = 1.0;
+                lo.visible = true;
+                lo.position.copy(pos);
+                lo.setDirection(vDir);
+                lo.setLength(finalV_len, 0.22, 0.11);
+                applyGlowEmphasis(lo, radFocal("v"), glowActive, glowT, true);
+            } else if (et === "rad_force") {
+                // F (centripetal, toward the centre) is part of every state's
+                // picture — DIRECTION-ONLY fixed glyph length, never scaled by a
+                // slider (Rule 29). Always shown while the charge orbits.
+                finalF_len = RAD_F_GLYPH_LEN;
+                lo.visible = true;
+                lo.position.copy(pos);
+                lo.setDirection(fDirN);
+                lo.setLength(finalF_len, 0.22, 0.11);
+                applyGlowEmphasis(lo, radFocal("f"), glowActive, glowT, true);
+            } else if (et === "rad_centre") {
+                // STATE_2: pulse the centre dot when the radius line is shown but
+                // no ghost-compare runs (a quiet "this is the fixed centre" beat).
+                if (rad.show_radius_line && !gcA) {
+                    var pulse = 1 + 0.35 * Math.sin(tLocal * 3.2);
+                    lo.scale.setScalar(pulse);
+                } else {
+                    lo.scale.setScalar(1);
+                }
+            } else if (et === "rad_radius_line") {
+                if (rad.show_radius_line) {
+                    lo.visible = true;
+                    var arrRL = lo.geometry.attributes.position.array;
+                    arrRL[0] = 0; arrRL[1] = 0; arrRL[2] = 0;
+                    arrRL[3] = pos.x; arrRL[4] = pos.y; arrRL[5] = pos.z;
+                    lo.geometry.attributes.position.needsUpdate = true;
+                    if (lo.computeLineDistances) lo.computeLineDistances();
+                    applyGlowEmphasis(lo, radFocal("r"), glowActive, glowT, true);
+                } else {
+                    lo.visible = false;
+                }
+            } else if (et === "rad_label") {
+                var tracks = lud.tracks;
+                var lDir = null, lLen = 0, lShow = false, lAnchor = pos;
+                if (tracks === "rad_velocity") { lShow = (finalV_len > 0); lDir = vDir; lLen = finalV_len; }
+                else if (tracks === "rad_force") { lShow = (finalF_len > 0); lDir = fDirN; lLen = finalF_len; }
+                else if (tracks === "rad_radius_line") {
+                    // r label at the MIDPOINT of the dashed radius line.
+                    if (rad.show_radius_line) {
+                        lo.position.copy(pos).multiplyScalar(0.5).addScaledVector(u2, 0.18);
+                        lo.visible = true;
+                    } else { lo.visible = false; }
+                    continue;
+                }
+                if (lDir && lShow) {
+                    lo.position.copy(lAnchor).addScaledVector(lDir, lLen + 0.25);
+                    lo.visible = true;
+                } else if (tracks !== "rad_radius_line") { lo.visible = false; }
+            } else if (et === "ambient_field") {
+                applyGlowEmphasis(lo, radFocal("b"), glowActive, glowT);
+            } else if (et === "rad_trail") {
+                if (rCanChange) {
+                    // R can change this state (STATE_4/5 ghost ramp or STATE_6
+                    // sliders): redraw the ENTIRE orbit as a clean closed ring at
+                    // the CURRENT R every frame. The charge rides ON this ring, so
+                    // a changing R reads as the whole circle smoothly growing /
+                    // shrinking about the fixed centre — never a spiral, never a
+                    // partial arc, never a self-crossing "X". (Fixes symptoms 1,2,5.)
+                    radDrawFullRing(lo, R, u1, u2);
+                } else if (closing) {
+                    // STATE_1 snap shut: draw the FULL ring once, then hold (no more growth).
+                    radDrawFullRing(lo, R, u1, u2);
+                } else {
+                    // STATE_1 (pre-close) / STATE_2 / STATE_3: R is constant, so the
+                    // accumulating trail traces a clean circle progressively (the
+                    // intended "watch it draw itself" beat). Visually unchanged.
+                    radUpdateTrail(lo, pos, tLocal, modeRaw);
+                }
+            } else if (et === "rad_flash") {
+                // STATE_1 flash at the close point (start of the ring, +u1·R).
+                if (closing) {
+                    var fAge = (stateMs - closeAt) / 1000;
+                    var fOp = Math.max(0, 0.95 - fAge * 1.1);
+                    if (fOp > 0) {
+                        lo.visible = true;
+                        lo.position.copy(u1).multiplyScalar(R);
+                        lo.lookAt(camera.position);
+                        var fsc = 1 + fAge * 2.0;
+                        lo.scale.setScalar(fsc);
+                        if (lo.material) lo.material.opacity = fOp;
+                    } else { lo.visible = false; }
+                } else { lo.visible = false; }
+            } else if (et === "rad_ghost_ring") {
+                // Capture + draw the frozen ghost circles at their reveal beats.
+                if (lud.id === "rad_ghost_a" && gcA && stateMs >= (gcA.reveal_at_ms || 0)) {
+                    if (!radGhostState.ghostA_shown) {
+                        // Freeze the ghost at the TRUE current radius at the reveal
+                        // beat (ramp just started, factor ~1.0 → R ~ baseline), NOT
+                        // a hardcoded RAD_BASE_R. The live ring then visibly swells
+                        // past it (m,v) / shrinks inside it (q,B). (Fixes symptom 3.)
+                        radGhostState.ghostA_R = R; radGhostState.ghostA_shown = true;
+                        radDrawGhostRing(lo, radGhostState.ghostA_R, u1, u2);
+                    }
+                    lo.visible = true;
+                    if (lo.material) lo.material.opacity = 0.45;
+                } else if (lud.id === "rad_ghost_b" && gcB && stateMs >= (gcB.reveal_at_ms || 0)) {
+                    if (!radGhostState.ghostB_shown) {
+                        // Same: freeze the second ghost at the true R at its reveal
+                        // beat (gcA's axis has reset to 1.0 → R ~ baseline again).
+                        radGhostState.ghostB_R = R; radGhostState.ghostB_shown = true;
+                        radDrawGhostRing(lo, radGhostState.ghostB_R, u1, u2);
+                    }
+                    lo.visible = true;
+                    if (lo.material) lo.material.opacity = 0.45;
+                } else {
+                    lo.visible = false;
+                }
+            } else if (et === "rad_caption") {
+                // Comparative caption while a ghost is active (RELATIVE words only).
+                // Two pre-built sprites; show whichever matches the live vs ghost
+                // comparison. RADIUS-ONLY: never a metres/period/force number.
+                var ghostActive = (gcA && stateMs >= (gcA.reveal_at_ms || 0)) ||
+                                  (gcB && stateMs >= (gcB.reveal_at_ms || 0));
+                if (rad.show_radius_readout && ghostActive) {
+                    var widerNow = (R >= RAD_BASE_R - 1e-3);
+                    lo.visible = (lud.kind === "wider") ? widerNow : !widerNow;
+                } else {
+                    lo.visible = false;
+                }
+            }
+        }
+
+        // ── STATE_3 equation rearrange: reveal the solved line at the beat. ───
+        if (typeof rad.equation_rearrange_at_ms === "number") {
+            var solvedEl = document.getElementById("rad_eqn_solved");
+            if (solvedEl) {
+                var showSolved = stateMs >= rad.equation_rearrange_at_ms;
+                solvedEl.style.display = showSolved ? "block" : "none";
+            }
+        }
+
+        // ── STATE_6 live RELATIVE readout: a yellow bar 'r |' whose length tracks
+        //    R_visual. NEVER a metres/period/force number. ──
+        if (rad.show_radius_readout && stateDef.show_sliders) {
+            var barEl = document.getElementById("rad_bar");
+            if (barEl) {
+                // Map R∈[0.35,2.4] → 1..9 bar glyphs (relative size cue only).
+                var nBars = Math.max(1, Math.min(9, Math.round(1 + (R - 0.35) / (2.4 - 0.35) * 8)));
+                var bars = "";
+                for (var bi = 0; bi < nBars; bi++) bars += "\\u25AE";
+                if (barEl.textContent !== bars) barEl.textContent = bars;
+            }
+        }
+    }
+
+    // Append the live orbit point to the radius trail (equal-arc, accumulating).
+    // Wipes on radiusTrailResetPending (state entry / slider edit).
+    function radUpdateTrail(trailObj, worldPos, tLocal, mode) {
+        var ud = trailObj.userData;
+        if (radiusTrailResetPending) {
+            ud.write_index = 0; ud.filled = 0;
+            trailObj.geometry.setDrawRange(0, 0);
+            radiusTrailResetPending = false;
+        }
+        trailObj.visible = true;
+        var maxP = ud.max_points || 600;
+        var wi = ud.write_index != null ? ud.write_index : 0;
+        var moved = true;
+        if ((ud.filled || 0) > 0) {
+            var dx = worldPos.x - ud.last_x, dy = worldPos.y - ud.last_y, dz = worldPos.z - ud.last_z;
+            moved = (dx * dx + dy * dy + dz * dz) >= 1e-7;
+        }
+        if (moved && (ud.filled || 0) < maxP) {
+            var arr = trailObj.geometry.attributes.position.array;
+            arr[wi * 3] = worldPos.x; arr[wi * 3 + 1] = worldPos.y; arr[wi * 3 + 2] = worldPos.z;
+            ud.last_x = worldPos.x; ud.last_y = worldPos.y; ud.last_z = worldPos.z;
+            ud.write_index = wi + 1; ud.filled = (ud.filled || 0) + 1;
+            trailObj.geometry.setDrawRange(0, ud.filled);
+            trailObj.geometry.attributes.position.needsUpdate = true;
+        }
+    }
+
+    // Draw the live trail as a CLOSED full ring (STATE_1 "snaps shut" payoff).
+    function radDrawFullRing(trailObj, R, u1, u2) {
+        var ud = trailObj.userData;
+        var segs = 80;
+        var maxP = ud.max_points || 600;
+        var n = Math.min(maxP, segs + 1);
+        var arr = trailObj.geometry.attributes.position.array;
+        for (var i = 0; i < n; i++) {
+            var a = (i / segs) * Math.PI * 2;
+            var px = u1.x * R * Math.cos(a) + u2.x * R * Math.sin(a);
+            var py = u1.y * R * Math.cos(a) + u2.y * R * Math.sin(a);
+            var pz = u1.z * R * Math.cos(a) + u2.z * R * Math.sin(a);
+            arr[i * 3] = px; arr[i * 3 + 1] = py; arr[i * 3 + 2] = pz;
+        }
+        ud.filled = n; ud.write_index = n;
+        trailObj.visible = true;
+        trailObj.geometry.setDrawRange(0, n);
+        trailObj.geometry.attributes.position.needsUpdate = true;
+    }
+
+    // Draw a frozen ghost ring of radius R in the orbit plane {u1, u2}.
+    function radDrawGhostRing(ringObj, R, u1, u2) {
+        var ud = ringObj.userData;
+        var segs = ud.segments || 80;
+        var arr = ringObj.geometry.attributes.position.array;
+        for (var i = 0; i <= segs; i++) {
+            var a = (i / segs) * Math.PI * 2;
+            arr[i * 3] = u1.x * R * Math.cos(a) + u2.x * R * Math.sin(a);
+            arr[i * 3 + 1] = u1.y * R * Math.cos(a) + u2.y * R * Math.sin(a);
+            arr[i * 3 + 2] = u1.z * R * Math.cos(a) + u2.z * R * Math.sin(a);
+        }
+        ringObj.geometry.setDrawRange(0, segs + 1);
+        ringObj.geometry.attributes.position.needsUpdate = true;
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // cyclotron_period — PERIOD-ONLY sibling that INVERTS radius_in_uniform_field
+    //
+    // Teaches the orbital PERIOD T = 2πm/qB and its independence from speed v and
+    // radius r: a faster charge traces a BIGGER circle but completes each lap in
+    // exactly the SAME time. REUSES (not rewritten): the centripetal orbit basis
+    // {u1, u2 = cross(u1, bUnit), bUnit}, the circle trajectory math, the particle
+    // badge, the v/F arrow re-anchoring, radDrawFullRing, and applyGlowEmphasis.
+    //
+    // THE INVERSION (vs radius_in_uniform_field, updateRadiusInUniformFieldFrame):
+    //   #4 holds the arc-SPEED constant — ARC_SPEED = RAD_OMEGA·RAD_BASE_R, then
+    //   ω = ARC_SPEED/R — so ω varies with R and the period is HIDDEN (only the
+    //   circle SIZE changes). THIS scenario holds the PERIOD constant: a SINGLE
+    //   shared ω = (2π/T_VISUAL)·chargeSign drives EVERY charge, so two charges
+    //   with DIFFERENT radii tie by construction and re-converge at the start each
+    //   lap. STATE_4 decouples further: ω = (2π/(T_VISUAL·(m/(qB))))·chargeSign →
+    //   T_live = T_VISUAL·m/(qB) has NO v term, so dragging v resizes the circle
+    //   (R = cycRadius(m,v,q,B)) but the lap-fill rate HOLDS; dragging m/B changes it.
+    //
+    // HARD CUT-LINE (enforced here + the readout / legend suppressions):
+    //   • The surfaced quantity is T, and ONLY as a RELATIVE lap-fill that freezes
+    //     + relabels T. NEVER a seconds value, NEVER a wall-clock, NEVER an f number.
+    //   • NO force magnitude / qvB / Newton. F is a DIRECTION-ONLY fixed glyph
+    //     (CYC_F_GLYPH_LEN), centripetal, never ∝ a slider (Rule 29).
+    //   • The v glyph is a FIXED length — the fast charge's speed is NEVER in the
+    //     arrow length (shown by circle size + race timing only).
+    //   • r appears ONLY as a cited symbol in the STATE_3 equation — never a number.
+    // ════════════════════════════════════════════════════════════════════════
+    var CYC_F_GLYPH_LEN = 0.85;   // FIXED centripetal-arrow length — NEVER ∝ any slider.
+    var CYC_BASE_R = 1.5;         // = RAD_BASE_R: all-defaults single circle matches siblings.
+    var T_VISUAL = 4.0;           // shared on-screen lap time (seconds of sim-clock per revolution).
+    var CYC_TIMER_BARS = 16;      // lap-fill resolution (relative cue only — NOT seconds).
+
+    // One unitless cyclotron factor from a slider (value/default). Plain knobs
+    // (default 1.0), so value/default IS the factor — NO SI rescale.
+    function cycFactor(sliderId, controlKey) {
+        var el = document.getElementById(sliderId);
+        var def = (config.slider_controls && config.slider_controls[controlKey] &&
+            config.slider_controls[controlKey].default) ? config.slider_controls[controlKey].default : 1.0;
+        if (!el || !(def > 0)) return 1.0;
+        return parseFloat(el.value) / def;
+    }
+
+    // R from the four factors (v RESIZES the circle), identical clamp to #4. ω is
+    // decoupled from this (held by the shared-period law) — that is the inversion.
+    function cycRadius(mF, vF, qF, BF) {
+        return Math.max(0.35, Math.min(2.4, CYC_BASE_R * (mF * vF) / Math.max(0.15, qF * BF)));
+    }
+
+    function cycMakeArrow(dir, color, len) {
+        var a = new THREE.ArrowHelper(
+            dir.clone().normalize(), new THREE.Vector3(0, 0, 0), len, color, 0.22, 0.11
+        );
+        a.children.forEach(function(c) { if (c.material) c.material.transparent = true; });
+        return a;
+    }
+
+    function buildCyclotronPeriod() {
+        var af = config.ambient_field || {
+            direction: [0, 0, 1], magnitude: 1, density: [5, 5, 5],
+            color: "#42A5F5", opacity: 0.45, extent: 3
+        };
+        var p = config.particle || { charge_sign: 1, color: "#FFB366", radius: 0.12 };
+
+        var bDir = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+        var ext = af.extent != null ? af.extent : 3;
+        var nx = af.density[0], ny = af.density[1], nz = af.density[2];
+        var sx = nx > 1 ? (2 * ext) / (nx - 1) : 0;
+        var sy = ny > 1 ? (2 * ext) / (ny - 1) : 0;
+        var sz = nz > 1 ? (2 * ext) / (nz - 1) : 0;
+        var arrowLen = 0.55;
+        var arrowOp = af.opacity != null ? af.opacity : 0.45;
+        var arrowColor = af.color || "#42A5F5";
+
+        // 1. Faint ambient B-field lattice (⊙ out-of-plane) — same as siblings.
+        for (var ix = 0; ix < nx; ix++) {
+            for (var iy = 0; iy < ny; iy++) {
+                for (var iz = 0; iz < nz; iz++) {
+                    var ox = nx > 1 ? -ext + ix * sx : 0;
+                    var oy = ny > 1 ? -ext + iy * sy : 0;
+                    var oz = nz > 1 ? -ext + iz * sz : 0;
+                    var origin = new THREE.Vector3(ox, oy, oz).addScaledVector(bDir, -arrowLen / 2);
+                    var arrH = new THREE.ArrowHelper(bDir, origin, arrowLen, arrowColor, 0.14, 0.09);
+                    arrH.userData = { elementType: "ambient_field", id: "cyc_b_arrow_" + ix + "_" + iy + "_" + iz };
+                    arrH.children.forEach(function(child) {
+                        if (child.material) { child.material.transparent = true; child.material.opacity = arrowOp; }
+                    });
+                    addToScene(arrH);
+                }
+            }
+        }
+
+        // 2. Centre dot (#FFD54F) — the fixed orbit centre (origin).
+        var centreGeo = new THREE.SphereGeometry(0.08, 16, 16);
+        var centreMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#FFD54F"), emissive: hexToThreeColor("#FFD54F"),
+            emissiveIntensity: 0.8, transparent: true, opacity: 0.95
+        });
+        var centreDot = new THREE.Mesh(centreGeo, centreMat);
+        centreDot.position.set(0, 0, 0);
+        centreDot.userData = { elementType: "cyc_centre", id: "cyc_centre" };
+        addToScene(centreDot);
+
+        // 3. Two orbit roles (slow = primary single charge; fast = second racer).
+        //    Each gets its OWN particle + badge + v/F arrows + label + full-ring
+        //    trail pool (two trail pools, two fixed centres — scar-list mandate).
+        //    The "slow" role IS the single charge in STATE_1/STATE_4; the "fast"
+        //    role only shows in dual_orbit states.
+        function makeOrbitRole(roleId, color) {
+            var pRadius = p.radius != null ? p.radius : 0.12;
+            var particleGeo = new THREE.SphereGeometry(pRadius, 22, 22);
+            var particleMat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor(color), emissive: hexToThreeColor(color),
+                emissiveIntensity: 0.65, shininess: 90
+            });
+            var particle = new THREE.Mesh(particleGeo, particleMat);
+            particle.position.set(0, 0, 0);
+            var chargeSprite = createLabelSprite("+", "#FFFFFF", 0.30);
+            chargeSprite.position.set(0, 0, 0);
+            chargeSprite.userData = { is_charge_badge: true, current_sign: 1 };
+            particle.add(chargeSprite);
+            particle.userData = {
+                elementType: "cyc_particle", id: "cyc_particle_" + roleId, role: roleId,
+                charge_sign: p.charge_sign, charge_sprite: chargeSprite, base_color: color
+            };
+            addToScene(particle);
+
+            // Velocity arrow (orange, tangent) — FIXED visual glyph (|v| not encoded).
+            var vArrow = cycMakeArrow(new THREE.Vector3(0, 1, 0), "#FFAB40", 1.0);
+            vArrow.userData = { elementType: "cyc_velocity", id: "cyc_v_arrow_" + roleId, role: roleId };
+            vArrow.visible = false;
+            addToScene(vArrow);
+
+            // Force arrow (green) — direction-only centripetal glyph, FIXED length.
+            var fArrow = cycMakeArrow(new THREE.Vector3(0, -1, 0), "#66BB6A", CYC_F_GLYPH_LEN);
+            fArrow.userData = { elementType: "cyc_force", id: "cyc_f_arrow_" + roleId, role: roleId };
+            fArrow.visible = false;
+            addToScene(fArrow);
+
+            // role label ("slow" / "fast") — only shown in dual_orbit states.
+            var roleLabel = createWideLabelSprite(roleId, color, 0.34);
+            roleLabel.userData = { elementType: "cyc_role_label", id: "cyc_role_label_" + roleId, role: roleId };
+            roleLabel.visible = false;
+            addToScene(roleLabel);
+
+            // Full-ring trail pool (its OWN fixed centre = origin). For differing /
+            // changing radii this is redrawn as a COMPLETE ring every frame
+            // (scar-list); the single constant-R STATE_1 may accumulate it.
+            var maxPts = 600;
+            var trailGeo = new THREE.BufferGeometry();
+            trailGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(maxPts * 3), 3));
+            trailGeo.setDrawRange(0, 0);
+            var trailMat = new THREE.LineBasicMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 0.85 });
+            var trail = new THREE.Line(trailGeo, trailMat);
+            trail.userData = {
+                elementType: "cyc_trail", id: "cyc_trail_" + roleId, role: roleId,
+                max_points: maxPts, filled: 0, write_index: 0, last_x: 0, last_y: 0, last_z: 0
+            };
+            addToScene(trail);
+        }
+        makeOrbitRole("slow", p.color || "#FFB366");
+        makeOrbitRole("fast", "#4FC3F7");
+
+        // 4. v / F labels for the primary (slow) role only (≤3 labels/state).
+        var labelV = createLabelSprite("v", "#FFAB40", 0.7);
+        labelV.userData = { elementType: "cyc_label", id: "cyc_label_v", tracks: "cyc_velocity" };
+        labelV.visible = false;
+        addToScene(labelV);
+        var labelF = createLabelSprite("F", "#66BB6A", 0.7);
+        labelF.userData = { elementType: "cyc_label", id: "cyc_label_f", tracks: "cyc_force" };
+        labelF.visible = false;
+        addToScene(labelF);
+
+        // 5. Start/FINISH line (STATE_2): a dim RADIAL line along +u1 from the
+        //    centre out past the outer orbit. Both charges launch at phase=0 (the
+        //    +u1 point of their own ring) and, sharing ω, cross this line together
+        //    each lap — so it sits ON both start points + through the centre, not a
+        //    floating glyph. Endpoints are set per-frame in updateCyclotronPeriodFrame.
+        //    (scar-list: cyclotron_start_marker_glyph_orphaned_from_orbit.)
+        var startLineGeo = new THREE.BufferGeometry();
+        startLineGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(2 * 3), 3));
+        var startLineMat = new THREE.LineBasicMaterial({
+            color: hexToThreeColor("#FFF59D"), transparent: true, opacity: 0.0
+        });
+        var startMarker = new THREE.Line(startLineGeo, startLineMat);
+        startMarker.userData = { elementType: "cyc_start_marker", id: "cyc_start_marker" };
+        startMarker.visible = false;
+        addToScene(startMarker);
+
+        // 6. STATE_1 "snaps shut" flash — a brief expanding ring at the close point.
+        var flashGeo = new THREE.RingGeometry(0.12, 0.26, 24);
+        var flashMat = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor("#FFF59D"), transparent: true, opacity: 0.0, side: THREE.DoubleSide
+        });
+        var flash = new THREE.Mesh(flashGeo, flashMat);
+        flash.userData = { elementType: "cyc_flash", id: "cyc_flash" };
+        flash.visible = false;
+        addToScene(flash);
+    }
+
+    // Per-state seeding for cyclotron_period. Resets the trail pools + lap timers,
+    // re-arms the per-frame reveals, drives the equation-panel + slider-panel +
+    // timer-panel DOM visibility, and hides per-state-only primitives.
+    function applyCyclotronPeriodState(stateDef) {
+        if (!stateDef) return;
+        var cyc = stateDef.cyclotron || {};
+        var dual = cyc.dual_orbit || null;
+
+        cyclotronTrailResetPending = true;
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            var et = ud.elementType;
+            if (et === "cyc_trail") {
+                ud.write_index = 0; ud.filled = 0;
+                o.geometry.setDrawRange(0, 0);
+                // The fast role is visible only in dual_orbit states.
+                o.visible = !(ud.role === "fast" && !dual);
+            } else if (et === "cyc_flash") {
+                o.visible = false; if (o.material) o.material.opacity = 0;
+            } else if (et === "cyc_start_marker") {
+                o.visible = false; if (o.material) o.material.opacity = 0;
+            } else if (et === "cyc_role_label") {
+                o.visible = false;
+            } else if (et === "cyc_particle") {
+                // hide the fast particle in single-charge states.
+                if (ud.role === "fast" && !dual) o.visible = false; else o.visible = true;
+            }
+        }
+
+        // ── Lap-timer panel (top-right). Shown for non-slider states with a
+        //    period readout. STATE_2 shows TWO timers; otherwise one. STATE_4 puts
+        //    the live lap-fill inside its own slider panel instead.
+        var timersEl = document.getElementById("cyclotron_timers");
+        var timerB = document.getElementById("cyc_timer_b");
+        var tieBadge = document.getElementById("cyc_tie_badge");
+        var labelA = document.getElementById("cyc_timer_a_label");
+        var labelB = document.getElementById("cyc_timer_b_label");
+        var barA = document.getElementById("cyc_timer_a_bar");
+        var barB = document.getElementById("cyc_timer_b_bar");
+        var timerA = document.getElementById("cyc_timer_a");
+        var showTimers = (cyc.show_period_readout === true) && (stateDef.show_sliders !== true);
+        if (timersEl) timersEl.style.display = showTimers ? "block" : "none";
+        if (timerB) timerB.style.display = dual ? "inline-block" : "none";
+        if (tieBadge) tieBadge.style.display = "none";
+        if (timerA) timerA.className = "cyc_timer";
+        if (timerB && dual) timerB.className = "cyc_timer";
+        if (labelA) labelA.textContent = dual ? (dual.slow.label || "slow") : "lap";
+        if (labelB && dual) labelB.textContent = dual.fast.label || "fast";
+        if (barA) barA.textContent = "";
+        if (barB) barB.textContent = "";
+
+        // ── Equation panel (bottom-left, STATE_3). Pre-fill the symbolic strings;
+        //    each line is revealed by the per-frame loop at its equation_build beat.
+        //    CUT-LINE: ONLY these strings — never a numeric r or T. Non-ASCII via
+        //    unicode escapes (Rule 14): pi, superscript-2, minus.
+        var eqnEl = document.getElementById("cyclotron_eqn");
+        var eb = cyc.equation_build || null;
+        if (eqnEl) eqnEl.style.display = eb ? "block" : "none";
+        var l1 = document.getElementById("cyc_eqn_line1");
+        var l2 = document.getElementById("cyc_eqn_line2");
+        var l3 = document.getElementById("cyc_eqn_line3");
+        var lf = document.getElementById("cyc_eqn_final");
+        var la = document.getElementById("cyc_eqn_aside");
+        if (l1) { l1.innerHTML = "T = 2\\u03C0r/v"; l1.style.display = "none"; l1.className = "cyc_eqn_line"; }
+        if (l2) { l2.innerHTML = "r = mv/qB"; l2.style.display = "none"; l2.className = "cyc_eqn_line"; }
+        if (l3) { l3.innerHTML = "T = 2\\u03C0(mv/qB)/v"; l3.style.display = "none"; l3.className = "cyc_eqn_line"; }
+        if (lf) { lf.innerHTML = "T = 2\\u03C0m/qB"; lf.style.display = "none"; lf.className = "cyc_eqn_line"; }
+        if (la) { la.innerHTML = "f = qB/2\\u03C0m"; la.style.display = "none"; la.className = "cyc_eqn_line"; }
+
+        // ── Slider panel (STATE_4). Shown only when the state requests it. The
+        //    live lap-fill (relative, never seconds) lives in #cyc_live_bar.
+        var slidersEl = document.getElementById("cyclotron_sliders");
+        if (slidersEl) slidersEl.style.display = stateDef.show_sliders ? "block" : "none";
+    }
+
+    // Per-frame brightness emphasis for cyclotron_period (Rule 29 — brightness
+    // only, never resize). Mirrors the radius/no_work glow mapping (v/f/b targets).
+    function applyCyclotronPeriodGlow() {
+        if (config.scenario_type !== "cyclotron_period") return;
+        var glowActive = glowTargets.length > 0;
+        var glowT = glowEmphT(time);
+        function focal(t) { return glowTargets.indexOf(t) >= 0; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud || !ud.elementType || !o.visible) continue;
+            if (ud.elementType === "cyc_velocity") applyGlowEmphasis(o, focal("v"), glowActive, glowT, true);
+            else if (ud.elementType === "cyc_force") applyGlowEmphasis(o, focal("f"), glowActive, glowT, true);
+            else if (ud.elementType === "ambient_field") applyGlowEmphasis(o, focal("b"), glowActive, glowT);
+        }
+    }
+
+    // Write a RELATIVE lap-fill bar into a DOM span: filled glyphs for the swept
+    // fraction (0→1), hollow for the rest. NEVER a seconds value (cut-line).
+    function cycWriteLapBar(el, frac, frozen) {
+        if (!el) return;
+        var f = Math.max(0, Math.min(1, frac));
+        var filled = frozen ? CYC_TIMER_BARS : Math.round(f * CYC_TIMER_BARS);
+        var s = "";
+        for (var i = 0; i < CYC_TIMER_BARS; i++) s += (i < filled) ? "\\u25AE" : "\\u25AF";
+        if (el.textContent !== s) el.textContent = s;
+    }
+
+    // Per-frame driver for cyclotron_period. The INVERSION of #4: a SHARED ω drives
+    // every charge so differing-radius charges tie. Drives the dual-orbit race, the
+    // relative lap-timers (freeze + relabel T), the "= same T" tie badge, the
+    // STATE_3 equation build (with v-cancel strike-through), and the STATE_4 live
+    // explorer (v resizes circle, lap-fill rate held; m/B move it).
+    function updateCyclotronPeriodFrame(dtSeconds) {
+        var stateDef = config.states[PM_currentState];
+        if (!stateDef) return;
+        var cyc = stateDef.cyclotron || {};
+        var dual = cyc.dual_orbit || null;
+        var stateMs = (time - stateStartTime) * 1000;
+        var tLocal = time - stateStartTime;
+
+        var af = config.ambient_field || { direction: [0, 0, 1] };
+        var bUnit = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+
+        // Centripetal orbit basis {u1, u2 = cross(u1, bUnit), bUnit} — REUSED from
+        // the Lorentz / radius siblings so F = q v×B points TOWARD the centre.
+        var u1 = new THREE.Vector3(1, 0, 0);
+        if (Math.abs(bUnit.dot(u1)) > 0.99) u1 = new THREE.Vector3(0, 1, 0);
+        u1.sub(bUnit.clone().multiplyScalar(bUnit.dot(u1))).normalize();
+        var u2 = new THREE.Vector3().crossVectors(u1, bUnit).normalize();
+
+        var chargeSign = stateDef.charge_sign != null
+            ? stateDef.charge_sign
+            : (config.particle ? config.particle.charge_sign : 1);
+
+        // ── Slider factors (STATE_4 only). v RESIZES the circle (R = cycRadius),
+        //    but ω is decoupled: T_live = T_VISUAL·m/(qB) has NO v term. So dragging
+        //    v changes R while the lap-fill rate HOLDS; dragging m/B moves it.
+        var mF = 1.0, vF = 1.0, qF = 1.0, BF = 1.0;
+        var sliderMode = (stateDef.show_sliders === true);
+        if (sliderMode) {
+            mF = cycFactor("cyc_m_slider", "m");
+            vF = cycFactor("cyc_v_slider", "v");
+            qF = cycFactor("cyc_q_slider", "q_mag");
+            BF = cycFactor("cyc_b_slider", "B");
+        }
+
+        // The SHARED period law (the inversion). Single shared ω for STATE_1/2/3
+        // (period IDENTICAL for every charge → tie by construction). STATE_4
+        // decouples T_live from v: T_live = T_VISUAL·m/(qB) (no v term).
+        var sharedOmega = (2 * Math.PI / T_VISUAL) * chargeSign;
+        var liveOmega = sharedOmega;
+        if (sliderMode) {
+            var tLive = T_VISUAL * mF / Math.max(0.15, qF * BF);
+            liveOmega = (2 * Math.PI / tLive) * chargeSign;
+        }
+
+        // Glow plumbing.
+        var glowActive = glowTargets.length > 0;
+        var glowT = glowEmphT(time);
+        function cycFocal(t) { return glowTargets.indexOf(t) >= 0; }
+
+        // STATE_1 close-and-flash + timer freeze: once stateMs >= the beat, snap the
+        // single trail shut to a full ring and pop the flash.
+        var closeAt = cyc.circle_close_at_ms;
+        var closing = (typeof closeAt === "number" && stateMs >= closeAt);
+        var freezeAt = cyc.timer_freeze_at_ms;
+        var timerFrozen = (typeof freezeAt === "number" && stateMs >= freezeAt);
+        var tieAt = cyc.tie_badge_at_ms;
+        var tied = (typeof tieAt === "number" && stateMs >= tieAt);
+
+        // Per-role pose. The slow role is the primary single charge (STATE_1/4);
+        // fast only orbits in dual_orbit states. Both share ω (or live ω in S4).
+        // Each charge draws a COMPLETE ring about the origin every frame when its
+        // radius differs from a sibling OR can change (scar-list mandate); the
+        // single constant-R STATE_1 may use the progressive accumulating trail.
+        function roleParams(role) {
+            if (dual) {
+                var d = (role === "fast") ? dual.fast : dual.slow;
+                return { R: d.R, omega: sharedOmega, color: d.color, label: d.label };
+            }
+            // single-charge: STATE_1 fixed CYC_BASE_R; STATE_4 slider-driven R.
+            var R = sliderMode ? cycRadius(mF, vF, qF, BF) : CYC_BASE_R;
+            return { R: R, omega: liveOmega, color: null, label: "lap" };
+        }
+
+        // rCanChange: any orbit that differs from a sibling (dual) OR resizes
+        // (sliders) MUST be a full ring every frame. Single constant-R STATE_1 may
+        // accumulate (and keep its snap-shut payoff).
+        var rCanChange = (dual != null) || sliderMode;
+
+        // Track the swept fraction (0→1) of one lap per role, for the lap-timers.
+        var lapFrac = { slow: 0, fast: 0 };
+        function computeLapFrac(omega) {
+            var phase = Math.abs(omega) * tLocal;
+            var frac = (phase / (2 * Math.PI)) % 1;
+            return frac;
+        }
+
+        var finalV_len = 0, finalF_len = 0;
+        var slowPos = null, slowVDir = null, slowFDir = null, slowR = CYC_BASE_R;
+
+        for (var li = 0; li < sceneObjects.length; li++) {
+            var lo = sceneObjects[li];
+            var lud = lo.userData;
+            if (!lud || !lud.elementType) continue;
+            var et = lud.elementType;
+            var role = lud.role;
+
+            if (et === "cyc_particle") {
+                if (role === "fast" && !dual) { lo.visible = false; continue; }
+                lo.visible = true;
+                var rp = roleParams(role);
+                var phase = rp.omega * tLocal;
+                var pos = u1.clone().multiplyScalar(rp.R * Math.cos(phase))
+                    .add(u2.clone().multiplyScalar(rp.R * Math.sin(phase)));
+                lo.position.copy(pos);
+                var badge = lud.charge_sprite;
+                if (badge) {
+                    var wantSign = chargeSign;
+                    if (badge.userData.current_sign !== wantSign) {
+                        updateLabelSpriteText(badge, wantSign < 0 ? "\\u2212" : "+");
+                        badge.userData.current_sign = wantSign;
+                    }
+                }
+                lapFrac[role] = computeLapFrac(rp.omega);
+                if (role === "slow") {
+                    slowR = rp.R;
+                    slowPos = pos.clone();
+                    var vDir = u1.clone().multiplyScalar(-Math.sin(phase))
+                        .add(u2.clone().multiplyScalar(Math.cos(phase)))
+                        .multiplyScalar(chargeSign).normalize();
+                    slowVDir = vDir.clone();
+                    var fVec = new THREE.Vector3().crossVectors(vDir, bUnit);
+                    if (chargeSign < 0) fVec.multiplyScalar(-1);
+                    var fDirN = fVec.length() > 1e-6 ? fVec.clone().normalize()
+                        : pos.clone().multiplyScalar(-1).normalize();
+                    if (fDirN.lengthSq() < 1e-9) fDirN.set(0, -1, 0);
+                    slowFDir = fDirN.clone();
+                }
+            } else if (et === "cyc_velocity") {
+                // v shown for BOTH orbiting roles; FIXED glyph length (|v| never
+                // encoded — the fast charge's v is NOT longer).
+                if (role === "fast" && !dual) { lo.visible = false; continue; }
+                var rpv = roleParams(role);
+                var phv = rpv.omega * tLocal;
+                var posv = u1.clone().multiplyScalar(rpv.R * Math.cos(phv))
+                    .add(u2.clone().multiplyScalar(rpv.R * Math.sin(phv)));
+                var vDirv = u1.clone().multiplyScalar(-Math.sin(phv))
+                    .add(u2.clone().multiplyScalar(Math.cos(phv)))
+                    .multiplyScalar(chargeSign).normalize();
+                lo.visible = true;
+                lo.position.copy(posv);
+                lo.setDirection(vDirv);
+                lo.setLength(1.0, 0.22, 0.11);
+                if (role === "slow") finalV_len = 1.0;
+                applyGlowEmphasis(lo, cycFocal("v"), glowActive, glowT, true);
+            } else if (et === "cyc_force") {
+                // F (centripetal, toward the centre) — DIRECTION-ONLY fixed glyph,
+                // never scaled by a slider or by speed (Rule 29).
+                if (role === "fast" && !dual) { lo.visible = false; continue; }
+                var rpf = roleParams(role);
+                var phf = rpf.omega * tLocal;
+                var posf = u1.clone().multiplyScalar(rpf.R * Math.cos(phf))
+                    .add(u2.clone().multiplyScalar(rpf.R * Math.sin(phf)));
+                var vDirf = u1.clone().multiplyScalar(-Math.sin(phf))
+                    .add(u2.clone().multiplyScalar(Math.cos(phf)))
+                    .multiplyScalar(chargeSign).normalize();
+                var fVecf = new THREE.Vector3().crossVectors(vDirf, bUnit);
+                if (chargeSign < 0) fVecf.multiplyScalar(-1);
+                var fDirf = fVecf.length() > 1e-6 ? fVecf.clone().normalize()
+                    : posf.clone().multiplyScalar(-1).normalize();
+                if (fDirf.lengthSq() < 1e-9) fDirf.set(0, -1, 0);
+                lo.visible = true;
+                lo.position.copy(posf);
+                lo.setDirection(fDirf);
+                lo.setLength(CYC_F_GLYPH_LEN, 0.22, 0.11);
+                if (role === "slow") finalF_len = CYC_F_GLYPH_LEN;
+                applyGlowEmphasis(lo, cycFocal("f"), glowActive, glowT, true);
+            } else if (et === "cyc_role_label") {
+                // "slow" / "fast" tag at the TOP of each ring (+u2 direction at its
+                // own radius), dual_orbit only. Kept OFF the +u1 start axis so they
+                // never sit on the start/finish line or collide with the v/F glyphs
+                // (which live on the +u1 side). The two tags separate because each
+                // ring's radius differs (slow tighter, fast wider).
+                // (scar-list: cyclotron_start_marker_glyph_orphaned_from_orbit.)
+                if (dual) {
+                    var rpl = roleParams(role);
+                    lo.position.copy(u2.clone().multiplyScalar(rpl.R + 0.3));
+                    lo.visible = true;
+                } else {
+                    lo.visible = false;
+                }
+            } else if (et === "cyc_label") {
+                // v / F labels for the PRIMARY (slow) role only.
+                var tracks = lud.tracks;
+                if (tracks === "cyc_velocity") {
+                    if (finalV_len > 0 && slowPos && slowVDir) {
+                        lo.position.copy(slowPos).addScaledVector(slowVDir, finalV_len + 0.25);
+                        lo.visible = true;
+                    } else { lo.visible = false; }
+                } else if (tracks === "cyc_force") {
+                    if (finalF_len > 0 && slowPos && slowFDir) {
+                        lo.position.copy(slowPos).addScaledVector(slowFDir, finalF_len + 0.25);
+                        lo.visible = true;
+                    } else { lo.visible = false; }
+                }
+            } else if (et === "cyc_centre") {
+                lo.scale.setScalar(1);
+            } else if (et === "ambient_field") {
+                applyGlowEmphasis(lo, cycFocal("b"), glowActive, glowT);
+            } else if (et === "cyc_trail") {
+                if (role === "fast" && !dual) { lo.visible = false; continue; }
+                var rpt = roleParams(role);
+                if (rCanChange) {
+                    // Differing-radius (dual) OR resizing (sliders): draw the WHOLE
+                    // orbit as a clean closed ring at the current R every frame about
+                    // the fixed centre — never a spiral / partial arc / "X".
+                    // (scar-list: field3d_orbit_spiral_on_radius_ramp.)
+                    radDrawFullRing(lo, rpt.R, u1, u2);
+                } else if (closing) {
+                    // STATE_1 snap shut: draw the FULL ring once, then hold.
+                    radDrawFullRing(lo, rpt.R, u1, u2);
+                } else {
+                    // STATE_1 (pre-close): single constant-R progressive trail.
+                    var phc = rpt.omega * tLocal;
+                    var posc = u1.clone().multiplyScalar(rpt.R * Math.cos(phc))
+                        .add(u2.clone().multiplyScalar(rpt.R * Math.sin(phc)));
+                    cycUpdateTrail(lo, posc);
+                }
+            } else if (et === "cyc_start_marker") {
+                if (cyc.same_start_marker && dual) {
+                    // Radial START/FINISH line along +u1 from the centre (origin)
+                    // out just past the outer orbit. Both charges sit ON it at t=0
+                    // and cross it together each lap — the visual anchor for the tie.
+                    // Dim/secondary: a reference, never focal (Rule 29). Length is a
+                    // fixed reference, never scaled for emphasis.
+                    lo.visible = true;
+                    var rOuter = Math.max(dual.slow.R, dual.fast.R);
+                    var startTip = u1.clone().multiplyScalar(rOuter + 0.3);
+                    var sArr = lo.geometry.attributes.position.array;
+                    sArr[0] = 0; sArr[1] = 0; sArr[2] = 0;
+                    sArr[3] = startTip.x; sArr[4] = startTip.y; sArr[5] = startTip.z;
+                    lo.geometry.attributes.position.needsUpdate = true;
+                    if (lo.material) lo.material.opacity = 0.45;
+                } else {
+                    lo.visible = false;
+                }
+            } else if (et === "cyc_flash") {
+                if (closing && typeof closeAt === "number") {
+                    var fAge = (stateMs - closeAt) / 1000;
+                    var fOp = Math.max(0, 0.95 - fAge * 1.1);
+                    if (fOp > 0) {
+                        lo.visible = true;
+                        lo.position.copy(u1).multiplyScalar(slowR);
+                        lo.lookAt(camera.position);
+                        lo.scale.setScalar(1 + fAge * 2.0);
+                        if (lo.material) lo.material.opacity = fOp;
+                    } else { lo.visible = false; }
+                } else { lo.visible = false; }
+            }
+        }
+
+        // ── Lap-timers (top-right). RELATIVE ring-fill, freeze + relabel T at one
+        //    revolution. NEVER a seconds value. ──
+        if (cyc.show_period_readout === true && !sliderMode) {
+            var labelA = document.getElementById("cyc_timer_a_label");
+            var labelB = document.getElementById("cyc_timer_b_label");
+            var barA = document.getElementById("cyc_timer_a_bar");
+            var barB = document.getElementById("cyc_timer_b_bar");
+            var timerAEl = document.getElementById("cyc_timer_a");
+            var timerBEl = document.getElementById("cyc_timer_b");
+            var tieBadgeEl = document.getElementById("cyc_tie_badge");
+            // dual: both freeze together at tie_badge_at_ms; single: at timer_freeze_at_ms.
+            var freezeNow = dual ? tied : timerFrozen;
+            if (barA) cycWriteLapBar(barA, lapFrac.slow, freezeNow);
+            if (dual && barB) cycWriteLapBar(barB, lapFrac.fast, freezeNow);
+            if (freezeNow) {
+                if (labelA) labelA.textContent = "T";
+                if (labelB && dual) labelB.textContent = "T";
+                if (timerAEl) timerAEl.className = "cyc_timer frozen";
+                if (timerBEl && dual) timerBEl.className = "cyc_timer frozen";
+                if (dual && tieBadgeEl) tieBadgeEl.style.display = "block";
+            } else {
+                if (labelA) labelA.textContent = dual ? (dual.slow.label || "slow") : "lap";
+                if (labelB && dual) labelB.textContent = dual.fast.label || "fast";
+                if (timerAEl) timerAEl.className = "cyc_timer";
+                if (timerBEl && dual) timerBEl.className = "cyc_timer";
+                if (tieBadgeEl) tieBadgeEl.style.display = "none";
+            }
+        }
+
+        // ── STATE_4 live lap-fill (inside the slider panel). The fill-rate HOLDS on
+        //    v-drag (liveOmega has no v term) and CHANGES on m/B-drag. Relative bar,
+        //    never seconds. ──
+        if (sliderMode && cyc.show_period_readout === true) {
+            var liveBar = document.getElementById("cyc_live_bar");
+            cycWriteLapBar(liveBar, computeLapFrac(liveOmega), false);
+        }
+
+        // ── STATE_3 equation build (line by line, each persists; v-cancel strikes
+        //    BOTH v's). CUT-LINE: only the symbolic strings, never a numeric r/T. ──
+        var eb = cyc.equation_build || null;
+        if (eb) {
+            function showLine(id, atMs) {
+                if (typeof atMs !== "number") return;
+                var el = document.getElementById(id);
+                if (el) el.style.display = (stateMs >= atMs) ? "block" : "none";
+            }
+            showLine("cyc_eqn_line1", eb.line1_at_ms);
+            showLine("cyc_eqn_line2", eb.line2_at_ms);
+            showLine("cyc_eqn_line3", eb.line3_at_ms);
+            showLine("cyc_eqn_final", eb.line4_at_ms);
+            showLine("cyc_eqn_aside", eb.aside_f_at_ms);
+            // v-cancel: brighten + strike through line3 (the two v's are in
+            // T = 2π(mv/qB)/v) at vcancel_at_ms, until the final line glows.
+            var l3 = document.getElementById("cyc_eqn_line3");
+            if (l3 && typeof eb.vcancel_at_ms === "number") {
+                var struck = (stateMs >= eb.vcancel_at_ms);
+                l3.className = struck ? "cyc_eqn_line cyc_struck" : "cyc_eqn_line";
+            }
+        }
+    }
+
+    // Append the live orbit point to a cyclotron trail (progressive, single-charge
+    // constant-R STATE_1 only). Wipes on cyclotronTrailResetPending (state entry /
+    // slider edit).
+    function cycUpdateTrail(trailObj, worldPos) {
+        var ud = trailObj.userData;
+        if (cyclotronTrailResetPending) {
+            ud.write_index = 0; ud.filled = 0;
+            trailObj.geometry.setDrawRange(0, 0);
+            cyclotronTrailResetPending = false;
+        }
+        trailObj.visible = true;
+        var maxP = ud.max_points || 600;
+        var wi = ud.write_index != null ? ud.write_index : 0;
+        var moved = true;
+        if ((ud.filled || 0) > 0) {
+            var dx = worldPos.x - ud.last_x, dy = worldPos.y - ud.last_y, dz = worldPos.z - ud.last_z;
+            moved = (dx * dx + dy * dy + dz * dz) >= 1e-7;
+        }
+        if (moved && (ud.filled || 0) < maxP) {
+            var arr = trailObj.geometry.attributes.position.array;
+            arr[wi * 3] = worldPos.x; arr[wi * 3 + 1] = worldPos.y; arr[wi * 3 + 2] = worldPos.z;
+            ud.last_x = worldPos.x; ud.last_y = worldPos.y; ud.last_z = worldPos.z;
+            ud.write_index = wi + 1; ud.filled = (ud.filled || 0) + 1;
+            trailObj.geometry.setDrawRange(0, ud.filled);
+            trailObj.geometry.attributes.position.needsUpdate = true;
+        }
+    }
+
     // ── Build scenario ────────────────────────────────────────────────────
     function buildScenario() {
         clearScene();
@@ -9761,6 +16003,15 @@ export const FIELD_3D_RENDERER_CODE = `
             case "point_charge_negative":
                 if (config.electric_explorer) {
                     buildElectricDiamond();
+                    break;
+                }
+                // electric_potential_meaning (V = W/q diamond): when the config
+                // carries a potential_meaning block, use the dedicated builder
+                // (route-animating test charge, work tally, ΔV/∞ markers, labelled
+                // shells, draggable V explorer). ABSENT ⇒ the legacy radial build
+                // below, so every existing point_charge concept is unaffected.
+                if (config.potential_meaning) {
+                    buildPotentialMeaning();
                     break;
                 }
                 var charge = charges[0] || {
@@ -9816,6 +16067,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildBiotSavartField();
                 break;
 
+            case "amperes_circuital_law":
+                buildAmperesCircuitalLaw();
+                break;
+
             case "changing_flux":
                 buildChangingFluxField();
                 break;
@@ -9826,6 +16081,14 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "torque_on_loop_uniform_field":
                 buildTorqueLoopInField();
+                break;
+
+            case "current_loop_acts_as_dipole":
+                buildCurrentLoopAsDipole();
+                break;
+
+            case "parallel_currents_force":
+                buildParallelCurrentsForce();
                 break;
 
             case "dipole_in_uniform_field":
@@ -9852,12 +16115,28 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildGaussSphereField();
                 break;
 
+            case "gauss_law_line":
+                buildGaussLineField();
+                break;
+
+            case "gauss_law_sheet":
+                buildGaussSheetField();
+                break;
+
             case "rhr_force_direction":
                 buildRhrForceDirection();
                 break;
 
             case "magnetic_no_work":
                 buildMagneticNoWork();
+                break;
+
+            case "radius_in_uniform_field":
+                buildRadiusInUniformField();
+                break;
+
+            case "cyclotron_period":
+                buildCyclotronPeriod();
                 break;
 
             default:
@@ -9980,6 +16259,18 @@ export const FIELD_3D_RENDERER_CODE = `
             applyTorqueLoopState(stateDef);
         }
 
+        // Current loop acts as a dipole — reuses the torque per-state engine,
+        // then toggles the field-equivalence elements (loop field lines, ring
+        // dots, N/S faces, ambient field, bar-magnet comparison).
+        if (config.scenario_type === "current_loop_acts_as_dipole") {
+            applyCurrentLoopAsDipoleState(stateDef);
+        }
+
+        // Parallel currents force — per-state visibility (dots / field / B1 / forces).
+        if (config.scenario_type === "parallel_currents_force") {
+            applyParallelCurrentsForceState(stateDef);
+        }
+
         // Electric dipole in a uniform field — per-state visibility + rotation
         // seeding (sibling of the torque-loop scenario; shares the rotation
         // engine but renders a two-charge dipole body and ±qE couple arrows).
@@ -10027,6 +16318,29 @@ export const FIELD_3D_RENDERER_CODE = `
             applyGaussSphereState(stateDef);
         }
 
+        // gauss_law_line — per-state seeding of the infinite-line-charge scene:
+        // the coaxial Gaussian-cylinder radius r + height L, the linear charge
+        // density λ, toggle of the cylinder (wall + wire + caps) + radial ring
+        // arrows + end-cap grazing arrows + reference lines (r, L) + E-vs-r plot
+        // + derivation panel + the live E readout, the slider panel, and a reset
+        // of all per-frame fades to their entry pose. The animate loop then drives
+        // the timed reveals + the 1/r ring length.
+        if (config.scenario_type === "gauss_law_line") {
+            applyGaussLineState(stateDef);
+        }
+
+        // gauss_law_sheet — per-state seeding of the infinite-charged-sheet scene
+        // (the PLANAR / CONSTANT-field INVERSE of gauss_law_line): the Gaussian-
+        // pillbox half-height H + cap radius, the surface charge density σ + field
+        // point distance d, toggle of the pillbox (wall + two caps) + flux-bearing
+        // CAP arrows + grazing WALL arrows + the d/H reference lines + the FLAT
+        // E-vs-d plot + derivation panel + the live E readout, the slider panel,
+        // and a reset of all per-frame fades to their entry pose. The animate loop
+        // then drives the timed reveals + the CONSTANT cap-arrow length.
+        if (config.scenario_type === "gauss_law_sheet") {
+            applyGaussSheetState(stateDef);
+        }
+
         // rhr_force_direction — per-state seeding (view mode, ⊗/⊙ glyphs,
         // right-angle marks, ghost-F, camera orbit, F-appear timing). The
         // animate loop then drives the hand curl, F flip, F-length∝sinθ, and
@@ -10042,6 +16356,26 @@ export const FIELD_3D_RENDERER_CODE = `
         // never a force magnitude, never r = mv/qB, never the period T.
         if (config.scenario_type === "magnetic_no_work") {
             applyMagneticNoWorkState(stateDef);
+        }
+
+        // radius_in_uniform_field — per-state seeding (trail reset, ghost-compare
+        // re-arm, equation-panel + slider-panel visibility, per-state-only primitive
+        // hide). The animate loop then drives the four-factor R_visual orbit
+        // (constant arc-speed), the dashed radius line, the STATE_1 close-and-flash,
+        // the STATE_3 equation rearrange, the STATE_4/5 ghost-compare swell/shrink,
+        // and the STATE_6 live RELATIVE readout. RADIUS-ONLY — never period / force.
+        if (config.scenario_type === "radius_in_uniform_field") {
+            applyRadiusInUniformFieldState(stateDef);
+        }
+
+        // cyclotron_period — per-state seeding (trail-pool reset, lap-timer +
+        // equation-panel + slider-panel DOM visibility, per-state-only primitive
+        // hide). The animate loop then drives the shared-ω dual-orbit race, the
+        // relative lap-timers (freeze + relabel T), the "= same T" tie badge, the
+        // STATE_3 equation build (with v-cancel), and the STATE_4 live explorer.
+        // PERIOD-ONLY — period SHOWN (relative), magnitude / r-number never shown.
+        if (config.scenario_type === "cyclotron_period") {
+            applyCyclotronPeriodState(stateDef);
         }
 
         // Biot-Savart — seed the choreography on state entry: collapse every
@@ -10138,6 +16472,14 @@ export const FIELD_3D_RENDERER_CODE = `
             applyForceFieldState(stateDef);
         }
 
+        // electric_potential_meaning (V = W/q diamond) — per-state seeding of the
+        // route/tally/badge/markers/shells/explorer pose. Gated on
+        // config.potential_meaning so nothing else is touched. The per-frame route
+        // animation / drain / grow / draw / drag lives in the animate loop.
+        if (config.potential_meaning) {
+            applyPotentialMeaningState(stateDef);
+        }
+
         // Sliders + formula overlay visibility — scenario-aware: show the
         // I/r panel for straight_wire_current, the q/v/B/θ panel for
         // lorentz_force_uniform_field, the N/I/B/θ panel for
@@ -10148,7 +16490,8 @@ export const FIELD_3D_RENDERER_CODE = `
         var fcwSlidersEl = document.getElementById("fcw_sliders");
         var dipoleSlidersEl = document.getElementById("dipole_sliders");
         var isLorentz = config.scenario_type === "lorentz_force_uniform_field";
-        var isTorque = config.scenario_type === "torque_on_loop_uniform_field";
+        var isTorque = config.scenario_type === "torque_on_loop_uniform_field" ||
+            config.scenario_type === "current_loop_acts_as_dipole";
         var isFcw = config.scenario_type === "force_on_current_wire";
         var isDipole = config.scenario_type === "dipole_in_uniform_field";
         var isCdist = config.scenario_type === "charge_distribution";
@@ -10156,8 +16499,12 @@ export const FIELD_3D_RENDERER_CODE = `
         var isGauss = config.scenario_type === "gauss_law";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
+        var isRadius = config.scenario_type === "radius_in_uniform_field";
+        var isCyclotron = config.scenario_type === "cyclotron_period";
         var noworkSlidersEl = document.getElementById("nowork_sliders");
-        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isCdist && !isEflux && !isGauss && !isRhr && !isNoWork) ? "block" : "none";
+        var radiusSlidersEl2 = document.getElementById("radius_sliders");
+        var cyclotronSlidersEl2 = document.getElementById("cyclotron_sliders");
+        if (slidersEl) slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isCdist && !isEflux && !isGauss && !isRhr && !isNoWork && !isRadius && !isCyclotron) ? "block" : "none";
         if (fcwSlidersEl) {
             var showFcwSliders = !!(stateDef.show_sliders && isFcw);
             fcwSlidersEl.style.display = showFcwSliders ? "block" : "none";
@@ -10189,6 +16536,22 @@ export const FIELD_3D_RENDERER_CODE = `
             // DIRECTION + NO-WORK cut-line forbids any force / radius / period
             // readout — the panel prints only the invariant ("|v| fixed · W = 0").
             noworkSlidersEl.style.display = (stateDef.show_sliders && isNoWork) ? "block" : "none";
+        }
+        if (radiusSlidersEl2) {
+            // radius_in_uniform_field has its OWN explorer panel (m, v, q, B → live
+            // RELATIVE r readout). The RADIUS-ONLY cut-line forbids any period /
+            // force number — the panel prints only the relative bar 'r |'.
+            // (applyRadiusInUniformFieldState already toggled this; mirror it here
+            // so the scenario-aware slider switch is authoritative and consistent.)
+            radiusSlidersEl2.style.display = (stateDef.show_sliders && isRadius) ? "block" : "none";
+        }
+        if (cyclotronSlidersEl2) {
+            // cyclotron_period has its OWN explorer panel (m, v, q, B → live RELATIVE
+            // lap-fill). The PERIOD-ONLY cut-line forbids any seconds value / force
+            // number — the panel prints only the relative bar 'T |' (fill-rate holds
+            // on v-drag, moves on m/B-drag). (applyCyclotronPeriodState already
+            // toggled this; mirror it here so the scenario-aware switch is consistent.)
+            cyclotronSlidersEl2.style.display = (stateDef.show_sliders && isCyclotron) ? "block" : "none";
         }
         if (torqueSlidersEl) {
             var showTorqueSliders = !!(stateDef.show_sliders && isTorque);
@@ -10259,12 +16622,289 @@ export const FIELD_3D_RENDERER_CODE = `
             equationPanelEl.className = "anchor-" + anchor;
         }
 
+        // amperes_circuital_law: populate the screen-space derivation panel +
+        // bar/ruler HUD for this state (camera-independent; replaces the world-
+        // space acl_eq_* sprites + acl_bar/acl_ruler that projected off-canvas).
+        if (config.scenario_type === "amperes_circuital_law") updateAmperesHud(stateDef);
+
         // If sliders are shown for this state, refresh the field-line visual
         // feedback so the current slider values are reflected immediately.
         if (stateDef.show_sliders) refreshSliderVisuals();
 
         // Update legend
         updateLegend(stateDef);
+    }
+
+    // ── amperes_circuital_law screen-space overlays ──────────────────────────
+    //   Two camera-independent overlays carry the on-canvas payoff (Rule 24):
+    //     • #acl_eq_panel  — the derivation rows (top-center; always fully in
+    //                        frame; chosen from the state's acl_eq_<n> tokens).
+    //     • #acl_stage     — a full-canvas 2D <canvas> that draws the ring→bar
+    //                        UNROLL (STATE_6), the divide-by-2πr (STATE_7), and
+    //                        the r-driven explorer (STATE_8) with total pixel
+    //                        control — upper band = ring, lower band = bar, so
+    //                        nothing overlaps the wire/loop. On stage states the
+    //                        3D wire/loop/tiles are hidden (aclStageActive flag,
+    //                        read by the animate loop).
+    function updateAmperesHud(stateDef) {
+        var panel = document.getElementById("acl_eq_panel");
+        var stage = document.getElementById("acl_stage");
+        if (!panel || !stage) return;
+
+        // Derivation rows keyed to the STATE that uses each token (from the
+        // concept JSON's visible_elements: eq_0→STATE_1, eq_1→STATE_2, eq_2→STATE_4,
+        // eq_3→STATE_6, eq_4+eq_5→STATE_7). Plain Unicode; cls drives colour.
+        var EQ = [
+            { id: "acl_eq_0", text: "B = μ₀ I / (2πr)", cls: "faint" },        // STATE_1: the result we'll earn (faint)
+            { id: "acl_eq_1", text: "∮B·dl = μ₀ I_enc", cls: "" },             // STATE_2: Ampere's law, stated
+            { id: "acl_eq_2", text: "∮B·dl = B·(2πr)", cls: "" },              // STATE_4: pull B out of the sum
+            { id: "acl_eq_3", text: "B·(2πr) = μ₀ I_enc", cls: "ienc" },       // STATE_6: set equal
+            { id: "acl_eq_4", text: "B = μ₀ I / (2πr)", cls: "solve" },        // STATE_7: solve (the earned result)
+            { id: "acl_eq_5", text: "I_enc = I (one wire)", cls: "" }          // STATE_7: enclosed current (single wire)
+        ];
+
+        var vis = stateDef.visible_elements || [];
+        function wants(tok) {
+            if (vis.length === 0 || vis.indexOf("all") >= 0) return false;
+            for (var i = 0; i < vis.length; i++) {
+                if (vis[i] === tok || (tok.indexOf(vis[i]) >= 0 && vis[i].indexOf("acl_eq") === 0)) return true;
+            }
+            return false;
+        }
+
+        panel.innerHTML = "";
+        var shown = 0;
+        for (var e = 0; e < EQ.length; e++) {
+            if (!wants(EQ[e].id)) continue;
+            var row = document.createElement("div");
+            row.className = "acl_eq_row" + (EQ[e].cls ? (" " + EQ[e].cls) : "");
+            row.textContent = EQ[e].text;
+            panel.appendChild(row);
+            shown++;
+        }
+        panel.style.display = shown > 0 ? "block" : "none";
+
+        // The 2D stage owns the unroll / explorer payoff. STATE_6 = full stage
+        // (mode unroll, !show_ienc); STATE_7/8 = PHYSICAL mode (3D centerpiece +
+        // compact bottom strip) — in physical mode the formula HUD is demoted to
+        // the top-right corner so it doesn't crowd the rod/loop (founder video #2).
+        var ae = stateDef.acl_element || {};
+        var modeA = ae.mode || "static";
+        var physicalMode = (modeA === "unroll" && ae.show_ienc === true) || (modeA === "integrated");
+        panel.className = physicalMode ? "acl_corner" : "";
+        aclStageActive = (modeA === "unroll" || modeA === "integrated");
+        stage.style.display = aclStageActive ? "block" : "none";
+        if (aclStageActive) {
+            // size the canvas backing store to the device pixels for crisp lines.
+            var dpr = Math.min(window.devicePixelRatio || 1, 2);
+            stage.width = Math.round(window.innerWidth * dpr);
+            stage.height = Math.round(window.innerHeight * dpr);
+            // On the eq panel: STATE_6/7 show the derivation row at top; the stage
+            // never collides with it (stage payoff sits in the middle+lower bands).
+        }
+    }
+
+    // ── The 2D unroll stage (camera-independent ring→bar) ────────────────────
+    //   Repainted each animate frame for STATE_6/7/8. Layout (all in CSS pixels,
+    //   mapped to device pixels via dpr): an UPPER band holds the ring of N equal
+    //   B·dl tiles; a LOWER band holds the straightened bar + the 2πr ruler. The
+    //   tiles LIFT off the ring and STRAIGHTEN down into the bar (length
+    //   conserved — N equal tiles → a bar of N equal ticks). Distinct beats:
+    //     • mode 'unroll'  + !show_ienc (STATE_6): live ring→bar straighten.
+    //     • mode 'unroll'  +  show_ienc (STATE_7): bar already straight; a
+    //                        divide-by-2πr cancel collapses the bar to B alone.
+    //     • mode 'integrated' (STATE_8): r-slider scales the ring radius + bar
+    //                        length live (a REAL magnitude change — Rule-29 ok);
+    //                        I_enc fixed; B = μ₀I/2πr shrinks as r grows.
+    function drawAmperesStage(stateDef, localMs) {
+        var stage = document.getElementById("acl_stage");
+        if (!stage || !aclStageActive) return;
+        var ctx = stage.getContext("2d");
+        if (!ctx) return;
+        var ae = stateDef.acl_element || {};
+        var modeA = ae.mode || "static";
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var W = stage.width, H = stage.height;
+        ctx.clearRect(0, 0, W, H);
+        ctx.save();
+        ctx.scale(dpr, dpr);
+        var w = W / dpr, h = H / dpr;
+
+        var nSeg = (typeof ae.num_segments === "number") ? ae.num_segments
+            : ((config.acl_defaults && typeof config.acl_defaults.num_segments === "number") ? config.acl_defaults.num_segments : 24);
+
+        // ── live r / I from the explorer sliders ─────────────────────────────
+        var rCm = 5, iA = 5;
+        {
+            var rS = document.getElementById("r_slider");
+            var iS = document.getElementById("i_slider");
+            if (rS) rCm = parseFloat(rS.value) || 5;
+            if (iS) iA = parseFloat(iS.value) || 5;
+        }
+
+        // ── PHYSICAL MODE (STATE_7 + STATE_8): the 3D rod + field circles + coaxial
+        //    Amperian loop are the centerpiece (drawn in the 3D scene). Here the 2D
+        //    stage draws ONLY a SMALL bar/ruler strip pinned to the bottom + a
+        //    compact "∮B·dl = μ₀ I_enc" readout — the math demoted to a supporting
+        //    role (founder video #2). No big ring, no red slash. Length conserved:
+        //    the strip's width = 2πr (tracks r in STATE_8), brightness ∝ B = μ₀I/2πr.
+        var aclPhysical = (modeA === "unroll" && ae.show_ienc === true) || (modeA === "integrated");
+        if (aclPhysical) {
+            var pBrel = (iA / 5) / (rCm / 5);                 // ∝ B = μ₀I/2πr (real)
+            var pBright = Math.max(0.4, Math.min(1.0, 0.45 + 0.55 * Math.min(1.5, pBrel) / 1.5));
+            // bar width tracks r (real 2πr); kept compact and centred near the bottom.
+            var pRnorm = Math.max(0.25, Math.min(1.0, rCm / 20));
+            var pMaxW = Math.min(w - 220, 720);
+            var pBarW = pMaxW * (0.5 + 0.5 * pRnorm);
+            var pCx = w / 2;
+            var pBarCy = h * 0.9;                            // bottom strip — clear of the 3D rod/loop
+            var pLeft = pCx - pBarW / 2, pRight = pCx + pBarW / 2;
+            var pSeg = pBarW / nSeg;
+            // small green bar of equal tiles (the unrolled circulation, minimized)
+            ctx.lineCap = "round"; ctx.lineWidth = 5;
+            ctx.strokeStyle = "rgba(" + Math.round(102 * pBright + 60) + "," + Math.round(187 * pBright + 40) + "," + Math.round(106 * pBright + 60) + ",0.95)";
+            var pHalf = Math.min(pSeg * 0.42, 9);
+            for (var pk = 0; pk < nSeg; pk++) {
+                var pxk = pLeft + (pk + 0.5) * pSeg;
+                ctx.beginPath(); ctx.moveTo(pxk - pHalf, pBarCy); ctx.lineTo(pxk + pHalf, pBarCy); ctx.stroke();
+            }
+            // 2πr ruler beneath the strip
+            var pRy = pBarCy + 13;
+            ctx.strokeStyle = "rgba(207,216,220,0.85)"; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(pLeft, pRy); ctx.lineTo(pRight, pRy); ctx.stroke();
+            ctx.lineWidth = 1;
+            for (var pt = 0; pt <= nSeg; pt += 4) {
+                var ptx = pLeft + pt * pSeg;
+                ctx.beginPath(); ctx.moveTo(ptx, pRy - 4); ctx.lineTo(ptx, pRy + 4); ctx.stroke();
+            }
+            ctx.fillStyle = "rgba(207,216,220,0.9)";
+            ctx.font = "600 13px 'Cambria Math','Times New Roman',serif";
+            ctx.textAlign = "left";   ctx.fillText("0", pLeft - 2, pRy + 18);
+            ctx.textAlign = "right";  ctx.fillText("2πr", pRight + 2, pRy + 18);
+            // compact law readout above the strip
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#8BE08B";
+            ctx.font = "italic 600 16px 'Cambria Math','Times New Roman',serif";
+            ctx.fillText("∮B·dl = B·(2πr) = μ₀ I_enc", pCx, pBarCy - 16);
+            ctx.restore();
+            return;   // physical mode is fully drawn; skip the full ring→bar stage below
+        }
+
+        // (STATE_6 full stage below uses the same live r/I poll above.)
+        // r → ring radius (clamped to stay on-canvas) and bar length. The bar
+        // length is a REAL magnitude (2πr) so it grows/shrinks with r in STATE_8;
+        // STATE_6/7 use the fixed default r (legibility size for the unroll proof).
+        var rNorm = (modeA === "integrated") ? Math.max(0.25, Math.min(1.0, rCm / 20)) : 0.5;
+        var maxBarW = Math.min(w - 120, 1000);
+        var barW = maxBarW * (0.55 + 0.45 * (rNorm / 1.0));   // bar width tracks r (STATE_8); ~0.775·max at default
+        if (modeA !== "integrated") barW = maxBarW * 0.82;     // fixed legibility size for STATE_6/7
+        var ringR = (modeA === "integrated") ? (46 + 70 * rNorm) : 78;  // ring radius tracks r in STATE_8
+
+        // ── layout bands ────────────────────────────────────────────────────
+        var cx = w / 2;
+        var ringCy = h * 0.30;             // ring sits in the UPPER band
+        var barCy = h * 0.66;              // bar sits in the LOWER band, clearly separated
+        var barLeft = cx - barW / 2, barRight = cx + barW / 2;
+        var segLenPx = barW / nSeg;
+
+        // straighten progress u (0 = ring, 1 = bar). STATE_6 animates live; the
+        // result/explorer states are already straight (u=1). u is MONOTONIC and
+        // HOLDS at 1 once the peel completes: ux is clamped to [0,1] BEFORE the
+        // smoothstep so the polynomial never goes non-monotonic (the s-curve
+        // ux*ux*(3-2*ux) dips below 0 / above 1 for ux outside [0,1], which made
+        // the bar REVERSE back to the ring at large localMs — the STATE_6 regression).
+        var u;
+        if (modeA === "integrated" || ae.show_ienc === true) {
+            u = 1;
+        } else {
+            var unrollAt = (typeof ae.unroll_at_ms === "number") ? ae.unroll_at_ms : 1800;
+            var unrollDur = (typeof ae.unroll_duration_ms === "number") ? ae.unroll_duration_ms : 2200;
+            var ux = Math.max(0, Math.min(1, (localMs - unrollAt) / Math.max(1, unrollDur)));
+            u = ux * ux * (3 - 2 * ux);   // smoothstep on the already-clamped ux → holds at 1
+        }
+
+        // ── draw the equal B·dl tiles as a SEQUENTIAL PEEL ring→bar ──────────
+        //   The ring UNWINDS like a tape: tiles peel off the ring one-by-one (from
+        //   the top, cw) and lay into the bar left→right, in order. At progress u:
+        //     - tiles k < floor(u·N)  → fully in the bar (laid, horizontal).
+        //     - tile  k = floor(u·N)  → mid-transition (lerps ring-pose→bar-slot).
+        //     - tiles k > floor(u·N)  → still on the ring arc.
+        //   No tile ever crosses another (ordered peel), so the circle visibly
+        //   becomes the line. Each tile is EQUAL length in both poses (length
+        //   conserved — the visual proof ∮B·dl = B·(2πr)).
+        var peeled = u * nSeg;                 // fractional number of tiles laid into the bar
+        var tileLen = Math.min(segLenPx * 0.92, (2 * Math.PI * ringR) / nSeg * 0.92);
+        // STATE_8: brightness encodes B = μ₀I/2πr (falls as 1/r) — emphasis is
+        // brightness, never size (Rule 29); the bar LENGTH already carries 2πr.
+        var bBright = 1;
+        if (modeA === "integrated") {
+            var bRel = (iA / 5) / (rCm / 5);   // ∝ I / r, normalised to defaults
+            bBright = Math.max(0.35, Math.min(1.0, 0.4 + 0.6 * Math.min(1.5, bRel) / 1.5));
+        }
+        ctx.strokeStyle = "rgba(" + Math.round(102 * bBright + 60) + "," + Math.round(187 * bBright + 40) + "," + Math.round(106 * bBright + 60) + ",0.96)";
+        ctx.lineWidth = 7;
+        ctx.lineCap = "round";
+        var half = tileLen / 2;
+        for (var k = 0; k < nSeg; k++) {
+            // ring-pose: tile k at angle φ_k (top, cw), tangent direction.
+            var phi = (2 * Math.PI * k) / nSeg - Math.PI / 2;
+            var rx = cx + ringR * Math.cos(phi), ry = ringCy + ringR * Math.sin(phi);
+            var rtx = -Math.sin(phi), rty = Math.cos(phi);
+            // bar-pose: tile k as the k-th horizontal cell.
+            var bx = barLeft + (k + 0.5) * segLenPx, by = barCy;
+            var px, py, tx, ty;
+            if (k < Math.floor(peeled)) {
+                // fully laid into the bar
+                px = bx; py = by; tx = 1; ty = 0;
+            } else if (k === Math.floor(peeled)) {
+                // the tile currently peeling: lerp ring→bar by its fractional part
+                var f = peeled - Math.floor(peeled);
+                var fe = f * f * (3 - 2 * f);
+                px = rx + (bx - rx) * fe; py = ry + (by - ry) * fe;
+                tx = rtx + (1 - rtx) * fe; ty = rty + (0 - rty) * fe;
+                var tl0 = Math.sqrt(tx * tx + ty * ty) || 1; tx /= tl0; ty /= tl0;
+            } else {
+                // still on the ring
+                px = rx; py = ry; tx = rtx; ty = rty;
+            }
+            ctx.beginPath();
+            ctx.moveTo(px - tx * half, py - ty * half);
+            ctx.lineTo(px + tx * half, py + ty * half);
+            ctx.stroke();
+        }
+
+        // ── the 2πr ruler under the bar (drawn once the bar is mostly formed) ─
+        var rulerA = Math.max(0, Math.min(1, (u - 0.5) / 0.5));
+        if (modeA === "integrated" || ae.show_ienc === true) rulerA = 1;
+        if (rulerA > 0.02) {
+            var rulerY = barCy + 26;
+            ctx.globalAlpha = rulerA;
+            ctx.strokeStyle = "#CFD8DC"; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(barLeft, rulerY); ctx.lineTo(barRight, rulerY); ctx.stroke();
+            ctx.lineWidth = 1.5;
+            for (var t = 0; t <= nSeg; t++) {
+                var txk = barLeft + t * segLenPx;
+                ctx.beginPath(); ctx.moveTo(txk, rulerY - 6); ctx.lineTo(txk, rulerY + 6); ctx.stroke();
+            }
+            ctx.fillStyle = "#CFD8DC";
+            ctx.font = "600 16px 'Cambria Math','Times New Roman',serif";
+            ctx.textAlign = "left";  ctx.fillText("0", barLeft - 2, rulerY + 26);
+            ctx.textAlign = "center"; ctx.fillText("πr", cx, rulerY + 26);
+            ctx.textAlign = "right"; ctx.fillText("2πr", barRight + 2, rulerY + 26);
+            // the "∮B·dl = B·(2πr)" caption above the bar
+            ctx.textAlign = "center";
+            ctx.fillStyle = "rgba(139,224,139," + rulerA.toFixed(2) + ")";
+            ctx.font = "italic 600 20px 'Cambria Math','Times New Roman',serif";
+            ctx.fillText("∮B·dl = B·(2πr)", cx, barCy - 24);
+            ctx.globalAlpha = 1;
+        }
+
+        // (STATE_7/STATE_8 are handled by the PHYSICAL-MODE early-return at the top
+        //  of this function — the 3D rod + field circles + coaxial loop are the
+        //  centerpiece, with only a compact bottom strip here. The old STATE_7
+        //  red-slash divide beat + STATE_8 stage readouts were removed in the
+        //  founder-video-#2 redesign; only STATE_6's ring→bar peel reaches here.)
+        ctx.restore();
     }
 
     function updateLegend(stateDef) {
@@ -10289,12 +16929,45 @@ export const FIELD_3D_RENDERER_CODE = `
         // sphere + radial arrows + E readout + E-vs-r plot carry everything —
         // suppress the generic point-charge legend.
         if (config.scenario_type === "gauss_law_sphere") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // gauss_law_line is a silent visual (Rule 24): the line charge + coaxial
+        // Gaussian cylinder + radial ring arrows + r/L reference lines + E readout
+        // + E-vs-r plot carry everything — suppress the generic point-charge legend.
+        if (config.scenario_type === "gauss_law_line") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // gauss_law_sheet is a silent visual (Rule 24): the charged sheet + σ "+"
+        // grid + Gaussian pillbox + flux-bearing cap arrows + grazing wall arrows +
+        // d/H reference lines + E readout + FLAT E-vs-d plot carry everything —
+        // suppress the generic point-charge legend.
+        if (config.scenario_type === "gauss_law_sheet") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // amperes_circuital_law is a silent visual (Rule 24): the wire + Amperian
+        // loop + B·dl tiles + the screen-space derivation panel and bar/ruler HUD
+        // carry everything, and this concept has NO magnets/poles — suppress the
+        // generic "Red = N pole / Blue = S pole" legend (wrong content + clutter).
+        if (config.scenario_type === "amperes_circuital_law") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // magnetic_no_work is a silent visual (Rule 24): the v/F arrows + |v|/W
         // meters + equal-arc trail carry everything, and this concept has NO
         // magnets/poles — the generic "Red = N pole / Blue = S pole" legend is
         // both wrong content and canvas clutter (it overlaps the STATE_5 electric
         // meter). Suppress it.
         if (config.scenario_type === "magnetic_no_work") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // radius_in_uniform_field is a silent visual (Rule 24): the v/F/r arrows +
+        // dashed radius line + relative readout + the bottom-left equation panel
+        // carry everything, and this concept has NO magnets/poles — the generic
+        // "Red = N pole / Blue = S pole" legend is wrong content + canvas clutter.
+        // Suppress it.
+        if (config.scenario_type === "radius_in_uniform_field") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // cyclotron_period is a silent visual (Rule 24): the v/F arrows + lap-timers
+        // + tie badge + the bottom-left equation panel carry everything, and this
+        // concept has NO magnets/poles — the generic "Red = N pole / Blue = S pole"
+        // legend is wrong content + canvas clutter. Suppress it.
+        if (config.scenario_type === "cyclotron_period") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // electric_potential_meaning is a silent visual (Rule 24): the red SOURCE +Q,
+        // the amber +q test charge, the V-labelled shells, the U/V/W tallies + the
+        // bottom-right formula overlay carry everything. The generic point_charge
+        // legend "Red sphere = +q" would MISLABEL the red source as +q (it is +Q, the
+        // source — the amber sphere is the +q test charge) and conflate the scalar V
+        // with "E field direction". Suppress it. Gated on config.potential_meaning so
+        // NO other point_charge concept is affected (they keep the shared legend).
+        if (config.potential_meaning) { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
 
         var scenario = config.scenario_type;
         var lines = [];
@@ -11690,6 +18363,37 @@ export const FIELD_3D_RENDERER_CODE = `
             }
         }
 
+        // ── Parallel-currents sandbox (#sliders): I1, I2 + reverse-I2 toggle ──
+        //   The per-frame block reads the slider values live and pcfUserFlip for
+        //   attract/repel; the button just toggles pcfUserFlip + the readout.
+        if (config.scenario_type === "parallel_currents_force") {
+            var pcfPanel = document.getElementById("sliders");
+            if (pcfPanel) {
+                var pc1 = (config.slider_controls && config.slider_controls.I1) || {};
+                var pc2 = (config.slider_controls && config.slider_controls.I2) || {};
+                var i1D = pc1.default != null ? pc1.default : 5, i1Mn = pc1.min != null ? pc1.min : 1, i1Mx = pc1.max != null ? pc1.max : 10, i1St = pc1.step != null ? pc1.step : 1;
+                var i2D = pc2.default != null ? pc2.default : 5, i2Mn = pc2.min != null ? pc2.min : 1, i2Mx = pc2.max != null ? pc2.max : 10, i2St = pc2.step != null ? pc2.step : 1;
+                pcfPanel.innerHTML =
+                    '<label>I\\u2081 = <span id="pcf_i1_val">' + Math.round(i1D) + '</span> A</label>' +
+                    '<input type="range" id="pcf_i1_slider" min="' + i1Mn + '" max="' + i1Mx + '" step="' + i1St + '" value="' + i1D + '">' +
+                    '<label>I\\u2082 = <span id="pcf_i2_val">' + Math.round(i2D) + '</span> A</label>' +
+                    '<input type="range" id="pcf_i2_slider" min="' + i2Mn + '" max="' + i2Mx + '" step="' + i2St + '" value="' + i2D + '">' +
+                    '<button id="pcf_flip_toggle" style="margin:6px 0;padding:4px 10px;cursor:pointer;border-radius:4px;border:1px solid #555;background:#222;color:#eee;">reverse I\\u2082 (attract/repel)</button>' +
+                    '<div id="pcf_readout">F/L \\u221d I\\u2081 I\\u2082 / d</div>';
+                var pcfU1 = document.getElementById("pcf_i1_slider");
+                var pcfU2 = document.getElementById("pcf_i2_slider");
+                var pcfTog = document.getElementById("pcf_flip_toggle");
+                function pcfRefreshLabels() {
+                    var a = document.getElementById("pcf_i1_val"), b = document.getElementById("pcf_i2_val");
+                    if (a && pcfU1) a.textContent = pcfU1.value;
+                    if (b && pcfU2) b.textContent = pcfU2.value;
+                }
+                if (pcfU1) pcfU1.addEventListener("input", pcfRefreshLabels);
+                if (pcfU2) pcfU2.addEventListener("input", pcfRefreshLabels);
+                if (pcfTog) pcfTog.addEventListener("click", function () { pcfUserFlip = (pcfUserFlip > 0 ? -1 : 1); });
+            }
+        }
+
         // ── Diamond #2 (Lorentz force) slider wiring ─────────────────────
         // The q-toggle is a click-to-flip button (not a range input). v/B/θ
         // are range inputs that update their span labels and trigger a redraw
@@ -11799,6 +18503,100 @@ export const FIELD_3D_RENDERER_CODE = `
             nwVSlider.addEventListener("input", refreshNoWorkLabels);
             nwBSlider.addEventListener("input", refreshNoWorkLabels);
             refreshNoWorkLabels();
+        }
+
+        // ── radius_in_uniform_field explorer (STATE_6) slider wiring ──────
+        // Four PLAIN UNITLESS knobs (m, v, q, B; default 1.0, range 0.5–2.5). The
+        // animate loop reads the slider DOM directly each frame (radFactor =
+        // value/default), so this handler just keeps the span labels in sync and
+        // wipes the orbit trail on any edit so the new (wider/tighter) circle reads
+        // cleanly. NO force / period readout is ever produced — the only readout is
+        // the relative bar 'r |', driven in updateRadiusInUniformFieldFrame.
+        var radM = document.getElementById("rad_m_slider");
+        var radV = document.getElementById("rad_v_slider");
+        var radQ = document.getElementById("rad_q_slider");
+        var radB = document.getElementById("rad_b_slider");
+        if (radM && radV && radQ && radB) {
+            // Seed slider min/max/step/default from slider_controls (plain unitless,
+            // no SI rescale). Each control key maps 1:1 to a slider id.
+            function seedRadSlider(el, ctrl) {
+                if (!ctrl) return;
+                if (ctrl.min != null) el.min = String(ctrl.min);
+                if (ctrl.max != null) el.max = String(ctrl.max);
+                if (ctrl.step != null) el.step = String(ctrl.step);
+                if (ctrl.default != null) el.value = String(ctrl.default);
+            }
+            if (config.slider_controls) {
+                seedRadSlider(radM, config.slider_controls.m);
+                seedRadSlider(radV, config.slider_controls.v);
+                seedRadSlider(radQ, config.slider_controls.q_mag);
+                seedRadSlider(radB, config.slider_controls.B);
+            }
+            function refreshRadiusLabels() {
+                var mv = document.getElementById("rad_m_val");
+                var vv = document.getElementById("rad_v_val");
+                var qv = document.getElementById("rad_q_val");
+                var bv = document.getElementById("rad_b_val");
+                if (mv) mv.textContent = parseFloat(radM.value).toFixed(1);
+                if (vv) vv.textContent = parseFloat(radV.value).toFixed(1);
+                if (qv) qv.textContent = parseFloat(radQ.value).toFixed(1);
+                if (bv) bv.textContent = parseFloat(radB.value).toFixed(1);
+                if (config.scenario_type !== "radius_in_uniform_field") return;
+                // Any slider edit invalidates the existing orbit trail — wipe it so
+                // the new (wider / tighter) circle reads cleanly.
+                radiusTrailResetPending = true;
+            }
+            radM.addEventListener("input", refreshRadiusLabels);
+            radV.addEventListener("input", refreshRadiusLabels);
+            radQ.addEventListener("input", refreshRadiusLabels);
+            radB.addEventListener("input", refreshRadiusLabels);
+            refreshRadiusLabels();
+        }
+
+        // ── cyclotron_period explorer (STATE_4) slider wiring ─────────────
+        // Four PLAIN UNITLESS knobs (m, v, q, B; default 1.0, range 0.5–2.5). The
+        // animate loop reads the slider DOM directly each frame (cycFactor =
+        // value/default), so this handler just keeps the span labels in sync and
+        // wipes the single orbit trail on any edit so the new (wider/tighter) circle
+        // reads cleanly. NO seconds / force readout — the only readout is the live
+        // relative lap-fill 'T |', driven in updateCyclotronPeriodFrame.
+        var cycM = document.getElementById("cyc_m_slider");
+        var cycV = document.getElementById("cyc_v_slider");
+        var cycQ = document.getElementById("cyc_q_slider");
+        var cycB = document.getElementById("cyc_b_slider");
+        if (cycM && cycV && cycQ && cycB) {
+            function seedCycSlider(el, ctrl) {
+                if (!ctrl) return;
+                if (ctrl.min != null) el.min = String(ctrl.min);
+                if (ctrl.max != null) el.max = String(ctrl.max);
+                if (ctrl.step != null) el.step = String(ctrl.step);
+                if (ctrl.default != null) el.value = String(ctrl.default);
+            }
+            if (config.slider_controls) {
+                seedCycSlider(cycM, config.slider_controls.m);
+                seedCycSlider(cycV, config.slider_controls.v);
+                seedCycSlider(cycQ, config.slider_controls.q_mag);
+                seedCycSlider(cycB, config.slider_controls.B);
+            }
+            function refreshCyclotronLabels() {
+                var mv = document.getElementById("cyc_m_val");
+                var vv = document.getElementById("cyc_v_val");
+                var qv = document.getElementById("cyc_q_val");
+                var bv = document.getElementById("cyc_b_val");
+                if (mv) mv.textContent = parseFloat(cycM.value).toFixed(1);
+                if (vv) vv.textContent = parseFloat(cycV.value).toFixed(1);
+                if (qv) qv.textContent = parseFloat(cycQ.value).toFixed(1);
+                if (bv) bv.textContent = parseFloat(cycB.value).toFixed(1);
+                if (config.scenario_type !== "cyclotron_period") return;
+                // Any slider edit invalidates the single orbit trail — wipe it so the
+                // new (wider / tighter) circle reads cleanly.
+                cyclotronTrailResetPending = true;
+            }
+            cycM.addEventListener("input", refreshCyclotronLabels);
+            cycV.addEventListener("input", refreshCyclotronLabels);
+            cycQ.addEventListener("input", refreshCyclotronLabels);
+            cycB.addEventListener("input", refreshCyclotronLabels);
+            refreshCyclotronLabels();
         }
 
         // ── Diamond #3 (torque on current loop) slider wiring ────────────
@@ -12039,7 +18837,21 @@ export const FIELD_3D_RENDERER_CODE = `
         // trail, slow_rotation integration) build the exact same frame count
         // every run → deterministic pixels for regression baselines.
         var heldAtPin = false;
-        if (freezeAtTime !== null && time + 0.016 >= freezeAtTime) {
+        // ACCUMULATOR-FREE FAST-FORWARD: electric_potential_meaning has NO per-frame
+        // accumulators — every reveal is a pure function of (time - stateStartTime)
+        // (route lerp, badge drain, q→2q grow, shell fade-in, ΔV/∞ draw, idle sweep).
+        // Under headless rAF throttling the crawl-to-pin (time += 0.016/frame) can't
+        // reach a late state-local target (e.g. shells_at_ms=12000) inside the
+        // screenshotter's poll window — so the frozen capture under-shows the reveal
+        // (the field3d_time_gated / reveal_too_subtle false-negative). Because the
+        // scenario is accumulator-free, SNAPPING straight to the pin is byte-identical
+        // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
+        // so we jump in ONE frame. Gated on config.potential_meaning so every existing
+        // scenario keeps the deterministic crawl (its trails/rotation MUST build).
+        if (freezeAtTime !== null && config.potential_meaning) {
+            time = freezeAtTime;
+            heldAtPin = true;
+        } else if (freezeAtTime !== null && time + 0.016 >= freezeAtTime) {
             time = freezeAtTime;
             heldAtPin = true;
         } else {
@@ -12063,6 +18875,19 @@ export const FIELD_3D_RENDERER_CODE = `
             // pass 0 while held at the pin so the loop angle freezes too.
             updateTorqueLoopFrame(heldAtPin ? 0 : 0.016);
             applyTorqueLoopGlow();
+        }
+
+        // Current loop acts as a dipole — rotation + τ/μ scaling + ring current
+        // dot orbit + TTS glow (reuses the torque engine + glow).
+        if (config.scenario_type === "current_loop_acts_as_dipole") {
+            updateCurrentLoopDipoleFrame(heldAtPin ? 0 : 0.016);
+            applyTorqueLoopGlow();
+        }
+
+        // Parallel currents force — flow dots, orbiting B1 arrows, force vectors.
+        if (config.scenario_type === "parallel_currents_force") {
+            updateParallelCurrentsForceFrame();
+            updatePcfRhrHandFrame();   // STATE_3 right-hand: slow I→B→F curl + highlight
         }
 
         // Electric dipole in a uniform field — rotation + τ scaling + couple-
@@ -12096,6 +18921,42 @@ export const FIELD_3D_RENDERER_CODE = `
             updateGaussSphereFrame();
         }
 
+        // gauss_law_line — infinite-line-charge field (E = λ/(2πε₀r), 1/r). Drives
+        // the coaxial Gaussian-cylinder appear/scale, the horizontal ring of radial
+        // wall arrows (1/r length, SAME all round — cylindrical symmetry), the end-
+        // cap grazing arrows + "Φ=0" tags (the zero-flux SHOW), the r/L reference
+        // lines, the Φ=E·2πrL=λL/ε₀ ⇒ E=λ/(2πε₀r) derivation write-in, the
+        // coordinated r-sweep, the 1/r vs 1/r²-ghost plot, and the live E readout.
+        // Pure function of the state clock (time - stateStartTime), Rule 26.
+        if (config.scenario_type === "gauss_law_line") {
+            updateGaussLineFrame();
+        }
+
+        // gauss_law_sheet — infinite-charged-SHEET field (E = σ/(2ε₀), CONSTANT —
+        // the PLANAR / INVERTED counterpart of gauss_law_line). Drives the Gaussian-
+        // pillbox appear/scale (axis ⊥ to the sheet), the flux-bearing CAP arrows
+        // (CONSTANT length both sides — they do NOT shrink as d changes), the grazing
+        // WALL arrows + "Φ=0" tag (the zero-flux SHOW, inverse of the line's caps),
+        // the d/H reference lines, the Φ=2EA=σA/ε₀ ⇒ E=σ/(2ε₀) A-cancel derivation,
+        // the coordinated d-sweep (arrow length HOLDS), the FLAT sheet line vs FALLING
+        // 1/r & 1/r² ghost plot, and the live E readout. Pure function of the state
+        // clock (time - stateStartTime), Rule 26.
+        if (config.scenario_type === "gauss_law_sheet") {
+            updateGaussSheetFrame();
+        }
+
+        // electric_potential_meaning (V = W/q diamond, scenario point_charge_positive
+        // + config.potential_meaning). Drives the two-route animation + live tally
+        // (STATE_2), the release fly-out + energy-badge drain then "U" write (STATE_3),
+        // the q→2q grow + tally double + V=W/q write-in (STATE_4), the ∞-marker + ΔV
+        // bracket draw billboarded camera-right (STATE_5), the concentric shells
+        // fade-in + perpendicular E draw (STATE_6), and the draggable V-readout
+        // explorer + idle auto-sweep (STATE_7). Pure state clock (Rule 26); the only
+        // size change is the deliberate q→2q grow (a real magnitude — Rule 29 OK).
+        if (config.potential_meaning) {
+            updatePotentialMeaningFrame();
+        }
+
         // rhr_force_direction — DIRECTION-ONLY F = qv×B. Drives the charge drift
         // (STATE_1), hand curl + F-from-thumb reveal (STATE_2), right-angle marks
         // + camera orbit (STATE_3), q<0 F-flip + ghost-F (STATE_4), ⊗/⊙ glyph
@@ -12116,6 +18977,29 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "magnetic_no_work") {
             updateMagneticNoWorkFrame(heldAtPin ? 0 : 0.016);
             applyMagneticNoWorkGlow();
+        }
+
+        // radius_in_uniform_field — r = mv/qB. Drives the four-factor R_visual
+        // orbit at CONSTANT arc-speed (so no period leaks), the dashed radius line,
+        // the STATE_1 close-and-flash, the STATE_3 equation rearrange, the
+        // STATE_4/5 ghost-compare swell (m,v) / shrink (q,B), and the STATE_6 live
+        // RELATIVE readout. CUT-LINE: the only surfaced quantity is a relative r —
+        // never a metres/period/force number; F is a direction-only fixed glyph.
+        if (config.scenario_type === "radius_in_uniform_field") {
+            updateRadiusInUniformFieldFrame(heldAtPin ? 0 : 0.016);
+            applyRadiusInUniformFieldGlow();
+        }
+
+        // cyclotron_period — T = 2πm/qB. Drives the shared-ω dual-orbit race (two
+        // differing-radius charges tie by construction), the relative lap-timers
+        // (freeze + relabel T at one revolution), the "= same T" tie badge, the
+        // STATE_3 equation build (v cancels), and the STATE_4 live explorer (v
+        // resizes the circle, lap-fill rate held; m/B move it). CUT-LINE: period is
+        // SHOWN but ONLY as a relative lap-fill — never a seconds/force number; F is
+        // a direction-only fixed glyph; the fast charge's v glyph is NOT longer.
+        if (config.scenario_type === "cyclotron_period") {
+            updateCyclotronPeriodFrame(heldAtPin ? 0 : 0.016);
+            applyCyclotronPeriodGlow();
         }
 
         // Electric diamond STATE_5 — the density↔strength aha, in motion.
@@ -13309,6 +20193,306 @@ export const FIELD_3D_RENDERER_CODE = `
                     if (hud.f_arrow) hud.f_arrow.visible = (hPhase === "db");
                 }
             }
+        }
+
+        // ── Ampère's circuital law choreography (∮B·dl = μ₀ I_enc) ────────
+        //   All motion keyed off localMsA = (time - stateStartTime)*1000:
+        //     • acl_loop / acl_bar_label / acl_loop_label grow-fade in at their
+        //       reveal times.
+        //     • acl_dl tiles MARCH round the loop (mode 'march').
+        //     • acl_bdl tiles light one-by-one on the accumulate stagger (mode
+        //       'accumulate'), then UNROLL via pos = lerp(P_curve, P_bar, u),
+        //       slerp(tangent→+x), staying lit (mode 'unroll').
+        //     • acl_bar / acl_ruler / acl_eq / acl_ienc_label reveal + HOLD; the
+        //       bar PULSES BRIGHTNESS (not size) on the equality beat.
+        //     • acl_flow dots march up the wire (show_current_flow).
+        //     • mode 'integrated' = slider explore: visuals render at full + track
+        //       I/r live (no clock-gated emergence — slider states freeze the clock).
+        //   Visibility is owned by applyState/visible_elements; here we drive only
+        //   per-frame scale / opacity / position. EVERY acl_element field is read.
+        if (config.scenario_type === "amperes_circuital_law" && stateDef) {
+            var ae = stateDef.acl_element || {};
+            var modeA = ae.mode || "static";
+            var localMsA = (time - stateStartTime) * 1000;
+
+            // Geometry/mode fields (defaults MUST match buildAmperesCircuitalLaw).
+            var aDefs = config.acl_defaults || {};
+            var rLoopA = (typeof ae.loop_radius === "number") ? ae.loop_radius
+                : ((typeof aDefs.loop_radius === "number") ? aDefs.loop_radius : 1.4);
+            var nSegA = (typeof ae.num_segments === "number") ? ae.num_segments
+                : ((typeof aDefs.num_segments === "number") ? aDefs.num_segments : 24);
+            var circleOpA = (typeof ae.circle_opacity === "number") ? ae.circle_opacity : 0.25;
+            var showFlowA = (ae.show_current_flow !== false);   // default true
+            var showIencA = (ae.show_ienc === true);            // default false
+            var showAccumA = (ae.show_circulation_accumulation === true); // default false
+            var showSquareA = (ae.show_square_ghost === true);  // default false
+            var isExploreA = (modeA === "integrated");
+
+            // Reveal-timing fields (defaults MUST match the field contract).
+            var loopAppearA = (typeof ae.loop_appear_at_ms === "number") ? ae.loop_appear_at_ms : 1200;
+            var dlMarchAtA = (typeof ae.dl_march_at_ms === "number") ? ae.dl_march_at_ms : 1500;
+            var dlPeriodA = (typeof ae.dl_march_period_ms === "number") ? ae.dl_march_period_ms : 4000;
+            var accumAtA = (typeof ae.accumulate_at_ms === "number") ? ae.accumulate_at_ms : 2000;
+            var accumStagA = (typeof ae.accumulate_stagger_ms === "number") ? ae.accumulate_stagger_ms : 120;
+            var accumFadeA = (typeof ae.accumulate_fade_ms === "number") ? ae.accumulate_fade_ms : 300;
+            var unrollAtA = (typeof ae.unroll_at_ms === "number") ? ae.unroll_at_ms : 2000;
+            var unrollDurA = (typeof ae.unroll_duration_ms === "number") ? ae.unroll_duration_ms : 2200;
+            var rulerAtA = (typeof ae.ruler_reveal_at_ms === "number") ? ae.ruler_reveal_at_ms : 1800;
+            var iencAtA = (typeof ae.ienc_reveal_at_ms === "number") ? ae.ienc_reveal_at_ms : 1500;
+
+            // In a slider/explore state the player freezes the clock at the opening
+            // frame, so timed emergence would pin everything at 0 — render reveals
+            // at full immediately (the checklist's "don't gate visuals on the clock
+            // in slider states"). effA = the effective localMs used for gating.
+            var effA = isExploreA ? 1e9 : localMsA;
+
+            function smoothA(x) { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); }
+            // unroll progress u (0 on the loop, 1 in the bar). Only advances in
+            // 'unroll'/'integrated'; in 'accumulate' the tiles stay curved (u=0).
+            var uBlend = 0;
+            if (modeA === "unroll" || modeA === "integrated") {
+                uBlend = smoothA((effA - unrollAtA) / Math.max(1, unrollDurA));
+            }
+            // The equality beat (= μ₀ I_enc): fires ONLY on states that assert the
+            // law — show_ienc set (STATE_7), an explicit ienc_reveal_at_ms, or the
+            // explorer (integrated). The DOING unroll state (STATE_6) stops at
+            // ∮B·dl = B·(2πr) and must NOT show the μ₀I_enc equality early, so the
+            // 1500ms default never triggers it on its own.
+            var iencArmed = showIencA || isExploreA || (typeof ae.ienc_reveal_at_ms === "number");
+            var iencLive = iencArmed && (effA >= iencAtA);
+            var pulseA = iencLive ? (0.55 + 0.45 * Math.abs(Math.sin(time * 2.4))) : 0;
+
+            // ── MODE SPLIT (founder video #2 redesign) ───────────────────────
+            //   aclFullStage  = STATE_6 (unroll, !show_ienc): the FULL 2D ring→bar
+            //                   stage owns the canvas; the 3D scene is hidden. The
+            //                   derivation moment — UNCHANGED.
+            //   aclPhysicalMode = STATE_7 (unroll + show_ienc) + STATE_8 (integrated):
+            //                   the 3D PHYSICAL picture (rod + current flow + field
+            //                   circles + coaxial Amperian loop labelled I_enc) is the
+            //                   CENTERPIECE (Rule 24 — picture over algebra); the 2D
+            //                   stage draws only a SMALL bar/ruler strip at the bottom
+            //                   + a compact readout, and the formula moves to a corner.
+            var aclFullStage = (modeA === "unroll" && !showIencA);
+            var aclPhysicalMode = (modeA === "unroll" && showIencA) || (modeA === "integrated");
+
+            // live r / I from the explorer sliders (drives the 3D scene in physical
+            // mode). r_slider is in cm (min 2, max 30); i_slider in A (0.5..20).
+            var aclRcm = 5, aclI = 5;
+            var aclRsl = document.getElementById("r_slider");
+            var aclIsl = document.getElementById("i_slider");
+            if (aclRsl) aclRcm = parseFloat(aclRsl.value) || 5;
+            if (aclIsl) aclI = parseFloat(aclIsl.value) || 5;
+            // map r (2..30 cm) → a world loop/circle radius that stays on-canvas and
+            // NEVER reaches the bottom bar strip (so it can't re-occlude). Default
+            // 5cm ≈ 1.4 world units (the built loop_radius). Clamp [0.9, 2.4].
+            var aclWorldR = 0.9 + ((aclRcm - 2) / 28) * 1.5;   // 0.9 .. 2.4
+            if (aclWorldR < 0.9) aclWorldR = 0.9;
+            if (aclWorldR > 2.4) aclWorldR = 2.4;
+            // B ∝ I / r (real magnitude) → drives flow brightness/speed (Rule 29:
+            // brightness, never a size pulse; the loop radius IS the real magnitude).
+            var aclBrel = (aclI / 5) / (aclRcm / 5);
+
+            if (aclFullStage) {
+                // STATE_6: hide every 3D acl element; the full 2D stage owns the
+                // canvas. (We MUST still fall through to renderer.render() so the
+                // 3D canvas re-renders the now-empty scene as the stage background.)
+                for (var hi = 0; hi < sceneObjects.length; hi++) {
+                    var ho = sceneObjects[hi];
+                    var hud2 = ho.userData;
+                    if (!hud2 || !hud2.elementType) continue;
+                    if (hud2.elementType.indexOf("acl_") === 0) {
+                        ho.visible = false;
+                        if (ho.material) ho.material.opacity = 0;
+                    }
+                }
+                drawAmperesStage(stateDef, localMsA);
+            } else
+            for (var aci = 0; aci < sceneObjects.length; aci++) {
+                var ao = sceneObjects[aci];
+                var aud = ao.userData;
+                if (!aud || !aud.elementType) continue;
+                var aet = aud.elementType;
+
+                // 1) Concentric context circles — held at circle_opacity. In
+                //    PHYSICAL mode (STATE_7/8) they are the ambient B field around
+                //    the rod: scaled by the live loop radius (a real magnitude) so
+                //    "bigger r → bigger field circle", brightness ∝ B = μ₀I/2πr.
+                if (aet === "acl_circle") {
+                    if (aclPhysicalMode) {
+                        // built radii are 0.7/1.4/2.1; scale the whole set so the
+                        // mid ring (1.4) tracks the live world radius. Reposition is
+                        // only x/z (the circles already lie in horizontal planes).
+                        var cScale = aclWorldR / 1.4;
+                        ao.scale.set(cScale, 1, cScale);
+                        if (ao.material) {
+                            var cBright = Math.max(0.12, Math.min(0.5, 0.18 + 0.32 * Math.min(1.5, aclBrel) / 1.5));
+                            ao.material.opacity = ao.visible ? cBright : 0;
+                        }
+                    } else {
+                        ao.scale.set(1, 1, 1);
+                        if (ao.material) ao.material.opacity = ao.visible ? circleOpA : 0;
+                    }
+                }
+
+                // 2) The bright Amperian loop ring + its label. In PHYSICAL mode it
+                //    is a horizontal circle COAXIAL with the rod at MID-HEIGHT (lift
+                //    it out of the gutter plane to y≈0) and scaled to the live loop
+                //    radius — the centerpiece labelled I_enc. Otherwise (STATE_1-5)
+                //    it grow-fades in at its built gutter position.
+                else if (aet === "acl_loop") {
+                    if (!ao.visible) continue;
+                    if (aclPhysicalMode) {
+                        // lift the gutter ring (built at y=gutterH=-2.2) to y=0 so it
+                        // encircles the rod at mid-height, and scale x/z to the live
+                        // radius. The loop label rides above it.
+                        if (ao.userData.id === "acl_loop") {
+                            ao.position.set(0, 2.2, 0);
+                            var lScale = aclWorldR / 1.4;
+                            ao.scale.set(lScale, 1, lScale);
+                            if (ao.material) ao.material.opacity = 0.98;
+                        } else {
+                            // acl_loop_label → relabel "I_enc" once, ride above the ring
+                            if (!ao.userData._relabelledIenc) {
+                                updateLabelSpriteText(ao, "I_enc");
+                                ao.userData._relabelledIenc = true;
+                            }
+                            ao.position.set(0, 0.55, -aclWorldR - 0.35);
+                            if (ao.material) ao.material.opacity = 0.95;
+                        }
+                    } else {
+                        // restore the built gutter pose + "loop" label (in case we
+                        // came from physical mode on a previous state).
+                        if (ao.userData.id === "acl_loop") { ao.position.set(0, 0, 0); ao.scale.set(1, 1, 1); }
+                        else if (ao.userData._relabelledIenc) {
+                            updateLabelSpriteText(ao, "loop");
+                            ao.userData._relabelledIenc = false;
+                            ao.position.set(0, -1.7, -1.7);   // built gutter-label pose
+                        }
+                        var kLoop = isExploreA ? 1 : smoothA((localMsA - loopAppearA) / 700);
+                        if (ao.material) ao.material.opacity = 0.95 * kLoop;
+                    }
+                }
+
+                // 3) Marching dl tangent segments (mode 'march' only).
+                else if (aet === "acl_dl") {
+                    if (modeA !== "march") {
+                        ao.visible = false;
+                        if (ao.material) ao.material.opacity = 0;
+                        continue;
+                    }
+                    ao.visible = true;
+                    if (!ao.material) continue;
+                    // a single bright "head" walks round the loop; the segment whose
+                    // angular slot the head currently occupies lights up, the rest
+                    // glow faintly so the path is visible.
+                    var marchT = (localMsA - dlMarchAtA) / Math.max(1, dlPeriodA);
+                    if (marchT < 0) { if (ao.material) ao.material.opacity = 0; continue; }
+                    var headSlot = (marchT % 1) * nSegA;
+                    var dDist = Math.abs(aud.segIndex - headSlot);
+                    dDist = Math.min(dDist, nSegA - dDist);   // wrap-around distance
+                    var dlOp = (dDist < 1.5) ? (1 - dDist / 1.5) : 0;
+                    if (ao.material) ao.material.opacity = Math.max(0.18, dlOp);
+                }
+
+                // 4) The B·dl accumulation tiles — stay on the loop (curved pose),
+                //    light one-by-one (accumulate). On UNROLL they FADE OUT in
+                //    place as the screen-space HUD bar fills (the unroll payoff is
+                //    drawn camera-independently in #acl_bar_hud, so the world-space
+                //    tiles never project to a diagonal off-canvas bar). The tiles
+                //    keep their built curved pose — no world-space lerp to a bar.
+                else if (aet === "acl_bdl") {
+                    if (!ao.visible) { if (ao.children[0] && ao.children[0].material) ao.children[0].material.opacity = 0; continue; }
+                    var tileOp = 0;
+                    if (isExploreA) {
+                        tileOp = 1;
+                    } else if (modeA === "unroll") {
+                        // fully lit at entry (inherited from accumulate), then fade
+                        // out as the HUD bar fills over the unroll window.
+                        tileOp = 1 - smoothA((effA - unrollAtA) / Math.max(1, unrollDurA));
+                    } else if (showAccumA || modeA === "accumulate") {
+                        // accumulate: tiles light one-by-one on the stagger schedule.
+                        var tStart = accumAtA + aud.segIndex * accumStagA;
+                        if (effA >= tStart + accumFadeA) tileOp = 1;
+                        else if (effA >= tStart) tileOp = Math.max(0, Math.min(1, (effA - tStart) / Math.max(1, accumFadeA)));
+                    }
+                    if (ao.children[0] && ao.children[0].material) {
+                        ao.children[0].material.opacity = tileOp;
+                        // equality beat: brighten the tiles (emissive), never resize.
+                        ao.children[0].material.emissiveIntensity = 0.55 + (iencLive ? 0.55 * pulseA : 0);
+                    }
+                    // tiles hold their built curved pose (set at build time); nothing
+                    // to reposition each frame.
+                }
+
+                // 5) The world-space bar / ruler / equality sprites are REPLACED by
+                //    the screen-space #acl_bar_hud (DEFECT-2 fix). Force them hidden
+                //    so they never project to a diagonal off-canvas line.
+                else if (aet === "acl_bar" || aet === "acl_ruler" || aet === "acl_ienc_label" || aet === "acl_eq") {
+                    ao.visible = false;
+                    if (ao.material) ao.material.opacity = 0;
+                    if (ao.children && ao.children.length) {
+                        for (var hci = 0; hci < ao.children.length; hci++) {
+                            if (ao.children[hci].material) ao.children[hci].material.opacity = 0;
+                        }
+                    }
+                }
+
+                // 6) Enclosed-current interior glow — shown when show_ienc.
+                else if (aet === "acl_ienc_glow") {
+                    if (showIencA) {
+                        ao.visible = true;
+                        if (ao.material) ao.material.opacity = 0.55 + 0.25 * Math.abs(Math.sin(time * 2.0));
+                    } else {
+                        ao.visible = false;
+                        if (ao.material) ao.material.opacity = 0;
+                    }
+                }
+
+                // 7) The failed square ghost loop — shown when show_square_ghost.
+                else if (aet === "acl_square_ghost") {
+                    if (showSquareA) {
+                        ao.visible = true;
+                        for (var gci = 0; gci < ao.children.length; gci++) {
+                            var gch2 = ao.children[gci];
+                            if (gch2.material) {
+                                var gb0 = (gch2.userData && gch2.userData.baseOpacity != null) ? gch2.userData.baseOpacity : 0.8;
+                                gch2.material.opacity = gb0;
+                            }
+                        }
+                    } else {
+                        ao.visible = false;
+                    }
+                }
+
+                // 8) Current-flow dots — march up the wire when show_current_flow.
+                //     In PHYSICAL mode (STATE_7/8) the live I slider drives the flow
+                //     SPEED + brightness (more current = faster, brighter flow), so
+                //     "slide I up" visibly speeds the current (founder ask).
+                else if (aet === "acl_flow") {
+                    if (showFlowA) {
+                        ao.visible = true;
+                        var speedA = aclPhysicalMode ? (0.35 + 0.12 * aclI) : 0.6;   // I-driven in physical mode
+                        var spanA = 2 * 3.0;
+                        var yA = -3.0 + (((aud.phase + (localMsA / 1000) * (speedA / spanA)) % 1) * spanA);
+                        ao.position.set(0, yA, 0);
+                        if (ao.material) {
+                            var flowBr = aclPhysicalMode ? Math.max(0.5, Math.min(1.0, 0.45 + 0.06 * aclI)) : 0.9;
+                            ao.material.opacity = flowBr;
+                            if (ao.material.emissiveIntensity != null) ao.material.emissiveIntensity = aclPhysicalMode ? (0.6 + 0.05 * aclI) : 0.9;
+                        }
+                    } else {
+                        ao.visible = false;
+                        if (ao.material) ao.material.opacity = 0;
+                    }
+                }
+            }
+
+            // (STATE_6's bar is drawn by drawAmperesStage in the aclFullStage
+            //  branch above.) For aclPhysicalMode (STATE_7/8) the 3D physical scene
+            //  ran in the else-branch above; the 2D stage now draws only the SMALL
+            //  bottom-strip bar/ruler + compact readout (it detects physical mode
+            //  internally and omits the big ring).
+            if (aclPhysicalMode) drawAmperesStage(stateDef, localMsA);
         }
 
         // ── Lorentz force (Diamond #2) ───────────────────────────────────

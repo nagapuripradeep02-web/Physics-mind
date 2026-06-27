@@ -1,0 +1,973 @@
+{
+  "concept_id": "gauss_law_sheet",
+  "concept_name": "Field of an Infinite Charged Sheet: E = σ/(2ε₀), a CONSTANT field",
+  "chapter": 1,
+  "section": "1.15",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.1 Electric Charges and Fields (field of an infinite plane sheet of charge, §1.15 applications of Gauss's law) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (we already KNOW Gauss's law Φ = q_enc/ε₀, but that is total flux, not the field at a point → an infinite uniform plane sheet has planar symmetry, so by symmetry E must be perpendicular to the sheet, pointing away on BOTH sides, and equal in magnitude everywhere → that constant-and-perpendicular E is exactly what lets E come out of the flux integral → choose a Gaussian PILLBOX, a short cylinder piercing the sheet with its two flat caps parallel to the sheet on each side: the curved WALL carries zero flux because E grazes it (E·dA = 0), so only the two flat caps count, Φ = E·A + E·A = 2EA → enclosed charge on a cap-area patch is q_enc = σA, so Gauss gives Φ = σA/ε₀ → set them equal: 2EA = σA/ε₀, the A cancels, leaving E = σ/(2ε₀) → finally compare with a line and a point: the sheet's field is CONSTANT, it does NOT fall off with distance at all, because the pillbox always encloses the same σA patch however far out the caps sit, while a sphere/cylinder keeps growing (PRIMARY aha)), never copied. The atomic idea: applying Gauss's law plus planar symmetry to an infinite uniform plane of surface charge density σ gives a field perpendicular to the sheet, pointing away on both sides, equal everywhere, E = σ/(2ε₀) — a field that is CONSTANT, independent of the distance from the sheet (no falloff, unlike a line's 1/r or a point's 1/r²). The curved WALL of the Gaussian pillbox carries exactly zero flux (the exact INVERSE of the line's cylinder, where the wall carried flux and the caps were zero); the cap area A cancels, so E depends only on σ, never on distance. The factor of one-half comes from flux leaving BOTH caps (2EA), so a single isolated sheet gives σ/(2ε₀), NOT the conductor-surface / between-two-plates σ/ε₀. SCOPE: the infinite plane SHEET only — does NOT re-teach the Gauss statement Φ = q_enc/ε₀ (gauss_law), the open-surface flux definition Φ = E·A (electric_flux), the meaning of σ itself (charge_distribution), the line/sphere cases (gauss_law_line / gauss_law_sphere / gauss_law_solid_sphere), the σ/ε₀ conductor-surface / between-two-plates case (the NEXT concept), finite-sheet edge effects, or potential. NEW field_3d gauss_law_sheet scenario (the PLANAR / CONSTANT-field INVERSE of gauss_law_line): an infinite charged sheet with σ + markers, a Gaussian PILLBOX (curved wall + two flat caps) piercing it, perpendicular CONSTANT-length cap arrows on both sides, grazing wall arrows with Φ=0 tags (the inverted flux roles), two distinct reference lines (d perpendicular billboarded camera-right, the pillbox half-height H axial), a derivation write-in where the A visibly cancels and the ½ is tagged 'two caps', a STATE_6 E-vs-d plot showing the sheet's FLAT line above the faint falling 1/r line-ghost and 1/r² point-ghost with a coordinated d-sweep (the cap arrows HOLD their length while d grows), and a STATE_7 σ + d slider pair with stable explorer ID gauss_sheet_explorer (Rule 27). Prerequisites gauss_law + electric_flux + charge_distribution. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a). Fourth Gauss-application sibling after gauss_law_sphere (1/r²), gauss_law_solid_sphere (ramp-then-1/r²) and gauss_law_line (cylindrical / 1/r); this is the planar-symmetry / CONSTANT-field member.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "gauss_law_sheet"
+    ]
+  },
+  "prerequisites": [
+    "gauss_law",
+    "electric_flux",
+    "charge_distribution"
+  ],
+  "real_world_anchor": {
+    "primary": "The big flat drum or plate inside a photocopier or laser printer, charged evenly all over its face, ready to lay toner down across a whole page. The drum's surface holds a uniform surface charge density σ. The reason its field lays toner down EVENLY across the whole page is exactly that an infinite-sheet field is the same strength everywhere — it does not fade as the toner approaches, so every patch of the page is pulled equally and the copy comes out uniform, not blotchy. Planar symmetry plus Gauss's law gives one clean formula, E = σ/(2ε₀): the field points straight out from the face on both sides and stays CONSTANT — it does not weaken with distance like a point charge (1/r²) or a wire (1/r).",
+    "secondary": "A large charged flat metal plate on a lab stand. Hold a charged pith ball near the middle of its face and the force points straight out, perpendicular to the plate, and barely changes as you move closer or farther. Walk twice as far from the plate and the field is essentially unchanged — nothing like the field of a single charged ball, which would quarter, or a charged wire, which would halve."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "sigma": {
+        "name": "Surface charge density on the sheet",
+        "unit": "demo nC/m^2",
+        "min": -2,
+        "max": 3,
+        "default": 1,
+        "step": 0.5
+      },
+      "d": {
+        "name": "Perpendicular distance from the sheet to the field point (a POSITION, not a divisor — E does not depend on it)",
+        "unit": "demo units",
+        "min": 0.3,
+        "max": 4.0,
+        "default": 2.0,
+        "step": 0.05
+      },
+      "A": {
+        "name": "Area of each flat pillbox cap (a patch of sheet; cancels out of E)",
+        "unit": "demo units^2",
+        "min": 1.0,
+        "max": 4.0,
+        "default": 2.0,
+        "step": 0.1
+      },
+      "epsilon_0": {
+        "name": "Permittivity of free space (a fixed constant of nature)",
+        "unit": "C^2/(N*m^2)",
+        "min": 8.854e-12,
+        "max": 8.854e-12,
+        "default": 8.854e-12,
+        "step": 1
+      },
+      "k": {
+        "name": "Coulomb constant, k = 1/(4*pi*epsilon_0)",
+        "unit": "N*m^2/C^2",
+        "min": 8.99e9,
+        "max": 8.99e9,
+        "default": 8.99e9,
+        "step": 1
+      },
+      "DEMO_E_PER_NC": {
+        "name": "Demo field readout per nanocoulomb-per-square-metre of sigma (CONSTANT — independent of distance)",
+        "unit": "demo (N/C) per (nC/m^2)",
+        "min": 225,
+        "max": 225,
+        "default": 225,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "E_demo": {
+        "formula": "DEMO_E_PER_NC * sigma"
+      },
+      "E_real": {
+        "formula": "(sigma * 1e-9) / (2 * epsilon_0)"
+      },
+      "q_enc": {
+        "formula": "sigma * A"
+      },
+      "flux_check": {
+        "formula": "(sigma * 1e-9 * A) / epsilon_0"
+      },
+      "line_ghost": {
+        "formula": "DEMO_E_PER_NC * sigma / Math.max(d, 0.05)"
+      },
+      "point_ghost": {
+        "formula": "DEMO_E_PER_NC * sigma / (Math.max(d, 0.05) * Math.max(d, 0.05))"
+      }
+    },
+    "constraints": [
+      "E is perpendicular to the sheet everywhere, pointing away on BOTH sides for +sigma (toward the sheet on both sides for -sigma); E parallel n-hat (C1).",
+      "|E| is CONSTANT at every point on either side: it does NOT depend on the perpendicular distance d, and does NOT depend on where along the sheet you stand (in-plane position) (C2 - the INVERSE of the line's r-dependence).",
+      "The flux leaves through the TWO flat caps; the curved WALL of the pillbox carries ZERO flux because E grazes it (E.dA_wall = 0) - the exact INVERSE of the cylinder, where the wall carried flux and the caps were zero (C3).",
+      "Total flux = both caps: Phi = E*A + E*A = 2*E*A = q_enc/epsilon_0 = sigma*A/epsilon_0; the A cancels, giving E = sigma/(2*epsilon_0) (C4).",
+      "E does NOT fall off with distance (it is constant): walk twice as far and E is unchanged - unlike a line (1/r, doubling r halves E) or a point (1/r^2, doubling r quarters E) (C5).",
+      "The field is constant because the pillbox encloses the SAME patch of charge sigma*A however far out its caps sit, while a Gaussian sphere/cylinder keeps growing - so here the enclosed charge over the cap area is fixed (C6).",
+      "The 1/2 is structural: it comes from flux leaving BOTH caps (2EA). A single isolated sheet gives sigma/(2*epsilon_0); a conductor face or one plate between two plates gives sigma/epsilon_0 (one cap, field zero inside the conductor) - twice as large (C7).",
+      "Arrow direction follows the sign of sigma: away from the sheet on both sides for +sigma, toward the sheet for -sigma; magnitude scales linearly with |sigma| and is the same at every distance (C8)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "An infinite sheet field is constant — it never fades with distance, unlike a line.",
+    "visual_confirmation": "The sheet's FLAT line draws in above the faint falling 1/r line-ghost and 1/r² point-ghost — same start at d=1, then the ghosts fall while the sheet line holds dead level — while the coordinated d-sweep slides the field point out and the cap arrows DO NOT shrink, only their position moves."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "A big charged sheet — how does E change as you walk away?",
+        "duration": 15,
+        "focal_primitive_id": "question_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sheet_tag_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "a big flat sheet, charge σ spread evenly over its face",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "walk straight out — how does E weaken?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "guess_tag_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E ∝ 1/d?   E ∝ 1/d²?   your first guess",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Picture the big flat drum inside a photocopier, charged evenly all over its face, ready to lay toner down across a whole page.", "text_hi": "सोचो उस बड़े flat drum के बारे में जो एक photocopier के अंदर होता है, पूरी face पर evenly charged, पूरे page पर toner lay करने के लिए ready।", "text_te": "ఒక photocopier లో ఉండే ఆ పెద్ద flat drum గురించి imagine చేయండి, దాని face మీద evenly charged, పూర్తి page మీద toner వేయడానికి ready గా."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "As you walk straight out from a big charged sheet, how does its field weaken with distance, and what is your first guess for the law?", "text_hi": "जब तुम एक big charged sheet से सीधे बाहर चलते हो, तो इसका field distance के साथ कैसे कमज़ोर होता है, और law के लिए तुम्हारा पहला guess क्या है?", "text_te": "ఒక big charged sheet నుండి నేరుగా బయటకు నడిచినప్పుడు, దాని field distance తో ఎలా తగ్గుతుంది, మరియు law కోసం నీ first guess ఏమిటి?",
+              "pause_after_ms": 2600
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field of a charged sheet must weaken with distance, the way a point charge (1/r^2) or a wire (1/r) does.",
+            "visual_counter": "The hook shows only the sheet and its charge markers - no field law yet; the guess is held until STATE_6 reveals the sheet line staying dead flat above the two falling ghosts.",
+            "one_line_fix": "A big sheet is not a point or a wire: its field is CONSTANT, the same at every distance - proven at STATE_6."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Straight out on BOTH sides: perpendicular and uniform",
+        "duration": 17,
+        "focal_primitive_id": "perpendicular_label",
+        "advance_mode": "auto_after_tts",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_point_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "field point P, one step off the face at distance d",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "direction_question_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "along the sheet, toward nearest charge, or straight out?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "perpendicular_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E ⊥ sheet, away on BOTH sides, same |E| everywhere",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Point at P, one step off the face. Which way does the field push there, along the sheet, slanting toward the nearest charge, or straight out?", "text_hi": "P को देखो, face से एक step की दूरी पर। वहाँ field किस तरफ push करता है, sheet के साथ-साथ, nearest charge की तरफ slant होते हुए, या सीधे बाहर?", "text_te": "P వైపు చూడండి, face నుండి ఒక step దూరంలో. అక్కడ field ఏ వైపు push చేస్తుంది, sheet వెంబడి, nearest charge వైపు slant అవుతూ, లేదా నేరుగా బయటకు?",
+              "pause_after_ms": 2600
+            },
+            {
+              "id": "s2_2",
+              "text_en": "The sheet looks the same from every direction in its plane, so the field can only point straight out, at right angles, away on both faces.", "text_hi": "Sheet अपने plane में हर direction से same दिखती है, इसलिए field केवल सीधे बाहर की तरफ point कर सकता है, right angles पर, दोनों faces से दूर।", "text_te": "Sheet తన plane లో ప్రతి direction నుండి same గా కనిపిస్తుంది, కాబట్టి field కేవలం నేరుగా బయటకు point చేయగలదు, right angles లో, రెండు faces నుండి దూరంగా."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "And every arrow has the same length, the same strength everywhere, at this distance d.", "text_hi": "और हर arrow की same length होती है, हर जगह same strength, इस distance d पर।", "text_te": "మరియు ప్రతి arrow కూడా same length తో ఉంటుంది, ప్రతిచోటా same strength, ఈ distance d వద్ద."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field points along the sheet, or slants toward the nearest bit of charge.",
+            "visual_counter": "Equal-length arrows point straight out, perpendicular to the sheet, away on BOTH faces; sliding along the sheet leaves the picture unchanged.",
+            "one_line_fix": "Planar symmetry forces E to be perpendicular to the sheet and equal in magnitude, pointing away on both sides."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Choose a Gaussian PILLBOX piercing the sheet",
+        "duration": 19,
+        "focal_primitive_id": "cap_area_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "wrap_one_surface_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "pierce with ONE closed surface, not sum every patch",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sphere_or_pillbox_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "sphere, cylinder along, or a flat pillbox — which matches?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "cap_area_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "each flat cap has area A, ∥ the sheet",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "We could add up Coulomb's law from every tiny patch, slow. Instead we pierce the sheet with one closed surface. A sphere, a cylinder along, or a flat pillbox?", "text_hi": "हम हर tiny patch से Coulomb's law को जोड़ सकते हैं, लेकिन यह slow है। बजाय इसके हम sheet को एक closed surface से pierce करते हैं। एक sphere, एक cylinder, या एक flat pillbox?", "text_te": "మనం ప్రతి tiny patch నుండి Coulomb's law ని జోడించవచ్చు, కానీ అది slow. అందుకు బదులు మనం sheet ని ఒక closed surface తో pierce చేస్తాం. ఒక sphere, ఒక cylinder, లేదా ఒక flat pillbox?",
+              "pause_after_ms": 2400
+            },
+            {
+              "id": "s3_2",
+              "text_en": "A short pillbox, its two flat caps parallel to the sheet on each side, its curved wall piercing through. It matches the flat shape of the sheet.", "text_hi": "एक छोटा pillbox, जिसके दो flat caps sheet के parallel दोनों sides पर हैं, और curved wall बीच से pierce करती है। यह sheet की flat shape से match करता है।", "text_te": "ఒక చిన్న pillbox, దాని రెండు flat caps sheet కి parallel గా రెండు sides లో, మరియు curved wall మధ్య నుండి pierce చేస్తూ. ఇది sheet యొక్క flat shape తో match అవుతుంది."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Give each flat cap an area A. The field is straight out, so it pokes square through each cap.", "text_hi": "हर flat cap को एक area A दो। Field सीधे बाहर है, इसलिए यह हर cap के आर-पार सीधा poke करता है।", "text_te": "ప్రతి flat cap కి ఒక area A ఇవ్వండి. Field నేరుగా బయటకు ఉంది, కాబట్టి అది ప్రతి cap ద్వారా నేరుగా poke చేస్తుంది."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "You must add up Coulomb's law from every tiny patch of the sheet to get the field.",
+            "visual_counter": "One pillbox piercing the sheet replaces the patch-by-patch sum; its caps are parallel to the sheet, so the field pokes straight through them.",
+            "one_line_fix": "Gauss plus planar symmetry replaces the patch-by-patch Coulomb integral with one pillbox and one equation."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The curved WALL carries ZERO flux — only the two CAPS",
+        "duration": 18,
+        "focal_primitive_id": "total_flux_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "three_pieces_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "two flat caps + one curved wall",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "wall_zero_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "Φ = 0 on the wall (E grazes it)",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "total_flux_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ = E·A + E·A = 2EA   (both caps)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "The pillbox has three pieces, two flat caps and one curved wall. Which pieces does the field actually pierce?", "text_hi": "Pillbox के तीन हिस्से हैं, दो flat caps और एक curved wall। Field वास्तव में किन हिस्सों से pierce करता है?", "text_te": "Pillbox కి మూడు భాగాలు ఉన్నాయి, రెండు flat caps మరియు ఒక curved wall. Field వాస్తవంగా ఏ భాగాల నుండి pierce చేస్తుంది?",
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The field is straight out, so along the curved wall it just grazes the surface, never poking through. Zero flux on the wall. With the wire, it was the exact opposite.", "text_hi": "Field सीधे बाहर है, तो curved wall के साथ यह surface को बस graze करता है, कभी नहीं घुसता। Wall पर zero flux। Wire के साथ, यह बिल्कुल उल्टा था।", "text_te": "Field నేరుగా బయటకు ఉంది, కాబట్టి curved wall వెంబడి అది surface ని కేవలం graze చేస్తుంది, ఎప్పుడూ through పోదు. Wall మీద zero flux. Wire తో అయితే, ఇది అచ్చం వ్యతిరేకంగా ఉండేది."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "It pierces straight through both flat caps. So the whole flux is the two caps together, E times A, plus E times A.", "text_hi": "यह दोनों flat caps के आर-पार सीधा pierce करता है। तो पूरा flux दोनों caps को मिलाकर है, E times A, plus E times A।", "text_te": "అది రెండు flat caps ద్వారా నేరుగా pierce చేస్తుంది. కాబట్టి మొత్తం flux రెండు caps కలిపి, E times A, plus E times A."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The curved wall of the pillbox carries flux too, so it belongs in the calculation.",
+            "visual_counter": "Arrows graze along the curved wall (Phi = 0 tag) while piercing both flat caps; only the two caps carry flux - the exact INVERSE of the cylinder.",
+            "one_line_fix": "E is perpendicular to the sheet, so it grazes the curved wall (E dot dA = 0); only the two caps carry flux, total 2EA."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_5": {
+        "title": "Φ = 2EA = σA/ε₀ ⇒ E = σ/(2ε₀); A cancels, ½ = two caps",
+        "duration": 26,
+        "focal_primitive_id": "solved_field_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "q_enc_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "q_enc = σA  ⇒  Φ = σA/ε₀",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "set_equal_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "2EA = σA/ε₀ — watch A, and the factor of two",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "solved_field_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E = σ/(2ε₀)   (A gone; ½ = two caps, not σ/ε₀)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "How much charge sits inside the pillbox? Just the charge on one patch of sheet, that is sigma times A. By Gauss, the flux equals sigma-A over epsilon-nought.", "text_hi": "Pillbox के अंदर कितना charge है? बस sheet के एक patch पर जो charge है, वह है sigma times A। Gauss के अनुसार, flux equals sigma times A over epsilon-nought।", "text_te": "Pillbox లో ఎంత charge ఉంది? Sheet యొక్క ఒక patch మీద ఉన్న charge మాత్రమే, అది sigma times A. Gauss ప్రకారం, flux equals sigma times A over epsilon-nought."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Now we have two expressions for the same flux. Set them equal and solve for E, and watch the area A, and where the factor of two lands.", "text_hi": "अब हमारे पास same flux के दो expressions हैं। उन्हें equal set करो और E के लिए solve करो, और area A को देखो, और factor of two कहाँ आता है।", "text_te": "ఇప్పుడు మన దగ్గర same flux కోసం రెండు expressions ఉన్నాయి. వాటిని equal set చేసి E కోసం solve చేయండి, మరియు area A ని గమనించండి, మరియు factor of two ఎక్కడ వస్తుందో చూడండి.",
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The area A on each side cancels. Two E equals sigma over epsilon-nought, so E is sigma over two epsilon-nought. The two is the two caps.", "text_hi": "हर side पर area A cancel हो जाता है। Two E equals sigma over epsilon-nought, तो E है sigma over two epsilon-nought। यह two, two caps की वजह से है।", "text_te": "ప్రతి side లో area A cancel అవుతుంది. Two E equals sigma over epsilon-nought, కాబట్టి E అంటే sigma over two epsilon-nought. ఆ two అనేది two caps వల్ల."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "The area A is gone, it never mattered how big a patch you wrapped. And the two is real, both caps, so a single sheet is sigma over two epsilon-nought, not sigma over epsilon-nought.", "text_hi": "Area A खत्म हो गया, यह कभी मायने नहीं रखा कि तुमने कितना बड़ा patch wrap किया। और वह two असली है, दोनों caps की वजह से, तो एक single sheet है sigma over two epsilon-nought, not sigma over epsilon-nought।", "text_te": "Area A పోయింది, నువ్వు ఎంత పెద్ద patch wrap చేశావు అనేది ఎప్పుడూ పట్టలేదు. మరియు ఆ two అసలైనదే, రెండు caps వల్ల, కాబట్టి ఒక single sheet అంటే sigma over two epsilon-nought, sigma over epsilon-nought కాదు."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The single-sheet field is sigma over epsilon_0 (the factor of one-half gets dropped).",
+            "visual_counter": "The write-in shows 2EA = sigma A over epsilon_0; the 2 is tagged two-caps, and the solved field is sigma over 2 epsilon_0, with sigma over epsilon_0 tagged as the conductor / two-plate case.",
+            "one_line_fix": "Flux leaves through BOTH caps (2EA), so a single isolated sheet gives sigma/(2 epsilon_0); a conductor face or one plate gives the doubled sigma/epsilon_0."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "CONSTANT: the field that never dies — flat line vs 1/r & 1/r² ghosts",
+        "duration": 30,
+        "focal_primitive_id": "constant_compare_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ghosts_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "point: E ∝ 1/d²   wire: E ∝ 1/d   (faint, falling)",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "flat_line_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "the sheet: E = constant — it does not fade",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "constant_compare_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "same σA patch at any distance  vs  sphere/cylinder grows",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "You already know a point charge fades as one over r squared, and a wire as one over r. Here are those two curves, drawn faint, falling away.", "text_hi": "तुम पहले से जानते हो कि एक point charge one over r squared की तरह fade होता है, और wire one over r की तरह। यहाँ वे दो curves हैं, फीके खिंचे हुए, नीचे गिरते हुए।", "text_te": "నీకు ఇప్పటికే తెలుసు ఒక point charge one over r squared లా fade అవుతుంది, మరియు wire one over r లా. ఇవిగో ఆ రెండు curves, faint గా drawn, కిందకి పడిపోతూ."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Back at the start you probably guessed the sheet fades too. Does it? Watch the sheet's own line as you walk away.", "text_hi": "शुरुआत में तुमने शायद guess किया होगा कि sheet भी fade होती है। क्या होती है? जैसे तुम दूर जाते हो, sheet की अपनी line को देखो।", "text_te": "మొదట్లో నువ్వు బహుశా guess చేసి ఉంటావు sheet కూడా fade అవుతుందని. అవుతుందా? నువ్వు దూరంగా వెళ్ళేకొద్దీ sheet యొక్క own line ని చూడు.",
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The sheet line stays dead flat, above the two falling curves, the same at every distance. It does not fade at all.", "text_hi": "Sheet line बिल्कुल flat रहती है, दोनों falling curves के ऊपर, हर distance पर same। यह बिल्कुल भी fade नहीं होती।", "text_te": "Sheet line పూర్తిగా flat గా ఉంటుంది, రెండు falling curves కంటే పైన, ప్రతి distance వద్దా same. ఇది అసలు fade అవ్వదు."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Why? The pillbox always wraps the same patch of charge, sigma times A, however far out the caps sit, while a sphere or cylinder keeps growing. The field that never dies.", "text_hi": "क्यों? Pillbox हमेशा charge का same patch wrap करता है, sigma times A, चाहे caps कितनी भी दूर हों, जबकि sphere या cylinder बड़ा होता रहता है। वह field जो कभी नहीं मिटती।", "text_te": "ఎందుకు? Pillbox ఎప్పుడూ charge యొక్క same patch ని wrap చేస్తుంది, sigma times A, caps ఎంత దూరంగా ఉన్నా, అయితే sphere లేదా cylinder పెరుగుతూనే ఉంటుంది. ఎప్పటికీ చావని field."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The sheet field must fade with distance eventually - surely it weakens far away like everything else.",
+            "visual_counter": "The sheet flat line holds dead level above the falling 1/r and 1/r^2 ghosts; the 3D arrow does NOT shrink as the field point slides away - only its position moves.",
+            "one_line_fix": "The field is constant because the pillbox always encloses the same patch sigma*A however far out the caps sit - so E never depends on distance."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_7": {
+        "title": "Explore: tune σ and distance — watch E stay constant",
+        "duration": 16,
+        "focal_primitive_id": "live_readout_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "push_sigma_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "push σ up → every arrow on both faces grows together",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "live_readout_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "drag the field point away → arrows do NOT shrink",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "constant_explore_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E depends only on σ — never on your distance",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now you drive. Push sigma up, every arrow on both faces grows together, and the readout climbs.", "text_hi": "अब तुम control करो। Sigma को ऊपर push करो, दोनों faces पर हर arrow एक साथ बढ़ता है, और readout ऊपर चढ़ती है।", "text_te": "ఇప్పుడు నువ్వు drive చేయి. Sigma ని పైకి push చేయి, రెండు faces మీద ప్రతి arrow కలిసి పెరుగుతుంది, మరియు readout పైకి ఎక్కుతుంది."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Drag the field point away from the sheet. The arrows do not shrink, and the readout does not move. It is constant.", "text_hi": "Field point को sheet से दूर drag करो। Arrows सिकुड़ते नहीं हैं, और readout नहीं हिलती। यह constant है।", "text_te": "Field point ని sheet నుండి దూరంగా drag చేయి. Arrows తగ్గవు, మరియు readout కదలదు. ఇది constant."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "The field depends only on sigma, never on your distance from the sheet.", "text_hi": "Field केवल sigma पर depend करती है, कभी नहीं sheet से तुम्हारी distance पर।", "text_te": "Field కేవలం sigma మీద మాత్రమే depend చేస్తుంది, sheet నుండి నీ distance మీద ఎప్పుడూ కాదు."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the field of an infinite charged sheet when they can (1) state E = sigma/(2*epsilon_0), perpendicular to the sheet and pointing away on both sides; (2) explain that planar symmetry makes E perpendicular and equal on each cap, so a Gaussian pillbox gives Phi = E*A + E*A = 2*E*A = q_enc/epsilon_0; (3) show that the curved wall carries zero flux because E grazes it, so only the two flat caps count - the inverse of the cylinder; (4) show that the cap area A cancels, so E depends only on sigma and never on the distance from the sheet or on where along it you stand; and (5) recognise that the field is CONSTANT - it does not fall off with distance, unlike a line (1/r) or a point (1/r^2) - and that the factor of one-half comes from flux leaving both caps, so a single isolated sheet gives sigma/(2*epsilon_0), not the conductor/two-plate sigma/epsilon_0.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "An infinite plane sheet carries uniform surface charge density sigma. What is the electric field at a perpendicular distance d from the sheet?",
+        "options": {
+          "A": "E = sigma/(2*epsilon_0) - perpendicular to the sheet, pointing away on both sides, the same at every distance",
+          "B": "E = sigma/epsilon_0 - perpendicular to the sheet",
+          "C": "E = sigma/(2*epsilon_0*d) - perpendicular, falling off as 1/d",
+          "D": "E = sigma*d/(2*epsilon_0) - growing with distance from the sheet"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "drops the factor of one-half - uses the single-cap conductor/two-plate result for an isolated sheet",
+          "C": "invents a 1/d falloff, as if the sheet field weakened with distance like a wire",
+          "D": "thinks the field grows with distance from the sheet"
+        },
+        "tested_idea": "The field of an infinite charged sheet is E = sigma/(2*epsilon_0), perpendicular, both sides, and constant.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "The flat drum of a photocopier holds uniform surface charge sigma. Write the electric field a toner speck feels a small distance out from the drum face."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "At a point P just off the face of an infinite charged sheet, in what direction does the electric field point?",
+        "options": {
+          "A": "Perpendicular to the sheet, straight out, away on both sides",
+          "B": "Parallel to the sheet, lying in its plane",
+          "C": "Slanting toward the nearest patch of charge on the sheet",
+          "D": "Curving around the edge of the sheet"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "thinks the field runs along the sheet rather than out from it",
+          "C": "imagines the field aiming at the closest bit of charge instead of being purely perpendicular",
+          "D": "confuses an infinite sheet field with edge/fringe effects of a finite plate"
+        },
+        "tested_idea": "Planar symmetry makes E perpendicular to the sheet, pointing away on both faces.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Hold a tiny positive test charge near the middle of a large flat charged metal plate. Which way does the force on it point relative to the plate?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A Gaussian pillbox (a short cylinder, caps parallel to the sheet on each side) pierces an infinite charged sheet. Through which part of its surface does the flux pass?",
+        "options": {
+          "A": "Only the two flat caps; the curved side wall carries zero flux",
+          "B": "Only the curved side wall; the two caps carry zero flux",
+          "C": "Equally through the curved wall and both caps",
+          "D": "Through all three pieces, but mostly through the curved wall"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "inverts the result - this is the cylinder/wire case, where the wall carried flux and the caps were zero",
+          "C": "thinks every face of a closed surface must carry flux",
+          "D": "imagines the field leaking mostly out of the curved side"
+        },
+        "tested_idea": "E is perpendicular to the sheet, so it grazes the curved wall (E dot dA = 0); only the two caps carry flux.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "You push a soup-can-shaped Gaussian surface through a charged sheet so its flat lids sit on each side. Which faces of the can does the field actually pass through?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "How does the field of an infinite charged sheet change as you walk away from it, compared with a point charge and a wire?",
+        "options": {
+          "A": "It stays constant - it does not weaken with distance at all, while the point fades as 1/r^2 and the wire as 1/r",
+          "B": "It falls off as 1/r^2, the same as a point charge",
+          "C": "It falls off as 1/r, the same as a wire",
+          "D": "It falls off faster than a point charge because a sheet has the most charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "applies the point-charge 1/r^2 falloff to a sheet",
+          "C": "applies the wire 1/r falloff to a sheet",
+          "D": "thinks more charge means faster falloff, confusing total charge with the field law"
+        },
+        "tested_idea": "The sheet field is constant (no falloff) because the pillbox encloses the same sigma*A patch at any distance, unlike a growing sphere/cylinder.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Walking away from a big charged photocopier drum versus away from a single charged ball - whose field dies away, and whose stays the same?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A probe at perpendicular distance d from an infinite charged sheet reads field E1. It is moved out to 2*d. What does it read now?",
+        "options": {
+          "A": "E1 - the field is the same at every distance from an infinite sheet",
+          "B": "E1/2 - the field halves when the distance doubles",
+          "C": "E1/4 - the field quarters when the distance doubles, like a point charge",
+          "D": "2*E1 - the field doubles as you move the probe outward"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "applies a wire-like 1/d (half) falloff to a sheet",
+          "C": "applies the point-charge 1/d^2 (quarter) falloff to a sheet",
+          "D": "believes the field increases with distance from the sheet"
+        },
+        "tested_idea": "E is constant, so doubling the distance leaves the field unchanged - the ratio is 1 to 1 (vs half for a wire, quarter for a point).",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Near a large charged plate a pith ball feels field E1 at 2 centimetres. What does it feel at 4 centimetres from the plate?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Using a Gaussian pillbox on an isolated charged sheet gives E = sigma/(2*epsilon_0). A conductor surface (or one plate between two plates) gives E = sigma/epsilon_0 - twice as big. Where does the factor of two come from?",
+        "options": {
+          "A": "An isolated sheet sends flux out of BOTH caps (2EA); a conductor face has field on only ONE side (one cap), so its factor of two disappears",
+          "B": "A conductor simply has twice as much charge as a sheet",
+          "C": "It is a unit-conversion factor with no physical meaning",
+          "D": "The isolated sheet result is wrong - every sheet gives sigma/epsilon_0"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "invents a charge difference instead of the one-cap-vs-two-cap flux geometry",
+          "C": "dismisses the factor as bookkeeping rather than the two-cap origin",
+          "D": "rejects the correctly derived isolated-sheet result sigma/(2 epsilon_0)"
+        },
+        "tested_idea": "The 1/2 comes from flux leaving both caps (2EA); a conductor face (field zero inside) has flux through one cap, giving the doubled sigma/epsilon_0.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A single isolated charged plate gives E = sigma/(2 epsilon_0), but the field just outside a charged conductor is sigma/epsilon_0. Explain the factor of two in terms of the pillbox caps."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "Q2"
+      ],
+      "STATE_4": [
+        "Q3"
+      ],
+      "STATE_5": [
+        "Q1",
+        "Q6"
+      ],
+      "STATE_6": [
+        "Q4",
+        "Q5"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_3",
+      "STATE_7"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "gauss_law_sheet",
+    "explorer_id": "gauss_sheet_explorer",
+    "gauss_sheet_defaults": {
+      "demo_e_per_nc": 225,
+      "epsilon_0": 8.854e-12,
+      "sheet_half_width": 4.5
+    },
+    "slider_controls": {
+      "sigma": {
+        "min": -2,
+        "max": 3,
+        "step": 0.5,
+        "default": 1,
+        "label": "surface charge density σ"
+      },
+      "d": {
+        "min": 0.3,
+        "max": 4.0,
+        "step": 0.05,
+        "default": 2.0,
+        "label": "perpendicular distance d"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A big charged sheet — how does E change as you walk away?",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_sheet": {
+          "sigma": 1,
+          "d": 2.0,
+          "show_pillbox": false,
+          "show_cap_arrows": false,
+          "show_reference_lines": false
+        }
+      },
+      "STATE_2": {
+        "label": "Straight out on BOTH sides: perpendicular and uniform",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_sheet": {
+          "sigma": 1,
+          "d": 2.0,
+          "show_cap_arrows": true,
+          "cap_arrow_at_ms": 8000,
+          "show_reference_lines": true,
+          "emerge_d_at_ms": 8000
+        },
+        "formula_overlay": "E ⊥ sheet, away both sides, |E| constant everywhere"
+      },
+      "STATE_3": {
+        "label": "Choose a Gaussian PILLBOX piercing the sheet",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_sheet": {
+          "sigma": 1,
+          "d": 2.0,
+          "A": 2.0,
+          "H": 2.0,
+          "pillbox_radius": 1.4,
+          "show_pillbox": true,
+          "gaussian_fade_at_ms": 8600,
+          "show_cap_arrows": true,
+          "cap_arrow_at_ms": 0,
+          "show_area_label": true,
+          "area_label_at_ms": 15200,
+          "show_reference_lines": true,
+          "emerge_d_at_ms": 0,
+          "emerge_H_at_ms": 8600
+        },
+        "formula_overlay": "each flat cap has area A, ∥ the sheet"
+      },
+      "STATE_4": {
+        "label": "The curved WALL carries ZERO flux — only the two CAPS",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_sheet": {
+          "sigma": 1,
+          "d": 2.0,
+          "A": 2.0,
+          "H": 2.0,
+          "pillbox_radius": 1.4,
+          "show_pillbox": true,
+          "gaussian_fade_at_ms": 0,
+          "show_cap_arrows": true,
+          "cap_arrow_at_ms": 0,
+          "show_caps_flux": true,
+          "caps_reveal_at_ms": 8500,
+          "show_reference_lines": true,
+          "emerge_d_at_ms": 0,
+          "emerge_H_at_ms": 0
+        },
+        "formula_overlay": "Φ = 2EA (both caps);  wall: Φ = 0"
+      },
+      "STATE_5": {
+        "label": "Φ = 2EA = σA/ε₀ ⇒ E = σ/(2ε₀); A cancels, ½ = two caps",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_sheet": {
+          "sigma": 1,
+          "d": 2.0,
+          "A": 2.0,
+          "H": 2.0,
+          "pillbox_radius": 1.4,
+          "show_pillbox": true,
+          "gaussian_fade_at_ms": 0,
+          "show_cap_arrows": true,
+          "cap_arrow_at_ms": 0,
+          "show_reference_lines": true,
+          "emerge_d_at_ms": 0,
+          "emerge_H_at_ms": 0,
+          "show_derivation": true,
+          "derivation_at_ms": 16000,
+          "derivation_duration_ms": 6000
+        },
+        "formula_overlay": "2EA = σA/ε₀  ⇒  E = σ/(2ε₀)"
+      },
+      "STATE_6": {
+        "label": "CONSTANT: the field that never dies — flat line vs 1/r & 1/r² ghosts",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          8
+        ],
+        "caption": "",
+        "gauss_sheet": {
+          "sigma": 1,
+          "d": 0.5,
+          "A": 2.0,
+          "H": 2.0,
+          "pillbox_radius": 1.4,
+          "show_pillbox": true,
+          "gaussian_fade_at_ms": 0,
+          "show_cap_arrows": true,
+          "cap_arrow_at_ms": 0,
+          "show_reference_lines": true,
+          "emerge_d_at_ms": 0,
+          "show_e_vs_d_plot": true,
+          "plot_draw_at_ms": 12000,
+          "plot_draw_duration_ms": 9000,
+          "live_readout": true,
+          "coordinated_sweep": true,
+          "sweep_d_min": 0.5,
+          "sweep_d_max": 3.6,
+          "sweep_hold_near_ms": 12000,
+          "sweep_end_at_ms": 28000
+        },
+        "formula_overlay": "sheet ∝ constant  vs  line ∝ 1/r  vs  point ∝ 1/r²"
+      },
+      "STATE_7": {
+        "label": "Explore: tune σ and distance — watch E stay constant",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          8
+        ],
+        "caption": "",
+        "gauss_sheet": {
+          "sliders": true,
+          "sigma": 1,
+          "d": 2.0,
+          "A": 2.0,
+          "H": 2.0,
+          "pillbox_radius": 1.4,
+          "live_readout": true,
+          "show_cap_arrows": true,
+          "show_e_vs_d_plot": true,
+          "show_reference_lines": true,
+          "emerge_d_at_ms": 0
+        },
+        "formula_overlay": "live E = σ/(2ε₀)  (constant — independent of d)"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

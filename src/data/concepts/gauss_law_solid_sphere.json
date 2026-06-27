@@ -1,0 +1,1002 @@
+{
+  "concept_id": "gauss_law_solid_sphere",
+  "concept_name": "Field of a Uniformly Charged Solid Sphere: E ∝ r inside, kq/r² outside",
+  "chapter": 1,
+  "section": "1.15",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.1 Electric Charges and Fields (field of a uniformly charged sphere, §1.15) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (we already KNOW Gauss's law Φ = q_enc/ε₀, and by spherical symmetry E is radial and constant on a concentric sphere so Φ = E·4πr² → draw a Gaussian sphere OUTSIDE, r ≥ R: it encloses the FULL charge q ⇒ E = q/(4πε₀r²) = kq/r², the point-charge field → now shrink the Gaussian sphere INSIDE, r < R: because the charge fills the VOLUME uniformly (ρ = q / (4/3·πR³), an insulator that cannot push its charge to the surface), the sphere encloses only the fraction of charge inside radius r, q_enc = q·(r/R)³ ⇒ Φ = E·4πr² = q·(r/R)³/ε₀ ⇒ E = q·r/(4πε₀R³) = kq·r/R³, which GROWS LINEARLY from exactly 0 at the centre to the peak kq/R² at the surface (PRIMARY aha — NOT zero like a hollow shell) → check the surface: the inside ramp meets the outside 1/r² exactly at r=R (both give kq/R²), so the field is CONTINUOUS there — no jump, the maximum sits AT the surface → assemble the full E-vs-r picture: a straight ramp up on [0,R], a peak at R, then a 1/r² tail → finally let the student drag the Gaussian-sphere radius across R and watch the arrows grow inside and fall off outside), never copied. The atomic idea: applying Gauss's law plus spherical symmetry to a UNIFORMLY charged SOLID sphere (uniform volume charge density ρ) gives a CONTINUOUS field — E = kq·r/R³ inside (r<R, q_enc = q·(r/R)³, growing linearly from 0 at the centre) and E = kq/r² = q/(4πε₀r²) outside (r≥R, the full charge enclosed). The two branches meet exactly at r=R (both equal kq/R²), so the field is continuous and its maximum is AT the surface — there is no discontinuous jump. The external field depends only on q and r from the CENTRE, never on R. SCOPE: the uniformly charged SOLID (insulating) sphere only — does NOT re-teach the Gauss statement Φ = q_enc/ε₀ (gauss_law), the open-surface flux definition Φ = E·A (electric_flux), or the thin-shell / line / plane cases (separate siblings). Renders on the field_3d gauss_law_sphere scenario with gauss_sphere.distribution = 'solid' (the same engine that draws the thin shell, switched to the solid-sphere physics: a linear inside ramp instead of zero, and a continuous peak at r=R instead of a jump). Live r slider with stable explorer ID gauss_solid_sphere_explorer (Rule 27). Prerequisites gauss_law + electric_flux. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the 'zero inside like a shell' misconception confronted inside EPIC-L via Rule 16a).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "gauss_law_sphere"
+    ]
+  },
+  "prerequisites": [
+    "gauss_law",
+    "electric_flux"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture a solid ball of an insulating material — say a hard rubber sphere — that has been charged so the charge is locked uniformly through its whole volume. Because it is an insulator, the charge cannot flow to the outside the way it would on a metal ball; it stays spread through the body. A tiny test charge sitting right at the centre feels almost no push — there is hardly any charge inside its little Gaussian bubble. As you move it outward, more and more of the ball's charge ends up enclosed, so the force on it grows steadily, reaching its strongest value right at the surface. Outside the ball, it behaves once again like a single point charge at the centre.",
+    "secondary": "This is the textbook model of an atomic nucleus: protons spread roughly uniformly through the nuclear volume. A proton near the centre feels almost no net electric field, while one near the nuclear surface feels the strongest outward push — the same E growing in proportion to r, then falling off as 1/r² once you are outside the nucleus."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "q": {
+        "name": "Total charge spread uniformly through the solid sphere",
+        "unit": "demo nC",
+        "min": -2,
+        "max": 3,
+        "default": 1,
+        "step": 0.5
+      },
+      "R": {
+        "name": "Radius of the charged solid sphere",
+        "unit": "demo units",
+        "min": 1.0,
+        "max": 2.0,
+        "default": 1.5,
+        "step": 0.1
+      },
+      "r_gauss": {
+        "name": "Radius of the Gaussian sphere / field point (distance from centre)",
+        "unit": "demo units",
+        "min": 0.3,
+        "max": 4.0,
+        "default": 1.0,
+        "step": 0.05
+      },
+      "epsilon_0": {
+        "name": "Permittivity of free space (a fixed constant of nature)",
+        "unit": "C^2/(N*m^2)",
+        "min": 8.854e-12,
+        "max": 8.854e-12,
+        "default": 8.854e-12,
+        "step": 1
+      },
+      "k": {
+        "name": "Coulomb constant, k = 1/(4*pi*epsilon_0)",
+        "unit": "N*m^2/C^2",
+        "min": 8.99e9,
+        "max": 8.99e9,
+        "default": 8.99e9,
+        "step": 1
+      },
+      "DEMO_E_PER_NC": {
+        "name": "Demo field readout per nanocoulomb, at unit demo radius",
+        "unit": "demo (N/C) per nC at r=1",
+        "min": 225,
+        "max": 225,
+        "default": 225,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "q_enc": {
+        "formula": "(r_gauss < R) ? (q * (r_gauss / R) * (r_gauss / R) * (r_gauss / R)) : q"
+      },
+      "E_real": {
+        "formula": "(r_gauss < R) ? ((q * 1e-9 * r_gauss) / (4 * PI * epsilon_0 * R * R * R)) : ((q * 1e-9) / (4 * PI * epsilon_0 * r_gauss * r_gauss))"
+      },
+      "E_demo": {
+        "formula": "(r_gauss < R) ? (DEMO_E_PER_NC * q * r_gauss / (R * R * R)) : (DEMO_E_PER_NC * q / (r_gauss * r_gauss))"
+      },
+      "E_R": {
+        "formula": "DEMO_E_PER_NC * q / (R * R)"
+      },
+      "flux_check": {
+        "formula": "((r_gauss < R) ? (q * 1e-9 * (r_gauss / R) * (r_gauss / R) * (r_gauss / R)) : (q * 1e-9)) / epsilon_0"
+      }
+    },
+    "constraints": [
+      "Inside the solid sphere (r < R) the field grows LINEARLY: E = kq*r/R^3, exactly 0 at the centre and rising to the peak kq/R^2 at the surface - it is NOT zero like a hollow shell (C1).",
+      "Inside, the enclosed charge is the volume fraction q_enc = q*(r/R)^3, because the charge fills the volume uniformly ( rho = q / (4/3*pi*R^3)) (C2).",
+      "Outside the sphere (r >= R) the field is exactly that of a point charge q at the centre: E = kq/r^2 = q/(4*pi*epsilon_0*r^2) (C3).",
+      "E is CONTINUOUS at the surface r = R: the inside ramp and the outside 1/r^2 both equal kq/R^2 there - no jump, and the maximum field sits AT the surface (C4).",
+      "E is strictly radial everywhere (E parallel r-hat) and has the same magnitude at every point of a concentric sphere - this is what lets E leave the flux integral (C5).",
+      "The external field depends only on q and r from the centre, NOT on the sphere radius R: for fixed r > R, changing R leaves E unchanged (C6).",
+      "The flux Phi = E*4*pi*r^2 = q_enc/epsilon_0 holds at every r: inside it gives the linear ramp, outside it gives the 1/r^2 falloff - verified numerically (C7)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Inside a solid sphere E grows linearly: zero at the centre, peak at the surface.",
+    "visual_confirmation": "As the Gaussian sphere shrinks into the ball the radial arrows stay alive and shorten smoothly toward the centre, and the readout shows q_enc = q·(r/R)³ growing — never collapsing to zero."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "surface_continuity": [
+      "STATE_5"
+    ],
+    "full_profile": [
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "A ball with charge through its whole volume — what is E(r)?",
+        "duration": 15,
+        "focal_primitive_id": "question_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "carry_in_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "charge fills the whole volume (an insulator)",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "so what is E(r) inside and outside?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "solid_tag_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "a uniformly charged solid sphere, radius R",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Here is a solid ball of insulating material with charge spread evenly through its entire volume — not just on the surface.", "text_hi": "यह एक insulating material की solid ball है जिसमें charge पूरे volume में evenly spread है — सिर्फ surface पर नहीं।", "text_te": "ఇది ఒక insulating material యొక్క solid ball, దీనిలో charge మొత్తం volume అంతటా evenly spread అయి ఉంది — కేవలం surface మీద మాత్రమే కాదు."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Because it is an insulator, the charge is locked in place throughout the body. It cannot drift to the outside like it would on a metal ball.", "text_hi": "क्योंकि यह एक insulator है, charge पूरे body में locked है। यह metal ball की तरह outside की तरफ drift नहीं कर सकता।", "text_te": "ఎందుకంటే ఇది ఒక insulator, charge మొత్తం body లో locked అయి ఉంది. ఇది metal ball లాగా outside కి drift చేయలేదు."
+            },
+            {
+              "id": "s1_3",
+              "text_en": "So here is the question: what is the electric field E at a distance r — deep inside the ball, and far outside it?", "text_hi": "तो यहाँ question यह है: distance r पर electric field E क्या होगा — ball के अंदर deep में, और बाहर दूर में?", "text_te": "అయితే ఇక్కడ question ఏమిటంటే: distance r వద్ద electric field E ఎంత ఉంటుంది — ball లో లోపల deep లో, మరియు బయట చాలా దూరంలో?",
+              "pause_after_ms": 2600
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "All the charge must sit on the outer surface, just like it does on a charged metal ball.",
+            "visual_counter": "The ball is labelled an insulator with charge filling the volume; on a conductor the charge would flee to the surface, but here it stays spread through the body.",
+            "one_line_fix": "A solid insulating sphere holds charge through its whole volume; only a conductor pushes its charge to the surface."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "By symmetry, E is radial and the same on the whole sphere",
+        "duration": 17,
+        "focal_primitive_id": "symmetry_constant_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_point_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "field point P at radius r",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "radial_question_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "sideways, or straight out?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "symmetry_constant_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E ∥ r̂,  E = constant on the sphere",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Pick a point P at distance r from the centre. In which direction must the field point there?", "text_hi": "Centre से distance r पर एक point P लो। वहाँ field किस direction में होनी चाहिए?", "text_te": "Centre నుండి distance r వద్ద ఒక point P తీసుకోండి. అక్కడ field ఏ direction లో ఉండాలి?"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Could E point sideways, or must it point straight out along the radius?", "text_hi": "क्या E sideways direction में point कर सकता है, या फिर इसे radius के साथ straight out point करना ही होगा?", "text_te": "E sideways direction లో point చేయగలదా, లేదా radius వెంట straight out point చేయాల్సిందేనా?",
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s2_3",
+              "text_en": "The ball looks identical from every direction, so E has nothing to pick a sideways direction. It must point radially.", "text_hi": "Ball हर direction से identical दिखती है, इसलिए E के पास sideways direction choose करने की कोई वजह नहीं है। इसे radially ही point करना होगा।", "text_te": "Ball ప్రతి direction నుండి identical గా కనిపిస్తుంది, కాబట్టి E కి sideways direction ఎంచుకోవడానికి ఏ కారణమూ లేదు. ఇది radially గా point చేయాల్సిందే."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "And by that same symmetry its magnitude is the same at every point on a sphere of radius r. That is what lets E come out of the flux integral.", "text_hi": "और उसी symmetry की वजह से, radius r की sphere पर हर point पर इसका magnitude same है। यही वजह है कि E, flux integral से बाहर आ सकता है।", "text_te": "మరియు ఆ same symmetry వల్ల, radius r యొక్క sphere పై ప్రతి point వద్ద దాని magnitude same గా ఉంటుంది. అందుకే E, flux integral బయటకు రాగలదు."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field could lean sideways or be stronger on one side of the ball than another.",
+            "visual_counter": "Rotating the whole picture leaves it unchanged, so the radial arrow at P must have the same length all around — E is purely radial and constant on the sphere.",
+            "one_line_fix": "Spherical symmetry forces E to be radial and equal in magnitude everywhere at radius r."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Outside (r ≥ R): Φ = E·4πr² = q/ε₀ ⇒ E = kq/r²",
+        "duration": 19,
+        "focal_primitive_id": "E_kq_over_r2_label",
+        "advance_mode": "auto_after_tts",
+        "teaching_method": "derivation_first_principles",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "gaussian_sphere_outside_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "Gaussian sphere outside the ball, r ≥ R",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "flux_equals_E_area_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "Φ = E·4πr² = q/ε₀",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "E_kq_over_r2_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E = q/(4πε₀r²) = kq/r²",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Draw a Gaussian sphere outside the ball, at radius r bigger than R. It encloses the full charge q.", "text_hi": "Ball के बाहर, R से बड़े radius r पर एक Gaussian sphere draw करो। यह पूरा charge q enclose करता है।", "text_te": "Ball బయట, R కంటే పెద్దదైన radius r వద్ద ఒక Gaussian sphere గీయండి. ఇది మొత్తం charge q ని enclose చేస్తుంది."
+            },
+            {
+              "id": "s3_2",
+              "text_en": "What is the flux through it, in terms of E and the sphere's area?", "text_hi": "E और sphere के area के terms में, इसके through flux क्या है?", "text_te": "E మరియు sphere యొక్క area పరంగా, దాని ద్వారా flux ఎంత?",
+              "pause_after_ms": 2700
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Since E is constant and radial, the flux is just E times the area: Φ equals E times four pi r squared.", "text_hi": "चूँकि E constant और radial है, flux बस E times area है: flux equals E times four pi r squared।", "text_te": "E constant మరియు radial కాబట్టి, flux అనేది E times area మాత్రమే: flux equals E times four pi r squared."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "Set that equal to q over epsilon-nought and solve. E equals kq over r squared — outside, the ball is just a point charge at its centre.", "text_hi": "उसे q over epsilon-nought के बराबर रखो और solve करो। E equals kq over r squared — बाहर, ball बस अपने centre पर एक point charge की तरह है।", "text_te": "దాన్ని q over epsilon-nought కి equal చేసి solve చేయండి. E equals kq over r squared — బయట, ball తన centre వద్ద ఒక point charge లాంటిదే."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A spread-out ball of charge must give a weaker or different outside field than a point charge of the same q.",
+            "visual_counter": "The external arrows match the point-charge field exactly; the formula kq/r² has no R in it, so the size of the ball never enters the outside field.",
+            "one_line_fix": "Outside any spherical charge, E = kq/r² depends only on q and r from the centre — never on R."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_4": {
+        "title": "Inside (r < R): q_enc = q(r/R)³ ⇒ E = kq·r/R³ grows from zero",
+        "duration": 30,
+        "focal_primitive_id": "E_linear_inside_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "gaussian_sphere_inside_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "Gaussian sphere inside the ball, r < R",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "q_enc_cubic_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "q_enc = q·(r/R)³  (only the part inside)",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "E_linear_inside_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E = kq·r/R³  (grows ∝ r, zero at centre)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now shrink the Gaussian sphere until it sits inside the ball, at a radius r smaller than R.", "text_hi": "अब Gaussian sphere को तब तक shrink करो जब तक वह ball के अंदर, R से छोटे radius r पर न बैठ जाए।", "text_te": "ఇప్పుడు Gaussian sphere ని R కంటే చిన్న radius r వద్ద ball లోపల కూర్చునే వరకు shrink చేయండి."
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Here is the key question: how much charge does it enclose now — all of q, or only part of it?", "text_hi": "यहाँ key question है: अब यह कितना charge enclose कर रहा है — पूरा q, या उसका सिर्फ एक हिस्सा?", "text_te": "ఇక్కడ key question ఏమిటంటే: ఇప్పుడు ఇది ఎంత charge enclose చేస్తుందో — మొత్తం q నా, లేదా దాని కొంత భాగం మాత్రమేనా?",
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Only the part inside radius r. Since the charge fills the volume evenly, that fraction is q times r over R, cubed.", "text_hi": "सिर्फ radius r के अंदर का हिस्सा। चूँकि charge volume को evenly fill करता है, वह fraction है q times r over R, cubed।", "text_te": "కేవలం radius r లోపల ఉన్న భాగం మాత్రమే. charge volume ని evenly fill చేస్తుంది కాబట్టి, ఆ fraction అనేది q times r over R, cubed."
+            },
+            {
+              "id": "s4_4",
+              "text_en": "Put it into Gauss's law: E times four pi r squared equals that enclosed charge over epsilon-nought.", "text_hi": "इसे Gauss's law में डालो: E times four pi r squared equals वह enclosed charge over epsilon-nought।", "text_te": "దీన్ని Gauss's law లో పెట్టండి: E times four pi r squared equals ఆ enclosed charge over epsilon-nought."
+            },
+            {
+              "id": "s4_5",
+              "text_en": "Solve, and the r squared partly cancels: E equals kq times r over R cubed. The field grows in a straight line — zero at the centre, strongest at the surface.", "text_hi": "Solve करो, और r squared partly cancel हो जाता है: E equals kq times r over R cubed। Field एक straight line में बढ़ती है — centre पर zero, surface पर सबसे ज़्यादा।", "text_te": "Solve చేయండి, మరియు r squared partly cancel అవుతుంది: E equals kq times r over R cubed. Field ఒక straight line లో పెరుగుతుంది — centre వద్ద zero, surface వద్ద అత్యధికం.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s4_6",
+              "text_en": "Watch the arrows stay alive as the sphere shrinks. Inside a solid ball the field is not zero — it just gets smaller toward the centre.", "text_hi": "Sphere shrink होने पर arrows को alive रहते हुए देखो। Solid ball के अंदर field zero नहीं है — बस centre की तरफ छोटी होती जाती है।", "text_te": "Sphere shrink అవుతున్నప్పుడు arrows alive గా ఉండటం గమనించండి. Solid ball లోపల field zero కాదు — ఇది centre వైపు చిన్నదిగా అవుతుందంతే."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Inside a solid charged sphere the field is zero, just like inside a hollow shell.",
+            "visual_counter": "As the Gaussian sphere shrinks inward the radial arrows stay present and shorten smoothly, and the readout shows q_enc = q·(r/R)³ staying positive — the field never collapses to zero.",
+            "one_line_fix": "A solid sphere encloses a growing fraction of its charge as r increases, so E rises linearly inside — only the hollow shell is zero inside."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_5": {
+        "title": "At the surface the two pieces meet — continuous, peak at r = R",
+        "duration": 22,
+        "focal_primitive_id": "continuous_peak_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "inside_branch_tag",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "inside: kq·r/R³ → kq/R² at r = R",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "outside_branch_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "outside: kq/r² → kq/R² at r = R",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "continuous_peak_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "same value at R: continuous, peak at the surface",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Watch the Gaussian sphere grow right up to the surface, to r equals R. Does the field jump there, or stay smooth?", "text_hi": "Gaussian sphere को surface तक, यानी r equals R तक बढ़ते हुए देखो। क्या वहाँ field jump करती है, या smooth रहती है?", "text_te": "Gaussian sphere ని surface వరకు, అంటే r equals R వరకు పెరగడం గమనించండి. అక్కడ field jump అవుతుందా, లేదా smooth గా ఉంటుందా?",
+              "pause_after_ms": 2600
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Right at r equals R, the inside formula kq r over R cubed becomes kq over R squared.", "text_hi": "ठीक r equals R पर, अंदर का formula kq r over R cubed, kq over R squared बन जाता है।", "text_te": "సరిగ్గా r equals R వద్ద, లోపటి formula kq r over R cubed, kq over R squared గా మారుతుంది."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "And the outside formula kq over r squared, at r equals R, also becomes kq over R squared. The same value.", "text_hi": "और बाहर का formula kq over r squared, r equals R पर, भी kq over R squared बन जाता है। एक ही value।", "text_te": "మరియు బయటి formula kq over r squared, r equals R వద్ద, కూడా kq over R squared అవుతుంది. అదే value."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "The two pieces meet at the same value, so there is no jump at all. The field is continuous, and its maximum sits right here at the surface.", "text_hi": "दोनों pieces एक ही value पर मिलती हैं, इसलिए कोई jump नहीं है। Field continuous है, और इसका maximum बिल्कुल यहाँ surface पर है।", "text_te": "రెండు pieces ఒకే value వద్ద కలుస్తాయి, కాబట్టి ఏ jump అవదు. Field continuous గా ఉంది, మరియు దాని maximum సరిగ్గా ఇక్కడ surface వద్ద ఉంది."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field must jump suddenly at the surface, the way it does for a charged shell.",
+            "visual_counter": "As the Gaussian sphere crosses r=R the arrow lengths change smoothly with no break, and both formulas give the same kq/R² at the surface.",
+            "one_line_fix": "A solid sphere's field is continuous at the surface — only the hollow shell has a discontinuous jump there."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "The full picture: a straight ramp up, then a 1/r² tail",
+        "duration": 30,
+        "focal_primitive_id": "full_profile_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ramp_branch_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "r < R:  E = kq·r/R³  (ramp ∝ r)",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "peak_at_R_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "peak kq/R² exactly at r = R",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "full_profile_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "r ≥ R:  E = kq/r²  (1/r² falloff)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Watch the Gaussian sphere and the graph move together. Start at the centre: the field is zero and the dot rides the bottom.", "text_hi": "Gaussian sphere और graph को साथ-साथ move करते हुए देखो। Centre से शुरू करो: field zero है और dot नीचे ride कर रही है।", "text_te": "Gaussian sphere మరియు graph ని కలిసి move చేయడం గమనించండి. Centre నుండి start చేయండి: field zero గా ఉంది మరియు dot కిందన ride చేస్తుంది.",
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s6_2",
+              "text_en": "As the sphere grows toward the surface, the field climbs in a straight line — the dot rides up a slope, reaching its peak exactly at r equals R.", "text_hi": "जैसे-जैसे sphere surface की तरफ बढ़ती है, field एक straight line में climb करती है — dot एक slope पर ऊपर ride करती है, ठीक r equals R पर अपनी peak तक पहुँचती है।", "text_te": "Sphere surface వైపు పెరిగేకొద్దీ, field ఒక straight line లో climb చేస్తుంది — dot ఒక slope మీద పైకి ride చేస్తూ, సరిగ్గా r equals R వద్ద తన peak కి చేరుకుంటుంది.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Keep going outside: now the arrows shrink and the dot slides down the tail, falling off as one over r squared — the point-charge curve.", "text_hi": "Outside जाते रहो: अब arrows shrink होते हैं और dot tail पर नीचे slide करती है, one over r squared की तरह fall off करती है — यह point-charge curve है।", "text_te": "Outside వైపు కొనసాగండి: ఇప్పుడు arrows shrink అవుతాయి మరియు dot tail మీద కిందకు slide అవుతుంది, one over r squared గా fall off అవుతూ — ఇది point-charge curve.",
+              "pause_after_ms": 1500
+            },
+            {
+              "id": "s6_4",
+              "text_en": "A straight ramp up, a smooth peak at the surface, then a one-over-r-squared tail. No jump anywhere — that is the signature of the solid ball.", "text_hi": "एक straight ramp up, surface पर एक smooth peak, फिर एक one-over-r-squared tail। कहीं कोई jump नहीं — यही solid ball की पहचान है।", "text_te": "ఒక straight ramp up, surface వద్ద ఒక smooth peak, తర్వాత ఒక one-over-r-squared tail. ఎక్కడ కూడా jump లేదు — ఇదే solid ball యొక్క signature."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field of a solid sphere keeps rising as you go deeper, peaking at the very centre.",
+            "visual_counter": "The graph rises from zero at the centre up to the peak at r=R, then falls — the maximum is at the surface, and the centre is the minimum.",
+            "one_line_fix": "E is zero at the centre, rises linearly to its peak at the surface r=R, then falls off as 1/r²."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore: drag the Gaussian sphere from centre to far outside",
+        "duration": 16,
+        "focal_primitive_id": "live_E_readout_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "drag_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "drag r from the centre out past R",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "live_E_readout_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "live E: kq·r/R³ inside, kq/r² outside",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "peak_reminder_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "strongest exactly at the surface r = R",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now you drive it. Drag the slider to move the Gaussian sphere's radius r from the centre out to far beyond the ball.", "text_hi": "अब तुम इसे drive करो। Slider को drag करके Gaussian sphere की radius r को centre से ball से बहुत दूर तक move करो।", "text_te": "ఇప్పుడు మీరు దీన్ని drive చేయండి. Slider ని drag చేసి Gaussian sphere యొక్క radius r ని centre నుండి ball కి చాలా దూరం వరకు move చేయండి."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "While r is smaller than R the arrows grow in a straight line as you move out. They are longest right at the surface.", "text_hi": "जब तक r, R से छोटा है, बाहर जाने पर arrows straight line में बढ़ते हैं। वे बिल्कुल surface पर सबसे लंबे होते हैं।", "text_te": "r, R కంటే చిన్నగా ఉన్నంత వరకు, బయటకు వెళ్ళే కొద్దీ arrows straight line లో పెరుగుతాయి. అవి సరిగ్గా surface వద్ద అత్యంత పొడవుగా ఉంటాయి."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Cross R and they start to shrink as one over r squared. Watch the readout: nonzero everywhere inside, peaking at the surface.", "text_hi": "R को cross करो और वे one over r squared की तरह shrink होने लगते हैं। Readout देखो: अंदर हर जगह nonzero, surface पर peak।", "text_te": "R ని cross చేయండి మరియు అవి one over r squared గా shrink అవ్వడం మొదలవుతాయి. Readout చూడండి: లోపల అంతటా nonzero, surface వద్ద peak."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the field of a uniformly charged solid sphere when they can (1) state that inside the sphere (r<R) the field grows linearly, E = kq·r/R³, from exactly zero at the centre to a peak at the surface, because only the volume fraction q_enc = q·(r/R)³ is enclosed; (2) state that outside the sphere (r≥R) the field is exactly that of a point charge, E = kq/r²; (3) explain that this follows from Gauss's law plus spherical symmetry, which makes E radial and constant on a concentric sphere so Φ = E·4πr² = q_enc/ε₀; (4) recognise that the field is CONTINUOUS at the surface (both branches equal kq/R² at r=R) so there is no jump and the maximum sits at the surface; and (5) contrast this with a hollow shell, which is zero inside and jumps at the surface.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A solid sphere of radius R carries total charge q spread uniformly through its volume. What is the electric field at a point a distance r > R from the centre?",
+        "options": {
+          "A": "kq/r² — the same as a point charge q located at the centre",
+          "B": "kq/R² — fixed at the surface value for all points outside",
+          "C": "kq·r/R³ — the inside formula, applied everywhere",
+          "D": "Zero — all the field stays trapped inside the solid ball"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "freezes the field at its surface value instead of letting it fall off as 1/r²",
+          "C": "applies the interior linear formula to an external point",
+          "D": "imagines the field cannot escape a solid charged body"
+        },
+        "tested_idea": "Outside a uniformly charged solid sphere the field equals the point-charge field kq/r² with r from the centre.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A uniformly charged solid plastic ball of radius R holds charge q. A small test charge sits at distance r > R from the centre. Write the field it feels in terms of q and r."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "For the same solid sphere of radius R and charge q, what is the electric field at an interior point at radius r < R?",
+        "options": {
+          "A": "kq·r/R³ — it grows linearly with r, from zero at the centre to kq/R² at the surface",
+          "B": "Exactly zero — just like the field inside a hollow charged shell",
+          "C": "kq/r² — the field keeps growing without limit toward the centre",
+          "D": "kq/R² — it holds the surface value all the way in"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "carries the hollow-shell result (zero inside) over to a solid body that actually encloses charge",
+          "C": "applies the external 1/r² formula inside, blowing up at the centre instead of vanishing there",
+          "D": "freezes the field at its surface value throughout the interior"
+        },
+        "tested_idea": "Inside a uniformly charged solid sphere the field grows linearly as E = kq·r/R³, not zero.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Inside the same uniformly charged plastic ball, at a point halfway to the surface, is the field zero, constant, or growing — and what is its formula?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "Why does an interior Gaussian sphere of radius r < R enclose only q·(r/R)³ of the total charge q?",
+        "options": {
+          "A": "Because the charge fills the volume uniformly, so the enclosed charge scales with the enclosed volume, which goes as r³",
+          "B": "Because the charge sits on the surface, so the interior sphere encloses none of it",
+          "C": "Because enclosed charge always scales with the enclosed radius, which goes as r",
+          "D": "Because half the charge is always inside any Gaussian sphere you draw"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats the solid sphere as a hollow shell with surface-only charge",
+          "C": "scales enclosed charge with radius instead of with volume (r³)",
+          "D": "invents a fixed fraction unrelated to the geometry"
+        },
+        "tested_idea": "Uniform volume charge means enclosed charge scales with enclosed volume, q_enc = q·(r/R)³.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "For the uniformly charged plastic ball, explain in one line why a Gaussian sphere of radius r = R/2 encloses one eighth of the total charge."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "What happens to the field of a uniformly charged solid sphere as you cross the surface, moving from just inside to just outside?",
+        "options": {
+          "A": "It passes through continuously — both formulas give kq/R² at r = R, with no jump",
+          "B": "It jumps discontinuously from one value just inside to a higher value just outside",
+          "C": "It drops to zero at the surface and only grows again well outside",
+          "D": "It is largest at the centre and falls steadily outward through the surface"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "imports the hollow-shell discontinuity into the solid sphere, which is actually continuous",
+          "C": "invents a dip to zero at the surface that does not occur",
+          "D": "places the maximum at the centre instead of at the surface"
+        },
+        "tested_idea": "The solid sphere's field is continuous at r=R because the inside ramp and outside 1/r² both equal kq/R² there.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Sketch how the field of the charged plastic ball behaves as a probe is moved from just inside its surface to just outside — does it jump or stay smooth?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "At what distance from the centre is the electric field of a uniformly charged solid sphere the strongest?",
+        "options": {
+          "A": "Exactly at the surface, r = R, where the rising inside ramp meets the falling 1/r² tail",
+          "B": "At the very centre, r = 0, where the charge is most concentrated",
+          "C": "Infinitely far away, where all the charge looks like a point",
+          "D": "Everywhere the same — the field is uniform inside and outside"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "places the maximum at the centre, where the field is actually zero",
+          "C": "confuses the weakest far-field region with the strongest",
+          "D": "treats a clearly varying field as uniform"
+        },
+        "tested_idea": "The field peaks at the surface r=R, rising linearly inside and falling as 1/r² outside.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "For the charged plastic ball, at which radius would a small test charge feel the strongest force — at the centre, at the surface, or far away?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A solid sphere of radius R carries charge q. Using Gauss's law, find the field at r = R/2 and at r = 2R.",
+        "options": {
+          "A": "E(R/2) = kq/(2R²) and E(2R) = kq/(4R²), so the interior point is the stronger of the two",
+          "B": "E(R/2) = 0 and E(2R) = kq/(4R²), because the field is zero everywhere inside",
+          "C": "E(R/2) = kq/(R/2)² and E(2R) = kq/(4R²), using the outside formula at both points",
+          "D": "E(R/2) = kq/R² and E(2R) = kq/R², holding the surface value on both sides"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "applies the hollow-shell zero-inside result to a solid sphere",
+          "C": "uses the external 1/r² formula at an interior point that encloses only part of q",
+          "D": "freezes the field at the surface value on both sides instead of using the correct ramp and tail"
+        },
+        "tested_idea": "Inside use E=kq·r/R³ (so E(R/2)=kq/2R²); outside use E=kq/r² (so E(2R)=kq/4R²).",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "For the charged plastic ball of radius R, compute the field a test charge feels at half the radius and at twice the radius."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_3": [
+        "Q1"
+      ],
+      "STATE_4": [
+        "Q2",
+        "Q3"
+      ],
+      "STATE_5": [
+        "Q4",
+        "Q5"
+      ],
+      "STATE_6": [
+        "Q6"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_7"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "gauss_law_sphere",
+    "gauss_sphere_defaults": {
+      "demo_e_per_nc": 225,
+      "epsilon_0": 8.854e-12,
+      "shell_radius_default": 1.5
+    },
+    "slider_controls": {
+      "r_gauss": {
+        "min": 0.3,
+        "max": 4.0,
+        "step": 0.05,
+        "default": 1.0,
+        "label": "Gaussian-sphere radius r"
+      }
+    },
+    "explorer_id": "gauss_solid_sphere_explorer",
+    "states": {
+      "STATE_1": {
+        "label": "A ball with charge through its whole volume — what is E(r)?",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_sphere": {
+          "distribution": "solid",
+          "q": 1,
+          "R": 1.5,
+          "show_shell": true,
+          "show_gaussian": false,
+          "shimmer": true,
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 9000
+        }
+      },
+      "STATE_2": {
+        "label": "By symmetry, E is radial and the same on the whole sphere",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_sphere": {
+          "distribution": "solid",
+          "q": 1,
+          "R": 1.5,
+          "r_gauss": 2.4,
+          "show_field_point": true,
+          "radial_arrow_at_ms": 3700,
+          "ghost_rotation": {
+            "at_ms": 4600,
+            "duration_ms": 1200
+          },
+          "show_symmetry_label": true,
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 2000,
+          "emerge_r_at_ms": 11000
+        },
+        "formula_overlay": "E ∥ r̂,  E = const on the sphere"
+      },
+      "STATE_3": {
+        "label": "Outside (r ≥ R): Φ = E·4πr² = q/ε₀ ⇒ E = kq/r²",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_sphere": {
+          "distribution": "solid",
+          "q": 1,
+          "R": 1.5,
+          "r_gauss": 2.4,
+          "regime": "outside",
+          "show_gaussian": true,
+          "gaussian_fade_at_ms": 0,
+          "show_radial_arrows": true,
+          "show_equation": true,
+          "equation_at_ms": 4600,
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 1500,
+          "emerge_r_at_ms": 2500
+        },
+        "formula_overlay": "Φ = E·4πr² = q/ε₀  ⇒  E = kq/r²"
+      },
+      "STATE_4": {
+        "label": "Inside (r < R): q_enc = q(r/R)³ ⇒ E = kq·r/R³ grows from zero",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_sphere": {
+          "distribution": "solid",
+          "q": 1,
+          "R": 1.5,
+          "r_gauss": 0.9,
+          "regime": "inside",
+          "show_gaussian": true,
+          "show_radial_arrows": true,
+          "shrink_through_R": {
+            "at_ms": 1500,
+            "duration_ms": 1800
+          },
+          "show_equation": true,
+          "equation_at_ms": 5000,
+          "live_readout": true,
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 500,
+          "emerge_r_at_ms": 2000
+        },
+        "formula_overlay": "q_enc = q·(r/R)³  ⇒  E = kq·r/R³  (zero at centre, grows ∝ r)"
+      },
+      "STATE_5": {
+        "label": "At the surface the two pieces meet — continuous, peak at r = R",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_sphere": {
+          "distribution": "solid",
+          "q": 1,
+          "R": 1.5,
+          "show_gaussian": true,
+          "show_radial_arrows": true,
+          "live_readout": true,
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 500,
+          "emerge_r_at_ms": 1500,
+          "coordinated_sweep": true,
+          "sweep_r_min": 0.9,
+          "sweep_r_max": 1.5,
+          "sweep_hold_inside_ms": 3000,
+          "sweep_cross_at_ms": 10000,
+          "sweep_end_at_ms": 10500
+        },
+        "formula_overlay": "at r = R both give kq/R² — continuous, peak at the surface (no jump)"
+      },
+      "STATE_6": {
+        "label": "The full picture: a straight ramp up, then a 1/r² tail",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          8
+        ],
+        "caption": "",
+        "gauss_sphere": {
+          "distribution": "solid",
+          "q": 1,
+          "R": 1.5,
+          "r_gauss": 0.4,
+          "show_e_vs_r_plot": true,
+          "plot_draw_at_ms": 800,
+          "plot_draw_duration_ms": 4000,
+          "peak_value": 100,
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 1000,
+          "emerge_r_at_ms": 1500,
+          "coordinated_sweep": true,
+          "sweep_r_min": 0.4,
+          "sweep_r_max": 3.6,
+          "sweep_hold_inside_ms": 6000,
+          "sweep_cross_at_ms": 11000,
+          "sweep_end_at_ms": 26000,
+          "show_gaussian": true,
+          "show_radial_arrows": true
+        },
+        "formula_overlay": "E ramps up ∝ r to the peak kq/R² at r=R, then falls as kq/r²"
+      },
+      "STATE_7": {
+        "label": "Explore: drag the Gaussian sphere from centre to far outside",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          8
+        ],
+        "caption": "",
+        "gauss_sphere": {
+          "distribution": "solid",
+          "sliders": true,
+          "q": 1,
+          "R": 1.5,
+          "r_gauss": 1.0,
+          "live_readout": true,
+          "show_radial_arrows": true,
+          "show_e_vs_r_plot": true,
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 1000,
+          "emerge_r_at_ms": 1500
+        },
+        "formula_overlay": "live E: kq·r/R³ inside, kq/r² outside"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

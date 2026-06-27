@@ -9,10 +9,12 @@
  *   - sim.html      the assembled, self-contained field_3d scene
  *                   (assembleField3DHtml — CDN Three.js/KaTeX, no Supabase)
  *   - index.html    a vanilla continuous lesson player (iframe + narration +
- *                   state badge + pace controls). Narration is the PARENT
- *                   page's speechSynthesis (the iframe never speaks); per-
- *                   sentence glow/math/hand/freeze are postMessaged to the
- *                   iframe exactly like the admin _TtsPlayButton harness.
+ *                   state badge + pace controls). Narration is PRE-GENERATED
+ *                   Sarvam audio clips (EN/HI/TE) played from ./audio/ via a
+ *                   single <audio> element, sequenced on the state clock (no
+ *                   browser speechSynthesis); per-sentence glow/math/hand/freeze
+ *                   are postMessaged to the iframe. Run `npm run tts:generate
+ *                   <id>` first to produce the clips + audio_manifest.json.
  *   - meta.json     {concept_id, concept_name} for the catalog.
  * and (re)writes ./review-site/index.html — the catalog of all built sims.
  *
@@ -30,7 +32,10 @@ import { assembleField3DHtml, type Field3DConfig } from '@/lib/renderers/field_3
 // ── Types (subset of the concept JSON we read) ───────────────────────────────
 
 type TtsSentenceJson = {
+    id?: string;
     text_en?: string;
+    text_hi?: string;
+    text_te?: string;
     glow?: string | string[] | null;
     math_show?: string | null;
     math_persist?: boolean;
@@ -57,8 +62,14 @@ type ConceptJson = {
     };
 };
 
+type AudioMeta = { available: boolean; duration_ms: number; file: string };
+
 type ReviewSentence = {
-    text: string;
+    id: string;
+    text_en: string;
+    text_hi: string;
+    text_te: string;
+    audio: { en: AudioMeta; hi: AudioMeta; te: AudioMeta };
     glow: string | string[] | null;
     math_show: string | null;
     math_persist: boolean;
@@ -105,6 +116,31 @@ function loadReviewStatus(): ReviewStatusMap {
     }
 }
 
+// ── Stored-audio manifest (emitted by generate_tts_audio.ts) ─────────────────
+// Maps "<sentenceId>_<lang>" → clip metadata. Missing/malformed → {} (the player
+// falls back to silent narration; captions + clock still work).
+
+type AudioClip = {
+    id: string;
+    lang: string;
+    file: string;
+    duration_ms: number;
+    chars: number;
+    available: boolean;
+};
+
+function loadAudioManifest(conceptId: string): Record<string, AudioClip> {
+    const p = join(OUT_DIR, conceptId, 'audio_manifest.json');
+    if (!existsSync(p)) return {};
+    try {
+        const m = JSON.parse(readFileSync(p, 'utf-8')) as { clips?: Record<string, AudioClip> };
+        return m.clips ?? {};
+    } catch {
+        console.warn(`   ⚠ could not parse ${p} — narration will be silent`);
+        return {};
+    }
+}
+
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 function stateNumber(id: string): number {
@@ -136,22 +172,33 @@ function loadConcept(conceptId: string): ConceptJson {
     return JSON.parse(readFileSync(path, 'utf-8')) as ConceptJson;
 }
 
-function extractStates(json: ConceptJson): ReviewState[] {
+function extractStates(json: ConceptJson, clips: Record<string, AudioClip>): ReviewState[] {
     const states = json.epic_l_path?.states ?? {};
+    const audioFor = (sid: string, lang: 'en' | 'hi' | 'te'): AudioMeta => {
+        const c = clips[sid + '_' + lang];
+        return { available: c?.available === true, duration_ms: c?.duration_ms ?? 0, file: c?.file ?? '' };
+    };
     return Object.keys(states)
         .sort((a, b) => stateNumber(a) - stateNumber(b))
         .map((id) => {
             const st = states[id];
             const sentences: ReviewSentence[] = (st.teacher_script?.tts_sentences ?? [])
-                .map((s) => ({
-                    text: s.text_en ?? '',
-                    glow: s.glow ?? null,
-                    math_show: s.math_show ?? null,
-                    math_persist: s.math_persist === true,
-                    hand_phase: s.hand_phase ?? null,
-                    freeze_proton: s.freeze_proton === true,
-                }))
-                .filter((s) => s.text.length > 0);
+                .map((s) => {
+                    const sid = s.id ?? '';
+                    return {
+                        id: sid,
+                        text_en: s.text_en ?? '',
+                        text_hi: s.text_hi ?? '',
+                        text_te: s.text_te ?? '',
+                        audio: { en: audioFor(sid, 'en'), hi: audioFor(sid, 'hi'), te: audioFor(sid, 'te') },
+                        glow: s.glow ?? null,
+                        math_show: s.math_show ?? null,
+                        math_persist: s.math_persist === true,
+                        hand_phase: s.hand_phase ?? null,
+                        freeze_proton: s.freeze_proton === true,
+                    };
+                })
+                .filter((s) => s.text_en.length > 0);
             return {
                 id,
                 title: st.title ?? id,
@@ -425,6 +472,13 @@ function renderConceptPage(
         <button id="playBtn" class="primary">&#9654; Play state</button>
         <button id="replayBtn">&#128257; Replay</button>
         <button id="muteBtn">&#128263; Muted</button>
+        <label class="ctl">Voice
+          <select id="lang">
+            <option value="en">English</option>
+            <option value="hi">&#2361;&#2367;&#2306;&#2342;&#2368;</option>
+            <option value="te">&#3108;&#3142;&#3122;&#3137;&#3095;&#3137;</option>
+          </select>
+        </label>
         <div class="spacer"></div>
         <label class="ctl">Speed <input id="rate" type="range" min="0.7" max="1.1" step="0.05" value="0.9"></label>
         <label class="ctl"><input id="auto" type="checkbox"> Auto-advance</label>
@@ -493,6 +547,7 @@ function renderConceptPage(
   var defaultOrderBtn = document.getElementById('defaultOrderBtn');
   var cardsEl = document.getElementById('cards');
   var rateEl = document.getElementById('rate');
+  var langSel = document.getElementById('lang');
   var autoEl = document.getElementById('auto');
   var counter = document.getElementById('counter');
   var pausedBadge = document.getElementById('paused');
@@ -505,6 +560,7 @@ function renderConceptPage(
   // ── Navigation order (Rule 25d: reorderable, persisted locally) ──
   var LS_ORDER = 'pm_order_' + CONCEPT_ID;
   var LS_MUTE = 'pm_mute_' + CONCEPT_ID;
+  var LS_LANG = 'pm_lang_' + CONCEPT_ID;
   function validOrder(a) {
     if (!a || a.length !== STATE_COUNT) return false;
     var seen = {};
@@ -525,6 +581,21 @@ function renderConceptPage(
   function cur() { return STATES[order[idx]]; }
 
   var muted = (function () { try { var m = localStorage.getItem(LS_MUTE); return m === null ? true : m === '1'; } catch (e) { return true; } })();
+
+  // ── Language (EN/HI/TE) — narration is pre-generated Sarvam audio (Rule 13) ──
+  var lang = (function () { try { var l = localStorage.getItem(LS_LANG); return (l === 'hi' || l === 'te' || l === 'en') ? l : 'en'; } catch (e) { return 'en'; } })();
+  function sentText(s) { return (lang === 'hi' ? s.text_hi : lang === 'te' ? s.text_te : s.text_en) || s.text_en || ''; }
+  // True if any stored clip exists → the rate slider can't re-pace baked audio.
+  var HAS_AUDIO = (function () {
+    for (var a = 0; a < STATES.length; a++) {
+      var ss = STATES[a].sentences || [];
+      for (var b = 0; b < ss.length; b++) {
+        var au = ss[b].audio;
+        if (au && (au.en.available || au.hi.available || au.te.available)) return true;
+      }
+    }
+    return false;
+  })();
   function applyMuteUI() {
     if (muted) { muteBtn.innerHTML = '&#128263; Muted'; muteBtn.classList.remove('on'); }
     else { muteBtn.innerHTML = '&#128266; Narration on'; muteBtn.classList.add('on'); }
@@ -533,7 +604,9 @@ function renderConceptPage(
   var frozen = false;
   var simReady = false;
   var playing = false;        // play-intent: timeline should advance whenever not frozen
-  var voice = null;
+  var audioEl = new Audio();  // single reused element for stored narration clips → overlap impossible
+  audioEl.preload = 'auto';
+  audioEl.addEventListener('error', function () { /* missing/blocked clip → silent; never blocks the clock */ });
   var pendingRoll = null;     // state id we asked to render and want to roll on STATE_REACHED
   var scrubbing = false;
   // ── Clock-driven reveal timeline (Rule 26) ──
@@ -547,22 +620,9 @@ function renderConceptPage(
   var simSurface = null;             // sim-overlay annotation surface (set up after the player)
   var boardSurface = null;           // whiteboard surface (set up after the player)
 
-  // Warm the voice list (populates asynchronously on first call in Chrome).
-  try { window.speechSynthesis.getVoices(); } catch (e) {}
-
-  function pickVoice() {
-    var voices = window.speechSynthesis.getVoices();
-    if (!voices || voices.length === 0) return null;
-    // Prefer ON-DEVICE (local) voices — Chrome's Web Speech produces no audio
-    // for Microsoft "Online (Natural)" remote voices.
-    var local = voices.filter(function (v) { return v.localService; });
-    var pool = local.length > 0 ? local : voices;
-    function find(pred) { for (var i = 0; i < pool.length; i++) { if (pred(pool[i])) return pool[i]; } return null; }
-    return find(function (v) { return v.lang === 'en-IN'; })
-        || find(function (v) { return v.lang === 'en-US'; })
-        || find(function (v) { return v.lang && v.lang.indexOf('en') === 0; })
-        || pool[0];
-  }
+  // Narration is pre-generated Sarvam audio clips (no browser speechSynthesis).
+  // Stop = pause + rewind the single shared element so the next clip can't overlap.
+  function stopAudio() { try { audioEl.pause(); audioEl.currentTime = 0; } catch (e) {} }
 
   function post(msg) { if (iframe.contentWindow) iframe.contentWindow.postMessage(msg, '*'); }
   function sendState(id) { post({ type: 'SET_STATE', state: id }); }
@@ -592,13 +652,20 @@ function renderConceptPage(
     var ms = (words / (WPM * rate)) * 60000;
     return Math.max(MIN_SENTENCE_MS, Math.round(ms));
   }
+  // Use the real stored-clip length when available so reveals lock to the actual
+  // spoken audio; fall back to the character estimate when a clip is missing.
+  function sentDurMs(s) {
+    var a = s.audio && s.audio[lang];
+    if (a && a.available && a.duration_ms > 0) return a.duration_ms;
+    return estSentenceMs(sentText(s));
+  }
   function computeTimeline() {
     var st = cur();
     var sents = st.sentences || [];
     timeline = [];
     var t = 0;
     for (var i = 0; i < sents.length; i++) {
-      var dur = estSentenceMs(sents[i].text);
+      var dur = sentDurMs(sents[i]);
       timeline.push({ start: t, end: t + dur, si: i });
       t = t + dur + GAP_MS;
     }
@@ -612,10 +679,14 @@ function renderConceptPage(
   function activeSiAt(t) {
     if (timeline.length === 0) return -1;
     if (t < timeline[0].start) return 0;
+    var held = timeline[0].si;   // most recent sentence that has STARTED
     for (var i = 0; i < timeline.length; i++) {
+      if (t >= timeline[i].start) held = timeline[i].si;
       if (t >= timeline[i].start && t < timeline[i].end) return timeline[i].si;
     }
-    return timeline[timeline.length - 1].si;
+    // Inside a breathing gap (or past the end) → HOLD the just-finished sentence.
+    // (Returning the LAST sentence here was the boundary "wrong-statement" bug.)
+    return held;
   }
   // Paint one sentence's reveals + caption. Idempotent on curSi, so postMessages
   // fire only at sentence boundaries, not every tick. The next sentence overwrites
@@ -630,23 +701,23 @@ function renderConceptPage(
     sendFreeze(s.freeze_proton);
     if (s.math_show) { sendMath(s.math_show, s.math_persist); }
     else if (!s.math_persist) { sendMath(null, false); }
-    caption.textContent = s.text;
+    caption.textContent = sentText(s);
   }
-  // Speak the active sentence if audio is allowed. No onend chaining — the clock,
-  // not the voice, advances reveals. Avoids speechSynthesis.pause/resume (flaky):
-  // freeze/mute cancel, resume re-speaks the current sentence.
-  function speakCurrent() {
+  // Play the active sentence's stored clip if audio is allowed. No onended chaining
+  // — the clock advances reveals (Rule 26); audio is a passenger. The single shared
+  // audioEl + stopAudio() before each play() makes overlap structurally impossible,
+  // so there is no cancel()/speak() race. A missing/blocked clip just stays silent.
+  function playCurrent() {
     if (muted || !playing || frozen || curSi < 0) return;
     if (curSi === spokenSi) return;
-    if (!voice) voice = pickVoice();
-    spokenSi = curSi;
-    try { window.speechSynthesis.cancel(); } catch (e) {}
     var s = cur().sentences[curSi];
-    var u = new SpeechSynthesisUtterance(s.text);
-    u.rate = parseFloat(rateEl.value) || 0.9;
-    u.pitch = 1.0;
-    if (voice) { u.voice = voice; u.lang = voice.lang; } else { u.lang = 'en-US'; }
-    try { window.speechSynthesis.speak(u); } catch (e) {}
+    spokenSi = curSi;                       // mark spoken even if the clip is missing → no retry loop
+    var a = s.audio && s.audio[lang];
+    if (!a || !a.available || !a.file) return;   // silent for this sentence in this language
+    stopAudio();
+    audioEl.src = './' + a.file;             // manifest path, e.g. ./audio/s1_1_en.mp3 (format-agnostic)
+    var p = audioEl.play();
+    if (p && p.catch) p.catch(function () { /* autoplay-blocked / 404 → never block the clock */ });
   }
   // Renderer never signals end-of-timeline, so detect it here. Auto-advance is
   // mute-independent (Rule 26c); the last state holds its final frame.
@@ -656,7 +727,7 @@ function renderConceptPage(
       goToState(idx + 1, playing);
     } else {
       playing = false; setPlayBtnUI(false);
-      try { window.speechSynthesis.cancel(); } catch (e) {}
+      try { stopAudio(); } catch (e) {}
       post({ type: 'SET_TIME_FREEZE', at_ms: timelineTotal });   // hold a clean final frame
       frozen = true;
     }
@@ -674,7 +745,7 @@ function renderConceptPage(
     ended = false;
     var si = activeSiAt(t);
     if (si !== curSi) { applyReveal(si); spokenSi = -1; }
-    speakCurrent();
+    playCurrent();
     if (!scrubbing && !frozen) {
       scrubEl.value = String(t);
       updateScrubLabel(parseInt(scrubEl.value, 10) || 0);
@@ -684,7 +755,6 @@ function renderConceptPage(
   function stopLoop() { if (loopHandle != null) { clearInterval(loopHandle); loopHandle = null; } }
   // Roll the current state from the top: reset clock, replay one-shots, un-pin, play.
   function rollTimeline() {
-    if (!voice) voice = pickVoice();
     computeTimeline();
     curSi = -1; spokenSi = -1; ended = true;   // suppress end-detect until the clock resets
     sendReset();
@@ -694,7 +764,7 @@ function renderConceptPage(
     scrubbing = false;
     playing = true; setPlayBtnUI(true);
     applyReveal(activeSiAt(0));
-    speakCurrent();
+    playCurrent();
   }
 
   // ── Freeze-frame (teacher pause) ──────────────────────────────────────────
@@ -707,7 +777,7 @@ function renderConceptPage(
     frozen = true;
     retireTapCue();                     // they discovered pause — stop hinting
     post({ type: 'SET_TIME_FREEZE', at_ms: readSimTimeMs() });   // pin clock → reveals hold (Rule 26b)
-    try { window.speechSynthesis.cancel(); } catch (e) {}        // audio stops; play-intent survives
+    try { stopAudio(); } catch (e) {}        // audio stops; play-intent survives
     spokenSi = -1;                      // so resume re-speaks the current sentence
     setPlayBtnUI(false);
     pausedBadge.style.display = 'block';
@@ -720,7 +790,7 @@ function renderConceptPage(
     playing = true;                     // resume (or tap-to-play an idle frame)
     setPlayBtnUI(true);
     spokenSi = -1;
-    speakCurrent();                     // re-voice current sentence now (audio gated on mute inside)
+    playCurrent();                     // re-voice current sentence now (audio gated on mute inside)
   }
   function toggleFreeze() { if (frozen) unfreeze(); else freeze(); }
 
@@ -810,7 +880,7 @@ function renderConceptPage(
   function goToState(pos, autoRoll) {
     idx = Math.max(0, Math.min(order.length - 1, pos));
     if (frozen) { frozen = false; pausedBadge.style.display = 'none'; }  // SET_STATE releases the pin
-    try { window.speechSynthesis.cancel(); } catch (e) {}
+    try { stopAudio(); } catch (e) {}
     caption.textContent = '';
     curSi = -1; spokenSi = -1; ended = true;   // suppress end-detect until the new clock is fresh
     clearSync();
@@ -840,7 +910,7 @@ function renderConceptPage(
   // Minimal "stop before navigating" — goToState handles clearing reveals.
   function pause() {
     playing = false;
-    try { window.speechSynthesis.cancel(); } catch (e) {}
+    try { stopAudio(); } catch (e) {}
     setPlayBtnUI(false);
   }
 
@@ -855,16 +925,28 @@ function renderConceptPage(
   muteBtn.addEventListener('click', function () {
     muted = !muted;
     try { localStorage.setItem(LS_MUTE, muted ? '1' : '0'); } catch (e) {}
-    if (muted) { try { window.speechSynthesis.cancel(); } catch (e) {} }
-    else { spokenSi = -1; speakCurrent(); }
+    if (muted) { try { stopAudio(); } catch (e) {} }
+    else { spokenSi = -1; playCurrent(); }
     applyMuteUI();
+  });
+  // Language switch (EN/HI/TE). Audio + caption swap; reveals re-pace to the new
+  // clips' durations. The clock position is preserved — the next tick re-derives
+  // the active sentence — so switching mid-play just restarts the current clip.
+  if (langSel) langSel.addEventListener('change', function () {
+    lang = langSel.value;
+    try { localStorage.setItem(LS_LANG, lang); } catch (e) {}
+    stopAudio();
+    if (curSi >= 0) caption.textContent = sentText(cur().sentences[curSi]);
+    if (simReady) computeTimeline();
+    spokenSi = -1;
+    if (playing && !frozen) playCurrent();
   });
 
   // ── Scrubber: drag to jump within the current state's timeline ──
   scrubEl.addEventListener('input', function () {
     scrubbing = true;
     var ms = parseInt(scrubEl.value, 10) || 0;
-    try { window.speechSynthesis.cancel(); } catch (e) {}
+    try { stopAudio(); } catch (e) {}
     post({ type: 'SET_TIME_JUMP', at_ms: ms });   // instant jump + hold (both directions)
     frozen = true;
     curSi = -1; applyReveal(activeSiAt(ms));       // show the reveal at the scrub point now
@@ -876,7 +958,7 @@ function renderConceptPage(
     if (playing) {
       post({ type: 'SET_TIME_FREEZE', frozen: false });
       frozen = false;
-      spokenSi = -1; speakCurrent();
+      spokenSi = -1; playCurrent();
     }
     // not playing → stay pinned on the scrubbed frame.
   });
@@ -891,6 +973,9 @@ function renderConceptPage(
     var t = e.data && e.data.type;
     if (t === 'SIM_READY') {
       simReady = true;
+      if (langSel) langSel.value = lang;
+      // Baked audio can't be re-paced by the slider — disable it when clips exist.
+      if (HAS_AUDIO && rateEl) { rateEl.disabled = true; rateEl.title = 'Pacing follows the recorded narration'; }
       buildRail();
       applyMuteUI();
       startLoop();
@@ -1421,7 +1506,11 @@ function buildOne(conceptId: string): void {
         process.exit(1);
     }
     const conceptName = json.concept_name ?? conceptId;
-    const states = extractStates(json);
+    const audioClips = loadAudioManifest(conceptId);
+    if (Object.keys(audioClips).length === 0) {
+        console.warn(`   ⚠ ${conceptId}: no audio_manifest.json — run "npm run tts:generate ${conceptId}" first; narration will be silent.`);
+    }
+    const states = extractStates(json, audioClips);
     if (states.length === 0) {
         console.error(`✖ ${conceptId}: no epic_l_path states with narration found.`);
         process.exit(1);

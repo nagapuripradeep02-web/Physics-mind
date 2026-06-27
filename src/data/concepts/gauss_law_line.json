@@ -1,0 +1,958 @@
+{
+  "concept_id": "gauss_law_line",
+  "concept_name": "Field of an Infinite Line Charge: E = λ/(2πε₀r), a 1/r falloff",
+  "chapter": 1,
+  "section": "1.15",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.1 Electric Charges and Fields (field of an infinite straight line charge, §1.15 applications of Gauss's law) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (we already KNOW Gauss's law Φ = q_enc/ε₀, but that is total flux, not the field at a point → an infinite uniform line has cylindrical symmetry, so by symmetry E must be radial, perpendicular to the line, and equal in magnitude on a coaxial ring at distance r → that constant-and-perpendicular E is exactly what lets E come out of the flux integral → choose a COAXIAL GAUSSIAN CYLINDER of radius r and height L: the two flat end caps carry zero flux because E grazes them (E·dA = 0), so only the curved wall counts, Φ = E·(2πrL) → enclosed charge on a length L is q_enc = λL, so Gauss gives Φ = λL/ε₀ → set them equal: E·(2πrL) = λL/ε₀, the L cancels, leaving E = λ/(2πε₀r) → finally compare with a point charge: the line falls off as 1/r, NOT 1/r², because the cylinder area 2πrL grows only linearly with r while a sphere's 4πr² grows quadratically (PRIMARY aha)), never copied. The atomic idea: applying Gauss's law plus cylindrical symmetry to an infinite uniform line of linear charge density λ gives a purely radial field, perpendicular to the line and independent of axial position, E = λ/(2πε₀r) — a field that falls off as 1/r (slower than a point charge's 1/r²). The two flat end caps of the coaxial Gaussian cylinder carry exactly zero flux; the cylinder height L cancels, so E depends only on λ and the perpendicular distance r, never on the length of wire enclosed. SCOPE: the infinite LINE / WIRE only — does NOT re-teach the Gauss statement Φ = q_enc/ε₀ (gauss_law), the open-surface flux definition Φ = E·A (electric_flux), the meaning of λ itself (charge_distribution), the spherical-shell / solid-sphere cases (gauss_law_sphere / gauss_law_solid_sphere), the infinite-plane/sheet case, or finite-line end effects. NEW field_3d gauss_law_line scenario: an infinite vertical line of charge with λ + markers, a coaxial Gaussian cylinder (curved wall + two end caps) of adjustable radius r and height L, a horizontal ring of equal radial wall arrows (1/r length, same all round), grazing end-cap arrows with Φ=0 tags, two distinct reference lines (r perpendicular billboarded camera-right, L axial), a derivation write-in where the L visibly cancels, a STATE_6 E-vs-r plot showing the line's 1/r curve above the faint point-charge 1/r² ghost with a coordinated r-sweep, and a STATE_7 λ + r slider pair with stable explorer ID gauss_line_explorer (Rule 27). Prerequisites gauss_law + electric_flux + charge_distribution. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a). Third Gauss-application sibling after gauss_law_sphere (1/r²) and gauss_law_solid_sphere (ramp-then-1/r²); this is the cylindrical-symmetry / 1/r member.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "gauss_law_line"
+    ]
+  },
+  "prerequisites": [
+    "gauss_law",
+    "electric_flux",
+    "charge_distribution"
+  ],
+  "real_world_anchor": {
+    "primary": "A high-tension overhead transmission line strung between steel towers, running for kilometres across the countryside — a single straight conductor carrying charge spread evenly along its length. To a probe held a few metres away, that line is effectively infinitely long and uniformly charged. The reason engineers can predict the field near it with one clean formula, E = λ/(2πε₀r), is cylindrical symmetry plus Gauss's law: the field points straight out from the wire and weakens as 1/r — slower than the 1/r² field of a single point charge.",
+    "secondary": "A long thin charged metal rod in the lab, or the tall charged column of a Van de Graaff generator. Near the middle, well away from the ends, the field points radially straight out from the rod and dies away as 1/r. Walk twice as far from the wire and the field only halves — not quarters, the way it would around a single charged ball."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "lambda": {
+        "name": "Linear charge density on the wire",
+        "unit": "demo nC/m",
+        "min": -2,
+        "max": 3,
+        "default": 1,
+        "step": 0.5
+      },
+      "r": {
+        "name": "Perpendicular distance from the line to the field point (= Gaussian-cylinder radius)",
+        "unit": "demo units",
+        "min": 0.3,
+        "max": 4.0,
+        "default": 2.0,
+        "step": 0.05
+      },
+      "L": {
+        "name": "Axial height of the Gaussian cylinder (a length of wire; cancels out of E)",
+        "unit": "demo units",
+        "min": 1.0,
+        "max": 4.0,
+        "default": 2.5,
+        "step": 0.1
+      },
+      "epsilon_0": {
+        "name": "Permittivity of free space (a fixed constant of nature)",
+        "unit": "C^2/(N*m^2)",
+        "min": 8.854e-12,
+        "max": 8.854e-12,
+        "default": 8.854e-12,
+        "step": 1
+      },
+      "k": {
+        "name": "Coulomb constant, k = 1/(4*pi*epsilon_0)",
+        "unit": "N*m^2/C^2",
+        "min": 8.99e9,
+        "max": 8.99e9,
+        "default": 8.99e9,
+        "step": 1
+      },
+      "DEMO_E_PER_NC": {
+        "name": "Demo field readout per nanocoulomb-per-metre, at unit demo radius",
+        "unit": "demo (N/C) per (nC/m) at r=1",
+        "min": 225,
+        "max": 225,
+        "default": 225,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "E_demo": {
+        "formula": "DEMO_E_PER_NC * lambda / Math.max(r, 0.05)"
+      },
+      "E_real": {
+        "formula": "(lambda * 1e-9) / (2 * PI * epsilon_0 * Math.max(r, 0.05))"
+      },
+      "q_enc": {
+        "formula": "lambda * L"
+      },
+      "flux_check": {
+        "formula": "(lambda * 1e-9 * L) / epsilon_0"
+      },
+      "point_charge_ghost": {
+        "formula": "DEMO_E_PER_NC * lambda / (Math.max(r, 0.05) * Math.max(r, 0.05))"
+      }
+    },
+    "constraints": [
+      "E is strictly radial and perpendicular to the line everywhere (E parallel r-hat, r measured perpendicular from the line) (C1).",
+      "|E| is constant at every point of a coaxial ring at perpendicular distance r - this is what lets E leave the flux integral (C2).",
+      "E is independent of position ALONG the line (axial position) and independent of the cylinder height L: the field at a point depends only on lambda and the perpendicular distance r (C3).",
+      "The two flat end caps carry exactly zero flux: E is radial, so it lies in the plane of each cap (E.dA = 0); only the curved wall carries flux (C4).",
+      "Total flux equals wall flux: Phi = E*(2*pi*r*L) = q_enc/epsilon_0 = lambda*L/epsilon_0; the L cancels, giving E = lambda/(2*pi*epsilon_0*r) (C5).",
+      "E falls off as 1/r (NOT 1/r^2): doubling r halves E. This is slower than a point charge 1/r^2 (doubling r quarters E) (C6).",
+      "The 1/r law follows because the Gaussian cylinder curved area 2*pi*r*L grows LINEARLY with r, while a sphere 4*pi*r^2 grows QUADRATICALLY (C7).",
+      "Arrow direction follows the sign of lambda: outward for +lambda, inward for -lambda; magnitude scales linearly with |lambda| at fixed r (C8)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "A line charge field falls off as 1/r, not 1/r² — slower than a point.",
+    "visual_confirmation": "The wire's 1/r curve draws in above the faint 1/r² point-charge ghost — same start at r=1, then dying away slower — while the coordinated r-sweep shrinks the ring arrows as 1/r in lockstep with the tracking dot."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "A long charged wire — how does E fall off with r?",
+        "duration": 15,
+        "focal_primitive_id": "question_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "wire_tag_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "a long wire, charge λ spread evenly along it",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "walk away by r — how does E weaken?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "guess_tag_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E ∝ 1/r?   E ∝ 1/r²?   your first guess",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Picture a high-tension power line strung across the countryside, a single straight wire running for kilometres, carrying charge spread evenly along it.", "text_hi": "एक high-tension power line की कल्पना करो जो countryside के पार फैली है — एक single straight wire जो kilometres तक चलती है, जिस पर charge evenly spread है।", "text_te": "ఒక high-tension power line ని imagine చేయండి — countryside అంతటా వ్యాపించిన ఒక single straight wire, kilometres పొడవు నడుస్తూ, దానిపై charge evenly spread అయి ఉంది."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "As you walk away from the wire, how does its field weaken with distance r, and what is your first guess for the law?", "text_hi": "जब आप wire से दूर जाते हो, तो उसका field distance r के साथ कैसे कमजोर होता है, और law के बारे में आपका पहला guess क्या है?", "text_te": "మీరు wire నుండి దూరంగా వెళ్ళినప్పుడు, దాని field distance r తో ఎలా తగ్గుతుంది — మరియు law కోసం మీ first guess ఏమిటి?",
+              "pause_after_ms": 2600
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field of a charged wire must fall off as 1/r^2, the same way a point charge does.",
+            "visual_counter": "The hook shows only the wire and its charge markers - no field law yet; the guess is held until STATE_6 reveals the wire curve sitting ABOVE the point-charge curve.",
+            "one_line_fix": "A line is not a point: its field falls off as 1/r, slower than a point charge 1/r^2 - proven at STATE_6."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Same strength all around: the field is purely radial",
+        "duration": 17,
+        "focal_primitive_id": "radial_label",
+        "advance_mode": "auto_after_tts",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_point_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "field point P, one step out at distance r",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "direction_question_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "along the wire, toward it, or straight out?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "radial_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E ∥ r̂,  same |E| all around the ring at r",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Point at P, a step out from the wire. Which way does the field push there, along the wire, toward the nearest bit of wire, or straight out?", "text_hi": "P पर ध्यान दो, wire से एक कदम बाहर। Field वहाँ किस direction में push करता है — wire के along, wire के nearest bit की तरफ, या straight out?", "text_te": "P పైన చూడండి, wire నుండి ఒక అడుగు బయటకి. Field అక్కడ ఏ direction లో push చేస్తుంది — wire along గా, wire యొక్క nearest bit వైపు, లేదా straight out గా?",
+              "pause_after_ms": 2600
+            },
+            {
+              "id": "s2_2",
+              "text_en": "The wire looks identical from every direction, so the field can only point straight out, at right angles to the line.", "text_hi": "Wire हर direction से identical दिखती है, इसलिए field केवल straight out, line के right angles पर ही point कर सकता है।", "text_te": "Wire అన్ని directions నుండి identical గా కనిపిస్తుంది, కాబట్టి field మాత్రమే straight out గా, line కి right angles లో point చేయగలదు."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "And every arrow on that ring has the same length, same strength all the way around, at this distance r.", "text_hi": "और उस ring पर हर arrow की same length है — इस distance r पर, पूरे रास्ते same strength।", "text_te": "మరియు ఆ ring పై ప్రతి arrow కి same length ఉంది — ఈ distance r వద్ద, అన్ని వైపులా same strength."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field points along the wire, or leans toward the nearest bit of wire.",
+            "visual_counter": "A full ring of equal-length arrows points straight out, perpendicular to the line; rotating the wire about its axis leaves the picture unchanged.",
+            "one_line_fix": "Cylindrical symmetry forces E to be radial and equal in magnitude all around a coaxial ring at distance r."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Choose a coaxial Gaussian CYLINDER (radius r, height L)",
+        "duration": 19,
+        "focal_primitive_id": "wall_area_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "wrap_one_surface_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "wrap ONE closed surface, not sum every dq",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sphere_or_cylinder_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "sphere, or cylinder — which matches?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "wall_area_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "curved wall area = 2πr·L",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "We could add up Coulomb's law from every tiny piece of charge, slow. Instead we wrap one closed surface around the wire. Sphere, or cylinder?", "text_hi": "हम Coulomb's law को charge के हर tiny piece से add up कर सकते हैं, लेकिन वो slow है। इसके बजाय हम wire के चारों तरफ एक closed surface wrap करते हैं। Sphere, या cylinder?", "text_te": "మనం Coulomb's law ని charge యొక్క ప్రతి tiny piece నుండి add up చేయవచ్చు, కానీ అది slow. దానికి బదులు మనం wire చుట్టూ ఒక closed surface wrap చేస్తాం. Sphere, లేదా cylinder?",
+              "pause_after_ms": 2400
+            },
+            {
+              "id": "s3_2",
+              "text_en": "A cylinder, coaxial with the wire, because it matches the wire's shape. On its curved wall the field is constant and points straight through.", "text_hi": "Wire के साथ coaxial एक cylinder, क्योंकि यह wire की shape से match करता है। इसकी curved wall पर field constant है और straight through point करता है।", "text_te": "Wire తో coaxial గా ఉన్న ఒక cylinder, ఎందుకంటే అది wire యొక్క shape తో match అవుతుంది. దాని curved wall పై field constant గా ఉంటుంది మరియు straight through point చేస్తుంది."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Give the cylinder a height L. The flux through its curved wall is the field times the wall area, two pi r times L.", "text_hi": "Cylinder को एक height L दो। इसकी curved wall से होकर जाने वाला flux है field times wall area, two pi r times L।", "text_te": "Cylinder కి ఒక height L ఇవ్వండి. దాని curved wall ద్వారా వెళ్ళే flux అంటే field times wall area, two pi r times L."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "You must add up Coulomb's law from every tiny piece of charge to get the field.",
+            "visual_counter": "One coaxial Gaussian cylinder replaces the piece-by-piece sum; on its curved wall E is constant, so the flux is just E times the wall area.",
+            "one_line_fix": "Gauss plus cylindrical symmetry replaces the dq-by-dq Coulomb integral with one closed surface and one equation."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The two flat end caps carry ZERO flux",
+        "duration": 18,
+        "focal_primitive_id": "wall_flux_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "three_pieces_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "curved wall + two flat end caps",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "caps_zero_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "Φ = 0 on each cap (E grazes it)",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "wall_flux_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "Φ = Φ_wall = E·(2πr·L)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "The cylinder has three pieces, the curved wall and two flat end caps. Which pieces does the field actually pierce?", "text_hi": "Cylinder के तीन हिस्से हैं — curved wall और दो flat end caps। Field actually किन हिस्सों को pierce करता है?", "text_te": "Cylinder లో మూడు భాగాలు ఉన్నాయి — curved wall మరియు రెండు flat end caps. Field నిజంగా ఏ భాగాలను pierce చేస్తుంది?",
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The field is radial, so on each flat cap it just grazes along the surface, it never pokes through. Zero flux on both caps.", "text_hi": "Field radial है, इसलिए हर flat cap पर वो बस surface के साथ graze करता है, कभी through नहीं पोकता। दोनों caps पर zero flux।", "text_te": "Field radial గా ఉంటుంది, కాబట్టి ప్రతి flat cap పై అది surface వెంట graze చేస్తుంది, ఎప్పుడూ through పోకుండా. రెండు caps పై zero flux."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Only the curved wall is pierced. So the whole flux is the wall flux, E times two pi r L.", "text_hi": "केवल curved wall ही pierce होती है। तो पूरा flux है wall flux — E times two pi r L।", "text_te": "కేవలం curved wall మాత్రమే pierce అవుతుంది. కాబట్టి మొత్తం flux అంటే wall flux — E times two pi r L."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The two flat end caps carry flux too, so they belong in the calculation.",
+            "visual_counter": "Arrows graze along each flat cap (Phi = 0 tag) while piercing the curved wall; only the wall flux survives.",
+            "one_line_fix": "E is radial, so it lies flat in each end cap (E dot dA = 0); only the curved wall carries flux, area 2 pi r L."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_5": {
+        "title": "Φ = E·(2πrL) = λL/ε₀ ⇒ E = λ/(2πε₀r); L cancels",
+        "duration": 24,
+        "focal_primitive_id": "solved_field_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "derivation_first_principles",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "q_enc_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "q_enc = λL  ⇒  Φ = λL/ε₀",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "set_equal_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "E·(2πrL) = λL/ε₀ — watch L",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "solved_field_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E = λ/(2πε₀r)   (no L left)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "How much charge sits inside the cylinder? Just the charge on a length L of wire, that is lambda times L. By Gauss, the flux equals lambda-L over epsilon-nought.", "text_hi": "Cylinder के अंदर कितना charge है? बस wire की length L पर जो charge है, यानी lambda times L। Gauss के अनुसार, flux equals lambda-L over epsilon-nought।", "text_te": "Cylinder లో ఎంత charge ఉంది? కేవలం wire యొక్క length L పై ఉన్న charge, అంటే lambda times L. Gauss ప్రకారం, flux equals lambda-L over epsilon-nought."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Now we have two expressions for the same flux. Set them equal and solve for E, and watch what happens to L.", "text_hi": "अब हमारे पास same flux के लिए दो expressions हैं। उन्हें equal set करो और E के लिए solve करो — और देखो L के साथ क्या होता है।", "text_te": "ఇప్పుడు మన దగ్గర same flux కోసం రెండు expressions ఉన్నాయి. వాటిని equal గా set చేసి E కోసం solve చేయండి — మరియు L తో ఏమి జరుగుతుందో చూడండి.",
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The L on each side cancels. The field is lambda over two pi epsilon-nought r.", "text_hi": "हर side का L cancel हो जाता है। Field है lambda over two pi epsilon-nought r।", "text_te": "ప్రతి side యొక్క L cancel అయిపోతుంది. Field అంటే lambda over two pi epsilon-nought r."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "The length L is gone, so it never mattered how long a piece of wire you wrapped. The field depends only on lambda and your distance r.", "text_hi": "Length L चली गई, तो आपने wire का कितना टुकड़ा wrap किया वो कभी matter नहीं करता। Field केवल lambda और आपकी distance r पर depend करता है।", "text_te": "Length L పోయింది, కాబట్టి మీరు wire యొక్క ఎంత పొడవు wrap చేశారు అనేది ఎప్పుడూ matter అవ్వలేదు. Field మాత్రమే lambda మరియు మీ distance r పై depend చేస్తుంది."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A longer cylinder, or a longer piece of wire, must change the field you compute.",
+            "visual_counter": "The write-in strikes the L on both sides; the solved field E = lambda/(2 pi epsilon_0 r) has no L in it at all.",
+            "one_line_fix": "The L cancels: enclosed charge lambda*L and wall area 2 pi r L both scale with L, so E never depends on the length you wrap."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "1/r, NOT 1/r²: the line falls off slower than a point charge",
+        "duration": 30,
+        "focal_primitive_id": "falloff_compare_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "point_ghost_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "point charge: E ∝ 1/r² (faint ghost)",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "line_curve_tag",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "the wire: E ∝ 1/r — dies away slower",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "falloff_compare_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "2πr·L grows linearly  vs  4πr² grows as r²",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "You already know a point charge fades as one over r squared. Here is that curve, drawn faint.", "text_hi": "आप पहले से जानते हो कि एक point charge one over r squared की तरह fade होता है। यह रहा वो curve, faint में drawn।", "text_te": "మీకు ఇప్పటికే తెలుసు — ఒక point charge one over r squared లా fade అవుతుంది. ఇదిగో ఆ curve, faint గా drawn చేయబడింది."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Back at the start you probably guessed the wire fades the same way. Does it? Watch the wire's own curve as r grows.", "text_hi": "शुरुआत में आपने शायद guess किया था कि wire उसी तरह fade होती है। क्या ऐसा है? Wire के अपने curve को देखो जैसे-जैसे r बढ़ता है।", "text_te": "మొదట్లో మీరు బహుశా guess చేశారు wire అదే విధంగా fade అవుతుందని. అలా అవుతుందా? r పెరిగే కొద్దీ wire యొక్క curve ని చూడండి.",
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The wire's curve sits above the point charge's, same start at r equals one, but it dies away slower, as one over r.", "text_hi": "Wire का curve point charge के ऊपर बैठता है, r equals one पर same start, लेकिन यह slower fade होता है — one over r की तरह।", "text_te": "Wire యొక్క curve point charge దానికంటే పైన ఉంటుంది, r equals one వద్ద same start, కానీ అది slower గా fade అవుతుంది — one over r లా."
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Why slower? The cylinder area, two pi r L, grows straight-line with r, while a sphere's four pi r squared grows much faster.", "text_hi": "Slower क्यों? Cylinder area, two pi r L, r के साथ straight-line में बढ़ता है, जबकि sphere का four pi r squared बहुत faster बढ़ता है।", "text_te": "Slower ఎందుకు? Cylinder area, two pi r L, r తో straight-line లో పెరుగుతుంది, అయితే sphere యొక్క four pi r squared చాలా faster గా పెరుగుతుంది."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The wire field falls off as 1/r^2, like a point charge - doubling r quarters the field.",
+            "visual_counter": "The wire's 1/r curve sits above the faint 1/r^2 ghost; doubling r only HALVES the wire field, while the cylinder area 2 pi r L grows merely linearly.",
+            "one_line_fix": "The line falls off as 1/r (doubling r halves E), slower than a point 1/r^2 (doubling r quarters E)."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_7": {
+        "title": "Explore: tune λ and r, watch the arrows rescale as 1/r",
+        "duration": 16,
+        "focal_primitive_id": "live_readout_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "push_lambda_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "push λ up → every ring arrow grows together",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "live_readout_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "drag r out → arrows shrink as 1/r",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "axial_independent_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "E depends only on λ and r — never on where along the wire",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now you drive. Push lambda up, every arrow on the ring grows together, and the readout climbs.", "text_hi": "अब आप drive करो। Lambda ऊपर push करो, ring पर हर arrow एक साथ बढ़ता है, और readout चढ़ता है।", "text_te": "ఇప్పుడు మీరు drive చేయండి. Lambda ని పైకి push చేయండి — ring పై ప్రతి arrow కలిసి పెరుగుతుంది, మరియు readout పైకి వెళ్తుంది."
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Drag r outward, the arrows shrink as one over r, and the readout slides down along the curve.", "text_hi": "r को outward drag करो, arrows one over r की तरह shrink होते हैं, और readout curve के साथ नीचे slide करता है।", "text_te": "r ని outward గా drag చేయండి — arrows one over r లా shrink అవుతాయి, మరియు readout curve వెంట కిందికి slide అవుతుంది."
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Notice E never cares where along the wire you stand, only lambda and your perpendicular distance r.", "text_hi": "गौर करो कि E को कभी फर्क नहीं पड़ता कि आप wire के कहाँ खड़े हो — केवल lambda और आपकी perpendicular distance r।", "text_te": "గమనించండి — E కి మీరు wire వెంట ఎక్కడ నిల్చున్నారో పట్టదు, కేవలం lambda మరియు మీ perpendicular distance r మాత్రమే."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the field of an infinite line charge when they can (1) state E = lambda/(2*pi*epsilon_0*r), radial and perpendicular to the line; (2) explain that cylindrical symmetry makes E constant and perpendicular on the curved wall so Phi = E*(2*pi*r*L) = q_enc/epsilon_0; (3) show that the two flat end caps carry zero flux because E is parallel to them; (4) show that L cancels, so E depends only on lambda and the perpendicular distance r, never on the length of wire enclosed or on axial position; and (5) recognise that E falls off as 1/r, slower than a point charge 1/r^2, because the cylinder area 2*pi*r*L grows linearly with r.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "An infinite straight wire carries uniform linear charge density lambda. What is the electric field at a perpendicular distance r from the wire?",
+        "options": {
+          "A": "E = lambda/(2*pi*epsilon_0*r) - radial, perpendicular to the wire",
+          "B": "E = lambda/(4*pi*epsilon_0*r^2) - falling off as 1/r^2 like a point charge",
+          "C": "E = lambda/(2*pi*epsilon_0*r^2) - the line version of the inverse-square law",
+          "D": "E = q/(4*pi*epsilon_0*r^2) with q the total charge on the wire"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "applies a point charge 1/r^2 falloff to a line, halving the correct power of r",
+          "C": "keeps the correct 2*pi prefactor but wrongly uses 1/r^2 instead of 1/r",
+          "D": "treats the infinite wire as a single point charge with a finite total charge q"
+        },
+        "tested_idea": "The field of an infinite line charge is E = lambda/(2*pi*epsilon_0*r), radial and 1/r.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A long high-tension power line carries charge lambda per metre. Write the electric field a probe feels at perpendicular distance r, away from the line ends."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "At a point P beside an infinite charged wire, in what direction does the electric field point?",
+        "options": {
+          "A": "Radially outward, perpendicular to the wire - straight away from the line",
+          "B": "Along the wire, parallel to its length",
+          "C": "Toward the nearest single point of the wire, at a slant",
+          "D": "It spirals around the wire like a magnetic field"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "thinks the field runs along the wire rather than out from it",
+          "C": "imagines the field aiming at the closest bit of wire instead of being purely radial",
+          "D": "confuses the electric field of a line charge with the circular magnetic field of a current"
+        },
+        "tested_idea": "Cylindrical symmetry makes E purely radial and perpendicular to the line.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Hold a tiny positive test charge near a long charged rod. Which way does the force on it point relative to the rod?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A coaxial Gaussian cylinder (radius r, height L) is drawn around an infinite charged wire. Through which part of its surface does the electric flux pass?",
+        "options": {
+          "A": "Only the curved side wall; the two flat end caps carry zero flux",
+          "B": "Equally through the curved wall and both end caps",
+          "C": "Only through the two end caps; the curved wall carries none",
+          "D": "Through all three surfaces, but mostly through the nearer end cap"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "thinks every face of a closed surface must carry flux",
+          "C": "inverts which surface the radial field actually pierces",
+          "D": "imagines the field leaking out of the ends of the cylinder"
+        },
+        "tested_idea": "E is radial, so it grazes the flat caps (E dot dA = 0); only the curved wall carries flux.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "You wrap a soup-can-shaped Gaussian surface around a charged wire. Which faces of the can does the field actually pass through?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "How does the field of an infinite line charge fall off with distance, compared with a point charge?",
+        "options": {
+          "A": "The line falls off as 1/r, slower than the point charge 1/r^2",
+          "B": "Both fall off as 1/r^2 - a line is just many point charges in a row",
+          "C": "The line falls off as 1/r^2 and the point charge as 1/r",
+          "D": "The line field does not weaken with distance at all"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes summing point charges keeps the 1/r^2 law instead of giving 1/r",
+          "C": "swaps the two falloff laws between line and point",
+          "D": "thinks an infinite line gives a uniform field that never weakens"
+        },
+        "tested_idea": "The line falls off as 1/r (slower) because the cylinder area 2*pi*r*L grows linearly, not as r^2.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Walking away from a long charged power line versus away from a single charged ball - whose field dies away faster, and what power of r does each follow?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A probe at distance r1 from an infinite charged wire feels field E1. It is moved to 2*r1. What is the new field?",
+        "options": {
+          "A": "E1/2 - the line field halves when r doubles, because it goes as 1/r",
+          "B": "E1/4 - the field quarters when r doubles, as for a point charge",
+          "C": "E1 - the field is the same everywhere outside an infinite wire",
+          "D": "2*E1 - the field grows as you move the probe outward"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "applies the point charge 1/r^2 (quarter) instead of the line 1/r (half)",
+          "C": "thinks an infinite wire gives a distance-independent field",
+          "D": "believes the field increases with distance from the wire"
+        },
+        "tested_idea": "E goes as 1/r, so doubling r halves the field (vs quartering for a 1/r^2 point charge).",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Near an HT power line a probe reads field E1 at 2 metres. What does it read at 4 metres from the line?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Two students wrap Gaussian cylinders of DIFFERENT heights (L and 3L) around the same charged wire to find E at the same distance r. What do they get?",
+        "options": {
+          "A": "The same E - the height L cancels, so E depends only on lambda and r",
+          "B": "The taller cylinder gives three times the field, since it encloses more charge",
+          "C": "The shorter cylinder gives a stronger field, since the charge is more concentrated",
+          "D": "They cannot get E without first agreeing on a cylinder height"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "sees q_enc = lambda*L grow with L but forgets the wall area 2*pi*r*L grows the same way, cancelling",
+          "C": "invents a concentration effect from a shorter cylinder",
+          "D": "thinks the answer depends on the arbitrary length of wire enclosed"
+        },
+        "tested_idea": "Both q_enc and the wall area scale with L, so L cancels: E is independent of the enclosed length.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Two people draw soup-can Gaussian surfaces of different lengths around the same charged wire. Do they compute the same field at a given distance, or different ones?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "Q2"
+      ],
+      "STATE_4": [
+        "Q3"
+      ],
+      "STATE_5": [
+        "Q1",
+        "Q6"
+      ],
+      "STATE_6": [
+        "Q4",
+        "Q5"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_3",
+      "STATE_7"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "gauss_law_line",
+    "explorer_id": "gauss_line_explorer",
+    "gauss_line_defaults": {
+      "demo_e_per_nc": 225,
+      "epsilon_0": 8.854e-12,
+      "line_half_length": 4.5
+    },
+    "slider_controls": {
+      "lambda": {
+        "min": -2,
+        "max": 3,
+        "step": 0.5,
+        "default": 1,
+        "label": "linear charge density λ"
+      },
+      "r_gauss": {
+        "min": 0.3,
+        "max": 4.0,
+        "step": 0.05,
+        "default": 2.0,
+        "label": "perpendicular radius r"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A long charged wire — how does E fall off with r?",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_line": {
+          "lambda": 1,
+          "r_gauss": 2.0,
+          "show_cylinder": false,
+          "show_radial_arrows": false,
+          "show_reference_lines": false
+        }
+      },
+      "STATE_2": {
+        "label": "Same strength all around: the field is purely radial",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_line": {
+          "lambda": 1,
+          "r_gauss": 2.0,
+          "show_radial_arrows": true,
+          "radial_arrow_at_ms": 7800,
+          "show_reference_lines": true,
+          "emerge_r_at_ms": 7800
+        },
+        "formula_overlay": "E ∥ r̂,  |E| constant on the ring at r"
+      },
+      "STATE_3": {
+        "label": "Choose a coaxial Gaussian CYLINDER (radius r, height L)",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_line": {
+          "lambda": 1,
+          "r_gauss": 2.0,
+          "L": 2.5,
+          "show_cylinder": true,
+          "gaussian_fade_at_ms": 8600,
+          "show_radial_arrows": true,
+          "radial_arrow_at_ms": 0,
+          "show_reference_lines": true,
+          "emerge_r_at_ms": 0,
+          "emerge_L_at_ms": 15200
+        },
+        "formula_overlay": "curved wall area = 2πr·L"
+      },
+      "STATE_4": {
+        "label": "The two flat end caps carry ZERO flux",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_line": {
+          "lambda": 1,
+          "r_gauss": 2.0,
+          "L": 2.5,
+          "show_cylinder": true,
+          "gaussian_fade_at_ms": 0,
+          "show_radial_arrows": true,
+          "radial_arrow_at_ms": 0,
+          "show_caps_zero_flux": true,
+          "caps_reveal_at_ms": 8000,
+          "show_reference_lines": true,
+          "emerge_r_at_ms": 0,
+          "emerge_L_at_ms": 0
+        },
+        "formula_overlay": "Φ = Φ_wall = E·(2πr·L);  caps: Φ = 0"
+      },
+      "STATE_5": {
+        "label": "Φ = E·(2πrL) = λL/ε₀ ⇒ E = λ/(2πε₀r); L cancels",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          7.8
+        ],
+        "caption": "",
+        "gauss_line": {
+          "lambda": 1,
+          "r_gauss": 2.0,
+          "L": 2.5,
+          "show_cylinder": true,
+          "gaussian_fade_at_ms": 0,
+          "show_radial_arrows": true,
+          "radial_arrow_at_ms": 0,
+          "show_reference_lines": true,
+          "emerge_r_at_ms": 0,
+          "emerge_L_at_ms": 0,
+          "show_derivation": true,
+          "derivation_at_ms": 15600,
+          "derivation_duration_ms": 6000
+        },
+        "formula_overlay": "E·(2πrL) = λL/ε₀  ⇒  E = λ/(2πε₀r)"
+      },
+      "STATE_6": {
+        "label": "1/r, NOT 1/r²: the line falls off slower than a point charge",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          8
+        ],
+        "caption": "",
+        "gauss_line": {
+          "lambda": 1,
+          "r_gauss": 0.5,
+          "L": 2.5,
+          "show_cylinder": true,
+          "gaussian_fade_at_ms": 0,
+          "show_radial_arrows": true,
+          "radial_arrow_at_ms": 0,
+          "show_reference_lines": true,
+          "emerge_r_at_ms": 0,
+          "show_e_vs_r_plot": true,
+          "plot_draw_at_ms": 12000,
+          "plot_draw_duration_ms": 9000,
+          "live_readout": true,
+          "coordinated_sweep": true,
+          "sweep_r_min": 0.5,
+          "sweep_r_max": 3.6,
+          "sweep_hold_inside_ms": 12000,
+          "sweep_end_at_ms": 28000
+        },
+        "formula_overlay": "line ∝ 1/r (slower)  vs  point ∝ 1/r²"
+      },
+      "STATE_7": {
+        "label": "Explore: tune λ and r, watch the arrows rescale as 1/r",
+        "visible_elements": [
+          "all"
+        ],
+        "camera_position": [
+          3.2,
+          1.4,
+          8
+        ],
+        "caption": "",
+        "gauss_line": {
+          "sliders": true,
+          "lambda": 1,
+          "r_gauss": 2.0,
+          "L": 2.5,
+          "live_readout": true,
+          "show_radial_arrows": true,
+          "show_e_vs_r_plot": true,
+          "show_reference_lines": true,
+          "emerge_r_at_ms": 0
+        },
+        "formula_overlay": "live E = λ/(2πε₀r)  (∝ 1/r)"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

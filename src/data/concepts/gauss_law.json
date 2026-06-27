@@ -202,15 +202,15 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "From electric flux you know the net flux out of any closed surface is set only by the charge trapped inside it."
+              "text_en": "From electric flux you know the net flux out of any closed surface is set only by the charge trapped inside it.", "text_hi": "Electric flux से आप जानते हैं कि किसी भी closed surface से निकलने वाला net flux केवल उसके अंदर trapped charge से set होता है।", "text_te": "Electric flux నుండి మీకు తెలుసు, ఏ closed surface నుండి అయినా బయటకి వచ్చే net flux దాని లోపల trapped అయిన charge ద్వారా మాత్రమే set అవుతుంది."
             },
             {
               "id": "s1_2",
-              "text_en": "So far we only said net flux is proportional to the enclosed charge. But proportional with what exact constant?"
+              "text_en": "So far we only said net flux is proportional to the enclosed charge. But proportional with what exact constant?", "text_hi": "अब तक हमने सिर्फ कहा था कि net flux, enclosed charge के proportional है। लेकिन किस exact constant के साथ proportional?", "text_te": "ఇప్పటివరకు మేము కేవలం net flux, enclosed charge కి proportional అని మాత్రమే చెప్పాము. కానీ ఏ exact constant తో proportional?"
             },
             {
               "id": "s1_3",
-              "text_en": "Think about it: is the net flux just equal to the charge inside, or is there a fixed number multiplying it?",
+              "text_en": "Think about it: is the net flux just equal to the charge inside, or is there a fixed number multiplying it?", "text_hi": "इस बारे में सोचिए: क्या net flux सिर्फ अंदर के charge के equal है, या कोई fixed number इसे multiply कर रहा है?", "text_te": "దీని గురించి ఆలోచించండి: net flux కేవలం లోపల ఉన్న charge కి equal అవుతుందా, లేక దాన్ని multiply చేసే fixed number ఏదైనా ఉందా?",
               "pause_after_ms": 2600
             }
           ]
@@ -267,15 +267,15 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Here is the answer. The proportional sign becomes an equals, and the exact constant multiplying the charge is one over epsilon-nought."
+              "text_en": "Here is the answer. The proportional sign becomes an equals, and the exact constant multiplying the charge is one over epsilon-nought.", "text_hi": "यहाँ इसका उत्तर है। Proportional sign, equals बन जाता है, और charge को multiply करने वाला exact constant है one over epsilon-nought।", "text_te": "ఇక్కడ సమాధానం ఉంది. Proportional sign, equals అవుతుంది, మరియు charge ని multiply చేసే exact constant, one over epsilon-nought."
             },
             {
               "id": "s2_2",
-              "text_en": "So the net flux equals the enclosed charge divided by epsilon-nought. This is Gauss's law: Phi equals q-enclosed over epsilon-nought."
+              "text_en": "So the net flux equals the enclosed charge divided by epsilon-nought. This is Gauss's law: Phi equals q-enclosed over epsilon-nought.", "text_hi": "तो net flux, enclosed charge divided by epsilon-nought के equal है। यह Gauss's law है: Phi equals q-enclosed over epsilon-nought।", "text_te": "కాబట్టి net flux, enclosed charge divided by epsilon-nought కి equal అవుతుంది. ఇది Gauss's law: Phi equals q-enclosed over epsilon-nought."
             },
             {
               "id": "s2_3",
-              "text_en": "Epsilon-nought is a fixed constant of nature, eight point eight five times ten to the minus twelve. Same everywhere, never a fudge factor."
+              "text_en": "Epsilon-nought is a fixed constant of nature, eight point eight five times ten to the minus twelve. Same everywhere, never a fudge factor.", "text_hi": "Epsilon-nought प्रकृति का एक fixed constant है, eight point eight five times ten to the minus twelve। यह हर जगह same रहता है, कभी fudge factor नहीं।", "text_te": "Epsilon-nought ప్రకృతి యొక్క fixed constant, eight point eight five times ten to the minus twelve. ఇది ఎక్కడైనా same, ఎప్పుడూ fudge factor కాదు."
             }
           ]
         },
@@ -333,20 +333,20 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Any closed surface you imagine around the charge is called a Gaussian surface. It is imaginary — you choose it for convenience."
+              "text_en": "Any closed surface you imagine around the charge is called a Gaussian surface. It is imaginary — you choose it for convenience.", "text_hi": "charge के चारों ओर आप जिस भी closed surface की कल्पना करते हैं, उसे Gaussian surface कहते हैं। यह imaginary है — आप इसे convenience के लिए चुनते हैं।", "text_te": "charge చుట్టూ మీరు ఊహించుకునే ఏ closed surface నైనా Gaussian surface అంటారు. ఇది imaginary — మీరు దీన్ని convenience కోసం ఎంచుకుంటారు."
             },
             {
               "id": "s3_2",
-              "text_en": "Watch the readout as I change the surface. Will a bigger, lumpier surface catch more flux, or less, or the same?",
+              "text_en": "Watch the readout as I change the surface. Will a bigger, lumpier surface catch more flux, or less, or the same?", "text_hi": "readout को देखिए जब मैं surface को बदलता हूँ। क्या एक bigger, lumpier surface अधिक flux पकड़ेगी, या कम, या same?", "text_te": "నేను surface ని మార్చినప్పుడు readout ని గమనించండి. ఒక bigger, lumpier surface ఎక్కువ flux ని పట్టుకుంటుందా, తక్కువనా, లేదా same గానా?",
               "pause_after_ms": 2700
             },
             {
               "id": "s3_3",
-              "text_en": "Watch: the surface morphs from a sphere to a cube to a lumpy blob, and the net-flux readout never moves off q-enclosed over epsilon-nought."
+              "text_en": "Watch: the surface morphs from a sphere to a cube to a lumpy blob, and the net-flux readout never moves off q-enclosed over epsilon-nought.", "text_hi": "देखिए: surface एक sphere से cube में, फिर एक lumpy blob में बदल जाती है, और net-flux readout कभी भी q-enclosed over epsilon-nought से नहीं हटता।", "text_te": "చూడండి: surface ఒక sphere నుండి cube కి, ఆపై lumpy blob కి మారుతుంది, మరియు net-flux readout ఎప్పుడూ q-enclosed over epsilon-nought నుండి మారదు."
             },
             {
               "id": "s3_4",
-              "text_en": "That is the whole point. Any closed surface around the same charge gives the same Phi equals q-enclosed over epsilon-nought."
+              "text_en": "That is the whole point. Any closed surface around the same charge gives the same Phi equals q-enclosed over epsilon-nought.", "text_hi": "यही पूरा point है। Same charge के चारों ओर कोई भी closed surface वही Phi equals q-enclosed over epsilon-nought देता है।", "text_te": "అదే ముఖ్యం. Same charge చుట్టూ ఉన్న ఏ closed surface అయినా అదే Phi equals q-enclosed over epsilon-nought ని ఇస్తుంది."
             }
           ]
         },
@@ -404,20 +404,20 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Now the charge sits entirely outside the closed surface. Its field still reaches the surface. So what should the net flux be?",
+              "text_en": "Now the charge sits entirely outside the closed surface. Its field still reaches the surface. So what should the net flux be?", "text_hi": "अब charge पूरी तरह से closed surface के बाहर है। इसका field फिर भी surface तक पहुँचता है। तो net flux क्या होना चाहिए?", "text_te": "ఇప్పుడు charge పూర్తిగా closed surface బయట ఉంది. దీని field ఇంకా surface కు చేరుతుంది. కాబట్టి net flux ఎంత ఉండాలి?",
               "pause_after_ms": 2700
             },
             {
               "id": "s4_2",
-              "text_en": "Watch the lines. The field enters the surface on one side and leaves on the other — every line in also comes out."
+              "text_en": "Watch the lines. The field enters the surface on one side and leaves on the other — every line in also comes out.", "text_hi": "lines को देखिए। field एक तरफ से surface में enter करता है और दूसरी तरफ से leave करता है — हर incoming line बाहर भी आती है।", "text_te": "lines ని చూడండి. field ఒక వైపు నుండి surface లోకి enter అవుతుంది మరియు మరొక వైపు నుండి leave అవుతుంది — లోపలికి వచ్చే ప్రతి line బయటకు కూడా వస్తుంది."
             },
             {
               "id": "s4_3",
-              "text_en": "So the plus and minus contributions cancel exactly. The net flux drops to zero, no matter how close the outside charge gets."
+              "text_en": "So the plus and minus contributions cancel exactly. The net flux drops to zero, no matter how close the outside charge gets.", "text_hi": "तो plus और minus contributions बिल्कुल cancel हो जाते हैं। net flux zero हो जाता है, चाहे outside charge कितना भी पास क्यों न हो।", "text_te": "కాబట్టి plus మరియు minus contributions ఖచ్చితంగా cancel అవుతాయి. net flux zero కి పడిపోతుంది, outside charge ఎంత దగ్గరగా ఉన్నా సరే."
             },
             {
               "id": "s4_4",
-              "text_en": "That is why only the enclosed charge counts in Gauss's law. Outside charges contribute exactly zero net flux."
+              "text_en": "That is why only the enclosed charge counts in Gauss's law. Outside charges contribute exactly zero net flux.", "text_hi": "इसीलिए Gauss's law में सिर्फ enclosed charge ही गिना जाता है। Outside charges बिल्कुल zero net flux contribute करते हैं।", "text_te": "అందుకే Gauss's law లో enclosed charge మాత్రమే లెక్కించబడుతుంది. Outside charges ఖచ్చితంగా zero net flux ని contribute చేస్తాయి."
             }
           ]
         },
@@ -473,20 +473,20 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Now put two charges inside, a plus q and a minus q. What is the enclosed charge that goes into Gauss's law?",
+              "text_en": "Now put two charges inside, a plus q and a minus q. What is the enclosed charge that goes into Gauss's law?", "text_hi": "अब दो charges को अंदर रखिए, एक plus q और एक minus q। Gauss's law में जाने वाला enclosed charge क्या है?", "text_te": "ఇప్పుడు రెండు charges ని లోపల ఉంచండి, ఒక plus q మరియు ఒక minus q. Gauss's law లోకి వెళ్ళే enclosed charge ఎంత?",
               "pause_after_ms": 2600
             },
             {
               "id": "s5_2",
-              "text_en": "It is the algebraic sum, q-enclosed equals the sum of the charges with their signs. Plus q and minus q add to zero."
+              "text_en": "It is the algebraic sum, q-enclosed equals the sum of the charges with their signs. Plus q and minus q add to zero.", "text_hi": "यह algebraic sum है, q-enclosed equals the sum of the charges with their signs। Plus q और minus q add होकर zero बनते हैं।", "text_te": "ఇది algebraic sum, q-enclosed equals the sum of the charges with their signs. Plus q మరియు minus q కలిపి zero అవుతాయి."
             },
             {
               "id": "s5_3",
-              "text_en": "So the net flux is zero, even though there is charge inside. Now I add a second negative charge inside the same surface."
+              "text_en": "So the net flux is zero, even though there is charge inside. Now I add a second negative charge inside the same surface.", "text_hi": "तो net flux zero है, भले ही अंदर charge हो। अब मैं उसी surface के अंदर एक second negative charge डालता हूँ।", "text_te": "కాబట్టి net flux zero, లోపల charge ఉన్నప్పటికీ. ఇప్పుడు నేను అదే surface లోపల ఒక second negative charge ని add చేస్తాను."
             },
             {
               "id": "s5_4",
-              "text_en": "The enclosed sum is now negative, so the readout turns red and the field points inward. q-enclosed is a signed sum."
+              "text_en": "The enclosed sum is now negative, so the readout turns red and the field points inward. q-enclosed is a signed sum.", "text_hi": "अब enclosed sum negative है, इसलिए readout red हो जाता है और field inward point करता है। q-enclosed एक signed sum है।", "text_te": "ఇప్పుడు enclosed sum negative, కాబట్టి readout red రంగులోకి మారుతుంది మరియు field inward గా point చేస్తుంది. q-enclosed అనేది signed sum."
             }
           ]
         },
@@ -542,15 +542,15 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Now you drive it. Use the sliders to add or remove enclosed charge and to reshape the closed surface."
+              "text_en": "Now you drive it. Use the sliders to add or remove enclosed charge and to reshape the closed surface.", "text_hi": "अब आप इसे चलाइए। enclosed charge को add या remove करने के लिए और closed surface को reshape करने के लिए sliders का उपयोग करें।", "text_te": "ఇప్పుడు మీరు దీన్ని నడపండి. enclosed charge ని add లేదా remove చేయడానికి మరియు closed surface ని reshape చేయడానికి sliders ని ఉపయోగించండి."
             },
             {
               "id": "s6_2",
-              "text_en": "Watch the live readout. It always equals q-enclosed over epsilon-nought, following only the charge you trap inside."
+              "text_en": "Watch the live readout. It always equals q-enclosed over epsilon-nought, following only the charge you trap inside.", "text_hi": "live readout को देखिए। यह हमेशा q-enclosed over epsilon-nought के बराबर होता है, केवल उस charge को follow करते हुए जिसे आप अंदर trap करते हैं।", "text_te": "live readout ని చూడండి. ఇది మీరు లోపల trap చేసిన charge ని మాత్రమే అనుసరించి, ఎల్లప్పుడూ q-enclosed over epsilon-nought కి సమానంగా ఉంటుంది."
             },
             {
               "id": "s6_3",
-              "text_en": "Reshape the surface all you like — the readout will not budge unless you change the enclosed charge. That is Gauss's law."
+              "text_en": "Reshape the surface all you like — the readout will not budge unless you change the enclosed charge. That is Gauss's law.", "text_hi": "surface को आप जितना चाहें reshape कर लें — readout बिल्कुल नहीं हिलेगा जब तक आप enclosed charge को नहीं बदलते। यही Gauss's law है।", "text_te": "surface ని మీకు నచ్చినంత reshape చేయండి — readout అస్సలు కదలదు మీరు enclosed charge ను మార్చకపోతే తప్ప. అది Gauss's law."
             }
           ]
         }

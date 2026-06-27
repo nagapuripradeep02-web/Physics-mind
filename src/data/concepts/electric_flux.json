@@ -179,19 +179,19 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Here is a ring held face-on in a uniform field, like a wire loop in front of a fan. Watch the field lines pierce straight through it."
+              "text_en": "Here is a ring held face-on in a uniform field, like a wire loop in front of a fan. Watch the field lines pierce straight through it.", "text_hi": "देखिए, यहाँ एक ring है जो face-on एक uniform field में रखी है — जैसे एक wire loop fan के सामने हो। देखिए field lines कैसे सीधे इसके आर-पार pierce कर रही हैं।", "text_te": "చూడండి, ఇక్కడ ఒక ring ఉంది — face-on, uniform field లో — fan ముందు wire loop లాగా. field lines నేరుగా దాన్ని pierce చేస్తున్నాయో చూడండి."
             },
             {
               "id": "s1_2",
-              "text_en": "Count them: eight lines go through. That count is the electric flux. Now, is flux just another name for the field strength E?"
+              "text_en": "Count them: eight lines go through. That count is the electric flux. Now, is flux just another name for the field strength E?", "text_hi": "इन्हें count करिए: आठ lines अंदर से गुज़र रही हैं। यही count है electric flux। अब, क्या flux बस field strength E का दूसरा नाम है?", "text_te": "వాటిని count చేయండి: ఎనిమిది lines గుండా వెళ్తున్నాయి. ఆ count అనేది electric flux. ఇప్పుడు చెప్పండి — flux అంటే field strength E కి వేరే పేరా?"
             },
             {
               "id": "s1_3",
-              "text_en": "No. Shrink the ring in the same field and fewer lines pierce, so the flux drops, even though E at every point is unchanged."
+              "text_en": "No. Shrink the ring in the same field and fewer lines pierce, so the flux drops, even though E at every point is unchanged.", "text_hi": "नहीं। उसी field में ring को छोटा करिए — अब कम lines pierce होंगी, इसलिए flux कम हो जाएगा, भले ही हर point पर E बिल्कुल unchanged है।", "text_te": "లేదు. అదే field లో ring ని చిన్నదిగా చేయండి — అప్పుడు తక్కువ lines pierce అవుతాయి, flux తగ్గిపోతుంది, ప్రతి point లో E మారకున్నా సరే."
             },
             {
               "id": "s1_4",
-              "text_en": "So flux measures how much field pierces an area. It is not the field at a point. Flux is not E."
+              "text_en": "So flux measures how much field pierces an area. It is not the field at a point. Flux is not E.", "text_hi": "तो flux मापता है कि कितना field किसी area को pierce करता है। यह किसी point पर field नहीं है। flux, E नहीं है।", "text_te": "కాబట్టి flux అంటే ఎంత field ఒక area ని pierce చేస్తుందో అది కొలుస్తుంది. ఇది ఒక point వద్ద field కాదు. flux అనేది E కాదు."
             }
           ]
         },
@@ -247,11 +247,11 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Face-on, the area's normal n̂ points straight along the field, and every single line passes through."
+              "text_en": "Face-on, the area's normal n̂ points straight along the field, and every single line passes through.", "text_hi": "face-on position में, area का normal n-hat सीधे field के साथ align होता है — और हर एक line आर-पार निकलती है।", "text_te": "face-on position లో, area యొక్క normal n-hat నేరుగా field వెంట చూస్తుంది — ప్రతి ఒక్క line గుండా వెళ్తుంది."
             },
             {
               "id": "s2_2",
-              "text_en": "This is the most flux you can get: Φ equals E times A, the field strength times the area."
+              "text_en": "This is the most flux you can get: Φ equals E times A, the field strength times the area.", "text_hi": "यह सबसे ज़्यादा flux है जो आप पा सकते हैं: flux equals E times A — field strength गुणा area।", "text_te": "ఇది మీరు పొందగలిగే అత్యధిక flux: flux equals E times A — field strength రెట్లు area."
             }
           ]
         }
@@ -300,19 +300,19 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Same field, same area. Now I tilt the ring. Will the flux stay the same, since neither E nor A has changed?"
+              "text_en": "Same field, same area. Now I tilt the ring. Will the flux stay the same, since neither E nor A has changed?", "text_hi": "वही field, वही area। अब मैं ring को tilt करता हूँ। क्या flux same रहेगा, क्योंकि न E बदला है, न A?", "text_te": "అదే field, అదే area. ఇప్పుడు నేను ring ని tilt చేస్తున్నాను. E మారలేదు, A మారలేదు — flux same గా ఉంటుందా?"
             },
             {
               "id": "s3_2",
-              "text_en": "Watch the tally as it tilts: it falls from eight down to five. Tilting alone cuts the flux."
+              "text_en": "Watch the tally as it tilts: it falls from eight down to five. Tilting alone cuts the flux.", "text_hi": "tilt होते समय tally देखिए: यह आठ से पाँच पर आ गया। सिर्फ tilting से ही flux कम हो जाता है।", "text_te": "tilt అవుతున్నప్పుడు tally చూడండి: ఎనిమిది నుండి అయిదుకు తగ్గిపోయింది. తిప్పడం మాత్రమే flux ను తగ్గిస్తుంది."
             },
             {
               "id": "s3_3",
-              "text_en": "The drop is a factor cosθ. And θ is the angle from the field to the area's normal n̂, not to the surface itself."
+              "text_en": "The drop is a factor cosθ. And θ is the angle from the field to the area's normal n̂, not to the surface itself.", "text_hi": "यह कमी एक factor cosθ है। और θ वह angle है जो field से area के normal n-hat तक जाता है — surface तक नहीं।", "text_te": "ఈ తగ్గుదల ఒక factor cosθ. మరియు θ అనేది field నుండి area యొక్క normal n-hat వరకు కొలిచే angle — surface వరకు కాదు."
             },
             {
               "id": "s3_4",
-              "text_en": "So flux is E times A times cosθ. Read θ to the normal, the little arrow sticking out of the surface."
+              "text_en": "So flux is E times A times cosθ. Read θ to the normal, the little arrow sticking out of the surface.", "text_hi": "तो flux है E times A times cosθ। θ को normal तक पढ़िए — वह छोटा-सा arrow जो surface से बाहर निकलता है।", "text_te": "కాబట్టి flux అంటే E times A times cosθ. θ ని normal వరకు చదవండి — surface నుండి బయటకు చాచిన ఆ చిన్న arrow."
             }
           ]
         },
@@ -371,19 +371,19 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Hold the tilt at fifty-five degrees. Here is the field E, and here is the normal n-hat, with the angle theta between them."
+              "text_en": "Hold the tilt at fifty-five degrees. Here is the field E, and here is the normal n-hat, with the angle theta between them.", "text_hi": "tilt को fifty-five degrees पर रोकिए। यहाँ field E है, और यहाँ normal n-hat है — इन दोनों के बीच angle theta है।", "text_te": "tilt ని fifty-five degrees వద్ద ఆపండి. ఇక్కడ field E ఉంది, ఇక్కడ normal n-hat ఉంది — వాటి మధ్య angle theta."
             },
             {
               "id": "s4_2",
-              "text_en": "Split E into two arrows: one straight along the normal, one along the surface. Which one do you think actually pierces the face?"
+              "text_en": "Split E into two arrows: one straight along the normal, one along the surface. Which one do you think actually pierces the face?", "text_hi": "E को दो arrows में split करिए: एक normal के साथ, एक surface के साथ। आपके हिसाब से कौन-सा actually face को pierce करता है?", "text_te": "E ని రెండు arrows గా split చేయండి: ఒకటి normal వెంట, ఒకటి surface వెంట. మీ అభిప్రాయంలో face ని actually pierce చేసేది ఏది?"
             },
             {
               "id": "s4_3",
-              "text_en": "Only the along-normal part, E cosθ, goes through. The along-surface part, E sinθ, just grazes past and pierces nothing."
+              "text_en": "Only the along-normal part, E cosθ, goes through. The along-surface part, E sinθ, just grazes past and pierces nothing.", "text_hi": "केवल along-normal part, E cosθ, आर-पार जाता है। along-surface part, E sinθ, बस surface के साथ-साथ skim करता है और कुछ भी pierce नहीं करता।", "text_te": "కేవలం along-normal part, E cosθ మాత్రమే గుండా వెళ్తుంది. along-surface part, E sinθ, surface పక్కన skim అవుతుంది — ఏదీ pierce చేయదు."
             },
             {
               "id": "s4_4",
-              "text_en": "So the flux is that piercing part times the area: Φ equals E cosθ times A, which is exactly EA cosθ."
+              "text_en": "So the flux is that piercing part times the area: Φ equals E cosθ times A, which is exactly EA cosθ.", "text_hi": "तो flux वह piercing part गुणा area है: flux equals E cosθ times A, जो exactly EA cosθ है।", "text_te": "కాబట్టి flux అనేది piercing part రెట్లు area: flux equals E cosθ times A, అంటే exactly EA cosθ."
             }
           ]
         },
@@ -439,15 +439,15 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Keep tilting all the way to edge-on, until the ring lies along the field, normal at ninety degrees."
+              "text_en": "Keep tilting all the way to edge-on, until the ring lies along the field, normal at ninety degrees.", "text_hi": "edge-on होने तक tilting जारी रखिए — जब तक ring field के साथ-साथ लेट न जाए और normal ninety degrees पर न हो।", "text_te": "edge-on అయ్యేంత వరకూ tilt చేస్తూ ఉండండి — ring field వెంట పడుకునేంత వరకు, normal ninety degrees కు వచ్చేంత వరకు."
             },
             {
               "id": "s5_2",
-              "text_en": "Now the lines skim past the edge and not one pierces the face. The tally drops to zero."
+              "text_en": "Now the lines skim past the edge and not one pierces the face. The tally drops to zero.", "text_hi": "अब lines edge से skim होकर निकलती हैं और एक भी face को pierce नहीं करती। tally शून्य हो जाती है।", "text_te": "ఇప్పుడు lines అంచు వెంట skim అవుతాయి — ఒక్కటి కూడా face ని pierce చేయదు. tally సున్నాకి వస్తుంది."
             },
             {
               "id": "s5_3",
-              "text_en": "Edge-on gives exactly zero flux, even though the area and the field never changed. Orientation alone can shut it off."
+              "text_en": "Edge-on gives exactly zero flux, even though the area and the field never changed. Orientation alone can shut it off.", "text_hi": "edge-on exactly zero flux देता है — भले ही area और field कभी नहीं बदले। सिर्फ orientation इसे बंद कर सकती है।", "text_te": "edge-on అనేది exactly zero flux ఇస్తుంది — area మారకున్నా, field మారకున్నా. orientation మాత్రమే దాన్ని శూన్యానికి తీసుకురాగలదు."
             }
           ]
         },
@@ -503,15 +503,15 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Why exactly cosθ? Give the area a direction: the area vector A points along the normal n̂, with length equal to the area."
+              "text_en": "Why exactly cosθ? Give the area a direction: the area vector A points along the normal n̂, with length equal to the area.", "text_hi": "exactly cosθ क्यों? area को एक direction दीजिए: area vector A, normal n-hat के साथ point करता है, और इसकी length area के बराबर है।", "text_te": "exactly cosθ ఎందుకు? area కి ఒక direction ఇవ్వండి: area vector A, normal n-hat వెంట point చేస్తుంది, పొడవు area కి సమానం."
             },
             {
               "id": "s6_2",
-              "text_en": "Flux is then the dot product of E and A. The dot product keeps only the part of E that lines up with the normal."
+              "text_en": "Flux is then the dot product of E and A. The dot product keeps only the part of E that lines up with the normal.", "text_hi": "तो flux E और A का dot product है। dot product केवल E के उस part को रखता है जो normal के साथ align होता है।", "text_te": "అప్పుడు flux అనేది E మరియు A యొక్క dot product. dot product E లో normal కి align అయ్యే part ని మాత్రమే ఉంచుతుంది."
             },
             {
               "id": "s6_3",
-              "text_en": "That part is E times cosθ, so the flux is E times A times cosθ. One clean line: Φ equals E dot A."
+              "text_en": "That part is E times cosθ, so the flux is E times A times cosθ. One clean line: Φ equals E dot A.", "text_hi": "वह part है E times cosθ, तो flux है E times A times cosθ। एक साफ़ line: flux equals E dot A।", "text_te": "ఆ part E times cosθ — కాబట్టి flux అంటే E times A times cosθ. ఒక స్వచ్ఛమైన వాక్యం: flux equals E dot A."
             }
           ]
         }
@@ -560,19 +560,19 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "So far the field left through the front of the surface, and the flux was positive. What happens if I tilt past ninety degrees?"
+              "text_en": "So far the field left through the front of the surface, and the flux was positive. What happens if I tilt past ninety degrees?", "text_hi": "अब तक field, surface के सामने से बाहर निकलती थी और flux positive था। अगर मैं ninety degrees से आगे tilt करूँ तो क्या होगा?", "text_te": "ఇప్పటి వరకు field, surface యొక్క ముందు నుండి బయటకు వెళ్తోంది, flux positive గా ఉంది. ninety degrees దాటి tilt చేస్తే ఏమవుతుంది?"
             },
             {
               "id": "s7_2",
-              "text_en": "Now the field meets the surface from behind and enters through it. Watch the readout."
+              "text_en": "Now the field meets the surface from behind and enters through it. Watch the readout.", "text_hi": "अब field surface को पीछे से मिलती है और उसके अंदर enter होती है। readout देखिए।", "text_te": "ఇప్పుడు field, surface ని వెనుక నుండి కలుస్తోంది మరియు దాని గుండా enter అవుతోంది. readout చూడండి."
             },
             {
               "id": "s7_3",
-              "text_en": "It turns red and goes negative. Field leaving the surface is positive flux; field entering is negative flux."
+              "text_en": "It turns red and goes negative. Field leaving the surface is positive flux; field entering is negative flux.", "text_hi": "यह red हो जाता है और negative हो जाता है। surface से निकलने वाला field positive flux है; अंदर enter होने वाला field negative flux है।", "text_te": "అది red అవుతుంది మరియు negative కి వెళ్తుంది. surface నుండి బయటకు వెళ్ళే field అనేది positive flux; లోపలికి enter అయ్యే field అనేది negative flux."
             },
             {
               "id": "s7_4",
-              "text_en": "Flux carries a sign. That sign is the whole point when we close the surface into a box next."
+              "text_en": "Flux carries a sign. That sign is the whole point when we close the surface into a box next.", "text_hi": "flux एक sign लेकर चलता है। यही sign अगली बार काम आएगा जब हम surface को एक closed box बनाएँगे।", "text_te": "flux ఒక sign తెచ్చుకుంటుంది. surface ని ఒక closed box గా మార్చినప్పుడు ఆ sign ే అసలు విషయం."
             }
           ]
         },
@@ -628,19 +628,19 @@
           "tts_sentences": [
             {
               "id": "s8_1",
-              "text_en": "Now wrap the surface all the way around the charge into a closed box, with x, y and z axes to keep track of the six faces."
+              "text_en": "Now wrap the surface all the way around the charge into a closed box, with x, y and z axes to keep track of the six faces.", "text_hi": "अब surface को charge के चारों तरफ लपेटकर एक closed box बनाइए — x, y और z axes ताकि छह faces का हिसाब रखा जा सके।", "text_te": "ఇప్పుడు surface ని charge చుట్టూ మూసి ఒక closed box చేయండి — ఆరు faces ని track చేయడానికి x, y మరియు z axes తో."
             },
             {
               "id": "s8_2",
-              "text_en": "Field leaving a face counts plus, field entering counts minus. Watch the six face values light up one by one and add together."
+              "text_en": "Field leaving a face counts plus, field entering counts minus. Watch the six face values light up one by one and add together.", "text_hi": "किसी face से निकलता field plus count होता है, enter होता field minus। six face values को एक-एक करके light up होते और add होते देखिए।", "text_te": "ఒక face నుండి బయటకు వెళ్ళే field plus count అవుతుంది, enter అయ్యే field minus. ఆరు face values ఒక్కొక్కటిగా light up అయి కలవడం చూడండి."
             },
             {
               "id": "s8_3",
-              "text_en": "Each face shows its own number, and they pile up into one running total: the net flux out of the whole box."
+              "text_en": "Each face shows its own number, and they pile up into one running total: the net flux out of the whole box.", "text_hi": "हर face अपना number दिखाता है, और वे सब मिलकर एक running total बनाते हैं: पूरे box से net flux।", "text_te": "ప్రతి face తన number చూపిస్తుంది, అవన్నీ కలిసి ఒక running total అవుతాయి: మొత్తం box నుండి net flux."
             },
             {
               "id": "s8_4",
-              "text_en": "That net total is set only by the charge trapped inside — net Φ is proportional to q-enclosed, and nothing on the surface changes it."
+              "text_en": "That net total is set only by the charge trapped inside — net Φ is proportional to q-enclosed, and nothing on the surface changes it.", "text_hi": "वह net total केवल अंदर बंद charge से तय होता है — net flux, q-enclosed के proportional है, और surface पर कुछ भी इसे नहीं बदलता।", "text_te": "ఆ net total లోపల trapped అయిన charge మాత్రమే నిర్ణయిస్తుంది — net flux అనేది q-enclosed కి proportional, surface పై ఏదీ దాన్ని మార్చదు."
             }
           ]
         },
@@ -697,19 +697,19 @@
           "tts_sentences": [
             {
               "id": "s9_1",
-              "text_en": "First drag the charge off-centre, still inside the box. The near faces gain, the far faces lose — but watch the net total."
+              "text_en": "First drag the charge off-centre, still inside the box. The near faces gain, the far faces lose — but watch the net total.", "text_hi": "पहले charge को off-centre drag करिए — box के अंदर ही। पास वाले faces को ज़्यादा flux मिलता है, दूर वाले कम — लेकिन net total देखिए।", "text_te": "మొదట charge ని off-centre drag చేయండి — box లోపలే ఉండనీయండి. దగ్గరున్న faces gain చేస్తాయి, దూరంలో ఉన్నవి lose అవుతాయి — కానీ net total చూడండి."
             },
             {
               "id": "s9_2",
-              "text_en": "It does not budge. Position inside never changes the net. Now what if the charge sits entirely OUTSIDE the box — what should the net be?"
+              "text_en": "It does not budge. Position inside never changes the net. Now what if the charge sits entirely OUTSIDE the box — what should the net be?", "text_hi": "यह हिलता नहीं। अंदर position बदलने से net कभी नहीं बदलता। अब अगर charge पूरी तरह box के OUTSIDE बैठे — तो net क्या होना चाहिए?", "text_te": "అది కదలదు. లోపలి position net ని ఎప్పుడూ మార్చదు. ఇప్పుడు charge పూర్తిగా box OUTSIDE ఉంటే — net ఎంత ఉండాలి?"
             },
             {
               "id": "s9_3",
-              "text_en": "Watch as it sweeps outside: every field line that enters one face leaves through another, so the plus and minus faces cancel."
+              "text_en": "Watch as it sweeps outside: every field line that enters one face leaves through another, so the plus and minus faces cancel.", "text_hi": "outside जाते समय देखिए: जो field line एक face से enter होती है वह दूसरे face से बाहर निकलती है — तो plus और minus faces cancel हो जाते हैं।", "text_te": "బయటకు sweep అవుతున్నప్పుడు చూడండి: ఒక face నుండి enter అయ్యే ప్రతి field line మరొక face నుండి బయటకు వెళ్తుంది — plus మరియు minus faces cancel అవుతాయి."
             },
             {
               "id": "s9_4",
-              "text_en": "The net flux drops to exactly zero. No charge enclosed means no net flux — a first taste of what a closed surface really counts."
+              "text_en": "The net flux drops to exactly zero. No charge enclosed means no net flux — a first taste of what a closed surface really counts.", "text_hi": "net flux exactly zero हो जाता है। कोई enclosed charge नहीं मतलब कोई net flux नहीं — यह पहली झलक है कि एक closed surface actually क्या count करती है।", "text_te": "net flux exactly zero కి వస్తుంది. enclosed charge లేదంటే net flux లేదు — ఒక closed surface నిజంగా ఏమి count చేస్తుందో తొలి అనుభవం ఇది."
             }
           ]
         },
@@ -765,19 +765,19 @@
           "tts_sentences": [
             {
               "id": "s10_1",
-              "text_en": "Now you drive it. Drag theta and spin the disc through a full turn, from zero all the way to three-sixty."
+              "text_en": "Now you drive it. Drag theta and spin the disc through a full turn, from zero all the way to three-sixty.", "text_hi": "अब आप इसे चलाइए। theta को drag करिए और disc को full turn में spin करिए — zero से three-sixty तक।", "text_te": "ఇప్పుడు మీరు నడిపించండి. theta ని drag చేయండి మరియు disc ని full turn లో spin చేయండి — zero నుండి three-sixty వరకు."
             },
             {
               "id": "s10_2",
-              "text_en": "Face-on, the flux is biggest and positive. At ninety degrees the disc is edge-on and Φ falls to zero."
+              "text_en": "Face-on, the flux is biggest and positive. At ninety degrees the disc is edge-on and Φ falls to zero.", "text_hi": "face-on position में flux सबसे ज़्यादा और positive है। ninety degrees पर disc edge-on हो जाती है और flux zero हो जाता है।", "text_te": "face-on position లో flux అత్యధికంగా మరియు positive గా ఉంటుంది. ninety degrees వద్ద disc edge-on అవుతుంది మరియు flux zero కి వస్తుంది."
             },
             {
               "id": "s10_3",
-              "text_en": "Push past ninety and Φ turns negative as the field enters from behind; at one-eighty it is fully negative again."
+              "text_en": "Push past ninety and Φ turns negative as the field enters from behind; at one-eighty it is fully negative again.", "text_hi": "ninety से आगे जाइए और flux negative हो जाता है क्योंकि field पीछे से enter होती है; one-eighty पर यह पूरी तरह negative हो जाता है।", "text_te": "ninety దాటి వెళ్తే flux negative అవుతుంది ఎందుకంటే field వెనుక నుండి enter అవుతుంది; one-eighty వద్ద అది పూర్తిగా negative అవుతుంది."
             },
             {
               "id": "s10_4",
-              "text_en": "The whole time, the piercing component E cosθ and the lines-through tally move together, tracing Φ equals EA cosθ across the full circle."
+              "text_en": "The whole time, the piercing component E cosθ and the lines-through tally move together, tracing Φ equals EA cosθ across the full circle.", "text_hi": "पूरे समय, piercing component E cosθ और lines-through tally साथ-साथ चलते हैं — पूरे circle में flux equals EA cosθ को trace करते हुए।", "text_te": "పూరా సమయం, piercing component E cosθ మరియు lines-through tally కలిసి కదులుతాయి — మొత్తం circle లో flux equals EA cosθ ను trace చేస్తూ."
             }
           ]
         }

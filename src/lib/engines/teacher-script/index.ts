@@ -20,6 +20,8 @@ export type AdvanceMode =
 export interface TtsSentence {
   id: string;
   text_en: string;
+  text_hi?: string;
+  text_te?: string;
 }
 
 export interface TeacherScriptStateDef {

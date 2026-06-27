@@ -13,6 +13,10 @@ import { z } from 'zod/v4';
 const ttsSentenceSchema = z.object({
   id: z.string(),
   text_en: z.string(),
+  // Optional multilingual narration (Telgish/Hinglish — technical terms stay in
+  // English). When present, the review-site player can speak/caption HI/TE.
+  text_hi: z.string().optional(),
+  text_te: z.string().optional(),
 });
 
 // ── Teacher Script per state ────────────────────────────────────────

@@ -14,6 +14,9 @@
     "mineru": "cd mineru-service && uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
     "dev:full": "concurrently \"npm run dev\" \"npm run mineru\"",
     "validate:concepts": "npx tsx src/scripts/validate-concepts.ts",
+    "tts:translate": "npx tsx --env-file=.env.local src/scripts/translate_concept_tts.ts",
+    "tts:generate": "npx tsx --env-file=.env.local src/scripts/generate_tts_audio.ts",
+    "tts:rollout": "npx tsx --env-file=.env.local src/scripts/tts_rollout.ts",
     "build:review": "npx tsx src/scripts/build_review_site.ts",
     "review:all": "npx tsx src/scripts/build_review_site.ts --all",
     "catalog:refresh": "npx tsx src/scripts/build_review_site.ts --catalog",
@@ -75,6 +78,7 @@
     "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "music-metadata": "^11.13.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.4"

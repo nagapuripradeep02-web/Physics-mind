@@ -177,15 +177,15 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Here is a hollow metal ball with charge spread over its surface — like the dome of a Van de Graaff generator."
+              "text_en": "Here is a hollow metal ball with charge spread over its surface — like the dome of a Van de Graaff generator.", "text_hi": "यह देखो — एक hollow metal ball जिसकी surface पर charge फैला हुआ है — जैसे Van de Graaff generator का dome।", "text_te": "ఇది చూడండి — ఒక hollow metal ball, దీని surface మీద charge వ్యాపించి ఉంది — Van de Graaff generator యొక్క dome లాగా।"
             },
             {
               "id": "s1_2",
-              "text_en": "Gauss's law already tells us the total flux out of any closed surface is q over epsilon-nought. But that is the total, not the field at one point."
+              "text_en": "Gauss's law already tells us the total flux out of any closed surface is q over epsilon-nought. But that is the total, not the field at one point.", "text_hi": "Gauss's law हमें पहले ही बता देता है कि किसी भी closed surface से निकलने वाला total flux है q over epsilon-nought। लेकिन यह total है, किसी एक point पर field नहीं।", "text_te": "Gauss's law మనకు ముందే చెప్తుంది — ఏదైనా closed surface నుండి వెలువడే total flux అనేది q over epsilon-nought. కానీ ఇది total flux మాత్రమే, ఒక point వద్ద field కాదు।"
             },
             {
               "id": "s1_3",
-              "text_en": "So here is the real question: what is the electric field E at a distance r — inside the shell, and outside it?",
+              "text_en": "So here is the real question: what is the electric field E at a distance r — inside the shell, and outside it?", "text_hi": "तो असली सवाल यह है: एक distance r पर electric field E क्या होगा — shell के inside, और outside?", "text_te": "కాబట్టి అసలు ప్రశ్న ఏమిటంటే: distance r వద్ద electric field E ఎంత ఉంటుంది — shell యొక్క inside లో, మరియు outside లో?",
               "pause_after_ms": 2600
             }
           ]
@@ -243,20 +243,20 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Pick a point P at distance r from the centre. In which direction must the field point there?"
+              "text_en": "Pick a point P at distance r from the centre. In which direction must the field point there?", "text_hi": "Centre से r दूरी पर एक point P लो। वहाँ field किस direction में होगी?", "text_te": "Centre నుండి r దూరంలో ఒక point P తీసుకోండి। అక్కడ field ఏ direction లో ఉండాలి?"
             },
             {
               "id": "s2_2",
-              "text_en": "Could E point sideways along the sphere, or must it point straight out along the radius?",
+              "text_en": "Could E point sideways along the sphere, or must it point straight out along the radius?", "text_hi": "क्या E sphere के साथ sideways point कर सकता है, या उसे radius के along straight out point करना ही होगा?", "text_te": "E sphere వెంబడి sideways point చేయగలదా, లేదా radius వెంబడి straight out point చేయాలా?",
               "pause_after_ms": 2800
             },
             {
               "id": "s2_3",
-              "text_en": "The shell looks identical from every direction, so E has nothing to pick a sideways direction. It must point radially."
+              "text_en": "The shell looks identical from every direction, so E has nothing to pick a sideways direction. It must point radially.", "text_hi": "Shell हर direction से बिल्कुल एक जैसी दिखती है, इसलिए E के पास sideways direction चुनने का कोई कारण नहीं। इसे radially point करना ही पड़ेगा।", "text_te": "Shell అన్ని directions నుండి సరిగ్గా ఒకే విధంగా కనిపిస్తుంది, కాబట్టి E sideways direction ఎంచుకోవడానికి ఎలాంటి కారణం లేదు। అది radially point చేయాలి।"
             },
             {
               "id": "s2_4",
-              "text_en": "And by that same symmetry its magnitude is the same at every point on a sphere of radius r. That is what lets E come out of the flux integral."
+              "text_en": "And by that same symmetry its magnitude is the same at every point on a sphere of radius r. That is what lets E come out of the flux integral.", "text_hi": "और उसी symmetry की वजह से radius r की sphere पर हर point पर E का magnitude एक समान होता है। इसी कारण E flux integral से बाहर आ सकता है।", "text_te": "మరియు ఆ అదే symmetry వల్ల, radius r యొక్క sphere మీద ప్రతి point వద్ద E యొక్క magnitude ఒకే విధంగా ఉంటుంది। అందుకే E ని flux integral నుండి బయటికి తీయగలం।"
             }
           ]
         },
@@ -313,20 +313,20 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Draw a Gaussian sphere outside the shell, at radius r bigger than R. It encloses the full charge q."
+              "text_en": "Draw a Gaussian sphere outside the shell, at radius r bigger than R. It encloses the full charge q.", "text_hi": "Shell के बाहर एक Gaussian sphere खींचो, radius r पर जहाँ r, R से बड़ा है। यह पूरा charge q को enclose करता है।", "text_te": "Shell బయట ఒక Gaussian sphere గీయండి, radius r వద్ద — r, R కంటే పెద్దది। ఇది పూర్తి charge q ని enclose చేస్తుంది।"
             },
             {
               "id": "s3_2",
-              "text_en": "Now write the flux through it. What is Φ in terms of E and the sphere's area?",
+              "text_en": "Now write the flux through it. What is Φ in terms of E and the sphere's area?", "text_hi": "अब इसके through flux लिखो। E और sphere की area के terms में Φ क्या होगा?", "text_te": "ఇప్పుడు దాని గుండా flux రాయండి। E మరియు sphere యొక్క area పరంగా Φ ఏమవుతుంది?",
               "pause_after_ms": 2700
             },
             {
               "id": "s3_3",
-              "text_en": "Since E is constant and radial, the flux is just E times the area: Φ equals E times four pi r squared."
+              "text_en": "Since E is constant and radial, the flux is just E times the area: Φ equals E times four pi r squared.", "text_hi": "चूँकि E constant और radial है, flux बस E times area है: Φ equals E times four pi r squared।", "text_te": "E constant మరియు radial అయినందువల్ల, flux కేవలం E times area: Φ equals E times four pi r squared."
             },
             {
               "id": "s3_4",
-              "text_en": "Set that equal to q over epsilon-nought and solve. E equals q over four pi epsilon-nought r squared — that is exactly kq over r squared."
+              "text_en": "Set that equal to q over epsilon-nought and solve. E equals q over four pi epsilon-nought r squared — that is exactly kq over r squared.", "text_hi": "उसे q over epsilon-nought के बराबर रखो और solve करो। E equals q over four pi epsilon-nought r squared — यह exactly kq over r squared है।", "text_te": "దాన్ని q over epsilon-nought కి equal చేసి solve చేయండి। E equals q over four pi epsilon-nought r squared — అది exactly kq over r squared."
             }
           ]
         },
@@ -342,7 +342,7 @@
       },
       "STATE_4": {
         "title": "From outside, the shell is exactly a point charge at the centre",
-        "duration": 18,
+        "duration": 30,
         "focal_primitive_id": "point_charge_equiv_label",
         "advance_mode": "wait_for_answer",
         "teaching_method": "narrative_socratic",
@@ -385,24 +385,29 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Start with a single point charge q on the right. At a distance r its field is E equals kq over r squared — pointing straight out, getting weaker as one over r squared."
+              "text_en": "On the right, a single point charge q.", "text_hi": "दाईं तरफ, एक single point charge q।", "text_te": "కుడి వైపు, ఒక single point charge q ఉంది।"
             },
             {
               "id": "s4_2",
-              "text_en": "Now picture a charged shell with the same total charge q. Out here at the same distance r, will its field be the same, or different? Predict.",
-              "pause_after_ms": 2600
+              "text_en": "At a distance r, its field is E equals kq over r squared — straight out, weakening as one over r squared.", "text_hi": "एक distance r पर, इसकी field है E equals kq over r squared — सीधा बाहर, one over r squared के रूप में कमज़ोर होती हुई।", "text_te": "distance r వద్ద, దాని field అనేది E equals kq over r squared — నేరుగా బయటికి, one over r squared గా బలహీనమవుతూ।",
+              "pause_after_ms": 1500
             },
             {
               "id": "s4_3",
-              "text_en": "Watch — the shell appears on the left. Draw a Gaussian sphere of radius r around it: Φ equals E times four pi r squared equals q over epsilon-nought."
+              "text_en": "Now think — will a charged shell of the same total charge q give the same field out here, or a different one?", "text_hi": "अब सोचो — क्या same total charge q वाला एक charged shell यहाँ बाहर same field देगा, या कोई अलग field?", "text_te": "ఇప్పుడు ఆలోచించండి — same total charge q ఉన్న ఒక charged shell ఇక్కడ same field ఇస్తుందా, లేదా వేరే field ఇస్తుందా?",
+              "pause_after_ms": 2500
             },
             {
               "id": "s4_4",
-              "text_en": "Solve it and you get E equals kq over r squared — exactly the same as the point charge."
+              "text_en": "Watch the left. A charged shell fades in. Draw a Gaussian sphere of radius r around it.", "text_hi": "बाईं तरफ देखो। एक charged shell fade in होती है। उसके चारों तरफ radius r की एक Gaussian sphere खींचो।", "text_te": "ఎడమ వైపు చూడండి। ఒక charged shell fade in అవుతుంది। దాని చుట్టూ radius r యొక్క ఒక Gaussian sphere గీయండి।"
             },
             {
               "id": "s4_5",
-              "text_en": "So from outside, a charged shell is identical to a point charge sitting at its centre. The two formulas below match."
+              "text_en": "Gauss's law gives Φ equals E times four-pi-r-squared equals q over epsilon-nought, so E equals kq over r squared.", "text_hi": "Gauss's law देता है Φ equals E times four pi r squared equals q over epsilon-nought, इसलिए E equals kq over r squared।", "text_te": "Gauss's law ఇస్తుంది — Φ equals E times four pi r squared equals q over epsilon-nought, కాబట్టి E equals kq over r squared."
+            },
+            {
+              "id": "s4_6",
+              "text_en": "Exactly the same as the point charge. From outside, the shell is a point charge at its centre — the two formulas below match.", "text_hi": "बिल्कुल point charge जैसा। Outside से देखें तो shell अपने centre पर एक point charge है — नीचे के दोनों formulas मेल खाते हैं।", "text_te": "Point charge తో సరిగ్గా ఒకే విధంగా ఉంది। Outside నుండి చూస్తే, shell తన centre వద్ద ఒక point charge లాంటిది — నిచటి రెండు formulas సరిపోతాయి।"
             }
           ]
         },
@@ -459,20 +464,20 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Now shrink the Gaussian sphere until it sits entirely inside the shell, at a radius r smaller than R."
+              "text_en": "Now shrink the Gaussian sphere until it sits entirely inside the shell, at a radius r smaller than R.", "text_hi": "अब Gaussian sphere को तब तक छोटा करो जब तक वह पूरी तरह shell के inside न आ जाए, एक radius r पर जो R से छोटी हो।", "text_te": "ఇప్పుడు Gaussian sphere ని అది పూర్తిగా shell యొక్క inside లో వచ్చే వరకు చిన్నది చేయండి, R కంటే చిన్న radius r వద్ద।"
             },
             {
               "id": "s5_2",
-              "text_en": "All the charge lives on the shell, outside this little sphere. So how much charge does it enclose?",
+              "text_en": "All the charge lives on the shell, outside this little sphere. So how much charge does it enclose?", "text_hi": "सारा charge shell पर है, इस छोटी sphere के outside। तो यह कितना charge enclose करती है?", "text_te": "అన్ని charge shell మీద ఉంది, ఈ చిన్న sphere యొక్క outside లో। కాబట్టి ఇది ఎంత charge enclose చేస్తుంది?",
               "pause_after_ms": 2600
             },
             {
               "id": "s5_3",
-              "text_en": "None at all. q enclosed is zero, so the flux through it is zero, and by symmetry E times four pi r squared is zero."
+              "text_en": "None at all. q enclosed is zero, so the flux through it is zero, and by symmetry E times four pi r squared is zero.", "text_hi": "बिल्कुल नहीं। q enclosed zero है, तो इसके through flux zero है, और symmetry से E times four pi r squared zero है।", "text_te": "అస్సలు ఏమీ లేదు। q enclosed zero, కాబట్టి దాని గుండా flux zero, మరియు symmetry వల్ల E times four pi r squared zero అవుతుంది।"
             },
             {
               "id": "s5_4",
-              "text_en": "That forces E to zero at every interior point — not small, exactly zero. Inside a charged shell the field vanishes completely."
+              "text_en": "That forces E to zero at every interior point — not small, exactly zero. Inside a charged shell the field vanishes completely.", "text_hi": "यह E को हर interior point पर zero करने पर मजबूर करता है — थोड़ा नहीं, बिल्कुल zero। एक charged shell के inside field पूरी तरह vanish हो जाता है।", "text_te": "ఇది ప్రతి interior point వద్ద E ని zero కి బలవంతం చేస్తుంది — కొంచెం కాదు, సరిగ్గా zero. ఒక charged shell లోపల field పూర్తిగా vanish అవుతుంది।"
             }
           ]
         },
@@ -488,7 +493,7 @@
       },
       "STATE_6": {
         "title": "The full picture: flat zero, a jump at R, then 1/r²",
-        "duration": 17,
+        "duration": 30,
         "focal_primitive_id": "jump_at_R_label",
         "advance_mode": "manual_click",
         "teaching_method": "compare_contrast",
@@ -531,19 +536,22 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Let us put both halves on one graph of E against r. Inside, from the centre out to R, the field is flat at zero."
+              "text_en": "Watch the Gaussian sphere and the graph move together. Right now the sphere sits inside the shell, and the field is flat at zero — the dot rides along the bottom.", "text_hi": "Gaussian sphere और graph को एक साथ move होते देखो। अभी sphere, shell के inside है, और field zero पर flat है — dot नीचे के along चल रहा है।", "text_te": "Gaussian sphere మరియు graph కలిసి move అవడం చూడండి। ఇప్పుడు sphere, shell యొక్క inside లో ఉంది, మరియు field zero వద్ద flat గా ఉంది — dot అడుగు వెంట పయనిస్తోంది।",
+              "pause_after_ms": 3500
             },
             {
               "id": "s6_2",
-              "text_en": "Right at the surface r equals R, it jumps straight up to its peak value kq over R squared. That is a sudden step, not a smooth climb."
+              "text_en": "Now the sphere grows out to the surface. Right at r equals R the field jumps straight up to its peak value kq over R squared — a sudden step, not a smooth climb.", "text_hi": "अब sphere surface तक बड़ी होती है। r equals R पर field सीधे ऊपर अपनी peak value kq over R squared तक jump करती है — एक sudden step, smooth climb नहीं।", "text_te": "ఇప్పుడు sphere surface వరకు పెరుగుతుంది। r equals R వద్ద field నేరుగా పైకి peak value kq over R squared వరకు jump చేస్తుంది — ఒక sudden step, smooth climb కాదు।",
+              "pause_after_ms": 1500
             },
             {
               "id": "s6_3",
-              "text_en": "Then outside, as r grows past R, the field falls off as one over r squared — the point-charge curve."
+              "text_en": "Keep going outside: as r grows past R the arrows shrink and the dot slides down the tail, falling off as one over r squared — the point-charge curve.", "text_hi": "Outside जाते रहो: जैसे-जैसे r, R से आगे बढ़ता है, arrows सिकुड़ते हैं और dot tail के नीचे slide करता है, one over r squared की तरह fall off करते हुए — यह point-charge curve है।", "text_te": "Outside వైపు కొనసాగండి: r, R ని దాటి పెరిగే కొద్దీ arrows తగ్గిపోతాయి మరియు dot tail వెంట కిందికి slide అవుతుంది, one over r squared లా fall off అవుతూ — ఇది point-charge curve.",
+              "pause_after_ms": 1500
             },
             {
               "id": "s6_4",
-              "text_en": "Zero, a sharp jump, then a one-over-r-squared tail. The jump at the surface is the signature of the shell."
+              "text_en": "Zero, a sharp jump, then a one-over-r-squared tail. That jump at the surface is the signature of the shell.", "text_hi": "Zero, एक sharp jump, फिर one-over-r-squared tail। Surface पर वह jump shell की पहचान है।", "text_te": "Zero, ఒక sharp jump, తర్వాత one-over-r-squared tail. Surface వద్ద ఆ jump అనేది shell యొక్క signature."
             }
           ]
         },
@@ -556,7 +564,7 @@
         ]
       },
       "STATE_7": {
-        "title": "Explore: drag the Gaussian sphere across the surface",
+        "title": "Explore: grab the field point and move it anywhere",
         "duration": 16,
         "focal_primitive_id": "live_E_readout_label",
         "advance_mode": "interaction_complete",
@@ -569,7 +577,7 @@
               "x": 360,
               "y": 90
             },
-            "text": "drag r across the shell radius R",
+            "text": "grab the point P and move it anywhere",
             "color": "#90CAF9",
             "is_persistent": false
           },
@@ -600,15 +608,15 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "Now you drive it. Drag the slider to move the Gaussian sphere's radius r from deep inside to far outside the shell."
+              "text_en": "Now you drive it. Grab the field point P and move it anywhere — the field arrow always points straight out along the radius.", "text_hi": "अब तुम control करो। field point P को पकड़ो और कहीं भी move करो — field arrow हमेशा radius के along straight out point करता है।", "text_te": "ఇప్పుడు మీరు control చేయండి। field point P ని పట్టుకుని ఎక్కడైనా move చేయండి — field arrow ఎప్పుడూ radius వెంబడి straight out point చేస్తుంది।"
             },
             {
               "id": "s7_2",
-              "text_en": "While r is smaller than R the arrows stay dead at zero. The instant r crosses R they snap on and follow kq over r squared."
+              "text_en": "Move it inside the shell and the arrow dies to zero. Move it outward and the arrow shrinks as one over r squared — the same length all around the circle.", "text_hi": "इसे shell के inside ले जाओ और arrow zero हो जाता है। इसे outward ले जाओ और arrow one over r squared की तरह सिकुड़ता है — circle के चारों तरफ same length।", "text_te": "దాన్ని shell యొక్క inside కి move చేయండి, arrow zero అవుతుంది। దాన్ని outward move చేయండి, arrow one over r squared లా తగ్గుతుంది — circle చుట్టూ same length."
             },
             {
               "id": "s7_3",
-              "text_en": "Watch the live readout switch regime exactly at the surface. Inside is always zero; outside is always the point-charge field."
+              "text_en": "Watch the live readout switch regime exactly at the surface. Inside is always zero; outside is always the point-charge field.", "text_hi": "Live readout को exactly surface पर regime switch करते देखो। Inside हमेशा zero है; outside हमेशा point-charge field है।", "text_te": "Live readout ని exactly surface వద్ద regime switch చేయడం చూడండి। Inside ఎప్పుడూ zero; outside ఎప్పుడూ point-charge field."
             }
           ]
         }
@@ -798,7 +806,8 @@
           "show_shell": true,
           "show_gaussian": false,
           "shimmer": true,
-          "show_radius_vectors": true
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 9000
         }
       },
       "STATE_2": {
@@ -823,7 +832,9 @@
             "duration_ms": 1200
           },
           "show_symmetry_label": true,
-          "show_radius_vectors": true
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 2000,
+          "emerge_r_at_ms": 11000
         },
         "formula_overlay": "E ∥ r̂,  E = const on the sphere"
       },
@@ -848,7 +859,9 @@
           "show_radial_arrows": true,
           "show_equation": true,
           "equation_at_ms": 4600,
-          "show_radius_vectors": true
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 1500,
+          "emerge_r_at_ms": 2500
         },
         "formula_overlay": "Φ = E·4πr² = q/ε₀  ⇒  E = kq/r²"
       },
@@ -859,8 +872,8 @@
         ],
         "camera_position": [
           0,
-          1.8,
-          11
+          1.9,
+          12
         ],
         "caption": "",
         "gauss_sphere": {
@@ -873,11 +886,15 @@
           "show_radius_vectors": true,
           "compare_mode": true,
           "point_first_at_ms": 0,
-          "shell_appears_at_ms": 5000,
-          "point_offset_x": 2.2,
-          "shell_offset_x": -2.2,
+          "shell_appears_at_ms": 8000,
+          "compare_highlight_at_ms": 16000,
+          "point_offset_x": 3.4,
+          "shell_offset_x": -3.4,
+          "compare_scale": 0.6,
           "point_formula": "E = kq/r²",
-          "shell_formula": "E = q/(4πε₀r²) = kq/r²   (Φ = E·4πr²)"
+          "shell_formula": "E = q/(4πε₀r²) = kq/r²   (Φ = E·4πr²)",
+          "emerge_R_at_ms": 8000,
+          "emerge_r_at_ms": 3000
         },
         "formula_overlay": ""
       },
@@ -904,7 +921,9 @@
           },
           "arrows_collapse_at_ms": 4500,
           "show_equation": true,
-          "show_radius_vectors": true
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 500,
+          "emerge_r_at_ms": 1500
         },
         "formula_overlay": "q_enc = 0  ⇒  Φ = 0  ⇒  E = 0 (everywhere inside)"
       },
@@ -922,36 +941,50 @@
         "gauss_sphere": {
           "q": 1,
           "R": 1.5,
+          "r_gauss": 0.6,
           "show_e_vs_r_plot": true,
           "plot_draw_at_ms": 800,
           "plot_draw_duration_ms": 4000,
           "peak_value": 100,
-          "show_radius_vectors": true
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 1000,
+          "emerge_r_at_ms": 1500,
+          "coordinated_sweep": true,
+          "sweep_r_min": 0.6,
+          "sweep_r_max": 3.6,
+          "sweep_hold_inside_ms": 8000,
+          "sweep_cross_at_ms": 12000,
+          "sweep_end_at_ms": 28000,
+          "show_gaussian": true,
+          "show_radial_arrows": true
         },
         "formula_overlay": "E = 0 (r<R);  jump to kq/R² at R;  E = kq/r² (r≥R)"
       },
       "STATE_7": {
-        "label": "Explore: drag the Gaussian sphere across the surface",
+        "label": "Explore: grab the field point and move it anywhere",
         "visible_elements": [
           "all"
         ],
         "camera_position": [
-          3.2,
-          1.4,
-          8
+          0,
+          1.2,
+          9
         ],
         "caption": "",
         "gauss_sphere": {
           "sliders": true,
+          "draggable_point": true,
           "q": 1,
           "R": 1.5,
           "r_gauss": 2.4,
           "live_readout": true,
-          "show_radial_arrows": true,
+          "show_radial_arrows": false,
           "show_e_vs_r_plot": true,
-          "show_radius_vectors": true
+          "show_radius_vectors": true,
+          "emerge_R_at_ms": 1000,
+          "emerge_r_at_ms": 1500
         },
-        "formula_overlay": "live E: 0 inside, kq/r² outside"
+        "formula_overlay": "live E: radial, 0 inside, kq/r² outside (same all around r)"
       }
     },
     "pvl_colors": {

@@ -170,11 +170,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "Look up at the ceiling fan turning over your head. Why does it spin?", "glow": "wire" },
-            { "id": "s1_2", "text_en": "Inside its motor, copper wires carry current and sit inside a magnetic field.", "glow": ["wire", "b"] },
-            { "id": "s1_3", "text_en": "The field pushes on each current-carrying wire. That push is the force we will build today.", "glow": "f_net" },
-            { "id": "s1_4", "text_en": "The blue arrows are the field B. The orange wire carries current I, and L points along the current.", "glow": ["b", "wire"] },
-            { "id": "s1_5", "text_en": "The whole formula is F equals I times L cross B. Let us see where it comes from.", "glow": "f_net", "math_show": "\\vec{F} = I\\,\\vec{L}\\times\\vec{B}" }
+            { "id": "s1_1", "text_en": "Look up at the ceiling fan turning over your head. Why does it spin?", "text_hi": "अपने सिर के ऊपर घूमता ceiling fan देखिए। यह क्यों spin करता है?", "text_te": "మీ తల పైన తిరుగుతున్న ceiling fan చూడండి. అది ఎందుకు spin అవుతుంది?", "glow": "wire" },
+            { "id": "s1_2", "text_en": "Inside its motor, copper wires carry current and sit inside a magnetic field.", "text_hi": "इसके motor के अंदर, copper wires current ले जाती हैं और एक magnetic field के भीतर रहती हैं।", "text_te": "దాని motor లోపల, copper wires current తీసుకెళ్తాయి మరియు ఒక magnetic field లో ఉంటాయి.", "glow": ["wire", "b"] },
+            { "id": "s1_3", "text_en": "The field pushes on each current-carrying wire. That push is the force we will build today.", "text_hi": "field हर current-carrying wire पर push करती है। वही push है वह force जिसे हम आज समझेंगे।", "text_te": "field ప్రతి current-carrying wire ని push చేస్తుంది. ఆ push నే మనం ఈరోజు నేర్చుకోబోయే force.", "glow": "f_net" },
+            { "id": "s1_4", "text_en": "The blue arrows are the field B. The orange wire carries current I, and L points along the current.", "text_hi": "नीले arrows field B हैं। नारंगी wire current I ले जाती है, और L current की direction में point करता है।", "text_te": "నీలి arrows field B అవుతాయి. నారింజ wire current I ని తీసుకెళ్తుంది, మరియు L current వెంట point చేస్తుంది.", "glow": ["b", "wire"] },
+            { "id": "s1_5", "text_en": "The whole formula is F equals I times L cross B. Let us see where it comes from.", "text_hi": "पूरा formula है F equals I times L cross B। आइए देखें यह कहाँ से आता है।", "text_te": "మొత్తం formula ఏమిటంటే F equals I times L cross B. ఇది ఎక్కడ నుండి వస్తుందో చూద్దాం.", "glow": "f_net", "math_show": "\\vec{F} = I\\,\\vec{L}\\times\\vec{B}" }
           ]
         }
       },
@@ -216,15 +216,15 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "You already know the force on one moving charge: q times v cross B.", "glow": "charge_arrows", "math_show": "\\vec{F}_1 = q\\,\\vec{v}_d\\times\\vec{B}" },
-            { "id": "s2_2", "text_en": "A wire is nothing but a pipe full of moving charges, all drifting along the wire at the drift speed v d.", "glow": "charge_arrows" },
-            { "id": "s2_pred", "text_en": "Predict first. If one charge feels q v d B, what does a whole length L of wire feel? Think before we add them up.", "glow": "charge_arrows" },
-            { "id": "s2_3", "text_en": "Count the carriers. A length L of wire with cross-section A holds n times A times L of them.", "glow": "charge_arrows", "math_show": "N = n\\,A\\,L" },
-            { "id": "s2_4", "text_en": "Each one feels q v d B, so the total force is n A L times q v d B.", "glow": "F_net_arrow", "math_show": "F = (nAL)(q v_d B)", "math_persist": true },
-            { "id": "s2_5", "text_en": "Now regroup the symbols. Pull out n times A times q times v d, and leave L times B behind.", "glow": "F_net_arrow", "math_show": "F = (n A q v_d)(L B)", "math_persist": true },
-            { "id": "s2_6", "text_en": "But n times A times q times v d is exactly the current I. That is the definition of current.", "glow": "F_net_arrow", "math_show": "I = n A q v_d" },
-            { "id": "s2_7", "text_en": "So the whole thing collapses to F equals I L B. The messy carrier picture becomes one clean law.", "glow": "F_net_arrow", "math_show": "F = I L B", "math_persist": true },
-            { "id": "s2_8", "text_en": "That is the big idea. A wire is just charges, and I L cross B is q v cross B added up over all of them.", "glow": "F_net_arrow" }
+            { "id": "s2_1", "text_en": "You already know the force on one moving charge: q times v cross B.", "text_hi": "आप पहले से जानते हैं एक moving charge पर force: q times v cross B।", "text_te": "మీకు ఇప్పటికే ఒక moving charge పై force తెలుసు: q times v cross B.", "glow": "charge_arrows", "math_show": "\\vec{F}_1 = q\\,\\vec{v}_d\\times\\vec{B}" },
+            { "id": "s2_2", "text_en": "A wire is nothing but a pipe full of moving charges, all drifting along the wire at the drift speed v d.", "text_hi": "एक wire और कुछ नहीं बल्कि moving charges से भरा एक pipe है, सब drift speed v d पर wire के साथ drift कर रहे हैं।", "text_te": "ఒక wire అంటే moving charges తో నిండిన ఒక pipe మాత్రమే, అన్నీ drift speed v d తో wire వెంట drift చేస్తున్నాయి.", "glow": "charge_arrows" },
+            { "id": "s2_pred", "text_en": "Predict first. If one charge feels q v d B, what does a whole length L of wire feel? Think before we add them up.", "text_hi": "पहले predict करिए। अगर एक charge q v d B feel करता है, तो wire की पूरी length L क्या feel करेगी? हम add करने से पहले सोचिए।", "text_te": "ముందు predict చేయండి. ఒక charge q v d B feel చేస్తే, మొత్తం length L wire ఏమి feel చేస్తుంది? మనం add చేయడానికి ముందు ఆలోచించండి.", "glow": "charge_arrows" },
+            { "id": "s2_3", "text_en": "Count the carriers. A length L of wire with cross-section A holds n times A times L of them.", "text_hi": "carriers count करिए। cross-section A वाली wire की length L में n times A times L carriers होती हैं।", "text_te": "carriers లెక్కించండి. cross-section A ఉన్న wire లో length L లో n times A times L carriers ఉంటాయి.", "glow": "charge_arrows", "math_show": "N = n\\,A\\,L" },
+            { "id": "s2_4", "text_en": "Each one feels q v d B, so the total force is n A L times q v d B.", "text_hi": "हर एक q v d B feel करती है, इसलिए total force है n A L times q v d B।", "text_te": "ప్రతి ఒక్కటి q v d B feel చేస్తుంది, కాబట్టి total force n A L times q v d B అవుతుంది.", "glow": "F_net_arrow", "math_show": "F = (nAL)(q v_d B)", "math_persist": true },
+            { "id": "s2_5", "text_en": "Now regroup the symbols. Pull out n times A times q times v d, and leave L times B behind.", "text_hi": "अब symbols को regroup करिए। n times A times q times v d बाहर निकालिए, और L times B छोड़ दीजिए।", "text_te": "ఇప్పుడు symbols ని regroup చేయండి. n times A times q times v d బయటకు తీయండి, మరియు L times B వదిలిపెట్టండి.", "glow": "F_net_arrow", "math_show": "F = (n A q v_d)(L B)", "math_persist": true },
+            { "id": "s2_6", "text_en": "But n times A times q times v d is exactly the current I. That is the definition of current.", "text_hi": "लेकिन n times A times q times v d बिल्कुल current I है। यही current की definition है।", "text_te": "కానీ n times A times q times v d సరిగ్గా current I అవుతుంది. ఇదే current యొక్క definition.", "glow": "F_net_arrow", "math_show": "I = n A q v_d" },
+            { "id": "s2_7", "text_en": "So the whole thing collapses to F equals I L B. The messy carrier picture becomes one clean law.", "text_hi": "तो पूरी चीज़ F equals I L B में collapse हो जाती है। जटिल carrier picture एक clean law बन जाती है।", "text_te": "కాబట్టి మొత్తం విషయం F equals I L B గా collapse అవుతుంది. సంకీర్ణమైన carrier picture ఒక clean law గా మారుతుంది.", "glow": "F_net_arrow", "math_show": "F = I L B", "math_persist": true },
+            { "id": "s2_8", "text_en": "That is the big idea. A wire is just charges, and I L cross B is q v cross B added up over all of them.", "text_hi": "यही बड़ा idea है। एक wire बस charges है, और I L cross B वही q v cross B है जो उन सभी पर add हो जाती है।", "text_te": "ఇదే పెద్ద idea. ఒక wire కేవలం charges మాత్రమే, మరియు I L cross B అంటే q v cross B వాటన్నింటి మీద కలిపినది.", "glow": "F_net_arrow" }
           ]
         }
       },
@@ -265,13 +265,13 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "We have the size of the force. Now, which way does it push the wire?", "glow": "f_net" },
-            { "id": "s3_2", "text_en": "Use the right hand. Point your fingers along L, the current direction.", "glow": ["hand", "wire"], "hand_phase": "v" },
-            { "id": "s3_3", "text_en": "Curl them toward B, the field.", "glow": ["hand", "b"], "hand_phase": "b" },
-            { "id": "s3_4", "text_en": "Your thumb now points along F — the force on the wire.", "glow": ["hand", "f_net"], "hand_phase": "f" },
-            { "id": "s3_5", "text_en": "F is perpendicular to both the wire and the field — exactly like the single-charge rule, with L playing the part v played.", "glow": "f_net", "math_show": "\\vec{F} = I\\,\\vec{L}\\times\\vec{B}" },
-            { "id": "s3_6", "text_en": "Now flip the current the other way. Watch the force flip with it.", "glow": ["wire", "f_net"] },
-            { "id": "s3_7", "text_en": "Reverse the current, reverse the force. That sign change is how a motor keeps turning the same way.", "glow": "f_net" }
+            { "id": "s3_1", "text_en": "We have the size of the force. Now, which way does it push the wire?", "text_hi": "हमारे पास force का size है। अब, यह wire को किस direction में push करती है?", "text_te": "మనకు force యొక్క పరిమాణం తెలిసింది. ఇప్పుడు, ఇది wire ని ఏ direction లో push చేస్తుంది?", "glow": "f_net" },
+            { "id": "s3_2", "text_en": "Use the right hand. Point your fingers along L, the current direction.", "text_hi": "right hand इस्तेमाल करिए। अपनी उंगलियाँ L की तरफ point करिए, current direction में।", "text_te": "right hand వాడండి. మీ వేళ్ళను L వైపు point చేయండి, current direction లో.", "glow": ["hand", "wire"], "hand_phase": "v" },
+            { "id": "s3_3", "text_en": "Curl them toward B, the field.", "text_hi": "उन्हें B, यानी field की तरफ curl करिए।", "text_te": "వాటిని B, అంటే field వైపు curl చేయండి.", "glow": ["hand", "b"], "hand_phase": "b" },
+            { "id": "s3_4", "text_en": "Your thumb now points along F — the force on the wire.", "text_hi": "आपका thumb अब F के साथ point करता है — wire पर force।", "text_te": "మీ thumb ఇప్పుడు F వెంట point చేస్తుంది — wire పై force.", "glow": ["hand", "f_net"], "hand_phase": "f" },
+            { "id": "s3_5", "text_en": "F is perpendicular to both the wire and the field — exactly like the single-charge rule, with L playing the part v played.", "text_hi": "F wire और field दोनों के perpendicular है — बिल्कुल single-charge rule की तरह, जिसमें L वह भूमिका निभाता है जो v निभाती थी।", "text_te": "F wire మరియు field రెండింటికీ perpendicular గా ఉంటుంది — single-charge rule లాగే, L అక్కడ v పాత్ర పోషిస్తుంది.", "glow": "f_net", "math_show": "\\vec{F} = I\\,\\vec{L}\\times\\vec{B}" },
+            { "id": "s3_6", "text_en": "Now flip the current the other way. Watch the force flip with it.", "text_hi": "अब current को दूसरी दिशा में flip करिए। देखिए force भी इसके साथ flip होती है।", "text_te": "ఇప్పుడు current ని వేరే వైపు flip చేయండి. force కూడా దానితో పాటు flip అవడం చూడండి.", "glow": ["wire", "f_net"] },
+            { "id": "s3_7", "text_en": "Reverse the current, reverse the force. That sign change is how a motor keeps turning the same way.", "text_hi": "current reverse करो, force reverse होगी। वही sign change है जिससे motor एक ही direction में घूमती रहती है।", "text_te": "current reverse చేయండి, force reverse అవుతుంది. ఆ sign change వల్లనే motor ఒకే direction లో తిరుగుతూ ఉంటుంది.", "glow": "f_net" }
           ]
         }
       },
@@ -313,13 +313,13 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "The magnitude is B times I times L times sine theta. Everything hangs on which angle theta is.", "glow": "true_90_arc", "math_show": "F = B\\,I\\,L\\,\\sin\\theta" },
-            { "id": "s4_pred", "text_en": "Predict first. The wire is drawn at thirty degrees to the page edge. Is theta thirty degrees? Decide before I show you.", "glow": "decoy_30_angle" },
-            { "id": "s4_2", "text_en": "It is a trap. The thirty-degree angle to the page edge has nothing to do with the physics.", "glow": "decoy_30_angle" },
-            { "id": "s4_3", "text_en": "Theta is the angle between L, the current direction, and B, the field.", "glow": ["true_90_arc", "b"], "math_show": "\\theta = \\angle(\\vec{L},\\vec{B})" },
-            { "id": "s4_4", "text_en": "Here L points across the field, so theta is ninety degrees, and the force is at its maximum, B I L.", "glow": "true_90_arc", "math_show": "F = B I L\\,\\sin 90^{\\circ} = B I L" },
-            { "id": "s4_5", "text_en": "Tilt L toward B and theta shrinks. The force falls off as sine theta.", "glow": "f_net", "math_show": "F \\propto \\sin\\theta" },
-            { "id": "s4_6", "text_en": "When L lines up with B, theta is zero, sine zero is zero, and the wire feels no force at all.", "glow": "f_net", "math_show": "\\theta = 0 \\;\\Rightarrow\\; F = 0" }
+            { "id": "s4_1", "text_en": "The magnitude is B times I times L times sine theta. Everything hangs on which angle theta is.", "text_hi": "magnitude है B times I times L times sine theta। सब कुछ इस पर निर्भर है कि angle theta कौन सा है।", "text_te": "magnitude అనేది B times I times L times sine theta. అన్నీ ఏ angle theta అనే దానిపై ఆధారపడి ఉంటాయి.", "glow": "true_90_arc", "math_show": "F = B\\,I\\,L\\,\\sin\\theta" },
+            { "id": "s4_pred", "text_en": "Predict first. The wire is drawn at thirty degrees to the page edge. Is theta thirty degrees? Decide before I show you.", "text_hi": "पहले predict करिए। wire को page edge से thirty degrees पर draw किया गया है। क्या theta thirty degrees है? मैं दिखाने से पहले तय करिए।", "text_te": "ముందు predict చేయండి. wire page edge కి thirty degrees వద్ద draw చేయబడింది. theta thirty degrees అవుతుందా? నేను చూపించే ముందే నిర్ణయించండి.", "glow": "decoy_30_angle" },
+            { "id": "s4_2", "text_en": "It is a trap. The thirty-degree angle to the page edge has nothing to do with the physics.", "text_hi": "यह एक trap है। page edge से thirty-degree angle का physics से कोई लेना-देना नहीं है।", "text_te": "ఇది ఒక trap. page edge కి thirty-degree angle physics తో ఎటువంటి సంబంధం లేదు.", "glow": "decoy_30_angle" },
+            { "id": "s4_3", "text_en": "Theta is the angle between L, the current direction, and B, the field.", "text_hi": "Theta, L यानी current direction और B यानी field के बीच का angle है।", "text_te": "Theta అనేది L అంటే current direction మరియు B అంటే field మధ్య ఉన్న angle.", "glow": ["true_90_arc", "b"], "math_show": "\\theta = \\angle(\\vec{L},\\vec{B})" },
+            { "id": "s4_4", "text_en": "Here L points across the field, so theta is ninety degrees, and the force is at its maximum, B I L.", "text_hi": "यहाँ L field के आर-पार point करता है, इसलिए theta ninety degrees है, और force अपने maximum B I L पर है।", "text_te": "ఇక్కడ L field అడ్డంగా point చేస్తుంది, కాబట్టి theta ninety degrees, మరియు force దాని maximum B I L వద్ద ఉంటుంది.", "glow": "true_90_arc", "math_show": "F = B I L\\,\\sin 90^{\\circ} = B I L" },
+            { "id": "s4_5", "text_en": "Tilt L toward B and theta shrinks. The force falls off as sine theta.", "text_hi": "L को B की तरफ tilt करिए और theta कम होता जाएगा। force sine theta के अनुसार कम होती है।", "text_te": "L ని B వైపు tilt చేయండి మరియు theta తగ్గిపోతుంది. force sine theta తో తగ్గిపోతుంది.", "glow": "f_net", "math_show": "F \\propto \\sin\\theta" },
+            { "id": "s4_6", "text_en": "When L lines up with B, theta is zero, sine zero is zero, and the wire feels no force at all.", "text_hi": "जब L, B के साथ line up हो जाए, theta zero होता है, sine zero भी zero है, और wire को बिल्कुल force नहीं लगती।", "text_te": "L, B తో line up అయినప్పుడు, theta zero అవుతుంది, sine zero కూడా zero, మరియు wire కి అస్సలు force అనుభవం కాదు.", "glow": "f_net", "math_show": "\\theta = 0 \\;\\Rightarrow\\; F = 0" }
           ]
         },
         "misconception_watch": [
@@ -367,13 +367,13 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Here is a wire that zig-zags between two end points. It carries the same current I.", "glow": "bent_wire" },
-            { "id": "s5_pred", "text_en": "Predict first. To get the force, do we have to add up every twist and bend? Decide before we reveal it.", "glow": "bent_wire" },
-            { "id": "s5_2", "text_en": "The surprising answer is no. In a uniform field, all the bends cancel out.", "glow": "bent_wire" },
-            { "id": "s5_3", "text_en": "Only the straight chord from one end to the other matters.", "glow": "chord_arrow" },
-            { "id": "s5_4", "text_en": "Watch — replace the whole bent wire with that single straight chord.", "glow": "chord_arrow" },
-            { "id": "s5_5", "text_en": "The force is I times that chord vector cross B. The wiggles in between contribute nothing.", "glow": "chord_arrow", "math_show": "\\vec{F} = I\\,(\\vec{L}_{\\text{chord}}\\times\\vec{B})", "math_persist": true },
-            { "id": "s5_6", "text_en": "So for any bent or curved wire in a uniform field, just draw the straight line joining its two ends.", "glow": "chord_arrow" }
+            { "id": "s5_1", "text_en": "Here is a wire that zig-zags between two end points. It carries the same current I.", "text_hi": "यहाँ एक wire है जो दो end points के बीच zig-zag करती है। यह वही current I ले जाती है।", "text_te": "ఇక్కడ రెండు end points మధ్య zig-zag చేసే ఒక wire ఉంది. ఇది అదే current I తీసుకెళ్తుంది.", "glow": "bent_wire" },
+            { "id": "s5_pred", "text_en": "Predict first. To get the force, do we have to add up every twist and bend? Decide before we reveal it.", "text_hi": "पहले predict करिए। force पाने के लिए, क्या हमें हर twist और bend को add करना होगा? हम reveal करने से पहले तय करिए।", "text_te": "ముందు predict చేయండి. force కనుగొనడానికి, ప్రతి twist మరియు bend ని add చేయాలా? మనం reveal చేయడానికి ముందు నిర్ణయించండి.", "glow": "bent_wire" },
+            { "id": "s5_2", "text_en": "The surprising answer is no. In a uniform field, all the bends cancel out.", "text_hi": "चौंकाने वाला जवाब है नहीं। uniform field में, सारे bends cancel out हो जाते हैं।", "text_te": "ఆశ్చర్యకరమైన జవాబు — లేదు అని. uniform field లో, అన్ని bends cancel out అవుతాయి.", "glow": "bent_wire" },
+            { "id": "s5_3", "text_en": "Only the straight chord from one end to the other matters.", "text_hi": "केवल एक end से दूसरे end तक straight chord ही matter करती है।", "text_te": "ఒక end నుండి మరొక end వరకు straight chord మాత్రమే matter చేస్తుంది.", "glow": "chord_arrow" },
+            { "id": "s5_4", "text_en": "Watch — replace the whole bent wire with that single straight chord.", "text_hi": "देखिए — पूरी bent wire को उस single straight chord से replace करिए।", "text_te": "చూడండి — మొత్తం bent wire ని ఆ single straight chord తో replace చేయండి.", "glow": "chord_arrow" },
+            { "id": "s5_5", "text_en": "The force is I times that chord vector cross B. The wiggles in between contribute nothing.", "text_hi": "force है I times वह chord vector cross B। बीच में जो wiggles हैं वे कुछ contribute नहीं करते।", "text_te": "force అంటే I times ఆ chord vector cross B. మధ్యలో ఉన్న wiggles ఏమీ contribute చేయవు.", "glow": "chord_arrow", "math_show": "\\vec{F} = I\\,(\\vec{L}_{\\text{chord}}\\times\\vec{B})", "math_persist": true },
+            { "id": "s5_6", "text_en": "So for any bent or curved wire in a uniform field, just draw the straight line joining its two ends.", "text_hi": "तो uniform field में किसी भी bent या curved wire के लिए, बस उसके दोनों ends को जोड़ने वाली straight line खींचिए।", "text_te": "కాబట్టి uniform field లో ఏ bent లేదా curved wire కైనా, కేవలం దాని రెండు ends ను కలిపే straight line గీయండి.", "glow": "chord_arrow" }
           ]
         },
         "misconception_watch": [
@@ -421,13 +421,13 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Now bend the wire all the way into a closed square loop carrying current I.", "glow": "square_loop" },
-            { "id": "s6_pred", "text_en": "Predict first. Using the chord rule, what is the net force on a closed loop? Think before we check.", "glow": "square_loop" },
-            { "id": "s6_2", "text_en": "Use the chord rule. The chord runs from the starting point back to the same starting point.", "glow": "square_loop" },
-            { "id": "s6_3", "text_en": "That chord has zero length, so the net force on a closed loop in a uniform field is exactly zero.", "glow": "square_loop", "math_show": "\\vec{L}_{\\text{chord}} = 0 \\;\\Rightarrow\\; \\vec{F}_{\\text{net}} = 0" },
-            { "id": "s6_4", "text_en": "But look at the sides. Opposite sides carry current opposite ways, so they feel forces in opposite directions.", "glow": "side_forces" },
-            { "id": "s6_5", "text_en": "Equal and opposite forces on opposite sides do not push the loop — they twist it. That twist is a torque.", "glow": "side_forces" },
-            { "id": "s6_6", "text_en": "Zero net force, but a turning torque. That torque is exactly how a motor loop spins — and it is our next concept.", "glow": "side_forces" }
+            { "id": "s6_1", "text_en": "Now bend the wire all the way into a closed square loop carrying current I.", "text_hi": "अब wire को पूरी तरह एक बंद square loop में मोड़िए जो current I ले जाती है।", "text_te": "ఇప్పుడు wire ని పూర్తిగా current I తీసుకెళ్ళే ఒక closed square loop లో వంచండి.", "glow": "square_loop" },
+            { "id": "s6_pred", "text_en": "Predict first. Using the chord rule, what is the net force on a closed loop? Think before we check.", "text_hi": "पहले predict करिए। chord rule का उपयोग करते हुए, closed loop पर net force क्या होगी? हम check करने से पहले सोचिए।", "text_te": "ముందు predict చేయండి. chord rule వాడి, closed loop పై net force ఏమి అవుతుంది? మనం check చేయడానికి ముందు ఆలోచించండి.", "glow": "square_loop" },
+            { "id": "s6_2", "text_en": "Use the chord rule. The chord runs from the starting point back to the same starting point.", "text_hi": "chord rule इस्तेमाल करिए। chord starting point से उसी starting point तक वापस जाती है।", "text_te": "chord rule వాడండి. chord starting point నుండి అదే starting point వరకు తిరిగి వెళ్తుంది.", "glow": "square_loop" },
+            { "id": "s6_3", "text_en": "That chord has zero length, so the net force on a closed loop in a uniform field is exactly zero.", "text_hi": "उस chord की length zero है, इसलिए uniform field में closed loop पर net force बिल्कुल zero है।", "text_te": "ఆ chord యొక్క length zero, కాబట్టి uniform field లో closed loop పై net force సరిగ్గా zero అవుతుంది.", "glow": "square_loop", "math_show": "\\vec{L}_{\\text{chord}} = 0 \\;\\Rightarrow\\; \\vec{F}_{\\text{net}} = 0" },
+            { "id": "s6_4", "text_en": "But look at the sides. Opposite sides carry current opposite ways, so they feel forces in opposite directions.", "text_hi": "लेकिन sides देखिए। Opposite sides विपरीत directions में current ले जाती हैं, इसलिए वे opposite directions में forces feel करती हैं।", "text_te": "కానీ sides చూడండి. Opposite sides వ్యతిరేక directions లో current తీసుకెళ్తాయి, కాబట్టి అవి opposite directions లో forces అనుభవిస్తాయి.", "glow": "side_forces" },
+            { "id": "s6_5", "text_en": "Equal and opposite forces on opposite sides do not push the loop — they twist it. That twist is a torque.", "text_hi": "Opposite sides पर equal और opposite forces loop को push नहीं करतीं — वे इसे twist करती हैं। वही twist है torque।", "text_te": "Opposite sides పై equal మరియు opposite forces loop ని push చేయవు — అవి దాన్ని twist చేస్తాయి. ఆ twist నే torque అంటారు.", "glow": "side_forces" },
+            { "id": "s6_6", "text_en": "Zero net force, but a turning torque. That torque is exactly how a motor loop spins — and it is our next concept.", "text_hi": "Zero net force, लेकिन एक turning torque। वही torque है जिससे motor loop spin होती है — और यह हमारा अगला concept है।", "text_te": "Zero net force, కానీ ఒక turning torque. ఆ torque వల్లనే motor loop spin అవుతుంది — మరియు ఇది మన తదుపరి concept.", "glow": "side_forces" }
           ]
         },
         "misconception_watch": [
@@ -474,11 +474,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Your turn. The top-right sliders set the current I, the length L, the field B, and the angle theta.", "glow": "sliders" },
-            { "id": "s7_2", "text_en": "Set theta to ninety degrees and the force is at its largest, B I L.", "glow": "f_net" },
-            { "id": "s7_3", "text_en": "Drag theta down to zero and the force vanishes — the wire is now along the field.", "glow": "f_net" },
-            { "id": "s7_4", "text_en": "Double the current and watch the force double. F is straight-line proportional to I.", "glow": "f_net" },
-            { "id": "s7_5", "text_en": "Tap the flip-current button and watch the force reverse. That is the whole concept in your hands.", "glow": ["sliders", "f_net"] }
+            { "id": "s7_1", "text_en": "Your turn. The top-right sliders set the current I, the length L, the field B, and the angle theta.", "text_hi": "आपकी बारी। Top-right sliders current I, length L, field B, और angle theta set करते हैं।", "text_te": "మీ వంతు. Top-right sliders current I, length L, field B, మరియు angle theta set చేస్తాయి.", "glow": "sliders" },
+            { "id": "s7_2", "text_en": "Set theta to ninety degrees and the force is at its largest, B I L.", "text_hi": "Theta को ninety degrees पर set करिए और force अपने maximum B I L पर होगी।", "text_te": "Theta ని ninety degrees కి set చేయండి మరియు force దాని maximum B I L వద్ద ఉంటుంది.", "glow": "f_net" },
+            { "id": "s7_3", "text_en": "Drag theta down to zero and the force vanishes — the wire is now along the field.", "text_hi": "Theta को zero तक drag करिए और force गायब हो जाएगी — wire अब field के साथ है।", "text_te": "Theta ని zero వరకు drag చేయండి మరియు force అదృశ్యమవుతుంది — wire ఇప్పుడు field వెంట ఉంది.", "glow": "f_net" },
+            { "id": "s7_4", "text_en": "Double the current and watch the force double. F is straight-line proportional to I.", "text_hi": "Current को double करिए और force को double होते देखिए। F, I के straight-line proportional है।", "text_te": "Current ని double చేయండి మరియు force double అవడం చూడండి. F, I కి straight-line proportional గా ఉంటుంది.", "glow": "f_net" },
+            { "id": "s7_5", "text_en": "Tap the flip-current button and watch the force reverse. That is the whole concept in your hands.", "text_hi": "flip-current button tap करिए और force को reverse होते देखिए। पूरा concept आपके हाथों में है।", "text_te": "flip-current button tap చేయండి మరియు force reverse అవడం చూడండి. మొత్తం concept మీ చేతుల్లో ఉంది.", "glow": ["sliders", "f_net"] }
           ]
         }
       }

@@ -144,19 +144,19 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Here is a uniform electric field between two charged plates — every field line points the same way, straight down."
+              "text_en": "Here is a uniform electric field between two charged plates — every field line points the same way, straight down.", "text_hi": "देखिए, दो charged plates के बीच एक uniform electric field है — हर field line एक ही direction में, सीधे नीचे की ओर point करती है।", "text_te": "చూడండి, రెండు charged plates మధ్య ఒక uniform electric field ఉంది — ప్రతి field line అదే direction లో, నేరుగా కిందికి point చేస్తుంది."
             },
             {
               "id": "s1_2",
-              "text_en": "Place a positive charge q in it. The field grabs the charge and pushes it with a force F."
+              "text_en": "Place a positive charge q in it. The field grabs the charge and pushes it with a force F.", "text_hi": "इसमें एक positive charge q रखिए। field उस charge को पकड़ती है और उसे force F से push करती है।", "text_te": "దాని లో ఒక positive charge q ఉంచండి. field ఆ charge ని పట్టుకుని force F తో push చేస్తుంది."
             },
             {
               "id": "s1_3",
-              "text_en": "We already know E equals F over q. Rearrange it: the force on the charge is F equals q times E."
+              "text_en": "We already know E equals F over q. Rearrange it: the force on the charge is F equals q times E.", "text_hi": "हम पहले से जानते हैं E equals F over q। इसे rearrange करें: charge पर force है F equals q times E।", "text_te": "మనకు ముందే తెలుసు E equals F over q. దాన్ని rearrange చేయండి: charge పై force అంటే F equals q times E."
             },
             {
               "id": "s1_4",
-              "text_en": "So the field is not just a picture — it is what pushes any charge you place inside it."
+              "text_en": "So the field is not just a picture — it is what pushes any charge you place inside it.", "text_hi": "तो field सिर्फ एक picture नहीं है — यह वही है जो उसमें रखे किसी भी charge को push करती है।", "text_te": "కాబట్టి field కేవలం ఒక picture కాదు — అందులో ఉంచిన ఏ charge నైనా push చేసేది ఇదే."
             }
           ]
         }
@@ -202,19 +202,19 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Before I change anything — predict. If the charge is negative, which way does the force point?"
+              "text_en": "Before I change anything — predict. If the charge is negative, which way does the force point?", "text_hi": "कुछ बदलने से पहले — predict कीजिए। अगर charge negative है, तो force किस direction में point करेगा?", "text_te": "నేను ఏదైనా మార్చే ముందు — predict చేయండి. charge negative అయితే, force ఏ direction లో point అవుతుంది?"
             },
             {
               "id": "s2_2",
-              "text_en": "Watch the force arrow. For a negative charge it flips and points UP — opposite to the field."
+              "text_en": "Watch the force arrow. For a negative charge it flips and points UP — opposite to the field.", "text_hi": "force arrow को देखिए। एक negative charge के लिए यह flip होकर ऊपर point करता है — field के opposite।", "text_te": "force arrow చూడండి. ఒక negative charge కి అది flip అయి పైకి point చేస్తుంది — field కి opposite గా."
             },
             {
               "id": "s2_3",
-              "text_en": "The size F equals q E is unchanged. Only the direction reversed, because the sign of q reversed."
+              "text_en": "The size F equals q E is unchanged. Only the direction reversed, because the sign of q reversed.", "text_hi": "size F equals q E वैसा ही रहता है। सिर्फ direction उलट गई, क्योंकि q का sign उलट गया।", "text_te": "size F equals q E మారదు. కేవలం direction మారింది, ఎందుకంటే q యొక్క sign మారింది."
             },
             {
               "id": "s2_4",
-              "text_en": "Positive charge: force along E. Negative charge: force opposite E. The sign owns the direction."
+              "text_en": "Positive charge: force along E. Negative charge: force opposite E. The sign owns the direction.", "text_hi": "Positive charge: force, E के along। Negative charge: force, E के opposite। sign ही direction तय करता है।", "text_te": "Positive charge: force, E వెంట. Negative charge: force, E కి opposite. sign మాత్రమే direction నిర్ణయిస్తుంది."
             }
           ]
         },
@@ -267,19 +267,19 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "How big is the push? The force is F equals q times E — nothing else."
+              "text_en": "How big is the push? The force is F equals q times E — nothing else.", "text_hi": "push कितना बड़ा है? force है F equals q times E — और कुछ नहीं।", "text_te": "push ఎంత పెద్దది? force అంటే F equals q times E — మరేమీ లేదు."
             },
             {
               "id": "s3_2",
-              "text_en": "Double the charge and the force doubles. The field has twice as much charge to pull on."
+              "text_en": "Double the charge and the force doubles. The field has twice as much charge to pull on.", "text_hi": "charge को double करें तो force भी double हो जाती है। field के पास pull करने के लिए दोगुना charge है।", "text_te": "charge ని double చేయండి, force కూడా double అవుతుంది. field కి pull చేయడానికి రెట్టింపు charge ఉంటుంది."
             },
             {
               "id": "s3_3",
-              "text_en": "Move to a stronger field — denser field lines — and the same charge feels a bigger force."
+              "text_en": "Move to a stronger field — denser field lines — and the same charge feels a bigger force.", "text_hi": "एक stronger field में जाइए — denser field lines — और वही charge एक बड़ी force महसूस करता है।", "text_te": "ఒక stronger field కి వెళ్ళండి — denser field lines — అదే charge పెద్ద force అనుభవిస్తుంది."
             },
             {
               "id": "s3_4",
-              "text_en": "There is no velocity in this formula. A charge sitting perfectly still still feels the full force qE."
+              "text_en": "There is no velocity in this formula. A charge sitting perfectly still still feels the full force qE.", "text_hi": "इस formula में velocity नहीं है। पूरी तरह स्थिर बैठा charge भी पूरी force qE महसूस करता है।", "text_te": "ఈ formula లో velocity లేదు. పూర్తిగా స్థిరంగా ఉన్న charge కూడా పూర్తి force qE అనుభవిస్తుంది."
             }
           ]
         }
@@ -325,19 +325,19 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Now let the charge go from rest. The force is constant, so the charge accelerates straight along the field."
+              "text_en": "Now let the charge go from rest. The force is constant, so the charge accelerates straight along the field.", "text_hi": "अब charge को rest से छोड़िए। force constant है, इसलिए charge field के along सीधे accelerate करता है।", "text_te": "ఇప్పుడు charge ని rest నుండి వదలండి. force constant గా ఉంది, కాబట్టి charge field వెంట నేరుగా accelerate అవుతుంది."
             },
             {
               "id": "s4_2",
-              "text_en": "Newton's law gives the acceleration: a equals F over m, which is q E over m."
+              "text_en": "Newton's law gives the acceleration: a equals F over m, which is q E over m.", "text_hi": "Newton's law से acceleration मिलती है: a equals F over m, जो है q E over m।", "text_te": "Newton's law వల్ల acceleration వస్తుంది: a equals F over m, అంటే q E over m."
             },
             {
               "id": "s4_3",
-              "text_en": "The force arrow stays the same length the whole way — but the velocity keeps growing."
+              "text_en": "The force arrow stays the same length the whole way — but the velocity keeps growing.", "text_hi": "force arrow पूरे रास्ते same length पर रहता है — लेकिन velocity बढ़ती रहती है।", "text_te": "force arrow మొత్తం దూరంలో same length గా ఉంటుంది — కానీ velocity పెరుగుతూనే ఉంటుంది."
             },
             {
               "id": "s4_4",
-              "text_en": "This is exactly free fall, but with the electric force qE playing the role of gravity."
+              "text_en": "This is exactly free fall, but with the electric force qE playing the role of gravity.", "text_hi": "यह बिल्कुल free fall जैसा है, लेकिन यहाँ electric force qE, gravity की भूमिका निभा रही है।", "text_te": "ఇది సరిగ్గా free fall లాంటిది, కానీ ఇక్కడ electric force qE, gravity పాత్ర పోషిస్తోంది."
             }
           ]
         },
@@ -384,19 +384,19 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Now launch the charge sideways across the field. Predict — what shape will its path be?"
+              "text_en": "Now launch the charge sideways across the field. Predict — what shape will its path be?", "text_hi": "अब charge को field के across sideways launch कीजिए। Predict करें — इसका path किस shape का होगा?", "text_te": "ఇప్పుడు charge ని field అంతటా sideways launch చేయండి. Predict చేయండి — దాని path ఏ shape లో ఉంటుంది?"
             },
             {
               "id": "s5_2",
-              "text_en": "Watch. The force stays fixed, pointing along the field, while the path bends into a parabola."
+              "text_en": "Watch. The force stays fixed, pointing along the field, while the path bends into a parabola.", "text_hi": "देखिए। force एक ही जगह रहती है, field के along point करती है, जबकि path एक parabola में मुड़ जाता है।", "text_te": "చూడండి. force ఒకే చోట ఉంటుంది, field వెంట point చేస్తూ, అదే సమయంలో path ఒక parabola లో వంగుతుంది."
             },
             {
               "id": "s5_3",
-              "text_en": "The force never points where the charge is going. It is sideways to the motion, yet it curves the path."
+              "text_en": "The force never points where the charge is going. It is sideways to the motion, yet it curves the path.", "text_hi": "force कभी वहाँ point नहीं करती जहाँ charge जा रहा है। यह motion के sideways है, फिर भी path को curve करती है।", "text_te": "force ఎప్పుడూ charge వెళ్ళే దిశలో point చేయదు. అది motion కి sideways గా ఉంటుంది, అయినా path ని curve చేస్తుంది."
             },
             {
               "id": "s5_4",
-              "text_en": "This is exactly a ball thrown sideways under gravity. A constant force always gives a parabola."
+              "text_en": "This is exactly a ball thrown sideways under gravity. A constant force always gives a parabola.", "text_hi": "यह बिल्कुल gravity के नीचे sideways फेंकी गई ball जैसा है। एक constant force हमेशा parabola देती है।", "text_te": "ఇది సరిగ్గా gravity కింద sideways విసిరిన ball లాంటిది. ఒక constant force ఎప్పుడూ parabola ఇస్తుంది."
             }
           ]
         },
@@ -450,19 +450,19 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Send in two charges with the same charge and the same field — but different masses."
+              "text_en": "Send in two charges with the same charge and the same field — but different masses.", "text_hi": "दो charges को same charge और same field के साथ भेजिए — लेकिन different masses के साथ।", "text_te": "రెండు charges ని same charge మరియు same field తో పంపండి — కానీ different masses తో."
             },
             {
               "id": "s6_2",
-              "text_en": "They feel the exact same force F equals q E. But watch their paths split apart."
+              "text_en": "They feel the exact same force F equals q E. But watch their paths split apart.", "text_hi": "वे exactly same force F equals q E महसूस करते हैं। लेकिन उनके paths को अलग होते हुए देखिए।", "text_te": "అవి సరిగ్గా same force F equals q E అనుభవిస్తాయి. కానీ వాటి paths వేరు వేరుగా అవుతాయి చూడండి."
             },
             {
               "id": "s6_3",
-              "text_en": "The light one whips into a sharp curve. The heavy one barely bends. Same force, different acceleration."
+              "text_en": "The light one whips into a sharp curve. The heavy one barely bends. Same force, different acceleration.", "text_hi": "हल्का वाला एक sharp curve में झटके से मुड़ जाता है। भारी वाला मुश्किल से मुड़ता है। Same force, different acceleration।", "text_te": "తేలికైనది sharp curve లో వేగంగా తిరుగుతుంది. భారమైనది పెద్దగా వంగదు. Same force, different acceleration."
             },
             {
               "id": "s6_4",
-              "text_en": "Because a equals q E over m: a bigger mass gives a smaller acceleration for the very same force."
+              "text_en": "Because a equals q E over m: a bigger mass gives a smaller acceleration for the very same force.", "text_hi": "क्योंकि a equals q E over m: एक bigger mass उसी force के लिए एक smaller acceleration देता है।", "text_te": "ఎందుకంటే a equals q E over m: ఒక bigger mass అదే force కి smaller acceleration ఇస్తుంది."
             }
           ]
         },
@@ -516,19 +516,19 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "Now you drive it. Change the charge, flip its sign, change the field strength and the mass."
+              "text_en": "Now you drive it. Change the charge, flip its sign, change the field strength and the mass.", "text_hi": "अब आप इसे drive कीजिए। charge बदलिए, उसका sign flip कीजिए, field strength और mass बदलिए।", "text_te": "ఇప్పుడు మీరు దీన్ని drive చేయండి. charge మార్చండి, దాని sign flip చేయండి, field strength మరియు mass మార్చండి."
             },
             {
               "id": "s7_2",
-              "text_en": "Watch the force F equals q E grow and flip, and watch the parabola tighten or stretch."
+              "text_en": "Watch the force F equals q E grow and flip, and watch the parabola tighten or stretch.", "text_hi": "force F equals q E को बढ़ते और flip होते देखिए, और parabola को tight या stretch होते देखिए।", "text_te": "force F equals q E పెరగడం మరియు flip అవడం చూడండి, మరియు parabola tight లేదా stretch అవడం చూడండి."
             },
             {
               "id": "s7_3",
-              "text_en": "A bigger charge or field steepens the curve; a bigger mass flattens it — that is a equals q E over m."
+              "text_en": "A bigger charge or field steepens the curve; a bigger mass flattens it — that is a equals q E over m.", "text_hi": "एक bigger charge या field curve को steep करता है; एक bigger mass उसे flatten करता है — यही है a equals q E over m।", "text_te": "ఒక bigger charge లేదా field curve ని steep చేస్తుంది; ఒక bigger mass దాన్ని flatten చేస్తుంది — ఇదే a equals q E over m."
             },
             {
               "id": "s7_4",
-              "text_en": "One law runs all of it: the force is q E, and the motion is q E divided by the mass."
+              "text_en": "One law runs all of it: the force is q E, and the motion is q E divided by the mass.", "text_hi": "एक law यह सब चलाता है: force है q E, और motion है q E divided by the mass।", "text_te": "ఒక law ఇవన్నీ నడిపిస్తుంది: force అంటే q E, మరియు motion అంటే q E divided by the mass."
             }
           ]
         }

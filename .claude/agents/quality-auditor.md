@@ -14,6 +14,14 @@ model: claude-sonnet-4-6
 
 Read this file, then the target concept JSON, then run the 8 gates below. Never rubber-stamp.
 
+> **field_3d Gate 8 (headless scar regression):** for a field_3d concept, run
+> `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>` and `--field3d --open`
+> (this is the headless reader — the Supabase MCP needs interactive OAuth and won't run; `supabaseAdmin`
+> works). Every OPEN row is a known scar to re-check on the candidate. Also read
+> `docs/FIELD3D_SCENARIO_CHECKLIST.md`. NOTE: field_3d cognitive flow is audited by **Gate 15**, not
+> Gate 3c (which never fires on field_3d). For radius/parameter ramps, read DENSE frames, not just the
+> frozen end-state.
+
 ## Role
 
 Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session 30.7 proved that. The auditor is the last **automated** line of defense before the sim reaches the human reviewer — it is NOT the final judge of teaching quality (see the pre-flight framing below).

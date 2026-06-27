@@ -13,6 +13,12 @@ tools: Read, Grep, Glob, WebSearch, WebFetch
 
 First in the pipeline. Produces the skeleton that the other agents fill in.
 
+> **field_3d pre-flight (read first for any field_3d concept):** read `docs/FIELD3D_SCENARIO_CHECKLIST.md`
+> and the scar list — `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>`
+> (or `--field3d --open`). The `directive` rows are pedagogy lessons you MUST apply (concrete-before-abstract,
+> reveal-synced-to-narration, coordinate-sim+graph, visual-must-match-narration, don't-pre-spoil). Don't
+> re-hit a recorded scar.
+
 ## Role
 
 Given a concept_id + chapter, decide:

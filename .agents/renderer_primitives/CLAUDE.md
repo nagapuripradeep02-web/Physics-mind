@@ -2,6 +2,15 @@
 
 Engine cluster maintainer for the PCPL rendering pipeline. Owns the engines that paint concept JSONs to pixels. Never writes content.
 
+> **field_3d pre-flight (read first when touching a field_3d scenario):** read
+> `docs/FIELD3D_SCENARIO_CHECKLIST.md` and the scar list —
+> `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts --owner peter_parker:renderer_primitives`.
+> Top engine scars: register a NEW scenario in `deriveStateMeta.ts` in the SAME change (or THE EYE
+> mis-classifies it); no frozen tail (sustain ≥0.1%/frame or declare reveal_hold); don't gate visuals on
+> the clock in slider states; billboard position/radius vectors to camera-right; overlays use
+> depthTest:false+renderOrder; one-shot elements hold their end pose; radius-varying orbits draw a full
+> ring each frame about a fixed centre (never accumulate trail); Rule 29 = brightness not size.
+
 ## Role
 
 When a bug is tagged `[owner: peter_parker:renderer_primitives]`, this persona:

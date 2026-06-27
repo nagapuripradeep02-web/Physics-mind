@@ -177,15 +177,15 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "You already know the field around a single wire — circles."
+              "text_en": "You already know the field around a single wire — circles.", "text_hi": "आप पहले से जानते हैं कि एक single wire के आसपास field कैसा होता है — circles।", "text_te": "మీకు ఒక single wire చుట్టూ field ఎలా ఉంటుందో ఇప్పటికే తెలుసు — circles."
             },
             {
               "id": "s1_2",
-              "text_en": "But what if we coil the wire — wrap it into a spring shape?"
+              "text_en": "But what if we coil the wire — wrap it into a spring shape?", "text_hi": "लेकिन क्या होगा अगर हम wire को coil करें — उसे एक spring shape में wrap करें?", "text_te": "కానీ మనం wire ని coil చేస్తే ఏమవుతుంది — దాన్ని spring shape లో wrap చేస్తే?"
             },
             {
               "id": "s1_3",
-              "text_en": "Each turn is still just a piece of wire carrying the same current. But the combined field changes shape dramatically. Let's see how."
+              "text_en": "Each turn is still just a piece of wire carrying the same current. But the combined field changes shape dramatically. Let's see how.", "text_hi": "हर turn अभी भी बस wire का एक टुकड़ा है जो same current carry करता है। लेकिन combined field का shape dramatically बदल जाता है। आइए देखते हैं कैसे।", "text_te": "ప్రతి turn అదే current carry చేసే wire యొక్క ఒక భాగమే. కానీ combined field యొక్క shape dramatically మారుతుంది. ఎలా అని చూద్దాం."
             }
           ]
         }
@@ -231,19 +231,19 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Quick reminder — a straight wire carrying current makes B-circles around it. Each turn of the solenoid is just a wire bent into a circle. Focus on this one turn."
+              "text_en": "Quick reminder — a straight wire carrying current makes B-circles around it. Each turn of the solenoid is just a wire bent into a circle. Focus on this one turn.", "text_hi": "एक quick reminder — current carry करने वाली straight wire उसके चारों ओर B-circles बनाती है। solenoid का हर turn बस एक circle में मुड़ा हुआ wire है। इस एक turn पर ध्यान दें।", "text_te": "ఒక quick reminder — current carry చేసే straight wire దాని చుట్టూ B-circles తయారు చేస్తుంది. solenoid యొక్క ప్రతి turn కేవలం circle లో వంగిన wire మాత్రమే. ఈ ఒక turn పై దృష్టి పెట్టండి."
             },
             {
               "id": "s2_2",
-              "text_en": "Watch the little blue circles wrap right around the wire — that is the same field, now curled into a loop. Each turn makes its own field, with a net push straight along the axis."
+              "text_en": "Watch the little blue circles wrap right around the wire — that is the same field, now curled into a loop. Each turn makes its own field, with a net push straight along the axis.", "text_hi": "छोटे blue circles को देखें जो wire के चारों ओर wrap होते हैं — वही field है, अब एक loop में curled हो गई है। हर turn अपना खुद का field बनाता है, जिसका net push सीधे axis के साथ होता है।", "text_te": "చిన్న blue circles wire చుట్టూ wrap అవుతున్నాయి చూడండి — అది అదే field, ఇప్పుడు loop లో curled అయింది. ప్రతి turn తన సొంత field తయారు చేస్తుంది, axis వెంట straight గా net push తో."
             },
             {
               "id": "s2_3",
-              "text_en": "Now do the same for every turn. Six turns spread over some length L. Hold that 'spread over L' in your head — it will matter in STATE 7."
+              "text_en": "Now do the same for every turn. Six turns spread over some length L. Hold that 'spread over L' in your head — it will matter in STATE 7.", "text_hi": "अब हर turn के लिए यही करें। कुछ length L पर फैले six turns। वह 'spread over L' अपने मन में रखें — यह STATE 7 में काम आएगा।", "text_te": "ఇప్పుడు ప్రతి turn కోసం అదే చేయండి. కొంత length L పై వ్యాపించిన six turns. ఆ 'spread over L' మీ మనసులో పెట్టుకోండి — ఇది STATE 7 లో పని కొస్తుంది."
             },
             {
               "id": "s2_4",
-              "text_en": "Six sets of circles look chaotic. But the chaos hides a pattern — the radial parts will cancel, and only the axial parts survive. Watch."
+              "text_en": "Six sets of circles look chaotic. But the chaos hides a pattern — the radial parts will cancel, and only the axial parts survive. Watch.", "text_hi": "circles के six sets chaotic लगते हैं। लेकिन इस chaos में एक pattern छिपा है — radial parts cancel हो जाएंगे, और केवल axial parts survive करेंगे। देखिए।", "text_te": "circles యొక్క six sets chaotic గా కనిపిస్తాయి. కానీ ఈ chaos లో ఒక pattern దాగి ఉంది — radial parts cancel అవుతాయి, మరియు axial parts మాత్రమే survive చేస్తాయి. చూడండి."
             }
           ]
         }
@@ -291,24 +291,24 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Pick a point on the central axis. Now look at one tiny piece of current on the ring — and its twin directly across the ring."
+              "text_en": "Pick a point on the central axis. Now look at one tiny piece of current on the ring — and its twin directly across the ring.", "text_hi": "central axis पर एक point चुनें। अब ring पर current का एक tiny टुकड़ा देखें — और ring के उस पार उसका twin।", "text_te": "central axis పై ఒక point ఎంచుకోండి. ఇప్పుడు ring పై current యొక్క ఒక tiny భాగాన్ని చూడండి — మరియు ring అంతటా నేరుగా దాని twin ని."
             },
             {
               "id": "s3_2",
-              "text_en": "When their two fields reach the axis, what do the sideways parts do? Pause for a moment and predict.",
+              "text_en": "When their two fields reach the axis, what do the sideways parts do? Pause for a moment and predict.", "text_hi": "जब उनके दो fields axis तक पहुँचते हैं, तो sideways parts क्या करते हैं? एक moment रुकें और predict करें।", "text_te": "వాటి రెండు fields axis వరకు చేరినప్పుడు, sideways parts ఏమి చేస్తాయి? ఒక్క క్షణం ఆగి predict చేయండి.",
               "pause_after_ms": 3000
             },
             {
               "id": "s3_2_5",
-              "text_en": "Split each twin's field into two pieces — one along the axis, one pointing sideways. Same trick as resolving a force on an incline."
+              "text_en": "Split each twin's field into two pieces — one along the axis, one pointing sideways. Same trick as resolving a force on an incline.", "text_hi": "हर twin की field को दो टुकड़ों में split करें — एक axis के साथ, एक sideways pointing। एक incline पर force resolve करने जैसी ही trick।", "text_te": "ప్రతి twin యొక్క field ని రెండు భాగాలుగా split చేయండి — ఒకటి axis వెంట, ఒకటి sideways pointing. ఒక incline పై force resolve చేసినట్లే same trick."
             },
             {
               "id": "s3_3",
-              "text_en": "The two sideways pieces point straight at each other — equal and opposite. They annihilate. The net radial field is exactly zero."
+              "text_en": "The two sideways pieces point straight at each other — equal and opposite. They annihilate. The net radial field is exactly zero.", "text_hi": "दोनों sideways pieces एक-दूसरे की तरफ सीधे point करते हैं — equal और opposite। वे annihilate हो जाते हैं। net radial field exactly zero होती है।", "text_te": "రెండు sideways pieces ఒకదానికొకటి నేరుగా point చేస్తాయి — equal మరియు opposite. అవి annihilate అవుతాయి. net radial field exactly zero."
             },
             {
               "id": "s3_4",
-              "text_en": "Sum every twin around the ring, and every ring along the length — not a shred of sideways field survives. Only the along-axis pieces are left."
+              "text_en": "Sum every twin around the ring, and every ring along the length — not a shred of sideways field survives. Only the along-axis pieces are left.", "text_hi": "ring के चारों ओर हर twin और length के साथ हर ring को sum करें — sideways field का एक भी टुकड़ा नहीं बचता। केवल along-axis pieces बचती हैं।", "text_te": "ring చుట్టూ ప్రతి twin ని, మరియు length వెంట ప్రతి ring ని sum చేయండి — sideways field యొక్క ఒక్క చిన్న భాగం కూడా survive కాదు. along-axis pieces మాత్రమే మిగులుతాయి."
             }
           ]
         }
@@ -356,19 +356,19 @@
           "tts_sentences": [
             {
               "id": "s4a_1",
-              "text_en": "Now the other halves — the pieces pointing along the solenoid's long axis."
+              "text_en": "Now the other halves — the pieces pointing along the solenoid's long axis.", "text_hi": "अब दूसरी halves — solenoid की long axis के साथ pointing करने वाले pieces।", "text_te": "ఇప్పుడు మిగతా halves — solenoid యొక్క long axis వెంట pointing చేసే pieces."
             },
             {
               "id": "s4a_2",
-              "text_en": "Both twins' axial pieces point the SAME way. Stack them head to tail — they reinforce, they add. The sideways parts cancelled; these double."
+              "text_en": "Both twins' axial pieces point the SAME way. Stack them head to tail — they reinforce, they add. The sideways parts cancelled; these double.", "text_hi": "दोनों twins के axial pieces SAME direction में point करते हैं। उन्हें head to tail stack करें — वे reinforce होते हैं, वे add होते हैं। sideways parts cancel हुए; ये double हो गए।", "text_te": "రెండు twins యొక్క axial pieces SAME direction లో point చేస్తాయి. వాటిని head to tail stack చేయండి — అవి reinforce అవుతాయి, add అవుతాయి. sideways parts cancel అయ్యాయి; ఇవి double అయ్యాయి."
             },
             {
               "id": "s4a_3",
-              "text_en": "Now repeat for every ring stacked along the whole length — watch each one add its axial bit, building the field end to end."
+              "text_en": "Now repeat for every ring stacked along the whole length — watch each one add its axial bit, building the field end to end.", "text_hi": "अब पूरी length के साथ stacked हर ring के लिए repeat करें — हर एक को अपना axial bit add करते हुए देखें, field को end to end build करते हुए।", "text_te": "ఇప్పుడు మొత్తం length వెంట stacked ప్రతి ring కోసం repeat చేయండి — ప్రతి ఒక్కటి తన axial bit add చేస్తూ field ని end to end build చేయడం చూడండి."
             },
             {
               "id": "s4a_4",
-              "text_en": "The result: one uniform, axial magnetic field filling the inside — straight and steady, like a giant bar magnet. That uniform field is exactly what the MRI depends on. Outside is the next surprise."
+              "text_en": "The result: one uniform, axial magnetic field filling the inside — straight and steady, like a giant bar magnet. That uniform field is exactly what the MRI depends on. Outside is the next surprise.", "text_hi": "परिणाम: एक uniform, axial magnetic field जो inside को fill करती है — straight और steady, एक giant bar magnet की तरह। वह uniform field exactly वही है जिस पर MRI निर्भर करती है। Outside अगला surprise है।", "text_te": "ఫలితం: ఒక uniform, axial magnetic field inside ని fill చేస్తోంది — straight మరియు steady, ఒక giant bar magnet లా. ఆ uniform field ఖచ్చితంగా MRI ఏమిపై ఆధారపడుతుందో అదే. Outside తదుపరి surprise."
             }
           ]
         }
@@ -424,24 +424,24 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Inside, the field is uniform and strong. But outside — what do you predict?",
+              "text_en": "Inside, the field is uniform and strong. But outside — what do you predict?", "text_hi": "Inside, field uniform और strong है। लेकिन outside — आप क्या predict करते हैं?", "text_te": "Inside, field uniform మరియు strong గా ఉంది. కానీ outside — మీరు ఏమి predict చేస్తారు?",
               "pause_after_ms": 2500
             },
             {
               "id": "s4_2",
-              "text_en": "Most students guess the field outside is just a weaker version of inside. Watch what really happens."
+              "text_en": "Most students guess the field outside is just a weaker version of inside. Watch what really happens.", "text_hi": "ज़्यादातर students अनुमान लगाते हैं कि outside का field बस inside का एक weaker version है। देखें क्या वास्तव में होता है।", "text_te": "చాలామంది students outside field అనేది inside యొక్క weaker version అని అంచనా వేస్తారు. నిజంగా ఏమి జరుగుతుందో చూడండి."
             },
             {
               "id": "s4_3",
-              "text_en": "Contributions from turns at different positions cancel almost completely outside. For a long solenoid, B outside is approximately zero."
+              "text_en": "Contributions from turns at different positions cancel almost completely outside. For a long solenoid, B outside is approximately zero.", "text_hi": "Different positions पर turns की contributions outside लगभग completely cancel हो जाती हैं। एक long solenoid के लिए, B outside approximately zero होती है।", "text_te": "వివిధ positions లో turns యొక్క contributions outside దాదాపు completely cancel అవుతాయి. ఒక long solenoid కోసం, B outside approximately zero గా ఉంటుంది."
             },
             {
               "id": "s4_4",
-              "text_en": "All the field energy is concentrated INSIDE the solenoid. This is why solenoids make excellent electromagnets."
+              "text_en": "All the field energy is concentrated INSIDE the solenoid. This is why solenoids make excellent electromagnets.", "text_hi": "सारी field energy solenoid के INSIDE concentrated होती है। यही कारण है कि solenoids excellent electromagnets बनाते हैं।", "text_te": "మొత్తం field energy solenoid యొక్క INSIDE లో concentrated అవుతుంది. అందుకే solenoids excellent electromagnets తయారు చేస్తాయి."
             },
             {
               "id": "s4_5",
-              "text_en": "Hang this coil freely and it swings to point North–South — a solenoid is a bar magnet you can switch on and off."
+              "text_en": "Hang this coil freely and it swings to point North–South — a solenoid is a bar magnet you can switch on and off.", "text_hi": "इस coil को freely लटकाएं और यह North-South की तरफ swing करके point करेगी — एक solenoid एक bar magnet है जिसे आप switch on और off कर सकते हैं।", "text_te": "ఈ coil ని freely వేలాడదీయండి మరియు ఇది North-South వైపు swing చేసి point చేస్తుంది — ఒక solenoid అనేది మీరు switch on మరియు off చేయగలిగే bar magnet."
             }
           ]
         }
@@ -499,20 +499,20 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "In Diamond 1 you learned: thumb along current, fingers curl with B. That was for a STRAIGHT wire."
+              "text_en": "In Diamond 1 you learned: thumb along current, fingers curl with B. That was for a STRAIGHT wire.", "text_hi": "Diamond 1 में आपने सीखा: thumb current के साथ, fingers B के साथ curl होती हैं। वह एक STRAIGHT wire के लिए था।", "text_te": "Diamond 1 లో మీరు నేర్చుకున్నారు: thumb current వెంట, fingers B తో curl అవుతాయి. అది ఒక STRAIGHT wire కోసం."
             },
             {
               "id": "s5_2",
-              "text_en": "For a solenoid, what changes? Which hand part now follows the current?",
+              "text_en": "For a solenoid, what changes? Which hand part now follows the current?", "text_hi": "solenoid के लिए क्या बदलता है? हाथ का कौन सा हिस्सा अब current को follow करता है?", "text_te": "solenoid కోసం, ఏమి మారుతుంది? చేతి యొక్క ఏ భాగం ఇప్పుడు current ని follow చేస్తుంది?",
               "pause_after_ms": 2500
             },
             {
               "id": "s5_3",
-              "text_en": "The roles swap. FINGERS curl with the current loops; THUMB gives B inside."
+              "text_en": "The roles swap. FINGERS curl with the current loops; THUMB gives B inside.", "text_hi": "Roles swap होते हैं। FINGERS current loops के साथ curl होती हैं; THUMB B inside देती है।", "text_te": "Roles swap అవుతాయి. FINGERS current loops తో curl అవుతాయి; THUMB B inside ఇస్తుంది."
             },
             {
               "id": "s5_4",
-              "text_en": "Same right hand. Different grip. Wire: thumb is current, fingers are B. Solenoid: fingers are current, thumb is B."
+              "text_en": "Same right hand. Different grip. Wire: thumb is current, fingers are B. Solenoid: fingers are current, thumb is B.", "text_hi": "Same right hand। Different grip। Wire: thumb current है, fingers B हैं। Solenoid: fingers current हैं, thumb B है।", "text_te": "Same right hand. Different grip. Wire: thumb current, fingers B. Solenoid: fingers current, thumb B."
             }
           ]
         }
@@ -570,20 +570,20 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "How strong is B inside? Predict: does it depend on total turns N, or on something else?",
+              "text_en": "How strong is B inside? Predict: does it depend on total turns N, or on something else?", "text_hi": "Inside B कितनी strong है? Predict करें: क्या यह total turns N पर निर्भर करती है, या किसी और चीज़ पर?", "text_te": "Inside B ఎంత strong? Predict చేయండి: ఇది total turns N పై ఆధారపడుతుందా, లేదా వేరే దేనిపై?",
               "pause_after_ms": 2500
             },
             {
               "id": "s6_2",
-              "text_en": "n is turns per unit length: count the turns N, then divide by the length L. The density of loops matters, not the raw count N."
+              "text_en": "n is turns per unit length: count the turns N, then divide by the length L. The density of loops matters, not the raw count N.", "text_hi": "n है turns per unit length: turns N गिनें, फिर length L से divide करें। loops की density matter करती है, raw count N नहीं।", "text_te": "n అంటే turns per unit length: turns N లెక్కించి, length L తో divide చేయండి. loops యొక్క density matter అవుతుంది, raw count N కాదు."
             },
             {
               "id": "s6_3",
-              "text_en": "The formula: B equals mu-naught times n times I. Three factors, no distance r — that is what 'uniform' means."
+              "text_en": "The formula: B equals mu-naught times n times I. Three factors, no distance r — that is what 'uniform' means.", "text_hi": "Formula: B equals mu-naught times n times I। तीन factors, कोई distance r नहीं — यही 'uniform' का मतलब है।", "text_te": "Formula: B equals mu-naught times n times I. మూడు factors, distance r లేదు — అదే 'uniform' అంటే అర్థం."
             },
             {
               "id": "s6_4",
-              "text_en": "Double the turns per metre, double the field. Double the current, double the field. Stretch the same wire to twice the length and n halves — so B halves."
+              "text_en": "Double the turns per metre, double the field. Double the current, double the field. Stretch the same wire to twice the length and n halves — so B halves.", "text_hi": "turns per metre double करें, field double हो जाएगी। current double करें, field double हो जाएगी। same wire को दोगुनी length तक stretch करें और n half हो जाती है — तो B भी half हो जाती है।", "text_te": "turns per metre double చేయండి, field double అవుతుంది. current double చేయండి, field double అవుతుంది. అదే wire ని రెట్టింపు length కు stretch చేయండి మరియు n half అవుతుంది — అందుకే B కూడా half అవుతుంది."
             }
           ]
         }
@@ -639,24 +639,24 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "Now we reverse the battery. Watch the current direction."
+              "text_en": "Now we reverse the battery. Watch the current direction.", "text_hi": "अब हम battery को reverse करते हैं। current direction देखें।", "text_te": "ఇప్పుడు మనం battery ని reverse చేస్తాం. current direction చూడండి."
             },
             {
               "id": "s7_2",
-              "text_en": "Predict: which way will B point now?",
+              "text_en": "Predict: which way will B point now?", "text_hi": "Predict करें: B अब किस तरफ point करेगी?", "text_te": "Predict చేయండి: B ఇప్పుడు ఏ వైపు point చేస్తుంది?",
               "pause_after_ms": 2000
             },
             {
               "id": "s7_3",
-              "text_en": "B flips to point the opposite way — and the North and South poles swap ends along with it."
+              "text_en": "B flips to point the opposite way — and the North and South poles swap ends along with it.", "text_hi": "B opposite दिशा में point करने के लिए flip हो जाती है — और North और South poles भी इसके साथ ends swap कर लेते हैं।", "text_te": "B opposite దిశలో point చేయడానికి flip అవుతుంది — మరియు North మరియు South poles కూడా దానితో పాటు ends swap చేసుకుంటాయి."
             },
             {
               "id": "s7_4",
-              "text_en": "Right hand again — flip your grip, thumb now points the other way. Magnitude formula B = μ-naught n I is unchanged; only direction reverses."
+              "text_en": "Right hand again — flip your grip, thumb now points the other way. Magnitude formula B = μ-naught n I is unchanged; only direction reverses.", "text_hi": "फिर right hand — अपनी grip flip करें, thumb अब दूसरी तरफ point करती है। Magnitude formula B equals mu-naught n I unchanged रहती है; केवल direction reverse होती है।", "text_te": "మళ్ళీ right hand — మీ grip flip చేయండి, thumb ఇప్పుడు మరొక వైపు point చేస్తుంది. Magnitude formula B equals mu-naught n I unchanged గా ఉంటుంది; direction మాత్రమే reverse అవుతుంది."
             },
             {
               "id": "s7_5",
-              "text_en": "If it were hanging freely, the whole solenoid would spin 180 degrees to realign — exactly the suspended-magnet demo."
+              "text_en": "If it were hanging freely, the whole solenoid would spin 180 degrees to realign — exactly the suspended-magnet demo.", "text_hi": "अगर यह freely लटकी होती, तो पूरी solenoid realign होने के लिए 180 degrees spin करती — exactly the suspended-magnet demo।", "text_te": "ఇది freely వేలాడుతుంటే, మొత్తం solenoid realign అవడానికి 180 degrees spin చేస్తుంది — exactly suspended-magnet demo."
             }
           ]
         }
@@ -712,15 +712,15 @@
           "tts_sentences": [
             {
               "id": "s8_1",
-              "text_en": "Now you drive. Crank up n — watch B grow proportionally."
+              "text_en": "Now you drive. Crank up n — watch B grow proportionally.", "text_hi": "अब आप drive करें। n को crank up करें — B को proportionally grow होते हुए देखें।", "text_te": "ఇప్పుడు మీరు drive చేయండి. n ని crank up చేయండి — B proportionally grow అవుతున్నది చూడండి."
             },
             {
               "id": "s8_2",
-              "text_en": "Bring I down — watch B shrink. Try to predict B before you read the meter."
+              "text_en": "Bring I down — watch B shrink. Try to predict B before you read the meter.", "text_hi": "I को नीचे लाएं — B को shrink होते हुए देखें। meter पढ़ने से पहले B predict करने की कोशिश करें।", "text_te": "I ని తగ్గించండి — B shrink అవుతున్నది చూడండి. meter చదవడానికి ముందు B predict చేయడానికి ప్రయత్నించండి."
             },
             {
               "id": "s8_3",
-              "text_en": "Notice: no matter where you place the probe INSIDE the solenoid, B reads the same. That is the uniformity. Outside, the probe reads near-zero."
+              "text_en": "Notice: no matter where you place the probe INSIDE the solenoid, B reads the same. That is the uniformity. Outside, the probe reads near-zero.", "text_hi": "Notice करें: solenoid के INSIDE probe कहीं भी रखें, B same पढ़ता है। यही uniformity है। Outside, probe near-zero पढ़ता है।", "text_te": "గమనించండి: solenoid యొక్క INSIDE లో probe ఎక్కడ పెట్టినా, B same చదువుతుంది. అదే uniformity. Outside, probe near-zero చదువుతుంది."
             }
           ]
         }

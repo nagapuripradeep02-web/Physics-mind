@@ -134,10 +134,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "You already know this: a long straight wire carrying current wraps a magnetic field in circles around itself." },
-            { "id": "s1_2", "text_en": "Its strength is B equals mu-naught I over two pi r. You met it with the compass and the right-hand rule." },
-            { "id": "s1_3", "text_en": "But here is the real question: WHERE does that circular field come from? Why a circle, and why that exact size?" },
-            { "id": "s1_4", "text_en": "To answer it, we stop looking at the whole wire and zoom into one tiny piece of it." }
+            { "id": "s1_1", "text_en": "You already know this: a long straight wire carrying current wraps a magnetic field in circles around itself.", "text_hi": "आप यह पहले से जानते हैं: एक long straight wire जो current carry करती है, अपने चारों ओर magnetic field को circles में wrap करती है।", "text_te": "మీకు ఇది ఇప్పటికే తెలుసు: current carry చేస్తున్న ఒక long straight wire తన చుట్టూ magnetic field ని circles లో wrap చేసుకుంటుంది." },
+            { "id": "s1_2", "text_en": "Its strength is B equals mu-naught I over two pi r. You met it with the compass and the right-hand rule.", "text_hi": "इसकी strength है B equals mu-naught I over two pi r। आप इसे compass और right-hand rule के साथ मिले थे।", "text_te": "దాని strength B equals mu-naught I over two pi r. మీరు దీన్ని compass మరియు right-hand rule తో కలుసుకున్నారు." },
+            { "id": "s1_3", "text_en": "But here is the real question: WHERE does that circular field come from? Why a circle, and why that exact size?", "text_hi": "लेकिन यहाँ असली सवाल है: वह circular field कहाँ से आता है? एक circle क्यों, और बिल्कुल उस exact size का क्यों?", "text_te": "కానీ ఇక్కడ నిజమైన ప్రశ్న: ఆ circular field ఎక్కడ నుండి వస్తుంది? ఒక circle ఎందుకు, మరియు ఆ exact size ఎందుకు?" },
+            { "id": "s1_4", "text_en": "To answer it, we stop looking at the whole wire and zoom into one tiny piece of it.", "text_hi": "इसका जवाब देने के लिए, हम पूरे wire को देखना बंद करते हैं और उसके एक tiny piece में zoom करते हैं।", "text_te": "దానికి సమాధానం చెప్పడానికి, మనం మొత్తం wire ను చూడడం ఆపి దాని ఒక tiny piece లోకి zoom చేస్తాం." }
           ]
         }
       },
@@ -171,10 +171,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Chop the wire into countless tiny pieces. Each piece has a small length we call d-l, and it carries the same current I." },
-            { "id": "s2_2", "text_en": "Here is one such element, d-l, glowing on the wire. This little arrow points along the current." },
-            { "id": "s2_3", "text_en": "Pick any point P in space near the wire. We will ask: how much magnetic field does THIS one element create at P?" },
-            { "id": "s2_4", "text_en": "Biot and Savart answered exactly that. The law is about one element first; we add up all of them later." }
+            { "id": "s2_1", "text_en": "Chop the wire into countless tiny pieces. Each piece has a small length we call d-l, and it carries the same current I.", "text_hi": "wire को countless tiny pieces में chop करें। हर piece की एक small length होती है जिसे हम d-l कहते हैं, और वह same current I carry करता है।", "text_te": "wire ని countless tiny pieces లో chop చేయండి. ప్రతి piece కి ఒక small length ఉంటుంది, దానిని మనం d-l అని పిలుస్తాం, మరియు అది same current I ని carry చేస్తుంది." },
+            { "id": "s2_2", "text_en": "Here is one such element, d-l, glowing on the wire. This little arrow points along the current.", "text_hi": "यहाँ एक ऐसा element है, d-l, wire पर glow करता हुआ। यह little arrow current के along point करता है।", "text_te": "ఇక్కడ అలాంటి ఒక element ఉంది, d-l, wire పై glow అవుతోంది. ఈ little arrow current తో along point చేస్తుంది." },
+            { "id": "s2_3", "text_en": "Pick any point P in space near the wire. We will ask: how much magnetic field does THIS one element create at P?", "text_hi": "wire के पास space में कोई भी point P चुनें। हम पूछेंगे: यह एक element P पर कितना magnetic field बनाता है?", "text_te": "wire దగ్గర space లో ఏదైనా point P ని ఎంచుకోండి. మనం అడుగుతాం: ఈ ఒక element P వద్ద ఎంత magnetic field సృష్టిస్తుంది?" },
+            { "id": "s2_4", "text_en": "Biot and Savart answered exactly that. The law is about one element first; we add up all of them later.", "text_hi": "Biot और Savart ने exactly यही answer दिया। यह law पहले एक element के बारे में है; हम बाद में सभी को add up करते हैं।", "text_te": "Biot మరియు Savart exactly దానికే సమాధానం ఇచ్చారు. ఈ law ముందు ఒక element గురించి; మనం వాటన్నింటినీ తర్వాత add up చేస్తాం." }
           ]
         },
         "misconception_watch": [
@@ -215,10 +215,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "To describe P's position, draw an arrow from the element d-l straight to the point P. Its length is r, the distance." },
-            { "id": "s3_2", "text_en": "The unit vector along it, r-hat, just gives the direction from the element toward P." },
-            { "id": "s3_3", "text_en": "Now notice the angle between the element d-l and this arrow r-hat. Call it theta. This angle will matter a lot." },
-            { "id": "s3_4", "text_en": "Two things fix the field at P: how far P is, the distance r, and this angle theta. Let us build the formula from them." }
+            { "id": "s3_1", "text_en": "To describe P's position, draw an arrow from the element d-l straight to the point P. Its length is r, the distance.", "text_hi": "P की position describe करने के लिए, element d-l से point P तक straight एक arrow खींचें। इसकी length r है, जो distance है।", "text_te": "P యొక్క position ను describe చేయడానికి, element d-l నుండి point P కి straight గా ఒక arrow గీయండి. దాని length r, అది distance." },
+            { "id": "s3_2", "text_en": "The unit vector along it, r-hat, just gives the direction from the element toward P.", "text_hi": "इसके साथ unit vector, r-hat, बस element से P की तरफ direction देता है।", "text_te": "దానితో unit vector, r-hat, కేవలం element నుండి P వైపు direction ఇస్తుంది." },
+            { "id": "s3_3", "text_en": "Now notice the angle between the element d-l and this arrow r-hat. Call it theta. This angle will matter a lot.", "text_hi": "अब element d-l और इस arrow r-hat के बीच के angle पर ध्यान दें। इसे theta कहिए। यह angle बहुत matter करेगा।", "text_te": "ఇప్పుడు element d-l మరియు ఈ arrow r-hat మధ్య angle ని గమనించండి. దీనిని theta అని పిలవండి. ఈ angle చాలా matter చేస్తుంది." },
+            { "id": "s3_4", "text_en": "Two things fix the field at P: how far P is, the distance r, and this angle theta. Let us build the formula from them.", "text_hi": "दो चीजें P पर field को fix करती हैं: P कितनी दूर है, distance r, और यह angle theta। इनसे हम formula बनाते हैं।", "text_te": "P వద్ద field ని రెండు విషయాలు fix చేస్తాయి: P ఎంత దూరంలో ఉంది, distance r, మరియు ఈ angle theta. వీటి నుండి formula ని రూపొందిద్దాం." }
           ]
         }
       },
@@ -252,10 +252,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Experiment shows the field d-B from one element grows with the current. More current, more field: d-B is proportional to I." },
-            { "id": "s4_2", "text_en": "It also grows with the length of the element and with sine of the angle theta. Longer piece, larger angle, stronger contribution." },
-            { "id": "s4_3", "text_en": "And it weakens with distance, not as one over r, but as one over r squared, an inverse-square fall-off." },
-            { "id": "s4_4", "text_en": "Put them together with the constant mu-naught over four pi. Scalar form: d-B equals mu-naught over four pi, times I d-l sine theta, over r squared." }
+            { "id": "s4_1", "text_en": "Experiment shows the field d-B from one element grows with the current. More current, more field: d-B is proportional to I.", "text_hi": "Experiment दिखाता है कि एक element से field d-B current के साथ बढ़ता है। ज़्यादा current, ज़्यादा field: d-B proportional है I के।", "text_te": "Experiment చూపిస్తుంది field d-B ఒక element నుండి current తో పెరుగుతుంది. ఎక్కువ current, ఎక్కువ field: d-B అనేది I కి proportional." },
+            { "id": "s4_2", "text_en": "It also grows with the length of the element and with sine of the angle theta. Longer piece, larger angle, stronger contribution.", "text_hi": "यह element की length और angle theta के sine के साथ भी बढ़ता है। Longer piece, larger angle, stronger contribution।", "text_te": "ఇది element length తో మరియు angle theta యొక్క sine తో కూడా పెరుగుతుంది. Longer piece, larger angle, stronger contribution." },
+            { "id": "s4_3", "text_en": "And it weakens with distance, not as one over r, but as one over r squared, an inverse-square fall-off.", "text_hi": "और यह distance के साथ कमज़ोर होता है, one over r की तरह नहीं, बल्कि one over r squared की तरह, एक inverse-square fall-off।", "text_te": "మరియు ఇది distance తో బలహీనపడుతుంది, one over r గా కాదు, కానీ one over r squared గా, ఒక inverse-square fall-off." },
+            { "id": "s4_4", "text_en": "Put them together with the constant mu-naught over four pi. Scalar form: d-B equals mu-naught over four pi, times I d-l sine theta, over r squared.", "text_hi": "इन्हें constant mu-naught over four pi के साथ मिलाएँ। Scalar form: d-B equals mu-naught over four pi, times I d-l sine theta, over r squared।", "text_te": "వీటిని constant mu-naught over four pi తో కలపండి. Scalar form: d-B equals mu-naught over four pi, times I d-l sine theta, over r squared." }
           ]
         },
         "misconception_watch": [
@@ -296,11 +296,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "That gave the SIZE of d-B. But a field also has a direction. Which way does d-B point at P?" },
-            { "id": "s5_2", "text_en": "The full law is a cross product: d-B is along d-l cross r-hat, perpendicular to BOTH the element and the line to P." },
-            { "id": "s5_3", "text_en": "Curl your right hand from d-l toward r-hat; your thumb gives d-B. Here it points straight into the page, the cross symbol." },
-            { "id": "s5_4", "text_en": "So d-B never points along the wire and never points toward P. It is perpendicular to both, tangent to the circle through P." },
-            { "id": "s5_5", "text_en": "Quick check before we go on: at a point on the OTHER side of the wire, does d-B point into the page or out of it?" }
+            { "id": "s5_1", "text_en": "That gave the SIZE of d-B. But a field also has a direction. Which way does d-B point at P?", "text_hi": "इससे d-B का SIZE पता चला। लेकिन एक field की direction भी होती है। d-B P पर किस way में point करता है?", "text_te": "అది d-B యొక్క SIZE ని ఇచ్చింది. కానీ ఒక field కి direction కూడా ఉంటుంది. d-B P వద్ద ఏ way లో point చేస్తుంది?" },
+            { "id": "s5_2", "text_en": "The full law is a cross product: d-B is along d-l cross r-hat, perpendicular to BOTH the element and the line to P.", "text_hi": "पूरा law एक cross product है: d-B, d-l cross r-hat के along होता है, जो element और P तक की line दोनों के perpendicular होता है।", "text_te": "పూర్తి law ఒక cross product: d-B, d-l cross r-hat తో along ఉంటుంది, element కి మరియు P కి వెళ్ళే line కి రెండింటికీ perpendicular గా ఉంటుంది." },
+            { "id": "s5_3", "text_en": "Curl your right hand from d-l toward r-hat; your thumb gives d-B. Here it points straight into the page, the cross symbol.", "text_hi": "अपना right hand d-l से r-hat की ओर curl करें; आपका thumb d-B देगा। यहाँ यह straight page के अंदर point करता है, cross symbol।", "text_te": "మీ right hand ని d-l నుండి r-hat వైపు curl చేయండి; మీ thumb d-B ని ఇస్తుంది. ఇక్కడ అది straight page లోపలికి point చేస్తుంది, cross symbol." },
+            { "id": "s5_4", "text_en": "So d-B never points along the wire and never points toward P. It is perpendicular to both, tangent to the circle through P.", "text_hi": "तो d-B कभी wire के along point नहीं करता और कभी P की ओर point नहीं करता। यह दोनों के perpendicular होता है, P से गुजरने वाले circle के tangent होता है।", "text_te": "కాబట్టి d-B ఎప్పుడూ wire తో along point చేయదు మరియు ఎప్పుడూ P వైపు point చేయదు. ఇది రెండింటికీ perpendicular, P గుండా వెళ్ళే circle కి tangent." },
+            { "id": "s5_5", "text_en": "Quick check before we go on: at a point on the OTHER side of the wire, does d-B point into the page or out of it?", "text_hi": "आगे बढ़ने से पहले एक quick check: wire के OTHER side पर एक point पर, क्या d-B into the page point करता है या out of it?", "text_te": "మనం ముందుకు వెళ్లే ముందు ఒక quick check: wire కు OTHER side లో ఒక point వద్ద, d-B into the page point చేస్తుందా లేదా out of it?" }
           ]
         },
         "misconception_watch": [
@@ -341,10 +341,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Let us practise the direction rule. When the current comes straight out of the page toward you, we mark it with a dot." },
-            { "id": "s6_2", "text_en": "Use d-l cross r-hat for a point to its right: the field circles anti-clockwise, so on the right side d-B points up." },
-            { "id": "s6_3", "text_en": "Now flip it. Current going INTO the page, marked with a cross. The field circles clockwise instead." },
-            { "id": "s6_4", "text_en": "Same cross-product rule every time. The dot and cross are just the current pointing at you or away from you." }
+            { "id": "s6_1", "text_en": "Let us practise the direction rule. When the current comes straight out of the page toward you, we mark it with a dot.", "text_hi": "चलिए direction rule का अभ्यास करते हैं। जब current सीधे page से आपकी तरफ out आता है, तो हम इसे एक dot से mark करते हैं।", "text_te": "మనం direction rule ను practice చేద్దాం. current నేరుగా page నుండి మీ వైపు out వచ్చినప్పుడు, మనం దానిని ఒక dot తో mark చేస్తాం." },
+            { "id": "s6_2", "text_en": "Use d-l cross r-hat for a point to its right: the field circles anti-clockwise, so on the right side d-B points up.", "text_hi": "इसके right में एक point के लिए d-l cross r-hat का उपयोग करें: field anti-clockwise circles बनाता है, इसलिए right side पर d-B up point करता है।", "text_te": "దాని right లోని ఒక point కోసం d-l cross r-hat ను ఉపయోగించండి: field anti-clockwise గా circles చేస్తుంది, కాబట్టి right side లో d-B up గా point చేస్తుంది." },
+            { "id": "s6_3", "text_en": "Now flip it. Current going INTO the page, marked with a cross. The field circles clockwise instead.", "text_hi": "अब इसे flip करें। Current INTO the page जा रहा है, एक cross से marked। इसके बजाय field clockwise circles बनाता है।", "text_te": "ఇప్పుడు దానిని flip చేయండి. Current INTO the page వెళుతోంది, ఒక cross తో marked. దీని బదులుగా field clockwise గా circles చేస్తుంది." },
+            { "id": "s6_4", "text_en": "Same cross-product rule every time. The dot and cross are just the current pointing at you or away from you.", "text_hi": "हर बार same cross-product rule। Dot और cross बस current है जो आपकी तरफ या आपसे दूर point करता है।", "text_te": "ప్రతిసారి same cross-product rule. Dot మరియు cross కేవలం current, అది మీ వైపు లేదా మీ నుండి దూరంగా point చేస్తుంది." }
           ]
         },
         "misconception_watch": [
@@ -385,10 +385,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Now the payoff. The whole wire is millions of these elements. Each one adds its own tiny d-B at P." },
-            { "id": "s7_2", "text_en": "Watch them switch on, one after another, up and down the wire. Every element drops a small d-B contribution at P." },
-            { "id": "s7_3", "text_en": "Add them all; that is the integral. The tiny perpendicular pieces line up and build one smooth circular field." },
-            { "id": "s7_4", "text_en": "The circle you already knew was never assumed. It EMERGES from summing Biot-Savart over every element of the wire." }
+            { "id": "s7_1", "text_en": "Now the payoff. The whole wire is millions of these elements. Each one adds its own tiny d-B at P.", "text_hi": "अब payoff। पूरा wire इन millions of elements से बना है। हर एक P पर अपना tiny d-B जोड़ता है।", "text_te": "ఇప్పుడు payoff. మొత్తం wire ఈ millions of elements తో నిండి ఉంది. ప్రతి ఒక్కటి P వద్ద తన tiny d-B ని కలుపుతుంది." },
+            { "id": "s7_2", "text_en": "Watch them switch on, one after another, up and down the wire. Every element drops a small d-B contribution at P.", "text_hi": "उन्हें एक के बाद एक, wire के up and down, switch on होते देखें। हर element P पर एक small d-B contribution देता है।", "text_te": "వాటిని ఒకదాని తర్వాత ఒకటి, wire వెంట up and down, switch on అవుతూ చూడండి. ప్రతి element P వద్ద ఒక small d-B contribution ను అందిస్తుంది." },
+            { "id": "s7_3", "text_en": "Add them all; that is the integral. The tiny perpendicular pieces line up and build one smooth circular field.", "text_hi": "tiny perpendicular pieces line up होते हैं और एक smooth circular field बनाते हैं।", "text_te": "tiny perpendicular pieces line up అయ్యి ఒక smooth circular field ను నిర్మిస్తాయి." },
+            { "id": "s7_4", "text_en": "The circle you already knew was never assumed. It EMERGES from summing Biot-Savart over every element of the wire.", "text_hi": "जिस circle को आप पहले से जानते थे, उसे कभी assume नहीं किया गया था। यह wire के हर element पर Biot-Savart को sum करने से EMERGES होता है।", "text_te": "మీకు అప్పటికే తెలిసిన circle ఎప్పుడూ assume చేయబడలేదు. ఇది wire లోని ప్రతి element పై Biot-Savart ను sum చేయడం ద్వారా EMERGES అవుతుంది." }
           ]
         },
         "misconception_watch": [
@@ -429,10 +429,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "Not every element pulls its weight. Look at the lengths of the d-B arrows as we walk along the wire." },
-            { "id": "s8_2", "text_en": "The element directly across from P, where theta is ninety degrees and r is smallest, gives the biggest contribution." },
-            { "id": "s8_3", "text_en": "Far up or down the wire, the element nearly lines up with r-hat. Sine theta shrinks toward zero, so its d-B almost vanishes." },
-            { "id": "s8_4", "text_en": "That is why a long wire behaves like an infinite one: the distant ends add almost nothing. The nearby piece dominates." }
+            { "id": "s8_1", "text_en": "Not every element pulls its weight. Look at the lengths of the d-B arrows as we walk along the wire.", "text_hi": "हर element अपना weight pull नहीं करता। wire के साथ चलते समय d-B arrows की lengths को देखें।", "text_te": "ప్రతి element తన weight ను pull చేయదు. wire వెంట నడుస్తున్నప్పుడు d-B arrows యొక్క lengths ను చూడండి." },
+            { "id": "s8_2", "text_en": "The element directly across from P, where theta is ninety degrees and r is smallest, gives the biggest contribution.", "text_hi": "P के ठीक सामने वाला element, जहाँ theta ninety degrees है और r smallest है, सबसे biggest contribution देता है।", "text_te": "P కి నేరుగా ఎదురుగా ఉన్న element, ఎక్కడైతే theta ninety degrees మరియు r smallest అవుతుందో, అది biggest contribution ఇస్తుంది." },
+            { "id": "s8_3", "text_en": "Far up or down the wire, the element nearly lines up with r-hat. Sine theta shrinks toward zero, so its d-B almost vanishes.", "text_hi": "wire में बहुत ऊपर या नीचे, element लगभग r-hat के साथ line up होता है। Sine theta zero की तरफ shrink करता है, इसलिए उसका d-B लगभग vanish हो जाता है।", "text_te": "wire లో చాలా పైకి లేదా క్రిందకి, element దాదాపు r-hat తో line up అవుతుంది. Sine theta zero వైపు shrink అవుతుంది, కాబట్టి దాని d-B దాదాపు vanish అవుతుంది." },
+            { "id": "s8_4", "text_en": "That is why a long wire behaves like an infinite one: the distant ends add almost nothing. The nearby piece dominates.", "text_hi": "इसीलिए एक long wire एक infinite wire की तरह behave करता है: distant ends लगभग कुछ भी add नहीं करते। Nearby piece dominate करता है।", "text_te": "అందుకే ఒక long wire ఒక infinite wire లా behave చేస్తుంది: distant ends దాదాపు ఏమీ add చేయవు. Nearby piece dominate చేస్తుంది." }
           ]
         },
         "misconception_watch": [
@@ -473,10 +473,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "Carry out the full sum for an infinite straight wire and the magnitude comes out to mu-naught I over two pi r." },
-            { "id": "s9_2", "text_en": "Exactly the formula you started with. Biot-Savart did not just agree with it; it EXPLAINED where it comes from." },
-            { "id": "s9_3", "text_en": "For a finite wire the answer is mu-naught I over four pi r, times sine phi-one plus sine phi-two, a topic for another day." },
-            { "id": "s9_4", "text_en": "One law for one element, summed over the whole wire, reproduces every straight-wire field you will ever meet." }
+            { "id": "s9_1", "text_en": "Carry out the full sum for an infinite straight wire and the magnitude comes out to mu-naught I over two pi r.", "text_hi": "एक infinite straight wire के लिए full sum करें और magnitude mu-naught I over two pi r आता है।", "text_te": "ఒక infinite straight wire కోసం full sum చేస్తే, magnitude mu-naught I over two pi r వస్తుంది." },
+            { "id": "s9_2", "text_en": "Exactly the formula you started with. Biot-Savart did not just agree with it; it EXPLAINED where it comes from.", "text_hi": "बिल्कुल वही formula जिससे आपने शुरुआत की थी। Biot-Savart सिर्फ इससे agree नहीं किया; उसने EXPLAIN किया कि यह कहाँ से आता है।", "text_te": "మీరు మొదలుపెట్టిన formula సరిగ్గా అదే. Biot-Savart దీనితో agree అవ్వడమే కాదు; అది ఎక్కడ నుండి వస్తుందో EXPLAIN చేసింది." },
+            { "id": "s9_3", "text_en": "For a finite wire the answer is mu-naught I over four pi r, times sine phi-one plus sine phi-two, a topic for another day.", "text_hi": "एक finite wire के लिए answer है mu-naught I over four pi r, times sine phi-one plus sine phi-two, यह किसी और दिन का topic है।", "text_te": "ఒక finite wire కోసం answer mu-naught I over four pi r, times sine phi-one plus sine phi-two, ఇది వేరే రోజు కోసం ఒక topic." },
+            { "id": "s9_4", "text_en": "One law for one element, summed over the whole wire, reproduces every straight-wire field you will ever meet.", "text_hi": "एक element के लिए एक law, जिसे पूरे wire पर sum किया गया है, हर straight-wire field को reproduce करता है जिससे आप कभी मिलेंगे।", "text_te": "ఒక element కోసం ఒక law, మొత్తం wire పై sum చేయబడింది, మీరు ఎప్పుడైనా ఎదుర్కొనే ప్రతి straight-wire field ను reproduce చేస్తుంది." }
           ]
         }
       },
@@ -510,10 +510,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s10_1", "text_en": "Your turn. Use the sliders to change the current I and the distance r, and watch the assembled circle respond." },
-            { "id": "s10_2", "text_en": "Move the field point closer and the contributions grow; push it far away and the whole field weakens as one over r." },
-            { "id": "s10_3", "text_en": "Predict before you read the meter: bigger I means stronger field, bigger r means weaker. The shape stays a circle." },
-            { "id": "s10_4", "text_en": "One element, one cross-product rule, summed over the wire. That is the Biot-Savart law, and that is where B comes from." }
+            { "id": "s10_1", "text_en": "Your turn. Use the sliders to change the current I and the distance r, and watch the assembled circle respond.", "text_hi": "अब आपकी बारी। current I और distance r को change करने के लिए sliders का उपयोग करें, और assembled circle को respond करते हुए देखें।", "text_te": "మీ వంతు. current I మరియు distance r ని మార్చడానికి sliders ని ఉపయోగించండి, మరియు assembled circle ఎలా respond అవుతుందో చూడండి." },
+            { "id": "s10_2", "text_en": "Move the field point closer and the contributions grow; push it far away and the whole field weakens as one over r.", "text_hi": "field point को closer लाएँ और contributions grow करते हैं; इसे far away धकेलें और whole field one over r के रूप में weaken होता है।", "text_te": "field point ని closer కి జరపండి మరియు contributions grow అవుతాయి; దానిని far away కి నెట్టండి మరియు whole field one over r లా weaken అవుతుంది." },
+            { "id": "s10_3", "text_en": "Predict before you read the meter: bigger I means stronger field, bigger r means weaker. The shape stays a circle.", "text_hi": "meter पढ़ने से पहले predict करें: bigger I का मतलब stronger field, bigger r का मतलब weaker field। The shape एक circle ही रहता है।", "text_te": "meter చదివే ముందు predict చేయండి: bigger I అంటే stronger field, bigger r అంటే weaker. The shape ఒక circle లాగే ఉంటుంది." },
+            { "id": "s10_4", "text_en": "One element, one cross-product rule, summed over the wire. That is the Biot-Savart law, and that is where B comes from.", "text_hi": "एक element, एक cross-product rule, जिसे wire पर sum किया गया। यह Biot-Savart law है, और B यहीं से आता है।", "text_te": "ఒక element, ఒక cross-product rule, wire పై sum చేయబడింది. అది Biot-Savart law, మరియు B అక్కడి నుండే వస్తుంది." }
           ]
         }
       }

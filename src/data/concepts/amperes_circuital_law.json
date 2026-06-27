@@ -1,0 +1,826 @@
+{
+  "concept_id": "amperes_circuital_law",
+  "concept_name": "Ampère's Circuital Law",
+  "chapter": 4,
+  "section": "4.5",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.5 (Ampère's Circuital Law) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. The atomic concept being taught is Ampère's circuital law ∮B·dl = μ₀ I_enc applied to a long straight wire: choose a coaxial circular Amperian loop, use symmetry (|B| constant AND tangent on the loop) to reduce the line integral to ∮B·dl = B·(2πr), set it equal to μ₀ I_enc, and DERIVE B = μ₀I/(2πr). This is the integral-law route to the straight-wire field — the alternative to the Biot-Savart element-summation route (biot_savart_law), and it returns the SAME field. The deepest confusions are: students think any loop shape works, they treat ∮B·dl as un-evaluable symbolic calculus, and they conflate I_enc with a quantity that grows with the loop. The field_3d renderer makes the loop, the equal B·dl tiles, the accumulation, and the unroll-to-a-bar visible in 3D. WIRE ONLY — no solenoid, no toroid, no off-axis or non-symmetric loop. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["amperes_circuital_law"]
+  },
+  "prerequisites": [
+    "magnetic_field_wire",
+    "biot_savart_law"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture the thick overhead power transmission line on steel towers near a highway, humming with hundreds of amps. You cannot sum its magnetic field piece by piece in your head — but draw one invisible circle, centred on the wire and passing through your point, and Ampère's law hands you B = μ₀I/2πr directly. The circulation of B once around that loop equals μ₀ times the enclosed current, and symmetry does the rest.",
+    "secondary": "Picture the heavy copper lead feeding a school or college physics-lab electromagnet. A large steady current runs through it. To find the field at a nearby point you do not integrate countless little contributions — you wrap a coaxial circle through the point, and the law converts the whole circulation into one clean equation B·(2πr) = μ₀I."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I": {
+        "name": "Current threading the loop",
+        "unit": "A",
+        "min": 0.5,
+        "max": 20,
+        "default": 5,
+        "step": 0.5
+      },
+      "r": {
+        "name": "Amperian loop radius",
+        "unit": "m",
+        "min": 0.02,
+        "max": 0.30,
+        "default": 0.05,
+        "step": 0.01
+      },
+      "mu_0": {
+        "name": "Magnetic permeability of free space",
+        "unit": "T·m/A",
+        "constant": 1.2566370614e-6
+      }
+    },
+    "computed_outputs": {
+      "B_magnitude": {
+        "formula": "(mu_0 * I) / (2 * PI * r)"
+      },
+      "B_microtesla": {
+        "formula": "((mu_0 * I) / (2 * PI * r)) * 1e6"
+      },
+      "circulation": {
+        "formula": "mu_0 * I"
+      },
+      "circulation_microtesla_metre": {
+        "formula": "(mu_0 * I) * 1e6"
+      },
+      "circumference": {
+        "formula": "2 * PI * r"
+      }
+    },
+    "formulas": {
+      "amperes_law": "∮ B·dl = μ₀ I_enc",
+      "symmetry_reduction": "∮ B·dl = B · (2π r)   [|B| constant and B ∥ dl on the loop ⇒ cosθ = 1]",
+      "set_equal": "B · (2π r) = μ₀ I_enc",
+      "enclosed_current": "I_enc = I   (one wire threads the loop)",
+      "tangency": "B ∥ dl everywhere on a coaxial circle ⇒ B·dl = B dl,  cosθ = 1,  θ = 0°",
+      "solved_field": "B = μ₀ I / (2π r)",
+      "direction": "B circulates around the wire (right-hand grip rule); the loop is coaxial with the wire"
+    },
+    "constraints": [
+      "The Amperian loop is a circle coaxial with the wire (centred on the wire, in the plane perpendicular to it)",
+      "|B| is constant at every point of this loop — this is what symmetry buys, and it is why a circle is chosen",
+      "B is tangent to the loop at every point: B ∥ dl, θ = 0°, cosθ = 1, so B·dl = B dl with no radial or axial part",
+      "I_enc = the total current threading the loop = I for a single enclosed wire; it does NOT depend on the loop radius",
+      "∮B·dl = B·(2πr) holds ONLY because |B| is constant and tangent — it is not true for an arbitrary loop shape",
+      "∮B·dl = μ₀ I_enc is exact and independent of loop radius: a bigger loop has larger 2πr but smaller B, product fixed at μ₀I",
+      "This concept applies to the long straight wire ONLY — no solenoid, no toroid, no off-axis or non-symmetric loop",
+      "The unrolled bar's length is the real magnitude N·B·dl = B·(2πr); emphasis is by brightness, never by a cosmetic size pulse (Rule 29)"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "The circulation ∮B·dl is a finite sum of equal B·dl tiles around the loop.",
+    "visual_confirmation": "24 equal tiles light in sequence round the coaxial circle and fill the accumulator ring — the integral assembled piece by equal piece — then unroll into one bar of length B·2πr."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6", "STATE_7"],
+    "symmetry": ["STATE_3", "STATE_4"],
+    "circulation_unroll": ["STATE_5", "STATE_6"],
+    "exploration": ["STATE_8"]
+  },
+  "epic_l_path": {
+    "state_count": 8,
+    "states": {
+      "STATE_1": {
+        "title": "The result you already know — but unearned",
+        "duration": 13,
+        "focal_primitive_id": "acl_eq_0",
+        "advance_mode": "auto_after_tts",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "result_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Straight wire: B = μ₀I / 2πr",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "recall_label",
+            "position": { "x": 180, "y": 250 },
+            "text": "You met this with\nthe compass",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "But where do the\n2π and the r come from?",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "You already know this: B = μ₀I over 2πr for a long straight wire. You met it with the compass.", "text_hi": "आप यह पहले से जानते हैं: B equals mu-zero I over two pi r, एक long straight wire के लिए। आप इसे compass के साथ मिल चुके हैं।", "text_te": "మీకు ఇది ఇప్పటికే తెలుసు: B equals mu-zero I over two pi r, ఒక long straight wire కోసం. మీరు దీన్ని compass తో కలిశారు.", "pause_after_ms": 0 },
+            { "id": "s1_2", "text_en": "But where do the 2π and the r come from? Why exactly that size?", "text_hi": "लेकिन यह two pi और r कहाँ से आते हैं? ठीक उस size का क्यों?", "text_te": "కానీ ఈ two pi మరియు r ఎక్కడ నుండి వస్తాయి? సరిగ్గా ఆ size ఎందుకు?", "pause_after_ms": 0 },
+            { "id": "s1_3", "text_en": "We will not assume this formula. We will earn it — and it returns, lit, at the end.", "text_hi": "हम इस formula को assume नहीं करेंगे। हम इसे earn करेंगे — और यह अंत में, रोशन होकर, वापस आएगा।", "text_te": "మనం ఈ formula ని assume చేయము. మనం దాన్ని earn చేస్తాము — మరియు అది చివరలో, వెలిగిపోతూ, తిరిగి వస్తుంది.", "pause_after_ms": 0 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "B=μ₀I/2πr is just a formula to memorise",
+            "visual_counter": "the same formula returns lit in STATE_7 as the OUTPUT of the circulation, never assumed",
+            "one_line_fix": "2πr is the circumference the field circulates around; it falls out of the loop, it is not put in by hand."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Ampère's law — circulation equals μ₀ I_enc",
+        "duration": 15,
+        "focal_primitive_id": "acl_eq_1",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "law_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "∮ B·dl = μ₀ I_enc",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "circulation_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "∮ means: add B·dl\nall the way round\none closed loop",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "ienc_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "I_enc = the current\nthreading the loop",
+            "color": "#FF8A65"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Here is Ampère's law: the circulation of B once around a closed loop equals μ₀ times the current the loop encloses.", "text_hi": "यह है Ampère's law: किसी closed loop के चारों ओर B की circulation, उस loop के अंदर से गुज़रने वाली current के mu-zero गुना के बराबर होती है।", "text_te": "ఇదే Ampère's law: ఒక closed loop చుట్టూ B యొక్క circulation, ఆ loop లో ఉన్న current యొక్క mu-zero రెట్లకు సమానం.", "pause_after_ms": 0 },
+            { "id": "s2_2", "text_en": "That circle symbol on the integral means: add up B·dl all the way round one closed loop, back to the start.", "text_hi": "Integral पर वह circle symbol का मतलब है: एक पूरे closed loop में, शुरुआत तक वापस, B dot dl को जोड़ते जाइए।", "text_te": "Integral పై ఆ circle symbol యొక్క అర్థం: ఒక పూర్తి closed loop చుట్టూ, మొదటికి తిరిగి వచ్చే వరకు, B dot dl ని కూడుతూ వెళ్ళండి.", "pause_after_ms": 0 },
+            { "id": "s2_3", "text_en": "I-enclosed is just the current threading the loop. Our single wire passes straight through, so the loop encloses it.", "text_hi": "I-enclosed बस वह current है जो loop के अंदर से thread होती है। हमारा single wire सीधे उससे गुज़रता है, इसलिए loop उसे enclose करता है।", "text_te": "I-enclosed అనేది loop లోంచి thread అయ్యే current మాత్రమే. మన single wire నేరుగా దాని గుండా వెళ్తుంది, కాబట్టి loop దాన్ని enclose చేస్తుంది.", "pause_after_ms": 0 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "∮B·dl is just abstract calculus notation",
+            "visual_counter": "a marker physically walks once round the loop, dropping a B·dl tile each step",
+            "one_line_fix": "∮ means: add B·dl around one complete closed loop — a walk, not a mystery."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Why a circle, not any loop",
+        "duration": 16,
+        "focal_primitive_id": "acl_loop",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "shape_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Could ANY loop shape work?",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "square_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "Square: corners are\ncloser → B stronger\nthere → arrows unequal",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "circle_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Coaxial circle: every\npoint same distance →\n|B| equal all the way round",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Could ANY loop shape work — say a square — to pull B out of this integral? Take a guess.", "text_hi": "क्या कोई भी loop shape — जैसे एक square — B को इस integral से बाहर निकालने के लिए काम कर सकती है? एक guess लगाइए।", "text_te": "ఏదైనా loop shape — అంటే ఒక square — B ని ఈ integral నుండి బయటకు తీయడానికి పని చేస్తుందా? ఒక guess చెప్పండి.", "pause_after_ms": 2800 },
+            { "id": "s3_2", "text_en": "On a square, the corners sit closer to the wire than the edges, so B is stronger there — the arrows are unequal.", "text_hi": "एक square पर, corners, edges की तुलना में wire के ज़्यादा करीब होते हैं, इसलिए वहाँ B ज़्यादा strong होता है — arrows असमान होते हैं।", "text_te": "ఒక square పై, corners అనేవి edges కంటే wire కి దగ్గరగా ఉంటాయి, కాబట్టి అక్కడ B బలంగా ఉంటుంది — arrows అసమానంగా ఉంటాయి.", "pause_after_ms": 0 },
+            { "id": "s3_3", "text_en": "Only on a circle centred on the wire is every point the same distance away — so |B| is the same all the way round.", "text_hi": "सिर्फ wire के center पर बने circle पर ही हर point समान distance पर होता है — इसलिए |B| पूरे रास्ते एक जैसा रहता है।", "text_te": "Wire ని center గా చేసుకున్న circle పై మాత్రమే ప్రతి point సమాన distance లో ఉంటుంది — కాబట్టి |B| మొత్తం చుట్టూ ఒకే విధంగా ఉంటుంది.", "pause_after_ms": 0 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "the loop shape is free, so a square is fine for finding B",
+            "visual_counter": "square loop arrows drawn unequal in length; circle arrows all equal",
+            "one_line_fix": "any loop obeys the law, but only the coaxial circle has constant |B| — the condition that lets you SOLVE for B."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The angle between B and dl is zero",
+        "duration": 16,
+        "focal_primitive_id": "acl_dl",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "compare_contrast",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "B and dl — what is the\nangle between them?",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "tangent_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "B is tangent, dl runs\nalong the circle →\nsame way → θ = 0°",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "gift_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Two gifts: |B| constant,\ncosθ = 1 → B·dl = B dl",
+            "color": "#FFAB40"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "At any point on the circle, what is the angle between B and the little step dl along the loop? Predict it.", "text_hi": "Circle पर किसी भी point पर, B और loop के छोटे कदम dl के बीच का angle क्या है? इसे predict कीजिए।", "text_te": "Circle పై ఏదైనా ఒక point వద్ద, B మరియు loop వెంబడి ఉన్న చిన్న అడుగు dl మధ్య angle ఎంత? దాన్ని predict చేయండి.", "pause_after_ms": 3000 },
+            { "id": "s4_2", "text_en": "B is tangent to the circle, and dl runs along the circle too — so they point the same way. The angle is zero.", "text_hi": "B circle के tangent पर है, और dl भी circle के साथ चलता है — तो दोनों एक ही direction में point करते हैं। इसलिए angle zero है।", "text_te": "B circle కి tangent గా ఉంది, మరియు dl కూడా circle వెంట నడుస్తుంది — కాబట్టి అవి రెండూ ఒకే direction లో point చేస్తాయి. కాబట్టి angle zero.", "pause_after_ms": 0 },
+            { "id": "s4_3", "text_en": "Two gifts: |B| is constant, and cosθ = 1 everywhere. So B·dl is simply B times dl — no radial part, no cosine to track.", "text_hi": "दो तोहफे मिलते हैं: |B| constant है, और cosθ = 1 हर जगह। तो B·dl बस B times dl हो जाता है — कोई radial part नहीं, कोई cosine track नहीं करनी।", "text_te": "రెండు బహుమతులు: |B| constant గా ఉంది, మరియు cosθ = 1 అన్ని చోట్లా. కాబట్టి B·dl అనేది simply B times dl అవుతుంది — radial part లేదు, cosine track చేయాల్సిన అవసరం లేదు.", "pause_after_ms": 0 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "B points partly radially / the dot product needs a cosθ that changes round the loop",
+            "visual_counter": "B drawn tangent (θ=0°, cosθ=1) at every sampled point; no radial component exists",
+            "one_line_fix": "B is purely tangent on a coaxial circle, so B·dl = B·dl everywhere — the dot product is trivial."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "The circulation is a sum of equal tiles",
+        "duration": 18,
+        "focal_primitive_id": "acl_bdl",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sum_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "∮B·dl = a sum of\nequal pieces",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "tiles_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "24 equal B·dl steps —\nwatch the ring fill,\npiece by equal piece",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "circulation_is_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "the filled ring IS the\ncirculation ∮B·dl",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "So the integral is not mysterious. It is a sum of equal pieces. Watch one full trip round the loop.", "text_hi": "तो यह integral कोई रहस्यमय चीज़ नहीं है। यह बराबर pieces का एक sum है। देखिए loop के चारों तरफ एक पूरा चक्कर।", "text_te": "కాబట్టి ఈ integral ఏమీ mysterious కాదు. ఇది సమాన pieces యొక్క sum. loop చుట్టూ ఒక పూర్తి trip గమనించండి.", "pause_after_ms": 0 },
+            { "id": "s5_2", "text_en": "Each little step contributes the same B·dl — and there are 24 equal steps. See the ring fill, piece by equal piece.", "text_hi": "हर छोटा step एक जैसा B·dl contribute करता है — और यहाँ 24 equal steps हैं। देखिए ring कैसे piece by equal piece भरती है।", "text_te": "ప్రతి చిన్న step అదే B·dl ని contribute చేస్తుంది — మరియు 24 equal steps ఉన్నాయి. ring ఎలా piece by equal piece నిండుతుందో చూడండి.", "pause_after_ms": 1500 },
+            { "id": "s5_3", "text_en": "That filled ring IS the circulation ∮B·dl — assembled, not hand-waved. A finite sum of equal tiles.", "text_hi": "वह भरी हुई ring ही circulation ∮B·dl है — assembled है, hand-waved नहीं। equal tiles का एक finite sum।", "text_te": "ఆ నిండిన ring నే circulation ∮B·dl — assembled గా తయారైంది, hand-waved కాదు. సమాన tiles యొక్క ఒక finite sum.", "pause_after_ms": 0 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "the circulation integral can't really be evaluated / it's just symbolic",
+            "visual_counter": "24 equal B·dl tiles accumulate round the loop into a filled ring = the circulation",
+            "one_line_fix": "∮B·dl is a finite, concrete sum of equal tiles because |B| and the angle are constant on the circle."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Unroll the ring — ∮B·dl = B·(2πr)",
+        "duration": 16,
+        "focal_primitive_id": "acl_bar",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "unroll_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Straighten the ring out —\nno length added or lost",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "bar_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "24 equal tiles line up\ninto one bar — length\n= once round = 2πr",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "product_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "∮B·dl = B × 2πr\n(a clean product)",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Now straighten that ring out. The same 24 equal tiles line up into one bar — no length is added or lost.", "text_hi": "अब उस ring को सीधा कीजिए। वही 24 equal tiles एक bar में लाइन हो जाते हैं — कोई length जोड़ी या घटाई नहीं गई।", "text_te": "ఇప్పుడు ఆ ring ని straight చేయండి. అదే 24 equal tiles ఒక bar లో line అవుతాయి — ఎటువంటి length జోడించబడలేదు లేదా తగ్గించబడలేదు.", "pause_after_ms": 1200 },
+            { "id": "s6_2", "text_en": "The bar's length is just the number of steps times their size — which is the full distance once around: 2πr.", "text_hi": "उस bar की length बस steps की संख्या गुना उनका size है — जो कि पूरे एक चक्कर की distance है: 2πr।", "text_te": "ఆ bar యొక్క length అనేది steps సంఖ్య times వాటి size మాత్రమే — అది ఒక పూర్తి చుట్టు distance: 2πr.", "pause_after_ms": 0 },
+            { "id": "s6_3", "text_en": "So the circular sum becomes a clean product: ∮B·dl = B times 2πr.", "text_hi": "तो circular sum एक साफ़ product बन जाता है: ∮B·dl = B times 2πr।", "text_te": "కాబట్టి circular sum ఒక clean product గా మారుతుంది: ∮B·dl = B times 2πr.", "pause_after_ms": 0 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "circulation is a complicated curved sum, not a clean product",
+            "visual_counter": "the ring unrolls to a straight bar of measured length 2πr; ∮B·dl = B·(2πr)",
+            "one_line_fix": "because every tile is equal, the circular sum is just (one tile) × (number round) = B × circumference = B·2πr."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_7": {
+        "title": "Set equal to μ₀I, solve for B",
+        "duration": 16,
+        "focal_primitive_id": "acl_eq_5",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "derivation_first_principles",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "set_equal_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "B·(2πr) = μ₀ I_enc",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "ienc_one_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "one wire → I_enc = I\ndivide both sides by 2πr",
+            "color": "#FF8A65"
+          },
+          {
+            "type": "annotation",
+            "id": "earned_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "B = μ₀I / 2πr —\nthe first screen, earned",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Ampère's law set that circulation equal to μ₀ I-enclosed. For our one wire, I-enclosed is just I.", "text_hi": "Ampère's law उस circulation को μ₀ I-enclosed के बराबर रखता है। हमारे एक wire के लिए, I-enclosed बस I है।", "text_te": "Ampère's law ఆ circulation ని μ₀ I-enclosed కి సమానంగా చేస్తుంది. మన ఒక wire కోసం, I-enclosed అనేది కేవలం I మాత్రమే.", "pause_after_ms": 0 },
+            { "id": "s7_2", "text_en": "So B times 2πr equals μ₀ I. One last move to get B alone — what do we divide by? Predict.", "text_hi": "तो B times 2πr equals μ₀ I। B को अकेले पाने के लिए एक आखिरी कदम — हम किससे divide करेंगे? Predict कीजिए।", "text_te": "కాబట్టి B times 2πr equals μ₀ I. B ని వేరుగా పొందడానికి ఒక చివరి move — మనం దేనితో divide చేస్తాం? Predict చేయండి.", "pause_after_ms": 2800 },
+            { "id": "s7_3", "text_en": "Divide both sides by 2πr. B = μ₀ I over 2πr — the exact formula from the very first screen, now earned.", "text_hi": "दोनों sides को 2πr से divide कीजिए। B = μ₀ I over 2πr — यही exact formula पहली screen से था, और अब हमने इसे earn किया है।", "text_te": "రెండు sides ని 2πr తో divide చేయండి. B = μ₀ I over 2πr — మొదటి screen నుండి ఉన్న exact formula ఇదే, ఇప్పుడు మనం దాన్ని సాధించాం.", "pause_after_ms": 0 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Biot-Savart and Ampère give different B",
+            "visual_counter": "the earned B = μ₀I/2πr re-lights STATE_1's faint formula exactly — same value",
+            "one_line_fix": "Ampère's law and Biot-Savart give the IDENTICAL field for a straight wire; they are two routes to one answer."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "Your turn — change I and r, watch the law hold",
+        "duration": 20,
+        "focal_primitive_id": "acl_bar",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Slide I and the loop radius r",
+            "color": "#FFF176"
+          },
+          {
+            "type": "slider",
+            "id": "acl_current_slider",
+            "variable": "I",
+            "position": { "x": 620, "y": 150 },
+            "label": "I — current; I_enc and B both rise with it"
+          },
+          {
+            "type": "slider",
+            "id": "acl_radius_slider",
+            "variable": "r",
+            "position": { "x": 620, "y": 210 },
+            "label": "r — loop radius; 2πr grows, I_enc holds, B falls 1/r"
+          },
+          {
+            "type": "annotation",
+            "id": "invariant_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "μ₀I is fixed → B·2πr never changes → B falls as 1/r",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Your turn. Slide the current I up — I-enclosed rises with it, and so does B. The law tracks the current directly.", "text_hi": "अब आपकी बारी है। current I को ऊपर slide कीजिए — I-enclosed उसके साथ बढ़ता है, और B भी। यह law current को directly track करता है।", "text_te": "మీ వంతు. current I ని పైకి slide చేయండి — I-enclosed దానితో పాటు పెరుగుతుంది, B కూడా పెరుగుతుంది. ఈ law current ని directly track చేస్తుంది.", "pause_after_ms": 0 },
+            { "id": "s8_2", "text_en": "Now grow the loop radius r. The 2πr ruler gets longer, but I-enclosed stays fixed at I — a bigger loop encloses no extra current.", "text_hi": "अब loop का radius r बढ़ाइए। 2πr ruler लंबा हो जाता है, लेकिन I-enclosed I पर fixed रहता है — एक बड़ा loop कोई extra current enclose नहीं करता।", "text_te": "ఇప్పుడు loop radius r ని పెంచండి. 2πr ruler పొడవు అవుతుంది, కానీ I-enclosed మాత్రం I వద్ద fixed గా ఉంటుంది — పెద్ద loop ఏ extra current ని enclose చేయదు.", "pause_after_ms": 0 },
+            { "id": "s8_3", "text_en": "Since μ₀I is fixed but 2πr grew, B must fall as one over r. The product B·2πr never changes.", "text_hi": "चूँकि μ₀I fixed है लेकिन 2πr बड़ा हो गया, तो B को one over r की तरह fall करना ही होगा। product B·2πr कभी नहीं बदलता।", "text_te": "μ₀I fixed గా ఉన్నా 2πr పెరిగింది కాబట్టి, B తప్పనిసరిగా one over r గా fall అవుతుంది. product B·2πr ఎప్పుడూ మారదు.", "pause_after_ms": 0 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "a bigger Amperian loop encloses more current / changes the law",
+            "visual_counter": "as r grows, I_enc readout holds at I while 2πr grows and B falls 1/r",
+            "one_line_fix": "the loop's size never changes I_enc for a single wire — it only changes the circumference the field is spread around."
+          }
+        ]
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "amperes_circuital_law",
+    "acl_defaults": {
+      "loop_radius": 1.4,
+      "num_segments": 24
+    },
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#66BB6A",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85,
+      "arrow_spacing": 5
+    },
+    "current": {
+      "direction": [0, 1, 0],
+      "magnitude": 5,
+      "wire_color": "#FFAB40"
+    },
+    "slider_controls": {
+      "I": { "min": 0.5, "max": 20, "step": 0.5, "default": 5, "label": "Current I (A)" },
+      "r": { "min": 0.02, "max": 0.30, "step": 0.01, "default": 0.05, "label": "Loop radius r (m)" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The result you already know — but unearned",
+        "visible_elements": ["acl_wire", "acl_curr_arrow", "acl_loop", "acl_eq_0"],
+        "camera_position": [2.5, 1.5, 4],
+        "advance_mode": "auto_after_tts",
+        "duration": 13,
+        "caption": "",
+        "acl_element": {
+          "mode": "static",
+          "loop_radius": 1.4,
+          "circle_opacity": 0.25,
+          "show_current_flow": true,
+          "show_ienc": false,
+          "show_circulation_accumulation": false,
+          "loop_appear_at_ms": 1200
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "You already know this: B = μ₀I over 2πr for a long straight wire. You met it with the compass.", "pause_after_ms": 0 },
+            { "id": "s1_2", "text_en": "But where do the 2π and the r come from? Why exactly that size?", "pause_after_ms": 0 },
+            { "id": "s1_3", "text_en": "We will not assume this formula. We will earn it — and it returns, lit, at the end.", "pause_after_ms": 0 }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "Ampère's law — circulation equals μ₀ I_enc",
+        "visible_elements": ["acl_wire", "acl_curr_arrow", "acl_loop", "acl_dl", "acl_ienc_label", "acl_eq_1"],
+        "camera_position": [2.5, 1.2, 3.6],
+        "advance_mode": "manual_click",
+        "duration": 15,
+        "caption": "",
+        "acl_element": {
+          "mode": "march",
+          "loop_radius": 1.4,
+          "num_segments": 24,
+          "show_ienc": true,
+          "show_current_flow": true,
+          "loop_appear_at_ms": 800,
+          "dl_march_at_ms": 2200,
+          "dl_march_period_ms": 4000,
+          "ienc_reveal_at_ms": 3400
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Here is Ampère's law: the circulation of B once around a closed loop equals μ₀ times the current the loop encloses.", "pause_after_ms": 0 },
+            { "id": "s2_2", "text_en": "That circle symbol on the integral means: add up B·dl all the way round one closed loop, back to the start.", "pause_after_ms": 0 },
+            { "id": "s2_3", "text_en": "I-enclosed is just the current threading the loop. Our single wire passes straight through, so the loop encloses it.", "pause_after_ms": 0 }
+          ]
+        }
+      },
+      "STATE_3": {
+        "label": "Why a circle, not any loop",
+        "visible_elements": ["acl_wire", "acl_loop", "acl_dl", "acl_square_ghost"],
+        "camera_position": [2.2, 1.4, 3.4],
+        "advance_mode": "manual_click",
+        "duration": 16,
+        "caption": "",
+        "acl_element": {
+          "mode": "march",
+          "loop_radius": 1.4,
+          "num_segments": 24,
+          "show_square_ghost": true,
+          "dl_march_at_ms": 1400,
+          "dl_march_period_ms": 4000,
+          "loop_appear_at_ms": 600
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Could ANY loop shape work — say a square — to pull B out of this integral? Take a guess.", "pause_after_ms": 2800 },
+            { "id": "s3_2", "text_en": "On a square, the corners sit closer to the wire than the edges, so B is stronger there — the arrows are unequal.", "pause_after_ms": 0 },
+            { "id": "s3_3", "text_en": "Only on a circle centred on the wire is every point the same distance away — so |B| is the same all the way round.", "pause_after_ms": 0 }
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "The angle between B and dl is zero",
+        "visible_elements": ["acl_wire", "acl_loop", "acl_dl", "acl_eq_2"],
+        "camera_position": [2.2, 1.2, 3.2],
+        "advance_mode": "wait_for_answer",
+        "duration": 16,
+        "caption": "",
+        "acl_element": {
+          "mode": "march",
+          "loop_radius": 1.4,
+          "num_segments": 24,
+          "dl_march_at_ms": 1600,
+          "dl_march_period_ms": 4500,
+          "loop_appear_at_ms": 500
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "At any point on the circle, what is the angle between B and the little step dl along the loop? Predict it.", "pause_after_ms": 3000 },
+            { "id": "s4_2", "text_en": "B is tangent to the circle, and dl runs along the circle too — so they point the same way. The angle is zero.", "pause_after_ms": 0 },
+            { "id": "s4_3", "text_en": "Two gifts: |B| is constant, and cosθ = 1 everywhere. So B·dl is simply B times dl — no radial part, no cosine to track.", "pause_after_ms": 0 }
+          ]
+        }
+      },
+      "STATE_5": {
+        "label": "The circulation is a sum of equal tiles",
+        "visible_elements": ["acl_wire", "acl_loop", "acl_dl", "acl_bdl"],
+        "camera_position": [2.4, 1.4, 3.6],
+        "advance_mode": "manual_click",
+        "duration": 18,
+        "caption": "",
+        "acl_element": {
+          "mode": "accumulate",
+          "loop_radius": 1.4,
+          "num_segments": 24,
+          "show_circulation_accumulation": true,
+          "accumulate_at_ms": 1800,
+          "accumulate_stagger_ms": 120,
+          "accumulate_fade_ms": 300,
+          "dl_march_at_ms": 1800
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "So the integral is not mysterious. It is a sum of equal pieces. Watch one full trip round the loop.", "pause_after_ms": 0 },
+            { "id": "s5_2", "text_en": "Each little step contributes the same B·dl — and there are 24 equal steps. See the ring fill, piece by equal piece.", "pause_after_ms": 1500 },
+            { "id": "s5_3", "text_en": "That filled ring IS the circulation ∮B·dl — assembled, not hand-waved. A finite sum of equal tiles.", "pause_after_ms": 0 }
+          ]
+        }
+      },
+      "STATE_6": {
+        "label": "Unroll the ring — ∮B·dl = B·(2πr)",
+        "visible_elements": ["acl_loop", "acl_bdl", "acl_bar", "acl_ruler", "acl_eq_3"],
+        "camera_position": [2.6, 1.0, 4.0],
+        "advance_mode": "manual_click",
+        "duration": 16,
+        "caption": "",
+        "acl_element": {
+          "mode": "unroll",
+          "loop_radius": 1.4,
+          "num_segments": 24,
+          "unroll_at_ms": 1800,
+          "unroll_duration_ms": 2200,
+          "ruler_reveal_at_ms": 4200
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Now straighten that ring out. The same 24 equal tiles line up into one bar — no length is added or lost.", "pause_after_ms": 1200 },
+            { "id": "s6_2", "text_en": "The bar's length is just the number of steps times their size — which is the full distance once around: 2πr.", "pause_after_ms": 0 },
+            { "id": "s6_3", "text_en": "So the circular sum becomes a clean product: ∮B·dl = B times 2πr.", "pause_after_ms": 0 }
+          ]
+        }
+      },
+      "STATE_7": {
+        "label": "Set equal to μ₀I, solve for B",
+        "visible_elements": ["acl_wire", "acl_curr_arrow", "acl_flow", "acl_circle", "acl_loop", "acl_ienc_glow", "acl_eq_4", "acl_eq_5"],
+        "camera_position": [2.5, 1.5, 4],
+        "advance_mode": "wait_for_answer",
+        "duration": 16,
+        "caption": "",
+        "acl_element": {
+          "mode": "unroll",
+          "loop_radius": 1.4,
+          "num_segments": 24,
+          "ienc_reveal_at_ms": 1500,
+          "show_ienc": true
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Ampère's law set that circulation equal to μ₀ I-enclosed. For our one wire, I-enclosed is just I.", "pause_after_ms": 0 },
+            { "id": "s7_2", "text_en": "So B times 2πr equals μ₀ I. One last move to get B alone — what do we divide by? Predict.", "pause_after_ms": 2800 },
+            { "id": "s7_3", "text_en": "Divide both sides by 2πr. B = μ₀ I over 2πr — the exact formula from the very first screen, now earned.", "pause_after_ms": 0 }
+          ]
+        }
+      },
+      "STATE_8": {
+        "label": "Your turn — change I and r, watch the law hold",
+        "visible_elements": ["acl_wire", "acl_curr_arrow", "acl_flow", "acl_circle", "acl_loop", "acl_ienc_glow"],
+        "camera_position": [2.8, 1.5, 4.4],
+        "advance_mode": "interaction_complete",
+        "duration": 20,
+        "caption": "",
+        "show_sliders": true,
+        "acl_element": {
+          "mode": "integrated",
+          "loop_radius": 1.4,
+          "num_segments": 24,
+          "show_ienc": true,
+          "show_sliders": true
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Your turn. Slide the current I up — I-enclosed rises with it, and so does B. The law tracks the current directly.", "pause_after_ms": 0 },
+            { "id": "s8_2", "text_en": "Now grow the loop radius r. The 2πr ruler gets longer, but I-enclosed stays fixed at I — a bigger loop encloses no extra current.", "pause_after_ms": 0 },
+            { "id": "s8_3", "text_en": "Since μ₀I is fixed but 2πr grew, B must fall as one over r. The product B·2πr never changes.", "pause_after_ms": 0 }
+          ]
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered Ampère's circuital law for a long straight wire when they can state that ∮B·dl = μ₀ I_enc, that I_enc is the TOTAL current threading the Amperian loop (= I for a single enclosed wire, and independent of the loop's size), that a CIRCLE coaxial with the wire is chosen because only then is |B| the same at every point so B can be factored out of the integral, that B is tangent to that loop so the dot product B·dl reduces to B·dl with θ = 0° and cosθ = 1, that the circulation is therefore a finite sum of equal B·dl tiles which unrolls to the clean product B·(2πr), and that setting B·(2πr) = μ₀I and dividing by 2πr DERIVES B = μ₀I/(2πr) — the identical field the Biot-Savart route gives. They should also see that doubling the loop radius leaves I_enc unchanged while B falls as 1/r, because the product B·(2πr) = μ₀I is fixed. (The solenoid, toroid, and non-symmetric-loop cases are downstream applications, not assessed by this conceptual V1 quiz.)",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A long straight wire carries current I. You draw a circular Amperian loop around it. In ∮B·dl = μ₀ I_enc, what is I_enc?",
+        "options": {
+          "A": "The total current I in the wire",
+          "B": "Half of I, since the loop is on one side",
+          "C": "I multiplied by the loop radius r",
+          "D": "Zero, because the wire is outside the loop"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks the loop only sees part of the current geometrically",
+          "C": "Confuses I_enc with a quantity that scales with loop size",
+          "D": "Thinks a coaxial loop does not enclose the wire it surrounds"
+        },
+        "tested_idea": "I_enc is the total current threading the loop",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A wire carries 8 A. A circular Amperian loop is drawn coaxially around it. What current does the loop enclose?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "Why is a CIRCLE (coaxial with the wire) chosen as the Amperian loop, rather than a square?",
+        "options": {
+          "A": "Only on the circle is |B| the same at every point, so B can be factored out of the integral",
+          "B": "A circle is easier to draw than a square",
+          "C": "Magnetic field only exists in circular shapes",
+          "D": "A square loop would enclose a different current"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Treats loop choice as convenience, not symmetry-driven",
+          "C": "Thinks B is geometrically circular so the loop must be too",
+          "D": "Thinks loop shape changes I_enc (it does not)"
+        },
+        "tested_idea": "Constant-|B| symmetry is what makes the loop choice work",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "On a square Amperian loop around a straight wire, why can't you simply pull B outside the integral ∮B·dl?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "On the circular loop, the dot product B·dl simplifies to just B·dl (no cosine factor). Why?",
+        "options": {
+          "A": "B is tangent to the circle and dl runs along the circle, so the angle between them is 0° (cosθ = 1)",
+          "B": "Because B is very small so the angle doesn't matter",
+          "C": "Because dl is always perpendicular to B",
+          "D": "Because the current is constant"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Hand-waves the dot product instead of using θ=0°",
+          "C": "Thinks B is radial / perpendicular to the loop",
+          "D": "Confuses steady current with the geometry of the dot product"
+        },
+        "tested_idea": "B is tangent to the loop ⇒ θ=0°, cosθ=1",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "At a point on the circular Amperian loop, what is the angle between the magnetic field B and the path element dl?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "The circulation ∮B·dl around the loop is best understood as:",
+        "options": {
+          "A": "A sum of many equal contributions B·dl, one for each equal step around the loop",
+          "B": "A single value you must memorise",
+          "C": "The area enclosed by the loop",
+          "D": "Different at each point so it cannot be added up"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Treats ∮B·dl as an un-evaluable symbol",
+          "C": "Confuses circulation (a line integral) with enclosed area",
+          "D": "Doesn't realise B·dl is equal at every point"
+        },
+        "tested_idea": "Circulation is a finite sum of equal B·dl tiles (THE AHA)",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Walking once around the coaxial circle, each equal step contributes the same B·dl. What does adding all these contributions give?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Using |B| constant and tangent on the loop, ∮B·dl becomes B·(2πr). Setting this equal to μ₀I_enc and solving for B gives:",
+        "options": {
+          "A": "B = μ₀I / (2πr)",
+          "B": "B = μ₀I·(2πr)",
+          "C": "B = 2πr / (μ₀I)",
+          "D": "B = μ₀I / (4πr²)"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Multiplies by 2πr instead of dividing",
+          "C": "Inverts the relation",
+          "D": "Confuses Ampère's result with the Biot-Savart 1/r² element form"
+        },
+        "tested_idea": "∮B·dl = B·(2πr) = μ₀I_enc ⇒ solve for B",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "From B·(2πr) = μ₀I, isolate B by dividing both sides by 2πr. What is the result?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "You double the radius of the Amperian loop (keeping the same wire and current). What happens to I_enc and to B at the loop?",
+        "options": {
+          "A": "I_enc stays the same; B becomes half as large",
+          "B": "Both I_enc and B double",
+          "C": "I_enc doubles; B stays the same",
+          "D": "Both stay exactly the same"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks a bigger loop encloses more current",
+          "C": "Thinks I_enc grows with loop size and B is unaffected",
+          "D": "Doesn't see the 1/r dependence of B"
+        },
+        "tested_idea": "Loop size does not change I_enc; B falls as 1/r",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A larger coaxial Amperian loop is drawn around the same wire. How do the enclosed current and the field on the loop compare?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": ["Q1"],
+      "STATE_3": ["Q2"],
+      "STATE_4": ["Q3"],
+      "STATE_5": ["Q4"],
+      "STATE_6": ["Q5"],
+      "STATE_8": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_7"]
+  }
+}

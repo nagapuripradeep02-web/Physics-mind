@@ -138,19 +138,19 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Here are two charges sitting a little apart, with nothing between them but empty space."
+              "text_en": "Here are two charges sitting a little apart, with nothing between them but empty space.", "text_hi": "यहाँ दो charges थोड़ी दूरी पर बैठे हैं, और उनके बीच में कुछ भी नहीं है — बस empty space है।", "text_te": "ఇక్కడ రెండు charges కొంచెం దూరంగా ఉన్నాయి, వాటి మధ్య ఏమీ లేదు — కేవలం empty space మాత్రమే ఉంది."
             },
             {
               "id": "s1_2",
-              "text_en": "Each one feels a push from the other — a real force — even though nothing is touching."
+              "text_en": "Each one feels a push from the other — a real force — even though nothing is touching.", "text_hi": "दोनों एक-दूसरे से एक push महसूस करते हैं — एक असली force — भले ही कुछ भी touch नहीं कर रहा।", "text_te": "ప్రతి ఒక్కటి మరొక దాని నుండి ఒక push అనుభవిస్తుంది — నిజమైన force — అయినా ఏదీ touch అవడం లేదు."
             },
             {
               "id": "s1_3",
-              "text_en": "Two like charges, both positive, push each other apart, as the green arrows show."
+              "text_en": "Two like charges, both positive, push each other apart, as the green arrows show.", "text_hi": "दो like charges, दोनों positive, एक-दूसरे को दूर push करते हैं, जैसा कि green arrows दिखा रहे हैं।", "text_te": "రెండు like charges, రెండూ positive, ఒకదానినొకటి దూరంగా push చేసుకుంటాయి, green arrows చూపినట్టు."
             },
             {
               "id": "s1_4",
-              "text_en": "This electric push across empty space is the Coulomb force. The whole lesson is about how big it is and which way it points."
+              "text_en": "This electric push across empty space is the Coulomb force. The whole lesson is about how big it is and which way it points.", "text_hi": "Empty space में यह electric push Coulomb force कहलाती है। पूरा lesson इसी के बारे में है — यह कितनी बड़ी है और किस direction में point करती है।", "text_te": "Empty space లో ఈ electric push ను Coulomb force అంటారు. మొత్తం lesson ఇది ఎంత పెద్దది మరియు ఏ direction లో point చేస్తుందో అని చెప్పడానికే."
             }
           ]
         },
@@ -194,19 +194,19 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Coulomb measured this force and found one clean rule for its size."
+              "text_en": "Coulomb measured this force and found one clean rule for its size.", "text_hi": "Coulomb ने इस force को measure किया और इसकी size के लिए एक सरल rule खोजा।", "text_te": "Coulomb ఈ force ని measure చేసి దాని size కోసం ఒక సులభమైన rule కనుగొన్నాడు."
             },
             {
               "id": "s2_2",
-              "text_en": "The force equals k times the first charge times the second charge, divided by the distance squared."
+              "text_en": "The force equals k times the first charge times the second charge, divided by the distance squared.", "text_hi": "Force equals k times the first charge times the second charge, divided by the distance squared।", "text_te": "Force equals k times the first charge times the second charge, divided by the distance squared."
             },
             {
               "id": "s2_3",
-              "text_en": "Here r is the distance between the charges, and k is Coulomb's constant."
+              "text_en": "Here r is the distance between the charges, and k is Coulomb's constant.", "text_hi": "यहाँ r, charges के बीच की distance है, और k, Coulomb's constant है।", "text_te": "ఇక్కడ r అంటే charges మధ్య distance, మరియు k అంటే Coulomb's constant."
             },
             {
               "id": "s2_4",
-              "text_en": "Do not let k fool you — it is about nine times ten to the ninth, a huge number. That is why even tiny charges feel a real force."
+              "text_en": "Do not let k fool you — it is about nine times ten to the ninth, a huge number. That is why even tiny charges feel a real force.", "text_hi": "k को आपको confuse मत होने दीजिए — यह nine times ten to the ninth के बराबर है, यह एक बहुत बड़ा number है। इसीलिए tiny charges भी एक real force महसूस करते हैं।", "text_te": "k చూసి confuse అవ్వకండి — ఇది nine times ten to the ninth, చాలా పెద్ద number. అందుకే tiny charges కూడా ఒక real force అనుభవిస్తాయి."
             }
           ]
         },
@@ -251,19 +251,19 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Now flip the second charge to negative. Before I redraw the arrows — predict which way they will point."
+              "text_en": "Now flip the second charge to negative. Before I redraw the arrows — predict which way they will point.", "text_hi": "अब second charge को negative में बदलिए। Arrows को redraw करने से पहले — predict कीजिए कि वे किस direction में point करेंगे।", "text_te": "ఇప్పుడు second charge ని negative గా మార్చండి. నేను arrows ని redraw చేయడానికి ముందే — అవి ఏ direction లో point చేస్తాయో predict చేయండి."
             },
             {
               "id": "s3_2",
-              "text_en": "Opposite charges attract, so both arrows now point inward, pulling the charges together."
+              "text_en": "Opposite charges attract, so both arrows now point inward, pulling the charges together.", "text_hi": "Opposite charges attract करते हैं, इसलिए अब दोनों arrows अंदर की तरफ point करते हैं, charges को एक-दूसरे की तरफ खींचते हुए।", "text_te": "Opposite charges attract అవుతాయి, కాబట్టి ఇప్పుడు రెండు arrows లోపలికి point చేస్తున్నాయి, charges ని ఒకదానివైపు మరొకటి లాగుతున్నాయి."
             },
             {
               "id": "s3_3",
-              "text_en": "Like charges repel, unlike charges attract — the sign of the charges sets the direction."
+              "text_en": "Like charges repel, unlike charges attract — the sign of the charges sets the direction.", "text_hi": "Like charges repel करते हैं, unlike charges attract करते हैं — charges का sign ही direction तय करता है।", "text_te": "Like charges repel అవుతాయి, unlike charges attract అవుతాయి — charges యొక్క sign మాత్రమే direction ని నిర్ణయిస్తుంది."
             },
             {
               "id": "s3_4",
-              "text_en": "But notice the size of the force has not changed at all; only the direction flipped."
+              "text_en": "But notice the size of the force has not changed at all; only the direction flipped.", "text_hi": "लेकिन ध्यान दीजिए, force का size बिल्कुल नहीं बदला; सिर्फ direction पलट गई।", "text_te": "కానీ గమనించండి, force యొక్క size అస్సలు మారలేదు; కేవలం direction మాత్రమే తిరిగింది."
             }
           ]
         },
@@ -307,19 +307,19 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Now make the second charge far bigger than the first — five times the size."
+              "text_en": "Now make the second charge far bigger than the first — five times the size.", "text_hi": "अब दूसरे charge को पहले से बहुत बड़ा बनाइए — पाँच गुना बड़ा।", "text_te": "ఇప్పుడు రెండవ charge ని మొదటి దాని కంటే చాలా పెద్దగా చేయండి — అయిదు రెట్లు పెద్దది."
             },
             {
               "id": "s4_2",
-              "text_en": "You might expect the big charge to push harder than the little one feels. Watch the arrows."
+              "text_en": "You might expect the big charge to push harder than the little one feels. Watch the arrows.", "text_hi": "आप सोच सकते हैं कि बड़ा charge ज़्यादा ज़ोर से push करेगा और छोटा वाला कम महसूस करेगा। arrows को देखिए।", "text_te": "మీరు అనుకోవచ్చు, పెద్ద charge ఎక్కువగా push చేస్తుందని, చిన్నది తక్కువగా అనుభవిస్తుందని. arrows ని గమనించండి."
             },
             {
               "id": "s4_3",
-              "text_en": "They are exactly the same length. The force on charge one equals the force on charge two."
+              "text_en": "They are exactly the same length. The force on charge one equals the force on charge two.", "text_hi": "ये बिल्कुल एक जैसी लंबाई के हैं। force on charge one equals the force on charge two।", "text_te": "ఇవి సరిగ్గా ఒకే పొడవు కలిగి ఉన్నాయి. force on charge one equals the force on charge two."
             },
             {
               "id": "s4_4",
-              "text_en": "That is Newton's third law, and the formula shows why: the product q₁ times q₂ is the same for both."
+              "text_en": "That is Newton's third law, and the formula shows why: the product q₁ times q₂ is the same for both.", "text_hi": "यही Newton's third law है, और formula भी यही बताता है: product q₁ times q₂ दोनों के लिए एक ही है।", "text_te": "ఇదే Newton's third law, మరియు formula కూడా అదే చెప్తుంది: product q₁ times q₂ రెండింటికీ ఒకే విధంగా ఉంటుంది."
             }
           ]
         },
@@ -363,19 +363,19 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Keep the charges the same and just move them apart. If I double the distance, what happens to the force? Predict first."
+              "text_en": "Keep the charges the same and just move them apart. If I double the distance, what happens to the force? Predict first.", "text_hi": "charges को same रखिए और बस उन्हें दूर कीजिए। अगर मैं distance को double करूँ, तो force का क्या होगा? पहले predict कीजिए।", "text_te": "charges ని same గా ఉంచి వాటిని దూరంగా జరపండి. నేను distance ని double చేస్తే, force కి ఏమి జరుగుతుంది? ముందు predict చేయండి."
             },
             {
               "id": "s5_2",
-              "text_en": "It does not halve — it drops to a quarter. The arrow shrinks to one fourth of its length."
+              "text_en": "It does not halve — it drops to a quarter. The arrow shrinks to one fourth of its length.", "text_hi": "यह आधी नहीं होती — यह एक चौथाई हो जाती है। arrow सिकुड़कर अपनी लंबाई का one fourth रह जाता है।", "text_te": "ఇది సగానికి తగ్గదు — ఇది quarter కి తగ్గిపోతుంది. arrow తన పొడవులో one fourth కి తగ్గిపోతుంది."
             },
             {
               "id": "s5_3",
-              "text_en": "Move out to three times the distance and the force falls to one ninth."
+              "text_en": "Move out to three times the distance and the force falls to one ninth.", "text_hi": "तीन गुना distance पर जाइए और force एक नौवें हिस्से तक गिर जाती है।", "text_te": "మూడు రెట్లు distance కి వెళ్తే force one ninth కి పడిపోతుంది."
             },
             {
               "id": "s5_4",
-              "text_en": "That is the inverse square law: force goes as one over r squared. Distance matters a great deal."
+              "text_en": "That is the inverse square law: force goes as one over r squared. Distance matters a great deal.", "text_hi": "यही inverse square law है: force, one over r squared के अनुसार चलती है। distance का बहुत बड़ा फर्क पड़ता है।", "text_te": "ఇదే inverse square law: force, one over r squared గా ఉంటుంది. distance చాలా ముఖ్యమైన పాత్ర పోషిస్తుంది."
             }
           ]
         },
@@ -420,19 +420,19 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Now hold the distance fixed and double the first charge instead."
+              "text_en": "Now hold the distance fixed and double the first charge instead.", "text_hi": "अब distance को fixed रखिए और इसके बजाय पहले charge को double कीजिए।", "text_te": "ఇప్పుడు distance ని fixed గా ఉంచి, మొదటి charge ని మాత్రం double చేయండి."
             },
             {
               "id": "s6_2",
-              "text_en": "Both arrows double in length — the force is twice as strong on each charge."
+              "text_en": "Both arrows double in length — the force is twice as strong on each charge.", "text_hi": "दोनों arrows की length double हो जाती है — हर charge पर force दोगुनी strong हो जाती है।", "text_te": "రెండు arrows యొక్క length double అవుతాయి — ప్రతి charge మీద force రెండు రెట్లు strong గా ఉంటుంది."
             },
             {
               "id": "s6_3",
-              "text_en": "The force is proportional to the product of the charges, q₁ times q₂."
+              "text_en": "The force is proportional to the product of the charges, q₁ times q₂.", "text_hi": "Force, charges के product के proportional होती है, यानी q₁ times q₂।", "text_te": "Force అనేది charges యొక్క product కి proportional గా ఉంటుంది, అంటే q₁ times q₂."
             },
             {
               "id": "s6_4",
-              "text_en": "Double either charge and you double the force; the distance has done nothing here."
+              "text_en": "Double either charge and you double the force; the distance has done nothing here.", "text_hi": "किसी भी एक charge को double करें तो force double हो जाती है; यहाँ distance ने कुछ नहीं किया।", "text_te": "ఏదైనా ఒక charge ని double చేస్తే force కూడా double అవుతుంది; ఇక్కడ distance ఏమీ చేయలేదు."
             }
           ]
         },
@@ -476,19 +476,19 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "So far we have talked about how big the force is. But force is a vector — it has a direction too."
+              "text_en": "So far we have talked about how big the force is. But force is a vector — it has a direction too.", "text_hi": "अब तक हमने बात की कि force कितनी बड़ी है। लेकिन force एक vector है — इसकी एक direction भी होती है।", "text_te": "ఇప్పటివరకు మనం force ఎంత పెద్దదో మాట్లాడాము. కానీ force ఒక vector — దానికి ఒక direction కూడా ఉంటుంది."
             },
             {
               "id": "s7_2",
-              "text_en": "The Coulomb force always lies along the straight line joining the two charges."
+              "text_en": "The Coulomb force always lies along the straight line joining the two charges.", "text_hi": "Coulomb force हमेशा उस straight line के along होती है जो दोनों charges को जोड़ती है।", "text_te": "Coulomb force ఎప్పుడూ రెండు charges ని కలిపే straight line వెంట ఉంటుంది."
             },
             {
               "id": "s7_3",
-              "text_en": "We write that direction as r-hat, the unit vector pointing from one charge to the other."
+              "text_en": "We write that direction as r-hat, the unit vector pointing from one charge to the other.", "text_hi": "हम उस direction को r-hat के रूप में लिखते हैं, जो एक charge से दूसरे charge की तरफ point करने वाला unit vector है।", "text_te": "మనం ఆ direction ని r-hat గా రాస్తాము, ఇది ఒక charge నుండి మరొక charge వైపు point చేసే unit vector."
             },
             {
               "id": "s7_4",
-              "text_en": "Writing it as a vector matters, because it lets us add forces from several charges in the next step."
+              "text_en": "Writing it as a vector matters, because it lets us add forces from several charges in the next step.", "text_hi": "इसे vector के रूप में लिखना ज़रूरी है, क्योंकि इससे हम अगले step में कई charges की forces को add कर सकते हैं।", "text_te": "దీన్ని vector గా రాయడం చాలా ముఖ్యం, ఎందుకంటే దీని వల్ల మనం తర్వాతి step లో అనేక charges నుండి వచ్చే forces ని add చేయగలము."
             }
           ]
         },
@@ -532,19 +532,19 @@
           "tts_sentences": [
             {
               "id": "s8_1",
-              "text_en": "Real problems have more than two charges. Here a charge feels a pull from two others at once."
+              "text_en": "Real problems have more than two charges. Here a charge feels a pull from two others at once.", "text_hi": "Real problems में दो से ज़्यादा charges होते हैं। यहाँ एक charge एक साथ दो दूसरों से pull feel करता है।", "text_te": "Real problems లో రెండు కంటే ఎక్కువ charges ఉంటాయి. ఇక్కడ ఒక charge ఒకేసారి మరో రెండు charges నుండి pull feel చేస్తుంది."
             },
             {
               "id": "s8_2",
-              "text_en": "Each pair acts on its own: charge one gives force F-one, charge two gives force F-two."
+              "text_en": "Each pair acts on its own: charge one gives force F-one, charge two gives force F-two.", "text_hi": "हर pair अपने आप act करता है: charge one देता है force F-one, charge two देता है force F-two।", "text_te": "ప్రతి pair తనంతట తాను act చేస్తుంది: charge one ఇచ్చేది force F-one, charge two ఇచ్చేది force F-two."
             },
             {
               "id": "s8_3",
-              "text_en": "The net force is not their numbers added — it is the two arrows added tip to tail, as vectors."
+              "text_en": "The net force is not their numbers added — it is the two arrows added tip to tail, as vectors.", "text_hi": "Net force उनके numbers को जोड़ने से नहीं मिलती — यह तो वो दो arrows हैं जो tip to tail, vectors की तरह जुड़ते हैं।", "text_te": "Net force వాటి numbers కలపడం వల్ల రాదు — అది ఆ రెండు arrows ని tip to tail గా, vectors లా కలిపినప్పుడు వస్తుంది."
             },
             {
               "id": "s8_4",
-              "text_en": "Add every pair force as a vector and you get the total. This is the principle of superposition."
+              "text_en": "Add every pair force as a vector and you get the total. This is the principle of superposition.", "text_hi": "हर pair की force को vector की तरह जोड़िए और आपको total मिल जाएगी। यही principle of superposition है।", "text_te": "ప్రతి pair force ని vector గా కలిపితే మీకు total వస్తుంది. ఇదే principle of superposition."
             }
           ]
         },
@@ -588,19 +588,19 @@
           "tts_sentences": [
             {
               "id": "s9_1",
-              "text_en": "Now you drive it. Slide the two charges and the distance and watch the force respond live."
+              "text_en": "Now you drive it. Slide the two charges and the distance and watch the force respond live.", "text_hi": "अब आप खुद चलाइए। दोनों charges और distance को slide कीजिए और देखिए कैसे force live respond करती है।", "text_te": "ఇప్పుడు మీరే నడపండి. రెండు charges మరియు distance ని slide చేయండి మరియు force ఎలా live గా respond చేస్తుందో చూడండి."
             },
             {
               "id": "s9_2",
-              "text_en": "Raise either charge and the arrows grow together; the force tracks the product q₁ times q₂."
+              "text_en": "Raise either charge and the arrows grow together; the force tracks the product q₁ times q₂.", "text_hi": "किसी भी charge को बढ़ाइए और arrows एक साथ बड़े होते हैं; force, product q₁ times q₂ को track करती है।", "text_te": "ఏదైనా charge ని పెంచండి మరియు arrows కలిసి పెద్దవి అవుతాయి; force అనేది product q₁ times q₂ ని track చేస్తుంది."
             },
             {
               "id": "s9_3",
-              "text_en": "Push the charges apart and feel how fast the force fades — that is the inverse square at work."
+              "text_en": "Push the charges apart and feel how fast the force fades — that is the inverse square at work.", "text_hi": "Charges को दूर कीजिए और महसूस कीजिए कि force कितनी तेज़ी से fade होती है — यही inverse square का कमाल है।", "text_te": "Charges ని దూరంగా నెట్టండి మరియు force ఎంత వేగంగా fade అవుతుందో అనుభవించండి — అదే inverse square పని చేయడం."
             },
             {
               "id": "s9_4",
-              "text_en": "Flip a charge negative and the arrows turn inward to attract. One law, every case."
+              "text_en": "Flip a charge negative and the arrows turn inward to attract. One law, every case.", "text_hi": "किसी charge को negative कर दीजिए और arrows inward मुड़ जाते हैं, attract करने लगते हैं। एक ही law, हर case में।", "text_te": "ఒక charge ని negative గా flip చేయండి మరియు arrows inward గా తిరిగి attract చేస్తాయి. ఒకే law, ప్రతి case లో."
             }
           ]
         }

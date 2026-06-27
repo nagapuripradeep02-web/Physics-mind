@@ -922,6 +922,50 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    gauss_law_solid_sphere: {
+        concept_id: 'gauss_law_solid_sphere',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'gauss_law_solid_sphere',
+            label: 'Solid Charged Sphere: E∝r inside, peak at R, kq/r² outside (3D)',
+        },
+    },
+
+    gauss_law_line: {
+        concept_id: 'gauss_law_line',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'gauss_law_line',
+            label: "Gauss's Law — Infinite Line Charge: E = λ/(2πε₀r) (3D)",
+        },
+    },
+
+    gauss_law_sheet: {
+        concept_id: 'gauss_law_sheet',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'gauss_law_sheet',
+            label: "Gauss's Law — Infinite Charged Sheet: E = σ/2ε₀ (3D)",
+        },
+    },
+
+    // Ch.2 — Electrostatic Potential and Capacitance (§2.1-2.2). The MEANING
+    // diamond: V = W/q (work per unit charge from infinity), path-independence,
+    // U vs V, V(∞)=0 + ΔV, V is a scalar (equipotential shells) vs E the ⊥ arrow.
+    // Stops short of V = kQ/r (sibling electric_potential_point_charge).
+    electric_potential_meaning: {
+        concept_id: 'electric_potential_meaning',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'electric_potential_meaning',
+            label: 'Electric Potential — V = W/q (3D)',
+        },
+    },
+
     force_on_charge_in_field: {
         concept_id: 'force_on_charge_in_field',
         layout: 'single',
@@ -997,6 +1041,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    amperes_circuital_law: {
+        concept_id: 'amperes_circuital_law',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'amperes_circuital_law',
+            label: "Ampère's Law: B = μ₀I/2πr (3D)",
+        },
+    },
+
     magnetic_force_moving_charge: {
         concept_id: 'magnetic_force_moving_charge',
         layout: 'single',
@@ -1027,6 +1081,26 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    circular_motion_charge_in_uniform_B: {
+        concept_id: 'circular_motion_charge_in_uniform_B',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'circular_motion_charge_in_uniform_B',
+            label: 'Circle Radius r = mv/qB (3D)',
+        },
+    },
+
+    cyclotron_period_independent_of_speed: {
+        concept_id: 'cyclotron_period_independent_of_speed',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'cyclotron_period_independent_of_speed',
+            label: 'Lap Time T = 2πm/qB (3D)',
+        },
+    },
+
     torque_on_current_loop_in_field: {
         concept_id: 'torque_on_current_loop_in_field',
         layout: 'single',
@@ -1034,6 +1108,26 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'torque_on_current_loop_in_field',
             label: 'Torque on Loop (3D)',
+        },
+    },
+
+    current_loop_acts_as_dipole: {
+        concept_id: 'current_loop_acts_as_dipole',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'current_loop_acts_as_dipole',
+            label: 'Loop as a Magnetic Dipole (3D)',
+        },
+    },
+
+    parallel_currents_force: {
+        concept_id: 'parallel_currents_force',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'parallel_currents_force',
+            label: 'Force Between Parallel Currents (3D)',
         },
     },
 

@@ -138,19 +138,19 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "Here is a single charge Q sitting in empty space. Bring a tiny positive test charge q near it."
+              "text_en": "Here is a single charge Q sitting in empty space. Bring a tiny positive test charge q near it.", "text_hi": "यहाँ एक single charge Q है जो empty space में बैठा है। इसके पास एक tiny positive test charge q लाओ।", "text_te": "ఇక్కడ ఒక single charge Q ఉంది, అది empty space లో ఉంది. దానికి దగ్గరగా ఒక tiny positive test charge q తీసుకు రండి."
             },
             {
               "id": "s1_2",
-              "text_en": "The test charge feels a force F — even though nothing is touching it. The space around Q is doing the pushing."
+              "text_en": "The test charge feels a force F — even though nothing is touching it. The space around Q is doing the pushing.", "text_hi": "test charge को एक force F feel होता है — चाहे उसे कोई touch भी नहीं कर रहा। Q के आसपास का space ही pushing कर रहा है।", "text_te": "test charge కు ఒక force F అనుభవమవుతుంది — అది touch చేయకపోయినా కూడా. Q చుట్టూ ఉన్న space అది push చేస్తోంది."
             },
             {
               "id": "s1_3",
-              "text_en": "We give that push a name: the electric field. E is the force per unit charge — E equals F divided by q."
+              "text_en": "We give that push a name: the electric field. E is the force per unit charge — E equals F divided by q.", "text_hi": "हम उस push को एक नाम देते हैं: electric field। E है force per unit charge — E equals F divided by q।", "text_te": "మనం ఆ push కి ఒక పేరు పెడతాం: electric field. E అనేది force per unit charge — E equals F divided by q."
             },
             {
               "id": "s1_4",
-              "text_en": "The field is a property of the space itself. It is there whether or not we put a test charge in to feel it."
+              "text_en": "The field is a property of the space itself. It is there whether or not we put a test charge in to feel it.", "text_hi": "field एक property है space की। वो वहाँ रहता है, चाहे हम test charge रखें या न रखें।", "text_te": "field అనేది space యొక్క property. మనం test charge పెట్టినా పెట్టకపోయినా, అది అక్కడ ఉంటుంది."
             }
           ]
         }
@@ -196,19 +196,19 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Pick a point P at a distance r from the charge. The field there points straight out, along the line from Q to P."
+              "text_en": "Pick a point P at a distance r from the charge. The field there points straight out, along the line from Q to P.", "text_hi": "charge से r दूरी पर एक point P चुनो। वहाँ का field सीधा बाहर point करता है, Q से P की line के साथ।", "text_te": "charge నుండి r దూరంలో ఒక point P తీసుకోండి. అక్కడ field నేరుగా బయటకు point చేస్తుంది, Q నుండి P వరకు ఉన్న line వెంట."
             },
             {
               "id": "s2_2",
-              "text_en": "Its strength is E equals k Q over r squared. This is just the Coulomb force on a unit test charge."
+              "text_en": "Its strength is E equals k Q over r squared. This is just the Coulomb force on a unit test charge.", "text_hi": "इसकी strength है E equals k Q over r squared। यह बस unit test charge पर Coulomb force है।", "text_te": "దాని strength అంటే E equals k Q over r squared. ఇది unit test charge పై Coulomb force మాత్రమే."
             },
             {
               "id": "s2_3",
-              "text_en": "Move P closer and the arrow grows fast. Move it away and the arrow shrinks."
+              "text_en": "Move P closer and the arrow grows fast. Move it away and the arrow shrinks.", "text_hi": "P को पास लाओ और arrow तेज़ी से बढ़ता है। दूर ले जाओ और arrow सिकुड़ता है।", "text_te": "P ని దగ్గరగా తరలిస్తే arrow వేగంగా పెద్దదవుతుంది. దూరంగా తరలిస్తే arrow చిన్నదవుతుంది."
             },
             {
               "id": "s2_4",
-              "text_en": "Halve the distance and the field becomes four times stronger — because of the r squared in the denominator."
+              "text_en": "Halve the distance and the field becomes four times stronger — because of the r squared in the denominator.", "text_hi": "distance को आधा करो और field चार गुना मज़बूत हो जाता है — denominator में r squared की वजह से।", "text_te": "distance ని సగానికి తగ్గిస్తే field నాలుగు రెట్లు బలంగా అవుతుంది — denominator లో r squared ఉన్నందువల్ల."
             }
           ]
         },
@@ -255,19 +255,19 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Before I change anything — predict. If I make the charge negative, which way will the field point?"
+              "text_en": "Before I change anything — predict. If I make the charge negative, which way will the field point?", "text_hi": "कुछ change करने से पहले — predict करो। अगर मैं charge को negative करूँ, तो field किस तरफ point करेगा?", "text_te": "నేను ఏదైనా change చేయడానికి ముందు — predict చేయండి. నేను charge ని negative చేస్తే, field ఏ వైపు point చేస్తుంది?"
             },
             {
               "id": "s3_2",
-              "text_en": "Watch. Every single arrow flips. For a negative charge the field points radially INWARD, toward the charge."
+              "text_en": "Watch. Every single arrow flips. For a negative charge the field points radially INWARD, toward the charge.", "text_hi": "देखो। हर एक arrow पलट गया। एक negative charge के लिए field radially INWARD point करता है, charge की तरफ।", "text_te": "చూడండి. ప్రతి ఒక్క arrow తిరిగిపోయింది. ఒక negative charge కోసం field radially INWARD గా, charge వైపు point చేస్తుంది."
             },
             {
               "id": "s3_3",
-              "text_en": "The magnitude is exactly the same, k Q over r squared. Only the direction reversed."
+              "text_en": "The magnitude is exactly the same, k Q over r squared. Only the direction reversed.", "text_hi": "magnitude बिल्कुल same है, k Q over r squared। केवल direction उल्टा हो गया।", "text_te": "magnitude సరిగ్గా అదే, k Q over r squared. కేవలం direction తిరిగిపోయింది."
             },
             {
               "id": "s3_4",
-              "text_en": "The sign of the charge owns the direction: outward for positive, inward for negative."
+              "text_en": "The sign of the charge owns the direction: outward for positive, inward for negative.", "text_hi": "charge का sign ही direction तय करता है: positive के लिए outward, negative के लिए inward।", "text_te": "charge యొక్క sign మాత్రమే direction నిర్ణయిస్తుంది: positive కోసం outward, negative కోసం inward."
             }
           ]
         },
@@ -320,19 +320,19 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Instead of drawing one arrow at a time, we join them into continuous lines streaming out of the charge."
+              "text_en": "Instead of drawing one arrow at a time, we join them into continuous lines streaming out of the charge.", "text_hi": "एक-एक arrow खींचने की जगह, हम उन्हें charge से बाहर निकलने वाली continuous lines में जोड़ते हैं।", "text_te": "ఒక్కొక్క arrow గీయడానికి బదులు, మనం వాటిని charge నుండి బయటకు వచ్చే continuous lines గా కలుపుతాం."
             },
             {
               "id": "s4_2",
-              "text_en": "These are the electric field lines — the map of the field in the whole space at once."
+              "text_en": "These are the electric field lines — the map of the field in the whole space at once.", "text_hi": "ये हैं electric field lines — पूरे space में एक साथ field का नक्शा।", "text_te": "ఇవి electric field lines — మొత్తం space లో ఒకేసారి field యొక్క map."
             },
             {
               "id": "s4_3",
-              "text_en": "At any point, the tangent to the line gives the direction of E there."
+              "text_en": "At any point, the tangent to the line gives the direction of E there.", "text_hi": "किसी भी point पर, line की tangent वहाँ E की direction देती है।", "text_te": "ఏ point లోనైనా, line యొక్క tangent అక్కడ E యొక్క direction ని చెప్తుంది."
             },
             {
               "id": "s4_4",
-              "text_en": "For a positive charge the lines stream outward in every direction, like spokes from a hub in three dimensions."
+              "text_en": "For a positive charge the lines stream outward in every direction, like spokes from a hub in three dimensions.", "text_hi": "एक positive charge के लिए lines हर दिशा में outward stream करती हैं, जैसे three dimensions में एक hub से spokes।", "text_te": "ఒక positive charge కోసం lines అన్ని దిశలలో outward గా stream అవుతాయి, three dimensions లో ఒక hub నుండి spokes లాగా."
             }
           ]
         }
@@ -378,19 +378,19 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Look closely. Where are the lines most crowded together — and what does that tell you about the field there?"
+              "text_en": "Look closely. Where are the lines most crowded together — and what does that tell you about the field there?", "text_hi": "ध्यान से देखो। lines सबसे ज़्यादा कहाँ crowded हैं — और वो तुम्हें वहाँ के field के बारे में क्या बताता है?", "text_te": "జాగ్రత్తగా చూడండి. lines అత్యంత crowded గా ఎక్కడ ఉన్నాయి — మరియు అది అక్కడి field గురించి మీకు ఏమి చెప్తోంది?"
             },
             {
               "id": "s5_2",
-              "text_en": "Near the charge the lines bunch tightly: the field is strong. Far away they fan apart: the field is weak."
+              "text_en": "Near the charge the lines bunch tightly: the field is strong. Far away they fan apart: the field is weak.", "text_hi": "charge के पास lines तंग bunch होती हैं: field strong है। दूर जाने पर वो fan apart होती हैं: field weak है।", "text_te": "charge దగ్గర lines గట్టిగా bunch అవుతాయి: field strong గా ఉంటుంది. దూరంలో అవి fan apart అవుతాయి: field weak గా ఉంటుంది."
             },
             {
               "id": "s5_3",
-              "text_en": "The crowding of the lines IS the field strength. Dense lines mean a strong field."
+              "text_en": "The crowding of the lines IS the field strength. Dense lines mean a strong field.", "text_hi": "lines का crowding ही field strength है। Dense lines का मतलब है strong field।", "text_te": "lines యొక్క crowding అనేది field strength. Dense lines అంటే strong field."
             },
             {
               "id": "s5_4",
-              "text_en": "So the picture and the formula are the same fact: the lines thin out as 1 over r squared, exactly like E."
+              "text_en": "So the picture and the formula are the same fact: the lines thin out as 1 over r squared, exactly like E.", "text_hi": "तो picture और formula एक ही fact हैं: lines 1 over r squared की तरह thin out होती हैं, बिल्कुल E की तरह।", "text_te": "అంటే picture మరియు formula ఒకే fact: lines 1 over r squared లాగా thin out అవుతాయి, సరిగ్గా E లాగా."
             }
           ]
         },
@@ -444,19 +444,19 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Two rules people get wrong. First: can two field lines cross each other?"
+              "text_en": "Two rules people get wrong. First: can two field lines cross each other?", "text_hi": "दो rules जो लोग गलत समझते हैं। पहला: क्या दो field lines एक-दूसरे को cross कर सकती हैं?", "text_te": "రెండు rules ని లోకులు తప్పుగా అర్థం చేసుకుంటారు. మొదటిది: రెండు field lines ఒకదానినొకటి cross చేయగలవా?"
             },
             {
               "id": "s6_2",
-              "text_en": "No. If they crossed, the field would point two ways at one point — impossible. Lines never cross."
+              "text_en": "No. If they crossed, the field would point two ways at one point — impossible. Lines never cross.", "text_hi": "नहीं। अगर वो cross करतीं, तो field एक point पर दो तरफ point करता — असंभव। lines कभी cross नहीं करतीं।", "text_te": "లేదు. అవి cross చేస్తే, field ఒక point లో రెండు వైపులా point చేస్తుంది — అసాధ్యం. lines ఎప్పుడూ cross చేయవు."
             },
             {
               "id": "s6_3",
-              "text_en": "Second: a field line is NOT the track a charge slides along. It shows the direction of the force at each point."
+              "text_en": "Second: a field line is NOT the track a charge slides along. It shows the direction of the force at each point.", "text_hi": "दूसरा: एक field line वो track नहीं है जिस पर charge slide करता है। यह हर point पर force की direction दिखाती है।", "text_te": "రెండవది: ఒక field line అనేది charge slide అయ్యే track కాదు. ఇది ప్రతి point వద్ద force యొక్క direction చూపుతుంది."
             },
             {
               "id": "s6_4",
-              "text_en": "A released charge follows the field's direction moment by moment — it does not ride the line like a rail."
+              "text_en": "A released charge follows the field's direction moment by moment — it does not ride the line like a rail.", "text_hi": "एक released charge moment by moment field की direction follow करता है — यह line पर rail की तरह ride नहीं करता।", "text_te": "ఒక released charge moment by moment field యొక్క direction ని follow చేస్తుంది — అది line పై rail లాగా ride చేయదు."
             }
           ]
         },
@@ -509,19 +509,19 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "Now you drive it. Change the charge Q, flip its sign, and slide the point P closer or farther."
+              "text_en": "Now you drive it. Change the charge Q, flip its sign, and slide the point P closer or farther.", "text_hi": "अब तुम इसे drive करो। charge Q को बदलो, उसका sign flip करो, और point P को पास या दूर slide करो।", "text_te": "ఇప్పుడు మీరు దీన్ని drive చేయండి. charge Q ని మార్చండి, దాని sign ని flip చేయండి, మరియు point P ని దగ్గరగా లేదా దూరంగా slide చేయండి."
             },
             {
               "id": "s7_2",
-              "text_en": "Watch the field arrow and the live readout. Double Q and E doubles. Flip the sign and the arrow reverses."
+              "text_en": "Watch the field arrow and the live readout. Double Q and E doubles. Flip the sign and the arrow reverses.", "text_hi": "field arrow और live readout देखो। Q को double करो और E double हो जाता है। sign flip करो और arrow reverse हो जाता है।", "text_te": "field arrow మరియు live readout చూడండి. Q ని double చేస్తే E double అవుతుంది. sign ని flip చేస్తే arrow reverse అవుతుంది."
             },
             {
               "id": "s7_3",
-              "text_en": "Halve the distance and the field jumps four times stronger — feel the 1 over r squared."
+              "text_en": "Halve the distance and the field jumps four times stronger — feel the 1 over r squared.", "text_hi": "distance को आधा करो और field चार गुना मज़बूत हो जाता है — 1 over r squared को feel करो।", "text_te": "distance ని సగానికి తగ్గిస్తే field నాలుగు రెట్లు బలంగా పెరుగుతుంది — 1 over r squared ని feel చేయండి."
             },
             {
               "id": "s7_4",
-              "text_en": "Same charge, same radial picture, one rule: E equals k Q over r squared."
+              "text_en": "Same charge, same radial picture, one rule: E equals k Q over r squared.", "text_hi": "same charge, same radial picture, एक rule: E equals k Q over r squared।", "text_te": "same charge, same radial picture, ఒక rule: E equals k Q over r squared."
             }
           ]
         }

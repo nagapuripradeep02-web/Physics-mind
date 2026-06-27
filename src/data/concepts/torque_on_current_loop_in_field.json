@@ -157,10 +157,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "Setup. Blue arrows are the uniform magnetic field B.", "glow": "b" },
-            { "id": "s1_2", "text_en": "The yellow rectangle is a current loop. Watch the orange dots — they flow around the loop showing you exactly which way the current moves.", "glow": "loop" },
-            { "id": "s1_3", "text_en": "The loop sits at theta equals ninety — its face is parallel to B.", "glow": "loop" },
-            { "id": "s1_4", "text_en": "Question. What does the loop do? Does it slide? Does it spin? Does it just sit there?", "glow": "question" }
+            { "id": "s1_1", "text_en": "Setup. Blue arrows are the uniform magnetic field B.", "text_hi": "Setup. Blue arrows uniform magnetic field B हैं।", "text_te": "Setup. Blue arrows అంటే uniform magnetic field B.", "glow": "b" },
+            { "id": "s1_2", "text_en": "The yellow rectangle is a current loop. Watch the orange dots — they flow around the loop showing you exactly which way the current moves.", "text_hi": "Yellow rectangle एक current loop है। Orange dots देखो — वे loop के चारों तरफ flow करते हैं और exactly बताते हैं कि current किस direction में move करती है।", "text_te": "Yellow rectangle అనేది ఒక current loop. Orange dots చూడండి — అవి loop చుట్టూ flow అవుతాయి, current ఏ direction లో move అవుతుందో exactly చూపిస్తాయి.", "glow": "loop" },
+            { "id": "s1_3", "text_en": "The loop sits at theta equals ninety — its face is parallel to B.", "text_hi": "Loop theta equals ninety पर है — इसका face B के parallel है।", "text_te": "Loop theta equals ninety వద్ద ఉంది — దాని face B కు parallel గా ఉంది.", "glow": "loop" },
+            { "id": "s1_4", "text_en": "Question. What does the loop do? Does it slide? Does it spin? Does it just sit there?", "text_hi": "Question. Loop क्या करती है? क्या वह slide करती है? क्या वह spin करती है? या वह बस वहाँ बैठी रहती है?", "text_te": "Question. Loop ఏమి చేస్తుంది? అది slide అవుతుందా? spin అవుతుందా? లేక అక్కడే ఉండిపోతుందా?", "glow": "question" }
           ]
         }
       },
@@ -203,11 +203,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Watch the orange dots on the left side of the loop. They flow upward. Current on the left side is going up.", "glow": "dot_left_a" },
-            { "id": "s2_2", "text_en": "Predict before I show you. Current up, field pointing right. Which way is the force? Take three seconds.", "glow": "side_left", "pause_after_ms": 3000 },
-            { "id": "s2_3", "text_en": "Look at the guide in the upper right. Three arrows: I pointing up, B pointing right, and F equals I cross B.", "glow": "rhr_guide_left" },
-            { "id": "s2_4", "text_en": "F points into the page — away from you. That is the cross product: thumb up, fingers right, palm faces away. F-one into the page.", "glow": ["rhr_guide_left", "f_left"], "math_show": "\\vec{F}_1 = I(\\vec{L} \\times \\vec{B}),\\quad \\text{into page}" },
-            { "id": "s2_5", "text_en": "Magnitude: I times L times B. For our defaults, five thousandths of a newton.", "glow": "f_left", "math_show": "F_1 = I L B = 0.005\\,\\text{N}" }
+            { "id": "s2_1", "text_en": "Watch the orange dots on the left side of the loop. They flow upward. Current on the left side is going up.", "text_hi": "Loop के left side पर orange dots देखो। वे ऊपर की तरफ flow कर रहे हैं। Left side पर current ऊपर जा रही है।", "text_te": "Loop యొక్క left side పై orange dots చూడండి. అవి upward గా flow అవుతున్నాయి. Left side పై current పైకి వెళ్తోంది.", "glow": "dot_left_a" },
+            { "id": "s2_2", "text_en": "Predict before I show you. Current up, field pointing right. Which way is the force? Take three seconds.", "text_hi": "मैं दिखाने से पहले predict करो। Current ऊपर, field right की तरफ। Force किस direction में है? तीन seconds लो।", "text_te": "నేను చూపించే ముందే predict చేయండి. Current పైకి, field right వైపు. Force ఏ direction లో ఉంది? మూడు seconds తీసుకోండి.", "glow": "side_left", "pause_after_ms": 3000 },
+            { "id": "s2_3", "text_en": "Look at the guide in the upper right. Three arrows: I pointing up, B pointing right, and F equals I cross B.", "text_hi": "ऊपर दाएं guide देखो। तीन arrows: I ऊपर, B right, और F equals I cross B।", "text_te": "Upper right లో guide చూడండి. మూడు arrows: I పైకి, B right వైపు, మరియు F equals I cross B.", "glow": "rhr_guide_left" },
+            { "id": "s2_4", "text_en": "F points into the page — away from you. That is the cross product: thumb up, fingers right, palm faces away. F-one into the page.", "text_hi": "F page के अंदर point करता है — तुमसे दूर। यही cross product है: thumb ऊपर, fingers right, palm दूर की तरफ। F-one page के अंदर।", "text_te": "F page లోపలికి point అవుతుంది — మీ నుండి దూరంగా. ఇదే cross product: thumb పైకి, fingers right వైపు, palm దూరంగా. F-one page లోపలికి.", "glow": ["rhr_guide_left", "f_left"], "math_show": "\\vec{F}_1 = I(\\vec{L} \\times \\vec{B}),\\quad \\text{into page}" },
+            { "id": "s2_5", "text_en": "Magnitude: I times L times B. For our defaults, five thousandths of a newton.", "text_hi": "Magnitude: I times L times B। हमारे default values के लिए, five thousandths of a newton।", "text_te": "Magnitude: I times L times B. మన default values కోసం, five thousandths of a newton.", "glow": "f_left", "math_show": "F_1 = I L B = 0.005\\,\\text{N}" }
           ]
         }
       },
@@ -251,11 +251,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Now the right side. Watch the orange dots — they flow downward. Current on the right is going down.", "glow": "dot_right_a" },
-            { "id": "s3_2", "text_en": "Predict again before the guide shows you. Current down, field right. Which way is the force?", "glow": "side_right", "pause_after_ms": 2500 },
-            { "id": "s3_3", "text_en": "Look at the guide. I arrow down, B arrow right. F equals I cross B — out of the page this time.", "glow": "rhr_guide_right" },
-            { "id": "s3_4", "text_en": "F-two is out of the page. Opposite direction to F-one. Same magnitude. Add them — net force is zero.", "glow": ["side_right", "f_right", "sum_zero"], "math_show": "\\sum \\vec{F} = \\vec{F}_1 + \\vec{F}_2 = 0" },
-            { "id": "s3_5", "text_en": "But notice — the forces act on DIFFERENT lines of action. Left side and right side. That asymmetry is about to matter.", "glow": ["f_left", "f_right"] }
+            { "id": "s3_1", "text_en": "Now the right side. Watch the orange dots — they flow downward. Current on the right is going down.", "text_hi": "अब right side। Orange dots देखो — वे नीचे flow कर रहे हैं। Right side पर current नीचे जा रही है।", "text_te": "ఇప్పుడు right side. Orange dots చూడండి — అవి downward గా flow అవుతున్నాయి. Right side పై current కిందికి వెళ్తోంది.", "glow": "dot_right_a" },
+            { "id": "s3_2", "text_en": "Predict again before the guide shows you. Current down, field right. Which way is the force?", "text_hi": "Guide दिखाने से पहले फिर से predict करो। Current नीचे, field right। Force किस तरफ है?", "text_te": "Guide చూపించే ముందే మళ్ళీ predict చేయండి. Current కిందికి, field right వైపు. Force ఏ వైపుకు?", "glow": "side_right", "pause_after_ms": 2500 },
+            { "id": "s3_3", "text_en": "Look at the guide. I arrow down, B arrow right. F equals I cross B — out of the page this time.", "text_hi": "Guide देखो। I arrow नीचे, B arrow right। F equals I cross B — इस बार page के बाहर।", "text_te": "Guide చూడండి. I arrow కిందికి, B arrow right వైపు. F equals I cross B — ఈసారి page బయటికి.", "glow": "rhr_guide_right" },
+            { "id": "s3_4", "text_en": "F-two is out of the page. Opposite direction to F-one. Same magnitude. Add them — net force is zero.", "text_hi": "F-two page के बाहर है। F-one के opposite direction में। Same magnitude। दोनों को add करो — net force zero है।", "text_te": "F-two page బయట ఉంది. F-one కు opposite direction లో. Same magnitude. రెండూ add చేయండి — net force zero.", "glow": ["side_right", "f_right", "sum_zero"], "math_show": "\\sum \\vec{F} = \\vec{F}_1 + \\vec{F}_2 = 0" },
+            { "id": "s3_5", "text_en": "But notice — the forces act on DIFFERENT lines of action. Left side and right side. That asymmetry is about to matter.", "text_hi": "लेकिन ध्यान दो — forces DIFFERENT lines of action पर act कर रहे हैं। Left side और right side। यह asymmetry अब important होने वाली है।", "text_te": "కానీ గమనించండి — forces DIFFERENT lines of action పై act చేస్తున్నాయి. Left side మరియు right side. ఈ asymmetry ఇప్పుడు important అవుతుంది.", "glow": ["f_left", "f_right"] }
           ]
         }
       },
@@ -299,11 +299,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Two forces. Equal magnitude. Opposite direction. Different lines of action. What does that combination do?", "glow": ["f_left", "f_right"] },
-            { "id": "s4_2", "text_en": "Take three seconds. Picture the loop. Picture the forces.", "glow": "loop", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "It is a couple. A couple produces rotation with no translation. The loop will spin about the vertical axis through its centre.", "glow": ["rotation_label", "tau_arrow"] },
-            { "id": "s4_4", "text_en": "Sum of forces is zero. Sum of torques is not zero. Both statements are true at the same time.", "glow": ["sum_zero", "tau_arrow"], "math_show": "\\sum \\vec{F} = 0, \\quad \\sum \\vec{\\tau} \\neq 0" },
-            { "id": "s4_5", "text_en": "This is the heart of rotational dynamics. Forces decide translation. Torques decide rotation.", "glow": "aha_label" }
+            { "id": "s4_1", "text_en": "Two forces. Equal magnitude. Opposite direction. Different lines of action. What does that combination do?", "text_hi": "दो forces। Equal magnitude। Opposite direction। Different lines of action। यह combination क्या करता है?", "text_te": "రెండు forces. Equal magnitude. Opposite direction. Different lines of action. ఈ combination ఏమి చేస్తుంది?", "glow": ["f_left", "f_right"] },
+            { "id": "s4_2", "text_en": "Take three seconds. Picture the loop. Picture the forces.", "text_hi": "तीन seconds लो। Loop की picture बनाओ। Forces की picture बनाओ।", "text_te": "మూడు seconds తీసుకోండి. Loop ని imagine చేయండి. Forces ని imagine చేయండి.", "glow": "loop", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "It is a couple. A couple produces rotation with no translation. The loop will spin about the vertical axis through its centre.", "text_hi": "यह एक couple है। Couple rotation produce करता है बिना translation के। Loop अपने centre से गुजरने वाले vertical axis के बारे में spin करेगी।", "text_te": "ఇది ఒక couple. Couple అనేది translation లేకుండా rotation ఉత్పన్నం చేస్తుంది. Loop దాని centre గుండా వెళ్ళే vertical axis చుట్టూ spin అవుతుంది.", "glow": ["rotation_label", "tau_arrow"] },
+            { "id": "s4_4", "text_en": "Sum of forces is zero. Sum of torques is not zero. Both statements are true at the same time.", "text_hi": "Sum of forces zero है। Sum of torques zero नहीं है। दोनों बातें एक साथ सच हैं।", "text_te": "Sum of forces zero. Sum of torques zero కాదు. రెండు statements ఒకే సమయంలో నిజమే.", "glow": ["sum_zero", "tau_arrow"], "math_show": "\\sum \\vec{F} = 0, \\quad \\sum \\vec{\\tau} \\neq 0" },
+            { "id": "s4_5", "text_en": "This is the heart of rotational dynamics. Forces decide translation. Torques decide rotation.", "text_hi": "यही rotational dynamics का heart है। Forces translation decide करते हैं। Torques rotation decide करते हैं।", "text_te": "ఇదే rotational dynamics యొక్క heart. Forces translation decide చేస్తాయి. Torques rotation decide చేస్తాయి.", "glow": "aha_label" }
           ]
         },
         "misconception_watch": [
@@ -351,10 +351,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Now name the thing that makes a loop magnetic. It is called the magnetic moment, written as mu.", "glow": "mu_arrow" },
-            { "id": "s5_2", "text_en": "Magnitude: N times I times A. N is the number of turns, I is the current, A is the loop area.", "glow": "mu_arrow_label", "math_show": "\\mu = N I A" },
-            { "id": "s5_3", "text_en": "Direction: perpendicular to the loop face. Right-hand rule: curl your fingers in the direction of current. Your thumb points along mu.", "glow": "mu_arrow" },
-            { "id": "s5_4", "text_en": "Watch the mu-arrow size. It scales with N times I times A. Bigger turns or bigger current means bigger mu.", "glow": "mu_arrow" }
+            { "id": "s5_1", "text_en": "Now name the thing that makes a loop magnetic. It is called the magnetic moment, written as mu.", "text_hi": "अब उस चीज़ को नाम दो जो loop को magnetic बनाती है। इसे magnetic moment कहते हैं, mu लिखा जाता है।", "text_te": "ఇప్పుడు loop ని magnetic గా చేసే దానికి పేరు చెప్పండి. దీన్ని magnetic moment అంటారు, mu అని రాస్తారు.", "glow": "mu_arrow" },
+            { "id": "s5_2", "text_en": "Magnitude: N times I times A. N is the number of turns, I is the current, A is the loop area.", "text_hi": "Magnitude: N times I times A। N turns की संख्या है, I current है, A loop का area है।", "text_te": "Magnitude: N times I times A. N అంటే turns సంఖ్య, I అంటే current, A అంటే loop యొక్క area.", "glow": "mu_arrow_label", "math_show": "\\mu = N I A" },
+            { "id": "s5_3", "text_en": "Direction: perpendicular to the loop face. Right-hand rule: curl your fingers in the direction of current. Your thumb points along mu.", "text_hi": "Direction: loop face के perpendicular। Right-hand rule: अपनी fingers को current की direction में curl करो। Thumb mu के साथ point करेगा।", "text_te": "Direction: loop face కు perpendicular. Right-hand rule: మీ fingers ని current direction లో curl చేయండి. Thumb mu వైపు point అవుతుంది.", "glow": "mu_arrow" },
+            { "id": "s5_4", "text_en": "Watch the mu-arrow size. It scales with N times I times A. Bigger turns or bigger current means bigger mu.", "text_hi": "Mu-arrow की size देखो। यह N times I times A के साथ scale होती है। Bigger turns या bigger current मतलब bigger mu।", "text_te": "Mu-arrow యొక్క size చూడండి. అది N times I times A తో scale అవుతుంది. ఎక్కువ turns లేదా ఎక్కువ current అంటే bigger mu.", "glow": "mu_arrow" }
           ]
         }
       },
@@ -396,9 +396,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Watch only. Theta sweeps from zero to one-eighty degrees and back, on a ten-second cycle.", "glow": "sweep_title" },
-            { "id": "s6_2", "text_en": "Notice the torque arrow. It starts at zero, grows as theta grows, peaks somewhere in the middle, and returns to zero.", "glow": "tau_grows" },
-            { "id": "s6_3", "text_en": "That shape is a sine. Tau equals mu B sine theta. Keep watching — you will guess where the peak is in the next state.", "glow": "sine_callout", "math_show": "\\tau = \\mu B \\sin\\theta" }
+            { "id": "s6_1", "text_en": "Watch only. Theta sweeps from zero to one-eighty degrees and back, on a ten-second cycle.", "text_hi": "सिर्फ देखो। Theta zero से one-eighty degrees तक और वापस sweep करता है, दस seconds के cycle पर।", "text_te": "కేవలం చూడండి. Theta zero నుండి one-eighty degrees వరకు మరియు వెనక్కి sweep అవుతుంది, పది seconds cycle లో.", "glow": "sweep_title" },
+            { "id": "s6_2", "text_en": "Notice the torque arrow. It starts at zero, grows as theta grows, peaks somewhere in the middle, and returns to zero.", "text_hi": "Torque arrow ध्यान से देखो। यह zero से शुरू होता है, theta बढ़ने के साथ बढ़ता है, बीच में कहीं peak करता है, और zero पर वापस आ जाता है।", "text_te": "Torque arrow గమనించండి. అది zero నుండి మొదలవుతుంది, theta పెరిగే కొద్దీ పెరుగుతుంది, మధ్యలో ఎక్కడో peak అవుతుంది, మరియు zero కి తిరిగి వస్తుంది.", "glow": "tau_grows" },
+            { "id": "s6_3", "text_en": "That shape is a sine. Tau equals mu B sine theta. Keep watching — you will guess where the peak is in the next state.", "text_hi": "यह shape sine है। Tau equals mu B sine theta। देखते रहो — अगले state में तुम peak कहाँ है यह guess करोगे।", "text_te": "ఆ shape ఒక sine. Tau equals mu B sine theta. చూస్తూ ఉండండి — తర్వాతి state లో peak ఎక్కడ ఉందో మీరు guess చేస్తారు.", "glow": "sine_callout", "math_show": "\\tau = \\mu B \\sin\\theta" }
           ]
         }
       },
@@ -442,10 +442,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "The loop is now frozen at theta equals ninety degrees. Look at the torque arrow — fully extended.", "glow": "predict_title" },
-            { "id": "s7_2", "text_en": "Predict first. At what angle does the torque reach its maximum? Three seconds.", "glow": "wrong_belief", "pause_after_ms": 3000 },
-            { "id": "s7_3", "text_en": "Many students say theta zero — where mu is parallel to B. That feels right. It is wrong. The answer is ninety degrees.", "glow": "answer_reveal", "math_show": "\\tau_{\\max} = \\mu B \\;\\text{at}\\; \\theta = 90^{\\circ}" },
-            { "id": "s7_4", "text_en": "Because tau is a cross product. Cross products are biggest when the two vectors are perpendicular, smallest when they are parallel.", "glow": "cross_product_reminder" }
+            { "id": "s7_1", "text_en": "The loop is now frozen at theta equals ninety degrees. Look at the torque arrow — fully extended.", "text_hi": "Loop अब theta equals ninety degrees पर frozen है। Torque arrow देखो — पूरी तरह extended है।", "text_te": "Loop ఇప్పుడు theta equals ninety degrees వద్ద frozen గా ఉంది. Torque arrow చూడండి — పూర్తిగా extended గా ఉంది.", "glow": "predict_title" },
+            { "id": "s7_2", "text_en": "Predict first. At what angle does the torque reach its maximum? Three seconds.", "text_hi": "पहले predict करो। Torque किस angle पर maximum पहुँचता है? तीन seconds।", "text_te": "ముందు predict చేయండి. Torque ఏ angle వద్ద maximum కి చేరుతుంది? మూడు seconds.", "glow": "wrong_belief", "pause_after_ms": 3000 },
+            { "id": "s7_3", "text_en": "Many students say theta zero — where mu is parallel to B. That feels right. It is wrong. The answer is ninety degrees.", "text_hi": "बहुत से students theta zero कहते हैं — जहाँ mu, B के parallel है। यह सही लगता है। लेकिन यह गलत है। Answer ninety degrees है।", "text_te": "చాలా మంది students theta zero అంటారు — ఇక్కడ mu, B కు parallel గా ఉంటుంది. అది సరిగ్గా అనిపిస్తుంది. కానీ అది తప్పు. Answer ninety degrees.", "glow": "answer_reveal", "math_show": "\\tau_{\\max} = \\mu B \\;\\text{at}\\; \\theta = 90^{\\circ}" },
+            { "id": "s7_4", "text_en": "Because tau is a cross product. Cross products are biggest when the two vectors are perpendicular, smallest when they are parallel.", "text_hi": "क्योंकि tau एक cross product है। Cross products सबसे बड़े होते हैं जब दो vectors perpendicular होते हैं, सबसे छोटे जब वे parallel होते हैं।", "text_te": "ఎందుకంటే tau ఒక cross product. రెండు vectors perpendicular గా ఉన్నప్పుడు cross products అత్యధికంగా ఉంటాయి, parallel గా ఉన్నప్పుడు అత్యల్పంగా ఉంటాయి.", "glow": "cross_product_reminder" }
           ]
         },
         "misconception_watch": [
@@ -486,9 +486,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "The loop now oscillates around theta zero. Watch the swing — it always returns to mu parallel to B.", "glow": "stable_title" },
-            { "id": "s8_2", "text_en": "This is stable equilibrium. Nudge the loop — the torque points back toward theta zero. Like a marble in a bowl.", "glow": "stable_why" },
-            { "id": "s8_3", "text_en": "A compass needle behaves exactly this way. Resting pose is north. Push it east, it swings back. Same physics.", "glow": "compass_anchor" }
+            { "id": "s8_1", "text_en": "The loop now oscillates around theta zero. Watch the swing — it always returns to mu parallel to B.", "text_hi": "Loop अब theta zero के चारों तरफ oscillate कर रही है। Swing देखो — यह हमेशा mu parallel to B पर वापस आती है।", "text_te": "Loop ఇప్పుడు theta zero చుట్టూ oscillate చేస్తోంది. Swing చూడండి — అది ఎప్పుడూ mu parallel to B కి తిరిగి వస్తుంది.", "glow": "stable_title" },
+            { "id": "s8_2", "text_en": "This is stable equilibrium. Nudge the loop — the torque points back toward theta zero. Like a marble in a bowl.", "text_hi": "यह stable equilibrium है। Loop को nudge करो — torque theta zero की तरफ वापस point करता है। जैसे bowl में marble।", "text_te": "ఇది stable equilibrium. Loop ని nudge చేయండి — torque theta zero వైపు వెనక్కి point అవుతుంది. Bowl లో marble లాంటిది.", "glow": "stable_why" },
+            { "id": "s8_3", "text_en": "A compass needle behaves exactly this way. Resting pose is north. Push it east, it swings back. Same physics.", "text_hi": "Compass needle ठीक इसी तरह behave करती है। Resting pose north है। उसे east की तरफ push करो, वह वापस swing करती है। Same physics।", "text_te": "Compass needle సరిగ్గా ఇలాగే behave చేస్తుంది. Resting pose north. దాన్ని east వైపు push చేయండి, అది వెనక్కి swing అవుతుంది. Same physics.", "glow": "compass_anchor" }
           ]
         }
       },
@@ -523,9 +523,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "Now watch what happens at theta one-eighty. The loop starts there. Torque is zero — it should be in equilibrium.", "glow": "unstable_title" },
-            { "id": "s9_2", "text_en": "A tiny nudge — and the torque points away from theta one-eighty, not toward it. The loop flips all the way through, settling at theta zero.", "glow": "unstable_why" },
-            { "id": "s9_3", "text_en": "Like a pencil balanced on its tip. Mathematically possible, practically impossible. Real loops always settle at the stable pose.", "glow": "pencil_anchor" }
+            { "id": "s9_1", "text_en": "Now watch what happens at theta one-eighty. The loop starts there. Torque is zero — it should be in equilibrium.", "text_hi": "अब देखो theta one-eighty पर क्या होता है। Loop वहाँ से शुरू होती है। Torque zero है — यह equilibrium में होना चाहिए।", "text_te": "ఇప్పుడు theta one-eighty వద్ద ఏమి జరుగుతుందో చూడండి. Loop అక్కడ నుండి మొదలవుతుంది. Torque zero — అది equilibrium లో ఉండాలి.", "glow": "unstable_title" },
+            { "id": "s9_2", "text_en": "A tiny nudge — and the torque points away from theta one-eighty, not toward it. The loop flips all the way through, settling at theta zero.", "text_hi": "एक छोटा nudge — और torque theta one-eighty से दूर point करता है, उसकी तरफ नहीं। Loop पूरी तरह flip होकर theta zero पर settle हो जाती है।", "text_te": "ఒక చిన్న nudge — మరియు torque theta one-eighty నుండి దూరంగా point అవుతుంది, దాని వైపు కాదు. Loop పూర్తిగా flip అయి theta zero వద్ద settle అవుతుంది.", "glow": "unstable_why" },
+            { "id": "s9_3", "text_en": "Like a pencil balanced on its tip. Mathematically possible, practically impossible. Real loops always settle at the stable pose.", "text_hi": "Tip पर balanced pencil की तरह। Mathematically possible, practically impossible। Real loops हमेशा stable pose पर settle होती हैं।", "text_te": "దాని tip పై balanced pencil లాంటిది. Mathematically possible, practically impossible. Real loops ఎప్పుడూ stable pose వద్ద settle అవుతాయి.", "glow": "pencil_anchor" }
           ]
         }
       },
@@ -567,9 +567,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s10_1", "text_en": "Watch closely. The loop fades. A bar magnet appears with the same mu direction.", "glow": "unify_title" },
-            { "id": "s10_2", "text_en": "Torque on the bar magnet is identical to torque on the loop. The two are physically the same object.", "glow": "mu_stays", "math_show": "\\vec{\\tau} = \\vec{\\mu} \\times \\vec{B}" },
-            { "id": "s10_3", "text_en": "This single equation explains the galvanometer needle, the electric motor, and even how MRI scanners flip the protons in your body.", "glow": "anchor_summary" }
+            { "id": "s10_1", "text_en": "Watch closely. The loop fades. A bar magnet appears with the same mu direction.", "text_hi": "ध्यान से देखो। Loop fade हो जाती है। Same mu direction के साथ एक bar magnet appear होती है।", "text_te": "శ్రద్ధగా చూడండి. Loop fade అవుతుంది. Same mu direction తో ఒక bar magnet appear అవుతుంది.", "glow": "unify_title" },
+            { "id": "s10_2", "text_en": "Torque on the bar magnet is identical to torque on the loop. The two are physically the same object.", "text_hi": "Bar magnet पर torque, loop पर torque के identical है। दोनों physically same object हैं।", "text_te": "Bar magnet పై torque, loop పై torque తో identical గా ఉంటుంది. రెండూ physically same object.", "glow": "mu_stays", "math_show": "\\vec{\\tau} = \\vec{\\mu} \\times \\vec{B}" },
+            { "id": "s10_3", "text_en": "This single equation explains the galvanometer needle, the electric motor, and even how MRI scanners flip the protons in your body.", "text_hi": "यह single equation galvanometer needle, electric motor, और यहाँ तक कि MRI scanners तुम्हारे body में protons को कैसे flip करते हैं — सब explain करती है।", "text_te": "ఈ single equation galvanometer needle, electric motor, మరియు MRI scanners మీ body లో protons ని ఎలా flip చేస్తాయో కూడా explain చేస్తుంది.", "glow": "anchor_summary" }
           ]
         }
       },
@@ -604,8 +604,8 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s11_1", "text_en": "Your turn. Four sliders below — N, I, B, and theta. Drag them. Watch the torque arrow respond in real time.", "glow": "sandbox_title" },
-            { "id": "s11_2", "text_en": "Try the three challenges on the right. Each one tests one piece of the equation. When you finish all three, you understand torque on a current loop.", "glow": "challenges" }
+            { "id": "s11_1", "text_en": "Your turn. Four sliders below — N, I, B, and theta. Drag them. Watch the torque arrow respond in real time.", "text_hi": "तुम्हारी बारी। नीचे चार sliders — N, I, B, और theta। उन्हें drag करो। Torque arrow को real time में respond करते देखो।", "text_te": "మీ వంతు. కింద నాలుగు sliders — N, I, B, మరియు theta. వాటిని drag చేయండి. Torque arrow real time లో respond అవడం చూడండి.", "glow": "sandbox_title" },
+            { "id": "s11_2", "text_en": "Try the three challenges on the right. Each one tests one piece of the equation. When you finish all three, you understand torque on a current loop.", "text_hi": "दाएं तरफ तीन challenges try करो। हर एक equation का एक piece test करता है। जब तीनों खत्म कर लो, तब तुम current loop पर torque समझ गए।", "text_te": "Right వైపు మూడు challenges try చేయండి. ప్రతి ఒక్కటి equation లో ఒక piece test చేస్తుంది. మూడూ పూర్తి చేసినప్పుడు, మీకు current loop పై torque అర్థమైనట్టే.", "glow": "challenges" }
           ]
         }
       }

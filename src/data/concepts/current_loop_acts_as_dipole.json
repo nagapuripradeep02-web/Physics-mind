@@ -1,0 +1,849 @@
+{
+  "concept_id": "current_loop_acts_as_dipole",
+  "concept_name": "A Current Loop Acts as a Magnetic Dipole",
+  "chapter": 4,
+  "section": "4.10",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.10 (Magnetic dipole moment of a revolving electron / current loop) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. The atomic concept taught here is the FIELD EQUIVALENCE: a current-carrying loop SOURCES a magnetic field whose external pattern is identical to a bar magnet's dipole field, so the loop IS a magnetic dipole with moment m = N I A (a vector along the loop axis by the right-hand rule). One face acts as a north pole, the other as south — never a single pole. Placed in an external field it feels a torque and aligns like a compass, exactly as a bar magnet does. This is distinct from torque_on_current_loop_in_field, which teaches the τ = μ × B rotational dynamics on a rectangular loop; here the centre of gravity is the field the loop produces and its identity with a bar magnet. The deepest student confusions targeted: (a) a loop and a bar magnet are fundamentally different things, (b) the moment is just a number not a vector, (c) the loop has a single N pole, (d) magnetism needs a permanent magnet / magnetic monopoles exist. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["current_loop_acts_as_dipole"]
+  },
+  "prerequisites": [
+    "magnetic_field_wire",
+    "torque_on_current_loop_in_field"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture the moving-coil galvanometer or ammeter in your school physics lab — the brass-cased meter whose needle swings across a paper scale when current flows. Inside is a small coil suspended in the field of permanent magnets. That coil is a current loop; it behaves exactly like a tiny bar magnet, so the external field grabs it and turns it. The pointer deflection you read is a current loop acting as a magnetic dipole.",
+    "secondary": "Picture the coil spinning inside a ceiling-fan or mixer-grinder motor on a Bengaluru summer afternoon. Each turn of the winding is a current loop sitting in the stator magnets' field. Because every loop acts as a magnetic dipole, the field pushes them around — that continuous turning is what drives the blades.",
+    "tertiary": "Picture a single electron orbiting the nucleus inside an atom. That orbit is nature's smallest current loop, so it is a tiny magnetic dipole with its own m = N I A. Add up countless such loops in a piece of iron and you get a bar magnet — this is where all magnetism ultimately comes from."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "N": {
+        "name": "Number of turns in the loop",
+        "unit": "",
+        "min": 1,
+        "max": 100,
+        "default": 1,
+        "step": 1
+      },
+      "I": {
+        "name": "Current through the loop",
+        "unit": "A",
+        "min": 0.01,
+        "max": 5,
+        "default": 0.5,
+        "step": 0.01
+      },
+      "radius": {
+        "name": "Loop radius",
+        "unit": "m",
+        "min": 0.02,
+        "max": 0.20,
+        "default": 0.05,
+        "step": 0.01
+      },
+      "B": {
+        "name": "Magnitude of the external field",
+        "unit": "T",
+        "min": 0.01,
+        "max": 1.0,
+        "default": 0.1,
+        "step": 0.01
+      },
+      "theta_deg": {
+        "name": "Angle between m and B",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "default": 30,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "A_loop": {
+        "formula": "PI * radius * radius"
+      },
+      "m_magnitude": {
+        "formula": "N * I * (PI * radius * radius)"
+      },
+      "tau_magnitude": {
+        "formula": "N * I * (PI * radius * radius) * B * sin(theta_deg * PI / 180)"
+      },
+      "tau_max": {
+        "formula": "N * I * (PI * radius * radius) * B"
+      }
+    },
+    "formulas": {
+      "m_definition": "m = N I A — the magnetic dipole moment of the loop. A vector along the loop axis; direction by RHR (curl fingers along the current, thumb gives m).",
+      "area_circle": "A = π r² — the area of the circular loop.",
+      "field_equivalence": "Far from the loop, the magnetic field pattern is identical to a bar magnet of the same dipole moment m. The current loop IS a magnetic dipole.",
+      "two_poles": "The face the field lines leave is a north pole; the face they enter is a south pole. A dipole always has two poles — there is no magnetic monopole.",
+      "tau_in_field": "τ = m × B — in an external field the loop feels a torque that turns it until m aligns with B (stable at θ = 0°).",
+      "origin_of_magnetism": "Electrons orbiting and spinning in atoms are tiny current loops; their dipole moments are the microscopic origin of all permanent magnetism."
+    },
+    "constraints": [
+      "The field-equivalence to a bar magnet holds for the EXTERNAL field (far from the loop); very close to the wire the two differ.",
+      "m = N I A holds for ANY planar loop shape (circle, square, triangle); the circle is the easy case, not a special one.",
+      "B is treated as uniform across the loop in the torque/alignment states.",
+      "The loop is rigid and the wire non-deformable; geometry is preserved as it turns.",
+      "There is no magnetic monopole — the loop's two poles (N and S faces) are inseparable.",
+      "No induced EMF / back-reaction is included here — electromagnetic induction belongs to the next chapter."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "A current loop's external field is identical to a bar magnet's.",
+    "visual_confirmation": "STATE_4 places a bar magnet beside the loop; both field patterns are drawn by the same generator, so the loops of field lines coincide in shape — the loop IS a dipole."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "dipole_moment": ["STATE_5"],
+    "in_field": ["STATE_6", "STATE_7"]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "A loop of current",
+        "duration": 14,
+        "focal_primitive_id": "setup_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "A circular loop carrying a steady current I",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "legend_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Yellow ring = current-carrying loop\nOrange dots = current flowing round it\nWatch the dots — that is I going around.",
+            "color": "#82B1FF"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "Same coil as the lab galvanometer — a loop of wire with current in it.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": { "x": 380, "y": 470 },
+            "text": "Question: does this plain loop of current do anything magnetic?",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Here is a circular loop of wire carrying a steady current.", "text_hi": "यहाँ देखो — एक circular loop of wire जो steady current carry कर रहा है।", "text_te": "ఇక్కడ చూడండి — ఒక circular loop of wire, అది steady current carry చేస్తోంది.", "glow": "loop" },
+            { "id": "s1_2", "text_en": "Watch the orange dots. They flow around the ring — that is the current, going round and round.", "text_hi": "Orange dots को ध्यान से देखो। वो ring के चारों तरफ flow कर रहे हैं — यही है current, जो round and round जा रही है।", "text_te": "Orange dots చూడండి. అవి ring చుట్టూ flow అవుతున్నాయి — అదే current, round and round వెళ్తోంది.", "glow": "loop" },
+            { "id": "s1_3", "text_en": "It looks ordinary. The question is simple. Does this loop do anything magnetic?", "text_hi": "यह तो सामान्य लगता है। Question simple है। क्या यह loop कुछ magnetic करता है?", "text_te": "ఇది సాధారణంగా కనిపిస్తుంది. Question చాలా simple. ఈ loop ఏమైనా magnetic గా చేస్తుందా?", "glow": "question_label" }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The loop makes a field",
+        "duration": 18,
+        "focal_primitive_id": "field_title",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "A current loop SOURCES a magnetic field",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Predict before the reveal:\nwhat shape do the field lines make\naround a loop of current?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "Lines leave one face,\ncurl around through space,\nand return to the other face —\nclosed loops, not a flat circle.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s2_3"
+          },
+          {
+            "type": "annotation",
+            "id": "field_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "Moving charge makes a magnetic field — so a loop of current does too.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Moving charge always makes a magnetic field. The current in this loop is moving charge, so it must make a field.", "text_hi": "Moving charge हमेशा एक magnetic field बनाती है। इस loop में current moving charge है, तो यह field जरूर बनाएगी।", "text_te": "Moving charge ఎప్పుడూ ఒక magnetic field తయారు చేస్తుంది. ఈ loop లో current అంటే moving charge, అందుకే ఇది field తప్పక తయారు చేస్తుంది.", "glow": "loop" },
+            { "id": "s2_2", "text_en": "Predict the shape. Take three seconds. What do the field lines around a current loop look like?", "text_hi": "Shape predict करो। तीन seconds लो। एक current loop के आस-पास field lines कैसी दिखती हैं?", "text_te": "Shape predict చెయ్యండి. మూడు seconds తీసుకోండి. ఒక current loop చుట్టూ field lines ఎలా కనిపిస్తాయి?", "glow": "predict_label", "pause_after_ms": 3000 },
+            { "id": "s2_3", "text_en": "Here they are. The lines leave one face, curl right around through space, and come back into the other face.", "text_hi": "ये रहीं। Lines एक face से निकलती हैं, space में curl होकर, दूसरे face में वापस आ जाती हैं।", "text_te": "ఇవిగో. Lines ఒక face నుండి బయటకు వెళ్ళి, space లో curl అయి, మళ్ళీ రెండో face లోకి తిరిగి వస్తాయి.", "glow": "loop_field_line" },
+            { "id": "s2_4", "text_en": "Closed loops in three dimensions — not a flat circle around the wire. That shape is the clue to what comes next.", "text_hi": "तीन dimensions में closed loops — wire के चारों तरफ एक flat circle नहीं। वो shape ही अगली बात का clue है।", "text_te": "మూడు dimensions లో closed loops — wire చుట్టూ ఒక flat circle కాదు. ఆ shape అనేది తర్వాత వచ్చే విషయానికి clue.", "glow": "loop_field_line" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Current only makes circular field lines around the wire, not a looped dipole pattern through the loop.",
+            "one_line_fix": "Each bit of the ring does circle its wire, but adding all the bits together gives a field that threads through the loop and closes far away — the dipole pattern."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "One face is North, one is South",
+        "duration": 18,
+        "focal_primitive_id": "pole_title",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "pole_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "The two faces of the loop are N and S poles",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "face_explain",
+            "position": { "x": 200, "y": 230 },
+            "text": "Field lines LEAVE → North face\nField lines ENTER → South face\nThe loop has TWO poles.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_pole",
+            "position": { "x": 560, "y": 230 },
+            "text": "Could you ever get just\na single North pole on its own?\nPredict, then watch.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s3_4"
+          },
+          {
+            "type": "annotation",
+            "id": "no_monopole",
+            "position": { "x": 380, "y": 470 },
+            "text": "No. The two faces always come together. There is no single magnetic pole.",
+            "color": "#FFF176",
+            "reveal_at_tts_id": "s3_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Look at the face where the lines leave. That side acts as a north pole.", "text_hi": "जिस face से lines निकल रही हैं, उसे देखो। वो side north pole की तरह act करता है।", "text_te": "Lines బయటకు వెళ్ళే face చూడండి. ఆ side north pole లాగా act చేస్తుంది.", "glow": "loop_N_label" },
+            { "id": "s3_2", "text_en": "Look at the face where the lines come back in. That side acts as a south pole.", "text_hi": "जिस face में lines वापस आ रही हैं, उसे देखो। वो side south pole की तरह act करता है।", "text_te": "Lines తిరిగి వచ్చే face చూడండి. ఆ side south pole లాగా act చేస్తుంది.", "glow": "loop_S_label" },
+            { "id": "s3_3", "text_en": "So a single loop already has two poles — north on one face, south on the other.", "text_hi": "तो एक single loop में पहले से ही दो poles हैं — एक face पर north, दूसरे face पर south।", "text_te": "అంటే ఒక single loop లో ఇప్పటికే రెండు poles ఉన్నాయి — ఒక face పై north, మరో face పై south.", "glow": ["loop_N_label", "loop_S_label"] },
+            { "id": "s3_4", "text_en": "Could you keep just the north? No. The two faces are one object. A single magnetic pole does not exist.", "text_hi": "क्या तुम सिर्फ north रख सकते हो? नहीं। दोनों faces एक ही object हैं। एक single magnetic pole exist नहीं करता।", "text_te": "North ని మాత్రమే ఉంచగలవా? లేదు. రెండు faces ఒకే object. ఒక single magnetic pole exist అవదు.", "glow": "no_monopole" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A current loop has a single north pole, like a single point source.",
+            "one_line_fix": "Every loop has BOTH faces at once — a north face and a south face. You can never isolate one; there are no magnetic monopoles."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "This IS a bar magnet's field",
+        "duration": 26,
+        "focal_primitive_id": "aha_title",
+        "advance_mode": "wait_for_answer",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "aha_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "Loop field = bar-magnet field",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "compare_prompt",
+            "position": { "x": 200, "y": 230 },
+            "text": "On the left: a bar magnet.\nOn the right: our current loop.\nCompare the two field patterns.\nSame or different?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "compare_reveal",
+            "position": { "x": 560, "y": 230 },
+            "text": "Identical. Same closed loops,\nsame N and S, same shape.\nThe current loop IS a dipole.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s4_4"
+          },
+          {
+            "type": "annotation",
+            "id": "aha_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "Swap the loop for a bar magnet and nothing outside changes. They are the same kind of object.",
+            "color": "#FFF176",
+            "reveal_at_tts_id": "s4_5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Now bring a bar magnet alongside the loop. There it is, on the left.", "text_hi": "अब एक bar magnet को loop के पास लाते हैं। देखो, वो left side पर है।", "text_te": "ఇప్పుడు ఒక bar magnet ని loop పక్కన తీసుకొద్దాం. అదిగో, left side లో ఉంది.", "glow": "bar_compare" },
+            { "id": "s4_2", "text_en": "Both are drawn the same way. Compare the two field patterns. Take three seconds — same or different?", "text_hi": "दोनों को same तरीके से draw किया गया है। दोनों field patterns compare करो। तीन seconds लो — same है या different?", "text_te": "రెండింటినీ same విధంగా draw చేశారు. రెండు field patterns compare చెయ్యండి. మూడు seconds తీసుకోండి — same గా ఉన్నాయా లేదా different?", "glow": "compare_prompt", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "Look carefully. The loops of field line have the same shape, the same north and south.", "text_hi": "ध्यान से देखो। field line के loops का shape same है, north and south भी same हैं।", "text_te": "జాగ్రత్తగా చూడండి. field line loops అన్నింటికీ same shape ఉంది, same north and south కూడా.", "glow": ["loop_field_line", "bar_compare"] },
+            { "id": "s4_4", "text_en": "They are identical. Outside, a current loop's field is exactly a bar magnet's field.", "text_hi": "वो identical हैं। बाहर, एक current loop का field बिल्कुल एक bar magnet के field जैसा ही है।", "text_te": "అవి identical గా ఉన్నాయి. బయట, ఒక current loop యొక్క field సరిగ్గా ఒక bar magnet యొక్క field లాంటిదే.", "glow": "compare_reveal", "math_show": "\\text{loop field} \\;\\equiv\\; \\text{bar-magnet field}" },
+            { "id": "s4_5", "text_en": "That is the big idea. A current loop IS a magnetic dipole. Swap one for the other and nothing outside changes.", "text_hi": "यही है big idea। एक current loop ही एक magnetic dipole है। एक को दूसरे से swap करो — बाहर कुछ नहीं बदलेगा।", "text_te": "ఇదే big idea. ఒక current loop అనేది magnetic dipole. ఒకదాన్ని మరొకదానితో swap చెయ్యి — బయట ఏమీ మారదు.", "glow": "aha_note" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A current loop and a bar magnet are fundamentally different kinds of thing.",
+            "one_line_fix": "Outside, their fields are identical. A bar magnet is just enormously many atomic current loops added up — the loop and the magnet are the same kind of object: a magnetic dipole."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "The moment m = N I A",
+        "duration": 22,
+        "focal_primitive_id": "moment_title",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "moment_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "The magnetic moment m = N I A",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "moment_explain",
+            "position": { "x": 200, "y": 230 },
+            "text": "m is a VECTOR.\nSize: N · I · A  (A = π r²)\nDirection: along the axis,\nRHR — curl fingers with I,\nthumb points along m.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "moment_scale",
+            "position": { "x": 560, "y": 230 },
+            "text": "Double the turns → double m.\nDouble the current → double m.\nThe yellow arrow is m.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "moment_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "m is the single number that sets how strong this dipole is — for a loop OR a bar magnet.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "How strong is this dipole? One quantity answers it: the magnetic moment m, equal to N times I times A.", "text_hi": "यह dipole कितना strong है? एक quantity ही जवाब देती है: magnetic moment m, जो N times I times A के बराबर है।", "text_te": "ఈ dipole ఎంత strong? ఒక quantity మాత్రమే జవాబు చెప్తుంది: magnetic moment m, అది N times I times A కి సమానం.", "glow": "mu_arrow", "math_show": "m = N I A,\\quad A = \\pi r^2" },
+            { "id": "s5_2", "text_en": "It is a vector, not just a number. The yellow arrow points along the loop axis.", "text_hi": "यह सिर्फ एक number नहीं, यह एक vector है। Yellow arrow, loop axis के साथ-साथ point करता है।", "text_te": "ఇది కేవలం ఒక number కాదు, ఇది ఒక vector. Yellow arrow, loop axis వెంట point చేస్తుంది.", "glow": "mu_arrow" },
+            { "id": "s5_3", "text_en": "Its direction is the right-hand rule. Curl your fingers along the current; your thumb points along m.", "text_hi": "इसकी direction right-hand rule से मिलती है। अपनी fingers को current के साथ curl करो; thumb m की direction में point करेगा।", "text_te": "దీని direction అనేది right-hand rule వల్ల వస్తుంది. మీ fingers ని current వెంట curl చెయ్యండి; thumb m వెంట point చేస్తుంది.", "glow": "mu_arrow" },
+            { "id": "s5_4", "text_en": "More turns, more current, or more area — all make m bigger, and the dipole stronger.", "text_hi": "ज्यादा turns, ज्यादा current, या ज्यादा area — सब m को बड़ा बनाते हैं, और dipole को stronger।", "text_te": "ఎక్కువ turns, ఎక్కువ current, లేదా ఎక్కువ area — అన్నీ m ని పెద్దగా చేస్తాయి, dipole ని stronger గా చేస్తాయి.", "glow": "moment_scale" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The magnetic moment is just a number that measures strength.",
+            "one_line_fix": "m is a vector. Its size N·I·A sets the strength AND its direction (along the axis, by the right-hand rule) sets which way the dipole points — both matter."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Put it in an external field",
+        "duration": 20,
+        "focal_primitive_id": "field_setup_title",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_setup_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "In an external field, the dipole feels a torque",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "couple_explain",
+            "position": { "x": 200, "y": 230 },
+            "text": "Blue arrows = external field B.\nOpposite sides feel opposite\nforces — a couple.\nNet force zero, but it turns.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "torque_explain",
+            "position": { "x": 560, "y": 230 },
+            "text": "τ = m × B\nThe purple arrow is the torque,\nsame as for a bar magnet\nin the same field.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "field_setup_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "A bar magnet in this field would feel the very same torque.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Now switch on a uniform external field — the blue arrows, B.", "text_hi": "अब एक uniform external field switch on करते हैं — वो blue arrows, B।", "text_te": "ఇప్పుడు ఒక uniform external field switch on చేద్దాం — ఆ blue arrows, B.", "glow": "b" },
+            { "id": "s6_2", "text_en": "Opposite sides of the loop feel opposite forces. Together they make a couple: no net push, but a turning effect.", "text_hi": "Loop के opposite sides को opposite forces feel होती हैं। मिलकर वो एक couple बनाते हैं: कोई net push नहीं, पर एक turning effect जरूर है।", "text_te": "Loop యొక్క opposite sides కి opposite forces అనిపిస్తాయి. కలిసి అవి ఒక couple తయారు చేస్తాయి: net push లేదు, కానీ ఒక turning effect ఉంటుంది.", "glow": ["f_left", "f_right"] },
+            { "id": "s6_3", "text_en": "That turning effect is the torque, τ equals m cross B — the purple arrow.", "text_hi": "वो turning effect ही torque है, τ equals m cross B — वो purple arrow।", "text_te": "ఆ turning effect అనేది torque, τ equals m cross B — ఆ purple arrow.", "glow": "tau_arrow", "math_show": "\\vec{\\tau} = \\vec{m} \\times \\vec{B}" },
+            { "id": "s6_4", "text_en": "A bar magnet of the same moment in the same field would feel exactly this torque.", "text_hi": "इसी field में इसी moment का bar magnet exactly यही torque feel करेगा।", "text_te": "అదే field లో అదే moment గల bar magnet సరిగ్గా ఇదే torque అనుభవిస్తుంది.", "glow": "tau_arrow" }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "It aligns like a compass",
+        "duration": 18,
+        "focal_primitive_id": "align_title",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "align_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "The torque turns m to line up with B",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "align_explain",
+            "position": { "x": 200, "y": 230 },
+            "text": "The loop swings back and forth,\nthen settles with m along B —\nexactly like a compass needle\nsettling to north.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "compass_note",
+            "position": { "x": 560, "y": 230 },
+            "text": "No permanent magnet needed.\nA loop of current responds to\nthe field all by itself.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "align_anchor",
+            "position": { "x": 380, "y": 470 },
+            "text": "This is exactly how the galvanometer coil deflects when current flows.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Watch what the torque does. The loop swings, back and forth, and settles with m lined up along B.", "text_hi": "देखो torque क्या करता है। Loop आगे-पीछे swing करता है, और m को B के साथ line up करके settle हो जाता है।", "text_te": "Torque ఏం చేస్తోందో చూడండి. Loop ముందూ వెనకా swing అవుతుంది, మరియు m ని B వెంట line up చేసి settle అవుతుంది.", "glow": "mu_arrow" },
+            { "id": "s7_2", "text_en": "That is exactly a compass needle finding north. The needle is just a magnetic dipole, and so is this loop.", "text_hi": "यह बिल्कुल वैसा ही है जैसे एक compass needle north ढूंढती है। वो needle सिर्फ एक magnetic dipole है, और यह loop भी।", "text_te": "ఇది సరిగ్గా ఒక compass needle north వెతికినట్లే. ఆ needle కేవలం ఒక magnetic dipole, ఈ loop కూడా అంతే.", "glow": "mu_arrow" },
+            { "id": "s7_3", "text_en": "And notice — no permanent magnet was needed. A plain loop of current responds to the field on its own.", "text_hi": "और ध्यान दो — कोई permanent magnet जरूरी नहीं था। current का एक plain loop field पर खुद ही respond करता है।", "text_te": "మరియు గమనించండి — ఏ permanent magnet అవసరం లేదు. current యొక్క ఒక plain loop field కి తనంత తానే respond చేస్తుంది.", "glow": "compass_note" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "You need a permanent magnet for something to respond to a magnetic field.",
+            "one_line_fix": "A current loop is already a magnet while the current flows — it aligns and turns in a field just like a compass needle, with no permanent magnet anywhere."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "Where magnetism comes from",
+        "duration": 20,
+        "focal_primitive_id": "origin_title",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "origin_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "Atoms are tiny current loops",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "atom_explain",
+            "position": { "x": 200, "y": 230 },
+            "text": "An electron orbiting a nucleus\nis nature's smallest current loop\n— a tiny magnetic dipole,\nwith its own m = N I A.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_origin",
+            "position": { "x": 560, "y": 230 },
+            "text": "Predict: where does a bar magnet's\nmagnetism actually come from?",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s8_3"
+          },
+          {
+            "type": "annotation",
+            "id": "origin_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "From countless atomic current loops, all adding up. No monopoles anywhere — just loops.",
+            "color": "#FFF176",
+            "reveal_at_tts_id": "s8_3"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Here is why this matters so much. An electron orbiting in an atom is a tiny current loop.", "text_hi": "यह इतना important क्यों है? क्योंकि atom में orbit करने वाला electron एक tiny current loop होता है।", "text_te": "ఇది ఎందుకు ఇంత important? ఒక atom లో orbit చేసే electron ఒక tiny current loop.", "glow": "loop" },
+            { "id": "s8_2", "text_en": "So every atom carries tiny magnetic dipoles. Predict — where does a bar magnet's magnetism come from?", "text_hi": "तो हर atom में tiny magnetic dipoles होते हैं। Predict करो — एक bar magnet का magnetism आता कहाँ से है?", "text_te": "కాబట్టి ప్రతి atom లో tiny magnetic dipoles ఉంటాయి. Predict చెయ్యండి — ఒక bar magnet యొక్క magnetism ఎక్కడ నుండి వస్తుంది?", "glow": "predict_origin", "pause_after_ms": 3000 },
+            { "id": "s8_3", "text_en": "From all those atomic loops adding up. Magnetism is built from current loops — never from single magnetic poles.", "text_hi": "उन सभी atomic loops के जुड़ने से। Magnetism current loops से बनता है — कभी single magnetic poles से नहीं।", "text_te": "ఆ అన్ని atomic loops కలవడం వల్ల. Magnetism అనేది current loops నుండి నిర్మితమవుతుంది — ఎన్నడూ single magnetic poles నుండి కాదు.", "glow": "origin_note" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Magnetism needs a permanent magnet, and magnetic monopoles (single poles) exist.",
+            "one_line_fix": "All magnetism comes from current loops — moving charges in atoms. Every source is a dipole; an isolated single magnetic pole has never been found."
+          }
+        ]
+      },
+      "STATE_9": {
+        "title": "Your turn",
+        "duration": 30,
+        "focal_primitive_id": "sandbox_title",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sandbox_title",
+            "position": { "x": 380, "y": 60 },
+            "text": "Explore: change N, I, B and θ",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "sandbox_guide",
+            "position": { "x": 200, "y": 230 },
+            "text": "N and I set m (the yellow arrow).\nB and θ set the torque (purple).\nDrag and watch them respond.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "sandbox_challenge",
+            "position": { "x": 560, "y": 230 },
+            "text": "Challenge:\nDouble N — does m double?\nSet θ = 0 — where does τ go?",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "sandbox_note",
+            "position": { "x": 380, "y": 470 },
+            "text": "m = N I A and τ = m B sin θ — the same rules a bar magnet obeys.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "Your turn. Drag the sliders for N, I, B and the angle.", "text_hi": "अब तुम्हारी बारी। N, I, B और angle के sliders drag करो।", "text_te": "ఇప్పుడు మీ వంతు. N, I, B మరియు angle కోసం sliders drag చెయ్యండి.", "glow": "mu_arrow" },
+            { "id": "s9_2", "text_en": "More turns or more current grows the moment m. The field and angle set the torque.", "text_hi": "ज्यादा turns या ज्यादा current, moment m को बढ़ाते हैं। Field और angle, torque को set करते हैं।", "text_te": "ఎక్కువ turns లేదా ఎక్కువ current, moment m ని పెంచుతాయి. Field మరియు angle, torque ని set చేస్తాయి.", "glow": "mu_arrow", "math_show": "m = N I A,\\quad \\tau = m B \\sin\\theta" },
+            { "id": "s9_3", "text_en": "Try it. Double the turns and watch m double. Set the angle to zero and watch the torque vanish.", "text_hi": "Try करो। turns को double करो और देखो m double होता है। angle को zero पर set करो और देखो torque vanish हो जाता है।", "text_te": "Try చెయ్యండి. Turns ని double చెయ్యండి మరియు m double అవడం చూడండి. Angle ని zero కి set చెయ్యండి మరియు torque vanish అవడం చూడండి.", "glow": "tau_arrow" }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "current_loop_acts_as_dipole",
+    "ambient_field": {
+      "direction": [1, 0, 0],
+      "magnitude": 0.1,
+      "density": [5, 5, 5],
+      "color": "#42A5F5",
+      "opacity": 0.42,
+      "extent": 2.5
+    },
+    "loop": {
+      "shape": "circle",
+      "radius": 0.05,
+      "current_amps": 0.5,
+      "turns": 1,
+      "color": "#FFD54F",
+      "current_arrow_color": "#FFAB40"
+    },
+    "field_lines": {
+      "count": 10,
+      "color_positive": "#66BB6A"
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "positive": "#EF5350",
+      "negative": "#42A5F5"
+    },
+    "slider_controls": {
+      "N": { "min": 1, "max": 100, "step": 1, "default": 1, "label": "Turns N" },
+      "I": { "min": 0.01, "max": 5, "step": 0.01, "default": 0.5, "label": "Current I (A)" },
+      "L_side": { "min": 0.0886, "max": 0.0886, "step": 0.0001, "default": 0.0886, "label": "(area helper √(πr²))" },
+      "B": { "min": 0.01, "max": 1.0, "step": 0.01, "default": 0.1, "label": "Field |B| (T)" },
+      "theta_deg": { "min": 0, "max": 180, "step": 1, "default": 30, "label": "Angle θ(m,B)" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A loop of current — dots flowing, no field yet",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4.5],
+        "caption": "A circular current loop. Orange dots show I flowing around the ring. No field shown yet.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true
+        }
+      },
+      "STATE_2": {
+        "label": "The loop's own dipole field lines appear",
+        "visible_elements": [],
+        "camera_position": [3.2, 2.2, 4.2],
+        "caption": "The loop sources a magnetic field: closed lines leave one face, curl around, and return to the other.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true,
+          "loop_field_lines": true
+        }
+      },
+      "STATE_3": {
+        "label": "N and S faces labelled",
+        "visible_elements": [],
+        "camera_position": [3.2, 2.2, 4.2],
+        "caption": "Lines leave the north face, enter the south face. Two poles — no single pole exists.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true,
+          "loop_field_lines": true,
+          "face_labels": true
+        }
+      },
+      "STATE_4": {
+        "label": "Side-by-side with a bar magnet — fields coincide (AHA)",
+        "visible_elements": [],
+        "camera_position": [1, 3.5, 10],
+        "caption": "A bar magnet (left) beside the loop (right). Both field patterns are identical — the loop IS a dipole.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true,
+          "loop_field_lines": true,
+          "bar_magnet_compare": { "enabled": true }
+        }
+      },
+      "STATE_5": {
+        "label": "m vector along the axis — m = N I A",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4.2],
+        "caption": "The magnetic moment m = NIA, a vector along the loop axis by the right-hand rule. Observe-only.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true,
+          "mu_vector": { "show": true, "color": "#FFD54F", "scale_factor": 1.0 }
+        }
+      },
+      "STATE_6": {
+        "label": "External field on — couple + torque",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4.2],
+        "caption": "Uniform B switched on. Opposite sides feel opposite forces — a couple. τ = m × B appears.",
+        "theta_deg": 60,
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true,
+          "ambient_field": true,
+          "mu_vector": { "show": true, "color": "#FFD54F", "scale_factor": 1.0 },
+          "force_vectors": { "show_left": true, "show_right": true, "color": "#66BB6A" },
+          "tau_vector": { "show": true, "color": "#E879F9" }
+        }
+      },
+      "STATE_7": {
+        "label": "Aligns like a compass — oscillates about θ = 0",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4.2],
+        "caption": "The torque swings the loop and settles m along B — exactly like a compass needle. No permanent magnet needed.",
+        "theta_deg": 0,
+        "rotation_mode": "oscillation",
+        "oscillation_amplitude_deg": 25,
+        "oscillation_period_s": 3,
+        "extras": {
+          "current_dots": true,
+          "ambient_field": true,
+          "mu_vector": { "show": true, "color": "#FFD54F", "scale_factor": 1.0 },
+          "tau_vector": { "show": true, "color": "#E879F9" }
+        }
+      },
+      "STATE_8": {
+        "label": "Origin of magnetism — loop + its field",
+        "visible_elements": [],
+        "camera_position": [3.2, 2.2, 4.2],
+        "caption": "Electrons orbiting in atoms are tiny current loops. All magnetism is built from loops like this one.",
+        "theta_deg": 90,
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true,
+          "loop_field_lines": true
+        }
+      },
+      "STATE_9": {
+        "label": "Sandbox — N, I, B, θ sliders",
+        "visible_elements": [],
+        "camera_position": [3, 2.5, 4.2],
+        "caption": "Drag N, I, B and θ. m = NIA scales the yellow arrow; τ = m B sinθ scales the purple arrow.",
+        "theta_deg": 30,
+        "rotation_mode": "manual",
+        "show_sliders": true,
+        "extras": {
+          "current_dots": true,
+          "ambient_field": true,
+          "mu_vector": { "show": true, "color": "#FFD54F", "scale_factor": 1.0 },
+          "tau_vector": { "show": true, "color": "#E879F9" }
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can state that a current loop produces a magnetic field whose EXTERNAL pattern is identical to a bar magnet's (the loop IS a magnetic dipole), that the loop has two poles — a north face where field lines leave and a south face where they enter, never a single pole — that the magnetic dipole moment m = N I A is a VECTOR along the loop axis (direction by the right-hand rule, magnitude growing with turns, current and area), that in an external field the dipole feels a torque τ = m × B that aligns m with B exactly as a compass needle aligns, and that atomic current loops (orbiting electrons) are the microscopic origin of all magnetism, so every magnetic source is a dipole and no magnetic monopole exists.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "Far from a current-carrying loop, the magnetic field pattern looks like the field of:",
+        "options": {
+          "A": "A bar magnet (a magnetic dipole)",
+          "B": "A single isolated north pole",
+          "C": "A straight current-carrying wire only",
+          "D": "A point electric charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks a loop can produce a single (monopole) field",
+          "C": "Sees only the local circular field of the wire, not the loop's dipole field",
+          "D": "Confuses the magnetic dipole field with a radial electric field"
+        },
+        "tested_idea": "A current loop's external field is identical to a bar magnet's",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Standing well away from a small coil carrying current, the magnetic field you measure matches that of which familiar object?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "On a current loop, which face acts as the north pole?",
+        "options": {
+          "A": "The face the magnetic field lines leave",
+          "B": "The face the magnetic field lines enter",
+          "C": "Neither — a loop has only one pole",
+          "D": "Both faces are north poles"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Reverses the convention for the north face",
+          "C": "Thinks a loop is a magnetic monopole",
+          "D": "Doesn't realise the two faces are opposite poles"
+        },
+        "tested_idea": "The face field lines leave is north; the loop has two poles",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Field lines come OUT of one face of a current loop. What kind of pole is that face?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "The magnetic dipole moment of a loop is m = N I A. Which statement is correct?",
+        "options": {
+          "A": "m is a vector pointing along the loop axis, with direction set by the right-hand rule",
+          "B": "m is just a number measuring field strength, with no direction",
+          "C": "m points along the current in the wire",
+          "D": "m depends only on the current, not on the area or turns"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Treats the moment as a scalar with no direction",
+          "C": "Confuses the axial moment with the tangential current direction",
+          "D": "Ignores the N and A factors in m = NIA"
+        },
+        "tested_idea": "m = NIA is a vector along the axis (RHR)",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "For a current loop, the quantity m = NIA — is it a scalar or a vector, and which way does it point?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "You double the number of turns N in the loop (same current, same radius). The magnetic moment m:",
+        "options": {
+          "A": "Doubles",
+          "B": "Stays the same",
+          "C": "Halves",
+          "D": "Quadruples"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks N does not affect the moment",
+          "C": "Inverts the dependence on N",
+          "D": "Confuses the linear N dependence with an area-like square"
+        },
+        "tested_idea": "m = NIA scales linearly with N",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A coil's turns are doubled with current and size unchanged. By what factor does its magnetic moment change?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A current loop is placed in a uniform external magnetic field. What does it do, and why?",
+        "options": {
+          "A": "It feels a torque and turns to align m with B, like a compass needle",
+          "B": "It is pushed bodily across the field with a large net force",
+          "C": "Nothing, because only permanent magnets respond to fields",
+          "D": "It speeds up its current"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks the couple gives a net translational force",
+          "C": "Thinks only permanent magnets respond to a field",
+          "D": "Confuses mechanical torque with a change in current"
+        },
+        "tested_idea": "In an external field the dipole feels τ = m × B and aligns",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "Switch on a uniform field around a current loop. How does the loop respond, and what is the reason?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Where does the magnetism of a permanent bar magnet ultimately come from?",
+        "options": {
+          "A": "Countless atomic current loops (orbiting/spinning electrons) adding up",
+          "B": "A supply of isolated north and south magnetic monopoles inside it",
+          "C": "Static electric charges sitting on its surface",
+          "D": "A single giant current loop wrapped around the whole magnet"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Believes magnetic monopoles exist inside the magnet",
+          "C": "Confuses magnetism with electrostatic charge",
+          "D": "Misses that it is many atomic loops, not one macroscopic loop"
+        },
+        "tested_idea": "Atomic current loops are the origin of all magnetism; no monopoles",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "At the deepest level, what produces the field of an ordinary iron bar magnet?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_3": ["Q2"],
+      "STATE_4": ["Q1"],
+      "STATE_5": ["Q3", "Q4"],
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_2", "STATE_6", "STATE_9"]
+  }
+}

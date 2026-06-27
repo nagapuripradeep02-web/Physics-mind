@@ -38,6 +38,7 @@ const FIELD_3D_ANIMATION_MAP: Record<string, { motion: string; speed: number }> 
   solenoid:            { motion: 'current_arrows_flow',      speed: 1.0 },
   gauss_law:           { motion: 'surface_pulse',            speed: 0.5 },
   gauss_law_sphere:    { motion: 'radial_arrows_pulse',      speed: 0.5 },
+  gauss_law_solid_sphere: { motion: 'radial_arrows_pulse',   speed: 0.5 },
   electric_dipole:     { motion: 'field_lines_oscillate',    speed: 0.7 },
   magnetic_field_wire: { motion: 'circular_field_lines',     speed: 0.9 },
   capacitor:           { motion: 'field_lines_parallel',     speed: 0.4 },

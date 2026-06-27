@@ -1,0 +1,460 @@
+{
+  "concept_id": "cyclotron_period_independent_of_speed",
+  "concept_name": "Same Lap Every Time — T = 2πm/qB Is Independent of Speed",
+  "chapter": 4,
+  "section": "4.2",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the cyclotron / period-of-circular-motion heading, scope only); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only (the VECC cyclotron). This is the PERIOD / TIMING sibling of circular_motion_charge_in_uniform_B: it surfaces the one quantity #4 deliberately hid — the time for one full orbit, T = 2πm/qB — and proves T is INDEPENDENT of speed v and radius r. A faster charge traces a BIGGER circle but completes each lap in exactly the SAME time, because the extra distance is paid for by the extra speed (they cancel). The single surfaced quantity is T, and only as a RELATIVE lap-timer (a ring-fill that freezes on one revolution and relabels itself T) — never a seconds value, never a wall-clock, never a frequency number. It deliberately does NOT re-derive r = mv/qB (it CITES #4's result), does NOT show the force magnitude F = qvB sin(theta) (that belongs to magnetic_force_moving_charge — F here is a direction-only fixed glyph, Rule 29), and does NOT touch Ampere / current-loop / dipole / solenoid content. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict->reveal). Renders on field_3d via the cyclotron_period scenario, which INVERTS radius_in_uniform_field: instead of holding arc-speed constant to SUPPRESS the period, it holds the PERIOD constant (a single shared omega = 2π/T_visual drives every charge) and lets the radii differ, so two charges of different speed/size tie by construction and re-converge at the start every lap. Lighter atom by founder carve-out: no assessment block, no coverage_map.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["cyclotron_period"]
+  },
+  "prerequisites": [
+    "circular_motion_charge_in_uniform_B",
+    "magnetic_force_perpendicular_no_work",
+    "magnetic_field_concept_B"
+  ],
+  "real_world_anchor": {
+    "primary": "At the VECC cyclotron in Kolkata, charged particles are whipped round and round through a uniform magnetic field, and a voltage kicks them faster twice every loop. As they speed up they swing out onto a bigger and bigger circle — yet EVERY lap takes exactly the same time. That is the whole trick: because the lap time T = 2πm/qB does not depend on speed, the machine can kick on one steady, fixed rhythm and stay perfectly in step with the particle no matter how fast it gets. It is the same VECC machine you met when learning that a magnetic force only steers and that the circle's size is r = mv/qB — now look at the CLOCK: the size keeps growing, but the lap time never changes."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "m": {
+        "name": "Mass of the moving charge (numerator of T = 2πm/qB; bigger m = longer period AND wider circle). Visual-scaling knob, the number is never shown on the canvas.",
+        "unit": "kg",
+        "min": 0.5,
+        "max": 2.5,
+        "default": 1.0,
+        "step": 0.1
+      },
+      "v": {
+        "name": "Speed of the moving charge (sets circle SIZE via r = mv/qB but CANCELS out of T = 2πm/qB; faster = bigger circle, SAME period). Visual-scaling knob, the number is never shown on the canvas.",
+        "unit": "m/s",
+        "min": 0.5,
+        "max": 2.5,
+        "default": 1.0,
+        "step": 0.1
+      },
+      "q_mag": {
+        "name": "Magnitude of the charge (denominator of T = 2πm/qB; more charge = shorter period). Visual-scaling knob, the number is never shown on the canvas.",
+        "unit": "C",
+        "min": 0.5,
+        "max": 2.5,
+        "default": 1.0,
+        "step": 0.1
+      },
+      "B": {
+        "name": "Magnetic field strength (denominator of T = 2πm/qB; stronger field = shorter period). Visual-scaling knob, the number is never shown on the canvas.",
+        "unit": "T",
+        "min": 0.5,
+        "max": 2.5,
+        "default": 1.0,
+        "step": 0.1
+      }
+    },
+    "formulas": {
+      "period_from_geometry": "One lap is the distance round divided by the speed: T = 2πr/v",
+      "radius_from_last_lesson": "The radius is r = mv/qB, cited from the previous concept and NOT re-derived here",
+      "period_substituted": "Put r = mv/qB into T = 2πr/v: T = 2π(mv/qB)/v",
+      "period_v_cancels": "The v on top meets the v on the bottom and they cancel exactly",
+      "period": "T = 2πm/qB — the period depends ONLY on m, q and B, never on v or r",
+      "frequency": "As a frequency, f = 1/T = qB/2πm (one aside line)"
+    },
+    "constraints": [
+      "Teaches ONLY the period T = 2πm/qB and its independence from speed v and radius r. Slider INPUT values for m, v, q, B are allowed; no other number reaches the canvas.",
+      "The period readout is RELATIVE (a lap-timer that ticks, freezes on one full revolution, and relabels itself T) — never a seconds value, never a wall-clock, never a frequency number. Every state flags show_period_readout: true (the INVERSE of #4's hide_period_readout: true).",
+      "NO force magnitude — no F = qvB, no qvB sin(theta), no Newton number. Every state flags hide_magnitude_readout: true; the F arrow is a direction-only fixed glyph pointing to the centre (Rule 29).",
+      "Radius r is NOT re-derived — it appears ONLY as a cited symbol in the STATE_3 substitution; no metres value, no radius readout bar.",
+      "NO Ampere, NO current loop, NO magnetic dipole, NO solenoid.",
+      "Speed magnitude is NOT encoded in the v-glyph length (the arrow is a fixed length). The fast charge's higher speed is shown ONLY by its bigger circle and the race timing.",
+      "The period is independent of speed and radius: T = 2πm/qB has no v and no r. A faster charge traces a bigger circle but takes the same lap time.",
+      "Both charges share omega = 2π/T_visual, so they have the SAME period by construction and re-converge at the start every lap (the tie is geometry, not a coincidence).",
+      "f = 1/T = qB/2πm: one aside line in STATE_3, no separate frequency readout."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "A faster charge runs a bigger circle in the same time — period never changes.",
+    "visual_confirmation": "A slow charge and a fast charge are released together from one start line; the fast one swings onto a visibly bigger circle, yet both return to the start the very same instant and both lap-timers freeze on an identical T."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "same_time": ["STATE_2"],
+    "period_formula": ["STATE_3"],
+    "explore": ["STATE_4"]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "How Long Is One Lap?",
+        "duration": 14,
+        "focal_primitive_id": "lap_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "a charge loops round and round on one steady circle in a magnetic field",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "watch_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "watch the clock in\nthe corner — it ticks\nas the charge orbits",
+            "color": "#FFB366"
+          },
+          {
+            "type": "annotation",
+            "id": "lap_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "one full lap takes a definite time — we call it the period, T",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A charge is looping through a magnetic field, round and round on one steady circle.", "text_hi": "एक charge magnetic field में चक्कर लगा रहा है, एक steady circle पर बार-बार घूम रहा है।", "text_te": "ఒక charge magnetic field లో తిరుగుతూ ఉంది, ఒకే steady circle పై మళ్ళీ మళ్ళీ తిరుగుతూ।" },
+            { "id": "s1_2", "text_en": "Watch the clock in the corner — how long does ONE full loop take?", "text_hi": "कोने में clock देखो — एक पूरे loop में कितना time लगता है?", "text_te": "మూలలో clock చూడండి — ఒక పూర్తి loop తీసుకోవడానికి ఎంత time అవుతుంది?", "pause_after_ms": 2500 },
+            { "id": "s1_3", "text_en": "There — one lap done. The timer stops, and we give that time a name.", "text_hi": "देखो — एक lap पूरा हुआ। timer रुक गया, और हम उस time को एक नाम देते हैं।", "text_te": "చూడండి — ఒక lap పూర్తయింది। timer ఆగింది, మరియు మనం ఆ time కి ఒక పేరు ఇస్తాం।", "pause_after_ms": 1500 },
+            { "id": "s1_4", "text_en": "That time is the period, T. Now — does it depend on how fast the charge goes?", "text_hi": "वह time है period, T। अब — क्या यह इस बात पर depend करता है कि charge कितनी तेज़ जाती है?", "text_te": "ఆ time అనేది period, T. ఇప్పుడు — charge ఎంత వేగంగా వెళుతుందో దానిపై ఇది depend అవుతుందా?", "pause_after_ms": 1200 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The lap time is just whatever the clock happens to read; there is no rule fixing it.",
+            "visual_counter": "The lap-timer freezes on one clean revolution and relabels itself T — one full orbit takes a single definite time, not a random reading.",
+            "one_line_fix": "One full orbit takes a definite time called the period, T."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Faster, but Same Lap — the Race",
+        "duration": 18,
+        "focal_primitive_id": "tie_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "predict_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "Predict: released together, who finishes a lap first — fast, slow, or a tie?",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "race_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "the fast charge swings\nonto a BIGGER circle —\nthe slow one stays\ntight",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "tie_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "a tie — both back at the start the same instant, same T",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Two charges now, at the same start line. I speed the second one up — see, it swings out onto a bigger circle.", "text_hi": "अब दो charges, एक ही start line पर। मैं दूसरे को speed up करता हूँ — देखो, यह एक bigger circle पर बाहर निकल जाता है।", "text_te": "ఇప్పుడు రెండు charges, ఒకే start line వద్ద। నేను రెండవదాన్ని speed up చేస్తాను — చూడండి, అది ఒక bigger circle పై బయటికి వెళ్తుంది।" },
+            { "id": "s2_2", "text_en": "Released together — who finishes a lap first: the fast one, the slow one, or a tie?", "text_hi": "एक साथ छोड़े गए — पहले lap कौन पूरा करेगा: fast वाला, slow वाला, या tie?", "text_te": "కలిసి వదిలిపెట్టబడ్డాయి — మొదట lap ఎవరు పూర్తి చేస్తారు: fast అయినది, slow అయినది, లేదా tie?", "pause_after_ms": 3500 },
+            { "id": "s2_3", "text_en": "Both back at the start, the very same instant. Both timers stop on the same T.", "text_hi": "दोनों start पर वापस, बिल्कुल एक ही instant में। दोनों timers एक ही T पर रुक जाते हैं।", "text_te": "రెండూ start వద్దకు తిరిగొచ్చాయి, సరిగ్గా ఒకే instant లో। రెండు timers ఒకే T పై ఆగిపోయాయి।", "pause_after_ms": 1500 },
+            { "id": "s2_4", "text_en": "A tie. The fast charge ran a bigger lap, but at higher speed — the extra distance is paid by the extra speed.", "text_hi": "एक tie। fast charge ने bigger lap दौड़ा, लेकिन higher speed पर — extra distance की कीमत extra speed चुकाती है।", "text_te": "ఒక tie. fast charge పెద్ద lap పరిగెత్తింది, కానీ higher speed తో — extra distance ని extra speed చెల్లిస్తుంది।", "pause_after_ms": 1200 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A faster charge takes LESS time per loop.",
+            "visual_counter": "The slow and fast charges are released together and both return to the start the same instant, both timers freezing on an identical T.",
+            "one_line_fix": "Faster means a bigger circle too — the two effects cancel, so the lap time is unchanged."
+          },
+          {
+            "belief": "A bigger circle takes LONGER to go round.",
+            "visual_counter": "The fast charge owns the visibly bigger circle yet ties the small one exactly.",
+            "one_line_fix": "The bigger circle is run at higher speed, so it still takes T = 2πm/qB."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_3": {
+        "title": "Why It Cancels — T = 2πm/qB",
+        "duration": 22,
+        "focal_primitive_id": "cancel_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "geometry_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "one lap is the distance round divided by the speed: T = 2πr/v",
+            "color": "#FFB366"
+          },
+          {
+            "type": "annotation",
+            "id": "cancel_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "put in r = mv/qB —\nnow a v on top meets\na v on the bottom,\nand they cancel",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "result_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "T = 2πm/qB — no v, no r; the period rests on m, q and B alone",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "One lap is the distance round divided by the speed: T equals 2-pi-r over v.", "text_hi": "एक lap है distance round को speed से divide करना: T equals 2-pi-r over v।", "text_te": "ఒక lap అంటే distance round ని speed తో divide చేయడం: T equals 2-pi-r over v." },
+            { "id": "s3_2", "text_en": "We already know the radius from last lesson. So what happens to the v when we put it in?", "text_hi": "radius हम पिछले lesson से पहले से जानते हैं। तो जब हम इसे put in करते हैं तो v का क्या होता है?", "text_te": "radius మనకు గత lesson నుండి ఇప్పటికే తెలుసు। కాబట్టి మనం దాన్ని put in చేసినప్పుడు v కి ఏమి అవుతుంది?", "pause_after_ms": 3000 },
+            { "id": "s3_3", "text_en": "Substitute r equals m-v over q-B — now there is a v on top and a v on the bottom.", "text_hi": "r equals m-v over q-B substitute करो — अब ऊपर एक v है और नीचे एक v है।", "text_te": "r equals m-v over q-B substitute చేయండి — ఇప్పుడు పైన ఒక v ఉంది మరియు కింద ఒక v ఉంది।", "pause_after_ms": 1500 },
+            { "id": "s3_4", "text_en": "And they cancel. The v vanishes completely.", "text_hi": "और वे cancel हो जाते हैं। v पूरी तरह से vanish हो जाता है।", "text_te": "మరియు అవి cancel అవుతాయి. v పూర్తిగా vanish అయిపోతుంది।", "pause_after_ms": 1200 },
+            { "id": "s3_5", "text_en": "T equals 2-pi-m over q-B. No v, no r — the period depends only on mass, charge and field. As a frequency, that is f equals q-B over 2-pi-m.", "text_hi": "T equals 2-pi-m over q-B। कोई v नहीं, कोई r नहीं — period केवल mass, charge और field पर depend करता है। frequency के रूप में, वह है f equals q-B over 2-pi-m।", "text_te": "T equals 2-pi-m over q-B. v లేదు, r లేదు — period కేవలం mass, charge మరియు field పై మాత్రమే depend అవుతుంది. frequency గా చెప్పాలంటే, అది f equals q-B over 2-pi-m." }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The v inside r = mv/qB must drag through into the period, so T should still depend on speed.",
+            "visual_counter": "When r = mv/qB is substituted, the substituted v meets the dividing v and both brighten and strike through — they cancel exactly.",
+            "one_line_fix": "The two v's cancel, so T = 2πm/qB has no v in it at all."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_4": {
+        "title": "Your Turn — Change the Speed, Watch the Clock",
+        "duration": 20,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sliders_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "four sliders — m, v, q, B — one charge, and a live lap-timer",
+            "color": "#FFB366"
+          },
+          {
+            "type": "slider",
+            "id": "cyc_speed_slider",
+            "variable": "v",
+            "position": { "x": 620, "y": 150 },
+            "label": "v (speed) — resizes the circle, holds the clock"
+          },
+          {
+            "type": "slider",
+            "id": "cyc_mass_field_slider",
+            "variable": "m",
+            "position": { "x": 620, "y": 210 },
+            "label": "m, q, B — these move the clock"
+          },
+          {
+            "type": "annotation",
+            "id": "period_readout_label",
+            "position": { "x": 560, "y": 290 },
+            "text": "the live lap-timer\nholds steady on v,\nbut moves on m, q\nor B",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "v is nowhere in T = 2πm/qB — speed and size never change the period",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Your turn. Four sliders — m, v, q, B — one charge, and the lap-timer running live.", "text_hi": "अब तुम्हारी बारी। चार sliders — m, v, q, B — एक charge, और lap-timer live चल रहा है।", "text_te": "ఇప్పుడు మీ వంతు. నాలుగు sliders — m, v, q, B — ఒక charge, మరియు lap-timer live గా నడుస్తోంది।" },
+            { "id": "s4_2", "text_en": "Speed it up with v — call it first: will the clock change, or just the circle?", "text_hi": "v से speed बढ़ाओ — पहले बताओ: क्या clock बदलेगा, या सिर्फ circle?", "text_te": "v తో speed పెంచండి — ముందే చెప్పండి: clock మారుతుందా, లేదా circle మాత్రమే?", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "The circle grows, but the lap-time holds dead steady. v is nowhere in T equals 2-pi-m over q-B.", "text_hi": "circle बड़ा होता है, लेकिन lap-time बिल्कुल steady रहता है। v T equals 2-pi-m over q-B में कहीं नहीं है।", "text_te": "circle పెద్దదవుతుంది, కానీ lap-time పూర్తిగా steady గా ఉంటుంది. v అనేది T equals 2-pi-m over q-B లో ఎక్కడా లేదు।", "pause_after_ms": 1500 },
+            { "id": "s4_4", "text_en": "Now change m or B instead — those DO move the clock, because those are the only things T depends on.", "text_hi": "अब m या B बदलो — ये clock को ज़रूर move करते हैं, क्योंकि T केवल इन्हीं पर depend करता है।", "text_te": "ఇప్పుడు m లేదా B మార్చండి — ఇవి clock ను తప్పకుండా move చేస్తాయి, ఎందుకంటే T ఇవి మాత్రమే depend అవుతుంది।", "pause_after_ms": 1200 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The period T depends on the speed v or the radius r.",
+            "visual_counter": "Dragging v resizes the circle while the live lap-timer stays frozen; only m, q and B change the timer.",
+            "one_line_fix": "T = 2πm/qB has no v and no r — speed and size never change the period."
+          }
+        ]
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "cyclotron_period",
+    "ambient_field": {
+      "direction": [0, 0, 1],
+      "magnitude": 1,
+      "density": [5, 5, 5],
+      "color": "#42A5F5",
+      "opacity": 0.45,
+      "extent": 3
+    },
+    "particle": {
+      "charge_sign": 1,
+      "color": "#FFB366",
+      "radius": 0.12
+    },
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#42A5F5",
+      "color_negative": "#42A5F5",
+      "opacity": 0.45,
+      "arrow_spacing": 5
+    },
+    "slider_controls": {
+      "m": { "min": 0.5, "max": 2.5, "step": 0.1, "default": 1.0, "label": "m (mass)" },
+      "v": { "min": 0.5, "max": 2.5, "step": 0.1, "default": 1.0, "label": "v (speed)" },
+      "q_mag": { "min": 0.5, "max": 2.5, "step": 0.1, "default": 1.0, "label": "q (charge)" },
+      "B": { "min": 0.5, "max": 2.5, "step": 0.1, "default": 1.0, "label": "B (field)" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "How long is one lap?",
+        "visible_elements": [],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "auto_after_tts",
+        "duration": 14,
+        "trajectory_mode": "circle",
+        "show_period_readout": true,
+        "hide_magnitude_readout": true,
+        "cyclotron": {
+          "dual_orbit": null,
+          "shared_omega": true,
+          "show_period_readout": true,
+          "hide_magnitude_readout": true,
+          "timer_freeze_at_ms": 7000,
+          "circle_close_at_ms": 7000
+        },
+        "variable_overrides": { "m": 1.0, "v": 1.0, "q_mag": 1.0, "B": 1.0 },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A charge is looping through a magnetic field, round and round on one steady circle." },
+            { "id": "s1_2", "text_en": "Watch the clock in the corner — how long does ONE full loop take?", "pause_after_ms": 2500 },
+            { "id": "s1_3", "text_en": "There — one lap done. The timer stops, and we give that time a name.", "pause_after_ms": 1500 },
+            { "id": "s1_4", "text_en": "That time is the period, T. Now — does it depend on how fast the charge goes?", "pause_after_ms": 1200 }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "Faster, but same lap — the race",
+        "visible_elements": [],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "wait_for_answer",
+        "duration": 18,
+        "trajectory_mode": "circle",
+        "show_period_readout": true,
+        "hide_magnitude_readout": true,
+        "cyclotron": {
+          "dual_orbit": {
+            "slow": { "v_factor": 0.6, "R": 0.90, "color": "#FFB366", "label": "slow" },
+            "fast": { "v_factor": 1.2, "R": 1.80, "color": "#4FC3F7", "label": "fast" }
+          },
+          "shared_omega": true,
+          "same_start_marker": true,
+          "show_period_readout": true,
+          "hide_magnitude_readout": true,
+          "tie_badge_at_ms": 8000
+        },
+        "variable_overrides": { "m": 1.0, "v": 1.0, "q_mag": 1.0, "B": 1.0 },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Two charges now, at the same start line. I speed the second one up — see, it swings out onto a bigger circle." },
+            { "id": "s2_2", "text_en": "Released together — who finishes a lap first: the fast one, the slow one, or a tie?", "pause_after_ms": 3500 },
+            { "id": "s2_3", "text_en": "Both back at the start, the very same instant. Both timers stop on the same T.", "pause_after_ms": 1500 },
+            { "id": "s2_4", "text_en": "A tie. The fast charge ran a bigger lap, but at higher speed — the extra distance is paid by the extra speed.", "pause_after_ms": 1200 }
+          ]
+        }
+      },
+      "STATE_3": {
+        "label": "Why it cancels — T = 2πm/qB",
+        "visible_elements": [],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "manual_click",
+        "duration": 22,
+        "trajectory_mode": "circle",
+        "show_period_readout": true,
+        "hide_magnitude_readout": true,
+        "cyclotron": {
+          "dual_orbit": {
+            "slow": { "v_factor": 0.6, "R": 0.90, "color": "#FFB366", "label": "slow" },
+            "fast": { "v_factor": 1.2, "R": 1.80, "color": "#4FC3F7", "label": "fast" }
+          },
+          "shared_omega": true,
+          "show_period_readout": true,
+          "hide_magnitude_readout": true,
+          "equation_build": {
+            "line1_at_ms": 2000,
+            "line2_at_ms": 5000,
+            "line3_at_ms": 8000,
+            "vcancel_at_ms": 11000,
+            "line4_at_ms": 13000,
+            "aside_f_at_ms": 16000
+          }
+        },
+        "variable_overrides": { "m": 1.0, "v": 1.0, "q_mag": 1.0, "B": 1.0 },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "One lap is the distance round divided by the speed: T equals 2-pi-r over v." },
+            { "id": "s3_2", "text_en": "We already know the radius from last lesson. So what happens to the v when we put it in?", "pause_after_ms": 3000 },
+            { "id": "s3_3", "text_en": "Substitute r equals m-v over q-B — now there is a v on top and a v on the bottom.", "pause_after_ms": 1500 },
+            { "id": "s3_4", "text_en": "And they cancel. The v vanishes completely.", "pause_after_ms": 1200 },
+            { "id": "s3_5", "text_en": "T equals 2-pi-m over q-B. No v, no r — the period depends only on mass, charge and field. As a frequency, that is f equals q-B over 2-pi-m." }
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "Your turn — change the speed, watch the clock",
+        "visible_elements": [],
+        "camera_position": [3, 2, 5],
+        "caption": "",
+        "advance_mode": "interaction_complete",
+        "duration": 20,
+        "trajectory_mode": "circle",
+        "show_sliders": true,
+        "show_period_readout": true,
+        "hide_magnitude_readout": true,
+        "cyclotron": {
+          "dual_orbit": null,
+          "show_period_readout": true,
+          "hide_magnitude_readout": true
+        },
+        "variable_overrides": { "m": 1.0, "v": 1.0, "q_mag": 1.0, "B": 1.0 },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Your turn. Four sliders — m, v, q, B — one charge, and the lap-timer running live." },
+            { "id": "s4_2", "text_en": "Speed it up with v — call it first: will the clock change, or just the circle?", "pause_after_ms": 3000 },
+            { "id": "s4_3", "text_en": "The circle grows, but the lap-time holds dead steady. v is nowhere in T equals 2-pi-m over q-B.", "pause_after_ms": 1500 },
+            { "id": "s4_4", "text_en": "Now change m or B instead — those DO move the clock, because those are the only things T depends on.", "pause_after_ms": 1200 }
+          ]
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#FFB366",
+      "negative": "#42A5F5",
+      "field_line": "#42A5F5"
+    }
+  }
+}

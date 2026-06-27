@@ -144,19 +144,19 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "An electric dipole is just two equal and opposite charges, plus q and minus q, held a small distance apart."
+              "text_en": "An electric dipole is just two equal and opposite charges, plus q and minus q, held a small distance apart.", "text_hi": "electric dipole बस दो equal और opposite charges होते हैं — plus q और minus q — जो थोड़ी दूरी पर रखे जाते हैं।", "text_te": "electric dipole అంటే కేవలం రెండు equal మరియు opposite charges — plus q మరియు minus q — కొంచెం distance లో ఉంచబడిన వాటి జంట."
             },
             {
               "id": "s1_2",
-              "text_en": "We capture it in one quantity: the dipole moment p. Its size is charge times separation, q times two a."
+              "text_en": "We capture it in one quantity: the dipole moment p. Its size is charge times separation, q times two a.", "text_hi": "हम इसे एक quantity में समेटते हैं: dipole moment p। इसकी magnitude होती है charge गुना separation, यानी q times two a।", "text_te": "మనం దీన్ని ఒక quantity లో చెప్తాం: dipole moment p. దాని size అంటే charge times separation, q times two a."
             },
             {
               "id": "s1_3",
-              "text_en": "p is a vector. By convention it points from the negative charge to the positive charge."
+              "text_en": "p is a vector. By convention it points from the negative charge to the positive charge.", "text_hi": "p एक vector है। convention के अनुसार यह negative charge से positive charge की तरफ point करता है।", "text_te": "p అనేది ఒక vector. convention ప్రకారం ఇది negative charge నుంచి positive charge వైపు point చేస్తుంది."
             },
             {
               "id": "s1_4",
-              "text_en": "Our question for the whole lesson: what electric field does this little pair set up in the space around it?"
+              "text_en": "Our question for the whole lesson: what electric field does this little pair set up in the space around it?", "text_hi": "पूरे lesson का हमारा सवाल यह है: यह छोटा pair अपने चारों तरफ की space में कैसा electric field बनाता है?", "text_te": "మొత్తం lesson లో మన ప్రశ్న ఇది: ఈ చిన్న pair చుట్టూ ఉన్న space లో ఎలాంటి electric field ఏర్పరుస్తుంది?"
             }
           ]
         }
@@ -193,19 +193,19 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Take a point P out along the axis, on the line through both charges. Find the field by superposition."
+              "text_en": "Take a point P out along the axis, on the line through both charges. Find the field by superposition.", "text_hi": "axis के साथ, दोनों charges की line पर एक point P लो। field को superposition से निकालते हैं।", "text_te": "axis వెంట, రెండు charges ను కలిపే line పై ఒక point P తీసుకోండి. field ను superposition ద్వారా కనుగొందాం."
             },
             {
               "id": "s2_2",
-              "text_en": "The near plus q pushes outward — a strong red arrow. The far minus q pulls back — a weaker blue arrow."
+              "text_en": "The near plus q pushes outward — a strong red arrow. The far minus q pulls back — a weaker blue arrow.", "text_hi": "पास का plus q बाहर की तरफ push करता है — एक strong red arrow। दूर का minus q वापस pull करता है — एक weaker blue arrow।", "text_te": "దగ్గర ఉన్న plus q బయటికి push చేస్తుంది — ఒక strong red arrow. దూరంలో ఉన్న minus q వెనక్కి pull చేస్తుంది — ఒక weaker blue arrow."
             },
             {
               "id": "s2_3",
-              "text_en": "They lie along the same line, so the green net field points along p, the way p points."
+              "text_en": "They lie along the same line, so the green net field points along p, the way p points.", "text_hi": "दोनों एक ही line पर हैं, इसलिए green net field p की दिशा में point करती है।", "text_te": "రెండూ ఒకే line పై ఉన్నాయి, కాబట్టి green net field p వైపు point చేస్తుంది."
             },
             {
               "id": "s2_4",
-              "text_en": "Work it out far away and the axial field is two k p over r cubed."
+              "text_en": "Work it out far away and the axial field is two k p over r cubed.", "text_hi": "दूर वाले point के लिए calculate करो तो axial field होती है two k p over r cubed।", "text_te": "దూరంగా ఉన్న point కి calculate చేస్తే axial field two k p over r cubed అవుతుంది."
             }
           ]
         },
@@ -243,19 +243,19 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Now move P out sideways, onto the perpendicular bisector. Before I draw it — predict which way the field points."
+              "text_en": "Now move P out sideways, onto the perpendicular bisector. Before I draw it — predict which way the field points.", "text_hi": "अब P को sideways, perpendicular bisector पर ले जाओ। मैं draw करने से पहले — predict करो, field किस direction में point करेगी?", "text_te": "ఇప్పుడు P ని sideways గా, perpendicular bisector పైకి తీసుకువెళ్ళు. నేను draw చేయడానికి ముందు — predict చేయి, field ఏ వైపు point చేస్తుందో?"
             },
             {
               "id": "s3_2",
-              "text_en": "E plus and E minus are now equal in length but tilted. Their parts pointing up and down cancel."
+              "text_en": "E plus and E minus are now equal in length but tilted. Their parts pointing up and down cancel.", "text_hi": "E plus और E minus अब length में equal हैं लेकिन tilted हैं। उनके up और down वाले components cancel हो जाते हैं।", "text_te": "E plus మరియు E minus ఇప్పుడు length లో equal గా ఉన్నాయి కానీ tilted గా ఉన్నాయి. వాటి up మరియు down వైపు ఉన్న parts cancel అయిపోతాయి."
             },
             {
               "id": "s3_3",
-              "text_en": "What survives points sideways — opposite to p, back toward the negative charge's side."
+              "text_en": "What survives points sideways — opposite to p, back toward the negative charge's side.", "text_hi": "जो बचता है वह sideways point करता है — p के opposite, negative charge की तरफ वापस।", "text_te": "మిగిలేది sideways గా point చేస్తుంది — p కి opposite గా, negative charge వైపు వెళ్ళి."
             },
             {
               "id": "s3_4",
-              "text_en": "Far away the equatorial field is k p over r cubed, pointing opposite to p."
+              "text_en": "Far away the equatorial field is k p over r cubed, pointing opposite to p.", "text_hi": "दूर equatorial field होती है k p over r cubed, जो p के opposite direction में point करती है।", "text_te": "దూరంగా equatorial field k p over r cubed అవుతుంది, p కి opposite direction లో point చేస్తూ."
             }
           ]
         },
@@ -299,19 +299,19 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Put the two cases side by side at the same distance from the centre."
+              "text_en": "Put the two cases side by side at the same distance from the centre.", "text_hi": "दोनों cases को centre से same distance पर side by side रखो।", "text_te": "రెండు cases ను centre నుంచి same distance లో side by side పెట్టండి."
             },
             {
               "id": "s4_2",
-              "text_en": "The axial arrow is exactly twice as long as the equatorial one — same r, double the field."
+              "text_en": "The axial arrow is exactly twice as long as the equatorial one — same r, double the field.", "text_hi": "axial arrow की length equatorial arrow से exactly double है — same r, double field।", "text_te": "axial arrow పొడవు equatorial arrow కంటే exactly రెండు రెట్లు ఉంది — same r, double field."
             },
             {
               "id": "s4_3",
-              "text_en": "And they point differently: axial along p, equatorial opposite p."
+              "text_en": "And they point differently: axial along p, equatorial opposite p.", "text_hi": "और दोनों अलग-अलग direction में point करते हैं: axial, p के साथ; equatorial, p के opposite।", "text_te": "మరియు రెండూ వేరు వేరు వైపు point చేస్తాయి: axial, p వైపు; equatorial, p కి opposite గా."
             },
             {
               "id": "s4_4",
-              "text_en": "One clean rule to remember: on the axis the dipole field is twice as strong as on the equator."
+              "text_en": "One clean rule to remember: on the axis the dipole field is twice as strong as on the equator.", "text_hi": "याद रखने के लिए एक simple rule: axis पर dipole field equator से exactly दोगुनी होती है।", "text_te": "గుర్తుంచుకోవడానికి ఒక simple rule: axis పై dipole field equator కంటే exactly రెండు రెట్లు strong గా ఉంటుంది."
             }
           ]
         }
@@ -348,19 +348,19 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Watch the net arrow at three growing distances. What happens to its length as I step outward?"
+              "text_en": "Watch the net arrow at three growing distances. What happens to its length as I step outward?", "text_hi": "तीन बढ़ती हुई distances पर net arrow को देखो। जैसे-जैसे मैं बाहर जाता हूँ, इसकी length का क्या होता है?", "text_te": "మూడు పెరుగుతున్న distances వద్ద net arrow ను చూడండి. నేను బయటికి వెళ్ళే కొద్దీ దాని length కి ఏం జరుగుతుందో?"
             },
             {
               "id": "s5_2",
-              "text_en": "It collapses — far faster than a single charge would. The dipole field goes as one over r cubed."
+              "text_en": "It collapses — far faster than a single charge would. The dipole field goes as one over r cubed.", "text_hi": "यह rapidly collapse हो जाता है — single charge से कहीं तेज। dipole field जाती है one over r cubed की तरह।", "text_te": "అది collapse అవుతుంది — single charge కంటే చాలా వేగంగా. dipole field one over r cubed లాగా తగ్గిపోతుంది."
             },
             {
               "id": "s5_3",
-              "text_en": "Here is why: from far away the plus and the minus almost line up and nearly cancel each other."
+              "text_en": "Here is why: from far away the plus and the minus almost line up and nearly cancel each other.", "text_hi": "इसका कारण यह है: दूर से देखने पर plus और minus लगभग line up हो जाते हैं और एक-दूसरे को nearly cancel कर देते हैं।", "text_te": "దీనికి కారణమేమిటంటే: దూరం నుంచి చూస్తే plus మరియు minus దాదాపు line up అయి ఒకదానికొకటి nearly cancel చేసుకుంటాయి."
             },
             {
               "id": "s5_4",
-              "text_en": "What is left is a faint leftover that fades as r cubed, not r squared. A dipole hides quickly at a distance."
+              "text_en": "What is left is a faint leftover that fades as r cubed, not r squared. A dipole hides quickly at a distance.", "text_hi": "जो बचता है वह एक faint leftover है जो r cubed की तरह fade होता है, r squared की तरह नहीं। distance पर dipole जल्दी hide हो जाता है।", "text_te": "మిగిలేది ఒక faint leftover, అది r cubed లాగా fade అవుతుంది, r squared లాగా కాదు. distance లో dipole చాలా వేగంగా hide అయిపోతుంది."
             }
           ]
         },
@@ -405,19 +405,19 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Join all those net arrows into continuous field lines and you get the dipole's map."
+              "text_en": "Join all those net arrows into continuous field lines and you get the dipole's map.", "text_hi": "उन सभी net arrows को जोड़ो continuous field lines में, तो dipole का map मिलता है।", "text_te": "అన్ని net arrows ను కలిపి continuous field lines గా మార్చండి, అప్పుడు dipole యొక్క map వస్తుంది."
             },
             {
               "id": "s6_2",
-              "text_en": "Every line leaves the positive charge and curves around to land on the negative charge."
+              "text_en": "Every line leaves the positive charge and curves around to land on the negative charge.", "text_hi": "हर line positive charge से निकलती है और curve करके negative charge पर land करती है।", "text_te": "ప్రతి line positive charge నుంచి బయలుదేరి curve చేసి negative charge పై land అవుతుంది."
             },
             {
               "id": "s6_3",
-              "text_en": "The lines crowd most near the axis — that is where the field is strongest, just as we found."
+              "text_en": "The lines crowd most near the axis — that is where the field is strongest, just as we found.", "text_hi": "lines सबसे ज्यादा axis के पास crowd होती हैं — वहाँ field सबसे strong है, ठीक जैसा हमने पाया।", "text_te": "lines axis దగ్గర అత్యంత crowd గా ఉంటాయి — అక్కడే field అత్యంత strong గా ఉంటుంది, మనం కనుగొన్నట్లుగానే."
             },
             {
               "id": "s6_4",
-              "text_en": "In general the strength is k p over r cubed times root of one plus three cosine squared theta."
+              "text_en": "In general the strength is k p over r cubed times root of one plus three cosine squared theta.", "text_hi": "सामान्य रूप में strength होती है k p over r cubed times root of one plus three cosine squared theta।", "text_te": "సాధారణంగా strength అంటే k p over r cubed times root of one plus three cosine squared theta."
             }
           ]
         }
@@ -454,19 +454,19 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "Now you drive it. Move the point P around the dipole with the angle slider and watch the net field swing."
+              "text_en": "Now you drive it. Move the point P around the dipole with the angle slider and watch the net field swing.", "text_hi": "अब आप चलाइए। angle slider से point P को dipole के चारों तरफ move करो और net field को swing होते देखो।", "text_te": "ఇప్పుడు మీరు నడిపించండి. angle slider తో point P ని dipole చుట్టూ move చేయండి మరియు net field swing అవడం చూడండి."
             },
             {
               "id": "s7_2",
-              "text_en": "At zero degrees you are on the axis — the field is strong and points along p."
+              "text_en": "At zero degrees you are on the axis — the field is strong and points along p.", "text_hi": "zero degrees पर आप axis पर हो — field strong है और p के साथ point करती है।", "text_te": "zero degrees వద్ద మీరు axis పై ఉన్నారు — field strong గా ఉంటుంది మరియు p వైపు point చేస్తుంది."
             },
             {
               "id": "s7_3",
-              "text_en": "At ninety degrees you are on the equator — about half as strong, pointing opposite p."
+              "text_en": "At ninety degrees you are on the equator — about half as strong, pointing opposite p.", "text_hi": "ninety degrees पर आप equator पर हो — लगभग half strong, p के opposite direction में point करती है।", "text_te": "ninety degrees వద్ద మీరు equator పై ఉన్నారు — సుమారు half strong గా, p కి opposite direction లో point చేస్తూ."
             },
             {
               "id": "s7_4",
-              "text_en": "Slide r outward and feel how fast it fades; raise q and the whole field grows. One dipole, one pattern."
+              "text_en": "Slide r outward and feel how fast it fades; raise q and the whole field grows. One dipole, one pattern.", "text_hi": "r को outward slide करो और देखो कितनी जल्दी field fade होती है; q बढ़ाओ और पूरी field बढ़ जाती है। एक dipole, एक pattern।", "text_te": "r ని outward slide చేయండి మరియు field ఎంత వేగంగా fade అవుతుందో చూడండి; q పెంచండి మరియు మొత్తం field పెరుగుతుంది. ఒక dipole, ఒక pattern."
             }
           ]
         }

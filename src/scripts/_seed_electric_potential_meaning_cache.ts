@@ -1,12 +1,20 @@
 /**
- * TEMP seed — magnetic_force_perpendicular_no_work into simulation_cache so
+ * TEMP seed — electric_potential_meaning into simulation_cache so
  * `npm run visual:eyes` / `smoke:visual-validator` can drive it. field_3d
  * generation does not run through the live Sonnet pipeline, so we assemble the
  * sim HTML deterministically from the JSON's field_3d_config (exactly what the
  * admin test page does) and write one cache row. Delete this script after the
- * visual gate (mirrors the retired _seed_magnetic_force_direction_right_hand_rule_cache.ts).
+ * visual gate (mirrors the retired _seed_gauss_law_sphere_cache.ts /
+ * _seed_electric_flux_cache.ts).
  *
- * Run: npx tsx --env-file=.env.local src/scripts/_seed_magnetic_force_perpendicular_no_work_cache.ts
+ * NOTE: the electric_potential_meaning primitives (config-driven labelled
+ * equipotential shells, route-animating test charge + work tally, ΔV/∞ markers,
+ * draggable V-readout explorer) are NEW engine work in field_3d_renderer.ts
+ * (peter_parker:renderer-primitives, FOUNDER-APPROVED). This row must be seeded
+ * AFTER that engine change so the cached iframe HTML embeds the new
+ * FIELD_3D_RENDERER_CODE. Re-seed (DELETE + re-run) if the renderer changes.
+ *
+ * Run: npx tsx --env-file=.env.local src/scripts/_seed_electric_potential_meaning_cache.ts
  */
 import '@/lib/loadEnvLocal';
 import { readFileSync } from 'node:fs';
@@ -14,7 +22,7 @@ import { join } from 'node:path';
 import { assembleField3DHtml, type Field3DConfig } from '@/lib/renderers/field_3d_renderer';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 
-const CONCEPT_ID = 'magnetic_force_perpendicular_no_work';
+const CONCEPT_ID = 'electric_potential_meaning';
 
 interface ConceptJson {
     concept_id: string;
@@ -31,11 +39,9 @@ async function main(): Promise<void> {
     const simHtml = assembleField3DHtml(json.field_3d_config);
     console.log(`Assembled sim_html: ${simHtml.length} chars`);
 
-    // surgical clear — remove any prior rows for this concept (AI p5.js rows + prior seeds).
-    const delByKey = await supabaseAdmin.from('simulation_cache').delete().eq('concept_key', CONCEPT_ID);
-    if (delByKey.error) throw new Error(`delete (concept_key) failed: ${delByKey.error.message}`);
-    const delByFp = await supabaseAdmin.from('simulation_cache').delete().like('fingerprint_key', `%${CONCEPT_ID}%`);
-    if (delByFp.error) throw new Error(`delete (fingerprint_key) failed: ${delByFp.error.message}`);
+    // surgical clear — only this concept's rows.
+    const del = await supabaseAdmin.from('simulation_cache').delete().eq('concept_key', CONCEPT_ID);
+    if (del.error) throw new Error(`delete failed: ${del.error.message}`);
 
     const ins = await supabaseAdmin.from('simulation_cache').insert({
         concept_key: CONCEPT_ID,

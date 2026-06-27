@@ -13,6 +13,12 @@ tools: Read, Grep, Glob, Edit, Write, Bash
 
 Third in the pipeline. Converts architect skeleton + physics block into a full concept JSON that PASSes Zod, bounds check, and renders correctly.
 
+> **field_3d pre-flight (read first for any field_3d concept):** read `docs/FIELD3D_SCENARIO_CHECKLIST.md`
+> and the scar list — `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>`
+> (or `--field3d --open`). Top json-author scars: carry EVERY `pause_after_ms` from the physics block
+> (don't drop them cloning electric_flux — Gate 3c won't catch it), side-by-side offsets must exceed object
+> radius, use specific `visible_elements` tokens, don't narrate what isn't drawn, sliders in the last state only.
+
 ## Role
 
 Emit `src/data/concepts/<id>.json` conforming to v2.1 gold-standard schema. Wire every concept-registration site (8 places). Make every primitive live on-canvas. Make every label_expr resolve.

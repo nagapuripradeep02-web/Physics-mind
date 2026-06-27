@@ -90,6 +90,42 @@ export function deriveMotionExpectations(
             const state = asObj(stateRaw);
             const gauss = state ? asObj(state.gauss) : null;
             if (gauss && gauss.flow === true) { out[stateId] = true; continue; }
+            // amperes_circuital_law: the march / accumulate / unroll modes are
+            // continuous-or-one-shot MOTION states (the dl tiles walk round the
+            // loop, the B·dl tiles drop in on a stagger, the ring straightens into
+            // a bar). Declare motion so D5/D6 expect pixels to move; the post-unroll
+            // result states (mode 'unroll' that then HOLDS, or 'static') fall to the
+            // reveal_hold classification in deriveHoldExpectations instead. The
+            // 'integrated' slider state is user-driven (interactive) — left to the
+            // hold pass, never declared motion here.
+            const acl = state ? asObj(state.acl_element) : null;
+            if (acl && typeof acl.mode === 'string') {
+                if (acl.mode === 'march' || acl.mode === 'accumulate') { out[stateId] = true; continue; }
+                // PHYSICAL mode (founder video #2): STATE_7 = unroll + show_ienc shows
+                // the 3D rod with CONTINUOUS current flow → declare motion (the flow
+                // dots march up the wire every frame). STATE_8 (integrated) is the
+                // slider explorer — left to deriveHoldExpectations as 'interactive'
+                // (it also has flow, but the headless harness freezes its clock), so
+                // it's not declared motion here. STATE_6 = unroll + !show_ienc is the
+                // 2D ring→bar stage (no 3D flow) → reveal_hold, not motion.
+                if (acl.mode === 'unroll' && acl.show_ienc === true) { out[stateId] = true; continue; }
+                // STATE_6 'unroll' (no show_ienc) + 'integrated'/'static' → not motion.
+            }
+            // electric_potential_meaning (scenario point_charge_positive + a per-state
+            // `potential` block): STATE_2's two-route animation and STATE_3's release
+            // fly-out are continuous/one-shot MOTION states (the test charge travels +
+            // the work tally / energy badge ticks every frame) → declare motion so
+            // D5/D6 expect pixels to move. The other states (the q→2q grow, the ΔV/∞
+            // markers, the shells fade-in, the V=W/q write-in) are one-shot reveals
+            // then HOLD → left to deriveHoldExpectations's reveal_hold fallback. STATE_7
+            // (draggable_test_charge) is user-driven → handled there as interactive.
+            const pot = state ? asObj(state.potential) : null;
+            if (pot) {
+                const animatesRoute = Array.isArray(pot.animate_route) && pot.animate_route.length > 0;
+                if (animatesRoute) { out[stateId] = true; continue; }
+                if (typeof pot.release_at_ms === 'number') { out[stateId] = true; continue; }
+                // other potential states fall through to reveal_hold / interactive.
+            }
             // Other field_3d states fall through to the epic_l_path-based pass
             // below (trajectory_mode / advance_mode), so don't set them here.
         }
@@ -279,10 +315,31 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             candidates.push(asNum(gsph.equation_at_ms, 4600) + 600);
         }
         if (typeof gsph.shell_appears_at_ms === 'number') {
-            // compare-mode: the shell fades in (~0.9s) after the point-charge phase,
-            // then both hold side-by-side — pin past the fade so the reveal_hold
-            // classification sees the completed comparison.
-            candidates.push(asNum(gsph.shell_appears_at_ms, 5000) + 900 + 500);
+            // compare-mode: the shell fades+grows in (~1s) after the point-charge
+            // phase. Pin past the fade so the reveal_hold classification sees it.
+            candidates.push(asNum(gsph.shell_appears_at_ms, 17000) + 1000 + 500);
+        }
+        if (typeof gsph.compare_highlight_at_ms === 'number') {
+            // the LAST compare-mode beat: both formula captions highlight for the
+            // "same answer" comparison — this is the true reveal-complete time.
+            candidates.push(asNum(gsph.compare_highlight_at_ms, 26000) + 800);
+        }
+        // R3: the white horizontal radius lines GROW in (length 0→full over ~0.8s)
+        // at a narration-synced cue. When a radius line is a state's LAST reveal
+        // (e.g. STATE_1 R ~9s, STATE_2 r ~11s), pin past its growth so reveal_hold
+        // classification + the frozen-frame capture see the completed line.
+        if (typeof gsph.emerge_R_at_ms === 'number') {
+            candidates.push(asNum(gsph.emerge_R_at_ms, 0) + 800);
+        }
+        if (typeof gsph.emerge_r_at_ms === 'number') {
+            candidates.push(asNum(gsph.emerge_r_at_ms, 0) + 800);
+        }
+        // R4: STATE_6 coordinated sweep — r sweeps inside→outside with the graph
+        // dot tracking, then HOLDS at the end. Pin past the sweep end so the
+        // post-sweep hold classifies reveal_hold and the capture lands on the
+        // completed 1/r² tail.
+        if (typeof gsph.sweep_end_at_ms === 'number') {
+            candidates.push(asNum(gsph.sweep_end_at_ms, 28000) + 500);
         }
         const shrink = asObj(gsph.shrink_through_R);
         if (shrink) candidates.push(asNum(shrink.at_ms, 0) + asNum(shrink.duration_ms, 900) + 500);
@@ -291,6 +348,127 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         }
         if (typeof gsph.plot_draw_at_ms === 'number') {
             candidates.push(asNum(gsph.plot_draw_at_ms, 800) + asNum(gsph.plot_draw_duration_ms, 4000) + 500);
+        }
+    }
+    // gauss_law_line (infinite line charge: E = λ/(2πε₀r), radial ring, 1/r falloff).
+    // Its per-state `gauss_line` beats are one-shot timed reveals that then HOLD
+    // (the field is static once revealed; the flow glow / idle sweep is supplementary).
+    // Pin the frozen frame past each payoff so THE EYE photographs the completed
+    // reveal and deriveHoldExpectations marks the non-slider states reveal_hold.
+    const gln = asObj(state.gauss_line);
+    if (gln) {
+        if (typeof gln.radial_arrow_at_ms === 'number') {
+            candidates.push(asNum(gln.radial_arrow_at_ms, 3700) + 500);
+        }
+        if (typeof gln.emerge_r_at_ms === 'number') {
+            candidates.push(asNum(gln.emerge_r_at_ms, 0) + 800);
+        }
+        if (typeof gln.emerge_L_at_ms === 'number') {
+            candidates.push(asNum(gln.emerge_L_at_ms, 0) + 800);
+        }
+        if (typeof gln.caps_reveal_at_ms === 'number') {
+            candidates.push(asNum(gln.caps_reveal_at_ms, 4000) + 800);
+        }
+        if (typeof gln.derivation_at_ms === 'number') {
+            // stepwise Φ→E write-in; pin past the last sub-step (~+2500ms cushion).
+            candidates.push(asNum(gln.derivation_at_ms, 4000) + asNum(gln.derivation_duration_ms, 2500) + 500);
+        }
+        if (typeof gln.sweep_end_at_ms === 'number') {
+            candidates.push(asNum(gln.sweep_end_at_ms, 28000) + 500);
+        }
+        if (typeof gln.plot_draw_at_ms === 'number') {
+            candidates.push(asNum(gln.plot_draw_at_ms, 800) + asNum(gln.plot_draw_duration_ms, 4000) + 500);
+        }
+        if (typeof gln.gaussian_fade_at_ms === 'number') {
+            candidates.push(asNum(gln.gaussian_fade_at_ms, 0) + 600 + 500);
+        }
+    }
+    // gauss_law_sheet (infinite charged sheet: E = σ/(2ε₀), a CONSTANT field — the
+    // PLANAR / INVERTED counterpart of gauss_law_line). Its per-state `gauss_sheet`
+    // beats are one-shot timed reveals that then HOLD (the field is static once
+    // revealed; the flow glow / idle sweep is supplementary). Pin the frozen frame
+    // past each payoff so THE EYE photographs the completed reveal — the flux-bearing
+    // CAP arrows, the grazing WALL "Φ=0" beat, the A-cancel derivation, the FLAT
+    // E-vs-d line + falling ghosts — and so deriveHoldExpectations marks the
+    // non-slider states reveal_hold. Mirror of the gln block above with the
+    // gauss_sheet key names (caps carry flux here; emerge_d / emerge_H).
+    const gss = asObj(state.gauss_sheet);
+    if (gss) {
+        if (typeof gss.cap_arrow_at_ms === 'number') {
+            candidates.push(asNum(gss.cap_arrow_at_ms, 3700) + 500);
+        }
+        if (typeof gss.emerge_d_at_ms === 'number') {
+            candidates.push(asNum(gss.emerge_d_at_ms, 0) + 800);
+        }
+        if (typeof gss.emerge_H_at_ms === 'number') {
+            candidates.push(asNum(gss.emerge_H_at_ms, 0) + 800);
+        }
+        if (typeof gss.area_label_at_ms === 'number') {
+            candidates.push(asNum(gss.area_label_at_ms, 0) + 700);
+        }
+        if (typeof gss.caps_reveal_at_ms === 'number') {
+            // the grazing-wall + "Φ=0" zero-flux beat (caps pulse on the same cue).
+            candidates.push(asNum(gss.caps_reveal_at_ms, 4000) + 800);
+        }
+        if (typeof gss.derivation_at_ms === 'number') {
+            // stepwise Φ=2EA → E=σ/(2ε₀) write-in; pin past the last sub-step.
+            candidates.push(asNum(gss.derivation_at_ms, 4000) + asNum(gss.derivation_duration_ms, 2500) + 500);
+        }
+        if (typeof gss.sweep_end_at_ms === 'number') {
+            candidates.push(asNum(gss.sweep_end_at_ms, 28000) + 500);
+        }
+        if (typeof gss.plot_draw_at_ms === 'number') {
+            candidates.push(asNum(gss.plot_draw_at_ms, 800) + asNum(gss.plot_draw_duration_ms, 4000) + 500);
+        }
+        if (typeof gss.gaussian_fade_at_ms === 'number') {
+            candidates.push(asNum(gss.gaussian_fade_at_ms, 0) + 600 + 500);
+        }
+    }
+    // electric_potential_meaning (scenario point_charge_positive + a per-state
+    // `potential` block): the V = W/q "meaning" arc. Its reveal beats are one-shot
+    // timed reveals/animations that then HOLD their end pose (never fade to 0). Pin
+    // the frozen frame past each payoff so THE EYE photographs the COMPLETED reveal:
+    //   • route_at_ms[] + route_duration_ms — STATE_2 two-route travel + tally tick.
+    //   • release_at_ms + release_duration_ms — STATE_3 fly-out + badge drain → "U".
+    //   • doubling_at_ms + v_callout_at_ms — STATE_4 q→2q grow + V=W/q write-in.
+    //   • reference_at_ms / delta_v_at_ms — STATE_5 ∞-marker + ΔV bracket draw.
+    //   • shells_at_ms / e_arrow_at_ms — STATE_6 shells fade-in + ⊥ E draw.
+    // STATE_7 (draggable_test_charge) is user-driven → deriveHoldExpectations
+    // (interactive), not pinned here; its idle auto-sweep is supplementary motion.
+    const pot = asObj(state.potential);
+    if (pot) {
+        const routeDur = asNum(pot.route_duration_ms, 4000);
+        if (Array.isArray(pot.route_at_ms) && pot.route_at_ms.length) {
+            // last route's start cue + its travel time (+500 cushion).
+            const cues = pot.route_at_ms.filter((c): c is number => typeof c === 'number');
+            if (cues.length) candidates.push(Math.max(...cues) + routeDur + 500);
+        } else if (Array.isArray(pot.animate_route) && pot.animate_route.length) {
+            // no explicit cues → both routes run back-to-back (route2 starts after
+            // route1 + a 600ms gap); pin past the second route's completion.
+            const routes = pot.animate_route.length;
+            candidates.push((routes > 1 ? routeDur + 600 : 0) + routeDur + 500);
+        }
+        if (typeof pot.release_at_ms === 'number') {
+            candidates.push(asNum(pot.release_at_ms, 0) + asNum(pot.release_duration_ms, 3500) + 500);
+        }
+        if (typeof pot.doubling_at_ms === 'number') {
+            candidates.push(asNum(pot.doubling_at_ms, 0) + asNum(pot.doubling_duration_ms, 1200) + 500);
+        }
+        if (typeof pot.v_callout_at_ms === 'number') {
+            candidates.push(asNum(pot.v_callout_at_ms, 0) + 600);
+        }
+        if (typeof pot.reference_at_ms === 'number') {
+            candidates.push(asNum(pot.reference_at_ms, 0) + 600 + 300);
+        }
+        if (typeof pot.delta_v_at_ms === 'number') {
+            candidates.push(asNum(pot.delta_v_at_ms, 0) + 700 + 300);
+        }
+        if (typeof pot.shells_at_ms === 'number') {
+            // staggered concentric fade-in: up to 4 shells × 350ms stagger + 700 fade.
+            candidates.push(asNum(pot.shells_at_ms, 0) + 4 * 350 + 700);
+        }
+        if (typeof pot.e_arrow_at_ms === 'number') {
+            candidates.push(asNum(pot.e_arrow_at_ms, 0) + 700 + 300);
         }
     }
     // rhr_force_direction: the DIRECTION-ONLY F = qv×B sibling. Its reveal beats
@@ -373,6 +551,106 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             if (typeof split.sequential_delay_ms === 'number') {
                 candidates.push(asNum(split.sequential_delay_ms, 5500) + 600 + 4000);
             }
+        }
+    }
+    // radius_in_uniform_field: the RADIUS-ONLY sibling (r = mv/qB). The orbit
+    // moves continuously (trajectory_mode: 'circle' → caught by the strict motion
+    // gate elsewhere), but the TEACHING payload is a set of one-shot timed reveals
+    // that then HOLD — pin the frozen frame past each payoff so THE EYE photographs
+    // the completed reveal, and so deriveHoldExpectations marks the non-slider,
+    // non-continuously-moving states reveal_hold (D7/D1p would otherwise false-fail
+    // on a static tail; for the circle states the strict motion gate runs). Beats:
+    //   • circle_close_at_ms      — STATE_1 trail snaps shut + flash, then holds.
+    //   • equation_rearrange_at_ms— STATE_3 panel writes qvB=mv²/r → r=mv/qB (holds).
+    //   • ghost_compare(_b).reveal_at_ms — STATE_4/5 ghost freezes + the live circle
+    //                              ramps over GHOST_RAMP_MS (1400) past/inside it.
+    const rad = asObj(state.radius);
+    if (rad) {
+        const RAD_GHOST_RAMP = 1400;   // mirror updateRadiusInUniformFieldFrame.
+        if (typeof rad.circle_close_at_ms === 'number') {
+            candidates.push(asNum(rad.circle_close_at_ms, 4500) + 1200);   // flash decays ~1.1s.
+        }
+        if (typeof rad.equation_rearrange_at_ms === 'number') {
+            candidates.push(asNum(rad.equation_rearrange_at_ms, 6500) + 800);
+        }
+        const gcA = asObj(rad.ghost_compare);
+        if (gcA && typeof gcA.reveal_at_ms === 'number') {
+            candidates.push(asNum(gcA.reveal_at_ms, 5000) + RAD_GHOST_RAMP + 600);
+        }
+        const gcB = asObj(rad.ghost_compare_b);
+        if (gcB && typeof gcB.reveal_at_ms === 'number') {
+            candidates.push(asNum(gcB.reveal_at_ms, 11000) + RAD_GHOST_RAMP + 600);
+        }
+    }
+    // cyclotron_period: the PERIOD-ONLY sibling that INVERTS radius_in_uniform_field
+    // (a shared ω makes differing-radius charges tie). The orbit moves continuously
+    // (trajectory_mode: 'circle' → strict motion gate), but the TEACHING payload is
+    // a set of one-shot timed reveals that then HOLD — pin the frozen frame past
+    // each payoff so THE EYE photographs the completed reveal, and so the slider
+    // state classifies interactive (handled in deriveHoldExpectations via
+    // show_sliders). Beats:
+    //   • timer_freeze_at_ms / circle_close_at_ms — STATE_1 lap-timer freezes +
+    //     relabels T, trail snaps shut + flash, then holds.
+    //   • tie_badge_at_ms      — STATE_2 both lap-timers freeze the same instant +
+    //     the "= same T" badge writes (the tie payoff), then holds.
+    //   • equation_build.*_at_ms — STATE_3 panel builds T=2πr/v → r=mv/qB →
+    //     T=2π(mv/qB)/v → (v cancels) → T=2πm/qB · f=qB/2πm (each line persists).
+    const cyc = asObj(state.cyclotron);
+    if (cyc) {
+        if (typeof cyc.timer_freeze_at_ms === 'number') {
+            candidates.push(asNum(cyc.timer_freeze_at_ms, 7000) + 1200);   // flash decays ~1.1s.
+        }
+        if (typeof cyc.circle_close_at_ms === 'number') {
+            candidates.push(asNum(cyc.circle_close_at_ms, 7000) + 1200);
+        }
+        if (typeof cyc.tie_badge_at_ms === 'number') {
+            candidates.push(asNum(cyc.tie_badge_at_ms, 8000) + 800);
+        }
+        const eb = asObj(cyc.equation_build);
+        if (eb) {
+            // The aside (f = qB/2πm) is the LAST line; pin past it.
+            candidates.push(asNum(eb.aside_f_at_ms, 16000) + 800);
+            candidates.push(asNum(eb.line4_at_ms, 13000) + 800);
+        }
+    }
+    // amperes_circuital_law: the ∮B·dl = μ₀ I_enc scenario on a long straight
+    // wire. Its per-state acl_element beats — the loop draw-in, the dl march, the
+    // B·dl tile accumulation, the curve→bar UNROLL, the 2πr ruler, and the
+    // "= μ₀ I_enc" equality — are timed reveals; the accumulate/unroll/equality
+    // beats then HOLD at end pose (the bar/ring/equation rows PERSIST, never fade
+    // to 0). Pin the frozen frame past each payoff so THE EYE photographs the
+    // completed reveal, and so deriveHoldExpectations marks the non-slider result
+    // states reveal_hold (D7/D1p are otherwise false-failed by the static tail).
+    // Defaults MUST match the renderer's asNum/`typeof === "number"` fallbacks.
+    const acl = asObj(state.acl_element);
+    if (acl) {
+        const nSeg = asNum(acl.num_segments, 24);
+        // loop draw-in (acl_loop grows over ~700ms).
+        if (typeof acl.loop_appear_at_ms === 'number') {
+            candidates.push(asNum(acl.loop_appear_at_ms, 1200) + 700);
+        }
+        // tile accumulation: last tile = accumulate_at_ms + (N-1)·stagger + fade.
+        if (acl.show_circulation_accumulation === true || acl.mode === 'accumulate' || acl.mode === 'unroll') {
+            candidates.push(
+                asNum(acl.accumulate_at_ms, 2000)
+                + Math.max(0, nSeg - 1) * asNum(acl.accumulate_stagger_ms, 120)
+                + asNum(acl.accumulate_fade_ms, 300),
+            );
+        }
+        // curve→bar unroll completes at unroll_at_ms + unroll_duration_ms (+500).
+        if (acl.mode === 'unroll' || acl.mode === 'integrated') {
+            candidates.push(asNum(acl.unroll_at_ms, 2000) + asNum(acl.unroll_duration_ms, 2200) + 500);
+        }
+        // the 2πr ruler reveal (+600 grow).
+        if (typeof acl.ruler_reveal_at_ms === 'number') {
+            candidates.push(asNum(acl.ruler_reveal_at_ms, 1800) + 600);
+        }
+        // the "= μ₀ I_enc" equality snap + the STATE_7 divide-by-2πr collapse.
+        // The 2D stage's divide beat (strike 2πr, collapse the bar to "B = …")
+        // runs from ienc_reveal_at_ms+600 over ~1600ms — pin past its completion
+        // (+2400) so THE EYE photographs the isolated-B result, not mid-cancel.
+        if (typeof acl.ienc_reveal_at_ms === 'number') {
+            candidates.push(asNum(acl.ienc_reveal_at_ms, 1500) + (acl.show_ienc === true && acl.mode === 'unroll' ? 2400 : 800));
         }
     }
     const pt = asObj(state.per_turn_field_circles);
@@ -535,6 +813,67 @@ export function deriveHoldExpectations(
             // via the gauss_sphere block in maxRevealForField3dState above).
             const gsphHold = asObj(state.gauss_sphere);
             if (gsphHold && gsphHold.sliders === true) { out[stateId] = 'interactive'; continue; }
+            // gauss_law_line explore state: the λ / r sliders drive the live readout /
+            // ring arrows / E-vs-r plot — static until a drag the headless harness
+            // never performs (the idle auto-sweep is supplementary). The guided
+            // reveal states (ring, end-cap-zero-flux, derivation, coordinated sweep)
+            // are one-shot reveals then hold — caught by the reveal_hold fallback
+            // below (maxReveal > DEFAULT_REVEAL_MS via the gauss_line block in
+            // maxRevealForField3dState above).
+            const glnHold = asObj(state.gauss_line);
+            if (glnHold && glnHold.sliders === true) { out[stateId] = 'interactive'; continue; }
+            // gauss_law_sheet explore state: the σ / d sliders drive the live readout /
+            // CONSTANT cap arrows / FLAT E-vs-d plot — static until a drag the headless
+            // harness never performs (the idle auto-sweep MOVES the field-point geometry
+            // hands-free, but is supplementary to the hold-intent). The guided reveal
+            // states (cap-pierce, wall-zero-flux, A-cancel derivation, coordinated
+            // d-sweep) are one-shot reveals then hold — caught by the reveal_hold
+            // fallback below (maxReveal > DEFAULT_REVEAL_MS via the gauss_sheet block
+            // in maxRevealForField3dState above).
+            const gssHold = asObj(state.gauss_sheet);
+            if (gssHold && gssHold.sliders === true) { out[stateId] = 'interactive'; continue; }
+            // electric_potential_meaning: classify per the `potential` block —
+            //   draggable_test_charge → STATE_7 explorer (the test charge renders at
+            //     full + idle auto-sweeps, but a real DRAG is user-driven and the
+            //     headless harness never performs it) → interactive.
+            //   animate_route / release_at_ms → STATE_2/3 are declared MOTION in
+            //     deriveMotionExpectations → keep the strict gate (undefined) so
+            //     D5/D6/D7 expect ongoing pixel motion, not a static tail.
+            //   the remaining beats (q→2q grow, ΔV/∞ markers, shells, V write-in) are
+            //     one-shot reveals then hold → reveal_hold via the fallback below
+            //     (their maxReveal > DEFAULT_REVEAL_MS via the `potential` block in
+            //     maxRevealForField3dState above).
+            const potHold = asObj(state.potential);
+            if (potHold) {
+                if (potHold.draggable_test_charge === true) { out[stateId] = 'interactive'; continue; }
+                const routes = Array.isArray(potHold.animate_route) && potHold.animate_route.length > 0;
+                if (routes || typeof potHold.release_at_ms === 'number') { out[stateId] = undefined; continue; }
+                // other potential states → reveal_hold fallback below.
+            }
+            // amperes_circuital_law: classify per acl_element.mode —
+            //   'integrated' → slider explore (user-driven; the renderer renders at
+            //                  full immediately + tracks I/r, but the headless
+            //                  harness never drags) → interactive.
+            //   'march'/'accumulate' → continuous/one-shot MOTION (declared in
+            //                  deriveMotionExpectations) → keep the strict gate
+            //                  (undefined), so D5/D6/D7 expect pixels to move.
+            //   'unroll'/'static' → the ring straightens then HOLDS, or is a static
+            //                  result frame → reveal_hold (caught by the fallback
+            //                  below since maxReveal > DEFAULT_REVEAL_MS via the
+            //                  acl_element block in maxRevealForField3dState).
+            const aclHold = asObj(state.acl_element);
+            if (aclHold && typeof aclHold.mode === 'string') {
+                if (aclHold.mode === 'integrated') { out[stateId] = 'interactive'; continue; }
+                if (aclHold.mode === 'march' || aclHold.mode === 'accumulate') { out[stateId] = undefined; continue; }
+                // PHYSICAL mode (founder video #2): STATE_7 = unroll + show_ienc shows
+                // the 3D rod with CONTINUOUS current flow (declared motion above) →
+                // keep the strict motion gate (undefined), like the gauss flow:true
+                // states, so D5/D6/D7 expect ongoing pixel motion rather than a static
+                // tail. (STATE_6 unroll without show_ienc is the 2D ring→bar stage
+                // that HOLDS → reveal_hold via the fallback below.)
+                if (aclHold.mode === 'unroll' && aclHold.show_ienc === true) { out[stateId] = undefined; continue; }
+                // STATE_6 'unroll' (no show_ienc) / 'static' → reveal_hold fallback.
+            }
             // The gauss equation_at_ms / morph / add_charge states are one-shot
             // reveals then hold — caught by the reveal_hold fallback below (their
             // maxReveal > DEFAULT_REVEAL_MS via maxRevealForField3dState above).
