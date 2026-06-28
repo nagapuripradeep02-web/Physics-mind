@@ -175,14 +175,15 @@ async function sarvamTts(
     audio_format: 'wav', // Sarvam returns WAV regardless; we transcode to mp3 locally
   });
   let lastErr: unknown = null;
-  for (let attempt = 0; attempt < 3; attempt++) {
-    if (attempt > 0) await sleep(500 * 2 ** attempt);
+  for (let attempt = 0; attempt < 6; attempt++) {
+    if (attempt > 0) await sleep(800 * 2 ** attempt);
     let res: Response;
     try {
       res = await fetch(SARVAM_URL, {
         method: 'POST',
         headers: { 'api-subscription-key': apiKey, 'Content-Type': 'application/json' },
         body,
+        signal: AbortSignal.timeout(30000), // a stalled request must not freeze the whole batch
       });
     } catch (e) {
       lastErr = e;
@@ -248,17 +249,43 @@ async function main(): Promise<void> {
   let skippedMissing = 0;
   let failedClips = 0;
 
+  const total = sentences.length * langs.length;
+  let done = 0;
+  const manifestPath = join(OUT_DIR, conceptId, 'audio_manifest.json');
+  // Write the manifest from whatever clips are done SO FAR. Called after every
+  // clip so (a) a run that is interrupted or killed still leaves a usable
+  // partial manifest, and (b) a re-run (idempotent — existing mp3s are skipped)
+  // resumes and finishes cleanly instead of starting from nothing.
+  const flushManifest = (): void => {
+    const manifest = {
+      meta: {
+        concept_id: conceptId,
+        model,
+        speaker,
+        sample_rate: SAMPLE_RATE,
+        pace: PACE,
+        langs,
+        sentence_count: sentences.length,
+      },
+      clips,
+    };
+    writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
+  };
+
   for (const s of sentences) {
     for (const lang of langs) {
+      done++;
       const key = `${s.id}_${lang}`;
       const rel = `audio/${key}.mp3`;
       const abs = join(audioDir, `${key}.mp3`);
       const text = textFor(s, lang);
+      const tag = `[${done}/${total}] ${key}`;
 
       if (!text) {
-        console.warn(`   ⚠ ${key}: no text_${lang} — skipping`);
+        console.warn(`   ${tag} ⚠ no text_${lang} — skipping`);
         clips[key] = { id: s.id, lang, file: rel, duration_ms: 0, chars: 0, available: false };
         skippedMissing++;
+        flushManifest();
         continue;
       }
 
@@ -266,40 +293,31 @@ async function main(): Promise<void> {
       if (existsSync(abs) && !force) {
         duration_ms = priorDur[key] ?? 0;
         skippedExisting++;
+        console.log(`   ${tag} ⏭ already on disk`);
       } else {
         try {
           const wav = await sarvamTts(text, LANGS[lang], apiKey, model, speaker); // Sarvam returns WAV
           duration_ms = wavDurationMs(wav);                                       // exact, from WAV header
           writeFileSync(abs, wavToMp3(wav));                                      // transcode to mp3
           written++;
+          console.log(`   ${tag} ✓ ${Math.round(duration_ms)}ms`);
         } catch (e) {
           // One bad clip must not abort the whole concept — mark unavailable + continue.
-          console.warn(`   ⚠ ${key}: generation failed — ${e instanceof Error ? e.message : e}`);
+          console.warn(`   ${tag} ⚠ generation FAILED — ${e instanceof Error ? e.message : e}`);
           clips[key] = { id: s.id, lang, file: rel, duration_ms: 0, chars: text.length, available: false };
           failedClips++;
+          flushManifest();
           continue;
         }
-        await sleep(200); // be polite to the API
+        await sleep(450); // be polite to the API (rate-limit friendly)
       }
-      if (duration_ms === 0) console.warn(`   ⚠ ${key}: could not measure duration`);
+      if (duration_ms === 0) console.warn(`   ${tag} ⚠ could not measure duration`);
       clips[key] = { id: s.id, lang, file: rel, duration_ms, chars: text.length, available: true };
+      flushManifest(); // incremental: manifest stays current after every clip
     }
   }
 
-  const manifest = {
-    meta: {
-      concept_id: conceptId,
-      model,
-      speaker,
-      sample_rate: SAMPLE_RATE,
-      pace: PACE,
-      langs,
-      sentence_count: sentences.length,
-    },
-    clips,
-  };
-  const manifestPath = join(OUT_DIR, conceptId, 'audio_manifest.json');
-  writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
+  flushManifest(); // final write (the manifest was also kept current after every clip above)
 
   console.log(`\n✓ ${Object.keys(clips).length} clips in manifest — ${written} written, ${skippedExisting} skipped (existing), ${skippedMissing} skipped (no text)${failedClips ? `, ${failedClips} FAILED` : ''}`);
   console.log(`  manifest: ${manifestPath}`);
