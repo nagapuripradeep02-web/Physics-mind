@@ -236,6 +236,7 @@ physics objects = explorer pattern: stable ID + params) · Rule 29 (emphasis = b
 27. **[A]** Every new primitive ships a stable addressable ID + key params via postMessage/slider (explorer pattern; `biot_explorer` is the seed).
 28. **[V2]** Every new field_3d sim ships a "Professor Pack" as DATA (concept JSON knobs/objects/states + reviewed `voice_professor/<id>.json`), never new engine code. Generic verbs over named objects; never invent per-sim ops. (§4)
 29. **[A]** Emphasis is brightness, NEVER size — no zoom-in/zoom-out "bulge" on any element. Focal brightens + peers dim via `applyGlowEmphasis()`; named meshes (the 3D hand) stay static, full-bright, never dim (`brightenOnly`); a vector's length changes ONLY when the real physical magnitude does (e.g. `tauThrob`). (CLAUDE_RULES.md)
+30. **[A]** Stored narration uses Sarvam **bulbul:v3** (speaker `priya`), not v2 — v3 pronounces inline code-mixed English / Romanized symbols natively. **Never transliterate** inline English to Telugu/Hindi script (Sarvam: transliteration *degrades* quality). **Expand bare single-letter physics symbols to their full spoken name in the narration** (E→"electric field E", V→"potential V", B→"magnetic field B", I→"current I", F→"force F", …) — concept-correct meaning, formula bodies stay compact; on-canvas labels stay symbolic (Rule 24). Defaults live in `generate_tts_audio.ts`. (CLAUDE_RULES.md)
 
 ---
 

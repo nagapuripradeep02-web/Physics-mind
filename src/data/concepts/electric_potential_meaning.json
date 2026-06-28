@@ -401,11 +401,11 @@
             },
             {
               "id": "s4_4",
-              "text_en": "That unchanging ratio is the electric potential, V. V equals W over q. This place has a potential V, no matter which charge you used to find it.", "text_hi": "वो न बदलने वाला ratio ही electric potential, V है। V equals W over q। इस जगह का potential V है, चाहे तुमने किसी भी charge से उसे find किया हो।", "text_te": "ఆ మారని ratio నే electric potential, V. V equals W over q. ఈ చోటికి potential V ఉంది, మీరు దేనితో కనుగొన్నా సరే."
+              "text_en": "That unchanging ratio is the electric potential, V. Potential V equals W over q. This place has a potential V, no matter which charge you used to find it.", "text_hi": "वो न बदलने वाला ratio ही electric potential, V है। Potential V equals W over q। इस जगह का potential V है, चाहे तुमने किसी भी charge से उसे find किया हो।", "text_te": "ఆ మారని ratio నే electric potential, V. Potential V equals W over q. ఈ చోటికి potential V ఉంది, మీరు దేనితో కనుగొన్నా సరే."
             },
             {
               "id": "s4_5",
-              "text_en": "Dividing out the test charge strips away the prober. What is left, V, is a property of the place and the source, the same number for any charge.", "text_hi": "Test charge को divide करके निकाल देने से prober हट जाता है। जो बचता है, V, वो उस जगह और source की property है, किसी भी charge के लिए same number।", "text_te": "Test charge ని divide చేసి తీసివేయడం వల్ల prober తొలగిపోతుంది. మిగిలేది, V, ఆ చోట మరియు source యొక్క property, ఏ charge కైనా same number."
+              "text_en": "Dividing out the test charge strips away the prober. What is left, the potential V, is a property of the place and the source, the same number for any charge.", "text_hi": "Test charge को divide करके निकाल देने से prober हट जाता है। जो बचता है, potential V, वो उस जगह और source की property है, किसी भी charge के लिए same number।", "text_te": "Test charge ని divide చేసి తీసివేయడం వల్ల prober తొలగిపోతుంది. మిగిలేది, potential V, ఆ చోట మరియు source యొక్క property, ఏ charge కైనా same number."
             }
           ]
         },
@@ -468,7 +468,7 @@
             },
             {
               "id": "s5_2",
-              "text_en": "So we set the potential at infinity to zero. The far marker lights up: at infinity, V equals zero. Everything is measured from there.", "text_hi": "तो हम infinity पर potential को zero set करते हैं। दूर का marker जलता है: infinity पर, V equals zero। सब कुछ वहाँ से measure किया जाता है।", "text_te": "కాబట్టి మేము infinity వద్ద potential ని zero గా set చేస్తాం. దూరపు marker వెలుగుతుంది: infinity వద్ద, V equals zero. అక్కడి నుండే అన్నీ measure చేస్తాం."
+              "text_en": "So we set the potential at infinity to zero. The far marker lights up: at infinity, the potential V equals zero. Everything is measured from there.", "text_hi": "तो हम infinity पर potential को zero set करते हैं। दूर का marker जलता है: infinity पर, potential V equals zero। सब कुछ वहाँ से measure किया जाता है।", "text_te": "కాబట్టి మేము infinity వద్ద potential ని zero గా set చేస్తాం. దూరపు marker వెలుగుతుంది: infinity వద్ద, potential V equals zero. అక్కడి నుండే అన్నీ measure చేస్తాం."
             },
             {
               "id": "s5_3",
@@ -538,24 +538,24 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "You already know E. It is an arrow, a vector, one at every point, pointing the way a charge gets pushed. Here it is, faint.", "text_hi": "तुम E को पहले से जानते हो। यह एक arrow है, एक vector, हर point पर एक, जो दिशा बताता है कि charge को कहाँ push मिलेगी। यह रहा, हल्का-सा।", "text_te": "మీకు E ఇప్పటికే తెలుసు. అది ఒక arrow, ఒక vector, ప్రతి point వద్ద ఒకటి, charge కి ఏ దిశలో push అవుతుందో చూపిస్తుంది. ఇదిగో, తక్కువ brightness తో."
+              "text_en": "You already know the electric field E. It is an arrow, a vector, one at every point, pointing the way a charge gets pushed. Here it is, faint.", "text_hi": "तुम electric field E को पहले से जानते हो। यह एक arrow है, एक vector, हर point पर एक, जो दिशा बताता है कि charge को कहाँ push मिलेगी। यह रहा, हल्का-सा।", "text_te": "మీకు electric field E ఇప్పటికే తెలుసు. అది ఒక arrow, ఒక vector, ప్రతి point వద్ద ఒకటి, charge కి ఏ దిశలో push అవుతుందో చూపిస్తుంది. ఇదిగో, తక్కువ brightness తో."
             },
             {
               "id": "s6_2",
-              "text_en": "Is potential an arrow too? Does the potential at a point have a direction, like E does? Predict before I reveal the shells.", "text_hi": "क्या potential भी एक arrow है? क्या किसी point पर potential की कोई direction होती है, जैसे E की होती है? Shells reveal करने से पहले predict करो।", "text_te": "Potential కూడా ఒక arrow అంటారా? ఒక point వద్ద potential కి కూడా direction ఉంటుందా, E లాగా? Shells reveal చేయడానికి ముందు predict చేయండి.",
+              "text_en": "Is potential an arrow too? Does the potential at a point have a direction, like the electric field E does? Predict before I reveal the shells.", "text_hi": "क्या potential भी एक arrow है? क्या किसी point पर potential की कोई direction होती है, जैसे electric field E की होती है? Shells reveal करने से पहले predict करो।", "text_te": "Potential కూడా ఒక arrow అంటారా? ఒక point వద్ద potential కి కూడా direction ఉంటుందా, electric field E లాగా? Shells reveal చేయడానికి ముందు predict చేయండి.",
               "pause_after_ms": 2800
             },
             {
               "id": "s6_3",
-              "text_en": "No. Watch the surfaces of equal potential appear: nested shells, each carrying one plain number, no arrow. Every point on a shell shares one V.", "text_hi": "नहीं। देखो equal potential की surfaces कैसे appear होती हैं: nested shells, हर एक पर एक plain number, कोई arrow नहीं। एक shell पर हर point एक ही V share करता है।", "text_te": "లేదు. Equal potential యొక్క surfaces ఎలా appear అవుతున్నాయో చూడండి: nested shells, ఒక్కో దానిపై ఒక plain number, arrow లేదు. ఒక shell మీద ప్రతి point ఒకే V share చేసుకుంటుంది."
+              "text_en": "No. Watch the surfaces of equal potential appear: nested shells, each carrying one plain number, no arrow. Every point on a shell shares one potential V.", "text_hi": "नहीं। देखो equal potential की surfaces कैसे appear होती हैं: nested shells, हर एक पर एक plain number, कोई arrow नहीं। एक shell पर हर point एक ही potential V share करता है।", "text_te": "లేదు. Equal potential యొక్క surfaces ఎలా appear అవుతున్నాయో చూడండి: nested shells, ఒక్కో దానిపై ఒక plain number, arrow లేదు. ఒక shell మీద ప్రతి point ఒకే potential V share చేసుకుంటుంది."
             },
             {
               "id": "s6_4",
-              "text_en": "V is a scalar, one number per place. Equal-V points form whole surfaces. And here is E, drawn on a shell, meeting it square at ninety degrees, pointing downhill.", "text_hi": "V एक scalar है, हर जगह एक number। Equal-V points मिलकर पूरी surfaces बनाते हैं। और यह रहा E, एक shell पर drawn, उससे ninety degrees पर मिलता है, downhill की तरफ point करता है।", "text_te": "V ఒక scalar, ప్రతి చోటు ఒక number. Equal-V points కలిసి పూర్తి surfaces తయారు చేస్తాయి. మరియు ఇదిగో E, ఒక shell మీద drawn, దానిని ninety degrees లో కలుస్తూ, downhill వైపు point చేస్తుంది."
+              "text_en": "The potential V is a scalar, one number per place. Points of equal potential form whole surfaces. And here is the electric field E, drawn on a shell, meeting it square at ninety degrees, pointing downhill.", "text_hi": "Potential V एक scalar है, हर जगह एक number। Equal potential वाले points मिलकर पूरी surfaces बनाते हैं। और यह रहा electric field E, एक shell पर drawn, उससे ninety degrees पर मिलता है, downhill की तरफ point करता है।", "text_te": "Potential V ఒక scalar, ప్రతి చోటు ఒక number. Equal potential ఉన్న points కలిసి పూర్తి surfaces తయారు చేస్తాయి. మరియు ఇదిగో electric field E, ఒక shell మీద drawn, దానిని ninety degrees లో కలుస్తూ, downhill వైపు point చేస్తుంది."
             },
             {
               "id": "s6_5",
-              "text_en": "So potential is your altitude, a single number for each height, and the field E is the slope, the arrow that points straight downhill, always perpendicular.", "text_hi": "तो potential तुम्हारी altitude है, हर height के लिए एक single number, और field E slope है, वो arrow जो हमेशा सीधे downhill point करता है, हमेशा perpendicular।", "text_te": "కాబట్టి potential మీ altitude, ప్రతి height కి ఒక single number, మరియు field E slope, ఆ arrow అది ఎప్పుడూ నేరుగా downhill point చేస్తుంది, ఎప్పుడూ perpendicular గా."
+              "text_en": "So potential is your altitude, a single number for each height, and the electric field E is the slope, the arrow that points straight downhill, always perpendicular.", "text_hi": "तो potential तुम्हारी altitude है, हर height के लिए एक single number, और electric field E slope है, वो arrow जो हमेशा सीधे downhill point करता है, हमेशा perpendicular।", "text_te": "కాబట్టి potential మీ altitude, ప్రతి height కి ఒక single number, మరియు electric field E slope, ఆ arrow అది ఎప్పుడూ నేరుగా downhill point చేస్తుంది, ఎప్పుడూ perpendicular గా."
             }
           ]
         },
@@ -614,15 +614,15 @@
           "tts_sentences": [
             {
               "id": "s7_1",
-              "text_en": "Now you drive. Drag the test charge. The shell it sits on lights up and its potential V reads out: the same V anywhere on that shell.", "text_hi": "अब तुम drive करो। Test charge को drag करो। जिस shell पर वो बैठता है वो light up होती है और उसका potential V readout होता है: उस shell पर कहीं भी same V।", "text_te": "ఇప్పుడు మీరు drive చేయండి. Test charge ని drag చేయండి. అది కూర్చున్న shell light up అవుతుంది మరియు దాని potential V readout అవుతుంది: ఆ shell మీద ఎక్కడైనా same V."
+              "text_en": "Now you drive. Drag the test charge. The shell it sits on lights up and its potential V reads out: the same potential V anywhere on that shell.", "text_hi": "अब तुम drive करो। Test charge को drag करो। जिस shell पर वो बैठता है वो light up होती है और उसका potential V readout होता है: उस shell पर कहीं भी same potential V।", "text_te": "ఇప్పుడు మీరు drive చేయండి. Test charge ని drag చేయండి. అది కూర్చున్న shell light up అవుతుంది మరియు దాని potential V readout అవుతుంది: ఆ shell మీద ఎక్కడైనా same potential V."
             },
             {
               "id": "s7_2",
-              "text_en": "Walk it inward across the shells and V climbs. The green arrow, E, always points straight downhill, square to the shells. V is your altitude, E is the slope.", "text_hi": "इसे shells के across अंदर की तरफ ले जाओ और V बढ़ता जाता है। Green arrow, E, हमेशा shells के square पर, सीधे downhill point करता है। V तुम्हारी altitude है, E slope है।", "text_te": "దీన్ని shells అంతటా లోపలికి నడిపించండి మరియు V పెరుగుతుంది. Green arrow, E, ఎప్పుడూ shells కి square గా, నేరుగా downhill point చేస్తుంది. V మీ altitude, E slope."
+              "text_en": "Walk it inward across the shells and the potential V climbs. The green arrow, the electric field E, always points straight downhill, square to the shells. The potential V is your altitude, the electric field E is the slope.", "text_hi": "इसे shells के across अंदर की तरफ ले जाओ और potential V बढ़ता जाता है। Green arrow, electric field E, हमेशा shells के square पर, सीधे downhill point करता है। Potential V तुम्हारी altitude है, electric field E slope है।", "text_te": "దీన్ని shells అంతటా లోపలికి నడిపించండి మరియు potential V పెరుగుతుంది. Green arrow, electric field E, ఎప్పుడూ shells కి square గా, నేరుగా downhill point చేస్తుంది. Potential V మీ altitude, electric field E slope."
             },
             {
               "id": "s7_3",
-              "text_en": "One question left for next time: exactly how big is V at distance r from a point charge? That is V = kQ/r, the formula behind these shells.", "text_hi": "अगली बार के लिए एक question बचा है: ठीक-ठीक V कितना होता है जब point charge से distance r हो? वो है V equals k Q over r, इन shells के पीछे का formula।", "text_te": "తర్వాత సారికి ఒక question మిగిలింది: ఒక point charge నుండి distance r వద్ద V సరిగ్గా ఎంత? అది V equals k Q over r, ఈ shells వెనక ఉన్న formula."
+              "text_en": "One question left for next time: exactly how big is the potential V at distance r from a point charge? That is the potential V = kQ/r, the formula behind these shells.", "text_hi": "अगली बार के लिए एक question बचा है: ठीक-ठीक potential V कितना होता है जब point charge से distance r हो? वो है potential V equals k Q over r, इन shells के पीछे का formula।", "text_te": "తర్వాత సారికి ఒక question మిగిలింది: ఒక point charge నుండి distance r వద్ద potential V సరిగ్గా ఎంత? అది potential V equals k Q over r, ఈ shells వెనక ఉన్న formula."
             }
           ]
         }

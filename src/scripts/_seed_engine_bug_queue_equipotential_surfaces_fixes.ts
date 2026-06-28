@@ -55,8 +55,39 @@ const R: Owner = 'peter_parker:renderer_primitives';
 const RENDERER = ['src/lib/renderers/field_3d_renderer.ts'];
 const BOTH = ['src/lib/renderers/field_3d_renderer.ts', 'src/lib/validators/visual/deriveStateMeta.ts'];
 const AFFECTED = ['equipotential_surfaces'];
+// Both potential concepts that set config.sign_flip ran pmApplyChargeSign, so both
+// were hit by the setHex-NaN black-out scar below.
+const SIGN_FLIP_AFFECTED = ['equipotential_surfaces', 'electric_potential_point_charge'];
 
 const rows: Row[] = [
+  {
+    bug_class: 'field3d_color_sethex_passed_color_object_blacks_element',
+    title: 'pmApplyChargeSign recoloured the equipotential shells via material.color.setHex(hexToThreeColor(shellCol)) — but hexToThreeColor returns a THREE.Color OBJECT, not a numeric hex, so Color.setHex(<Color>) coerced to NaN and set every shell to pure black (#000000). Every config.sign_flip concept rendered its equipotential shells invisible/black in ALL states; only concepts WITHOUT sign_flip (electric_potential_meaning) were spared, which masked the bug as concept-specific',
+    severity: 'CRITICAL',
+    owner_cluster: R,
+    root_cause: 'hexToThreeColor(hex) === new THREE.Color(hex). THREE.Color.setHex(value) expects a NUMBER (0xRRGGBB) and does value & 0xffffff internally; passing a Color object yields NaN -> color (0,0,0) black. pmApplyChargeSign runs on EVERY state entry when config.sign_flip is set, so it overwrote the correct creation-time cyan with black for the whole sim. tsc + validate:concepts + smoke all pass (it is a runtime colour coercion); the dark shells read as "dim/opacity" in frozen frames, sending three earlier sessions down an opacity/emissive dead-end. Confirmed by a Playwright probe reading material.color.getHexString() === "000000".',
+    prevention_rule: 'NEVER pass hexToThreeColor(...) (which returns a THREE.Color) to THREE.Color.setHex (which needs a NUMBER) — setHex(<Color>) => NaN => black. Use color.set(theString) or color.copy(hexToThreeColor(theString)). Audit: grep the renderer for setHex(hexToThreeColor — any hit is a black-out bug. When a shell/element renders dark, probe material.color.getHexString() at runtime BEFORE blaming opacity/lighting/emissive.',
+    probe_type: 'js_eval',
+    probe_logic: 'Load the built sim.html in headless Chromium, postMessage SET_STATE to a shell state, read every userData.isPmShell mesh material.color.getHexString(); it MUST equal the configured equipotential colour (4fc3f7), never 000000. (Expose sceneObjects via a temp window hook for the probe.)',
+    status: 'FIXED',
+    concepts_affected: SIGN_FLIP_AFFECTED,
+    fixed_in_files: RENDERER,
+    row_type: 'incident',
+  },
+  {
+    bug_class: 'field3d_shell_emissive_intensity_must_be_pinned_zero_when_not_bright',
+    title: 'After fixing the setHex black-out, pmApplyChargeSign re-synced material.emissive to the shell colour gated on "emissiveIntensity > 0" — but MeshPhongMaterial defaults emissiveIntensity to 1, so non-bright shells (no equipotential.bright flag) got self-illuminated at full intensity on every sign recolour, over-brightening toward white instead of the intended plain lit cyan',
+    severity: 'MODERATE',
+    owner_cluster: R,
+    root_cause: 'createEquipotentialSurface only set emissive/emissiveIntensity when a positive emissiveIntensity was passed; the else path left THREE\\u0027s default emissiveIntensity=1, so the "emissiveIntensity > 0" sync gate in pmApplyChargeSign fired for non-bright shells too.',
+    prevention_rule: 'When a material\\u0027s emission is meant to be OFF by default, explicitly pin emissiveIntensity:0 at creation — never rely on a downstream "intensity > 0" gate to detect intent, because MeshPhongMaterial defaults it to 1. The non-bright shell path must stay byte-identical to the sibling concepts (emissive #000000 @ 0).',
+    probe_type: 'js_eval',
+    probe_logic: 'Probe a non-bright (no equipotential.bright) shell sim: material.emissive.getHexString() === "000000" and material.emissiveIntensity === 0. A bright sim: emissive === shell colour and intensity === the configured value.',
+    status: 'FIXED',
+    concepts_affected: SIGN_FLIP_AFFECTED,
+    fixed_in_files: RENDERER,
+    row_type: 'incident',
+  },
   {
     bug_class: 'field3d_new_reveal_cue_missing_from_devstatemeta_maxreveal',
     title: 'A new timed reveal cue (potential.show_field_lines_cross_shells.at_ms) was added to the renderer but not to deriveStateMeta.maxRevealForField3dState, so THE EYE pinned PM_simTimeMs before the reveal and photographed an empty STATE_4 — the field lines (the PRIMARY aha) never appeared in the frozen frame though the renderer code was correct',

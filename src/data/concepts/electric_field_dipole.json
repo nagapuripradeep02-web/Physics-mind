@@ -144,7 +144,7 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "An electric dipole is just two equal and opposite charges, plus q and minus q, held a small distance apart.", "text_hi": "electric dipole बस दो equal और opposite charges होते हैं — plus q और minus q — जो थोड़ी दूरी पर रखे जाते हैं।", "text_te": "electric dipole అంటే కేవలం రెండు equal మరియు opposite charges — plus q మరియు minus q — కొంచెం distance లో ఉంచబడిన వాటి జంట."
+              "text_en": "An electric dipole is just two equal and opposite charges, plus charge q and minus charge q, held a small distance apart.", "text_hi": "electric dipole बस दो equal और opposite charges होते हैं — plus charge q और minus charge q — जो थोड़ी दूरी पर रखे जाते हैं।", "text_te": "electric dipole అంటే కేవలం రెండు equal మరియు opposite charges — plus charge q మరియు minus charge q — కొంచెం distance లో ఉంచబడిన వాటి జంట."
             },
             {
               "id": "s1_2",
@@ -152,7 +152,7 @@
             },
             {
               "id": "s1_3",
-              "text_en": "p is a vector. By convention it points from the negative charge to the positive charge.", "text_hi": "p एक vector है। convention के अनुसार यह negative charge से positive charge की तरफ point करता है।", "text_te": "p అనేది ఒక vector. convention ప్రకారం ఇది negative charge నుంచి positive charge వైపు point చేస్తుంది."
+              "text_en": "The dipole moment p is a vector. By convention it points from the negative charge to the positive charge.", "text_hi": "dipole moment p एक vector है। convention के अनुसार यह negative charge से positive charge की तरफ point करता है।", "text_te": "dipole moment p అనేది ఒక vector. convention ప్రకారం ఇది negative charge నుంచి positive charge వైపు point చేస్తుంది."
             },
             {
               "id": "s1_4",
@@ -197,11 +197,11 @@
             },
             {
               "id": "s2_2",
-              "text_en": "The near plus q pushes outward — a strong red arrow. The far minus q pulls back — a weaker blue arrow.", "text_hi": "पास का plus q बाहर की तरफ push करता है — एक strong red arrow। दूर का minus q वापस pull करता है — एक weaker blue arrow।", "text_te": "దగ్గర ఉన్న plus q బయటికి push చేస్తుంది — ఒక strong red arrow. దూరంలో ఉన్న minus q వెనక్కి pull చేస్తుంది — ఒక weaker blue arrow."
+              "text_en": "The near plus charge q pushes outward — a strong red arrow. The far minus charge q pulls back — a weaker blue arrow.", "text_hi": "पास का plus charge q बाहर की तरफ push करता है — एक strong red arrow। दूर का minus charge q वापस pull करता है — एक weaker blue arrow।", "text_te": "దగ్గర ఉన్న plus charge q బయటికి push చేస్తుంది — ఒక strong red arrow. దూరంలో ఉన్న minus charge q వెనక్కి pull చేస్తుంది — ఒక weaker blue arrow."
             },
             {
               "id": "s2_3",
-              "text_en": "They lie along the same line, so the green net field points along p, the way p points.", "text_hi": "दोनों एक ही line पर हैं, इसलिए green net field p की दिशा में point करती है।", "text_te": "రెండూ ఒకే line పై ఉన్నాయి, కాబట్టి green net field p వైపు point చేస్తుంది."
+              "text_en": "They lie along the same line, so the green net field points along the dipole moment p, the way the dipole moment p points.", "text_hi": "दोनों एक ही line पर हैं, इसलिए green net field dipole moment p की दिशा में point करती है।", "text_te": "రెండూ ఒకే line పై ఉన్నాయి, కాబట్టి green net field dipole moment p వైపు point చేస్తుంది."
             },
             {
               "id": "s2_4",
@@ -251,11 +251,11 @@
             },
             {
               "id": "s3_3",
-              "text_en": "What survives points sideways — opposite to p, back toward the negative charge's side.", "text_hi": "जो बचता है वह sideways point करता है — p के opposite, negative charge की तरफ वापस।", "text_te": "మిగిలేది sideways గా point చేస్తుంది — p కి opposite గా, negative charge వైపు వెళ్ళి."
+              "text_en": "What survives points sideways — opposite to the dipole moment p, back toward the negative charge's side.", "text_hi": "जो बचता है वह sideways point करता है — dipole moment p के opposite, negative charge की तरफ वापस।", "text_te": "మిగిలేది sideways గా point చేస్తుంది — dipole moment p కి opposite గా, negative charge వైపు వెళ్ళి."
             },
             {
               "id": "s3_4",
-              "text_en": "Far away the equatorial field is k p over r cubed, pointing opposite to p.", "text_hi": "दूर equatorial field होती है k p over r cubed, जो p के opposite direction में point करती है।", "text_te": "దూరంగా equatorial field k p over r cubed అవుతుంది, p కి opposite direction లో point చేస్తూ."
+              "text_en": "Far away the equatorial field is k p over r cubed, pointing opposite to the dipole moment p.", "text_hi": "दूर equatorial field होती है k p over r cubed, जो dipole moment p के opposite direction में point करती है।", "text_te": "దూరంగా equatorial field k p over r cubed అవుతుంది, dipole moment p కి opposite direction లో point చేస్తూ."
             }
           ]
         },
@@ -303,11 +303,11 @@
             },
             {
               "id": "s4_2",
-              "text_en": "The axial arrow is exactly twice as long as the equatorial one — same r, double the field.", "text_hi": "axial arrow की length equatorial arrow से exactly double है — same r, double field।", "text_te": "axial arrow పొడవు equatorial arrow కంటే exactly రెండు రెట్లు ఉంది — same r, double field."
+              "text_en": "The axial arrow is exactly twice as long as the equatorial one — same distance r, double the field.", "text_hi": "axial arrow की length equatorial arrow से exactly double है — same distance r, double field।", "text_te": "axial arrow పొడవు equatorial arrow కంటే exactly రెండు రెట్లు ఉంది — same distance r, double field."
             },
             {
               "id": "s4_3",
-              "text_en": "And they point differently: axial along p, equatorial opposite p.", "text_hi": "और दोनों अलग-अलग direction में point करते हैं: axial, p के साथ; equatorial, p के opposite।", "text_te": "మరియు రెండూ వేరు వేరు వైపు point చేస్తాయి: axial, p వైపు; equatorial, p కి opposite గా."
+              "text_en": "And they point differently: axial along the dipole moment p, equatorial opposite the dipole moment p.", "text_hi": "और दोनों अलग-अलग direction में point करते हैं: axial, dipole moment p के साथ; equatorial, dipole moment p के opposite।", "text_te": "మరియు రెండూ వేరు వేరు వైపు point చేస్తాయి: axial, dipole moment p వైపు; equatorial, dipole moment p కి opposite గా."
             },
             {
               "id": "s4_4",
@@ -458,15 +458,15 @@
             },
             {
               "id": "s7_2",
-              "text_en": "At zero degrees you are on the axis — the field is strong and points along p.", "text_hi": "zero degrees पर आप axis पर हो — field strong है और p के साथ point करती है।", "text_te": "zero degrees వద్ద మీరు axis పై ఉన్నారు — field strong గా ఉంటుంది మరియు p వైపు point చేస్తుంది."
+              "text_en": "At zero degrees you are on the axis — the field is strong and points along the dipole moment p.", "text_hi": "zero degrees पर आप axis पर हो — field strong है और dipole moment p के साथ point करती है।", "text_te": "zero degrees వద్ద మీరు axis పై ఉన్నారు — field strong గా ఉంటుంది మరియు dipole moment p వైపు point చేస్తుంది."
             },
             {
               "id": "s7_3",
-              "text_en": "At ninety degrees you are on the equator — about half as strong, pointing opposite p.", "text_hi": "ninety degrees पर आप equator पर हो — लगभग half strong, p के opposite direction में point करती है।", "text_te": "ninety degrees వద్ద మీరు equator పై ఉన్నారు — సుమారు half strong గా, p కి opposite direction లో point చేస్తూ."
+              "text_en": "At ninety degrees you are on the equator — about half as strong, pointing opposite the dipole moment p.", "text_hi": "ninety degrees पर आप equator पर हो — लगभग half strong, dipole moment p के opposite direction में point करती है।", "text_te": "ninety degrees వద్ద మీరు equator పై ఉన్నారు — సుమారు half strong గా, dipole moment p కి opposite direction లో point చేస్తూ."
             },
             {
               "id": "s7_4",
-              "text_en": "Slide r outward and feel how fast it fades; raise q and the whole field grows. One dipole, one pattern.", "text_hi": "r को outward slide करो और देखो कितनी जल्दी field fade होती है; q बढ़ाओ और पूरी field बढ़ जाती है। एक dipole, एक pattern।", "text_te": "r ని outward slide చేయండి మరియు field ఎంత వేగంగా fade అవుతుందో చూడండి; q పెంచండి మరియు మొత్తం field పెరుగుతుంది. ఒక dipole, ఒక pattern."
+              "text_en": "Slide the distance r outward and feel how fast it fades; raise the charge q and the whole field grows. One dipole, one pattern.", "text_hi": "distance r को outward slide करो और देखो कितनी जल्दी field fade होती है; charge q बढ़ाओ और पूरी field बढ़ जाती है। एक dipole, एक pattern।", "text_te": "distance r ని outward slide చేయండి మరియు field ఎంత వేగంగా fade అవుతుందో చూడండి; charge q పెంచండి మరియు మొత్తం field పెరుగుతుంది. ఒక dipole, ఒక pattern."
             }
           ]
         }

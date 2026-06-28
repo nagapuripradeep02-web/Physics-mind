@@ -152,7 +152,7 @@
             },
             {
               "id": "s1_3",
-              "text_en": "We already know E equals F over q. Rearrange it: the force on the charge is F equals q times E.", "text_hi": "हम पहले से जानते हैं E equals F over q। इसे rearrange करें: charge पर force है F equals q times E।", "text_te": "మనకు ముందే తెలుసు E equals F over q. దాన్ని rearrange చేయండి: charge పై force అంటే F equals q times E."
+              "text_en": "We already know the electric field E equals F over q. Rearrange it: the force on the charge is F equals q times E.", "text_hi": "हम पहले से जानते हैं electric field E equals F over q। इसे rearrange करें: charge पर force है F equals q times E।", "text_te": "మనకు ముందే తెలుసు electric field E equals F over q. దాన్ని rearrange చేయండి: charge పై force అంటే F equals q times E."
             },
             {
               "id": "s1_4",
@@ -210,11 +210,11 @@
             },
             {
               "id": "s2_3",
-              "text_en": "The size F equals q E is unchanged. Only the direction reversed, because the sign of q reversed.", "text_hi": "size F equals q E वैसा ही रहता है। सिर्फ direction उलट गई, क्योंकि q का sign उलट गया।", "text_te": "size F equals q E మారదు. కేవలం direction మారింది, ఎందుకంటే q యొక్క sign మారింది."
+              "text_en": "The size F equals q E is unchanged. Only the direction reversed, because the sign of the charge q reversed.", "text_hi": "size F equals q E वैसा ही रहता है। सिर्फ direction उलट गई, क्योंकि charge q का sign उलट गया।", "text_te": "size F equals q E మారదు. కేవలం direction మారింది, ఎందుకంటే charge q యొక్క sign మారింది."
             },
             {
               "id": "s2_4",
-              "text_en": "Positive charge: force along E. Negative charge: force opposite E. The sign owns the direction.", "text_hi": "Positive charge: force, E के along। Negative charge: force, E के opposite। sign ही direction तय करता है।", "text_te": "Positive charge: force, E వెంట. Negative charge: force, E కి opposite. sign మాత్రమే direction నిర్ణయిస్తుంది."
+              "text_en": "Positive charge: force along the electric field E. Negative charge: force opposite the electric field E. The sign owns the direction.", "text_hi": "Positive charge: force, electric field E के along। Negative charge: force, electric field E के opposite। sign ही direction तय करता है।", "text_te": "Positive charge: force, electric field E వెంట. Negative charge: force, electric field E కి opposite. sign మాత్రమే direction నిర్ణయిస్తుంది."
             }
           ]
         },

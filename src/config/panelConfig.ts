@@ -999,6 +999,23 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.2 — Electrostatic Potential and Capacitance (§2.4). The dipole
+    // POTENTIAL diamond: V = kp cosθ/r² (the scalar sum of the two charge
+    // potentials) — sign follows cos θ (position), V = 0 across the WHOLE
+    // equatorial plane (but E ≠ 0 there), and V falls as 1/r² (steeper than a
+    // point charge's 1/r). Declares electric_potential_point_charge (V = kQ/r),
+    // electric_potential_meaning (V = W/q) and electric_field_dipole (the FIELD)
+    // as prerequisites; does NOT re-teach them, and stops short of capacitance.
+    electric_potential_dipole: {
+        concept_id: 'electric_potential_dipole',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'electric_potential_dipole',
+            label: 'Potential of a Dipole — V = kp cosθ/r² (3D)',
+        },
+    },
+
     force_on_charge_in_field: {
         concept_id: 'force_on_charge_in_field',
         layout: 'single',
@@ -1091,6 +1108,26 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'moving_coil_galvanometer',
             label: 'Moving Coil Galvanometer — φ = (NAB/k)·I (3D)',
+        },
+    },
+
+    galvanometer_to_ammeter_voltmeter: {
+        concept_id: 'galvanometer_to_ammeter_voltmeter',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'galvanometer_to_ammeter_voltmeter',
+            label: 'Galvanometer → Ammeter & Voltmeter — shunt / series R (3D)',
+        },
+    },
+
+    bar_magnet_as_dipole: {
+        concept_id: 'bar_magnet_as_dipole',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'bar_magnet_as_dipole',
+            label: 'The Bar Magnet as a Magnetic Dipole — closed-loop field, 1/r³ (3D)',
         },
     },
 

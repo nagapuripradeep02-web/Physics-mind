@@ -115,9 +115,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "Here is a galvanometer. An N-turn coil hangs on a soft-iron core between two magnet poles.", "pause_after_ms": 1500 },
-            { "id": "s1_2", "text_en": "Current I flows through the coil — watch it march up one side and down the other.", "pause_after_ms": 1200 },
-            { "id": "s1_3", "text_en": "The pointer rests at zero. How does this turn into a current meter?", "pause_after_ms": 1500 }
+            { "id": "s1_1", "text_en": "Here is a galvanometer. An N-turn coil hangs on a soft-iron core between two magnet poles.", "text_hi": "यहाँ एक galvanometer है। एक N-turn coil, दो magnet poles के बीच एक soft-iron core पर लटकी हुई है।", "text_te": "ఇక్కడ ఒక galvanometer ఉంది. ఒక N-turn coil, రెండు magnet poles మధ్యలో ఉన్న ఒక soft-iron core పై వేలాడుతోంది.", "pause_after_ms": 1500 },
+            { "id": "s1_2", "text_en": "Current I flows through the coil — watch it march up one side and down the other.", "text_hi": "Coil में Current I बहता है — देखिए यह एक तरफ ऊपर और दूसरी तरफ नीचे जाता है।", "text_te": "Coil ద్వారా Current I ప్రవహిస్తుంది — ఇది ఒక వైపు పైకి, మరొక వైపు కిందికి వెళ్లడాన్ని గమనించండి.", "pause_after_ms": 1200 },
+            { "id": "s1_3", "text_en": "The pointer rests at zero. How does this turn into a current meter?", "text_hi": "Pointer zero पर टिका है। यह एक current meter में कैसे बदलता है?", "text_te": "Pointer zero వద్ద విశ్రాంతిగా ఉంది. ఇది ఒక current meter గా ఎలా మారుతుంది?", "pause_after_ms": 1500 }
           ]
         }
       },
@@ -161,11 +161,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "The field B crosses the gap. Each vertical side of the coil carries current I straight through that field.", "pause_after_ms": 1500 },
-            { "id": "s2_2", "text_en": "Which way is each side pushed — and does the coil slide across the gap, or turn in place?", "pause_after_ms": 3000 },
-            { "id": "s2_3", "text_en": "Right-hand rule: the left side is forced into the page, the right side out of the page.", "pause_after_ms": 1500 },
-            { "id": "s2_4", "text_en": "Equal and opposite forces on different lines cannot slide the coil — net force is zero — but they twist it.", "pause_after_ms": 1500 },
-            { "id": "s2_5", "text_en": "The force per side is F equals N B I L, and together they give the deflecting torque tau equals N I A B.", "pause_after_ms": 1500 }
+            { "id": "s2_1", "text_en": "The field B crosses the gap. Each vertical side of the coil carries current I straight through that field.", "text_hi": "Field B gap को पार करता है। Coil का प्रत्येक vertical side उस field से सीधे current I ले जाता है।", "text_te": "Field B, gap ను దాటుతుంది. Coil యొక్క ప్రతి vertical side ఆ field గుండా current I ని నేరుగా తీసుకువెళుతుంది.", "pause_after_ms": 1500 },
+            { "id": "s2_2", "text_en": "Which way is each side pushed — and does the coil slide across the gap, or turn in place?", "text_hi": "प्रत्येक side को किस दिशा में धकेला जाता है — और क्या coil gap के आर-पार slide करती है, या अपनी जगह पर घूमती है?", "text_te": "ప్రతి side ఏ వైపుకు నెట్టబడుతుంది — మరియు coil gap అంతటా slide అవుతుందా, లేక అక్కడే తిరుగుతుందా?", "pause_after_ms": 3000 },
+            { "id": "s2_3", "text_en": "Right-hand rule: the left side is forced into the page, the right side out of the page.", "text_hi": "Right-hand rule: left side को page के अंदर धकेला जाता है, right side को page के बाहर।", "text_te": "Right-hand rule: left side page లోపలికి నెట్టబడుతుంది, right side page బయటకు.", "pause_after_ms": 1500 },
+            { "id": "s2_4", "text_en": "Equal and opposite forces on different lines cannot slide the coil — net force is zero — but they twist it.", "text_hi": "अलग-अलग lines पर equal और opposite forces coil को slide नहीं कर सकते — net force zero है — लेकिन वे इसे twist करते हैं।", "text_te": "వేర్వేరు lines పై equal మరియు opposite forces coil ను slide చేయలేవు — net force zero — కానీ అవి దానిని twist చేస్తాయి.", "pause_after_ms": 1500 },
+            { "id": "s2_5", "text_en": "The force per side is F equals N B I L, and together they give the deflecting torque tau equals N I A B.", "text_hi": "प्रति side force है F equals N B I L, और साथ मिलकर वे deflecting torque tau equals N I A B देते हैं।", "text_te": "ప్రతి side కు force F equals N B I L, మరియు అవి కలిసి deflecting torque tau equals N I A B ను ఇస్తాయి.", "pause_after_ms": 1500 }
           ]
         },
         "misconception_watch": [
@@ -216,11 +216,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Suppose for now the field were uniform — straight lines between two flat poles.", "pause_after_ms": 1500 },
-            { "id": "s3_2", "text_en": "Step the current up in equal jumps. Will the pointer move in equal steps, or not?", "pause_after_ms": 3500 },
-            { "id": "s3_3", "text_en": "As the coil turns, its sides tilt away from square-to-B, so each force shrinks and the torque falls with sine theta.", "pause_after_ms": 1800 },
-            { "id": "s3_4", "text_en": "Equal current jumps now give smaller and smaller swings — the marks bunch up into a crowded scale.", "pause_after_ms": 2000 },
-            { "id": "s3_5", "text_en": "In a uniform field the torque is tau equals N I A B sine theta, so the scale is non-uniform and hard to read.", "pause_after_ms": 1500 }
+            { "id": "s3_1", "text_en": "Suppose for now the field were uniform — straight lines between two flat poles.", "text_hi": "मान लीजिए अभी field uniform था — दो flat poles के बीच straight lines।", "text_te": "ప్రస్తుతానికి field uniform గా ఉందని అనుకుందాం — రెండు flat poles మధ్య straight lines.", "pause_after_ms": 1500 },
+            { "id": "s3_2", "text_en": "Step the current up in equal jumps. Will the pointer move in equal steps, or not?", "text_hi": "Current को equal jumps में ऊपर बढ़ाएँ। क्या pointer equal steps में चलेगा, या नहीं?", "text_te": "Current ను equal jumps లో పెంచండి. Pointer equal steps లో కదులుతుందా, లేదా?", "pause_after_ms": 3500 },
+            { "id": "s3_3", "text_en": "As the coil turns, its sides tilt away from square-to-B, so each force shrinks and the torque falls with sine theta.", "text_hi": "जैसे ही coil turns करती है, उसके sides square-to-B से tilt away करते हैं, इसलिए हर force shrink होती है और torque sine theta के साथ fall होता है।", "text_te": "Coil turns అవుతున్నప్పుడు, దాని sides square-to-B నుండి tilt away అవుతాయి, కాబట్టి ప్రతి force shrink అవుతుంది మరియు torque sine theta తో fall అవుతుంది.", "pause_after_ms": 1800 },
+            { "id": "s3_4", "text_en": "Equal current jumps now give smaller and smaller swings — the marks bunch up into a crowded scale.", "text_hi": "Equal current jumps अब छोटे और छोटे swings देते हैं — marks एक crowded scale में bunch up हो जाते हैं।", "text_te": "Equal current jumps ఇప్పుడు చిన్నవిగా మరియు చిన్నవిగా swings ఇస్తాయి — marks ఒక crowded scale లో bunch up అవుతాయి.", "pause_after_ms": 2000 },
+            { "id": "s3_5", "text_en": "In a uniform field the torque is tau equals N I A B sine theta, so the scale is non-uniform and hard to read.", "text_hi": "एक uniform field में torque tau equals N I A B sine theta होता है, इसलिए scale non-uniform और hard to read है।", "text_te": "ఒక uniform field లో torque tau equals N I A B sine theta ఉంటుంది, కాబట్టి scale non-uniform మరియు hard to read.", "pause_after_ms": 1500 }
           ]
         },
         "misconception_watch": [
@@ -272,11 +272,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Now curve the pole faces and slip a soft-iron cylinder inside the coil.", "pause_after_ms": 1500 },
-            { "id": "s4_2", "text_en": "What happens to the field lines in the gap — and to the angle the coil's sides make with the field?", "pause_after_ms": 3500 },
-            { "id": "s4_3", "text_en": "The field bends radial — every line points along the core's radius. The pole faces curve concave; the core brightens.", "pause_after_ms": 2000 },
-            { "id": "s4_4", "text_en": "Now turn the coil through any angle: its sides stay square to B, so both forces hold full length.", "pause_after_ms": 2000 },
-            { "id": "s4_5", "text_en": "The torque stays tau equals N I A B at every deflection — no sine theta, no fading.", "pause_after_ms": 1500 }
+            { "id": "s4_1", "text_en": "Now curve the pole faces and slip a soft-iron cylinder inside the coil.", "text_hi": "अब pole faces को curve करें और coil के अंदर एक soft-iron cylinder डालें।", "text_te": "ఇప్పుడు pole faces ను curve చేయండి మరియు coil లోపల ఒక soft-iron cylinder ను slip చేయండి.", "pause_after_ms": 1500 },
+            { "id": "s4_2", "text_en": "What happens to the field lines in the gap — and to the angle the coil's sides make with the field?", "text_hi": "Gap में field lines का क्या होता है — और उस angle का जो coil के sides field के साथ बनाते हैं?", "text_te": "Gap లో field lines కు ఏమి జరుగుతుంది — మరియు coil sides field తో చేసే angle కు ఏమి జరుగుతుంది?", "pause_after_ms": 3500 },
+            { "id": "s4_3", "text_en": "The field bends radial — every line points along the core's radius. The pole faces curve concave; the core brightens.", "text_hi": "Field radial bend होता है — हर line core के radius के along point करती है। Pole faces concave curve होते हैं; core brighten होता है।", "text_te": "Field radial గా bend అవుతుంది — ప్రతి line core radius వెంట point చేస్తుంది. Pole faces concave గా curve అవుతాయి; core brighten అవుతుంది.", "pause_after_ms": 2000 },
+            { "id": "s4_4", "text_en": "Now turn the coil through any angle: its sides stay square to B, so both forces hold full length.", "text_hi": "अब coil को किसी भी angle से turn करें: उसके sides B के square stay करते हैं, इसलिए दोनों forces full length hold करते हैं।", "text_te": "ఇప్పుడు coil ను ఏ angle లోనైనా turn చేయండి: దాని sides B కి square గా stay అవుతాయి, కాబట్టి రెండు forces full length ను hold చేస్తాయి.", "pause_after_ms": 2000 },
+            { "id": "s4_5", "text_en": "The torque stays tau equals N I A B at every deflection — no sine theta, no fading.", "text_hi": "Torque हर deflection पर tau equals N I A B रहता है — कोई sine theta नहीं, कोई fading नहीं।", "text_te": "Torque ప్రతి deflection వద్ద tau equals N I A B గా stay అవుతుంది — sine theta లేదు, fading లేదు.", "pause_after_ms": 1500 }
           ]
         },
         "misconception_watch": [
@@ -327,10 +327,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "A fine hairspring is fixed to the coil's shaft.", "pause_after_ms": 1500 },
-            { "id": "s5_2", "text_en": "As the coil turns, what does the spring do to the motion?", "pause_after_ms": 3000 },
-            { "id": "s5_3", "text_en": "The spring winds up as the coil turns, pushing back with a restoring torque that grows opposite the deflecting torque.", "pause_after_ms": 1800 },
-            { "id": "s5_4", "text_en": "The further it winds, the harder it pushes: the restoring torque is tau equals k phi, proportional to the deflection phi.", "pause_after_ms": 1500 }
+            { "id": "s5_1", "text_en": "A fine hairspring is fixed to the coil's shaft.", "text_hi": "एक fine hairspring coil के shaft से fixed है।", "text_te": "ఒక fine hairspring coil shaft కు fixed చేయబడింది.", "pause_after_ms": 1500 },
+            { "id": "s5_2", "text_en": "As the coil turns, what does the spring do to the motion?", "text_hi": "जैसे ही coil turns करती है, spring motion के साथ क्या करती है?", "text_te": "Coil turns అవుతున్నప్పుడు, spring motion కు ఏమి చేస్తుంది?", "pause_after_ms": 3000 },
+            { "id": "s5_3", "text_en": "The spring winds up as the coil turns, pushing back with a restoring torque that grows opposite the deflecting torque.", "text_hi": "coil के turn होने पर spring wind up होती है, restoring torque के साथ वापस push करती है जो deflecting torque के opposite बढ़ता है।", "text_te": "coil turn అయినప్పుడు spring wind up అవుతుంది, restoring torque తో వెనక్కి push చేస్తుంది, అది deflecting torque కి opposite గా పెరుగుతుంది.", "pause_after_ms": 1800 },
+            { "id": "s5_4", "text_en": "The further it winds, the harder it pushes: the restoring torque is tau equals k phi, proportional to the deflection phi.", "text_hi": "जितना यह further wind होता है, उतना ही harder push करता है: restoring torque है tau equals k phi, जो deflection phi के proportional है।", "text_te": "ఇది ఎంత further wind అయితే, అంత harder push చేస్తుంది: restoring torque tau equals k phi, ఇది deflection phi కి proportional.", "pause_after_ms": 1500 }
           ]
         },
         "misconception_watch": [
@@ -381,10 +381,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Two torques now act together: the deflecting torque N I A B and the restoring torque k phi.", "pause_after_ms": 1500 },
-            { "id": "s6_2", "text_en": "One grows with current, the other grows with deflection. Where does the coil come to rest?", "pause_after_ms": 3000 },
-            { "id": "s6_3", "text_en": "The coil settles where the two torques are equal in length — the pointer lands on a fixed reading.", "pause_after_ms": 2000 },
-            { "id": "s6_4", "text_en": "At rest, N I A B equals k phi, so phi equals N A B over k, times I.", "pause_after_ms": 1500 }
+            { "id": "s6_1", "text_en": "Two torques now act together: the deflecting torque N I A B and the restoring torque k phi.", "text_hi": "अब दो torques एक साथ act करते हैं: deflecting torque N I A B और restoring torque k phi।", "text_te": "ఇప్పుడు రెండు torques ఒకదానితో ఒకటి act చేస్తాయి: deflecting torque N I A B మరియు restoring torque k phi.", "pause_after_ms": 1500 },
+            { "id": "s6_2", "text_en": "One grows with current, the other grows with deflection. Where does the coil come to rest?", "text_hi": "एक current के साथ बढ़ता है, दूसरा deflection के साथ बढ़ता है। coil rest पर कहाँ आता है?", "text_te": "ఒకటి current తో పెరుగుతుంది, మరొకటి deflection తో పెరుగుతుంది. coil ఎక్కడ rest కి వస్తుంది?", "pause_after_ms": 3000 },
+            { "id": "s6_3", "text_en": "The coil settles where the two torques are equal in length — the pointer lands on a fixed reading.", "text_hi": "coil वहाँ settle होता है जहाँ दोनों torques length में equal होते हैं — pointer एक fixed reading पर land करता है।", "text_te": "రెండు torques length లో equal గా ఉన్న చోట coil settle అవుతుంది — pointer ఒక fixed reading పై land అవుతుంది.", "pause_after_ms": 2000 },
+            { "id": "s6_4", "text_en": "At rest, N I A B equals k phi, so phi equals N A B over k, times I.", "text_hi": "rest पर, N I A B equals k phi, तो phi equals N A B over k, times I।", "text_te": "rest వద్ద, N I A B equals k phi, కాబట్టి phi equals N A B over k, times I.", "pause_after_ms": 1500 }
           ]
         },
         "misconception_watch": [
@@ -436,10 +436,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Here is the real galvanometer scale, with the old crowded scale recalled small beside it.", "pause_after_ms": 1500 },
-            { "id": "s7_2", "text_en": "Step the current up in equal jumps again, now in the radial field — equal steps, or crowded like before?", "pause_after_ms": 3000 },
-            { "id": "s7_3", "text_en": "Each equal jump in current moves the pointer the same amount — the marks are evenly spaced.", "pause_after_ms": 2000 },
-            { "id": "s7_4", "text_en": "Because the torque was constant, phi equals N A B over k times I — exactly proportional, so the scale is uniform.", "pause_after_ms": 1500 }
+            { "id": "s7_1", "text_en": "Here is the real galvanometer scale, with the old crowded scale recalled small beside it.", "text_hi": "यह real galvanometer scale है, जिसमें old crowded scale इसके बगल में small recall किया गया है।", "text_te": "ఇది real galvanometer scale, దాని పక్కన old crowded scale small గా recall చేయబడింది.", "pause_after_ms": 1500 },
+            { "id": "s7_2", "text_en": "Step the current up in equal jumps again, now in the radial field — equal steps, or crowded like before?", "text_hi": "current को फिर से equal jumps में step up करें, अब radial field में — equal steps, या पहले की तरह crowded?", "text_te": "current ని మళ్ళీ equal jumps లో step up చేయండి, ఇప్పుడు radial field లో — equal steps, లేదా ముందులా crowded గా?", "pause_after_ms": 3000 },
+            { "id": "s7_3", "text_en": "Each equal jump in current moves the pointer the same amount — the marks are evenly spaced.", "text_hi": "current में हर equal jump pointer को same amount से move करता है — marks evenly spaced होते हैं।", "text_te": "current లో ప్రతి equal jump pointer ని same amount తో move చేస్తుంది — marks evenly spaced ఉంటాయి.", "pause_after_ms": 2000 },
+            { "id": "s7_4", "text_en": "Because the torque was constant, phi equals N A B over k times I — exactly proportional, so the scale is uniform.", "text_hi": "क्योंकि torque constant था, phi equals N A B over k times I — exactly proportional, इसलिए scale uniform है।", "text_te": "torque constant కాబట్టి, phi equals N A B over k times I — exactly proportional, కాబట్టి scale uniform.", "pause_after_ms": 1500 }
           ]
         },
         "misconception_watch": [
@@ -490,10 +490,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "Sensitivity is the swing you get per unit current — the deflection phi divided by the current I.", "pause_after_ms": 1500 },
-            { "id": "s8_2", "text_en": "To make the meter detect an even tinier current, what would you change about it?", "pause_after_ms": 3000 },
-            { "id": "s8_3", "text_en": "Add more turns N, widen the area A, strengthen the field B, or soften the spring k — the same current swings further.", "pause_after_ms": 2000 },
-            { "id": "s8_4", "text_en": "Current sensitivity is phi over I equals N A B over k — a fixed device constant, never depending on the current measured.", "pause_after_ms": 1500 }
+            { "id": "s8_1", "text_en": "Sensitivity is the swing you get per unit current — the deflection phi divided by the current I.", "text_hi": "Sensitivity वह swing है जो आपको प्रति unit current मिलता है — deflection phi divided by current I.", "text_te": "Sensitivity అంటే మీకు ప్రతి unit current కు వచ్చే swing — deflection phi divided by current I.", "pause_after_ms": 1500 },
+            { "id": "s8_2", "text_en": "To make the meter detect an even tinier current, what would you change about it?", "text_hi": "Meter को और भी छोटे current को detect करने के लिए, आप इसमें क्या बदलेंगे?", "text_te": "మీటర్ ను మరింత చిన్న current ను detect చేయడానికి, మీరు దానిలో ఏమి మారుస్తారు?", "pause_after_ms": 3000 },
+            { "id": "s8_3", "text_en": "Add more turns N, widen the area A, strengthen the field B, or soften the spring k — the same current swings further.", "text_hi": "ज़्यादा turns N जोड़ें, area A को चौड़ा करें, field B को मज़बूत करें, या spring k को नरम करें — वही current ज़्यादा swing करता है।", "text_te": "ఎక్కువ turns N జోడించండి, area A ని వెడల్పు చేయండి, field B ని బలంగా చేయండి, లేదా spring k ని మృదువుగా చేయండి — అదే current మరింత swing చేస్తుంది.", "pause_after_ms": 2000 },
+            { "id": "s8_4", "text_en": "Current sensitivity is phi over I equals N A B over k — a fixed device constant, never depending on the current measured.", "text_hi": "Current sensitivity है phi over I equals N A B over k — एक fixed device constant, कभी भी measured current पर depend नहीं करता।", "text_te": "Current sensitivity అంటే phi over I equals N A B over k — ఒక fixed device constant, ఎప్పుడూ measured current పై depend చేయదు.", "pause_after_ms": 1500 }
           ]
         },
         "misconception_watch": [
@@ -542,9 +542,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s9_1", "text_en": "Your turn. Drag current I, turns N, field B, area A, and spring constant k.", "pause_after_ms": 1500 },
-            { "id": "s9_2", "text_en": "Watch the deflection phi and the current sensitivity update live on the uniform scale.", "pause_after_ms": 1500 },
-            { "id": "s9_3", "text_en": "More turns, bigger area, stronger field, or a softer spring all raise the sensitivity; more current swings the pointer further.", "pause_after_ms": 1500 }
+            { "id": "s9_1", "text_en": "Your turn. Drag current I, turns N, field B, area A, and spring constant k.", "text_hi": "अब आपकी बारी। Drag करें current I, turns N, field B, area A, और spring constant k।", "text_te": "ఇప్పుడు మీ వంతు. Drag చేయండి current I, turns N, field B, area A, మరియు spring constant k.", "pause_after_ms": 1500 },
+            { "id": "s9_2", "text_en": "Watch the deflection phi and the current sensitivity update live on the uniform scale.", "text_hi": "Deflection phi और current sensitivity को uniform scale पर live update होते देखिए।", "text_te": "Deflection phi మరియు current sensitivity ను uniform scale పై live update అవుతూ చూడండి.", "pause_after_ms": 1500 },
+            { "id": "s9_3", "text_en": "More turns, bigger area, stronger field, or a softer spring all raise the sensitivity; more current swings the pointer further.", "text_hi": "ज़्यादा turns, बड़ा area, मज़बूत field, या नरम spring — सब sensitivity बढ़ाते हैं; ज़्यादा current pointer को और आगे swing करता है।", "text_te": "ఎక్కువ turns, పెద్ద area, బలమైన field, లేదా మృదువైన spring — అన్నీ sensitivity ని పెంచుతాయి; ఎక్కువ current pointer ను మరింత ముందుకు swing చేస్తుంది.", "pause_after_ms": 1500 }
           ]
         }
       }
@@ -648,7 +648,7 @@
         "visible_elements": [
           "mcg_coil", "mcg_core", "mcg_pole_n", "mcg_pole_s",
           "mcg_field_arrow", "mcg_current_dot", "mcg_spring",
-          "mcg_tau_deflect", "mcg_tau_spring", "mcg_pointer"
+          "mcg_tau_deflect_arc", "mcg_tau_spring_arc", "mcg_pointer"
         ],
         "radial": true,
         "phi_target_deg": 28.65,
@@ -657,7 +657,7 @@
         "caption": "A hairspring winds as the coil turns, pushing back with a restoring torque τ = kφ, opposite the deflecting torque.",
         "extras": {
           "current_dots": true,
-          "spring": { "enabled": true, "at_ms": 8000, "duration_ms": 1500 }
+          "spring": { "enabled": true, "at_ms": 8000, "duration_ms": 1500, "recoil_deg": 3 }
         }
       },
       "STATE_6": {
@@ -665,7 +665,7 @@
         "visible_elements": [
           "mcg_coil", "mcg_core", "mcg_pole_n", "mcg_pole_s",
           "mcg_field_arrow", "mcg_current_dot", "mcg_spring",
-          "mcg_tau_deflect", "mcg_tau_spring", "mcg_pointer"
+          "mcg_tau_deflect_arc", "mcg_tau_spring_arc", "mcg_balance_marker", "mcg_pointer"
         ],
         "radial": true,
         "phi_target_deg": 28.65,
@@ -674,7 +674,7 @@
         "caption": "The coil damped-settles where the deflecting and restoring torques balance: NIAB = kφ → φ = (NAB/k)·I.",
         "extras": {
           "current_dots": true,
-          "settle_phi": { "enabled": true, "at_ms": 8000, "duration_ms": 1800, "overshoot_deg": 2, "phi_eq_deg": 28.65 }
+          "settle_phi": { "enabled": true, "at_ms": 8000, "duration_ms": 2800, "overshoot_deg": 7, "oscillations": 2, "damping": 2.4, "phi_eq_deg": 28.65 }
         }
       },
       "STATE_7": {

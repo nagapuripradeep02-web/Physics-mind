@@ -441,12 +441,12 @@
             },
             {
               "id": "s5_2",
-              "text_en": "Now we have two expressions for the same flux. Set them equal and solve for E, and watch what happens to L.", "text_hi": "अब हमारे पास same flux के लिए दो expressions हैं। उन्हें equal set करो और E के लिए solve करो — और देखो L के साथ क्या होता है।", "text_te": "ఇప్పుడు మన దగ్గర same flux కోసం రెండు expressions ఉన్నాయి. వాటిని equal గా set చేసి E కోసం solve చేయండి — మరియు L తో ఏమి జరుగుతుందో చూడండి.",
+              "text_en": "Now we have two expressions for the same flux. Set them equal and solve for the field E, and watch what happens to the length L.", "text_hi": "अब हमारे पास same flux के लिए दो expressions हैं। उन्हें equal set करो और field E के लिए solve करो — और देखो length L के साथ क्या होता है।", "text_te": "ఇప్పుడు మన దగ్గర same flux కోసం రెండు expressions ఉన్నాయి. వాటిని equal గా set చేసి field E కోసం solve చేయండి — మరియు length L తో ఏమి జరుగుతుందో చూడండి.",
               "pause_after_ms": 2500
             },
             {
               "id": "s5_3",
-              "text_en": "The L on each side cancels. The field is lambda over two pi epsilon-nought r.", "text_hi": "हर side का L cancel हो जाता है। Field है lambda over two pi epsilon-nought r।", "text_te": "ప్రతి side యొక్క L cancel అయిపోతుంది. Field అంటే lambda over two pi epsilon-nought r."
+              "text_en": "The length L on each side cancels. The field is lambda over two pi epsilon-nought r.", "text_hi": "हर side का length L cancel हो जाता है। Field है lambda over two pi epsilon-nought r।", "text_te": "ప్రతి side యొక్క length L cancel అయిపోతుంది. Field అంటే lambda over two pi epsilon-nought r."
             },
             {
               "id": "s5_4",
@@ -513,7 +513,7 @@
             },
             {
               "id": "s6_2",
-              "text_en": "Back at the start you probably guessed the wire fades the same way. Does it? Watch the wire's own curve as r grows.", "text_hi": "शुरुआत में आपने शायद guess किया था कि wire उसी तरह fade होती है। क्या ऐसा है? Wire के अपने curve को देखो जैसे-जैसे r बढ़ता है।", "text_te": "మొదట్లో మీరు బహుశా guess చేశారు wire అదే విధంగా fade అవుతుందని. అలా అవుతుందా? r పెరిగే కొద్దీ wire యొక్క curve ని చూడండి.",
+              "text_en": "Back at the start you probably guessed the wire fades the same way. Does it? Watch the wire's own curve as the distance r grows.", "text_hi": "शुरुआत में आपने शायद guess किया था कि wire उसी तरह fade होती है। क्या ऐसा है? Wire के अपने curve को देखो जैसे-जैसे distance r बढ़ता है।", "text_te": "మొదట్లో మీరు బహుశా guess చేశారు wire అదే విధంగా fade అవుతుందని. అలా అవుతుందా? distance r పెరిగే కొద్దీ wire యొక్క curve ని చూడండి.",
               "pause_after_ms": 2800
             },
             {
@@ -522,7 +522,7 @@
             },
             {
               "id": "s6_4",
-              "text_en": "Why slower? The cylinder area, two pi r L, grows straight-line with r, while a sphere's four pi r squared grows much faster.", "text_hi": "Slower क्यों? Cylinder area, two pi r L, r के साथ straight-line में बढ़ता है, जबकि sphere का four pi r squared बहुत faster बढ़ता है।", "text_te": "Slower ఎందుకు? Cylinder area, two pi r L, r తో straight-line లో పెరుగుతుంది, అయితే sphere యొక్క four pi r squared చాలా faster గా పెరుగుతుంది."
+              "text_en": "Why slower? The cylinder area, two pi r L, grows straight-line with the distance r, while a sphere's four pi r squared grows much faster.", "text_hi": "Slower क्यों? Cylinder area, two pi r L, distance r के साथ straight-line में बढ़ता है, जबकि sphere का four pi r squared बहुत faster बढ़ता है।", "text_te": "Slower ఎందుకు? Cylinder area, two pi r L, distance r తో straight-line లో పెరుగుతుంది, అయితే sphere యొక్క four pi r squared చాలా faster గా పెరుగుతుంది."
             }
           ]
         },
@@ -585,11 +585,11 @@
             },
             {
               "id": "s7_2",
-              "text_en": "Drag r outward, the arrows shrink as one over r, and the readout slides down along the curve.", "text_hi": "r को outward drag करो, arrows one over r की तरह shrink होते हैं, और readout curve के साथ नीचे slide करता है।", "text_te": "r ని outward గా drag చేయండి — arrows one over r లా shrink అవుతాయి, మరియు readout curve వెంట కిందికి slide అవుతుంది."
+              "text_en": "Drag the radius r outward, the arrows shrink as one over r, and the readout slides down along the curve.", "text_hi": "radius r को outward drag करो, arrows one over r की तरह shrink होते हैं, और readout curve के साथ नीचे slide करता है।", "text_te": "radius r ని outward గా drag చేయండి — arrows one over r లా shrink అవుతాయి, మరియు readout curve వెంట కిందికి slide అవుతుంది."
             },
             {
               "id": "s7_3",
-              "text_en": "Notice E never cares where along the wire you stand, only lambda and your perpendicular distance r.", "text_hi": "गौर करो कि E को कभी फर्क नहीं पड़ता कि आप wire के कहाँ खड़े हो — केवल lambda और आपकी perpendicular distance r।", "text_te": "గమనించండి — E కి మీరు wire వెంట ఎక్కడ నిల్చున్నారో పట్టదు, కేవలం lambda మరియు మీ perpendicular distance r మాత్రమే."
+              "text_en": "Notice the field E never cares where along the wire you stand, only lambda and your perpendicular distance r.", "text_hi": "गौर करो कि field E को कभी फर्क नहीं पड़ता कि आप wire के कहाँ खड़े हो — केवल lambda और आपकी perpendicular distance r।", "text_te": "గమనించండి — field E కి మీరు wire వెంట ఎక్కడ నిల్చున్నారో పట్టదు, కేవలం lambda మరియు మీ perpendicular distance r మాత్రమే."
             }
           ]
         }

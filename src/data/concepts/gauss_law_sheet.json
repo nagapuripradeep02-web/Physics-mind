@@ -381,7 +381,7 @@
             },
             {
               "id": "s4_3",
-              "text_en": "It pierces straight through both flat caps. So the whole flux is the two caps together, E times A, plus E times A.", "text_hi": "यह दोनों flat caps के आर-पार सीधा pierce करता है। तो पूरा flux दोनों caps को मिलाकर है, E times A, plus E times A।", "text_te": "అది రెండు flat caps ద్వారా నేరుగా pierce చేస్తుంది. కాబట్టి మొత్తం flux రెండు caps కలిపి, E times A, plus E times A."
+              "text_en": "It pierces straight through both flat caps. So the whole flux is the two caps together, electric field E times A, plus E times A.", "text_hi": "यह दोनों flat caps के आर-पार सीधा pierce करता है। तो पूरा flux दोनों caps को मिलाकर है, electric field E times A, plus E times A।", "text_te": "అది రెండు flat caps ద్వారా నేరుగా pierce చేస్తుంది. కాబట్టి మొత్తం flux రెండు caps కలిపి, electric field E times A, plus E times A."
             }
           ]
         },
@@ -444,12 +444,12 @@
             },
             {
               "id": "s5_2",
-              "text_en": "Now we have two expressions for the same flux. Set them equal and solve for E, and watch the area A, and where the factor of two lands.", "text_hi": "अब हमारे पास same flux के दो expressions हैं। उन्हें equal set करो और E के लिए solve करो, और area A को देखो, और factor of two कहाँ आता है।", "text_te": "ఇప్పుడు మన దగ్గర same flux కోసం రెండు expressions ఉన్నాయి. వాటిని equal set చేసి E కోసం solve చేయండి, మరియు area A ని గమనించండి, మరియు factor of two ఎక్కడ వస్తుందో చూడండి.",
+              "text_en": "Now we have two expressions for the same flux. Set them equal and solve for the electric field E, and watch the area A, and where the factor of two lands.", "text_hi": "अब हमारे पास same flux के दो expressions हैं। उन्हें equal set करो और electric field E के लिए solve करो, और area A को देखो, और factor of two कहाँ आता है।", "text_te": "ఇప్పుడు మన దగ్గర same flux కోసం రెండు expressions ఉన్నాయి. వాటిని equal set చేసి electric field E కోసం solve చేయండి, మరియు area A ని గమనించండి, మరియు factor of two ఎక్కడ వస్తుందో చూడండి.",
               "pause_after_ms": 2500
             },
             {
               "id": "s5_3",
-              "text_en": "The area A on each side cancels. Two E equals sigma over epsilon-nought, so E is sigma over two epsilon-nought. The two is the two caps.", "text_hi": "हर side पर area A cancel हो जाता है। Two E equals sigma over epsilon-nought, तो E है sigma over two epsilon-nought। यह two, two caps की वजह से है।", "text_te": "ప్రతి side లో area A cancel అవుతుంది. Two E equals sigma over epsilon-nought, కాబట్టి E అంటే sigma over two epsilon-nought. ఆ two అనేది two caps వల్ల."
+              "text_en": "The area A on each side cancels. Two E equals sigma over epsilon-nought, so the electric field E is sigma over two epsilon-nought. The two is the two caps.", "text_hi": "हर side पर area A cancel हो जाता है। Two E equals sigma over epsilon-nought, तो electric field E है sigma over two epsilon-nought। यह two, two caps की वजह से है।", "text_te": "ప్రతి side లో area A cancel అవుతుంది. Two E equals sigma over epsilon-nought, కాబట్టి electric field E అంటే sigma over two epsilon-nought. ఆ two అనేది two caps వల్ల."
             },
             {
               "id": "s5_4",

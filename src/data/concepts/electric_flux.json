@@ -187,11 +187,11 @@
             },
             {
               "id": "s1_3",
-              "text_en": "No. Shrink the ring in the same field and fewer lines pierce, so the flux drops, even though E at every point is unchanged.", "text_hi": "नहीं। उसी field में ring को छोटा करिए — अब कम lines pierce होंगी, इसलिए flux कम हो जाएगा, भले ही हर point पर E बिल्कुल unchanged है।", "text_te": "లేదు. అదే field లో ring ని చిన్నదిగా చేయండి — అప్పుడు తక్కువ lines pierce అవుతాయి, flux తగ్గిపోతుంది, ప్రతి point లో E మారకున్నా సరే."
+              "text_en": "No. Shrink the ring in the same field and fewer lines pierce, so the flux drops, even though the electric field E at every point is unchanged.", "text_hi": "नहीं। उसी field में ring को छोटा करिए — अब कम lines pierce होंगी, इसलिए flux कम हो जाएगा, भले ही हर point पर electric field E बिल्कुल unchanged है।", "text_te": "లేదు. అదే field లో ring ని చిన్నదిగా చేయండి — అప్పుడు తక్కువ lines pierce అవుతాయి, flux తగ్గిపోతుంది, ప్రతి point లో electric field E మారకున్నా సరే."
             },
             {
               "id": "s1_4",
-              "text_en": "So flux measures how much field pierces an area. It is not the field at a point. Flux is not E.", "text_hi": "तो flux मापता है कि कितना field किसी area को pierce करता है। यह किसी point पर field नहीं है। flux, E नहीं है।", "text_te": "కాబట్టి flux అంటే ఎంత field ఒక area ని pierce చేస్తుందో అది కొలుస్తుంది. ఇది ఒక point వద్ద field కాదు. flux అనేది E కాదు."
+              "text_en": "So flux measures how much field pierces an area. It is not the field at a point. Flux is not the electric field E.", "text_hi": "तो flux मापता है कि कितना field किसी area को pierce करता है। यह किसी point पर field नहीं है। flux, electric field E नहीं है।", "text_te": "కాబట్టి flux అంటే ఎంత field ఒక area ని pierce చేస్తుందో అది కొలుస్తుంది. ఇది ఒక point వద్ద field కాదు. flux అనేది electric field E కాదు."
             }
           ]
         },
@@ -300,7 +300,7 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Same field, same area. Now I tilt the ring. Will the flux stay the same, since neither E nor A has changed?", "text_hi": "वही field, वही area। अब मैं ring को tilt करता हूँ। क्या flux same रहेगा, क्योंकि न E बदला है, न A?", "text_te": "అదే field, అదే area. ఇప్పుడు నేను ring ని tilt చేస్తున్నాను. E మారలేదు, A మారలేదు — flux same గా ఉంటుందా?"
+              "text_en": "Same field, same area. Now I tilt the ring. Will the flux stay the same, since neither the electric field E nor the area A has changed?", "text_hi": "वही field, वही area। अब मैं ring को tilt करता हूँ। क्या flux same रहेगा, क्योंकि न electric field E बदला है, न area A?", "text_te": "అదే field, అదే area. ఇప్పుడు నేను ring ని tilt చేస్తున్నాను. electric field E మారలేదు, area A మారలేదు — flux same గా ఉంటుందా?"
             },
             {
               "id": "s3_2",
@@ -375,7 +375,7 @@
             },
             {
               "id": "s4_2",
-              "text_en": "Split E into two arrows: one straight along the normal, one along the surface. Which one do you think actually pierces the face?", "text_hi": "E को दो arrows में split करिए: एक normal के साथ, एक surface के साथ। आपके हिसाब से कौन-सा actually face को pierce करता है?", "text_te": "E ని రెండు arrows గా split చేయండి: ఒకటి normal వెంట, ఒకటి surface వెంట. మీ అభిప్రాయంలో face ని actually pierce చేసేది ఏది?"
+              "text_en": "Split the electric field E into two arrows: one straight along the normal, one along the surface. Which one do you think actually pierces the face?", "text_hi": "electric field E को दो arrows में split करिए: एक normal के साथ, एक surface के साथ। आपके हिसाब से कौन-सा actually face को pierce करता है?", "text_te": "electric field E ని రెండు arrows గా split చేయండి: ఒకటి normal వెంట, ఒకటి surface వెంట. మీ అభిప్రాయంలో face ని actually pierce చేసేది ఏది?"
             },
             {
               "id": "s4_3",
@@ -507,7 +507,7 @@
             },
             {
               "id": "s6_2",
-              "text_en": "Flux is then the dot product of E and A. The dot product keeps only the part of E that lines up with the normal.", "text_hi": "तो flux E और A का dot product है। dot product केवल E के उस part को रखता है जो normal के साथ align होता है।", "text_te": "అప్పుడు flux అనేది E మరియు A యొక్క dot product. dot product E లో normal కి align అయ్యే part ని మాత్రమే ఉంచుతుంది."
+              "text_en": "Flux is then the dot product of the electric field E and the area vector A. The dot product keeps only the part of the electric field E that lines up with the normal.", "text_hi": "तो flux electric field E और area vector A का dot product है। dot product केवल electric field E के उस part को रखता है जो normal के साथ align होता है।", "text_te": "అప్పుడు flux అనేది electric field E మరియు area vector A యొక్క dot product. dot product electric field E లో normal కి align అయ్యే part ని మాత్రమే ఉంచుతుంది."
             },
             {
               "id": "s6_3",
@@ -640,7 +640,7 @@
             },
             {
               "id": "s8_4",
-              "text_en": "That net total is set only by the charge trapped inside — net Φ is proportional to q-enclosed, and nothing on the surface changes it.", "text_hi": "वह net total केवल अंदर बंद charge से तय होता है — net flux, q-enclosed के proportional है, और surface पर कुछ भी इसे नहीं बदलता।", "text_te": "ఆ net total లోపల trapped అయిన charge మాత్రమే నిర్ణయిస్తుంది — net flux అనేది q-enclosed కి proportional, surface పై ఏదీ దాన్ని మార్చదు."
+              "text_en": "That net total is set only by the charge trapped inside — net flux Φ is proportional to q-enclosed, and nothing on the surface changes it.", "text_hi": "वह net total केवल अंदर बंद charge से तय होता है — net flux, q-enclosed के proportional है, और surface पर कुछ भी इसे नहीं बदलता।", "text_te": "ఆ net total లోపల trapped అయిన charge మాత్రమే నిర్ణయిస్తుంది — net flux అనేది q-enclosed కి proportional, surface పై ఏదీ దాన్ని మార్చదు."
             }
           ]
         },
@@ -769,15 +769,15 @@
             },
             {
               "id": "s10_2",
-              "text_en": "Face-on, the flux is biggest and positive. At ninety degrees the disc is edge-on and Φ falls to zero.", "text_hi": "face-on position में flux सबसे ज़्यादा और positive है। ninety degrees पर disc edge-on हो जाती है और flux zero हो जाता है।", "text_te": "face-on position లో flux అత్యధికంగా మరియు positive గా ఉంటుంది. ninety degrees వద్ద disc edge-on అవుతుంది మరియు flux zero కి వస్తుంది."
+              "text_en": "Face-on, the flux is biggest and positive. At ninety degrees the disc is edge-on and the flux Φ falls to zero.", "text_hi": "face-on position में flux सबसे ज़्यादा और positive है। ninety degrees पर disc edge-on हो जाती है और flux zero हो जाता है।", "text_te": "face-on position లో flux అత్యధికంగా మరియు positive గా ఉంటుంది. ninety degrees వద్ద disc edge-on అవుతుంది మరియు flux zero కి వస్తుంది."
             },
             {
               "id": "s10_3",
-              "text_en": "Push past ninety and Φ turns negative as the field enters from behind; at one-eighty it is fully negative again.", "text_hi": "ninety से आगे जाइए और flux negative हो जाता है क्योंकि field पीछे से enter होती है; one-eighty पर यह पूरी तरह negative हो जाता है।", "text_te": "ninety దాటి వెళ్తే flux negative అవుతుంది ఎందుకంటే field వెనుక నుండి enter అవుతుంది; one-eighty వద్ద అది పూర్తిగా negative అవుతుంది."
+              "text_en": "Push past ninety and the flux Φ turns negative as the field enters from behind; at one-eighty it is fully negative again.", "text_hi": "ninety से आगे जाइए और flux negative हो जाता है क्योंकि field पीछे से enter होती है; one-eighty पर यह पूरी तरह negative हो जाता है।", "text_te": "ninety దాటి వెళ్తే flux negative అవుతుంది ఎందుకంటే field వెనుక నుండి enter అవుతుంది; one-eighty వద్ద అది పూర్తిగా negative అవుతుంది."
             },
             {
               "id": "s10_4",
-              "text_en": "The whole time, the piercing component E cosθ and the lines-through tally move together, tracing Φ equals EA cosθ across the full circle.", "text_hi": "पूरे समय, piercing component E cosθ और lines-through tally साथ-साथ चलते हैं — पूरे circle में flux equals EA cosθ को trace करते हुए।", "text_te": "పూరా సమయం, piercing component E cosθ మరియు lines-through tally కలిసి కదులుతాయి — మొత్తం circle లో flux equals EA cosθ ను trace చేస్తూ."
+              "text_en": "The whole time, the piercing component E cosθ and the lines-through tally move together, tracing the flux Φ equals EA cosθ across the full circle.", "text_hi": "पूरे समय, piercing component E cosθ और lines-through tally साथ-साथ चलते हैं — पूरे circle में flux equals EA cosθ को trace करते हुए।", "text_te": "పూరా సమయం, piercing component E cosθ మరియు lines-through tally కలిసి కదులుతాయి — మొత్తం circle లో flux equals EA cosθ ను trace చేస్తూ."
             }
           ]
         }

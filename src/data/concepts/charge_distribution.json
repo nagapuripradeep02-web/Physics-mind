@@ -544,11 +544,11 @@
             },
             {
               "id": "s6_3",
-              "text_en": "Lay the arrows head to tail. They add into one net field E — and notice it is shorter and tilted, not the centre-point guess.", "text_hi": "Arrows को head to tail रखें। वे एक net field E में add होते हैं — और ध्यान दें कि यह छोटा और tilted है, centre-point guess नहीं।", "text_te": "Arrows ను head to tail ఉంచండి. అవి ఒక net field E గా add అవుతాయి — మరియు అది పొట్టిగా మరియు tilted గా ఉందని గమనించండి, centre-point guess కాదు."
+              "text_en": "Lay the arrows head to tail. They add into one net electric field E — and notice it is shorter and tilted, not the centre-point guess.", "text_hi": "Arrows को head to tail रखें। वे एक net electric field E में add होते हैं — और ध्यान दें कि यह छोटा और tilted है, centre-point guess नहीं।", "text_te": "Arrows ను head to tail ఉంచండి. అవి ఒక net electric field E గా add అవుతాయి — మరియు అది పొట్టిగా మరియు tilted గా ఉందని గమనించండి, centre-point guess కాదు."
             },
             {
               "id": "s6_4",
-              "text_en": "This sum, over infinitely many infinitely small pieces, is the integral: E equals the sum of d-E, becomes the integral of d-E.", "text_hi": "यह sum, infinitely many infinitely small pieces पर, integral है: E equals the sum of d-E, integral of d-E बन जाता है।", "text_te": "ఇది sum, infinitely many infinitely small pieces పై, integral: E equals the sum of d-E, integral of d-E అవుతుంది."
+              "text_en": "This sum, over infinitely many infinitely small pieces, is the integral: the electric field E equals the sum of d-E, becomes the integral of d-E.", "text_hi": "यह sum, infinitely many infinitely small pieces पर, integral है: electric field E equals the sum of d-E, integral of d-E बन जाता है।", "text_te": "ఇది sum, infinitely many infinitely small pieces పై, integral: electric field E equals the sum of d-E, integral of d-E అవుతుంది."
             }
           ]
         },
@@ -609,7 +609,7 @@
             },
             {
               "id": "s7_2",
-              "text_en": "Slide the density up and every piece's field grows, so the net field E grows with it.", "text_hi": "density को slide up करें और हर piece का field बढ़ता है, तो net field E भी उसके साथ बढ़ता है।", "text_te": "density ని slide up చేయండి మరియు ప్రతి piece యొక్క field పెరుగుతుంది, కాబట్టి net field E కూడా దానితో పాటు పెరుగుతుంది."
+              "text_en": "Slide the density up and every piece's field grows, so the net electric field E grows with it.", "text_hi": "density को slide up करें और हर piece का field बढ़ता है, तो net electric field E भी उसके साथ बढ़ता है।", "text_te": "density ని slide up చేయండి మరియు ప్రతి piece యొక్క field పెరుగుతుంది, కాబట్టి net electric field E కూడా దానితో పాటు పెరుగుతుంది."
             },
             {
               "id": "s7_3",

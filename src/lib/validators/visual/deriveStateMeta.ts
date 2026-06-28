@@ -124,8 +124,23 @@ export function deriveMotionExpectations(
                 const animatesRoute = Array.isArray(pot.animate_route) && pot.animate_route.length > 0;
                 if (animatesRoute) { out[stateId] = true; continue; }
                 if (typeof pot.release_at_ms === 'number') { out[stateId] = true; continue; }
+                // electric_potential_dipole (dipole_potential): STATE_3 `sweep` (the
+                // probe travels across the centre at fixed r while V recolors + flips
+                // sign) and STATE_5 `theta_sweep` (0→180° angular sweep driving the
+                // V-vs-θ live dot) are continuous one-shot MOTION states → declare
+                // motion so D5/D6 expect pixels to move. STATE_4 disc reveal + STATE_6
+                // curve draw are one-shot reveals-then-HOLD → reveal_hold (below).
+                if (asObj(pot.sweep) || asObj(pot.theta_sweep)) { out[stateId] = true; continue; }
                 // other potential states fall through to reveal_hold / interactive.
             }
+            // parallel_plates (parallel_plate_capacitor_field): the gap-widen state
+            // (capacitor.gap_widen) physically separates the plates + re-spaces the
+            // field lines over a window → continuous one-shot MOTION (D5/D6 expect
+            // pixels to move). The other capacitor states are one-shot timed reveals
+            // then HOLD → reveal_hold; STATE_7 (show_sliders) is interactive — both
+            // handled in deriveHoldExpectations.
+            const cap = state ? asObj(state.capacitor) : null;
+            if (cap && asObj(cap.gap_widen)) { out[stateId] = true; continue; }
             // Other field_3d states fall through to the epic_l_path-based pass
             // below (trajectory_mode / advance_mode), so don't set them here.
         }
@@ -186,6 +201,11 @@ function isEnabled(v: unknown): boolean {
 const F3D_REVEAL_KEYS = [
     'wire_to_coil_morph', 'per_turn_field_circles',
     'radial_cancellation_arrows', 'axial_buildup_arrows',
+    'capacitor',
+    // electric_potential_dipole (dipole_potential) + the potential siblings: every
+    // state carries a `potential` reveal block (so a cached physics_config that
+    // flattened field_3d_config.states is still recognised as field_3d, not PCPL).
+    'potential',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -535,6 +555,83 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         const slideShell = asObj(pot.slide_along_shell);
         if (slideShell && typeof slideShell.at_ms === 'number') {
             candidates.push(asNum(slideShell.at_ms, 0) + asNum(slideShell.duration_ms, 3500) + 500);
+        }
+        // ── electric_potential_dipole (dipole_potential) NEW beats (session 2026-06-29)
+        //   The scalar-V arc. Its `potential` block carries one-shot timed reveals +
+        //   the STATE_3/5 probe sweeps + the STATE_6 curve draw. THE EYE MUST pin past
+        //   each payoff (incl. the sweep END) or the frozen capture lands before the
+        //   reveal / mid-sweep and photographs an incomplete frame. Mirrors
+        //   updateDipolePotentialFrame's ramps + sweeps:
+        //     • two_term_at_ms / v_readout_at_ms — STATE_1 superposition callout + V.
+        //     • theta_arc_at_ms / formula_callout_at_ms — STATE_2 θ-arc + collapsed form.
+        //     • sweep{at_ms,duration_ms} — STATE_3 probe travels 40°→140° (sign flip).
+        //     • disc_at_ms / disc_v_at_ms / e_arrow_at_ms — STATE_4 disc + V=0 + E arrow.
+        //     • v_theta_curve_at_ms / theta_sweep{at_ms,duration_ms} — STATE_5 sweep.
+        //     • curve_draw_at_ms / ghost_fade_at_ms / split_highlight_at_ms — STATE_6.
+        //   STATE_7 (show_sliders + draggable_probe) is user-driven → interactive.
+        if (typeof pot.two_term_at_ms === 'number') candidates.push(asNum(pot.two_term_at_ms, 0) + 600 + 300);
+        if (typeof pot.v_readout_at_ms === 'number') candidates.push(asNum(pot.v_readout_at_ms, 0) + 600);
+        if (typeof pot.theta_arc_at_ms === 'number') candidates.push(asNum(pot.theta_arc_at_ms, 0) + 500 + 300);
+        if (typeof pot.formula_callout_at_ms === 'number') candidates.push(asNum(pot.formula_callout_at_ms, 0) + 600 + 300);
+        const dpSweep = asObj(pot.sweep);
+        if (dpSweep && typeof dpSweep.at_ms === 'number') {
+            candidates.push(asNum(dpSweep.at_ms, 0) + asNum(dpSweep.duration_ms, asNum(dpSweep.dur_ms, 3500)) + 500);
+        }
+        if (typeof pot.disc_at_ms === 'number') candidates.push(asNum(pot.disc_at_ms, 0) + 700 + 300);
+        if (typeof pot.disc_v_at_ms === 'number') candidates.push(asNum(pot.disc_v_at_ms, 0) + 600 + 300);
+        // (e_arrow_at_ms already pinned above for the potential_meaning sibling.)
+        if (typeof pot.v_theta_curve_at_ms === 'number') candidates.push(asNum(pot.v_theta_curve_at_ms, 0) + 600);
+        const dpThSweep = asObj(pot.theta_sweep);
+        if (dpThSweep && typeof dpThSweep.at_ms === 'number') {
+            candidates.push(asNum(dpThSweep.at_ms, 0) + asNum(dpThSweep.duration_ms, 4000) + 500);
+        }
+        if (typeof pot.curve_draw_at_ms === 'number') candidates.push(asNum(pot.curve_draw_at_ms, 0) + 3500 + 500);
+        if (typeof pot.ghost_fade_at_ms === 'number') candidates.push(asNum(pot.ghost_fade_at_ms, 0) + 700 + 300);
+        if (typeof pot.split_highlight_at_ms === 'number') candidates.push(asNum(pot.split_highlight_at_ms, 0) + 1200 + 500);
+        if (typeof pot.predict_at_ms === 'number') candidates.push(asNum(pot.predict_at_ms, 0) + 800);
+    }
+    // parallel_plates (parallel_plate_capacitor_field): the E = V/d uniform-field
+    // arc. Its per-state `capacitor` block carries one-shot timed reveals that then
+    // HOLD their end pose (Rule 26, accumulator-free), plus the STATE_6 gap-widen
+    // morph. THE EYE MUST pin past each payoff or the frozen/dense capture lands
+    // BEFORE the reveal (the field3d_time_gated_visual_invisible false negative).
+    // Mirrors updateParallelPlatesFrame's ramps:
+    //   • gap_bracket_at_ms  — STATE_1 the d bracket fades in (then holds).
+    //   • field_lines_at_ms  — STATE_2/4 straight + → − lines reveal (+ STATE_4's
+    //                          late re-reveal after the sheet superposition).
+    //   • probe_arrows_at_ms — STATE_3 the three equal probe arrows fade in.
+    //   • sheet_fields_at_ms / cancel_outside_at_ms — STATE_4 two-sheet add-inside,
+    //                          then the OUTSIDE pair fades to zero (cancel) — the
+    //                          last payoff; pin past the cancel fade.
+    //   • fringe_at_ms       — STATE_5 the edge fringe curls in (then holds).
+    //   • gap_widen{anim_at_ms,duration_ms} — STATE_6 plates separate + E halves;
+    //                          pin past the morph end so the captured frame shows the
+    //                          WIDE gap + the halved E readout (held).
+    // STATE_7 (show_sliders + capacitor.draggable_test_charge) is user-driven →
+    // deriveHoldExpectations marks it interactive; not pinned here.
+    const cap = asObj(state.capacitor);
+    if (cap) {
+        if (typeof cap.gap_bracket_at_ms === 'number') {
+            candidates.push(asNum(cap.gap_bracket_at_ms, 0) + 500 + 300);
+        }
+        if (typeof cap.field_lines_at_ms === 'number') {
+            candidates.push(asNum(cap.field_lines_at_ms, 0) + 600 + 300);
+        }
+        if (typeof cap.probe_arrows_at_ms === 'number') {
+            candidates.push(asNum(cap.probe_arrows_at_ms, 0) + 600 + 300);
+        }
+        if (typeof cap.sheet_fields_at_ms === 'number') {
+            candidates.push(asNum(cap.sheet_fields_at_ms, 0) + 600 + 300);
+        }
+        if (typeof cap.cancel_outside_at_ms === 'number') {
+            candidates.push(asNum(cap.cancel_outside_at_ms, 0) + 800 + 300);
+        }
+        if (typeof cap.fringe_at_ms === 'number') {
+            candidates.push(asNum(cap.fringe_at_ms, 0) + 700 + 300);
+        }
+        const gapWiden = asObj(cap.gap_widen);
+        if (gapWiden) {
+            candidates.push(asNum(gapWiden.anim_at_ms, 9000) + asNum(gapWiden.duration_ms, 2500) + 500);
         }
     }
     // rhr_force_direction: the DIRECTION-ONLY F = qv×B sibling. Its reveal beats
@@ -996,8 +1093,24 @@ export function deriveHoldExpectations(
             const potHold = asObj(state.potential);
             if (potHold) {
                 if (potHold.draggable_test_charge === true) { out[stateId] = 'interactive'; continue; }
+                // electric_potential_dipole STATE_7: draggable_probe + θ/r sliders →
+                // user-driven (the headless harness never drags) → interactive.
+                if (potHold.draggable_probe === true) { out[stateId] = 'interactive'; continue; }
                 const routes = Array.isArray(potHold.animate_route) && potHold.animate_route.length > 0;
                 if (routes || typeof potHold.release_at_ms === 'number') { out[stateId] = undefined; continue; }
+                // dipole_potential STATE_5 `theta_sweep`: the 0→180° angular sweep plays
+                // ONCE (~10s) then HOLDS the finished cosine curve + the probe at its end
+                // pose — a one-shot-then-hold reveal. It IS declared motion (it moves
+                // mid-state, deriveMotionExpectations) but its hold intent is reveal_hold
+                // so D7 permits the expected post-sweep frozen tail (the same relaxation
+                // the parallel_plates reveal states get) instead of a stuck-animation
+                // false-fail.
+                if (asObj(potHold.theta_sweep)) { out[stateId] = 'reveal_hold'; continue; }
+                // dipole_potential STATE_3 `sweep`: the probe crosses the centre at fixed
+                // r while the V readout keeps recoloring + flipping sign across the sweep
+                // → keep the strict gate (undefined) so D5/D6/D7 expect ongoing pixel
+                // motion (this state passes D7 as-is).
+                if (asObj(potHold.sweep)) { out[stateId] = undefined; continue; }
                 // Any OTHER potential state has NO continuous driver (no drag, no
                 // route travel, no release fly-out — those are the only motion sources
                 // in the potential arc). It is therefore a reveal-THEN-HOLD state: it

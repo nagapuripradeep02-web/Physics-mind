@@ -142,11 +142,11 @@
             },
             {
               "id": "s1_2",
-              "text_en": "The test charge feels a force F — even though nothing is touching it. The space around Q is doing the pushing.", "text_hi": "test charge को एक force F feel होता है — चाहे उसे कोई touch भी नहीं कर रहा। Q के आसपास का space ही pushing कर रहा है।", "text_te": "test charge కు ఒక force F అనుభవమవుతుంది — అది touch చేయకపోయినా కూడా. Q చుట్టూ ఉన్న space అది push చేస్తోంది."
+              "text_en": "The test charge feels a force F — even though nothing is touching it. The space around the charge Q is doing the pushing.", "text_hi": "test charge को एक force F feel होता है — चाहे उसे कोई touch भी नहीं कर रहा। charge Q के आसपास का space ही pushing कर रहा है।", "text_te": "test charge కు ఒక force F అనుభవమవుతుంది — అది touch చేయకపోయినా కూడా. charge Q చుట్టూ ఉన్న space అది push చేస్తోంది."
             },
             {
               "id": "s1_3",
-              "text_en": "We give that push a name: the electric field. E is the force per unit charge — E equals F divided by q.", "text_hi": "हम उस push को एक नाम देते हैं: electric field। E है force per unit charge — E equals F divided by q।", "text_te": "మనం ఆ push కి ఒక పేరు పెడతాం: electric field. E అనేది force per unit charge — E equals F divided by q."
+              "text_en": "We give that push a name: the electric field. The electric field E is the force per unit charge — E equals F divided by q.", "text_hi": "हम उस push को एक नाम देते हैं: electric field। electric field E है force per unit charge — E equals F divided by q।", "text_te": "మనం ఆ push కి ఒక పేరు పెడతాం: electric field. electric field E అనేది force per unit charge — E equals F divided by q."
             },
             {
               "id": "s1_4",
@@ -196,7 +196,7 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Pick a point P at a distance r from the charge. The field there points straight out, along the line from Q to P.", "text_hi": "charge से r दूरी पर एक point P चुनो। वहाँ का field सीधा बाहर point करता है, Q से P की line के साथ।", "text_te": "charge నుండి r దూరంలో ఒక point P తీసుకోండి. అక్కడ field నేరుగా బయటకు point చేస్తుంది, Q నుండి P వరకు ఉన్న line వెంట."
+              "text_en": "Pick a point P at a distance r from the charge. The field there points straight out, along the line from the charge Q to P.", "text_hi": "charge से r दूरी पर एक point P चुनो। वहाँ का field सीधा बाहर point करता है, charge Q से P की line के साथ।", "text_te": "charge నుండి r దూరంలో ఒక point P తీసుకోండి. అక్కడ field నేరుగా బయటకు point చేస్తుంది, charge Q నుండి P వరకు ఉన్న line వెంట."
             },
             {
               "id": "s2_2",
@@ -328,7 +328,7 @@
             },
             {
               "id": "s4_3",
-              "text_en": "At any point, the tangent to the line gives the direction of E there.", "text_hi": "किसी भी point पर, line की tangent वहाँ E की direction देती है।", "text_te": "ఏ point లోనైనా, line యొక్క tangent అక్కడ E యొక్క direction ని చెప్తుంది."
+              "text_en": "At any point, the tangent to the line gives the direction of the electric field E there.", "text_hi": "किसी भी point पर, line की tangent वहाँ electric field E की direction देती है।", "text_te": "ఏ point లోనైనా, line యొక్క tangent అక్కడ electric field E యొక్క direction ని చెప్తుంది."
             },
             {
               "id": "s4_4",
@@ -390,7 +390,7 @@
             },
             {
               "id": "s5_4",
-              "text_en": "So the picture and the formula are the same fact: the lines thin out as 1 over r squared, exactly like E.", "text_hi": "तो picture और formula एक ही fact हैं: lines 1 over r squared की तरह thin out होती हैं, बिल्कुल E की तरह।", "text_te": "అంటే picture మరియు formula ఒకే fact: lines 1 over r squared లాగా thin out అవుతాయి, సరిగ్గా E లాగా."
+              "text_en": "So the picture and the formula are the same fact: the lines thin out as 1 over r squared, exactly like the electric field E.", "text_hi": "तो picture और formula एक ही fact हैं: lines 1 over r squared की तरह thin out होती हैं, बिल्कुल electric field E की तरह।", "text_te": "అంటే picture మరియు formula ఒకే fact: lines 1 over r squared లాగా thin out అవుతాయి, సరిగ్గా electric field E లాగా."
             }
           ]
         },
@@ -513,7 +513,7 @@
             },
             {
               "id": "s7_2",
-              "text_en": "Watch the field arrow and the live readout. Double Q and E doubles. Flip the sign and the arrow reverses.", "text_hi": "field arrow और live readout देखो। Q को double करो और E double हो जाता है। sign flip करो और arrow reverse हो जाता है।", "text_te": "field arrow మరియు live readout చూడండి. Q ని double చేస్తే E double అవుతుంది. sign ని flip చేస్తే arrow reverse అవుతుంది."
+              "text_en": "Watch the field arrow and the live readout. Double the charge Q and the electric field E doubles. Flip the sign and the arrow reverses.", "text_hi": "field arrow और live readout देखो। charge Q को double करो और electric field E double हो जाता है। sign flip करो और arrow reverse हो जाता है।", "text_te": "field arrow మరియు live readout చూడండి. charge Q ని double చేస్తే electric field E double అవుతుంది. sign ని flip చేస్తే arrow reverse అవుతుంది."
             },
             {
               "id": "s7_3",

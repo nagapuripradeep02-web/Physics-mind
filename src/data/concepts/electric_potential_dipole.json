@@ -1,0 +1,1236 @@
+{
+  "concept_id": "electric_potential_dipole",
+  "concept_name": "Potential of a Dipole — V = kp cosθ/r² (zero on the equator, falls as 1/r²)",
+  "chapter": 2,
+  "section": "2.4",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.2 Electrostatic Potential and Capacitance (§2.4 Potential due to an electric dipole) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (drop a probe and add the two point-charge potentials +kq/r₊ and −kq/r₋ as a SCALAR sum → step well back to the far field and watch the two-term sum collapse to the clean V = kp cosθ/r² → swing the probe across the centre at fixed r and confront the '+q wins so V is always positive' belief: the sign follows cos θ, i.e. POSITION, not the friendlier charge → go to the equatorial plane θ=90° and confront the 'zero only at the midpoint' belief: V is zero across the WHOLE plane because every point is equidistant from ±q → then the twist: V=0 does NOT mean E=0, a green E arrow stays alive across the plane (potential is height, field is slope) → sweep θ on a cosine V-vs-θ graph to nail V as a signed SCALAR with no arrow → put dipole 1/r² over a point-charge 1/r ghost to confront the '1/r like a single charge' belief → hand the explorer the draggable probe + θ and r sliders), never copied. The atomic idea: the potential of a dipole at a far point is V = k p cosθ / r², a SCALAR sum of the two charge potentials; it falls as 1/r² (one power STEEPER than a single charge's 1/r, because +q and −q nearly cancel far away); its SIGN follows cos θ (positive on the +q side, negative on the −q side); it is ZERO on the ENTIRE equatorial plane (θ=90°), where the electric field is nonetheless NON-zero (E = −grad V). SCOPE: this is the dipole POTENTIAL/VALUE diamond of Ch.2 — it teaches V = kp cosθ/r², the cos θ sign rule, the equatorial zero, and the 1/r² falloff. It declares electric_potential_point_charge (V = kQ/r), electric_potential_meaning (V = W/q), and electric_field_dipole (the dipole's vector FIELD and torque) as prerequisites and does NOT re-teach them. It does NOT cover capacitance, the dipole's field magnitude/direction, or torque in a uniform field (electric_dipole_in_field). The headline contrasts are: V's sign follows POSITION not charge preference; V = 0 on the whole equator but E ≠ 0; and dipole V ~ 1/r² is steeper than a point charge's 1/r. NEW field_3d dipole_potential primitives: two charges (+q/−q) + a p arrow, a draggable probe with a live signed V readout (potential_explorer), a two-term superposition callout, a θ arc + far-field formula callout, a sign-by-position recolor, a translucent equatorial DISC reading V=0 with a persistent non-zero equatorial E arrow (the aha), an angular V-vs-θ cosine curve, a dipole-1/r² over point-charge-1/r ghost falloff curve, and 2D equipotential contour LOBES in a slice-plane (NOT 3D tessellated surfaces — founder lean lock). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "dipole_potential"
+    ]
+  },
+  "prerequisites": [
+    "electric_potential_point_charge",
+    "electric_potential_meaning",
+    "electric_field_dipole"
+  ],
+  "real_world_anchor": {
+    "primary": "Think of a single water molecule. Its oxygen end is slightly negative and its two hydrogen ends are slightly positive, so the molecule is a tiny dipole. Around it the voltage is not the same everywhere: on the hydrogen side there is a small positive hill, on the oxygen side a small negative dip, and right along the band that sits equally between the two ends the voltage reads exactly zero. When salt dissolves in water, the positive sodium ions drift toward the negative dips and the negative chloride ions toward the positive hills — they are literally reading this dipole voltage map. That hill, dip, and zero-band is the potential of a dipole.",
+    "secondary": "Run a plastic comb through dry hair and bring it near tiny torn bits of paper. Each scrap of paper has its own + and − ends pulled slightly apart by the comb — each becomes a little dipole. The voltage each scrap sets up in the air around it is a dipole's potential: a small positive bump on one end, a negative bump on the other, and a zero line down the middle, fading away fast as you step back because a dipole's voltage dies as one over distance squared."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "q": {
+        "name": "Magnitude of each dipole charge (+q and −q); kept at +1 across the arc",
+        "unit": "demo nC",
+        "role": "source",
+        "min": 1,
+        "max": 1,
+        "default": 1,
+        "step": 1
+      },
+      "r": {
+        "name": "Distance of the field point (probe) from the dipole centre (the STATE_7 drag + slider owns this; drives the live signed V readout and the falloff curve)",
+        "unit": "demo units",
+        "min": 0.6,
+        "max": 3.0,
+        "default": 1.5,
+        "step": 0.05
+      },
+      "theta": {
+        "name": "Angle of the probe measured from the dipole axis (the p direction); cos θ sets the SIGN of V, and θ = 90° is the equatorial plane where V = 0",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "default": 0,
+        "step": 5
+      },
+      "a": {
+        "name": "Half-separation of the two charges (the charges sit at ±a along the axis; the dipole moment is p = q·2a)",
+        "unit": "demo units",
+        "min": 0.5,
+        "max": 0.5,
+        "default": 0.5,
+        "step": 0.1
+      },
+      "k": {
+        "name": "Coulomb constant k = 1/(4*pi*epsilon_0) (the k in V = k*p*cos(theta)/r^2)",
+        "unit": "N*m^2/C^2",
+        "min": 8990000000,
+        "max": 8990000000,
+        "default": 8990000000,
+        "step": 1
+      },
+      "DEMO_VP": {
+        "name": "Demo potential readout per demo-nC at unit demo radius — THE round number the on-screen V values ride on (so the dipole/point curves read in clean demo units, not SI volts)",
+        "unit": "demo V per (demo nC) at r=1",
+        "min": 12,
+        "max": 12,
+        "default": 12,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "V_dipole_demo": {
+        "formula": "DEMO_VP * Math.cos(theta*Math.PI/180) / Math.max(r*r, 0.0025)"
+      },
+      "V_plus_demo": {
+        "formula": "DEMO_VP * q / Math.max(Math.sqrt(r*r + a*a - 2*a*r*Math.cos(theta*Math.PI/180)), 0.05)"
+      },
+      "V_minus_demo": {
+        "formula": "-DEMO_VP * q / Math.max(Math.sqrt(r*r + a*a + 2*a*r*Math.cos(theta*Math.PI/180)), 0.05)"
+      },
+      "V_superpose_demo": {
+        "formula": "DEMO_VP * q / Math.max(Math.sqrt(r*r + a*a - 2*a*r*Math.cos(theta*Math.PI/180)), 0.05) - DEMO_VP * q / Math.max(Math.sqrt(r*r + a*a + 2*a*r*Math.cos(theta*Math.PI/180)), 0.05)"
+      },
+      "V_point_ghost_demo": {
+        "formula": "DEMO_VP / Math.max(r, 0.05)"
+      },
+      "E_equatorial_demo": {
+        "formula": "DEMO_VP * (q * 2 * a) / Math.max(r*r*r, 0.000125)"
+      }
+    },
+    "derived_fields_declared": [
+      "V_dipole_demo",
+      "V_plus_demo",
+      "V_minus_demo",
+      "V_superpose_demo",
+      "V_point_ghost_demo",
+      "E_equatorial_demo"
+    ],
+    "formulas": {
+      "potential_dipole": "V = k*p*cos(theta)/r^2",
+      "superposition": "V = k*q/r_plus - k*q/r_minus",
+      "dipole_moment": "p = q*2a",
+      "equatorial_zero": "V = 0 on the entire equatorial plane (theta = 90 deg), since cos 90 = 0 and the two equidistant terms cancel",
+      "falloff": "V ~ 1/r^2, one power steeper than a single charge's 1/r",
+      "v_not_e": "E = -gradient(V): V = 0 on the equatorial plane does NOT make E = 0 there",
+      "k": "8.99e9"
+    },
+    "constraints": [
+      "The potential of a dipole is a SIGNED SCALAR, one number per point with no direction and no arrow - it is the algebraic SUM of the two charge potentials (C1).",
+      "Because potential is a scalar, the dipole's V is simply V = k*q/r_plus - k*q/r_minus, the near-charge term minus the far-charge term, never a vector sum (C2).",
+      "Far from the dipole (r much greater than the separation 2a) the two-term sum collapses to V = k*p*cos(theta)/r^2, where p = q*2a is the dipole moment (C3).",
+      "The SIGN of V follows cos(theta), i.e. POSITION: V > 0 where cos(theta) > 0 (the +q side), V < 0 where cos(theta) < 0 (the -q side); it is not set by which charge is 'bigger' (C4).",
+      "V = 0 on the ENTIRE equatorial plane (theta = 90 deg), not only at the midpoint, because every point on that plane is equidistant from +q and -q so the two terms cancel (C5).",
+      "V = 0 on the equatorial plane does NOT mean E = 0 there: E = -gradient(V) is the SLOPE of V, and V changes as you step off the plane, so the field is alive and points across the plane, antiparallel to p (C6).",
+      "The dipole's potential falls off as 1/r^2 - one power STEEPER than a single point charge's 1/r - because from far away +q and -q almost overlap and their potentials nearly cancel, leaving only the faint 1/r^2 remainder (C7).",
+      "The reference is V(infinity) = 0; the on-screen V numbers use round DEMO units (DEMO_VP = 12), not SI volts (C8)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "On the whole equatorial plane a dipole's potential is zero, yet its field is not.",
+    "visual_confirmation": "The translucent equatorial disc reads V = 0 at every point on it, while a bright green non-zero E arrow stays drawn straight across the plane, antiparallel to p.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "angular": [
+      "STATE_5"
+    ],
+    "falloff": [
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "A dipole + a probe — add the two charge potentials as scalars",
+        "duration": 17,
+        "focal_primitive_id": "dipole_pair",
+        "advance_mode": "auto_after_tts",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "dipole_pair",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "a dipole: +q and −q, p points −q → +q",
+            "color": "#FFCA28",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "two_term_callout",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "each charge gives its own V: +k q / r₊ and −k q / r₋",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "probe_v_readout",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "V is a scalar — just ADD them: V = k q / r₊ − k q / r₋",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Here is a dipole: a positive charge plus q and a negative charge minus q, a small distance apart, with the dipole moment p pointing from minus q to plus q.",
+              "reveal_primitive_id": "dipole_pair",
+              "appear_at_ms": 600
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Drop a probe at any point. Each charge sets up its own potential there: plus k q over r-plus from the near charge, minus k q over r-minus from the far one.",
+              "reveal_primitive_id": "two_term_callout",
+              "appear_at_ms": 6500
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Potential is a scalar, so we simply ADD the two numbers. The dipole's potential is the sum: potential V equals k q over r-plus, minus k q over r-minus.",
+              "reveal_primitive_id": "probe_v_readout",
+              "appear_at_ms": 12500
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Step back: the two-term sum collapses to V = k p cosθ / r²",
+        "duration": 19,
+        "focal_primitive_id": "formula_callout",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "theta_arc",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "step back; sweep the angle θ from the dipole axis",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "formula_callout",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "far field: V = k p cos θ / r²   (p = q · 2a)",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "far_field_note",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "r is downstairs SQUARED; θ enters only through cos θ",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Step the probe well back, far compared with the charge separation. Sweep the angle theta, measured from the dipole axis.",
+              "reveal_primitive_id": "theta_arc",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Out here the two-term sum collapses to one clean expression: the potential V equals k p cosine theta over r squared, where p is the dipole moment q times two a.",
+              "reveal_primitive_id": "formula_callout",
+              "appear_at_ms": 6000
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Read it carefully: r sits downstairs SQUARED, and the angle theta enters only through cosine theta. Hold on to both of those.",
+              "reveal_primitive_id": "far_field_note",
+              "appear_at_ms": 13000
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Cross to the other side — the sign follows POSITION, not charge",
+        "duration": 20,
+        "focal_primitive_id": "sign_recolor",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "misconception_confrontation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "probe_sweep",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "keep r fixed; swing the probe past the centre",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_sign_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "does V stay positive (+q wins), or go negative?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sign_recolor",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "V > 0 where cos θ > 0, V < 0 where cos θ < 0",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Keep the distance r fixed and swing the probe across to the other side of the dipole, past the centre.",
+              "reveal_primitive_id": "probe_sweep",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Predict the sign of the potential V over there. Does it stay positive because plus q is the bigger, friendlier charge, or does it go negative?",
+              "reveal_primitive_id": "predict_sign_label",
+              "appear_at_ms": 5500,
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Watch. The sign follows POSITION, not the charge you like. Near plus q, cosine theta is positive, so V is positive; cross to the minus q side and V turns negative.",
+              "reveal_primitive_id": "sign_recolor",
+              "appear_at_ms": 9000
+            },
+            {
+              "id": "s3_4",
+              "text_en": "The potential V is positive wherever cosine theta is positive and negative wherever cosine theta is negative — the side you stand on decides the sign.",
+              "reveal_primitive_id": "sign_recolor",
+              "appear_at_ms": 15000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The potential is positive everywhere around a dipole because the positive charge 'wins', or its sign is set by whichever charge is bigger.",
+            "visual_counter": "As the probe crosses the centre at fixed r, the live V recolors from blue-positive to red-negative the instant cos(theta) changes sign - position flips it, not charge size.",
+            "one_line_fix": "V's sign follows POSITION: positive where cos(theta)>0 (the +q side), negative where cos(theta)<0 (the -q side)."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_whole_plane_zero",
+          "zero_v_nonzero_e",
+          "equatorial_vs_centre"
+        ]
+      },
+      "STATE_4": {
+        "title": "The equatorial plane: V = 0 everywhere — but E is not",
+        "duration": 28,
+        "focal_primitive_id": "equatorial_E_arrow",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "misconception_confrontation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "equatorial_disc",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "the equatorial plane: θ = 90°, halfway between ±q",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_zero_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "V = 0 only at the centre, or across the WHOLE plane?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "disc_v_zero",
+            "position": {
+              "x": 600,
+              "y": 300
+            },
+            "text": "V = 0 EVERYWHERE: cos 90° = 0, the two terms cancel",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "equatorial_E_arrow",
+            "position": {
+              "x": 360,
+              "y": 380
+            },
+            "text": "but E ≠ 0 — it points straight across, antiparallel to p",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "slope_vs_height_label",
+            "position": {
+              "x": 360,
+              "y": 450
+            },
+            "text": "V is height (flat = 0); E is slope (still tilts)",
+            "color": "#D4D4D8",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now go to the plane exactly halfway between the two charges, the equatorial plane at theta equal to ninety degrees.",
+              "reveal_primitive_id": "equatorial_disc",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s4_2",
+              "text_en": "On this whole plane every point is equally far from plus q and from minus q. Predict the potential V here — zero only at the dead centre, or zero across the ENTIRE plane?",
+              "reveal_primitive_id": "predict_zero_label",
+              "appear_at_ms": 6000,
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The potential V is zero EVERYWHERE on this plane. The two equal-and-opposite terms cancel at every point, because cosine of ninety degrees is zero.",
+              "reveal_primitive_id": "disc_v_zero",
+              "appear_at_ms": 10000
+            },
+            {
+              "id": "s4_4",
+              "text_en": "But here is the twist. Zero potential does NOT mean zero field. The electric field E on this plane is very much alive — it points straight across, antiparallel to p.",
+              "reveal_primitive_id": "equatorial_E_arrow",
+              "appear_at_ms": 16000
+            },
+            {
+              "id": "s4_5",
+              "text_en": "Potential measures height; field measures slope. The plane is flat at sea level, so V is zero — but the ground tilts as you step off it, so E is not.",
+              "reveal_primitive_id": "slope_vs_height_label",
+              "appear_at_ms": 22000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The dipole's potential is zero only at the single midpoint between the charges, not anywhere else.",
+            "visual_counter": "The whole translucent equatorial disc lights up at V=0 at once - every point on it, not just the centre, reads zero because each point is equidistant from +q and -q.",
+            "one_line_fix": "V = 0 on the ENTIRE equatorial plane (theta=90 deg), because the +kq/r_plus and -kq/r_minus terms cancel at every equidistant point."
+          },
+          {
+            "belief": "Where the potential is zero the electric field must also be zero - no potential means no field.",
+            "visual_counter": "On the V=0 disc a bright green E arrow stays drawn, pointing across the plane antiparallel to p - the field is plainly non-zero where V is exactly zero.",
+            "one_line_fix": "V=0 does not imply E=0: E is the SLOPE of V (E=-grad V), and V changes as you step off the plane, so the field there is alive."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_whole_plane_zero",
+          "zero_v_nonzero_e",
+          "equatorial_vs_centre"
+        ]
+      },
+      "STATE_5": {
+        "title": "Sweep θ: V rides a cosine curve — a signed scalar, no arrow",
+        "duration": 19,
+        "focal_primitive_id": "v_vs_theta_curve",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "v_vs_theta_curve",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "fix r, sweep θ from 0° to 180°; trace V",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "cos_sweep",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "V ∝ cos θ: max + at 0°, zero at 90°, max − at 180°",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "scalar_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "no arrow anywhere — V is a signed scalar",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Hold the distance r fixed and sweep the angle theta from zero all the way to one hundred eighty degrees, tracing the potential V on a graph.",
+              "reveal_primitive_id": "v_vs_theta_curve",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s5_2",
+              "text_en": "The potential V rides a cosine curve: maximum positive at theta zero, straight down through zero at ninety degrees, then maximum negative at one hundred eighty.",
+              "reveal_primitive_id": "cos_sweep",
+              "appear_at_ms": 6500
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Notice there is no arrow anywhere on this curve — just a single signed number that rises and falls. The potential V is a scalar, plus or minus, never a direction.",
+              "reveal_primitive_id": "scalar_label",
+              "appear_at_ms": 13000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Potential is a vector, like the field - it should have a direction or an arrow attached to it.",
+            "visual_counter": "The V-vs-theta cosine curve carries only a signed number that rises and falls; no arrow is ever drawn on V, while E (shown earlier) clearly did have one.",
+            "one_line_fix": "V is a signed SCALAR: one number, plus or minus, with no direction - only the field E is a vector."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Falloff: dipole V dies as 1/r² — steeper than a point charge's 1/r",
+        "duration": 20,
+        "focal_primitive_id": "inv_r2_split",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "misconception_confrontation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "inv_r2_curve",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "fix θ; pull the probe out, watch V die with r",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_falloff_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "dipole V fades as 1/r like a point charge, or faster?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "inv_r2_split",
+            "position": {
+              "x": 600,
+              "y": 360
+            },
+            "text": "faster: dipole V ~ 1/r² dives below the 1/r ghost",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "cancellation_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "far away +q and −q nearly cancel — only 1/r² is left",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Fix the angle theta and pull the probe outward, watching how fast the potential V dies with distance r.",
+              "reveal_primitive_id": "inv_r2_curve",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s6_2",
+              "text_en": "A single point charge fades as one over r. Predict the dipole: does its potential V also fade as one over r, or faster?",
+              "reveal_primitive_id": "predict_falloff_label",
+              "appear_at_ms": 5500,
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Faster. The dipole's potential V falls as one over r SQUARED, one power steeper than a single charge — the bright curve dives below the dimmed one-over-r ghost.",
+              "reveal_primitive_id": "inv_r2_split",
+              "appear_at_ms": 9000
+            },
+            {
+              "id": "s6_4",
+              "text_en": "The reason is cancellation: from far away plus q and minus q almost overlap, so their potentials nearly cancel, leaving only the faint one-over-r-squared remainder.",
+              "reveal_primitive_id": "cancellation_label",
+              "appear_at_ms": 15000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A dipole's potential falls off as 1/r, the same as a single point charge.",
+            "visual_counter": "On the V-vs-distance graph the bright dipole curve dives BELOW the dimmed 1/r point-charge ghost and keeps dropping - visibly steeper at every r.",
+            "one_line_fix": "A dipole's V falls as 1/r^2, one power faster than a point charge's 1/r, because the +q and -q potentials nearly cancel far away."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_1_over_r2",
+          "dipole_vs_point_falloff"
+        ]
+      },
+      "STATE_7": {
+        "title": "You drive — drag the probe, slide θ and r, read V live",
+        "duration": 17,
+        "focal_primitive_id": "probe_draggable",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "probe_draggable",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "drag the probe, or slide θ and r — read V live",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sign_live_readout",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "+q side: V positive · −q side: V negative · equator: V = 0",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "inv_r2_live_dot",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "pull out and V collapses fast (1/r²): a water molecule's voltage map",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now you drive. Drag the probe anywhere, or use the sliders for the angle theta and the distance r, and read the signed potential V live.",
+              "reveal_primitive_id": "probe_draggable",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Cross to the plus q side for a positive V, the minus q side for a negative V, and ride the equatorial plane to watch V sit exactly at zero.",
+              "reveal_primitive_id": "sign_live_readout",
+              "appear_at_ms": 6000
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Pull outward and feel the potential V collapse fast, as one over r squared. This is the voltage map of a water molecule: a plus hill, a minus dip, and a zero band between them.",
+              "reveal_primitive_id": "inv_r2_live_dot",
+              "appear_at_ms": 12000
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the potential of a dipole when they can (1) write the far-field potential V = k p cosθ / r² and recognise it as the SCALAR sum of the two charge potentials (V = kq/r₊ − kq/r₋); (2) determine the SIGN of V from position via cos θ — positive on the +q side, negative on the −q side — and reject the '+q always wins' belief; (3) state that V = 0 across the ENTIRE equatorial plane (θ = 90°), not just at the midpoint, because every point there is equidistant from ±q; (4) reason that V = 0 on the equatorial plane does NOT make E = 0 there, since E = −grad V is the slope of V; (5) recognise that a dipole's potential falls as 1/r², one power steeper than a point charge's 1/r, because the two charges nearly cancel far away; and (6) treat V as a signed scalar with no direction, distinct from the vector field E.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A dipole has moment p. At a point a distance r from its centre (far from the dipole), in a direction making angle θ with the dipole axis, what is the potential V?",
+        "options": {
+          "A": "V = k p cos θ / r² — falls as 1/r² and depends on the angle through cos θ",
+          "B": "V = k p / r² — independent of the angle θ",
+          "C": "V = k p cos θ / r — falls as 1/r, like a single point charge",
+          "D": "V = k p sin θ / r² — depends on sin θ, peaking on the equatorial plane"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "drops the cos θ angle factor, so it could never give V = 0 on the equatorial plane",
+          "C": "uses the single-charge 1/r falloff instead of the dipole's steeper 1/r²",
+          "D": "swaps cos θ for sin θ, which would wrongly make V largest (not zero) on the equator"
+        },
+        "tested_idea": "The far-field dipole potential is V = k p cosθ / r², with a 1/r² falloff and a cos θ angle factor.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Far from a small dipole of moment p, write the potential at distance r along a direction at angle θ to the axis."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "You keep the distance r fixed and move a probe from the +q side of a dipole, across the centre, to the −q side. What happens to the potential V?",
+        "options": {
+          "A": "It changes sign — positive on the +q side, zero crossing the middle, negative on the −q side",
+          "B": "It stays positive everywhere, because the positive charge dominates",
+          "C": "It stays the same value, since r is unchanged",
+          "D": "It grows larger and stays positive, because you approach the −q charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes the +q charge 'wins' so V never goes negative — but the sign follows position, not charge preference",
+          "C": "thinks fixing r fixes V, ignoring that V also depends on the angle through cos θ",
+          "D": "imagines V growing and staying positive on the far side instead of flipping sign"
+        },
+        "tested_idea": "The sign of a dipole's potential follows position (cos θ): positive on the +q side, negative on the −q side.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Walk a probe at constant distance from a dipole's centre, from the positive end around to the negative end. Describe how the potential's sign changes."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "On the equatorial plane of a dipole (the plane through its centre, perpendicular to the axis, θ = 90°), what is the potential V?",
+        "options": {
+          "A": "Zero at every point on the plane, because each point is equidistant from +q and −q so the two terms cancel",
+          "B": "Zero only at the exact centre point, and non-zero elsewhere on the plane",
+          "C": "Maximum, because the plane sits closest to both charges",
+          "D": "Negative everywhere, because the −q charge is the nearer one"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "limits the cancellation to the midpoint, missing that EVERY equatorial point is equidistant from the two charges",
+          "C": "confuses the equatorial plane with a place of maximum potential",
+          "D": "assumes one charge is nearer on the equator, but every equatorial point is equidistant from both"
+        },
+        "tested_idea": "V = 0 on the ENTIRE equatorial plane because cos 90° = 0 and the two equidistant terms cancel.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Consider the plane that bisects a dipole at right angles to its axis. State the potential everywhere on that plane and why."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "On a dipole's equatorial plane the potential is exactly zero everywhere. What is the electric field there?",
+        "options": {
+          "A": "Non-zero — V = 0 does not mean E = 0, because E is the slope of V and V changes as you step off the plane",
+          "B": "Zero — where the potential is zero the field must also be zero",
+          "C": "Zero — there is no charge sitting on the equatorial plane to make a field",
+          "D": "Infinite — dividing by the zero potential blows the field up"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "equates zero potential with zero field, but E is the GRADIENT of V, not V itself",
+          "C": "thinks a field needs local charge, ignoring that the dipole's charges set up a field across the plane",
+          "D": "invents a division by V, which has nothing to do with E = −grad V"
+        },
+        "tested_idea": "V = 0 does not imply E = 0: the field is the slope of V, and V varies off the plane, so E is non-zero there.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "The voltage is zero across a whole plane near a dipole. Can the electric field still be non-zero there? Explain."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Far from their source, how does a dipole's potential fall off with distance r, compared with a single point charge's?",
+        "options": {
+          "A": "The dipole's V falls as 1/r², one power steeper than the point charge's 1/r",
+          "B": "Both fall as 1/r, at exactly the same rate",
+          "C": "The dipole's V falls as 1/r, while the point charge's falls as 1/r²",
+          "D": "The dipole's V falls as 1/r³, two powers steeper than the point charge's"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "gives the dipole the single-charge 1/r falloff, missing the near-cancellation that steepens it",
+          "C": "swaps the two falloffs, attaching the gentler 1/r to the dipole",
+          "D": "over-steepens to 1/r³, which is actually the dipole's FIELD falloff, not its potential"
+        },
+        "tested_idea": "A dipole's potential falls as 1/r², one power steeper than a point charge's 1/r, because +q and −q nearly cancel far away.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Compare how fast the potential of a dipole and of a lone point charge weaken with distance. Which is steeper, and by what power of r?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "As you sweep the angle θ from 0° to 180° at fixed r around a dipole, the potential V traces a cosine curve that rises, crosses zero, and dips negative. What kind of quantity is V?",
+        "options": {
+          "A": "A signed scalar — a single number, positive or negative, with no direction",
+          "B": "A vector, with a direction attached at each point like the field",
+          "C": "Always positive, since potential cannot be negative",
+          "D": "An angle, measured in degrees like θ itself"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats the scalar V as a vector with a direction, like the field E",
+          "C": "forbids negative V, but the cosine curve clearly dips below zero past 90°",
+          "D": "confuses the quantity V with the sweep angle θ"
+        },
+        "tested_idea": "Potential is a signed scalar — one number with a sign, never a direction; only the field E is a vector.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "On a graph of a dipole's potential versus angle, the curve rises and falls and crosses zero. Is the potential a scalar or a vector? Justify."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "Q1"
+      ],
+      "STATE_3": [
+        "Q2"
+      ],
+      "STATE_4": [
+        "Q3",
+        "Q4"
+      ],
+      "STATE_5": [
+        "Q6"
+      ],
+      "STATE_6": [
+        "Q5"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_7"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "dipole_potential",
+    "explorer_id": "potential_explorer",
+    "dipole_defaults": {
+      "q": 1,
+      "a": 0.5,
+      "r_default": 1.5,
+      "theta_default": 0,
+      "demo_vp": 12,
+      "clamp_r_min": 0.05
+    },
+    "field_lines": {
+      "count": 18,
+      "color_positive": "#EF5350",
+      "color_negative": "#42A5F5",
+      "opacity": 0.35,
+      "arrow_spacing": 5
+    },
+    "slider_controls": {
+      "theta": {
+        "min": 0,
+        "max": 180,
+        "step": 5,
+        "default": 0,
+        "label": "Probe angle θ (deg)"
+      },
+      "r": {
+        "min": 0.6,
+        "max": 3.0,
+        "step": 0.05,
+        "default": 1.5,
+        "label": "Probe distance r"
+      }
+    },
+    "colors": {
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "dipole_moment": "#FFCA28",
+      "probe": "#FFF176",
+      "equipotential": "#4FC3F7",
+      "field": "#66BB6A",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "v_vs_theta_curve": {
+      "show": false,
+      "x_var": "theta",
+      "x_min": 0,
+      "x_max": 180,
+      "x_label": "angle θ (deg)",
+      "y_label": "potential V",
+      "zero_crossing_deg": 90,
+      "curves": [
+        {
+          "id": "v_theta_bright",
+          "output": "V_dipole_demo",
+          "shape": "cosine",
+          "emphasis": "bright",
+          "color": "#4FC3F7",
+          "label": "V = k p cos θ / r²"
+        }
+      ],
+      "live_dot": {
+        "bind_to": "theta",
+        "on_curve": "v_theta_bright"
+      }
+    },
+    "v_vs_inv_r2_curve": {
+      "show": false,
+      "x_var": "r",
+      "x_min": 0.6,
+      "x_max": 3.0,
+      "x_label": "distance r",
+      "y_label": "potential V",
+      "meet_at_r": 1.0,
+      "curves": [
+        {
+          "id": "v_dipole_bright",
+          "output": "V_dipole_demo",
+          "shape": "one_over_r2",
+          "emphasis": "bright",
+          "color": "#4FC3F7",
+          "label": "dipole V = k p / r²"
+        },
+        {
+          "id": "v_point_ghost_dim",
+          "output": "V_point_ghost_demo",
+          "shape": "one_over_r",
+          "emphasis": "dimmed",
+          "color": "#66BB6A",
+          "label": "point charge V = k q / r"
+        }
+      ],
+      "live_dot": {
+        "bind_to": "r",
+        "on_curve": "v_dipole_bright"
+      }
+    },
+    "equipotential_lobes": {
+      "show": false,
+      "mode": "2d_slice_contour",
+      "note": "2D equipotential contour LOBES in a slice-plane containing the dipole axis (NOT 3D tessellated surfaces — founder lean lock)",
+      "levels": [
+        6,
+        3,
+        1,
+        -1,
+        -3,
+        -6
+      ],
+      "positive_color": "#EF5350",
+      "negative_color": "#42A5F5",
+      "zero_band_color": "#4FC3F7"
+    },
+    "sign_recolor": {
+      "show": false,
+      "positive_color": "#EF5350",
+      "negative_color": "#42A5F5",
+      "zero_color": "#4FC3F7",
+      "draws_arrow": false
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Dipole + probe - add the two charge potentials as scalars",
+        "visible_elements": [
+          "charge_plus",
+          "charge_minus",
+          "dipole_moment_arrow",
+          "probe_dot",
+          "probe_v_readout",
+          "two_term_callout"
+        ],
+        "camera_position": [
+          2.8,
+          1.6,
+          4.4
+        ],
+        "caption": "",
+        "show_charge": "dipole",
+        "potential": {
+          "show_field": "off",
+          "show_dipole": true,
+          "show_probe": true,
+          "probe_r": 1.5,
+          "probe_theta": 35,
+          "v_formula": "V_superpose_demo",
+          "show_two_term": true,
+          "two_term_at_ms": 6500,
+          "v_readout_at_ms": 12500
+        },
+        "formula_overlay": "V = k q / r₊ − k q / r₋"
+      },
+      "STATE_2": {
+        "label": "Step back - two-term sum collapses to V = k p cosθ / r²",
+        "visible_elements": [
+          "charge_plus",
+          "charge_minus",
+          "dipole_moment_arrow",
+          "probe_dot",
+          "theta_arc",
+          "formula_callout"
+        ],
+        "camera_position": [
+          3.0,
+          1.6,
+          4.8
+        ],
+        "caption": "",
+        "show_charge": "dipole",
+        "potential": {
+          "show_field": "off",
+          "show_dipole": true,
+          "show_probe": true,
+          "probe_r": 2.6,
+          "probe_theta": 40,
+          "v_formula": "V_dipole_demo",
+          "show_theta_arc": true,
+          "theta_arc_at_ms": 700,
+          "formula_callout_at_ms": 6000
+        },
+        "formula_overlay": "V = k p cos θ / r²"
+      },
+      "STATE_3": {
+        "label": "Cross the centre - sign follows cos θ (position), not charge",
+        "visible_elements": [
+          "charge_plus",
+          "charge_minus",
+          "dipole_moment_arrow",
+          "probe_dot",
+          "probe_sweep_path",
+          "sign_recolor"
+        ],
+        "camera_position": [
+          2.8,
+          1.5,
+          4.4
+        ],
+        "caption": "",
+        "show_charge": "dipole",
+        "potential": {
+          "show_field": "off",
+          "show_dipole": true,
+          "show_probe": true,
+          "probe_r": 1.5,
+          "v_formula": "V_dipole_demo",
+          "sweep": {
+            "fixed_r": 1.5,
+            "from_theta": 40,
+            "to_theta": 140,
+            "at_ms": 9000,
+            "duration_ms": 3500
+          },
+          "show_sign_recolor": true,
+          "predict_at_ms": 5500
+        },
+        "formula_overlay": "sign follows cos θ: + near +q, − near −q"
+      },
+      "STATE_4": {
+        "label": "PRIMARY aha - equatorial disc reads V=0 everywhere, E arrow stays",
+        "visible_elements": [
+          "charge_plus",
+          "charge_minus",
+          "dipole_moment_arrow",
+          "equatorial_disc",
+          "disc_v_zero_label",
+          "equatorial_E_arrow"
+        ],
+        "camera_position": [
+          2.8,
+          1.7,
+          4.6
+        ],
+        "caption": "",
+        "show_charge": "dipole",
+        "potential": {
+          "show_field": "off",
+          "show_dipole": true,
+          "show_equatorial_disc": true,
+          "disc_theta_deg": 90,
+          "disc_at_ms": 700,
+          "disc_v_label": "V = 0",
+          "disc_v_at_ms": 10000,
+          "show_equatorial_E_arrow": true,
+          "e_arrow_formula": "E_equatorial_demo",
+          "e_arrow_direction": "antiparallel_to_p",
+          "e_arrow_at_ms": 16000,
+          "predict_at_ms": 6000
+        },
+        "formula_overlay": "θ = 90°: V = 0 everywhere, but E ≠ 0"
+      },
+      "STATE_5": {
+        "label": "Sweep θ - V rides a cosine curve, a signed scalar with no arrow",
+        "visible_elements": [
+          "charge_plus",
+          "charge_minus",
+          "dipole_moment_arrow",
+          "probe_dot",
+          "v_vs_theta_curve",
+          "scalar_label"
+        ],
+        "camera_position": [
+          2.8,
+          1.6,
+          4.6
+        ],
+        "caption": "",
+        "show_charge": "dipole",
+        "potential": {
+          "show_field": "off",
+          "show_dipole": true,
+          "show_probe": true,
+          "probe_r": 1.8,
+          "show_v_theta_curve": true,
+          "v_theta_curve_at_ms": 700,
+          "theta_sweep": {
+            "fixed_r": 1.8,
+            "from_theta": 0,
+            "to_theta": 180,
+            "at_ms": 6500,
+            "duration_ms": 4000
+          }
+        },
+        "formula_overlay": "V ∝ cos θ  (signed scalar, no arrow)"
+      },
+      "STATE_6": {
+        "label": "Falloff - dipole 1/r² (bright) dives below point-charge 1/r ghost",
+        "visible_elements": [
+          "charge_plus",
+          "charge_minus",
+          "dipole_moment_arrow",
+          "probe_dot",
+          "v_vs_inv_r2_curve",
+          "inv_r2_split"
+        ],
+        "camera_position": [
+          2.8,
+          1.7,
+          4.6
+        ],
+        "caption": "",
+        "show_charge": "dipole",
+        "potential": {
+          "show_field": "off",
+          "show_dipole": true,
+          "show_probe": true,
+          "probe_r": 1.5,
+          "probe_theta": 0,
+          "show_inv_r2_curve": true,
+          "curve_draw_at_ms": 700,
+          "ghost_fade_at_ms": 9000,
+          "crossover_at_r": 1.0,
+          "predict_at_ms": 5500,
+          "split_highlight_at_ms": 9000
+        },
+        "formula_overlay": "dipole V ~ 1/r²  vs  point charge V ~ 1/r"
+      },
+      "STATE_7": {
+        "label": "Explore - drag probe + θ/r sliders, live signed V, equipotential lobes",
+        "visible_elements": [
+          "charge_plus",
+          "charge_minus",
+          "dipole_moment_arrow",
+          "probe_dot_draggable",
+          "v_readout_live",
+          "equipotential_lobes"
+        ],
+        "camera_position": [
+          3.0,
+          1.8,
+          4.8
+        ],
+        "caption": "",
+        "show_charge": "dipole",
+        "show_sliders": true,
+        "sliders": [
+          "theta",
+          "r"
+        ],
+        "potential": {
+          "show_dipole": true,
+          "show_probe": true,
+          "draggable_probe": true,
+          "v_formula": "V_dipole_demo",
+          "live_v_readout": true,
+          "show_equipotential_lobes": true,
+          "lobes_mode": "2d_slice_contour",
+          "idle_auto_sweep": true
+        },
+        "formula_overlay": "drag the probe — V = k p cos θ / r² (live)"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A",
+      "equipotential": "#4FC3F7",
+      "probe": "#FFF176",
+      "dipole_moment": "#FFCA28"
+    }
+  }
+}

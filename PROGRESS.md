@@ -1,5 +1,88 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-06-29 (CHAPTER 5 OPENED: `bar_magnet_as_dipole` — first concept of NCERT Ch.5 "Magnetism and Matter" (§5.2 The Bar Magnet). Brand-new face-on `bm_*` field_3d scenario + 8-state concept JSON. tsc 0 · validate 96 PASS/0 FAIL · THE EYE 34/34 · every state visually verified · all 90 TTS clips (EN/HI/TE) generated. NOT committed — pending founder/Asmi review.)
+
+### What it teaches (NCERT Ch.5 §5.2; conceptual-only, EPIC-L-first)
+A bar magnet IS a magnetic dipole: its field lines are continuous **closed loops** (out of N, around to S, through the magnet S→N inside) so there is **no monopole** — break it and you get two complete dipoles; it carries a magnetic **moment m** (S→N, m = NIA); it is **equivalent to a solenoid**; and its far field is the **1/r³ dipole field** with **B_axial = 2·B_equatorial** — the **electrostatic analog** of an electric dipole (m↔p, μ₀/4π↔1/4πε₀). PRIMARY aha = S3 (no monopole / break-in-two). CUT-LINE: defers torque/energy in a uniform field (→ `bar_magnet_in_uniform_field`) and Gauss's law for magnetism (→ `gauss_law_magnetism`).
+
+### Ch.5 build queue (NCERT order, decided this session)
+1. **`bar_magnet_as_dipole`** §5.2 ← DONE · 2. `bar_magnet_in_uniform_field` §5.2.3 · 3. `gauss_law_magnetism` §5.3 · 4. `earths_magnetism` §5.4 · 5. `magnetisation_and_intensity` §5.5 · 6. `magnetic_materials` §5.6 · 7. `permanent_magnets_electromagnets` §5.7.
+
+### The build (every state moves; existing `bar_magnet` scenario was static + unused, so a new scenario triple was required)
+- **New `bm_*` field_3d scenario** in `field_3d_renderer.ts` (face-on 2D slice, z=0, camera `[0,0,7..8]`): `buildBarMagnetAsDipole` / `applyBarMagnetAsDipoleState` / `updateBarMagnetAsDipoleFrame` / `applyBarMagnetAsDipoleGlow` / `bmReadSliders` / `refreshBarMagnetExplorer` + switch/apply/animate/slider-panel dispatch. Reuses the dipole arch geometry + the `gavLerpPath` path helper.
+- **Every state moves:** a continuous field-direction **tracer stream** (dots drifting N→out→S along the arches) as the base layer in all 8 states, plus scripted beats — the **closed-loop trace** (a dot rides one line out of N, around, and back through the magnet S→N), the **looping break** (split↔rejoin with bright new poles fading in at the cut), the **solenoid** glow, and the **probe r-sweep** (axial/equatorial arrows rescaling as 1/r³, locked 2:1).
+- 8-state JSON (physics_engine_config m/r → B_axial/B_eq, real_world_anchor = lab bar magnet + iron filings / compass / snapped fridge magnet, per-state scene_composition + tts en/hi/te + misconception_watch Rule 16a, aha_moment S3, entry_state_map, assessment 6-Q + coverage_map, 2 regeneration_variants).
+- Registered at all sites: `CONCEPT_RENDERER_MAP` + `FIELD_3D_SCENARIO_MAP` (aiSimulationGenerator), `VALID_CONCEPT_IDS` + `CLASSIFIER_PROMPT` + trigger phrases + identity-vs-in-field-vs-loop disambiguation (intentClassifier), `CONCEPT_PANEL_MAP` (panelConfig). `_seed_bar_magnet_as_dipole_cache.ts`.
+
+### Verification
+- `tsc --noEmit` 0 · `validate:concepts` **96 PASS / 0 FAIL** (fixed: aha statement trimmed to ≤15 words) · THE EYE **34/34 deterministic checks, $0**.
+- Read every frozen frame; fixed during the eye loop: field-line bulge was too tall (looked like a vertical lens) → reduced `archMaxH` 2.45→1.55; S3 pole labels now live in each piece's sub-group so they travel with it on separation, new poles bright yellow; compass moved clear of the N label. Re-seeded + re-ran the eye clean. S8 sandbox physics confirmed exact (m=5,r=2 → B_axial 1.25, B_eq 0.63, ratio 2:1).
+- TTS: all **90 clips** (EN/HI/TE × 30 sentences, bulbul:v3/priya) generated + wired. Review site built + serving: **http://localhost:8080/bar_magnet_as_dipole/** (HTTP 200).
+
+### Next
+- Founder visual/audio confirm → `visual:approve` baselines → commit (renderer scenario + JSON + registration edits + seed script) → delete the temp seed script. Then Ch.5 #2 `bar_magnet_in_uniform_field`.
+
+## 2026-06-28 (NEW DIAMOND: `galvanometer_to_ammeter_voltmeter` — the downstream sibling of `moving_coil_galvanometer`. Built a brand-new face-on CIRCUIT-schematic field_3d scenario from scratch + the 9-state concept JSON. tsc 0 · validate 94 PASS/0 FAIL · THE EYE 38/38 deterministic checks · every state visually verified. NOT committed — pending TTS audio + founder/Asmi review.)
+
+### What it teaches (Class 12 Ch.4 §4.11, conceptual-only, EPIC-L-first)
+Converting a galvanometer (tiny full-scale Ig, coil resistance G) into an **ammeter** (small shunt S in PARALLEL, `S = Ig·G/(I−Ig)`, combined ≈ 0 Ω → in SERIES) and a **voltmeter** (large R in SERIES, `R = V/Ig − G`, combined ≈ ∞ Ω → in PARALLEL), plus the classic swap-fails contrast. Re-uses (not re-derives) the galvanometer mechanism. Prereq `moving_coil_galvanometer`. PRIMARY aha = S5 (ammeter ≈ 0 Ω in series).
+
+### The build (founder decisions: face-on circuit schematic + full ammeter+voltmeter+swap scope; every state MUST move)
+- **New `gav_*` field_3d scenario** in `field_3d_renderer.ts` (the renderer is hard-coded per scenario; no circuit primitives existed). Chose a compact circle-"G" + clean 2D circuit in the z=0 plane (camera face-on `[0,0,7]`), NOT the 3D coil movement (which carries the open `mcg_coil_rotation` bug). New `buildGalvanometerAmmeterVoltmeter` / `applyGalvanometerAmmeterVoltmeterState` / `updateGalvanometerAmmeterVoltmeterFrame` / `applyGalvanometerAmmeterVoltmeterGlow` / `gavReadSliders` / `refreshGalvanometerExplorer` + switch case + apply/animate dispatch + slider-panel HTML.
+- **Every state moves:** a continuous current-dot stream (speed ∝ I) as the base layer in all 9 states, plus scripted beats — current SPLIT at the junction (1 dot through the coil = Ig, rest through the shunt), meter ASSEMBLE cross-fades (G+S→"A" box dropped into series at the reveal; G+R→"V" box hopped across the load), and the swap-warning pulse. Split derived purely from Ig/I (current-conservation discipline).
+- **9-state arc:** S1 delicate G → S2 problem (flood) → S3 shunt split → S4 `S=Ig·G/(I−Ig)` → **S5 ammeter ≈0Ω series (aha)** → S6 series R → S7 voltmeter ≈∞Ω parallel → S8 swap-fails compare → S9 sandbox (Ig/G/I/V sliders → live S/R/resistances).
+- `src/data/concepts/galvanometer_to_ammeter_voltmeter.json` (physics_engine_config, real_world_anchor, per-state scene_composition + tts en/hi/te + misconception_watch Rule 16a, aha_moment, entry_state_map, assessment 6-Q + coverage_map, 2 regeneration_variants).
+- Registered at all sites: `CONCEPT_RENDERER_MAP` + `FIELD_3D_SCENARIO_MAP` (aiSimulationGenerator), `VALID_CONCEPT_IDS` + `CLASSIFIER_PROMPT` + trigger phrases + mechanism-vs-conversion disambiguation (intentClassifier), `CONCEPT_PANEL_MAP` (panelConfig). `_seed_galvanometer_to_ammeter_voltmeter_cache.ts`.
+
+### Verification
+- `tsc --noEmit` 0 errors · `validate:concepts` **94 PASS / 0 FAIL** (galvanometer PASS) · THE EYE `visual:eyes` **38/38 deterministic checks, $0**.
+- Read every frozen frame: S1 G+leads+dots ✓, S2 series loop battery+load+dots ✓, S3 parallel lens with "I₉ (tiny)" / "S" / "I − I₉ (most)" ✓, S5/S7 assembled "A"/"V" boxes with ≈0Ω/≈∞Ω badges (held end-state) ✓, S6 G+R voltmeter branch ✓, S8 compare + "swap = broken circuit" ✓, S9 sliders + live readout (S=0.100 Ω, R=9900 Ω, both ideal resistances correct) ✓.
+- Fixes during the eye loop: long sprite labels were clipping the fixed 384px canvas → switched the multi-word `gav_*` sprites to `createWideLabelSprite` (auto-width); raised the coil split-label off the G ring. Re-seeded + re-ran the eye clean.
+- Review site built + served: **http://localhost:8080/galvanometer_to_ammeter_voltmeter/** (HTTP 200).
+
+### Next
+- **TTS audio not yet generated** (en/hi/te narration text authored; `npm run tts:generate` needs Sarvam credits) — required before the Asmi professor gate.
+- Then: founder visual confirm → `visual:approve` baselines → optional clusters SQL migration → commit (renderer scenario + JSON + 8 registration edits + seed script). Delete the temp `_seed_galvanometer_to_ammeter_voltmeter_cache.ts` after approval.
+
+## 2026-06-28 (BUG HUNT: `equipotential_surfaces` STATE_7 shells rendered PURE BLACK — founder caught it vs the bright sibling. Root-caused to a `Color.setHex(<Color object>)` → NaN → black coercion in `pmApplyChargeSign`. Fixed; shells now vivid cyan (Playwright probe: color `#000000`→`#4fc3f7`, 64k cyan px). Two `engine_bug_queue` scars FIXED. Also fixes `electric_potential_point_charge` (the other sign_flip concept). NOT committed — pending founder visual confirm + THE EYE.)
+
+### Root cause (the real one, after 3 sessions chasing opacity/emissive dead-ends)
+- `hexToThreeColor(hex)` returns `new THREE.Color(hex)` — a **Color OBJECT**, not a number. `pmApplyChargeSign` did `material.color.setHex(hexToThreeColor(shellCol))`; `THREE.Color.setHex()` needs a **NUMBER**, so `setHex(<Color>)` coerced to `NaN` → shell colour `(0,0,0)` **black**. It ran on **every state entry** for any concept with `config.sign_flip`, overwriting the correct creation-time cyan. Concepts WITHOUT `sign_flip` (`electric_potential_meaning`) were untouched → the bug looked concept-specific, and the dark shells *read* as "dim/low-opacity" in frozen frames, sending earlier rounds down an opacity→emissive rabbit hole (raising opacity 0.14→0.5 and adding `bright:true` emissive both did nothing / washed white).
+- **How it was finally caught:** a Playwright probe loaded the built `sim.html`, drove `SET_STATE STATE_7`, and read `material.color.getHexString()` directly → `"000000"`. Ground truth beat three rounds of pixel-eyeballing.
+
+### Fixes (both in `field_3d_renderer.ts`, additive/back-compat)
+1. `pmApplyChargeSign`: `color.setHex(hexToThreeColor(shellCol))` → **`color.set(shellCol)`** (and same for the emissive sync). `Color.set("#RRGGBB")` accepts the string directly.
+2. `createEquipotentialSurface`: non-bright path now **pins `emissiveIntensity:0`** (MeshPhong defaults it to 1, which made the sign-recolour's `intensity>0` emissive-sync gate self-illuminate non-bright shells toward white). Non-bright shells now byte-identical to the sibling (`emissive #000000 @ 0`).
+- Reverted the earlier wrong fix: removed `equipotential.bright:true` from the JSON (emissive was never the cause).
+
+### Verification
+- Playwright runtime probe: STATE_4 + STATE_7 shells `color #4fc3f7`, `emissive #000000 @ 0`, opacity 0.14/0.5/0.85 as configured. Screenshot STATE_7 = **64,020 cyan px** (sibling ref ~18k; mine higher because of the 0.5 explore opacity). Visual = vivid cyan concentric spheres + draggable P + slider + sign toggle — matches the founder's reference.
+- `tsc` 0 · `validate:concepts` **92 PASS / 0 FAIL** · THE EYE official run in progress.
+- `engine_bug_queue`: `field3d_color_sethex_passed_color_object_blacks_element` (CRITICAL) + `field3d_shell_emissive_intensity_must_be_pinned_zero_when_not_bright` (MODERATE) → both **FIXED** (probe_type `js_eval`). Prevention rule: never pass `hexToThreeColor(...)` to `Color.setHex`; grep `setHex(hexToThreeColor` = black-out audit.
+- **`electric_potential_point_charge`** (other `sign_flip` concept, was also black) re-seeded + rebuilt with the shared fix.
+
+### Next
+Founder confirm the STATE_7 shells visually (review link). Then: `visual:approve` baselines, apply the clusters SQL migration, commit (renderer fix + JSON + bug seed), delete temp `_seed_equipotential_surfaces_cache.ts`. Spot-check `electric_potential_point_charge` STATE_5 sign-flip shells render cyan now.
+
+## 2026-06-28 (TTS v3 MIGRATION + "never a bare letter" narration — founder caught Telugu mispronouncing inline English (V→"we", E, "arrow"). Root-caused, fixed across all 27 field_3d diamonds, founder-confirmed "everything working well". engine_bug_queue scar `tts_codemix_telugu_mispronounces_inline_english` → FIXED.)
+
+### Root cause (two findings)
+1. **The earlier transliteration fix never reached the live site** — V→వీ existed only as throwaway candidate WAVs in `review-site/_tts_candidates/`; the concept JSON was never edited and audio never regenerated, so "refresh" played the original v2 audio.
+2. **Wrong model + wrong technique.** Sarvam **bulbul:v3** is purpose-built for code-mixing / Romanized text / abbreviations (their CER benchmark) — exactly the V/E/arrow failures. Sarvam docs also state **transliteration REDUCES quality**, so the వీ approach was counter-productive on v3. Right fix: v3 + keep code-mixed text, and **expand bare single-letter symbols to full names in the spoken narration** (E→"electric field E", V→"potential V", B→"magnetic field B", I→"current I", F→"force F", q→"charge q", …) for clarity + unambiguous pronunciation.
+
+### What shipped
+- **Text:** ~575 narration strings expanded across 26 concepts (6 parallel subagents, Balanced policy: expand bare letters in prose + slider lists, keep formula bodies compact, concept-correct meaning e.g. m=mass in circular_motion; on-canvas labels left as symbols per Rule 24). Pilot `electric_potential_meaning` by hand. `tsc` 0, `validate:concepts` **88 PASS / 0 FAIL**.
+- **Audio:** all **27 field_3d diamonds** regenerated in **bulbul:v3 / priya**, all 3 langs (one consistent voice), **0 dead clips**. Pages rebuilt (`review:all`), served http://localhost:8080/.
+- **`generate_tts_audio.ts` hardened:** default model→`bulbul:v3`, speaker→`priya`; `AbortSignal.timeout(30000)` on the Sarvam fetch (a stalled request was freezing whole batches); retries 3→6 + longer backoff; inter-clip sleep 200→450ms.
+
+### Saga notes (for next time)
+- Sarvam **trial keys carry only ~2 concepts (~160 clips) of quota** — a new key ≠ credits; needed an account **balance** top-up.
+- **Background bash jobs get reaped erratically here; FOREGROUND commands (with `timeout N`) complete reliably.** Fill scripts made clip-level resumable (delete-once marker + no-`--force` passes) so kills never lost progress.
+
+### Loose ends / next session
+- **2 extra field_3d concepts surfaced** (`electric_potential_point_charge`, `magnetic_field_circular_loop`) — v3 audio present but narration text **NOT yet symbol-expanded** (still bare E/V/B/I). Expand + regen (foreground) for full-set consistency.
+- **CLAUDE.md Rule 30 candidate** (founder approval): "Stored Telugu/Hindi TTS uses bulbul:v3; never transliterate inline English; expand bare single-letter physics symbols to full names in the spoken narration." (`generate_tts_audio.ts` header already cites Rule 30.)
+
 ## 2026-06-28 (NEW DIAMOND: `moving_coil_galvanometer` — Ch.4 §4.10, the galvanometer MECHANISM: radial field → constant torque → **linear scale φ = (NAB/k)·I**. Mechanism-only scope (ammeter/voltmeter conversion DEFERRED to a future `galvanometer_to_ammeter_voltmeter`, founder decision). Built end-to-end via the full Alex pipeline (architect → physics-author → json-author) **+ a NEW field_3d engine scenario** `moving_coil_galvanometer` (renderer-primitives) + **3 visual fix rounds**. THE EYE deterministic gates **38/38, 0 fail** (rounds 1–3), all 9 `__frozen.png` read by hand. NOT committed; baselines NOT `visual:approve`'d; smoke AI-vision gate **blocked on Anthropic API credits**; TTS pending — all pending founder review.)
 
 ### What shipped — 9-state EPIC-L diamond (the galvanometer mechanism)
@@ -13,10 +96,11 @@
 ### Registration + verification
 - `moving_coil_galvanometer.json` (new, 9 states, conceptual-only — no epic_c_branches / no mode_overrides, assessment 6Q + coverage_map) + 8 sites (panelConfig CONCEPT_PANEL_MAP, CONCEPT_RENDERER_MAP + concept→scenario map in aiSimulationGenerator, intentClassifier VALID_CONCEPT_IDS + CLASSIFIER_PROMPT galvanometer-vs-torque-loop-vs-dipole cut-line, conceptKeywordMap, deriveStateMeta; PCPL N/A). Temp `_seed_moving_coil_galvanometer_cache.ts`.
 - `npx tsc --noEmit` **0** · `npm run validate:concepts` **92 PASS / 0 FAIL** · **THE EYE deterministic 38/38, 0 fail** (rounds 1–3; all 9 `__frozen.png` read by hand — S4 radial morph, S5 spring spiral, S6 settle, S2 RHR+ΣF=0, S9 readout). **Caveats:** smoke `visual-validator` AI-vision categories could NOT run — Anthropic API credit balance too low (infra, not a sim defect; deterministic D5/D6/D7/H1 all PASS). Final S7-only re-capture couldn't complete (background eyes runs killed post-server); S7 fix confirmed by construction (uniform dial alone = the legible single dial already verified for S3).
-- Silent review: **http://localhost:8080/moving_coil_galvanometer/**
+- Review (now WITH narration): **http://localhost:8080/moving_coil_galvanometer/** (toggle narration on — off by default, Rule 24).
+- **TTS DONE (2026-06-28):** all 37 sentences translated EN→HI+TE (Anthropic credits low → routed via Gemini for 30, DeepSeek for the 7 STATE_8/9 it choked on), then 111 Sarvam `bulbul:v3`/priya clips generated → `review-site/moving_coil_galvanometer/audio/` + `audio_manifest.json` (111 clips), review page rebuilt to embed it. validate:concepts still 92/92. **HI/TE are machine DRAFT — pending founder native-listen (HI) + a Telugu check before production.**
 
 ### Next session first task
-Founder + Asmi professor-gate review of the 9 states (open the review link) — focus S7 uniform scale + S4 radial morph. Then: top up Anthropic API credits + run `npm run smoke:visual-validator -- moving_coil_galvanometer --dense` for the AI-vision gate; trilingual TTS (`tts:translate` → `tts:generate` → rebuild — review site currently silent, no audio_manifest.json). After approval: `npm run visual:approve -- moving_coil_galvanometer`, author + apply the SQL clusters migration, commit, delete temp `_seed_moving_coil_galvanometer_cache.ts`.
+Founder + Asmi professor-gate review of the 9 states (open the review link) — focus S7 uniform scale + S4 radial morph; founder native-listen the HI narration. Then: top up Anthropic API credits + run `npm run smoke:visual-validator -- moving_coil_galvanometer --dense` for the AI-vision gate. After approval: `npm run visual:approve -- moving_coil_galvanometer`, author + apply the SQL clusters migration, commit, delete temp `_seed_moving_coil_galvanometer_cache.ts`.
 
 ## 2026-06-28 (NEW DIAMOND: `equipotential_surfaces` — Ch.2 §2.7, the GEOMETRY of constant-V surfaces (concentric spheres of a point charge), closing the potential cluster after `electric_potential_meaning` (V=W/q) and `electric_potential_point_charge` (V=kQ/r). Built end-to-end via the full Alex pipeline (architect → physics-author → json-author → quality-auditor) **+ 3 NEW additive field_3d potential-block beats** (renderer-primitives) + 2 quality-auditor FAIL-routed fix rounds. THE EYE **30/30, 0 fail**, all 7 `__frozen.png` eye-confirmed. NOT committed; baselines NOT yet `visual:approve`'d; trilingual TTS pending — all pending founder review.)
 
@@ -10030,3 +10114,160 @@ STATE_4 has a BODY_MISSING_SURFACE_REF warning for `N_arrow_state4` — the norm
 ### Blockers discovered
 
 None.
+
+---
+
+## 2026-06-28 — moving_coil_galvanometer recording review: 3 bugs logged to engine_bug_queue, rotation-sign fix applied + THE EYE verified
+
+### Top-line outcome
+
+Founder shared a recording of the `moving_coil_galvanometer` field_3d sim. Three defects found via frame-by-frame analysis (watch skill + renderer code trace). All three logged to `engine_bug_queue` as OPEN. Bug #1 (MAJOR rotation-sign error) fixed in the renderer this session and verified via THE EYE (38/38 deterministic gates clean, exit 0).
+
+### Bug analysis summary
+
+Three bugs in the `moving_coil_galvanometer` scenario of `field_3d_renderer.ts`. Physics content (all formulas, the couple, radial-field trick, φ=(NAB/k)I, sensitivity, narration) confirmed correct — all bugs were in the animation/direction choreography layer only.
+
+| # | bug_class | Severity | Status |
+|---|-----------|----------|--------|
+| 1 | `mcg_coil_rotation_opposes_bil_force_couple` | MAJOR | OPEN → fix applied this session; flip to FIXED after founder playthrough |
+| 2 | `mcg_uniform_field_force_arrow_shrinks_with_cosphi` | MODERATE | OPEN (future renderer pass) |
+| 3 | `mcg_equilibrium_torque_balance_choreography_underplayed` | MODERATE | OPEN (future renderer pass) |
+
+### Bug #1 root cause + fix
+
+**Root cause:** `coil.rotation.y = +phiRad` and `mcg_tau_deflect` arrow at `+y` were reversed relative to the BIL force couple. The forces, field, and current were correct (the couple = Σ(r×F) = **`-y`**), but the rotation applied the opposite sign.
+
+**Fix:** Single named constant `mcgSweep = -1` threaded through 9 coupled sites in `field_3d_renderer.ts`:
+- `coil.rotation.y = mcgSweep * phiRad` (the primary fix)
+- `mcg_tau_deflect` dir → `(0, mcgSweep, 0)` = `-y`
+- `mcg_tau_spring` dir → `(0, -mcgSweep, 0)` = `+y`
+- Dial tick azimuth and arc sweep mirrored: `th = anglesDeg[ti] * mcgSweep * PI/180`
+- τ_deflect label y-position → `mcgSweep * (L + 0.18)`
+- τ_spring label y-position → `-mcgSweep * (Ls + 0.18)`
+- Spring winds with coil: `spr.rotation.y = 0.6 * coil.rotation.y`
+
+Untouched (already correct): `mcg_force_left`/`mcg_force_right`, field arrows, RHR triad, poles, narration. No change to `moving_coil_galvanometer.json` or any of the 8 registration sites.
+
+### engine_bug_queue seeding
+
+New seed script: `src/scripts/_seed_engine_bug_queue_mcg_rotation_review.ts`
+Archival SQL: `supabase_2026-06-28_seed_engine_bug_queue_mcg_rotation_review_migration.sql`
+3 rows upserted (status OPEN, discovered_in_session: `session_2026-06-28_mcg_recording_review`).
+
+### Verification
+
+- `npx tsc --noEmit` → 0 errors
+- `npm run validate:concepts` → target PASSES (no JSON change)
+- `npm run build:review -- moving_coil_galvanometer` → built, served on port 8080
+- **THE EYE** (`npm run visual:eyes -- moving_coil_galvanometer`): **38/38 deterministic checks PASS, 0 failed, $0.00**
+- Frame-by-frame review (frozen + dense):
+  - STATE_2 frozen: force arrows visible, τ label shown ✓
+  - STATE_3 dense (t05518): right coil edge moves toward viewer (+z), matching `mcg_force_right` dir `(0,0,+1)` ✓
+  - STATE_6 frozen: two opposing torque arrows visible — τ_deflect pointing `-y` (down), τ_spring pointing `+y` (up), equal at equilibrium ✓
+  - STATE_7 frozen: needle lands on dial ticks at correct deflected position ✓
+
+### Files modified
+
+```
+MODIFIED:
+  src/lib/renderers/field_3d_renderer.ts    (mcgSweep=-1 constant + 9 coupled sites)
+
+CREATED:
+  src/scripts/_seed_engine_bug_queue_mcg_rotation_review.ts
+  supabase_2026-06-28_seed_engine_bug_queue_mcg_rotation_review_migration.sql
+
+DATABASE:
+  3 rows upserted to engine_bug_queue (all OPEN)
+```
+
+### Next session's first task
+
+1. Re-serve the review site: `Start-Process cmd.exe -ArgumentList "/c cd /d C:\Tutor\physics-mind && npx http-server review-site -p 8080"` (or equivalent detached process).
+2. Confirm playthrough at `http://localhost:8080/moving_coil_galvanometer/` — watch that each coil side moves the same way its green force arrow points.
+3. After founder confirms: flip Row 1 (`mcg_coil_rotation_opposes_bil_force_couple`) → `status:'FIXED'`, `fixed_in_files:['src/lib/renderers/field_3d_renderer.ts']` (re-run seed script with updated row, or direct Supabase UPDATE).
+4. Rows 2 & 3 stay OPEN for a future renderer pass targeting uniform-field force-arrow scaling and equilibrium choreography.
+5. Commit the 3 files on `feat/field3d-draggable-sensor`.
+
+### Blockers discovered
+
+None. THE EYE 38/38 clean. Bugs 2 & 3 are tracked in `engine_bug_queue` as OPEN technical debt.
+
+---
+
+## 2026-06-28 — moving_coil_galvanometer STATE_5/STATE_6 equilibrium CHOREOGRAPHY (bug #3 fix: action, not static arrows)
+
+### Top-line outcome
+
+Founder feedback: *"more action than talk — in STATE_5 and STATE_6 show the action; add new
+primitives if needed."* This is the OPEN bug `mcg_equilibrium_torque_balance_choreography_underplayed`.
+Implemented the named fix (opposing-twist arcs + visible oscillation + balanced beat). THE EYE
+**38/38 deterministic gates clean, 0 failed**, zero new `engine_bug_queue` rows. The two opposing
+torques now read as two separate twists; the equilibrium visibly oscillates and locks.
+
+### What was wrong (bug #3)
+
+- STATE_6 settle overshoot was 2° peaking <1° → no visible oscillation (read as a smooth glide).
+- The two torques were collinear axial arrows (`mcg_tau_deflect` `mcgSweep·y`, `mcg_tau_spring`
+  `-mcgSweep·y`) sharing origin → looked like one double-headed arrow.
+- Hairspring rigidly rotated; no sense of winding/energy storage.
+- No "balanced" beat at NIAB = kφ.
+
+### What changed (renderer `field_3d_renderer.ts`)
+
+3 new build-once primitives + helpers, all toggled by `visible_elements`:
+- **`mcg_tau_deflect_arc`** (magenta) — curved-arrow torque arc ON the coil top, spin sense; span ∝ NIAB.
+- **`mcg_tau_spring_arc`** (teal) — curved-arrow arc ON the hairspring, OPPOSITE sense; span ∝ kφ
+  (rebuilt per-frame). Two non-collinear opposing twists, equal at equilibrium.
+- **`mcg_balance_marker`** — "=" billboard + teal ring round the coil; opacity/emissive **pulse**
+  (Rule 29, no size change) bright as |NIAB − kφ|→0, held lit at rest.
+- Helpers `mcgArcSpan` / `mcgSetArcSpan` (outer scope) + `mcgBuildTorqueArc` (in build fn).
+- **Visible oscillate-and-settle**: settle term → multi-cycle decaying oscillation
+  (`over·sin(u·π·2·cycles)·e^(−damp·u)`), reads new `settle_phi` fields (overshoot_deg/oscillations/damping).
+- **Hairspring wind-up**: rotates faster than φ and the spiral **tightens** (`spr.scale`) as φ grows.
+- **STATE_5 recoil**: optional `ex.spring.recoil_deg` gentle damped overshoot so the spring is seen to resist.
+
+### What changed (JSON `moving_coil_galvanometer.json`)
+
+- STATE_5 `visible_elements`: `mcg_tau_deflect`/`mcg_tau_spring` → `mcg_tau_deflect_arc`/`mcg_tau_spring_arc`;
+  `extras.spring` += `recoil_deg: 3`.
+- STATE_6 `visible_elements`: same swap + `mcg_balance_marker`; `extras.settle_phi` →
+  `overshoot_deg: 7, duration_ms: 2800, oscillations: 2, damping: 2.4`.
+- STATE_2/3/4/7/8 untouched (keep the straight axial deflecting arrow). No schema change.
+
+### KEY LESSON re-learned — THE EYE reads `simulation_cache`, not source
+
+First EYE run rendered the OLD sim: it loads `simulation_cache.sim_html` via `loadCachedSim`, which was
+stale. Fix = **re-run `_seed_moving_coil_galvanometer_cache.ts`** (re-assembles `sim_html` from the
+current renderer + JSON, self-clears the concept's rows) BEFORE THE EYE. CLAUDE.md §6 cache-clear is
+mandatory even for the "offline" visual gate. After reseeding, the new choreography rendered correctly.
+
+### Verification
+
+- `npx tsc --noEmit` → 0 errors. `npm run validate:concepts` → 92/92 PASS.
+- Reseeded `simulation_cache` (sim_html 1.34 MB) → `npm run visual:eyes` → **38/38 clean, 0 failed**.
+- Frames (run `20260628-203938`): STATE_5 frozen = two opposing arcs + wound spring; STATE_6 frozen =
+  opposing arcs + lit balance ring/"="; STATE_6 dense t09662 (mid-overshoot) = coil at a different
+  angle, balance ring DIM, restoring arc enlarged → tug-of-war + oscillation confirmed.
+- Review site live: `http://localhost:8080/moving_coil_galvanometer/` (HTTP 200).
+
+### Files modified
+
+```
+MODIFIED:
+  src/lib/renderers/field_3d_renderer.ts          (3 new primitives + helpers + oscillation/spring/balance wiring)
+  src/data/concepts/moving_coil_galvanometer.json (S5/S6 visible_elements swap + settle params)
+DATABASE:
+  simulation_cache row for moving_coil_galvanometer regenerated (reseed)
+```
+
+### Next session's first task
+
+1. Founder visual confirm of STATE_5/STATE_6 at `http://localhost:8080/moving_coil_galvanometer/`.
+2. After confirm: flip bug #3 (`mcg_equilibrium_torque_balance_choreography_underplayed`) + bug #1 →
+   `status:'FIXED'`, `fixed_in_files` both source files (re-run the bug-queue seed with updated rows).
+   Bug #2 (`mcg_uniform_field_force_arrow_shrinks_with_cosphi`, STATE_2/3) stays OPEN for a later pass.
+3. Commit the changed files on `feat/field3d-draggable-sensor` if asked.
+
+### Blockers discovered
+
+None. THE EYE 38/38 clean. Reseed-before-EYE is the gotcha to remember.

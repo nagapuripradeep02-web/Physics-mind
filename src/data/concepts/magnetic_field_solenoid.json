@@ -433,7 +433,7 @@
             },
             {
               "id": "s4_3",
-              "text_en": "Contributions from turns at different positions cancel almost completely outside. For a long solenoid, B outside is approximately zero.", "text_hi": "Different positions पर turns की contributions outside लगभग completely cancel हो जाती हैं। एक long solenoid के लिए, B outside approximately zero होती है।", "text_te": "వివిధ positions లో turns యొక్క contributions outside దాదాపు completely cancel అవుతాయి. ఒక long solenoid కోసం, B outside approximately zero గా ఉంటుంది."
+              "text_en": "Contributions from turns at different positions cancel almost completely outside. For a long solenoid, the magnetic field B outside is approximately zero.", "text_hi": "Different positions पर turns की contributions outside लगभग completely cancel हो जाती हैं। एक long solenoid के लिए, magnetic field B outside approximately zero होती है।", "text_te": "వివిధ positions లో turns యొక్క contributions outside దాదాపు completely cancel అవుతాయి. ఒక long solenoid కోసం, magnetic field B outside approximately zero గా ఉంటుంది."
             },
             {
               "id": "s4_4",
@@ -499,7 +499,7 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "In Diamond 1 you learned: thumb along current, fingers curl with B. That was for a STRAIGHT wire.", "text_hi": "Diamond 1 में आपने सीखा: thumb current के साथ, fingers B के साथ curl होती हैं। वह एक STRAIGHT wire के लिए था।", "text_te": "Diamond 1 లో మీరు నేర్చుకున్నారు: thumb current వెంట, fingers B తో curl అవుతాయి. అది ఒక STRAIGHT wire కోసం."
+              "text_en": "In Diamond 1 you learned: thumb along current, fingers curl with the magnetic field B. That was for a STRAIGHT wire.", "text_hi": "Diamond 1 में आपने सीखा: thumb current के साथ, fingers magnetic field B के साथ curl होती हैं। वह एक STRAIGHT wire के लिए था।", "text_te": "Diamond 1 లో మీరు నేర్చుకున్నారు: thumb current వెంట, fingers magnetic field B తో curl అవుతాయి. అది ఒక STRAIGHT wire కోసం."
             },
             {
               "id": "s5_2",
@@ -508,11 +508,11 @@
             },
             {
               "id": "s5_3",
-              "text_en": "The roles swap. FINGERS curl with the current loops; THUMB gives B inside.", "text_hi": "Roles swap होते हैं। FINGERS current loops के साथ curl होती हैं; THUMB B inside देती है।", "text_te": "Roles swap అవుతాయి. FINGERS current loops తో curl అవుతాయి; THUMB B inside ఇస్తుంది."
+              "text_en": "The roles swap. FINGERS curl with the current loops; THUMB gives the magnetic field B inside.", "text_hi": "Roles swap होते हैं। FINGERS current loops के साथ curl होती हैं; THUMB magnetic field B inside देती है।", "text_te": "Roles swap అవుతాయి. FINGERS current loops తో curl అవుతాయి; THUMB magnetic field B inside ఇస్తుంది."
             },
             {
               "id": "s5_4",
-              "text_en": "Same right hand. Different grip. Wire: thumb is current, fingers are B. Solenoid: fingers are current, thumb is B.", "text_hi": "Same right hand। Different grip। Wire: thumb current है, fingers B हैं। Solenoid: fingers current हैं, thumb B है।", "text_te": "Same right hand. Different grip. Wire: thumb current, fingers B. Solenoid: fingers current, thumb B."
+              "text_en": "Same right hand. Different grip. Wire: thumb is current, fingers are the magnetic field B. Solenoid: fingers are current, thumb is the magnetic field B.", "text_hi": "Same right hand। Different grip। Wire: thumb current है, fingers magnetic field B हैं। Solenoid: fingers current हैं, thumb magnetic field B है।", "text_te": "Same right hand. Different grip. Wire: thumb current, fingers magnetic field B. Solenoid: fingers current, thumb magnetic field B."
             }
           ]
         }
@@ -570,7 +570,7 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "How strong is B inside? Predict: does it depend on total turns N, or on something else?", "text_hi": "Inside B कितनी strong है? Predict करें: क्या यह total turns N पर निर्भर करती है, या किसी और चीज़ पर?", "text_te": "Inside B ఎంత strong? Predict చేయండి: ఇది total turns N పై ఆధారపడుతుందా, లేదా వేరే దేనిపై?",
+              "text_en": "How strong is the magnetic field B inside? Predict: does it depend on total turns N, or on something else?", "text_hi": "Inside magnetic field B कितनी strong है? Predict करें: क्या यह total turns N पर निर्भर करती है, या किसी और चीज़ पर?", "text_te": "Inside magnetic field B ఎంత strong? Predict చేయండి: ఇది total turns N పై ఆధారపడుతుందా, లేదా వేరే దేనిపై?",
               "pause_after_ms": 2500
             },
             {
@@ -579,11 +579,11 @@
             },
             {
               "id": "s6_3",
-              "text_en": "The formula: B equals mu-naught times n times I. Three factors, no distance r — that is what 'uniform' means.", "text_hi": "Formula: B equals mu-naught times n times I। तीन factors, कोई distance r नहीं — यही 'uniform' का मतलब है।", "text_te": "Formula: B equals mu-naught times n times I. మూడు factors, distance r లేదు — అదే 'uniform' అంటే అర్థం."
+              "text_en": "The formula: the magnetic field B equals mu-naught times n times I. Three factors, no distance r — that is what 'uniform' means.", "text_hi": "Formula: magnetic field B equals mu-naught times n times I। तीन factors, कोई distance r नहीं — यही 'uniform' का मतलब है।", "text_te": "Formula: magnetic field B equals mu-naught times n times I. మూడు factors, distance r లేదు — అదే 'uniform' అంటే అర్థం."
             },
             {
               "id": "s6_4",
-              "text_en": "Double the turns per metre, double the field. Double the current, double the field. Stretch the same wire to twice the length and n halves — so B halves.", "text_hi": "turns per metre double करें, field double हो जाएगी। current double करें, field double हो जाएगी। same wire को दोगुनी length तक stretch करें और n half हो जाती है — तो B भी half हो जाती है।", "text_te": "turns per metre double చేయండి, field double అవుతుంది. current double చేయండి, field double అవుతుంది. అదే wire ని రెట్టింపు length కు stretch చేయండి మరియు n half అవుతుంది — అందుకే B కూడా half అవుతుంది."
+              "text_en": "Double the turns per metre, double the field. Double the current, double the field. Stretch the same wire to twice the length and the turns per length n halves — so the magnetic field B halves.", "text_hi": "turns per metre double करें, field double हो जाएगी। current double करें, field double हो जाएगी। same wire को दोगुनी length तक stretch करें और turns per length n half हो जाती है — तो magnetic field B भी half हो जाती है।", "text_te": "turns per metre double చేయండి, field double అవుతుంది. current double చేయండి, field double అవుతుంది. అదే wire ని రెట్టింపు length కు stretch చేయండి మరియు turns per length n half అవుతుంది — అందుకే magnetic field B కూడా half అవుతుంది."
             }
           ]
         }
@@ -643,16 +643,16 @@
             },
             {
               "id": "s7_2",
-              "text_en": "Predict: which way will B point now?", "text_hi": "Predict करें: B अब किस तरफ point करेगी?", "text_te": "Predict చేయండి: B ఇప్పుడు ఏ వైపు point చేస్తుంది?",
+              "text_en": "Predict: which way will the magnetic field B point now?", "text_hi": "Predict करें: magnetic field B अब किस तरफ point करेगी?", "text_te": "Predict చేయండి: magnetic field B ఇప్పుడు ఏ వైపు point చేస్తుంది?",
               "pause_after_ms": 2000
             },
             {
               "id": "s7_3",
-              "text_en": "B flips to point the opposite way — and the North and South poles swap ends along with it.", "text_hi": "B opposite दिशा में point करने के लिए flip हो जाती है — और North और South poles भी इसके साथ ends swap कर लेते हैं।", "text_te": "B opposite దిశలో point చేయడానికి flip అవుతుంది — మరియు North మరియు South poles కూడా దానితో పాటు ends swap చేసుకుంటాయి."
+              "text_en": "The magnetic field B flips to point the opposite way — and the North and South poles swap ends along with it.", "text_hi": "magnetic field B opposite दिशा में point करने के लिए flip हो जाती है — और North और South poles भी इसके साथ ends swap कर लेते हैं।", "text_te": "magnetic field B opposite దిశలో point చేయడానికి flip అవుతుంది — మరియు North మరియు South poles కూడా దానితో పాటు ends swap చేసుకుంటాయి."
             },
             {
               "id": "s7_4",
-              "text_en": "Right hand again — flip your grip, thumb now points the other way. Magnitude formula B = μ-naught n I is unchanged; only direction reverses.", "text_hi": "फिर right hand — अपनी grip flip करें, thumb अब दूसरी तरफ point करती है। Magnitude formula B equals mu-naught n I unchanged रहती है; केवल direction reverse होती है।", "text_te": "మళ్ళీ right hand — మీ grip flip చేయండి, thumb ఇప్పుడు మరొక వైపు point చేస్తుంది. Magnitude formula B equals mu-naught n I unchanged గా ఉంటుంది; direction మాత్రమే reverse అవుతుంది."
+              "text_en": "Right hand again — flip your grip, thumb now points the other way. Magnitude formula the magnetic field B = μ-naught n I is unchanged; only direction reverses.", "text_hi": "फिर right hand — अपनी grip flip करें, thumb अब दूसरी तरफ point करती है। Magnitude formula magnetic field B equals mu-naught n I unchanged रहती है; केवल direction reverse होती है।", "text_te": "మళ్ళీ right hand — మీ grip flip చేయండి, thumb ఇప్పుడు మరొక వైపు point చేస్తుంది. Magnitude formula magnetic field B equals mu-naught n I unchanged గా ఉంటుంది; direction మాత్రమే reverse అవుతుంది."
             },
             {
               "id": "s7_5",
@@ -712,15 +712,15 @@
           "tts_sentences": [
             {
               "id": "s8_1",
-              "text_en": "Now you drive. Crank up n — watch B grow proportionally.", "text_hi": "अब आप drive करें। n को crank up करें — B को proportionally grow होते हुए देखें।", "text_te": "ఇప్పుడు మీరు drive చేయండి. n ని crank up చేయండి — B proportionally grow అవుతున్నది చూడండి."
+              "text_en": "Now you drive. Crank up the turns per length n — watch the magnetic field B grow proportionally.", "text_hi": "अब आप drive करें। turns per length n को crank up करें — magnetic field B को proportionally grow होते हुए देखें।", "text_te": "ఇప్పుడు మీరు drive చేయండి. turns per length n ని crank up చేయండి — magnetic field B proportionally grow అవుతున్నది చూడండి."
             },
             {
               "id": "s8_2",
-              "text_en": "Bring I down — watch B shrink. Try to predict B before you read the meter.", "text_hi": "I को नीचे लाएं — B को shrink होते हुए देखें। meter पढ़ने से पहले B predict करने की कोशिश करें।", "text_te": "I ని తగ్గించండి — B shrink అవుతున్నది చూడండి. meter చదవడానికి ముందు B predict చేయడానికి ప్రయత్నించండి."
+              "text_en": "Bring the current I down — watch the magnetic field B shrink. Try to predict the magnetic field B before you read the meter.", "text_hi": "current I को नीचे लाएं — magnetic field B को shrink होते हुए देखें। meter पढ़ने से पहले magnetic field B predict करने की कोशिश करें।", "text_te": "current I ని తగ్గించండి — magnetic field B shrink అవుతున్నది చూడండి. meter చదవడానికి ముందు magnetic field B predict చేయడానికి ప్రయత్నించండి."
             },
             {
               "id": "s8_3",
-              "text_en": "Notice: no matter where you place the probe INSIDE the solenoid, B reads the same. That is the uniformity. Outside, the probe reads near-zero.", "text_hi": "Notice करें: solenoid के INSIDE probe कहीं भी रखें, B same पढ़ता है। यही uniformity है। Outside, probe near-zero पढ़ता है।", "text_te": "గమనించండి: solenoid యొక్క INSIDE లో probe ఎక్కడ పెట్టినా, B same చదువుతుంది. అదే uniformity. Outside, probe near-zero చదువుతుంది."
+              "text_en": "Notice: no matter where you place the probe INSIDE the solenoid, the magnetic field B reads the same. That is the uniformity. Outside, the probe reads near-zero.", "text_hi": "Notice करें: solenoid के INSIDE probe कहीं भी रखें, magnetic field B same पढ़ता है। यही uniformity है। Outside, probe near-zero पढ़ता है।", "text_te": "గమనించండి: solenoid యొక్క INSIDE లో probe ఎక్కడ పెట్టినా, magnetic field B same చదువుతుంది. అదే uniformity. Outside, probe near-zero చదువుతుంది."
             }
           ]
         }

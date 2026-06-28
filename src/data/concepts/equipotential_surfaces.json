@@ -1223,11 +1223,17 @@
         ],
         "caption": "",
         "show_charge": "plus",
+        "show_sliders": true,
         "potential": {
           "show_equipotential": true,
           "show_test_charge": true,
           "draggable_test_charge": true,
-          "idle_auto_sweep": true
+          "idle_auto_sweep": true,
+          "sign_toggle": true,
+          "explorer_shell_opacity": 0.5,
+          "explorer_shell_nearest_opacity": 0.85,
+          "field_line_opacity": 0.08,
+          "field_line_count": 6
         },
         "formula_overlay": "V = k Q / r  (constant on a shell)"
       }

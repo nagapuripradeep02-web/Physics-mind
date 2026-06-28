@@ -187,13 +187,13 @@
           "tts_sentences": [
             {
               "id": "s1_1",
-              "text_en": "We are back at the same charged dome, like a school Van de Graaff generator. You already know the shells of equal potential V wrap around it.",
+              "text_en": "We are back at the same charged dome, like a school Van de Graaff generator. You already know the shells of equal potential V wrap around it.", "text_hi": "हम उसी charged dome पर वापस आ गए हैं, जैसे एक school Van de Graaff generator होता है। आपको पहले से ही पता है कि equal potential V के shells इसे wrap करते हैं।", "text_te": "మనం అదే charged dome వద్దకు తిరిగి వచ్చాము, ఇది school Van de Graaff generator లాంటిది. equal potential V యొక్క shells దాని చుట్టూ wrap అవుతాయని మీకు ఇప్పటికే తెలుసు.",
               "reveal_primitive_id": "shells_known_label",
               "appear_at_ms": 600
             },
             {
               "id": "s1_2",
-              "text_en": "Each shell carries one number, the potential V on that shell. But we never asked: how BIG is that number at a given distance r?",
+              "text_en": "Each shell carries one number, the potential V on that shell. But we never asked: how BIG is that number at a given distance r?", "text_hi": "हर shell एक number कैरी करता है, उस shell पर potential V। लेकिन हमने कभी नहीं पूछा: एक given distance r पर वह number कितना BIG होता है?", "text_te": "ప్రతి shell ఒక number ని కలిగి ఉంటుంది, ఆ shell పై potential V. కానీ మనం ఎప్పుడూ అడగలేదు: ఒక given distance r వద్ద ఆ number ఎంత BIG గా ఉంటుంది?",
               "reveal_primitive_id": "how_big_question_label",
               "appear_at_ms": 7000,
               "pause_after_ms": 1500
@@ -253,19 +253,19 @@
           "tts_sentences": [
             {
               "id": "s2_1",
-              "text_en": "Pick a point P out here at distance r from the charge Q. What is the potential V exactly there?",
+              "text_en": "Pick a point P out here at distance r from the charge Q. What is the potential V exactly there?", "text_hi": "यहाँ charge Q से distance r पर एक point P चुनिए। वहाँ potential V exactly क्या है?", "text_te": "ఇక్కడ charge Q నుండి distance r వద్ద ఒక point P ని ఎంచుకోండి. అక్కడ potential V exactly ఎంత?",
               "reveal_primitive_id": "point_p_label",
               "appear_at_ms": 800
             },
             {
               "id": "s2_2",
-              "text_en": "Here is the answer. The potential V = k Q / r. The shell at P lights up and shows its value.",
+              "text_en": "Here is the answer. The potential V = k Q / r. The shell at P lights up and shows its value.", "text_hi": "यहाँ answer है। potential V = k Q / r। P पर shell light up होता है और अपनी value दिखाता है।", "text_te": "ఇక్కడ answer ఉంది. potential V = k Q / r. P వద్ద ఉన్న shell light up అవుతుంది మరియు దాని value ను చూపుతుంది.",
               "reveal_primitive_id": "v_value_label",
               "appear_at_ms": 5000
             },
             {
               "id": "s2_3",
-              "text_en": "Read the formula carefully: the distance r is downstairs, to the first power. One power of r, not r squared. Hold on to that.",
+              "text_en": "Read the formula carefully: the distance r is downstairs, to the first power. One power of r, not r squared. Hold on to that.", "text_hi": "formula को ध्यान से पढ़िए: distance r downstairs है, to the first power। r की one power, r squared नहीं। इसे याद रखिए।", "text_te": "formula ను జాగ్రత్తగా చదవండి: distance r downstairs ఉంది, to the first power. r యొక్క one power, r squared కాదు. దీన్ని గుర్తుంచుకోండి.",
               "reveal_primitive_id": "formula_callout_label",
               "appear_at_ms": 11000,
               "pause_after_ms": 1200
@@ -325,27 +325,27 @@
           "tts_sentences": [
             {
               "id": "s3_1",
-              "text_en": "Point P sits at distance r = 2, where the potential V reads 6. Now I halve the distance, bringing P in to r = 1.",
+              "text_en": "Point P sits at distance r = 2, where the potential V reads 6. Now I halve the distance, bringing P in to r = 1.", "text_hi": "Point P distance r = 2 पर है, जहाँ potential V 6 read करता है। अब मैं distance को halve करता हूँ, P को r = 1 पर लाता हूँ।", "text_te": "Point P, distance r = 2 వద్ద ఉంది, అక్కడ potential V 6 అని చదువుతాము. ఇప్పుడు నేను distance ను halve చేస్తున్నాను, P ని r = 1 వద్దకు తీసుకువస్తున్నాను.",
               "reveal_primitive_id": "halve_label",
               "appear_at_ms": 800
             },
             {
               "id": "s3_2",
-              "text_en": "Predict the new potential V. The electric field E goes as one over r squared, so halving r makes E four times bigger. Does the potential V also jump four times, to 24?",
+              "text_en": "Predict the new potential V. The electric field E goes as one over r squared, so halving the distance r makes the electric field E four times bigger. Does the potential V also jump four times, to 24?", "text_hi": "new potential V को predict कीजिए। electric field E, one over r squared के रूप में जाता है, तो distance r को halve करने से electric field E four times bigger हो जाता है। क्या potential V भी four times, 24 तक jump करता है?", "text_te": "new potential V ని predict చేయండి. electric field E, one over r squared గా ఉంటుంది, కాబట్టి distance r ని halve చేస్తే electric field E four times bigger అవుతుంది. potential V కూడా four times, 24 కి jump అవుతుందా?",
               "reveal_primitive_id": "predict_label",
               "appear_at_ms": 6000,
               "pause_after_ms": 2800
             },
             {
               "id": "s3_3",
-              "text_en": "Watch. The potential V only DOUBLES, from 6 to 12. Not four times — just twice.",
+              "text_en": "Watch. The potential V only DOUBLES, from 6 to 12. Not four times — just twice.", "text_hi": "देखिए। potential V केवल DOUBLES होता है, 6 से 12 तक। four times नहीं — बस twice।", "text_te": "చూడండి. potential V కేవలం DOUBLES అవుతుంది, 6 నుండి 12 వరకు. four times కాదు — కేవలం twice.",
               "reveal_primitive_id": "doubles_label",
               "appear_at_ms": 9200,
               "pause_after_ms": 1500
             },
             {
               "id": "s3_4",
-              "text_en": "That is because the potential V = k Q / r falls as one over r, one power gentler than the field's one over r squared.",
+              "text_en": "That is because the potential V = k Q / r falls as one over r, one power gentler than the field's one over r squared.", "text_hi": "ऐसा इसलिए है क्योंकि potential V = k Q / r, one over r के रूप में fall होता है, जो field के one over r squared से one power gentler है।", "text_te": "అది ఎందుకంటే potential V = k Q / r, one over r గా fall అవుతుంది, ఇది field యొక్క one over r squared కంటే one power gentler.",
               "reveal_primitive_id": "doubles_label",
               "appear_at_ms": 13500
             }
@@ -411,26 +411,26 @@
           "tts_sentences": [
             {
               "id": "s4_1",
-              "text_en": "Let us see both falloffs on one graph: potential V up the side, distance r along the bottom.",
+              "text_en": "Let us see both falloffs on one graph: potential V up the side, distance r along the bottom.", "text_hi": "आइए दोनों falloffs को एक graph पर देखते हैं: potential V side में ऊपर, distance r bottom के साथ।", "text_te": "రెండు falloffs ని ఒక graph లో చూద్దాం: potential V పక్కన పైకి, distance r క్రింద along.",
               "reveal_primitive_id": "v_curve_label",
               "appear_at_ms": 700
             },
             {
               "id": "s4_2",
-              "text_en": "Here is the potential V = k Q / r, a gentle one-over-r curve. Bright.",
+              "text_en": "Here is the potential V = k Q / r, a gentle one-over-r curve. Bright.", "text_hi": "यहाँ potential V = k Q / r है, एक gentle one-over-r curve। Bright।", "text_te": "ఇక్కడ potential V = k Q / r ఉంది, ఒక gentle one-over-r curve. Bright.",
               "reveal_primitive_id": "v_curve_label",
               "appear_at_ms": 4000
             },
             {
               "id": "s4_3",
-              "text_en": "Now fade in the electric field E = k Q / r squared beneath it, dimmed. The two meet at distance r = 2.",
+              "text_en": "Now fade in the electric field E = k Q / r squared beneath it, dimmed. The two meet at distance r = 2.", "text_hi": "अब इसके नीचे electric field E = k Q / r squared fade in करें, dimmed। ये दोनों distance r = 2 पर मिलते हैं।", "text_te": "ఇప్పుడు దీని క్రింద electric field E = k Q / r squared fade in చేయండి, dimmed. ఈ రెండూ distance r = 2 వద్ద కలుస్తాయి.",
               "reveal_primitive_id": "e_ghost_label",
               "appear_at_ms": 9000,
               "pause_after_ms": 1200
             },
             {
               "id": "s4_4",
-              "text_en": "Move outward and they split apart. The potential V rides ABOVE the field E far out — it fades slowly while the field dies fast. That gap is the whole idea: one power of r gentler.",
+              "text_en": "Move outward and they split apart. The potential V rides ABOVE the electric field E far out — it fades slowly while the field dies fast. That gap is the whole idea: one power of r gentler.", "text_hi": "बाहर की ओर जाएँ और वे अलग हो जाते हैं। Potential V, electric field E से बहुत दूर ABOVE रहता है — यह धीरे-धीरे fade होता है जबकि field तेज़ी से ख़त्म हो जाता है। वह gap ही पूरा idea है: one power of r gentler।", "text_te": "బయటికి కదలండి మరియు అవి విడిపోతాయి. Potential V, electric field E కంటే చాలా దూరంగా ABOVE ఉంటుంది — అది నెమ్మదిగా fade అవుతుంది, అయితే field వేగంగా తగ్గిపోతుంది. ఆ gap నే మొత్తం idea: one power of r gentler.",
               "reveal_primitive_id": "gap_label",
               "appear_at_ms": 14000,
               "pause_after_ms": 1800
@@ -497,20 +497,20 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "One more thing about the potential V = k Q / r. It is a SCALAR — a single signed number, no arrow, unlike the electric field E.",
+              "text_en": "One more thing about the potential V = k Q / r. It is a SCALAR — a single signed number, no arrow, unlike the electric field E.", "text_hi": "Potential V = k Q / r के बारे में एक और बात। यह एक SCALAR है — एक single signed number, कोई arrow नहीं, electric field E के विपरीत।", "text_te": "Potential V = k Q / r గురించి ఇంకొక విషయం. ఇది ఒక SCALAR — ఒక single signed number, arrow ఉండదు, electric field E లా కాకుండా.",
               "reveal_primitive_id": "scalar_label",
               "appear_at_ms": 800
             },
             {
               "id": "s5_2",
-              "text_en": "For a positive charge Q the potential V is positive everywhere: a hill. If I flip Q to negative, predict — does an arrow appear, or does the number just change sign?",
+              "text_en": "For a positive charge Q the potential V is positive everywhere: a hill. If I flip the charge Q to negative, predict — does an arrow appear, or does the number just change sign?", "text_hi": "एक positive charge Q के लिए potential V हर जगह positive होता है: एक hill। अगर मैं charge Q को negative करता हूँ, तो predict करें — क्या कोई arrow दिखाई देता है, या क्या number बस sign बदलता है?", "text_te": "ఒక positive charge Q కోసం potential V ప్రతిచోటా positive గా ఉంటుంది: ఒక hill. నేను charge Q ని negative కు flip చేస్తే, predict చేయండి — ఒక arrow కనిపిస్తుందా, లేక number కేవలం sign మారుతుందా?",
               "reveal_primitive_id": "predict_sign_label",
               "appear_at_ms": 6000,
               "pause_after_ms": 2600
             },
             {
               "id": "s5_3",
-              "text_en": "Watch. Flip the sign of the charge Q, and the potential V flips from plus to minus — a well, not a hill. No arrow ever appears. The sign is in the number, never a direction.",
+              "text_en": "Watch. Flip the sign of the charge Q, and the potential V flips from plus to minus — a well, not a hill. No arrow ever appears. The sign is in the number, never a direction.", "text_hi": "देखिए। Charge Q का sign flip करें, और potential V plus से minus हो जाता है — एक well, hill नहीं। कोई arrow कभी नहीं दिखता। Sign number में होता है, कभी direction में नहीं।", "text_te": "చూడండి. Charge Q యొక్క sign ని flip చేయండి, మరియు potential V plus నుండి minus కు flip అవుతుంది — ఒక well, hill కాదు. ఎప్పుడూ arrow కనిపించదు. Sign number లో ఉంటుంది, ఎప్పుడూ direction లో ఉండదు.",
               "reveal_primitive_id": "well_label",
               "appear_at_ms": 9500,
               "pause_after_ms": 1200
@@ -572,19 +572,19 @@
           "tts_sentences": [
             {
               "id": "s6_1",
-              "text_en": "Now you drive. Drag the field point in and out to change the distance r. The shell it lands on lights up and the potential V reads out live.",
+              "text_en": "Now you drive. Drag the field point in and out to change the distance r. The shell it lands on lights up and the potential V reads out live.", "text_hi": "अब आप drive करें। Distance r बदलने के लिए field point को अंदर और बाहर drag करें। जिस shell पर यह गिरता है वह light up होता है और potential V live पढ़ता है।", "text_te": "ఇప్పుడు మీరు drive చేయండి. Distance r ని మార్చడానికి field point ని లోపలికి మరియు బయటికి drag చేయండి. అది పడే shell light up అవుతుంది మరియు potential V live గా చదువుతుంది.",
               "reveal_primitive_id": "drag_label",
               "appear_at_ms": 700
             },
             {
               "id": "s6_2",
-              "text_en": "Watch the dot on the one-over-r curve track with you, and feel the potential V rise GENTLY as you pull r in — doubling the closeness only doubles V, never four times.",
+              "text_en": "Watch the dot on the one-over-r curve track with you, and feel the potential V rise GENTLY as you pull the distance r in — doubling the closeness only doubles the potential V, never four times.", "text_hi": "One-over-r curve पर dot को अपने साथ track करते हुए देखें, और potential V को GENTLY ऊपर उठते हुए महसूस करें जब आप distance r को अंदर खींचते हैं — closeness को doubling करने से केवल potential V doubles होता है, कभी four times नहीं।", "text_te": "One-over-r curve పై ఉన్న dot మీతో పాటు track అవ్వడాన్ని చూడండి, మరియు మీరు distance r ని లోపలికి లాగినప్పుడు potential V GENTLY పెరుగుతుందని అనుభూతి చెందండి — closeness ని doubling చేయడం వల్ల potential V మాత్రమే doubles అవుతుంది, ఎప్పుడూ four times కాదు.",
               "reveal_primitive_id": "gentle_label",
               "appear_at_ms": 5000
             },
             {
               "id": "s6_3",
-              "text_en": "Flip the charge Q to negative if you like, and the whole potential V hill becomes a well — same gentle one-over-r shape, just below zero.",
+              "text_en": "Flip the charge Q to negative if you like, and the whole potential V hill becomes a well — same gentle one-over-r shape, just below zero.", "text_hi": "अगर आप चाहें तो charge Q को negative करें, और पूरा potential V hill एक well बन जाता है — same gentle one-over-r shape, बस zero से नीचे।", "text_te": "మీకు నచ్చితే charge Q ని negative కు flip చేయండి, మరియు మొత్తం potential V hill ఒక well అవుతుంది — అదే gentle one-over-r shape, కేవలం zero కంటే దిగువన.",
               "reveal_primitive_id": "sign_toggle_label",
               "appear_at_ms": 9000
             }

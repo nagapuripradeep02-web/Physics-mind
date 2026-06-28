@@ -1,0 +1,857 @@
+{
+  "concept_id": "galvanometer_to_ammeter_voltmeter",
+  "concept_name": "Galvanometer → Ammeter & Voltmeter — shunt S = Ig·G/(I−Ig), series R = V/Ig − G",
+  "chapter": 4,
+  "section": "4.11",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.11 (Conversion of a galvanometer into an ammeter and a voltmeter) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. The atomic concept taught here is the CIRCUIT TOPOLOGY of converting a moving-coil galvanometer into a measuring instrument: a galvanometer carries only a tiny full-scale current Ig (microamp range) and has a coil resistance G, so it cannot directly read large currents or large voltages. To make an AMMETER, a SMALL shunt resistance S is wired in PARALLEL with the coil; the current splits so only Ig passes through the coil and the rest (I − Ig) bypasses through S. Because both branches join the same two nodes they share the same voltage, giving Ig·G = (I − Ig)·S, so S = Ig·G/(I − Ig) — a very small resistance; the combined G‖S is near zero, so an ammeter is connected in SERIES and ideally has ~0 Ω. To make a VOLTMETER, a LARGE resistance R is wired in SERIES with the coil; only Ig flows while the chain drops the full voltage V, giving R = V/Ig − G — a very large resistance; the combined G + R is near infinite, so a voltmeter is connected in PARALLEL across the component and ideally has ~∞ Ω. The deepest student confusions targeted: (M1) the galvanometer can directly read any current; (M2) the classic swap — ammeter in parallel / voltmeter in series; (M3) the shunt should be large; (M4) an ammeter should have high resistance; (M5) a voltmeter should have low resistance; (M6) adding a shunt changes what the coil reads (it always passes only Ig). CUT-LINE: this concept teaches the CONVERSION only — it does NOT re-derive how the galvanometer itself reads current (φ = (NAB/k)·I, current sensitivity NAB/k); that is the prerequisite concept moving_coil_galvanometer, which this re-uses, not re-derives. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; the six misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["galvanometer_to_ammeter_voltmeter"]
+  },
+  "prerequisites": [
+    "moving_coil_galvanometer"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture the two meters on the bench in your school or college physics lab — the ammeter you put in SERIES to read the current through a resistor, and the voltmeter you clip ACROSS it to read the voltage. Both hide the very same moving coil you just studied; the only difference is a tiny resistor wired in. This concept is the wiring trick that turns one fragile galvanometer into either instrument.",
+    "secondary": "Picture the analog multimeter an electrician still carries, with a rotary dial that selects ranges — 250 mA, 10 A, 50 V, 250 V. Every click swaps in a different shunt or a different series resistance behind the same needle; the rotary switch is doing exactly the S = Ig·G/(I−Ig) and R = V/Ig − G arithmetic you will see here.",
+    "tertiary": "Picture the panel ammeter on an inverter or a battery charger and the voltmeter beside it. Same moving coil inside each, one wired with a small shunt to sit in the current line, the other wired with a large resistor to sit across the terminals."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "Ig": { "name": "Galvanometer full-scale current", "unit": "mA", "min": 0.5, "max": 10, "default": 1, "step": 0.5 },
+      "G": { "name": "Galvanometer coil resistance", "unit": "ohm", "min": 20, "max": 200, "default": 100, "step": 10 },
+      "I": { "name": "Current to measure (ammeter range)", "unit": "A", "min": 0.1, "max": 10, "default": 1, "step": 0.1 },
+      "V": { "name": "Voltage to measure (voltmeter range)", "unit": "V", "min": 1, "max": 100, "default": 10, "step": 1 }
+    },
+    "computed_outputs": {
+      "shunt_S": { "formula": "(Ig / 1000) * G / (I - Ig / 1000)" },
+      "series_R": { "formula": "V / (Ig / 1000) - G" },
+      "I_through_coil": { "formula": "Ig / 1000" },
+      "I_through_shunt": { "formula": "I - Ig / 1000" },
+      "split_fraction_coil": { "formula": "(Ig / 1000) / I" },
+      "ammeter_resistance": { "formula": "G * ((Ig / 1000) * G / (I - Ig / 1000)) / (G + ((Ig / 1000) * G / (I - Ig / 1000)))" },
+      "voltmeter_resistance": { "formula": "G + (V / (Ig / 1000) - G)" }
+    },
+    "formulas": {
+      "current_split": "Ig + I_shunt = I  — at the junction the current splits; the coil takes Ig, the shunt takes the rest.",
+      "equal_branch_voltage": "Ig * G = (I - Ig) * S  — the parallel coil and shunt share the same voltage across the same two nodes.",
+      "shunt_resistance": "S = Ig * G / (I - Ig)  — solve the equal-voltage condition; because I >> Ig, S is SMALL.",
+      "ammeter_resistance": "G_A = G*S / (G + S) ~ 0  — coil in parallel with a small shunt: combined resistance near zero, so the ammeter goes in SERIES.",
+      "series_resistance": "R = V / Ig - G  — only Ig flows while the chain drops the full V; because Ig is tiny, R is LARGE.",
+      "voltmeter_resistance": "G_V = G + R ~ infinity  — coil in series with a large R: combined resistance near infinite, so the voltmeter goes in PARALLEL."
+    },
+    "constraints": [
+      "The galvanometer coil never carries more than its full-scale current Ig, no matter how large the measured current I is - the shunt carries the excess I - Ig.",
+      "Ammeter: the shunt S is wired in PARALLEL with the coil and is SMALL (S = Ig*G/(I-Ig)); the combined resistance G||S is near zero, so an ammeter is connected in SERIES.",
+      "Voltmeter: the resistance R is wired in SERIES with the coil and is LARGE (R = V/Ig - G); the combined resistance G + R is near infinite, so a voltmeter is connected in PARALLEL.",
+      "Swapping them breaks the circuit: a near-zero ammeter placed in parallel short-circuits the component; a near-infinite voltmeter placed in series blocks the current.",
+      "An ideal ammeter has zero resistance (no voltage drop across it); an ideal voltmeter has infinite resistance (draws no current).",
+      "This concept re-uses, not re-derives, that the galvanometer reads current via phi = (NAB/k)*I (prerequisite moving_coil_galvanometer); here Ig and G are taken as given device constants."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "A galvanometer plus a small parallel shunt is a near-zero-ohm ammeter, wired in series.",
+    "visual_confirmation": "STATE_5 cross-fades the coil and its small shunt into a single 'A' meter box that drops into the main series line, with a '≈ 0 Ω' badge, while the full current sails through undisturbed.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_9" },
+    "ammeter": { "start": "STATE_3", "end": "STATE_5" },
+    "voltmeter": { "start": "STATE_6", "end": "STATE_7" },
+    "explore": { "start": "STATE_9", "end": "STATE_9" }
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "The delicate galvanometer: tiny Ig, coil resistance G",
+        "teaching_method": "narrative_socratic",
+        "duration": 16,
+        "focal_primitive_id": "gav_galvo_symbol",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "intro_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "A galvanometer — symbol G — the moving coil you already studied",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "intro_legend",
+            "position": { "x": 200, "y": 235 },
+            "text": "Amber dots = current creeping\nthrough the delicate coil.\nIt reads only a tiny full-scale\ncurrent Ig, and has resistance G.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "intro_anchor",
+            "position": { "x": 560, "y": 235 },
+            "text": "Like the bare meter movement\ninside the ammeter and the\nvoltmeter on your lab bench —\nbefore any resistor is wired in.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "intro_question",
+            "position": { "x": 380, "y": 475 },
+            "text": "Question: how do we turn this fragile detector into an ammeter and a voltmeter?",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "This is a galvanometer, the symbol G. Watch the current creep through its delicate coil.", "text_hi": "यह एक galvanometer है, symbol G। देखिए current इसकी delicate coil में धीरे-धीरे बहता है।", "text_te": "ఇది ఒక galvanometer, symbol G. దాని delicate coil గుండా current నెమ్మదిగా ప్రవహించడాన్ని గమనించండి.", "pause_after_ms": 1500 },
+            { "id": "s1_2", "text_en": "It reads only a tiny full-scale current, the microamp-level current I g, and its coil has resistance G.", "text_hi": "यह केवल एक tiny full-scale current पढ़ता है, microamp-level current I g, और इसकी coil की resistance G है।", "text_te": "ఇది కేవలం ఒక tiny full-scale current ను చదువుతుంది, microamp-level current I g, మరియు దాని coil కి resistance G ఉంటుంది.", "pause_after_ms": 1500 },
+            { "id": "s1_3", "text_en": "So how do we turn this fragile detector into an ammeter and a voltmeter?", "text_hi": "तो हम इस fragile detector को ammeter और voltmeter में कैसे बदलें?", "text_te": "మరి ఈ fragile detector ను ammeter మరియు voltmeter గా ఎలా మారుస్తాం?", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A galvanometer can directly measure any current or voltage you connect it to.",
+            "visual_counter": "The current is shown creeping through the coil, with labels that it survives only the tiny full-scale current Ig and carries a coil resistance G.",
+            "one_line_fix": "A galvanometer only handles a tiny full-scale current Ig; reading large currents or voltages needs an added resistor."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "The problem: a real circuit would burn the bare coil",
+        "teaching_method": "narrative_socratic",
+        "duration": 20,
+        "focal_primitive_id": "gav_galvo_symbol",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "problem_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Drop the bare galvanometer into a real circuit: battery + load",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "problem_predict",
+            "position": { "x": 200, "y": 235 },
+            "text": "A real circuit can push\nwhole amperes. The coil only\nsurvives the tiny Ig.\nWhat happens to the needle?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "problem_reveal",
+            "position": { "x": 560, "y": 235 },
+            "text": "The current floods through —\nthe needle slams off-scale and\nthe coil would burn out.\nAcross a big voltage V: same.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s2_3"
+          },
+          {
+            "type": "annotation",
+            "id": "problem_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "The bare galvanometer cannot read large I or large V — we must protect and rescale it",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s2_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Drop the bare galvanometer into a real circuit with a battery and a load.", "text_hi": "Bare galvanometer को एक real circuit में डालिए, battery और load के साथ।", "text_te": "Bare galvanometer ను ఒక real circuit లో ఉంచండి, battery మరియు load తో.", "pause_after_ms": 1500 },
+            { "id": "s2_2", "text_en": "A real circuit can push whole amperes, but the coil only survives the tiny current I g.", "text_hi": "एक real circuit पूरे amperes push कर सकता है, लेकिन coil केवल tiny current I g सहती है।", "text_te": "ఒక real circuit మొత్తం amperes ను push చేయగలదు, కానీ coil కేవలం tiny current I g ను మాత్రమే తట్టుకుంటుంది.", "pause_after_ms": 3000 },
+            { "id": "s2_3", "text_en": "Send the full current through it and the needle slams off-scale; the coil would burn out.", "text_hi": "इसमें full current भेजिए और needle off-scale slam हो जाती है; coil burn out हो जाती।", "text_te": "దానిలో full current పంపండి, needle off-scale కి కొట్టుకుంటుంది; coil burn out అయిపోతుంది.", "pause_after_ms": 1800 },
+            { "id": "s2_4", "text_en": "And across a large voltage it draws too much current to read. We must protect and rescale it.", "text_hi": "और एक large voltage के across यह पढ़ने के लिए बहुत ज़्यादा current खींचती है। हमें इसे protect और rescale करना होगा।", "text_te": "మరియు ఒక large voltage అంతటా ఇది చదవడానికి చాలా ఎక్కువ current ను లాగుతుంది. మనం దీన్ని protect మరియు rescale చేయాలి.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "You can just connect the galvanometer in any circuit and read whatever current or voltage is there.",
+            "visual_counter": "In a battery-and-load circuit the current floods fast through the coil and the off-scale warning fires — the bare coil cannot take it.",
+            "one_line_fix": "A real circuit pushes far more than Ig, so the bare coil would burn out — it must be protected and rescaled with an added resistor."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Ammeter idea: a small shunt in parallel splits the current",
+        "teaching_method": "narrative_socratic",
+        "duration": 24,
+        "focal_primitive_id": "gav_shunt_resistor",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "shunt_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "To read a large current I, add a small shunt S in parallel with G",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "shunt_predict",
+            "position": { "x": 200, "y": 235 },
+            "text": "Predict before the reveal:\nwhen the current reaches the\njunction, how does it split\nbetween the coil and the shunt?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "shunt_reveal",
+            "position": { "x": 560, "y": 235 },
+            "text": "Most of it races through the\nlow-resistance shunt; only the\ntiny Ig still passes through\nthe coil — the rest is I − Ig.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s3_3"
+          },
+          {
+            "type": "annotation",
+            "id": "shunt_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "The coil never carries more than Ig — the shunt safely carries the excess I − Ig",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s3_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "To measure a large current, we add a small shunt resistance S in parallel with the galvanometer.", "text_hi": "एक large current measure करने के लिए, हम galvanometer के parallel एक small shunt resistance S जोड़ते हैं।", "text_te": "ఒక large current ను measure చేయడానికి, galvanometer కి parallel గా ఒక small shunt resistance S జోడిస్తాం.", "pause_after_ms": 1500 },
+            { "id": "s3_2", "text_en": "Predict: when the current reaches the junction, how does it split between the coil and the shunt?", "text_hi": "Predict कीजिए: जब current junction पर पहुँचता है, यह coil और shunt के बीच कैसे split होता है?", "text_te": "Predict చేయండి: current junction కి చేరినప్పుడు, అది coil మరియు shunt మధ్య ఎలా split అవుతుంది?", "pause_after_ms": 3500 },
+            { "id": "s3_3", "text_en": "Most of it races through the low-resistance shunt; only the tiny current I g still passes through the coil.", "text_hi": "इसका अधिकांश low-resistance shunt से race करता है; केवल tiny current I g अभी भी coil से गुज़रती है।", "text_te": "దానిలో ఎక్కువ భాగం low-resistance shunt గుండా race చేస్తుంది; కేవలం tiny current I g మాత్రమే coil గుండా వెళుతుంది.", "pause_after_ms": 1800 },
+            { "id": "s3_4", "text_en": "The galvanometer never carries more than I g; the shunt safely carries the rest, the current I minus I g.", "text_hi": "Galvanometer कभी भी I g से ज़्यादा नहीं ले जाती; shunt बाकी को safely ले जाती है, current I minus I g।", "text_te": "Galvanometer ఎప్పుడూ I g కంటే ఎక్కువ తీసుకువెళ్ళదు; shunt మిగిలినదాన్ని safely తీసుకువెళుతుంది, current I minus I g.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Adding a shunt changes how much current the galvanometer coil reads.",
+            "visual_counter": "At the junction the dots split: a thick fast stream through the shunt and only a tiny trickle through the coil, labelled Ig vs I − Ig.",
+            "one_line_fix": "The coil always carries only Ig; the shunt simply bypasses the excess current I − Ig, so the coil is never overloaded."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The shunt formula: S = Ig·G/(I−Ig) is small",
+        "teaching_method": "narrative_socratic",
+        "duration": 22,
+        "focal_primitive_id": "gav_shunt_resistor",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "formula_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Both branches join the same two nodes — so they share the same voltage",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_predict",
+            "position": { "x": 200, "y": 235 },
+            "text": "Equal voltage across the two\nparallel branches:\nIg · G  =  (I − Ig) · S.\nSolve for the shunt S.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_reveal",
+            "position": { "x": 560, "y": 235 },
+            "text": "S = Ig · G / (I − Ig).\nBecause I is much larger\nthan Ig, the shunt S comes\nout VERY small (≈ 0.1 Ω).",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s4_3"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_eqn",
+            "position": { "x": 380, "y": 475 },
+            "text": "Ig·G = (I − Ig)·S   →   S = Ig·G/(I − Ig)   (small)",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s4_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Both branches connect the same two junctions, so they share the same voltage across them.", "text_hi": "दोनों branches एक ही दो junctions को connect करती हैं, इसलिए वे same voltage share करती हैं।", "text_te": "రెండు branches ఒకే రెండు junctions ను connect చేస్తాయి, కాబట్టి అవి same voltage ను share చేస్తాయి.", "pause_after_ms": 1500 },
+            { "id": "s4_2", "text_en": "That gives current I g times G equals the shunt current times S — equal voltage on the two parallel branches.", "text_hi": "इससे मिलता है current I g times G equals shunt current times S — दोनों parallel branches पर equal voltage।", "text_te": "దీని నుండి current I g times G equals shunt current times S వస్తుంది — రెండు parallel branches పై equal voltage.", "pause_after_ms": 2000 },
+            { "id": "s4_3", "text_en": "Solve it and the shunt resistance S equals I g times G, divided by I minus I g.", "text_hi": "इसे solve कीजिए और shunt resistance S equals I g times G, divided by I minus I g।", "text_te": "దాన్ని solve చేయండి, shunt resistance S equals I g times G, divided by I minus I g.", "pause_after_ms": 1800 },
+            { "id": "s4_4", "text_en": "Because the current I is much larger than I g, the shunt resistance S comes out very small.", "text_hi": "क्योंकि current I, I g से बहुत बड़ा है, shunt resistance S बहुत small आती है।", "text_te": "Current I, I g కంటే చాలా పెద్దది కాబట్టి, shunt resistance S చాలా small గా వస్తుంది.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The shunt resistance should be large, like an ordinary resistor.",
+            "visual_counter": "The equal-voltage condition resolves to S = Ig·G/(I−Ig), and the shunt is labelled with a small value (≈ 0.1 Ω) beside the large current it diverts.",
+            "one_line_fix": "Because I is much larger than Ig, S = Ig·G/(I−Ig) is very small — a shunt is a near-zero resistance, not a large one."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Ideal ammeter ~0 Ω, connected in series",
+        "teaching_method": "narrative_socratic",
+        "duration": 24,
+        "focal_primitive_id": "gav_ammeter_box",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ammeter_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Seal the coil and its shunt into one unit — the ammeter, marked A",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "ammeter_predict",
+            "position": { "x": 200, "y": 235 },
+            "text": "The galvanometer and a tiny\nshunt sit in parallel.\nIs their combined resistance\nlarge, or small?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "ammeter_reveal",
+            "position": { "x": 560, "y": 235 },
+            "text": "Tiny — close to zero ohms.\nSo the ammeter barely disturbs\nthe circuit, and is wired in\nSERIES, in the current's path.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s5_3"
+          },
+          {
+            "type": "annotation",
+            "id": "ammeter_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "Ammeter = G ‖ small S ≈ 0 Ω → connect in SERIES (ideal ammeter has zero resistance)",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s5_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Seal the coil and its shunt into one unit; that is your ammeter, marked A.", "text_hi": "Coil और इसके shunt को एक unit में seal कीजिए; वह है आपका ammeter, marked A।", "text_te": "Coil మరియు దాని shunt ను ఒక unit గా seal చేయండి; అదే మీ ammeter, marked A.", "pause_after_ms": 1500 },
+            { "id": "s5_2", "text_en": "Predict: the galvanometer and a tiny shunt sit in parallel. Is their combined resistance large or small?", "text_hi": "Predict कीजिए: galvanometer और एक tiny shunt parallel में हैं। उनकी combined resistance large है या small?", "text_te": "Predict చేయండి: galvanometer మరియు ఒక tiny shunt parallel లో ఉన్నాయి. వాటి combined resistance large గా ఉందా, small గా ఉందా?", "pause_after_ms": 3500 },
+            { "id": "s5_3", "text_en": "It is tiny, close to zero ohms, so the ammeter barely disturbs the circuit it measures.", "text_hi": "यह tiny है, zero ohms के करीब, इसलिए ammeter जिस circuit को measure करता है उसे barely disturb करता है।", "text_te": "ఇది tiny, zero ohms కి దగ్గరగా, కాబట్టి ammeter తాను measure చేసే circuit ను barely disturb చేస్తుంది.", "pause_after_ms": 1800 },
+            { "id": "s5_4", "text_en": "That is why an ammeter is connected in series, and an ideal ammeter has almost zero resistance.", "text_hi": "इसीलिए ammeter series में connect होता है, और ideal ammeter की resistance लगभग zero होती है।", "text_te": "అందుకే ammeter series లో connect అవుతుంది, మరియు ideal ammeter resistance దాదాపు zero గా ఉంటుంది.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "An ammeter should have a high resistance, and it can go anywhere in the circuit.",
+            "visual_counter": "The coil and small shunt cross-fade into one 'A' box with a '≈ 0 Ω' badge that drops into the series line, the full current passing straight through.",
+            "one_line_fix": "A galvanometer in parallel with a small shunt is near zero ohms, so an ammeter is wired in series and ideally has zero resistance."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Voltmeter idea: a large R in series; R = V/Ig − G",
+        "teaching_method": "narrative_socratic",
+        "duration": 24,
+        "focal_primitive_id": "gav_series_resistor",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "volt_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "To read a voltage V, add a large resistance R in series with G",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "volt_predict",
+            "position": { "x": 200, "y": 235 },
+            "text": "With this big resistance in\nthe line, how much current\nflows through the coil —\na lot, or just Ig?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "volt_reveal",
+            "position": { "x": 560, "y": 235 },
+            "text": "Only the tiny Ig flows: the\nlarge R chokes the current to\nthe coil's full-scale value.\nThe chain drops the whole V.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s6_3"
+          },
+          {
+            "type": "annotation",
+            "id": "volt_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "V = Ig·(G + R)   →   R = V/Ig − G   (large)",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s6_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Now to read a voltage, we add a large resistance R in series with the galvanometer.", "text_hi": "अब एक voltage पढ़ने के लिए, हम galvanometer के series में एक large resistance R जोड़ते हैं।", "text_te": "ఇప్పుడు ఒక voltage చదవడానికి, galvanometer కి series లో ఒక large resistance R జోడిస్తాం.", "pause_after_ms": 1500 },
+            { "id": "s6_2", "text_en": "Predict: with this big resistance in the line, how much current flows through the coil?", "text_hi": "Predict कीजिए: line में इस big resistance के साथ, coil से कितना current बहता है?", "text_te": "Predict చేయండి: line లో ఈ big resistance తో, coil గుండా ఎంత current ప్రవహిస్తుంది?", "pause_after_ms": 3500 },
+            { "id": "s6_3", "text_en": "Only the tiny current I g flows, because the large R chokes the current to the galvanometer's full-scale value.", "text_hi": "केवल tiny current I g बहता है, क्योंकि large R current को galvanometer के full-scale value तक choke कर देती है।", "text_te": "కేవలం tiny current I g మాత్రమే ప్రవహిస్తుంది, ఎందుకంటే large R current ను galvanometer full-scale value కి choke చేస్తుంది.", "pause_after_ms": 1800 },
+            { "id": "s6_4", "text_en": "The chain drops the whole voltage at that current, so the series resistance R equals V over I g, minus G.", "text_hi": "Chain उस current पर पूरा voltage drop करती है, इसलिए series resistance R equals V over I g, minus G।", "text_te": "Chain ఆ current వద్ద మొత్తం voltage ను drop చేస్తుంది, కాబట్టి series resistance R equals V over I g, minus G.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "To make a voltmeter you add a small resistance, or the series resistor should be small.",
+            "visual_counter": "A large zigzag R appears in series with G, only a thin Ig trickle creeps through, and R is resolved as R = V/Ig − G with a large value.",
+            "one_line_fix": "A voltmeter adds a LARGE series resistance R = V/Ig − G, so only the tiny Ig flows while the chain drops the full voltage V."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Ideal voltmeter ~∞ Ω, connected in parallel",
+        "teaching_method": "narrative_socratic",
+        "duration": 22,
+        "focal_primitive_id": "gav_voltmeter_box",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "vbox_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Seal the coil and its large R into one unit — the voltmeter, marked V",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "vbox_predict",
+            "position": { "x": 200, "y": 235 },
+            "text": "The coil plus a big resistance\nR add up to a very large\ncombined resistance.\nHow much current can it draw?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "vbox_reveal",
+            "position": { "x": 560, "y": 235 },
+            "text": "Almost none — ideally infinite\nresistance. So it barely\ndisturbs the circuit, and sits\nin PARALLEL, across the part.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s7_3"
+          },
+          {
+            "type": "annotation",
+            "id": "vbox_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "Voltmeter = G + large R ≈ ∞ Ω → connect in PARALLEL (ideal voltmeter draws no current)",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s7_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Seal the coil and its large series resistance into one unit; that is your voltmeter, marked V.", "text_hi": "Coil और इसकी large series resistance को एक unit में seal कीजिए; वह है आपका voltmeter, marked V।", "text_te": "Coil మరియు దాని large series resistance ను ఒక unit గా seal చేయండి; అదే మీ voltmeter, marked V.", "pause_after_ms": 1500 },
+            { "id": "s7_2", "text_en": "The galvanometer plus a big resistance R add up to a very large combined resistance.", "text_hi": "Galvanometer plus एक big resistance R मिलकर एक बहुत large combined resistance बनाते हैं।", "text_te": "Galvanometer plus ఒక big resistance R కలిసి చాలా large combined resistance గా అవుతాయి.", "pause_after_ms": 1500 },
+            { "id": "s7_3", "text_en": "So the voltmeter draws almost no current, ideally infinite resistance, and barely disturbs the circuit.", "text_hi": "इसलिए voltmeter लगभग कोई current नहीं खींचता, ideally infinite resistance, और circuit को barely disturb करता है।", "text_te": "కాబట్టి voltmeter దాదాపు ఏ current ను లాగదు, ideally infinite resistance, మరియు circuit ను barely disturb చేస్తుంది.", "pause_after_ms": 1800 },
+            { "id": "s7_4", "text_en": "That is why a voltmeter is connected in parallel, straight across the part whose voltage you want.", "text_hi": "इसीलिए voltmeter parallel में connect होता है, उस part के across जिसका voltage आप चाहते हैं।", "text_te": "అందుకే voltmeter parallel లో connect అవుతుంది, మీకు కావలసిన voltage ఉన్న part అంతటా.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A voltmeter should have a low resistance, and it can be put in series like an ammeter.",
+            "visual_counter": "The coil and large R cross-fade into one 'V' box with a '≈ ∞ Ω' badge that hops across the load, drawing only a near-zero trickle.",
+            "one_line_fix": "A galvanometer in series with a large R is near infinite ohms, so a voltmeter is wired in parallel and ideally draws no current."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "Ammeter vs voltmeter — the swap that fails",
+        "teaching_method": "narrative_socratic",
+        "duration": 22,
+        "focal_primitive_id": "gav_swap_warning",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "swap_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Ammeter in series (≈ 0 Ω); voltmeter in parallel (≈ ∞ Ω)",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "swap_predict",
+            "position": { "x": 200, "y": 235 },
+            "text": "What if you swapped them —\nan ammeter across a part,\na voltmeter in the line?\nPredict what breaks.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "swap_reveal",
+            "position": { "x": 560, "y": 235 },
+            "text": "A near-zero ammeter across a\npart short-circuits it; a near-\ninfinite voltmeter in series\nblocks the current. Both fail.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s8_2"
+          },
+          {
+            "type": "annotation",
+            "id": "swap_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "Ammeter: series + small shunt.   Voltmeter: parallel + large series R.   Never swap them.",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s8_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Side by side: the ammeter sits in series with almost zero resistance; the voltmeter sits across, with almost infinite resistance.", "text_hi": "Side by side: ammeter series में almost zero resistance के साथ है; voltmeter across में almost infinite resistance के साथ है।", "text_te": "Side by side: ammeter series లో almost zero resistance తో ఉంటుంది; voltmeter across లో almost infinite resistance తో ఉంటుంది.", "pause_after_ms": 1800 },
+            { "id": "s8_2", "text_en": "Swap them and the circuit breaks: a near-zero ammeter across a component short-circuits it.", "text_hi": "इन्हें swap कीजिए और circuit टूट जाता है: एक component के across near-zero ammeter उसे short-circuit कर देता है।", "text_te": "వీటిని swap చేస్తే circuit విరిగిపోతుంది: ఒక component అంతటా near-zero ammeter దాన్ని short-circuit చేస్తుంది.", "pause_after_ms": 1800 },
+            { "id": "s8_3", "text_en": "And a near-infinite voltmeter placed in series blocks the current almost completely.", "text_hi": "और series में रखा एक near-infinite voltmeter current को लगभग पूरी तरह block कर देता है।", "text_te": "మరియు series లో ఉంచిన ఒక near-infinite voltmeter current ను దాదాపు పూర్తిగా block చేస్తుంది.", "pause_after_ms": 1800 },
+            { "id": "s8_4", "text_en": "Ammeter in series with a small shunt; voltmeter in parallel with a large series resistance — never the other way round.", "text_hi": "Ammeter series में small shunt के साथ; voltmeter parallel में large series resistance के साथ — कभी उल्टा नहीं।", "text_te": "Ammeter series లో small shunt తో; voltmeter parallel లో large series resistance తో — ఎప్పుడూ తలకిందులుగా కాదు.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "An ammeter and a voltmeter are interchangeable — it does not matter how you connect them.",
+            "visual_counter": "Both correct meters run side by side with the swap warning pulsing; the swap shorts or blocks the circuit, so the dots stall.",
+            "one_line_fix": "An ammeter must be in series (≈ 0 Ω) and a voltmeter in parallel (≈ ∞ Ω); swapping them short-circuits or blocks the circuit."
+          }
+        ]
+      },
+      "STATE_9": {
+        "title": "Your turn — Ig, G, I, V → S, R",
+        "teaching_method": "exploration_sliders",
+        "duration": 26,
+        "focal_primitive_id": "gav_shunt_resistor",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Explore: drag Ig, coil resistance G, current range I, voltage range V",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_guide",
+            "position": { "x": 200, "y": 235 },
+            "text": "Watch the shunt S and the\nseries R update live as you\nchange the ranges. S stays\nsmall; R stays large.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_challenge",
+            "position": { "x": 560, "y": 235 },
+            "text": "Challenge:\nRaise the current range I —\ndoes the shunt S shrink?\nRaise V — does R grow?",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "S = Ig·G/(I − Ig) (small, parallel) · R = V/Ig − G (large, series)",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "Your turn. Drag the full-scale current I g, the coil resistance G, the current range I, and the voltage range V.", "text_hi": "अब आपकी बारी। Drag कीजिए full-scale current I g, coil resistance G, current range I, और voltage range V।", "text_te": "ఇప్పుడు మీ వంతు. Drag చేయండి full-scale current I g, coil resistance G, current range I, మరియు voltage range V.", "pause_after_ms": 1500 },
+            { "id": "s9_2", "text_en": "Watch the shunt resistance S and the series resistance R update live as you change the ranges.", "text_hi": "Shunt resistance S और series resistance R को live update होते देखिए जैसे आप ranges बदलते हैं।", "text_te": "Shunt resistance S మరియు series resistance R ను live update అవుతూ చూడండి, మీరు ranges మార్చుతున్నప్పుడు.", "pause_after_ms": 1500 },
+            { "id": "s9_3", "text_en": "Notice the shunt S stays small for an ammeter, while the series R stays large for a voltmeter.", "text_hi": "देखिए shunt S एक ammeter के लिए small रहती है, जबकि series R एक voltmeter के लिए large रहती है।", "text_te": "గమనించండి shunt S ఒక ammeter కోసం small గా ఉంటుంది, అయితే series R ఒక voltmeter కోసం large గా ఉంటుంది.", "pause_after_ms": 1500 }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "galvanometer_to_ammeter_voltmeter",
+    "field_lines": {
+      "opacity": 0.95
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "galvo": "#FFD54F",
+      "shunt": "#34D399",
+      "series_r": "#E879F9",
+      "wire": "#90A4AE",
+      "current": "#FFAB40",
+      "meter_box": "#FFCA28",
+      "battery_plus": "#EF5350",
+      "battery_minus": "#42A5F5"
+    },
+    "slider_controls": {
+      "Ig": { "min": 0.5, "max": 10, "step": 0.5, "default": 1, "label": "Full-scale current Ig (mA)" },
+      "G": { "min": 20, "max": 200, "step": 10, "default": 100, "label": "Coil resistance G (Ω)" },
+      "I": { "min": 0.1, "max": 10, "step": 0.1, "default": 1, "label": "Current range I (A)" },
+      "V": { "min": 1, "max": 100, "step": 1, "default": 10, "label": "Voltage range V (V)" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A galvanometer alone — tiny Ig creeping through the coil",
+        "layout": "intro",
+        "visible_elements": [
+          "gav_galvo_symbol", "gav_lead_l", "gav_lead_r", "gav_current_dot"
+        ],
+        "variable_overrides": { "Ig": 1, "G": 100, "I": 1, "V": 10 },
+        "camera_position": [0, 0, 4.5],
+        "caption": "A galvanometer (symbol G): a delicate coil that reads only a tiny full-scale current Ig and has resistance G.",
+        "extras": { "current_dots": true, "dot_paths": "intro" }
+      },
+      "STATE_2": {
+        "label": "Bare galvanometer in a real circuit — the current floods",
+        "layout": "solo",
+        "visible_elements": [
+          "gav_wire_top", "gav_wire_left", "gav_wire_right", "gav_wire_main_in",
+          "gav_wire_main_out", "gav_wire_solo_mid", "gav_galvo_symbol",
+          "gav_battery", "gav_load_resistor", "gav_node_left", "gav_node_right", "gav_current_dot"
+        ],
+        "variable_overrides": { "Ig": 1, "G": 100, "I": 8, "V": 10 },
+        "camera_position": [0, 0, 7],
+        "caption": "Put the bare galvanometer in a real battery-and-load circuit: the full current floods through and would burn the coil.",
+        "extras": { "current_dots": true, "dot_paths": "solo" }
+      },
+      "STATE_3": {
+        "label": "Ammeter idea: small shunt S in parallel — the current splits",
+        "layout": "ammeter",
+        "visible_elements": [
+          "gav_wire_top", "gav_wire_left", "gav_wire_right", "gav_wire_main_in",
+          "gav_wire_main_out", "gav_wire_coil", "gav_wire_shunt", "gav_galvo_symbol",
+          "gav_shunt_resistor", "gav_split_label_coil", "gav_split_label_shunt",
+          "gav_battery", "gav_load_resistor", "gav_node_left", "gav_node_right", "gav_current_dot"
+        ],
+        "variable_overrides": { "Ig": 1, "G": 100, "I": 1, "V": 10 },
+        "camera_position": [0, 0, 7],
+        "caption": "Wire a small shunt S in parallel with G: at the junction the current splits — only Ig through the coil, I − Ig through the shunt.",
+        "extras": { "current_dots": true, "dot_paths": "ammeter_split" }
+      },
+      "STATE_4": {
+        "label": "Shunt formula: equal branch voltage → S = Ig·G/(I−Ig), small",
+        "layout": "ammeter",
+        "visible_elements": [
+          "gav_wire_top", "gav_wire_left", "gav_wire_right", "gav_wire_main_in",
+          "gav_wire_main_out", "gav_wire_coil", "gav_wire_shunt", "gav_galvo_symbol",
+          "gav_shunt_resistor", "gav_split_label_coil", "gav_split_label_shunt",
+          "gav_battery", "gav_load_resistor", "gav_node_left", "gav_node_right", "gav_current_dot"
+        ],
+        "variable_overrides": { "Ig": 1, "G": 100, "I": 1, "V": 10 },
+        "camera_position": [0, 0, 6.5],
+        "caption": "Both branches share the same voltage: Ig·G = (I − Ig)·S, so S = Ig·G/(I − Ig) — a very small resistance (≈ 0.1 Ω here).",
+        "extras": { "current_dots": true, "dot_paths": "ammeter_split" }
+      },
+      "STATE_5": {
+        "label": "Assemble the ammeter: G ‖ small S ≈ 0 Ω, dropped into the series line",
+        "layout": "ammeter",
+        "visible_elements": [
+          "gav_wire_top", "gav_wire_left", "gav_wire_right", "gav_wire_main_in",
+          "gav_wire_main_out", "gav_wire_solo_mid", "gav_galvo_symbol", "gav_shunt_resistor",
+          "gav_ammeter_box", "gav_ammeter_badge",
+          "gav_battery", "gav_load_resistor", "gav_node_left", "gav_node_right", "gav_current_dot"
+        ],
+        "variable_overrides": { "Ig": 1, "G": 100, "I": 1, "V": 10 },
+        "camera_position": [0, 0, 7],
+        "caption": "Coil + small shunt seal into one 'A' meter (≈ 0 Ω) dropped into the series line; the full current sails through undisturbed.",
+        "extras": { "current_dots": true, "dot_paths": "solo", "assemble_ammeter": { "enabled": true, "at_ms": 9000, "duration_ms": 1500 } }
+      },
+      "STATE_6": {
+        "label": "Voltmeter idea: large R in series — only Ig flows; R = V/Ig − G",
+        "layout": "voltmeter",
+        "visible_elements": [
+          "gav_wire_top", "gav_wire_left", "gav_wire_right", "gav_wire_main_in",
+          "gav_wire_main_out", "gav_wire_solo_mid", "gav_wire_vm", "gav_galvo_symbol",
+          "gav_series_resistor", "gav_battery", "gav_load_resistor",
+          "gav_node_left", "gav_node_right", "gav_current_dot"
+        ],
+        "variable_overrides": { "Ig": 1, "G": 100, "I": 1, "V": 10 },
+        "camera_position": [0, 0, 7],
+        "caption": "Wire a large R in series with G across the load: only the tiny Ig creeps through, and the chain drops the full V — so R = V/Ig − G.",
+        "extras": { "current_dots": true, "dot_paths": "voltmeter" }
+      },
+      "STATE_7": {
+        "label": "Assemble the voltmeter: G + large R ≈ ∞ Ω, hopped across the load",
+        "layout": "voltmeter",
+        "visible_elements": [
+          "gav_wire_top", "gav_wire_left", "gav_wire_right", "gav_wire_main_in",
+          "gav_wire_main_out", "gav_wire_solo_mid", "gav_wire_vm", "gav_galvo_symbol",
+          "gav_series_resistor", "gav_voltmeter_box", "gav_voltmeter_badge",
+          "gav_battery", "gav_load_resistor", "gav_node_left", "gav_node_right", "gav_current_dot"
+        ],
+        "variable_overrides": { "Ig": 1, "G": 100, "I": 1, "V": 10 },
+        "camera_position": [0, 0, 7],
+        "caption": "Coil + large R seal into one 'V' meter (≈ ∞ Ω) sitting across the load; it draws only a near-zero trickle, in parallel.",
+        "extras": { "current_dots": true, "dot_paths": "voltmeter", "assemble_voltmeter": { "enabled": true, "at_ms": 8000, "duration_ms": 1500 } }
+      },
+      "STATE_8": {
+        "label": "Compare: ammeter in series (≈ 0 Ω) vs voltmeter in parallel (≈ ∞ Ω) — swap breaks it",
+        "layout": "compare",
+        "visible_elements": [
+          "gav_wire_top", "gav_wire_left", "gav_wire_right", "gav_wire_main_in",
+          "gav_wire_main_out", "gav_wire_solo_mid", "gav_wire_vm",
+          "gav_ammeter_box", "gav_ammeter_badge", "gav_voltmeter_box", "gav_voltmeter_badge",
+          "gav_swap_warning", "gav_battery", "gav_load_resistor",
+          "gav_node_left", "gav_node_right", "gav_current_dot"
+        ],
+        "variable_overrides": { "Ig": 1, "G": 100, "I": 1, "V": 10 },
+        "camera_position": [0, 0, 7],
+        "caption": "The correct picture: 'A' in series (≈ 0 Ω), 'V' in parallel (≈ ∞ Ω). Swap them and the circuit short-circuits or blocks.",
+        "extras": { "current_dots": true, "dot_paths": "voltmeter" }
+      },
+      "STATE_9": {
+        "label": "Sandbox — Ig, G, I, V sliders with a live S + R readout",
+        "layout": "ammeter",
+        "visible_elements": [
+          "gav_wire_top", "gav_wire_left", "gav_wire_right", "gav_wire_main_in",
+          "gav_wire_main_out", "gav_wire_coil", "gav_wire_shunt", "gav_galvo_symbol",
+          "gav_shunt_resistor", "gav_split_label_coil", "gav_split_label_shunt",
+          "gav_battery", "gav_load_resistor", "gav_node_left", "gav_node_right", "gav_current_dot"
+        ],
+        "variable_overrides": { "Ig": 1, "G": 100, "I": 1, "V": 10 },
+        "camera_position": [0, 0, 7],
+        "caption": "Drag Ig, G, I, V. Shunt S = Ig·G/(I − Ig) and series R = V/Ig − G update live: S stays small, R stays large.",
+        "show_sliders": true,
+        "extras": { "current_dots": true, "dot_paths": "ammeter_split", "readout": { "show": true, "fields": ["shunt_S", "series_R"] } }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "multimeter_range_switch",
+      "type": "B",
+      "label": "Analog multimeter range switch",
+      "physical_world": "The rotary range switch on an electrician's analog multimeter (250 mA / 10 A / 50 V / 250 V)",
+      "same_physics": "Each click wires a different shunt S = Ig·G/(I−Ig) or series R = V/Ig − G behind the same moving coil, rescaling it to a new current or voltage range",
+      "scene_hint": "A dial selecting ranges, the same coil behind it, a small shunt swapping in for current ranges and a large series resistor for voltage ranges."
+    },
+    {
+      "variant_id": "panel_ammeter_voltmeter_pair",
+      "type": "B",
+      "label": "Panel ammeter and voltmeter on an inverter",
+      "physical_world": "The panel ammeter and voltmeter side by side on a home inverter or battery charger",
+      "same_physics": "The ammeter hides a small shunt in parallel and sits in the current line (≈ 0 Ω); the voltmeter hides a large series resistor and sits across the terminals (≈ ∞ Ω)",
+      "scene_hint": "Two panel meters, one wired into the current line with a small shunt, the other clipped across the terminals with a large series resistor."
+    }
+  ],
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can explain that a moving-coil galvanometer carries only a tiny full-scale current Ig and has a coil resistance G, so it cannot directly read large currents or voltages; that to build an AMMETER a SMALL shunt resistance S is wired in PARALLEL with the coil so the current splits, only Ig passing through the coil and I − Ig bypassing through S, and that the equal voltage across the two branches gives Ig·G = (I − Ig)·S, so S = Ig·G/(I − Ig) — a small resistance; that the combined resistance G‖S is near zero, which is why an ammeter is connected in SERIES and an ideal ammeter has zero resistance; that to build a VOLTMETER a LARGE resistance R is wired in SERIES with the coil so only Ig flows while the chain drops the full voltage V, giving R = V/Ig − G — a large resistance; that the combined resistance G + R is near infinite, which is why a voltmeter is connected in PARALLEL across the component and an ideal voltmeter draws no current; and that swapping them breaks the circuit, because a near-zero ammeter in parallel short-circuits the component and a near-infinite voltmeter in series blocks the current.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "To measure a large current with a galvanometer, what do you connect, and where?",
+        "options": {
+          "A": "A small shunt resistance in parallel, so most of the current bypasses the coil and only Ig flows through it",
+          "B": "A large resistance in series, so the coil shares the current with it",
+          "C": "A small resistance in series, to drop the extra current before it reaches the coil",
+          "D": "A large resistance in parallel, so the coil takes most of the current"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses the ammeter conversion with the voltmeter conversion (large series R)",
+          "C": "Thinks the protecting resistor goes in series, when an ammeter needs a parallel shunt",
+          "D": "Gets parallel right but thinks the shunt is large, sending most current through the coil"
+        },
+        "tested_idea": "An ammeter is a galvanometer with a small shunt in parallel; the coil still carries only Ig.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A galvanometer must read up to 5 A but its coil takes only 1 mA. What kind of resistor do you add, and is it in series or parallel?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "In the ammeter, why are the shunt and the galvanometer said to have the same voltage, and what does that give for the shunt S?",
+        "options": {
+          "A": "They join the same two nodes, so Ig·G = (I − Ig)·S, giving S = Ig·G/(I − Ig), a small resistance",
+          "B": "Because they carry the same current, so S must equal G",
+          "C": "Because the shunt is large, the voltage across it dominates the coil's",
+          "D": "S = (I − Ig)·G/Ig, which works out to be large"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks parallel branches carry equal current rather than share equal voltage",
+          "C": "Assumes the shunt is large, the opposite of the small S that the equal-voltage condition gives",
+          "D": "Inverts the formula, producing a large shunt instead of the correct small one"
+        },
+        "tested_idea": "Equal voltage on the parallel branches gives S = Ig·G/(I − Ig), which is small.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A coil (Ig, G) and a shunt S are wired between the same two points. Write the condition that fixes S and say whether S is large or small."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "An ammeter is a galvanometer with a small shunt in parallel. What is its overall resistance, and how is it connected in a circuit?",
+        "options": {
+          "A": "Very small, near zero, so it is connected in series and barely disturbs the circuit",
+          "B": "Very large, so it is connected in parallel across the component",
+          "C": "Equal to the coil resistance G, and connected in series",
+          "D": "Near zero, so it is connected in parallel across the component"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Describes a voltmeter (large resistance, parallel), not an ammeter",
+          "C": "Ignores the shunt, which pulls the combined resistance far below G toward zero",
+          "D": "Gets the near-zero resistance right but places it in parallel, which would short-circuit the component"
+        },
+        "tested_idea": "A galvanometer in parallel with a small shunt gives ~0 Ω, so an ammeter goes in series.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A coil in parallel with a tiny shunt forms an ammeter. State its approximate resistance and whether it goes in series or parallel, with the reason."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "To convert a galvanometer into a voltmeter that reads up to a voltage V, what do you add, and what is its value?",
+        "options": {
+          "A": "A large resistance R in series with the coil, with R = V/Ig − G",
+          "B": "A small shunt in parallel with the coil, with S = Ig·G/(I − Ig)",
+          "C": "A large resistance in parallel with the coil, with R = V/Ig",
+          "D": "A small resistance in series with the coil, with R = V·Ig"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Confuses the voltmeter conversion with the ammeter shunt",
+          "C": "Gets large-R right but places it in parallel and drops the −G correction",
+          "D": "Thinks the series resistor is small and uses a wrong formula"
+        },
+        "tested_idea": "A voltmeter is a galvanometer with a large series resistance R = V/Ig − G.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "A galvanometer (Ig, G) must read up to 100 V. What resistor do you add, in series or parallel, and what value?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "What is the overall resistance of a good voltmeter, and how is it connected in a circuit?",
+        "options": {
+          "A": "Very large, near infinite, so it is connected in parallel and draws almost no current",
+          "B": "Very small, so it is connected in series in the current's path",
+          "C": "Equal to the coil resistance G, connected in parallel",
+          "D": "Near infinite, so it is connected in series so that no current flows"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Describes an ammeter (small resistance, series), not a voltmeter",
+          "C": "Ignores the large series R, which raises the combined resistance far above G",
+          "D": "Gets the near-infinite resistance right but places it in series, which would block the circuit"
+        },
+        "tested_idea": "A galvanometer plus a large series R is ~∞ Ω, so a voltmeter goes in parallel.",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "A coil in series with a large resistor forms a voltmeter. State its approximate resistance and whether it goes in series or parallel, with the reason."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A student connects the ammeter in parallel across a resistor and the voltmeter in series in the line. What happens?",
+        "options": {
+          "A": "Both fail: the near-zero ammeter short-circuits the resistor, and the near-infinite voltmeter blocks the current",
+          "B": "Nothing changes — meters work correctly in any position",
+          "C": "Only the ammeter fails; the voltmeter still reads correctly in series",
+          "D": "Both still read, but each shows exactly double its true value"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks meter placement is arbitrary, ignoring that ammeters are low-resistance and voltmeters high-resistance",
+          "C": "Accepts a voltmeter in series, missing that its near-infinite resistance blocks the current",
+          "D": "Invents a factor-of-two error instead of recognising a broken circuit"
+        },
+        "tested_idea": "An ammeter must be in series (low R) and a voltmeter in parallel (high R); swapping them breaks the circuit.",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Explain, in terms of each meter's resistance, why putting an ammeter in parallel and a voltmeter in series damages or disables the measurement."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_3": ["Q1"],
+      "STATE_4": ["Q2"],
+      "STATE_5": ["Q3"],
+      "STATE_6": ["Q4"],
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_2", "STATE_9"]
+  }
+}

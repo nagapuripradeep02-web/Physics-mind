@@ -247,16 +247,16 @@
             },
             {
               "id": "s2_2",
-              "text_en": "Could E point sideways, or must it point straight out along the radius?", "text_hi": "क्या E sideways direction में point कर सकता है, या फिर इसे radius के साथ straight out point करना ही होगा?", "text_te": "E sideways direction లో point చేయగలదా, లేదా radius వెంట straight out point చేయాల్సిందేనా?",
+              "text_en": "Could the electric field E point sideways, or must it point straight out along the radius?", "text_hi": "क्या electric field E sideways direction में point कर सकता है, या फिर इसे radius के साथ straight out point करना ही होगा?", "text_te": "electric field E sideways direction లో point చేయగలదా, లేదా radius వెంట straight out point చేయాల్సిందేనా?",
               "pause_after_ms": 2800
             },
             {
               "id": "s2_3",
-              "text_en": "The ball looks identical from every direction, so E has nothing to pick a sideways direction. It must point radially.", "text_hi": "Ball हर direction से identical दिखती है, इसलिए E के पास sideways direction choose करने की कोई वजह नहीं है। इसे radially ही point करना होगा।", "text_te": "Ball ప్రతి direction నుండి identical గా కనిపిస్తుంది, కాబట్టి E కి sideways direction ఎంచుకోవడానికి ఏ కారణమూ లేదు. ఇది radially గా point చేయాల్సిందే."
+              "text_en": "The ball looks identical from every direction, so the electric field E has nothing to pick a sideways direction. It must point radially.", "text_hi": "Ball हर direction से identical दिखती है, इसलिए electric field E के पास sideways direction choose करने की कोई वजह नहीं है। इसे radially ही point करना होगा।", "text_te": "Ball ప్రతి direction నుండి identical గా కనిపిస్తుంది, కాబట్టి electric field E కి sideways direction ఎంచుకోవడానికి ఏ కారణమూ లేదు. ఇది radially గా point చేయాల్సిందే."
             },
             {
               "id": "s2_4",
-              "text_en": "And by that same symmetry its magnitude is the same at every point on a sphere of radius r. That is what lets E come out of the flux integral.", "text_hi": "और उसी symmetry की वजह से, radius r की sphere पर हर point पर इसका magnitude same है। यही वजह है कि E, flux integral से बाहर आ सकता है।", "text_te": "మరియు ఆ same symmetry వల్ల, radius r యొక్క sphere పై ప్రతి point వద్ద దాని magnitude same గా ఉంటుంది. అందుకే E, flux integral బయటకు రాగలదు."
+              "text_en": "And by that same symmetry its magnitude is the same at every point on a sphere of radius r. That is what lets the electric field E come out of the flux integral.", "text_hi": "और उसी symmetry की वजह से, radius r की sphere पर हर point पर इसका magnitude same है। यही वजह है कि electric field E, flux integral से बाहर आ सकता है।", "text_te": "మరియు ఆ same symmetry వల్ల, radius r యొక్క sphere పై ప్రతి point వద్ద దాని magnitude same గా ఉంటుంది. అందుకే electric field E, flux integral బయటకు రాగలదు."
             }
           ]
         },
@@ -317,16 +317,16 @@
             },
             {
               "id": "s3_2",
-              "text_en": "What is the flux through it, in terms of E and the sphere's area?", "text_hi": "E और sphere के area के terms में, इसके through flux क्या है?", "text_te": "E మరియు sphere యొక్క area పరంగా, దాని ద్వారా flux ఎంత?",
+              "text_en": "What is the flux through it, in terms of the electric field E and the sphere's area?", "text_hi": "electric field E और sphere के area के terms में, इसके through flux क्या है?", "text_te": "electric field E మరియు sphere యొక్క area పరంగా, దాని ద్వారా flux ఎంత?",
               "pause_after_ms": 2700
             },
             {
               "id": "s3_3",
-              "text_en": "Since E is constant and radial, the flux is just E times the area: Φ equals E times four pi r squared.", "text_hi": "चूँकि E constant और radial है, flux बस E times area है: flux equals E times four pi r squared।", "text_te": "E constant మరియు radial కాబట్టి, flux అనేది E times area మాత్రమే: flux equals E times four pi r squared."
+              "text_en": "Since the electric field E is constant and radial, the flux is just E times the area: flux Φ equals E times four pi r squared.", "text_hi": "चूँकि electric field E constant और radial है, flux बस E times area है: flux equals E times four pi r squared।", "text_te": "electric field E constant మరియు radial కాబట్టి, flux అనేది E times area మాత్రమే: flux equals E times four pi r squared."
             },
             {
               "id": "s3_4",
-              "text_en": "Set that equal to q over epsilon-nought and solve. E equals kq over r squared — outside, the ball is just a point charge at its centre.", "text_hi": "उसे q over epsilon-nought के बराबर रखो और solve करो। E equals kq over r squared — बाहर, ball बस अपने centre पर एक point charge की तरह है।", "text_te": "దాన్ని q over epsilon-nought కి equal చేసి solve చేయండి. E equals kq over r squared — బయట, ball తన centre వద్ద ఒక point charge లాంటిదే."
+              "text_en": "Set that equal to charge q over epsilon-nought and solve. The electric field E equals kq over r squared — outside, the ball is just a point charge at its centre.", "text_hi": "उसे charge q over epsilon-nought के बराबर रखो और solve करो। electric field E equals kq over r squared — बाहर, ball बस अपने centre पर एक point charge की तरह है।", "text_te": "దాన్ని charge q over epsilon-nought కి equal చేసి solve చేయండి. electric field E equals kq over r squared — బయట, ball తన centre వద్ద ఒక point charge లాంటిదే."
             }
           ]
         },
@@ -394,15 +394,15 @@
             },
             {
               "id": "s4_3",
-              "text_en": "Only the part inside radius r. Since the charge fills the volume evenly, that fraction is q times r over R, cubed.", "text_hi": "सिर्फ radius r के अंदर का हिस्सा। चूँकि charge volume को evenly fill करता है, वह fraction है q times r over R, cubed।", "text_te": "కేవలం radius r లోపల ఉన్న భాగం మాత్రమే. charge volume ని evenly fill చేస్తుంది కాబట్టి, ఆ fraction అనేది q times r over R, cubed."
+              "text_en": "Only the part inside radius r. Since the charge fills the volume evenly, that fraction is charge q times r over R, cubed.", "text_hi": "सिर्फ radius r के अंदर का हिस्सा। चूँकि charge volume को evenly fill करता है, वह fraction है charge q times r over R, cubed।", "text_te": "కేవలం radius r లోపల ఉన్న భాగం మాత్రమే. charge volume ని evenly fill చేస్తుంది కాబట్టి, ఆ fraction అనేది charge q times r over R, cubed."
             },
             {
               "id": "s4_4",
-              "text_en": "Put it into Gauss's law: E times four pi r squared equals that enclosed charge over epsilon-nought.", "text_hi": "इसे Gauss's law में डालो: E times four pi r squared equals वह enclosed charge over epsilon-nought।", "text_te": "దీన్ని Gauss's law లో పెట్టండి: E times four pi r squared equals ఆ enclosed charge over epsilon-nought."
+              "text_en": "Put it into Gauss's law: the electric field E times four pi r squared equals that enclosed charge over epsilon-nought.", "text_hi": "इसे Gauss's law में डालो: electric field E times four pi r squared equals वह enclosed charge over epsilon-nought।", "text_te": "దీన్ని Gauss's law లో పెట్టండి: electric field E times four pi r squared equals ఆ enclosed charge over epsilon-nought."
             },
             {
               "id": "s4_5",
-              "text_en": "Solve, and the r squared partly cancels: E equals kq times r over R cubed. The field grows in a straight line — zero at the centre, strongest at the surface.", "text_hi": "Solve करो, और r squared partly cancel हो जाता है: E equals kq times r over R cubed। Field एक straight line में बढ़ती है — centre पर zero, surface पर सबसे ज़्यादा।", "text_te": "Solve చేయండి, మరియు r squared partly cancel అవుతుంది: E equals kq times r over R cubed. Field ఒక straight line లో పెరుగుతుంది — centre వద్ద zero, surface వద్ద అత్యధికం.",
+              "text_en": "Solve, and the r squared partly cancels: the electric field E equals kq times r over R cubed. The field grows in a straight line — zero at the centre, strongest at the surface.", "text_hi": "Solve करो, और r squared partly cancel हो जाता है: electric field E equals kq times r over R cubed। Field एक straight line में बढ़ती है — centre पर zero, surface पर सबसे ज़्यादा।", "text_te": "Solve చేయండి, మరియు r squared partly cancel అవుతుంది: electric field E equals kq times r over R cubed. Field ఒక straight line లో పెరుగుతుంది — centre వద్ద zero, surface వద్ద అత్యధికం.",
               "pause_after_ms": 1500
             },
             {

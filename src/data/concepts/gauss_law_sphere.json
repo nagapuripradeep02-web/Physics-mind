@@ -181,7 +181,7 @@
             },
             {
               "id": "s1_2",
-              "text_en": "Gauss's law already tells us the total flux out of any closed surface is q over epsilon-nought. But that is the total, not the field at one point.", "text_hi": "Gauss's law हमें पहले ही बता देता है कि किसी भी closed surface से निकलने वाला total flux है q over epsilon-nought। लेकिन यह total है, किसी एक point पर field नहीं।", "text_te": "Gauss's law మనకు ముందే చెప్తుంది — ఏదైనా closed surface నుండి వెలువడే total flux అనేది q over epsilon-nought. కానీ ఇది total flux మాత్రమే, ఒక point వద్ద field కాదు।"
+              "text_en": "Gauss's law already tells us the total flux out of any closed surface is charge q over epsilon-nought. But that is the total, not the field at one point.", "text_hi": "Gauss's law हमें पहले ही बता देता है कि किसी भी closed surface से निकलने वाला total flux है charge q over epsilon-nought। लेकिन यह total है, किसी एक point पर field नहीं।", "text_te": "Gauss's law మనకు ముందే చెప్తుంది — ఏదైనా closed surface నుండి వెలువడే total flux అనేది charge q over epsilon-nought. కానీ ఇది total flux మాత్రమే, ఒక point వద్ద field కాదు।"
             },
             {
               "id": "s1_3",
@@ -247,16 +247,16 @@
             },
             {
               "id": "s2_2",
-              "text_en": "Could E point sideways along the sphere, or must it point straight out along the radius?", "text_hi": "क्या E sphere के साथ sideways point कर सकता है, या उसे radius के along straight out point करना ही होगा?", "text_te": "E sphere వెంబడి sideways point చేయగలదా, లేదా radius వెంబడి straight out point చేయాలా?",
+              "text_en": "Could the electric field E point sideways along the sphere, or must it point straight out along the radius?", "text_hi": "क्या electric field E sphere के साथ sideways point कर सकता है, या उसे radius के along straight out point करना ही होगा?", "text_te": "electric field E sphere వెంబడి sideways point చేయగలదా, లేదా radius వెంబడి straight out point చేయాలా?",
               "pause_after_ms": 2800
             },
             {
               "id": "s2_3",
-              "text_en": "The shell looks identical from every direction, so E has nothing to pick a sideways direction. It must point radially.", "text_hi": "Shell हर direction से बिल्कुल एक जैसी दिखती है, इसलिए E के पास sideways direction चुनने का कोई कारण नहीं। इसे radially point करना ही पड़ेगा।", "text_te": "Shell అన్ని directions నుండి సరిగ్గా ఒకే విధంగా కనిపిస్తుంది, కాబట్టి E sideways direction ఎంచుకోవడానికి ఎలాంటి కారణం లేదు। అది radially point చేయాలి।"
+              "text_en": "The shell looks identical from every direction, so the electric field E has nothing to pick a sideways direction. It must point radially.", "text_hi": "Shell हर direction से बिल्कुल एक जैसी दिखती है, इसलिए electric field E के पास sideways direction चुनने का कोई कारण नहीं। इसे radially point करना ही पड़ेगा।", "text_te": "Shell అన్ని directions నుండి సరిగ్గా ఒకే విధంగా కనిపిస్తుంది, కాబట్టి electric field E sideways direction ఎంచుకోవడానికి ఎలాంటి కారణం లేదు। అది radially point చేయాలి।"
             },
             {
               "id": "s2_4",
-              "text_en": "And by that same symmetry its magnitude is the same at every point on a sphere of radius r. That is what lets E come out of the flux integral.", "text_hi": "और उसी symmetry की वजह से radius r की sphere पर हर point पर E का magnitude एक समान होता है। इसी कारण E flux integral से बाहर आ सकता है।", "text_te": "మరియు ఆ అదే symmetry వల్ల, radius r యొక్క sphere మీద ప్రతి point వద్ద E యొక్క magnitude ఒకే విధంగా ఉంటుంది। అందుకే E ని flux integral నుండి బయటికి తీయగలం।"
+              "text_en": "And by that same symmetry its magnitude is the same at every point on a sphere of radius r. That is what lets the electric field E come out of the flux integral.", "text_hi": "और उसी symmetry की वजह से radius r की sphere पर हर point पर E का magnitude एक समान होता है। इसी कारण electric field E flux integral से बाहर आ सकता है।", "text_te": "మరియు ఆ అదే symmetry వల్ల, radius r యొక్క sphere మీద ప్రతి point వద్ద E యొక్క magnitude ఒకే విధంగా ఉంటుంది। అందుకే electric field E ని flux integral నుండి బయటికి తీయగలం।"
             }
           ]
         },
@@ -317,16 +317,16 @@
             },
             {
               "id": "s3_2",
-              "text_en": "Now write the flux through it. What is Φ in terms of E and the sphere's area?", "text_hi": "अब इसके through flux लिखो। E और sphere की area के terms में Φ क्या होगा?", "text_te": "ఇప్పుడు దాని గుండా flux రాయండి। E మరియు sphere యొక్క area పరంగా Φ ఏమవుతుంది?",
+              "text_en": "Now write the flux through it. What is the flux Φ in terms of the electric field E and the sphere's area?", "text_hi": "अब इसके through flux लिखो। electric field E और sphere की area के terms में flux Φ क्या होगा?", "text_te": "ఇప్పుడు దాని గుండా flux రాయండి। electric field E మరియు sphere యొక్క area పరంగా flux Φ ఏమవుతుంది?",
               "pause_after_ms": 2700
             },
             {
               "id": "s3_3",
-              "text_en": "Since E is constant and radial, the flux is just E times the area: Φ equals E times four pi r squared.", "text_hi": "चूँकि E constant और radial है, flux बस E times area है: Φ equals E times four pi r squared।", "text_te": "E constant మరియు radial అయినందువల్ల, flux కేవలం E times area: Φ equals E times four pi r squared."
+              "text_en": "Since the electric field E is constant and radial, the flux is just E times the area: flux Φ equals E times four pi r squared.", "text_hi": "चूँकि electric field E constant और radial है, flux बस E times area है: flux Φ equals E times four pi r squared।", "text_te": "electric field E constant మరియు radial అయినందువల్ల, flux కేవలం E times area: flux Φ equals E times four pi r squared."
             },
             {
               "id": "s3_4",
-              "text_en": "Set that equal to q over epsilon-nought and solve. E equals q over four pi epsilon-nought r squared — that is exactly kq over r squared.", "text_hi": "उसे q over epsilon-nought के बराबर रखो और solve करो। E equals q over four pi epsilon-nought r squared — यह exactly kq over r squared है।", "text_te": "దాన్ని q over epsilon-nought కి equal చేసి solve చేయండి। E equals q over four pi epsilon-nought r squared — అది exactly kq over r squared."
+              "text_en": "Set that equal to charge q over epsilon-nought and solve. The electric field E equals q over four pi epsilon-nought r squared — that is exactly kq over r squared.", "text_hi": "उसे charge q over epsilon-nought के बराबर रखो और solve करो। electric field E equals q over four pi epsilon-nought r squared — यह exactly kq over r squared है।", "text_te": "దాన్ని charge q over epsilon-nought కి equal చేసి solve చేయండి। electric field E equals q over four pi epsilon-nought r squared — అది exactly kq over r squared."
             }
           ]
         },
@@ -389,7 +389,7 @@
             },
             {
               "id": "s4_2",
-              "text_en": "At a distance r, its field is E equals kq over r squared — straight out, weakening as one over r squared.", "text_hi": "एक distance r पर, इसकी field है E equals kq over r squared — सीधा बाहर, one over r squared के रूप में कमज़ोर होती हुई।", "text_te": "distance r వద్ద, దాని field అనేది E equals kq over r squared — నేరుగా బయటికి, one over r squared గా బలహీనమవుతూ।",
+              "text_en": "At a distance r, its field is the electric field E equals kq over r squared — straight out, weakening as one over r squared.", "text_hi": "एक distance r पर, इसकी field है electric field E equals kq over r squared — सीधा बाहर, one over r squared के रूप में कमज़ोर होती हुई।", "text_te": "distance r వద్ద, దాని field అనేది electric field E equals kq over r squared — నేరుగా బయటికి, one over r squared గా బలహీనమవుతూ।",
               "pause_after_ms": 1500
             },
             {
@@ -403,7 +403,7 @@
             },
             {
               "id": "s4_5",
-              "text_en": "Gauss's law gives Φ equals E times four-pi-r-squared equals q over epsilon-nought, so E equals kq over r squared.", "text_hi": "Gauss's law देता है Φ equals E times four pi r squared equals q over epsilon-nought, इसलिए E equals kq over r squared।", "text_te": "Gauss's law ఇస్తుంది — Φ equals E times four pi r squared equals q over epsilon-nought, కాబట్టి E equals kq over r squared."
+              "text_en": "Gauss's law gives flux Φ equals E times four-pi-r-squared equals q over epsilon-nought, so the electric field E equals kq over r squared.", "text_hi": "Gauss's law देता है flux Φ equals E times four pi r squared equals q over epsilon-nought, इसलिए electric field E equals kq over r squared।", "text_te": "Gauss's law ఇస్తుంది — flux Φ equals E times four pi r squared equals q over epsilon-nought, కాబట్టి electric field E equals kq over r squared."
             },
             {
               "id": "s4_6",
@@ -473,11 +473,11 @@
             },
             {
               "id": "s5_3",
-              "text_en": "None at all. q enclosed is zero, so the flux through it is zero, and by symmetry E times four pi r squared is zero.", "text_hi": "बिल्कुल नहीं। q enclosed zero है, तो इसके through flux zero है, और symmetry से E times four pi r squared zero है।", "text_te": "అస్సలు ఏమీ లేదు। q enclosed zero, కాబట్టి దాని గుండా flux zero, మరియు symmetry వల్ల E times four pi r squared zero అవుతుంది।"
+              "text_en": "None at all. q enclosed is zero, so the flux through it is zero, and by symmetry the electric field E times four pi r squared is zero.", "text_hi": "बिल्कुल नहीं। q enclosed zero है, तो इसके through flux zero है, और symmetry से electric field E times four pi r squared zero है।", "text_te": "అస్సలు ఏమీ లేదు। q enclosed zero, కాబట్టి దాని గుండా flux zero, మరియు symmetry వల్ల electric field E times four pi r squared zero అవుతుంది।"
             },
             {
               "id": "s5_4",
-              "text_en": "That forces E to zero at every interior point — not small, exactly zero. Inside a charged shell the field vanishes completely.", "text_hi": "यह E को हर interior point पर zero करने पर मजबूर करता है — थोड़ा नहीं, बिल्कुल zero। एक charged shell के inside field पूरी तरह vanish हो जाता है।", "text_te": "ఇది ప్రతి interior point వద్ద E ని zero కి బలవంతం చేస్తుంది — కొంచెం కాదు, సరిగ్గా zero. ఒక charged shell లోపల field పూర్తిగా vanish అవుతుంది।"
+              "text_en": "That forces the electric field E to zero at every interior point — not small, exactly zero. Inside a charged shell the field vanishes completely.", "text_hi": "यह electric field E को हर interior point पर zero करने पर मजबूर करता है — थोड़ा नहीं, बिल्कुल zero। एक charged shell के inside field पूरी तरह vanish हो जाता है।", "text_te": "ఇది ప్రతి interior point వద్ద electric field E ని zero కి బలవంతం చేస్తుంది — కొంచెం కాదు, సరిగ్గా zero. ఒక charged shell లోపల field పూర్తిగా vanish అవుతుంది।"
             }
           ]
         },

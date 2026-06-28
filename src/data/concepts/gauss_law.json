@@ -473,12 +473,12 @@
           "tts_sentences": [
             {
               "id": "s5_1",
-              "text_en": "Now put two charges inside, a plus q and a minus q. What is the enclosed charge that goes into Gauss's law?", "text_hi": "अब दो charges को अंदर रखिए, एक plus q और एक minus q। Gauss's law में जाने वाला enclosed charge क्या है?", "text_te": "ఇప్పుడు రెండు charges ని లోపల ఉంచండి, ఒక plus q మరియు ఒక minus q. Gauss's law లోకి వెళ్ళే enclosed charge ఎంత?",
+              "text_en": "Now put two charges inside, a plus charge q and a minus charge q. What is the enclosed charge that goes into Gauss's law?", "text_hi": "अब दो charges को अंदर रखिए, एक plus charge q और एक minus charge q। Gauss's law में जाने वाला enclosed charge क्या है?", "text_te": "ఇప్పుడు రెండు charges ని లోపల ఉంచండి, ఒక plus charge q మరియు ఒక minus charge q. Gauss's law లోకి వెళ్ళే enclosed charge ఎంత?",
               "pause_after_ms": 2600
             },
             {
               "id": "s5_2",
-              "text_en": "It is the algebraic sum, q-enclosed equals the sum of the charges with their signs. Plus q and minus q add to zero.", "text_hi": "यह algebraic sum है, q-enclosed equals the sum of the charges with their signs। Plus q और minus q add होकर zero बनते हैं।", "text_te": "ఇది algebraic sum, q-enclosed equals the sum of the charges with their signs. Plus q మరియు minus q కలిపి zero అవుతాయి."
+              "text_en": "It is the algebraic sum, q-enclosed equals the sum of the charges with their signs. Plus charge q and minus charge q add to zero.", "text_hi": "यह algebraic sum है, q-enclosed equals the sum of the charges with their signs। Plus charge q और minus charge q add होकर zero बनते हैं।", "text_te": "ఇది algebraic sum, q-enclosed equals the sum of the charges with their signs. Plus charge q మరియు minus charge q కలిపి zero అవుతాయి."
             },
             {
               "id": "s5_3",

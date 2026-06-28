@@ -353,8 +353,8 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s6_1", "text_en": "Your turn. Two sliders: the speed, and the magnetic field strength.", "text_hi": "अब आपकी बारी। दो sliders: speed, और magnetic field strength।", "text_te": "ఇప్పుడు మీ వంతు। రెండు sliders: speed, మరియు magnetic field strength।" },
-            { "id": "s6_2", "text_en": "Crank up B and predict — does the particle go faster, or just turn tighter?", "text_hi": "B बढ़ाओ और predict करो — क्या particle faster जाएगा, या बस tighter turn लेगा?", "text_te": "B పెంచండి మరియు predict చేయండి — particle faster వెళ్తుందా, లేదా tighter turn తీసుకుంటుందా?", "pause_after_ms": 3000 },
-            { "id": "s6_3", "text_en": "Bigger B makes a tighter turn — but watch the speed meter: still flat, work still zero.", "text_hi": "बड़ा B एक tighter turn बनाता है — लेकिन speed meter देखो: अभी भी flat, work अभी भी zero।", "text_te": "పెద్ద B ఒక tighter turn చేస్తుంది — కానీ speed meter చూడండి: ఇంకా flat, work ఇంకా zero।" },
+            { "id": "s6_2", "text_en": "Crank up magnetic field B and predict — does the particle go faster, or just turn tighter?", "text_hi": "magnetic field B बढ़ाओ और predict करो — क्या particle faster जाएगा, या बस tighter turn लेगा?", "text_te": "magnetic field B పెంచండి మరియు predict చేయండి — particle faster వెళ్తుందా, లేదా tighter turn తీసుకుంటుందా?", "pause_after_ms": 3000 },
+            { "id": "s6_3", "text_en": "Bigger magnetic field B makes a tighter turn — but watch the speed meter: still flat, work still zero.", "text_hi": "बड़ा magnetic field B एक tighter turn बनाता है — लेकिन speed meter देखो: अभी भी flat, work अभी भी zero।", "text_te": "పెద్ద magnetic field B ఒక tighter turn చేస్తుంది — కానీ speed meter చూడండి: ఇంకా flat, work ఇంకా zero।" },
             { "id": "s6_4", "text_en": "Stronger field steers harder. It still never adds speed.", "text_hi": "stronger field ज़्यादा hard steer करता है। यह अभी भी कभी speed नहीं जोड़ता।", "text_te": "stronger field మరింత కష్టంగా steer చేస్తుంది। అది ఇంకా ఎప్పుడూ speed జోడించదు।" }
           ]
         },
