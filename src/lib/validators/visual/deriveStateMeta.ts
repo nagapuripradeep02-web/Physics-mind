@@ -520,6 +520,22 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (typeof pot.sign_flip_at_ms === 'number') {
             candidates.push(asNum(pot.sign_flip_at_ms, 0) + asNum(pot.sign_flip_duration_ms, 1500) + 500);
         }
+        // ── equipotential_surfaces NEW beats (session 2026-06-28) ───────────────
+        // The renderer animates these on the state clock (PM_simTimeMs); THE EYE MUST
+        // pin past their payoff or the frozen/dense capture lands BEFORE the reveal and
+        // photographs an empty frame (the bug-2 false negative). Mirrors the renderer:
+        //   • show_field_lines_cross_shells.at_ms — STATE_4 radial E lines + right-angle
+        //     ticks fade in over ~700ms from at_ms, then HOLD. (updatePotentialMeaningFrame)
+        const crossShells = asObj(pot.show_field_lines_cross_shells);
+        if (crossShells && typeof crossShells.at_ms === 'number') {
+            candidates.push(asNum(crossShells.at_ms, 0) + 700 + 500);
+        }
+        //   • slide_along_shell.at_ms — STATE_3 tangential slide (constant r ⇒ no work);
+        //     the test charge travels over duration_ms, then HOLDS at the end pose.
+        const slideShell = asObj(pot.slide_along_shell);
+        if (slideShell && typeof slideShell.at_ms === 'number') {
+            candidates.push(asNum(slideShell.at_ms, 0) + asNum(slideShell.duration_ms, 3500) + 500);
+        }
     }
     // rhr_force_direction: the DIRECTION-ONLY F = qv×B sibling. Its reveal beats
     // are one-shot timed gestures that then HOLD still — pin the frozen frame
@@ -719,6 +735,86 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
     if (isEnabled(ax) && ax) {
         candidates.push(asNum(ax.reveal_at_ms, F3D.axReveal) + asNum(ax.arise_duration_ms, F3D.axArise));
     }
+    // magnetic_field_circular_loop: the B = μ₀NI/2R derivation diamond. Its per-
+    // state `extras` drive one-shot timed reveals — the single dB on S2
+    // (db_reveal_at_ms), the round-the-ring dB STACK on S3 (db_stack), the
+    // bundle→B merge + wire-vs-loop compare on S4 (merge_to_B_at_ms / wire_compare),
+    // the grip-rule + current-flip on S5 (flip_at_ms), and a coordinated z-sweep
+    // that SETTLES on S6 (sweep_z) — all then HOLD their end pose. Pin the frozen
+    // frame past each payoff so THE EYE photographs the completed reveal and
+    // deriveHoldExpectations marks S2–S6 reveal_hold (D7/D1p are otherwise false-
+    // failed by the static tail). S1 (current dots) needs no pin; S7 is the slider
+    // explorer (show_sliders → interactive). Keys mirror the renderer's extras.
+    const clx = asObj(state.extras);
+    if (clx) {
+        if (typeof clx.db_reveal_at_ms === 'number') {
+            candidates.push(asNum(clx.db_reveal_at_ms, 9500) + 800);
+        }
+        const dbStack = asObj(clx.db_stack);
+        if (isEnabled(dbStack) && dbStack) {
+            candidates.push(
+                asNum(dbStack.reveal_at_ms, 8000)
+                + Math.max(0, asNum(dbStack.num_elements, 12) - 1) * asNum(dbStack.reveal_stagger_ms, 300)
+                + 600,
+            );
+        }
+        if (typeof clx.merge_to_B_at_ms === 'number') {
+            candidates.push(asNum(clx.merge_to_B_at_ms, 1500) + 900 + 300);
+        }
+        const clWire = asObj(clx.wire_compare);
+        if (clWire && typeof clWire.reveal_at_ms === 'number') {
+            candidates.push(asNum(clWire.reveal_at_ms, 6000) + 800);
+        }
+        if (typeof clx.flip_at_ms === 'number') {
+            candidates.push(asNum(clx.flip_at_ms, 9000) + 1200);
+        }
+        const clSweep = asObj(clx.sweep_z);
+        if (isEnabled(clSweep) && clSweep) {
+            candidates.push(asNum(clSweep.reveal_at_ms, 4000) + asNum(clSweep.period_s, 6) * 1000 + 600);
+        }
+    }
+
+    // moving_coil_galvanometer: the φ = N I A B / k diamond. Per-state `extras`
+    // drive one-shot timed choreography that then HOLDS its end pose — the small
+    // turn + force/ΣF=0 + τ grow on S2 (phi_target_deg / deflect), the crowded-scale
+    // current ladder on S3 (current_step + crowded_scale), the straight→radial field
+    // morph + pole reshape on S4 (radial_morph), the hairspring + restoring-τ on S5
+    // (spring), the damped settle-to-φ_eq on S6 (settle_phi), the uniform-scale
+    // current ladder on S7 (current_step), and the sensitivity sweep on S8
+    // (sensitivity_sweep). Pin the frozen frame past each payoff so THE EYE
+    // photographs the completed pose and deriveHoldExpectations marks S2–S8
+    // reveal_hold (D7/D1 are otherwise false-failed by the post-choreography static
+    // tail). S1 (current dots, φ=0) declares no reveal → undefined (the marching
+    // dots provide live motion). S9 is the slider explorer (show_sliders →
+    // interactive). Keys mirror the renderer's per-state extras.
+    const mcgx = asObj(state.extras);
+    if (typeof state.phi_target_deg === 'number' && state.phi_target_deg !== 0) {
+        const dfl = mcgx ? asObj(mcgx.deflect) : null;
+        candidates.push((dfl ? asNum(dfl.at_ms, 0) : 0) + (dfl ? asNum(dfl.duration_ms, 1500) : 1500) + 300);
+    }
+    if (mcgx) {
+        const mcs = asObj(mcgx.current_step);
+        if (isEnabled(mcs) && mcs) {
+            candidates.push(asNum(mcs.start_at_ms, 800) + (asNum(mcs.steps, 3) + 1) * asNum(mcs.step_interval_ms, 1200) + 400);
+        }
+        const mrm = asObj(mcgx.radial_morph);
+        if (isEnabled(mrm) && mrm) {
+            candidates.push(asNum(mrm.at_ms, 600) + asNum(mrm.duration_ms, 1200) + 400);
+        }
+        const mspr = asObj(mcgx.spring);
+        if (isEnabled(mspr) && mspr) {
+            candidates.push(asNum(mspr.at_ms, 400) + asNum(mspr.duration_ms, 1500) + 300);
+        }
+        const mstl = asObj(mcgx.settle_phi);
+        if (isEnabled(mstl) && mstl) {
+            candidates.push(asNum(mstl.at_ms, 300) + asNum(mstl.duration_ms, 1800) + 600);
+        }
+        const mssw = asObj(mcgx.sensitivity_sweep);
+        if (isEnabled(mssw) && mssw) {
+            candidates.push(asNum(mssw.at_ms, 500) + asNum(mssw.duration_ms, 2500) + 400);
+        }
+    }
+
     const extras = asObj(state.extras);
     const rightHand = extras ? asObj(extras.right_hand) : null;
     if (rightHand) candidates.push(asNum(rightHand.fade_duration_ms, 0));

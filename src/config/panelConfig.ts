@@ -981,6 +981,24 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Ch.2 — Electrostatic Potential and Capacitance (§2.7). The GEOMETRY
+    // diamond: an equipotential surface is the locus of all points at one
+    // common V — concentric spheres for a point charge, E ⟂ surface, zero work
+    // along (W = F·d·cos90° = 0), spacing↔field-strength (crowded = strong).
+    // Declares electric_potential_meaning (V = W/q), electric_potential_point_charge
+    // (V = kQ/r) and electric_field_point_charge (E = kQ/r²) as prerequisites;
+    // does NOT re-teach them, and stops short of the value V = kQ/r, dipole /
+    // uniform-field equipotentials, and conductors / capacitance.
+    equipotential_surfaces: {
+        concept_id: 'equipotential_surfaces',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'equipotential_surfaces',
+            label: 'Equipotential Surfaces of a Point Charge (3D)',
+        },
+    },
+
     force_on_charge_in_field: {
         concept_id: 'force_on_charge_in_field',
         layout: 'single',
@@ -1053,6 +1071,26 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'biot_savart_law',
             label: 'Biot-Savart (3D)',
+        },
+    },
+
+    magnetic_field_circular_loop: {
+        concept_id: 'magnetic_field_circular_loop',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'magnetic_field_circular_loop',
+            label: 'Field of a Circular Loop — B = μ₀NI/2R (3D)',
+        },
+    },
+
+    moving_coil_galvanometer: {
+        concept_id: 'moving_coil_galvanometer',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'moving_coil_galvanometer',
+            label: 'Moving Coil Galvanometer — φ = (NAB/k)·I (3D)',
         },
     },
 

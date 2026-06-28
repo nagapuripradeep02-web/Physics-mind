@@ -1,0 +1,1243 @@
+{
+  "concept_id": "equipotential_surfaces",
+  "concept_name": "Equipotential Surfaces — Same-V Shells, ⟂ to the Field, No Work Along Them",
+  "chapter": 2,
+  "section": "2.7",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.2 Electrostatic Potential and Capacitance (§2.7 Equipotential surfaces) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (start from ONE same-V point P → ask where the OTHER same-V points are → they close into one surface → nest the whole family of surfaces, 3D spheres not flat rings, like a trekking-map contour → slide a charge ALONG one surface and confront the moving-always-costs-work belief: force is radial, motion tangential, W = F·d·cos90° = 0 → overlay the field lines and watch them pierce every shell at exactly 90°, inner high-V to outer low-V → relabel the shells to EQUAL V-steps and watch them crowd near the charge: dense means strong field → flip the source sign and see only the SIGN and field direction flip, geometry untouched → hand the explorer the draggable point P: V is constant on a shell, jumps across shells), never copied. The atomic idea: an equipotential surface is the locus of all points sharing one common potential V; for a point charge these are concentric spheres (r = kQ/V); the electric field is everywhere PERPENDICULAR to them and points from high V toward low V; NO work is done moving a charge ALONG one (W = F·d·cos90° = 0), while moving BETWEEN surfaces costs W = qΔV; and for equal V-steps the surfaces CROWD where the field is strong (r ~ 1/V). SCOPE: this is the GEOMETRY-of-constant-V diamond of Ch.2 — concentric spheres, E ⟂ surface, zero work along, spacing↔field-strength. It declares electric_potential_meaning (what V MEANS, V = W/q), electric_potential_point_charge (the VALUE/FORMULA V = kQ/r), and electric_field_point_charge (the VECTOR E = kQ/r²) as prerequisites and does NOT re-teach them. It STOPS SHORT of the value V = kQ/r itself, the equipotentials of a dipole or a uniform field, and conductors / capacitance. NEW field_3d equipotential primitives reuse the point_charge_positive scenario + the electric_potential_meaning shell/explorer primitives: V-labelled concentric shells with per-state reveal, a per-state shells_override for the equal-V-step crowding relabel, a tangential slide_along_shell rig with the cos90° corner glyph, a show_field_lines_cross_shells overlay with right-angle ticks at every crossing, a sign_flip recolor (draws_arrow:false), and a draggable equipotential_explorer with a live V readout that is constant on a shell and jumps across shells. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; the four misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "point_charge_positive"
+    ]
+  },
+  "prerequisites": [
+    "electric_potential_meaning",
+    "electric_potential_point_charge",
+    "electric_field_point_charge"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture a trekking map of the Himalayas or the Western Ghats, the kind with brown contour lines. Each contour joins points at the same HEIGHT. Walk ALONG a contour and you stay level — you do no work against gravity. Cross the contours and you climb or descend — that costs work. And where the contours BUNCH close together the slope is steep. Equipotential surfaces are exactly this map for electric potential: each surface joins points at the same V, walking along one is free, crossing them costs work, and bunched surfaces mean a strong field.",
+    "secondary": "In a thunderstorm, the safest place is inside the metal body of a car or a bus. The whole metal shell sits at one single potential — it is one big equipotential surface — so there is no potential DIFFERENCE across the people inside, and the dangerous current runs around the outside skin, not through them. Same-V everywhere on the shell is what keeps the occupants safe.",
+    "tertiary": "The big shiny metal dome of a Van de Graaff generator — like the one at the Birla Science Museum in Hyderabad — is charged to a huge voltage. Every point on that dome's surface is at the SAME potential: the dome is a single equipotential surface, which is why the charge spreads evenly over it and the field just outside is perpendicular to the metal."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "Q": {
+        "name": "Source charge at the centre (kept at +1 across the geometry arc; its SIGN flips in the sign-flip state)",
+        "unit": "demo nC",
+        "min": 1,
+        "max": 1,
+        "default": 1,
+        "step": 1
+      },
+      "r": {
+        "name": "Distance of the field point P from the source charge (the STATE_7 drag owns this; drives which shell P sits on and the live V readout; r = 1.5 puts P on the V = 8 shell)",
+        "unit": "demo units",
+        "min": 0.5,
+        "max": 4.0,
+        "default": 1.5,
+        "step": 0.05
+      },
+      "k": {
+        "name": "Coulomb constant k = 1/(4*pi*epsilon_0) (the k in V = k*Q/r and r = k*Q/V)",
+        "unit": "N*m^2/C^2",
+        "min": 8990000000,
+        "max": 8990000000,
+        "default": 8990000000,
+        "step": 1
+      },
+      "epsilon_0": {
+        "name": "Permittivity of free space (a fixed constant of nature)",
+        "unit": "C^2/(N*m^2)",
+        "min": 8.854e-12,
+        "max": 8.854e-12,
+        "default": 8.854e-12,
+        "step": 1
+      },
+      "DEMO_V_PER_NC": {
+        "name": "Demo potential readout per demo-nC of source charge at unit demo radius — THE round number the shell tables ride on (12 gives V = 12/8/6/4 at r = 1/1.5/2/3 and the equal-V-step V = 12/9/6/3 at r = 1/1.333/2/4)",
+        "unit": "demo V per (demo nC) at r=1",
+        "min": 12,
+        "max": 12,
+        "default": 12,
+        "step": 1
+      },
+      "charge_sign": {
+        "name": "Sign of the source charge (+1 positive shells / -1 negative shells) — flips V's sign and the field direction without ever touching the geometry",
+        "unit": "sign",
+        "min": -1,
+        "max": 1,
+        "default": 1,
+        "step": 2
+      }
+    },
+    "computed_outputs": {
+      "V_demo": {
+        "formula": "DEMO_V_PER_NC * Q / Math.max(r, 0.05)"
+      },
+      "V_signed_demo": {
+        "formula": "charge_sign * DEMO_V_PER_NC * Q / Math.max(r, 0.05)"
+      },
+      "shell_radius_for_V": {
+        "formula": "DEMO_V_PER_NC * Q / Math.max(V_target, 0.05)"
+      }
+    },
+    "derived_fields_declared": [
+      "V_demo",
+      "V_signed_demo",
+      "shell_radius_for_V"
+    ],
+    "formulas": {
+      "potential_on_shell": "V = k*Q/r",
+      "equipotential_locus": "an equipotential surface is the locus of all points at one common V",
+      "point_charge_shells": "r = k*Q/V (concentric spheres, one per V value)",
+      "work_along_surface": "W = F*d*cos(90 deg) = 0",
+      "work_across_surfaces": "W = q*(V2 - V1)",
+      "field_perpendicular": "E is perpendicular to the equipotential, pointing from high V to low V",
+      "equal_step_spacing": "for equal V-steps, r ~ 1/V, so surfaces crowd near the charge",
+      "k": "8.99e9"
+    },
+    "constraints": [
+      "The equipotential surfaces of a point charge are concentric spheres, one per V value, at radius r = k*Q/V (C1).",
+      "The potential V is a SCALAR: one number per point, no arrow, and every point on a single surface shares that same V (C2).",
+      "No work is done moving a charge ALONG an equipotential surface: the force is radial, the motion is tangential, so W = F*d*cos(90 deg) = 0 (C3).",
+      "Work IS done moving a charge BETWEEN surfaces: W = q*(V2 - V1) = q*delta_V, the per-charge work across the potential difference (C4).",
+      "The electric field E is everywhere PERPENDICULAR to the equipotential surface and points from HIGH V to LOW V, never tangential to the surface (C5).",
+      "Drawn for EQUAL V-steps, the surfaces obey r ~ 1/V: they CROWD near the charge (strong field) and SPREAD far out (weak field) - spacing reads off field strength (C6).",
+      "Two distinct equipotential surfaces (different V values) can never cross or touch, because a single point cannot hold two different potentials at once (C7).",
+      "Flipping the source charge's sign flips the SIGN of every V and reverses the field direction, but it does NOT change the geometry - the surfaces stay the same concentric spheres (C8)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "The field crosses every equipotential at exactly 90°, pointing toward lower V.",
+    "visual_confirmation": "Eight green radial field lines pierce the cyan concentric shells, each crossing marked with a small right-angle tick, every line running from the inner high-V shell outward to the outer low-V shell.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "perpendicularity": [
+      "STATE_3",
+      "STATE_4"
+    ],
+    "spacing": [
+      "STATE_5"
+    ],
+    "sign": [
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "One surface, one V — where are the other points reading 8?",
+        "duration": 14,
+        "focal_primitive_id": "predict_locus_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "shell_at_P",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "one shell blooms through P: V = 8",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_locus_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "where are the OTHER points reading V = 8?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "equipotential_locus_reveal",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "all points at this distance: one equipotential surface",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Here is a point charge. One single shell blooms through point P, and its potential reads V equals 8.",
+              "text_hi": "यहाँ एक point charge है। एक single shell point P से होकर खिलता है, और इसका potential V equals 8 read करता है।",
+              "text_te": "ఇక్కడ ఒక point charge ఉంది. ఒక single shell, point P గుండా వికసిస్తుంది, మరియు దాని potential V equals 8 అని చదువుతుంది.",
+              "reveal_primitive_id": "shell_at_P",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Every point on this shell shares that same value, V equals 8. So where are the OTHER points that also read 8 — predict before I show them.",
+              "text_hi": "इस shell पर हर point उसी value को share करता है, V equals 8. तो वे OTHER points कहाँ हैं जो भी 8 read करते हैं — दिखाने से पहले predict कीजिए।",
+              "text_te": "ఈ shell పై ప్రతి point అదే value ను share చేస్తుంది, V equals 8. అయితే 8 అని చదివే OTHER points ఎక్కడ ఉన్నాయి — నేను చూపించే ముందు predict చేయండి.",
+              "reveal_primitive_id": "predict_locus_label",
+              "appear_at_ms": 6000,
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s1_3",
+              "text_en": "They form a whole surface. Every point at this distance from the charge reads V equals 8 — that surface is one equipotential.",
+              "text_hi": "वे एक पूरी surface बनाते हैं। charge से इस distance पर हर point V equals 8 read करता है — वह surface एक equipotential है।",
+              "text_te": "అవి ఒక మొత్తం surface ను ఏర్పరుస్తాయి. charge నుండి ఈ distance వద్ద ప్రతి point V equals 8 అని చదువుతుంది — ఆ surface ఒక equipotential.",
+              "reveal_primitive_id": "equipotential_locus_reveal",
+              "appear_at_ms": 9500
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A reading of V = 8 belongs to just the one point P, not to a whole set of points spread around the charge.",
+            "visual_counter": "The single shell through P blooms into a full closed surface, every point on it carrying the same V = 8 label - one VALUE, a whole locus of points at the same distance.",
+            "one_line_fix": "An equipotential surface is the locus of ALL points sharing one common V, not a single point."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "The whole family — nested spheres, not flat rings",
+        "duration": 18,
+        "focal_primitive_id": "predict_shape_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "nested_shells_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "closer in V is higher, farther out V is lower",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_shape_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "flat rings, or closed surfaces? predict the shape",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "shells_family_reveal",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "nested SPHERES: V = 12, 8, 6, 4 stepping outward",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "contour_anchor_label",
+            "position": {
+              "x": 600,
+              "y": 360
+            },
+            "text": "like a trekking map: each contour = equal height",
+            "color": "#FFF176",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "That one shell is not alone. Closer in the potential is higher, farther out it is lower.",
+              "text_hi": "वह एक shell अकेला नहीं है। पास में potential ज़्यादा होता है, दूर बाहर कम होता है।",
+              "text_te": "ఆ ఒక shell ఒంటరిగా లేదు. దగ్గరగా potential ఎక్కువగా ఉంటుంది, దూరంగా బయట తక్కువగా ఉంటుంది.",
+              "reveal_primitive_id": "nested_shells_label",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Picture the full family. Are these flat rings, or closed surfaces — predict the shape before I reveal it.",
+              "text_hi": "पूरे family की कल्पना कीजिए। क्या ये flat rings हैं, या closed surfaces — reveal करने से पहले shape predict कीजिए।",
+              "text_te": "మొత్తం family ను ఊహించండి. ఇవి flat rings నా, లేక closed surfaces నా — నేను reveal చేసే ముందు shape ని predict చేయండి.",
+              "reveal_primitive_id": "predict_shape_label",
+              "appear_at_ms": 4500,
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s2_3",
+              "text_en": "In three dimensions they are nested SPHERES, not rings. Here they are: V equals 12, 8, 6, 4 as you step outward.",
+              "text_hi": "तीन dimensions में ये nested SPHERES हैं, rings नहीं। ये रहे: V equals 12, 8, 6, 4 जैसे-जैसे आप बाहर step करते हैं।",
+              "text_te": "మూడు dimensions లో ఇవి nested SPHERES, rings కాదు. ఇవిగో: మీరు బయటికి step చేస్తున్నప్పుడు V equals 12, 8, 6, 4.",
+              "reveal_primitive_id": "shells_family_reveal",
+              "appear_at_ms": 8000
+            },
+            {
+              "id": "s2_4",
+              "text_en": "It is exactly like a trekking map. Each contour line joins points of equal height; here each sphere joins points of equal potential.",
+              "text_hi": "यह बिल्कुल एक trekking map की तरह है। हर contour line equal height के points को जोड़ती है; यहाँ हर sphere equal potential के points को जोड़ता है।",
+              "text_te": "ఇది సరిగ్గా ఒక trekking map లాంటిది. ప్రతి contour line equal height ఉన్న points ను కలుపుతుంది; ఇక్కడ ప్రతి sphere equal potential ఉన్న points ను కలుపుతుంది.",
+              "reveal_primitive_id": "contour_anchor_label",
+              "appear_at_ms": 13000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Equipotential surfaces are flat planes or flat rings drawn around the charge, like circles on paper.",
+            "visual_counter": "The 3D family fades in as nested concentric SPHERES (not rings), and the trekking-map contour anchor names them as closed level-sets wrapping the charge.",
+            "one_line_fix": "For a point charge the equipotentials are nested 3D SPHERES, one per V value, never flat rings."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "No work along the surface — W = F·d·cos90° = 0",
+        "duration": 22,
+        "focal_primitive_id": "predict_work_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "misconception_confrontation",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "slide_along_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "slide a charge ALONG one shell, tangent to it",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_work_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "work done sliding along: positive, or zero?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "force_perp_motion_glyph",
+            "position": {
+              "x": 600,
+              "y": 360
+            },
+            "text": "force radial, motion tangential — they meet at 90°",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "work_zero_callout",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "W = F · d · cos 90° = 0 — sliding along is FREE",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Slide a charge along one shell, tangent to the surface, from here to there.",
+              "text_hi": "एक charge को एक shell के साथ slide कीजिए, surface के tangent, यहाँ से वहाँ तक।",
+              "text_te": "ఒక charge ను ఒక shell వెంట slide చేయండి, surface కు tangent గా, ఇక్కడ నుండి అక్కడికి.",
+              "reveal_primitive_id": "slide_along_label",
+              "appear_at_ms": 800
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Moving a charge usually costs work. Predict the work done sliding ALONG this one shell — is it positive, or is it zero?",
+              "text_hi": "एक charge को move करना आमतौर पर work लेता है। इस एक shell के साथ ALONG slide करने में किया गया work predict कीजिए — क्या यह positive है, या zero है?",
+              "text_te": "ఒక charge ను move చేయడం సాధారణంగా work తీసుకుంటుంది. ఈ ఒక shell వెంట ALONG slide చేయడంలో జరిగే work ని predict చేయండి — ఇది positive నా, లేక zero నా?",
+              "reveal_primitive_id": "predict_work_label",
+              "appear_at_ms": 5500,
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Watch the angle. The force is radial, straight out; the motion is tangential, along the surface. They meet at ninety degrees.",
+              "text_hi": "angle देखिए। force radial है, सीधा बाहर; motion tangential है, surface के साथ। वे ninety degrees पर मिलते हैं।",
+              "text_te": "angle ను చూడండి. force radial గా ఉంది, నేరుగా బయటికి; motion tangential గా ఉంది, surface వెంట. అవి ninety degrees వద్ద కలుస్తాయి.",
+              "reveal_primitive_id": "force_perp_motion_glyph",
+              "appear_at_ms": 9200
+            },
+            {
+              "id": "s3_4",
+              "text_en": "So the work is W equals F times d times cos ninety degrees, and cos ninety is zero. Sliding along an equipotential is free.",
+              "text_hi": "तो work है W equals F times d times cos ninety degrees, और cos ninety zero है। एक equipotential के साथ slide करना free है।",
+              "text_te": "కాబట్టి work అనేది W equals F times d times cos ninety degrees, మరియు cos ninety zero. ఒక equipotential వెంట slide చేయడం free.",
+              "reveal_primitive_id": "work_zero_callout",
+              "appear_at_ms": 13500,
+              "pause_after_ms": 1500
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Moving a charge always costs work, so sliding it from one point to another along a surface must take energy.",
+            "visual_counter": "The amber charge slides tangentially along the shell while the radial force and the tangential displacement are marked meeting at a 90 degree corner tick, and the callout reads W = F*d*cos90 = 0.",
+            "one_line_fix": "Along an equipotential the force is perpendicular to the motion, so W = F*d*cos90 = 0 - sliding along is free."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "cos90_means_zero_work",
+          "round_trip_vs_along_path",
+          "same_v_means_free_to_move"
+        ]
+      },
+      "STATE_4": {
+        "title": "Field crosses at 90° — inner high-V to outer low-V",
+        "duration": 24,
+        "focal_primitive_id": "predict_angle_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "field_lines_overlay",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "field lines run straight out from the charge",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_angle_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "do the lines run ALONG the shells, or pierce them?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "right_angle_glyph",
+            "position": {
+              "x": 600,
+              "y": 360
+            },
+            "text": "they pierce every sphere at exactly 90°",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "high_to_low_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "inner high-V → outer low-V: field points downhill",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now bring back the field lines, running straight out from the charge, and overlay them on the shells.",
+              "text_hi": "अब field lines वापस लाइए, charge से सीधे बाहर जाती हुई, और उन्हें shells पर overlay कीजिए।",
+              "text_te": "ఇప్పుడు field lines ను తిరిగి తీసుకురండి, charge నుండి నేరుగా బయటికి వెళ్తూ, మరియు వాటిని shells పై overlay చేయండి.",
+              "reveal_primitive_id": "field_lines_overlay",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s4_2",
+              "text_en": "At what angle does each field line cross a shell — predict it. Do the lines run ALONG the surfaces, or pierce through them?",
+              "text_hi": "हर field line एक shell को किस angle पर cross करती है — predict कीजिए। क्या lines surfaces के ALONG चलती हैं, या उनके through pierce करती हैं?",
+              "text_te": "ప్రతి field line ఒక shell ను ఏ angle వద్ద cross చేస్తుంది — predict చేయండి. lines surfaces వెంట ALONG నడుస్తాయా, లేక వాటి గుండా pierce చేస్తాయా?",
+              "reveal_primitive_id": "predict_angle_label",
+              "appear_at_ms": 5000,
+              "pause_after_ms": 3500
+            },
+            {
+              "id": "s4_3",
+              "text_en": "They pierce every sphere at exactly ninety degrees. The field is perpendicular to the equipotential, everywhere.",
+              "text_hi": "वे हर sphere को बिल्कुल ninety degrees पर pierce करती हैं। field equipotential के perpendicular है, हर जगह।",
+              "text_te": "అవి ప్రతి sphere ను సరిగ్గా ninety degrees వద్ద pierce చేస్తాయి. field equipotential కు perpendicular గా ఉంది, ప్రతిచోటా.",
+              "reveal_primitive_id": "right_angle_glyph",
+              "appear_at_ms": 9500
+            },
+            {
+              "id": "s4_4",
+              "text_en": "And the lines run from the inner high-V shell to the outer low-V shell — the field always points from high potential to low.",
+              "text_hi": "और lines inner high-V shell से outer low-V shell तक चलती हैं — field हमेशा high potential से low की ओर इशारा करता है।",
+              "text_te": "మరియు lines inner high-V shell నుండి outer low-V shell వరకు నడుస్తాయి — field ఎల్లప్పుడూ high potential నుండి low కు సూచిస్తుంది.",
+              "reveal_primitive_id": "high_to_low_label",
+              "appear_at_ms": 14000,
+              "pause_after_ms": 1500
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field lines run ALONG the equipotential surfaces, lying flat against them.",
+            "visual_counter": "Eight radial field lines pierce the cyan shells with a right-angle tick at every crossing, each line running from the inner high-V shell outward to the outer low-V shell - never tangential.",
+            "one_line_fix": "The field is PERPENDICULAR to the equipotential, crossing it at exactly 90 degrees, high V to low V."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_exactly_ninety_degrees",
+          "tangential_component_would_do_work",
+          "field_points_high_to_low_v"
+        ]
+      },
+      "STATE_5": {
+        "title": "Crowded means strong — equal V-steps bunch near the charge",
+        "duration": 22,
+        "focal_primitive_id": "predict_spacing_label",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "equal_step_relabel",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "relabel for EQUAL steps: V = 12, 9, 6, 3",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_spacing_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "evenly spaced, or do they bunch somewhere?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "bunching_reveal",
+            "position": {
+              "x": 600,
+              "y": 360
+            },
+            "text": "they bunch near the charge, spread far out",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "dense_strong_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "crowded = strong field; spread = weak field",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Relabel the shells so the steps are EQUAL: V equals 12, 9, 6, 3 — a drop of three each time.",
+              "text_hi": "shells को फिर से label कीजिए ताकि steps EQUAL हों: V equals 12, 9, 6, 3 — हर बार तीन की drop।",
+              "text_te": "shells ను మళ్ళీ label చేయండి, తద్వారా steps EQUAL గా ఉంటాయి: V equals 12, 9, 6, 3 — ప్రతిసారి మూడు తగ్గుదల.",
+              "reveal_primitive_id": "equal_step_relabel",
+              "appear_at_ms": 800
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Predict where the shells crowd together. Are they evenly spaced, or do they bunch somewhere?",
+              "text_hi": "predict कीजिए shells कहाँ एक साथ crowd करते हैं। क्या वे evenly spaced हैं, या वे कहीं bunch करते हैं?",
+              "text_te": "shells ఎక్కడ కలిసి crowd అవుతాయో predict చేయండి. అవి evenly spaced గా ఉన్నాయా, లేక ఎక్కడైనా bunch అవుతాయా?",
+              "reveal_primitive_id": "predict_spacing_label",
+              "appear_at_ms": 5000,
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s5_3",
+              "text_en": "They bunch near the charge and spread far out, even though every step is the same three volts.",
+              "text_hi": "वे charge के पास bunch करते हैं और दूर बाहर spread करते हैं, भले ही हर step वही तीन volts हो।",
+              "text_te": "ప్రతి step అదే మూడు volts అయినప్పటికీ, అవి charge దగ్గర bunch అవుతాయి మరియు దూరంగా spread అవుతాయి.",
+              "reveal_primitive_id": "bunching_reveal",
+              "appear_at_ms": 9000
+            },
+            {
+              "id": "s5_4",
+              "text_en": "Crowded shells mean a strong field; widely spread shells mean a weak field. Spacing reads off the field strength.",
+              "text_hi": "crowded shells का मतलब strong field; widely spread shells का मतलब weak field। spacing field strength बताती है।",
+              "text_te": "crowded shells అంటే strong field; widely spread shells అంటే weak field. spacing field strength ను తెలియజేస్తుంది.",
+              "reveal_primitive_id": "dense_strong_label",
+              "appear_at_ms": 13500,
+              "pause_after_ms": 1500
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Equipotential surfaces are always evenly spaced, like rungs on a ladder, no matter the field.",
+            "visual_counter": "Drawn at EQUAL V-steps of three volts, the shells visibly bunch close together near the charge (r ~ 1/V) and spread far apart at large r - tight spacing where the field is strong.",
+            "one_line_fix": "Equal V-steps give UNEQUAL spacing (r ~ 1/V): surfaces crowd where the field is strong, spread where it is weak."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Flip the sign — only sign and direction flip, geometry stays",
+        "duration": 18,
+        "focal_primitive_id": "predict_flip_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sign_flip_setup_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "flip the source from +Q to −Q",
+            "color": "#EF5350",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_flip_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "do the surfaces warp, or only sign + direction flip?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sign_flip_reveal",
+            "position": {
+              "x": 600,
+              "y": 360
+            },
+            "text": "V labels go negative, field lines reverse inward",
+            "color": "#42A5F5",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "geometry_unchanged_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "geometry never moves — still concentric spheres",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Flip the source charge from plus to minus. The shells are still here, same nested spheres.",
+              "text_hi": "source charge को plus से minus में flip कीजिए। shells अभी भी यहाँ हैं, वही nested spheres।",
+              "text_te": "source charge ను plus నుండి minus కు flip చేయండి. shells ఇప్పటికీ ఇక్కడ ఉన్నాయి, అవే nested spheres.",
+              "reveal_primitive_id": "sign_flip_setup_label",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Predict what changes. Do the surfaces warp or rotate, or does only the SIGN and the field direction flip?",
+              "text_hi": "predict कीजिए क्या बदलता है। क्या surfaces warp या rotate करती हैं, या केवल SIGN और field direction flip होते हैं?",
+              "text_te": "ఏమి మారుతుందో predict చేయండి. surfaces warp లేదా rotate అవుతాయా, లేక కేవలం SIGN మరియు field direction మాత్రమే flip అవుతాయా?",
+              "reveal_primitive_id": "predict_flip_label",
+              "appear_at_ms": 5000,
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Only the sign and the direction change. The V labels go negative, and the field lines reverse, now pointing inward.",
+              "text_hi": "केवल sign और direction बदलते हैं। V labels negative हो जाते हैं, और field lines reverse हो जाती हैं, अब अंदर की ओर इशारा करती हुई।",
+              "text_te": "కేవలం sign మరియు direction మారతాయి. V labels negative అవుతాయి, మరియు field lines reverse అవుతాయి, ఇప్పుడు లోపలికి సూచిస్తూ.",
+              "reveal_primitive_id": "sign_flip_reveal",
+              "appear_at_ms": 9000
+            },
+            {
+              "id": "s6_4",
+              "text_en": "The geometry never moves. The shells stay concentric spheres — still toward lower V, just lower V is now inward.",
+              "text_hi": "geometry कभी नहीं हिलती। shells concentric spheres ही रहते हैं — अभी भी lower V की ओर, बस lower V अब अंदर है।",
+              "text_te": "geometry ఎప్పుడూ కదలదు. shells concentric spheres గానే ఉంటాయి — ఇప్పటికీ lower V వైపు, కేవలం lower V ఇప్పుడు లోపల ఉంది.",
+              "reveal_primitive_id": "geometry_unchanged_label",
+              "appear_at_ms": 13000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Flipping the source charge makes the equipotential surfaces warp, rotate, or carry a direction of their own.",
+            "visual_counter": "On the flip the shells keep the exact same concentric-sphere geometry; only the V labels gain a minus sign and the field lines reverse to point inward - no warp, no rotation, no arrow on V.",
+            "one_line_fix": "A sign flip changes only the SIGN of V and the field direction; the geometry stays the same concentric spheres."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "You drive — V is constant on a shell, jumps across shells",
+        "duration": 16,
+        "focal_primitive_id": "drag_P_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "drag_P_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "drag the point P in and out — watch the live V",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "constant_on_shell_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "move along one shell: V stays constant",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "jump_across_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "cross to the next shell: the reading JUMPS",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now you drive. Drag the point P in and out and watch the live V readout.",
+              "text_hi": "अब आप drive करें। point P को अंदर और बाहर drag कीजिए और live V readout देखिए।",
+              "text_te": "ఇప్పుడు మీరు drive చేయండి. point P ని లోపలికి మరియు బయటికి drag చేయండి మరియు live V readout ని చూడండి.",
+              "reveal_primitive_id": "drag_P_label",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Move it anywhere on one shell — the V reading stays constant, because the whole shell is one potential.",
+              "text_hi": "इसे एक shell पर कहीं भी move कीजिए — V reading constant रहती है, क्योंकि पूरा shell एक potential है।",
+              "text_te": "దాన్ని ఒక shell పై ఎక్కడైనా move చేయండి — V reading constant గా ఉంటుంది, ఎందుకంటే మొత్తం shell ఒక potential.",
+              "reveal_primitive_id": "constant_on_shell_label",
+              "appear_at_ms": 4500
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Cross to the next shell and the reading JUMPS. You have stepped from one equipotential to a different one.",
+              "text_hi": "अगले shell पर cross कीजिए और reading JUMPS करती है। आप एक equipotential से दूसरे पर step कर गए हैं।",
+              "text_te": "తదుపరి shell కు cross చేయండి మరియు reading JUMPS అవుతుంది. మీరు ఒక equipotential నుండి వేరొక దానికి step చేశారు.",
+              "reveal_primitive_id": "jump_across_label",
+              "appear_at_ms": 8500
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered equipotential surfaces when they can (1) define an equipotential surface as the locus of all points at one common potential V; (2) recognise that for a point charge these surfaces are concentric spheres; (3) explain that no work is done moving a charge ALONG an equipotential because W = F*d*cos90 = 0, while moving BETWEEN surfaces costs W = q*delta_V; (4) state that the electric field is everywhere PERPENDICULAR to the equipotential and points from high V to low V; (5) read the spacing of equal-V-step surfaces as a map of field strength (crowded = strong, spread = weak, r ~ 1/V); and (6) reason that two distinct equipotential surfaces can never intersect.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "What is an equipotential surface?",
+        "options": {
+          "A": "The set of all points that share one common value of the potential V",
+          "B": "The set of all points where the electric field E has the same strength",
+          "C": "A surface on which the charge density is constant",
+          "D": "The single path a test charge would follow if released from rest"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses equal-potential with equal-field-strength - a surface of constant V is not a surface of constant E",
+          "C": "confuses equal-potential with equal charge-density on the surface",
+          "D": "imagines a trajectory a released charge follows, not a static locus of equal-V points"
+        },
+        "tested_idea": "An equipotential surface is the locus of all points at one common potential V.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "Define an equipotential surface in terms of the quantity that is the same at every point on it."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "What shape are the equipotential surfaces around a single point charge?",
+        "options": {
+          "A": "Concentric spheres centred on the charge",
+          "B": "Flat parallel planes",
+          "C": "Straight radial lines pointing out from the charge",
+          "D": "A single sphere of fixed radius around the charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "uses the uniform-field picture (parallel planes) instead of the point-charge picture",
+          "C": "confuses the equipotential surfaces with the radial FIELD lines",
+          "D": "shows only one surface, missing the whole nested family of spheres"
+        },
+        "tested_idea": "Around an isolated point charge the equipotentials are concentric spheres, r = kQ/V.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Around an isolated point charge, what is the geometric form of the surfaces of constant potential?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "How much work is done moving a charge a distance d ALONG one equipotential surface, and why?",
+        "options": {
+          "A": "Zero, because the displacement is perpendicular to the force, so W = F*d*cos90 = 0",
+          "B": "W = F*d, because the charge is pushed through a distance d",
+          "C": "W = q*V, where V is the potential of that surface",
+          "D": "It depends on the speed at which the charge is moved"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "ignores the angle between force and displacement, treating the motion as along the force",
+          "C": "uses the absolute potential V instead of the potential DIFFERENCE (which is zero along one surface)",
+          "D": "wrongly makes the work depend on speed rather than on force, displacement, and angle"
+        },
+        "tested_idea": "No work is done along an equipotential because W = F*d*cos90 = 0.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "You carry a charge from one point to another, both on the same equipotential surface. State the work done and justify it with the angle between force and displacement."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "At what angle does the electric field cross an equipotential surface, and which way does it point?",
+        "options": {
+          "A": "Exactly 90 degrees (perpendicular), pointing from high V toward low V",
+          "B": "Exactly 90 degrees, pointing from low V toward high V",
+          "C": "Zero degrees - the field runs along the surface",
+          "D": "Some angle between 0 and 90 degrees that depends on the distance"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "gets the perpendicularity right but reverses the direction (field actually points high V to low V)",
+          "C": "the confronted misconception - imagines the field running ALONG the surface instead of crossing it",
+          "D": "thinks the crossing angle varies with distance instead of being a fixed right angle"
+        },
+        "tested_idea": "The field is perpendicular to the equipotential (90 degrees) and points from high V to low V.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Describe the orientation of the electric field relative to an equipotential surface, and state which direction along that perpendicular it points."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Equipotential surfaces are drawn for EQUAL steps of potential (for example every 3 volts). Near a point charge the surfaces are crowded close together; far away they are widely spaced. What does the crowding tell you?",
+        "options": {
+          "A": "The field is strong where the surfaces are crowded and weak where they are spread out",
+          "B": "The field is weak where the surfaces are crowded and strong where they are spread out",
+          "C": "The field has the same strength everywhere, since the V-steps are equal",
+          "D": "The crowding shows where more charge is located, not anything about the field"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "inverts the spacing rule - reads crowded surfaces as a weak field instead of a strong one",
+          "C": "thinks equal V-steps mean equal field, ignoring that the radii are unequal (r ~ 1/V)",
+          "D": "reads the crowding as a charge-distribution map rather than a field-strength map"
+        },
+        "tested_idea": "For equal V-steps r ~ 1/V, so crowded surfaces mark a strong field.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "On a contour map of potential drawn at equal voltage intervals, what does the spacing of the contours reveal about the strength of the electric field?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Can two different equipotential surfaces (say V = 8 and V = 6) ever cross or touch?",
+        "options": {
+          "A": "No - a single point cannot have two different values of potential at once",
+          "B": "Yes - they cross wherever the field is strongest",
+          "C": "Yes - they touch at the point charge itself",
+          "D": "Yes - they meet far from the charge where V approaches zero"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "invents a crossing point tied to field strength, which would assign two V values to one point",
+          "C": "imagines the surfaces converging at the charge, where in fact V diverges, not converges",
+          "D": "imagines distinct surfaces merging far out as V approaches zero, which they never do"
+        },
+        "tested_idea": "Two distinct equipotential surfaces can never intersect - one point holds one V.",
+        "teaches_state": "STATE_1",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Explain whether the V = 10 and V = 5 equipotential surfaces of a point charge can ever share a common point."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": [
+        "Q1",
+        "Q6"
+      ],
+      "STATE_2": [
+        "Q2"
+      ],
+      "STATE_3": [
+        "Q3"
+      ],
+      "STATE_4": [
+        "Q4"
+      ],
+      "STATE_5": [
+        "Q5"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_6",
+      "STATE_7"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "point_charge_positive",
+    "explorer_id": "equipotential_explorer",
+    "potential_meaning": {
+      "potential_defaults": {
+        "demo_v_per_nc": 12,
+        "Q": 1,
+        "r_destination": 1.5,
+        "clamp_r_min": 0.05,
+        "charge_sign": 1
+      }
+    },
+    "field_lines": {
+      "count": 24,
+      "color_positive": "#EF5350",
+      "color_negative": "#42A5F5",
+      "opacity": 0.45,
+      "arrow_spacing": 5
+    },
+    "slider_controls": {
+      "r": {
+        "min": 0.5,
+        "max": 4.0,
+        "step": 0.05,
+        "default": 1.5,
+        "label": "Field-point distance r"
+      }
+    },
+    "colors": {
+      "positive": "#EF5350",
+      "test_charge": "#FFF176",
+      "equipotential": "#4FC3F7",
+      "field": "#66BB6A",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "equipotential": {
+      "show": false,
+      "color": "#4FC3F7",
+      "opacity": 0.14,
+      "label_each_shell": true,
+      "shells": [
+        {
+          "radius": 1.0,
+          "v_label": "12"
+        },
+        {
+          "radius": 1.5,
+          "v_label": "8"
+        },
+        {
+          "radius": 2.0,
+          "v_label": "6"
+        },
+        {
+          "radius": 3.0,
+          "v_label": "4"
+        }
+      ]
+    },
+    "sign_flip": {
+      "show": false,
+      "charge_sign_var": "charge_sign",
+      "recolor_shells": true,
+      "flip_v_label_sign": true,
+      "draws_arrow": false
+    },
+    "states": {
+      "STATE_1": {
+        "label": "One surface, one V - single V=8 shell blooms through P",
+        "visible_elements": [
+          "charge_plus",
+          "equipotential_shell_at_P",
+          "v_value_on_shell"
+        ],
+        "camera_position": [
+          2.6,
+          1.6,
+          4.2
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "off",
+          "show_equipotential": true,
+          "shells_override": [
+            {
+              "radius": 1.5,
+              "v_label": "8"
+            }
+          ],
+          "shells_at_ms": 9500
+        },
+        "formula_overlay": "one equipotential surface: V = 8"
+      },
+      "STATE_2": {
+        "label": "The whole family - nested spheres V=12,8,6,4",
+        "visible_elements": [
+          "charge_plus",
+          "equipotential_shells",
+          "v_labels"
+        ],
+        "camera_position": [
+          2.8,
+          1.6,
+          4.2
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "off",
+          "show_equipotential": true,
+          "shells_override": [
+            {
+              "radius": 1.0,
+              "v_label": "12"
+            },
+            {
+              "radius": 1.5,
+              "v_label": "8"
+            },
+            {
+              "radius": 2.0,
+              "v_label": "6"
+            },
+            {
+              "radius": 3.0,
+              "v_label": "4"
+            }
+          ],
+          "shells_at_ms": 8000
+        },
+        "formula_overlay": "nested spheres: V = 12, 8, 6, 4"
+      },
+      "STATE_3": {
+        "label": "No work along - tangential slide + cos90 glyph",
+        "visible_elements": [
+          "charge_plus",
+          "equipotential_shells",
+          "test_charge_sliding",
+          "force_radial",
+          "displacement_tangent",
+          "right_angle_glyph"
+        ],
+        "camera_position": [
+          2.8,
+          1.5,
+          4.0
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "off",
+          "show_equipotential": true,
+          "slide_along_shell": {
+            "shell_radius": 2.0,
+            "from_deg": 200,
+            "to_deg": 340,
+            "at_ms": 9200,
+            "duration_ms": 3500,
+            "show_right_angle": true,
+            "work_label": "W = F · d · cos 90° = 0"
+          }
+        },
+        "formula_overlay": "W = F · d · cos 90° = 0"
+      },
+      "STATE_4": {
+        "label": "PRIMARY aha - field lines pierce shells at 90, high-V to low-V",
+        "visible_elements": [
+          "charge_plus",
+          "equipotential_shells",
+          "field_lines_cross_shells",
+          "right_angle_marks"
+        ],
+        "camera_position": [
+          2.6,
+          1.7,
+          3.8
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "off",
+          "show_equipotential": true,
+          "show_field_lines_cross_shells": {
+            "count": 8,
+            "right_angle_marks": true,
+            "at_ms": 9500
+          }
+        },
+        "formula_overlay": "E ⟂ equipotential: crosses at 90°"
+      },
+      "STATE_5": {
+        "label": "Crowded means strong - equal V-steps 12,9,6,3 bunch near charge",
+        "visible_elements": [
+          "charge_plus",
+          "equipotential_shells",
+          "v_labels_equal_step"
+        ],
+        "camera_position": [
+          2.8,
+          1.6,
+          4.4
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "off",
+          "show_equipotential": true,
+          "shells_override": [
+            {
+              "radius": 1.0,
+              "v_label": "12"
+            },
+            {
+              "radius": 1.333,
+              "v_label": "9"
+            },
+            {
+              "radius": 2.0,
+              "v_label": "6"
+            },
+            {
+              "radius": 4.0,
+              "v_label": "3"
+            }
+          ],
+          "shells_at_ms": 9000
+        },
+        "formula_overlay": "equal steps V = 12, 9, 6, 3  (r ~ 1/V)"
+      },
+      "STATE_6": {
+        "label": "Flip the sign - +Q to -Q, geometry unchanged",
+        "visible_elements": [
+          "charge_sign_toggle",
+          "equipotential_shells",
+          "v_labels_signed",
+          "field_lines_inward"
+        ],
+        "camera_position": [
+          2.8,
+          1.6,
+          4.2
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_field": "off",
+          "show_equipotential": true,
+          "show_sign_flip": true,
+          "sign_flip_at_ms": 9000,
+          "sign_flip_duration_ms": 1500,
+          "draws_arrow": false
+        },
+        "formula_overlay": "sign flips, geometry stays: concentric spheres"
+      },
+      "STATE_7": {
+        "label": "Explore - drag P, V constant on a shell, jumps across shells",
+        "visible_elements": [
+          "charge_plus",
+          "equipotential_shells",
+          "test_charge_draggable",
+          "v_readout_live"
+        ],
+        "camera_position": [
+          2.8,
+          1.8,
+          4.5
+        ],
+        "caption": "",
+        "show_charge": "plus",
+        "potential": {
+          "show_equipotential": true,
+          "show_test_charge": true,
+          "draggable_test_charge": true,
+          "idle_auto_sweep": true
+        },
+        "formula_overlay": "V = k Q / r  (constant on a shell)"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

@@ -1,0 +1,889 @@
+{
+  "concept_id": "moving_coil_galvanometer",
+  "concept_name": "Moving Coil Galvanometer — φ = (NAB/k)·I",
+  "chapter": 4,
+  "section": "4.10",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.10 (Moving coil galvanometer) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. The atomic concept taught here is the MECHANISM of the moving-coil galvanometer: an N-turn coil between magnet poles carries current I, so the BIL force on its two vertical sides forms a COUPLE — equal-opposite forces on different lines give ΣF = 0 (the coil turns, never slides) and a deflecting torque τ = NIAB. A RADIAL field (concave pole faces + a soft-iron core) keeps the coil plane always parallel to B, so its sides stay perpendicular to B at EVERY deflection and τ stays NIAB with no sinθ fade — without it τ = NIAB·sinθ and the scale would crowd. A hairspring supplies a restoring torque τ = kφ; at equilibrium NIAB = kφ, so φ = (NAB/k)·I is LINEAR in current (a uniform scale), and the current sensitivity φ/I = NAB/k is a fixed device constant. The deepest student confusions targeted: (M1) the coil slides across the gap; (M2) any field gives a proportional reading; (M3) the pole-gap field is straight/uniform; (M4) nothing stops the coil; (M5) the coil swings all the way to 90°; (M6) the radial scale is crowded too; (M7) sensitivity depends on the current measured. CUT-LINE: this concept teaches the mechanism ONLY — it does NOT cover converting the galvanometer into an ammeter (shunt) or voltmeter (series resistance), nor voltage sensitivity φ/V = NAB/kR; those are the downstream concept galvanometer_to_ammeter_voltmeter. It re-uses, not re-derives, the couple τ = NIAB (prerequisite torque_on_current_loop_in_field) and the single-side force F = BIL (prerequisite force_on_current_carrying_wire). Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; the seven misconceptions are confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["moving_coil_galvanometer"]
+  },
+  "prerequisites": [
+    "torque_on_current_loop_in_field",
+    "force_on_current_carrying_wire"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture the analog galvanometer sitting on the bench in your school or college physics lab — the brass-cased instrument with a thin pointer that flicks across a paper scale the moment current flows. Inside it is exactly this: an N-turn coil wound on a soft-iron core, hung by a hairspring between two curved magnet poles. You have read its scale in your practical exam without ever knowing why those scale divisions are perfectly evenly spaced — that gap is the whole question this concept answers.",
+    "secondary": "Picture an older analog needle meter — the kind on a non-digital multimeter an electrician still carries, or the swinging needle on a battery tester. Same moving coil, same fine pointer, same evenly-spaced scale: more current swings the needle further, and equal jumps in current move it in equal steps.",
+    "tertiary": "Picture the swinging VU meter on an old audio amplifier or tape deck, its needle bouncing with the music. That bouncing needle is one more moving coil in a radial field, turning against a hairspring — read it and you are reading τ = NIAB balanced by kφ."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "N": { "name": "Number of turns in the coil",        "unit": "",         "min": 20,    "max": 300,   "default": 100,   "step": 10 },
+      "I": { "name": "Current through the coil",            "unit": "uA",       "min": 0,     "max": 100,   "default": 50,    "step": 5 },
+      "B": { "name": "Radial magnetic field in the gap",    "unit": "T",        "min": 0.05,  "max": 0.5,   "default": 0.2,   "step": 0.05 },
+      "A": { "name": "Area of the coil face (A = L*b)",     "unit": "m^2",      "min": 1e-4,  "max": 4e-4,  "default": 2e-4,  "step": 5e-5 },
+      "k": { "name": "Hairspring torsion constant",         "unit": "N*m/rad",  "min": 1e-7,  "max": 1e-6,  "default": 4e-7,  "step": 1e-7 }
+    },
+    "computed_outputs": {
+      "tau_deflect":            { "formula": "N * (I / 1e6) * A * B" },
+      "phi_rad":                { "formula": "N * (I / 1e6) * A * B / k" },
+      "phi_deg":                { "formula": "(N * (I / 1e6) * A * B / k) * 180 / PI" },
+      "current_sensitivity":    { "formula": "N * A * B / k" },
+      "current_sensitivity_disp": { "formula": "(N * A * B / k) * 180 / PI / 1e6" },
+      "tau_spring_eq":          { "formula": "N * (I / 1e6) * A * B" },
+      "tau_uniform_field":      { "formula": "N * (I / 1e6) * A * B * sin(theta_mb * PI / 180)" }
+    },
+    "formulas": {
+      "force_per_side":      "F = N B I L  — BIL force on each vertical side, N turns.",
+      "net_force":           "Sum(F) = 0  — equal-opposite forces on different lines form a couple (no slide).",
+      "tau_deflect_radial":  "tau = N I A B  — radial field: coil plane always parallel to B, so sin(theta) == 1 at every deflection (NO angle factor).",
+      "tau_uniform_field":   "tau = N I A B sin(theta)  — uniform field only; theta = angle(mu, B) = 90 deg - phi, so tau = N I A B cos(phi) and the scale is crowded.",
+      "tau_spring":          "tau = k phi  — hairspring restoring torque, proportional to deflection phi.",
+      "equilibrium":         "N I A B = k phi  ->  phi = (N A B / k) * I  — deflection is exactly linear in current.",
+      "current_sensitivity": "S_I = phi / I = N A B / k  — a fixed device constant (rad/A); raise N, A, B or lower k."
+    },
+    "constraints": [
+      "Sum(F) = 0 on the coil at all times: the two side-forces are equal, opposite, and on different lines - a pure couple, so the coil turns, never slides.",
+      "On the RADIAL path tau = N I A B carries NO sin(theta) factor: the coil plane is always parallel to B, so the sides stay perpendicular to B (theta = 90 deg) at every deflection.",
+      "In a UNIFORM field tau = N I A B sin(theta) with theta = 90 deg - phi, so tau falls as cos(phi) and equal current steps give unequal swings (non-uniform scale).",
+      "At equilibrium N I A B = k phi, so phi = (N A B / k) * I - deflection is exactly proportional to current (uniform scale).",
+      "Current sensitivity phi/I = N A B / k depends only on the device (N, A, B, k) - never on the current being measured.",
+      "B is the radial gap field (revealed S4+); area A = L*b is exposed as one knob; current I is the measured input in the microamp range."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "Radial field keeps the coil square to B, so torque stays NIAB at every angle.",
+    "visual_confirmation": "STATE_4 morphs the straight field to radial and curves the poles; as the coil turns through any angle the two force arrows hold full length and the deflecting-torque arrow stays the same length — no sinθ fade.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_7" },
+    "sensitivity": { "start": "STATE_8", "end": "STATE_8" },
+    "explore": { "start": "STATE_9", "end": "STATE_9" }
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "A coil between magnet poles — how does it read current?",
+        "teaching_method": "narrative_socratic",
+        "duration": 16,
+        "focal_primitive_id": "mcg_coil",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "A galvanometer: an N-turn coil on a soft-iron core, between two magnet poles",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "legend_label",
+            "position": { "x": 200, "y": 235 },
+            "text": "Amber dots = current I\nup one side, down the other\nN turns on the soft-iron core",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_label",
+            "position": { "x": 560, "y": 235 },
+            "text": "Like the analog meter\nin your physics lab —\nthe pointer rests at zero.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": { "x": 380, "y": 475 },
+            "text": "Question: how does this turn current into a steady reading on the scale?",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Here is a galvanometer. An N-turn coil hangs on a soft-iron core between two magnet poles.", "pause_after_ms": 1500 },
+            { "id": "s1_2", "text_en": "Current I flows through the coil — watch it march up one side and down the other.", "pause_after_ms": 1200 },
+            { "id": "s1_3", "text_en": "The pointer rests at zero. How does this turn into a current meter?", "pause_after_ms": 1500 }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "The couple: F = NBIL on each side, τ = NIAB, ΣF = 0",
+        "teaching_method": "narrative_socratic",
+        "duration": 22,
+        "focal_primitive_id": "mcg_tau_deflect",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "couple_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Each vertical side carries current I across the field B",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_couple",
+            "position": { "x": 200, "y": 235 },
+            "text": "Predict before the reveal:\nwhich way is each side pushed —\nand does the coil slide across\nthe gap, or turn in place?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_couple",
+            "position": { "x": 560, "y": 235 },
+            "text": "Left side: into the page.\nRight side: out of the page.\nEqual, opposite, different lines\n→ ΣF = 0 (no slide), pure twist.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s2_3"
+          },
+          {
+            "type": "annotation",
+            "id": "couple_formula",
+            "position": { "x": 380, "y": 475 },
+            "text": "F = NBIL per side    →    deflecting torque τ = NIAB    (ΣF = 0)",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s2_5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "The field B crosses the gap. Each vertical side of the coil carries current I straight through that field.", "pause_after_ms": 1500 },
+            { "id": "s2_2", "text_en": "Which way is each side pushed — and does the coil slide across the gap, or turn in place?", "pause_after_ms": 3000 },
+            { "id": "s2_3", "text_en": "Right-hand rule: the left side is forced into the page, the right side out of the page.", "pause_after_ms": 1500 },
+            { "id": "s2_4", "text_en": "Equal and opposite forces on different lines cannot slide the coil — net force is zero — but they twist it.", "pause_after_ms": 1500 },
+            { "id": "s2_5", "text_en": "The force per side is F equals N B I L, and together they give the deflecting torque tau equals N I A B.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The coil slides or translates across the gap when current flows.",
+            "visual_counter": "The left-side force draws into the page and the right-side force out of the page, then a ΣF = 0 badge appears while the coil turns in place.",
+            "one_line_fix": "Equal and opposite forces on different lines form a couple: ΣF = 0 so the coil cannot slide — it only twists, with torque τ = NIAB."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "The sinθ trap: a uniform field gives a crowded scale",
+        "teaching_method": "narrative_socratic",
+        "duration": 22,
+        "focal_primitive_id": "mcg_scale_crowded",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "crowded_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Suppose the field were uniform — straight, between two flat poles",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_crowded",
+            "position": { "x": 200, "y": 235 },
+            "text": "Step the current up in\nequal jumps. Will the pointer\nmove in equal steps —\nor not?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_crowded",
+            "position": { "x": 560, "y": 235 },
+            "text": "As the coil turns, its sides\ntilt away from square-to-B,\nso each force shrinks and the\nswing gets smaller every step.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s3_3"
+          },
+          {
+            "type": "annotation",
+            "id": "crowded_formula",
+            "position": { "x": 380, "y": 475 },
+            "text": "Uniform field: τ = NIAB·sinθ → equal current steps, unequal swings → a crowded scale",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s3_5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Suppose for now the field were uniform — straight lines between two flat poles.", "pause_after_ms": 1500 },
+            { "id": "s3_2", "text_en": "Step the current up in equal jumps. Will the pointer move in equal steps, or not?", "pause_after_ms": 3500 },
+            { "id": "s3_3", "text_en": "As the coil turns, its sides tilt away from square-to-B, so each force shrinks and the torque falls with sine theta.", "pause_after_ms": 1800 },
+            { "id": "s3_4", "text_en": "Equal current jumps now give smaller and smaller swings — the marks bunch up into a crowded scale.", "pause_after_ms": 2000 },
+            { "id": "s3_5", "text_en": "In a uniform field the torque is tau equals N I A B sine theta, so the scale is non-uniform and hard to read.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Any magnetic field gives a proportional reading — the scale is just whatever it is.",
+            "visual_counter": "In a straight uniform field the deflecting-torque arrow shrinks with sinθ as the coil turns, and the crowded-scale ticks bunch together as the current steps up equally.",
+            "one_line_fix": "In a uniform field τ = NIAB·sinθ, so equal current steps give unequal swings — a crowded, non-linear scale."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The radial field: τ = NIAB at every angle",
+        "teaching_method": "narrative_socratic",
+        "duration": 24,
+        "focal_primitive_id": "mcg_field_arrow",
+        "advance_mode": "wait_for_answer",
+        "has_prebuilt_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "radial_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Curve the pole faces and slip a soft-iron cylinder inside the coil",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_radial",
+            "position": { "x": 200, "y": 235 },
+            "text": "What happens to the field lines\nin the gap — and to the angle\nthe coil's sides make with\nthe field as it turns?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_radial",
+            "position": { "x": 560, "y": 235 },
+            "text": "The field bends RADIAL —\nalways along the core's radius.\nThe coil plane stays parallel\nto B, sides square at every angle.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s4_3"
+          },
+          {
+            "type": "annotation",
+            "id": "radial_formula",
+            "position": { "x": 380, "y": 475 },
+            "text": "Radial field: τ = NIAB — no sinθ, no fading    (uniform field was τ = NIAB·sinθ)",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s4_5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Now curve the pole faces and slip a soft-iron cylinder inside the coil.", "pause_after_ms": 1500 },
+            { "id": "s4_2", "text_en": "What happens to the field lines in the gap — and to the angle the coil's sides make with the field?", "pause_after_ms": 3500 },
+            { "id": "s4_3", "text_en": "The field bends radial — every line points along the core's radius. The pole faces curve concave; the core brightens.", "pause_after_ms": 2000 },
+            { "id": "s4_4", "text_en": "Now turn the coil through any angle: its sides stay square to B, so both forces hold full length.", "pause_after_ms": 2000 },
+            { "id": "s4_5", "text_en": "The torque stays tau equals N I A B at every deflection — no sine theta, no fading.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field between the flat magnet poles is uniform and straight.",
+            "visual_counter": "The straight field arrows morph to radial, the pole faces reshape concave, and the soft-iron core brightens — the gap field now points along the core's radius everywhere.",
+            "one_line_fix": "Concave poles plus a soft-iron core make the gap field radial — always along the core's radius, never straight — so the coil's sides stay perpendicular to B and τ stays NIAB."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "The restoring spring: τ = kφ",
+        "teaching_method": "narrative_socratic",
+        "duration": 20,
+        "focal_primitive_id": "mcg_spring",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "spring_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "A fine hairspring is fixed to the coil's shaft",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_spring",
+            "position": { "x": 200, "y": 235 },
+            "text": "As the coil turns,\nwhat does the hairspring\ndo to the motion?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_spring",
+            "position": { "x": 560, "y": 235 },
+            "text": "The spring winds up as the\ncoil turns, pushing back —\na restoring torque that grows\nopposite the deflecting torque.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s5_3"
+          },
+          {
+            "type": "annotation",
+            "id": "spring_formula",
+            "position": { "x": 380, "y": 475 },
+            "text": "The further it winds, the harder it pushes:    restoring torque τ = kφ",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s5_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "A fine hairspring is fixed to the coil's shaft.", "pause_after_ms": 1500 },
+            { "id": "s5_2", "text_en": "As the coil turns, what does the spring do to the motion?", "pause_after_ms": 3000 },
+            { "id": "s5_3", "text_en": "The spring winds up as the coil turns, pushing back with a restoring torque that grows opposite the deflecting torque.", "pause_after_ms": 1800 },
+            { "id": "s5_4", "text_en": "The further it winds, the harder it pushes: the restoring torque is tau equals k phi, proportional to the deflection phi.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Nothing stops the coil — it just keeps turning or spins freely.",
+            "visual_counter": "A hairspring appears and winds up as the coil turns, while the restoring-torque arrow grows opposite the deflecting-torque arrow, its length tracking the deflection.",
+            "one_line_fix": "A hairspring supplies a restoring torque τ = kφ that grows with deflection and opposes the turn — the coil does not spin freely."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Equilibrium: NIAB = kφ",
+        "teaching_method": "narrative_socratic",
+        "duration": 20,
+        "focal_primitive_id": "mcg_pointer",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "equil_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Two torques now act: deflecting NIAB and restoring kφ",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_equil",
+            "position": { "x": 200, "y": 235 },
+            "text": "One grows with current,\nthe other grows with deflection.\nWhere does the coil come\nto rest?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_equil",
+            "position": { "x": 560, "y": 235 },
+            "text": "It settles where the two\ntorque arrows are equal —\nthe pointer lands on a fixed\nreading, well short of 90°.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s6_3"
+          },
+          {
+            "type": "annotation",
+            "id": "equil_formula",
+            "position": { "x": 380, "y": 475 },
+            "text": "At rest:    NIAB = kφ    →    φ = (NAB/k)·I",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s6_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Two torques now act together: the deflecting torque N I A B and the restoring torque k phi.", "pause_after_ms": 1500 },
+            { "id": "s6_2", "text_en": "One grows with current, the other grows with deflection. Where does the coil come to rest?", "pause_after_ms": 3000 },
+            { "id": "s6_3", "text_en": "The coil settles where the two torques are equal in length — the pointer lands on a fixed reading.", "pause_after_ms": 2000 },
+            { "id": "s6_4", "text_en": "At rest, N I A B equals k phi, so phi equals N A B over k, times I.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The coil rotates all the way to 90°, until its moment μ aligns with B.",
+            "visual_counter": "The coil damped-settles at a small angle where the deflecting and restoring torque arrows become equal length, and the pointer lands on a tick well short of 90°.",
+            "one_line_fix": "The coil stops at equilibrium NIAB = kφ — a small reading angle set by the spring, not at full 90° alignment."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "The uniform scale: φ = (NAB/k)·I",
+        "teaching_method": "narrative_socratic",
+        "duration": 22,
+        "focal_primitive_id": "mcg_scale_uniform",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "uniform_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "The real galvanometer scale — the old crowded scale recalled small beside it",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_uniform",
+            "position": { "x": 200, "y": 235 },
+            "text": "Step the current up in equal\njumps again, now in the radial\nfield — equal steps, or\ncrowded like before?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_uniform",
+            "position": { "x": 560, "y": 235 },
+            "text": "Each equal jump in current\nmoves the pointer the same\namount — the marks are\nevenly spaced.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s7_3"
+          },
+          {
+            "type": "annotation",
+            "id": "uniform_formula",
+            "position": { "x": 380, "y": 475 },
+            "text": "Constant torque → φ = (NAB/k)·I — exactly proportional → a uniform, evenly-spaced scale",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s7_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Here is the real galvanometer scale, with the old crowded scale recalled small beside it.", "pause_after_ms": 1500 },
+            { "id": "s7_2", "text_en": "Step the current up in equal jumps again, now in the radial field — equal steps, or crowded like before?", "pause_after_ms": 3000 },
+            { "id": "s7_3", "text_en": "Each equal jump in current moves the pointer the same amount — the marks are evenly spaced.", "pause_after_ms": 2000 },
+            { "id": "s7_4", "text_en": "Because the torque was constant, phi equals N A B over k times I — exactly proportional, so the scale is uniform.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The scale is crowded and non-uniform, just like the uniform-field case.",
+            "visual_counter": "On the radial-field scale the pointer steps in equal angular increments as the current steps equally, shown beside the recalled crowded scale from STATE_3.",
+            "one_line_fix": "The radial field gives constant torque, so φ ∝ I exactly — the marks are evenly spaced, a uniform scale, not crowded."
+          }
+        ]
+      },
+      "STATE_8": {
+        "title": "Current sensitivity: φ/I = NAB/k",
+        "teaching_method": "narrative_socratic",
+        "duration": 20,
+        "focal_primitive_id": "mcg_pointer",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sens_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Sensitivity: the swing you get per unit current, φ ÷ I",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_sens",
+            "position": { "x": 200, "y": 235 },
+            "text": "To make the meter detect an\neven tinier current, what\nwould you change about\nthe device?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_sens",
+            "position": { "x": 560, "y": 235 },
+            "text": "Add turns N, widen area A,\nstrengthen field B, or soften\nspring k — the same current\nswings the pointer further.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s8_3"
+          },
+          {
+            "type": "annotation",
+            "id": "sens_formula",
+            "position": { "x": 380, "y": 475 },
+            "text": "Current sensitivity φ/I = NAB/k — a fixed device constant, never the current measured",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s8_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s8_1", "text_en": "Sensitivity is the swing you get per unit current — the deflection phi divided by the current I.", "pause_after_ms": 1500 },
+            { "id": "s8_2", "text_en": "To make the meter detect an even tinier current, what would you change about it?", "pause_after_ms": 3000 },
+            { "id": "s8_3", "text_en": "Add more turns N, widen the area A, strengthen the field B, or soften the spring k — the same current swings further.", "pause_after_ms": 2000 },
+            { "id": "s8_4", "text_en": "Current sensitivity is phi over I equals N A B over k — a fixed device constant, never depending on the current measured.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Sensitivity depends on how big a current you measure.",
+            "visual_counter": "Varying N, A, B or k changes how far the pointer swings for the same current; varying the current alone leaves the ratio φ/I unchanged.",
+            "one_line_fix": "Current sensitivity φ/I = NAB/k is a fixed device constant — it depends on N, A, B and k, never on the current being measured."
+          }
+        ]
+      },
+      "STATE_9": {
+        "title": "Your turn — I, N, B, A, k",
+        "teaching_method": "exploration_sliders",
+        "duration": 26,
+        "focal_primitive_id": "mcg_pointer",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Explore: drag current I, turns N, field B, area A, spring k",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_guide",
+            "position": { "x": 200, "y": 235 },
+            "text": "Watch the deflection φ and\nthe current sensitivity update\nlive on the uniform scale\nas you drag.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_challenge",
+            "position": { "x": 560, "y": 235 },
+            "text": "Challenge:\nDouble the turns N — does φ double?\nSoften the spring k — what\nhappens to the swing?",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "More N, A or B, or a softer k, raise the sensitivity; more current swings the pointer further.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s9_1", "text_en": "Your turn. Drag current I, turns N, field B, area A, and spring constant k.", "pause_after_ms": 1500 },
+            { "id": "s9_2", "text_en": "Watch the deflection phi and the current sensitivity update live on the uniform scale.", "pause_after_ms": 1500 },
+            { "id": "s9_3", "text_en": "More turns, bigger area, stronger field, or a softer spring all raise the sensitivity; more current swings the pointer further.", "pause_after_ms": 1500 }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "moving_coil_galvanometer",
+    "field_lines": {
+      "opacity": 0.85
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "pole_n": "#EF4444",
+      "pole_s": "#3B82F6",
+      "coil": "#FFD54F",
+      "current": "#FFAB40",
+      "force": "#66BB6A",
+      "tau_deflect": "#E879F9",
+      "tau_spring": "#34D399",
+      "field": "#42A5F5",
+      "core": "#9CA3AF"
+    },
+    "slider_controls": {
+      "I": { "min": 0, "max": 100, "step": 5, "default": 50, "label": "Current I (µA)" },
+      "N": { "min": 20, "max": 300, "step": 10, "default": 100, "label": "Turns N" },
+      "B": { "min": 0.05, "max": 0.5, "step": 0.05, "default": 0.2, "label": "Field B (T)" },
+      "A": { "min": 1.0, "max": 4.0, "step": 0.5, "default": 2.0, "label": "Area A (cm²)" },
+      "k": { "min": 1.0, "max": 10.0, "step": 1.0, "default": 4.0, "label": "Spring k (×10⁻⁷ N·m/rad)" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A coil between magnet poles — current marching, pointer at zero",
+        "visible_elements": [
+          "mcg_coil", "mcg_core", "mcg_pole_n", "mcg_pole_s",
+          "mcg_current_dot", "mcg_pointer", "mcg_field_arrow"
+        ],
+        "radial": false,
+        "phi_target_deg": 0,
+        "variable_overrides": { "N": 100, "I": 50, "B": 0.2, "A": 2e-4, "k": 4e-7 },
+        "camera_position": [3.5, 1.8, 5.0],
+        "caption": "An N-turn coil on a soft-iron core, between two magnet poles. Current I marches; the pointer rests at zero.",
+        "extras": {
+          "current_dots": true
+        }
+      },
+      "STATE_2": {
+        "label": "The couple: F = NBIL each side, ΣF = 0, τ = NIAB",
+        "visible_elements": [
+          "mcg_coil", "mcg_core", "mcg_pole_n", "mcg_pole_s",
+          "mcg_current_dot", "mcg_field_arrow", "mcg_rhr_guide",
+          "mcg_force_left", "mcg_force_right", "mcg_sigma_f_zero",
+          "mcg_tau_deflect", "mcg_pointer"
+        ],
+        "radial": false,
+        "phi_target_deg": 10,
+        "variable_overrides": { "N": 100, "I": 50, "B": 0.2, "A": 2e-4, "k": 4e-7 },
+        "camera_position": [2.8, 1.2, 3.6],
+        "caption": "Each side: F = NBIL. Equal-opposite on different lines → ΣF = 0 (no slide), deflecting torque τ = NIAB.",
+        "extras": {
+          "current_dots": true,
+          "deflect": { "at_ms": 14000, "duration_ms": 1200 }
+        }
+      },
+      "STATE_3": {
+        "label": "Uniform field: τ = NIAB·sinθ → a crowded scale",
+        "visible_elements": [
+          "mcg_coil", "mcg_core", "mcg_pole_n", "mcg_pole_s",
+          "mcg_current_dot", "mcg_field_arrow", "mcg_force_left",
+          "mcg_force_right", "mcg_tau_deflect", "mcg_scale_crowded", "mcg_pointer"
+        ],
+        "radial": false,
+        "phi_target_deg": 42.35,
+        "variable_overrides": { "N": 100, "I": 50, "B": 0.2, "A": 2e-4, "k": 4e-7 },
+        "camera_position": [3.2, 1.5, 4.2],
+        "caption": "In a straight uniform field τ = NIAB·sinθ: equal current steps give shrinking swings, so the scale crowds.",
+        "extras": {
+          "current_dots": true,
+          "crowded_scale": { "enabled": true },
+          "current_step": { "enabled": true, "base_uA": 20, "delta_uA": 20, "steps": 5, "start_at_ms": 12000, "step_interval_ms": 900 }
+        }
+      },
+      "STATE_4": {
+        "label": "Radial field morph: τ = NIAB at every angle (PRIMARY AHA)",
+        "visible_elements": [
+          "mcg_coil", "mcg_current_dot", "mcg_field_arrow", "mcg_pole_n",
+          "mcg_pole_s", "mcg_core", "mcg_force_left", "mcg_force_right", "mcg_tau_deflect"
+        ],
+        "radial": true,
+        "phi_target_deg": 50,
+        "variable_overrides": { "N": 100, "I": 50, "B": 0.2, "A": 2e-4, "k": 4e-7 },
+        "camera_position": [3.5, 1.2, 4.5],
+        "caption": "Concave poles + soft-iron core bend the field radial: the coil's sides stay square to B, so τ stays NIAB — no sinθ fade.",
+        "extras": {
+          "current_dots": true,
+          "radial_morph": { "enabled": true, "at_ms": 11000, "duration_ms": 1200 }
+        }
+      },
+      "STATE_5": {
+        "label": "The hairspring winds: restoring torque τ = kφ",
+        "visible_elements": [
+          "mcg_coil", "mcg_core", "mcg_pole_n", "mcg_pole_s",
+          "mcg_field_arrow", "mcg_current_dot", "mcg_spring",
+          "mcg_tau_deflect", "mcg_tau_spring", "mcg_pointer"
+        ],
+        "radial": true,
+        "phi_target_deg": 28.65,
+        "variable_overrides": { "N": 100, "I": 50, "B": 0.2, "A": 2e-4, "k": 4e-7 },
+        "camera_position": [3.0, 1.3, 4.0],
+        "caption": "A hairspring winds as the coil turns, pushing back with a restoring torque τ = kφ, opposite the deflecting torque.",
+        "extras": {
+          "current_dots": true,
+          "spring": { "enabled": true, "at_ms": 8000, "duration_ms": 1500 }
+        }
+      },
+      "STATE_6": {
+        "label": "Equilibrium: the coil settles where NIAB = kφ",
+        "visible_elements": [
+          "mcg_coil", "mcg_core", "mcg_pole_n", "mcg_pole_s",
+          "mcg_field_arrow", "mcg_current_dot", "mcg_spring",
+          "mcg_tau_deflect", "mcg_tau_spring", "mcg_pointer"
+        ],
+        "radial": true,
+        "phi_target_deg": 28.65,
+        "variable_overrides": { "N": 100, "I": 50, "B": 0.2, "A": 2e-4, "k": 4e-7 },
+        "camera_position": [3.2, 1.5, 4.2],
+        "caption": "The coil damped-settles where the deflecting and restoring torques balance: NIAB = kφ → φ = (NAB/k)·I.",
+        "extras": {
+          "current_dots": true,
+          "settle_phi": { "enabled": true, "at_ms": 8000, "duration_ms": 1800, "overshoot_deg": 2, "phi_eq_deg": 28.65 }
+        }
+      },
+      "STATE_7": {
+        "label": "Uniform scale: equal current steps, equal swings (SUPPORTING AHA)",
+        "visible_elements": [
+          "mcg_coil", "mcg_core", "mcg_pole_n", "mcg_pole_s",
+          "mcg_field_arrow", "mcg_current_dot", "mcg_pointer",
+          "mcg_scale_uniform", "mcg_spring"
+        ],
+        "radial": true,
+        "phi_target_deg": 57.30,
+        "variable_overrides": { "N": 100, "I": 50, "B": 0.2, "A": 2e-4, "k": 4e-7 },
+        "camera_position": [3.5, 1.6, 4.6],
+        "caption": "Radial field → constant torque → φ = (NAB/k)·I: equal current steps move the pointer in equal steps — a uniform scale.",
+        "extras": {
+          "current_dots": true,
+          "current_step": { "enabled": true, "base_uA": 20, "delta_uA": 20, "steps": 5, "start_at_ms": 8000, "step_interval_ms": 900 }
+        }
+      },
+      "STATE_8": {
+        "label": "Current sensitivity φ/I = NAB/k — raise N, A, B or lower k",
+        "visible_elements": [
+          "mcg_coil", "mcg_core", "mcg_pole_n", "mcg_pole_s",
+          "mcg_field_arrow", "mcg_current_dot", "mcg_pointer",
+          "mcg_scale_uniform", "mcg_spring", "mcg_tau_deflect", "mcg_tau_spring"
+        ],
+        "radial": true,
+        "phi_target_deg": 85.94,
+        "variable_overrides": { "N": 100, "I": 50, "B": 0.2, "A": 2e-4, "k": 4e-7 },
+        "camera_position": [3.5, 1.6, 4.6],
+        "caption": "Sensitivity φ/I = NAB/k: raise turns N, area A, field B, or soften spring k — the same current swings further.",
+        "extras": {
+          "current_dots": true,
+          "sensitivity_sweep": { "enabled": true, "at_ms": 8000, "duration_ms": 2500, "max_mult": 3 }
+        }
+      },
+      "STATE_9": {
+        "label": "Sandbox — I, N, B, A, k sliders with a live φ + sensitivity readout",
+        "visible_elements": [
+          "mcg_coil", "mcg_core", "mcg_pole_n", "mcg_pole_s",
+          "mcg_field_arrow", "mcg_current_dot", "mcg_pointer",
+          "mcg_scale_uniform", "mcg_spring"
+        ],
+        "radial": true,
+        "phi_target_deg": 28.65,
+        "variable_overrides": { "N": 100, "I": 50, "B": 0.2, "A": 2e-4, "k": 4e-7 },
+        "camera_position": [3.6, 1.8, 5.0],
+        "caption": "Drag I, N, B, A, k. Deflection φ = (NAB/k)·I and current sensitivity φ/I = NAB/k update live on the uniform scale.",
+        "show_sliders": true,
+        "extras": {
+          "current_dots": true,
+          "idle_sweep_I": true,
+          "readout": { "show": true, "fields": ["phi_deg", "current_sensitivity_disp"] }
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "analog_panel_multimeter",
+      "type": "B",
+      "label": "Analog needle multimeter",
+      "physical_world": "The swinging needle on an electrician's non-digital multimeter or a battery tester",
+      "same_physics": "The same moving coil on a radial-field magnet turns against a hairspring; NIAB = kφ gives φ = (NAB/k)·I, so the needle reads current on an evenly-spaced scale",
+      "scene_hint": "A rectangular panel meter, the same coil-core-magnet trio behind the dial, the needle stepping equally as the current steps."
+    },
+    {
+      "variant_id": "vu_meter_audio",
+      "type": "B",
+      "label": "VU meter on an audio amplifier",
+      "physical_world": "The bouncing needle VU meter on an old audio amplifier or tape deck",
+      "same_physics": "A moving coil in a radial field, balanced by a hairspring, deflects in proportion to the signal current — the same φ = (NAB/k)·I on a uniform scale",
+      "scene_hint": "A VU meter face, the needle riding the music; the same hidden coil-core-magnet and the same uniform tick spacing."
+    }
+  ],
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can explain that a moving-coil galvanometer reads current because the BIL force on the coil's two vertical sides forms a COUPLE: equal-opposite forces on different lines give ΣF = 0 (the coil turns in place, it never slides) and a deflecting torque τ = NIAB; that in a plain UNIFORM field τ = NIAB·sinθ, so equal current steps give unequal swings and the scale would be crowded; that the RADIAL field made by concave pole faces and a soft-iron core keeps the coil plane always parallel to B, so its sides stay perpendicular to B at every angle and τ stays NIAB with no sinθ fade — the key trick of the instrument; that a hairspring supplies a restoring torque τ = kφ, so the coil rests at equilibrium where NIAB = kφ — a small reading angle, never at 90°; that this gives φ = (NAB/k)·I, exactly proportional to current, which is precisely why the galvanometer scale is uniform (evenly spaced); and that the current sensitivity φ/I = NAB/k is a fixed device constant, raised by more turns N, a bigger area A, a stronger field B, or a softer spring k, and never depending on the current being measured. (Converting the galvanometer into an ammeter or voltmeter, and voltage sensitivity φ/V = NAB/kR, are downstream concepts not assessed by this conceptual V1 quiz.)",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "Current flows through the coil of a galvanometer sitting between the magnet poles. What does the magnetic force do to the coil?",
+        "options": {
+          "A": "ΣF = 0, but τ = NIAB — the two side-forces form a couple, so the coil turns in place without sliding",
+          "B": "The coil slides sideways across the gap, pushed by a net magnetic force",
+          "C": "The net force is zero, so the coil feels nothing and stays exactly at rest",
+          "D": "Force and torque are the same thing here, so the coil both slides and turns"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks the side-forces add to a net force that translates the coil across the gap (ignores that they are on different lines)",
+          "C": "Conflates ΣF = 0 with Στ = 0 — assumes zero net force means nothing happens, missing the couple",
+          "D": "Does not distinguish force from torque, so expects both sliding and turning"
+        },
+        "tested_idea": "The two side-forces form a couple: ΣF = 0 (no slide) but τ = NIAB (pure turning).",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A rectangular current loop hangs between two magnet poles and current is switched on. Describe the net force and the torque on the loop, and say whether it slides or turns."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "Imagine a galvanometer built with a plain UNIFORM field between flat poles. You raise the current in equal steps. What does the scale look like?",
+        "options": {
+          "A": "Non-uniform: because τ = NIAB·sinθ, equal current steps give smaller and smaller swings, so the marks crowd together",
+          "B": "Uniform: the torque stays constant in a uniform field, so equal steps give equal swings",
+          "C": "Blank at first: the current is too small to read until it gets large",
+          "D": "Evenly spaced but faint: the field is simply too weak to move the pointer cleanly"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks the torque is constant in a uniform field, ignoring the sinθ factor that fades as the coil turns",
+          "C": "Blames the current magnitude rather than the angle-dependent torque",
+          "D": "Blames the field strength rather than the sinθ dependence of the torque"
+        },
+        "tested_idea": "In a uniform field τ = NIAB·sinθ, so equal current steps give unequal swings — a crowded scale.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A coil deflects in a straight, uniform magnetic field. As it turns further, what happens to the torque on it, and what does that do to a scale marked in equal current steps?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "Curving the pole faces and adding a soft-iron core makes the gap field radial. What does this achieve for the torque on the coil?",
+        "options": {
+          "A": "It keeps the coil's sides perpendicular to B at every angle, so τ = NIAB stays constant as the coil turns",
+          "B": "It makes the torque larger than it would be in a uniform field",
+          "C": "It cancels the forces on the coil's two sides",
+          "D": "It rotates the coil's magnetic moment μ until μ lines up with B"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks radial means stronger; a constant torque is not a larger one",
+          "C": "Thinks the radial field removes the side-forces, when the forces persist and stay full length",
+          "D": "Thinks μ aligns with B, when the radial field keeps μ perpendicular to B at every deflection"
+        },
+        "tested_idea": "The radial field keeps the coil's sides ⊥ B at every angle, so τ = NIAB is independent of deflection.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A galvanometer uses concave poles and an iron core so the field is radial. Explain how that keeps the deflecting torque the same at every deflection angle."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "With both a deflecting torque NIAB and a hairspring's restoring torque kφ acting, at what deflection does the coil come to rest?",
+        "options": {
+          "A": "Where the deflecting torque NIAB equals the restoring torque kφ",
+          "B": "At 90°, where the coil's magnetic moment μ lines up with the field B",
+          "C": "It never comes to rest — it keeps turning freely",
+          "D": "At 0°, because the spring always pulls it straight back to zero"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks the coil swings to full 90° alignment, ignoring that the spring stops it at a small angle",
+          "C": "Thinks nothing opposes the turn, missing the restoring torque kφ",
+          "D": "Thinks the spring wins completely, ignoring the deflecting torque NIAB"
+        },
+        "tested_idea": "The coil rests at equilibrium where NIAB = kφ — a small reading angle, not 90°.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "A current-carrying coil twists against a hairspring. Write the condition that decides the angle at which it finally stops."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "In the real radial-field galvanometer, how does the deflection φ depend on the current I, and why is the scale spaced the way it is?",
+        "options": {
+          "A": "φ = (NAB/k)·I — deflection is exactly proportional to current, so the marks are evenly spaced (a uniform scale)",
+          "B": "The scale is crowded, just like the plain uniform-field case",
+          "C": "φ is proportional to I², so the marks spread further apart at higher currents",
+          "D": "φ is proportional to √I, so the marks crowd together at higher currents"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Carries the crowded uniform-field scale over to the radial case, missing that the torque is now constant",
+          "C": "Invents a square-law dependence instead of the linear φ = (NAB/k)·I",
+          "D": "Invents a square-root dependence instead of the linear φ = (NAB/k)·I"
+        },
+        "tested_idea": "Constant torque gives φ = (NAB/k)·I, linear in current — an evenly-spaced uniform scale.",
+        "teaches_state": "STATE_7",
+        "difficulty": "core",
+        "parallel_form_stem": "A galvanometer's pointer steps in equal angles as the current steps in equal amounts. Write the relation between deflection and current that makes this happen."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "You want the galvanometer to detect an even smaller current. The current sensitivity is φ/I. What is it, and how do you increase it?",
+        "options": {
+          "A": "φ/I = NAB/k — raise the turns N, the area A, or the field B, or soften the spring k",
+          "B": "It depends on how big a current you happen to be measuring",
+          "C": "φ/I = NAB/k — so raise the spring constant k to make it more sensitive",
+          "D": "It depends on how long the pointer needle is"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks sensitivity changes with the current measured, when φ/I is a fixed device constant",
+          "C": "Gets the sign wrong: a stiffer (larger k) spring lowers sensitivity; you must soften k",
+          "D": "Blames pointer geometry, which does not enter φ/I = NAB/k"
+        },
+        "tested_idea": "Current sensitivity φ/I = NAB/k is a device constant, raised by larger N, A, B or smaller k.",
+        "teaches_state": "STATE_8",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Two galvanometers carry the same tiny current but one deflects further. Write what sets the deflection-per-unit-current and name two changes that increase it."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": ["Q1"],
+      "STATE_3": ["Q2"],
+      "STATE_4": ["Q3"],
+      "STATE_6": ["Q4"],
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_5", "STATE_9"]
+  }
+}

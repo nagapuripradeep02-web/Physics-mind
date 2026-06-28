@@ -1,0 +1,794 @@
+{
+  "concept_id": "magnetic_field_circular_loop",
+  "concept_name": "Magnetic Field of a Circular Current Loop — B = μ₀NI/2R",
+  "chapter": 4,
+  "section": "4.6",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.6 (Magnetic field on the axis of a circular current loop) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. The atomic concept taught here is the FIELD a circular loop produces: a coil of current I, radius R, N turns makes a magnetic field of magnitude B = μ₀NI/2R at its centre, axial (perpendicular to the loop plane, direction by the right-hand grip rule), built because every current element's contribution dB at the centre points the same axial way and they SUPERPOSE (add, never cancel); and on the axis at distance z the field is B(z) = μ₀NIR²/2(R²+z²)^(3/2), maximal at the centre and falling off with z. The deepest student confusions targeted: (M1) the centre field lies in the loop's plane or circles like a wire; (M2) the dB's from opposite sides cancel; (M3) the centre field is the straight-wire formula μ₀I/2πR; (M4) a bigger loop gives a stronger field; (M5) reversing the current does not change B's direction; (M6) the axial field is uniform or strongest off-centre. CUT-LINE: this concept does NOT cover the dipole / bar-magnet identity or the torque on the loop (that is current_loop_acts_as_dipole / torque_on_current_loop_in_field), nor the single-element Biot-Savart law itself (assumed from the prerequisite biot_savart_law), nor the solenoid field B = μ₀nI (magnetic_field_solenoid). Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["magnetic_field_circular_loop"]
+  },
+  "prerequisites": [
+    "biot_savart_law",
+    "magnetic_field_wire"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture the tangent galvanometer in your school or college physics lab — a vertical circular coil of many turns with a small compass needle sitting right at its centre. Send a current I through the coil and it makes a magnetic field B = μ₀NI/2R straight through the centre, along the coil's axis; the needle swings to follow it. The deflection you read off the scale in your practical exam is exactly this centre field at work — more turns or more current swings the needle harder, a bigger coil swings it less.",
+    "secondary": "Picture the induction cooktop on the kitchen counter at home. Under the glass is a flat coil wound as many tight circular turns. When it switches on, a current runs round those turns and pushes a strong magnetic field up through the centre — straight up into the steel pan. That axial field, the same B = μ₀NI/2R built from many turns adding together, is what heats the pan.",
+    "tertiary": "Picture a single round turn of an electromagnet or a relay coil. The field that grabs the iron core sits along the axis of that loop, strongest right at its centre — the same loop field, just one turn of it. Stack many such turns and you have a solenoid; understand one loop first and the rest follows."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I": { "name": "Current in the loop", "unit": "A", "min": 0.1, "max": 10, "default": 2, "step": 0.1 },
+      "R": { "name": "Loop radius", "unit": "m", "min": 0.02, "max": 0.15, "default": 0.05, "step": 0.005 },
+      "N": { "name": "Number of turns in the loop", "unit": "", "min": 1, "max": 50, "default": 1, "step": 1 },
+      "z": { "name": "Axial distance from the loop center", "unit": "m", "min": 0, "max": 0.20, "default": 0, "step": 0.005 },
+      "dl": { "name": "Length of one representative current element (illustrative, STATE_2)", "unit": "m", "constant": 0.01 },
+      "mu_0": { "name": "Magnetic permeability of free space", "unit": "T·m/A", "constant": 1.2566370614e-6 }
+    },
+    "computed_outputs": {
+      "B_center": { "formula": "mu_0 * N * I / (2 * R)" },
+      "B_center_uT": { "formula": "(mu_0 * N * I / (2 * R)) * 1e6" },
+      "B_axis": { "formula": "mu_0 * N * I * R * R / (2 * (R*R + z*z) * sqrt(R*R + z*z))" },
+      "B_axis_uT": { "formula": "(mu_0 * N * I * R * R / (2 * (R*R + z*z) * sqrt(R*R + z*z))) * 1e6" },
+      "dB_element": { "formula": "(mu_0 * I * dl) / (4 * PI * R * R)" },
+      "dB_element_uT": { "formula": "((mu_0 * I * dl) / (4 * PI * R * R)) * 1e6" }
+    },
+    "formulas": {
+      "B_center": "B = μ₀NI / 2R",
+      "B_axis": "B(z) = μ₀NIR² / 2(R²+z²)^(3/2)",
+      "dB_element": "dB = (μ₀/4π)·I dl / R²",
+      "dB_direction": "dB ∥ dl × r̂ — ⊥ to the loop plane (axial), since dl and r̂ both lie in the plane",
+      "grip_rule": "Curl the right hand with the current I; the thumb gives the field B along the axis",
+      "reduces_to_center": "B(z=0) = μ₀NI/2R"
+    },
+    "constraints": [
+      "At the loop center every element's dB is purely axial: dl and r̂ both lie in the loop plane, so dl × r̂ is ⊥ the plane.",
+      "dB from opposite elements ADD at the center (both point the same axial way) — they never cancel.",
+      "On the axis with z ≠ 0 each dB has a transverse part, but those cancel by ring symmetry; only the axial component survives.",
+      "B_center ∝ N, ∝ I, ∝ 1/R — a bigger loop gives a WEAKER center field.",
+      "B(z) is maximal at z = 0 and falls monotonically with |z|; exactly B(z=0) = μ₀NI/2R.",
+      "Reversing the current reverses both dB and B (dl flips → dl × r̂ flips)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 4,
+    "max_words_per_tts_sentence": 34
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Every element's dB points the same axial way — so they all add.",
+    "visual_confirmation": "STATE_3 walks round the ring starting from the opposite element; every dB swings to the same axial direction and the stack only grows, never cancels."
+  },
+  "entry_state_map": {
+    "foundational": { "start": "STATE_1", "end": "STATE_5" },
+    "direction": { "start": "STATE_5", "end": "STATE_5" },
+    "on_axis": { "start": "STATE_6", "end": "STATE_6" },
+    "explore": { "start": "STATE_7", "end": "STATE_7" }
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "A coil, and one question",
+        "teaching_method": "narrative_socratic",
+        "duration": 14,
+        "focal_primitive_id": "cl_center",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup_label",
+            "position": { "x": 380, "y": 55 },
+            "text": "A circular coil — current I, radius R, N turns",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "legend_label",
+            "position": { "x": 185, "y": 235 },
+            "text": "Amber dots = current I\nin-plane line = radius R\nN = turns",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "anchor_label",
+            "position": { "x": 575, "y": 235 },
+            "text": "Like the lab tangent\ngalvanometer — a compass\nsits at the centre O.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": { "x": 380, "y": 475 },
+            "text": "Question: how strong is the field B right at the centre O?",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "Here is a circular coil. It carries current I, has radius R, and N turns.", "text_hi": "यहाँ एक circular coil है। यह current I carry करती है, इसकी radius R है, और N turns हैं।", "text_te": "ఇక్కడ ఒక circular coil ఉంది. ఇది current I carry చేస్తుంది, దీనికి radius R ఉంది, మరియు N turns ఉన్నాయి.", "pause_after_ms": 1200 },
+            { "id": "s1_2", "text_en": "Watch the current I march around the ring.", "text_hi": "current I को ring के चारों ओर march करते हुए देखिए।", "text_te": "current I ring చుట్టూ march అవ్వడాన్ని గమనించండి.", "pause_after_ms": 1000 },
+            { "id": "s1_3", "text_en": "How strong is the magnetic field B right at the center O?", "text_hi": "center O पर magnetic field B कितना strong है?", "text_te": "center O వద్ద magnetic field B ఎంత strong గా ఉంది?", "pause_after_ms": 1500 }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "One element's field dB",
+        "teaching_method": "narrative_socratic",
+        "duration": 20,
+        "focal_primitive_id": "cl_db_arrow",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "element_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Zoom in: one tiny element dl",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_db",
+            "position": { "x": 200, "y": 235 },
+            "text": "Predict before the reveal:\nthis element makes a field dB\nat the centre — which way\ndoes it point?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_db",
+            "position": { "x": 560, "y": 235 },
+            "text": "dB = dl × r̂ — straight OUT\nalong the axis (⊥ the plane),\nnot in the plane, not along\nthe current.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s2_4"
+          },
+          {
+            "type": "annotation",
+            "id": "db_formula",
+            "position": { "x": 380, "y": 475 },
+            "text": "dB = (μ₀/4π)·I dl / R²",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s2_5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "Zoom in on one tiny current element dl on the ring.", "text_hi": "ring पर एक tiny current element dl पर zoom in कीजिए।", "text_te": "ring పై ఉన్న ఒక tiny current element dl పై zoom in చేయండి.", "pause_after_ms": 1200 },
+            { "id": "s2_2", "text_en": "Draw the unit vector r-hat from this element straight to the center O.", "text_hi": "इस element से center O तक सीधा unit vector r-hat खींचिए।", "text_te": "ఈ element నుండి center O వరకు నేరుగా unit vector r-hat గీయండి.", "pause_after_ms": 1200 },
+            { "id": "s2_3", "text_en": "This element makes a field dB at the center — which way does it point?", "text_hi": "यह element center पर एक field dB बनाता है — यह किस way में point करता है?", "text_te": "ఈ element center వద్ద ఒక field dB ని చేస్తుంది — ఇది ఏ way లో point చేస్తుంది?", "pause_after_ms": 3000 },
+            { "id": "s2_4", "text_en": "The field dB is dl crossed with r-hat — and it points straight out along the axis.", "text_hi": "field dB, dl crossed with r-hat है — और यह axis के साथ सीधा out point करता है।", "text_te": "field dB, dl crossed with r-hat అవుతుంది — మరియు అది axis వెంబడి నేరుగా out point చేస్తుంది.", "pause_after_ms": 1500 },
+            { "id": "s2_5", "text_en": "Its size: the field dB equals mu-naught over four pi, times I d-l over R squared.", "text_hi": "इसका size: field dB equals mu-naught over four pi, times I d-l over R squared है।", "text_te": "దీని size: field dB equals mu-naught over four pi, times I d-l over R squared.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field at the center lies in the loop's plane, circles the wire, or points along the current.",
+            "visual_counter": "The dB arrow pops straight OUT along the axis (⊥ the plane); the hand shows dl and r̂ both lying in the plane.",
+            "one_line_fix": "dl and r̂ both lie in the loop's plane, so their cross product dl × r̂ — and therefore dB — is axial, perpendicular to the plane."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Go round the ring: add, not cancel",
+        "teaching_method": "narrative_socratic",
+        "duration": 20,
+        "focal_primitive_id": "cl_db_arrow",
+        "advance_mode": "wait_for_answer",
+        "has_prebuilt_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sum_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Walk every element round the ring",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_sum",
+            "position": { "x": 200, "y": 235 },
+            "text": "The opposite element makes its\nown dB too. Going round the\nwhole ring — do the dB's\nCANCEL, or ADD?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_sum",
+            "position": { "x": 560, "y": 235 },
+            "text": "Every dB points the SAME way,\nstraight up the axis. They stack\ninto one growing axial bundle —\nthey ADD.",
+            "color": "#FFF176",
+            "reveal_at_tts_id": "s3_4"
+          },
+          {
+            "type": "annotation",
+            "id": "sum_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "Opposite sides never cancel here — at the centre both point axial.",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s3_3"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Keep that one field dB. Now go all the way round the ring.", "text_hi": "उस एक field dB को रखिए। अब पूरे ring के चारों ओर जाइए।", "text_te": "ఆ ఒక field dB ని ఉంచుకోండి. ఇప్పుడు ring చుట్టూ పూర్తిగా వెళ్ళండి.", "pause_after_ms": 1200 },
+            { "id": "s3_2", "text_en": "Element by element — do the dB's cancel, or do they add?", "text_hi": "Element by element — क्या dB's cancel होते हैं, या वे add होते हैं?", "text_te": "Element by element — dB's cancel అవుతాయా, లేదా add అవుతాయా?", "pause_after_ms": 3500 },
+            { "id": "s3_3", "text_en": "Look at the opposite element first — its field dB also points the same way, straight up the axis.", "text_hi": "पहले opposite element को देखिए — उसका field dB भी उसी तरह, सीधा axis पर point करता है।", "text_te": "మొదట opposite element ని చూడండి — దాని field dB కూడా అదే విధంగా, నేరుగా axis పైకి point చేస్తుంది.", "pause_after_ms": 1500 },
+            { "id": "s3_4", "text_en": "Every element's field dB points the same axial way — so they all add.", "text_hi": "हर element का field dB उसी axial way में point करता है — तो वे सब add होते हैं।", "text_te": "ప్రతి element యొక్క field dB అదే axial way లో point చేస్తుంది — కాబట్టి అవన్నీ add అవుతాయి.", "pause_after_ms": 1800 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The dB's from opposite sides of the loop cancel at the center.",
+            "visual_counter": "Walking the ring from the opposite element, every dB swings to the same axial direction; the stack only grows.",
+            "one_line_fix": "At the center both opposite elements' dB's point the same axial way, so they add — they never cancel."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The clean result: B = μ₀NI/2R",
+        "teaching_method": "derivation_first_principles",
+        "duration": 22,
+        "focal_primitive_id": "cl_B_center",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "result_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "The bundle collapses to one field B",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "result_formula",
+            "position": { "x": 200, "y": 235 },
+            "text": "B = μ₀NI / 2R\nClean, axial, largest right\nhere at the centre.\nMore turns N → stronger.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "wire_compare",
+            "position": { "x": 560, "y": 235 },
+            "text": "Straight wire: μ₀I / 2πR\nLoop centre: μ₀NI / 2R\nSo it's 2R, NOT 2πR —\nand a bigger R makes it weaker.",
+            "color": "#FFCC9F",
+            "reveal_at_tts_id": "s4_3"
+          },
+          {
+            "type": "annotation",
+            "id": "result_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "The field B threads through the loop, along its axis.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "Add every element's field dB and the bundle collapses to one bold arrow — the center field B.", "text_hi": "हर element के field dB को add कीजिए और bundle एक bold arrow में collapse हो जाता है — center field B।", "text_te": "ప్రతి element యొక్క field dB ని add చేయండి, మరియు bundle ఒక bold arrow లోకి collapse అవుతుంది — center field B.", "pause_after_ms": 1500 },
+            { "id": "s4_2", "text_en": "The field B equals mu-naught N I over 2R. Clean, axial, largest right here at the center.", "text_hi": "Field B equals mu-naught N I over 2R. Clean, axial, यहीं center में सबसे largest।", "text_te": "Field B equals mu-naught N I over 2R. Clean, axial, సరిగ్గా ఇక్కడ center లో largest.", "pause_after_ms": 1800 },
+            { "id": "s4_3", "text_en": "Compare the straight wire: its field is mu-naught I over 2-pi-R.", "text_hi": "Straight wire की तुलना कीजिए: उसका field है mu-naught I over 2-pi-R।", "text_te": "Straight wire తో పోల్చండి: దాని field mu-naught I over 2-pi-R.", "pause_after_ms": 1500 },
+            { "id": "s4_4", "text_en": "So the loop gives 2R, not 2-pi-R — and the field B threads through the loop.", "text_hi": "तो loop 2R देता है, 2-pi-R नहीं — और field B loop से thread करता है।", "text_te": "కాబట్టి loop 2R ఇస్తుంది, 2-pi-R కాదు — మరియు field B loop గుండా threads అవుతుంది.", "pause_after_ms": 1500 },
+            { "id": "s4_5", "text_en": "More turns N raise the field B in step; a bigger radius R makes it weaker.", "text_hi": "ज़्यादा turns N field B को step में raise करते हैं; एक bigger radius R इसे weaker बनाता है।", "text_te": "ఎక్కువ turns N field B ని step లో raise చేస్తాయి; ఒక bigger radius R దీన్ని weaker చేస్తుంది.", "pause_after_ms": 1500 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The center field is the straight-wire formula μ₀I/2πR.",
+            "visual_counter": "The wire's circular field is drawn alongside the loop's axial field: 2R, not 2πR.",
+            "one_line_fix": "A loop's center field is B = μ₀NI/2R — it is 2R, not 2πR, and it threads through the loop instead of circling a wire."
+          },
+          {
+            "belief": "A bigger loop gives a stronger center field.",
+            "visual_counter": "As R grows, the center field arrow and the readout shrink.",
+            "one_line_fix": "B ∝ 1/R, so a bigger radius gives a WEAKER center field — double R and B halves."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Which way? Grip rule, and the flip",
+        "teaching_method": "narrative_socratic",
+        "duration": 20,
+        "focal_primitive_id": "cl_B_center",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "direction_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Direction by the right-hand grip rule",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "grip_explain",
+            "position": { "x": 200, "y": 235 },
+            "text": "Curl your fingers WITH the\ncurrent I; your thumb points\nalong the field B, up the axis.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_flip",
+            "position": { "x": 560, "y": 235 },
+            "text": "Now reverse the current I —\nwhich way does the field B\npoint? Predict, then watch.",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "flip_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "Current flips → hand re-curls → the field B flips the other way.",
+            "color": "#FFF176",
+            "reveal_at_tts_id": "s5_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Which way does the center field B point? Use the right-hand grip rule.", "text_hi": "Center field B किस तरफ point करता है? Right-hand grip rule का उपयोग कीजिए।", "text_te": "Center field B ఏ వైపు point చేస్తుంది? Right-hand grip rule ఉపయోగించండి.", "pause_after_ms": 1500 },
+            { "id": "s5_2", "text_en": "Curl your fingers with the current I; your thumb points along the field B, up the axis.", "text_hi": "अपनी fingers को current I के साथ curl कीजिए; आपका thumb field B के साथ, axis पर ऊपर की ओर point करेगा।", "text_te": "మీ fingers ని current I తో curl చేయండి; మీ thumb field B తో పాటు, axis పైకి point చేస్తుంది.", "pause_after_ms": 1800 },
+            { "id": "s5_3", "text_en": "Now reverse the current I — which way does the field B point?", "text_hi": "अब current I को reverse कीजिए — field B किस तरफ point करेगा?", "text_te": "ఇప్పుడు current I ని reverse చేయండి — field B ఏ వైపు point చేస్తుంది?", "pause_after_ms": 3000 },
+            { "id": "s5_4", "text_en": "The current I flips, the hand re-curls, and the field B flips to point the other way.", "text_hi": "Current I flip होता है, hand फिर से re-curls करता है, और field B पलट कर दूसरी तरफ point करता है।", "text_te": "Current I flip అవుతుంది, hand మళ్ళీ re-curls అవుతుంది, మరియు field B తిరిగి వేరే వైపు point చేస్తుంది.", "pause_after_ms": 1800 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Reversing the current does not change the direction of B.",
+            "visual_counter": "When the current dots reverse, the grip hand re-curls and the center field arrow flips a full 180°.",
+            "one_line_fix": "Reverse the current and dl flips, so dl × r̂ flips — the field B reverses to point the opposite way along the axis."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Off the centre: B(z) falls away",
+        "teaching_method": "narrative_socratic",
+        "duration": 22,
+        "focal_primitive_id": "cl_B_axis",
+        "advance_mode": "wait_for_answer",
+        "has_prebuilt_deep_dive": true,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "axis_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Step out along the axis by z",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "predict_axis",
+            "position": { "x": 200, "y": 235 },
+            "text": "Two distinct lengths here:\nR = radius (in the plane)\nz = distance along the axis.\nSlide out — where is B strongest?",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "reveal_axis",
+            "position": { "x": 560, "y": 235 },
+            "text": "Tallest at the centre (z = 0),\nweaker as z grows — the bar and\nthe B-vs-z curve fall together.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s6_3"
+          },
+          {
+            "type": "annotation",
+            "id": "axis_formula",
+            "position": { "x": 380, "y": 475 },
+            "text": "B(z) = μ₀NIR² / 2(R²+z²)^(3/2)",
+            "color": "#D4D4D8",
+            "reveal_at_tts_id": "s6_4"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Step off the center along the axis by a distance z.", "text_hi": "Center से axis के साथ एक distance z दूर हटिए।", "text_te": "Center నుండి axis వెంబడి ఒక distance z దూరం జరగండి.", "pause_after_ms": 1300 },
+            { "id": "s6_2", "text_en": "As you slide out along the axis, where is the field B strongest?", "text_hi": "जैसे-जैसे आप axis के साथ बाहर slide करते हैं, field B सबसे strongest कहाँ है?", "text_te": "మీరు axis వెంబడి బయటకు slide చేస్తున్నప్పుడు, field B ఎక్కడ strongest గా ఉంటుంది?", "pause_after_ms": 3000 },
+            { "id": "s6_3", "text_en": "Slide out and the axial field B of z shrinks — tallest at the center, weaker as z grows.", "text_hi": "बाहर slide कीजिए और axial field B of z छोटा होता जाता है — center पर सबसे tallest, और z बढ़ने पर weaker।", "text_te": "బయటకు slide చేయండి, axial field B of z తగ్గుతుంది — center వద్ద tallest, z పెరిగే కొద్దీ weaker.", "pause_after_ms": 1800 },
+            { "id": "s6_4", "text_en": "The axial field B of z equals mu-naught N I R squared, over 2 times R squared plus z squared, to the three-halves.", "text_hi": "Axial field B of z equals mu-naught N I R squared, over 2 times R squared plus z squared, to the three-halves।", "text_te": "Axial field B of z equals mu-naught N I R squared, over 2 times R squared plus z squared, to the three-halves.", "pause_after_ms": 1800 }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The axial field is uniform, or strongest somewhere off the center.",
+            "visual_counter": "Sliding the sample point out along z, the field bar and the B-vs-z curve fall monotonically; both are tallest at z = 0.",
+            "one_line_fix": "B(z) is largest at the center (z = 0) and falls monotonically as z grows — never uniform, never peaking off-center."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Your turn — I, R, N, z",
+        "teaching_method": "exploration_sliders",
+        "duration": 26,
+        "focal_primitive_id": "cl_B_center",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_title",
+            "position": { "x": 380, "y": 55 },
+            "text": "Explore: drag I, R, N, z",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_guide",
+            "position": { "x": 200, "y": 235 },
+            "text": "Watch the centre field B and the\naxial field B(z) update live\nin the readout as you drag.",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_challenge",
+            "position": { "x": 560, "y": 235 },
+            "text": "Challenge:\nDouble N — does B double?\nDouble R — what happens to B?",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_note",
+            "position": { "x": 380, "y": 475 },
+            "text": "Bigger I or more N strengthen B; a bigger R weakens it.",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Your turn. Drag current I, radius R, turns N, and axial distance z.", "text_hi": "अब आपकी बारी। Current I, radius R, turns N, और axial distance z को drag कीजिए।", "text_te": "ఇప్పుడు మీ వంతు. Current I, radius R, turns N, మరియు axial distance z ని drag చేయండి.", "pause_after_ms": 1200 },
+            { "id": "s7_2", "text_en": "Watch the center field B and the axial field B of z update live in the readout.", "text_hi": "Readout में center field B और axial field B of z को live update होते देखिए।", "text_te": "Readout లో center field B మరియు axial field B of z live గా update అవ్వడం చూడండి.", "pause_after_ms": 1200 },
+            { "id": "s7_3", "text_en": "Bigger current I or more turns N strengthen the field; a bigger radius R weakens it.", "text_hi": "Bigger current I या ज़्यादा turns N field को strengthen करते हैं; एक bigger radius R इसे weaken करता है।", "text_te": "Bigger current I లేదా ఎక్కువ turns N field ని strengthen చేస్తాయి; ఒక bigger radius R దీన్ని weaken చేస్తుంది.", "pause_after_ms": 1500 }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "magnetic_field_circular_loop",
+    "loop": {
+      "shape": "circle",
+      "radius": 0.05,
+      "current_amps": 2,
+      "turns": 1,
+      "color": "#9AD0FF",
+      "current_arrow_color": "#FFAB40"
+    },
+    "field_lines": {
+      "count": 8,
+      "color_positive": "#66BB6A"
+    },
+    "loop_defaults": {
+      "axis_max": 0.20,
+      "num_elements": 12,
+      "dl_element_index": 0,
+      "current_direction": 1
+    },
+    "slider_controls": {
+      "I": { "min": 0.1, "max": 10, "step": 0.1, "default": 2, "label": "Current I (A)" },
+      "R": { "min": 2, "max": 15, "step": 0.5, "default": 5, "label": "Radius R (cm)" },
+      "N": { "min": 1, "max": 50, "step": 1, "default": 1, "label": "Turns N" },
+      "z": { "min": 0, "max": 20, "step": 0.5, "default": 0, "label": "Axial distance z (cm)" }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A",
+      "current": "#FFAB40",
+      "field": "#5EB1FF"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A coil — current I marching, no field yet",
+        "visible_elements": [
+          "cl_current_arrow", "cl_current_arrow_label", "cl_current_dot",
+          "cl_radius_line", "cl_radius_line_label", "cl_turns_caption",
+          "cl_center", "cl_center_label"
+        ],
+        "camera_position": [3, 2.5, 4.5],
+        "caption": "A circular coil: current I, radius R, N turns. How strong is the field B at the center O?",
+        "variable_overrides": { "N": 1, "I": 2, "R": 0.05, "z": 0 },
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true
+        }
+      },
+      "STATE_2": {
+        "label": "One element dl, its r̂, and the axial dB",
+        "visible_elements": [
+          "cl_current_arrow", "cl_current_dot",
+          "cl_radius_line", "cl_radius_line_label",
+          "cl_center", "cl_center_label",
+          "cl_dl_marker", "cl_dl_marker_label",
+          "cl_rhat_arrow", "cl_rhat_arrow_label",
+          "cl_db_arrow", "cl_db_arrow_label"
+        ],
+        "camera_position": [2.2, 1.2, 3.0],
+        "caption": "One element dl. Its field dB at the center points straight out along the axis (dB ∥ dl × r̂).",
+        "variable_overrides": { "N": 1, "I": 2, "R": 0.05, "z": 0 },
+        "formula_overlay": "dB = (μ₀/4π)·I dl / R²",
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true,
+          "cross_hand": {
+            "show": true,
+            "animate_curl": true,
+            "thumb_direction": [0, 0, 1],
+            "labels": { "fingers": "dl", "curl_to": "r̂", "thumb": "dB" }
+          },
+          "db_reveal_at_ms": 9500
+        }
+      },
+      "STATE_3": {
+        "label": "Walk the ring — every dB axial, the stack grows (PRIMARY AHA)",
+        "visible_elements": [
+          "cl_current_arrow", "cl_current_dot",
+          "cl_center", "cl_center_label",
+          "cl_db_arrow", "cl_db_arrow_label"
+        ],
+        "camera_position": [3, 2.2, 4.2],
+        "caption": "Go round the ring: every element's dB points the same axial way, so they ADD — they never cancel.",
+        "variable_overrides": { "N": 1, "I": 2, "R": 0.05, "z": 0 },
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true,
+          "db_stack": {
+            "enabled": true,
+            "num_elements": 12,
+            "opposite_first": true,
+            "reveal_at_ms": 8000,
+            "reveal_stagger_ms": 300
+          }
+        }
+      },
+      "STATE_4": {
+        "label": "Bundle merges to one B; B = μ₀NI/2R; wire-vs-loop compare",
+        "visible_elements": [
+          "cl_current_arrow", "cl_current_dot",
+          "cl_center", "cl_center_label",
+          "cl_radius_line", "cl_radius_line_label",
+          "cl_B_center", "cl_B_center_label",
+          "cl_field_line", "cl_wire_compare"
+        ],
+        "camera_position": [3, 2.5, 4.2],
+        "caption": "The bundle collapses to one bold axial B = μ₀NI/2R — 2R, not 2πR; N linear, B ∝ 1/R.",
+        "variable_overrides": { "N": 1, "I": 2, "R": 0.05, "z": 0 },
+        "formula_overlay": "B = μ₀NI / 2R",
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true,
+          "field_lines": true,
+          "merge_to_B_at_ms": 1500,
+          "wire_compare": { "show": true, "reveal_at_ms": 6000 }
+        }
+      },
+      "STATE_5": {
+        "label": "Grip rule sets B up the axis; reverse current → B flips",
+        "visible_elements": [
+          "cl_current_arrow", "cl_current_dot",
+          "cl_center", "cl_center_label",
+          "cl_B_center", "cl_B_center_label",
+          "cl_field_line"
+        ],
+        "camera_position": [3, 2.5, 4.2],
+        "caption": "Right-hand grip: fingers curl with I, thumb gives B up the axis. Reverse the current and B flips.",
+        "variable_overrides": { "N": 1, "I": 2, "R": 0.05, "z": 0 },
+        "rotation_mode": "static",
+        "extras": {
+          "current_dots": true,
+          "field_lines": true,
+          "right_hand": {
+            "case": "grip",
+            "show": true,
+            "animate_curl": true,
+            "thumb_direction": [0, 0, 1]
+          },
+          "reverse_current": true,
+          "flip_at_ms": 9000
+        }
+      },
+      "STATE_6": {
+        "label": "Slide along z; B(z) and the B-vs-z curve fall together",
+        "visible_elements": [
+          "cl_ring",
+          "cl_center", "cl_center_label",
+          "cl_radius_line", "cl_radius_line_label",
+          "cl_axis_line", "cl_axis_line_label", "cl_axis_point",
+          "cl_B_axis", "cl_B_axis_label",
+          "cl_b_bar", "cl_bz_graph"
+        ],
+        "camera_position": [3.5, 1.2, 4.5],
+        "caption": "Two distinct lengths — radius R in the plane, distance z along the axis. B(z) is tallest at z = 0.",
+        "variable_overrides": { "N": 1, "I": 2, "R": 0.05 },
+        "formula_overlay": "B(z) = μ₀NIR² / 2(R²+z²)^(3/2)",
+        "rotation_mode": "static",
+        "extras": {
+          "sweep_z": {
+            "enabled": true,
+            "from": 0.0,
+            "to": 0.20,
+            "period_s": 6,
+            "settle": true,
+            "reveal_at_ms": 4000
+          },
+          "bz_graph": { "show": true, "track_dot": true }
+        }
+      },
+      "STATE_7": {
+        "label": "Sandbox — I, R, N, z sliders with a live B readout",
+        "visible_elements": [
+          "cl_current_arrow", "cl_current_dot",
+          "cl_center", "cl_center_label",
+          "cl_radius_line", "cl_radius_line_label",
+          "cl_axis_line", "cl_axis_line_label", "cl_axis_point",
+          "cl_B_center", "cl_B_center_label",
+          "cl_B_axis", "cl_B_axis_label",
+          "cl_sliders", "cl_readout"
+        ],
+        "camera_position": [3, 2.5, 4.5],
+        "caption": "Drag I, R, N and z. Centre field B = μ₀NI/2R and axial field B(z) update live in the readout.",
+        "rotation_mode": "manual",
+        "show_sliders": true,
+        "extras": {
+          "current_dots": true,
+          "idle_sweep_z": true,
+          "readout": { "show": true, "fields": ["B_center_uT", "B_axis_uT"] }
+        }
+      }
+    }
+  },
+  "regeneration_variants": [
+    {
+      "variant_id": "induction_cooktop_coil",
+      "type": "B",
+      "label": "Induction cooktop coil",
+      "physical_world": "The flat multi-turn coil under an induction cooktop's glass top",
+      "same_physics": "Many circular turns add to a strong axial field B = μ₀NI/2R pushed up through the centre into the pan",
+      "scene_hint": "Flat coil seen from above-and-side, axial field arrow up through the centre; raise N to strengthen B."
+    },
+    {
+      "variant_id": "relay_electromagnet_turn",
+      "type": "B",
+      "label": "Relay / electromagnet single turn",
+      "physical_world": "One round turn of a relay or electromagnet coil around an iron core",
+      "same_physics": "A single loop's field is axial and strongest at its centre, B = μ₀NI/2R with N = 1",
+      "scene_hint": "One bright loop, axial B arrow through the centre; a faint stack of turns hints at the solenoid to come."
+    }
+  ],
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can state that a circular coil of N turns, radius R, carrying current I produces a magnetic field of magnitude B = μ₀NI/2R at its centre; that this field is AXIAL — perpendicular to the loop's plane, with its direction given by the right-hand grip rule (curl the fingers with the current, the thumb gives B) so that reversing the current reverses B; that the centre field is built by SUPERPOSITION — every current element's contribution dB points the same axial way (dB ∥ dl × r̂, with dl and r̂ both in the plane) so the dB's ADD rather than cancel; that the centre formula is 2R not 2πR (it is NOT the straight-wire field μ₀I/2πR) and that, since B ∝ N and B ∝ 1/R, more turns strengthen the field while a bigger loop weakens it (double R halves B); and that along the axis B(z) = μ₀NIR²/2(R²+z²)^(3/2) is maximal at the centre (z = 0) and falls off monotonically with distance. (The dipole / bar-magnet identity, the torque on the loop, and the solenoid field B = μ₀nI are downstream concepts, not assessed by this conceptual V1 quiz.)",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A circular coil of N turns and radius R carries a current I. What is the magnitude of the magnetic field at the CENTRE of the coil?",
+        "options": {
+          "A": "B = μ₀NI / 2R",
+          "B": "B = μ₀I / 2πR",
+          "C": "B = μ₀NI / 2πR",
+          "D": "B = μ₀NIR / 2"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Uses the straight-wire field μ₀I/2πR for the loop centre and drops the N turns",
+          "C": "Keeps the 2π from the straight-wire formula instead of the loop's 2R",
+          "D": "Makes the field grow with R instead of falling as 1/R"
+        },
+        "tested_idea": "The field at the centre of an N-turn circular loop is B = μ₀NI/2R.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A flat coil of N circular turns of radius R carries current I. Write the magnetic field at the very centre of the coil."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "In which direction does the magnetic field at the centre of a current loop point?",
+        "options": {
+          "A": "Along the axis, perpendicular to the loop's plane — direction set by the right-hand grip rule",
+          "B": "In the plane of the loop, pointing along the current",
+          "C": "Radially outward from the centre, within the plane of the loop",
+          "D": "It has no single direction — it circles the wire like a straight wire's field"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks the centre field lies in the loop's plane, along the current",
+          "C": "Thinks the centre field points radially in the plane of the loop",
+          "D": "Thinks the loop's field circles the wire like a straight wire's field"
+        },
+        "tested_idea": "The centre field is axial (⊥ the loop plane), with direction by the right-hand grip rule.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Looking along the axis of a current-carrying coil, which way does the magnetic field at its centre point, and how do you find that direction?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "Going round the ring, take one current element and the element directly opposite it. At the centre, do their field contributions dB add or cancel, and why?",
+        "options": {
+          "A": "They add — at the centre every element's dB points the same way, straight along the axis",
+          "B": "They cancel — opposite elements carry current in opposite directions, so their fields subtract",
+          "C": "They partly cancel, leaving a small leftover field in the plane of the loop",
+          "D": "Only the nearer element matters; the opposite one is too far away to count"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks opposite elements' dB's cancel because the current runs the opposite way",
+          "C": "Thinks a leftover in-plane component survives at the centre",
+          "D": "Thinks the far element's contribution is negligible at the centre"
+        },
+        "tested_idea": "At the centre every element's dB is axial and points the same way, so opposite contributions ADD, never cancel.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Pick two diametrically opposite bits of a current loop. At the centre of the loop, how do their magnetic-field contributions combine, and why?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "By the Biot-Savart law, in which direction does the field dB of a SINGLE current element point at the centre of the loop?",
+        "options": {
+          "A": "Straight out along the axis (⊥ the loop plane), because dB ∥ dl × r̂ and both dl and r̂ lie in the plane",
+          "B": "Along the current element dl, tangent to the ring",
+          "C": "From the element straight toward the centre, along r̂ (radially)",
+          "D": "Around the element in tiny circles, like a straight wire's field"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks dB points along the current element dl",
+          "C": "Thinks dB points radially, along r̂ toward the centre",
+          "D": "Thinks dB circles the element like a straight wire's field"
+        },
+        "tested_idea": "One element's dB at the centre is axial because dB ∥ dl × r̂ and both dl and r̂ lie in the plane.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "For one short element of a circular loop, use dB ∥ dl × r̂ to say which way that element's field points at the loop's centre."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Along the axis of a current loop, where is the magnetic field strongest?",
+        "options": {
+          "A": "Exactly at the centre (z = 0); it falls off monotonically as you move out along the axis",
+          "B": "At some distance off the centre, then it drops away on either side",
+          "C": "It is the same everywhere along the axis — the axial field is uniform",
+          "D": "Far out along the axis, where the whole loop comes into view"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks the axial field peaks off-centre rather than at z = 0",
+          "C": "Thinks the axial field is uniform along the axis",
+          "D": "Thinks the field grows stronger far out along the axis"
+        },
+        "tested_idea": "B(z) is maximal at z = 0 and falls monotonically with distance along the axis.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Moving a probe along the axis of a current loop, at what point does it read the largest magnetic field, and how does the reading change as it moves away?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "You double the radius R of the loop, keeping the current I and the number of turns N the same. The magnetic field at the centre:",
+        "options": {
+          "A": "Halves, because B = μ₀NI/2R is inversely proportional to R",
+          "B": "Doubles, because a bigger loop makes a stronger field",
+          "C": "Stays the same, because R does not affect the centre field",
+          "D": "Quadruples, because the loop's area grows as R²"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "Thinks a bigger loop gives a stronger centre field",
+          "C": "Thinks the radius does not affect the centre field",
+          "D": "Thinks the field scales with the area R² rather than 1/R"
+        },
+        "tested_idea": "Since B = μ₀NI/2R ∝ 1/R, doubling R halves the centre field.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Keeping I and N fixed, you make the coil twice as wide (double R). By what factor does the centre field change?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": ["Q4"],
+      "STATE_3": ["Q3"],
+      "STATE_4": ["Q1", "Q6"],
+      "STATE_5": ["Q2"],
+      "STATE_6": ["Q5"]
+    },
+    "non_assessed_states": ["STATE_1", "STATE_7"]
+  }
+}
