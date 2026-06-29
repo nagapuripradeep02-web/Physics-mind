@@ -41,7 +41,7 @@ export interface Field3DConfig {
         'gauss_law_sheet' | 'current_loop_acts_as_dipole' | 'parallel_currents_force' |
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
-        'dipole_potential';
+        'bar_magnet_in_uniform_field' | 'dipole_potential' | 'system_of_charges';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -1596,6 +1596,20 @@ canvas { display: block; width: 100%; height: 100%; }
     border-top: 1px solid rgba(255,255,255,0.2);
     color: #E879F9; font-weight: bold;
 }
+#bmf_sliders {
+    position: fixed; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 8px;
+    font: 12px/1.6 monospace; z-index: 10;
+    min-width: 200px; display: none;
+}
+#bmf_sliders label { display: block; margin-bottom: 2px; }
+#bmf_sliders input[type="range"] { width: 100%; margin-bottom: 6px; }
+#bmf_sliders #bmf_readout {
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #E879F9; font-weight: bold;
+}
 #fcw_sliders {
     position: fixed; top: 12px; right: 12px;
     background: rgba(0,0,0,0.85); color: ${textColor};
@@ -1911,6 +1925,15 @@ canvas { display: block; width: 100%; height: 100%; }
     <label>θ(p,E) = <span id="theta_dipole_val">45</span>°</label>
     <input type="range" id="theta_dipole_slider" min="0" max="180" step="1" value="45">
     <div id="dipole_readout">τ = 0.0 · U = 0.0</div>
+</div>
+<div id="bmf_sliders">
+    <label>m = <span id="bmf_m_val">5.0</span> A·m²</label>
+    <input type="range" id="bmf_m_slider" min="1" max="10" step="0.5" value="5">
+    <label>B = <span id="bmf_b_val">5.0</span> ×10⁻⁴ T</label>
+    <input type="range" id="bmf_b_slider" min="1" max="10" step="0.5" value="5">
+    <label>θ(m,B) = <span id="bmf_theta_val">45</span>°</label>
+    <input type="range" id="bmf_theta_slider" min="0" max="180" step="1" value="45">
+    <div id="bmf_readout">τ = 0.0 · U = 0.0 · T = 0.0 s</div>
 </div>
 <div id="fcw_sliders">
     <label>I = <span id="fcw_i_val">2</span> A</label>
@@ -2259,6 +2282,18 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (dpHits && dpHits.length) return true;
             }
         }
+        // system_of_charges probe proxy (STATE_6).
+        if (socStateIsDraggable()) {
+            var socProxy = null;
+            for (var sci = 0; sci < sceneObjects.length; sci++) {
+                if (sceneObjects[sci].userData && sceneObjects[sci].userData.id === "soc_drag_hit") { socProxy = sceneObjects[sci]; break; }
+            }
+            if (socProxy && socProxy.visible) {
+                pmRaycaster.setFromCamera(pmPointerNDC(cx, cy), camera);
+                var socHits = pmRaycaster.intersectObject(socProxy, false);
+                if (socHits && socHits.length) return true;
+            }
+        }
         return false;
     }
     // FIX 2 — hover-latch: while the pointer merely HOVERS the potential test-charge
@@ -2292,6 +2327,25 @@ export const FIELD_3D_RENDERER_CODE = `
     function applyDragFrom(cx, cy) {
         var hit = pmDragPlaneHit(cx, cy);
         if (!hit) return;
+        // system_of_charges explorer (STATE_6): grab the probe, project onto the XY
+        // slice, clamp (px,py) to the variable bounds; emit PARAM_UPDATE on explorer_id.
+        if (socStateIsDraggable()) {
+            var socPx = Math.max(-3, Math.min(3, hit.x));
+            var socPy = Math.max(-3, Math.min(3, hit.y));
+            window.PM_socUserDragged = true;
+            window.PM_socPx = socPx;
+            window.PM_socPy = socPy;
+            try {
+                parent.postMessage({
+                    type: "PARAM_UPDATE",
+                    explorer_id: (config.explorer_id || "potential_explorer"),
+                    param: "probe",
+                    value: { px: socPx, py: socPy, V: socVtotal(socPx, socPy) },
+                    point: [socPx, socPy, 0]
+                }, "*");
+            } catch (e) {}
+            return;
+        }
         // dipole_potential explorer (STATE_7): grab the probe, project onto the XY
         // slice plane, convert to (r, θ); clamp r; emit PARAM_UPDATE on explorer_id.
         if (dpStateIsDraggable()) {
@@ -4895,6 +4949,371 @@ export const FIELD_3D_RENDERER_CODE = `
     // True when the current dipole_potential state's probe is draggable.
     function dpStateIsDraggable() {
         if (config.scenario_type !== "dipole_potential") return false;
+        var sd = config.states && config.states[PM_currentState];
+        return !!(sd && sd.potential && sd.potential.draggable_probe);
+    }
+
+    // ── system_of_charges (electric_potential_system_of_charges, V = \\u03a3 k q\\u1d62/r\\u1d62) ──
+    //   Generalises dipole_potential's 2-charge sum to N charges read from
+    //   config.charges[]. A probe driven by (px,py) reads the SCALAR total V as a
+    //   plain sum of signed per-charge numbers (no arrows for V). Reuses the
+    //   dipole trio's machinery: build-all-hidden + applySystemOfChargesState seeds
+    //   visibility/reveals + a pure-state-clock updateSystemOfChargesFrame drives
+    //   reveals/idle-sweep/readout (Rule 26, accumulator-free). Emphasis is
+    //   brightness only (Rule 29) — probe + charges never resize; only the V NUMBERS
+    //   change. NO equipotential lobes (founder lean lock). The STATE_5 field
+    //   contrast draws per-charge E arrows (the point: the field needs vector add).
+    function socDefaults() {
+        var d = config.system_defaults || {};
+        return {
+            vp: (d.DEMO_VP != null) ? d.DEMO_VP : 12,
+            e: (d.DEMO_E != null) ? d.DEMO_E : 12,
+            clamp: (d.clamp_r_min != null) ? d.clamp_r_min : 0.05
+        };
+    }
+    function socCharges() { return config.charges || []; }
+    // q3 (the slider-driven charge) takes its live signed magnitude from the
+    // q3_value slider; the others keep their fixed config charge_value.
+    function socChargeValue(ch) {
+        if (ch && ch.id === "q3" && typeof window.PM_socQ3 === "number") return window.PM_socQ3;
+        return (ch && ch.charge_value != null) ? ch.charge_value : 0;
+    }
+    function socRi(px, py, ch) {
+        var dx = px - ch.position[0];
+        var dy = py - ch.position[1];
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+    function socVi(px, py, ch) {
+        var D = socDefaults();
+        return D.vp * socChargeValue(ch) / Math.max(socRi(px, py, ch), D.clamp);
+    }
+    function socVtotal(px, py) {
+        var chs = socCharges(); var s = 0;
+        for (var i = 0; i < chs.length; i++) s += socVi(px, py, chs[i]);
+        return s;
+    }
+    function socEi(px, py, ch) {
+        var D = socDefaults();
+        var r = socRi(px, py, ch);
+        return D.e * Math.abs(socChargeValue(ch)) / Math.max(r * r, D.clamp * D.clamp);
+    }
+    // unit E direction at the probe: along (probe - charge) for +q, opposite for -q.
+    function socEdir(px, py, ch) {
+        var dx = px - ch.position[0];
+        var dy = py - ch.position[1];
+        var L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var sgn = (socChargeValue(ch) >= 0) ? 1 : -1;
+        return [sgn * dx / L, sgn * dy / L, 0];
+    }
+    function socFirstNum(arr) {
+        for (var i = 0; i < arr.length; i++) { if (typeof arr[i] === "number") return arr[i]; }
+        return null;
+    }
+    function socFmt(v) { return (v >= 0 ? "+" : "\\u2212") + Math.abs(v).toFixed(1); }
+    function socFmt0(v) { return (v >= 0 ? "+" : "\\u2212") + Math.abs(v); }
+    function socClamp3(v) { return Math.max(-3, Math.min(3, v)); }
+
+    // Build a tube line WITHOUT touching config.field_lines (which this scenario
+    // omits — createTubeLine would throw). Material owned here for reveal ramps.
+    function socMakeTube(points, color, tubeR) {
+        var vectors = points.map(function (p) { return new THREE.Vector3(p[0], p[1], p[2]); });
+        var curve = new THREE.CatmullRomCurve3(vectors);
+        var geo = new THREE.TubeGeometry(curve, Math.max(points.length * 3, 12), tubeR || 0.012, 6, false);
+        var mat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 1 });
+        return new THREE.Mesh(geo, mat);
+    }
+    // Rebuild a fixed-origin arrow group's shaft + head in place (the E arrows
+    // change direction + length per frame as the probe moves).
+    function socRebuildArrow(group, origin, dir, length, color) {
+        while (group.children.length) {
+            var ch = group.children.pop();
+            if (ch.geometry) ch.geometry.dispose();
+        }
+        var d = new THREE.Vector3(dir[0], dir[1], dir[2]);
+        if (d.lengthSq() < 1e-9) return;
+        d.normalize();
+        var headLen = 0.16;
+        var shaftLen = Math.max(0.02, length - headLen);
+        var endShaft = [origin[0] + d.x * shaftLen, origin[1] + d.y * shaftLen, origin[2] + d.z * shaftLen];
+        var shaft = socMakeTube([origin, endShaft], color, 0.025);
+        group.add(shaft);
+        var tip = [origin[0] + d.x * length, origin[1] + d.y * length, origin[2] + d.z * length];
+        var head = createArrowHead(tip, [d.x, d.y, d.z], color);
+        head.material.transparent = true;
+        group.add(head);
+    }
+
+    function buildSystemOfCharges(config) {
+        var D = socDefaults();
+        var probeColor = dpColor("probe", "#FFF176");
+        var posColor = dpColor("positive", "#EF5350");
+        var negColor = dpColor("negative", "#42A5F5");
+        var fieldColor = dpColor("field", "#66BB6A");
+        var vColor = dpColor("equipotential", "#4FC3F7");
+        var chs = socCharges();
+
+        // Shared live render state (read by apply/frame/drag/slider).
+        var scQ3 = (config.slider_controls && config.slider_controls.q3_value) || {};
+        window.PM_socQ3 = (scQ3.default != null) ? scQ3.default : 2;
+        window.PM_socPx = 2.0;
+        window.PM_socPy = 1.6;
+        window.PM_socBaseX = 2.0;
+        window.PM_socBaseY = 1.6;
+        window.PM_socUserDragged = false;
+        window.PM_socLiveV = 0;
+
+        // ── 1. The N fixed charges (sign-coloured spheres + labels) ──────────────
+        for (var i = 0; i < chs.length; i++) {
+            var ch = chs[i];
+            var col = ch.color || (socChargeValue(ch) >= 0 ? posColor : negColor);
+            var sph = createChargeSphere(ch.position, col, 0.18);
+            sph.userData = { elementType: "soc_charge", id: "soc_charge_" + ch.id };
+            addToScene(sph);
+            var lbl = pmCreateAutoLabel(ch.label || ch.id, col, 0.42);
+            lbl.position.set(ch.position[0], ch.position[1] + 0.34, ch.position[2]);
+            lbl.userData = { elementType: "soc_charge", id: "soc_label_" + ch.id };
+            addToScene(lbl);
+        }
+
+        // ── 2. The probe (yellow scalar test point) + drag proxy ─────────────────
+        var probe = createChargeSphere([0, 0, 0], probeColor, 0.13);
+        probe.visible = false;
+        probe.userData = { elementType: "soc_probe", id: "soc_probe" };
+        addToScene(probe);
+        var hit = new THREE.Mesh(
+            new THREE.SphereGeometry(0.5, 16, 16),
+            new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+        );
+        hit.visible = false;
+        hit.userData = { elementType: "soc_probe", id: "soc_drag_hit", draggable: true };
+        addToScene(hit);
+
+        // ── 3. Per-charge faint r-lines (probe -> each charge) + signed-V tags ────
+        for (var j = 0; j < chs.length; j++) {
+            var cj = chs[j];
+            var cjCol = cj.color || (socChargeValue(cj) >= 0 ? posColor : negColor);
+            var rln = socMakeTube([[0, 0, 0], cj.position], cjCol, 0.012);
+            rln.material.opacity = 0; rln.visible = false;
+            rln.userData = { elementType: "soc_rline", id: "soc_rline_" + cj.id, chargeIndex: j };
+            addToScene(rln);
+            var oy = (cj.position[1] > 0.7) ? 0.5 : -0.55;
+            var tag = pmCreateAutoLabel(socFmt(0), cjCol, 0.4);
+            tag.position.set(cj.position[0], cj.position[1] + oy, cj.position[2]);
+            tag.visible = false; if (tag.material) tag.material.opacity = 0;
+            tag.userData = { elementType: "soc_vtag", id: "soc_vtag_" + cj.id, chargeIndex: j };
+            addToScene(tag);
+        }
+
+        // ── 4. Running-sum panel (stacked signed numbers -> total) + live V readout
+        var sumPanel = pmCreateAutoLabel("V = " + socFmt(0), vColor, 0.44);
+        sumPanel.position.set(0, 2.7, 0);
+        sumPanel.visible = false; if (sumPanel.material) sumPanel.material.opacity = 0;
+        sumPanel.userData = { elementType: "soc_sumpanel", id: "soc_sum_panel" };
+        addToScene(sumPanel);
+        var vReadout = pmCreateAutoLabel("V = " + socFmt(0), vColor, 0.46);
+        vReadout.position.set(0, 0.9, 0);
+        vReadout.visible = false; if (vReadout.material) vReadout.material.opacity = 0;
+        vReadout.userData = { elementType: "soc_vreadout", id: "soc_v_readout" };
+        addToScene(vReadout);
+
+        // ── 5. Per-charge E arrows (STATE_5/6 field contrast — the vector side) ───
+        for (var k = 0; k < chs.length; k++) {
+            var eg = new THREE.Group();
+            eg.visible = false;
+            eg.userData = { elementType: "soc_earrow", id: "soc_earrow_" + chs[k].id, chargeIndex: k, _op: 0 };
+            addToScene(eg);
+        }
+
+        // ── 6. DOM: q3 slider + live V readout + per-charge breakdown (STATE_6) ───
+        if (!document.getElementById("soc_sliders")) {
+            var textColor = dpColor("text", "#D4D4D8");
+            var sl = document.createElement("div");
+            sl.id = "soc_sliders";
+            sl.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:220px;display:none;";
+            sl.innerHTML =
+                '<label>' + (scQ3.label || "q\\u2083") + ' = <span id="soc_q3_val">+2</span></label>' +
+                '<input type="range" id="soc_q3_slider" min="-3" max="3" step="1" value="2" style="width:100%;margin-bottom:6px;">' +
+                '<div id="soc_v_readout_dom" style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.2);color:' + vColor + ';font-weight:bold;letter-spacing:1px;">V = +8.0</div>' +
+                '<div id="soc_breakdown" style="margin-top:4px;color:' + textColor + ';font-size:11px;">&nbsp;</div>';
+            document.body.appendChild(sl);
+        }
+    }
+
+    // Per-state visibility + reveal seeding for system_of_charges. Authoritative —
+    // runs AFTER the generic visible_elements matcher and overrides it. Pure-clock
+    // reveals are parked at opacity 0 (the frame loop fades them in). Mirrors
+    // applyDipolePotentialState.
+    function applySystemOfChargesState(stateDef) {
+        var p = stateDef.potential || {};
+        var px0 = (typeof p.probe_x === "number") ? p.probe_x : 2.0;
+        var py0 = (typeof p.probe_y === "number") ? p.probe_y : 1.6;
+        window.PM_socPx = px0;
+        window.PM_socPy = py0;
+        window.PM_socBaseX = px0;
+        window.PM_socBaseY = py0;
+        window.PM_socUserDragged = false;
+        var scQ3d = (config.slider_controls && config.slider_controls.q3_value) || {};
+        window.PM_socQ3 = (scQ3d.default != null) ? scQ3d.default : 2;
+
+        var showProbe = !!p.show_probe;
+        var draggable = !!p.draggable_probe;
+        var tagsCue = socFirstNum([p.contribution_values_at_ms, p.far_term_at_ms, p.cancellation_at_ms, p.field_contrast_at_ms]);
+        var sumCue = socFirstNum([p.running_sum_at_ms, p.total_with_far_at_ms, p.total_just_q3_at_ms, p.split_callout_at_ms]);
+        var showTags = (tagsCue != null) || !!p.live_v_readout;
+        var showSum = (sumCue != null) || !!p.show_running_sum || !!p.live_v_readout;
+        var showLines = !!p.show_per_charge_lines;
+        var showFC = !!p.show_field_contrast;
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            var et = ud.elementType;
+            if (et === "soc_charge") {
+                o.visible = true;
+                if (o.material) o.material.opacity = 1; else setObjOpacity(o, 1);
+            } else if (et === "soc_probe") {
+                if (ud.id === "soc_drag_hit") o.visible = !!(showProbe && draggable);
+                else { o.visible = showProbe; if (o.material) o.material.opacity = 1; }
+            } else if (et === "soc_rline") {
+                o.visible = showLines;
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "soc_vtag") {
+                o.visible = showTags;
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "soc_sumpanel") {
+                o.visible = showSum;
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "soc_vreadout") {
+                o.visible = !!(showProbe && (showSum || p.live_v_readout));
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "soc_earrow") {
+                o.visible = showFC;
+                ud._op = 0;
+                setObjOpacity(o, 0);
+            }
+        }
+
+        socRepositionProbe(px0, py0);
+
+        // DOM slider panel toggle + thumb seed.
+        var slEl = document.getElementById("soc_sliders");
+        if (slEl) slEl.style.display = stateDef.show_sliders ? "block" : "none";
+        if (stateDef.show_sliders) socSyncSliderFromState();
+    }
+
+    // Move the probe + its r-lines + live readout to (px,py) in the XY slice.
+    function socRepositionProbe(px, py) {
+        var pos = [px, py, 0];
+        var probe = dpFindById("soc_probe");
+        if (probe) probe.position.set(px, py, 0);
+        var hit = dpFindById("soc_drag_hit");
+        if (hit) hit.position.set(px, py, 0);
+        var vr = dpFindById("soc_v_readout");
+        if (vr) vr.position.set(px, py + 0.55, 0);
+        var chs = socCharges();
+        for (var i = 0; i < chs.length; i++) {
+            dpSetTube(dpFindById("soc_rline_" + chs[i].id), [pos, chs[i].position], 0.012);
+        }
+    }
+
+    // Per-frame driver — pure function of (time - stateStartTime) (Rule 26,
+    // accumulator-free so the visual gate can snap straight to a pin).
+    function updateSystemOfChargesFrame(stateDef) {
+        var p = stateDef.potential || {};
+        var ms = (time - stateStartTime) * 1000;
+        function ramp(at, fade) {
+            if (at == null) return 1;
+            if (ms >= at + fade) return 1;
+            if (ms >= at) return (ms - at) / fade;
+            return 0;
+        }
+        var px = window.PM_socPx, py = window.PM_socPy;
+        // STATE_6 idle auto-sweep — a hands-free Lissajous around the seeded pose
+        // (stops the instant the user grabs the probe). Pure fn of the state clock.
+        if (p.idle_auto_sweep && !window.PM_socUserDragged) {
+            var t = ms / 1000;
+            px = socClamp3(window.PM_socBaseX + 0.9 * Math.sin(t * 0.55));
+            py = socClamp3(window.PM_socBaseY + 0.6 * Math.sin(t * 0.85 + 1.0));
+            window.PM_socPx = px; window.PM_socPy = py;
+        }
+        if (p.show_probe) socRepositionProbe(px, py);
+
+        var chs = socCharges();
+        var tagsCue = socFirstNum([p.contribution_values_at_ms, p.far_term_at_ms, p.cancellation_at_ms, p.field_contrast_at_ms]);
+        var sumCue = socFirstNum([p.running_sum_at_ms, p.total_with_far_at_ms, p.total_just_q3_at_ms, p.split_callout_at_ms]);
+        var total = socVtotal(px, py);
+        window.PM_socLiveV = total;
+        var posColor = dpColor("positive", "#EF5350");
+        var negColor = dpColor("negative", "#42A5F5");
+        var vColor = dpColor("equipotential", "#4FC3F7");
+        var fieldColor = dpColor("field", "#66BB6A");
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud || !ud.elementType || !o.visible) continue;
+            var et = ud.elementType;
+            if (et === "soc_rline") {
+                if (o.material) o.material.opacity = ramp((p.per_charge_tags_at_ms != null) ? p.per_charge_tags_at_ms : 0, 600) * 0.5;
+            } else if (et === "soc_vtag") {
+                var ch = chs[ud.chargeIndex];
+                var base = ramp((tagsCue != null) ? tagsCue : 0, 600);
+                var mult = 1;
+                if (p.highlight_term === "q1_far") mult = (ch.id === "q1") ? 1 : 0.4;
+                if (o.material) o.material.opacity = base * mult;
+                var vi = socVi(px, py, ch);
+                o._pmColor = (Math.abs(vi) < 0.05) ? vColor : (vi > 0 ? posColor : negColor);
+                updateLabelSpriteText(o, socFmt(vi));
+            } else if (et === "soc_sumpanel") {
+                if (o.material) o.material.opacity = p.live_v_readout ? 1 : ramp((sumCue != null) ? sumCue : 0, 600);
+                var parts = [];
+                for (var s = 0; s < chs.length; s++) parts.push(socFmt(socVi(px, py, chs[s])));
+                o._pmColor = vColor;
+                updateLabelSpriteText(o, parts.join(" ") + " = " + socFmt(total));
+            } else if (et === "soc_vreadout") {
+                if (o.material) o.material.opacity = (p.live_v_readout || p.draggable_probe) ? 1 : ramp((sumCue != null) ? sumCue : 0, 600);
+                o._pmColor = (Math.abs(total) < 0.05) ? vColor : (total > 0 ? posColor : negColor);
+                updateLabelSpriteText(o, "V = " + socFmt(total));
+            } else if (et === "soc_earrow") {
+                if (p.show_field_contrast) {
+                    var ec = chs[ud.chargeIndex];
+                    var Ei = socEi(px, py, ec);
+                    var dir = socEdir(px, py, ec);
+                    var len = Math.max(0.35, Math.min(1.8, Ei * 0.09));
+                    socRebuildArrow(o, ec.position, dir, len, fieldColor);
+                    ud._op = ramp((p.field_contrast_at_ms != null) ? p.field_contrast_at_ms : 0, 700) * 0.6;
+                    setObjOpacity(o, ud._op);
+                }
+            }
+        }
+
+        // DOM live readout + breakdown (STATE_6 slider panel).
+        var roEl = document.getElementById("soc_v_readout_dom");
+        if (roEl && roEl.parentElement && roEl.parentElement.style.display !== "none") {
+            roEl.innerHTML = "V = " + socFmt(total);
+            var bdEl = document.getElementById("soc_breakdown");
+            if (bdEl) {
+                var bparts = [];
+                for (var b = 0; b < chs.length; b++) bparts.push((chs[b].label || chs[b].id) + ": " + socFmt(socVi(px, py, chs[b])));
+                bdEl.innerHTML = bparts.join("  ");
+            }
+        }
+    }
+
+    // Seed the q3 slider thumb + label from PM_socQ3 on STATE_6 entry.
+    function socSyncSliderFromState() {
+        var s = document.getElementById("soc_q3_slider");
+        if (s) {
+            s.value = String(window.PM_socQ3);
+            var v = document.getElementById("soc_q3_val");
+            if (v) v.textContent = socFmt0(window.PM_socQ3);
+        }
+    }
+
+    // True when the current system_of_charges state's probe is draggable.
+    function socStateIsDraggable() {
+        if (config.scenario_type !== "system_of_charges") return false;
         var sd = config.states && config.states[PM_currentState];
         return !!(sd && sd.potential && sd.potential.draggable_probe);
     }
@@ -10856,6 +11275,202 @@ export const FIELD_3D_RENDERER_CODE = `
         applyTorqueLoopTheta(dipoleGroup, 90);
     }
 
+    // bar_magnet_in_uniform_field (NCERT Ch.5 §5.2.3) — the MAGNETIC TWIN of
+    // dipole_in_uniform_field. A bar magnet (N red / S blue) of moment m sits in a
+    // uniform field B; the two pole forces (+mB on N along B, −mB on S opposite)
+    // form a COUPLE → ΣF = 0 but τ = m × B = mB·sinθ rotates it toward alignment;
+    // it OSCILLATES about θ=0 with period T = 2π√(I/mB); U = −m·B = −mB·cosθ.
+    // It REUSES the torque-loop rotation engine + applyDipoleInFieldState /
+    // updateDipoleInFieldFrame / applyDipoleInFieldGlow unchanged by tagging its
+    // elements with the SAME dpf_* ids/types (only one scenario builds at a time);
+    // only the BODY (a bar instead of two charges) + the labels (m, B, F) differ.
+    function buildBarMagnetInField() {
+        var af = config.ambient_field || {
+            direction: [1, 0, 0], magnitude: 0.1, density: [5, 5, 5],
+            color: "#42A5F5", opacity: 0.42, extent: 2.5
+        };
+        var nColor = (config.dipole && config.dipole.color_plus) || "#EF5350";
+        var sColor = (config.dipole && config.dipole.color_minus) || "#42A5F5";
+        var mColor = (config.dipole && config.dipole.p_color) || "#FFCA28";
+        var fColor = "#66BB6A";
+
+        // 1. Ambient uniform B-field arrows (same grid as the dipole scenario).
+        var eDir = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+        var ext = af.extent != null ? af.extent : 2.5;
+        var nx = af.density[0], ny = af.density[1], nz = af.density[2];
+        var sxAmb = nx > 1 ? (2 * ext) / (nx - 1) : 0;
+        var syAmb = ny > 1 ? (2 * ext) / (ny - 1) : 0;
+        var szAmb = nz > 1 ? (2 * ext) / (nz - 1) : 0;
+        var arrowLen = 0.55;
+        var arrowOp = af.opacity != null ? af.opacity : 0.42;
+        var arrowColor = af.color || "#42A5F5";
+        for (var ix = 0; ix < nx; ix++) {
+            for (var iy = 0; iy < ny; iy++) {
+                for (var iz = 0; iz < nz; iz++) {
+                    var ox = nx > 1 ? -ext + ix * sxAmb : 0;
+                    var oy = ny > 1 ? -ext + iy * syAmb : 0;
+                    var oz = nz > 1 ? -ext + iz * szAmb : 0;
+                    var origin = new THREE.Vector3(ox, oy, oz).addScaledVector(eDir, -arrowLen / 2);
+                    var arrH = new THREE.ArrowHelper(eDir, origin, arrowLen, arrowColor, 0.14, 0.09);
+                    arrH.userData = { elementType: "ambient_field", id: "e_arrow_" + ix + "_" + iy + "_" + iz };
+                    arrH.children.forEach(function (child) { if (child.material) { child.material.transparent = true; child.material.opacity = arrowOp; } });
+                    addToScene(arrH);
+                }
+            }
+        }
+
+        // 2. Bar-magnet body group — rotated about world Y by applyTorqueLoopTheta.
+        //    m is loop-local +z (the role μ/p plays). Tagged torque_loop_group so
+        //    the rotation engine finds it; dpf_* ids so the shared apply/update fns
+        //    drive its forces/τ/arc/U-meter unchanged.
+        var bodyGroup = new THREE.Group();
+        bodyGroup.userData = { elementType: "torque_loop_group", id: "loop_group" };
+        var halfSep = 0.7;
+        bodyGroup.userData.dpf_half = halfSep;
+        bodyGroup.userData.dpf_p_default = (config.slider_controls && config.slider_controls.m && typeof config.slider_controls.m.default === "number") ? config.slider_controls.m.default : 5;
+        bodyGroup.userData.dpf_E_default = (config.slider_controls && config.slider_controls.B && typeof config.slider_controls.B.default === "number") ? config.slider_controls.B.default : 5;
+
+        // 2a. The bar: N half (red, loop-local +z) + S half (blue, −z). Tagged as
+        //     the dipole_charge "poles" so glow("dipole") + visibility treat them
+        //     as the body. ids dpf_q_plus (N) / dpf_q_minus (S).
+        var barW = 0.34;
+        var nHalf = new THREE.Mesh(new THREE.BoxGeometry(barW, barW, halfSep),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(nColor), emissive: hexToThreeColor(nColor), emissiveIntensity: 0.4 }));
+        nHalf.position.set(0, 0, halfSep / 2);
+        nHalf.userData = { elementType: "dipole_charge", id: "dpf_q_plus" };
+        bodyGroup.add(nHalf);
+        var sHalf = new THREE.Mesh(new THREE.BoxGeometry(barW, barW, halfSep),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(sColor), emissive: hexToThreeColor(sColor), emissiveIntensity: 0.4 }));
+        sHalf.position.set(0, 0, -halfSep / 2);
+        sHalf.userData = { elementType: "dipole_charge", id: "dpf_q_minus" };
+        bodyGroup.add(sHalf);
+
+        // 2c. Magnetic moment m (S → N, loop-local +z), offset below the bar.
+        var pOffsetY = -0.45;
+        var mArrow = new THREE.ArrowHelper(
+            new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, pOffsetY, -halfSep),
+            2 * halfSep + 0.2, hexToThreeColor(mColor), 0.26, 0.16
+        );
+        mArrow.userData = { elementType: "dipole_p", id: "dpf_p_arrow" };
+        bodyGroup.add(mArrow);
+
+        // 2d. N / S / m labels (parented so they rotate with the bar).
+        var lblN = createLabelSprite("N", nColor, 0.42);
+        lblN.position.set(0, 0.34, halfSep);
+        lblN.userData = { elementType: "dipole_label", id: "dpf_lbl_plus" };
+        bodyGroup.add(lblN);
+        var lblS = createLabelSprite("S", sColor, 0.42);
+        lblS.position.set(0, 0.34, -halfSep);
+        lblS.userData = { elementType: "dipole_label", id: "dpf_lbl_minus" };
+        bodyGroup.add(lblS);
+        var lblM = createLabelSprite("m", mColor, 0.42);
+        lblM.position.set(0, pOffsetY - 0.32, halfSep + 0.15);
+        lblM.userData = { elementType: "dipole_label", id: "dpf_p_lbl" };
+        bodyGroup.add(lblM);
+
+        scene.add(bodyGroup);
+        sceneObjects.push(bodyGroup);
+
+        // 3. Pole-force couple arrows — WORLD frame, directions fixed along ±B.
+        //    Tails repositioned each frame (shared updateDipoleInFieldFrame).
+        var fPlus = new THREE.ArrowHelper(eDir.clone(), new THREE.Vector3(0, 0, halfSep), 0.85, fColor, 0.22, 0.11);
+        fPlus.userData = { elementType: "dipole_force", id: "dpf_f_plus", visible_default: false };
+        fPlus.visible = false; addToScene(fPlus);
+        var fMinus = new THREE.ArrowHelper(eDir.clone().multiplyScalar(-1), new THREE.Vector3(0, 0, -halfSep), 0.85, fColor, 0.22, 0.11);
+        fMinus.userData = { elementType: "dipole_force", id: "dpf_f_minus", visible_default: false };
+        fMinus.visible = false; addToScene(fMinus);
+        var fPlusLbl = createLabelSprite("F = mB", fColor, 0.34);
+        fPlusLbl.visible = false;
+        fPlusLbl.userData = { elementType: "dipole_force", id: "dpf_f_plus_lbl", visible_default: false };
+        addToScene(fPlusLbl);
+        var fMinusLbl = createLabelSprite("F = mB", fColor, 0.34);
+        fMinusLbl.visible = false;
+        fMinusLbl.userData = { elementType: "dipole_force", id: "dpf_f_minus_lbl", visible_default: false };
+        addToScene(fMinusLbl);
+
+        // 4. τ vector — WORLD ±y, |τ| ∝ |sin θ| (shared frame logic).
+        var tauColor = "#E879F9";
+        var tauArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 1.0, tauColor, 0.26, 0.13);
+        tauArrow.userData = { elementType: "dipole_tau", id: "dpf_tau_arrow", visible_default: false };
+        tauArrow.visible = false; addToScene(tauArrow);
+        var tauLabel = createLabelSprite("\\u03c4", tauColor, 0.40);
+        tauLabel.position.set(0, 1.65, 0);
+        tauLabel.visible = false;
+        tauLabel.userData = { elementType: "dipole_tau", id: "dpf_tau_label", visible_default: false };
+        addToScene(tauLabel);
+
+        // 5. "B" label at the +x end of the ambient grid.
+        var bLabel = createLabelSprite("B", "#82B1FF", 0.42);
+        bLabel.position.set(ext + 0.4, 0, 0);
+        bLabel.userData = { elementType: "dipole_e_label", id: "dpf_e_label" };
+        addToScene(bLabel);
+
+        // 6. Rotation axis reference.
+        var axisGeom = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -2, 0), new THREE.Vector3(0, 2, 0)]);
+        var axisMat = new THREE.LineBasicMaterial({ color: 0x888888, transparent: true, opacity: 0.22 });
+        var axisLine = new THREE.Line(axisGeom, axisMat);
+        axisLine.userData = { elementType: "dipole_axis", id: "dpf_axis" };
+        addToScene(axisLine);
+
+        // 7. ΣF = 0 badge.
+        var sumBadge = createLabelSprite("\\u03a3F = 0", "#FFF176", 0.52);
+        sumBadge.position.set(0, -1.85, 0);
+        sumBadge.visible = false;
+        sumBadge.userData = { elementType: "dipole_badge", id: "dpf_sum_zero", visible_default: false };
+        addToScene(sumBadge);
+
+        // 8. θ-arc between m and B (shared frame updates its shape).
+        var ARC_SEGS = 32;
+        var arcPts = [];
+        for (var ai = 0; ai <= ARC_SEGS; ai++) arcPts.push(new THREE.Vector3(0.65, 0, 0));
+        var arcGeom = new THREE.BufferGeometry().setFromPoints(arcPts);
+        var arcMat = new THREE.LineBasicMaterial({ color: 0xFFD54F, transparent: true, opacity: 0.9 });
+        var arcLine = new THREE.Line(arcGeom, arcMat);
+        arcLine.visible = false;
+        arcLine.userData = { elementType: "dipole_arc", id: "dpf_theta_arc", visible_default: false, segs: ARC_SEGS };
+        addToScene(arcLine);
+        var arcLbl = createLabelSprite("\\u03b8", "#FFD54F", 0.40);
+        arcLbl.visible = false;
+        arcLbl.userData = { elementType: "dipole_arc", id: "dpf_theta_lbl", visible_default: false };
+        addToScene(arcLbl);
+
+        // 9. U(θ) energy meter (shared frame moves the dot to y = −top·cosθ).
+        var meterX = -2.7, meterTop = 1.5, meterBot = -1.5;
+        var trackGeom = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(meterX, meterBot, 0), new THREE.Vector3(meterX, meterTop, 0)]);
+        var trackMat = new THREE.LineBasicMaterial({ color: 0xB0BEC5, transparent: true, opacity: 0.55 });
+        var track = new THREE.Line(trackGeom, trackMat);
+        track.visible = false;
+        track.userData = { elementType: "dipole_energy", id: "dpf_u_track", visible_default: false };
+        addToScene(track);
+        var uDot = createChargeSphere([meterX, 0, 0], "#FFCA28", 0.11);
+        uDot.visible = false;
+        uDot.userData = { elementType: "dipole_energy", id: "dpf_u_dot", visible_default: false, meterX: meterX, top: meterTop };
+        addToScene(uDot);
+        var uLbl = createLabelSprite("U", "#FFCA28", 0.40);
+        uLbl.position.set(meterX, meterTop + 0.35, 0);
+        uLbl.visible = false;
+        uLbl.userData = { elementType: "dipole_energy", id: "dpf_u_lbl", visible_default: false };
+        addToScene(uLbl);
+        var uMaxLbl = createLabelSprite("U max", "#EF5350", 0.30);
+        uMaxLbl.position.set(meterX + 0.7, meterTop, 0);
+        uMaxLbl.visible = false;
+        uMaxLbl.userData = { elementType: "dipole_energy", id: "dpf_u_max_lbl", visible_default: false };
+        addToScene(uMaxLbl);
+        var uMinLbl = createLabelSprite("U min", "#66BB6A", 0.30);
+        uMinLbl.position.set(meterX + 0.7, meterBot, 0);
+        uMinLbl.visible = false;
+        uMinLbl.userData = { elementType: "dipole_energy", id: "dpf_u_min_lbl", visible_default: false };
+        addToScene(uMinLbl);
+
+        bodyGroup.userData.theta_deg = 90;
+        bodyGroup.userData.rotation_mode = "static";
+        bodyGroup.userData.rotation_target_deg = 90;
+        bodyGroup.userData.rotation_start_time = 0;
+        bodyGroup.userData.oscillation_amplitude_deg = 0;
+        bodyGroup.userData.oscillation_period_s = 4;
+        applyTorqueLoopTheta(bodyGroup, 90);
+    }
+
     function applyDipoleInFieldState(stateDef) {
         var lg = findTorqueLoopGroup();
         if (!lg) return;
@@ -10871,6 +11486,10 @@ export const FIELD_3D_RENDERER_CODE = `
         lg.userData.oscillation_period_s = stateDef.oscillation_period_s || 4;
         lg.userData.theta_sweep_period_s = stateDef.theta_sweep_period_s || 10;
         lg.userData.swing_decay_s = stateDef.swing_decay_s || 2.2;
+        // idle_sway_deg (additive, bar-magnet-in-field): a gentle continuous sway
+        // about the static angle so a non-rotating state never reads as frozen.
+        // Fires only when a state sets it (the electric-dipole sibling does not).
+        lg.userData.idle_sway_deg = stateDef.idle_sway_deg || 0;
 
         function setVisibleWithFade(obj, want) {
             if (!obj) return;
@@ -10958,6 +11577,10 @@ export const FIELD_3D_RENDERER_CODE = `
             var ts = time - lg.userData.rotation_start_time;
             var amp0 = lg.userData.rotation_init_theta_deg != null ? lg.userData.rotation_init_theta_deg : 60;
             applyTorqueLoopTheta(lg, amp0 * Math.exp(-ts / decayS) * Math.cos((ts / Td) * 2 * Math.PI));
+        } else if (mode === "static" && lg.userData.idle_sway_deg) {
+            // gentle continuous sway about the static angle (never frozen).
+            var base = lg.userData.rotation_init_theta_deg != null ? lg.userData.rotation_init_theta_deg : curTheta;
+            applyTorqueLoopTheta(lg, base + lg.userData.idle_sway_deg * Math.sin((time - lg.userData.rotation_start_time) * 1.3));
         }
 
         // Reveal-grow helper — length scales 0 to full over dur seconds once an
@@ -20064,6 +20687,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildDipolePotential(config);
                 break;
 
+            case "system_of_charges":
+                buildSystemOfCharges(config);
+                break;
+
             case "uniform_field_force":
                 buildForceFieldDiamond();
                 break;
@@ -20122,6 +20749,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "bar_magnet_as_dipole":
                 buildBarMagnetAsDipole();
+                break;
+
+            case "bar_magnet_in_uniform_field":
+                buildBarMagnetInField();
                 break;
 
             case "dipole_in_uniform_field":
@@ -20330,7 +20961,8 @@ export const FIELD_3D_RENDERER_CODE = `
         // Electric dipole in a uniform field — per-state visibility + rotation
         // seeding (sibling of the torque-loop scenario; shares the rotation
         // engine but renders a two-charge dipole body and ±qE couple arrows).
-        if (config.scenario_type === "dipole_in_uniform_field") {
+        if (config.scenario_type === "dipole_in_uniform_field" ||
+            config.scenario_type === "bar_magnet_in_uniform_field") {
             applyDipoleInFieldState(stateDef);
         }
 
@@ -20453,6 +21085,15 @@ export const FIELD_3D_RENDERER_CODE = `
             applyDipolePotentialState(stateDef);
         }
 
+        // system_of_charges (electric_potential_system_of_charges, V = \\u03a3 k q\\u1d62/r\\u1d62)
+        // — authoritative per-state visibility (N charges always on; probe / r-lines /
+        // per-charge V tags / running-sum panel / live V readout / field-contrast E
+        // arrows per state) + reveal seeding + DOM slider toggle. The animate loop
+        // drives the timed reveals, the STATE_6 idle sweep + drag, and the live sums.
+        if (config.scenario_type === "system_of_charges") {
+            applySystemOfChargesState(stateDef);
+        }
+
         // Biot-Savart — seed the choreography on state entry: collapse every
         // grow-from-origin vector to scale 0 (the animate loop draws them back in
         // on schedule) so there is no full-size flash on the first frame. Also
@@ -20569,6 +21210,8 @@ export const FIELD_3D_RENDERER_CODE = `
             config.scenario_type === "current_loop_acts_as_dipole";
         var isFcw = config.scenario_type === "force_on_current_wire";
         var isDipole = config.scenario_type === "dipole_in_uniform_field";
+        var isBarField = config.scenario_type === "bar_magnet_in_uniform_field";
+        var bmfSlidersEl = document.getElementById("bmf_sliders");
         var isCdist = config.scenario_type === "charge_distribution";
         var isEflux = config.scenario_type === "electric_flux";
         var isGauss = config.scenario_type === "gauss_law";
@@ -20578,6 +21221,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var isCyclotron = config.scenario_type === "cyclotron_period";
         var isPlates = config.scenario_type === "parallel_plates";
         var isDipolePotential = config.scenario_type === "dipole_potential";
+        var isSystemOfCharges = config.scenario_type === "system_of_charges";
         // FIX 3 — the potential diamonds share the point_charge_positive scenario but
         // setupSliders rebuilt #sliders as the distance-r explorer panel, so this gate
         // shows that panel for a potential explore state. Only show it when the state
@@ -20596,7 +21240,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isCdist && !isEflux && !isGauss && !isRhr && !isNoWork && !isRadius && !isCyclotron && !isPlates && !isDipolePotential) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isRhr && !isNoWork && !isRadius && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -20691,6 +21335,19 @@ export const FIELD_3D_RENDERER_CODE = `
                     var thVD = document.getElementById("theta_dipole_val");
                     if (thVD) thVD.textContent = String(Math.round(stateDef.theta_deg));
                     thD.dispatchEvent(new Event("input", { bubbles: true }));
+                }
+            }
+        }
+        if (bmfSlidersEl) {
+            var showBmfSliders = !!(stateDef.show_sliders && isBarField);
+            bmfSlidersEl.style.display = showBmfSliders ? "block" : "none";
+            if (showBmfSliders) {
+                var thBmf = document.getElementById("bmf_theta_slider");
+                if (thBmf && typeof stateDef.theta_deg === "number") {
+                    thBmf.value = String(stateDef.theta_deg);
+                    var thVBmf = document.getElementById("bmf_theta_val");
+                    if (thVBmf) thVBmf.textContent = String(Math.round(stateDef.theta_deg));
+                    thBmf.dispatchEvent(new Event("input", { bubbles: true }));
                 }
             }
         }
@@ -22393,6 +23050,40 @@ export const FIELD_3D_RENDERER_CODE = `
             if (drS) drS.addEventListener("input", refreshDipoleSliders);
         }
 
+        // ── system_of_charges (STATE_6) slider wiring: q3_value -> live signed sum ─
+        //   Dedicated #soc_sliders panel. Drives PM_socQ3 (q3's live signed magnitude),
+        //   so every per-charge tag, the running-sum panel, the live readout + the DOM
+        //   breakdown update. Emits PARAM_UPDATE on explorer_id (Rule 27).
+        if (config.scenario_type === "system_of_charges") {
+            var q3S = document.getElementById("soc_q3_slider");
+            var scQ3w = (config.slider_controls && config.slider_controls.q3_value) || {};
+            if (q3S) {
+                if (scQ3w.min != null) q3S.min = String(scQ3w.min);
+                if (scQ3w.max != null) q3S.max = String(scQ3w.max);
+                if (scQ3w.step != null) q3S.step = String(scQ3w.step);
+            }
+            var refreshSocSliders = function () {
+                var s = document.getElementById("soc_q3_slider");
+                if (!s) return;
+                var qv = parseFloat(s.value);
+                window.PM_socUserDragged = true;
+                window.PM_socQ3 = qv;
+                var vEl = document.getElementById("soc_q3_val");
+                if (vEl) vEl.textContent = socFmt0(qv);
+                var px = window.PM_socPx, py = window.PM_socPy;
+                var V = socVtotal(px, py);
+                try {
+                    parent.postMessage({
+                        type: "PARAM_UPDATE",
+                        explorer_id: (config.explorer_id || "potential_explorer"),
+                        param: "q3_value",
+                        value: { q3_value: qv, px: px, py: py, V: V }
+                    }, "*");
+                } catch (e) {}
+            };
+            if (q3S) q3S.addEventListener("input", refreshSocSliders);
+        }
+
         // ── Biot-Savart (STATE_10) slider wiring: I, r, θ → P / circle / dB ──
         //   The default panel is I + r only. Rebuild it with a θ control and a
         //   dB readout; all three drive refreshBiotExplorer (real physics).
@@ -23137,6 +23828,71 @@ export const FIELD_3D_RENDERER_CODE = `
             refreshDipoleLabels();
         }
 
+        // ── bar_magnet_in_uniform_field slider wiring ─────────────────────
+        // Three range inputs (m, B, θ). θ drives rotation via applyTorqueLoopTheta
+        // (manual); m and B seed slider_p / slider_E so the shared
+        // updateDipoleInFieldFrame scales τ / force arrows. Readout shows
+        // τ = mB·sinθ, U = −mB·cosθ (scaled units) and the oscillation period
+        // T ∝ 1/√(mB) (T = 2π√(I/mB) with a representative I; the dependence is
+        // the teaching point, not the absolute value).
+        var mBmf = document.getElementById("bmf_m_slider");
+        var bBmf = document.getElementById("bmf_b_slider");
+        var thetaBmf = document.getElementById("bmf_theta_slider");
+        if (mBmf && bBmf && thetaBmf) {
+            if (config.slider_controls) {
+                if (config.slider_controls.m) {
+                    mBmf.min = String(config.slider_controls.m.min);
+                    mBmf.max = String(config.slider_controls.m.max);
+                    mBmf.step = String(config.slider_controls.m.step);
+                    mBmf.value = String(config.slider_controls.m.default);
+                }
+                if (config.slider_controls.B) {
+                    bBmf.min = String(config.slider_controls.B.min);
+                    bBmf.max = String(config.slider_controls.B.max);
+                    bBmf.step = String(config.slider_controls.B.step);
+                    bBmf.value = String(config.slider_controls.B.default);
+                }
+                if (config.slider_controls.theta_deg) {
+                    thetaBmf.min = String(config.slider_controls.theta_deg.min);
+                    thetaBmf.max = String(config.slider_controls.theta_deg.max);
+                    thetaBmf.step = String(config.slider_controls.theta_deg.step);
+                    thetaBmf.value = String(config.slider_controls.theta_deg.default);
+                }
+            }
+
+            function refreshBmfLabels() {
+                var mVal = document.getElementById("bmf_m_val");
+                var bVal = document.getElementById("bmf_b_val");
+                var thVal = document.getElementById("bmf_theta_val");
+                var readout = document.getElementById("bmf_readout");
+                var mv = parseFloat(mBmf.value);
+                var bv = parseFloat(bBmf.value);
+                var th = parseFloat(thetaBmf.value);
+                if (mVal) mVal.textContent = mv.toFixed(1);
+                if (bVal) bVal.textContent = bv.toFixed(1);
+                if (thVal) thVal.textContent = th.toFixed(0);
+
+                var lgB = findTorqueLoopGroup();
+                if (lgB) {
+                    lgB.userData.slider_p = mv;
+                    lgB.userData.slider_E = bv;
+                    lgB.userData.slider_theta_deg = th;
+                    lgB.userData.rotation_mode = "manual";
+                    applyTorqueLoopTheta(lgB, th);
+                }
+
+                var tauB = 0.1 * mv * bv * Math.abs(Math.sin(th * Math.PI / 180));
+                var uB = -0.1 * mv * bv * Math.cos(th * Math.PI / 180);
+                var periodB = 10 / Math.sqrt(Math.max(0.01, mv * bv));   // T ∝ 1/√(mB), relative s
+                if (readout) readout.textContent = "\\u03c4 = " + tauB.toFixed(2) + "   U = " + uB.toFixed(2) + "   T = " + periodB.toFixed(2) + " s";
+            }
+
+            mBmf.addEventListener("input", refreshBmfLabels);
+            bBmf.addEventListener("input", refreshBmfLabels);
+            thetaBmf.addEventListener("input", refreshBmfLabels);
+            refreshBmfLabels();
+        }
+
         // ── force_on_current_wire slider wiring ──────────────────────────
         // Four range inputs (I, L, B, θ) + a flip-current button. The F
         // readout = B·I·L·sinθ (Newtons). The animate loop reads the slider
@@ -23234,7 +23990,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges")) {
             // parallel_plates + dipole_potential are accumulator-free (every reveal +
             // sweep + the gap-widen morph is a pure function of time - stateStartTime),
             // so snapping to the pin is byte-identical to crawling — lets the visual
@@ -23293,6 +24049,14 @@ export const FIELD_3D_RENDERER_CODE = `
             if (dpStateDef) updateDipolePotentialFrame(dpStateDef);
         }
 
+        // system_of_charges — timed reveals (per-charge tags, running sum, far-term
+        // highlight, pair cancellation, field contrast), STATE_6 idle sweep + drag,
+        // and the live signed-V sums (pure fn of the state clock, Rule 26).
+        if (config.scenario_type === "system_of_charges") {
+            var socStateDef = config.states[PM_currentState];
+            if (socStateDef) updateSystemOfChargesFrame(socStateDef);
+        }
+
         // Magnetic field of a circular loop — current dots, dB stack, B merge,
         // current flip, z-sweep + graph dot (pure fn of the state clock, Rule 26).
         if (config.scenario_type === "magnetic_field_circular_loop") {
@@ -23323,7 +24087,8 @@ export const FIELD_3D_RENDERER_CODE = `
 
         // Electric dipole in a uniform field — rotation + τ scaling + couple-
         // arrow repositioning + θ-arc + U-meter + TTS glow.
-        if (config.scenario_type === "dipole_in_uniform_field") {
+        if (config.scenario_type === "dipole_in_uniform_field" ||
+            config.scenario_type === "bar_magnet_in_uniform_field") {
             updateDipoleInFieldFrame(heldAtPin ? 0 : 0.016);
             applyDipoleInFieldGlow();
         }

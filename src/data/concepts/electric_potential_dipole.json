@@ -203,18 +203,24 @@
             {
               "id": "s1_1",
               "text_en": "Here is a dipole: a positive charge plus q and a negative charge minus q, a small distance apart, with the dipole moment p pointing from minus q to plus q.",
+              "text_hi": "यहाँ एक dipole है: एक positive charge plus q और एक negative charge minus q, थोड़ी दूरी पर रखे हुए, dipole moment p, minus q से plus q की तरफ point करता है।",
+              "text_te": "ఇక్కడ ఒక dipole ఉంది: ఒక positive charge plus q మరియు ఒక negative charge minus q, కొంచెం దూరంలో, dipole moment p minus q నుండి plus q వైపు point చేస్తుంది.",
               "reveal_primitive_id": "dipole_pair",
               "appear_at_ms": 600
             },
             {
               "id": "s1_2",
               "text_en": "Drop a probe at any point. Each charge sets up its own potential there: plus k q over r-plus from the near charge, minus k q over r-minus from the far one.",
+              "text_hi": "किसी भी point पर एक probe रखें। हर charge वहाँ अपना potential बनाता है: पास वाले charge से plus k q over r-plus, और दूर वाले से minus k q over r-minus।",
+              "text_te": "ఏ point లో అయినా ఒక probe వేయండి. ప్రతి charge అక్కడ తన potential ని ఏర్పరుస్తుంది: దగ్గర charge నుండి plus k q over r-plus, దూర charge నుండి minus k q over r-minus.",
               "reveal_primitive_id": "two_term_callout",
               "appear_at_ms": 6500
             },
             {
               "id": "s1_3",
               "text_en": "Potential is a scalar, so we simply ADD the two numbers. The dipole's potential is the sum: potential V equals k q over r-plus, minus k q over r-minus.",
+              "text_hi": "Potential एक scalar है, इसलिए हम बस दोनों numbers को ADD करते हैं। Dipole का potential V यह sum है: V = k q over r-plus, minus k q over r-minus।",
+              "text_te": "Potential ఒక scalar, అందువల్ల మనం రెండు numbers ని simply ADD చేస్తాం. Dipole యొక్క potential V ఈ sum: V = k q over r-plus, minus k q over r-minus.",
               "reveal_primitive_id": "probe_v_readout",
               "appear_at_ms": 12500
             }
@@ -267,18 +273,24 @@
             {
               "id": "s2_1",
               "text_en": "Step the probe well back, far compared with the charge separation. Sweep the angle theta, measured from the dipole axis.",
+              "text_hi": "Probe को charge separation की तुलना में बहुत दूर ले जाएं। Dipole axis से मापा गया angle theta को sweep करें।",
+              "text_te": "Probe ని charge separation కంటే చాలా దూరంగా తీసుకువెళ్ళండి. Dipole axis నుండి కొలిచిన angle theta ని sweep చేయండి.",
               "reveal_primitive_id": "theta_arc",
               "appear_at_ms": 700
             },
             {
               "id": "s2_2",
               "text_en": "Out here the two-term sum collapses to one clean expression: the potential V equals k p cosine theta over r squared, where p is the dipole moment q times two a.",
+              "text_hi": "इतनी दूर आने पर दो-term sum एक clean expression में collapse हो जाता है: potential V = k p cosine theta over r squared, जहाँ p = dipole moment q times two a।",
+              "text_te": "ఇక్కడ రెండు-term sum ఒక clean expression లో collapse అవుతుంది: potential V = k p cosine theta over r squared, ఇక్కడ p = dipole moment q times two a.",
               "reveal_primitive_id": "formula_callout",
               "appear_at_ms": 6000
             },
             {
               "id": "s2_3",
               "text_en": "Read it carefully: r sits downstairs SQUARED, and the angle theta enters only through cosine theta. Hold on to both of those.",
+              "text_hi": "ध्यान से पढ़ें: r नीचे SQUARED है, और angle theta केवल cosine theta के रूप में enter करता है। इन दोनों बातों को याद रखें।",
+              "text_te": "దీన్ని జాగ్రత్తగా చదవండి: r క్రింద SQUARED ఉంది, మరియు angle theta కేవలం cosine theta ద్వారా మాత్రమే enter అవుతుంది. ఈ రెండు విషయాలను గుర్తుంచుకోండి.",
               "reveal_primitive_id": "far_field_note",
               "appear_at_ms": 13000
             }
@@ -331,12 +343,16 @@
             {
               "id": "s3_1",
               "text_en": "Keep the distance r fixed and swing the probe across to the other side of the dipole, past the centre.",
+              "text_hi": "Distance r को fixed रखें और probe को dipole के दूसरी तरफ, centre के पार ले जाएं।",
+              "text_te": "Distance r ని fixed గా ఉంచి probe ని dipole యొక్క మరొక వైపుకు, centre దాటి swing చేయండి.",
               "reveal_primitive_id": "probe_sweep",
               "appear_at_ms": 700
             },
             {
               "id": "s3_2",
               "text_en": "Predict the sign of the potential V over there. Does it stay positive because plus q is the bigger, friendlier charge, or does it go negative?",
+              "text_hi": "उस तरफ potential V का sign predict करें। क्या यह positive रहेगा क्योंकि plus q बड़ा और 'friendly' charge है, या negative हो जाएगा?",
+              "text_te": "ఆ వైపు potential V యొక్క sign ని predict చేయండి. Plus q పెద్ద, 'friendly' charge కాబట్టి V positive గా ఉంటుందా, లేదా negative అవుతుందా?",
               "reveal_primitive_id": "predict_sign_label",
               "appear_at_ms": 5500,
               "pause_after_ms": 2800
@@ -344,12 +360,16 @@
             {
               "id": "s3_3",
               "text_en": "Watch. The sign follows POSITION, not the charge you like. Near plus q, cosine theta is positive, so V is positive; cross to the minus q side and V turns negative.",
+              "text_hi": "देखिए। Sign POSITION follow करता है, आपके पसंदीदा charge को नहीं। Plus q के पास cosine theta positive है, इसलिए V positive है; minus q side पर जाएं तो V negative हो जाता है।",
+              "text_te": "చూడండి. Sign POSITION ని follow చేస్తుంది, మీకు ఇష్టమైన charge ని కాదు. Plus q దగ్గర cosine theta positive, కాబట్టి V positive; minus q side కి వెళ్ళితే V negative అవుతుంది.",
               "reveal_primitive_id": "sign_recolor",
               "appear_at_ms": 9000
             },
             {
               "id": "s3_4",
               "text_en": "The potential V is positive wherever cosine theta is positive and negative wherever cosine theta is negative — the side you stand on decides the sign.",
+              "text_hi": "Potential V वहाँ positive है जहाँ cosine theta positive है, और जहाँ cosine theta negative है वहाँ negative — आप किस side पर हैं, वह sign तय करता है।",
+              "text_te": "Potential V cosine theta positive ఉన్న చోట positive, మరియు cosine theta negative ఉన్న చోట negative — మీరు ఏ side లో ఉన్నారో అది sign ని నిర్ణయిస్తుంది.",
               "reveal_primitive_id": "sign_recolor",
               "appear_at_ms": 15000
             }
@@ -438,12 +458,16 @@
             {
               "id": "s4_1",
               "text_en": "Now go to the plane exactly halfway between the two charges, the equatorial plane at theta equal to ninety degrees.",
+              "text_hi": "अब उस plane पर जाएं जो दोनों charges के ठीक बीच में है — equatorial plane, जहाँ theta बराबर है ninety degrees।",
+              "text_te": "ఇప్పుడు రెండు charges సరిగ్గా మధ్యలో ఉన్న plane కి వెళ్ళండి — equatorial plane, ఇక్కడ theta = ninety degrees.",
               "reveal_primitive_id": "equatorial_disc",
               "appear_at_ms": 700
             },
             {
               "id": "s4_2",
               "text_en": "On this whole plane every point is equally far from plus q and from minus q. Predict the potential V here — zero only at the dead centre, or zero across the ENTIRE plane?",
+              "text_hi": "इस पूरे plane पर हर point, plus q और minus q से बराबर दूरी पर है। यहाँ potential V क्या होगा — केवल बीचोंबीच zero, या पूरे ENTIRE plane पर zero?",
+              "text_te": "ఈ పూర్తి plane లో ప్రతి point plus q మరియు minus q నుండి సమానంగా దూరంలో ఉంది. ఇక్కడ potential V ని predict చేయండి — కేవలం మధ్య point లో zero, లేదా ENTIRE plane అంతటా zero?",
               "reveal_primitive_id": "predict_zero_label",
               "appear_at_ms": 6000,
               "pause_after_ms": 3000
@@ -451,18 +475,24 @@
             {
               "id": "s4_3",
               "text_en": "The potential V is zero EVERYWHERE on this plane. The two equal-and-opposite terms cancel at every point, because cosine of ninety degrees is zero.",
+              "text_hi": "Potential V इस plane पर हर जगह ZERO है। Ninety degrees का cosine zero होता है, इसलिए दोनों equal-and-opposite terms हर point पर cancel हो जाते हैं।",
+              "text_te": "ఈ plane లో potential V అన్ని చోట్లా ZERO. Ninety degrees యొక్క cosine zero కాబట్టి, రెండు equal-and-opposite terms ప్రతి point లో cancel అవుతాయి.",
               "reveal_primitive_id": "disc_v_zero",
               "appear_at_ms": 10000
             },
             {
               "id": "s4_4",
               "text_en": "But here is the twist. Zero potential does NOT mean zero field. The electric field E on this plane is very much alive — it points straight across, antiparallel to p.",
+              "text_hi": "लेकिन यहाँ एक twist है। Zero potential का मतलब zero field नहीं है। इस plane पर electric field E बिल्कुल alive है — यह p के antiparallel, सीधा across point करता है।",
+              "text_te": "కానీ ఇక్కడ ఒక twist ఉంది. Zero potential అంటే zero field కాదు. ఈ plane లో electric field E చాలా alive గా ఉంది — ఇది p కి antiparallel గా, నేరుగా across point చేస్తుంది.",
               "reveal_primitive_id": "equatorial_E_arrow",
               "appear_at_ms": 16000
             },
             {
               "id": "s4_5",
               "text_en": "Potential measures height; field measures slope. The plane is flat at sea level, so V is zero — but the ground tilts as you step off it, so E is not.",
+              "text_hi": "Potential height measure करता है; field slope measure करता है। Plane sea level पर flat है, इसलिए V zero है — लेकिन जैसे ही आप उससे हटते हैं, ground tilt होती है, इसलिए E zero नहीं है।",
+              "text_te": "Potential height ని measure చేస్తుంది; field slope ని measure చేస్తుంది. Plane sea level వద్ద flat కాబట్టి V zero — కానీ మీరు దాన్ని వదిలి వెళ్ళినప్పుడు ground tilt అవుతుంది, కాబట్టి E zero కాదు.",
               "reveal_primitive_id": "slope_vs_height_label",
               "appear_at_ms": 22000
             }
@@ -534,18 +564,24 @@
             {
               "id": "s5_1",
               "text_en": "Hold the distance r fixed and sweep the angle theta from zero all the way to one hundred eighty degrees, tracing the potential V on a graph.",
+              "text_hi": "Distance r को fixed रखें और angle theta को zero से एक सौ अस्सी degrees तक sweep करें, potential V को graph पर trace करते हुए।",
+              "text_te": "Distance r ని fixed గా ఉంచి angle theta ని zero నుండి నూట ఎనభై degrees వరకు sweep చేయండి, graph మీద potential V ని trace చేస్తూ.",
               "reveal_primitive_id": "v_vs_theta_curve",
               "appear_at_ms": 700
             },
             {
               "id": "s5_2",
               "text_en": "The potential V rides a cosine curve: maximum positive at theta zero, straight down through zero at ninety degrees, then maximum negative at one hundred eighty.",
+              "text_hi": "Potential V एक cosine curve पर ride करता है: theta zero पर maximum positive, ninety degrees पर zero से गुजरता हुआ, फिर एक सौ अस्सी पर maximum negative।",
+              "text_te": "Potential V ఒక cosine curve మీద ride చేస్తుంది: theta zero వద్ద maximum positive, ninety degrees వద్ద zero గుండా వెళ్ళి, తర్వాత నూట ఎనభై వద్ద maximum negative.",
               "reveal_primitive_id": "cos_sweep",
               "appear_at_ms": 6500
             },
             {
               "id": "s5_3",
               "text_en": "Notice there is no arrow anywhere on this curve — just a single signed number that rises and falls. The potential V is a scalar, plus or minus, never a direction.",
+              "text_hi": "ध्यान दें, इस curve पर कहीं भी कोई arrow नहीं है — बस एक signed number जो ऊपर-नीचे जाता है। Potential V एक scalar है, plus या minus, कभी कोई direction नहीं।",
+              "text_te": "గమనించండి, ఈ curve మీద ఎక్కడా arrow లేదు — కేవలం ఒక signed number పైకి కిందకు వెళ్తుంది. Potential V ఒక scalar, plus లేదా minus, ఎప్పుడూ direction కాదు.",
               "reveal_primitive_id": "scalar_label",
               "appear_at_ms": 13000
             }
@@ -618,12 +654,16 @@
             {
               "id": "s6_1",
               "text_en": "Fix the angle theta and pull the probe outward, watching how fast the potential V dies with distance r.",
+              "text_hi": "Angle theta को fix करें और probe को बाहर खींचें, देखें कि potential V, distance r के साथ कितनी तेजी से खत्म होता है।",
+              "text_te": "Angle theta ని fix చేసి probe ని బయటకు లాగండి, potential V distance r తో ఎంత వేగంగా తగ్గుతుందో చూడండి.",
               "reveal_primitive_id": "inv_r2_curve",
               "appear_at_ms": 700
             },
             {
               "id": "s6_2",
               "text_en": "A single point charge fades as one over r. Predict the dipole: does its potential V also fade as one over r, or faster?",
+              "text_hi": "एक single point charge, one over r की तरह fade होता है। Dipole के बारे में predict करें: क्या इसका potential V भी one over r की तरह fade होगा, या तेज?",
+              "text_te": "ఒక single point charge one over r గా fade అవుతుంది. Dipole గురించి predict చేయండి: దాని potential V కూడా one over r గా fade అవుతుందా, లేదా వేగంగా?",
               "reveal_primitive_id": "predict_falloff_label",
               "appear_at_ms": 5500,
               "pause_after_ms": 2800
@@ -631,12 +671,16 @@
             {
               "id": "s6_3",
               "text_en": "Faster. The dipole's potential V falls as one over r SQUARED, one power steeper than a single charge — the bright curve dives below the dimmed one-over-r ghost.",
+              "text_hi": "Faster। Dipole का potential V, one over r SQUARED की तरह गिरता है — single charge से एक power ज्यादा steep — bright curve, dimmed one-over-r ghost के नीचे dive करता है।",
+              "text_te": "Faster. Dipole యొక్క potential V, one over r SQUARED గా పడిపోతుంది — single charge కంటే ఒక power ఎక్కువ steep — bright curve, dimmed one-over-r ghost కంటే కిందకు dive చేస్తుంది.",
               "reveal_primitive_id": "inv_r2_split",
               "appear_at_ms": 9000
             },
             {
               "id": "s6_4",
               "text_en": "The reason is cancellation: from far away plus q and minus q almost overlap, so their potentials nearly cancel, leaving only the faint one-over-r-squared remainder.",
+              "text_hi": "कारण है cancellation: दूर से plus q और minus q लगभग overlap लगते हैं, तो उनके potentials लगभग cancel हो जाते हैं, केवल faint one-over-r-squared remainder बचता है।",
+              "text_te": "కారణం cancellation: దూరం నుండి plus q మరియు minus q దాదాపు overlap అవుతాయి, వాటి potentials దాదాపు cancel అవుతాయి, కేవలం faint one-over-r-squared remainder మిగులుతుంది.",
               "reveal_primitive_id": "cancellation_label",
               "appear_at_ms": 15000
             }
@@ -702,18 +746,24 @@
             {
               "id": "s7_1",
               "text_en": "Now you drive. Drag the probe anywhere, or use the sliders for the angle theta and the distance r, and read the signed potential V live.",
+              "text_hi": "अब आप drive करें। Probe को कहीं भी drag करें, या angle theta और distance r के sliders उपयोग करें, और signed potential V को live पढ़ें।",
+              "text_te": "ఇప్పుడు మీరు drive చేయండి. Probe ని ఎక్కడైనా drag చేయండి, లేదా angle theta మరియు distance r sliders ని వాడండి, మరియు signed potential V ని live చదవండి.",
               "reveal_primitive_id": "probe_draggable",
               "appear_at_ms": 700
             },
             {
               "id": "s7_2",
               "text_en": "Cross to the plus q side for a positive V, the minus q side for a negative V, and ride the equatorial plane to watch V sit exactly at zero.",
+              "text_hi": "Plus q side पर जाएं तो V positive मिलेगा, minus q side पर जाएं तो V negative, और equatorial plane पर ride करें तो V ठीक zero पर बैठा दिखेगा।",
+              "text_te": "Plus q side కి వెళ్ళితే V positive వస్తుంది, minus q side కి వెళ్ళితే V negative, మరియు equatorial plane మీద ride చేస్తే V సరిగ్గా zero వద్ద కూర్చోవడం చూస్తారు.",
               "reveal_primitive_id": "sign_live_readout",
               "appear_at_ms": 6000
             },
             {
               "id": "s7_3",
               "text_en": "Pull outward and feel the potential V collapse fast, as one over r squared. This is the voltage map of a water molecule: a plus hill, a minus dip, and a zero band between them.",
+              "text_hi": "बाहर खींचें और potential V को fast collapse होते feel करें, one over r squared की तरह। यह एक water molecule का voltage map है: एक plus hill, एक minus dip, और बीच में एक zero band।",
+              "text_te": "బయటకు లాగి potential V ని one over r squared గా fast collapse అవడం feel చేయండి. ఇది ఒక water molecule యొక్క voltage map: ఒక plus hill, ఒక minus dip, మరియు వాటి మధ్య ఒక zero band.",
               "reveal_primitive_id": "inv_r2_live_dot",
               "appear_at_ms": 12000
             }

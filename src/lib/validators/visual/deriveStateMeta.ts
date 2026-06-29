@@ -589,6 +589,31 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (typeof pot.ghost_fade_at_ms === 'number') candidates.push(asNum(pot.ghost_fade_at_ms, 0) + 700 + 300);
         if (typeof pot.split_highlight_at_ms === 'number') candidates.push(asNum(pot.split_highlight_at_ms, 0) + 1200 + 500);
         if (typeof pot.predict_at_ms === 'number') candidates.push(asNum(pot.predict_at_ms, 0) + 800);
+        // ── electric_potential_system_of_charges (system_of_charges) NEW beats ──
+        //   The N-charge scalar-sum arc (V = Σ k qᵢ/rᵢ). Its `potential` block carries
+        //   one-shot timed reveals that play ONCE then HOLD their end pose (Rule 26,
+        //   accumulator-free) — no probe sweep, no route travel. THE EYE MUST pin past
+        //   each payoff or the frozen capture lands before the reveal and photographs an
+        //   incomplete frame. deriveHoldExpectations classifies each non-slider state
+        //   reveal_hold directly (the generic `potential` fallback), and STATE_6
+        //   (draggable_probe + show_sliders) interactive — so S3/S4/S5's reveal-then-
+        //   hold tails are not flagged as dead animations (the D7 lesson). Mirrors
+        //   updateSystemOfChargesFrame's ramps:
+        //     • per_charge_tags_at_ms      — STATE_1 r-lines fade in.
+        //     • contribution_values_at_ms  — STATE_1 the 3 signed per-charge V tags.
+        //     • running_sum_at_ms          — STATE_2 stacked signed sum → total.
+        //     • far_term_at_ms / total_with_far_at_ms — STATE_3 far-q1 term + total.
+        //     • cancellation_at_ms / total_just_q3_at_ms — STATE_4 +/− pair → 0, total.
+        //     • field_contrast_at_ms / split_callout_at_ms — STATE_5 E arrows + callout.
+        if (typeof pot.per_charge_tags_at_ms === 'number') candidates.push(asNum(pot.per_charge_tags_at_ms, 0) + 600 + 300);
+        if (typeof pot.contribution_values_at_ms === 'number') candidates.push(asNum(pot.contribution_values_at_ms, 0) + 600 + 300);
+        if (typeof pot.running_sum_at_ms === 'number') candidates.push(asNum(pot.running_sum_at_ms, 0) + 600 + 300);
+        if (typeof pot.far_term_at_ms === 'number') candidates.push(asNum(pot.far_term_at_ms, 0) + 600 + 300);
+        if (typeof pot.total_with_far_at_ms === 'number') candidates.push(asNum(pot.total_with_far_at_ms, 0) + 600 + 300);
+        if (typeof pot.cancellation_at_ms === 'number') candidates.push(asNum(pot.cancellation_at_ms, 0) + 600 + 300);
+        if (typeof pot.total_just_q3_at_ms === 'number') candidates.push(asNum(pot.total_just_q3_at_ms, 0) + 600 + 300);
+        if (typeof pot.field_contrast_at_ms === 'number') candidates.push(asNum(pot.field_contrast_at_ms, 0) + 700 + 300);
+        if (typeof pot.split_callout_at_ms === 'number') candidates.push(asNum(pot.split_callout_at_ms, 0) + 600 + 300);
     }
     // parallel_plates (parallel_plate_capacitor_field): the E = V/d uniform-field
     // arc. Its per-state `capacitor` block carries one-shot timed reveals that then
@@ -1098,19 +1123,17 @@ export function deriveHoldExpectations(
                 if (potHold.draggable_probe === true) { out[stateId] = 'interactive'; continue; }
                 const routes = Array.isArray(potHold.animate_route) && potHold.animate_route.length > 0;
                 if (routes || typeof potHold.release_at_ms === 'number') { out[stateId] = undefined; continue; }
-                // dipole_potential STATE_5 `theta_sweep`: the 0→180° angular sweep plays
-                // ONCE (~10s) then HOLDS the finished cosine curve + the probe at its end
-                // pose — a one-shot-then-hold reveal. It IS declared motion (it moves
-                // mid-state, deriveMotionExpectations) but its hold intent is reveal_hold
-                // so D7 permits the expected post-sweep frozen tail (the same relaxation
-                // the parallel_plates reveal states get) instead of a stuck-animation
-                // false-fail.
-                if (asObj(potHold.theta_sweep)) { out[stateId] = 'reveal_hold'; continue; }
-                // dipole_potential STATE_3 `sweep`: the probe crosses the centre at fixed
-                // r while the V readout keeps recoloring + flipping sign across the sweep
-                // → keep the strict gate (undefined) so D5/D6/D7 expect ongoing pixel
-                // motion (this state passes D7 as-is).
-                if (asObj(potHold.sweep)) { out[stateId] = undefined; continue; }
+                // dipole_potential STATE_3 `sweep` / STATE_5 `theta_sweep`: both are
+                // one-shot probe sweeps that play ONCE then HOLD their end pose (STATE_5
+                // holds the finished cosine curve; STATE_3 holds the probe at θ=140° with
+                // V settled at its negative value). They ARE declared motion (they move
+                // mid-state — deriveMotionExpectations), but the only thing moving is a
+                // small probe dot + a sub-0.1% V-readout recolor, so once the sweep ends
+                // the frame is legitimately static. Their hold intent is therefore
+                // reveal_hold so D7 permits the expected post-sweep frozen tail (the same
+                // relaxation parallel_plates reveal states get) instead of a stuck-
+                // animation false-fail.
+                if (asObj(potHold.theta_sweep) || asObj(potHold.sweep)) { out[stateId] = 'reveal_hold'; continue; }
                 // Any OTHER potential state has NO continuous driver (no drag, no
                 // route travel, no release fly-out — those are the only motion sources
                 // in the potential arc). It is therefore a reveal-THEN-HOLD state: it

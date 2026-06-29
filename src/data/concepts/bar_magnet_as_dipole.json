@@ -110,7 +110,7 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "Here is a bar magnet — north pole red, south pole blue — with its magnetic field B drawn in green around it.", "text_hi": "यहाँ एक bar magnet है — north pole लाल, south pole नीला — इसके चारों ओर magnetic field B हरे रंग में।", "text_te": "ఇక్కడ ఒక bar magnet ఉంది — north pole ఎరుపు, south pole నీలం — దాని చుట్టూ magnetic field B ఆకుపచ్చ రంగులో.", "pause_after_ms": 1500 },
+            { "id": "s1_1", "text_en": "Here is a bar magnet — north pole red, south pole blue — with its magnetic field B drawn in green around it.", "text_hi": "यहाँ एक bar magnet है — north pole red, south pole blue — इसके चारों ओर magnetic field B green रंग में।", "text_te": "ఇక్కడ ఒక bar magnet ఉంది — north pole red, south pole blue — దాని చుట్టూ magnetic field B green రంగులో.", "pause_after_ms": 1500 },
             { "id": "s1_2", "text_en": "The amber dots drift along the field lines, showing the field direction — out of the north pole, around, into the south.", "text_hi": "Amber dots field lines के साथ बहते हैं, field की दिशा दिखाते हैं — north pole से बाहर, घूमकर, south में।", "text_te": "Amber dots field lines వెంట కదులుతాయి, field దిశను చూపుతాయి — north pole నుండి బయటకు, చుట్టూ, south లోకి.", "pause_after_ms": 1500 },
             { "id": "s1_3", "text_en": "A compass needle settles tangent to the field. So what kind of object is a bar magnet, really?", "text_hi": "एक compass needle field के tangent settle होती है। तो bar magnet असल में किस तरह की वस्तु है?", "text_te": "ఒక compass needle field కి tangent గా settle అవుతుంది. మరి bar magnet నిజంగా ఎలాంటి వస్తువు?", "pause_after_ms": 1500 }
           ]

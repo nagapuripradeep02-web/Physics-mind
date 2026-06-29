@@ -1016,6 +1016,25 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Potential of a SYSTEM of charges — the scalar-superposition diamond
+    // (Class 12 Ch.2 §2.5). The total potential at a point is V = Σ k qᵢ/rᵢ,
+    // a plain SCALAR sum of each charge's signed contribution: every charge
+    // counts (distance shrinks a term but never zeroes it), an equal +q/−q
+    // equidistant pair cancels exactly, and — the aha — the FIELD at the same
+    // point needs vector addition while V is one easy scalar sum. Declares
+    // electric_potential_point_charge (V = kQ/r), electric_potential_dipole
+    // (the two-charge sum) and electric_potential_meaning (V = W/q) as
+    // prerequisites; does NOT re-teach them, and stops short of capacitance.
+    electric_potential_system_of_charges: {
+        concept_id: 'electric_potential_system_of_charges',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'electric_potential_system_of_charges',
+            label: 'Potential of a System of Charges — V = Σ k qᵢ/rᵢ (3D)',
+        },
+    },
+
     force_on_charge_in_field: {
         concept_id: 'force_on_charge_in_field',
         layout: 'single',
@@ -1128,6 +1147,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'bar_magnet_as_dipole',
             label: 'The Bar Magnet as a Magnetic Dipole — closed-loop field, 1/r³ (3D)',
+        },
+    },
+
+    bar_magnet_in_uniform_field: {
+        concept_id: 'bar_magnet_in_uniform_field',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'bar_magnet_in_uniform_field',
+            label: 'Bar Magnet in a Uniform Field — τ = m×B, U = −m·B, T = 2π√(I/mB) (3D)',
         },
     },
 

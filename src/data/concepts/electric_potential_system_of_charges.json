@@ -1,0 +1,1110 @@
+{
+  "concept_id": "electric_potential_system_of_charges",
+  "concept_name": "Potential of a System of Charges — V = Σ k qᵢ/rᵢ (a scalar sum of signed numbers)",
+  "chapter": 2,
+  "section": "2.5",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.2 Electrostatic Potential and Capacitance (§2.5 Potential due to a system of charges) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (drop a probe near three fixed charges and write each charge's own potential k q_i / r_i → recognise the total V as a plain SCALAR sum of the three signed numbers, no arrows → push the probe far so one charge is distant and confront the 'only the nearest charge matters' belief: the far term shrinks but never zeroes → slide the probe onto the centre line equidistant from an equal +q and −q and confront the 'two nearby charges must give a big V' belief: the pair cancels exactly to zero → then the superpower contrast: the same charges' FIELD needs hard vector addition by components, while V was one easy signed sum → hand the explorer the draggable probe + a q3 slider), never copied. The atomic idea: the potential of a system of point charges at a field point is V = Σ k q_i / r_i — the algebraic SUM of each charge's own potential, where r_i is that charge's distance to the point. Because potential is a SCALAR, you add signed NUMBERS directly (no directions, no components, no angles). Every charge contributes a nonzero k q_i / r_i term; distance only shrinks a term, it never zeroes it. An equal +q and −q equidistant from the point cancel exactly (+kq/r + (−kq/r) = 0). Signs and distances set the total, not the count of charges. The headline contrast (the aha): the SAME charges' electric FIELD needs vector addition by components, while the potential is a single easy scalar sum — that is why potential is the friendlier road. SCOPE: this is the system-of-charges POTENTIAL diamond of Ch.2 — it generalises the single-charge V = kQ/r and the two-charge dipole sum to N charges via superposition. It declares electric_potential_point_charge (V = kQ/r), electric_potential_dipole (the two-charge sum) and electric_potential_meaning (V = W/q) as prerequisites and does NOT re-teach them. It does NOT cover continuous charge distributions, the field E (vector) of a system, capacitance, or potential energy of a system. NEW field_3d scenario_type system_of_charges: three fixed charges (+q₁, −q₂, +2q₃) + a probe with per-charge potential tags, a running signed-sum panel, a far-charge term highlight, an equal-pair cancellation reveal, a scalar-sum-vs-vector-field contrast, and a draggable probe + q3 slider (potential_explorer). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "system_of_charges"
+    ]
+  },
+  "prerequisites": [
+    "electric_potential_point_charge",
+    "electric_potential_dipole",
+    "electric_potential_meaning"
+  ],
+  "real_world_anchor": {
+    "primary": "Rub three balloons on your hair and stick them to a wall — each now carries its own charge. Hold your hand at one spot near the wall. The voltage your hand feels there is not from any single balloon; it is the simple sum of what each balloon adds on its own, each contribution set by that balloon's charge and how far away it sits. A nearby balloon adds a lot, a far one adds only a little — but every one still adds something. And if one balloon were rubbed the opposite way so it pushed instead of pulled, its contribution would carry a minus sign, and an equal pull-and-push pair sitting the same distance away would cancel to nothing. The total voltage at your hand is just those signed numbers added up.",
+    "secondary": "Tiny charged dust specks clinging to a screen each set up their own little voltage in the air nearby. At any point between them the voltage is the running sum of every speck's signed contribution — the close specks dominate, the far ones add a faint amount, and equal opposite specks at equal distance quietly cancel."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "px": {
+        "name": "Probe x-coordinate",
+        "unit": "demo units",
+        "role": "probe",
+        "min": -3.0,
+        "max": 3.0,
+        "default": 2.0,
+        "step": 0.05
+      },
+      "py": {
+        "name": "Probe y-coordinate",
+        "unit": "demo units",
+        "role": "probe",
+        "min": -3.0,
+        "max": 3.0,
+        "default": 1.6,
+        "step": 0.05
+      },
+      "q3_value": {
+        "name": "Signed magnitude of charge q3 (S6 slider flips/scales; q1=+1, q2=-1 fixed)",
+        "unit": "demo nC",
+        "role": "source",
+        "min": -3,
+        "max": 3,
+        "default": 2,
+        "step": 1
+      },
+      "k": {
+        "name": "Coulomb constant",
+        "unit": "N*m^2/C^2",
+        "min": 8990000000,
+        "max": 8990000000,
+        "default": 8990000000
+      },
+      "DEMO_VP": {
+        "name": "Demo potential readout scale",
+        "unit": "demo V",
+        "min": 12,
+        "max": 12,
+        "default": 12
+      },
+      "DEMO_E": {
+        "name": "Demo field readout scale (S5 contrast only)",
+        "unit": "demo E",
+        "min": 12,
+        "max": 12,
+        "default": 12
+      },
+      "clamp_r_min": {
+        "name": "Min distance clamp",
+        "unit": "demo units",
+        "min": 0.05,
+        "max": 0.05,
+        "default": 0.05
+      }
+    },
+    "computed_outputs": {
+      "V1_demo": {
+        "formula": "DEMO_VP * 1 / Math.max(Math.sqrt((px+1.2)*(px+1.2) + py*py), clamp_r_min)"
+      },
+      "V2_demo": {
+        "formula": "DEMO_VP * (-1) / Math.max(Math.sqrt((px-1.2)*(px-1.2) + py*py), clamp_r_min)"
+      },
+      "V3_demo": {
+        "formula": "DEMO_VP * q3_value / Math.max(Math.sqrt(px*px + (py-1.4)*(py-1.4)), clamp_r_min)"
+      },
+      "V_total_demo": {
+        "formula": "DEMO_VP * 1 / Math.max(Math.sqrt((px+1.2)*(px+1.2) + py*py), clamp_r_min) + DEMO_VP * (-1) / Math.max(Math.sqrt((px-1.2)*(px-1.2) + py*py), clamp_r_min) + DEMO_VP * q3_value / Math.max(Math.sqrt(px*px + (py-1.4)*(py-1.4)), clamp_r_min)"
+      },
+      "E1_demo": {
+        "formula": "DEMO_E * 1 / Math.max((px+1.2)*(px+1.2) + py*py, clamp_r_min*clamp_r_min)"
+      },
+      "E2_demo": {
+        "formula": "DEMO_E * 1 / Math.max((px-1.2)*(px-1.2) + py*py, clamp_r_min*clamp_r_min)"
+      },
+      "E3_demo": {
+        "formula": "DEMO_E * Math.abs(q3_value) / Math.max(px*px + (py-1.4)*(py-1.4), clamp_r_min*clamp_r_min)"
+      }
+    },
+    "derived_fields_declared": [
+      "V1_demo",
+      "V2_demo",
+      "V3_demo",
+      "V_total_demo",
+      "E1_demo",
+      "E2_demo",
+      "E3_demo"
+    ],
+    "formulas": {
+      "system_potential": "V = k*q1/r1 + k*q2/r2 + k*q3/r3",
+      "per_charge": "V_i = k*q_i/r_i, r_i=sqrt((px-x_i)^2+(py-y_i)^2)",
+      "scalar_sum": "add signed numbers directly — no directions/components/angles",
+      "cancellation": "equal +q and -q equidistant => +kq/r + (-kq/r) = 0",
+      "field_contrast": "E = vector sum by components; V = scalar sum of numbers",
+      "k": "8.99e9"
+    },
+    "constraints": [
+      "V is the SCALAR sum of k*q_i/r_i — one signed number per charge, added directly (C1).",
+      "Each term carries its own sign; add signed scalars, never vectors, components or angles (C2).",
+      "Every charge contributes a nonzero k*q_i/r_i term; distance shrinks a term but never zeroes it (C3).",
+      "An equal +q and -q equidistant from the point cancel exactly to 0 (C4).",
+      "Signs and distances set the total, not the count of charges (C5).",
+      "The FIELD at the same point needs vector/component addition — the scalar-sum potential is the superpower (C6).",
+      "The reference is V(infinity) = 0 (C7).",
+      "The on-screen V uses round DEMO units (DEMO_VP = 12), not SI volts (C8)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Potentials just add as signed numbers — the field needs hard vector addition.",
+    "visual_confirmation": "On the scalar side the three signed numbers collapse to one total, while the same charges' E arrows sprawl tip-to-tail, needing components.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "cancellation": [
+      "STATE_4"
+    ],
+    "contrast": [
+      "STATE_5"
+    ],
+    "exploration": [
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Three charges + a probe — each gives its own potential k q / r",
+        "duration": 18,
+        "focal_primitive_id": "per_charge_tags",
+        "advance_mode": "auto_after_tts",
+        "teaching_method": "narrative_socratic",
+        "variable_overrides": {
+          "px": 2.0,
+          "py": 1.6
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "charges_and_probe",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "three fixed charges: +q₁, −q₂, +2q₃ — drop a probe at one point",
+            "color": "#FFCA28",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "per_charge_tags",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "each charge sets its own V at the probe: k q / r",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "contribution_values",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "read them: +3.4 from q₁, −6.7 from q₂, +11.9 from q₃",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Here are three fixed charges: a positive charge q₁, a negative charge q₂, and a stronger positive charge q₃. Drop a probe at one point.",
+              "text_hi": "यहाँ तीन fixed charges हैं: एक positive charge q₁, एक negative charge q₂, और एक stronger positive charge q₃। एक point पर probe रखिए।",
+              "text_te": "ఇక్కడ మూడు fixed charges ఉన్నాయి: ఒక positive charge q₁, ఒక negative charge q₂, మరియు ఒక stronger positive charge q₃. ఒక point వద్ద probe పెట్టండి.",
+              "reveal_primitive_id": "charges_and_probe",
+              "appear_at_ms": 600
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Each charge sets up its own potential at the probe, k q over r — its own signed number set by its charge and its distance r.",
+              "text_hi": "प्रत्येक charge अपना potential probe पर set करता है, k q over r — अपना signed number, जो उसके charge और उसकी distance r से तय होता है।",
+              "text_te": "ప్రతి charge తన potential ని probe వద్ద set చేస్తుంది, k q over r — దాని charge మరియు దాని distance r తో నిర్ణయించబడే దాని own signed number.",
+              "reveal_primitive_id": "per_charge_tags",
+              "appear_at_ms": 6500
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Read the three contributions: plus three point four from q₁, minus six point seven from q₂, plus eleven point nine from q₃.",
+              "text_hi": "तीन contributions पढ़िए: q₁ से plus three point four, q₂ से minus six point seven, q₃ से plus eleven point nine।",
+              "text_te": "మూడు contributions చదవండి: q₁ నుండి plus three point four, q₂ నుండి minus six point seven, q₃ నుండి plus eleven point nine.",
+              "reveal_primitive_id": "contribution_values",
+              "appear_at_ms": 12500
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "V is a scalar — just add the three signed numbers",
+        "duration": 16,
+        "focal_primitive_id": "sum_result",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "variable_overrides": {
+          "px": 2.0,
+          "py": 1.6
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "running_sum_panel",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "V is a scalar — to total it, add numbers, not arrows",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_combine_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "predict: combine like vectors (directions), or like signed numbers?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "sum_result",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "+3.4 − 6.7 + 11.9 = +8.6 — no directions anywhere",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "The potential V is a scalar — a plain number. So to get the total, you do not add arrows; you just add the three signed numbers.",
+              "text_hi": "potential V एक scalar है — एक plain number। तो total पाने के लिए आप arrows नहीं जोड़ते; बस तीन signed numbers जोड़ते हैं।",
+              "text_te": "potential V ఒక scalar — ఒక plain number. కాబట్టి total పొందడానికి మీరు arrows కలపరు; కేవలం మూడు signed numbers కలుపుతారు.",
+              "reveal_primitive_id": "running_sum_panel",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Predict: do these combine like vectors, with directions, or like ordinary signed numbers?",
+              "text_hi": "Predict करिए: क्या ये vectors की तरह, directions के साथ, या ordinary signed numbers की तरह combine होते हैं?",
+              "text_te": "Predict చేయండి: ఇవి vectors లా, directions తో కలుస్తాయా, లేదా ordinary signed numbers లా కలుస్తాయా?",
+              "reveal_primitive_id": "predict_combine_label",
+              "appear_at_ms": 6000,
+              "pause_after_ms": 2000
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Just add them: plus three point four, minus six point seven, plus eleven point nine, gives plus eight point six. No directions anywhere.",
+              "text_hi": "बस इन्हें जोड़िए: plus three point four, minus six point seven, plus eleven point nine, मिलता है plus eight point six। कहीं कोई directions नहीं।",
+              "text_te": "వాటిని కలపండి: plus three point four, minus six point seven, plus eleven point nine, ఇస్తుంది plus eight point six. ఎక్కడా directions లేవు.",
+              "reveal_primitive_id": "sum_result",
+              "appear_at_ms": 9500
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "To get the total potential you must combine the charges' contributions like vectors, with directions or components.",
+            "visual_counter": "The three contributions show as plain signed numbers +3.4, −6.7, +11.9 and add straight to +8.6 — no arrows, no angles drawn anywhere.",
+            "one_line_fix": "Potential is a scalar: add the signed numbers k*q_i/r_i directly, with no directions or components."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Does the far charge still count? Every term contributes",
+        "duration": 20,
+        "focal_primitive_id": "far_term_highlight",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "misconception_confrontation",
+        "variable_overrides": {
+          "px": 3.0,
+          "py": 0.6
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "probe_far",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "slide the probe far right — q₁ is now over four units away",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_far_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "predict: only the nearest charge, or does far q₁ still count?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "far_term_highlight",
+            "position": {
+              "x": 600,
+              "y": 330
+            },
+            "text": "far q₁ still adds +2.8 — small (r is large) but never zero",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "total_with_far",
+            "position": {
+              "x": 360,
+              "y": 445
+            },
+            "text": "total +4.2; drop the far term and it would fall to +1.4",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Move the probe far over to the right, so charge q₁ is now distant, more than four units away.",
+              "text_hi": "probe को दाईं ओर दूर ले जाइए, ताकि charge q₁ अब distant हो, चार units से ज़्यादा दूर।",
+              "text_te": "probe ని కుడివైపుకి దూరంగా తరలించండి, తద్వారా charge q₁ ఇప్పుడు దూరంగా ఉంటుంది, నాలుగు units కంటే ఎక్కువ దూరంలో.",
+              "reveal_primitive_id": "probe_far",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Predict the total. Does only the nearest charge matter, or does the far charge q₁ still count in the sum?",
+              "text_hi": "total predict करिए। क्या केवल nearest charge मायने रखता है, या दूर का charge q₁ sum में अभी भी count करता है?",
+              "text_te": "total ని predict చేయండి. కేవలం nearest charge మాత్రమే important అవుతుందా, లేదా దూరపు charge q₁ sum లో ఇంకా count అవుతుందా?",
+              "reveal_primitive_id": "predict_far_label",
+              "appear_at_ms": 5500,
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s3_3",
+              "text_en": "The far charge q₁ still adds plus two point eight — small because the distance r is large, but never zero.",
+              "text_hi": "दूर का charge q₁ अभी भी plus two point eight जोड़ता है — छोटा क्योंकि distance r बड़ी है, लेकिन कभी zero नहीं।",
+              "text_te": "దూరపు charge q₁ ఇంకా plus two point eight కలుపుతుంది — చిన్నది ఎందుకంటే distance r పెద్దది, కానీ ఎప్పటికీ zero కాదు.",
+              "reveal_primitive_id": "far_term_highlight",
+              "appear_at_ms": 9000
+            },
+            {
+              "id": "s3_4",
+              "text_en": "Every charge contributes. The total is plus four point two; drop the far term and it would fall to plus one point four.",
+              "text_hi": "हर charge contribute करता है। total plus four point two है; far term हटाओ तो यह plus one point four तक गिर जाएगा।",
+              "text_te": "ప్రతి charge contribute చేస్తుంది. total plus four point two; far term తీసివేస్తే అది plus one point four కి పడిపోతుంది.",
+              "reveal_primitive_id": "total_with_far",
+              "appear_at_ms": 14500
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Only the nearest charge sets the potential; distant charges contribute nothing.",
+            "visual_counter": "The far charge q1 (r≈4.2) still adds +2.8 to the sum — dropping that term changes the total from +4.2 down to +1.4.",
+            "one_line_fix": "Every charge adds a nonzero k*q_i/r_i term; distance only shrinks it, it never makes it zero."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "does_far_charge_matter",
+          "weak_vs_strong_charge",
+          "sum_all_terms"
+        ]
+      },
+      "STATE_4": {
+        "title": "The equal +/− pair cancels — signs decide the sum",
+        "duration": 22,
+        "focal_primitive_id": "pair_cancel",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "misconception_confrontation",
+        "variable_overrides": {
+          "px": 0.0,
+          "py": -0.6
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "probe_yaxis",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "px = 0 exactly: the probe is equidistant from +q₁ and −q₂",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_cancel_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "two charges sit close — predict: a big V, or something surprising?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "pair_cancel",
+            "position": {
+              "x": 600,
+              "y": 330
+            },
+            "text": "+8.9 and −8.9 cancel to exactly 0 — that pair adds nothing",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "total_just_q3",
+            "position": {
+              "x": 360,
+              "y": 445
+            },
+            "text": "total is just q₃'s +12.0 — two charges present, yet they gave nothing",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now slide the probe onto the centre line, exactly equidistant from the positive charge q₁ and the negative charge q₂.",
+              "text_hi": "अब probe को centre line पर ले जाइए, positive charge q₁ और negative charge q₂ से exactly equidistant।",
+              "text_te": "ఇప్పుడు probe ని centre line పై తరలించండి, positive charge q₁ మరియు negative charge q₂ నుండి exactly equidistant.",
+              "reveal_primitive_id": "probe_yaxis",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Two charges sit close by. Predict the total potential V here — a big value, or something surprising?",
+              "text_hi": "दो charges पास में हैं। यहाँ total potential V predict करिए — एक बड़ी value, या कुछ surprising?",
+              "text_te": "రెండు charges దగ్గరలో ఉన్నాయి. ఇక్కడ total potential V ని predict చేయండి — ఒక పెద్ద value, లేదా ఏదైనా surprising?",
+              "reveal_primitive_id": "predict_cancel_label",
+              "appear_at_ms": 6000,
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Equal size, equal distance, opposite signs: plus eight point nine and minus eight point nine cancel to exactly zero. That pair adds nothing.",
+              "text_hi": "Equal size, equal distance, opposite signs: plus eight point nine और minus eight point nine exactly zero हो जाते हैं। वह pair कुछ नहीं जोड़ता।",
+              "text_te": "Equal size, equal distance, opposite signs: plus eight point nine మరియు minus eight point nine exactly zero కి cancel అవుతాయి. ఆ pair ఏమీ కలపదు.",
+              "reveal_primitive_id": "pair_cancel",
+              "appear_at_ms": 10000
+            },
+            {
+              "id": "s4_4",
+              "text_en": "So the total is just charge q₃'s plus twelve point zero. Two charges were present, yet together they contributed nothing.",
+              "text_hi": "तो total बस charge q₃ का plus twelve point zero है। दो charges present थे, फिर भी मिलकर उन्होंने कुछ नहीं दिया।",
+              "text_te": "కాబట్టి total కేవలం charge q₃ యొక్క plus twelve point zero. రెండు charges present గా ఉన్నాయి, అయినప్పటికీ కలిసి అవి ఏమీ contribute చేయలేదు.",
+              "reveal_primitive_id": "total_just_q3",
+              "appear_at_ms": 16000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Two charges sitting nearby must give a large potential, and the signs do not change that.",
+            "visual_counter": "An equal +q and −q at equal distance give +8.9 and −8.9, summing to exactly zero — the pair adds nothing while a single q3 gives +12.0.",
+            "one_line_fix": "Signs decide the sum: an equal +q and −q equidistant cancel to zero, no matter how many charges are present."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "why_equal_pair_cancels",
+          "signs_in_the_sum"
+        ]
+      },
+      "STATE_5": {
+        "title": "The superpower: one scalar sum vs the field's vector addition",
+        "duration": 22,
+        "focal_primitive_id": "vector_side",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "variable_overrides": {
+          "px": 2.0,
+          "py": 1.0
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "scalar_side",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "potential V: one easy scalar sum of three signed numbers",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_field_label",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "predict: can we add the field E the same easy way?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "vector_side",
+            "position": {
+              "x": 600,
+              "y": 330
+            },
+            "text": "no — each E is an arrow; add as vectors, by components first",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "split_callout",
+            "position": {
+              "x": 360,
+              "y": 445
+            },
+            "text": "V = one scalar sum; E = hard vector addition — V is the easier road",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Here is the superpower. To get the potential V, we just added three signed numbers — one easy scalar sum.",
+              "text_hi": "यह है superpower। potential V पाने के लिए हमने बस तीन signed numbers जोड़े — एक easy scalar sum।",
+              "text_te": "ఇదే superpower. potential V పొందడానికి మేము కేవలం మూడు signed numbers కలిపాం — ఒక easy scalar sum.",
+              "reveal_primitive_id": "scalar_side",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Now the electric field E at the same point. Predict: can we add the field the same easy way?",
+              "text_hi": "अब उसी point पर electric field E। Predict करिए: क्या हम field को उसी easy तरीके से जोड़ सकते हैं?",
+              "text_te": "ఇప్పుడు అదే point వద్ద electric field E. Predict చేయండి: మనం field ని అదే easy విధంగా కలపగలమా?",
+              "reveal_primitive_id": "predict_field_label",
+              "appear_at_ms": 6000,
+              "pause_after_ms": 2000
+            },
+            {
+              "id": "s5_3",
+              "text_en": "No. Each charge's field is an arrow pointing a different way. You must add them as vectors, splitting into components first.",
+              "text_hi": "नहीं। प्रत्येक charge का field एक arrow है जो अलग दिशा में point करता है। आपको उन्हें vectors की तरह जोड़ना होगा, पहले components में split करके।",
+              "text_te": "లేదు. ప్రతి charge యొక్క field వేరే వైపు point చేసే ఒక arrow. మీరు వాటిని vectors గా కలపాలి, ముందు components లోకి split చేసి.",
+              "reveal_primitive_id": "vector_side",
+              "appear_at_ms": 9000
+            },
+            {
+              "id": "s5_4",
+              "text_en": "That is the whole point: potential is one scalar sum, the field is hard vector addition. Potential is the easier road.",
+              "text_hi": "यही तो पूरा point है: potential एक scalar sum है, field hard vector addition है। potential आसान रास्ता है।",
+              "text_te": "అదే అసలు విషయం: potential ఒక scalar sum, field hard vector addition. potential సులభమైన రహదారి.",
+              "reveal_primitive_id": "split_callout",
+              "appear_at_ms": 15000
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "You drive — drag the probe, slide q₃, watch the sum update",
+        "duration": 17,
+        "focal_primitive_id": "drag_probe",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "variable_overrides": {
+          "px": 1.8,
+          "py": 1.2
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "drag_probe",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "drag the probe anywhere — the running sum of three signed terms updates live",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "q3_slider",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "slide q₃ to flip or scale it — every term and the total respond at once",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "contrast_toggle",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "ride the centre line to watch the pair cancel; toggle the field to see vectors",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now you drive. Drag the probe anywhere and watch the running sum of the three signed terms update live.",
+              "text_hi": "अब आप drive करिए। probe को कहीं भी drag करिए और तीन signed terms के running sum को live update होते देखिए।",
+              "text_te": "ఇప్పుడు మీరు drive చేయండి. probe ని ఎక్కడైనా drag చేయండి మరియు మూడు signed terms యొక్క running sum live గా update అవడం చూడండి.",
+              "reveal_primitive_id": "drag_probe",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Use the slider to flip or scale charge q₃; every signed term and the total respond at once.",
+              "text_hi": "charge q₃ को flip या scale करने के लिए slider use करिए; हर signed term और total एक साथ respond करते हैं।",
+              "text_te": "charge q₃ ని flip లేదా scale చేయడానికి slider ఉపయోగించండి; ప్రతి signed term మరియు total ఒకే సారి respond చేస్తాయి.",
+              "reveal_primitive_id": "q3_slider",
+              "appear_at_ms": 6000
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Ride the centre line to watch the positive and negative pair cancel, and toggle the field to see vectors against the simple scalar sum.",
+              "text_hi": "positive और negative pair को cancel होते देखने के लिए centre line पर जाइए, और simple scalar sum के खिलाफ vectors देखने के लिए field toggle करिए।",
+              "text_te": "positive మరియు negative pair cancel అవడం చూడడానికి centre line పై వెళ్ళండి, మరియు simple scalar sum తో పోల్చి vectors చూడడానికి field toggle చేయండి.",
+              "reveal_primitive_id": "contrast_toggle",
+              "appear_at_ms": 11500
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the potential of a system of charges when they can (1) write the total potential as the scalar superposition V = Σ k qᵢ/rᵢ and combine the per-charge contributions by adding signed NUMBERS, not vectors; (2) reject the 'combine like vectors / use directions' belief and treat V as a signed scalar with no components or angles; (3) recognise that every charge contributes a nonzero k qᵢ/rᵢ term — distance only shrinks a term, it never zeroes a far charge out of the sum; (4) reason that an equal +q and −q equidistant from the point cancel exactly to zero, so the count of nearby charges does not by itself make V large — signs and distances decide; (5) contrast the easy scalar potential sum with the FIELD at the same point, which requires vector addition by components; and (6) evaluate a numeric system potential correctly, keeping each term's sign and a 1/r (not 1/r²) falloff.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "Three charges q₁, q₂, q₃ sit at fixed positions. At a point P at distances r₁, r₂, r₃ from them, what is the total electric potential V?",
+        "options": {
+          "A": "V = k q₁/r₁ + k q₂/r₂ + k q₃/r₃ — add the three signed terms as scalars",
+          "B": "V = k(q₁+q₂+q₃)/(r₁+r₂+r₃) — add the charges and the distances in lumps",
+          "C": "The vector sum of the three k q/r contributions, combined with their directions",
+          "D": "Only k q/r for the nearest charge; the others are too far to count"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "adds charges and distances in lumps instead of summing each k qᵢ/rᵢ term separately",
+          "C": "treats potential as a vector needing directions; V is a scalar, just add the signed numbers",
+          "D": "keeps only the nearest charge, but every charge contributes a nonzero k q/r term"
+        },
+        "tested_idea": "The total potential of a system is the scalar sum V = Σ k qᵢ/rᵢ of each charge's own potential.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Several point charges are fixed in space. Write the potential they together produce at a chosen field point, in terms of each charge and its distance."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A point lies exactly equidistant from a +q charge and a −q charge of equal magnitude. What do these two charges together contribute to the potential there?",
+        "options": {
+          "A": "Exactly zero — +kq/r and −kq/r cancel: equal size, equal distance, opposite signs",
+          "B": "A large positive value, because two charges are sitting nearby",
+          "C": "Twice kq/r, because the two contributions add up",
+          "D": "kq/r, the value from just one of them"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes nearby charges must give a big potential, ignoring that opposite signs cancel",
+          "C": "adds the magnitudes instead of the signed numbers, missing the opposite signs",
+          "D": "keeps one term and drops the other, instead of summing the two opposite signed terms"
+        },
+        "tested_idea": "An equal +q and −q equidistant from a point cancel exactly to zero in the potential sum.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "On the perpendicular bisector of a +q and −q pair of equal size, what is the pair's combined contribution to the potential, and why?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "The three charges' potentials at a point are +3.4, −6.7, and +11.9 (demo units). How do you combine them to get the total potential?",
+        "options": {
+          "A": "Add the signed numbers directly: +3.4 − 6.7 + 11.9 = +8.6 — no directions or components",
+          "B": "Add them as vectors, splitting each into x and y components first",
+          "C": "Add their magnitudes: 3.4 + 6.7 + 11.9 = 22.0",
+          "D": "Keep only the largest, +11.9, since it dominates"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats the scalar potential as a vector needing components; V has no direction",
+          "C": "adds magnitudes and drops the signs, but each term keeps its own sign",
+          "D": "keeps only the largest term, but every signed term counts in the sum"
+        },
+        "tested_idea": "Potential is a signed scalar: total it by adding the signed numbers directly, no directions.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Three charges contribute potentials of −2, +9, and −4 units at a point. State the total potential and how you combined them."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "You move the probe far to the right, so one charge q₁ is now over four units away. How does that distant charge affect the total potential?",
+        "options": {
+          "A": "It still adds a small nonzero term k q₁/r₁ — large distance shrinks it but never zeroes it",
+          "B": "It drops out completely; only the nearby charges count",
+          "C": "It contributes just as much as before; distance does not matter for potential",
+          "D": "It flips the sign of the total, because it is now far away"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes a distant charge contributes nothing, but k q/r is only smaller, never zero",
+          "C": "ignores that potential falls with distance as 1/r, so a far charge contributes less",
+          "D": "invents a sign flip from distance; distance changes a term's size, not its sign"
+        },
+        "tested_idea": "Every charge contributes a nonzero k q/r term; distance shrinks a far term but never zeroes it.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "In a system of charges, one charge is much farther from the field point than the rest. Does it still appear in the potential sum? Explain."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "To find the total potential of several charges you just add signed numbers. Why is finding the total electric FIELD at the same point harder?",
+        "options": {
+          "A": "The field is a vector — each charge's E points a different way, so you must add them as vectors, by components",
+          "B": "It is not harder; you add the field magnitudes the same scalar way",
+          "C": "The field needs the same scalar sum, just with the signs dropped",
+          "D": "The field cannot be found at all once you know the potential"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats the field like the scalar potential, but the E's add as vectors with directions",
+          "C": "imagines a scalar field sum; each E is an arrow pointing a different way",
+          "D": "denies the field is computable, but vector superposition (or E = −grad V) gives it"
+        },
+        "tested_idea": "Potential is a scalar sum; the field is a vector sum needing components — that is why V is easier.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Adding the potentials of many charges is one easy sum. Explain why adding their electric fields at the same point takes more work."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Three charges give terms (charge ÷ distance, demo units): +1 at distance 1, −5 at distance 1, and +6 at distance 2. With k = 1, what is the total potential?",
+        "options": {
+          "A": "−1",
+          "B": "+9",
+          "C": "+3",
+          "D": "−2.5"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "adds the magnitudes (1 + 5 + 3) and drops the signs, ignoring that −5 subtracts",
+          "C": "keeps only the largest term (+3) instead of summing all three signed terms",
+          "D": "uses a 1/r² falloff for the third term, but potential falls as 1/r"
+        },
+        "tested_idea": "Evaluate V = Σ k qᵢ/rᵢ numerically: keep each sign and use a 1/r (not 1/r²) falloff.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Charges give terms +2 at distance 1, −3 at distance 1, and +8 at distance 2 (k = 1). Compute the total potential."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "Q1",
+        "Q3"
+      ],
+      "STATE_3": [
+        "Q4"
+      ],
+      "STATE_4": [
+        "Q2"
+      ],
+      "STATE_5": [
+        "Q5"
+      ],
+      "STATE_6": [
+        "Q6"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "system_of_charges",
+    "explorer_id": "potential_explorer",
+    "charges": [
+      {
+        "id": "q1",
+        "position": [
+          -1.2,
+          0,
+          0
+        ],
+        "charge_value": 1,
+        "label": "+q₁",
+        "color": "#EF5350"
+      },
+      {
+        "id": "q2",
+        "position": [
+          1.2,
+          0,
+          0
+        ],
+        "charge_value": -1,
+        "label": "−q₂",
+        "color": "#42A5F5"
+      },
+      {
+        "id": "q3",
+        "position": [
+          0,
+          1.4,
+          0
+        ],
+        "charge_value": 2,
+        "label": "+2q₃",
+        "color": "#EF5350"
+      }
+    ],
+    "system_defaults": {
+      "DEMO_VP": 12,
+      "DEMO_E": 12,
+      "clamp_r_min": 0.05
+    },
+    "slider_controls": {
+      "q3_value": {
+        "min": -3,
+        "max": 3,
+        "step": 1,
+        "default": 2,
+        "label": "Charge q₃ (demo nC)"
+      }
+    },
+    "colors": {
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "probe": "#FFF176",
+      "equipotential": "#4FC3F7",
+      "field": "#66BB6A",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Three charges + probe — each gives its own k q / r",
+        "visible_elements": [
+          "q1",
+          "q2",
+          "q3",
+          "probe_dot",
+          "per_charge_tags",
+          "contribution_values"
+        ],
+        "camera_position": [
+          3.2,
+          2.2,
+          5.0
+        ],
+        "caption": "",
+        "show_charge": "system",
+        "potential": {
+          "show_probe": true,
+          "probe_x": 2.0,
+          "probe_y": 1.6,
+          "v_formula": "V_total_demo",
+          "show_per_charge_lines": true,
+          "per_charge_tags_at_ms": 6500,
+          "highlight_term": "all",
+          "contribution_values_at_ms": 12500
+        },
+        "formula_overlay": "each charge: V = k q / r"
+      },
+      "STATE_2": {
+        "label": "V is a scalar — add the three signed numbers",
+        "visible_elements": [
+          "q1",
+          "q2",
+          "q3",
+          "probe_dot",
+          "running_sum_panel",
+          "sum_result"
+        ],
+        "camera_position": [
+          3.2,
+          2.2,
+          5.0
+        ],
+        "caption": "",
+        "show_charge": "system",
+        "potential": {
+          "show_probe": true,
+          "probe_x": 2.0,
+          "probe_y": 1.6,
+          "v_formula": "V_total_demo",
+          "show_running_sum": true,
+          "predict_at_ms": 6000,
+          "running_sum_at_ms": 9500
+        },
+        "formula_overlay": "V = +3.4 − 6.7 + 11.9 = +8.6"
+      },
+      "STATE_3": {
+        "label": "Push the probe far — the distant charge still counts",
+        "visible_elements": [
+          "q1",
+          "q2",
+          "q3",
+          "probe_dot",
+          "far_term_highlight",
+          "total_with_far"
+        ],
+        "camera_position": [
+          3.6,
+          2.0,
+          5.2
+        ],
+        "caption": "",
+        "show_charge": "system",
+        "potential": {
+          "show_probe": true,
+          "probe_x": 3.0,
+          "probe_y": 0.6,
+          "v_formula": "V_total_demo",
+          "show_running_sum": true,
+          "highlight_term": "q1_far",
+          "predict_at_ms": 5500,
+          "far_term_at_ms": 9000,
+          "total_with_far_at_ms": 14500
+        },
+        "formula_overlay": "far q₁ adds +2.8 → total +4.2"
+      },
+      "STATE_4": {
+        "label": "Equidistant +/− pair cancels — total is just q₃",
+        "visible_elements": [
+          "q1",
+          "q2",
+          "q3",
+          "probe_dot",
+          "pair_cancel",
+          "total_just_q3"
+        ],
+        "camera_position": [
+          3.2,
+          2.0,
+          5.2
+        ],
+        "caption": "",
+        "show_charge": "system",
+        "potential": {
+          "show_probe": true,
+          "probe_x": 0.0,
+          "probe_y": -0.6,
+          "v_formula": "V_total_demo",
+          "show_running_sum": true,
+          "show_cancellation": true,
+          "predict_at_ms": 6000,
+          "cancellation_at_ms": 10000,
+          "total_just_q3_at_ms": 16000
+        },
+        "formula_overlay": "+8.9 − 8.9 = 0 → total +12.0 (just q₃)"
+      },
+      "STATE_5": {
+        "label": "Scalar sum vs the field's vector addition (the aha)",
+        "visible_elements": [
+          "q1",
+          "q2",
+          "q3",
+          "probe_dot",
+          "scalar_side",
+          "vector_side"
+        ],
+        "camera_position": [
+          3.2,
+          2.2,
+          5.0
+        ],
+        "caption": "",
+        "show_charge": "system",
+        "potential": {
+          "show_probe": true,
+          "probe_x": 2.0,
+          "probe_y": 1.0,
+          "v_formula": "V_total_demo",
+          "show_field_contrast": true,
+          "predict_at_ms": 6000,
+          "field_contrast_at_ms": 9000,
+          "split_callout_at_ms": 15000
+        },
+        "formula_overlay": "V: one scalar sum   ·   E: vector sum by components"
+      },
+      "STATE_6": {
+        "label": "Explore — drag probe, slide q₃, live running sum",
+        "visible_elements": [
+          "q1",
+          "q2",
+          "q3",
+          "probe_dot_draggable",
+          "v_readout_live",
+          "q3_slider"
+        ],
+        "camera_position": [
+          3.4,
+          2.3,
+          5.2
+        ],
+        "caption": "",
+        "show_charge": "system",
+        "show_sliders": true,
+        "sliders": [
+          "q3_value"
+        ],
+        "potential": {
+          "show_probe": true,
+          "probe_x": 1.8,
+          "probe_y": 1.2,
+          "v_formula": "V_total_demo",
+          "draggable_probe": true,
+          "live_v_readout": true,
+          "show_field_contrast": true,
+          "idle_auto_sweep": true
+        },
+        "formula_overlay": "drag the probe — V = Σ k qᵢ/rᵢ (live)"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field": "#66BB6A",
+      "equipotential": "#4FC3F7",
+      "probe": "#FFF176"
+    }
+  }
+}

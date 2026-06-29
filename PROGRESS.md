@@ -1,5 +1,25 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-06-29 (CH.5 #2: `bar_magnet_in_uniform_field` — §5.2.3, the magnetic twin of `electric_dipole_in_field`. New `buildBarMagnetInField` scenario that REUSES the dipole rotation engine + apply/update/glow unchanged (bar body + dpf_* ids). 8-state JSON mirroring the electric-dipole arc + the oscillation period T = 2π√(I/mB). tsc 0 · validate 97 PASS/0 FAIL · THE EYE 34/34 · every state verified · 93 TTS clips. NOT committed.)
+
+### What it teaches (NCERT Ch.5 §5.2.3; conceptual-only, EPIC-L-first)
+A bar magnet (moment m) in a UNIFORM field B: pole forces ±mB form a **couple** → ΣF = 0 but **τ = m × B = mB·sinθ** rotates it toward alignment (max at 90°, zero at 0°/180°); released near alignment it **oscillates** about θ=0 with **T = 2π√(I/mB)** (the vibration magnetometer); **U = −m·B = −mB·cosθ** (θ=0 stable min, θ=180° unstable max). PRIMARY aha = S4 (ΣF=0 yet τ≠0 → turns without translating). The five errors: bodily-push, no-force, τ-max-at-0°, 180°-as-stable, period-independent-of-field.
+
+### The build (maximal reuse — the electric-dipole sibling was already proven)
+- Exploration showed `buildDipoleInField` hard-codes a two-charge body, so a **new `buildBarMagnetInField`** was needed — but it tags its elements with the SAME `dpf_*` ids/types + `torque_loop_group`/`loop_group`, so **`applyDipoleInFieldState` / `updateDipoleInFieldFrame` / `applyDipoleInFieldGlow` and the torque-loop rotation engine are reused UNCHANGED** (only one scenario builds at a time). Only the body (a bar: red N + blue S halves + N/S labels) and the labels (m, B, F = mB) differ. Added the scenario to the shared apply/update/glow dispatch conditions.
+- **Delta vs the electric-dipole sibling:** that concept *deferred* the oscillation period; here **T = 2π√(I/mB) is taught** (S7 + the sandbox readout) — NCERT §5.2.3 core, the vibration-magnetometer seed.
+- **Every state moves:** added an additive `idle_sway` to the shared dipole frame (a gentle continuous sway about the static angle; fires only when a JSON state sets `idle_sway_deg`, so the electric-dipole sibling is untouched) for S1/S2/S3/S6; S4/S5/S7 already rotate/sweep.
+- New `#bmf_sliders` panel (m/B/θ + τ/U/**T** readout) + CSS, setting `slider_p`=m, `slider_E`=B so the shared frame's τ-scaling works.
+- 8-state JSON mirroring `electric_dipole_in_field.json` (p→m, E→B, charges→poles, +qE/−qE→F=mB, U=−p·E→−m·B), + the period; assessment 6-Q (incl. a period-dependence stretch Q) + coverage_map + misconception_watch. Registered at all sites; `_seed_bar_magnet_in_uniform_field_cache.ts`.
+
+### Verification
+- `tsc` 0 · `validate:concepts` **97 PASS / 0 FAIL** · THE EYE **34/34, $0**.
+- Read every frozen frame: S1 bar + moment m ✓; S4 the couple (two F=mB arrows), ΣF=0 badge, τ, θ-arc, full B field ✓ (aha); S7 oscillation about θ=0 + U-meter dot at U-min + period caption ✓; S8 sandbox m/B/θ with live τ=1.77, U=−1.77, **T=2.00 s** (all physically exact). Minor: τ label slightly overlaps the ΣF=0 badge in S4 — inherited from the approved electric-dipole layout.
+- TTS: **93 clips** (EN/HI/TE × 31 sentences). Review site serving: **http://localhost:8080/bar_magnet_in_uniform_field/** (HTTP 200).
+
+### Next
+- Founder confirm → commit. Then Ch.5 #3 `gauss_law_magnetism` (§5.3, ∮B·dA = 0 / no monopole).
+
 ## 2026-06-29 (CHAPTER 5 OPENED: `bar_magnet_as_dipole` — first concept of NCERT Ch.5 "Magnetism and Matter" (§5.2 The Bar Magnet). Brand-new face-on `bm_*` field_3d scenario + 8-state concept JSON. tsc 0 · validate 96 PASS/0 FAIL · THE EYE 34/34 · every state visually verified · all 90 TTS clips (EN/HI/TE) generated. NOT committed — pending founder/Asmi review.)
 
 ### What it teaches (NCERT Ch.5 §5.2; conceptual-only, EPIC-L-first)
