@@ -23,8 +23,9 @@ Verify a candidate concept JSON is ready to ship. Zod-pass ≠ works — session
 - **Gate 1** — `npx tsc --noEmit` = 0 errors.
 - **Gate 2** — `npm run validate:concepts` PASS + zero canvas-bounds warnings on target.
 - **Gate 3a** — CLAUDE.md §6 mechanical rules: Rule 15 (advance_mode variety), Rule 19 (≥3 primitives/state), Rule 23 (prerequisites advisory).
-- **Gate 3c** — Socratic-reveal discipline — **only if any state has `teaching_method: "narrative_socratic"` (PCPL). Does NOT fire for field_3d diamonds** (all current magnetism/electric diamonds).
+- **Gate 3c** — Socratic-reveal discipline — **LEGACY: only if any state has `teaching_method: "narrative_socratic"` (pre-Rule-31 PCPL). Does NOT fire for field_3d diamonds or any new concept.**
 - **Gate 3d** — E42 physics 9-condition check.
+- **Gate 3e** — Rule 31 distinct-motion + contextual-controls discipline — **ALL new concepts** (per-state control table honored; no static state; no two states' motion alike; explore-last has all controls; no Socratic artifacts).
 - **Gate 4 (+4a, +4b)** — live visual walk both paths + classifier-reachability + pill freshness. For field_3d diamonds this is `visual:eyes` / direct capture — **actually look at every state.**
 - **Gate 7** — console + log discipline (zero errors/warnings on target routes).
 - **Gate 8** — `engine_bug_queue` regression check ← **the scar list.** Every probe relevant to the candidate must pass. This is the mechanism by which the pre-flight gets smarter every week as the reviewer surfaces new mistake-classes (Phase 3).
@@ -167,7 +168,11 @@ Any failure on the target = FAIL, route to json_author (bounds) or architect (st
 
 **Reversal criteria** for promoting any of 3b.i/3b.ii/3b.iii to a dedicated agent: if 3 consecutive Diamonds PASS quality-auditor but fail manual founder review on the same lens (e.g., FCI items missed repeatedly on Newtonian concepts), promote that lens to its own agent file. Strongest candidate for promotion: 3b.iii (McDermott + FCI) — most distinct lens, least overlap with existing gates.
 
-**Part 3c — Socratic-reveal discipline (session 33, v2.2 check)**
+**Part 3c — Socratic-reveal discipline (session 33, v2.2 check) — LEGACY ONLY (Rule 31, 2026-07-02)**
+
+> Fires ONLY on pre-Rule-31 concepts that carry `teaching_method: "narrative_socratic"` states (PCPL-era).
+> New concepts have no narrative_socratic states (Rule 31 forbids authoring them) → this gate is N/A;
+> their pacing is checked by Part 3e below instead.
 
 For every state with `teaching_method: "narrative_socratic"`:
 1. At least ONE primitive in `scene_composition` has `reveal_at_tts_id` set (otherwise the state is a static dump — every primitive visible at t=0 = fail).
@@ -175,9 +180,32 @@ For every state with `teaching_method: "narrative_socratic"`:
 3. The `reveal_at_tts_id` values point to sentence ids that actually exist in `teacher_script.tts_sentences`.
 4. The prediction-question sentence (long pause) comes BEFORE its revealing sentence (not after — that's backwards pedagogy).
 
-**States allowed to skip**: introductory hook (t=0 is pure setup, no new physics revealed), final interactive/slider state, misconception-confrontation STATE_1 (wrong belief is shown IMMEDIATELY, not hidden for reveal).
+**States allowed to skip** (legacy concepts only — under Rule 31 NO state may be static, hooks included): introductory hook (t=0 is pure setup, no new physics revealed), final interactive/slider state, misconception-confrontation STATE_1 (wrong belief is shown IMMEDIATELY, not hidden for reveal).
 
 Any violation = FAIL, route to physics_author (if TTS↔primitive binding is missing) or architect (if the state's teaching_method itself is wrong).
+
+**Part 3e — Distinct-motion + contextual-controls discipline (Rule 31, added 2026-07-02) — ALL new concepts**
+
+The new-model counterpart of 3c. For every new (Rule-31-era) concept, check against the architect's
+per-state control table (skeleton section 3 — its absence is itself a Gate 0 FAIL):
+1. **Distinct motion:** every state animates (verify via THE EYE frames / the scenario's per-state mode);
+   NO state is static (a state with zero motion AND zero live controls = static dump = FAIL); NO two
+   states share the same motion/choreography (compare what actually moves, not just camera).
+2. **Contextual controls:** each state's visible control rows match the declared table — only the
+   slider(s) relevant to that state's teaching; the final explore state exposes ALL
+   (`interaction_complete`). A control visible on a state whose concept it doesn't serve = FAIL.
+3. **One panel:** the control panel is built ONCE in the scenario build fn; per-state visibility is
+   row show/hide (not per-state widget rebuilds); a control appearing in multiple states keeps the
+   SAME screen position + row order across them.
+4. **No Socratic artifacts:** no `wait_for_answer` advance_mode, no `pause_after_ms` prediction pauses,
+   no `narrative_socratic` teaching_method on a new concept.
+5. **Pacing:** guided beats ~28–35s (soft — flag >45s or <15s as Concern, not FAIL); final explore
+   state duration 0/open.
+
+Violations: route content-table mismatches to json_author; a missing/incoherent control table to
+architect; panel-rebuild / position-drift defects to `peter_parker:renderer_primitives`.
+Reference implementations: `faraday_law_induction` (S1–S4 none · S5 speed+turns · S6 all),
+`magnetisation_and_intensity` (current on S1–S4 · +material on S5/S6).
 
 **Part 3d — E42 Physics Validator 9 conditions** (CLAUDE_ENGINES.md Tier 9):
 1. **mg_perp direction symmetry** — normal reaction perpendicular to surface, opposite to mg_perp component
@@ -325,7 +353,7 @@ Two Tier 9 engines (NOT_STARTED) will automate most manual work: **E43 Visual Pr
 | **Production-routing disconnect (31.5)** | Gate 4 dual-path check — concept passes `/test-engines` but production `/` uses mechanics_2d. Fix: add to `PCPL_CONCEPTS` set. |
 | **Classifier-prompt drift (32)** | Gate 4a direct-API probe — `conceptId` in response must match requested concept, not a legacy bundle name. Boot-time assertion in `intentClassifier.ts` auto-surfaces mismatches. Fix: add target to CLASSIFIER_PROMPT's VALID CONCEPT IDs block. |
 | **Pill stale-fingerprint (32)** | Gate 4b — chat-context-switch via sim pill. `GENERIC_FALLBACK_CONFIG` ("Simulation temporarily unavailable") with correct `concept` slug in request = stale `fingerprintKey` carried from prior chat turn. Defensive guard in `/api/generate-simulation` should catch; if it doesn't, fingerprintKey + concept both pointed at wrong ID. Session 33 added upstream fix: `/api/chat` on_demand_available response now includes pill's `concept_id` + `fingerprintKey`; LearnConceptTab updates `lastFingerprintKeyRef` on pill offer. |
-| **Static-dump state (33)** | Gate 3c — state with `teaching_method: narrative_socratic` but zero primitives bound to `reveal_at_tts_id`. Every primitive visible at t=0 = no Socratic reveal. Fail; route to physics_author for within-state timeline. |
+| **Static-dump state (33; redefined Rule 31, 2026-07-02)** | New concepts: Gate 3e — a state with NO distinct motion AND NO live control is a static dump. Fail; route to json_author (or architect if the control table itself lacks the beat). Legacy (`narrative_socratic`) concepts: Gate 3c — zero primitives bound to `reveal_at_tts_id` = static dump; route to physics_author for within-state timeline. |
 | **Bug-queue probe regressions (NEW session 36)** | Gate 8 — execute every FIXED row's `probe_logic` with `concepts_affected` matching the candidate or wildcarded. Any probe failure surfaces a regression of that bug class against the new artifact. |
 
 ## Anti-plagiarism probe (CLAUDE.md §5)
@@ -432,12 +460,12 @@ Any sub-check missing or marked "TBD" = FAIL, route to `alex:architect` with rea
 
 **Renderer-family note (REQUIRED before walking 15b/15c — determines which fields you audit):**
 - **(a) PCPL / parametric_renderer concepts** (states carry `teaching_method: "narrative_socratic"`): within-state reveal is `scene_composition` primitives bound via `reveal_at_tts_id`, and prediction think-time is `pause_after_ms` on the prediction tts_sentence. **Gate 3c runs underneath; Gate 15 is the intent layer above it.**
-- **(b) field_3d concepts** (no `teaching_method`; `renderer_pair = field_3d` — e.g. ALL magnetism diamonds): **Gate 3c DOES NOT FIRE** (its trigger `teaching_method: "narrative_socratic"` is absent), so **Gate 15 is the ONLY cognitive-flow check in the audit.** Within-state motion lives in `field_3d_config.states.STATE_N.*` keyed by `reveal_at_ms` (absolute ms after state-enter, synced to TTS by author intent), **NOT** `reveal_at_tts_id`. When you walk 15b/15c on a field_3d concept: (i) **15b pause** — confirm the prediction tts_sentence carries `pause_after_ms ≥ 2000` AND the corresponding `field_3d_config` `reveal_at_ms` sits AFTER that pause window (so the answer does not appear during think-time); a prediction sentence with no `pause_after_ms` = 15b FAIL. (ii) **15c motion** — cite the `field_3d_config` `reveal_at_ms` primitive (`per_turn_field_circles`, `radial_cancellation_arrows`, `axial_buildup_arrows`, `right_hand.animate_curl`, etc.), NOT `reveal_at_tts_id`. (iii) **annotation orphaning** — a `scene_composition` annotation that names a referent (e.g. `cancel_label` naming the radial arrows) must NOT render at t=0 while its referent `reveal_at_ms` is delayed; flag as a 15c timing violation. **Do NOT instruct json_author to add `reveal_at_tts_id` to a field_3d primitive — the renderer does not read it.**
+- **(b) field_3d concepts** (no `teaching_method`; `renderer_pair = field_3d` — e.g. ALL magnetism diamonds): **Gate 3c DOES NOT FIRE** (its trigger `teaching_method: "narrative_socratic"` is absent); Gate 3e (Rule 31) + Gate 15 carry the cognitive-flow audit. Rule-31-era field_3d concepts author motion in the scenario's per-state block (mode-driven, like `faraday.mode`) rather than `reveal_at_ms` — audit what THE EYE frames actually show. Within-state motion lives in `field_3d_config.states.STATE_N.*` keyed by `reveal_at_ms` (absolute ms after state-enter, synced to TTS by author intent), **NOT** `reveal_at_tts_id`. When you walk 15b/15c on a field_3d concept: (i) **15b pause** — confirm the prediction tts_sentence carries `pause_after_ms ≥ 2000` AND the corresponding `field_3d_config` `reveal_at_ms` sits AFTER that pause window (so the answer does not appear during think-time); a prediction sentence with no `pause_after_ms` = 15b FAIL. (ii) **15c motion** — cite the `field_3d_config` `reveal_at_ms` primitive (`per_turn_field_circles`, `radial_cancellation_arrows`, `axial_buildup_arrows`, `right_hand.animate_curl`, etc.), NOT `reveal_at_tts_id`. (iii) **annotation orphaning** — a `scene_composition` annotation that names a referent (e.g. `cancel_label` naming the radial arrows) must NOT render at t=0 while its referent `reveal_at_ms` is delayed; flag as a 15c timing violation. **Do NOT instruct json_author to add `reveal_at_tts_id` to a field_3d primitive — the renderer does not read it.**
 
 Walk 15a–15d on **EVERY EPIC-L state** (not a sample — the four-question lens is the per-state strategic presence check; sampling defeats its purpose and would miss a systemic regression, e.g. a 2-state spot-check that happens to draw only a passing state):
 
 - **15a.** "What student doesn't know" is named in physics terms ("the axial direction of B is invisible until the blue arrows arise"), not abstract ("they don't know the answer yet").
-- **15b.** "What makes them feel confusion" cites a specific pause beat / primitive visibility ("`pause_after_ms 3000` on `s3_2`; cancellation arrows hidden until `reveal_at_ms 6000`"). A prediction sentence with no `pause_after_ms ≥ 2000` fails 15b — verify against the JSON, do not take the author's word.
+- **15b.** "What makes them feel confusion" cites a specific beat. **Rule-31 concepts (no prediction sentences):** the MOTION creates the curiosity beat — cite the choreography window where the surprising thing is shown before it is resolved (e.g. "S1: needle pinned at zero for the full beat despite Φ = 7.3 mWb on the readout"); the formula overlay / resolving label must land AFTER that window, not at t=0. **Legacy Socratic concepts:** cites a pause beat / primitive visibility ("`pause_after_ms 3000` on `s3_2`; cancellation arrows hidden until `reveal_at_ms 6000`"); a prediction sentence with no `pause_after_ms ≥ 2000` fails 15b — verify against the JSON, do not take the author's word.
 - **15c.** "What moves to make physics visible" cites a primitive with `reveal_at_ms` (field_3d) or `animate_in` / `reveal_at_tts_id` (PCPL), and motion precedes the words.
 - **15d.** "Where the student's hand/eye goes" cites a focal primitive or annotation position — and `focal_primitive_id` must point at the physics-bearing element, not the top title label. For directional-rule states (RHR, FBD, vector decomposition): for **field_3d**, confirm `field_3d_config.states.STATE_N.extras.right_hand` has `animate_curl: true` (+ `fade_from_case` for grip-swap states) — a static hand with `animate_curl` absent/false on an RHR state = 15d FAIL with escalation note `[escalation: peter_parker:renderer_primitives — RHR hand static, no animate_curl]`. A missing `reveal_at_tts_id` on `right_hand` is NOT a 15d finding for field_3d. For **PCPL**, confirm a hand-mirror gesture primitive is present OR an explicit escalation note exists.
 
@@ -453,7 +481,7 @@ Any state failing >2 of the four checks 15a–15d = FAIL, route to `alex:json_au
 
 Fire only when the concept carries an `assessment` block (phase-in carve-out, same pattern as Gate 14). Gates **19 + 20 are machine-enforced** in `src/schemas/conceptJson.ts` `.superRefine` (hard FAIL); the auditor adds the judgment halves below. Gates 16–18 are auditor-judgment now; full machine enforcement is P2. (Gate 15 = Pass-2 four-question audit, now live above.) See `physics-mind/docs/COMPREHENSION_LOOP_PLAN.md`.
 
-- **Gate 16 — Predict-Observe-Explain (POE), Rule 16a.** Every concept proactively confronts its key wrong belief(s) INSIDE EPIC-L: the state teaching a misconception-bearing idea carries a `misconception_watch` entry + a predict→reveal beat (student predicts BEFORE the reveal). `misconception_watch` is the hook. Target ≥2 POE states per EPIC-L. Confirm EPIC-C is the reactive *fallback* (16b), not the only place the belief is confronted. Auditor-judgment now.
+- **Gate 16 — Misconception confrontation, Rule 16a (delivery amended 2026-07-02).** Every concept proactively confronts its key wrong belief(s) INSIDE EPIC-L: the state teaching a misconception-bearing idea carries a `misconception_watch` entry + a **straightforward contrast beat** (the choreography shows the wrong expectation's consequence, then the real physics — no predict→reveal, no student-answer pause on new concepts; legacy Socratic concepts keep their predict→reveal form). `misconception_watch` is the hook. Target ≥2 confrontation states per EPIC-L. Confirm EPIC-C is the reactive *fallback* (16b), not the only place the belief is confronted. Auditor-judgment now.
 - **Gate 17 — One new variable per state.** Each EPIC-L state introduces ≤1 new physical variable/symbol; a state introducing μs + threshold + inequality at once is overloaded → split. Auditor-judgment now (symbol-count heuristic warning is a later validator add).
 - **Gate 18 — Concrete before abstract.** First teaching state is a concrete visible scene; no general-formula-only state precedes a concrete one. Auditor-judgment now.
 - **Gate 19 — Coverage (machine-enforced, hard FAIL).** In `conceptJson.ts`: **19a** coverage_map required when assessment present; **19b** every `teaches_state` is a real EPIC-L state; **19c** by_state keys + listed q_ids are real; **19d** no orphan state (neither assessed nor in `non_assessed_states`); **19e** no uncovered question (every q placed in `by_state`); **19f** each `teaches_state` agrees with its `by_state` placement. **Auditor judgment:** `non_assessed_states` are TRULY non-teaching (hook / interactive sliders), not a dodge.

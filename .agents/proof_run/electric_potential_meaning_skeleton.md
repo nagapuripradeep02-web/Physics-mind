@@ -1,5 +1,11 @@
 # Architect skeleton — `electric_potential_meaning`
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 **Concept:** Electric Potential — Work Done per Unit Charge · **chapter:** Class 12, Electrostatic Potential and Capacitance (Ch.2) §2.1 Introduction + §2.2 Electrostatic Potential · **renderer:** `field_3d`, scenario `point_charge_positive` (equipotential shells = the hero primitive) · **schema:** v2.3 · Authored 2026-06-26.
 
 **Status:** Pass-1 v2.3 skeleton. CONCEPTUAL-ONLY (Rule 20 suspension — no `mode_overrides`). EPIC-L-first (Rule 11 / 2026-06-10 — no `epic_c_branches`; misconceptions confronted inside EPIC-L via Rule 16a). This is the **foundation/meaning** diamond of Ch.2: it teaches what V *means* (V = W/q) and stops short of the V = kQ/r formula, which is a separate sibling (`electric_potential_point_charge`) that will declare THIS one as a prerequisite.

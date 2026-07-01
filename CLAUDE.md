@@ -131,6 +131,11 @@ EPIC-L: 2–3 (very simple) … 10–12 (very complex). MICRO/HOTSPOT = exactly 
 Quality test: "could a student who watches ALL states answer any exam question on this concept?"
 (EPIC-C / deep-dive / drill-down / board state counts are DORMANT — CLAUDE_RULES.md.)
 
+**Pacing + shape (Rule 31):** guided states are straightforward distinct-motion beats **~28–35s** each
+(the final explore state = 0/open); no two states alike, no static state (DISCUSSIONS Session 78
+distinct-pictures grading + Session 79 straightforward model). Exemplars: `faraday_law_induction`,
+`magnetisation_and_intensity`.
+
 ---
 
 ## §6 — OPERATIONAL CONTRACTS (never violate)
@@ -195,10 +200,12 @@ Reveals/motion run on the state's own clock (`PM_simTimeMs`), never on TTS event
 
 ### Self-review checklist (before declaring a concept done)
 `tsc` 0 · `validate:concepts` target PASSES · Rule 15 (≥2 advance_mode) · Rule 16a (EPIC-L confronts the
-wrong belief) · Rule 19 (≥3 primitives/state) · Rule 24 (labels/equations only, reads sound-off) ·
-Rule 25 (foundation-first, no untaught term, explanation co-located with its visual) · Rule 27 (new
-physics objects = explorer pattern: stable ID + params) · Rule 29 (emphasis = brightness, never size — no zoom/bulge) · Indian anchor, plain English · **THE EYE**
-(§5 ③) with zero new `engine_bug_queue` rows.
+wrong belief via a straightforward contrast beat) · Rule 19 (≥3 primitives/state) · Rule 24
+(labels/equations only, reads sound-off) · Rule 25 (foundation-first, no untaught term, explanation
+co-located with its visual) · Rule 27 (new physics objects = explorer pattern: stable ID + params) ·
+Rule 29 (emphasis = brightness, never size — no zoom/bulge) · **Rule 31 (per-state contextual
+controls; distinct motion every state, no static state; explore-last)** · Indian anchor, plain
+English · **THE EYE** (§5 ③) with zero new `engine_bug_queue` rows.
 
 ---
 
@@ -221,8 +228,8 @@ physics objects = explorer pattern: stable ID + params) · Rule 29 (emphasis = b
 12. **[A]** Sonnet picks scenarios ONLY from `available_renderer_scenarios` — never invents.
 13. **[A]** `teacher_script` uses `text_en` (language is a pipeline responsibility).
 14. **[A]** Escape sequences: use `\\u0027` not `\'` in template literals.
-15. **[A]** `advance_mode` per state — variety is pedagogy; reject all-`auto_after_tts`.
-16. **[A]** Confront the wrong belief explicitly — **16a** proactively inside EPIC-L (`misconception_watch` + predict→reveal); **16b** if an EPIC-C branch fires, STATE_1 shows the real wrong belief, never neutral.
+15. **[A]** `advance_mode` per state — ≥2 distinct modes (Gate 12); reject all-`auto_after_tts`. No mode is individually required; `wait_for_answer` is LEGACY (never authored on new concepts — Rule 31).
+16. **[A]** Confront the wrong belief explicitly — **16a** proactively inside EPIC-L (`misconception_watch` + a straightforward contrast beat: show the wrong expectation's consequence, then the real physics — no predict-pause); **16b** if an EPIC-C branch fires, STATE_1 shows the real wrong belief, never neutral.
 17. **[A]** Everything may learn, but only via the offline human-reviewed gate; no un-reviewed runtime generation decides physics (Learning Model — APPENDIX §C).
 18. **[A]** Sonnet banned from uncached live serving paths for verified content. **[D]** Deep-dive is NOT runtime-generated (button → feedback form; child states hand-authored on analytics trigger).
 19. **[A]** Every state has `scene_composition.primitives.length ≥ 3`.
@@ -236,7 +243,8 @@ physics objects = explorer pattern: stable ID + params) · Rule 29 (emphasis = b
 27. **[A]** Every new primitive ships a stable addressable ID + key params via postMessage/slider (explorer pattern; `biot_explorer` is the seed).
 28. **[V2]** Every new field_3d sim ships a "Professor Pack" as DATA (concept JSON knobs/objects/states + reviewed `voice_professor/<id>.json`), never new engine code. Generic verbs over named objects; never invent per-sim ops. (§4)
 29. **[A]** Emphasis is brightness, NEVER size — no zoom-in/zoom-out "bulge" on any element. Focal brightens + peers dim via `applyGlowEmphasis()`; named meshes (the 3D hand) stay static, full-bright, never dim (`brightenOnly`); a vector's length changes ONLY when the real physical magnitude does (e.g. `tauThrob`). (CLAUDE_RULES.md)
-30. **[A]** Stored narration uses Sarvam **bulbul:v3** (speaker `priya`), not v2 — v3 pronounces inline code-mixed English / Romanized symbols natively. **Never transliterate** inline English to Telugu/Hindi script (Sarvam: transliteration *degrades* quality). **Expand bare single-letter physics symbols to their full spoken name in the narration** (E→"electric field E", V→"potential V", B→"magnetic field B", I→"current I", F→"force F", …) — concept-correct meaning, formula bodies stay compact; on-canvas labels stay symbolic (Rule 24). **Colour names stay ENGLISH in the Hindi + Telugu narration** (founder 2026-06-29) — write red/blue/yellow/green/purple/amber in Latin inside `text_hi`/`text_te`, never translated (red→लाल/ఎరుపు, blue→नीला/నీలం, etc.); same code-mixed reasoning as no-transliteration. Defaults live in `generate_tts_audio.ts`. (CLAUDE_RULES.md)
+30. **[A]** Stored narration uses Sarvam **bulbul:v3** (speaker `priya`), not v2 — v3 pronounces inline code-mixed English / Romanized symbols natively. **Never transliterate** inline English to Telugu/Hindi script (Sarvam: transliteration *degrades* quality). **Expand bare single-letter physics symbols to their full spoken name in the narration** (E→"electric field E", V→"potential V", B→"magnetic field B", I→"current I", F→"force F", …) — concept-correct meaning, formula bodies stay compact; on-canvas labels stay symbolic (Rule 24). **Colour names stay ENGLISH in the Hindi + Telugu narration** (founder 2026-06-29) — write red/blue/yellow/green/purple/amber in Latin inside `text_hi`/`text_te`, never translated (red→लाल/ఎరుపు, blue→नीला/నీలం, etc.); same code-mixed reasoning as no-transliteration. Defaults live in `generate_tts_audio.ts`. **30f (2026-07-02): ship EN + Telugu AUDIO per concept — rendered LAST (after founder visual approval, before teacher handoff); Hindi text-only until a Hindi market exists; more languages only after ~25-chapter coverage + a native reviewer each.** (CLAUDE_RULES.md)
+31. **[A]** **Straightforward + per-state contextual controls (founder 2026-07-01/02; Sessions 78/79).** Guided states = straightforward distinct-motion beats (~28–35s, no Socratic predict→reveal, no static state, no two states alike); each state exposes ONLY the slider(s) relevant to what it teaches; the final explore state exposes ALL (`interaction_complete`). Built as presets over ONE engine: control panel built once, rows shown/hidden per state; a shared slider keeps the same screen position; the per-state control table is a REQUIRED design artifact. Exemplars: `faraday_law_induction`, `magnetisation_and_intensity`. (CLAUDE_RULES.md)
 
 ---
 

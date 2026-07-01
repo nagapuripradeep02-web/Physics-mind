@@ -1,5 +1,11 @@
 # vector_head_to_tail — Architect Skeleton (session 56 proof run, Sim 1)
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 Produced by: architect agent (session 56.a, 2026-05-05)
 Upstream inputs: project CLAUDE.md, .agents/architect/CLAUDE.md, plan file [read-and-analyze-chart-inherited-seal.md](C:/Users/PRADEEEP/.claude/plans/read-and-analyze-chart-inherited-seal.md)
 Target file: `src/data/concepts/vector_head_to_tail.json` (NEW — does not exist yet)

@@ -1,5 +1,11 @@
 # Physics-author block — `magnetic_field_solenoid`
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 Consumes the architect skeleton at `magnetic_field_solenoid_skeleton.md` (Diamond #4, M4 binary-gate validator). CONCEPTUAL-ONLY per `MAGNETISM_ARCHITECTURE.md` M1–M6 carve-out. Board-mode mark scheme + derivation_sequence explicitly DEFERRED to M7. Competitive mode deferred to M8.
 
 **DC Pandey check:** Consulted Ch.26 §26.8 table of contents only for scope (long solenoid B = μ₀nI inside, ≈0 outside). No formulas, examples, figure references, or teaching sequences imported. Variables, formulas, drill-down phrasings, and reveal timings authored from first principles.

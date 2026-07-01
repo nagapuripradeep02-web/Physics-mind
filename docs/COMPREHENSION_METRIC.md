@@ -186,9 +186,9 @@ When a state's score drops below 80%, compute its `state_failure_signature` from
 
 | Signature | Pattern | Likely cause | Fix recipe |
 |---|---|---|---|
-| `confused_engaged` | high dwell (>2× median) + 1+ replays + asked_explain or typed_confusion | Student is trying but the explanation isn't landing | Add Socratic reveal pacing; insert prediction question; slow choreography |
+| `confused_engaged` | high dwell (>2× median) + 1+ replays + asked_explain or typed_confusion | Student is trying but the explanation isn't landing | Add a distinct motion beat that SHOWS the confusing step; add the contextual slider for that variable; slow choreography (Rule 31 — not prediction pauses) |
 | `skipped_no_engagement` | low dwell (<0.5× median) + no interaction + low score | Student tuned out before any insight landed | Redesign hook state; lead with surprise/contradiction; shorter intro |
-| `almost_there` | medium dwell + 1+ replay + score 60-79% | Concept is close to landing; one more clarifying state would close gap | Insert an intermediate state OR extend Socratic reveal of existing one |
+| `almost_there` | medium dwell + 1+ replay + score 60-79% | Concept is close to landing; one more clarifying state would close gap | Insert an intermediate motion beat OR extend the existing state's choreography window (Rule 31) |
 | `interactive_failure` | reached state but completed=false on interactive state | Interactive controls confusing or insufficient guidance | Redesign sliders/controls; add starter values; add hint after 10s idle |
 | `abandoned_mid_concept` | abandoned=true mid-sim | Pacing too slow OR content too dense at this point | Tighten dialogue; cut redundant primitives; check spatial-contiguity Gate 3b.ii |
 | `passive_pass` | low dwell + no interaction + high score (>85%) | Student already knew this; state may be skippable for this aspect | Move state behind a "Show me again" toggle OR mark as `auto_advance` for advanced learners |
@@ -282,9 +282,9 @@ TOP CONFUSION PHRASES TYPED:
 RECENT 10 SESSIONS:
   [list with timestamps, scores, interaction summaries]
 
-RETOUCH SUGGESTIONS (from signature):
-  → Add Socratic reveal: pause 3s before showing the field-direction primitive
-  → Insert a prediction question: "Before I show you — which way will the field point?"
+RETOUCH SUGGESTIONS (from signature — Rule 31 vocabulary):
+  → Add a motion beat: animate the field-direction build-up before the formula overlay lands
+  → Expose the contextual slider for the confusing variable on that state
   → Consider splitting into STATE_5a (single-turn RHR review) + STATE_5b (apply to solenoid)
 ```
 

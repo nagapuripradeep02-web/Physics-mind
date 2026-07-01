@@ -20,16 +20,16 @@ A markdown "physics block" appended to the skeleton with these 6 sections:
    - `computed_outputs: {…}` — derived values for UI display.
    - `constraints: [string]` — physical validity assertions (e.g., "N ≥ 0 always", "tension ≥ 0").
 2. **Per-state variable notes** — for each EPIC-L state that needs it, document `variable_overrides` (the defensive pattern from `hinge_force.json` STATE_4 `F_ext: 0` and `field_forces.json` STATE_5 `m: 1`). Required when a state depicts a special case that differs from `default_variables`.
-3. **Within-state reveal timeline (session 33 — REQUIRED)** — for each state flagged by the architect with a Socratic-reveal plan, write the concrete TTS-to-primitive binding:
+3. **Within-state motion timeline + per-state control spec (Rule 31 — REQUIRED; supersedes the session-33 Socratic reveal timeline, 2026-07-02)** — for each state in the architect's control table, write the concrete motion + control binding:
 
-   | sentence id | text_en | reveal_primitive_id | reveal_action | pause_after_ms |
+   | state | t-window | what animates (pure fn of the state clock — Rule 26) | driven by | live control(s) |
    |---|---|---|---|---|
-   | s1 | "Person stands on the floor. mg acts downward." | mg_vector | show (already visible) | 1500 |
-   | s2 | "The person isn't falling through — where must the floor push?" | — (prediction question) | — | 2500 |
-   | s3 | "The floor pushes back, equal and opposite. This is N." | N_vector | fade_in + focal_highlight | 800 |
-   | s4 | "At equilibrium, N = mg." | equilibrium_label | slide_in_from_right | 1200 |
+   | S2 | 0–2.2s | magnet slides into the coil (smoothstep), flux lines densify | position x(t) | none |
+   | S2 | continuous | needle angle ∝ ε = −N dΦ/dt; current beads flow, direction = sign(ε) | computed ε | none |
+   | S5 | continuous | magnet oscillates x = A·sin(ωt); deflection amplitude tracks speed | v slider → ω | speed, turns |
+   | S6 | open | teacher drags magnet; all motions re-derive live | all sliders | ALL |
 
-   Each row binds a TTS sentence to a primitive reveal. `pause_after_ms` controls student think-time after the sentence. Json_author writes this as `teacher_script.tts_sentences[].reveal_primitive_id` + `pause_after_ms` fields + primitive `reveal_at_tts_id` back-reference.
+   Each row specifies what MOVES, over what window, driven by which variable — every branch a pure function of `time - stateStartTime` (Rule 26, THE-EYE-safe). The controls column must match the architect's per-state control table exactly (only-what-this-state-teaches; explore = ALL). Json_author implements via the scenario's per-state block (mode-driven, like `faraday.mode`). **No prediction questions, no `pause_after_ms` think-time rows on new concepts** (legacy sims keep theirs — carry existing pauses when retrofitting an OLD Socratic concept, per the pause_after_ms clone gotcha).
 
 4. **Board-mode mark scheme + derivation sequence** — *DEFERRED while the conceptual-only directive is active (founder 2026-06-11, Rule 20 suspension): SKIP this section entirely for new concepts; do not draft board content.* When modes resume: 1 mark per state minimum (Rule 21), line-by-line what the handwriting animation writes per state.
 5. **Drill-down cluster phrasings** — for each cluster_id the architect named, write 5 real confusion phrases students would type ("why doesn't mg tilt", "does gravity need air"). These become `trigger_examples TEXT[]` in the Supabase seed.
@@ -167,13 +167,13 @@ Read every `prevention_rule`. Each is a one-line constraint a prior bug forced i
 
 - [ ] Every symbol referenced in the skeleton's state narratives appears in `variables`.
 - [ ] Every `formulas` entry uses `radians()` for any angle argument to sin/cos/tan.
-- [ ] At least one state has a slider whose variable is declared with `default`, `min`, `max`, `step`.
+- [ ] Every state's live control(s) declared per the architect's control table (Rule 31: only-what-this-state-teaches; explore state = ALL), each with `default`, `min`, `max`, `step`.
 - [ ] `variable_overrides` documented for any state that needs it (justify each with a one-liner).
 - [ ] Mark scheme totals ≥ (board state count) and every mark ties to a specific state.
 - [ ] Drill-down cluster phrasings (5 per cluster) sound like real students, not teachers.
 - [ ] `constraints` block has 4–6 short assertions.
 - [ ] Numerical sanity check run: pick one state, plug in defaults, confirm formula output matches narrative (e.g., m=1, g=9.8 → w=9.8 N).
-- [ ] Within-state reveal timeline written for every state that introduces a new physical quantity (architect flagged these). Every reveal row binds a TTS sentence id to a `reveal_primitive_id` + `reveal_action` + `pause_after_ms`. Prediction-question sentences (no reveal) have 2000-3000ms pauses for student think-time.
+- [ ] Within-state motion timeline written for every state (Rule 31): each row = t-window × what animates × driven-by-variable, every branch a pure fn of the state clock (Rule 26); no two states share a motion; no state is static; controls column matches the architect table. (Legacy retrofits of pre-Rule-31 Socratic concepts: carry existing `pause_after_ms` beats verbatim — the clone gotcha.)
 - [ ] Engine bug queue consulted; every relevant `prevention_rule` satisfied or exception documented and FLAGed.
 - [ ] DC Pandey check: no formula, explanation, or example problem imported from external books.
 
@@ -189,7 +189,7 @@ The pipeline moved while this spec stood still (v2.3 landed 2026-05-22/30; the D
 3. **`misconception_watch` counters (Rule 16a — EPIC-C deferred).** Since 2026-06-10, misconceptions are confronted INSIDE EPIC-L, not in EPIC-C branches. For each watch entry, physics-check `visual_counter` + `one_line_fix` — the one-liner must be correct physics, not just persuasive.
 4. **Assessment physics check (concepts authored 2026-05-30+).** The 6 quiz questions ship with the JSON (`assessment` + `coverage_map`). Verify every correct answer is correct, every `distractor_misconception` is a real wrong belief that yields that wrong option, and `parallel_form_stem` (when present) is physics-equivalent to the original.
 5. **Modes by phase.** The board mark scheme (output section 4) applies only when the concept's phase ships board mode (e.g., Ch.26 magnetism defers board/competitive to M7/M8). State explicitly in your block which modes the DoD requires, so json_author neither skips a required mode nor half-builds a deferred one.
-6. **Your reveal timeline feeds Gate 15 (Pass-2).** The per-state TTS→reveal rows are the raw material for the four-question experiential audit (what moves / where the eye goes). Write them knowing they will be audited against Q3/Q4.
+6. **Your motion timeline feeds Gate 15 (Pass-2).** The per-state motion + control rows are the raw material for the four-question experiential audit (what moves / where the eye goes). Write them knowing they will be audited against Q3/Q4 — the motion itself creates the curiosity beat now (no prediction pauses).
 
 ## Escalation
 

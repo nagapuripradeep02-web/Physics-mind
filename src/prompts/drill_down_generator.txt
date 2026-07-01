@@ -40,7 +40,7 @@ Produce the sub-simulation. Every state:
 1. `scene_composition`: 3+ primitives (surface, body, force_arrow, force_components, vector, annotation, formula_box, angle_arc, label, motion_path, comparison_panel).
 2. `focal_primitive_id`: one primitive id in the scene.
 3. `teacher_script.tts_sentences`: 2–4 sentences, plain English, Indian context, no Hinglish. Each with `id` + `text_en`.
-4. `advance_mode`: mix of `auto_after_tts`, `manual_click`, `wait_for_answer`, `interaction_complete`. If MICRO protocol and 2 states, pick distinct modes (e.g. STATE_1=auto_after_tts, STATE_2=manual_click).
+4. `advance_mode`: mix of `auto_after_tts`, `manual_click`, `interaction_complete` (never `wait_for_answer` — legacy Socratic mode, Rule 31). If MICRO protocol and 2 states, pick distinct modes (e.g. STATE_1=auto_after_tts, STATE_2=manual_click).
 
 Pedagogy:
 - STATE_1 must directly mirror the student's wrong belief or stuck point. Name the confusion out loud so the student feels understood.

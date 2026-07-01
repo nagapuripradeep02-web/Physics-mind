@@ -1,5 +1,11 @@
 # Architect skeleton — `torque_on_current_loop_in_field`
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 Diamond #3 of magnetism proof-of-concept. Archetype **C** (closed-loop rotational dynamics). Phase **M2** per `docs/MAGNETISM_ARCHITECTURE.md` §10. Renderer: **field_3d** (Three.js). Authored 2026-05-20.
 
 DC Pandey check: Vol 2 Ch.26 §26.6 table-of-contents reference only. No teaching sequence, no figure number, no example phrasing copied. All pedagogy authored from first principles.

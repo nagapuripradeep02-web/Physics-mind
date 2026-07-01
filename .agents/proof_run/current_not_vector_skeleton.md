@@ -1,5 +1,11 @@
 # current_not_vector — Architect Skeleton (v1 Ch.5 first concept)
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 Produced by: architect agent (2026-05-04)
 Upstream inputs: project `C:\Tutor\CLAUDE.md` (23 design rules), `C:\Tutor\PLAN.md` (Phase E + L), `physics-mind\.agents\architect\CLAUDE.md` (role spec), `physics-mind\docs\SHIP_V1_VECTORS_KINEMATICS.md` (v1 ship plan, current_not_vector listed in Ch.5 §5.1), exemplars `src/data/concepts/friction_static_kinetic.json` (only v2.2-native shipped concept) + `.agents/proof_run/scalar_vs_vector_skeleton.md` (sibling pattern), legacy reference `src/data/concepts/current_not_vector.json` (v2.0 — to be overwritten).
 Target file: `src/data/concepts/current_not_vector.json` (TO BE OVERWRITTEN by json_author after physics_author fills physics block).

@@ -1,5 +1,23 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-07-02 (CODIFICATION: the straightforward + per-state-contextual-controls doctrine became **Rule 31** everywhere — root CLAUDE.md, CLAUDE_RULES.md, concepts CLAUDE.md, AUTHORING_PIPELINE, all 4 Alex canonicals + renderer_primitives, 5 emissions regenerated same-session, 14 proof_run exemplars bannered [OLD MODEL], new `faraday_law_induction_skeleton.md` exemplar. Also: `faraday_law_induction` (Ch.6) built, upgraded (flowing current beads + two-phase Lenz pole face), and committed `bd39bd1`. NOT committed: the codification edits.)
+
+### What was codified (founder-approved plan; DISCUSSIONS Sessions 78/79 + Session 80 note)
+- **Rule 31 [A]** appended (root §7 index + full CLAUDE_RULES body): straightforward distinct-motion beats ~28–35s (no Socratic predict→reveal) · no two states alike, none static · per-state contextual controls (each state only its own sliders; explore-last has ALL) + the four catches (one panel built once / no-slider≠static / stable slider position / control table declared up front) · one engine, presets over it. Exemplars: `faraday_law_induction`, `magnetisation_and_intensity`.
+- **Rule 15 amended**: variety floor = ≥2 distinct advance_modes (Gate 12); `wait_for_answer` LEGACY (kept in schema/runtime for old sims, never authored new). **Rule 16a amended**: confrontation = straightforward contrast beat, predict→reveal retired. **Rule 11**: Session-78 grading-rule pointer.
+- **Agent specs**: architect (new §"Straightforward motion beats" supersedes the session-33 Socratic section; control table = skeleton section 3; checklist reworked) · physics_author (reveal timeline → motion timeline + control spec) · json_author (pre-flight "sliders last state only" → Rule 31; `reveal_at_tts_id`/`pause_after_ms` wiring marked LEGACY; static-dump redefined) · quality_auditor (**Gate 3c legacy-only; NEW Gate 3e** distinct-motion + contextual-controls; 15b/16 reworded; static hook un-blessed) · renderer_primitives (bug #7 scope note: scenario panels PERSIST + toggle rows; scene_composition still clears).
+- **Emissions**: all 5 regenerated + body-diff verified SYNC; 3 frontmatter descriptions updated (physics-author, quality-auditor, architect).
+- **Secondary**: ARCHITECTURE_v2.2 §4.2/4.3 SUPERSEDED-bannered; COMPREHENSION_METRIC remediations re-pointed to motion/controls; magnetism patterns annotated; 4 generator prompts drop `wait_for_answer`; APPENDIX enum marked LEGACY.
+- **Deliberately unchanged**: Zod schema (old sims must keep validating; `wait_for_answer` stays in the enum), existing concept JSONs, archives. **Optional future hardening**: a `visible_controls: string[]` per-state schema field + duration bounds would make Gate 3e machine-checkable — deferred (renderer convention + auditor judgment for now).
+- **Verified**: tsc 0 · validate:concepts 104/104 · grep sweep = zero un-bannered old-model mandates in live tiers · emission sync check 5/5.
+
+### TTS decision (Rule 30f — first customers are LOCAL TELUGU TEACHERS, 2–3, founder's area)
+Ship **EN + Telugu audio per concept, rendered LAST** (after THE EYE + founder visual approval, before teacher handoff — now a DoD line in AUTHORING_PIPELINE). Hindi = text-only until a Hindi market exists (bulk-render then). More languages only after ~25-chapter coverage + a native reviewer each (Rule 17). Narration default stays OFF (Rule 24d — live classroom = the teacher's voice; audio serves the demo moment, teacher prep, and student home-revision replay). Strategy rationale in the Session 80 discussion: TTS is aligned with Rule 31 (narration is a pure overlay on the state clock, Rule 26); language breadth is a distribution multiplier on FINISHED content, not a build-time feature.
+
+### Next / open
+- Commit the codification batch after founder review. Ch.5 queue resumes: #6 `magnetic_materials` §5.6 — FIRST concept to be authored by the pipeline agents under Rule 31 (the real test of the codified specs).
+- **Backfill EN+TE audio for the current diamonds before the Telugu-teacher handoff** (faraday, magnetisation, earths_magnetism, gauss_law_magnetism, potential pair, dipole, …) — GATED on a Sarvam balance top-up (trial keys ≈ 2 concepts of quota). Then Asmi review of faraday/magnetisation.
+
 ## 2026-07-01 (DOCTRINE + AUDIT + PROTOTYPE: the live-instrument "distinct-pictures" rule; 41-sim audit (309→~75 states, ~4×); `magnetic_force_moving_charge` 8→4 bookmark prototype in an isolated worktree. Strategy in DISCUSSIONS.md Session 78. NOT committed; prototype lives in a separate worktree.)
 
 ### The rule (how to grade any sim's state count)

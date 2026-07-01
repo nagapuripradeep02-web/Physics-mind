@@ -1,5 +1,11 @@
 # Physics-author block — `torque_on_current_loop_in_field`
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 Consumes the architect skeleton at `torque_on_current_loop_in_field_skeleton.md`. Produces variables, formulas, per-state physics overrides, drill-down trigger phrases, board mark scheme (deferred per Rule 20 M1-M6).
 
 ---

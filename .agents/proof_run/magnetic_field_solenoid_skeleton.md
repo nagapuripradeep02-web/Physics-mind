@@ -1,5 +1,11 @@
 # Architect skeleton — `magnetic_field_solenoid`
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 **Status:** Pass-1 v2.3 skeleton. CONCEPTUAL-ONLY per MAGNETISM_ARCHITECTURE M1–M6 carve-out. Board (M7) and competitive (M8) modes are explicitly deferred.
 
 **Diamond context:** Diamond #4 in the magnetism proof-of-concept. This concept is the **M4 binary-gate validator** — the first non-hand-authored archetype-A concept (templated from Diamond #1 `magnetic_field_wire`). If this skeleton + physics_author + json_author + quality_auditor produce diamond output with ≤1 round of human iteration, the recursive-bootstrap method is proven and M5 may proceed.

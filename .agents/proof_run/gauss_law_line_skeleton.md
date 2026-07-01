@@ -1,5 +1,11 @@
 # Architect skeleton — `gauss_law_line`
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 **Concept:** Gauss's Law — Infinite Line Charge · **chapter:** Class 12, Electric Charges & Fields (Ch.1) §1.15 · **renderer:** `field_3d` (new `gauss_law_line` scenario) · **schema:** v2.3 · Authored 2026-06-26.
 
 **Status:** Pass-1 v2.3 skeleton. CONCEPTUAL-ONLY (Rule 20 suspension — no `mode_overrides`). EPIC-L-first (Rule 11 / 2026-06-10 directive — no `epic_c_branches`; misconceptions confronted inside EPIC-L via Rule 16a). Third Gauss-application sibling after `gauss_law_sphere` (1/r²) and `gauss_law_solid_sphere` (ramp-then-1/r²); this is the **cylindrical-symmetry / 1/r** member of the family.

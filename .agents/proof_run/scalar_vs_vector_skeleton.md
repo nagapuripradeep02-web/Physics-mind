@@ -1,5 +1,11 @@
 # scalar_vs_vector — Architect Skeleton (v1 Ch.5 warm-up batch)
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 Produced by: architect agent (2026-04-27)
 Upstream inputs: project `C:\Tutor\CLAUDE.md` (23 design rules), `C:\Tutor\PLAN.md` (Phase E + L), `physics-mind\.agents\architect\CLAUDE.md` (role spec), `physics-mind\docs\SHIP_V1_VECTORS_KINEMATICS.md` (v1 scope), exemplars `src/data/concepts/normal_reaction.json` + `src/data/concepts/friction_static_kinetic.json`, `engine_bug_queue` consultation 2026-04-27.
 Target file: `src/data/concepts/scalar_vs_vector.json` (TO BE CREATED by json_author after physics_author fills physics block)

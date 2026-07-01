@@ -26,7 +26,7 @@
 | mode_overrides | Per-mode diff object; merged over baseline at session start |
 | Type A variant | Same physical world, different parameter values |
 | Type B variant | Different physical world, same physics law |
-| advance_mode | auto_after_tts / manual_click / wait_for_answer / interaction_complete — variety required per JSON |
+| advance_mode | auto_after_tts / manual_click / wait_for_answer (LEGACY — never on new concepts, Rule 31) / interaction_complete — ≥2 distinct per JSON (Gate 12) |
 | 5D fingerprint | concept_id \| intent \| class_level \| mode \| aspect |
 | 6D fingerprint | concept_id \| state_id \| cluster_id \| class_level \| mode \| aspect (drill-down cache) |
 | DEEP-DIVE | Hand-authored sub-simulation that elaborates a single parent state in 4–6 sub-states. Triggered by student button click ("Explain step-by-step") on a parent state flagged `allow_deep_dive: true`. **Not runtime-generated.** Until a (concept_id, state_id) pair accumulates threshold analytics (≥10 feedback submissions OR median dwell >60s with ≥50 sessions), the button routes to a one-sentence feedback form (`feedback_unified` write). Once flagged, hand-authored at diamond bar ~1 per week. Cache key: concept_id \| state_id \| class_level \| mode. |

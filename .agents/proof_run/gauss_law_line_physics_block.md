@@ -1,5 +1,11 @@
 # Physics block — `gauss_law_line`
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 **Authored by:** physics-author · **2026-06-26** · appended to `gauss_law_line_skeleton.md`.
 **For:** json-author. **Schema:** v2.3. **Renderer:** `field_3d` (new `gauss_law_line` scenario).
 

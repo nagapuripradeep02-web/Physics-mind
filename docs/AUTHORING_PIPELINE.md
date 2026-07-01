@@ -121,12 +121,14 @@ every week.
 
 **Before building any sim, write its Definition of Done — the full list of what a finished version contains — and build to ALL of it before the first founder showing:**
 
+- [ ] **The per-state control table FIRST (Rule 31 — required design artifact):** one row per state — *state × what it teaches × its DISTINCT motion (no two states alike, none static) × its live control(s)*. Guided beats are straightforward (~28–35s, no Socratic predict→reveal); each state exposes ONLY its own relevant slider(s); the final explore state exposes ALL (`interaction_complete`). The panel is built ONCE in the scenario, rows shown/hidden per state; a shared slider keeps its screen position. Exemplars: `faraday_law_induction` (S1–S4 none · S5 speed+turns · S6 all), `magnetisation_and_intensity`.
 - [ ] Every EPIC-L state designed (count derived from the sub-truth list, never copied).
 - [ ] Every vector/quantity the narration names has an in-scene **symbol label** (dl, r̂, θ, dB, B, F, v, μ, …).
 - [ ] Where **direction** is taught: the correct **right-hand rule** on those states — grip rule for circulation, cross-product rule for a single dB/F. Right rule on the right state (see `patterns/magnetism.md`).
 - [ ] **Motion wherever something moves or a rule is performed** — no static diagram where an animation teaches better (curling hand, flowing current, assembling field, orbiting tangent). The founder rejects passive states.
 - [ ] **Conceptual mode ONLY** (founder directive 2026-06-11, CLAUDE.md Rule 20 suspension): do NOT author `mode_overrides.board` / `mode_overrides.competitive` — board + competitive are dropped for the current phase and resume later as dedicated retrofit phases.
 - [ ] `assessment` + `coverage_map` + per-state `misconception_watch` if authored 2026-05-30+.
+- [ ] **TTS audio (Rule 30f) — LAST step, after founder visual approval:** render **EN + Telugu** clips (`npm run tts:generate <id>`, foreground, native-listen a sample) before teacher handoff. Hindi stays text-only (authored, unrendered) until a Hindi-market customer exists. Never render mid-iteration; edits after teacher feedback → incremental re-render of affected clips.
 
 **Compute, don't guess.** Every placement, timing, and orientation is derivable up front — guess-and-recapture costs more than the math:
 - **Screen position** of an overlay/hand → from the camera basis: screen-right ≈ `normalize(viewDir × up)`. Its z-component is negative for the default +x+y+z camera, so increasing world-z moves an object **left**, not right. Prefer **camera-relative anchoring** (position computed from `stateDef.camera_position`) over per-state hand-tuned world coords — framing-correct by construction, zero tuning.

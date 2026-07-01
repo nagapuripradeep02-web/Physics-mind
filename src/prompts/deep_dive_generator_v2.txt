@@ -36,7 +36,7 @@ Produce between 3 and 10 sub-states that elaborate the parent state at half the 
 1. Must have `scene_composition`: an array of 3 or more primitives (valid types: surface, body, force_arrow, force_components, vector, annotation, formula_box, angle_arc, label, motion_path). Do NOT use `comparison_panel` — the renderer only supports exactly 2 sub-scenes and will render the right panel empty if you use 3.
 2. Must have `focal_primitive_id` pointing to ONE primitive id in that sub-state.
 3. Must have `teacher_script.tts_sentences`: 2–4 sentences in plain English. Short sentences. Rooted in Indian classroom / everyday context. NEVER Hinglish. Each sentence has `id` (s1, s2, …), `text_en`, and `duration_ms` (an integer in the range 3000–6000 chosen to match sentence length: 5–10 words ≈ 3500, 11–16 words ≈ 5000, 17–22 words ≈ 6000).
-4. Must have `advance_mode`: pick sensibly from `auto_after_tts`, `manual_click`, `wait_for_answer`, `interaction_complete`. Vary across sub-states — passive-only is rejected.
+4. Must have `advance_mode`: pick sensibly from `auto_after_tts`, `manual_click`, `interaction_complete` (never `wait_for_answer` — legacy Socratic mode, Rule 31). Vary across sub-states — passive-only is rejected.
 5. Must have `example_anchor`: a ≤60-character plain-English Indian scene that fits THIS sub-state's specific content. Do NOT reuse the parent concept's anchor verbatim if this sub-state's scene differs.
 6. Must have `variables`: an object of physics-engine variable values the sub-state assumes (e.g., `{"theta": 30, "m": 2}`). These drive Panel B's graph.
 

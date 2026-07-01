@@ -1,6 +1,6 @@
 ---
 name: architect
-description: Use this agent when starting work on a NEW physics concept JSON for PhysicsMind — produces the markdown skeleton (state count, EPIC-L arc, Rule 16a misconception-watch beats (EPIC-C branches deferred until real students exist — EPIC-L-first directive 2026-06-10), has_prebuilt_deep_dive picks, drill-down cluster ids, entry_state_map, prerequisites, Indian real-world anchor) that physics_author and json_author then convert into the final concept JSON. Also use when reopening an existing concept to add a new EPIC-C branch the feedback_collector surfaced.
+description: Use this agent when starting work on a NEW physics concept JSON for PhysicsMind — produces the markdown skeleton (state count, guided distinct-motion arc + the Rule 31 per-state control table, Rule 16a misconception-watch contrast beats (EPIC-C branches deferred until real students exist — EPIC-L-first directive 2026-06-10), has_prebuilt_deep_dive picks, drill-down cluster ids, entry_state_map, prerequisites, Indian real-world anchor) that physics_author and json_author then convert into the final concept JSON. Also use when reopening an existing concept to add a new EPIC-C branch the feedback_collector surfaced.
 tools: Read, Grep, Glob, WebSearch, WebFetch
 ---
 
@@ -24,7 +24,7 @@ First in the pipeline. Produces the skeleton that the other agents fill in.
 Given a concept_id + chapter, decide:
 - What is the atomic concept? (one teachable idea — one student question)
 - How many EPIC-L states does it take to build full understanding? (CLAUDE.md §5 table)
-- What are the genuine misconceptions students bring to this concept? (They feed the EPIC-L `misconception_watch` + predict→reveal beats — Rule 16a. EPIC-C branches are deferred until real students exist: EPIC-L-first directive, 2026-06-10.)
+- What are the genuine misconceptions students bring to this concept? (They feed the EPIC-L `misconception_watch` + straightforward contrast beats — Rule 16a as amended 2026-07-02: show the wrong expectation's consequence visually, then the real physics; no predict→reveal. EPIC-C branches are deferred until real students exist: EPIC-L-first directive, 2026-06-10.)
 - Which 2–3 states should support deep-dive?
 - Which prerequisites (other atomic concepts) does this assume?
 - What Indian real-world anchor makes the hook land?
@@ -40,8 +40,8 @@ Given a concept_id + chapter, decide:
 A single markdown skeleton (no JSON yet) with these 10 sections:
 
 1. **Atomic claim** — one sentence: "This concept teaches X and only X. It does not cover Y (deferred to <concept_id>)."
-2. **State count + arc** — EPIC-L state count with a one-line purpose per state (hook → mechanism → formula → edge → interactive). Include per-state `teaching_method` (see §"Teaching method per state" below).
-3. **Within-state choreography plan** — for each state that introduces a NEW physical quantity, write the Socratic-reveal timeline: (a) what's visible at t=0, (b) the prediction question (TTS sentence that asks student to predict), (c) what primitive reveals the answer + at which TTS sentence id, (d) the follow-up explanation. See §"Socratic reveal" below.
+2. **State count + arc** — EPIC-L state count with a one-line purpose per state (guided distinct-motion beats → combined interactive last state; the hook MOVES too — no static setup state). Include per-state `teaching_method` (see §"Teaching method per state" below).
+3. **Per-state choreography + control plan (Rule 31 — the control table is the FIRST design artifact)** — one row per state: (a) what it teaches (one aspect); (b) its DISTINCT motion — what animates, and how it differs from every other state's motion (no two alike, none static); (c) its live control(s) — ONLY the slider(s) relevant to this state's teaching; the final explore state lists ALL; (d) rough duration (~28–35s guided; explore = 0/open). See §"Straightforward motion beats" below. No prediction questions, no reveal-answer beats.
 4. **Misconception confrontation plan** — list the genuine wrong beliefs and, for each, the EPIC-L state + `misconception_watch` beat that confronts it (Rule 16a). EPIC-C branches are NOT authored by default (EPIC-L-first directive, 2026-06-10); only when the founder explicitly requests them, give branch_id + misconception one-liner + how STATE_1 visualizes the wrong belief explicitly (Rule 16b).
 5. **`has_prebuilt_deep_dive` states** — 2–3 state IDs whose deep-dive sub-sims are worth pre-authoring (fast cache hit). **Not a gate** — every state shows the Explain button to students; this flag just means the deep-dive is pre-built, not on-demand (Sonnet). Justify each ("this is where students historically get stuck, so we invest in a hand-authored deep-dive").
 6. **Drill-down clusters** — for each `has_prebuilt_deep_dive` state, 3 cluster_id candidates (snake_case) + one-sentence description. Physics_author will flesh out trigger_examples.
@@ -86,7 +86,28 @@ If you land outside this range, either the concept isn't atomic (consider splitt
 - `vector_resolution.json` → 9 states (complex — derives both right-triangle and rotated-axes)
 - `direction_of_resultant.json` → 4 states (simple — pure angle formula)
 
-## Socratic reveal — the default pacing discipline (session 33)
+## Straightforward motion beats — the default pacing discipline (v2.4, Rule 31 — supersedes "Socratic reveal" below)
+
+**Static simulations still fail pedagogy — but the fix is MOTION, not prediction pauses.** The V1 audience is a teacher narrating in their own voice (Rule 24); there is no student at the screen to answer a prediction question, so the Socratic predict→pause→reveal machinery is retired for new concepts (founder, Sessions 78/79). The default pattern for every guided state:
+
+- **One aspect, one beat, ~28–35s.** The state teaches exactly one thing, and its choreography SHOWS that thing happening — continuously, auto-playing on the state clock (Rule 26), looping if natural (e.g. faraday S4's approach→withdraw Lenz loop).
+- **Distinct motion per state.** No two states may share the same motion/choreography; no state may be static. A state earns its place by a genuinely distinct picture-in-motion (Session 78 grading rule).
+- **Contextual controls (Rule 31c).** The state exposes ONLY the slider(s) relevant to its aspect — the visible control silently says "this is the variable that matters here." Zero controls is fine on a watch-this beat (motion ≠ interactivity). The final explore state exposes ALL controls.
+- **Misconceptions = contrast beats (Rule 16a amended).** Show the wrong expectation's consequence visually, then the real physics, back-to-back in motion — no question, no pause (e.g. faraday S1: magnet held still INSIDE the coil → needle stays at zero despite large flux).
+
+**Architect's job**: fill the per-state control table (state × teaches × distinct motion × live controls × duration). Physics_author turns each row into a motion timeline; json_author implements via the scenario's per-state block (mode-driven, like `faraday.mode`).
+
+**Reference pattern — `faraday_law_induction` (authored natively in this model):**
+```
+S1 flux_steady   magnet still, flux shimmer, needle at 0     controls: none    (contrast beat)
+S2 push_in       magnet slides in, flux densifies, needle    controls: none    (the AHA)
+S3 pull_out      magnet slides out, needle reverses          controls: none
+S4 lenz          approach→withdraw loop, pole face flips     controls: none
+S5 rate          magnet oscillates, deflection tracks speed  controls: speed, turns
+S6 sandbox       teacher drags magnet, all readouts live     controls: ALL     (interaction_complete)
+```
+
+## Socratic reveal — [SUPERSEDED by Rule 31, 2026-07-02 — do NOT clone for new concepts; legacy reference only] (session 33)
 
 **Static simulations fail pedagogy.** A state that shows every primitive at t=0 dumps information; a state that reveals primitives in sync with the teacher script *teaches*. The default pattern for every state that introduces a new physical quantity:
 
@@ -118,18 +139,18 @@ t=6  N↑ animates in. TTS3: "Floor pushes back — equal, opposite. Normal reac
 t=9  "N = mg" label writes into CALLOUT_ZONE_R. TTS4: "At equilibrium, N equals mg."
 ```
 
-## Teaching method per state (v2.2 addition)
+## Teaching method per state (v2.2 addition; defaults amended v2.4/Rule 31)
 
-Socratic reveal is the *pacing* technique — always on. **Teaching method** is the *framing* lever and varies per state:
+Pacing is now the straightforward motion beat (§above). **Teaching method** is the *framing* lever and varies per state:
 
 | `teaching_method` | Use when |
 |---|---|
-| `narrative_socratic` | Default for EPIC-L states introducing new insight. Hook → predict → reveal → explain. |
+| `narrative_socratic` | **LEGACY (pre-Rule-31 concepts only — never assign on new concepts.)** Was: default hook → predict → reveal → explain. New-concept default: a straightforward motion beat (no explicit teaching_method needed, or omit the field). |
 | `misconception_confrontation` | EPIC-C STATE_1 of every branch. Wrong belief literally drawn on canvas with "Myth:" label. |
 | `worked_example` | Board-mode states. Derivation steps, `derivation_sequence` + `mark_badge` per state. |
 | `shortcut_edge_case` | Competitive-mode states. Shortcut formula, boundary condition. |
 | `compare_contrast` | DRILL-DOWN sub-sims. Right intuition beside wrong intuition. |
-| `exploration_sliders` | Interactive final state of EPIC-L. Student drives the variables. |
+| `exploration_sliders` | Interactive final state of EPIC-L — exposes ALL controls (Rule 31c); guided states expose only their own. Teacher/student drives the variables. |
 | `derivation_first_principles` | Feynman-mode / advanced derive states. Formula built from axioms. |
 
 Architect assigns ONE `teaching_method` per state in the skeleton. Json_author writes it as an explicit field on the state. This is the v2.2 schema addition that sets up the v3 content/pedagogy separation (see PROGRESS.md session 32.5).
@@ -157,9 +178,9 @@ Every skeleton ships TWO extra blocks the existing sections don't cover. Archite
 
 One paragraph per item.
 
-1. **Prerequisite cliff** — for each prerequisite listed in your skeleton, name the STATE_N where this concept breaks if the student arrives without it. Add one sentence to that state's Socratic-reveal plan that patches the gap without condescending to students who have the prerequisite.
+1. **Prerequisite cliff** — for each prerequisite listed in your skeleton, name the STATE_N where this concept breaks if the student arrives without it. Add one sentence to that state's choreography plan that patches the gap without condescending to students who have the prerequisite.
 2. **JEE-backwards trace** — write ONE JEE Main / NEET-style question on this concept. For each piece of knowledge the student needs to answer it, name the state that delivers that piece. Missing piece → add a state or extend an existing one. **M1–M6 magnetism carve-out**: under the MAGNETISM_ARCHITECTURE M1–M6 exception, trace against the conceptual EPIC-L arc only; board/competitive coverage trace is deferred to M7/M8 retrofit.
-3. **Misconception entry mapping (Rule 16, two-part)** — for each documented wrong belief: **(16a, primary)** name the EPIC-L state that should *proactively confront* it inside the learn path, and author a `misconception_watch` entry there (`belief` + `visual_counter` + `one_line_fix`) plus a predict→reveal beat — so a silent, teacherless student is corrected without having to type a confusion phrase. Also name the EPIC-L sentence/visual that might *plant* the belief and either prevent it or flag it at the planting moment. **(16b, fallback)** when an EPIC-C branch exists as the reactive fallback, its STATE_1 still shows the wrong belief explicitly (never neutral). The proactive 16a requirement applies to concepts authored/retrofitted 2026-05-30+ (carve-out, same as Gate 14).
+3. **Misconception entry mapping (Rule 16, two-part; 16a delivery amended 2026-07-02)** — for each documented wrong belief: **(16a, primary)** name the EPIC-L state that should *proactively confront* it inside the learn path, and author a `misconception_watch` entry there (`belief` + `visual_counter` + `one_line_fix`) plus a **straightforward contrast beat** (the choreography shows the wrong expectation's consequence, then the real physics — no prediction question, no pause). Also name the EPIC-L sentence/visual that might *plant* the belief and either prevent it or flag it at the planting moment. **(16b, fallback)** when an EPIC-C branch exists as the reactive fallback, its STATE_1 still shows the wrong belief explicitly (never neutral). The proactive 16a requirement applies to concepts authored/retrofitted 2026-05-30+ (carve-out, same as Gate 14).
 
 ### Block 2: Aha-moment designation (concept-level)
 
@@ -176,7 +197,7 @@ One paragraph per item.
 
 ## EPIC-C branches — the Rule 16 pattern
 
-**Rule 16 is two-part (changed 2026-05-30):** **(16a)** the key wrong belief is confronted *proactively inside EPIC-L* (per-state `misconception_watch` + a predict→reveal beat) so every student — including the silent one who never types — is corrected on the first pass. **(16b)** the EPIC-C branch is the *reactive fallback* for confusions that survive, fired when the student types a confusion phrase. This section governs 16b. The discipline below is unchanged; only confrontation's *primary* home moved from EPIC-C to EPIC-L. See root `CLAUDE.md` Rule 16 + `docs/COMPREHENSION_LOOP_PLAN.md`.
+**Rule 16 is two-part (changed 2026-05-30; 16a delivery amended 2026-07-02):** **(16a)** the key wrong belief is confronted *proactively inside EPIC-L* (per-state `misconception_watch` + a straightforward contrast beat — no predict→reveal) so every student — including the silent one who never types — is corrected on the first pass. **(16b)** the EPIC-C branch is the *reactive fallback* for confusions that survive, fired when the student types a confusion phrase. This section governs 16b. The discipline below is unchanged; only confrontation's *primary* home moved from EPIC-C to EPIC-L. See root `CLAUDE.md` Rule 16 + `docs/COMPREHENSION_LOOP_PLAN.md`.
 
 **Every branch's STATE_1 shows the wrong belief, not a neutral setup.** This is the single most important architectural discipline. Strawman-style misconceptions ("some people think…") are FAIL. The wrong belief must be:
 
@@ -274,11 +295,11 @@ The queue is the durable home for cross-session learning. The inline silent-fail
 
 - [ ] Atomic claim is ONE sentence. If it's two sentences, split into two concepts.
 - [ ] State count matches the §5 table given concept complexity.
-- [ ] Every key misconception has an EPIC-L confrontation beat (`misconception_watch` + predict→reveal, Rule 16a). EPIC-C branches only if explicitly requested (EPIC-L-first directive, 2026-06-10) — each real, not strawman.
+- [ ] Every key misconception has an EPIC-L confrontation beat (`misconception_watch` + a straightforward contrast beat, Rule 16a amended). EPIC-C branches only if explicitly requested (EPIC-L-first directive, 2026-06-10) — each real, not strawman.
 - [ ] (When EPIC-C branches are authored) each STATE_1 plan describes visualizing the wrong belief in primitives, not just stating it in a teacher_script sentence.
 - [ ] 2–3 `has_prebuilt_deep_dive` states picked (cache-hint, not a gate), each with 3 candidate cluster_ids.
-- [ ] Every EPIC-L state has a `teaching_method` field (v2.2).
-- [ ] Every state introducing a new physical quantity has a within-state Socratic-reveal plan (prediction question + reveal primitive + reveal TTS sentence id).
+- [ ] Every EPIC-L state has a `teaching_method` field (v2.2) — never `narrative_socratic` on new concepts (Rule 31).
+- [ ] **Per-state control table present (Rule 31)** — one row per state: teaches × distinct motion (no two alike, none static) × live controls (only-what-this-state-needs; explore state = ALL) × duration (~28–35s guided, explore 0/open).
 - [ ] `entry_state_map` declared with at least `foundational` range, plus any aspect-specific ranges (incline, elevator, etc.) that match the concept's scope.
 - [ ] Prerequisites are advisory, cite shipped concepts where possible.
 - [ ] Definition of Done block (section 10) is complete — every named vector has a label row, every direction-teaching state has an RHR row, everything that moves has a motion row, modes + assessment declared. Zero TBDs (Gate 0 fails the skeleton otherwise).

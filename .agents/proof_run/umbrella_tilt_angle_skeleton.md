@@ -1,5 +1,11 @@
 # umbrella_tilt_angle — Architect Skeleton (session 32 proof run)
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 Produced by: architect agent (session 32.a, 2026-04-23)
 Upstream inputs: project CLAUDE.md, .agents/architect/CLAUDE.md
 Target file: `src/data/concepts/umbrella_tilt_angle.json` (currently legacy v2.0 — mechanics_2d, 3 states)

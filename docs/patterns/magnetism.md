@@ -243,7 +243,7 @@ State-arc and per-state authoring conventions that survived the diamond review f
 ### Universal (both archetypes)
 
 - **Per-state caption names the *why*, not the *what*.** A bad caption: "θ = 45°, helix visible." A good caption: "θ = 45°. F has grown to 71% of max — over 4× the force at 10°. Helix tightens; circular motion dominates the drift."
-- **`advance_mode` variety** — every concept must use ≥ 2 distinct `advance_mode` values across its EPIC-L states (CLAUDE.md Rule 15). Diamond #2 uses 4: `auto_after_tts`, `manual_click`, `wait_for_answer`, `interaction_complete`.
+- **`advance_mode` variety** — every concept must use ≥ 2 distinct `advance_mode` values across its EPIC-L states (CLAUDE.md Rule 15). Diamond #2 (pre-Rule-31) uses 4: `auto_after_tts`, `manual_click`, `wait_for_answer`, `interaction_complete`. **New-model note (Rule 31, 2026-07-02):** `wait_for_answer` is legacy — new concepts default to `manual_click` beats + `interaction_complete` explore-last (2 distinct, passes Gate 12).
 - **`allow_deep_dive: true`** on the 2–3 hardest states only. Diamond #2 sets it on STATE_4 (full RHR application) and STATE_6 (interactive, where students can produce unexpected geometries).
 - **`aha_moment` placement** — on the first state where the concept's defining insight becomes visible. Diamond #1: when field-line direction is revealed by the compass. Diamond #2: STATE_2, the first state where F appears. Statement length ≤ 15 words.
 
@@ -507,7 +507,7 @@ formula; μ = NIA is the new vector quantity.
 **Choreography patterns extracted from Diamond #3:**
 
 #### `closed-loop-force-pair-animation`
-STATE_2 reveals F₁ on the LEFT side first (after a Socratic prediction beat).
+STATE_2 reveals F₁ on the LEFT side first (pre-Rule-31 build: after a Socratic prediction beat; a new-model build would show it as a straightforward motion beat — Rule 31).
 STATE_3 reveals F₂ on the RIGHT side, anti-parallel — surface ΣF = 0
 explicitly with a text-sprite badge that appears alongside the second force
 arrow. The visual "ΣF = 0 AND τ ≠ 0" simultaneity in STATE_4 IS the aha

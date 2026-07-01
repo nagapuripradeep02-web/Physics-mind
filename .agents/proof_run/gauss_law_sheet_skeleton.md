@@ -1,5 +1,11 @@
 # Architect skeleton — `gauss_law_sheet`
 
+> **[OLD MODEL — superseded by Rule 31, 2026-07-02.]** This exemplar predates the straightforward +
+> per-state-contextual-controls doctrine: it uses Socratic predict→reveal pacing, `wait_for_answer` /
+> `pause_after_ms` beats, and/or "sliders in the last state only". Do NOT clone its pacing or control
+> placement for new concepts — clone `faraday_law_induction_skeleton.md` instead. Physics content and
+> structure remain valid reference.
+
 **Concept:** Gauss's Law — Infinite Charged Sheet · **chapter:** Class 12, Electric Charges & Fields (Ch.1) §1.15 · **renderer:** `field_3d` (new `gauss_law_sheet` scenario, ~88% copy-adapt of `gauss_law_line`) · **schema:** v2.3 · Authored 2026-06-26.
 
 **Status:** Pass-1 v2.3 skeleton. CONCEPTUAL-ONLY (Rule 20 — no `mode_overrides`). EPIC-L-first (no `epic_c_branches`; Rule 16a). Fourth Gauss-application sibling after `gauss_law_sphere` (1/r²), `gauss_law_solid_sphere` (ramp) and `gauss_law_line` (cylindrical / 1/r); this is the **planar-symmetry / CONSTANT-field** member. It is the deliberate planar counterpart of `gauss_law_line`: the flux is **INVERTED** (caps carry it, wall is zero) and the field is **CONSTANT** (no falloff — the trilogy payoff against 1/r and 1/r²).

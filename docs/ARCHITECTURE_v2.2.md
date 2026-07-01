@@ -210,6 +210,13 @@ The CLAUDE.md §7 table (2-3 / 3-4 / 5-6 / 7-9 / 10-12) is calibration, not a ce
 
 ### 4.2 Socratic reveal — the default pacing
 
+> **[SUPERSEDED — Rule 31, 2026-07-02.]** The default pacing for NEW concepts is now the
+> **straightforward distinct-motion beat** (~28–35s, no predict→reveal, per-state contextual
+> controls, combined interactive explore-last) — see root `CLAUDE.md` Rule 31, CLAUDE_RULES.md,
+> and DISCUSSIONS Sessions 78/79. The core claim below stands — *static simulations fail
+> pedagogy* — but the fix is continuous motion, not prediction pauses. The template below is
+> retained for pre-Rule-31 (legacy Socratic) concepts only.
+
 **Static simulations fail pedagogy.** A state that shows every primitive at t=0 *dumps information*; a state that reveals primitives in sync with the teacher script *teaches*.
 
 **Default pattern** for every state introducing a new physical quantity:
@@ -237,11 +244,14 @@ Implemented via `reveal_at_tts_id` on primitives + `pause_after_ms` on tts_sente
 
 ### 4.3 Teaching method per state — the framing lever
 
+> **[AMENDED — Rule 31, 2026-07-02.]** `narrative_socratic` is LEGACY (never authored on new
+> concepts; new-model states omit the field). The rest of the enum stands.
+
 Socratic reveal is *how fast*. **Teaching method** is *what frame*. Seven enum values, one per state:
 
 | `teaching_method` | When |
 |---|---|
-| `narrative_socratic` | Default — EPIC-L states introducing new insight. Hook → predict → reveal → explain. |
+| `narrative_socratic` | LEGACY (pre-Rule-31). Was: default — EPIC-L states introducing new insight. Hook → predict → reveal → explain. |
 | `misconception_confrontation` | EPIC-C STATE_1 — wrong belief literally drawn on canvas with "Myth:" label. |
 | `worked_example` | Board-mode states. Derivation steps via `derivation_sequence` + `mark_badge`. |
 | `shortcut_edge_case` | Competitive-mode states. Shortcut formula, boundary condition. |

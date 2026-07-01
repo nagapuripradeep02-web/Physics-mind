@@ -4,9 +4,13 @@ Third in the pipeline. Converts architect skeleton + physics block into a full c
 
 > **field_3d pre-flight (read first for any field_3d concept):** read `docs/FIELD3D_SCENARIO_CHECKLIST.md`
 > and the scar list — `npx tsx --env-file=.env.local src/scripts/query_engine_bug_queue.ts <concept>`
-> (or `--field3d --open`). Top json-author scars: carry EVERY `pause_after_ms` from the physics block
-> (don't drop them cloning electric_flux — Gate 3c won't catch it), side-by-side offsets must exceed object
-> radius, use specific `visible_elements` tokens, don't narrate what isn't drawn, sliders in the last state only.
+> (or `--field3d --open`). Top json-author scars: side-by-side offsets must exceed object radius, use
+> specific `visible_elements` tokens, don't narrate what isn't drawn. **Controls (Rule 31, 2026-07-02 —
+> replaces "sliders in the last state only"):** every state is live (`show_sliders: true`), but each state
+> exposes ONLY its own relevant control row(s) via the scenario's per-state block (mode-driven, like
+> `faraday.mode`); the final explore state exposes ALL. Panel built ONCE in the scenario; rows shown/hidden
+> per state; shared sliders keep their screen position. **Legacy-only:** `pause_after_ms` carrying applies
+> when retrofitting a pre-Rule-31 Socratic concept (the electric_flux clone gotcha) — never author new ones.
 
 ## Role
 
@@ -53,7 +57,7 @@ bodies compact ("the potential V = k Q / r" — interior operands not expanded).
 **State schema (lines 40-56)**:
 - `title: string` required.
 - `focal_primitive_id: string` required, min 1 char.
-- `advance_mode: enum` — `auto_after_tts | manual_click | auto_after_animation | interaction_complete | wait_for_answer`.
+- `advance_mode: enum` — `auto_after_tts | manual_click | auto_after_animation | interaction_complete | wait_for_answer`. (`wait_for_answer` = LEGACY, Rule 31 — never author on new concepts; new-model default = `manual_click` beats + `interaction_complete` explore-last.)
 - `scene_composition: array` — min 3 primitives.
 - `teacher_script: { tts_sentences: [...] }` — min 1 sentence, each `{id, text_en}`.
 - `choreography_sequence: { phases: [...] }` optional.
@@ -151,9 +155,15 @@ Every state in `epic_l_path.states` + `epic_c_branches[].states` gets one of:
 }
 ```
 
-Default if architect didn't specify: `narrative_socratic`. Board-mode state_overrides: `worked_example`. Competitive-mode: `shortcut_edge_case`.
+Default if architect didn't specify (Rule 31, 2026-07-02): **omit the field** on new concepts — the straightforward motion beat needs no teaching_method; `narrative_socratic` is LEGACY (pre-Rule-31 concepts only, never author it new). Board-mode state_overrides: `worked_example`. Competitive-mode: `shortcut_edge_case`.
 
-### (b) `reveal_at_tts_id` on primitives + `pause_after_ms` on tts_sentences
+### (b) `reveal_at_tts_id` on primitives + `pause_after_ms` on tts_sentences — **LEGACY (pre-Rule-31 concepts only)**
+
+> **Rule 31 (2026-07-02):** this Socratic-reveal wiring is retired for NEW concepts. New concepts wire
+> per-state **scenario blocks** instead (mode-driven, like `faraday.mode` / `mag.mode`): the scenario's
+> per-frame update animates the beat as a pure fn of the state clock (Rule 26), and the per-state block
+> also drives control-row visibility (Rule 31c). Keep the wiring below ONLY when retrofitting/editing a
+> pre-Rule-31 Socratic concept — carry its `pause_after_ms` values verbatim (the clone gotcha).
 
 Socratic-reveal bindings. The physics_author's reveal table (§3 of their output) translates to:
 
@@ -178,7 +188,7 @@ Socratic-reveal bindings. The physics_author's reveal table (§3 of their output
 
 Runtime contract: the TeacherPlayer fires primitive reveal animations when it begins speaking the matching `id` sentence. Primitives without `reveal_at_tts_id` are visible at state entry (base scene). `pause_after_ms` defaults to 1000 if omitted.
 
-**Socratic-reveal check (Zod superRefine, future — add when v2.2 schema ships):** for every state with `teaching_method: "narrative_socratic"`, at least one primitive must have `reveal_at_tts_id` (otherwise the state is a static dump).
+**Static-state check (Rule 31b — the live discipline):** a state with NO distinct motion AND NO live control is a static dump — the failure signal under Rule 31 is "nothing moves and nothing is touchable", not "no `reveal_at_tts_id`". (Legacy: for pre-Rule-31 states with `teaching_method: "narrative_socratic"`, the old check — at least one primitive with `reveal_at_tts_id` — still applies.)
 
 ### (c) `entry_state_map` at concept root
 
@@ -203,13 +213,13 @@ Exit pills at the end of each slice invite deeper exploration: *"See incline cas
 
 ## Pass-2 four-question lens (v2.3 addition, promoted 2026-06-10) — per-state self-check
 
-**Layering note**: §"Socratic reveal" in `architect/CLAUDE.md` and the `reveal_at_tts_id` + `pause_after_ms` wiring above are the **tactical execution** of Pass-2. The four-question lens below is the **strategic presence-check that the tactic was executed for the right reason**. Socratic reveal answers Q3 (what moves) and partially Q4 (where eye goes). It does NOT answer Q1 or Q2. You must answer all four — and record them concretely in `physics-mind/docs/notes/<concept_id>-pass2-notes.md` (the dogfood exemplar is `docs/notes/diamond4-pass2-notes.md`).
+**Layering note (amended 2026-07-02)**: §"Straightforward motion beats" in `architect/CLAUDE.md` and the per-state scenario-block wiring are the **tactical execution** of Pass-2 for new concepts (the legacy `reveal_at_tts_id` + `pause_after_ms` wiring plays that role only on pre-Rule-31 concepts). The four-question lens below is the **strategic presence-check that the tactic was executed for the right reason**. The motion beat answers Q3 (what moves) and partially Q4 (where eye goes). It does NOT answer Q1 or Q2. You must answer all four — and record them concretely in `physics-mind/docs/notes/<concept_id>-pass2-notes.md` (the dogfood exemplar is `docs/notes/diamond4-pass2-notes.md`).
 
 Before declaring a state done, answer all four in concrete terms (not generic). If you can't, the state isn't done. **Commit to a fix, don't just observe a problem** — write "`focal_primitive_id` points at the title label; repoint it to the morph primitive" not "the eye instinctively follows the motion." (The Diamond #4 dogfood flagged exactly this evasion.)
 
 1. **What does the student NOT know yet at this moment?** Not what I want to teach — what is genuinely invisible to them right now. Name it in physics terms ("the current direction is invisible until dots flow"), not abstract ("they don't know the answer yet").
-2. **What would make them FEEL the confusion before resolving it?** Not explain it. *Feel* it. Use `pause_after_ms ≥ 2000` after the prediction question. The student should sit in "wait, something is happening and I don't know why yet" for at least 2 seconds.
-3. **What needs to MOVE or APPEAR to make the physics visible — not described?** If you're writing words about current flowing, you've failed. The current should be moving on screen before the words start. (`reveal_at_tts_id` does the timing; `animate_in` does the motion.) **Renderer-family note**: if this concept renders via **field_3d** (no `teaching_method`; `renderer_pair = field_3d`), Q3 motion is authored in `field_3d_config.states.STATE_N.*` via `reveal_at_ms` (absolute ms after state-enter), and Q2 pause is `pause_after_ms` on the prediction `tts_sentence` — keep the two in sync (the `reveal_at_ms` must land AFTER the pause window). **Do not rely on `reveal_at_tts_id` / `animate_in` inside `scene_composition` for field_3d; those drive only the PCPL/parametric_renderer family.** When porting a physics-block within-state timeline into a field_3d JSON, **carry the `pause_after_ms` values forward verbatim — dropping them is the exact regression Diamond #4 shipped with** (see `docs/notes/diamond4-pass2-notes.md`).
+2. **What would make them FEEL the confusion before resolving it?** Not explain it. *Feel* it. **(Rule 31 delivery:)** the MOTION itself creates the curiosity beat — show the surprising thing happening (needle stays at zero despite a huge flux; dipoles jitter uselessly with no field) for a couple of seconds BEFORE the resolving beat, on the state clock. No prediction question, no `pause_after_ms` on new concepts. (Legacy Socratic concepts keep their `pause_after_ms ≥ 2000` after the prediction question.)
+3. **What needs to MOVE or APPEAR to make the physics visible — not described?** If you're writing words about current flowing, you've failed. The current should be moving on screen before the words start. (`reveal_at_tts_id` does the timing; `animate_in` does the motion.) **Renderer-family note**: if this concept renders via **field_3d** (no `teaching_method`; `renderer_pair = field_3d`), Q3 motion is authored in `field_3d_config.states.STATE_N.*` via `reveal_at_ms` (absolute ms after state-enter), and Q2 pause is `pause_after_ms` on the prediction `tts_sentence` — keep the two in sync (the `reveal_at_ms` must land AFTER the pause window). **Do not rely on `reveal_at_tts_id` / `animate_in` inside `scene_composition` for field_3d; those drive only the PCPL/parametric_renderer family.** When porting a **pre-Rule-31 Socratic** physics-block timeline into a field_3d JSON, **carry the `pause_after_ms` values forward verbatim — dropping them is the exact regression Diamond #4 shipped with** (see `docs/notes/diamond4-pass2-notes.md`). New Rule-31 concepts have no pauses to carry — their beats live in the scenario's per-state block.
 4. **Where does the student's hand or eye go?** Not where I want them to look — where they instinctively look. Put the important thing there; `focal_primitive_id` must point at the physics-bearing element, not the top title label. For RHR / FBD / gesture-based states, ALSO ask: what does the student's hand want to do? Does the on-screen animation mirror that gesture? For field_3d, that is `field_3d_config…extras.right_hand` with `animate_curl: true`. If not, escalate to `peter_parker:renderer_primitives` for a gesture-mirror primitive — don't ship a static-arrow workaround silently.
 
 **Re-entry orientation rule**: the first 5 seconds of every state should re-establish context visually — the relevant bodies, field, and vectors visible — so a returning student (who hasn't watched the prior states this session) can orient without rewatching. New content lands AFTER that 5s of orientation. A delayed first reveal (`reveal_at_ms > 2000`) must not leave a bare/static object on screen during the orientation window.
