@@ -701,7 +701,11 @@ function renderConceptPage(
     sendFreeze(s.freeze_proton);
     if (s.math_show) { sendMath(s.math_show, s.math_persist); }
     else if (!s.math_persist) { sendMath(null, false); }
-    caption.textContent = sentText(s);
+    // Rule 24: when muted (teacher default) the narration is the ONLY prose; gate the
+    // caption track so the silent visual reads with labels/equations only. The physics
+    // reveals above (glow/math/hand/freeze + the iframe's formula_overlay) still run on
+    // the clock, so the picture is identical sound on/off — only the AI prose is hidden.
+    caption.textContent = muted ? '' : sentText(s);
   }
   // Play the active sentence's stored clip if audio is allowed. No onended chaining
   // — the clock advances reveals (Rule 26); audio is a passenger. The single shared
@@ -925,8 +929,10 @@ function renderConceptPage(
   muteBtn.addEventListener('click', function () {
     muted = !muted;
     try { localStorage.setItem(LS_MUTE, muted ? '1' : '0'); } catch (e) {}
-    if (muted) { try { stopAudio(); } catch (e) {} }
-    else { spokenSi = -1; playCurrent(); }
+    // Captions follow the narration switch: muting clears the prose track now (applyReveal
+    // only repaints at sentence boundaries); un-muting repaints the current sentence.
+    if (muted) { try { stopAudio(); } catch (e) {} caption.textContent = ''; }
+    else { spokenSi = -1; if (curSi >= 0) caption.textContent = sentText(cur().sentences[curSi]); playCurrent(); }
     applyMuteUI();
   });
   // Language switch (EN/HI/TE). Audio + caption swap; reveals re-pace to the new
@@ -936,7 +942,7 @@ function renderConceptPage(
     lang = langSel.value;
     try { localStorage.setItem(LS_LANG, lang); } catch (e) {}
     stopAudio();
-    if (curSi >= 0) caption.textContent = sentText(cur().sentences[curSi]);
+    if (!muted && curSi >= 0) caption.textContent = sentText(cur().sentences[curSi]);
     if (simReady) computeTimeline();
     spokenSi = -1;
     if (playing && !frozen) playCurrent();

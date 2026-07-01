@@ -1,0 +1,1164 @@
+{
+  "concept_id": "potential_energy_system_of_charges",
+  "concept_name": "Potential Energy of a System of Charges — U = Σ k qᵢqⱼ/rᵢⱼ (the work to assemble them)",
+  "chapter": 2,
+  "section": "2.8",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "NCERT Class 12 Physics, Ch.2 Electrostatic Potential and Capacitance (§2.8 Potential energy of a system of charges) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (bring a second charge in from infinity toward a fixed first charge and call the work done its potential energy U = k q₁q₂/r → flip the incoming charge's sign and confront the 'energy is always positive' belief: like charges store a POSITIVE U, unlike charges a NEGATIVE U → bring a third charge in from infinity and confront the 'only the nearest pair matters' belief: the new charge feels EVERY charge already placed, adding one new pair term per existing charge → count the unique pairs and state the rule U = Σ over all pairs = N(N−1)/2 terms → re-assemble in a different order and confront the 'the answer depends on how you build it' belief: the total is identical, U is a state function, and unlike the potential V (a value AT a point) U is one number for the WHOLE system → hand the explorer a draggable q₃ + a charge slider), never copied. The atomic idea: the potential energy of a system of point charges is the total work done to assemble them from infinity, U = Σ over every unique pair of k qᵢqⱼ/rᵢⱼ, where rᵢⱼ is the separation of that pair. Each pair carries its own sign: a like pair (qᵢqⱼ > 0) stores POSITIVE energy (work done against repulsion), an unlike pair (qᵢqⱼ < 0) gives NEGATIVE energy (the field does the work). Energy belongs to the PAIR (the relationship), never to one charge. Adding a charge adds a new term with EVERY charge already present, not just the nearest. The total is path/order-independent (a state function). SCOPE: this is the system-of-charges ENERGY diamond of Ch.2. It declares electric_potential_system_of_charges (the scalar potential V at a point), coulombs_law (the pair force) and electric_potential_meaning (V = W/q) as prerequisites and does NOT re-teach them. It is the ENERGY companion to electric_potential_system_of_charges: that diamond reads a scalar V at a probe point; THIS diamond is the single configuration energy U summed over pairs. It does NOT cover the energy of a charge in an external field, continuous charge distributions, capacitor energy (½CV²), or potential energy of a dipole in a field. NEW field_3d scenario_type system_pe_assembly: charges FLY IN from infinity one at a time, pairwise energy bonds light up with their own k qᵢqⱼ/rᵢⱼ tags, a SIGNED energy meter fills (up for stored +U, down for released −U), a running pair-sum panel, a reorder-same-total reveal, and a draggable q₃ + charge slider (energy_explorer). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "system_pe_assembly"
+    ]
+  },
+  "prerequisites": [
+    "electric_potential_system_of_charges",
+    "coulombs_law",
+    "electric_potential_meaning"
+  ],
+  "real_world_anchor": {
+    "primary": "Think of building a crystal of common salt (NaCl) from a cloud of far-apart sodium and chloride ions. Bring them together one at a time. Every sodium–chloride pair that snaps close releases energy because the opposite charges attract — a negative contribution. A few like-charge neighbours cost energy — a positive contribution. The total energy locked into the finished crystal is just the running sum of what every single ion-pair adds, with its sign. Because the negative attract-pairs win overall, the packed crystal sits at a deep negative energy — and that is exactly why salt is a stable solid you have to heat hard to melt.",
+    "secondary": "Squeeze three like-charged pith balls close together and tie them in place. You had to push every pair against its repulsion, so you banked positive energy into the bundle, like compressing a spring. Cut the threads and the stored energy is released as the balls fly apart — every pair you fought to assemble pays its energy back."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "q3_value": {
+        "name": "Signed magnitude of charge q3 (S6 slider flips/scales; q1=+1, q2=-1 fixed)",
+        "unit": "demo nC",
+        "role": "source",
+        "min": -3,
+        "max": 3,
+        "default": 2,
+        "step": 1
+      },
+      "k": {
+        "name": "Coulomb constant",
+        "unit": "N*m^2/C^2",
+        "min": 8990000000,
+        "max": 8990000000,
+        "default": 8990000000
+      },
+      "DEMO_U": {
+        "name": "Demo energy readout scale",
+        "unit": "demo J",
+        "min": 12,
+        "max": 12,
+        "default": 12
+      },
+      "clamp_r_min": {
+        "name": "Min separation clamp",
+        "unit": "demo units",
+        "min": 0.05,
+        "max": 0.05,
+        "default": 0.05
+      }
+    },
+    "computed_outputs": {
+      "U12_demo": {
+        "formula": "DEMO_U * 1 * (-1) / Math.max(Math.sqrt((-1.6-1.2)*(-1.6-1.2) + (-0.4+0.6)*(-0.4+0.6)), clamp_r_min)"
+      },
+      "U13_demo": {
+        "formula": "DEMO_U * 1 * q3_value / Math.max(Math.sqrt((-1.6-0.2)*(-1.6-0.2) + (-0.4-1.5)*(-0.4-1.5)), clamp_r_min)"
+      },
+      "U23_demo": {
+        "formula": "DEMO_U * (-1) * q3_value / Math.max(Math.sqrt((1.2-0.2)*(1.2-0.2) + (-0.6-1.5)*(-0.6-1.5)), clamp_r_min)"
+      },
+      "U_total_demo": {
+        "formula": "DEMO_U * 1 * (-1) / Math.max(Math.sqrt((-1.6-1.2)*(-1.6-1.2) + (-0.4+0.6)*(-0.4+0.6)), clamp_r_min) + DEMO_U * 1 * q3_value / Math.max(Math.sqrt((-1.6-0.2)*(-1.6-0.2) + (-0.4-1.5)*(-0.4-1.5)), clamp_r_min) + DEMO_U * (-1) * q3_value / Math.max(Math.sqrt((1.2-0.2)*(1.2-0.2) + (-0.6-1.5)*(-0.6-1.5)), clamp_r_min)"
+      }
+    },
+    "derived_fields_declared": [
+      "U12_demo",
+      "U13_demo",
+      "U23_demo",
+      "U_total_demo"
+    ],
+    "formulas": {
+      "pair_energy": "U_ij = k*q_i*q_j/r_ij — the work to bring q_j from infinity to r_ij from q_i",
+      "system_energy": "U = k*q1*q2/r12 + k*q1*q3/r13 + k*q2*q3/r23 (sum over all unique pairs)",
+      "pair_count": "a system of N charges has N*(N-1)/2 unique pairs, hence that many terms",
+      "sign_rule": "like pair (q_i*q_j>0) => +U stored; unlike pair (q_i*q_j<0) => -U released",
+      "state_function": "U is independent of the order/path of assembly",
+      "k": "8.99e9"
+    },
+    "constraints": [
+      "U is the SUM over every unique pair of k*q_i*q_j/r_ij — one signed term per pair, not per charge (C1).",
+      "Each pair term carries the sign of q_i*q_j: like pair positive (energy stored), unlike pair negative (energy released) (C2).",
+      "Energy belongs to the PAIR (the relationship), never to a single charge in isolation (C3).",
+      "Adding a charge adds one new pair term with EVERY charge already present, not just the nearest (C4).",
+      "A system of N charges has N*(N-1)/2 unique pairs and that many terms (C5).",
+      "U is path/order-independent — a state function; any assembly order gives the same total (C6).",
+      "The reference is U=0 when all charges are infinitely far apart (C7).",
+      "The on-screen U uses round DEMO units (DEMO_U = 12), not SI joules (C8)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "A configuration's energy is one sum: k qᵢqⱼ/rᵢⱼ over every unique pair.",
+    "visual_confirmation": "Three charges light three bonds; the three signed pair terms −4.3, +9.2, −10.3 assemble into one total −5.4 on the meter.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "sign": [
+      "STATE_2"
+    ],
+    "pair_rule": [
+      "STATE_4"
+    ],
+    "exploration": [
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Bring a charge in from infinity — that work is the pair's energy U = k q₁q₂/r",
+        "duration": 17,
+        "focal_primitive_id": "work_done",
+        "advance_mode": "auto_after_animation",
+        "teaching_method": "narrative_socratic",
+        "variable_overrides": {
+          "q3_value": 2
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "bring_q2",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "fix +q₁ — now bring +q₂ in from far away (from infinity)",
+            "color": "#FFCA28",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "work_done",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "pushing two like charges together takes work: U = k q₁q₂ ⁄ r",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "u_banked",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "that work is banked as +4.3 — the energy of the PAIR, not one charge",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Fix the positive charge q₁. Now bring a second positive charge q₂ in from far away, all the way from infinity.",
+              "text_hi": "positive charge q₁ को fix रखिए। अब एक दूसरा positive charge q₂ बहुत दूर से, infinity से, पास लाइए।",
+              "text_te": "positive charge q₁ ని fix గా ఉంచండి. ఇప్పుడు ఒక రెండవ positive charge q₂ ని చాలా దూరం నుండి, infinity నుండి, దగ్గరకు తీసుకురండి.",
+              "reveal_primitive_id": "bring_q2",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Pushing two like charges together takes work against their repulsion. That work is the potential energy U, equal to k q₁ q₂ over r.",
+              "text_hi": "दो like charges को साथ धकेलने में उनके repulsion के खिलाफ work लगता है। वही work potential energy U है, k q₁ q₂ over r के बराबर।",
+              "text_te": "రెండు like charges ని కలిపి నెట్టడానికి వాటి repulsion కి వ్యతిరేకంగా work అవసరం. ఆ work యే potential energy U, k q₁ q₂ over r కి సమానం.",
+              "reveal_primitive_id": "work_done",
+              "appear_at_ms": 4600
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Here that energy is banked as plus four point three. It belongs to the pair, the relationship — not to either charge alone.",
+              "text_hi": "यहाँ वह energy plus four point three के रूप में बैंक होती है। यह pair की है, relationship की — किसी एक charge की नहीं।",
+              "text_te": "ఇక్కడ ఆ energy plus four point three గా bank అవుతుంది. ఇది pair కి, relationship కి చెందుతుంది — ఏ ఒక్క charge కి కాదు.",
+              "reveal_primitive_id": "u_banked",
+              "appear_at_ms": 8200
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Flip the sign — like charges store +U, unlike charges release −U",
+        "duration": 18,
+        "focal_primitive_id": "u_negative",
+        "advance_mode": "auto_after_animation",
+        "teaching_method": "misconception_confrontation",
+        "variable_overrides": {
+          "q3_value": 2
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "flip_q2",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "same move — but now the incoming charge q₂ is NEGATIVE",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_sign",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "predict: does the energy bank positive again, or flip?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "u_negative",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "opposite charges ATTRACT — the field does the work: U = −4.3 (was +4.3)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Run the same move, but this time the incoming charge q₂ is negative.",
+              "text_hi": "वही move कीजिए, लेकिन इस बार आने वाला charge q₂ negative है।",
+              "text_te": "అదే move చేయండి, కానీ ఈసారి వచ్చే charge q₂ negative.",
+              "reveal_primitive_id": "flip_q2",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Predict: does the energy bank positive again, like the like-charge pair, or does it flip?",
+              "text_hi": "Predict कीजिए: क्या energy फिर से positive बैंक होती है, like-charge pair की तरह, या flip हो जाती है?",
+              "text_te": "Predict చేయండి: energy మళ్ళీ positive గా bank అవుతుందా, like-charge pair లాగా, లేదా flip అవుతుందా?",
+              "reveal_primitive_id": "predict_sign",
+              "appear_at_ms": 4200,
+              "pause_after_ms": 2200
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Opposite charges attract, so the field does the work for you. The potential energy is now negative, minus four point three. Sign tells you stored versus released.",
+              "text_hi": "Opposite charges attract करते हैं, तो field आपके लिए work करता है। potential energy अब negative है, minus four point three। sign बताता है stored बनाम released।",
+              "text_te": "Opposite charges attract అవుతాయి, కాబట్టి field మీ కోసం work చేస్తుంది. potential energy ఇప్పుడు negative, minus four point three. sign చెబుతుంది stored versus released.",
+              "reveal_primitive_id": "u_negative",
+              "appear_at_ms": 7600
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Potential energy of charges is always positive; the sign of the charges does not change it.",
+            "visual_counter": "The same assembly with a negative q₂ banks −4.3, the mirror of the +4.3 stored by the like pair — the meter drops below zero.",
+            "one_line_fix": "U carries the sign of q_i*q_j: a like pair stores +U, an unlike pair releases −U."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Add a third charge — it pairs with EVERY charge already there",
+        "duration": 20,
+        "focal_primitive_id": "two_new_terms",
+        "advance_mode": "auto_after_animation",
+        "teaching_method": "misconception_confrontation",
+        "variable_overrides": {
+          "q3_value": 2
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "bring_q3",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "two charges set — bring +2q₃ down from infinity",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "two_new_terms",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "q₃ feels BOTH q₁ and q₂ — two NEW pair terms: +9.2 and −10.3",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "running_total",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "every pair counts — running total now −5.4",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Two charges are already set. Now bring the stronger charge q₃ down from infinity.",
+              "text_hi": "दो charges पहले से set हैं। अब stronger charge q₃ को infinity से नीचे लाइए।",
+              "text_te": "రెండు charges ఇప్పటికే set అయ్యాయి. ఇప్పుడు stronger charge q₃ ని infinity నుండి కిందకు తీసుకురండి.",
+              "reveal_primitive_id": "bring_q3",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The new charge q₃ feels both charges already there. So two new pair terms appear at once: plus nine point two with q₁, and minus ten point three with q₂.",
+              "text_hi": "नया charge q₃ वहाँ पहले से मौजूद दोनों charges को feel करता है। तो दो नए pair terms एक साथ आते हैं: q₁ के साथ plus nine point two, और q₂ के साथ minus ten point three।",
+              "text_te": "కొత్త charge q₃ అక్కడ ఇప్పటికే ఉన్న రెండు charges ని feel చేస్తుంది. కాబట్టి రెండు కొత్త pair terms ఒకేసారి వస్తాయి: q₁ తో plus nine point two, మరియు q₂ తో minus ten point three.",
+              "reveal_primitive_id": "two_new_terms",
+              "appear_at_ms": 5200
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Every pair adds its own term, not just the nearest one. The running total of all three pairs is minus five point four.",
+              "text_hi": "हर pair अपना term जोड़ती है, सिर्फ nearest नहीं। तीनों pairs का running total minus five point four है।",
+              "text_te": "ప్రతి pair తన term ని కలుపుతుంది, కేవలం nearest మాత్రమే కాదు. మూడు pairs యొక్క running total minus five point four.",
+              "reveal_primitive_id": "running_total",
+              "appear_at_ms": 9000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A new charge only interacts with the nearest charge, so it adds just one energy term.",
+            "visual_counter": "q₃ lights a bond to BOTH q₁ and q₂ at once, adding two terms (+9.2 and −10.3), and the running total moves to −5.4.",
+            "one_line_fix": "Adding a charge adds one new pair term with every charge already present — N−1 new terms."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "does_far_charge_pair_count",
+          "how_many_new_terms",
+          "energy_lives_in_pairs"
+        ]
+      },
+      "STATE_4": {
+        "title": "The rule: U = Σ over every unique pair = N(N−1)/2 terms",
+        "duration": 22,
+        "focal_primitive_id": "the_rule",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "rule_synthesis",
+        "variable_overrides": {
+          "q3_value": 2
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "three_bonds",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "three charges → three unique pairs → three energy terms",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "predict_pairs",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "predict: how many pairs for FOUR charges?",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "the_rule",
+            "position": {
+              "x": 360,
+              "y": 445
+            },
+            "text": "U = Σ over every pair = N(N−1)/2 terms;  −4.3 + 9.2 − 10.3 = −5.4",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Watch the bonds light up one by one. Three charges make three unique pairs, so three energy terms.",
+              "text_hi": "bonds को एक-एक करके जलते देखिए। तीन charges तीन unique pairs बनाते हैं, तो तीन energy terms।",
+              "text_te": "bonds ఒక్కొక్కటిగా వెలగడం చూడండి. మూడు charges మూడు unique pairs చేస్తాయి, కాబట్టి మూడు energy terms.",
+              "reveal_primitive_id": "three_bonds",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Predict before we go on: how many pairs would four charges make?",
+              "text_hi": "आगे बढ़ने से पहले predict कीजिए: चार charges कितने pairs बनाएँगे?",
+              "text_te": "ముందుకు వెళ్ళే ముందు predict చేయండి: నాలుగు charges ఎన్ని pairs చేస్తాయి?",
+              "reveal_primitive_id": "predict_pairs",
+              "appear_at_ms": 5000,
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The rule: the total energy U is the sum over every unique pair, N times N minus one, over two. Four charges make six pairs.",
+              "text_hi": "नियम: कुल energy U हर unique pair का sum है, N into N minus one, over two। चार charges छह pairs बनाते हैं।",
+              "text_te": "నియమం: మొత్తం energy U ప్రతి unique pair యొక్క sum, N into N minus one, by two. నాలుగు charges ఆరు pairs చేస్తాయి.",
+              "reveal_primitive_id": "the_rule",
+              "appear_at_ms": 9500
+            },
+            {
+              "id": "s4_4",
+              "text_en": "Here the three terms, minus four point three, plus nine point two, minus ten point three, add to minus five point four.",
+              "text_hi": "यहाँ तीन terms, minus four point three, plus nine point two, minus ten point three, मिलकर minus five point four होते हैं।",
+              "text_te": "ఇక్కడ మూడు terms, minus four point three, plus nine point two, minus ten point three, కలిసి minus five point four అవుతాయి.",
+              "reveal_primitive_id": "the_rule",
+              "appear_at_ms": 15000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The system energy is one term k Q/r built from the total charge, like a single big charge.",
+            "visual_counter": "Three separate bonds each carry their own k q_i q_j / r_ij term; the total is their signed sum −5.4, not one lumped term.",
+            "one_line_fix": "U is a sum of N(N−1)/2 separate pair terms, each with its own charges and separation."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Order doesn't matter — and U is one number for the whole system",
+        "duration": 21,
+        "focal_primitive_id": "u_vs_v",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "variable_overrides": {
+          "q3_value": 2
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "reorder",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "assemble in a DIFFERENT order — q₃ first this time",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "same_total",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "same final total: −5.4 — order and path never change U",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "u_vs_v",
+            "position": {
+              "x": 360,
+              "y": 445
+            },
+            "text": "U is ONE number for the whole system — unlike V, a value AT a point",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Let us assemble the very same charges in a different order, q₃ first this time.",
+              "text_hi": "उन्हीं charges को एक अलग order में assemble कीजिए, इस बार q₃ पहले।",
+              "text_te": "అదే charges ని ఒక వేరే order లో assemble చేద్దాం, ఈసారి q₃ మొదట.",
+              "reveal_primitive_id": "reorder",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s5_2",
+              "text_en": "The total lands on exactly the same value, minus five point four. The order of assembly and the path never change the energy.",
+              "text_hi": "total बिल्कुल वही value पर आता है, minus five point four। assembly का order और path energy को कभी नहीं बदलते।",
+              "text_te": "total సరిగ్గా అదే value కి వస్తుంది, minus five point four. assembly యొక్క order మరియు path energy ని ఎప్పటికీ మార్చవు.",
+              "reveal_primitive_id": "same_total",
+              "appear_at_ms": 6800
+            },
+            {
+              "id": "s5_3",
+              "text_en": "And the key contrast: this energy U is one single number for the whole system. That is different from the potential V, which is a value at a chosen point.",
+              "text_hi": "और मुख्य contrast: यह energy U पूरे system के लिए एक single number है। यह potential V से अलग है, जो एक चुने हुए point पर एक value है।",
+              "text_te": "మరియు ముఖ్యమైన contrast: ఈ energy U మొత్తం system కి ఒకే single number. ఇది potential V నుండి వేరు, అది ఒక ఎంచుకున్న point వద్ద ఒక value.",
+              "reveal_primitive_id": "u_vs_v",
+              "appear_at_ms": 12000
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "You drive — drag q₃, slide its charge, watch U swing live",
+        "duration": 17,
+        "focal_primitive_id": "drag_q3",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "variable_overrides": {
+          "q3_value": 2
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "drag_q3",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "drag q₃ anywhere — every pair distance, and the total U, recompute live",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "slide_q3",
+            "position": {
+              "x": 600,
+              "y": 210
+            },
+            "text": "slide q₃'s charge — flip its sign and watch U swing",
+            "color": "#4FC3F7",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "you_drive",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "the meter rises for stored +U, drops below zero for released −U",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now you drive. Drag the charge q₃ anywhere, and every pair separation and the total energy U recompute live.",
+              "text_hi": "अब आप drive कीजिए। charge q₃ को कहीं भी drag कीजिए, और हर pair की separation और कुल energy U live recompute होते हैं।",
+              "text_te": "ఇప్పుడు మీరు drive చేయండి. charge q₃ ని ఎక్కడైనా drag చేయండి, మరియు ప్రతి pair separation మరియు మొత్తం energy U live గా recompute అవుతాయి.",
+              "reveal_primitive_id": "drag_q3",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Use the slider to flip or scale the charge q₃, and watch the total energy swing positive or negative.",
+              "text_hi": "slider से charge q₃ को flip या scale कीजिए, और कुल energy को positive या negative की ओर झूलते देखिए।",
+              "text_te": "slider తో charge q₃ ని flip లేదా scale చేయండి, మరియు మొత్తం energy positive లేదా negative వైపు ఊగడం చూడండి.",
+              "reveal_primitive_id": "slide_q3",
+              "appear_at_ms": 6000
+            },
+            {
+              "id": "s6_3",
+              "text_en": "The meter rises for stored positive energy and drops below zero for released negative energy.",
+              "text_hi": "meter stored positive energy के लिए ऊपर उठता है और released negative energy के लिए zero से नीचे गिरता है।",
+              "text_te": "meter stored positive energy కోసం పైకి లేస్తుంది మరియు released negative energy కోసం zero కంటే కిందకు పడుతుంది.",
+              "reveal_primitive_id": "you_drive",
+              "appear_at_ms": 11000
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the potential energy of a system of charges when they can (1) write the total energy as a sum over every unique pair, U = Σ k qᵢqⱼ/rᵢⱼ, and treat it as the work to assemble the charges from infinity; (2) reject the 'energy is always positive' belief and assign each pair term the sign of qᵢqⱼ — like pairs store +U, unlike pairs release −U; (3) reject the 'only the nearest pair counts' belief and recognise that adding a charge creates one new pair term with every charge already present (N−1 new terms); (4) count the unique pairs of a system as N(N−1)/2 and not confuse U (one number for the whole system, summed over pairs) with the potential V (a scalar value at a point, summed per charge); (5) reason that U is path/order-independent, a state function; and (6) evaluate a system energy numerically, keeping each pair term's sign and a 1/r (not 1/r²) dependence.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "Three point charges q₁, q₂, q₃ are fixed at separations r₁₂, r₁₃, r₂₃. What is the potential energy of the system?",
+        "options": {
+          "A": "U = k q₁q₂/r₁₂ + k q₁q₃/r₁₃ + k q₂q₃/r₂₃ — sum over every unique pair",
+          "B": "U = k q₁/r₁ + k q₂/r₂ + k q₃/r₃ — add each charge's own term",
+          "C": "U = k(q₁+q₂+q₃)/(r₁₂+r₁₃+r₂₃) — lump the charges and the distances",
+          "D": "Only the nearest pair's k qq/r; the other pairs are too far to count"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "uses a per-charge k q/r sum — that is the potential V at a point, not the system energy U over pairs",
+          "C": "lumps charges and distances instead of summing each pair's k qᵢqⱼ/rᵢⱼ separately",
+          "D": "keeps only the nearest pair, but every unique pair contributes a term"
+        },
+        "tested_idea": "The energy of a system is the sum of k qᵢqⱼ/rᵢⱼ over every unique pair of charges.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Several point charges sit at fixed positions. Write the potential energy of the whole configuration in terms of the charges and their pairwise separations."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "You bring a second charge in from infinity toward a fixed first charge. When is the stored potential energy POSITIVE?",
+        "options": {
+          "A": "When the charges are alike (qq > 0) — you do work against repulsion, banking +U",
+          "B": "Always — potential energy of charges can never be negative",
+          "C": "Only when the charges are unlike (qq < 0) — attraction stores the energy",
+          "D": "Never — bringing charges together always releases energy"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes energy is always positive, ignoring that unlike pairs give negative U",
+          "C": "swaps the signs — attraction (unlike) gives negative U, not positive",
+          "D": "assumes assembly always releases energy, but like charges require work, storing +U"
+        },
+        "tested_idea": "A like pair stores positive energy (work against repulsion); an unlike pair gives negative energy.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Two charges are assembled from infinity. State whether the stored energy is positive or negative for a like pair and for an unlike pair, and why."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A system already has two charges. You bring in a third charge from infinity. How many NEW energy terms appear?",
+        "options": {
+          "A": "Two — the new charge forms a pair with each of the two already present",
+          "B": "One — it only pairs with the nearest existing charge",
+          "C": "Three — one for each charge including itself",
+          "D": "None — the energy is fixed once the first two charges are placed"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "keeps only the nearest pair, but the new charge pairs with EVERY existing charge",
+          "C": "counts a self-pair, but a charge does not pair with itself",
+          "D": "assumes later charges add nothing, but each new charge adds N−1 pair terms"
+        },
+        "tested_idea": "Adding a charge adds one new pair term with every charge already present (N−1 new terms).",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A configuration of three charges already exists. A fourth charge is brought in from infinity. How many new pair-energy terms are introduced?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "How many unique pair-energy terms does a system of FOUR point charges have?",
+        "options": {
+          "A": "6 — that is N(N−1)/2 with N = 4",
+          "B": "4 — one term per charge",
+          "C": "12 — N(N−1), counting each pair twice",
+          "D": "8 — two terms per charge"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "counts one term per charge, but energy terms belong to pairs, not single charges",
+          "C": "uses N(N−1), double-counting each pair (q_i q_j and q_j q_i are the same term)",
+          "D": "invents two terms per charge with no basis in pair counting"
+        },
+        "tested_idea": "A system of N charges has N(N−1)/2 unique pairs, hence that many energy terms.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Count the number of distinct pair-energy terms in the potential energy of a system of five point charges."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "You assemble the same three charges in two different orders. How do the two total energies compare?",
+        "options": {
+          "A": "They are identical — U depends only on the final configuration, not the path",
+          "B": "They differ, because the work depends on which charge you move first",
+          "C": "They differ by the energy of the first pair you build",
+          "D": "Only the order that brings the strongest charge in last gives the true U"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats U as path-dependent, but electrostatic energy is a state function",
+          "C": "imagines a leftover first-pair term, but every order sums the same set of pairs",
+          "D": "invents a privileged order, but all orders give the identical total"
+        },
+        "tested_idea": "The potential energy of a configuration is path/order-independent — a state function.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Argue why the energy needed to assemble a set of charges is the same regardless of the order in which they are brought together."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Three pairs give energy terms (charge·charge ÷ separation, demo units, k = 1): +2 at r = 1, −5 at r = 1, and +6 at r = 2. What is the total potential energy of the system?",
+        "options": {
+          "A": "−2",
+          "B": "+3",
+          "C": "+13",
+          "D": "+1.5"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "keeps only the largest term (+3) instead of summing all three signed terms",
+          "C": "adds the magnitudes (2 + 5 + 6) and drops the signs and the 1/r division",
+          "D": "uses a 1/r² falloff on the third term, but pair energy falls as 1/r"
+        },
+        "tested_idea": "Evaluate U = Σ k qᵢqⱼ/rᵢⱼ numerically: keep each sign and use a 1/r (not 1/r²) dependence.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Pair terms are +4 at r = 2, −3 at r = 1, and +1 at r = 1 (k = 1). Compute the total potential energy of the system."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "Q2"
+      ],
+      "STATE_3": [
+        "Q3"
+      ],
+      "STATE_4": [
+        "Q1",
+        "Q4"
+      ],
+      "STATE_5": [
+        "Q5"
+      ],
+      "STATE_6": [
+        "Q6"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "system_pe_assembly",
+    "explorer_id": "energy_explorer",
+    "charges": [
+      {
+        "id": "q1",
+        "position": [
+          -1.6,
+          -0.4,
+          0
+        ],
+        "charge_value": 1,
+        "label": "+q₁",
+        "color": "#EF5350"
+      },
+      {
+        "id": "q2",
+        "position": [
+          1.2,
+          -0.6,
+          0
+        ],
+        "charge_value": -1,
+        "label": "−q₂",
+        "color": "#42A5F5"
+      },
+      {
+        "id": "q3",
+        "position": [
+          0.2,
+          1.5,
+          0
+        ],
+        "charge_value": 2,
+        "label": "+2q₃",
+        "color": "#EF5350"
+      }
+    ],
+    "system_defaults": {
+      "DEMO_U": 12,
+      "clamp_r_min": 0.05,
+      "U_FULL": 16
+    },
+    "slider_controls": {
+      "q3_value": {
+        "min": -3,
+        "max": 3,
+        "step": 1,
+        "default": 2,
+        "label": "Charge q₃ (demo nC)"
+      }
+    },
+    "colors": {
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "bond": "#4FC3F7",
+      "meter_positive": "#FF7043",
+      "field": "#FF7043",
+      "equipotential": "#4FC3F7",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Bring +q₂ from infinity — work stored as U = k q₁q₂/r",
+        "visible_elements": [
+          "pe_charge_q1",
+          "pe_charge_q2",
+          "pe_bond_q1|q2",
+          "pe_meter_fill",
+          "pe_u_readout"
+        ],
+        "camera_position": [
+          0.6,
+          0.9,
+          6.8
+        ],
+        "caption": "",
+        "assembly": {
+          "placed": [
+            "q1"
+          ],
+          "enter": [
+            {
+              "id": "q2",
+              "at_ms": 1400,
+              "dur_ms": 2600,
+              "from": [
+                5.4,
+                0.6,
+                0
+              ]
+            }
+          ],
+          "charge_overrides": {
+            "q2": 1
+          },
+          "bonds": [
+            {
+              "pair": [
+                "q1",
+                "q2"
+              ],
+              "at_ms": 4400
+            }
+          ],
+          "meter_at_ms": 4400
+        },
+        "formula_overlay": "U = k q₁q₂ ⁄ r = +4.3 (like pair: energy stored)"
+      },
+      "STATE_2": {
+        "label": "Flip q₂ negative — unlike pair releases −U",
+        "visible_elements": [
+          "pe_charge_q1",
+          "pe_charge_q2",
+          "pe_bond_q1|q2",
+          "pe_meter_fill",
+          "pe_u_readout"
+        ],
+        "camera_position": [
+          0.6,
+          0.9,
+          6.8
+        ],
+        "caption": "",
+        "assembly": {
+          "placed": [
+            "q1"
+          ],
+          "enter": [
+            {
+              "id": "q2",
+              "at_ms": 1400,
+              "dur_ms": 2400,
+              "from": [
+                5.4,
+                0.6,
+                0
+              ]
+            }
+          ],
+          "bonds": [
+            {
+              "pair": [
+                "q1",
+                "q2"
+              ],
+              "at_ms": 4200
+            }
+          ],
+          "meter_at_ms": 4200
+        },
+        "formula_overlay": "U = k q₁q₂ ⁄ r = −4.3 (unlike pair: energy released)"
+      },
+      "STATE_3": {
+        "label": "Add +2q₃ — two new pair terms appear at once",
+        "visible_elements": [
+          "pe_charge_q1",
+          "pe_charge_q2",
+          "pe_charge_q3",
+          "pe_bond_q1|q3",
+          "pe_bond_q2|q3",
+          "pe_sum_panel"
+        ],
+        "camera_position": [
+          0.6,
+          0.9,
+          7.0
+        ],
+        "caption": "",
+        "assembly": {
+          "placed": [
+            "q1",
+            "q2"
+          ],
+          "enter": [
+            {
+              "id": "q3",
+              "at_ms": 1600,
+              "dur_ms": 2600,
+              "from": [
+                0.4,
+                5.6,
+                0
+              ]
+            }
+          ],
+          "bonds": [
+            {
+              "pair": [
+                "q1",
+                "q2"
+              ],
+              "at_ms": 600
+            },
+            {
+              "pair": [
+                "q1",
+                "q3"
+              ],
+              "at_ms": 4600
+            },
+            {
+              "pair": [
+                "q2",
+                "q3"
+              ],
+              "at_ms": 6400
+            }
+          ],
+          "meter_at_ms": 600,
+          "sum_at_ms": 7600
+        },
+        "formula_overlay": "new terms: +9.2 (q₁q₃) and −10.3 (q₂q₃) → total −5.4"
+      },
+      "STATE_4": {
+        "label": "The rule: U = Σ over every pair, N(N−1)/2 terms",
+        "visible_elements": [
+          "pe_charge_q1",
+          "pe_charge_q2",
+          "pe_charge_q3",
+          "pe_bond_q1|q2",
+          "pe_bond_q1|q3",
+          "pe_bond_q2|q3",
+          "pe_sum_panel"
+        ],
+        "camera_position": [
+          0.6,
+          0.9,
+          7.0
+        ],
+        "caption": "",
+        "assembly": {
+          "placed": [
+            "q1",
+            "q2",
+            "q3"
+          ],
+          "bonds": [
+            {
+              "pair": [
+                "q1",
+                "q2"
+              ],
+              "at_ms": 2000
+            },
+            {
+              "pair": [
+                "q1",
+                "q3"
+              ],
+              "at_ms": 4000
+            },
+            {
+              "pair": [
+                "q2",
+                "q3"
+              ],
+              "at_ms": 6000
+            }
+          ],
+          "meter_at_ms": 2000,
+          "sum_at_ms": 8000
+        },
+        "formula_overlay": "U = −4.3 + 9.2 − 10.3 = −5.4   ·   4 charges → 6 pairs"
+      },
+      "STATE_5": {
+        "label": "Reorder (q₃ first) → same total; U vs V",
+        "visible_elements": [
+          "pe_charge_q1",
+          "pe_charge_q2",
+          "pe_charge_q3",
+          "pe_bond_q1|q2",
+          "pe_bond_q1|q3",
+          "pe_bond_q2|q3",
+          "pe_sum_panel"
+        ],
+        "camera_position": [
+          0.6,
+          0.9,
+          7.0
+        ],
+        "caption": "",
+        "assembly": {
+          "placed": [
+            "q3"
+          ],
+          "enter": [
+            {
+              "id": "q1",
+              "at_ms": 1200,
+              "dur_ms": 2200,
+              "from": [
+                -5.4,
+                -0.4,
+                0
+              ]
+            },
+            {
+              "id": "q2",
+              "at_ms": 3800,
+              "dur_ms": 2200,
+              "from": [
+                5.4,
+                -0.6,
+                0
+              ]
+            }
+          ],
+          "bonds": [
+            {
+              "pair": [
+                "q1",
+                "q3"
+              ],
+              "at_ms": 3600
+            },
+            {
+              "pair": [
+                "q2",
+                "q3"
+              ],
+              "at_ms": 6200
+            },
+            {
+              "pair": [
+                "q1",
+                "q2"
+              ],
+              "at_ms": 6600
+            }
+          ],
+          "meter_at_ms": 3600,
+          "sum_at_ms": 7200
+        },
+        "formula_overlay": "different order, same U = −5.4   ·   U: one number for the system"
+      },
+      "STATE_6": {
+        "label": "Explore — drag q₃, slide its charge, live U",
+        "visible_elements": [
+          "pe_charge_q1",
+          "pe_charge_q2",
+          "pe_charge_q3",
+          "pe_bond_q1|q2",
+          "pe_bond_q1|q3",
+          "pe_bond_q2|q3",
+          "pe_meter_fill",
+          "pe_u_readout"
+        ],
+        "camera_position": [
+          0.6,
+          0.9,
+          7.0
+        ],
+        "caption": "",
+        "show_sliders": true,
+        "sliders": [
+          "q3_value"
+        ],
+        "assembly": {
+          "placed": [
+            "q1",
+            "q2",
+            "q3"
+          ],
+          "bonds": [
+            {
+              "pair": [
+                "q1",
+                "q2"
+              ],
+              "at_ms": 0
+            },
+            {
+              "pair": [
+                "q1",
+                "q3"
+              ],
+              "at_ms": 0
+            },
+            {
+              "pair": [
+                "q2",
+                "q3"
+              ],
+              "at_ms": 0
+            }
+          ],
+          "meter_at_ms": 0,
+          "sum_at_ms": 0,
+          "live_u_readout": true,
+          "draggable_id": "q3"
+        },
+        "formula_overlay": "drag q₃ — U = Σ k qᵢqⱼ/rᵢⱼ (live)"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field": "#FF7043",
+      "equipotential": "#4FC3F7",
+      "probe": "#FFF176"
+    }
+  }
+}

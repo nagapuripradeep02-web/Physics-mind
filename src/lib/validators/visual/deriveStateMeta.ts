@@ -141,6 +141,50 @@ export function deriveMotionExpectations(
             // handled in deriveHoldExpectations.
             const cap = state ? asObj(state.capacitor) : null;
             if (cap && asObj(cap.gap_widen)) { out[stateId] = true; continue; }
+            // pe_external_field (potential_energy_in_external_field): the per-state `pef`
+            // block. MOTION states are STATE_2 (charge slide to a higher-V spot), STATE_3
+            // (sign-flip recolor + meter swing + hill->well glyph), and STATE_7/8 (dipole
+            // rotation: theta_sweep / oscillation / damped_swing). STATE_6 (collapse to
+            // dipole) is a one-shot p-arrow draw-in + formula relabel that completes early
+            // and then HOLDS -> reveal_hold, NOT mid-state motion (the ~600ms draw-in
+            // finishes before the dense window opens, so declaring it motion false-fails
+            // D5). A bare fly-in (enter_from) is likewise a one-shot reveal then HOLD
+            // (STATE_4). STATE_1/4/5/6 = reveal_hold; STATE_9 = interactive (show_sliders).
+            const pef = state ? asObj(state.pef) : null;
+            if (pef) {
+                const rm = typeof pef.rotation_mode === 'string' ? pef.rotation_mode : null;
+                if (pef.dipole === true && rm && rm !== 'static') { out[stateId] = true; continue; }
+                if (typeof pef.flip_at_ms === 'number') { out[stateId] = true; continue; }
+                const pcs = Array.isArray(pef.charges) ? pef.charges : [];
+                if (pcs.some((c) => { const co = asObj(c); return !!(co && co.slide_to != null); })) { out[stateId] = true; continue; }
+                // No motion cue in this pef state -> field_3d reveal_hold / interactive.
+                // Decide it HERE as non-motion (false, not undefined) so the epic_l-path
+                // advance_mode heuristic below (auto_after_animation => motion) can't
+                // false-declare a held pef reveal as motion. STATE_6 (collapse) is
+                // auto_after_animation yet only draws p in once and then holds.
+                out[stateId] = false; continue;
+            }
+            // earths_magnetism (the per-state `em` block). The ONLY mid-state motion
+            // is the STATE_3 latitude auto-sweep (em.sweep) → declare motion so D5/D6
+            // expect pixels to move. STATE_1 (compass idle-sway), STATE_2 (dive-then-
+            // hold) and STATE_4 (idle micro-drift) settle to a static-but-live payoff
+            // frame → declare them non-motion (false, not undefined) so the static
+            // payoff is not mis-read as "motion died". Their hold intent is handled in
+            // deriveHoldExpectations (show_sliders → interactive).
+            const em = state ? asObj(state.em) : null;
+            if (em) { out[stateId] = em.sweep ? true : false; continue; }
+            // magnetisation: every guided beat animates (current pulse / dipole
+            // jitter+slide / alignment sweep / dense-line fade / material cycle);
+            // the sandbox (mode 'sandbox') is user-driven → declare static (its
+            // frozen tail is relaxed by the show_sliders→interactive hold pass).
+            const mag = state ? asObj(state.mag) : null;
+            if (mag) { out[stateId] = (mag.mode && mag.mode !== 'sandbox') ? true : false; continue; }
+            // faraday: every guided beat animates (flux shimmer / magnet slide-in /
+            // slide-out / Lenz approach / rate oscillation); the sandbox (mode
+            // 'sandbox') is user-driven → declare static (its frozen tail is relaxed
+            // by the show_sliders→interactive hold pass).
+            const faraday = state ? asObj(state.faraday) : null;
+            if (faraday) { out[stateId] = (faraday.mode && faraday.mode !== 'sandbox') ? true : false; continue; }
             // Other field_3d states fall through to the epic_l_path-based pass
             // below (trajectory_mode / advance_mode), so don't set them here.
         }
@@ -206,6 +250,12 @@ const F3D_REVEAL_KEYS = [
     // state carries a `potential` reveal block (so a cached physics_config that
     // flattened field_3d_config.states is still recognised as field_3d, not PCPL).
     'potential',
+    // potential_energy_system_of_charges (system_pe_assembly): the per-state
+    // `assembly` block. potential_energy_in_external_field (pe_external_field): the
+    // per-state `pef` block (charge/dipole phase timed reveals).
+    // faraday_law_induction (faraday): the per-state `faraday` block (mode-driven
+    // magnet slide / flux change / needle deflection reveals).
+    'assembly', 'pef', 'mag', 'faraday',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -614,6 +664,89 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         if (typeof pot.total_just_q3_at_ms === 'number') candidates.push(asNum(pot.total_just_q3_at_ms, 0) + 600 + 300);
         if (typeof pot.field_contrast_at_ms === 'number') candidates.push(asNum(pot.field_contrast_at_ms, 0) + 700 + 300);
         if (typeof pot.split_callout_at_ms === 'number') candidates.push(asNum(pot.split_callout_at_ms, 0) + 600 + 300);
+    }
+    // ── potential_energy_system_of_charges (system_pe_assembly) beats ──
+    //   The assemble-from-infinity ENERGY arc (U = Σ k qᵢqⱼ/rᵢⱼ). Its per-state
+    //   `assembly` block flies charges in (enter[].at_ms + dur_ms), lights pair bonds
+    //   (bonds[].at_ms), then fills the signed energy meter (meter_at_ms) + running
+    //   sum (sum_at_ms) — all one-shot, then HOLD their end pose (Rule 26,
+    //   accumulator-free). THE EYE MUST pin past the LAST payoff or the frozen capture
+    //   lands mid-fly-in and photographs an incomplete frame. deriveHoldExpectations
+    //   marks each non-slider state reveal_hold and STATE_6 (draggable_id +
+    //   show_sliders) interactive — so the post-assembly frozen tail is not flagged a
+    //   dead animation (the D7 lesson).
+    const asm = asObj(state.assembly);
+    if (asm) {
+        const enters = Array.isArray(asm.enter) ? asm.enter : [];
+        for (const e of enters) {
+            const eo = asObj(e);
+            if (eo) candidates.push(asNum(eo.at_ms, 0) + asNum(eo.dur_ms, 2400) + 300);
+        }
+        const bonds = Array.isArray(asm.bonds) ? asm.bonds : [];
+        for (const bd of bonds) {
+            const bo = asObj(bd);
+            if (bo) candidates.push(asNum(bo.at_ms, 0) + 600 + 300);
+        }
+        if (typeof asm.meter_at_ms === 'number') candidates.push(asNum(asm.meter_at_ms, 0) + 500 + 300);
+        if (typeof asm.sum_at_ms === 'number') candidates.push(asNum(asm.sum_at_ms, 0) + 600 + 300);
+    }
+    // pe_external_field (potential_energy_in_external_field) beats. The per-state `pef`
+    // block carries one-shot timed reveals that play ONCE then HOLD their end pose
+    // (Rule 26): the field/equipotential fade-ins, the per-charge qV tags, the signed
+    // energy meter, the formula overlay, the STATE_5 bonds, the hill/well glyph + its
+    // sign FLIP, the STATE_2 charge fly-in + slide, and (DIPOLE phase) the theta_sweep
+    // /oscillation/damped_swing rotation END + the STATE_6 p draw-in. THE EYE MUST pin
+    // past the LAST payoff or the frozen capture lands mid-reveal. deriveHoldExpectations
+    // marks each non-slider pef state reveal_hold and STATE_9 interactive.
+    const pef = asObj(state.pef);
+    if (pef) {
+        if (pef.field_animate_in === true) candidates.push(1000 + 300);
+        if (typeof pef.equipotential_at_ms === 'number') candidates.push(asNum(pef.equipotential_at_ms, 0) + 700 + 300);
+        if (typeof pef.qv_tags_at_ms === 'number') candidates.push(asNum(pef.qv_tags_at_ms, 0) + 600 + 300);
+        if (typeof pef.meter_at_ms === 'number') candidates.push(asNum(pef.meter_at_ms, 0) + 500 + 300);
+        if (typeof pef.formula_at_ms === 'number') candidates.push(asNum(pef.formula_at_ms, 0) + 600 + 300);
+        if (typeof pef.bonds_at_ms === 'number') candidates.push(asNum(pef.bonds_at_ms, 0) + 600 + 300);
+        if (typeof pef.landscape_at_ms === 'number') candidates.push(asNum(pef.landscape_at_ms, 0) + 600 + 300);
+        if (typeof pef.flip_at_ms === 'number') candidates.push(asNum(pef.flip_at_ms, 0) + 800 + 500);
+        const pcs = Array.isArray(pef.charges) ? pef.charges : [];
+        for (const c of pcs) {
+            const co = asObj(c);
+            if (!co) continue;
+            if (co.enter_from != null) candidates.push(asNum(co.enter_at_ms, 0) + asNum(co.enter_dur_ms, 2000) + 300);
+            if (co.slide_to != null) candidates.push(asNum(co.slide_at_ms, 0) + asNum(co.slide_dur_ms, 2000) + 500);
+        }
+        if (pef.dipole === true) {
+            const rm = typeof pef.rotation_mode === 'string' ? pef.rotation_mode : null;
+            if (rm === 'theta_sweep') candidates.push(asNum(pef.theta_sweep_period_s, 10) * 1000 + 500);
+            else if (rm === 'oscillation') candidates.push(asNum(pef.oscillation_period_s, 4) * 1000 * 2 + 500);
+            else if (rm === 'damped_swing') candidates.push(asNum(pef.swing_decay_s, 2.2) * 3 * 1000 + 500);
+            if (pef.p_animate_in === true) candidates.push(900 + 500);
+        }
+    }
+    // magnetisation: the guided beats animate on the state clock — the align sweep
+    // (~2.5s ramp) and the sum-mode dense-line fade (~1.5s) are the latest payoffs;
+    // pin the dense window past them so the frozen capture lands on the settled pose.
+    const mag = asObj(state.mag);
+    if (mag) {
+        const mode = typeof mag.mode === 'string' ? mag.mode : '';
+        if (mode === 'align') candidates.push(2500 + 600);
+        else if (mode === 'sum') candidates.push(1500 + 600);
+        else if (mode === 'insert') candidates.push(1100 + 500);
+        else if (mode === 'materials') candidates.push(2400 * 3 + 500);
+        else candidates.push(1200);
+    }
+    // faraday (faraday_law_induction): the guided beats animate on the state clock —
+    // pin the dense/frozen window at the moment each beat's payoff is strongest so
+    // the capture lands on a deflected needle / changing flux, never on the settled
+    // eps=0 tail (the magnet-at-rest end pose gives no deflection).
+    const faraday = asObj(state.faraday);
+    if (faraday) {
+        const mode = typeof faraday.mode === 'string' ? faraday.mode : '';
+        if (mode === 'push_in') candidates.push(1000);       // mid slide-in, needle deflected
+        else if (mode === 'pull_out') candidates.push(1000); // mid slide-out, needle reversed
+        else if (mode === 'lenz') candidates.push(1600);     // mid slow approach, push arrow up
+        else if (mode === 'rate') candidates.push(400);      // near first |eps| peak (needle swung)
+        else candidates.push(1200);                          // flux_steady shimmer / default
     }
     // parallel_plates (parallel_plate_capacitor_field): the E = V/d uniform-field
     // arc. Its per-state `capacitor` block carries one-shot timed reveals that then
@@ -1052,6 +1185,12 @@ export function deriveHoldExpectations(
         for (const [stateId, stateRaw] of Object.entries(f3d.states)) {
             const state = asObj(stateRaw);
             if (!state) { out[stateId] = undefined; continue; }
+            // earths_magnetism: every state is a live instrument (show_sliders true)
+            // — the latitude/declination sliders + STATE_3 auto-sweep settle to a
+            // static-but-live frame the headless harness never drags. Classify as
+            // interactive so D7 (stuck-tail) / D1 (frozen) don't false-fail.
+            const emHold = asObj(state.em);
+            if (emHold) { out[stateId] = 'interactive'; continue; }
             if (state.show_sliders === true) { out[stateId] = 'interactive'; continue; }
             // charge_distribution explore state: the density slider drives the
             // net-field arrow; static until a drag the headless harness never does.
@@ -1158,6 +1297,27 @@ export function deriveHoldExpectations(
             //                  result frame → reveal_hold (caught by the fallback
             //                  below since maxReveal > DEFAULT_REVEAL_MS via the
             //                  acl_element block in maxRevealForField3dState).
+            // potential_energy_system_of_charges (system_pe_assembly): the per-state
+            // `assembly` block flies charges in then lights pair bonds + fills the
+            // signed meter, all one-shot reveals that HOLD their end pose (Rule 26).
+            // STATE_6 (draggable_id + show_sliders) is user-driven → interactive
+            // (already caught by the show_sliders check above); every other state is a
+            // reveal-then-hold, so D7/D1p must permit the post-assembly frozen tail.
+            const asmHold = asObj(state.assembly);
+            if (asmHold) {
+                if (asmHold.draggable_id != null) { out[stateId] = 'interactive'; continue; }
+                out[stateId] = 'reveal_hold'; continue;
+            }
+            // pe_external_field: STATE_9 (show_sliders) is already caught above
+            // (interactive). Every other pef state is a one-shot reveal / fly-in /
+            // slide / sign-flip / collapse / bounded rotation that then HOLDS its end
+            // pose - so D7 must permit the post-motion frozen tail (the same relaxation
+            // the dipole_potential sweep + system_pe assembly states get). The motion
+            // ones are ALSO declared motion in deriveMotionExpectations (dual
+            // classification, mirroring the theta_sweep pattern) so D5/D6 still expect
+            // mid-state pixel movement.
+            const pefHold = asObj(state.pef);
+            if (pefHold) { out[stateId] = 'reveal_hold'; continue; }
             const aclHold = asObj(state.acl_element);
             if (aclHold && typeof aclHold.mode === 'string') {
                 if (aclHold.mode === 'integrated') { out[stateId] = 'interactive'; continue; }

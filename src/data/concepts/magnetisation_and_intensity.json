@@ -1,0 +1,722 @@
+{
+  "concept_id": "magnetisation_and_intensity",
+  "concept_name": "Magnetisation & Magnetic Intensity — B = μ₀(H + M)",
+  "chapter": 5,
+  "section": "5.5",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Ch.5 Magnetism and Matter §5.5 (Magnetisation and magnetic intensity) — table-of-contents reference only; teaching authored from first principles. The atomic concept: a solenoid supplies the magnetic INTENSITY H = nI (set by the free current, independent of any material); a material core develops a MAGNETISATION M (net magnetic dipole moment per unit volume) as its atomic dipoles align to H; the total field inside is B = μ₀(H + M). The susceptibility χ = M/H (and relative permeability μ_r = 1 + χ) classifies matter into diamagnetic (χ < 0), paramagnetic (small χ > 0) and ferromagnetic (large χ). Built instrument-native in the straightforward (non-Socratic) model: five motion-distinct teaching beats + one combined interactive state.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "magnetisation"
+    ]
+  },
+  "prerequisites": [
+    "earths_magnetism",
+    "bar_magnet_as_dipole"
+  ],
+  "real_world_anchor": {
+    "primary": "Picture an electromagnet in a scrapyard crane, or the iron core inside any transformer. The coil carries a current and produces the applied field H. But the lift is thousands of times stronger than the bare coil would give — because the iron core magnetises: its atomic dipoles line up, adding their own magnetisation M, so the real field is B = μ₀(H + M). That is why every powerful electromagnet has an iron core.",
+    "secondary": "Picture winding a coil around a plain plastic rod versus an iron nail. Same current, same H — but the iron nail becomes a strong magnet and the plastic does almost nothing. The difference is the material's susceptibility χ: how much magnetisation M each unit of H produces."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I": {
+        "name": "Current in the solenoid",
+        "unit": "A",
+        "min": 0.5,
+        "max": 5,
+        "default": 3,
+        "step": 0.1
+      },
+      "n": {
+        "name": "Turns per unit length of the solenoid",
+        "unit": "1/m",
+        "constant": 1000
+      },
+      "H": {
+        "name": "Magnetic intensity (applied field)",
+        "unit": "A/m",
+        "min": 0,
+        "max": 5000,
+        "default": 3000
+      },
+      "chi": {
+        "name": "Magnetic susceptibility of the core",
+        "unit": "dimensionless",
+        "min": -0.1,
+        "max": 200,
+        "default": 0.6
+      },
+      "mu_r": {
+        "name": "Relative permeability",
+        "unit": "dimensionless",
+        "min": 0.9,
+        "max": 201,
+        "default": 1.6
+      },
+      "mu_0": {
+        "name": "Permeability of free space",
+        "unit": "T·m/A",
+        "constant": 1.2566370614e-06
+      }
+    },
+    "computed_outputs": {
+      "H_value": {
+        "formula": "n * I"
+      },
+      "M_value": {
+        "formula": "chi * (n * I)"
+      },
+      "B_tesla": {
+        "formula": "mu_0 * (1 + chi) * (n * I)"
+      },
+      "mu_r_value": {
+        "formula": "1 + chi"
+      }
+    },
+    "formulas": {
+      "magnetic_intensity": "H = n I  (set by the free current; units A/m)",
+      "magnetisation": "M = χ H  (the material's response; units A/m)",
+      "total_field": "B = μ₀ (H + M)",
+      "permeability": "μ_r = 1 + χ,  so  B = μ₀ μ_r H",
+      "susceptibility": "χ = M / H  (dia: χ < 0, para: small χ > 0, ferro: large χ)"
+    },
+    "constraints": [
+      "H is the applied magnetic intensity, fixed by the free current in the solenoid (H = nI) and independent of the core material",
+      "M is the magnetisation of the material — net magnetic dipole moment per unit volume — produced when its atomic dipoles align to H",
+      "Inside the material the TOTAL field is B = μ₀(H + M), not just μ₀H",
+      "Susceptibility χ = M/H: diamagnetic χ slightly negative (dipoles oppose), paramagnetic χ small positive, ferromagnetic χ very large positive",
+      "Relative permeability μ_r = 1 + χ; a ferromagnetic core multiplies the field by μ_r (hundreds to thousands)",
+      "H and M share the same unit A/m; B is in tesla"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "The applied field H aligns the atomic dipoles, so the rod becomes magnetised.",
+    "visual_confirmation": "As the current rises, the jumbled atomic arrows swing into alignment and the net M arrow grows from zero."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "exploration": [
+      "STATE_5",
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Apply the field: magnetic intensity H",
+        "duration": 30,
+        "focal_primitive_id": "h_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "h_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "H = n I  (the field you apply)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "coil_label",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
+            "text": "solenoid current\n→ magnetic intensity H",
+            "color": "#FFCC80"
+          },
+          {
+            "type": "annotation",
+            "id": "vacuum_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "empty core:\nB₀ = μ₀ H",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Start with a solenoid carrying a current. The current sets up a magnetic field along the axis — we call its strength the magnetic intensity H.",
+              "text_hi": "एक solenoid से शुरू करें जिसमें current बह रही है। यह current axis के साथ एक magnetic field बनाती है — इसकी strength को हम magnetic intensity H कहते हैं।",
+              "text_te": "current pravahistunna oka solenoid tho modalupettandi. ee current axis venta oka magnetic field ni erpaduthundi — dani strength ni manam magnetic intensity H ani pilustamu.",
+              "glow": "coil_label"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "H is set only by the free current: H equals n times I, where n is the turns per metre. More current, more H.",
+              "text_hi": "H sirf free current से तय होती है: H equals n into I, जहाँ n है turns per metre। ज़्यादा current, ज़्यादा H।",
+              "text_te": "H kevalam free current tho matrame set avutundi: H equals n into I, ikkada n ante turns per metre. ekkuva current, ekkuva H.",
+              "glow": "h_label"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "With nothing inside, the field is just B-naught equals mu-naught times H. Now watch what happens when we put matter in.",
+              "text_hi": "अंदर कुछ न हो तो field सिर्फ B-naught equals mu-naught into H होती है। अब देखिए जब हम अंदर matter डालते हैं तो क्या होता है।",
+              "text_te": "lopala emi lekapote field kevalam B-naught equals mu-naught into H matrame. ippudu manam lopala matter pettinappudu emi jarugutundo choodandi.",
+              "glow": "vacuum_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The magnetic intensity H depends on what material you put inside the coil",
+            "visual_counter": "H comes from the coil current alone (H = nI); the internal field lines are the same before any core is inserted.",
+            "one_line_fix": "H is fixed by the free current, H = nI, and does not depend on the core material."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Insert matter: jumbled atomic dipoles",
+        "duration": 30,
+        "focal_primitive_id": "atoms_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "atoms_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "matter = tiny atomic magnets",
+            "color": "#E0E0E0"
+          },
+          {
+            "type": "annotation",
+            "id": "random_label",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
+            "text": "randomly oriented\n→ net M ≈ 0",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "insert_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "slide a rod into the coil",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Slide a material rod into the solenoid. Every material is built from countless atomic magnets — tiny magnetic dipoles.",
+              "text_hi": "solenoid के अंदर एक material rod डालिए। हर material countless atomic magnets से बना है — tiny magnetic dipoles।",
+              "text_te": "solenoid lopaliki oka material rod ni jarapandi. prati material lekkaleni atomic magnets tho nirmimchabadindi — tiny magnetic dipoles.",
+              "glow": "insert_label"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "On their own these atomic dipoles point every which way, jumbled and random. Their arrows cancel out.",
+              "text_hi": "अपने आप ये atomic dipoles हर दिशा में point करते हैं, jumbled और random। इनके arrows एक दूसरे को cancel कर देते हैं।",
+              "text_te": "vaatantata ee atomic dipoles prati diksha lo point chestayi, jumbled mariyu random. vaati arrows okadaanini okati cancel chestayi.",
+              "glow": "random_label"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "So the material starts with essentially no net magnetisation — M is nearly zero. Nothing is aligned yet.",
+              "text_hi": "तो material की शुरुआत में essentially कोई net magnetisation नहीं होती — M लगभग zero है। अभी कुछ भी aligned नहीं है।",
+              "text_te": "kaabatti material modatlo essentially net magnetisation emi undadu — M daadaapu zero. inkaa emi align avvaledu.",
+              "glow": "atoms_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Every material is already magnetic before any field is applied",
+            "visual_counter": "The inserted rod's atomic arrows point randomly and its net M reads zero until H acts on them.",
+            "one_line_fix": "Ordinary matter has randomly-oriented atomic dipoles, so net M is zero until an applied H aligns them."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "H aligns them: magnetisation M appears",
+        "duration": 32,
+        "focal_primitive_id": "align_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "align_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "H lines the dipoles up → M grows",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "m_label",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
+            "text": "M = magnetic moment\nper unit volume",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "rise_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "more current → more H\n→ stronger alignment",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Now turn the current up so the intensity H grows. Watch the atomic dipoles swing around and line up with the field.",
+              "text_hi": "अब current बढ़ाइए ताकि intensity H बढ़े। देखिए atomic dipoles घूमकर field के साथ line up हो जाते हैं।",
+              "text_te": "ippudu current perigandi, intensity H perigela. atomic dipoles tirigi field tho line up ayye vidhanam choodandi.",
+              "glow": "rise_label"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "As they align, their little arrows add up instead of cancelling. The rod develops a net magnetisation M.",
+              "text_hi": "जैसे-जैसे वे align होते हैं, उनके little arrows cancel होने के बजाय add up होते हैं। rod में एक net magnetisation M develop होती है।",
+              "text_te": "avi align ayye kolla, vaati little arrows cancel avvakunda add up avutayi. rod lo oka net magnetisation M develop avutundi.",
+              "glow": "m_label"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "That is magnetisation: the net magnetic moment per unit volume of the material. The applied field created it.",
+              "text_hi": "यही magnetisation है: material के per unit volume net magnetic moment। applied field ने इसे बनाया।",
+              "text_te": "ade magnetisation: material yokka per unit volume net magnetic moment. applied field dinni srustimchindi.",
+              "glow": "align_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Magnetisation M is just another name for the applied field H",
+            "visual_counter": "H is the coil's field (green lines); M is the material's own response — the red arrow that grows only as the atomic dipoles align.",
+            "one_line_fix": "H is the applied intensity; M is the material's induced magnetisation — two different things, linked by M = χH."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "The total field: B = μ₀(H + M)",
+        "duration": 30,
+        "focal_primitive_id": "sum_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sum_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "B = μ₀ (H + M)",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "dense_label",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
+            "text": "field lines pack denser\ninside the core",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "add_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "applied H + material M\n= total field B",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Inside the magnetised rod the field is no longer just the applied part. The material's magnetisation M adds to H.",
+              "text_hi": "magnetised rod के अंदर field अब सिर्फ applied part नहीं है। material की magnetisation M, H में add होती है।",
+              "text_te": "magnetised rod lopala field ippudu kevalam applied part kaadu. material yokka magnetisation M, H ki add avutundi.",
+              "glow": "add_label"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The total field is B equals mu-naught times the sum H plus M. Watch the internal field lines pack in denser.",
+              "text_hi": "total field है B equals mu-naught into sum H plus M। देखिए internal field lines और denser पैक होती हैं।",
+              "text_te": "total field ante B equals mu-naught into sum H plus M. internal field lines inka denser ga pack ayye vidhanam choodandi.",
+              "glow": "dense_label"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The meter climbs: the same current now gives a much stronger B, because the core is doing part of the work.",
+              "text_hi": "meter बढ़ता है: वही current अब बहुत stronger B देती है, क्योंकि core काम का एक हिस्सा कर रहा है।",
+              "text_te": "meter perugutundi: ade current ippudu chaala stronger B istundi, endukante core pani lo kొంత bhaagam chestondi.",
+              "glow": "sum_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field inside a material core is just mu-naught times H, the same as empty space",
+            "visual_counter": "When the core magnetises, the internal field lines pack denser and the B meter jumps above mu-naught H.",
+            "one_line_fix": "Inside matter B = μ₀(H + M), which exceeds μ₀H whenever the core magnetises (M > 0)."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Three kinds of matter: χ and μ_r",
+        "duration": 32,
+        "focal_primitive_id": "chi_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "chi_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "M = χ H,   μ_r = 1 + χ",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "types_label",
+            "position": {
+              "x": 175,
+              "y": 250
+            },
+            "text": "dia: χ < 0 (opposes)\npara: small χ > 0",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "ferro_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "ferro: huge χ\n→ B × hundreds",
+            "color": "#FFCC80"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "How much magnetisation you get per unit of intensity is the susceptibility: M equals chi times H.",
+              "text_hi": "per unit intensity कितनी magnetisation मिलती है वही susceptibility है: M equals chi into H।",
+              "text_te": "per unit intensity ki entha magnetisation vastundo ade susceptibility: M equals chi into H.",
+              "glow": "chi_label"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Swap the material and watch. Diamagnetic: chi is slightly negative, the dipoles weakly oppose. Paramagnetic: a small positive chi, weak alignment.",
+              "text_hi": "material बदलिए और देखिए। Diamagnetic: chi थोड़ी negative, dipoles weakly oppose करते हैं। Paramagnetic: छोटी positive chi, weak alignment।",
+              "text_te": "material maarchandi mariyu choodandi. Diamagnetic: chi konchem negative, dipoles weakly oppose chestayi. Paramagnetic: chinna positive chi, weak alignment.",
+              "glow": "types_label"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Ferromagnetic: chi is enormous, the dipoles snap into full alignment and B is multiplied by mu-r equals one plus chi — hundreds of times stronger.",
+              "text_hi": "Ferromagnetic: chi बहुत बड़ी, dipoles full alignment में snap होते हैं और B, mu-r equals one plus chi से गुणा होती है — hundreds of times stronger।",
+              "text_te": "Ferromagnetic: chi chaala peddadi, dipoles full alignment loki snap avutayi mariyu B, mu-r equals one plus chi tho guninchabadutundi — hundreds of times stronger.",
+              "glow": "ferro_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "All materials respond to a magnetic field the same way",
+            "visual_counter": "Cycling dia, para and ferro shows opposite/weak/violent alignment and a mu_r readout from below 1 to hundreds.",
+            "one_line_fix": "Susceptibility χ differs by material: dia (χ<0), para (small χ>0), ferro (huge χ) — so μ_r = 1+χ ranges from below 1 to hundreds."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Explore: current and material",
+        "duration": 0,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Drag the current · pick the material",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "try_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "bigger current → bigger H → more M\npick ferro → B jumps",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_label",
+            "position": {
+              "x": 380,
+              "y": 440
+            },
+            "text": "H = nI  ·  M = χH  ·  B = μ₀(H+M)",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Your turn. Drag the current to change the applied intensity H, and pick the material to change its susceptibility chi.",
+              "text_hi": "अब आपकी बारी। current खींचकर applied intensity H बदलिए, और material चुनकर उसकी susceptibility chi बदलिए।",
+              "text_te": "ippudu mee vantu. current lagi applied intensity H maarchandi, mariyu material enchi daani susceptibility chi maarchandi.",
+              "glow": "explore_label"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Bigger current gives a bigger H and more magnetisation M. Switch to a ferromagnetic core and the field B jumps hundreds of times.",
+              "text_hi": "ज़्यादा current से ज़्यादा H और ज़्यादा magnetisation M। ferromagnetic core पर switch कीजिए और field B hundreds of times बढ़ जाती है।",
+              "text_te": "ekkuva current tho ekkuva H mariyu ekkuva magnetisation M. ferromagnetic core ki switch cheyandi mariyu field B hundreds of times perugutundi.",
+              "glow": "try_label"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "One rule ties it all together: H equals nI, M equals chi H, and B equals mu-naught times H plus M. That is magnetisation and magnetic intensity.",
+              "text_hi": "एक rule सब कुछ जोड़ता है: H equals nI, M equals chi H, और B equals mu-naught into H plus M। यही है magnetisation और magnetic intensity।",
+              "text_te": "oka rule anni kalipi unchutundi: H equals nI, M equals chi H, mariyu B equals mu-naught into H plus M. ade magnetisation mariyu magnetic intensity.",
+              "glow": "key_label"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "magnetisation",
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#66BB6A",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85
+    },
+    "slider_controls": {
+      "current": {
+        "min": 0.5,
+        "max": 5,
+        "step": 0.1,
+        "default": 3,
+        "label": "Current I (→ H)"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Apply the field: intensity H = nI",
+        "visible_elements": [
+          "mag_coil",
+          "mag_fl_int",
+          "mag_fl_ext",
+          "mag_curr",
+          "mag_label"
+        ],
+        "camera_position": [
+          1.6,
+          1.6,
+          6.0
+        ],
+        "caption": "Current in the coil sets the magnetic intensity H = nI",
+        "show_sliders": true,
+        "formula_overlay": "H = n I",
+        "mag": {
+          "mode": "apply_h",
+          "material_idx": 0,
+          "current_a": 3,
+          "show_readout": true
+        }
+      },
+      "STATE_2": {
+        "label": "Insert matter: jumbled atomic dipoles",
+        "visible_elements": [
+          "mag_coil",
+          "mag_fl_int",
+          "mag_core",
+          "mag_dipole",
+          "mag_label",
+          "mag_curr"
+        ],
+        "camera_position": [
+          1.2,
+          1.2,
+          5.2
+        ],
+        "caption": "Atomic dipoles point randomly → net M ≈ 0",
+        "show_sliders": true,
+        "mag": {
+          "mode": "insert",
+          "material_idx": 2,
+          "current_a": 3,
+          "show_readout": true
+        }
+      },
+      "STATE_3": {
+        "label": "H aligns them: M appears",
+        "visible_elements": [
+          "mag_coil",
+          "mag_fl_int",
+          "mag_core",
+          "mag_dipole",
+          "mag_moment",
+          "mag_label",
+          "mag_curr"
+        ],
+        "camera_position": [
+          1.1,
+          1.0,
+          4.8
+        ],
+        "caption": "Raise the current → dipoles align → M grows",
+        "show_sliders": true,
+        "formula_overlay": "M = χ H",
+        "mag": {
+          "mode": "align",
+          "material_idx": 2,
+          "current_a": 5,
+          "i_max": 5,
+          "show_readout": true
+        }
+      },
+      "STATE_4": {
+        "label": "Total field: B = μ₀(H + M)",
+        "visible_elements": [
+          "mag_coil",
+          "mag_fl_int",
+          "mag_fl_dense",
+          "mag_core",
+          "mag_dipole",
+          "mag_moment",
+          "mag_label",
+          "mag_curr"
+        ],
+        "camera_position": [
+          1.6,
+          1.6,
+          5.6
+        ],
+        "caption": "M adds to H → field lines densify → B climbs",
+        "show_sliders": true,
+        "formula_overlay": "B = μ₀ (H + M)",
+        "mag": {
+          "mode": "sum",
+          "material_idx": 2,
+          "current_a": 5,
+          "show_readout": true
+        }
+      },
+      "STATE_5": {
+        "label": "Three kinds of matter: χ and μ_r",
+        "visible_elements": [
+          "mag_coil",
+          "mag_fl_int",
+          "mag_core",
+          "mag_dipole",
+          "mag_moment",
+          "mag_label",
+          "mag_curr"
+        ],
+        "camera_position": [
+          1.1,
+          1.0,
+          4.8
+        ],
+        "caption": "dia / para / ferro cycle — M = χH, μ_r = 1+χ",
+        "show_sliders": true,
+        "formula_overlay": "M = χH  ·  μ_r = 1 + χ",
+        "mag": {
+          "mode": "materials",
+          "current_a": 5,
+          "show_readout": true,
+          "show_material": true
+        }
+      },
+      "STATE_6": {
+        "label": "Explore: current + material",
+        "visible_elements": [
+          "mag_coil",
+          "mag_fl_int",
+          "mag_fl_dense",
+          "mag_core",
+          "mag_dipole",
+          "mag_moment",
+          "mag_label",
+          "mag_curr"
+        ],
+        "camera_position": [
+          2.0,
+          1.8,
+          6.2
+        ],
+        "caption": "Drag current · pick material — watch H, M, B, μ_r",
+        "show_sliders": true,
+        "formula_overlay": "H = nI  ·  M = χH  ·  B = μ₀(H+M)",
+        "mag": {
+          "mode": "sandbox",
+          "material_idx": 3,
+          "current_a": 3,
+          "show_readout": true,
+          "show_material": true
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

@@ -1035,6 +1035,35 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    // Potential ENERGY of a system of charges — the energy companion to the
+    // electric_potential_system_of_charges (V) diamond. U = Σ k qᵢqⱼ/rᵢⱼ over every
+    // unique pair: charges fly in from infinity, pairwise energy bonds light up, a
+    // signed meter banks +U (stored) / −U (released). Declares
+    // electric_potential_system_of_charges, coulombs_law and electric_potential_meaning
+    // as prerequisites; does NOT re-teach them, and stops short of capacitor energy.
+    potential_energy_system_of_charges: {
+        concept_id: 'potential_energy_system_of_charges',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'potential_energy_system_of_charges',
+            label: 'Potential Energy of a System of Charges — U = Σ k qᵢqⱼ/rᵢⱼ (3D)',
+        },
+    },
+    // Potential energy in an EXTERNAL field (Class 12 Ch.2 §2.8). U = qV for a
+    // charge sampling a GIVEN external potential, U = q₁V₁+q₂V₂ for a system, and
+    // U = −p·E for a dipole (two qV terms collapsed). DISTINCT from the mutual PE
+    // kq₁q₂/r of potential_energy_system_of_charges (contrasted in STATE_5).
+    potential_energy_in_external_field: {
+        concept_id: 'potential_energy_in_external_field',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'potential_energy_in_external_field',
+            label: 'Potential Energy in an External Field — U = qV, U = −p·E (3D)',
+        },
+    },
+
     force_on_charge_in_field: {
         concept_id: 'force_on_charge_in_field',
         layout: 'single',
@@ -1157,6 +1186,46 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'bar_magnet_in_uniform_field',
             label: 'Bar Magnet in a Uniform Field — τ = m×B, U = −m·B, T = 2π√(I/mB) (3D)',
+        },
+    },
+
+    gauss_law_magnetism: {
+        concept_id: 'gauss_law_magnetism',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'gauss_law_magnetism',
+            label: "Gauss's Law for Magnetism — ∮B·dA = 0, no monopole, closed loops (3D)",
+        },
+    },
+
+    earths_magnetism: {
+        concept_id: 'earths_magnetism',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'earths_magnetism',
+            label: "Earth's Magnetism — tilted dipole, declination D, dip I, B = √(H²+V²) (3D)",
+        },
+    },
+
+    magnetisation_and_intensity: {
+        concept_id: 'magnetisation_and_intensity',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'magnetisation_and_intensity',
+            label: 'Magnetisation & Magnetic Intensity — H = nI, M = χH, B = μ₀(H+M) (3D)',
+        },
+    },
+
+    faraday_law_induction: {
+        concept_id: 'faraday_law_induction',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'faraday_law_induction',
+            label: 'Faraday\'s Law of Induction — ε = −N dΦ/dt (3D)',
         },
     },
 

@@ -1,0 +1,730 @@
+{
+  "concept_id": "faraday_law_induction",
+  "concept_name": "Faraday's Law of Induction — ε = −N dΦ/dt",
+  "chapter": 6,
+  "section": "6.4",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Ch.6 Electromagnetic Induction §6.3–6.5 (Magnetic flux, Faraday's law, Lenz's law) — table-of-contents reference only; teaching authored from first principles. The atomic concept: magnetic flux Φ = B·A·cosθ measures how much magnetic field threads a coil; an EMF is induced only while that flux is CHANGING, ε = −N dΦ/dt (Faraday); the minus sign is Lenz's law — the induced current opposes the change that caused it (energy conservation). Built instrument-native in the straightforward (non-Socratic) model: five motion-distinct teaching beats + one combined interactive state, each state exposing only its own contextual controls.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "faraday"
+    ]
+  },
+  "prerequisites": [
+    "magnetic_field_solenoid",
+    "bar_magnet_as_dipole"
+  ],
+  "real_world_anchor": {
+    "primary": "Drop a strong magnet down a vertical copper pipe and it falls in slow motion — far slower than gravity alone. As the magnet moves, the magnetic flux through each ring of the copper changes, inducing currents in the copper; by Lenz's law those currents oppose the motion that made them, so they brake the fall. No contact, no friction — just a changing flux fighting back. That is Faraday's law and Lenz's law you can watch with your eyes.",
+    "secondary": "Every transformer on India's power grid — the 220 kV, 400 kV and 765 kV step-up and step-down transformers, and the small one in a phone charger — runs on this law. An alternating current makes a changing flux in an iron core, and that changing flux induces a voltage in the second coil. An induction cooktop uses the same idea: a changing flux induces heating currents directly in the pan."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "B": {
+        "name": "Magnetic field threading the coil",
+        "unit": "T",
+        "min": 0,
+        "max": 1,
+        "default": 0.4
+      },
+      "A": {
+        "name": "Area of the coil",
+        "unit": "m²",
+        "min": 0.001,
+        "max": 0.05,
+        "default": 0.02
+      },
+      "theta": {
+        "name": "Angle between B and the coil's area vector",
+        "unit": "degrees",
+        "min": 0,
+        "max": 90,
+        "default": 0
+      },
+      "Phi": {
+        "name": "Magnetic flux through the coil",
+        "unit": "Wb",
+        "min": 0,
+        "max": 0.05,
+        "default": 0.008
+      },
+      "N": {
+        "name": "Number of turns in the coil",
+        "unit": "turns",
+        "min": 1,
+        "max": 12,
+        "default": 6,
+        "step": 1
+      },
+      "v": {
+        "name": "Speed of the magnet",
+        "unit": "relative",
+        "min": 0.3,
+        "max": 2,
+        "default": 1,
+        "step": 0.1
+      },
+      "emf": {
+        "name": "Induced EMF",
+        "unit": "V",
+        "min": -1,
+        "max": 1,
+        "default": 0
+      }
+    },
+    "computed_outputs": {
+      "flux": {
+        "formula": "B * A * cos(theta)"
+      },
+      "induced_emf": {
+        "formula": "-N * dPhi/dt"
+      }
+    },
+    "formulas": {
+      "magnetic_flux": "Φ = B·A·cosθ  (weber, Wb) — how much field threads the coil",
+      "faradays_law": "ε = −N dΦ/dt  — an EMF is induced only while the flux changes",
+      "lenz_law": "the minus sign: the induced current opposes the change that caused it",
+      "rate_and_turns": "faster flux change → bigger ε; more turns N → bigger ε"
+    },
+    "constraints": [
+      "Magnetic flux Φ = B·A·cosθ measures how much magnetic field passes through the coil",
+      "A steady flux induces NO EMF — only a CHANGING flux does (ε = −N dΦ/dt)",
+      "The induced EMF is proportional to the RATE of change of flux and to the number of turns N",
+      "Lenz's law (the minus sign): the induced current flows so as to oppose the change in flux that produced it",
+      "Reversing the direction of the flux change (push in vs pull out) reverses the sign of the induced EMF",
+      "Energy is conserved: the work done against the opposing (Lenz) force becomes the electrical energy of the induced current"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "Moving the magnet changes the flux, and a changing flux induces an EMF.",
+    "visual_confirmation": "As the magnet slides into the coil the flux lines pack denser and the galvanometer needle swings off zero."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "exploration": [
+      "STATE_5",
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "Magnetic flux: how much field threads the coil",
+        "duration": 30,
+        "focal_primitive_id": "flux_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "flux_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Φ = B·A·cosθ  (magnetic flux)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "steady_label",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
+            "text": "magnet held still\n→ flux steady",
+            "color": "#B0BEC5"
+          },
+          {
+            "type": "annotation",
+            "id": "zero_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "steady flux → ε = 0\nneedle stays at zero",
+            "color": "#90A4AE"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A coil sits in a magnetic field. The magnetic flux is how much of the field threads through the coil — Phi equals magnetic field B times area A times cosine theta.",
+              "text_hi": "एक coil एक magnetic field में रखी है। magnetic flux Φ यह है कि कितनी field coil में से गुज़रती है — Phi equals magnetic field B into area A into cosine theta।",
+              "text_te": "oka coil magnetic field lo undi. magnetic flux Φ ante coil gunda entha field velutundo — Phi equals magnetic field B into area A into cosine theta.",
+              "glow": "flux_label"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Here a bar magnet supplies that field. Held still, the flux through the coil stays constant — the green lines threading the coil do not change.",
+              "text_hi": "यहाँ एक bar magnet वह field देता है। स्थिर रखने पर coil में से flux constant रहती है — coil में से गुज़रती green lines नहीं बदलतीं।",
+              "text_te": "ikkada oka bar magnet aa field ni istundi. kadalకుండా unte coil gunda flux constant ga untundi — coil gunda velle green lines maaravu.",
+              "glow": "steady_label"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "And a steady flux induces nothing. The galvanometer needle stays at zero. Watch what happens the moment we move the magnet.",
+              "text_hi": "और steady flux कुछ induce नहीं करती। galvanometer needle zero पर रहती है। देखिए जिस पल हम magnet हिलाते हैं क्या होता है।",
+              "text_te": "mariyu steady flux emi induce cheyadu. galvanometer needle zero daggara untundi. manam magnet ni kadipina kshanam emi jarugutundo choodandi.",
+              "glow": "zero_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Just having a magnet near the coil induces a current",
+            "visual_counter": "With the magnet held still the flux lines are steady and the galvanometer needle sits exactly at zero.",
+            "one_line_fix": "A steady flux induces no EMF — only a CHANGING flux does."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Push the magnet in: a changing flux induces an EMF",
+        "duration": 32,
+        "focal_primitive_id": "push_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "push_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "ε = −dΦ/dt  (Faraday)",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "rise_label",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
+            "text": "magnet moves in\n→ flux rises",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "deflect_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "needle swings\n→ current is induced",
+            "color": "#FFB300"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Now slide the magnet into the coil. As it comes closer, more field threads the coil, so the flux through it rises.",
+              "text_hi": "अब magnet को coil में सरकाइए। जैसे-जैसे वह पास आता है, ज़्यादा field coil में से गुज़रती है, तो उसमें से flux बढ़ती है।",
+              "text_te": "ippudu magnet ni coil loki jarapandi. adi daggaraki vachhే kolla, ekkuva field coil gunda velutundi, kaabatti dani gunda flux perugutundi.",
+              "glow": "rise_label"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "The instant the flux changes, the galvanometer needle swings off zero. A current has been induced — this is Faraday's law: induced EMF equals minus the rate of change of flux.",
+              "text_hi": "जिस पल flux बदलती है, galvanometer needle zero से हट जाती है। एक current induce हुई — यही Faraday's law है: induced EMF equals minus the rate of change of flux।",
+              "text_te": "flux maare kshanam, galvanometer needle zero nunchi kadulutundi. oka current induce ayindi — ide Faraday's law: induced EMF equals minus the rate of change of flux.",
+              "glow": "push_label"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Stop moving the magnet and the needle drops back to zero — even though the magnet is still inside. It is the CHANGE, not the presence, that matters.",
+              "text_hi": "magnet हिलाना बंद कीजिए और needle वापस zero पर आ जाती है — भले ही magnet अभी भी अंदर है। मायने change रखता है, presence नहीं।",
+              "text_te": "magnet kadapadam aapandi, needle malli zero ki vachestundi — magnet inka lopala unnaa sare. maney vishayam change, presence kaadu.",
+              "glow": "deflect_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The size of the flux determines the induced EMF",
+            "visual_counter": "The needle deflects only while the magnet is moving; hold it still inside the coil and the needle returns to zero despite a large flux.",
+            "one_line_fix": "The induced EMF depends on the RATE OF CHANGE of flux (dΦ/dt), not on the flux value itself."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Pull it out: the EMF reverses",
+        "duration": 30,
+        "focal_primitive_id": "reverse_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "reverse_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "pull out → flux falls → ε flips sign",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "fall_label",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
+            "text": "magnet moves out\n→ flux drops",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "other_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "needle swings\nthe OTHER way",
+            "color": "#FFB300"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Now pull the magnet back out. This time the flux through the coil falls instead of rising.",
+              "text_hi": "अब magnet को वापस बाहर खींचिए। इस बार coil में से flux बढ़ने के बजाय घटती है।",
+              "text_te": "ippudu magnet ni malli bayataki laagandi. ee saari coil gunda flux peruguta badulu taggutundi.",
+              "glow": "fall_label"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "And the needle swings the opposite way. A falling flux induces an EMF of the opposite sign to a rising flux.",
+              "text_hi": "और needle उल्टी दिशा में झूलती है। घटती flux, बढ़ती flux के opposite sign की EMF induce करती है।",
+              "text_te": "mariyu needle vyatireka disha lo oogutundi. taggu flux, perigे flux ki opposite sign EMF ni induce chestundi.",
+              "glow": "other_label"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "So the DIRECTION of the flux change sets the sign of the EMF. Push in, one way; pull out, the other. That sign is the clue to Lenz's law.",
+              "text_hi": "तो flux change की DIRECTION, EMF का sign तय करती है। अंदर धकेलो एक तरफ; बाहर खींचो दूसरी तरफ। वह sign Lenz's law का इशारा है।",
+              "text_te": "kaabatti flux change yokka DIRECTION, EMF sign ni nirnayistundi. lopaliki nettite oka vaipu; bayataki laagite maro vaipu. aa sign Lenz's law ki suchana.",
+              "glow": "reverse_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The induced current always flows the same way whenever the magnet moves",
+            "visual_counter": "Pushing in swings the needle one way; pulling out swings it the opposite way.",
+            "one_line_fix": "Reversing the direction of the flux change reverses the sign of the induced EMF and current."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Lenz's law: the coil pushes back",
+        "duration": 32,
+        "focal_primitive_id": "lenz_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "lenz_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "the − sign: induced current OPPOSES the change",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "oppose_label",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
+            "text": "approach → N face repels\nwithdraw → S face attracts",
+            "color": "#FFB300"
+          },
+          {
+            "type": "annotation",
+            "id": "pipe_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "why a magnet falls slowly\nthrough a copper pipe",
+            "color": "#B0BEC5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Why the minus sign in Faraday's law? Lenz's law answers it: the induced current always flows so as to OPPOSE the change that created it.",
+              "text_hi": "Faraday's law में minus sign क्यों? Lenz's law जवाब देता है: induced current हमेशा इस तरह बहती है कि उसे बनाने वाले change का OPPOSE करे।",
+              "text_te": "Faraday's law lo minus sign enduku? Lenz's law samadhanam istundi: induced current eppudu daanini srustinchina change ni OPPOSE chese vidhamga pravahistundi.",
+              "glow": "lenz_label"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Watch the coil's face. As the magnet approaches it becomes a red N pole and repels it; pull the magnet away and it flips to a blue S pole and attracts it — always opposing the change.",
+              "text_hi": "coil के face को देखिए। magnet पास आते ही वह red N pole बनकर उसे repel करता है; magnet दूर खींचिए तो वह blue S pole बनकर उसे attract करता है — हमेशा change का विरोध।",
+              "text_te": "coil face ni choodandi. magnet daggaraki raagane adi red N pole ga maari daanini repel chestundi; magnet ni dooram laagite adi blue S pole ga maari daanini attract chestundi — eppudu change ni vyatirekistundi.",
+              "glow": "oppose_label"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "This is why a magnet dropped down a copper pipe falls in slow motion, and why energy is conserved: the work done against the push-back becomes the electrical energy of the current.",
+              "text_hi": "इसीलिए copper pipe में गिराया magnet slow motion में गिरता है, और energy conserve होती है: push-back के खिलाफ किया काम current की electrical energy बन जाता है।",
+              "text_te": "anduke copper pipe lo veyabadina magnet slow motion lo paduthundi, mariyu energy conserve avutundi: push-back ki vyatirekamga chesina pani current yokka electrical energy avutundi.",
+              "glow": "pipe_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The induced current could flow either way — the minus sign is just a convention",
+            "visual_counter": "The coil always develops the pole that repels an approaching magnet and attracts a departing one; the push-back arrow points against the motion.",
+            "one_line_fix": "Lenz's law fixes the direction: the induced current always opposes the change in flux, conserving energy."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Rate and turns: what makes the EMF bigger",
+        "duration": 32,
+        "focal_primitive_id": "rate_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rate_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "ε = −N dΦ/dt",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "faster_label",
+            "position": {
+              "x": 200,
+              "y": 250
+            },
+            "text": "move faster → dΦ/dt bigger\n→ bigger ε",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "turns_label",
+            "position": {
+              "x": 560,
+              "y": 380
+            },
+            "text": "more turns N\n→ bigger ε",
+            "color": "#FFB300"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "How big is the induced EMF? Move the magnet back and forth and change the speed. The faster the flux changes, the larger the deflection.",
+              "text_hi": "induced EMF कितनी बड़ी? magnet को आगे-पीछे कीजिए और speed बदलिए। flux जितनी तेज़ी से बदलती है, deflection उतना बड़ा।",
+              "text_te": "induced EMF entha peddadi? magnet ni munduku venakaku kadapandi mariyu speed maarchandi. flux entha vegam ga maarite, deflection antha peddadi.",
+              "glow": "faster_label"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "And the number of turns matters too. Each turn adds its own EMF, so the total is N times the rate of change: induced EMF equals minus N times d-Phi by d-t.",
+              "text_hi": "और turns की संख्या भी मायने रखती है। हर turn अपनी EMF जोड़ता है, तो total N into rate of change होती है: induced EMF equals minus N into d-Phi by d-t।",
+              "text_te": "mariyu turns sankhya kooda maney. prati turn dani sonta EMF ni kaluputundi, kaabatti total N into rate of change avutundi: induced EMF equals minus N into d-Phi by d-t.",
+              "glow": "turns_label"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "So two dials control the induced EMF: how fast you change the flux, and how many turns the coil has. That is the whole of Faraday's law.",
+              "text_hi": "तो दो dials induced EMF को control करती हैं: आप flux कितनी तेज़ी से बदलते हैं, और coil में कितने turns हैं। यही पूरा Faraday's law है।",
+              "text_te": "kaabatti rendu dials induced EMF ni control chestayi: meeru flux ni entha vegam ga maarustaru, mariyu coil lo enni turns unnayi. ide poorti Faraday's law.",
+              "glow": "rate_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A stronger magnet is the only way to get a bigger induced EMF",
+            "visual_counter": "Speeding up the same magnet, or adding turns to the coil, raises the needle deflection without changing the magnet.",
+            "one_line_fix": "Induced EMF grows with the RATE of flux change (dΦ/dt) and with the number of turns N."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Explore: move the magnet, set the turns",
+        "duration": 0,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": {
+              "x": 380,
+              "y": 60
+            },
+            "text": "Move the magnet · set speed · set turns",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "try_label",
+            "position": {
+              "x": 380,
+              "y": 250
+            },
+            "text": "faster or more turns → bigger ε\nhold it still → ε = 0",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_label",
+            "position": {
+              "x": 380,
+              "y": 440
+            },
+            "text": "Φ = B·A  ·  ε = −N dΦ/dt",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Your turn. Drag the magnet in and out, change its speed, and set how many turns the coil has.",
+              "text_hi": "अब आपकी बारी। magnet को अंदर-बाहर खींचिए, उसकी speed बदलिए, और coil के turns set कीजिए।",
+              "text_te": "ippudu mee vantu. magnet ni lopaliki bayataki laagandi, dani speed maarchandi, mariyu coil turns set cheyandi.",
+              "glow": "explore_label"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Move it faster or add turns and the induced EMF grows. Hold the magnet still and the EMF falls to zero, however deep inside it sits.",
+              "text_hi": "तेज़ हिलाओ या turns बढ़ाओ तो induced EMF बढ़ती है। magnet स्थिर रखो तो EMF zero हो जाती है, चाहे वह कितना भी अंदर हो।",
+              "text_te": "vegam ga kadapandi leda turns perigandi, induced EMF perugutundi. magnet ni kadalకుండా unte EMF zero avutundi, adi entha lopala unnaa sare.",
+              "glow": "try_label"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "One idea ties it all together: flux is B times A, and a changing flux induces EMF equals minus N times d-Phi by d-t. That is Faraday's law of induction.",
+              "text_hi": "एक idea सब कुछ जोड़ता है: flux is B into A, और changing flux, EMF equals minus N into d-Phi by d-t induce करती है। यही Faraday's law of induction है।",
+              "text_te": "oka idea anni kalipi unchutundi: flux is B into A, mariyu changing flux, EMF equals minus N into d-Phi by d-t ni induce chestundi. ide Faraday's law of induction.",
+              "glow": "key_label"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "faraday",
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#66BB6A",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85
+    },
+    "slider_controls": {
+      "speed": {
+        "min": 0.3,
+        "max": 2,
+        "step": 0.1,
+        "default": 1,
+        "label": "Speed v"
+      },
+      "turns": {
+        "min": 1,
+        "max": 12,
+        "step": 1,
+        "default": 6,
+        "label": "Turns N"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Magnetic flux: Φ = B·A·cosθ",
+        "visible_elements": [
+          "far_coil",
+          "far_flux",
+          "far_magnet",
+          "far_needle",
+          "far_label"
+        ],
+        "camera_position": [
+          1.4,
+          1.2,
+          6.4
+        ],
+        "caption": "Magnet held still → flux steady → needle at zero",
+        "show_sliders": true,
+        "formula_overlay": "Φ = B·A cosθ",
+        "faraday": {
+          "mode": "flux_steady",
+          "turns": 6,
+          "show_readout": true
+        }
+      },
+      "STATE_2": {
+        "label": "Push in: a changing flux induces EMF",
+        "visible_elements": [
+          "far_coil",
+          "far_flux",
+          "far_magnet",
+          "far_needle",
+          "far_current",
+          "far_curr",
+          "far_label"
+        ],
+        "camera_position": [
+          1.4,
+          1.2,
+          6.2
+        ],
+        "caption": "Magnet slides in → flux rises → needle swings",
+        "show_sliders": true,
+        "formula_overlay": "ε = −dΦ/dt",
+        "faraday": {
+          "mode": "push_in",
+          "turns": 6,
+          "show_readout": true
+        }
+      },
+      "STATE_3": {
+        "label": "Pull out: the EMF reverses",
+        "visible_elements": [
+          "far_coil",
+          "far_flux",
+          "far_magnet",
+          "far_needle",
+          "far_current",
+          "far_curr",
+          "far_label"
+        ],
+        "camera_position": [
+          1.4,
+          1.2,
+          6.2
+        ],
+        "caption": "Magnet slides out → flux falls → needle reverses",
+        "show_sliders": true,
+        "formula_overlay": "ε reverses with the change",
+        "faraday": {
+          "mode": "pull_out",
+          "turns": 6,
+          "show_readout": true
+        }
+      },
+      "STATE_4": {
+        "label": "Lenz's law: the coil pushes back",
+        "visible_elements": [
+          "far_coil",
+          "far_flux",
+          "far_magnet",
+          "far_needle",
+          "far_current",
+          "far_curr",
+          "far_push",
+          "far_pole",
+          "far_label"
+        ],
+        "camera_position": [
+          1.6,
+          1.3,
+          6.4
+        ],
+        "caption": "Approach → N face repels · withdraw → S face attracts — always opposing",
+        "show_sliders": true,
+        "formula_overlay": "the − sign = Lenz's law",
+        "faraday": {
+          "mode": "lenz",
+          "turns": 6,
+          "show_readout": true
+        }
+      },
+      "STATE_5": {
+        "label": "Rate and turns: ε = −N dΦ/dt",
+        "visible_elements": [
+          "far_coil",
+          "far_flux",
+          "far_magnet",
+          "far_needle",
+          "far_current",
+          "far_curr",
+          "far_label"
+        ],
+        "camera_position": [
+          1.5,
+          1.2,
+          6.4
+        ],
+        "caption": "Faster change or more turns → bigger EMF",
+        "show_sliders": true,
+        "formula_overlay": "ε = −N dΦ/dt",
+        "faraday": {
+          "mode": "rate",
+          "turns": 6,
+          "speed": 1,
+          "show_readout": true
+        }
+      },
+      "STATE_6": {
+        "label": "Explore: magnet, speed, turns",
+        "visible_elements": [
+          "far_coil",
+          "far_flux",
+          "far_magnet",
+          "far_needle",
+          "far_current",
+          "far_curr",
+          "far_label"
+        ],
+        "camera_position": [
+          1.8,
+          1.4,
+          6.6
+        ],
+        "caption": "Drag the magnet · set speed · set turns — watch Φ and ε",
+        "show_sliders": true,
+        "formula_overlay": "Φ = B·A  ·  ε = −N dΦ/dt",
+        "faraday": {
+          "mode": "sandbox",
+          "turns": 6,
+          "speed": 1,
+          "show_readout": true
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

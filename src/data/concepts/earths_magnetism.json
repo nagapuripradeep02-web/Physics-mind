@@ -1,0 +1,667 @@
+{
+  "concept_id": "earths_magnetism",
+  "concept_name": "The Earth's Magnetism: declination D, dip I, B = √(H²+V²)",
+  "chapter": 5,
+  "section": "5.4",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.5 Magnetism and Matter (The Earth's Magnetism §5.4) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (the prerequisite bar_magnet_as_dipole ended at 'a bar magnet is a dipole with a moment m' → so picture the whole Earth as a giant bar magnet buried at its centre, its axis tilted ~11° off the geographic spin axis → therefore a compass aligns with that field and points to MAGNETIC north, not true north: the horizontal gap between them is the declination D → now free the same needle to pivot VERTICALLY and it no longer lies flat — it DIVES into the ground by the dip / inclination angle I, because the field has a downward part → resolve the total field B into a horizontal component H = B cos I and a vertical component V = B sin I, a right triangle with tan I = V/H and B = √(H²+V²) → finally travel from the magnetic equator to the magnetic pole and watch the dip swing all the way from 0° to 90°, since tan I = 2 tan λ), never copied. The atomic idea: the Earth behaves as a tilted magnetic dipole, so its field at any place is fixed by three 'elements' — the declination D (horizontal angle, true north → magnetic north), the dip / inclination I (vertical angle, horizontal → field), and the horizontal component H; the total field resolves as H = B cos I, V = B sin I, tan I = V/H, B = √(H²+V²); the dip grows with magnetic latitude (tan I = 2 tan λ) from 0° at the magnetic equator to 90° at the magnetic poles. SCOPE: the geometry of the field and its three elements only — no derivation of the geomagnetic field's origin, no secular variation, no magnetisation/H-field. Reuses the field_3d live-instrument machinery (a globe + tilted internal dipole for declination, a vertical-plane dip needle + H/V/B triangle, a latitude auto-sweep) with a live D/I/H/V/B readout. Prerequisites bar_magnet_as_dipole + magnetic_field_concept_B. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a). Authored instrument-native and lean (4 live states) per the 2026-06-30 live-instrument directive.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "earths_magnetism"
+    ]
+  },
+  "prerequisites": [
+    "bar_magnet_as_dipole",
+    "magnetic_field_concept_B"
+  ],
+  "real_world_anchor": {
+    "primary": "Hang a magnetised needle by a thread through its centre of gravity in a Delhi classroom and let it settle. It does not lie flat — its north end tips steeply down into the floor, a dip of roughly 40 to 60 degrees, because the Earth's field there has a large downward part. Carry the very same needle south toward the magnetic equator and it slowly lifts back up to horizontal.",
+    "secondary": "A pocket compass on your desk swings only in the horizontal plane, so it senses just the horizontal part of the Earth's field — it points to magnetic north, which across most of India is a few degrees away from true geographic north. That small offset is the declination, and it is exactly why surveyors and pilots correct their compass bearings before they trust them."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "latitude_deg": {
+        "name": "Magnetic latitude λ",
+        "unit": "deg",
+        "min": 0,
+        "max": 90,
+        "default": 30,
+        "step": 1
+      },
+      "declination_deg": {
+        "name": "Declination D",
+        "unit": "deg",
+        "min": 0,
+        "max": 30,
+        "default": 4,
+        "step": 1
+      },
+      "B_total": {
+        "name": "Total field magnitude B",
+        "unit": "microtesla",
+        "min": 25,
+        "max": 65,
+        "default": 50,
+        "step": 1
+      }
+    },
+    "computed_outputs": {
+      "dip_I": {
+        "formula": "atan(2 * tan(latitude_deg * PI / 180)) * 180 / PI"
+      },
+      "H": {
+        "formula": "B_total * cos(atan(2 * tan(latitude_deg * PI / 180)))"
+      },
+      "V": {
+        "formula": "B_total * sin(atan(2 * tan(latitude_deg * PI / 180)))"
+      },
+      "B_mag": {
+        "formula": "sqrt(H*H + V*V)"
+      }
+    },
+    "formulas": {
+      "dip_latitude": "tan I = 2·tan λ  ⇒  I = arctan(2 tan λ) — the dip grows with magnetic latitude λ: I = 0° at the magnetic equator, 90° at the magnetic poles.",
+      "horizontal_component": "H = B cos I — the horizontal component of the Earth's field; this is the part a compass needle aligns with.",
+      "vertical_component": "V = B sin I — the vertical component; this is the part that makes a freely pivoting needle dip.",
+      "tan_dip": "tan I = V / H — the dip (inclination) angle is set by the ratio of the vertical to the horizontal field.",
+      "total_field": "B = √(H² + V²) — the total field is the resultant (hypotenuse) of its horizontal and vertical components.",
+      "declination": "Declination D = the horizontal-plane angle between geographic (true) north and magnetic north (where a compass points)."
+    },
+    "constraints": [
+      "The three 'elements of the Earth's magnetic field' are the declination D, the dip / inclination I, and the horizontal component H — together they fix the full field vector B at a place (M_elements).",
+      "Declination D is a HORIZONTAL-plane angle (true north → magnetic north); dip I is a VERTICAL-plane angle (horizontal → field). They live in different planes and must never be conflated (M_planes).",
+      "A compass measures only the HORIZONTAL component H, so it points to magnetic north; a needle free to pivot VERTICALLY settles along the FULL field B, dipping below the horizontal by I (M2).",
+      "The dip grows with magnetic latitude as tan I = 2 tan λ: I = 0° (needle flat, V = 0, B = H) at the magnetic equator and I = 90° (needle vertical, H = 0, B = V) at the magnetic poles (M3).",
+      "The Earth's internal dipole axis is tilted ~11° from the geographic spin axis; the geographic north pole behaves as a magnetic SOUTH-type pole, which is why a compass's north end is pulled toward it (M1/M4)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Travel equator to pole and the dip swings all the way from 0° to 90°.",
+    "visual_confirmation": "As the magnetic latitude sweeps 0° → 90°, the needle rotates from dead flat (I = 0, all horizontal) to straight down (I = 90°, all vertical), and the H/V triangle morphs while the dip readout climbs 0 → 90."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3"
+    ],
+    "exploration": [
+      "STATE_4"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 4,
+    "states": {
+      "STATE_1": {
+        "title": "The Earth is a tilted bar magnet → a compass points to MAGNETIC north",
+        "duration": 18,
+        "focal_primitive_id": "earth_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "earth_label",
+            "position": { "x": 360, "y": 80 },
+            "text": "Earth ≈ a tilted bar magnet",
+            "color": "#FFE082",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "declination_label",
+            "position": { "x": 560, "y": 210 },
+            "text": "compass → magnetic N (declination D)",
+            "color": "#FFEE58",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "pole_aside_label",
+            "position": { "x": 360, "y": 450 },
+            "text": "geographic N behaves as a magnetic S pole",
+            "color": "#B0BEC5",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "The Earth itself behaves like a giant bar magnet, buried at its centre and tilted about eleven degrees from the geographic spin axis.",
+              "text_hi": "पृथ्वी खुद एक विशाल bar magnet की तरह व्यवहार करती है, जो उसके centre में दबी है और geographic spin axis से लगभग ग्यारह degree झुकी हुई है।",
+              "text_te": "భూమి స్వయంగా ఒక భారీ bar magnet లా ప్రవర్తిస్తుంది, అది దాని centre లో ఉండి, geographic spin axis నుండి సుమారు పదకొండు degrees వంగి ఉంటుంది.",
+              "glow": "em_dipole"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "So a compass does not point to true geographic north. It points to magnetic north, and that horizontal gap is the declination D.",
+              "text_hi": "इसलिए एक compass true geographic north की तरफ point नहीं करता। यह magnetic north की तरफ point करता है, और वह horizontal gap declination D है।",
+              "text_te": "కాబట్టి compass true geographic north వైపు point చేయదు. ఇది magnetic north వైపు point చేస్తుంది, ఆ horizontal gap declination D.",
+              "glow": "em_decl_arc"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "The needle's north end is pulled toward geographic north, which means the pole up there actually behaves like a magnetic south pole.",
+              "text_hi": "needle का north end geographic north की तरफ खिंचता है, जिसका मतलब है कि वहाँ ऊपर का pole असल में एक magnetic south pole की तरह व्यवहार करता है।",
+              "text_te": "needle యొక్క north end geographic north వైపు లాగబడుతుంది, అంటే అక్కడ పైన ఉన్న pole నిజానికి ఒక magnetic south pole లా ప్రవర్తిస్తుంది.",
+              "glow": "em_pole"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A compass needle points to the true geographic North Pole.",
+            "visual_counter": "The compass settles along the horizontal field and lands a few degrees off the true-north reference line; the yellow declination arc D opens up between them.",
+            "one_line_fix": "A compass points to MAGNETIC north, not true north; the horizontal angle between them is the declination D."
+          },
+          {
+            "belief": "The Earth's geographic north pole is a magnetic NORTH pole.",
+            "visual_counter": "The internal tilted bar magnet has its S end toward geographic north — a compass north tip is attracted there.",
+            "one_line_fix": "The geographic north pole behaves as a magnetic SOUTH-type pole, which is exactly why a compass's north end is pulled toward it."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Free the needle to pivot vertically → it DIVES by the dip angle I",
+        "duration": 24,
+        "focal_primitive_id": "dive_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "dive_label",
+            "position": { "x": 360, "y": 80 },
+            "text": "free needle dips below the horizontal by I",
+            "color": "#E040FB",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "components_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "split B → H (horizontal) + V (vertical)",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "formula_label",
+            "position": { "x": 360, "y": 450 },
+            "text": "tan I = V / H,   B = √(H² + V²)",
+            "color": "#FFE082",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Now free that needle so it can also pivot up and down, not just sideways. Before I release it, predict: will it stay flat?",
+              "text_hi": "अब उस needle को free कर दो ताकि वह सिर्फ़ बगल में ही नहीं, ऊपर-नीचे भी घूम सके। release करने से पहले predict करो: क्या यह flat रहेगी?",
+              "text_te": "ఇప్పుడు ఆ needle ని free చేయండి, అది పక్కకు మాత్రమే కాదు, పైకి-కిందికి కూడా తిరగగలదు. release చేసేముందు predict చేయండి: అది flat గా ఉంటుందా?",
+              "glow": "em_dip_needle",
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Watch. It dives. The north end tips below the horizontal by the dip angle I, because the field here has a strong downward part.",
+              "text_hi": "देखो। यह dive करती है। north end horizontal से नीचे dip angle I जितना झुक जाता है, क्योंकि यहाँ field का एक मज़बूत downward part है।",
+              "text_te": "చూడండి. అది dive అవుతుంది. north end horizontal కంటే కిందికి dip angle I అంత వంగుతుంది, ఎందుకంటే ఇక్కడ field కి బలమైన downward part ఉంది.",
+              "glow": "em_dip_arc"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Split the total field B into two parts: a horizontal component H along the ground, and a vertical component V pointing straight down.",
+              "text_hi": "total field B को दो parts में बाँटो: ground के साथ एक horizontal component H, और सीधे नीचे की ओर एक vertical component V।",
+              "text_te": "total field B ని రెండు parts గా విభజించండి: ground వెంట ఒక horizontal component H, మరియు నేరుగా కిందికి ఒక vertical component V.",
+              "glow": "em_comp_h"
+            },
+            {
+              "id": "s2_4",
+              "text_en": "They form a right triangle: tan of the dip angle I equals V over H, and B equals the square root of H squared plus V squared.",
+              "text_hi": "ये एक right triangle बनाते हैं: dip angle I का tan, V over H के बराबर है, और B, H squared plus V squared के square root के बराबर है।",
+              "text_te": "ఇవి ఒక right triangle ఏర్పరుస్తాయి: dip angle I యొక్క tan, V over H కి సమానం, మరియు B, H squared plus V squared యొక్క square root కి సమానం.",
+              "glow": "em_triangle"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A magnetic needle always stays horizontal — it only swings sideways toward north.",
+            "visual_counter": "Once the needle is free to rotate in the vertical plane, its north end dives well below the horizon line by the dip angle I.",
+            "one_line_fix": "Only a desk compass is held horizontal; a needle free to pivot vertically dips below the horizontal by I, because the field has a vertical component V."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Travel equator → pole: the dip swings 0° → 90° (PRIMARY aha)",
+        "duration": 24,
+        "focal_primitive_id": "sweep_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sweep_label",
+            "position": { "x": 360, "y": 80 },
+            "text": "equator → pole: dip 0° → 90°",
+            "color": "#E040FB",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "equator_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "magnetic equator: I = 0, needle flat",
+            "color": "#66BB6A",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "pole_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "magnetic pole: I = 90°, needle vertical",
+            "color": "#4DD0E1",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Is the dip the same everywhere on Earth? Predict before I travel from the magnetic equator all the way up to the magnetic pole.",
+              "text_hi": "क्या dip पृथ्वी पर हर जगह एक जैसा है? magnetic equator से सीधे magnetic pole तक travel करने से पहले predict करो।",
+              "text_te": "dip భూమిపై అన్ని చోట్లా ఒకేలా ఉంటుందా? magnetic equator నుండి నేరుగా magnetic pole వరకు travel చేసేముందు predict చేయండి.",
+              "glow": "em_dip_needle",
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Watch the dip swing. At the magnetic equator the needle lies dead flat, the dip angle I is zero, and the field is all horizontal.",
+              "text_hi": "dip को swing करते देखो। magnetic equator पर needle बिल्कुल flat रहती है, dip angle I zero है, और field पूरी horizontal है।",
+              "text_te": "dip swing అవ్వడం చూడండి. magnetic equator వద్ద needle పూర్తిగా flat గా ఉంటుంది, dip angle I zero, field మొత్తం horizontal.",
+              "glow": "em_comp_h"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "As we move toward the pole the needle tips further and further, until at the magnetic pole it points straight down, the dip ninety degrees.",
+              "text_hi": "जैसे-जैसे हम pole की तरफ बढ़ते हैं needle और-और झुकती जाती है, जब तक magnetic pole पर यह सीधे नीचे point करती है, dip ninety degree।",
+              "text_te": "మనం pole వైపు కదులుతున్న కొద్దీ needle మరింత మరింత వంగుతుంది, magnetic pole వద్ద అది నేరుగా కిందికి point చేస్తుంది, dip ninety degrees.",
+              "glow": "em_comp_v"
+            },
+            {
+              "id": "s3_4",
+              "text_en": "The rule is simple: tan of the dip angle I equals two times tan of the magnetic latitude. The dip climbs from zero to ninety.",
+              "text_hi": "नियम सरल है: dip angle I का tan, magnetic latitude के tan का दो गुना है। dip zero से ninety तक चढ़ता है।",
+              "text_te": "నియమం సులభం: dip angle I యొక్క tan, magnetic latitude యొక్క tan కి రెండు రెట్లు. dip zero నుండి ninety వరకు పెరుగుతుంది.",
+              "glow": "em_dip_arc"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The angle of dip is one fixed number, the same everywhere on the Earth.",
+            "visual_counter": "As the magnetic latitude sweeps from 0° to 90°, the needle rotates from flat to vertical and the dip readout climbs continuously from 0° to 90°.",
+            "one_line_fix": "Dip depends on magnetic latitude (tan I = 2 tan λ): it is 0° at the magnetic equator and 90° at the magnetic poles."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Free play — set the latitude; read D, I, H, V, B live",
+        "duration": 0,
+        "focal_primitive_id": "sandbox_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sandbox_label",
+            "position": { "x": 360, "y": 80 },
+            "text": "set the magnetic latitude — read D, I, H, V, B",
+            "color": "#FFE082",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "relation_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "tan I = 2 tan λ,   tan I = V / H",
+            "color": "#E040FB",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "challenge_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "high latitude → steep dip; equator → flat",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Your turn. Drag the magnetic latitude to set any place on Earth, and read the dip angle I, the components H and V, and the field B live.",
+              "text_hi": "अब तुम्हारी बारी। magnetic latitude को drag करके पृथ्वी पर कोई भी जगह set करो, और dip angle I, components H और V, और field B को live पढ़ो।",
+              "text_te": "ఇప్పుడు మీ వంతు. magnetic latitude ని drag చేసి భూమిపై ఏ ప్రదేశాన్నైనా set చేయండి, dip angle I, components H మరియు V, field B ని live గా చదవండి.",
+              "glow": "em_dip_needle"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Set a high latitude and watch the dip shoot toward ninety degrees; set the equator and the needle falls back flat again.",
+              "text_hi": "एक high latitude set करो और dip को ninety degree की तरफ बढ़ते देखो; equator set करो और needle फिर से flat हो जाती है।",
+              "text_te": "ఒక high latitude set చేసి dip ninety degrees వైపు దూసుకెళ్లడం చూడండి; equator set చేస్తే needle మళ్లీ flat గా పడిపోతుంది.",
+              "glow": "em_triangle"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the Earth's magnetism when they can (1) explain that the Earth behaves as a tilted magnetic dipole so a compass points to MAGNETIC north, offset from true north by the declination D; (2) state that the geographic north pole behaves as a magnetic south-type pole; (3) explain that a needle free to pivot vertically DIPS below the horizontal by the dip (inclination) angle I; (4) resolve the total field B into H = B cos I and V = B sin I, with tan I = V/H and B = √(H²+V²); and (5) state that the dip depends on magnetic latitude (tan I = 2 tan λ), running from 0° at the magnetic equator to 90° at the magnetic poles.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A magnetic compass on a level table settles at rest. Which direction does its north end point, and what is the angle between that direction and true geographic north called?",
+        "options": {
+          "A": "Magnetic north; the angle from true north is the declination D",
+          "B": "True geographic north exactly; there is no angle",
+          "C": "Magnetic north; the angle from true north is the dip I",
+          "D": "Whichever way the needle was last pushed; the angle is random"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "believes a compass points to the true geographic North Pole",
+          "C": "confuses the horizontal declination D with the vertical dip angle I",
+          "D": "thinks the compass heading is arbitrary rather than set by the field"
+        },
+        "tested_idea": "A compass points to magnetic north; the horizontal offset from true north is the declination D.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A surveyor reads a compass bearing in Delhi. The needle's north end and the line to the true North Pole differ by a few degrees. What is that horizontal angle called, and which north does the needle actually point to?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "The Earth's geographic north pole behaves as which kind of magnetic pole, and why does that matter for a compass?",
+        "options": {
+          "A": "A magnetic SOUTH-type pole — so a compass's north end is attracted toward it",
+          "B": "A magnetic NORTH pole — so a compass's north end is repelled from it",
+          "C": "It is not magnetic at all; the compass is moved by the spin of the Earth",
+          "D": "Both a north and south pole at once, so the compass cannot decide"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes the geographic north pole is a magnetic north pole, which would repel the needle",
+          "C": "attributes the compass alignment to the Earth's rotation rather than its magnetic field",
+          "D": "imagines a monopole-free pole as 'both', missing that the relevant end acts as a south-type pole"
+        },
+        "tested_idea": "The geographic north pole behaves as a magnetic south-type pole, attracting a compass's north end.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A compass needle's north tip swings toward the geographic north. Using the rule that unlike poles attract, what magnetic-pole type must sit near the geographic north pole?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A magnetised needle is freed to rotate in a VERTICAL plane and released in Delhi. What does it do, and what is the angle involved called?",
+        "options": {
+          "A": "Its north end dips below the horizontal by the dip (inclination) angle I",
+          "B": "It stays exactly horizontal, since magnetic needles never tilt",
+          "C": "It points straight up, away from the ground",
+          "D": "It spins endlessly because no torque can settle it"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "believes a magnetic needle always stays horizontal",
+          "C": "reverses the dip direction (the field's vertical part points down in the northern hemisphere)",
+          "D": "thinks there is no equilibrium, missing that the needle aligns with the full field"
+        },
+        "tested_idea": "A vertically pivoting needle settles along the full field, dipping below the horizontal by the dip angle I.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "You take the desk compass off the table and hang it so it can swing up and down. In Delhi its coloured end tips down toward the floor. What is this tilt below the horizontal called?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "At a place the total field is B and the dip angle is I. What are the horizontal component H and the total field in terms of B and I?",
+        "options": {
+          "A": "H = B cos I, and B = √(H² + V²) with V = B sin I",
+          "B": "H = B sin I, and B = H + V (the components just add as numbers)",
+          "C": "H = B tan I, and B = H − V",
+          "D": "H = B, because the horizontal component always equals the full field"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "swaps sin and cos for the horizontal component and adds components arithmetically instead of as a right triangle",
+          "C": "uses tan for the component and subtracts, ignoring the Pythagorean resultant",
+          "D": "ignores the vertical component entirely, treating H as the whole field"
+        },
+        "tested_idea": "B resolves into H = B cos I and V = B sin I, a right triangle with B = √(H²+V²).",
+        "teaches_state": "STATE_2",
+        "difficulty": "stretch",
+        "parallel_form_stem": "The Earth's field B at a town makes an angle I below the horizontal. Write its horizontal part H and the total field as a function of its horizontal and vertical parts."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "You travel slowly from the magnetic equator toward a magnetic pole, carrying a dip needle. How does the dip angle I change along the way?",
+        "options": {
+          "A": "It increases from 0° at the magnetic equator to 90° at the magnetic pole",
+          "B": "It stays the same value everywhere on the Earth",
+          "C": "It decreases from 90° at the equator to 0° at the pole",
+          "D": "It is 45° everywhere except exactly at the poles"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "believes the dip is one fixed number everywhere",
+          "C": "reverses the equator/pole behaviour of the dip",
+          "D": "assumes a constant non-zero dip away from the poles"
+        },
+        "tested_idea": "Dip depends on magnetic latitude: 0° at the magnetic equator, 90° at the magnetic poles.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A dip needle reads 0° at one location and 90° at another. Which place is at the magnetic equator and which is at a magnetic pole, and how does the dip vary in between?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "At which location is a dip needle exactly VERTICAL (dip I = 90°), and what does that say about the field's components there?",
+        "options": {
+          "A": "At a magnetic pole — the horizontal component H is zero, so the field is entirely vertical (B = V)",
+          "B": "At the magnetic equator — the vertical component V is zero, so the field is entirely horizontal",
+          "C": "Everywhere, since the needle always hangs straight down under gravity",
+          "D": "Nowhere — the dip can never reach 90°"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "swaps the pole and equator (equator is where dip is 0°, not 90°)",
+          "C": "attributes the vertical needle to gravity instead of an all-vertical field",
+          "D": "denies that the dip can reach its 90° limit at the magnetic poles"
+        },
+        "tested_idea": "At a magnetic pole the dip is 90°: H = 0 and B = V (field entirely vertical).",
+        "teaches_state": "STATE_3",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A freely pivoting needle points straight down into the ground, dip 90°. Where on Earth is this, and is the field there all horizontal or all vertical?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": [
+        "Q1",
+        "Q2"
+      ],
+      "STATE_2": [
+        "Q3",
+        "Q4"
+      ],
+      "STATE_3": [
+        "Q5",
+        "Q6"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_4"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "earths_magnetism",
+    "field_lines": {
+      "opacity": 0.85
+    },
+    "slider_controls": {
+      "latitude": {
+        "min": 0,
+        "max": 90,
+        "step": 1,
+        "default": 30,
+        "label": "Magnetic latitude λ"
+      },
+      "declination": {
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "default": 4,
+        "label": "Declination D"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The Earth is a tilted bar magnet → a compass points to MAGNETIC north",
+        "visible_elements": [
+          "em_globe",
+          "em_geo_axis",
+          "em_mag_axis",
+          "em_dipole",
+          "em_pole",
+          "em_compass",
+          "em_geo_north_ref",
+          "em_decl_arc"
+        ],
+        "camera_position": [
+          3.6,
+          2.4,
+          7.2
+        ],
+        "caption": "",
+        "show_sliders": true,
+        "em": {
+          "mode": "globe",
+          "latitude_deg": 30,
+          "declination_deg": 4,
+          "show_dip": false,
+          "show_declination": true,
+          "show_readout": false,
+          "sliders": true
+        },
+        "formula_overlay": "compass → magnetic N;  declination D = true N → magnetic N"
+      },
+      "STATE_2": {
+        "label": "Free the needle to pivot vertically → it DIVES by the dip angle I",
+        "visible_elements": [
+          "em_ground",
+          "em_dip_needle",
+          "em_dip_arc",
+          "em_comp_h",
+          "em_comp_v",
+          "em_triangle"
+        ],
+        "camera_position": [
+          0.8,
+          0.6,
+          7.0
+        ],
+        "caption": "",
+        "show_sliders": true,
+        "em": {
+          "mode": "dip",
+          "latitude_deg": 30,
+          "declination_deg": 4,
+          "dive_reveal": true,
+          "show_dip": true,
+          "show_components": true,
+          "show_readout": true,
+          "sliders": true
+        },
+        "formula_overlay": "tan I = V / H,   B = √(H² + V²)"
+      },
+      "STATE_3": {
+        "label": "Travel equator → pole: the dip swings 0° → 90° (PRIMARY aha)",
+        "visible_elements": [
+          "em_ground",
+          "em_dip_needle",
+          "em_dip_arc",
+          "em_comp_h",
+          "em_comp_v",
+          "em_triangle"
+        ],
+        "camera_position": [
+          0.8,
+          0.6,
+          7.0
+        ],
+        "caption": "",
+        "show_sliders": true,
+        "em": {
+          "mode": "sweep",
+          "latitude_deg": 30,
+          "declination_deg": 4,
+          "show_dip": true,
+          "show_components": true,
+          "show_readout": true,
+          "sweep": {
+            "from_lat": 0,
+            "to_lat": 90,
+            "period_s": 8
+          },
+          "sliders": true
+        },
+        "formula_overlay": "tan I = 2 tan λ   (0° at the equator → 90° at the pole)"
+      },
+      "STATE_4": {
+        "label": "Free play — set the latitude; read D, I, H, V, B live",
+        "visible_elements": [
+          "em_ground",
+          "em_dip_needle",
+          "em_dip_arc",
+          "em_comp_h",
+          "em_comp_v",
+          "em_triangle"
+        ],
+        "camera_position": [
+          0.8,
+          0.6,
+          7.0
+        ],
+        "caption": "",
+        "show_sliders": true,
+        "em": {
+          "mode": "sandbox",
+          "latitude_deg": 35,
+          "declination_deg": 4,
+          "show_dip": true,
+          "show_components": true,
+          "show_readout": true,
+          "sliders": true
+        },
+        "formula_overlay": "live: λ, D, I, H = B cos I, V = B sin I, B = √(H²+V²)"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

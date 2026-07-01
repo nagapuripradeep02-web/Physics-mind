@@ -1,0 +1,812 @@
+{
+  "concept_id": "gauss_law_magnetism",
+  "concept_name": "Gauss's Law for Magnetism: ∮B·dA = 0",
+  "chapter": 5,
+  "section": "5.3",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.5 Magnetism and Matter (Magnetism and Gauss's Law §5.3) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. HC Verma consulted for SEQUENCE (the prerequisite bar_magnet_as_dipole ended at 'a bar magnet's field lines are continuous CLOSED loops with no monopole' → now draw any closed surface around the magnet and count the lines crossing it: every line that LEAVES also RE-ENTERS, so the net magnetic flux is zero → state it as a law: the net magnetic flux through ANY closed surface is exactly zero, ∮B·dA = 0 → press the point: shrink the surface onto a SINGLE pole and the net flux is STILL zero — there is no magnetic 'charge', no monopole, to enclose → reshape the surface sphere → cube → blob and the zero never budges → finally contrast with the ELECTRIC Gauss law ∮E·dA = q/ε₀, where field lines start and end on charges so an enclosed charge gives non-zero flux: charges have ends, magnets don't), never copied. The atomic idea: the net magnetic flux through any closed surface is identically zero, ∮B·dA = 0, because magnetic field lines are continuous closed loops (no sources or sinks) — so flux entering = flux leaving — and there is NO magnetic monopole, meaning even a surface enclosing a single pole nets zero; the deep contrast with the electric Gauss law (∮E·dA = q_enc/ε₀) where charges are real flux sources. SCOPE: the flux LAW and the no-monopole consequence only — no magnetisation/H-field, no detailed dipole-field derivation (that is bar_magnet_as_dipole). Reuses the field_3d closed-surface morph machinery from the electric gauss_law scenario but renders a bar-magnet's closed-loop field and pins the net flux at zero. Prerequisites bar_magnet_as_dipole + gauss_law. Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "gauss_law_magnetism"
+    ]
+  },
+  "prerequisites": [
+    "bar_magnet_as_dipole",
+    "gauss_law"
+  ],
+  "real_world_anchor": {
+    "primary": "Sprinkle iron filings on a glass sheet over a bar magnet in the school lab. The filings trace the field as continuous loops that arc out of the north end, curve all the way around, and dive back into the south end — every line that leaves the magnet comes right back. Now imagine any closed bubble drawn around the magnet: each loop that pokes out through the bubble also pokes back in, so the net magnetic flux out of the bubble is zero. That is Gauss's law for magnetism: ∮B·dA = 0 for any closed surface.",
+    "secondary": "A magnetic compass on a desk always shows BOTH a north and a south end — snap the needle in two and each tiny piece is again a complete magnet with its own north and south. You can never hold an isolated north pole. There is no magnetic 'charge' to trap inside a surface, which is exactly why the enclosed magnetic flux is always zero, unlike the electric case where a single trapped charge gives q/ε₀."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "surface_shape": {
+        "name": "Closed-surface shape (0 sphere, 1 cube, 2 blob)",
+        "unit": "index",
+        "min": 0,
+        "max": 2,
+        "default": 0,
+        "step": 1
+      },
+      "surface_pos": {
+        "name": "Position of the Gaussian surface along the magnet axis",
+        "unit": "demo",
+        "min": -1.2,
+        "max": 1.2,
+        "default": 0,
+        "step": 0.05
+      }
+    },
+    "computed_outputs": {
+      "flux_in": {
+        "formula": "phi_lines_entering"
+      },
+      "flux_out": {
+        "formula": "phi_lines_leaving"
+      },
+      "net_flux": {
+        "formula": "0"
+      }
+    },
+    "formulas": {
+      "gauss_magnetism": "∮B·dA = 0   (net magnetic flux through any closed surface is zero)",
+      "in_equals_out": "Φ_in + Φ_out = 0   (every field line that enters a closed surface also leaves it)",
+      "no_monopole": "∇·B = 0   (magnetic field lines are closed loops — no sources or sinks, no magnetic monopole)",
+      "electric_contrast": "∮E·dA = q_enc/ε₀   (electric lines START and END on charges, so an enclosed charge gives non-zero flux — the contrast)"
+    },
+    "constraints": [
+      "Magnetic field lines are continuous CLOSED loops; they never begin or end, so any closed surface is crossed an equal number of times outward and inward — net flux zero (M1).",
+      "There is NO magnetic monopole: you cannot enclose an isolated magnetic 'charge', so the magnetic analog of q_enc is always zero (M2).",
+      "Even a closed surface around a SINGLE pole nets zero flux — the lines that emerge outside also pass back through the magnet body inside the surface (M3).",
+      "The result is independent of the surface's shape and size — sphere, cube or blob, around the whole magnet or one pole, the net magnetic flux is always exactly zero (M4).",
+      "This is the structural contrast with the electric Gauss law: there ∮E·dA = q_enc/ε₀ because field lines start and end on charges; magnetic lines have no ends, so the magnetic right-hand side is zero (M5)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Wrap a surface around one pole alone — the net magnetic flux is still zero.",
+    "visual_confirmation": "The Gaussian surface shrinks onto the north pole alone, yet the readout holds dead steady at net Φ_B = 0 — every line that emerges also returns through the magnet inside the surface."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "no_monopole": [
+      "STATE_3"
+    ],
+    "exploration": [
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "A bar magnet's field is made of closed loops",
+        "duration": 15,
+        "focal_primitive_id": "closed_loop_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "carry_in_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "field lines leave N, return to S",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "question_label",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "do these lines ever start or stop?",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "closed_loop_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "B field = continuous closed loops",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "You already know a bar magnet's field. The lines flow out of the north end, arc around, and dive back into the south end.", "text_hi": "आप एक bar magnet का field पहले से जानते हैं। lines, north end से बाहर निकलती हैं, arc बनाती हैं, और south end में वापस चली जाती हैं।", "text_te": "మీకు bar magnet యొక్క field ఇప్పటికే తెలుసు. lines, north end నుండి బయటకు వచ్చి, arc గా తిరిగి, south end లోకి తిరిగి వెళ్తాయి."
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Watch one tracer travel a full loop. Does the magnetic field line ever begin somewhere or end somewhere, or does it close back on itself?", "text_hi": "एक tracer को पूरा loop travel करते देखिए। क्या magnetic field line कहीं begin या end होती है, या वह अपने ऊपर close हो जाती है?", "text_te": "ఒక tracer పూర్తి loop ప్రయాణించడం చూడండి. magnetic field line ఎక్కడైనా begin లేదా end అవుతుందా, లేక అది తనపై తానే close అవుతుందా?",
+              "pause_after_ms": 2600
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Every magnetic field line is a continuous closed loop. It has no start and no end, unlike electric lines that begin and end on charges.", "text_hi": "हर magnetic field line एक continuous closed loop है। इसका कोई start और end नहीं है, electric lines के विपरीत जो charges पर begin और end होती हैं।", "text_te": "ప్రతి magnetic field line ఒక continuous closed loop. దీనికి start, end లేదు, charges మీద begin, end అయ్యే electric lines కి విరుద్ధంగా."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Magnetic field lines start at the north pole and end at the south pole, just like electric lines start and end on charges.",
+            "visual_counter": "A tracer rides one line all the way around: out of N, around the outside, back into S, and on through the magnet body to N — a closed loop with no ends.",
+            "one_line_fix": "Magnetic field lines are closed loops with no start or end; the poles are not sources or sinks."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Wrap any closed surface around the magnet — count the lines",
+        "duration": 17,
+        "focal_primitive_id": "in_equals_out_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "surface_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "draw a closed (Gaussian) surface",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "count_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "lines out = lines in",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "in_equals_out_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "net Φ_B = ∮B·dA = 0",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Now imagine any closed surface drawn around the whole magnet. Count the magnetic field lines crossing it: how many leave, and how many enter?", "text_hi": "अब पूरे magnet के चारों ओर एक closed surface की कल्पना कीजिए। इसे cross करने वाली magnetic field lines गिनिए: कितनी leave करती हैं, और कितनी enter करती हैं?", "text_te": "ఇప్పుడు మొత్తం magnet చుట్టూ ఒక closed surface ని ఊహించండి. దాన్ని cross చేసే magnetic field lines లెక్కించండి: ఎన్ని leave అవుతాయి, ఎన్ని enter అవుతాయి?",
+              "pause_after_ms": 2600
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Because every line is a closed loop, each one that pokes out through the surface must poke back in somewhere else. Out equals in.", "text_hi": "क्योंकि हर line एक closed loop है, इसलिए surface से बाहर निकलने वाली हर line को कहीं और वापस अंदर जाना होता है। Out equals in।", "text_te": "ప్రతి line ఒక closed loop కాబట్టి, surface నుండి బయటకు వచ్చే ప్రతి line ఎక్కడో తిరిగి లోపలికి వెళ్ళాలి. Out equals in."
+            },
+            {
+              "id": "s2_3",
+              "text_en": "So the magnetic flux leaving and the magnetic flux entering cancel exactly. The net magnetic flux through the closed surface is zero.", "text_hi": "तो leaving magnetic flux और entering magnetic flux बिल्कुल cancel हो जाते हैं। closed surface से net magnetic flux zero है।", "text_te": "కాబట్టి leaving magnetic flux మరియు entering magnetic flux ఖచ్చితంగా cancel అవుతాయి. closed surface నుండి net magnetic flux zero."
+            },
+            {
+              "id": "s2_4",
+              "text_en": "Written as a law, the closed-surface integral of the magnetic field B dot dA equals zero. That is Gauss's law for magnetism.", "text_hi": "एक law के रूप में लिखें तो, magnetic field B dot dA का closed-surface integral, zero के बराबर है। यही Gauss's law for magnetism है।", "text_te": "law గా రాస్తే, magnetic field B dot dA యొక్క closed-surface integral, zero కి సమానం. అదే Gauss's law for magnetism."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A surface around the north end catches outgoing flux and a surface around the south end catches incoming flux, so the magnet pushes a net flux out.",
+            "visual_counter": "Every loop that crosses out of the surface is shown crossing back in; the running tally of out and in lines stays equal.",
+            "one_line_fix": "Out equals in for closed loops, so the net magnetic flux through any closed surface is zero."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Enclose just ONE pole — the net flux is STILL zero",
+        "duration": 19,
+        "focal_primitive_id": "no_monopole_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "one_pole_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "shrink the surface onto the N pole alone",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "monopole_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "no monopole to enclose",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "no_monopole_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "still net Φ_B = 0",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Here is the real test. I shrink the closed surface onto the north pole alone. Surely now only outgoing lines cross it, so the flux should be positive?", "text_hi": "यहाँ असली test है। मैं closed surface को सिर्फ north pole पर shrink करता हूँ। अब तो सिर्फ outgoing lines इसे cross करती हैं, तो flux positive होना चाहिए?", "text_te": "ఇక్కడ అసలు test ఉంది. నేను closed surface ని north pole మీద మాత్రమే shrink చేస్తాను. ఇప్పుడు outgoing lines మాత్రమే దాన్ని cross చేస్తాయి, కాబట్టి flux positive అవ్వాలి కదా?",
+              "pause_after_ms": 2800
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Watch carefully. The lines that emerge from the north pole outside also pass back through the magnet body inside the surface. They still come in.", "text_hi": "ध्यान से देखिए। north pole से बाहर निकलने वाली lines, surface के अंदर magnet body से होकर वापस भी जाती हैं। वे फिर भी अंदर आती हैं।", "text_te": "జాగ్రత్తగా చూడండి. north pole నుండి బయటకు వచ్చే lines, surface లోపల magnet body గుండా తిరిగి కూడా వెళ్తాయి. అవి ఇంకా లోపలికి వస్తాయి."
+            },
+            {
+              "id": "s3_3",
+              "text_en": "So out still equals in, and the net magnetic flux is still exactly zero. There is no isolated north pole to act as a source.", "text_hi": "तो out अभी भी in के बराबर है, और net magnetic flux अभी भी बिल्कुल zero है। source की तरह काम करने वाला कोई isolated north pole नहीं है।", "text_te": "కాబట్టి out ఇంకా in కి సమానం, మరియు net magnetic flux ఇంకా ఖచ్చితంగా zero. source లాగా పనిచేసే isolated north pole ఏదీ లేదు."
+            },
+            {
+              "id": "s3_4",
+              "text_en": "This is the heart of the law: there is no magnetic monopole. There is no magnetic charge to trap, so the enclosed magnetic flux is always zero.", "text_hi": "यही law का दिल है: कोई magnetic monopole नहीं है। trap करने के लिए कोई magnetic charge नहीं है, इसलिए enclosed magnetic flux हमेशा zero है।", "text_te": "ఇదే law యొక్క గుండె: magnetic monopole లేదు. trap చేయడానికి magnetic charge లేదు, కాబట్టి enclosed magnetic flux ఎల్లప్పుడూ zero."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A surface tightly around the north pole encloses 'north magnetic charge', so it should give a positive net flux like a positive electric charge does.",
+            "visual_counter": "The surface shrinks onto the N pole, yet the lines emerging outside are shown re-entering through the magnet body inside the surface; the readout holds at zero.",
+            "one_line_fix": "There is no magnetic monopole — even around one pole, every line out comes back in, so the net flux is zero."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_4": {
+        "title": "Any closed surface — sphere, cube, blob — same zero",
+        "duration": 17,
+        "focal_primitive_id": "shape_zero_label",
+        "advance_mode": "wait_for_answer",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "any_surface_label",
+            "position": {
+              "x": 360,
+              "y": 90
+            },
+            "text": "reshape the closed surface",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "morph_tag",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "sphere → cube → blob",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "shape_zero_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "net Φ_B = 0  stays pinned",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Does the shape of the surface change anything? Watch as it morphs from a sphere to a cube to a lumpy blob around the magnet.", "text_hi": "क्या surface का shape कुछ बदलता है? देखिए जब यह magnet के चारों ओर sphere से cube में, फिर एक lumpy blob में बदलती है।", "text_te": "surface యొక్క shape ఏదైనా మారుస్తుందా? అది magnet చుట్టూ sphere నుండి cube కి, ఆపై lumpy blob కి మారడం చూడండి.",
+              "pause_after_ms": 2600
+            },
+            {
+              "id": "s4_2",
+              "text_en": "No matter the shape, every closed loop that leaves the surface still re-enters it. The bookkeeping of out and in never changes.", "text_hi": "shape चाहे जो हो, surface से निकलने वाला हर closed loop उसमें वापस भी आता है। out और in का हिसाब कभी नहीं बदलता।", "text_te": "shape ఏదైనా సరే, surface నుండి బయటకు వెళ్ళే ప్రతి closed loop దానిలోకి తిరిగి కూడా వస్తుంది. out, in ల లెక్క ఎప్పుడూ మారదు."
+            },
+            {
+              "id": "s4_3",
+              "text_en": "So the net magnetic flux stays pinned at zero through every shape. Gauss's law for magnetism holds for any closed surface you choose.", "text_hi": "तो net magnetic flux हर shape में zero पर pinned रहता है। Gauss's law for magnetism, आपके चुने हुए किसी भी closed surface के लिए holds करता है।", "text_te": "కాబట్టి net magnetic flux ప్రతి shape లోనూ zero వద్ద pinned గా ఉంటుంది. Gauss's law for magnetism, మీరు ఎంచుకున్న ఏ closed surface కైనా holds అవుతుంది."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A bigger or oddly-shaped surface around the magnet should catch a different amount of magnetic flux.",
+            "visual_counter": "The surface morphs sphere → cube → blob while the net-flux readout holds dead steady at zero.",
+            "one_line_fix": "The net magnetic flux through any closed surface is zero regardless of its shape or size."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true
+      },
+      "STATE_5": {
+        "title": "Contrast: the electric Gauss law gives q/ε₀, not zero",
+        "duration": 18,
+        "focal_primitive_id": "contrast_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "magnet_side_label",
+            "position": {
+              "x": 200,
+              "y": 95
+            },
+            "text": "magnet: ∮B·dA = 0",
+            "color": "#8CF5A0",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "charge_side_label",
+            "position": {
+              "x": 560,
+              "y": 95
+            },
+            "text": "charge: ∮E·dA = q/ε₀ ≠ 0",
+            "color": "#FF8A80",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "contrast_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "charges have ends; magnets don't",
+            "color": "#FFF176",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Compare the two Gauss laws side by side. On the left, a bar magnet with its closed loops; on the right, a single positive charge.", "text_hi": "दोनों Gauss laws की side by side तुलना कीजिए। बाईं ओर, अपने closed loops के साथ एक bar magnet; दाईं ओर, एक single positive charge।", "text_te": "రెండు Gauss laws ని side by side పోల్చండి. ఎడమవైపు, తన closed loops తో ఒక bar magnet; కుడివైపు, ఒక single positive charge."
+            },
+            {
+              "id": "s5_2",
+              "text_en": "The electric field lines of the positive charge only point outward — they start on the charge and never return. They pierce the surface one way.", "text_hi": "positive charge की electric field lines सिर्फ बाहर की ओर point करती हैं — वे charge पर start होती हैं और कभी वापस नहीं आतीं। वे surface को एक ही तरफ pierce करती हैं।", "text_te": "positive charge యొక్క electric field lines బయటివైపు మాత్రమే point చేస్తాయి — అవి charge మీద start అయి ఎప్పుడూ తిరిగిరావు. అవి surface ని ఒకే వైపు pierce చేస్తాయి."
+            },
+            {
+              "id": "s5_3",
+              "text_en": "So the electric flux is non-zero: the closed-surface integral of E dot dA equals q over epsilon-nought. An enclosed charge is a real flux source.", "text_hi": "तो electric flux non-zero है: E dot dA का closed-surface integral, q over epsilon-nought के बराबर है। एक enclosed charge एक real flux source है।", "text_te": "కాబట్టి electric flux non-zero: E dot dA యొక్క closed-surface integral, q over epsilon-nought కి సమానం. ఒక enclosed charge అనేది real flux source."
+            },
+            {
+              "id": "s5_4",
+              "text_en": "Electric charges have ends for field lines to start and stop on; magnets do not. That single difference is why the magnetic law is zero.", "text_hi": "electric charges के पास field lines के start और stop होने के लिए ends होते हैं; magnets के पास नहीं। यही एक अंतर है जिसकी वजह से magnetic law zero है।", "text_te": "electric charges కి field lines start, stop అవ్వడానికి ends ఉంటాయి; magnets కి లేవు. ఆ ఒక్క తేడానే magnetic law zero అవ్వడానికి కారణం."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Gauss's law always gives 'enclosed source over a constant', so the magnetic version should give some magnetic charge over a constant too.",
+            "visual_counter": "Side by side, the charge's lines pierce its surface outward only (Φ_E ≠ 0) while the magnet's loops cross in and out equally (Φ_B = 0).",
+            "one_line_fix": "Electric charges are flux sources (q/ε₀); magnets have no monopole source, so the magnetic flux is zero."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Explore: drag the surface anywhere — watch Φ_B stay zero",
+        "duration": 16,
+        "focal_primitive_id": "live_zero_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": {
+              "x": 360,
+              "y": 95
+            },
+            "text": "reshape and move the surface",
+            "color": "#90CAF9",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "live_zero_label",
+            "position": {
+              "x": 600,
+              "y": 200
+            },
+            "text": "live net Φ_B = 0",
+            "color": "#FFF176",
+            "is_persistent": false
+          },
+          {
+            "type": "annotation",
+            "id": "explore_rule_label",
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "text": "no shape, no spot ever moves it off zero",
+            "color": "#66BB6A",
+            "is_persistent": false
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now you drive it. Use the sliders to reshape the closed surface and to slide it along the magnet, even onto a single pole.", "text_hi": "अब आप इसे चलाइए। closed surface को reshape करने और इसे magnet के साथ slide करने के लिए, यहाँ तक कि एक single pole पर भी, sliders का उपयोग करें।", "text_te": "ఇప్పుడు మీరు దీన్ని నడపండి. closed surface ని reshape చేయడానికి మరియు దాన్ని magnet వెంట, ఒక single pole మీదకి కూడా, slide చేయడానికి sliders ని ఉపయోగించండి."
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Watch the live readout. No matter the shape and no matter where you park the surface, the net magnetic flux stays exactly zero.", "text_hi": "live readout को देखिए। shape चाहे जो हो और surface को कहीं भी रखें, net magnetic flux बिल्कुल zero रहता है।", "text_te": "live readout ని చూడండి. shape ఏదైనా సరే, surface ని ఎక్కడ ఉంచినా, net magnetic flux ఖచ్చితంగా zero గా ఉంటుంది."
+            },
+            {
+              "id": "s6_3",
+              "text_en": "That is Gauss's law for magnetism. With no magnetic monopole to enclose, the closed-surface integral of B dot dA is always zero.", "text_hi": "यही Gauss's law for magnetism है। enclose करने के लिए कोई magnetic monopole न होने से, B dot dA का closed-surface integral हमेशा zero है।", "text_te": "అదే Gauss's law for magnetism. enclose చేయడానికి magnetic monopole లేకపోవడంతో, B dot dA యొక్క closed-surface integral ఎల్లప్పుడూ zero."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered Gauss's law for magnetism when they can (1) state that the net magnetic flux through any closed surface is exactly zero, ∮B·dA = 0; (2) explain that this is because magnetic field lines are continuous closed loops, so every line that leaves a closed surface also re-enters it (flux out = flux in); (3) state that there is no magnetic monopole, so even a surface enclosing a single pole gives zero net flux; (4) say that the result is independent of the surface's shape, size and position; and (5) contrast it with the electric Gauss law ∮E·dA = q_enc/ε₀, explaining that electric field lines start and end on charges (real flux sources) whereas magnetic lines have no ends.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "According to Gauss's law for magnetism, what is the net magnetic flux through any closed surface?",
+        "options": {
+          "A": "Exactly zero — ∮B·dA = 0 for every closed surface",
+          "B": "The enclosed magnetic charge divided by a constant, like the electric case",
+          "C": "Positive if the surface is near the north pole, negative if near the south pole",
+          "D": "It depends on the surface's shape and size"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes a magnetic 'charge' acts as a flux source like electric charge",
+          "C": "thinks a pole near the surface biases the net flux positive or negative",
+          "D": "thinks the surface's geometry changes the net magnetic flux"
+        },
+        "tested_idea": "The net magnetic flux through any closed surface is zero: ∮B·dA = 0.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "You draw any closed bubble around a bar magnet under glass with iron filings. What is the net magnetic flux out of that bubble, according to Gauss's law for magnetism?"
+      },
+      {
+        "q_id": "Q2",
+        "stem": "Why is the net magnetic flux through a closed surface zero?",
+        "options": {
+          "A": "Magnetic field lines are continuous closed loops, so every line that leaves the surface also re-enters it",
+          "B": "Magnetic fields are too weak to produce any measurable flux",
+          "C": "The magnetic field is zero everywhere outside the magnet",
+          "D": "The north and south poles are always equal in strength, so their separate fluxes happen to cancel by coincidence"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "attributes the zero to weak fields rather than closed loops",
+          "C": "wrongly claims the external field vanishes",
+          "D": "treats the cancellation as a numerical coincidence rather than a consequence of closed loops"
+        },
+        "tested_idea": "Closed field loops mean flux out = flux in, so the net is zero.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A tracer rides one field line of a bar magnet all the way around and back. Using the fact that the line is a closed loop, explain why the flux it carries out of a closed surface is matched by flux back in."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "You draw a small closed surface that encloses ONLY the north pole of a bar magnet. What is the net magnetic flux through it?",
+        "options": {
+          "A": "Zero — the lines emerging outside the pole pass back in through the magnet body, so out still equals in",
+          "B": "Positive — the north pole acts as a source, pushing flux outward through the surface",
+          "C": "Equal to the 'north magnetic charge' divided by a constant",
+          "D": "Half of the flux you would get around the whole magnet"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats the north pole as an isolated source of flux",
+          "C": "invents a magnetic charge analogous to electric charge",
+          "D": "assumes flux scales with how much of the magnet is enclosed"
+        },
+        "tested_idea": "No magnetic monopole: even a surface around one pole nets zero flux.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Imagine a tiny bubble drawn around just the north tip of a bar magnet. Counting the field lines crossing it both ways, what is the net magnetic flux, and why?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "What does Gauss's law for magnetism tell us about the existence of magnetic monopoles?",
+        "options": {
+          "A": "They do not exist — there is no isolated magnetic charge to enclose, which is why the enclosed magnetic flux is always zero",
+          "B": "They exist but are very rare, so the flux is usually but not always zero",
+          "C": "A single magnetic pole can be isolated by cutting a magnet at exactly the middle",
+          "D": "Monopoles exist only at the north pole, never the south"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats monopoles as rare rather than non-existent",
+          "C": "believes cutting a magnet isolates a pole",
+          "D": "imagines an asymmetry between north and south monopoles"
+        },
+        "tested_idea": "∮B·dA = 0 expresses the absence of magnetic monopoles.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Snap a compass needle in two. Do you ever get a lone north pole? Tie your answer to why the enclosed magnetic flux is always zero."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "How does Gauss's law for magnetism (∮B·dA = 0) differ from the electric Gauss law (∮E·dA = q_enc/ε₀)?",
+        "options": {
+          "A": "Electric field lines start and end on charges, so an enclosed charge gives non-zero flux; magnetic lines are closed loops with no ends, so the flux is zero",
+          "B": "There is no real difference — both always evaluate to zero for a closed surface",
+          "C": "The magnetic law only holds in a vacuum, while the electric law holds everywhere",
+          "D": "The electric law gives zero and the magnetic law gives q_enc/ε₀"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "misses that the electric flux is non-zero when charge is enclosed",
+          "C": "invents a vacuum-only restriction",
+          "D": "swaps the two laws' right-hand sides"
+        },
+        "tested_idea": "Charges are flux sources (q/ε₀); magnets have no monopole source (0).",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A single +q's electric lines pierce a surface outward only; a magnet's loops cross in and out equally. Use this to explain why one Gauss law gives q/ε₀ and the other gives zero."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A bar magnet is enclosed first by a sphere, then by a cube, then by a lumpy blob. How does the net magnetic flux compare across the three surfaces?",
+        "options": {
+          "A": "It is the same — exactly zero for all three, since the net magnetic flux is independent of the surface's shape and size",
+          "B": "The cube catches the most because it has flat faces aligned with the field",
+          "C": "The blob catches the least because its surface is irregular",
+          "D": "Each gives a different non-zero value depending on how much volume it encloses"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "thinks flat faces aligned with the field increase net flux",
+          "C": "thinks an irregular surface reduces net flux",
+          "D": "ties net flux to enclosed volume"
+        },
+        "tested_idea": "Net magnetic flux is zero regardless of the closed surface's shape or size.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Wrap a bar magnet in a round lantern, then a box lantern, then a crumpled bag. Does the net magnetic flux out of the wrapping change as you swap shapes, and why?"
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": [
+        "Q1",
+        "Q2"
+      ],
+      "STATE_3": [
+        "Q3",
+        "Q4"
+      ],
+      "STATE_4": [
+        "Q6"
+      ],
+      "STATE_5": [
+        "Q5"
+      ]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_6"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "gauss_law_magnetism",
+    "field_lines": {
+      "opacity": 0.85
+    },
+    "slider_controls": {
+      "surface_shape": {
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "default": 0,
+        "label": "Surface shape"
+      },
+      "surface_pos": {
+        "min": -1.2,
+        "max": 1.2,
+        "step": 0.05,
+        "default": 0,
+        "label": "Surface position"
+      }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A bar magnet's field is made of closed loops",
+        "visible_elements": [
+          "gm_magnet",
+          "gm_moment",
+          "gm_field_line",
+          "gm_internal",
+          "gm_tracer"
+        ],
+        "camera_position": [
+          3,
+          1.6,
+          8
+        ],
+        "caption": "",
+        "gm": {
+          "mode": "loops",
+          "show_readout": true
+        }
+      },
+      "STATE_2": {
+        "label": "Wrap any closed surface around the magnet — count the lines",
+        "visible_elements": [
+          "gm_magnet",
+          "gm_field_line",
+          "gm_internal",
+          "gm_tracer",
+          "gm_surface",
+          "gm_surface_label"
+        ],
+        "camera_position": [
+          3,
+          1.6,
+          8
+        ],
+        "caption": "",
+        "gm": {
+          "mode": "whole",
+          "surface_R": 1.5,
+          "surface_shape": 0
+        },
+        "formula_overlay": "∮B·dA = 0"
+      },
+      "STATE_3": {
+        "label": "Enclose just ONE pole — still zero (PRIMARY aha)",
+        "visible_elements": [
+          "gm_magnet",
+          "gm_field_line",
+          "gm_internal",
+          "gm_tracer",
+          "gm_surface",
+          "gm_surface_label"
+        ],
+        "camera_position": [
+          3.2,
+          1.5,
+          7.8
+        ],
+        "caption": "",
+        "gm": {
+          "mode": "pole",
+          "surface_R": 0.72,
+          "surface_offset_x": 1.0,
+          "surface_shape": 0
+        },
+        "formula_overlay": "one pole enclosed → net Φ_B = 0"
+      },
+      "STATE_4": {
+        "label": "Any closed surface — sphere, cube, blob — same zero",
+        "visible_elements": [
+          "gm_magnet",
+          "gm_field_line",
+          "gm_internal",
+          "gm_tracer",
+          "gm_surface",
+          "gm_surface_label"
+        ],
+        "camera_position": [
+          3.2,
+          1.5,
+          8
+        ],
+        "caption": "",
+        "gm": {
+          "mode": "morph",
+          "surface_R": 1.5,
+          "morph": {
+            "from": 0,
+            "to": 2,
+            "at_ms": 1500,
+            "duration_ms": 3200,
+            "loop": true
+          }
+        },
+        "formula_overlay": "∮B·dA = 0  (any surface)"
+      },
+      "STATE_5": {
+        "label": "Contrast: the electric Gauss law gives q/ε₀, not zero",
+        "visible_elements": [
+          "gm_contrast"
+        ],
+        "camera_position": [
+          0,
+          1.4,
+          9.6
+        ],
+        "caption": "",
+        "gm": {
+          "mode": "contrast"
+        },
+        "formula_overlay": "∮B·dA = 0   vs   ∮E·dA = q/ε₀"
+      },
+      "STATE_6": {
+        "label": "Explore: drag the surface anywhere — watch Φ_B stay zero",
+        "visible_elements": [
+          "gm_magnet",
+          "gm_field_line",
+          "gm_internal",
+          "gm_tracer",
+          "gm_surface",
+          "gm_surface_label"
+        ],
+        "camera_position": [
+          3.2,
+          1.5,
+          8
+        ],
+        "caption": "",
+        "gm": {
+          "mode": "sandbox",
+          "sliders": true,
+          "surface_R": 1.5,
+          "surface_shape": 0
+        },
+        "formula_overlay": "live net Φ_B = 0"
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

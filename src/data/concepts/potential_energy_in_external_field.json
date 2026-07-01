@@ -1,0 +1,1117 @@
+{
+  "concept_id": "potential_energy_in_external_field",
+  "concept_name": "Potential Energy in an External Field — U = qV (a charge), U = q₁V₁+q₂V₂ (a system), U = −p·E (a dipole)",
+  "chapter": 2,
+  "section": "2.8",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Physics, Ch.2 Electrostatic Potential and Capacitance (§2.8 Potential energy in an external field) — table-of-contents + Indian-anchor reference only; teaching authored from first principles. The atomic idea: the potential energy of a charge in a GIVEN external field is U = qV, where V is the potential made by sources somewhere else — the placed charge SAMPLES the field, it does not create the V it sits in. For two charges it is U = q₁V₁ + q₂V₂ (each charge's own qV in the SAME external field), and for a dipole the two qV terms collapse into one clean formula U = −p·E = −pE·cosθ. U carries the sign of q·V: a like sign stores +U (a hill), an opposite sign gives −U (a well). The dipole energy is a MINIMUM at θ=0° (aligned, stable) and a MAXIMUM at θ=180° (anti-aligned, unstable); the torque τ = pE·sinθ is a DIFFERENT quantity that peaks at θ=90°. SCOPE: this is the external-field ENERGY diamond of Ch.2. It declares electric_potential_meaning, electric_potential_point_charge, potential_energy_system_of_charges and electric_dipole_in_field as prerequisites and does NOT re-teach them. It is DISTINCT from the mutual PE kq₁q₂/r of §2.7 (contrasted in STATE_5) and does NOT cover torque dynamics (electric_dipole_in_field, referenced STATE_8) or capacitor energy ½CV². field_3d scenario_type pe_external_field (already built): a CHARGE phase (STATE_1..5) where charges park at points of GIVEN potential V, each carrying a signed U=qV number tag while a signed energy meter sums them and the equipotential landscape shades the V; and a DIPOLE phase (STATE_6..9) reusing the dipole-in-field engine — p arrow, θ arc, U=−pE·cosθ meter, θ-sweep / oscillation, plus a q + θ slider in STATE_9 (energy_explorer). Conceptual-only (no mode_overrides), EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "pe_external_field"
+    ]
+  },
+  "prerequisites": [
+    "electric_potential_meaning",
+    "electric_potential_point_charge",
+    "potential_energy_system_of_charges",
+    "electric_dipole_in_field"
+  ],
+  "real_world_anchor": {
+    "primary": "Think of gel electrophoresis in a biology or forensics lab. Negatively charged DNA fragments are dropped into a gel with a voltage across it, and they drift toward the positive electrode — sliding DOWN their U = qV energy landscape precisely because their charge q is negative. The field and the potential V are set by the electrodes; the DNA only samples that landscape and rolls to lower energy.",
+    "secondary": "Picture the electron gun in an old CRT television tube. An electron is accelerated across a voltage V and arrives at the screen with kinetic energy equal to the magnitude of its charge times V — it has fallen through the U = qV landscape, trading potential energy for speed, exactly the way a ball rolls downhill.",
+    "tertiary": "Picture a single pixel in an LCD screen. Tiny rod-shaped polar molecules behave like dipoles; in the applied field they rotate to their lowest-energy orientation — the aligned U = −p·E minimum — twisting the light passing through on or off."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "q": {
+        "name": "Signed test charge placed in the external field (STATE_2/3/9 slider)",
+        "unit": "demo nC",
+        "role": "source",
+        "min": -3,
+        "max": 3,
+        "default": 2,
+        "step": 1
+      },
+      "q1": {
+        "name": "First system charge (STATE_4/5)",
+        "unit": "demo nC",
+        "min": -3,
+        "max": 3,
+        "default": 2,
+        "step": 1
+      },
+      "q2": {
+        "name": "Second system charge (STATE_4/5)",
+        "unit": "demo nC",
+        "min": -3,
+        "max": 3,
+        "default": -1,
+        "step": 1
+      },
+      "V1": {
+        "name": "GIVEN external potential at the q1 location",
+        "unit": "demo V",
+        "min": -10,
+        "max": 10,
+        "default": 5
+      },
+      "V2": {
+        "name": "GIVEN external potential at the q2 location",
+        "unit": "demo V",
+        "min": -10,
+        "max": 10,
+        "default": 4
+      },
+      "E": {
+        "name": "Uniform external field magnitude (STATE_6..9)",
+        "unit": "demo E",
+        "min": 1,
+        "max": 5,
+        "default": 3,
+        "step": 1
+      },
+      "p": {
+        "name": "Dipole moment magnitude (p = q·d)",
+        "unit": "demo p",
+        "min": 1,
+        "max": 8,
+        "default": 4,
+        "step": 1
+      },
+      "d": {
+        "name": "Charge separation in the dipole (p = q·d)",
+        "unit": "demo units",
+        "min": 0.5,
+        "max": 3,
+        "default": 2,
+        "step": 0.5
+      },
+      "theta_deg": {
+        "name": "Angle from the dipole moment p to the field E",
+        "unit": "deg",
+        "min": 0,
+        "max": 180,
+        "default": 60,
+        "step": 1
+      },
+      "U_FULL": {
+        "name": "Signed energy-meter full-scale (= pE max)",
+        "unit": "demo J",
+        "min": 12,
+        "max": 12,
+        "default": 12
+      }
+    },
+    "computed_outputs": {
+      "U_single": {
+        "formula": "q * V1"
+      },
+      "qV1": {
+        "formula": "q1 * V1"
+      },
+      "qV2": {
+        "formula": "q2 * V2"
+      },
+      "U_system": {
+        "formula": "q1 * V1 + q2 * V2"
+      },
+      "U_dipole": {
+        "formula": "-1 * p * E * Math.cos(theta_deg * Math.PI / 180)"
+      },
+      "U_dipole_min": {
+        "formula": "-1 * p * E"
+      },
+      "U_dipole_max": {
+        "formula": "p * E"
+      }
+    },
+    "derived_fields_declared": [
+      "U_single",
+      "qV1",
+      "qV2",
+      "U_system",
+      "U_dipole",
+      "U_dipole_min",
+      "U_dipole_max"
+    ],
+    "formulas": {
+      "single_charge": "U = qV — energy of charge q at a point where the EXTERNAL field holds potential V; V is the environment, q only samples it.",
+      "delta_U": "ΔU = qΔV — moving to higher V raises U for +q, lowers it for −q.",
+      "two_charges": "U = q₁V₁ + q₂V₂ — each charge contributes its own qV in the SAME external field; NOT the mutual kq₁q₂/r.",
+      "dipole_collapse": "U = (+q)V₊ + (−q)V₋ = q(V₊−V₋); with V=−E·r, V₊−V₋=−E·d, so U = −(qd)·E = −p·E = −pE·cosθ.",
+      "dipole_extrema": "U_min=−pE at θ=0° (stable); U=0 at θ=90°; U_max=+pE at θ=180° (unstable).",
+      "torque_aside": "τ = pE·sinθ is a DIFFERENT quantity (peaks at θ=90°). Full torque: electric_dipole_in_field."
+    },
+    "constraints": [
+      "V and E are GIVEN by the external source — independent of the placed charge; the charge samples the field, it does not create the V it sits in (C1, the M1 confront).",
+      "External-field PE U=qV (or ΣqᵢVᵢ) is DISTINCT from mutual PE kq₁q₂/r — never add a mutual term into U_system (C2).",
+      "The sign of U is the sign of q·V: like signs store +U (hill); opposite signs give −U (well) (C3).",
+      "Dipole energy U=−p·E is defined up to a constant; reference U=0 at θ=90° (C4).",
+      "θ measured from p to E; U minimum at θ=0° (stable), maximum at θ=180° (unstable) (C5).",
+      "All on-screen energies use round DEMO units (pE=U_FULL=12), not SI (C6)."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_3",
+    "statement": "Flip the charge's sign and the energy hill becomes a well.",
+    "visual_confirmation": "STATE_3: the same point that read +8 for +q reads −8 for −q; the signed meter swings from above zero to below, the hill inverts to a well.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3"
+    ],
+    "system": [
+      "STATE_4",
+      "STATE_5"
+    ],
+    "dipole": [
+      "STATE_6",
+      "STATE_7",
+      "STATE_8"
+    ],
+    "exploration": [
+      "STATE_9"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 9,
+    "states": {
+      "STATE_1": {
+        "title": "The field is already there",
+        "duration": 11,
+        "focal_primitive_id": "field_grid",
+        "advance_mode": "auto_after_tts",
+        "teaching_method": "narrative_socratic",
+        "variable_overrides": {},
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "e_field",
+            "position": { "x": 360, "y": 90 },
+            "text": "E",
+            "color": "#FF7043"
+          },
+          {
+            "type": "annotation",
+            "id": "v_landscape",
+            "position": { "x": 600, "y": 210 },
+            "text": "V",
+            "color": "#7E57C2"
+          },
+          {
+            "type": "annotation",
+            "id": "stage",
+            "position": { "x": 360, "y": 440 },
+            "text": "field + V = the stage",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Before any charge arrives, the space is already filled with an external electric field E and its potential V, made by sources somewhere else.",
+              "reveal_primitive_id": "field_grid",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s1_2",
+              "text_en": "The faint shading is the potential V: a landscape of high and low ground, set by the environment, not by anything we place here yet.",
+              "reveal_primitive_id": "v_shading",
+              "appear_at_ms": 4200
+            },
+            {
+              "id": "s1_3",
+              "text_en": "Remember that. The field and the potential V are the stage. Next we drop a charge onto it.",
+              "reveal_primitive_id": "stage_label",
+              "appear_at_ms": 8000
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "U = qV for one charge",
+        "duration": 13,
+        "focal_primitive_id": "u_eq_qv",
+        "advance_mode": "auto_after_animation",
+        "teaching_method": "narrative_socratic",
+        "variable_overrides": { "q": 2 },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "u_eq_qv",
+            "position": { "x": 360, "y": 90 },
+            "text": "U = qV",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "sample",
+            "position": { "x": 600, "y": 210 },
+            "text": "q samples V",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "delta_u",
+            "position": { "x": 360, "y": 440 },
+            "text": "ΔU = q ΔV",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Now a positive charge q flies in and parks. Its energy in this field is simply potential energy U equals charge q times potential V.",
+              "reveal_primitive_id": "u_eq_qv",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Here q is plus two at a point where V is four, so U is plus eight. The signed meter fills upward.",
+              "reveal_primitive_id": "meter_fill",
+              "appear_at_ms": 4600
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Slide it to higher potential V, six, and U climbs to plus twelve. The change is q times the change in V: delta U equals q delta V.",
+              "reveal_primitive_id": "delta_u",
+              "appear_at_ms": 8800
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Flip the sign — the landscape inverts",
+        "duration": 15,
+        "focal_primitive_id": "u_negative",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "misconception_confrontation",
+        "variable_overrides": { "q": -2 },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "u_eq_qv",
+            "position": { "x": 360, "y": 90 },
+            "text": "U = qV",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "sign_rule",
+            "position": { "x": 600, "y": 210 },
+            "text": "q < 0 ⇒ U < 0",
+            "color": "#90CAF9"
+          },
+          {
+            "type": "annotation",
+            "id": "u_negative",
+            "position": { "x": 360, "y": 440 },
+            "text": "hill → well",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Same field, same spot, but now the charge q is negative, minus two.",
+              "reveal_primitive_id": "flip_charge",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Predict before you look: does the energy stay positive again, or does it flip below zero?",
+              "appear_at_ms": 4000,
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s3_3",
+              "text_en": "It flips. With q negative and V positive, U equals q V is minus eight. The hill becomes a well. The meter swings below zero.",
+              "reveal_primitive_id": "u_negative",
+              "appear_at_ms": 7400
+            },
+            {
+              "id": "s3_4",
+              "text_en": "The sign of the energy follows the sign of q times V. Energy is not always positive.",
+              "reveal_primitive_id": "sign_rule",
+              "appear_at_ms": 11500
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Potential energy of a charge is always positive.",
+            "visual_counter": "The signed U-meter swings BELOW zero when q is negative in a positive-V region; the energy hill inverts into a well.",
+            "one_line_fix": "U carries the sign of q·V — a negative charge in a +V region has negative U, a well not a hill."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "negative_charge_energy_well",
+          "does_sign_of_V_or_q_decide_U",
+          "dna_slides_toward_anode"
+        ]
+      },
+      "STATE_4": {
+        "title": "Two charges — U = q₁V₁ + q₂V₂",
+        "duration": 13,
+        "focal_primitive_id": "u_system",
+        "advance_mode": "manual_click",
+        "teaching_method": "narrative_socratic",
+        "variable_overrides": { "q1": 2, "q2": -1, "V1": 5, "V2": 4 },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "u_system",
+            "position": { "x": 360, "y": 90 },
+            "text": "U = q₁V₁ + q₂V₂",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "term1",
+            "position": { "x": 600, "y": 210 },
+            "text": "q₁V₁ = +10",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "term2",
+            "position": { "x": 360, "y": 440 },
+            "text": "q₂V₂ = −4",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Bring in a second charge. Each charge has its own potential energy in the same external field.",
+              "reveal_primitive_id": "second_charge",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Charge q one is plus two at potential V five, contributing plus ten; charge q two is minus one at potential V four, contributing minus four.",
+              "reveal_primitive_id": "per_charge_terms",
+              "appear_at_ms": 4600
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The system energy is just the sum: U equals q one V one plus q two V two, which is plus six.",
+              "reveal_primitive_id": "u_system",
+              "appear_at_ms": 9000
+            }
+          ]
+        }
+      },
+      "STATE_5": {
+        "title": "External-field PE is NOT mutual PE",
+        "duration": 11,
+        "focal_primitive_id": "distinct_bonds",
+        "advance_mode": "manual_click",
+        "teaching_method": "misconception_confrontation",
+        "variable_overrides": { "q1": 2, "q2": -1, "V1": 5, "V2": 4 },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "qv",
+            "position": { "x": 300, "y": 90 },
+            "text": "qV",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "vs",
+            "position": { "x": 600, "y": 210 },
+            "text": "vs",
+            "color": "#D4D4D8"
+          },
+          {
+            "type": "annotation",
+            "id": "mutual",
+            "position": { "x": 360, "y": 440 },
+            "text": "k q₁q₂ / r",
+            "color": "#AB47BC"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "A warning. This energy is each charge sitting in the external field. The qV bonds reach out to the field, not to each other.",
+              "reveal_primitive_id": "qv_bonds",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Predict: is this the same as the mutual energy k q one q two over r between the two charges?",
+              "appear_at_ms": 4200,
+              "pause_after_ms": 2500
+            },
+            {
+              "id": "s5_3",
+              "text_en": "No. That charge-to-charge bond, k q one q two over r, is a different quantity from section two point seven. Here we count only qV, never add the mutual term in.",
+              "reveal_primitive_id": "distinct_bonds",
+              "appear_at_ms": 7400
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "External-field PE (qV) is the same as the mutual PE between the charges because the formulas look alike.",
+            "visual_counter": "Two distinct bond types are drawn: charge→field qV bonds versus a separate charge↔charge kq₁q₂/r bond.",
+            "one_line_fix": "qV is the charge in the GIVEN external field; kq₁q₂/r is the charges' energy with each other — different quantities; do not add the mutual term here."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Collapse to a dipole — qV+qV → −p·E",
+        "duration": 18,
+        "focal_primitive_id": "u_minus_pE",
+        "advance_mode": "auto_after_tts",
+        "teaching_method": "derivation_first_principles",
+        "variable_overrides": { "p": 4, "E": 3, "theta_deg": 60 },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "collapse",
+            "position": { "x": 360, "y": 90 },
+            "text": "U = q(V₊ − V₋)",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "u_minus_pE",
+            "position": { "x": 600, "y": 210 },
+            "text": "U = −p·E = −pE·cosθ",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "u_value",
+            "position": { "x": 360, "y": 440 },
+            "text": "U = −6",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Take a plus q and a minus q a fixed distance d apart, a dipole, with dipole moment p equal to q times d, pointing from minus to plus.",
+              "reveal_primitive_id": "dipole_p",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Its energy is just the two qV terms: plus q at potential V plus, minus q at potential V minus, which is q times the difference V plus minus V minus.",
+              "reveal_primitive_id": "two_qv_merge",
+              "appear_at_ms": 4800
+            },
+            {
+              "id": "s6_3",
+              "text_en": "In a uniform field that difference is minus E dot d, so the two terms collapse into one clean formula: U equals minus p dot E, equals minus p E cosine theta.",
+              "reveal_primitive_id": "u_minus_pE",
+              "appear_at_ms": 9500
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Here that is minus twelve times cosine sixty, which is minus six.",
+              "reveal_primitive_id": "u_value",
+              "appear_at_ms": 14000
+            }
+          ]
+        }
+      },
+      "STATE_7": {
+        "title": "Sweep θ — where is energy MAXIMUM?",
+        "duration": 17,
+        "focal_primitive_id": "u_extrema",
+        "advance_mode": "wait_for_answer",
+        "teaching_method": "misconception_confrontation",
+        "variable_overrides": { "p": 4, "E": 3 },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "u_formula",
+            "position": { "x": 360, "y": 90 },
+            "text": "U = −pE·cosθ",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "u_max",
+            "position": { "x": 600, "y": 210 },
+            "text": "U_max = +pE at θ=180°",
+            "color": "#FF7043"
+          },
+          {
+            "type": "annotation",
+            "id": "u_min",
+            "position": { "x": 360, "y": 440 },
+            "text": "U_min = −pE at θ=0°",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Watch the angle theta sweep from zero to one eighty. The meter traces the energy U equals minus p E cosine theta.",
+              "reveal_primitive_id": "theta_sweep",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Predict before the sweep ends: at what angle is the potential energy U the largest?",
+              "appear_at_ms": 4200,
+              "pause_after_ms": 3000
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Surprise: U is largest at theta one eighty, where p points against E, plus twelve. And it is smallest, minus twelve, when p lines up with E at theta zero.",
+              "reveal_primitive_id": "u_extrema",
+              "appear_at_ms": 8200
+            },
+            {
+              "id": "s7_4",
+              "text_en": "So alignment is the energy minimum, not the maximum. Lining up is the lowest-energy, most comfortable pose.",
+              "reveal_primitive_id": "aligned_is_min",
+              "appear_at_ms": 13000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A dipole's energy is maximum when it is aligned with the field.",
+            "visual_counter": "The U-meter sits at the BOTTOM (−pE) at θ=0 and at the TOP (+pE) at θ=180 as θ sweeps.",
+            "one_line_fix": "Aligned (θ=0) is the energy MINIMUM (stable); the maximum is anti-aligned at 180°. Torque — not energy — peaks at 90°."
+          }
+        ],
+        "has_prebuilt_deep_dive": true,
+        "allow_deep_dive": true,
+        "drill_downs": [
+          "aligned_is_minimum_not_maximum",
+          "energy_vs_torque_which_peaks_where",
+          "stable_vs_unstable_equilibrium"
+        ]
+      },
+      "STATE_8": {
+        "title": "Stable vs unstable — torque is a different story",
+        "duration": 15,
+        "focal_primitive_id": "unstable",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "variable_overrides": { "p": 4, "E": 3 },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "stable",
+            "position": { "x": 360, "y": 90 },
+            "text": "θ=0° stable (U min)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "unstable",
+            "position": { "x": 600, "y": 210 },
+            "text": "θ=180° unstable (U max)",
+            "color": "#FF7043"
+          },
+          {
+            "type": "annotation",
+            "id": "torque_aside",
+            "position": { "x": 360, "y": 440 },
+            "text": "τ = pE·sinθ (peaks 90°)",
+            "color": "#90CAF9"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s8_1",
+              "text_en": "Start the dipole at theta one eighty, pointing against the field. The torque here is zero, so it balances — but only just. This is the unstable equilibrium, the energy maximum.",
+              "reveal_primitive_id": "unstable",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s8_2",
+              "text_en": "The smallest nudge grows. It turns slowly at first, then faster, swinging down through ninety, overshooting, and finally settling at theta zero, aligned with the field. That is the stable equilibrium, the energy minimum.",
+              "reveal_primitive_id": "stable",
+              "appear_at_ms": 6000
+            },
+            {
+              "id": "s8_3",
+              "text_en": "One caution: the torque p E sine theta is a different quantity. It peaks at ninety degrees, not at the energy extremes. Energy and torque answer different questions.",
+              "reveal_primitive_id": "torque_aside",
+              "appear_at_ms": 11000
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Both θ=0 and θ=180 are equally stable since the torque is zero at both.",
+            "visual_counter": "Released at θ=180 the dipole does NOT stay: it lingers, then slowly departs, swings down through 90°, overshoots, and settles at θ=0 — its energy falling from the U-meter top (max) to the bottom (min) as it goes.",
+            "one_line_fix": "θ=0 is the stable energy minimum; θ=180 is the unstable maximum — zero torque does not mean stable."
+          }
+        ]
+      },
+      "STATE_9": {
+        "title": "Your turn — qV mode and −p·E mode",
+        "duration": 16,
+        "focal_primitive_id": "both_readouts",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "variable_overrides": { "p": 4, "E": 3, "V1": 5 },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "u_qv",
+            "position": { "x": 360, "y": 90 },
+            "text": "U = qV",
+            "color": "#FFCA28"
+          },
+          {
+            "type": "annotation",
+            "id": "u_dipole",
+            "position": { "x": 600, "y": 210 },
+            "text": "U = −pE·cosθ",
+            "color": "#4FC3F7"
+          },
+          {
+            "type": "annotation",
+            "id": "explore",
+            "position": { "x": 360, "y": 440 },
+            "text": "slide q, θ",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s9_1",
+              "text_en": "Your turn. Slide the charge q, flip its sign and change its size, and watch U equals q V swing positive or negative.",
+              "reveal_primitive_id": "q_slider",
+              "appear_at_ms": 700
+            },
+            {
+              "id": "s9_2",
+              "text_en": "Then slide the angle theta and watch U equals minus p E cosine theta dip to its minimum at zero and rise to its maximum at one eighty.",
+              "reveal_primitive_id": "theta_slider",
+              "appear_at_ms": 6000
+            },
+            {
+              "id": "s9_3",
+              "text_en": "Two readouts, one idea: a charge's energy is q times the potential it sits in, and a dipole's is the two qV terms collapsed into minus p dot E.",
+              "reveal_primitive_id": "both_readouts",
+              "appear_at_ms": 11000
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the potential energy of a charge in an external field when they can (1) write U = qV for a single charge sampling a GIVEN external potential and treat V/E as the environment, not as something the placed charge makes; (2) reject the 'energy is always positive' belief and assign U the sign of q·V — a hill for like signs, a well for opposite; (3) write the two-charge system energy as U = q₁V₁ + q₂V₂, each charge in the same external field; (4) distinguish this external-field PE from the mutual PE kq₁q₂/r between the charges and never add the mutual term; (5) derive U = −p·E = −pE·cosθ as the two qV terms collapsed, and reason that U is minimum at θ = 0° (stable) and maximum at θ = 180° (unstable); and (6) separate the energy extrema (0°/180°) from the torque peak (90°).",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A charge q is placed at a point where an EXTERNAL field already holds a potential V. What is its potential energy?",
+        "options": {
+          "A": "U = qV — the charge samples the external potential V",
+          "B": "U = kq/V — energy is charge over potential",
+          "C": "U = qE — energy is charge times field, not potential",
+          "D": "U = 0 — a single charge in an external field stores no energy"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "invents a q/V form; the relation is the product qV",
+          "C": "confuses potential V with field E — qE has units of force not energy",
+          "D": "thinks one charge in an external field has no energy, but U=qV is nonzero where V≠0"
+        },
+        "tested_idea": "The energy of a charge in a given external field is U = qV.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A test charge sits at a location whose external potential is V. Write its potential energy in terms of q and V."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A NEGATIVE charge (q < 0) is placed at a point where the external potential V is positive. What is the sign of its potential energy U?",
+        "options": {
+          "A": "Negative — U = qV with q<0 and V>0 gives U<0 (an energy well)",
+          "B": "Positive — potential energy of a charge is always positive",
+          "C": "Zero — the negative charge cancels the positive potential",
+          "D": "Positive — a negative charge always raises the energy"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "holds the 'energy is always positive' belief, ignoring that U carries the sign of q·V",
+          "C": "imagines q and V cancelling to zero, but U=qV is a product not a difference",
+          "D": "assumes a negative charge raises U, but with positive V it lowers U below zero"
+        },
+        "tested_idea": "U = qV takes the sign of q·V; a negative charge in positive potential gives negative U.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A positive charge is placed where the external potential is NEGATIVE. State and justify the sign of its potential energy."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "Two charges q₁ and q₂ sit at points of external potential V₁ and V₂. What is the total potential energy in that external field?",
+        "options": {
+          "A": "U = q₁V₁ + q₂V₂ — each charge contributes its own qV",
+          "B": "U = (q₁ + q₂)(V₁ + V₂) — multiply total charge by total potential",
+          "C": "U = q₁V₂ + q₂V₁ — cross-pair the charges and potentials",
+          "D": "U = k q₁q₂ / r₁₂ — the energy between the two charges"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "lumps charges and potentials into one product instead of summing each charge's own qV",
+          "C": "pairs each charge with the OTHER charge's potential, but each charge sits in the potential AT ITS OWN location",
+          "D": "gives the MUTUAL energy between the charges, not their energy in the EXTERNAL field"
+        },
+        "tested_idea": "The external-field energy of several charges is the sum of each charge's own qV.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Three charges q₁, q₂, q₃ sit where the external potentials are V₁, V₂, V₃. Write the total potential energy in that external field."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "For two charges in an external field, how does the external-field energy U = q₁V₁ + q₂V₂ relate to the mutual energy kq₁q₂/r₁₂ between the charges?",
+        "options": {
+          "A": "They are different quantities — qV uses the external potential; kq₁q₂/r is the charges' energy with each OTHER. You do not add the mutual term into U here",
+          "B": "They are the same thing written two ways",
+          "C": "You must always add kq₁q₂/r₁₂ to q₁V₁ + q₂V₂ to get the external-field energy",
+          "D": "The external potential V is created by the two charges themselves"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "conflates external-field PE with mutual PE — they answer different questions",
+          "C": "wrongly folds the mutual term into the external-field energy",
+          "D": "holds the core M1 misconception that the placed charges make the external V"
+        },
+        "tested_idea": "External-field PE (qV) is distinct from mutual PE (kq₁q₂/r); the external V is given, not made by the placed charges.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Explain why the energy of a charge sitting in a capacitor's field (qV) is not the same calculation as the energy between that charge and another nearby charge."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A dipole of moment p sits in a uniform field E at angle θ. Its energy is U = −pE·cosθ. At which angle is U a MINIMUM?",
+        "options": {
+          "A": "θ = 0° (p aligned with E), where U = −pE",
+          "B": "θ = 180° (p against E), where U = +pE",
+          "C": "θ = 90° (p perpendicular to E), where U = 0",
+          "D": "U is the same at every angle"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "picks anti-alignment, which is actually the energy MAXIMUM (+pE)",
+          "C": "picks perpendicular, where U=0 — that is where the TORQUE peaks, not where U is least",
+          "D": "misses the cosθ dependence entirely"
+        },
+        "tested_idea": "U = −pE·cosθ is minimum (−pE) at θ = 0° — alignment is the lowest-energy pose.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "Using U = −pE·cosθ, state the angle at which a dipole in a uniform field has its HIGHEST potential energy, and give that energy."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "A dipole rests aligned with the field (θ = 0°) and another rests anti-aligned (θ = 180°). How do the two equilibria differ?",
+        "options": {
+          "A": "θ = 0° is stable (U minimum, a nudge restores it); θ = 180° is unstable (U maximum, a nudge flips it to 0°)",
+          "B": "Both are equally stable, since the torque is zero at both",
+          "C": "θ = 180° is stable and θ = 0° is unstable",
+          "D": "Neither is an equilibrium, because the field keeps turning the dipole"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "equates zero torque with stability, ignoring the energy criterion (min vs max)",
+          "C": "inverts stable and unstable",
+          "D": "denies that the zero-torque orientations are equilibria at all"
+        },
+        "tested_idea": "U = −pE·cosθ: θ = 0° is the stable minimum, θ = 180° the unstable maximum.",
+        "teaches_state": "STATE_8",
+        "difficulty": "core",
+        "parallel_form_stem": "A dipole is released slightly displaced from θ = 180°. Describe what happens and explain it using the energy U = −pE·cosθ."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_2": ["Q1"],
+      "STATE_3": ["Q2"],
+      "STATE_4": ["Q3"],
+      "STATE_5": ["Q4"],
+      "STATE_6": ["Q5"],
+      "STATE_7": ["Q5"],
+      "STATE_8": ["Q6"]
+    },
+    "non_assessed_states": [
+      "STATE_1",
+      "STATE_9"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "pe_external_field",
+    "explorer_id": "energy_explorer",
+    "colors": {
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field": "#FF7043",
+      "mutual": "#AB47BC",
+      "equipotential": "#4FC3F7",
+      "text": "#D4D4D8",
+      "background": "#0A0A1A"
+    },
+    "ambient_field": {
+      "direction": [1, 0, 0],
+      "magnitude": 0.1,
+      "density": [5, 5, 5],
+      "color": "#42A5F5",
+      "opacity": 0.42,
+      "extent": 2.5
+    },
+    "equipotential": {
+      "opacity": 0.16,
+      "levels": [
+        { "v": 7, "x": -1.5, "color": "#7E57C2" },
+        { "v": 5, "x": 0.0, "color": "#5C6BC0" },
+        { "v": 4, "x": 0.8, "color": "#3F51B5" }
+      ]
+    },
+    "energy_meter": {
+      "U_FULL": 12,
+      "pE": 12
+    },
+    "dipole": {
+      "color_plus": "#EF5350",
+      "color_minus": "#42A5F5",
+      "p_color": "#FFCA28"
+    },
+    "slider_controls": {
+      "q": { "min": -3, "max": 3, "step": 1, "default": 2, "label": "q", "readout_V": 5 },
+      "theta_deg": { "min": 0, "max": 180, "step": 5, "default": 60, "label": "θ" },
+      "p": { "default": 4 },
+      "E": { "default": 3 }
+    },
+    "charges": [
+      { "id": "qA", "label": "q₁", "q": 2, "V": 5, "pos": [-0.7, 0, 0] },
+      { "id": "qB", "label": "q₂", "q": -1, "V": 4, "pos": [0.7, 0, 0] }
+    ],
+    "states": {
+      "STATE_1": {
+        "label": "The field is already there",
+        "visible_elements": ["all"],
+        "camera_position": [2.8, 1.6, 4.2],
+        "caption": "",
+        "formula_overlay": "",
+        "pef": {
+          "show_field": true,
+          "field_animate_in": true,
+          "show_equipotential": true,
+          "equipotential_at_ms": 4000
+        }
+      },
+      "STATE_2": {
+        "label": "U = qV",
+        "visible_elements": ["all"],
+        "camera_position": [2.8, 1.6, 4.2],
+        "caption": "",
+        "formula_overlay": "U = qV",
+        "pef": {
+          "show_field": true,
+          "show_equipotential": true,
+          "equipotential_at_ms": 400,
+          "charges": [
+            {
+              "id": "qA",
+              "q": 2,
+              "V": 5,
+              "pos": [0, 0, 0],
+              "enter_from": [5, 3, 0],
+              "enter_at_ms": 300,
+              "enter_dur_ms": 2200,
+              "slide_to": [-1.5, 0, 0],
+              "slide_V": 7,
+              "slide_at_ms": 6000,
+              "slide_dur_ms": 2500
+            }
+          ],
+          "show_qv_tags": true,
+          "qv_tags_at_ms": 2800,
+          "show_energy_meter": true,
+          "meter_at_ms": 3000,
+          "formula_overlay": "U = qV",
+          "formula_at_ms": 2600
+        }
+      },
+      "STATE_3": {
+        "label": "Flip the sign — the landscape inverts",
+        "visible_elements": ["all"],
+        "camera_position": [2.8, 1.6, 4.2],
+        "caption": "",
+        "formula_overlay": "U = qV  (q<0 ⇒ U<0)",
+        "pef": {
+          "show_field": true,
+          "show_equipotential": true,
+          "equipotential_at_ms": 400,
+          "charges": [
+            { "id": "qA", "q": -2, "V": 4, "pos": [0, 0, 0] }
+          ],
+          "show_qv_tags": true,
+          "qv_tags_at_ms": 1500,
+          "show_energy_meter": true,
+          "meter_at_ms": 1500,
+          "landscape": "hill",
+          "landscape_at_ms": 1000,
+          "flip_at_ms": 5000,
+          "formula_overlay": "U = qV  (q<0 ⇒ U<0)",
+          "formula_at_ms": 1200
+        }
+      },
+      "STATE_4": {
+        "label": "Two charges — U = q₁V₁ + q₂V₂",
+        "visible_elements": ["all"],
+        "camera_position": [2.8, 1.6, 4.2],
+        "caption": "",
+        "formula_overlay": "U = q₁V₁ + q₂V₂",
+        "pef": {
+          "show_field": true,
+          "show_equipotential": true,
+          "equipotential_at_ms": 400,
+          "charges": [
+            { "id": "qA", "q": 2, "V": 5, "pos": [-0.7, 0, 0] },
+            { "id": "qB", "q": -1, "V": 4, "pos": [0.7, 0, 0] }
+          ],
+          "show_qv_tags": true,
+          "qv_tags_at_ms": 2400,
+          "show_energy_meter": true,
+          "meter_at_ms": 2600,
+          "formula_overlay": "U = q₁V₁ + q₂V₂",
+          "formula_at_ms": 2200
+        }
+      },
+      "STATE_5": {
+        "label": "External-field PE is NOT mutual PE",
+        "visible_elements": ["all"],
+        "camera_position": [2.8, 1.6, 4.2],
+        "caption": "",
+        "formula_overlay": "qV  vs  k q₁q₂ / r",
+        "pef": {
+          "show_field": true,
+          "show_equipotential": true,
+          "equipotential_at_ms": 400,
+          "charges": [
+            { "id": "qA", "q": 2, "V": 5, "pos": [-0.7, 0, 0] },
+            { "id": "qB", "q": -1, "V": 4, "pos": [0.7, 0, 0] }
+          ],
+          "show_qv_tags": true,
+          "qv_tags_at_ms": 1500,
+          "show_energy_meter": true,
+          "meter_at_ms": 1500,
+          "bond_mode": "external_vs_mutual",
+          "bonds_at_ms": 3000,
+          "formula_overlay": "qV  vs  k q₁q₂ / r",
+          "formula_at_ms": 1200
+        }
+      },
+      "STATE_6": {
+        "label": "Collapse to a dipole — qV+qV → −p·E",
+        "visible_elements": ["all"],
+        "camera_position": [2.8, 1.6, 4.2],
+        "caption": "",
+        "formula_overlay": "U = q(V₊ − V₋) = −p·E = −pE·cosθ",
+        "pef": {
+          "dipole": true,
+          "theta_deg": 60,
+          "rotation_mode": "static",
+          "p_animate_in": true,
+          "show_theta_arc": true,
+          "show_energy_meter": true,
+          "formula_overlay": "U = q(V₊ − V₋) = −p·E = −pE·cosθ",
+          "formula_at_ms": 1500
+        }
+      },
+      "STATE_7": {
+        "label": "Sweep θ — where is energy MAXIMUM?",
+        "visible_elements": ["all"],
+        "camera_position": [2.8, 1.6, 4.2],
+        "caption": "",
+        "formula_overlay": "U = −pE·cosθ",
+        "pef": {
+          "dipole": true,
+          "rotation_mode": "theta_sweep",
+          "theta_sweep_period_s": 10,
+          "show_theta_arc": true,
+          "show_energy_meter": true,
+          "formula_overlay": "U = −pE·cosθ",
+          "formula_at_ms": 1500
+        }
+      },
+      "STATE_8": {
+        "label": "Stable vs unstable — torque is a different story",
+        "visible_elements": ["all"],
+        "camera_position": [2.8, 1.6, 4.2],
+        "caption": "",
+        "formula_overlay": "U = −pE·cosθ",
+        "pef": {
+          "dipole": true,
+          "theta_deg": 178,
+          "rotation_mode": "damped_pendulum",
+          "rotation_target_deg": 0,
+          "pend_k": 5.0,
+          "pend_b": 0.8,
+          "show_theta_arc": true,
+          "show_energy_meter": true,
+          "formula_overlay": "U = −pE·cosθ",
+          "formula_at_ms": 1500
+        }
+      },
+      "STATE_9": {
+        "label": "Your turn — qV mode and −p·E mode",
+        "visible_elements": ["all"],
+        "camera_position": [2.8, 1.6, 4.2],
+        "caption": "",
+        "formula_overlay": "U = qV     U = −pE·cosθ",
+        "show_sliders": true,
+        "sliders": ["q", "theta_deg"],
+        "pef": {
+          "dipole": true,
+          "rotation_mode": "static",
+          "theta_deg": 60,
+          "show_theta_arc": true,
+          "show_energy_meter": true,
+          "formula_overlay": "U = qV     U = −pE·cosθ",
+          "formula_at_ms": 600
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field": "#FF7043",
+      "equipotential": "#4FC3F7",
+      "probe": "#FFF176"
+    }
+  }
+}

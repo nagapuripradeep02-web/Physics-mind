@@ -41,7 +41,8 @@ export interface Field3DConfig {
         'gauss_law_sheet' | 'current_loop_acts_as_dipole' | 'parallel_currents_force' |
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
-        'bar_magnet_in_uniform_field' | 'dipole_potential' | 'system_of_charges';
+        'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
+        'system_pe_assembly' | 'pe_external_field';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -2294,6 +2295,18 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (socHits && socHits.length) return true;
             }
         }
+        // system_pe_assembly draggable-charge proxy (STATE_6).
+        if (peStateIsDraggable()) {
+            var peProxy = null;
+            for (var pei = 0; pei < sceneObjects.length; pei++) {
+                if (sceneObjects[pei].userData && sceneObjects[pei].userData.id === "pe_drag_hit") { peProxy = sceneObjects[pei]; break; }
+            }
+            if (peProxy && peProxy.visible) {
+                pmRaycaster.setFromCamera(pmPointerNDC(cx, cy), camera);
+                var peHits = pmRaycaster.intersectObject(peProxy, false);
+                if (peHits && peHits.length) return true;
+            }
+        }
         return false;
     }
     // FIX 2 — hover-latch: while the pointer merely HOVERS the potential test-charge
@@ -2327,6 +2340,26 @@ export const FIELD_3D_RENDERER_CODE = `
     function applyDragFrom(cx, cy) {
         var hit = pmDragPlaneHit(cx, cy);
         if (!hit) return;
+        // system_pe_assembly explorer (STATE_6): grab the draggable charge, project
+        // onto the XY slice, clamp; every pair bond + U term + the meter recompute
+        // live from the new position. Emit PARAM_UPDATE on explorer_id (Rule 27).
+        if (peStateIsDraggable()) {
+            var peId = window.PM_peDragId;
+            var pePx = Math.max(-3, Math.min(3, hit.x));
+            var pePy = Math.max(-3, Math.min(3, hit.y));
+            window.PM_peUserDragged = true;
+            if (peId) window.PM_pePos[peId] = [pePx, pePy, 0];
+            try {
+                parent.postMessage({
+                    type: "PARAM_UPDATE",
+                    explorer_id: (config.explorer_id || "energy_explorer"),
+                    param: "charge_position",
+                    value: { id: peId, px: pePx, py: pePy, U: window.PM_peLiveU },
+                    point: [pePx, pePy, 0]
+                }, "*");
+            } catch (e) {}
+            return;
+        }
         // system_of_charges explorer (STATE_6): grab the probe, project onto the XY
         // slice, clamp (px,py) to the variable bounds; emit PARAM_UPDATE on explorer_id.
         if (socStateIsDraggable()) {
@@ -5316,6 +5349,948 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type !== "system_of_charges") return false;
         var sd = config.states && config.states[PM_currentState];
         return !!(sd && sd.potential && sd.potential.draggable_probe);
+    }
+
+    // ── system_pe_assembly (potential_energy_system_of_charges, U = \\u03a3 k q\\u1d62q\\u2c7c/r\\u1d62\\u2c7c) ──
+    //   The ENERGY companion to system_of_charges. Where soc reads a SCALAR V at a
+    //   probe, this scenario teaches the work to ASSEMBLE a configuration: charges
+    //   FLY IN from infinity (eased, pure state-clock — Rule 26), each new charge
+    //   forms pairwise bonds with the already-placed ones, every bond carries its own
+    //   U\\u1d62\\u2c7c = k q\\u1d62q\\u2c7c/r\\u1d62\\u2c7c tag, and a SIGNED energy meter fills (up for +U banked
+    //   against repulsion, down below zero for \\u2212U). The total is the plain sum of the
+    //   visible pair terms. No probe, no V field. The per-state assembly block declares
+    //   which charges are placed vs entering, sign overrides, which bonds light and
+    //   when, and (last state) the draggable charge + slider. Emphasis is brightness
+    //   only (Rule 29) — charges never resize; a bond's length tracks the real r\\u1d62\\u2c7c and
+    //   the meter fill tracks the real |U|, both genuine physical magnitudes.
+    function peDefaults() {
+        var d = config.system_defaults || {};
+        return {
+            u: (d.DEMO_U != null) ? d.DEMO_U : 12,
+            clamp: (d.clamp_r_min != null) ? d.clamp_r_min : 0.05,
+            full: (d.U_FULL != null) ? d.U_FULL : 30
+        };
+    }
+    function peCharges() { return config.charges || []; }
+    function peStateDef() { return (config.states && config.states[PM_currentState]) || {}; }
+    function peAssembly() { return peStateDef().assembly || {}; }
+    // Live signed magnitude of a charge: q3 follows its slider while a state shows it;
+    // any charge may be sign-flipped/scaled for a state via assembly.charge_overrides;
+    // otherwise its fixed config charge_value.
+    function peChargeValue(ch) {
+        if (!ch) return 0;
+        if (ch.id === "q3" && typeof window.PM_peQ3 === "number" && peStateDef().show_sliders) return window.PM_peQ3;
+        var ov = peAssembly().charge_overrides || {};
+        if (ov[ch.id] != null) return ov[ch.id];
+        return (ch.charge_value != null) ? ch.charge_value : 0;
+    }
+    // Live world position of a charge (entering charges are eased in by the frame
+    // loop into PM_pePos; the STATE_6 draggable charge is written there on drag).
+    function peLivePos(ch) {
+        var p = window.PM_pePos && window.PM_pePos[ch.id];
+        return p ? p : ch.position;
+    }
+    function pePairList() {
+        var chs = peCharges(); var out = [];
+        for (var i = 0; i < chs.length; i++)
+            for (var j = i + 1; j < chs.length; j++)
+                out.push({ i: i, j: j, key: chs[i].id + "|" + chs[j].id, a: chs[i], b: chs[j] });
+        return out;
+    }
+    function peRij(a, b) {
+        var pa = peLivePos(a), pb = peLivePos(b);
+        var dx = pa[0] - pb[0], dy = pa[1] - pb[1], dz = pa[2] - pb[2];
+        return Math.sqrt(dx * dx + dy * dy + dz * dz);
+    }
+    function peUij(a, b) {
+        var D = peDefaults();
+        return D.u * peChargeValue(a) * peChargeValue(b) / Math.max(peRij(a, b), D.clamp);
+    }
+    function peFmt(v) { return (v >= 0 ? "+" : "\\u2212") + Math.abs(v).toFixed(1); }
+    function peFmt0(v) { return (v >= 0 ? "+" : "\\u2212") + Math.abs(v); }
+    function peClamp3(v) { return Math.max(-3, Math.min(3, v)); }
+    function peEase(t) { return (t <= 0) ? 0 : (t >= 1) ? 1 : (t * t * (3 - 2 * t)); }  // smoothstep
+    // Strip a leading sign char so the label can be re-signed by the LIVE charge
+    // value (a state override or the q3 slider can flip a charge's sign).
+    function peStripSign(s) { var c = (s || "").charAt(0); return (c === "+" || c === "-" || c === "\\u2212") ? s.slice(1) : s; }
+
+    function buildSystemPeAssembly(config) {
+        var posColor = dpColor("positive", "#EF5350");
+        var negColor = dpColor("negative", "#42A5F5");
+        var bondColor = dpColor("equipotential", "#4FC3F7");
+        var meterPosCol = dpColor("field", "#FF7043");
+        var meterNegCol = dpColor("negative", "#42A5F5");
+        var chs = peCharges();
+
+        // Shared live render state (read by apply/frame/drag/slider).
+        var scQ3 = (config.slider_controls && config.slider_controls.q3_value) || {};
+        window.PM_peQ3 = (scQ3.default != null) ? scQ3.default : 2;
+        window.PM_pePos = {};
+        window.PM_peUserDragged = false;
+        window.PM_peDragId = null;
+        window.PM_peLiveU = 0;
+
+        // ── 1. The N charges (sign-coloured spheres + labels), built hidden ───────
+        for (var i = 0; i < chs.length; i++) {
+            var ch = chs[i];
+            var col = ch.color || (peChargeValue(ch) >= 0 ? posColor : negColor);
+            var sph = createChargeSphere(ch.position, col, 0.18);
+            sph.visible = false;
+            sph.userData = { elementType: "pe_charge", id: "pe_charge_" + ch.id, cid: ch.id };
+            addToScene(sph);
+            var lbl = pmCreateAutoLabel(ch.label || ch.id, col, 0.42);
+            lbl.position.set(ch.position[0], ch.position[1] + 0.34, ch.position[2]);
+            lbl.visible = false; if (lbl.material) lbl.material.opacity = 0;
+            lbl.userData = { elementType: "pe_clabel", id: "pe_label_" + ch.id, cid: ch.id, peBase: peStripSign(ch.label || ch.id) };
+            addToScene(lbl);
+        }
+
+        // ── 2. Pair bonds (tube between each unique pair) + midpoint U tags ───────
+        var pairs = pePairList();
+        for (var b = 0; b < pairs.length; b++) {
+            var pr = pairs[b];
+            var bond = socMakeTube([pr.a.position, pr.b.position], bondColor, 0.02);
+            bond.material.opacity = 0; bond.visible = false;
+            bond.userData = { elementType: "pe_bond", id: "pe_bond_" + pr.key, ai: pr.i, bi: pr.j, key: pr.key, _revealAt: null };
+            addToScene(bond);
+            var mid = [(pr.a.position[0] + pr.b.position[0]) / 2, (pr.a.position[1] + pr.b.position[1]) / 2 + 0.3, (pr.a.position[2] + pr.b.position[2]) / 2];
+            var utag = pmCreateAutoLabel(peFmt(0), bondColor, 0.4);
+            utag.position.set(mid[0], mid[1], mid[2]);
+            utag.visible = false; if (utag.material) utag.material.opacity = 0;
+            utag.userData = { elementType: "pe_utag", id: "pe_utag_" + pr.key, ai: pr.i, bi: pr.j, key: pr.key, _revealAt: null };
+            addToScene(utag);
+        }
+
+        // ── 3. Signed energy meter (track + zero line + fill) + big U readout ─────
+        var trackGeo = new THREE.BoxGeometry(0.06, 3.2, 0.06);
+        var track = new THREE.Mesh(trackGeo, new THREE.MeshPhongMaterial({ color: hexToThreeColor("#555570"), transparent: true, opacity: 0.5 }));
+        track.position.set(-2.9, 0, 0);
+        track.visible = false;
+        track.userData = { elementType: "pe_meter", id: "pe_meter_track" };
+        addToScene(track);
+        var zeroGeo = new THREE.BoxGeometry(0.42, 0.05, 0.07);
+        var zero = new THREE.Mesh(zeroGeo, new THREE.MeshPhongMaterial({ color: hexToThreeColor("#9AA0B5"), transparent: true, opacity: 0.8 }));
+        zero.position.set(-2.9, 0, 0);
+        zero.visible = false;
+        zero.userData = { elementType: "pe_meter", id: "pe_meter_zero" };
+        addToScene(zero);
+        var fillGeo = new THREE.BoxGeometry(0.3, 1, 0.3);     // base height 1 -> scale.y = |h|
+        var fill = new THREE.Mesh(fillGeo, new THREE.MeshPhongMaterial({ color: hexToThreeColor(meterPosCol), transparent: true, opacity: 0 }));
+        fill.position.set(-2.9, 0, 0);
+        fill.visible = false;
+        fill.userData = { elementType: "pe_meterfill", id: "pe_meter_fill" };
+        addToScene(fill);
+        var uReadout = pmCreateAutoLabel("U = " + peFmt(0), meterPosCol, 0.5);
+        uReadout.position.set(-2.9, 2.1, 0);
+        uReadout.visible = false; if (uReadout.material) uReadout.material.opacity = 0;
+        uReadout.userData = { elementType: "pe_ureadout", id: "pe_u_readout" };
+        addToScene(uReadout);
+
+        // ── 4. Running-sum panel (visible pair terms -> total) ───────────────────
+        var sumPanel = pmCreateAutoLabel("U = " + peFmt(0), bondColor, 0.44);
+        sumPanel.position.set(0, 2.9, 0);
+        sumPanel.visible = false; if (sumPanel.material) sumPanel.material.opacity = 0;
+        sumPanel.userData = { elementType: "pe_sumpanel", id: "pe_sum_panel" };
+        addToScene(sumPanel);
+
+        // ── 5. Drag proxy for the STATE_6 draggable charge ───────────────────────
+        var hit = new THREE.Mesh(
+            new THREE.SphereGeometry(0.5, 16, 16),
+            new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+        );
+        hit.visible = false;
+        hit.userData = { elementType: "pe_draghit", id: "pe_drag_hit", draggable: true };
+        addToScene(hit);
+
+        // ── 6. DOM: q3 magnitude slider + live U readout + breakdown (STATE_6) ────
+        if (!document.getElementById("pe_sliders")) {
+            var textColor = dpColor("text", "#D4D4D8");
+            var sl = document.createElement("div");
+            sl.id = "pe_sliders";
+            sl.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+            sl.innerHTML =
+                '<label>' + (scQ3.label || "q\\u2083") + ' = <span id="pe_q3_val">+2</span></label>' +
+                '<input type="range" id="pe_q3_slider" min="-3" max="3" step="1" value="2" style="width:100%;margin-bottom:6px;">' +
+                '<div id="pe_u_readout_dom" style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.2);color:' + meterPosCol + ';font-weight:bold;letter-spacing:1px;">U = +0.0</div>' +
+                '<div id="pe_breakdown" style="margin-top:4px;color:' + textColor + ';font-size:11px;">&nbsp;</div>';
+            document.body.appendChild(sl);
+        }
+    }
+
+    // Per-state visibility + reveal/entry seeding for system_pe_assembly. Runs AFTER
+    // the generic visible_elements matcher and overrides it. Entering charges are
+    // parked at their spawn point; placed charges sit at target; bonds/tags/meter
+    // are parked at opacity 0 (the frame loop eases positions + fades reveals in).
+    function applySystemPeAssemblyState(stateDef) {
+        var a = stateDef.assembly || {};
+        var placed = a.placed || [];
+        var entering = a.enter || [];
+        var bonds = a.bonds || [];
+        window.PM_peUserDragged = false;
+        window.PM_peDragId = a.draggable_id || null;
+        window.PM_pePos = {};
+        var scQ3d = (config.slider_controls && config.slider_controls.q3_value) || {};
+        window.PM_peQ3 = (scQ3d.default != null) ? scQ3d.default : 2;
+
+        // Which charges are present this state, and where they start.
+        var chs = peCharges();
+        var present = {};
+        for (var pi = 0; pi < placed.length; pi++) present[placed[pi]] = true;
+        var enterMap = {};
+        for (var ei = 0; ei < entering.length; ei++) {
+            var en = entering[ei];
+            present[en.id] = true;
+            enterMap[en.id] = en;
+            // seed at spawn so frame 0 shows it off-scene (no full-size flash on target)
+            var ec = null;
+            for (var ci = 0; ci < chs.length; ci++) { if (chs[ci].id === en.id) { ec = chs[ci]; break; } }
+            var from = en.from || (ec ? [ec.position[0] * 3.2, ec.position[1] * 3.2 + 1.5, ec.position[2]] : [5, 3, 0]);
+            window.PM_pePos[en.id] = [from[0], from[1], from[2]];
+        }
+        for (var ci2 = 0; ci2 < chs.length; ci2++) {
+            var cid = chs[ci2].id;
+            if (present[cid] && !enterMap[cid]) window.PM_pePos[cid] = chs[ci2].position.slice();
+        }
+
+        // Which bonds light this state + their reveal times.
+        var bondAt = {};
+        for (var bi = 0; bi < bonds.length; bi++) {
+            var bd = bonds[bi];
+            var k1 = bd.pair[0] + "|" + bd.pair[1];
+            var k2 = bd.pair[1] + "|" + bd.pair[0];
+            bondAt[k1] = (bd.at_ms != null) ? bd.at_ms : 0;
+            bondAt[k2] = (bd.at_ms != null) ? bd.at_ms : 0;
+        }
+
+        var meterShown = (a.meter_at_ms != null) || !!a.live_u_readout;
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            var et = ud.elementType;
+            if (et === "pe_charge" || et === "pe_clabel") {
+                var on = !!present[ud.cid];
+                o.visible = on;
+                if (o.material) o.material.opacity = on ? 1 : 0;
+            } else if (et === "pe_bond" || et === "pe_utag") {
+                var lit = (bondAt[ud.key] != null);
+                o.visible = lit;
+                ud._revealAt = lit ? bondAt[ud.key] : null;
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "pe_meter") {
+                o.visible = meterShown;
+                if (o.material) o.material.opacity = (ud.id === "pe_meter_zero") ? 0.8 : 0.5;
+            } else if (et === "pe_meterfill") {
+                o.visible = meterShown;
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "pe_ureadout") {
+                o.visible = meterShown;
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "pe_sumpanel") {
+                o.visible = (a.sum_at_ms != null) || !!a.live_u_readout;
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "pe_draghit") {
+                o.visible = !!a.draggable_id;
+            }
+        }
+
+        // Position the drag proxy on the draggable charge.
+        if (a.draggable_id && window.PM_pePos[a.draggable_id]) {
+            var dh = dpFindById("pe_drag_hit");
+            if (dh) { var dp = window.PM_pePos[a.draggable_id]; dh.position.set(dp[0], dp[1], dp[2]); }
+        }
+
+        // DOM slider panel toggle + thumb seed.
+        var slEl = document.getElementById("pe_sliders");
+        if (slEl) slEl.style.display = stateDef.show_sliders ? "block" : "none";
+        if (stateDef.show_sliders) peSyncSliderFromState();
+    }
+
+    // Per-frame driver — pure function of (time - stateStartTime) (Rule 26).
+    function updateSystemPeAssemblyFrame(stateDef) {
+        var a = stateDef.assembly || {};
+        var ms = (time - stateStartTime) * 1000;
+        function ramp(at, fade) {
+            if (at == null) return 0;
+            if (ms >= at + fade) return 1;
+            if (ms >= at) return (ms - at) / fade;
+            return 0;
+        }
+        var chs = peCharges();
+        var entering = a.enter || [];
+
+        // 1. Ease entering charges spawn -> target over their window.
+        for (var ei = 0; ei < entering.length; ei++) {
+            var en = entering[ei];
+            var ec = null;
+            for (var ci = 0; ci < chs.length; ci++) { if (chs[ci].id === en.id) { ec = chs[ci]; break; } }
+            if (!ec) continue;
+            if (window.PM_peDragId === en.id && window.PM_peUserDragged) continue;
+            var from = en.from || [ec.position[0] * 3.2, ec.position[1] * 3.2 + 1.5, ec.position[2]];
+            var at = (en.at_ms != null) ? en.at_ms : 0;
+            var dur = (en.dur_ms != null) ? en.dur_ms : 2400;
+            var pr = peEase((ms - at) / dur);
+            window.PM_pePos[en.id] = [
+                from[0] + (ec.position[0] - from[0]) * pr,
+                from[1] + (ec.position[1] - from[1]) * pr,
+                from[2] + (ec.position[2] - from[2]) * pr
+            ];
+        }
+
+        var posColor = dpColor("positive", "#EF5350");
+        var negColor = dpColor("negative", "#42A5F5");
+        var bondColor = dpColor("equipotential", "#4FC3F7");
+        var meterPosCol = dpColor("field", "#FF7043");
+        var meterNegCol = dpColor("negative", "#42A5F5");
+
+        // 2. Total U = sum over visible bonds.
+        var total = 0; var pairs = pePairList(); var visBonds = [];
+        for (var bp = 0; bp < pairs.length; bp++) {
+            var bond = dpFindById("pe_bond_" + pairs[bp].key);
+            if (bond && bond.visible) { total += peUij(pairs[bp].a, pairs[bp].b); visBonds.push(pairs[bp]); }
+        }
+        window.PM_peLiveU = total;
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            var ud = o.userData;
+            if (!ud || !ud.elementType || !o.visible) continue;
+            var et = ud.elementType;
+            if (et === "pe_charge") {
+                var ch = chs[chIndexById(ud.cid)];
+                var lp = peLivePos(ch);
+                o.position.set(lp[0], lp[1], lp[2]);
+                // Colour by the LIVE sign (red +, blue −) so a state sign-override or
+                // the q3 slider flip recolours the sphere honestly (Rule 24/29).
+                var cv = peChargeValue(ch);
+                var ccol = (cv >= 0) ? posColor : negColor;
+                if (o.material) { o.material.color = hexToThreeColor(ccol); o.material.emissive = hexToThreeColor(ccol); }
+            } else if (et === "pe_clabel") {
+                var ch2 = chs[chIndexById(ud.cid)];
+                var lp2 = peLivePos(ch2);
+                o.position.set(lp2[0], lp2[1] + 0.34, lp2[2]);
+                // Re-sign + recolour the label to match the live charge sign.
+                var cv2 = peChargeValue(ch2);
+                o._pmColor = (cv2 >= 0) ? posColor : negColor;
+                updateLabelSpriteText(o, ((cv2 >= 0) ? "+" : "\\u2212") + (ud.peBase || ch2.id));
+            } else if (et === "pe_bond") {
+                var a1 = chs[ud.ai], b1 = chs[ud.bi];
+                dpSetTube(o, [peLivePos(a1), peLivePos(b1)], 0.02);
+                if (o.material) o.material.opacity = ramp(ud._revealAt, 600) * 0.6;
+            } else if (et === "pe_utag") {
+                var a2 = chs[ud.ai], b2 = chs[ud.bi];
+                var pa = peLivePos(a2), pb = peLivePos(b2);
+                o.position.set((pa[0] + pb[0]) / 2, (pa[1] + pb[1]) / 2 + 0.3, (pa[2] + pb[2]) / 2);
+                var uij = peUij(a2, b2);
+                o._pmColor = (uij >= 0) ? meterPosCol : meterNegCol;
+                updateLabelSpriteText(o, peFmt(uij));
+                if (o.material) o.material.opacity = ramp(ud._revealAt, 600);
+            } else if (et === "pe_meterfill") {
+                var D = peDefaults();
+                var h = Math.max(-1.55, Math.min(1.55, total / D.full * 1.55));
+                var mag = Math.max(0.001, Math.abs(h));
+                o.scale.set(1, mag, 1);
+                o.position.set(-2.9, (h >= 0) ? mag / 2 : -mag / 2, 0);
+                if (o.material) {
+                    o.material.color = hexToThreeColor(total >= 0 ? meterPosCol : meterNegCol);
+                    o.material.opacity = ramp((a.meter_at_ms != null) ? a.meter_at_ms : 0, 500) * 0.92;
+                }
+            } else if (et === "pe_ureadout") {
+                o._pmColor = (Math.abs(total) < 0.05) ? bondColor : (total > 0 ? meterPosCol : meterNegCol);
+                updateLabelSpriteText(o, "U = " + peFmt(total));
+                if (o.material) o.material.opacity = a.live_u_readout ? 1 : ramp((a.meter_at_ms != null) ? a.meter_at_ms : 0, 500);
+            } else if (et === "pe_sumpanel") {
+                var parts = [];
+                for (var s = 0; s < visBonds.length; s++) parts.push(peFmt(peUij(visBonds[s].a, visBonds[s].b)));
+                o._pmColor = bondColor;
+                updateLabelSpriteText(o, (parts.length ? parts.join(" ") + " = " : "U = ") + peFmt(total));
+                if (o.material) o.material.opacity = a.live_u_readout ? 1 : ramp((a.sum_at_ms != null) ? a.sum_at_ms : 0, 600);
+            } else if (et === "pe_draghit") {
+                if (window.PM_peDragId) { var dp = peLivePos(chs[chIndexById(window.PM_peDragId)]); o.position.set(dp[0], dp[1], dp[2]); }
+            }
+        }
+
+        // DOM live readout + breakdown (STATE_6 slider panel).
+        var roEl = document.getElementById("pe_u_readout_dom");
+        if (roEl && roEl.parentElement && roEl.parentElement.style.display !== "none") {
+            roEl.innerHTML = "U = " + peFmt(total);
+            var bdEl = document.getElementById("pe_breakdown");
+            if (bdEl) {
+                var bparts = [];
+                for (var bk = 0; bk < visBonds.length; bk++) {
+                    bparts.push((visBonds[bk].a.label || visBonds[bk].a.id) + "\\u00b7" + (visBonds[bk].b.label || visBonds[bk].b.id) + ": " + peFmt(peUij(visBonds[bk].a, visBonds[bk].b)));
+                }
+                bdEl.innerHTML = bparts.join("  ");
+            }
+        }
+    }
+
+    function chIndexById(id) {
+        var chs = peCharges();
+        for (var i = 0; i < chs.length; i++) { if (chs[i].id === id) return i; }
+        return 0;
+    }
+
+    // Seed the q3 slider thumb + label from PM_peQ3 on STATE_6 entry.
+    function peSyncSliderFromState() {
+        var s = document.getElementById("pe_q3_slider");
+        if (s) {
+            s.value = String(window.PM_peQ3);
+            var v = document.getElementById("pe_q3_val");
+            if (v) v.textContent = peFmt0(window.PM_peQ3);
+        }
+    }
+
+    // True when the current system_pe_assembly state has a draggable charge.
+    function peStateIsDraggable() {
+        if (config.scenario_type !== "system_pe_assembly") return false;
+        var sd = config.states && config.states[PM_currentState];
+        return !!(sd && sd.assembly && sd.assembly.draggable_id);
+    }
+
+    // ── pe_external_field (potential_energy_in_external_field, NCERT \\u00a72.8) ──────
+    //   U of a charge / dipole in a GIVEN external field. TWO phases under ONE
+    //   scenario, maximising reuse:
+    //     - CHARGE phase (STATE_1..STATE_5): discrete charges parked at points of
+    //       GIVEN potential V (NOT computed from kq/r). Each carries a signed
+    //       U = qV number tag; a signed energy meter sums them (range -U_FULL..+U_FULL).
+    //       STATE_5 contrasts the charge->field "qV" bonds against the charge<->charge
+    //       "k q1q2/r" mutual bond (visually distinct).
+    //     - DIPOLE phase (STATE_6..STATE_9): hands the job to the dipole-in-field
+    //       engine (buildDipoleInField + applyDipoleInFieldState + updateDipoleInFieldFrame)
+    //       unchanged - p arrow, theta arc, U = -pE cos(theta) meter, theta_sweep /
+    //       oscillation / damped_swing rotation. STATE_9 adds q + theta sliders.
+    //   GIVEN potentials, no 1/r anywhere -> no clamp_r_min. Emphasis = brightness
+    //   (Rule 29); only E and p are arrows, U and V are signed NUMBER readouts; tau is
+    //   never drawn (owned by another concept, referenced verbally only).
+    function pefDefaults() {
+        var d = config.energy_meter || {};
+        return { full: (d.U_FULL != null) ? d.U_FULL : 12 };
+    }
+    function pefRoster() { return config.charges || []; }
+    function pefStateDefNow() { return (config.states && config.states[PM_currentState]) || {}; }
+    function pefById(id) { var r = pefRoster(); for (var i = 0; i < r.length; i++) { if (r[i].id === id) return r[i]; } return null; }
+    function pefFmt(v) { return (v >= 0 ? "+" : "\\u2212") + Math.abs(v).toFixed(1); }
+    function pefFmt0(v) { return (v >= 0 ? "+" : "\\u2212") + Math.abs(v); }
+    function pefChargeVal(id) {
+        var m = (window.PM_pefMap && window.PM_pefMap[id]) || {};
+        if (m.slider_driven && pefStateDefNow().show_sliders && typeof window.PM_pefQ === "number") return window.PM_pefQ;
+        if (m.q != null) return m.q;
+        var base = pefById(id) || {};
+        return (base.q != null) ? base.q : 0;
+    }
+    function pefChargeV(id) {
+        if (window.PM_pefV && window.PM_pefV[id] != null) return window.PM_pefV[id];
+        var m = (window.PM_pefMap && window.PM_pefMap[id]) || {};
+        if (m.V != null) return m.V;
+        var base = pefById(id) || {};
+        return (base.V != null) ? base.V : 0;
+    }
+    function pefLivePos(id) {
+        if (window.PM_pefPos && window.PM_pefPos[id]) return window.PM_pefPos[id];
+        var m = (window.PM_pefMap && window.PM_pefMap[id]) || {};
+        if (m.pos) return m.pos;
+        var base = pefById(id) || {};
+        return base.pos || [0, 0, 0];
+    }
+
+    function buildPeExternalField() {
+        // 1. Reuse the dipole-in-field build wholesale: ambient E grid + "E" label +
+        //    dipole body (charges/rod/p) + theta arc + couple arrows + signed dpf
+        //    U-meter. The dipole body + its arrows/meter start hidden; the CHARGE
+        //    phase shows the field only, the DIPOLE phase reveals the body + meter.
+        buildDipoleInField();
+
+        var posColor = dpColor("positive", "#EF5350");
+        var negColor = dpColor("negative", "#42A5F5");
+        var fieldColor = dpColor("field", "#FF7043");
+        var mutualColor = dpColor("mutual", "#AB47BC");
+        var textColor = dpColor("text", "#D4D4D8");
+        var meterPosCol = fieldColor;
+        var roster = pefRoster();
+
+        window.PM_pefQ = (config.slider_controls && config.slider_controls.q && config.slider_controls.q.default != null) ? config.slider_controls.q.default : 2;
+        window.PM_pefTheta = (config.slider_controls && config.slider_controls.theta_deg && config.slider_controls.theta_deg.default != null) ? config.slider_controls.theta_deg.default : 60;
+        window.PM_pefPos = {};
+        window.PM_pefV = {};
+        window.PM_pefMap = {};
+        window.PM_pefLiveU = 0;
+
+        // 2. Equipotential V shading: vertical planes of constant x (uniform field is
+        //    along +x => equipotentials are planes perpendicular to it), each labelled.
+        var eq = config.equipotential || {};
+        var levels = eq.levels || [];
+        var eqExtent = (config.ambient_field && config.ambient_field.extent != null) ? config.ambient_field.extent : 2.5;
+        for (var li = 0; li < levels.length; li++) {
+            var lv = levels[li];
+            var planeGeo = new THREE.PlaneGeometry(2 * eqExtent, 2 * eqExtent);
+            var planeMat = new THREE.MeshBasicMaterial({ color: hexToThreeColor(lv.color || "#5C6BC0"), transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false });
+            var plane = new THREE.Mesh(planeGeo, planeMat);
+            plane.position.set(lv.x != null ? lv.x : 0, 0, 0);
+            plane.rotation.y = Math.PI / 2;   // normal -> +x; plane spans z-y
+            plane.visible = false;
+            plane.userData = { elementType: "pef_equipotential", id: "pef_eq_" + li, baseOpacity: (eq.opacity != null ? eq.opacity : 0.16) };
+            addToScene(plane);
+            var eqLbl = pmCreateAutoLabel("V = " + (lv.v != null ? lv.v : 0), lv.color || "#9FA8DA", 0.34);
+            eqLbl.position.set(lv.x != null ? lv.x : 0, eqExtent + 0.3, 0);
+            eqLbl.visible = false; if (eqLbl.material) eqLbl.material.opacity = 0;
+            eqLbl.userData = { elementType: "pef_equipotential", id: "pef_eqlbl_" + li };
+            addToScene(eqLbl);
+        }
+
+        // 3. The charge roster (sign-coloured spheres + labels + signed qV tags),
+        //    built hidden; per-state pef.charges selects which appear + overrides.
+        for (var ci = 0; ci < roster.length; ci++) {
+            var ch = roster[ci];
+            var q0 = (ch.q != null) ? ch.q : 0;
+            var col = (q0 >= 0) ? posColor : negColor;
+            var sph = createChargeSphere(ch.pos || [0, 0, 0], col, 0.20);
+            sph.visible = false;
+            sph.userData = { elementType: "pef_charge", id: "pef_charge_" + ch.id, cid: ch.id };
+            addToScene(sph);
+            var lbl = pmCreateAutoLabel(ch.label || ch.id, col, 0.42);
+            lbl.visible = false; if (lbl.material) lbl.material.opacity = 0;
+            lbl.userData = { elementType: "pef_clabel", id: "pef_clabel_" + ch.id, cid: ch.id };
+            addToScene(lbl);
+            var tag = pmCreateAutoLabel(pefFmt(0), fieldColor, 0.40);
+            tag.visible = false; if (tag.material) tag.material.opacity = 0;
+            tag.userData = { elementType: "pef_qvtag", id: "pef_qvtag_" + ch.id, cid: ch.id, _revealAt: null };
+            addToScene(tag);
+        }
+
+        // 4. STATE_5 bonds: a "qV" bond from each charge OUT to the field (one per
+        //    charge, field-orange thin) vs a single charge<->charge "k q1q2/r" mutual
+        //    bond (purple thick) - they MUST read as visually different.
+        for (var bi = 0; bi < roster.length; bi++) {
+            var bch = roster[bi];
+            var bpos = bch.pos || [0, 0, 0];
+            var qvBond = socMakeTube([bpos, [eqExtent, bpos[1], bpos[2]]], fieldColor, 0.022);
+            qvBond.material.opacity = 0; qvBond.visible = false;
+            qvBond.userData = { elementType: "pef_bond", id: "pef_qvbond_" + bch.id, kind: "qv", cid: bch.id, _revealAt: null };
+            addToScene(qvBond);
+            var qvBondLbl = pmCreateAutoLabel("qV", fieldColor, 0.34);
+            qvBondLbl.visible = false; if (qvBondLbl.material) qvBondLbl.material.opacity = 0;
+            qvBondLbl.userData = { elementType: "pef_bond", id: "pef_qvbondlbl_" + bch.id, kind: "qvlbl", cid: bch.id, _revealAt: null };
+            addToScene(qvBondLbl);
+        }
+        if (roster.length >= 2) {
+            var mBond = socMakeTube([roster[0].pos || [0, 0, 0], roster[1].pos || [0, 0, 0]], mutualColor, 0.045);
+            mBond.material.opacity = 0; mBond.visible = false;
+            mBond.userData = { elementType: "pef_bond", id: "pef_mutual_bond", kind: "mutual", _revealAt: null };
+            addToScene(mBond);
+            var mBondLbl = pmCreateAutoLabel("k q\\u2081q\\u2082/r", mutualColor, 0.36);
+            mBondLbl.visible = false; if (mBondLbl.material) mBondLbl.material.opacity = 0;
+            mBondLbl.userData = { elementType: "pef_bond", id: "pef_mutual_bondlbl", kind: "mutuallbl", _revealAt: null };
+            addToScene(mBondLbl);
+        }
+
+        // 5. Signed energy meter (track + zero line + fill) + big U readout - for the
+        //    CHARGE phase (the DIPOLE phase uses the reused dpf_* dot-on-track meter).
+        var trackGeo = new THREE.BoxGeometry(0.06, 3.2, 0.06);
+        var track = new THREE.Mesh(trackGeo, new THREE.MeshPhongMaterial({ color: hexToThreeColor("#555570"), transparent: true, opacity: 0.5 }));
+        track.position.set(-3.1, 0, 0); track.visible = false;
+        track.userData = { elementType: "pef_meter", id: "pef_meter_track" };
+        addToScene(track);
+        var zeroGeo = new THREE.BoxGeometry(0.42, 0.05, 0.07);
+        var zero = new THREE.Mesh(zeroGeo, new THREE.MeshPhongMaterial({ color: hexToThreeColor("#9AA0B5"), transparent: true, opacity: 0.8 }));
+        zero.position.set(-3.1, 0, 0); zero.visible = false;
+        zero.userData = { elementType: "pef_meter", id: "pef_meter_zero" };
+        addToScene(zero);
+        var fillGeo = new THREE.BoxGeometry(0.3, 1, 0.3);     // base height 1 -> scale.y = |h|
+        var fill = new THREE.Mesh(fillGeo, new THREE.MeshPhongMaterial({ color: hexToThreeColor(meterPosCol), transparent: true, opacity: 0 }));
+        fill.position.set(-3.1, 0, 0); fill.visible = false;
+        fill.userData = { elementType: "pef_meterfill", id: "pef_meter_fill" };
+        addToScene(fill);
+        var uReadout = pmCreateAutoLabel("U = " + pefFmt(0), meterPosCol, 0.5);
+        uReadout.position.set(-3.1, 2.1, 0);
+        uReadout.visible = false; if (uReadout.material) uReadout.material.opacity = 0;
+        uReadout.userData = { elementType: "pef_ureadout", id: "pef_u_readout" };
+        addToScene(uReadout);
+
+        // 6. Hill<->well landscape glyph (STATE_3 sign-flip): a 1-D potential-energy
+        //    profile that INVERTS (a +q sits on a hill of +U; a -q in a well of -U).
+        //    Drawn low so it never collides with the charges.
+        var LAND_SEGS = 40, landBaseY = -2.3;
+        var landPts = [];
+        for (var lpi = 0; lpi <= LAND_SEGS; lpi++) landPts.push(new THREE.Vector3(-1.4 + 2.8 * (lpi / LAND_SEGS), landBaseY, 0));
+        var landGeom = new THREE.BufferGeometry().setFromPoints(landPts);
+        var landMat = new THREE.LineBasicMaterial({ color: hexToThreeColor("#FFD54F"), transparent: true, opacity: 0 });
+        var landLine = new THREE.Line(landGeom, landMat);
+        landLine.visible = false;
+        landLine.userData = { elementType: "pef_landscape", id: "pef_landscape", segs: LAND_SEGS, baseY: landBaseY, mode: "hill", flipAt: null, _revealAt: null };
+        addToScene(landLine);
+
+        // 7. Formula overlay (top-centre): U = qV / U = q1V1+q2V2 / U = -pE cos(theta).
+        var formula = pmCreateAutoLabel("", "#FFF176", 0.5);
+        formula.position.set(0, 3.4, 0);
+        formula.visible = false; if (formula.material) formula.material.opacity = 0;
+        formula.userData = { elementType: "pef_formula", id: "pef_formula", _revealAt: null };
+        addToScene(formula);
+
+        // 8. DOM: q + theta sliders + dual live U readouts (STATE_9 explorer).
+        if (!document.getElementById("pef_sliders")) {
+            var scQ = (config.slider_controls && config.slider_controls.q) || {};
+            var scTh = (config.slider_controls && config.slider_controls.theta_deg) || {};
+            var sl = document.createElement("div");
+            sl.id = "pef_sliders";
+            sl.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:240px;display:none;";
+            sl.innerHTML =
+                '<label>' + (scQ.label || "q") + ' = <span id="pef_q_val">+2</span></label>' +
+                '<input type="range" id="pef_q_slider" min="' + (scQ.min != null ? scQ.min : -3) + '" max="' + (scQ.max != null ? scQ.max : 3) + '" step="' + (scQ.step != null ? scQ.step : 1) + '" value="' + window.PM_pefQ + '" style="width:100%;margin-bottom:6px;">' +
+                '<label>' + (scTh.label || "\\u03b8") + ' = <span id="pef_theta_val">60\\u00b0</span></label>' +
+                '<input type="range" id="pef_theta_slider" min="' + (scTh.min != null ? scTh.min : 0) + '" max="' + (scTh.max != null ? scTh.max : 180) + '" step="' + (scTh.step != null ? scTh.step : 5) + '" value="' + window.PM_pefTheta + '" style="width:100%;margin-bottom:6px;">' +
+                '<div id="pef_uq_dom" style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.2);color:' + meterPosCol + ';font-weight:bold;">U = qV = +0.0</div>' +
+                '<div id="pef_ud_dom" style="margin-top:2px;color:' + textColor + ';">U = \\u2212pE\\u00b7cos\\u03b8 = +0.0</div>';
+            document.body.appendChild(sl);
+
+            // Wire the q + theta sliders HERE (not in setupSliders) — this panel is
+            // built during buildScenario(), which runs AFTER setupSliders() in init,
+            // so attaching the listeners there finds null elements and the sliders go
+            // dead. q drives U = qV (=q*readout_V); theta drives the dipole rotation +
+            // U = -pE cos(theta) (live in the frame loop). Emits PARAM_UPDATE (Rule 27).
+            var pefQS = document.getElementById("pef_q_slider");
+            var pefThS = document.getElementById("pef_theta_slider");
+            var refreshPef = function () {
+                if (pefQS) { window.PM_pefQ = parseFloat(pefQS.value); var qv = document.getElementById("pef_q_val"); if (qv) qv.textContent = pefFmt0(window.PM_pefQ); }
+                if (pefThS) { window.PM_pefTheta = parseFloat(pefThS.value); var tv = document.getElementById("pef_theta_val"); if (tv) tv.textContent = Math.round(window.PM_pefTheta) + "\\u00b0"; }
+                pefUpdateDomReadouts();
+                try {
+                    parent.postMessage({
+                        type: "PARAM_UPDATE",
+                        explorer_id: (config.explorer_id || "energy_explorer"),
+                        param: "pe_external",
+                        value: {
+                            q: window.PM_pefQ,
+                            theta_deg: window.PM_pefTheta,
+                            U_charge: window.PM_pefQ * ((config.slider_controls && config.slider_controls.q && config.slider_controls.q.readout_V) || 5)
+                        }
+                    }, "*");
+                } catch (e) {}
+            };
+            if (pefQS) pefQS.addEventListener("input", refreshPef);
+            if (pefThS) pefThS.addEventListener("input", refreshPef);
+        }
+    }
+
+    function applyPeExternalFieldState(stateDef) {
+        var pef = stateDef.pef || {};
+
+        // Common: ambient field + "E" label visibility (shared with the dipole build).
+        var showField = pef.show_field !== false;
+        var fieldAnimateIn = !!pef.field_animate_in;
+        for (var si = 0; si < sceneObjects.length; si++) {
+            var so = sceneObjects[si]; var sud = so.userData || {};
+            if (sud.elementType === "ambient_field") {
+                so.visible = showField;
+                if (showField && so.children) {
+                    var op0 = fieldAnimateIn ? 0 : 0.42;
+                    so.children.forEach(function(c) { if (c.material) { c.material.transparent = true; c.material.opacity = op0; } });
+                }
+            } else if (sud.id === "dpf_e_label") {
+                so.visible = showField;
+            }
+        }
+
+        if (pef.dipole) { applyPeDipolePhase(stateDef, pef); return; }
+        applyPeChargePhase(stateDef, pef);
+    }
+
+    function applyPeChargePhase(stateDef, pef) {
+        var roster = pefRoster();
+
+        // Hide the whole dipole body + its couple arrows / arc / dpf meter.
+        var dg = findTorqueLoopGroup(); if (dg) dg.visible = false;
+        ["dpf_f_plus", "dpf_f_minus", "dpf_f_plus_lbl", "dpf_f_minus_lbl", "dpf_tau_arrow", "dpf_tau_label", "dpf_sum_zero", "dpf_theta_arc", "dpf_theta_lbl", "dpf_u_track", "dpf_u_dot", "dpf_u_lbl", "dpf_u_max_lbl", "dpf_u_min_lbl"].forEach(function(id) { var o = findTorqueElementById(id); if (o) o.visible = false; });
+
+        // Per-state charge selection + overrides + spawn seeding.
+        var pcharges = pef.charges || [];
+        window.PM_pefMap = {}; window.PM_pefPos = {}; window.PM_pefV = {};
+        var present = {};
+        for (var i = 0; i < pcharges.length; i++) {
+            var pc = pcharges[i]; present[pc.id] = true; window.PM_pefMap[pc.id] = pc;
+            var base = pefById(pc.id) || {};
+            var target = pc.pos || base.pos || [0, 0, 0];
+            window.PM_pefPos[pc.id] = pc.enter_from ? pc.enter_from.slice() : target.slice();
+            window.PM_pefV[pc.id] = (pc.V != null) ? pc.V : (base.V != null ? base.V : 0);
+        }
+
+        var showTags = !!pef.show_qv_tags;
+        var meterShown = !!pef.show_energy_meter;
+        var bondMode = pef.bond_mode || null;
+
+        for (var s = 0; s < sceneObjects.length; s++) {
+            var o = sceneObjects[s]; var ud = o.userData; if (!ud || !ud.elementType) continue;
+            var et = ud.elementType;
+            if (et === "pef_charge" || et === "pef_clabel") {
+                var on = !!present[ud.cid]; o.visible = on; if (o.material) o.material.opacity = on ? 1 : 0;
+            } else if (et === "pef_qvtag") {
+                var lit = showTags && !!present[ud.cid]; o.visible = lit;
+                ud._revealAt = lit ? ((pef.qv_tags_at_ms != null) ? pef.qv_tags_at_ms : 0) : null;
+                if (o.material) o.material.opacity = 0;
+            } else if (et === "pef_meter") {
+                o.visible = meterShown; if (o.material) o.material.opacity = (ud.id === "pef_meter_zero") ? 0.8 : 0.5;
+            } else if (et === "pef_meterfill" || et === "pef_ureadout") {
+                o.visible = meterShown; if (o.material) o.material.opacity = 0;
+            } else if (et === "pef_bond") {
+                var isMutual = (ud.kind === "mutual" || ud.kind === "mutuallbl");
+                var isQv = (ud.kind === "qv" || ud.kind === "qvlbl");
+                var bShow = false;
+                if (bondMode === "external_vs_mutual") {
+                    if (isMutual) bShow = (roster.length >= 2);
+                    else if (isQv) bShow = !!present[ud.cid];
+                }
+                o.visible = bShow; if (o.material) o.material.opacity = 0;
+                ud._revealAt = bShow ? ((pef.bonds_at_ms != null) ? pef.bonds_at_ms : 0) : null;
+            } else if (et === "pef_equipotential") {
+                o.visible = !!pef.show_equipotential; if (o.material) o.material.opacity = 0;
+                ud._revealAt = pef.show_equipotential ? ((pef.equipotential_at_ms != null) ? pef.equipotential_at_ms : 0) : null;
+            } else if (et === "pef_landscape") {
+                o.visible = !!pef.landscape; if (o.material) o.material.opacity = 0;
+                ud.mode = pef.landscape || "hill";
+                ud.flipAt = (pef.flip_at_ms != null) ? pef.flip_at_ms : null;
+                ud._revealAt = pef.landscape ? ((pef.landscape_at_ms != null) ? pef.landscape_at_ms : 0) : null;
+            } else if (et === "pef_formula") {
+                o.visible = !!pef.formula_overlay;
+                ud._revealAt = pef.formula_overlay ? ((pef.formula_at_ms != null) ? pef.formula_at_ms : 0) : null;
+                if (o.material) o.material.opacity = 0;
+                if (pef.formula_overlay) updateLabelSpriteText(o, pef.formula_overlay);
+            }
+        }
+
+        var slEl = document.getElementById("pef_sliders"); if (slEl) slEl.style.display = "none";
+    }
+
+    function applyPeDipolePhase(stateDef, pef) {
+        // Hide the charge-phase layer.
+        for (var s = 0; s < sceneObjects.length; s++) {
+            var o = sceneObjects[s]; var ud = o.userData; if (!ud || !ud.elementType) continue;
+            var et = ud.elementType;
+            if (et === "pef_charge" || et === "pef_clabel" || et === "pef_qvtag" || et === "pef_meter" || et === "pef_meterfill" || et === "pef_ureadout" || et === "pef_bond" || et === "pef_landscape") {
+                o.visible = false; if (o.material) o.material.opacity = 0;
+            } else if (et === "pef_equipotential") {
+                o.visible = !!pef.show_equipotential; if (o.material) o.material.opacity = 0;
+                ud._revealAt = pef.show_equipotential ? 0 : null;
+            }
+        }
+
+        // Show the dipole body + delegate to the dipole-in-field engine. Translate the
+        // pef block into the stateDef shape applyDipoleInFieldState expects. tau + the
+        // couple force arrows stay hidden (never set) - torque is referenced verbally.
+        var dg = findTorqueLoopGroup(); if (dg) dg.visible = true;
+        var synthetic = {
+            theta_deg: (pef.theta_deg != null) ? pef.theta_deg : ((stateDef.show_sliders && typeof window.PM_pefTheta === "number") ? window.PM_pefTheta : 60),
+            rotation_mode: pef.rotation_mode || "static",
+            rotation_target_deg: pef.rotation_target_deg,
+            oscillation_amplitude_deg: pef.oscillation_amplitude_deg,
+            oscillation_period_s: pef.oscillation_period_s,
+            theta_sweep_period_s: pef.theta_sweep_period_s,
+            swing_decay_s: pef.swing_decay_s,
+            idle_sway_deg: pef.idle_sway_deg,
+            pend_k: pef.pend_k,
+            pend_b: pef.pend_b,
+            extras: {
+                e_field: pef.show_field !== false,
+                e_field_animate_in: !!pef.field_animate_in,
+                theta_arc: { show: pef.show_theta_arc !== false, show_degrees: true },
+                energy_meter: { show: pef.show_energy_meter !== false },
+                p_animate_in: !!pef.p_animate_in
+            }
+        };
+        applyDipoleInFieldState(synthetic);
+
+        // Formula overlay (e.g. "U = -pE cos(theta)").
+        var fo = dpFindById("pef_formula");
+        if (fo) {
+            fo.visible = !!pef.formula_overlay;
+            fo.userData._revealAt = pef.formula_overlay ? ((pef.formula_at_ms != null) ? pef.formula_at_ms : 0) : null;
+            if (fo.material) fo.material.opacity = 0;
+            if (pef.formula_overlay) updateLabelSpriteText(fo, pef.formula_overlay);
+        }
+
+        var slEl = document.getElementById("pef_sliders");
+        if (slEl) slEl.style.display = stateDef.show_sliders ? "block" : "none";
+        if (stateDef.show_sliders) pefSyncSlidersFromState();
+    }
+
+    // Per-frame driver - pure function of (time - stateStartTime), Rule 26.
+    // heldAtPin is passed in from the animate loop (it is local to animate's scope);
+    // referencing it directly here throws ReferenceError and blanks the dipole phase.
+    function updatePeExternalFieldFrame(stateDef, heldAtPin) {
+        var pef = stateDef.pef || {};
+        var ms = (time - stateStartTime) * 1000;
+        function ramp(at, fade) { if (at == null) return 0; if (ms >= at + fade) return 1; if (ms >= at) return (ms - at) / fade; return 0; }
+
+        // Ambient field fade-in (shared).
+        if (pef.field_animate_in) {
+            var fp = ramp(0, 1000);
+            for (var fi = 0; fi < sceneObjects.length; fi++) {
+                var fo = sceneObjects[fi];
+                if (!fo.userData || fo.userData.elementType !== "ambient_field" || !fo.children) continue;
+                fo.children.forEach(function(c) { if (c.material) { c.material.transparent = true; c.material.opacity = 0.42 * fp; } });
+            }
+        }
+
+        if (pef.dipole) {
+            updateDipoleInFieldFrame(heldAtPin ? 0 : 0.016);
+            var fo2 = dpFindById("pef_formula");
+            if (fo2 && fo2.visible && fo2.material) fo2.material.opacity = ramp(fo2.userData._revealAt, 600);
+            updatePefEquipotential(ramp);
+            if (stateDef.show_sliders) pefUpdateDomReadouts();
+            return;
+        }
+
+        updatePeChargeFrame(stateDef, pef, ms, ramp);
+    }
+
+    function updatePeChargeFrame(stateDef, pef, ms, ramp) {
+        var roster = pefRoster();
+        var posColor = dpColor("positive", "#EF5350");
+        var negColor = dpColor("negative", "#42A5F5");
+        var fieldColor = dpColor("field", "#FF7043");
+        var meterPosCol = fieldColor;
+        var meterNegCol = negColor;
+        var eqExtent = (config.ambient_field && config.ambient_field.extent != null) ? config.ambient_field.extent : 2.5;
+        var pcharges = pef.charges || [];
+
+        // 1. Ease entering charges + slides; update live position + live V.
+        for (var pi = 0; pi < pcharges.length; pi++) {
+            var pc = pcharges[pi];
+            var base = pefById(pc.id) || {};
+            var target = pc.pos || base.pos || [0, 0, 0];
+            var slideAt = (pc.slide_at_ms != null) ? pc.slide_at_ms : 0;
+            var vLive = (pc.V != null) ? pc.V : (base.V != null ? base.V : 0);
+            if (pc.enter_from && ms < slideAt) {
+                var eat = (pc.enter_at_ms != null) ? pc.enter_at_ms : 0;
+                var edur = (pc.enter_dur_ms != null) ? pc.enter_dur_ms : 2000;
+                var ep = peEase((ms - eat) / edur);
+                window.PM_pefPos[pc.id] = [
+                    pc.enter_from[0] + (target[0] - pc.enter_from[0]) * ep,
+                    pc.enter_from[1] + (target[1] - pc.enter_from[1]) * ep,
+                    pc.enter_from[2] + (target[2] - pc.enter_from[2]) * ep
+                ];
+            } else if (pc.slide_to && ms >= slideAt) {
+                var sdur = (pc.slide_dur_ms != null) ? pc.slide_dur_ms : 2000;
+                var sp = peEase((ms - slideAt) / sdur);
+                window.PM_pefPos[pc.id] = [
+                    target[0] + (pc.slide_to[0] - target[0]) * sp,
+                    target[1] + (pc.slide_to[1] - target[1]) * sp,
+                    target[2] + (pc.slide_to[2] - target[2]) * sp
+                ];
+                var v1 = (pc.slide_V != null) ? pc.slide_V : vLive;
+                vLive = vLive + (v1 - vLive) * sp;
+            } else {
+                window.PM_pefPos[pc.id] = target.slice();
+            }
+            window.PM_pefV[pc.id] = vLive;
+        }
+
+        // 2. Total U = sum of qV over present charges.
+        var total = 0;
+        for (var ti = 0; ti < pcharges.length; ti++) {
+            total += pefChargeVal(pcharges[ti].id) * pefChargeV(pcharges[ti].id);
+        }
+        window.PM_pefLiveU = total;
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i]; var ud = o.userData; if (!ud || !ud.elementType || !o.visible) continue;
+            var et = ud.elementType;
+            if (et === "pef_charge") {
+                var lp = pefLivePos(ud.cid); o.position.set(lp[0], lp[1], lp[2]);
+                var cv = pefChargeVal(ud.cid); var ccol = (cv >= 0) ? posColor : negColor;
+                if (o.material) { var thc = hexToThreeColor(ccol); if (thc) { o.material.color = thc; o.material.emissive = thc; } }
+            } else if (et === "pef_clabel") {
+                var lp2 = pefLivePos(ud.cid); o.position.set(lp2[0], lp2[1] + 0.36, lp2[2]);
+            } else if (et === "pef_qvtag") {
+                var lp3 = pefLivePos(ud.cid); o.position.set(lp3[0] + 0.55, lp3[1] + 0.10, lp3[2]);
+                var uq = pefChargeVal(ud.cid) * pefChargeV(ud.cid);
+                o._pmColor = (uq >= 0) ? meterPosCol : meterNegCol;
+                updateLabelSpriteText(o, pefFmt(uq));
+                if (o.material) o.material.opacity = ramp(ud._revealAt, 600);
+            } else if (et === "pef_meterfill") {
+                var D = pefDefaults();
+                var h = Math.max(-1.55, Math.min(1.55, total / D.full * 1.55));
+                var mag = Math.max(0.001, Math.abs(h));
+                o.scale.set(1, mag, 1);
+                o.position.set(-3.1, (h >= 0) ? mag / 2 : -mag / 2, 0);
+                if (o.material) {
+                    o.material.color = hexToThreeColor(total >= 0 ? meterPosCol : meterNegCol);
+                    o.material.opacity = ramp((pef.meter_at_ms != null) ? pef.meter_at_ms : 0, 500) * 0.92;
+                }
+            } else if (et === "pef_ureadout") {
+                o._pmColor = (Math.abs(total) < 0.05) ? fieldColor : (total > 0 ? meterPosCol : meterNegCol);
+                updateLabelSpriteText(o, "U = " + pefFmt(total));
+                if (o.material) o.material.opacity = ramp((pef.meter_at_ms != null) ? pef.meter_at_ms : 0, 500);
+            } else if (et === "pef_bond") {
+                if (ud.kind === "qv") {
+                    var lpb = pefLivePos(ud.cid);
+                    dpSetTube(o, [lpb, [eqExtent, lpb[1], lpb[2]]], 0.022);
+                    if (o.material) o.material.opacity = ramp(ud._revealAt, 600) * 0.7;
+                } else if (ud.kind === "qvlbl") {
+                    var lpc = pefLivePos(ud.cid);
+                    o.position.set((lpc[0] + eqExtent) / 2, lpc[1] + 0.25, lpc[2]);
+                    if (o.material) o.material.opacity = ramp(ud._revealAt, 600);
+                } else if (ud.kind === "mutual" && roster.length >= 2) {
+                    var a = pefLivePos(roster[0].id), b = pefLivePos(roster[1].id);
+                    dpSetTube(o, [a, b], 0.045);
+                    if (o.material) o.material.opacity = ramp(ud._revealAt, 600) * 0.85;
+                } else if (ud.kind === "mutuallbl" && roster.length >= 2) {
+                    var a2 = pefLivePos(roster[0].id), b2 = pefLivePos(roster[1].id);
+                    o.position.set((a2[0] + b2[0]) / 2, (a2[1] + b2[1]) / 2 - 0.35, (a2[2] + b2[2]) / 2);
+                    if (o.material) o.material.opacity = ramp(ud._revealAt, 600);
+                }
+            } else if (et === "pef_formula") {
+                if (o.material) o.material.opacity = ramp(ud._revealAt, 600);
+            }
+        }
+
+        updatePefEquipotential(ramp);
+        updatePefLandscape(ramp, ms);
+    }
+
+    function updatePefEquipotential(ramp) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i]; var ud = o.userData;
+            if (!ud || ud.elementType !== "pef_equipotential" || !o.visible) continue;
+            var r = ramp(ud._revealAt, 700);
+            if (o.material) o.material.opacity = (ud.baseOpacity != null) ? r * ud.baseOpacity : r;
+        }
+    }
+
+    function updatePefLandscape(ramp, ms) {
+        var land = dpFindById("pef_landscape");
+        if (!land || !land.visible || !land.geometry) return;
+        var ud = land.userData;
+        var segs = ud.segs || 40; var baseY = (ud.baseY != null) ? ud.baseY : -2.3;
+        var sign = (ud.mode === "well") ? -1 : 1;
+        if (ud.flipAt != null) { sign = 1 - 2 * ramp(ud.flipAt, 800); }   // hill (+1) -> well (-1)
+        var posAttr = land.geometry.attributes.position;
+        for (var k = 0; k <= segs; k++) {
+            var x = -1.4 + 2.8 * (k / segs);
+            var bump = 0.55 * Math.exp(-(x * x) / 0.35);
+            posAttr.setXYZ(k, x, baseY + sign * bump, 0);
+        }
+        posAttr.needsUpdate = true;
+        if (land.material) land.material.opacity = ramp(ud._revealAt, 600) * 0.9;
+    }
+
+    function pefSyncSlidersFromState() {
+        var qS = document.getElementById("pef_q_slider");
+        if (qS) { qS.value = String(window.PM_pefQ); var qv = document.getElementById("pef_q_val"); if (qv) qv.textContent = pefFmt0(window.PM_pefQ); }
+        var thS = document.getElementById("pef_theta_slider");
+        if (thS) { thS.value = String(window.PM_pefTheta); var tv = document.getElementById("pef_theta_val"); if (tv) tv.textContent = Math.round(window.PM_pefTheta) + "\\u00b0"; }
+        pefUpdateDomReadouts();
+    }
+
+    function pefUpdateDomReadouts() {
+        var V1 = (config.slider_controls && config.slider_controls.q && config.slider_controls.q.readout_V != null) ? config.slider_controls.q.readout_V : 5;
+        var pE = (config.energy_meter && config.energy_meter.pE != null) ? config.energy_meter.pE : ((config.energy_meter && config.energy_meter.U_FULL != null) ? config.energy_meter.U_FULL : 12);
+        var q = (typeof window.PM_pefQ === "number") ? window.PM_pefQ : 2;
+        var th = (typeof window.PM_pefTheta === "number") ? window.PM_pefTheta : 60;
+        var uq = q * V1;
+        var ud = -pE * Math.cos(th * Math.PI / 180);
+        var uqEl = document.getElementById("pef_uq_dom"); if (uqEl) uqEl.innerHTML = "U = qV = " + pefFmt(uq);
+        var udEl = document.getElementById("pef_ud_dom"); if (udEl) udEl.innerHTML = "U = \\u2212pE\\u00b7cos\\u03b8 = " + pefFmt(ud);
     }
 
     function buildSolenoidField(config_unused) {
@@ -11490,6 +12465,11 @@ export const FIELD_3D_RENDERER_CODE = `
         // about the static angle so a non-rotating state never reads as frozen.
         // Fires only when a state sets it (the electric-dipole sibling does not).
         lg.userData.idle_sway_deg = stateDef.idle_sway_deg || 0;
+        // damped_pendulum integrator: reset angular velocity on state entry + optional
+        // per-state tuning (k = swing stiffness pE/I, b = damping).
+        lg.userData.pend_omega = 0;
+        lg.userData.pend_k = stateDef.pend_k != null ? stateDef.pend_k : 5.0;
+        lg.userData.pend_b = stateDef.pend_b != null ? stateDef.pend_b : 0.8;
 
         function setVisibleWithFade(obj, want) {
             if (!obj) return;
@@ -11514,6 +12494,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var arcShow = !!(ex.theta_arc && ex.theta_arc.show);
         var arc = findTorqueElementById("dpf_theta_arc"); if (arc) arc.visible = arcShow;
         var arcLbl = findTorqueElementById("dpf_theta_lbl"); if (arcLbl) arcLbl.visible = arcShow;
+        lg.userData.theta_arc_show_degrees = !!(ex.theta_arc && ex.theta_arc.show_degrees);
 
         var meterShow = !!(ex.energy_meter && ex.energy_meter.show);
         ["dpf_u_track", "dpf_u_dot", "dpf_u_lbl", "dpf_u_max_lbl", "dpf_u_min_lbl"].forEach(function(id) {
@@ -11577,6 +12558,31 @@ export const FIELD_3D_RENDERER_CODE = `
             var ts = time - lg.userData.rotation_start_time;
             var amp0 = lg.userData.rotation_init_theta_deg != null ? lg.userData.rotation_init_theta_deg : 60;
             applyTorqueLoopTheta(lg, amp0 * Math.exp(-ts / decayS) * Math.cos((ts / Td) * 2 * Math.PI));
+        } else if (mode === "damped_pendulum") {
+            // Unstable -> stable choreography: a TRUE damped physical pendulum released
+            // near theta=180 (anti-aligned, UNSTABLE). At ~180, sin(theta)~0 so the
+            // restoring torque is tiny -> it LINGERS ("slowly slowly"); the small
+            // departure then grows, it accelerates through 90, overshoots 0, and damps
+            // into theta=0 (aligned, STABLE) in ever-smaller nudges. theta'' = -k*sin(theta) - b*omega.
+            // RULE 26: this must be a PURE FUNCTION of the state clock (scrub/pause/THE EYE
+            // safe + frame-rate independent), so we RE-INTEGRATE from t=0 to the elapsed
+            // sim-time every frame with a fixed internal step (not a stateful per-frame
+            // accumulator). The nonlinear sin(theta) is what makes 180 linger; a linear
+            // closed form would swing away immediately and lose the unstable feel.
+            var pk = lg.userData.pend_k != null ? lg.userData.pend_k : 5.0;
+            var pb = lg.userData.pend_b != null ? lg.userData.pend_b : 0.8;
+            var pInit = (lg.userData.rotation_init_theta_deg != null ? lg.userData.rotation_init_theta_deg : 178) * Math.PI / 180;
+            var pElapsed = time - lg.userData.rotation_start_time;
+            if (pElapsed < 0) pElapsed = 0;
+            if (pElapsed > 30) pElapsed = 30;                  // long-settled; cap integration cost
+            var pStep = 0.01;                                  // fixed internal dt (sim-seconds)
+            var pTh = pInit, pOm = 0;
+            for (var pAcc = 0; pAcc < pElapsed; pAcc += pStep) {
+                var pA = -pk * Math.sin(pTh) - pb * pOm;       // rad/s^2, restoring toward 0
+                pOm += pA * pStep;
+                pTh += pOm * pStep;
+            }
+            applyTorqueLoopTheta(lg, pTh * 180 / Math.PI);
         } else if (mode === "static" && lg.userData.idle_sway_deg) {
             // gentle continuous sway about the static angle (never frozen).
             var base = lg.userData.rotation_init_theta_deg != null ? lg.userData.rotation_init_theta_deg : curTheta;
@@ -11658,6 +12664,11 @@ export const FIELD_3D_RENDERER_CODE = `
             if (aLbl) {
                 var midAz = thetaRad * 0.5;
                 aLbl.position.set((rArc + 0.32) * Math.cos(midAz), 0.05, (rArc + 0.32) * Math.sin(midAz));
+                // Live angle readout: show the changing value, not just the symbol. Use
+                // |theta| so a brief overshoot past 0 reads as a positive angle-from-field.
+                if (lg.userData.theta_arc_show_degrees) {
+                    updateLabelSpriteText(aLbl, "\\u03b8 = " + Math.round(Math.abs(lg.userData.theta_deg)) + "\\u00b0");
+                }
             }
         }
 
@@ -15271,6 +16282,1279 @@ export const FIELD_3D_RENDERER_CODE = `
                     fo.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = Math.max(0.12, wob2); } });
                 }
             }
+        }
+    }
+
+    // ══════════════════════════════════════════════════════════════════════════
+    // gauss_law_magnetism (NCERT Ch.5 §5.3) — Gauss's Law for Magnetism: ∮B·dA = 0.
+    // A bar magnet sits at the origin; its field is a family of CLOSED loops (each
+    // external arch N→S plus an internal return S→N through the body). A Gaussian
+    // surface (sphere/cube/blob, reusing gaussShapeGeometry/gaussBlobGeometry) wraps
+    // the magnet — every line that LEAVES it also RE-ENTERS it, so the net magnetic
+    // flux is identically zero. The aha (S3): even a surface around a SINGLE pole
+    // still nets zero — there is no magnetic monopole. S5 contrasts the electric
+    // Gauss law (a +q whose radial lines only point OUTWARD → Φ ≠ 0: charges have
+    // ends, magnets don't). Built ONCE, tagged userData{elementType,id}, all hidden;
+    // per-state visibility owned by applyGaussLawMagnetismState; per-frame motion
+    // (continuous closed-loop tracer stream + the S4 surface morph) is a PURE fn of
+    // the state clock (Rule 26). Emphasis = brightness only (Rule 29); the surface
+    // morph is the surface's REAL shape, never a size pulse.
+    // ══════════════════════════════════════════════════════════════════════════
+    var GM_SURF_R = 1.5;                  // Gaussian-surface "radius" wrapping the whole magnet
+    var GM_TIP_N = 1.0, GM_TIP_S = -1.0;  // bar-magnet pole-tip x positions (N at +x, S at −x)
+    var GM = {
+        nColor: "#EF5350", sColor: "#42A5F5", flColor: "#66BB6A", tracer: "#FFD54F",
+        mColor: "#FFCA28", surfColor: "#42A5F5", posColor: "#EF5350", radColor: "#8CF5A0"
+    };
+    var gmLoopPaths = [];                  // [[x,y,z],...] per closed loop — drives the tracer stream
+    var gmTracers = [];
+
+    function gmFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i]; } return null; }
+    function gmSetOpacity(obj, op) { if (!obj) return; if (obj.material) { obj.material.transparent = true; obj.material.opacity = op; } if (obj.children) for (var i = 0; i < obj.children.length; i++) gmSetOpacity(obj.children[i], op); }
+
+    // 3D arc-length interpolation along a closed-loop point list (t in [0,1)).
+    function gmLerpPath3(pts, t) {
+        var segLen = [], total = 0, i;
+        for (i = 0; i < pts.length - 1; i++) {
+            var dx = pts[i + 1][0] - pts[i][0], dy = pts[i + 1][1] - pts[i][1], dz = pts[i + 1][2] - pts[i][2];
+            var l = Math.sqrt(dx * dx + dy * dy + dz * dz); segLen.push(l); total += l;
+        }
+        if (total < 1e-6) return [pts[0][0], pts[0][1], pts[0][2]];
+        var target = (((t % 1) + 1) % 1) * total, acc = 0;
+        for (i = 0; i < segLen.length; i++) {
+            if (acc + segLen[i] >= target) {
+                var f = segLen[i] > 1e-6 ? (target - acc) / segLen[i] : 0;
+                return [pts[i][0] + (pts[i + 1][0] - pts[i][0]) * f,
+                        pts[i][1] + (pts[i + 1][1] - pts[i][1]) * f,
+                        pts[i][2] + (pts[i + 1][2] - pts[i][2]) * f];
+            }
+            acc += segLen[i];
+        }
+        return [pts[pts.length - 1][0], pts[pts.length - 1][1], pts[pts.length - 1][2]];
+    }
+
+    // Swap the gm Gaussian surface to the requested shape/radius and slide it to
+    // offsetX (used by S3 to shrink the surface onto the N pole). Genuine geometry
+    // change — Rule 29: this is the surface's real shape/scope, not a size emphasis.
+    function gmApplyShape(shape, R, offsetX) {
+        var rounded = Math.round(shape);
+        var mesh = gmFindById("gm_surface"), wire = gmFindById("gm_surface_wire"), lbl = gmFindById("gm_surface_label");
+        if (mesh) {
+            if (mesh.userData.curShape !== rounded || mesh.userData.curR !== R) {
+                if (mesh.geometry) mesh.geometry.dispose();
+                mesh.geometry = gaussShapeGeometry(rounded, R);
+                mesh.userData.curShape = rounded; mesh.userData.curR = R;
+            }
+            mesh.position.set(offsetX, 0, 0);
+        }
+        if (wire) {
+            if (wire.userData.curShape !== rounded || wire.userData.curR !== R) {
+                if (wire.geometry) wire.geometry.dispose();
+                if (rounded >= 1.5) wire.geometry = new THREE.WireframeGeometry(gaussBlobGeometry(R));
+                else if (rounded >= 0.5) wire.geometry = new THREE.EdgesGeometry(new THREE.BoxGeometry(2 * R, 2 * R, 2 * R));
+                else wire.geometry = new THREE.EdgesGeometry(new THREE.SphereGeometry(R, 18, 12));
+                wire.userData.curShape = rounded; wire.userData.curR = R;
+            }
+            wire.position.set(offsetX, 0, 0);
+        }
+        if (lbl) lbl.position.set(offsetX, R + 0.5, 0);
+    }
+
+    function buildGaussLawMagnetism() {
+        var G = GM;
+
+        // 1. The bar magnet (N=red at +x, S=blue at −x) + pole labels + moment m.
+        function gmBox(id, xc, w, colorHex) {
+            var m = new THREE.Mesh(new THREE.BoxGeometry(w, 0.5, 0.5),
+                new THREE.MeshPhongMaterial({ color: hexToThreeColor(colorHex), emissive: hexToThreeColor(colorHex), emissiveIntensity: 0.4 }));
+            m.position.set(xc, 0, 0); m.userData = { elementType: "gm_magnet", id: id, baseEmissive: 0.4 }; m.visible = false; addToScene(m); return m;
+        }
+        gmBox("gm_magnet_n", 0.5, 1.0, G.nColor);
+        gmBox("gm_magnet_s", -0.5, 1.0, G.sColor);
+        var nLbl = createLabelSprite("N", "#FFCDD2", 0.42); nLbl.position.set(0.5, 0.0, 0.32); nLbl.userData = { elementType: "gm_magnet", id: "gm_lbl_n" }; nLbl.visible = false; addToScene(nLbl);
+        var sLbl = createLabelSprite("S", "#BBDEFB", 0.42); sLbl.position.set(-0.5, 0.0, 0.32); sLbl.userData = { elementType: "gm_magnet", id: "gm_lbl_s" }; sLbl.visible = false; addToScene(sLbl);
+        var mom = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-0.7, -0.95, 0), 1.4, G.mColor, 0.28, 0.15);
+        mom.userData = { elementType: "gm_moment", id: "gm_moment" }; mom.visible = false; addToScene(mom);
+        var mLbl = createLabelSprite("m", G.mColor, 0.42); mLbl.position.set(0.9, -1.25, 0); mLbl.userData = { elementType: "gm_moment", id: "gm_lbl_m" }; mLbl.visible = false; addToScene(mLbl);
+
+        // 2. Closed-loop field lines — external dipole arches revolved around the
+        //    magnet axis (x). Each (az,k) arch is an external field line N→S; the
+        //    full closed loop (external arch + internal return S→N) is cached for
+        //    the tracer stream so the lines visibly CIRCULATE (no start/end).
+        gmLoopPaths = [];
+        var AZ = 6, KH = 2, heights = [0.65, 1.3];
+        for (var a = 0; a < AZ; a++) {
+            var phi = (a / AZ) * Math.PI * 2;
+            var cphi = Math.cos(phi), sphi = Math.sin(phi);
+            for (var k = 0; k < KH; k++) {
+                var h = heights[k];
+                var arch2 = bmArch2D(GM_TIP_N, GM_TIP_S, h, 1, 26);
+                var ext = arch2.map(function (p) { return [p[0], p[1] * cphi, p[1] * sphi]; });
+                var flIdx = a * KH + k;
+                var tube = createTubeLine(ext, G.flColor, 0.015);
+                if (tube) {
+                    if (tube.material) { tube.material.transparent = true; tube.material.opacity = 0.85; tube.material.emissive = hexToThreeColor(G.flColor); tube.material.emissiveIntensity = 0.3; }
+                    tube.userData = { elementType: "gm_field_line", id: "gm_fl_" + a + "_" + k, flIndex: flIdx }; tube.visible = false; addToScene(tube);
+                }
+                // a direction arrowhead ~35% along (near N, pointing N→S)
+                var ai = 9;
+                var dir = [ext[ai][0] - ext[ai - 1][0], ext[ai][1] - ext[ai - 1][1], ext[ai][2] - ext[ai - 1][2]];
+                var ah = createArrowHead(ext[ai], dir, G.flColor);
+                if (ah.material) { ah.material.transparent = true; }
+                ah.userData = { elementType: "gm_field_line", id: "gm_fa_" + a + "_" + k, flIndex: flIdx }; ah.visible = false; addToScene(ah);
+                // full closed loop = external arch (N→S) + internal return (S→N on axis)
+                var ret = [];
+                for (var s = 0; s <= 12; s++) { var tt = s / 12; ret.push([GM_TIP_S + (GM_TIP_N - GM_TIP_S) * tt, 0, 0]); }
+                gmLoopPaths.push(ext.concat(ret));
+            }
+        }
+
+        // 3. Internal-return tube (S→N through the body) drawn just in FRONT of the
+        //    magnet (z>0) so the closed-loop continuity is visible past the opaque
+        //    body — the "every external line returns inside" half of the loop.
+        var intPts = [];
+        for (var si = 0; si <= 18; si++) { var ti = si / 18; intPts.push([GM_TIP_S + (GM_TIP_N - GM_TIP_S) * ti, 0, 0.34]); }
+        var intTube = createTubeLine(intPts, "#FFB74D", 0.02);
+        if (intTube) {
+            if (intTube.material) { intTube.material.transparent = true; intTube.material.opacity = 0.9; intTube.material.emissive = hexToThreeColor("#FFB74D"); intTube.material.emissiveIntensity = 0.4; }
+            intTube.userData = { elementType: "gm_internal", id: "gm_internal", loopPath: intPts.map(function (p) { return [p[0], p[1], p[2]]; }) }; intTube.visible = false; addToScene(intTube);
+        }
+        var intDot = new THREE.Mesh(new THREE.SphereGeometry(0.07, 12, 12), new THREE.MeshPhongMaterial({ color: 0xFFFFFF, emissive: 0xFFFFFF, emissiveIntensity: 0.9 }));
+        intDot.userData = { elementType: "gm_internal", id: "gm_internal_dot", t: 0 }; intDot.visible = false; addToScene(intDot);
+
+        // 4. Flowing tracer dots — circulate the FULL closed loops (Rule 26 clock).
+        var tGeo = new THREE.SphereGeometry(0.085, 12, 12);
+        var tMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.tracer), emissive: hexToThreeColor(G.tracer), emissiveIntensity: 0.85 });
+        gmTracers = [];
+        for (var di = 0; di < 12; di++) {
+            var dot = new THREE.Mesh(tGeo, tMat.clone());
+            dot.userData = { elementType: "gm_tracer", id: "gm_tr_" + di, t: di / 12, loop: di % Math.max(1, gmLoopPaths.length) };
+            dot.visible = false; addToScene(dot); gmTracers.push(dot);
+        }
+
+        // 5. The Gaussian surface (shape-morphable; reuses the electric-gauss geometry
+        //    builders) + wire edges + label. Slid to the N pole for the S3 aha.
+        var surfMat = new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(G.surfColor), emissive: hexToThreeColor(G.surfColor),
+            emissiveIntensity: 0.12, transparent: true, opacity: 0.13, side: THREE.DoubleSide,
+            depthWrite: false
+        });
+        var surfMesh = new THREE.Mesh(gaussShapeGeometry(0, GM_SURF_R), surfMat);
+        surfMesh.userData = { elementType: "gm_surface", id: "gm_surface", curShape: 0, curR: GM_SURF_R }; surfMesh.visible = false; addToScene(surfMesh);
+        var wireMat = new THREE.LineBasicMaterial({ color: hexToThreeColor(G.surfColor), transparent: true, opacity: 0.45 });
+        var wire = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.SphereGeometry(GM_SURF_R, 18, 12)), wireMat);
+        wire.userData = { elementType: "gm_surface", id: "gm_surface_wire", curShape: 0, curR: GM_SURF_R }; wire.visible = false; addToScene(wire);
+        var surfLabel = createWideLabelSprite("Gaussian surface", G.surfColor, 0.32);
+        surfLabel.position.set(0, GM_SURF_R + 0.5, 0); surfLabel.userData = { elementType: "gm_surface_label", id: "gm_surface_label" }; surfLabel.visible = false; addToScene(surfLabel);
+
+        // 6. Electric-contrast inset (S5) — a side-by-side mini-diagram: a magnet
+        //    (closed loops → Φ_B = 0) on the LEFT vs a +q (radial OUTWARD lines that
+        //    never return → Φ_E ≠ 0) on the RIGHT. Built as one group, hidden except S5.
+        (function () {
+            var g = new THREE.Group(); g.userData = { elementType: "gm_contrast", id: "gm_contrast" };
+            // LEFT: small magnet + two closed loops + small sphere surface.
+            var L = new THREE.Group(); L.position.set(-2.4, 0, 0);
+            var ln = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.28, 0.28), new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.nColor), emissive: hexToThreeColor(G.nColor), emissiveIntensity: 0.45 })); ln.position.set(0.27, 0, 0); L.add(ln);
+            var ls = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.28, 0.28), new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.sColor), emissive: hexToThreeColor(G.sColor), emissiveIntensity: 0.45 })); ls.position.set(-0.27, 0, 0); L.add(ls);
+            [1, -1].forEach(function (sgn) {
+                var pp = bmArch2D(0.52, -0.52, 0.62, sgn, 22).map(function (p) { return [p[0], p[1], 0]; });
+                var tb = createTubeLine(pp, G.flColor, 0.012);
+                if (tb) { if (tb.material) { tb.material.opacity = 0.85; tb.material.emissive = hexToThreeColor(G.flColor); tb.material.emissiveIntensity = 0.3; } L.add(tb); }
+            });
+            var lsm = new THREE.Mesh(new THREE.SphereGeometry(0.95, 28, 20), new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.surfColor), emissive: hexToThreeColor(G.surfColor), emissiveIntensity: 0.12, transparent: true, opacity: 0.12, side: THREE.DoubleSide, depthWrite: false })); L.add(lsm);
+            var lsw = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.SphereGeometry(0.95, 16, 10)), new THREE.LineBasicMaterial({ color: hexToThreeColor(G.surfColor), transparent: true, opacity: 0.4 })); L.add(lsw);
+            var lLab = createWideLabelSprite("magnet: \\u222eB\\u00b7dA = 0", G.radColor, 0.3); lLab.position.set(0, -1.5, 0); L.add(lLab);
+            g.add(L);
+            // RIGHT: +q + radial OUTWARD lines + small sphere surface.
+            var Rg = new THREE.Group(); Rg.position.set(2.4, 0, 0);
+            var pq = createChargeSphere([0, 0, 0], G.posColor, 0.18); Rg.add(pq);
+            var pqL = createLabelSprite("+q", G.posColor, 0.36); pqL.position.set(0, 0.4, 0); Rg.add(pqL);
+            var rdirs = efluxRadialDirs();
+            for (var ri = 0; ri < rdirs.length; ri++) {
+                var rd = rdirs[ri];
+                var ra = new THREE.ArrowHelper(new THREE.Vector3(rd[0], rd[1], rd[2]), new THREE.Vector3(0, 0, 0), 1.1, hexToThreeColor(G.radColor), 0.16, 0.09);
+                ra.children.forEach(function (cc) { if (cc.material) { cc.material.transparent = true; cc.material.opacity = 0.7; } });
+                ra.userData = { gmContrastRadial: true }; Rg.add(ra);
+            }
+            var rsm = new THREE.Mesh(new THREE.SphereGeometry(0.95, 28, 20), new THREE.MeshPhongMaterial({ color: hexToThreeColor(G.surfColor), emissive: hexToThreeColor(G.surfColor), emissiveIntensity: 0.12, transparent: true, opacity: 0.12, side: THREE.DoubleSide, depthWrite: false })); Rg.add(rsm);
+            var rsw = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.SphereGeometry(0.95, 16, 10)), new THREE.LineBasicMaterial({ color: hexToThreeColor(G.surfColor), transparent: true, opacity: 0.4 })); Rg.add(rsw);
+            var rLab = createWideLabelSprite("charge: \\u222eE\\u00b7dA = q/\\u03b5\\u2080 \\u2260 0", "#FF8A80", 0.3); rLab.position.set(0, -1.5, 0); Rg.add(rLab);
+            g.add(Rg);
+            var vs = createLabelSprite("vs", "#CFD8DC", 0.4); vs.position.set(0, 0, 0); g.add(vs);
+            g.visible = false; addToScene(g);
+        })();
+
+        // 7. Live readout panel (Φ_B = 0 always).
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var rp = document.createElement("div");
+        rp.id = "gm_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:235px;display:none;";
+        document.body.appendChild(rp);
+
+        // 8. Explore sliders (S6 only): surface shape + surface position.
+        window.PM_gmShape = 0; window.PM_gmOffset = 0; window.PM_gmUserDragged = false;
+        var ssc = (config.slider_controls && config.slider_controls.surface_shape) || { min: 0, max: 2, step: 1, default: 0, label: "Surface shape" };
+        var osc = (config.slider_controls && config.slider_controls.surface_pos) || { min: -1.2, max: 1.2, step: 0.05, default: 0, label: "Surface position" };
+        var gp = document.createElement("div");
+        gp.id = "gm_sliders";
+        gp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:200px;display:none;";
+        gp.innerHTML =
+            '<label>' + ssc.label + ': <span id="gm_s_val">' + ssc.default + '</span></label>' +
+            '<input type="range" id="gm_s_slider" min="' + ssc.min + '" max="' + ssc.max + '" step="' + (ssc.step || 1) + '" value="' + ssc.default + '" style="width:100%">' +
+            '<label style="margin-top:6px">' + osc.label + ': <span id="gm_o_val">' + osc.default + '</span></label>' +
+            '<input type="range" id="gm_o_slider" min="' + osc.min + '" max="' + osc.max + '" step="' + (osc.step || 0.05) + '" value="' + osc.default + '" style="width:100%">';
+        document.body.appendChild(gp);
+        var sSl = document.getElementById("gm_s_slider"), sVal = document.getElementById("gm_s_val");
+        var oSl = document.getElementById("gm_o_slider"), oVal = document.getElementById("gm_o_val");
+        if (sSl) sSl.addEventListener("input", function () { window.PM_gmUserDragged = true; window.PM_gmShape = parseFloat(sSl.value); if (sVal) sVal.textContent = sSl.value; });
+        if (oSl) oSl.addEventListener("input", function () { window.PM_gmUserDragged = true; window.PM_gmOffset = parseFloat(oSl.value); if (oVal) oVal.textContent = oSl.value; });
+
+        gmApplyShape(0, GM_SURF_R, 0);
+        for (var qi = 0; qi < sceneObjects.length; qi++) { var qo = sceneObjects[qi]; if (qo.userData && qo.userData.elementType && qo.userData.elementType.indexOf("gm_") === 0) qo.visible = false; }
+    }
+
+    // Authoritative per-state visibility (exact-token) + surface seed + panels.
+    function applyGaussLawMagnetismState(stateDef) {
+        var gm = stateDef.gm || {};
+        var vis = stateDef.visible_elements || [];
+        function listed(tok) { for (var i = 0; i < vis.length; i++) { if (vis[i] === tok) return true; } return false; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("gm_") !== 0) continue;
+            if (ud.elementType === "gm_tracer") { o.visible = listed("gm_tracer"); continue; }
+            o.visible = listed(ud.elementType);
+            gmSetOpacity(o, 1);
+        }
+        // Seed the surface shape/scope for this state (S3 shrinks onto the N pole).
+        var R = (typeof gm.surface_R === "number") ? gm.surface_R : GM_SURF_R;
+        var offsetX = (typeof gm.surface_offset_x === "number") ? gm.surface_offset_x : 0;
+        var seedShape = (typeof gm.surface_shape === "number") ? gm.surface_shape
+            : (gm.morph && typeof gm.morph.from === "number" ? gm.morph.from : 0);
+        gmApplyShape(seedShape, R, offsetX);
+        window.PM_gmShape = seedShape; window.PM_gmOffset = offsetX; window.PM_gmUserDragged = false;
+        var sS = document.getElementById("gm_s_slider"), sV = document.getElementById("gm_s_val");
+        if (sS) sS.value = String(Math.round(seedShape)); if (sV) sV.textContent = String(Math.round(seedShape));
+        var oS = document.getElementById("gm_o_slider"), oV = document.getElementById("gm_o_val");
+        if (oS) oS.value = String(offsetX); if (oV) oV.textContent = String(offsetX);
+        // Reset the looping flow clock + surface spin on state entry (Rule 26).
+        window.PM_gmFlowT0 = time;
+        window.PM_gmSpin = 0;
+        var sm0 = gmFindById("gm_surface"); if (sm0) sm0.rotation.y = 0;
+        var sw0 = gmFindById("gm_surface_wire"); if (sw0) sw0.rotation.y = 0;
+        // Seed tracers spread across the loops.
+        for (var d = 0; d < gmTracers.length; d++) { gmTracers[d].userData.t = d / gmTracers.length; }
+        var intD = gmFindById("gm_internal_dot"); if (intD) intD.userData.t = 0;
+        // Panels.
+        var gpEl = document.getElementById("gm_sliders"); if (gpEl) gpEl.style.display = gm.sliders ? "block" : "none";
+        var roEl = document.getElementById("gm_readout"); if (roEl) roEl.style.display = (gm.show_readout === false) ? "none" : "block";
+    }
+
+    // Per-frame gauss_law_magnetism update — closed-loop tracer stream + the S4
+    // surface morph + the S6 sandbox drag + the Φ_B = 0 readout. Pure function of
+    // the state clock (Rule 26).
+    function updateGaussLawMagnetismFrame() {
+        if (config.scenario_type !== "gauss_law_magnetism") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var gm = stateDef.gm || {};
+        var t = time - stateStartTime;
+        var sliders = !!gm.sliders;
+        var dragging = sliders && window.PM_gmUserDragged;
+
+        // 1. Surface shape/scope this frame (slider in sandbox, else morph anim, else seed).
+        var R = (typeof gm.surface_R === "number") ? gm.surface_R : GM_SURF_R;
+        var offsetX = (typeof gm.surface_offset_x === "number") ? gm.surface_offset_x : 0;
+        var shape;
+        if (dragging) { shape = window.PM_gmShape; offsetX = window.PM_gmOffset; }
+        else if (gm.morph) {
+            var m = gm.morph;
+            var at = (m.at_ms || 0) / 1000, dur = (m.duration_ms || 4500) / 1000;
+            var from = (m.from != null ? m.from : 0), to = (m.to != null ? m.to : 2);
+            if (m.loop) {
+                // continuous triangle sweep from↔to so the morph never freezes
+                var tt = Math.max(0, t - at);
+                var ph = dur > 0 ? ((tt % (dur * 2)) / dur) : 0;     // 0..2
+                var tri = ph <= 1 ? ph : (2 - ph);                    // 0..1..0
+                shape = from + (to - from) * tri;
+            } else {
+                var p = dur > 0 ? Math.max(0, Math.min(1, (t - at) / dur)) : 1;
+                shape = from + (to - from) * p;
+            }
+        } else if (gm.sliders) {
+            // sandbox idle motion (no user yet): gently sweep the surface along the
+            // magnet axis so the scene reads as alive and reinforces "drag anywhere,
+            // still zero". A real drag sets PM_gmUserDragged → the dragging branch wins.
+            shape = (typeof gm.surface_shape === "number") ? gm.surface_shape : 0;
+            offsetX = 0.9 * Math.sin(t * 0.8);
+        } else { shape = (typeof gm.surface_shape === "number") ? gm.surface_shape : 0; }
+        var surfNow = gmFindById("gm_surface");
+        var surfWireNow = gmFindById("gm_surface_wire");
+        if (surfNow && surfNow.visible) gmApplyShape(shape, R, offsetX);
+        // 1b. Continuous surface SPIN during the morph state (and only there): a
+        //     slowly turning cube/blob reads as motion EVERY frame regardless of the
+        //     morph's discrete shape swaps or the capture cadence. Frame-based, so it
+        //     never stalls. Rule 29: orientation only — the imaginary surface's size
+        //     is unchanged (it reinforces "any closed surface, any orientation → 0").
+        if (gm.morph && surfNow && surfNow.visible) {
+            window.PM_gmSpin = (window.PM_gmSpin || 0) + 0.014;
+            surfNow.rotation.y = window.PM_gmSpin;
+            if (surfWireNow) surfWireNow.rotation.y = window.PM_gmSpin;
+        }
+        // 1c. Surface "breathing" — a gentle whole-surface brightness pulse so the
+        //     translucent Gaussian cage reads as alive EVERY frame in every surface
+        //     state (even a static sphere that cannot show rotation). Rule 29: this
+        //     is brightness only — the surface's size and shape never change with it.
+        if (surfNow && surfNow.visible && surfNow.material) {
+            var breathe = 0.5 + 0.5 * Math.sin(t * 1.5);
+            surfNow.material.opacity = 0.09 + 0.13 * breathe;          // 0.09 .. 0.22
+            surfNow.material.emissiveIntensity = 0.08 + 0.14 * breathe;
+            if (surfWireNow && surfWireNow.material) surfWireNow.material.opacity = 0.30 + 0.30 * breathe;
+        }
+
+        // 2. Closed-loop tracer stream (N→external→S→internal→N). Geometry never moves.
+        if (gmLoopPaths.length) {
+            for (var d = 0; d < gmTracers.length; d++) {
+                var tr = gmTracers[d]; if (!tr.visible) continue;
+                var path = gmLoopPaths[tr.userData.loop % gmLoopPaths.length];
+                tr.userData.t = tr.userData.t + 0.18 * 0.016;
+                var xyz = gmLerpPath3(path, tr.userData.t);
+                tr.position.set(xyz[0], xyz[1], xyz[2]);
+            }
+        }
+        // 2b. The internal-return dot traces the front internal tube (S→N).
+        var intT = gmFindById("gm_internal"), intD = gmFindById("gm_internal_dot");
+        if (intT && intD && intD.visible && intT.userData.loopPath) {
+            intD.userData.t = intD.userData.t + 0.18 * 0.016;
+            var lp = gmLerpPath3(intT.userData.loopPath, intD.userData.t);
+            intD.position.set(lp[0], lp[1], lp[2]);
+        }
+        // 2c. Travelling BRIGHTNESS pulse along the closed-loop field lines so the
+        //     field reads as continuously "streaming" (Rule 29: opacity only, the
+        //     tube geometry never moves or scales). Each line is staggered by its
+        //     index so a wave ripples across the whole loop family.
+        var pulsePhase = t * 1.8;
+        for (var fk = 0; fk < sceneObjects.length; fk++) {
+            var fo = sceneObjects[fk], fud = fo.userData;
+            if (!fud || fud.elementType !== "gm_field_line" || !fo.visible) continue;
+            if (!fo.material) continue;
+            var wob = 0.4 + 0.5 * Math.sin(pulsePhase - (fud.flIndex || 0) * 0.55);
+            fo.material.transparent = true;
+            fo.material.opacity = Math.max(0.12, wob);
+        }
+
+        // 3. Contrast inset (S5): pulse the radial OUTWARD lines so the "lines leave
+        //    and never return" reads as motion (brightness only, Rule 29).
+        var con = gmFindById("gm_contrast");
+        if (con && con.visible) {
+            var phase = t * 1.6;
+            (function pulse(node, idx) {
+                if (node.userData && node.userData.gmContrastRadial) {
+                    var wob = 0.4 + 0.45 * Math.sin(phase - idx.v * 0.4); idx.v++;
+                    node.children.forEach(function (cc) { if (cc.material) cc.material.opacity = wob; });
+                }
+                for (var c = 0; c < node.children.length; c++) pulse(node.children[c], idx);
+            })(con, { v: 0 });
+        }
+
+        // 4. Readout: ∮B·dA = 0 (always), worded per the state's mode.
+        var roEl = document.getElementById("gm_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var mode = gm.mode || "loops";
+            var html = "";
+            if (gm.caption) html += '<div>' + gm.caption + '</div>';
+            else if (mode === "loops") html += '<div>magnetic field B = closed loops</div><div>no start, no end</div>';
+            else if (mode === "whole") html += '<div>lines leaving = lines entering</div><div style="color:#8CF5A0">\\u03a6_out + \\u03a6_in = 0</div>';
+            else if (mode === "pole") html += '<div style="color:#FFD54F">even around ONE pole: out = in</div><div>no magnetic monopole</div>';
+            else if (mode === "morph") html += '<div>sphere \\u2192 cube \\u2192 blob</div><div>any closed surface</div>';
+            else if (mode === "contrast") html += '<div style="color:#8CF5A0">magnet: \\u222eB\\u00b7dA = 0</div><div style="color:#FF8A80">charge: \\u222eE\\u00b7dA = q/\\u03b5\\u2080 \\u2260 0</div>';
+            else if (mode === "sandbox") html += '<div>drag the surface \\u2014 anywhere</div>';
+            if (mode !== "contrast") html += '<div style="color:#8CF5A0">net \\u03a6_B = \\u222eB\\u00b7dA = 0</div>';
+            roEl.innerHTML = html;
+        }
+    }
+
+    // TTS-bound brightness emphasis (Rule 29): brighten gm_* elements named in the
+    // narration's glow targets, dim their peers — never resize.
+    function applyGaussLawMagnetismGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            if (!sud.elementType || sud.elementType.indexOf("gm_") !== 0) continue;
+            applyGlowEmphasis(so, on(sud.id) || on(sud.elementType), glowActive, glowP, true);
+        }
+    }
+
+    // ══════════════════════════════════════════════════════════════════════════
+    // earths_magnetism scenario (Ch.5 §5.4) — the live-instrument "dip needle"
+    // model. STATE_1 globe view: Earth as a TILTED bar magnet + a compass that
+    // points to MAGNETIC north (declination D, a horizontal-plane angle). STATE_2
+    // local view: free the needle to pivot VERTICALLY and it DIVES below the
+    // horizon by the dip angle I; the field B splits into H (horizontal) + V
+    // (vertical) with tan I = V/H and B = sqrt(H^2 + V^2). STATE_3 sweeps the
+    // latitude magnetic-equator -> pole and the dip swings 0 -> 90 (the theta_sweep
+    // analog). STATE_4 free play. Built ONCE, every mesh tagged
+    // userData{elementType,id}, all hidden; per-state visibility owned by
+    // applyEarthsMagnetismState (exact-token visible_elements like gm). Per-frame
+    // motion is a PURE fn of the state clock (time - stateStartTime), Rule 26.
+    // Emphasis = brightness (Rule 29); the only length that changes is the H/V
+    // decomposition, which tracks the REAL component magnitudes (B cos I / B sin I).
+    // TWO INDEPENDENT tilts on SEPARATE groups: the fixed ~11deg geomagnetic axis
+    // (globe view, tilt about world Z) and the per-latitude dip-needle tilt (local
+    // view, about world Z) — never conflated, and never applyTorqueLoopTheta (that
+    // is a world-Y AZIMUTH rotation; dip is a VERTICAL-plane tilt).
+    // ══════════════════════════════════════════════════════════════════════════
+    var EM_TILT_DEG = 11;                 // geomagnetic axis tilt off the spin axis
+    var EM_GLOBE_R = 1.6;
+    var EM_NEEDLE_LEN = 1.7;              // dip needle / B hypotenuse world length
+    var EM_BVAL = 50;                     // demo total field magnitude (microtesla)
+    var EM_PIVY = 0.5;                    // local dip-needle pivot height (centres the triangle)
+    var EM = {
+        globe: "#5C8AD6", grid: "#9FC0F0",
+        geoAxis: "#FFFFFF", magAxis: "#FFB74D",
+        nColor: "#EF5350", sColor: "#42A5F5", needleS: "#CFD8DC",
+        H: "#66BB6A", V: "#4DD0E1", B: "#FFD54F",
+        declArc: "#FFEE58", dipArc: "#E040FB", ground: "#90A4AE"
+    };
+
+    function emFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { if (sceneObjects[i].userData && sceneObjects[i].userData.id === id) return sceneObjects[i]; } return null; }
+
+    // Dip-latitude relation I = atan(2 tan(lambda)); lambda in [0,90] deg -> I in [0,90].
+    function emDipFromLat(latDeg) {
+        var L = Math.max(0, Math.min(89.5, latDeg));
+        if (latDeg >= 89.5) return 90;
+        return Math.atan(2 * Math.tan(L * Math.PI / 180)) * 180 / Math.PI;
+    }
+
+    // A two-tone needle pointing local +X (N coloured tip + arrowhead, grey tail).
+    function emBuildNeedle(len, nColor, sColor) {
+        var g = new THREE.Group();
+        var w = 0.075;
+        var nMesh = new THREE.Mesh(new THREE.BoxGeometry(len, w, w),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(nColor), emissive: hexToThreeColor(nColor), emissiveIntensity: 0.5 }));
+        nMesh.position.set(len / 2, 0, 0); g.add(nMesh);
+        var sLen = len * 0.6;
+        var sMesh = new THREE.Mesh(new THREE.BoxGeometry(sLen, w, w),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(sColor), emissive: hexToThreeColor(sColor), emissiveIntensity: 0.2 }));
+        sMesh.position.set(-sLen / 2, 0, 0); g.add(sMesh);
+        var head = new THREE.Mesh(new THREE.ConeGeometry(0.12, 0.3, 14),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(nColor), emissive: hexToThreeColor(nColor), emissiveIntensity: 0.5 }));
+        head.position.set(len + 0.15, 0, 0); head.rotation.z = -Math.PI / 2; g.add(head);
+        var pivot = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 12), new THREE.MeshPhongMaterial({ color: 0x263238, emissive: 0x10171C, emissiveIntensity: 0.3 }));
+        g.add(pivot);
+        return g;
+    }
+
+    // Replace a Line object's points in place (arc / triangle rebuild each frame).
+    function emSetLinePoints(lineObj, pts) {
+        if (!lineObj || !lineObj.geometry) return;
+        var vs = [];
+        for (var i = 0; i < pts.length; i++) vs.push(new THREE.Vector3(pts[i][0], pts[i][1], pts[i][2]));
+        lineObj.geometry.setFromPoints(vs);
+        if (lineObj.geometry.attributes && lineObj.geometry.attributes.position) lineObj.geometry.attributes.position.needsUpdate = true;
+    }
+
+    // Arc points: centre (cx,cy,cz), radius r, angle a0->a1, n segments. plane
+    // 'xy' (x=cos,y=sin) for the vertical dip arc; 'xz' (x=sin,z=cos) for the
+    // horizontal declination arc.
+    function emArcPoints(cx, cy, cz, r, a0, a1, plane, n) {
+        var pts = [];
+        for (var i = 0; i <= n; i++) {
+            var a = a0 + (a1 - a0) * (i / n);
+            if (plane === "xz") pts.push([cx + r * Math.sin(a), cy, cz + r * Math.cos(a)]);
+            else pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a), cz]);
+        }
+        return pts;
+    }
+
+    function buildEarthsMagnetism() {
+        function lineMat(hex, op) { return new THREE.LineBasicMaterial({ color: hexToThreeColor(hex), transparent: true, opacity: op != null ? op : 1 }); }
+
+        // ── GLOBE CLUSTER (STATE_1) ──────────────────────────────────────────
+        // 1. Translucent globe + a faint lat/long wire grid.
+        var globe = new THREE.Mesh(new THREE.SphereGeometry(EM_GLOBE_R, 32, 24),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor(EM.globe), emissive: hexToThreeColor(EM.globe), emissiveIntensity: 0.12, transparent: true, opacity: 0.16, side: THREE.DoubleSide, depthWrite: false }));
+        globe.userData = { elementType: "em_globe", id: "em_globe" }; globe.visible = false; addToScene(globe);
+        var gridWire = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.SphereGeometry(EM_GLOBE_R, 16, 12)),
+            new THREE.LineBasicMaterial({ color: hexToThreeColor(EM.grid), transparent: true, opacity: 0.3 }));
+        gridWire.userData = { elementType: "em_globe", id: "em_globe_grid" }; gridWire.visible = false; addToScene(gridWire);
+
+        // 2. Geographic (spin) axis — vertical white line; "geographic N" at the top.
+        var geoAxis = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -2.15, 0), new THREE.Vector3(0, 2.35, 0)]), lineMat(EM.geoAxis, 0.85));
+        geoAxis.userData = { elementType: "em_geo_axis", id: "em_geo_axis" }; geoAxis.visible = false; addToScene(geoAxis);
+        var geoNLbl = createWideLabelSprite("geographic N", EM.geoAxis, 0.3); geoNLbl.position.set(0, 2.62, 0); geoNLbl.userData = { elementType: "em_geo_axis", id: "em_geo_axis_lbl" }; geoNLbl.visible = false; addToScene(geoNLbl);
+
+        // 3. Magnetic axis — amber line tilted EM_TILT_DEG about world Z.
+        var tilt = EM_TILT_DEG * Math.PI / 180;
+        // magDir points toward the S end (up, toward geographic N) — COLLINEAR with
+        // the internal dipole below, which tilts its S end (local +Y) to (-sin,cos).
+        var magDir = new THREE.Vector3(-Math.sin(tilt), Math.cos(tilt), 0);
+        var magAxis = new THREE.Line(new THREE.BufferGeometry().setFromPoints([magDir.clone().multiplyScalar(-2.0), magDir.clone().multiplyScalar(2.0)]), lineMat(EM.magAxis, 0.8));
+        magAxis.userData = { elementType: "em_mag_axis", id: "em_mag_axis" }; magAxis.visible = false; addToScene(magAxis);
+        var magLbl = createWideLabelSprite("magnetic axis (tilt \\u2248 11\\u00b0)", EM.magAxis, 0.28); magLbl.position.set(1.55, -1.55, 0); magLbl.userData = { elementType: "em_mag_axis", id: "em_mag_axis_lbl" }; magLbl.visible = false; addToScene(magLbl);
+
+        // 4. Internal tilted bar magnet (the dipole) — its S end toward geographic N
+        //    (top): so the geographic-north pole behaves as a magnetic SOUTH pole.
+        var dipoleGrp = new THREE.Group();
+        dipoleGrp.rotation.z = tilt;                       // tilt about Z (NOT a Y azimuth)
+        var halfBar = 0.85;
+        var sBox = new THREE.Mesh(new THREE.BoxGeometry(0.34, halfBar, 0.34), new THREE.MeshPhongMaterial({ color: hexToThreeColor(EM.sColor), emissive: hexToThreeColor(EM.sColor), emissiveIntensity: 0.45 }));
+        sBox.position.set(0, halfBar / 2, 0); dipoleGrp.add(sBox);
+        var nBox = new THREE.Mesh(new THREE.BoxGeometry(0.34, halfBar, 0.34), new THREE.MeshPhongMaterial({ color: hexToThreeColor(EM.nColor), emissive: hexToThreeColor(EM.nColor), emissiveIntensity: 0.45 }));
+        nBox.position.set(0, -halfBar / 2, 0); dipoleGrp.add(nBox);
+        var sBoxLbl = createLabelSprite("S", "#BBDEFB", 0.32); sBoxLbl.position.set(0.34, halfBar, 0); dipoleGrp.add(sBoxLbl);
+        var nBoxLbl = createLabelSprite("N", "#FFCDD2", 0.32); nBoxLbl.position.set(0.34, -halfBar, 0); dipoleGrp.add(nBoxLbl);
+        var mArrow = new THREE.ArrowHelper(new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, halfBar, 0), 2 * halfBar, EM.magAxis, 0.24, 0.14);
+        dipoleGrp.add(mArrow);                             // moment m: S -> N (down the tilted bar)
+        dipoleGrp.userData = { elementType: "em_dipole", id: "em_dipole" }; dipoleGrp.visible = false; scene.add(dipoleGrp); sceneObjects.push(dipoleGrp);
+        var earthLbl = createWideLabelSprite("Earth \\u2248 a tilted bar magnet", "#FFE082", 0.32); earthLbl.position.set(0, -2.55, 0); earthLbl.userData = { elementType: "em_dipole", id: "em_earth_lbl" }; earthLbl.visible = false; addToScene(earthLbl);
+
+        // 5. Aside (light M4 fix): the geographic-N pole behaves as a magnetic S pole.
+        var asideLbl = createWideLabelSprite("geographic N behaves as a magnetic S pole", "#B0BEC5", 0.25); asideLbl.position.set(0, -3.0, 0); asideLbl.userData = { elementType: "em_pole", id: "em_pole_aside" }; asideLbl.visible = false; addToScene(asideLbl);
+
+        // 6. Declination inset at the top of the globe — a horizontal compass that
+        //    points to MAGNETIC north (needle), a TRUE-north reference line (+X), and
+        //    the yellow D arc between them (in the horizontal XZ plane). D is a
+        //    horizontal-plane angle — kept on a DIFFERENT plane from the dip arc I.
+        var compY = 1.95;
+        var compass = emBuildNeedle(1.0, EM.nColor, EM.needleS);
+        compass.position.set(0, compY, 0);
+        compass.userData = { elementType: "em_compass", id: "em_compass" }; compass.visible = false; scene.add(compass); sceneObjects.push(compass);
+        var compLbl = createWideLabelSprite("compass \\u2192 magnetic N", EM.nColor, 0.25); compLbl.position.set(0, compY + 0.5, 0); compLbl.userData = { elementType: "em_compass", id: "em_compass_lbl" }; compLbl.visible = false; addToScene(compLbl);
+        var geoRef = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, compY, 0), new THREE.Vector3(1.25, compY, 0)]), lineMat(EM.geoAxis, 0.7));
+        geoRef.userData = { elementType: "em_geo_north_ref", id: "em_geo_north_ref" }; geoRef.visible = false; addToScene(geoRef);
+        var geoRefLbl = createWideLabelSprite("true N", EM.geoAxis, 0.25); geoRefLbl.position.set(1.55, compY + 0.18, 0); geoRefLbl.userData = { elementType: "em_geo_north_ref", id: "em_geo_north_ref_lbl" }; geoRefLbl.visible = false; addToScene(geoRefLbl);
+        var declArc = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, compY, 0)]), lineMat(EM.declArc, 0.95));
+        declArc.userData = { elementType: "em_decl_arc", id: "em_decl_arc" }; declArc.visible = false; addToScene(declArc);
+        var declLbl = createLabelSprite("D", EM.declArc, 0.34); declLbl.position.set(0.6, compY, 0.55); declLbl.userData = { elementType: "em_decl_arc", id: "em_decl_arc_lbl" }; declLbl.visible = false; addToScene(declLbl);
+
+        // ── LOCAL DIP-NEEDLE CLUSTER (STATE_2/3/4) ───────────────────────────
+        // 7. Ground / horizon plane (dim grey) + a horizontal reference line.
+        var ground = new THREE.Mesh(new THREE.PlaneGeometry(5.0, 3.2), new THREE.MeshPhongMaterial({ color: hexToThreeColor(EM.ground), emissive: hexToThreeColor(EM.ground), emissiveIntensity: 0.05, transparent: true, opacity: 0.12, side: THREE.DoubleSide, depthWrite: false }));
+        ground.rotation.x = -Math.PI / 2; ground.position.set(0.4, EM_PIVY, 0);
+        ground.userData = { elementType: "em_ground", id: "em_ground" }; ground.visible = false; addToScene(ground);
+        var horizon = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-1.7, EM_PIVY, 0), new THREE.Vector3(2.5, EM_PIVY, 0)]), lineMat(EM.ground, 0.6));
+        horizon.userData = { elementType: "em_ground", id: "em_horizon" }; horizon.visible = false; addToScene(horizon);
+        var horizonLbl = createWideLabelSprite("horizontal (ground)", "#B0BEC5", 0.25); horizonLbl.position.set(1.75, EM_PIVY + 0.28, 0); horizonLbl.userData = { elementType: "em_ground", id: "em_horizon_lbl" }; horizonLbl.visible = false; addToScene(horizonLbl);
+
+        // 8. The dip needle — pivots in the VERTICAL (xy) plane about world Z by I.
+        //    Doubles as the total-field B vector (its N tip = B direction).
+        var dipNeedle = emBuildNeedle(EM_NEEDLE_LEN, EM.nColor, EM.needleS);
+        dipNeedle.position.set(0, EM_PIVY, 0);
+        dipNeedle.userData = { elementType: "em_dip_needle", id: "em_dip_needle" }; dipNeedle.visible = false; scene.add(dipNeedle); sceneObjects.push(dipNeedle);
+        var bLbl = createLabelSprite("B", EM.B, 0.4); bLbl.userData = { elementType: "em_dip_needle", id: "em_b_lbl" }; bLbl.visible = false; addToScene(bLbl);
+
+        // 9. Dip arc I (magenta, VERTICAL plane) between horizon and needle + "I" label.
+        var dipArc = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, EM_PIVY, 0)]), lineMat(EM.dipArc, 0.95));
+        dipArc.userData = { elementType: "em_dip_arc", id: "em_dip_arc" }; dipArc.visible = false; addToScene(dipArc);
+        var dipLbl = createLabelSprite("I", EM.dipArc, 0.4); dipLbl.userData = { elementType: "em_dip_arc", id: "em_dip_lbl" }; dipLbl.visible = false; addToScene(dipLbl);
+
+        // 10. H (green, horizontal) + V (cyan, vertical) components + right-triangle.
+        var hArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, EM_PIVY, 0), 1, EM.H, 0.18, 0.11);
+        hArrow.userData = { elementType: "em_comp_h", id: "em_comp_h" }; hArrow.visible = false; addToScene(hArrow);
+        var hLbl = createLabelSprite("H", EM.H, 0.36); hLbl.userData = { elementType: "em_comp_h", id: "em_h_lbl" }; hLbl.visible = false; addToScene(hLbl);
+        var vArrow = new THREE.ArrowHelper(new THREE.Vector3(0, -1, 0), new THREE.Vector3(0, EM_PIVY, 0), 1, EM.V, 0.18, 0.11);
+        vArrow.userData = { elementType: "em_comp_v", id: "em_comp_v" }; vArrow.visible = false; addToScene(vArrow);
+        var vLbl = createLabelSprite("V", EM.V, 0.36); vLbl.userData = { elementType: "em_comp_v", id: "em_v_lbl" }; vLbl.visible = false; addToScene(vLbl);
+        var tri = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, EM_PIVY, 0)]), lineMat("#ECEFF1", 0.5));
+        tri.userData = { elementType: "em_triangle", id: "em_triangle" }; tri.visible = false; addToScene(tri);
+        var tanLbl = createWideLabelSprite("tan I = V / H", "#FFE082", 0.3); tanLbl.position.set(1.9, EM_PIVY - 1.5, 0); tanLbl.userData = { elementType: "em_triangle", id: "em_tan_lbl" }; tanLbl.visible = false; addToScene(tanLbl);
+        var bmagLbl = createWideLabelSprite("B = \\u221a(H\\u00b2 + V\\u00b2)", "#FFE082", 0.3); bmagLbl.position.set(1.9, EM_PIVY - 1.95, 0); bmagLbl.userData = { elementType: "em_triangle", id: "em_bmag_lbl" }; bmagLbl.visible = false; addToScene(bmagLbl);
+
+        // ── Readout + slider panels (gm createElement pattern) ───────────────
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var rp = document.createElement("div");
+        rp.id = "em_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:215px;display:none;";
+        document.body.appendChild(rp);
+
+        window.PM_emManual = false; window.PM_emLat = 30; window.PM_emDecl = 4;
+        var latC = (config.slider_controls && config.slider_controls.latitude) || { min: 0, max: 90, step: 1, default: 30, label: "Magnetic latitude \\u03bb" };
+        var decC = (config.slider_controls && config.slider_controls.declination) || { min: 0, max: 30, step: 1, default: 4, label: "Declination D" };
+        var sp = document.createElement("div");
+        sp.id = "em_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:210px;display:none;";
+        sp.innerHTML =
+            '<label>' + latC.label + ': <span id="em_lat_val">' + latC.default + '</span>\\u00b0</label>' +
+            '<input type="range" id="em_lat_slider" min="' + latC.min + '" max="' + latC.max + '" step="' + (latC.step || 1) + '" value="' + latC.default + '" style="width:100%">' +
+            '<label style="margin-top:6px">' + decC.label + ': <span id="em_dec_val">' + decC.default + '</span>\\u00b0</label>' +
+            '<input type="range" id="em_dec_slider" min="' + decC.min + '" max="' + decC.max + '" step="' + (decC.step || 1) + '" value="' + decC.default + '" style="width:100%">';
+        document.body.appendChild(sp);
+        var latSl = document.getElementById("em_lat_slider"), latV = document.getElementById("em_lat_val");
+        var decSl = document.getElementById("em_dec_slider"), decV = document.getElementById("em_dec_val");
+        // Instrument rule (2026-06-30): a TRUSTED latitude drag seizes manual (stops
+        // the STATE_3 auto-sweep + STATE_4 idle drift); declination only updates D.
+        // The on-entry sync sets .value directly (no input event fires), so the
+        // auto-demo is never killed by state entry.
+        if (latSl) latSl.addEventListener("input", function (ev) { window.PM_emLat = parseFloat(latSl.value); if (latV) latV.textContent = latSl.value; if (ev && ev.isTrusted) window.PM_emManual = true; });
+        if (decSl) decSl.addEventListener("input", function () { window.PM_emDecl = parseFloat(decSl.value); if (decV) decV.textContent = decSl.value; });
+
+        // Hide every em_* element on build (mirrors gm).
+        for (var qi = 0; qi < sceneObjects.length; qi++) { var qo = sceneObjects[qi]; if (qo.userData && qo.userData.elementType && qo.userData.elementType.indexOf("em_") === 0) qo.visible = false; }
+    }
+
+    // Authoritative per-state visibility (exact-token) + instrument seed + readout.
+    function applyEarthsMagnetismState(stateDef) {
+        var em = stateDef.em || {};
+        var vis = stateDef.visible_elements || [];
+        function listed(tok) { for (var i = 0; i < vis.length; i++) { if (vis[i] === tok) return true; } return false; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("em_") !== 0) continue;
+            o.visible = listed(ud.elementType);
+        }
+        // Seed the instrument for this entry (resets the auto-demo clock + manual flag).
+        window.PM_emManual = false;
+        window.PM_emLat = (typeof em.latitude_deg === "number") ? em.latitude_deg : 30;
+        window.PM_emDecl = (typeof em.declination_deg === "number") ? em.declination_deg : 4;
+        var latSl = document.getElementById("em_lat_slider"), latV = document.getElementById("em_lat_val");
+        if (latSl) latSl.value = String(window.PM_emLat); if (latV) latV.textContent = String(Math.round(window.PM_emLat));
+        var decSl = document.getElementById("em_dec_slider"), decV = document.getElementById("em_dec_val");
+        if (decSl) decSl.value = String(window.PM_emDecl); if (decV) decV.textContent = String(Math.round(window.PM_emDecl));
+        var roEl = document.getElementById("em_readout"); if (roEl) roEl.style.display = (em.show_readout === false) ? "none" : "block";
+    }
+
+    // Per-frame earths_magnetism update — resolve lambda (manual drag > sweep >
+    // dive-reveal > seed+idle-drift), tilt the dip needle, draw the D arc + I arc +
+    // H/V/B triangle, and write the live readout. PURE fn of the state clock (Rule 26).
+    function updateEarthsMagnetismFrame() {
+        if (config.scenario_type !== "earths_magnetism") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var em = stateDef.em || {};
+        var t = time - stateStartTime;
+
+        // 1. Resolve the latitude lambda this frame.
+        var seedLat = (typeof em.latitude_deg === "number") ? em.latitude_deg : 30;
+        var lat;
+        if (window.PM_emManual) {
+            lat = window.PM_emLat;
+        } else if (em.sweep) {
+            var sw = em.sweep;
+            var from = (typeof sw.from_lat === "number") ? sw.from_lat : 0;
+            var to = (typeof sw.to_lat === "number") ? sw.to_lat : 90;
+            var per = (typeof sw.period_s === "number") ? sw.period_s : 8;
+            var ph = per > 0 ? ((t % per) / per) : 0;            // 0..1
+            var tri = ph <= 0.5 ? (ph * 2) : (2 - ph * 2);       // 0..1..0 triangle
+            lat = from + (to - from) * tri;
+            window.PM_emLat = lat;
+        } else if (em.dive_reveal) {
+            // STATE_2: hold flat (I=0) ~0.3s, then DIVE to the dip over ~0.95s, then
+            // a small damped settle wobble so it reads as a live needle.
+            var hold = 0.3, dur = 0.95;
+            var p = t <= hold ? 0 : Math.min(1, (t - hold) / dur);
+            var ease = p * p * (3 - 2 * p);                       // smoothstep
+            lat = seedLat * ease;
+            if (p >= 1) { var ts = t - hold - dur; lat = seedLat + 0.8 * Math.sin(ts * 2.2) * Math.exp(-ts * 0.8); }
+            window.PM_emLat = lat;
+        } else {
+            // STATE_4 sandbox: gentle idle micro-drift until a trusted drag seizes manual.
+            lat = seedLat + 1.6 * Math.sin(t * 0.7);
+            window.PM_emLat = lat;
+        }
+        lat = Math.max(0, Math.min(90, lat));
+        var I = emDipFromLat(lat);
+        var Irad = I * Math.PI / 180;
+        var D = window.PM_emDecl;
+        var H = EM_BVAL * Math.cos(Irad);
+        var V = EM_BVAL * Math.sin(Irad);
+
+        // Keep the latitude slider thumb tracking the live (swept/drifting) value
+        // when the teacher has not seized manual.
+        if (!window.PM_emManual) {
+            var latSl2 = document.getElementById("em_lat_slider"), latV2 = document.getElementById("em_lat_val");
+            if (latSl2) latSl2.value = String(lat); if (latV2) latV2.textContent = String(Math.round(lat));
+        }
+
+        // 2. GLOBE view: idle-sway the compass about magnetic north + draw the D arc.
+        var compass = emFindById("em_compass");
+        var sway = (2.0 * Math.PI / 180) * Math.sin(t * 0.9);
+        if (compass && compass.visible) compass.rotation.y = D * Math.PI / 180 + sway;
+        var declArc = emFindById("em_decl_arc");
+        if (declArc && declArc.visible) emSetLinePoints(declArc, emArcPoints(0, 1.95, 0, 0.9, 0, D * Math.PI / 180 + sway, "xz", 24));
+
+        // 3. LOCAL view: tilt the dip needle (N tip dives BELOW the horizon), draw
+        //    the I arc + H/V arrows + the right-triangle outline (a pure cos/sin split
+        //    of a fixed-magnitude B — the hypotenuse length holds, the legs trade off).
+        var dipNeedle = emFindById("em_dip_needle");
+        if (dipNeedle && dipNeedle.visible) {
+            dipNeedle.rotation.z = -Irad;
+            var bl = emFindById("em_b_lbl");
+            if (bl) bl.position.set((EM_NEEDLE_LEN + 0.32) * Math.cos(Irad), EM_PIVY - (EM_NEEDLE_LEN + 0.32) * Math.sin(Irad), 0.06);
+        }
+        var dipArc = emFindById("em_dip_arc");
+        if (dipArc && dipArc.visible) {
+            emSetLinePoints(dipArc, emArcPoints(0, EM_PIVY, 0, 0.72, 0, -Irad, "xy", 24));
+            var dl = emFindById("em_dip_lbl"); if (dl) dl.position.set(0.98 * Math.cos(Irad / 2), EM_PIVY - 0.98 * Math.sin(Irad / 2), 0);
+        }
+        var Hw = EM_NEEDLE_LEN * Math.cos(Irad);              // world component lengths
+        var Vw = EM_NEEDLE_LEN * Math.sin(Irad);
+        var hA = emFindById("em_comp_h");
+        if (hA && hA.visible) {
+            hA.position.set(0, EM_PIVY, 0);
+            hA.setLength(Math.max(0.01, Hw), 0.16, 0.10);
+            var hl = emFindById("em_h_lbl"); if (hl) hl.position.set(Hw / 2, EM_PIVY + 0.24, 0);
+        }
+        var vA = emFindById("em_comp_v");
+        if (vA && vA.visible) {
+            vA.position.set(Hw, EM_PIVY, 0);
+            vA.setLength(Math.max(0.01, Vw), 0.16, 0.10);
+            var vl = emFindById("em_v_lbl"); if (vl) vl.position.set(Hw + 0.3, EM_PIVY - Vw / 2, 0);
+        }
+        var triEl = emFindById("em_triangle");
+        if (triEl && triEl.visible) emSetLinePoints(triEl, [[0, EM_PIVY, 0], [Hw, EM_PIVY, 0], [Hw, EM_PIVY - Vw, 0], [0, EM_PIVY, 0]]);
+
+        // 4. Live readout — lambda, I, D, H, V, B.
+        var roEl = document.getElementById("em_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var html = "";
+            html += "<div>\\u03bb (mag. latitude) = " + lat.toFixed(0) + "\\u00b0</div>";
+            html += "<div style=\\"color:#E040FB\\">I (dip) = " + I.toFixed(0) + "\\u00b0</div>";
+            html += "<div style=\\"color:#FFEE58\\">D (declination) = " + D.toFixed(0) + "\\u00b0</div>";
+            html += "<div style=\\"color:#66BB6A\\">H = " + H.toFixed(1) + " \\u00b5T</div>";
+            html += "<div style=\\"color:#4DD0E1\\">V = " + V.toFixed(1) + " \\u00b5T</div>";
+            html += "<div style=\\"color:#FFD54F\\">B = " + EM_BVAL.toFixed(0) + " \\u00b5T  (=\\u221a(H\\u00b2+V\\u00b2))</div>";
+            roEl.innerHTML = html;
+        }
+    }
+
+    // TTS-bound brightness emphasis (Rule 29): brighten em_* elements named in the
+    // narration's glow targets, dim peers — never resize.
+    function applyEarthsMagnetismGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            if (!sud.elementType || sud.elementType.indexOf("em_") !== 0) continue;
+            applyGlowEmphasis(so, on(sud.id) || on(sud.elementType), glowActive, glowP, true);
+        }
+    }
+
+    // ── magnetisation scenario (B = mu0(H+M); M = chi H; mu_r = 1+chi) ───────
+    //   A solenoid supplies the magnetic INTENSITY H (H = n I, set by the coil
+    //   current); an insertable material CORE develops MAGNETISATION M as its
+    //   atomic dipoles align to H; the total field inside is B = mu0(H + M).
+    //   Susceptibility chi = M/H classifies matter (dia < 0, para small +, ferro
+    //   large +). NEW field_3d scenario reusing createCoilGeometry / createTubeLine
+    //   / createArrowHead. Rule 24 (silent visual: labels + readout carry it),
+    //   Rule 26 (every animation a pure fn of the state clock time-stateStartTime),
+    //   Rule 29 (emphasis = brightness; the only lengths that change are the net-M
+    //   arrow and the field-line density, both REAL physical magnitudes).
+    var MAG_N = 1000;                 // turns/m (fixed) -> H = MAG_N * I  (A/m)
+    var MAG_HSAT = 5000;              // A/m: dipole alignment saturates near here
+    var MAG_HALF = 2.1;               // solenoid half-length along +X
+    function magMaterial(idx) {
+        // teaching-representative chi (exaggerated so alignment + the B jump are
+        // VISIBLE; the relations B=mu0(H+M), M=chiH, mu_r=1+chi stay exact).
+        if (idx === 1) return { name: "diamagnetic", chi: -0.08, align: -0.14, color: "#90A4AE" };
+        if (idx === 2) return { name: "paramagnetic", chi: 0.60, align: 0.40, color: "#A5D6A7" };
+        if (idx === 3) return { name: "ferromagnetic", chi: 199, align: 1.0, color: "#FFCC80" };
+        return { name: "vacuum", chi: 0, align: 0, color: "#B0BEC5" };
+    }
+    function magFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+
+    function buildMagnetisation() {
+        var flColor = (config.field_lines && config.field_lines.color_positive) || "#66BB6A";
+
+        // 1. Solenoid coil (axis +X so a side camera sees the rings + the rod slides in).
+        var coil = createCoilGeometry(12, 0.9, [1, 0, 0], 2 * MAG_HALF);
+        coil.userData = { elementType: "mag_coil", id: "mag_coil" };
+        for (var ci = 0; ci < coil.children.length; ci++) { if (coil.children[ci].material) { coil.children[ci].material.transparent = true; coil.children[ci].material.opacity = 1; } }
+        addToScene(coil);
+        var coilLbl = createWideLabelSprite("solenoid: H = n I", "#FFCC80", 0.3); coilLbl.position.set(0, 1.55, 0); coilLbl.userData = { elementType: "mag_label", id: "mag_coil_lbl" }; addToScene(coilLbl);
+
+        // 2. Sparse internal field lines (the applied H, always present).
+        for (var i = 0; i < 4; i++) {
+            var ang = (i / 4) * Math.PI * 2, rr = 0.42;
+            var yz = [rr * Math.cos(ang), rr * Math.sin(ang)];
+            var pts = []; for (var s = 0; s <= 16; s++) { var tt = s / 16; pts.push([-MAG_HALF + tt * 2 * MAG_HALF, yz[0], yz[1]]); }
+            var tube = createTubeLine(pts, flColor, 0.02);
+            if (tube) { tube.userData = { elementType: "mag_fl_int", id: "mag_fl_int_" + i }; addToScene(tube); }
+            var head = createArrowHead(pts[8], [1, 0, 0], flColor); head.userData = { elementType: "mag_fl_int", id: "mag_fl_int_arr_" + i }; addToScene(head);
+        }
+        // 3. DENSE internal bundle (hidden; faded in for the B = mu0(H+M) beat).
+        for (var i = 0; i < 10; i++) {
+            var ang2 = (i / 10) * Math.PI * 2, rr2 = 0.16 + (i % 3) * 0.12;
+            var pts2 = []; for (var s = 0; s <= 16; s++) { var tt2 = s / 16; pts2.push([-MAG_HALF * 0.9 + tt2 * 1.8 * MAG_HALF, rr2 * Math.cos(ang2), rr2 * Math.sin(ang2)]); }
+            var tube2 = createTubeLine(pts2, "#FFD54F", 0.02);
+            if (tube2) { if (tube2.material) { tube2.material.transparent = true; tube2.material.opacity = 0; } tube2.userData = { elementType: "mag_fl_dense", id: "mag_fl_dense_" + i }; tube2.visible = false; addToScene(tube2); }
+        }
+        // 4. External faint return loops (outside ~ weak).
+        for (var i = 0; i < 3; i++) {
+            var ang3 = (i / 3) * Math.PI * 2, bulge = 1.2 + i * 0.7;
+            var pts3 = []; for (var s = 0; s <= 40; s++) { var phi = (s / 40) * Math.PI; var xx = MAG_HALF * Math.cos(phi); var rr3 = 0.42 + bulge * Math.sin(phi); pts3.push([xx, rr3 * Math.cos(ang3), rr3 * Math.sin(ang3)]); }
+            var tube3 = createTubeLine(pts3, flColor, 0.01);
+            if (tube3) { if (tube3.material) { tube3.material.transparent = true; tube3.material.opacity = 0.24; } tube3.userData = { elementType: "mag_fl_ext", id: "mag_fl_ext_" + i }; addToScene(tube3); }
+        }
+        // 5. Current-flow beads — bright amber spheres that SPIRAL along the coil
+        //    wire (radius 0.9) so the current is visibly "moving around the
+        //    solenoid"; speed scales with I in the frame loop (founder ask).
+        for (var i = 0; i < 14; i++) {
+            var csph = new THREE.Mesh(new THREE.SphereGeometry(0.085, 12, 12),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFB300") }));
+            csph.userData = { elementType: "mag_curr", id: "mag_curr_" + i, slot: i / 14 };
+            addToScene(csph);
+        }
+
+        // 6. Material core rod (cylinder along X). Position x animates on insert.
+        var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 1.86 * MAG_HALF, 24),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#B0BEC5"), emissive: hexToThreeColor("#B0BEC5"), emissiveIntensity: 0.28, transparent: true, opacity: 0.55, depthWrite: false }));
+        rod.rotation.z = -Math.PI / 2;   // Cylinder Y-axis -> world X
+        rod.userData = { elementType: "mag_core", id: "mag_core" }; addToScene(rod);
+
+        // 7. Atomic-dipole array (10 arrows in the XY plane, deterministic "random"
+        //    rest angles via the golden angle so it looks disordered but is stable
+        //    for THE EYE). Each rotates toward +X (align) / -X (anti) by |align|.
+        for (var i = 0; i < 10; i++) {
+            var col = i % 5, row = (i < 5) ? 0 : 1;
+            var bx = -1.4 + col * 0.7, by = (row === 0) ? -0.17 : 0.17;
+            var d = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(bx, by, 0), 0.46, hexToThreeColor("#E0E0E0"), 0.14, 0.09);
+            d.userData = { elementType: "mag_dipole", id: "mag_dipole_" + i, baseX: bx, baseY: by, restAngle: i * 2.39996, phase: i * 0.7 };
+            addToScene(d);
+        }
+        // 8. Net magnetisation M arrow (below the rod) — length carries |M|.
+        var mArr = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-0.75, -0.95, 0), 0.15, hexToThreeColor("#EF5350"), 0.2, 0.13);
+        mArr.userData = { elementType: "mag_moment", id: "mag_M" }; addToScene(mArr);
+        var mLbl = createLabelSprite("M", "#EF5350", 0.34); mLbl.position.set(0.9, -0.95, 0); mLbl.userData = { elementType: "mag_moment", id: "mag_M_lbl" }; addToScene(mLbl);
+
+        // 9. Readout + slider panels (createElement pattern, mirrors em).
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var rp = document.createElement("div"); rp.id = "mag_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:225px;display:none;";
+        document.body.appendChild(rp);
+        window.PM_magManual = false; window.PM_magI = 3; window.PM_magMat = 2;
+        var curC = (config.slider_controls && config.slider_controls.current) || { min: 0.5, max: 5, step: 0.1, default: 3, label: "Current I (\\u2192 H)" };
+        var sp = document.createElement("div"); sp.id = "mag_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:220px;display:none;";
+        sp.innerHTML =
+            '<label>' + curC.label + ': <span id="mag_i_val">' + curC.default + '</span> A</label>' +
+            '<input type="range" id="mag_i_slider" min="' + curC.min + '" max="' + curC.max + '" step="' + (curC.step || 0.1) + '" value="' + curC.default + '" style="width:100%">' +
+            '<div id="mag_mat_row">' +
+            '<label style="margin-top:6px">Material: <span id="mag_mat_val">paramagnetic</span></label>' +
+            '<input type="range" id="mag_mat_slider" min="0" max="3" step="1" value="2" style="width:100%">' +
+            '<div style="font-size:10px;opacity:0.7">0 vacuum \\u00b7 1 dia \\u00b7 2 para \\u00b7 3 ferro</div>' +
+            '</div>';
+        document.body.appendChild(sp);
+        // Prominent per-state formula panel (founder ask: show the key relation BIG,
+        // not a small corner note). Populated by applyMagnetisationState.
+        var ff = document.createElement("div"); ff.id = "mag_formula";
+        ff.style.cssText = "position:fixed;top:42%;right:22px;transform:translateY(-50%);color:#FFF176;font:bold 23px/1.45 monospace;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;";
+        document.body.appendChild(ff);
+        var iSl = document.getElementById("mag_i_slider"), iV = document.getElementById("mag_i_val");
+        var mSl = document.getElementById("mag_mat_slider"), mV = document.getElementById("mag_mat_val");
+        if (iSl) iSl.addEventListener("input", function (ev) { window.PM_magI = parseFloat(iSl.value); if (iV) iV.textContent = iSl.value; if (ev && ev.isTrusted) window.PM_magManual = true; });
+        if (mSl) mSl.addEventListener("input", function (ev) { window.PM_magMat = parseInt(mSl.value, 10); if (mV) mV.textContent = magMaterial(window.PM_magMat).name; if (ev && ev.isTrusted) window.PM_magManual = true; });
+
+        for (var qi = 0; qi < sceneObjects.length; qi++) { var qo = sceneObjects[qi]; if (qo.userData && qo.userData.elementType && qo.userData.elementType.indexOf("mag_") === 0) qo.visible = false; }
+    }
+
+    // Authoritative per-state visibility (exact elementType token) + seed.
+    function applyMagnetisationState(stateDef) {
+        var mg = stateDef.mag || {};
+        var vis = stateDef.visible_elements || [];
+        function listed(tok) { for (var i = 0; i < vis.length; i++) { if (vis[i] === tok) return true; } return false; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("mag_") !== 0) continue;
+            o.visible = listed(ud.elementType);
+        }
+        window.PM_magManual = false;
+        if (typeof mg.material_idx === "number") window.PM_magMat = mg.material_idx;
+        if (typeof mg.current_a === "number") window.PM_magI = mg.current_a;
+        var iSl = document.getElementById("mag_i_slider"), iV = document.getElementById("mag_i_val");
+        if (iSl) iSl.value = String(window.PM_magI); if (iV) iV.textContent = String(window.PM_magI);
+        var mSl = document.getElementById("mag_mat_slider"), mV = document.getElementById("mag_mat_val");
+        if (mSl) mSl.value = String(window.PM_magMat); if (mV) mV.textContent = magMaterial(window.PM_magMat).name;
+        var roEl = document.getElementById("mag_readout"); if (roEl) roEl.style.display = (mg.show_readout === false) ? "none" : "block";
+        var spEl = document.getElementById("mag_sliders"); if (spEl) spEl.style.display = stateDef.show_sliders ? "block" : "none";
+        // material row only where a material choice is pedagogically live (S5/S6).
+        var matRow = document.getElementById("mag_mat_row"); if (matRow) matRow.style.display = mg.show_material ? "block" : "none";
+        // prominent per-state formula (and hide the small generic overlay).
+        var ff = document.getElementById("mag_formula");
+        if (ff) { var ftext = stateDef.formula_overlay || ""; ff.textContent = ftext; ff.style.display = ftext ? "block" : "none"; }
+    }
+
+    // Per-frame magnetisation update — resolve material + current, align the
+    // dipole array, grow M, fade the dense bundle, stream the current pulse, write
+    // the readout. PURE fn of the state clock (Rule 26).
+    function updateMagnetisationFrame() {
+        if (config.scenario_type !== "magnetisation") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var mg = stateDef.mag || {};
+        var t = time - stateStartTime;
+        var mode = mg.mode || "sandbox";
+
+        // material
+        var matIdx;
+        if (window.PM_magManual) matIdx = window.PM_magMat;
+        else if (mode === "materials") { matIdx = [1, 2, 3][Math.floor((t / 2.4) % 3)]; window.PM_magMat = matIdx; }
+        else matIdx = (typeof mg.material_idx === "number") ? mg.material_idx : window.PM_magMat;
+        var mat = magMaterial(matIdx);
+
+        // current -> H
+        var I;
+        if (window.PM_magManual) I = window.PM_magI;
+        else if (mode === "align") { I = (mg.i_max || 5) * Math.min(1, t / 2.5); window.PM_magI = I; }
+        else I = (typeof mg.current_a === "number") ? mg.current_a : (window.PM_magI || 3);
+        var H = MAG_N * I;
+        var chi = mat.chi, M = chi * H, Bt = MU_0 * (H + M), mu_r = 1 + chi;
+        var hNorm = Math.min(1, H / MAG_HSAT);
+        var align = mat.align * hNorm;
+        // "insert" beat = the rod just went in, dipoles still thermally random →
+        // show M = 0 and full disorder, so the S3 align beat is where M appears.
+        if (mode === "insert") align = 0;
+
+        // sync current slider thumb when not seized
+        if (!window.PM_magManual) { var iSl2 = document.getElementById("mag_i_slider"), iV2 = document.getElementById("mag_i_val"); if (iSl2) iSl2.value = String(I); if (iV2) iV2.textContent = I.toFixed(1); }
+        // sync the material slider thumb + label to the live value during the S5
+        // auto-cycle (was stale — only synced on state entry before).
+        if (!window.PM_magManual) { var mSl2 = document.getElementById("mag_mat_slider"), mV2 = document.getElementById("mag_mat_val"); if (mSl2) mSl2.value = String(matIdx); if (mV2) mV2.textContent = mat.name; }
+
+        // core slide-in (insert mode)
+        var coreX = 0;
+        if (mode === "insert") { var p = Math.min(1, t / 1.1); coreX = -5 + 5 * (p * p * (3 - 2 * p)); }
+        var rod = magFindById("mag_core");
+        if (rod) { rod.position.x = coreX; if (rod.material && matIdx > 0) { rod.material.color = hexToThreeColor(mat.color); rod.material.emissive = hexToThreeColor(mat.color); } }
+
+        // dipoles: align toward +X (or -X for dia), jitter when disordered
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || ud.elementType !== "mag_dipole") continue;
+            var target = (align >= 0) ? 0 : Math.PI;
+            var a = Math.min(1, Math.abs(align));
+            var jitter = (mode === "insert") ? (0.9 * Math.sin(t * 3 + ud.phase)) : (0.1 * Math.sin(t * 1.4 + ud.phase));
+            var angp = ud.restAngle + (target - ud.restAngle) * a + jitter * (1 - a);
+            o.position.x = ud.baseX + coreX;
+            if (o.setDirection) o.setDirection(new THREE.Vector3(Math.cos(angp), Math.sin(angp), 0));
+        }
+        // net M arrow (length carries |M|; direction flips for dia)
+        var mArr = magFindById("mag_M");
+        if (mArr && mArr.visible) { mArr.position.x = -0.75 + coreX; mArr.setLength(0.12 + 1.5 * Math.abs(align), 0.2, 0.13); mArr.setDirection(new THREE.Vector3(align >= 0 ? 1 : -1, 0, 0)); }
+        var mLbl = magFindById("mag_M_lbl"); if (mLbl) mLbl.position.x = 0.9 + coreX;
+
+        // dense field-line bundle fade-in (sum mode = B = mu0(H+M))
+        var denseOp = (mode === "sum") ? 0.85 * Math.min(1, t / 1.5) : (mode === "sandbox" ? 0.85 * Math.min(1, Math.abs(align)) : 0);
+        for (var i = 0; i < sceneObjects.length; i++) { var o2 = sceneObjects[i], u2 = o2.userData; if (u2 && u2.elementType === "mag_fl_dense" && o2.material) o2.material.opacity = denseOp; }
+
+        // current beads SPIRAL along the coil (12 turns, radius 0.9); speed scales
+        // with I so "more current" visibly flows faster around the solenoid.
+        var curSpeed = 0.05 + (I / 5) * 0.22;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o3 = sceneObjects[i], u3 = o3.userData;
+            if (!u3 || u3.elementType !== "mag_curr") continue;
+            var u = ((t * curSpeed + u3.slot) % 1);
+            var thc = u * Math.PI * 2 * 12;
+            o3.position.set(-MAG_HALF + u * 2 * MAG_HALF, 0.9 * Math.cos(thc), 0.9 * Math.sin(thc));
+        }
+
+        // readout
+        var roEl = document.getElementById("mag_readout");
+        if (roEl && roEl.style.display !== "none") {
+            // State-aware: the no-material apply-H beat shows only H and B0 = mu0 H;
+            // material states show the full H / M / B / mu_r block.
+            var hasMat = (matIdx > 0 && mode !== "apply_h");
+            var html = "";
+            if (!hasMat) {
+                html += "<div style=\\"color:#66BB6A\\">H = " + Math.round(H) + " A/m</div>";
+                html += "<div style=\\"color:#FFD54F\\">B\\u2080 = \\u03bc\\u2080H = " + (MU_0 * H * 1000).toFixed(2) + " mT</div>";
+            } else {
+                var Mdisp = (mode === "insert") ? 0 : M;
+                var Bdisp = (mode === "insert") ? (MU_0 * H) : Bt;
+                html += "<div>material: " + mat.name + "</div>";
+                html += "<div style=\\"color:#66BB6A\\">H = " + Math.round(H) + " A/m</div>";
+                html += "<div style=\\"color:#EF5350\\">M = \\u03c7H = " + Math.round(Mdisp) + " A/m</div>";
+                html += "<div style=\\"color:#FFD54F\\">B = \\u03bc\\u2080(H+M) = " + (Bdisp * 1000).toFixed(2) + " mT</div>";
+                html += "<div style=\\"color:#4DD0E1\\">\\u03bc\\u1d63 = 1+\\u03c7 = " + mu_r.toFixed(2) + "</div>";
+            }
+            roEl.innerHTML = html;
+        }
+    }
+
+    function applyMagnetisationGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            if (!sud.elementType || sud.elementType.indexOf("mag_") !== 0) continue;
+            applyGlowEmphasis(so, on(sud.id) || on(sud.elementType), glowActive, glowP, true);
+        }
+    }
+
+    // ── faraday scenario (electromagnetic induction: eps = -N dPhi/dt) ─────────
+    //   A coil (solenoid) with a bar magnet that slides ALONG the coil axis. The
+    //   magnet's field threads the coil as flux Phi = B.A.cos(theta); moving the
+    //   magnet CHANGES that flux, and a CHANGING flux induces an EMF eps = -N dPhi/dt
+    //   (Faraday). The minus sign is Lenz's law: the induced current opposes the
+    //   change (energy conservation). A galvanometer NEEDLE deflects by eps, induced
+    //   current arrows on the coil flip with sign(eps), and a live Phi / eps readout
+    //   carries the numbers. NEW field_3d scenario reusing createCoilGeometry /
+    //   createTubeLine / createArrowHead / emBuildNeedle. Rule 24 (silent visual:
+    //   labels + readout carry it), Rule 26 (every animation a pure fn of the state
+    //   clock time-stateStartTime), Rule 29 (emphasis = brightness; the only lengths
+    //   that change are the needle angle + current-arrow length + flux-line opacity,
+    //   all driven by the REAL magnitude of eps / Phi). The magnitudes are
+    //   teaching-representative (a scaled magnet) so the deflection is visible; the
+    //   RELATIONS Phi=B.A.cos(theta), eps=-dPhi/dt, eps=-N dPhi/dt and the sign
+    //   convention are exact.
+    var FAR_HALF = 1.6;               // coil half-length along +X
+    var FAR_PHI_MAX = 8;              // mWb: representative peak flux (magnet at centre)
+    var FAR_W = 1.15;                 // flux falloff width (world units)
+    var FAR_XOUT = 3.3;              // magnet start X (well outside the coil, right)
+    function farFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+    // flux (mWb) threading the coil as a function of the magnet-centre X (Gaussian
+    // bump, peak when the magnet sits at the coil centre x=0).
+    function farFlux(x) { return FAR_PHI_MAX * Math.exp(-(x * x) / (FAR_W * FAR_W)); }
+    function farDfluxDx(x) { return farFlux(x) * (-2 * x / (FAR_W * FAR_W)); }
+    // magnet motion per guided mode -> { x, v } (x = centre, v = dx/dt world units/s),
+    // every branch a pure function of the state clock t (Rule 26). smoothstep slide.
+    function farMagnet(mode, t) {
+        if (mode === "push_in") { var T = 2.2, p = Math.min(1, t / T), ds = 6 * p * (1 - p), s = p * p * (3 - 2 * p); return { x: FAR_XOUT * (1 - s), v: -FAR_XOUT * ds / T }; }
+        if (mode === "pull_out") { var T2 = 2.2, p2 = Math.min(1, t / T2), ds2 = 6 * p2 * (1 - p2), s2 = p2 * p2 * (3 - 2 * p2); return { x: FAR_XOUT * s2, v: FAR_XOUT * ds2 / T2 }; }
+        if (mode === "lenz") {
+            // two-phase LOOP: slow approach (coil repels) then withdrawal (coil
+            // attracts) — Lenz opposes the CHANGE both ways, not the magnet.
+            var TL = 3.6, t2 = t % (2 * TL), ph = (t2 < TL) ? (t2 / TL) : ((t2 - TL) / TL);
+            var dsL = 6 * ph * (1 - ph), sL = ph * ph * (3 - 2 * ph), spanL = FAR_XOUT - 0.6;
+            if (t2 < TL) return { x: FAR_XOUT - spanL * sL, v: -spanL * dsL / TL };
+            return { x: 0.6 + spanL * sL, v: spanL * dsL / TL };
+        }
+        if (mode === "rate") { var w = (window.PM_farSpeed || 1) * 1.6, A = 1.5; return { x: A * Math.sin(w * t), v: A * w * Math.cos(w * t) }; }
+        return { x: 0.35, v: 0 };   // flux_steady: magnet held partway in, no change
+    }
+
+    function buildFaraday() {
+        var flColor = (config.field_lines && config.field_lines.color_positive) || "#66BB6A";
+
+        // 1. Solenoid coil (axis +X so the magnet slides along X through the rings).
+        var coil = createCoilGeometry(10, 0.85, [1, 0, 0], 2 * FAR_HALF);
+        coil.userData = { elementType: "far_coil", id: "far_coil" };
+        for (var ci = 0; ci < coil.children.length; ci++) { if (coil.children[ci].material) { coil.children[ci].material.transparent = true; coil.children[ci].material.opacity = 1; } }
+        addToScene(coil);
+        var coilLbl = createWideLabelSprite("coil: N turns", "#FFCC80", 0.3); coilLbl.position.set(0, 1.5, 0); coilLbl.userData = { elementType: "far_label", id: "far_coil_lbl" }; addToScene(coilLbl);
+
+        // 2. Flux lines threading the coil (green axial lines; OPACITY carries |Phi|,
+        //    updated per frame from the magnet position). Always built, faint at rest.
+        for (var i = 0; i < 6; i++) {
+            var ang = (i / 6) * Math.PI * 2, rr = 0.42;
+            var pts = []; for (var s = 0; s <= 16; s++) { var tt = s / 16; pts.push([-FAR_HALF + tt * 2 * FAR_HALF, rr * Math.cos(ang), rr * Math.sin(ang)]); }
+            var tube = createTubeLine(pts, flColor, 0.02);
+            if (tube) { if (tube.material) { tube.material.transparent = true; tube.material.opacity = 0.2; } tube.userData = { elementType: "far_flux", id: "far_flux_" + i }; addToScene(tube); }
+            var head = createArrowHead(pts[8], [1, 0, 0], flColor); if (head.material) { head.material.transparent = true; head.material.opacity = 0.2; } head.userData = { elementType: "far_flux", id: "far_flux_arr_" + i }; addToScene(head);
+        }
+
+        // 3. Bar magnet (cylinder pair along X): N (red) leads on the -X side (toward
+        //    the coil), S (blue) trails. One Group, slides on X in the frame loop.
+        var magGrp = new THREE.Group();
+        var nCyl = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.7, 24), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#EF5350"), emissive: hexToThreeColor("#EF5350"), emissiveIntensity: 0.3 }));
+        nCyl.rotation.z = Math.PI / 2; nCyl.position.x = -0.35; magGrp.add(nCyl);
+        var sCyl = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.7, 24), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#42A5F5"), emissive: hexToThreeColor("#42A5F5"), emissiveIntensity: 0.3 }));
+        sCyl.rotation.z = Math.PI / 2; sCyl.position.x = 0.35; magGrp.add(sCyl);
+        var nLbl = createLabelSprite("N", "#EF5350", 0.3); nLbl.position.set(-0.35, 0.5, 0); magGrp.add(nLbl);
+        var sLbl = createLabelSprite("S", "#42A5F5", 0.3); sLbl.position.set(0.35, 0.5, 0); magGrp.add(sLbl);
+        magGrp.position.x = FAR_XOUT;
+        magGrp.userData = { elementType: "far_magnet", id: "far_magnet" }; addToScene(magGrp);
+
+        // 4. Galvanometer needle (below the coil). Rest = pointing UP (eps=0); rotates
+        //    about Z by an angle proportional to eps in the frame loop.
+        var needle = emBuildNeedle(0.9, "#EF5350", "#42A5F5");
+        needle.position.set(0, -2.0, 0); needle.rotation.z = Math.PI / 2;
+        needle.userData = { elementType: "far_needle", id: "far_needle" }; addToScene(needle);
+        var gLbl = createLabelSprite("G", "#B0BEC5", 0.28); gLbl.position.set(0.9, -2.0, 0); gLbl.userData = { elementType: "far_needle", id: "far_g_lbl" }; addToScene(gLbl);
+
+        // 5. Induced current arrows on the coil (top ring +Z, bottom ring -Z = one
+        //    circulating loop). Direction flips with sign(eps); length carries |eps|.
+        var caTop = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0.85, 0), 0.5, hexToThreeColor("#FFB300"), 0.16, 0.1);
+        caTop.userData = { elementType: "far_current", id: "far_current_top" }; addToScene(caTop);
+        var caBot = new THREE.ArrowHelper(new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, -0.85, 0), 0.5, hexToThreeColor("#FFB300"), 0.16, 0.1);
+        caBot.userData = { elementType: "far_current", id: "far_current_bot" }; addToScene(caBot);
+
+        // 5b. Induced-current beads — bright amber spheres that FLOW along the coil
+        //     wire (10 turns, radius 0.85). Direction = the Lenz direction (flips
+        //     with sign(eps)); parked + dimmed when the flux is steady, so "no
+        //     change -> no current" is itself visible (founder ask: show the
+        //     induced current MOVING, not just an arrow).
+        for (var i = 0; i < 12; i++) {
+            var bsph = new THREE.Mesh(new THREE.SphereGeometry(0.07, 12, 12),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFB300"), transparent: true, opacity: 0.9 }));
+            bsph.userData = { elementType: "far_curr", id: "far_curr_" + i, slot: i / 12 };
+            addToScene(bsph);
+        }
+
+        // 6. Lenz opposition arrow (S4 only): rides on the magnet, ALWAYS pointing
+        //    against its motion (repels the approach, drags the withdrawal).
+        var push = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 0.85, hexToThreeColor("#EF5350"), 0.22, 0.14);
+        push.userData = { elementType: "far_push", id: "far_push" }; addToScene(push);
+        var pushLbl = createLabelSprite("opposes motion", "#EF5350", 0.24); pushLbl.position.set(0, 0.55, 0); pushLbl.userData = { elementType: "far_push", id: "far_push_lbl" }; addToScene(pushLbl);
+
+        // 6b. Induced POLE FACE (S4): a translucent disc on the coil's magnet-side
+        //     end whose colour + N/S label show the pole the induced current makes —
+        //     red N repelling the approach, blue S attracting the withdrawal.
+        var poleDisc = new THREE.Mesh(new THREE.CircleGeometry(0.95, 32),
+            new THREE.MeshBasicMaterial({ color: hexToThreeColor("#EF5350"), transparent: true, opacity: 0.3, side: THREE.DoubleSide }));
+        poleDisc.position.set(FAR_HALF + 0.04, 0, 0); poleDisc.rotation.y = Math.PI / 2;
+        poleDisc.userData = { elementType: "far_pole", id: "far_pole_disc" }; addToScene(poleDisc);
+        var poleN = createLabelSprite("N", "#EF5350", 0.34); poleN.position.set(FAR_HALF + 0.12, 1.12, 0); poleN.userData = { elementType: "far_pole", id: "far_pole_n" }; addToScene(poleN);
+        var poleS = createLabelSprite("S", "#42A5F5", 0.34); poleS.position.set(FAR_HALF + 0.12, 1.12, 0); poleS.userData = { elementType: "far_pole", id: "far_pole_s" }; addToScene(poleS);
+
+        // 7. Readout + slider panels (createElement pattern, mirrors mag).
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var rp = document.createElement("div"); rp.id = "far_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:235px;display:none;";
+        document.body.appendChild(rp);
+        window.PM_farManual = false; window.PM_farPos = FAR_XOUT; window.PM_farSpeed = 1; window.PM_farN = 6; window.PM_farPrevX = FAR_XOUT;
+        var sp = document.createElement("div"); sp.id = "far_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:235px;display:none;";
+        sp.innerHTML =
+            '<div id="far_pos_row"><label>Magnet position: <span id="far_pos_val">outside</span></label>' +
+            '<input type="range" id="far_pos_slider" min="-1.8" max="3.4" step="0.05" value="' + FAR_XOUT + '" style="width:100%"></div>' +
+            '<div id="far_speed_row"><label style="margin-top:6px">Speed v: <span id="far_speed_val">1.0</span></label>' +
+            '<input type="range" id="far_speed_slider" min="0.3" max="2" step="0.1" value="1" style="width:100%"></div>' +
+            '<div id="far_turns_row"><label style="margin-top:6px">Turns N: <span id="far_turns_val">6</span></label>' +
+            '<input type="range" id="far_turns_slider" min="1" max="12" step="1" value="6" style="width:100%"></div>';
+        document.body.appendChild(sp);
+        var ff = document.createElement("div"); ff.id = "far_formula";
+        ff.style.cssText = "position:fixed;top:42%;right:22px;transform:translateY(-50%);color:#FFF176;font:bold 22px/1.45 monospace;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;";
+        document.body.appendChild(ff);
+        var pSl = document.getElementById("far_pos_slider"), pV = document.getElementById("far_pos_val");
+        var vSl = document.getElementById("far_speed_slider"), vV = document.getElementById("far_speed_val");
+        var nSl = document.getElementById("far_turns_slider"), nV = document.getElementById("far_turns_val");
+        if (pSl) pSl.addEventListener("input", function (ev) { window.PM_farPos = parseFloat(pSl.value); if (pV) pV.textContent = (Math.abs(window.PM_farPos) < FAR_HALF ? "inside" : "outside"); if (ev && ev.isTrusted) window.PM_farManual = true; });
+        if (vSl) vSl.addEventListener("input", function (ev) { window.PM_farSpeed = parseFloat(vSl.value); if (vV) vV.textContent = vSl.value; if (ev && ev.isTrusted) window.PM_farManual = true; });
+        if (nSl) nSl.addEventListener("input", function (ev) { window.PM_farN = parseInt(nSl.value, 10); if (nV) nV.textContent = nSl.value; });
+
+        for (var qi = 0; qi < sceneObjects.length; qi++) { var qo = sceneObjects[qi]; if (qo.userData && qo.userData.elementType && qo.userData.elementType.indexOf("far_") === 0) qo.visible = false; }
+    }
+
+    // Authoritative per-state visibility (exact elementType token) + seed + the
+    // per-state contextual controls (progressive disclosure: only the sliders this
+    // beat teaches are shown; the Explore state shows them all).
+    function applyFaradayState(stateDef) {
+        var fd = stateDef.faraday || {};
+        var vis = stateDef.visible_elements || [];
+        function listed(tok) { for (var i = 0; i < vis.length; i++) { if (vis[i] === tok) return true; } return false; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("far_") !== 0) continue;
+            o.visible = listed(ud.elementType);
+        }
+        window.PM_farManual = false;
+        if (typeof fd.turns === "number") window.PM_farN = fd.turns;
+        if (typeof fd.speed === "number") window.PM_farSpeed = fd.speed;
+        var vSl = document.getElementById("far_speed_slider"), vV = document.getElementById("far_speed_val");
+        if (vSl) vSl.value = String(window.PM_farSpeed); if (vV) vV.textContent = String(window.PM_farSpeed);
+        var nSl = document.getElementById("far_turns_slider"), nV = document.getElementById("far_turns_val");
+        if (nSl) nSl.value = String(window.PM_farN); if (nV) nV.textContent = String(window.PM_farN);
+        var roEl = document.getElementById("far_readout"); if (roEl) roEl.style.display = (fd.show_readout === false) ? "none" : "block";
+        // per-state contextual controls — panel only where a control is pedagogically
+        // live (S5 rate: speed + turns; S6 sandbox: position + speed + turns).
+        var mode = fd.mode || "sandbox";
+        var panelOn = stateDef.show_sliders && (mode === "rate" || mode === "sandbox");
+        var spEl = document.getElementById("far_sliders"); if (spEl) spEl.style.display = panelOn ? "block" : "none";
+        var posRow = document.getElementById("far_pos_row"); if (posRow) posRow.style.display = (mode === "sandbox") ? "block" : "none";
+        var speedRow = document.getElementById("far_speed_row"); if (speedRow) speedRow.style.display = (mode === "rate" || mode === "sandbox") ? "block" : "none";
+        var turnsRow = document.getElementById("far_turns_row"); if (turnsRow) turnsRow.style.display = (mode === "rate" || mode === "sandbox") ? "block" : "none";
+        var ff = document.getElementById("far_formula");
+        if (ff) { var ftext = stateDef.formula_overlay || ""; ff.textContent = ftext; ff.style.display = ftext ? "block" : "none"; }
+    }
+
+    // Per-frame faraday update — resolve the magnet position + velocity (guided beat
+    // or user drag), compute Phi + eps = -N dPhi/dt, slide the magnet, scale the flux-
+    // line opacity, deflect the needle, flip the current arrows, seat the Lenz push
+    // arrow, write the readout. PURE fn of the state clock (Rule 26).
+    function updateFaradayFrame() {
+        if (config.scenario_type !== "faraday") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var fd = stateDef.faraday || {};
+        var t = time - stateStartTime;
+        var mode = fd.mode || "sandbox";
+        var N = window.PM_farN || 6;
+
+        var x, v;
+        if (mode === "sandbox") {
+            if (window.PM_farManual) { x = window.PM_farPos; v = (x - (window.PM_farPrevX !== undefined ? window.PM_farPrevX : x)) / 0.016; }
+            else { var w = (window.PM_farSpeed || 1) * 1.6; x = 1.6 * Math.sin(w * t); v = 1.6 * w * Math.cos(w * t); window.PM_farPos = x; }
+            window.PM_farPrevX = x;
+        } else { var mm = farMagnet(mode, t); x = mm.x; v = mm.v; }
+
+        var phi = farFlux(x);                 // mWb
+        var dphidt = farDfluxDx(x) * v;       // mWb/s
+        var emf = -N * dphidt;                // representative mV
+
+        // slide the magnet
+        var mag = farFindById("far_magnet"); if (mag) mag.position.x = x;
+
+        // flux-line opacity carries |Phi| (with a gentle shimmer in the steady beat so
+        // S1 still animates — flux threads the coil, but nothing changes -> eps=0).
+        var base = 0.14 + 0.66 * Math.min(1, phi / FAR_PHI_MAX);
+        var fop = base + ((mode === "flux_steady") ? 0.08 * Math.sin(t * 2.2) : 0);
+        if (fop < 0.05) fop = 0.05; if (fop > 1) fop = 1;
+        for (var i = 0; i < sceneObjects.length; i++) { var o2 = sceneObjects[i], u2 = o2.userData; if (u2 && u2.elementType === "far_flux" && o2.material) o2.material.opacity = fop; }
+
+        // needle deflection proportional to eps (clamped so it never wraps).
+        var needle = farFindById("far_needle");
+        if (needle) { var defl = emf / 70; if (defl > 1.15) defl = 1.15; if (defl < -1.15) defl = -1.15; needle.rotation.z = Math.PI / 2 - defl; }
+
+        // induced current arrows: direction = sign(eps); length carries |eps| (dim to
+        // a stub when the flux is not changing so "no change -> no current" reads).
+        var dir = emf >= 0 ? 1 : -1;
+        var curLen = Math.min(0.7, 0.12 + Math.abs(emf) / 120);
+        var cTop = farFindById("far_current_top");
+        if (cTop) { if (cTop.setDirection) cTop.setDirection(new THREE.Vector3(0, 0, dir)); if (cTop.setLength) cTop.setLength(curLen, 0.16, 0.1); }
+        var cBot = farFindById("far_current_bot");
+        if (cBot) { if (cBot.setDirection) cBot.setDirection(new THREE.Vector3(0, 0, -dir)); if (cBot.setLength) cBot.setLength(curLen, 0.16, 0.1); }
+
+        // induced-current beads FLOW along the coil wire in the Lenz direction;
+        // parked + dimmed when the flux is steady (|eps| ~ 0). Fixed flow speed —
+        // the arrows' length + the readout carry the magnitude (stable visual).
+        var flowing = Math.abs(emf) >= 2;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o4 = sceneObjects[i], u4 = o4.userData;
+            if (!u4 || u4.elementType !== "far_curr") continue;
+            var ub = flowing ? (((u4.slot + dir * t * 0.16) % 1) + 1) % 1 : u4.slot;
+            var thb = ub * Math.PI * 2 * 10;
+            o4.position.set(-FAR_HALF + ub * 2 * FAR_HALF, 0.85 * Math.cos(thb), 0.85 * Math.sin(thb));
+            if (o4.material) o4.material.opacity = flowing ? 0.9 : 0.15;
+        }
+
+        // Lenz opposition arrow rides on the magnet, ALWAYS against its motion
+        // (repels the approach, drags the withdrawal — opposes the CHANGE).
+        var oppDir = (v <= 0) ? 1 : -1;
+        var push = farFindById("far_push");
+        if (push && push.visible) { push.position.set(x + 0.55 * oppDir, 0, 0); if (push.setDirection) push.setDirection(new THREE.Vector3(oppDir, 0, 0)); }
+        var pushLbl = farFindById("far_push_lbl"); if (pushLbl && pushLbl.visible) { pushLbl.position.set(x + 1.15 * oppDir, 0.55, 0); }
+
+        // induced pole face: approaching -> red N (repel); withdrawing -> blue S
+        // (attract). Colour + label flip with the real velocity sign.
+        var pole = farFindById("far_pole_disc");
+        if (pole && pole.visible) {
+            var approaching = v <= 0;
+            if (pole.material) pole.material.color = hexToThreeColor(approaching ? "#EF5350" : "#42A5F5");
+            var pn = farFindById("far_pole_n"), ps = farFindById("far_pole_s");
+            if (pn) pn.visible = approaching;
+            if (ps) ps.visible = !approaching;
+        }
+
+        // sync the position slider thumb when the teacher has not seized it.
+        if (!window.PM_farManual) { var pSl = document.getElementById("far_pos_slider"); if (pSl) pSl.value = String(x.toFixed(2)); }
+
+        // readout (Rule 24 carries the numbers; eps colour = green +, red -, grey ~0).
+        var roEl = document.getElementById("far_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var eColor = (Math.abs(emf) < 2) ? "#90A4AE" : (emf > 0 ? "#66BB6A" : "#EF5350");
+            var html = "";
+            html += "<div style=\\"color:#66BB6A\\">\\u03a6 = B\\u00b7A = " + phi.toFixed(2) + " mWb</div>";
+            html += "<div style=\\"color:#B0BEC5\\">N = " + N + " turns</div>";
+            html += "<div style=\\"color:" + eColor + "\\">\\u03b5 = -N d\\u03a6/dt = " + emf.toFixed(1) + " mV</div>";
+            if (Math.abs(emf) < 2) html += "<div style=\\"color:#90A4AE;font-size:11px\\">flux steady \\u2192 no EMF</div>";
+            roEl.innerHTML = html;
+        }
+    }
+
+    function applyFaradayGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            if (!sud.elementType || sud.elementType.indexOf("far_") !== 0) continue;
+            applyGlowEmphasis(so, on(sud.id) || on(sud.elementType), glowActive, glowP, true);
         }
     }
 
@@ -20691,6 +22975,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildSystemOfCharges(config);
                 break;
 
+            case "system_pe_assembly":
+                buildSystemPeAssembly(config);
+                break;
+
+            case "pe_external_field":
+                buildPeExternalField();
+                break;
+
             case "uniform_field_force":
                 buildForceFieldDiamond();
                 break;
@@ -20773,6 +23065,22 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "gauss_law":
                 buildGaussLawField();
+                break;
+
+            case "gauss_law_magnetism":
+                buildGaussLawMagnetism();
+                break;
+
+            case "earths_magnetism":
+                buildEarthsMagnetism();
+                break;
+
+            case "magnetisation":
+                buildMagnetisation();
+                break;
+
+            case "faraday":
+                buildFaraday();
                 break;
 
             case "gauss_law_sphere":
@@ -20995,6 +23303,34 @@ export const FIELD_3D_RENDERER_CODE = `
             applyGaussLawState(stateDef);
         }
 
+        // gauss_law_magnetism — per-state gm_* visibility (exact-token) + Gaussian-
+        // surface shape/scope seed (S3 shrinks onto the N pole) + panel toggles. The
+        // animate loop then drives the closed-loop tracer stream + the S4 morph.
+        if (config.scenario_type === "gauss_law_magnetism") {
+            applyGaussLawMagnetismState(stateDef);
+        }
+
+        // earths_magnetism — per-state em_* visibility (exact-token) + instrument
+        // seed (latitude / declination) + readout panel toggle. The animate loop
+        // then drives the dip-needle tilt, the D/I arcs, and the H/V/B triangle.
+        if (config.scenario_type === "earths_magnetism") {
+            applyEarthsMagnetismState(stateDef);
+        }
+
+        // magnetisation — per-state mag_* visibility + seed (material / current) +
+        // panel toggles. The animate loop then aligns the dipoles, grows M, fades
+        // the dense field-line bundle, and streams the current pulse.
+        if (config.scenario_type === "magnetisation") {
+            applyMagnetisationState(stateDef);
+        }
+
+        // faraday — per-state far_* visibility + seed (turns / speed) + per-state
+        // contextual-control panel toggle. The animate loop then slides the magnet,
+        // scales the flux opacity, deflects the needle, and flips the current arrows.
+        if (config.scenario_type === "faraday") {
+            applyFaradayState(stateDef);
+        }
+
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
         // concentric Gaussian-sphere radius r_gauss, regime (inside/outside R),
         // toggle of the Gaussian sphere + radial E-arrows + E-vs-r plot, slider
@@ -21092,6 +23428,23 @@ export const FIELD_3D_RENDERER_CODE = `
         // drives the timed reveals, the STATE_6 idle sweep + drag, and the live sums.
         if (config.scenario_type === "system_of_charges") {
             applySystemOfChargesState(stateDef);
+        }
+
+        // system_pe_assembly (potential_energy_system_of_charges, U = \\u03a3 k q\\u1d62q\\u2c7c/r\\u1d62\\u2c7c)
+        // — authoritative per-state visibility: which charges are placed/entering,
+        // which pair bonds + U tags light (and when), the signed energy meter + U
+        // readout + running sum, and the STATE_6 drag proxy + slider. The animate loop
+        // eases the charge fly-ins, fades the reveals, and drives the live pair sums.
+        if (config.scenario_type === "system_pe_assembly") {
+            applySystemPeAssemblyState(stateDef);
+        }
+
+        // pe_external_field (potential_energy_in_external_field) - authoritative per-
+        // state visibility. CHARGE phase (STATE_1..5): charges at given-V points, qV
+        // tags, signed U meter, equipotential shading, qV-vs-mutual bonds, hill/well
+        // glyph. DIPOLE phase (STATE_6..9): delegates to the dipole-in-field engine.
+        if (config.scenario_type === "pe_external_field") {
+            applyPeExternalFieldState(stateDef);
         }
 
         // Biot-Savart — seed the choreography on state entry: collapse every
@@ -21212,9 +23565,14 @@ export const FIELD_3D_RENDERER_CODE = `
         var isDipole = config.scenario_type === "dipole_in_uniform_field";
         var isBarField = config.scenario_type === "bar_magnet_in_uniform_field";
         var bmfSlidersEl = document.getElementById("bmf_sliders");
+        var emSlidersEl = document.getElementById("em_sliders");
         var isCdist = config.scenario_type === "charge_distribution";
         var isEflux = config.scenario_type === "electric_flux";
         var isGauss = config.scenario_type === "gauss_law";
+        var isGm = config.scenario_type === "gauss_law_magnetism";
+        var isEm = config.scenario_type === "earths_magnetism";
+        var isMag = config.scenario_type === "magnetisation";
+        var isFaraday = config.scenario_type === "faraday";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
@@ -21222,6 +23580,8 @@ export const FIELD_3D_RENDERER_CODE = `
         var isPlates = config.scenario_type === "parallel_plates";
         var isDipolePotential = config.scenario_type === "dipole_potential";
         var isSystemOfCharges = config.scenario_type === "system_of_charges";
+        var isSystemPeAssembly = config.scenario_type === "system_pe_assembly";
+        var isPeExternalField = config.scenario_type === "pe_external_field";
         // FIX 3 — the potential diamonds share the point_charge_positive scenario but
         // setupSliders rebuilt #sliders as the distance-r explorer panel, so this gate
         // shows that panel for a potential explore state. Only show it when the state
@@ -21240,7 +23600,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isRhr && !isNoWork && !isRadius && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -21338,6 +23698,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
         }
+        if (emSlidersEl) {
+            // earths_magnetism: latitude λ + declination D live on every state
+            // (the live-instrument model). applyEarthsMagnetismState seeds the thumbs.
+            emSlidersEl.style.display = (stateDef.show_sliders && isEm) ? "block" : "none";
+        }
         if (bmfSlidersEl) {
             var showBmfSliders = !!(stateDef.show_sliders && isBarField);
             bmfSlidersEl.style.display = showBmfSliders ? "block" : "none";
@@ -21353,7 +23718,9 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl) {
+        if (formulaEl && config.scenario_type === "magnetisation") {
+            formulaEl.style.display = "none";   // magnetisation uses its own big #mag_formula
+        } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
                 formulaEl.style.display = "block";
@@ -21676,6 +24043,21 @@ export const FIELD_3D_RENDERER_CODE = `
         // gauss_law is a silent visual (Rule 24): the Gaussian-surface scene +
         // the Φ = q_enc/ε₀ readout carry everything — suppress the generic legend.
         if (config.scenario_type === "gauss_law") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // gauss_law_magnetism is a silent visual (Rule 24): the magnet + closed-loop
+        // field + Gaussian surface + the Φ_B = 0 readout carry everything.
+        if (config.scenario_type === "gauss_law_magnetism") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // earths_magnetism is a silent visual (Rule 24): the globe + tilted dipole +
+        // compass/declination + dip needle + H/V/B triangle + the live D/I/H/V/B
+        // readout carry everything. The scenario id contains the substring "magnet"
+        // and would otherwise print the generic bar-magnet "Red = N / Blue = S" text
+        // (wrong content here) — suppress the generic legend entirely BEFORE the
+        // indexOf("magnet") branch below.
+        if (config.scenario_type === "earths_magnetism") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // faraday is a silent visual (Rule 24): the coil + sliding magnet + flux
+        // lines + galvanometer needle + induced-current arrows + Phi/eps readout carry
+        // everything. "faraday" has no "magnet" substring so it would otherwise hit the
+        // generic point-charge legend — suppress it entirely here.
+        if (config.scenario_type === "faraday") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // gauss_law_sphere is a silent visual (Rule 24): the shell + Gaussian
         // sphere + radial arrows + E readout + E-vs-r plot carry everything —
         // suppress the generic point-charge legend.
@@ -21725,6 +24107,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // and would otherwise print bar-magnet N/S pole text — suppress the generic
         // legend entirely.
         if (config.scenario_type === "moving_coil_galvanometer") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // pe_external_field is a silent visual (Rule 24): signed U/V number readouts +
+        // the qV / -pE cos(theta) overlays carry the meaning; the generic legend would
+        // print misleading +q/-q field text. Suppress it.
+        if (config.scenario_type === "pe_external_field") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
 
         var scenario = config.scenario_type;
         var lines = [];
@@ -21740,6 +24126,17 @@ export const FIELD_3D_RENDERER_CODE = `
             lines.push("\\u26aa Amber = current I");
             lines.push("\\u26aa Blue arrow = field B (axial)");
             lines.push("\\u26aa B = \\u03bc\\u2080NI / 2R at the centre");
+        } else if (scenario === "magnetisation") {
+            // MUST precede the indexOf("magnet") branch (literal contains "magnet").
+            // State-aware: one line describing only what THIS beat shows (founder
+            // circled the fixed 3-line legend as clutter on S1).
+            var magMode = (stateDef.mag && stateDef.mag.mode) || "sandbox";
+            if (magMode === "apply_h") lines.push("\\u26aa Coil current \\u2192 magnetic intensity H");
+            else if (magMode === "insert") lines.push("\\u26aa Arrows = atomic dipoles (random \\u2192 M \\u2248 0)");
+            else if (magMode === "align") lines.push("\\u26aa Dipoles align to H \\u2192 magnetisation M");
+            else if (magMode === "sum") lines.push("\\u26aa B = \\u03bc\\u2080(H + M): applied + material");
+            else if (magMode === "materials") lines.push("\\u26aa \\u03c7 sets the response: dia / para / ferro");
+            else lines.push("\\u26aa Drag current \\u00b7 pick material");
         } else if (scenario.indexOf("magnet") >= 0 || scenario === "solenoid_field") {
             lines.push("\\u26aa Red = N pole");
             lines.push("\\u26aa Blue = S pole");
@@ -23084,6 +25481,43 @@ export const FIELD_3D_RENDERER_CODE = `
             if (q3S) q3S.addEventListener("input", refreshSocSliders);
         }
 
+        // ── system_pe_assembly (STATE_6) slider wiring: q3 magnitude -> live U ─────
+        //   Dedicated #pe_sliders panel. Drives PM_peQ3 (q3's live signed magnitude),
+        //   so every visible pair term, the running-sum panel, the meter, the U readout
+        //   + the DOM breakdown update. Emits PARAM_UPDATE on explorer_id (Rule 27).
+        if (config.scenario_type === "system_pe_assembly") {
+            var peQ3S = document.getElementById("pe_q3_slider");
+            var peScQ3w = (config.slider_controls && config.slider_controls.q3_value) || {};
+            if (peQ3S) {
+                if (peScQ3w.min != null) peQ3S.min = String(peScQ3w.min);
+                if (peScQ3w.max != null) peQ3S.max = String(peScQ3w.max);
+                if (peScQ3w.step != null) peQ3S.step = String(peScQ3w.step);
+            }
+            var refreshPeSliders = function () {
+                var s = document.getElementById("pe_q3_slider");
+                if (!s) return;
+                var qv = parseFloat(s.value);
+                window.PM_peUserDragged = true;
+                window.PM_peQ3 = qv;
+                var vEl = document.getElementById("pe_q3_val");
+                if (vEl) vEl.textContent = peFmt0(qv);
+                try {
+                    parent.postMessage({
+                        type: "PARAM_UPDATE",
+                        explorer_id: (config.explorer_id || "energy_explorer"),
+                        param: "q3_value",
+                        value: { q3_value: qv, U: window.PM_peLiveU }
+                    }, "*");
+                } catch (e) {}
+            };
+            if (peQ3S) peQ3S.addEventListener("input", refreshPeSliders);
+        }
+
+        // pe_external_field (STATE_9) q + theta slider wiring lives in
+        // buildPeExternalField, NOT here: its #pef_sliders panel is created during
+        // buildScenario() which runs AFTER setupSliders(), so wiring it here would
+        // bind to null elements and the sliders would never respond.
+
         // ── Biot-Savart (STATE_10) slider wiring: I, r, θ → P / circle / dB ──
         //   The default panel is I + r only. Rebuild it with a θ control and a
         //   dB readout; all three drive refreshBiotExplorer (real physics).
@@ -23792,7 +26226,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
 
-            function refreshDipoleLabels() {
+            function refreshDipoleLabels(setManual) {
                 var pVal = document.getElementById("p_dipole_val");
                 var eVal = document.getElementById("e_dipole_val");
                 var thVal = document.getElementById("theta_dipole_val");
@@ -23811,7 +26245,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     lgD.userData.slider_p = p;
                     lgD.userData.slider_E = e;
                     lgD.userData.slider_theta_deg = th;
-                    lgD.userData.rotation_mode = "manual";
+                    if (setManual) lgD.userData.rotation_mode = "manual";
                     applyTorqueLoopTheta(lgD, th);
                 }
 
@@ -23822,10 +26256,17 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (readout) readout.textContent = "\\u03c4 = " + tauD.toFixed(2) + "   U = " + uD.toFixed(2);
             }
 
-            pDipole.addEventListener("input", refreshDipoleLabels);
-            eDipole.addEventListener("input", refreshDipoleLabels);
-            thetaDipole.addEventListener("input", refreshDipoleLabels);
-            refreshDipoleLabels();
+            // Instrument rule (2026-06-30): p / E drags scale the live field but
+            // do NOT seize the rotation — only a genuine (trusted) theta drag
+            // switches the dipole to manual, so a state's authored auto-demo
+            // (idle_sway / oscillation / theta_sweep) keeps running until the
+            // teacher actually grabs the angle. The on-entry sync (applyState)
+            // dispatches an untrusted input event, so it syncs the readout
+            // without seizing the animation.
+            pDipole.addEventListener("input", function () { refreshDipoleLabels(false); });
+            eDipole.addEventListener("input", function () { refreshDipoleLabels(false); });
+            thetaDipole.addEventListener("input", function (ev) { refreshDipoleLabels(!!(ev && ev.isTrusted)); });
+            refreshDipoleLabels(false);
         }
 
         // ── bar_magnet_in_uniform_field slider wiring ─────────────────────
@@ -23860,7 +26301,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
 
-            function refreshBmfLabels() {
+            function refreshBmfLabels(setManual) {
                 var mVal = document.getElementById("bmf_m_val");
                 var bVal = document.getElementById("bmf_b_val");
                 var thVal = document.getElementById("bmf_theta_val");
@@ -23877,7 +26318,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     lgB.userData.slider_p = mv;
                     lgB.userData.slider_E = bv;
                     lgB.userData.slider_theta_deg = th;
-                    lgB.userData.rotation_mode = "manual";
+                    if (setManual) lgB.userData.rotation_mode = "manual";
                     applyTorqueLoopTheta(lgB, th);
                 }
 
@@ -23887,10 +26328,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (readout) readout.textContent = "\\u03c4 = " + tauB.toFixed(2) + "   U = " + uB.toFixed(2) + "   T = " + periodB.toFixed(2) + " s";
             }
 
-            mBmf.addEventListener("input", refreshBmfLabels);
-            bBmf.addEventListener("input", refreshBmfLabels);
-            thetaBmf.addEventListener("input", refreshBmfLabels);
-            refreshBmfLabels();
+            // Instrument rule (2026-06-30): same as the dipole — m / B drags scale
+            // the live field without seizing the rotation; only a trusted theta
+            // drag switches to manual, so an authored auto-demo keeps running
+            // until the teacher grabs the angle (on-entry sync stays untrusted).
+            mBmf.addEventListener("input", function () { refreshBmfLabels(false); });
+            bBmf.addEventListener("input", function () { refreshBmfLabels(false); });
+            thetaBmf.addEventListener("input", function (ev) { refreshBmfLabels(!!(ev && ev.isTrusted)); });
+            refreshBmfLabels(false);
         }
 
         // ── force_on_current_wire slider wiring ──────────────────────────
@@ -23990,7 +26435,7 @@ export const FIELD_3D_RENDERER_CODE = `
         // to crawling there (the reveals re-evaluate at the new time, nothing un-draws),
         // so we jump in ONE frame. Gated on config.potential_meaning so every existing
         // scenario keeps the deterministic crawl (its trails/rotation MUST build).
-        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges")) {
+        if (freezeAtTime !== null && (config.potential_meaning || config.scenario_type === "parallel_plates" || config.scenario_type === "dipole_potential" || config.scenario_type === "system_of_charges" || config.scenario_type === "system_pe_assembly" || config.scenario_type === "pe_external_field")) {
             // parallel_plates + dipole_potential are accumulator-free (every reveal +
             // sweep + the gap-widen morph is a pure function of time - stateStartTime),
             // so snapping to the pin is byte-identical to crawling — lets the visual
@@ -24057,6 +26502,27 @@ export const FIELD_3D_RENDERER_CODE = `
             if (socStateDef) updateSystemOfChargesFrame(socStateDef);
         }
 
+        // system_pe_assembly — charge fly-ins (eased, pure clock), pair-bond + U-tag
+        // reveals, signed energy meter fill, live pair sums, STATE_6 drag (Rule 26).
+        if (config.scenario_type === "system_pe_assembly") {
+            var peStateDef2 = config.states[PM_currentState];
+            if (peStateDef2) updateSystemPeAssemblyFrame(peStateDef2);
+        }
+
+        // pe_external_field - charge fly-ins / slides + qV tags + signed meter (CHARGE
+        // phase) OR dipole rotation + U=-pE cos(theta) meter (DIPOLE phase). In the
+        // STATE_9 explorer the theta slider live-drives the loop angle each frame.
+        if (config.scenario_type === "pe_external_field") {
+            var pefStateDef2 = config.states[PM_currentState];
+            if (pefStateDef2) {
+                if (pefStateDef2.pef && pefStateDef2.pef.dipole && pefStateDef2.show_sliders && typeof window.PM_pefTheta === "number") {
+                    var pefLg = findTorqueLoopGroup(); if (pefLg) applyTorqueLoopTheta(pefLg, window.PM_pefTheta);
+                }
+                updatePeExternalFieldFrame(pefStateDef2, heldAtPin);
+                if (pefStateDef2.pef && pefStateDef2.pef.dipole) applyDipoleInFieldGlow();
+            }
+        }
+
         // Magnetic field of a circular loop — current dots, dB stack, B merge,
         // current flip, z-sweep + graph dot (pure fn of the state clock, Rule 26).
         if (config.scenario_type === "magnetic_field_circular_loop") {
@@ -24105,6 +26571,35 @@ export const FIELD_3D_RENDERER_CODE = `
         // function of the state clock (time - stateStartTime), Rule 26.
         if (config.scenario_type === "gauss_law") {
             updateGaussLawFrame();
+        }
+
+        // gauss_law_magnetism — closed-loop tracer stream + S4 surface morph +
+        // S6 sandbox drag + Φ_B = 0 readout (state clock, Rule 26) + TTS glow.
+        if (config.scenario_type === "gauss_law_magnetism") {
+            updateGaussLawMagnetismFrame();
+            applyGaussLawMagnetismGlow();
+        }
+
+        // earths_magnetism — dip-needle tilt + D/I arcs + H/V/B triangle + live
+        // readout (pure fn of the state clock, Rule 26) + TTS glow.
+        if (config.scenario_type === "earths_magnetism") {
+            updateEarthsMagnetismFrame();
+            applyEarthsMagnetismGlow();
+        }
+
+        // magnetisation — dipole alignment + M growth + dense-line fade + current
+        // pulse + H/M/B/mu_r readout (pure fn of the state clock, Rule 26) + glow.
+        if (config.scenario_type === "magnetisation") {
+            updateMagnetisationFrame();
+            applyMagnetisationGlow();
+        }
+
+        // faraday — magnet slide/oscillation + flux-opacity + needle deflection +
+        // current-arrow flip + Lenz push arrow + Phi/eps readout (pure fn of the state
+        // clock, Rule 26) + TTS glow. OWN block (never nested in another scenario's).
+        if (config.scenario_type === "faraday") {
+            updateFaradayFrame();
+            applyFaradayGlow();
         }
 
         // gauss_law_sphere — charged-shell field. Drives the Gaussian-sphere

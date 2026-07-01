@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "medium",
-  "source_book": "NCERT Class 12 Physics Ch.1 §1.12 (Dipole in a Uniform External Field) — table-of-contents reference only; teaching authored from first principles. Sibling of torque_on_current_loop_in_field: an electric dipole of moment p in a uniform field E feels zero net force but a non-zero torque τ = p × E that rotates it toward alignment, with potential energy U = −p·E. Board/NCERT depth — torque, the force couple, stable/unstable equilibrium, and potential energy; the JEE small-oscillation period T = 2π√(I/pE) is intentionally out of scope (founder decision 2026-06-23). The four student errors targeted: (a) believing a uniform field pushes the dipole bodily along the field (net force is zero — only torque), (b) believing the dipole feels no force at all (each charge feels qE; they form a couple), (c) believing torque is maximum when p ∥ E (it is zero there; maximum at 90°), (d) believing θ = 180° is just as stable as θ = 0° (it is the energy maximum — unstable). Reuses the archetype-C rotational-dynamics renderer primitives established by the torque-loop diamond (moment vector, couple forces, τ along the rotation axis, oscillation, θ-sweep). Conforms to the EPIC-L-first directive (no epic_c_branches) and the conceptual-only directive (no mode_overrides).",
+  "source_book": "NCERT Class 12 Physics Ch.1 §1.12 (Dipole in a Uniform External Field) — table-of-contents reference only; teaching authored from first principles. Sibling of torque_on_current_loop_in_field: an electric dipole of moment p in a uniform field E feels zero net force but a non-zero torque τ = p × E that rotates it toward alignment, with potential energy U = −p·E. Board/NCERT depth — torque, the force couple, stable/unstable equilibrium, and potential energy; the JEE small-oscillation period T = 2π√(I/pE) is intentionally out of scope (founder decision 2026-06-23). The four student errors targeted: (a) believing a uniform field pushes the dipole bodily along the field (net force is zero — only torque), (b) believing the dipole feels no force at all (each charge feels qE; they form a couple), (c) believing torque is maximum when p ∥ E (it is zero there; maximum at 90°), (d) believing θ = 180° is just as stable as θ = 0° (it is the energy maximum — unstable). Reuses the archetype-C rotational-dynamics renderer primitives established by the torque-loop diamond (moment vector, couple forces, τ along the rotation axis, oscillation, θ-sweep). Conforms to the EPIC-L-first directive (no epic_c_branches) and the conceptual-only directive (no mode_overrides). LIVE-INSTRUMENT CONVERSION (2026-06-30): restructured from 8 reveal-then-hold states into 6 teacher-driven live bookmarks — every state is interactive (show_sliders), auto-demo motion runs until the teacher grabs a control.",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -99,22 +99,22 @@
     "max_words_per_tts_sentence": 30
   },
   "aha_moment": {
-    "state_id": "STATE_4",
+    "state_id": "STATE_3",
     "statement": "Net force is zero, yet the torque is not — the dipole rotates without moving.",
-    "visual_confirmation": "Watch STATE_3 → STATE_4: the two equal-and-opposite charge forces resolve to a ΣF = 0 badge, yet the τ vector appears and the dipole begins to turn. Both facts are true at once."
+    "visual_confirmation": "Inside STATE_3 the two equal-and-opposite charge forces resolve to a ΣF = 0 badge, yet the τ vector appears and the dipole turns toward E. Both facts are true at once — drag θ to feel the torque rise and fall."
   },
   "entry_state_map": {
-    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
-    "exploration": ["STATE_5", "STATE_6", "STATE_7", "STATE_8"]
+    "foundational": ["STATE_1", "STATE_2", "STATE_3"],
+    "exploration": ["STATE_4", "STATE_5", "STATE_6"]
   },
   "epic_l_path": {
-    "state_count": 8,
+    "state_count": 6,
     "states": {
       "STATE_1": {
         "title": "A dipole and its moment p = q · 2a",
         "duration": 16,
         "focal_primitive_id": "setup_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -194,65 +194,13 @@
             { "id": "s2_1", "text_en": "Now switch on a uniform electric field. Every blue arrow is identical in length and direction.", "text_hi": "अब एक uniform electric field को switch on करते हैं। हर नीला arrow length और direction में identical है।", "text_te": "ఇప్పుడు ఒక uniform electric field switch on చేద్దాం. ప్రతి నీలి arrow length మరియు direction లో identical గా ఉంది.", "glow": "e" },
             { "id": "s2_2", "text_en": "Uniform means the field is the same at every point in space. It does not get stronger or weaker anywhere.", "text_hi": "Uniform का मतलब है कि field हर जगह एक समान है। यह कहीं stronger या weaker नहीं होती।", "text_te": "Uniform అంటే field అన్ని చోట్లా ఒకేలా ఉంటుంది. ఇది ఎక్కడా stronger లేదా weaker కాదు.", "glow": "e" },
             { "id": "s2_3", "text_en": "The dipole sits tilted at an angle theta to the field. The yellow arc marks that angle between the dipole moment p and the electric field E.", "text_hi": "Dipole field के साथ theta angle पर tilted है। पीला arc उस angle को mark करता है जो dipole moment p और electric field E के बीच में है।", "text_te": "Dipole field తో theta angle లో tilted గా ఉంది. పసుపు రంగు arc dipole moment p మరియు electric field E మధ్య ఉన్న ఆ angle ని చూపిస్తుంది.", "glow": "theta" },
-            { "id": "s2_4", "text_en": "Question. What does the field do to this tilted dipole? Keep watching.", "text_hi": "Question। यह field इस tilted dipole के साथ क्या करती है? देखते रहो।", "text_te": "Question. ఈ field ఈ tilted dipole కి ఏమి చేస్తుందో? చూస్తూ ఉండండి.", "glow": "dipole" }
+            { "id": "s2_4", "text_en": "Question. What does the field do to this tilted dipole? Drag theta and find out.", "text_hi": "Question। यह field इस tilted dipole के साथ क्या करती है? theta को drag करके पता करो।", "text_te": "Question. ఈ field ఈ tilted dipole కి ఏమి చేస్తుంది? theta ని drag చేసి తెలుసుకోండి.", "glow": "dipole" }
           ]
         }
       },
       "STATE_3": {
-        "title": "Two forces: +qE and −qE — a couple",
-        "duration": 22,
-        "focal_primitive_id": "forces_label",
-        "advance_mode": "manual_click",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "forces_label",
-            "position": { "x": 380, "y": 60 },
-            "text": "Each charge feels a force in the field",
-            "color": "#FFD54F"
-          },
-          {
-            "type": "annotation",
-            "id": "plus_force_label",
-            "position": { "x": 200, "y": 230 },
-            "text": "On +q: force +qE,\nalong the field.\nOn −q: force −qE,\nopposite the field.",
-            "color": "#66BB6A"
-          },
-          {
-            "type": "annotation",
-            "id": "couple_label",
-            "position": { "x": 560, "y": 230 },
-            "text": "Equal. Opposite. But on\ndifferent lines of action.\nThat is a COUPLE.",
-            "color": "#FFCC9F",
-            "reveal_at_tts_id": "s3_3"
-          },
-          {
-            "type": "annotation",
-            "id": "magnitude_label",
-            "position": { "x": 380, "y": 470 },
-            "text": "Each force has magnitude qE. They do not cancel as a pair — they twist.",
-            "color": "#D4D4D8",
-            "reveal_at_tts_id": "s3_4"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s3_1", "text_en": "Look at each charge separately. The positive charge feels a force q E, pointing along the field.", "text_hi": "हर charge को अलग-अलग देखो। positive charge को एक force q E महसूस होता है, जो field की direction में point करता है।", "text_te": "ప్రతి charge ని విడిగా చూడండి. positive charge కి ఒక force q E అనిపిస్తుంది, అది field వైపు point చేస్తుంది.", "glow": "forces", "math_show": "\\vec{F}_+ = +q\\vec{E}" },
-            { "id": "s3_2", "text_en": "The negative charge feels a force q E pointing the opposite way, against the field.", "text_hi": "negative charge को भी force q E महसूस होता है, लेकिन वह opposite direction में, field के against।", "text_te": "negative charge కి కూడా force q E అనిపిస్తుంది, కానీ అది opposite వైపు, field కి వ్యతిరేకంగా.", "glow": "forces", "math_show": "\\vec{F}_- = -q\\vec{E}" },
-            { "id": "s3_3", "text_en": "Two forces. Equal in size. Opposite in direction. But acting on different lines. That combination is called a couple.", "text_hi": "दो forces। size में बराबर। direction में opposite। लेकिन अलग-अलग lines पर act करते हैं। इस combination को couple कहते हैं।", "text_te": "రెండు forces. size లో సమానం. direction లో opposite. కానీ వేర్వేరు lines పై act చేస్తాయి. ఈ combination ని couple అంటారు.", "glow": "forces" },
-            { "id": "s3_4", "text_en": "So the dipole does feel forces. It is just that the two forces are set up to twist it, not to push it.", "text_hi": "तो dipole को forces ज़रूर महसूस होती हैं। बस यह है कि दोनों forces उसे push नहीं करतीं, बल्कि twist करने के लिए set up हैं।", "text_te": "కాబట్టి dipole కి forces అనిపిస్తాయే. కేవలం ఆ రెండు forces దాన్ని push చేయవు, twist చేయడానికి set up అయ్యాయి.", "glow": "forces" }
-          ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "A dipole placed in a field feels no force at all, because the charges are equal and opposite.",
-            "one_line_fix": "Each charge DOES feel a force qE. The two are equal and opposite, so they form a couple — zero net force, but a real twisting torque."
-          }
-        ]
-      },
-      "STATE_4": {
-        "title": "Net force zero, but torque is not",
-        "duration": 26,
+        "title": "The couple: ΣF = 0, yet τ ≠ 0 — the dipole turns",
+        "duration": 30,
         "focal_primitive_id": "torque_label",
         "advance_mode": "wait_for_answer",
         "scene_composition": [
@@ -260,21 +208,22 @@
             "type": "annotation",
             "id": "torque_label",
             "position": { "x": 380, "y": 60 },
-            "text": "ΣF = 0, yet the dipole turns",
+            "text": "Each charge feels qE — yet ΣF = 0, and still it turns",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "sum_zero_label",
+            "id": "couple_label",
             "position": { "x": 200, "y": 230 },
-            "text": "Add the two forces:\n+qE and −qE cancel.\nΣF = 0 → no sliding.",
-            "color": "#FFF176"
+            "text": "On +q: +qE along E.\nOn −q: −qE against E.\nEqual, opposite, different\nlines of action → a COUPLE.",
+            "color": "#66BB6A",
+            "reveal_at_tts_id": "s3_3"
           },
           {
             "type": "annotation",
             "id": "rotate_label",
             "position": { "x": 560, "y": 230 },
-            "text": "But the couple makes a torque.\nThe purple arrow is τ.\nThe dipole rotates toward E.",
+            "text": "Add them: ΣF = 0 → no sliding.\nBut the couple twists: τ (purple)\nturns the dipole toward E.",
             "color": "#E879F9",
             "reveal_at_tts_id": "s4_3"
           },
@@ -282,95 +231,58 @@
             "type": "annotation",
             "id": "aha_label",
             "position": { "x": 380, "y": 470 },
-            "text": "Zero net force and non-zero torque are both true at once. The dipole turns without moving off the spot.",
+            "text": "Zero net force AND non-zero torque, both at once — it turns without moving off the spot.",
             "color": "#FFF176",
             "reveal_at_tts_id": "s4_5"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
+            { "id": "s3_1", "text_en": "Look at each charge separately. The positive charge feels a force q E, pointing along the field.", "text_hi": "हर charge को अलग-अलग देखो। positive charge को एक force q E महसूस होता है, जो field की direction में point करता है।", "text_te": "ప్రతి charge ని విడిగా చూడండి. positive charge కి ఒక force q E అనిపిస్తుంది, అది field వైపు point చేస్తుంది.", "glow": "forces", "math_show": "\\vec{F}_+ = +q\\vec{E}" },
+            { "id": "s3_2", "text_en": "The negative charge feels a force q E pointing the opposite way, against the field.", "text_hi": "negative charge को भी force q E महसूस होता है, लेकिन वह opposite direction में, field के against।", "text_te": "negative charge కి కూడా force q E అనిపిస్తుంది, కానీ అది opposite వైపు, field కి వ్యతిరేకంగా.", "glow": "forces", "math_show": "\\vec{F}_- = -q\\vec{E}" },
+            { "id": "s3_3", "text_en": "Two forces. Equal in size. Opposite in direction. But acting on different lines. That combination is called a couple.", "text_hi": "दो forces। size में बराबर। direction में opposite। लेकिन अलग-अलग lines पर act करते हैं। इस combination को couple कहते हैं।", "text_te": "రెండు forces. size లో సమానం. direction లో opposite. కానీ వేర్వేరు lines పై act చేస్తాయి. ఈ combination ని couple అంటారు.", "glow": "forces" },
             { "id": "s4_1", "text_en": "Now add the two forces together. Plus q E and minus q E cancel exactly. The net force is zero.", "text_hi": "अब दोनों forces को जोड़ो। plus q E और minus q E बिल्कुल cancel हो जाती हैं। net force zero हो जाती है।", "text_te": "ఇప్పుడు రెండు forces ని కలపండి. plus q E మరియు minus q E పూర్తిగా cancel అవుతాయి. net force zero అవుతుంది.", "glow": "sum", "math_show": "\\sum \\vec{F} = 0" },
             { "id": "s4_2", "text_en": "Zero net force means the dipole will not slide anywhere. Take three seconds — does that mean nothing happens?", "text_hi": "zero net force का मतलब है dipole कहीं slide नहीं करेगा। तीन seconds लो — क्या इसका मतलब है कि कुछ नहीं होता?", "text_te": "zero net force అంటే dipole ఎక్కడికీ slide అవ్వదు. మూడు seconds తీసుకోండి — దీని అర్థం ఏమీ జరగదా?", "glow": "dipole", "pause_after_ms": 3000 },
             { "id": "s4_3", "text_en": "No. The couple produces a torque. The purple arrow is the torque tau, and the dipole begins to rotate toward the field.", "text_hi": "नहीं। couple एक torque produce करता है। बैंगनी arrow torque tau है, और dipole field की तरफ rotate होना शुरू हो जाता है।", "text_te": "లేదు. couple ఒక torque produce చేస్తుంది. ఊదా రంగు arrow torque tau, మరియు dipole field వైపు rotate అవ్వడం మొదలవుతుంది.", "glow": "tau" },
-            { "id": "s4_4", "text_en": "Net force zero, but torque not zero. Both statements are true at the same moment.", "text_hi": "net force zero, लेकिन torque zero नहीं। दोनों बातें एक ही moment पर true हैं।", "text_te": "net force zero, కానీ torque zero కాదు. రెండు statements ఒకే moment లో true గా ఉంటాయి.", "glow": ["sum", "tau"], "math_show": "\\sum \\vec{F} = 0, \\quad \\vec{\\tau} \\neq 0" },
             { "id": "s4_5", "text_en": "Forces decide sliding. Torques decide turning. A uniform field gives the dipole only a turn.", "text_hi": "Forces sliding decide करती हैं। Torques turning decide करते हैं। एक uniform field dipole को सिर्फ़ एक turn देती है।", "text_te": "Forces sliding decide చేస్తాయి. Torques turning decide చేస్తాయి. ఒక uniform field dipole కి కేవలం ఒక turn ఇస్తుంది.", "glow": "tau" }
           ]
         },
         "misconception_watch": [
+          {
+            "belief": "A dipole placed in a field feels no force at all, because the charges are equal and opposite.",
+            "one_line_fix": "Each charge DOES feel a force qE. The two are equal and opposite, so they form a couple — zero net force, but a real twisting torque."
+          },
           {
             "belief": "A uniform field pushes the dipole bodily along the direction of the field.",
             "one_line_fix": "In a UNIFORM field the net force is exactly zero — the dipole only rotates to align with E, it does not translate."
           }
         ]
       },
-      "STATE_5": {
-        "title": "τ = pE sin θ — sweep θ and watch τ trace a sine",
-        "duration": 22,
+      "STATE_4": {
+        "title": "τ = pE sin θ — sweep θ; where is τ maximum?",
+        "duration": 26,
         "focal_primitive_id": "sweep_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "wait_for_answer",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "sweep_label",
             "position": { "x": 380, "y": 60 },
-            "text": "Watch θ sweep — τ rises and falls",
+            "text": "Sweep θ — where is the torque biggest?",
             "color": "#FFD54F"
-          },
-          {
-            "type": "annotation",
-            "id": "grows_label",
-            "position": { "x": 200, "y": 230 },
-            "text": "τ is zero when p lines up with E,\ngrows as the dipole tilts,\nand falls back to zero again.",
-            "color": "#FFCC9F"
           },
           {
             "type": "annotation",
             "id": "sine_label",
-            "position": { "x": 560, "y": 230 },
-            "text": "Functional form:\nτ = pE sin θ.\nThis is a sine curve.",
-            "color": "#E879F9"
-          },
-          {
-            "type": "annotation",
-            "id": "watch_label",
-            "position": { "x": 380, "y": 470 },
-            "text": "Watch only. The purple τ arrow grows and shrinks with the angle.",
-            "color": "#D4D4D8"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s5_1", "text_en": "Watch the angle sweep from zero through ninety to one eighty and back. Keep your eye on the purple torque arrow.", "text_hi": "angle को zero से ninety होते हुए one eighty तक और वापस sweep होते देखो। बैंगनी torque arrow पर नज़र रखो।", "text_te": "angle zero నుండి ninety గుండా one eighty వరకు మరియు తిరిగి sweep అవ్వడం చూడండి. ఊదా torque arrow పై దృష్టి పెట్టండి.", "glow": "theta" },
-            { "id": "s5_2", "text_en": "The torque starts at zero, grows as the dipole tilts away from the field, peaks, then falls back to zero.", "text_hi": "torque zero से शुरू होता है, जैसे-जैसे dipole field से tilt होता है बढ़ता है, peak करता है, फिर zero पर वापस आ जाता है।", "text_te": "torque zero నుండి మొదలవుతుంది, dipole field నుండి tilt అవుతూ పెరుగుతుంది, peak చేరుతుంది, తర్వాత zero కి తిరిగి వస్తుంది.", "glow": "tau" },
-            { "id": "s5_3", "text_en": "That shape is a sine. Tau equals p E sine theta. Where does it reach its biggest value? You will guess next.", "text_hi": "यह shape एक sine है। tau equals p E sine theta। यह अपनी सबसे बड़ी value कहाँ reach करता है? अगले step में तुम guess करोगे।", "text_te": "ఆ shape ఒక sine. tau equals p E sine theta. ఇది అత్యధిక value ఎక్కడ reach అవుతుంది? తర్వాత మీరు guess చేస్తారు.", "glow": "tau", "math_show": "\\tau = pE\\sin\\theta" }
-          ]
-        }
-      },
-      "STATE_6": {
-        "title": "Where is τ maximum? — predict before you see",
-        "duration": 22,
-        "focal_primitive_id": "predict_label",
-        "advance_mode": "wait_for_answer",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "predict_label",
-            "position": { "x": 380, "y": 60 },
-            "text": "At what angle is the torque MAXIMUM?",
-            "color": "#FFD54F"
-          },
-          {
-            "type": "annotation",
-            "id": "wrong_label",
             "position": { "x": 200, "y": 230 },
-            "text": "Common wrong guess:\nθ = 0° (p lined up with E).\n\"Aligned must be biggest, right?\"",
-            "color": "#FFCC9F"
+            "text": "τ = pE sin θ.\nZero when p lines up with E,\ngrows as the dipole tilts.\nThis is a sine curve.",
+            "color": "#E879F9"
           },
           {
             "type": "annotation",
             "id": "answer_label",
             "position": { "x": 560, "y": 230 },
-            "text": "Answer: θ = 90°.\nτ = pE sin 90° = pE.\nA cross product is biggest\nwhen the vectors are perpendicular.",
+            "text": "Wrong guess: θ = 0° (aligned).\nAnswer: θ = 90°!\nτ = pE sin 90° = pE.",
             "color": "#66BB6A",
             "reveal_at_tts_id": "s6_3"
           },
@@ -385,7 +297,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "The dipole is now frozen at ninety degrees. Look at the torque arrow — it is fully extended.", "text_hi": "dipole अभी ninety degrees पर frozen है। torque arrow को देखो — यह पूरी तरह extended है।", "text_te": "dipole ఇప్పుడు ninety degrees వద్ద frozen గా ఉంది. torque arrow చూడండి — అది పూర్తిగా extended గా ఉంది.", "glow": "tau" },
+            { "id": "s5_1", "text_en": "Watch the angle sweep from zero through ninety to one eighty and back. Keep your eye on the purple torque arrow.", "text_hi": "angle को zero से ninety होते हुए one eighty तक और वापस sweep होते देखो। बैंगनी torque arrow पर नज़र रखो।", "text_te": "angle zero నుండి ninety గుండా one eighty వరకు మరియు తిరిగి sweep అవ్వడం చూడండి. ఊదా torque arrow పై దృష్టి పెట్టండి.", "glow": "theta" },
+            { "id": "s5_2", "text_en": "The torque starts at zero, grows as the dipole tilts away from the field, peaks, then falls back to zero.", "text_hi": "torque zero से शुरू होता है, जैसे-जैसे dipole field से tilt होता है बढ़ता है, peak करता है, फिर zero पर वापस आ जाता है।", "text_te": "torque zero నుండి మొదలవుతుంది, dipole field నుండి tilt అవుతూ పెరుగుతుంది, peak చేరుతుంది, తర్వాత zero కి తిరిగి వస్తుంది.", "glow": "tau" },
+            { "id": "s5_3", "text_en": "That shape is a sine. Tau equals p E sine theta. Where does it reach its biggest value? Predict before you grab the angle.", "text_hi": "यह shape एक sine है। tau equals p E sine theta। यह अपनी सबसे बड़ी value कहाँ reach करता है? angle पकड़ने से पहले predict करो।", "text_te": "ఆ shape ఒక sine. tau equals p E sine theta. ఇది అత్యధిక value ఎక్కడ reach అవుతుంది? angle పట్టుకునే ముందు predict చేయండి.", "glow": "tau", "math_show": "\\tau = pE\\sin\\theta" },
             { "id": "s6_2", "text_en": "Predict first. At what angle is the torque largest? Take three seconds.", "text_hi": "पहले predict करो। torque किस angle पर सबसे बड़ा है? तीन seconds लो।", "text_te": "మొదట predict చేయండి. torque ఏ angle వద్ద అత్యధికంగా ఉంటుంది? మూడు seconds తీసుకోండి.", "glow": "theta", "pause_after_ms": 3000 },
             { "id": "s6_3", "text_en": "Many students say zero degrees, where the dipole moment p lines up with the electric field E. That feels right, but it is wrong. The answer is ninety.", "text_hi": "बहुत से students कहते हैं zero degrees, जहाँ dipole moment p, electric field E के साथ line up होता है। यह सही लगता है, लेकिन यह गलत है। answer ninety है।", "text_te": "చాలా students zero degrees అంటారు, అక్కడ dipole moment p, electric field E తో line up అవుతుంది. అది సరిగ్గా అనిపిస్తుంది, కానీ అది తప్పు. answer ninety.", "glow": "tau", "math_show": "\\tau_{\\max} = pE \\;\\text{at}\\; \\theta = 90^{\\circ}" },
             { "id": "s6_4", "text_en": "Because the torque tau is a cross product. Cross products are biggest when the two vectors are perpendicular, and zero when they are parallel.", "text_hi": "क्योंकि torque tau एक cross product है। cross products सबसे बड़े होते हैं जब दोनों vectors perpendicular हों, और zero जब वे parallel हों।", "text_te": "ఎందుకంటే torque tau ఒక cross product. cross products అత్యధికంగా ఉంటాయి రెండు vectors perpendicular గా ఉన్నప్పుడు, మరియు zero గా ఉంటాయి parallel గా ఉన్నప్పుడు.", "glow": "theta" }
@@ -398,7 +312,7 @@
           }
         ]
       },
-      "STATE_7": {
+      "STATE_5": {
         "title": "Stable vs unstable equilibrium — and U = −pE cos θ",
         "duration": 26,
         "focal_primitive_id": "equilibrium_label",
@@ -429,7 +343,7 @@
             "type": "annotation",
             "id": "energy_label",
             "position": { "x": 380, "y": 470 },
-            "text": "U = −pE cos θ. Lowest at θ = 0° (stable), highest at θ = 180° (unstable).",
+            "text": "U = −pE cos θ. Lowest at θ = 0° (stable), highest at θ = 180° (unstable). Drag θ to trace it.",
             "color": "#FFCA28"
           }
         ],
@@ -449,8 +363,8 @@
           }
         ]
       },
-      "STATE_8": {
-        "title": "Your turn — drag p, E and θ; watch τ and U respond",
+      "STATE_6": {
+        "title": "Free play — drag p, E and θ; watch τ and U respond",
         "duration": 0,
         "focal_primitive_id": "sandbox_label",
         "advance_mode": "interaction_complete",
@@ -459,7 +373,7 @@
             "type": "annotation",
             "id": "sandbox_label",
             "position": { "x": 380, "y": 60 },
-            "text": "Sandbox — drag the three sliders",
+            "text": "Free play — drag the three sliders",
             "color": "#FFD54F"
           },
           {
@@ -511,9 +425,11 @@
         "label": "A dipole and its moment p — no field yet",
         "visible_elements": [],
         "camera_position": [3, 2.2, 4],
-        "caption": "Two charges +q and −q with the dipole moment p pointing −q → +q. The external field is not switched on yet.",
+        "caption": "Two charges +q and −q with the dipole moment p pointing −q → +q. The external field is not switched on yet. Drag θ to tilt it.",
         "theta_deg": 90,
         "rotation_mode": "static",
+        "idle_sway_deg": 4,
+        "show_sliders": true,
         "extras": {
           "e_field": false,
           "p_animate_in": true,
@@ -528,9 +444,11 @@
         "label": "Place it in a uniform field E (θ ≈ 60°)",
         "visible_elements": [],
         "camera_position": [3, 2.2, 4],
-        "caption": "The uniform field E (identical blue arrows) is switched on. The dipole sits tilted at θ to the field; the yellow arc marks the angle.",
+        "caption": "The uniform field E (identical blue arrows) is switched on. The dipole sits tilted at θ to the field; the yellow arc marks the angle. Drag θ to retilt it.",
         "theta_deg": 60,
         "rotation_mode": "static",
+        "idle_sway_deg": 4,
+        "show_sliders": true,
         "extras": {
           "e_field": true,
           "e_field_animate_in": true,
@@ -542,30 +460,15 @@
         }
       },
       "STATE_3": {
-        "label": "The force couple — +qE and −qE",
-        "visible_elements": [],
-        "camera_position": [3, 2.2, 4],
-        "caption": "Each charge feels a force qE: +qE along E on +q, −qE against E on −q. Equal, opposite, on different lines — a couple.",
-        "theta_deg": 60,
-        "rotation_mode": "static",
-        "extras": {
-          "e_field": true,
-          "force_vectors": { "show_plus": true, "show_minus": true },
-          "tau_vector": false,
-          "sum_force_badge": false,
-          "theta_arc": { "show": true },
-          "energy_meter": { "show": false }
-        }
-      },
-      "STATE_4": {
-        "label": "ΣF = 0, τ ≠ 0 — the dipole rotates toward E",
+        "label": "The couple → ΣF = 0, τ ≠ 0 — the dipole rotates toward E",
         "visible_elements": [],
         "camera_position": [3, 2.5, 4],
-        "caption": "The two forces sum to zero (ΣF = 0 badge), yet the couple makes a torque τ. The dipole begins to rotate toward alignment.",
+        "caption": "Each charge feels qE: +qE along E, −qE against E (a couple). The two forces sum to zero (ΣF = 0 badge), yet the couple makes a torque τ. Drag θ to feel the torque rise and fall.",
         "theta_deg": 55,
         "rotation_mode": "oscillation",
         "oscillation_amplitude_deg": 55,
         "oscillation_period_s": 3.4,
+        "show_sliders": true,
         "extras": {
           "e_field": true,
           "force_vectors": { "show_plus": true, "show_minus": true },
@@ -575,14 +478,15 @@
           "energy_meter": { "show": false }
         }
       },
-      "STATE_5": {
-        "label": "θ sweep 0 → 180° — τ traces a sine",
+      "STATE_4": {
+        "label": "θ sweep 0 → 180° — τ traces a sine; max at 90°",
         "visible_elements": [],
         "camera_position": [3, 2.5, 4],
-        "caption": "θ animates 0 → 180° and back on a 10-second cycle. The τ arrow scales with sin θ — zero at 0° and 180°, biggest in the middle.",
+        "caption": "θ animates 0 → 180° and back on a 10-second cycle. The τ arrow scales with sin θ — zero at 0° and 180°, biggest at 90°. Grab θ to park it at the maximum.",
         "theta_deg": 90,
         "rotation_mode": "theta_sweep",
         "theta_sweep_period_s": 10,
+        "show_sliders": true,
         "extras": {
           "e_field": true,
           "force_vectors": { "show_plus": false, "show_minus": false },
@@ -592,32 +496,16 @@
           "energy_meter": { "show": false }
         }
       },
-      "STATE_6": {
-        "label": "Frozen at θ = 90° — predict the maximum",
-        "visible_elements": [],
-        "camera_position": [3, 2.5, 4],
-        "caption": "The dipole is pinned at θ = 90°, where τ = pE is at its maximum. Wrong-belief prompt and answer reveal via reveal_at_tts_id.",
-        "theta_deg": 90,
-        "rotation_mode": "static",
-        "extras": {
-          "e_field": true,
-          "force_vectors": { "show_plus": false, "show_minus": false },
-          "tau_vector": { "show": true },
-          "tau_pulse": true,
-          "sum_force_badge": false,
-          "theta_arc": { "show": true },
-          "energy_meter": { "show": false }
-        }
-      },
-      "STATE_7": {
+      "STATE_5": {
         "label": "Stable oscillation about θ = 0° + U-meter",
         "visible_elements": [],
         "camera_position": [3, 2.5, 4.5],
-        "caption": "The dipole oscillates gently about θ = 0° (stable). The U-meter shows U = −pE cos θ: lowest at θ = 0°, highest at θ = 180°.",
+        "caption": "The dipole oscillates gently about θ = 0° (stable). The U-meter shows U = −pE cos θ: lowest at θ = 0°, highest at θ = 180°. Drag θ to 180° to find the unstable maximum.",
         "theta_deg": 0,
         "rotation_mode": "oscillation",
         "oscillation_amplitude_deg": 25,
         "oscillation_period_s": 3,
+        "show_sliders": true,
         "extras": {
           "e_field": true,
           "force_vectors": { "show_plus": false, "show_minus": false },
@@ -627,8 +515,8 @@
           "energy_meter": { "show": true }
         }
       },
-      "STATE_8": {
-        "label": "Interactive sandbox — drag p, E, θ",
+      "STATE_6": {
+        "label": "Free play — drag p, E, θ",
         "visible_elements": [],
         "camera_position": [3, 2.5, 4.5],
         "caption": "Sliders control p, E and θ. The τ arrow, the force couple, the U-meter and the readout all update on every drag.",
