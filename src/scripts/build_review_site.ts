@@ -27,6 +27,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'fs';
 import { join } from 'path';
+import { createHash } from 'crypto';
 import { assembleField3DHtml, type Field3DConfig } from '@/lib/renderers/field_3d_renderer';
 
 // ── Types (subset of the concept JSON we read) ───────────────────────────────
@@ -41,6 +42,11 @@ type TtsSentenceJson = {
     math_persist?: boolean;
     hand_phase?: 'v' | 'b' | 'f' | null;
     freeze_proton?: boolean;
+    // Binds a scenario one-shot (e.g. 'current_flip' | 'glyph_toggle' |
+    // 'velocity_compass' | 'split_switch' | 'camera_orbit' | 'f_appear') to this
+    // sentence: the player posts SET_CUE_TIME with this sentence's start so the
+    // renderer fires the event on the narrated beat instead of a hardcoded *_at_ms.
+    scenario_cue?: string | null;
 };
 
 type ConceptJson = {
@@ -75,6 +81,7 @@ type ReviewSentence = {
     math_persist: boolean;
     hand_phase: 'v' | 'b' | 'f' | null;
     freeze_proton: boolean;
+    scenario_cue: string | null;
 };
 
 type ReviewState = {
@@ -127,6 +134,8 @@ type AudioClip = {
     duration_ms: number;
     chars: number;
     available: boolean;
+    /** sha1 of the text the clip was voiced from (newer manifests). */
+    text_hash?: string;
 };
 
 function loadAudioManifest(conceptId: string): Record<string, AudioClip> {
@@ -172,11 +181,29 @@ function loadConcept(conceptId: string): ConceptJson {
     return JSON.parse(readFileSync(path, 'utf-8')) as ConceptJson;
 }
 
-function extractStates(json: ConceptJson, clips: Record<string, AudioClip>): ReviewState[] {
+function extractStates(
+    json: ConceptJson,
+    clips: Record<string, AudioClip>,
+    staleClipIds?: string[],
+): ReviewState[] {
     const states = json.epic_l_path?.states ?? {};
-    const audioFor = (sid: string, lang: 'en' | 'hi' | 'te'): AudioMeta => {
+    // A clip is wired ONLY if it was voiced from the sentence text now in the
+    // JSON (text_hash match; older manifests fall back to char-length equality).
+    // A stale clip — sentence rewritten under the same id, e.g. the Ch.4
+    // Socratic→straightforward retrofit — plays the OLD narration under the NEW
+    // caption + choreography, which is strictly worse than silence. Mute it and
+    // report it so `npm run tts:generate <id>` gets re-run.
+    const audioFor = (sid: string, lang: 'en' | 'hi' | 'te', currentText: string): AudioMeta => {
         const c = clips[sid + '_' + lang];
-        return { available: c?.available === true, duration_ms: c?.duration_ms ?? 0, file: c?.file ?? '' };
+        if (c?.available !== true) return { available: false, duration_ms: 0, file: '' };
+        const fresh = c.text_hash != null
+            ? c.text_hash === createHash('sha1').update(currentText, 'utf8').digest('hex')
+            : c.chars === currentText.length;
+        if (!fresh) {
+            staleClipIds?.push(sid + '_' + lang);
+            return { available: false, duration_ms: 0, file: '' };
+        }
+        return { available: true, duration_ms: c.duration_ms ?? 0, file: c.file ?? '' };
     };
     return Object.keys(states)
         .sort((a, b) => stateNumber(a) - stateNumber(b))
@@ -190,12 +217,17 @@ function extractStates(json: ConceptJson, clips: Record<string, AudioClip>): Rev
                         text_en: s.text_en ?? '',
                         text_hi: s.text_hi ?? '',
                         text_te: s.text_te ?? '',
-                        audio: { en: audioFor(sid, 'en'), hi: audioFor(sid, 'hi'), te: audioFor(sid, 'te') },
+                        audio: {
+                            en: audioFor(sid, 'en', (s.text_en ?? '').trim()),
+                            hi: audioFor(sid, 'hi', (s.text_hi ?? '').trim()),
+                            te: audioFor(sid, 'te', (s.text_te ?? '').trim()),
+                        },
                         glow: s.glow ?? null,
                         math_show: s.math_show ?? null,
                         math_persist: s.math_persist === true,
                         hand_phase: s.hand_phase ?? null,
                         freeze_proton: s.freeze_proton === true,
+                        scenario_cue: s.scenario_cue ?? null,
                     };
                 })
                 .filter((s) => s.text_en.length > 0);
@@ -674,6 +706,20 @@ function renderConceptPage(
       : Math.max(1, Math.round((st.duration || 12) * 1000));
     scrubEl.max = String(Math.max(1, timelineTotal));
   }
+  // Bind each scenario one-shot to the sentence that narrates it: post that
+  // sentence's window START (state-local ms, already per-language because
+  // computeTimeline paced it from the audio-clip durations) so the renderer fires
+  // the flip / glyph / compass / split-switch / camera-orbit / F-appear on the
+  // narrated beat instead of a hardcoded *_at_ms. MUST be sent AFTER SET_STATE
+  // (which resets the renderer's overrides) — postMessage FIFO guarantees order.
+  // THE EYE never calls this, so its deterministic *_at_ms capture is unaffected.
+  function sendCueTimes() {
+    var sents = cur().sentences || [];
+    for (var i = 0; i < timeline.length; i++) {
+      var s = sents[timeline[i].si];
+      if (s && s.scenario_cue) post({ type: 'SET_CUE_TIME', cue: s.scenario_cue, at_ms: timeline[i].start });
+    }
+  }
   // Sentence index whose [start,end) window holds state-local ms t. Clamp: before
   // the first → 0, after the last → last. -1 only when the state has no sentences.
   function activeSiAt(t) {
@@ -760,6 +806,7 @@ function renderConceptPage(
   // Roll the current state from the top: reset clock, replay one-shots, un-pin, play.
   function rollTimeline() {
     computeTimeline();
+    sendCueTimes();                            // re-pace cue times to the (possibly re-timed) timeline
     curSi = -1; spokenSi = -1; ended = true;   // suppress end-detect until the clock resets
     sendReset();
     sendReplay();
@@ -894,6 +941,7 @@ function renderConceptPage(
     computeTimeline();
     updateBadge();
     sendState(cur().id);
+    sendCueTimes();               // after SET_STATE (which resets the renderer's cue overrides)
     if (autoRoll) {
       pendingRoll = cur().id;
       var want = cur().id;
@@ -943,7 +991,7 @@ function renderConceptPage(
     try { localStorage.setItem(LS_LANG, lang); } catch (e) {}
     stopAudio();
     if (!muted && curSi >= 0) caption.textContent = sentText(cur().sentences[curSi]);
-    if (simReady) computeTimeline();
+    if (simReady) { computeTimeline(); sendCueTimes(); }   // clips re-paced → cue times shift with them
     spokenSi = -1;
     if (playing && !frozen) playCurrent();
   });
@@ -973,7 +1021,7 @@ function renderConceptPage(
     scrubTime.textContent = (ms / 1000).toFixed(1) + ' / ' + (mx / 1000).toFixed(1) + 's';
   }
   // Rate change re-paces the current state's reveal windows.
-  rateEl.addEventListener('change', function () { if (simReady) computeTimeline(); });
+  rateEl.addEventListener('change', function () { if (simReady) { computeTimeline(); sendCueTimes(); } });
 
   window.addEventListener('message', function (e) {
     var t = e.data && e.data.type;
@@ -1516,7 +1564,15 @@ function buildOne(conceptId: string): void {
     if (Object.keys(audioClips).length === 0) {
         console.warn(`   ⚠ ${conceptId}: no audio_manifest.json — run "npm run tts:generate ${conceptId}" first; narration will be silent.`);
     }
-    const states = extractStates(json, audioClips);
+    const staleClipIds: string[] = [];
+    const states = extractStates(json, audioClips, staleClipIds);
+    if (staleClipIds.length > 0) {
+        console.warn(
+            `   ⚠ ${conceptId}: ${staleClipIds.length} STALE audio clip(s) muted — sentence text changed since they were voiced ` +
+            `(${staleClipIds.slice(0, 6).join(', ')}${staleClipIds.length > 6 ? ', …' : ''}). ` +
+            `Run "npm run tts:generate ${conceptId}" to re-voice them.`,
+        );
+    }
     if (states.length === 0) {
         console.error(`✖ ${conceptId}: no epic_l_path states with narration found.`);
         process.exit(1);

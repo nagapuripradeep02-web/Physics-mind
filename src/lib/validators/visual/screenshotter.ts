@@ -92,9 +92,9 @@ export interface TtsMathStepInput {
 export interface DenseCaptureOptions {
     /** Interval between dense frames. Default 1000ms. */
     intervalMs?: number;
-    /** Per-state capture duration in ms (clamped 3000–30000). Default 10000. */
+    /** Per-state capture duration in ms (clamped 3000–60000). Default 10000. */
     durationMsByState?: Record<string, number>;
-    /** Safety cap on frames per state. Default 31. */
+    /** Safety cap on frames per state. Default 61. */
     maxFramesPerState?: number;
 }
 
@@ -161,9 +161,12 @@ export interface DenseTimeseries {
     /** Base64 PNGs at ~intervalMs spacing across the state's duration. */
     frames_b64: string[];
     /**
-     * ACTUAL capture timestamps (ms relative to series start). Playwright
-     * screenshot latency makes nominal offsets drift — consumers must use
-     * these, never assume uniform spacing.
+     * Per-frame SIM-time (state-local ms), the time base for the D5/D6/D7 motion
+     * gates. On the field_3d path these are the deterministic pinned targets the
+     * renderer clock was crawled to (uniform intervalMs spacing) — a frame that
+     * could not reach its target within the wall cap records the actual sim-ms it
+     * got to. On the fallback path (renderers without PM_simTimeMs) these are the
+     * legacy wall-clock elapsed times, which drift with screenshot latency.
      */
     capture_times_ms: number[];
 }
@@ -735,17 +738,31 @@ const KEYFRAME_OFFSETS_MS = [0, 2500, 5000, 7500, 10000];
 const DENSE_DEFAULT_INTERVAL_MS = 1000;
 const DENSE_DEFAULT_DURATION_MS = 10000;
 const DENSE_MIN_DURATION_MS = 3000;
-// 30s / 31 frames: follow the declared state duration (states run 15-20s) —
-// dense frames feed ONLY the $0 pixel gates, never the vision models, so the
-// cap is a wall-time guard, not a cost guard. Raised from 15000/15 on
-// 2026-06-10 (old clamp dropped the tail of any state longer than 15s).
-const DENSE_MAX_DURATION_MS = 30000;
-const DENSE_DEFAULT_MAX_FRAMES = 31;
+// 60s / 61 frames: follow the declared state duration (Rule-31 guided states
+// run to their narration length, up to ~50s) — dense frames feed ONLY the $0
+// pixel gates, never the vision models, so the cap is a wall-time guard, not a
+// cost guard. Raised from 30000/31 on 2026-07-03 in lockstep with
+// deriveStateMeta DURATION_MAX_MS (the 30s clamp hid every narration tail past
+// 30s from the gate); previously raised from 15000/15 on 2026-06-10.
+const DENSE_MAX_DURATION_MS = 60000;
+const DENSE_DEFAULT_MAX_FRAMES = 61;
 
 /**
  * Capture a dense frame series for the CURRENT state (caller has already
  * driven the page to `stateId`). Panel A only — motion analysis targets the
  * primary simulation canvas.
+ *
+ * field_3d path: instead of screenshotting on a free-running clock at WALL-clock
+ * intervals — which lags sim-time ~0.6× under headless rAF throttling because
+ * each screenshot stalls the render loop, so late narration beats (a current-flip
+ * at sim-20s, a compass at sim-18s) were never reached — we crawl the renderer
+ * clock to evenly spaced SIM-time targets via SET_TIME_FREEZE + pollSimTimeReached
+ * (the same pin+poll captureFrozenFrame uses). SET_TIME_FREEZE advances the clock
+ * one rAF frame at a time up to the pin, so per-frame accumulators (particle
+ * trail, equal-arc dots, current drift) fill exactly as in a live run —
+ * deterministic pixels, full sim-time coverage, no baseline churn (dense is never
+ * compared to a baseline). Renderers without PM_simTimeMs (PCPL / mechanics_2d)
+ * take the legacy wall-clock fallback so they never burn a poll cap per frame.
  */
 async function captureDenseSeries(
     page: Page, stateId: string, opts: DenseCaptureOptions,
@@ -756,17 +773,63 @@ async function captureDenseSeries(
     const maxFrames = opts.maxFramesPerState ?? DENSE_DEFAULT_MAX_FRAMES;
     const frameCount = Math.min(maxFrames, Math.floor(durationMs / intervalMs) + 1);
 
-    const start = Date.now();
     const frames: string[] = [];
     const captureTimes: number[] = [];
+
+    // Capability probe: only the field_3d renderer supports SET_TIME_FREEZE
+    // sim-time pinning, which it declares via window.__PM_supportsTimePin. NOTE:
+    // the parametric/PCPL renderer ALSO exposes window.PM_simTimeMs (a wall-clock
+    // millis() value) but has no freeze handler — so a PM_simTimeMs type-check
+    // would wrongly take the pinned path and burn a full poll cap on every frame
+    // (~5s/frame). Gate on the explicit capability flag instead; everything else
+    // keeps the legacy free-run path.
+    let pinnable = false;
+    const probeFrame = getFrame(page, 'panel_a');
+    if (probeFrame) {
+        try {
+            pinnable = await probeFrame.evaluate(() => {
+                const w = window as unknown as { __PM_supportsTimePin?: boolean };
+                return w.__PM_supportsTimePin === true;
+            });
+        } catch {
+            pinnable = false;
+        }
+    }
+
+    if (!pinnable) {
+        // Legacy wall-clock free-run (PCPL / any renderer without a sim-clock).
+        const start = Date.now();
+        for (let i = 0; i < frameCount; i++) {
+            const targetMs = start + i * intervalMs;
+            const wait = Math.max(0, targetMs - Date.now());
+            if (wait > 0) await page.waitForTimeout(wait);
+            const png = await captureIframe(page, 'panel_a');
+            frames.push(png.toString('base64'));
+            captureTimes.push(Date.now() - start);
+        }
+        return { state_id: stateId, frames_b64: frames, capture_times_ms: captureTimes };
+    }
+
+    // field_3d: sim-time-pinned dense capture. Reset ONCE for a clean state-local
+    // t=0 + empty trail; never reset between frames (that would wipe the trail the
+    // crawl is accumulating).
+    await postToPanels(page, { type: 'RESET_TRAJECTORY' }, false);
     for (let i = 0; i < frameCount; i++) {
-        const targetMs = start + i * intervalMs;
-        const wait = Math.max(0, targetMs - Date.now());
-        if (wait > 0) await page.waitForTimeout(wait);
+        // Pin to the frame's sim-time. max(1, …) avoids at_ms=0, which the
+        // renderer's SET_TIME_FREEZE handler maps to its 1500ms default.
+        const targetMs = Math.max(1, i * intervalMs);
+        await postToPanels(page, { type: 'SET_TIME_FREEZE', at_ms: targetMs }, false);
+        const poll = await pollSimTimeReached(page, 'panel_a', targetMs, {
+            wallCapMs: intervalMs * 3 + 2000,
+        });
         const png = await captureIframe(page, 'panel_a');
         frames.push(png.toString('base64'));
-        captureTimes.push(Date.now() - start);
+        // Honest sim-time: the pinned target when reached, else how far it got.
+        captureTimes.push(poll.reached ? i * intervalMs : Math.round(poll.lastSimMs));
     }
+    // Hand a live clock back to the downstream math-replay / next state.
+    await postToPanels(page, { type: 'SET_TIME_FREEZE', frozen: false }, false);
+    await postToPanels(page, { type: 'RESET_TRAJECTORY' }, false);
     return { state_id: stateId, frames_b64: frames, capture_times_ms: captureTimes };
 }
 

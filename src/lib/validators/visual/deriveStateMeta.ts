@@ -22,11 +22,14 @@
  */
 
 const DURATION_MIN_MS = 3000;
-// 30s cap: real states run 15-20s and the dense work is $0 (pixel math only —
-// vision models never see dense frames), so follow the declared duration.
-// Raised from 15000 on 2026-06-10 — the old clamp silently dropped the tail
-// of any state longer than 15s, blinding D7 to late freezes.
-const DURATION_MAX_MS = 30000;
+// 60s cap: Rule-31 guided states run to their NARRATION length (up to ~50s),
+// and the dense work is $0 (pixel math only — vision models never see dense
+// frames), so follow the declared duration. Raised from 30000 on 2026-07-03 —
+// the 30s clamp silently dropped every state's narration tail past 30s, which
+// is exactly where the Ch.4 one-shot/narration desyncs lived (scar:
+// field3d_state_duration_field_clamps_eye_capture_window). Previously raised
+// from 15000 on 2026-06-10 for the same tail-blindness reason.
+const DURATION_MAX_MS = 60000;
 
 type StateRecord = Record<string, Record<string, unknown>>;
 

@@ -1,5 +1,255 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 2026-07-03 latest+1 (ROOT CAUSE of the Ch.4 voice↔caption↔choreography desync: STALE stored TTS clips — text_hash invalidation shipped AND all 5 concepts re-voiced EN+TE. tsc 0 · scar row CRITICAL/FIXED · 5 pages rebuilt, 0 stale, every clip hash-verified.)
+
+### The founder's report
+fcw STATE_5 (closed loop) SPEAKS the bent/zigzag-wire script; the last state (sliders/parameters) SPEAKS
+the closing-the-loop script; voice ≠ subtitle ≠ choreography across all 4 retrofitted Ch.4 sims.
+
+### Root cause (proven, not guessed)
+The Socratic→straightforward retrofit rewrote every `tts_sentence` under the SAME ids (s1_1, s5_2, …) and
+compressed fcw 7→6 states (content shifted up one slot from old STATE_4). The stored Sarvam mp3s are keyed
+by FILENAME (`<sentenceId>_<lang>.mp3`): `generate_tts_audio.ts` skipped any clip whose file existed
+(`existsSync && !force` — no text check), and `build_review_site.ts` wired any manifest clip without
+comparing it to the current JSON text (it only warned when the manifest was entirely missing). So the OLD
+recordings survived under the NEW keys: audio = old Socratic script, captions = new JSON text, choreography
+= new cues. Evidence: fcw 27/31 EN sentences stale + 3 unvoiced + 19 orphan clips (all `s*_pred` Socratic
+predictions + the whole old STATE_7); rhr 17 stale; mfmc 9 stale + 8 unvoiced; no_work 13 stale; PLUS 2
+latent stale clips in electric_dipole_in_field from the live-instrument conversion (caught by the new
+guard, nobody had noticed). tts:generate was never re-run post-retrofit — and re-running would have been a
+no-op anyway (and would have overwritten manifest `chars`, destroying the evidence).
+
+### The structural fix (why the other ~30 retrofits are now safe)
+1. `src/scripts/generate_tts_audio.ts` — a clip's identity is now its TEXT: sha1 `text_hash` recorded per
+   clip; re-fetches whenever the current sentence no longer hashes to it (chars-length fallback for
+   pre-hash manifests); prunes orphan mp3s whose sentence ids left the JSON.
+2. `src/scripts/build_review_site.ts` — build-time guard: a clip whose recorded text no longer matches the
+   JSON is MUTED (available:false) with a loud per-concept warning naming the clips + the re-voice command.
+   Silence under a correct caption beats the wrong voice; captions/choreography/pacing (char-estimate
+   fallback) stay coherent.
+3. Scar logged: `field3d_stored_tts_clip_stale_after_text_rewrite_same_id` (CRITICAL, OPEN) in
+   engine_bug_queue via `_seed_engine_bug_queue_ch4_sync_audit.ts` (now 11 rows) + archival SQL regenerated.
+
+### Verified
+tsc 0 · 4 affected pages rebuilt — guard muted 81/50/27/39 stale clips (en+hi+te) · biot_savart_law rebuilt
+as control: 0 stale (no false positives) · electric_dipole_in_field rebuilt: 6 muted (real).
+
+### Re-voice — DONE (same session, founder-approved, --langs=en,te per Rule 30f)
+All 5 concepts re-voiced through the now hash-aware tts:generate — it fetched exactly the stale/missing
+clips and skipped the fresh ones (fcw 60 written/54 stale · rhr 40/34 · mfmc 34/18 · no_work 36/26 ·
+dipole 4/4 with 52 skipped — the surgical-regen proof), 285 orphan mp3s pruned, 0 Sarvam failures. All 5
+pages rebuilt with ZERO stale warnings; every EN/TE clip hash-verified against the current JSON text
+(Hindi is text-only captions per Rule 30f — its manifest entries are gone, so the player is silent on HI).
+Scar row flipped to CRITICAL/FIXED. Voice, captions, and choreography now share one source of truth.
+
+### NEXT SESSION — first task
+Founder ear-check of the 5 re-voiced sims at http://localhost:8080/<id>/ (STATE_5 + last state of fcw are
+the smoking-gun states), then Asmi handoff per §5 ④.
+
+## 2026-07-03 (THE EYE: sim-time-pinned dense capture — Approach A. The gate now sees the narration tail. tsc 0 · vitest 12/12 · fcw 26/26 with the sim-20s flip captured · NOT committed.)
+
+### What & why
+The follow-up surfaced in fix #2 part 1: THE EYE's dense frame series free-ran the sim and screenshotted
+at WALL-clock intervals; each Playwright screenshot stalls the render loop, so sim-time advanced ~0.6×
+wall-clock and the late narration beats (fcw flip at sim-20s, no_work compass at sim-18s) were never in
+any dense frame — the reason those scars needed manual probes. **Approach A (founder-approved):** pin each
+dense frame to an evenly-spaced SIM-time via the existing `SET_TIME_FREEZE`+`pollSimTimeReached` (the same
+crawl-and-fill the frozen frame uses), so accumulators (trail, equal-arc dots, current drift) fill exactly
+as live and the frames deterministically cover the full authored window.
+
+### The change (`src/lib/validators/visual/screenshotter.ts` — `captureDenseSeries`)
+Rewrote the dense loop: reset once, then per-frame `SET_TIME_FREEZE {at_ms=i*interval}` → poll → screenshot,
+recording honest sim-time. **Capability gating (two iterations):** first probe was `typeof PM_simTimeMs ===
+number`, but the parametric/PCPL renderer ALSO exposes `PM_simTimeMs` (a wall-clock `millis()` value) with
+NO freeze handler, so friction wrongly took the pinned path and burned the 5s poll cap per frame. Fixed by
+an EXPLICIT capability flag: the field_3d renderer sets `window.__PM_supportsTimePin = true`
+(`field_3d_renderer.ts` `setupPostMessage`); the probe gates on that, so PCPL takes the unchanged
+wall-clock fallback. Dense is never baselined → zero baseline re-approval. `capture_times_ms` is now
+deterministic sim-time (its consumers use it as the motion-rate base — strictly more correct; the dense
+unit test already assumed uniform `i*1000`).
+
+### Verified
+tsc 0 · `vitest run …pixelGate.dense.test.ts` 12/12 · 4 field_3d caches re-seeded (flag present; friction
+absent — confirmed via cache grep) · 4 review pages rebuilt.
+- **fcw `visual:eyes` 26/26** — dense frame **t18000** shows F pointing left / hand pre-flip; **t22000**
+  shows F pointing right / hand swung. **The gate now captures the sim-20s flip it structurally could not
+  see before.** Filenames are exact sim-time (`t18000`, `t19000`…), no wall-clock drift.
+- **mfmc `visual:eyes` 22/22 motion checks pass; the 3 H2 diffs are byte-identical (5.48/5.13/8.05%) to
+  the content-only run** — pinning added zero new H2 fails and flipped zero D5/D6/D7 verdicts (no threshold
+  re-tuning needed).
+- **PCPL guard (`friction_static_kinetic`):** fallback branch engaged — dense filenames drift on
+  wall-clock, zero poll-stall warnings, dense ≈ 1s/frame. (Its ~300s total run is the PRE-EXISTING
+  parametric primary-capture reveal-pin cost, lines 329-346, untouched by this change — noted as a
+  separate observation, out of scope.)
+- Cost: field_3d dense ~1.5× wall-clock (fcw ~9min vs ~6min) — the crawl runs in real time; bounded by the
+  per-frame `wallCapMs`. Acceptable for on-demand per-concept runs.
+
+engine_bug_queue now **10/10 FIXED** (added `field3d_dense_capture_freeruns_lags_eye`, the deeper fix
+behind the part-1 duration-clamp row). NOT committed — ships with the Ch.4 batch after founder review.
+
+## 2026-07-03 (fix #2 part 2 — closed the last 6 Ch.4 sync-audit scars. All 9 now FIXED. tsc 0 · validate 104/104 · live browser-verified. NOT committed.)
+
+### The remaining 6 OPEN scars, all closed
+1. **mfmc STATE_4 velocity decomposition** (`…velocity_decomposition_never_enabled`, MAJOR) — JSON-only.
+   The renderer already live-computes v‖/v⊥ from the current velocity + B; STATE_4 just never set the
+   flag (lost in the 8→4 restructure). Added `extras.vector_decomposition:{show:true,scale:1.2}` and
+   retargeted s4_3 glow `trail`→`["v_parallel","v_perp"]`. **Live browser-proven**: grey "v cos θ" (along
+   B) + orange "v sin θ" (in the orbit plane) arrows + labels now emanate from the proton on the helix.
+2. **mfmc STATE_2 equal-arc trail dots** (`…trail_dots_narrated_as_continuous_line`, MODERATE) — renderer.
+   The JSON already set `particle_trail.equal_arc:true` but the lorentz trail (a bare `THREE.Line`)
+   ignored it. Ported the no_work equal-time marker-pool device into the lorentz build/update/reset
+   (`field_3d_renderer.ts`): 14-sphere pool, drop at 0.6s state-local sim-time (equal time = equal arc =
+   equal spacing on the constant-speed orbit — the literal proof s2_4 narrates), recycled on the
+   helix-wrap + infinite-trail resets the nw sibling lacks. (Live free-run not observable in the driven
+   tab — rAF throttled; validated via THE EYE dense frames.)
+3. **rhr glow tags** (`…rhr_missing_glow_tags…`, MODERATE) — JSON-only. Authored `glow` on all 21
+   epic_l sentences (v/f/b/hand per the vector each names; `sliders` on the two explore CTAs), mirroring
+   mfmc. Was zero — nothing brightened when the voice named a vector.
+4. **fcw STATE_2 formula spoiler** (`…fcw_static_formula_overlay…`, MODERATE) — JSON-only. Deleted the
+   static `formula_overlay` (`F=ILB` shown from t=0 while the TTS-synced equation_panel derived it).
+   STATE_6's live overlay + the 38 other concepts untouched (per-state field).
+5. **mfmc s1_2c glow target** (`…glow_target_wrong_trail_vs_sliders`, MODERATE) — one word: `trail`→
+   `sliders` (the "drag the angle slider" CTA now pulses the panel, not the trail).
+6. **8 dead teacher_script mirrors** (`…teacher_script_mirror_stale_deadcode`, MODERATE) — JSON-only.
+   Deleted `field_3d_config.states[*].teacher_script` from rhr + no_work (4 each) — read by nothing,
+   drifted from epic_l_path. Single narration source now. (Zod passthrough → validate still 104/104.)
+
+engine_bug_queue: **9/9 FIXED** (`_seed_engine_bug_queue_ch4_sync_audit.ts` re-run). Verified: tsc 0 ·
+validate 104/104 · 4 caches re-seeded · 4 review pages rebuilt · live browser (STATE_4 decomposition
+arrows render on the helix, zero JS errors) · **THE EYE on mfmc: 22/22 motion/determinism checks pass**;
+the 3 failures are all [H2] pixel-diff-vs-baseline and are INTENDED — STATE_2 frozen/dense frames show
+the new equally-spaced dots (~11 round the orbit at t=8.5s, the s2_4 proof), STATE_4 shows the new
+v‖/v⊥ arrows + labels, STATE_3 renders a correct RHR state (stale baseline, content untouched). H2 is
+re-approved via `visual:approve` AFTER founder OK — deliberately NOT run yet. NOT committed — founder
+re-watch gate, then visual:approve ×4 + one batch commit + EN/TE audio (Rule 30f). The dense-capture
+free-run/pin follow-up surfaced in part 1 remains the one open item (not a scar yet).
+
+## 2026-07-03 (fix #2 part 1 on Ch.4 batch-1 — fcw hand tracks the flip + real durations un-clamp THE EYE. tsc 0 · validate 104/104 · THE EYE 26/26 (281 frames) · live browser-verified. NOT committed.)
+
+### Two of the 8 OPEN sync-audit scars closed
+1. **fcw hand stale after the current flip** (`field3d_fcw_rhr_hand_static_after_current_flip`). The
+   fcw 3D right-hand was oriented ONCE at state entry from a hardcoded `L=(1,0,0)` and never re-touched,
+   so after the flip its thumb pointed the wrong way while the F-arrow reversed. Fix: added a
+   `fet==="fcw_hand"` case to the per-frame `force_on_current_wire` loop in `field_3d_renderer.ts`
+   (`fcwHandQuatFor(dirSign)` reuses the house lorentz/rhr quaternion recipe on the live `effLdir`/`fHatF`).
+   The swing is a **pure function of the state clock** — both end poses (`qPre` from L·+1, `qPost` from
+   L·−1) recomputed every frame, blended by smoothstep over 800ms from the (cue-overridable) flip time —
+   so it stays correct under `SET_TIME_FREEZE` pinning and backward `SET_TIME_JUMP` scrubs. L/B/F labels
+   are children of the hand group → ride the rotation free. **Live browser-proven**: pre-flip pose at
+   26s, fully swung at 31s (F flips left→right, hand follows), and un-swung again on a backward scrub to
+   10s; zero console errors.
+2. **`duration` under-declared → THE EYE capture window clamped** (`field3d_state_duration_field_clamps_eye_capture_window`).
+   Authored real durations (37–53s) on all 22 states across the 4 concepts (+ lockstep `field_3d_config`
+   mirrors in rhr/no_work; moving_charge/fcw have no mirror), and raised the **three** caps that would
+   otherwise silently truncate to 30s: `DURATION_MAX_MS` 30000→60000 (`deriveStateMeta.ts`),
+   `DENSE_MAX_DURATION_MS` 30000→60000 + `DENSE_DEFAULT_MAX_FRAMES` 31→61 (`screenshotter.ts`). THE EYE
+   now captures **281 dense frames** (was 172), a real window extension.
+   **Caveat discovered (honest):** THE EYE's dense capture **free-runs** the sim and screenshots at
+   wall-clock intervals; each screenshot stalls the render loop, so sim-time advances ~0.6× wall-clock —
+   at wall-31s the sim is only ~19s, below the fcw flip (sim-20s), so the flip beat still doesn't appear
+   in the fcw EYE frames. Raising the caps is a strict improvement (more of the window reached) but not
+   sufficient to reach a 50s narration tail in one pass. A fuller fix = pin dense frames to TARGET
+   sim-time (like frozen capture) instead of free-running — a `screenshotter` change deferred as a new
+   follow-up. This is why the scar's probe is `manual`: the flip is verified in the live sim, not the gate.
+
+engine_bug_queue now **3 FIXED / 6 OPEN**. Verified: tsc 0 · validate 104/104 · 4 caches re-seeded · 4
+review pages rebuilt singly · THE EYE fcw 26/26 · live browser (hand swing + zero errors). NOT committed —
+same founder-re-watch gate as fix #1, then visual:approve ×4 + batch commit + EN/TE audio.
+
+## 2026-07-03 (SYNC AUDIT + fix #1 on Ch.4 batch-1 — bound scenario one-shots to the narration. tsc 0 · validate 104/104 · THE EYE 26/26 · live browser-verified. NOT committed.)
+
+### What the founder asked + what the 5-agent TTS↔animation sync audit found
+Founder asked whether the voice, the narration, and the animation choreography line up across the 4
+Rule-31 sims. The per-sentence reveal engine (glow/math/hand — Rule 26) is sound, but a SECOND timing
+channel was broken: every scenario **one-shot** (current flip, glyph ⊗→⊙, velocity compass, split-screen
+electric→magnetic switch, camera tilt, F-appear) fired at a HARDCODED `*_at_ms` guess, never tuned to the
+narration — so after the pacing trims each big event landed **7–31s before** the sentence describing it.
+Worst cases: fcw S1 flipped at 20s vs "watch the current flip" at ~29s; no_work S3 froze the electric side
++ revealed the magnetic charge at 7s — the instant the voice says "watch the speed meter climb"; rhr S3
+flipped cross→dot at 5s vs "watch it flip" at ~27s. The `duration` field (24–30s) also under-declares real
+narration (37–51s) and CLAMPS THE EYE's capture window → the gate never photographed the desyncs. Logged
+9 scars to `engine_bug_queue` (`_seed_engine_bug_queue_ch4_sync_audit.ts`): 1 FIXED (the one-shot binding
+class), 8 OPEN for fix #2 (duration→EYE clamp, fcw hand stale after flip, mfmc v-decomposition never
+enabled, "trail dots" over a smooth line, rhr zero glow tags, fcw static F=ILB spoiler, wrong glow target,
+stale dead teacher_script mirrors).
+
+### Fix #1 — a generic per-sentence scenario-cue channel (bind the one-shot to the beat that narrates it)
+- **Renderer** (`field_3d_renderer.ts`): `scenarioCueTimes` map + `cueTriggerMs(name, fallback)` helper
+  (reset per state in `applyState`); new `SET_CUE_TIME` message handler; routed every one-shot through
+  `cueTriggerMs` — fcw `current_flip`; rhr `glyph_toggle`/`f_appear`/`camera_orbit`; no_work
+  `f_appear`/`velocity_compass`/`split_switch` (the split's group-visibility + electric-freeze +
+  phase-label + meter reveal all driven off ONE cue-overridable value). The authored `*_at_ms` stays as
+  the fallback, so **THE EYE (which sends no cues) captures identically** — 26/26 deterministic checks pass.
+- **Player** (`build_review_site.ts`): `scenario_cue` on the sentence type + `extractStates`; `sendCueTimes()`
+  posts `SET_CUE_TIME {cue, at_ms=sentence-start}` AFTER `SET_STATE` (which resets the overrides —
+  postMessage FIFO guarantees order), on goToState/rollTimeline/lang+rate change. `at_ms` comes from the
+  player's own per-language timeline, so the event follows the narration in EN/HI/TE alike.
+- **Concepts**: tagged the narrating sentence in the 3 JSONs (fcw s1_8; rhr s1_2/s2_3/s3_4; no_work
+  s1_3/s2_6/s3_3) + added a `f_appear_at_ms:9000` fallback to no_work S1. `magnetic_force_moving_charge`
+  has no hardcoded one-shot (its issues are content → fix #2), so no cues added there.
+
+### Verified
+tsc 0 · validate 104/104 · THE EYE `visual:eyes -- force_on_current_carrying_wire` 26/26 (fallback renders
+pixel-identical; H2 skipped — no approved baseline). 4 caches re-seeded (renderer assembles clean). Review
+rebuilt (fcw via review:all which only builds review_status.json ids; rhr/no_work/mfmc built singly).
+**Live browser-verified on :8080**: fcw `current_flip` posts `at_ms=29057` (was 20000), no_work
+`split_switch` posts `at_ms=14213` (was 7000); both sims run, zero JS console errors. NOT committed —
+awaiting founder re-watch before visual:approve ×4 + batch commit + EN/TE TTS (Rule 30f).
+
+## 2026-07-02 (PACING PASS on Ch.4 batch-1, from founder video review — the Rule-31 conversion fixed STRUCTURE but not the CLOCK. tsc 0 · validate 104/104 · review rebuilt :8080. NOT committed.)
+
+### What the founder's screen-recording (`02.07.2026_03.31.14_REC.mp4`, mfmc, all 4 states) exposed
+Real per-state runtime is set by **narration length**, not the `duration` field (which is cosmetic —
+nothing gates on it). Guided states were running **40–85s** vs Rule 31a's ~28–35s. Measured: mfmc S1 41s
+/ **S2 69s** / S3 32s / S4 48s; fcw **S1 61s** / **S2 72s** / S3 59s. The "still feels Socratic" note =
+the LENGTH, not the framing (the "you might expect… watch…" beats are valid Rule 16a contrasts, no
+quiz-pause). Two compounding faults: mfmc S2 **overloaded** (circle + r=mv/qB + T=2πm/qB + "does no
+work" in one state — the last is the whole subject of the sibling `magnetic_force_perpendicular_no_work`,
+r/T belong to `cyclotron_period_independent_of_speed`), and **5 stacked derivation formulas** breaching
+Rule 24 (picture over algebra). Logged to `engine_bug_queue` as `guided_state_overruns_pacing_target`
+(MAJOR, alex:json_author, FIXED) with a word-count probe + prevention rule (≤6 short sentences/guided
+state; one idea per state; on-canvas math = the result card, never a derivation chain).
+
+### The fix (founder chose: moderate ~40s target · trim mfmc S2, keep 4 states)
+- **mfmc**: S2 11→5 sentences (**69s→~45s**) — cut the qvB=mv²/r + F·v=0 + d/dt(½mv²) chains and the
+  no-work re-teach, kept circle + F-to-centre + a 2-line r/T card + one "why? next lesson" bridge;
+  S1 5→4 (~34s), S4 5→4 (~34s), S3 left (~31s). On-canvas algebra dropped 5 formulas → 2.
+- **fcw**: S1 8→6 (**61s→~44s**), S2 carrier-sum 8→4 (**72s→~42s**, collapse kept as ONE card), S3 6→5
+  (~40s); S4–S6 already ≤40s.
+- **rhr / no_work**: recomputed with the video-calibrated ratio → already ~30–43s (written tighter from
+  the start). Over-trimming would fight the founder's "moderate" choice — **left unchanged**.
+- JSON/narration only; renderer, schema, field_3d_config, per-state controls all untouched → the sim
+  visuals and THE EYE frames are unchanged, only the narration got shorter.
+
+### Verified + open
+tsc 0 · validate 104/104 · grep clean (no wait_for_answer/pause_after_ms/translated colours) · review
+rebuilt, all 4 serve 200 on :8080 (confirmed the built pages carry the trimmed lines, old lines gone).
+Founder re-watches mfmc first (~45s S2) → approve → `visual:approve` ×4 → commit → EN+TE audio (Rule 30f,
+post-approval + Sarvam top-up). Systemic note: the ~40–85s pacing bug almost certainly affects the older
+electrostatics/EM sims too — worth the same word-count probe when they're touched.
+
+## 2026-07-02 later (CH.4 RULE-31 CONVERSION — BATCH 1: the magnetic-force cluster, 4 sims converted from Socratic-era to Rule 31. tsc 0 · validate 104/104 · THE EYE ×4 (all deterministic motion gates pass; H2 baseline diffs = intentional restructures pending founder re-approve) · review live :8080 ×4. NOT committed — awaiting founder review.)
+
+### The four conversions (per-sim control tables in the session log; each declared BEFORE the JSON was touched — Rule 31 catch iv)
+- **`magnetic_force_moving_charge` 8→4** — HARVESTED the `proto/mfmc-instrument` worktree design (Straight/Circle/RHR/Helix across Motion+Direction views) and adapted it past the interim all-sliders model: per-state `visible_controls` (S1 θ · S2 v+B · S3 q+θ · S4 all), S2's leftover `wait_for_answer` → `auto_after_tts`, "Predict before you look" → a 16a straightforward contrast beat, S1 `trajectory_mode` straight→**helix at θ=0** so the θ drag genuinely bends the path (the proto's "drag θ to bend it" never actually worked in straight mode — zero new engine code, Rule 31d).
+- **`magnetic_force_direction_right_hand_rule` 6→4** — shove+rule merged (hand phases), the sign-flip predict→reveal became a TEACHER-DRIVEN flip (q toggle live in the square-to-both beat), ⊗/⊙ page view kept, along-field+explore last.
+- **`magnetic_force_perpendicular_no_work` 6→4** — orbit+F⊥v (16a contrast "you might think it's speeding up"), W=0 derivation + flat meter + 6-arrow velocity compass merged into one beat, electric-vs-magnetic split kept as the aha, explore with the scenario's own v+B panel.
+- **`force_on_current_carrying_wire` 7→6** (content-rich; Rule 11 complexity-driven) — hook+direction merged (authored current flip at 20s), carrier-sum derivation kept as aha, angle trap became a 16a contrast with the **θ slider LIVE** (red 30° decoy vs green true arc, F falls as sinθ under drag), chord rule, loop→torque, explore. All four "Predict first" sentences gone.
+
+### Renderer wiring (Rule 31 one-panel model; no new scenarios)
+- `#lorentz_sliders` + `#fcw_sliders` panels wrapped in row divs; `applyState` toggles rows per `stateDef.visible_controls` (absent = all rows → legacy concepts untouched). Panels stay one build; shared rows keep position (catch iii).
+- Ported the proto's trusted-drag guard (`refreshLorentzLabels(setState)` + `ev.isTrusted` listeners) and extended the on-entry DOM sync to lorentz+rhr: θ/q from the state's authored values, v/B reset to concept defaults (bookmark = reproducible preset, Rule 25d). Schema untouched — `visible_controls` rides the `.passthrough()`.
+
+### Engine scar logged (engine_bug_queue, FIXED incident, owner peter_parker:renderer_primitives)
+`shared_panel_slider_units_clamp`: rhr declared `slider_controls.v` in 0–10 units; the shared panel's /1e5 scaling + the frame code's `Math.max(0.01, vDefault)` clamp crushed vFactor to ~0.006 → v arrow shrank to a stub and F failed its visibility floor in EVERY `show_sliders` state (latent until Rule 31 turned sliders on in guided states). Fix = JSON-only SI units (v max 1e6 default 6e5; B 0.001–0.01 default 0.005 → same 0–10 slider feel, vFactor=1). Prevention rule: concepts sharing `#lorentz_sliders` MUST declare v in m/s and B in Tesla.
+
+### Verified
+tsc 0 · validate:concepts 104/104 · grep = zero `wait_for_answer`/`pause_after_ms`/`reveal_at_tts_id`/"Predict" across the 4 JSONs · THE EYE: mfmc 22/25, rhr 19/25, no_work 21/25, fcw **26/26** (every non-pass is an H2 pixel-diff vs the OLD-structure approved baseline — re-approve via `npm run visual:approve -- <id>` AFTER founder OK) · all frozen frames read (per-state control rows confirmed correct in every one) · 4 parallel quality-auditor runs (Gate 3e) fired on Sonnet · review pages 200: http://localhost:8080/{magnetic_force_moving_charge,magnetic_force_direction_right_hand_rule,magnetic_force_perpendicular_no_work,force_on_current_carrying_wire}/
+
+### Next / open
+- Founder reviews the 4 sims on :8080 → then `visual:approve` ×4 → one batch commit. **No TTS audio for these yet** (scripts changed; Rule 30f renders EN+TE only after approval + Sarvam top-up).
+- Ch.4 batch 2 = field-sources cluster: `biot_savart_law` (harvest `proto/biot-instrument`), `magnetic_field_wire`, `magnetic_field_circular_loop`, `amperes_circuital_law`, `magnetic_field_solenoid`. Batch 3 = cyclotron, galvanometer pair, loop-dipole, parallel_currents.
+
 ## 2026-07-02 (CODIFICATION: the straightforward + per-state-contextual-controls doctrine became **Rule 31** everywhere — root CLAUDE.md, CLAUDE_RULES.md, concepts CLAUDE.md, AUTHORING_PIPELINE, all 4 Alex canonicals + renderer_primitives, 5 emissions regenerated same-session, 14 proof_run exemplars bannered [OLD MODEL], new `faraday_law_induction_skeleton.md` exemplar. Also: `faraday_law_induction` (Ch.6) built, upgraded (flowing current beads + two-phase Lenz pole face), and committed `bd39bd1`. NOT committed: the codification edits.)
 
 ### What was codified (founder-approved plan; DISCUSSIONS Sessions 78/79 + Session 80 note)

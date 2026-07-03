@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "medium",
-  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the 'force on a moving charge' heading that precedes the magnitude lesson); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This concept is the DIRECTION-only sibling of magnetic_force_moving_charge: it teaches HOW to find which way the magnetic force points using the right-hand rule for F = q v × B, and nothing about its size. The atomic claim: the magnetic force on a moving charge is perpendicular to BOTH the velocity v and the field B at the same time; the right hand chooses which of the two perpendicular directions, and a negative charge flips the answer by 180 degrees. It deliberately does NOT teach the magnitude F = qvB sin(theta), the circular-motion radius r = mv/qB, the period, or any Newton/Tesla number — those belong to magnetic_force_moving_charge and are NEVER shown on-canvas here. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal). Renders on field_3d via the rhr_force_direction scenario (the direction-only sibling of lorentz_force_uniform_field), which shares the 3D right-hand mesh (extras.palm_rule.show_3d_hand). Lighter atom by founder carve-out: no assessment block, no coverage_map.",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the 'force on a moving charge' heading that precedes the magnitude lesson); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This concept is the DIRECTION-only sibling of magnetic_force_moving_charge: it teaches HOW to find which way the magnetic force points using the right-hand rule for F = q v × B, and nothing about its size. The atomic claim: the magnetic force on a moving charge is perpendicular to BOTH the velocity v and the field B at the same time; the right hand chooses which of the two perpendicular directions, and a negative charge flips the answer by 180 degrees. It deliberately does NOT teach the magnitude F = qvB sin(theta), the circular-motion radius r = mv/qB, the period, or any Newton/Tesla number — those belong to magnetic_force_moving_charge and are NEVER shown on-canvas here. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a straightforward contrast beats). RULE 31 CONVERSION (2026-07-02): restructured from 6 Socratic states into 4 distinct-motion beats — S1 the shove + the rule (hand phases), S2 square-to-both + teacher-driven sign flip (q toggle live), S3 the ⊗/⊙ end-on view, S4 along-field zero + full explore (all controls). Renders on field_3d via the rhr_force_direction scenario (the direction-only sibling of lorentz_force_uniform_field), which shares the 3D right-hand mesh (extras.palm_rule.show_3d_hand). Lighter atom by founder carve-out: no assessment block, no coverage_map.",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -80,22 +80,22 @@
     "max_words_per_tts_sentence": 30
   },
   "aha_moment": {
-    "state_id": "STATE_3",
+    "state_id": "STATE_2",
     "statement": "F points square to both v and B; the right hand picks the side.",
-    "visual_confirmation": "Right-angle marks prove F is perpendicular to both v and B; STATE_4 then flips F a full 180 degrees for a negative charge."
+    "visual_confirmation": "Right-angle marks prove F is perpendicular to both v and B while the camera tilts out of the v–B sheet; then one tap on the q toggle flips F a full 180 degrees for a negative charge."
   },
   "entry_state_map": {
-    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6"],
-    "the_rule": ["STATE_1", "STATE_2", "STATE_3"],
-    "negative_charge": ["STATE_4"],
-    "exam_diagram": ["STATE_5"]
+    "foundational": ["STATE_1", "STATE_2", "STATE_3"],
+    "the_rule": ["STATE_1", "STATE_2"],
+    "exam_diagram": ["STATE_3"],
+    "exploration": ["STATE_4"]
   },
   "epic_l_path": {
-    "state_count": 6,
+    "state_count": 4,
     "states": {
       "STATE_1": {
-        "title": "The Sideways Shove — which way?",
-        "duration": 13,
+        "title": "The Sideways Shove — and the rule that names it",
+        "duration": 37,
         "focal_primitive_id": "force_reveal_label",
         "advance_mode": "auto_after_tts",
         "scene_composition": [
@@ -108,25 +108,27 @@
           },
           {
             "type": "annotation",
-            "id": "predict_label",
+            "id": "rule_label",
             "position": { "x": 560, "y": 250 },
-            "text": "it does NOT go straight —\nwhich way is it pushed?",
+            "text": "right hand: fingers along v,\ncurl to B — thumb is F",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
             "id": "force_reveal_label",
             "position": { "x": 360, "y": 440 },
-            "text": "a sideways force appears — across the motion, not along it",
+            "text": "the sideways force appears — across the motion, not along it",
             "color": "#66BB6A"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "A charge is moving through a magnetic field. Watch its path.", "text_hi": "एक charge magnetic field से गुज़र रहा है। इसका path देखिए।", "text_te": "ఒక charge magnetic field లో కదులుతోంది. దాని path చూడండి." },
-            { "id": "s1_2", "text_en": "It doesn't go straight — something shoves it sideways. Which way will the push point?", "text_hi": "यह straight नहीं जाता — कुछ इसे sideways धकेलता है। push किस direction में होगी?", "text_te": "ఇది straight గా వెళ్ళదు — ఏదో దాన్ని sideways తోస్తోంది. push ఏ direction లో ఉంటుంది?", "pause_after_ms": 2500 },
-            { "id": "s1_3", "text_en": "A force appears — pointing sideways, across the motion, not along it.", "text_hi": "एक force प्रकट होती है — sideways, motion के पार, उसके साथ नहीं।", "text_te": "ఒక force కనిపిస్తుంది — sideways గా, motion కు అడ్డంగా, దాని వెంట కాదు." },
-            { "id": "s1_4", "text_en": "This sideways shove is the magnetic force. The rest of this lesson is: which way does it point?", "text_hi": "यह sideways धक्का ही magnetic force है। इस lesson का बाकी हिस्सा यही है: यह किस direction में point करती है?", "text_te": "ఈ sideways తోపు అంటే magnetic force. ఈ lesson లో మిగిలినది ఇదే: ఇది ఏ direction లో point చేస్తుంది?" }
+            { "id": "s1_1", "text_en": "A charge is moving through a magnetic field. Watch its path.", "glow": ["v", "b"], "text_hi": "एक charge magnetic field से गुज़र रहा है। इसका path देखिए।", "text_te": "ఒక charge magnetic field లో కదులుతోంది. దాని path చూడండి." },
+            { "id": "s1_2", "text_en": "It doesn't go straight — a force appears, pointing sideways, across the motion, not along it.", "scenario_cue": "f_appear", "glow": "f", "text_hi": "यह straight नहीं जाता — एक force प्रकट होती है, sideways, motion के पार, उसके साथ नहीं।", "text_te": "ఇది straight గా వెళ్ళదు — ఒక force కనిపిస్తుంది, sideways గా, motion కు అడ్డంగా, దాని వెంట కాదు." },
+            { "id": "s1_3", "text_en": "This sideways shove is the magnetic force. Here is the rule that gives its direction.", "glow": "f", "text_hi": "यह sideways धक्का ही magnetic force है। यह रहा वह rule जो इसकी direction देता है।", "text_te": "ఈ sideways తోపు అంటే magnetic force. దాని direction ఇచ్చే rule ఇదిగో." },
+            { "id": "s1_4", "text_en": "Open your right hand. Point your fingers along velocity v, the way the charge moves.", "glow": ["hand", "v"], "text_hi": "अपना right hand खोलिए। अपनी fingers को velocity v की direction में, यानी charge जिस तरफ जा रहा है, उधर point कीजिए।", "text_te": "మీ right hand తెరవండి. మీ fingers ను velocity v దిశలో, అంటే charge వెళ్ళే దిశలో, point చేయండి.", "hand_phase": "v" },
+            { "id": "s1_5", "text_en": "Now curl your fingers through the smaller angle, toward magnetic field B.", "glow": ["hand", "b"], "text_hi": "अब अपनी fingers को छोटे angle से magnetic field B की तरफ मोड़िए।", "text_te": "ఇప్పుడు మీ fingers ను చిన్న angle గుండా magnetic field B వైపు వంచండి.", "hand_phase": "b" },
+            { "id": "s1_6", "text_en": "Your thumb gives the direction of the force. The force points where the thumb points.", "glow": ["hand", "f"], "text_hi": "आपका thumb force की direction देता है। force उसी तरफ point करती है जहाँ thumb point करता है।", "text_te": "మీ thumb force దిశను ఇస్తుంది. force అక్కడే point చేస్తుంది, ఎక్కడ thumb point చేస్తుందో.", "hand_phase": "f" }
           ]
         },
         "misconception_watch": [
@@ -134,47 +136,7 @@
             "belief": "The magnetic force pushes the charge along its motion and speeds it up",
             "visual_counter": "The force arrow pops out sideways, square across the velocity arrow — never forward along the path.",
             "one_line_fix": "The magnetic force is square to the motion — it steers the charge sideways, it never pushes it forward."
-          }
-        ]
-      },
-      "STATE_2": {
-        "title": "The Rule — fingers v, curl to B, thumb is F",
-        "duration": 16,
-        "focal_primitive_id": "rule_label",
-        "advance_mode": "wait_for_answer",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "fingers_label",
-            "position": { "x": 360, "y": 70 },
-            "text": "right hand: point fingers along v",
-            "color": "#FFB366"
           },
-          {
-            "type": "annotation",
-            "id": "predict_label",
-            "position": { "x": 560, "y": 250 },
-            "text": "Predict: which way\nis your thumb pointing?",
-            "color": "#FFF176"
-          },
-          {
-            "type": "annotation",
-            "id": "rule_label",
-            "position": { "x": 360, "y": 440 },
-            "text": "thumb points where the FORCE points",
-            "color": "#66BB6A"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s2_1", "text_en": "Here's the rule. Open your right hand. Point your fingers along velocity v, the way the charge moves.", "text_hi": "यह रहा rule। अपना right hand खोलिए। अपनी fingers को velocity v की direction में, यानी charge जिस तरफ जा रहा है, उधर point कीजिए।", "text_te": "ఇది rule. మీ right hand తెరవండి. మీ fingers ను velocity v దిశలో, అంటే charge వెళ్ళే దిశలో, point చేయండి.", "hand_phase": "v" },
-            { "id": "s2_2", "text_en": "Now curl your fingers through the smaller angle, toward magnetic field B, the field.", "text_hi": "अब अपनी fingers को छोटे angle से magnetic field B, यानी field, की तरफ मोड़िए।", "text_te": "ఇప్పుడు మీ fingers ను చిన్న angle గుండా magnetic field B, అంటే field, వైపు వంచండి.", "hand_phase": "b" },
-            { "id": "s2_3", "text_en": "Your thumb now points one specific way. Before I show it — which way is your thumb pointing?", "text_hi": "आपका thumb अब एक specific direction में point कर रहा है। मैं बताने से पहले — आपका thumb किस तरफ है?", "text_te": "మీ thumb ఇప్పుడు ఒక specific direction లో point చేస్తోంది. నేను చూపించే ముందు — మీ thumb ఏ వైపు ఉంది?", "pause_after_ms": 3000 },
-            { "id": "s2_4", "text_en": "Your thumb gives the direction of the force. The force points where the thumb points.", "text_hi": "आपका thumb force की direction देता है। force उसी तरफ point करती है जहाँ thumb point करता है।", "text_te": "మీ thumb force దిశను ఇస్తుంది. force అక్కడే point చేస్తుంది, ఎక్కడ thumb point చేస్తుందో.", "hand_phase": "f" },
-            { "id": "s2_5", "text_en": "Release the charge — it gets pushed exactly the way the thumb showed.", "text_hi": "charge को release कीजिए — यह ठीक उसी direction में push होती है जो thumb ने दिखाई थी।", "text_te": "charge ను release చేయండి — ఇది thumb చూపించిన దిశలోనే push అవుతుంది.", "freeze_proton": false }
-          ]
-        },
-        "misconception_watch": [
           {
             "belief": "The thumb shows how fast or how hard the charge is pushed",
             "visual_counter": "The thumb is just a pointer for the force direction — nothing about its length stands for speed or strength.",
@@ -182,41 +144,43 @@
           }
         ]
       },
-      "STATE_3": {
-        "title": "Square to BOTH — F is perpendicular to v and to B",
-        "duration": 15,
-        "focal_primitive_id": "perp_label",
+      "STATE_2": {
+        "title": "Square to BOTH — then flip the charge yourself",
+        "duration": 50,
+        "focal_primitive_id": "plane_label",
         "advance_mode": "manual_click",
+        "allow_deep_dive": true,
         "scene_composition": [
           {
             "type": "annotation",
             "id": "angle_label",
             "position": { "x": 360, "y": 70 },
-            "text": "look at the angle between F and v",
+            "text": "F is at a right angle to v AND to B",
             "color": "#FFB366"
           },
           {
             "type": "annotation",
-            "id": "perp_label",
+            "id": "plane_label",
             "position": { "x": 200, "y": 250 },
-            "text": "right angle to v\nAND right angle to B",
+            "text": "F stands straight out of the\nflat sheet that holds v and B",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
-            "id": "plane_label",
+            "id": "flip_label",
             "position": { "x": 560, "y": 410 },
-            "text": "F stands straight out of the\nflat sheet that holds v and B",
+            "text": "tap q → a negative charge\nflips F a full 180°",
             "color": "#66BB6A"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Look at the force arrow against the velocity arrow. What angle is between them?", "text_hi": "force arrow को velocity arrow के सामने देखिए। इनके बीच कौन सा angle है?", "text_te": "force arrow ను velocity arrow తో పోల్చి చూడండి. వాటి మధ్య ఏ angle ఉంది?", "pause_after_ms": 2500 },
-            { "id": "s3_2", "text_en": "A right angle. The force is exactly perpendicular to the velocity.", "text_hi": "एक right angle। force बिल्कुल velocity के perpendicular है।", "text_te": "ఒక right angle. force సరిగ్గా velocity కు perpendicular గా ఉంది." },
-            { "id": "s3_3", "text_en": "And it's also perpendicular to the field. The force is at right angles to BOTH at once.", "text_hi": "और यह field के भी perpendicular है। force एक साथ दोनों के right angles पर है।", "text_te": "మరియు ఇది field కు కూడా perpendicular గా ఉంది. force ఒకేసారి రెండింటికీ right angles లో ఉంది." },
-            { "id": "s3_4", "text_en": "Let me tilt the view: force F stands straight out of the flat sheet that holds velocity v and magnetic field B.", "text_hi": "मैं view को tilt करता हूँ: force F उस flat sheet से बिल्कुल सीधा बाहर निकलता है जिसमें velocity v और magnetic field B हैं।", "text_te": "నేను view ను tilt చేస్తాను: force F అనేది velocity v మరియు magnetic field B ను కలిగి ఉన్న flat sheet నుండి నేరుగా బయటకు వస్తుంది." },
-            { "id": "s3_5", "text_en": "The magnetic force never points along the motion. It always points out to the side, square to both velocity v and magnetic field B.", "text_hi": "magnetic force कभी भी motion के साथ point नहीं करती। यह हमेशा side में point करती है, velocity v और magnetic field B दोनों के square होकर।", "text_te": "magnetic force ఎప్పుడూ motion వెంట point చేయదు. ఇది ఎల్లప్పుడూ side కు point చేస్తుంది, velocity v మరియు magnetic field B రెండింటికీ square గా." }
+            { "id": "s2_1", "text_en": "Look at the force arrow against the velocity arrow — a right angle. The force is exactly perpendicular to the velocity.", "glow": ["f", "v"], "text_hi": "force arrow को velocity arrow के सामने देखिए — एक right angle। force बिल्कुल velocity के perpendicular है।", "text_te": "force arrow ను velocity arrow తో పోల్చి చూడండి — ఒక right angle. force సరిగ్గా velocity కు perpendicular గా ఉంది." },
+            { "id": "s2_2", "text_en": "And it is also perpendicular to the field. The force is at right angles to BOTH at once.", "glow": ["f", "b"], "text_hi": "और यह field के भी perpendicular है। force एक साथ दोनों के right angles पर है।", "text_te": "మరియు ఇది field కు కూడా perpendicular గా ఉంది. force ఒకేసారి రెండింటికీ right angles లో ఉంది." },
+            { "id": "s2_3", "text_en": "Watch the view tilt: force F stands straight out of the flat sheet that holds velocity v and magnetic field B.", "scenario_cue": "camera_orbit", "glow": "f", "text_hi": "view को tilt होते देखिए: force F उस flat sheet से बिल्कुल सीधा बाहर निकलता है जिसमें velocity v और magnetic field B हैं।", "text_te": "view tilt అవడం చూడండి: force F అనేది velocity v మరియు magnetic field B ఉన్న flat sheet నుండి నేరుగా బయటకు వస్తుంది." },
+            { "id": "s2_4", "text_en": "Now tap the charge button and make it negative — an electron, say.", "glow": "sliders", "text_hi": "अब charge button को tap कीजिए और उसे negative बनाइए — मान लीजिए एक electron।", "text_te": "ఇప్పుడు charge button ను tap చేసి దాన్ని negative చేయండి — ఒక electron అని అనుకుందాం." },
+            { "id": "s2_5", "text_en": "The force flips a full 180 degrees. The right-hand rule still gives v cross B — but the force is charge q times that, so a negative charge turns it around.", "glow": "f", "text_hi": "force पूरे 180 degrees पलट जाती है। right-hand rule अब भी v cross B देता है — लेकिन force charge q times वह है, इसलिए negative charge उसे पलट देता है।", "text_te": "force పూర్తిగా 180 degrees తిరుగుతుంది. right-hand rule ఇప్పటికీ v cross B ఇస్తుంది — కానీ force అనేది charge q times అది, కాబట్టి negative charge దాన్ని తిప్పుతుంది." },
+            { "id": "s2_6", "text_en": "Same hand, same gesture. Only the sign of the charge decided the side.", "glow": "hand", "text_hi": "वही hand, वही gesture। सिर्फ charge के sign ने side तय किया।", "text_te": "అదే hand, అదే gesture. charge యొక్క sign మాత్రమే side ను నిర్ణయించింది." }
           ]
         },
         "misconception_watch": [
@@ -224,60 +188,20 @@
             "belief": "The force lies somewhere in the same plane as v and B, leaning between them",
             "visual_counter": "Tilting the view shows F standing straight out of the v–B sheet, with right-angle marks on both v and B.",
             "one_line_fix": "F is square to BOTH v and B — it sticks out of their plane, it never leans between them."
+          },
+          {
+            "belief": "The right-hand rule gives the same force direction whatever the sign of the charge",
+            "visual_counter": "With the same v and B, tapping the q toggle flips the F arrow a full 180 degrees.",
+            "one_line_fix": "Negative charge → reverse the thumb. Same rule, opposite answer."
           }
         ]
       },
-      "STATE_4": {
-        "title": "Flip the Sign — a negative charge reverses F",
-        "duration": 16,
-        "focal_primitive_id": "flip_label",
-        "advance_mode": "wait_for_answer",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "same_setup_label",
-            "position": { "x": 360, "y": 70 },
-            "text": "same v, same B — but now the charge is negative",
-            "color": "#FFB366"
-          },
-          {
-            "type": "annotation",
-            "id": "predict_label",
-            "position": { "x": 560, "y": 250 },
-            "text": "Predict: force the SAME way,\nor the OPPOSITE way?",
-            "color": "#FFF176"
-          },
-          {
-            "type": "annotation",
-            "id": "flip_label",
-            "position": { "x": 360, "y": 440 },
-            "text": "opposite — a negative charge flips F a full 180°",
-            "color": "#66BB6A"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s4_1", "text_en": "Same velocity, same field as before. But now the charge is negative — an electron, say.", "text_hi": "वही velocity, वही field जैसा पहले था। लेकिन अब charge negative है — मान लीजिए एक electron।", "text_te": "అదే velocity, అదే field ముందులా. కానీ ఇప్పుడు charge negative — ఒక electron అని అనుకుందాం." },
-            { "id": "s4_2", "text_en": "Run the same right-hand rule: fingers along velocity v, curl to magnetic field B, thumb out. Where does the force point now — same way, or opposite?", "text_hi": "वही right-hand rule चलाइए: fingers velocity v के साथ, magnetic field B की तरफ curl, thumb बाहर। force अब किस direction में point करती है — same तरफ, या opposite?", "text_te": "అదే right-hand rule వాడండి: fingers velocity v వెంట, magnetic field B వైపు curl, thumb బయటకు. force ఇప్పుడు ఏ direction లో point చేస్తుంది — అదే వైపు, లేదా opposite వైపు?", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "Opposite. For a negative charge the force flips a full 180 degrees.", "text_hi": "Opposite। एक negative charge के लिए force पूरे 180 degrees पलट जाती है।", "text_te": "Opposite. ఒక negative charge కోసం force పూర్తిగా 180 degrees తిరుగుతుంది." },
-            { "id": "s4_4", "text_en": "The right-hand rule still gives you v cross B — but the force is charge q times that, so a negative charge q turns it around.", "text_hi": "right-hand rule अब भी v cross B देता है — लेकिन force charge q times वह है, इसलिए एक negative charge q उसे पलट देता है।", "text_te": "right-hand rule ఇప్పటికీ మీకు v cross B ఇస్తుంది — కానీ force అనేది charge q times అది, కాబట్టి negative charge q దాన్ని తిప్పుతుంది." },
-            { "id": "s4_5", "text_en": "Same hand, same gesture. Only the sign of the charge decided the side.", "text_hi": "वही hand, वही gesture। सिर्फ charge के sign ने side तय किया।", "text_te": "అదే hand, అదే gesture. charge యొక్క sign మాత్రమే side ను నిర్ణయించింది." }
-          ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "The right-hand rule gives the same force direction whatever the sign of the charge",
-            "visual_counter": "With the same v and B, the F arrow flips a full 180 degrees for a negative charge — a fading ghost marks where the positive-charge force pointed.",
-            "one_line_fix": "Negative charge → reverse the thumb. Same rule, opposite answer."
-          }
-        ],
-        "allow_deep_dive": true
-      },
-      "STATE_5": {
+      "STATE_3": {
         "title": "Into the Page — ⊗ and ⊙ are the same hand",
-        "duration": 16,
+        "duration": 45,
         "focal_primitive_id": "page_glyph_label",
         "advance_mode": "manual_click",
+        "allow_deep_dive": true,
         "scene_composition": [
           {
             "type": "annotation",
@@ -303,11 +227,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "In textbooks the field often points straight into the page. We draw that as a cross in a circle.", "text_hi": "textbooks में field अक्सर सीधे page के अंदर point करती है। हम उसे circle में cross के रूप में draw करते हैं।", "text_te": "textbooks లో field తరచూ నేరుగా page లోపలికి point చేస్తుంది. దాన్ని మనం circle లో cross గా draw చేస్తాం." },
-            { "id": "s5_2", "text_en": "A cross is the tail of an arrow flying away from you — into the page. A dot is the tip coming toward you — out of the page.", "text_hi": "cross उस arrow की tail है जो आपसे दूर जा रही है — page के अंदर। dot वह tip है जो आपकी तरफ आ रही है — page से बाहर।", "text_te": "cross అంటే మీ నుండి దూరంగా వెళ్ళే arrow యొక్క tail — page లోపలికి. dot అంటే మీ వైపు వచ్చే tip — page బయటకు." },
-            { "id": "s5_3", "text_en": "It's the SAME rule. Point fingers along velocity v, curl them into the page toward magnetic field B, read the thumb.", "text_hi": "यह वही rule है। fingers को velocity v के साथ point कीजिए, उन्हें page के अंदर magnetic field B की तरफ curl कीजिए, thumb पढ़िए।", "text_te": "ఇది అదే rule. fingers ను velocity v వెంట point చేయండి, వాటిని page లోపలికి magnetic field B వైపు curl చేయండి, thumb చదవండి.", "hand_phase": "f" },
-            { "id": "s5_4", "text_en": "Watch what happens if I flip the cross to a dot — out of the page instead.", "text_hi": "देखिए क्या होता है जब मैं cross को dot में flip करता हूँ — page से बाहर की तरफ।", "text_te": "నేను cross ను dot గా flip చేస్తే ఏమవుతుందో చూడండి — page బయటకు." },
-            { "id": "s5_5", "text_en": "The thumb swings the other way. A flat cross-in-circle or dot-in-circle diagram is just our 3D rule seen end-on.", "text_hi": "thumb दूसरी तरफ swing करता है। एक flat cross-in-circle या dot-in-circle diagram बस हमारा 3D rule है जो end-on देखा गया है।", "text_te": "thumb వేరే వైపు swing అవుతుంది. ఒక flat cross-in-circle లేదా dot-in-circle diagram అంటే మన 3D rule ని end-on చూసినట్టే." }
+            { "id": "s3_1", "text_en": "In textbooks the field often points straight into the page. We draw that as a cross in a circle.", "glow": "b", "text_hi": "textbooks में field अक्सर सीधे page के अंदर point करती है। हम उसे circle में cross के रूप में draw करते हैं।", "text_te": "textbooks లో field తరచూ నేరుగా page లోపలికి point చేస్తుంది. దాన్ని మనం circle లో cross గా draw చేస్తాం." },
+            { "id": "s3_2", "text_en": "A cross is the tail of an arrow flying away from you — into the page. A dot is the tip coming toward you — out of the page.", "glow": "b", "text_hi": "cross उस arrow की tail है जो आपसे दूर जा रही है — page के अंदर। dot वह tip है जो आपकी तरफ आ रही है — page से बाहर।", "text_te": "cross అంటే మీ నుండి దూరంగా వెళ్ళే arrow యొక్క tail — page లోపలికి. dot అంటే మీ వైపు వచ్చే tip — page బయటకు." },
+            { "id": "s3_3", "text_en": "It's the SAME rule. Point fingers along velocity v, curl them into the page toward magnetic field B, read the thumb.", "glow": ["hand", "f"], "text_hi": "यह वही rule है। fingers को velocity v के साथ point कीजिए, उन्हें page के अंदर magnetic field B की तरफ curl कीजिए, thumb पढ़िए।", "text_te": "ఇది అదే rule. fingers ను velocity v వెంట point చేయండి, వాటిని page లోపలికి magnetic field B వైపు curl చేయండి, thumb చదవండి.", "hand_phase": "f" },
+            { "id": "s3_4", "text_en": "Watch what happens if I flip the cross to a dot — out of the page instead.", "scenario_cue": "glyph_toggle", "glow": "b", "text_hi": "देखिए क्या होता है जब मैं cross को dot में flip करता हूँ — page से बाहर की तरफ।", "text_te": "నేను cross ను dot గా flip చేస్తే ఏమవుతుందో చూడండి — page బయటకు." },
+            { "id": "s3_5", "text_en": "The thumb swings the other way. A flat cross-in-circle or dot-in-circle diagram is just our 3D rule seen end-on.", "glow": "f", "text_hi": "thumb दूसरी तरफ swing करता है। एक flat cross-in-circle या dot-in-circle diagram बस हमारा 3D rule है जो end-on देखा गया है।", "text_te": "thumb వేరే వైపు swing అవుతుంది. ఒక flat cross-in-circle లేదా dot-in-circle diagram అంటే మన 3D rule ని end-on చూసినట్టే." }
           ]
         },
         "misconception_watch": [
@@ -316,12 +240,11 @@
             "visual_counter": "The 3D hand re-orients its fingers INTO the page for the cross, and the force it gives matches the 2D answer exactly.",
             "one_line_fix": "Cross means fingers into the page, dot means fingers out — then it is the same hand."
           }
-        ],
-        "allow_deep_dive": true
+        ]
       },
-      "STATE_6": {
+      "STATE_4": {
         "title": "Along the Field — no shove, then explore",
-        "duration": 18,
+        "duration": 41,
         "focal_primitive_id": "explore_label",
         "advance_mode": "interaction_complete",
         "scene_composition": [
@@ -349,11 +272,10 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "One last case. Here the charge moves straight along the field — velocity v and magnetic field B point the same way.", "text_hi": "एक आखिरी case। यहाँ charge field के साथ-साथ straight चलती है — velocity v और magnetic field B एक ही direction में point करते हैं।", "text_te": "ఒక చివరి case. ఇక్కడ charge field వెంట straight గా కదులుతుంది — velocity v మరియు magnetic field B ఒకే direction లో point చేస్తున్నాయి." },
-            { "id": "s6_2", "text_en": "Try the right-hand rule. Fingers along velocity v, curl toward magnetic field B — but there's nothing to curl through. What force do you expect?", "text_hi": "right-hand rule try कीजिए। fingers velocity v के साथ, magnetic field B की तरफ curl — लेकिन curl करने के लिए कुछ भी नहीं है। आप कौन सी force expect करते हैं?", "text_te": "right-hand rule try చేయండి. fingers velocity v వెంట, magnetic field B వైపు curl — కానీ curl చేయడానికి ఏమీ లేదు. మీరు ఏ force expect చేస్తారు?", "pause_after_ms": 3000 },
-            { "id": "s6_3", "text_en": "None. When velocity v lines up with magnetic field B, there is no sideways push at all. The force is zero.", "text_hi": "कोई नहीं। जब velocity v, magnetic field B के साथ line up होता है, तो कोई sideways push नहीं होती। force zero है।", "text_te": "ఏమీ లేదు. velocity v, magnetic field B తో line up అయినప్పుడు, sideways push అసలు లేదు. force zero." },
-            { "id": "s6_4", "text_en": "Now you drive it. Swing the angle, change the speed, change the field, flip the charge — and watch which way the force points.", "text_hi": "अब आप इसे drive कीजिए। angle swing कीजिए, speed बदलिए, field बदलिए, charge flip कीजिए — और देखिए force किस direction में point करती है।", "text_te": "ఇప్పుడు మీరు drive చేయండి. angle swing చేయండి, speed మార్చండి, field మార్చండి, charge flip చేయండి — మరియు force ఏ direction లో point చేస్తుందో చూడండి." },
-            { "id": "s6_5", "text_en": "As you turn velocity v away from magnetic field B, the force grows; bring it back in line, it shrinks to nothing.", "text_hi": "जैसे-जैसे आप velocity v को magnetic field B से दूर घुमाते हैं, force बढ़ती है; उसे वापस line में लाइए, यह शून्य तक सिकुड़ जाती है।", "text_te": "మీరు velocity v ను magnetic field B నుండి దూరంగా తిప్పుతున్నప్పుడు, force పెరుగుతుంది; దాన్ని తిరిగి line లోకి తెండి, అది సున్నాకి తగ్గిపోతుంది." }
+            { "id": "s4_1", "text_en": "One last case. Here the charge moves straight along the field — velocity v and magnetic field B point the same way.", "glow": ["v", "b"], "text_hi": "एक आखिरी case। यहाँ charge field के साथ-साथ straight चलती है — velocity v और magnetic field B एक ही direction में point करते हैं।", "text_te": "ఒక చివరి case. ఇక్కడ charge field వెంట straight గా కదులుతుంది — velocity v మరియు magnetic field B ఒకే direction లో point చేస్తున్నాయి." },
+            { "id": "s4_2", "text_en": "Fingers along velocity v, curl toward magnetic field B — but there is nothing to curl through. There is no sideways push at all. The force is zero.", "glow": ["v", "b"], "text_hi": "fingers velocity v के साथ, magnetic field B की तरफ curl — लेकिन curl करने के लिए कुछ भी नहीं है। कोई sideways push नहीं होती। force zero है।", "text_te": "fingers velocity v వెంట, magnetic field B వైపు curl — కానీ curl చేయడానికి ఏమీ లేదు. sideways push అసలు లేదు. force zero." },
+            { "id": "s4_3", "text_en": "Now you drive it. Swing the angle, change the speed, change the field, flip the charge — and watch which way the force points.", "glow": "sliders", "text_hi": "अब आप इसे drive कीजिए। angle swing कीजिए, speed बदलिए, field बदलिए, charge flip कीजिए — और देखिए force किस direction में point करती है।", "text_te": "ఇప్పుడు మీరు drive చేయండి. angle swing చేయండి, speed మార్చండి, field మార్చండి, charge flip చేయండి — మరియు force ఏ direction లో point చేస్తుందో చూడండి." },
+            { "id": "s4_4", "text_en": "As you turn velocity v away from magnetic field B, the force grows; bring it back in line, it shrinks to nothing.", "glow": "f", "text_hi": "जैसे-जैसे आप velocity v को magnetic field B से दूर घुमाते हैं, force बढ़ती है; उसे वापस line में लाइए, यह शून्य तक सिकुड़ जाती है।", "text_te": "మీరు velocity v ను magnetic field B నుండి దూరంగా తిప్పుతున్నప్పుడు, force పెరుగుతుంది; దాన్ని తిరిగి line లోకి తెండి, అది సున్నాకి తగ్గిపోతుంది." }
           ]
         },
         "misconception_watch": [
@@ -389,51 +311,27 @@
       "arrow_spacing": 5
     },
     "slider_controls": {
-      "v": { "min": 0, "max": 10, "step": 1, "default": 6, "label": "|v|" },
-      "B": { "min": 0, "max": 10, "step": 1, "default": 5, "label": "B" },
+      "v": { "min": 0, "max": 1e6, "step": 1e5, "default": 6e5, "label": "|v|" },
+      "B": { "min": 0.001, "max": 0.01, "step": 0.001, "default": 0.005, "label": "B" },
       "theta_deg": { "min": 0, "max": 90, "step": 1, "default": 0, "label": "θ(v,B)" },
       "q_sign": { "default": 1, "label": "q" }
     },
     "states": {
       "STATE_1": {
-        "label": "The sideways shove — which way?",
-        "visible_elements": ["particle", "v_arrow", "field_grid"],
+        "label": "The sideways shove — and the rule",
+        "visible_elements": ["particle", "v_arrow", "field_grid", "right_hand"],
         "camera_position": [2.5, 1.5, 4],
         "caption": "",
         "advance_mode": "auto_after_tts",
-        "duration": 13,
+        "duration": 37,
         "trajectory_mode": "straight",
         "theta_deg": 90,
         "hide_magnitude_readout": true,
         "rhr": {
           "view": "space_view",
+          "show_hand": true,
           "f_appear_at_ms": 6000,
           "f_appear_fade_ms": 600,
-          "hide_magnitude_readout": true
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s1_1", "text_en": "A charge is moving through a magnetic field. Watch its path." },
-            { "id": "s1_2", "text_en": "It doesn't go straight — something shoves it sideways. Which way will the push point?", "pause_after_ms": 2500 },
-            { "id": "s1_3", "text_en": "A force appears — pointing sideways, across the motion, not along it." },
-            { "id": "s1_4", "text_en": "This sideways shove is the magnetic force. The rest of this lesson is: which way does it point?" }
-          ]
-        }
-      },
-      "STATE_2": {
-        "label": "The rule — fingers v, curl to B, thumb is F",
-        "visible_elements": ["particle", "v_arrow", "field_grid", "right_hand"],
-        "camera_position": [3, 2, 4],
-        "caption": "",
-        "advance_mode": "wait_for_answer",
-        "duration": 16,
-        "trajectory_mode": "static",
-        "theta_deg": 90,
-        "charge_sign": 1,
-        "hide_magnitude_readout": true,
-        "rhr": {
-          "view": "space_view",
-          "show_hand": true,
           "hide_magnitude_readout": true
         },
         "extras": {
@@ -442,27 +340,20 @@
             "hand_position": [-2.8, 1.6, 0.6],
             "hand_scale": 1.0
           }
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s2_1", "text_en": "Here's the rule. Open your right hand. Point your fingers along v, the way the charge moves.", "hand_phase": "v" },
-            { "id": "s2_2", "text_en": "Now curl your fingers through the smaller angle, toward B, the field.", "hand_phase": "b" },
-            { "id": "s2_3", "text_en": "Your thumb now points one specific way. Before I show it — which way is your thumb pointing?", "pause_after_ms": 3000 },
-            { "id": "s2_4", "text_en": "Your thumb gives the direction of the force. The force points where the thumb points.", "hand_phase": "f" },
-            { "id": "s2_5", "text_en": "Release the charge — it gets pushed exactly the way the thumb showed.", "freeze_proton": false }
-          ]
         }
       },
-      "STATE_3": {
-        "label": "Square to BOTH — F perpendicular to v and B",
+      "STATE_2": {
+        "label": "Square to BOTH — tap q to flip F",
         "visible_elements": ["particle", "v_arrow", "f_arrow", "field_grid", "right_hand"],
         "camera_position": [3, 2, 4],
         "caption": "",
         "advance_mode": "manual_click",
-        "duration": 15,
+        "duration": 50,
         "trajectory_mode": "static",
         "theta_deg": 90,
         "charge_sign": 1,
+        "show_sliders": true,
+        "visible_controls": ["q"],
         "hide_magnitude_readout": true,
         "rhr": {
           "view": "space_view",
@@ -477,58 +368,15 @@
             "hand_position": [-2.8, 1.6, 0.6],
             "hand_scale": 1.0
           }
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s3_1", "text_en": "Look at the force arrow against the velocity arrow. What angle is between them?", "pause_after_ms": 2500 },
-            { "id": "s3_2", "text_en": "A right angle. The force is exactly perpendicular to the velocity." },
-            { "id": "s3_3", "text_en": "And it's also perpendicular to the field. The force is at right angles to BOTH at once." },
-            { "id": "s3_4", "text_en": "Let me tilt the view: F stands straight out of the flat sheet that holds v and B." },
-            { "id": "s3_5", "text_en": "The magnetic force never points along the motion. It always points out to the side, square to both v and B." }
-          ]
         }
       },
-      "STATE_4": {
-        "label": "Flip the sign — a negative charge reverses F",
-        "visible_elements": ["particle", "v_arrow", "f_arrow", "field_grid", "right_hand"],
-        "camera_position": [3, 2, 4],
-        "caption": "",
-        "advance_mode": "wait_for_answer",
-        "duration": 16,
-        "trajectory_mode": "static",
-        "theta_deg": 90,
-        "charge_sign": -1,
-        "hide_magnitude_readout": true,
-        "rhr": {
-          "view": "space_view",
-          "show_ghost_f": true,
-          "ghost_f_fade_ms": 1400,
-          "hide_magnitude_readout": true
-        },
-        "extras": {
-          "palm_rule": {
-            "show_3d_hand": true,
-            "hand_position": [-2.8, 1.6, 0.6],
-            "hand_scale": 1.0
-          }
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s4_1", "text_en": "Same velocity, same field as before. But now the charge is negative — an electron, say." },
-            { "id": "s4_2", "text_en": "Run the same right-hand rule: fingers along v, curl to B, thumb out. Where does the force point now — same way, or opposite?", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "Opposite. For a negative charge the force flips a full 180 degrees." },
-            { "id": "s4_4", "text_en": "The right-hand rule still gives you v cross B — but the force is q times that, so a negative q turns it around." },
-            { "id": "s4_5", "text_en": "Same hand, same gesture. Only the sign of the charge decided the side." }
-          ]
-        }
-      },
-      "STATE_5": {
+      "STATE_3": {
         "label": "Into the page — cross and dot are the same hand",
         "visible_elements": ["particle", "v_arrow", "f_arrow", "page_glyphs", "right_hand"],
         "camera_position": [3, 2, 4],
         "caption": "",
         "advance_mode": "manual_click",
-        "duration": 16,
+        "duration": 45,
         "trajectory_mode": "static",
         "theta_deg": 90,
         "charge_sign": 1,
@@ -549,24 +397,15 @@
             "hand_position": [-2.8, 1.6, 0.6],
             "hand_scale": 1.0
           }
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s5_1", "text_en": "In textbooks the field often points straight into the page. We draw that as a cross in a circle." },
-            { "id": "s5_2", "text_en": "A cross is the tail of an arrow flying away from you — into the page. A dot is the tip coming toward you — out of the page." },
-            { "id": "s5_3", "text_en": "It's the SAME rule. Point fingers along v, curl them into the page toward B, read the thumb.", "hand_phase": "f" },
-            { "id": "s5_4", "text_en": "Watch what happens if I flip the cross to a dot — out of the page instead." },
-            { "id": "s5_5", "text_en": "The thumb swings the other way. A flat cross-in-circle or dot-in-circle diagram is just our 3D rule seen end-on." }
-          ]
         }
       },
-      "STATE_6": {
+      "STATE_4": {
         "label": "Along the field — no shove, then explore",
         "visible_elements": ["particle", "v_arrow", "field_grid"],
         "camera_position": [3, 2, 5],
         "caption": "",
         "advance_mode": "interaction_complete",
-        "duration": 18,
+        "duration": 41,
         "trajectory_mode": "static",
         "theta_deg": 0,
         "charge_sign": 1,
@@ -575,15 +414,6 @@
         "rhr": {
           "view": "space_view",
           "hide_magnitude_readout": true
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s6_1", "text_en": "One last case. Here the charge moves straight along the field — v and B point the same way." },
-            { "id": "s6_2", "text_en": "Try the right-hand rule. Fingers along v, curl toward B — but there's nothing to curl through. What force do you expect?", "pause_after_ms": 3000 },
-            { "id": "s6_3", "text_en": "None. When v lines up with B, there is no sideways push at all. The force is zero." },
-            { "id": "s6_4", "text_en": "Now you drive it. Swing the angle, change the speed, change the field, flip the charge — and watch which way the force points." },
-            { "id": "s6_5", "text_en": "As you turn v away from B, the force grows; bring it back in line, it shrinks to nothing." }
-          ]
         }
       }
     },

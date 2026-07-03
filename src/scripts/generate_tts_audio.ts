@@ -21,10 +21,11 @@
  *   ... --langs=hi,te   --model=bulbul:v3 --speaker=anushka
  */
 import '@/lib/loadEnvLocal';
-import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 
 // ── Config ───────────────────────────────────────────────────────────────────
 const ROOT = process.cwd();
@@ -56,6 +57,15 @@ interface ClipEntry {
   duration_ms: number;
   chars: number;
   available: boolean;
+  /** sha1 of the exact sentence text the clip was voiced from. A clip whose
+   *  hash no longer matches the concept JSON is STALE (the sentence was
+   *  rewritten under the same id — the Ch.4 Socratic→straightforward retrofit
+   *  bug) and must be re-fetched, never reused. */
+  text_hash?: string;
+}
+
+function textHash(text: string): string {
+  return createHash('sha1').update(text, 'utf8').digest('hex');
 }
 
 // ── CLI ──────────────────────────────────────────────────────────────────────
@@ -232,14 +242,16 @@ async function main(): Promise<void> {
   console.log(`🔊 ${conceptId}: ${sentences.length} sentences × ${langs.join('/')} = ${sentences.length * langs.length} clips`);
   console.log(`   model=${model} speaker=${speaker} rate=${SAMPLE_RATE} format=mp3\n`);
 
-  // Prior durations (for idempotent skips: an existing mp3 isn't re-fetched, so we
-  // reuse its measured duration from the previous manifest rather than re-decoding).
-  const priorDur: Record<string, number> = {};
+  // Prior manifest entries (for idempotent skips: an existing mp3 is only reused
+  // when its recorded text_hash still matches the CURRENT sentence text — a bare
+  // existsSync check is not enough, because the retrofit workflow rewrites
+  // sentence text under the same id and the old voice would silently survive).
+  const prior: Record<string, ClipEntry> = {};
   const manifestPathExisting = join(OUT_DIR, conceptId, 'audio_manifest.json');
   if (existsSync(manifestPathExisting)) {
     try {
       const prev = JSON.parse(readFileSync(manifestPathExisting, 'utf-8')) as { clips?: Record<string, ClipEntry> };
-      for (const [k, c] of Object.entries(prev.clips ?? {})) priorDur[k] = c.duration_ms ?? 0;
+      for (const [k, c] of Object.entries(prev.clips ?? {})) prior[k] = c;
     } catch { /* ignore */ }
   }
 
@@ -248,6 +260,7 @@ async function main(): Promise<void> {
   let skippedExisting = 0;
   let skippedMissing = 0;
   let failedClips = 0;
+  let staleRefreshed = 0;
 
   const total = sentences.length * langs.length;
   let done = 0;
@@ -289,12 +302,23 @@ async function main(): Promise<void> {
         continue;
       }
 
+      // A clip on disk is reusable only if it was voiced from THIS text.
+      // Prior manifests without text_hash fall back to char-length equality.
+      const hash = textHash(text);
+      const p = prior[key];
+      const priorMatchesText =
+        p != null && (p.text_hash != null ? p.text_hash === hash : p.chars === text.length);
+
       let duration_ms: number;
-      if (existsSync(abs) && !force) {
-        duration_ms = priorDur[key] ?? 0;
+      if (existsSync(abs) && !force && priorMatchesText) {
+        duration_ms = p?.duration_ms ?? 0;
         skippedExisting++;
         console.log(`   ${tag} ⏭ already on disk`);
       } else {
+        if (existsSync(abs) && !force && !priorMatchesText) {
+          console.log(`   ${tag} ♻ text changed since clip was voiced — re-fetching`);
+          staleRefreshed++;
+        }
         try {
           const wav = await sarvamTts(text, LANGS[lang], apiKey, model, speaker); // Sarvam returns WAV
           duration_ms = wavDurationMs(wav);                                       // exact, from WAV header
@@ -312,14 +336,25 @@ async function main(): Promise<void> {
         await sleep(450); // be polite to the API (rate-limit friendly)
       }
       if (duration_ms === 0) console.warn(`   ${tag} ⚠ could not measure duration`);
-      clips[key] = { id: s.id, lang, file: rel, duration_ms, chars: text.length, available: true };
+      clips[key] = { id: s.id, lang, file: rel, duration_ms, chars: text.length, available: true, text_hash: hash };
       flushManifest(); // incremental: manifest stays current after every clip
     }
   }
 
   flushManifest(); // final write (the manifest was also kept current after every clip above)
 
-  console.log(`\n✓ ${Object.keys(clips).length} clips in manifest — ${written} written, ${skippedExisting} skipped (existing), ${skippedMissing} skipped (no text)${failedClips ? `, ${failedClips} FAILED` : ''}`);
+  // Prune orphan mp3s: clips voiced for sentence ids that no longer exist in the
+  // concept JSON (states removed/renumbered by a retrofit). Leaving them on disk
+  // is harmless to the manifest but misleading to humans inspecting the folder.
+  const liveKeys = new Set(sentences.flatMap((s) => (['en', 'hi', 'te'] as const).map((l) => `${s.id}_${l}.mp3`)));
+  let pruned = 0;
+  for (const f of readdirSync(audioDir)) {
+    if (f.endsWith('.mp3') && !liveKeys.has(f)) {
+      try { unlinkSync(join(audioDir, f)); pruned++; console.log(`   🗑 pruned orphan ${f}`); } catch { /* ignore */ }
+    }
+  }
+
+  console.log(`\n✓ ${Object.keys(clips).length} clips in manifest — ${written} written (${staleRefreshed} were stale), ${skippedExisting} skipped (existing), ${skippedMissing} skipped (no text)${failedClips ? `, ${failedClips} FAILED` : ''}${pruned ? `, ${pruned} orphans pruned` : ''}`);
   console.log(`  manifest: ${manifestPath}`);
 }
 

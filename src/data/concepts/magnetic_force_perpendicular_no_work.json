@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "medium",
-  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the 'force on a moving charge' heading; the 'does no work' remark that sits between the magnitude lesson and circular motion); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This concept is the NO-WORK / energy sibling of magnetic_force_moving_charge: it teaches WHY the magnetic force can never change a charge's speed — because F = q(v × B) is perpendicular to v at every instant, the work it does is W = F·d·cos90° = 0, so by the work-energy theorem the kinetic energy (and therefore the speed) is locked; the force only TURNS the velocity, it never adds energy. It deliberately does NOT teach the magnitude F = qvB sin(theta), the circular-motion radius r = mv/qB, the period T, or any Newton/Tesla number — those belong to magnetic_force_moving_charge and are NEVER shown on-canvas here. No force-magnitude readout appears anywhere (hide_magnitude_readout on every state); the F arrow is direction-only. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal). Renders on field_3d via the magnetic_no_work scenario (the no-work sibling of lorentz_force_uniform_field), which adds the |v| speed meter, the W work meter, the equal-arc trail, and the STATE_5 electric-vs-magnetic split screen. Lighter atom by founder carve-out: no assessment block, no coverage_map.",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the 'force on a moving charge' heading; the 'does no work' remark that sits between the magnitude lesson and circular motion); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This concept is the NO-WORK / energy sibling of magnetic_force_moving_charge: it teaches WHY the magnetic force can never change a charge's speed — because F = q(v × B) is perpendicular to v at every instant, the work it does is W = F·d·cos90° = 0, so by the work-energy theorem the kinetic energy (and therefore the speed) is locked; the force only TURNS the velocity, it never adds energy. It deliberately does NOT teach the magnitude F = qvB sin(theta), the circular-motion radius r = mv/qB, the period T, or any Newton/Tesla number — those belong to magnetic_force_moving_charge and are NEVER shown on-canvas here. No force-magnitude readout appears anywhere (hide_magnitude_readout on every state); the F arrow is direction-only. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a straightforward contrast beats). RULE 31 CONVERSION (2026-07-02): restructured from 6 Socratic states into 4 distinct-motion beats — S1 the orbiting charge + F square across v (the 'speeding up?' contrast), S2 the W = 0 derivation + the flat speed meter + the six-arrow velocity compass, S3 the electric-vs-magnetic split screen (the aha), S4 explore with the v/B panel. Renders on field_3d via the magnetic_no_work scenario (the no-work sibling of lorentz_force_uniform_field), which adds the |v| speed meter, the W work meter, the equal-arc trail, and the electric-vs-magnetic split screen. Lighter atom by founder carve-out: no assessment block, no coverage_map.",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -50,7 +50,7 @@
         "step": 2
       },
       "E": {
-        "name": "Electric field strength on the LEFT (electric) side of the STATE_5 split screen — controls how fast that charge speeds up",
+        "name": "Electric field strength on the LEFT (electric) side of the split screen — controls how fast that charge speeds up",
         "unit": "V/m",
         "min": 1000,
         "max": 100000,
@@ -73,78 +73,41 @@
       "Equal time means equal arc length on the magnetic side; the evenly spaced trail IS the visual proof that the speed is constant",
       "The F arrow is direction-only — it shows which way the force points, never how strong it is (no magnitude readout)",
       "The |v| speed meter reads the speed (KE = ½mv²), never a force; the W work meter reads W = ∫ F·v dt, which is zero on the magnetic side and climbing on the electric side",
-      "On the STATE_5 split screen both charges START at the same speed; the electric force does work (speed rises, parabolic path) while the magnetic force does none (speed flat, curving path)",
+      "On the split screen both charges START at the same speed; the electric force does work (speed rises, parabolic path) while the magnetic force does none (speed flat, curving path)",
       "When v is parallel to B there is no magnetic force at all and the path is a straight line",
       "The radius, period, and force magnitude are deliberately NOT shown here — they belong to magnetic_force_moving_charge"
     ]
   },
   "cognitive_limits": {
     "max_primitives_per_state": 5,
-    "max_labels_per_state": 3,
+    "max_labels_per_state": 4,
     "max_words_per_tts_sentence": 30
   },
   "aha_moment": {
-    "state_id": "STATE_5",
+    "state_id": "STATE_3",
     "statement": "A magnetic force steers you — it turns the velocity but never adds speed.",
     "visual_confirmation": "Two identical charges start at the same speed: the electric one's speed meter climbs and its path is a parabola, while the magnetic one's speed meter stays flat with the work meter pinned at zero as its path curves."
   },
   "entry_state_map": {
-    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5"],
-    "no_work": ["STATE_2", "STATE_3", "STATE_4"],
-    "constant_speed": ["STATE_4"],
-    "electric_vs_magnetic": ["STATE_5"],
-    "explore": ["STATE_6"]
+    "foundational": ["STATE_1", "STATE_2", "STATE_3"],
+    "no_work": ["STATE_2"],
+    "electric_vs_magnetic": ["STATE_3"],
+    "explore": ["STATE_4"]
   },
   "epic_l_path": {
-    "state_count": 6,
+    "state_count": 4,
     "states": {
       "STATE_1": {
-        "title": "Round and Round — so it must be speeding up?",
-        "duration": 13,
-        "focal_primitive_id": "hook_label",
+        "title": "Round and Round — F is square across v",
+        "duration": 40,
+        "focal_primitive_id": "perp_label",
         "advance_mode": "auto_after_tts",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "setup_label",
-            "position": { "x": 360, "y": 70 },
-            "text": "a charge drifts in — then we switch on a magnetic field",
-            "color": "#FFAB40"
-          },
-          {
-            "type": "annotation",
             "id": "loop_label",
-            "position": { "x": 560, "y": 250 },
-            "text": "its path curls into\na closed loop",
-            "color": "#FFD54F"
-          },
-          {
-            "type": "annotation",
-            "id": "hook_label",
-            "position": { "x": 360, "y": 440 },
-            "text": "round and round... so it must be speeding up — right?",
-            "color": "#FFF176"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s1_1", "text_en": "A charged particle drifts in, and we switch on a magnetic field.", "text_hi": "एक charged particle अंदर drift करता है, और हम magnetic field switch on करते हैं।", "text_te": "ఒక charged particle లోపలికి drift అవుతుంది, మరియు మనం magnetic field switch on చేస్తాం।" },
-            { "id": "s1_2", "text_en": "Watch — its path curls round and round into a closed loop.", "text_hi": "देखो — इसका path round and round curl होकर एक closed loop बन जाता है।", "text_te": "చూడండి — దాని path round and round curl అయి ఒక closed loop గా మారుతుంది।" },
-            { "id": "s1_3", "text_en": "It's going round and round... so it must be speeding up — right?", "text_hi": "यह round and round जा रहा है... तो यह ज़रूर speed up हो रहा होगा — है ना?", "text_te": "ఇది round and round వెళ్తోంది... అంటే ఇది speed up అవుతూ ఉండాలి — కదా?", "pause_after_ms": 2500 }
-          ]
-        }
-      },
-      "STATE_2": {
-        "title": "Square Across — F is perpendicular to v",
-        "duration": 16,
-        "focal_primitive_id": "perp_label",
-        "advance_mode": "wait_for_answer",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "predict_label",
             "position": { "x": 360, "y": 70 },
-            "text": "Predict: which way does the force point as it orbits?",
+            "text": "the path curls into a closed loop — is it speeding up?",
             "color": "#FFF176"
           },
           {
@@ -156,85 +119,49 @@
           },
           {
             "type": "annotation",
-            "id": "callback_label",
+            "id": "steer_label",
             "position": { "x": 360, "y": 440 },
-            "text": "you found this with the right-hand rule last lesson",
+            "text": "F never points along the motion — it steers, it can't push forward",
             "color": "#FFB366"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Before I show the force — which way does the magnetic force point as it orbits?", "text_hi": "force दिखाने से पहले — जब यह orbit करता है, तो magnetic force किस direction में point करता है?", "text_te": "force చూపించే ముందు — ఇది orbit చేస్తున్నప్పుడు, magnetic force ఏ direction లో point చేస్తుంది?", "pause_after_ms": 3000 },
-            { "id": "s2_2", "text_en": "Here it is: the force is green, and it sits at a right angle to the orange velocity.", "text_hi": "देखिए: force हरे रंग का है, और यह orange velocity के right angle पर बैठता है।", "text_te": "ఇదిగో: force ఆకుపచ్చగా ఉంది, మరియు అది orange velocity కు right angle లో ఉంటుంది।" },
-            { "id": "s2_3", "text_en": "And it stays perpendicular the whole way round — always pointing to the centre.", "text_hi": "और यह पूरे चक्कर में perpendicular रहता है — हमेशा centre की तरफ point करता है।", "text_te": "మరియు ఇది మొత్తం చుట్టూ perpendicular గా ఉంటుంది — ఎప్పుడూ centre వైపు point చేస్తుంది।" },
-            { "id": "s2_4", "text_en": "You found this exact direction with the right-hand rule last lesson.", "text_hi": "आपने यही exact direction पिछले lesson में right-hand rule से ढूंढी थी।", "text_te": "ఈ exact direction ని మీరు గత lesson లో right-hand rule తో కనుగొన్నారు।" }
+            { "id": "s1_1", "text_en": "A charged particle drifts in, and we switch on a magnetic field.", "text_hi": "एक charged particle अंदर drift करता है, और हम magnetic field switch on करते हैं।", "text_te": "ఒక charged particle లోపలికి drift అవుతుంది, మరియు మనం magnetic field switch on చేస్తాం." },
+            { "id": "s1_2", "text_en": "Watch — its path curls round and round into a closed loop.", "text_hi": "देखो — इसका path round and round curl होकर एक closed loop बन जाता है।", "text_te": "చూడండి — దాని path round and round curl అయి ఒక closed loop గా మారుతుంది." },
+            { "id": "s1_3", "text_en": "Round and round it goes — you might think the field is speeding it up. Watch the force.", "scenario_cue": "f_appear", "text_hi": "यह round and round जा रहा है — तुम सोच सकते हो कि field इसे speed up कर रही है। force को देखो।", "text_te": "ఇది round and round వెళ్తోంది — field దీన్ని speed up చేస్తోందని మీరు అనుకోవచ్చు. force ను చూడండి." },
+            { "id": "s1_4", "text_en": "There it is, in green — square across the orange velocity, at a right angle, pointing to the centre.", "text_hi": "वह रहा, green रंग में — orange velocity के आर-पार, right angle पर, centre की तरफ point करता हुआ।", "text_te": "అదిగో, green రంగులో — orange velocity కు అడ్డంగా, right angle లో, centre వైపు point చేస్తూ." },
+            { "id": "s1_5", "text_en": "And it stays perpendicular the whole way round. Never forward along the path — it steers, it does not push.", "text_hi": "और यह पूरे चक्कर में perpendicular रहता है। कभी path के साथ आगे नहीं — यह steer करता है, push नहीं करता।", "text_te": "మరియు ఇది మొత్తం చుట్టూ perpendicular గా ఉంటుంది. ఎప్పుడూ path వెంట ముందుకు కాదు — ఇది steer చేస్తుంది, push చేయదు." },
+            { "id": "s1_6", "text_en": "You found this exact direction with the right-hand rule last lesson.", "text_hi": "आपने यही exact direction पिछले lesson में right-hand rule से ढूंढी थी।", "text_te": "ఈ exact direction ని మీరు గత lesson లో right-hand rule తో కనుగొన్నారు." }
           ]
         },
         "misconception_watch": [
           {
-            "belief": "The force leans forward to drive the charge along its motion.",
-            "visual_counter": "The F arrow sits square across v, never along it — it points to the centre, not ahead.",
+            "belief": "The force leans forward to drive the charge along its motion — that's why it keeps going round.",
+            "visual_counter": "The F arrow sits square across v the whole way round, pointing to the centre, never ahead.",
             "one_line_fix": "F is perpendicular to v — it cannot push the charge forward."
           }
         ]
       },
-      "STATE_3": {
-        "title": "A Sideways Push Does No Work — W = F·d·cos90° = 0",
-        "duration": 16,
+      "STATE_2": {
+        "title": "A Sideways Push Does No Work — so the speed is locked",
+        "duration": 46,
         "focal_primitive_id": "no_work_label",
         "advance_mode": "manual_click",
+        "allow_deep_dive": true,
         "scene_composition": [
           {
             "type": "annotation",
             "id": "step_label",
             "position": { "x": 360, "y": 70 },
-            "text": "the charge takes a small step d — along the velocity",
+            "text": "each small step d is along v — and F is at 90° to d",
             "color": "#FFB366"
           },
           {
             "type": "annotation",
             "id": "no_work_label",
             "position": { "x": 200, "y": 250 },
-            "text": "F is at 90° to d\nW = F·d·cos90° = 0",
-            "color": "#FFF176"
-          },
-          {
-            "type": "annotation",
-            "id": "wet_label",
-            "position": { "x": 560, "y": 410 },
-            "text": "work-energy theorem:\nzero work → energy can't change",
-            "color": "#66BB6A"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s3_1", "text_en": "The particle moves a little step — that step d is along the velocity.", "text_hi": "particle एक छोटा सा step लेता है — वह step d, velocity की दिशा में है।", "text_te": "particle ఒక చిన్న step తీసుకుంటుంది — ఆ step d, velocity దిశలో ఉంటుంది।" },
-            { "id": "s3_2", "text_en": "The force is at 90° to that step. So how much work does it do — a lot, a little, or none?", "text_hi": "force उस step के 90 degrees पर है। तो यह कितना work करता है — बहुत, थोड़ा, या बिल्कुल नहीं?", "text_te": "force ఆ step కు 90 degrees లో ఉంది। కాబట్టి ఇది ఎంత work చేస్తుంది — చాలా, కొంచెం, లేదా అస్సలు లేదా?", "pause_after_ms": 3000 },
-            { "id": "s3_3", "text_en": "Work is force times displacement times cos of the angle. The angle is 90°.", "text_hi": "work होता है force times displacement times cos of the angle। angle है 90 degrees।", "text_te": "work అంటే force times displacement times cos of the angle। angle 90 degrees।" },
-            { "id": "s3_4", "text_en": "Cos 90° is zero — so the work done is exactly zero. A sideways push never does work.", "text_hi": "cos 90 degrees zero होता है — इसलिए work done बिल्कुल zero है। एक sideways push कभी work नहीं करता।", "text_te": "cos 90 degrees zero అవుతుంది — కాబట్టి work done ఖచ్చితంగా zero। ఒక sideways push ఎప్పుడూ work చేయదు।" },
-            { "id": "s3_5", "text_en": "This is the work-energy theorem: zero work means the energy can't change.", "text_hi": "यही है work-energy theorem: zero work का मतलब है energy नहीं बदल सकती।", "text_te": "ఇదే work-energy theorem: zero work అంటే energy మారదు।" }
-          ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "Circular motion means work is being done to keep it going.",
-            "visual_counter": "F and the displacement d sit at a right angle the whole way round; W = F·d·cos90° = 0.",
-            "one_line_fix": "A perpendicular force does zero work, always."
-          }
-        ],
-        "allow_deep_dive": true
-      },
-      "STATE_4": {
-        "title": "Speed Locked — the needle never moves",
-        "duration": 16,
-        "focal_primitive_id": "flat_meter_label",
-        "advance_mode": "wait_for_answer",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "predict_label",
-            "position": { "x": 360, "y": 70 },
-            "text": "Predict: will the speed meter's needle move at all?",
+            "text": "W = F·d·cos90° = 0\nzero work → energy can't change",
             "color": "#FFF176"
           },
           {
@@ -254,26 +181,33 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Zero work means zero change in kinetic energy. Predict the speed meter — will the needle move?", "text_hi": "zero work का मतलब है kinetic energy में zero change। speed meter predict करो — क्या needle हिलेगी?", "text_te": "zero work అంటే kinetic energy లో zero change। speed meter predict చేయండి — needle కదులుతుందా?", "pause_after_ms": 3000 },
-            { "id": "s4_2", "text_en": "Watch it for a full orbit... the needle stays flat. Dead flat.", "text_hi": "इसे एक पूरे orbit के लिए देखो... needle flat रहती है। बिल्कुल flat।", "text_te": "దీన్ని ఒక పూర్తి orbit పాటు చూడండి... needle flat గా ఉంటుంది। పూర్తిగా flat।" },
-            { "id": "s4_3", "text_en": "Now watch — at six points round the circle, I drop a velocity arrow. Every single one is the same length.", "text_hi": "अब देखो — circle के छह points पर मैं एक velocity arrow डालता हूँ। हर एक की length same है।", "text_te": "ఇప్పుడు చూడండి — circle చుట్టూ ఆరు points వద్ద నేను ఒక velocity arrow వేస్తాను। ప్రతి ఒక్కటి same length ఉంటుంది।" },
-            { "id": "s4_4", "text_en": "Same arrow everywhere means the same speed everywhere. It was never speeding up — the speed is locked, only the direction turns.", "text_hi": "हर जगह same arrow का मतलब है हर जगह same speed। यह कभी speed up नहीं हो रहा था — speed locked है, सिर्फ direction बदलता है।", "text_te": "అన్ని చోట్లా same arrow అంటే అన్ని చోట్లా same speed। ఇది ఎప్పుడూ speed up అవ్వలేదు — speed locked అయి ఉంది, direction మాత్రమే మారుతుంది।" }
+            { "id": "s2_1", "text_en": "The particle moves a little step — that step d is along the velocity.", "text_hi": "particle एक छोटा सा step लेता है — वह step d, velocity की दिशा में है।", "text_te": "particle ఒక చిన్న step తీసుకుంటుంది — ఆ step d, velocity దిశలో ఉంటుంది." },
+            { "id": "s2_2", "text_en": "The force is at 90 degrees to that step. Work is force times displacement times cos of the angle — and cos 90 degrees is zero.", "text_hi": "force उस step के 90 degrees पर है। work होता है force times displacement times cos of the angle — और cos 90 degrees zero होता है।", "text_te": "force ఆ step కు 90 degrees లో ఉంది. work అంటే force times displacement times cos of the angle — మరియు cos 90 degrees zero." },
+            { "id": "s2_3", "text_en": "So the work done is exactly zero. A sideways push never does work.", "text_hi": "इसलिए work done बिल्कुल zero है। एक sideways push कभी work नहीं करता।", "text_te": "కాబట్టి work done ఖచ్చితంగా zero. ఒక sideways push ఎప్పుడూ work చేయదు." },
+            { "id": "s2_4", "text_en": "This is the work-energy theorem: zero work means the kinetic energy cannot change.", "text_hi": "यही है work-energy theorem: zero work का मतलब है kinetic energy बदल नहीं सकती।", "text_te": "ఇదే work-energy theorem: zero work అంటే kinetic energy మారదు." },
+            { "id": "s2_5", "text_en": "Watch the speed meter for a full orbit... the needle stays flat. Dead flat.", "text_hi": "speed meter को एक पूरे orbit के लिए देखो... needle flat रहती है। बिल्कुल flat।", "text_te": "speed meter ను ఒక పూర్తి orbit పాటు చూడండి... needle flat గా ఉంటుంది. పూర్తిగా flat." },
+            { "id": "s2_6", "text_en": "At six points round the circle, a velocity arrow drops in. Every single one is the same length — the speed is locked, only the direction turns.", "scenario_cue": "velocity_compass", "text_hi": "circle के छह points पर एक velocity arrow आता है। हर एक की length same है — speed locked है, सिर्फ direction बदलती है।", "text_te": "circle చుట్టూ ఆరు points వద్ద ఒక velocity arrow వస్తుంది. ప్రతి ఒక్కటీ same length — speed locked అయి ఉంది, direction మాత్రమే మారుతుంది." }
           ]
         },
         "misconception_watch": [
+          {
+            "belief": "Circular motion means work is being done to keep it going.",
+            "visual_counter": "F and the displacement d sit at a right angle the whole way round; W = F·d·cos90° = 0.",
+            "one_line_fix": "A perpendicular force does zero work, always."
+          },
           {
             "belief": "Going round and round, the charge must be gaining speed.",
             "visual_counter": "The equal-arc trail stays evenly spaced and the |v| meter holds dead flat for a full orbit.",
             "one_line_fix": "F ⊥ v → zero work → kinetic energy can't change → the speed is locked."
           }
-        ],
-        "allow_deep_dive": true
+        ]
       },
-      "STATE_5": {
+      "STATE_3": {
         "title": "Steers vs Speeds Up — electric first, then magnetic",
-        "duration": 24,
+        "duration": 35,
         "focal_primitive_id": "aha_label",
         "advance_mode": "manual_click",
+        "allow_deep_dive": true,
         "scene_composition": [
           {
             "type": "annotation",
@@ -306,11 +240,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "First, just an electric field. The force here is not sideways — it points along the motion.", "text_hi": "पहले, सिर्फ एक electric field। यहाँ force sideways नहीं है — यह motion की direction में point करता है।", "text_te": "మొదట, కేవలం ఒక electric field। ఇక్కడ force sideways కాదు — అది motion దిశలో point చేస్తుంది।" },
-            { "id": "s5_2", "text_en": "Watch the speed meter climb. The electric force does work, so it speeds the charge up.", "text_hi": "speed meter को climb करते देखो। electric force work करता है, इसलिए यह charge को speed up करता है।", "text_te": "speed meter climb అవ్వడం చూడండి। electric force work చేస్తుంది, కాబట్టి అది charge ను speed up చేస్తుంది।" },
-            { "id": "s5_3", "text_en": "Now the same charge, same starting speed, but a magnetic field. Predict — will this speed meter climb too?", "text_hi": "अब वही charge, same starting speed, लेकिन magnetic field। predict करो — क्या यह speed meter भी climb करेगा?", "text_te": "ఇప్పుడు అదే charge, same starting speed, కానీ magnetic field। predict చేయండి — ఈ speed meter కూడా climb అవుతుందా?", "pause_after_ms": 3000 },
-            { "id": "s5_4", "text_en": "The path curves... but the speed meter stays flat, and the work meter is pinned at zero.", "text_hi": "path curve होता है... लेकिन speed meter flat रहता है, और work meter zero पर pinned है।", "text_te": "path curve అవుతుంది... కానీ speed meter flat గా ఉంటుంది, మరియు work meter zero వద్ద pinned అయి ఉంటుంది।" },
-            { "id": "s5_5", "text_en": "That's the whole idea: a magnetic force steers — it never speeds you up.", "text_hi": "यही पूरा idea है: magnetic force steer करता है — यह कभी speed up नहीं करता।", "text_te": "ఇదే మొత్తం idea: magnetic force steer చేస్తుంది — అది ఎప్పుడూ speed up చేయదు।" }
+            { "id": "s3_1", "text_en": "First, just an electric field. The force here is not sideways — it points along the motion.", "text_hi": "पहले, सिर्फ एक electric field। यहाँ force sideways नहीं है — यह motion की direction में point करता है।", "text_te": "మొదట, కేవలం ఒక electric field. ఇక్కడ force sideways కాదు — అది motion దిశలో point చేస్తుంది." },
+            { "id": "s3_2", "text_en": "Watch the speed meter climb. The electric force does work, so it speeds the charge up.", "text_hi": "speed meter को climb करते देखो। electric force work करता है, इसलिए यह charge को speed up करता है।", "text_te": "speed meter climb అవ్వడం చూడండి. electric force work చేస్తుంది, కాబట్టి అది charge ను speed up చేస్తుంది." },
+            { "id": "s3_3", "text_en": "Now the same charge, at the same starting speed — but in a magnetic field instead.", "scenario_cue": "split_switch", "text_hi": "अब वही charge, same starting speed पर — लेकिन magnetic field में।", "text_te": "ఇప్పుడు అదే charge, same starting speed తో — కానీ magnetic field లో." },
+            { "id": "s3_4", "text_en": "The path curves... but the speed meter stays flat, and the work meter is pinned at zero.", "text_hi": "path curve होता है... लेकिन speed meter flat रहता है, और work meter zero पर pinned है।", "text_te": "path curve అవుతుంది... కానీ speed meter flat గా ఉంటుంది, మరియు work meter zero వద్ద pinned అయి ఉంటుంది." },
+            { "id": "s3_5", "text_en": "That's the whole idea: a magnetic force steers — it never speeds you up.", "text_hi": "यही पूरा idea है: magnetic force steer करता है — यह कभी speed up नहीं करता।", "text_te": "ఇదే మొత్తం idea: magnetic force steer చేస్తుంది — అది ఎప్పుడూ speed up చేయదు." }
           ]
         },
         "misconception_watch": [
@@ -319,10 +253,9 @@
             "visual_counter": "Left (electric) speeds up, right (magnetic) doesn't — same start speed for both.",
             "one_line_fix": "Only a force with a component along v does work; the magnetic force has none."
           }
-        ],
-        "allow_deep_dive": true
+        ]
       },
-      "STATE_6": {
+      "STATE_4": {
         "title": "Your Turn — tighter turn, same speed",
         "duration": 18,
         "focal_primitive_id": "explore_label",
@@ -352,10 +285,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Your turn. Two sliders: the speed, and the magnetic field strength.", "text_hi": "अब आपकी बारी। दो sliders: speed, और magnetic field strength।", "text_te": "ఇప్పుడు మీ వంతు। రెండు sliders: speed, మరియు magnetic field strength।" },
-            { "id": "s6_2", "text_en": "Crank up magnetic field B and predict — does the particle go faster, or just turn tighter?", "text_hi": "magnetic field B बढ़ाओ और predict करो — क्या particle faster जाएगा, या बस tighter turn लेगा?", "text_te": "magnetic field B పెంచండి మరియు predict చేయండి — particle faster వెళ్తుందా, లేదా tighter turn తీసుకుంటుందా?", "pause_after_ms": 3000 },
-            { "id": "s6_3", "text_en": "Bigger magnetic field B makes a tighter turn — but watch the speed meter: still flat, work still zero.", "text_hi": "बड़ा magnetic field B एक tighter turn बनाता है — लेकिन speed meter देखो: अभी भी flat, work अभी भी zero।", "text_te": "పెద్ద magnetic field B ఒక tighter turn చేస్తుంది — కానీ speed meter చూడండి: ఇంకా flat, work ఇంకా zero।" },
-            { "id": "s6_4", "text_en": "Stronger field steers harder. It still never adds speed.", "text_hi": "stronger field ज़्यादा hard steer करता है। यह अभी भी कभी speed नहीं जोड़ता।", "text_te": "stronger field మరింత కష్టంగా steer చేస్తుంది। అది ఇంకా ఎప్పుడూ speed జోడించదు।" }
+            { "id": "s4_1", "text_en": "Your turn. Two sliders: the speed, and the magnetic field strength.", "text_hi": "अब आपकी बारी। दो sliders: speed, और magnetic field strength।", "text_te": "ఇప్పుడు మీ వంతు. రెండు sliders: speed, మరియు magnetic field strength." },
+            { "id": "s4_2", "text_en": "Crank up magnetic field B — the turn gets tighter, but watch the speed meter: still flat, work still zero.", "text_hi": "magnetic field B बढ़ाओ — turn tighter हो जाता है, लेकिन speed meter देखो: अभी भी flat, work अभी भी zero।", "text_te": "magnetic field B పెంచండి — turn మరింత tight అవుతుంది, కానీ speed meter చూడండి: ఇంకా flat, work ఇంకా zero." },
+            { "id": "s4_3", "text_en": "Stronger field steers harder. It still never adds speed.", "text_hi": "stronger field ज़्यादा hard steer करता है। यह अभी भी कभी speed नहीं जोड़ता।", "text_te": "stronger field మరింత గట్టిగా steer చేస్తుంది. అది ఇంకా ఎప్పుడూ speed జోడించదు." }
           ]
         },
         "misconception_watch": [
@@ -396,104 +328,47 @@
     },
     "states": {
       "STATE_1": {
-        "label": "Round and round — so it must be speeding up?",
+        "label": "Round and round — F is square across v",
         "visible_elements": [],
         "camera_position": [3, 2, 4],
         "caption": "",
         "advance_mode": "auto_after_tts",
-        "duration": 13,
-        "trajectory_mode": "circle",
-        "hide_magnitude_readout": true,
-        "no_work": {
-          "equal_arc_trail": true
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s1_1", "text_en": "A charged particle drifts in, and we switch on a magnetic field." },
-            { "id": "s1_2", "text_en": "Watch — its path curls round and round into a closed loop." },
-            { "id": "s1_3", "text_en": "It's going round and round... so it must be speeding up — right?", "pause_after_ms": 2500 }
-          ]
-        }
-      },
-      "STATE_2": {
-        "label": "Square across — F is perpendicular to v",
-        "visible_elements": [],
-        "camera_position": [3, 2, 4],
-        "caption": "",
-        "advance_mode": "wait_for_answer",
-        "duration": 16,
+        "duration": 40,
         "trajectory_mode": "circle",
         "hide_magnitude_readout": true,
         "no_work": {
           "show_f_arrow": true,
           "show_right_angle": "fv",
-          "predict_reveal_at_ms": 5000
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s2_1", "text_en": "Before I show the force — which way does the magnetic force point as it orbits?", "pause_after_ms": 3000 },
-            { "id": "s2_2", "text_en": "Here it is: the force is green, and it sits at a right angle to the orange velocity." },
-            { "id": "s2_3", "text_en": "And it stays perpendicular the whole way round — always pointing to the centre." },
-            { "id": "s2_4", "text_en": "You found this exact direction with the right-hand rule last lesson." }
-          ]
+          "equal_arc_trail": true,
+          "predict_reveal_at_ms": 4000,
+          "f_appear_at_ms": 9000
         }
       },
-      "STATE_3": {
-        "label": "A sideways push does no work — W = F·d·cos90° = 0",
+      "STATE_2": {
+        "label": "A sideways push does no work — speed locked",
         "visible_elements": [],
         "camera_position": [3, 2, 4],
         "caption": "",
         "advance_mode": "manual_click",
-        "duration": 16,
+        "duration": 46,
         "trajectory_mode": "circle",
         "hide_magnitude_readout": true,
         "no_work": {
           "show_f_arrow": true,
           "show_displacement_d": true,
-          "show_right_angle": "fd"
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s3_1", "text_en": "The particle moves a little step — that step d is along the velocity." },
-            { "id": "s3_2", "text_en": "The force is at 90° to that step. So how much work does it do — a lot, a little, or none?", "pause_after_ms": 3000 },
-            { "id": "s3_3", "text_en": "Work is force times displacement times cos of the angle. The angle is 90°." },
-            { "id": "s3_4", "text_en": "Cos 90° is zero — so the work done is exactly zero. A sideways push never does work." },
-            { "id": "s3_5", "text_en": "This is the work-energy theorem: zero work means the energy can't change." }
-          ]
-        }
-      },
-      "STATE_4": {
-        "label": "Speed locked — the needle never moves",
-        "visible_elements": [],
-        "camera_position": [3, 2, 4],
-        "caption": "",
-        "advance_mode": "wait_for_answer",
-        "duration": 16,
-        "trajectory_mode": "circle",
-        "hide_magnitude_readout": true,
-        "no_work": {
-          "show_f_arrow": true,
+          "show_right_angle": "fd",
           "show_speed_meter": true,
           "equal_arc_trail": true,
-          "predict_reveal_at_ms": 4000,
-          "velocity_compass_at_ms": 8500
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s4_1", "text_en": "Zero work means zero change in kinetic energy. Predict the speed meter — will the needle move?", "pause_after_ms": 3000 },
-            { "id": "s4_2", "text_en": "Watch it for a full orbit... the needle stays flat. Dead flat." },
-            { "id": "s4_3", "text_en": "Now watch — at six points round the circle, I drop a velocity arrow. Every single one is the same length." },
-            { "id": "s4_4", "text_en": "Same arrow everywhere means the same speed everywhere. It was never speeding up — the speed is locked, only the direction turns." }
-          ]
+          "velocity_compass_at_ms": 18000
         }
       },
-      "STATE_5": {
+      "STATE_3": {
         "label": "Steers vs speeds up — electric first, then magnetic",
         "visible_elements": [],
         "camera_position": [3.5, 2, 5.2],
         "caption": "",
         "advance_mode": "manual_click",
-        "duration": 24,
+        "duration": 35,
         "hide_magnitude_readout": true,
         "no_work": {
           "split_compare": {
@@ -504,18 +379,9 @@
           },
           "show_speed_meter": true,
           "show_work_meter": true
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s5_1", "text_en": "First, just an electric field. The force here is not sideways — it points along the motion." },
-            { "id": "s5_2", "text_en": "Watch the speed meter climb. The electric force does work, so it speeds the charge up." },
-            { "id": "s5_3", "text_en": "Now the same charge, same starting speed, but a magnetic field. Predict — will this speed meter climb too?", "pause_after_ms": 3000 },
-            { "id": "s5_4", "text_en": "The path curves... but the speed meter stays flat, and the work meter is pinned at zero." },
-            { "id": "s5_5", "text_en": "That's the whole idea: a magnetic force steers — it never speeds you up." }
-          ]
         }
       },
-      "STATE_6": {
+      "STATE_4": {
         "label": "Your turn — tighter turn, same speed",
         "visible_elements": [],
         "camera_position": [3, 2, 5],
@@ -529,14 +395,6 @@
           "show_speed_meter": true,
           "show_work_meter": true,
           "equal_arc_trail": true
-        },
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s6_1", "text_en": "Your turn. Two sliders: the speed, and the magnetic field strength." },
-            { "id": "s6_2", "text_en": "Crank up B and predict — does the particle go faster, or just turn tighter?", "pause_after_ms": 3000 },
-            { "id": "s6_3", "text_en": "Bigger B makes a tighter turn — but watch the speed meter: still flat, work still zero." },
-            { "id": "s6_4", "text_en": "Stronger field steers harder. It still never adds speed." }
-          ]
         }
       }
     },

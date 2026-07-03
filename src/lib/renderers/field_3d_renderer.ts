@@ -1806,13 +1806,13 @@ canvas { display: block; width: 100%; height: 100%; }
     </div>
 </div>
 <div id="lorentz_sliders">
-    <label>q = <span id="q_toggle">+e</span></label>
-    <label>|v| = <span id="v_val">1.0</span> ×10⁵ m/s</label>
-    <input type="range" id="v_slider" min="0.5" max="5" step="0.1" value="1">
-    <label>B = <span id="b_val">10</span> mT</label>
-    <input type="range" id="b_slider" min="1" max="100" step="1" value="10">
-    <label>θ(v,B) = <span id="theta_val">90</span>°</label>
-    <input type="range" id="theta_slider" min="0" max="90" step="1" value="90">
+    <div id="lz_q_row"><label>q = <span id="q_toggle">+e</span></label></div>
+    <div id="lz_v_row"><label>|v| = <span id="v_val">1.0</span> ×10⁵ m/s</label>
+    <input type="range" id="v_slider" min="0.5" max="5" step="0.1" value="1"></div>
+    <div id="lz_b_row"><label>B = <span id="b_val">10</span> mT</label>
+    <input type="range" id="b_slider" min="1" max="100" step="1" value="10"></div>
+    <div id="lz_theta_row"><label>θ(v,B) = <span id="theta_val">90</span>°</label>
+    <input type="range" id="theta_slider" min="0" max="90" step="1" value="90"></div>
     <div id="f_readout">F = 0.16 fN</div>
 </div>
 <div id="nowork_meters" class="nowork_meters">
@@ -1937,15 +1937,15 @@ canvas { display: block; width: 100%; height: 100%; }
     <div id="bmf_readout">τ = 0.0 · U = 0.0 · T = 0.0 s</div>
 </div>
 <div id="fcw_sliders">
-    <label>I = <span id="fcw_i_val">2</span> A</label>
-    <input type="range" id="fcw_i_slider" min="0.5" max="5" step="0.5" value="2">
-    <label>L = <span id="fcw_l_val">0.5</span> m</label>
-    <input type="range" id="fcw_l_slider" min="0.1" max="1" step="0.1" value="0.5">
-    <label>B = <span id="fcw_b_val">0.5</span> T</label>
-    <input type="range" id="fcw_b_slider" min="0.1" max="1" step="0.1" value="0.5">
-    <label>θ(L,B) = <span id="fcw_theta_val">90</span>°</label>
-    <input type="range" id="fcw_theta_slider" min="0" max="90" step="1" value="90">
-    <button id="fcw_dir_toggle" type="button">Flip current →</button>
+    <div id="fcw_i_row"><label>I = <span id="fcw_i_val">2</span> A</label>
+    <input type="range" id="fcw_i_slider" min="0.5" max="5" step="0.5" value="2"></div>
+    <div id="fcw_l_row"><label>L = <span id="fcw_l_val">0.5</span> m</label>
+    <input type="range" id="fcw_l_slider" min="0.1" max="1" step="0.1" value="0.5"></div>
+    <div id="fcw_b_row"><label>B = <span id="fcw_b_val">0.5</span> T</label>
+    <input type="range" id="fcw_b_slider" min="0.1" max="1" step="0.1" value="0.5"></div>
+    <div id="fcw_theta_row"><label>θ(L,B) = <span id="fcw_theta_val">90</span>°</label>
+    <input type="range" id="fcw_theta_slider" min="0" max="90" step="1" value="90"></div>
+    <div id="fcw_dir_row"><button id="fcw_dir_toggle" type="button">Flip current →</button></div>
     <div id="fcw_f_readout">F = 0.50 N</div>
 </div>
 <div id="plates_sliders">
@@ -2150,6 +2150,20 @@ export const FIELD_3D_RENDERER_CODE = `
     // extras.current_flip.reverse_at_ms; null = off. Sim-clock based (not
     // wall-clock) so it also fires under SET_TIME_FREEZE in the visual gate.
     var fcwFlipAt = null;
+    // ── Scenario-cue overrides (2026-07-03) ──────────────────────────────────
+    // The live review player binds a scenario one-shot (current flip, glyph
+    // toggle, velocity compass, split switch, camera orbit, F-appear) to the
+    // sentence that narrates it: on state entry it posts SET_CUE_TIME with that
+    // sentence's start (state-local ms, already per-language via the audio-clip
+    // durations), and cueTriggerMs() returns it instead of the authored *_at_ms
+    // fallback — so the event lands on the narrated beat in EVERY language rather
+    // than a hardcoded guess. THE EYE (the deterministic gate) sends no cue
+    // times, so cueTriggerMs falls through to the *_at_ms fallback and frame
+    // capture is unchanged. Reset per state in applyState().
+    var scenarioCueTimes = {};   // cueName -> state-local ms (overrides the *_at_ms fallback)
+    function cueTriggerMs(cueName, fallbackMs) {
+        return (scenarioCueTimes[cueName] != null) ? scenarioCueTimes[cueName] : fallbackMs;
+    }
     var scene, camera, renderer, animationId;
     var sceneObjects = [];
     var isDragging = false, prevMouse = { x: 0, y: 0 };
@@ -8437,9 +8451,32 @@ export const FIELD_3D_RENDERER_CODE = `
         var trail = new THREE.Line(trailGeo, trailMat);
         trail.userData = {
             elementType: "particle_trail", id: "lorentz_trail",
-            max_points: maxPts, filled: 0, write_index: 0
+            max_points: maxPts, filled: 0, write_index: 0,
+            last_marker_t: -1, marker_pool: [], marker_idx: 0
         };
         addToScene(trail);
+        // 5b. Equal-arc trail markers — a pool of small spheres dropped at EQUAL
+        //     TIME intervals along the trail (clone of the magnetic_no_work
+        //     device, build step 10 there). On the constant-speed orbit equal
+        //     time = equal arc = equal spacing — the literal "trail dots —
+        //     equally spaced" the STATE_2 narration points at. Activated per
+        //     state by extras.particle_trail.equal_arc (previously a dead flag
+        //     on this scenario — scar field3d_lorentz_trail_dots_narrated_as_
+        //     continuous_line). Pre-built hidden; positioned per drop.
+        var LZ_MARKERS = 14;
+        var lzMarkerPool = [];
+        for (var lmk = 0; lmk < LZ_MARKERS; lmk++) {
+            var lmGeo = new THREE.SphereGeometry(0.09, 12, 12);
+            var lmMat = new THREE.MeshPhongMaterial({
+                color: hexToThreeColor("#FFD9A0"), emissive: hexToThreeColor("#FFB366"),
+                emissiveIntensity: 0.7, transparent: true, opacity: 0.0
+            });
+            var lmDot = new THREE.Mesh(lmGeo, lmMat);
+            lmDot.userData = { elementType: "lorentz_trail_marker", id: "lorentz_marker_" + lmk };
+            addToScene(lmDot);
+            lzMarkerPool.push(lmDot);
+        }
+        trail.userData.marker_pool = lzMarkerPool;
     }
 
     // ════════════════════════════════════════════════════════════════════════
@@ -8979,7 +9016,9 @@ export const FIELD_3D_RENDERER_CODE = `
         //    product below, keeping F and the glyph honest in one place.
         var bSign = 1;
         if (rhr.show_page_glyphs && rhr.glyph_toggle_at_ms && rhr.glyph_toggle_at_ms > 0) {
-            bSign = (stateMs >= rhr.glyph_toggle_at_ms) ? -1 : 1;
+            // Flip on the narrated sentence (SET_CUE_TIME 'glyph_toggle') when the
+            // live player supplied it; else the authored glyph_toggle_at_ms (THE EYE).
+            bSign = (stateMs >= cueTriggerMs("glyph_toggle", rhr.glyph_toggle_at_ms)) ? -1 : 1;
         }
         var bEff = bUnit.clone().multiplyScalar(bSign);
 
@@ -8993,8 +9032,9 @@ export const FIELD_3D_RENDERER_CODE = `
             ? Math.min(2.0, 1.2 * fLenRaw * vFactor * BFactor)
             : 1.2 * fLenRaw;
 
-        // F-appear gate (STATE_1): F pops in sideways at f_appear_at_ms.
-        var fAppearAt = (rhr.f_appear_at_ms != null) ? rhr.f_appear_at_ms : 0;
+        // F-appear gate (STATE_1): F pops in sideways at f_appear_at_ms (or on the
+        // narrated sentence when the live player sends SET_CUE_TIME 'f_appear').
+        var fAppearAt = cueTriggerMs("f_appear", (rhr.f_appear_at_ms != null) ? rhr.f_appear_at_ms : 0);
         var fAppearFade = (rhr.f_appear_fade_ms != null) ? rhr.f_appear_fade_ms : 600;
         var fAppearAlpha = 1.0;
         if (fAppearAt > 0) {
@@ -9198,7 +9238,10 @@ export const FIELD_3D_RENDERER_CODE = `
         var orbitDeg = (rhr.camera_orbit_deg != null) ? rhr.camera_orbit_deg : 0;
         if (orbitDeg !== 0) {
             var orbitDur = (rhr.camera_orbit_duration_ms != null) ? rhr.camera_orbit_duration_ms : 4000;
-            var orbU = Math.min(1, stateMs / Math.max(1, orbitDur));
+            // Begin the tilt on the narrated sentence (SET_CUE_TIME 'camera_orbit')
+            // when the live player supplied it; else from state entry (THE EYE).
+            var orbitStart = cueTriggerMs("camera_orbit", 0);
+            var orbU = Math.min(1, Math.max(0, stateMs - orbitStart) / Math.max(1, orbitDur));
             var orbEase = orbU * orbU * (3 - 2 * orbU);
             targetSpherical.theta = rhrCameraBaseTheta + (orbitDeg * Math.PI / 180) * orbEase;
             targetSpherical.phi = rhrCameraBasePhi;
@@ -21219,8 +21262,10 @@ export const FIELD_3D_RENDERER_CODE = `
             // CUT-LINE: hide F entirely at v∥B (v×B = 0) — no zero-length stub.
             var fParallel = fLenRaw < 1e-3;
 
-            // F appear-gate (STATE_1/STATE_2 pop-in).
-            var fAppearAt = (nw.f_appear_at_ms != null) ? nw.f_appear_at_ms : 0;
+            // F appear-gate (STATE_1/STATE_2 pop-in) — on the narrated sentence
+            // (SET_CUE_TIME 'f_appear') when the live player sends it, else the
+            // authored f_appear_at_ms fallback (THE EYE).
+            var fAppearAt = cueTriggerMs("f_appear", (nw.f_appear_at_ms != null) ? nw.f_appear_at_ms : 0);
             var fGateOpen = stateMs >= fAppearAt;
             var fFadeMs = (nw.f_appear_fade_ms != null) ? nw.f_appear_fade_ms : 600;
             var fAlpha = fGateOpen ? Math.min(1, (stateMs - fAppearAt) / Math.max(1, fFadeMs)) : 0;
@@ -21324,7 +21369,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // round the circle — every one the SAME length. Six identical arrows at
             // six points is the live proof that |v| is the same everywhere. Deployed
             // once at velocity_compass_at_ms, then held (re-armed on state entry).
-            var compassAt = nw.velocity_compass_at_ms;
+            var compassAt = cueTriggerMs("velocity_compass", nw.velocity_compass_at_ms);
             if (typeof compassAt === "number" && nwGhostArrows.length === 6 &&
                 stateMs >= compassAt && !nwVelCompassShown) {
                 for (var ci = 0; ci < 6; ci++) {
@@ -21346,9 +21391,16 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         // ── Split-screen groups (STATE_5) ───────────────────────────────────
+        // The electric→magnetic switch (magnetic side fades in + electric side
+        // freezes) fires on the narrated sentence (SET_CUE_TIME 'split_switch')
+        // when the live player supplied it; else the authored sequential_delay_ms
+        // (THE EYE). This single value drives group visibility, the electric-side
+        // freeze, the phase-label fade, and the magnetic-meter reveal, so they all
+        // stay locked together on whichever beat governs.
         var anySplit = false;
-        var nwSeqDelayMs = (nw.split_compare && nw.split_compare.sequential_delay_ms != null)
-            ? nw.split_compare.sequential_delay_ms : 0;
+        var nwSeqDelayMs = cueTriggerMs("split_switch",
+            (nw.split_compare && nw.split_compare.sequential_delay_ms != null)
+                ? nw.split_compare.sequential_delay_ms : 0);
         for (var gi = 0; gi < dynamicExtras.length; gi++) {
             var grp = dynamicExtras[gi];
             var gud = grp.userData;
@@ -21356,8 +21408,10 @@ export const FIELD_3D_RENDERER_CODE = `
             anySplit = true;
             // Sequential start: the magnetic side stays fully hidden until its delay
             // so the teacher narrates ELECTRIC first, then MAGNETIC — never both at
-            // once (founder review 2026-06-24).
-            var seqStart = gud.sequential_start_ms || 0;
+            // once (founder review 2026-06-24). The late-reveal (magnetic) group was
+            // baked with sequential_start_ms > 0; drive its actual start off the
+            // (cue-overridable) nwSeqDelayMs so it lands on the narrated switch.
+            var seqStart = ((gud.sequential_start_ms || 0) > 0) ? nwSeqDelayMs : 0;
             if (seqStart > 0 && stateMs < seqStart) { grp.visible = false; continue; }
             if (seqStart > 0) grp.visible = true;
             // tLocal per side:
@@ -21377,7 +21431,9 @@ export const FIELD_3D_RENDERER_CODE = `
 
             // Reveal fade-in — only during the fade window, and NEVER touching the
             // trail markers (their opacity is owned by the equal-time drop logic).
-            var revAt = gud.reveal_at_ms || 0;
+            // The magnetic (late-reveal) group fades on the (cue-overridable) switch;
+            // the electric group keeps its own small entry reveal.
+            var revAt = ((gud.sequential_start_ms || 0) > 0) ? nwSeqDelayMs : (gud.reveal_at_ms || 0);
             if (revAt > 0 && stateMs < revAt + 600) {
                 var a = Math.min(1, Math.max(0, (stateMs - revAt) / 600));
                 grp.traverse(function(c) {
@@ -21395,7 +21451,9 @@ export const FIELD_3D_RENDERER_CODE = `
             var sc = nw.split_compare || {};
             var elecSideP = sc.electric_side || "left";
             var elecRevP = (sc.reveal_at_ms != null) ? sc.reveal_at_ms : 0;
-            var magRevP = (sc.sequential_delay_ms != null) ? sc.sequential_delay_ms : elecRevP;
+            // Magnetic phase label + meter reveal on the same (cue-overridable) switch
+            // as the group, so the label/meter never lead or lag the magnetic charge.
+            var magRevP = (sc.sequential_delay_ms != null) ? nwSeqDelayMs : elecRevP;
             var elecPhaseEl = document.getElementById(elecSideP === "left" ? "nw_phase_l" : "nw_phase_r");
             var magPhaseEl = document.getElementById(elecSideP === "left" ? "nw_phase_r" : "nw_phase_l");
             if (elecPhaseEl) elecPhaseEl.style.opacity = Math.min(1, Math.max(0, (stateMs - elecRevP) / 600)).toFixed(3);
@@ -23126,6 +23184,7 @@ export const FIELD_3D_RENDERER_CODE = `
     function applyState(stateId) {
         PM_currentState = stateId;
         stateStartTime = time;
+        scenarioCueTimes = {};   // clear per-sentence cue overrides for the new state
         var stateDef = config.states[stateId];
         if (!stateDef) return;
 
@@ -23146,6 +23205,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 rObj.userData.filled = 0;
                 rObj.userData.write_index = 0;
                 rObj.geometry.setDrawRange(0, 0);
+                // Equal-arc dots restart with the trail on every state entry.
+                rObj.userData.last_marker_t = -1;
+                rObj.userData.marker_idx = 0;
+                var trPool = rObj.userData.marker_pool || [];
+                for (var tpi = 0; tpi < trPool.length; tpi++) {
+                    if (trPool[tpi].material) trPool[tpi].material.opacity = 0;
+                }
             }
         }
 
@@ -23606,6 +23672,15 @@ export const FIELD_3D_RENDERER_CODE = `
         if (fcwSlidersEl) {
             var showFcwSliders = !!(stateDef.show_sliders && isFcw);
             fcwSlidersEl.style.display = showFcwSliders ? "block" : "none";
+            // Rule 31 per-state contextual controls: visible_controls lists the
+            // row keys this beat teaches ("I"|"L"|"B"|"theta"|"dir"); absent =
+            // all rows (explore state + legacy concepts).
+            var fcwControls = stateDef.visible_controls;
+            var fcwRows = { I: "fcw_i_row", L: "fcw_l_row", B: "fcw_b_row", theta: "fcw_theta_row", dir: "fcw_dir_row" };
+            for (var fcwKey in fcwRows) {
+                var fcwRowEl = document.getElementById(fcwRows[fcwKey]);
+                if (fcwRowEl) fcwRowEl.style.display = (!fcwControls || fcwControls.indexOf(fcwKey) !== -1) ? "block" : "none";
+            }
             if (showFcwSliders) {
                 // Sync the θ slider to the state's theta_deg on entry, then
                 // re-fire its input handler so the F readout matches.
@@ -23628,6 +23703,43 @@ export const FIELD_3D_RENDERER_CODE = `
             lorentzSlidersEl.style.display = (stateDef.show_sliders && (isLorentz || isRhr)) ? "block" : "none";
             var fReadoutEl = document.getElementById("f_readout");
             if (fReadoutEl) fReadoutEl.style.display = isRhr ? "none" : "block";
+            // Rule 31 per-state contextual controls: visible_controls lists the
+            // row keys this beat teaches ("q"|"v"|"B"|"theta"); absent = all rows
+            // (explore state + every legacy concept keeps the full panel).
+            var lzControls = stateDef.visible_controls;
+            var lzRows = { q: "lz_q_row", v: "lz_v_row", B: "lz_b_row", theta: "lz_theta_row" };
+            for (var lzKey in lzRows) {
+                var lzRowEl = document.getElementById(lzRows[lzKey]);
+                if (lzRowEl) lzRowEl.style.display = (!lzControls || lzControls.indexOf(lzKey) !== -1) ? "block" : "none";
+            }
+            // Instrument model (2026-07-01): on entry, sync the panel to THIS
+            // bookmark's authored values so it reads the bookmark's angle (not a
+            // stale 90°) and v/B restart from the concept defaults (each state is
+            // a reproducible preset — Rule 25d). DOM-only (no input event) so the
+            // isTrusted guard is not tripped and stateDef.theta_deg — already
+            // correct — is untouched. Covers rhr too: its frame code reads ALL
+            // sliders whenever show_sliders is on, including rows hidden by
+            // visible_controls, so hidden sliders must carry the authored values.
+            if ((isLorentz || isRhr) && stateDef.show_sliders) {
+                var thetaSliderSync = document.getElementById("theta_slider");
+                if (thetaSliderSync && typeof stateDef.theta_deg === "number") {
+                    thetaSliderSync.value = String(stateDef.theta_deg);
+                    var thetaValSync = document.getElementById("theta_val");
+                    if (thetaValSync) thetaValSync.textContent = String(Math.round(stateDef.theta_deg));
+                }
+                var qToggleSync = document.getElementById("q_toggle");
+                if (qToggleSync) {
+                    var qSgn = (typeof stateDef.charge_sign === "number") ? stateDef.charge_sign : ((config.particle && config.particle.charge_sign) || 1);
+                    qToggleSync.textContent = qSgn < 0 ? "−e" : "+e";
+                    qToggleSync.classList.toggle("neg", qSgn < 0);
+                }
+                var vSliderSync = document.getElementById("v_slider"), vValSync = document.getElementById("v_val");
+                var vDefSync = (config.slider_controls && config.slider_controls.v) ? (config.slider_controls.v.default / 1e5) : 1.0;
+                if (vSliderSync) { vSliderSync.value = String(vDefSync); if (vValSync) vValSync.textContent = vDefSync.toFixed(1); }
+                var bSliderSync = document.getElementById("b_slider"), bValSync = document.getElementById("b_val");
+                var bDefSync = (config.slider_controls && config.slider_controls.B) ? (config.slider_controls.B.default * 1000) : 10.0;
+                if (bSliderSync) { bSliderSync.value = String(bDefSync); if (bValSync) bValSync.textContent = String(Math.round(bDefSync)); }
+            }
         }
         if (noworkSlidersEl) {
             // magnetic_no_work has its OWN explorer panel (v + B only). The
@@ -25942,7 +26054,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
 
-            function refreshLorentzLabels() {
+            function refreshLorentzLabels(setState) {
                 var vVal = document.getElementById("v_val");
                 var bVal = document.getElementById("b_val");
                 var thetaVal = document.getElementById("theta_val");
@@ -25955,7 +26067,11 @@ export const FIELD_3D_RENDERER_CODE = `
                 // this scribbles the torque-loop config's theta_deg too).
                 if (config.scenario_type !== "lorentz_force_uniform_field") return;
                 var stateDefS = config.states[PM_currentState];
-                if (stateDefS && stateDefS.show_sliders) {
+                // Instrument rule (2026-06-30): only a genuine teacher drag/click
+                // (setState=true) seizes the live theta_deg/charge_sign; an on-entry
+                // synthetic sync passes false so it refreshes the readout without
+                // scribbling the bookmark's authored angle.
+                if (setState && stateDefS && stateDefS.show_sliders) {
                     stateDefS.theta_deg = parseFloat(thetaSliderL.value);
                     stateDefS.charge_sign = qToggle.textContent === "+e" ? 1 : -1;
                     // Any slider edit invalidates the existing trail — wipe
@@ -25965,16 +26081,16 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
 
-            vSliderL.addEventListener("input", refreshLorentzLabels);
-            bSliderL.addEventListener("input", refreshLorentzLabels);
-            thetaSliderL.addEventListener("input", refreshLorentzLabels);
+            vSliderL.addEventListener("input", function (ev) { refreshLorentzLabels(!!(ev && ev.isTrusted)); });
+            bSliderL.addEventListener("input", function (ev) { refreshLorentzLabels(!!(ev && ev.isTrusted)); });
+            thetaSliderL.addEventListener("input", function (ev) { refreshLorentzLabels(!!(ev && ev.isTrusted)); });
             qToggle.addEventListener("click", function() {
                 var nowPos = qToggle.textContent === "+e";
                 qToggle.textContent = nowPos ? "−e" : "+e";
                 qToggle.classList.toggle("neg", nowPos);
-                refreshLorentzLabels();
+                refreshLorentzLabels(true);
             });
-            refreshLorentzLabels();
+            refreshLorentzLabels(false);
         }
 
         // ── magnetic_no_work explorer (STATE_6) slider wiring ────────────
@@ -28488,7 +28604,15 @@ export const FIELD_3D_RENDERER_CODE = `
                     // never resizes (the grid spacing stays an honest scale).
                     applyGlowEmphasis(lObj, isFocal("b"), glowActive, glowT);
                 } else if (lUd.elementType === "particle_trail") {
-                    if (!trailShow) { lObj.visible = false; continue; }
+                    if (!trailShow) {
+                        lObj.visible = false;
+                        // Hide any equal-arc dots left over from a trail state.
+                        var lzPoolHide = lUd.marker_pool || [];
+                        for (var lph = 0; lph < lzPoolHide.length; lph++) {
+                            if (lzPoolHide[lph].material) lzPoolHide[lph].material.opacity = 0;
+                        }
+                        continue;
+                    }
                     lObj.visible = true;
                     // TTS glow 'trail': the orbit path pulses via opacity
                     // (geometry is unchanged so the trace stays positionally
@@ -28499,6 +28623,13 @@ export const FIELD_3D_RENDERER_CODE = `
                         lUd.write_index = 0;
                         lUd.filled = 0;
                         lObj.geometry.setDrawRange(0, 0);
+                        // Equal-arc dots restart with the trail (Play / slider edit).
+                        lUd.last_marker_t = -1;
+                        lUd.marker_idx = 0;
+                        var lzPoolR = lUd.marker_pool || [];
+                        for (var lpr = 0; lpr < lzPoolR.length; lpr++) {
+                            if (lzPoolR[lpr].material) lzPoolR[lpr].material.opacity = 0;
+                        }
                         lorentzTrailResetPending = false;
                     }
                     var maxP = lUd.max_points || 600;
@@ -28569,6 +28700,28 @@ export const FIELD_3D_RENDERER_CODE = `
                                 lObj.geometry.setDrawRange(0, lUd.filled);
                             }
                             lObj.geometry.attributes.position.needsUpdate = true;
+                        }
+                        // Equal-arc dots (extras.particle_trail.equal_arc): drop a
+                        // marker at EQUAL state-local sim-time intervals — on the
+                        // constant-speed orbit equal time = equal arc = equal
+                        // spacing, the literal proof s2_4 narrates. Same device as
+                        // magnetic_no_work (nwUpdateTrail). Inside movedOK so a
+                        // freeze_proton hold never stacks dots at one spot; the
+                        // "= tLz" assignment (not += DT) prevents a catch-up burst
+                        // after a long freeze. Pool is a ring — old dots recycle.
+                        if (lExtras.particle_trail && lExtras.particle_trail.equal_arc) {
+                            var LZ_MARKER_DT = 0.6;   // seconds of state-local sim-time
+                            var tLz = time - stateStartTime;
+                            var lzPool = lUd.marker_pool || [];
+                            if (lzPool.length > 0 &&
+                                (lUd.last_marker_t < 0 || (tLz - lUd.last_marker_t) >= LZ_MARKER_DT)) {
+                                lUd.last_marker_t = tLz;
+                                var lzMi = (lUd.marker_idx || 0) % lzPool.length;
+                                var lzDot = lzPool[lzMi];
+                                lzDot.position.copy(newPos);
+                                if (lzDot.material) lzDot.material.opacity = 0.9;
+                                lUd.marker_idx = (lUd.marker_idx || 0) + 1;
+                            }
                         }
                     }
                 }
@@ -28716,7 +28869,10 @@ export const FIELD_3D_RENDERER_CODE = `
             // the flip time correctly shows the pre-flip (forward) state too.
             var fcwStateMs = (time - stateStartTime) * 1000;
             if (fcwFlipAt !== null) {
-                fcwCurrentDir = (fcwStateMs >= fcwFlipAt) ? -1 : 1;
+                // Fire on the narrated sentence (SET_CUE_TIME 'current_flip') when the
+                // live player supplied it; else the authored reverse_at_ms (THE EYE).
+                var fcwFlipEff = cueTriggerMs("current_flip", fcwFlipAt);
+                fcwCurrentDir = (fcwStateMs >= fcwFlipEff) ? -1 : 1;
             }
 
             // Read I, L, B, θ — from sliders in the interactive state, else from
@@ -28750,6 +28906,31 @@ export const FIELD_3D_RENDERER_CODE = `
             // ~2.0 so the student sees it respond to the sliders.
             var FCW_F_MIN_LEN = 0.9;
             var fNetLen = Math.max(FCW_F_MIN_LEN, Math.min(2.0, 0.42 * fMag + FCW_F_MIN_LEN));
+
+            // Right-hand pose for a given current sign: thumb (+y_local) → F̂,
+            // then twist so the flat fingers (-z_local) point along the (signed)
+            // current. Same quaternion recipe as the lorentz/rhr hands and the
+            // one-time orient in applyForceWireState — this per-frame version
+            // exists so the hand TRACKS the current flip instead of going stale
+            // (scar: field3d_fcw_rhr_hand_static_after_current_flip).
+            function fcwHandQuatFor(dirSign) {
+                var hL = lUnitF.clone().multiplyScalar(dirSign);
+                var hF = new THREE.Vector3().crossVectors(hL, bUnitF);
+                if (hF.length() < 1e-6) return null;
+                hF.normalize();
+                var hqThumb = new THREE.Quaternion().setFromUnitVectors(
+                    new THREE.Vector3(0, 1, 0), hF
+                );
+                var hNegZ = new THREE.Vector3(0, 0, -1).applyQuaternion(hqThumb);
+                hNegZ.sub(hF.clone().multiplyScalar(hNegZ.dot(hF)));
+                if (hNegZ.length() < 1e-6) return hqThumb;
+                hNegZ.normalize();
+                var hLProj = hL.clone().sub(hF.clone().multiplyScalar(hL.dot(hF)));
+                if (hLProj.length() < 1e-6) return hqThumb;
+                hLProj.normalize();
+                var hqTwist = new THREE.Quaternion().setFromUnitVectors(hNegZ, hLProj);
+                return hqTwist.clone().multiply(hqThumb);
+            }
 
             // Per-frame element updates.
             for (var fwi = 0; fwi < sceneObjects.length; fwi++) {
@@ -28842,6 +29023,29 @@ export const FIELD_3D_RENDERER_CODE = `
                             fo.setDirection(fHatF);
                         }
                     }
+                } else if (fet === "fcw_hand") {
+                    if (fo.visible) {
+                        // Track the current flip: swing thumb-along-F over ~800ms.
+                        // The pose is a PURE function of the state clock (both end
+                        // poses recomputed every frame, blend factor from sim-time),
+                        // so it stays correct under SET_TIME_FREEZE pinning and
+                        // backward scrubs via SET_TIME_JUMP — no latched tween state.
+                        if (fcwFlipAt !== null) {
+                            var hQPre = fcwHandQuatFor(1);
+                            var hQPost = fcwHandQuatFor(-1);
+                            if (hQPre && hQPost) {
+                                var hFlipEff = cueTriggerMs("current_flip", fcwFlipAt);
+                                var hU = Math.min(1, Math.max(0, (fcwStateMs - hFlipEff) / 800));
+                                var hUE = hU * hU * (3 - 2 * hU);   // house smoothstep
+                                fo.setRotationFromQuaternion(hQPre.clone().slerp(hQPost, hUE));
+                            }
+                        } else {
+                            // No auto-flip in this state: follow the live current
+                            // sign directly (covers the STATE_6 flip button).
+                            var hQNow = fcwHandQuatFor(fcwCurrentDir);
+                            if (hQNow) fo.setRotationFromQuaternion(hQNow);
+                        }
+                    }
                 }
             }
 
@@ -28866,6 +29070,13 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // ── postMessage bridge ────────────────────────────────────────────────
     function setupPostMessage() {
+        // Declare that this renderer supports SET_TIME_FREEZE sim-time pinning, so
+        // THE EYE's dense capture crawls the clock to deterministic sim-time
+        // targets here. The parametric/PCPL renderer also exposes PM_simTimeMs
+        // (a wall-clock millis() value) but has NO freeze handler — this explicit
+        // capability flag is what the dense-capture probe checks, so PCPL takes
+        // the wall-clock fallback instead of burning a poll cap per frame.
+        window.__PM_supportsTimePin = true;
         window.addEventListener("message", function(e) {
             var data = e.data;
             if (!data || !data.type) return;
@@ -29006,6 +29217,23 @@ export const FIELD_3D_RENDERER_CODE = `
                     // clear). data.persist=true appends; false replaces.
                     // Renders via KaTeX (CDN-loaded in the iframe head).
                     handleSetMath(data.expression, !!data.persist);
+                    break;
+
+                case "SET_CUE_TIME":
+                    // Live review player: bind a scenario one-shot to the sentence
+                    // that narrates it. data.cue is the cue name (e.g.
+                    // 'current_flip' | 'glyph_toggle' | 'velocity_compass' |
+                    // 'split_switch' | 'camera_orbit' | 'f_appear'); data.at_ms is
+                    // the state-local ms at which that sentence starts on the reveal
+                    // timeline (per-language). cueTriggerMs() returns this instead of
+                    // the authored *_at_ms fallback, so the flip / glyph / compass /
+                    // split-switch / camera-tilt fires on the narrated beat. Sent by
+                    // the player AFTER SET_STATE (which resets scenarioCueTimes), so
+                    // FIFO delivery guarantees the reset lands first. THE EYE never
+                    // sends this, so its deterministic *_at_ms capture is unaffected.
+                    if (data.cue && typeof data.at_ms === "number") {
+                        scenarioCueTimes[data.cue] = data.at_ms;
+                    }
                     break;
 
                 case "SET_LOOP_ANGLE":

@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "medium",
-  "source_book": "DC Pandey Vol 2 Ch.26 §26.2 (force on a moving charge in a magnetic field) — table-of-contents reference only; teaching authored from first principles. Diamond #2 of the magnetism chapter (M1, archetype B — force-in-field). The atomic concept being taught is *direction* (F is perpendicular to BOTH v and B via the right-hand palm rule, F reverses for negative charge) and *magnitude* (F = |q|vB sin θ, max at θ = 90°, zero when v ∥ B). The deepest insight is that F ⊥ v ALWAYS, so the magnetic force does no work, so |v| is conserved, so a charged particle in a uniform B describes a closed circle (or helix). The four most common student errors targeted here: F is along v, F is along B, F does work on the particle, and using the left hand for the cross-product. Diamond #2 establishes the renderer primitives for archetype B (ambient uniform field grid, moving particle, per-frame F = q v × B vector, palm-rule HTML overlay) so the rest of Ch.26 can be authored against them via the M3 patterns library. Pedagogy ordered per reviewer Asmi Singh (2026-06-16): 0° → 90° → 45° → 10° so the pure circle establishes 'why circular' before the helix is introduced.",
+  "source_book": "DC Pandey Vol 2 Ch.26 §26.2 (force on a moving charge in a magnetic field) — table-of-contents reference only; teaching authored from first principles. Diamond #2 of the magnetism chapter (M1, archetype B — force-in-field). RULE 31 CONVERSION (2026-07-02, from the 2026-07-01 live-instrument prototype): restructured from 8 reveal states into 4 teacher-driven live bookmarks across 2 views — a 'Motion' view (the path: straight/circle/helix as the teacher drags θ) and a 'Direction' view (the charge frozen so the v/B/F vectors + 3D right-hand can be studied). Per-state contextual controls (Rule 31c): S1 θ only, S2 v+B (r = mv/qB live), S3 q+θ, S4 explore = all. The atomic concept: direction (F ⊥ both v and B via the right-hand rule, reverses for −q) and magnitude (F = |q|vB sin θ, max at 90°, zero when v ∥ B); the deep insight is F ⊥ v always → no work → |v| conserved → a circle (or helix).",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -88,26 +88,26 @@
   },
   "cognitive_limits": {
     "max_primitives_per_state": 5,
-    "max_labels_per_state": 3,
+    "max_labels_per_state": 4,
     "max_words_per_tts_sentence": 30
   },
   "aha_moment": {
     "state_id": "STATE_2",
     "statement": "F is perpendicular to BOTH v and B. Cross product, never along either.",
-    "visual_confirmation": "At θ = 90° F is largest and always points to the centre of the circle. Tilt θ back toward 0 (STATE_5 → STATE_7) and the circle opens into a helix — but F stays at 90° to v the whole time."
+    "visual_confirmation": "On the circle bookmark, F always points to the centre and the equally-spaced trail proves the speed never changes (no work). Drag θ down from 90° and the circle opens into a helix — F stays at 90° to v the whole way."
   },
   "entry_state_map": {
-    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
-    "exploration": ["STATE_5", "STATE_6", "STATE_7", "STATE_8"]
+    "foundational": ["STATE_1", "STATE_2", "STATE_3"],
+    "exploration": ["STATE_4"]
   },
   "epic_l_path": {
-    "state_count": 8,
+    "state_count": 4,
     "states": {
       "STATE_1": {
-        "title": "θ = 0° → straight line",
-        "duration": 18,
+        "title": "Straight line — v along B (θ = 0°)",
+        "duration": 40,
         "focal_primitive_id": "theta0_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -134,7 +134,7 @@
             "type": "annotation",
             "id": "f_zero_label",
             "position": { "x": 380, "y": 470 },
-            "text": "θ = 0 → sin 0° = 0 → F = 0.\nThe proton drifts straight — no bending.",
+            "text": "θ = 0 → sin 0° = 0 → F = 0. The proton drifts straight. Drag θ to bend it.",
             "color": "#66BB6A"
           }
         ],
@@ -142,18 +142,16 @@
           "tts_sentences": [
             { "id": "s1_1a", "text_en": "Setup. The blue arrows are a uniform magnetic field B. There is no electric field here — electric field E is zero.", "text_hi": "Setup देखते हैं। ये blue arrows एक uniform magnetic field B दिखाते हैं। यहाँ कोई electric field नहीं है — electric field E zero है।", "text_te": "Setup చూద్దాం. ఈ blue arrows ఒక uniform magnetic field B చూపిస్తున్నాయి. ఇక్కడ electric field లేదు — electric field E zero.", "glow": "b" },
             { "id": "s1_1b", "text_en": "The orange arrow is the proton's velocity v. Right now velocity v points along magnetic field B, so the angle theta is zero.", "text_hi": "Orange arrow proton की velocity v है। अभी velocity v, magnetic field B के साथ point कर रहा है, इसलिए angle theta zero है।", "text_te": "Orange arrow proton యొక్క velocity v. ఇప్పుడు velocity v, magnetic field B వెంట point చేస్తోంది, కాబట్టి angle theta zero.", "glow": "v" },
-            { "id": "s1_2a", "text_en": "The full Lorentz force is q E plus q v cross B. With electric field E zero, only the magnetic part is left.", "text_hi": "पूरी Lorentz force है q E plus q v cross B। electric field E zero होने पर, सिर्फ magnetic part बचता है।", "text_te": "పూర్తి Lorentz force అంటే q E plus q v cross B. electric field E zero అయినప్పుడు, magnetic part మాత్రమే మిగులుతుంది.", "glow": "v", "math_show": "\\vec{F} = q\\vec{E} + q\\,\\vec{v}\\times\\vec{B}" },
-            { "id": "s1_2b", "text_en": "Its size is q v B sine theta. With theta zero, sine zero is zero, so force F is zero.", "text_hi": "इसकी size है q v B sine theta। Theta zero होने पर, sine zero zero होता है, तो force F zero है।", "text_te": "దీని size అంటే q v B sine theta. Theta zero అయినప్పుడు, sine zero zero, కాబట్టి force F zero.", "glow": "f", "math_show": "F = qvB\\,\\sin\\theta = qvB \\cdot 0 = 0" },
-            { "id": "s1_2c", "text_en": "So the proton just drifts in a straight line — no bending.", "text_hi": "तो proton बस एक straight line में drift करता है — कोई bending नहीं।", "text_te": "కాబట్టి proton straight line లో drift చేస్తుంది — bending లేదు.", "glow": "trail" }
+            { "id": "s1_2b", "text_en": "With electric field E zero, the force is q v B sine theta. At theta zero, sine zero is zero — so force F is zero.", "text_hi": "electric field E zero होने पर, force है q v B sine theta। Theta zero पर, sine zero zero है — तो force F zero है।", "text_te": "electric field E zero అయినప్పుడు, force అంటే q v B sine theta. Theta zero వద్ద, sine zero zero — కాబట్టి force F zero.", "glow": "f", "math_show": "F = qvB\\,\\sin\\theta = 0 \\quad (\\theta = 0)" },
+            { "id": "s1_2c", "text_en": "So the proton just drifts in a straight line. Now drag the angle slider to tilt v and watch it bend.", "text_hi": "तो proton बस एक straight line में drift करता है। अब angle slider को drag करके v को tilt करो और इसे bend होते देखो।", "text_te": "కాబట్టి proton straight line లో drift చేస్తుంది. ఇప్పుడు angle slider drag చేసి v ని tilt చేసి bend అవడం చూడండి.", "glow": "sliders" }
           ]
         }
       },
       "STATE_2": {
-        "title": "θ = 90° → full circle",
-        "duration": 30,
+        "title": "The circle — v across B (θ = 90°)",
+        "duration": 53,
         "focal_primitive_id": "theta90_label",
-        "advance_mode": "wait_for_answer",
-        "allow_deep_dive": true,
+        "advance_mode": "auto_after_tts",
         "scene_composition": [
           {
             "type": "annotation",
@@ -166,156 +164,91 @@
             "type": "annotation",
             "id": "circle_label",
             "position": { "x": 200, "y": 215 },
-            "text": "F = qvB · sin 90° = qvB\nFull circle, no drift along B",
+            "text": "θ = 90° → F = qvB (max)\nFull circle, no drift along B",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "r_T_label",
             "position": { "x": 560, "y": 215 },
-            "text": "Radius r = mv / (qB)\nPeriod  T = 2π m / (qB)\nNote: T does NOT depend on v",
+            "text": "Radius r = mv / (qB)\nPeriod  T = 2π m / (qB)",
             "color": "#FFCC9F"
           },
           {
             "type": "annotation",
             "id": "no_work_label",
             "position": { "x": 380, "y": 470 },
-            "text": "F ⊥ v at every instant → F·v = 0 → no work → |v| is constant. Trail dots are equally spaced — proof of constant speed.",
+            "text": "Trail dots stay equally spaced → the speed never changes (no work). Why? — next lesson.",
             "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1a", "text_en": "Now theta equals ninety. velocity v is perpendicular to magnetic field B.", "text_hi": "अब theta ninety है। velocity v, magnetic field B के perpendicular है।", "text_te": "ఇప్పుడు theta ninety. velocity v, magnetic field B కు perpendicular.", "glow": "v" },
-            { "id": "s2_1b", "text_en": "Sine ninety equals one, so force F reaches its maximum.", "text_hi": "Sine ninety equals one, इसलिए force F अपने maximum तक पहुँचता है।", "text_te": "Sine ninety equals one, కాబట్టి force F తన maximum చేరుకుంటుంది.", "glow": "f", "math_show": "F = qvB\\,\\sin\\theta = qvB \\quad (\\theta=90^{\\circ})" },
-            { "id": "s2_2a", "text_en": "There is no drift along magnetic field B now. The path is a perfect circle.", "text_hi": "अब magnetic field B के साथ कोई drift नहीं है। Path एक perfect circle है।", "text_te": "ఇప్పుడు magnetic field B వెంట drift లేదు. Path ఒక perfect circle.", "glow": "trail" },
-            { "id": "s2_2b", "text_en": "Force F always points to the centre — it is the centripetal force.", "text_hi": "force F हमेशा centre की तरफ point करता है — यही centripetal force है।", "text_te": "force F ఎల్లప్పుడూ centre వైపు point చేస్తుంది — ఇది centripetal force.", "glow": "f", "freeze_proton": true },
-            { "id": "s2_3a", "text_en": "On the right, the 3D right-hand shows the rule. Fingers first, thumb last.", "text_hi": "दाईं तरफ, 3D right-hand rule दिखाता है। पहले fingers, अंत में thumb।", "text_te": "కుడి వైపు, 3D right-hand rule చూపిస్తోంది. ముందు fingers, చివర thumb.", "glow": "hand" },
-            { "id": "s2_3b", "text_en": "Point your fingers along velocity v.", "text_hi": "अपनी fingers को velocity v की दिशा में point करो।", "text_te": "మీ fingers ని velocity v వెంట point చేయండి.", "glow": "v", "hand_phase": "v" },
-            { "id": "s2_3c", "text_en": "Curl them toward magnetic field B.", "text_hi": "उन्हें magnetic field B की तरफ curl करो।", "text_te": "వాటిని magnetic field B వైపు curl చేయండి.", "glow": "b", "hand_phase": "b" },
-            { "id": "s2_3d", "text_en": "Your thumb now gives force F — pointing to the circle's centre.", "text_hi": "अब तुम्हारा thumb force F देता है — circle के centre की तरफ।", "text_te": "మీ thumb ఇప్పుడు force F ని ఇస్తుంది — circle యొక్క centre వైపు.", "glow": "f", "hand_phase": "f" },
-            { "id": "s2_4a", "text_en": "Newton's second law for circular motion. The magnetic force is the centripetal force.", "text_hi": "Circular motion के लिए Newton's second law। Magnetic force ही centripetal force है।", "text_te": "Circular motion కోసం Newton's second law. Magnetic force అనేది centripetal force.", "glow": "f", "math_show": "qvB = \\dfrac{m v^{2}}{r}" },
-            { "id": "s2_4b", "text_en": "Solve for the radius.", "text_hi": "Radius के लिए solve करते हैं।", "text_te": "Radius కోసం solve చేద్దాం.", "glow": "trail", "math_show": "r = \\dfrac{m v}{qB}", "math_persist": true },
-            { "id": "s2_4c", "text_en": "And the period equals circumference divided by speed. The velocity v cancels — period T depends only on mass m, charge q, and magnetic field B.", "text_hi": "और period equals circumference divided by speed। velocity v cancel हो जाता है — period T सिर्फ mass m, charge q, और magnetic field B पर निर्भर करता है।", "text_te": "Period equals circumference divided by speed. velocity v cancel అవుతుంది — period T కేవలం mass m, charge q, మరియు magnetic field B పై ఆధారపడుతుంది.", "glow": "trail", "math_show": "T = \\dfrac{2\\pi m}{qB}", "math_persist": true },
-            { "id": "s2_5a", "text_en": "Notice the trail dots are equally spaced — equal arc per unit time.", "text_hi": "देखो trail dots बराबर दूरी पर हैं — equal arc per unit time।", "text_te": "Trail dots సమానంగా spaced గా ఉన్నాయి గమనించండి — equal arc per unit time.", "glow": "trail" },
-            { "id": "s2_5b", "text_en": "Force F is always perpendicular to velocity v, so F dot v is zero.", "text_hi": "force F हमेशा velocity v के perpendicular है, इसलिए F dot v zero है।", "text_te": "force F ఎల్లప్పుడూ velocity v కు perpendicular, కాబట్టి F dot v zero.", "glow": "f", "math_show": "\\vec{F}\\cdot\\vec{v}=0" },
-            { "id": "s2_5c", "text_en": "So the kinetic energy never changes. Magnetic forces do no work.", "text_hi": "तो kinetic energy कभी नहीं बदलती। Magnetic forces कोई work नहीं करतीं।", "text_te": "కాబట్టి kinetic energy ఎప్పుడూ మారదు. Magnetic forces work చేయవు.", "glow": "v", "math_show": "\\dfrac{d}{dt}\\!\\left(\\tfrac{1}{2}mv^{2}\\right)=0", "math_persist": true }
+            { "id": "s2_1", "text_en": "Now velocity v is perpendicular to magnetic field B. The force is at its maximum, and the path closes into a perfect circle.", "text_hi": "अब velocity v, magnetic field B के perpendicular है। force अपने maximum पर है, और path एक perfect circle में बंद हो जाती है।", "text_te": "ఇప్పుడు velocity v, magnetic field B కు perpendicular. force దాని maximum వద్ద ఉంది, మరియు path ఒక perfect circle గా మూసుకుంటుంది.", "glow": ["v", "trail"], "math_show": "F = qvB\\,\\sin 90^{\\circ} = qvB" },
+            { "id": "s2_2", "text_en": "Force F always points to the centre — it is the centripetal force that keeps the proton turning.", "text_hi": "force F हमेशा centre की तरफ point करता है — यही centripetal force है जो proton को घुमाती रहती है।", "text_te": "force F ఎల్లప్పుడూ centre వైపు point చేస్తుంది — ఇదే proton ని తిప్పే centripetal force.", "glow": "f", "freeze_proton": true },
+            { "id": "s2_3", "text_en": "For exams: radius r equals m v over q B, and period T equals two pi m over q B — the same time every lap.", "text_hi": "Exam के लिए: radius r equals m v over q B, और period T equals two pi m over q B — हर lap same time।", "text_te": "Exam కోసం: radius r equals m v over q B, మరియు period T equals two pi m over q B — ప్రతి lap same time.", "glow": "trail", "math_show": "r = \\dfrac{mv}{qB}, \\quad T = \\dfrac{2\\pi m}{qB}", "math_persist": true },
+            { "id": "s2_4", "text_en": "You might expect the field to speed the proton up. But watch the trail dots — equally spaced, so the speed never changes. A magnetic force only steers; why is the next lesson.", "text_hi": "तुम expect कर सकते हो कि field proton को speed up कर देगी। पर trail dots देखो — बराबर दूरी पर, तो speed कभी नहीं बदलती। Magnetic force सिर्फ steer करती है; क्यों — अगला lesson।", "text_te": "Field proton ని speed up చేస్తుందని మీరు expect చేయవచ్చు. కానీ trail dots చూడండి — సమాన దూరంలో, కాబట్టి speed ఎప్పుడూ మారదు. Magnetic force steer మాత్రమే చేస్తుంది; ఎందుకో — తదుపరి lesson.", "glow": "trail", "freeze_proton": true },
+            { "id": "s2_6", "text_en": "Try it. Drag the speed v — the circle grows, but the period stays the same. Drag the field B — the circle tightens.", "text_hi": "Try करो। Speed v को drag करो — circle बड़ा होता है, लेकिन period same रहता है। Field B को drag करो — circle tight हो जाता है।", "text_te": "Try చేయండి. Speed v ని drag చేయండి — circle పెద్దదవుతుంది, కానీ period same గా ఉంటుంది. Field B ని drag చేయండి — circle tight అవుతుంది.", "glow": "sliders" }
           ]
         },
         "misconception_watch": [
           {
-            "belief": "A magnetic field can speed up a charged particle.",
-            "one_line_fix": "Never. F · v = 0 by construction. Only electric fields can change |v|."
+            "belief": "A magnetic field can speed up a charged particle — a stronger field makes it go faster.",
+            "one_line_fix": "Never. F · v = 0 by construction, so the work is zero. A bigger B makes a TIGHTER circle, not a faster particle. Only an electric field can change |v|."
           }
         ]
       },
       "STATE_3": {
-        "title": "No work → speed constant",
-        "duration": 24,
-        "focal_primitive_id": "speed_frozen_label",
-        "advance_mode": "wait_for_answer",
-        "allow_deep_dive": true,
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "a5_title",
-            "position": { "x": 380, "y": 60 },
-            "text": "Direction keeps changing — does the SPEED change too?",
-            "color": "#FFD54F"
-          },
-          {
-            "type": "annotation",
-            "id": "speed_frozen_label",
-            "position": { "x": 200, "y": 230 },
-            "text": "Speed |v| stays put — it NEVER changes.\nWatch the trail: the dots are\nequally spaced (equal distance, equal time).",
-            "color": "#66BB6A"
-          },
-          {
-            "type": "annotation",
-            "id": "dir_changing_label",
-            "position": { "x": 560, "y": 230 },
-            "text": "The orange v-arrow swings to a\nnew direction every instant —\nbut its LENGTH stays the same.",
-            "color": "#FFAB40"
-          },
-          {
-            "type": "annotation",
-            "id": "why_no_work_label",
-            "position": { "x": 380, "y": 470 },
-            "text": "F is always ⊥ v → F·v = 0 → work = 0 → kinetic energy can't change → speed is locked. A magnet can STEER a charge, never SPEED it up.",
-            "color": "#D4D4D8"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s3_1", "text_en": "The proton is going in a circle, so its direction is always changing.", "text_hi": "Proton circle में जा रहा है, इसलिए इसकी direction हमेशा बदल रही है।", "text_te": "Proton circle లో వెళ్తోంది, కాబట్టి దీని direction ఎల్లప్పుడూ మారుతోంది.", "glow": "trail" },
-            { "id": "s3_2", "text_en": "Predict first. As it goes round and round, does its speed change?", "text_hi": "पहले predict करो। जैसे-जैसे यह चक्कर लगाता है, क्या इसकी speed बदलती है?", "text_te": "ముందు predict చేయండి. ఇది తిరుగుతూ తిరుగుతూ వెళ్తున్నప్పుడు, దీని speed మారుతుందా?", "glow": "v", "freeze_proton": true },
-            { "id": "s3_3", "text_en": "Watch the trail. The dots are equally spaced — equal distance covered in equal time.", "text_hi": "Trail देखो। Dots बराबर दूरी पर हैं — equal time में equal distance।", "text_te": "Trail చూడండి. Dots సమానంగా spaced — equal time లో equal distance.", "glow": "trail" },
-            { "id": "s3_4", "text_en": "That means the speed is exactly constant. Only the direction turns.", "text_hi": "इसका मतलब speed बिल्कुल constant है। सिर्फ direction बदलती है।", "text_te": "అంటే speed సరిగ్గా constant. Direction మాత్రమే మారుతుంది.", "glow": "v" },
-            { "id": "s3_5", "text_en": "Why? The force is always perpendicular to the velocity.", "text_hi": "क्यों? Force हमेशा velocity के perpendicular होता है।", "text_te": "ఎందుకు? Force ఎల్లప్పుడూ velocity కు perpendicular గా ఉంటుంది.", "glow": ["f", "v"], "math_show": "\\vec{F}\\perp\\vec{v}" },
-            { "id": "s3_6", "text_en": "So the work done by the force is F dot v, and that is zero.", "text_hi": "तो force द्वारा किया गया work है F dot v, और वह zero है।", "text_te": "కాబట్టి force చేసే work అంటే F dot v, అది zero.", "glow": "f", "math_show": "W = \\vec{F}\\cdot\\vec{v} = 0", "math_persist": true },
-            { "id": "s3_7", "text_en": "No work means the kinetic energy cannot change. So the speed is locked.", "text_hi": "No work का मतलब है kinetic energy बदल नहीं सकती। तो speed locked है।", "text_te": "No work అంటే kinetic energy మారదు. కాబట్టి speed locked అయింది.", "glow": "v", "math_show": "\\Delta\\!\\left(\\tfrac{1}{2}mv^{2}\\right) = 0", "math_persist": true },
-            { "id": "s3_8", "text_en": "This is the big idea. A magnetic force only steers a charge — it can never speed it up or slow it down.", "text_hi": "यही सबसे बड़ी बात है। Magnetic force सिर्फ एक charge को steer करती है — यह उसे कभी speed up या slow down नहीं कर सकती।", "text_te": "ఇదే అసలు విషయం. Magnetic force ఒక charge ని steer చేయగలదు మాత్రమే — దానిని ఎప్పటికీ speed up లేదా slow down చేయలేదు.", "glow": "trail" }
-          ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "The magnetic force speeds the charge up — a stronger field makes it go faster.",
-            "one_line_fix": "Never. F is ⊥ v, so F·v = 0 and the work is zero. A bigger B makes a TIGHTER circle, not a faster particle. Only an electric field can change |v|."
-          }
-        ]
-      },
-      "STATE_4": {
-        "title": "Fleming's left-hand rule",
-        "duration": 14,
-        "focal_primitive_id": "fleming_title",
+        "title": "The right-hand rule — F ⊥ v and B",
+        "duration": 36,
+        "focal_primitive_id": "rhr_label",
         "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "fleming_title",
+            "id": "rhr_label",
             "position": { "x": 380, "y": 60 },
-            "text": "Fleming's left-hand rule — Class-10 reconciliation",
+            "text": "The right-hand rule — F ⊥ both v and B",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
-            "id": "fleming_mapping",
-            "position": { "x": 560, "y": 230 },
-            "text": "Left hand:\nForeFinger = B (index)\nseCond = v (middle)\nthuMb = F",
+            "id": "fingers_label",
+            "position": { "x": 200, "y": 230 },
+            "text": "Point fingers along v.\nCurl them toward B.\nYour thumb gives F.",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "fleming_scope",
-            "position": { "x": 560, "y": 380 },
-            "text": "+q only.\nFor −q, reverse F.\nFor any θ ≠ 90°,\nuse right-hand rule.",
-            "color": "#FFAB40"
+            "id": "cross_label",
+            "position": { "x": 560, "y": 230 },
+            "text": "F = q (v × B).\nA cross product — F is\nperpendicular to BOTH,\nnever along v, never along B.",
+            "color": "#FFCC9F"
           },
           {
             "type": "annotation",
-            "id": "fleming_explainer",
+            "id": "flip_label",
             "position": { "x": 380, "y": 470 },
-            "text": "Same physics as F = q v × B — three orthogonal fingers instead of a cross-product curl. Pick whichever hand you remember from Class 10.",
+            "text": "Tap the charge button: flip to −q and F flips to the opposite side. Drag θ to see F shrink.",
             "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Quick bridge for Class-10 students. Some of you remember this as Fleming's left-hand rule from the motor effect chapter.", "text_hi": "Class-10 के students के लिए एक quick bridge। कुछ लोगों को यह motor effect chapter से Fleming's left-hand rule के रूप में याद है।", "text_te": "Class-10 students కోసం ఒక quick bridge. మీలో కొందరికి ఇది motor effect chapter నుండి Fleming's left-hand rule గా గుర్తుంటుంది.", "glow": "fleming" },
-            { "id": "s4_2a", "text_en": "Index finger along magnetic field B.", "text_hi": "Index finger, magnetic field B की दिशा में।", "text_te": "Index finger, magnetic field B వెంట.", "glow": ["fleming_index", "b"] },
-            { "id": "s4_2b", "text_en": "Middle finger along velocity v.", "text_hi": "Middle finger, velocity v की दिशा में।", "text_te": "Middle finger, velocity v వెంట.", "glow": ["fleming_middle", "v"] },
-            { "id": "s4_2c", "text_en": "Thumb along force F.", "text_hi": "Thumb, force F की दिशा में।", "text_te": "Thumb, force F వెంట.", "glow": ["fleming_thumb", "f"] },
-            { "id": "s4_2d", "text_en": "For a positive charge, this gives the exact same force direction as the right-hand cross product.", "text_hi": "Positive charge के लिए, यह right-hand cross product के बिल्कुल same force direction देता है।", "text_te": "Positive charge కోసం, ఇది right-hand cross product తో సరిగ్గా same force direction ఇస్తుంది.", "glow": "fleming" },
-            { "id": "s4_3a", "text_en": "We still prefer the right-hand rule because it works for any angle theta, and it handles negative charges without reversing.", "text_hi": "हम right-hand rule को prefer करते हैं क्योंकि यह किसी भी angle theta के लिए काम करता है, और यह negative charges को reverse किए बिना handle करता है।", "text_te": "మనం right-hand rule ను prefer చేస్తాం ఎందుకంటే ఇది ఏ angle theta కైనా పనిచేస్తుంది, మరియు negative charges ని reverse చేయకుండా handle చేస్తుంది.", "glow": "f" },
-            { "id": "s4_3b", "text_en": "Same physics — pick whichever hand you remember.", "text_hi": "Same physics है — जो hand याद हो वही pick करो।", "text_te": "Same physics — మీకు గుర్తున్న hand ని pick చేయండి.", "glow": "fleming" }
+            { "id": "s3_1", "text_en": "Now we freeze the charge so we can study the directions. This is the right-hand rule.", "text_hi": "अब हम charge को freeze करते हैं ताकि directions को study कर सकें। यह right-hand rule है।", "text_te": "ఇప్పుడు charge ని freeze చేస్తాం, directions ని study చేయడానికి. ఇది right-hand rule.", "glow": "hand" },
+            { "id": "s3_2", "text_en": "Point your fingers along velocity v.", "text_hi": "अपनी fingers को velocity v की दिशा में point करो।", "text_te": "మీ fingers ని velocity v వెంట point చేయండి.", "glow": "v", "hand_phase": "v" },
+            { "id": "s3_3", "text_en": "Curl them toward magnetic field B.", "text_hi": "उन्हें magnetic field B की तरफ curl करो।", "text_te": "వాటిని magnetic field B వైపు curl చేయండి.", "glow": "b", "hand_phase": "b" },
+            { "id": "s3_4", "text_en": "Your thumb now gives the force F — perpendicular to both velocity v and magnetic field B.", "text_hi": "अब तुम्हारा thumb force F देता है — velocity v और magnetic field B दोनों के perpendicular।", "text_te": "మీ thumb ఇప్పుడు force F ని ఇస్తుంది — velocity v మరియు magnetic field B రెండింటికీ perpendicular.", "glow": "f", "hand_phase": "f", "math_show": "\\vec{F} = q\\,\\vec{v}\\times\\vec{B}" },
+            { "id": "s3_5", "text_en": "Force F is a cross product, so it is never along velocity v and never along magnetic field B.", "text_hi": "force F एक cross product है, इसलिए यह कभी velocity v के साथ नहीं और कभी magnetic field B के साथ नहीं होता।", "text_te": "force F ఒక cross product, కాబట్టి ఇది ఎప్పుడూ velocity v వెంట కాదు, ఎప్పుడూ magnetic field B వెంట కాదు.", "glow": "f" },
+            { "id": "s3_6", "text_en": "Flip the charge to negative and the force flips to the opposite side. Same rule, opposite thumb.", "text_hi": "Charge को negative करो और force opposite side पर flip हो जाता है। Same rule, opposite thumb।", "text_te": "Charge ని negative కి flip చేయండి మరియు force opposite వైపు flip అవుతుంది. Same rule, opposite thumb.", "glow": "f" }
           ]
         }
       },
-      "STATE_5": {
-        "title": "θ = 45° → helix",
-        "duration": 22,
+      "STATE_4": {
+        "title": "The helix — tilt v (θ = 45°)",
+        "duration": 40,
         "focal_primitive_id": "theta45_label",
-        "advance_mode": "manual_click",
+        "advance_mode": "interaction_complete",
         "scene_composition": [
           {
             "type": "annotation",
@@ -342,218 +275,27 @@
             "type": "annotation",
             "id": "growth_label",
             "position": { "x": 380, "y": 470 },
-            "text": "F scales as sin θ. Coming down from 90°, the circle opens into a helix because part of v points along B. WHY sin θ? — next.",
+            "text": "F scales as sin θ. Drag θ from 0° to 90° and watch it morph: straight → helix → circle. The sin θ is just the slice of v perpendicular to B.",
             "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1a", "text_en": "We just saw the perfect circle at ninety degrees. Now tilt velocity v back to forty-five degrees.", "text_hi": "हमने अभी ninety degrees पर perfect circle देखा। अब velocity v को forty-five degrees पर tilt करते हैं।", "text_te": "మనం ఇప్పుడే ninety degrees లో perfect circle చూశాం. ఇప్పుడు velocity v ను forty-five degrees కు tilt చేద్దాం.", "glow": ["v", "b"] },
-            { "id": "s5_1b", "text_en": "The Lorentz force is still here, but the path is no longer a closed circle — it opens into a helix.", "text_hi": "Lorentz force अभी भी यहाँ है, लेकिन path अब closed circle नहीं है — यह एक helix में खुल जाती है।", "text_te": "Lorentz force ఇంకా ఇక్కడ ఉంది, కానీ path ఇప్పుడు closed circle కాదు — ఇది helix గా తెరుచుకుంటుంది.", "glow": ["f", "trail"] },
-            { "id": "s5_2", "text_en": "Force F has dropped to seventy-one percent of its maximum. Sine forty-five is about zero point seven one.", "text_hi": "Force F, अपने maximum का seventy-one percent रह गया है। Sine forty-five करीब zero point seven one है।", "text_te": "Force F, దీని maximum లో seventy-one percent కు తగ్గింది. Sine forty-five దాదాపు zero point seven one.", "glow": "f", "freeze_proton": true, "math_show": "F = qvB\\,\\sin 45^{\\circ} \\approx 0.71\\,qvB" },
-            { "id": "s5_3", "text_en": "Why a helix now? Because part of velocity v points along magnetic field B and drifts forward, while the rest circles around magnetic field B.", "text_hi": "अब helix क्यों? क्योंकि velocity v का एक हिस्सा magnetic field B के साथ point करता है और forward drift करता है, जबकि बाकी magnetic field B के चारों तरफ circle करता है।", "text_te": "ఇప్పుడు helix ఎందుకు? ఎందుకంటే velocity v లో ఒక భాగం magnetic field B వెంట point చేసి forward drift చేస్తుంది, మిగిలినది magnetic field B చుట్టూ circle చేస్తుంది.", "glow": "trail" },
-            { "id": "s5_4a", "text_en": "Where does that sine theta come from?", "text_hi": "वह sine theta कहाँ से आता है?", "text_te": "ఆ sine theta ఎక్కడ నుండి వస్తోంది?", "glow": "f" },
-            { "id": "s5_4b", "text_en": "Let's break velocity v into two components — and the formula becomes obvious.", "text_hi": "velocity v को दो components में break करते हैं — और formula obvious हो जाएगा।", "text_te": "velocity v ను రెండు components గా break చేద్దాం — అప్పుడు formula obvious అవుతుంది.", "glow": "v" }
-          ]
-        }
-      },
-      "STATE_6": {
-        "title": "Why sin θ? — resolve v",
-        "duration": 30,
-        "focal_primitive_id": "why_sin_label",
-        "advance_mode": "manual_click",
-        "allow_deep_dive": true,
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "why_sin_label",
-            "position": { "x": 380, "y": 60 },
-            "text": "Why sin θ in F = qvB sin θ?",
-            "color": "#FFD54F"
-          },
-          {
-            "type": "annotation",
-            "id": "v_par_label",
-            "position": { "x": 200, "y": 230 },
-            "text": "Grey arrow = v cos θ (∥ B)\nFeels no force — but carries the\nproton steadily FORWARD along B.",
-            "color": "#9CA3AF"
-          },
-          {
-            "type": "annotation",
-            "id": "v_perp_label",
-            "position": { "x": 560, "y": 230 },
-            "text": "Orange dashed = v sin θ (⊥ B)\nThis makes F — and curls the path:\nr = m(v sin θ)/(qB), T = 2π m/(qB)",
-            "color": "#FFCC9F"
-          },
-          {
-            "type": "annotation",
-            "id": "formula_drop_label",
-            "position": { "x": 380, "y": 470 },
-            "text": "F = q · v_⊥ · B = q · (v sin θ) · B → |F| = qvB sin θ. The sin θ in the formula IS the perpendicular slice — no magic.",
-            "color": "#66BB6A"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s6_1", "text_en": "Time for the why. The formula has been working for us — but where does sine theta come from?", "text_hi": "अब 'क्यों' का जवाब देने का समय है। Formula हमारे लिए काम कर रहा था — लेकिन sine theta कहाँ से आता है?", "text_te": "ఇప్పుడు 'ఎందుకు' అని అడిగే సమయం. Formula మనకు పని చేస్తూనే ఉంది — కానీ sine theta ఎక్కడ నుండి వస్తుంది?", "glow": "v", "math_show": "F = qvB\\,\\sin\\theta \\;\\;\\text{(where does }\\sin\\theta\\text{ come from?)}" },
-            { "id": "s6_2", "text_en": "Break velocity v into two pieces. The grey arrow is v cosine theta — the component along magnetic field B.", "text_hi": "velocity v को दो हिस्सों में break करते हैं। Grey arrow है v cosine theta — magnetic field B के साथ component।", "text_te": "velocity v ను రెండు భాగాలుగా break చేద్దాం. Grey arrow అనేది v cosine theta — magnetic field B వెంట component.", "glow": ["v_parallel", "b"], "math_show": "v_{\\parallel} = v\\cos\\theta" },
-            { "id": "s6_3a", "text_en": "The cross product of magnetic field B with anything along magnetic field B is zero, so v parallel makes no force.", "text_hi": "magnetic field B के साथ किसी भी चीज का cross product zero होता है, इसलिए v parallel कोई force नहीं बनाता।", "text_te": "magnetic field B వెంట ఉన్న దేనితోనైనా magnetic field B యొక్క cross product zero, కాబట్టి v parallel force చేయదు.", "glow": ["b", "v_parallel"], "math_show": "\\vec{B}\\times\\vec{v}_{\\parallel} = 0", "math_persist": true },
-            { "id": "s6_3b", "text_en": "But it never stops. v cosine theta carries the proton steadily forward along magnetic field B — that is why the path keeps moving forward.", "text_hi": "लेकिन यह कभी रुकता नहीं। v cosine theta proton को magnetic field B के साथ steadily forward ले जाता है — इसीलिए path आगे बढ़ती रहती है।", "text_te": "కానీ ఇది ఆగదు. v cosine theta proton ను magnetic field B వెంట steadily forward తీసుకెళ్తుంది — అందుకే path ముందుకు వెళ్తూనే ఉంటుంది.", "glow": "v_parallel" },
-            { "id": "s6_4a", "text_en": "The orange dashed arrow is v sine theta — the component perpendicular to magnetic field B.", "text_hi": "Orange dashed arrow है v sine theta — magnetic field B के perpendicular component।", "text_te": "Orange dashed arrow అంటే v sine theta — magnetic field B కు perpendicular component.", "glow": ["v_perp", "b"], "math_show": "v_{\\perp} = v\\sin\\theta" },
-            { "id": "s6_4b", "text_en": "This is the only part that creates force F, and the only part that curls.", "text_hi": "यही वह हिस्सा है जो force F बनाता है, और यही वह हिस्सा है जो curl करता है।", "text_te": "ఇది మాత్రమే force F ని create చేసే భాగం, మరియు curl చేసే భాగం కూడా ఇదే.", "glow": "f" },
-            { "id": "s6_5a", "text_en": "So force F equals q times v perp times B — which is q v B sine theta.", "text_hi": "तो force F equals q times v perp times B — जो है q v B sine theta।", "text_te": "కాబట్టి force F equals q times v perp times B — అంటే q v B sine theta.", "glow": "f", "math_show": "F = q\\,v_{\\perp}\\,B = qvB\\,\\sin\\theta", "math_persist": true },
-            { "id": "s6_5b", "text_en": "The circle it makes has radius m v sine theta over q B. The period is two pi m over q B — the same as the full circle.", "text_hi": "यह जो circle बनाता है उसका radius है m v sine theta over q B। Period है two pi m over q B — full circle जितना ही।", "text_te": "ఇది చేసే circle యొక్క radius అంటే m v sine theta over q B. Period అంటే two pi m over q B — full circle తో same.", "glow": "trail", "math_show": "r = \\dfrac{m\\,v\\sin\\theta}{qB}, \\quad T = \\dfrac{2\\pi m}{qB}", "math_persist": true },
-            { "id": "s6_5c", "text_en": "So sine theta is not magic. It is just the perpendicular slice of velocity v.", "text_hi": "तो sine theta कोई जादू नहीं है। यह बस velocity v का perpendicular slice है।", "text_te": "కాబట్టి sine theta magic కాదు. ఇది కేవలం velocity v యొక్క perpendicular slice.", "glow": "v_perp" },
-            { "id": "s6_6a", "text_en": "On the right, the 3D right-hand shows the same gesture.", "text_hi": "दाईं तरफ, 3D right-hand same gesture दिखाता है।", "text_te": "కుడి వైపు, 3D right-hand same gesture చూపిస్తోంది.", "glow": "hand" },
-            { "id": "s6_6b", "text_en": "Fingers along velocity v.", "text_hi": "Fingers को velocity v की दिशा में रखो।", "text_te": "Fingers ను velocity v వెంట ఉంచండి.", "glow": "v", "hand_phase": "v" },
-            { "id": "s6_6c", "text_en": "Curl toward magnetic field B.", "text_hi": "magnetic field B की तरफ curl करो।", "text_te": "magnetic field B వైపు curl చేయండి.", "glow": "b", "hand_phase": "b" },
-            { "id": "s6_6d", "text_en": "Thumb gives force F.", "text_hi": "Thumb, force F देता है।", "text_te": "Thumb, force F ని ఇస్తుంది.", "glow": "f", "hand_phase": "f" },
-            { "id": "s6_6e", "text_en": "The rule is identical for any angle.", "text_hi": "Rule हर angle के लिए same है।", "text_te": "ఈ rule ఏ angle కైనా same.", "glow": "hand" }
+            { "id": "s4_1", "text_en": "Now tilt velocity v back to forty-five degrees. The path is no longer a closed circle — it opens into a helix.", "text_hi": "अब velocity v को forty-five degrees पर tilt करो। Path अब closed circle नहीं है — यह एक helix में खुल जाती है।", "text_te": "ఇప్పుడు velocity v ను forty-five degrees కు tilt చేయండి. Path ఇప్పుడు closed circle కాదు — ఇది helix గా తెరుచుకుంటుంది.", "glow": ["v", "f", "trail"] },
+            { "id": "s4_2", "text_en": "Force F has dropped to seventy-one percent of its maximum. Sine forty-five is about zero point seven one.", "text_hi": "Force F, अपने maximum का seventy-one percent रह गया है। Sine forty-five करीब zero point seven one है।", "text_te": "Force F, దీని maximum లో seventy-one percent కు తగ్గింది. Sine forty-five దాదాపు zero point seven one.", "glow": "f", "freeze_proton": true, "math_show": "F = qvB\\,\\sin 45^{\\circ} \\approx 0.71\\,qvB" },
+            { "id": "s4_3", "text_en": "Why a helix? Part of velocity v points along magnetic field B and drifts forward, while the rest circles around magnetic field B.", "text_hi": "Helix क्यों? velocity v का एक हिस्सा magnetic field B के साथ point करता है और forward drift करता है, जबकि बाकी magnetic field B के चारों तरफ circle करता है।", "text_te": "Helix ఎందుకు? velocity v లో ఒక భాగం magnetic field B వెంట point చేసి forward drift చేస్తుంది, మిగిలినది magnetic field B చుట్టూ circle చేస్తుంది.", "glow": ["v_parallel", "v_perp"] },
+            { "id": "s4_4", "text_en": "Now you drive it. Drag the angle theta from zero to ninety and watch the path morph from straight to helix to circle. Flip the charge to reverse the sense.", "text_hi": "अब तुम चलाओ। Angle theta को zero से ninety तक drag करो और path को straight से helix से circle में morph होते देखो। Charge flip करके sense reverse करो।", "text_te": "ఇప్పుడు మీరు నడపండి. Angle theta ను zero నుండి ninety వరకు drag చేసి path straight నుండి helix నుండి circle గా morph అవడం చూడండి. Charge flip చేసి sense reverse చేయండి.", "glow": "sliders" }
           ]
         },
         "misconception_watch": [
           {
             "belief": "F = qvB sin θ is a formula to memorise, with sin θ as an arbitrary correction.",
-            "one_line_fix": "sin θ is just |v_⊥| / |v|. The formula is really F = q v_⊥ B. The component along B is irrelevant to the force; only the perpendicular slice creates force."
+            "one_line_fix": "sin θ is just |v_⊥| / |v|. The formula is really F = q v_⊥ B — only the slice of v perpendicular to B creates the force; the part along B drifts freely and makes the helix."
           }
         ]
-      },
-      "STATE_7": {
-        "title": "θ = 10° → stretched helix",
-        "duration": 22,
-        "focal_primitive_id": "theta10_label",
-        "advance_mode": "manual_click",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "theta10_label",
-            "position": { "x": 380, "y": 60 },
-            "text": "θ = 10° — almost parallel to B",
-            "color": "#FFD54F"
-          },
-          {
-            "type": "annotation",
-            "id": "small_f_label",
-            "position": { "x": 200, "y": 230 },
-            "text": "F = qvB · sin 10° ≈ 0.17 × max\n(small, but NOT zero)",
-            "color": "#66BB6A"
-          },
-          {
-            "type": "annotation",
-            "id": "stretched_label",
-            "position": { "x": 560, "y": 230 },
-            "text": "Very STRETCHED helix —\nlong forward drift, tiny circles ⊥ B",
-            "color": "#FFAB40"
-          },
-          {
-            "type": "annotation",
-            "id": "back_to_straight_label",
-            "position": { "x": 380, "y": 470 },
-            "text": "Push θ a little more to 0° and the circles vanish — back to the straight line we started with.",
-            "color": "#D4D4D8"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s7_1", "text_en": "Last case. Push theta all the way down to ten degrees — velocity v is almost parallel to magnetic field B.", "text_hi": "आखिरी case। Theta को ten degrees तक push करते हैं — velocity v लगभग magnetic field B के parallel है।", "text_te": "చివరి case. Theta ను ten degrees వరకు push చేద్దాం — velocity v దాదాపు magnetic field B కు parallel.", "glow": "v" },
-            { "id": "s7_2", "text_en": "Force F is still here, perpendicular to both velocity v and magnetic field B, but it is small.", "text_hi": "Force F अभी भी यहाँ है, velocity v और magnetic field B दोनों के perpendicular, लेकिन यह छोटा है।", "text_te": "Force F ఇంకా ఇక్కడ ఉంది, velocity v మరియు magnetic field B రెండింటికీ perpendicular, కానీ ఇది చిన్నది.", "glow": ["f", "v", "b"], "freeze_proton": true, "math_show": "\\vec{F} = q\\,\\vec{v}\\times\\vec{B}" },
-            { "id": "s7_3", "text_en": "Sine ten degrees is about zero point one seven, so force F is only seventeen percent of its maximum.", "text_hi": "Sine ten degrees लगभग zero point one seven है, इसलिए force F अपने maximum का सिर्फ seventeen percent है।", "text_te": "Sine ten degrees దాదాపు zero point one seven, కాబట్టి force F దీని maximum లో కేవలం seventeen percent.", "glow": "f", "freeze_proton": true, "math_show": "F = qvB\\,\\sin 10^{\\circ} \\approx 0.17\\,qvB" },
-            { "id": "s7_4", "text_en": "The helix is now very stretched — long forward drift, tiny circles. Nudge theta to zero and the circles vanish: a straight line again.", "text_hi": "Helix अब बहुत stretched है — लंबा forward drift, छोटे circles। Theta को zero तक nudge करो और circles गायब हो जाते हैं: फिर एक straight line।", "text_te": "Helix ఇప్పుడు చాలా stretched — long forward drift, చిన్న circles. Theta ను zero కు nudge చేయండి మరియు circles మాయమవుతాయి: మళ్లీ ఒక straight line.", "glow": "trail" }
-          ]
-        }
-      },
-      "STATE_8": {
-        "title": "Try it",
-        "duration": 28,
-        "focal_primitive_id": "explore_label",
-        "advance_mode": "interaction_complete",
-        "scene_composition": [
-          {
-            "type": "annotation",
-            "id": "explore_label",
-            "position": { "x": 380, "y": 60 },
-            "text": "You drive it now",
-            "color": "#FFF176"
-          },
-          {
-            "type": "annotation",
-            "id": "sliders_label",
-            "position": { "x": 200, "y": 230 },
-            "text": "Top-right: q sign · |v| · B · θ\nF readout updates live",
-            "color": "#FFAB40"
-          },
-          {
-            "type": "annotation",
-            "id": "challenge_label",
-            "position": { "x": 560, "y": 230 },
-            "text": "Try: θ = 0 → straight\nθ = 90 → circle\nIn between → helix\nFlip q → reverse sense",
-            "color": "#66BB6A"
-          },
-          {
-            "type": "annotation",
-            "id": "summary_label",
-            "position": { "x": 380, "y": 470 },
-            "text": "Same right-hand rule everywhere. Charge sign and θ are the two knobs that decide F.",
-            "color": "#D4D4D8"
-          }
-        ],
-        "teacher_script": {
-          "tts_sentences": [
-            { "id": "s8_1", "text_en": "Your turn. Top-right has four sliders: charge q sign, speed v, magnetic field B, and angle theta. The force F readout updates live as you drag.", "text_hi": "अब तुम्हारी बारी। Top-right में चार sliders हैं: charge q sign, speed v, magnetic field B, और angle theta। force F readout drag करते समय live update होता है।", "text_te": "ఇప్పుడు మీ వంతు. Top-right లో నాలుగు sliders ఉన్నాయి: charge q sign, speed v, magnetic field B, మరియు angle theta. Drag చేస్తున్నప్పుడు force F readout live update అవుతుంది.", "glow": "sliders" },
-            { "id": "s8_2a", "text_en": "Try theta zero — straight line.", "text_hi": "Theta zero try करो — straight line।", "text_te": "Theta zero try చేయండి — straight line.", "glow": "trail" },
-            { "id": "s8_2b", "text_en": "Theta ninety — pure circle.", "text_hi": "Theta ninety — pure circle।", "text_te": "Theta ninety — pure circle.", "glow": "trail" },
-            { "id": "s8_2c", "text_en": "Anything in between — helix.", "text_hi": "बीच में कुछ भी — helix।", "text_te": "మధ్యలో ఏదైనా — helix.", "glow": "trail" },
-            { "id": "s8_2d", "text_en": "Tap the charge q button to flip charge sign and watch the trajectory reverse.", "text_hi": "charge q button tap करो charge sign flip करने के लिए और trajectory reverse होते हुए देखो।", "text_te": "charge q button tap చేయండి charge sign flip చేయడానికి మరియు trajectory reverse అవడం చూడండి.", "glow": "sliders" }
-          ]
-        }
       }
     }
   },
-  "epic_c_branches": [
-    {
-      "branch_id": "force_along_velocity",
-      "misconception": "The magnetic force F points in the same direction as v — the field pushes the particle forward.",
-      "trigger_phrases": [
-        "F is along v",
-        "force is in the direction of motion",
-        "magnetic force pushes the particle forward",
-        "F parallel to v"
-      ],
-      "state_sequence": ["STATE_2", "STATE_6"]
-    },
-    {
-      "branch_id": "force_along_field",
-      "misconception": "The magnetic force F points in the same direction as B — it just shoves the charge along the field.",
-      "trigger_phrases": [
-        "F is along B",
-        "force is in the direction of the field",
-        "F parallel to B",
-        "magnetic force points along magnetic field"
-      ],
-      "state_sequence": ["STATE_6", "STATE_2"]
-    },
-    {
-      "branch_id": "magnetic_force_does_work",
-      "misconception": "A magnetic field can speed up or slow down a charged particle — magnetic force does work like any other force.",
-      "trigger_phrases": [
-        "magnetic field changes speed",
-        "B field speeds up the charge",
-        "magnetic force changes kinetic energy",
-        "work done by magnetic force"
-      ],
-      "state_sequence": ["STATE_3"]
-    },
-    {
-      "branch_id": "left_hand_for_force",
-      "misconception": "Use the left hand for the magnetic force direction — that is the natural hand for cross products in physics.",
-      "trigger_phrases": [
-        "left hand rule for F",
-        "use left hand for force",
-        "Fleming's left hand"
-      ],
-      "state_sequence": ["STATE_4", "STATE_2"]
-    }
-  ],
   "field_3d_config": {
     "scenario_type": "lorentz_force_uniform_field",
     "ambient_field": {
@@ -585,118 +327,63 @@
     },
     "states": {
       "STATE_1": {
-        "label": "θ = 0° — v ∥ B, straight drift, F = 0",
+        "label": "Straight line — v ∥ B (θ = 0°), F = 0 [Motion]",
         "visible_elements": [],
         "camera_position": [3.5, 1.5, 4],
         "caption": "",
-        "trajectory_mode": "straight",
+        "trajectory_mode": "helix",
         "theta_deg": 0,
+        "show_sliders": true,
+        "visible_controls": ["theta"],
         "extras": {
-          "velocity_vector": { "show": true, "color": "#FFAB40" }
+          "velocity_vector": { "show": true, "color": "#FFAB40" },
+          "particle_trail": { "show": true, "color": "#FFCC9F" }
         }
       },
       "STATE_2": {
-        "label": "θ = 90° — pure circle, r and T appear",
+        "label": "The circle — θ = 90°, F to the centre, no work [Motion]",
         "visible_elements": [],
         "camera_position": [3, 2.5, 4],
         "caption": "",
         "trajectory_mode": "circle",
         "theta_deg": 90,
-        "extras": {
-          "velocity_vector": { "show": true, "color": "#FFAB40" },
-          "force_vector": { "show": true, "color": "#66BB6A" },
-          "particle_trail": { "show": true, "color": "#FFCC9F", "equal_arc": true },
-          "palm_rule": { "show_3d_hand": true, "hand_position": [2.2, 1.6, -1.6], "hand_scale": 1.8 }
-        }
-      },
-      "STATE_3": {
-        "label": "Speed constant — magnetic force does no work",
-        "visible_elements": [],
-        "camera_position": [3, 2.5, 4],
-        "caption": "",
-        "trajectory_mode": "circle",
-        "theta_deg": 90,
-        "formula_overlay": "F ⊥ v  →  F·v = 0\nW = 0  →  Δ(½mv²) = 0\n|v| = constant",
+        "show_sliders": true,
+        "visible_controls": ["v", "B"],
         "extras": {
           "velocity_vector": { "show": true, "color": "#FFAB40" },
           "force_vector": { "show": true, "color": "#66BB6A" },
           "particle_trail": { "show": true, "color": "#FFCC9F", "equal_arc": true }
         }
       },
-      "STATE_4": {
-        "label": "Fleming's left-hand rule — Class-10 reconciliation",
+      "STATE_3": {
+        "label": "Right-hand rule — charge frozen, study v/B/F + hand [Direction]",
         "visible_elements": [],
-        "camera_position": [3, 2.5, 4],
+        "camera_position": [4, 4, 4],
         "caption": "",
-        "trajectory_mode": "circle",
+        "trajectory_mode": "static",
         "theta_deg": 90,
-        "equation_panel_anchor": "bottom-right",
+        "show_sliders": true,
+        "visible_controls": ["q", "theta"],
         "extras": {
           "velocity_vector": { "show": true, "color": "#FFAB40" },
           "force_vector": { "show": true, "color": "#66BB6A" },
-          "particle_trail": { "show": true, "color": "#FFCC9F", "equal_arc": true },
-          "fleming_left_hand": { "show": true },
-          "palm_rule": {}
+          "palm_rule": { "show_3d_hand": true, "hand_position": [0.2, -1.7, 1.3], "hand_scale": 1.5 }
         }
       },
-      "STATE_5": {
-        "label": "θ = 45° — tilt back from the circle, it opens into a helix",
+      "STATE_4": {
+        "label": "The helix — θ = 45°, the circle opens [Motion]",
         "visible_elements": [],
         "camera_position": [3, 2, 4],
         "caption": "",
         "trajectory_mode": "helix",
         "theta_deg": 45,
         "entry_duration": 2.6,
-        "extras": {
-          "velocity_vector": { "show": true, "color": "#FFAB40" },
-          "force_vector": { "show": true, "color": "#66BB6A" },
-          "particle_trail": { "show": true, "color": "#FFCC9F" },
-          "palm_rule": {}
-        }
-      },
-      "STATE_6": {
-        "label": "Why sin θ — v decomposed into v cos θ (∥ B) + v sin θ (⊥ B)",
-        "visible_elements": [],
-        "camera_position": [3, 2, 4],
-        "caption": "",
-        "trajectory_mode": "helix",
-        "theta_deg": 45,
-        "extras": {
-          "velocity_vector": { "show": true, "color": "#FFAB40" },
-          "force_vector": { "show": true, "color": "#66BB6A" },
-          "particle_trail": { "show": true, "color": "#FFCC9F" },
-          "vector_decomposition": { "show": true, "color_parallel": "#9CA3AF", "color_perp": "#FFCC9F", "scale": 1.4 },
-          "palm_rule": { "show_3d_hand": true, "hand_position": [2.2, 1.6, -1.6], "hand_scale": 1.6 }
-        }
-      },
-      "STATE_7": {
-        "label": "θ = 10° — very stretched helix, nearly back to straight",
-        "visible_elements": [],
-        "camera_position": [3.5, 2, 4],
-        "caption": "",
-        "trajectory_mode": "helix",
-        "theta_deg": 10,
-        "extras": {
-          "velocity_vector": { "show": true, "color": "#FFAB40" },
-          "force_vector": { "show": true, "color": "#66BB6A" },
-          "particle_trail": { "show": true, "color": "#FFCC9F" },
-          "palm_rule": {}
-        }
-      },
-      "STATE_8": {
-        "label": "Interactive — drag sliders, flip q sign",
-        "visible_elements": [],
-        "camera_position": [3.5, 3, 4.5],
-        "caption": "",
-        "trajectory_mode": "helix",
-        "theta_deg": 60,
         "show_sliders": true,
-        "formula_overlay": "F = qvB sin θ\nr = mv / (qB)\nT = 2π m / (qB)",
         "extras": {
           "velocity_vector": { "show": true, "color": "#FFAB40" },
           "force_vector": { "show": true, "color": "#66BB6A" },
           "particle_trail": { "show": true, "color": "#FFCC9F" },
-          "palm_rule": {}
+          "vector_decomposition": { "show": true, "scale": 1.2 }
         }
       }
     },
