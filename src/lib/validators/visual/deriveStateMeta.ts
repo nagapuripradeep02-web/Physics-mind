@@ -202,6 +202,22 @@ export function deriveMotionExpectations(
             // is relaxed by the show_sliders→interactive hold pass below).
             const ecp = state ? asObj(state.eddy_current_pendulum) : null;
             if (ecp) { out[stateId] = (ecp.mode && ecp.mode !== 'sandbox') ? true : false; continue; }
+            // inductance: every guided beat animates (ghost-jump vs real ramp,
+            // switch-on/steady/switch-off graph + spark, geometry current loop +
+            // core slide, energy reservoir fill/discharge, primary oscillation +
+            // secondary needle deflection, coupling swap); the explore state
+            // (mode 'explore') is user-driven → declare static (its frozen tail
+            // is relaxed by the show_sliders→interactive hold pass below).
+            const ind = state ? asObj(state.inductance) : null;
+            if (ind) { out[stateId] = (ind.mode && ind.mode !== 'explore') ? true : false; continue; }
+            // ac_generator: the coil rotates every guided beat (machine overview,
+            // flux-cosine trace, EMF-sine phase, peak-dependence reshape, slip-ring
+            // flip) → declare motion so D5/D6 expect ongoing pixel movement; the
+            // sandbox explore state (mode 'sandbox') is user-driven → declare static
+            // (its frozen tail is relaxed by the show_sliders→interactive hold pass
+            // below — but the coil auto-sweeps there too, so it never truly freezes).
+            const acg = state ? asObj(state.ac_generator) : null;
+            if (acg) { out[stateId] = (acg.mode && acg.mode !== 'sandbox') ? true : false; continue; }
             // magnetic_field_concept_B (straight_wire_current): every guided beat
             // animates (switch-ramp fade-in / compass approach+swing / multi-hop
             // walk / rings-assemble crossfade / dual-panel reveal); the sandbox
@@ -289,7 +305,17 @@ const F3D_REVEAL_KEYS = [
     // `eddy_current_pendulum` block (mode-driven plate-swing decay/
     // oscillation, loop-glyph reveals, S4 twin-decay contrast, S5 furnace/
     // core reveals).
-    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum',
+    // inductance: the per-state `inductance` block (mode-driven self-ramp /
+    // switch-graph / geometry / energy / mutual-intro / coupling / explore
+    // reveals for self + mutual inductance).
+    // ac_generator: the per-state `ac_generator` block (mode-driven machine
+    // overview / flux-cosine trace / EMF-sine phase / peak-dependence reshape /
+    // slip-ring current flip / sandbox reveals for the rotating-coil AC generator).
+    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum', 'inductance', 'ac_generator',
+    // helix_in_uniform_field (helical_motion_charge_in_uniform_B): the per-state
+    // `helix` block (ghost-flat-circle / v-decompose / radius-line / pitch-bracket
+    // reveals) + the `isolate_perp`/`isolate_par` fades that collapse the coil.
+    'helix', 'isolate_perp', 'isolate_par',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -815,6 +841,38 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         else if (mode === 'applications') candidates.push(24000);     // core phase, laminated swap settled
         else candidates.push(1500);                                    // sandbox / no timed reveal
     }
+    // inductance: the guided beats animate on the state clock — pin the dense/
+    // frozen window at the moment each beat's payoff is strongest (real current
+    // mid-ramp with the back-EMF arrow up / steady current with eps_L pinned zero
+    // on the graph / core slid in with L jumped / reservoir mid-fill / secondary
+    // needle deflected with flux across the gap / coils coupled), never on a
+    // settled zero-motion tail.
+    const ind = asObj(state.inductance);
+    if (ind) {
+        const mode = typeof ind.mode === 'string' ? ind.mode : '';
+        if (mode === 'self_ramp') candidates.push(3500);          // real current mid-ramp, back-EMF arrow up
+        else if (mode === 'switch_graph') candidates.push(10000); // steady interval: I large, eps_L pinned 0
+        else if (mode === 'geometry') candidates.push(10000);     // core slid in, L jumped, current re-ramping
+        else if (mode === 'energy') candidates.push(6000);        // reservoir mid-fill, U climbing
+        else if (mode === 'mutual_intro') candidates.push(5000);  // needle deflected, flux across the gap
+        else if (mode === 'coupling') candidates.push(5000);      // primary oscillating, needle deflected
+        else candidates.push(1500);                               // explore / no timed reveal
+    }
+    // ac_generator: the coil rotates continuously in every guided beat — pin the
+    // dense/frozen window a couple of revolutions in, where the graph trace is
+    // established and the phase relationship is strongest (never a settled tail;
+    // the coil never stops). At omega~1.5 rad/s, T~4.2s, so ~5-6s is 1-1.5 turns.
+    const acg = asObj(state.ac_generator);
+    if (acg) {
+        const mode = typeof acg.mode === 'string' ? acg.mode : '';
+        if (mode === 'machine_overview') candidates.push(5000);   // mid-spin, bulb bright
+        else if (mode === 'flux_trace') candidates.push(6000);    // cosine drawn (cue fallback 2500ms), dot mid-sweep
+        else if (mode === 'emf_mechanism') candidates.push(5500); // slowed coil (omega 0.8) mid-quarter-turn: v + F arrows at a working angle
+        else if (mode === 'emf_phase') candidates.push(6500);     // both curves drawn (EMF cue fallback 2000ms), 90 deg visible
+        else if (mode === 'peak_dependence') candidates.push(5000); // sine on the fixed axis
+        else if (mode === 'slip_rings') candidates.push(5000);    // current arrow mid-cycle, flip pulse (4000ms) mid-fade
+        else candidates.push(1500);                               // sandbox / no timed reveal
+    }
     // magnetic_field_concept_B (straight_wire_current + a per-state `swc` block):
     // one-shot timed reveals that then HOLD their end pose (Rule 26) — the switch
     // ramp (S1 close / S3 open, mirrors switch_toggle in the renderer's animate
@@ -1028,6 +1086,26 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
             candidates.push(asNum(gcB.reveal_at_ms, 11000) + RAD_GHOST_RAMP + 600);
         }
     }
+    // helix_in_uniform_field: the HELIX sibling (helical_motion_charge_in_uniform_B).
+    // The coil moves continuously (trajectory_mode helix/circle/straight → strict
+    // motion gate elsewhere; the S5/S6 show_sliders states classify interactive in
+    // deriveHoldExpectations), but the TEACHING payload is one-shot timed reveals that
+    // then HOLD — pin the frozen frame past each so THE EYE photographs the completed
+    // reveal. Beats (mirrors the sibling's `radius` block): ghost_flat_circle_at_ms
+    // (S1 the coil lifts off), v_decompose_at_ms (S2 v splits into v∥+v⊥), the
+    // isolate_perp/isolate_par fade END (S3 collapse to flat circle / S4 straight
+    // drift), radius_reveal_at_ms (S3 radius line + bar), pitch_bracket_at_ms (S5).
+    const hlx = asObj(state.helix);
+    if (hlx) {
+        if (typeof hlx.ghost_flat_circle_at_ms === 'number') candidates.push(asNum(hlx.ghost_flat_circle_at_ms, 2500) + 800);
+        if (typeof hlx.v_decompose_at_ms === 'number') candidates.push(asNum(hlx.v_decompose_at_ms, 2000) + 800);
+        if (typeof hlx.radius_reveal_at_ms === 'number') candidates.push(asNum(hlx.radius_reveal_at_ms, 3000) + 800);
+        if (typeof hlx.pitch_bracket_at_ms === 'number') candidates.push(asNum(hlx.pitch_bracket_at_ms, 1500) + 800);
+    }
+    const iperp = asObj(state.isolate_perp);
+    if (iperp) candidates.push(asNum(iperp.fade_start_ms, 1500) + asNum(iperp.fade_duration_ms, 1500) + 700);
+    const ipar = asObj(state.isolate_par);
+    if (ipar) candidates.push(asNum(ipar.fade_start_ms, 1500) + asNum(ipar.fade_duration_ms, 1500) + 700);
     // cyclotron_period: the PERIOD-ONLY sibling that INVERTS radius_in_uniform_field
     // (a shared ω makes differing-radius charges tie). The orbit moves continuously
     // (trajectory_mode: 'circle' → strict motion gate), but the TEACHING payload is
@@ -1356,6 +1434,31 @@ export function deriveHoldExpectations(
             const ecpHold = asObj(state.eddy_current_pendulum);
             if (ecpHold) {
                 out[stateId] = (ecpHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // inductance: every state is LIVE (show_sliders true — Rule 31), so
+            // the generic show_sliders catch below would swallow S1-S6's genuine
+            // reveal-then-hold beats into 'interactive' before they ever reach it.
+            // Classify explicitly per mode (mirrors the faraday/swc/mem/ecp split
+            // above): the explore state (S7) is user-driven → interactive; every
+            // other mode is a guided beat that settles to a HOLD (or runs a
+            // continuous ambient on its own clock), so D7/D1p permit the tail.
+            const indHold = asObj(state.inductance);
+            if (indHold) {
+                out[stateId] = (indHold.mode === 'explore') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // ac_generator: every state is LIVE (show_sliders true — Rule 31), so
+            // the generic show_sliders catch below would swallow S1-S5's genuine
+            // reveal-then-hold beats into 'interactive' before they ever reach it.
+            // Classify explicitly per mode (mirrors the inductance/faraday/swc split
+            // above): the sandbox explore state (S6) is user-driven → interactive;
+            // every other mode is a guided beat whose payoff (the graph trace, the
+            // phase relationship) is established and then runs steadily on the
+            // state's own clock → reveal_hold, so D7/D1p permit the settled tail.
+            const acgHold = asObj(state.ac_generator);
+            if (acgHold) {
+                out[stateId] = (acgHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
                 continue;
             }
             if (state.show_sliders === true) { out[stateId] = 'interactive'; continue; }

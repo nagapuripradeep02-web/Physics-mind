@@ -1229,6 +1229,46 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
         },
     },
 
+    motional_emf: {
+        concept_id: 'motional_emf',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'motional_emf',
+            label: 'Motional EMF — ε = Bvl (3D)',
+        },
+    },
+
+    eddy_currents: {
+        concept_id: 'eddy_currents',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'eddy_currents',
+            label: 'Eddy Currents — Lenz\'s law inside a bulk conductor (3D)',
+        },
+    },
+
+    inductance: {
+        concept_id: 'inductance',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'inductance',
+            label: 'Inductance — Self & Mutual (ε_L = −L·dI/dt, ε₂ = −M·dI₁/dt) (3D)',
+        },
+    },
+
+    ac_generator: {
+        concept_id: 'ac_generator',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'ac_generator',
+            label: 'AC Generator — ε = NBAω·sin(ωt) (3D)',
+        },
+    },
+
     amperes_circuital_law: {
         concept_id: 'amperes_circuital_law',
         layout: 'single',
@@ -1276,6 +1316,16 @@ export const CONCEPT_PANEL_MAP: Record<string, ConceptPanelConfig> = {
             renderer: 'field_3d',
             config_key: 'circular_motion_charge_in_uniform_B',
             label: 'Circle Radius r = mv/qB (3D)',
+        },
+    },
+
+    helical_motion_charge_in_uniform_B: {
+        concept_id: 'helical_motion_charge_in_uniform_B',
+        layout: 'single',
+        primary: {
+            renderer: 'field_3d',
+            config_key: 'helical_motion_charge_in_uniform_B',
+            label: 'Helix & Pitch p = v‖·T (3D)',
         },
     },
 

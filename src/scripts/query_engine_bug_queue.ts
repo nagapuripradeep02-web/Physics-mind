@@ -25,7 +25,10 @@ const FIELD3D = [
   'magnetic_field_wire', 'magnetic_field_solenoid', 'magnetic_force_moving_charge',
   'magnetic_force_direction_right_hand_rule', 'magnetic_force_perpendicular_no_work',
   'torque_on_current_loop_in_field', 'circular_motion_charge_in_uniform_B',
+  'helical_motion_charge_in_uniform_B',
   'cyclotron_period_independent_of_speed',
+  // Ch.6 Electromagnetic Induction (field_3d)
+  'faraday_law_induction', 'motional_emf', 'eddy_currents', 'inductance', 'ac_generator',
 ];
 
 interface Row {

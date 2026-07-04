@@ -37,12 +37,13 @@ export interface Field3DConfig {
         'uniform_field_force' | 'dipole_in_uniform_field' | 'coulombs_law_force' |
         'charge_distribution' | 'electric_flux' | 'gauss_law' | 'gauss_law_sphere' |
         'rhr_force_direction' | 'magnetic_no_work' | 'radius_in_uniform_field' |
+        'helix_in_uniform_field' |
         'cyclotron_period' | 'amperes_circuital_law' | 'gauss_law_line' |
         'gauss_law_sheet' | 'current_loop_acts_as_dipole' | 'parallel_currents_force' |
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum' | 'inductance' | 'ac_generator';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -1516,6 +1517,23 @@ canvas { display: block; width: 100%; height: 100%; }
     border-top: 1px solid rgba(255,255,255,0.2);
     color: #FFF176; font-weight: bold; letter-spacing: 1px;
 }
+/* ── helix_in_uniform_field explorer (S5 theta; S6 theta,v,B) + relative r/p bars ── */
+#helix_sliders {
+    position: fixed; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.85); color: ${textColor};
+    padding: 10px 14px; border-radius: 8px;
+    font: 12px/1.6 monospace; z-index: 10;
+    min-width: 200px; display: none;
+}
+#helix_sliders label { display: block; margin-bottom: 2px; }
+#helix_sliders input[type="range"] { width: 100%; margin-bottom: 6px; }
+#hx_readout {
+    position: fixed; top: 12px; left: 12px;
+    background: rgba(0,0,0,0.85); color: #FFF176;
+    padding: 8px 12px; border-radius: 6px;
+    font: bold 14px/1.6 monospace; z-index: 11;
+    display: none; pointer-events: none; letter-spacing: 1px;
+}
 /* radius_in_uniform_field bottom-left equation panel (qvB = mv²/r → r = mv/qB) */
 #radius_eqn {
     position: fixed; bottom: 8px; left: 8px;
@@ -1670,10 +1688,14 @@ canvas { display: block; width: 100%; height: 100%; }
 <div id="legend"></div>
 <div id="mobile-fallback"></div>
 <div id="sliders">
+    <div id="gen_i_row">
     <label>I = <span id="i_val">5</span> A</label>
     <input type="range" id="i_slider" min="0.5" max="20" step="0.5" value="5">
+    </div>
+    <div id="gen_r_row">
     <label>r = <span id="r_val">5</span> cm</label>
     <input type="range" id="r_slider" min="2" max="30" step="1" value="5">
+    </div>
     <div id="b_readout">B = 20.0 μT</div>
 </div>
 <div id="formula_overlay"></div>
@@ -1896,19 +1918,31 @@ canvas { display: block; width: 100%; height: 100%; }
     <div id="nw_invariant">|v| fixed · W = 0 · bigger B ⇒ tighter turn</div>
 </div>
 <div id="radius_sliders">
-    <label>m = <span id="rad_m_val">1.0</span> (mass)</label>
-    <input type="range" id="rad_m_slider" min="0.5" max="2.5" step="0.1" value="1">
-    <label>v = <span id="rad_v_val">1.0</span> (speed)</label>
-    <input type="range" id="rad_v_slider" min="0.5" max="2.5" step="0.1" value="1">
-    <label>q = <span id="rad_q_val">1.0</span> (charge)</label>
-    <input type="range" id="rad_q_slider" min="0.5" max="2.5" step="0.1" value="1">
-    <label>B = <span id="rad_b_val">1.0</span> (field)</label>
-    <input type="range" id="rad_b_slider" min="0.5" max="2.5" step="0.1" value="1">
+    <div id="rad_m_row"><label>m = <span id="rad_m_val">1.0</span> (mass)</label>
+    <input type="range" id="rad_m_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
+    <div id="rad_v_row"><label>v = <span id="rad_v_val">1.0</span> (speed)</label>
+    <input type="range" id="rad_v_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
+    <div id="rad_q_row"><label>q = <span id="rad_q_val">1.0</span> (charge)</label>
+    <input type="range" id="rad_q_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
+    <div id="rad_b_row"><label>B = <span id="rad_b_val">1.0</span> (field)</label>
+    <input type="range" id="rad_b_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
     <div id="rad_readout">r <span id="rad_bar">▮▮▮</span></div>
 </div>
 <div id="radius_eqn">
     <div class="rad_eqn_balance" id="rad_eqn_balance">qvB = mv²/r</div>
     <div class="rad_eqn_solved" id="rad_eqn_solved">r = mv/qB</div>
+</div>
+<div id="helix_sliders">
+    <div id="hx_theta_row"><label>θ = <span id="hx_theta_val">45</span>° (angle)</label>
+    <input type="range" id="hx_theta_slider" min="10" max="90" step="5" value="45"></div>
+    <div id="hx_v_row"><label>v = <span id="hx_v_val">1.0</span> (speed)</label>
+    <input type="range" id="hx_v_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
+    <div id="hx_B_row"><label>B = <span id="hx_B_val">1.0</span> (field)</label>
+    <input type="range" id="hx_B_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
+</div>
+<div id="hx_readout">
+    <div id="hx_r_line">r <span id="hx_r_bar">▮▮▮</span></div>
+    <div id="hx_p_line">p <span id="hx_p_bar">▮▮▮</span></div>
 </div>
 <div id="cyclotron_timers">
     <div class="cyc_timer" id="cyc_timer_a">
@@ -1929,14 +1963,14 @@ canvas { display: block; width: 100%; height: 100%; }
     <div class="cyc_eqn_line" id="cyc_eqn_aside"></div>
 </div>
 <div id="cyclotron_sliders">
-    <label>m = <span id="cyc_m_val">1.0</span> (mass)</label>
-    <input type="range" id="cyc_m_slider" min="0.5" max="2.5" step="0.1" value="1">
-    <label>v = <span id="cyc_v_val">1.0</span> (speed)</label>
-    <input type="range" id="cyc_v_slider" min="0.5" max="2.5" step="0.1" value="1">
-    <label>q = <span id="cyc_q_val">1.0</span> (charge)</label>
-    <input type="range" id="cyc_q_slider" min="0.5" max="2.5" step="0.1" value="1">
-    <label>B = <span id="cyc_b_val">1.0</span> (field)</label>
-    <input type="range" id="cyc_b_slider" min="0.5" max="2.5" step="0.1" value="1">
+    <div id="cyc_m_row"><label>m = <span id="cyc_m_val">1.0</span> (mass)</label>
+    <input type="range" id="cyc_m_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
+    <div id="cyc_v_row"><label>v = <span id="cyc_v_val">1.0</span> (speed)</label>
+    <input type="range" id="cyc_v_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
+    <div id="cyc_q_row"><label>q = <span id="cyc_q_val">1.0</span> (charge)</label>
+    <input type="range" id="cyc_q_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
+    <div id="cyc_b_row"><label>B = <span id="cyc_b_val">1.0</span> (field)</label>
+    <input type="range" id="cyc_b_slider" min="0.5" max="2.5" step="0.1" value="1"></div>
     <div id="cyc_invariant">T <span id="cyc_live_bar"></span></div>
 </div>
 <div id="torque_sliders">
@@ -2021,6 +2055,11 @@ export const FIELD_3D_RENDERER_CODE = `
     // tiles are hidden so nothing overlaps. Set by updateAmperesHud; read by the
     // animate loop (to hide the 3D scene + call drawAmperesStage each frame).
     var aclStageActive = false;
+    // amperes_circuital_law Rule 31: true once the teacher GRABS the r slider in
+    // the current state (trusted input only). STATE_6's ring/bar geometry keeps
+    // its authored legibility size until this flips, then tracks r live (the
+    // authored-demo-until-grabbed contract). Reset on every acl state entry.
+    var aclRTouched = false;
     // dual_field_compare (STATE_6): rightward world-X offset applied to the whole
     // straight_wire_current picture so it sits in the RIGHT panel, clear of the
     // left radial-E panel. 0 = no split (legacy: wire at origin). The animate loop
@@ -2150,6 +2189,23 @@ export const FIELD_3D_RENDERER_CODE = `
     // changes R_visual, so the next animate tick wipes the orbit trail buffer and
     // the student sees the new (wider/tighter) circle cleanly.
     var radiusTrailResetPending = false;
+    // radius_in_uniform_field Rule 31 (per-state contextual controls, founder
+    // 2026-07-04): true once the teacher GRABS any m/v/q/B slider in the current
+    // state (TRUSTED input only — the headless EYE dispatches untrusted events).
+    // While false, a guided state's authored ghost-compare demo (gcA/gcB) drives
+    // the circle; once true, the four sliders drive R_visual live (the
+    // authored-demo-until-grabbed contract). Reset on every radius state entry in
+    // applyRadiusInUniformFieldState. Mirrors clInteracted / aclRTouched.
+    var radInteracted = false;
+    // helix_in_uniform_field Rule 31 (per-state contextual controls, founder
+    // 2026-07-04): true once the teacher GRABS the theta/v/B slider in S5/S6
+    // (TRUSTED input only — the headless EYE dispatches untrusted events). While
+    // false, S5/S6 run an idle theta-sweep that auto-demos the helix SHAPE; once
+    // true, the sliders drive it live (authored-demo-until-grabbed). hxNeedsTrailWipe
+    // is a spiral-guard flag — the coil is redrawn WHOLE each frame, never accumulated.
+    // Reset on every helix state entry in applyHelixInUniformFieldState.
+    var hxInteracted = false;
+    var hxNeedsTrailWipe = false;
     // radius_in_uniform_field STATE_4/5 ghost-compare runtime state. radGhostState
     // holds the per-state choreography: which reveal beats have armed, the frozen-
     // ghost radii captured at each reveal_at_ms, and the script-driven factor
@@ -2166,6 +2222,15 @@ export const FIELD_3D_RENDERER_CODE = `
     // trail buffer. (The shared-ω race states draw both rings full every frame, so
     // they never need this; only the single-charge slider state accumulates.)
     var cyclotronTrailResetPending = false;
+    // cyclotron_period Rule 31 (per-state contextual controls, founder 2026-07-04):
+    // true once the teacher GRABS any m/v/q/B slider in STATE_4 (TRUSTED input only
+    // — the headless EYE dispatches untrusted events). While false, STATE_4's idle
+    // v-sweep (cyc.idle_v_sweep) auto-demonstrates the money point — the circle SIZE
+    // grows/shrinks via v while the lap-fill rate holds dead steady (liveOmega has no
+    // v term); once true, the four sliders drive the single charge live
+    // (authored-demo-until-grabbed). Reset on every cyclotron state entry in
+    // applyCyclotronPeriodState. Mirrors radInteracted / clInteracted.
+    var cycInteracted = false;
     // rhr_force_direction — camera azimuth/polar snapshot at state entry, so
     // STATE_3's ~30° orbit is a delta off the entry pose (state-clock driven,
     // deterministic for THE EYE). rhrGhostStart arms the STATE_4 ghost-F fade.
@@ -4185,6 +4250,73 @@ export const FIELD_3D_RENDERER_CODE = `
             group.setRotationFromQuaternion(q);
         }
         return group;
+    }
+
+    // ── solSetVisualTurns (Rule 31 live-instrument, founder 2026-07-04) ──────
+    //   The n slider PHYSICALLY rewinds the solenoid: more turns per metre =
+    //   a visibly denser winding. Swaps out only the wire tube meshes (tagged
+    //   solWire at build) and rebuilds the flow-dot helix arrays so the current
+    //   dots ride the new winding. The per-turn teaching extras (circles, rd_*,
+    //   stack arrows…) stay keyed to the AUTHORED turn count — they are hidden
+    //   on every slider-bearing state, and applyState calls
+    //   solSetVisualTurns(0) on entry so guided beats always open on the
+    //   authored winding that matches their extras.
+    var solVisualTurns = 0;   // 0 = authored default
+    function solSetVisualTurns(targetTurns) {
+        if (config.scenario_type !== "solenoid_field") return;
+        var solCoilConf = config.coil || { turns: 6, radius: 0.8, axis: [0, 1, 0] };
+        var solAuthored = solCoilConf.turns || 6;
+        var solWant = targetTurns || solAuthored;
+        var solCurrent = solVisualTurns || solAuthored;
+        if (solWant === solCurrent) return;
+        var solCoilGroup = null;
+        for (var sgi = 0; sgi < sceneObjects.length; sgi++) {
+            var sgo = sceneObjects[sgi];
+            if (sgo.userData && sgo.userData.id === "solenoid_coil") { solCoilGroup = sgo; break; }
+        }
+        if (!solCoilGroup) return;
+        // drop the old winding (wire tubes only — extras untouched)
+        for (var swc = solCoilGroup.children.length - 1; swc >= 0; swc--) {
+            var swm = solCoilGroup.children[swc];
+            if (swm.userData && swm.userData.solWire) solCoilGroup.remove(swm);
+        }
+        // wind the new tubes in the group-local frame (axis [0,1,0] never
+        // rotates in createCoilGeometry, matching the original build)
+        var solLen = 4;
+        var solFresh = createCoilGeometry(solWant, solCoilConf.radius, solCoilConf.axis, solLen);
+        while (solFresh.children.length) {
+            var sfm = solFresh.children[0];
+            solFresh.remove(sfm);
+            sfm.userData = { solWire: true };
+            if (sfm.material) { sfm.material.transparent = true; sfm.material.opacity = 1; }
+            solCoilGroup.add(sfm);
+        }
+        // rebuild the flow-dot helix for the new winding
+        var shp = [];
+        for (var sht = 0; sht < solWant; sht++) {
+            for (var sha = 0; sha < 64; sha++) {
+                var shAng = (sha / 64) * Math.PI * 2;
+                shp.push([
+                    solCoilConf.radius * Math.cos(shAng),
+                    solCoilConf.radius * Math.sin(shAng),
+                    solLen * ((sht + sha / 64) / solWant - 0.5)
+                ]);
+            }
+        }
+        var shc = [0], shl = 0;
+        for (var shk = 1; shk < shp.length; shk++) {
+            var sha2 = shp[shk - 1], shb2 = shp[shk];
+            shl += Math.sqrt(
+                (shb2[0] - sha2[0]) * (shb2[0] - sha2[0]) +
+                (shb2[1] - sha2[1]) * (shb2[1] - sha2[1]) +
+                (shb2[2] - sha2[2]) * (shb2[2] - sha2[2])
+            );
+            shc.push(shl);
+        }
+        solCoilGroup.userData.helixPts = shp;
+        solCoilGroup.userData.helixCum = shc;
+        solCoilGroup.userData.helixLen = shl;
+        solVisualTurns = solWant;
     }
 
     // Sample a polyline at arc-length fraction frac (0..1, wraps). Used to
@@ -6736,8 +6868,12 @@ export const FIELD_3D_RENDERER_CODE = `
         coilGroup.userData = { elementType: "coil", id: "solenoid_coil" };
         // Materials inside the group must be transparent so per-frame opacity
         // tweens land. createCoilGeometry returns a Group of Meshes; flag each.
+        // Each wire mesh is tagged solWire so solSetVisualTurns() can swap the
+        // winding out live (the n slider physically rewinds the coil) without
+        // touching the per-turn teaching extras parented to the same group.
         for (var ci = 0; ci < coilGroup.children.length; ci++) {
             var cm = coilGroup.children[ci];
+            cm.userData = { solWire: true };
             if (cm.material) {
                 cm.material.transparent = true;
                 cm.material.opacity = 1;
@@ -7403,6 +7539,11 @@ export const FIELD_3D_RENDERER_CODE = `
     //   wires run along y; separation along x (wire 1 at -d/2, wire 2 at +d/2);
     //   B1 at wire 2 points -z for current 1 up (RHR), F2 is -dir1*dir2 in x.
     var pcfUserFlip = 1; // sandbox: +1 = parallel (attract), -1 = antiparallel (repel)
+    // Rule 31 trusted-grab flag (mirrors radInteracted / cycInteracted): reset on
+    // every state entry, set true only on a TRUSTED slider/toggle input. Reserved
+    // for the seize-from-authored-demo hook; the explore state reads the sliders
+    // live so there is currently no authored slider-demo to yield.
+    var pcfInteracted = false;
 
     function buildParallelCurrentsForce() {
         var wireColor = (config.current && config.current.wire_color) ? config.current.wire_color : "#FFAB40";
@@ -7574,6 +7715,34 @@ export const FIELD_3D_RENDERER_CODE = `
             stepSprite1.visible = false;
             addToScene(stepSprite1);
         }
+
+        // ── Ampere-definition "1 m" distance marker (STATE_8 only). A yellow
+        //    double-headed span between the two wires, below the force line, with
+        //    a "1 m" label — the SI-definition geometry (two wires 1 m apart).
+        //    Gated on ex.show_dist_marker; hidden by default so it never appears
+        //    on any other pcf state, and scenario-scoped so no other scenario is
+        //    touched. Static geometry — the per-frame loop does not match
+        //    elementType "pcf_dist_marker", so it holds its built pose.
+        var dmY = -2.35;
+        var dmLine = createTubeLine([[x1, dmY, 0], [x2, dmY, 0]], "#FFD54F", 0.02);
+        if (dmLine) {
+            dmLine.userData = { elementType: "pcf_dist_marker", id: "pcf_dist_line" };
+            dmLine.visible = false;
+            addToScene(dmLine);
+        }
+        var dmArrL = createArrowHead([x1, dmY, 0], [-1, 0, 0], "#FFD54F");
+        dmArrL.userData = { elementType: "pcf_dist_marker", id: "pcf_dist_arr_left" };
+        dmArrL.visible = false;
+        addToScene(dmArrL);
+        var dmArrR = createArrowHead([x2, dmY, 0], [1, 0, 0], "#FFD54F");
+        dmArrR.userData = { elementType: "pcf_dist_marker", id: "pcf_dist_arr_right" };
+        dmArrR.visible = false;
+        addToScene(dmArrR);
+        var dmLab = createLabelSprite("1 m", "#FFD54F", 0.46);
+        dmLab.position.set(0, dmY - 0.55, 0);
+        dmLab.userData = { elementType: "pcf_dist_marker", id: "pcf_dist_label" };
+        dmLab.visible = false;
+        addToScene(dmLab);
     }
 
     // Per-state visibility for parallel_currents_force (mirrors the other
@@ -7590,6 +7759,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var showF2 = showForces && (ex.force_on_wire_2 !== false);
         var showHand2 = !!ex.show_rhr_hand;          // wire-2 hand (STATE_3)
         var showHand1 = !!ex.show_rhr_hand_wire1;     // wire-1 hand (STATE_4)
+        var showDistMarker = !!ex.show_dist_marker;  // ampere-definition "1 m" span (STATE_8)
         for (var i = 0; i < sceneObjects.length; i++) {
             var o = sceneObjects[i]; var ud = o.userData; if (!ud) continue;
             if (ud.elementType === "pcf_field_line" || ud.elementType === "pcf_field_arrow") o.visible = showField;
@@ -7601,6 +7771,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // Step captions: kept OFF here; the choreography reveals the active
             // beat's caption each frame (so they never linger into other states).
             else if (ud.elementType === "pcf_rhr_step") o.visible = false;
+            else if (ud.elementType === "pcf_dist_marker") o.visible = showDistMarker;
             else if (ud.elementType === "pcf_label") {
                 if (ud.id === "pcf_b1_label") o.visible = showB1;
                 else if (ud.id === "pcf_b2_label") o.visible = showB2;
@@ -7610,6 +7781,37 @@ export const FIELD_3D_RENDERER_CODE = `
                 else if (ud.id === "pcf_rhr_label_w1") o.visible = showHand1;
                 else o.visible = true;
             }
+        }
+        // ── Rule 31 per-state contextual controls (founder 2026-07-04, mirrors
+        //    the rad_/cyc_ pattern). Reset the trusted-grab flag so a manual grab
+        //    in a PRIOR state can't bleed in; on a sliders-enabled state (the
+        //    explore beat) seed the two current sliders + the flip from THIS
+        //    state's variable_overrides (DOM-only — NO synthetic input event, so
+        //    the isTrusted guard never trips), then show only the row(s) this beat
+        //    teaches (applyVisibleControls; explore = all three). Watch beats keep
+        //    show_sliders false, so the whole #sliders panel stays hidden (no
+        //    empty black box) and this block is skipped. The per-frame block reads
+        //    the sliders + pcfUserFlip live.
+        pcfInteracted = false;
+        if (stateDef && stateDef.show_sliders) {
+            var pcfVo = stateDef.variable_overrides || {};
+            var pcfEx = stateDef.extras || {};
+            var pc1def = (config.slider_controls && config.slider_controls.I1) || {};
+            var pc2def = (config.slider_controls && config.slider_controls.I2) || {};
+            var i1Seed = (typeof pcfVo.I1 === "number") ? pcfVo.I1 : (pc1def.default != null ? pc1def.default : 5);
+            var i2Seed = (typeof pcfVo.I2 === "number") ? pcfVo.I2 : (pc2def.default != null ? pc2def.default : 5);
+            var pcfI1El = document.getElementById("pcf_i1_slider"), pcfI1Val = document.getElementById("pcf_i1_val");
+            var pcfI2El = document.getElementById("pcf_i2_slider"), pcfI2Val = document.getElementById("pcf_i2_val");
+            if (pcfI1El) pcfI1El.value = String(i1Seed);
+            if (pcfI1Val) pcfI1Val.textContent = String(Math.round(i1Seed));
+            if (pcfI2El) pcfI2El.value = String(i2Seed);
+            if (pcfI2Val) pcfI2Val.textContent = String(Math.round(i2Seed));
+            // Seed the flip from the state's authored current direction (parallel
+            // → attract by default; wire_2_dir "down" → repel).
+            pcfUserFlip = (pcfEx.wire_2_dir === "down") ? -1 : 1;
+            var pcfRo = document.getElementById("pcf_readout");
+            if (pcfRo) pcfRo.textContent = "F/L \\u221d I\\u2081 I\\u2082 / d  \\u2014  " + (pcfUserFlip > 0 ? "ATTRACT" : "REPEL");
+            applyVisibleControls({ I1: "pcf_i1_row", I2: "pcf_i2_row", flip: "pcf_flip_row" }, stateDef.visible_controls);
         }
     }
 
@@ -11153,8 +11355,31 @@ export const FIELD_3D_RENDERER_CODE = `
         if (ex.cross_hand && ex.cross_hand.show) buildClCrossHand();
         if (ex.right_hand && ex.right_hand.show) buildClGripHand(ex.right_hand);
 
-        // Sync the explorer on entry to the slider state.
-        if (stateDef.show_sliders) refreshCircularLoopExplorer();
+        // Rule 31 per-state contextual controls + on-entry slider sync. Reset the
+        // interacted flag so a manual grab in a prior state can't bleed in, seed the
+        // slider DOM from THIS state's variable_overrides (so updateCircularLoopFrame,
+        // which reads sliders when show_sliders, starts from the authored values),
+        // show only the rows this beat teaches, and gate the readout. The panel
+        // container itself is shown/hidden by the generic applyState on show_sliders.
+        clInteracted = false;
+        if (stateDef.show_sliders) {
+            var clSeed = [
+                ["cl_i_slider", "cl_i_val", I, I.toFixed(1)],
+                ["cl_r_slider", "cl_r_val", R_m * 100, String(Math.round(R_m * 1000) / 10)],
+                ["cl_n_slider", "cl_n_val", N, String(N)],
+                ["cl_z_slider", "cl_z_val", z_m * 100, String(Math.round(z_m * 1000) / 10)]
+            ];
+            for (var si = 0; si < clSeed.length; si++) {
+                var sEl = document.getElementById(clSeed[si][0]);
+                if (sEl) sEl.value = String(clSeed[si][2]);
+                var vEl = document.getElementById(clSeed[si][1]);
+                if (vEl) vEl.textContent = String(clSeed[si][3]);
+            }
+            applyVisibleControls({ I: "cl_i_row", R: "cl_r_row", N: "cl_n_row", z: "cl_z_row" }, stateDef.visible_controls);
+            var clRo = document.getElementById("cl_readout");
+            if (clRo) clRo.style.display = stateDef.show_readout ? "block" : "none";
+            refreshCircularLoopExplorer();
+        }
     }
 
     // Per-frame motion — a PURE function of the state clock (deterministic under
@@ -11251,17 +11476,19 @@ export const FIELD_3D_RENDERER_CODE = `
             });
         }
 
-        // z-sweep (S6 settles once) / idle sweep (S7 until the first drag).
+        // z-sweep (S6): a CONTINUOUS out-and-back oscillation (Rule 31 — never a
+        // settle-and-freeze) so the beat stays alive; the teacher's z-drag
+        // (clInteracted) seizes it. Idle sweep (S7) runs until the first drag.
         var zCur = z_m;
-        if (ex.sweep_z && ex.sweep_z.enabled) {
+        if (ex.sweep_z && ex.sweep_z.enabled && !clInteracted) {
             var sFrom = (ex.sweep_z.from != null) ? ex.sweep_z.from : 0;
-            var sTo = (ex.sweep_z.to != null) ? ex.sweep_z.to : 0.20;
-            var perZ = (ex.sweep_z.period_s != null) ? ex.sweep_z.period_s : 6;
+            var sTo = (ex.sweep_z.to != null) ? ex.sweep_z.to : 0.18;
+            var perZ = (ex.sweep_z.period_s != null) ? ex.sweep_z.period_s : 7;
             var revAtZ = (ex.sweep_z.reveal_at_ms != null) ? ex.sweep_z.reveal_at_ms : 0;
             if (stMs < revAtZ) zCur = sFrom;
             else {
-                var uz = clClamp((stS - revAtZ / 1000) / perZ, 0, 1);
-                zCur = sFrom + (sTo - sFrom) * (uz * uz * (3 - 2 * uz));
+                var phZ = (stS - revAtZ / 1000) / perZ;      // periods elapsed
+                zCur = sFrom + (sTo - sFrom) * 0.5 * (1 - Math.cos(phZ * 2 * Math.PI));
             }
         } else if (ex.idle_sweep_z && !clInteracted) {
             zCur = 0.5 * (1 - Math.cos(stS * 0.6)) * 0.12;
@@ -19234,7 +19461,1378 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // ── inductance scenario (self + mutual inductance) ────────────────────────
+    //   ONE engine, two rigs. SELF rig (ind_ prefix, STATE_1-4): a solenoid coil
+    //   (REUSING the faraday coil-helix + current-bead + green-flux primitives),
+    //   a battery+switch loop with a switch-off spark, a sliding iron core, and
+    //   an energy reservoir. MUTUAL rig (im_ prefix, STATE_5-7): a primary + a
+    //   secondary coil separated by a highlighted AIR GAP (no wire between), the
+    //   primary's flux reaching across into the secondary, a secondary
+    //   galvanometer needle, a shared iron core, and an induced-EMF arrow drawn
+    //   the SAME style as the self back-EMF arrow. All physics is EXACT in the
+    //   RELATIONS (magnitudes are demo-compressed for watchability, documented in
+    //   the JSON source_book): L = L_ref (N/N_ref)^2 (core?8:1) [pure geometry,
+    //   NEVER a function of I], eps_L = -L dI/dt (=0 at steady I), U = 1/2 L I^2,
+    //   M = k sqrt(L1 L2) = k L (identical demo coils), k = min(k_max e^(-d/d_sc)
+    //   (core_shared?1.6:1), 0.98), eps2 = -M dI1/dt. dIdt / I1 / dI1dt are
+    //   written back to window.PM_ind* every frame (physics_author renderer
+    //   note). Rule 24 (silent visual: labels + readout carry it), Rule 26 (every
+    //   animation a pure fn of the state clock time-stateStartTime), Rule 29
+    //   (emphasis = brightness; the only lengths that change are the back-EMF /
+    //   eps2 arrows + needle deflection + reservoir fill, all REAL magnitudes).
+    //   PRE-SPOIL GUARD: the mutual rig (second coil / M / I1 / eps2 / d) is
+    //   NEVER shown in the self states S1-S4 (applyInductanceState hides im_* in
+    //   the self modes, ind_* in the mutual modes).
+    var IND_L_REF = 0.018;        // H, self-inductance at N_ref, air core (demo scale)
+    var IND_N_REF = 300;          // reference turn count
+    var IND_CORE_FACTOR = 8;      // iron-core boost on L
+    var IND_KMAX = 0.9;           // coupling at zero separation, no shared core
+    var IND_DSCALE = 4;           // coupling decay length in d
+    var IND_CORE_BOOST = 1.6;     // coupling boost with a shared core
+    var IND_I1_AMP = 1.5;         // A, oscillating primary-current amplitude
+    var IND_TAU = 0.6;            // s, demo ramp time constant (stretched from real ms)
+    var IND_DT_ARC = 0.02;        // s, switch-off collapse time (sets the spike size)
+    var IND_SELF_R = 0.85;        // self-coil radius
+    var IND_SELF_H = 1.55;        // self-coil half-length (axis +X)
+    var IND_MUT_R = 0.68;         // mutual-coil radius
+    var IND_MUT_H = 0.68;         // mutual-coil half-length
+    var IND_EXPLORE_SELF_Y = 2.55; // explore: self coil lifted into a top lane above the mutual rig
+    var indSelfCoilGrp = null, indPCoilGrp = null, indSCoilGrp = null;
+    var indSelfTurnsShown = 0, indMutPTurnsShown = 0;
 
+    function indFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+    // L (H) — PURE geometry: turns N, core. NEVER the current I (the S3 decoy).
+    function indSelfL(N, core) { var r = N / IND_N_REF; return IND_L_REF * r * r * (core ? IND_CORE_FACTOR : 1); }
+    function indKcouple(d, coreShared) { return Math.min(IND_KMAX * Math.exp(-d / IND_DSCALE) * (coreShared ? IND_CORE_BOOST : 1), 0.98); }
+    function indMutual(N, core, d, coreShared) { return indKcouple(d, coreShared) * indSelfL(N, core); }
+    function indSep(d) { return 1.9 + 0.3 * d; }
+    // (Re)build a coil group's turn meshes (axis +X, centred on the group origin).
+    // Called on N change so the coil VISIBLY gains / loses turns (the S3 morph).
+    function indMakeCoilChildren(grp, turns, radius, halfLen, color) {
+        while (grp.children.length) { var c = grp.children.pop(); if (c.geometry) c.geometry.dispose(); grp.remove(c); }
+        for (var tI = 0; tI < turns; tI++) {
+            var pts = [];
+            for (var a = 0; a <= 40; a++) {
+                var ang = (a / 40) * Math.PI * 2;
+                var xx = 2 * halfLen * ((tI + a / 40) / turns - 0.5);
+                pts.push(new THREE.Vector3(xx, radius * Math.cos(ang), radius * Math.sin(ang)));
+            }
+            var geo = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 40, 0.028, 8, false);
+            grp.add(new THREE.Mesh(geo, new THREE.MeshPhongMaterial({ color: hexToThreeColor(color || "#FFAB40") })));
+        }
+    }
+    function indTurnsForN(N) { var t = Math.round(N / 50); if (t < 3) t = 3; if (t > 12) t = 12; return t; }
+    // Bead position along a coil helix centred at cx (axis +X).
+    function indBeadPos(cx, u, turns, radius, halfLen) {
+        var th = u * Math.PI * 2 * turns;
+        return [cx + (-halfLen + u * 2 * halfLen), radius * Math.cos(th), radius * Math.sin(th)];
+    }
+
+    function buildInductance() {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var flColor = (config.field_lines && config.field_lines.color_positive) || "#66BB6A";
+
+        // ── SELF RIG (ind_, STATE_1-4) ─────────────────────────────────────────
+        // 1. Solenoid coil (group, axis +X, rebuilt on N change).
+        indSelfCoilGrp = new THREE.Group();
+        indSelfCoilGrp.userData = { elementType: "ind_coil", id: "ind_coil" };
+        indSelfTurnsShown = indTurnsForN(300);
+        indMakeCoilChildren(indSelfCoilGrp, indSelfTurnsShown, IND_SELF_R, IND_SELF_H, "#FFAB40");
+        addToScene(indSelfCoilGrp);
+        var coilLbl = createWideLabelSprite("coil: self-inductance L", "#FFCC80", 0.26); coilLbl.position.set(0, 1.78, 0);
+        coilLbl.userData = { elementType: "ind_coil_lbl", id: "ind_coil_lbl" }; addToScene(coilLbl);
+
+        // 2. Green self-flux lines threading the coil (opacity carries |I|).
+        for (var i = 0; i < 6; i++) {
+            var ang = (i / 6) * Math.PI * 2, rr = 0.4;
+            var pts = []; for (var s = 0; s <= 16; s++) { var tt = s / 16; pts.push([-IND_SELF_H + tt * 2 * IND_SELF_H, rr * Math.cos(ang), rr * Math.sin(ang)]); }
+            var tube = createTubeLine(pts, flColor, 0.02);
+            if (tube) { if (tube.material) { tube.material.transparent = true; tube.material.opacity = 0.12; } tube.userData = { elementType: "ind_flux", id: "ind_flux_" + i }; addToScene(tube); }
+        }
+
+        // 3. Real current beads (amber, flow ∝ I(t)).
+        for (var b = 0; b < 12; b++) {
+            var bead = new THREE.Mesh(new THREE.SphereGeometry(0.065, 12, 12), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFB300"), transparent: true, opacity: 0.9 }));
+            bead.userData = { elementType: "ind_curr", id: "ind_curr_" + b, slot: b / 12 }; addToScene(bead);
+        }
+        // 3b. GHOST current beads (S1 only) — translucent grey; jump to full at once.
+        for (var g = 0; g < 12; g++) {
+            var gh = new THREE.Mesh(new THREE.SphereGeometry(0.06, 10, 10), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#CFD8DC"), transparent: true, opacity: 0 }));
+            gh.userData = { elementType: "ind_ghost", id: "ind_ghost_" + g, slot: g / 12 }; addToScene(gh);
+        }
+
+        // 4. Self back-EMF arrow (red, opposes the build-up; length ∝ |eps_L|).
+        var back = new THREE.ArrowHelper(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(0, 1.05, 0), 0.5, hexToThreeColor("#EF5350"), 0.2, 0.13);
+        back.userData = { elementType: "ind_backemf", id: "ind_backemf" }; addToScene(back);
+        var backLbl = createWideLabelSprite("back-EMF eps_L (opposes the change)", "#EF5350", 0.24); backLbl.position.set(0, 1.4, 0);
+        backLbl.userData = { elementType: "ind_backemf", id: "ind_backemf_lbl" }; addToScene(backLbl);
+
+        // 5. Battery + switch loop (wire tubes in the XY plane behind the coil).
+        var wireCol = "#B0BEC5";
+        var w1 = createTubeLine([[-IND_SELF_H, 0, 0], [-2.4, 0, 0], [-2.4, -2.0, 0]], wireCol, 0.03);
+        if (w1) { w1.userData = { elementType: "ind_switch", id: "ind_wire_1" }; addToScene(w1); }
+        var w2 = createTubeLine([[-2.4, -2.0, 0], [-0.55, -2.0, 0]], wireCol, 0.03);
+        if (w2) { w2.userData = { elementType: "ind_switch", id: "ind_wire_2" }; addToScene(w2); }
+        var w3 = createTubeLine([[0.1, -2.0, 0], [1.7, -2.0, 0], [1.7, 0, 0], [IND_SELF_H, 0, 0]], wireCol, 0.03);
+        if (w3) { w3.userData = { elementType: "ind_switch", id: "ind_wire_3" }; addToScene(w3); }
+        var battery = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.75, 0.4), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#607D8B"), emissive: hexToThreeColor("#607D8B"), emissiveIntensity: 0.2 }));
+        battery.position.set(-2.4, -1.0, 0);
+        battery.userData = { elementType: "ind_battery", id: "ind_battery" }; addToScene(battery);
+        var battLbl = createLabelSprite("battery", "#B0BEC5", 0.22); battLbl.position.set(-2.4, -0.5, 0);
+        battLbl.userData = { elementType: "ind_battery", id: "ind_battery_lbl" }; addToScene(battLbl);
+        // Switch lever — pivots about its left contact; closed = horizontal.
+        var lever = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.7, 10), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#ECEFF1"), emissive: hexToThreeColor("#ECEFF1"), emissiveIntensity: 0.25 }));
+        lever.geometry.translate(0.35, 0, 0); lever.rotation.z = 0;
+        lever.position.set(-0.55, -2.0, 0);
+        lever.userData = { elementType: "ind_switch", id: "ind_switch_lever" }; addToScene(lever);
+        // Switch-off spark — a radiating starburst at the switch gap.
+        var sparkGrp = new THREE.Group(); sparkGrp.position.set(-0.22, -2.0, 0);
+        for (var sp = 0; sp < 8; sp++) {
+            var sa = (sp / 8) * Math.PI * 2;
+            var spk = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.0, 0.28, 6), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFF59D"), transparent: true, opacity: 0 }));
+            spk.geometry.translate(0, 0.14, 0); spk.rotation.z = -sa;
+            sparkGrp.add(spk);
+        }
+        sparkGrp.userData = { elementType: "ind_spark", id: "ind_spark" }; addToScene(sparkGrp);
+
+        // 6. Iron core (S3) — grey cylinder inside the coil; slides in on toggle.
+        var core = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 2 * IND_SELF_H + 0.2, 20), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#78909C"), emissive: hexToThreeColor("#546E7A"), emissiveIntensity: 0.2 }));
+        core.rotation.z = Math.PI / 2; core.position.set(-4.2, 0, 0);
+        core.userData = { elementType: "ind_core", id: "ind_core" }; addToScene(core);
+        var coreLbl = createLabelSprite("iron core", "#90A4AE", 0.24); coreLbl.position.set(0, -1.15, 0);
+        coreLbl.userData = { elementType: "ind_core", id: "ind_core_lbl" }; addToScene(coreLbl);
+
+        // 7. Energy reservoir (S4) — an outlined tank with a fill mesh (∝ U).
+        var tankX = 2.45, tankH = 1.7, tankW = 0.6;
+        var tankEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(tankW, tankH, tankW)), new THREE.LineBasicMaterial({ color: hexToThreeColor("#90A4AE") }));
+        tankEdges.position.set(tankX, 0, 0);
+        tankEdges.userData = { elementType: "ind_reservoir", id: "ind_reservoir_tank" }; addToScene(tankEdges);
+        var fill = new THREE.Mesh(new THREE.BoxGeometry(tankW - 0.06, 1, tankW - 0.06), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFB300"), transparent: true, opacity: 0.85 }));
+        fill.userData = { elementType: "ind_reservoir", id: "ind_reservoir_fill", tankX: tankX, tankH: tankH }; addToScene(fill);
+        var tankLbl = createWideLabelSprite("energy U = 1/2 L I^2", "#FFD54F", 0.24); tankLbl.position.set(tankX, tankH / 2 + 0.35, 0);
+        tankLbl.userData = { elementType: "ind_reservoir", id: "ind_reservoir_lbl" }; addToScene(tankLbl);
+
+        // ── MUTUAL RIG (im_, STATE_5-7) ────────────────────────────────────────
+        var sep0 = indSep(2);
+        indPCoilGrp = new THREE.Group(); indPCoilGrp.position.set(-sep0 / 2, 0, 0);
+        indPCoilGrp.userData = { elementType: "im_pcoil", id: "im_pcoil" };
+        indMutPTurnsShown = indTurnsForN(300);
+        indMakeCoilChildren(indPCoilGrp, indMutPTurnsShown, IND_MUT_R, IND_MUT_H, "#FFAB40");
+        addToScene(indPCoilGrp);
+        indSCoilGrp = new THREE.Group(); indSCoilGrp.position.set(sep0 / 2, 0, 0);
+        indSCoilGrp.userData = { elementType: "im_scoil", id: "im_scoil" };
+        indMakeCoilChildren(indSCoilGrp, indMutPTurnsShown, IND_MUT_R, IND_MUT_H, "#4DB6AC");
+        addToScene(indSCoilGrp);
+        var pLbl = createLabelSprite("primary  I1", "#FFCC80", 0.26); pLbl.userData = { elementType: "im_pcoil_lbl", id: "im_pcoil_lbl" }; addToScene(pLbl);
+        var sLbl = createLabelSprite("secondary", "#4DB6AC", 0.26); sLbl.userData = { elementType: "im_scoil_lbl", id: "im_scoil_lbl" }; addToScene(sLbl);
+
+        // Primary flux reaching across the gap (green axial lines spanning both
+        // coils; opacity + reach animated per frame with |I1| and the reach cue).
+        for (var pf = 0; pf < 5; pf++) {
+            var pang = (pf / 5) * Math.PI * 2, prr = 0.34;
+            var ppts = []; for (var ps = 0; ps <= 20; ps++) { var pt = ps / 20; ppts.push([pt, prr * Math.cos(pang), prr * Math.sin(pang)]); }
+            var ptube = createTubeLine(ppts, flColor, 0.018);
+            if (ptube) { if (ptube.material) { ptube.material.transparent = true; ptube.material.opacity = 0.12; } ptube.userData = { elementType: "im_pflux", id: "im_pflux_" + pf, ang: pang, rr: prr }; addToScene(ptube); }
+        }
+
+        // Primary current beads (oscillate with I1).
+        for (var pb = 0; pb < 12; pb++) {
+            var pbead = new THREE.Mesh(new THREE.SphereGeometry(0.055, 10, 10), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFB300"), transparent: true, opacity: 0.9 }));
+            pbead.userData = { elementType: "im_pcurr", id: "im_pcurr_" + pb, slot: pb / 12 }; addToScene(pbead);
+        }
+
+        // Secondary galvanometer needle (deflects ∝ eps2).
+        var needle = emBuildNeedle(0.7, "#EF5350", "#42A5F5");
+        needle.position.set(sep0 / 2, -1.75, 0); needle.rotation.z = Math.PI / 2;
+        needle.userData = { elementType: "im_needle", id: "im_needle" }; addToScene(needle);
+        var gLbl = createLabelSprite("G", "#B0BEC5", 0.26); gLbl.userData = { elementType: "im_needle", id: "im_needle_lbl" }; addToScene(gLbl);
+
+        // Induced-EMF arrow on the secondary (SAME red style as the self back-EMF).
+        var emf2 = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(sep0 / 2, 0.9, 0), 0.4, hexToThreeColor("#EF5350"), 0.16, 0.11);
+        emf2.userData = { elementType: "im_emf2", id: "im_emf2" }; addToScene(emf2);
+        var emf2Lbl = createLabelSprite("eps2", "#EF5350", 0.26); emf2Lbl.userData = { elementType: "im_emf2", id: "im_emf2_lbl" }; addToScene(emf2Lbl);
+
+        // Highlighted AIR GAP band between the inner faces (translucent blue).
+        var gap = new THREE.Mesh(new THREE.BoxGeometry(0.7, 1.4, 1.4), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#42A5F5"), transparent: true, opacity: 0.12, side: THREE.DoubleSide }));
+        gap.userData = { elementType: "im_gap", id: "im_gap" }; addToScene(gap);
+        var gapLbl = createWideLabelSprite("air gap - no wire", "#42A5F5", 0.24); gapLbl.position.set(0, -1.05, 0);
+        gapLbl.userData = { elementType: "im_gap", id: "im_gap_lbl" }; addToScene(gapLbl);
+
+        // Shared iron core bridging both coils (S6/S7; slides in on toggle).
+        var score = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 2 * IND_MUT_H, 18), new THREE.MeshPhongMaterial({ color: hexToThreeColor("#78909C"), emissive: hexToThreeColor("#546E7A"), emissiveIntensity: 0.2 }));
+        score.rotation.z = Math.PI / 2;
+        score.userData = { elementType: "im_score", id: "im_score" }; addToScene(score);
+        var scoreLbl = createLabelSprite("shared core", "#90A4AE", 0.24); scoreLbl.position.set(0, 1.05, 0);
+        scoreLbl.userData = { elementType: "im_score", id: "im_score_lbl" }; addToScene(scoreLbl);
+
+        // ── DOM panels: readout, S2 graph canvas, per-state contextual sliders ──
+        var rp = document.createElement("div"); rp.id = "ind_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:250px;display:none;";
+        document.body.appendChild(rp);
+
+        var gc = document.createElement("canvas"); gc.id = "ind_graph_canvas";
+        gc.width = 300; gc.height = 190;
+        // Explicit px size — the global "canvas { width:100%; height:100% }" rule
+        // (meant for the full-screen Three.js canvas) would otherwise stretch this
+        // 2D graph canvas to fill the viewport. Inline px overrides the stylesheet.
+        gc.style.cssText = "position:fixed;bottom:12px;left:12px;width:300px;height:190px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gc);
+
+        window.PM_indMode = "self_ramp";
+        window.PM_indI = 2; window.PM_indN = 300; window.PM_indCore = 0;
+        window.PM_indD = 2; window.PM_indCoreShared = 0; window.PM_indFdrive = 0.5;
+        window.PM_indManual = false; window.PM_indCoreManual = false; window.PM_indCoreSharedManual = false;
+        window.PM_indBeadPhase = 0; window.PM_indDIdt = 0; window.PM_indI1 = 0; window.PM_indDI1dt = 0;
+
+        var spd = document.createElement("div"); spd.id = "ind_sliders";
+        spd.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:240px;display:none;";
+        spd.innerHTML =
+            '<div id="ind_i_row"><label>Final current I: <span id="ind_i_val">2.0</span> A</label>' +
+            '<input type="range" id="ind_i_slider" min="0.2" max="3" step="0.2" value="2" style="width:100%"></div>' +
+            '<div id="ind_n_row" style="margin-top:6px"><label>Turns N: <span id="ind_n_val">300</span></label>' +
+            '<input type="range" id="ind_n_slider" min="100" max="600" step="50" value="300" style="width:100%"></div>' +
+            '<div id="ind_core_row" style="margin-top:6px"><button id="ind_core_toggle" type="button" style="width:100%;padding:4px;border-radius:5px;border:none;background:#90A4AE;color:#0A0A1A;font:12px monospace;cursor:pointer;">Core: air</button></div>' +
+            '<div id="ind_d_row" style="margin-top:6px"><label>Coil separation d: <span id="ind_d_val">2</span></label>' +
+            '<input type="range" id="ind_d_slider" min="1" max="10" step="1" value="2" style="width:100%"></div>' +
+            '<div id="ind_cshared_row" style="margin-top:6px"><button id="ind_cshared_toggle" type="button" style="width:100%;padding:4px;border-radius:5px;border:none;background:#90A4AE;color:#0A0A1A;font:12px monospace;cursor:pointer;">Shared core: none</button></div>' +
+            '<div id="ind_f_row" style="margin-top:6px"><label>Drive frequency f: <span id="ind_f_val">0.5</span> Hz</label>' +
+            '<input type="range" id="ind_f_slider" min="0.2" max="1.5" step="0.1" value="0.5" style="width:100%"></div>';
+        document.body.appendChild(spd);
+
+        var iSl = document.getElementById("ind_i_slider"), iV = document.getElementById("ind_i_val");
+        var nSl = document.getElementById("ind_n_slider"), nV = document.getElementById("ind_n_val");
+        var coreBtn = document.getElementById("ind_core_toggle");
+        var dSl = document.getElementById("ind_d_slider"), dV = document.getElementById("ind_d_val");
+        var csBtn = document.getElementById("ind_cshared_toggle");
+        var fSl = document.getElementById("ind_f_slider"), fV = document.getElementById("ind_f_val");
+        if (iSl) iSl.addEventListener("input", function (ev) { window.PM_indI = parseFloat(iSl.value); if (iV) iV.textContent = window.PM_indI.toFixed(1); if (ev && ev.isTrusted) window.PM_indManual = true; });
+        if (nSl) nSl.addEventListener("input", function (ev) { window.PM_indN = parseInt(nSl.value, 10); if (nV) nV.textContent = nSl.value; if (ev && ev.isTrusted) window.PM_indManual = true; });
+        if (coreBtn) coreBtn.addEventListener("click", function () {
+            window.PM_indCore = window.PM_indCore ? 0 : 1; window.PM_indCoreManual = true;
+            coreBtn.textContent = window.PM_indCore ? "Core: iron" : "Core: air";
+            coreBtn.style.background = window.PM_indCore ? "#90CAF9" : "#90A4AE";
+        });
+        if (dSl) dSl.addEventListener("input", function (ev) { window.PM_indD = parseInt(dSl.value, 10); if (dV) dV.textContent = dSl.value; if (ev && ev.isTrusted) window.PM_indManual = true; });
+        if (csBtn) csBtn.addEventListener("click", function () {
+            window.PM_indCoreShared = window.PM_indCoreShared ? 0 : 1; window.PM_indCoreSharedManual = true;
+            csBtn.textContent = window.PM_indCoreShared ? "Shared core: iron" : "Shared core: none";
+            csBtn.style.background = window.PM_indCoreShared ? "#90CAF9" : "#90A4AE";
+        });
+        if (fSl) fSl.addEventListener("input", function (ev) { window.PM_indFdrive = parseFloat(fSl.value); if (fV) fV.textContent = fSl.value; if (ev && ev.isTrusted) window.PM_indManual = true; });
+
+        for (var qi = 0; qi < sceneObjects.length; qi++) {
+            var qo = sceneObjects[qi]; var qt = qo.userData && qo.userData.elementType;
+            if (qt && (qt.indexOf("ind_") === 0 || qt.indexOf("im_") === 0)) qo.visible = false;
+        }
+    }
+
+    // Authoritative per-state seed (locked vals) + group visibility (self vs
+    // mutual rig, PRE-SPOIL guard) + per-state contextual-control panel (Rule 31).
+    // Runs AFTER the generic visible_elements matcher and overrides it.
+    function applyInductanceState(stateDef) {
+        var d = stateDef.inductance || {};
+        window.PM_indMode = d.mode || "explore";
+        if (typeof d.I === "number") window.PM_indI = d.I;
+        if (typeof d.N === "number") window.PM_indN = d.N;
+        if (typeof d.core === "number") window.PM_indCore = d.core;
+        if (typeof d.d === "number") window.PM_indD = d.d;
+        if (typeof d.core_shared === "number") window.PM_indCoreShared = d.core_shared;
+        if (typeof d.f_drive === "number") window.PM_indFdrive = d.f_drive;
+        window.PM_indManual = false; window.PM_indCoreManual = false; window.PM_indCoreSharedManual = false;
+        window.PM_indBeadPhase = 0;
+
+        var mode = window.PM_indMode;
+        var selfModes = (mode === "self_ramp" || mode === "switch_graph" || mode === "geometry" || mode === "energy");
+        var showSelf = selfModes, showMutual = !selfModes;
+        for (var vi = 0; vi < sceneObjects.length; vi++) {
+            var vo = sceneObjects[vi]; var vt = vo.userData && vo.userData.elementType;
+            if (!vt) continue;
+            if (vt.indexOf("ind_") === 0) vo.visible = showSelf;
+            else if (vt.indexOf("im_") === 0) vo.visible = showMutual;
+        }
+        // Sub-elements refined every frame in updateInductanceFrame — force a
+        // known FALSE baseline so a stale "true" never leaks (ghost/core/spark/
+        // reservoir on the self rig; shared core / emf2 on the mutual rig).
+        ["ind_ghost", "ind_backemf", "ind_backemf_lbl", "ind_spark", "ind_core", "ind_core_lbl", "ind_reservoir_tank", "ind_reservoir_fill", "ind_reservoir_lbl", "im_score", "im_score_lbl"].forEach(function (bid) {
+            for (var k = 0; k < sceneObjects.length; k++) { var o = sceneObjects[k]; if (o.userData && (o.userData.id === bid || o.userData.elementType === bid)) o.visible = false; }
+        });
+
+        // Reset self-rig transforms to their baseline (origin) so the explore
+        // state's top-lane lift never leaks into the self states S1-S4.
+        if (indSelfCoilGrp) indSelfCoilGrp.position.set(0, 0, 0);
+        var clblReset = indFindById("ind_coil_lbl"); if (clblReset) clblReset.position.set(0, 1.78, 0);
+        window.PM_indSelfPhase = 0;
+
+        // Rebuild the self coil + primary/secondary coils to the seeded N.
+        var wantTurns = indTurnsForN(window.PM_indN);
+        if (indSelfCoilGrp && wantTurns !== indSelfTurnsShown) { indMakeCoilChildren(indSelfCoilGrp, wantTurns, IND_SELF_R, IND_SELF_H, "#FFAB40"); indSelfTurnsShown = wantTurns; }
+        if (indPCoilGrp && wantTurns !== indMutPTurnsShown) { indMakeCoilChildren(indPCoilGrp, wantTurns, IND_MUT_R, IND_MUT_H, "#FFAB40"); indMakeCoilChildren(indSCoilGrp, wantTurns, IND_MUT_R, IND_MUT_H, "#4DB6AC"); indMutPTurnsShown = wantTurns; }
+
+        function syncSlider(id, val) { var el = document.getElementById(id); if (el) el.value = String(val); }
+        function syncVal(id, val) { var el = document.getElementById(id); if (el) el.textContent = String(val); }
+        syncSlider("ind_i_slider", window.PM_indI); syncVal("ind_i_val", window.PM_indI.toFixed(1));
+        syncSlider("ind_n_slider", window.PM_indN); syncVal("ind_n_val", window.PM_indN);
+        syncSlider("ind_d_slider", window.PM_indD); syncVal("ind_d_val", window.PM_indD);
+        syncSlider("ind_f_slider", window.PM_indFdrive); syncVal("ind_f_val", window.PM_indFdrive.toFixed(1));
+        var coreBtn = document.getElementById("ind_core_toggle");
+        if (coreBtn) { coreBtn.textContent = window.PM_indCore ? "Core: iron" : "Core: air"; coreBtn.style.background = window.PM_indCore ? "#90CAF9" : "#90A4AE"; }
+        var csBtn = document.getElementById("ind_cshared_toggle");
+        if (csBtn) { csBtn.textContent = window.PM_indCoreShared ? "Shared core: iron" : "Shared core: none"; csBtn.style.background = window.PM_indCoreShared ? "#90CAF9" : "#90A4AE"; }
+
+        var roEl = document.getElementById("ind_readout"); if (roEl) roEl.style.display = (d.show_readout === false) ? "none" : "block";
+        var gcEl = document.getElementById("ind_graph_canvas"); if (gcEl) gcEl.style.display = d.show_graph ? "block" : "none";
+        var spEl = document.getElementById("ind_sliders"); if (spEl) spEl.style.display = "block";
+        var vc = d.visible_controls || [];
+        var rows = { I: "ind_i_row", N: "ind_n_row", core: "ind_core_row", d: "ind_d_row", core_shared: "ind_cshared_row", f_drive: "ind_f_row" };
+        for (var rk in rows) { var rEl = document.getElementById(rows[rk]); if (rEl) rEl.style.display = (vc.indexOf(rk) !== -1) ? "block" : "none"; }
+    }
+
+    // Per-frame update — resolves the self current I(t) / primary I1(t), writes
+    // back dIdt / I1 / dI1dt, drives the beads / flux / back-EMF / needle /
+    // reservoir / spark / core slides, and paints the readout + S2 graph. PURE
+    // fn of the state clock (Rule 26).
+    function updateInductanceFrame() {
+        if (config.scenario_type !== "inductance") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var d = stateDef.inductance || {};
+        var mode = d.mode || "explore";
+        var t = time - stateStartTime;
+        var Ifinal = window.PM_indI, N = window.PM_indN, core = window.PM_indCore;
+        var L = indSelfL(N, core);
+
+        var selfModes = (mode === "self_ramp" || mode === "switch_graph" || mode === "geometry" || mode === "energy");
+        if (selfModes) { indUpdateSelf(mode, t, d, Ifinal, N, core, L); }
+        else {
+            indUpdateMutual(mode, t, d, N, core, L);
+            // explore = the synthesis beat: the SELF coil (top lane, driven by
+            // the steady I slider -> beads flow, U=1/2 L I^2) sits ALONGSIDE the
+            // mutual rig, so all six controls (I + N + core + d + core_shared +
+            // f) act on a visible picture (Rule 31 explore-last exposes ALL).
+            if (mode === "explore") indUpdateExploreSelf(Ifinal, N, core);
+        }
+    }
+
+    // explore-only: lift the self coil into a top lane and drive it from the
+    // STEADY I slider (beads flow ∝ I). Runs every frame AFTER indUpdateMutual;
+    // the specific self elements are force-shown here (applyState hid them).
+    function indUpdateExploreSelf(Ifinal, N, core) {
+        var Ifrac = (Ifinal > 0) ? Math.max(0, Math.min(1, Ifinal / 3)) : 0;
+        var yOff = IND_EXPLORE_SELF_Y;
+        if (indSelfCoilGrp) { indSelfCoilGrp.visible = true; indSelfCoilGrp.position.set(0, yOff, 0); }
+        var clbl = indFindById("ind_coil_lbl"); if (clbl) { clbl.visible = true; clbl.position.set(0, yOff + 1.05, 0); }
+        if (window.PM_indSelfPhase === undefined) window.PM_indSelfPhase = 0;
+        window.PM_indSelfPhase += Ifrac * 0.02 * 0.9;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], u = o.userData;
+            if (!u || u.elementType !== "ind_curr") continue;
+            o.visible = true;
+            var uu = ((u.slot + window.PM_indSelfPhase) % 1 + 1) % 1;
+            var p = indBeadPos(0, uu, indSelfTurnsShown, IND_SELF_R, IND_SELF_H);
+            o.position.set(p[0], p[1] + yOff, p[2]);
+            if (o.material) o.material.opacity = 0.2 + 0.7 * Ifrac;
+        }
+    }
+
+    // ── self rig (S1-4) ──────────────────────────────────────────────────────
+    function indUpdateSelf(mode, t, d, Ifinal, N, core, L) {
+        // Iron-core auto-insert (geometry mode) unless the teacher toggled it.
+        if (mode === "geometry") {
+            var coreAt = cueTriggerMs("core_slide", (d.core_insert_at_ms != null ? d.core_insert_at_ms : 8000)) / 1000;
+            if (!window.PM_indCoreManual && t >= coreAt && window.PM_indCore === 0) {
+                window.PM_indCore = 1; core = 1; L = indSelfL(N, 1);
+                var cb = document.getElementById("ind_core_toggle"); if (cb) { cb.textContent = "Core: iron"; cb.style.background = "#90CAF9"; }
+            }
+        }
+        core = window.PM_indCore; L = indSelfL(N, core);
+
+        // Current I(t) + rate dIdt per mode.
+        var I = 0, dIdt = 0, phase = "";
+        if (mode === "self_ramp") {
+            var tOn = 2.0;
+            if (t < tOn) { I = 0; dIdt = 0; phase = "ghost jumps, real not yet"; }
+            else { var te = t - tOn; I = Ifinal * (1 - Math.exp(-te / IND_TAU)); dIdt = (Ifinal / IND_TAU) * Math.exp(-te / IND_TAU); phase = (I > 0.97 * Ifinal) ? "steady: eps_L -> 0" : "ramping"; }
+        } else if (mode === "switch_graph") {
+            var onS = (d.switch_on_at_ms != null ? d.switch_on_at_ms : 2000) / 1000;
+            var offS = cueTriggerMs("switch_off", (d.switch_off_at_ms != null ? d.switch_off_at_ms : 24000)) / 1000;
+            if (t < onS) { I = 0; dIdt = 0; phase = "switch open"; }
+            else if (t < offS) { var te2 = t - onS; I = Ifinal * (1 - Math.exp(-te2 / IND_TAU)); dIdt = (Ifinal / IND_TAU) * Math.exp(-te2 / IND_TAU); phase = (I > 0.97 * Ifinal) ? "STEADY: I large, eps_L = 0" : "ramping up"; }
+            else {
+                var tc = t - offS;
+                // Visual collapse over ~0.35s; the READOUT dIdt uses the true
+                // dt_arc so eps_L shows the real ~1.8 V switch-off spike.
+                I = Ifinal * Math.max(0, 1 - tc / 0.35);
+                dIdt = (tc < IND_DT_ARC) ? (-Ifinal / IND_DT_ARC) : 0;
+                phase = "SWITCH-OFF: eps_L spikes";
+            }
+        } else if (mode === "geometry") {
+            // continuous ramp / re-release so the coil visibly carries flowing
+            // current; tau grows with L (bigger L -> slower ramp = more inertia).
+            var tauEff = IND_TAU * (L / IND_L_REF);
+            var tl = t % 8; I = Ifinal * (1 - Math.exp(-tl / tauEff)); dIdt = (Ifinal / tauEff) * Math.exp(-tl / tauEff);
+            phase = "L is geometry; I does not change L";
+        } else { // energy
+            var cycle = 16, dc = cueTriggerMs("reservoir_spark", (d.discharge_at_ms != null ? d.discharge_at_ms : 14000)) / 1000;
+            var tE = t % cycle;
+            if (tE < dc) { I = Ifinal * (1 - Math.exp(-tE / IND_TAU)); dIdt = (Ifinal / IND_TAU) * Math.exp(-tE / IND_TAU); phase = "field filling (U ~ I^2)"; }
+            else { var td = tE - dc; I = Ifinal * Math.max(0, 1 - td / 0.4); dIdt = (td < IND_DT_ARC) ? (-Ifinal / IND_DT_ARC) : 0; phase = "cut -> spark releases U"; }
+        }
+        var emfL = -L * dIdt;
+        window.PM_indDIdt = dIdt;
+        var Ifrac = Ifinal > 0 ? Math.max(0, Math.min(1, I / Ifinal)) : 0;
+
+        // Real current beads flow along the coil (speed + brightness ∝ I).
+        window.PM_indBeadPhase += Ifrac * 0.02 * 0.9;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], u = o.userData;
+            if (!u) continue;
+            if (u.elementType === "ind_curr") {
+                var uu = ((u.slot + window.PM_indBeadPhase) % 1 + 1) % 1;
+                var p = indBeadPos(0, uu, indSelfTurnsShown, IND_SELF_R, IND_SELF_H);
+                o.position.set(p[0], p[1], p[2]);
+                if (o.material) o.material.opacity = 0.15 + 0.75 * Ifrac;
+            }
+        }
+
+        // GHOST beads (self_ramp only) — jump to full flow at once, then fade.
+        var ghostOn = (mode === "self_ramp");
+        var gAt = cueTriggerMs("ghost_jump", (d.ghost_jump_at_ms != null ? d.ghost_jump_at_ms : 500)) / 1000;
+        var ghostOp = 0;
+        if (ghostOn && t >= gAt) { ghostOp = 0.6 * Math.max(0, 1 - (t - gAt) / 2.0); }
+        for (var gi = 0; gi < sceneObjects.length; gi++) {
+            var go = sceneObjects[gi], gu = go.userData;
+            if (!gu || gu.elementType !== "ind_ghost") continue;
+            go.visible = ghostOp > 0.02;
+            var gph = ((gu.slot + t * 0.32) % 1 + 1) % 1;   // full-speed flow immediately
+            var gp = indBeadPos(0, gph, indSelfTurnsShown, IND_SELF_R + 0.14, IND_SELF_H);
+            go.position.set(gp[0], gp[1], gp[2]);
+            if (go.material) go.material.opacity = ghostOp;
+        }
+
+        // Green self-flux opacity carries |I| (faint baseline so the coil never
+        // sits on a bare frame; gentle shimmer once current flows).
+        var fop = 0.12 + 0.66 * Ifrac + 0.05 * Ifrac * Math.sin(t * 2.4);
+        if (fop < 0.08) fop = 0.08; if (fop > 1) fop = 1;
+        for (var fi = 0; fi < sceneObjects.length; fi++) { var fo = sceneObjects[fi], fu = fo.userData; if (fu && fu.elementType === "ind_flux" && fo.material) fo.material.opacity = fop; }
+
+        // Self back-EMF arrow (self_ramp) — length ∝ |eps_L|, opposes the build-up;
+        // appears at the push_back cue, shrinks to ~0 as the current settles.
+        var back = indFindById("ind_backemf"), backLbl = indFindById("ind_backemf_lbl");
+        var pbAt = cueTriggerMs("push_back", (d.push_back_at_ms != null ? d.push_back_at_ms : 2500)) / 1000;
+        var showBack = (mode === "self_ramp") && t >= pbAt;
+        if (back) {
+            back.visible = showBack;
+            var bl = Math.max(0.12, Math.min(0.8, 0.12 + Math.abs(emfL) * 9));
+            back.setLength(bl, 0.2, 0.13); back.position.set(0, 1.05, 0);
+        }
+        if (backLbl) backLbl.visible = showBack;
+
+        // Switch lever + switch-off spark.
+        var closed = indSwitchClosed(mode, t, d);
+        var lever = indFindById("ind_switch_lever"); if (lever) lever.rotation.z = closed ? 0 : 0.6;
+        var spark = indFindById("ind_spark");
+        if (spark) {
+            var sparkP = indSparkOpacity(mode, t, d);
+            var sparkPos = (mode === "energy") ? [2.45, 0, 0] : [-0.22, -2.0, 0];
+            spark.position.set(sparkPos[0], sparkPos[1], sparkPos[2]);
+            spark.visible = sparkP > 0.02;
+            spark.children.forEach(function (c) { if (c.material) c.material.opacity = sparkP; });
+        }
+
+        // Iron core slide-in (geometry). x: -4.2 (out) -> 0 (in) over ~1s.
+        var coreObj = indFindById("ind_core"), coreLbl = indFindById("ind_core_lbl");
+        var showCore = (mode === "geometry");
+        if (coreObj) {
+            coreObj.visible = showCore && window.PM_indCore === 1 ? true : (showCore && window.PM_indCore === 0 ? false : false);
+            if (coreObj.visible) {
+                var coreAt2 = cueTriggerMs("core_slide", (d.core_insert_at_ms != null ? d.core_insert_at_ms : 8000)) / 1000;
+                var cp = Math.max(0, Math.min(1, (t - coreAt2) / 1.0));
+                coreObj.position.x = -4.2 + 4.2 * (cp * cp * (3 - 2 * cp));
+            }
+        }
+        if (coreLbl) coreLbl.visible = showCore && window.PM_indCore === 1;
+
+        // Energy reservoir (energy mode) — fill ∝ U = 1/2 L I^2.
+        var U = 0.5 * L * I * I;
+        var showRes = (mode === "energy");
+        var fill = indFindById("ind_reservoir_fill"), tank = indFindById("ind_reservoir_tank"), rlbl = indFindById("ind_reservoir_lbl");
+        if (tank) tank.visible = showRes;
+        if (rlbl) rlbl.visible = showRes;
+        if (fill) {
+            fill.visible = showRes;
+            if (showRes) {
+                var uFrac = Math.max(0, Math.min(1, U / 0.09));   // normalise to a generous full scale
+                var th = fill.userData.tankH || 1.7, tx = fill.userData.tankX || 2.45;
+                fill.scale.y = Math.max(0.001, uFrac);
+                fill.position.set(tx, -th / 2 + (uFrac * th) / 2, 0);
+                if (fill.material) fill.material.color = new THREE.Color(0xFFB300).lerp(new THREE.Color(0xFF3D00), uFrac);
+            }
+        }
+
+        indWriteSelfReadout(mode, I, dIdt, emfL, L, N, U, Ifinal, phase);
+        if (mode === "switch_graph") indDrawSwitchGraph(t, d, Ifinal, L);
+    }
+
+    function indSwitchClosed(mode, t, d) {
+        if (mode === "self_ramp") return t >= 0.3;
+        if (mode === "switch_graph") {
+            var onS = (d.switch_on_at_ms != null ? d.switch_on_at_ms : 2000) / 1000;
+            var offS = cueTriggerMs("switch_off", (d.switch_off_at_ms != null ? d.switch_off_at_ms : 24000)) / 1000;
+            return t >= onS && t < offS;
+        }
+        if (mode === "energy") { var cycle = 16, dc = (d.discharge_at_ms != null ? d.discharge_at_ms : 14000) / 1000; var tE = t % cycle; return tE < dc; }
+        return true;
+    }
+    function indSparkOpacity(mode, t, d) {
+        var evS = -1;
+        if (mode === "switch_graph") evS = cueTriggerMs("switch_off", (d.switch_off_at_ms != null ? d.switch_off_at_ms : 24000)) / 1000;
+        else if (mode === "energy") { var cycle = 16, dc = cueTriggerMs("reservoir_spark", (d.discharge_at_ms != null ? d.discharge_at_ms : 14000)) / 1000; var tE = t % cycle; if (tE >= dc) evS = 0; else return 0; }
+        else return 0;
+        if (mode === "energy") { var cyc = 16, dc2 = (d.discharge_at_ms != null ? d.discharge_at_ms : 14000) / 1000; var te = (t % cyc) - dc2; if (te < 0) return 0; if (te < 0.35) return 0.9; return Math.max(0.12, 0.5 - (te - 0.35) * 0.3) * (0.7 + 0.3 * Math.sin(t * 12)); }
+        // switch_graph: bright flash then a lingering pulsing ember (anti-frozen tail).
+        var dt = t - evS; if (dt < 0) return 0;
+        if (dt < 0.4) return 0.9;
+        return Math.max(0.14, 0.45 - (dt - 0.4) * 0.02) * (0.6 + 0.4 * Math.sin(t * 9));
+    }
+
+    function indWriteSelfReadout(mode, I, dIdt, emfL, L, N, U, Ifinal, phase) {
+        var roEl = document.getElementById("ind_readout"); if (!roEl || roEl.style.display === "none") return;
+        var eColor = (Math.abs(emfL) < 0.005) ? "#90A4AE" : (emfL > 0 ? "#66BB6A" : "#EF5350");
+        var html = "";
+        html += "<div style=\\"color:#FFCC80\\">L = " + (L * 1000).toFixed(1) + " mH  (N = " + N + (window.PM_indCore ? ", iron core" : "") + ")</div>";
+        if (mode === "geometry") {
+            html += "<div style=\\"color:#B0BEC5\\">I = " + I.toFixed(2) + " A  (L does NOT depend on I)</div>";
+            html += "<div style=\\"color:#90A4AE;font-size:11px\\">L = L_ref (N/300)^2 (core?x8) — pure geometry</div>";
+        } else if (mode === "energy") {
+            html += "<div style=\\"color:#B0BEC5\\">I = " + I.toFixed(2) + " A</div>";
+            html += "<div style=\\"color:#FFD54F\\">U = 1/2 L I^2 = " + (U * 1000).toFixed(0) + " mJ</div>";
+        } else {
+            html += "<div style=\\"color:#B0BEC5\\">I = " + I.toFixed(2) + " A   dI/dt = " + dIdt.toFixed(1) + " A/s</div>";
+            html += "<div style=\\"color:" + eColor + "\\">eps_L = -L dI/dt = " + emfL.toFixed(2) + " V</div>";
+        }
+        html += "<div style=\\"color:#90A4AE;font-size:11px\\">" + phase + "</div>";
+        roEl.innerHTML = html;
+    }
+
+    // Dual I-t / eps_L-t graph (S2). Full analytic curves over the state clock;
+    // the switch-off eps_L spike is CLIPPED at the axis top with an up-arrow +
+    // "eps_L >>" glyph (its true magnitude lives in the readout numbers). A live
+    // cursor tracks the current time. The flat-zero steady eps_L band is drawn
+    // boldly — that flat zero is the misconception-killer payoff.
+    function indDrawSwitchGraph(t, d, Ifinal, L) {
+        var gc = document.getElementById("ind_graph_canvas"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var onS = (d.switch_on_at_ms != null ? d.switch_on_at_ms : 2000) / 1000;
+        var offS = (d.switch_off_at_ms != null ? d.switch_off_at_ms : 24000) / 1000;
+        var tMax = 35, padL = 30, padR = 10, W = gc.width - padL - padR;
+        function xPix(sec) { return padL + Math.min(1, sec / tMax) * W; }
+        // Two stacked bands: I-t (top), eps_L-t (bottom).
+        var topY0 = 22, topH = 52, botY0 = 92, botH = 60;
+        function iY(val) { return topY0 + topH - Math.max(0, Math.min(1, val / (Ifinal * 1.05))) * topH; }
+        // eps_L display band: 0 at mid, small on-bump down, spike up (clipped).
+        var epsMid = botY0 + botH * 0.62;
+        function iCurrent(sec) { if (sec < onS) return 0; if (sec < offS) return Ifinal * (1 - Math.exp(-(sec - onS) / IND_TAU)); return Ifinal * Math.max(0, 1 - (sec - offS) / 0.35); }
+        function epsAt(sec) { if (sec < onS) return 0; if (sec < offS) return -L * (Ifinal / IND_TAU) * Math.exp(-(sec - onS) / IND_TAU); return 0; }
+        // labels
+        ctx.fillStyle = "#B0BEC5"; ctx.font = "10px monospace";
+        ctx.fillText("I", 8, iY(Ifinal * 0.6)); ctx.fillText("eps_L", 2, epsMid - 2);
+        // I-t curve (amber)
+        ctx.strokeStyle = "#FFB300"; ctx.lineWidth = 2; ctx.beginPath();
+        for (var s = 0; s <= tMax; s += 0.3) { var xv = xPix(s), yv = iY(iCurrent(s)); if (s === 0) ctx.moveTo(xv, yv); else ctx.lineTo(xv, yv); }
+        ctx.stroke(); ctx.lineWidth = 1;
+        // eps_L zero baseline through the steady band (bold — the payoff)
+        ctx.strokeStyle = "#66BB6A"; ctx.lineWidth = 2; ctx.beginPath();
+        ctx.moveTo(xPix(onS + 3), epsMid); ctx.lineTo(xPix(offS), epsMid); ctx.stroke(); ctx.lineWidth = 1;
+        ctx.fillStyle = "#66BB6A"; ctx.fillText("eps_L = 0", xPix(onS + 4), epsMid - 4);
+        // eps_L on-bump (small, downward) during the ramp
+        ctx.strokeStyle = "#42A5F5"; ctx.beginPath();
+        for (var s2 = onS; s2 <= offS; s2 += 0.2) { var e = epsAt(s2); var yb = epsMid - (e / (L * Ifinal / IND_TAU)) * (botH * 0.3); var xb = xPix(s2); if (s2 === onS) ctx.moveTo(xb, yb); else ctx.lineTo(xb, yb); }
+        ctx.stroke();
+        // eps_L switch-off spike — CLIPPED with an up-arrow + ">>" glyph
+        var xSpk = xPix(offS);
+        ctx.strokeStyle = "#EF5350"; ctx.lineWidth = 2; ctx.beginPath();
+        ctx.moveTo(xSpk, epsMid); ctx.lineTo(xSpk, botY0 + 4); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(xSpk - 4, botY0 + 9); ctx.lineTo(xSpk, botY0 + 3); ctx.lineTo(xSpk + 4, botY0 + 9); ctx.stroke(); ctx.lineWidth = 1;
+        ctx.fillStyle = "#EF5350"; ctx.fillText("eps_L >>", xSpk - 6, botY0 - 1);
+        // live cursor
+        ctx.fillStyle = "#FFF176"; ctx.beginPath(); ctx.arc(xPix(Math.min(t, tMax)), iY(iCurrent(Math.min(t, tMax))), 3, 0, 2 * Math.PI); ctx.fill();
+        ctx.fillStyle = "#90A4AE"; ctx.fillText("I-t (top) & eps_L-t (bottom) vs t", padL, 12);
+    }
+
+    // ── mutual rig (S5-7) ────────────────────────────────────────────────────
+    function indUpdateMutual(mode, t, d, N, core, L) {
+        var f = window.PM_indFdrive, dLive = window.PM_indD, cs = window.PM_indCoreShared;
+        // Shared-core auto-insert (coupling mode) unless the teacher toggled it.
+        if (mode === "coupling") {
+            var scAt = cueTriggerMs("shared_core_slide", (d.shared_core_at_ms != null ? d.shared_core_at_ms : 6000)) / 1000;
+            if (!window.PM_indCoreSharedManual && t >= scAt && window.PM_indCoreShared === 0) {
+                window.PM_indCoreShared = 1; cs = 1;
+                var csb = document.getElementById("ind_cshared_toggle"); if (csb) { csb.textContent = "Shared core: iron"; csb.style.background = "#90CAF9"; }
+            }
+            cs = window.PM_indCoreShared;
+        }
+
+        var sep = indSep(dLive), pcx = -sep / 2, scx = sep / 2;
+        var I1 = IND_I1_AMP * Math.sin(2 * Math.PI * f * t);
+        var dI1dt = IND_I1_AMP * (2 * Math.PI * f) * Math.cos(2 * Math.PI * f * t);
+        var k = indKcouple(dLive, cs), M = k * L, emf2 = -M * dI1dt;
+        window.PM_indI1 = I1; window.PM_indDI1dt = dI1dt;
+
+        // reciprocity swap (S6) — briefly relabel which coil drives; deflection
+        // is IDENTICAL because M is symmetric (that identity IS the lesson).
+        var swapActive = false;
+        if (mode === "coupling") {
+            var swAt = cueTriggerMs("coil_swap", (d.swap_at_ms != null ? d.swap_at_ms : 12000)) / 1000;
+            swapActive = (t >= swAt && t < swAt + 4);
+        }
+
+        // Reposition the coil groups + needle + gap + labels for the live d.
+        if (indPCoilGrp) indPCoilGrp.position.x = pcx;
+        if (indSCoilGrp) indSCoilGrp.position.x = scx;
+        // In explore the self coil occupies the top lane, so seat the mutual
+        // coil labels just below their coils (clear of the self coil above).
+        var mutLblY = (mode === "explore") ? -1.05 : 1.25;
+        var pLbl = indFindById("im_pcoil_lbl"); if (pLbl) pLbl.position.set(pcx, mutLblY, 0);
+        var sLbl = indFindById("im_scoil_lbl"); if (sLbl) sLbl.position.set(scx, mutLblY, 0);
+        var gap = indFindById("im_gap"); if (gap) { gap.position.set(0, 0, 0); gap.scale.x = Math.max(0.2, (scx - IND_MUT_H) - (pcx + IND_MUT_H)) / 0.7; }
+        var gapLbl = indFindById("im_gap_lbl"); if (gapLbl) gapLbl.position.set(0, -0.95, 0);
+
+        // Primary current beads (oscillate with I1 — reverse each half-cycle).
+        window.PM_indBeadPhase += (I1 / IND_I1_AMP) * 0.02 * 1.2;
+        var driveX = swapActive ? scx : pcx;   // the swap moves the drive to the secondary
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], u = o.userData;
+            if (!u || u.elementType !== "im_pcurr") continue;
+            var uu = ((u.slot + window.PM_indBeadPhase) % 1 + 1) % 1;
+            var p = indBeadPos(driveX, uu, indMutPTurnsShown, IND_MUT_R, IND_MUT_H);
+            o.position.set(p[0], p[1], p[2]);
+            if (o.material) o.material.opacity = 0.2 + 0.7 * Math.min(1, Math.abs(I1) / IND_I1_AMP);
+        }
+
+        // Primary flux reaching across the gap (opacity ∝ |I1|; ramps in after
+        // the flux_reach cue in the intro; spans primary -> secondary).
+        var reachAt = cueTriggerMs("flux_reach", (d.flux_reach_at_ms != null ? d.flux_reach_at_ms : 3000)) / 1000;
+        var reach = (mode === "mutual_intro") ? Math.max(0, Math.min(1, (t - reachAt) / 1.5)) : 1;
+        var fluxOp = (0.1 + 0.7 * Math.min(1, Math.abs(I1) / IND_I1_AMP)) * reach;
+        if (cs) fluxOp = Math.min(1, fluxOp * 1.3);   // shared core funnels the flux
+        var x0 = pcx - IND_MUT_H, x1 = scx + IND_MUT_H;
+        for (var fi = 0; fi < sceneObjects.length; fi++) {
+            var fo = sceneObjects[fi], fu = fo.userData;
+            if (!fu || fu.elementType !== "im_pflux") continue;
+            // rebuild the tube endpoints for the live separation each frame is
+            // costly; instead scale/translate the prebuilt unit-length tube
+            // (built along local +X from 0..1) into world [x0, x1].
+            fo.position.set(x0, 0, 0); fo.scale.set(x1 - x0, 1, 1);
+            if (fo.material) fo.material.opacity = fluxOp;
+        }
+
+        // Secondary galvanometer needle (deflects ∝ eps2) + induced-EMF arrow.
+        var needle = indFindById("im_needle");
+        var defl = emf2 / 0.05; if (defl > 1.15) defl = 1.15; if (defl < -1.15) defl = -1.15;
+        if (needle) { needle.position.set(swapActive ? pcx : scx, -1.75, 0); needle.rotation.z = Math.PI / 2 - defl; }
+        var gLbl = indFindById("im_needle_lbl"); if (gLbl) gLbl.position.set((swapActive ? pcx : scx) + 0.7, -1.75, 0);
+        var emf2Arr = indFindById("im_emf2"), emf2Lbl = indFindById("im_emf2_lbl");
+        var secX = swapActive ? pcx : scx;
+        if (emf2Arr) {
+            emf2Arr.visible = true;
+            var el = Math.max(0.1, Math.min(0.7, 0.1 + Math.abs(emf2) * 8));
+            var sgn = emf2 >= 0 ? 1 : -1;
+            emf2Arr.position.set(secX, 0.85, 0); emf2Arr.setDirection(new THREE.Vector3(0, sgn, 0)); emf2Arr.setLength(el, 0.16, 0.11);
+        }
+        if (emf2Lbl) { emf2Lbl.visible = true; emf2Lbl.position.set(secX + 0.4, 1.1, 0); }
+
+        // Shared core slide-in (coupling/explore) — bridges the two coils.
+        var score = indFindById("im_score"), scoreLbl = indFindById("im_score_lbl");
+        var showScore = (cs === 1) && (mode === "coupling" || mode === "explore");
+        if (score) {
+            score.visible = showScore;
+            if (showScore) {
+                var scAt2 = cueTriggerMs("shared_core_slide", (d.shared_core_at_ms != null ? d.shared_core_at_ms : 6000)) / 1000;
+                var scp = (mode === "coupling") ? Math.max(0, Math.min(1, (t - scAt2) / 1.0)) : 1;
+                var yIn = -2.6 + 2.6 * (scp * scp * (3 - 2 * scp));
+                score.position.set(0, yIn, 0);
+                score.scale.x = Math.max(0.3, (scx - pcx + 2 * IND_MUT_H)) / (2 * IND_MUT_H);
+            }
+        }
+        if (scoreLbl) { scoreLbl.visible = showScore; scoreLbl.position.set(0, 1.05, 0); }
+
+        // gap highlight only where there IS a bare gap (dim it under a shared core).
+        var gapObj = indFindById("im_gap"); if (gapObj && gapObj.material) gapObj.material.opacity = cs ? 0.04 : 0.12;
+
+        indWriteMutualReadout(mode, N, core, L, dLive, cs, k, M, I1, dI1dt, emf2, swapActive);
+    }
+
+    function indWriteMutualReadout(mode, N, core, L, dLive, cs, k, M, I1, dI1dt, emf2, swapActive) {
+        var roEl = document.getElementById("ind_readout"); if (!roEl || roEl.style.display === "none") return;
+        var e2Color = (Math.abs(emf2) < 0.002) ? "#90A4AE" : (emf2 > 0 ? "#66BB6A" : "#EF5350");
+        var html = "";
+        if (mode === "explore") {
+            // Self coil (top lane) carries the STEADY I slider current → U = 1/2 L I^2;
+            // eps_L is the mutual PRIMARY's oscillating self back-EMF (-L dI1/dt).
+            var emfL = -L * dI1dt, U = 0.5 * L * window.PM_indI * window.PM_indI;
+            html += "<div style=\\"color:#FFCC80\\">L = " + (L * 1000).toFixed(1) + " mH   eps_L = " + emfL.toFixed(2) + " V</div>";
+            html += "<div style=\\"color:#FFD54F\\">U = 1/2 L I^2 = " + (U * 1000).toFixed(0) + " mJ  (I = " + window.PM_indI.toFixed(1) + " A)</div>";
+            html += "<div style=\\"color:#4DD0E1\\">k = " + k.toFixed(2) + "   M = k L = " + (M * 1000).toFixed(1) + " mH</div>";
+            html += "<div style=\\"color:" + e2Color + "\\">eps2 = -M dI1/dt = " + (emf2 * 1000).toFixed(0) + " mV</div>";
+        } else {
+            html += "<div style=\\"color:#FFCC80\\">I1 = " + I1.toFixed(2) + " A   dI1/dt = " + dI1dt.toFixed(1) + " A/s</div>";
+            if (mode === "coupling") {
+                html += "<div style=\\"color:#4DD0E1\\">d = " + dLive + "   k = " + k.toFixed(2) + (cs ? " (shared core)" : "") + "</div>";
+                html += "<div style=\\"color:#B0BEC5\\">M = k L = " + (M * 1000).toFixed(1) + " mH" + (swapActive ? "   (swap: M12 = M21)" : "") + "</div>";
+            } else {
+                html += "<div style=\\"color:#B0BEC5\\">M = k L = " + (M * 1000).toFixed(1) + " mH   (no wire between coils)</div>";
+            }
+            html += "<div style=\\"color:" + e2Color + "\\">eps2 = -M dI1/dt = " + (emf2 * 1000).toFixed(0) + " mV</div>";
+        }
+        roEl.innerHTML = html;
+    }
+
+    function applyInductanceGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            var et = sud.elementType || "";
+            if (et.indexOf("ind_") !== 0 && et.indexOf("im_") !== 0) continue;
+            applyGlowEmphasis(so, on(sud.id) || on(et), glowActive, glowP, true);
+        }
+    }
+
+    // ── ac_generator scenario (AC generator: eps = NBA*omega*sin(omega t)) ─────
+    //   A rectangular coil of N turns + area A rotates on a vertical axle in a
+    //   uniform field B (N pole -X, S pole +X, field +X). The coil's normal =
+    //   (cos, 0, -sin) as it spins about Y, so the N-turn flux LINKAGE is
+    //   Phi = N*B*A*cos(theta) [N folded in] and the EMF is the RATE of change,
+    //   eps = -dPhi/dt = N*B*A*omega*sin(theta): a SINE 90 deg behind the COSINE
+    //   flux (peaks exactly where flux is zero). The SINGLE live phase theta is
+    //   accumulated on the state clock (theta += omega*dt, Rule 26) and drives
+    //   the coil AND both graph dots in lockstep. Two continuous slip rings +
+    //   fixed brushes carry the AC out; the external-circuit current arrow flips
+    //   direction each half turn (sign(sin theta), at the sine's zero crossings)
+    //   -- that flip IS the direction story (NO 3D hand, no det=+1 check). Peak
+    //   eps0 = N*B*A*omega is REVEALED first at S3 (reveal gate). f = omega/2pi.
+    //   omega is demo-compressed (grid 50 Hz => omega~314; demo 0.5-3 rad/s).
+    //   Native radians throughout (NO radians() wrap); squares as x*x (never ^).
+    //   Rule 24 (silent visual: labels + readout + graph carry it), Rule 29
+    //   (emphasis = brightness; the only length that changes is the sine's
+    //   amplitude on the graph, a real magnitude). Reuses the coil-build /
+    //   bead / needle / graph-canvas idioms from faraday + inductance; the
+    //   rotating-coil-on-axle rig, pole-piece framing, slip-ring/brush assembly,
+    //   the DUAL coordinated cos/sin graph, and the flipping external current
+    //   arrow are NEW geometry.
+    var ACG_COIL_H = 1.15;        // coil half-height along the axle (Y)
+    var ACG_COIL_W = 0.8;         // coil half-depth (local Z at theta=0)
+    var ACG_POLE_X = 1.7;         // pole-face inner x (poles just outside)
+    var ACG_AXLE_TOP = 2.4;
+    var ACG_AXLE_BOT = -2.6;
+    var ACG_RING1_Y = -1.55;
+    var ACG_RING2_Y = -1.95;
+    var ACG_RING_R = 0.42;
+    var ACG_EXT_Y = -3.0;         // external-circuit bottom-wire y
+    var acgCoilGrp = null, acgRingGrp = null, acgComGrp = null, acgThetaArc = null;
+    var acgTurnsShown = 0;
+
+    function acgFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+    function acgTurnsForN(N) { var t = Math.round(N / 40); if (t < 2) t = 2; if (t > 8) t = 8; return t; }
+
+    // Parametrize the FULL closed circuit in WORLD space at the coil's current
+    // theta, so current beads can flow around it (mirrors memLoopPoint): open
+    // rectangular turn (endA -> over the top -> endB) -> down to ring2's
+    // rotating rim -> arc around ring2 to its fixed brush -> external wire ->
+    // bulb -> back up the other wire to ring1's brush -> arc to ring1's rim ->
+    // up to endA. Segment lengths recomputed per call (theta moves the rim).
+    function acgLoopPoint(u, theta) {
+        var h = ACG_COIL_H, w = ACG_COIL_W, R = ACG_RING_R, bx = ACG_RING_R + 0.11;
+        var c = Math.cos(theta), s = Math.sin(theta);
+        var TWO_PI = 2 * Math.PI;
+        function rim(alpha, y) { return [R * Math.cos(alpha), y, -R * Math.sin(alpha)]; }
+        var nubA = ((theta % TWO_PI) + TWO_PI) % TWO_PI;                    // rim azimuth (rotates with the coil)
+        var arc2 = ((Math.PI - nubA) % TWO_PI + TWO_PI) % TWO_PI;          // ring2: rim -> brush (at azimuth PI)
+        var arc1 = ((nubA - Math.PI) % TWO_PI + TWO_PI) % TWO_PI;          // ring1: brush -> rim
+        var endA = [w * s, -h, w * c], endATop = [w * s, h, w * c];
+        var endBTop = [-w * s, h, -w * c], endB = [-w * s, -h, -w * c];
+        var segs = [
+            { pts: [endA, endATop, endBTop, endB] },
+            { pts: [endB, rim(nubA, ACG_RING2_Y)] },
+            { arcY: ACG_RING2_Y, a0: nubA, a1: nubA + arc2 },
+            { pts: [[-bx, ACG_RING2_Y, 0], [-1.15, ACG_RING2_Y, 0], [-1.15, ACG_EXT_Y - 0.4, 0], [1.15, ACG_EXT_Y - 0.4, 0], [1.15, ACG_EXT_Y, 0], [0, ACG_EXT_Y, 0]] },
+            { pts: [[0, ACG_EXT_Y, 0], [-1.7, ACG_EXT_Y, 0], [-1.7, ACG_RING1_Y, 0], [-bx, ACG_RING1_Y, 0]] },
+            { arcY: ACG_RING1_Y, a0: Math.PI, a1: Math.PI + arc1 },
+            { pts: [rim(nubA, ACG_RING1_Y), endA] }
+        ];
+        function plen(pts) { var L = 0; for (var i = 1; i < pts.length; i++) { var dx = pts[i][0] - pts[i - 1][0], dy = pts[i][1] - pts[i - 1][1], dz = pts[i][2] - pts[i - 1][2]; L += Math.sqrt(dx * dx + dy * dy + dz * dz); } return L; }
+        var total = 0;
+        for (var si = 0; si < segs.length; si++) { var sg = segs[si]; sg.len = (sg.pts ? plen(sg.pts) : R * Math.abs(sg.a1 - sg.a0)) + 0.0001; total += sg.len; }
+        var sPos = (((u % 1) + 1) % 1) * total;
+        for (var sj = 0; sj < segs.length; sj++) {
+            var g = segs[sj];
+            if (sPos > g.len) { sPos -= g.len; continue; }
+            var f = sPos / g.len;
+            if (g.arcY !== undefined) { return rim(g.a0 + f * (g.a1 - g.a0), g.arcY); }
+            var target = f * (g.len - 0.0001), acc = 0;
+            for (var pk = 1; pk < g.pts.length; pk++) {
+                var p0 = g.pts[pk - 1], p1 = g.pts[pk];
+                var dxx = p1[0] - p0[0], dyy = p1[1] - p0[1], dzz = p1[2] - p0[2];
+                var dl = Math.sqrt(dxx * dxx + dyy * dyy + dzz * dzz);
+                if (acc + dl >= target || pk === g.pts.length - 1) {
+                    var ff = dl > 0 ? (target - acc) / dl : 0; if (ff < 0) ff = 0; if (ff > 1) ff = 1;
+                    return [p0[0] + ff * dxx, p0[1] + ff * dyy, p0[2] + ff * dzz];
+                }
+                acc += dl;
+            }
+            return g.pts[g.pts.length - 1];
+        }
+        return endA;
+    }
+    // (Re)build the coil group's rectangular turn loops (each in the local x=xi
+    // plane, normal +X at theta=0). Called on N change so the coil VISIBLY gains
+    // / loses turns. Corners rounded by the CatmullRom read as a coil winding.
+    function acgMakeCoil(grp, turns, h, w, color) {
+        while (grp.children.length) { var c = grp.children.pop(); if (c.geometry) c.geometry.dispose(); grp.remove(c); }
+        var dx = 0.055;
+        for (var i = 0; i < turns; i++) {
+            var xi = (i - (turns - 1) / 2) * dx;
+            var pts = [
+                new THREE.Vector3(xi, -h, -w), new THREE.Vector3(xi, h, -w),
+                new THREE.Vector3(xi, h, w), new THREE.Vector3(xi, -h, w)
+            ];
+            var geo = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), 48, 0.03, 8, true);
+            grp.add(new THREE.Mesh(geo, new THREE.MeshPhongMaterial({ color: hexToThreeColor(color || "#FFAB40") })));
+        }
+    }
+
+    function buildAcGenerator() {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var flColor = (config.field_lines && config.field_lines.color_positive) || "#66BB6A";
+
+        // 1. Rotating coil group (about Y). Normal = +X at theta=0 (face-on).
+        acgCoilGrp = new THREE.Group();
+        acgCoilGrp.userData = { elementType: "acg_coil", id: "acg_coil" };
+        acgTurnsShown = acgTurnsForN(100);
+        acgMakeCoil(acgCoilGrp, acgTurnsShown, ACG_COIL_H, ACG_COIL_W, "#FFAB40");
+        addToScene(acgCoilGrp);
+        var coilLbl = createWideLabelSprite("rotating coil: N turns, area A", "#FFCC80", 0.26);
+        coilLbl.position.set(0, ACG_COIL_H + 0.6, 0);
+        coilLbl.userData = { elementType: "acg_coil_lbl", id: "acg_coil_lbl" }; addToScene(coilLbl);
+
+        // 1b. Area-vector (normal) arrow — reoriented to (cos,0,-sin) each frame.
+        var normal = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 1.25, hexToThreeColor("#FFEE58"), 0.2, 0.13);
+        normal.userData = { elementType: "acg_normal", id: "acg_normal" }; addToScene(normal);
+        var normalLbl = createLabelSprite("A (normal)", "#FFEE58", 0.26); normalLbl.position.set(1.25, 0.15, 0);
+        normalLbl.userData = { elementType: "acg_normal", id: "acg_normal_lbl" }; addToScene(normalLbl);
+
+        // 1c. Flux-through-face disc (S2) — opacity ~ |cos theta|; orient to normal.
+        var disc = new THREE.Mesh(new THREE.CircleGeometry(ACG_COIL_W * 0.92, 28),
+            new THREE.MeshBasicMaterial({ color: hexToThreeColor(flColor), transparent: true, opacity: 0.12, side: THREE.DoubleSide }));
+        disc.userData = { elementType: "acg_fluxlink", id: "acg_fluxlink" }; addToScene(disc);
+
+        // 2. Vertical axle through the coil centre.
+        var axle = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, ACG_AXLE_TOP - ACG_AXLE_BOT, 16),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#B0BEC5"), emissive: hexToThreeColor("#546E7A"), emissiveIntensity: 0.2 }));
+        axle.position.set(0, (ACG_AXLE_TOP + ACG_AXLE_BOT) / 2, 0);
+        axle.userData = { elementType: "acg_axle", id: "acg_axle" }; addToScene(axle);
+
+        // 3. Pole pieces — N (red) at -X, S (blue) at +X. Uniform field points +X.
+        var poleN = new THREE.Mesh(new THREE.BoxGeometry(0.5, 2.0, 1.9),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#EF5350"), emissive: hexToThreeColor("#EF5350"), emissiveIntensity: 0.25 }));
+        poleN.position.set(-(ACG_POLE_X + 0.25), 0, 0);
+        poleN.userData = { elementType: "acg_pole", id: "acg_pole_n" }; addToScene(poleN);
+        var poleS = new THREE.Mesh(new THREE.BoxGeometry(0.5, 2.0, 1.9),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#42A5F5"), emissive: hexToThreeColor("#42A5F5"), emissiveIntensity: 0.25 }));
+        poleS.position.set(ACG_POLE_X + 0.25, 0, 0);
+        poleS.userData = { elementType: "acg_pole", id: "acg_pole_s" }; addToScene(poleS);
+        var poleNLbl = createLabelSprite("N", "#EF5350", 0.34); poleNLbl.position.set(-(ACG_POLE_X + 0.25), 1.3, 0);
+        poleNLbl.userData = { elementType: "acg_pole", id: "acg_pole_n_lbl" }; addToScene(poleNLbl);
+        var poleSLbl = createLabelSprite("S", "#42A5F5", 0.34); poleSLbl.position.set(ACG_POLE_X + 0.25, 1.3, 0);
+        poleSLbl.userData = { elementType: "acg_pole", id: "acg_pole_s_lbl" }; addToScene(poleSLbl);
+
+        // 4. Uniform field lattice — horizontal green +X arrows across the gap.
+        for (var fy = -1; fy <= 1; fy++) {
+            for (var fz = -1; fz <= 1; fz++) {
+                var bo = new THREE.Vector3(-ACG_POLE_X, fy * 0.72, fz * 0.72);
+                var bArr = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), bo, 2 * ACG_POLE_X, hexToThreeColor(flColor), 0.16, 0.1);
+                bArr.userData = { elementType: "acg_bfield", id: "acg_b_" + fy + "_" + fz };
+                bArr.children.forEach(function (c) { if (c.material) { c.material.transparent = true; c.material.opacity = 0.3; } });
+                addToScene(bArr);
+            }
+        }
+        var bLbl = createLabelSprite("B", flColor, 0.42); bLbl.position.set(0, -1.05, 0.95);
+        bLbl.userData = { elementType: "acg_bfield", id: "acg_b_lbl" }; addToScene(bLbl);
+
+        // 5. Slip rings (spin with the coil about Y). A radial nub on each makes
+        //    the spin visible; each ring wires to one coil end via a brush.
+        acgRingGrp = new THREE.Group();
+        acgRingGrp.userData = { elementType: "acg_slipring", id: "acg_slipring" };
+        var ringMat = function () { return new THREE.MeshPhongMaterial({ color: hexToThreeColor("#FFB300"), emissive: hexToThreeColor("#8A5A00"), emissiveIntensity: 0.25 }); };
+        var ring1 = new THREE.Mesh(new THREE.TorusGeometry(ACG_RING_R, 0.05, 10, 30), ringMat()); ring1.rotation.x = Math.PI / 2; ring1.position.y = ACG_RING1_Y; acgRingGrp.add(ring1);
+        var ring2 = new THREE.Mesh(new THREE.TorusGeometry(ACG_RING_R, 0.05, 10, 30), ringMat()); ring2.rotation.x = Math.PI / 2; ring2.position.y = ACG_RING2_Y; acgRingGrp.add(ring2);
+        var nub1 = new THREE.Mesh(new THREE.SphereGeometry(0.08, 10, 10), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFF176") })); nub1.position.set(ACG_RING_R, ACG_RING1_Y, 0); acgRingGrp.add(nub1);
+        var nub2 = new THREE.Mesh(new THREE.SphereGeometry(0.08, 10, 10), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFF176") })); nub2.position.set(ACG_RING_R, ACG_RING2_Y, 0); acgRingGrp.add(nub2);
+        addToScene(acgRingGrp);
+        var ringLbl = createLabelSprite("slip rings", "#FFCC80", 0.26); ringLbl.position.set(ACG_RING_R + 0.7, (ACG_RING1_Y + ACG_RING2_Y) / 2, 0);
+        ringLbl.userData = { elementType: "acg_slipring_lbl", id: "acg_slipring_lbl" }; addToScene(ringLbl);
+
+        // 6. Fixed brushes touching each ring's outer edge (-X side, static).
+        var brushMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#546E7A"), emissive: hexToThreeColor("#263238"), emissiveIntensity: 0.3 });
+        var brush1 = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.16, 0.14), brushMat); brush1.position.set(-(ACG_RING_R + 0.11), ACG_RING1_Y, 0);
+        brush1.userData = { elementType: "acg_brush", id: "acg_brush_1" }; addToScene(brush1);
+        var brush2 = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.16, 0.14), brushMat); brush2.position.set(-(ACG_RING_R + 0.11), ACG_RING2_Y, 0);
+        brush2.userData = { elementType: "acg_brush", id: "acg_brush_2" }; addToScene(brush2);
+
+        // 7. External circuit — two wires from the brushes down to a bulb, plus
+        //    the current arrow that flips direction each half turn (the AC).
+        var bx = ACG_RING_R + 0.11;
+        var wL = createTubeLine([[-bx, ACG_RING1_Y, 0], [-1.7, ACG_RING1_Y, 0], [-1.7, ACG_EXT_Y, 0], [-0.35, ACG_EXT_Y, 0]], "#B0BEC5", 0.028);
+        if (wL) { wL.userData = { elementType: "acg_extwire", id: "acg_extwire_l" }; addToScene(wL); }
+        var wR = createTubeLine([[-bx, ACG_RING2_Y, 0], [-1.15, ACG_RING2_Y, 0], [-1.15, ACG_EXT_Y - 0.4, 0], [1.15, ACG_EXT_Y - 0.4, 0], [1.15, ACG_EXT_Y, 0], [0.35, ACG_EXT_Y, 0]], "#B0BEC5", 0.028);
+        if (wR) { wR.userData = { elementType: "acg_extwire", id: "acg_extwire_r" }; addToScene(wR); }
+        var extArr = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(-1.0, ACG_EXT_Y, 0), 0.65, hexToThreeColor("#FFB300"), 0.18, 0.12);
+        // seat it flat on the left horizontal external wire, pointing +/-X.
+        extArr.position.set(-1.35, ACG_EXT_Y + 0.02, 0); extArr.setDirection(new THREE.Vector3(1, 0, 0)); extArr.setLength(0.7, 0.18, 0.12);
+        extArr.userData = { elementType: "acg_extcurr", id: "acg_extcurr" }; addToScene(extArr);
+        var extLbl = createLabelSprite("I (flips each half turn = AC)", "#FFB300", 0.24); extLbl.position.set(-1.0, ACG_EXT_Y + 0.45, 0);
+        extLbl.userData = { elementType: "acg_extcurr", id: "acg_extcurr_lbl" }; addToScene(extLbl);
+
+        // 8. Bulb — brightness ~ sin^2(theta) (twice per revolution).
+        var bulb = new THREE.Mesh(new THREE.SphereGeometry(0.26, 20, 20),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#4A3B00"), emissive: hexToThreeColor("#FFF176"), emissiveIntensity: 0.2 }));
+        bulb.position.set(0, ACG_EXT_Y, 0);
+        bulb.userData = { elementType: "acg_bulb", id: "acg_bulb" }; addToScene(bulb);
+        var bulbLbl = createLabelSprite("bulb", "#FFF176", 0.24); bulbLbl.position.set(0, ACG_EXT_Y - 0.5, 0);
+        bulbLbl.userData = { elementType: "acg_bulb_lbl", id: "acg_bulb_lbl" }; addToScene(bulbLbl);
+
+        // 9. Split-ring commutator inset (S5 DC contrast) — a ROTATING split
+        //    ring (two half-tori with gaps, spins with the coil) + two FIXED
+        //    contrast-brush dots that swap brightness each half turn: the
+        //    contact swap is exactly what rectifies the output to one-way DC.
+        acgComGrp = new THREE.Group(); acgComGrp.position.set(3.0, -0.6, 0);
+        var halfMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#90A4AE"), emissive: hexToThreeColor("#37474F"), emissiveIntensity: 0.3 });
+        var h1 = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.06, 8, 20, Math.PI - 0.35), halfMat); h1.rotation.x = Math.PI / 2; h1.rotation.z = 0.17; acgComGrp.add(h1);
+        var h2 = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.06, 8, 20, Math.PI - 0.35), halfMat.clone()); h2.rotation.x = Math.PI / 2; h2.rotation.z = Math.PI + 0.17; acgComGrp.add(h2);
+        acgComGrp.userData = { elementType: "acg_commutator", id: "acg_commutator" }; addToScene(acgComGrp);
+        var comLbl = createWideLabelSprite("split ring -> one-way DC", "#90A4AE", 0.24); comLbl.position.set(3.0, -1.15, 0);
+        comLbl.userData = { elementType: "acg_commutator", id: "acg_commutator_lbl" }; addToScene(comLbl);
+        var comBrA = new THREE.Mesh(new THREE.SphereGeometry(0.07, 10, 10),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#FFF176"), emissive: hexToThreeColor("#FFF176"), emissiveIntensity: 0.9 }));
+        comBrA.position.set(3.0 - 0.42, -0.6, 0);
+        comBrA.userData = { elementType: "acg_commutator", id: "acg_com_brush_a" }; addToScene(comBrA);
+        var comBrB = new THREE.Mesh(new THREE.SphereGeometry(0.07, 10, 10),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#546E7A"), emissive: hexToThreeColor("#263238"), emissiveIntensity: 0.15 }));
+        comBrB.position.set(3.0 + 0.42, -0.6, 0);
+        comBrB.userData = { elementType: "acg_commutator", id: "acg_com_brush_b" }; addToScene(comBrB);
+
+        // 10. theta angle arc (XZ plane) from +X (the B direction) to the coil
+        //     normal — a pre-tessellated full circle swept to theta each frame
+        //     via setDrawRange (no geometry rebuild). Ties the coil's pose to
+        //     the graph dots: same theta on the machine and on the plot.
+        var arcPts = [];
+        for (var ai = 0; ai <= 96; ai++) { var aa = (ai / 96) * 2 * Math.PI; arcPts.push(new THREE.Vector3(0.95 * Math.cos(aa), 0.03, -0.95 * Math.sin(aa))); }
+        acgThetaArc = new THREE.Line(new THREE.BufferGeometry().setFromPoints(arcPts),
+            new THREE.LineBasicMaterial({ color: hexToThreeColor("#FFEE58"), transparent: true, opacity: 0.85 }));
+        acgThetaArc.geometry.setDrawRange(0, 2);
+        acgThetaArc.userData = { elementType: "acg_theta_arc", id: "acg_theta_arc" }; addToScene(acgThetaArc);
+        var arcLbl = createLabelSprite("\\u03b8 = \\u03c9t", "#FFEE58", 0.26);
+        arcLbl.position.set(1.2, 0.12, 0);
+        arcLbl.userData = { elementType: "acg_theta_arc", id: "acg_theta_lbl" }; addToScene(arcLbl);
+
+        // 11. Mechanism arrows (emf_mechanism state): on each axle-parallel
+        //     side, v (cyan) + the per-charge push F = qv x B (purple, same
+        //     colour family as mem's E_internal). F's length is the REAL
+        //     |sin theta| magnitude (Rule 29): zero face-on, max edge-on —
+        //     the geometric WHY behind the sine.
+        for (var mi = 0; mi < 2; mi++) {
+            var vArr = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 0.55, hexToThreeColor("#4DD0E1"), 0.13, 0.085);
+            vArr.userData = { elementType: "acg_vf", id: "acg_v_" + mi }; addToScene(vArr);
+            var fArr = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 0.55, hexToThreeColor("#AB47BC"), 0.13, 0.085);
+            fArr.userData = { elementType: "acg_qf", id: "acg_f_" + mi }; addToScene(fArr);
+        }
+        var vMechLbl = createLabelSprite("v", "#4DD0E1", 0.3);
+        vMechLbl.userData = { elementType: "acg_vf", id: "acg_v_lbl" }; addToScene(vMechLbl);
+        var fMechLbl = createWideLabelSprite("F = qv x B", "#AB47BC", 0.26);
+        fMechLbl.userData = { elementType: "acg_qf", id: "acg_f_lbl" }; addToScene(fMechLbl);
+        var deadLbl = createWideLabelSprite("top + bottom sides: push is ACROSS the wire, no drive", "#90A4AE", 0.22);
+        deadLbl.position.set(0, ACG_COIL_H + 0.32, 0);
+        deadLbl.userData = { elementType: "acg_vf", id: "acg_vf_note" }; addToScene(deadLbl);
+
+        // 12. Current beads around the FULL circuit (coil -> slip rings ->
+        //     brushes -> bulb and back) — one conventional current everywhere
+        //     on the loop; direction + speed follow the live EMF (sin theta),
+        //     dimming through each zero crossing (mirrors mem/ind beads).
+        for (var bi = 0; bi < 14; bi++) {
+            var cbead = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 10),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFB300"), transparent: true, opacity: 0.9 }));
+            cbead.userData = { elementType: "acg_curr", id: "acg_curr_" + bi, slot: bi / 14 };
+            addToScene(cbead);
+        }
+        window.PM_acgBeadPhase = 0;
+
+        // ── DOM panels: readout, dual cos/sin graph canvas, contextual sliders,
+        //    formula overlay (mirrors faraday/inductance createElement pattern) ──
+        var rp = document.createElement("div"); rp.id = "acg_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:250px;display:none;";
+        document.body.appendChild(rp);
+
+        var gc = document.createElement("canvas"); gc.id = "acg_graph_canvas";
+        gc.width = 320; gc.height = 200;
+        gc.style.cssText = "position:fixed;bottom:12px;left:12px;width:320px;height:200px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gc);
+
+        window.PM_acgOmega = 1.5; window.PM_acgN = 100; window.PM_acgB = 0.2; window.PM_acgA = 0.02;
+        window.PM_acgManual = false; window.PM_acgPhase = 0; window.PM_acgLastT = 0;
+
+        var ff = document.createElement("div"); ff.id = "acg_formula";
+        ff.style.cssText = "position:fixed;top:40%;right:22px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.45 monospace;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;";
+        document.body.appendChild(ff);
+
+        var spd = document.createElement("div"); spd.id = "acg_sliders";
+        spd.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:240px;display:none;";
+        // Slider rows built from config.slider_controls (min/max/step/default/
+        // label authored in the concept JSON — mirrors gauss_law_sphere), with
+        // hardcoded fallbacks matching the authored defaults.
+        var scfg = config.slider_controls || {};
+        function acgSc(key, dmin, dmax, dstep, ddef, dlabel) {
+            var o = scfg[key] || {};
+            return {
+                min: (o.min != null ? o.min : dmin), max: (o.max != null ? o.max : dmax),
+                step: (o.step != null ? o.step : dstep), def: (o["default"] != null ? o["default"] : ddef),
+                label: o.label || dlabel
+            };
+        }
+        var scO = acgSc("omega", 0.5, 3.0, 0.1, 1.5, "Crank speed omega");
+        var scN = acgSc("N", 20, 300, 10, 100, "Turns N");
+        var scB = acgSc("B", 0.05, 0.5, 0.05, 0.2, "Field B");
+        var scA = acgSc("A", 0.005, 0.05, 0.005, 0.02, "Coil area A");
+        spd.innerHTML =
+            '<div id="acg_omega_row"><label>' + scO.label + ': <span id="acg_omega_val">' + scO.def.toFixed(1) + '</span> rad/s</label>' +
+            '<input type="range" id="acg_omega_slider" min="' + scO.min + '" max="' + scO.max + '" step="' + scO.step + '" value="' + scO.def + '" style="width:100%"></div>' +
+            '<div id="acg_n_row" style="margin-top:6px"><label>' + scN.label + ': <span id="acg_n_val">' + scN.def + '</span></label>' +
+            '<input type="range" id="acg_n_slider" min="' + scN.min + '" max="' + scN.max + '" step="' + scN.step + '" value="' + scN.def + '" style="width:100%"></div>' +
+            '<div id="acg_b_row" style="margin-top:6px"><label>' + scB.label + ': <span id="acg_b_val">' + scB.def.toFixed(2) + '</span> T</label>' +
+            '<input type="range" id="acg_b_slider" min="' + scB.min + '" max="' + scB.max + '" step="' + scB.step + '" value="' + scB.def + '" style="width:100%"></div>' +
+            '<div id="acg_a_row" style="margin-top:6px"><label>' + scA.label + ': <span id="acg_a_val">' + scA.def.toFixed(3) + '</span> m2</label>' +
+            '<input type="range" id="acg_a_slider" min="' + scA.min + '" max="' + scA.max + '" step="' + scA.step + '" value="' + scA.def + '" style="width:100%"></div>';
+        document.body.appendChild(spd);
+
+        // Rule 27: stable explorer id emits every param change to the parent.
+        function acgEmit(param, value) {
+            try { parent.postMessage({ type: "PARAM_UPDATE", explorer_id: (config.explorer_id || "ac_generator_explorer"), param: param, value: value }, "*"); } catch (e) {}
+        }
+        var oSl = document.getElementById("acg_omega_slider"), oV = document.getElementById("acg_omega_val");
+        var nSl = document.getElementById("acg_n_slider"), nV = document.getElementById("acg_n_val");
+        var bSl = document.getElementById("acg_b_slider"), bV = document.getElementById("acg_b_val");
+        var aSl = document.getElementById("acg_a_slider"), aV = document.getElementById("acg_a_val");
+        if (oSl) oSl.addEventListener("input", function (ev) { window.PM_acgOmega = parseFloat(oSl.value); if (oV) oV.textContent = window.PM_acgOmega.toFixed(1); if (ev && ev.isTrusted) window.PM_acgManual = true; acgEmit("omega", window.PM_acgOmega); });
+        if (nSl) nSl.addEventListener("input", function (ev) { window.PM_acgN = parseInt(nSl.value, 10); if (nV) nV.textContent = nSl.value; if (ev && ev.isTrusted) window.PM_acgManual = true; acgSyncCoilTurns(); acgEmit("N", window.PM_acgN); });
+        if (bSl) bSl.addEventListener("input", function (ev) { window.PM_acgB = parseFloat(bSl.value); if (bV) bV.textContent = window.PM_acgB.toFixed(2); if (ev && ev.isTrusted) window.PM_acgManual = true; acgEmit("B", window.PM_acgB); });
+        if (aSl) aSl.addEventListener("input", function (ev) { window.PM_acgA = parseFloat(aSl.value); if (aV) aV.textContent = window.PM_acgA.toFixed(3); if (ev && ev.isTrusted) window.PM_acgManual = true; acgEmit("A", window.PM_acgA); });
+
+        for (var qi = 0; qi < sceneObjects.length; qi++) {
+            var qo = sceneObjects[qi]; var qt = qo.userData && qo.userData.elementType;
+            if (qt && qt.indexOf("acg_") === 0) qo.visible = false;
+        }
+    }
+
+    // Rebuild the coil turns to the live N (used by the S6 N slider so the coil
+    // visibly gains / loses winding; keeps rotation.y intact).
+    function acgSyncCoilTurns() {
+        if (!acgCoilGrp) return;
+        var want = acgTurnsForN(window.PM_acgN);
+        if (want !== acgTurnsShown) { acgMakeCoil(acgCoilGrp, want, ACG_COIL_H, ACG_COIL_W, "#FFAB40"); acgTurnsShown = want; }
+    }
+
+    // Authoritative per-state exact-match visibility + seed (locked B/A/N/omega)
+    // + per-state contextual-control panel (Rule 31). Runs after the generic
+    // visible_elements matcher and fully overrides it (mirrors applyFaradayState).
+    function applyAcGeneratorState(stateDef) {
+        var d = stateDef.ac_generator || {};
+        var vis = stateDef.visible_elements || [];
+        function listed(tok) { for (var i = 0; i < vis.length; i++) { if (vis[i] === tok) return true; } return false; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || ud.elementType.indexOf("acg_") !== 0) continue;
+            o.visible = listed(ud.elementType);
+        }
+        if (typeof d.B === "number") window.PM_acgB = d.B;
+        if (typeof d.A === "number") window.PM_acgA = d.A;
+        if (typeof d.N === "number") window.PM_acgN = d.N;
+        if (typeof d.omega === "number") window.PM_acgOmega = d.omega;
+        window.PM_acgManual = false; window.PM_acgPhase = 0; window.PM_acgLastT = 0;
+        window.PM_acgBeadPhase = 0;
+        acgSyncCoilTurns();
+
+        function syncS(id, v) { var el = document.getElementById(id); if (el) el.value = String(v); }
+        function syncV(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
+        syncS("acg_omega_slider", window.PM_acgOmega); syncV("acg_omega_val", window.PM_acgOmega.toFixed(1));
+        syncS("acg_n_slider", window.PM_acgN); syncV("acg_n_val", String(window.PM_acgN));
+        syncS("acg_b_slider", window.PM_acgB); syncV("acg_b_val", window.PM_acgB.toFixed(2));
+        syncS("acg_a_slider", window.PM_acgA); syncV("acg_a_val", window.PM_acgA.toFixed(3));
+
+        var roEl = document.getElementById("acg_readout"); if (roEl) roEl.style.display = (d.show_readout === false) ? "none" : "block";
+        var gcEl = document.getElementById("acg_graph_canvas"); if (gcEl) gcEl.style.display = d.show_graph ? "block" : "none";
+        var spEl = document.getElementById("acg_sliders");
+        var vc = d.visible_controls || [];
+        if (spEl) spEl.style.display = (vc.length > 0) ? "block" : "none";
+        var rows = { omega: "acg_omega_row", N: "acg_n_row", B: "acg_b_row", A: "acg_a_row" };
+        for (var rk in rows) { var rEl = document.getElementById(rows[rk]); if (rEl) rEl.style.display = (vc.indexOf(rk) !== -1) ? "block" : "none"; }
+        var ff = document.getElementById("acg_formula");
+        if (ff) { var ftext = stateDef.formula_overlay || ""; ff.textContent = ftext; ff.style.display = ftext ? "block" : "none"; }
+    }
+
+    // Per-frame update — accumulate the single phase theta (Rule 26), rotate the
+    // coil + slip rings, reorient the normal arrow, modulate the flux disc /
+    // bulb / flipping external current arrow, and paint the readout + dual graph.
+    function updateAcGeneratorFrame() {
+        if (config.scenario_type !== "ac_generator") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var d = stateDef.ac_generator || {};
+        var mode = d.mode || "sandbox";
+        var t = time - stateStartTime;
+
+        // Sandbox idle sweep: until the teacher touches a slider, omega slowly
+        // sweeps 0.5 <-> 3.0 so the sim demonstrates the peak+frequency coupling
+        // by itself; any trusted slider touch (PM_acgManual) seizes control
+        // (seize-on-touch, mirrors PM_gsphUserDragged).
+        if (mode === "sandbox" && d.idle_autosweep && !window.PM_acgManual) {
+            var sweep = 1.75 + 1.25 * Math.sin(t * 0.12);
+            window.PM_acgOmega = Math.round(sweep * 10) / 10;
+            var swS = document.getElementById("acg_omega_slider"); if (swS) swS.value = String(window.PM_acgOmega);
+            var swV = document.getElementById("acg_omega_val"); if (swV) swV.textContent = window.PM_acgOmega.toFixed(1);
+        }
+
+        var omega = window.PM_acgOmega, N = window.PM_acgN, B = window.PM_acgB, A = window.PM_acgA;
+
+        // Scenario cues (2026-07-03 channel): the live player binds each cue to
+        // its narrating sentence via SET_CUE_TIME; THE EYE sends none, so the
+        // authored *_at_ms fallbacks (0 = immediate) keep frame capture
+        // deterministic. Times are state-local seconds.
+        var fluxStartS = cueTriggerMs("flux_graph_start", (d.flux_graph_start_at_ms != null ? d.flux_graph_start_at_ms : 0)) / 1000;
+        var emfStartS = cueTriggerMs("emf_graph_start", (d.emf_graph_start_at_ms != null ? d.emf_graph_start_at_ms : 0)) / 1000;
+
+        if (window.PM_acgLastT === undefined) window.PM_acgLastT = t;
+        var dt = t - window.PM_acgLastT; if (dt < 0 || dt > 0.2) dt = 0; window.PM_acgLastT = t;
+        if (window.PM_acgPhase === undefined) window.PM_acgPhase = 0;
+        window.PM_acgPhase += omega * dt;
+        var theta = window.PM_acgPhase;
+
+        var cosT = Math.cos(theta), sinT = Math.sin(theta);
+        var phiMax = N * B * A;
+        var emf0 = N * B * A * omega;
+        var Phi = phiMax * cosT;
+        var emf = emf0 * sinT;
+
+        if (acgCoilGrp) acgCoilGrp.rotation.y = theta;
+        if (acgRingGrp) acgRingGrp.rotation.y = theta;
+
+        var normArr = acgFindById("acg_normal");
+        if (normArr && normArr.visible && normArr.setDirection) normArr.setDirection(new THREE.Vector3(cosT, 0, -sinT));
+        var normLbl = acgFindById("acg_normal_lbl");
+        if (normLbl && normLbl.visible) normLbl.position.set(1.35 * cosT, 0.2, -1.35 * sinT);
+
+        var disc = acgFindById("acg_fluxlink");
+        if (disc && disc.visible) {
+            var q = new THREE.Quaternion();
+            q.setFromUnitVectors(new THREE.Vector3(0, 0, 1), new THREE.Vector3(cosT, 0, -sinT).normalize());
+            disc.setRotationFromQuaternion(q);
+            if (disc.material) disc.material.opacity = 0.08 + 0.42 * Math.abs(cosT);
+        }
+
+        var bulb = acgFindById("acg_bulb");
+        if (bulb && bulb.visible && bulb.material) {
+            var bf = sinT * sinT;   // == (emf/emf0)^2, twice per revolution
+            bulb.material.color = new THREE.Color(0x4A3B00).lerp(new THREE.Color(0xFFF176), 0.12 + 0.88 * bf);
+            bulb.material.emissiveIntensity = 0.1 + 1.1 * bf;
+        }
+
+        // external current arrow: direction = sign(sin theta) along the wire (+/-X),
+        // flips at the sine's zero crossings — the AC direction story (no hand).
+        var ext = acgFindById("acg_extcurr");
+        if (ext && ext.visible && ext.setDirection) {
+            var s = (sinT >= 0) ? 1 : -1;
+            ext.setDirection(new THREE.Vector3(s, 0, 0));
+            ext.position.set(-1.35, ACG_EXT_Y + 0.02, 0);
+            // one-shot brightness pulse on the narrated flip beat ("watch the
+            // arrow flip") — Rule 29: emphasis = brightness, never size.
+            var flipRaw = cueTriggerMs("current_flip", (d.current_flip_pulse_at_ms != null ? d.current_flip_pulse_at_ms : -1));
+            var pulse = 0;
+            if (flipRaw >= 0) { var fpS = flipRaw / 1000; if (t >= fpS && t < fpS + 1.6) pulse = 1 - (t - fpS) / 1.6; }
+            if (ext.setColor) ext.setColor(new THREE.Color(0xFFB300).lerp(new THREE.Color(0xFFFFFF), pulse));
+        }
+
+        // circuit beads: ONE conventional current everywhere on the loop —
+        // speed + direction follow sin(theta), dimming through zero crossings.
+        if (window.PM_acgBeadPhase === undefined) window.PM_acgBeadPhase = 0;
+        window.PM_acgBeadPhase += sinT * 0.16 * dt;
+        for (var cb2 = 0; cb2 < sceneObjects.length; cb2++) {
+            var co = sceneObjects[cb2], cu = co.userData;
+            if (!cu || cu.elementType !== "acg_curr" || !co.visible) continue;
+            var uu = (((cu.slot + window.PM_acgBeadPhase) % 1) + 1) % 1;
+            var bp = acgLoopPoint(uu, theta);
+            co.position.set(bp[0], bp[1], bp[2]);
+            if (co.material) co.material.opacity = 0.2 + 0.7 * Math.abs(sinT);
+        }
+
+        // mechanism arrows (emf_mechanism): the two axle-parallel sides carry
+        // v = omega y-hat x r (horizontal, tangential) and the per-charge push
+        // F = qv x B (vertical, REAL |sin theta| magnitude — Rule 29): the push
+        // dies at face-on (v parallel to B) and peaks at edge-on (v cuts B).
+        var vObj0 = acgFindById("acg_v_0");
+        if (vObj0 && vObj0.visible) {
+            var w2 = ACG_COIL_W;
+            var mids = [[w2 * sinT, 0, w2 * cosT], [-w2 * sinT, 0, -w2 * cosT]];
+            var vDirs = [[cosT, 0, -sinT], [-cosT, 0, sinT]];
+            var fSigns = [-sinT, sinT];
+            var fm = Math.abs(sinT);
+            for (var vk = 0; vk < 2; vk++) {
+                var vObj = acgFindById("acg_v_" + vk), fObj = acgFindById("acg_f_" + vk);
+                if (vObj) { vObj.position.set(mids[vk][0], 0, mids[vk][2]); vObj.setDirection(new THREE.Vector3(vDirs[vk][0], 0, vDirs[vk][2])); vObj.setLength(0.55, 0.13, 0.085); }
+                if (fObj) {
+                    fObj.visible = fm > 0.04;
+                    if (fObj.visible) { fObj.position.set(mids[vk][0], 0, mids[vk][2]); fObj.setDirection(new THREE.Vector3(0, (fSigns[vk] >= 0 ? 1 : -1), 0)); fObj.setLength(0.12 + 0.75 * fm, 0.13, 0.085); }
+                }
+            }
+            var vMl = acgFindById("acg_v_lbl"); if (vMl) vMl.position.set(mids[0][0] + vDirs[0][0] * 0.85, 0.2, mids[0][2] + vDirs[0][2] * 0.85);
+            var fMl = acgFindById("acg_f_lbl");
+            if (fMl) { fMl.visible = fm > 0.04; fMl.position.set(mids[1][0], (fSigns[1] >= 0 ? 1 : -1) * 1.0, mids[1][2]); }
+        }
+
+        // theta arc sweeps from +X (B) to the live normal (setDrawRange only).
+        if (acgThetaArc && acgThetaArc.visible) {
+            var thNorm = ((theta % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+            acgThetaArc.geometry.setDrawRange(0, Math.max(2, Math.round((thNorm / (2 * Math.PI)) * 96) + 1));
+            var aLbl = acgFindById("acg_theta_lbl");
+            if (aLbl) { var ha = thNorm / 2; aLbl.position.set(1.25 * Math.cos(ha), 0.12, -1.25 * Math.sin(ha)); }
+        }
+
+        // split-ring inset spins with the coil; its two FIXED brush dots swap
+        // brightness at each zero crossing — the contact swap that makes DC.
+        if (acgComGrp && acgComGrp.visible) {
+            acgComGrp.rotation.y = theta;
+            var hot = (sinT >= 0);
+            var cbA = acgFindById("acg_com_brush_a"), cbB = acgFindById("acg_com_brush_b");
+            if (cbA && cbA.material) { cbA.material.color = new THREE.Color(hot ? 0xFFF176 : 0x546E7A); cbA.material.emissive = new THREE.Color(hot ? 0xFFF176 : 0x263238); cbA.material.emissiveIntensity = hot ? 0.9 : 0.15; }
+            if (cbB && cbB.material) { cbB.material.color = new THREE.Color(hot ? 0x546E7A : 0xFFF176); cbB.material.emissive = new THREE.Color(hot ? 0x263238 : 0xFFF176); cbB.material.emissiveIntensity = hot ? 0.15 : 0.9; }
+        }
+
+        // field-arrow opacity tracks the live B (the slider's 3D feedback).
+        var bOp = 0.12 + 0.55 * (B - 0.05) / 0.45; if (bOp < 0.12) bOp = 0.12; if (bOp > 0.7) bOp = 0.7;
+        for (var bf2 = 0; bf2 < sceneObjects.length; bf2++) {
+            var bo2 = sceneObjects[bf2], bu2 = bo2.userData;
+            if (!bu2 || bu2.elementType !== "acg_bfield" || !bo2.children || !bo2.children.length) continue;
+            for (var bc2 = 0; bc2 < bo2.children.length; bc2++) { var bch = bo2.children[bc2]; if (bch.material) bch.material.opacity = bOp; }
+        }
+
+        // the graph switches on the GRAPH mode (show_graph: flux_cos|both|emf|
+        // emf_fixed_axis), NOT the scenario mode (machine_overview|flux_trace|...).
+        var graphMode = (typeof d.show_graph === "string") ? d.show_graph : "both";
+        acgDrawGraph(graphMode, t, theta, omega, N, B, A, d, fluxStartS, emfStartS);
+        acgWriteReadout(d, mode, omega, N, B, A, phiMax, Phi, emf0, emf, cosT, sinT, theta);
+    }
+
+    // Dual Phi(cosine) / eps(sine)-vs-t oscilloscope. A SCROLLING time window
+    // [t-tWin, t] maps to the plot width; the live dots sit at the RIGHT edge at
+    // the CURRENT theta, so the dot always lands on the curve (perfect lockstep).
+    // The curve history uses the current omega (phaseAt = theta + omega*(s-t)), so
+    // faster omega packs more cycles into the window (the S4 teaching). Snap
+    // markers (S3) draw the last flux-max + last emf-max, a quarter period apart.
+    function acgDrawGraph(mode, t, theta, omega, N, B, A, d, fluxStartS, emfStartS) {
+        var gc = document.getElementById("acg_graph_canvas"); if (!gc || gc.style.display === "none" || !gc.getContext) return;
+        var ctx = gc.getContext("2d"); ctx.clearRect(0, 0, gc.width, gc.height);
+        ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+        var W = gc.width, H = gc.height, padL = 36, padR = 12, padT = 18, padB = 16;
+        var plotW = W - padL - padR, plotH = (H - padB) - padT, midY = padT + plotH / 2;
+        var phiMax = N * B * A, emf0 = N * B * A * omega;
+        var tWin = 9.0;
+        function xPix(sec) { return padL + ((sec - (t - tWin)) / tWin) * plotW; }
+        function phaseAt(sec) { return theta + omega * (sec - t); }
+        // cue-gated trace starts: before its narrated beat a curve shows axes
+        // only, then begins tracing FROM that instant (no pre-cue history).
+        var fS = fluxStartS || 0, eS = emfStartS || 0;
+        var showFlux = (mode === "flux_cos" || mode === "both") && t >= fS;
+        var showEmf = (mode === "emf" || mode === "emf_fixed_axis" || mode === "both") && t >= eS;
+        var emfAxis = (mode === "emf_fixed_axis") ? 4.0 : Math.max(emf0 * 1.1, 0.000001);
+        var fluxAxis = Math.max(phiMax * 1.1, 0.000001);
+        function yFlux(v) { return midY - (v / fluxAxis) * (plotH / 2); }
+        function yEmf(v) { return midY - (v / emfAxis) * (plotH / 2); }
+        // zero baseline
+        ctx.strokeStyle = "#37474F"; ctx.beginPath(); ctx.moveTo(padL, midY); ctx.lineTo(W - padR, midY); ctx.stroke();
+        var step = tWin / 180;
+        if (showFlux) {
+            ctx.strokeStyle = (mode === "both") ? "rgba(102,187,106,0.55)" : "#66BB6A";
+            ctx.lineWidth = (mode === "both") ? 1.4 : 2; ctx.beginPath();
+            var first = true;
+            for (var s1 = Math.max(t - tWin, fS); s1 <= t + 0.0001; s1 += step) { var xv = xPix(s1), yv = yFlux(phiMax * Math.cos(phaseAt(s1))); if (first) { ctx.moveTo(xv, yv); first = false; } else ctx.lineTo(xv, yv); }
+            ctx.stroke();
+        }
+        if (showEmf) {
+            ctx.strokeStyle = "#FFB300"; ctx.lineWidth = 2; ctx.beginPath();
+            var f2 = true;
+            for (var s2 = Math.max(t - tWin, eS); s2 <= t + 0.0001; s2 += step) { var xv2 = xPix(s2), yv2 = yEmf(emf0 * Math.sin(phaseAt(s2))); if (f2) { ctx.moveTo(xv2, yv2); f2 = false; } else ctx.lineTo(xv2, yv2); }
+            ctx.stroke();
+        }
+        // split-ring contrast (slip-ring state): the SAME emf rectified — a
+        // dashed grey |sin| one-way hump train beside the alternating sine.
+        if (showEmf && d.split_ring_contrast) {
+            ctx.strokeStyle = "#90A4AE"; ctx.lineWidth = 1.3; ctx.setLineDash([5, 3]); ctx.beginPath();
+            var f3 = true;
+            for (var s3 = Math.max(t - tWin, eS); s3 <= t + 0.0001; s3 += step) { var xv3 = xPix(s3), yv3 = yEmf(Math.abs(emf0 * Math.sin(phaseAt(s3)))); if (f3) { ctx.moveTo(xv3, yv3); f3 = false; } else ctx.lineTo(xv3, yv3); }
+            ctx.stroke(); ctx.setLineDash([]);
+            ctx.fillStyle = "#90A4AE"; ctx.font = "9px monospace";
+            ctx.fillText("split ring -> |eps| (one-way DC, grey)", padL, H - 4);
+        }
+        ctx.lineWidth = 1;
+        // snap markers (S3): last flux-max (phase=2*pi*k) + last emf-max (phase=pi/2+2*pi*k)
+        if (d.snap_markers && omega > 0.0001) {
+            var kF = Math.floor(theta / (2 * Math.PI)); var tF = t + (2 * Math.PI * kF - theta) / omega;
+            var kE = Math.floor((theta - Math.PI / 2) / (2 * Math.PI)); var tE = t + (Math.PI / 2 + 2 * Math.PI * kE - theta) / omega;
+            ctx.setLineDash([4, 3]); ctx.font = "9px monospace";
+            if (tF >= t - tWin) { ctx.strokeStyle = "#66BB6A"; ctx.beginPath(); ctx.moveTo(xPix(tF), padT); ctx.lineTo(xPix(tF), H - padB); ctx.stroke(); ctx.fillStyle = "#66BB6A"; ctx.fillText("Phi max, eps=0", xPix(tF) - 2, padT + 9); }
+            if (tE >= t - tWin) { ctx.strokeStyle = "#FFB300"; ctx.beginPath(); ctx.moveTo(xPix(tE), padT); ctx.lineTo(xPix(tE), H - padB); ctx.stroke(); ctx.fillStyle = "#FFB300"; ctx.fillText("eps peak, Phi=0", xPix(tE) - 2, H - padB - 2); }
+            ctx.setLineDash([]);
+        }
+        // live dots at the right edge (current theta) — always on the curve
+        if (showFlux) { ctx.fillStyle = "#66BB6A"; ctx.beginPath(); ctx.arc(xPix(t), yFlux(phiMax * Math.cos(theta)), 3.6, 0, 2 * Math.PI); ctx.fill(); }
+        if (showEmf) { ctx.fillStyle = "#FFF176"; ctx.beginPath(); ctx.arc(xPix(t), yEmf(emf0 * Math.sin(theta)), 3.6, 0, 2 * Math.PI); ctx.fill(); }
+        // titles
+        ctx.fillStyle = "#90A4AE"; ctx.font = "10px monospace";
+        var title = (mode === "flux_cos") ? "Phi vs t (cosine)" : (mode === "both") ? "Phi (green) & eps (amber) vs t" : "eps vs t (sine)";
+        ctx.fillText(title, padL, 11);
+        if (mode === "emf_fixed_axis") { ctx.fillStyle = "#B0BEC5"; ctx.fillText("axis +/-4.0 V", W - padR - 84, 11); }
+        else if (d.auto_scale) { ctx.fillStyle = "#B0BEC5"; ctx.fillText("(auto-scaled)", W - padR - 84, 11); }
+    }
+
+    function acgWriteReadout(d, mode, omega, N, B, A, phiMax, Phi, emf0, emf, cosT, sinT, theta) {
+        var roEl = document.getElementById("acg_readout"); if (!roEl || roEl.style.display === "none") return;
+        var eColor = (Math.abs(emf) < 0.02 * Math.max(emf0, 0.01)) ? "#90A4AE" : (emf > 0 ? "#66BB6A" : "#EF5350");
+        var f = omega / (2 * Math.PI);
+        var html = "";
+        html += "<div style=\\"color:#FFCC80\\">N = " + N + " turns   B = " + B.toFixed(2) + " T   A = " + A.toFixed(3) + " m2</div>";
+        html += "<div style=\\"color:#90CAF9\\">omega = " + omega.toFixed(1) + " rad/s" + (d.show_f ? ("   f = " + f.toFixed(2) + " Hz") : "") + "</div>";
+        // reveal gate: S1 (machine_overview) shows NO flux/EMF formula; S2 shows
+        // only the flux cosine; the EMF sine + peak eps0 appear FIRST at S3 (reveal_emf0).
+        if (mode !== "machine_overview") {
+            var thDeg = (((theta % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)) * 180 / Math.PI;
+            html += "<div style=\\"color:#FFEE58\\">\\u03b8 = \\u03c9t = " + thDeg.toFixed(0) + "\\u00b0</div>";
+        }
+        if (mode !== "machine_overview") html += "<div style=\\"color:#66BB6A\\">\\u03a6 = NBA cos(\\u03c9t) = " + Phi.toFixed(3) + " Wb</div>";
+        if (d.reveal_emf0) {
+            html += "<div style=\\"color:" + eColor + "\\">\\u03b5 = NBA\\u03c9 sin(\\u03c9t) = " + emf.toFixed(2) + " V</div>";
+            html += "<div style=\\"color:#FFD54F\\">\\u03b5\\u2080 = NBA\\u03c9 = " + emf0.toFixed(2) + " V</div>";
+        }
+        if (Math.abs(cosT) > 0.985) html += "<div style=\\"color:#90A4AE;font-size:11px\\">face-on: flux max, EMF 0</div>";
+        else if (Math.abs(sinT) > 0.985) html += "<div style=\\"color:#90A4AE;font-size:11px\\">edge-on: flux 0, EMF peak</div>";
+        roEl.innerHTML = html;
+    }
+
+    function applyAcGeneratorGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            var et = sud.elementType || "";
+            if (et.indexOf("acg_") !== 0) continue;
+            applyGlowEmphasis(so, on(sud.id) || on(et), glowActive, glowP, true);
+        }
+    }
 
     // ── gauss_law_sphere scenario (charged shell: E=0 inside, kq/r² outside) ──
     //   A NEW field_3d scenario built on the gauss_law block's structural
@@ -23339,6 +24937,420 @@ export const FIELD_3D_RENDERER_CODE = `
         return parseFloat(el.value) / def;
     }
 
+    // ══════════════════════════════════════════════════════════════════════════
+    // helix_in_uniform_field — the HELIX sibling of radius_in_uniform_field
+    //   (helical_motion_charge_in_uniform_B). A charge entering a uniform field B
+    //   at angle theta traces a HELIX: v_perp = v sin(theta) circles (r = m v_perp/qB),
+    //   v_par = v cos(theta) sails straight along B (v_par x B = 0), giving a pitch
+    //   p = v_par * T per turn. SELF-CONTAINED, hx_-namespaced. It NEVER touches the
+    //   radius_in_uniform_field code path (concept 1) — its own build/apply/glow/frame.
+    //   RELATIVE readouts only (hide_period_readout + hide_magnitude_readout every
+    //   state): the pitch + radius are relative bars, theta is an arc + symbol, no
+    //   metres/seconds/Tesla/Newton number. Spiral guard: the coil is a COMPLETE
+    //   helix redrawn about a FIXED axis parallel to B every frame (never an
+    //   accumulating trail) — scar field3d_orbit_spiral_on_radius_ramp.
+    // ══════════════════════════════════════════════════════════════════════════
+    var HX_R_BASE = 0.85;       // circle radius at v_perp factor 1 (theta 90, v=B=1)
+    var HX_PITCH_BASE = 0.80;   // axial advance per turn at v_par factor 1
+    var HX_AXIAL = 1.7;         // half the axial span shown along B (+/- HX_AXIAL)
+    var HX_V_GLYPH = 1.15;      // full velocity glyph length (components split it)
+    var HX_OMEGA = 0.8;         // angular rate (period theta-independent, mirrors T)
+    var HX_TURN_SEGS = 36;      // helix segments per turn
+    function hxClamp(x, lo, hi) { return x < lo ? lo : (x > hi ? hi : x); }
+    function hxFindById(id) { for (var hi = 0; hi < sceneObjects.length; hi++) { var ho = sceneObjects[hi]; if (ho.userData && ho.userData.id === id) return ho; } return null; }
+    function hxFactor(sliderId, controlKey) {
+        var el = document.getElementById(sliderId);
+        var def = (config.slider_controls && config.slider_controls[controlKey] &&
+            config.slider_controls[controlKey].default) ? config.slider_controls[controlKey].default : 1.0;
+        if (!el || !(def > 0)) return 1.0;
+        return parseFloat(el.value) / def;
+    }
+    function hxRelBar(el, frac) {
+        if (!el) return;
+        var f = hxClamp(frac, 0, 1), n = 12, filled = Math.round(f * n), s = "";
+        for (var i = 0; i < n; i++) s += (i < filled) ? "\\u25AE" : "\\u25AF";
+        if (el.textContent !== s) el.textContent = s;
+    }
+    // Draw a COMPLETE helix (or flat circle when flat) into a Line's buffer about the
+    // FIXED axis parallel to B — redrawn whole each frame (spiral guard).
+    function hxDrawCoil(coilObj, R, nTurns, u1, u2, bUnit, flat) {
+        var ud = coilObj.userData;
+        var maxP = ud.max_points || 600;
+        var segs = Math.max(8, Math.round(nTurns * HX_TURN_SEGS));
+        var n = Math.min(maxP, segs + 1);
+        var arr = coilObj.geometry.attributes.position.array;
+        for (var i = 0; i < n; i++) {
+            var frac = (n > 1) ? i / (n - 1) : 0;
+            var ang = frac * nTurns * 2 * Math.PI;
+            var along = flat ? 0 : (-HX_AXIAL + frac * 2 * HX_AXIAL);
+            arr[i * 3]     = bUnit.x * along + u1.x * R * Math.cos(ang) + u2.x * R * Math.sin(ang);
+            arr[i * 3 + 1] = bUnit.y * along + u1.y * R * Math.cos(ang) + u2.y * R * Math.sin(ang);
+            arr[i * 3 + 2] = bUnit.z * along + u1.z * R * Math.cos(ang) + u2.z * R * Math.sin(ang);
+        }
+        ud.filled = n;
+        coilObj.geometry.setDrawRange(0, n);
+        coilObj.geometry.attributes.position.needsUpdate = true;
+    }
+    // Draw a faint flat ghost circle of radius R at along=0 (the "expected flat loop").
+    function hxDrawFlatRing(ringObj, R, u1, u2) {
+        var ud = ringObj.userData, segs = ud.segments || 80;
+        var arr = ringObj.geometry.attributes.position.array;
+        for (var i = 0; i <= segs; i++) {
+            var a = (i / segs) * Math.PI * 2;
+            arr[i * 3]     = u1.x * R * Math.cos(a) + u2.x * R * Math.sin(a);
+            arr[i * 3 + 1] = u1.y * R * Math.cos(a) + u2.y * R * Math.sin(a);
+            arr[i * 3 + 2] = u1.z * R * Math.cos(a) + u2.z * R * Math.sin(a);
+        }
+        ringObj.geometry.setDrawRange(0, segs + 1);
+        ringObj.geometry.attributes.position.needsUpdate = true;
+    }
+
+    function buildHelixInUniformField() {
+        var af = config.ambient_field || {
+            direction: [0, 0, 1], magnitude: 1, density: [5, 5, 5],
+            color: "#42A5F5", opacity: 0.45, extent: 3
+        };
+        var p = config.particle || { charge_sign: 1, color: "#FFB366", radius: 0.12 };
+        var bDir = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+        var ext = af.extent != null ? af.extent : 3;
+        var nx = af.density[0], ny = af.density[1], nz = af.density[2];
+        var sx = nx > 1 ? (2 * ext) / (nx - 1) : 0;
+        var sy = ny > 1 ? (2 * ext) / (ny - 1) : 0;
+        var sz = nz > 1 ? (2 * ext) / (nz - 1) : 0;
+        var arrowLen = 0.55, arrowOp = af.opacity != null ? af.opacity : 0.45, arrowColor = af.color || "#42A5F5";
+
+        // 1. Faint ambient B lattice (registered "ambient_field" so SET_GLOW 'b' lifts it).
+        for (var ix = 0; ix < nx; ix++) {
+            for (var iy = 0; iy < ny; iy++) {
+                for (var iz = 0; iz < nz; iz++) {
+                    var ox = nx > 1 ? -ext + ix * sx : 0, oy = ny > 1 ? -ext + iy * sy : 0, oz = nz > 1 ? -ext + iz * sz : 0;
+                    var origin = new THREE.Vector3(ox, oy, oz).addScaledVector(bDir, -arrowLen / 2);
+                    var arrH = new THREE.ArrowHelper(bDir, origin, arrowLen, arrowColor, 0.14, 0.09);
+                    arrH.userData = { elementType: "ambient_field", id: "hx_b_arrow_" + ix + "_" + iy + "_" + iz };
+                    arrH.children.forEach(function (child) { if (child.material) { child.material.transparent = true; child.material.opacity = arrowOp; } });
+                    addToScene(arrH);
+                }
+            }
+        }
+
+        // 2. Helix axis (faint dashed line along B through the origin).
+        var axMat = new THREE.LineDashedMaterial({ color: hexToThreeColor("#5EB1FF"), transparent: true, opacity: 0.35, dashSize: 0.12, gapSize: 0.12 });
+        var axGeo = new THREE.BufferGeometry();
+        axGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array([
+            bDir.x * -HX_AXIAL, bDir.y * -HX_AXIAL, bDir.z * -HX_AXIAL,
+            bDir.x * HX_AXIAL, bDir.y * HX_AXIAL, bDir.z * HX_AXIAL
+        ]), 3));
+        var axisLine = new THREE.Line(axGeo, axMat);
+        if (axisLine.computeLineDistances) axisLine.computeLineDistances();
+        axisLine.userData = { elementType: "hx_axis", id: "hx_axis" };
+        axisLine.visible = false;
+        addToScene(axisLine);
+
+        // 3. The charged particle (rides the coil) + badge.
+        var pRadius = p.radius != null ? p.radius : 0.12;
+        var particle = new THREE.Mesh(new THREE.SphereGeometry(pRadius, 22, 22), new THREE.MeshPhongMaterial({
+            color: hexToThreeColor(p.color), emissive: hexToThreeColor(p.color), emissiveIntensity: 0.65, shininess: 90
+        }));
+        var badge = createLabelSprite("+", "#FFFFFF", 0.34);
+        badge.position.set(0, 0, 0); badge.userData = { is_charge_badge: true, current_sign: 1 };
+        particle.add(badge);
+        particle.userData = { elementType: "hx_particle", id: "hx_particle", charge_sign: p.charge_sign, charge_sprite: badge };
+        addToScene(particle);
+
+        // 4. Instantaneous circle centre (rides the axis at the particle's height).
+        var centreDot = new THREE.Mesh(new THREE.SphereGeometry(0.07, 16, 16), new THREE.MeshPhongMaterial({
+            color: hexToThreeColor("#FFD54F"), emissive: hexToThreeColor("#FFD54F"), emissiveIntensity: 0.8, transparent: true, opacity: 0.9
+        }));
+        centreDot.userData = { elementType: "hx_centre", id: "hx_centre" };
+        centreDot.visible = false;
+        addToScene(centreDot);
+
+        // 5. Velocity glyphs: full v (amber) + v_par (grey, along B) + v_perp (orange, across B).
+        var vArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), HX_V_GLYPH, hexToThreeColor("#FFAB40"), 0.22, 0.11);
+        vArrow.children.forEach(function (c) { if (c.material) c.material.transparent = true; });
+        vArrow.userData = { elementType: "hx_velocity", id: "hx_v_arrow" };
+        addToScene(vArrow);
+        var vPar = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 0.7, hexToThreeColor("#9CA3AF"), 0.2, 0.1);
+        vPar.children.forEach(function (c) { if (c.material) c.material.transparent = true; });
+        vPar.userData = { elementType: "hx_vpar", id: "hx_vpar_arrow" };
+        vPar.visible = false;
+        addToScene(vPar);
+        var vPerp = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), 0.7, hexToThreeColor("#FFCC9F"), 0.2, 0.1);
+        vPerp.children.forEach(function (c) { if (c.material) c.material.transparent = true; });
+        vPerp.userData = { elementType: "hx_vperp", id: "hx_vperp_arrow" };
+        vPerp.visible = false;
+        addToScene(vPerp);
+
+        // 6. Labels: v, v cos θ, v sin θ, θ, p.
+        var labV = createLabelSprite("v", "#FFAB40", 0.7); labV.userData = { elementType: "hx_label", id: "hx_label_v", tracks: "hx_velocity" }; addToScene(labV);
+        var labPar = createLabelSprite("v cos θ", "#D1D5DB", 0.62); labPar.userData = { elementType: "hx_label", id: "hx_label_vpar", tracks: "hx_vpar" }; labPar.visible = false; addToScene(labPar);
+        var labPerp = createLabelSprite("v sin θ", "#FFCC9F", 0.62); labPerp.userData = { elementType: "hx_label", id: "hx_label_vperp", tracks: "hx_vperp" }; labPerp.visible = false; addToScene(labPerp);
+        var labTheta = createLabelSprite("θ", "#FFF176", 0.7); labTheta.userData = { elementType: "hx_label", id: "hx_label_theta" }; labTheta.visible = false; addToScene(labTheta);
+        var labPitch = createLabelSprite("p", "#FFCC9F", 0.75); labPitch.userData = { elementType: "hx_label", id: "hx_label_pitch" }; labPitch.visible = false; addToScene(labPitch);
+
+        // 7. Dashed radius line (centre -> particle), length tracks R; no number printed.
+        var rlGeo = new THREE.BufferGeometry();
+        rlGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
+        var radiusLine = new THREE.Line(rlGeo, new THREE.LineDashedMaterial({ color: hexToThreeColor("#FFF176"), transparent: true, opacity: 0.95, dashSize: 0.16, gapSize: 0.1 }));
+        radiusLine.userData = { elementType: "hx_radius_line", id: "hx_radius_line" };
+        radiusLine.visible = false;
+        addToScene(radiusLine);
+
+        // 8. Ghost flat circle (S1) — the expected flat loop the coil lifts off.
+        var HX_RING_SEGS = 80;
+        var gGeo = new THREE.BufferGeometry();
+        gGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array((HX_RING_SEGS + 1) * 3), 3));
+        gGeo.setDrawRange(0, 0);
+        var ghost = new THREE.Line(gGeo, new THREE.LineBasicMaterial({ color: hexToThreeColor("#B0BEC5"), transparent: true, opacity: 0 }));
+        ghost.userData = { elementType: "hx_ghost_circle", id: "hx_ghost_circle", segments: HX_RING_SEGS };
+        ghost.visible = false;
+        addToScene(ghost);
+
+        // 9. Pitch bracket (S5) — a segment along B spanning one pitch.
+        var pbGeo = new THREE.BufferGeometry();
+        pbGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
+        var pitchBracket = new THREE.Line(pbGeo, new THREE.LineBasicMaterial({ color: hexToThreeColor("#FFCC9F"), transparent: true, opacity: 0.9 }));
+        pitchBracket.userData = { elementType: "hx_pitch_bracket", id: "hx_pitch_bracket" };
+        pitchBracket.visible = false;
+        addToScene(pitchBracket);
+
+        // 10. The helix coil (redrawn WHOLE each frame — spiral guard).
+        var maxPts = 600;
+        var coilGeo = new THREE.BufferGeometry();
+        coilGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(maxPts * 3), 3));
+        coilGeo.setDrawRange(0, 0);
+        var coil = new THREE.Line(coilGeo, new THREE.LineBasicMaterial({ color: hexToThreeColor("#FFCC9F"), transparent: true, opacity: 0.85 }));
+        coil.userData = { elementType: "hx_coil", id: "hx_coil", max_points: maxPts, filled: 0 };
+        addToScene(coil);
+
+        // 11. Drift dots (S4) — equal-spaced markers along B proving constant-speed straight drift.
+        for (var d = 0; d < 7; d++) {
+            var dot = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 10), new THREE.MeshBasicMaterial({ color: hexToThreeColor("#9CA3AF"), transparent: true, opacity: 0 }));
+            dot.userData = { elementType: "hx_drift_dot", id: "hx_drift_dot_" + d, slot: d };
+            dot.visible = false;
+            addToScene(dot);
+        }
+    }
+
+    // Per-state seeding for helix_in_uniform_field. Resets the trusted-grab flag,
+    // seeds the theta/v/B sliders from variable_overrides (DOM-only), shows only the
+    // row(s) this beat teaches (applyVisibleControls), gates the readout, and hides
+    // per-state-only primitives to a known baseline (the frame reveals them on cue).
+    function applyHelixInUniformFieldState(stateDef) {
+        if (!stateDef) return;
+        hxNeedsTrailWipe = true;
+        hxInteracted = false;
+
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType) continue;
+            var et = ud.elementType;
+            if (et === "hx_radius_line" || et === "hx_ghost_circle" || et === "hx_pitch_bracket" ||
+                et === "hx_vpar" || et === "hx_vperp" || et === "hx_centre" || et === "hx_drift_dot") {
+                o.visible = false;
+            } else if (et === "hx_label" && (ud.id === "hx_label_vpar" || ud.id === "hx_label_vperp" || ud.id === "hx_label_theta" || ud.id === "hx_label_pitch")) {
+                o.visible = false;
+            }
+        }
+
+        // ── Slider panel (Rule 31 per-state contextual controls). Seed theta/v/B from
+        //    THIS state's variable_overrides (DOM-only, no synthetic input event — the
+        //    isTrusted guard must not trip, so the idle theta-sweep owns the visual
+        //    until a real teacher grab), then show only the row(s) this beat teaches.
+        var panel = document.getElementById("helix_sliders");
+        if (panel) panel.style.display = stateDef.show_sliders ? "block" : "none";
+        if (stateDef.show_sliders) {
+            var vo = stateDef.variable_overrides || {};
+            var seed = [
+                ["hx_theta_slider", "hx_theta_val", (typeof vo.theta === "number" ? vo.theta : (typeof stateDef.theta_deg === "number" ? stateDef.theta_deg : 45)), 0],
+                ["hx_v_slider", "hx_v_val", (typeof vo.v === "number" ? vo.v : 1.0), 1],
+                ["hx_B_slider", "hx_B_val", (typeof vo.B === "number" ? vo.B : 1.0), 1]
+            ];
+            for (var si = 0; si < seed.length; si++) {
+                var sEl = document.getElementById(seed[si][0]);
+                if (sEl) sEl.value = String(seed[si][2]);
+                var vEl = document.getElementById(seed[si][1]);
+                if (vEl) vEl.textContent = (seed[si][3] === 1) ? parseFloat(seed[si][2]).toFixed(1) : String(Math.round(seed[si][2]));
+            }
+            applyVisibleControls({ theta: "hx_theta_row", v: "hx_v_row", B: "hx_B_row" }, stateDef.visible_controls);
+        }
+
+        // ── Readout (top-left, independent of the panel so a watch-only state — S3
+        //    radius, S5 pitch — can still show its relative bar). RELATIVE only.
+        var hlx = stateDef.helix || {};
+        var ro = document.getElementById("hx_readout");
+        var showRo = (hlx.show_radius_readout === true) || (hlx.show_pitch_readout === true);
+        if (ro) ro.style.display = showRo ? "block" : "none";
+        var rRow = document.getElementById("hx_r_line"); if (rRow) rRow.style.display = (hlx.show_radius_readout === true) ? "block" : "none";
+        var pRow = document.getElementById("hx_p_line"); if (pRow) pRow.style.display = (hlx.show_pitch_readout === true) ? "block" : "none";
+    }
+
+    // Per-frame brightness emphasis (Rule 29 — brightness only, never resize).
+    function applyHelixInUniformFieldGlow() {
+        if (config.scenario_type !== "helix_in_uniform_field") return;
+        var glowActive = glowTargets.length > 0, glowT = glowEmphT(time);
+        function focal(t) { return glowTargets.indexOf(t) >= 0; }
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], ud = o.userData;
+            if (!ud || !ud.elementType || !o.visible) continue;
+            if (ud.elementType === "hx_velocity") applyGlowEmphasis(o, focal("v"), glowActive, glowT, true);
+            else if (ud.elementType === "hx_vpar") applyGlowEmphasis(o, focal("v_parallel"), glowActive, glowT, true);
+            else if (ud.elementType === "hx_vperp") applyGlowEmphasis(o, focal("v_perp"), glowActive, glowT, true);
+            else if (ud.elementType === "ambient_field") applyGlowEmphasis(o, focal("b"), glowActive, glowT);
+            else if (ud.elementType === "hx_radius_line" || ud.elementType === "hx_coil") applyGlowEmphasis(o, focal("r"), glowActive, glowT, true);
+        }
+    }
+
+    // Per-frame driver for helix_in_uniform_field. Resolves theta (slider in S5/S6,
+    // else theta_deg; an idle theta-sweep demos shape until a trusted grab), computes
+    // v_perp/v_par -> R + pitch, applies the isolate_perp (fade v_par -> flat circle)
+    // and isolate_par (fade v_perp -> straight drift) fades, redraws the WHOLE coil
+    // each frame about a fixed axis (spiral guard), rides the particle, re-anchors the
+    // v / v_par / v_perp glyphs + labels, and drives the ghost / radius line / pitch
+    // bracket / drift dots + the relative r/p bars. PURE fn of the state clock (Rule 26).
+    function updateHelixInUniformFieldFrame() {
+        if (config.scenario_type !== "helix_in_uniform_field") return;
+        var stateDef = config.states[PM_currentState];
+        if (!stateDef) return;
+        var hlx = stateDef.helix || {};
+        var tLocal = time - stateStartTime, stateMs = tLocal * 1000;
+
+        var af = config.ambient_field || { direction: [0, 0, 1] };
+        var bUnit = new THREE.Vector3(af.direction[0], af.direction[1], af.direction[2]).normalize();
+        var u1 = new THREE.Vector3(1, 0, 0);
+        if (Math.abs(bUnit.dot(u1)) > 0.99) u1 = new THREE.Vector3(0, 1, 0);
+        u1.sub(bUnit.clone().multiplyScalar(bUnit.dot(u1))).normalize();
+        var u2 = new THREE.Vector3().crossVectors(u1, bUnit).normalize();
+
+        // ── theta (deg) + v/B factors. S5/S6 read the sliders; an idle theta-sweep
+        //    auto-demos the shape until the teacher grabs a control (hxInteracted). ──
+        var thetaDeg;
+        if (stateDef.show_sliders) {
+            var thSl = document.getElementById("hx_theta_slider");
+            thetaDeg = thSl ? parseFloat(thSl.value) : (stateDef.theta_deg || 45);
+            if (!hxInteracted) thetaDeg = 50 + 34 * Math.sin(tLocal * 0.5);   // ~16..84 deg sweep
+        } else {
+            thetaDeg = (typeof stateDef.theta_deg === "number") ? stateDef.theta_deg : 45;
+        }
+        thetaDeg = hxClamp(thetaDeg, 10, 90);
+        var thetaRad = thetaDeg * Math.PI / 180;
+        var vF = stateDef.show_sliders ? hxFactor("hx_v_slider", "v") : 1.0;
+        var BF = stateDef.show_sliders ? hxFactor("hx_B_slider", "B") : 1.0;
+
+        var vPerp = Math.sin(thetaRad) * vF;
+        var vPar = Math.cos(thetaRad) * vF;
+
+        // isolate fades: isolate_perp fades v_par -> 0 (helix collapses to a flat
+        // circle); isolate_par fades v_perp -> 0 (helix collapses to a straight drift).
+        var parFade = 1, perpFade = 1;
+        var ip = stateDef.isolate_perp;
+        if (ip) parFade = 1 - hxClamp((stateMs - (ip.fade_start_ms || 0)) / (ip.fade_duration_ms || 1500), 0, 1);
+        var ipar = stateDef.isolate_par;
+        if (ipar) perpFade = 1 - hxClamp((stateMs - (ipar.fade_start_ms || 0)) / (ipar.fade_duration_ms || 1500), 0, 1);
+
+        var R = hxClamp(HX_R_BASE * vPerp * perpFade / Math.max(0.2, BF), 0.0, 2.2);
+        var pitch = HX_PITCH_BASE * vPar * parFade / Math.max(0.2, BF);
+        var flat = (pitch < 0.03);
+        var nTurns = flat ? 1 : hxClamp((2 * HX_AXIAL) / pitch, 0.6, 6);
+
+        // ── Redraw the WHOLE coil about the fixed axis (spiral guard) + ride particle.
+        var omega = HX_OMEGA;
+        var phase = omega * tLocal;
+        var coil = hxFindById("hx_coil");
+        var trajMode = stateDef.trajectory_mode || "helix";
+        var drawFlat = flat || (trajMode === "circle");
+        if (coil) { coil.visible = true; hxDrawCoil(coil, R, drawFlat ? 1 : nTurns, u1, u2, bUnit, drawFlat); }
+
+        var u = (((phase / (2 * Math.PI)) / (drawFlat ? 1 : nTurns)) % 1 + 1) % 1;
+        var pAng = u * (drawFlat ? 1 : nTurns) * 2 * Math.PI;
+        var pAlong = drawFlat ? 0 : (-HX_AXIAL + u * 2 * HX_AXIAL);
+        var axialVec = bUnit.clone().multiplyScalar(pAlong);
+        var circVec = u1.clone().multiplyScalar(R * Math.cos(pAng)).add(u2.clone().multiplyScalar(R * Math.sin(pAng)));
+        var ppos = axialVec.clone().add(circVec);
+
+        // velocity direction = circular tangent (across B) + axial (along B).
+        var circTan = u1.clone().multiplyScalar(-Math.sin(pAng)).add(u2.clone().multiplyScalar(Math.cos(pAng)));
+        var vFullVec = circTan.clone().multiplyScalar(vPerp * perpFade).add(bUnit.clone().multiplyScalar(vPar * parFade));
+        if (vFullVec.lengthSq() < 1e-6) vFullVec.copy(bUnit);
+        var vFullDir = vFullVec.clone().normalize();
+
+        var glowActive = glowTargets.length > 0, glowT = glowEmphT(time);
+        function hxFocal(t) { return glowTargets.indexOf(t) >= 0; }
+
+        // Reveal gates (bound to the naming sentence; *_at_ms is the EYE fallback).
+        var showDecomp = (hlx.v_decompose === true) && stateMs >= (hlx.v_decompose_at_ms || 0);
+        var showRadiusLine = (hlx.show_radius_line === true) && stateMs >= (hlx.radius_reveal_at_ms || 0);
+        var showPitch = (hlx.show_pitch_bracket === true) && stateMs >= (hlx.pitch_bracket_at_ms || 0);
+        var ghostAt = hlx.ghost_flat_circle_at_ms;
+        var isStraight = (trajMode === "straight") || (perpFade < 0.15);
+
+        for (var li = 0; li < sceneObjects.length; li++) {
+            var lo = sceneObjects[li], lud = lo.userData;
+            if (!lud || !lud.elementType) continue;
+            var et = lud.elementType;
+            if (et === "hx_particle") {
+                lo.position.copy(ppos);
+            } else if (et === "hx_axis") {
+                lo.visible = true;
+            } else if (et === "hx_velocity") {
+                lo.visible = true; lo.position.copy(ppos); lo.setDirection(vFullDir); lo.setLength(HX_V_GLYPH, 0.22, 0.11);
+                applyGlowEmphasis(lo, hxFocal("v"), glowActive, glowT, true);
+            } else if (et === "hx_vpar") {
+                lo.visible = showDecomp; if (showDecomp) { lo.position.copy(ppos); lo.setDirection(bUnit); lo.setLength(HX_V_GLYPH * Math.cos(thetaRad), 0.2, 0.1); applyGlowEmphasis(lo, hxFocal("v_parallel"), glowActive, glowT, true); }
+            } else if (et === "hx_vperp") {
+                lo.visible = showDecomp; if (showDecomp) { lo.position.copy(ppos); lo.setDirection(circTan.clone().normalize()); lo.setLength(HX_V_GLYPH * Math.sin(thetaRad), 0.2, 0.1); applyGlowEmphasis(lo, hxFocal("v_perp"), glowActive, glowT, true); }
+            } else if (et === "hx_centre") {
+                lo.visible = showRadiusLine && !isStraight; lo.position.copy(axialVec);
+            } else if (et === "hx_radius_line") {
+                lo.visible = showRadiusLine && !isStraight;
+                if (lo.visible) {
+                    var arr = lo.geometry.attributes.position.array;
+                    arr[0] = axialVec.x; arr[1] = axialVec.y; arr[2] = axialVec.z;
+                    arr[3] = ppos.x; arr[4] = ppos.y; arr[5] = ppos.z;
+                    lo.geometry.attributes.position.needsUpdate = true;
+                    if (lo.computeLineDistances) lo.computeLineDistances();
+                }
+            } else if (et === "hx_ghost_circle") {
+                var gOn = (typeof ghostAt === "number") && stateMs >= ghostAt;
+                lo.visible = gOn;
+                if (gOn) {
+                    hxDrawFlatRing(lo, R > 0.05 ? R : HX_R_BASE * Math.sin(thetaRad), u1, u2);
+                    if (lo.material) lo.material.opacity = 0.4;
+                }
+            } else if (et === "hx_pitch_bracket") {
+                lo.visible = showPitch && !flat;
+                if (lo.visible) {
+                    var base = bUnit.clone().multiplyScalar(-HX_AXIAL * 0.5).add(u1.clone().multiplyScalar(R + 0.35));
+                    var top = base.clone().add(bUnit.clone().multiplyScalar(pitch));
+                    var pa = lo.geometry.attributes.position.array;
+                    pa[0] = base.x; pa[1] = base.y; pa[2] = base.z;
+                    pa[3] = top.x; pa[4] = top.y; pa[5] = top.z;
+                    lo.geometry.attributes.position.needsUpdate = true;
+                }
+            } else if (et === "hx_drift_dot") {
+                var dOn = isStraight;
+                lo.visible = dOn;
+                if (dOn) {
+                    var frac = lud.slot / 6;
+                    var dAlong = -HX_AXIAL + frac * 2 * HX_AXIAL;
+                    lo.position.copy(bUnit.clone().multiplyScalar(dAlong));
+                    if (lo.material) lo.material.opacity = 0.7;
+                }
+            } else if (et === "hx_label") {
+                if (lud.id === "hx_label_v") { lo.visible = true; lo.position.copy(ppos).addScaledVector(vFullDir, HX_V_GLYPH + 0.28); }
+                else if (lud.id === "hx_label_vpar") { lo.visible = showDecomp; if (showDecomp) lo.position.copy(ppos).addScaledVector(bUnit, HX_V_GLYPH * Math.cos(thetaRad) + 0.25); }
+                else if (lud.id === "hx_label_vperp") { lo.visible = showDecomp; if (showDecomp) lo.position.copy(ppos).addScaledVector(circTan.clone().normalize(), HX_V_GLYPH * Math.sin(thetaRad) + 0.25); }
+                else if (lud.id === "hx_label_theta") { lo.visible = showDecomp; if (showDecomp) lo.position.copy(ppos).addScaledVector(vFullDir, 0.5).addScaledVector(bUnit, 0.25); }
+                else if (lud.id === "hx_label_pitch") { lo.visible = showPitch && !flat; if (lo.visible) lo.position.copy(bUnit.clone().multiplyScalar(-HX_AXIAL * 0.5 + pitch * 0.5)).add(u1.clone().multiplyScalar(R + 0.6)); }
+            }
+        }
+
+        // ── Relative bars (never a metres value). r vs a full-swing reference; pitch
+        //    vs a full-swing reference. Both shrink with B together (ratio = shape). ──
+        if (hlx.show_radius_readout === true) hxRelBar(document.getElementById("hx_r_bar"), R / 1.9);
+        if (hlx.show_pitch_readout === true) hxRelBar(document.getElementById("hx_p_bar"), pitch / 2.4);
+    }
+
     function buildRadiusInUniformField() {
         var af = config.ambient_field || {
             direction: [0, 0, 1], magnitude: 1, density: [5, 5, 5],
@@ -23559,10 +25571,36 @@ export const FIELD_3D_RENDERER_CODE = `
             eqnSolved.style.display = "none";
         }
 
-        // ── Slider panel (STATE_6). Shown only when the state requests it. The
-        //    readout is r ONLY (relative bar) — never period / force.
+        // ── Slider panel (Rule 31 per-state contextual controls, founder
+        //    2026-07-04). Shown when the state requests it (STATE_4/5/6). Reset the
+        //    interacted flag so a manual grab in a PRIOR state can't bleed in; seed
+        //    the four slider DOM values from THIS state's variable_overrides
+        //    (DOM-only, NO synthetic input event — the isTrusted guard must not
+        //    trip, so the authored ghost-compare demo owns the visual until a real
+        //    teacher grab); then show only the row(s) this beat teaches. The readout
+        //    is r ONLY (relative bar) — never a period / force number.
+        radInteracted = false;
         var radSlidersEl = document.getElementById("radius_sliders");
         if (radSlidersEl) radSlidersEl.style.display = stateDef.show_sliders ? "block" : "none";
+        if (stateDef.show_sliders) {
+            var radVo = stateDef.variable_overrides || {};
+            var radSeed = [
+                ["rad_m_slider", "rad_m_val", radVo.m, "m"],
+                ["rad_v_slider", "rad_v_val", radVo.v, "v"],
+                ["rad_q_slider", "rad_q_val", radVo.q_mag, "q_mag"],
+                ["rad_b_slider", "rad_b_val", radVo.B, "B"]
+            ];
+            for (var rsi = 0; rsi < radSeed.length; rsi++) {
+                var rsCtrl = (config.slider_controls && config.slider_controls[radSeed[rsi][3]]) || {};
+                var rsDef = (rsCtrl.default != null) ? rsCtrl.default : 1.0;
+                var rsVal = (typeof radSeed[rsi][2] === "number") ? radSeed[rsi][2] : rsDef;
+                var rsSl = document.getElementById(radSeed[rsi][0]);
+                if (rsSl) rsSl.value = String(rsVal);
+                var rsSpan = document.getElementById(radSeed[rsi][1]);
+                if (rsSpan) rsSpan.textContent = parseFloat(rsVal).toFixed(1);
+            }
+            applyVisibleControls({ m: "rad_m_row", v: "rad_v_row", q_mag: "rad_q_row", B: "rad_b_row" }, stateDef.visible_controls);
+        }
     }
 
     // Per-frame brightness emphasis for radius_in_uniform_field (Rule 29 —
@@ -23637,7 +25675,12 @@ export const FIELD_3D_RENDERER_CODE = `
         var gcB = rad.ghost_compare_b || null;
         // First reveal: arm the ghost at the BASELINE radius (factors all 1.0) and
         // ramp its axis. While gcB has not yet armed, gcA drives the live circle.
-        if (gcA && stateMs >= (gcA.reveal_at_ms || 0)) {
+        // Rule 31 (founder 2026-07-04): the authored ghost-compare demo runs ONLY
+        // until the teacher grabs a slider (radInteracted, TRUSTED input) — after
+        // that the four sliders drive R_visual live and the demo yields (mirrors
+        // the sweep_z / clInteracted seize on the circular_loop scenario). The
+        // headless EYE never trips radInteracted, so it sees the identical demo.
+        if (!radInteracted && gcA && stateMs >= (gcA.reveal_at_ms || 0)) {
             var rampA = Math.min(1, (stateMs - (gcA.reveal_at_ms || 0)) / GHOST_RAMP_MS);
             var facA = 1.0 + (GHOST_TARGET - 1.0) * rampA;
             // After gcB arms, gcA's axis resets to 1.0 (the "reset" beat in the
@@ -23647,7 +25690,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 radGhostState.driveAxis = gcA.axis;
             }
         }
-        if (gcB && stateMs >= (gcB.reveal_at_ms || 0)) {
+        if (!radInteracted && gcB && stateMs >= (gcB.reveal_at_ms || 0)) {
             var rampB = Math.min(1, (stateMs - (gcB.reveal_at_ms || 0)) / GHOST_RAMP_MS);
             var facB = 1.0 + (GHOST_TARGET - 1.0) * rampB;
             axisApply(gcB.axis, facB);
@@ -24226,10 +26269,36 @@ export const FIELD_3D_RENDERER_CODE = `
         if (lf) { lf.innerHTML = "T = 2\\u03C0m/qB"; lf.style.display = "none"; lf.className = "cyc_eqn_line"; }
         if (la) { la.innerHTML = "f = qB/2\\u03C0m"; la.style.display = "none"; la.className = "cyc_eqn_line"; }
 
-        // ── Slider panel (STATE_4). Shown only when the state requests it. The
-        //    live lap-fill (relative, never seconds) lives in #cyc_live_bar.
+        // ── Slider panel (Rule 31 per-state contextual controls, founder
+        //    2026-07-04). Shown when the state requests it (STATE_4). Reset the
+        //    interacted flag so a manual grab in a prior state can't bleed in; seed
+        //    the four slider DOM values from THIS state's variable_overrides
+        //    (DOM-only, NO synthetic input event — the isTrusted guard must not
+        //    trip, so the idle v-sweep owns the visual until a real teacher grab);
+        //    then show only the row(s) this beat teaches. The live lap-fill
+        //    (relative, never seconds) lives in #cyc_live_bar.
+        cycInteracted = false;
         var slidersEl = document.getElementById("cyclotron_sliders");
         if (slidersEl) slidersEl.style.display = stateDef.show_sliders ? "block" : "none";
+        if (stateDef.show_sliders) {
+            var cycVo = stateDef.variable_overrides || {};
+            var cycSeed = [
+                ["cyc_m_slider", "cyc_m_val", cycVo.m, "m"],
+                ["cyc_v_slider", "cyc_v_val", cycVo.v, "v"],
+                ["cyc_q_slider", "cyc_q_val", cycVo.q_mag, "q_mag"],
+                ["cyc_b_slider", "cyc_b_val", cycVo.B, "B"]
+            ];
+            for (var csi = 0; csi < cycSeed.length; csi++) {
+                var csCtrl = (config.slider_controls && config.slider_controls[cycSeed[csi][3]]) || {};
+                var csDef = (csCtrl.default != null) ? csCtrl.default : 1.0;
+                var csVal = (typeof cycSeed[csi][2] === "number") ? cycSeed[csi][2] : csDef;
+                var csSl = document.getElementById(cycSeed[csi][0]);
+                if (csSl) csSl.value = String(csVal);
+                var csSpan = document.getElementById(cycSeed[csi][1]);
+                if (csSpan) csSpan.textContent = parseFloat(csVal).toFixed(1);
+            }
+            applyVisibleControls({ m: "cyc_m_row", v: "cyc_v_row", q_mag: "cyc_q_row", B: "cyc_b_row" }, stateDef.visible_controls);
+        }
     }
 
     // Per-frame brightness emphasis for cyclotron_period (Rule 29 — brightness
@@ -24297,6 +26366,15 @@ export const FIELD_3D_RENDERER_CODE = `
             vF = cycFactor("cyc_v_slider", "v");
             qF = cycFactor("cyc_q_slider", "q_mag");
             BF = cycFactor("cyc_b_slider", "B");
+            // Rule 31 authored-demo-until-grabbed (founder 2026-07-04): STATE_4 opens
+            // by gently sweeping the circle SIZE via v (cyc.idle_v_sweep) so the money
+            // point — the size grows/shrinks while the lap-fill rate holds dead steady
+            // (liveOmega below has NO v term) — auto-plays; a TRUSTED slider grab
+            // (cycInteracted) yields to the teacher. The headless EYE never trips
+            // cycInteracted, so it photographs the demo.
+            if (cyc.idle_v_sweep && !cycInteracted) {
+                vF = 1.0 + 0.55 * (1 - Math.cos(tLocal * 0.7));
+            }
         }
 
         // The SHARED period law (the inversion). Single shared ω for STATE_1/2/3
@@ -24784,6 +26862,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildEddyCurrentPendulum();
                 break;
 
+            case "inductance":
+                buildInductance();
+                break;
+
+            case "ac_generator":
+                buildAcGenerator();
+                break;
+
             case "gauss_law_sphere":
                 buildGaussSphereField();
                 break;
@@ -24806,6 +26892,10 @@ export const FIELD_3D_RENDERER_CODE = `
 
             case "radius_in_uniform_field":
                 buildRadiusInUniformField();
+                break;
+
+            case "helix_in_uniform_field":
+                buildHelixInUniformField();
                 break;
 
             case "cyclotron_period":
@@ -24960,6 +27050,31 @@ export const FIELD_3D_RENDERER_CODE = `
         // case where the wire doesn't exist) the stand-in stays invisible and
         // the coil stays fully visible — matching pre-Diamond-#4 behavior.
         if (config.scenario_type === "solenoid_field") {
+            // Rule 31 per-state contextual controls: the rebuilt #sliders panel's
+            // sol_n_row/sol_i_row toggle per the state's visible_controls
+            // (STATE_5 = I only, STATE_7 = n only, STATE_9 = all).
+            // Instrument-model entry reset: every state opens on the AUTHORED
+            // winding + panel defaults (each state is a reproducible preset —
+            // a manual n-rewind in a prior state never bleeds into the next
+            // beat's choreography, whose per-turn extras are keyed to the
+            // authored turn count). DOM-only sync — no input event, so the
+            // isTrusted rewind listener is not tripped.
+            solSetVisualTurns(0);
+            if (stateDef.show_sliders) {
+                applyVisibleControls({ n: "sol_n_row", I: "sol_i_row" }, stateDef.visible_controls);
+                var solNDef2 = (config.slider_controls && config.slider_controls.n && config.slider_controls.n.default != null) ? config.slider_controls.n.default : 1000;
+                var solIDef2 = (config.slider_controls && config.slider_controls.I && config.slider_controls.I.default != null) ? config.slider_controls.I.default : 2;
+                var solNEl2 = document.getElementById("sol_n_slider");
+                var solIEl2 = document.getElementById("sol_i_slider");
+                if (solNEl2) solNEl2.value = String(solNDef2);
+                if (solIEl2) solIEl2.value = String(solIDef2);
+                var solNVal2 = document.getElementById("sol_n_val");
+                var solIVal2 = document.getElementById("sol_i_val");
+                if (solNVal2) solNVal2.textContent = String(Math.round(solNDef2));
+                if (solIVal2) solIVal2.textContent = Number(solIDef2).toFixed(1);
+                var solBRead2 = document.getElementById("b_readout");
+                if (solBRead2) solBRead2.innerHTML = "B = " + (MU_0 * solNDef2 * solIDef2 * 1000).toFixed(2) + " mT";
+            }
             var morphCfg = stateDef.wire_to_coil_morph;
             var morphWireObj = null, coilObj = null;
             for (var mi = 0; mi < sceneObjects.length; mi++) {
@@ -25122,6 +27237,27 @@ export const FIELD_3D_RENDERER_CODE = `
             applyEddyCurrentPendulumState(stateDef);
         }
 
+        // inductance — per-state seed (locked I/N/core/d/core_shared/f_drive,
+        // mode) + group visibility (self rig S1-4 vs mutual rig S5-7, pre-spoil
+        // guard) + the per-state contextual-control panel (no controls S1/S2/S5,
+        // N+core+I on S3, I on S4, d+core_shared on S6, all on the S7 explorer).
+        // The animate loop then ramps the current / oscillates the primary, writes
+        // back dIdt/I1/dI1dt, drives the beads/flux/back-EMF/needle/reservoir/
+        // spark/core slides, and paints the readout + S2 dual graph.
+        if (config.scenario_type === "inductance") {
+            applyInductanceState(stateDef);
+        }
+
+        // ac_generator — per-state seed (locked B/A/N/omega, mode) + exact-match
+        // acg_* visibility + the per-state contextual-control panel (no controls
+        // S1/S2/S3/S5, omega+N on S4, all four on the S6 explore). The animate
+        // loop then spins the coil + slip rings on the accumulated phase theta,
+        // reorients the normal arrow, modulates the flux disc / bulb / flipping
+        // external current arrow, and paints the readout + dual cos/sin graph.
+        if (config.scenario_type === "ac_generator") {
+            applyAcGeneratorState(stateDef);
+        }
+
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
         // concentric Gaussian-sphere radius r_gauss, regime (inside/outside R),
         // toggle of the Gaussian sphere + radial E-arrows + E-vs-r plot, slider
@@ -25181,6 +27317,15 @@ export const FIELD_3D_RENDERER_CODE = `
         // and the STATE_6 live RELATIVE readout. RADIUS-ONLY — never period / force.
         if (config.scenario_type === "radius_in_uniform_field") {
             applyRadiusInUniformFieldState(stateDef);
+        }
+
+        // helix_in_uniform_field — per-state seeding (trusted-grab reset, theta/v/B
+        // slider seed from variable_overrides + applyVisibleControls, readout gating,
+        // per-state-only primitive hide). The animate loop then redraws the bounded
+        // coil each frame (spiral guard), applies the isolate_perp/isolate_par fades,
+        // and drives the ghost / radius line / pitch bracket + relative r/p bars.
+        if (config.scenario_type === "helix_in_uniform_field") {
+            applyHelixInUniformFieldState(stateDef);
         }
 
         // cyclotron_period — per-state seeding (trail-pool reset, lap-timer +
@@ -25383,9 +27528,20 @@ export const FIELD_3D_RENDERER_CODE = `
         // exclusion chain" — every dedicated panel adds itself to this
         // NOT-list, same as isMag/isFaraday/isMotionalEmf/... above).
         var isEddyPendulum = config.scenario_type === "eddy_current_pendulum";
+        // inductance owns its OWN #ind_sliders panel (I/N/core/d/core_shared/
+        // f_drive) -- must be excluded here or the generic #sliders panel bleeds
+        // through (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
+        // itself to this NOT-list, same as isMag/isFaraday/isEddyPendulum/... above).
+        var isInductance = config.scenario_type === "inductance";
+        // ac_generator owns its OWN #acg_sliders panel (omega/N/B/A) -- must be
+        // excluded here or the generic #sliders panel bleeds through (THE-EYE
+        // "#sliders exclusion chain" — every dedicated panel adds itself to this
+        // NOT-list, same as isMag/isFaraday/isInductance/... above).
+        var isAcGenerator = config.scenario_type === "ac_generator";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
+        var isHelix = config.scenario_type === "helix_in_uniform_field";
         var isCyclotron = config.scenario_type === "cyclotron_period";
         var isPlates = config.scenario_type === "parallel_plates";
         var isDipolePotential = config.scenario_type === "dipole_potential";
@@ -25420,7 +27576,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isHelix && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum && !isInductance && !isAcGenerator) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -25584,8 +27740,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod")) {
-            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula)
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod" || config.scenario_type === "ac_generator")) {
+            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula / #acg_formula)
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
@@ -25609,7 +27765,17 @@ export const FIELD_3D_RENDERER_CODE = `
         // amperes_circuital_law: populate the screen-space derivation panel +
         // bar/ruler HUD for this state (camera-independent; replaces the world-
         // space acl_eq_* sprites + acl_bar/acl_ruler that projected off-canvas).
-        if (config.scenario_type === "amperes_circuital_law") updateAmperesHud(stateDef);
+        // Rule 31 per-state contextual controls: the generic #sliders panel's
+        // gen_i_row/gen_r_row toggle per the state's visible_controls (S1 = I
+        // only, S6 = r only, S8 = all). aclRTouched resets on entry so a manual
+        // r-grab in a prior state never bleeds into the next beat's authored look.
+        if (config.scenario_type === "amperes_circuital_law") {
+            updateAmperesHud(stateDef);
+            aclRTouched = false;
+            if (stateDef.show_sliders) {
+                applyVisibleControls({ I: "gen_i_row", r: "gen_r_row" }, stateDef.visible_controls);
+            }
+        }
 
         // If sliders are shown for this state, refresh the field-line visual
         // feedback so the current slider values are reflected immediately.
@@ -25777,12 +27943,16 @@ export const FIELD_3D_RENDERER_CODE = `
         // (STATE_6 full stage below uses the same live r/I poll above.)
         // r → ring radius (clamped to stay on-canvas) and bar length. The bar
         // length is a REAL magnitude (2πr) so it grows/shrinks with r in STATE_8;
-        // STATE_6/7 use the fixed default r (legibility size for the unroll proof).
-        var rNorm = (modeA === "integrated") ? Math.max(0.25, Math.min(1.0, rCm / 20)) : 0.5;
+        // STATE_6/7 open at the fixed default r (legibility size for the unroll
+        // proof). Rule 31: once the teacher GRABS the r slider (aclRTouched,
+        // trusted input only) STATE_6 tracks r live too — grow r and the ring +
+        // unrolled bar visibly lengthen (the bar's length IS 2πr).
+        var rTracksLive = (modeA === "integrated") || aclRTouched;
+        var rNorm = rTracksLive ? Math.max(0.25, Math.min(1.0, rCm / 20)) : 0.5;
         var maxBarW = Math.min(w - 120, 1000);
         var barW = maxBarW * (0.55 + 0.45 * (rNorm / 1.0));   // bar width tracks r (STATE_8); ~0.775·max at default
-        if (modeA !== "integrated") barW = maxBarW * 0.82;     // fixed legibility size for STATE_6/7
-        var ringR = (modeA === "integrated") ? (46 + 70 * rNorm) : 78;  // ring radius tracks r in STATE_8
+        if (!rTracksLive) barW = maxBarW * 0.82;               // fixed legibility size until r is grabbed
+        var ringR = rTracksLive ? (46 + 70 * rNorm) : 78;      // ring radius tracks r when live
 
         // ── layout bands ────────────────────────────────────────────────────
         var cx = w / 2;
@@ -25821,7 +27991,10 @@ export const FIELD_3D_RENDERER_CODE = `
         // STATE_8: brightness encodes B = μ₀I/2πr (falls as 1/r) — emphasis is
         // brightness, never size (Rule 29); the bar LENGTH already carries 2πr.
         var bBright = 1;
-        if (modeA === "integrated") {
+        if (rTracksLive) {
+            // brightness ∝ B = μ₀I/2πr — as the grabbed r grows the bar LENGTHENS
+            // (2πr, real) while each tile DIMS (B falls 1/r): the product B·2πr
+            // stays put. Rule 29: brightness, never size, carries the emphasis.
             var bRel = (iA / 5) / (rCm / 5);   // ∝ I / r, normalised to defaults
             bBright = Math.max(0.35, Math.min(1.0, 0.4 + 0.6 * Math.min(1.5, bRel) / 1.5));
         }
@@ -25936,6 +28109,19 @@ export const FIELD_3D_RENDERER_CODE = `
         // DOES have pole-coloured gap faces that would otherwise read against
         // the generic point-charge legend — suppress it entirely.
         if (config.scenario_type === "eddy_current_pendulum") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // inductance is a silent visual (Rule 24): the coil + current beads +
+        // green flux + back-EMF/eps2 arrows + battery/switch/spark + reservoir +
+        // two-coil mutual rig + air gap + galvanometer + the live readout/graph
+        // carry everything. It has no "magnet" substring but DOES have
+        // pole-coloured needle/arrows that would otherwise read against the
+        // generic point-charge legend — suppress it entirely.
+        if (config.scenario_type === "inductance") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // ac_generator is a silent visual (Rule 24): the rotating coil + pole
+        // pieces + uniform field arrows + slip rings/brushes + bulb + flipping
+        // external current arrow + the live readout + dual cos/sin graph carry
+        // everything. It has pole-coloured faces that would otherwise read against
+        // the generic point-charge/bar-magnet legend — suppress it entirely.
+        if (config.scenario_type === "ac_generator") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // gauss_law_sphere is a silent visual (Rule 24): the shell + Gaussian
         // sphere + radial arrows + E readout + E-vs-r plot carry everything —
         // suppress the generic point-charge legend.
@@ -27176,6 +29362,16 @@ export const FIELD_3D_RENDERER_CODE = `
         iSlider.addEventListener("input", refreshSliderVisuals);
         rSlider.addEventListener("input", refreshSliderVisuals);
 
+        // amperes_circuital_law Rule 31: a REAL teacher grab of the r slider
+        // (ev.isTrusted — programmatic seeding never counts) flips aclRTouched so
+        // STATE_6's ring/bar geometry starts tracking r live (see drawAmperesStage).
+        if (config.scenario_type === "amperes_circuital_law") {
+            rSlider.addEventListener("input", function (ev) {
+                if (ev && ev.isTrusted === false) return;
+                aclRTouched = true;
+            });
+        }
+
         // ── Diamond #4 (solenoid) slider wiring: B = μ₀ n I ──────────────────
         //   The default #sliders panel is wire-centric (I + r → B = μ₀I/2πr).
         //   A solenoid's field is B = μ₀ n I (independent of r), so for the
@@ -27195,10 +29391,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 var iMax = scI.max != null ? scI.max : 10;
                 var iStep = scI.step != null ? scI.step : 0.1;
                 solPanel.innerHTML =
+                    '<div id="sol_n_row">' +
                     '<label>n = <span id="sol_n_val">' + nDef + '</span> turns/m</label>' +
                     '<input type="range" id="sol_n_slider" min="' + nMin + '" max="' + nMax + '" step="' + nStep + '" value="' + nDef + '">' +
+                    '</div>' +
+                    '<div id="sol_i_row">' +
                     '<label>I = <span id="sol_i_val">' + iDef + '</span> A</label>' +
                     '<input type="range" id="sol_i_slider" min="' + iMin + '" max="' + iMax + '" step="' + iStep + '" value="' + iDef + '">' +
+                    '</div>' +
                     '<div id="b_readout">B = 0 mT</div>';
                 var refreshSolenoidSliders = function () {
                     var nS = document.getElementById("sol_n_slider");
@@ -27218,6 +29418,18 @@ export const FIELD_3D_RENDERER_CODE = `
                 var solI = document.getElementById("sol_i_slider");
                 if (solN) solN.addEventListener("input", refreshSolenoidSliders);
                 if (solI) solI.addEventListener("input", refreshSolenoidSliders);
+                // Rule 31 live-instrument: a REAL grab of the n slider PHYSICALLY
+                // rewinds the coil — turns scale as sqrt(n/n_default) around the
+                // authored winding (default n → authored turns; clamped 2..14 so
+                // the demo coil stays readable). isTrusted guard: programmatic
+                // seeding never rewinds.
+                if (solN) solN.addEventListener("input", function (ev) {
+                    if (ev && ev.isTrusted === false) return;
+                    var nLive = parseFloat(solN.value) || nDef;
+                    var tAuth = (config.coil && config.coil.turns) || 6;
+                    var tWant = Math.max(2, Math.min(14, Math.round(tAuth * Math.sqrt(nLive / nDef))));
+                    solSetVisualTurns(tWant);
+                });
                 refreshSolenoidSliders();
             }
         }
@@ -27501,17 +29713,25 @@ export const FIELD_3D_RENDERER_CODE = `
                 var clRDef = clR.default != null ? clR.default : 5, clRMin = clR.min != null ? clR.min : 2, clRMax = clR.max != null ? clR.max : 15, clRStep = clR.step != null ? clR.step : 0.5;
                 var clNDef = clN.default != null ? clN.default : 1, clNMin = clN.min != null ? clN.min : 1, clNMax = clN.max != null ? clN.max : 50, clNStep = clN.step != null ? clN.step : 1;
                 var clZDef = clZ.default != null ? clZ.default : 0, clZMin = clZ.min != null ? clZ.min : 0, clZMax = clZ.max != null ? clZ.max : 20, clZStep = clZ.step != null ? clZ.step : 0.5;
+                // Rule 31 per-state contextual controls: each control lives in its
+                // own row div (cl_i_row / cl_r_row / cl_n_row / cl_z_row) so
+                // applyVisibleControls can show/hide it per state without rebuilding
+                // the panel. Built ONCE here; visibility toggled in applyCircularLoopState.
                 clPanel.innerHTML =
-                    '<label>I = <span id="cl_i_val">' + clIDef.toFixed(1) + '</span> A</label>' +
-                    '<input type="range" id="cl_i_slider" min="' + clIMin + '" max="' + clIMax + '" step="' + clIStep + '" value="' + clIDef + '">' +
-                    '<label>R = <span id="cl_r_val">' + clRDef + '</span> cm</label>' +
-                    '<input type="range" id="cl_r_slider" min="' + clRMin + '" max="' + clRMax + '" step="' + clRStep + '" value="' + clRDef + '">' +
-                    '<label>N = <span id="cl_n_val">' + clNDef + '</span> turns</label>' +
-                    '<input type="range" id="cl_n_slider" min="' + clNMin + '" max="' + clNMax + '" step="' + clNStep + '" value="' + clNDef + '">' +
-                    '<label>z = <span id="cl_z_val">' + clZDef + '</span> cm</label>' +
-                    '<input type="range" id="cl_z_slider" min="' + clZMin + '" max="' + clZMax + '" step="' + clZStep + '" value="' + clZDef + '">' +
+                    '<div id="cl_i_row"><label>I = <span id="cl_i_val">' + clIDef.toFixed(1) + '</span> A</label>' +
+                    '<input type="range" id="cl_i_slider" min="' + clIMin + '" max="' + clIMax + '" step="' + clIStep + '" value="' + clIDef + '"></div>' +
+                    '<div id="cl_r_row"><label>R = <span id="cl_r_val">' + clRDef + '</span> cm</label>' +
+                    '<input type="range" id="cl_r_slider" min="' + clRMin + '" max="' + clRMax + '" step="' + clRStep + '" value="' + clRDef + '"></div>' +
+                    '<div id="cl_n_row"><label>N = <span id="cl_n_val">' + clNDef + '</span> turns</label>' +
+                    '<input type="range" id="cl_n_slider" min="' + clNMin + '" max="' + clNMax + '" step="' + clNStep + '" value="' + clNDef + '"></div>' +
+                    '<div id="cl_z_row"><label>z = <span id="cl_z_val">' + clZDef + '</span> cm</label>' +
+                    '<input type="range" id="cl_z_slider" min="' + clZMin + '" max="' + clZMax + '" step="' + clZStep + '" value="' + clZDef + '"></div>' +
                     '<div id="cl_readout">B(center) = 25.1 \\u03bcT<br>B(z) = 25.1 \\u03bcT</div>';
-                var clOnInput = function () {
+                var clOnInput = function (ev) {
+                    // Trusted-drag guard (Rule 31): a real teacher gesture seizes
+                    // manual control; the programmatic on-entry slider sync in
+                    // applyCircularLoopState (which never dispatches 'input') must not.
+                    if (ev && ev.isTrusted === false) return;
                     clInteracted = true;
                     refreshCircularLoopExplorer();
                 };
@@ -27762,24 +29982,28 @@ export const FIELD_3D_RENDERER_CODE = `
                 var pc2 = (config.slider_controls && config.slider_controls.I2) || {};
                 var i1D = pc1.default != null ? pc1.default : 5, i1Mn = pc1.min != null ? pc1.min : 1, i1Mx = pc1.max != null ? pc1.max : 10, i1St = pc1.step != null ? pc1.step : 1;
                 var i2D = pc2.default != null ? pc2.default : 5, i2Mn = pc2.min != null ? pc2.min : 1, i2Mx = pc2.max != null ? pc2.max : 10, i2St = pc2.step != null ? pc2.step : 1;
+                // Rule 31: build the panel ONCE with each control wrapped in a
+                // pcf_*_row div; applyVisibleControls (in applyParallelCurrentsForceState)
+                // shows/hides rows per state without rebuilding the widgets.
                 pcfPanel.innerHTML =
-                    '<label>I\\u2081 = <span id="pcf_i1_val">' + Math.round(i1D) + '</span> A</label>' +
-                    '<input type="range" id="pcf_i1_slider" min="' + i1Mn + '" max="' + i1Mx + '" step="' + i1St + '" value="' + i1D + '">' +
-                    '<label>I\\u2082 = <span id="pcf_i2_val">' + Math.round(i2D) + '</span> A</label>' +
-                    '<input type="range" id="pcf_i2_slider" min="' + i2Mn + '" max="' + i2Mx + '" step="' + i2St + '" value="' + i2D + '">' +
-                    '<button id="pcf_flip_toggle" style="margin:6px 0;padding:4px 10px;cursor:pointer;border-radius:4px;border:1px solid #555;background:#222;color:#eee;">reverse I\\u2082 (attract/repel)</button>' +
+                    '<div id="pcf_i1_row"><label>I\\u2081 = <span id="pcf_i1_val">' + Math.round(i1D) + '</span> A</label>' +
+                    '<input type="range" id="pcf_i1_slider" min="' + i1Mn + '" max="' + i1Mx + '" step="' + i1St + '" value="' + i1D + '"></div>' +
+                    '<div id="pcf_i2_row"><label>I\\u2082 = <span id="pcf_i2_val">' + Math.round(i2D) + '</span> A</label>' +
+                    '<input type="range" id="pcf_i2_slider" min="' + i2Mn + '" max="' + i2Mx + '" step="' + i2St + '" value="' + i2D + '"></div>' +
+                    '<div id="pcf_flip_row"><button id="pcf_flip_toggle" style="margin:6px 0;padding:4px 10px;cursor:pointer;border-radius:4px;border:1px solid #555;background:#222;color:#eee;">reverse I\\u2082 (attract/repel)</button></div>' +
                     '<div id="pcf_readout">F/L \\u221d I\\u2081 I\\u2082 / d</div>';
                 var pcfU1 = document.getElementById("pcf_i1_slider");
                 var pcfU2 = document.getElementById("pcf_i2_slider");
                 var pcfTog = document.getElementById("pcf_flip_toggle");
-                function pcfRefreshLabels() {
+                function pcfRefreshLabels(ev) {
+                    if (ev && ev.isTrusted) pcfInteracted = true; // trusted teacher grab seizes manual
                     var a = document.getElementById("pcf_i1_val"), b = document.getElementById("pcf_i2_val");
                     if (a && pcfU1) a.textContent = pcfU1.value;
                     if (b && pcfU2) b.textContent = pcfU2.value;
                 }
                 if (pcfU1) pcfU1.addEventListener("input", pcfRefreshLabels);
                 if (pcfU2) pcfU2.addEventListener("input", pcfRefreshLabels);
-                if (pcfTog) pcfTog.addEventListener("click", function () { pcfUserFlip = (pcfUserFlip > 0 ? -1 : 1); });
+                if (pcfTog) pcfTog.addEventListener("click", function (ev) { if (ev && ev.isTrusted) pcfInteracted = true; pcfUserFlip = (pcfUserFlip > 0 ? -1 : 1); });
             }
         }
 
@@ -27925,7 +30149,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 seedRadSlider(radQ, config.slider_controls.q_mag);
                 seedRadSlider(radB, config.slider_controls.B);
             }
-            function refreshRadiusLabels() {
+            function refreshRadiusLabels(ev) {
                 var mv = document.getElementById("rad_m_val");
                 var vv = document.getElementById("rad_v_val");
                 var qv = document.getElementById("rad_q_val");
@@ -27938,12 +30162,55 @@ export const FIELD_3D_RENDERER_CODE = `
                 // Any slider edit invalidates the existing orbit trail — wipe it so
                 // the new (wider / tighter) circle reads cleanly.
                 radiusTrailResetPending = true;
+                // Rule 31: a real teacher grab (TRUSTED) seizes manual control, so
+                // updateRadiusInUniformFieldFrame stops running the authored ghost-
+                // compare demo and lets the four sliders drive R_visual live. The
+                // headless EYE dispatches untrusted events → never trips this.
+                if (ev && ev.isTrusted) radInteracted = true;
             }
             radM.addEventListener("input", refreshRadiusLabels);
             radV.addEventListener("input", refreshRadiusLabels);
             radQ.addEventListener("input", refreshRadiusLabels);
             radB.addEventListener("input", refreshRadiusLabels);
             refreshRadiusLabels();
+        }
+
+        // ── helix_in_uniform_field explorer (S5 theta; S6 theta,v,B) slider wiring ──
+        // Three knobs: theta (drives the helix SHAPE via v_perp/v_par), v + B (SIZE).
+        // The animate loop reads the slider DOM each frame; this keeps the span labels
+        // in sync and (TRUSTED grab) seizes the idle theta-sweep so the sliders drive
+        // the coil live. The headless EYE dispatches untrusted events → never trips.
+        var hxTheta = document.getElementById("hx_theta_slider");
+        var hxV = document.getElementById("hx_v_slider");
+        var hxB = document.getElementById("hx_B_slider");
+        if (hxTheta && hxV && hxB) {
+            function seedHxSlider(el, ctrl) {
+                if (!ctrl) return;
+                if (ctrl.min != null) el.min = String(ctrl.min);
+                if (ctrl.max != null) el.max = String(ctrl.max);
+                if (ctrl.step != null) el.step = String(ctrl.step);
+                if (ctrl.default != null) el.value = String(ctrl.default);
+            }
+            if (config.slider_controls) {
+                seedHxSlider(hxTheta, config.slider_controls.theta);
+                seedHxSlider(hxV, config.slider_controls.v);
+                seedHxSlider(hxB, config.slider_controls.B);
+            }
+            function refreshHelixLabels(ev) {
+                var tv = document.getElementById("hx_theta_val");
+                var vv2 = document.getElementById("hx_v_val");
+                var bv2 = document.getElementById("hx_B_val");
+                if (tv) tv.textContent = String(Math.round(parseFloat(hxTheta.value)));
+                if (vv2) vv2.textContent = parseFloat(hxV.value).toFixed(1);
+                if (bv2) bv2.textContent = parseFloat(hxB.value).toFixed(1);
+                if (config.scenario_type !== "helix_in_uniform_field") return;
+                hxNeedsTrailWipe = true;
+                if (ev && ev.isTrusted) hxInteracted = true;
+            }
+            hxTheta.addEventListener("input", refreshHelixLabels);
+            hxV.addEventListener("input", refreshHelixLabels);
+            hxB.addEventListener("input", refreshHelixLabels);
+            refreshHelixLabels();
         }
 
         // ── cyclotron_period explorer (STATE_4) slider wiring ─────────────
@@ -27971,7 +30238,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 seedCycSlider(cycQ, config.slider_controls.q_mag);
                 seedCycSlider(cycB, config.slider_controls.B);
             }
-            function refreshCyclotronLabels() {
+            function refreshCyclotronLabels(ev) {
                 var mv = document.getElementById("cyc_m_val");
                 var vv = document.getElementById("cyc_v_val");
                 var qv = document.getElementById("cyc_q_val");
@@ -27984,6 +30251,10 @@ export const FIELD_3D_RENDERER_CODE = `
                 // Any slider edit invalidates the single orbit trail — wipe it so the
                 // new (wider / tighter) circle reads cleanly.
                 cyclotronTrailResetPending = true;
+                // Rule 31: a real teacher grab (TRUSTED) seizes manual control, so the
+                // STATE_4 idle v-sweep stops and the four sliders drive the charge
+                // live. The headless EYE dispatches untrusted events → never trips.
+                if (ev && ev.isTrusted) cycInteracted = true;
             }
             cycM.addEventListener("input", refreshCyclotronLabels);
             cycV.addEventListener("input", refreshCyclotronLabels);
@@ -28507,6 +30778,26 @@ export const FIELD_3D_RENDERER_CODE = `
             applyEddyCurrentPendulumGlow();
         }
 
+        // inductance — self + mutual. Ramps the self current / oscillates the
+        // primary drive (pure fn of the state clock, Rule 26), writes back
+        // dIdt/I1/dI1dt, drives the beads/green flux/back-EMF/eps2 arrows/
+        // secondary needle/energy reservoir/switch-off spark/sliding iron cores,
+        // and paints the readout + S2 dual I-t/eps_L-t graph + TTS glow.
+        if (config.scenario_type === "inductance") {
+            updateInductanceFrame();
+            applyInductanceGlow();
+        }
+
+        // ac_generator — a coil rotating in a uniform field. Spins the coil +
+        // slip rings on the accumulated phase theta (pure fn of the state clock,
+        // Rule 26), reorients the area-vector arrow, modulates the flux disc /
+        // bulb (~sin^2) / flipping external current arrow (sign(sin theta)), and
+        // paints the readout + dual Phi-cos/eps-sin graph in lockstep + TTS glow.
+        if (config.scenario_type === "ac_generator") {
+            updateAcGeneratorFrame();
+            applyAcGeneratorGlow();
+        }
+
         // gauss_law_sphere — charged-shell field. Drives the Gaussian-sphere
         // shrink/grow, the radial E-arrow reveal + 1/r² length scaling (outside)
         // or full suppression (inside), the point-charge crossfade, the arrows-
@@ -28584,6 +30875,17 @@ export const FIELD_3D_RENDERER_CODE = `
         if (config.scenario_type === "radius_in_uniform_field") {
             updateRadiusInUniformFieldFrame(heldAtPin ? 0 : 0.016);
             applyRadiusInUniformFieldGlow();
+        }
+
+        // helix_in_uniform_field — the HELIX sibling. Redraws the bounded coil each
+        // frame about a fixed axis parallel to B (spiral guard), applies the
+        // isolate_perp (fade v_par -> flat circle) / isolate_par (fade v_perp ->
+        // straight drift) fades, rides the particle, drives the v/v_par/v_perp
+        // decomposition + theta arc + ghost + radius line + pitch bracket, and the
+        // relative r/p bars. CUT-LINE: relative bars only, no metres/seconds number.
+        if (config.scenario_type === "helix_in_uniform_field") {
+            updateHelixInUniformFieldFrame();
+            applyHelixInUniformFieldGlow();
         }
 
         // cyclotron_period — T = 2πm/qB. Drives the shared-ω dual-orbit race (two
@@ -29604,6 +31906,31 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             if (coilForChildren) {
                 var localMs = (time - stateStartTime) * 1000;
+                // Rule 31 retrofit (2026-07-04) — two live-instrument additions:
+                // (a) Mid-state battery reversal: a one-shot bound to its narrating
+                //     sentence (scenario_cue "battery_reverse"; the authored
+                //     current_flow.reverse_at_ms is THE-EYE fallback). When it
+                //     fires, flow dots + internal field arrows + N/S pole labels
+                //     all flip TOGETHER — one physical event, watched happening.
+                var solRevCfg = stateDef.current_flow || {};
+                var solRevFired = (typeof solRevCfg.reverse_at_ms === "number")
+                    && (localMs >= cueTriggerMs("battery_reverse", solRevCfg.reverse_at_ms));
+                var solRevSign = solRevFired ? -1 : 1;
+                // (b) Live slider feedback on slider-bearing states: n and I drive
+                //     the INTERIOR brightness (∝ B = μ₀nI — Rule 29, brightness
+                //     never size) and the flow-dot speed (∝ I). External lines are
+                //     NEVER scaled — outside stays ≈ 0 no matter how hard you crank
+                //     the sliders, which IS the STATE_5 lesson.
+                var solLiveBr = 1, solSpeedK = 1;
+                if (stateDef.show_sliders === true) {
+                    var solNS = document.getElementById("sol_n_slider");
+                    var solIS = document.getElementById("sol_i_slider");
+                    var solNV = solNS ? (parseFloat(solNS.value) || 1000) : 1000;
+                    var solIV = solIS ? (parseFloat(solIS.value) || 2) : 2;
+                    var solBrel = (solNV / 1000) * (solIV / 2);   // ∝ B, normalised to defaults
+                    solLiveBr = Math.max(0.3, Math.min(1.35, 0.45 + 0.55 * Math.min(2.2, solBrel)));
+                    solSpeedK = Math.max(0.35, Math.min(2.5, solIV / 2));
+                }
                 var ptCfg = stateDef.per_turn_field_circles;
                 var rcCfg = stateDef.radial_cancellation_arrows;
                 var axCfg = stateDef.axial_buildup_arrows;
@@ -29702,8 +32029,8 @@ export const FIELD_3D_RENDERER_CODE = `
                         if (!cfCfg || !cfCfg.enabled) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
                         var cfReveal = (cfCfg.reveal_at_ms != null) ? cfCfg.reveal_at_ms : 0;
                         if (localMs < cfReveal) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
-                        var cfDir = (cfCfg.direction === "reverse") ? -1 : 1;
-                        var cfSpeed = (cfCfg.speed != null) ? cfCfg.speed : (ud.speed || 0.16);
+                        var cfDir = ((cfCfg.direction === "reverse") ? -1 : 1) * solRevSign;
+                        var cfSpeed = ((cfCfg.speed != null) ? cfCfg.speed : (ud.speed || 0.16)) * solSpeedK;
                         var cfDt = heldAtPin ? 0 : 0.016;
                         ud.t = (ud.t + cfDir * cfSpeed * cfDt + 1.0) % 1.0;
                         var cfPos = sampleHelix(ud.t, coilForChildren.userData.helixPts, coilForChildren.userData.helixCum, coilForChildren.userData.helixLen);
@@ -29826,7 +32153,7 @@ export const FIELD_3D_RENDERER_CODE = `
                         // points toward: dir>0 -> +z end = N; dir<0 -> swap.
                         var plCfg = stateDef.pole_labels;
                         if (!plCfg || !plCfg.enabled) { ch.visible = false; if (ch.material) ch.material.opacity = 0; continue; }
-                        var plDir = (stateDef.field_lines_dir != null) ? stateDef.field_lines_dir : 1;
+                        var plDir = ((stateDef.field_lines_dir != null) ? stateDef.field_lines_dir : 1) * solRevSign;
                         var wantN = (plDir >= 0) ? (ud.end === 1) : (ud.end === -1);
                         var showThis = (ud.pole === "N") ? wantN : !wantN;
                         var plReveal = (plCfg.reveal_at_ms != null) ? plCfg.reveal_at_ms : 300;
@@ -29844,7 +32171,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // Field-line arrow direction follows the current (RHR); flips to
                 // -z on the reverse-current state (field_lines_dir = -1). The
                 // internal field lines + arrows are top-level sceneObjects.
-                var flDir = (stateDef.field_lines_dir != null) ? stateDef.field_lines_dir : 1;
+                var flDir = ((stateDef.field_lines_dir != null) ? stateDef.field_lines_dir : 1) * solRevSign;
                 for (var fli = 0; fli < sceneObjects.length; fli++) {
                     var flo = sceneObjects[fli];
                     if (flo.userData && flo.userData.elementType === "arrow" && flo.userData.id && flo.userData.id.indexOf("arr_int_") === 0) {
@@ -29852,6 +32179,15 @@ export const FIELD_3D_RENDERER_CODE = `
                         var flTgt = new THREE.Vector3(0, 0, flDir >= 0 ? 1 : -1);
                         var flQ = new THREE.Quaternion(); flQ.setFromUnitVectors(flUp, flTgt);
                         flo.setRotationFromQuaternion(flQ);
+                        // live-instrument: interior arrows brighten/dim with μ₀nI
+                        if (stateDef.show_sliders === true && flo.material) {
+                            flo.material.opacity = Math.min(1, 0.9 * solLiveBr);
+                        }
+                    } else if (stateDef.show_sliders === true && flo.visible && flo.material
+                        && flo.userData && flo.userData.elementType === "field_line_internal") {
+                        // live-instrument: interior lines brighten/dim with μ₀nI.
+                        // External lines deliberately untouched — outside stays ≈ 0.
+                        flo.material.opacity = Math.min(1, 0.85 * solLiveBr);
                     }
                 }
             }
@@ -30345,14 +32681,18 @@ export const FIELD_3D_RENDERER_CODE = `
                 else if (aet === "acl_flow") {
                     if (showFlowA) {
                         ao.visible = true;
-                        var speedA = aclPhysicalMode ? (0.35 + 0.12 * aclI) : 0.6;   // I-driven in physical mode
+                        // I-driven in physical mode AND on any slider-bearing state
+                        // (Rule 31: STATE_1 exposes the I row — sliding I must speed
+                        // + brighten the flow live, same as the S7/S8 founder ask).
+                        var aclFlowLive = aclPhysicalMode || stateDef.show_sliders === true;
+                        var speedA = aclFlowLive ? (0.35 + 0.12 * aclI) : 0.6;
                         var spanA = 2 * 3.0;
                         var yA = -3.0 + (((aud.phase + (localMsA / 1000) * (speedA / spanA)) % 1) * spanA);
                         ao.position.set(0, yA, 0);
                         if (ao.material) {
-                            var flowBr = aclPhysicalMode ? Math.max(0.5, Math.min(1.0, 0.45 + 0.06 * aclI)) : 0.9;
+                            var flowBr = aclFlowLive ? Math.max(0.5, Math.min(1.0, 0.45 + 0.06 * aclI)) : 0.9;
                             ao.material.opacity = flowBr;
-                            if (ao.material.emissiveIntensity != null) ao.material.emissiveIntensity = aclPhysicalMode ? (0.6 + 0.05 * aclI) : 0.9;
+                            if (ao.material.emissiveIntensity != null) ao.material.emissiveIntensity = aclFlowLive ? (0.6 + 0.05 * aclI) : 0.9;
                         }
                     } else {
                         ao.visible = false;
