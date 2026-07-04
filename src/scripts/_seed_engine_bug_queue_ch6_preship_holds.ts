@@ -134,12 +134,29 @@ const incidents: Row[] = [
     severity: 'MAJOR',
     owner_cluster: 'ambiguous',
     root_cause:
-      `Surfaced by renderer_primitives 2026-07-04 while fixing the S4/S5 rows (pre-existing across all 6 states, present at the original quality_auditor PASS): the concept JSON's tts_sentences glow fields carry short-form scene_composition ids (off_label, furnace_label, core_label, neutral_label, ...) but applyEddyCurrentPendulumGlow exact-matches userData.id/elementType, which are prefixed (ecp_*, s4_*, s5_*), and SET_GLOW stores the raw string with no alias layer — so every glow lookup misses and Rule-29 brightness emphasis never fires anywhere in the concept. ROUTING DECISION NEEDED (founder): renderer-side alias/normalization pass in the glow resolver vs json_author prefixing all 18 glow fields to the renderer ids. Did not block the 2026-07-04 fix-first ship (defect predates the auditor PASS; narration + reveals unaffected).`,
+      `VERIFIED + FIXED 2026-07-05 (founder routed RENDERER-side deliberately, to protect every field_3d concept). Surfaced by renderer_primitives 2026-07-04 while fixing the S4/S5 rows (pre-existing across all 6 states, present at the original quality_auditor PASS): the concept JSON's tts_sentences glow fields carry short-form scene_composition ids (furnace_label, core_label, neutral_label, ...) but applyEddyCurrentPendulumGlow exact-matched userData.id/elementType, which are prefixed (s5_furnace_label etc.), and SET_GLOW stored the raw string with no alias layer — so every glow lookup missed and Rule-29 emphasis never fired. FIX (${RENDERER}): SET_GLOW now runs resolveGlowAliases() — EXACT-MATCH-FIRST (a target that already equals an object userData.id/elementType short-circuits, so every already-resolving concept is byte-identical — cross-concept regression guard), then a single-leading-segment strip fallback (s5_furnace_label → furnace_label), visible-object preferred for disambiguation, id-only match. Enumerated every strip-collision in the renderer (label_v→v, *_trail→trail, acl_loop→loop): all land in keyword scenarios that never indexOf arbitrary ids, so the net behavioral delta is eddy_currents ONLY. Re-verified 2026-07-05: EYE check count rose 26→37 (glow gates now active), all 37 pass; main-session frame read of run 20260705-000241 confirms t04000 furnace focal (bright) → t20000 core focal (bright) with furnace dimmed = Rule-29 emphasis firing. See sibling row ecp_glow_targets_missing_primitives for why only STATE_5 lights up.`,
     prevention_rule:
-      'A concept\'s teacher_script glow targets must resolve against the renderer\'s actual userData.id/elementType namespace — verify at author time that every glow string matches a live object id (or add an alias layer in the glow resolver). A concept where ZERO glow targets resolve should fail a gate, not ship silently without emphasis.',
+      'field_3d glow resolution normalizes a short authored scene id to the built object via single-leading-segment alias, exact-match-first + fallback-only (authors may keep short glow ids without prefixing). A concept where ZERO glow targets resolve should still be caught by an author-time check that every glow string maps to a live object id.',
+    probe_type: 'js_eval',
+    probe_logic:
+      'After SET_STATE STATE_5 + SET_GLOW furnace_label, assert the object userData.id===s5_furnace_label has its material color lerped toward white (brighter than its _glowBaseCol) — i.e. isFocal resolved via the alias. Regression: any concept whose glow targets already equal object ids must behave identically (exact-match short-circuit).',
+    status: 'FIXED',
+    concepts_affected: ['eddy_currents'],
+    fixed_in_files: [RENDERER],
+    row_type: 'incident',
+  },
+  {
+    bug_class: 'ecp_glow_targets_missing_primitives',
+    title: 'eddy_currents: 15 of 18 teacher_script glow targets point at label primitives the eddy_current_pendulum scenario never builds — only STATE_5 (furnace/core/neutral) has objects to glow; STATE_1-4/6 emphasis is a silent no-op even after the alias resolver fix',
+    severity: 'MODERATE',
+    owner_cluster: 'alex:json_author',
+    root_cause:
+      `Surfaced by renderer_primitives 2026-07-05 while fixing ecp_glow_targets_never_resolve (the alias fix made STATE_5's 3 targets resolve; this row is the remaining half). Of the 18 glow targets, only STATE_5's furnace_label/core_label/neutral_label have a built object (s5_*). The other 15 (off_label, on_label, damping_label, loop_label, grip_label, solid_label, slotted_label, explore_label, ...) reference labels the scenario NEVER creates — verified by enumerating every ecp_/s4_/s5_ object id in ${RENDERER}. So STATE_1-4/6 narrated beats still emphasize nothing. This is CONTENT (glow fields naming non-existent primitives), not an alias defect. ROUTING (founder): either json_author/physics_author repoints the 15 glow fields at primitives that DO exist per state, or renderer_primitives builds the missing label primitives if the pedagogy wants them. Does not block eddy_currents (already shipped; STATE_5 now emphasizes; the other beats simply lack emphasis, same as at the original PASS).`,
+    prevention_rule:
+      'At author time, every teacher_script glow target must name a primitive the state actually builds — a glow id with no corresponding scene object is a silent no-op. Audit: per state, glow-target set ⊆ built object ids (post-alias).',
     probe_type: 'manual',
     probe_logic:
-      'For each eddy_currents state, fire SET_GLOW with each sentence\'s glow target and confirm at least one scene object brightens (or diff a glow-active dense frame against its inactive sibling). If no frame ever shows Rule-29 brightness emphasis on any narrated beat, this class is present.',
+      'For each eddy_currents state S1-S4/S6, fire each sentence glow target and confirm a scene object brightens. Any state whose every glow target maps to no built object is this class (STATE_5 is the only currently-clean state).',
     status: 'OPEN',
     concepts_affected: ['eddy_currents'],
     fixed_in_files: [],
@@ -181,7 +198,7 @@ async function main(): Promise<void> {
   }));
   const { error } = await supabaseAdmin.from('engine_bug_queue').upsert(payload, { onConflict: 'bug_class' });
   if (error) { console.error(`✗ upsert failed: ${error.message}`); process.exit(1); }
-  console.log(`✓ ${incidents.length} scar row(s) upserted (3 MAJOR FIXED + 2 MODERATE OPEN queued + 1 glow-resolution OPEN)`);
+  console.log(`✓ ${incidents.length} scar row(s) upserted (4 FIXED + 3 OPEN: 2 layout MODERATE + 1 glow-content)`);
 }
 
 main().catch((err) => { console.error('💥 seed failed:', err instanceof Error ? err.stack : err); process.exit(1); });

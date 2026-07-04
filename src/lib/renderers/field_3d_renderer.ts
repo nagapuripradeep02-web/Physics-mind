@@ -2141,6 +2141,63 @@ export const FIELD_3D_RENDERER_CODE = `
         });
     }
 
+    // ── Glow-target alias resolution (generic; founder 2026-07-04) ─────────
+    // field_3d scenarios build their scene objects under a scenario prefix
+    // (ecp_ / s4_ / s5_ / ind_ / im_ / ...), while a concept's teacher_script
+    // "glow" fields reference the SHORT authored scene id (furnace_label,
+    // core_label, neutral_label, ...). Every per-scenario glow applier
+    // exact-matches an object's own userData.id / elementType against
+    // glowTargets, so a short id silently misses and Rule-29 brightness
+    // emphasis never fires. This resolver keeps every raw target UNTOUCHED (so
+    // a glow that ALREADY exact-matches an object behaves byte-identically to
+    // before) and, ONLY when the exact match fails, APPENDS the id of the built
+    // object whose id is "<one-leading-segment>_" + target. Precision rules:
+    //   • single leading prefix segment only (id.slice(after first "_")) — NOT
+    //     a loose suffix, so a bare target like "label" can never alias
+    //     "furnace_label", and a semantic key like "v" cannot alias "label_v".
+    //   • disambiguation: when several objects strip-match one target, prefer
+    //     the ones currently VISIBLE (the active state); never reach across
+    //     unrelated prefixes (sceneObjects only holds this one concept).
+    //   • fallback-only: an exact match short-circuits, so no already-resolving
+    //     concept can change.
+    function _glowStripLeadingSegment(s) {
+        if (typeof s !== "string") return "";
+        var u = s.indexOf("_");
+        return u > 0 ? s.slice(u + 1) : "";
+    }
+    function resolveGlowAliases(rawTargets) {
+        if (!rawTargets || !rawTargets.length) return rawTargets || [];
+        var out = rawTargets.slice();
+        for (var ti = 0; ti < rawTargets.length; ti++) {
+            var t = rawTargets[ti];
+            if (typeof t !== "string" || !t) continue;
+            // EXACT MATCH FIRST — if any object already carries this exact
+            // id/elementType, the pre-existing path resolves it; never alias.
+            var exact = false;
+            for (var e = 0; e < sceneObjects.length; e++) {
+                var eu = sceneObjects[e] && sceneObjects[e].userData;
+                if (eu && (eu.id === t || eu.elementType === t)) { exact = true; break; }
+            }
+            if (exact) continue;
+            // FALLBACK — collect built objects whose id is "<segment>_" + t.
+            var visIds = [], allIds = [];
+            for (var k = 0; k < sceneObjects.length; k++) {
+                var so = sceneObjects[k], su = so && so.userData;
+                if (!su || !su.id) continue;
+                if (_glowStripLeadingSegment(su.id) !== t) continue;
+                allIds.push(su.id);
+                if (so.visible !== false) visIds.push(su.id);
+            }
+            // Prefer current-state (visible) objects; fall back to any match so
+            // a target whose object is revealed slightly later still resolves.
+            var chosen = visIds.length ? visIds : allIds;
+            for (var c = 0; c < chosen.length; c++) {
+                if (out.indexOf(chosen[c]) < 0) out.push(chosen[c]);
+            }
+        }
+        return out;
+    }
+
     // Diamond #2 — when a sentence wants the proton to stop translating along
     // its trajectory (so the F arrow is readable mid-narration), the renderer
     // captures the local trajectory time at the freeze moment and re-uses it
@@ -33611,13 +33668,21 @@ export const FIELD_3D_RENDERER_CODE = `
                     // | 'trail' | 'hand' | 'fleming' | 'sliders'
                     // | 'fleming_index' | 'fleming_middle' | 'fleming_thumb'
                     // | null (clears).
+                    var rawGlow;
                     if (Array.isArray(data.target)) {
-                        glowTargets = data.target.slice();
+                        rawGlow = data.target.slice();
                     } else if (data.target) {
-                        glowTargets = [data.target];
+                        rawGlow = [data.target];
                     } else {
-                        glowTargets = [];
+                        rawGlow = [];
                     }
+                    // Generic short-id -> prefixed-object alias resolution
+                    // (founder 2026-07-04). Raw targets are preserved verbatim
+                    // (exact matches stay byte-identical); the resolver only
+                    // APPENDS a built object's prefixed id when the short
+                    // authored id (e.g. furnace_label) would otherwise miss the
+                    // scenario object (s5_furnace_label). See resolveGlowAliases.
+                    glowTargets = resolveGlowAliases(rawGlow);
                     // HTML overlays (Fleming SVG, sliders panel) glow via a CSS
                     // class — see #fleming_overlay / #lorentz_sliders + the
                     // .glow-pulse keyframes in the iframe <style> block. 3D-
