@@ -199,7 +199,7 @@ per-state control table (skeleton section 3 — its absence is itself a Gate 0 F
    SAME screen position + row order across them.
 4. **No Socratic artifacts:** no `wait_for_answer` advance_mode, no `pause_after_ms` prediction pauses,
    no `narrative_socratic` teaching_method on a new concept.
-5. **Pacing:** guided beats ~28–35s (soft — flag >45s or <15s as Concern, not FAIL); final explore
+5. **Pacing:** guided beats ~15–25s ≈3–4 tight sentences (soft — flag >30s or <10s as Concern, not FAIL); final explore
    state duration 0/open.
 
 Violations: route content-table mismatches to json_author; a missing/incoherent control table to
