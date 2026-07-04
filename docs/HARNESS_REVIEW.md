@@ -31,7 +31,7 @@ After the review, update this line with the next date.
 6. **MCP usage audit**: which servers were actually called in the last 90 days? Remove unused entries from `.mcp.json` (each unused MCP is harness weight).
 7. **Skill activation review**: any skill triggered in 0 sessions over the quarter? Delete or path-scope.
 8. **Validator gate hit-rate**: per gate, how often did it fire / catch a real bug vs false-positive? Tune thresholds for gates with FP > 30%.
-9. **Backlog promotion/kill**: walk `LEGACY_SPLIT_BACKLOG.md`, `MCP_BACKLOG.md`, `engine_bug_queue` table, `PASS_2_PROPOSAL.md`. Each item: promote (do now), defer (re-state trigger), or kill (write reason).
+9. **Backlog promotion/kill**: walk `archive/LEGACY_SPLIT_BACKLOG.md`, `MCP_BACKLOG.md`, `engine_bug_queue` table, `archive/PASS_2_PROPOSAL.md`. Each item: promote (do now), defer (re-state trigger), or kill (write reason).
 10. **Interview-with-self**: "If a new engineer joined tomorrow, what one paragraph would I write them about how to work in this codebase?" Compare to root `CLAUDE.md`'s opening section. If different, the gap is your real onboarding doc.
 
 ## Post-review actions

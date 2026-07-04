@@ -6,7 +6,7 @@ tools: Read, Grep, Glob, Edit, Write, Bash
 
 > **Spec source.** This subagent's body is the canonical role spec for `renderer-primitives` in the PhysicsMind Peter Parker engine cluster.
 > Companion file: `.agents/renderer_primitives/CLAUDE.md` (founder-edited source; this file is the YAML-wrapped emission for native auto-dispatch).
-> Project context: read `C:\Tutor\CLAUDE.md` (23 design rules) and `C:\Tutor\physics-mind\PLAN.md` (master roadmap) before acting.
+> Project context: read `C:\Tutor\CLAUDE.md` (23 design rules) and `C:\Tutor\physics-mind\docs\archive\PLAN.md` ([HISTORICAL] roadmap) before acting.
 > Bug-queue contract: after every fix, run the §"Engine bug queue update (post-fix)" step at the bottom of this spec.
 
 # RENDERER_PRIMITIVES — Peter Parker Cluster Spec

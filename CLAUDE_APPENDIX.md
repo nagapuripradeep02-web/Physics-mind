@@ -95,13 +95,13 @@ kirchhoffs_laws, series_parallel_resistance, wheatstone_bridge,
 meter_bridge, potentiometer, electric_power_heating
 ```
 
-These are NOT atomic JSONs. `ohms_law` queries currently route here, not to a standalone file. See LEGACY_SPLIT_BACKLOG.md for the planned split.
+These are NOT atomic JSONs. `ohms_law` queries currently route here, not to a standalone file. See docs/archive/LEGACY_SPLIT_BACKLOG.md for the planned split.
 
 ### `intentClassifier.ts` `VALID_CONCEPT_IDS` superset
 
 `intentClassifier.ts:36` defines `VALID_CONCEPT_IDS` with **84 entries** (verified 2026-06-11) — a superset that includes the 66 atomic IDs above PLUS the 10 bundle-nested IDs (so `ohms_law` validates) PLUS some legacy bundle parent names retained for classifier vocabulary (vector_basics, vector_addition, etc.) that redirect via `CONCEPT_SYNONYMS` post-classify. The classifier file is the runtime source of truth; this section is the editorial summary.
 
-**Full v2 concept JSON schema, verified field list, and planned fields: see CLAUDE_REFERENCE.md.**
+**Full v2 concept JSON schema, verified field list, and planned fields: see docs/archive/CLAUDE_REFERENCE.md [STALE].**
 
 ---
 

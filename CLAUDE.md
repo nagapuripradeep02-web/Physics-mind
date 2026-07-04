@@ -22,9 +22,9 @@ TTS: Sarvam (V2 voice path).
 - `CLAUDE_RULES.md` — full verbatim body of every Rule 1–28 + dormant specs (the §7 index points here).
 - `CLAUDE_APPENDIX.md` — §A glossary · §B concept-ID inventory · §C the Learning Model 5-row table.
 - `docs/AUTHORING_PIPELINE.md` — the canonical authoring SOP (the live loop; see §5).
-- `CLAUDE_REFERENCE.md` — **[STALE — orientation only, verify live]** file/route/table maps.
+- `docs/archive/CLAUDE_REFERENCE.md` — **[STALE — orientation only, verify live]** file/route/table maps.
 - `CLAUDE_TEST.md` — THE EYE visual-test protocol (live sections; deferred sections bannered).
-- `CLAUDE_ENGINES.md` **[SUPERSEDED]** · `PLAN.md` **[HISTORICAL]** — old 44-engine OS + phase roadmap;
+- `docs/archive/CLAUDE_ENGINES.md` **[SUPERSEDED]** · `docs/archive/PLAN.md` **[HISTORICAL]** — old 44-engine OS + phase roadmap;
   read only for the feedback-architecture design that seeds §2. The live architecture is §1 below.
 
 ---
@@ -32,7 +32,7 @@ TTS: Sarvam (V2 voice path).
 ## §1 — ARCHITECTURE IN USE
 
 The system is built by **agents authoring data**, not by a "44-engine OS" (that framing is retired —
-see CLAUDE_ENGINES.md [SUPERSEDED]). Pre-built TypeScript renderers do all visualization + physics
+see docs/archive/CLAUDE_ENGINES.md [SUPERSEDED]). Pre-built TypeScript renderers do all visualization + physics
 computation; AI writes *configuration only* and is **never in the rendering loop** (Rule 5/17/18).
 
 **Alex cluster — the authoring pipeline (sequential; each output is the next input):**
@@ -273,7 +273,7 @@ English · **THE EYE** (§5 ③) with zero new `engine_bug_queue` rows.
 - `src/lib/intentClassifier.ts` — `VALID_CONCEPT_IDS` + `CLASSIFIER_PROMPT`.
 - `.claude/agents/*` (emitted) + `.agents/*` (canonical) — the agent specs.
 
-(Deeper file/route/table maps: `CLAUDE_REFERENCE.md` — [STALE], verify live.)
+(Deeper file/route/table maps: `docs/archive/CLAUDE_REFERENCE.md` — [STALE], verify live.)
 
 ---
 

@@ -10,7 +10,7 @@
  * Only atomic_v2 files are validated against the Zod schema. Exit 1 if any
  * atomic file fails or if any file is unclassifiable. Legacy files do NOT
  * fail the build — they're a splitting backlog, tracked separately in
- * LEGACY_SPLIT_BACKLOG.md.
+ * docs/archive/LEGACY_SPLIT_BACKLOG.md.
  *
  * Usage: npx tsx src/scripts/validate-concepts.ts
  */
@@ -1008,7 +1008,7 @@ function main(): void {
     tierBuckets[tier].push(file);
 
     if (tier === 'legacy_bundled') {
-      console.log(`LEGACY      ${file}  (needs splitting — see LEGACY_SPLIT_BACKLOG.md)`);
+      console.log(`LEGACY      ${file}  (needs splitting — see docs/archive/LEGACY_SPLIT_BACKLOG.md)`);
       continue;
     }
 
