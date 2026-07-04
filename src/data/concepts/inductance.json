@@ -1,0 +1,816 @@
+{
+  "concept_id": "inductance",
+  "concept_name": "Inductance — Self & Mutual",
+  "chapter": 6,
+  "section": "6.9",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Ch.6 Electromagnetic Induction §6.9 Inductance (Self & Mutual, Exp 6.3) — table-of-contents reference only; teaching authored from first principles. The atomic idea has two coupled halves. SELF-INDUCTANCE: a coil is electrical inertia — a changing current in it links a changing flux to itself (Λ = LI), so it induces a back-EMF ε_L = −L·dI/dt that opposes the CHANGE in its own current; the current therefore ramps and never jumps, L is pure geometry (turns N, area A, length l, core μ_r) and NEVER a function of the current, and the coil stores field energy U = ½LI² that escapes as the switch-off spark. MUTUAL INDUCTANCE: a changing current in one coil links a changing flux to a SECOND, disconnected coil (Λ = MI₁), inducing ε₂ = −M·dI₁/dt across empty space with no wire between them; M = k√(L₁L₂) with k∈[0,1] falling with separation and rising with a shared core, and M is symmetric (M₁₂ = M₂₁). Both halves are the SAME Faraday flux-linkage physics — the transformer, the ignition coil, and the wireless charger all live here. Does NOT cover AC generators (next) or transformer voltage-ratio numerics. Built in the straightforward (non-Socratic) model: six motion-distinct teaching beats + one combined interactive state, each state exposing only its own contextual controls (Rule 31). Demo-compressed magnitudes: real RL time constants are milliseconds, stretched here to tau_demo = 0.6 s so the ramp and the spike are watchable; the RELATIONS are exact.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "inductance"
+    ]
+  },
+  "prerequisites": [
+    "faraday_law_induction",
+    "magnetic_field_solenoid"
+  ],
+  "real_world_anchor": {
+    "primary": "Every motorcycle and scooter on an Indian road fires its spark plug using this concept. A coil carries a steady current from the battery; the moment the ignition circuit breaks that current, the coil's self-inductance fights the sudden drop with a huge back-EMF spike, and the mutually-coupled secondary winding steps that spike up to tens of thousands of volts — enough to jump the spark-plug gap and ignite the fuel. Break the current, get a spark: that is ½LI² of stored field energy escaping through self- and mutual inductance together.",
+    "secondary": "Place a phone on a wireless charging pad and it charges with no metal contact. A changing current in the pad's coil induces an EMF in a coil inside the phone across the air gap — no wire between them. This is NCERT Experiment 6.3 sitting on a student's desk: two coils, magnetically coupled, energy crossing empty space."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "I": {"name": "Steady (final) current the coil ramps toward", "unit": "A", "min": 0.2, "max": 3, "default": 2, "step": 0.2},
+      "N": {"name": "Number of turns on the coil (sets self-inductance geometrically)", "unit": "turns", "min": 100, "max": 600, "default": 300, "step": 50},
+      "core": {"name": "Core inside the single self-inductance coil (0=air, 1=iron)", "unit": "", "min": 0, "max": 1, "default": 0, "step": 1},
+      "L": {"name": "Self-inductance of the coil", "unit": "H", "min": 0.002, "max": 0.3, "default": 0.018, "derived": "L = L_ref*(N/N_ref)^2*(core==1?core_factor:1) [pure geometry, NEVER a function of I]"},
+      "dIdt": {"name": "Instantaneous rate of change of the coil current", "unit": "A/s", "min": -300, "max": 300, "default": 0, "derived": "switch-on:(I/tau_demo)*exp(-t/tau_demo); steady:0; switch-off:-(I/dt_arc); written back per frame by the renderer"},
+      "emf_L": {"name": "Self back-EMF across the coil", "unit": "V", "min": -5, "max": 5, "default": 0, "derived": "emf_L = -L*dIdt (=0 exactly whenever dIdt=0)"},
+      "U": {"name": "Energy stored in the coil's magnetic field", "unit": "J", "min": 0, "max": 1.5, "default": 0.036, "derived": "U = 0.5*L*I^2 (always >=0)"},
+      "d": {"name": "Separation between the two coils (relative units)", "unit": "rel", "min": 1, "max": 10, "default": 2, "step": 1},
+      "core_shared": {"name": "Shared iron core linking the two coils (0=none, 1=shared)", "unit": "", "min": 0, "max": 1, "default": 0, "step": 1},
+      "f_drive": {"name": "Primary-drive oscillation frequency (demo-compressed)", "unit": "Hz", "min": 0.2, "max": 1.5, "default": 0.5, "step": 0.1},
+      "I1": {"name": "Primary-coil current (oscillating drive for mutual induction)", "unit": "A", "min": -1.5, "max": 1.5, "default": 0, "derived": "I1(t)=I1_amp*sin(2*PI*f_drive*t) [I1_amp=1.5A]"},
+      "dI1dt": {"name": "Rate of change of the primary current", "unit": "A/s", "min": -15, "max": 15, "default": 0, "derived": "dI1dt = I1_amp*(2*PI*f_drive)*cos(2*PI*f_drive*t)"},
+      "k": {"name": "Coupling coefficient between the two coils (0=none, 1=perfect)", "unit": "", "min": 0, "max": 0.98, "default": 0.546, "derived": "k = min(k_max*exp(-d/d_scale)*(core_shared==1?core_boost:1), 0.98)"},
+      "M": {"name": "Mutual inductance between the two coils", "unit": "H", "min": 0.001, "max": 0.29, "default": 0.0098, "derived": "M = k*sqrt(L1*L2); L1=L2=L(N,core), identical demo coils, so M=k*L"},
+      "emf2": {"name": "EMF induced in the disconnected second coil", "unit": "V", "min": -0.5, "max": 0.5, "default": 0, "derived": "emf2 = -M*dI1dt (=0 whenever dI1dt=0)"},
+      "mu0": {"name": "permeability of free space", "unit": "H/m", "constant": 0.00000125663706},
+      "L_ref": {"name": "reference self-inductance at N_ref, air core (demo scale)", "unit": "H", "constant": 0.018},
+      "N_ref": {"name": "reference turn count for the demo L scale", "unit": "turns", "constant": 300},
+      "core_factor": {"name": "self-coil inductance boost with iron core (demo-compressed)", "unit": "", "constant": 8},
+      "k_max": {"name": "coupling coefficient at zero separation, no shared core", "unit": "", "constant": 0.9},
+      "d_scale": {"name": "separation decay length for the coupling coefficient", "unit": "rel", "constant": 4},
+      "core_boost": {"name": "coupling boost when a shared core is inserted", "unit": "", "constant": 1.6},
+      "I1_amp": {"name": "amplitude of the oscillating primary current", "unit": "A", "constant": 1.5},
+      "tau_demo": {"name": "demo-compressed ramp time constant (real RL tau is ms; stretched to be watchable)", "unit": "s", "constant": 0.6},
+      "dt_arc": {"name": "demo collapse time of the current at switch-off (sets the spark spike size)", "unit": "s", "constant": 0.02}
+    },
+    "computed_outputs": {
+      "L_display_mH": {"formula": "1000*L_ref*(N/N_ref)*(N/N_ref)*(core==1?core_factor:1)"},
+      "emf_L_volts": {"formula": "-L*dIdt"},
+      "U_display_mJ": {"formula": "1000*0.5*L*I*I"},
+      "k_couple": {"formula": "min(k_max*exp(-d/d_scale)*(core_shared==1?core_boost:1), 0.98)"},
+      "M_display_mH": {"formula": "1000*k_couple*L"},
+      "emf2_millivolts": {"formula": "1000*(-M*dI1dt)"},
+      "I1_live": {"formula": "I1_amp*sin(2*PI*f_drive*t)"},
+      "dI1dt_live": {"formula": "I1_amp*(2*PI*f_drive)*cos(2*PI*f_drive*t)"}
+    },
+    "formulas": {
+      "self_emf": "ε_L = −L·dI/dt — the coil opposes the CHANGE in its own current (electrical inertia)",
+      "self_inductance": "L = μ₀·μ_r·N²·A/l — pure geometry: turns N, area A, length l, core μ_r; NEVER the current",
+      "energy_stored": "U = ½·L·I² — energy held in the coil's magnetic field, released as the switch-off spark",
+      "mutual_emf": "ε₂ = −M·dI₁/dt — a changing primary current induces an EMF in a disconnected neighbour",
+      "mutual_inductance": "M = k·√(L₁L₂), k∈[0,1]; k falls with separation d, rises with a shared core; M₁₂=M₂₁ (symmetric)"
+    },
+    "constraints": [
+      "ε_L = −L·dI/dt: the back-EMF opposes the CHANGE in current, not the current itself",
+      "ε_L = 0 exactly when dI/dt = 0 (steady current), no matter how large the current I is",
+      "L depends only on geometry (N, area, length, core μ_r) — never on the current I or the EMF",
+      "The coil current is continuous — it ramps, it never jumps (a jump needs infinite dI/dt → infinite back-EMF)",
+      "U = ½LI² ≥ 0 always; the energy lives in the magnetic field and is released as the switch-off spark",
+      "ε₂ = −M·dI₁/dt: a mutual EMF needs dI₁/dt ≠ 0, not merely a present current I₁ ≠ 0",
+      "M = k√(L₁L₂) with k∈[0,1]; k drops as d grows and rises with a shared core; M can never exceed √(L₁L₂)",
+      "M is symmetric: M₁₂ = M₂₁ — swapping primary and secondary gives the identical coupling",
+      "Self-induction and mutual induction are the SAME physics — Faraday's law on flux linkage (Λ=LI self, Λ=MI₁ mutual)"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_1",
+    "statement": "A coil is electrical inertia: it fights any change in its own current.",
+    "visual_confirmation": "the ghost current jumps to full instantly while the real current beads refuse and ramp up smoothly, a red push-back arrow opposing the build-up.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2"
+    ],
+    "self_inductance": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4"
+    ],
+    "mutual_inductance": [
+      "STATE_5",
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "A coil is electrical inertia: current ramps, it never jumps",
+        "duration": 32,
+        "focal_primitive_id": "ind_ramp_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ind_ramp_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "ε_L = −L·dI/dt — the coil fights the change in its own current",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_ghost_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "ghost current jumps to full instantly (what a resistor would do — wrong)",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_real_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "real current ramps up smoothly — the coil refuses the jump",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "Close the switch. A ghost current jumps straight to full — what a plain resistor would do; now watch the coil.", "text_hi": "Switch बंद करिए। एक ghost current सीधे full पर jump कर जाती है — जैसा एक plain resistor करता; अब coil को देखिए।", "text_te": "Switch మూయండి. ఒక ghost current నేరుగా full కి jump అవుతుంది — ఒక plain resistor చేసేది అదే; ఇప్పుడు coil ని గమనించండి.",
+              "glow": "ind_ghost_label",
+              "scenario_cue": "ghost_jump"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "The real current beads refuse to jump: they ramp up smoothly, and a red push-back arrow rises against the build-up.", "text_hi": "असली current के beads jump करने से मना कर देते हैं: वे smoothly ramp up होते हैं, और एक red push-back arrow उस build-up के खिलाफ उठता है।", "text_te": "నిజమైన current beads jump చేయడానికి నిరాకరిస్తాయి: అవి smoothly ramp up అవుతాయి, మరియు ఒక red push-back arrow ఆ build-up కి వ్యతిరేకంగా పైకి వస్తుంది.",
+              "glow": "ind_real_label",
+              "scenario_cue": "push_back"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "That push-back is the self back-EMF: ε_L equals minus self-inductance L times the rate of change of current.", "text_hi": "यह push-back ही self back-EMF है: ε_L equals minus self-inductance L times the rate of change of current।", "text_te": "ఈ push-backే self back-EMF: ε_L equals minus self-inductance L times the rate of change of current.",
+              "glow": "ind_ramp_label"
+            },
+            {
+              "id": "s1_4",
+              "text_en": "A coil is electrical inertia: it fights any change in its own current. Steady current, and the push-back fades to zero.", "text_hi": "एक coil electrical inertia है: यह अपने खुद के current में किसी भी change से लड़ती है। Steady current आने पर push-back zero हो जाता है।", "text_te": "ఒక coil అనేది electrical inertia: ఇది తన స్వంత current లో ఏ మార్పునైనా వ్యతిరేకిస్తుంది. Steady current వస్తే push-back zero కి తగ్గిపోతుంది."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Current through an inductor jumps instantly to its full value, like current through a resistor.",
+            "visual_counter": "A ghost dashed current jumps to full at once (wrong), while the real current beads ramp up smoothly and a red push-back arrow opposes the build-up.",
+            "one_line_fix": "Current in a coil ramps continuously and never jumps — a jump would need infinite dI/dt, hence an infinite back-EMF."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Switch dynamics: back-EMF tracks dI/dt, not I — and the switch-off spark",
+        "duration": 35,
+        "focal_primitive_id": "ind_zero_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "back_emf_opposes_change_not_current",
+          "switch_off_spark_origin",
+          "current_ramp_time_constant"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ind_zero_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "steady current → dI/dt = 0 → ε_L = 0 (however large I is)",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_spike_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "open the switch → dI/dt huge → ε_L spikes → spark",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_graph_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "I-t and ε_L-t: back-EMF follows the RATE of change, not the current",
+            "color": "#42A5F5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Put the current and back-EMF on live graphs. Close the switch: I ramps up, and ε_L bumps briefly then decays to zero.", "text_hi": "Current और back-EMF को live graphs पर रखिए। Switch बंद करिए: I ramp up होती है, और ε_L थोड़ी देर के लिए bump करके फिर zero पर decay हो जाती है।", "text_te": "Current మరియు back-EMF ని live graphs మీద చూద్దాం. Switch మూయండి: I ramp up అవుతుంది, మరియు ε_L కొంచెం సేపు bump అయి తర్వాత zero కి decay అవుతుంది.",
+              "scenario_cue": "switch_on"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Hold at steady current: I is large and flat, yet ε_L stays pinned at zero — it tracks the rate of change, not the current.", "text_hi": "Steady current पर रुकिए: I बड़ी और flat है, फिर भी ε_L zero पर ही pinned रहती है — यह current को नहीं, बल्कि rate of change को track करती है।", "text_te": "Steady current దగ్గర ఆగండి: I పెద్దగా మరియు flat గా ఉంది, అయినా ε_L zero మీదే pinned గా ఉంటుంది — ఇది current ని కాదు, rate of change ని track చేస్తుంది.",
+              "glow": "ind_zero_label"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Now open the switch. The current collapses almost instantly, so the rate of change is enormous.", "text_hi": "अब switch खोलिए। Current लगभग instantly collapse हो जाती है, इसलिए rate of change बहुत enormous हो जाता है।", "text_te": "ఇప్పుడు switch తెరవండి. Current దాదాపు instantly collapse అవుతుంది, కాబట్టి rate of change చాలా enormous గా మారుతుంది.",
+              "scenario_cue": "switch_off"
+            },
+            {
+              "id": "s2_4",
+              "text_en": "ε_L spikes far above the battery, and a bright spark jumps the gap — the field energy escaping.", "text_hi": "ε_L battery से बहुत ऊपर spike करती है, और एक bright spark gap को jump कर देती है — यह field energy का बाहर निकलना है।", "text_te": "ε_L battery కంటే చాలా పైన spike అవుతుంది, మరియు ఒక bright spark gap ని jump చేస్తుంది — ఇది field energy బయటకు వెళ్ళడం.",
+              "glow": "ind_spike_label",
+              "scenario_cue": "spark"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The back-EMF opposes the current itself / a bigger steady current means a bigger back-EMF.",
+            "visual_counter": "At steady state the current trace is flat and LARGE while the ε_L trace sits pinned at ZERO; at switch-off the current collapse makes ε_L spike enormously.",
+            "one_line_fix": "The back-EMF tracks dI/dt, not I — at steady current it is exactly zero however large the current is, and it spikes when the current is cut."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "What L depends on: pure geometry, never the current",
+        "duration": 30,
+        "focal_primitive_id": "ind_L_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ind_L_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "L = μ₀ N² A / l — pure geometry, never the current",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_turns_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "more turns N, or an iron core → bigger L (and a slower ramp)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_decoy_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "drag the current I → L does not move at all",
+            "color": "#90A4AE"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "A coil's self-inductance L is set by geometry alone. Add turns and L climbs with the square of N; slide an iron core in and L jumps many times over.", "text_hi": "एक coil की self-inductance L केवल geometry से तय होती है। Turns बढ़ाइए और L, N के square के साथ climb करती है; एक iron core अंदर slide करिए और L कई गुना jump कर जाती है।", "text_te": "ఒక coil యొక్క self-inductance L కేవలం geometry వల్ల నిర్ణయించబడుతుంది. Turns పెంచండి మరియు L, N యొక్క square తో పాటు climb అవుతుంది; ఒక iron core లోపల slide చేయండి మరియు L చాలా రెట్లు jump అవుతుంది.",
+              "glow": "ind_turns_label",
+              "scenario_cue": "core_slide"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "A bigger L means more inertia — the same coil ramps up more slowly, now harder to change.", "text_hi": "बड़ा L मतलब ज़्यादा inertia — वही coil अब और slowly ramp up होती है, अब change करना और कठिन हो जाता है।", "text_te": "పెద్ద L అంటే ఎక్కువ inertia — అదే coil ఇప్పుడు మరింత slowly ramp up అవుతుంది, ఇప్పుడు మార్చడం మరింత కష్టంగా మారుతుంది.",
+              "glow": "ind_L_label"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Now drag the current itself: the beads speed up, but the L readout doesn't budge. Self-inductance L is pure geometry — never the current, never the back-EMF.", "text_hi": "अब current को खुद drag करिए: beads की speed बढ़ जाती है, लेकिन L का readout बिल्कुल नहीं हिलता। Self-inductance L पूरी तरह geometry पर निर्भर है — कभी current पर नहीं, कभी back-EMF पर नहीं।", "text_te": "ఇప్పుడు current నే drag చేయండి: beads వేగం పెరుగుతాయి, కానీ L యొక్క readout మాత్రం కదలదు. Self-inductance L అనేది pure geometry — ఎప్పుడూ current మీద కాదు, ఎప్పుడూ back-EMF మీద కాదు.",
+              "glow": "ind_decoy_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Inductance depends on the current flowing through the coil.",
+            "visual_counter": "Dragging the current slider leaves the L readout fixed; adding turns or inserting the iron core is what makes L climb.",
+            "one_line_fix": "L is pure geometry (turns, area, length, core) — it never depends on the current or the EMF."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Energy stored in the field: U = ½LI²",
+        "duration": 30,
+        "focal_primitive_id": "ind_energy_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "where_the_half_comes_from",
+          "energy_stored_in_field_not_wire",
+          "spark_energy_equals_field_energy"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ind_energy_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "U = ½ L I² — energy stored in the coil's magnetic field",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_fill_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "current rises → the reservoir fills (grows with I²)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_release_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "cut the current → the field energy leaves as a spark",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Pushing current in works against the back-EMF, and that work is stored: energy U equals one-half L times current squared.", "text_hi": "Current को push करना back-EMF के विरुद्ध काम करता है, और वह काम store हो जाता है: energy U equals one-half L times current squared।", "text_te": "Current ని push చేయడం back-EMF కి వ్యతిరేకంగా పని చేస్తుంది, మరియు ఆ పని store అవుతుంది: energy U equals one-half L times current squared.",
+              "glow": "ind_energy_label"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Watch the reservoir fill as the current rises — it grows with the square of the current, and it lives in the coil's magnetic field, not the wire.", "text_hi": "देखिए जैसे-जैसे current बढ़ता है, reservoir भरता जाता है — यह current के square के साथ बढ़ता है, और यह wire में नहीं बल्कि coil के magnetic field में रहता है।", "text_te": "Current పెరిగే కొద్దీ reservoir నిండటం గమనించండి — ఇది current యొక్క square తో పెరుగుతుంది, మరియు ఇది wire లో కాకుండా coil యొక్క magnetic field లో నివసిస్తుంది.",
+              "glow": "ind_fill_label"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Cut the current and the reservoir empties in a flash — that stored field energy is the switch-off spark, one-half L current squared escaping.", "text_hi": "Current को काटिए और reservoir एक पल में खाली हो जाता है — वह stored field energy ही switch-off की spark है, one-half L current squared बाहर निकल जाती है।", "text_te": "Current ని తెగతెంపు చేయండి మరియు reservoir క్షణంలో ఖాళీ అవుతుంది — ఆ stored field energy యే switch-off spark, one-half L current squared బయటకు వెళ్ళిపోతుంది.",
+              "glow": "ind_release_label",
+              "scenario_cue": "reservoir_spark"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A coil at steady current stores no energy, or the energy is chemical energy inside the wire.",
+            "visual_counter": "The reservoir fills as the current rises and empties into the spark when the current is cut — the energy lives in the field and grows as I².",
+            "one_line_fix": "A current-carrying coil stores U = ½LI² in its magnetic field, released as the switch-off spark when the current is interrupted."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Mutual induction: an EMF across empty space, no wire between",
+        "duration": 32,
+        "focal_primitive_id": "ind_mutual_aha",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "emf_with_no_electrical_connection",
+          "mutual_inductance_is_the_transformer",
+          "M_is_symmetric_both_ways"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ind_mutual_aha",
+            "position": { "x": 380, "y": 60 },
+            "text": "A changing current in one coil induces an EMF in another — with no wire between.",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_gap_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "air gap — no wire crosses it",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_emf2_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "ε₂ = −M·dI₁/dt — the same flux-linkage physics as the self back-EMF",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Bring a second coil near the first — no wire, just an air gap. Drive an oscillating current I₁ through the first, so its flux keeps changing.", "text_hi": "एक दूसरी coil को पहली के पास लाइए — कोई wire नहीं, बस एक air gap है। पहली coil में एक oscillating current I₁ drive करिए, ताकि उसका flux बदलता रहे।", "text_te": "రెండో coil ని మొదటి దాని దగ్గరకు తీసుకు రండి — wire ఏమీ లేదు, కేవలం ఒక air gap మాత్రమే. మొదటి coil లో ఒక oscillating current I₁ drive చేయండి, తద్వారా దాని flux మారుతూ ఉంటుంది.",
+              "scenario_cue": "flux_reach"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "That changing flux reaches across the gap into the second coil, and its galvanometer deflects — every cycle, no wire between them.", "text_hi": "वह changing flux gap को पार करके दूसरी coil तक पहुँचता है, और उसका galvanometer deflect होता है — हर cycle में, बिना किसी wire के।", "text_te": "ఆ changing flux gap ని దాటి రెండో coil లోకి చేరుతుంది, మరియు దాని galvanometer deflect అవుతుంది — ప్రతి cycle లో, వాటి మధ్య ఎటువంటి wire లేకుండా.",
+              "glow": "ind_gap_label"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "The induced potential ε₂ equals minus mutual-inductance M times the rate of change of the primary current — the same flux-linkage physics as before.", "text_hi": "Induced potential ε₂ equals minus mutual-inductance M times the rate of change of the primary current — यह वही flux-linkage physics है जो पहले भी थी।", "text_te": "Induced potential ε₂ equals minus mutual-inductance M times the rate of change of the primary current — ఇది మనం ముందు చూసిన అదే flux-linkage physics.",
+              "glow": "ind_emf2_label"
+            },
+            {
+              "id": "s5_4",
+              "text_en": "A changing current in one coil induces an EMF in another across empty space — the transformer and the wireless charger.", "text_hi": "एक coil में changing current, दूसरी coil में empty space के पार EMF induce करती है — यही transformer और wireless charger का आधार है।", "text_te": "ఒక coil లో changing current, మరొక coil లో empty space దాటి EMF induce చేస్తుంది — ఇదే transformer మరియు wireless charger యొక్క మూలం.",
+              "glow": "ind_mutual_aha"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The two coils must be connected or touching for mutual inductance; self and mutual induction are unrelated phenomena.",
+            "visual_counter": "A highlighted air gap sits between the coils and the secondary galvanometer deflects with no wire crossing it; the induced-EMF arrow is drawn the same as the self back-EMF arrow.",
+            "one_line_fix": "Mutual induction needs only magnetic coupling across space, no wire — and it is the same Faraday flux-linkage physics as self-induction."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Coupling: M = k√(L₁L₂), distance, shared core, and reciprocity",
+        "duration": 30,
+        "focal_primitive_id": "ind_coupling_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ind_coupling_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "M = k√(L₁L₂), k in [0,1] — falls with distance, rises with a shared core",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_dist_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "move the coils apart → k and ε₂ shrink",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_swap_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "swap primary and secondary → M is the same (M₁₂ = M₂₁)",
+            "color": "#42A5F5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "The coupling is set by M equals coupling-coefficient k times the square root of L-one L-two. Slide the coils apart and the linkage thins — k and ε₂ shrink.", "text_hi": "यह coupling M equals coupling-coefficient k times the square root of L-one L-two से तय होती है। Coils को अलग करिए और linkage कमज़ोर होती है — k और ε₂ दोनों घट जाते हैं।", "text_te": "ఈ coupling M equals coupling-coefficient k times the square root of L-one L-two తో నిర్ణయించబడుతుంది. Coils ని దూరంగా జరపండి మరియు linkage తగ్గిపోతుంది — k మరియు ε₂ రెండూ తగ్గిపోతాయి.",
+              "glow": "ind_dist_label"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Insert a shared iron core: the flux is funnelled across, k climbs, and ε₂ grows.", "text_hi": "एक shared iron core डालिए: flux उसके ज़रिए funnel हो जाता है, k बढ़ जाता है, और ε₂ भी बढ़ जाती है।", "text_te": "ఒక shared iron core చొప్పించండి: flux అందులో నుండి funnel అవుతుంది, k పెరుగుతుంది, మరియు ε₂ కూడా పెరుగుతుంది.",
+              "scenario_cue": "shared_core_slide"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Swap which coil is the primary — the deflection is identical. Mutual inductance is symmetric, M-one-two equals M-two-one.", "text_hi": "कौन सी coil primary है इसे swap करने पर — deflection identical रहता है। Mutual inductance symmetric है, M-one-two equals M-two-one।", "text_te": "ఏ coil primary అని swap చేసినా — deflection identical గా ఉంటుంది. Mutual inductance symmetric, M-one-two equals M-two-one.",
+              "glow": "ind_swap_label",
+              "scenario_cue": "coil_swap"
+            },
+            {
+              "id": "s6_4",
+              "text_en": "So distance and a shared core set the coupling, and it never matters which coil you call the primary.", "text_hi": "तो distance और एक shared core coupling को set करते हैं, और इससे कोई फर्क नहीं पड़ता कि आप किस coil को primary कहते हैं।", "text_te": "కాబట్టి distance మరియు ఒక shared core coupling ని set చేస్తాయి, మరియు ఏ coil ని primary అని పిలుస్తారో దానితో ఎప్పటికీ సంబంధం ఉండదు.",
+              "glow": "ind_coupling_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Mutual inductance is different depending on which coil drives, and it does not depend on the gap or a shared core.",
+            "visual_counter": "Sliding the coils apart shrinks k and ε₂; a shared core grows them; swapping primary and secondary gives the identical deflection.",
+            "one_line_fix": "M = k√(L₁L₂) falls with distance and rises with a shared core, and it is symmetric: M₁₂ = M₂₁."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore: self and mutual inductance together",
+        "duration": 0,
+        "focal_primitive_id": "ind_explore_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "ind_explore_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Set f, N, core, d, shared core — watch L, ε_L, U, M, ε₂",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_watch_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "self: ε_L = −L·dI/dt, U = ½LI²   ·   mutual: ε₂ = −M·dI₁/dt",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "ind_key_label",
+            "position": { "x": 380, "y": 440 },
+            "text": "L is geometry · M = k√(L₁L₂) · both are Faraday on flux linkage",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now it's your turn — set the drive frequency, the turns, the core, the separation, and the shared core.", "text_hi": "अब आपकी बारी है — drive frequency, turns, core, separation, और shared core को set करें।", "text_te": "ఇప్పుడు మీ వంతు — drive frequency, turns, core, separation, మరియు shared core ని set చేయండి.",
+              "glow": "ind_explore_label"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Every quantity updates live: self-inductance L, back-EMF ε_L, stored energy U, mutual-inductance M, and the induced potential ε₂.", "text_hi": "हर quantity live update होती है: self-inductance L, back-EMF ε_L, stored energy U, mutual-inductance M, और induced potential ε₂।", "text_te": "ప్రతి quantity live గా update అవుతుంది: self-inductance L, back-EMF ε_L, stored energy U, mutual-inductance M, మరియు induced potential ε₂.",
+              "glow": "ind_watch_label"
+            },
+            {
+              "id": "s7_3",
+              "text_en": "One idea ties it together: L is pure geometry, M is k times the root of L-one L-two, and both are Faraday's law on flux linkage.", "text_hi": "एक idea इसे एक साथ जोड़ता है: L pure geometry है, M है k times the root of L-one L-two, और दोनों flux linkage पर Faraday's law हैं।", "text_te": "ఒక idea దీన్ని కలిపి ఉంచుతుంది: L pure geometry, M k times the root of L-one L-two, మరియు రెండూ flux linkage పై Faraday's law.",
+              "glow": "ind_key_label"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered inductance when they can (1) describe a coil as electrical inertia whose current ramps continuously and never jumps; (2) state that the self back-EMF ε_L = −L·dI/dt tracks the RATE of change of current, so it is exactly zero at steady current however large the current is; (3) explain the switch-off voltage spike as the enormous dI/dt when the current is cut; (4) identify self-inductance L as a purely geometric property (turns, area, length, core) that never depends on the current; (5) state that a coil stores U = ½LI² of energy in its magnetic field, released as the switch-off spark; and (6) recognise mutual induction — a changing current in one coil inducing an EMF ε₂ = −M·dI₁/dt in a disconnected neighbour across empty space, the transformer / wireless-charging principle, with M = k√(L₁L₂) symmetric between the coils.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A coil is connected to a battery through a switch. The instant you close the switch, what does the current in the coil do?",
+        "options": {
+          "A": "It ramps up smoothly toward its final value — it cannot jump, because the coil's self-inductance opposes any sudden change",
+          "B": "It jumps instantly to its full final value, exactly like current through a plain resistor",
+          "C": "It stays at zero forever, because a coil permanently blocks direct current",
+          "D": "It overshoots well above the final value and then settles back down"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats the coil like a resistor, ignoring that a sudden jump would need infinite dI/dt and hence an infinite back-EMF",
+          "C": "confuses an inductor's steady-state behaviour (it passes DC freely) with a permanent block",
+          "D": "invents an overshoot with no basis; a simple current rise in a coil is monotonic, never above the final value"
+        },
+        "tested_idea": "A coil is electrical inertia: its self-inductance forces the current to ramp continuously and never jump.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain why the current through an inductor rises gradually after a switch is closed instead of appearing at its full value at once."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "After the switch has been closed for a while, the coil carries a large, steady current. What is the back-EMF ε_L across the coil at that moment?",
+        "options": {
+          "A": "Exactly zero — the back-EMF depends on the rate of change of current, and a steady current has dI/dt = 0",
+          "B": "Large, because the current is large — a bigger current means a bigger back-EMF",
+          "C": "Equal to the battery voltage, which is what holds the current steady",
+          "D": "Half the battery voltage"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "believes the back-EMF tracks the current I itself rather than its rate of change dI/dt",
+          "C": "imagines the back-EMF must balance the battery even at steady state, confusing a resistor's IR drop with an inductor's back-EMF",
+          "D": "guesses an arbitrary fraction of the source voltage with no physical basis"
+        },
+        "tested_idea": "ε_L = −L·dI/dt, so the back-EMF is exactly zero at steady current no matter how large the current is.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "A coil carries a constant 5 A. State its back-EMF and justify your answer in terms of dI/dt."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "You open the switch on a coil that was carrying a steady current, and a bright spark jumps the opening contacts — a spark far bigger than the battery's own voltage. Why?",
+        "options": {
+          "A": "Opening the switch forces the current to collapse almost instantly, so dI/dt is enormous and the coil's back-EMF (−L·dI/dt) spikes to a very high voltage",
+          "B": "The battery voltage suddenly increases the moment the switch opens",
+          "C": "The spark is just leftover current leaking through the air; it has nothing to do with the coil",
+          "D": "Opening the switch has no real electrical effect; the spark is static electricity from your hand"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "blames the battery, missing that the coil itself generates the high-voltage spike",
+          "C": "ignores the coil's role and the ½LI² field energy that must go somewhere when the current is cut",
+          "D": "dismisses the effect entirely, not seeing the self-induced high-voltage transient"
+        },
+        "tested_idea": "Cutting the current fast makes dI/dt huge, so the self-induced back-EMF spikes far above the source voltage — the switch-off spark.",
+        "teaches_state": "STATE_2",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Explain why breaking the current in an inductive circuit can produce a voltage spike many times larger than the supply voltage."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "Which change increases a coil's self-inductance L?",
+        "options": {
+          "A": "Adding turns or inserting an iron core — L is set purely by geometry (turns, area, length, core), never by the current",
+          "B": "Increasing the current flowing through the coil",
+          "C": "Increasing the back-EMF across the coil",
+          "D": "Nothing changes L; it is a fixed universal constant like the speed of light"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "believes L depends on the current, the classic self-inductance misconception",
+          "C": "reverses cause and effect — the back-EMF is a result of L and dI/dt, not a cause of L",
+          "D": "treats L as a universal constant rather than a property of a particular coil's geometry"
+        },
+        "tested_idea": "Self-inductance L depends only on the coil's geometry (turns, area, length, core), never on the current or the EMF.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "List the physical changes to a coil that raise its self-inductance, and explain why changing the current is not one of them."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A coil of inductance L carries a steady current I. How much energy is stored, and where does it reside?",
+        "options": {
+          "A": "U = ½LI², stored in the coil's magnetic field — and it is released as the switch-off spark",
+          "B": "U = LI², stored as chemical energy inside the coil's wire",
+          "C": "Zero — a coil carrying a steady current stores no energy",
+          "D": "U = ½CV², the same formula as a capacitor"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "drops the factor of ½ and misplaces the energy as chemical energy rather than magnetic-field energy",
+          "C": "confuses 'no back-EMF at steady current' with 'no stored energy', missing the field energy",
+          "D": "applies the capacitor energy formula to an inductor"
+        },
+        "tested_idea": "A current-carrying coil stores U = ½LI² in its magnetic field, released when the current is interrupted.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "State the energy stored in an inductor carrying current I, and explain where that energy physically resides."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Two coils sit near each other with no wire connecting them. You change the current in the first coil. What happens in the second, disconnected coil?",
+        "options": {
+          "A": "An EMF is induced in it — a changing current in one coil induces an EMF in the other across empty space, with no wire between them",
+          "B": "Nothing, because the two coils are not electrically connected",
+          "C": "An EMF appears only if the first coil's current is large, not merely if it is changing",
+          "D": "The second coil heats up but develops no EMF"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "insists a wire connection is required, missing that magnetic coupling crosses empty space",
+          "C": "believes a present current I₁ rather than its change dI₁/dt drives the mutual EMF",
+          "D": "invents a heating-only effect, ignoring the induced EMF from the changing flux linkage"
+        },
+        "tested_idea": "A changing current in one coil induces an EMF in a magnetically coupled neighbour with no wire between them (mutual induction, ε₂ = −M·dI₁/dt).",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Two nearby coils share no wire. Explain how changing the current in one produces a voltage in the other."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q2", "Q3"],
+      "STATE_3": ["Q4"],
+      "STATE_4": ["Q5"],
+      "STATE_5": ["Q6"]
+    },
+    "non_assessed_states": [
+      "STATE_6",
+      "STATE_7"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "inductance",
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#66BB6A",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85
+    },
+    "slider_controls": {
+      "I": { "min": 0.2, "max": 3, "step": 0.2, "default": 2, "label": "Final current I" },
+      "N": { "min": 100, "max": 600, "step": 50, "default": 300, "label": "Turns N" },
+      "core": { "min": 0, "max": 1, "step": 1, "default": 0, "label": "Iron core" },
+      "d": { "min": 1, "max": 10, "step": 1, "default": 2, "label": "Coil separation d" },
+      "core_shared": { "min": 0, "max": 1, "step": 1, "default": 0, "label": "Shared core" },
+      "f_drive": { "min": 0.2, "max": 1.5, "step": 0.1, "default": 0.5, "label": "Drive frequency f" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Electrical inertia: ghost jump vs real ramp",
+        "visible_elements": ["ind_coil", "ind_coil_lbl", "ind_flux", "ind_curr", "ind_ghost", "ind_backemf", "ind_switch", "ind_battery"],
+        "camera_position": [1.4, 1.1, 6.4],
+        "caption": "Ghost current jumps instantly (wrong); the real current ramps smoothly and a red push-back arrow opposes the build-up.",
+        "show_sliders": true,
+        "inductance": {
+          "mode": "self_ramp",
+          "I": 2, "N": 300, "core": 0,
+          "ghost_jump_at_ms": 500,
+          "push_back_at_ms": 2500,
+          "visible_controls": [],
+          "show_readout": true,
+          "show_graph": false
+        }
+      },
+      "STATE_2": {
+        "label": "Switch dynamics: ε_L tracks dI/dt, not I — and the switch-off spark",
+        "visible_elements": ["ind_coil", "ind_coil_lbl", "ind_flux", "ind_curr", "ind_switch", "ind_battery", "ind_spark"],
+        "camera_position": [1.4, 1.1, 6.6],
+        "caption": "Steady current → ε_L = 0 (however large I). Open the switch → dI/dt huge → ε_L spikes → spark.",
+        "show_sliders": true,
+        "inductance": {
+          "mode": "switch_graph",
+          "I": 2, "N": 300, "core": 0,
+          "switch_on_at_ms": 2000,
+          "switch_off_at_ms": 24000,
+          "spark_at_ms": 24000,
+          "visible_controls": [],
+          "show_readout": true,
+          "show_graph": true
+        }
+      },
+      "STATE_3": {
+        "label": "What L depends on: pure geometry, never the current",
+        "visible_elements": ["ind_coil", "ind_coil_lbl", "ind_flux", "ind_curr", "ind_core"],
+        "camera_position": [1.5, 1.1, 6.2],
+        "caption": "More turns N or an iron core → bigger L. Drag the current I → the L readout does not move.",
+        "show_sliders": true,
+        "inductance": {
+          "mode": "geometry",
+          "I": 2, "N": 300, "core": 0,
+          "core_insert_at_ms": 8000,
+          "visible_controls": ["N", "core", "I"],
+          "show_readout": true,
+          "show_graph": false
+        }
+      },
+      "STATE_4": {
+        "label": "Energy stored in the field: U = ½LI²",
+        "visible_elements": ["ind_coil", "ind_coil_lbl", "ind_flux", "ind_curr", "ind_reservoir", "ind_battery", "ind_switch"],
+        "camera_position": [1.6, 1.1, 6.6],
+        "caption": "The reservoir fills as the current rises (∝ I²) and empties into a spark when the current is cut.",
+        "show_sliders": true,
+        "inductance": {
+          "mode": "energy",
+          "I": 2, "N": 300, "core": 0,
+          "discharge_at_ms": 14000,
+          "visible_controls": ["I"],
+          "show_readout": true,
+          "show_graph": false
+        }
+      },
+      "STATE_5": {
+        "label": "Mutual induction: an EMF across the air gap, no wire",
+        "visible_elements": ["im_pcoil", "im_pcoil_lbl", "im_scoil", "im_scoil_lbl", "im_pflux", "im_pcurr", "im_needle", "im_gap", "im_emf2"],
+        "camera_position": [1.2, 1.1, 7.4],
+        "caption": "A changing primary current I₁ sends flux across the air gap; the secondary needle deflects with no wire between them.",
+        "show_sliders": true,
+        "inductance": {
+          "mode": "mutual_intro",
+          "N": 300, "core": 0, "d": 2, "core_shared": 0, "f_drive": 0.5,
+          "flux_reach_at_ms": 3000,
+          "visible_controls": [],
+          "show_readout": true,
+          "show_graph": false
+        }
+      },
+      "STATE_6": {
+        "label": "Coupling: distance, shared core, and reciprocity",
+        "visible_elements": ["im_pcoil", "im_pcoil_lbl", "im_scoil", "im_scoil_lbl", "im_pflux", "im_pcurr", "im_needle", "im_score"],
+        "camera_position": [1.2, 1.1, 7.2],
+        "caption": "Move the coils apart → k and ε₂ shrink. A shared core grows them. Swap primary/secondary → M is the same.",
+        "show_sliders": true,
+        "inductance": {
+          "mode": "coupling",
+          "N": 300, "core": 0, "d": 2, "core_shared": 0, "f_drive": 0.5,
+          "swap_at_ms": 12000,
+          "visible_controls": ["d", "core_shared"],
+          "show_readout": true,
+          "show_graph": false
+        }
+      },
+      "STATE_7": {
+        "label": "Explore: self and mutual inductance together",
+        "visible_elements": ["ind_coil", "ind_coil_lbl", "ind_curr", "im_pcoil", "im_pcoil_lbl", "im_scoil", "im_scoil_lbl", "im_pflux", "im_pcurr", "im_needle", "im_gap", "im_score"],
+        "camera_position": [1.6, 1.7, 10.2],
+        "caption": "Set I, f, N, core, d, shared core — the self coil (top) and the mutual pair (below) update L, ε_L, U, M, ε₂ live.",
+        "show_sliders": true,
+        "inductance": {
+          "mode": "explore",
+          "N": 300, "core": 0, "d": 2, "core_shared": 0, "f_drive": 0.5, "I": 2,
+          "visible_controls": ["I", "f_drive", "N", "core", "d", "core_shared"],
+          "show_readout": true,
+          "show_graph": false
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

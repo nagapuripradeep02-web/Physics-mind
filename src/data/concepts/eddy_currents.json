@@ -1,0 +1,832 @@
+{
+  "concept_id": "eddy_currents",
+  "concept_name": "Eddy Currents",
+  "chapter": 6,
+  "section": "6.8",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Ch.6 Electromagnetic Induction §6.8 Eddy Currents — table-of-contents reference only; teaching authored from first principles. The atomic idea: eddy currents are Lenz's-law consequences that form INSIDE a bulk conductor (not a wire loop) whenever the local flux through it changes — a swinging conducting plate crossing a magnetic-field gap develops closed, swirling induced currents at its own leading/trailing edges, and those currents' own field opposes the plate's motion (a retarding force, exactly Lenz's law, now on a solid block instead of a coil). The strength of the effect is controlled by the connectivity of the current path inside the metal, not by the material's resistivity — cutting radial slots (or laminating a stack of thin insulated sheets) breaks the loops into small, weak, nearly-harmless ones without changing what the metal is made of. The same mechanism is neither good nor bad by itself: an induction cooktop/furnace wants it strong (to heat a conductor with no flame or contact), while a transformer core wants it suppressed by lamination (to avoid wasting energy as heat). Does NOT cover self/mutual inductance or AC generators. Built in the straightforward (non-Socratic) model: six motion-distinct teaching beats + one combined interactive state, each state exposing only its own contextual controls (Rule 31).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "eddy_current_pendulum"
+    ]
+  },
+  "prerequisites": [
+    "faraday_law_induction",
+    "motional_emf"
+  ],
+  "real_world_anchor": {
+    "primary": "Millions of Indian kitchens now cook on induction cooktops (Prestige, Bajaj, Pigeon). No flame, no red-hot coil touching the pan — a rapidly alternating magnetic field beneath the glass surface induces eddy currents directly inside the pan's own metal base, and the pan's own electrical resistance heats it from within. The cooktop itself never gets hot; only conductors placed on it do.",
+    "secondary": "Every transformer at an Indian substation — the same 220 kV/400 kV/765 kV grid transformers already anchoring faraday_law_induction — is built from thin, mutually insulated iron sheets (laminations), never a single solid iron block. A solid core would heat itself uselessly from the very same eddy currents that make the cooktop work — laminating breaks the current loops into small, weak, harmless ones, exactly the way a slotted pendulum plate does."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "B": {
+        "name": "Magnetic field magnitude through the pendulum's field-gap (perpendicular to the plate face)",
+        "unit": "T",
+        "min": 0.1,
+        "max": 1.0,
+        "default": 0.5,
+        "step": 0.1
+      },
+      "theta_0": {
+        "name": "Release angle of the pendulum plate before letting go",
+        "unit": "deg",
+        "min": 10,
+        "max": 40,
+        "default": 25,
+        "step": 5,
+        "role": "live slider ONLY in STATE_6; locked per-state elsewhere"
+      },
+      "omega_0": {
+        "name": "Pendulum's natural undamped angular frequency (fixed rig property)",
+        "unit": "rad/s",
+        "constant": 4.4
+      },
+      "theta_max": {
+        "name": "Current swing amplitude — the live decay envelope, NOT a slider",
+        "unit": "deg",
+        "min": 0,
+        "max": 40,
+        "default": 25,
+        "derived": "theta_max(t) = theta_0 * exp(-beta_damp * t)",
+        "role": "written back every frame by the pendulum update function (field_3d architecture: no PM_physics.variables global exists here — the readout recomputes theta_max fresh each frame directly instead)"
+      },
+      "field_on": {
+        "name": "Whether the pendulum's magnetic field is on (boolean 0|1)",
+        "unit": "",
+        "min": 0,
+        "max": 1,
+        "default": 0,
+        "step": 1
+      },
+      "slotted": {
+        "name": "Whether the plate has radial slots cut into it (boolean 0|1)",
+        "unit": "",
+        "min": 0,
+        "max": 1,
+        "default": 0,
+        "step": 1
+      },
+      "v_dir": {
+        "name": "Sign of the plate's swing direction when RHR is demonstrated (-1/+1, same convention as motional_emf)",
+        "unit": "",
+        "min": -1,
+        "max": 1,
+        "default": 1,
+        "step": 2
+      },
+      "F_retard": {
+        "name": "Net eddy-current retarding force at the plate's field-crossing edge",
+        "unit": "N",
+        "min": 0,
+        "max": 1,
+        "default": 0.071,
+        "derived": "F_retard(t) = k_F * B^2 * omega_0 * radians(theta_max) * field_on * (slotted ? s_slot : 1)"
+      },
+      "f_ac": {
+        "name": "Alternating-reversal rate of the S5 induction-furnace coil's field (deliberately compressed from real 50Hz-MHz for visual legibility)",
+        "unit": "Hz",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "B_ac": {
+        "name": "Peak field inside the S5 induction-furnace coil — DISTINCT from the pendulum's B, never shared",
+        "unit": "T",
+        "constant": 0.4
+      },
+      "I_0": {
+        "name": "Peak alternating current amplitude in the S5 coil (display only)",
+        "unit": "A",
+        "constant": 5
+      },
+      "laminated": {
+        "name": "Whether the S5 transformer-core cross-section is solid or laminated (boolean 0|1)",
+        "unit": "",
+        "min": 0,
+        "max": 1,
+        "default": 0,
+        "step": 1
+      },
+      "P_loss": {
+        "name": "Eddy-current power loss in the S5 core (S5 only, never appears in the pendulum rig)",
+        "unit": "W",
+        "min": 0,
+        "max": 200,
+        "default": 40,
+        "derived": "P_loss = k_p * f_ac^2 * B_ac^2 * (laminated ? loss_factor_lam : 1)"
+      }
+    },
+    "computed_outputs": {
+      "period_T": { "formula": "(2*PI) / omega_0" },
+      "beta_damp": { "formula": "0.05 + 3.0 * (B*B) * field_on * (slotted ? 0.08 : 1)" },
+      "pend_k": { "formula": "omega_0 * omega_0" },
+      "pend_b": { "formula": "2 * beta_damp" },
+      "I_coil_display": { "formula": "I_0 * sin(2*PI*f_ac*t)" }
+    },
+    "formulas": {
+      "damping_law": "theta_max(n) = theta_0 * e^(-gamma*n), n=swing number=t/T; beta_damp = 0.05(air) + 3.0*B^2*[field_on]*(slotted?0.08:1)",
+      "retarding_force": "F_retard = 0.15 * B^2 * omega_0 * radians(theta_max) * [field_on] * (slotted?0.08:1)",
+      "eddy_loss_power": "P_loss = 10 * f_ac^2 * B_ac^2 * (laminated?0.05:1)"
+    },
+    "constraints": [
+      "theta_max(t) only ever decays — never grows without a fresh release",
+      "F_retard = 0 exactly when field_on = 0 (residual decay in that state is a separate non-eddy air-drag term, never labeled F_retard)",
+      "Damping rate depends on B, field_on, AND slotted MULTIPLICATIVELY — zeroing any one factor collapses the eddy term to exactly zero",
+      "Slotting reduces eddy-current paths (s_slot=0.08); it never eliminates them entirely and never changes the material's resistivity",
+      "P_loss exists only inside the S5 mini-rig — never a function of the pendulum's B/theta_max/slotted; the pendulum rig never shows a P_loss readout",
+      "B (pendulum) and B_ac (S5 coil) are DISTINCT variables in different scenario namespaces — never share a slider or locked value across S1-S4/S6 vs S5",
+      "The induced-current loop glyph is qualitative/symbolic only (brightness + circulation direction) — no numeric ammeter reading, matching NCERT's qualitative treatment",
+      "Reversing v_dir flips both edge-loops' circulation sense, but F_retard always recomputes to oppose the new velocity — it can never assist motion"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_2",
+    "statement": "A solid conductor brakes itself: changing flux swirls closed currents inside the metal.",
+    "visual_confirmation": "closed, swirling loop glyphs brighten exactly at the field-boundary line as the plate's edge crosses it, inside a solid, wireless block of metal.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "mechanism": [
+      "STATE_2"
+    ],
+    "direction_and_drag": [
+      "STATE_3"
+    ],
+    "slots_and_lamination": [
+      "STATE_4"
+    ],
+    "applications": [
+      "STATE_5"
+    ],
+    "exploration": [
+      "STATE_6"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "A pendulum plate that brakes itself in a field",
+        "duration": 30,
+        "focal_primitive_id": "damping_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "damping_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "beta_damp = 0.05 (air) vs 0.80 /s (field on)",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "off_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "field OFF -> long, near-free swing",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "on_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "field ON -> collapses in 2-3 swings",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A metal plate hangs from a pivot, free to swing between the poles of an electromagnet. Field off, it swings a long time, barely losing amplitude to air drag.", "text_hi": "एक metal plate एक pivot से लटकी हुई है, जो एक electromagnet के poles के बीच freely swing कर सकती है। Field off होने पर, यह काफी देर तक swing करती रहती है, air drag से amplitude बहुत कम कम होती है।", "text_te": "ఒక metal plate ఒక pivot నుండి వేలాడుతోంది, electromagnet యొక్క poles మధ్య freely swing అవుతుంది. Field off గా ఉన్నప్పుడు, ఇది చాలా సేపు swing చేస్తూనే ఉంటుంది, air drag వల్ల amplitude చాలా తక్కువగా తగ్గుతుంది.",
+              "glow": "off_label"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Now switch the field on and release from the exact same angle.", "text_hi": "अब field को switch on करें और ठीक उसी angle से छोड़ें।", "text_te": "ఇప్పుడు field ని switch on చేసి, అదే angle నుండి వదలండి.",
+              "scenario_cue": "field_toggle_flip"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "The swing collapses in two or three passes — same plate, same angle, only the field changed.", "text_hi": "यह swing दो या तीन passes में ही रुक जाती है — same plate, same angle, केवल field बदली।", "text_te": "ఈ swing రెండు లేదా మూడు passes లోనే ఆగిపోతుంది — same plate, same angle, కేవలం field మాత్రమే మారింది.",
+              "glow": "on_label"
+            },
+            {
+              "id": "s1_4",
+              "text_en": "That extra braking isn't friction. It's electromagnetic, appearing only when the field is on.", "text_hi": "यह extra braking friction नहीं है। यह electromagnetic है, जो केवल तब appear होती है जब field on हो।", "text_te": "ఈ extra braking friction కాదు. ఇది electromagnetic గా ఉంటుంది, field on అయినప్పుడు మాత్రమే appear అవుతుంది.",
+              "glow": "damping_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The plate slows because of pivot friction or air drag, same as any pendulum.",
+            "visual_counter": "Same plate, same pivot, same release angle — field OFF gives long near-free decay; field ON collapses amplitude in 2-3 swings.",
+            "one_line_fix": "A friction-only pendulum decays slowly and roughly linearly; this collapse only appears with the field ON — it is electromagnetic, not mechanical friction."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Inside a solid block: closed loops of current",
+        "duration": 30,
+        "focal_primitive_id": "loop_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "solid_metal_can_carry_current",
+          "why_current_forms_a_loop_not_just_flow",
+          "where_exactly_do_eddy_currents_live"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "loop_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "closed swirling currents inside the metal",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "boundary_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "brightest exactly where the plate crosses the field-boundary line",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "no_wire_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "no wire anywhere — this is a solid, wireless block of metal",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Zoom into the plate's edges. A solid conductor brakes itself: changing flux swirls closed currents inside the metal.", "text_hi": "plate के edges को zoom in करके देखें। एक solid conductor खुद को brake करता है: changing flux metal के अंदर closed currents को swirl करता है।", "text_te": "plate యొక్క edges ని zoom in చేసి చూడండి. ఒక solid conductor తనను తాను brake చేసుకుంటుంది: changing flux metal లోపల closed currents ని swirl చేస్తుంది.",
+              "glow": "loop_label"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Watch the loops brighten and swirl right at the field boundary, where each edge crosses it.", "text_hi": "देखिए, loops field boundary पर brighten होकर swirl करते हैं, ठीक वहाँ जहाँ हर edge उसे cross करती है।", "text_te": "loops field boundary దగ్గర brighten అయి swirl అవుతాయని గమనించండి, ప్రతి edge దాన్ని cross చేసే చోట.",
+              "glow": "boundary_label",
+              "scenario_cue": "loop_appear_fade"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "There's no coil and no wire here — this current forms inside a solid, wireless block of metal.", "text_hi": "यहाँ कोई coil नहीं है, कोई wire नहीं है — यह current एक solid, wireless metal block के अंदर form होती है।", "text_te": "ఇక్కడ coil లేదు, wire లేదు — ఈ current ఒక solid, wireless metal block లోపల form అవుతుంది.",
+              "glow": "no_wire_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Eddy currents only exist in wires or coils; solid metal can't carry current this way.",
+            "visual_counter": "Closed swirling current loops drawn explicitly inside a solid, uninterrupted, wireless block of metal, appearing right where the boundary is crossed.",
+            "one_line_fix": "Any conductor works — a changing local flux induces closed circulating currents in the bulk metal itself, no wire required."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Lenz's law fixes the direction — it can only drag",
+        "duration": 32,
+        "focal_primitive_id": "grip_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "is_eddy_current_direction_random",
+          "why_use_grip_rule_not_slap_rule",
+          "does_drag_stay_same_or_change_each_instant"
+        ],
+        "extras": {
+          "right_hand": {
+            "render_3d": true,
+            "position": [0.42, -0.15, 0.32],
+            "thumb_direction": [0, 0, 1],
+            "finger_curl": "ccw",
+            "scale": 0.85,
+            "animate_curl": true,
+            "show_b_label": false
+          }
+        },
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "grip_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "grip rule: curl with the loop -> thumb gives its pole",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "oppose_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "the loop's own field always opposes the motion that made it",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "flip_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "reverse the swing -> both loops flip, drag still opposes",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Pull back to the whole plate. Grip rule on the entry loop: curl your fingers with the current, and your thumb gives its pole.", "text_hi": "पूरी plate पर वापस आएं। Entry loop पर grip rule लगाएं: अपनी fingers को current के साथ curl करें, और आपका thumb उसका pole बताएगा।", "text_te": "మొత్తం plate కి తిరిగి వెళ్ళండి. Entry loop పై grip rule వాడండి: మీ fingers ని current తో పాటు curl చేయండి, మీ thumb దాని pole ని చూపిస్తుంది.",
+              "glow": "grip_label",
+              "scenario_cue": "grip_rule_perform"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "The entry loop opposes the field; the exit loop reinforces it. The net force always opposes the plate's velocity.", "text_hi": "Entry loop field को oppose करता है; exit loop उसे reinforce करता है। Net force हमेशा plate की velocity को oppose करती है।", "text_te": "Entry loop field ని oppose చేస్తుంది; exit loop దాన్ని reinforce చేస్తుంది. Net force ఎప్పుడూ plate యొక్క velocity ని oppose చేస్తుంది.",
+              "glow": "oppose_label"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Reverse the swing — both loops flip, drag still opposes. This isn't fixed friction; it's regenerated each instant, set by how fast the boundary is crossed.", "text_hi": "Swing को reverse करें — दोनों loops flip हो जाते हैं, drag फिर भी oppose करता है। यह fixed friction नहीं है; यह हर instant regenerate होती है, इस बात से तय होती है कि boundary कितनी तेज़ी से cross की जा रही है।", "text_te": "Swing ని reverse చేయండి — రెండు loops flip అవుతాయి, drag మాత్రం oppose చేస్తూనే ఉంటుంది. ఇది fixed friction కాదు; ఇది ప్రతి instant regenerate అవుతుంది, boundary ఎంత వేగంగా cross చేయబడుతోందో దాన్ని బట్టి నిర్ణయించబడుతుంది.",
+              "glow": "flip_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The induced current or force could point either way — arbitrary, or it might sometimes speed the plate up.",
+            "visual_counter": "Grip rule performed live; reversing swing direction re-runs the same rule and F_retard flips instantly to stay opposite v, on both edges, every time.",
+            "one_line_fix": "Lenz's law fixes the direction absolutely: the induced loop always opposes the motion that created it — it can only drag, never assist."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "Break the loops, break the drag",
+        "duration": 33,
+        "focal_primitive_id": "contrast_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_does_cutting_metal_reduce_current",
+          "does_slotting_change_resistivity",
+          "is_the_slotted_plate_still_a_conductor"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "contrast_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "same B, same field, same speed — only connectivity differs",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "solid_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "solid: one big loop -> collapses in 2-3 swings",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "slot_label",
+            "position": { "x": 560, "y": 400 },
+            "text": "slotted: many small loops -> barely decays",
+            "color": "#FFB300"
+          },
+          {
+            "type": "annotation",
+            "id": "break_loops_label",
+            "position": { "x": 380, "y": 440 },
+            "text": "Break the loops — slots, laminations — and the drag nearly vanishes.",
+            "color": "#42A5F5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Two identical plates, same metal and field, released together. The left is solid: one big loop forms, and its swing collapses in two or three passes.", "text_hi": "दो identical plates, एक ही metal और field, एक साथ release की गईं। बाईं वाली solid है: एक बड़ा loop बनता है, और इसका swing दो या तीन passes में ही collapse हो जाता है।", "text_te": "రెండు identical plates, ఒకే metal మరియు field తో కలిసి release చేయబడ్డాయి. ఎడమవైపు plate solid గా ఉంది: ఒక పెద్ద loop ఏర్పడుతుంది, మరియు దాని swing రెండు లేదా మూడు passes లోనే collapse అయిపోతుంది.",
+              "glow": "solid_label"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "The right plate has radial slots. Toggle between solid and slotted: slotted, it barely decays while the solid plate is already dead.", "text_hi": "दाईं वाली plate में radial slots हैं। Solid और slotted के बीच toggle करके देखिए: slotted plate मुश्किल से decay होती है जबकि solid plate तब तक पूरी तरह रुक चुकी होती है।", "text_te": "కుడివైపు plate లో radial slots ఉన్నాయి. Solid మరియు slotted మధ్య toggle చేసి చూడండి: slotted plate చాలా తక్కువగా decay అవుతుంది, అదే సమయంలో solid plate అప్పటికే పూర్తిగా ఆగిపోయి ఉంటుంది.",
+              "glow": "slot_label",
+              "scenario_cue": "solid_slotted_swap"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Break the loops — slots, laminations — and the drag nearly vanishes.", "text_hi": "loops को तोड़ दीजिए — slots, laminations — और drag लगभग गायब हो जाती है।", "text_te": "loops ని విచ్ఛిన్నం చేయండి — slots, laminations — అప్పుడు drag దాదాపు అదృశ్యమైపోతుంది.",
+              "glow": "break_loops_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Same metal, same resistivity — cutting slots shouldn't matter.",
+            "visual_counter": "Same metal, same field, same speed — solid collapses in 2-3 swings, slotted barely decays over many; the inset shows one big loop shrunk into many disconnected small ones.",
+            "one_line_fix": "It's the connectivity of the current path, not the material, that sets the strength of eddy-current damping — break the loop, break the drag."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Same mechanism, wanted here, suppressed there",
+        "duration": 34,
+        "focal_primitive_id": "furnace_label",
+        "advance_mode": "manual_click",
+        "teaching_method": "compare_contrast",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "furnace_label",
+            "position": { "x": 200, "y": 60 },
+            "text": "induction furnace: eddy currents HEAT (wanted)",
+            "color": "#FFB300"
+          },
+          {
+            "type": "annotation",
+            "id": "core_label",
+            "position": { "x": 560, "y": 60 },
+            "text": "transformer core: eddy-current loss SUPPRESSED",
+            "color": "#90CAF9"
+          },
+          {
+            "type": "annotation",
+            "id": "neutral_label",
+            "position": { "x": 380, "y": 440 },
+            "text": "same swirling-loop mechanism, opposite goals",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "A metal blank sits inside a coil carrying rapidly alternating current — an induction furnace, like a cooktop.", "text_hi": "एक metal blank एक coil के अंदर रखा है जिसमें तेज़ी से alternating current बह रही है — यह एक induction furnace है, जैसे cooktop।", "text_te": "ఒక metal blank, వేగంగా alternating current ప్రవహిస్తున్న coil లో ఉంచబడింది — ఇది ఒక induction furnace, cooktop లాగా.",
+              "scenario_cue": "ac_reversal_start"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "The field reverses again and again; eddy loops flip in lock-step, heating the blank with no flame, no contact.", "text_hi": "field बार-बार reverse होती है; eddy loops lock-step में flip होते हैं, और बिना किसी flame या contact के blank को गर्म करते हैं।", "text_te": "field మళ్ళీ మళ్ళీ reverse అవుతుంది; eddy loops lock-step లో flip అవుతాయి, మరియు ఎటువంటి flame లేదా contact లేకుండా blank ను వేడి చేస్తాయి.",
+              "glow": "furnace_label"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Now a transformer core, the same metal in a similar changing field.", "text_hi": "अब एक transformer core को देखते हैं, यही metal एक similar changing field में है।", "text_te": "ఇప్పుడు ఒక transformer core ని చూద్దాం, అదే metal ఒక similar changing field లో ఉంది.",
+              "scenario_cue": "core_lamination_swap"
+            },
+            {
+              "id": "s5_4",
+              "text_en": "Solid, it heats wastefully. Laminated into thin, insulated sheets, it stays cool — each sheet's loops are tiny.", "text_hi": "Solid होने पर, यह बेकार में गर्म होता है। Thin, insulated sheets में laminated करने पर, यह ठंडा रहता है — क्योंकि हर sheet के loops बहुत tiny होते हैं।", "text_te": "Solid గా ఉన్నప్పుడు, అది వృధాగా వేడి అవుతుంది. Thin, insulated sheets లో laminated చేసినప్పుడు, అది చల్లగా ఉంటుంది — ఎందుకంటే ప్రతి sheet యొక్క loops చాలా tiny గా ఉంటాయి.",
+              "glow": "core_label"
+            },
+            {
+              "id": "s5_5",
+              "text_en": "Eddy currents are neither good nor bad: the furnace wants them strong, the transformer wants them killed.", "text_hi": "Eddy currents न अच्छे हैं न बुरे: furnace उन्हें strong चाहता है, transformer उन्हें खत्म करना चाहता है।", "text_te": "Eddy currents మంచివి కావు, చెడ్డవి కావు: furnace వాటిని strong గా కోరుకుంటుంది, transformer వాటిని తొలగించాలని కోరుకుంటుంది.",
+              "glow": "neutral_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Eddy currents are always a nuisance or pure energy loss, never useful.",
+            "visual_counter": "The same swirling-loop mechanism shown doing wanted work (heating a blank with no flame or contact) right beside the same mechanism being deliberately suppressed in a transformer core.",
+            "one_line_fix": "Eddy currents are neither good nor bad by themselves — an induction furnace or cooktop wants them strong; a transformer core wants them killed by lamination."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "Explore: field, angle, slots, and swing direction",
+        "duration": 0,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Set theta_0, B, slotted, field_on, and swing direction",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "watch_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "beta_damp, theta_max, and F_retard all update live",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_label",
+            "position": { "x": 380, "y": 440 },
+            "text": "beta_damp = 0.05 + 3 B^2 [field on] (slotted? 0.08 : 1)",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Now it's your turn — set the release angle, the field B, whether the plate is slotted, whether the field is on, and the swing direction.", "text_hi": "अब आपकी बारी है — release angle, field B, plate slotted है या नहीं, field on है या नहीं, और swing direction — ये सब आप set कीजिए।", "text_te": "ఇప్పుడు మీ వంతు — release angle, field B, plate slotted గా ఉందా లేదా, field on గా ఉందా లేదా, మరియు swing direction — ఇవన్నీ మీరు set చేయండి.",
+              "glow": "explore_label"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Every quantity updates live: the damping rate beta, the decaying amplitude theta max, and the retarding force F retard.", "text_hi": "हर quantity live update होती है: damping rate beta, decaying amplitude theta max, और retarding force F retard।", "text_te": "ప్రతి quantity live గా update అవుతుంది: damping rate beta, decaying amplitude theta max, మరియు retarding force F retard.",
+              "glow": "watch_label"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Turn the field off and the decay slows right down. Slot the plate and the same happens — without touching the field.", "text_hi": "Field को बंद करें तो decay काफी धीमी हो जाती है। Plate को slot करें और वही होता है — field को बिना छुए।", "text_te": "Field ని ఆపితే decay చాలా నెమ్మదిగా అవుతుంది. Plate ని slot చేయండి మరియు అదే జరుగుతుంది — field ని తాకకుండా.",
+              "glow": "key_label"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered eddy currents when they can (1) recognise the damping/heating a changing flux produces inside a BULK conductor as electromagnetic, not mechanical friction; (2) explain that closed, swirling induced currents form directly inside solid metal with no wire or coil required; (3) apply Lenz's law to fix the induced loops' direction absolutely — always opposing the motion that created them, never assisting; (4) identify that the STRENGTH of eddy-current damping is controlled by the connectivity of the current path (slots, lamination), not by the material's resistivity; (5) state that lamination's purpose in a transformer core is reducing eddy-current power loss; and (6) recognise that eddy currents are a deliberately EXPLOITED feature in devices like induction cooktops/furnaces, not always a nuisance.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A conducting plate swings through a magnetic field gap. With the field OFF it swings for a long time; with the field ON, released from the same angle, it collapses within 2-3 swings. What causes the extra braking?",
+        "options": {
+          "A": "Electromagnetic damping from eddy currents — it only appears when the field is ON",
+          "B": "Ordinary pivot friction, the same as any pendulum",
+          "C": "Air resistance, which happens to be stronger with the field on",
+          "D": "The plate becomes heavier when the field is on"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats the collapse as ordinary mechanical friction, ignoring that it appears ONLY when the field is on",
+          "C": "reaches for air drag, which cannot depend on whether an external magnetic field is switched on",
+          "D": "invents a fictitious mass change with no physical basis"
+        },
+        "tested_idea": "Extra damping that appears only with the field on is electromagnetic (eddy-current) braking, not mechanical friction.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A metal plate is released from the same angle twice, once with an electromagnet off and once with it on. Explain why the two swings decay at very different rates."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "A solid metal plate (no wire, no coil) swings through a changing magnetic field. How can current possibly flow inside it?",
+        "options": {
+          "A": "Closed, swirling loops of current form directly inside the solid metal wherever the local flux changes",
+          "B": "Current cannot flow without a wire loop; the plate does not actually carry current",
+          "C": "Current flows straight through the plate in one direction, not in a loop",
+          "D": "Only the plate's surface can carry current, never its interior"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "holds that current requires a wire loop, missing that any conductor works",
+          "C": "imagines a straight flow instead of a closed circulating current",
+          "D": "invents a surface-only restriction with no physical basis"
+        },
+        "tested_idea": "A changing local flux induces closed, circulating currents directly in bulk conducting metal — no wire is required.",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain how a current loop can exist inside a solid metal block that has no wires or coils anywhere in it."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "Could the eddy current's direction (and hence the retarding force) ever act to speed up the swinging plate instead of slowing it?",
+        "options": {
+          "A": "No — Lenz's law fixes the direction absolutely; the induced loop always opposes the motion that created it",
+          "B": "Yes, depending on which way you view the plate from",
+          "C": "Yes, if the plate is moving fast enough",
+          "D": "The direction is random each swing"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats the direction as viewpoint-dependent rather than physically fixed",
+          "C": "invents a speed-dependent direction flip with no basis",
+          "D": "assumes randomness where Lenz's law gives a determinate answer"
+        },
+        "tested_idea": "Lenz's law fixes the induced current's direction so it always opposes the change that produced it — it can only drag, never assist.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "A student claims that if you swing a conducting plate fast enough, the induced eddy currents could end up pushing it forward instead of slowing it. Evaluate this claim using Lenz's law."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "Two identical plates, same metal, same field, same speed — one solid, one cut with radial slots. The solid plate's swing collapses quickly; the slotted plate barely decays. What actually changed?",
+        "options": {
+          "A": "The connectivity of the current path inside the metal — slots break the loops into small, weak ones",
+          "B": "The slotted plate is now a worse conductor — its resistivity increased",
+          "C": "The slotted plate is thinner and so weighs less",
+          "D": "Slotting changed the applied magnetic field itself"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses connectivity with a change in the material's own resistivity",
+          "C": "invents an unrelated mass effect not implied by slotting",
+          "D": "wrongly attributes the change to the field rather than the plate's geometry"
+        },
+        "tested_idea": "Eddy-current damping strength depends on the connectivity of the current path (whole loop vs broken into small loops), not on the material's resistivity.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain why cutting several slots into a conducting plate dramatically reduces the eddy-current drag it feels in a magnetic field, without changing what metal it is made of."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "Why are transformer cores built from thin, mutually insulated iron sheets (laminations) instead of one solid iron block?",
+        "options": {
+          "A": "Lamination breaks the eddy-current loops into small, weak ones, cutting the wasted power loss",
+          "B": "Laminated iron is a stronger permanent magnet",
+          "C": "Lamination makes the core lighter so it is easier to mount",
+          "D": "A solid block would not allow the magnetic field to pass through at all"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "confuses lamination with magnetisation strength, an unrelated property",
+          "C": "picks a mechanical convenience reason instead of the electromagnetic one",
+          "D": "wrongly claims a solid core blocks the field, when the real issue is wasted eddy-current heating"
+        },
+        "tested_idea": "Lamination suppresses eddy-current power loss in a transformer core by breaking the induced current loops into small, weak ones.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "A solid iron transformer core heats up wastefully in normal operation. Explain how switching to a laminated core design fixes this."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "An induction cooktop heats a steel pan with no flame and no red-hot coil touching it. Which statement best describes the eddy currents involved?",
+        "options": {
+          "A": "Eddy currents are neither good nor bad by themselves — here they are deliberately exploited as a useful heating effect",
+          "B": "Eddy currents are always an unwanted energy loss, so the cooktop must be using a different heating mechanism",
+          "C": "The cooktop directly heats the pan by conduction from a hot surface, and eddy currents play no role",
+          "D": "Eddy currents can only ever occur inside iron transformer cores"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "holds the 'eddy currents are always bad' belief and denies them a role they actually play here",
+          "C": "misses that the cooktop surface itself stays cool — only the pan's own resistance heats it",
+          "D": "wrongly restricts eddy currents to one specific device instead of any conductor in a changing field"
+        },
+        "tested_idea": "Eddy currents are a deliberately exploited, wanted feature in devices such as induction cooktops and furnaces, not always a nuisance.",
+        "teaches_state": "STATE_5",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Explain, using eddy currents, why an induction cooktop's glass surface stays cool while a steel pan placed on it heats up quickly."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q2"],
+      "STATE_3": ["Q3"],
+      "STATE_4": ["Q4"],
+      "STATE_5": ["Q5", "Q6"]
+    },
+    "non_assessed_states": [
+      "STATE_6"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "eddy_current_pendulum",
+    "slider_controls": {
+      "theta_0": { "min": 10, "max": 40, "step": 5, "default": 25, "label": "Release angle theta_0" },
+      "B": { "min": 0.1, "max": 1, "step": 0.1, "default": 0.5, "label": "Field B" },
+      "field_on": { "min": 0, "max": 1, "step": 1, "default": 0, "label": "Field on/off" },
+      "slotted": { "min": 0, "max": 1, "step": 1, "default": 0, "label": "Plate solid/slotted" },
+      "v_dir": { "min": -1, "max": 1, "step": 2, "default": 1, "label": "Swing direction" },
+      "f_ac": { "min": 1, "max": 10, "step": 1, "default": 5, "label": "AC reversal rate f" },
+      "laminated": { "min": 0, "max": 1, "step": 1, "default": 0, "label": "Core solid/laminated" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Damping A/B test: field off vs field on",
+        "visible_elements": ["ecp_pivot", "ecp_arm_group", "ecp_arm", "ecp_plate", "ecp_gap_pole", "ecp_field_arrow", "ecp_field_label"],
+        "camera_position": [2.6, 1.9, 5.4],
+        "caption": "Field OFF: long near-free decay. Field ON: collapses in 2-3 swings.",
+        "show_sliders": true,
+        "eddy_current_pendulum": {
+          "mode": "damping_ab_test",
+          "B": 0.5,
+          "theta_0": 25,
+          "slotted": 0,
+          "field_on": 0,
+          "field_toggle_at_ms": 13000,
+          "visible_controls": ["field_on"],
+          "show_readout": true,
+          "show_graph": true
+        }
+      },
+      "STATE_2": {
+        "label": "Inside the plate: closed swirling loops",
+        "visible_elements": ["ecp_pivot", "ecp_arm_group", "ecp_arm", "ecp_plate", "ecp_gap_pole", "ecp_field_arrow", "ecp_field_label", "ecp_loop"],
+        "camera_position": [0.6, -0.1, 2.6],
+        "caption": "Closed swirling loops brighten exactly at the field-boundary line as each edge crosses it.",
+        "show_sliders": true,
+        "eddy_current_pendulum": {
+          "mode": "loop_zoom",
+          "B": 0.5,
+          "theta_0": 25,
+          "slotted": 0,
+          "field_on": 1,
+          "visible_controls": [],
+          "show_readout": true,
+          "show_graph": false
+        }
+      },
+      "STATE_3": {
+        "label": "Lenz's law fixes the direction — grip rule",
+        "visible_elements": ["ecp_pivot", "ecp_arm_group", "ecp_arm", "ecp_plate", "ecp_gap_pole", "ecp_field_arrow", "ecp_field_label", "ecp_loop", "ecp_fretard"],
+        "camera_position": [2.8, 1.7, 5.6],
+        "caption": "Grip rule performed live. Reverse the swing and F_retard flips to stay opposite v, always.",
+        "show_sliders": true,
+        "eddy_current_pendulum": {
+          "mode": "lenz_grip",
+          "B": 0.5,
+          "theta_0": 25,
+          "slotted": 0,
+          "field_on": 1,
+          "v_dir": 1,
+          "visible_controls": ["v_dir"],
+          "show_readout": true
+        }
+      },
+      "STATE_4": {
+        "label": "Solid vs slotted: connectivity controls the drag",
+        "visible_elements": ["s4_plate_solid_pivot", "s4_plate_solid_arm_group", "s4_plate_solid_arm", "s4_plate_solid_plate", "s4_plate_solid_field_arrow", "s4_plate_solid_badge_big", "s4_plate_solid_badge_many", "s4_plate_slot_pivot", "s4_plate_slot_arm_group", "s4_plate_slot_arm", "s4_plate_slot_plate", "s4_plate_slot_slotline", "s4_plate_slot_field_arrow", "s4_plate_slot_badge_big", "s4_plate_slot_badge_many"],
+        "camera_position": [0, 0.6, 8.2],
+        "caption": "Same B, same field, same speed — solid collapses in 2-3 swings; slotted barely decays.",
+        "show_sliders": true,
+        "eddy_current_pendulum": {
+          "mode": "slots_twin",
+          "B": 0.5,
+          "theta_0": 25,
+          "field_on": 1,
+          "slotted": 1,
+          "visible_controls": ["slotted"],
+          "show_readout": true
+        }
+      },
+      "STATE_5": {
+        "label": "Applications: induction furnace vs transformer core",
+        "visible_elements": ["s5_furnace_blank", "s5_furnace_coil", "s5_furnace_arrow", "s5_furnace_label", "s5_core_solid", "s5_core_lam", "s5_core_label"],
+        "camera_position": [0, 0.5, 8.6],
+        "caption": "Furnace: eddy currents heat a blank with no flame or contact. Core: lamination suppresses the same effect.",
+        "show_sliders": true,
+        "eddy_current_pendulum": {
+          "mode": "applications",
+          "f_ac": 5,
+          "B_ac": 0.4,
+          "laminated": 0,
+          "s5_furnace_end_ms": 16000,
+          "core_swap_at_ms": 17500,
+          "visible_controls": ["f_ac"],
+          "show_readout": true
+        }
+      },
+      "STATE_6": {
+        "label": "Explore: theta_0, B, slotted, field_on, swing direction",
+        "visible_elements": ["ecp_pivot", "ecp_arm_group", "ecp_arm", "ecp_plate", "ecp_plate_slot", "ecp_gap_pole", "ecp_field_arrow", "ecp_field_label", "ecp_loop", "ecp_fretard"],
+        "camera_position": [2.8, 1.9, 5.6],
+        "caption": "Explore: set theta_0, B, slotted, field_on, swing direction — watch beta_damp, theta_max, F_retard update live.",
+        "show_sliders": true,
+        "eddy_current_pendulum": {
+          "mode": "sandbox",
+          "B": 0.5,
+          "theta_0": 25,
+          "field_on": 1,
+          "slotted": 0,
+          "v_dir": 1,
+          "visible_controls": ["theta_0", "B", "slotted", "field_on", "v_dir"],
+          "show_readout": true
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#42A5F5"
+    }
+  }
+}

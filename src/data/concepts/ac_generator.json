@@ -1,0 +1,793 @@
+{
+  "concept_id": "ac_generator",
+  "concept_name": "AC Generator",
+  "chapter": 6,
+  "section": "6.10",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Ch.6 Electromagnetic Induction §6.10 AC Generator — table-of-contents reference only; teaching authored from first principles. The atomic idea: a coil of N turns and area A rotating steadily at angular speed omega in a uniform magnetic field B produces a sinusoidal (alternating) EMF by Faraday's law. FLUX-LINKAGE CONVENTION (crucial): Phi = N·B·A·cos(omega t) is the N-TURN flux LINKAGE with N already folded in, so the induced EMF is eps = -dPhi/dt = N·B·A·omega·sin(omega t) — do NOT multiply by N a second time in the EMF. The EMF tracks the RATE of change of flux, so it is a SINE while the flux is a COSINE: a 90-degree phase lag — the voltage peaks exactly where the flux is zero (coil edge-on, plane parallel to B), and is zero exactly where the flux is maximum (coil face-on, plane perpendicular to B). The peak EMF eps0 = N·B·A·omega has omega INSIDE it, so cranking faster raises BOTH the peak and the frequency f = omega/2pi. A perfectly steady omega still gives a reversing sinusoid — the changing GEOMETRY alone reverses the output every half turn, no acceleration needed. Two continuous slip rings carry that natural AC out unchanged through fixed brushes; a single split-ring commutator would flip the connection each half turn to give pulsating DC. MECHANISM (pass 3): a dedicated beat shows WHY the EMF exists — every charge in the two AXLE-PARALLEL sides of the moving coil feels F = qv x B ALONG the wire (the push dies at face-on, where v is parallel to B, and peaks at edge-on, where v cuts B — the geometric origin of the sine); the top and bottom sides are pushed ACROSS the wire and drive nothing. Does NOT cover DC-commutator depth (one-line contrast only — though the inset split ring now rotates with a brush-contact swap and a rectified |sin| trace on the graph), transformer action, rms/averaged EMF, or AC-circuit analysis (reactance/RLC — next chapter). Built instrument-native in the straightforward (non-Socratic) model at the tighter ~20s/beat pacing (founder 2026-07-04): six motion-distinct teaching beats + one open explore state (seven states), each state exposing only its own contextual controls (Rule 31). DEMO-COMPRESSED omega: the real grid is 50 Hz (omega ~ 314 rad/s); the demo omega is compressed to 0.5-3 rad/s for watchability. Every trig argument is omega*t in NATIVE RADIANS (no radians() wrap). The RELATIONS are exact. Direction of the AC is shown WITHOUT a 3D hand — via the eps-sine graph polarity plus an external-circuit current arrow that flips each half-turn synced to the sine's zero crossings.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "ac_generator"
+    ]
+  },
+  "prerequisites": [
+    "faraday_law_induction",
+    "torque_on_current_loop_in_field"
+  ],
+  "real_world_anchor": {
+    "primary": "The 50-hertz electricity in every Indian home starts as a giant version of this exact machine. At the Bhakra Nangal and Tehri dams, falling water spins enormous coils inside powerful magnets; at a thermal plant, high-pressure steam does the spinning; on the wind farms of Tamil Nadu and Gujarat, the wind does it. Every one is a coil turning in a magnetic field, and the speed of that turning is what fixes the steady 50 cycles per second the whole grid runs on.",
+    "secondary": "A bicycle dynamo lamp — press the little dynamo wheel against the moving tyre and the lamp lights the faster you pedal. It is the same rotating-coil-in-a-field, shrunk to fist size, and you can watch the brightness rise and fall with your own legs."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "B": {"name": "Uniform magnetic field the coil spins in", "unit": "T", "min": 0.05, "max": 0.5, "default": 0.2, "step": 0.05},
+      "A": {"name": "Area of the rotating coil", "unit": "m^2", "min": 0.005, "max": 0.05, "default": 0.02, "step": 0.005},
+      "N": {"name": "Number of turns on the coil", "unit": "turns", "min": 20, "max": 300, "default": 100, "step": 10},
+      "omega": {"name": "Angular (crank) speed of the coil — demo-compressed for watchability", "unit": "rad/s", "min": 0.5, "max": 3.0, "default": 1.5, "step": 0.1},
+      "theta": {"name": "Rotation phase omega t — angle between the coil's area-vector (normal) and B; the single live parameter that drives the coil AND both graph dots in lockstep", "unit": "rad", "min": 0, "max": 6.2831853, "default": 0, "derived": "theta = (omega*t_state) mod 2pi [t_state = state clock, Rule 26, NOT a slider]"},
+      "Phi": {"name": "Flux linkage through the N-turn coil", "unit": "Wb", "min": -7.5, "max": 7.5, "default": 0.4, "derived": "Phi = N*B*A*cos(omega*t_state) [= N x single-turn flux; starts at max, face-on; range spans max slider settings N=300, B=0.5, A=0.05]"},
+      "emf": {"name": "Instantaneous induced EMF (the AC output)", "unit": "V", "min": -22.5, "max": 22.5, "default": 0, "derived": "emf = -dPhi/dt = N*B*A*omega*sin(omega*t_state) [range spans max slider settings; graph auto-scales in the explore state]"},
+      "emf0": {"name": "Peak EMF eps0 — FIRST revealed at S4", "unit": "V", "min": 0, "max": 22.5, "default": 0.6, "derived": "emf0 = N*B*A*omega"},
+      "f": {"name": "Output frequency", "unit": "Hz", "min": 0.08, "max": 0.48, "default": 0.2387, "derived": "f = omega/(2pi) [grid scale: 50 Hz => omega~314 rad/s; demo omega compressed]"}
+    },
+    "computed_outputs": {
+      "flux_linkage": {"formula": "N*B*A*cos(omega*t)"},
+      "emf_live": {"formula": "N*B*A*omega*sin(omega*t)"},
+      "peak_emf": {"formula": "N*B*A*omega"},
+      "frequency_hz": {"formula": "omega/(2*PI)"},
+      "flux_max": {"formula": "N*B*A"},
+      "bulb_brightness": {"formula": "(N*B*A*omega*sin(omega*t))*(N*B*A*omega*sin(omega*t))"}
+    },
+    "formulas": {
+      "flux_linkage": "Phi = N·B·A·cos(omega t) — flux linkage of the N-turn coil; maximum face-on (plane perpendicular to B, omega t=0), zero edge-on (plane parallel to B, omega t=90 deg)",
+      "faradays_law_generator": "eps = -dPhi/dt = N·B·A·omega·sin(omega t) — the EMF is the RATE of change of flux, so it is a sine while Phi is a cosine (90 deg apart)",
+      "peak_emf": "eps0 = N·B·A·omega — the amplitude of the sine; omega sits INSIDE it, so cranking faster raises the peak",
+      "frequency": "f = omega/2pi — cranking faster also shortens the period; omega controls amplitude AND frequency at once",
+      "output_form": "eps(t) = eps0·sin(omega t) — a clean alternating (sinusoidal) EMF even at perfectly constant omega",
+      "mechanism": "F = qv x B on every charge in the two axle-parallel sides is ALONG the wire — the microscopic pump behind the EMF; it is zero face-on (v parallel to B) and maximum edge-on (v perpendicular to B), which is exactly why the output is a sine",
+      "slip_rings": "two continuous slip rings + fixed brushes carry the coil's natural AC out unchanged; a single split-ring commutator would flip the connection each half-turn -> pulsating DC"
+    },
+    "constraints": [
+      "eps = -dPhi/dt, so eps (sine) is 90 deg out of phase with Phi (cosine): the EMF peaks exactly where the flux is zero, and is zero exactly where the flux is maximum",
+      "The EMF follows the RATE of change of flux, not the flux value — max EMF at the coil's edge-on instant (flux zero, changing fastest), zero at the face-on instant (flux max, momentarily still)",
+      "eps0 = N·B·A·omega depends on omega, so faster rotation raises BOTH the peak EMF and the frequency f = omega/2pi",
+      "A perfectly steady angular speed omega still gives an alternating (reversing) sinusoidal EMF — no acceleration is needed; the changing geometry alone reverses the output every half turn",
+      "The driving force is F = qv x B on the charges in the two AXLE-PARALLEL sides only — along the wire there, across the wire on the top/bottom sides (no drive); the push scales as |sin(omega t)|: zero face-on, maximum edge-on",
+      "Two continuous slip rings deliver AC; a single split-ring commutator gives pulsating DC — they are NOT the same part",
+      "A generator converts mechanical work into electrical energy and creates no charge; stop cranking -> flux steady -> eps = 0 -> bulb dark",
+      "omega -> 0 is graceful: no rotation -> constant flux -> eps = 0, eps0 = 0; the slider floor omega_min=0.5 prevents any divide-by-zero in f or period"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 34
+  },
+  "aha_moment": {
+    "state_id": "STATE_4",
+    "statement": "The voltage peaks when the flux is zero — that's where flux changes fastest.",
+    "visual_confirmation": "At the face-on instant the flux-graph dot sits at its peak while the EMF-graph dot reads exactly zero; a quarter-turn later, edge-on, the flux dot crosses zero while the EMF dot hits its peak — the two graphs are 90 degrees apart.",
+    "primary": true
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5"
+    ],
+    "phase_relationship": [
+      "STATE_2",
+      "STATE_4"
+    ],
+    "peak_emf": [
+      "STATE_5"
+    ],
+    "slip_rings": [
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "The machine: a coil spinning in a field lights the grid",
+        "duration": 20,
+        "focal_primitive_id": "acg_energy_note",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "acg_machine_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "AC generator: a coil rotating in a uniform field B",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_slip_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "slip rings + brushes carry the current out",
+            "color": "#FFCC80"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_energy_note",
+            "position": { "x": 560, "y": 400 },
+            "text": "stop cranking -> bulb dark: work in, electrical energy out (no charge created)",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "This coil, spinning between two magnet poles, is an AC generator — the machine behind the fifty-cycle power in every Indian home.", "text_hi": "यह coil, दो magnet poles के बीच घूमता है, एक AC generator है — वह machine जो हर Indian घर में fifty-cycle power लाता है।", "text_te": "ఈ coil, రెండు magnet poles మధ్య తిరుగుతుంది, అది AC generator — ప్రతి Indian ఇంట్లో fifty-cycle power ను తీసుకువచ్చే machine.",
+              "glow": "acg_machine_head"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "As it turns in the steady field B, it lights the bulb, and two slip rings carry the current out through fixed brushes.", "text_hi": "जैसे ही यह steady field B में घूमता है, यह bulb को जलाता है, और दो slip rings current को fixed brushes के ज़रिए बाहर निकालते हैं।", "text_te": "ఇది steady field B లో తిరిగేటప్పుడు, bulb ను వెలిగిస్తుంది, మరియు రెండు slip rings current ను fixed brushes ద్వారా బయటకు తీసుకువెళతాయి.",
+              "glow": "acg_slip_note"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "The bulb pulses bright, then dim, twice each turn. Stop cranking and it dies — a generator converts mechanical work into electrical energy, it never makes charge.", "text_hi": "Bulb हर दो turns में चमकता है, फिर धीमा हो जाता है। Crank करना बंद करें तो यह बंद हो जाता है — एक generator mechanical work को electrical energy में बदलता है, यह कभी charge नहीं बनाता।", "text_te": "Bulb ప్రతి రెండు turns లో ప్రకాశిస్తుంది, తర్వాత మసకబారుతుంది. Crank చేయడం ఆపితే అది ఆగిపోతుంది — generator mechanical work ను electrical energy గా మారుస్తుంది, అది ఎప్పుడూ charge ను సృష్టించదు.",
+              "glow": "acg_energy_note"
+            }
+          ]
+        }
+      },
+      "STATE_2": {
+        "title": "Flux linkage: Phi = NBA cos(omega t), max face-on, zero edge-on",
+        "duration": 20,
+        "focal_primitive_id": "acg_flux_formula",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "flux_max_when_coil_faces_field",
+          "where_the_cosine_comes_from",
+          "flux_linkage_n_turns"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "acg_flux_formula",
+            "position": { "x": 380, "y": 60 },
+            "text": "Phi = NBA cos(omega t)",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_faceon_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "face-on (plane perpendicular B) -> flux MAX",
+            "color": "#FFEE58"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_edgeon_note",
+            "position": { "x": 560, "y": 400 },
+            "text": "edge-on (plane parallel B) -> flux ZERO",
+            "color": "#90A4AE"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Follow the flux. The yellow area-vector shows which way the coil faces; when it lines up with the field B, the most field threads the coil.", "text_hi": "Flux का पीछा करें। Yellow area-vector दिखाता है कि coil किस तरफ़ है; जब यह field B के साथ लाइन में आता है, तो सबसे ज़्यादा field coil से गुज़रता है।", "text_te": "Flux ను అనుసరించండి. Yellow area-vector చూపిస్తుంది coil ఏ వైపు ఉందో; అది field B తో సరిపోలినప్పుడు, అత్యధిక field coil గుండా వెళుతుంది.",
+              "glow": "acg_faceon_note"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "Turn the coil edge-on and the flux falls to zero. The flux linkage is Phi equals N B A cosine omega t.", "text_hi": "Coil को edge-on घुमाएँ और flux शून्य हो जाता है। Flux linkage है Phi equals N B A cosine omega t।", "text_te": "Coil ను edge-on తిప్పండి మరియు flux సున్నా అవుతుంది. Flux linkage Phi equals N B A cosine omega t.",
+              "glow": "acg_flux_formula"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "The green cosine graph traces it live — peak face-on, zero edge-on — its dot moving in lockstep with the coil.", "text_hi": "Green cosine graph इसे लाइव ट्रैस करता है — peak face-on, zero edge-on — इसका dot coil के साथ lockstep में चलता है।", "text_te": "Green cosine graph దీన్ని live గా ట్రాస్ చేస్తుంది — peak face-on, zero edge-on — దాని dot coil తో lockstep లో కదులుతుంది.",
+              "glow": "acg_edgeon_note",
+              "scenario_cue": "flux_graph_start"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "In a uniform field the flux through the coil is constant, or the flux is greatest when the coil is edge-on.",
+            "visual_counter": "The area-vector sweeps relative to B: the flux-through-face and the cosine graph both pulse from a face-on maximum to an edge-on zero, even though B never changes.",
+            "one_line_fix": "Flux linkage Phi = NBA cos(omega t) depends on the coil's ORIENTATION — maximum face-on, zero edge-on."
+          }
+        ]
+      },
+      "STATE_3": {
+        "title": "Why an EMF? The field pushes the charges in the side wires",
+        "duration": 20,
+        "focal_primitive_id": "acg_mech_sides",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "acg_mech_formula",
+            "position": { "x": 380, "y": 60 },
+            "text": "F = qv x B on every charge in the moving side wires",
+            "color": "#AB47BC"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_mech_sides",
+            "position": { "x": 200, "y": 250 },
+            "text": "only the two sides along the axle are pushed ALONG the wire",
+            "color": "#4DD0E1"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_mech_deadlive",
+            "position": { "x": 560, "y": 400 },
+            "text": "face-on: v parallel B -> no push   |   edge-on: v cuts B -> max push",
+            "color": "#FFD54F"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "But what actually pushes the charges? Each side wire sweeps through the field B, so every charge riding inside it feels the force F equals q v cross B.", "text_hi": "लेकिन charges को असल में क्या धकेलता है? हर side wire field B से होकर गुज़रती है, इसलिए उसके अंदर मौजूद हर charge force F equals q v cross B महसूस करता है।", "text_te": "కానీ charges ని నిజంగా నెట్టేది ఏమిటి? ప్రతి side wire field B గుండా కదులుతుంది, కాబట్టి దాని లోపల ఉన్న ప్రతి charge force F equals q v cross B ను అనుభవిస్తుంది.",
+              "glow": "acg_mech_formula"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Only the two sides along the axle get pushed lengthwise — watch the purple force arrows pump the charge, one side up, the other side down.", "text_hi": "सिर्फ़ axle के साथ वाली दो sides ही लंबाई में धकेली जाती हैं — purple force arrows को charge पंप करते देखिए, एक side ऊपर, दूसरी side नीचे।", "text_te": "Axle వెంట ఉన్న రెండు sides మాత్రమే పొడవునా నెట్టబడతాయి — purple force arrows charge ను పంప్ చేయడం చూడండి, ఒక side పైకి, మరో side కిందికి.",
+              "glow": "acg_mech_sides"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Face-on, the sides slide along the field and the push dies; edge-on, they cut straight across it and the push is strongest.", "text_hi": "Face-on पर, sides field के साथ-साथ सरकती हैं और push ख़त्म हो जाता है; edge-on पर, वे उसे सीधा काटती हैं और push सबसे तेज़ होता है।", "text_te": "Face-on వద్ద, sides field వెంటే జారుతాయి మరియు push ఆగిపోతుంది; edge-on వద్ద, అవి దాన్ని నేరుగా కోస్తాయి మరియు push అత్యంత బలంగా ఉంటుంది.",
+              "glow": "acg_mech_deadlive"
+            }
+          ]
+        }
+      },
+      "STATE_4": {
+        "title": "The EMF peaks where the flux is zero — the 90 deg phase lag",
+        "duration": 26,
+        "focal_primitive_id": "acg_phase_note",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "emf_max_at_flux_zero",
+          "ninety_degree_phase_meaning",
+          "steady_spin_still_gives_ac"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "acg_emf_formula",
+            "position": { "x": 380, "y": 60 },
+            "text": "eps = NBA omega sin(omega t),  eps0 = NBA omega",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_phase_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "EMF max where flux = 0 (dPhi/dt biggest) -> 90 deg apart",
+            "color": "#FFB300"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_steady_note",
+            "position": { "x": 560, "y": 400 },
+            "text": "steady spin still reverses every half turn -> AC",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "Now add the EMF — the bright sine curve — and it does something surprising.", "text_hi": "अब EMF जोड़ें — चमकीली sine curve — और यह कुछ हैरान करने वाला करता है।", "text_te": "ఇప్పుడు EMF ను జోడించండి — ప్రకాశవంతమైన sine curve — మరియు అది ఆశ్చర్యకరమైనది చేస్తుంది.",
+              "glow": "acg_emf_formula",
+              "scenario_cue": "emf_graph_start"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Face-on, the flux is at its peak, yet the voltage reads exactly zero. A quarter-turn later, edge-on, the flux is zero but the voltage peaks.", "text_hi": "Face-on पर, flux अपने peak पर है, फिर भी voltage बिल्कुल zero पढ़ता है। एक quarter-turn बाद, edge-on पर, flux zero है लेकिन voltage peak पर है।", "text_te": "Face-on వద్ద, flux దాని peak వద్ద ఉంది, అయినా voltage సరిగ్గా zero చదువుతుంది. ఒక quarter-turn తర్వాత, edge-on వద్ద, flux zero కానీ voltage peak వద్ద ఉంది.",
+              "glow": "acg_phase_note"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "The EMF follows how fast the flux changes, not how big it is, so it peaks where the flux is zero — a ninety-degree phase lag.", "text_hi": "EMF यह देखता है कि flux कितनी तेज़ी से बदलता है, न कि वह कितना बड़ा है, इसलिए यह उस जगह peak पर होता है जहाँ flux zero है — एक ninety-degree phase lag।", "text_te": "EMF flux ఎంత వేగంగా మారుతుందో అనుసరిస్తుంది, అది ఎంత పెద్దదో కాదు, కాబట్టి అది flux zero ఉన్న చోట peak అవుతుంది — ninety-degree phase lag.",
+              "glow": "acg_phase_note"
+            },
+            {
+              "id": "s4_4",
+              "text_en": "And the coil turns at a steady speed, yet the output still reverses every half turn. Steady spinning alone makes AC; the peak is epsilon-zero equals N B A omega.", "text_hi": "और coil एक steady speed पर घूमता है, फिर भी output हर half turn पर उलट जाता है। Steady spinning अकेले ही AC बनाती है; peak है epsilon-zero equals N B A omega।", "text_te": "మరియు coil steady speed లో తిరుగుతుంది, అయినా output ప్రతి half turn లో తిరగబడుతుంది. Steady spinning ఒక్కటే AC ను సృష్టిస్తుంది; peak epsilon-zero equals N B A omega.",
+              "glow": "acg_steady_note"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The EMF is maximum when the flux is maximum; and steady spinning gives DC, so you must accelerate the coil to make AC.",
+            "visual_counter": "At the flat, face-on instant the flux graph is at its peak but the EMF reads exactly zero; omega is held perfectly constant yet the sine reverses every half turn.",
+            "one_line_fix": "EMF tracks how FAST the flux changes, not how big it is — so it peaks where flux is zero, and steady rotation alone gives a reversing sine."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Peak EMF: eps0 = NBA omega — omega raises peak AND frequency",
+        "duration": 22,
+        "focal_primitive_id": "acg_peak_formula",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "acg_peak_formula",
+            "position": { "x": 380, "y": 60 },
+            "text": "eps0 = NBA omega",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_faster_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "crank omega up -> taller sine AND more cycles",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_freq_note",
+            "position": { "x": 560, "y": 400 },
+            "text": "f = omega/2pi -> grid 50 Hz needs a fixed steady speed",
+            "color": "#42A5F5"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "What makes the voltage bigger? Crank faster and the sine grows — taller AND more cycles in the same time.", "text_hi": "क्या चीज़ voltage को बड़ा बनाती है? Crank को तेज़ घुमाइए और sine बढ़ता है — taller भी और उसी समय में ज़्यादा cycles भी।", "text_te": "వోల్టేజ్ ని పెద్దదిగా చేసేది ఏమిటి? Crank ని వేగంగా తిప్పండి మరియు sine పెరుగుతుంది — taller కూడా మరియు అదే సమయంలో ఎక్కువ cycles కూడా.",
+              "glow": "acg_faster_note"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Omega sits inside the peak: epsilon-zero equals N B A omega. Adding turns N raises the peak too, but only omega also raises the frequency.", "text_hi": "Omega peak के अंदर बैठता है: epsilon-zero equals N B A omega। Turns N जोड़ने से peak भी बढ़ता है, लेकिन सिर्फ omega ही frequency को भी बढ़ाता है।", "text_te": "Omega peak లోపల ఉంటుంది: epsilon-zero equals N B A omega. Turns N ని జోడించడం వలన peak కూడా పెరుగుతుంది, కానీ omega మాత్రమే frequency ని కూడా పెంచుతుంది.",
+              "glow": "acg_peak_formula"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Frequency f equals omega over two pi. To hold the grid at fifty cycles a second, the coil must spin at one fixed, steady speed.", "text_hi": "Frequency f equals omega over two pi। Grid को fifty cycles a second पर रखने के लिए, coil को एक fixed, steady speed पर घूमना चाहिए।", "text_te": "Frequency f equals omega over two pi. Grid ని fifty cycles a second వద్ద ఉంచడానికి, coil ఒక fixed, steady speed లో తిరగాలి.",
+              "glow": "acg_freq_note"
+            }
+          ]
+        }
+      },
+      "STATE_6": {
+        "title": "Slip rings deliver AC; a split ring would give DC",
+        "duration": 20,
+        "focal_primitive_id": "acg_ring_note",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "slip_ring_vs_commutator",
+          "why_the_wires_dont_tangle",
+          "how_a_commutator_makes_dc"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "acg_ring_note",
+            "position": { "x": 380, "y": 60 },
+            "text": "two continuous rings -> AC   |   one split ring -> DC",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_flip_note",
+            "position": { "x": 200, "y": 250 },
+            "text": "outside current flips each half turn (at the sine's zero)",
+            "color": "#FFB300"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_dc_note",
+            "position": { "x": 560, "y": 400 },
+            "text": "split ring swaps contacts -> one-way pulsating DC",
+            "color": "#90A4AE"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "How does the current leave a spinning coil without twisting the wires? Two continuous slip rings press on fixed brushes, one for each coil end.", "text_hi": "Spinning coil से wires को बिना मरोड़े current कैसे निकलता है? Two continuous slip rings fixed brushes पर दबाते हैं, प्रत्येक coil end के लिए एक।", "text_te": "Spinning coil నుండి wires ని తిప్పకుండా current ఎలా బయటకు వస్తుంది? Two continuous slip rings fixed brushes పైన ఒత్తిడి చేస్తాయి, ప్రతి coil end కి ఒకటి.",
+              "glow": "acg_ring_note"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Watch the arrow in the outside wire flip every half turn, right as the sine crosses zero — that reversing flow is alternating current.", "text_hi": "बाहरी wire में arrow को हर half turn पर पलटते देखिए, ठीक जब sine zero को पार करता है — वह reversing flow alternating current है।", "text_te": "బయటి wire లో arrow ని ప్రతి half turn లో తిరగడం చూడండి, sine zero ని దాటినప్పుడు — ఆ reversing flow alternating current.",
+              "glow": "acg_flip_note",
+              "scenario_cue": "current_flip"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "A single split ring would swap the contacts each half turn, forcing the output one way: pulsating DC. Two rings give AC; one split ring gives DC.", "text_hi": "एक single split ring हर half turn पर contacts को बदल देगी, जिससे output एक ही दिशा में जाएगा: pulsating DC। Two rings AC देते हैं; एक split ring DC देता है।", "text_te": "ఒక single split ring ప్రతి half turn లో contacts ని మారుస్తుంది, output ని ఒకే దిశలో నెట్టి: pulsating DC. Two rings AC ని ఇస్తాయి; ఒక split ring DC ని ఇస్తుంది.",
+              "glow": "acg_dc_note"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Slip rings and a commutator are the same thing.",
+            "visual_counter": "Two continuous rings keep each coil-end on its own brush so the output alternates (the arrow flips); a split-ring commutator swaps the connections each half turn to keep the output one-way.",
+            "one_line_fix": "Two full rings -> AC; one split ring -> DC."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore: crank the coil, set omega, N, B, A",
+        "duration": 0,
+        "focal_primitive_id": "acg_explore_key",
+        "advance_mode": "interaction_complete",
+        "teaching_method": "exploration_sliders",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "acg_explore_head",
+            "position": { "x": 380, "y": 60 },
+            "text": "Set omega, N, B, A — watch Phi, eps, eps0, the bulb, the current",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_explore_watch",
+            "position": { "x": 380, "y": 250 },
+            "text": "faster or more turns -> bigger eps0   |   omega also sets f",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "acg_explore_key",
+            "position": { "x": 380, "y": 440 },
+            "text": "eps = NBA omega sin(omega t) — clean AC, 90 deg behind the flux",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now it is yours. Set the crank speed omega, the turns N, the field B, and the coil area A.", "text_hi": "अब यह आपका है। Crank speed omega, turns N, field B, और coil area A सेट कीजिए।", "text_te": "ఇప్పుడు ఇది మీది. Crank speed omega, turns N, field B, మరియు coil area A ని సెట్ చేయండి.",
+              "glow": "acg_explore_head"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Watch every quantity update live — the flux cosine, the EMF sine, the peak epsilon-zero, the bulb, and the flipping current arrow.", "text_hi": "हर quantity को live अपडेट होते देखिए — flux cosine, EMF sine, peak epsilon-zero, bulb, और पलटता current arrow।", "text_te": "ప్రతి quantity ని live అప్డేట్ అవుతూ చూడండి — flux cosine, EMF sine, peak epsilon-zero, bulb, మరియు మారుతున్న current arrow.",
+              "glow": "acg_explore_watch"
+            },
+            {
+              "id": "s7_3",
+              "text_en": "One idea ties it together: a coil turning steadily in a field gives epsilon equals N B A omega sine omega t — a clean alternating voltage, ninety degrees behind the flux.", "text_hi": "एक idea सबको जोड़ता है: एक coil जो field में steadily घूमती है, वह epsilon equals N B A omega sine omega t देती है — एक clean alternating voltage, जो flux से ninety degrees पीछे है।", "text_te": "ఒక idea అన్నింటినీ కలుపుతుంది: field లో steadily తిరిగే coil epsilon equals N B A omega sine omega t ను ఇస్తుంది — ఒక clean alternating voltage, flux కంటే ninety degrees వెనుక ఉంటుంది.",
+              "glow": "acg_explore_key"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "assessment": {
+    "mastery_definition": "A student has mastered the AC generator when they can (1) explain that it converts mechanical work into electrical energy and creates no charge, so stopping the crank kills the output; (2) state that the flux linkage Phi = NBA cos(omega t) is maximum when the coil is face-on (plane perpendicular to B) and zero when edge-on (plane parallel to B); (3) recognise the crux trap — because eps = -dPhi/dt, the EMF is MAXIMUM exactly where the flux is zero (coil edge-on), not zero, a 90-degree phase lag between the cosine flux and the sine EMF; (4) explain that a perfectly steady rotation speed still produces an alternating sinusoidal EMF, since the changing geometry reverses the flux every half turn (no acceleration needed); (5) use eps0 = NBA omega to see that faster rotation raises BOTH the peak EMF and the frequency f = omega/2pi at once; (6) distinguish two continuous slip rings (which deliver the coil's natural AC) from a single split-ring commutator (which flips the connection each half turn to give pulsating DC); and (7) identify the microscopic driver — F = qv x B acts ALONG the wire only in the two axle-parallel sides (across the wire in the top/bottom sides), with a push proportional to |sin(omega t)|: zero face-on, maximum edge-on.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "A hydro dam spins the coil of an AC generator, lighting a bulb far away. Where does the electrical energy delivered to the bulb come from?",
+        "options": {
+          "A": "From the mechanical work done to keep the coil spinning — the generator converts that work into electrical energy; it does not create charge or energy",
+          "B": "The generator manufactures fresh electric charge and pushes it out to the bulb",
+          "C": "From the magnetic field, which is gradually used up and must be replaced",
+          "D": "From the coil itself, which stores unlimited energy and releases it for free"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "believes a generator manufactures charge, rather than moving existing charges by converting mechanical work",
+          "C": "treats the static magnetic field as a fuel that is consumed; the field only mediates — the mechanical work is the real source",
+          "D": "imagines the coil is an infinite free-energy store, ignoring that you must keep doing work (stop cranking -> bulb dark)"
+        },
+        "tested_idea": "An AC generator converts mechanical work into electrical energy and creates no charge; stop cranking and the output dies.",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain what happens to the bulb's brightness the moment you stop turning a generator's coil, and what that tells you about where the electrical energy comes from."
+      },
+      {
+        "q_id": "Q2",
+        "stem": "As a generator's coil rotates in the uniform field, at which position is the magnetic flux through the coil the GREATEST?",
+        "options": {
+          "A": "When the coil is face-on to the field — its plane perpendicular to B, so the field threads straight through it (Phi = NBA cos(omega t) is maximum at omega t = 0)",
+          "B": "When the coil is edge-on to the field — its plane parallel to B",
+          "C": "The flux is the same at every position, because B is uniform",
+          "D": "When the coil is spinning fastest; the flux depends on the rotation speed"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "swaps the two extremes — edge-on (plane parallel to B) is where the flux is ZERO, not maximum",
+          "C": "assumes uniform B means constant flux, forgetting the flux also depends on the coil's ORIENTATION (cos theta)",
+          "D": "confuses the flux (a geometric quantity, NBA cos theta) with the EMF, which is what depends on the rotation speed"
+        },
+        "tested_idea": "Flux linkage Phi = NBA cos(omega t) is maximum when the coil is face-on (plane perpendicular to B) and zero when edge-on (plane parallel to B).",
+        "teaches_state": "STATE_2",
+        "difficulty": "core",
+        "parallel_form_stem": "State the coil orientation for which the flux through a generator coil is zero, and justify it using Phi = NBA cos theta."
+      },
+      {
+        "q_id": "Q3",
+        "stem": "A generator coil is momentarily edge-on to the field — its plane parallel to B, so the flux through it is zero at that instant. What is the induced EMF at that same instant?",
+        "options": {
+          "A": "Maximum — the EMF tracks how FAST the flux is changing, and the flux changes fastest exactly as it passes through zero (eps = NBA omega sin(omega t) peaks at omega t = 90 deg)",
+          "B": "Zero — no flux through the coil means no EMF",
+          "C": "Maximum, but only because the coil happens to be moving fastest there, not because of the flux",
+          "D": "Undefined — you cannot have an EMF when the flux is zero"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "the classic trap — equates zero flux with zero EMF, missing that eps depends on dPhi/dt, not on Phi itself",
+          "C": "reaches the right answer for the wrong reason; omega is constant, so it is the RATE of flux change (steepest at Phi = 0), not any speed-up, that peaks the EMF",
+          "D": "believes an EMF needs a nonzero flux to exist, confusing the flux value with its rate of change"
+        },
+        "tested_idea": "Because eps = -dPhi/dt, the EMF is MAXIMUM exactly where the flux is zero (coil edge-on), not zero — the 90-degree phase lag.",
+        "teaches_state": "STATE_4",
+        "difficulty": "stretch",
+        "parallel_form_stem": "A rotating coil is at the instant its flux passes through zero. Explain why its induced EMF is at a maximum there, not zero."
+      },
+      {
+        "q_id": "Q4",
+        "stem": "A generator's coil is turned at a perfectly STEADY angular speed. What does the output EMF look like?",
+        "options": {
+          "A": "A smoothly alternating (sinusoidal) EMF that reverses direction every half turn — eps = eps0 sin(omega t) — even though omega never changes",
+          "B": "A steady, constant EMF, because the rotation speed is constant",
+          "C": "An EMF that keeps growing, because the coil keeps turning in the same direction",
+          "D": "Zero, because a constant speed means nothing is changing"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "assumes a constant rotation speed gives a constant EMF, missing that the changing GEOMETRY (orientation) reverses the flux every half turn",
+          "C": "thinks continued rotation accumulates EMF, rather than producing a bounded, reversing sine",
+          "D": "believes constant omega means nothing changes, overlooking that the flux still oscillates as the coil turns"
+        },
+        "tested_idea": "A steady rotation speed still produces an alternating sinusoidal EMF — the changing orientation reverses the flux each half turn, no acceleration needed.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain how a coil turning at a perfectly constant speed can produce an EMF that alternates in direction."
+      },
+      {
+        "q_id": "Q5",
+        "stem": "You crank a generator's coil twice as fast (double omega). What happens to the output?",
+        "options": {
+          "A": "Both the peak EMF and the frequency increase — eps0 = NBA omega rises with omega, AND f = omega/2pi doubles, so the sine gets taller and more frequent at once",
+          "B": "Only the frequency doubles; the peak voltage stays the same",
+          "C": "Only the peak voltage doubles; the frequency stays the same",
+          "D": "Neither changes; the rotation speed does not affect a generator's output"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "sees the frequency-speed link (f = omega/2pi) but misses that omega also sits INSIDE the amplitude eps0 = NBA omega",
+          "C": "catches the amplitude dependence but forgets that omega also sets the frequency",
+          "D": "believes the output is independent of rotation speed, contradicting eps0 = NBA omega"
+        },
+        "tested_idea": "eps0 = NBA omega, so faster rotation raises BOTH the peak EMF and the frequency f = omega/2pi at once.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "State how the peak voltage and the frequency of a generator each change when its rotation speed is doubled, and justify using eps0 = NBA omega and f = omega/2pi."
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Two generators are identical except for the contacts that carry current off the spinning coil: one uses two continuous slip rings, the other a single split-ring (commutator). How do their outputs differ?",
+        "options": {
+          "A": "The two slip rings deliver the coil's natural alternating current (AC); the split-ring commutator flips the connection every half turn, turning it into one-way pulsating direct current (DC)",
+          "B": "They are the same part with different names, so both give identical AC",
+          "C": "The slip rings give DC and the commutator gives AC — it is the other way around",
+          "D": "The split ring gives a perfectly smooth constant DC, identical to a battery"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "treats slip rings and a commutator as interchangeable, missing that the split gap is what reverses the external connection each half turn",
+          "C": "reverses the two roles — continuous rings preserve the AC, the split ring rectifies it to DC",
+          "D": "overstates the commutator output as smooth battery-like DC, missing that it is PULSATING (a rectified sine, not constant)"
+        },
+        "tested_idea": "Two continuous slip rings deliver AC; a single split-ring commutator flips the connection each half turn to give pulsating DC — they are different parts.",
+        "teaches_state": "STATE_6",
+        "difficulty": "stretch",
+        "parallel_form_stem": "Explain why replacing an AC generator's slip rings with a single split-ring commutator changes the output from AC to pulsating DC."
+      },
+      {
+        "q_id": "Q7",
+        "stem": "As the generator coil rotates, which parts of the coil actually drive the current around the circuit, and at which instant is that drive the strongest?",
+        "options": {
+          "A": "The two sides parallel to the rotation axis — each charge in them feels F = qv x B directed ALONG the wire; the push is strongest at the edge-on instant, when those sides cut straight across B",
+          "B": "All four sides drive the current equally, because the whole coil is moving through the field",
+          "C": "The drive is strongest at the face-on instant, because that is where the flux through the coil is maximum",
+          "D": "No side feels any magnetic force until the external circuit is closed and a current already flows"
+        },
+        "correct": "A",
+        "distractor_misconceptions": {
+          "B": "misses that on the top and bottom sides the force qv x B points ACROSS the wire, so those sides push charge against the wall of the wire and drive nothing around the loop",
+          "C": "ties the driving push to the flux VALUE instead of the motion geometry — face-on the sides slide parallel to B (v parallel to B, so F = 0); the push peaks edge-on, exactly where the flux is zero",
+          "D": "reverses cause and effect — the qv x B push on charges inside the moving wire is what CREATES the EMF, present even open-circuit; closing the circuit merely lets the pushed charges circulate"
+        },
+        "tested_idea": "The EMF is driven microscopically by F = qv x B on the charges in the two axle-parallel sides — along the wire only there, proportional to |sin(omega t)|: zero face-on, maximum edge-on.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Explain why only the two sides of a generator coil parallel to its rotation axis contribute to the EMF, and why their contribution vanishes at the face-on instant."
+      }
+    ]
+  },
+  "coverage_map": {
+    "by_state": {
+      "STATE_1": ["Q1"],
+      "STATE_2": ["Q2"],
+      "STATE_3": ["Q7"],
+      "STATE_4": ["Q3", "Q4"],
+      "STATE_5": ["Q5"],
+      "STATE_6": ["Q6"]
+    },
+    "non_assessed_states": [
+      "STATE_7"
+    ]
+  },
+  "field_3d_config": {
+    "scenario_type": "ac_generator",
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#66BB6A",
+      "color_negative": "#42A5F5",
+      "opacity": 0.85
+    },
+    "slider_controls": {
+      "omega": { "min": 0.5, "max": 3.0, "step": 0.1, "default": 1.5, "label": "Crank speed omega" },
+      "N": { "min": 20, "max": 300, "step": 10, "default": 100, "label": "Turns N" },
+      "B": { "min": 0.05, "max": 0.5, "step": 0.05, "default": 0.2, "label": "Field B" },
+      "A": { "min": 0.005, "max": 0.05, "step": 0.005, "default": 0.02, "label": "Coil area A" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "The machine: coil spinning in a field lights the grid",
+        "visible_elements": ["acg_coil", "acg_coil_lbl", "acg_axle", "acg_pole", "acg_bfield", "acg_slipring", "acg_slipring_lbl", "acg_brush", "acg_extwire", "acg_curr", "acg_bulb", "acg_bulb_lbl"],
+        "camera_position": [4.8, 3.2, 7.6],
+        "caption": "A coil rotates in the steady field B; slip rings + brushes light the bulb. Stop cranking -> flux steady -> bulb dark.",
+        "show_sliders": true,
+        "formula_overlay": "",
+        "ac_generator": {
+          "mode": "machine_overview",
+          "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,
+          "visible_controls": [],
+          "show_readout": true,
+          "show_graph": false
+        }
+      },
+      "STATE_2": {
+        "label": "Flux linkage: Phi = NBA cos(omega t)",
+        "visible_elements": ["acg_coil", "acg_coil_lbl", "acg_axle", "acg_pole", "acg_bfield", "acg_normal", "acg_fluxlink", "acg_theta_arc"],
+        "camera_position": [3.6, 2.2, 6.2],
+        "caption": "The area-vector sweeps relative to B; the flux-through-face and the green cosine graph pulse from a face-on max to an edge-on zero. The yellow arc is theta = omega t.",
+        "show_sliders": true,
+        "formula_overlay": "Phi = NBA cos(omega t)",
+        "ac_generator": {
+          "mode": "flux_trace",
+          "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,
+          "visible_controls": [],
+          "show_readout": true,
+          "show_graph": "flux_cos",
+          "flux_graph_start_at_ms": 2500
+        }
+      },
+      "STATE_3": {
+        "label": "Why an EMF? F = qv x B pushes the charges",
+        "visible_elements": ["acg_coil", "acg_axle", "acg_pole", "acg_bfield", "acg_normal", "acg_theta_arc", "acg_vf", "acg_qf"],
+        "camera_position": [2.9, 1.7, 5.2],
+        "caption": "Each axle-parallel side sweeps through B: every charge in it feels F = qv x B ALONG the wire — zero face-on (v parallel to B), maximum edge-on (v cuts B). Top/bottom sides are pushed ACROSS the wire: no drive. Slowed to omega = 0.8 for watchability.",
+        "show_sliders": true,
+        "formula_overlay": "F = qv x B — only the axle-parallel sides drive charge",
+        "ac_generator": {
+          "mode": "emf_mechanism",
+          "B": 0.2, "A": 0.02, "N": 100, "omega": 0.8,
+          "visible_controls": [],
+          "show_readout": true,
+          "show_graph": false
+        }
+      },
+      "STATE_4": {
+        "label": "EMF peaks where flux = 0 — the 90 deg phase lag",
+        "visible_elements": ["acg_coil", "acg_coil_lbl", "acg_axle", "acg_pole", "acg_bfield", "acg_normal", "acg_theta_arc"],
+        "camera_position": [3.8, 2.4, 6.6],
+        "caption": "Faded cosine flux + bright sine EMF, 90 deg apart: at flux-max the EMF is zero; a quarter-turn later flux is zero and the EMF peaks. eps0 = NBA omega.",
+        "show_sliders": true,
+        "formula_overlay": "eps = NBA omega sin(omega t),  eps0 = NBA omega",
+        "ac_generator": {
+          "mode": "emf_phase",
+          "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,
+          "visible_controls": [],
+          "show_readout": true,
+          "show_graph": "both",
+          "emf_graph_start_at_ms": 2000,
+          "reveal_emf0": true,
+          "snap_markers": true
+        }
+      },
+      "STATE_5": {
+        "label": "Peak EMF: eps0 = NBA omega (raises peak AND frequency)",
+        "visible_elements": ["acg_coil", "acg_coil_lbl", "acg_axle", "acg_pole", "acg_bfield"],
+        "camera_position": [3.8, 2.4, 6.6],
+        "caption": "Crank omega up -> the sine grows taller AND fits more cycles (fixed axis +/-4.0 V). More turns N -> taller only. f = omega/2pi.",
+        "show_sliders": true,
+        "formula_overlay": "eps0 = NBA omega,   f = omega/2pi",
+        "ac_generator": {
+          "mode": "peak_dependence",
+          "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,
+          "visible_controls": ["omega", "N"],
+          "show_readout": true,
+          "show_graph": "emf_fixed_axis",
+          "reveal_emf0": true,
+          "show_f": true
+        }
+      },
+      "STATE_6": {
+        "label": "Slip rings deliver AC; a split ring would give DC",
+        "visible_elements": ["acg_coil", "acg_axle", "acg_slipring", "acg_slipring_lbl", "acg_brush", "acg_extwire", "acg_extcurr", "acg_curr", "acg_commutator", "acg_pole"],
+        "camera_position": [2.6, 0.2, 5.4],
+        "caption": "Two continuous rings + fixed brushes: the current beads reverse and the outside arrow flips each half turn (at the sine's zero) -> AC. The rotating split ring's brush dots swap instead -> the dashed grey |eps| trace: one-way pulsating DC.",
+        "show_sliders": true,
+        "formula_overlay": "two rings -> AC   |   one split ring -> DC",
+        "ac_generator": {
+          "mode": "slip_rings",
+          "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,
+          "visible_controls": [],
+          "show_readout": true,
+          "show_graph": "emf",
+          "current_flip_pulse_at_ms": 4000,
+          "reveal_emf0": true,
+          "split_ring_contrast": true
+        }
+      },
+      "STATE_7": {
+        "label": "Explore: crank the coil, set omega, N, B, A",
+        "visible_elements": ["acg_coil", "acg_coil_lbl", "acg_axle", "acg_pole", "acg_bfield", "acg_slipring", "acg_slipring_lbl", "acg_brush", "acg_extwire", "acg_extcurr", "acg_curr", "acg_bulb", "acg_bulb_lbl", "acg_normal", "acg_theta_arc"],
+        "camera_position": [4.8, 3.0, 7.8],
+        "caption": "Set omega, N, B, A and watch Phi, eps, eps0, the bulb, and the flowing current re-derive live (graph auto-scaled). Until you touch a slider, omega sweeps by itself — grab it to take over.",
+        "show_sliders": true,
+        "formula_overlay": "eps = NBA omega sin(omega t)",
+        "ac_generator": {
+          "mode": "sandbox",
+          "B": 0.2, "A": 0.02, "N": 100, "omega": 1.5,
+          "visible_controls": ["omega", "N", "B", "A"],
+          "show_readout": true,
+          "show_graph": "both",
+          "reveal_emf0": true,
+          "show_f": true,
+          "idle_autosweep": true,
+          "auto_scale": true
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#66BB6A"
+    }
+  }
+}

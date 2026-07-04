@@ -1,5 +1,170 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🔧 SESSION — ac_generator pass 3: founder Fable audit → mechanism beat + live machine (2026-07-04 PM)
+
+**Bottom line: ac_generator upgraded from 6 → 7 states; the missing CAUSAL mechanism (F = qv×B on the axle-parallel sides) is now a dedicated slowed beat; current beads flow through the whole circuit; the split-ring DC contrast actually animates; the 3 dead scenario_cues are consumed; Rule 27 PARAM_UPDATE wired. EYE 30/30 · tsc 0 · validate PASS · TTS re-voiced (66 clips) · live at http://localhost:8080/ac_generator/.**
+
+- **Audit answer (founder's question "did it show HOW it works?"):** physics/narration core was correct (incl. slip-ring vs split-ring — no error), but the sim showed THAT an EMF appears, never WHY. Fixed with new STATE_3 `emf_mechanism` (ω slowed to 0.8): v + F = qv×B arrows on the two axle-parallel sides, F length = real |sin θ| (dies face-on, peaks edge-on), "top/bottom push ACROSS the wire" note, Q7 + coverage/entry-map/aha shifted atomically (aha now STATE_4).
+- **Renderer** (`field_3d_renderer.ts` acg block): circuit beads (`acgLoopPoint` full world-space loop incl. ring arcs to fixed brushes), cue consumption (flux_graph_start 2500ms / emf_graph_start 2000ms fallbacks gate the traces; current_flip 4000ms = brightness pulse per Rule 29), rotating commutator inset + brush-dot contact swap + dashed grey |sin| pulsating-DC trace on the graph, θ = ωt angle arc (setDrawRange) + readout line, sliders built from `slider_controls` + PARAM_UPDATE emission (`ac_generator_explorer`), B-slider → field-arrow opacity, sandbox idle ω-autosweep with trusted-touch seize.
+- **Founder decisions taken:** mechanism = new state (approved); **grab-drag hand_crank DECLINED — slider-crank only**; `hand_crank`/`show_normal_arrow`/`bulb` dead flags deleted; misconception_watch pruned to 3 pivots (S2 flux, S4 phase, S6 slip-vs-split) per the pivots-only directive.
+- **Files:** `src/data/concepts/ac_generator.json` (renumber S3–S6→S4–S7 + new S3 EN/HI/TE) · `field_3d_renderer.ts` · `deriveStateMeta.ts` (emf_mechanism 5500ms window) · `docs/notes/ac_generator-pass2-notes.md` (pass-3 section).
+- **Blocker (non-fatal):** `smoke:visual-validator --dense` vision categories died on **Anthropic API credit balance** (known issue) — deterministic 30/30 + manual frozen-frame read of all 7 states stand in; re-run the vision pass after top-up.
+- **Next session:** founder visual review of the 7 states → `npm run visual:approve -- ac_generator`; then the queued Ch.4 Socratic backlog below.
+
+---
+
+## ☀️ MORNING REPORT — overnight autonomous run (2026-07-04, finished ~08:50)
+
+**Bottom line: 4 concepts delivered, every one quality-auditor PASS, all live on :8080. Nothing BLOCKED.**
+2 retrofits + **1 brand-new concept via the full architect→physics→json→auditor pipeline** + 1 retrofit where the gate caught a real defect and it was fixed within budget. No commits, no push, no TTS — all awaiting your review (Rule 17 / 30f). Ran the whole night in a working tree **shared with a concurrent Ch.6 session** (see §CONCURRENCY) with zero collisions.
+
+| # | Concept | Type | Result | Review link |
+|---|---------|------|--------|-------------|
+| 1 | `circular_motion_charge_in_uniform_B` | retrofit | ✅ PASS · EYE 37/37 | http://localhost:8080/circular_motion_charge_in_uniform_B/ |
+| 2 | `cyclotron_period_independent_of_speed` | retrofit | ✅ PASS · EYE 18/18 (stale scar cleared) | http://localhost:8080/cyclotron_period_independent_of_speed/ |
+| 3 | `helical_motion_charge_in_uniform_B` | **NEW (full pipeline)** | ✅ PASS Gate 0–20 · EYE 26/26 · concept-1 regression 37/37 | http://localhost:8080/helical_motion_charge_in_uniform_B/ |
+| 4 | `parallel_currents_force` | retrofit | ✅ PASS (cycle 2) · EYE 38/38 · real defect caught+fixed | http://localhost:8080/parallel_currents_force/ |
+
+**Verification (every concept, all $0):** tsc 0 · validate:concepts 109 PASS · cache reseeded · THE EYE deterministic gates clean · **zero new engine_bug_queue rows** · pacing 3 sentences/state (~20s) · review page HTTP 200. Every frozen frame read by quality-auditor.
+
+**⭐ YOUR ACTIONS THIS MORNING (priority order):**
+1. **Visually review the 4 sims** on :8080 (links above). Per-concept advisories are flagged in the detail notes below — none block, but a few want your eye (esp. concept 3 S1 ghost visibility + S3 instant-snap; concept 1 slider-thumb-reads-1.0).
+2. **TTS — ✅ DONE (2026-07-04 AM, on founder approval).** Re-voiced **EN + Telugu** all 4 concepts via `tts:generate --langs=en,te` (bulbul:v3 / priya = Rule 30; Sarvam OK, no balance issue). Clips written: concept 1 = 35 (+27 orphans pruned), concept 2 = 24, **concept 3 = 36 (all-new, was silent)**, concept 4 = 12 (42 already-fresh). All 4 review pages rebuilt → **zero stale-clip warnings**; manifests wired; concept-3 mp3s verified non-empty (18 EN + 18 TE). **Hindi intentionally silent** (text-only captions per Rule 30f). Narration now plays on all 4 sims at :8080.
+3. **Commit hygiene — SHARED TREE:** a concurrent session authored **Chapter 6** (motional_emf/eddy_currents/inductance/ac_generator) in this same working tree. When committing, **stage my Ch.4 files separately from the Ch.6 files** (my namespaces: `rad_`/`cyc_`/`hx_`/`pcf_`; Ch.6: `motional_emf_rod`/`eddy_current_pendulum`/`inductance`/`ind_`/`im_`/`ac_generator`/`acg_`). Shared files edited by BOTH (`field_3d_renderer.ts`, `intentClassifier.ts`, `aiSimulationGenerator.ts`, `panelConfig.ts`, `deriveStateMeta.ts`, `query_engine_bug_queue.ts`) carry both sessions' additions — review the diff before splitting.
+4. **One doctrine reconcile (recurring):** CLAUDE.md Rule 31 still literally reads "28–35s"; your live directive is ~3 sentences/state ≈ 20s. All 4 concepts are authored to the 20s target. Worth updating the codified rule (the Ch.6 session flagged this too).
+
+**✅ Post-report follow-ups done this morning (founder-directed 2026-07-04 AM):**
+- **TTS re-voice** (EN+TE) — all 4 concepts (see action #2 above).
+- **Misconception-hook discipline guardrail** — founder: hooks belong ONLY at genuine motivation/misconception pivots, never a per-state tic. Audit found the DELIVERED narration was already disciplined (hooks only at pivots); the tic was in the unrendered `misconception_watch` METADATA (per-state on 3 concepts). Pruned to genuine pivots — circular_motion 6→2 (keep S4/S5), cyclotron 4→1 (keep S2), helical 6→3 (keep S1/S4/S5); parallel_currents untouched (already 3/9, the model). Metadata-only (misconception_watch isn't rendered) → NO re-voice / NO EYE / NO rebuild; delivered sims + audio byte-identical. Root cause fixed in the pipeline: `.agents/quality_auditor` ("per-state mandatory" → "genuine pivots only") + guardrail added to `.agents/architect` + `.agents/physics_author`, synced to `.claude/agents/*` via `npm run sync:agents`. tsc 0 · validate 109 PASS. Saved as memory `feedback_misconception_hooks_pivots_not_per_state`.
+
+**Remaining Ch.4 Socratic→Rule-31 backlog (queued for next session — I stopped here as it was already morning; did NOT start these unattended):** `torque_on_current_loop_in_field` (light, 2 wfa/4 pause) · `moving_coil_galvanometer` (HEAVY, 3/37/8) · `galvanometer_to_ammeter_voltmeter` (HEAVY, 3/34/8). (`magnetic_force_moving_charge` already Rule-31; `magnetic_force_perpendicular_no_work` has no Socratic to strip.)
+
+**Method note:** the whole run kept THIS session's context small by dispatching the heavy lifting to subagents (a fresh/warm executor per concept build; a dedicated architect + physics-author + json-author for the new concept; quality-auditor for ALL frame-reading). The two-cycle-then-BLOCK rule was exercised once (concept 4) and worked — the gate caught a genuine "3 states share one picture" defect, and the fix passed cycle 2.
+
+---
+
+### Per-concept detail + founder advisories (all NON-blocking)
+
+| # | Concept | Status | Review link | Notes |
+|---|---------|--------|-------------|-------|
+| 1 | circular_motion_charge_in_uniform_B | ✅ DONE (auditor PASS) | http://localhost:8080/circular_motion_charge_in_uniform_B/ | 6 states · EYE 37/37 · seed script created · 53 stale clips muted (re-voice AM) · 5 cosmetic soft-flags |
+| 2 | cyclotron_period_independent_of_speed | ✅ DONE (auditor PASS after scar cleared) | http://localhost:8080/cyclotron_period_independent_of_speed/ | cyclotron_period · 4 states × 3 sentences · EYE 18/18 · all pedagogy gates PASS; both money beats confirmed on frames (S2 race + S4 constant-period v-sweep) · Gate-8 scar was pre-existing & already fixed in code → flipped to FIXED w/ evidence (0 OPEN incident rows) · 36 stale clips muted (re-voice AM) |
+
+**Concept 2 — Gate 8 resolution (FLAG FOR FOUNDER, reversible/local):** Auditor FAILed on `cyclotron_start_marker_glyph_orphaned_from_orbit` (MODERATE/OPEN). Investigation: this is a **pre-existing scar seeded 2026-06-25** (`_seed_engine_bug_queue_radius_period_chain`), NOT introduced by tonight's retrofit (`same_start_marker:true` unchanged from HEAD; THE EYE seeded 0 new rows → founder DoD "zero NEW rows" IS met). The scar is **already fixed in renderer code**: field_3d_renderer.ts:25425–25428 redesigned `cyc_start_marker` as a radial start/finish line through centre+both start points (not a floating glyph); :25815–25828 implements it; auditor confirmed no orphaned glyph in any S2 frame. → Flipping the stale row to FIXED with evidence (same as last session's swc_* cleanup). Soft flag: is the dim (op 0.45) reference line actually visible in-app, or too faint? — cosmetic, not load-bearing (the tie reads via timer bars + badge). Auditor's other advisory: only S4 shows m/B-dependence interactively; a guided "T changes with m or B" beat could be added if Asmi flags it — deferred, not a blocker.
+| 3 | helical_motion_charge_in_uniform_B (NEW) | ✅ DONE (auditor PASS, full Gate 0–20) | http://localhost:8080/helical_motion_charge_in_uniform_B/ | NEW Ch.4 §4.3.1 · scenario `helix_in_uniform_field` (hx_ ns) · 6 states × 3 sentences · tsc0·validate 109·EYE 26/26 zero new bug rows·**concept-1 regression 37/37**·no TTS (new concept, narration silent until AM) · 6 advisories (see note) |
+
+**Concept 3 advisories for founder (all NON-blocking, auditor PASS):** (1) **S1 ghost flat-circle may be too faint** in headless capture — verify it reads distinctly in live Three.js; if faint → renderer brightness tweak (peter_parker:renderer_primitives). (2) **S3 helix→circle is an INSTANT snap** at state entry (trajectory_mode switch), not a gradual collapse animation — physics correct, drama reduced; a gradual morph = renderer change. (3) Pacing 20s/state — auditor cited the STALE codified "28–35s"; **20s is CORRECT per your newer ~3-sentence directive** (same reconcile-the-rule open item the Ch.6 session flagged). (4) Helix reveals use hardcoded `*_at_ms` (scenario_cue not yet wired for new helix reveal types) — may desync if TTS re-voiced at different speed; wire at TTS step. (5) Gate-9 overlap script hardcodes 5 states (S6 manually verified clean). (6) architect skeletons should carry a literal `## Definition of Done` header for machine-extraction.
+
+**Concept 3 decision (FLAG FOR FOUNDER):** Architect surveyed — **no LOW-risk pure-data candidate left** in Ch.4 (every field_3d scenario already bound to a shipped concept; motional_emf/eddy_currents/inductance excluded as your dormant drafts; ac_generator already built). Best candidate = **`helical_motion_charge_in_uniform_B`** (MED): the exact arc successor to concepts 1&2 (helix = circle[from circular_motion] + drift[period from cyclotron]; pitch p=v∥·T; 6 states). Renderer gap: helix axial-drift + v-decomposition (v∥/v⊥) + 2 component-fade beats + pitch bracket + θ row. **Risk control: build as a CLONED sibling scenario** (not in-place extension of `radius_in_uniform_field`) so concept 1's path is untouched by construction. Pipeline: physics-author → json-author (8-site reg) → warm executor (renderer clone+helix) → quality-auditor. Strict rule: **2 gate cycles then BLOCK** with evidence. Indian anchor: SST-1 tokamak (IPR Gandhinagar) — plasma spirals along field lines. If it can't clear gates unattended, it will be logged BLOCKED, not shipped weakened.
+
+| 4 | parallel_currents_force (retrofit) | ✅ DONE (auditor PASS on cycle 2) | http://localhost:8080/parallel_currents_force/ | Ch.4 · 9 states · **the gate worked**: cycle-1 auditor caught a REAL distinct-motion FAIL (S5/6/8 shared one 3D picture); fixed within the 2-cycle budget → S6 now full symmetric field view (elevated cam + both field circles), S8 canonical SI geometry (I=1, pulled-back cam + gated "1 m" `pcf_dist_marker`); cycle-2 auditor confirmed 3 distinct frames. tsc0·validate 109·EYE 38/38·kept-assessment Gates 19/20 intact·S1 dur 14→16·RHR hand confirmed animated. No new bug rows. Stale clips → re-voice AM. |
+
+**Remaining Ch.4 Socratic retrofit backlog (if time):** torque_on_current_loop_in_field (2 wfa/4 pause, scenario torque_on_loop_uniform_field) · moving_coil_galvanometer (3/37/8 — HEAVY) · galvanometer_to_ammeter_voltmeter (3/34/8 — HEAVY). (magnetic_force_moving_charge already Rule-31; magnetic_force_perpendicular_no_work has no Socratic to strip.)
+
+**Concept 1 soft-flags for founder (not blockers):** (1) S4/S5 slider thumb reads 1.0 during auto-demo ramp while circle grows/shrinks (trusted-grab-seizes pattern — confirm intended); (2) S1 snap-shut flash is a muddy olive torus — cosmetic colour; (3) F/r labels slightly crowded near centre in S3/S4; (4) q,B rows reflow S5→S6 (order preserved); (5) scene_composition prose annotations inert on field_3d path (Rule 24 OK on delivered surface).
+
+**Environment:** :8080 review server LIVE (PID 22896). Reference retrofit = `magnetic_field_circular_loop` (JSON + working-tree field_3d_renderer.ts cl_i_row pattern). Baseline (start of night): tsc 0 · validate 107/107 (per last session).
+
+**⚠️ CONCURRENCY (discovered mid-run):** a SECOND overnight session is authoring **Chapter 6** (motional_emf/eddy_currents/inductance/ac_generator — see its own log section below dated 2026-07-04 "CHAPTER 6 COMPLETE") in the SAME working tree, editing the SAME shared files (`field_3d_renderer.ts`, `intentClassifier.ts`, `aiSimulationGenerator.ts`, `panelConfig.ts`, `deriveStateMeta.ts`, `query_engine_bug_queue.ts`). Coexistence = strict namespacing + surgical Edit-only (never rewrite) on shared files. My work is namespaced `rad_` (concept 1) / `cyc_` (concept 2) / **`hx_`** (concept 3 helical — grep-verified collision-free; NOT `hel_`/`helix`, which are the solenoid coil, 39 hits) / **`pcf_`** (concept 4). Zero concurrency collisions all night (every shared-file Edit applied first-try). Concept 3 (`helical_motion_charge_in_uniform_B`) does NOT overlap the Ch.6 concepts. At commit time (founder, AM): stage Ch.4-retrofit + concept-3 files separately from Ch.6 files.
+
+## 2026-07-04 (CHAPTER 6 COMPLETE — 4 new field_3d diamonds authored via full Alex pipeline: motional_emf §6.6–6.7 · eddy_currents §6.8 · inductance §6.9 · ac_generator §6.10. All 4 through architect→physics_author→json_author→quality_auditor. tsc 0 · validate 108/108 · THE EYE 30+26+30+26 all clean, $0 · all 4 quality_auditor PASS. NOT committed / NO TTS — dormant + awaiting founder review. Runs alongside the concurrent overnight Ch.4 retrofit in the same working tree.)
+
+**What shipped (Ch.6 EMI now has full §6.1–6.10 coverage: faraday_law_induction §6.3–6.5 was already shipped; these 4 close the chapter):**
+
+| Concept | § | States | Scenario (NEW) | Gate result |
+|---|---|---|---|---|
+| `motional_emf` | 6.6+6.7 | 7 | `motional_emf_rod` (rod on rails, ε=Bvl, energy consideration) | tsc 0 · validate PASS · EYE 30/30 · auditor **PASS** |
+| `eddy_currents` | 6.8 | 6 | `eddy_current_pendulum` (swinging plate, slots vs solid, furnace/laminate) | tsc 0 · validate PASS · EYE 26/26 · auditor PASS (Gate-8 cluster-registry FAIL overridden as deferred-feature false-positive, consistent w/ motional_emf) |
+| `inductance` | 6.9 | 7 | `inductance` (self back-EMF + mutual coupled coils; reuses the potential_energy damped-pendulum + faraday coil primitives) | tsc 0 · validate PASS · EYE 30/30 · auditor PASS (one real Gate-3e defect — S7 explore didn't expose the I slider / self rig — FIXED + re-verified) |
+| `ac_generator` | 6.10 | 6 | `ac_generator` (rotating coil + slip rings + dual coordinated cos/sin graphs, 90° flux–EMF phase crux) | tsc 0 · validate PASS · EYE 26/26 · auditor **PASS**, S3 phase crux confirmed live on dense frames |
+
+**Files per concept (×4):** `src/data/concepts/<id>.json` · new scenario in `field_3d_renderer.ts` (build/apply/update/glow, all tagged with the scenario prefix) · `deriveStateMeta.ts` registration (F3D_REVEAL_KEYS + motion + frozen-pin + hold) · 8 registration sites (panelConfig CONCEPT_PANEL_MAP · aiSimulationGenerator CONCEPT_RENDERER_MAP · intentClassifier VALID_CONCEPT_IDS + CLASSIFIER_PROMPT) · `src/scripts/_seed_<id>_cache.ts` · `supabase_2026-07-0[34]_seed_<id>_clusters_migration.sql` (authored, NOT applied). Also added the 5 Ch.6 EMI ids to the FIELD3D constant in `query_engine_bug_queue.ts`.
+
+**Founder open items (surfaced, none blocking the diamonds themselves):**
+1. **PACING TRIM NEEDED on concepts 1–3.** They were authored at the older ≤6-sentence / 28–35s target; the pacing directive is now fleet-wide ~3 sentences/state ≈ 15–25s (already applied to Ch.4 this same night; also in memory as `feedback_state_pacing_narration_not_duration`). `ac_generator` was authored to the tight target from the start. The trim is a narration-length pass on the teacher_scripts of motional_emf / eddy_currents / inductance — best done as/just before the TTS step (the `duration` field itself is only a THE-EYE capture hint; real pacing = narration length). CLAUDE.md Rule 31a still literally reads "28–35s" — worth reconciling the codified rule with the newer directive.
+2. **confusion_cluster_registry migrations are authored-not-applied** for all 4 (9 clusters each, on the has_prebuilt_deep_dive states). Standard for this phase (drill-down/deep-dive deferred); apply the batch when drill-down resumes.
+3. **EN + Telugu TTS is the last post-approval step** (Rule 30f) — deliberately not generated; do it after founder visual approval, before Asmi handoff.
+4. **Concurrent-tree hygiene:** the overnight Ch.4 run's uncommitted solenoid/amperes/circular_loop changes share this working tree (incl. `solSetVisualTurns`/`solenoid_field` in field_3d_renderer.ts). Every Ch.6 renderer addition is namespaced (`motional_emf_rod`/`eddy_current_pendulum`/`inductance`/`ind_`/`im_`/`ac_generator`/`acg_`). At commit time, stage only Ch.6-EMI files.
+5. **Non-blocking polish notes:** eddy_currents S2/S6 plate reads a touch dark; ac_generator S6 `hand_crank` is met via the ω slider + idle auto-sweep, not a literal grab-drag handle (escalate to renderer_primitives only if Asmi wants a true crank handle); eddy_currents Q4 option-C is a weakish distractor.
+
+---
+
+## 2026-07-04 (Ch.4 Socratic→Rule-31 migration, concepts 2–4: circular_loop + amperes + solenoid retrofitted; concept-1 checkpoint COMMITTED 5578d17; founder pacing directive applied fleet-wide (~3 sentences/state ≈ 15–25s); solenoid n-slider now PHYSICALLY rewinds the coil. tsc 0 · validate 107/107 · THE EYE 30/30 + 34/34 + 38/38, $0 · all three review pages live on :8080, AWAITING founder review.)
+
+### Part 0 — concept 1 committed (the checkpoint)
+`5578d17` on `feat/field3d-draggable-sensor` (24 files): magnetic_field_concept_B + magnetic_field_wire
+retrofits, 15 visual baselines (new STATE_7*), swc_* bug-queue seeds/SQL, and the two shared engine files
+WHOLE (field_3d_renderer.ts + deriveStateMeta.ts — founder chose Option B, they carry dormant Ch.6 engine
+code). Ch.6 content (motional_emf/eddy_currents JSONs + registrations + seeds + notes) deliberately left
+uncommitted so those concepts stay unregistered/dormant. Verified HEAD builds standalone (stash → tsc 0 +
+validate 104/104 → pop). Local only, no push.
+
+### Part 1 — magnetic_field_circular_loop (§4.6, concept 2)
+Socratic constructs stripped (3 wait_for_answer, 28 pause_after_ms, 5 narrative_socratic, predict-gates,
+reveal_at_tts_id) → manual_click beats + interaction_complete explore-last (S7 duration 0); glow bindings
+on every sentence; entry_state_map → array shape; per-state contextual controls S1=I / S4=N / S6=z /
+S7=all+readout (S2/S3/S5 watch beats, show_sliders:false — empty #sliders renders as a black box, the
+Rule-31 catch #2). Renderer: cl panel row-wrapped (cl_i_row…), ev.isTrusted guard, on-entry slider seed
+from variable_overrides, applyVisibleControls wiring, S6 sweep_z settle-once → continuous oscillation
+gated on !clInteracted. deriveStateMeta: no change needed. EYE 30/30. Soft spot flagged for founder:
+STATE_3 db_stack reads as one foreshortened dB arrow, not a growing 12-arrow stack (pre-existing
+choreography — candidate renderer-primitives pass, NOT a regression).
+
+### Part 2 — amperes_circuital_law (§4.7, concept 3 — heaviest in queue: 4/48/5 markers)
+Same strip (2 wait_for_answer + auto_after_tts → manual_click, 48 pauses incl. real 2.8–3s predict-pauses,
+8 teaching_method, three "Predict/Take a guess" sentences reworded EN+HI+TE in BOTH script copies);
+glow bindings throughout; predict_label → angle_label; S8 explore-last duration 0. Controls: S1=I only
+(flow dots now speed/brighten live with I on slider-bearing states), S6=r only, S8=I+r+readout. NEW
+capability: STATE_6's unrolled bar opens at authored legibility size and once the teacher GRABS r
+(aclRTouched, trusted-input only, reset per state) the ring+bar geometry tracks r live — bar length = 2πr
+grows while tile brightness = B dims 1/r, product fixed. Generic #sliders panel row-wrapped
+(gen_i_row/gen_r_row — biot/solenoid rebuild innerHTML so unaffected). EYE 34/34, physics readout exact
+(B = 20.0 μT at defaults).
+
+### Part 3 — magnetic_field_solenoid (§4.7 solenoid, concept 4 — Diamond #4, oldest architecture)
+Full modern retrofit, not just the strip: (a) Socratic out (1 wait_for_answer, 5 predict-pauses, 5
+"Predict…" rewords EN+HI+TE), glow bindings on all sentences, predict_first → mental_math_hint; (b)
+comprehension keystone ADDED (concept predated it): 6-question backward-designed assessment +
+coverage_map + per-state misconception_watch on all 9 states — Gates 19/20 now fire and pass; (c) controls
+S5=I only ("crank I: inside brightens, OUTSIDE STAYS DEAD" — external lines deliberately never scaled,
+that IS the lesson), S7=n only, S9=all; (d) NEW: STATE_8 mid-state battery reversal — state opens flowing
+forward, at scenario_cue "battery_reverse" (fallback current_flow.reverse_at_ms:4000) the dots + interior
+arrows + N/S poles flip TOGETHER, verified in the contact sheet (N at t≤3s → S from t=4s); (e) NEW founder
+ask: the n slider PHYSICALLY REWINDS THE COIL — solSetVisualTurns() swaps the solWire-tagged helix tubes +
+rebuilds the flow-dot helix arrays; turns = authored·√(n/n_default) clamped 2..14 (n=100→2 loose turns,
+1000→6, 5000→13 dense); every state re-opens on the authored winding + panel defaults (DOM-only sync, no
+input event) so guided choreography always matches its per-turn extras. VERIFIED LIVE with a Playwright
+real-mouse probe (headless EYE can't drag): screenshots confirm 13-turn dense / 2-turn loose windings,
+dots riding the new helix, B readout exact (12.57/2.51/0.25 mT). EYE 38/38 (re-run post-renderer-change).
+New seed script _seed_magnetic_field_solenoid_cache.ts.
+
+### Part 4 — founder pacing correction (mid-session, applied fleet-wide)
+Founder: "each state is more than forty seconds… should be around twenty" + honest root cause: the JSON
+`duration` field controls nothing — NARRATION LENGTH does, and states carried 4–5 sentences ≈ 40s+ audio.
+Every state in ALL THREE sims cut to ~3 tight sentences (merge setup+payoff, drop meta-filler like "hold
+that for STATE 7"): solenoid 15–25s (was 40s+), amperes 19–23s (was ≤29s), circular_loop 13–22s (was
+≤31s). Durations re-synced ~16–18s. LESSON FOR EVERY FUTURE RETROFIT: pacing = sentence count × length,
+never the duration field; ~3 short sentences/state is the Rule-31 practical ceiling.
+
+### Verification (end-to-end)
+tsc 0 · validate:concepts 107/107 PASS · caches reseeded ×3 (EYE reads simulation_cache, not source) ·
+EYE: cl 30/30, acl 34/34, sol 38/38 — all $0, zero new engine_bug_queue rows, every frozen frame read ·
+review pages rebuilt ×3, serving on :8080 (detached server). STALE-clip counts after script cuts (muted by
+the 2026-07-03 hash guard, correct behavior): solenoid 68, amperes 39, circular_loop 8 — one
+tts:generate --langs=en,te per concept re-voices exactly those after founder approval (Rule 30f: TTS is
+the LAST DoD step).
+
+### State / next session
+ALL THREE CONCEPTS UNCOMMITTED, awaiting founder visual review at
+http://localhost:8080/{magnetic_field_circular_loop,amperes_circuital_law,magnetic_field_solenoid}/.
+First task next session: founder verdict → per approved concept: commit + tts:generate (EN+TE) + rebuild.
+Then next in the Ch.4 Socratic queue: circular_motion_charge_in_uniform_B (§4.4, 4/12/0), then
+cyclotron_period_independent_of_speed (2/24/0), parallel_currents_force, torque_on_current_loop_in_field,
+moving_coil_galvanometer (3/37/8, prep notes exist), galvanometer_to_ammeter_voltmeter (3/34/8).
+Blockers: none. Open flags: cl STATE_3 db_stack readability (founder decision), amperes S2/S3/S4 share the
+dl-march motion engine with different overlays (distinct pictures, repeated core motion — flag if it reads
+samey on review).
+
 ## 2026-07-03 latest+1 (ROOT CAUSE of the Ch.4 voice↔caption↔choreography desync: STALE stored TTS clips — text_hash invalidation shipped AND all 5 concepts re-voiced EN+TE. tsc 0 · scar row CRITICAL/FIXED · 5 pages rebuilt, 0 stale, every clip hash-verified.)
 
 ### The founder's report

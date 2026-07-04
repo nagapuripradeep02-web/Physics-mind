@@ -1,0 +1,720 @@
+{
+  "concept_id": "motional_emf",
+  "concept_name": "Motional EMF — ε = Bvl",
+  "chapter": 6,
+  "section": "6.6",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "complex",
+  "source_book": "NCERT Class 12 Ch.6 Electromagnetic Induction §6.6 Motional Electromotive Force, spanning into §6.7 Energy Consideration — table-of-contents reference only; teaching authored from first principles. The atomic concept: a rod sliding on rails in a uniform field B perpendicular to the plane of motion develops ε = Bvl by two consistent routes — the macroscopic flux-rate route (Φ = B l x, dΦ/dt = Blv, identical to Faraday's law) and the microscopic route (the q v×B force on the rod's own free charges separates them along the rod, building an internal field E_internal = vB at equilibrium). The right-hand rule fixes which end is positive. ε exists whether or not the circuit is closed; closing it lets I = ε/R flow and a retarding force F_retard = BIl (Lenz's law on a bare rod, no coil needed) act on the rod. The energy argument closes the loop: F_ext = F_retard keeps v constant, and the mechanical power delivered exactly equals the electrical power dissipated (I²R) — a magnetic force does zero work on any single charge, yet pushing the rod becomes the resistor's heat. Does NOT cover self/mutual inductance, AC generators, or oblique (non-perpendicular) geometry. Built instrument-native in the straightforward (non-Socratic) model: six motion-distinct teaching beats + one combined interactive state, each state exposing only its own contextual controls (Rule 31).",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": [
+      "motional_emf_rod"
+    ]
+  },
+  "prerequisites": [
+    "faraday_law_induction",
+    "magnetic_force_moving_charge",
+    "force_on_current_carrying_wire"
+  ],
+  "real_world_anchor": {
+    "primary": "Watch a Delhi Metro or Mumbai Metro train slow down pulling into a station. Inside its traction motors, the same copper windings that drove the train forward are now dragged mechanically through the motor's magnetic field by the train's own motion — exactly like a rod sliding on rails. That motion induces an EMF, current flows back into the line, and kinetic energy converts to electrical energy instead of being wasted as friction heat. This is regenerative braking — the §6.7 energy argument at city scale.",
+    "secondary": "An old bicycle dynamo lamp, still common on Indian bicycles — press the dynamo wheel against the tyre and the lamp lights as you pedal. Every rider has felt the pedals get harder the moment the dynamo engages — that extra effort IS the retarding force: the instant current flows through the filament, the moving conductor feels a magnetic force opposing its own motion, and the rider's legs supply exactly the mechanical work that becomes the lamp's light and heat."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "B": {
+        "name": "Magnitude of the uniform magnetic field (perpendicular to the plane of the rails)",
+        "unit": "T",
+        "min": 0.1,
+        "max": 1,
+        "default": 0.5,
+        "step": 0.1
+      },
+      "l": {
+        "name": "Length of the rod between the rails (rail separation)",
+        "unit": "m",
+        "min": 0.1,
+        "max": 1,
+        "default": 0.5,
+        "step": 0.1
+      },
+      "v": {
+        "name": "Speed of the rod sliding along the rails",
+        "unit": "m/s",
+        "min": 0.5,
+        "max": 5,
+        "default": 2,
+        "step": 0.5
+      },
+      "R": {
+        "name": "Resistance closing the circuit at the far end of the rails",
+        "unit": "Ω",
+        "min": 1,
+        "max": 10,
+        "default": 5,
+        "step": 1
+      },
+      "v_dir": {
+        "name": "Sign of the rod's velocity along the rails (the polarity-flip control on S3/S7)",
+        "unit": "",
+        "min": -1,
+        "max": 1,
+        "default": 1,
+        "step": 2
+      },
+      "emf": {
+        "name": "Motional EMF between the two ends of the rod",
+        "unit": "V",
+        "min": 0,
+        "max": 5,
+        "default": 0.5,
+        "derived": "B * l * v"
+      },
+      "I": {
+        "name": "Current in the circuit",
+        "unit": "A",
+        "min": 0,
+        "max": 5,
+        "default": 0.1,
+        "derived": "emf / R (exactly 0 if circuit open)"
+      },
+      "F_retard": {
+        "name": "Retarding force on the rod from induced current in the field",
+        "unit": "N",
+        "min": 0,
+        "max": 5,
+        "default": 0.025,
+        "derived": "B * I * l"
+      },
+      "F_ext": {
+        "name": "External force keeping the rod at constant v",
+        "unit": "N",
+        "min": 0,
+        "max": 5,
+        "default": 0.025,
+        "derived": "F_retard (steady state)"
+      },
+      "P": {
+        "name": "Mechanical power in = electrical power out",
+        "unit": "W",
+        "min": 0,
+        "max": 25,
+        "default": 0.05,
+        "derived": "F_ext * v == I^2 * R"
+      }
+    },
+    "computed_outputs": {
+      "flux": { "formula": "B * l * x" },
+      "flux_rate": { "formula": "B * l * v" },
+      "motional_emf": { "formula": "B * l * v" },
+      "current_closed": { "formula": "(B * l * v) / R" },
+      "retarding_force": { "formula": "B * ((B * l * v) / R) * l" }
+    },
+    "formulas": {
+      "motional_emf": "ε = B·l·v — EMF of a rod sliding at speed v along rails separated by l, in field B perpendicular to the plane of motion",
+      "flux_rate_check": "Φ = B·l·x(t); dΦ/dt = B·l·v = ε — Faraday's flux rule and the direct motional-EMF formula agree exactly, every instant",
+      "carrier_force_balance": "At equilibrium inside the rod: q·E_internal = q·v×B ⟹ E_internal = vB",
+      "current_closed_circuit": "I = ε/R = Bvl/R — only when circuit closed; I=0 exactly if open, however large ε is",
+      "retarding_force": "F_retard = B·I·l — F=IL×B applied to the rod itself, opposes v",
+      "power_balance": "P_mech = F_ext·v = I·ε = I²R — mechanical power in equals electrical power out, exactly"
+    },
+    "constraints": [
+      "ε = Blv at every instant the rod moves, whether or not the circuit is closed — open-circuit EMF is real and measurable",
+      "I = 0 exactly when the circuit is open, however large ε is",
+      "F_retard = BIl acts only when I≠0 (closed circuit)",
+      "For constant v, F_ext = F_retard exactly",
+      "P_mech = I²R at every instant — energy is converted, never created or destroyed",
+      "The magnetic force on any single charge carrier does zero work; the mechanical work the external agent does on the ROD becomes the resistor's heat"
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 6,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 30
+  },
+  "aha_moment": {
+    "state_id": "STATE_6",
+    "statement": "B never pushes a single charge — yet pushing the rod becomes the resistor's heat.",
+    "visual_confirmation": "F_ext and F_retard arrows balance on the rod while the twin power readouts (mechanical work in, I²R heat out) converge to the same number."
+  },
+  "entry_state_map": {
+    "foundational": [
+      "STATE_1",
+      "STATE_2",
+      "STATE_3",
+      "STATE_4",
+      "STATE_5",
+      "STATE_6"
+    ],
+    "open_circuit_emf": [
+      "STATE_4"
+    ],
+    "closed_circuit_current": [
+      "STATE_5"
+    ],
+    "energy_consideration": [
+      "STATE_6"
+    ],
+    "exploration": [
+      "STATE_7"
+    ]
+  },
+  "epic_l_path": {
+    "state_count": 7,
+    "states": {
+      "STATE_1": {
+        "title": "Two ways to get the same number: flux rate and Bvl",
+        "duration": 32,
+        "focal_primitive_id": "flux_formula_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "flux_formula_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Φ = B·l·x    ε = B·l·v",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "hold_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "rod held still\n→ Φ steady, both routes = 0",
+            "color": "#90A4AE"
+          },
+          {
+            "type": "annotation",
+            "id": "match_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "rod slides\n→ both routes climb together",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s1_1",
+              "text_en": "A rod rests across two rails in a uniform field B. Held still, nothing changes — the flux Phi stays fixed, and both routes to the EMF read zero.", "text_hi": "एक rod दो rails के ऊपर एक uniform field B में रखी है। रुकी हुई अवस्था में कुछ नहीं बदलता — flux Phi fixed रहता है, और EMF निकालने के दोनों तरीके zero दिखाते हैं।", "text_te": "ఒక rod రెండు rails మీద ఒక uniform field B లో ఉంది. అది ఆగి ఉంటే ఏమీ మారదు — flux Phi fixed గా ఉంటుంది, మరియు EMF కోసం రెండు పద్ధతులూ zero చూపిస్తాయి.",
+              "glow": "hold_label"
+            },
+            {
+              "id": "s1_2",
+              "text_en": "Now the rod slides, and two numbers climb together: the changing flux, d Phi by d t, and the direct formula, epsilon equals B times l times v.", "text_hi": "अब rod खिसकती है, और दो numbers एक साथ बढ़ते हैं: changing flux, d Phi by d t, और direct formula, epsilon equals B times l times v।", "text_te": "ఇప్పుడు rod జారుతుంది, మరియు రెండు numbers కలిసి పెరుగుతాయి: changing flux, d Phi by d t, మరియు direct formula, epsilon equals B times l times v.",
+              "glow": "match_label"
+            },
+            {
+              "id": "s1_3",
+              "text_en": "They match every frame — Faraday's flux rule and the motional EMF formula are one physics, seen two ways.", "text_hi": "ये दोनों हर frame में match करते हैं — Faraday's flux rule और motional EMF formula एक ही physics है, दो अलग-अलग तरीकों से देखी गई।", "text_te": "ఇవి రెండూ ప్రతి frame లో match అవుతాయి — Faraday's flux rule మరియు motional EMF formula ఒకే physics, రెండు వేర్వేరు కోణాల నుండి చూడబడినది.",
+              "glow": "flux_formula_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "A rod merely sitting in a magnetic field has an EMF just because it's in the field",
+            "visual_counter": "rod held motionless first, Phi and both epsilon readouts pinned at 0 before any motion begins",
+            "one_line_fix": "A stationary rod in a field has zero EMF — only relative motion induces one."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Why there's an EMF at all: q v×B separates the carriers",
+        "duration": 30,
+        "focal_primitive_id": "force_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "why_charges_separate_in_rod",
+          "equilibrium_stops_further_separation",
+          "is_this_the_same_as_a_battery"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "force_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "F = q v × B  (on every free charge)",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "drift_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "charges drift to opposite ends\n→ rod becomes + and −",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "balance_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "E_internal = vB\nbalances the push → separation stops",
+            "color": "#AB47BC"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s2_1",
+              "text_en": "Why does the rod have an EMF at all? Every free charge in it moves through the field B, so each feels a magnetic force, q times v cross B.", "text_hi": "rod में EMF आती ही क्यों है? उसमें हर free charge field B के बीच move करता है, इसलिए हर charge को एक magnetic force, q times v cross B, महसूस होती है।", "text_te": "rod కి EMF ఎందుకు వస్తుంది? దానిలో ఉన్న ప్రతి free charge field B లో move అవుతుంది, కాబట్టి ప్రతి charge కి ఒక magnetic force, q times v cross B, అనుభవమవుతుంది.",
+              "glow": "force_label"
+            },
+            {
+              "id": "s2_2",
+              "text_en": "That force drives positive charge to one end and leaves the other negative — the rod's own carriers separate.", "text_hi": "वह force positive charge को एक सिरे की तरफ धकेलती है और दूसरे सिरे को negative छोड़ देती है — rod के अपने carriers अलग हो जाते हैं।", "text_te": "ఆ force positive charge ని ఒక చివరికి నెడుతుంది మరియు మరొక చివరిని negative గా వదిలిపెడుతుంది — rod లోని carriers వేరవుతాయి.",
+              "glow": "drift_label"
+            },
+            {
+              "id": "s2_3",
+              "text_en": "Separation stops when the internal field it builds, E internal equals v times B, balances the magnetic push — and that balance is the rod's EMF.", "text_hi": "Separation तब रुकती है जब उससे बना internal field, E internal equals v times B, magnetic push को balance करता है — और यही balance rod की EMF है।", "text_te": "ఈ separation అప్పుడు ఆగుతుంది, ఆ separation వల్ల ఏర్పడిన internal field, E internal equals v times B, magnetic push ని balance చేసినప్పుడు — మరియు ఆ balanceే rod యొక్క EMF.",
+              "glow": "balance_label"
+            }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Which end is positive — and it's not arbitrary",
+        "duration": 30,
+        "focal_primitive_id": "rhr_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "which_end_is_positive",
+          "polarity_flips_with_direction",
+          "fingers_curl_confusion"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "rhr_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "fingers v → curl to B → thumb F",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "v_glow",
+            "position": { "x": 200, "y": 250 },
+            "text": "v = the rod's velocity\n(fingers point here first)",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "b_glow",
+            "position": { "x": 560, "y": 380 },
+            "text": "B = the field\n(curl toward it)",
+            "color": "#42A5F5"
+          },
+          {
+            "type": "annotation",
+            "id": "f_glow",
+            "position": { "x": 380, "y": 440 },
+            "text": "F = the force on + charge\n(the thumb) → that end is +",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s3_1",
+              "text_en": "Which end is positive isn't arbitrary — the right-hand rule fixes it. Point your fingers along the velocity v.", "text_hi": "कौन सा सिरा positive होगा यह मनमाना नहीं है — right-hand rule इसे तय करता है। अपनी उँगलियाँ velocity v की दिशा में सीधी रखिए।", "text_te": "ఏ చివర positive అవుతుందో అది యాదృచ్ఛికం కాదు — right-hand rule దాన్ని నిర్ణయిస్తుంది. మీ వేళ్ళను velocity v దిశలో చూపించండి.",
+              "glow": "v_glow"
+            },
+            {
+              "id": "s3_2",
+              "text_en": "Now curl your fingers toward the field B.", "text_hi": "अब अपनी उँगलियाँ field B की तरफ curl कीजिए।", "text_te": "ఇప్పుడు మీ వేళ్ళను field B వైపు curl చేయండి.",
+              "glow": "b_glow"
+            },
+            {
+              "id": "s3_3",
+              "text_en": "Your thumb gives the force on positive charge, F — that end becomes positive.", "text_hi": "आपका thumb positive charge पर लगने वाली force, F की दिशा बताता है — वह सिरा positive बन जाता है।", "text_te": "మీ thumb positive charge మీద పనిచేసే force, F యొక్క దిశను చూపిస్తుంది — ఆ చివర positive అవుతుంది.",
+              "glow": "f_glow"
+            },
+            {
+              "id": "s3_4",
+              "text_en": "The plus and minus labels snap onto the ends, exactly where your thumb pointed.", "text_hi": "Plus और minus के labels उन्हीं सिरों पर जाकर बैठ जाते हैं, जहाँ आपका thumb बिल्कुल सही point कर रहा था।", "text_te": "Plus మరియు minus labels ఆ చివరలకు సరిగ్గా అతుక్కుంటాయి, మీ thumb చూపించిన చోటికే.",
+              "glow": "rhr_label"
+            },
+            {
+              "id": "s3_5",
+              "text_en": "Reverse the rod and the rule re-runs — the polarity flips too, exactly as predicted.", "text_hi": "rod को reverse करिए और rule फिर से चलता है — polarity भी flip हो जाती है, बिल्कुल वैसे ही जैसा predict किया गया था।", "text_te": "rod ని reverse చేయండి మరియు rule మళ్ళీ పని చేస్తుంది — polarity కూడా flip అవుతుంది, predict చేసినట్లే సరిగ్గా."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Which end becomes positive is arbitrary, depending on which side of the page you view from",
+            "visual_counter": "the right-hand rule is performed explicitly on v and B; reversing v flips the polarity live, deterministically",
+            "one_line_fix": "The right-hand rule fixes the polarity exactly — it is never arbitrary; reverse v and the sign reverses predictably."
+          }
+        ]
+      },
+      "STATE_4": {
+        "title": "EMF exists without a closed circuit — current does not",
+        "duration": 30,
+        "focal_primitive_id": "open_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "open_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "ε = B l v  (I = 0, circuit open)",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "voltmeter_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "voltmeter climbs to a real,\nsteady reading",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "ammeter_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "current stays pinned at zero\nthe whole time",
+            "color": "#90A4AE"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s4_1",
+              "text_en": "The switch at the far end is open — the circuit is not closed.", "text_hi": "दूर के सिरे पर लगा switch open है — circuit बंद नहीं है।", "text_te": "దూరపు చివర ఉన్న switch open గా ఉంది — circuit మూసుకోలేదు.",
+              "glow": "open_label"
+            },
+            {
+              "id": "s4_2",
+              "text_en": "Drag the rod's speed: the voltmeter deflects to a real, steady epsilon equals B times l times v, rising and falling with v.", "text_hi": "rod की speed को drag करिए: voltmeter एक real, steady epsilon equals B times l times v पर deflect होता है, जो v के साथ ऊपर-नीचे होता है।", "text_te": "rod యొక్క speed ని drag చేయండి: voltmeter ఒక real, steady epsilon equals B times l times v వద్దకు deflect అవుతుంది, v తో పాటు పెరుగుతూ తగ్గుతూ ఉంటుంది.",
+              "glow": "voltmeter_label"
+            },
+            {
+              "id": "s4_3",
+              "text_en": "Yet the current stays pinned at exactly zero — the EMF exists the moment the rod moves; only current needs a closed circuit.", "text_hi": "फिर भी current बिल्कुल zero पर अटकी रहती है — EMF उसी पल exist करती है जब rod हिलती है; केवल current को closed circuit की जरूरत होती है।", "text_te": "అయినప్పటికీ current సరిగ్గా zero వద్దే అటకాయించి ఉంటుంది — rod కదిలిన క్షణమే EMF exist అవుతుంది; కేవలం current మాత్రమే closed circuit అవసరం.",
+              "glow": "ammeter_label"
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "No closed circuit means no EMF — nothing electrical is happening",
+            "visual_counter": "the open-circuit voltmeter climbs to a real, steady, nonzero Bvl reading while the current indicator stays dark the whole time",
+            "one_line_fix": "EMF exists the instant the rod moves, whether or not current flows — I depends on the circuit being closed, epsilon does not."
+          }
+        ]
+      },
+      "STATE_5": {
+        "title": "Close the loop: current flows, and a retarding force appears",
+        "duration": 32,
+        "focal_primitive_id": "close_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "close_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "I = ε/R    F_retard = B I l",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "flow_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "current flows all the way\naround the loop",
+            "color": "#FFB300"
+          },
+          {
+            "type": "annotation",
+            "id": "oppose_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "F_retard opposes v\non the BARE rod",
+            "color": "#EF5350"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s5_1",
+              "text_en": "Now close the switch — the circuit completes.", "text_hi": "अब switch बंद करिए — circuit complete हो जाती है।", "text_te": "ఇప్పుడు switch మూయండి — circuit complete అవుతుంది.",
+              "glow": "close_label",
+              "scenario_cue": "switch_close"
+            },
+            {
+              "id": "s5_2",
+              "text_en": "Current flows all the way around: through the rod, the rails, the resistor, and back.", "text_hi": "Current पूरे रास्ते flow करती है: rod के through, rails के through, resistor के through, और वापस।", "text_te": "Current పూర్తిగా చుట్టూ flow అవుతుంది: rod గుండా, rails గుండా, resistor గుండా, మరియు తిరిగి వెనక్కి.",
+              "glow": "flow_label"
+            },
+            {
+              "id": "s5_3",
+              "text_en": "Drag the resistance R and watch the force on the rod, F retard — always opposing its motion.", "text_hi": "resistance R को drag करिए और rod पर लगने वाली force, F retard, को देखिए — यह हमेशा उसकी motion का विरोध करती है।", "text_te": "resistance R ని drag చేసి rod పై పని చేసే force, F retard ని గమనించండి — ఇది ఎల్లప్పుడూ దాని motion కి వ్యతిరేకంగా ఉంటుంది.",
+              "glow": "oppose_label"
+            },
+            {
+              "id": "s5_4",
+              "text_en": "That's Lenz's law on a bare rod: any current-carrying conductor in a field feels an opposing force, F equals B times I times l.", "text_hi": "यही है Lenz's law एक bare rod पर: किसी field में कोई भी current-carrying conductor एक opposing force महसूस करता है, F equals B times I times l।", "text_te": "ఇదే bare rod పై Lenz's law: field లో ఉన్న ఏ current-carrying conductor అయినా ఒక opposing force ని అనుభవిస్తుంది, F equals B times I times l."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Lenz's law opposition only applies to loops and coils, not a straight rod-rail circuit",
+            "visual_counter": "current flows and F_retard is drawn explicitly opposing v on the bare rod, no drawn 'loop' as the opposing element — the same opposition principle as a coil, now linear",
+            "one_line_fix": "Lenz's opposition acts on any current-carrying conductor in a field (F = BIl); a full geometric loop is not required."
+          }
+        ]
+      },
+      "STATE_6": {
+        "title": "No work on a charge, yet the resistor gets hot: where the energy comes from",
+        "duration": 33,
+        "focal_primitive_id": "energy_label",
+        "advance_mode": "manual_click",
+        "has_prebuilt_deep_dive": true,
+        "drill_downs": [
+          "if_no_work_then_why_effort",
+          "where_does_electrical_energy_come_from",
+          "does_heavier_rod_need_more_push"
+        ],
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "energy_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "F_ext = F_retard    P = F v = I²R",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "puzzle_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "B does zero work on any\nsingle charge — so why push?",
+            "color": "#EF5350"
+          },
+          {
+            "type": "annotation",
+            "id": "converge_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "mechanical power in =\nelectrical power out, exactly",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s6_1",
+              "text_en": "Current flows, so the rod feels a retarding force. To hold constant speed, your external force F external must exactly balance F retard.", "text_hi": "Current flow होती है, तो rod को एक retarding force लगती है। constant speed बनाए रखने के लिए, आपकी external force F external को F retard को exactly balance करना होगा।", "text_te": "Current flow అవుతుంది, కాబట్టి rod ఒక retarding force ని అనుభవిస్తుంది. constant speed నిలబెట్టుకోవడానికి, మీ external force F external తప్పనిసరిగా F retard ని exactly balance చేయాలి.",
+              "glow": "energy_label"
+            },
+            {
+              "id": "s6_2",
+              "text_en": "Here's the puzzle: a magnetic force does zero work on any charge. So why does pushing the rod take real effort?", "text_hi": "यहाँ एक puzzle है: किसी भी charge पर magnetic force zero work करती है। तो फिर rod को push करने में real effort क्यों लगती है?", "text_te": "ఇక్కడ ఒక puzzle ఉంది: ఏ charge పైనా magnetic force zero work చేస్తుంది. మరి rod ని push చేయడానికి real effort ఎందుకు అవసరమవుతుంది?",
+              "glow": "puzzle_label"
+            },
+            {
+              "id": "s6_3",
+              "text_en": "Watch the two power readouts climb to the same number: mechanical, F external times v, and electrical, I squared R.", "text_hi": "दो power readouts को देखिए जो same number तक climb करते हैं: mechanical, F external times v, और electrical, I squared R।", "text_te": "రెండు power readouts ఒకే number వరకు climb అవడాన్ని చూడండి: mechanical, F external times v, మరియు electrical, I squared R.",
+              "glow": "converge_label"
+            },
+            {
+              "id": "s6_4",
+              "text_en": "Drag the speed — both track in lock-step. B never pushes a single charge, yet pushing the rod becomes the resistor's heat.", "text_hi": "Speed को drag कीजिए — दोनों lock-step में track करते हैं। B एक भी single charge को push नहीं करता, फिर भी rod को push करना resistor की heat बन जाती है।", "text_te": "Speed ని drag చేయండి — రెండూ lock-step లో track అవుతాయి. B ఒక్క single charge ని కూడా push చేయదు, అయినప్పటికీ rod ని push చేయడం resistor యొక్క heat గా మారుతుంది."
+            }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Since magnetic force does zero work on a charge, no extra effort should be needed to keep the rod moving once current flows",
+            "visual_counter": "the F_ext arrow is shown as required and nonzero, matching F_retard, while the resistor's power readout visibly climbs in lockstep",
+            "one_line_fix": "Zero work on a single charge does not mean zero mechanical effort on the rod — F_ext times v exactly equals I squared R; that effort becomes heat."
+          }
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore: set B, l, v, R, and the direction of v",
+        "duration": 0,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "has_prebuilt_deep_dive": false,
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Set B · l · v · R · direction of v",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "watch_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "Φ, ε (both routes), I,\nF_retard, F_ext, P all update live",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_label",
+            "position": { "x": 380, "y": 440 },
+            "text": "ε = B l v  ·  I = ε/R  ·  F = B I l  ·  P = I²R",
+            "color": "#D4D4D8"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            {
+              "id": "s7_1",
+              "text_en": "Now it's your turn — set the field B, the rail separation l, the speed v, the resistance R, and the direction of v.", "text_hi": "अब आपकी बारी है — field B, rail separation l, speed v, resistance R, और v की direction set कीजिए।", "text_te": "ఇప్పుడు మీ వంతు — field B, rail separation l, speed v, resistance R, మరియు v యొక్క direction సెట్ చేయండి.",
+              "glow": "explore_label"
+            },
+            {
+              "id": "s7_2",
+              "text_en": "Every quantity updates live: the flux, the EMF from both routes, the current, both forces, and the power balance.", "text_hi": "हर quantity live update होती है: flux, दोनों routes से EMF, current, दोनों forces, और power balance।", "text_te": "ప్రతి quantity live గా update అవుతుంది: flux, రెండు routes నుండి EMF, current, రెండు forces, మరియు power balance.",
+              "glow": "watch_label"
+            },
+            {
+              "id": "s7_3",
+              "text_en": "Reverse v and the polarity flips. Crank R up and the current shrinks toward zero while the EMF stays put.", "text_hi": "v को reverse कीजिए और polarity flip हो जाती है। R को ऊपर crank कीजिए और current zero की तरफ shrink होता है जबकि EMF अपनी जगह stay करती है।", "text_te": "v ని reverse చేయండి మరియు polarity flip అవుతుంది. R ని పైకి crank చేయండి మరియు EMF అక్కడే stay అవుతుండగా current zero వైపు shrink అవుతుంది.",
+              "glow": "key_label"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "motional_emf_rod",
+    "field_lines": {
+      "count": 0,
+      "color_positive": "#42A5F5",
+      "color_negative": "#EF5350",
+      "opacity": 0.9
+    },
+    "slider_controls": {
+      "B": { "min": 0.1, "max": 1, "step": 0.1, "default": 0.5, "label": "Field B" },
+      "l": { "min": 0.1, "max": 1, "step": 0.1, "default": 0.5, "label": "Rail separation l" },
+      "v": { "min": 0.5, "max": 5, "step": 0.5, "default": 2, "label": "Speed v" },
+      "R": { "min": 1, "max": 10, "step": 1, "default": 5, "label": "Resistance R" },
+      "v_dir": { "min": -1, "max": 1, "step": 2, "default": 1, "label": "Direction of v" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "Two routes to the same EMF: Φ-rate and Blv",
+        "visible_elements": ["mem_rail", "mem_resistor", "mem_switchgap", "mem_rod", "mem_bfield", "mem_varrow", "mem_needle"],
+        "camera_position": [2.2, 3.0, 6.0],
+        "caption": "Rod still → Φ steady, both routes read zero. Rod slides → both climb together.",
+        "show_sliders": true,
+        "formula_overlay": "Φ = B l x    ε = B l v",
+        "motional_emf_rod": {
+          "mode": "flux_crosscheck",
+          "circuit_closed": false,
+          "visible_controls": [],
+          "B": 0.5, "l": 0.5, "v": 2, "R": 5, "v_dir": 1,
+          "show_readout": true
+        }
+      },
+      "STATE_2": {
+        "label": "Charge separation: F = q v × B",
+        "visible_elements": ["mem_rail", "mem_resistor", "mem_switchgap", "mem_rod", "mem_bfield", "mem_varrow", "mem_charge", "mem_efield", "mem_needle"],
+        "camera_position": [0.3, 1.4, 3.0],
+        "caption": "Zoom in: q v × B separates the rod's own charges into + and − ends.",
+        "show_sliders": true,
+        "formula_overlay": "F = q v × B",
+        "motional_emf_rod": {
+          "mode": "charge_separation",
+          "circuit_closed": false,
+          "visible_controls": [],
+          "B": 0.5, "l": 0.5, "v": 2, "R": 5, "v_dir": 1,
+          "show_readout": true
+        }
+      },
+      "STATE_3": {
+        "label": "Right-hand rule fixes the polarity",
+        "visible_elements": ["mem_rail", "mem_resistor", "mem_switchgap", "mem_rod", "mem_bfield", "mem_varrow", "mem_charge", "mem_efield", "mem_hand", "mem_needle"],
+        "camera_position": [0.4, 1.3, 3.2],
+        "caption": "fingers v → curl to B → thumb F. Flip v, the polarity flips.",
+        "show_sliders": true,
+        "formula_overlay": "fingers v → curl B → thumb F",
+        "motional_emf_rod": {
+          "mode": "polarity_rhr",
+          "circuit_closed": false,
+          "visible_controls": ["vdir"],
+          "B": 0.5, "l": 0.5, "v": 2, "R": 5, "v_dir": 1,
+          "show_readout": true
+        }
+      },
+      "STATE_4": {
+        "label": "Open circuit: EMF real, current zero",
+        "visible_elements": ["mem_rail", "mem_resistor", "mem_switchgap", "mem_rod", "mem_bfield", "mem_varrow", "mem_charge", "mem_efield", "mem_needle"],
+        "camera_position": [2.4, 3.0, 6.2],
+        "caption": "Circuit open: EMF is real and steady; current stays pinned at zero.",
+        "show_sliders": true,
+        "formula_overlay": "ε = B l v   (I = 0, open)",
+        "motional_emf_rod": {
+          "mode": "open_circuit",
+          "circuit_closed": false,
+          "visible_controls": ["v"],
+          "B": 0.5, "l": 0.5, "v": 2, "R": 5, "v_dir": 1,
+          "show_readout": true
+        }
+      },
+      "STATE_5": {
+        "label": "Closed circuit: current flows, F_retard appears",
+        "visible_elements": ["mem_rail", "mem_resistor", "mem_switchgap", "mem_rod", "mem_bfield", "mem_varrow", "mem_charge", "mem_efield", "mem_needle", "mem_curr", "mem_fretard"],
+        "camera_position": [2.4, 2.8, 6.4],
+        "caption": "Circuit closed: current flows, and F_retard opposes the rod's own motion.",
+        "show_sliders": true,
+        "formula_overlay": "I = ε/R    F_retard = B I l",
+        "motional_emf_rod": {
+          "mode": "closed_circuit",
+          "circuit_closed": true,
+          "visible_controls": ["R"],
+          "B": 0.5, "l": 0.5, "v": 2, "R": 5, "v_dir": 1,
+          "show_readout": true
+        }
+      },
+      "STATE_6": {
+        "label": "Energy: F_ext = F_retard, P_mech = P_elec",
+        "visible_elements": ["mem_rail", "mem_resistor", "mem_switchgap", "mem_rod", "mem_bfield", "mem_varrow", "mem_charge", "mem_efield", "mem_needle", "mem_curr", "mem_fretard", "mem_fext"],
+        "camera_position": [2.2, 2.8, 6.2],
+        "caption": "F_ext = F_retard: mechanical power in equals I²R heat out, exactly.",
+        "show_sliders": true,
+        "formula_overlay": "F_ext = F_retard    P = F v = I²R",
+        "motional_emf_rod": {
+          "mode": "energy",
+          "circuit_closed": true,
+          "visible_controls": ["v"],
+          "B": 0.5, "l": 0.5, "v": 2, "R": 5, "v_dir": 1,
+          "show_readout": true
+        }
+      },
+      "STATE_7": {
+        "label": "Explore: B, l, v, R, direction of v",
+        "visible_elements": ["mem_rail", "mem_resistor", "mem_switchgap", "mem_rod", "mem_bfield", "mem_varrow", "mem_charge", "mem_efield", "mem_needle", "mem_curr", "mem_fretard", "mem_fext"],
+        "camera_position": [2.6, 3.2, 6.8],
+        "caption": "Explore: set B, l, v, R, v_dir — watch every quantity update live.",
+        "show_sliders": true,
+        "formula_overlay": "ε=Blv   I=ε/R   F=BIl   P=I²R",
+        "motional_emf_rod": {
+          "mode": "sandbox",
+          "circuit_closed": true,
+          "visible_controls": ["B", "l", "v", "R", "vdir"],
+          "B": 0.5, "l": 0.5, "v": 2, "R": 5, "v_dir": 1,
+          "show_readout": true
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#EF5350",
+      "negative": "#42A5F5",
+      "field_line": "#FFF176"
+    }
+  }
+}
