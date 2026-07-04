@@ -1,0 +1,583 @@
+{
+  "concept_id": "helical_motion_charge_in_uniform_B",
+  "concept_name": "The Helix — a Charge Entering a Uniform Field at an Angle",
+  "chapter": 4,
+  "section": "4.3.1",
+  "schema_version": "2.0.0",
+  "class_level": 12,
+  "concept_tier": "medium",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the 'helical motion of a charge in a uniform field' heading, §26.4 scope); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This is the OBLIQUE-ENTRY sibling of circular_motion_charge_in_uniform_B: a charge entering a uniform magnetic field at an angle theta traces a HELIX. The across-field part v_perp = v sin(theta) circles (r = m v_perp / qB) while the along-field part v_par = v cos(theta) sails straight through (B does no work on it, v_par x B = 0), giving a pitch p = v_par * T per turn. The single new insight surfaced is the pitch, and only as a RELATIVE readout (a bar and relative captions, never a metres value). It deliberately does NOT re-derive r = mv/qB (cited from circular_motion_charge_in_uniform_B), T = 2 pi m / (qB) (cited from cyclotron_period_independent_of_speed), or the force magnitude F = qvB sin(theta) (cited from magnetic_force_moving_charge); no seconds, Newton, Tesla or metre number ever reaches the canvas (hide_period_readout + hide_magnitude_readout on every state). The theta arc + symbol appears on canvas; the degree value lives only on the slider. No velocity-selector / cyclotron-device / toroid / Ampere / current-loop / dipole content. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + straightforward contrast beats). Renders on field_3d via the NEW helix_in_uniform_field scenario (the helix sibling of radius_in_uniform_field): it reuses the orbit basis + circle math and adds the v_par/v_perp decomposition arrows + theta arc, the isolate_perp/isolate_par fade blocks that collapse the helix to a flat circle (S3) or a straight drift (S4), the relative pitch bracket + pitch/radius bars, and the theta/v/B slider panel. Lighter atom by founder carve-out: no assessment block, no coverage_map, no epic_c_branches. Straightforward Rule 31 model: guided distinct-motion beats (no predict-then-reveal pauses, no wait_for_answer, no pause_after_ms; narration drives on-canvas glow, motion runs on the state clock), each state exposing only its own contextual control (S1-S4 zero-control watch beats, S5 the theta angle knob, S6 explore exposes theta/v/B). m and q_mag are LOCKED at 1.0 (owned by the siblings) and are present for R_visual scaling only, never a slider.",
+  "renderer_pair": {
+    "panel_a": "field_3d",
+    "panel_b": "field_3d"
+  },
+  "available_renderer_scenarios": {
+    "field_3d": ["helix_in_uniform_field"]
+  },
+  "prerequisites": [
+    "circular_motion_charge_in_uniform_B",
+    "cyclotron_period_independent_of_speed",
+    "magnetic_force_perpendicular_no_work",
+    "magnetic_force_direction_right_hand_rule",
+    "magnetic_field_concept_B"
+  ],
+  "real_world_anchor": {
+    "primary": "In the SST-1 tokamak at the Institute for Plasma Research in Gandhinagar, fusion plasma has to be held off the metal walls of the machine. The charged particles are trapped by making them SPIRAL along the magnetic field lines: each particle circles across the field while streaming along it, and that combination is a helix. Because the along-field speed carries it forward while the across-field speed keeps it looping, the particle winds down the field line like a coil around a wire instead of hitting the wall.",
+    "secondary": "Cosmic-ray protons from space enter Earth's magnetic field at an angle and spiral down the field lines toward the poles — which is why the auroras hug the north and south poles rather than the equator. The same helix physics is studied at the GRAPES-3 cosmic-ray observatory in Ooty: the along-field part of the velocity marches the particle poleward while the across-field part winds it into a tight coil."
+  },
+  "physics_engine_config": {
+    "variables": {
+      "theta": {
+        "name": "Entry angle between velocity v and magnetic field B — the ONLY knob that changes the helix SHAPE (90 degrees = a flat circle, a small angle = a stretched spring). On canvas only the theta arc and symbol appear, never a derived degree readout.",
+        "unit": "deg",
+        "min": 10,
+        "max": 90,
+        "default": 45,
+        "step": 5
+      },
+      "v": {
+        "name": "Speed of the moving charge — sets the overall helix SIZE through v_perp and v_par, not its shape. Visual-scaling knob, the number is never shown on the canvas.",
+        "unit": "m/s",
+        "min": 0.5,
+        "max": 2.5,
+        "default": 1.0,
+        "step": 0.1
+      },
+      "B": {
+        "name": "Magnetic field strength — the denominator of both the radius r and the period T, so it scales the whole helix but leaves the pitch-to-radius ratio unchanged. A SIZE knob, the number is never shown on the canvas.",
+        "unit": "T",
+        "min": 0.5,
+        "max": 2.5,
+        "default": 1.0,
+        "step": 0.1
+      },
+      "m": {
+        "name": "Mass of the moving charge — LOCKED at 1.0 (owned by the sibling concepts); present only for R_visual scaling, never a slider.",
+        "unit": "kg",
+        "min": 0.5,
+        "max": 2.5,
+        "default": 1.0,
+        "step": 0.1
+      },
+      "q_mag": {
+        "name": "Magnitude of the charge — LOCKED at 1.0 (owned by the sibling concepts); present only for R_visual scaling, never a slider.",
+        "unit": "C",
+        "min": 0.5,
+        "max": 2.5,
+        "default": 1.0,
+        "step": 0.1
+      }
+    },
+    "formulas": {
+      "across_field_part": "v_perp = v sin(theta) — the part of the velocity across B; this is what circles",
+      "along_field_part": "v_par = v cos(theta) — the part of the velocity along B; this sails straight through",
+      "radius": "r = m v sin(theta) / (q B) — the cited radius r = mv/qB with v replaced by v_perp, so only the across-field speed sets the circle",
+      "period": "T = 2 pi m / (q B) — the cited cyclotron period; independent of theta and of speed, so it fixes the pitch",
+      "pitch": "p = v cos(theta) * T = v_par * T — how far the charge advances along B in one full turn",
+      "pitch_over_radius": "p / r = 2 pi / tan(theta) = 2 pi cot(theta) — the SHAPE of the helix, which depends on theta alone (m, q, v and B all cancel)"
+    },
+    "constraints": [
+      "The speed |v| is constant because the magnetic force does no work; v_perp squared plus v_par squared always equals v squared for every theta.",
+      "The along-field part v_par is exactly conserved: v_par is parallel to B so v_par x B = 0, it feels no force, and it drifts straight at constant speed (this is the STATE_4 insight).",
+      "The across-field part v_perp has constant magnitude, so it traces a perfect circle of radius r = m v_perp / (q B) in the plane perpendicular to B.",
+      "The circle lies perpendicular to B and the helix axis runs parallel to B.",
+      "The pitch is measured ALONG B: it is the advance per revolution, p = v_par * T.",
+      "The period T = 2 pi m / (q B) is independent of theta and of speed v (the cyclotron angular frequency omega_c = qB/m), so it sets the pitch without depending on the entry angle.",
+      "The pitch-to-radius ratio p / r = 2 pi cot(theta) depends on theta ALONE — m, q, v and B all cancel — so theta sets the SHAPE while v and B only resize the coil.",
+      "At theta = 90 degrees the along-field part v_par goes to zero, the pitch goes to zero, and the path is a flat circle of maximum radius; at theta near zero the across-field part v_perp goes to zero, the radius shrinks, and the path is a straight line.",
+      "Teaches ONLY the helix decomposition and the pitch. It CITES the radius r = mv/qB, the period T = 2 pi m/qB and the force magnitude F = qvB sin(theta) without re-deriving them; no velocity-selector, cyclotron device, toroid, Ampere law, current loop or dipole content.",
+      "No seconds, Newton, Tesla or metre number ever reaches the canvas. Pitch and radius are shown as RELATIVE bars only; theta is shown as an arc and symbol, with the degree value on the slider input only."
+    ]
+  },
+  "cognitive_limits": {
+    "max_primitives_per_state": 5,
+    "max_labels_per_state": 3,
+    "max_words_per_tts_sentence": 32
+  },
+  "aha_moment": {
+    "state_id": "STATE_5",
+    "statement": "Each turn climbs one pitch along B: pitch equals v-parallel times T.",
+    "visual_confirmation": "With both velocity parts restored, the coil marches forward and a pitch bracket spans exactly one turn's advance along the field; dragging the angle theta stretches or flattens the coil while the pitch bar tracks v-parallel times the fixed period T."
+  },
+  "entry_state_map": {
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5"],
+    "why_helix": ["STATE_1"],
+    "decompose_velocity": ["STATE_2", "STATE_3", "STATE_4"],
+    "pitch": ["STATE_5"],
+    "explore": ["STATE_6"]
+  },
+  "epic_l_path": {
+    "state_count": 6,
+    "states": {
+      "STATE_1": {
+        "title": "A Tilted Entry Makes a Helix, Not a Flat Loop",
+        "duration": 20,
+        "focal_primitive_id": "hook_label",
+        "advance_mode": "auto_after_tts",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "setup_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "a charge enters the field at an angle — not straight across it",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "coil_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "the trail does NOT\nclose flat — it coils\nforward into a helix",
+            "color": "#FFD54F"
+          },
+          {
+            "type": "annotation",
+            "id": "hook_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "a tilted entry makes a helix — what sets its shape?",
+            "color": "#FFF176"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A charge enters a uniform magnetic field B at an angle, not straight across it.", "text_hi": "एक charge एक uniform magnetic field B में एक angle पर enter करता है, सीधा across नहीं।", "text_te": "ఒక charge ఒక uniform magnetic field B లోకి ఒక angle వద్ద enter అవుతుంది, నేరుగా across కాదు.", "glow": "setup_label" },
+            { "id": "s1_2", "text_en": "Watch the path — it does not close into a flat loop; it coils forward into a helix.", "text_hi": "path को देखिए — यह एक flat loop में बंद नहीं होता; यह आगे की ओर coil होकर एक helix बनाता है।", "text_te": "path ని చూడండి — ఇది ఒక flat loop లో మూసుకోదు; ఇది ముందుకు coil అయి ఒక helix గా మారుతుంది.", "glow": "coil_label" },
+            { "id": "s1_3", "text_en": "That forward spiral is a helix, and the whole question is what sets its shape.", "text_hi": "वह आगे बढ़ता spiral एक helix है, और अब पूरा सवाल यह है कि उसकी shape किससे तय होती है।", "text_te": "ఆ ముందుకు సాగే spiral ఒక helix, మరియు ఇప్పుడు మొత్తం ప్రశ్న ఏమిటంటే దాని shape దేనితో నిర్ణయమవుతుంది.", "glow": "hook_label" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "At an angle the field does nothing new, so the path is still a flat loop.",
+            "visual_counter": "The trail lifts OFF a faint flat-circle ghost and coils forward into a three-dimensional helix, leaving the ghost behind.",
+            "one_line_fix": "A tilted entry gives a HELIX, not a flat loop — the field still acts on the across-field part of the velocity."
+          }
+        ]
+      },
+      "STATE_2": {
+        "title": "Split the Velocity: One Part Along B, One Across B",
+        "duration": 20,
+        "focal_primitive_id": "components_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "split_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "the one velocity arrow splits into two parts",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "components_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "v-parallel = v cos(theta)\nruns ALONG B\nv-perpendicular = v sin(theta)\nruns ACROSS B",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "angle_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "the entry angle theta sets how much goes each way",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "That one velocity arrow splits into two pieces, set by the entry angle theta.", "text_hi": "वह एक velocity arrow दो हिस्सों में split होता है, जो entry angle theta से तय होते हैं।", "text_te": "ఆ ఒక velocity arrow రెండు భాగాలుగా split అవుతుంది, అవి entry angle theta ద్వారా నిర్ణయమవుతాయి.", "glow": "split_label" },
+            { "id": "s2_2", "text_en": "Along the field runs v-parallel, velocity v times cos theta; across it runs v-perpendicular, velocity v times sin theta.", "text_hi": "field के साथ v-parallel चलता है, velocity v times cos theta; उसके across v-perpendicular चलता है, velocity v times sin theta।", "text_te": "field తో పాటు v-parallel నడుస్తుంది, velocity v times cos theta; దానికి across v-perpendicular నడుస్తుంది, velocity v times sin theta.", "glow": "components_label" },
+            { "id": "s2_3", "text_en": "Their squares always add back to the full speed, so the charge never speeds up or slows down.", "text_hi": "इनके squares हमेशा वापस full speed में जुड़ जाते हैं, इसलिए charge न कभी speed up होता है न slow down।", "text_te": "వీటి squares ఎల్లప్పుడూ తిరిగి full speed కి కలుస్తాయి, కాబట్టి charge ఎప్పుడూ speed up కాదు, slow down కాదు.", "glow": "angle_label" }
+          ]
+        }
+      },
+      "STATE_3": {
+        "title": "Only the Across-Field Part Makes the Circle",
+        "duration": 20,
+        "focal_primitive_id": "radius_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "fade_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "hold the along-field part still — watch only the across-field part",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "collapse_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "v-perpendicular alone\nbends into a flat circle\nlying across B",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "radius_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "its radius r = m v sin(theta) / (qB) — uses v-perpendicular, not the full speed",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Now hold the along-field part still, and watch only the across-field part, v-perpendicular.", "text_hi": "अब along-field हिस्से को स्थिर रखिए, और सिर्फ across-field हिस्से v-perpendicular को देखिए।", "text_te": "ఇప్పుడు along-field భాగాన్ని స్థిరంగా ఉంచండి, మరియు కేవలం across-field భాగం v-perpendicular ని చూడండి.", "glow": "fade_label" },
+            { "id": "s3_2", "text_en": "By itself, v-perpendicular bends into a flat circle lying across the magnetic field B.", "text_hi": "अकेले v-perpendicular एक flat circle में मुड़ जाता है, जो magnetic field B के across पड़ता है।", "text_te": "ఒంటరిగా v-perpendicular ఒక flat circle లోకి వంగుతుంది, అది magnetic field B కి across ఉంటుంది.", "glow": "collapse_label" },
+            { "id": "s3_3", "text_en": "Its radius uses only v-perpendicular: radius r equals m times v sin theta over q B, not the full speed.", "text_hi": "इसका radius सिर्फ v-perpendicular use करता है: radius r equals m times v sin theta over q B, न कि full speed।", "text_te": "దీని radius కేవలం v-perpendicular ని use చేస్తుంది: radius r equals m times v sin theta over q B, full speed కాదు.", "glow": "radius_label" }
+          ]
+        },
+        "allow_deep_dive": true
+      },
+      "STATE_4": {
+        "title": "The Along-Field Part Sails Straight",
+        "duration": 20,
+        "focal_primitive_id": "reason_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "fade2_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "now freeze the circle — watch only the along-field part",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "drift_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "v-parallel crosses B\nin a straight line at\nconstant speed",
+            "color": "#9CA3AF"
+          },
+          {
+            "type": "annotation",
+            "id": "reason_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "v-parallel is along B, so v-parallel x B = 0 — B does no work on it",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "This time freeze the circle, and watch only the along-field part, v-parallel.", "text_hi": "इस बार circle को freeze कीजिए, और सिर्फ along-field हिस्से v-parallel को देखिए।", "text_te": "ఈసారి circle ని freeze చేయండి, మరియు కేవలం along-field భాగం v-parallel ని చూడండి.", "glow": "fade2_label" },
+            { "id": "s4_2", "text_en": "It sails straight along the magnetic field B at a constant speed — the field never bends it.", "text_hi": "यह magnetic field B के साथ constant speed पर सीधा sail करता है — field इसे कभी नहीं मोड़ता।", "text_te": "ఇది magnetic field B తో పాటు constant speed వద్ద నేరుగా sail చేస్తుంది — field దీన్ని ఎప్పుడూ వంచదు.", "glow": "drift_label" },
+            { "id": "s4_3", "text_en": "Because v-parallel runs parallel to B, v-parallel cross B is zero, so B does no work on it.", "text_hi": "क्योंकि v-parallel, B के parallel चलता है, v-parallel cross B zero है, इसलिए B इस पर कोई work नहीं करता।", "text_te": "ఎందుకంటే v-parallel, B కి parallel నడుస్తుంది, v-parallel cross B zero, కాబట్టి B దీనిపై ఎలాంటి work చేయదు.", "glow": "reason_label" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field bends the along-field part v-parallel too.",
+            "visual_counter": "As v-perpendicular fades away, v-parallel drifts in a perfectly straight line at constant speed, marked by equal-spaced dots — no bending at all.",
+            "one_line_fix": "v-parallel x B = 0 — B does no work on v-parallel; it sails straight."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_5": {
+        "title": "Pitch: How Far It Climbs Along B Each Turn",
+        "duration": 20,
+        "focal_primitive_id": "formula_label",
+        "advance_mode": "manual_click",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "restore_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "both parts back — the charge circles AND marches forward",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "pitch_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "one full turn advances\none PITCH along B",
+            "color": "#FFCC9F"
+          },
+          {
+            "type": "annotation",
+            "id": "formula_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "pitch p = v-parallel x T = v cos(theta) times one period T",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Put both parts back, and the charge circles while marching forward along the magnetic field B.", "text_hi": "दोनों हिस्से वापस रखिए, और charge magnetic field B के साथ आगे बढ़ते हुए circle करता है।", "text_te": "రెండు భాగాలను తిరిగి ఉంచండి, మరియు charge magnetic field B తో పాటు ముందుకు సాగుతూ circle చేస్తుంది.", "glow": "restore_label" },
+            { "id": "s5_2", "text_en": "Each complete turn climbs one pitch p along the field.", "text_hi": "हर पूरा turn field के साथ एक pitch p ऊपर चढ़ता है।", "text_te": "ప్రతి పూర్తి turn field తో పాటు ఒక pitch p పైకి ఎక్కుతుంది.", "glow": "pitch_label" },
+            { "id": "s5_3", "text_en": "That climb is pitch p equals v-parallel times period T; drag the angle theta to stretch or flatten the coil.", "text_hi": "वह चढ़ाई है pitch p equals v-parallel times period T; coil को stretch या flat करने के लिए angle theta को drag कीजिए।", "text_te": "ఆ ఎక్కుడు pitch p equals v-parallel times period T; coil ని stretch లేదా flat చేయడానికి angle theta ని drag చేయండి.", "glow": "formula_label" }
+          ]
+        },
+        "misconception_watch": [
+          {
+            "belief": "Pitch and radius are the same thing, or they respond to the field B in opposite ways.",
+            "visual_counter": "Raising B shrinks BOTH the pitch bar and the radius bar together, while their ratio stays fixed; only dragging theta changes the ratio.",
+            "one_line_fix": "Pitch and radius both scale with one over B; only theta changes their ratio, p / r = 2 pi cot theta."
+          }
+        ],
+        "allow_deep_dive": true
+      },
+      "STATE_6": {
+        "title": "Your Turn — Shape It with theta, Size It with v and B",
+        "duration": 0,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "sliders_label",
+            "position": { "x": 360, "y": 70 },
+            "text": "three knobs — angle theta, speed v, field B",
+            "color": "#FFAB40"
+          },
+          {
+            "type": "annotation",
+            "id": "shape_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "theta sets the SHAPE:\n90 degrees = flat circle\nsmall angle = stretched spring",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "v and B only resize the coil — only theta moves p / r = 2 pi cot(theta)",
+            "color": "#66BB6A"
+          }
+        ],
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Your turn. Three knobs — entry angle theta, speed v, and magnetic field B.", "text_hi": "अब आपकी बारी। तीन knobs — entry angle theta, speed v, और magnetic field B।", "text_te": "ఇప్పుడు మీ వంతు. మూడు knobs — entry angle theta, speed v, మరియు magnetic field B.", "glow": "sliders_label" },
+            { "id": "s6_2", "text_en": "Only theta changes the shape: at ninety degrees a flat circle, at a small angle a long stretched spring.", "text_hi": "सिर्फ theta shape बदलता है: ninety degrees पर एक flat circle, छोटे angle पर एक लंबा stretched spring।", "text_te": "కేవలం theta shape ని మారుస్తుంది: ninety degrees వద్ద ఒక flat circle, చిన్న angle వద్ద ఒక పొడవైన stretched spring.", "glow": "shape_label" },
+            { "id": "s6_3", "text_en": "Velocity v and field B just resize the whole coil; the ratio of pitch to radius follows two pi cot theta.", "text_hi": "velocity v और field B सिर्फ पूरे coil को resize करते हैं; pitch और radius का ratio two pi cot theta को follow करता है।", "text_te": "velocity v మరియు field B కేవలం మొత్తం coil ని resize చేస్తాయి; pitch మరియు radius నిష్పత్తి two pi cot theta ని follow చేస్తుంది.", "glow": "explore_label" }
+          ]
+        }
+      }
+    }
+  },
+  "field_3d_config": {
+    "scenario_type": "helix_in_uniform_field",
+    "ambient_field": {
+      "direction": [0, 0, 1],
+      "magnitude": 1,
+      "density": [5, 5, 5],
+      "color": "#42A5F5",
+      "opacity": 0.45,
+      "extent": 3
+    },
+    "particle": {
+      "charge_sign": 1,
+      "color": "#FFB366",
+      "radius": 0.12
+    },
+    "field_lines": {
+      "count": 6,
+      "color_positive": "#42A5F5",
+      "color_negative": "#42A5F5",
+      "opacity": 0.45,
+      "arrow_spacing": 5
+    },
+    "slider_controls": {
+      "theta": { "min": 10, "max": 90, "step": 5, "default": 45, "label": "θ (angle)" },
+      "v": { "min": 0.5, "max": 2.5, "step": 0.1, "default": 1.0, "label": "v (speed)" },
+      "B": { "min": 0.5, "max": 2.5, "step": 0.1, "default": 1.0, "label": "B (field)" }
+    },
+    "states": {
+      "STATE_1": {
+        "label": "A tilted entry makes a helix, not a flat loop",
+        "visible_elements": [],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "auto_after_tts",
+        "duration": 20,
+        "trajectory_mode": "helix",
+        "theta_deg": 45,
+        "variable_overrides": { "m": 1.0, "q_mag": 1.0, "v": 1.0, "B": 1.0, "theta": 45 },
+        "show_sliders": false,
+        "visible_controls": [],
+        "hide_period_readout": true,
+        "hide_magnitude_readout": true,
+        "helix": {
+          "show_radius_line": false,
+          "show_radius_readout": false,
+          "show_pitch_bracket": false,
+          "show_pitch_readout": false,
+          "v_decompose": false,
+          "ghost_flat_circle_at_ms": 2500,
+          "hide_period_readout": true,
+          "hide_magnitude_readout": true
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s1_1", "text_en": "A charge enters a uniform magnetic field B at an angle, not straight across it." },
+            { "id": "s1_2", "text_en": "Watch the path — it does not close into a flat loop; it coils forward into a helix." },
+            { "id": "s1_3", "text_en": "That forward spiral is a helix, and the whole question is what sets its shape." }
+          ]
+        }
+      },
+      "STATE_2": {
+        "label": "Split the velocity: one part along B, one across B",
+        "visible_elements": [],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "manual_click",
+        "duration": 20,
+        "trajectory_mode": "helix",
+        "theta_deg": 45,
+        "variable_overrides": { "m": 1.0, "q_mag": 1.0, "v": 1.0, "B": 1.0, "theta": 45 },
+        "show_sliders": false,
+        "visible_controls": [],
+        "hide_period_readout": true,
+        "hide_magnitude_readout": true,
+        "helix": {
+          "show_radius_line": false,
+          "show_radius_readout": false,
+          "show_pitch_bracket": false,
+          "show_pitch_readout": false,
+          "v_decompose": true,
+          "v_decompose_at_ms": 2000,
+          "hide_period_readout": true,
+          "hide_magnitude_readout": true
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s2_1", "text_en": "That one velocity arrow splits into two pieces, set by the entry angle theta." },
+            { "id": "s2_2", "text_en": "Along the field runs v-parallel, velocity v times cos theta; across it runs v-perpendicular, velocity v times sin theta." },
+            { "id": "s2_3", "text_en": "Their squares always add back to the full speed, so the charge never speeds up or slows down." }
+          ]
+        }
+      },
+      "STATE_3": {
+        "label": "Only the across-field part makes the circle",
+        "visible_elements": [],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "manual_click",
+        "duration": 20,
+        "trajectory_mode": "circle",
+        "theta_deg": 45,
+        "variable_overrides": { "m": 1.0, "q_mag": 1.0, "v": 1.0, "B": 1.0, "theta": 45 },
+        "show_sliders": false,
+        "visible_controls": [],
+        "hide_period_readout": true,
+        "hide_magnitude_readout": true,
+        "isolate_perp": { "fade_start_ms": 1500, "fade_duration_ms": 1500 },
+        "helix": {
+          "show_radius_line": true,
+          "show_radius_readout": true,
+          "show_pitch_bracket": false,
+          "show_pitch_readout": false,
+          "v_decompose": false,
+          "radius_reveal_at_ms": 3000,
+          "hide_period_readout": true,
+          "hide_magnitude_readout": true
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s3_1", "text_en": "Now hold the along-field part still, and watch only the across-field part, v-perpendicular." },
+            { "id": "s3_2", "text_en": "By itself, v-perpendicular bends into a flat circle lying across the magnetic field B." },
+            { "id": "s3_3", "text_en": "Its radius uses only v-perpendicular: radius r equals m times v sin theta over q B, not the full speed." }
+          ]
+        }
+      },
+      "STATE_4": {
+        "label": "The along-field part sails straight",
+        "visible_elements": [],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "manual_click",
+        "duration": 20,
+        "trajectory_mode": "straight",
+        "theta_deg": 45,
+        "variable_overrides": { "m": 1.0, "q_mag": 1.0, "v": 1.0, "B": 1.0, "theta": 45 },
+        "show_sliders": false,
+        "visible_controls": [],
+        "hide_period_readout": true,
+        "hide_magnitude_readout": true,
+        "isolate_par": { "fade_start_ms": 1500, "fade_duration_ms": 1500 },
+        "helix": {
+          "show_radius_line": false,
+          "show_radius_readout": false,
+          "show_pitch_bracket": false,
+          "show_pitch_readout": false,
+          "v_decompose": false,
+          "hide_period_readout": true,
+          "hide_magnitude_readout": true
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s4_1", "text_en": "This time freeze the circle, and watch only the along-field part, v-parallel." },
+            { "id": "s4_2", "text_en": "It sails straight along the magnetic field B at a constant speed — the field never bends it." },
+            { "id": "s4_3", "text_en": "Because v-parallel runs parallel to B, v-parallel cross B is zero, so B does no work on it." }
+          ]
+        }
+      },
+      "STATE_5": {
+        "label": "Pitch: how far it climbs along B each turn",
+        "visible_elements": [],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "advance_mode": "manual_click",
+        "duration": 20,
+        "trajectory_mode": "helix",
+        "theta_deg": 45,
+        "variable_overrides": { "m": 1.0, "q_mag": 1.0, "v": 1.0, "B": 1.0, "theta": 45 },
+        "show_sliders": true,
+        "visible_controls": ["theta"],
+        "hide_period_readout": true,
+        "hide_magnitude_readout": true,
+        "helix": {
+          "show_radius_line": true,
+          "show_radius_readout": true,
+          "show_pitch_bracket": true,
+          "show_pitch_readout": true,
+          "v_decompose": false,
+          "pitch_bracket_at_ms": 1500,
+          "hide_period_readout": true,
+          "hide_magnitude_readout": true
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s5_1", "text_en": "Put both parts back, and the charge circles while marching forward along the magnetic field B." },
+            { "id": "s5_2", "text_en": "Each complete turn climbs one pitch p along the field." },
+            { "id": "s5_3", "text_en": "That climb is pitch p equals v-parallel times period T; drag the angle theta to stretch or flatten the coil." }
+          ]
+        }
+      },
+      "STATE_6": {
+        "label": "Your turn — shape it with theta, size it with v and B",
+        "visible_elements": [],
+        "camera_position": [3, 2, 5],
+        "caption": "",
+        "advance_mode": "interaction_complete",
+        "duration": 0,
+        "trajectory_mode": "helix",
+        "theta_deg": 45,
+        "variable_overrides": { "m": 1.0, "q_mag": 1.0, "v": 1.0, "B": 1.0, "theta": 45 },
+        "show_sliders": true,
+        "visible_controls": ["theta", "v", "B"],
+        "hide_period_readout": true,
+        "hide_magnitude_readout": true,
+        "helix": {
+          "show_radius_line": true,
+          "show_radius_readout": true,
+          "show_pitch_bracket": true,
+          "show_pitch_readout": true,
+          "v_decompose": false,
+          "hide_period_readout": true,
+          "hide_magnitude_readout": true
+        },
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s6_1", "text_en": "Your turn. Three knobs — entry angle theta, speed v, and magnetic field B." },
+            { "id": "s6_2", "text_en": "Only theta changes the shape: at ninety degrees a flat circle, at a small angle a long stretched spring." },
+            { "id": "s6_3", "text_en": "Velocity v and field B just resize the whole coil; the ratio of pitch to radius follows two pi cot theta." }
+          ]
+        }
+      }
+    },
+    "pvl_colors": {
+      "background": "#0A0A1A",
+      "text": "#D4D4D8",
+      "positive": "#FFB366",
+      "negative": "#42A5F5",
+      "field_line": "#42A5F5"
+    }
+  }
+}

@@ -65,9 +65,9 @@ const incidents: Row[] = [
     probe_type: 'manual', probe_logic: 'npm run validate:concepts (conceptJson.ts superRefine ~L410) rejects an aha_moment.statement with >15 whitespace tokens.', status: 'FIXED', concepts_affected: [CM, CY], fixed_in_files: ['src/data/concepts/circular_motion_charge_in_uniform_B.json', 'src/data/concepts/cyclotron_period_independent_of_speed.json'], row_type: 'incident' },
 
   { bug_class: 'cyclotron_start_marker_glyph_orphaned_from_orbit', title: 'STATE_2 same_start_marker yellow ring reads as an orphaned glyph near the slow/fast labels, not ON the orbit start point', severity: 'MODERATE', owner_cluster: R,
-    root_cause: 'The same_start_marker ring is drawn near the slow/fast text labels rather than sitting clearly ON the shared start point of the two orbits, so it reads as a stray decorative glyph (founder + auditor flagged it as a cosmetic on cyclotron_period STATE_2).',
-    prevention_rule: 'A decorative reference marker (start marker, tie marker) must sit ON its referent (the start point on the orbit ring), not float near text labels; co-locate it with the geometry it annotates.',
-    probe_type: 'manual', probe_logic: 'Inspect cyclotron_period STATE_2: the start marker sits on the shared orbit start point, not adrift near the slow/fast labels.', status: 'OPEN', concepts_affected: [CY], fixed_in_files: [], row_type: 'incident' },
+    root_cause: 'The same_start_marker ring is drawn near the slow/fast text labels rather than sitting clearly ON the shared start point of the two orbits, so it reads as a stray decorative glyph (founder + auditor flagged it as a cosmetic on cyclotron_period STATE_2). RESOLVED (2026-07-04, during the Rule 31 cyclotron_period retrofit audit): the marker was redesigned from a floating ring into a dim RADIAL START/FINISH line. See field_3d_renderer.ts build comment L25424-25429 ("a dim RADIAL line along +u1 from the centre out past the outer orbit ... so it sits ON both start points + through the centre, not a floating glyph") and the per-frame impl L25814-25828 (dual mode + same_start_marker: lo.visible=true, endpoints origin [0,0,0] -> u1*(rOuter+0.3), opacity 0.45, a dim non-focal reference per Rule 29). Both charges launch at phase=0 (the +u1 point of their own ring) and share omega, so the line passes through the centre AND through both start points and both charges cross it together every lap — it can no longer read as an orphaned glyph adrift near text (the slow/fast role labels were also moved OFF the +u1 start axis onto +u2, L25763-25772). Fixed in code during the 2026-06-25 field3d work; the row was simply never flipped from OPEN.',
+    prevention_rule: 'A decorative reference marker (start marker, tie marker) must sit ON its referent (the start point on the orbit ring), not float near text labels; co-locate it with the geometry it annotates. VERIFIED FIXED (2026-07-04): the quality-auditor read all four STATE_2 frames (t=0 / t=2000 / t=8000 / frozen) during the Rule 31 cyclotron_period retrofit audit and confirmed NO orphaned glyph anywhere; the STATE_2 tie money-beat reads correctly — both lap-timer bars fill simultaneously and the "= same T" tie badge writes at t=8000, all independent of this dim radial reference line.',
+    probe_type: 'manual', probe_logic: 'Inspect cyclotron_period STATE_2: the start marker is a dim radial line from the centre out through both orbit start points (along +u1), NOT a floating ring adrift near the slow/fast labels.', status: 'FIXED', concepts_affected: [CY], fixed_in_files: ['src/lib/renderers/field_3d_renderer.ts'], row_type: 'incident' },
 ];
 
 // ── Net-new DIRECTIVE rows (land only after the row_type='directive' ALTER) ──
@@ -116,7 +116,10 @@ function emitSql(all: Row[]): string {
 
 INSERT INTO engine_bug_queue (${cols}) VALUES
 ${all.map(sqlRow).join(',\n')}
-ON CONFLICT (bug_class) DO NOTHING;
+ON CONFLICT (bug_class) DO UPDATE SET
+  status = EXCLUDED.status, root_cause = EXCLUDED.root_cause,
+  prevention_rule = EXCLUDED.prevention_rule, fixed_in_files = EXCLUDED.fixed_in_files,
+  probe_logic = EXCLUDED.probe_logic, title = EXCLUDED.title, severity = EXCLUDED.severity;
 
 -- Merge concept #5 into the existing spiral row's concepts_affected (idempotent union):
 UPDATE engine_bug_queue

@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "medium",
-  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the 'circular motion of a charge in a uniform field' heading, §26.3 scope); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This concept is the RADIUS / SIZE sibling of magnetic_force_moving_charge: it teaches that a charge moving perpendicular to a uniform magnetic field travels in a CLOSED circle whose radius is r = mv/qB — bigger with more momentum (m or v, the numerator), tighter with more grip (q or B, the denominator). The single surfaced quantity is r, and only as a RELATIVE readout (a yellow bar and 'wider/tighter than before' captions) — never a metres value. It deliberately does NOT teach the period T = 2 pi m / (q B) (that belongs to the future cyclotron_period_independent_of_speed), the force magnitude F = qvB sin(theta) (that belongs to magnetic_force_moving_charge), or any current-loop / Ampere / dipole content; no period, frequency, rev-per-sec, force magnitude, Newton or Tesla number ever reaches the canvas (hide_period_readout + hide_magnitude_readout on every state). Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict->reveal). Renders on field_3d via the radius_in_uniform_field scenario (the radius-only sibling of lorentz_force_uniform_field), which reuses the orbit basis + circle math and adds the four-factor R_visual scaling, the dashed radius line, the relative radius readout, and the ghost-compare frozen prior circle. Lighter atom by founder carve-out: no assessment block, no coverage_map.",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the 'circular motion of a charge in a uniform field' heading, §26.3 scope); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This concept is the RADIUS / SIZE sibling of magnetic_force_moving_charge: it teaches that a charge moving perpendicular to a uniform magnetic field travels in a CLOSED circle whose radius is r = mv/qB — bigger with more momentum (m or v, the numerator), tighter with more grip (q or B, the denominator). The single surfaced quantity is r, and only as a RELATIVE readout (a yellow bar and 'wider/tighter than before' captions) — never a metres value. It deliberately does NOT teach the period T = 2 pi m / (q B) (that belongs to the future cyclotron_period_independent_of_speed), the force magnitude F = qvB sin(theta) (that belongs to magnetic_force_moving_charge), or any current-loop / Ampere / dipole content; no period, frequency, rev-per-sec, force magnitude, Newton or Tesla number ever reaches the canvas (hide_period_readout + hide_magnitude_readout on every state). Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + straightforward contrast beats). Renders on field_3d via the radius_in_uniform_field scenario (the radius-only sibling of lorentz_force_uniform_field), which reuses the orbit basis + circle math and adds the four-factor R_visual scaling, the dashed radius line, the relative radius readout, and the ghost-compare frozen prior circle. Lighter atom by founder carve-out: no assessment block, no coverage_map. Retrofitted from the Socratic model to the straightforward Rule 31 model (2026-07-04): guided distinct-motion beats (no predict-then-reveal prediction pauses, no wait_for_answer, no pause_after_ms; narration drives on-canvas glow, motion runs on the state clock), each state exposing only its own contextual control (per-state visible_controls — S1/S2/S3 zero-control watch beats, S4 numerator m+v, S5 denominator q+B, S6 explore exposes m/v/q/B), reusing the existing radius_in_uniform_field field_3d scenario (per-state contextual-control panel added the same gated way as the circular_loop cl_ pattern: rad_*_row wrappers + applyVisibleControls + radInteracted trusted-grab seize + on-entry seed from variable_overrides).",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -79,7 +79,7 @@
   "cognitive_limits": {
     "max_primitives_per_state": 5,
     "max_labels_per_state": 3,
-    "max_words_per_tts_sentence": 30
+    "max_words_per_tts_sentence": 32
   },
   "aha_moment": {
     "state_id": "STATE_5",
@@ -87,7 +87,7 @@
     "visual_confirmation": "Raising B (then q) shrinks the live circle inside a frozen ghost, proving the denominator tightens the turn while the numerator (m, v) widened it in the state before."
   },
   "entry_state_map": {
-    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6"],
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5"],
     "why_circle": ["STATE_1", "STATE_2"],
     "radius_formula": ["STATE_3"],
     "bigger_smaller": ["STATE_4", "STATE_5"],
@@ -98,7 +98,7 @@
     "states": {
       "STATE_1": {
         "title": "It Doesn't Just Curve — It Closes",
-        "duration": 14,
+        "duration": 20,
         "focal_primitive_id": "hook_label",
         "advance_mode": "auto_after_tts",
         "scene_composition": [
@@ -120,37 +120,29 @@
             "type": "annotation",
             "id": "hook_label",
             "position": { "x": 360, "y": 440 },
-            "text": "it closes into a perfect circle — so how big is that circle?",
+            "text": "it closes into a perfect circle — how big is that circle?",
             "color": "#FFF176"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "A charge moves through a uniform magnetic field — and its path is already curving.", "text_hi": "एक charge एक uniform magnetic field से होकर move करता है — और उसका path पहले से ही curving है।", "text_te": "ఒక charge ఒక uniform magnetic field గుండా move చేస్తుంది — మరియు దాని path ఇప్పటికే curving ఉంది." },
-            { "id": "s1_2", "text_en": "If we let it keep going, where does this path end up?", "text_hi": "अगर हम इसे आगे बढ़ने दें, तो यह path कहाँ जाकर खत्म होगा?", "text_te": "మనం దీన్ని కొనసాగనిస్తే, ఈ path ఎక్కడ ముగుస్తుంది?", "pause_after_ms": 2800 },
-            { "id": "s1_3", "text_en": "Watch — the curve bites its own tail. The trail snaps shut.", "text_hi": "देखिए — curve अपनी ही tail को काटता है। Trail बंद हो जाती है।", "text_te": "చూడండి — curve దాని స్వంత tail ని కొరుకుతుంది. Trail మూసుకుపోతుంది." },
-            { "id": "s1_4", "text_en": "It closes into a perfect circle. So — how big is that circle?", "text_hi": "यह एक perfect circle में बंद हो जाता है। तो — वह circle कितना बड़ा है?", "text_te": "ఇది ఒక perfect circle లోకి మూసుకుపోతుంది. కాబట్టి — ఆ circle ఎంత పెద్దది?" }
+            { "id": "s1_1", "text_en": "A charge moves through a uniform magnetic field, and its path is already curving.", "text_hi": "एक charge एक uniform magnetic field से होकर move करता है, और उसका path पहले से ही curve हो रहा है।", "text_te": "ఒక charge ఒక uniform magnetic field గుండా move చేస్తుంది, మరియు దాని path ఇప్పటికే curve అవుతోంది.", "glow": "setup_label" },
+            { "id": "s1_2", "text_en": "Watch the curve bite its own tail — the trail snaps shut.", "text_hi": "देखिए, curve अपनी ही tail को काटता है — trail बंद हो जाती है।", "text_te": "చూడండి, curve దాని స్వంత tail ని కొరుకుతుంది — trail మూసుకుపోతుంది.", "glow": "close_label" },
+            { "id": "s1_3", "text_en": "It closes into a perfect circle, and the whole question now is how big that circle is.", "text_hi": "यह एक perfect circle में बंद हो जाता है, और अब पूरा सवाल यह है कि वह circle कितना बड़ा है।", "text_te": "ఇది ఒక perfect circle లోకి మూసుకుపోతుంది, మరియు ఇప్పుడు మొత్తం ప్రశ్న ఏమిటంటే ఆ circle ఎంత పెద్దది.", "glow": "hook_label" }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "A magnetic field just bends the path a little; the charge eventually escapes in some open curve.",
-            "visual_counter": "The trail completes a full loop and snaps shut on its starting point with a flash — a closed circle, not an open arc.",
-            "one_line_fix": "Perpendicular to a uniform field, the path is a CLOSED circle every time."
-          }
-        ]
+        }
       },
       "STATE_2": {
         "title": "Why a Perfect Circle?",
-        "duration": 16,
+        "duration": 20,
         "focal_primitive_id": "perp_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "predict_label",
             "position": { "x": 360, "y": 70 },
-            "text": "Predict: a same-size pull, always to one spot — what motion is that?",
+            "text": "a same-size pull, always to one spot",
             "color": "#FFF176"
           },
           {
@@ -170,23 +162,15 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "The force stays the same size and always points to one centre, while the charge orbits.", "text_hi": "Force का size वही रहता है और charge के orbit करते समय, यह हमेशा एक centre की ओर point करता है।", "text_te": "Force అదే size లో ఉంటుంది మరియు charge orbit చేస్తున్నప్పుడు, ఇది ఎల్లప్పుడూ ఒక centre వైపు point చేస్తుంది." },
-            { "id": "s2_2", "text_en": "A same-size pull, always to the same spot — what motion does that make?", "text_hi": "एक same-size pull, हमेशा एक ही spot की ओर — इससे कौन सी motion बनती है?", "text_te": "ఒక same-size pull, ఎల్లప్పుడూ ఒకే spot వైపు — అది ఏ motion ని సృష్టిస్తుంది?", "pause_after_ms": 3000 },
-            { "id": "s2_3", "text_en": "A radius line from the centre — and it stays exactly the same length the whole way round.", "text_hi": "Centre से एक radius line — और यह पूरे रास्ते में बिल्कुल same length का रहता है।", "text_te": "Centre నుండి ఒక radius line — మరియు అది మొత్తం మార్గంలో ఖచ్చితంగా same length లో ఉంటుంది." },
-            { "id": "s2_4", "text_en": "A constant centre-pull is the recipe for uniform circular motion.", "text_hi": "एक constant centre-pull, uniform circular motion के लिए recipe है।", "text_te": "ఒక constant centre-pull, uniform circular motion కోసం recipe." }
+            { "id": "s2_1", "text_en": "The magnetic force stays the same size and always points to one centre while the charge orbits.", "text_hi": "magnetic force का size वही रहता है और charge के orbit करते समय यह हमेशा एक ही centre की ओर point करता है।", "text_te": "magnetic force అదే size లో ఉంటుంది మరియు charge orbit చేస్తున్నప్పుడు ఇది ఎల్లప్పుడూ ఒకే centre వైపు point చేస్తుంది.", "glow": "predict_label" },
+            { "id": "s2_2", "text_en": "A radius line drawn from that centre stays exactly the same length the whole way round.", "text_hi": "उस centre से खींची गई radius line पूरे रास्ते में बिल्कुल same length की रहती है।", "text_te": "ఆ centre నుండి గీసిన radius line మొత్తం మార్గంలో సరిగ్గా same length లో ఉంటుంది.", "glow": "perp_label" },
+            { "id": "s2_3", "text_en": "A constant pull toward one centre is the recipe for uniform circular motion — a perfect circle.", "text_hi": "एक ही centre की ओर constant pull, uniform circular motion की recipe है — एक perfect circle।", "text_te": "ఒకే centre వైపు constant pull, uniform circular motion కి recipe — ఒక perfect circle.", "glow": "ucm_label" }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "The orbit is some egg-shape or spiral, not a true circle of one fixed size.",
-            "visual_counter": "The dashed radius line rotates rigidly and never changes length, sweeping out one circle of a single fixed radius.",
-            "one_line_fix": "A constant centre-pull keeps the radius fixed — it is a perfect circle."
-          }
-        ]
+        }
       },
       "STATE_3": {
         "title": "The Magnetic Force IS the Centripetal Force",
-        "duration": 18,
+        "duration": 20,
         "focal_primitive_id": "radius_eqn_label",
         "advance_mode": "manual_click",
         "scene_composition": [
@@ -214,33 +198,24 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Circular motion needs a centre force of size m v-squared over r. The only force here is the magnetic one.", "text_hi": "Circular motion को m v-squared over r size के centre force की ज़रूरत होती है। यहाँ एकमात्र force magnetic one है।", "text_te": "Circular motion కి m v-squared over r size గల centre force అవసరం. ఇక్కడ ఉన్న ఏకైక force magnetic one." },
-            { "id": "s3_2", "text_en": "So what must be true about these two forces?", "text_hi": "तो इन दो forces के बारे में क्या सच होना चाहिए?", "text_te": "కాబట్టి ఈ రెండు forces గురించి ఏది నిజం కావాలి?", "pause_after_ms": 3000 },
-            { "id": "s3_3", "text_en": "They are the same force. The magnetic force IS the centripetal force: q v B equals m v-squared over r.", "text_hi": "ये same force हैं। magnetic force ही centripetal force है: q v B equals m v-squared over r।", "text_te": "అవి same force. magnetic force అనేది centripetal force: q v B equals m v-squared over r." },
-            { "id": "s3_4", "text_en": "Now just solve for the radius r — the equation rearranges itself into r equals m v over q B.", "text_hi": "अब बस radius r के लिए solve कीजिए — equation खुद को r equals m v over q B में rearrange कर लेती है।", "text_te": "ఇప్పుడు radius r కోసం solve చేయండి — equation తనంతటే r equals m v over q B గా rearrange అవుతుంది." },
-            { "id": "s3_5", "text_en": "That single line is the whole concept: the circle's size is m v over q B.", "text_hi": "वह single line ही पूरा concept है: circle का size, m v over q B है।", "text_te": "ఆ single line అనేది మొత్తం concept: circle యొక్క size, m v over q B." }
+            { "id": "s3_1", "text_en": "Circular motion needs a centre-pointing force, and the magnetic force is the only force acting here.", "text_hi": "Circular motion को एक centre की ओर point करने वाली force चाहिए, और यहाँ एकमात्र force magnetic force ही है।", "text_te": "Circular motion కి centre వైపు point చేసే force కావాలి, మరియు ఇక్కడ ఉన్న ఏకైక force magnetic force మాత్రమే.", "glow": "need_label" },
+            { "id": "s3_2", "text_en": "So the magnetic force is the centripetal force: q v B equals m v-squared over r.", "text_hi": "तो magnetic force ही centripetal force है: q v B equals m v-squared over r।", "text_te": "కాబట్టి magnetic force నే centripetal force: q v B equals m v-squared over r.", "glow": "radius_eqn_label" },
+            { "id": "s3_3", "text_en": "Solve that for the radius and you get r equals m v over q B — that one line is the whole concept.", "text_hi": "इसे radius के लिए solve कीजिए और आपको मिलता है r equals m v over q B — वही एक line पूरा concept है।", "text_te": "దాన్ని radius కోసం solve చేయండి, మీకు వస్తుంది r equals m v over q B — ఆ ఒక్క line మొత్తం concept.", "glow": "whole_concept_label" }
           ]
         },
-        "misconception_watch": [
-          {
-            "belief": "The circle's size is fixed by the apparatus, or it is arbitrary — there is no rule that sets it.",
-            "visual_counter": "The balance q v B = m v-squared over r rearranges on screen into r = m v / q B, a single rule that fixes the size from m, v, q and B.",
-            "one_line_fix": "The radius is set exactly by m, v, q and B: r = mv/qB."
-          }
-        ],
         "allow_deep_dive": true
       },
       "STATE_4": {
         "title": "Heavier or Faster -> Bigger Circle",
         "duration": 20,
         "focal_primitive_id": "numerator_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "predict_label",
             "position": { "x": 360, "y": 70 },
-            "text": "Predict: make the charge heavier — bigger circle, smaller, or the same?",
+            "text": "m and v on top — heavier or faster widens the circle",
             "color": "#FFF176"
           },
           {
@@ -260,11 +235,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "mass m and speed v sit on top of the formula. Watch the circle as I make the charge heavier.", "text_hi": "mass m और speed v formula के ऊपर हैं। देखिए, जैसे ही मैं charge को heavier बनाता हूँ, circle क्या होता है।", "text_te": "mass m మరియు speed v formula పై భాగంలో ఉన్నాయి. నేను charge ని heavier చేస్తున్నప్పుడు circle ని చూడండి." },
-            { "id": "s4_2", "text_en": "Make it heavier — bigger circle, smaller circle, or the same?", "text_hi": "इसे heavier बनाइए — bigger circle, smaller circle, या same?", "text_te": "దీన్ని heavier చేయండి — bigger circle, smaller circle, లేదా same?", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "A faint ghost marks the old circle. With more mass, the live circle swells outward, past the ghost.", "text_hi": "एक faint ghost पुराने circle को mark करता है। ज़्यादा mass के साथ, live circle ghost से आगे बाहर की ओर swells होता है।", "text_te": "ఒక faint ghost పాత circle ని mark చేస్తుంది. ఎక్కువ mass తో, live circle ghost దాటి బయటకి swells అవుతుంది." },
-            { "id": "s4_4", "text_en": "Reset — now speed it up instead. Same story: it swells past a second ghost.", "text_hi": "Reset — अब इसकी जगह इसे speed up कीजिए। Same story: यह एक second ghost से आगे swells हो जाता है।", "text_te": "Reset — ఇప్పుడు దీన్ని speed up చేయండి. Same story: ఇది ఒక second ghost దాటి swells అవుతుంది." },
-            { "id": "s4_5", "text_en": "Heavier or faster, both widen it — more momentum m v is just harder to turn.", "text_hi": "heavier हो या faster, दोनों इसे widen करते हैं — ज़्यादा momentum m v को मोड़ना बस मुश्किल होता है।", "text_te": "heavier అయినా faster అయినా, రెండూ దీన్ని widen చేస్తాయి — ఎక్కువ momentum m v ని తిప్పడం కష్టంగా ఉంటుంది." }
+            { "id": "s4_1", "text_en": "Mass m and velocity v sit on top of the formula, in the numerator.", "text_hi": "mass m और velocity v formula के ऊपर, numerator में बैठते हैं।", "text_te": "mass m మరియు velocity v formula పైన, numerator లో ఉంటాయి.", "glow": "predict_label" },
+            { "id": "s4_2", "text_en": "Make the charge heavier and the live circle swells outward, past a faint ghost of the old circle.", "text_hi": "charge को heavier बनाइए और live circle बाहर की ओर swells होता है, पुराने circle के एक faint ghost से आगे।", "text_te": "charge ని heavier చేయండి, live circle బయటకి swells అవుతుంది, పాత circle యొక్క ఒక faint ghost ని దాటి.", "glow": "swell_label" },
+            { "id": "s4_3", "text_en": "Speed it up and it swells again — more momentum, mass m times velocity v, is simply harder to turn.", "text_hi": "इसे speed up कीजिए और यह फिर से swells होता है — ज़्यादा momentum, mass m times velocity v, को मोड़ना बस मुश्किल है।", "text_te": "దీన్ని speed up చేయండి, ఇది మళ్ళీ swells అవుతుంది — ఎక్కువ momentum, mass m times velocity v, ని తిప్పడం కష్టం.", "glow": "numerator_label" }
           ]
         },
         "misconception_watch": [
@@ -291,7 +264,7 @@
             "type": "annotation",
             "id": "predict_label",
             "position": { "x": 360, "y": 70 },
-            "text": "Predict: turn the field UP — does the circle get bigger, or tighter?",
+            "text": "q and B on the bottom — more field or charge tightens the circle",
             "color": "#FFF176"
           },
           {
@@ -311,11 +284,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "charge q and magnetic field B sit on the bottom. Watch the circle as I turn the field UP.", "text_hi": "charge q और magnetic field B formula के नीचे हैं। देखिए, जैसे ही मैं field को UP करता हूँ, circle क्या होता है।", "text_te": "charge q మరియు magnetic field B formula దిగువ భాగంలో ఉన్నాయి. నేను field ని UP చేస్తున్నప్పుడు circle ని చూడండి." },
-            { "id": "s5_2", "text_en": "Turn up the field — does the circle get bigger, or tighter?", "text_hi": "field को UP कीजिए — क्या circle bigger होगा, या tighter?", "text_te": "field ని UP చేయండి — circle bigger అవుతుందా, లేదా tighter అవుతుందా?", "pause_after_ms": 3000 },
-            { "id": "s5_3", "text_en": "Inside the ghost now — a stronger field grips harder, so the circle shrinks. Tighter, not bigger.", "text_hi": "अब ghost के inside — एक stronger field और harder grips करती है, इसलिए circle shrinks होता है। Tighter, bigger नहीं।", "text_te": "ఇప్పుడు ghost లోపల — ఒక stronger field మరింత harder గా grips చేస్తుంది, కాబట్టి circle shrinks అవుతుంది. Tighter, bigger కాదు." },
-            { "id": "s5_4", "text_en": "Reset — add more charge instead. Same result: it shrinks again.", "text_hi": "Reset — इसकी बजाय और charge add कीजिए। Same result: यह फिर से shrinks होता है।", "text_te": "Reset — దీని బదులు ఇంకొక charge add చేయండి. Same result: అది మళ్ళీ shrinks అవుతుంది." },
-            { "id": "s5_5", "text_en": "More field or more charge tightens it — q B is the grip, the bottom of the formula.", "text_hi": "More field या more charge इसे tightens करता है — q B ही grip है, formula का bottom।", "text_te": "More field లేదా more charge దీన్ని tightens చేస్తుంది — q B నే grip, formula యొక్క bottom." }
+            { "id": "s5_1", "text_en": "Charge q and magnetic field B sit on the bottom of the formula, in the denominator.", "text_hi": "charge q और magnetic field B formula के नीचे, denominator में बैठते हैं।", "text_te": "charge q మరియు magnetic field B formula కింద, denominator లో ఉంటాయి.", "glow": "predict_label" },
+            { "id": "s5_2", "text_en": "Turn the magnetic field up and the live circle shrinks inward, tighter, sitting inside the ghost.", "text_hi": "magnetic field को up कीजिए और live circle अंदर की ओर shrinks होता है, tighter, ghost के अंदर बैठकर।", "text_te": "magnetic field ని up చేయండి, live circle లోపలికి shrinks అవుతుంది, tighter, ghost లోపల ఉండి.", "glow": "shrink_label" },
+            { "id": "s5_3", "text_en": "Add more charge and it tightens again — charge q times magnetic field B is the grip that turns it harder.", "text_hi": "और charge add कीजिए और यह फिर से tighten होता है — charge q times magnetic field B वह grip है जो इसे और harder मोड़ती है।", "text_te": "ఇంకా charge add చేయండి, ఇది మళ్ళీ tighten అవుతుంది — charge q times magnetic field B అనేది దీన్ని harder గా తిప్పే grip.", "glow": "denominator_label" }
           ]
         },
         "misconception_watch": [
@@ -334,7 +305,7 @@
       },
       "STATE_6": {
         "title": "Your Turn — Set the Circle",
-        "duration": 18,
+        "duration": 0,
         "focal_primitive_id": "explore_label",
         "advance_mode": "interaction_complete",
         "scene_composition": [
@@ -349,7 +320,7 @@
             "type": "annotation",
             "id": "predict_label",
             "position": { "x": 560, "y": 250 },
-            "text": "call it out first —\nbigger or smaller?\nthen check the\nreadout",
+            "text": "double m and double q\n-> the circle returns\nto its old size",
             "color": "#FFF176"
           },
           {
@@ -362,19 +333,11 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Your turn. Four sliders — mass m, speed v, charge q, magnetic field B — and a live radius readout.", "text_hi": "अब आपकी turn है। Four sliders — mass m, speed v, charge q, magnetic field B — और एक live radius readout।", "text_te": "ఇప్పుడు మీ turn. Four sliders — mass m, speed v, charge q, magnetic field B — మరియు ఒక live radius readout." },
-            { "id": "s6_2", "text_en": "Before you move one — call it out: will the circle get bigger or smaller? Then check.", "text_hi": "आप एक को move करने से पहले — इसे call out कीजिए: क्या circle bigger होगा या smaller? फिर check कीजिए।", "text_te": "మీరు ఒకదాన్ని move చేయడానికి ముందు — దీన్ని call out చేయండి: circle bigger అవుతుందా లేదా smaller అవుతుందా? తర్వాత check చేయండి.", "pause_after_ms": 3000 },
-            { "id": "s6_3", "text_en": "Top two widen it, bottom two tighten it. The readout follows r equals m v over q B exactly.", "text_hi": "Top two इसे widen करते हैं, bottom two इसे tighten करते हैं। readout, r equals m v over q B को exactly follow करता है।", "text_te": "Top two దీన్ని widen చేస్తాయి, bottom two దీన్ని tighten చేస్తాయి. readout, r equals m v over q B ని exactly follow చేస్తుంది." },
-            { "id": "s6_4", "text_en": "Try cancelling — double the mass m and double the charge q, and the circle comes right back to its old size.", "text_hi": "Cancelling try कीजिए — double mass m और double charge q, और circle अपनी old size पर वापस आ जाता है।", "text_te": "Cancelling try చేయండి — double mass m మరియు double charge q, మరియు circle దాని old size కి తిరిగి వస్తుంది." }
+            { "id": "s6_1", "text_en": "Your turn. Four sliders — mass m, velocity v, charge q, magnetic field B — and a live radius readout.", "text_hi": "अब आपकी बारी। चार sliders — mass m, velocity v, charge q, magnetic field B — और एक live radius readout।", "text_te": "ఇప్పుడు మీ వంతు. నాలుగు sliders — mass m, velocity v, charge q, magnetic field B — మరియు ఒక live radius readout.", "glow": "sliders_label" },
+            { "id": "s6_2", "text_en": "The top two widen the circle, the bottom two tighten it, and the readout always follows r equals m v over q B.", "text_hi": "ऊपर के दो circle को widen करते हैं, नीचे के दो इसे tighten करते हैं, और readout हमेशा r equals m v over q B को follow करता है।", "text_te": "పైన ఉన్న రెండు circle ని widen చేస్తాయి, కింద ఉన్న రెండు దీన్ని tighten చేస్తాయి, మరియు readout ఎల్లప్పుడూ r equals m v over q B ని follow చేస్తుంది.", "glow": "explore_label" },
+            { "id": "s6_3", "text_en": "Double the mass m and double the charge q together, and the circle comes right back to its old size.", "text_hi": "mass m को double कीजिए और charge q को भी double कीजिए, और circle अपनी old size पर वापस आ जाता है।", "text_te": "mass m ని double చేయండి మరియు charge q ని కూడా double చేయండి, circle దాని old size కి తిరిగి వస్తుంది.", "glow": "predict_label" }
           ]
-        },
-        "misconception_watch": [
-          {
-            "belief": "Changing the knobs changes the circle randomly; there is no single rule behind it.",
-            "visual_counter": "Every slider edit resizes the live circle exactly as r = mv/qB predicts, and doubling m with q returns it to the same size.",
-            "one_line_fix": "The radius always obeys r = mv/qB — momentum on top, grip on the bottom."
-          }
-        ]
+        }
       }
     }
   },
@@ -413,8 +376,11 @@
         "camera_position": [3, 2, 4],
         "caption": "",
         "advance_mode": "auto_after_tts",
-        "duration": 14,
+        "duration": 20,
         "trajectory_mode": "circle",
+        "variable_overrides": { "m": 1.0, "v": 1.0, "q_mag": 1.0, "B": 1.0 },
+        "show_sliders": false,
+        "visible_controls": [],
         "hide_period_readout": true,
         "hide_magnitude_readout": true,
         "radius": {
@@ -426,10 +392,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "A charge moves through a uniform magnetic field — and its path is already curving." },
-            { "id": "s1_2", "text_en": "If we let it keep going, where does this path end up?", "pause_after_ms": 2800 },
-            { "id": "s1_3", "text_en": "Watch — the curve bites its own tail. The trail snaps shut." },
-            { "id": "s1_4", "text_en": "It closes into a perfect circle. So — how big is that circle?" }
+            { "id": "s1_1", "text_en": "A charge moves through a uniform magnetic field, and its path is already curving." },
+            { "id": "s1_2", "text_en": "Watch the curve bite its own tail — the trail snaps shut." },
+            { "id": "s1_3", "text_en": "It closes into a perfect circle, and the whole question now is how big that circle is." }
           ]
         }
       },
@@ -438,9 +403,12 @@
         "visible_elements": [],
         "camera_position": [3, 2, 4],
         "caption": "",
-        "advance_mode": "wait_for_answer",
-        "duration": 16,
+        "advance_mode": "manual_click",
+        "duration": 20,
         "trajectory_mode": "circle",
+        "variable_overrides": { "m": 1.0, "v": 1.0, "q_mag": 1.0, "B": 1.0 },
+        "show_sliders": false,
+        "visible_controls": [],
         "hide_period_readout": true,
         "hide_magnitude_readout": true,
         "radius": {
@@ -451,10 +419,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "The force stays the same size and always points to one centre, while the charge orbits." },
-            { "id": "s2_2", "text_en": "A same-size pull, always to the same spot — what motion does that make?", "pause_after_ms": 3000 },
-            { "id": "s2_3", "text_en": "A radius line from the centre — and it stays exactly the same length the whole way round." },
-            { "id": "s2_4", "text_en": "A constant centre-pull is the recipe for uniform circular motion." }
+            { "id": "s2_1", "text_en": "The magnetic force stays the same size and always points to one centre while the charge orbits." },
+            { "id": "s2_2", "text_en": "A radius line drawn from that centre stays exactly the same length the whole way round." },
+            { "id": "s2_3", "text_en": "A constant pull toward one centre is the recipe for uniform circular motion — a perfect circle." }
           ]
         }
       },
@@ -464,8 +431,11 @@
         "camera_position": [3, 2, 4],
         "caption": "",
         "advance_mode": "manual_click",
-        "duration": 18,
+        "duration": 20,
         "trajectory_mode": "circle",
+        "variable_overrides": { "m": 1.0, "v": 1.0, "q_mag": 1.0, "B": 1.0 },
+        "show_sliders": false,
+        "visible_controls": [],
         "hide_period_readout": true,
         "hide_magnitude_readout": true,
         "radius": {
@@ -477,11 +447,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Circular motion needs a centre force of size m v-squared over r. The only force here is the magnetic one." },
-            { "id": "s3_2", "text_en": "So what must be true about these two forces?", "pause_after_ms": 3000 },
-            { "id": "s3_3", "text_en": "They are the same force. The magnetic force IS the centripetal force: q v B equals m v-squared over r." },
-            { "id": "s3_4", "text_en": "Now just solve for r — the equation rearranges itself into r equals m v over q B." },
-            { "id": "s3_5", "text_en": "That single line is the whole concept: the circle's size is m v over q B." }
+            { "id": "s3_1", "text_en": "Circular motion needs a centre-pointing force, and the magnetic force is the only force acting here." },
+            { "id": "s3_2", "text_en": "So the magnetic force is the centripetal force: q v B equals m v-squared over r." },
+            { "id": "s3_3", "text_en": "Solve that for the radius and you get r equals m v over q B — that one line is the whole concept." }
           ]
         }
       },
@@ -490,9 +458,12 @@
         "visible_elements": [],
         "camera_position": [3, 2, 4],
         "caption": "",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "duration": 20,
         "trajectory_mode": "circle",
+        "variable_overrides": { "m": 1.0, "v": 1.0, "q_mag": 1.0, "B": 1.0 },
+        "show_sliders": true,
+        "visible_controls": ["m", "v"],
         "hide_period_readout": true,
         "hide_magnitude_readout": true,
         "radius": {
@@ -505,11 +476,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "m and v sit on top of the formula. Watch the circle as I make the charge heavier." },
-            { "id": "s4_2", "text_en": "Make it heavier — bigger circle, smaller circle, or the same?", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "A faint ghost marks the old circle. With more mass, the live circle swells outward, past the ghost." },
-            { "id": "s4_4", "text_en": "Reset — now speed it up instead. Same story: it swells past a second ghost." },
-            { "id": "s4_5", "text_en": "Heavier or faster, both widen it — more momentum m v is just harder to turn." }
+            { "id": "s4_1", "text_en": "Mass m and velocity v sit on top of the formula, in the numerator." },
+            { "id": "s4_2", "text_en": "Make the charge heavier and the live circle swells outward, past a faint ghost of the old circle." },
+            { "id": "s4_3", "text_en": "Speed it up and it swells again — more momentum, mass m times velocity v, is simply harder to turn." }
           ]
         }
       },
@@ -521,6 +490,9 @@
         "advance_mode": "manual_click",
         "duration": 20,
         "trajectory_mode": "circle",
+        "variable_overrides": { "m": 1.0, "v": 1.0, "q_mag": 1.0, "B": 1.0 },
+        "show_sliders": true,
+        "visible_controls": ["q_mag", "B"],
         "hide_period_readout": true,
         "hide_magnitude_readout": true,
         "radius": {
@@ -533,11 +505,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "q and B sit on the bottom. Watch the circle as I turn the field UP." },
-            { "id": "s5_2", "text_en": "Turn up the field — does the circle get bigger, or tighter?", "pause_after_ms": 3000 },
-            { "id": "s5_3", "text_en": "Inside the ghost now — a stronger field grips harder, so the circle shrinks. Tighter, not bigger." },
-            { "id": "s5_4", "text_en": "Reset — add more charge instead. Same result: it shrinks again." },
-            { "id": "s5_5", "text_en": "More field or more charge tightens it — q B is the grip, the bottom of the formula." }
+            { "id": "s5_1", "text_en": "Charge q and magnetic field B sit on the bottom of the formula, in the denominator." },
+            { "id": "s5_2", "text_en": "Turn the magnetic field up and the live circle shrinks inward, tighter, sitting inside the ghost." },
+            { "id": "s5_3", "text_en": "Add more charge and it tightens again — charge q times magnetic field B is the grip that turns it harder." }
           ]
         }
       },
@@ -547,9 +517,11 @@
         "camera_position": [3, 2, 5],
         "caption": "",
         "advance_mode": "interaction_complete",
-        "duration": 18,
+        "duration": 0,
         "trajectory_mode": "circle",
+        "variable_overrides": { "m": 1.0, "v": 1.0, "q_mag": 1.0, "B": 1.0 },
         "show_sliders": true,
+        "visible_controls": ["m", "v", "q_mag", "B"],
         "hide_period_readout": true,
         "hide_magnitude_readout": true,
         "radius": {
@@ -560,10 +532,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Your turn. Four sliders — m, v, q, B — and a live radius readout." },
-            { "id": "s6_2", "text_en": "Before you move one — call it out: will the circle get bigger or smaller? Then check.", "pause_after_ms": 3000 },
-            { "id": "s6_3", "text_en": "Top two widen it, bottom two tighten it. The readout follows r equals m v over q B exactly." },
-            { "id": "s6_4", "text_en": "Try cancelling — double m and double q, and the circle comes right back to its old size." }
+            { "id": "s6_1", "text_en": "Your turn. Four sliders — mass m, velocity v, charge q, magnetic field B — and a live radius readout." },
+            { "id": "s6_2", "text_en": "The top two widen the circle, the bottom two tighten it, and the readout always follows r equals m v over q B." },
+            { "id": "s6_3", "text_en": "Double the mass m and double the charge q together, and the circle comes right back to its old size." }
           ]
         }
       }

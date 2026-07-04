@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "complex",
-  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.5 (Ampère's Circuital Law) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. The atomic concept being taught is Ampère's circuital law ∮B·dl = μ₀ I_enc applied to a long straight wire: choose a coaxial circular Amperian loop, use symmetry (|B| constant AND tangent on the loop) to reduce the line integral to ∮B·dl = B·(2πr), set it equal to μ₀ I_enc, and DERIVE B = μ₀I/(2πr). This is the integral-law route to the straight-wire field — the alternative to the Biot-Savart element-summation route (biot_savart_law), and it returns the SAME field. The deepest confusions are: students think any loop shape works, they treat ∮B·dl as un-evaluable symbolic calculus, and they conflate I_enc with a quantity that grows with the loop. The field_3d renderer makes the loop, the equal B·dl tiles, the accumulation, and the unroll-to-a-bar visible in 3D. WIRE ONLY — no solenoid, no toroid, no off-axis or non-symmetric loop. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal).",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.5 (Ampère's Circuital Law) — table-of-contents reference only; teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. The atomic concept being taught is Ampère's circuital law ∮B·dl = μ₀ I_enc applied to a long straight wire: choose a coaxial circular Amperian loop, use symmetry (|B| constant AND tangent on the loop) to reduce the line integral to ∮B·dl = B·(2πr), set it equal to μ₀ I_enc, and DERIVE B = μ₀I/(2πr). This is the integral-law route to the straight-wire field — the alternative to the Biot-Savart element-summation route (biot_savart_law), and it returns the SAME field. The deepest confusions are: students think any loop shape works, they treat ∮B·dl as un-evaluable symbolic calculus, and they conflate I_enc with a quantity that grows with the loop. The field_3d renderer makes the loop, the equal B·dl tiles, the accumulation, and the unroll-to-a-bar visible in 3D. WIRE ONLY — no solenoid, no toroid, no off-axis or non-symmetric loop. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + straightforward contrast beats). Rule 31 retrofit 2026-07-04: converted from the old Socratic model to straightforward distinct-motion beats with per-state contextual controls — no prediction pauses, glow bindings drive focus, STATE_1 exposes I only, STATE_6 exposes r only (the unrolled bar tracks 2πr live once grabbed), STATE_8 is the open explorer (all controls, duration 0).",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -106,8 +106,7 @@
         "title": "The result you already know — but unearned",
         "duration": 13,
         "focal_primitive_id": "acl_eq_0",
-        "advance_mode": "auto_after_tts",
-        "teaching_method": "narrative_socratic",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -133,9 +132,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "You already know this: the magnetic field B = μ₀I over 2πr for a long straight wire. You met it with the compass.", "text_hi": "आप यह पहले से जानते हैं: magnetic field B equals mu-zero I over two pi r, एक long straight wire के लिए। आप इसे compass के साथ मिल चुके हैं।", "text_te": "మీకు ఇది ఇప్పటికే తెలుసు: magnetic field B equals mu-zero I over two pi r, ఒక long straight wire కోసం. మీరు దీన్ని compass తో కలిశారు.", "pause_after_ms": 0 },
-            { "id": "s1_2", "text_en": "But where do the 2π and the radius r come from? Why exactly that size?", "text_hi": "लेकिन यह two pi और radius r कहाँ से आते हैं? ठीक उस size का क्यों?", "text_te": "కానీ ఈ two pi మరియు radius r ఎక్కడ నుండి వస్తాయి? సరిగ్గా ఆ size ఎందుకు?", "pause_after_ms": 0 },
-            { "id": "s1_3", "text_en": "We will not assume this formula. We will earn it — and it returns, lit, at the end.", "text_hi": "हम इस formula को assume नहीं करेंगे। हम इसे earn करेंगे — और यह अंत में, रोशन होकर, वापस आएगा।", "text_te": "మనం ఈ formula ని assume చేయము. మనం దాన్ని earn చేస్తాము — మరియు అది చివరలో, వెలిగిపోతూ, తిరిగి వస్తుంది.", "pause_after_ms": 0 }
+            { "id": "s1_1", "text_en": "You already know this: the magnetic field B = μ₀I over 2πr for a long straight wire. You met it with the compass.", "text_hi": "आप यह पहले से जानते हैं: magnetic field B equals mu-zero I over two pi r, एक long straight wire के लिए। आप इसे compass के साथ मिल चुके हैं।", "text_te": "మీకు ఇది ఇప్పటికే తెలుసు: magnetic field B equals mu-zero I over two pi r, ఒక long straight wire కోసం. మీరు దీన్ని compass తో కలిశారు.", "glow": "result_label" },
+            { "id": "s1_2", "text_en": "But where do the 2π and the radius r come from? Why exactly that size?", "text_hi": "लेकिन यह two pi और radius r कहाँ से आते हैं? ठीक उस size का क्यों?", "text_te": "కానీ ఈ two pi మరియు radius r ఎక్కడ నుండి వస్తాయి? సరిగ్గా ఆ size ఎందుకు?", "glow": "question_label" },
+            { "id": "s1_3", "text_en": "We will not assume this formula. We will earn it — and it returns, lit, at the end.", "text_hi": "हम इस formula को assume नहीं करेंगे। हम इसे earn करेंगे — और यह अंत में, रोशन होकर, वापस आएगा।", "text_te": "మనం ఈ formula ని assume చేయము. మనం దాన్ని earn చేస్తాము — మరియు అది చివరలో, వెలిగిపోతూ, తిరిగి వస్తుంది.", "glow": "result_label" }
           ]
         },
         "misconception_watch": [
@@ -151,7 +150,6 @@
         "duration": 15,
         "focal_primitive_id": "acl_eq_1",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
         "scene_composition": [
           {
             "type": "annotation",
@@ -177,9 +175,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Here is Ampère's law: the circulation of the magnetic field B once around a closed loop equals μ₀ times the current the loop encloses.", "text_hi": "यह है Ampère's law: किसी closed loop के चारों ओर magnetic field B की circulation, उस loop के अंदर से गुज़रने वाली current के mu-zero गुना के बराबर होती है।", "text_te": "ఇదే Ampère's law: ఒక closed loop చుట్టూ magnetic field B యొక్క circulation, ఆ loop లో ఉన్న current యొక్క mu-zero రెట్లకు సమానం.", "pause_after_ms": 0 },
-            { "id": "s2_2", "text_en": "That circle symbol on the integral means: add up B·dl all the way round one closed loop, back to the start.", "text_hi": "Integral पर वह circle symbol का मतलब है: एक पूरे closed loop में, शुरुआत तक वापस, B dot dl को जोड़ते जाइए।", "text_te": "Integral పై ఆ circle symbol యొక్క అర్థం: ఒక పూర్తి closed loop చుట్టూ, మొదటికి తిరిగి వచ్చే వరకు, B dot dl ని కూడుతూ వెళ్ళండి.", "pause_after_ms": 0 },
-            { "id": "s2_3", "text_en": "I-enclosed is just the current threading the loop. Our single wire passes straight through, so the loop encloses it.", "text_hi": "I-enclosed बस वह current है जो loop के अंदर से thread होती है। हमारा single wire सीधे उससे गुज़रता है, इसलिए loop उसे enclose करता है।", "text_te": "I-enclosed అనేది loop లోంచి thread అయ్యే current మాత్రమే. మన single wire నేరుగా దాని గుండా వెళ్తుంది, కాబట్టి loop దాన్ని enclose చేస్తుంది.", "pause_after_ms": 0 }
+            { "id": "s2_1", "text_en": "Ampère's law: the circulation of the magnetic field B once around a closed loop equals μ₀ times the enclosed current.", "text_hi": "Ampère's law: किसी closed loop के चारों ओर magnetic field B की circulation, enclosed current के mu-zero गुना के बराबर होती है।", "text_te": "Ampère's law: ఒక closed loop చుట్టూ magnetic field B యొక్క circulation, enclosed current యొక్క mu-zero రెట్లకు సమానం.", "glow": "law_label" },
+            { "id": "s2_2", "text_en": "The circle on the integral means: add up B·dl all the way round one closed loop.", "text_hi": "Integral पर circle का मतलब है: एक पूरे closed loop में B dot dl को जोड़ते जाइए।", "text_te": "Integral పై circle అర్థం: ఒక పూర్తి closed loop చుట్టూ B dot dl ని కూడుతూ వెళ్ళండి.", "glow": "circulation_label" },
+            { "id": "s2_3", "text_en": "I-enclosed is the current threading the loop — our single wire passes straight through.", "text_hi": "I-enclosed वह current है जो loop के अंदर से thread होती है — हमारा single wire सीधे उससे गुज़रता है।", "text_te": "I-enclosed అనేది loop లోంచి thread అయ్యే current — మన single wire నేరుగా దాని గుండా వెళ్తుంది.", "glow": "ienc_label" }
           ]
         },
         "misconception_watch": [
@@ -195,7 +193,6 @@
         "duration": 16,
         "focal_primitive_id": "acl_loop",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
         "scene_composition": [
           {
             "type": "annotation",
@@ -221,9 +218,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Could ANY loop shape work — say a square — to pull the magnetic field B out of this integral? Take a guess.", "text_hi": "क्या कोई भी loop shape — जैसे एक square — magnetic field B को इस integral से बाहर निकालने के लिए काम कर सकती है? एक guess लगाइए।", "text_te": "ఏదైనా loop shape — అంటే ఒక square — magnetic field B ని ఈ integral నుండి బయటకు తీయడానికి పని చేస్తుందా? ఒక guess చెప్పండి.", "pause_after_ms": 2800 },
-            { "id": "s3_2", "text_en": "On a square, the corners sit closer to the wire than the edges, so the magnetic field B is stronger there — the arrows are unequal.", "text_hi": "एक square पर, corners, edges की तुलना में wire के ज़्यादा करीब होते हैं, इसलिए वहाँ magnetic field B ज़्यादा strong होता है — arrows असमान होते हैं।", "text_te": "ఒక square పై, corners అనేవి edges కంటే wire కి దగ్గరగా ఉంటాయి, కాబట్టి అక్కడ magnetic field B బలంగా ఉంటుంది — arrows అసమానంగా ఉంటాయి.", "pause_after_ms": 0 },
-            { "id": "s3_3", "text_en": "Only on a circle centred on the wire is every point the same distance away — so |B| is the same all the way round.", "text_hi": "सिर्फ wire के center पर बने circle पर ही हर point समान distance पर होता है — इसलिए |B| पूरे रास्ते एक जैसा रहता है।", "text_te": "Wire ని center గా చేసుకున్న circle పై మాత్రమే ప్రతి point సమాన distance లో ఉంటుంది — కాబట్టి |B| మొత్తం చుట్టూ ఒకే విధంగా ఉంటుంది.", "pause_after_ms": 0 }
+            { "id": "s3_1", "text_en": "Could ANY loop shape work — say a square? Watch the square try.", "text_hi": "क्या कोई भी loop shape काम कर सकती है — जैसे एक square? Square को देखिए।", "text_te": "ఏదైనా loop shape పని చేస్తుందా — అంటే ఒక square? Square ని చూడండి.", "glow": "shape_label" },
+            { "id": "s3_2", "text_en": "On a square the corners sit closer to the wire, so the magnetic field B is stronger there — the arrows are unequal.", "text_hi": "एक square पर corners wire के ज़्यादा करीब होते हैं, इसलिए वहाँ magnetic field B ज़्यादा strong होता है — arrows असमान होते हैं।", "text_te": "ఒక square పై corners wire కి దగ్గరగా ఉంటాయి, కాబట్టి అక్కడ magnetic field B బలంగా ఉంటుంది — arrows అసమానంగా ఉంటాయి.", "glow": "square_label" },
+            { "id": "s3_3", "text_en": "Only a circle centred on the wire keeps every point the same distance — |B| equal all the way round.", "text_hi": "सिर्फ wire पर centred circle ही हर point को समान distance पर रखता है — |B| पूरे रास्ते equal।", "text_te": "Wire పై centred circle మాత్రమే ప్రతి point ని సమాన distance లో ఉంచుతుంది — |B| మొత్తం చుట్టూ equal.", "glow": "circle_label" }
           ]
         },
         "misconception_watch": [
@@ -238,12 +235,11 @@
         "title": "The angle between B and dl is zero",
         "duration": 16,
         "focal_primitive_id": "acl_dl",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "compare_contrast",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "predict_label",
+            "id": "angle_label",
             "position": { "x": 380, "y": 60 },
             "text": "B and dl — what is the\nangle between them?",
             "color": "#FFF176"
@@ -265,9 +261,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "At any point on the circle, what is the angle between the magnetic field B and the little step dl along the loop? Predict it.", "text_hi": "Circle पर किसी भी point पर, magnetic field B और loop के छोटे कदम dl के बीच का angle क्या है? इसे predict कीजिए।", "text_te": "Circle పై ఏదైనా ఒక point వద్ద, magnetic field B మరియు loop వెంబడి ఉన్న చిన్న అడుగు dl మధ్య angle ఎంత? దాన్ని predict చేయండి.", "pause_after_ms": 3000 },
-            { "id": "s4_2", "text_en": "the magnetic field B is tangent to the circle, and dl runs along the circle too — so they point the same way. The angle is zero.", "text_hi": "magnetic field B circle के tangent पर है, और dl भी circle के साथ चलता है — तो दोनों एक ही direction में point करते हैं। इसलिए angle zero है।", "text_te": "magnetic field B circle కి tangent గా ఉంది, మరియు dl కూడా circle వెంట నడుస్తుంది — కాబట్టి అవి రెండూ ఒకే direction లో point చేస్తాయి. కాబట్టి angle zero.", "pause_after_ms": 0 },
-            { "id": "s4_3", "text_en": "Two gifts: |B| is constant, and cosθ = 1 everywhere. So B·dl is simply B times dl — no radial part, no cosine to track.", "text_hi": "दो तोहफे मिलते हैं: |B| constant है, और cosθ = 1 हर जगह। तो B·dl बस B times dl हो जाता है — कोई radial part नहीं, कोई cosine track नहीं करनी।", "text_te": "రెండు బహుమతులు: |B| constant గా ఉంది, మరియు cosθ = 1 అన్ని చోట్లా. కాబట్టి B·dl అనేది simply B times dl అవుతుంది — radial part లేదు, cosine track చేయాల్సిన అవసరం లేదు.", "pause_after_ms": 0 }
+            { "id": "s4_1", "text_en": "At any point on the circle, watch the angle between the magnetic field B and the step dl.", "text_hi": "Circle पर किसी भी point पर, magnetic field B और कदम dl के बीच के angle को देखिए।", "text_te": "Circle పై ఏ point వద్దనైనా, magnetic field B మరియు అడుగు dl మధ్య angle ని చూడండి.", "glow": "angle_label" },
+            { "id": "s4_2", "text_en": "The magnetic field B is tangent, and dl runs along the circle too — they point the same way. The angle is zero.", "text_hi": "magnetic field B tangent है, और dl भी circle के साथ चलता है — दोनों एक ही direction में point करते हैं। angle zero है।", "text_te": "magnetic field B tangent గా ఉంది, dl కూడా circle వెంట నడుస్తుంది — రెండూ ఒకే direction లో point చేస్తాయి. angle zero.", "glow": "tangent_label" },
+            { "id": "s4_3", "text_en": "Two gifts: |B| constant, and cosθ = 1 everywhere. So B·dl is simply B times dl.", "text_hi": "दो तोहफे: |B| constant, और cosθ = 1 हर जगह। तो B·dl बस B times dl है।", "text_te": "రెండు బహుమతులు: |B| constant, మరియు cosθ = 1 అన్ని చోట్లా. కాబట్టి B·dl అనేది simply B times dl.", "glow": "gift_label" }
           ]
         },
         "misconception_watch": [
@@ -283,7 +279,6 @@
         "duration": 18,
         "focal_primitive_id": "acl_bdl",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
         "scene_composition": [
           {
             "type": "annotation",
@@ -309,9 +304,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "So the integral is not mysterious. It is a sum of equal pieces. Watch one full trip round the loop.", "text_hi": "तो यह integral कोई रहस्यमय चीज़ नहीं है। यह बराबर pieces का एक sum है। देखिए loop के चारों तरफ एक पूरा चक्कर।", "text_te": "కాబట్టి ఈ integral ఏమీ mysterious కాదు. ఇది సమాన pieces యొక్క sum. loop చుట్టూ ఒక పూర్తి trip గమనించండి.", "pause_after_ms": 0 },
-            { "id": "s5_2", "text_en": "Each little step contributes the same B·dl — and there are 24 equal steps. See the ring fill, piece by equal piece.", "text_hi": "हर छोटा step एक जैसा B·dl contribute करता है — और यहाँ 24 equal steps हैं। देखिए ring कैसे piece by equal piece भरती है।", "text_te": "ప్రతి చిన్న step అదే B·dl ని contribute చేస్తుంది — మరియు 24 equal steps ఉన్నాయి. ring ఎలా piece by equal piece నిండుతుందో చూడండి.", "pause_after_ms": 1500 },
-            { "id": "s5_3", "text_en": "That filled ring IS the circulation ∮B·dl — assembled, not hand-waved. A finite sum of equal tiles.", "text_hi": "वह भरी हुई ring ही circulation ∮B·dl है — assembled है, hand-waved नहीं। equal tiles का एक finite sum।", "text_te": "ఆ నిండిన ring నే circulation ∮B·dl — assembled గా తయారైంది, hand-waved కాదు. సమాన tiles యొక్క ఒక finite sum.", "pause_after_ms": 0 }
+            { "id": "s5_1", "text_en": "So the integral is not mysterious. It is a sum of equal pieces. Watch one full trip round the loop.", "text_hi": "तो यह integral कोई रहस्यमय चीज़ नहीं है। यह बराबर pieces का एक sum है। देखिए loop के चारों तरफ एक पूरा चक्कर।", "text_te": "కాబట్టి ఈ integral ఏమీ mysterious కాదు. ఇది సమాన pieces యొక్క sum. loop చుట్టూ ఒక పూర్తి trip గమనించండి.", "glow": "sum_label" },
+            { "id": "s5_2", "text_en": "Each little step contributes the same B·dl — and there are 24 equal steps. See the ring fill, piece by equal piece.", "text_hi": "हर छोटा step एक जैसा B·dl contribute करता है — और यहाँ 24 equal steps हैं। देखिए ring कैसे piece by equal piece भरती है।", "text_te": "ప్రతి చిన్న step అదే B·dl ని contribute చేస్తుంది — మరియు 24 equal steps ఉన్నాయి. ring ఎలా piece by equal piece నిండుతుందో చూడండి.", "glow": "tiles_label" },
+            { "id": "s5_3", "text_en": "That filled ring IS the circulation ∮B·dl — assembled, not hand-waved. A finite sum of equal tiles.", "text_hi": "वह भरी हुई ring ही circulation ∮B·dl है — assembled है, hand-waved नहीं। equal tiles का एक finite sum।", "text_te": "ఆ నిండిన ring నే circulation ∮B·dl — assembled గా తయారైంది, hand-waved కాదు. సమాన tiles యొక్క ఒక finite sum.", "glow": "circulation_is_label" }
           ]
         },
         "misconception_watch": [
@@ -328,7 +323,6 @@
         "duration": 16,
         "focal_primitive_id": "acl_bar",
         "advance_mode": "manual_click",
-        "teaching_method": "narrative_socratic",
         "scene_composition": [
           {
             "type": "annotation",
@@ -354,9 +348,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Now straighten that ring out. The same 24 equal tiles line up into one bar — no length is added or lost.", "text_hi": "अब उस ring को सीधा कीजिए। वही 24 equal tiles एक bar में लाइन हो जाते हैं — कोई length जोड़ी या घटाई नहीं गई।", "text_te": "ఇప్పుడు ఆ ring ని straight చేయండి. అదే 24 equal tiles ఒక bar లో line అవుతాయి — ఎటువంటి length జోడించబడలేదు లేదా తగ్గించబడలేదు.", "pause_after_ms": 1200 },
-            { "id": "s6_2", "text_en": "The bar's length is just the number of steps times their size — which is the full distance once around: 2πr.", "text_hi": "उस bar की length बस steps की संख्या गुना उनका size है — जो कि पूरे एक चक्कर की distance है: 2πr।", "text_te": "ఆ bar యొక్క length అనేది steps సంఖ్య times వాటి size మాత్రమే — అది ఒక పూర్తి చుట్టు distance: 2πr.", "pause_after_ms": 0 },
-            { "id": "s6_3", "text_en": "So the circular sum becomes a clean product: ∮B·dl = B times 2πr.", "text_hi": "तो circular sum एक साफ़ product बन जाता है: ∮B·dl = B times 2πr।", "text_te": "కాబట్టి circular sum ఒక clean product గా మారుతుంది: ∮B·dl = B times 2πr.", "pause_after_ms": 0 }
+            { "id": "s6_1", "text_en": "Now straighten that ring out. The same 24 equal tiles line up into one bar — no length is added or lost.", "text_hi": "अब उस ring को सीधा कीजिए। वही 24 equal tiles एक bar में लाइन हो जाते हैं — कोई length जोड़ी या घटाई नहीं गई।", "text_te": "ఇప్పుడు ఆ ring ని straight చేయండి. అదే 24 equal tiles ఒక bar లో line అవుతాయి — ఎటువంటి length జోడించబడలేదు లేదా తగ్గించబడలేదు.", "glow": "unroll_label" },
+            { "id": "s6_2", "text_en": "The bar's length is just the number of steps times their size — which is the full distance once around: 2πr.", "text_hi": "उस bar की length बस steps की संख्या गुना उनका size है — जो कि पूरे एक चक्कर की distance है: 2πr।", "text_te": "ఆ bar యొక్క length అనేది steps సంఖ్య times వాటి size మాత్రమే — అది ఒక పూర్తి చుట్టు distance: 2πr.", "glow": "bar_label" },
+            { "id": "s6_3", "text_en": "So the circular sum becomes a clean product: ∮B·dl = B times 2πr.", "text_hi": "तो circular sum एक साफ़ product बन जाता है: ∮B·dl = B times 2πr।", "text_te": "కాబట్టి circular sum ఒక clean product గా మారుతుంది: ∮B·dl = B times 2πr.", "glow": "product_label" }
           ]
         },
         "misconception_watch": [
@@ -372,8 +366,7 @@
         "title": "Set equal to μ₀I, solve for B",
         "duration": 16,
         "focal_primitive_id": "acl_eq_5",
-        "advance_mode": "wait_for_answer",
-        "teaching_method": "derivation_first_principles",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -399,9 +392,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Ampère's law set that circulation equal to μ₀ I-enclosed. For our one wire, I-enclosed is just the current I.", "text_hi": "Ampère's law उस circulation को μ₀ I-enclosed के बराबर रखता है। हमारे एक wire के लिए, I-enclosed बस current I है।", "text_te": "Ampère's law ఆ circulation ని μ₀ I-enclosed కి సమానంగా చేస్తుంది. మన ఒక wire కోసం, I-enclosed అనేది కేవలం current I మాత్రమే.", "pause_after_ms": 0 },
-            { "id": "s7_2", "text_en": "So B times 2πr equals μ₀ I. One last move to get the magnetic field B alone — what do we divide by? Predict.", "text_hi": "तो B times 2πr equals μ₀ I। magnetic field B को अकेले पाने के लिए एक आखिरी कदम — हम किससे divide करेंगे? Predict कीजिए।", "text_te": "కాబట్టి B times 2πr equals μ₀ I. magnetic field B ని వేరుగా పొందడానికి ఒక చివరి move — మనం దేనితో divide చేస్తాం? Predict చేయండి.", "pause_after_ms": 2800 },
-            { "id": "s7_3", "text_en": "Divide both sides by 2πr. The magnetic field B = μ₀ I over 2πr — the exact formula from the very first screen, now earned.", "text_hi": "दोनों sides को 2πr से divide कीजिए। magnetic field B = μ₀ I over 2πr — यही exact formula पहली screen से था, और अब हमने इसे earn किया है।", "text_te": "రెండు sides ని 2πr తో divide చేయండి. magnetic field B = μ₀ I over 2πr — మొదటి screen నుండి ఉన్న exact formula ఇదే, ఇప్పుడు మనం దాన్ని సాధించాం.", "pause_after_ms": 0 }
+            { "id": "s7_1", "text_en": "Ampère's law set that circulation equal to μ₀ I-enclosed. For our one wire, I-enclosed is just the current I.", "text_hi": "Ampère's law उस circulation को μ₀ I-enclosed के बराबर रखता है। हमारे एक wire के लिए, I-enclosed बस current I है।", "text_te": "Ampère's law ఆ circulation ని μ₀ I-enclosed కి సమానంగా చేస్తుంది. మన ఒక wire కోసం, I-enclosed అనేది కేవలం current I మాత్రమే.", "glow": "set_equal_label" },
+            { "id": "s7_2", "text_en": "So B times 2πr equals μ₀ I. One last move gets the magnetic field B alone.", "text_hi": "तो B times 2πr equals μ₀ I। magnetic field B को अकेले पाने के लिए एक आखिरी कदम बचा है।", "text_te": "కాబట్టి B times 2πr equals μ₀ I. magnetic field B ని వేరుగా పొందడానికి ఒక చివరి move మిగిలింది.", "glow": "ienc_one_label" },
+            { "id": "s7_3", "text_en": "Divide both sides by 2πr. The magnetic field B = μ₀ I over 2πr — the exact formula from the very first screen, now earned.", "text_hi": "दोनों sides को 2πr से divide कीजिए। magnetic field B = μ₀ I over 2πr — यही exact formula पहली screen से था, और अब हमने इसे earn किया है।", "text_te": "రెండు sides ని 2πr తో divide చేయండి. magnetic field B = μ₀ I over 2πr — మొదటి screen నుండి ఉన్న exact formula ఇదే, ఇప్పుడు మనం దాన్ని సాధించాం.", "glow": "earned_label" }
           ]
         },
         "misconception_watch": [
@@ -414,10 +407,9 @@
       },
       "STATE_8": {
         "title": "Your turn — change I and r, watch the law hold",
-        "duration": 20,
+        "duration": 0,
         "focal_primitive_id": "acl_bar",
         "advance_mode": "interaction_complete",
-        "teaching_method": "exploration_sliders",
         "scene_composition": [
           {
             "type": "annotation",
@@ -450,9 +442,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "Your turn. Slide the current I up — I-enclosed rises with it, and so does the magnetic field B. The law tracks the current directly.", "text_hi": "अब आपकी बारी है। current I को ऊपर slide कीजिए — I-enclosed उसके साथ बढ़ता है, और magnetic field B भी। यह law current को directly track करता है।", "text_te": "మీ వంతు. current I ని పైకి slide చేయండి — I-enclosed దానితో పాటు పెరుగుతుంది, magnetic field B కూడా పెరుగుతుంది. ఈ law current ని directly track చేస్తుంది.", "pause_after_ms": 0 },
-            { "id": "s8_2", "text_en": "Now grow the loop radius r. The 2πr ruler gets longer, but I-enclosed stays fixed at the current I — a bigger loop encloses no extra current.", "text_hi": "अब loop का radius r बढ़ाइए। 2πr ruler लंबा हो जाता है, लेकिन I-enclosed current I पर fixed रहता है — एक बड़ा loop कोई extra current enclose नहीं करता।", "text_te": "ఇప్పుడు loop radius r ని పెంచండి. 2πr ruler పొడవు అవుతుంది, కానీ I-enclosed మాత్రం current I వద్ద fixed గా ఉంటుంది — పెద్ద loop ఏ extra current ని enclose చేయదు.", "pause_after_ms": 0 },
-            { "id": "s8_3", "text_en": "Since μ₀I is fixed but 2πr grew, the magnetic field B must fall as one over r. The product B·2πr never changes.", "text_hi": "चूँकि μ₀I fixed है लेकिन 2πr बड़ा हो गया, तो magnetic field B को one over r की तरह fall करना ही होगा। product B·2πr कभी नहीं बदलता।", "text_te": "μ₀I fixed గా ఉన్నా 2πr పెరిగింది కాబట్టి, magnetic field B తప్పనిసరిగా one over r గా fall అవుతుంది. product B·2πr ఎప్పుడూ మారదు.", "pause_after_ms": 0 }
+            { "id": "s8_1", "text_en": "Your turn. Slide the current I up — I-enclosed rises, and the magnetic field B rises with it.", "text_hi": "अब आपकी बारी है। current I को ऊपर slide कीजिए — I-enclosed बढ़ता है, और magnetic field B उसके साथ बढ़ती है।", "text_te": "మీ వంతు. current I ని పైకి slide చేయండి — I-enclosed పెరుగుతుంది, magnetic field B దానితో పాటు పెరుగుతుంది.", "glow": "explore_label" },
+            { "id": "s8_2", "text_en": "Grow the loop radius r — 2πr gets longer, but I-enclosed stays fixed: a bigger loop encloses no extra current.", "text_hi": "loop का radius r बढ़ाइए — 2πr लंबा हो जाता है, लेकिन I-enclosed fixed रहता है: एक बड़ा loop कोई extra current enclose नहीं करता।", "text_te": "loop radius r ని పెంచండి — 2πr పొడవు అవుతుంది, కానీ I-enclosed fixed గా ఉంటుంది: పెద్ద loop ఏ extra current ని enclose చేయదు.", "glow": "explore_label" },
+            { "id": "s8_3", "text_en": "μ₀I is fixed, so as 2πr grows the magnetic field B falls as one over r.", "text_hi": "μ₀I fixed है, इसलिए जैसे 2πr बढ़ता है, magnetic field B one over r की तरह fall होती है।", "text_te": "μ₀I fixed, కాబట్టి 2πr పెరిగే కొద్దీ magnetic field B one over r గా fall అవుతుంది.", "glow": "invariant_label" }
           ]
         },
         "misconception_watch": [
@@ -492,9 +484,11 @@
         "label": "The result you already know — but unearned",
         "visible_elements": ["acl_wire", "acl_curr_arrow", "acl_loop", "acl_eq_0"],
         "camera_position": [2.5, 1.5, 4],
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "duration": 13,
         "caption": "",
+        "show_sliders": true,
+        "visible_controls": ["I"],
         "acl_element": {
           "mode": "static",
           "loop_radius": 1.4,
@@ -506,9 +500,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "You already know this: B = μ₀I over 2πr for a long straight wire. You met it with the compass.", "pause_after_ms": 0 },
-            { "id": "s1_2", "text_en": "But where do the 2π and the r come from? Why exactly that size?", "pause_after_ms": 0 },
-            { "id": "s1_3", "text_en": "We will not assume this formula. We will earn it — and it returns, lit, at the end.", "pause_after_ms": 0 }
+            { "id": "s1_1", "text_en": "You already know this: B = μ₀I over 2πr for a long straight wire. You met it with the compass." },
+            { "id": "s1_2", "text_en": "But where do the 2π and the r come from? Why exactly that size?" },
+            { "id": "s1_3", "text_en": "We will not assume this formula. We will earn it — and it returns, lit, at the end." }
           ]
         }
       },
@@ -532,9 +526,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Here is Ampère's law: the circulation of B once around a closed loop equals μ₀ times the current the loop encloses.", "pause_after_ms": 0 },
-            { "id": "s2_2", "text_en": "That circle symbol on the integral means: add up B·dl all the way round one closed loop, back to the start.", "pause_after_ms": 0 },
-            { "id": "s2_3", "text_en": "I-enclosed is just the current threading the loop. Our single wire passes straight through, so the loop encloses it.", "pause_after_ms": 0 }
+            { "id": "s2_1", "text_en": "Ampère's law: the circulation of B once around a closed loop equals μ₀ times the enclosed current." },
+            { "id": "s2_2", "text_en": "The circle on the integral means: add up B·dl all the way round one closed loop." },
+            { "id": "s2_3", "text_en": "I-enclosed is the current threading the loop — our single wire passes straight through." }
           ]
         }
       },
@@ -556,9 +550,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Could ANY loop shape work — say a square — to pull B out of this integral? Take a guess.", "pause_after_ms": 2800 },
-            { "id": "s3_2", "text_en": "On a square, the corners sit closer to the wire than the edges, so B is stronger there — the arrows are unequal.", "pause_after_ms": 0 },
-            { "id": "s3_3", "text_en": "Only on a circle centred on the wire is every point the same distance away — so |B| is the same all the way round.", "pause_after_ms": 0 }
+            { "id": "s3_1", "text_en": "Could ANY loop shape work — say a square? Watch the square try." },
+            { "id": "s3_2", "text_en": "On a square the corners sit closer to the wire, so B is stronger there — the arrows are unequal." },
+            { "id": "s3_3", "text_en": "Only a circle centred on the wire keeps every point the same distance — |B| equal all the way round." }
           ]
         }
       },
@@ -566,7 +560,7 @@
         "label": "The angle between B and dl is zero",
         "visible_elements": ["acl_wire", "acl_loop", "acl_dl", "acl_eq_2"],
         "camera_position": [2.2, 1.2, 3.2],
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "duration": 16,
         "caption": "",
         "acl_element": {
@@ -579,9 +573,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "At any point on the circle, what is the angle between B and the little step dl along the loop? Predict it.", "pause_after_ms": 3000 },
-            { "id": "s4_2", "text_en": "B is tangent to the circle, and dl runs along the circle too — so they point the same way. The angle is zero.", "pause_after_ms": 0 },
-            { "id": "s4_3", "text_en": "Two gifts: |B| is constant, and cosθ = 1 everywhere. So B·dl is simply B times dl — no radial part, no cosine to track.", "pause_after_ms": 0 }
+            { "id": "s4_1", "text_en": "At any point on the circle, watch the angle between B and the step dl." },
+            { "id": "s4_2", "text_en": "B is tangent, and dl runs along the circle too — they point the same way. The angle is zero." },
+            { "id": "s4_3", "text_en": "Two gifts: |B| constant, and cosθ = 1 everywhere. So B·dl is simply B times dl." }
           ]
         }
       },
@@ -604,9 +598,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "So the integral is not mysterious. It is a sum of equal pieces. Watch one full trip round the loop.", "pause_after_ms": 0 },
-            { "id": "s5_2", "text_en": "Each little step contributes the same B·dl — and there are 24 equal steps. See the ring fill, piece by equal piece.", "pause_after_ms": 1500 },
-            { "id": "s5_3", "text_en": "That filled ring IS the circulation ∮B·dl — assembled, not hand-waved. A finite sum of equal tiles.", "pause_after_ms": 0 }
+            { "id": "s5_1", "text_en": "So the integral is not mysterious. It is a sum of equal pieces. Watch one full trip round the loop." },
+            { "id": "s5_2", "text_en": "Each little step contributes the same B·dl — and there are 24 equal steps. See the ring fill, piece by equal piece." },
+            { "id": "s5_3", "text_en": "That filled ring IS the circulation ∮B·dl — assembled, not hand-waved. A finite sum of equal tiles." }
           ]
         }
       },
@@ -617,6 +611,8 @@
         "advance_mode": "manual_click",
         "duration": 16,
         "caption": "",
+        "show_sliders": true,
+        "visible_controls": ["r"],
         "acl_element": {
           "mode": "unroll",
           "loop_radius": 1.4,
@@ -627,9 +623,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Now straighten that ring out. The same 24 equal tiles line up into one bar — no length is added or lost.", "pause_after_ms": 1200 },
-            { "id": "s6_2", "text_en": "The bar's length is just the number of steps times their size — which is the full distance once around: 2πr.", "pause_after_ms": 0 },
-            { "id": "s6_3", "text_en": "So the circular sum becomes a clean product: ∮B·dl = B times 2πr.", "pause_after_ms": 0 }
+            { "id": "s6_1", "text_en": "Now straighten that ring out. The same 24 equal tiles line up into one bar — no length is added or lost." },
+            { "id": "s6_2", "text_en": "The bar's length is just the number of steps times their size — which is the full distance once around: 2πr." },
+            { "id": "s6_3", "text_en": "So the circular sum becomes a clean product: ∮B·dl = B times 2πr." }
           ]
         }
       },
@@ -637,7 +633,7 @@
         "label": "Set equal to μ₀I, solve for B",
         "visible_elements": ["acl_wire", "acl_curr_arrow", "acl_flow", "acl_circle", "acl_loop", "acl_ienc_glow", "acl_eq_4", "acl_eq_5"],
         "camera_position": [2.5, 1.5, 4],
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "duration": 16,
         "caption": "",
         "acl_element": {
@@ -649,9 +645,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Ampère's law set that circulation equal to μ₀ I-enclosed. For our one wire, I-enclosed is just I.", "pause_after_ms": 0 },
-            { "id": "s7_2", "text_en": "So B times 2πr equals μ₀ I. One last move to get B alone — what do we divide by? Predict.", "pause_after_ms": 2800 },
-            { "id": "s7_3", "text_en": "Divide both sides by 2πr. B = μ₀ I over 2πr — the exact formula from the very first screen, now earned.", "pause_after_ms": 0 }
+            { "id": "s7_1", "text_en": "Ampère's law set that circulation equal to μ₀ I-enclosed. For our one wire, I-enclosed is just I." },
+            { "id": "s7_2", "text_en": "So B times 2πr equals μ₀ I. One last move gets B alone." },
+            { "id": "s7_3", "text_en": "Divide both sides by 2πr. B = μ₀ I over 2πr — the exact formula from the very first screen, now earned." }
           ]
         }
       },
@@ -660,9 +656,10 @@
         "visible_elements": ["acl_wire", "acl_curr_arrow", "acl_flow", "acl_circle", "acl_loop", "acl_ienc_glow"],
         "camera_position": [2.8, 1.5, 4.4],
         "advance_mode": "interaction_complete",
-        "duration": 20,
+        "duration": 0,
         "caption": "",
         "show_sliders": true,
+        "visible_controls": ["I", "r"],
         "acl_element": {
           "mode": "integrated",
           "loop_radius": 1.4,
@@ -672,9 +669,9 @@
         },
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s8_1", "text_en": "Your turn. Slide the current I up — I-enclosed rises with it, and so does B. The law tracks the current directly.", "pause_after_ms": 0 },
-            { "id": "s8_2", "text_en": "Now grow the loop radius r. The 2πr ruler gets longer, but I-enclosed stays fixed at I — a bigger loop encloses no extra current.", "pause_after_ms": 0 },
-            { "id": "s8_3", "text_en": "Since μ₀I is fixed but 2πr grew, B must fall as one over r. The product B·2πr never changes.", "pause_after_ms": 0 }
+            { "id": "s8_1", "text_en": "Your turn. Slide the current I up — I-enclosed rises, and B rises with it." },
+            { "id": "s8_2", "text_en": "Grow the loop radius r — 2πr gets longer, but I-enclosed stays fixed: a bigger loop encloses no extra current." },
+            { "id": "s8_3", "text_en": "μ₀I is fixed, so as 2πr grows B falls as one over r." }
           ]
         }
       }

@@ -103,7 +103,7 @@
     "states": {
       "STATE_1": {
         "title": "Two parallel wires",
-        "duration": 14,
+        "duration": 16,
         "focal_primitive_id": "setup_label",
         "advance_mode": "auto_after_tts",
         "scene_composition": [
@@ -169,8 +169,7 @@
             "id": "field_reveal",
             "position": { "x": 560, "y": 230 },
             "text": "The green arrow at wire 2\nis B₁ — wire 1's field,\nright where wire 2 sits.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s2_3"
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
@@ -205,7 +204,7 @@
             "type": "annotation",
             "id": "force_predict",
             "position": { "x": 200, "y": 230 },
-            "text": "Wire 2 carries I₂ through B₁.\nF = I₂ L × B₁.\nPredict: which way is the force\non wire 2 pushed?",
+            "text": "Wire 2 carries I₂ through B₁.\nF = I₂ L × B₁.\nThe right-hand rule sets\nwhich way it is pushed.",
             "color": "#FFCC9F"
           },
           {
@@ -213,8 +212,7 @@
             "id": "force_reveal",
             "position": { "x": 560, "y": 230 },
             "text": "Right-hand rule → the force on\nwire 2 points toward wire 1.\nWire 2 is pulled inward.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s3_3"
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
@@ -227,7 +225,7 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s3_1", "text_en": "Now bring wire 2 back. It carries current I-two, and it sits inside wire 1's field B-one.", "text_hi": "अब wire 2 को वापस लाइए। यह current I-two ले जाता है, और यह wire 1 के field B-one के अंदर बैठा है।", "text_te": "ఇప్పుడు wire 2 ని తిరిగి తీసుకురండి. ఇది current I-two మోస్తుంది, మరియు ఇది wire 1 యొక్క field B-one లోపల ఉంది.", "glow": "force_title" },
-            { "id": "s3_2", "text_en": "A current in a magnetic field always feels a force, F equals I-two L cross B-one. Predict the direction. Take three seconds.", "text_hi": "magnetic field में रखा current हमेशा एक force महसूस करता है, F equals I-two L cross B-one। दिशा का अनुमान लगाइए। तीन सेकंड लीजिए।", "text_te": "magnetic field లో ఉన్న current ఎప్పుడూ ఒక force ని అనుభవిస్తుంది, F equals I-two L cross B-one. దిశను ఊహించండి. మూడు సెకన్లు తీసుకోండి.", "glow": "force_predict", "pause_after_ms": 3000 },
+            { "id": "s3_2", "text_en": "A current in a magnetic field always feels a force, F equals I-two L cross B-one. The right-hand rule gives its direction.", "text_hi": "magnetic field में रखा current हमेशा एक force महसूस करता है, F equals I-two L cross B-one। right-hand rule इसकी दिशा देता है।", "text_te": "magnetic field లో ఉన్న current ఎప్పుడూ ఒక force ని అనుభవిస్తుంది, F equals I-two L cross B-one. right-hand rule దీని దిశను ఇస్తుంది.", "glow": "force_predict" },
             { "id": "s3_3", "text_en": "The right-hand rule gives a force on wire 2 pointing toward wire 1. Wire 2 is pulled inward.", "text_hi": "right-hand rule से wire 2 पर एक force मिलता है जो wire 1 की ओर इशारा करता है। Wire 2 अंदर की ओर खिंचता है।", "text_te": "right-hand rule ప్రకారం wire 2 పై wire 1 వైపు చూపే force వస్తుంది. Wire 2 లోపలికి లాగబడుతుంది.", "glow": ["force_reveal", "pcf_F2"], "math_show": "\\vec{F} = I_2 \\vec{L} \\times \\vec{B}_1" }
           ]
         }
@@ -249,7 +247,7 @@
             "type": "annotation",
             "id": "force1_predict",
             "position": { "x": 200, "y": 230 },
-            "text": "Wire 2 also makes a field B₂.\nWire 1 carries I₁ through it.\nF = I₁ L × B₂.\nPredict: which way is wire 1 pushed?",
+            "text": "Wire 2 also makes a field B₂.\nWire 1 carries I₁ through it.\nF = I₁ L × B₂.\nThe same rule pushes wire 1 in.",
             "color": "#FFCC9F"
           },
           {
@@ -257,8 +255,7 @@
             "id": "force1_reveal",
             "position": { "x": 560, "y": 230 },
             "text": "Right-hand rule → the force on\nwire 1 points toward wire 2.\nWire 1 is pulled inward too.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s4_3"
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
@@ -271,16 +268,16 @@
         "teacher_script": {
           "tts_sentences": [
             { "id": "s4_1", "text_en": "Now flip the roles. Wire 2 is a current too, so it makes its own field B-two, and wire 1 sits right inside it.", "text_hi": "अब roles बदलिए। Wire 2 भी एक current है, इसलिए यह अपना खुद का field B-two बनाता है, और wire 1 ठीक उसके अंदर बैठा है।", "text_te": "ఇప్పుడు roles మార్చండి. Wire 2 కూడా ఒక current, కాబట్టి ఇది తన సొంత field B-two ని తయారు చేస్తుంది, మరియు wire 1 సరిగ్గా దాని లోపల ఉంది.", "glow": ["force1_title", "pcf_b2_at_1"] },
-            { "id": "s4_2", "text_en": "Wire 1 carries I-one through that field, so it feels a force, F equals I-one L cross B-two. Predict the direction. Take three seconds.", "text_hi": "Wire 1 उस field में से I-one ले जाता है, इसलिए यह एक force महसूस करता है, F equals I-one L cross B-two। दिशा का अनुमान लगाइए। तीन सेकंड लीजिए।", "text_te": "Wire 1 ఆ field గుండా I-one ని మోస్తుంది, కాబట్టి ఇది ఒక force ని అనుభవిస్తుంది, F equals I-one L cross B-two. దిశను ఊహించండి. మూడు సెకన్లు తీసుకోండి.", "glow": "force1_predict", "pause_after_ms": 3000 },
+            { "id": "s4_2", "text_en": "Wire 1 carries I-one through that field, so it feels a force, F equals I-one L cross B-two. The right-hand rule gives its direction.", "text_hi": "Wire 1 उस field में से I-one ले जाता है, इसलिए यह एक force महसूस करता है, F equals I-one L cross B-two। right-hand rule इसकी दिशा देता है।", "text_te": "Wire 1 ఆ field గుండా I-one ని మోస్తుంది, కాబట్టి ఇది ఒక force ని అనుభవిస్తుంది, F equals I-one L cross B-two. right-hand rule దీని దిశను ఇస్తుంది.", "glow": "force1_predict" },
             { "id": "s4_3", "text_en": "The right-hand rule gives a force on wire 1 pointing toward wire 2. Wire 1 is pulled inward too.", "text_hi": "right-hand rule से wire 1 पर एक force मिलता है जो wire 2 की ओर इशारा करता है। Wire 1 भी अंदर की ओर खिंचता है।", "text_te": "right-hand rule ప్రకారం wire 1 పై wire 2 వైపు చూపే force వస్తుంది. Wire 1 కూడా లోపలికి లాగబడుతుంది.", "glow": ["force1_reveal", "pcf_F1"], "math_show": "\\vec{F} = I_1 \\vec{L} \\times \\vec{B}_2" }
           ]
         }
       },
       "STATE_5": {
         "title": "Parallel currents attract",
-        "duration": 26,
+        "duration": 20,
         "focal_primitive_id": "attract_title",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "has_prebuilt_deep_dive": false,
         "scene_composition": [
           {
@@ -302,25 +299,21 @@
             "id": "attract_warn",
             "position": { "x": 560, "y": 230 },
             "text": "Careful! Like CHARGES repel.\nBut like (parallel) CURRENTS\nATTRACT. Opposite rule.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s5_4"
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
             "id": "attract_note",
             "position": { "x": 380, "y": 470 },
             "text": "Two forces, equal and opposite, both inward — the wires move toward each other.",
-            "color": "#FFF176",
-            "reveal_at_tts_id": "s5_5"
+            "color": "#FFF176"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Wire 2 is pulled toward wire 1. What about wire 1? Take three seconds.", "text_hi": "Wire 2 wire 1 की ओर खिंचता है। और wire 1 का क्या? तीन सेकंड लीजिए।", "text_te": "Wire 2 wire 1 వైపు లాగబడుతుంది. మరి wire 1 సంగతేంటి? మూడు సెకన్లు తీసుకోండి.", "glow": "attract_title", "pause_after_ms": 3000 },
-            { "id": "s5_2", "text_en": "By Newton's third law, wire 1 feels an equal and opposite force — toward wire 2.", "text_hi": "Newton's third law के अनुसार, wire 1 एक बराबर और विपरीत force महसूस करता है — wire 2 की ओर।", "text_te": "Newton's third law ప్రకారం, wire 1 సమానమైన మరియు వ్యతిరేక force ని అనుభవిస్తుంది — wire 2 వైపు.", "glow": ["pcf_F1", "pcf_F2"] },
-            { "id": "s5_3", "text_en": "Both forces point inward. The two wires pull together. Parallel currents attract.", "text_hi": "दोनों forces अंदर की ओर इशारा करते हैं। दोनों wires पास खिंचते हैं। Parallel currents attract करते हैं।", "text_te": "రెండు forces లోపలికి చూపుతాయి. రెండు wires దగ్గరకు లాగబడతాయి. Parallel currents attract అవుతాయి.", "glow": "attract_predict" },
-            { "id": "s5_4", "text_en": "Watch the trap. Like charges repel. But like currents — same direction — attract. It is the opposite rule.", "text_hi": "इस जाल से सावधान रहिए। Like charges repel करते हैं। लेकिन like currents — एक ही direction — attract करते हैं। यह उल्टा rule है।", "text_te": "ఈ ట్రాప్ ని గమనించండి. Like charges repel అవుతాయి. కానీ like currents — ఒకే direction — attract అవుతాయి. ఇది వ్యతిరేక rule.", "glow": "attract_warn" },
-            { "id": "s5_5", "text_en": "Two equal, opposite, inward forces. The wires draw together.", "text_hi": "दो बराबर, विपरीत, अंदर की ओर forces। दोनों wires पास आ जाते हैं।", "text_te": "రెండు సమానమైన, వ్యతిరేక, లోపలికి ఉన్న forces. రెండు wires దగ్గరకు వస్తాయి.", "glow": "attract_note" }
+            { "id": "s5_1", "text_en": "Wire 2 is pulled toward wire 1. By Newton's third law, wire 1 feels an equal and opposite force — back toward wire 2.", "text_hi": "Wire 2 wire 1 की ओर खिंचता है। Newton's third law के अनुसार, wire 1 एक बराबर और विपरीत force महसूस करता है — वापस wire 2 की ओर।", "text_te": "Wire 2 wire 1 వైపు లాగబడుతుంది. Newton's third law ప్రకారం, wire 1 సమానమైన మరియు వ్యతిరేక force ని అనుభవిస్తుంది — తిరిగి wire 2 వైపు.", "glow": ["pcf_F1", "pcf_F2"] },
+            { "id": "s5_2", "text_en": "Both forces point inward, so the two wires pull together. Parallel currents attract.", "text_hi": "दोनों forces अंदर की ओर इशारा करते हैं, इसलिए दोनों wires पास खिंचते हैं। Parallel currents attract करते हैं।", "text_te": "రెండు forces లోపలికి చూపుతాయి, కాబట్టి రెండు wires దగ్గరకు లాగబడతాయి. Parallel currents attract అవుతాయి.", "glow": "attract_predict" },
+            { "id": "s5_3", "text_en": "Watch the trap. Like charges repel, but like currents — same direction — attract. It is the opposite rule.", "text_hi": "इस जाल से सावधान रहिए। Like charges repel करते हैं, लेकिन like currents — एक ही direction — attract करते हैं। यह उल्टा rule है।", "text_te": "ఈ ట్రాప్ ని గమనించండి. Like charges repel అవుతాయి, కానీ like currents — ఒకే direction — attract అవుతాయి. ఇది వ్యతిరేక rule." , "glow": "attract_warn" }
           ]
         },
         "misconception_watch": [
@@ -405,8 +398,7 @@
             "id": "repel_reveal",
             "position": { "x": 560, "y": 230 },
             "text": "Same direction → attract.\nOpposite direction → repel.\nThat is the whole rule.",
-            "color": "#66BB6A",
-            "reveal_at_tts_id": "s7_3"
+            "color": "#66BB6A"
           },
           {
             "type": "annotation",
@@ -420,8 +412,7 @@
           "tts_sentences": [
             { "id": "s7_1", "text_en": "Now wire 2's current points the opposite way — downward. The two currents are antiparallel.", "text_hi": "अब wire 2 का current उल्टी दिशा में है — नीचे की ओर। दोनों currents antiparallel हैं।", "text_te": "ఇప్పుడు wire 2 యొక్క current వ్యతిరేక దిశలో ఉంది — కిందికి. రెండు currents antiparallel.", "glow": "repel_title" },
             { "id": "s7_2", "text_en": "Both force arrows now point outward. The wires push apart. Antiparallel currents repel.", "text_hi": "अब दोनों force arrows बाहर की ओर इशारा करते हैं। दोनों wires दूर धकेलते हैं। Antiparallel currents repel करते हैं।", "text_te": "ఇప్పుడు రెండు force arrows బయటికి చూపుతాయి. రెండు wires దూరంగా నెడతాయి. Antiparallel currents repel అవుతాయి.", "glow": ["pcf_F1", "pcf_F2"] },
-            { "id": "s7_3", "text_en": "So the rule is simple. Same direction attracts, opposite direction repels.", "text_hi": "तो rule सरल है। एक ही direction attract करती है, उल्टी direction repel करती है।", "text_te": "కాబట్టి rule సింపుల్. ఒకే direction attract చేస్తుంది, వ్యతిరేక direction repel చేస్తుంది.", "glow": "repel_reveal" },
-            { "id": "s7_4", "text_en": "And if you reversed both currents together, they would still attract — only the relative direction matters.", "text_hi": "और अगर आप दोनों currents को एक साथ उल्टा कर दें, तब भी वे attract करेंगे — सिर्फ़ relative direction मायने रखती है।", "text_te": "ఇంకా మీరు రెండు currents ని ఒకేసారి తిప్పేస్తే, అవి ఇంకా attract అవుతాయి — relative direction మాత్రమే ముఖ్యం.", "glow": "repel_note" }
+            { "id": "s7_3", "text_en": "Same direction attracts, opposite repels. Reverse both together and they still attract — only the relative direction matters.", "text_hi": "एक ही direction attract करती है, उल्टी repel करती है। दोनों को एक साथ उल्टा कर दें तब भी वे attract करेंगे — सिर्फ़ relative direction मायने रखती है।", "text_te": "ఒకే direction attract చేస్తుంది, వ్యతిరేకం repel చేస్తుంది. రెండింటినీ ఒకేసారి తిప్పేసినా అవి ఇంకా attract అవుతాయి — relative direction మాత్రమే ముఖ్యం.", "glow": "repel_reveal" }
           ]
         },
         "misconception_watch": [
@@ -476,7 +467,7 @@
       },
       "STATE_9": {
         "title": "Your turn",
-        "duration": 30,
+        "duration": 0,
         "focal_primitive_id": "sandbox_title",
         "advance_mode": "interaction_complete",
         "scene_composition": [
@@ -544,6 +535,9 @@
         "visible_elements": [],
         "camera_position": [2.2, 1.6, 6.2],
         "caption": "Two long parallel wires. Both currents point up. Orange dots show the current flowing. No field or force shown yet.",
+        "show_sliders": false,
+        "visible_controls": [],
+        "variable_overrides": { "I1": 5, "I2": 5 },
         "extras": {
           "current_dots": true,
           "wire_1_dir": "up",
@@ -555,6 +549,9 @@
         "visible_elements": [],
         "camera_position": [1.2, 4.2, 5.2],
         "caption": "Wire 1's circular field reaches wire 2. The green arrow is B1 = mu0 I1 / 2 pi d at wire 2's location.",
+        "show_sliders": false,
+        "visible_controls": [],
+        "variable_overrides": { "I1": 5, "I2": 5 },
         "extras": {
           "current_dots": true,
           "show_field": true,
@@ -568,6 +565,9 @@
         "visible_elements": [],
         "camera_position": [2.2, 1.6, 6.2],
         "caption": "Wire 2 carries I2 through B1, so F = I2 L x B1 points toward wire 1. Wire 2 is pulled inward. The right hand shows the rule: fingers along I, curl into B1, thumb gives F.",
+        "show_sliders": false,
+        "visible_controls": [],
+        "variable_overrides": { "I1": 5, "I2": 5 },
         "extras": {
           "current_dots": true,
           "show_b1": true,
@@ -584,6 +584,9 @@
         "visible_elements": [],
         "camera_position": [-2.2, 1.6, 6.2],
         "caption": "Wire 1 carries I1 through B2 (wire 2's field), so F = I1 L x B2 points toward wire 2. Wire 1 is pulled inward too. The right hand: fingers along I1, curl into B2, thumb gives F.",
+        "show_sliders": false,
+        "visible_controls": [],
+        "variable_overrides": { "I1": 5, "I2": 5 },
         "extras": {
           "current_dots": true,
           "show_b2": true,
@@ -600,6 +603,9 @@
         "visible_elements": [],
         "camera_position": [2.2, 1.6, 6.2],
         "caption": "Newton's third law: wire 1 feels an equal force toward wire 2. Both arrows point inward — the wires attract.",
+        "show_sliders": false,
+        "visible_controls": [],
+        "variable_overrides": { "I1": 5, "I2": 5 },
         "extras": {
           "current_dots": true,
           "show_forces": true,
@@ -610,12 +616,18 @@
         }
       },
       "STATE_6": {
-        "label": "F/L = mu0 I1 I2 / 2 pi d",
+        "label": "F/L = mu0 I1 I2 / 2 pi d (symmetric: both fields + both forces)",
         "visible_elements": [],
-        "camera_position": [2.2, 1.6, 6.2],
-        "caption": "Combine B1 and F: force per length F/L = mu0 I1 I2 / 2 pi d. Symmetric in both currents.",
+        "camera_position": [1.4, 3.8, 5.6],
+        "caption": "Combine B1 and F: force per length F/L = mu0 I1 I2 / 2 pi d. Symmetric — both wires' fields and both forces shown together.",
+        "show_sliders": false,
+        "visible_controls": [],
+        "variable_overrides": { "I1": 5, "I2": 5 },
         "extras": {
           "current_dots": true,
+          "show_field": true,
+          "show_b1": true,
+          "show_b2": true,
           "show_forces": true,
           "force_on_wire_1": true,
           "force_on_wire_2": true,
@@ -628,6 +640,9 @@
         "visible_elements": [],
         "camera_position": [2.2, 1.6, 6.2],
         "caption": "Wire 2's current now points DOWN (antiparallel). The force arrows point outward — antiparallel currents repel.",
+        "show_sliders": false,
+        "visible_controls": [],
+        "variable_overrides": { "I1": 5, "I2": 5 },
         "extras": {
           "current_dots": true,
           "show_forces": true,
@@ -638,15 +653,19 @@
         }
       },
       "STATE_8": {
-        "label": "Defines the ampere (static)",
+        "label": "Defines the ampere — 1 A each, 1 m apart (distance marker)",
         "visible_elements": [],
-        "camera_position": [2.2, 1.6, 6.2],
+        "camera_position": [0.6, 1.2, 9.4],
         "caption": "Two infinite parallel wires 1 m apart, each 1 A, attract with F/L = 2e-7 N/m. This defines the ampere.",
+        "show_sliders": false,
+        "visible_controls": [],
+        "variable_overrides": { "I1": 1, "I2": 1 },
         "extras": {
           "current_dots": true,
           "show_forces": true,
           "force_on_wire_1": true,
           "force_on_wire_2": true,
+          "show_dist_marker": true,
           "wire_1_dir": "up",
           "wire_2_dir": "up"
         }
@@ -657,6 +676,8 @@
         "camera_position": [2.2, 1.6, 6.2],
         "caption": "Drag I1 and I2 to grow the force; press reverse-I2 to flip attract/repel. F/L = mu0 I1 I2 / 2 pi d.",
         "show_sliders": true,
+        "visible_controls": ["I1", "I2", "flip"],
+        "variable_overrides": { "I1": 5, "I2": 5 },
         "extras": {
           "current_dots": true,
           "show_forces": true,
