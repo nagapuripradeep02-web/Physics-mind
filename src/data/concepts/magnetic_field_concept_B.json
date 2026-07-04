@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "medium",
-  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the chapter-opening 'what is a magnetic field' idea that precedes §4.4 magnitude); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This concept slots BEFORE magnetic_field_wire (§4.4): it establishes WHAT a magnetic field IS — a genuine vector field that exists at every point of space, sourced by MOVING charge (current), revealed (not created) by a compass — exactly as the electric field is a vector field sourced by a still charge and revealed by a test charge. It deliberately does NOT teach the magnitude B = μ₀I/(2πr); that numeric lesson belongs to magnetic_field_wire. The atomic claim: a moving charge fills the space around it with a vector field B that CIRCULATES around the wire (azimuthal, tangent, perpendicular to the wire), just as a static charge fills space with the radial vector field E. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + predict→reveal). Renders on field_3d via the straight_wire_current scenario; the STATE_2/3 compass on→off→on toggle and the STATE_6 side-by-side E-vs-B comparison panel are FLAGGED to renderer_primitives as new scenario support.",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism — table-of-contents reference only (the chapter-opening 'what is a magnetic field' idea that precedes §4.4 magnitude); teaching authored from first principles. NCERT consulted for the Indian real-world anchor only. This concept slots BEFORE magnetic_field_wire (§4.4): it establishes WHAT a magnetic field IS — a genuine vector field that exists at every point of space, sourced by MOVING charge (current), revealed (not created) by a compass — exactly as the electric field is a vector field sourced by a still charge and revealed by a test charge. It deliberately does NOT teach the magnitude B = μ₀I/(2πr); that numeric lesson belongs to magnetic_field_wire. The atomic claim: a moving charge fills the space around it with a vector field B that CIRCULATES around the wire (azimuthal, tangent, perpendicular to the wire), just as a static charge fills space with the radial vector field E. Conceptual-only ship (no mode_overrides). EPIC-L-first (no epic_c_branches; misconceptions confronted inside EPIC-L via Rule 16a misconception_watch + straightforward contrast beats — the wrong expectation's consequence shown, then the real physics, no predict-pause). Built in the straightforward (non-Socratic, Rule 31) model: six motion-distinct guided teaching beats + one combined interactive sandbox, each state exposing ONLY its own contextual controls (the per-state swc.mode block drives control-row visibility, mirroring faraday.mode). Renders on field_3d via the straight_wire_current scenario; the per-state swc control-visibility layer, the draggable azimuthal compass_position control, the multi-hop compass, the S2 ghost-radial-needle / S5 ghost-along-wire contrast primitives, the S5 tangent-arrows-assemble-into-rings animation, the S6 side-by-side E-vs-B comparison panel, and the six narration-bound scenario_cue one-shots are FLAGGED to renderer_primitives as new scenario support.",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -33,7 +33,7 @@
         "step": 0.5
       },
       "r": {
-        "name": "Distance from the wire to the field-probe point",
+        "name": "Distance from the wire to the field-probe point (grounding for B_magnitude only; never a slider or visible control)",
         "unit": "m",
         "min": 0.02,
         "max": 0.30,
@@ -98,16 +98,17 @@
   "entry_state_map": {
     "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4", "STATE_5", "STATE_6"],
     "source": ["STATE_1", "STATE_2", "STATE_3"],
-    "analogy": ["STATE_5", "STATE_6"]
+    "analogy": ["STATE_5", "STATE_6"],
+    "exploration": ["STATE_7"]
   },
   "epic_l_path": {
-    "state_count": 6,
+    "state_count": 7,
     "states": {
       "STATE_1": {
         "title": "The Source — a current starts to flow",
-        "duration": 13,
+        "duration": 20,
         "focal_primitive_id": "source_label",
-        "advance_mode": "auto_after_tts",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -133,17 +134,24 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "Here is a plain wire joined to a battery. The switch is open, so no current flows yet — nothing is moving.", "text_hi": "यहाँ एक simple wire है जो battery से जुड़ी है। switch अभी open है, इसलिए अभी कोई current नहीं बह रहा — कुछ भी move नहीं हो रहा।", "text_te": "ఇక్కడ ఒక simple wire ఉంది, battery కి connect అయి ఉంది. switch ఇప్పుడు open గా ఉంది, కాబట్టి ఇంకా ఏ current ప్రవహించడం లేదు — ఏమీ move అవ్వడం లేదు." },
-            { "id": "s1_2", "text_en": "Now the switch closes. Watch the yellow dots — charge starts moving up the wire. That moving charge is the current.", "text_hi": "अब switch close होता है। yellow dots को देखिए — charge wire के ऊपर move करना शुरू करता है। वही moving charge current है।", "text_te": "ఇప్పుడు switch close అవుతుంది. yellow dots చూడండి — charge wire పై పైకి move అవ్వడం మొదలవుతుంది. ఆ moving charge నే current అంటాం." },
-            { "id": "s1_3", "text_en": "Hold on to this one idea: the source we are studying is moving charge. Not a magnet — a current.", "text_hi": "यह एक idea याद रखिए: हम जो source पढ़ रहे हैं वह moving charge है। magnet नहीं — current है।", "text_te": "ఈ ఒక్క idea గుర్తు పెట్టుకోండి: మనం చదువుతున్న source అంటే moving charge. magnet కాదు — current." }
+            { "id": "s1_1", "text_en": "Here is a wire joined to a battery. The switch is open — no current yet.", "text_hi": "यहाँ एक wire है, battery से जुड़ी। switch open है — अभी कोई current नहीं।", "text_te": "ఇక్కడ ఒక wire ఉంది, battery కి connect అయి. switch open గా ఉంది — ఇంకా current లేదు.", "glow": "wire_label" },
+            { "id": "s1_2", "text_en": "The switch closes. Watch the yellow dots move up the wire — that moving charge is the current.", "text_hi": "switch close होता है। yellow dots को wire में ऊपर जाते देखिए — वही moving charge current है।", "text_te": "switch close అవుతుంది. yellow dots wire పై పైకి వెళ్తున్నాయి చూడండి — ఆ moving charge నే current.", "glow": "current_dots_label", "scenario_cue": "switch_close" },
+            { "id": "s1_3", "text_en": "The source is moving charge — not a magnet, not the metal, not the voltage.", "text_hi": "source moving charge है — magnet नहीं, metal नहीं, voltage नहीं।", "text_te": "source అంటే moving charge — magnet కాదు, metal కాదు, voltage కాదు.", "glow": "source_label" }
           ]
-        }
+        },
+        "misconception_watch": [
+          {
+            "belief": "The wire's metal or the battery's voltage is what makes the magnetic field",
+            "visual_counter": "With the switch open the wire and battery are right there, yet no field appears; the field only shows up once the charge starts moving.",
+            "one_line_fix": "The source is moving charge — a current — not the wire's metal and not the battery's voltage."
+          }
+        ]
       },
       "STATE_2": {
         "title": "Oersted's Reveal — the compass swings",
-        "duration": 14,
+        "duration": 22,
         "focal_primitive_id": "compass_needle",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -154,9 +162,9 @@
           },
           {
             "type": "annotation",
-            "id": "predict_label",
+            "id": "swing_label",
             "position": { "x": 360, "y": 70 },
-            "text": "Predict: which way will the needle turn?",
+            "text": "current flows → needle swings off north",
             "color": "#FFF176"
           },
           {
@@ -169,10 +177,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "Bring a compass next to the live wire. At rest, its needle simply points north.", "text_hi": "एक compass को live wire के पास लाइए। rest में इसकी needle बस north की ओर इशारा करती है।", "text_te": "ఒక compass ని live wire దగ్గర తీసుకు రండి. rest లో దాని needle కేవలం north వైపు చూపిస్తుంది." },
-            { "id": "s2_2", "text_en": "Before I show you — predict. With current flowing, which way do you think the needle will swing? Take a moment.", "text_hi": "दिखाने से पहले — predict करिए। current बहते हुए, आपको क्या लगता है needle किस तरफ swing करेगी? एक पल सोचिए।", "text_te": "మీకు చూపించే ముందు — predict చేయండి. current ప్రవహిస్తుండగా, needle ఏ వైపు swing అవుతుందని మీకు అనిపిస్తుంది? ఒక్క నిమిషం ఆలోచించండి.", "pause_after_ms": 3000 },
-            { "id": "s2_3", "text_en": "Watch. The needle swings away from north and lines up tangent to the field that circles the wire.", "text_hi": "देखिए। needle north से दूर swing करती है और wire के चारों ओर circle करने वाले field के tangent में line up हो जाती है।", "text_te": "చూడండి. needle north నుండి దూరంగా swing అవుతుంది మరియు wire చుట్టూ circle చేస్తున్న field కి tangent గా line up అవుతుంది." },
-            { "id": "s2_4", "text_en": "This is exactly what Oersted saw in 1820. A current — moving charge — bends the compass. That was the birth of electromagnetism.", "text_hi": "यही Oersted ने 1820 में देखा था। एक current — moving charge — compass को मोड़ देता है। वह electromagnetism का जन्म था।", "text_te": "1820 లో Oersted చూసింది సరిగ్గా ఇదే. ఒక current — moving charge — compass ని వంచింది. అదే electromagnetism పుట్టిన క్షణం." }
+            { "id": "s2_1", "text_en": "Bring a compass next to the live wire. At rest, its needle just points north.", "text_hi": "एक compass को live wire के पास लाइए। rest में इसकी needle बस north की ओर इशारा करती है।", "text_te": "ఒక compass ని live wire దగ్గర తీసుకు రండి. rest లో దాని needle కేవలం north వైపు చూపిస్తుంది.", "glow": "compass_needle" },
+            { "id": "s2_2", "text_en": "You might expect it to point straight at the wire. Watch — it does not.", "text_hi": "आप सोच सकते हैं यह सीधे wire की ओर point करेगी। देखिए — ऐसा नहीं होता।", "text_te": "ఇది నేరుగా wire వైపు point చేస్తుందని మీరు అనుకోవచ్చు. చూడండి — అలా జరగదు.", "glow": "swing_label" },
+            { "id": "s2_3", "text_en": "The needle swings tangent to the field that circles the wire — exactly what Oersted saw in 1820.", "text_hi": "needle wire के चारों ओर circle करने वाले field के tangent में swing करती है — ठीक वही जो Oersted ने 1820 में देखा।", "text_te": "needle wire చుట్టూ circle చేస్తున్న field కి tangent గా swing అవుతుంది — 1820 లో Oersted చూసింది సరిగ్గా ఇదే.", "glow": "oersted_label", "scenario_cue": "needle_swing" }
           ]
         },
         "misconception_watch": [
@@ -185,7 +192,7 @@
       },
       "STATE_3": {
         "title": "No Current, No Field",
-        "duration": 13,
+        "duration": 15,
         "focal_primitive_id": "source_label",
         "advance_mode": "manual_click",
         "scene_composition": [
@@ -198,9 +205,9 @@
           },
           {
             "type": "annotation",
-            "id": "predict_label",
+            "id": "snap_label",
             "position": { "x": 560, "y": 250 },
-            "text": "Predict: what happens\nto the needle now?",
+            "text": "needle snaps straight\nback to north",
             "color": "#FFF176"
           },
           {
@@ -213,10 +220,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Now I open the switch. The current drops to zero — the moving charge stops.", "text_hi": "अब मैं switch खोलता हूँ। current zero हो जाता है — moving charge रुक जाता है।", "text_te": "ఇప్పుడు నేను switch తెరుస్తున్నాను. current zero కి పడిపోతుంది — moving charge ఆగిపోతుంది." },
-            { "id": "s3_2", "text_en": "Before it happens — predict. With the current gone, what will the compass needle do? Think about it.", "text_hi": "होने से पहले — predict करिए। current चले जाने पर compass needle क्या करेगी? इसके बारे में सोचिए।", "text_te": "ఇది జరిగే ముందు — predict చేయండి. current పోయాక compass needle ఏమి చేస్తుంది? ఆలోచించండి.", "pause_after_ms": 3000 },
-            { "id": "s3_3", "text_en": "It snaps straight back to north. The field vanished the instant the current stopped.", "text_hi": "वह सीधे north पर वापस snap होती है। current रुकने के instant ही field गायब हो गई।", "text_te": "అది నేరుగా north కి snap అవుతుంది. current ఆగిన instant లోనే field అదృశ్యమైంది." },
-            { "id": "s3_4", "text_en": "So the field never came from a magnet. It came from the moving charge. Stop the charge, and the field is gone.", "text_hi": "तो field कभी magnet से नहीं आई। वह moving charge से आई। charge को रोकिए, और field चली जाती है।", "text_te": "కాబట్టి field ఎప్పుడూ magnet నుండి రాలేదు. అది moving charge నుండి వచ్చింది. charge ని ఆపండి, field పోతుంది." }
+            { "id": "s3_1", "text_en": "A hidden magnet would keep the needle deflected after the current stops.", "text_hi": "एक hidden magnet होता तो current रुकने के बाद भी needle deflected रहती।", "text_te": "hidden magnet ఉంటే current ఆగిపోయాక కూడా needle deflected గానే ఉండేది.", "glow": "source_label" },
+            { "id": "s3_2", "text_en": "I open the switch — the current drops to zero.", "text_hi": "मैं switch खोलता हूँ — current zero हो जाता है।", "text_te": "నేను switch తెరుస్తాను — current zero అవుతుంది.", "glow": "switch_label", "scenario_cue": "switch_open" },
+            { "id": "s3_3", "text_en": "But it snaps back to north. No moving charge, no field — and no magnet.", "text_hi": "पर यह north पर वापस snap होती है। कोई moving charge नहीं, कोई field नहीं — और कोई magnet नहीं।", "text_te": "కానీ ఇది north కి snap అవుతుంది. moving charge లేదు, field లేదు — magnet కూడా లేదు.", "glow": "snap_label" }
           ]
         },
         "misconception_watch": [
@@ -229,15 +235,15 @@
       },
       "STATE_4": {
         "title": "The Field Fills All Space",
-        "duration": 14,
+        "duration": 16,
         "focal_primitive_id": "space_fill_label",
-        "advance_mode": "wait_for_answer",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
-            "id": "predict_label",
+            "id": "tangent_here_label",
             "position": { "x": 360, "y": 70 },
-            "text": "Predict: at a NEW spot, will the needle turn the same way?",
+            "text": "each new point → its own tangent turn",
             "color": "#FFF176"
           },
           {
@@ -257,10 +263,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Switch the current back on and move the compass to a brand-new spot near the wire.", "text_hi": "current को वापस on करें और compass को wire के पास एक बिल्कुल नई जगह ले जाएं।", "text_te": "current ని మళ్ళీ on చేయండి మరియు compass ని wire దగ్గర ఒక కొత్త spot కి move చేయండి." },
-            { "id": "s4_2", "text_en": "Predict first: at this new point, does the needle turn the same way, or a different way? Take a second.", "text_hi": "पहले predict करिए: इस नए point पर, needle उसी तरफ मुड़ती है, या अलग तरफ? एक पल लीजिए।", "text_te": "ముందు predict చేయండి: ఈ కొత్త point వద్ద, needle అదే వైపు తిరుగుతుందా, లేదా వేరే వైపా? ఒక second తీసుకోండి.", "pause_after_ms": 3000 },
-            { "id": "s4_3", "text_en": "It deflects again — but tangent to the circle at THIS point, so it lines up in a different direction.", "text_hi": "वह फिर deflect होती है — लेकिन इस point पर circle के tangent में, इसलिए एक अलग direction में line up हो जाती है।", "text_te": "అది మళ్ళీ deflect అవుతుంది — కానీ ఈ point వద్ద circle కి tangent గా, కాబట్టి ఒక వేరే direction లో line up అవుతుంది." },
-            { "id": "s4_4", "text_en": "The field was already there, at every point in the space. The compass only reveals what was waiting at each spot.", "text_hi": "field पहले से ही वहाँ थी, space के हर point पर। compass केवल वह reveal करता है जो हर spot पर wait कर रहा था।", "text_te": "field అప్పటికే అక్కడ ఉంది, space లోని ప్రతి point వద్ద. compass కేవలం ప్రతి spot వద్ద వేచి ఉన్నది reveal చేస్తుంది." }
+            { "id": "s4_1", "text_en": "Switch the current on and move the compass to a new spot.", "text_hi": "current on कीजिए और compass को एक नई जगह ले जाइए।", "text_te": "current on చేయండి మరియు compass ని కొత్త spot కి తీసుకెళ్లండి.", "glow": "hop_label", "scenario_cue": "compass_hop" },
+            { "id": "s4_2", "text_en": "You might think the field lives only where the compass sat. It deflects here too.", "text_hi": "आप सोच सकते हैं field सिर्फ वहीं है जहाँ compass था। यहाँ भी deflect होती है।", "text_te": "field కేవలం compass ఉన్న చోటే ఉందని అనుకోవచ్చు. ఇక్కడ కూడా deflect అవుతుంది.", "glow": "tangent_here_label" },
+            { "id": "s4_3", "text_en": "The field was already at every point. The compass just reveals it.", "text_hi": "field पहले से हर point पर थी। compass बस उसे reveal करता है।", "text_te": "field అప్పటికే ప్రతి point వద్ద ఉంది. compass దాన్ని reveal చేస్తుంది.", "glow": "space_fill_label" }
           ]
         },
         "misconception_watch": [
@@ -273,7 +278,7 @@
       },
       "STATE_5": {
         "title": "B Is a Vector Field",
-        "duration": 15,
+        "duration": 20,
         "focal_primitive_id": "tangent_label",
         "advance_mode": "manual_click",
         "scene_composition": [
@@ -301,10 +306,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Now show the whole field at once. Tangent arrows appear all around the wire and join into full 3D rings.", "text_hi": "अब पूरा field एक साथ दिखाते हैं। tangent arrows wire के चारों ओर appear होते हैं और full 3D rings में जुड़ जाते हैं।", "text_te": "ఇప్పుడు మొత్తం field ఒకేసారి చూపిద్దాం. tangent arrows wire చుట్టూ appear అవుతాయి మరియు full 3D rings లో చేరతాయి." },
-            { "id": "s5_2", "text_en": "Every arrow circulates around the wire. None points along the wire, and none points straight out from it.", "text_hi": "हर arrow wire के चारों ओर circulate करता है। कोई भी wire के साथ point नहीं करता, और कोई भी उससे सीधे बाहर point नहीं करता।", "text_te": "ప్రతి arrow wire చుట్టూ circulate అవుతుంది. ఏ arrow కూడా wire వెంట point చేయదు, మరియు ఏదీ దాని నుండి నేరుగా బయటకు point చేయదు." },
-            { "id": "s5_3", "text_en": "The magnetic field B is perpendicular to the wire, tangent to the circle through each point.", "text_hi": "magnetic field B wire के perpendicular है, हर point से गुजरने वाले circle के tangent में।", "text_te": "magnetic field B wire కి perpendicular గా ఉంటుంది, ప్రతి point గుండా వెళ్ళే circle కి tangent గా ఉంటుంది." },
-            { "id": "s5_4", "text_en": "A size and a direction at every point of space — that is exactly what we mean by a vector field.", "text_hi": "space के हर point पर एक size और एक direction — यही हमारा vector field से मतलब है।", "text_te": "space లోని ప్రతి point వద్ద ఒక size మరియు ఒక direction — ఇదే మనం vector field అని అర్థం చేసుకుంటాం." }
+            { "id": "s5_1", "text_en": "Now show the whole field. Tangent arrows appear around the wire and join into full 3D rings.", "text_hi": "अब पूरा field दिखाते हैं। tangent arrows wire के चारों ओर appear होते हैं और full 3D rings में जुड़ते हैं।", "text_te": "ఇప్పుడు మొత్తం field చూపిద్దాం. tangent arrows wire చుట్టూ appear అయి full 3D rings లో చేరతాయి.", "glow": "rings_label", "scenario_cue": "rings_assemble" },
+            { "id": "s5_2", "text_en": "Every arrow is tangent to a ring, perpendicular to the wire — none points along it.", "text_hi": "हर arrow ring के tangent में है, wire के perpendicular — कोई भी wire के साथ point नहीं करता।", "text_te": "ప్రతి arrow ring కి tangent గా, wire కి perpendicular గా ఉంటుంది — ఏదీ wire వెంట point చేయదు.", "glow": "tangent_label" },
+            { "id": "s5_3", "text_en": "A size and direction at every point of space — that is a vector field.", "text_hi": "space के हर point पर एक size और direction — यही vector field है।", "text_te": "space లోని ప్రతి point వద్ద size మరియు direction — ఇదే vector field.", "glow": "vector_field_label" }
           ]
         },
         "misconception_watch": [
@@ -313,14 +317,13 @@
             "visual_counter": "Rotate the view: every B arrow is tangent to a ring around the wire, never parallel to it.",
             "one_line_fix": "B circulates around the wire — perpendicular to it, tangent to the circle, never along the wire."
           }
-        ],
-        "allow_deep_dive": true
+        ]
       },
       "STATE_6": {
         "title": "Just Like E",
-        "duration": 16,
+        "duration": 20,
         "focal_primitive_id": "reveal_label",
-        "advance_mode": "interaction_complete",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
@@ -353,11 +356,9 @@
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Put the two side by side. On the left, a still charge Q with a test charge q feeling a force.", "text_hi": "दोनों को side by side रखते हैं। left पर एक still charge Q है, जिसे एक test charge q force feel कर रहा है।", "text_te": "రెండింటిని side by side పెడదాం. left వైపు ఒక still charge Q ఉంది, దానిని ఒక test charge q force feel చేస్తుంది." },
-            { "id": "s6_2", "text_en": "The test charge reveals the electric field E, pointing straight out from the charge in every direction.", "text_hi": "test charge electric field E को reveal करता है, जो charge से हर direction में सीधे बाहर point करती है।", "text_te": "test charge electric field E ని reveal చేస్తుంది, ఇది charge నుండి ప్రతి direction లో నేరుగా బయటకు point చేస్తుంది." },
-            { "id": "s6_3", "text_en": "On the right, the current wire with a compass. The compass reveals the magnetic field B, circling around the wire.", "text_hi": "right पर current wire और compass है। compass magnetic field B को reveal करता है, जो wire के चारों ओर circle करता है।", "text_te": "right వైపు current wire తో compass ఉంది. compass magnetic field B ని reveal చేస్తుంది, ఇది wire చుట్టూ circle చేస్తుంది." },
-            { "id": "s6_4", "text_en": "Both are vector fields filling space, and a test object reveals each — the test charge for the electric field E, the compass for the magnetic field B.", "text_hi": "दोनों space को भरने वाले vector fields हैं, और एक test object हर एक को reveal करता है — electric field E के लिए test charge, magnetic field B के लिए compass।", "text_te": "రెండూ space ని fill చేసే vector fields, మరియు ఒక test object ప్రతిదాన్ని reveal చేస్తుంది — electric field E కి test charge, magnetic field B కి compass." },
-            { "id": "s6_5", "text_en": "Here is the whole idea: a still charge fills space with a radial electric field E; a moving charge fills space with a circulating magnetic field B.", "text_hi": "यही पूरा idea है: एक still charge space को radial electric field E से भरता है; एक moving charge space को circulating magnetic field B से भरता है।", "text_te": "ఇదే మొత్తం idea: ఒక still charge space ని radial electric field E తో fill చేస్తుంది; ఒక moving charge space ని circulating magnetic field B తో fill చేస్తుంది." }
+            { "id": "s6_1", "text_en": "Put them side by side. On the left, a still charge reveals its radial electric field E.", "text_hi": "दोनों को side by side रखिए। left पर एक still charge अपना radial electric field E reveal करता है।", "text_te": "రెండింటిని side by side పెట్టండి. left వైపు ఒక still charge దాని radial electric field E ని reveal చేస్తుంది.", "glow": "e_radial_label", "scenario_cue": "compare_reveal" },
+            { "id": "s6_2", "text_en": "On the right, a moving charge — the compass reveals its circulating magnetic field B.", "text_hi": "right पर एक moving charge — compass उसका circulating magnetic field B reveal करता है।", "text_te": "right వైపు ఒక moving charge — compass దాని circulating magnetic field B ని reveal చేస్తుంది.", "glow": "b_circulate_label" },
+            { "id": "s6_3", "text_en": "Both fill space as vector fields — the electric field points out, the magnetic field circles around.", "text_hi": "दोनों vector fields की तरह space भरते हैं — electric field बाहर point करती है, magnetic field चारों ओर circle करती है।", "text_te": "రెండూ vector fields లా space ని fill చేస్తాయి — electric field బయటకు point చేస్తుంది, magnetic field చుట్టూ circle చేస్తుంది.", "glow": "reveal_label" }
           ]
         },
         "misconception_watch": [
@@ -366,8 +367,43 @@
             "visual_counter": "Left panel: E streams radially OUT from a still charge. Right panel: B circles AROUND a moving charge. Same idea, different source and shape.",
             "one_line_fix": "E and B are both vector fields, but E comes from a still charge and points out, while B comes from a moving charge and circles around."
           }
+        ]
+      },
+      "STATE_7": {
+        "title": "Explore — drive the current, move the compass",
+        "duration": 0,
+        "focal_primitive_id": "explore_label",
+        "advance_mode": "interaction_complete",
+        "scene_composition": [
+          {
+            "type": "annotation",
+            "id": "explore_label",
+            "position": { "x": 380, "y": 60 },
+            "text": "Drive the current · move the compass",
+            "color": "#FFF176"
+          },
+          {
+            "type": "annotation",
+            "id": "try_label",
+            "position": { "x": 380, "y": 250 },
+            "text": "more current → stronger field\nmove the compass → new tangent turn",
+            "color": "#66BB6A"
+          },
+          {
+            "type": "annotation",
+            "id": "key_label",
+            "position": { "x": 380, "y": 440 },
+            "text": "moving charge → circulating B, at every point",
+            "color": "#D4D4D8"
+          }
         ],
-        "allow_deep_dive": true
+        "teacher_script": {
+          "tts_sentences": [
+            { "id": "s7_1", "text_en": "Your turn. Use the current slider to drive the moving charge, and drag the compass anywhere around the wire.", "text_hi": "अब आपकी बारी। current slider से moving charge चलाइए, और compass को wire के चारों ओर कहीं भी drag कीजिए।", "text_te": "ఇప్పుడు మీ వంతు. current slider తో moving charge ని నడపండి, మరియు compass ని wire చుట్టూ ఎక్కడైనా drag చేయండి.", "glow": "explore_label" },
+            { "id": "s7_2", "text_en": "More current makes the field stronger, and wherever you move the compass its needle lines up tangent to the ring at that point.", "text_hi": "ज़्यादा current field को stronger बनाती है, और compass को जहाँ भी ले जाएँ, उसकी needle उस point पर ring के tangent में line up हो जाती है।", "text_te": "ఎక్కువ current field ని stronger చేస్తుంది, మరియు compass ని ఎక్కడికి తీసుకెళ్లినా దాని needle ఆ point వద్ద ring కి tangent గా line up అవుతుంది.", "glow": "try_label" },
+            { "id": "s7_3", "text_en": "One idea holds it all together: a moving charge fills the space around it with a circulating magnetic field B, revealed by the compass wherever you place it.", "text_hi": "एक idea सब कुछ जोड़ता है: एक moving charge अपने चारों ओर की space को circulating magnetic field B से भरता है, जिसे compass जहाँ भी रखें reveal करता है।", "text_te": "ఒక idea అన్నింటినీ కలిపి ఉంచుతుంది: ఒక moving charge తన చుట్టూ ఉన్న space ని circulating magnetic field B తో నింపుతుంది, దీన్ని compass ని ఎక్కడ పెట్టినా reveal చేస్తుంది.", "glow": "key_label" }
+          ]
+        }
       }
     }
   },
@@ -387,66 +423,105 @@
     },
     "slider_controls": {
       "I": { "min": 0, "max": 5, "step": 0.5, "default": 3, "label": "Current I" },
-      "r": { "min": 0.02, "max": 0.30, "step": 0.01, "default": 0.05, "label": "Distance r" }
+      "compass_position": {
+        "control_type": "draggable_azimuthal",
+        "label": "Compass position",
+        "note": "NEW control (renderer support flagged). Azimuthal drag of the compass probe AROUND the wire — the angle φ at a fixed radius on the field ring. It is NOT a distance/r knob and never sets B_magnitude; it only chooses WHERE on the ring the compass sits so the needle reveals the local tangent B there.",
+        "angle_min_deg": 0,
+        "angle_max_deg": 360,
+        "angle_default_deg": 0,
+        "radius": 0.45,
+        "draggable": true
+      }
     },
     "states": {
       "STATE_1": {
         "label": "The source — switch closes, current flows up",
-        "visible_elements": ["wire_main", "curr_arr"],
-        "camera_position": [2.5, 1.5, 4],
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
+        "camera_position": [2.8, 2.3, 4.2],
         "caption": "",
-        "reveal_at_ms": 1500,
+        "reveal_at_ms": 2000,
+        "field_rotation_direction": "ccw",
         "current_direction_indicator": "up",
         "biot_element": null,
+        "show_sliders": true,
+        "visible_controls": ["I"],
+        "swc": {
+          "mode": "source_on",
+          "hide_magnitude_readout": true,
+          "show_readout": false
+        },
         "extras": {
           "switch_toggle": {
             "start_state": "open",
-            "close_at_ms": 1500,
+            "close_at_ms": 800,
+            "ramp_duration_ms": 400,
             "i_before": 0,
-            "i_after": 3
+            "i_after": 3,
+            "cue": "switch_close"
           }
         }
       },
       "STATE_2": {
         "label": "Oersted reveal — needle swings to local B",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
-        "camera_position": [3, 2, 4],
+        "camera_position": [2.2, 1.2, 3.2],
         "caption": "",
-        "reveal_at_ms": 2800,
+        "reveal_at_ms": 3500,
         "field_rotation_direction": "ccw",
         "current_direction_indicator": "up",
+        "show_sliders": true,
+        "visible_controls": [],
+        "ring_dim": 0.35,
+        "swc": {
+          "mode": "oersted",
+          "hide_magnitude_readout": true,
+          "show_readout": false
+        },
         "extras": {
           "compass": {
             "position": [1.6, 0, 0],
             "approach_from": [4.5, 0, 0],
-            "approach_duration_ms": 1200,
-            "radius": 0.45,
+            "approach_duration_ms": 1000,
+            "radius": 0.6,
             "animate_swing": true,
-            "swing_delay_ms": 2800,
-            "align_to_local_field": true
-          }
+            "swing_delay_ms": 800,
+            "align_to_local_field": true,
+            "cue": "needle_swing"
+          },
+          "ghost_radial_needle": true
         }
       },
       "STATE_3": {
         "label": "No current, no field — needle snaps back",
-        "visible_elements": ["wire_main"],
-        "camera_position": [3, 2, 4],
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
+        "camera_position": [3.2, 1.8, 4.2],
         "caption": "",
-        "reveal_at_ms": 2800,
-        "current_direction_indicator": "off",
+        "reveal_at_ms": 3400,
+        "current_direction_indicator": "up",
+        "show_sliders": true,
+        "visible_controls": ["I"],
+        "ring_dim": 0.6,
+        "swc": {
+          "mode": "source_off",
+          "hide_magnitude_readout": true,
+          "show_readout": false
+        },
         "extras": {
           "switch_toggle": {
             "start_state": "closed",
-            "open_at_ms": 2800,
+            "open_at_ms": 1800,
             "i_before": 3,
-            "i_after": 0
+            "i_after": 0,
+            "cue": "switch_open"
           },
           "compass": {
             "position": [1.6, 0, 0],
-            "radius": 0.45,
+            "radius": 0.6,
             "animate_swing": true,
             "snap_back_to_north": true,
-            "snap_back_at_ms": 2800,
+            "snap_back_at_ms": 1800,
+            "snap_back_duration_ms": 600,
             "align_to_local_field": true
           }
         }
@@ -454,23 +529,30 @@
       "STATE_4": {
         "label": "The field fills space — compass hops point to point",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
-        "camera_position": [3, 2, 4],
+        "camera_position": [3.5, 2.2, 4.5],
         "caption": "",
-        "reveal_at_ms": 2800,
+        "reveal_at_ms": 2500,
         "field_rotation_direction": "ccw",
         "current_direction_indicator": "up",
+        "show_sliders": true,
+        "visible_controls": ["compass_position"],
+        "swc": {
+          "mode": "fills_space",
+          "hide_magnitude_readout": true,
+          "show_readout": false
+        },
         "extras": {
           "compass": {
-            "position": [-1.4, 0, 0.8],
-            "approach_from": [1.6, 0, 0],
-            "approach_duration_ms": 1200,
-            "radius": 0.45,
+            "hop_points": [[1.6, 0, 0], [-1.4, 0, 0.8], [0, 0, 1.6]],
+            "first_hop_at_ms": 1000,
+            "hop_interval_ms": 4500,
+            "radius": 0.6,
             "animate_swing": true,
-            "swing_delay_ms": 2800,
-            "align_to_local_field": true
+            "align_to_local_field": true,
+            "cue": "compass_hop"
           },
           "faint_field_probes": {
-            "points": [[1.6, 0, 0], [-1.4, 0, 0.8], [0, 0, 1.6], [0.9, 0, -1.3]],
+            "points": [[1.6, 0, 0], [-1.4, 0, 0.8], [0, 0, 1.6]],
             "show_tangent_markers": true,
             "opacity": 0.4
           }
@@ -479,22 +561,43 @@
       "STATE_5": {
         "label": "B is a vector field — full 3D rings, all tangent",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
-        "camera_position": [4, 2, 4],
+        "camera_position": [4, 2.5, 4.5],
         "caption": "",
-        "reveal_at_ms": 1500,
+        "reveal_at_ms": 3000,
         "field_rotation_direction": "ccw",
-        "current_direction_indicator": "up"
+        "current_direction_indicator": "up",
+        "formula_overlay": "B ⟂ wire · tangent to the ring",
+        "show_sliders": true,
+        "visible_controls": [],
+        "swc": {
+          "mode": "vector_field",
+          "hide_magnitude_readout": true,
+          "show_readout": false
+        },
+        "extras": {
+          "rings_assemble": {
+            "assemble_at_ms": 1500,
+            "ghost_along_wire": true,
+            "cue": "rings_assemble"
+          }
+        }
       },
       "STATE_6": {
         "label": "Just like E — radial E (left) vs circulating B (right)",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
-        "camera_position": [3, 2, 5],
+        "camera_position": [3, 2, 5.5],
         "caption": "",
         "reveal_at_ms": 1500,
         "field_rotation_direction": "ccw",
         "current_direction_indicator": "up",
-        "show_sliders": false,
-        "hide_magnitude_readout": true,
+        "formula_overlay": "still +Q → radial E · moving charge → circulating B",
+        "show_sliders": true,
+        "visible_controls": [],
+        "swc": {
+          "mode": "compare_e_b",
+          "hide_magnitude_readout": true,
+          "show_readout": false
+        },
         "extras": {
           "dual_field_compare": {
             "left_panel": {
@@ -508,13 +611,40 @@
               "show_compass": true,
               "field": "circulating_B",
               "label": "moving charge: circulating B"
-            }
+            },
+            "reveal_at_ms": 1200,
+            "cue": "compare_reveal"
           },
           "compass": {
             "position": [1.6, 0, 0],
-            "radius": 0.4,
+            "radius": 0.5,
             "animate_swing": false,
             "align_to_local_field": true
+          }
+        }
+      },
+      "STATE_7": {
+        "label": "Explore — drive the current, move the compass",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
+        "camera_position": [3.2, 2.2, 5],
+        "caption": "",
+        "reveal_at_ms": 1500,
+        "field_rotation_direction": "ccw",
+        "current_direction_indicator": "up",
+        "show_sliders": true,
+        "visible_controls": ["I", "compass_position"],
+        "swc": {
+          "mode": "sandbox",
+          "hide_magnitude_readout": true,
+          "show_readout": false
+        },
+        "extras": {
+          "compass": {
+            "position": [1.6, 0, 0],
+            "radius": 0.6,
+            "animate_swing": true,
+            "align_to_local_field": true,
+            "draggable": true
           }
         }
       }
@@ -660,6 +790,6 @@
       "STATE_5": ["Q4"],
       "STATE_6": ["Q5", "Q6"]
     },
-    "non_assessed_states": ["STATE_2"]
+    "non_assessed_states": ["STATE_2", "STATE_7"]
   }
 }

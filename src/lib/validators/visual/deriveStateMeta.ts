@@ -188,6 +188,27 @@ export function deriveMotionExpectations(
             // by the show_sliders→interactive hold pass).
             const faraday = state ? asObj(state.faraday) : null;
             if (faraday) { out[stateId] = (faraday.mode && faraday.mode !== 'sandbox') ? true : false; continue; }
+            // motional_emf_rod (motional_emf): every guided beat animates (rod
+            // slide / charge-drift settle / RHR 3-phase curl / continuous v-driven
+            // oscillation); the sandbox (mode 'sandbox') is user-driven → declare
+            // static (its frozen tail is relaxed by the show_sliders→interactive
+            // hold pass below, via the explicit motional_emf_rod branch).
+            const mem = state ? asObj(state.motional_emf_rod) : null;
+            if (mem) { out[stateId] = (mem.mode && mem.mode !== 'sandbox') ? true : false; continue; }
+            // eddy_currents (eddy_current_pendulum): every guided beat animates
+            // (plate swing decay/oscillation, loop-glyph brightness pulse, S4
+            // twin decay contrast, S5 furnace/core crossfade); the sandbox
+            // (mode 'sandbox') is user-driven → declare static (its frozen tail
+            // is relaxed by the show_sliders→interactive hold pass below).
+            const ecp = state ? asObj(state.eddy_current_pendulum) : null;
+            if (ecp) { out[stateId] = (ecp.mode && ecp.mode !== 'sandbox') ? true : false; continue; }
+            // magnetic_field_concept_B (straight_wire_current): every guided beat
+            // animates (switch-ramp fade-in / compass approach+swing / multi-hop
+            // walk / rings-assemble crossfade / dual-panel reveal); the sandbox
+            // (mode 'sandbox') is user-driven → declare static (its frozen tail is
+            // relaxed by the show_sliders→interactive hold pass).
+            const swc = state ? asObj(state.swc) : null;
+            if (swc) { out[stateId] = (swc.mode && swc.mode !== 'sandbox') ? true : false; continue; }
             // Other field_3d states fall through to the epic_l_path-based pass
             // below (trajectory_mode / advance_mode), so don't set them here.
         }
@@ -258,7 +279,17 @@ const F3D_REVEAL_KEYS = [
     // per-state `pef` block (charge/dipole phase timed reveals).
     // faraday_law_induction (faraday): the per-state `faraday` block (mode-driven
     // magnet slide / flux change / needle deflection reveals).
-    'assembly', 'pef', 'mag', 'faraday',
+    // magnetic_field_concept_B (straight_wire_current): the per-state `swc` block
+    // (mode-driven switch ramp / compass swing+hop / rings-assemble / dual-panel
+    // compare reveals).
+    // motional_emf (motional_emf_rod): the per-state `motional_emf_rod` block
+    // (mode-driven rod slide / charge-separation / RHR-hand / open-closed-
+    // circuit / energy-balance reveals).
+    // eddy_currents (eddy_current_pendulum): the per-state
+    // `eddy_current_pendulum` block (mode-driven plate-swing decay/
+    // oscillation, loop-glyph reveals, S4 twin-decay contrast, S5 furnace/
+    // core reveals).
+    'assembly', 'pef', 'mag', 'faraday', 'swc', 'motional_emf_rod', 'eddy_current_pendulum',
 ] as const;
 
 function hasField3dTiming(state: unknown): boolean {
@@ -751,6 +782,97 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         else if (mode === 'rate') candidates.push(400);      // near first |eps| peak (needle swung)
         else candidates.push(1200);                          // flux_steady shimmer / default
     }
+    // motional_emf_rod (motional_emf): the guided beats animate on the state
+    // clock — pin the dense/frozen window at the moment each beat's payoff is
+    // strongest (rod mid-slide with both eps readouts climbing / charges mid-
+    // drift / RHR hand mid-curl / voltmeter deflected / beads flowing +
+    // F_retard visible / twin power readouts converging), never on a settled
+    // zero-motion tail.
+    const mem = asObj(state.motional_emf_rod);
+    if (mem) {
+        const mode = typeof mem.mode === 'string' ? mem.mode : '';
+        if (mode === 'flux_crosscheck') candidates.push(15000);        // mid-slide, Φ/ε climbing together
+        else if (mode === 'charge_separation') candidates.push(9000);  // mid charge-drift settle
+        else if (mode === 'polarity_rhr') candidates.push(6000);       // mid RHR curl (v→B phase)
+        else if (mode === 'open_circuit') candidates.push(10000);      // voltmeter deflected, I pinned 0
+        else if (mode === 'closed_circuit') candidates.push(10000);    // beads flowing, F_retard visible
+        else if (mode === 'energy') candidates.push(18000);            // twin power readouts converged
+        else candidates.push(1500);                                    // sandbox / no timed reveal
+    }
+    // eddy_currents (eddy_current_pendulum): the guided beats animate on the
+    // state clock — pin the dense/frozen window at the moment each beat's
+    // payoff is strongest (the field-toggle collapse mid-swing / the loop-
+    // glyph brightness peak at the bottom of the swing / the grip-hand mid-
+    // curl / the twin plates' decay contrast / the furnace-then-core
+    // crossfade), never on a settled zero-motion tail.
+    const ecp = asObj(state.eddy_current_pendulum);
+    if (ecp) {
+        const mode = typeof ecp.mode === 'string' ? ecp.mode : '';
+        if (mode === 'damping_ab_test') candidates.push(15000);        // mid field-toggle collapse
+        else if (mode === 'loop_zoom') candidates.push(4000);          // loop-glyph mid-swing brightness
+        else if (mode === 'lenz_grip') candidates.push(12000);         // grip-hand mid-curl
+        else if (mode === 'slots_twin') candidates.push(6000);         // twin plates mid-decay-contrast
+        else if (mode === 'applications') candidates.push(24000);     // core phase, laminated swap settled
+        else candidates.push(1500);                                    // sandbox / no timed reveal
+    }
+    // magnetic_field_concept_B (straight_wire_current + a per-state `swc` block):
+    // one-shot timed reveals that then HOLD their end pose (Rule 26) — the switch
+    // ramp (S1 close / S3 open, mirrors switch_toggle in the renderer's animate
+    // loop), the compass approach+swing (or, for S4's multi-hop compass, just the
+    // FIRST hop's landing — a representative "the compass moved and the needle
+    // re-aligned" frame; the fuller multi-hop cycle plays out across the dense-
+    // capture window governed by the state's authored `duration`, not this single
+    // frozen-frame pin), and the STATE_6 dual_field_compare reveal. Pin the frozen
+    // frame past the LAST payoff so THE EYE photographs the completed reveal, not
+    // a mid-ramp/mid-swing/mid-fade frame. Keys mirror the renderer's per-state
+    // `extras` (applyExtras / the straight_wire_current animate-loop block).
+    const swc = asObj(state.swc);
+    if (swc) {
+        const swcExtras = asObj(state.extras);
+        if (swcExtras) {
+            const swToggle = asObj(swcExtras.switch_toggle);
+            if (swToggle) {
+                const evAt = typeof swToggle.close_at_ms === 'number' ? swToggle.close_at_ms
+                    : typeof swToggle.open_at_ms === 'number' ? swToggle.open_at_ms : 0;
+                candidates.push(asNum(evAt, 0) + asNum(swToggle.ramp_duration_ms, 300) + 300);
+            }
+            const cmp = asObj(swcExtras.compass);
+            if (cmp) {
+                const hopPts = Array.isArray(cmp.hop_points) ? cmp.hop_points : null;
+                if (hopPts && hopPts.length > 0) {
+                    // Multi-hop (S4) fires on hop_points alone — animate_swing is
+                    // irrelevant to that path in the renderer.
+                    candidates.push(asNum(cmp.first_hop_at_ms, 0) + 700 + 500);
+                } else if (cmp.animate_swing !== false) {
+                    // Single-position swing only actually runs when animate_swing
+                    // is truthy (the renderer gates it: dud.animate_swing &&
+                    // dud.needleGroup && !dud.hop_points). S6's static compare-
+                    // panel compass sets animate_swing:false — it resolves
+                    // instantly, so it must NOT push this candidate (would over-
+                    // pin the frozen frame for no real reveal).
+                    const approach = cmp.approach_from != null ? asNum(cmp.approach_duration_ms, 1200) : 0;
+                    const swingDelay = asNum(cmp.swing_delay_ms, 1500);
+                    candidates.push(approach + swingDelay + 2000 + 400);
+                }
+                if (cmp.snap_back_to_north === true) {
+                    candidates.push(asNum(cmp.snap_back_at_ms, 0) + asNum(cmp.snap_back_duration_ms, 600) + 300);
+                }
+            }
+            const ringsAsm = asObj(swcExtras.rings_assemble);
+            if (ringsAsm) {
+                // STATE_5 assemble is now a multi-phase build (guide -> appear ->
+                // join -> ghostFade; field_3d_renderer.ts swcRaChoreo). The reveal
+                // completes when the contrast ghosts have fully dimmed — pin THE
+                // EYE's frozen frame just after that. Defaults mirror swcRaChoreo().
+                candidates.push(asNum(ringsAsm.ghost_fade_at_ms, 7600) + asNum(ringsAsm.ghost_fade_dur_ms, 4200) + 700);
+            }
+            const dfc = asObj(swcExtras.dual_field_compare);
+            if (dfc) {
+                candidates.push(asNum(dfc.reveal_at_ms, 1500) + 600 + 400);
+            }
+        }
+        if (candidates.length === 0) candidates.push(1500); // sandbox / no timed reveal this state
+    }
     // parallel_plates (parallel_plate_capacitor_field): the E = V/d uniform-field
     // arc. Its per-state `capacitor` block carries one-shot timed reveals that then
     // HOLD their end pose (Rule 26, accumulator-free), plus the STATE_6 gap-widen
@@ -1194,6 +1316,48 @@ export function deriveHoldExpectations(
             // interactive so D7 (stuck-tail) / D1 (frozen) don't false-fail.
             const emHold = asObj(state.em);
             if (emHold) { out[stateId] = 'interactive'; continue; }
+            // magnetic_field_concept_B (straight_wire_current): every state is
+            // LIVE (show_sliders true — Rule 31), so the generic show_sliders
+            // catch below would swallow S1-S6's genuine reveal-then-hold beats
+            // into 'interactive' before they ever reach it. Classify explicitly
+            // per mode instead (mirrors the mag/faraday guided-vs-sandbox split in
+            // deriveMotionExpectations above): the sandbox explore state (S7) is
+            // user-driven → interactive; every other mode is a one-shot reveal
+            // (switch ramp / compass swing+hop / rings-assemble / dual-compare)
+            // that then HOLDS → reveal_hold, so D7/D1p permit the settled tail.
+            const swcHold = asObj(state.swc);
+            if (swcHold) {
+                out[stateId] = (swcHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // motional_emf_rod (motional_emf): every state is LIVE (show_sliders
+            // true — Rule 31), so the generic show_sliders catch below would
+            // swallow S1-S6's genuine reveal-then-hold beats into 'interactive'
+            // before they ever reach it. Classify explicitly per mode instead
+            // (mirrors the mag/faraday/swc guided-vs-sandbox split above): the
+            // sandbox explore state (S7) is user-driven → interactive; every
+            // other mode is a guided beat that settles to a HOLD, so D7/D1p
+            // permit the settled tail.
+            const memHold = asObj(state.motional_emf_rod);
+            if (memHold) {
+                out[stateId] = (memHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
+            // eddy_currents (eddy_current_pendulum): every state is LIVE
+            // (show_sliders true — Rule 31), so the generic show_sliders catch
+            // below would swallow S1-S5's genuine reveal-then-hold beats into
+            // 'interactive' before they ever reach it. Classify explicitly per
+            // mode instead (mirrors the mag/faraday/swc/mem guided-vs-sandbox
+            // split above): the sandbox explore state (S6) is user-driven →
+            // interactive; every other mode is a guided beat (continuous decay/
+            // oscillation/contrast/crossfade) that never truly settles static,
+            // but is still treated as a reveal-then-hold class for D7/D1p
+            // purposes since the pacing is on the state's own clock.
+            const ecpHold = asObj(state.eddy_current_pendulum);
+            if (ecpHold) {
+                out[stateId] = (ecpHold.mode === 'sandbox') ? 'interactive' : 'reveal_hold';
+                continue;
+            }
             if (state.show_sliders === true) { out[stateId] = 'interactive'; continue; }
             // charge_distribution explore state: the density slider drives the
             // net-field arrow; static until a drag the headless harness never does.

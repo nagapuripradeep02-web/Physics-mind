@@ -6,7 +6,7 @@
   "schema_version": "2.0.0",
   "class_level": 12,
   "concept_tier": "medium",
-  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.4 (Magnetic field due to a current element / long straight wire) — table-of-contents reference only; teaching authored from first principles. Phase 0 validation demo Sim 3 (session 60, Day 1). The atomic concept being taught is the *direction* and *magnitude* of B around a long straight current-carrying wire: B forms concentric circles in planes perpendicular to the wire, direction by right-hand rule (thumb along I, fingers curl B), magnitude B = μ₀I/(2πr). This is the most-confused concept in Class 12 magnetism: students think B points along I, conflate × / · with current direction, and try to do the right-hand rule on flat paper. Three.js makes the 3D-ness visible.",
+  "source_book": "DC Pandey Class 12 Ch.4 Moving Charges and Magnetism §4.4 (Magnetic field due to a current element / long straight wire) — table-of-contents reference only; teaching authored from first principles. The atomic concept: the DIRECTION (right-hand rule, azimuthal, tangent) and MAGNITUDE (B = μ₀I/2πr) of B around a long straight current-carrying wire. Restructured 2026-07 to the Rule 31 straightforward + per-state-contextual-controls model, mirroring the just-approved, baseline-locked magnetic_field_concept_B — shares the straight_wire_current field_3d scenario and the swc (per-state control-panel) pattern concept_B seeded. This is the SECOND atom in the Ch.4 straight-wire pair: concept_B teaches WHAT B is (a vector field sourced by moving charge, azimuthal, revealed by a compass) with NO magnitude; THIS concept owns the RIGHT-HAND-RULE cases (I up → CCW, I down → CW), the TANGENT-AT-A-POINT idea, the ×/· 2D bridge, and the MAGNITUDE payoff B = μ₀I/(2πr) — STATE_7's sandbox is the only state that ever shows the numeric readout. EPIC-L-first, conceptual-only (no epic_c_branches, no mode_overrides — Rule 20 suspension). Most-confused Class 12 magnetism concept: students think B points along I, conflate ×/· with current direction, try the right-hand rule on flat paper, and assume reversing current changes B's magnitude.",
   "renderer_pair": {
     "panel_a": "field_3d",
     "panel_b": "field_3d"
@@ -15,8 +15,9 @@
     "field_3d": ["straight_wire_current"]
   },
   "prerequisites": [
-    "vector_resolution",
-    "current_not_vector"
+    "magnetic_field_concept_B",
+    "current_not_vector",
+    "vector_resolution"
   ],
   "real_world_anchor": {
     "primary": "Picture a USB cable plugged into a power bank charging your phone. A small steady current flows in the wire. Hold a magnetic compass within a few centimeters of the wire. Watch the needle swing — it does NOT point to magnetic north anymore; it tilts perpendicular to the wire. Switch off the current — the needle snaps back. The wire creates a magnetic field that wraps around it in 3D circles, strong enough to overpower Earth's field at close range.",
@@ -63,9 +64,10 @@
     "constraints": [
       "Wire is treated as infinitely long and infinitesimally thin (idealization holds when r << wire length and r >> wire diameter)",
       "B-field at any point depends ONLY on the perpendicular distance r from the wire — not on position along the wire",
-      "B is everywhere perpendicular to the radial direction (tangent to the circle through the point)",
-      "B has zero radial component and zero axial component — purely azimuthal in cylindrical coordinates around the wire",
-      "Direction reverses if the current direction reverses (right-hand rule respects sign of I)"
+      "B is everywhere perpendicular to the radial direction (tangent to the circle through the point) — zero radial component, zero axial component, purely azimuthal",
+      "I is authored as an unsigned magnitude (A); the S3→S4 current reversal is encoded via current_direction_indicator/field_rotation_direction, never by negating I — magnitude stays constant across both cases",
+      "Direction (CCW/CW sense) reverses if current direction reverses; magnitude B = μ₀I/(2πr) never changes with direction",
+      "hide_magnitude_readout:true + show_readout:false on STATES 1-6; false/true ONLY on STATE_7 — the magnitude payoff this concept owns is deliberately withheld until the explore state"
     ]
   },
   "cognitive_limits": {
@@ -74,350 +76,321 @@
     "max_words_per_tts_sentence": 30
   },
   "aha_moment": {
-    "state_id": "STATE_2",
-    "statement": "B forms 3D circles around the wire — never along it.",
-    "visual_confirmation": "Drag the camera around the wire; circles look the same shape from every angle, only the perspective changes."
+    "state_id": "STATE_3",
+    "statement": "Point your right thumb along the current; your curling fingers ARE the direction of B.",
+    "visual_confirmation": "The right-hand curl visibly matches the ring rotation in STATE_3; reversing to STATE_4 flips both the hand and the rings together."
   },
   "entry_state_map": {
-    "foundational": ["STATE_1", "STATE_2", "STATE_3"],
-    "exploration": ["STATE_4", "STATE_5", "STATE_6", "STATE_7"]
+    "foundational": ["STATE_1", "STATE_2", "STATE_3", "STATE_4"],
+    "right_hand_rule": ["STATE_3", "STATE_4"],
+    "tangent_at_point": ["STATE_5"],
+    "cross_dot_notation": ["STATE_6"],
+    "magnitude": ["STATE_7"],
+    "exploration": ["STATE_7"]
   },
   "epic_l_path": {
     "state_count": 7,
     "states": {
       "STATE_1": {
-        "title": "Oersted's Hook — A Current Deflects a Compass",
-        "duration": 12,
-        "focal_primitive_id": "wire_label",
-        "advance_mode": "auto_after_tts",
+        "title": "Oersted's Hook — a Current Deflects a Compass",
+        "duration": 22,
+        "focal_primitive_id": "compass_label",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "wire_label",
-            "position": { "x": 380, "y": 80 },
-            "text": "Straight wire — current OFF",
+            "position": { "x": 360, "y": 70 },
+            "text": "Wire + battery — switch open, no current yet",
             "color": "#FFAB40"
           },
           {
             "type": "annotation",
-            "id": "scenario_label",
-            "position": { "x": 380, "y": 440 },
-            "text": "1820: Hans Christian Oersted",
-            "color": "#D4D4D8"
+            "id": "compass_label",
+            "position": { "x": 560, "y": 250 },
+            "text": "compass needle — watch it swing",
+            "color": "#FFF176"
           },
           {
             "type": "annotation",
-            "id": "compass_callout",
-            "position": { "x": 600, "y": 250 },
-            "text": "compass needle\n(imagine it nearby)",
-            "color": "#FFF176"
+            "id": "oersted_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "1820: Oersted's discovery — current makes a magnetic field",
+            "color": "#66BB6A"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s1_1", "text_en": "Look at the scene: a vertical wire and a compass beside it. Right now the needle points north — its red tip toward you.", "text_hi": "दृश्य देखिए: एक vertical wire और उसके बगल में एक compass। अभी needle north की तरफ point कर रही है — इसकी लाल tip आपकी तरफ है।", "text_te": "దృశ్యాన్ని చూడండి: ఒక vertical wire మరియు దాని పక్కన ఒక compass. ఇప్పుడు needle north వైపు point చేస్తోంది — దాని ఎర్రటి tip మీ వైపు ఉంది." },
-            { "id": "s1_2", "text_en": "Watch what happens when current starts flowing through the wire — wait for it.", "text_hi": "ध्यान से देखिए — जब wire में current बहना शुरू होती है, तब क्या होता है — ज़रा रुकिए।", "text_te": "జాగ్రత్తగా చూడండి — wire లో current ప్రవహించడం మొదలైనప్పుడు ఏం జరుగుతుందో — కొంచెం ఆగండి." },
-            { "id": "s1_3", "text_en": "There — the compass needle just SWUNG. It snapped to point perpendicular to the wire, no longer north.", "text_hi": "देखिए — compass needle अभी अचानक हिल गई! यह wire के perpendicular direction में snap हो गई, अब north की तरफ नहीं रही।", "text_te": "చూడండి — compass needle ఇప్పుడు ఒక్కసారిగా కదిలింది! అది wire కి perpendicular గా snap అయింది, ఇక north వైపు లేదు." },
-            { "id": "s1_4", "text_en": "Hans Christian Oersted discovered this in 1820. A current-carrying wire produces a magnetic field. But where is it, and which way does it point?", "text_hi": "Hans Christian Oersted ने 1820 में यह खोज की। एक current-carrying wire, magnetic field produce करती है। लेकिन यह field कहाँ है, और किस direction में point करती है?", "text_te": "Hans Christian Oersted 1820 లో దీన్ని కనుగొన్నాడు. ఒక current-carrying wire, magnetic field ను produce చేస్తుంది. కానీ అది ఎక్కడ ఉంది, మరియు ఏ direction లో point చేస్తుంది?" }
+            { "id": "s1_1", "text_en": "Here's a wire beside a compass. Switch open, no current — the needle just points north.", "text_hi": "यहाँ एक wire है, compass के बगल में। Switch open है, कोई current नहीं — needle बस north की तरफ इशारा करती है।", "text_te": "ఇక్కడ ఒక wire ఉంది, compass పక్కన. Switch open, current లేదు — needle కేవలం north వైపు చూపిస్తోంది.", "glow": "wire_label" },
+            { "id": "s1_2", "text_en": "The switch closes — current flows up the wire.", "text_hi": "Switch close होता है — wire में ऊपर की तरफ current बहने लगती है।", "text_te": "Switch close అవుతుంది — wire లో పైకి current ప్రవహించడం మొదలవుతుంది.", "glow": "compass_label", "scenario_cue": "switch_close" },
+            { "id": "s1_3", "text_en": "Watch the needle swing away from north, moved by nothing but that current.", "text_hi": "देखिए needle north से हट जाती है — इसे और किसी चीज़ ने नहीं, बस उस current ने हिलाया।", "text_te": "needle north నుండి తొలగిపోవడం చూడండి — దీన్ని కదిలించింది ఆ current తప్ప మరేమీ కాదు.", "glow": "compass_label", "scenario_cue": "needle_swing" },
+            { "id": "s1_4", "text_en": "No magnet is here — moving charge alone made this field, just as Oersted found in 1820.", "text_hi": "यहाँ कोई magnet नहीं है — सिर्फ moving charge ने यह field बनाई, जैसा Oersted ने 1820 में पाया।", "text_te": "ఇక్కడ magnet ఏదీ లేదు — కేవలం moving charge ఈ field ను సృష్టించింది, 1820 లో Oersted కనుగొన్నట్టుగానే.", "glow": "oersted_label" }
           ]
-        }
+        },
+        "misconception_watch": [
+          {
+            "belief": "Electricity and magnetism are unrelated — a wire is just a wire",
+            "visual_counter": "The needle only deflects while current actually flows, and snaps back the instant the switch opens.",
+            "one_line_fix": "A current-carrying wire IS a source of magnetic field — no current, no field."
+          }
+        ]
       },
       "STATE_2": {
-        "title": "The Magnetic Field — 3D Circles Around the Wire",
-        "duration": 14,
-        "focal_primitive_id": "field_label",
+        "title": "B Is 3D Circles — Never Along the Wire",
+        "duration": 19,
+        "focal_primitive_id": "circles_label",
         "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "field_label",
-            "position": { "x": 380, "y": 60 },
-            "text": "Magnetic field — full 3D",
+            "position": { "x": 360, "y": 70 },
+            "text": "Magnetic field — full 3D, current flowing",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "drag_hint",
-            "position": { "x": 380, "y": 460 },
-            "text": "Drag to rotate. Field circles loop around the wire at every height.",
-            "color": "#D4D4D8"
+            "id": "not_along_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "NOT along the wire, NOT straight out",
+            "color": "#FFF176"
           },
           {
             "type": "annotation",
-            "id": "current_label",
-            "position": { "x": 600, "y": 100 },
-            "text": "I (current direction)",
-            "color": "#FFAB40"
+            "id": "circles_label",
+            "position": { "x": 560, "y": 380 },
+            "text": "Circles loop around the wire at every height",
+            "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s2_1", "text_en": "With current flowing, the wire produces a magnetic field that fills the space around it.", "text_hi": "current बहने के साथ, wire अपने चारों ओर के space में एक magnetic field produce करती है।", "text_te": "current ప్రవహించడంతో, wire తన చుట్టూ ఉన్న space లో ఒక magnetic field ను produce చేస్తుంది." },
-            { "id": "s2_2", "text_en": "But here is the surprise: the field does NOT point along the wire. And it does NOT point radially away from the wire either.", "text_hi": "लेकिन यहाँ एक हैरान करने वाली बात है: यह field wire के along point नहीं करती। और यह wire से radially बाहर की तरफ भी point नहीं करती।", "text_te": "కానీ ఇక్కడ ఒక ఆశ్చర్యకరమైన విషయం ఉంది: ఈ field, wire వెంట point చేయదు. మరియు ఇది wire నుండి radially బయటకు కూడా point చేయదు." },
-            { "id": "s2_3", "text_en": "Drag the camera to rotate the view. You see the field forms perfect circles that loop around the wire.", "text_hi": "camera को rotate करने के लिए drag कीजिए। आप देख सकते हैं कि field, perfect circles बनाती है जो wire के चारों ओर loop करती हैं।", "text_te": "view ని rotate చేయడానికి camera ని drag చేయండి. మీరు చూడవచ్చు — field, perfect circles గా ఏర్పడుతుంది, అవి wire చుట్టూ loop అవుతాయి." },
-            { "id": "s2_4", "text_en": "These are not 2D circles on paper. They are real 3D circles in three-dimensional space — at every height along the wire, a stack of circles.", "text_hi": "ये कागज़ पर बनाए गए 2D circles नहीं हैं। ये असली 3D circles हैं, three-dimensional space में — wire के हर height पर, circles का एक stack।", "text_te": "ఇవి కాగితం మీద గీసిన 2D circles కాదు. ఇవి నిజమైన 3D circles, three-dimensional space లో ఉన్నాయి — wire వెంట ప్రతి height వద్ద, circles యొక్క ఒక stack." }
+            { "id": "s2_1", "text_en": "With current flowing, the wire fills the space around it with a magnetic field.", "text_hi": "Current बहने के साथ, wire अपने चारों ओर की space को magnetic field से भर देती है।", "text_te": "current ప్రవహిస్తున్నప్పుడు, wire తన చుట్టూ ఉన్న space ని magnetic field తో నింపుతుంది.", "glow": "field_label" },
+            { "id": "s2_2", "text_en": "It doesn't point along the wire, and it doesn't point straight out either.", "text_hi": "यह wire के along point नहीं करती, और सीधे बाहर की तरफ भी नहीं।", "text_te": "ఇది wire వెంట point చేయదు, నేరుగా బయటకు కూడా చేయదు.", "glow": "not_along_label" },
+            { "id": "s2_3", "text_en": "Watch — the field joins into full 3D circles that loop around the wire, not flat rings on paper.", "text_hi": "देखिए — field पूरे 3D circles में जुड़ जाती है जो wire के चारों ओर loop करती हैं, कागज़ पर चपटे rings नहीं।", "text_te": "చూడండి — field పూర్తి 3D circles గా చేరుతుంది, ఇవి wire చుట్టూ loop అవుతాయి, కాగితం మీద flat rings కాదు.", "glow": "circles_label", "scenario_cue": "rings_assemble" }
           ]
         },
         "misconception_watch": [
           {
-            "belief": "B points in the same direction as I (along the wire)",
-            "visual_counter": "Rotate the camera; observe that the field arrows are tangent to circles, never parallel to the wire.",
-            "one_line_fix": "B is perpendicular to the wire at every point — it circles around, never along."
+            "belief": "The magnetic field points in the same direction as the current — it flows along the wire",
+            "visual_counter": "The ghost arrow drawn along the wire fades out as the real tangent rings assemble and rotate around it, never along it.",
+            "one_line_fix": "B circles around the wire, perpendicular to it — never along it."
           }
         ]
       },
       "STATE_3": {
-        "title": "Case A — Current UP, B counter-clockwise",
-        "duration": 14,
-        "focal_primitive_id": "case_a_label",
+        "title": "Case A — Current UP, the Right-Hand Curl Gives B",
+        "duration": 20,
+        "focal_primitive_id": "rhr_label",
         "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "case_a_label",
-            "position": { "x": 380, "y": 60 },
+            "position": { "x": 360, "y": 70 },
             "text": "Case A — Current UP",
             "color": "#FFB366"
           },
           {
             "type": "annotation",
-            "id": "current_up_label",
-            "position": { "x": 200, "y": 200 },
-            "text": "I points UP — yellow dots flow up the wire",
+            "id": "rhr_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "Right thumb along I — fingers curl to B",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
             "id": "ccw_label",
-            "position": { "x": 560, "y": 320 },
-            "text": "B circles run counter-clockwise\n(viewed from above)",
+            "position": { "x": 560, "y": 380 },
+            "text": "B circles run counter-clockwise (from above)",
             "color": "#66BB6A"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s3_1", "text_en": "Watch the yellow dots flowing UP the wire. That is the direction of the current — the conventional current I.", "text_hi": "wire में ऊपर की तरफ बह रहे पीले dots को देखिए। यही conventional current I की direction है।", "text_te": "wire లో పైకి ప్రవహిస్తున్న పసుపు dots ని చూడండి. అదే conventional current I యొక్క direction." },
-            { "id": "s3_2", "text_en": "Now look at the green B-field rings around the wire. They are rotating — counter-clockwise as seen from above.", "text_hi": "अब wire के चारों ओर बने हरे B-field rings को देखिए। वे rotate हो रहे हैं — ऊपर से देखने पर counter-clockwise।", "text_te": "ఇప్పుడు wire చుట్టూ ఉన్న ఆకుపచ్చ B-field rings ని చూడండి. అవి rotate అవుతున్నాయి — పైనుండి చూస్తే counter-clockwise గా." },
-            { "id": "s3_3", "text_en": "Bring up your right hand. Point the thumb UP, along the current. See how your fingers naturally curl counter-clockwise — same as the rings.", "text_hi": "अपना right hand उठाइए। thumb को ऊपर की तरफ point कीजिए, current की direction में। देखिए कैसे आपकी fingers naturally counter-clockwise curl होती हैं — बिल्कुल उन rings की तरह।", "text_te": "మీ right hand తీసుకోండి. thumb ని పైకి point చేయండి, current వెంట. మీ fingers naturally counter-clockwise గా curl అవడం చూడండి — rings లాగే." },
-            { "id": "s3_4", "text_en": "This is the right-hand rule for Case A: thumb along current I, fingers curl in the direction of magnetic field B. Always the RIGHT hand, never the left.", "text_hi": "यह है Case A के लिए right-hand rule: thumb को current I के along रखो, fingers magnetic field B की direction में curl होती हैं। हमेशा RIGHT hand, कभी left नहीं।", "text_te": "ఇది Case A కోసం right-hand rule: thumb ని current I వెంట పెట్టండి, fingers magnetic field B యొక్క direction లో curl అవుతాయి. ఎప్పుడూ RIGHT hand మాత్రమే, ఎప్పటికీ left కాదు." },
-            { "id": "s3_5", "text_en": "Hold this case in your head. Next state: we flip the current downward and watch the field reverse.", "text_hi": "इस case को अपने दिमाग में रखिए। अगला state: हम current को नीचे की तरफ flip करेंगे और field को reverse होते हुए देखेंगे।", "text_te": "ఈ case ని మీ మనసులో పెట్టుకోండి. తదుపరి state: మనం current ని కిందికి flip చేసి, field reverse అవడాన్ని చూస్తాం." }
+            { "id": "s3_1", "text_en": "Current flows up this wire — Case A.", "text_hi": "इस wire में current ऊपर की तरफ बहती है — Case A।", "text_te": "ఈ wire లో current పైకి ప్రవహిస్తుంది — Case A.", "glow": "case_a_label" },
+            { "id": "s3_2", "text_en": "Point your right thumb along the current — your curling fingers are the direction of magnetic field B.", "text_hi": "अपना right thumb current के along रखिए — आपकी curling fingers ही magnetic field B की direction हैं।", "text_te": "మీ right thumb ని current వెంట పెట్టండి — మీ curling fingers ఏవైతే ఉన్నాయో అవే magnetic field B యొక్క direction.", "glow": "rhr_label", "scenario_cue": "rhr_curl_ccw" },
+            { "id": "s3_3", "text_en": "Watch the rings turn counter-clockwise, exactly matching your fingers' curl.", "text_hi": "देखिए rings counter-clockwise घूमती हैं — बिल्कुल आपकी fingers के curl जैसी।", "text_te": "rings counter-clockwise గా తిరగడం చూడండి — సరిగ్గా మీ fingers యొక్క curl లాగే.", "glow": "ccw_label" },
+            { "id": "s3_4", "text_en": "Always the right hand, never the left — hold this picture, we flip the current next.", "text_hi": "हमेशा right hand, कभी left नहीं — इसे याद रखिए, अब हम current flip करेंगे।", "text_te": "ఎప్పుడూ right hand, ఎప్పటికీ left కాదు — దీన్ని గుర్తుంచుకోండి, ఇప్పుడు మనం current ని flip చేస్తాం.", "glow": "rhr_label" }
           ]
         },
         "misconception_watch": [
           {
-            "belief": "Use the left hand because that is the natural one to wrap",
-            "one_line_fix": "Always RIGHT hand for B around current — the convention is fixed by the cross-product right-hand rule, never the left."
+            "belief": "Use the left hand — it's the natural one to wrap around a vertical wire",
+            "visual_counter": "Only a right hand ever appears, curling in the same sense the rings rotate.",
+            "one_line_fix": "Always the RIGHT hand for B around a current — never the left."
           }
         ]
       },
       "STATE_4": {
-        "title": "Case B — Current DOWN, B clockwise",
-        "duration": 14,
-        "focal_primitive_id": "case_b_label",
-        "advance_mode": "wait_for_answer",
+        "title": "Case B — Current DOWN, the Curl Flips Too",
+        "duration": 22,
+        "focal_primitive_id": "rhr_b_label",
+        "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "case_b_label",
-            "position": { "x": 380, "y": 60 },
+            "position": { "x": 360, "y": 70 },
             "text": "Case B — Current DOWN",
             "color": "#82B1FF"
           },
           {
             "type": "annotation",
-            "id": "current_down_label",
-            "position": { "x": 200, "y": 200 },
-            "text": "I points DOWN — yellow dots flow down the wire",
+            "id": "rhr_b_label",
+            "position": { "x": 200, "y": 250 },
+            "text": "Right thumb down — fingers curl to B",
             "color": "#FFD54F"
           },
           {
             "type": "annotation",
             "id": "cw_label",
-            "position": { "x": 560, "y": 320 },
-            "text": "B circles run clockwise\n(viewed from above)",
+            "position": { "x": 560, "y": 380 },
+            "text": "B circles run clockwise (from above)",
             "color": "#EF7B7B"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s4_1", "text_en": "Now we reverse the battery. Watch the yellow dots — they are flowing DOWN the wire. The current direction has flipped.", "text_hi": "अब हम battery को reverse करते हैं। yellow dots को देखिए — वे wire के अंदर नीचे की तरफ flow हो रहे हैं। current की direction flip हो गई है।", "text_te": "ఇప్పుడు మనం battery ని reverse చేస్తున్నాం. yellow dots చూడండి — అవి wire లో కిందికి flow అవుతున్నాయి. current direction flip అయింది." },
-            { "id": "s4_2", "text_en": "Look at the rings. They are still circling the wire, but the rotation has reversed. They now go CLOCKWISE — viewed from above.", "text_hi": "rings को देखिए। वे अभी भी wire के चारों तरफ circle कर रही हैं, लेकिन rotation reverse हो गई है। अब वे CLOCKWISE जा रही हैं — ऊपर से देखने पर।", "text_te": "rings చూడండి. అవి ఇంకా wire చుట్టూ circling చేస్తున్నాయి, కానీ rotation reverse అయింది. అవి ఇప్పుడు CLOCKWISE గా వెళ్తున్నాయి — పై నుండి చూస్తే." },
-            { "id": "s4_3", "text_en": "Bring up your right hand again. This time point the thumb DOWN, along the new current. Your fingers curl in the opposite sense — clockwise.", "text_hi": "फिर से अपना right hand उठाइए। इस बार thumb को नीचे की तरफ point कीजिए, नई current की direction में। आपकी fingers opposite sense में curl होंगी — clockwise।", "text_te": "మళ్ళీ మీ right hand తీసుకోండి. ఈసారి thumb ని కిందికి point చేయండి, కొత్త current వెంట. మీ fingers opposite sense లో curl అవుతాయి — clockwise గా." },
-            { "id": "s4_4", "text_en": "Same right hand, opposite thumb, opposite curl. Reverse the current and the entire B-field reverses with it.", "text_hi": "Same right hand, opposite thumb, opposite curl। current को reverse करो और पूरा B-field उसके साथ reverse हो जाता है।", "text_te": "అదే right hand, opposite thumb, opposite curl. current ని reverse చేయండి మరియు మొత్తం B-field కూడా దానితో పాటు reverse అవుతుంది." },
-            { "id": "s4_5", "text_en": "Quick check: at a point on the LEFT of a wire carrying current downward, does magnetic field B point INTO the page or OUT of it?", "text_hi": "Quick check: एक wire पर जिसमें current नीचे की तरफ flow हो रही है, उसके LEFT side के किसी point पर, magnetic field B page के INTO point करता है या OUT of it?", "text_te": "Quick check: కిందికి current carry చేసే wire యొక్క LEFT వైపు ఉన్న ఒక point దగ్గర, magnetic field B page లోపలికి point చేస్తుందా లేదా బయటికా?" }
+            { "id": "s4_1", "text_en": "Now the current flows DOWN the wire — the opposite direction from Case A.", "text_hi": "अब current wire में नीचे की तरफ बहती है — Case A से उल्टी direction।", "text_te": "ఇప్పుడు current wire లో కిందికి ప్రవహిస్తుంది — Case A కి వ్యతిరేక direction లో.", "glow": "case_b_label", "scenario_cue": "current_flip" },
+            { "id": "s4_2", "text_en": "Point your right thumb down this time — your fingers curl clockwise.", "text_hi": "इस बार अपना right thumb नीचे रखिए — आपकी fingers clockwise curl होती हैं।", "text_te": "ఈసారి మీ right thumb ని కిందికి పెట్టండి — మీ fingers clockwise గా curl అవుతాయి.", "glow": "rhr_b_label", "scenario_cue": "rhr_curl_cw" },
+            { "id": "s4_3", "text_en": "The rings turn clockwise, matching your hand — same right hand, opposite thumb.", "text_hi": "rings clockwise घूमती हैं, आपके हाथ जैसी — same right hand, opposite thumb।", "text_te": "rings clockwise గా తిరుగుతాయి, మీ చేతిలాగే — same right hand, opposite thumb.", "glow": "cw_label" },
+            { "id": "s4_4", "text_en": "Only the direction flipped from Case A — the strength B = μ₀I/2πr never changed.", "text_hi": "सिर्फ Case A से direction बदली — strength B = μ₀I/2πr कभी नहीं बदलती।", "text_te": "కేవలం Case A నుండి direction మారింది — strength B = μ₀I/2πr ఎప్పుడూ మారదు.", "glow": "rhr_b_label" }
           ]
         },
         "misconception_watch": [
           {
-            "belief": "The B-field strength depends on which way the current flows",
-            "one_line_fix": "Magnitude B = μ₀I/(2πr) is identical for both cases — only the DIRECTION (CCW vs CW) flips when current reverses."
+            "belief": "The magnetic field's strength depends on which way the current flows",
+            "visual_counter": "The rings keep the same brightness and count as Case A — only their rotation sense flips.",
+            "one_line_fix": "Magnitude B = μ₀I/(2πr) is identical for both directions — only the direction of B flips."
           }
         ]
       },
       "STATE_5": {
-        "title": "B at a Single Point — Tangent to the Circle",
-        "duration": 12,
-        "focal_primitive_id": "point_label",
+        "title": "B at a Single Point — Tangent, Never Radial",
+        "duration": 17,
+        "focal_primitive_id": "tangent_label",
         "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "point_label",
-            "position": { "x": 380, "y": 60 },
-            "text": "Pick one point P — which way does B point?",
+            "position": { "x": 360, "y": 70 },
+            "text": "Pick point P — which way does B point?",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
             "id": "tangent_label",
             "position": { "x": 200, "y": 250 },
-            "text": "B at P is TANGENT to this circle\n(not radial, not along wire)",
+            "text": "B at P is TANGENT to the circle",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "perp_plane_label",
+            "id": "perp_label",
             "position": { "x": 560, "y": 380 },
-            "text": "B ⊥ plane containing wire and P",
+            "text": "Never radial, never along the wire",
             "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s5_1", "text_en": "Pick a single point P next to the wire. Which way does the B-field point exactly there?", "text_hi": "wire के पास एक single point P चुनिए। ठीक वहाँ B-field किस तरफ point करता है?", "text_te": "wire పక్కన ఒక్క point P తీసుకోండి. సరిగ్గా అక్కడ B-field ఏ దిశలో point చేస్తుంది?" },
-            { "id": "s5_2", "text_en": "The answer: magnetic field B is tangent to the circle through P. Not radial, not along the wire — tangent.", "text_hi": "जवाब यह है: magnetic field B उस circle पर tangent होता है जो P से गुज़रती है। radial नहीं, wire के along नहीं — बल्कि tangent।", "text_te": "సమాధానం ఇది: magnetic field B అనేది P గుండా వెళ్ళే circle కి tangent గా ఉంటుంది. radial కాదు, wire వెంట కాదు — tangent మాత్రమే." },
-            { "id": "s5_3", "text_en": "Equivalently, magnetic field B is perpendicular to the plane that contains both the wire and the point P.", "text_hi": "दूसरे शब्दों में, magnetic field B उस plane के perpendicular है जिसमें wire और point P दोनों हैं।", "text_te": "మరో విధంగా చెప్పాలంటే, magnetic field B అనేది wire మరియు point P రెండూ ఉన్న plane కి perpendicular గా ఉంటుంది." },
-            { "id": "s5_4", "text_en": "Use the right-hand rule again: thumb up the wire, fingers tell you which way the tangent points at P.", "text_hi": "फिर से right-hand rule use करिए: अंगूठे को wire की तरफ ऊपर रखिए, उंगलियाँ बताएंगी कि P पर tangent किस direction में है।", "text_te": "మళ్ళీ right-hand rule వాడండి: బొటన వేలిని wire వెంట పైకి పెట్టండి, వేళ్ళు P వద్ద tangent ఏ direction లో ఉందో చెప్తాయి." }
+            { "id": "s5_1", "text_en": "Pick one point P beside the wire — which way does B point exactly there?", "text_hi": "wire के पास एक point P चुनिए — वहाँ ठीक B किस तरफ point करती है?", "text_te": "wire పక్కన ఒక point P తీసుకోండి — సరిగ్గా అక్కడ B ఏ దిశలో point చేస్తుంది?", "glow": "point_label" },
+            { "id": "s5_2", "text_en": "It's tangent to the circle through P — never radial, never along the wire.", "text_hi": "यह P से गुज़रने वाले circle पर tangent है — radial नहीं, wire के along भी नहीं।", "text_te": "ఇది P గుండా వెళ్ళే circle కి tangent — radial కాదు, wire వెంట కూడా కాదు.", "glow": "tangent_label", "scenario_cue": "tangent_draw" },
+            { "id": "s5_3", "text_en": "Your right-hand curl gives you this exact tangent direction at any point you choose.", "text_hi": "आपका right-hand curl किसी भी point पर यही exact tangent direction देता है।", "text_te": "మీ right-hand curl ఏ point వద్దనైనా ఇదే exact tangent direction ఇస్తుంది.", "glow": "perp_label" }
           ]
-        }
+        },
+        "misconception_watch": [
+          {
+            "belief": "The field radiates straight outward from the wire, like spokes from a hub",
+            "visual_counter": "The tangent arrow at P sits perpendicular to the wire-to-P line, never along that line.",
+            "one_line_fix": "B at a point is tangent to the circle through it — never radial."
+          }
+        ]
       },
       "STATE_6": {
         "title": "Bridge to 2D — Where × and · Come From",
-        "duration": 14,
-        "focal_primitive_id": "topdown_label",
+        "duration": 22,
+        "focal_primitive_id": "into_page_label",
         "advance_mode": "manual_click",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "topdown_label",
-            "position": { "x": 380, "y": 60 },
-            "text": "Looking straight DOWN the wire from above",
+            "position": { "x": 360, "y": 70 },
+            "text": "Looking down the wire — the exam-diagram angle",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
             "id": "into_page_label",
             "position": { "x": 200, "y": 250 },
-            "text": "× = INTO the page\n(circle going away)",
+            "text": "× = field INTO the page",
             "color": "#42A5F5"
           },
           {
             "type": "annotation",
-            "id": "out_of_page_label",
+            "id": "out_page_label",
             "position": { "x": 560, "y": 250 },
-            "text": "· = OUT of page\n(circle coming toward you)",
+            "text": "· = field OUT of the page",
             "color": "#EF5350"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s6_1", "text_en": "Most physics textbooks draw this in 2D. Let me rotate the camera to look straight down at the wire from above.", "text_hi": "ज़्यादातर physics textbooks इसे 2D में draw करते हैं। मैं camera को ऊपर से wire की तरफ सीधा rotate करता हूँ।", "text_te": "చాలా physics textbooks దీన్ని 2D లో draw చేస్తాయి. నేను camera ని పైనుండి wire వైపు నేరుగా చూసేలా rotate చేస్తాను." },
-            { "id": "s6_2", "text_en": "Now you see the field circles head-on. On one side of the wire, the circles point INTO the page. On the other side, they point OUT of the page.", "text_hi": "अब आपको field circles सामने से दिख रहे हैं। wire के एक तरफ, circles page के INTO की तरफ point करते हैं। दूसरी तरफ, वे page के OUT of the page की तरफ point करते हैं।", "text_te": "ఇప్పుడు మీకు field circles నేరుగా కనిపిస్తున్నాయి. wire కి ఒక వైపు, circles INTO the page వైపు point అవుతాయి. మరో వైపు, అవి OUT of the page వైపు point అవుతాయి." },
-            { "id": "s6_3", "text_en": "Textbooks draw a cross — the multiplication sign — for INTO the page. And a dot for OUT of the page.", "text_hi": "Textbooks INTO the page के लिए cross — यानी multiplication sign — draw करते हैं। और OUT of the page के लिए dot।", "text_te": "Textbooks INTO the page కోసం cross — అంటే multiplication sign — draw చేస్తాయి. మరియు OUT of the page కోసం dot వాడతాయి." },
-            { "id": "s6_4", "text_en": "These symbols are NOT showing the current direction. They show the B-field direction at that specific point in 2D.", "text_hi": "ये symbols current direction नहीं दिखा रहे। ये 2D में उस specific point पर B-field direction दिखाते हैं।", "text_te": "ఈ symbols current direction చూపించడం లేదు. ఇవి 2D లో ఆ specific point వద్ద B-field direction చూపిస్తాయి." },
-            { "id": "s6_5", "text_en": "Now when you see × and · in any diagram, you know they are just the two ends of a 3D circle around a wire — flattened to fit on paper.", "text_hi": "अब जब भी आप किसी diagram में × और · देखें, आपको पता है कि ये किसी wire के चारों तरफ एक 3D circle के दो सिरे हैं — बस paper पर flat करके दिखाए गए हैं।", "text_te": "ఇప్పుడు మీరు ఏ diagram లోనైనా × మరియు · చూసినప్పుడు, అవి ఒక wire చుట్టూ ఉన్న 3D circle యొక్క రెండు చివరలు మాత్రమే అని మీకు తెలుసు — కేవలం paper మీద flat చేసి చూపించబడ్డాయి." }
+            { "id": "s6_1", "text_en": "Now look straight down the wire — the angle exam diagrams use.", "text_hi": "अब wire को सीधे ऊपर से देखिए — यही angle exam diagrams use करती हैं।", "text_te": "ఇప్పుడు wire ని నేరుగా పైనుండి చూడండి — ఇదే angle exam diagrams వాడతాయి.", "glow": "topdown_label", "scenario_cue": "topdown_view" },
+            { "id": "s6_2", "text_en": "Exam diagrams flatten this into two symbols — a cross for field INTO the page.", "text_hi": "Exam diagrams इसे दो symbols में flatten करती हैं — cross जहाँ field page के अंदर जाती है।", "text_te": "Exam diagrams దీన్ని రెండు symbols గా flatten చేస్తాయి — cross ఎక్కడైతే field page లోపలికి వెళుతుందో అక్కడ.", "glow": "into_page_label" },
+            { "id": "s6_3", "text_en": "A dot marks field coming back OUT — same field, two sides.", "text_hi": "dot दिखाती है जहाँ field वापस बाहर आती है — same field, दो तरफ से।", "text_te": "field మళ్ళీ బయటకు వచ్చే చోట dot చూపిస్తుంది — same field, రెండు వైపుల నుండి.", "glow": "out_page_label" },
+            { "id": "s6_4", "text_en": "Same wire, same current — both symbols label the FIELD, never the current.", "text_hi": "Same wire, same current — दोनों symbols FIELD को label करते हैं, कभी current को नहीं।", "text_te": "Same wire, same current — రెండు symbols FIELD ని label చేస్తాయి, ఎప్పుడూ current ని కాదు.", "glow": "topdown_label" }
           ]
         },
         "misconception_watch": [
           {
-            "belief": "× and · show which way the current flows",
-            "one_line_fix": "× and · in B-field diagrams show the FIELD direction at that point, not the current. Look at what the symbol is labeling."
+            "belief": "The × and · symbols show which way the current flows",
+            "visual_counter": "Both symbols describe the SAME single wire carrying ONE current — they can't be marking two different currents.",
+            "one_line_fix": "× and · label the magnetic FIELD direction at a point, never the current."
           }
         ]
       },
       "STATE_7": {
-        "title": "Explore — Rotate, Zoom, Find B at Any Angle",
-        "duration": 16,
+        "title": "Explore — Drag I and r, Watch B Respond Live",
+        "duration": 0,
         "focal_primitive_id": "explore_label",
         "advance_mode": "interaction_complete",
         "scene_composition": [
           {
             "type": "annotation",
             "id": "explore_label",
-            "position": { "x": 380, "y": 60 },
-            "text": "Drag to rotate. Scroll to zoom.",
+            "position": { "x": 360, "y": 70 },
+            "text": "Drag the current and distance sliders",
             "color": "#FFF176"
           },
           {
             "type": "annotation",
-            "id": "challenge_label",
-            "position": { "x": 380, "y": 250 },
-            "text": "Test yourself: at a point ABOVE-RIGHT of the wire,\nwhich way does B point? (Use your right hand)",
+            "id": "try_label",
+            "position": { "x": 360, "y": 250 },
+            "text": "Move closer or crank up current — B responds live",
             "color": "#66BB6A"
           },
           {
             "type": "annotation",
-            "id": "key_insight_label",
-            "position": { "x": 380, "y": 460 },
-            "text": "Same wire, same current — one shape (circles), one rule (right hand).",
+            "id": "key_label",
+            "position": { "x": 360, "y": 440 },
+            "text": "Same wire, same rule — B = μ₀I / 2πr",
             "color": "#D4D4D8"
           }
         ],
         "teacher_script": {
           "tts_sentences": [
-            { "id": "s7_1", "text_en": "Now you have full control. Drag to rotate. Scroll to zoom. Use the current I and distance r sliders on the right to change current and distance.", "text_hi": "अब आपका पूरा control है। Drag करके rotate करिए। Scroll करके zoom करिए। Current और distance बदलने के लिए right side पर current I और distance r sliders use करिए।", "text_te": "ఇప్పుడు మీకు పూర్తి control ఉంది. Drag చేసి rotate చేయండి. Scroll చేసి zoom చేయండి. Current మరియు distance మార్చడానికి కుడి వైపు current I మరియు distance r sliders వాడండి." },
-            { "id": "s7_2", "text_en": "Watch how the highlighted ring tracks your r-slider, and how all rings brighten when you crank up current I.", "text_hi": "देखिए कैसे highlighted ring आपके r-slider को track करती है, और जब आप current I को बढ़ाते हैं तो सभी rings कैसे brighten हो जाती हैं।", "text_te": "Highlighted ring మీ r-slider ని ఎలా track చేస్తుందో గమనించండి, మరియు మీరు current I ని పెంచినప్పుడు అన్ని rings ఎలా brighten అవుతాయో చూడండి." },
-            { "id": "s7_3", "text_en": "Try to predict magnetic field B before you read the meter: pick current I and distance r, compute mu-naught I over 2 pi r in your head, then check.", "text_hi": "Meter पढ़ने से पहले magnetic field B predict करने की कोशिश करिए: current I और distance r चुनिए, दिमाग में mu-naught I over 2 pi r compute करिए, फिर check करिए।", "text_te": "Meter చదవడానికి ముందు magnetic field B ని predict చేయడానికి ప్రయత్నించండి: current I మరియు distance r ఎంచుకోండి, మనసులో mu-naught I over 2 pi r compute చేయండి, తర్వాత check చేయండి." },
-            { "id": "s7_4", "text_en": "Same wire, same field shape — circles around the wire. Same rule — your right hand. The numbers just scale.", "text_hi": "Same wire, same field shape — wire के चारों ओर circles। Same rule — आपका right hand। Numbers बस scale होते हैं।", "text_te": "Same wire, same field shape — wire చుట్టూ circles. Same rule — మీ right hand. Numbers మాత్రమే scale అవుతాయి." }
+            { "id": "s7_1", "text_en": "Now it's your turn — drag the current and distance sliders and watch magnetic field B change live.", "text_hi": "अब आपकी बारी — current और distance sliders drag कीजिए और magnetic field B को live बदलते देखिए।", "text_te": "ఇప్పుడు మీ వంతు — current మరియు distance sliders ని drag చేయండి మరియు magnetic field B live గా మారడం చూడండి.", "glow": "explore_label" },
+            { "id": "s7_2", "text_en": "Move closer or crank up the current — see how quickly magnetic field B responds.", "text_hi": "पास आइए या current बढ़ाइए — देखिए magnetic field B कितनी जल्दी respond करती है।", "text_te": "దగ్గరగా రండి లేదా current పెంచండి — magnetic field B ఎంత త్వరగా respond అవుతుందో చూడండి.", "glow": "try_label" },
+            { "id": "s7_3", "text_en": "Same wire, same right-hand rule — the numbers just scale with B = μ₀I over 2πr.", "text_hi": "Same wire, same right-hand rule — numbers बस B = μ₀I / 2πr के साथ scale होते हैं।", "text_te": "Same wire, same right-hand rule — numbers కేవలం B = μ₀I / 2πr తో scale అవుతాయి.", "glow": "key_label" }
           ]
         }
       }
     }
   },
-  "epic_c_branches": [
-    {
-      "branch_id": "b_points_along_current",
-      "misconception": "The B-field points in the same direction as the current — it flows along the wire just like the current does.",
-      "trigger_phrases": [
-        "B is along the wire",
-        "field points where current points",
-        "magnetic field is parallel to current",
-        "B in the direction of I"
-      ],
-      "state_sequence": ["STATE_2", "STATE_3"]
-    },
-    {
-      "branch_id": "cross_dot_means_current",
-      "misconception": "The × and · symbols in textbook diagrams indicate the direction of the current (× = current into page, · = current out of page).",
-      "trigger_phrases": [
-        "cross means current into page",
-        "dot is current out",
-        "× and · show current direction"
-      ],
-      "state_sequence": ["STATE_6"]
-    },
-    {
-      "branch_id": "b_field_is_2d",
-      "misconception": "The magnetic field exists only in the 2D plane of the textbook page — the field lines are flat curves on paper, not 3D circles.",
-      "trigger_phrases": [
-        "field is in the page",
-        "B is 2D",
-        "field lines are flat",
-        "field exists on paper"
-      ],
-      "state_sequence": ["STATE_2", "STATE_5"]
-    },
-    {
-      "branch_id": "left_hand_for_current",
-      "misconception": "Use the left hand for current direction and the right hand for the magnetic force, because that is the natural way to wrap the hand around a vertical wire.",
-      "trigger_phrases": [
-        "left hand rule for B",
-        "use left hand to wrap",
-        "left hand thumb is current"
-      ],
-      "state_sequence": ["STATE_3"]
-    }
-  ],
   "field_3d_config": {
     "scenario_type": "straight_wire_current",
     "field_lines": {
@@ -438,101 +411,128 @@
     },
     "states": {
       "STATE_1": {
-        "label": "Setup — wire and compass at rest",
-        "visible_elements": ["wire_main"],
+        "label": "Oersted's hook — switch closes, needle swings",
+        "visible_elements": ["wire_main", "curr_arr"],
         "camera_position": [2.5, 1.5, 4],
-        "caption": "Setup: a vertical wire next to a compass. No field shown yet — the needle points north. Then we'll switch on the current.",
+        "caption": "",
+        "reveal_at_ms": 4000,
+        "current_direction_indicator": "up",
+        "show_sliders": true,
+        "visible_controls": ["I"],
+        "swc": { "mode": "oersted_hook", "hide_magnitude_readout": true, "show_readout": false },
         "extras": {
-          "compass": {
-            "position": [1.6, 0, 0],
-            "radius": 0.5,
-            "animate_swing": false
-          }
+          "switch_toggle": { "start_state": "open", "close_at_ms": 1200, "ramp_duration_ms": 400, "i_before": 0, "i_after": 5, "cue": "switch_close" },
+          "compass": { "position": [1.6, 0, 0], "radius": 0.6, "animate_swing": true, "align_to_local_field": true, "swing_delay_ms": 2000, "cue": "needle_swing" }
         }
       },
       "STATE_2": {
-        "label": "B circles around the wire (3D)",
-        "visible_elements": [],
-        "camera_position": [4, 2, 4],
-        "caption": "The B-field forms 3D circles around the wire. Drag to rotate."
-      },
-      "STATE_3": {
-        "label": "Case A — I ↑, B counter-clockwise",
+        "label": "B is 3D circles — never along the wire",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
-        "camera_position": [3, 2, 4],
-        "caption": "Case A: current ↑ — B-field circles counter-clockwise (viewed from above). Watch the compass glide in, then deflect.",
+        "camera_position": [4, 2, 4],
+        "caption": "",
+        "reveal_at_ms": 3000,
         "field_rotation_direction": "ccw",
         "current_direction_indicator": "up",
+        "show_sliders": true,
+        "visible_controls": [],
+        "ring_dim": 1,
+        "swc": { "mode": "rings_3d", "hide_magnitude_readout": true, "show_readout": false },
         "extras": {
+          "switch_toggle": { "start_state": "closed", "i_before": 5, "i_after": 5 },
+          "rings_assemble": { "assemble_at_ms": 1500, "ghost_along_wire": true, "cue": "rings_assemble" }
+        }
+      },
+      "STATE_3": {
+        "label": "Case A — I up, right-hand curl gives B counter-clockwise",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
+        "camera_position": [3, 2, 4],
+        "caption": "",
+        "reveal_at_ms": 2500,
+        "field_rotation_direction": "ccw",
+        "current_direction_indicator": "up",
+        "show_sliders": true,
+        "visible_controls": [],
+        "ring_dim": 1,
+        "swc": { "mode": "rhr_case_up", "hide_magnitude_readout": true, "show_readout": false },
+        "extras": {
+          "switch_toggle": { "start_state": "closed", "i_before": 5, "i_after": 5 },
           "right_hand": {
             "case": "A",
-            "position": [-1.8, 0, 0.8],
+            "render_3d": true,
+            "position": [0, 0, 0],
             "thumb_direction": [0, 1, 0],
             "finger_curl": "ccw",
-            "scale": 2.2,
+            "scale": 2.0,
             "animate_curl": true
-          },
-          "compass": {
-            "position": [0, 0, 1.5],
-            "approach_from": [0, 0, 4.5],
-            "approach_duration_ms": 1400,
-            "radius": 0.45,
-            "animate_swing": true,
-            "swing_delay_ms": 400
           }
         }
       },
       "STATE_4": {
-        "label": "Case B — I ↓, B clockwise",
+        "label": "Case B — I down, right-hand curl gives B clockwise",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
         "camera_position": [3, 2, 4],
-        "caption": "Case B: current ↓ — B-field circles clockwise. Compass approaches the SAME way — but deflects the OPPOSITE direction.",
+        "caption": "",
+        "reveal_at_ms": 2000,
         "field_rotation_direction": "cw",
         "current_direction_indicator": "down",
+        "show_sliders": true,
+        "visible_controls": [],
+        "ring_dim": 1,
+        "swc": { "mode": "rhr_case_down", "hide_magnitude_readout": true, "show_readout": false },
         "extras": {
+          "switch_toggle": { "start_state": "closed", "i_before": 5, "i_after": 5, "cue": "current_flip" },
           "right_hand": {
             "case": "B",
-            "position": [-1.8, 0, 0.8],
+            "render_3d": true,
+            "position": [0, 0, 0],
             "thumb_direction": [0, -1, 0],
             "finger_curl": "cw",
-            "scale": 2.2,
+            "scale": 2.0,
             "animate_curl": true
-          },
-          "compass": {
-            "position": [0, 0, 1.5],
-            "approach_from": [0, 0, 4.5],
-            "approach_duration_ms": 1400,
-            "radius": 0.45,
-            "animate_swing": true,
-            "swing_delay_ms": 400
           }
         }
       },
       "STATE_5": {
-        "label": "B at point P — tangent to the circle",
+        "label": "B at point P — tangent to the circle, never radial",
         "visible_elements": ["wire_main", "curr_arr", "fl_wire_1_2", "arr_wire_1_2"],
         "camera_position": [2.5, 0.5, 3],
-        "caption": "B at P is tangent to the circle through P (not radial, not along wire).",
+        "caption": "",
+        "reveal_at_ms": 3000,
+        "field_rotation_direction": "ccw",
+        "current_direction_indicator": "up",
+        "show_sliders": true,
+        "visible_controls": [],
+        "ring_dim": 0.5,
+        "swc": { "mode": "tangent_point", "hide_magnitude_readout": true, "show_readout": false },
         "extras": {
-          "highlighted_point": {
-            "position": [1.6, 0, 0],
-            "color": "#FFEB3B",
-            "label": "P",
-            "radius": 0.10
-          }
+          "switch_toggle": { "start_state": "closed", "i_before": 5, "i_after": 5 },
+          "highlighted_point": { "position": [1.6, 0, 0], "color": "#FFEB3B", "label": "P", "radius": 0.10 }
         }
       },
       "STATE_6": {
-        "label": "Top-down: × and · emerge",
-        "visible_elements": [],
+        "label": "Top-down bridge — × into page, · out of page",
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
         "camera_position": [0.1, 7, 0.1],
-        "caption": "Looking straight down: each circle becomes ⊗ (into page) on one side, ⊙ (out) on the other."
+        "caption": "",
+        "reveal_at_ms": 2000,
+        "field_rotation_direction": "ccw",
+        "current_direction_indicator": "up",
+        "show_sliders": true,
+        "visible_controls": [],
+        "ring_dim": 0.6,
+        "swc": { "mode": "cross_dot_topdown", "hide_magnitude_readout": true, "show_readout": false },
+        "extras": {
+          "switch_toggle": { "start_state": "closed", "i_before": 5, "i_after": 5 }
+        }
       },
       "STATE_7": {
         "label": "Free explore — sliders + rotate",
-        "visible_elements": [],
+        "visible_elements": ["wire_main", "curr_arr", "fl_wire", "arr_wire"],
         "camera_position": [3, 3, 5],
-        "caption": "Drag sliders to feel B = μ₀I/(2πr). Drag scene to rotate. Scroll to zoom.",
+        "caption": "",
+        "reveal_at_ms": 1500,
+        "field_rotation_direction": "ccw",
+        "current_direction_indicator": "up",
         "show_sliders": true,
         "formula_overlay": "Right-hand rule:\nthumb ↑ I,\nfingers ↑ B"
       }
@@ -545,113 +545,109 @@
       "field_line": "#66BB6A"
     }
   },
-  "mode_overrides": {
-    "board": {
-      "canvas_style": "answer_sheet",
-      "epic_l_path": {
-        "states": {
-          "STATE_1": {
-            "teacher_script": {
-              "tts_sentences": [
-                { "id": "b1_1", "text_en": "Step 1: Draw the wire as a vertical line. Mark the current direction with an arrow. Label it I = 5 A." },
-                { "id": "b1_2", "text_en": "State Oersted's observation in one line: a current-carrying conductor produces a magnetic field around it." }
-              ]
-            }
-          },
-          "STATE_3": {
-            "teacher_script": {
-              "tts_sentences": [
-                { "id": "b3_1", "text_en": "Step 2: State the right-hand rule. Right thumb along I (upward); curled fingers give B direction." },
-                { "id": "b3_2", "text_en": "Draw a small circle around the wire and mark the B-field direction as anti-clockwise viewed from above (Case A)." }
-              ]
-            }
-          },
-          "STATE_4": {
-            "teacher_script": {
-              "tts_sentences": [
-                { "id": "b4_1", "text_en": "Step 3: Reverse the current. Now I flows downward. Apply the right-hand rule again — thumb DOWN, fingers curl the opposite way." },
-                { "id": "b4_2", "text_en": "Conclusion: when current direction reverses, the B-field direction reverses too. Magnitude is unchanged. Mark this on the answer sheet." }
-              ]
-            }
-          },
-          "STATE_7": {
-            "teacher_script": {
-              "tts_sentences": [
-                { "id": "b7_1", "text_en": "Step 4: Write the magnitude formula. B equals mu-naught I over 2 pi r." },
-                { "id": "b7_2", "text_en": "Step 5: Substitute. mu-naught equals 4 pi times 10 to the minus 7. I equals 5. r equals 0.05. B equals 2 times 10 to the minus 5 tesla." }
-              ]
-            }
-          }
-        }
+  "assessment": {
+    "mastery_definition": "A student has mastered this concept when they can state that a current-carrying wire is the SOURCE of a magnetic field (Oersted) — current on, field on; current off, field gone; that the right-hand rule (never the left hand) gives the sense of B around the wire — thumb along I, fingers curl in the direction of B — counter-clockwise for current up, clockwise for current down (viewed from above); that reversing the current reverses ONLY the direction of B, never its magnitude; that at any single point B is TANGENT to the circle through that point, perpendicular to the wire, never radial and never along the wire; that the × and · symbols in 2D textbook diagrams denote the FIELD direction at a point (into/out of the page), never the current direction, and can both appear on the same single wire; and that the magnitude follows B = μ₀I/(2πr) — directly proportional to current, inversely proportional to distance.",
+    "questions": [
+      {
+        "q_id": "Q1",
+        "stem": "With the switch open, a compass near the wire points north. You close the switch and the needle swings away from north; you open it again and the needle returns to north. What does this experiment show?",
+        "options": {
+          "A": "The needle only responded to the switch clicking — a mechanical vibration, not anything magnetic",
+          "B": "A current in the wire produces a magnetic field — switching the current off removes the field",
+          "C": "The wire itself is a hidden permanent magnet; the current has nothing to do with it",
+          "D": "Compass needles naturally drift back and forth on their own; the timing was a coincidence"
+        },
+        "correct": "B",
+        "distractor_misconceptions": { "A": "electricity_magnetism_unrelated", "C": "hidden_magnet_not_current", "D": "needle_drift_coincidence" },
+        "tested_idea": "A current-carrying wire is the source of a magnetic field — current and magnetism are directly causally linked (Oersted).",
+        "teaches_state": "STATE_1",
+        "difficulty": "core",
+        "parallel_form_stem": "A phone charger's wire is live; a compass beside it deflects. Unplug it and the needle returns to north. What caused the deflection?"
       },
-      "derivation_sequence": [
-        { "step": 1, "tied_to_state": "STATE_1", "writes": "Setup: Long straight wire, current I = 5 A flowing vertically (we will examine BOTH directions).", "marks": 1 },
-        { "step": 2, "tied_to_state": "STATE_3", "writes": "Case A — current upward: by the right-hand rule, B forms concentric circles ANTI-CLOCKWISE around the wire (viewed from above).", "marks": 1 },
-        { "step": 3, "tied_to_state": "STATE_4", "writes": "Case B — current downward: same right-hand rule with the thumb flipped — B reverses to CLOCKWISE (viewed from above). Magnitude unchanged.", "marks": 1 },
-        { "step": 4, "tied_to_state": "STATE_7", "writes": "Magnitude: B = μ₀ I / (2π r) = (4π × 10⁻⁷)(5) / (2π × 0.05) = 2 × 10⁻⁵ T (same value for both cases)", "marks": 1 },
-        { "step": 5, "tied_to_state": "STATE_5", "writes": "Direction at point P: tangent to the circle of radius r through P, sense determined by the right-hand rule for the current direction.", "marks": 1 }
-      ],
-      "mark_scheme": {
-        "total_marks": 5,
-        "items": [
-          { "marks": 1, "criterion": "Correctly identifies the setup (long straight wire, current direction, field point at distance r)" },
-          { "marks": 1, "criterion": "States right-hand rule and applies it to upward current (Case A → anti-clockwise B)" },
-          { "marks": 1, "criterion": "Recognises that reversing the current reverses the B-direction (Case B → clockwise) but NOT the magnitude" },
-          { "marks": 1, "criterion": "Writes B = μ₀I/(2πr) and substitutes numerical values correctly with consistent SI units" },
-          { "marks": 1, "criterion": "States the final B with magnitude AND direction (tangent specification, sense from RHR)" }
-        ]
+      {
+        "q_id": "Q2",
+        "stem": "A long straight wire carries current I straight UP. Using the right-hand rule, which way do the magnetic field circles run, viewed from above?",
+        "options": {
+          "A": "Counter-clockwise — point the right thumb up along I, fingers curl counter-clockwise",
+          "B": "Clockwise — point the LEFT thumb up along I, fingers curl clockwise",
+          "C": "Clockwise — the right thumb along I gives clockwise curl for upward current",
+          "D": "There is no fixed sense — the field circles randomly around the wire"
+        },
+        "correct": "A",
+        "distractor_misconceptions": { "B": "left_hand_for_current", "C": "rhr_sense_reversed", "D": "field_direction_indeterminate" },
+        "tested_idea": "The right-hand rule (never left) gives the CCW sense of B for upward current: thumb along I, fingers curl in the direction of B.",
+        "teaches_state": "STATE_3",
+        "difficulty": "core",
+        "parallel_form_stem": "Current flows upward through a vertical wire. Point your right thumb along the current — which way do your fingers curl, viewed from above?"
+      },
+      {
+        "q_id": "Q3",
+        "stem": "You reverse the battery so the SAME wire now carries the SAME magnitude of current, but flowing DOWN instead of up. What changes about the magnetic field?",
+        "options": {
+          "A": "B becomes weaker, because reversing the current direction reduces its strength",
+          "B": "B disappears entirely — reversing the current cancels the magnetic field",
+          "C": "Only the direction of B reverses (now clockwise from above); the magnitude B = μ₀I/(2πr) is unchanged",
+          "D": "Nothing changes at all — the direction of current does not affect B in any way"
+        },
+        "correct": "C",
+        "distractor_misconceptions": { "A": "b_strength_depends_on_direction", "B": "reversal_cancels_field", "D": "direction_has_no_effect" },
+        "tested_idea": "Reversing current direction reverses the SENSE of B (CCW→CW) but leaves the MAGNITUDE B = μ₀I/(2πr) completely unchanged.",
+        "teaches_state": "STATE_4",
+        "difficulty": "core",
+        "parallel_form_stem": "A wire's current is reversed but kept at the same amperage. Compare the new magnetic field to the old one — what stayed the same, what changed?"
+      },
+      {
+        "q_id": "Q4",
+        "stem": "At a single point P beside a current-carrying wire, which way does the magnetic field B actually point?",
+        "options": {
+          "A": "Straight out from the wire toward P, along the line joining wire and P (radially)",
+          "B": "Tangent to the circle of radius r through P — perpendicular to the line joining the wire to P, never along that line",
+          "C": "Straight along the wire itself, parallel to the current",
+          "D": "Straight toward the wire, pulling P inward like gravity"
+        },
+        "correct": "B",
+        "distractor_misconceptions": { "A": "b_is_radial_at_point", "C": "b_points_along_current", "D": "b_points_at_wire" },
+        "tested_idea": "B at a point is TANGENT to the circle through that point — never radial, never along the wire.",
+        "teaches_state": "STATE_5",
+        "difficulty": "core",
+        "parallel_form_stem": "Pick a point 5 cm to the side of a vertical current-carrying wire. In which direction does the field point exactly at that point?"
+      },
+      {
+        "q_id": "Q5",
+        "stem": "A textbook diagram shows a single wire carrying ONE current, but draws a × on one side and a · on the other side of the wire's cross-section. What do × and · actually represent?",
+        "options": {
+          "A": "The magnetic field direction at each point — × means B into the page, · means B out of the page",
+          "B": "The current direction — × means current goes into the page there, · means it comes out",
+          "C": "Two different currents flowing in the same wire, one in each direction",
+          "D": "The polarity of the wire — × is the negative end, · is the positive end"
+        },
+        "correct": "A",
+        "distractor_misconceptions": { "B": "cross_dot_means_current", "C": "cross_dot_two_currents", "D": "cross_dot_is_polarity" },
+        "tested_idea": "× and · label the magnetic FIELD direction at that point (into/out of the page), never the current — a single wire, single current, can show both.",
+        "teaches_state": "STATE_6",
+        "difficulty": "core",
+        "parallel_form_stem": "In a diagram, one side of a current-carrying wire is marked ⊗ and the other ⊙. Since it is the same one wire, what must these two symbols be describing?"
+      },
+      {
+        "q_id": "Q6",
+        "stem": "Using B = μ₀I/(2πr), if you DOUBLE the current I and also DOUBLE the distance r from the wire, what happens to the magnetic field B?",
+        "options": {
+          "A": "B doubles — since both I and r doubled, effects add and B ends up twice as strong",
+          "B": "B halves — increasing distance always weakens a field, regardless of the current",
+          "C": "B stays exactly the same — doubling I doubles B, but doubling r halves B, and the two cancel",
+          "D": "B quadruples — because B depends on I² according to the formula"
+        },
+        "correct": "C",
+        "distractor_misconceptions": { "A": "b_proportional_to_both_directly", "B": "distance_always_dominates", "D": "b_proportional_to_I_squared" },
+        "tested_idea": "B = μ₀I/(2πr): B is directly proportional to I and inversely proportional to r — the two effects can cancel exactly.",
+        "teaches_state": "STATE_7",
+        "difficulty": "stretch",
+        "parallel_form_stem": "At distance r from a wire carrying current I, B = 20 µT. If you move to distance 2r and also increase the current to 2I, what is the new B?"
       }
-    },
-    "competitive": {
-      "shortcuts": [
-        {
-          "id": "tesla_quick_compute",
-          "title": "Quick magnitude in microtesla",
-          "rule": "B (in μT) ≈ 0.2 × I/r when I is in A and r is in cm. Derived from B = μ₀I/(2πr) with the constants pre-multiplied."
-        },
-        {
-          "id": "doubling_rule",
-          "title": "Distance doubling halves B",
-          "rule": "Because B ∝ 1/r, every doubling of r halves B. Useful for ratio questions: 'B at 2r is half B at r.'"
-        },
-        {
-          "id": "current_doubling",
-          "title": "Current doubling doubles B",
-          "rule": "Because B ∝ I, every doubling of current doubles B at the same point. Linear in I, inverse in r."
-        },
-        {
-          "id": "rhr_quick",
-          "title": "RHR cheat for 2D problems",
-          "rule": "If current ⊙ (out of page): B circles anti-clockwise around it. If current ⊗ (into page): B circles clockwise. Memorize once, apply everywhere."
-        }
-      ],
-      "edge_cases": [
-        {
-          "id": "point_on_wire",
-          "case": "Point ON the wire itself",
-          "answer": "B → ∞ in the idealization (1/r diverges as r → 0). In practice, the wire has finite radius and the formula B = μ₀I/(2πr) is replaced by B = μ₀Ir/(2πR²) inside, where R is the wire radius."
-        },
-        {
-          "id": "finite_wire",
-          "case": "Finite-length wire (not infinite)",
-          "answer": "Use the modified formula B = μ₀I (sin θ₁ + sin θ₂) / (4πr), where θ₁ and θ₂ are angles from the perpendicular to the wire ends. Reduces to μ₀I/(2πr) in the infinite limit (θ₁, θ₂ → 90°)."
-        },
-        {
-          "id": "two_parallel_wires",
-          "case": "Two parallel wires carrying I₁ and I₂",
-          "answer": "Use superposition: B at any point is the vector sum of the two individual circular B-fields. If currents are parallel, fields between them oppose; if anti-parallel, fields between them add."
-        },
-        {
-          "id": "point_on_wire_axis",
-          "case": "Point on the axis of the wire (extended) — not perpendicular to the wire",
-          "answer": "Trick question. The wire's B-field has zero axial component. B at any point on the wire's axis (extended infinitely) is zero — the right-hand rule has no perpendicular distance r to point at."
-        },
-        {
-          "id": "ac_current",
-          "case": "Alternating current (AC) instead of DC",
-          "answer": "Same formula B = μ₀I(t)/(2πr) applies instantaneously, with I(t) = I₀ sin(ωt). The B-field oscillates with the current — useful for understanding electromagnetic waves and induction."
-        }
-      ]
-    }
+    ]
+  },
+  "coverage_map": {
+    "by_state": { "STATE_1": ["Q1"], "STATE_3": ["Q2"], "STATE_4": ["Q3"], "STATE_5": ["Q4"], "STATE_6": ["Q5"], "STATE_7": ["Q6"] },
+    "non_assessed_states": ["STATE_2"]
   }
 }

@@ -42,7 +42,7 @@ export interface Field3DConfig {
         'magnetic_field_circular_loop' | 'moving_coil_galvanometer' |
         'galvanometer_to_ammeter_voltmeter' | 'bar_magnet_as_dipole' |
         'bar_magnet_in_uniform_field' | 'gauss_law_magnetism' | 'earths_magnetism' | 'magnetisation' | 'faraday' | 'dipole_potential' | 'system_of_charges' |
-        'system_pe_assembly' | 'pe_external_field';
+        'system_pe_assembly' | 'pe_external_field' | 'motional_emf_rod' | 'eddy_current_pendulum';
     // Biot-Savart concept (Archetype A meta): a single current element dl on a
     // straight wire, the unit vector r̂ to a field point P, the cross-product
     // dl × r̂, the contribution dB at P, and a staggered accumulation of many
@@ -446,6 +446,19 @@ export interface Field3DConfig {
                 snap_back_to_north?: boolean;
                 snap_back_at_ms?: number;       // ms after state-entry: needle returns to 0 deg
                 snap_back_duration_ms?: number; // default 600ms eased return
+                // STATE_4 (magnetic_field_concept_B) — multi-hop compass: the compass
+                // walks through each world point in order (first hop at
+                // first_hop_at_ms, then every hop_interval_ms), re-solving the local
+                // B-tangent alignment on arrival at each stop. Mutually exclusive with
+                // the single-position approach/swing path above (hop_points present ⇒
+                // that legacy path is skipped for this compass).
+                hop_points?: [number, number, number][];
+                first_hop_at_ms?: number;
+                hop_interval_ms?: number;        // default 3000ms between hops
+                // compass_position (draggable_azimuthal control_type) — when true the
+                // compass can be grabbed and dragged azimuthally around the wire (angle
+                // only; the orbit radius is fixed — never a distance/r knob).
+                draggable?: boolean;
             };
             highlighted_point?: {
                 position: [number, number, number];
@@ -489,6 +502,25 @@ export interface Field3DConfig {
                 right_panel: { scenario: string; label: string; highlight_color?: string };
                 split_at_x?: number;   // canvas split point (NDC fraction 0..1); default 0.5 (center)
                 reveal_at_ms?: number; // ms after state-entry: both panels fade in
+            };
+            // STATE_2 (magnetic_field_concept_B) — Rule 16a contrast primitive: a
+            // faint needle at the compass's own position pointing RADIALLY AT the
+            // wire (the wrong-belief direction — "the needle points at the wire like
+            // it's pulled toward it"). Fades out exactly as the real needle swings to
+            // the local tangent, so the wrong picture visibly loses to the real one.
+            // Only meaningful alongside a `compass` extra in the same state.
+            ghost_radial_needle?: boolean;
+            // STATE_5 (magnetic_field_concept_B) — scattered tangent arrows that
+            // assemble into the existing full 3D ring tubes. Before assemble_at_ms,
+            // short tangent markers appear at scattered points around the wire (each
+            // independently correct, not yet joined); at/after assemble_at_ms they
+            // crossfade into the continuous, orbiting rings. ghost_along_wire (Rule
+            // 16a contrast) is a faint arrow ALONG the wire that fades out over the
+            // same crossfade — "the field does NOT point along the wire."
+            rings_assemble?: {
+                assemble_at_ms?: number;
+                ghost_along_wire?: boolean;
+                cue?: string;
             };
             // ── Lorentz-force extras (Diamond #2) ──────────────────────────
             // 2D SVG palm-rule overlay pinned to the iframe corner. Mirror of
@@ -2321,6 +2353,21 @@ export const FIELD_3D_RENDERER_CODE = `
                 if (peHits && peHits.length) return true;
             }
         }
+        // straight_wire_current compass_position draggable-azimuthal proxy
+        // (magnetic_field_concept_B S4/S7's compass_position control_type). No
+        // separate invisible proxy — raycasts (recursively) against the compass
+        // GROUP itself (disk + needle), which is already a generous target.
+        if (swcStateIsDraggable()) {
+            var swcProxy = null;
+            for (var swpi = 0; swpi < dynamicExtras.length; swpi++) {
+                if (dynamicExtras[swpi].userData && dynamicExtras[swpi].userData.elementType === "compass") { swcProxy = dynamicExtras[swpi]; break; }
+            }
+            if (swcProxy && swcProxy.visible) {
+                pmRaycaster.setFromCamera(pmPointerNDC(cx, cy), camera);
+                var swcHits = pmRaycaster.intersectObject(swcProxy, true);
+                if (swcHits && swcHits.length) return true;
+            }
+        }
         return false;
     }
     // FIX 2 — hover-latch: while the pointer merely HOVERS the potential test-charge
@@ -2354,6 +2401,32 @@ export const FIELD_3D_RENDERER_CODE = `
     function applyDragFrom(cx, cy) {
         var hit = pmDragPlaneHit(cx, cy);
         if (!hit) return;
+        // straight_wire_current compass_position draggable-azimuthal control
+        // (magnetic_field_concept_B S4/S7): recompute the angle phi in the XZ
+        // plane around the Y-axis wire from the pointer's hit point. The orbit
+        // RADIUS is FIXED (SWC_COMPASS_ORBIT_R) — only the angle is user-
+        // controlled; this never becomes a distance/r knob (the JSON's
+        // compass_position note). Manual drag seizes control from any scripted
+        // hop/swing (Rule 31 live-instrument model) until the state resets on
+        // the next entry.
+        if (swcStateIsDraggable()) {
+            var swcAngleRad = Math.atan2(hit.z, hit.x);
+            var swcDeg = (swcAngleRad * 180) / Math.PI;
+            if (swcDeg < 0) swcDeg += 360;
+            window.PM_swcManualCompass = true;
+            window.PM_swcCompassAngleDeg = swcDeg;
+            swcSyncCompassSlider();
+            try {
+                parent.postMessage({
+                    type: "PARAM_UPDATE",
+                    explorer_id: (config.explorer_id || "straight_wire_explorer"),
+                    param: "compass_position",
+                    value: { angle_deg: swcDeg },
+                    point: [SWC_COMPASS_ORBIT_R * Math.cos(swcAngleRad), 0, SWC_COMPASS_ORBIT_R * Math.sin(swcAngleRad)]
+                }, "*");
+            } catch (e) {}
+            return;
+        }
         // system_pe_assembly explorer (STATE_6): grab the draggable charge, project
         // onto the XY slice, clamp; every pair bond + U term + the meter recompute
         // live from the new position. Emit PARAM_UPDATE on explorer_id (Rule 27).
@@ -2965,15 +3038,99 @@ export const FIELD_3D_RENDERER_CODE = `
         return grp;
     }
 
+    // ── Wire-grip right hand (straight_wire_current S3/S4) ─────────────────
+    //   The REAL 3D right hand gripping the vertical wire: thumb along the
+    //   current (world Y), fingers physically curling around the wire in the
+    //   sense of B. Reuses the SAME articulated model + per-frame FK curl as
+    //   createSolenoidGripHand (buildArticulatedHandParts + rhrFingerJoints),
+    //   so the curl VISIBLY animates open->grip via the shared
+    //   "solenoid_grip_hand"/"wire_grip_hand" animate block. It is tagged
+    //   elementType 'wire_grip_hand' and carries the SAME userData shape that
+    //   block consumes (finger_tubes / finger_knuckles / finger_nails / sc /
+    //   curlSign / seg_tube_r).
+    //
+    //   Handedness: a right hand gripping a wire is ONE fixed gesture. The
+    //   S3(thumb up)->S4(thumb down) reversal is produced ENTIRELY by flipping
+    //   thumb_direction (a proper 180 deg rotation of the whole hand about +z),
+    //   NOT by changing the intrinsic curl -> so curlSign is a CONSTANT (-1).
+    //   With curlSign=-1 the finger arc's near-MCP world tangent at +x sweeps
+    //   toward +z, matching the swc ring orbit for the thumb-up (ccw) case
+    //   (rotDirSign=+1 -> at +x, flow -> +z); the 180 deg flip reverses it to
+    //   match the thumb-down (cw) case. So the curl always tracks the rings'
+    //   field_rotation_direction. (Verified against the ring tangent code +
+    //   the rhrFingerJoints FK at full curl.)
+    function createWireGripHand(spec) {
+        var grp = new THREE.Group();
+        var sc = (spec.scale || 1) * HAND_SIZE_FACTOR;
+        var curlSign = -1;                              // constant: see note above
+        var parts = buildArticulatedHandParts(sc, curlSign);
+        grp.add(parts.group);
+
+        // Orient local +y (thumb) -> the current direction.
+        var thumbDir = new THREE.Vector3(
+            spec.thumb_direction[0], spec.thumb_direction[1], spec.thumb_direction[2]
+        ).normalize();
+        var q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), thumbDir);
+        grp.setRotationFromQuaternion(q);
+
+        // Auto-solve x/z so the wire (world axis at x=wireScenarioOffsetX, z=0)
+        // passes through the CENTRE of the curled-finger arc -> the fingers
+        // actually enclose (grip) the wire, scale-invariantly. armCenterLocal is
+        // the fitted centre of the fingertip arcs at full curl (curlSign=-1) in
+        // the hand's local frame; rotate it by q and place the hand so that
+        // point lands on the wire at the requested grip height. Only
+        // spec.position[1] (grip height along the wire) is honoured; x/z of
+        // spec.position are ignored (auto-solved). Tunable: nudge armCenterLocal
+        // if THE EYE shows the wire off the palm.
+        var gripY = (spec.position && spec.position[1] != null) ? spec.position[1] : 0;
+        var armCenterLocal = new THREE.Vector3(0.04 * sc, 0, 0.17 * sc).applyQuaternion(q);
+        grp.position.set(
+            wireScenarioOffsetX - armCenterLocal.x,
+            gripY - armCenterLocal.y,
+            -armCenterLocal.z
+        );
+
+        // "I" at the thumb tip (current) + "B" out by the curling fingers (the
+        // payoff: curled fingers = B). Sprites always face the camera; children
+        // of grp so they track the gesture (and the S4 flip) automatically.
+        if (spec.show_labels !== false) {
+            var iLabel = createLabelSprite('I', '#FFAB40', 0.55 * sc);
+            iLabel.position.set(0.0, 1.05 * sc, 0.15 * sc);   // above the thumb tip
+            grp.add(iLabel);
+            var bLabel = createLabelSprite('B', '#66BB6A', 0.55 * sc);
+            bLabel.position.set(-0.05 * sc, 0.0, 0.50 * sc);  // out past the fingertips
+            grp.add(bLabel);
+        }
+
+        grp.userData = {
+            elementType: 'wire_grip_hand', id: 'wire_grip_hand',
+            finger_tubes: parts.fingerTubes, finger_knuckles: parts.fingerKnuckles,
+            finger_nails: parts.fingerNails,
+            sc: sc, curlSign: curlSign, seg_tube_r: parts.segR,
+            animate_curl: spec.animate_curl !== false
+        };
+        return grp;
+    }
+
     function createCompass(spec) {
         // Compass disk + N/S needle. The needle's local +Z is the "north
         // pointer". When animate_swing is enabled, applyState rotates the
         // needle group toward the local B-field direction over time.
         var grp = new THREE.Group();
         var R = spec.radius || 0.45;
+        // Sub-part thickness/size scale so a bigger compass reads solid, not
+        // paper-thin (founder THE-EYE note, magnetic_field_concept_B). The four
+        // absolute (non-R) dimensions below — disk thickness, needle box
+        // thickness, pivot sphere, north-mark sphere — were tuned for the default
+        // R=0.45 and did NOT scale with a larger spec.radius. Multiply each by
+        // (R/0.45) so proportions hold at any radius. Default R=0.45 => 1.0
+        // (byte-identical to the pre-change geometry). Rule 29: this is a fixed
+        // build-time size proportional to the authored radius, NOT runtime
+        // emphasis-zoom — the compass never changes size mid-state.
+        var sizeScale = R / 0.45;
 
         // Disk base — flat cylinder lying in XZ plane
-        var diskGeo = new THREE.CylinderGeometry(R, R, 0.04, 32);
+        var diskGeo = new THREE.CylinderGeometry(R, R, 0.04 * sizeScale, 32);
         var diskMat = new THREE.MeshPhongMaterial({
             color: 0xEEEEEE, transparent: true, opacity: 0.55, shininess: 60
         });
@@ -2991,7 +3148,7 @@ export const FIELD_3D_RENDERER_CODE = `
         var needleGrp = new THREE.Group();
 
         // North half — red, points +Z by default
-        var northGeo = new THREE.BoxGeometry(R * 0.18, 0.06, R * 0.85);
+        var northGeo = new THREE.BoxGeometry(R * 0.18, 0.06 * sizeScale, R * 0.85);
         var northMat = new THREE.MeshPhongMaterial({
             color: 0xEF5350, emissive: 0x661111, emissiveIntensity: 0.4
         });
@@ -3000,21 +3157,21 @@ export const FIELD_3D_RENDERER_CODE = `
         needleGrp.add(north);
 
         // South half — white/grey, points -Z
-        var southGeo = new THREE.BoxGeometry(R * 0.18, 0.06, R * 0.85);
+        var southGeo = new THREE.BoxGeometry(R * 0.18, 0.06 * sizeScale, R * 0.85);
         var southMat = new THREE.MeshPhongMaterial({ color: 0xE0E0E0 });
         var south = new THREE.Mesh(southGeo, southMat);
         south.position.set(0, 0.045, -R * 0.42);
         needleGrp.add(south);
 
         // Tiny pivot dot
-        var pivotGeo = new THREE.SphereGeometry(0.05, 8, 8);
+        var pivotGeo = new THREE.SphereGeometry(0.05 * sizeScale, 8, 8);
         var pivotMat = new THREE.MeshPhongMaterial({ color: 0x222222 });
         var pivot = new THREE.Mesh(pivotGeo, pivotMat);
         pivot.position.set(0, 0.05, 0);
         needleGrp.add(pivot);
 
         // N/S labels on top
-        var nMarkGeo = new THREE.SphereGeometry(0.04, 8, 8);
+        var nMarkGeo = new THREE.SphereGeometry(0.04 * sizeScale, 8, 8);
         var nMarkMat = new THREE.MeshPhongMaterial({
             color: 0xFFFFFF, emissive: 0xFFFFFF, emissiveIntensity: 0.7
         });
@@ -3023,16 +3180,27 @@ export const FIELD_3D_RENDERER_CODE = `
         needleGrp.add(nMark);
 
         grp.add(needleGrp);
+        // hop_points-only compasses (STATE_4 multi-hop, magnetic_field_concept_B)
+        // declare NO static 'position' — the compass starts at hop_points[0]
+        // instead of a single fixed spot. Fall back to that so this never
+        // dereferences an undefined position. BUG (session 2026-07-03,
+        // engine_bug_queue swc_state3_state4_extras_cross_bleed): this used to
+        // read spec.position[0] unconditionally and threw "Cannot read
+        // properties of undefined (reading '0')" for a hop-only spec — the
+        // exception aborted the REST of applyState() (including
+        // updateLegend()), which is why STATE_4 rendered STATE_3's caption
+        // and never built its own compass/faint_field_probes at all.
+        var specPosition = spec.position || ((spec.hop_points && spec.hop_points.length) ? spec.hop_points[0] : [0, 0, 0]);
         // If approach_from is given, the compass starts there and lerps to
         // its final position. Otherwise it spawns directly there (legacy).
-        var startPos = spec.approach_from || spec.position;
+        var startPos = spec.approach_from || specPosition;
         var hasApproach = !!spec.approach_from;
         grp.userData = {
             elementType: 'compass',
             id: 'compass_oersted',
             animate_swing: !!spec.animate_swing,
             swing_delay_ms: spec.swing_delay_ms || 1500,
-            position_world: [spec.position[0], spec.position[1], spec.position[2]],
+            position_world: [specPosition[0], specPosition[1], specPosition[2]],
             approach_from: hasApproach ? [startPos[0], startPos[1], startPos[2]] : null,
             approach_duration_ms: spec.approach_duration_ms || 1200,
             approach_started_at: hasApproach ? -1 : 0,
@@ -3047,7 +3215,22 @@ export const FIELD_3D_RENDERER_CODE = `
             snap_back_to_north: !!spec.snap_back_to_north,
             snap_back_at_ms: spec.snap_back_at_ms != null ? spec.snap_back_at_ms : 2800,
             snap_back_duration_ms: spec.snap_back_duration_ms || 600,
-            snap_from_angle: null   // captured at snap_back_at_ms (the heading when B vanishes)
+            snap_from_angle: null,  // captured at snap_back_at_ms (the heading when B vanishes)
+            // ── multi-hop (STATE_4) + draggable-azimuthal (compass_position control) ──
+            //   hop_points present => the legacy single-position approach/swing path
+            //   above is skipped for this compass; the animate loop instead walks it
+            //   through each point on the deterministic state clock (Rule 26), re-
+            //   solving the tangent alignment at every stop. draggable => the pointer
+            //   can grab this compass and drag it azimuthally (angle only, fixed
+            //   radius) via swcStateIsDraggable()/applyDragFrom().
+            hop_points: (spec.hop_points && spec.hop_points.length) ? spec.hop_points : null,
+            first_hop_at_ms_fallback: spec.first_hop_at_ms != null ? spec.first_hop_at_ms : 0,
+            hop_interval_ms: spec.hop_interval_ms || 3000,
+            hop_current_idx: -1,
+            hop_from_pos: null,
+            hop_to_pos: null,
+            hop_move_start_ms: 0,
+            draggable: !!spec.draggable
         };
         grp.position.set(startPos[0], startPos[1], startPos[2]);
         return grp;
@@ -3100,6 +3283,35 @@ export const FIELD_3D_RENDERER_CODE = `
         grp.setRotationFromQuaternion(
             new THREE.Quaternion().setFromUnitVectors(zAxis, dirV)
         );
+        grp.position.set(posWorld[0], posWorld[1], posWorld[2]);
+        return grp;
+    }
+
+    // Prominent single-color tangent field-arrow (shaft + big cone head) used by
+    // the STATE_5 rings_assemble build. Reads unambiguously as a DIRECTED arrow at
+    // a point (unlike the compass-style createMiniNeedle, whose grey south half
+    // muddies the read), so a viewer immediately sees "arrow tangent to the ring."
+    // Constant size — built once, only opacity + orbit position/orientation change
+    // at runtime (Rule 29 / the arrows stay same-length; magnitude isn't taught).
+    function createTangentArrow(posWorld, dir, color, scaleFactor, opacity) {
+        var s = scaleFactor != null ? scaleFactor : 1;
+        var op = opacity != null ? opacity : 0.95;
+        var col = hexToThreeColor(color);
+        var grp = new THREE.Group();
+        var shaftLen = 0.44 * s, headLen = 0.30 * s;
+        var shaftGeo = new THREE.CylinderGeometry(0.045 * s, 0.045 * s, shaftLen, 10);
+        var shaftMat = new THREE.MeshPhongMaterial({ color: col, emissive: col, emissiveIntensity: 0.55, transparent: true, opacity: op });
+        var shaft = new THREE.Mesh(shaftGeo, shaftMat);
+        shaft.rotation.x = Math.PI / 2;              // cylinder local +Y -> +Z
+        grp.add(shaft);
+        var headGeo = new THREE.ConeGeometry(0.13 * s, headLen, 12);
+        var headMat = new THREE.MeshPhongMaterial({ color: col, emissive: col, emissiveIntensity: 0.7, transparent: true, opacity: op });
+        var head = new THREE.Mesh(headGeo, headMat);
+        head.rotation.x = Math.PI / 2;               // cone local +Y -> +Z
+        head.position.set(0, 0, shaftLen / 2 + headLen / 2);
+        grp.add(head);
+        var dirV = new THREE.Vector3(dir[0], dir[1], dir[2]).normalize();
+        grp.setRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), dirV));
         grp.position.set(posWorld[0], posWorld[1], posWorld[2]);
         return grp;
     }
@@ -3603,6 +3815,77 @@ export const FIELD_3D_RENDERER_CODE = `
         return new THREE.Vector3().crossVectors(ihat, rPerp).normalize();
     }
 
+    // ── straight_wire_current compass-position control (magnetic_field_concept_B,
+    //   the Rule 31 seed for the Ch.4 straight-wire family) ─────────────────────
+    //   Fixed azimuthal orbit radius the draggable_azimuthal control + its slider
+    //   companion place the compass at. Matches the compass world position used
+    //   throughout this scenario's authored states ([1.6,0,0], on the 3rd field
+    //   ring), so a control-driven compass stays visually consistent with the
+    //   guided beats. ONLY the angle is user-controlled — never this radius (the
+    //   JSON's compass_position note: "NOT a distance/r knob").
+    var SWC_COMPASS_ORBIT_R = 1.6;
+
+    // Is the CURRENT state's compass grabbable (compass_position control_type
+    // draggable_azimuthal)? A no-op for every other scenario/state (extras.compass
+    // absent or draggable not set), mirroring gsphStateIsDraggable()/
+    // pmPotentialStateIsDraggable() above.
+    function swcStateIsDraggable() {
+        var sd = config.states && config.states[PM_currentState];
+        var cx = sd && sd.extras && sd.extras.compass;
+        return !!(cx && cx.draggable);
+    }
+
+    // STATE_5 (magnetic_field_concept_B) rings_assemble choreography — the
+    // "B is a vector field, all tangent" teaching payoff. Redesigned 2026-07-03
+    // (founder live review: the old 1.5s crossfade showed tiny green "flea"
+    // markers in bare black space with NO reference circles, then sat static for
+    // ~15s, so "tangent" never read). New multi-phase build, all deterministic on
+    // the state clock (Rule 26), paced to the ~18s narration:
+    //   guide     - faint ring CIRCLES fade in first as tangent-reference guide
+    //               paths ("Now show the whole field at once")
+    //   appear    - prominent tangent arrows pop in staggered ALL AROUND the wire,
+    //               sitting ON the guide circles (so tangency reads against a
+    //               visible circle) and already gently circulating
+    //   join      - the guide circles brighten floor->full + the standard orbiting
+    //               ring arrows fade in ("... and join into full 3D rings")
+    //   ghostFade - the along-wire + radial-out contrast ghosts dim to nothing on
+    //               "none points along the wire, and none straight out from it"
+    // Every duration is config-readable off the rings_assemble block with a
+    // default, so json_author can retime without a renderer edit; deriveStateMeta
+    // uses the same ghost_fade defaults to pin THE EYE's frozen frame after the
+    // build. Returns null for every state without a rings_assemble block.
+    var SWC_GUIDE_FLOOR = 0.4;   // faint guide-circle opacity fraction before "join"
+                                 // (STATE_5 current is fixed at default 3/max 5 =>
+                                 // iScale 0.6, so guide tubes land ~0.19 opacity —
+                                 // a visible reference, well under the ~0.48 "full")
+    function swcRaChoreo(stateDef) {
+        var raCfg = stateDef && stateDef.extras && stateDef.extras.rings_assemble;
+        if (!raCfg) return null;
+        var ms = (time - stateStartTime) * 1000;
+        function raRamp(t0, dur) { var u = (ms - t0) / Math.max(1, dur); return u < 0 ? 0 : u > 1 ? 1 : u; }
+        function raSmooth(x) { return x * x * (3 - 2 * x); }
+        var rd = stateDef.field_rotation_direction;
+        return {
+            ms: ms,
+            guide: raSmooth(raRamp(0, (raCfg.guide_fade_ms != null) ? raCfg.guide_fade_ms : 1800)),
+            join: raSmooth(raRamp((raCfg.join_at_ms != null) ? raCfg.join_at_ms : 5000,
+                                  (raCfg.join_dur_ms != null) ? raCfg.join_dur_ms : 2600)),
+            ghostFade: raSmooth(raRamp((raCfg.ghost_fade_at_ms != null) ? raCfg.ghost_fade_at_ms : 7600,
+                                       (raCfg.ghost_fade_dur_ms != null) ? raCfg.ghost_fade_dur_ms : 4200)),
+            appearAt: (raCfg.appear_at_ms != null) ? raCfg.appear_at_ms : 2200,
+            appearSpan: (raCfg.appear_span_ms != null) ? raCfg.appear_span_ms : 3200,
+            orbitRate: 0.6,                            // rad/s, matches arr_wire rotRate
+            rotSign: (rd === "cw") ? -1 : 1            // ccw (field_rotation_direction) default
+        };
+    }
+    // Backward-compatible gate name: the CONTINUOUS ring tubes + orbiting arr_wire
+    // arrows fade in with the "join" phase. Returns 1 (no-op) for every state
+    // without a rings_assemble block, so it stays safe to call every frame.
+    function swcRingsAssembleGate(stateDef) {
+        var ch = swcRaChoreo(stateDef);
+        return ch ? ch.join : 1;
+    }
+
     function applyExtras(extras) {
         if (!extras) return;
         if (extras.right_hand) {
@@ -3612,8 +3895,18 @@ export const FIELD_3D_RENDERER_CODE = `
             // Case 'A' shows only the thumb-up section; case 'B' shows only the
             // thumb-down section; 'solenoid' shows only the solenoid-grip section
             // (Diamond #4 STATE_5); omitted/'both' shows both wire cases stacked.
+            // straight_wire_current S3/S4 with render_3d: the real 3D wire-grip
+            // hand is the primary teaching actor, so the 2D corner card is
+            // redundant -> hide it. Every OTHER concept keeps the 2D overlay
+            // exactly as before (this whole block is gated on isWireGrip3D).
+            var isWireGrip3D = !!extras.right_hand.render_3d &&
+                config.scenario_type === "straight_wire_current";
             var rhrEl = document.getElementById("rhr_overlay");
-            if (rhrEl) {
+            if (rhrEl && isWireGrip3D) {
+                rhrEl.style.display = "none";
+                rhrEl.classList.remove("rhr-fade-out");
+            }
+            if (rhrEl && !isWireGrip3D) {
                 function applyRhrCase(caseStr) {
                     rhrEl.classList.remove(
                         "rhr-show-a-only", "rhr-show-b-only", "rhr-show-solenoid-only"
@@ -3648,20 +3941,35 @@ export const FIELD_3D_RENDERER_CODE = `
                     applyRhrCase(targetCase);
                 }
             }
-            // Diamond #4 STATE_6 — also build the real 3D right hand that grips
-            // the solenoid (fingers wrap the coil with the current; thumb up the
-            // axis = B). The 2D overlay above stays as a corner legend.
+            // Build the real 3D right hand. Scenario-aware:
+            //   straight_wire_current -> wire-grip hand (thumb along the current
+            //     up the wire, fingers curling around the wire = B). NEW path.
+            //   everything else (Diamond #4 solenoid) -> createSolenoidGripHand,
+            //     UNCHANGED (fingers wrap the coil with the current; thumb up the
+            //     axis = B; the 2D overlay stays as a corner legend).
             if (extras.right_hand.render_3d) {
-                var gripHand = createSolenoidGripHand({
-                    position: extras.right_hand.position || [0, -0.6, 0],
-                    thumb_direction: extras.right_hand.thumb_direction || [0, 1, 0],
-                    finger_curl: extras.right_hand.finger_curl || 'ccw',
-                    grip_radius: extras.right_hand.grip_radius || 0.8,
-                    scale: extras.right_hand.scale || 1.0,
-                    back_azimuth: extras.right_hand.back_azimuth,
-                    show_b_label: extras.right_hand.show_b_label,
-                    animate_curl: extras.right_hand.animate_curl
-                });
+                var gripHand;
+                if (config.scenario_type === "straight_wire_current") {
+                    gripHand = createWireGripHand({
+                        position: extras.right_hand.position || [0, 0, 0],
+                        thumb_direction: extras.right_hand.thumb_direction || [0, 1, 0],
+                        finger_curl: extras.right_hand.finger_curl || 'ccw',
+                        scale: extras.right_hand.scale || 2.0,
+                        show_labels: extras.right_hand.show_labels,
+                        animate_curl: extras.right_hand.animate_curl
+                    });
+                } else {
+                    gripHand = createSolenoidGripHand({
+                        position: extras.right_hand.position || [0, -0.6, 0],
+                        thumb_direction: extras.right_hand.thumb_direction || [0, 1, 0],
+                        finger_curl: extras.right_hand.finger_curl || 'ccw',
+                        grip_radius: extras.right_hand.grip_radius || 0.8,
+                        scale: extras.right_hand.scale || 1.0,
+                        back_azimuth: extras.right_hand.back_azimuth,
+                        show_b_label: extras.right_hand.show_b_label,
+                        animate_curl: extras.right_hand.animate_curl
+                    });
+                }
                 scene.add(gripHand);
                 dynamicExtras.push(gripHand);
             }
@@ -3671,17 +3979,18 @@ export const FIELD_3D_RENDERER_CODE = `
             scene.add(compass);
             dynamicExtras.push(compass);
             var nowMs = performance.now();
-            // If approach_from is set, the compass first glides to its final
-            // position for approach_duration_ms, THEN waits swing_delay_ms
-            // before the needle swings. Otherwise the legacy timing applies
-            // (immediate + swing_delay_ms). The sequencing makes the student
-            // perceive the compass enter the field, then react to it.
+            // state_entered_at_wall anchors the swing timing (see the animate
+            // loop): swing_started_at is now RECOMPUTED every frame from this
+            // anchor + cueTriggerMs('needle_swing', ...) rather than baked in once
+            // here, so a live-player cue that arrives after this build still lands
+            // the swing on the narrated sentence. If approach_from is set, the
+            // compass first glides to its final position for approach_duration_ms,
+            // THEN waits the (cue-resolved) swing delay before the needle swings —
+            // the sequencing makes the student perceive the compass enter the
+            // field, then react to it.
+            compass.userData.state_entered_at_wall = nowMs;
             if (compass.userData.approach_from) {
                 compass.userData.approach_started_at = nowMs;
-                compass.userData.swing_started_at =
-                    nowMs + (compass.userData.approach_duration_ms || 1200) + (compass.userData.swing_delay_ms || 0);
-            } else {
-                compass.userData.swing_started_at = nowMs + (compass.userData.swing_delay_ms || 0);
             }
         }
         if (extras.highlighted_point) {
@@ -3719,6 +4028,97 @@ export const FIELD_3D_RENDERER_CODE = `
         // driven in the animate loop off reveal_at_ms.
         if (extras.dual_field_compare) {
             buildDualFieldCompare(extras.dual_field_compare);
+        }
+        // STATE_5 (magnetic_field_concept_B) — rings_assemble: the "B is a vector
+        // field, all tangent" payoff. Builds PROMINENT tangent field-arrows seeded
+        // directly ON the true ring circles (not floating in void) plus two grey
+        // contrast ghosts (along-wire + radial-out). The animate loop (swcRaChoreo)
+        // fades the guide circles in first, staggers the arrows' appearance ALL
+        // AROUND the wire, orbits them so the field visibly CIRCULATES, then dims
+        // the ghosts. Built once on state entry; runtime only changes opacity +
+        // orbit position/orientation (Rule 29 — arrows stay same-length).
+        if (extras.rings_assemble) {
+            var raStateDef = config.states[PM_currentState] || {};
+            var raISign = (raStateDef.current_direction_indicator === "down") ? -1 : 1;
+            var raRd = raStateDef.field_rotation_direction;
+            var raRotSign = (raRd === "cw") ? -1 : 1;   // ccw default = field_rotation_direction
+            // Tangent arrows across the SAME 3 heights + TWO radii the continuous
+            // ring tubes occupy (heights [-1.5,0,1.5]; radii 1.1 & 2.1 = ring
+            // indices 1 & 3 of 0.6+ri*0.5, straddling the compass orbit 1.6) so each
+            // arrow sits exactly ON a visible guide circle — that is what makes
+            // "tangent" legible. Orientation uses the SAME sense as the orbiting
+            // arr_wire arrows (arr_wire convention: dir = (-sin, 0, cos)*rotSign)
+            // so every arrow on screen circulates identically. A per-height angular
+            // stagger interleaves the three layers. Deterministic (Rule 26).
+            var raHeights = [-1.5, 0, 1.5];
+            var raRadii = [1.1, 2.1];      // both true ring radii (0.6 + ri*0.5)
+            var raPerLayer = 6;            // 3 heights * 6 = 18 tangent arrows, all around
+            var raTotal = raHeights.length * raPerLayer;
+            var rsIdx = 0;
+            for (var raHi = 0; raHi < raHeights.length; raHi++) {
+                var raHeight = raHeights[raHi];
+                // Stagger each height layer by 1/3 of an angular slot so the
+                // three layers interleave instead of stacking into aligned rings.
+                var raLayerAngOff = raHi * (Math.PI * 2 / raPerLayer) / 3;
+                for (var raAi = 0; raAi < raPerLayer; raAi++) {
+                    var raRadius = raRadii[(raHi + raAi) % raRadii.length]; // alternate radii
+                    var rsAngle = (raAi / raPerLayer) * Math.PI * 2 + raLayerAngOff;
+                    var rsP = [raRadius * Math.cos(rsAngle), raHeight, raRadius * Math.sin(rsAngle)];
+                    var rsTx = -Math.sin(rsAngle) * raRotSign;
+                    var rsTz = Math.cos(rsAngle) * raRotSign;
+                    var rsMarker = createTangentArrow(rsP, [rsTx, 0, rsTz], "#66BB6A", 1.05, 0.95);
+                    rsMarker.userData = {
+                        elementType: "rings_scatter_needle",
+                        id: "rings_scatter_" + rsIdx,
+                        // Orbit params (animate loop keeps each arrow ON its circle):
+                        raBaseAngle: rsAngle, raRadius: raRadius, raHeight: raHeight,
+                        // Staggered appearance fraction 0..1 ("appear all around"):
+                        raAppearFrac: (raTotal > 1) ? (rsIdx / (raTotal - 1)) : 0,
+                        raFullOp: 0.95
+                    };
+                    scene.add(rsMarker);
+                    dynamicExtras.push(rsMarker);
+                    rsIdx++;
+                }
+            }
+            // Rule 16a contrast pair — the two WRONG guesses the narration rejects,
+            // both grey, both dimming to nothing over ghostFade as the real
+            // circulating field completes: (1) an arrow ALONG the wire ("B points
+            // along the wire"), (2) an arrow straight OUT from the wire ("B points
+            // radially out"). Sized up from the old flea markers so they read.
+            if (extras.rings_assemble.ghost_along_wire) {
+                var gawNeedle = createMiniNeedle([0.42, 0.15, 0], [0, raISign, 0], "#B0BEC5", 0.85, 0.55);
+                gawNeedle.userData = { elementType: "ghost_along_wire", id: "ghost_along_wire", raGhostBaseOp: 0.55 };
+                scene.add(gawNeedle);
+                dynamicExtras.push(gawNeedle);
+            }
+            var grOutNeedle = createMiniNeedle([0.95, -0.6, 0], [1, 0, 0], "#B0BEC5", 0.85, 0.55);
+            grOutNeedle.userData = { elementType: "ghost_radial_out", id: "ghost_radial_out", raGhostBaseOp: 0.55 };
+            scene.add(grOutNeedle);
+            dynamicExtras.push(grOutNeedle);
+        }
+        // STATE_2 (magnetic_field_concept_B) — Rule 16a contrast: a faint needle
+        // at the compass's own position pointing RADIALLY AT the wire (the wrong-
+        // belief direction — "the needle points at the wire, pulled toward it"),
+        // fading out exactly as the real needle swings to the local tangent (the
+        // SAME window createCompass's animate_swing uses: any approach glide, then
+        // swing_delay_ms, then the ~2000ms sweep). Meaningful only alongside a
+        // compass extra in the same state.
+        if (extras.ghost_radial_needle && extras.compass && extras.compass.position) {
+            var grnPos = extras.compass.position;
+            var grnDirV = new THREE.Vector3(grnPos[0], 0, grnPos[2]);
+            if (grnDirV.length() > 0.001) {
+                grnDirV.normalize().multiplyScalar(-1); // point AT the wire axis
+                var grnFadeStart = (extras.compass.approach_from ? (extras.compass.approach_duration_ms || 1200) : 0) +
+                    (extras.compass.swing_delay_ms || 1500);
+                var grnNeedle = createMiniNeedle(grnPos, [grnDirV.x, grnDirV.y, grnDirV.z], "#B0BEC5", 0.42, 0.5);
+                grnNeedle.userData = {
+                    elementType: "ghost_radial_needle", id: "ghost_radial_needle",
+                    fadeStartFallbackMs: grnFadeStart, fadeDurationMs: 2000
+                };
+                scene.add(grnNeedle);
+                dynamicExtras.push(grnNeedle);
+            }
         }
         // Diamond #2 (Lorentz force) — toggle the 2D palm-rule SVG overlay
         // pinned to the iframe corner. Case 'positive' shows only the +q
@@ -6928,6 +7328,70 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
         }
+
+        // ── Rule 31 per-state contextual control panel (magnetic_field_concept_B —
+        //   the Rule 31 SEED for the Ch.4 straight-wire family). Built ONCE here;
+        //   rows are shown/hidden per state via applyVisibleControls() reading
+        //   stateDef.visible_controls (mirrors the fcw/lz row-loop pattern). The I
+        //   row keeps the SAME screen position across every state it appears in
+        //   (S1/S3/S7 — Rule 31's shared-control-stays-in-place rule) since it is
+        //   one DOM node, never rebuilt. A no-op (always hidden) for a sibling
+        //   concept sharing this scenario_type that never populates a 'swc' block
+        //   on any state (e.g. magnetic_field_wire) — applyStraightWireCurrentState
+        //   only shows this panel when the active state carries 'swc'.
+        var swcTextColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var swcI = (config.slider_controls && config.slider_controls.I) || { min: 0, max: 5, step: 0.5, default: 3, label: "Current I" };
+        var swcCp = (config.slider_controls && config.slider_controls.compass_position) || {};
+        var swcAngleMin = (swcCp.angle_min_deg != null) ? swcCp.angle_min_deg : 0;
+        var swcAngleMax = (swcCp.angle_max_deg != null) ? swcCp.angle_max_deg : 360;
+        var swcAngleDefault = (swcCp.angle_default_deg != null) ? swcCp.angle_default_deg : 0;
+        var swcPanel = document.createElement("div"); swcPanel.id = "swc_sliders";
+        swcPanel.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + swcTextColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:225px;display:none;";
+        swcPanel.innerHTML =
+            '<div id="swc_i_row"><label>' + (swcI.label || "Current I") + ': <span id="swc_i_val">' + swcI.default + '</span> A</label>' +
+            '<input type="range" id="swc_i_slider" min="' + swcI.min + '" max="' + swcI.max + '" step="' + (swcI.step || 0.5) + '" value="' + swcI.default + '" style="width:100%"></div>' +
+            '<div id="swc_compass_row"><label style="margin-top:6px">Compass position: <span id="swc_compass_val">' + swcAngleDefault + '</span>°</label>' +
+            '<input type="range" id="swc_compass_slider" min="' + swcAngleMin + '" max="' + swcAngleMax + '" step="1" value="' + swcAngleDefault + '" style="width:100%"></div>';
+        document.body.appendChild(swcPanel);
+        // Optional numeric readout (parity with far_readout/mag_readout — every
+        // state in magnetic_field_concept_B ships hide_magnitude_readout:true /
+        // show_readout:false so this stays hidden today; a future Ch.4 straight-
+        // wire concept that DOES want a live readout inherits the row for free).
+        var swcReadout = document.createElement("div"); swcReadout.id = "swc_readout";
+        swcReadout.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + swcTextColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:200px;display:none;";
+        document.body.appendChild(swcReadout);
+
+        window.PM_swcManualI = false;
+        window.PM_swcCurrentA = swcI.default;
+        window.PM_swcManualCompass = false;
+        window.PM_swcCompassAngleDeg = swcAngleDefault;
+
+        var swcISliderEl = document.getElementById("swc_i_slider"), swcIValEl = document.getElementById("swc_i_val");
+        if (swcISliderEl) swcISliderEl.addEventListener("input", function (ev) {
+            window.PM_swcCurrentA = parseFloat(swcISliderEl.value);
+            if (swcIValEl) swcIValEl.textContent = swcISliderEl.value;
+            if (ev && ev.isTrusted) window.PM_swcManualI = true;
+        });
+        var swcCompassSliderEl = document.getElementById("swc_compass_slider"), swcCompassValEl = document.getElementById("swc_compass_val");
+        if (swcCompassSliderEl) swcCompassSliderEl.addEventListener("input", function (ev) {
+            window.PM_swcCompassAngleDeg = parseFloat(swcCompassSliderEl.value);
+            if (swcCompassValEl) swcCompassValEl.textContent = String(Math.round(window.PM_swcCompassAngleDeg));
+            if (ev && ev.isTrusted) window.PM_swcManualCompass = true;
+        });
+    }
+
+    // Two-way sync: push the live PM_swcCompassAngleDeg onto the compass_position
+    // slider thumb + label (drag updates the slider too, mirroring
+    // pmSyncPotentialRSlider). No-op when the panel is absent (every non-swc
+    // scenario/state, e.g. force builders and the other field_3d diamonds).
+    function swcSyncCompassSlider() {
+        var cs = document.getElementById("swc_compass_slider");
+        if (!cs) return;
+        var deg = window.PM_swcCompassAngleDeg;
+        if (typeof deg !== "number") return;
+        cs.value = String(deg);
+        var cv = document.getElementById("swc_compass_val");
+        if (cv) cv.textContent = String(Math.round(deg));
     }
 
     // ── Parallel currents force (F/L = mu0 I1 I2 / 2 pi d) ─────────────────
@@ -17601,6 +18065,1177 @@ export const FIELD_3D_RENDERER_CODE = `
         }
     }
 
+    // -- motional_emf_rod scenario (motional EMF: eps = B v l via q v x B) -----
+    //   Two rails lying flat in the world XZ plane (a bird's-eye "table"), a
+    //   rod that slides along the rails on X, a resistor closing the loop at
+    //   the far end. The uniform field B points +Y (perpendicular to the rail
+    //   plane, drawn as a vertical arrow lattice). Because v is along X and B
+    //   is along Y, F = q v x B lands along Z -- the ROD's OWN axis -- which is
+    //   exactly why charge separates along the rod's length (S2) and why the
+    //   RHR (S3) reads fingers-along-v -> curl-toward-B -> thumb-gives-F=Z.
+    //   READOUTS (eps=Blv, I=eps/R, F_retard=BIl, F_ext=F_retard, P=Fv=I^2R)
+    //   are PURE functions of the live B/l/v/R/v_dir sliders -- decoupled from
+    //   the on-screen slide pacing (renderer-facing note: geometry/pacing is
+    //   independent choreography; only the NUMBERS track the true slider
+    //   values, mirroring the biot/lorentz v-scale convention -- never a
+    //   literal metre-per-second rod speed on screen). Rule 24 (silent visual:
+    //   labels+readout carry it), Rule 26 (every animation a pure fn of the
+    //   state clock time-stateStartTime), Rule 29 (emphasis=brightness; the
+    //   only lengths that change are v/F_retard/F_ext arrows + needle
+    //   deflection, all real magnitudes). The RHR hand REUSES createLorentzHand
+    //   (its v/B/F arrows + articulated fingers are already wired to local
+    //   -z/-x/+y) with a fresh, properly-derived (det=+1) orientation quaternion
+    //   mapping that local frame to THIS scenario's world v/B/F axes -- never a
+    //   reinvented hand mesh, never a mirrored/reflected pose.
+    var MEM_RESISTOR_X = -2.8;
+    var MEM_ROD_X_REST = -2.55;
+    var MEM_ROD_X_FAR = 1.85;
+    var MEM_RAIL_Z = 0.75;
+    var MEM_RAIL_LEN_HALF = 3.2;
+
+    function memFindById(id) { for (var i = 0; i < sceneObjects.length; i++) { var o = sceneObjects[i]; if (o.userData && o.userData.id === id) return o; } return null; }
+    function memSmooth(x) { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); }
+
+    // Rod position (world X) as a pure fn of the state clock t, per mode. The
+    // slide PACE is independent choreography (never the literal v m/s); only
+    // memReadout() below tracks the true B/l/v/R/v_dir slider values.
+    function memRodX(mode, t) {
+        if (mode === "flux_crosscheck") {
+            if (t < 4) return MEM_ROD_X_REST;
+            var p = Math.min(1, (t - 4) / 18);
+            return MEM_ROD_X_REST + (MEM_ROD_X_FAR - MEM_ROD_X_REST) * p;   // linear = constant v
+        }
+        if (mode === "charge_separation") {
+            var p2 = Math.min(1, t / 3);
+            return MEM_ROD_X_REST + (MEM_ROD_X_FAR - MEM_ROD_X_REST) * p2;  // recap slide, then hold
+        }
+        if (mode === "polarity_rhr") return MEM_ROD_X_FAR;   // frozen, carried from S2
+        // open_circuit / closed_circuit / energy / sandbox: continuous back-
+        // and-forth so the state never goes static; the live v slider sets the
+        // oscillation RATE reactively (mirrors faraday's "rate" mode reading
+        // window.PM_farSpeed live every frame).
+        var w = 0.35 + 0.55 * Math.min(2, Math.max(0.2, window.PM_memV || 2) / 2);
+        var A = (MEM_ROD_X_FAR - MEM_ROD_X_REST) / 2;
+        var mid = (MEM_ROD_X_FAR + MEM_ROD_X_REST) / 2;
+        return mid + A * Math.sin(w * t);
+    }
+
+    // Live readout is a PURE function of the B/l/v/R/v_dir sliders.
+    function memReadout() {
+        var B = (window.PM_memB != null) ? window.PM_memB : 0.5;
+        var l = (window.PM_memL != null) ? window.PM_memL : 0.5;
+        var v = (window.PM_memV != null) ? window.PM_memV : 2;
+        var R = (window.PM_memR != null) ? window.PM_memR : 5;
+        var vDir = (window.PM_memVDir != null) ? window.PM_memVDir : 1;
+        var emf = B * l * v * vDir;
+        var closed = !!window.PM_memClosed;
+        var I = closed ? (emf / R) : 0;
+        var Fr = closed ? Math.abs(B * I * l) : 0;
+        var P = closed ? (I * I * R) : 0;
+        return { B: B, l: l, v: v, R: R, vDir: vDir, emf: emf, I: I, Fr: Fr, Fe: Fr, P: P, closed: closed };
+    }
+
+    // Parametrize the closed loop (rod -> top rail -> resistor -> bottom rail
+    // -> rod) at the rod's CURRENT x, so current beads can flow around it.
+    function memLoopPoint(u, rodX) {
+        var Lrod = 2 * MEM_RAIL_Z;
+        var Ltop = rodX - MEM_RESISTOR_X;
+        var Lres = 2 * MEM_RAIL_Z;
+        var Lbot = Ltop;
+        var total = Lrod + Ltop + Lres + Lbot;
+        var s = u * total;
+        if (s < Lrod) { var f = s / Lrod; return [rodX, 0, -MEM_RAIL_Z + f * Lrod]; }
+        s -= Lrod;
+        if (s < Ltop) { var f2 = s / Ltop; return [rodX - f2 * Ltop, 0, MEM_RAIL_Z]; }
+        s -= Ltop;
+        if (s < Lres) { var f3 = s / Lres; return [MEM_RESISTOR_X, 0, MEM_RAIL_Z - f3 * Lres]; }
+        s -= Lres;
+        var f4 = s / Lbot;
+        return [MEM_RESISTOR_X + f4 * Lbot, 0, -MEM_RAIL_Z];
+    }
+
+    // Proper (det=+1) change-of-basis: grp-local v=-z, B=-x, F=+y (the SAME
+    // convention createLorentzHand's v/B/F arrows already assume) maps to
+    // WORLD v=+-X, B=+Y, F=+-Z (our rail geometry: rod slides on X, field is
+    // vertical +Y, so F = v x B lands along Z -- the rod's own axis). Columns
+    // are mutually orthogonal WORLD unit vectors by construction, so this is
+    // always a proper rotation (det=+1) -- never a mirrored/reflected hand.
+    function memHandQuatForVDir(vDirSign) {
+        var colX = new THREE.Vector3(0, -1, 0);
+        var colY = new THREE.Vector3(0, 0, vDirSign);
+        var colZ = new THREE.Vector3(-vDirSign, 0, 0);
+        var m = new THREE.Matrix4().makeBasis(colX, colY, colZ);
+        return new THREE.Quaternion().setFromRotationMatrix(m);
+    }
+
+    function buildMotionalEmfRod() {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+
+        // 1. Rails (top +Z, bottom -Z) -- silver tubes along X.
+        var railTop = createTubeLine([[-MEM_RAIL_LEN_HALF, 0, MEM_RAIL_Z], [MEM_RAIL_LEN_HALF, 0, MEM_RAIL_Z]], "#B0BEC5", 0.035);
+        if (railTop) { railTop.userData = { elementType: "mem_rail", id: "mem_rail_top" }; addToScene(railTop); }
+        var railBot = createTubeLine([[-MEM_RAIL_LEN_HALF, 0, -MEM_RAIL_Z], [MEM_RAIL_LEN_HALF, 0, -MEM_RAIL_Z]], "#B0BEC5", 0.035);
+        if (railBot) { railBot.userData = { elementType: "mem_rail", id: "mem_rail_bot" }; addToScene(railBot); }
+
+        // 2. Resistor (zigzag) at the closed end, x = MEM_RESISTOR_X.
+        var zig = []; var zn = 8;
+        for (var zi = 0; zi <= zn; zi++) {
+            var zf = zi / zn, zz = -MEM_RAIL_Z + zf * 2 * MEM_RAIL_Z;
+            var zx = MEM_RESISTOR_X + ((zi % 2 === 0) ? 0.12 : -0.12);
+            zig.push([zx, 0, zz]);
+        }
+        var resistor = createTubeLine(zig, "#FFB300", 0.035);
+        if (resistor) { resistor.userData = { elementType: "mem_resistor", id: "mem_resistor" }; addToScene(resistor); }
+        var rLbl = createLabelSprite("R", "#FFB300", 0.32); rLbl.position.set(MEM_RESISTOR_X - 0.4, 0.35, 0);
+        rLbl.userData = { elementType: "mem_resistor", id: "mem_r_lbl" }; addToScene(rLbl);
+
+        // 3. Switch/gap indicator -- a small red bracket (open) vs green bar
+        //    (closed) at the bottom-rail / resistor junction. Both built once;
+        //    only one is visible per frame (driven by window.PM_memClosed).
+        var gapOpen = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.05, 0.28),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#EF5350"), emissive: hexToThreeColor("#EF5350"), emissiveIntensity: 0.4 }));
+        gapOpen.position.set(MEM_RESISTOR_X - 0.55, 0, -MEM_RAIL_Z);
+        gapOpen.userData = { elementType: "mem_switchgap", id: "mem_gap_open" }; addToScene(gapOpen);
+        var gapClosed = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.5, 10),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#66BB6A"), emissive: hexToThreeColor("#66BB6A"), emissiveIntensity: 0.4 }));
+        gapClosed.rotation.x = Math.PI / 2; gapClosed.position.set(MEM_RESISTOR_X - 0.55, 0, -MEM_RAIL_Z);
+        gapClosed.userData = { elementType: "mem_switchgap", id: "mem_gap_closed" }; addToScene(gapClosed);
+
+        // 4. The rod (cylinder along Z, spans the rails).
+        var rodMat = new THREE.MeshPhongMaterial({ color: hexToThreeColor("#FFCC80"), emissive: hexToThreeColor("#FFCC80"), emissiveIntensity: 0.3 });
+        var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 2 * MEM_RAIL_Z + 0.12, 16), rodMat);
+        rod.rotation.x = Math.PI / 2;
+        rod.position.set(MEM_ROD_X_REST, 0, 0);
+        rod.userData = { elementType: "mem_rod", id: "mem_rod" }; addToScene(rod);
+
+        // 5. B-field lattice -- vertical arrows (+Y), perpendicular to the rail
+        //    plane (a bird's-eye "out of the page" grid).
+        for (var bx = -2; bx <= 2; bx++) {
+            for (var bz = -1; bz <= 1; bz++) {
+                var bOrigin = new THREE.Vector3(bx * 1.1, -0.55, bz * MEM_RAIL_Z * 1.3);
+                var bArr = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), bOrigin, 1.1, hexToThreeColor("#42A5F5"), 0.14, 0.09);
+                bArr.userData = { elementType: "mem_bfield", id: "mem_b_" + bx + "_" + bz };
+                bArr.children.forEach(function (c) { if (c.material) { c.material.transparent = true; c.material.opacity = 0.4; } });
+                addToScene(bArr);
+            }
+        }
+        var bLbl = createLabelSprite("B", "#42A5F5", 0.4); bLbl.position.set(-2.2, 1.0, 1.3);
+        bLbl.userData = { elementType: "mem_bfield", id: "mem_b_lbl" }; addToScene(bLbl);
+
+        // 6. v arrow -- rides on the rod, points along +-X (sign of v_dir).
+        var vArrow = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(MEM_ROD_X_REST, 0.5, 0), 0.8, hexToThreeColor("#FFAB40"), 0.16, 0.1);
+        vArrow.userData = { elementType: "mem_varrow", id: "mem_v_arrow" }; addToScene(vArrow);
+        var vLbl = createLabelSprite("v", "#FFAB40", 0.36); vLbl.userData = { elementType: "mem_varrow", id: "mem_v_lbl" }; addToScene(vLbl);
+
+        // 7. Charge markers ('+'/'-' at the rod's two rail ends) + internal
+        //    E-field arrow (points from - end toward + end -- the "motional"
+        //    driving field E_internal = v x B, same direction as the force on
+        //    positive carriers -- physics_author's carrier_force_balance).
+        var chargeTop = createLabelSprite("+", "#EF5350", 0.4); chargeTop.userData = { elementType: "mem_charge", id: "mem_charge_top" }; addToScene(chargeTop);
+        var chargeBot = createLabelSprite("-", "#42A5F5", 0.4); chargeBot.userData = { elementType: "mem_charge", id: "mem_charge_bot" }; addToScene(chargeBot);
+        var eArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(MEM_ROD_X_REST, -0.2, 0), 0.9, hexToThreeColor("#AB47BC"), 0.14, 0.09);
+        eArrow.userData = { elementType: "mem_efield", id: "mem_e_arrow" }; addToScene(eArrow);
+        var eLbl = createLabelSprite("E_internal = vB", "#AB47BC", 0.28); eLbl.userData = { elementType: "mem_efield", id: "mem_e_lbl" }; addToScene(eLbl);
+
+        // 8. RHR hand (S3 only) -- reuses createLorentzHand's articulated model
+        //    (v/B/F arrows + labels already wired to its local -z/-x/+y axes);
+        //    orientation is set live per frame via memHandQuatForVDir.
+        var hand = createLorentzHand({ position: [MEM_ROD_X_FAR - 0.35, 1.05, 0.7], scale: 0.9 });
+        hand.userData.elementType = "mem_hand"; hand.userData.id = "mem_hand";
+        addToScene(hand);
+
+        // 9. Voltmeter/galvanometer needle (eps readout, reused across all
+        //    states -- emBuildNeedle, mirrors the faraday galvanometer).
+        var needle = emBuildNeedle(0.75, "#EF5350", "#42A5F5");
+        needle.position.set(MEM_ROD_X_FAR + 1.1, -1.2, 0); needle.rotation.z = Math.PI / 2;
+        needle.userData = { elementType: "mem_needle", id: "mem_needle" }; addToScene(needle);
+        var nLbl = createLabelSprite("eps", "#B0BEC5", 0.26); nLbl.position.set(MEM_ROD_X_FAR + 1.85, -1.2, 0);
+        nLbl.userData = { elementType: "mem_needle", id: "mem_needle_lbl" }; addToScene(nLbl);
+
+        // 10. Current beads flowing around the full loop (rod -> top rail ->
+        //     resistor -> bottom rail -> rod), only lit when circuit_closed.
+        for (var ci2 = 0; ci2 < 16; ci2++) {
+            var bead = new THREE.Mesh(new THREE.SphereGeometry(0.055, 10, 10),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor("#FFB300"), transparent: true, opacity: 0.9 }));
+            bead.userData = { elementType: "mem_curr", id: "mem_curr_" + ci2, slot: ci2 / 16 };
+            addToScene(bead);
+        }
+
+        // 11. F_retard (opposes v) + F_ext (along v) arrows on the rod.
+        var fRetard = new THREE.ArrowHelper(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(MEM_ROD_X_REST, 0.5, 0), 0.5, hexToThreeColor("#EF5350"), 0.16, 0.1);
+        fRetard.userData = { elementType: "mem_fretard", id: "mem_f_retard" }; addToScene(fRetard);
+        var frLbl = createLabelSprite("F_retard", "#EF5350", 0.26); frLbl.userData = { elementType: "mem_fretard", id: "mem_fr_lbl" }; addToScene(frLbl);
+        var fExt = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(MEM_ROD_X_REST, 0.5, 0), 0.5, hexToThreeColor("#66BB6A"), 0.16, 0.1);
+        fExt.userData = { elementType: "mem_fext", id: "mem_f_ext" }; addToScene(fExt);
+        var feLbl = createLabelSprite("F_ext", "#66BB6A", 0.26); feLbl.userData = { elementType: "mem_fext", id: "mem_fe_lbl" }; addToScene(feLbl);
+
+        // 12. Readout + slider panels (createElement pattern, mirrors faraday).
+        var rp = document.createElement("div"); rp.id = "mem_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:250px;display:none;";
+        document.body.appendChild(rp);
+        window.PM_memB = 0.5; window.PM_memL = 0.5; window.PM_memV = 2; window.PM_memR = 5; window.PM_memVDir = 1; window.PM_memClosed = false; window.PM_memMode = "sandbox";
+        var sp = document.createElement("div"); sp.id = "mem_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:250px;display:none;";
+        sp.innerHTML =
+            '<div id="mem_b_row"><label>Field B: <span id="mem_b_val">0.5</span> T</label>' +
+            '<input type="range" id="mem_b_slider" min="0.1" max="1" step="0.1" value="0.5" style="width:100%"></div>' +
+            '<div id="mem_l_row"><label style="margin-top:6px">Rail separation l: <span id="mem_l_val">0.5</span> m</label>' +
+            '<input type="range" id="mem_l_slider" min="0.1" max="1" step="0.1" value="0.5" style="width:100%"></div>' +
+            '<div id="mem_v_row"><label style="margin-top:6px">Speed v: <span id="mem_v_val">2</span> m/s</label>' +
+            '<input type="range" id="mem_v_slider" min="0.5" max="5" step="0.5" value="2" style="width:100%"></div>' +
+            '<div id="mem_r_row"><label style="margin-top:6px">Resistance R: <span id="mem_r_val">5</span> ohm</label>' +
+            '<input type="range" id="mem_r_slider" min="1" max="10" step="1" value="5" style="width:100%"></div>' +
+            '<div id="mem_vdir_row" style="margin-top:6px"><button id="mem_vdir_toggle" type="button" style="width:100%;padding:4px;border-radius:5px;border:none;background:#66BB6A;color:#0A0A1A;font:12px monospace;cursor:pointer;">v: forward (+)</button></div>';
+        document.body.appendChild(sp);
+        var ff = document.createElement("div"); ff.id = "mem_formula";
+        ff.style.cssText = "position:fixed;top:42%;right:22px;transform:translateY(-50%);color:#FFF176;font:bold 20px/1.4 monospace;text-shadow:0 0 10px rgba(0,0,0,0.95);z-index:9;display:none;max-width:360px;text-align:right;";
+        document.body.appendChild(ff);
+
+        var bSl = document.getElementById("mem_b_slider"), bV = document.getElementById("mem_b_val");
+        var lSl = document.getElementById("mem_l_slider"), lV = document.getElementById("mem_l_val");
+        var vSl = document.getElementById("mem_v_slider"), vV = document.getElementById("mem_v_val");
+        var rSl = document.getElementById("mem_r_slider"), rV = document.getElementById("mem_r_val");
+        var vdirBtn = document.getElementById("mem_vdir_toggle");
+        if (bSl) bSl.addEventListener("input", function () { window.PM_memB = parseFloat(bSl.value); if (bV) bV.textContent = bSl.value; });
+        if (lSl) lSl.addEventListener("input", function () { window.PM_memL = parseFloat(lSl.value); if (lV) lV.textContent = lSl.value; });
+        if (vSl) vSl.addEventListener("input", function () { window.PM_memV = parseFloat(vSl.value); if (vV) vV.textContent = vSl.value; });
+        if (rSl) rSl.addEventListener("input", function () { window.PM_memR = parseFloat(rSl.value); if (rV) rV.textContent = rSl.value; });
+        if (vdirBtn) vdirBtn.addEventListener("click", function () {
+            window.PM_memVDir = (window.PM_memVDir >= 0) ? -1 : 1;
+            vdirBtn.textContent = (window.PM_memVDir >= 0) ? "v: forward (+)" : "v: reverse (-)";
+            vdirBtn.style.background = (window.PM_memVDir >= 0) ? "#66BB6A" : "#EF5350";
+        });
+
+        for (var qi = 0; qi < sceneObjects.length; qi++) { var qo = sceneObjects[qi]; if (qo.userData && qo.userData.elementType && qo.userData.elementType.indexOf("mem_") === 0) qo.visible = false; }
+    }
+
+    // Authoritative per-state seed (B/l/v/R/v_dir, circuit_closed, mode) + the
+    // per-state contextual controls (progressive disclosure: only the slider
+    // row(s) this beat teaches are shown; the Explore state shows them all).
+    // Visibility of the 3D objects themselves is handled by the GENERIC
+    // visible_elements loop in applyState (exact-token match on "mem_*").
+    function applyMotionalEmfRodState(stateDef) {
+        var md = stateDef.motional_emf_rod || {};
+        window.PM_memMode = md.mode || "sandbox";
+        if (typeof md.B === "number") window.PM_memB = md.B;
+        if (typeof md.l === "number") window.PM_memL = md.l;
+        if (typeof md.v === "number") window.PM_memV = md.v;
+        if (typeof md.R === "number") window.PM_memR = md.R;
+        if (typeof md.v_dir === "number") window.PM_memVDir = md.v_dir;
+        window.PM_memClosed = !!md.circuit_closed;
+        window.PM_memShownVDir = window.PM_memVDir;
+        window.PM_memReflipStart = undefined;
+
+        function syncSlider(id, val) { var el = document.getElementById(id); if (el) el.value = String(val); }
+        function syncVal(id, val) { var el = document.getElementById(id); if (el) el.textContent = String(val); }
+        syncSlider("mem_b_slider", window.PM_memB); syncVal("mem_b_val", window.PM_memB);
+        syncSlider("mem_l_slider", window.PM_memL); syncVal("mem_l_val", window.PM_memL);
+        syncSlider("mem_v_slider", window.PM_memV); syncVal("mem_v_val", window.PM_memV);
+        syncSlider("mem_r_slider", window.PM_memR); syncVal("mem_r_val", window.PM_memR);
+        var vdirBtn = document.getElementById("mem_vdir_toggle");
+        if (vdirBtn) {
+            vdirBtn.textContent = (window.PM_memVDir >= 0) ? "v: forward (+)" : "v: reverse (-)";
+            vdirBtn.style.background = (window.PM_memVDir >= 0) ? "#66BB6A" : "#EF5350";
+        }
+
+        var roEl = document.getElementById("mem_readout"); if (roEl) roEl.style.display = (md.show_readout === false) ? "none" : "block";
+        var panelOn = (window.PM_memMode !== "flux_crosscheck" && window.PM_memMode !== "charge_separation");
+        var spEl = document.getElementById("mem_sliders"); if (spEl) spEl.style.display = panelOn ? "block" : "none";
+        var vc = md.visible_controls || [];
+        var rows = { B: "mem_b_row", l: "mem_l_row", v: "mem_v_row", R: "mem_r_row", vdir: "mem_vdir_row" };
+        for (var k in rows) { var rEl = document.getElementById(rows[k]); if (rEl) rEl.style.display = (vc.indexOf(k) !== -1) ? "block" : "none"; }
+
+        var ff = document.getElementById("mem_formula");
+        if (ff) { var ftext = stateDef.formula_overlay || ""; ff.textContent = ftext; ff.style.display = ftext ? "block" : "none"; }
+    }
+
+    // Per-frame update -- slides the rod, computes the live readout, orients
+    // the RHR hand, drives the current beads + F_retard/F_ext arrows + needle.
+    // PURE fn of the state clock (Rule 26).
+    function updateMotionalEmfRodFrame() {
+        if (config.scenario_type !== "motional_emf_rod") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var md = stateDef.motional_emf_rod || {};
+        var t = time - stateStartTime;
+        var mode = md.mode || "sandbox";
+
+        var rodX = memRodX(mode, t);
+        var rod = memFindById("mem_rod"); if (rod) rod.position.x = rodX;
+
+        var ro = memReadout();
+        var vDirSign = (ro.vDir >= 0) ? 1 : -1;
+
+        var vArrow = memFindById("mem_v_arrow");
+        var vLen = 0.4 + 0.28 * Math.min(1, ro.v / 5);
+        if (vArrow) { vArrow.position.set(rodX, 0.5, 0); vArrow.setDirection(new THREE.Vector3(vDirSign, 0, 0)); vArrow.setLength(vLen, 0.16, 0.1); }
+        var vLbl = memFindById("mem_v_lbl"); if (vLbl) vLbl.position.set(rodX + vDirSign * (vLen + 0.25), 0.5, 0);
+
+        // Charge markers + internal E-field -- F = v x B lands along +-Z (the
+        // rod's own axis): +Z end is "+" when v_dir > 0, flips with v_dir.
+        var fDir = vDirSign;
+        var chargeTop = memFindById("mem_charge_top"), chargeBot = memFindById("mem_charge_bot");
+        if (chargeTop) chargeTop.position.set(rodX, 0.18, fDir * (MEM_RAIL_Z + 0.18));
+        if (chargeBot) chargeBot.position.set(rodX, 0.18, -fDir * (MEM_RAIL_Z + 0.18));
+        var eArrow = memFindById("mem_e_arrow");
+        if (eArrow) { eArrow.position.set(rodX, -0.2, -fDir * (MEM_RAIL_Z - 0.15)); eArrow.setDirection(new THREE.Vector3(0, 0, fDir)); eArrow.setLength(0.85, 0.14, 0.09); }
+        var eLbl = memFindById("mem_e_lbl"); if (eLbl) eLbl.position.set(rodX, -0.55, 0);
+
+        // RHR hand (S3 only) -- 3-phase curl choreography (v -> curl-to-B -> F);
+        // re-runs a quick re-curl if the teacher flips v_dir after the intro.
+        var hand = memFindById("mem_hand");
+        if (hand) {
+            if (window.PM_memShownVDir === undefined) window.PM_memShownVDir = vDirSign;
+            if (vDirSign !== window.PM_memShownVDir) { window.PM_memShownVDir = vDirSign; window.PM_memReflipStart = t; }
+            var shownDir = window.PM_memShownVDir;
+            hand.visible = (mode === "polarity_rhr") && t >= 2;
+            if (hand.visible) {
+                hand.setRotationFromQuaternion(memHandQuatForVDir(shownDir));
+                var curlT, beat;
+                if (window.PM_memReflipStart !== undefined && window.PM_memReflipStart >= 10 &&
+                    t >= window.PM_memReflipStart && t < window.PM_memReflipStart + 3) {
+                    var ur = memSmooth((t - window.PM_memReflipStart) / 3);
+                    curlT = ur; beat = (ur < 0.15) ? "v" : (ur > 0.85 ? "f" : null);
+                } else if (t < 4) { curlT = 0; beat = "v"; }
+                else if (t < 7) { curlT = 0.5 * memSmooth((t - 4) / 3); beat = null; }
+                else if (t < 10) { curlT = 0.5 + 0.5 * memSmooth((t - 7) / 3); beat = null; }
+                else { curlT = 1; beat = "f"; }
+
+                var fingers = hand.userData.finger_meshes || [];
+                var knuckles = hand.userData.finger_knuckles || [];
+                var nails = hand.userData.finger_nails || [];
+                for (var fmi = 0; fmi < fingers.length; fmi++) {
+                    var fmesh = fingers[fmi];
+                    var fj = rhrFingerJoints(fmi, hand.userData.sc, curlT, hand.userData.curlSign);
+                    fmesh.geometry.dispose();
+                    fmesh.geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(fj), 24, hand.userData.seg_tube_r, 12, false);
+                    var fkn = knuckles[fmi] || [];
+                    for (var fkk = 0; fkk < fkn.length; fkk++) { if (fkn[fkk]) fkn[fkk].position.copy(fj[fkk]); }
+                    if (nails[fmi]) nails[fmi].position.copy(fj[3]);
+                }
+                if (hand.userData.v_arrow) hand.userData.v_arrow.visible = (beat === "v");
+                if (hand.userData.b_arrow) hand.userData.b_arrow.visible = (beat === "b");
+                if (hand.userData.f_arrow) hand.userData.f_arrow.visible = (beat === "f");
+                if (hand.userData.v_label) hand.userData.v_label.visible = (beat === "v");
+                if (hand.userData.b_label) hand.userData.b_label.visible = (beat === "b");
+                if (hand.userData.f_label) hand.userData.f_label.visible = (beat === "f");
+            }
+        }
+
+        // F_retard / F_ext arrows -- real magnitudes (Rule 29), opposite/along v.
+        var fr = memFindById("mem_f_retard"), frLbl = memFindById("mem_fr_lbl");
+        var frLen = 0.25 + 0.5 * Math.min(1, ro.Fr / 2);
+        if (fr) { fr.visible = ro.closed && ro.Fr > 1e-4; fr.position.set(rodX, 0.5, 0); fr.setDirection(new THREE.Vector3(-vDirSign, 0, 0)); fr.setLength(frLen, 0.16, 0.1); }
+        if (frLbl) { frLbl.visible = ro.closed && ro.Fr > 1e-4; frLbl.position.set(rodX - vDirSign * (frLen + 0.35), 0.5, 0); }
+        var fe = memFindById("mem_f_ext"), feLbl = memFindById("mem_fe_lbl");
+        var showFext = ro.closed && (mode === "energy" || mode === "sandbox");
+        if (fe) { fe.visible = showFext; fe.position.set(rodX, 0.5, 0); fe.setDirection(new THREE.Vector3(vDirSign, 0, 0)); fe.setLength(frLen, 0.16, 0.1); }
+        if (feLbl) { feLbl.visible = showFext; feLbl.position.set(rodX + vDirSign * (frLen + 0.3), 0.75, 0); }
+
+        // Needle deflection proportional to eps (live, all states).
+        var needle = memFindById("mem_needle");
+        if (needle) { var defl = ro.emf / 8; if (defl > 1.15) defl = 1.15; if (defl < -1.15) defl = -1.15; needle.rotation.z = Math.PI / 2 - defl; }
+
+        // Current beads flow around the FULL loop only when the circuit is
+        // closed AND current is actually nonzero (S4 open-circuit stays parked).
+        var flowing = ro.closed && Math.abs(ro.I) > 1e-4;
+        var dir = (ro.I >= 0) ? 1 : -1;
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], u = o.userData;
+            if (!u || u.elementType !== "mem_curr") continue;
+            var ub = flowing ? (((u.slot + dir * t * 0.12) % 1) + 1) % 1 : u.slot;
+            var pt = memLoopPoint(ub, rodX);
+            o.position.set(pt[0], pt[1], pt[2]);
+            if (o.material) o.material.opacity = flowing ? 0.9 : 0.15;
+        }
+
+        // Switch/gap indicator.
+        var gapOpen = memFindById("mem_gap_open"), gapClosed = memFindById("mem_gap_closed");
+        if (gapOpen) gapOpen.visible = !ro.closed;
+        if (gapClosed) gapClosed.visible = ro.closed;
+
+        // Readout (Rule 24 carries the numbers; eps colour = green +, red -, grey ~0).
+        var roEl = document.getElementById("mem_readout");
+        if (roEl && roEl.style.display !== "none") {
+            var eColor = (Math.abs(ro.emf) < 0.05) ? "#90A4AE" : (ro.emf > 0 ? "#66BB6A" : "#EF5350");
+            var html = "";
+            html += "<div style=\\"color:" + eColor + "\\">eps = B l v = " + ro.emf.toFixed(2) + " V</div>";
+            if (mode === "open_circuit" || mode === "closed_circuit" || mode === "energy" || mode === "sandbox") {
+                html += "<div style=\\"color:#B0BEC5\\">I = " + (ro.closed ? ro.I.toFixed(2) : "0.00") + " A" + (ro.closed ? "" : " (circuit open)") + "</div>";
+            }
+            if (mode === "closed_circuit" || mode === "energy" || mode === "sandbox") {
+                html += "<div style=\\"color:#EF5350\\">F_retard = " + ro.Fr.toFixed(3) + " N</div>";
+            }
+            if (mode === "energy" || mode === "sandbox") {
+                html += "<div style=\\"color:#66BB6A\\">F_ext = " + ro.Fe.toFixed(3) + " N</div>";
+                html += "<div style=\\"color:#FFD54F\\">P_mech = P_elec = " + ro.P.toFixed(3) + " W</div>";
+            }
+            roEl.innerHTML = html;
+        }
+    }
+
+    function applyMotionalEmfRodGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            if (!sud.elementType || sud.elementType.indexOf("mem_") !== 0) continue;
+            applyGlowEmphasis(so, on(sud.id) || on(sud.elementType), glowActive, glowP, true);
+        }
+    }
+
+    // ── eddy_current_pendulum scenario (eddy_currents concept) ────────────────
+    //   A Waltenhofen-style damped pendulum: a rigid arm+plate swings through a
+    //   narrow electromagnet gap. theta(t) REUSES the existing damped-pendulum
+    //   CLOSED-FORM pattern already built for potential_energy_in_external_field's
+    //   "damped_swing" branch (updateDipoleInFieldFrame, ~line 12960):
+    //     theta(t) = theta0 * e^(-beta*t) * cos(2*pi*t/T)
+    //   -- the SAME linear closed form, just swinging a conducting PLATE instead
+    //   of a dipole moment; beta is the physics_author's beta_damp formula (0.05
+    //   air-drag baseline + 3.0*B^2*[field_on]*(slotted?0.08:1)), so ONE closed
+    //   form reproduces both the near-free air-drag decay (field off) and the
+    //   fast eddy-braked collapse (field on) purely by swapping beta. NO new
+    //   pendulum INTEGRATOR was written (session directive: reuse the existing
+    //   pattern's math, do not reinvent). STATE_2/STATE_3 deliberately use a
+    //   NON-decaying constant-amplitude "oscillation" (theta = amp*cos(wt))
+    //   instead of the real decay, to avoid the frozen-plate pacing trap already
+    //   logged in engine_bug_queue (swc_state3_frozen_27s_no_ambient_motion) --
+    //   physics_author's explicit STATE_2/3 pacing note.
+    var ECP_OMEGA0 = 4.4;                          // rad/s, fixed rig property
+    var ECP_PERIOD_T = 2 * Math.PI / ECP_OMEGA0;   // ~1.428s
+    var ECP_PIVOT = [0, 1.75, 0];
+    var ECP_ARM_LEN = 1.9;
+    var ECP_GAP_HALF_Z = 0.34;                     // electromagnet pole half-gap
+    var ECP_S4_OFFSET_X = 1.55;                    // twin-pendulum side offset (S4)
+    var ECP_S5_OFFSET_X = 1.85;                    // furnace / core side offset (S5)
+
+    function ecpBetaDamp(B, fieldOn, slotted) {
+        return 0.05 + 3.0 * B * B * (fieldOn ? 1 : 0) * (slotted ? 0.08 : 1);
+    }
+    function ecpFRetard(B, thetaMaxDeg, fieldOn, slotted) {
+        var thetaMaxRad = Math.abs(thetaMaxDeg) * Math.PI / 180;
+        return 0.15 * B * B * ECP_OMEGA0 * thetaMaxRad * (fieldOn ? 1 : 0) * (slotted ? 0.08 : 1);
+    }
+    function ecpPLoss(fAc, bAc, laminated) {
+        return 10 * fAc * fAc * bAc * bAc * (laminated ? 0.05 : 1);
+    }
+    // Envelope under a piecewise-constant beta timeline (segments = [{start,
+    // until|null, beta}, ...] in state-local SECONDS). Multiplying each
+    // segment's own exp(-beta*duration) onto the running envelope preserves
+    // continuity across a LIVE field_on/slotted toggle (no amplitude jump) --
+    // the cos() PHASE runs on absolute t throughout (no phase reset either).
+    function ecpEnvelopeFromSegments(theta0Deg, segments, t) {
+        var env = theta0Deg;
+        for (var i = 0; i < segments.length; i++) {
+            var seg = segments[i];
+            var segEnd = (seg.until != null) ? Math.min(seg.until, t) : t;
+            var dur = segEnd - seg.start;
+            if (dur > 0) env *= Math.exp(-seg.beta * dur);
+            if (seg.until == null || t <= seg.until) break;
+        }
+        return env;
+    }
+    function ecpThetaFromSegments(theta0Deg, segments, t) {
+        return ecpEnvelopeFromSegments(theta0Deg, segments, t) * Math.cos(2 * Math.PI * t / ECP_PERIOD_T);
+    }
+    function ecpThetaDamped(theta0Deg, beta, t) {
+        if (t < 0) t = 0;
+        return theta0Deg * Math.exp(-beta * t) * Math.cos(2 * Math.PI * t / ECP_PERIOD_T);
+    }
+    function ecpThetaOscillation(ampDeg, t) {
+        return ampDeg * Math.cos(2 * Math.PI * t / ECP_PERIOD_T);
+    }
+    // Finite-difference angular speed (deg/s) of any theta(t) fn -- drives the
+    // eddy-loop-glyph brightness: peaks at the BOTTOM of the swing (theta~0,
+    // max |dtheta/dt|, the plate crossing the field-boundary line) and fades to
+    // zero at the turning points (momentarily zero velocity -> zero flux rate
+    // -> no induced current) -- exactly physics_author's beat.
+    function ecpOmegaDegPerSec(thetaAtFn, t) {
+        var dt = 0.02;
+        return (thetaAtFn(t) - thetaAtFn(t - dt)) / dt;
+    }
+    function ecpFindById(id) {
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i];
+            if (o.userData && o.userData.id === id) return o;
+        }
+        return null;
+    }
+    // grey (#78909C, cool) -> amber (#FFA000) -> red-hot (#FF3D00) heat glow,
+    // keyed to the live P_loss / P_max ratio (S5 furnace blank + core).
+    function ecpHeatColor(pLoss, pMax) {
+        var u = Math.max(0, Math.min(1, pLoss / (pMax || 200)));
+        var c0 = new THREE.Color(0x78909C), c1 = new THREE.Color(0xFFA000), c2 = new THREE.Color(0xFF3D00);
+        return (u < 0.5) ? c0.clone().lerp(c1, u / 0.5) : c1.clone().lerp(c2, (u - 0.5) / 0.5);
+    }
+    function ecpQuatForThumbDir(dir) {
+        var v = new THREE.Vector3(dir[0], dir[1], dir[2]).normalize();
+        return new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), v);
+    }
+
+    function buildEddyCurrentPendulum() {
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
+        var gapY = ECP_PIVOT[1] - ECP_ARM_LEN;
+
+        // ── 1. Main pendulum rig (STATE_1/2/3/6, prefix "ecp_") ────────────────
+        var pivot = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 10), new THREE.MeshPhongMaterial({ color: 0x616161 }));
+        pivot.position.set(ECP_PIVOT[0], ECP_PIVOT[1], ECP_PIVOT[2]);
+        pivot.userData = { elementType: "ecp_pivot", id: "ecp_pivot" };
+        addToScene(pivot);
+
+        var armGrp = new THREE.Group();
+        armGrp.position.set(ECP_PIVOT[0], ECP_PIVOT[1], ECP_PIVOT[2]);
+        armGrp.userData = { elementType: "ecp_arm_group", id: "ecp_arm_group", betaSegments: [{ start: 0, until: null, beta: 0.05 }] };
+        addToScene(armGrp);
+
+        // NOTE: every armGrp child below is ALSO pushed through addToScene()
+        // (which does scene.add + sceneObjects.push) BEFORE being re-parented
+        // via armGrp.add() -- Object3D.add() removes an object from its
+        // previous parent automatically, so the net effect is "child of
+        // armGrp" (correct LOCAL position + rides the group's rotation) while
+        // STILL being a normal entry in sceneObjects (findable by id, and
+        // reachable by the generic visible_elements matcher) -- mirrors no
+        // single existing precedent exactly, but is standard Object3D
+        // re-parenting behaviour (position is untouched by .add()).
+        var arm = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, ECP_ARM_LEN, 10), new THREE.MeshPhongMaterial({ color: 0x9E9E9E }));
+        arm.position.set(0, -ECP_ARM_LEN / 2, 0);
+        arm.userData = { elementType: "ecp_arm", id: "ecp_arm" };
+        addToScene(arm); armGrp.add(arm);
+
+        var plate = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.55, 0.08),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#B0BEC5"), emissive: hexToThreeColor("#B0BEC5"), emissiveIntensity: 0.15, shininess: 50 }));
+        plate.position.set(0, -ECP_ARM_LEN, 0);
+        plate.userData = { elementType: "ecp_plate", id: "ecp_plate" };
+        addToScene(plate); armGrp.add(plate);
+
+        // Slot lines (S6 explorer only -- toggled live by the 'slotted' slider).
+        [-1, 0, 1].forEach(function (si) {
+            var slot = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.48, 0.09), new THREE.MeshBasicMaterial({ color: 0x0A0A1A }));
+            slot.position.set(si * 0.27, -ECP_ARM_LEN, 0);
+            slot.visible = false;
+            slot.userData = { elementType: "ecp_plate_slot", id: "ecp_plate_slot_" + (si + 1) };
+            addToScene(slot); armGrp.add(slot);
+        });
+
+        // Loop glyphs -- torus rings at the plate's leading/trailing edges,
+        // riding rigidly with the swing. Brightness driven per-frame by
+        // |dtheta/dt| (see ecpOmegaDegPerSec above).
+        ["left", "right"].forEach(function (side) {
+            var sx = (side === "left") ? -0.42 : 0.42;
+            var loopColor = (side === "left") ? "#42A5F5" : "#EF5350";
+            var loop = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.026, 10, 20),
+                new THREE.MeshBasicMaterial({ color: hexToThreeColor(loopColor), transparent: true, opacity: 0.12 }));
+            loop.position.set(sx, -ECP_ARM_LEN, 0.09);
+            loop.userData = { elementType: "ecp_loop", id: "ecp_loop_" + side, side: side };
+            addToScene(loop); armGrp.add(loop);
+        });
+
+        // F_retard arrow -- rides on the plate; direction driven LIVE by the
+        // v_dir slider (decoupled from the swing's own on-screen phase, exactly
+        // mirroring motional_emf_rod's "readout tracks the slider, pacing is
+        // separate choreography" convention, ~line 17977).
+        var fRetard = new THREE.ArrowHelper(new THREE.Vector3(-1, 0, 0), new THREE.Vector3(0, -ECP_ARM_LEN, 0), 0.4, hexToThreeColor("#EF5350"), 0.14, 0.09);
+        fRetard.visible = false;
+        fRetard.userData = { elementType: "ecp_fretard", id: "ecp_fretard" };
+        addToScene(fRetard); armGrp.add(fRetard);
+        var frLbl = createLabelSprite("F_retard", "#EF5350", 0.22);
+        frLbl.visible = false;
+        frLbl.userData = { elementType: "ecp_fretard", id: "ecp_fretard_lbl" };
+        addToScene(frLbl); armGrp.add(frLbl);
+
+        // Electromagnet gap -- two pole faces flanking the swing PLANE in Z so
+        // the plate's XY arc passes cleanly between them (no geometric clash).
+        [-1, 1].forEach(function (side) {
+            var poleColor = side < 0 ? "#EF5350" : "#42A5F5";
+            var pole = new THREE.Mesh(new THREE.BoxGeometry(1.05, 1.0, 0.22),
+                new THREE.MeshPhongMaterial({ color: hexToThreeColor(poleColor), emissive: hexToThreeColor(poleColor), emissiveIntensity: 0.16, transparent: true, opacity: 0.32 }));
+            pole.position.set(0, gapY, side * (ECP_GAP_HALF_Z + 0.11));
+            pole.userData = { elementType: "ecp_gap_pole", id: "ecp_gap_pole_" + (side < 0 ? "n" : "s") };
+            addToScene(pole);
+        });
+
+        // Field arrows inside the gap (vertical Z lattice) -- opacity driven
+        // live by field_on.
+        for (var fx = -1; fx <= 1; fx++) {
+            for (var fy = -1; fy <= 1; fy++) {
+                var fArr = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1),
+                    new THREE.Vector3(fx * 0.32, gapY + fy * 0.28, -ECP_GAP_HALF_Z), 2 * ECP_GAP_HALF_Z,
+                    hexToThreeColor("#42A5F5"), 0.1, 0.07);
+                fArr.userData = { elementType: "ecp_field_arrow", id: "ecp_field_arrow_" + fx + "_" + fy };
+                fArr.children.forEach(function (c) { if (c.material) { c.material.transparent = true; c.material.opacity = 0; } });
+                addToScene(fArr);
+            }
+        }
+        var fLbl = createLabelSprite("B", "#42A5F5", 0.34);
+        fLbl.position.set(0.78, gapY + 0.55, 0);
+        fLbl.userData = { elementType: "ecp_field_label", id: "ecp_field_label" };
+        addToScene(fLbl);
+
+        // ── 2. S4 twin pendulum rig (prefix "s4_plate_solid_" / "s4_plate_slot_")
+        //    Distinct token FAMILIES per Bug-queue/checklist "distinct visible_
+        //    elements tokens" note -- neither is a substring of the other.
+        function ecpBuildTwin(prefix, xOff, color) {
+            var pv = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 8), new THREE.MeshPhongMaterial({ color: 0x616161 }));
+            pv.position.set(xOff, ECP_PIVOT[1], 0);
+            pv.userData = { elementType: prefix + "_pivot", id: prefix + "_pivot" };
+            addToScene(pv);
+
+            var ag = new THREE.Group();
+            ag.position.set(xOff, ECP_PIVOT[1], 0);
+            ag.userData = { elementType: prefix + "_arm_group", id: prefix + "_arm_group", betaSegments: [{ start: 0, until: null, beta: 0.80 }] };
+            addToScene(ag);
+
+            var a1 = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, ECP_ARM_LEN, 8), new THREE.MeshPhongMaterial({ color: 0x9E9E9E }));
+            a1.position.set(0, -ECP_ARM_LEN / 2, 0);
+            a1.userData = { elementType: prefix + "_arm", id: prefix + "_arm" };
+            addToScene(a1); ag.add(a1);
+
+            var pl = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.42, 0.06),
+                new THREE.MeshPhongMaterial({ color: hexToThreeColor("#B0BEC5"), emissive: hexToThreeColor("#B0BEC5"), emissiveIntensity: 0.15 }));
+            pl.position.set(0, -ECP_ARM_LEN, 0);
+            pl.userData = { elementType: prefix + "_plate", id: prefix + "_plate" };
+            addToScene(pl); ag.add(pl);
+
+            // Slot lines -- only meaningful on the SLOT twin; harmless (never
+            // shown) on the SOLID twin since no state lists its token.
+            [-0.8, 0, 0.8].forEach(function (si, idx) {
+                var sl = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.36, 0.07), new THREE.MeshBasicMaterial({ color: 0x0A0A1A }));
+                sl.position.set(si * 0.2, -ECP_ARM_LEN, 0);
+                sl.userData = { elementType: prefix + "_slotline", id: prefix + "_slotline_" + idx };
+                addToScene(sl); ag.add(sl);
+            });
+
+            // Small field indicator (a single vertical arrow overhead, standing
+            // in for "this plate is in field B too" -- always on in S4).
+            var fa = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(xOff, gapY, -0.3), 0.6, hexToThreeColor("#42A5F5"), 0.09, 0.06);
+            fa.userData = { elementType: prefix + "_field_arrow", id: prefix + "_field_arrow" };
+            addToScene(fa);
+
+            // Loop-badge inset (a small static cluster near the plate, standing
+            // in for "one big loop" vs "many small loops" -- NOT a camera zoom
+            // (Lesson B: zoom is not wired); a world-space decorative badge.
+            var badgeBig = new THREE.Mesh(new THREE.TorusGeometry(0.16, 0.03, 8, 16), new THREE.MeshBasicMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 0.7 }));
+            badgeBig.position.set(xOff, gapY - 0.75, 0.05);
+            badgeBig.userData = { elementType: prefix + "_badge_big", id: prefix + "_badge_big" };
+            addToScene(badgeBig);
+            var badgeBigLbl = createLabelSprite("1 loop", color, 0.22);
+            badgeBigLbl.position.set(xOff, gapY - 1.02, 0.05);
+            badgeBigLbl.userData = { elementType: prefix + "_badge_big", id: prefix + "_badge_big_lbl" };
+            addToScene(badgeBigLbl);
+
+            var badgeManyGrp = new THREE.Group();
+            badgeManyGrp.position.set(xOff, gapY - 0.75, 0.05);
+            badgeManyGrp.userData = { elementType: prefix + "_badge_many", id: prefix + "_badge_many" };
+            [[-0.14, 0.06], [0.14, 0.06], [-0.14, -0.09], [0.14, -0.09]].forEach(function (p, mi) {
+                var m = new THREE.Mesh(new THREE.TorusGeometry(0.055, 0.014, 6, 12), new THREE.MeshBasicMaterial({ color: hexToThreeColor(color), transparent: true, opacity: 0.7 }));
+                m.position.set(p[0], p[1], 0);
+                m.userData = { elementType: prefix + "_badge_many", id: prefix + "_badge_many_" + mi };
+                badgeManyGrp.add(m);
+            });
+            addToScene(badgeManyGrp);
+            var badgeManyLbl = createLabelSprite("many small loops", color, 0.20);
+            badgeManyLbl.position.set(xOff, gapY - 1.02, 0.05);
+            badgeManyLbl.userData = { elementType: prefix + "_badge_many", id: prefix + "_badge_many_lbl" };
+            addToScene(badgeManyLbl);
+        }
+        ecpBuildTwin("s4_plate_solid", -ECP_S4_OFFSET_X, "#66BB6A");
+        ecpBuildTwin("s4_plate_slot", ECP_S4_OFFSET_X, "#FFB300");
+
+        // ── 3. S5 applications mini-rig (prefix "s5_", entirely separate B_ac
+        //    namespace -- never reads the pendulum's B/theta_max/slotted). ────
+        // Furnace (left): coil rings around a metal blank; blank + coil arrows
+        // heat-glow with live P_loss and the coil's field visibly reverses at
+        // rate f_ac.
+        var furnaceX = -ECP_S5_OFFSET_X;
+        var blank = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.9, 20),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#78909C"), emissive: hexToThreeColor("#78909C"), emissiveIntensity: 0.25 }));
+        blank.rotation.x = Math.PI / 2;
+        blank.position.set(furnaceX, ECP_PIVOT[1] - 0.9, 0);
+        blank.userData = { elementType: "s5_furnace_blank", id: "s5_furnace_blank" };
+        addToScene(blank);
+        [-0.32, 0, 0.32].forEach(function (cz, ci) {
+            var coilRing = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.03, 8, 24),
+                new THREE.MeshPhongMaterial({ color: hexToThreeColor("#FFB300"), emissive: hexToThreeColor("#FFB300"), emissiveIntensity: 0.3 }));
+            coilRing.position.set(furnaceX, ECP_PIVOT[1] - 0.9, cz);
+            coilRing.userData = { elementType: "s5_furnace_coil", id: "s5_furnace_coil_" + ci };
+            addToScene(coilRing);
+        });
+        [-1, 1].forEach(function (side) {
+            var arr = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(furnaceX + side * 0.5, ECP_PIVOT[1] - 1.3, 0), 0.4, hexToThreeColor("#42A5F5"), 0.1, 0.06);
+            arr.userData = { elementType: "s5_furnace_arrow", id: "s5_furnace_arrow_" + side };
+            addToScene(arr);
+        });
+        var furnaceLbl = createWideLabelSprite("induction furnace: eddy currents HEAT (wanted)", "#FFB300", 0.24);
+        furnaceLbl.position.set(furnaceX, ECP_PIVOT[1] + 0.15, 0);
+        furnaceLbl.userData = { elementType: "s5_furnace_label", id: "s5_furnace_label" };
+        addToScene(furnaceLbl);
+
+        // Core (right): solid box vs laminated slice-stack, same position,
+        // toggled by live 'laminated'.
+        var coreX = ECP_S5_OFFSET_X;
+        var coreSolid = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.6, 0.5),
+            new THREE.MeshPhongMaterial({ color: hexToThreeColor("#78909C"), emissive: hexToThreeColor("#78909C"), emissiveIntensity: 0.25 }));
+        coreSolid.position.set(coreX, ECP_PIVOT[1] - 0.9, 0);
+        coreSolid.userData = { elementType: "s5_core_solid", id: "s5_core_solid" };
+        addToScene(coreSolid);
+        var coreLamGrp = new THREE.Group();
+        coreLamGrp.position.set(coreX, ECP_PIVOT[1] - 0.9, 0);
+        coreLamGrp.userData = { elementType: "s5_core_lam", id: "s5_core_lam" };
+        for (var lam = -2; lam <= 2; lam++) {
+            var slice = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.6, 0.07),
+                new THREE.MeshPhongMaterial({ color: hexToThreeColor("#78909C"), emissive: hexToThreeColor("#78909C"), emissiveIntensity: 0.25 }));
+            slice.position.set(0, 0, lam * 0.095);
+            slice.userData = { elementType: "s5_core_lam", id: "s5_core_lam_slice_" + lam };
+            coreLamGrp.add(slice);
+        }
+        addToScene(coreLamGrp);
+        var coreLbl = createWideLabelSprite("transformer core: eddy-current loss SUPPRESSED", "#90CAF9", 0.24);
+        coreLbl.position.set(coreX, ECP_PIVOT[1] + 0.15, 0);
+        coreLbl.userData = { elementType: "s5_core_label", id: "s5_core_label" };
+        addToScene(coreLbl);
+
+        // ── 4. DOM panels: readout, decay-envelope graph canvas, per-state
+        //    contextual slider panel (Rule 31 -- one panel, rows shown/hidden).
+        var rp = document.createElement("div"); rp.id = "ecp_readout";
+        rp.style.cssText = "position:fixed;top:12px;right:12px;background:rgba(0,0,0,0.82);color:" + textColor + ";padding:11px 15px;border-radius:8px;font:13px/1.7 monospace;z-index:10;min-width:235px;display:none;";
+        document.body.appendChild(rp);
+
+        var gc = document.createElement("canvas"); gc.id = "ecp_graph_canvas";
+        gc.width = 230; gc.height = 130;
+        gc.style.cssText = "position:fixed;bottom:12px;left:12px;background:rgba(0,0,0,0.82);border-radius:8px;z-index:10;display:none;";
+        document.body.appendChild(gc);
+
+        window.PM_ecpB = 0.5; window.PM_ecpTheta0 = 25; window.PM_ecpFieldOn = 0; window.PM_ecpSlotted = 0;
+        window.PM_ecpVDir = 1; window.PM_ecpFAc = 5; window.PM_ecpLaminated = 0;
+        window.PM_ecpFieldOnManual = false; window.PM_ecpLaminatedManual = false;
+
+        var sp = document.createElement("div"); sp.id = "ecp_sliders";
+        sp.style.cssText = "position:fixed;bottom:12px;right:12px;background:rgba(0,0,0,0.85);color:" + textColor + ";padding:10px 14px;border-radius:8px;font:12px/1.6 monospace;z-index:10;min-width:230px;display:none;";
+        sp.innerHTML =
+            '<div id="ecp_theta0_row"><label>Release angle: <span id="ecp_theta0_val">25</span> deg</label>' +
+            '<input type="range" id="ecp_theta0_slider" min="10" max="40" step="5" value="25" style="width:100%"></div>' +
+            '<div id="ecp_b_row" style="margin-top:6px"><label>Field B: <span id="ecp_b_val">0.5</span> T</label>' +
+            '<input type="range" id="ecp_b_slider" min="0.1" max="1" step="0.1" value="0.5" style="width:100%"></div>' +
+            '<div id="ecp_field_row" style="margin-top:6px"><button id="ecp_field_toggle" type="button" style="width:100%;padding:4px;border-radius:5px;border:none;background:#90A4AE;color:#0A0A1A;font:12px monospace;cursor:pointer;">Field: OFF</button></div>' +
+            '<div id="ecp_slotted_row" style="margin-top:6px"><button id="ecp_slotted_toggle" type="button" style="width:100%;padding:4px;border-radius:5px;border:none;background:#66BB6A;color:#0A0A1A;font:12px monospace;cursor:pointer;">Plate: Solid</button></div>' +
+            '<div id="ecp_vdir_row" style="margin-top:6px"><button id="ecp_vdir_toggle" type="button" style="width:100%;padding:4px;border-radius:5px;border:none;background:#66BB6A;color:#0A0A1A;font:12px monospace;cursor:pointer;">Swing: forward (+)</button></div>' +
+            '<div id="ecp_fac_row" style="margin-top:6px"><label>Reversal rate f: <span id="ecp_fac_val">5</span> Hz</label>' +
+            '<input type="range" id="ecp_fac_slider" min="1" max="10" step="1" value="5" style="width:100%"></div>' +
+            '<div id="ecp_laminated_row" style="margin-top:6px"><button id="ecp_laminated_toggle" type="button" style="width:100%;padding:4px;border-radius:5px;border:none;background:#90A4AE;color:#0A0A1A;font:12px monospace;cursor:pointer;">Core: Solid</button></div>';
+        document.body.appendChild(sp);
+
+        var thetaSl = document.getElementById("ecp_theta0_slider"), thetaV = document.getElementById("ecp_theta0_val");
+        var bSl = document.getElementById("ecp_b_slider"), bV = document.getElementById("ecp_b_val");
+        var fieldBtn = document.getElementById("ecp_field_toggle");
+        var slottedBtn = document.getElementById("ecp_slotted_toggle");
+        var vdirBtn = document.getElementById("ecp_vdir_toggle");
+        var facSl = document.getElementById("ecp_fac_slider"), facV = document.getElementById("ecp_fac_val");
+        var lamBtn = document.getElementById("ecp_laminated_toggle");
+
+        if (thetaSl) thetaSl.addEventListener("input", function () { window.PM_ecpTheta0 = parseFloat(thetaSl.value); if (thetaV) thetaV.textContent = thetaSl.value; });
+        if (bSl) bSl.addEventListener("input", function () { window.PM_ecpB = parseFloat(bSl.value); if (bV) bV.textContent = bSl.value; });
+        if (fieldBtn) fieldBtn.addEventListener("click", function () {
+            window.PM_ecpFieldOn = window.PM_ecpFieldOn ? 0 : 1;
+            window.PM_ecpFieldOnManual = true;
+            fieldBtn.textContent = window.PM_ecpFieldOn ? "Field: ON" : "Field: OFF";
+            fieldBtn.style.background = window.PM_ecpFieldOn ? "#42A5F5" : "#90A4AE";
+        });
+        if (slottedBtn) slottedBtn.addEventListener("click", function () {
+            window.PM_ecpSlotted = window.PM_ecpSlotted ? 0 : 1;
+            slottedBtn.textContent = window.PM_ecpSlotted ? "Plate: Slotted" : "Plate: Solid";
+            slottedBtn.style.background = window.PM_ecpSlotted ? "#FFB300" : "#66BB6A";
+        });
+        if (vdirBtn) vdirBtn.addEventListener("click", function () {
+            window.PM_ecpVDir = (window.PM_ecpVDir >= 0) ? -1 : 1;
+            vdirBtn.textContent = (window.PM_ecpVDir >= 0) ? "Swing: forward (+)" : "Swing: reverse (-)";
+            vdirBtn.style.background = (window.PM_ecpVDir >= 0) ? "#66BB6A" : "#EF5350";
+        });
+        if (facSl) facSl.addEventListener("input", function () { window.PM_ecpFAc = parseFloat(facSl.value); if (facV) facV.textContent = facSl.value; });
+        if (lamBtn) lamBtn.addEventListener("click", function () {
+            window.PM_ecpLaminated = window.PM_ecpLaminated ? 0 : 1;
+            window.PM_ecpLaminatedManual = true;
+            lamBtn.textContent = window.PM_ecpLaminated ? "Core: Laminated" : "Core: Solid";
+            lamBtn.style.background = window.PM_ecpLaminated ? "#90CAF9" : "#90A4AE";
+        });
+
+        // Initial hide -- the very next applyState() call authoritatively shows
+        // only the current state's tokens; this just avoids a bare first frame.
+        for (var qi = 0; qi < sceneObjects.length; qi++) {
+            var qo = sceneObjects[qi]; var qt = qo.userData && qo.userData.elementType;
+            if (qt && (qt.indexOf("ecp_") === 0 || qt.indexOf("s4_") === 0 || qt.indexOf("s5_") === 0)) qo.visible = false;
+        }
+    }
+
+    // Authoritative per-state seed: locked B/theta_0/field_on/slotted/v_dir/
+    // f_ac/laminated + the per-state contextual-control panel (Rule 31 --
+    // progressive disclosure). Runs AFTER the generic visible_elements matcher.
+    function applyEddyCurrentPendulumState(stateDef) {
+        var ed = stateDef.eddy_current_pendulum || {};
+        window.PM_ecpMode = ed.mode || "sandbox";
+
+        if (typeof ed.theta_0 === "number") window.PM_ecpTheta0 = ed.theta_0;
+        if (typeof ed.B === "number") window.PM_ecpB = ed.B;
+        if (typeof ed.field_on === "number") window.PM_ecpFieldOn = ed.field_on;
+        if (typeof ed.slotted === "number") window.PM_ecpSlotted = ed.slotted;
+        if (typeof ed.v_dir === "number") window.PM_ecpVDir = ed.v_dir;
+        if (typeof ed.f_ac === "number") window.PM_ecpFAc = ed.f_ac;
+        if (typeof ed.laminated === "number") window.PM_ecpLaminated = ed.laminated;
+        window.PM_ecpFieldOnManual = false;
+        window.PM_ecpLaminatedManual = false;
+
+        // Group-level rig visibility: which rig is on-screen this state (main
+        // pendulum vs S4 twin vs S5 furnace/core) -- AUTHORITATIVE here (runs
+        // after the generic visible_elements matcher, mirrors every other
+        // scenario's "own apply function is authoritative" convention). Finer
+        // per-element toggles (loop glyphs, slot lines, F_retard, furnace/core
+        // crossfade) are refined every frame in updateEddyCurrentPendulumFrame.
+        var showMainRig = (window.PM_ecpMode !== "slots_twin" && window.PM_ecpMode !== "applications");
+        var showS4 = (window.PM_ecpMode === "slots_twin");
+        var showS5 = (window.PM_ecpMode === "applications");
+        for (var vi = 0; vi < sceneObjects.length; vi++) {
+            var vo = sceneObjects[vi]; var vt = vo.userData && vo.userData.elementType;
+            if (!vt) continue;
+            if (vt.indexOf("ecp_") === 0) vo.visible = showMainRig;
+            else if (vt.indexOf("s4_") === 0) vo.visible = showS4;
+            else if (vt.indexOf("s5_") === 0) vo.visible = showS5;
+        }
+        // The sub-elements below are ALWAYS managed per-frame in
+        // updateEddyCurrentPendulumFrame (loop glyphs, F_retard, slot lines on
+        // both rigs) -- force a known FALSE baseline here so the blanket pass
+        // above never leaves a stale "true" for a part no per-frame code
+        // re-enables (the SOLID twin's own slot-cut lines are never re-shown
+        // by any code path -- they must default to hidden, not to showS4).
+        [
+            "ecp_plate_slot_0", "ecp_plate_slot_1", "ecp_plate_slot_2", "ecp_loop_left", "ecp_loop_right", "ecp_fretard", "ecp_fretard_lbl",
+            "s4_plate_solid_slotline_0", "s4_plate_solid_slotline_1", "s4_plate_solid_slotline_2",
+            "s4_plate_slot_slotline_0", "s4_plate_slot_slotline_1", "s4_plate_slot_slotline_2"
+        ].forEach(function (bid) { var bo = ecpFindById(bid); if (bo) bo.visible = false; });
+
+        // Reset the main rig's release-time beta timeline for THIS state entry
+        // (S1's field_toggle_flip choreography splices a new segment onto this
+        // array; every other mode just carries one constant-beta segment).
+        var mainArm = ecpFindById("ecp_arm_group");
+        if (mainArm) {
+            mainArm.userData.betaSegments = [{ start: 0, until: null, beta: ecpBetaDamp(window.PM_ecpB, window.PM_ecpFieldOn, window.PM_ecpSlotted) }];
+            mainArm.userData.autoToggleFired = false;
+        }
+        var slotArm = ecpFindById("s4_plate_slot_arm_group");
+        if (slotArm) slotArm.userData.betaSegments = [{ start: 0, until: null, beta: ecpBetaDamp(window.PM_ecpB, 1, window.PM_ecpSlotted) }];
+
+        function syncSlider(id, val) { var el = document.getElementById(id); if (el) el.value = String(val); }
+        function syncVal(id, val) { var el = document.getElementById(id); if (el) el.textContent = String(val); }
+        syncSlider("ecp_theta0_slider", window.PM_ecpTheta0); syncVal("ecp_theta0_val", window.PM_ecpTheta0);
+        syncSlider("ecp_b_slider", window.PM_ecpB); syncVal("ecp_b_val", window.PM_ecpB);
+        syncSlider("ecp_fac_slider", window.PM_ecpFAc); syncVal("ecp_fac_val", window.PM_ecpFAc);
+        var fieldBtn = document.getElementById("ecp_field_toggle");
+        if (fieldBtn) { fieldBtn.textContent = window.PM_ecpFieldOn ? "Field: ON" : "Field: OFF"; fieldBtn.style.background = window.PM_ecpFieldOn ? "#42A5F5" : "#90A4AE"; }
+        var slottedBtn = document.getElementById("ecp_slotted_toggle");
+        if (slottedBtn) { slottedBtn.textContent = window.PM_ecpSlotted ? "Plate: Slotted" : "Plate: Solid"; slottedBtn.style.background = window.PM_ecpSlotted ? "#FFB300" : "#66BB6A"; }
+        var vdirBtn = document.getElementById("ecp_vdir_toggle");
+        if (vdirBtn) { vdirBtn.textContent = (window.PM_ecpVDir >= 0) ? "Swing: forward (+)" : "Swing: reverse (-)"; vdirBtn.style.background = (window.PM_ecpVDir >= 0) ? "#66BB6A" : "#EF5350"; }
+        var lamBtn = document.getElementById("ecp_laminated_toggle");
+        if (lamBtn) { lamBtn.textContent = window.PM_ecpLaminated ? "Core: Laminated" : "Core: Solid"; lamBtn.style.background = window.PM_ecpLaminated ? "#90CAF9" : "#90A4AE"; }
+
+        var roEl = document.getElementById("ecp_readout"); if (roEl) roEl.style.display = (ed.show_readout === false) ? "none" : "block";
+        var gcEl = document.getElementById("ecp_graph_canvas"); if (gcEl) gcEl.style.display = ed.show_graph ? "block" : "none";
+        var spEl = document.getElementById("ecp_sliders"); if (spEl) spEl.style.display = "block";
+
+        var vc = ed.visible_controls || [];
+        var rows = { theta_0: "ecp_theta0_row", B: "ecp_b_row", field_on: "ecp_field_row", slotted: "ecp_slotted_row", v_dir: "ecp_vdir_row", f_ac: "ecp_fac_row", laminated: "ecp_laminated_row" };
+        for (var k in rows) { var rEl = document.getElementById(rows[k]); if (rEl) rEl.style.display = (vc.indexOf(k) !== -1) ? "block" : "none"; }
+
+        // STATE_3 (lenz_grip): 3D grip-rule hand only -- suppress the generic
+        // 2D wire-RHR overlay applyExtras may have shown (mirrors
+        // applyCircularLoopState's "3D articulated hands only" convention).
+        if (window.PM_ecpMode === "lenz_grip") {
+            var rhrEl = document.getElementById("rhr_overlay"); if (rhrEl) rhrEl.style.display = "none";
+            var palmEl = document.getElementById("palm_rule_overlay"); if (palmEl) palmEl.style.display = "none";
+            // Attach base/flip quaternions to the grip hand applyExtras just
+            // built, so the per-frame loop can flip it live on v_dir (mirrors
+            // circular_loop's clBaseQuat/clFlipQuat, ~line 10975).
+            for (var hi = 0; hi < dynamicExtras.length; hi++) {
+                var gh = dynamicExtras[hi];
+                if (gh.userData && gh.userData.elementType === "solenoid_grip_hand" && !gh.userData.ecpBaseQuat) {
+                    gh.userData.ecpBaseQuat = ecpQuatForThumbDir([0, 0, 1]);
+                    gh.userData.ecpFlipQuat = ecpQuatForThumbDir([0, 0, -1]);
+                }
+            }
+        }
+    }
+
+    // Per-frame update -- swings the plate, computes the live beta_damp/
+    // F_retard/theta_max readout, drives the loop-glyph brightness, the
+    // S4 twin decay contrast, and the S5 furnace/core mini-rig. PURE fn of
+    // the state clock (Rule 26); live slider values read from window.PM_ecp*.
+    function updateEddyCurrentPendulumFrame() {
+        if (config.scenario_type !== "eddy_current_pendulum") return;
+        var stateDef = config.states[PM_currentState]; if (!stateDef) return;
+        var ed = stateDef.eddy_current_pendulum || {};
+        var mode = ed.mode || "sandbox";
+        var t = time - stateStartTime;
+
+        var B = window.PM_ecpB, theta0 = window.PM_ecpTheta0, fieldOn = window.PM_ecpFieldOn, slotted = window.PM_ecpSlotted;
+        var mainArm = ecpFindById("ecp_arm_group");
+
+        // ── main pendulum swing angle, per mode ────────────────────────────
+        var thetaDeg = 0, thetaMaxDeg = theta0, betaLive = ecpBetaDamp(B, fieldOn, slotted);
+        if (mode === "damping_ab_test") {
+            // S1: authored default choreography -- field OFF 0-13s (near-free
+            // air-drag decay), auto-toggles field ON at 13s (scenario_cue
+            // "field_toggle_flip") UNLESS the teacher already flipped it
+            // manually; either way, ANY field_on change splices a NEW segment
+            // onto the SAME running envelope (continuous amplitude+phase, no
+            // jump) so a manual toggle at any moment behaves identically.
+            var toggleAt = cueTriggerMs("field_toggle_flip", (ed.field_toggle_at_ms != null ? ed.field_toggle_at_ms : 13000)) / 1000;
+            if (mainArm && !window.PM_ecpFieldOnManual && !mainArm.userData.autoToggleFired && t >= toggleAt) {
+                window.PM_ecpFieldOn = 1; fieldOn = 1;
+                var fieldBtnAuto = document.getElementById("ecp_field_toggle");
+                if (fieldBtnAuto) { fieldBtnAuto.textContent = "Field: ON"; fieldBtnAuto.style.background = "#42A5F5"; }
+                mainArm.userData.autoToggleFired = true;
+            }
+            if (mainArm) {
+                var segs = mainArm.userData.betaSegments;
+                var openSeg = segs[segs.length - 1];
+                var wantBeta = ecpBetaDamp(B, fieldOn, slotted);
+                if (Math.abs(openSeg.beta - wantBeta) > 1e-6) {
+                    openSeg.until = t;
+                    segs.push({ start: t, until: null, beta: wantBeta });
+                }
+                thetaDeg = ecpThetaFromSegments(theta0, segs, t);
+                thetaMaxDeg = ecpEnvelopeFromSegments(theta0, segs, t);
+                betaLive = wantBeta;
+            }
+            // 17.5s+ idle sway (~2 deg, ~7s period) OVERLAID once the envelope
+            // has genuinely collapsed near zero -- required so the settled tail
+            // is never a frozen frame (Rule 31b / the swc_state3 scar).
+            if (Math.abs(thetaMaxDeg) < 1.2) {
+                thetaDeg += 1.2 * Math.sin(t * (2 * Math.PI / 7));
+            }
+        } else if (mode === "loop_zoom" || mode === "lenz_grip") {
+            // S2/S3: NON-decaying constant-amplitude oscillation (pacing-trap
+            // avoidance, physics_author's explicit note) -- amp 20 deg.
+            thetaDeg = ecpThetaOscillation(20, t);
+            thetaMaxDeg = 20;
+            betaLive = ecpBetaDamp(B, fieldOn, slotted);
+        } else if (mode === "sandbox") {
+            // S6 explore: periodic re-release every 14s, beta recomputed LIVE
+            // from the current sliders every frame (immediate slider feedback).
+            var tLocal = t % 14;
+            thetaDeg = ecpThetaDamped(theta0, betaLive, tLocal);
+            thetaMaxDeg = theta0 * Math.exp(-betaLive * tLocal);
+        } else {
+            thetaDeg = ecpThetaOscillation(theta0, t);
+            thetaMaxDeg = theta0;
+        }
+
+        if (mainArm) mainArm.rotation.z = thetaDeg * Math.PI / 180;
+
+        // Slot lines on the MAIN plate (S6 explorer only).
+        for (var sli = -1; sli <= 1; sli++) {
+            var slotObj = ecpFindById("ecp_plate_slot_" + (sli + 1));
+            if (slotObj) slotObj.visible = (mode === "sandbox") && slotted === 1;
+        }
+
+        // Loop-glyph brightness -- peaks at the bottom of the swing (max
+        // |dtheta/dt|), fades at the turning points. Colour/side assignment
+        // driven LIVE by v_dir (decoupled from the swing's own phase, see the
+        // build comment above the F_retard arrow).
+        var thetaFn = function (tt) {
+            if (mode === "damping_ab_test" && mainArm) return ecpThetaFromSegments(theta0, mainArm.userData.betaSegments, tt);
+            if (mode === "loop_zoom" || mode === "lenz_grip") return ecpThetaOscillation(20, tt);
+            if (mode === "sandbox") return ecpThetaDamped(theta0, betaLive, tt % 14);
+            return ecpThetaOscillation(theta0, tt);
+        };
+        var omegaDeg = Math.abs(ecpOmegaDegPerSec(thetaFn, t));
+        var omegaRef = 20 * (2 * Math.PI / ECP_PERIOD_T); // ~peak speed at 20 deg amplitude
+        var velNorm = Math.max(0, Math.min(1, omegaDeg / omegaRef));
+        var loopOp = (fieldOn ? 1 : 0) * (0.1 + 0.75 * Math.pow(velNorm, 1.5));
+        var entryIsLeft = window.PM_ecpVDir >= 0; // v_dir>=0: left edge = entry (blue), right = exit (red)
+        ["left", "right"].forEach(function (side) {
+            var lp = ecpFindById("ecp_loop_" + side);
+            if (!lp) return;
+            lp.visible = mode !== "slots_twin" && mode !== "applications";
+            lp.material.opacity = loopOp;
+            var isEntry = (side === "left") === entryIsLeft;
+            lp.material.color = hexToThreeColor(isEntry ? "#42A5F5" : "#EF5350");
+        });
+
+        // F_retard arrow -- opposes the LIVE v_dir; length ∝ the live F_retard
+        // magnitude (real physical magnitude, Rule 29).
+        var fr = ecpFindById("ecp_fretard"), frLbl = ecpFindById("ecp_fretard_lbl");
+        var fRetardVal = ecpFRetard(B, thetaMaxDeg, fieldOn, slotted);
+        var showFr = (mode === "lenz_grip" || mode === "sandbox") && fieldOn === 1;
+        if (fr) {
+            fr.visible = showFr;
+            var vSign = window.PM_ecpVDir >= 0 ? 1 : -1;
+            fr.setDirection(new THREE.Vector3(-vSign, 0, 0));
+            fr.setLength(Math.max(0.15, Math.min(0.7, 0.15 + fRetardVal * 4)), 0.14, 0.09);
+        }
+        if (frLbl) { frLbl.visible = showFr; frLbl.position.set((window.PM_ecpVDir >= 0 ? -0.55 : 0.55), -ECP_ARM_LEN + 0.28, 0); }
+
+        // Grip-hand live flip (STATE_3 only) -- reads the SAME v_dir slider.
+        for (var hi = 0; hi < dynamicExtras.length; hi++) {
+            var gh = dynamicExtras[hi];
+            if (gh.userData && gh.userData.elementType === "solenoid_grip_hand" && gh.userData.ecpBaseQuat) {
+                gh.quaternion.copy(window.PM_ecpVDir >= 0 ? gh.userData.ecpBaseQuat : gh.userData.ecpFlipQuat);
+            }
+        }
+
+        // Field-arrow lattice opacity (fades with field_toggle, tracks fieldOn).
+        for (var i = 0; i < sceneObjects.length; i++) {
+            var o = sceneObjects[i], u = o.userData;
+            if (u && u.elementType === "ecp_field_arrow") {
+                var targetOp = fieldOn ? 0.55 : 0;
+                o.children.forEach(function (c) { if (c.material) c.material.opacity += (targetOp - c.material.opacity) * 0.1; });
+            }
+        }
+
+        // ── S4 twin decay contrast ──────────────────────────────────────────
+        if (mode === "slots_twin") {
+            var solidArm = ecpFindById("s4_plate_solid_arm_group");
+            var slotArmU = ecpFindById("s4_plate_slot_arm_group");
+            var thetaSolid = 25, thetaSlot = 25;
+            if (solidArm) { thetaSolid = ecpThetaDamped(25, 0.80, t); solidArm.rotation.z = thetaSolid * Math.PI / 180; }
+            if (slotArmU) {
+                var segsSlot = slotArmU.userData.betaSegments;
+                var openSlot = segsSlot[segsSlot.length - 1];
+                var wantBetaSlot = ecpBetaDamp(B, 1, window.PM_ecpSlotted);
+                if (Math.abs(openSlot.beta - wantBetaSlot) > 1e-6) { openSlot.until = t; segsSlot.push({ start: t, until: null, beta: wantBetaSlot }); }
+                thetaSlot = ecpThetaFromSegments(25, segsSlot, t);
+                slotArmU.rotation.z = thetaSlot * Math.PI / 180;
+            }
+            var slotEnv = slotArmU ? ecpEnvelopeFromSegments(25, slotArmU.userData.betaSegments, t) : 25;
+            var bigSolid = ecpFindById("s4_plate_solid_badge_big"), manySolid = ecpFindById("s4_plate_solid_badge_many");
+            if (bigSolid) bigSolid.visible = true;
+            if (manySolid) manySolid.visible = false;
+            var bigSlot = ecpFindById("s4_plate_slot_badge_big"), manySlot = ecpFindById("s4_plate_slot_badge_many");
+            if (bigSlot) bigSlot.visible = window.PM_ecpSlotted === 0;
+            if (manySlot) manySlot.visible = window.PM_ecpSlotted === 1;
+            for (var slj = -1; slj <= 1; slj++) {
+                var slObjSlot = ecpFindById("s4_plate_slot_slotline_" + (slj + 1));
+                if (slObjSlot) slObjSlot.visible = window.PM_ecpSlotted === 1;
+            }
+            var roS4 = document.getElementById("ecp_readout");
+            if (roS4 && roS4.style.display !== "none") {
+                roS4.innerHTML =
+                    '<div style="color:#66BB6A">solid: beta_damp = 0.80 /s (theta_max ' + Math.abs(thetaSolid).toFixed(1) + ' deg)</div>' +
+                    '<div style="color:#FFB300">slotted: beta_damp = ' + ecpBetaDamp(B, 1, window.PM_ecpSlotted).toFixed(2) + ' /s (theta_max ' + Math.abs(slotEnv).toFixed(1) + ' deg)</div>';
+            }
+        }
+
+        // ── S5 applications mini-rig ────────────────────────────────────────
+        if (mode === "applications") {
+            var phaseSplit = (ed.s5_furnace_end_ms != null ? ed.s5_furnace_end_ms : 16000) / 1000;
+            var fAc = window.PM_ecpFAc;
+            var pLossFurnace = ecpPLoss(fAc, 0.4, 0);
+            var laminated = window.PM_ecpLaminated;
+            var lamAt = cueTriggerMs("core_lamination_swap", (ed.core_swap_at_ms != null ? ed.core_swap_at_ms : (phaseSplit * 1000 + 1500))) / 1000;
+            if (!window.PM_ecpLaminatedManual && t >= lamAt && laminated === 0) {
+                window.PM_ecpLaminated = 1; laminated = 1;
+                var lamBtnAuto = document.getElementById("ecp_laminated_toggle");
+                if (lamBtnAuto) { lamBtnAuto.textContent = "Core: Laminated"; lamBtnAuto.style.background = "#90CAF9"; }
+            }
+            var pLossCore = ecpPLoss(fAc, 0.4, laminated);
+
+            var inFurnacePhase = t < phaseSplit;
+            var furnaceOp = inFurnacePhase ? 1 : Math.max(0.15, 1 - (t - phaseSplit) / 2);
+            var coreOp = inFurnacePhase ? 0 : Math.min(1, (t - phaseSplit) / 2);
+            ["s5_furnace_blank", "s5_furnace_coil_0", "s5_furnace_coil_1", "s5_furnace_coil_2", "s5_furnace_arrow_-1", "s5_furnace_arrow_1", "s5_furnace_label"].forEach(function (id) {
+                var o = ecpFindById(id); if (o) { o.visible = furnaceOp > 0.02; if (o.material) { o.material.transparent = true; o.material.opacity = furnaceOp; } }
+            });
+            var coreSolidObj = ecpFindById("s5_core_solid"), coreLamObj = ecpFindById("s5_core_lam"), coreLblObj = ecpFindById("s5_core_label");
+            if (coreSolidObj) { coreSolidObj.visible = coreOp > 0.02 && laminated === 0; if (coreSolidObj.material) { coreSolidObj.material.transparent = true; coreSolidObj.material.opacity = coreOp; } }
+            if (coreLamObj) { coreLamObj.visible = coreOp > 0.02 && laminated === 1; coreLamObj.children.forEach(function (c) { if (c.material) { c.material.transparent = true; c.material.opacity = coreOp; } }); }
+            if (coreLblObj) coreLblObj.visible = coreOp > 0.02;
+
+            var blankObj = ecpFindById("s5_furnace_blank");
+            if (blankObj && blankObj.material) { blankObj.material.color.copy(ecpHeatColor(pLossFurnace, 200)); blankObj.material.emissive.copy(ecpHeatColor(pLossFurnace, 200)); }
+            var coreHeatObj = (laminated === 0) ? coreSolidObj : null;
+            if (coreHeatObj && coreHeatObj.material) { coreHeatObj.material.color.copy(ecpHeatColor(pLossCore, 200)); coreHeatObj.material.emissive.copy(ecpHeatColor(pLossCore, 200)); }
+            if (coreLamObj) coreLamObj.children.forEach(function (c) { if (c.material) { c.material.color.copy(ecpHeatColor(pLossCore, 200)); c.material.emissive.copy(ecpHeatColor(pLossCore, 200)); } });
+
+            // AC field reversal -- the two furnace arrows flip direction at f_ac.
+            var acSign = Math.sin(2 * Math.PI * fAc * t) >= 0 ? 1 : -1;
+            [-1, 1].forEach(function (side) {
+                var arr = ecpFindById("s5_furnace_arrow_" + side);
+                if (arr) arr.setDirection(new THREE.Vector3(0, acSign, 0));
+            });
+
+            // Per-phase control-row visibility (Rule 31 -- within-state phase
+            // switch, mirrors the S1 field-toggle contextual-row pattern).
+            var facRowEl = document.getElementById("ecp_fac_row"); if (facRowEl) facRowEl.style.display = inFurnacePhase ? "block" : "none";
+            var lamRowEl = document.getElementById("ecp_laminated_row"); if (lamRowEl) lamRowEl.style.display = inFurnacePhase ? "none" : "block";
+
+            var roS5 = document.getElementById("ecp_readout");
+            if (roS5 && roS5.style.display !== "none") {
+                roS5.innerHTML = inFurnacePhase
+                    ? '<div style="color:#FFB300">furnace: P_loss = ' + pLossFurnace.toFixed(0) + ' W (f = ' + fAc + ' Hz)</div>'
+                    : '<div style="color:' + (laminated ? "#90CAF9" : "#FF7043") + '">core (' + (laminated ? "laminated" : "solid") + '): P_loss = ' + pLossCore.toFixed(0) + ' W</div>';
+            }
+        }
+
+        // ── live readout (main pendulum modes) ─────────────────────────────
+        if (mode !== "slots_twin" && mode !== "applications") {
+            var roEl = document.getElementById("ecp_readout");
+            if (roEl && roEl.style.display !== "none") {
+                var fRetardShow = fieldOn ? fRetardVal : 0;
+                var html = "";
+                html += '<div style="color:#FFD54F">beta_damp = ' + betaLive.toFixed(2) + ' /s</div>';
+                html += '<div style="color:#66BB6A">theta_max = ' + Math.abs(thetaMaxDeg).toFixed(1) + ' deg</div>';
+                if (mode === "lenz_grip" || mode === "sandbox") {
+                    html += '<div style="color:#EF5350">F_retard = ' + fRetardShow.toFixed(3) + ' N</div>';
+                }
+                roEl.innerHTML = html;
+            }
+
+            // Decay-envelope graph (S1 only) -- coordinates the sim + graph on
+            // the SAME live parameter (elapsed state time / active beta).
+            var gc = document.getElementById("ecp_graph_canvas");
+            if (gc && gc.style.display !== "none" && gc.getContext) {
+                var ctx = gc.getContext("2d");
+                ctx.clearRect(0, 0, gc.width, gc.height);
+                ctx.strokeStyle = "#455A64"; ctx.strokeRect(0.5, 0.5, gc.width - 1, gc.height - 1);
+                var padL = 8, padB = 16, W = gc.width - padL - 8, H = gc.height - padB - 10;
+                var xMax = 30, yMax = 26;
+                function xPix(sec) { return padL + Math.min(1, sec / xMax) * W; }
+                function yPix(deg) { return 8 + H - Math.max(0, Math.min(1, deg / yMax)) * H; }
+                // OFF-trace (ghost reference, beta=0.05, full domain).
+                ctx.strokeStyle = "#90A4AE"; ctx.setLineDash([3, 3]); ctx.beginPath();
+                for (var gx = 0; gx <= xMax; gx += 0.5) {
+                    var yOff = theta0 * Math.exp(-0.05 * gx);
+                    if (gx === 0) ctx.moveTo(xPix(gx), yPix(yOff)); else ctx.lineTo(xPix(gx), yPix(yOff));
+                }
+                ctx.stroke(); ctx.setLineDash([]);
+                // ON-trace (real, beta=0.80, from the toggle instant onward).
+                var toggleSec = 13;
+                ctx.strokeStyle = "#66BB6A"; ctx.beginPath();
+                for (var gx2 = toggleSec; gx2 <= xMax; gx2 += 0.3) {
+                    var yOn = theta0 * Math.exp(-0.05 * toggleSec) * Math.exp(-0.80 * (gx2 - toggleSec));
+                    if (gx2 === toggleSec) ctx.moveTo(xPix(gx2), yPix(yOn)); else ctx.lineTo(xPix(gx2), yPix(yOn));
+                }
+                ctx.stroke();
+                // Live cursor.
+                var curDeg = Math.abs(thetaMaxDeg);
+                ctx.fillStyle = "#FFF176";
+                ctx.beginPath(); ctx.arc(xPix(Math.min(t, xMax)), yPix(curDeg), 3.2, 0, 2 * Math.PI); ctx.fill();
+                ctx.fillStyle = "#B0BEC5"; ctx.font = "10px monospace";
+                ctx.fillText("theta_max (deg) vs t (s)", padL, 11);
+            }
+        }
+    }
+
+    function applyEddyCurrentPendulumGlow() {
+        var glowActive = glowTargets.length > 0; var glowP = glowEmphT(time);
+        function on(id) { return glowTargets.indexOf(id) >= 0; }
+        for (var j = 0; j < sceneObjects.length; j++) {
+            var so = sceneObjects[j], sud = so.userData || {};
+            var et = sud.elementType || "";
+            if (et.indexOf("ecp_") !== 0 && et.indexOf("s4_") !== 0 && et.indexOf("s5_") !== 0) continue;
+            applyGlowEmphasis(so, on(sud.id) || on(et), glowActive, glowP, true);
+        }
+    }
+
+
+
     // ── gauss_law_sphere scenario (charged shell: E=0 inside, kq/r² outside) ──
     //   A NEW field_3d scenario built on the gauss_law block's structural
     //   precedent (concentric surface meshes + radial E-arrows + an HTML readout
@@ -23141,6 +24776,14 @@ export const FIELD_3D_RENDERER_CODE = `
                 buildFaraday();
                 break;
 
+            case "motional_emf_rod":
+                buildMotionalEmfRod();
+                break;
+
+            case "eddy_current_pendulum":
+                buildEddyCurrentPendulum();
+                break;
+
             case "gauss_law_sphere":
                 buildGaussSphereField();
                 break;
@@ -23178,6 +24821,68 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         applyState(PM_currentState);
+    }
+
+    // ── applyVisibleControls (Rule 31 shared helper — seeded 2026-07 for the
+    //   Ch.4 straight-wire family; magnetic_field_concept_B is the first user).
+    //   Generic row-key -> DOM-id show/hide: given a { rowKey: domId } map and
+    //   the active state's 'visible_controls' array, shows every row whose key
+    //   is listed (or every row when visible_controls is absent — explore states
+    //   + legacy concepts that predate Rule 31), hides the rest. Deliberately
+    //   generic (row-lookup + show/hide only), NOT scenario-specific, so the
+    //   next 12 Ch.4 conversions can call this instead of hand-rolling their own
+    //   row loop (mirrors the existing inline fcw_rows/lz_rows loops inside
+    //   applyState() below, factored out so new scenarios don't repeat it).
+    function applyVisibleControls(rowKeyToDomIdMap, visibleControls) {
+        for (var vcKey in rowKeyToDomIdMap) {
+            var vcRowEl = document.getElementById(rowKeyToDomIdMap[vcKey]);
+            if (vcRowEl) vcRowEl.style.display = (!visibleControls || visibleControls.indexOf(vcKey) !== -1) ? "block" : "none";
+        }
+    }
+
+    // straight_wire_current + a per-state 'swc' block (magnetic_field_concept_B) —
+    // per-state swc_* panel visibility + seed (mode / I / compass_position) +
+    // the shared control-panel row toggle (applyVisibleControls). Runs after the
+    // generic visible_elements matcher, mirrors applyFaradayState/
+    // applyMagnetisationState's shape. A no-op for a sibling concept sharing this
+    // scenario_type that never populates 'swc' on any state (e.g.
+    // magnetic_field_wire) — the panel stays hidden and nothing else fires.
+    function applyStraightWireCurrentState(stateDef) {
+        var swcPanelEl = document.getElementById("swc_sliders");
+        var swcReadoutEl = document.getElementById("swc_readout");
+        var swc = stateDef && stateDef.swc;
+        if (!swc) {
+            if (swcPanelEl) swcPanelEl.style.display = "none";
+            if (swcReadoutEl) swcReadoutEl.style.display = "none";
+            return;
+        }
+        // State-entry reset (Rule 31 live-instrument model): each state starts
+        // from its OWN authored defaults; a manual grab in a PRIOR state must
+        // never bleed into the next one (mirrors window.PM_farManual /
+        // window.PM_magManual reset-on-entry).
+        window.PM_swcManualI = false;
+        window.PM_swcManualCompass = false;
+
+        var swcIDef = (config.slider_controls && config.slider_controls.I) || {};
+        var swcISliderEl = document.getElementById("swc_i_slider"), swcIValEl = document.getElementById("swc_i_val");
+        if (swcISliderEl && swcIDef.default != null) {
+            window.PM_swcCurrentA = swcIDef.default;
+            swcISliderEl.value = String(swcIDef.default);
+            if (swcIValEl) swcIValEl.textContent = String(swcIDef.default);
+        }
+        var swcCpDef = (config.slider_controls && config.slider_controls.compass_position) || {};
+        var swcAngleDefault = (swcCpDef.angle_default_deg != null) ? swcCpDef.angle_default_deg : 0;
+        window.PM_swcCompassAngleDeg = swcAngleDefault;
+        swcSyncCompassSlider();
+
+        var swcShowPanel = !!stateDef.show_sliders;
+        if (swcPanelEl) swcPanelEl.style.display = swcShowPanel ? "block" : "none";
+        if (swcReadoutEl) swcReadoutEl.style.display = (swc.show_readout === true) ? "block" : "none";
+
+        // Rule 31 per-state contextual controls: visible_controls lists the row
+        // keys this beat teaches ("I" | "compass_position"); absent = all rows
+        // (explore state + legacy concepts).
+        applyVisibleControls({ I: "swc_i_row", compass_position: "swc_compass_row" }, stateDef.visible_controls);
     }
 
     // ── State management ──────────────────────────────────────────────────
@@ -23395,6 +25100,26 @@ export const FIELD_3D_RENDERER_CODE = `
         // scales the flux opacity, deflects the needle, and flips the current arrows.
         if (config.scenario_type === "faraday") {
             applyFaradayState(stateDef);
+        }
+
+        // motional_emf_rod — per-state seed (B/l/v/R/v_dir, circuit_closed,
+        // mode) + the per-state contextual-control panel (v_dir on S3, v on
+        // S4/S6, R on S5, all five on the S7 explorer). The animate loop then
+        // slides the rod, computes the live eps=Blv/I/F_retard/F_ext/P
+        // readout, orients the RHR hand, and flows the current beads.
+        if (config.scenario_type === "motional_emf_rod") {
+            applyMotionalEmfRodState(stateDef);
+        }
+
+        // eddy_current_pendulum — per-state seed (locked B/theta_0/field_on/
+        // slotted/v_dir, mode) + the per-state contextual-control panel
+        // (field_on on S1, v_dir on S3, slotted on S4, f_ac then laminated on
+        // S5, all five on the S6 explorer). The animate loop then swings the
+        // plate via the SAME damped-pendulum closed form reused from
+        // potential_energy_in_external_field, drives the loop-glyph brightness,
+        // the S4 twin decay contrast, and the S5 furnace/core mini-rig.
+        if (config.scenario_type === "eddy_current_pendulum") {
+            applyEddyCurrentPendulumState(stateDef);
         }
 
         // gauss_law_sphere — per-state seeding of the charged-shell scene: the
@@ -23615,6 +25340,14 @@ export const FIELD_3D_RENDERER_CODE = `
             applyPotentialMeaningState(stateDef);
         }
 
+        // straight_wire_current + a per-state 'swc' block (magnetic_field_concept_B)
+        // — per-state swc_* control-panel visibility + seed. A no-op for a sibling
+        // concept sharing this scenario_type without a 'swc' block (e.g.
+        // magnetic_field_wire), which keeps using the generic #sliders panel below.
+        if (config.scenario_type === "straight_wire_current") {
+            applyStraightWireCurrentState(stateDef);
+        }
+
         // Sliders + formula overlay visibility — scenario-aware: show the
         // I/r panel for straight_wire_current, the q/v/B/θ panel for
         // lorentz_force_uniform_field, the N/I/B/θ panel for
@@ -23639,6 +25372,17 @@ export const FIELD_3D_RENDERER_CODE = `
         var isEm = config.scenario_type === "earths_magnetism";
         var isMag = config.scenario_type === "magnetisation";
         var isFaraday = config.scenario_type === "faraday";
+        // motional_emf_rod owns its OWN #mem_sliders panel (B/l/v/R/v_dir) —
+        // must be excluded here or the generic #sliders panel bleeds through
+        // (THE-EYE "#sliders exclusion chain" — every dedicated panel adds
+        // itself to this NOT-list, same as isMag/isFaraday/isRhr/... above).
+        var isMotionalEmf = config.scenario_type === "motional_emf_rod";
+        // eddy_current_pendulum owns its OWN #ecp_sliders panel (theta_0/B/
+        // field_on/slotted/v_dir/f_ac/laminated) -- must be excluded here or
+        // the generic #sliders panel bleeds through (THE-EYE "#sliders
+        // exclusion chain" — every dedicated panel adds itself to this
+        // NOT-list, same as isMag/isFaraday/isMotionalEmf/... above).
+        var isEddyPendulum = config.scenario_type === "eddy_current_pendulum";
         var isRhr = config.scenario_type === "rhr_force_direction";
         var isNoWork = config.scenario_type === "magnetic_no_work";
         var isRadius = config.scenario_type === "radius_in_uniform_field";
@@ -23648,6 +25392,16 @@ export const FIELD_3D_RENDERER_CODE = `
         var isSystemOfCharges = config.scenario_type === "system_of_charges";
         var isSystemPeAssembly = config.scenario_type === "system_pe_assembly";
         var isPeExternalField = config.scenario_type === "pe_external_field";
+        // magnetic_field_concept_B (straight_wire_current + a per-state 'swc'
+        // block) owns its OWN #swc_sliders panel (I + compass_position — never
+        // the generic distance-r + B-magnitude panel this scenario's numeric
+        // sibling magnetic_field_wire uses). #sliders MUST be excluded here or
+        // the two panels + the r-slider's B-magnitude readout bleed together
+        // (THE-EYE "#sliders exclusion chain" — every new dedicated panel adds
+        // itself to this NOT-list, same as isMag/isFaraday/isRhr/... above).
+        // Discriminated on 'swc' presence (not scenario_type alone) so
+        // magnetic_field_wire's own #sliders panel is completely unaffected.
+        var isSwc = config.scenario_type === "straight_wire_current" && !!stateDef.swc;
         // FIX 3 — the potential diamonds share the point_charge_positive scenario but
         // setupSliders rebuilt #sliders as the distance-r explorer panel, so this gate
         // shows that panel for a potential explore state. Only show it when the state
@@ -23666,7 +25420,7 @@ export const FIELD_3D_RENDERER_CODE = `
                 // (the same seedR applyPotentialMeaningState parks PM_pmDragR at).
                 if (showPotentialSlider) pmSyncPotentialRSlider();
             } else {
-                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField) ? "block" : "none";
+                slidersEl.style.display = (stateDef.show_sliders && !isLorentz && !isTorque && !isFcw && !isDipole && !isBarField && !isCdist && !isEflux && !isGauss && !isGm && !isEm && !isMag && !isFaraday && !isRhr && !isNoWork && !isRadius && !isCyclotron && !isPlates && !isDipolePotential && !isSystemOfCharges && !isSystemPeAssembly && !isPeExternalField && !isSwc && !isMotionalEmf && !isEddyPendulum) ? "block" : "none";
             }
         }
         if (fcwSlidersEl) {
@@ -23830,8 +25584,8 @@ export const FIELD_3D_RENDERER_CODE = `
         }
 
         var formulaEl = document.getElementById("formula_overlay");
-        if (formulaEl && config.scenario_type === "magnetisation") {
-            formulaEl.style.display = "none";   // magnetisation uses its own big #mag_formula
+        if (formulaEl && (config.scenario_type === "magnetisation" || config.scenario_type === "motional_emf_rod")) {
+            formulaEl.style.display = "none";   // own dedicated formula panel (#mag_formula / #mem_formula)
         } else if (formulaEl) {
             if (stateDef.formula_overlay) {
                 formulaEl.textContent = stateDef.formula_overlay;
@@ -24170,6 +25924,18 @@ export const FIELD_3D_RENDERER_CODE = `
         // everything. "faraday" has no "magnet" substring so it would otherwise hit the
         // generic point-charge legend — suppress it entirely here.
         if (config.scenario_type === "faraday") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // motional_emf_rod is a silent visual (Rule 24): the rails + rod +
+        // charge markers + RHR hand + F_retard/F_ext arrows + the live
+        // eps/I/F/P readout carry everything, and this concept has NO
+        // magnets/poles — suppress the generic point-charge/bar-magnet legend.
+        if (config.scenario_type === "motional_emf_rod") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
+        // eddy_current_pendulum is a silent visual (Rule 24): the swinging
+        // plate + electromagnet gap + loop glyphs + F_retard arrow + the S4
+        // twin rig + the S5 furnace/core mini-rig + the live readout/graph
+        // carry everything. The scenario id contains no "magnet" substring but
+        // DOES have pole-coloured gap faces that would otherwise read against
+        // the generic point-charge legend — suppress it entirely.
+        if (config.scenario_type === "eddy_current_pendulum") { legendEl.style.display = "none"; legendEl.innerHTML = ""; return; }
         // gauss_law_sphere is a silent visual (Rule 24): the shell + Gaussian
         // sphere + radial arrows + E readout + E-vs-r plot carry everything —
         // suppress the generic point-charge legend.
@@ -26718,6 +28484,29 @@ export const FIELD_3D_RENDERER_CODE = `
             applyFaradayGlow();
         }
 
+        // motional_emf_rod — eps = B v l via q v x B. Drives the rod slide
+        // (independent choreography pace), the live eps/I/F_retard/F_ext/P
+        // readout (a pure fn of the B/l/v/R/v_dir sliders), the charge-
+        // separation markers + internal E arrow, the RHR hand's 3-phase curl
+        // (v -> curl-to-B -> F) with a re-curl on a v_dir flip, the current
+        // beads flowing the full loop, and the switch/gap indicator (pure fn
+        // of the state clock, Rule 26) + TTS glow.
+        if (config.scenario_type === "motional_emf_rod") {
+            updateMotionalEmfRodFrame();
+            applyMotionalEmfRodGlow();
+        }
+
+        // eddy_current_pendulum — swings the plate via the reused damped-
+        // pendulum closed form (a pure fn of the state clock, Rule 26), drives
+        // the loop-glyph brightness (peaks at the bottom of the swing), the
+        // F_retard arrow + live readout, the S4 twin decay contrast, the S5
+        // furnace/core crossfade + heat glow + AC field reversal, and the
+        // STATE_3 grip-hand v_dir flip + TTS glow.
+        if (config.scenario_type === "eddy_current_pendulum") {
+            updateEddyCurrentPendulumFrame();
+            applyEddyCurrentPendulumGlow();
+        }
+
         // gauss_law_sphere — charged-shell field. Drives the Gaussian-sphere
         // shrink/grow, the radial E-arrow reveal + 1/r² length scaling (outside)
         // or full suppression (inside), the point-charge crossfade, the arrows-
@@ -27057,6 +28846,35 @@ export const FIELD_3D_RENDERER_CODE = `
             var dx = dynamicExtras[di];
             var dud = dx.userData;
             if (!dud) continue;
+            // compass_position (draggable_azimuthal control_type, magnetic_field_
+            // concept_B S4/S7): once the teacher grabs the 3D compass (S7 only —
+            // swcStateIsDraggable()/applyDragFrom() gate on extras.compass.draggable)
+            // OR the companion #swc_compass_slider (S4 or S7 — the slider needs no
+            // 3D-pick permission, it is a genuine slider control), the manual angle
+            // WINS outright — no approach, no swing, no hop this frame. Position
+            // stays on the fixed SWC_COMPASS_ORBIT_R ring; the needle re-solves the
+            // local tangent at the new angle every frame (a real, live, physics-
+            // correct reveal, never a canned animation). Safe for every OTHER
+            // compass concept (e.g. magnetic_field_wire): PM_swcManualCompass can
+            // only flip true via a control gated behind a 'swc'-bearing state.
+            if (dud.elementType === "compass" && window.PM_swcManualCompass) {
+                var manAngleRad = ((window.PM_swcCompassAngleDeg || 0) * Math.PI) / 180;
+                var manY = dud.position_world ? dud.position_world[1] : 0;
+                var manX = SWC_COMPASS_ORBIT_R * Math.cos(manAngleRad);
+                var manZ = SWC_COMPASS_ORBIT_R * Math.sin(manAngleRad);
+                dx.position.set(manX, manY, manZ);
+                dud.position_world = [manX, manY, manZ];
+                if (dud.needleGroup) {
+                    var manStateDefC = config.states[PM_currentState] || {};
+                    var manISign = (manStateDefC.current_direction_indicator === "down") ? -1 : 1;
+                    var manBDir = wireBTangent(dud.position_world, manISign);
+                    if (manBDir) {
+                        dud.current_angle = Math.atan2(manBDir.x, manBDir.z);
+                        dud.needleGroup.rotation.y = dud.current_angle;
+                    }
+                }
+                continue;
+            }
             if (dud.elementType === "compass") {
                 // Approach animation: glide compass position from approach_from
                 // to position_world over approach_duration_ms before any
@@ -27078,7 +28896,7 @@ export const FIELD_3D_RENDERER_CODE = `
                     }
                 }
             }
-            if (dud.elementType === "compass" && dud.animate_swing && dud.needleGroup) {
+            if (dud.elementType === "compass" && dud.animate_swing && dud.needleGroup && !dud.hop_points) {
                 // Compute the physics-correct equilibrium direction the needle
                 // should swing to:
                 //   - For straight_wire_current: B at the compass position
@@ -27107,12 +28925,72 @@ export const FIELD_3D_RENDERER_CODE = `
                         dud.target_angle_rad = -Math.PI / 2; // legacy default
                     }
                 }
+                // swing_started_at is recomputed every frame (not baked in once at
+                // state entry) so a live-player SET_CUE_TIME('needle_swing', ...)
+                // that arrives AFTER this state's applyExtras() build still lands
+                // the swing on the narrated sentence. THE EYE never sends a cue, so
+                // this is byte-identical to the old one-shot wall-clock value for
+                // every existing compass concept (magnetic_field_wire included).
                 var now = performance.now();
-                if (dud.swing_started_at > 0 && now >= dud.swing_started_at) {
-                    var elapsed = (now - dud.swing_started_at) / 2000; // 2s sweep
+                var effSwingDelay = cueTriggerMs("needle_swing", dud.swing_delay_ms != null ? dud.swing_delay_ms : 1500);
+                var swingStartAbs = (dud.state_entered_at_wall || 0) +
+                    (dud.approach_from ? (dud.approach_duration_ms || 1200) : 0) + effSwingDelay;
+                if (swingStartAbs > 0 && now >= swingStartAbs) {
+                    var elapsed = (now - swingStartAbs) / 2000; // 2s sweep
                     var easeT = Math.min(1, elapsed);
                     var eased = 1 - Math.pow(1 - easeT, 3); // easeOutCubic
                     dud.current_angle = dud.target_angle_rad * eased;
+                    dud.needleGroup.rotation.y = dud.current_angle;
+                }
+            }
+            // ── multi-hop compass (STATE_4, magnetic_field_concept_B) ──────────
+            //   The compass walks through dud.hop_points in order: the FIRST hop
+            //   fires at cueTriggerMs('compass_hop', first_hop_at_ms_fallback), then
+            //   every hop_interval_ms thereafter. Pure function of the deterministic
+            //   state clock (time - stateStartTime), unlike the legacy swing path
+            //   above — THE EYE's SET_TIME_FREEZE/SET_TIME_JUMP pin this
+            //   reproducibly. At each new stop the needle re-solves the local
+            //   B-tangent (the SAME wireBTangent formula the single-position swing
+            //   uses) and eases to it directly (no north-then-swing detour — the
+            //   compass already read this point's field the moment it arrived).
+            if (dud.elementType === "compass" && dud.hop_points && dud.hop_points.length && dud.needleGroup) {
+                var hopStateMs = (time - stateStartTime) * 1000;
+                var hopFirstAt = cueTriggerMs("compass_hop", dud.first_hop_at_ms_fallback || 0);
+                var hopInterval = dud.hop_interval_ms || 3000;
+                var hopPts = dud.hop_points;
+                var hopIdx = 0;
+                if (hopStateMs >= hopFirstAt) {
+                    hopIdx = 1 + Math.floor((hopStateMs - hopFirstAt) / hopInterval);
+                    if (hopIdx >= hopPts.length) hopIdx = hopPts.length - 1;
+                }
+                if (dud.hop_current_idx !== hopIdx) {
+                    // New stop: capture the position AND needle LERP endpoints once,
+                    // so both ease together on the SAME curve and arrive in sync
+                    // (the needle re-solves the tangent at the DESTINATION, not the
+                    // live in-transit position).
+                    dud.hop_from_pos = [dx.position.x, dx.position.y, dx.position.z];
+                    dud.hop_to_pos = hopPts[hopIdx];
+                    dud.hop_move_start_ms = hopStateMs;
+                    dud.hop_current_idx = hopIdx;
+                    dud.hop_needle_from_angle = dud.current_angle || 0;
+                    var hopStateDefC0 = config.states[PM_currentState] || {};
+                    var hopISign0 = (hopStateDefC0.current_direction_indicator === "down") ? -1 : 1;
+                    var hopBDir0 = wireBTangent(dud.hop_to_pos, hopISign0);
+                    dud.hop_needle_to_angle = hopBDir0 ? Math.atan2(hopBDir0.x, hopBDir0.z) : dud.hop_needle_from_angle;
+                }
+                var hopMoveDur = 700;
+                var hopT = Math.max(0, Math.min(1, (hopStateMs - dud.hop_move_start_ms) / hopMoveDur));
+                var hopEase = 1 - Math.pow(1 - hopT, 3); // easeOutCubic
+                var hFrom = dud.hop_from_pos || hopPts[0];
+                var hTo = dud.hop_to_pos || hopPts[0];
+                dx.position.set(
+                    hFrom[0] + (hTo[0] - hFrom[0]) * hopEase,
+                    hFrom[1] + (hTo[1] - hFrom[1]) * hopEase,
+                    hFrom[2] + (hTo[2] - hFrom[2]) * hopEase
+                );
+                dud.position_world = [dx.position.x, dx.position.y, dx.position.z];
+                if (dud.hop_needle_to_angle != null) {
+                    dud.current_angle = dud.hop_needle_from_angle + (dud.hop_needle_to_angle - dud.hop_needle_from_angle) * hopEase;
                     dud.needleGroup.rotation.y = dud.current_angle;
                 }
             }
@@ -27124,16 +29002,38 @@ export const FIELD_3D_RENDERER_CODE = `
             // reproducible. Once snapped, the needle holds at north.
             if (dud.elementType === "compass" && dud.snap_back_to_north && dud.needleGroup) {
                 var sbMs = (time - stateStartTime) * 1000;
-                if (sbMs >= dud.snap_back_at_ms) {
+                // Routed through cueTriggerMs so a live-player SET_CUE_TIME
+                // ('switch_open') lands the snap-back on the narrated sentence;
+                // THE EYE never sends a cue, so this is the same authored
+                // snap_back_at_ms fallback as before.
+                var sbAt = cueTriggerMs("switch_open", dud.snap_back_at_ms);
+                if (sbMs >= sbAt) {
                     if (dud.snap_from_angle == null) {
                         // Latch the heading at the instant B vanishes (= where the
                         // swing left the needle).
                         dud.snap_from_angle = dud.needleGroup.rotation.y;
                     }
                     var sbDur = dud.snap_back_duration_ms || 600;
-                    var sbT = Math.min(1, (sbMs - dud.snap_back_at_ms) / sbDur);
+                    var sbT = Math.min(1, (sbMs - sbAt) / sbDur);
                     var sbEased = 1 - Math.pow(1 - sbT, 3); // easeOutCubic
-                    dud.needleGroup.rotation.y = dud.snap_from_angle * (1 - sbEased);
+                    var sbBase = dud.snap_from_angle * (1 - sbEased);
+                    // BUG (session 2026-07-03, engine_bug_queue swc_state3_frozen_27s_no_ambient_motion
+                    // / Rule 31 "no static state"): once sbT reaches 1 the needle used to hold
+                    // EXACTLY at 0 rad for the rest of STATE_3's ~30s duration (only ~3.4s of
+                    // switch-open + snap-back had any motion — the remaining ~26.6s were a
+                    // frozen frame). The field genuinely IS gone here, so this must never imply
+                    // a real deflection — a small (~2 deg) continuous idle sway on the needle,
+                    // pure function of the deterministic state clock (Rule 26), keeps the state
+                    // visually alive without contradicting the "no field" physics. Far below the
+                    // ~90 deg real Oersted swing used elsewhere, so it never reads as "the
+                    // needle found a field again."
+                    if (sbT >= 1) {
+                        var sbSettleMs = sbMs - sbAt - sbDur;
+                        var sbSwayAmplitudeRad = 0.035;
+                        dud.needleGroup.rotation.y = sbBase + sbSwayAmplitudeRad * Math.sin(sbSettleMs * 0.0009);
+                    } else {
+                        dud.needleGroup.rotation.y = sbBase;
+                    }
                     dud.current_angle = dud.needleGroup.rotation.y;
                 }
             }
@@ -27143,7 +29043,7 @@ export const FIELD_3D_RENDERER_CODE = `
             // brightness, never dimmed, never pulsing). animate_curl is now a
             // no-op for the static RHR hand; we deliberately never touch its
             // scale or emissiveIntensity, so it holds the base set in createRightHand.
-            if (dud.elementType === "solenoid_grip_hand") {
+            if (dud.elementType === "solenoid_grip_hand" || dud.elementType === "wire_grip_hand") {
                 // Curl the articulated fingers open → fist, hold, then release and
                 // repeat. curlT is a PURE function of (time - stateStartTime) so
                 // SET_TIME_FREEZE pins it deterministically. By ~1.3s the fist is
@@ -27194,10 +29094,14 @@ export const FIELD_3D_RENDERER_CODE = `
             // line at 0.8 fades 0 -> 0.8, an arrow 0 -> 1, etc.
             if (dud.elementType === "dual_compare_group") {
                 var dcMs = (time - stateStartTime) * 1000;
+                // Routed through cueTriggerMs('compare_reveal', ...) so a live-
+                // player cue lands the reveal on the narrated sentence; THE EYE
+                // never sends one, so this is the authored reveal_at_ms fallback.
+                var dcRevealAt = cueTriggerMs("compare_reveal", dud.reveal_at_ms);
                 var dcU = 1;
-                if (dud.reveal_at_ms > 0) {
-                    if (dcMs < dud.reveal_at_ms) dcU = 0;
-                    else dcU = Math.min(1, (dcMs - dud.reveal_at_ms) / (dud.fade_in_ms || 600));
+                if (dcRevealAt > 0) {
+                    if (dcMs < dcRevealAt) dcU = 0;
+                    else dcU = Math.min(1, (dcMs - dcRevealAt) / (dud.fade_in_ms || 600));
                 }
                 for (var dci = 0; dci < dx.children.length; dci++) {
                     var dcc = dx.children[dci];
@@ -27209,15 +29113,72 @@ export const FIELD_3D_RENDERER_CODE = `
             }
             if (dud.elementType === "dual_compare_label") {
                 var dlMs = (time - stateStartTime) * 1000;
+                var dlRevealAt = cueTriggerMs("compare_reveal", dud.reveal_at_ms);
                 var dlU = 1;
-                if (dud.reveal_at_ms > 0) {
-                    if (dlMs < dud.reveal_at_ms) dlU = 0;
-                    else dlU = Math.min(1, (dlMs - dud.reveal_at_ms) / (dud.fade_in_ms || 600));
+                if (dlRevealAt > 0) {
+                    if (dlMs < dlRevealAt) dlU = 0;
+                    else dlU = Math.min(1, (dlMs - dlRevealAt) / (dud.fade_in_ms || 600));
                 }
                 if (dx.material) {
                     dx.material.transparent = true;
                     dx.material.opacity = (dud.baseOpacity != null ? dud.baseOpacity : 1) * dlU;
                 }
+            }
+            // STATE_2 (magnetic_field_concept_B) — Rule 16a ghost_radial_needle:
+            // holds fully visible until the SAME cue-resolved moment the real
+            // needle begins its swing, then fades out over the same ~2000ms sweep
+            // so the wrong picture visibly loses to the real one as it arrives.
+            if (dud.elementType === "ghost_radial_needle") {
+                var grnMs = (time - stateStartTime) * 1000;
+                var grnStart = cueTriggerMs("needle_swing", dud.fadeStartFallbackMs || 0);
+                var grnU = Math.max(0, Math.min(1, (grnMs - grnStart) / (dud.fadeDurationMs || 2000)));
+                var grnOp = 0.5 * (1 - grnU);
+                for (var grnI = 0; grnI < dx.children.length; grnI++) {
+                    if (dx.children[grnI].material) dx.children[grnI].material.opacity = grnOp;
+                }
+                dx.visible = grnOp > 0.01;
+            }
+            // STATE_5 (magnetic_field_concept_B) rings_assemble — prominent tangent
+            // arrows: stagger their appearance "all around the wire," then orbit
+            // them continuously on their ring circle (sense = field_rotation_
+            // direction, matching the arr_wire ring arrows) so the field visibly
+            // CIRCULATES. They persist at full strength through the state (no
+            // fade-out) — they ARE the tangent field, so the tail is never static.
+            if (dud.elementType === "rings_scatter_needle") {
+                var rsCh = swcRaChoreo(config.states[PM_currentState]);
+                if (rsCh) {
+                    var rsT0 = rsCh.appearAt + (dud.raAppearFrac || 0) * rsCh.appearSpan;
+                    var rsAp = Math.max(0, Math.min(1, (rsCh.ms - rsT0) / 500));
+                    rsAp = rsAp * rsAp * (3 - 2 * rsAp);
+                    var rsOp = (dud.raFullOp != null ? dud.raFullOp : 0.95) * rsAp;
+                    for (var rsCi = 0; rsCi < dx.children.length; rsCi++) {
+                        if (dx.children[rsCi].material) dx.children[rsCi].material.opacity = rsOp;
+                    }
+                    dx.visible = rsOp > 0.01;
+                    var rsAng = (dud.raBaseAngle || 0) + rsCh.orbitRate * (rsCh.ms / 1000) * rsCh.rotSign;
+                    dx.position.set(
+                        wireScenarioOffsetX + dud.raRadius * Math.cos(rsAng),
+                        dud.raHeight,
+                        dud.raRadius * Math.sin(rsAng)
+                    );
+                    var rsDirV = new THREE.Vector3(-Math.sin(rsAng) * rsCh.rotSign, 0, Math.cos(rsAng) * rsCh.rotSign).normalize();
+                    dx.setRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), rsDirV));
+                }
+                continue;
+            }
+            // STATE_5 contrast ghosts (along-wire + radial-out): hold visible through
+            // the appear/join beats, then dim to nothing over the ghostFade window so
+            // "none points along the wire, and none straight out from it" lands as
+            // the real circulating field completes.
+            if (dud.elementType === "ghost_along_wire" || dud.elementType === "ghost_radial_out") {
+                var ghCh = swcRaChoreo(config.states[PM_currentState]);
+                var ghBase = (dud.raGhostBaseOp != null) ? dud.raGhostBaseOp : 0.5;
+                var ghOp = ghCh ? ghBase * (1 - ghCh.ghostFade) : ghBase;
+                for (var ghCi = 0; ghCi < dx.children.length; ghCi++) {
+                    if (dx.children[ghCi].material) dx.children[ghCi].material.opacity = ghOp;
+                }
+                dx.visible = ghOp > 0.01;
+                continue;
             }
         }
 
@@ -27339,16 +29300,32 @@ export const FIELD_3D_RENDERER_CODE = `
             //   full strength (legacy behavior preserved).
             var swCfg = (stateDef.extras && stateDef.extras.switch_toggle) ? stateDef.extras.switch_toggle : null;
             var switchActive = !!swCfg;
+            // magnetic_field_concept_B per-state live-instrument gate (any state
+            // carrying a 'swc' block). S2/S4/S5/S6/S7 have no switch_toggle but
+            // still need the I control (where shown — S7) to drive a REAL
+            // magnitude change (Rule 29), not just S1/S3's scripted ramp.
+            var swcHasSwc = !!stateDef.swc;
             var iScale = 1;      // visual current factor (0..1)
             var iNow = 1;        // absolute current for dot visibility
             if (switchActive) {
                 var stMs = (time - stateStartTime) * 1000;
                 var iBefore = (swCfg.i_before != null) ? swCfg.i_before : 0;
                 var iAfter = (swCfg.i_after != null) ? swCfg.i_after : 0;
-                var eventAt = (swCfg.close_at_ms != null) ? swCfg.close_at_ms :
+                // Routed through cueTriggerMs so a live-player SET_CUE_TIME
+                // ('switch_close' | 'switch_open') lands the ramp on the narrated
+                // sentence; THE EYE never sends a cue, so this is the authored
+                // close_at_ms/open_at_ms fallback.
+                var eventAtFallback = (swCfg.close_at_ms != null) ? swCfg.close_at_ms :
                               (swCfg.open_at_ms != null) ? swCfg.open_at_ms : 0;
+                var eventAtCueName = (swCfg.close_at_ms != null) ? "switch_close" : "switch_open";
+                var eventAt = cueTriggerMs(eventAtCueName, eventAtFallback);
                 var rampDur = (swCfg.ramp_duration_ms != null) ? swCfg.ramp_duration_ms : 300;
-                if (stMs < eventAt) {
+                if (window.PM_swcManualI) {
+                    // Teacher grabbed the I control (trusted drag seizes manual —
+                    // Rule 31 live-instrument model): the scripted ramp is
+                    // overridden by the live slider/drag value.
+                    iNow = window.PM_swcCurrentA;
+                } else if (stMs < eventAt) {
                     iNow = iBefore;
                 } else if (stMs < eventAt + rampDur) {
                     var ru = (stMs - eventAt) / Math.max(1, rampDur); // linear ramp
@@ -27358,8 +29335,37 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
                 var iRef = Math.max(Math.abs(iBefore), Math.abs(iAfter), 1e-6);
                 iScale = Math.max(0, Math.min(1, Math.abs(iNow) / iRef));
+            } else if (swcHasSwc) {
+                var swcIRef = (config.slider_controls && config.slider_controls.I && config.slider_controls.I.max) || 5;
+                var swcIDefault = (config.slider_controls && config.slider_controls.I && config.slider_controls.I.default != null) ? config.slider_controls.I.default : 3;
+                var swcINow = window.PM_swcManualI ? window.PM_swcCurrentA : swcIDefault;
+                iNow = swcINow;
+                iScale = Math.max(0, Math.min(1, Math.abs(swcINow) / Math.max(1e-6, swcIRef)));
             }
             var effRotRate = rotRate * iScale; // rings slow to a stop as current dies
+            // rings_assemble crossfade (STATE_5 only; 1 = no-op for every other
+            // state/scenario) — see swcRingsAssembleGate. ringGate additionally
+            // gates the CONTINUOUS ring tubes/orbiting arrows so they crossfade in
+            // exactly as the scattered tangent markers fade out.
+            var raGate = swcRingsAssembleGate(stateDef);
+            // Per-state field-dim multiplier (magnetic_field_concept_B, founder
+            // THE-EYE note): a state may set a plain number stateDef.ring_dim in
+            // [0..1] (sibling of show_sliders/visible_controls) to render the
+            // B-field rings + orbiting arrows at that fraction of opacity so the
+            // compass becomes the focal actor (Rule 29 — emphasis via
+            // brightness/opacity, never size). Default 1.0 (absent => no change).
+            // ONLY field_line tubes + arr_wire arrows read ringGate, so ring_dim
+            // never touches the compass, the current dots, or the wire — they
+            // stay full-brightness. iScale (current) and raGate (rings_assemble
+            // crossfade) still gate on top, so ring_dim is purely multiplicative.
+            var ringDimFactor = (stateDef.ring_dim != null) ? stateDef.ring_dim : 1;
+            var ringGate = iScale * raGate * ringDimFactor;
+            // STATE_5 rings_assemble: the ring TUBES render as faint GUIDE CIRCLES
+            // (tangent reference) from the start, then brighten floor->full over the
+            // "join" phase — a separate floor gate from the arr_wire arrows (which
+            // ride ringGate and so stay hidden until "join into full 3D rings").
+            // null for every other state/scenario, so ringGate is used as-is there.
+            var swcRaCh = swcRaChoreo(stateDef);
 
             // ── switch_toggle field-withholding gate (founder THE-EYE note) ───
             //   The current-driven ring opacity must NEVER reveal the B field in a
@@ -27400,29 +29406,51 @@ export const FIELD_3D_RENDERER_CODE = `
                 var swUd = swObj.userData;
                 if (!swUd) continue;
 
-                // switch_toggle: fade B-field ring tubes with the current. Cache
-                // the build-time base opacity once, then scale by iScale. At
-                // iScale ~ 0 the ring is hidden outright (B is gone, not dim).
-                // GATE: in a state that withholds the field (STATE_1, the pre-
-                // Oersted beat) the rings stay hidden regardless of current — the
-                // switch_toggle drives the dots, not the field. STATE_3 is NOT
-                // withheld (start_state:'closed'), so its rings show then fade.
-                if (switchActive && swUd.elementType === "field_line") {
+                // switch_toggle / swc-live: fade B-field ring tubes with the
+                // current (+ the rings_assemble crossfade via ringGate). Cache the
+                // build-time base opacity once, then scale by ringGate. At
+                // ringGate ~ 0 the ring is hidden outright (B is gone, not dim, OR
+                // still scattered pre-assembly). GATE: in a state that withholds
+                // the field (STATE_1, the pre-Oersted beat) the rings stay hidden
+                // regardless of current — the switch_toggle drives the dots, not
+                // the field. STATE_3 is NOT withheld (start_state:'closed'), so
+                // its rings show then fade.
+                if ((switchActive || swcHasSwc) && swUd.elementType === "field_line") {
                     if (swFieldWithheld) {
                         swObj.visible = false;
                     } else {
                         if (swUd.baseOpacity == null && swObj.material) {
                             swUd.baseOpacity = swObj.material.opacity;
                         }
+                        var flGate = ringGate;
+                        if (swcRaCh) {
+                            // guide floor before "join", ramping to full as it joins
+                            flGate = iScale * (swcRaCh.guide * SWC_GUIDE_FLOOR + swcRaCh.join * (1 - SWC_GUIDE_FLOOR)) * ringDimFactor;
+                        }
                         if (swObj.material) {
                             swObj.material.transparent = true;
-                            swObj.material.opacity = (swUd.baseOpacity || 0.8) * iScale;
+                            swObj.material.opacity = (swUd.baseOpacity || 0.8) * flGate;
                         }
-                        swObj.visible = iScale > 0.01;
+                        swObj.visible = flGate > 0.01;
                     }
                 }
 
-                if (swUd.elementType === "arrow" && swUd.flowRadius != null && rotDirSign !== 0) {
+                // BUG (session 2026-07-03, engine_bug_queue swc_state1_stray_arrow_artifact
+                // + the STATE_3 half of swc_state3_state4_extras_cross_bleed): this whole
+                // block used to require rotDirSign !== 0 to run AT ALL, which bundled the
+                // opacity/visibility fade together with the orbit-position update. Any
+                // state that omits field_rotation_direction (e.g. STATE_3, the source_off
+                // beat) has rotDirSign === 0, so the arrows were NEVER faded/hidden with
+                // the current — they stayed frozen at full opacity wherever the last
+                // rotating state (STATE_2) left them, reading as a scattered "ghost" of
+                // stray arrow markers even after the switch opened and the rings (which
+                // ARE gated independent of rotDirSign, see the field_line branch above)
+                // correctly faded to nothing. Fix: the withholding/opacity/visibility gate
+                // now runs for EVERY state (mirrors the field_line gate), and only the
+                // orbit POSITION/rotation update — which needs a rotation sense to mean
+                // anything — stays behind rotDirSign !== 0. A frozen (non-rotating) arrow
+                // still correctly fades to invisible with ringGate.
+                if (swUd.elementType === "arrow" && swUd.flowRadius != null) {
                     // Same withholding gate as the rings: never reveal the orbiting
                     // B arrows in a state that withholds the field, even when current
                     // flows (keeps the Oersted reveal intact for STATE_2).
@@ -27430,44 +29458,83 @@ export const FIELD_3D_RENDERER_CODE = `
                         swObj.visible = false;
                         continue;
                     }
-                    // switch_toggle hides + halts the orbiting arrows when there is
-                    // no current; otherwise they orbit at the current-scaled rate.
-                    if (switchActive) {
+                    // switch_toggle / swc-live hides + halts the orbiting arrows
+                    // when there is no current (or the rings haven't assembled
+                    // yet — ringGate folds both in); otherwise they orbit at the
+                    // current-scaled rate.
+                    if (switchActive || swcHasSwc) {
                         if (swUd.baseHeadOpacity == null && swObj.material) {
                             swUd.baseHeadOpacity = swObj.material.opacity != null ? swObj.material.opacity : 1;
                             swObj.material.transparent = true;
                         }
-                        if (swObj.material) swObj.material.opacity = (swUd.baseHeadOpacity || 1) * iScale;
-                        swObj.visible = iScale > 0.01;
-                        if (iScale <= 0.01) continue;
+                        if (swObj.material) swObj.material.opacity = (swUd.baseHeadOpacity || 1) * ringGate;
+                        swObj.visible = ringGate > 0.01;
+                        if (ringGate <= 0.01) continue;
                     } else if (!swObj.visible) {
                         continue;
                     }
-                    // Integrate the orbit angle so a varying rate stays continuous
-                    // (no jump when iScale changes). swPhase accumulates per frame.
-                    if (swUd.swPhase == null) swUd.swPhase = 0;
-                    swUd.swPhase += 0.016 * effRotRate * rotDirSign;
-                    var ang = (swUd.flowAngleOffset || 0) + swUd.swPhase;
-                    swObj.position.set(
-                        wireScenarioOffsetX + swUd.flowRadius * Math.cos(ang),
-                        swUd.flowHeight,
-                        swUd.flowRadius * Math.sin(ang)
-                    );
-                    // Tangent direction along the circle, sense follows rotDirSign so
-                    // arrowhead always points "downstream" of the rotation.
-                    var tx = -Math.sin(ang) * rotDirSign;
-                    var tz =  Math.cos(ang) * rotDirSign;
-                    var qup = new THREE.Vector3(0, 1, 0);
-                    var qdir = new THREE.Vector3(tx, 0, tz).normalize();
-                    var arrowQuat = new THREE.Quaternion();
-                    arrowQuat.setFromUnitVectors(qup, qdir);
-                    swObj.setRotationFromQuaternion(arrowQuat);
+                    if (rotDirSign !== 0) {
+                        // Integrate the orbit angle so a varying rate stays continuous
+                        // (no jump when iScale changes). swPhase accumulates per frame.
+                        if (swUd.swPhase == null) swUd.swPhase = 0;
+                        var swRingIdx = Math.max(0, Math.round((swUd.flowRadius - 0.6) / 0.5));
+                        var swHeightIdx = Math.max(0, Math.round((swUd.flowHeight + 1.5) / 1.5));
+                        // BUG (swc_state1_stray_arrow_artifact — 2nd pass, 2026-07-03):
+                        // the static per-ring/per-height ANGLE stagger below (swStagger)
+                        // did NOT fix the periodic stray-line artifact, because every one
+                        // of the 18 arrows still advanced swPhase by the exact SAME amount
+                        // each frame (0.016 * effRotRate * rotDirSign — both factors are
+                        // frame-global, not per-object). A static offset only changes WHERE
+                        // in its rotation each arrow sits; it does not stop the full 18-arrow
+                        // set from being a single RIGID body that spins as one unit. A rigid
+                        // body viewed from a FIXED oblique camera (STATE_1's camera_position)
+                        // presents its thinnest/most "line-like" silhouette twice per
+                        // rotation (whenever it is broadside-on to the camera) NO MATTER what
+                        // the baked-in static offsets are — only the clock position of the
+                        // recurrence shifts, never whether it recurs. That is exactly the
+                        // ~7-8s periodicity (~ the rotRate=0.6 rad/s period, 2*pi/0.6 =~
+                        // 10.5s, twice-per-turn) the founder measured against fresh THE EYE
+                        // frames after the first "stagger" attempt.
+                        //
+                        // Real fix: DETUNE each ring/height's angular RATE (not just its
+                        // phase) by a small deterministic per-object factor derived from its
+                        // own already-authored flowRadius/flowHeight. The 18-arrow formation
+                        // now continuously deforms as it turns — relative phase between any
+                        // two rings drifts monotonically instead of staying rigidly locked,
+                        // so the specific "all radii broadside-to-camera at once" silhouette
+                        // that produced the stray line can only ever recur by coincidence,
+                        // and even then only once, never on a fixed cadence. Magnitude is
+                        // kept small (<=10% differential across the outermost ring pair, <=
+                        // ~2.4% across heights) so every arrow still reads as "one coherent
+                        // rotating field," just no longer a perfectly rigid one (deterministic,
+                        // no randomness, no new state — Rule 26).
+                        var swRateScale = 1 + 0.02 * (swRingIdx - 2.5) + 0.012 * (swHeightIdx - 1);
+                        swUd.swPhase += 0.016 * effRotRate * rotDirSign * swRateScale;
+                        var swStagger = ((swHeightIdx * 6 + swRingIdx) / 18) * Math.PI * 2;
+                        var ang = (swUd.flowAngleOffset || 0) + swUd.swPhase + swStagger;
+                        swObj.position.set(
+                            wireScenarioOffsetX + swUd.flowRadius * Math.cos(ang),
+                            swUd.flowHeight,
+                            swUd.flowRadius * Math.sin(ang)
+                        );
+                        // Tangent direction along the circle, sense follows rotDirSign so
+                        // arrowhead always points "downstream" of the rotation.
+                        var tx = -Math.sin(ang) * rotDirSign;
+                        var tz =  Math.cos(ang) * rotDirSign;
+                        var qup = new THREE.Vector3(0, 1, 0);
+                        var qdir = new THREE.Vector3(tx, 0, tz).normalize();
+                        var arrowQuat = new THREE.Quaternion();
+                        arrowQuat.setFromUnitVectors(qup, qdir);
+                        swObj.setRotationFromQuaternion(arrowQuat);
+                    }
                 }
 
                 if (swUd.elementType === "current_dot") {
-                    // No current direction, OR switch has driven current to ~0:
-                    // hide the flow dots (no current flowing).
-                    if (curDirSign === 0 || (switchActive && iScale <= 0.01)) {
+                    // No current direction, OR switch/manual-I has driven the
+                    // current to ~0: hide the flow dots (no current flowing).
+                    // Dots track iScale alone (never ringGate) — they represent
+                    // the current itself, not the rings_assemble beat.
+                    if (curDirSign === 0 || ((switchActive || swcHasSwc) && iScale <= 0.01)) {
                         swObj.visible = false;
                     } else {
                         swObj.visible = true;

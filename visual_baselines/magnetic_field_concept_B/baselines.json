@@ -1,6 +1,6 @@
 {
-  "approved_at": "2026-06-24T19:12:28.598Z",
-  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\magnetic_field_concept_B\\20260624-211039",
+  "approved_at": "2026-07-03T19:07:18.645Z",
+  "source_run": "C:\\Tutor\\physics-mind\\.visual_runs\\magnetic_field_concept_B\\20260703-204350",
   "tolerance": 0.02,
   "states": {
     "STATE_1": {
@@ -24,6 +24,10 @@
       "compare_frozen": true
     },
     "STATE_6": {
+      "compare": true,
+      "compare_frozen": true
+    },
+    "STATE_7": {
       "compare": true,
       "compare_frozen": true
     }

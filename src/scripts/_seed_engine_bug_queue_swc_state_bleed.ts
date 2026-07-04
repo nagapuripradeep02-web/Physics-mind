@@ -1,0 +1,141 @@
+/**
+ * Seed/update engine_bug_queue with the scars found by THE EYE + manual frame
+ * review during the Rule 31 conversion of magnetic_field_concept_B (the
+ * `straight_wire_current` / `swc` scenario, concept #1 of the 13-sim Ch.4
+ * migration). Deterministic gates (Category D motion, H1 placeholders) all
+ * passed; the 12 H2 regressions are the EXPECTED consequence of an intentional
+ * full redesign (stale pre-conversion baseline) and are not logged here. These
+ * three rows are genuine content-integrity defects found by reading the dumped
+ * frames directly.
+ *
+ * UPDATE (2026-07-03, follow-up fix pass): all three rows FIXED in
+ * field_3d_renderer.ts. The original root_cause text for TWO of the three rows
+ * (swc_state3_state4_extras_cross_bleed, swc_state1_stray_arrow_artifact) was a
+ * REASONABLE but INCORRECT hypothesis ("stale stateDef reference" / "leaked
+ * primitive not hidden per-state") — reproduced headlessly against the actual
+ * cached sim_html (Playwright + direct SET_STATE drive) and found the TRUE
+ * causes below. root_cause/prevention_rule updated in place so the queue
+ * reflects verified findings, not the original guess.
+ *
+ * Idempotent: upsert onConflict 'bug_class'. Also writes the archival SQL.
+ * Run: npx tsx --env-file=.env.local src/scripts/_seed_engine_bug_queue_swc_state_bleed.ts
+ */
+import '@/lib/loadEnvLocal';
+import { writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { supabaseAdmin } from '@/lib/supabaseAdmin';
+
+const SESSION = 'session_2026-07-03_ch4_migration_concept1_swc';
+
+type Owner =
+  | 'alex:architect' | 'alex:physics_author' | 'alex:json_author'
+  | 'peter_parker:renderer_primitives' | 'peter_parker:runtime_generation'
+  | 'peter_parker:visual_validator' | 'ambiguous';
+type Severity = 'CRITICAL' | 'MAJOR' | 'MODERATE';
+type Status = 'OPEN' | 'FIXED' | 'DEFERRED' | 'NOT_REPRODUCING' | 'FALSE_POSITIVE';
+type ProbeType = 'sql' | 'js_eval' | 'manual' | 'vision_model';
+type RowType = 'incident' | 'directive';
+
+interface Row {
+  bug_class: string; title: string; severity: Severity; owner_cluster: Owner;
+  root_cause: string; prevention_rule: string; probe_type: ProbeType; probe_logic: string;
+  status: Status; concepts_affected: string[]; fixed_in_files: string[]; row_type: RowType;
+}
+
+const RP: Owner = 'peter_parker:renderer_primitives';
+const RENDERER = 'src/lib/renderers/field_3d_renderer.ts';
+const CONCEPT = 'magnetic_field_concept_B';
+
+const incidents: Row[] = [
+  {
+    bug_class: 'swc_state3_state4_extras_cross_bleed',
+    title: 'straight_wire_current (swc) STATE_3 renders STATE_4\'s faint_field_probes markers while STATE_4 shows STATE_3\'s caption text and is missing its own compass hop_points + faint_field_probes entirely',
+    severity: 'CRITICAL',
+    owner_cluster: RP,
+    root_cause:
+      'VERIFIED (2026-07-03 follow-up, headless Playwright reproduction against the actual cached sim_html — not a stale-cache issue, the cached config byte-matches the on-disk JSON): applyState(\'STATE_4\') threw "Cannot read properties of undefined (reading \'0\')" every time, INSIDE createCompass() at `position_world: [spec.position[0], ...]`. STATE_4\'s compass extras block is hop_points-only ({hop_points:[...4 pts], first_hop_at_ms, hop_interval_ms, ...}) and deliberately carries NO static \'position\' key (the compass starts at hop_points[0] instead of one fixed spot) — createCompass() unconditionally dereferenced spec.position[0] with no fallback, so it crashed on this exact spec shape. Because applyState() has no try/catch, the exception aborted the function immediately after clearDynamicExtras() but partway through applyExtras() — BEFORE extras.faint_field_probes (later in the same function) and BEFORE updateLegend(stateDef) (near the end of applyState()) ever ran. Net effect: STATE_4\'s own compass/probes never built, and the DOM caption/legend element was simply left holding STATE_3\'s last-painted text (not "read from the wrong state" — never re-written at all). Confirmed via STATE_4__panel_a.png (the very FIRST frame of the state) already showing STATE_3\'s caption, i.e. the bug is immediate at state-entry, not a late/dense-capture artifact. The STATE_3 half of this bug (a scatter of leftover green arrow markers) is a SEPARATE, unrelated defect — see swc_state1_stray_arrow_artifact\'s corrected root_cause; it is NOT faint_field_probes bleed (STATE_3 has no such extras, confirmed) and NOT caused by this crash (STATE_3 renders and exits applyState() cleanly, before STATE_4 is ever entered).',
+    prevention_rule:
+      'Any per-state extras spec object accepted by a createX() builder (createCompass, etc.) must defensively fall back on every field it dereferences, especially when a NEW variant of that spec (e.g. hop_points-only, no static position) is introduced for a later state — do not assume every caller supplies the same shape the field was originally authored for. Because applyState() has no top-level try/catch, ANY uncaught exception inside it silently truncates the rest of that function (including updateLegend()), which reads to an observer as "this state shows the previous state\'s caption/content" — a symptom that looks like a stale-reference bug but is actually a crash. When a state\'s caption/legend or extras fail to update, check the browser console for a thrown error FIRST, before assuming a stateDef look-up bug.',
+    probe_type: 'manual',
+    probe_logic:
+      'Run visual:eyes on magnetic_field_concept_B and open each state\'s dense frames at full resolution: STATE_4 must show ONLY its own compass hop_points + faint_field_probes (visible tangent markers + a compass object walking between the 4 hop points) with the caption "The field fills space — compass hops point to point". Also load the cached sim_html directly in a headless page and watch for any pageerror event while driving SET_STATE through every state in order — a thrown error on ANY state entry is this bug class regardless of which state/extras triggered it.',
+    status: 'FIXED',
+    concepts_affected: [CONCEPT],
+    fixed_in_files: [RENDERER],
+    row_type: 'incident',
+  },
+  {
+    bug_class: 'swc_state3_frozen_27s_no_ambient_motion',
+    title: 'straight_wire_current STATE_3 (source_off) goes completely static for ~27 of its 30 authored seconds after the switch-open + snap-back completes — no ambient motion at all, violating Rule 31 "no static state"',
+    severity: 'MAJOR',
+    owner_cluster: RP,
+    root_cause:
+      'STATE_3__dense_t05000.png and STATE_3__dense_t15000.png are pixel-identical, and the contact sheet shows the same frozen composition from ~t=3000ms through t=30000ms — roughly 27 of the state\'s 30 authored seconds show zero motion. (The "cross-bled probe markers" mentioned in the original root_cause text were actually leftover, un-faded arr_wire arrows — see swc_state1_stray_arrow_artifact\'s corrected root_cause for the mechanism; those are now correctly hidden once current reaches 0, which also removes that visual noise from this state\'s frozen tail.) Rule 31 requires every guided state to have auto-playing choreography even when it exposes no controls; a "field is gone" state still needs SOME ambient signal rather than a hard freeze.',
+    prevention_rule:
+      'A state whose physics is genuinely static after its one-shot reveal (field vanished, nothing left to show) must still author a small ambient motion for the remainder of its duration — e.g. a damped-oscillation settle on the compass needle, a slow ambient camera drift, or a soft pulse on the "no current" wire — so the state never reads as a frozen frame. Pure stillness with zero motion for the majority of a state\'s duration is the Rule 31 violation THE EYE\'s D7 frozen-tail check is designed to catch when the state is NOT correctly declared reveal_hold with a justified static tail; verify deriveStateMeta\'s reveal_hold classification for source_off is intentional and add the ambient settle motion. FIXED by adding a small continuous idle sway (~2 deg, ~7s period, pure function of the state clock per Rule 26) on the compass needle once the snap-back-to-north sequence completes, in the same per-frame block that drives the snap-back (field_3d_renderer.ts, the `dud.snap_back_to_north` branch).',
+    probe_type: 'manual',
+    probe_logic:
+      'On STATE_3, compare two dense frames at least 8s apart after the reveal-complete time (3900ms). If they are pixel-identical (or near-identical, no ambient motion at all), the state is frozen and needs an ambient settle animation authored.',
+    status: 'FIXED',
+    concepts_affected: [CONCEPT],
+    fixed_in_files: [RENDERER],
+    row_type: 'incident',
+  },
+  {
+    bug_class: 'swc_state1_stray_arrow_artifact',
+    title: 'straight_wire_current STATE_1 (source_on) shows a stray horizontal arrow/spike primitive with a cone tip shooting through the field rings, periodically, though STATE_1\'s JSON extras declare only switch_toggle (no compass, no faint_field_probes, no arrow)',
+    severity: 'MAJOR',
+    owner_cluster: RP,
+    root_cause:
+      'VERIFIED (2026-07-03, 3rd pass — fresh THE EYE run at 20260703-175829 against full-resolution STATE_1__dense_t07000.png etc. showed the 1st-pass "static per-ring/per-height angle stagger" fix did NOT remove the artifact; it recurred at ~7-8s intervals — t=0(frozen), 7000, 15000(partial), 19000-21000, 27000). The 1st-pass fix only changed each arrow\'s STATIC starting-angle offset (swStagger); it left every one of the 18 arr_wire arrows advancing swPhase by the IDENTICAL per-frame increment `0.016 * effRotRate * rotDirSign` (effRotRate and rotDirSign are both computed ONCE per frame, outside the per-object loop — frame-global, not per-object). A set of points that differ only in a fixed phase offset but share one common angular velocity is a RIGID BODY that spins as a single unit; from a FIXED oblique camera (STATE_1\'s camera_position never changes during the state) a rigid body presents its thinnest, most line-like silhouette twice per rotation period (whenever its plane of points is broadside-on to the camera), independent of what the static offsets were baked to — the stagger only moved WHICH clock-tick the recurrence lands on, not whether it recurs. rotRate=0.6 rad/s (2*pi/0.6 =~10.5s/rotation, ~5.2s per broadside pass) is consistent with the observed ~7-8s cadence. This is a PRE-EXISTING, widespread characteristic of every rotating state in this scenario (also visible in STATE_5, and shared by the legacy magnetic_field_wire concept), not a regression unique to STATE_1.',
+    prevention_rule:
+      'A set of duplicated primitives that only ever differ by a STATIC phase/offset while sharing one common per-frame angular-rate term will always stay a rigid formation — no static offset can prevent a rigid formation from presenting a periodic degenerate (edge-on/collinear) silhouette to a fixed camera once per rotation (or twice, if the formation has a plane of symmetry). To break periodic recurrence, DETUNE the per-frame RATE itself (not just the phase) by a small deterministic per-instance factor derived from an already-authored per-instance property (e.g. ring radius/height index) — this makes the formation continuously deform as it turns, so relative phase between any two instances drifts monotonically instead of re-locking on a fixed cadence. FIXED (2nd pass) in the swc per-frame arrow block (field_3d_renderer.ts): `swUd.swPhase += 0.016 * effRotRate * rotDirSign * swRateScale`, where `swRateScale = 1 + 0.02*(ringIdx-2.5) + 0.012*(heightIdx-1)` gives up to ~10% differential rate across the 6 ring radii and ~2.4% across the 3 heights — small enough that the 18 arrows still read as "one coherent rotating field" (no visible desync), but large enough that by ~1 rotation period the outermost-vs-innermost ring in one height-arm have drifted an EXTRA ~24 degrees apart beyond their original stagger, and by ~2.5 rotations (~27s, matching a Rule 31 state\'s duration) an extra ~90+ degrees apart — thoroughly scrambling the original rigid formation so the specific "all radii broadside to camera" alignment that produced the stray line cannot recur at a fixed cadence; any residual alignment would be a one-off coincidence, not a repeating artifact. FALSIFIABLE PREDICTION: a fresh THE EYE run of STATE_1 should NOT show the same collinear-line artifact recurring at ~7-8s intervals (t=7000/15000/19000-21000/27000); if a stray-line-like frame still appears at any single timestamp it must NOT recur at the same ~7-8s cadence later in the same run, and later timestamps (t>=15000) should show the 18 arrows visibly more scattered/desynced than earlier ones as drift accumulates.',
+    probe_type: 'manual',
+    probe_logic:
+      'On STATE_1 (and any other rotating state), scrub the FULL-RESOLUTION dense frames end to end at the SAME cadence the artifact was previously observed (roughly every 7-8s: t=0/7000/15000/19000-21000/27000+): the 18 arr_wire arrows must never read as one collinear line/spoke with an oversized cone tip stretching from near the wire past the outermost ring, on more than one non-repeating occasion. Specifically: no two dense frames spaced ~7-8s apart late in the same state (e.g. t=15000 vs t=27000) should show the SAME collinear alignment recurring — later frames should show MORE angular spread among the 18 arrows than earlier ones (monotonic drift), never a return to a tight rigid formation. On STATE_3, once current reaches 0 (~3400ms), zero arrow markers should remain visible.',
+    status: 'FIXED',
+    concepts_affected: [CONCEPT, 'magnetic_field_wire'],
+    fixed_in_files: [RENDERER],
+    row_type: 'incident',
+  },
+];
+
+function sqlStr(s: string): string { return `'${s.replace(/'/g, "''")}'`; }
+function sqlArr(a: string[]): string { return a.length === 0 ? `ARRAY[]::text[]` : `ARRAY[${a.map(sqlStr).join(', ')}]`; }
+function sqlRow(r: Row): string {
+  return `(${sqlStr(r.bug_class)}, ${sqlStr(r.title)}, ${sqlStr(r.severity)}, ${sqlStr(r.owner_cluster)}, ` +
+    `${sqlStr(r.root_cause)}, ${sqlStr(r.prevention_rule)}, ${sqlStr(r.probe_type)}, ${sqlStr(r.probe_logic)}, ` +
+    `${sqlStr(r.status)}, ${sqlArr(r.concepts_affected)}, ${sqlArr(r.fixed_in_files)}, ${sqlStr(SESSION)}, ${sqlStr(r.row_type)})`;
+}
+function emitSql(all: Row[]): string {
+  const cols = 'bug_class, title, severity, owner_cluster, root_cause, prevention_rule, probe_type, probe_logic, status, concepts_affected, fixed_in_files, discovered_in_session, row_type';
+  return `-- 2026-07-03: engine_bug_queue rows from THE EYE + manual frame review of\n` +
+    `-- magnetic_field_concept_B's Rule 31 conversion (swc scenario, concept #1 of\n` +
+    `-- the 13-sim Ch.4 migration). Three OPEN rows: S3/S4 extras cross-bleed,\n` +
+    `-- S3 27s freeze, S1 stray arrow artifact.\n` +
+    `-- Generated by src/scripts/_seed_engine_bug_queue_swc_state_bleed.ts — idempotent.\n\n` +
+    `INSERT INTO engine_bug_queue (${cols}) VALUES\n${all.map(sqlRow).join(',\n')}\n` +
+    `ON CONFLICT (bug_class) DO UPDATE SET status = EXCLUDED.status, root_cause = EXCLUDED.root_cause,\n` +
+    `  prevention_rule = EXCLUDED.prevention_rule, fixed_in_files = EXCLUDED.fixed_in_files,\n` +
+    `  title = EXCLUDED.title, severity = EXCLUDED.severity;\n`;
+}
+
+async function main(): Promise<void> {
+  const sqlPath = join(process.cwd(), 'supabase_2026-07-03_seed_engine_bug_queue_swc_state_bleed_migration.sql');
+  writeFileSync(sqlPath, emitSql(incidents), 'utf-8');
+  console.log(`Wrote archival SQL: ${sqlPath} (${incidents.length} incident rows)`);
+
+  // UPDATE pass (2026-07-03 follow-up fix): every row here is now status
+  // 'FIXED', so stamp fixed_at on upsert. Idempotent — re-running this script
+  // after a future edit to the incidents[] above just refreshes fixed_at again.
+  const payload = incidents.map((r) => ({
+    ...r,
+    discovered_in_session: SESSION,
+    fixed_at: r.status === 'FIXED' ? new Date().toISOString() : null,
+  }));
+  const { error } = await supabaseAdmin.from('engine_bug_queue').upsert(payload, { onConflict: 'bug_class' });
+  if (error) { console.error(`✗ upsert failed: ${error.message}`); process.exit(1); }
+  console.log(`✓ ${incidents.length} scar row(s) upserted`);
+}
+
+main().catch((err) => { console.error('💥 seed failed:', err instanceof Error ? err.stack : err); process.exit(1); });
