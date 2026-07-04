@@ -855,7 +855,18 @@ function maxRevealForField3dState(state: Record<string, unknown>, coilTurns: num
         else if (mode === 'geometry') candidates.push(10000);     // core slid in, L jumped, current re-ramping
         else if (mode === 'energy') candidates.push(6000);        // reservoir mid-fill, U climbing
         else if (mode === 'mutual_intro') candidates.push(5000);  // needle deflected, flux across the gap
-        else if (mode === 'coupling') candidates.push(5000);      // primary oscillating, needle deflected
+        else if (mode === 'coupling') {
+            // Shared-core slide-in: the readout/toggle flip to "Shared core:
+            // iron, k=0.87" INSTANTLY at cue-fire, but the core mesh takes ~1s
+            // to ease into the gap (indUpdateMutual's scp smoothstep). Derive
+            // the freeze/H2 pin from the state's configured cue (renderer
+            // fallback 6000ms) + the slide ease (~1000ms) + a 500ms cushion —
+            // NEVER a fixed literal below the seat time, or the frozen frame
+            // photographs the mid-transition contradiction (flipped readout +
+            // core still parked outside the coils + stale "air gap" label).
+            // Scar: coupling_state_core_reveal_pin_mismatch (session 2026-07-04).
+            candidates.push(asNum(ind.shared_core_at_ms, 6000) + 1500);
+        }
         else candidates.push(1500);                               // explore / no timed reveal
     }
     // ac_generator: the coil rotates continuously in every guided beat — pin the

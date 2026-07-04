@@ -1,5 +1,23 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## ✅ SESSION UPDATE — fix-first cycle complete: ALL 4 Ch.6 concepts SHIPPED (2026-07-04/05 night)
+
+**Bottom line: founder chose "fix first" for the two held concepts. The 3 MAJOR rows were fixed, re-verified CLEAN by eye-walker, and inductance + eddy_currents shipped — Ch.6 EMI is now 5/5 shipped (faraday + these 4). Total Sarvam/LLM cost of the whole 4-concept release: $0 (every clip hash-fresh).**
+
+- **Rows logged then fixed (seed `_seed_engine_bug_queue_ch6_preship_holds.ts`, 6 rows):**
+  - `coupling_state_core_reveal_pin_mismatch` **FIXED** — deriveStateMeta coupling pin now `shared_core_at_ms(6000)+1500` (cue+ease-derived, was literal 5000) + `im_gap_lbl.visible = !cs` kills the stale "air gap - no wire" text at cue-fire. Eye-walker verified on run 20260704-230212: core seated in frozen frame, no stale text, S7 explore label unaffected, other 6 states byte-equivalent.
+  - `loop_badge_label_visibility_not_wired` **FIXED** — explicit sibling `_lbl` visibility toggles (re-parenting rejected: local-coord shift). Verified run 20260704-230834: one label per plate everywhere.
+  - `missing_visible_element_frozen_tail` **FIXED (compound)** — json_author added `s5_neutral_label` to visible_elements + `neutral_reveal_at_ms: 19000` + `scenario_cue: neutral_label_reveal` on s5_5 (cue-channel binding); renderer built the third annotation sprite (rig hardcoded 2 slots — the gap was real) with 0.8s fade at `cueTriggerMs`. Verified: all 3 annotations in the 24000ms frozen frame, label fires on its narration cue, former 17s dead tail genuinely alive (AC arrows flip through t34000).
+  - `caption_clipped_by_adjacent_stat_box` + `graph_title_caption_zorder_overlap` — MODERATE, **OPEN queued** (founder-deferred, unchanged this pass).
+  - **NEW `ecp_glow_targets_never_resolve` — MAJOR OPEN, ROUTING DECISION NEEDED:** all 18 eddy_currents glow targets are short-form scene_composition ids but `applyEddyCurrentPendulumGlow` exact-matches prefixed renderer ids (`ecp_*`/`s4_*`/`s5_*`) — Rule-29 emphasis never fires anywhere in the concept (pre-existing at the original auditor PASS; surfaced by renderer_primitives mid-fix). Founder to route: renderer alias layer vs json_author prefixing the glow fields.
+- **Ship chain (both):** reseed → EYE 30/30 + 26/26 → eye-walker CLEAN ×2 → shipper: baselines locked (7+6 states), 0 translate, 50+42 clips all hash-fresh, 0 stale, HTTP 200, validate PASS. Links: http://localhost:8080/inductance/ · http://localhost:8080/eddy_currents/ (+ motional_emf, ac_generator from earlier tonight).
+- **Telugu on all 4 remains DRAFT** (native reviewer pass before student/production — Rule 30f). Handoff-ready for Asmi (professor gate).
+- **Agent-fleet note:** first full production cycle of the 2026-07-04 10-role fleet — eye-walker (hold gate + fix verification), renderer-primitives + json-author in parallel with a mid-run SendMessage binding contract, shipper ×4. The pre-ship eye-walker walk caught 3 MAJORs the original quality-auditor PASS missed; keep it as a standing pre-ship step.
+
+**Next session:** founder routes `ecp_glow_targets_never_resolve` (+ optionally the 2 MODERATE layout rows); then the Ch.4 Socratic backlog: `torque_on_current_loop_in_field` (light) via retrofit-surgeon, then moving_coil_galvanometer + galvanometer_to_ammeter_voltmeter (HEAVY).
+
+---
+
 ## 🚢 SESSION — repo cleanup + Rule 31 pacing codified (15–25s) + Ch.6 release: 2 SHIPPED, 2 HELD on eye-walker findings (2026-07-04 late)
 
 **Bottom line: motional_emf + ac_generator SHIPPED (Rule 30f chain complete, $0 — all clips hash-fresh, baselines locked). eddy_currents + inductance HELD by the pre-ship eye-walker gate on pre-existing MAJOR defects the earlier auditor PASS missed. Rule 31 pacing doctrine reconciled to ~15–25s (≈3–4 tight sentences) fleet-wide. Repo root cleaned 150→29 files.**

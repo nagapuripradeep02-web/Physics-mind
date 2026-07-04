@@ -505,6 +505,7 @@
             {
               "id": "s5_5",
               "text_en": "Eddy currents are neither good nor bad: the furnace wants them strong, the transformer wants them killed.", "text_hi": "Eddy currents न अच्छे हैं न बुरे: furnace उन्हें strong चाहता है, transformer उन्हें खत्म करना चाहता है।", "text_te": "Eddy currents మంచివి కావు, చెడ్డవి కావు: furnace వాటిని strong గా కోరుకుంటుంది, transformer వాటిని తొలగించాలని కోరుకుంటుంది.",
+              "scenario_cue": "neutral_label_reveal",
               "glow": "neutral_label"
             }
           ]
@@ -788,7 +789,7 @@
       },
       "STATE_5": {
         "label": "Applications: induction furnace vs transformer core",
-        "visible_elements": ["s5_furnace_blank", "s5_furnace_coil", "s5_furnace_arrow", "s5_furnace_label", "s5_core_solid", "s5_core_lam", "s5_core_label"],
+        "visible_elements": ["s5_furnace_blank", "s5_furnace_coil", "s5_furnace_arrow", "s5_furnace_label", "s5_core_solid", "s5_core_lam", "s5_core_label", "s5_neutral_label"],
         "camera_position": [0, 0.5, 8.6],
         "caption": "Furnace: eddy currents heat a blank with no flame or contact. Core: lamination suppresses the same effect.",
         "show_sliders": true,
@@ -799,6 +800,7 @@
           "laminated": 0,
           "s5_furnace_end_ms": 16000,
           "core_swap_at_ms": 17500,
+          "neutral_reveal_at_ms": 19000,
           "visible_controls": ["f_ac"],
           "show_readout": true
         }

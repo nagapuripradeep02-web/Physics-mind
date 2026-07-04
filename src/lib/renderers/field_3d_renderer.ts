@@ -19033,6 +19033,18 @@ export const FIELD_3D_RENDERER_CODE = `
         coreLbl.userData = { elementType: "s5_core_label", id: "s5_core_label" };
         addToScene(coreLbl);
 
+        // Third S5 annotation slot -- the misconception-resolution verdict
+        // (s5_5: eddy currents are neither good nor bad). Bottom-centre,
+        // between/below the two rigs (mirrors the authored scene_composition
+        // neutral_label position). Starts hidden; the applications per-frame
+        // block reveals it on the neutral_label_reveal cue (fallback
+        // ed.neutral_reveal_at_ms).
+        var neutralLbl = createWideLabelSprite("same swirling-loop mechanism, opposite goals", "#D4D4D8", 0.24);
+        neutralLbl.position.set(0, ECP_PIVOT[1] - 2.4, 0);
+        neutralLbl.userData = { elementType: "s5_neutral_label", id: "s5_neutral_label" };
+        neutralLbl.visible = false;
+        addToScene(neutralLbl);
+
         // ── 4. DOM panels: readout, decay-envelope graph canvas, per-state
         //    contextual slider panel (Rule 31 -- one panel, rows shown/hidden).
         var rp = document.createElement("div"); rp.id = "ecp_readout";
@@ -19344,12 +19356,24 @@ export const FIELD_3D_RENDERER_CODE = `
                 slotArmU.rotation.z = thetaSlot * Math.PI / 180;
             }
             var slotEnv = slotArmU ? ecpEnvelopeFromSegments(25, slotArmU.userData.betaSegments, t) : 25;
+            // Badge icons AND their sibling text sprites toggle together --
+            // the '..._lbl' sprites are separate scene objects (not children
+            // of the icon group), so each icon toggle carries an explicit
+            // sibling label toggle. Solid plate shows ONLY '1 loop'; slotted
+            // plate shows ONLY 'many small loops' (scar:
+            // loop_badge_label_visibility_not_wired, session 2026-07-04).
             var bigSolid = ecpFindById("s4_plate_solid_badge_big"), manySolid = ecpFindById("s4_plate_solid_badge_many");
+            var bigSolidLbl = ecpFindById("s4_plate_solid_badge_big_lbl"), manySolidLbl = ecpFindById("s4_plate_solid_badge_many_lbl");
             if (bigSolid) bigSolid.visible = true;
+            if (bigSolidLbl) bigSolidLbl.visible = true;
             if (manySolid) manySolid.visible = false;
+            if (manySolidLbl) manySolidLbl.visible = false;
             var bigSlot = ecpFindById("s4_plate_slot_badge_big"), manySlot = ecpFindById("s4_plate_slot_badge_many");
+            var bigSlotLbl = ecpFindById("s4_plate_slot_badge_big_lbl"), manySlotLbl = ecpFindById("s4_plate_slot_badge_many_lbl");
             if (bigSlot) bigSlot.visible = window.PM_ecpSlotted === 0;
+            if (bigSlotLbl) bigSlotLbl.visible = window.PM_ecpSlotted === 0;
             if (manySlot) manySlot.visible = window.PM_ecpSlotted === 1;
+            if (manySlotLbl) manySlotLbl.visible = window.PM_ecpSlotted === 1;
             for (var slj = -1; slj <= 1; slj++) {
                 var slObjSlot = ecpFindById("s4_plate_slot_slotline_" + (slj + 1));
                 if (slObjSlot) slObjSlot.visible = window.PM_ecpSlotted === 1;
@@ -19386,6 +19410,21 @@ export const FIELD_3D_RENDERER_CODE = `
             if (coreSolidObj) { coreSolidObj.visible = coreOp > 0.02 && laminated === 0; if (coreSolidObj.material) { coreSolidObj.material.transparent = true; coreSolidObj.material.opacity = coreOp; } }
             if (coreLamObj) { coreLamObj.visible = coreOp > 0.02 && laminated === 1; coreLamObj.children.forEach(function (c) { if (c.material) { c.material.transparent = true; c.material.opacity = coreOp; } }); }
             if (coreLblObj) coreLblObj.visible = coreOp > 0.02;
+
+            // Neutral-verdict label (s5_5 misconception-resolution beat):
+            // revealed on the neutral_label_reveal cue with a short fade-in.
+            // Deterministic fallback ed.neutral_reveal_at_ms (JSON: 19000 --
+            // after core_swap_at_ms 17500, before THE EYE's 24000 frozen pin,
+            // so the frozen frame photographs the completed reveal). Managed
+            // every frame here, so the state-apply s5_ blanket never leaves
+            // it stale (scar: missing_visible_element_frozen_tail).
+            var nlAt = cueTriggerMs("neutral_label_reveal", (ed.neutral_reveal_at_ms != null ? ed.neutral_reveal_at_ms : 19000)) / 1000;
+            var nlObj = ecpFindById("s5_neutral_label");
+            if (nlObj) {
+                var nlOp = Math.max(0, Math.min(1, (t - nlAt) / 0.8));
+                nlObj.visible = nlOp > 0.02;
+                if (nlObj.material) { nlObj.material.transparent = true; nlObj.material.opacity = nlOp; }
+            }
 
             var blankObj = ecpFindById("s5_furnace_blank");
             if (blankObj && blankObj.material) { blankObj.material.color.copy(ecpHeatColor(pLossFurnace, 200)); blankObj.material.emissive.copy(ecpHeatColor(pLossFurnace, 200)); }
@@ -20108,7 +20147,11 @@ export const FIELD_3D_RENDERER_CODE = `
         var pLbl = indFindById("im_pcoil_lbl"); if (pLbl) pLbl.position.set(pcx, mutLblY, 0);
         var sLbl = indFindById("im_scoil_lbl"); if (sLbl) sLbl.position.set(scx, mutLblY, 0);
         var gap = indFindById("im_gap"); if (gap) { gap.position.set(0, 0, 0); gap.scale.x = Math.max(0.2, (scx - IND_MUT_H) - (pcx + IND_MUT_H)) / 0.7; }
-        var gapLbl = indFindById("im_gap_lbl"); if (gapLbl) gapLbl.position.set(0, -0.95, 0);
+        // Hide the 'air gap - no wire' text the moment the shared core inserts
+        // (cs flips instantly at cue-fire, before the ~1s mesh slide) -- a
+        // paused teacher must never read 'no wire' across an inserted iron
+        // core. Restored live if the core is toggled back out (explore).
+        var gapLbl = indFindById("im_gap_lbl"); if (gapLbl) { gapLbl.position.set(0, -0.95, 0); gapLbl.visible = !cs; }
 
         // Primary current beads (oscillate with I1 — reverse each half-cycle).
         window.PM_indBeadPhase += (I1 / IND_I1_AMP) * 0.02 * 1.2;
